@@ -1,251 +1,310 @@
-Return-Path: <devicetree+bounces-167817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3D54A90688
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87792A90689
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 947E01883B35
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:31:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93111891FFA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1001CAA97;
-	Wed, 16 Apr 2025 14:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7F12F2A;
+	Wed, 16 Apr 2025 14:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SrtSEdKP"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FsGmMWHM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011030.outbound.protection.outlook.com [40.107.130.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AAB189902
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744813901; cv=none; b=d0Tsxb4cKZPGW0vSm4mB00JJO84iulZ6sJWcF6+UNsxW7NFdylHFkUYISzndvk5OtWYBjaSlRM0pzJ/R2IjSV5+/qs8o+S9EAkYk+ca3NGTrVdoDmRHtyG64SAr1zNhiUtluc8FqIj0M+jGIsZF+UpN9Xs45UfTNUGNVZu0OONo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744813901; c=relaxed/simple;
-	bh=TPACpjjfR71KwjatzwKAVTVQ2f+EX9p3TahnvUdcHu0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LDAbz8MTSj+ZlXqSzXvzFdg4KtuDF9rG9Nh/6W2EEnmLv0s3J30AtbDA+mRYanDVmFYVO6mnRS7robDdu/qddfpGOoCXp81xYFDD55I3CnY8Ajjkl4Z7bpPOlOLurmXwMPvddmyep4mPYyyXtSvIeyIBQQ3gSrXxRbXTaKod5c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SrtSEdKP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mIoa000421
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	X/qDGy2ycm6kc3mzErBzyrqXxXsu6MYaqlJOZ4io7MM=; b=SrtSEdKP2VLjiKFs
-	HooC6xJXeRjeu37RMRgAD3dUHU7h8H+bghyHux36hRf2ik81OU+75EIR4U9CD4gW
-	z4iCZC1LbV/RBKZ2fwlfqAw93K2BsNiA38A1IFyLxe1T1p+Fh7Idy8K7tc3dAppd
-	XWKuvvr/ThqLD0hIo2enu7sVdnvZ87fc9+L3pqQXZJ4XHqz1Tk/fI5wIZKYSl5EP
-	wUwiJfhbZxJo9wbNvUTdiJ1TrQGyKGcvVbJ5DJw7hOxeNmQGfQgCsSMLxQEg8i+a
-	wsX/aXvYQMJ9WhisdApp0KWBAAN8xB03/3uZHIOodk3R1wK8dCR2NM2rD25Ct5MF
-	xP1QAA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf4vkwy4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:38 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6ece59c3108so14592786d6.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:31:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744813897; x=1745418697;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X/qDGy2ycm6kc3mzErBzyrqXxXsu6MYaqlJOZ4io7MM=;
-        b=oZ6dFZ9kGqrSut6ReIxgKpmxMAgX/0QL3SXT0IMgoWUEM+Zg3Rhd9yW9jMjn0p0gkg
-         HWh7Xtm0/lUyvPb3t+DXdaUggl4nHxfBl0IEh58RIoXLgr2vvndXrr8QENYsIRkWwkqm
-         8M4cQqgh+54gqWkClXOff7eZDS9XglOrX8wnMTeW7+CQTJmOzoYhgFZ/kGRe8A5u+6FR
-         JPq5ScCGreFOoTp1Cz8Zcdyw7DUcZpPOFkT1+zuq8snoFeiRv5Y5g4eh011EUqobXwm6
-         hujsGEiznvczMFKpmnjuqYE0E4NRpMBP/8Q5kP66/HrREqchsnmeqQ1vWRu+Rg7PCCvp
-         2uQA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1jHYMu9vMcSx1SPsMJcw7mbI0E1YkR33NMjeQQBQdgUPSWASux/UaJv/m8+6uaYV/Eo5wJGuK8rTp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/Z7NIKpUtWy3BBRkFZwXef4kepnBkNj2s9S6zHYcMYgHyTgDC
-	di2BszmxMRyDK/40PcI/v48MaPUf67jXqRRJ+hn7gKSC83whiuiXp4CFJHinrzwmypyhYLLMKGh
-	gvb2U6Sulb5L9Omvvh9XorRi716YcOtgdRNjaDZshB7m4Jc8Ah1Xqa8LH973U
-X-Gm-Gg: ASbGncv3kAZy0ncNIiPnjS/e8M2vkOtmgX3REgY2F21E5gz2NjiyYn9WiuevO2TtMna
-	JPhxrPyQjXuecAYc13h7Nu/xDpPDnSXkxkGAdxcEbycQeDwxn1jj3/u40bClkzH+oL0wM2p7lUA
-	iT9nzJkILEksEwWk5seIziR0+AGsq8sV8h2/hbveXYuM+frCHDqfhuyfR021sSkEW6ZfEJQ4dyl
-	VY0oZaMq6uYYT8gOo5R+cxVB6rRvbrSwWE7A1HfKyvkqbdjax9iMjRTRW/AcXL0McwfDVPj3aQq
-	b2EDbNtZqcHQvUY/jbDh6VDCC3LWuskMiGQwISnxjgh+L56fDx90/0f6N033NVrZ8Dc=
-X-Received: by 2002:a05:6214:29e7:b0:6e6:60f6:56db with SMTP id 6a1803df08f44-6f2b3029573mr9724796d6.6.1744813897355;
-        Wed, 16 Apr 2025 07:31:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFwB6e/uaPkdfMVVa70tVHqNla8oVHRPsq8DlrduYG0CTy8e0RvQw7EDQnPlYw1r218WwFBsg==
-X-Received: by 2002:a05:6214:29e7:b0:6e6:60f6:56db with SMTP id 6a1803df08f44-6f2b3029573mr9724666d6.6.1744813896910;
-        Wed, 16 Apr 2025 07:31:36 -0700 (PDT)
-Received: from [192.168.65.178] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3d349900sm140241766b.179.2025.04.16.07.31.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Apr 2025 07:31:36 -0700 (PDT)
-Message-ID: <823b3448-6c45-4595-8067-8c329203d245@oss.qualcomm.com>
-Date: Wed, 16 Apr 2025 16:31:34 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96464186E2E
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744814002; cv=fail; b=FA4Pt13s5uMs3a8RW1IvIkaEVAdxqwbo5xaqNTLtFDDmBVhZHBo0JUzIpZLoWqwcER7HKHo/hxDPREqbQC7R64HvpdYfoGJ/vHmcazCC95S+bPtSZJXWzQW8aOXTdaX0cCVpUErurt+TgbX8QJuwrXUu9hJyWtDhTkKY7dSnG68=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744814002; c=relaxed/simple;
+	bh=ZEbc9da789j0MptjZfIUrW8zuFmmQdSzUMXnaW0+Ff4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=bDOHmhtU3jPmClE4VYQ9ovTZ7dM/bmujP+w9xHsSI04sV8Nuo4Z3e983zHav0ugTKg5PkiLCUF29el+YO2wFB6L/bknBEtevdxuMzgIpzGMamRQewjrbc64nowAmRgwpJ5PcCFAaF9EQf9QDTreh3O1IX9rBp+R17szs9LIHzGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FsGmMWHM; arc=fail smtp.client-ip=40.107.130.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iXnUzHO6rYZVv5PPVaMGHtZ9RHTo7kETnhDwWQVr6uie81CH3rJA+quGAsq7BOa1JDFb1S6GRqiwDLQfaF2TcGfyAD0eqxfltq8uHwr1t1Y1tDw8l6cVj0iWHHYqFNFzVEJJ1JVQdpYo8gtbXEag+p0V0o4lotLY6133UvLw06SKpE1gGEXQv5rPK6FZqHAwE3K106TDF2/vaEKAa8RZZFG7f9z1+wjRqHLWgIhJac6qixGFinootYA9jMj+5MBQ0J2lXyAnprAgO31j+pjyRcoHPXZtGQLHppTrUWEuIFX5mxRGctJQEPBsg2co4Pf4VGzS8GN6jfFQqPRO048SWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=71kTG4onuqFpLScJTlp2ZVmpgvzmV/VrABEdNRr1oH0=;
+ b=k1pJrzO86gwGQsoo6wjAsfOCDyVyD1sWZPdvOc62gokj85Y1V9k7CjOI6PuZrEz65M5zaM3im2DhswIgxNnJm12d2iNBQw1G8VgxYotdPeVlGMT6w7baD84uhFNcrraEF5LAT0zWIv+3WlKODaSsKXaAZnc8PadCpfYDdlYPPJD5R2UjkC6S7v66Wr8GtBJpSV9f6f+XXxBrqQMl0vuG9E2t1EmGUoG4EdloNROWg+hmBIRznowFd4moxEmRDJl7Ds/K5jAVu9YhrcMWRdKOQoQkLJgl8k794RslnTPRWhRgrqRnyCCw0RXLQ3837OLhPUHCWpkg7gD+wN+edY+m+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=71kTG4onuqFpLScJTlp2ZVmpgvzmV/VrABEdNRr1oH0=;
+ b=FsGmMWHMQXjR5pTvOOHFVawt1IkJafLZUS/KpHKTYasAz8RP6Qs/3K6663nM6/X9rzELuAaxK7mFHjLn+43Y/pmjiFqiGsqOB1QwTPpDoI6/BoTHw8QYhgtfDKjHG8r7KTwG8oRWn5QzSDX8aa/EL+Mu+WZqfFZ9EGypb82njtViYQylgNiCudJdMwDa8VoKaoarZEnUJKXIpJ1c6WhMVX0JBJ5q0X/RtebBDKxvfMjSJa7AEhVN2rye0cCCJjU5XjHhft1HZAULoZTF0KeblLt1nU/dFX/f3qhXEaJbUupM28Tjr34Kz7NWc2JeLUny8wG3diMADAlwq24KkHCwzA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8517.eurprd04.prod.outlook.com (2603:10a6:10:2d0::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.22; Wed, 16 Apr
+ 2025 14:33:17 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.035; Wed, 16 Apr 2025
+ 14:33:17 +0000
+Date: Wed, 16 Apr 2025 10:33:10 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
+	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch
+ support
+Message-ID: <Z/+/pgmR4n71iTkE@lizhi-Precision-Tower-5810>
+References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
+ <20250416105940.1572672-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250416105940.1572672-2-xu.yang_2@nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0371.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] media: qcom: camss: Add support for TFE (Spectra 340)
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, bryan.odonoghue@linaro.org,
-        rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Nvn6dlJ92MK8vKENQmQ9o8bXLsJFJOWQ
-X-Authority-Analysis: v=2.4 cv=IZ6HWXqa c=1 sm=1 tr=0 ts=67ffbf4a cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=b2D0RaZ-bvYcWOOTphEA:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: Nvn6dlJ92MK8vKENQmQ9o8bXLsJFJOWQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- mlxlogscore=999 mlxscore=0 bulkscore=0 impostorscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504160119
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8517:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5b49c7e-e5b2-46da-c558-08dd7cf3a0b9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?objUBMZJ5K83Rtp65Qbe80MY6n79X9PkShnMltESfxqs/RsX31B828xc/Qi/?=
+ =?us-ascii?Q?+wUTR+HG2awvwei/bHB6PqFaJITK1x716S4WqxGSbp9MNC/6OQFX34YvqBMB?=
+ =?us-ascii?Q?iez0B4j1YJcvLJeadq9sGKjx5WChTbDMXLBs1omWsxZaVr4YUu4z8rUExp01?=
+ =?us-ascii?Q?xYZkmaoLllZPFDJBOTMMGL2fUBVj+i6cs23Br5NQtDqUg/B72imgVBlFIpDF?=
+ =?us-ascii?Q?ZgQ8DPBYpM7tkwMN43RwphcugY4h5evMpy5btympT41KZq06RxPzlHZoH+Lx?=
+ =?us-ascii?Q?Pd/RagDiuhw79Wa/mzEg7NnJkS074hkyftjB7vUG5A8L+WuHuXt3ffJiZN6O?=
+ =?us-ascii?Q?ERaZybc0Bdudk63z1+x5qhOd3hLXBRLXp+N0VYBgjWGOCU6bBL2pUcrtSVWc?=
+ =?us-ascii?Q?KNSQUsp/8Exqrh0bAvagW6z/wv7ysH8hleCwXg593CpgptUWMVsj0DIWdAAm?=
+ =?us-ascii?Q?vLtHYL/eCIj0zjBiIDN2Z9E/t3lbYU9DoeYvvXOFqqDbTN029GQGV2tV2Rez?=
+ =?us-ascii?Q?Ig4p6KllCFNdmf6nUMFdErG2sWQz03LBvZekNSegngF/aive+0PGs2T6MrjD?=
+ =?us-ascii?Q?PHezUmbjdBBWpq+3kmAL50heax53gx/Wbr8uorno4kNMmR06g9ALOUQLenOU?=
+ =?us-ascii?Q?U8SIWDQ+7fwH6OF0k454xn80nNzbAqiwMIGiixZwd7ePEtNNaSvVXj63K9v6?=
+ =?us-ascii?Q?M3zvlFDbG13h3fFrTI3dQtNeRn/+PdLHAMG30eoFLwU+KnBAbU7TGC/XMQ/u?=
+ =?us-ascii?Q?dyOf9av++0NaIn74WtsVFFdTseF+oQNAL6yVX6NdDRxbzRddziSPJKcIz21g?=
+ =?us-ascii?Q?mVeXKL72NVFJNQoVUsXbaOZgwbcVuOaPMryQdNOBTUQCStC8L89OCGY5jBIP?=
+ =?us-ascii?Q?mnH+n6cEhv7ew21xuaT3/c9wf0c6c8rwDdIQ/6eF7KmrGsMDXq3x18ZrNCYf?=
+ =?us-ascii?Q?KDLIlsvUahmpl7d/5Ul8GVTS5RVYicixnGgJxejMZt/nOYv4qDSfv3ih5yMz?=
+ =?us-ascii?Q?m/ZDjJFDxek+ID9sO80SpCNWEX3freamlehcmyDZIdW8/050p+sJObZ2gtLW?=
+ =?us-ascii?Q?lsfughHzogGbZIMRbNIGlxtEVTOirGrkU8hOOTFNU63caXAgDp8ydIY/kE6R?=
+ =?us-ascii?Q?crXODQZ2G6AdbSYF3oxnCBxXKfvwShlHjWQ+BGC+VPIXcm+98mYkdsvpGq6H?=
+ =?us-ascii?Q?S42wDlrDjfX7Wbf3FFkxRK2b1wZbYbauu9eFedEsDR5QKhEnnPFFT9Pw5Apx?=
+ =?us-ascii?Q?zm2rWFRJGz7VG4TjrCC1DgCEDSUs/9q5eMrF83kmCAGnh4m54Aodt5++Uu4I?=
+ =?us-ascii?Q?LkOlefFLck2VSYImF2SQy2eOYnXGdCgsDgIaSPMY8/qF1oCp0cuul2gJu1uz?=
+ =?us-ascii?Q?N9DbcxWB7wqqGlCdP9TLkFaL8ILmWa9SmIs2nzl16BPD9YqtpCOLKCyqTlBA?=
+ =?us-ascii?Q?/2p50vjN6tpcVPSqXdDSUGL+Xf6rSyxU1ULMLkBF4/6NRrflLrVauw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GahwKdIt9a3K7AiREcJzzci5lCe3s9e1YUMEm9ieEOR+6DC/nOUfiA9mifE3?=
+ =?us-ascii?Q?/HR68t+fyMCkfWi7YStkJvi+uEvqP2OzCoskSZ1VzSaOTpR3Ncn4Cn2uOdG6?=
+ =?us-ascii?Q?chIaRIiPrX7DJDSHMn6q3jSYCbdsNoYpDuOKytC28Cxie/2gtbryAIJzXuC+?=
+ =?us-ascii?Q?oUUezrKq3MIU8Yk7pHFLE0cpOaQpY1RdbXAO0DYLE01O6axMM4huxI91d4Kb?=
+ =?us-ascii?Q?shgnYQqw3MEIDE5K9b+KHrNmSKxPujRxv+8Mmb+UyqVzkfK6OO3ZoiogU2lC?=
+ =?us-ascii?Q?4Zanf+VgjtwJhUhCjKDq59r1KO0d3qJymMbwrEXnjaAZ8Cw7rVS5oZazip4/?=
+ =?us-ascii?Q?MxjOShimu7aJxrCqfCJGtHmJEeZ6NLtVL2KG8TQErmA/GbLgaIJTyonYZveY?=
+ =?us-ascii?Q?LluFCGPKnJv+TxvICI+rwOFLh5lXTKMfgHcYTk3WcDXrOTdcs5onl1I2cYyX?=
+ =?us-ascii?Q?0UWtU7EgmcsGS5nmO7JPcZIvkZdj9CpVNf+oxEPqk0gHzO5m8DKmlcffdjvt?=
+ =?us-ascii?Q?5FEPtjh4dLCUNeQi2lGnM0c/A7nd3SjTvjkUYnUEPh4CvN++EVzoYatOO61J?=
+ =?us-ascii?Q?e2TooOlfc1zCLatR8zzpxAsqpuHgBzZ7zL88Pt/WOVxBo9F90Hku+avpZF0G?=
+ =?us-ascii?Q?jGhf7KlZAqWuB3HpFl8/upl/e745zcH6Wko7pIasp0lXMduDuexjMQ8qCBjr?=
+ =?us-ascii?Q?P5G8UoahktY+PytGtuYt4AcSKNGJwNA64HWX9w4l+HvGpyez7SCIRYPDqMjU?=
+ =?us-ascii?Q?CKSMupXdNr3naAUhPfyp14v6vhEAElsIbKGohc3kqXw6aXv+wcLwno2y5vUB?=
+ =?us-ascii?Q?nmwzrZ3qIer+Ubbk8Kjkt5dal9Whk3NH3qpAPd7k4h8hEQ9uT3bu20+A/og1?=
+ =?us-ascii?Q?OCMW2AmC3+xj5DteD9Y9CV3hMJZ6E3TEfIH9WaSwKFTENbsKbJlxJCFoIYTF?=
+ =?us-ascii?Q?qdsVCjS8DuRbs5yFfy9iCfxZBPKbmD48RD97iudB9YyB+4lRXs2+hjSGlzuG?=
+ =?us-ascii?Q?H4jrkkF/hfTWmVVWhTG72StjrbtBXUxKIfTmJCVOr9ddhcIqkJ7ihCGmmHzI?=
+ =?us-ascii?Q?h+x7PZZjJav/JsLIhbpl0fU6AXqCK8WpcVkdi6xLDwkAv7hr1AGi+qhIcyK+?=
+ =?us-ascii?Q?Jx3kGuWoo6d83CpvZBAyF3hRTzebV30ggxj6i0wokM6L4rRQ9QMcuQV9Dj+W?=
+ =?us-ascii?Q?7yUek/X0HQ7icjZksnZU0l6/p5SrQt2RQCISHFSCt0RZ+BEUAc6HxoUK7iun?=
+ =?us-ascii?Q?rQZZpbXBsH3oN/MMU19MPMhVKJWD9+IOGEK8M+WC8gX/4mI/abgzBLJdGzng?=
+ =?us-ascii?Q?fD3MsZvF4uaPDq3YDK/U10pAl8ATOKngofbmQ/HOotqxoAxBRFZvZJLY6H5n?=
+ =?us-ascii?Q?Kzujb70H/4+gZd7F5XOmmFVj1N4txA6cgTWt1NAmfCGjY+k4qroYXh91VD51?=
+ =?us-ascii?Q?WPq5cRXRkjQVYCBrJvbd2ik6LlSETO6WnCgwTmYbdbJt39HdDL5GLEr8IPZk?=
+ =?us-ascii?Q?Fy+XGToqFdafqT72yuBDMuNPKcZ+wBH+vySfd0iRQDqCMMswnvoDyBQRHwMm?=
+ =?us-ascii?Q?3bht7Qx6rvg+VAAt6jCvbVj908h6fChwGqH7l+za?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5b49c7e-e5b2-46da-c558-08dd7cf3a0b9
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 14:33:17.3646
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GzoEOBwZEsdAufptqdM6eJUhdbCOHneQM0fWIc5+km3HdexeYMPJOxlN9eSPsw6RO1+iabRZ7xF20GUPIVNQtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8517
 
-On 4/16/25 2:09 PM, Loic Poulain wrote:
-> Add support for TFE (Thin Front End) found in QCM2290.
-> 
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+On Wed, Apr 16, 2025 at 06:59:39PM +0800, Xu Yang wrote:
+> PTN5150 is able to detect CC polarity. The field[1:0] of CC status
+> register (04H) will keep the result.
+>
+>   00: Cable Not Attached
+>   01: CC1 is connected (normal orientation)
+>   10: CC2 is connected (reversed orientation)
+>   11: Reserved
+>
+> Sometimes this information is necessary, so add orientation switch
+> support to correctly set orientation of multiplexer.
+
+Add orientation switch support to correctly set orientation of
+multiplexer according to CC status.
+
+>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
->  drivers/media/platform/qcom/camss/Makefile    |   1 +
->  .../media/platform/qcom/camss/camss-vfe-340.c | 281 ++++++++++++++++++
->  drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
->  3 files changed, 283 insertions(+)
->  create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-340.c
-> 
-> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-> index d26a9c24a430..719898f5d32b 100644
-> --- a/drivers/media/platform/qcom/camss/Makefile
-> +++ b/drivers/media/platform/qcom/camss/Makefile
-> @@ -17,6 +17,7 @@ qcom-camss-objs += \
->  		camss-vfe-4-7.o \
->  		camss-vfe-4-8.o \
->  		camss-vfe-17x.o \
-> +		camss-vfe-340.o \
->  		camss-vfe-480.o \
->  		camss-vfe-680.o \
->  		camss-vfe-780.o \
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-340.c b/drivers/media/platform/qcom/camss/camss-vfe-340.c
-> new file mode 100644
-> index 000000000000..fc454d66e1d2
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-340.c
-> @@ -0,0 +1,281 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Qualcomm MSM Camera Subsystem - VFE (Video Front End) Module 340 (TFE)
-> + *
-> + * Copyright (c) 2025 Qualcomm Technologies, Inc.
-> + */
+>  drivers/extcon/Kconfig          |  1 +
+>  drivers/extcon/extcon-ptn5150.c | 40 +++++++++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+)
+>
+> diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
+> index a6f6d467aacf..fd4ec5dda0b7 100644
+> --- a/drivers/extcon/Kconfig
+> +++ b/drivers/extcon/Kconfig
+> @@ -145,6 +145,7 @@ config EXTCON_PTN5150
+>  	tristate "NXP PTN5150 CC LOGIC USB EXTCON support"
+>  	depends on I2C && (GPIOLIB || COMPILE_TEST)
+>  	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
+> +	depends on TYPEC || !TYPEC
+>  	select REGMAP_I2C
+>  	help
+>  	  Say Y here to enable support for USB peripheral and USB host
+> diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
+> index 78ad86c4a3be..b7e05d921c79 100644
+> --- a/drivers/extcon/extcon-ptn5150.c
+> +++ b/drivers/extcon/extcon-ptn5150.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/extcon-provider.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/usb/role.h>
+> +#include <linux/usb/typec_mux.h>
+>
+>  /* PTN5150 registers */
+>  #define PTN5150_REG_DEVICE_ID			0x01
+> @@ -38,7 +39,11 @@
+>  #define PTN5150_REG_DEVICE_ID_VERSION		GENMASK(7, 3)
+>  #define PTN5150_REG_DEVICE_ID_VENDOR		GENMASK(2, 0)
+>
+> +#define PTN5150_POLARITY_CC1			0x1
+> +#define PTN5150_POLARITY_CC2			0x2
 > +
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +
-> +#include "camss.h"
-> +#include "camss-vfe.h"
-> +
-> +#define TFE_GLOBAL_RESET_CMD				(0x014)
-> +#define		TFE_GLOBAL_RESET_CMD_CORE	BIT(0)
-> +
-> +#define TFE_REG_UPDATE_CMD				(0x02C)
+>  #define PTN5150_REG_CC_PORT_ATTACHMENT		GENMASK(4, 2)
+> +#define PTN5150_REG_CC_POLARITY			GENMASK(1, 0)
+>  #define PTN5150_REG_CC_VBUS_DETECTION		BIT(7)
+>  #define PTN5150_REG_INT_CABLE_ATTACH_MASK	BIT(0)
+>  #define PTN5150_REG_INT_CABLE_DETACH_MASK	BIT(1)
+> @@ -53,6 +58,7 @@ struct ptn5150_info {
+>  	int irq;
+>  	struct work_struct irq_work;
+>  	struct mutex mutex;
+> +	struct typec_switch *orient_sw;
+>  	struct usb_role_switch *role_sw;
+>  };
+>
+> @@ -72,6 +78,7 @@ static const struct regmap_config ptn5150_regmap_config = {
+>  static void ptn5150_check_state(struct ptn5150_info *info)
+>  {
+>  	unsigned int port_status, reg_data, vbus;
+> +	enum typec_orientation orient = TYPEC_ORIENTATION_NONE;
 
-Please uniformly use lowercase hex
+Move to first variable to keep reverse christmas order
 
-> +
-> +#define TFE_IRQ_CMD					(0x030)
-> +#define		TFE_IRQ_CMD_CLEAR		BIT(0)
-> +#define TFE_IRQ_MASK_0					(0x034)
-> +#define		TFE_IRQ_MASK_0_RST_DONE		BIT(0)
-> +#define		TFE_IRQ_MASK_0_BUS_WR		BIT(1)
-> +#define TFE_IRQ_MASK_1					(0x038)
-> +#define TFE_IRQ_MASK_2					(0x03c)
-> +#define TFE_IRQ_CLEAR_0					(0x040)
-> +
-> +#define TFE_IRQ_STATUS_0				(0x04c)
-> +
-> +#define BUS_REG(a)	(0xa00 + (a))
-> +
-> +#define TFE_BUS_IRQ_MASK_0				BUS_REG(0x18)
-> +#define		TFE_BUS_IRQ_MASK_RUP_DONE_ALL	0x000f
-> +#define		TFE_BUS_IRQ_MASK_RUP_DONE(src)	BIT(src)
-> +#define		TFE_BUS_IRQ_MASK_BUF_DONE_ALL	0xff00
-
-You can use GENMASK to define the fields and FIELD_PREP(field, x) to
-fill it out
-
-[...]
-
-> +static inline unsigned int __regupdate_iface(enum vfe_line_id line_id)
-> +{
-> +	switch (line_id) {
-> +	case VFE_LINE_RDI0:
-> +		return 1;
-> +	case VFE_LINE_RDI1:
-> +		return 2;
-> +	case VFE_LINE_RDI2:
-> +		return 3;
-> +	case VFE_LINE_PIX:
+>  	enum usb_role usb_role = USB_ROLE_NONE;
+>  	int ret;
+>
+> @@ -81,6 +88,23 @@ static void ptn5150_check_state(struct ptn5150_info *info)
+>  		return;
+>  	}
+>
+> +	orient = FIELD_GET(PTN5150_REG_CC_POLARITY, reg_data);
+> +	switch (orient) {
+> +	case PTN5150_POLARITY_CC1:
+> +		orient = TYPEC_ORIENTATION_NORMAL;
+> +		break;
+> +	case PTN5150_POLARITY_CC2:
+> +		orient = TYPEC_ORIENTATION_REVERSE;
+> +		break;
 > +	default:
-> +		return 0;
-
-Warning?
-
-> +	}
-> +}
-> +
-> +static inline unsigned int __regupdate_line(unsigned int iface)
-> +{
-> +	if (!iface)
-> +		return VFE_LINE_PIX;
-> +	if (iface < 4)
-> +		return VFE_LINE_RDI0 + (iface - 1);
-> +
-> +	return VFE_LINE_NONE;
-> +}
-> +
-> +static inline unsigned int __subgroup_line(unsigned int subgroup)
-> +{
-> +	switch (subgroup) {
-> +	case 5:
-> +		return VFE_LINE_RDI0;
-> +	case 6:
-> +		return VFE_LINE_RDI1;
-> +	case 7:
-> +		return VFE_LINE_RDI2;
-> +	default:
-> +		return VFE_LINE_PIX;
+> +		orient = TYPEC_ORIENTATION_NONE;
+> +		break;
 > +	}
 > +
-> +	return VFE_LINE_NONE;
-> +}
+> +	ret = typec_switch_set(info->orient_sw, orient);
+> +	if (ret)
+> +		dev_err(info->dev, "failed to set orientation: %d\n", ret);
+> +
 
-All these translations looks a little fragile.. Not sure if it's in the
-scope of this series, but adding an op to do this (or a static map)
-sounds reasonable
+Does it need return error here?
 
-[...]
+Frank
 
-> +static void vfe_wm_start(struct vfe_device *vfe, u8 rdi, struct vfe_line *line)
-> +{
-> +	struct v4l2_pix_format_mplane *pix =
-> +		&line->video_out.active_fmt.fmt.pix_mp;
-
-weird linebreak
-
-Konrad
+>  	port_status = FIELD_GET(PTN5150_REG_CC_PORT_ATTACHMENT, reg_data);
+>
+>  	switch (port_status) {
+> @@ -152,6 +176,12 @@ static void ptn5150_irq_work(struct work_struct *work)
+>  				dev_err(info->dev,
+>  					"failed to set none role: %d\n",
+>  					ret);
+> +
+> +			ret = typec_switch_set(info->orient_sw,
+> +					       TYPEC_ORIENTATION_NONE);
+> +			if (ret)
+> +				dev_err(info->dev,
+> +					"failed to set orientation: %d\n", ret);
+>  		}
+>  	}
+>
+> @@ -219,12 +249,14 @@ static void ptn5150_work_sync_and_put(void *data)
+>
+>  	cancel_work_sync(&info->irq_work);
+>  	usb_role_switch_put(info->role_sw);
+> +	typec_switch_put(info->orient_sw);
+>  }
+>
+>  static int ptn5150_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct device *dev = &i2c->dev;
+>  	struct device_node *np = i2c->dev.of_node;
+> +	struct fwnode_handle *connector;
+>  	struct ptn5150_info *info;
+>  	int ret;
+>
+> @@ -311,6 +343,14 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
+>  	if (ret)
+>  		return -EINVAL;
+>
+> +	connector = device_get_named_child_node(dev, "connector");
+> +	if (connector) {
+> +		info->orient_sw = fwnode_typec_switch_get(connector);
+> +		if (IS_ERR(info->orient_sw))
+> +			return dev_err_probe(info->dev, PTR_ERR(info->orient_sw),
+> +					"failed to get orientation switch\n");
+> +	}
+> +
+>  	info->role_sw = usb_role_switch_get(info->dev);
+>  	if (IS_ERR(info->role_sw))
+>  		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
+> --
+> 2.34.1
+>
 
