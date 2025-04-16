@@ -1,139 +1,243 @@
-Return-Path: <devicetree+bounces-167600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E78AA8B071
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:39:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 615B8A8B0AF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E9DF7A3809
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:37:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54BC01761FE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC8821E096;
-	Wed, 16 Apr 2025 06:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2EF02459E1;
+	Wed, 16 Apr 2025 06:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqER21T5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="geyRaYrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA54D1F4611;
-	Wed, 16 Apr 2025 06:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5C4246333;
+	Wed, 16 Apr 2025 06:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744785541; cv=none; b=UKBi+DafSoUIdfYbngR2949dCegBhRD0LTj2jQQnBwmUrLUajQH5tmHTEfQ5Sn6YuFthdJbX5Su0BLP3XVyvv47wOik/+/wtQfwwCd+0iZtyeyVSqssW/kTA/sW/jDcUbzIEAFjWSDISmMiqoc8m1YTky/6935djELqUvPAWCNc=
+	t=1744785656; cv=none; b=MdzMyVGczLSt8g9GaJcw93/nx3zwr/STl4Dp1JGQlawBCxiTTbb6T4nM32me0Kgxy5xjKaTnFD6XcI7Lt0hRmGPBVDc+d1nH2JIvoDz/q25Yx7VheMk4sK2UeNEcBRMBHtwylzAXJnyPbsaQu/uCNYappmTWuq0xIl+oTacCanI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744785541; c=relaxed/simple;
-	bh=Gpd3SFotmB4WTuWj5qWFEhtWxeboUbelP19sKnAgqqU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=LUtzeUtYC+lvyKfyc9CEbQd158CReMi99IWb5EBrGezyKzazzRPxKUT22gtwPYZHGTVEqZn8ctwycXyp6HOg2SsuKAX1dE2HIvY+IJVoJQMSdtlQkZFIi8XrdL9CO1OlQI1F6qAz2WFSky4cmNDl/f06TVKxlRrvOCbEMNTzHT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqER21T5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED17C4CEE2;
-	Wed, 16 Apr 2025 06:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744785541;
-	bh=Gpd3SFotmB4WTuWj5qWFEhtWxeboUbelP19sKnAgqqU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=oqER21T5pCp5Cl/GFalGvsf/IAayAiWVtbiGxE1uU7Y8ytEyiN6Lle4D6Zc/MZnuy
-	 xp1bo6XYu7BZnHnojQ4UAkAghrYfr9JIDq3OpD5DopQ6NF0ZlZY58A7UB2EMofYhBr
-	 Twg1Ou3Pfa9sZQxbP1PVD7NUKe9vct0MseMW94/A7AuNFVpCc1ELm7tiiZtczbME4h
-	 gcr+jyQe5525JrxmBmKMGSLxgESF/DYR73UG0bJ+iyVrEF7N2dZdJpLsfa+Pcms+so
-	 JPaijPGBYiekOl6l4TNH2rzdBh4TtgNV7+4PkxHZOw1avY1DIcmbiy9El7iEcRUXEm
-	 eHXJstf3rGg3g==
-Message-ID: <2f05420b-0c6f-4336-9854-036edf8d28fa@kernel.org>
-Date: Wed, 16 Apr 2025 08:38:55 +0200
+	s=arc-20240116; t=1744785656; c=relaxed/simple;
+	bh=1h9y6FTZxarygP0TkXH/vv/4wCGRTme+kpfAOEkeAqI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CH44pFtuhL/AbD2qxP9ao+8xnXyrjZUH5x8pQj4J0IUKDBX3ZfkjOUi4MFgcpBt7L8sxhxr7uymEA2D0T7VhLW10y7AV39LENS4cloGWVZ2+ke4eYE0OkgoNxrZmjpa6ySvTcjL75o+BsHKiZ4ivA857SKy8zzoaaezvAo8NDaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=geyRaYrC; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3914aba1ce4so5127126f8f.2;
+        Tue, 15 Apr 2025 23:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744785653; x=1745390453; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aEmFT6yWrmKehIQNMRlgRGvQtqeeYxSOMZxf9NCxgf8=;
+        b=geyRaYrC+sXKut9Qm6lHy/h5vKDyswkznp2Y2EvQTXy+o++S1BDp3hQi5EVzU5PScO
+         MCribfA5l5Jt/gln6xHiSX8VRhK2/p008u5eEm3ynenZ0+Q7/aD1gDIzRo3x+JZHRRZi
+         g43nFyzpitYd2Y2EGoRt7WkJDVCCjMMFafg9BwrOydUWvLy5oMjwT++k+11zQ51qqNcx
+         pC2yMrxcVxnzpfq02sBG5XQWcGTei3/rymfPfKwYJI8wm+qWAeZxYtvAXiBcxpD8ipFq
+         YdkInsWZ5LfyUv4l+1OTMlUNmqXMhR2yRJ7mgL0u6fjdvONqHEdHb2pp5eMMk9psz1EB
+         UD+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744785653; x=1745390453;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aEmFT6yWrmKehIQNMRlgRGvQtqeeYxSOMZxf9NCxgf8=;
+        b=t2atQwcKPNRBAdqkr6EcBj0Fllg1b658uXzwxb1XY8QYllmlI5o7zhxtMmn57TRI9A
+         vj0KWlXcDF9Whi3zLUPASSE70ii9UNzrWl6d9ZuH8mgh+mxEmsdvNDWsSPVEnwa8sbuH
+         5YAlko6yHUle66W/ngQrS9o5kGYVN9H1FKntMCeJl08uuT212WQMm0mFVw/4pUxqwLw4
+         unH5DOHGcyLg9k+wYQiwNsu0N0XTajbksVcV1nyxGOBnEaAWWTJVA67n8ZOSItvh31lJ
+         wP8flYHPL4xdwGCsWHghWVi73qlWsoFAKQarbloaCRYH5LdPlO2FLgsvlo7a8vhZ9gRU
+         UZLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHHagxSSbcbg6cq0+nuImY4YbDZ/1yACcuSDM+6/k55ueGitw3d8HNYUis31Ez3E47FkMHoOOtCPzs8X4m@vger.kernel.org, AJvYcCUY1AnAw/PtUi4ebs1UC8CMfAVLtlVTRFeMR+bJlkXKS/Q/UYD/TmitsCCw7A82xNGAjAYQeca63Ugy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeXEkB2e4Ykd/AU+TrW7dMPMI0zbvbKSC0ftSq39wjzVX3aCyV
+	AOO98toQtlrLHJUNe3up4EhAqPB3sBeKE5t52OzhGfI+3/A86ISfMN5yFbjDkX1kW+XPHFSzpkQ
+	9N3jFAszh8Z62iNoFuZhrverRJEgwvK+2
+X-Gm-Gg: ASbGncvU7rKXFaURJuRh+WT+8NBXkUTaXT+paNye8+7iPdqtY1ey8a2fiIJP6dZ850e
+	7c+91U0BaW7iNj/sKP7oD+R4SMIa/86yKlPPsIeikcuQRg9Gv9Uim82gXbDUqT6+Jmm5gULk36C
+	ic1JVvEsigL0CwqT1+MNP+R20=
+X-Google-Smtp-Source: AGHT+IG0GGjuLd2A2XpZtlHWtwnocPmbMlMmUK/NP5KwDhbBkAedNMcbby0dBOXrWK5djTbre5W/xlcioRBEZZNuSR4=
+X-Received: by 2002:a05:6000:400d:b0:39c:13f5:dba0 with SMTP id
+ ffacd0b85a97d-39ee5b16172mr618349f8f.13.1744785652710; Tue, 15 Apr 2025
+ 23:40:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/10] dt-bindings: clock: cix: Add CIX sky1 scmi clock
- id
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Chen <peter.chen@cixtech.com>, soc@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com,
- will@kernel.org, arnd@arndb.de, jassisinghbrar@gmail.com
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- maz@kernel.org, kajetan.puchalski@arm.com, Gary Yang <gary.yang@cixtech.com>
-References: <20250415072724.3565533-1-peter.chen@cixtech.com>
- <20250415072724.3565533-9-peter.chen@cixtech.com>
- <bdfe0108-7ac3-4f2c-b7f2-97943ee85235@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <bdfe0108-7ac3-4f2c-b7f2-97943ee85235@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250413112401.12543-1-clamor95@gmail.com> <20250413112401.12543-2-clamor95@gmail.com>
+ <20250415215521.GA885658-robh@kernel.org>
+In-Reply-To: <20250415215521.GA885658-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 16 Apr 2025 09:40:41 +0300
+X-Gm-Features: ATxdqUFN7UzyJuMMMzD1rwSyh7qBfatQVvF-TSiE9ixKB6cKNshecrhpPqTjrCQ
+Message-ID: <CAPVz0n0qTUqt+JEy0R4-=jJLgVRcNwwe0k2jTd=hcLxSoAFG_g@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: display: panel: Document Renesas
+ R61307 based DSI panel
+To: Rob Herring <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16/04/2025 08:35, Krzysztof Kozlowski wrote:
-> On 15/04/2025 09:27, Peter Chen wrote:
->> From: Gary Yang <gary.yang@cixtech.com>
->>
->> Add device tree bindings for the scmi clock id on
->> Cix sky1 platform.
->>
->> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
->> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> 
-> Incomplete SoB chain.
-> 
->> ---
->>  include/dt-bindings/clock/sky1-clk.h | 279 +++++++++++++++++++++++++++
-> 
-> Filename matching compatible.
-> 
-> 
->>  1 file changed, 279 insertions(+)
->>  create mode 100644 include/dt-bindings/clock/sky1-clk.h
-> 
-> Missing actual bindings.
-So that's SCMI, then only two, first comments are valid.
+=D1=81=D1=80, 16 =D0=BA=D0=B2=D1=96=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 00:5=
+5 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Sun, Apr 13, 2025 at 02:23:58PM +0300, Svyatoslav Ryhel wrote:
+> > R61307 is liquid crystal driver for high-definition amorphous silicon
+> > (a-Si) panels and is ideal for tablets and smartphones.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../display/panel/renesas,r61307.yaml         | 93 +++++++++++++++++++
+> >  1 file changed, 93 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/ren=
+esas,r61307.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r6=
+1307.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r61307.=
+yaml
+> > new file mode 100644
+> > index 000000000000..a98d2d2e02d2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/renesas,r61307.ya=
+ml
+> > @@ -0,0 +1,93 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/renesas,r61307.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas R61307 based DSI Display Panel
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  The Renesas R61307 is a generic DSI Panel IC used to control LCD pan=
+els.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +        # KOE/HITACHI TX13D100VM0EAA 5.0" XGA TFT LCD panel
+> > +      - hit,tx13d100vm0eaa
+> > +      - koe,tx13d100vm0eaa
+>
+> Usuually when the display IC is known, there's a fallback compatible for
+> it. Then 'renesas' vendor prefix on the properties makes more sense.
+>
 
-Best regards,
-Krzysztof
+Acknowledged, thank you.
+
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  vcc-supply:
+> > +    description: Regulator for main power supply.
+> > +
+> > +  iovcc-supply:
+> > +    description: Regulator for 1.8V IO power supply.
+> > +
+> > +  backlight: true
+> > +
+> > +  renesas,gamma:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      0 - disabled
+> > +      1-3 - gamma setting A presets
+> > +    enum: [0, 1, 2, 3]
+> > +
+> > +  renesas,inversion:
+> > +    type: boolean
+> > +    description: switch between line and column inversion. The line
+> > +      inversion is set by default.
+>
+> The property name is odd since there's always some sort of
+> inversion. Perhaps renesas,column-inversion?
+>
+
+Acknowledged, thank you.
+
+> > +
+> > +  renesas,contrast:
+> > +    type: boolean
+> > +    description: digital contrast adjustment
+>
+> I would have expected contrast to be more than boolean. Is this
+> something any a-Si panel would support or somehow Renesas specific?
+>
+
+ATM there is only one known set of commands regards digital contrast
+adjustment and it application is optional, hence bool. However, panel
+which my device uses refuses to work properly without this
+configuration applied. Since there is no specific programming guide
+regards this IC I cannot say for sure if this is panel specific or a
+Renesas IC feature. When/if there will be any additional data
+available this property can by adjusted or dropped.
+
+> > +
+> > +  reset-gpios: true
+> > +  port: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - port
+> > +  - backlight
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    dsi {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        panel@1 {
+> > +            compatible =3D "koe,tx13d100vm0eaa";
+> > +            reg =3D <1>;
+> > +
+> > +            reset-gpios =3D <&gpio 176 GPIO_ACTIVE_LOW>;
+> > +
+> > +            renesas,gamma =3D <3>;
+> > +            renesas,inversion;
+> > +            renesas,contrast;
+> > +
+> > +            vcc-supply =3D <&vcc_3v0_lcd>;
+> > +            iovcc-supply =3D <&iovcc_1v8_lcd>;
+> > +
+> > +            backlight =3D <&backlight>;
+> > +
+> > +            port {
+> > +                panel_in: endpoint {
+> > +                    remote-endpoint =3D <&dsi_out>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.43.0
+> >
 
