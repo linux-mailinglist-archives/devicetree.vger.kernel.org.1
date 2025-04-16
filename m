@@ -1,298 +1,220 @@
-Return-Path: <devicetree+bounces-167771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13013A8B8C6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:20:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D684A8B8E5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:25:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11F964452DA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:20:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED9B63B4105
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F67C248892;
-	Wed, 16 Apr 2025 12:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B182472B0;
+	Wed, 16 Apr 2025 12:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="T723YLho"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="gUUU+60G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2137.outbound.protection.outlook.com [40.107.22.137])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2B724A06F;
-	Wed, 16 Apr 2025 12:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744806013; cv=none; b=M0/F0FjjjvbR7qqQ1q04YJCeK8ZpO3B2lIceasoz/Wdc0uTuZXYUj2ciyMLYtPQ/jD5fe0BMboc3ssnqFiwVS16GXXZQuq5eRFhlxc9xyUjZFh5d6ydk1yCQBlDLwJ0QzRpsmejBpR9hz1ystsGxF5m9viZzJ6DUpiNVPV424vU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744806013; c=relaxed/simple;
-	bh=ue3VHKCvkR/zW/jD49Rx0pdV9YiltLbzHNBQrq26gU8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h+GjvyYJkBVp6PGNxhZgP1XRvrFYPU6ORL3Op3l1h2dDgWHDkg1kVB7yRrJKig6yffyCo2WtLboMoBlyKRCjhLnmN1YFmQMxWoaimJk2KxIUJ6KIX5HcmXaoGce+FkhG11FSOUuFlhS/7g3kz3nrQho9cqTrFRcbr3BcQnImnc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=T723YLho; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53GCJxwR309282
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 16 Apr 2025 07:19:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744805999;
-	bh=nP8BvfpS5LgVFKWcBIYQM+XtffAJggpynUqtFdmrluM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=T723YLhoffglPXGXcJ4f8LBBMsEslBb7km5vWS8NFiQ0ZsaGpZS8Iak/WR8wLhvZ6
-	 PE7tnI2u065xUDFzUqEqHDBX1jXHf1SEZyqZGtvSnazEzZhgiARCF7Y97ymcWZFQOB
-	 sWwhkX/9BGNiZ5kqTOdWsLpBPYMGS9wF9UquPrgE=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53GCJxum064056
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Apr 2025 07:19:59 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 16
- Apr 2025 07:19:58 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 16 Apr 2025 07:19:58 -0500
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53GCJiEu016254;
-	Wed, 16 Apr 2025 07:19:55 -0500
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <mripard@kernel.org>, <mchehab@kernel.org>, <jai.luthra@linux.dev>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devarsht@ti.com>, <vaishnav.a@ti.com>, <r-donadkar@ti.com>,
-        <u-kumar1@ti.com>, <y-abhilashchandra@ti.com>
-Subject: [PATCH v6 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq interrupt and add support for VIDIOC_LOG_STATUS
-Date: Wed, 16 Apr 2025 17:49:38 +0530
-Message-ID: <20250416121938.346435-3-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250416121938.346435-1-y-abhilashchandra@ti.com>
-References: <20250416121938.346435-1-y-abhilashchandra@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E924238D21
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 12:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.137
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744806345; cv=fail; b=L6lH6ZFxLwqNRibLoY2xIVVtAF+7vt8AmexfzLzojrahMZgkJHKGREMIsuAhZRxrYpEPMfpcYOghLYRAodsQAfBInHBmaOKi2B8hjlbNCv1RZ02SVa5F/YgX/5BS6Skc56GX8HVKFDfmDb7fG/CRlwMPN8BWWsqsCeo7pb3qm1s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744806345; c=relaxed/simple;
+	bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZqlFOJoFnU1Vj8PA6019Xqu1KGdPgyl1vkPtqy/CLhPDHqkhE0EtcQSWLknOQ1hahx02GY7bnTw/GOvG8vxp6jTaC5AyVtvftqyLHzSmcbYylbcg/j1ljbbig7skyFCDSTzzl9QdotZQujv3Bs5njcOylvKFSXLjHUBcESSxCwc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=gUUU+60G; arc=fail smtp.client-ip=40.107.22.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ORQ3L5ENebfH9Q0OFkKcenXxdXzdFR7kde0zmDdAK/+aLSzdMPfxN21ZxyInEcqw61JjMmbGYF9gbwGdLmDx5k6Y+HNzcCxDX7pLfRNju8QtoawBz8CeiSEGtG/kVd4z1zyVWENhx9w9Ig/5bHu9SBiAJ/jtr/K0NplAsXxf6WWc1V/R3cdmmxmxc/00/nvYXBadNeYaq0h+1BGaCNBRhREyKaA+H7GMYR+WTBHweZHXDu1m1PoVWtDv3UqmvKYUABScU18n60Hd+HlhKXXuQ+mGMzNu+zaEBL+F7/O86FTVgbHIdGF546EPapOUVHCrjiJAP4fy6lm51VrRJUrkXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
+ b=p3tUqIt8u/O7rP1g+rScxTb+CgVmFv6HvSXMjzXIUIWkQRKuaEjmENAGd0AgSjh1lBE6sVlviEe6HLlnX4ZYTBCNq/8TxSA+3MewLaJ1ida6/VPoGpmItWAt0De1S8fbTVGkXUl7GaL3FgNgHqJinVFx/mTYsej5gj5LZDTHNuxAbNuU2odWfyhTNGiOQAM1AalW16uCCDak/AbVs20K4V84yRANq7ayhoLihJEnoPQKavdaDuKg5dHjZr/w4up3PV2w3GiuaX4s61c0RT5IHgOQqHqX8ZJXem2itHyljMeGHjiAYXEhgPUdvIYU31enLz+VXEQoj+ZKzBzvkQxwLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
+ dkim=pass header.d=phytec.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
+ b=gUUU+60GcGbvq6R1oTn+PZrfpIOeI9gi9+0Yto3UA5sIauqg9aSYX36Y6RIzW7zl51PejEtEH7yC9Kx5IF2xxAOtR+Y1bokGOfYzR9D5WpCzt5jnuBIU4fOmQO5Lk2aouvamn+HutQ62ssyQwg9fqkgMpYtcmri8e5jJIlG84nBwEiSStHZRuX9FEFNf9e5T5CfsdEryew5jgeNiiquwPDUR78f9VKja1Q4eoEe6TPdDhEc5JRSITCq699FSxjBhy244fFLAyqYLEOQtApjIAZ2FfLVH+2MSZGUsLXt3DWMimvRR++qxFFP3lEpdBTu/fAOwj7kzyG6Ftdih+wFp6Q==
+Received: from GV2P195MB2328.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:dc::8) by
+ PR3P195MB0521.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:35::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8632.36; Wed, 16 Apr 2025 12:25:36 +0000
+Received: from GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
+ ([fe80::c6fe:e602:7166:f258]) by GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
+ ([fe80::c6fe:e602:7166:f258%6]) with mapi id 15.20.8632.030; Wed, 16 Apr 2025
+ 12:25:36 +0000
+From: Dominik Haller <D.Haller@phytec.de>
+To: Conor Dooley <conor@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "kristo@kernel.org"
+	<kristo@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "vigneshr@ti.com"
+	<vigneshr@ti.com>, "nm@ti.com" <nm@ti.com>, "m-chawdhry@ti.com"
+	<m-chawdhry@ti.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "upstream@lists.phytec.de"
+	<upstream@lists.phytec.de>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC
+ AM68x based hardware
+Thread-Topic: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC
+ AM68x based hardware
+Thread-Index: AQHbriDaSp1ugqq07UmZXB/BRxTmzrOmOQsA
+Date: Wed, 16 Apr 2025 12:25:36 +0000
+Message-ID: <e93ea6f4c401089298dcf36ac35dbc4365deb9b6.camel@phytec.de>
+References: <20250415130458.33714-1-d.haller@phytec.de>
+	 <20250415-lark-deskwork-7850a95aa955@spud>
+In-Reply-To: <20250415-lark-deskwork-7850a95aa955@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.de;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV2P195MB2328:EE_|PR3P195MB0521:EE_
+x-ms-office365-filtering-correlation-id: 579fa47a-51e6-4d29-85e8-08dd7ce1ca79
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?MXBDL0R6L1paUlAxSHFRcUhvUVN1b1hNUnVCWUtwaWtFbDJYWjNVT3FsWG1B?=
+ =?utf-8?B?ZXRaeFFma1pSeHRHbGd3ZjhhYU02YXplRGZOMXVNZkc3WDNvWkFMUE5TVm41?=
+ =?utf-8?B?T0MzU3pRVlhYZ29scGdFR2NIRUdHd3Y4WWFsekJtUi85Zm03eFpnUWZkbFVx?=
+ =?utf-8?B?SjBFaGhUbjZzWG45T3JVcjA2Z3lSOE93aXc2cnovNlkwVkVwSU1oZ2VtQWht?=
+ =?utf-8?B?YlhYUUFSVk5kUTM2cFkwWmtUSTBlKy9KaHdYVm5QWVJDRjZTQ3hyczlqdmJ6?=
+ =?utf-8?B?VTZ5c0Q0Y0NneHQ4V01lcmkxN1BVSm0yN0pLaGxPaUFITzlIckhIWDN4aGNj?=
+ =?utf-8?B?VlB1eTdxV0ZEcGQ2aXZRa0ZlcnI5cUhKcTZCd3A0S1ZGZytudG1JWno0WEhm?=
+ =?utf-8?B?aEJFdWpKSVZFWmZJcEJkc3hzZmRheU16K0hENzViaFdOanZCQ3BPSFNicEhl?=
+ =?utf-8?B?T1c0SkxBRkpSZE9qV29pTGlmcm9qU0o5UmtpQzk4YjV6ZDY1WmRocXhWSEZa?=
+ =?utf-8?B?YjRocDR1dThEc3pSbnhyR09FcFNrbDZZeGRoMGhETUIzejl4ZjB5NlJwd2VZ?=
+ =?utf-8?B?R1lUVXlKQVZSY2gzRWxTUnVxU2RYVnBsalppSmdhQXUxOTh6dEpnYXBTWFUx?=
+ =?utf-8?B?SkZhbWs4U1ZvN1pacjVsNUVlVlpLTnkrT1BXS1V0c2kzdHpRTVhNTWdHQnVC?=
+ =?utf-8?B?c0lJWG5FTkpMdlpUV0xybVE1TUhmeGRXemhzd2s0d0Y2V1hvbEJXSDJESGJB?=
+ =?utf-8?B?SEY4RjJQSUZNVVlPRlcrVnl3bWVXb0lGYUtzYVNEWFNrWHZLN1p5Z1oybEZ0?=
+ =?utf-8?B?NXExYVR6TGg5UFlEelhpTDUxL29uODJmaGhOU2VEdGV6RjIvOUd1NmplcGE4?=
+ =?utf-8?B?M2VpejBKWGhyU2UveUhRZStqRHo4bHlRL3lWVTArbzNPZmUyM2IrOXp3M3VC?=
+ =?utf-8?B?M3NjVHloTlVmdjRiQ2VYTHUwSEpIdW5pVTVUcGdZOXRlSXRSSExtVGIrZlFH?=
+ =?utf-8?B?eE4wUnA5OXdlSHh4Zk11VWkwTGZxY0FBN1JXZm50YVdaemJIYVk5K2VIUy92?=
+ =?utf-8?B?RmJxMHBNNUlYc0YxY2tVNzlpNmMxN2tNaXZCYU96Y0ZEM0QyazJVblpxbU9z?=
+ =?utf-8?B?S3JQbk5hanhjOW1panBPQXV1QnpxOWlUd0J6MkNZQWZLZGQzWmJOR2N5L2Fh?=
+ =?utf-8?B?eGl3dXY4ZUhjSEtlcTZmZ1VVY05ZempvelpqUmtEVTlzK0FTdWQ5Q2xTbWJX?=
+ =?utf-8?B?YWJUZFdLS1dYazlXYmpnOFBsOVQxaXNQN1VNVzhuZktCN1EyK3FPb3Z6SEpp?=
+ =?utf-8?B?ZmlOYnhOZWZ5MFdOeGwvbWsrcFE5YkhERmh6ajFyQTBvazlZZXNhUWVQcU9i?=
+ =?utf-8?B?Z0w5dFJMbDhnQ25GRllUK1pyamxCdEc1dVp0TWt2akk5ckI4TDJ5YmJpS3Rz?=
+ =?utf-8?B?SXN4MkQ5cDNWOVBWSCtOQzR5bzhHNmZrb3U2dFJLZS9yMmNUYVg2elMwQkxx?=
+ =?utf-8?B?R3JEY29Cbkk5WnYrUW9ITTd0QUIvVm5ITkZ1bTcvVmt0b01wU2xwMklOMlVC?=
+ =?utf-8?B?UUxJbU1XRTYwdFJxMTVSemJtWWh2R21qZ0VnUWg3LzJMMlhKclhPSm4xaUdO?=
+ =?utf-8?B?ckQyY1RiWmN4MkdrS2lVVTFzRGc4c3dpcVFoN1F1TThVQ3AzMm5DK1NCZjRB?=
+ =?utf-8?B?MWpDK3lPbmdlVk41WXZjYlpRMlFBMUVlcXhjSk1PeFBBSit0ZTdwZW9Rc2JE?=
+ =?utf-8?B?TVVXbnN4bEpEWnBmc09vdEJPS1Z4RE9MdEtFeldNVW5zcDJFcS84VGFVN0Yr?=
+ =?utf-8?B?Z1BDazR3TDlKMkpGbkZIVHNsZnAwTFB3OWFNUWhBL0F1dUdXSW1NdHA4dU5D?=
+ =?utf-8?B?ZGZtb0N0NVIrcC82Y2pQTHJvUWkyT2I5RjRSWnZDZzF6OTcybnFtWHFYT1pF?=
+ =?utf-8?B?OGI5YzFTdnNTaHRIaXJJMDNOKzM5SWVNdFNkRVZuZUNucitmalhoWVZxeFFF?=
+ =?utf-8?B?Wm1WM3Q5ZEFRPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2P195MB2328.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?QWZxZDRxUFBQWkFIRHk4MVdTTkQyenRBNnlQTlBpWEZEWVdUbWRaRG5PTW83?=
+ =?utf-8?B?WEhZWU5kaVJZTUlacjZXU1lyQ0J0R28xNlBwVEl4SHI3QXptWFh0TGVhdk5r?=
+ =?utf-8?B?bEFZdjVlRGhDTmdwN2YwK0p6elNuSUpKZkUzcHNxN0RGRTdyTlRBUzVLVGdY?=
+ =?utf-8?B?aDRuaDFEdTdjczEyQ3Blb0RFRXNsa21SY1Z2bWRBTStseENmZEtDSEJPejB4?=
+ =?utf-8?B?MUFHNHpjVVFNODVFQlJkaVRjMzFRQmtmVGtSZ1FnUmVzSVRia3NDVkk5Wkh3?=
+ =?utf-8?B?ZExPb2ZwVmdZcFpEUkZhS2o3SmdBbGF5d1pXU0grc21YZE80cE0xQ3VDQk9S?=
+ =?utf-8?B?MmlrQmhwclovN2hib3ByMmNKd3VEWnNiVXpZT0ZiVzc1UlhwcHNZbWZJRWxy?=
+ =?utf-8?B?RitoNnBBOEhremZabWJ0T2pQcGN4aWEvdU1LREUxdGU2VzI2Z1YwbUZnOHd0?=
+ =?utf-8?B?YmNrdHJaWkJEOGNCa3V1d01DYXlRdW03cWE1Y3ptdVJaN0k0ZHdHWTFNWkRq?=
+ =?utf-8?B?QXQvS0ZUcmJZQ3kyNFVrWUw4WEwxdVEwVERhMEkvM2hqZHFrbnAzb3ZabExq?=
+ =?utf-8?B?MWZoVTlPaTdXcHJPaEtCdGV4cUtZU082NDBLYytZTnhaQ2taRE9JZ202dEUr?=
+ =?utf-8?B?NG1PY2tjWVU5Y045dU9NaXlocytIWmswY0RseG5WbTBpWVEzM1F4ZVVNZklP?=
+ =?utf-8?B?SXdWWk5XRDlVNDl2SWJvS0ozQ2kxaGs1U0FlcGdreHZGNm0rQTByem1YeUtz?=
+ =?utf-8?B?UWJqRGZ2NXdtSlFSWjl6bkM3eURHellhVHF6UWs3M2hVOFF3WFhUM3ExNnVH?=
+ =?utf-8?B?Q3dRbEVJeWpIT2pibzlHNDgzS0d6RU8wVll5M3ZnZ3AzcUpSNXRrek10dVBZ?=
+ =?utf-8?B?eGNTTDllWGdMVnJob3Y4YWxQVC9rQSs2SG5INTIzRTVidUg1cE9WZ0JMcWt4?=
+ =?utf-8?B?M2Z3MUdOTmI1RWQ0MFJtNW5Id1NyV3hiVXM1S2Q3bzdvdjBtSXp4R29TaEhW?=
+ =?utf-8?B?T2xXRW94OEUzUDg3VkZyb25GdkhWM1p1bjltY09INE9QNEFIWVVJelNuSllU?=
+ =?utf-8?B?WWh5aXdpa1RtM013MURsdFdaM0ZCbnJTVjhEd0I5RDkxc3BzWHZqbjdGYXdK?=
+ =?utf-8?B?czdmNEV4WlY1M2VxVVdUUmZvVDRVRWJsL1pjTnV6eE9zSktlRDMyaDRtQjJO?=
+ =?utf-8?B?ajhmV2hpQjlBYW55NkZ1M3krNU1scmI2ZGlPcGx1K1dFWjFTdk4xQTRsanR0?=
+ =?utf-8?B?YVF1N0syaFJqSXkrblNjeWNpdzJXUTF0UmUyeFNNOGlsVjdGdEw1b0MxL0Iv?=
+ =?utf-8?B?TVdFK2N6NzdaZGJVU0NQQm9kakF5MEVnS2kzeGgrNyt5Zk5VcWw5L255aHRu?=
+ =?utf-8?B?ZW1ETmtUYmlSL2ErWUF5eGtXUSt1ZWNHeXQzbFNGdzR4T3MwRWpjb1lrSW1R?=
+ =?utf-8?B?dE9PcEw5SVNZRytzSThJbjFpc1hTTzZUUVM3b0JFVG5mSWVKeHVoQldISm5m?=
+ =?utf-8?B?ZW8rdDdoSmRwVVNvMFJRNStONU43d0QwQW84NFd4dW9tTzZ3d0FIQnh6d2dW?=
+ =?utf-8?B?Q1J4WmdkYzlGVDM2SVc3Zm83TnQ1T01HOEQ4T0J5MW9WM1NoM1R4VTNrblBD?=
+ =?utf-8?B?eW1NdXNYZDl6UEJXMENzcWtCQnlaMHQyVHNuNnZvZzJFbUZ3cktITDMrS3B5?=
+ =?utf-8?B?clRCWTVBd0tzS1puRDhkbTdFQmFiRzl4QlVMOGEyYlFMQU9DUVMrcEdtcEhF?=
+ =?utf-8?B?K1V6T0Nja3FtRFNMcXVqOHQ2K0NWNXV3NHZjU213WW9MaGMxSnZtRXA5alZo?=
+ =?utf-8?B?YjZweU94WjAyS1FSRFlMR2ZrSlpKUFBTa0ZuOWZIakR3bGQrQ09LL2ZzZXJi?=
+ =?utf-8?B?S2c3OWN2L24vWW0xREJURzNaS0tmQzQ1dXVwTGdYaHZjcXlib2E1b0RmUUhF?=
+ =?utf-8?B?WmgwVVhjeFdhaFpLcHRpRWtKRkZGOFZxaXJKODgzNWJMSmNzNWtSa2U1Z1Vz?=
+ =?utf-8?B?WmdNMDBCWmlab0w1M0ZMbkQ0azR2WEM3N082eXVCeUpqUWtNVFhMMExJYWlI?=
+ =?utf-8?B?VkxTVGYxVWhUcVQ4ejRxOFVIa3hDOGlITFpRMDI2Z29OSHg4Z3ozQ0ttUXpj?=
+ =?utf-8?Q?rRcLUUH8giO6Cq/UAo2OWkNpa?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F5EBB8F34D7DCF4DBD1997987FB30932@EURP195.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 579fa47a-51e6-4d29-85e8-08dd7ce1ca79
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2025 12:25:36.2591
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dws2dklI8gbb4QOGIoEkoxSnRHHyxBdO0t8GUQSKDRLsSkxxBSRrnzXZAolqgmaAoTj3frSq0WUC/vgLBuEX4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P195MB0521
 
-Enable the csi2rx_err_irq interrupt to record any errors during streaming
-and also add support for VIDIOC_LOG_STATUS ioctl. This allows users to
-retrieve detailed error information during streaming, including FIFO
-overflow, packet errors, and ECC errors.
-
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
----
- drivers/media/platform/cadence/cdns-csi2rx.c | 131 +++++++++++++++++++
- 1 file changed, 131 insertions(+)
-
-diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-index cebcae196eec..7f1ce95cdc3f 100644
---- a/drivers/media/platform/cadence/cdns-csi2rx.c
-+++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-@@ -57,6 +57,25 @@
- #define CSI2RX_LANES_MAX	4
- #define CSI2RX_STREAMS_MAX	4
- 
-+#define CSI2RX_ERROR_IRQS_REG			0x28
-+#define CSI2RX_ERROR_IRQS_MASK_REG		0x2C
-+
-+#define CSI2RX_STREAM3_FIFO_OVERFLOW_IRQ	BIT(19)
-+#define CSI2RX_STREAM2_FIFO_OVERFLOW_IRQ	BIT(18)
-+#define CSI2RX_STREAM1_FIFO_OVERFLOW_IRQ	BIT(17)
-+#define CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ	BIT(16)
-+#define CSI2RX_FRONT_TRUNC_HDR_IRQ		BIT(12)
-+#define CSI2RX_PROT_TRUNCATED_PACKET_IRQ	BIT(11)
-+#define CSI2RX_FRONT_LP_NO_PAYLOAD_IRQ		BIT(10)
-+#define CSI2RX_SP_INVALID_RCVD_IRQ		BIT(9)
-+#define CSI2RX_DATA_ID_IRQ			BIT(7)
-+#define CSI2RX_HEADER_CORRECTED_ECC_IRQ	BIT(6)
-+#define CSI2RX_HEADER_ECC_IRQ			BIT(5)
-+#define CSI2RX_PAYLOAD_CRC_IRQ			BIT(4)
-+
-+#define CSI2RX_ECC_ERRORS		GENMASK(7, 4)
-+#define CSI2RX_PACKET_ERRORS		GENMASK(12, 9)
-+
- enum csi2rx_pads {
- 	CSI2RX_PAD_SINK,
- 	CSI2RX_PAD_SOURCE_STREAM0,
-@@ -71,9 +90,32 @@ struct csi2rx_fmt {
- 	u8				bpp;
- };
- 
-+struct csi2rx_event {
-+	u32 mask;
-+	const char *name;
-+};
-+
-+static const struct csi2rx_event csi2rx_events[] = {
-+	{ CSI2RX_STREAM3_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 3 FIFO detected" },
-+	{ CSI2RX_STREAM2_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 2 FIFO detected" },
-+	{ CSI2RX_STREAM1_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 1 FIFO detected" },
-+	{ CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 0 FIFO detected" },
-+	{ CSI2RX_FRONT_TRUNC_HDR_IRQ, "A truncated header [short or long] has been received" },
-+	{ CSI2RX_PROT_TRUNCATED_PACKET_IRQ, "A truncated long packet has been received" },
-+	{ CSI2RX_FRONT_LP_NO_PAYLOAD_IRQ, "A truncated long packet has been received. No payload" },
-+	{ CSI2RX_SP_INVALID_RCVD_IRQ, "A reserved or invalid short packet has been received" },
-+	{ CSI2RX_DATA_ID_IRQ, "Data ID error in the header packet" },
-+	{ CSI2RX_HEADER_CORRECTED_ECC_IRQ, "ECC error detected and corrected" },
-+	{ CSI2RX_HEADER_ECC_IRQ, "Unrecoverable ECC error" },
-+	{ CSI2RX_PAYLOAD_CRC_IRQ, "CRC error" },
-+};
-+
-+#define CSI2RX_NUM_EVENTS		ARRAY_SIZE(csi2rx_events)
-+
- struct csi2rx_priv {
- 	struct device			*dev;
- 	unsigned int			count;
-+	int				error_irq;
- 
- 	/*
- 	 * Used to prevent race conditions between multiple,
-@@ -95,6 +137,7 @@ struct csi2rx_priv {
- 	u8				max_lanes;
- 	u8				max_streams;
- 	bool				has_internal_dphy;
-+	u32				events[CSI2RX_NUM_EVENTS];
- 
- 	struct v4l2_subdev		subdev;
- 	struct v4l2_async_notifier	notifier;
-@@ -124,6 +167,54 @@ static const struct csi2rx_fmt formats[] = {
- 	{ .code	= MEDIA_BUS_FMT_BGR888_1X24,  .bpp = 24, },
- };
- 
-+static void csi2rx_configure_error_irq_mask(void __iomem *base,
-+					    struct csi2rx_priv *csi2rx)
-+{
-+	u32 error_irq_mask = 0;
-+
-+	error_irq_mask |= CSI2RX_ECC_ERRORS;
-+	error_irq_mask |= CSI2RX_PACKET_ERRORS;
-+
-+	/*
-+	 * Iterate through all source pads and check if they are linked
-+	 * to an active remote pad. If an active remote pad is found,
-+	 * calculate the corresponding bit position and set it in
-+	 * mask, enabling the stream overflow error in the mask.
-+	 */
-+	for (int i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++) {
-+		struct media_pad *remote_pad;
-+
-+		remote_pad = media_pad_remote_pad_first(&csi2rx->pads[i]);
-+		if (remote_pad) {
-+			int pad = i - CSI2RX_PAD_SOURCE_STREAM0;
-+			u32 bit_mask = CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ << pad;
-+
-+			error_irq_mask |= bit_mask;
-+		}
-+	}
-+
-+	writel(error_irq_mask, base + CSI2RX_ERROR_IRQS_MASK_REG);
-+}
-+
-+static irqreturn_t csi2rx_irq_handler(int irq, void *dev_id)
-+{
-+	struct csi2rx_priv *csi2rx = dev_id;
-+	int i;
-+	u32 error_status, error_mask;
-+
-+	error_status = readl(csi2rx->base + CSI2RX_ERROR_IRQS_REG);
-+	error_mask = readl(csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
-+
-+	for (i = 0; i < CSI2RX_NUM_EVENTS; i++)
-+		if ((error_status & csi2rx_events[i].mask) &&
-+		    (error_mask & csi2rx_events[i].mask))
-+			csi2rx->events[i]++;
-+
-+	writel(error_status, csi2rx->base + CSI2RX_ERROR_IRQS_REG);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
- {
- 	unsigned int i;
-@@ -220,6 +311,9 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
- 	reset_control_deassert(csi2rx->p_rst);
- 	csi2rx_reset(csi2rx);
- 
-+	if (csi2rx->error_irq >= 0)
-+		csi2rx_configure_error_irq_mask(csi2rx->base, csi2rx);
-+
- 	reg = csi2rx->num_lanes << 8;
- 	for (i = 0; i < csi2rx->num_lanes; i++) {
- 		reg |= CSI2RX_STATIC_CFG_DLANE_MAP(i, csi2rx->lanes[i]);
-@@ -332,6 +426,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
- 	reset_control_assert(csi2rx->sys_rst);
- 	clk_disable_unprepare(csi2rx->sys_clk);
- 
-+	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
-+
- 	for (i = 0; i < csi2rx->max_streams; i++) {
- 		writel(CSI2RX_STREAM_CTRL_STOP,
- 		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
-@@ -363,6 +459,21 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
- 	}
- }
- 
-+static int csi2rx_log_status(struct v4l2_subdev *sd)
-+{
-+	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(sd);
-+	unsigned int i;
-+
-+	for (i = 0; i < CSI2RX_NUM_EVENTS; i++) {
-+		if (csi2rx->events[i])
-+			dev_info(csi2rx->dev, "%s events: %d\n",
-+				 csi2rx_events[i].name,
-+				 csi2rx->events[i]);
-+	}
-+
-+	return 0;
-+}
-+
- static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
- {
- 	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
-@@ -468,7 +579,12 @@ static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
- 	.s_stream	= csi2rx_s_stream,
- };
- 
-+static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
-+	.log_status	= csi2rx_log_status,
-+};
-+
- static const struct v4l2_subdev_ops csi2rx_subdev_ops = {
-+	.core		= &csi2rx_core_ops,
- 	.video		= &csi2rx_video_ops,
- 	.pad		= &csi2rx_pad_ops,
- };
-@@ -705,6 +821,21 @@ static int csi2rx_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_cleanup;
- 
-+	csi2rx->error_irq = platform_get_irq_byname_optional(pdev, "error_irq");
-+
-+	if (csi2rx->error_irq < 0) {
-+		dev_dbg(csi2rx->dev, "Optional interrupt not defined, proceeding without it\n");
-+	} else {
-+		ret = devm_request_irq(csi2rx->dev, csi2rx->error_irq,
-+				       csi2rx_irq_handler, 0,
-+				       dev_name(&pdev->dev), csi2rx);
-+		if (ret) {
-+			dev_err(csi2rx->dev,
-+				"Unable to request interrupt: %d\n", ret);
-+			goto err_cleanup;
-+		}
-+	}
-+
- 	ret = v4l2_subdev_init_finalize(&csi2rx->subdev);
- 	if (ret)
- 		goto err_cleanup;
--- 
-2.34.1
-
+T24gVHVlLCAyMDI1LTA0LTE1IGF0IDE3OjA5ICswMTAwLCBDb25vciBEb29sZXkgd3JvdGU6Cj4g
+T24gVHVlLCBBcHIgMTUsIDIwMjUgYXQgMDM6MDQ6NTZQTSArMDIwMCwgRG9taW5payBIYWxsZXIg
+d3JvdGU6Cj4gPiBBZGQgZGV2aWNldHJlZSBiaW5kaW5ncyBmb3IgdGhlIEFNNjh4IGJhc2VkIHBo
+eUNPUkUtQU02OHgvVERBNHggU29NCj4gPiBhbmQgdGhlIHBoeUJPQVJELUl6YXIgY2FycmllciBi
+b2FyZC4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogRG9taW5payBIYWxsZXIgPGQuaGFsbGVyQHBo
+eXRlYy5kZT4KPiA+IC0tLQo+ID4gCj4gPiBOb3RlczoKPiA+IMKgwqDCoCBDaGFuZ2VzIGluIHYy
+Ogo+ID4gwqDCoMKgIC0gbm8gY2hhbmdlcwo+ID4gCj4gPiDCoERvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9hcm0vdGkvazMueWFtbCB8IDIgKysKPiA+IMKgMSBmaWxlIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2FybS90aS9rMy55YW1sCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9hcm0vdGkvazMueWFtbAo+ID4gaW5kZXggMThmMTU1Y2QwNmM4Li5hMDNm
+ZGI5YzA0ODIgMTAwNjQ0Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL3RpL2szLnlhbWwKPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9hcm0vdGkvazMueWFtbAo+ID4gQEAgLTEzNSw2ICsxMzUsOCBAQCBwcm9wZXJ0aWVzOgo+
+ID4gwqDCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IEszIEo3MjFzMiBTb0MKPiA+IMKgwqDCoMKg
+wqDCoMKgwqAgaXRlbXM6Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGVudW06Cj4gPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBwaHl0ZWMsYW02OC1waHlib2FyZC1pemFyCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBwaHl0ZWMsYW02OC1waHljb3JlLXNvbQo+IAo+
+IFRoaXMgbG9va3Mgd3JvbmcsIGlmIEkgYW0gbm90IG1pc3VuZGVyc3RhbmRpbmcuIFlvdXIgaXph
+ciBkdHMKPiBpbmNsdWRlcwo+IHRoZSBzb20gZHRzaSwgc28gdGhpcyBzaG91bGQgYmUgY29uZmln
+dXJlZCB3aXRoIGEgZmFsbGJhY2ssIHNvIHlvdSdyZQo+IGdvaW5nICJwaHl0ZWMsYW02OC1waHli
+b2FyZC1pemFyIiwgInBoeXRlYyxhbTY4LXBoeWNvcmUtc29tIiwKPiAidGksajcyMXMyIiwKPiBu
+bz8KVGhlIGNvbXBhdGlibGVzIGFyZSAicGh5dGVjLGFtNjgtcGh5Ym9hcmQtaXphciIsICJ0aSxq
+NzIxczIiOyBpbiB0aGUKZHRzIGFuZMKgInBoeXRlYyxhbTY4LXBoeWNvcmUtc29tIiwgInRpLGo3
+MjFzMiI7IGluIHRoZSBkdHNpIG5vdy4KClNvIHdoZW4gSSBhZGQgdGhlIHBoeXRlYyxhbTY4LXBo
+eWNvcmUtc29tIGNvbWFwdGlibGUgdG8gdGhlIGR0cyBJJ2xsCm1vdmUgbXkgYmluZGluZ3MgaW50
+byBhbiBvd24gZW50cnkgYW5kIHVzZSBhIHNlY29uZCBjb25zdCBmb3IgdGhlIHNvbToKCiAgICAg
+IC0gZGVzY3JpcHRpb246IEszIEo3MjFTMiBTb0MgUGh5dGVjIFNvTSBiYXNlZCBib2FyZHMKICAg
+ICAgICBpdGVtczoKICAgICAgICAgIC0gZW51bToKICAgICAgICAgICAgICAtIHBoeXRlYyxhbTY4
+LXBoeWJvYXJkLWl6YXIKICAgICAgICAgIC0gY29uc3Q6IHBoeXRlYyxhbTY4LXBoeWNvcmUtc29t
+CiAgICAgICAgICAtIGNvbnN0OiB0aSxqNzIxczIKCj4gCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIC0gdGksYW02OC1zawo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAt
+IHRpLGo3MjFzMi1ldm0KPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHRpLGo3MjFz
+Mgo+ID4gLS0gCj4gPiAyLjQzLjAKPiA+IAoK
 
