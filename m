@@ -1,142 +1,164 @@
-Return-Path: <devicetree+bounces-167920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DDDA90B67
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49234A90B72
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72A2C17DB2E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:38:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 543D817B4BD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173EA22425B;
-	Wed, 16 Apr 2025 18:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9E322423F;
+	Wed, 16 Apr 2025 18:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KG8NPEKT"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="LD1GMJSQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C27322423D
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6214F217730
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744828703; cv=none; b=gBZM7C2IK884Vj7Je3PnGql7umTJs+1J4whtelFkh0nS22QTe87vqNBtS1kGx2EdKFLfuqw8p4UAZcY+CXebG/GRZuTtzWBhXR2pnGSOByewQvNj3JBTtHOFqlm15r8uInxE6wMnVAqAs8ed4Rf4p5SNFDLtOCa2YCcXkJwlVU4=
+	t=1744828820; cv=none; b=jUgFkZGYgyfSTcEjwbqSrUf0bORzIJXxROQoW8vz/Xyq3U6UpJ8y6lTNI7sTMlBNFx3Grkb5wC09l8w1ToYXH4Fz3MdHthFR9iNCXYfOEN6lZ19zWZg9YNgc75+T2WUY+UPohiG/KFM8SiaZQhdu7FR3oS3a0mefdhll5/0tYlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744828703; c=relaxed/simple;
-	bh=h2gb2aaLNETxBykAcxNCX0wPL5kV5DokaxdYgDODkII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sNubqsq76zbBQ6YIXx+ua5FeHOqGZlDiFG6DnRUt8yb/UYwJL/6BhOTdr5fH9xAT+KuTBT25OWF2mJGRMGjy21Kh6Vn756Ibg92YPY3prnSxqy/0t5y6WzNh0vvH+Frdc+N2Ac9cx5NDobWoQ+cXSLpY5r3RVOiOnRuQ1ODgsl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KG8NPEKT; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3fa6c54cdb2so5232321b6e.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:38:17 -0700 (PDT)
+	s=arc-20240116; t=1744828820; c=relaxed/simple;
+	bh=I0EC3INMQjYBg9VGIiLtTG4Lcuu/qjJUk/7T+xVwA2c=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H6DedrR3nqkkG+7BZ3DX7s0k+1N8omtLKxHJJm5Y+Ql0lV369taACabPd5l9K9PoJaZ5A4h/ZJyqY/IkbAjxFOgiT9qz55ciWFUHHGiyLemPcBSIoBUOoPfEwdCtMbQURX2GXj2vvQa2Y6u1hDOiSlfeq/IvSa9W37NFQBfAF7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=LD1GMJSQ; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac28e66c0e1so1057322466b.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:40:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744828696; x=1745433496; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b9sY/HN/LGdgvtFdsZcaEiPxjht+cFZcMXATw7Z4WEk=;
-        b=KG8NPEKT75Ib1TSyhnQhvNUfg3caH1X3Lh05MNjAacI8PH4sjAnWy2ANhKxagQdDyV
-         8N/XbTOncRMSe0FPcx5A7XAP4Y51NTg0uJ0GR6u2MHLAnRIM5ZgXr464Mxm37gA+wrM+
-         wZ0AP0QzSlo53bbSbPhsxbaaAwUSym8GJJnxMTep3YK1EZXA1Mp1Tt96EWoBfvxuV2HJ
-         N4CDQ12suFHm32pKkndO31P+6t/7f9NyH7o0avZjCJwxux49AdV39Nj3cXfj9+3B7seV
-         MzrkU1KxyZ0nVb9zhBuc2SyVF80j4G7dw9Xjz96H6x050h7ITCTEeNy6UUnOPn3/oeB3
-         abIQ==
+        d=suse.com; s=google; t=1744828815; x=1745433615; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hf73Zqm591Z4cwB1QMdZKpjmrpXWTvATJ+WgcmCQVhs=;
+        b=LD1GMJSQOrBW+IW3DUebNTOeBoNHlzgNfHC6N+Cy/2/K3acmAfdsvgYhMSVUb2TlVe
+         Yk+gUdmx/w/dvO6YltaqRDKqg5FHljjnniE2GorWOmwTLiKVYxj0SVG+NXEpp+JuXkOR
+         uOVGcghvdhcGTzCxXN2i0t48Hwwg08Q3ehyBkLhJdfgbzEQzz23z9qTq2NtepnaN7P13
+         UpYykxGF+EyY50WwA1Q5Vmf7CoR6Uo8dB7mhZbFjataonD8Bg8fxvMB142n54y6RK5+0
+         XTeA/YZbmEfn+3atBwgCnAKmAb7b+veSiNS3H215KE6Yz0R0Nkr+Izd58UCs6N/xNw+3
+         fT3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744828696; x=1745433496;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b9sY/HN/LGdgvtFdsZcaEiPxjht+cFZcMXATw7Z4WEk=;
-        b=QPhknIkod05IAUCGjhKPKSjauw25xcvPIFPbN1CHZR/PJwMX1ADI+Pke4CfQE13F53
-         wQ7KZD/0QJurz+NohmSlFD5WjEEfzWOjFic4S5yaKyIRlmQpiK9PMXxBCz1yuFdsIZIr
-         SMMgSbLCz3IHPW7eEbY85rCZVxN4PPRpEv3f3wXkpyoLOptZe0rt9fPvJAH2etL8Quhv
-         Qzr2g6hU+g5cfUI+JSo3lZ/ztUf9ewBRxPmi1O8BvoNvfm5oJXebshW1bbl2C7t8WvCV
-         ocp9KgXML7QstMa4mHFx7h/bAw5cwea0PK1xOzYQeUFSqsrFE5bp3NrOKFbRQxMaJFGu
-         XeUg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5ZZNx9QpD8WFOpGNJSP9JyoKWspbjNIf78vZNhxutbQJe4+1wZC7JwxyBBq2iCes/Gt9HPSEIa7Zi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoNZSmoYKsYbhYKqsMal5Ulv/8kEIekEBX0guL2SAnNq+1A+Pk
-	EFrxRDbF0UCVPU4nfkPq+y/9qzw0Di3tM1nB1X9JTzuBc8roLlCe05qt6eBtmJo=
-X-Gm-Gg: ASbGncs/e4GOmZ6bWMFax14l1RkOfcyMh2bnUvRbe19UgXdIx9Hf37NTKtJsKWhl4l0
-	B3kQTBowGWzd9Q9HRIiVQvEjdVnU55xDzu3A5/rCg7e3wGiYQ/b60o2t38/DPrcCkkTLMP8dTUD
-	xfSS1q1Ot9s0+zhvtMTGjPFwHjjJHtAOUJ75D02dPuO7VPaQYrEVAusFB1/ZfMHx1+VJWBkXR8k
-	BYqrMr9enfcx52KLwdkQQr3o1E8PPpc9GVJEKor/g1C/p16if8sHCN8LT4sPM3Vc7CQlffr1NMI
-	haiUSItqSU4sL+mlhTxRSgP0RnlC3aAIgojJPVxjBvd3tmpIMpoGadhs9cACZohKA+kTVb7rb1n
-	zcTZLWPmj8rPkzMuAEg==
-X-Google-Smtp-Source: AGHT+IEHpixfYLQ8d8XW9pFSR0q33vUhJbw2GwxLqv8IPvVSJvgfVlFlUazzgGh993Sed/nw/j0RfA==
-X-Received: by 2002:a05:6808:1b06:b0:3f9:28b9:702a with SMTP id 5614622812f47-400b01c393dmr1926683b6e.8.1744828696461;
-        Wed, 16 Apr 2025 11:38:16 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3? ([2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4007639c638sm2866501b6e.35.2025.04.16.11.38.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Apr 2025 11:38:15 -0700 (PDT)
-Message-ID: <96765a57-9e02-4f9e-837c-c0513e74ade4@baylibre.com>
-Date: Wed, 16 Apr 2025 13:38:14 -0500
+        d=1e100.net; s=20230601; t=1744828815; x=1745433615;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hf73Zqm591Z4cwB1QMdZKpjmrpXWTvATJ+WgcmCQVhs=;
+        b=bgRyqeAw0+TI1jMW7kuQ9wBv9ZeaCBSUr88f++DR9slppdLCa08MZKg1/5VJ4MyCr5
+         YVajKozwcmrv93K2t0s2UoNBcYwk4fuAxO2jvFkkVYBBlyJZ2CHUkkIDTVLgOcs+OwF4
+         AfgBaP4f8Eh+Na4hD7nkXFHPCN3ph6ydQqgGWrygsgJ+WIaL2k0etrPZREGJo8Kqzbvz
+         N5SK5GHBm82tAg/mXRiusDitZ70Z+aVnKE4bKK/e8LLhUzBEIDlnIan1r4ibnB1cieqv
+         oJ/F+uCKbJQuYAq/aXknRrqLC4tOtgER6C7Npm7s+MBOwykZfhkECezxUTYqGyJn74yd
+         5K6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXZoKNlSkgK/4be06JmSA5iZh1ezIRiw6k4VOKJOcVg6o5NQkzKRFYSfAGHggyEEdpjyU2Plr4nTUMD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeDphz+/BWXzmYUV3IBxDSzdyw7Z/8zu17Jwi1GK2l7rCbjcly
+	OUXj0Ux/YLglAfPcCFDUzubxa3HK/Ffkw4tZPDVsuEQaIFTO7T2elcH1LPnPyJQ=
+X-Gm-Gg: ASbGncugfHt+GHB8jPQbLORvy8h14GcIbusTcR2+BbAvK7H86s1HtoxJH/PjV7DcD11
+	H9wk+dk23SG+4ysgNA0rHFioC+wxkN7ya+fPSzkgl2k8PmB58UfecizWifkM5FEFauvuE0Jmpz8
+	mXQ/bQ8uTJmDYcPQW6H6p0zT5fkbyyIWYDPgsoCWfBAvsSH0/dNaoNIkeH9MHBh1y3YD99rmAP0
+	hZzxRwxMAJI/5nAHijkkRehuPJ8yMbBgnzL73TATsGp54hcwTd0XSdEjmX0phTXbOpzePkON6sy
+	1V82FKfpO05YgbcpQUPkNhA8NPf3h1oTUKRB7DSy4xohowNEmru8WBL7fd9baahJX1xKrMo=
+X-Google-Smtp-Source: AGHT+IHvwwjkQBu7DihmtTvqsvfxr52Defd8zqRFD9EThPH0EkutvTV+muEgyvB55Eg0nTCHnjLeIA==
+X-Received: by 2002:a17:906:f5a9:b0:ac2:cf0b:b809 with SMTP id a640c23a62f3a-acb429ed4d2mr324522566b.31.1744828815585;
+        Wed, 16 Apr 2025 11:40:15 -0700 (PDT)
+Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3d34a5a8sm174672666b.183.2025.04.16.11.40.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 11:40:15 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Wed, 16 Apr 2025 20:41:37 +0200
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	kernel-list@raspberrypi.com
+Subject: Re: [PATCH v8 11/13] arm64: dts: bcm2712: Add external clock for RP1
+ chipset on Rpi5
+Message-ID: <Z__54c628WTjznoG@apocalypse>
+References: <cover.1742418429.git.andrea.porta@suse.com>
+ <7c26a0b52e00a39930ba02f7552abdd1be4c828c.1742418429.git.andrea.porta@suse.com>
+ <45c1a50c-2ecd-4201-85e5-9a0e94f06fa3@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/14] dt-bindings: trigger-source: add generic GPIO
- trigger source
-To: Linus Walleij <linus.walleij@linaro.org>,
- Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com, brgl@bgdev.pl, lgirdwood@gmail.com,
- broonie@kernel.org, jonath4nns@gmail.com
-References: <cover.1744325346.git.Jonathan.Santos@analog.com>
- <414f5b60b81f87f99b4e18b9a55eb51f29d2225a.1744325346.git.Jonathan.Santos@analog.com>
- <CACRpkdauyPb3bhgK4MTYN4Xq0cM80vwT8i_jcKoQcicpvMo7yg@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <CACRpkdauyPb3bhgK4MTYN4Xq0cM80vwT8i_jcKoQcicpvMo7yg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <45c1a50c-2ecd-4201-85e5-9a0e94f06fa3@gmx.net>
 
-On 4/16/25 2:43 AM, Linus Walleij wrote:
-> Hi Jonathan,
+Hi Stefan,
+
+On 13:55 Mon 14 Apr     , Stefan Wahren wrote:
+> Hi Andrea,
 > 
-> thanks for your patch!
+> Am 19.03.25 um 22:52 schrieb Andrea della Porta:
+> > The RP1 found on Raspberry Pi 5 board needs an external crystal at 50MHz.
+> > Add clk_rp1_xosc node to provide that.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> i'm fine with the patch content, but I think this is necessary before
+> Patch 9 is applied?
+
+True. Thanks for pointing that out.
+
+Cheers,
+Andrea
+
+> > ---
+> >   arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 7 +++++++
+> >   1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> > index fbc56309660f..1850a575e708 100644
+> > --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> > @@ -16,6 +16,13 @@ chosen: chosen {
+> >   		stdout-path = "serial10:115200n8";
+> >   	};
+> > 
+> > +	clk_rp1_xosc: clock-50000000 {
+> > +		compatible = "fixed-clock";
+> > +		#clock-cells = <0>;
+> > +		clock-output-names = "rp1-xosc";
+> > +		clock-frequency = <50000000>;
+> > +	};
+> > +
+> >   	/* Will be filled by the bootloader */
+> >   	memory@0 {
+> >   		device_type = "memory";
 > 
-> On Fri, Apr 11, 2025 at 5:56 PM Jonathan Santos
-> <Jonathan.Santos@analog.com> wrote:
-> 
->> Inspired by pwn-trigger, create a new binding for using a GPIO
->> pin as a trigger source.
->>
->> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> 
-> Is this actually documenting the trigger sources I implemented for LED
-> here?
-> https://lore.kernel.org/all/20230926-gpio-led-trigger-dt-v2-0-e06e458b788e@linaro.org/
-
-No. This is something more like "pwm-clock" where it is converting a gpios
-phandle to a trigger-sources phandle. Doing it this way comes from some
-discussion on using trigger-sources for the SPI offload stuff I was working
-on recently. [1]
-
-As a result of that work, there are generic bindings for trigger-sources and
-#trigger-source cells in dtschma now that can be used by any node. [2]
-
-The way the leds subsystem does it where you can have trigger-sources = <&gpio 0>
-or <&ohci_port1> directly has the issue where it isn't easy for the consumer
-to know what type of node the provider is. Effectively, we have to have the
-linux,default-trigger property to tell us what the provider node type is. By
-adding this extra node in between we can get that type info more naturally than
-the linux-specific property. And each subsystem won't have to have extra code
-added for trigger-sources like you had to add for gpios.
-
-[1]: https://lore.kernel.org/all/20241031-croon-boss-3b30ff9e9333@spud/
-[2]: https://github.com/devicetree-org/dt-schema/commit/93ee8008959e362548168eaa7bdc20c115f3d586
-
-
-
 
