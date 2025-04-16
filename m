@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-167676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E61CA8B4CA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:09:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F04CA8B4EE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:14:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8ECD1901C62
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:09:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1F787A555E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C461236A70;
-	Wed, 16 Apr 2025 09:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE642233145;
+	Wed, 16 Apr 2025 09:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="NQKyrjpe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7USmwKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www253.your-server.de (www253.your-server.de [188.40.28.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D7A235348;
-	Wed, 16 Apr 2025 09:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.28.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10CD22FF39;
+	Wed, 16 Apr 2025 09:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744794504; cv=none; b=VRbBgrk0JQWNaZtlLVgfQxRiPsS37mcnPh9dUMcdyZuf7j+E6KsF06iR0+CsNIIQKXEN8DzNYwpM+fTPc12ixkF7BcRuWjpXS8AjD1M1VVy8WCdSQNlIprHCmN4iQRnJwEeTeEVrF1KmIWxrAyof7VlmQtrIfckI7HxcOoV2YBo=
+	t=1744794834; cv=none; b=VKPQ4CzHhhbP84dMAhSBZmbZXJ2C/iPAQSV/KB6kTeN0GgWpivyxyHjyqCajXAddNfuv4ZdnavUf5n1i0mkhh4lFMxWNyolkTyNWP5nEUGqAjVwowWSsNx86uScm3oTmeDZ/c2oWIuKrgxy08bmVp74reSBRT38GLDQbPSI4geU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744794504; c=relaxed/simple;
-	bh=HXMLEoovoVHfg+3q0SXDlB/FwPWWpv0sgWUoa044pWc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=E/jAGSh6WIhjljTFWpPCJr59Vgc2K4GtJpYrDvNvJPyJXiJjTT1711COnjq7GpFSqsEgwIwecQiFms4Hjd+tICFvQOi4z4WOvQgW56GbMATgRaEsydCYtjcNqC84e5LsaapXzNg+W3ffl3R9RhVcrrDkhweeqkGU8UnQsNymyjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=helmholz.de; spf=fail smtp.mailfrom=helmholz.de; dkim=pass (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b=NQKyrjpe; arc=none smtp.client-ip=188.40.28.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=helmholz.de
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=helmholz.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=default2501; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=rCHUjmrRUOceebLsCrTY9ucfwfCCE8djVEiN/Nk9yOs=; b=NQKyrjpe8syY18rDRglOlbbe7z
-	I+3DuCHub7H4kihyqPMGSZ5IW5dp+RTaYtnjSTSgBOBurenw7KEciHFx2sY1gl/op6UWnDD9d9RtO
-	aqDpHgXj8EaRFWgpshrFb6jx3/EXkMqPyLSP3Z56wTWCNjb0crvVxZsE3CkfwMykd5bcPU1g1rkWQ
-	7aPusFRbApgYJOcylXK7u77QUCS9juRE/pH95bnZBq+Dn8xZxVpHHCekmcIAMpyOluGU25VFGrZpD
-	coh8je/Rh8/NfTqmjMCiBvt6mi9Nz/e8BJ/gxBN74ggZiFgFCOpP6tFnmkAF3FgG++asnOELWZXi5
-	DNGJWxhg==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www253.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ante.knezic@helmholz.de>)
-	id 1u4ykd-000Kpk-28;
-	Wed, 16 Apr 2025 11:08:11 +0200
-Received: from [217.6.86.34] (helo=linuxdev.helmholz.local)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.96)
-	(envelope-from <ante.knezic@helmholz.de>)
-	id 1u4ykd-000Lea-2x;
-	Wed, 16 Apr 2025 11:08:11 +0200
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: krzk@kernel.org
-Cc: ante.knezic@helmholz.de,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	knezic@helmholz.com,
-	krzk+dt@kernel.org,
-	lee@kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: leds: add binding for WL-ICLED
-Date: Wed, 16 Apr 2025 11:06:45 +0200
-Message-Id: <20250416090645.11123-1-ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20250415-dashing-impartial-baboon-70d086@shite>
-References: <20250415-dashing-impartial-baboon-70d086@shite>
-X-Authenticated-Sender: knezic@helmholz.com
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27609/Tue Apr 15 10:56:37 2025)
+	s=arc-20240116; t=1744794834; c=relaxed/simple;
+	bh=G0pJXcxyvKvuX1LUdA5knQfDY/cT7eAL7Lg5VL7BCpY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VIQsjTKxdY7MCNh064nhvRaw5o8NESMLFr681SSnPU5lgUdwC1ERv/YkxOvC6iJpbr68R7CXQbRr8bbjBpJ/U4wf0Egna8TIjtb1ou8RAs6R4Hsy1G7/LaBrbD9/0AC9qaFsNQ1lOXtlVOJSe95nvgXJkpTQMCKAxMvcd1PwWvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7USmwKg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 32B50C4CEE2;
+	Wed, 16 Apr 2025 09:13:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744794834;
+	bh=G0pJXcxyvKvuX1LUdA5knQfDY/cT7eAL7Lg5VL7BCpY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=j7USmwKgRYbK8H92Ld8zTuevoFMrCS0yz4Geut3KXUftvEo9AnyJ/TbSdjq4yTnhu
+	 XxVbYJQu63DxuOFbBJJabADV6qaJTCZIGzHgrvrlROG9O676JV8l6Isrv4JCejbkhY
+	 TnoQx2NZlzybzoNxntJfJM1zS5zSXC7ZcgsXjPRVqlpNcDDH/eI39Tn3J4v8t4G/8a
+	 VBF0lP8aO/5Q490rqV+2Lll/gw7exkolbzZ1265UkE6w9gvxGOtC4xM6qzfrY9MP4J
+	 Pm43/S+m9m9l3v+V6jRlVlBmGlhlEWSac12AqtQw8U8ckEnE1qi6dDaMr3jR7l2djH
+	 At31ei5dsJAow==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 276BBC369B1;
+	Wed, 16 Apr 2025 09:13:54 +0000 (UTC)
+From: Juerg Haefliger via B4 Relay <devnull+juerg.haefliger.canonical.com@kernel.org>
+Date: Wed, 16 Apr 2025 11:13:35 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e80100-hp-omnibook-x14: Remove invalid
+ bt-en-sleep node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250416-fix-omnibook-dts-v1-1-2409220a7c6f@canonical.com>
+X-B4-Tracking: v=1; b=H4sIAL50/2cC/x2MQQqAIBAAvyJ7bkHFpPpKdLDaaok0NCII/550H
+ JiZFxJFpgSdeCHSzYmDL6AqAdPm/ErIc2HQUtfSKIsLPxgOz2MIO85XwtZM2rXamsbWULIzUnH
+ +ZT/k/AFPOfxUYgAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Juerg Haefliger <juerg.haefliger@canonical.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1564;
+ i=juerg.haefliger@canonical.com; h=from:subject:message-id;
+ bh=ghuP4WA9I34RJPerKbhGPvLIaYpn+6TGHXDyTAaAGtI=;
+ b=owEBbQKS/ZANAwAKAQ/TiwkLpkK3AcsmYgBn/3TQMO+HEhY/5tu1QCR/ulQ3RWR1SmWv5FAFy
+ 8RdKsTNzJyJAjMEAAEKAB0WIQSFl9T3oi6mu+It14sP04sJC6ZCtwUCZ/900AAKCRAP04sJC6ZC
+ tyZnEACvj5pe+h/WGp0qT12bYG9YMSWrjbdU8Jx1AGK1ZbbVmyqpDlE15/R1zvZLskuliMowKv2
+ Zv76nCWn7UML5e0miuYKwe+dhyreHi3ufBpuMdJAKkBSYyMQhpr96dg0oVnQGJs1j8mDiAY/Ujs
+ uv6+TbqiSqrB0xumlfj9UdICUsquVcdL/t2VtgmHpD/Jg/DLXI00wFJlbmpTDs2ltyDaHffqMTv
+ LYErbOQjHaQmfwhwAzd4e/2rX/x6YWOyfiv4UbTVfXMjEOVsdwPXM9dZPohirqzmmjfWCU36cv9
+ AfXkvor0OyyvPcySMtwmWy2HHElwTENgc8LMNNDZk+AcpQTGQ2Pf8FRqTzTe1HkXo5qZ3pbLekA
+ 2O+PE0l6Ut/Ugb2gDGlWRTdKF2YNXVDkq0wmC2OYvkDxy4/Vm1okVQJsczAJ4A7O28Iw1c2tybu
+ Ld8R2nFT4zdryKb0wNRZdUJcwvNR9POnDXnNo5oX4GWhri4YlVMKcaOL2e2PHFpbRsVrV4uedet
+ hseWMNQIbz0w+d/sQ1ZtNGeqx8Utb71G6fU1QvMCqD9v1VxLctCa5Fdo3xAo58qj3phDVwz42L5
+ 0rN9HVNcBYCoHnkl7agsKX6jX6qs1FTwukrSVBbYivX9fYP5fB7B7Tm3jAjvU4zNwlUgYbIR12A
+ KIG9ELv5CIUh/5g==
+X-Developer-Key: i=juerg.haefliger@canonical.com; a=openpgp;
+ fpr=52B5BDD2A6EDC76A0FE0AB4A754C3A96F9F8B48C
+X-Endpoint-Received: by B4 Relay for juerg.haefliger@canonical.com/default
+ with auth_id=381
+X-Original-From: Juerg Haefliger <juerg.haefliger@canonical.com>
+Reply-To: juerg.haefliger@canonical.com
 
-On Tue, Apr 15, 2025 Krzysztof Kozlowski wrote:
-> >  1 file changed, 88 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml b/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
-> > new file mode 100644
-> > index 000000000000..bf79c7a1719b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
-> > @@ -0,0 +1,88 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/leds-wl-icled.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: LED driver for WL-ICLEDs from Wurth Elektronik.
-> 
-> driver as Linux driver? Then drop and describe hardware.
-Sorry, I am not sure I quite understand what you mean here? Add "linux LED driver" to
-title?
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
 
-> Also drop full stop
-Ok, understood.
+Remove the invalid bt-en-sleep node. Not sure how it came into existence
+but it seems the functionality is covered by the wcn-wlan-bt-en-state node:
 
-> > +
-> > +maintainers:
-> > +  - Ante Knezic <ante.knezic@helmholz.de>
-> > +
-> > +description: |
-> > +  The WL-ICLEDs are RGB LEDs with integrated controller that can be
-> > +  daisy-chained to arbitrary number of LEDs. Communication with LEDs is
-> > +  via SPI interface and can be single or two wire, depending on the model.
-> > +  For more product information please see the link below:
-> > +  https://www.we-online.com/en/components/products/WL-ICLED
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - we,1315x246
-> > +      - we,1315x002
-> > +      - we,131x000
-> > +      - we,131161x
-> > +      - we,131212x
-> 
-> Is that a wildcard in each compatible?
-Unfortunatelly, yes. Exact model names are quite elaborate, yet similar enough:
-1315050930246   --> we,1315x246
-1315050930002   --> we,1315x002
-1313210530000   --> we,131x000
-1312020030000       we,131x000
-1311610030140   --> we,131161x
-1312121320437   --> we,131212x
+	wcn_wlan_bt_en: wcn-wlan-bt-en-state {
+		pins = "gpio116", "gpio117";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
 
-This seemed easier than writing complete model number... You want compatible
-expanded to full number anyway?
+This fixes the following warning:
+
+arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb: pinctrl@f100000: Unevaluated properties are not allowed ('bt-en-sleep' was unexpected)
+        from schema $id: http://devicetree.org/schemas/pinctrl/qcom,x1e80100-tlmm.yaml#
+
+Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index cd860a246c45..2203abef36b5 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -1425,14 +1425,6 @@ &tlmm {
+ 			       <72 2>, /* Secure EC I2C connection (?) */
+ 			       <238 1>; /* UFS Reset */
+ 
+-	bt_en_default: bt-en-sleep {
+-		pins = "gpio116";
+-		function = "gpio";
+-		output-low;
+-		bias-disable;
+-		drive-strength = <16>;
+-	};
+-
+ 	edp_reg_en: edp-reg-en-state {
+ 		pins = "gpio70";
+ 		function = "gpio";
+
+---
+base-commit: 1a1d569a75f3ab2923cb62daf356d102e4df2b86
+change-id: 20250416-fix-omnibook-dts-94c2a9264865
+
+Best regards,
+-- 
+Juerg Haefliger <juerg.haefliger@canonical.com>
+
+
 
