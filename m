@@ -1,120 +1,121 @@
-Return-Path: <devicetree+bounces-167583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F3AA8AD98
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 03:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEC7A8ADCA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 04:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81FE01882D58
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:41:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A5E318943A3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 02:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3BDD227B83;
-	Wed, 16 Apr 2025 01:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DEC1624F7;
+	Wed, 16 Apr 2025 02:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Ej2oNmKq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out203-205-221-221.mail.qq.com (out203-205-221-221.mail.qq.com [203.205.221.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012441A2658;
-	Wed, 16 Apr 2025 01:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43F215E96;
+	Wed, 16 Apr 2025 02:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744767682; cv=none; b=ZJe556NaSr8M0Ntc333rvCV1xpom22zEKrBcqKVJGk9ld3Cii/gBf92umkbTRhoe/qORURP5nVyPbWTnL3D6QWCce5NURg3jzpEOkky3j7U6tjfDdl1alNazdTWSii3Os63Gg1YVsu4e6rFPUaJcMUC+HaQ0hWlGCZUa9Q8nq80=
+	t=1744768957; cv=none; b=u5+VQYjeT06WwLiAeMzJdk1cyKQrEEZdITDIY4WIISMEC9msTubmelRZ7fjNn44fGrknztrTxDncXBH2JFHw7ke6dDauhc5XphgUAiG1GT4f2nUEXTGH9Ky933umKWKWxkW58QRmt86KtLnxZy+JOEnxS0Y3epoHxddtF49/QaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744767682; c=relaxed/simple;
-	bh=QZ2Ud1Y/3tEvAgsIgosukIl8HjPWFwS4NpOavajMkUw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sFcTTznsriZRSsJIMdwodmudBAAD9JisPuYQC00oF6AVwpth0Vs5IR6FXjD0v9TcAQxvb7CQoAYOLHmC5J2VUlAuMEJfI6EgOmuqUxBCYu/CmEaSeaWYbOfY0m04py0XGJwv8E6GrYHPUVtyPMIA1ejz8O80kbXFA/TnGLbWy3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac6e8cf9132so1174723366b.2;
-        Tue, 15 Apr 2025 18:41:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744767678; x=1745372478;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=twB0aG5oSy2aYBf8sj1I4DoY6eJcYgS5UGe7JOXKGEw=;
-        b=kPmKQIxJhyNVcE8fvkyc2EBZfJBodSN9dABiGTvZMijtk66hrCu41GGtna5f2sMEBj
-         2dwUj25cDtptJcpavCxQeiZTD2iS4AzJR/MDG4LyzZlA0qkbd2+X5LPGABLuFeOs86x5
-         diXP10pI436iCzWSXGpYgQW6wDuCeOtNVGW4OH023sYe6+wocsJ8slfgMN04HWXf5gJd
-         f0S+opTG0KQ/Z+FB+pY25RcFDyYGOFyF8yosdXCgRrYgIf8+gwzoADmLrZtkyrj/97wL
-         lbNZU04Kn1cGS1ewyr9Y5mccI8xxxB5XZ47B7d+e5NpovPzJRdwBjnYDiZIXt1R1Qcef
-         9TYw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8TT9s3mMHOKv1HbdOZqjVYQDHhjxj4t42gLpqO5MXzih+fozqPUcl267if0lVa8MyisKU06xekKe32IWl@vger.kernel.org, AJvYcCXZ50pict9zm05gnoSiQXq52cPA6rigHlB/kGBY+YzuXFJ/42Ufi2c8yPvAThz8dayu9YUafCteURV3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQs6qnnyAQ8a9kLUJd+SHOEjYOC/hbFV6SphPjYDd1J1ZsEpuE
-	l7e91b8t11A0EyEnk8oHPgkXUghonY4dM45EweP/jB9fNgf0DPgpkcZT5tN0poc=
-X-Gm-Gg: ASbGncvnIi4ztC/UCxqSBz22v95l8Dk0cFGsYsB2BSgj7idhREQ9fLqAVDiB+VeDzQi
-	qJPRp/1KZy6mgLZuRdH7BEKMsx6TEL39IMPsaYBSBEtB4j5m+4vV8m25pgwKuWV01O1tqAZtlL2
-	NeA8rRAdonAAXayEETKJanGlCgjDaf6C41GNSps2fTn5jRtX7BxH/Y79KkdI955+XXOi4bjlhsD
-	vXn7RVR1N87zfb9VrlOyTzItaGGd0dsJBwUgQKsNZSTcNqN5yXvNecINxQSE29zE6mXOeZ9sF14
-	Oa9TOJqzYzcfedxzzVoOnmJwT7ylfZFBbyJWhH1lki9VGn5n6q8olFXK5bM+PCKSDLcvz1g=
-X-Google-Smtp-Source: AGHT+IHjeYMz0KgvEb109BlBeZpdK1WpEsAfCmhO2734flnzWi3bgE/AMOEkhjCOQGwd3ueN/hAxlA==
-X-Received: by 2002:a17:907:3e8c:b0:aca:a334:2d21 with SMTP id a640c23a62f3a-acb3849edefmr95950966b.43.1744767678387;
-        Tue, 15 Apr 2025 18:41:18 -0700 (PDT)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com. [209.85.218.47])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3cdda65asm29559766b.59.2025.04.15.18.41.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 18:41:17 -0700 (PDT)
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-acb39c45b4eso42728566b.1;
-        Tue, 15 Apr 2025 18:41:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVA9MmDRcrPtZy/HrUdZJ/cqD99hjHuq+WpEfS10S4VpVArGSaiJmDqtg5uwOcIkYq/ul076abrhBq4@vger.kernel.org, AJvYcCVjPhJviI28hDzONpmo8fB4QyHx15HQhtxOMsJepskDXkomOCLsIFFdZVcbvDTUSBbg5/zIpMTBBVwoqwni@vger.kernel.org
-X-Received: by 2002:a17:907:3d8f:b0:ac3:bd68:24f0 with SMTP id
- a640c23a62f3a-acb381ab306mr100622966b.7.1744767677634; Tue, 15 Apr 2025
- 18:41:17 -0700 (PDT)
+	s=arc-20240116; t=1744768957; c=relaxed/simple;
+	bh=v4/phJQUAPeOK41LzcUnYsiA3yKOssm+W9ZqAkAigfk=;
+	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IcCtjsOEa9GTFU/3bmiLplb0uVEgkMqBRXCbMleI5+fmf/I1vO5RQbDAorZKhxHWW5kHEBcD7dTJSkXmYIj4xJXT7QeCvWweDvNYyCmMq3ARDQfXltwfIao5w5vz2iwWJYbfO3V2WRs4QjR9yrG5nWkAgGwMv5ZiF596nfUsCNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Ej2oNmKq; arc=none smtp.client-ip=203.205.221.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1744768642; bh=KvSaTgFS8WeHQJzlGw/Ub9odmid7Z1N7H4quqWzN/KM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Ej2oNmKqHZ67Gedex9lBRdzlaMtU6fbb/ZGtWGXavGc4M1zV5/0rp0WnkniLrn4Dd
+	 9MrWUAZ0wiaEseQIKi6nMwEbDWav5A5W+qYmeSFG9UchjSgXfSPdBUBMSj0isUYura
+	 IeGYWFsSfMG5NPKef7Jp4PTzu6fShHsqre+1LMTQ=
+Received: from ubuntu.localdomain ([218.104.140.83])
+	by newxmesmtplogicsvrszc11-0.qq.com (NewEsmtp) with SMTP
+	id E53888DF; Wed, 16 Apr 2025 09:57:19 +0800
+X-QQ-mid: xmsmtpt1744768639t22hacpvg
+Message-ID: <tencent_607C227A96060DD8EC83C78184305D264109@qq.com>
+X-QQ-XMAILINFO: N7h1OCCDntuj9RM+yAw0CZYpw+uCKkqPhP58CShgWJ3pZMIQUoXQdBNpE0P0Y5
+	 I/40uwm6/Uggqid2uq66wyBQT3D/ZP43ANKRcULFnBEBFUq23dD5eE5GBWSrglZBANiNDWQ402u/
+	 altPJVOP8Luscihfv40JmXKB24hE6pJkKeaZqukpMauThdb429rnZpoJb2MsaQwwx8YBGPSwTyn+
+	 H6P1rR0Y1wBZdUW6oBw/h1Pn/7DerkgH/Qc3scNlnM6SEVY0zhwhrJ/86vr+JFyD/hNlR+8QAKxh
+	 Txvba5BAFLqjRijf+4cejOV7jE4cZ7yq6U4sQKXmc12fkmOFsIsxBUO6eOWPrUh4dWNwqd7OEPao
+	 cD0XJCGTuo9iUtqbW+aUfESiMkot9+COyxPezhQMhl7nMrXfv2pD/vYwwYVXi7GowLJJXBfLXtog
+	 hFi2ZzMqE8QWSkcxs04IbYCTIfS0aItfDk++HMkE1kKNu06l267A6IzJ68Q4PR0Rg0DOJ1/G4j9D
+	 NW9TpraqOxuTgNRbJn9ypOvBK8WdOwYHNDh738Kj7my2ON5YeJpvUW/CLg3o91JI2N9QnuuD19Fa
+	 40BBxM7nziWBNjPJ37c4iB2d8hzi0qt6gdt4aRq/dEsC5Tx1ksdu4fgMVfmBhdZmTGkOeFZnhHR8
+	 NsdDDf/6qU383/htCJPGsehvQ5P94YCcFc9KidTObcI8VIzPBG/Jkuktc74Mg4hXRHKsSxEXtZoF
+	 DtKWcU5bArEtVzsi+544NirU7bmj/J4BjpzY73VN+yKCGjUd+qlX4fxzWmAAacb/o2NL3x6IY5Uq
+	 ccJTOYQskwQd6PJnMNMLxm88xcF1IIUqJDXlVRQCgvbNMoha/0nCGIgJlOyFk5UNkl++0IusKfwB
+	 WCyAZIfEeuoi0y4pXfY32wOpEwIsyrQ+86x4I7N36CdoSLsGGZKprW48Bh9JtiWjATHqejL1QRr6
+	 J6LZSu4WM=
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+From: 1425075683@qq.com
+To: robh@kernel.org
+Cc: 1425075683@qq.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	m.szyprowski@samsung.com,
+	saravanak@google.com
+Subject: Re: [PATCH] of: reserved-mem: Warn for missing initfn in __reservedmem_of_table
+Date: Wed, 16 Apr 2025 09:57:08 +0800
+X-OQ-MSGID: <20250416015707.11088-1-1425075683@qq.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
+References: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com> <20250415-spmi-nvmem-v1-2-22067be253cf@gmail.com>
-In-Reply-To: <20250415-spmi-nvmem-v1-2-22067be253cf@gmail.com>
-From: Neal Gompa <neal@gompa.dev>
-Date: Tue, 15 Apr 2025 21:40:41 -0400
-X-Gmail-Original-Message-ID: <CAEg-Je9YWME75EqPYNU6LuhUo0kgcWfOh2qoo3WwQx0K1vObyg@mail.gmail.com>
-X-Gm-Features: ATxdqUFONgVQ32LYCamWZQFAdqw-HYKzsclM2qfgVOPEPhemzTQ_TdOV1fFem4w
-Message-ID: <CAEg-Je9YWME75EqPYNU6LuhUo0kgcWfOh2qoo3WwQx0K1vObyg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] nvmem: Add spmi-nvmem driver
-To: fnkl.kernel@gmail.com
-Cc: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Hector Martin <marcan@marcan.st>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 15, 2025 at 5:52=E2=80=AFPM Sasha Finkelstein via B4 Relay
-<devnull+fnkl.kernel.gmail.com@kernel.org> wrote:
+> On Tue, Apr 15, 2025 at 9:16 AM Liya Huang <1425075683@qq.com> wrote:
+> >
+> > For the data in __reservedmem_of_table, its function pointer initfn might
+> > be NULL. However, __reserved_mem_init_node() only considers non-NULL cases
+> > and ignores NULL function pointers.
 >
-> From: Hector Martin <marcan@marcan.st>
->
-> This driver exposes a SPMI device as an NVMEM device.
-> It is intended to be used with e.g. PMUs/PMICs that are used to
-> hold power management configuration, such as used on Apple Silicon
-> Macs.
->
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  MAINTAINERS                |  1 +
->  drivers/nvmem/Kconfig      | 14 +++++++++++
->  drivers/nvmem/Makefile     |  2 ++
->  drivers/nvmem/spmi-nvmem.c | 62 ++++++++++++++++++++++++++++++++++++++++=
-++++++
->  4 files changed, 79 insertions(+)
->
+> If initfn is NULL, there's no point to the entry and that's a bug.
+> Unless you have a build time check, there's no point to add this.
+> 
+> Rob
 
-This driver code looks reasonable to me.
+Thank you for your response. Based on your suggestion, I have made the 
+modifications and used static_assert() to perform the check at compile 
+time. The specific code is as follows. Could you please review whether 
+this modification is reasonable? If it is acceptable, I will proceed with 
+submitting the patch.
 
-Reviewed-by: Neal Gompa <neal@gompa.dev>
+I did not find any usage of static_assert() for null pointer checks in the
+kernel code. Additionally, BUILD_BUG_ON() cannot be used globally.
 
+---
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index e338282da652..87446ad2deb2 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -29,6 +29,7 @@ typedef int (*reservedmem_of_init_fn)(struct reserved_mem *rmem);
+ #ifdef CONFIG_OF_RESERVED_MEM
+ 
+ #define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
++	static_assert((init) != NULL);	\
+ 	_OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_fn)
+ 
+ int of_reserved_mem_device_init_by_idx(struct device *dev,
+---
 
---=20
-=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
-=BC=81/ Always, there's only one truth!
+Thanks,
+-- 
+Liya Huang <1425075683@qq.com>
+
 
