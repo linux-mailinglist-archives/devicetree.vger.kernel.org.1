@@ -1,139 +1,131 @@
-Return-Path: <devicetree+bounces-167953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD86BA90ECF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 00:46:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A71A90ED4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 00:48:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDB42447706
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 22:46:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D29F03B0E5A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 22:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E91D248166;
-	Wed, 16 Apr 2025 22:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA38238C25;
+	Wed, 16 Apr 2025 22:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NqKrFflU"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="WMNo6Yg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C74F2459C8;
-	Wed, 16 Apr 2025 22:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5365510E9
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 22:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744843570; cv=none; b=t9q3ChyccYzPw7eCT2zX+Op3IoRU8ABs1mV2rvBib3BkGFxcYoHiZeMLQk7r65kDbw0Uw5idhqpI4TbcCRfjykCbByNHuVFiqy+0unKnqP0uR5ow67xkc8wBBVqzLEPJZQJ/SztvmWXegkV9It3oT4Rsyu1kTjyTUebg7GM3Taw=
+	t=1744843702; cv=none; b=qSOfas1Dw2wyJhuVvGvPVd/u2igbkCqOhHR//i9p20sTALuyxeHJ5HAH5xVLo/iJbd8HQFeWULYNeyXCEoKlz3rE6d2PgCfJz4v1lPv7Ar/aV4pWcVp2hRcvAALBMmmtH+J5eEO4BEMjO6NYTsATYapS74Fg2pPt3mZGcL9U9To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744843570; c=relaxed/simple;
-	bh=HVh5xJy/ANkBPHD/Sg1nDZZa4c6HM3ME7V4lUgnTxBE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lf6PGkjx0HnhFmx8E/1+rzcfk17CS8iD93KPRC7aMlCv0XNX/+gLB76LQHXfMMKh619nvru9DD+tVgB/NX6N+m0cHG/VhNMEGzvMdH4x56xWEj1b1Pdx5vPor7Rv7RkihFFc3635bdGEbNCkgHKEMY0gLIJ4NORBHXUBXpWhD/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NqKrFflU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53GMNdb7020536;
-	Wed, 16 Apr 2025 22:45:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xNfrCvKLz1HL2/Ep2TIoQ6EJuGuvEvjrG/9oyVd/u88=; b=NqKrFflUuvmOzgIb
-	tnKdyY7U46RSAItH7u6oAgSMZPHNeAlPVKEjevMzYAiY8KW9gPajHLwQEhB4ziYn
-	G5Vkj1xOEgluDc6TeD5M9RtzyzbaEEB7KSYuTskmf5aOKEKogbEeGVDnxHYsOlp5
-	5RY34pNAqLPzzK/07Kr2NctqklzPqoQaQLpHI63oVqnaQCwaAVWkzwFi0C2Tflyw
-	fOHcEOhyOS2WlLN6nLbQM/27oNOTpJBxIlap/w7q2olVx8GpnnLITVMfT25krb6E
-	wT74ryb+bLR1DzYwahReYwS98oAzBlPRt1HQx/7xrGGMVIpjRA+3O1/Rf4fWyCsb
-	VUly3Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbpvt5k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 22:45:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53GMjmYO017521
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 22:45:48 GMT
-Received: from [10.110.59.41] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 16 Apr
- 2025 15:45:48 -0700
-Message-ID: <0517c37d-b1ba-466e-bffd-9f47b0d458d5@quicinc.com>
-Date: Wed, 16 Apr 2025 15:45:43 -0700
+	s=arc-20240116; t=1744843702; c=relaxed/simple;
+	bh=OqusOPeMjg/sJfnLfpn1gMh+LaQA/7Og/SG2cOd3jy0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EKtMCM3ubXEP8U+arLFRCl3Esej01cf6Tq36TttY8kXRoQ5B/5C5jy5zTd37jBVUz710PrfHIF8BGMWF/AuseEMxntNeKDSKhL8iyCoqiWMJTXBpzGdZuHRwb6TGN8USCPcbHJulZLQrxVqog7GExY7i0VvciljjLTF+8bpRmdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=WMNo6Yg7; arc=none smtp.client-ip=209.85.160.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-2c7f876b321so31933fac.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:48:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1744843700; x=1745448500; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k5/PQOoVcW+1fkczXDMdutM7S7PmnuJhL9tq/POXOzo=;
+        b=WMNo6Yg7/6UHku1JbmAmrEB9mO64jyGXddmxcULdv1ekPgzzpgru8W1dfIOqsVbeFR
+         8s5o9KuD71d6DaAfo7UpVms4v1QNXiqpu0hQxSb4nw4ixQXx42B8cumDm0qrSDRv9ZBZ
+         E+0cuHsvGpt4lPYuhHQaGGJMFMQg3Pwso01MI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744843700; x=1745448500;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k5/PQOoVcW+1fkczXDMdutM7S7PmnuJhL9tq/POXOzo=;
+        b=DHrywbsHUUj1C9R5S4Ceh0f8tKtxK7Ld/IGm/h4ZOF3SlgpjhKcifvKgUVPTi8mNyS
+         ilqoBzXiHbYYLS3syk6xDtlkNadXjCzaVfG4IlJ4BvyqJkUeO46mVAi1eoGBoUWy9Itu
+         rcCCrn7ODSHwruakcvTkcKIP1ArsnO43rMwND/EsgTdzAnM43mpx4EnEQUgS+nk84hMS
+         aKrwO8B91CKgivpELI/0To7lniDkOzl8f93PT/EmOtBt97Stu5J8vj0K/5EiAh/Oi47w
+         R/pVxLK0e6SrehilxQhYoJIqWtvth2P3HE3/TkL2v3Fz6/8SDZMAXGSmZYWO/X3MncHX
+         APnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWeQfGvhTyrqv5aGf39tBZMO4QM+lK1ztQCi8UrY0Q2/zOGyfDpWIRg8DSvOCPEwDnsS04bwBg5MSTo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTzm+SmqWtjzeyhxhUjrQGwbEcMC6fj970ayHQjXYXKzQ/c9pU
+	EyqKnAQiCEmz48s/yueSZDgpQb6ZpOCZiu+ZulD2RLk4mWuLs1cDPvdGe3gvhA==
+X-Gm-Gg: ASbGnctY3JmaDr2BjQWqQ5kbGCZiZGmsU1CNsb0DhWavicWcZWc7bq1CvRMpESKiLsw
+	x83Jc29RZ6wbfRfNZUlhsnAVTmLp/5c2HfsjTzE9jZB4frJSy5fTKhSKS9pBDas2QohCws5ujoF
+	WymKNZ5x/+0k3BT+bjZeieIxdsiGryNlM5bFSzFBPgmVdy8a7dt9yO+xbCOKRwBd+HDhrPTvhkI
+	rhAW84zauMla4vQ8pOqE60hxkdY/OhWL9ePc+F9xEJuiLdPmMxD0Qq2LVbSC8MlB2nxg3iHOqLS
+	bAZyuW+f95Tafrx2Emlcs5kI0bhrzf0ynly3w26yj3K+d/5QRvm7G40+qPlpRoWV6zK5P+U9ZAN
+	MhdEGz0sILsIOvwMA8Q==
+X-Google-Smtp-Source: AGHT+IFvWB7nerAS/OVdF2vlk4PsLsujkrdnqtsNqoOQHOCMZc0s84dRg/yS8fOHAzQVF96v6vvtuw==
+X-Received: by 2002:a05:6830:61cc:b0:72b:943f:dda8 with SMTP id 46e09a7af769-72ec6d207d4mr2354863a34.26.1744843700017;
+        Wed, 16 Apr 2025 15:48:20 -0700 (PDT)
+Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72e73d71813sm3015956a34.26.2025.04.16.15.48.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 15:48:19 -0700 (PDT)
+From: Justin Chen <justin.chen@broadcom.com>
+To: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: rafal@milecki.pl,
+	linux@armlinux.org.uk,
+	hkallweit1@gmail.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	opendmb@gmail.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	pabeni@redhat.com,
+	kuba@kernel.org,
+	edumazet@google.com,
+	davem@davemloft.net,
+	andrew+netdev@lunn.ch,
+	florian.fainelli@broadcom.com,
+	Justin Chen <justin.chen@broadcom.com>
+Subject: [PATCH net-next 0/5] net: bcmasp: Add v3.0 and remove v2.0
+Date: Wed, 16 Apr 2025 15:48:10 -0700
+Message-Id: <20250416224815.2863862-1-justin.chen@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/10] phy: qcom: Add M31 based eUSB2 PHY driver
-To: Vinod Koul <vkoul@kernel.org>,
-        Melody Olvera
-	<melody.olvera@oss.qualcomm.com>
-CC: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com>
- <20250409-sm8750_usb_master-v4-6-6ec621c98be6@oss.qualcomm.com>
- <Z/exOF4T+0vNLQwg@vaman>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <Z/exOF4T+0vNLQwg@vaman>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tQ2iOfxn8lJ-9NvJwiHwGQLX2R8JqxPZ
-X-Proofpoint-GUID: tQ2iOfxn8lJ-9NvJwiHwGQLX2R8JqxPZ
-X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=6800331d cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=hpYwsUs0O2kreVQoPgkA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-16_09,2025-04-15_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504160182
+Content-Transfer-Encoding: 8bit
 
-Hi Vinod,
+asp-v2.0 had one supported SoC that never saw the light of day.
+Given that it was the first iteration of the HW, it ended up with
+some one off HW design decisions that were changed in futher iterations
+of the HW. We remove support to simplify the code and make it easier to
+add future revisions.
 
-On 4/10/2025 4:53 AM, Vinod Koul wrote:
-> On 09-04-25, 10:48, Melody Olvera wrote:
-> 
->> +static int m31eusb2_phy_write_readback(void __iomem *base, u32 offset,
->> +					const u32 mask, u32 val)
->> +{
->> +	u32 write_val;
->> +	u32 tmp;
->> +
->> +	tmp = readl_relaxed(base + offset);
->> +	tmp &= ~mask;
->> +	write_val = tmp | val;
->> +
->> +	writel_relaxed(write_val, base + offset);
->> +
->> +	tmp = readl_relaxed(base + offset);
-> 
-> Why are you using _relaxed version here?
-> 
+Add support for asp-v3.0. asp-v3.0 reduces the feature set for cost
+savings. We reduce the number of channel/network filters. And also
+remove some features and statistics.
 
-No particular reason.  I think someone pointed this out previously, and I
-was open to use the non-relaxed variants, but I assume using the relaxed vs
-non-relaxed apis comes down to preference in this case.
+Justin Chen (5):
+  dt-bindings: net: brcm,asp-v2.0: Add v3.0 and remove v2.0
+  dt-bindings: net: brcm,unimac-mdio: Add v3.0 and remove v2.0
+  net: bcmasp: Remove support for asp-v2.0
+  net: bcmasp: Add support for asp-v3.0
+  net: phy: mdio-bcm-unimac: Add asp-v3.0 and remove asp-v2.0
 
-Thanks
-Wesley Cheng
+ .../bindings/net/brcm,asp-v2.0.yaml           |  19 +-
+ .../bindings/net/brcm,unimac-mdio.yaml        |   2 +-
+ drivers/net/ethernet/broadcom/asp2/bcmasp.c   | 178 +++++++-----------
+ drivers/net/ethernet/broadcom/asp2/bcmasp.h   |  78 ++++----
+ .../ethernet/broadcom/asp2/bcmasp_ethtool.c   |  36 +---
+ .../net/ethernet/broadcom/asp2/bcmasp_intf.c  |  13 +-
+ .../ethernet/broadcom/asp2/bcmasp_intf_defs.h |   3 +-
+ drivers/net/mdio/mdio-bcm-unimac.c            |   2 +-
+ 8 files changed, 126 insertions(+), 205 deletions(-)
+
+-- 
+2.34.1
+
 
