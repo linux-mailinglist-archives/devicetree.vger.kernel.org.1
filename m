@@ -1,183 +1,186 @@
-Return-Path: <devicetree+bounces-167872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5921CA90990
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:04:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A62A909A1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:10:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2D4A3BB3A3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:04:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB13C177966
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FCB2153C2;
-	Wed, 16 Apr 2025 17:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6222153D8;
+	Wed, 16 Apr 2025 17:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JM8UVWCL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mM4S1zuQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC9A212F89;
-	Wed, 16 Apr 2025 17:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5731FB3;
+	Wed, 16 Apr 2025 17:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744823047; cv=none; b=la1vXOpjSNEWU5w4jOnVSsk74NSdzTrRCdjYkg5j1jKke/4S0Ief2tTUSHbDXXnngOD871L+HT/4DXKicfkdDT+SsW8JJy+Z7NH+2gu4ug7PG0jcLZzz2zityUL7uQz86Asw6VAMnRgae7979MUodu70pCb28rY9b+kNdbF5fVU=
+	t=1744823408; cv=none; b=obn4QgQ4n6faI+XczFtmtKNmAUd92eGqOev4nRwKPei/konXBMB51gix+vYaYBNihdgdYyI2PaRVp8WixiMvZsoF6ykVHZX/c1FlbBdw8hNXDXD69YKScacEROYSXQci8NIEvbvMCdx0TYJZ2/l0qnm3eU/3LDud4JvkYhbmPS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744823047; c=relaxed/simple;
-	bh=wgCJ0YY6y5mc3MKbBmKW0mnPzzpGjhPUNF1lKUnvhjo=;
+	s=arc-20240116; t=1744823408; c=relaxed/simple;
+	bh=GPxndeQcjZergwFORB/Rw0fwEw6OdehK/PoVumpiwhs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QKAPH1aEWzSkLLqjKnbQviSc1esvf7yEuoax/B//7t/m7PeMgwpqSdoufzNQeLeP+ioDd4Ex8QZrHOwUwaGIheCQ8kODQrWD7fEhxN5sBQGzo+ITSBKdgRFevzBnkTnODrqnJmFse8JuabDIEyspQ5okRuVjhQ6uIcnTtWsUPz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JM8UVWCL; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C28D5965;
-	Wed, 16 Apr 2025 19:01:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744822919;
-	bh=wgCJ0YY6y5mc3MKbBmKW0mnPzzpGjhPUNF1lKUnvhjo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=fWgdAzZRCLB7uSeFVrN2IFlNN/uPunnyuTi1hOXyFRjPDw4RcgkbWxzHu0IuLh8KYiqoA+n9ovPzFgHr3u7NVM+ckeC3swOdUWKSIfW2f77kZ90rWS97+U8TwIjioq4ieqlRLQ4Lb7YMdo4NJfb2I62v4AckyJBTpvbgfKzm2jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mM4S1zuQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0FCAC4CEE9;
+	Wed, 16 Apr 2025 17:10:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744823408;
+	bh=GPxndeQcjZergwFORB/Rw0fwEw6OdehK/PoVumpiwhs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JM8UVWCLlEpsxKhuY7rly7xb7D3TdDAMaJbLfQjeOOGpSoJZ6mV0Ae5/c9lXz0qRg
-	 jaE0dvXZr+Fha3XA0vUNPWfTUWm9KG0rke7gzhAiTBg9vPm3GY2VFsFgGgYoq4MftH
-	 Pmg24l3gVJDl2mmIFY69NRjMmHcgPQ+MB6z7lQgk=
-Date: Wed, 16 Apr 2025 20:04:00 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
-	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	"stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-Message-ID: <20250416170400.GK9439@pendragon.ideasonboard.com>
-References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
- <ZxYiCv6SpLq9uh08@dragon>
- <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
- <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
- <20250415154724.GG9439@pendragon.ideasonboard.com>
- <20250415155239.GH9439@pendragon.ideasonboard.com>
- <49a83fe4-863d-4f84-912c-cf58dc22ede6@leica-geosystems.com>
+	b=mM4S1zuQEMQqhg2E5490EGSvOLlPkmXfO2/a8rsiW5raOTdT+AwSP80ZxxgBfjFB7
+	 ICdW04snQBopqh9TxyLVT4jadJgjt6ZtaqQXIh0ltP3FEe1cSnqE0C7HOu92UbDbmj
+	 RPMcHm/Pq7mYU8EUndI6VL1iQOwW1ppCgmIa6aK8UF7S2VoXOIe1rkyYPvpOCGneMg
+	 qhhmwGDAxM7P7Lu8JqI9TgwmZqZXWnOM4X2iGbG4VsTRFFdfUGneP0TVe+MtviiiTx
+	 LK8o3F7FzDZKaW7dmM9iwfKqLE8tS4dE+90kDIOecLPdiWibowhbWrqwmXtecC3upw
+	 pM+Lq5HNfBYIg==
+Date: Wed, 16 Apr 2025 18:10:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	m.szyprowski@samsung.com, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: firmware: thead,th1520: Add resets
+ for GPU clkgen
+Message-ID: <20250416-bootlace-fossil-08a975327973@spud>
+References: <20250414-apr_14_for_sending-v2-0-70c5af2af96c@samsung.com>
+ <CGME20250414185315eucas1p1fae2d6250bfd30b12bb084e197c02948@eucas1p1.samsung.com>
+ <20250414-apr_14_for_sending-v2-2-70c5af2af96c@samsung.com>
+ <20250415-tycoon-naming-20ba5a55c469@spud>
+ <fe445d04-b488-4f11-a14d-9dfda07e3e88@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tCmZpeXQvPDx/gRW"
+Content-Disposition: inline
+In-Reply-To: <fe445d04-b488-4f11-a14d-9dfda07e3e88@samsung.com>
+
+
+--tCmZpeXQvPDx/gRW
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <49a83fe4-863d-4f84-912c-cf58dc22ede6@leica-geosystems.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Catalin,
-
-On Wed, Apr 16, 2025 at 06:57:35AM +0000, POPESCU Catalin wrote:
-> On 15/04/2025 17:52, Laurent Pinchart wrote:
-> > On Tue, Apr 15, 2025 at 06:47:26PM +0300, Laurent Pinchart wrote:
-> >> On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
-> >>> Hi Jai,
-> >>>
-> >>> This issue was already reported by Stefan. The problem is that I don't
-> >>> have a Debix board to investigate.
-> >>> The main difference b/w WFI and cpu-pd-wait is that the first doesn't
-> >>> call PSCI/TF-A. So, the issue looks to be related to some settings in
-> >>> the TF-A.
+On Wed, Apr 16, 2025 at 01:40:15PM +0200, Michal Wilczynski wrote:
+>=20
+>=20
+> On 4/15/25 18:38, Conor Dooley wrote:
+> > On Mon, Apr 14, 2025 at 08:52:56PM +0200, Michal Wilczynski wrote:
+> >> Extend the TH1520 AON firmware bindings to describe the GPU clkgen res=
+et
+> >> line, required for proper GPU clock and reset sequencing.
 > >>
-> >> Jai, are you using mainline U-Boot and TF-A, or a downstream version of
-> >> either (or both) ?
-> >
-> > Actually, same question for Calatin :-)
-> 
-> Bonjour Laurent,
-> 
-> I'm running a yocto scarthgap custom build :
-> 
-> - barebox : http://barebox.org/download/barebox-2024.05.0.tar.bz2 _with_
-> custom patches
-> - kernel : 6.12.16 _with_ custom patches
-> - TF-A :
-> git://github.com/hexagon-geo-surv/trusted-firmware-a;protocol=https;branch=leica/v2.12
-> / SRCREV=46c962c654de4ab734f936f472508edf20c6c049 (_no_ custom patches)
+> >> The T-HEAD TH1520 GPU requires coordinated management of two clocks
+> >> (core and sys) and two resets (GPU core reset and GPU clkgen
+> >> reset).  Only the clkgen reset is exposed at the AON level, to support
+> >> SoC-specific initialization handled through a generic PM domain. The G=
+PU
+> >> core reset remains described in the GPU device node, as from the GPU
+> >> driver's perspective, there is only a single reset line [1].
+> >>
+> >> This follows upstream maintainers' recommendations [2] to abstract
+> >> SoC specific details into the PM domain layer rather than exposing them
+> >> to drivers directly.
+> >>
+> >> [1] - https://lore.kernel.org/all/816db99d-7088-4c1a-af03-b9a825ac09dc=
+@imgtec.com/
+> >> [2] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@ker=
+nel.org/
+> >>
+> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> ---
+> >>  .../devicetree/bindings/firmware/thead,th1520-aon.yaml        | 11 ++=
++++++++++
+> >>  1 file changed, 11 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-a=
+on.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> index bbc183200400de7aadbb21fea21911f6f4227b09..6ea3029c222df9ba6ea7d4=
+23b92ba248cfb02cc0 100644
+> >> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> @@ -32,6 +32,13 @@ properties:
+> >>      items:
+> >>        - const: aon
+> >> =20
+> >> +  resets:
+> >> +    maxItems: 1
+> >> +
+> >> +  reset-names:
+> >> +    items:
+> >> +      - const: gpu-clkgen
+> >> +
+> >>    "#power-domain-cells":
+> >>      const: 1
+> >> =20
+> >> @@ -39,6 +46,8 @@ required:
+> >>    - compatible
+> >>    - mboxes
+> >>    - mbox-names
+> >> +  - resets
+> >> +  - reset-names
+> >=20
+> > Given these are new required properties, have you made sure in the
+> > driver that their absence will not cause problems with older
+> > devicetrees? I took a brief look at the driver, and it _looked_ like you
+> > were failing if they were not there? It was a brief look though, tbf.
+>=20
+> Hi Conor,
+>=20
+> Good point =E2=80=94 but in this case, the devicetrees compatible with the
+> driver haven=E2=80=99t been merged upstream yet. In fact, the TH1520 PM d=
+omains
+> driver currently doesn=E2=80=99t even compile against mainline, since the
+> required commit [1] didn=E2=80=99t make it into 6.15.
+>=20
+> That said, Drew has queued the DT changes for the next release [2], and
+> you=E2=80=99ve queued [1], so assuming this series lands in 6.16, there w=
+on=E2=80=99t be
+> any older devicetrees to support. As a result, I haven=E2=80=99t added a
+> fallback path in the driver for missing properties.
+>=20
+> If, however this series doesn=E2=80=99t make it in for 6.16, then yes =E2=
+=80=94 we=E2=80=99d
+> need to revisit the driver and add a failure safe path for cases where
+> these properties aren=E2=80=99t present.
 
-Could you please run tests with the latest mainline kernel ?
+Can you point this reason out in the commit message please?
 
-> > I'm running mainline U-Boot 2025.01 and TF-A rel_imx_5.4.70_2.3.6 (from
-> > https://github.com/nxp-imx/imx-atf) and don't seem to experience the
-> > issue:
-> >
-> > # cat /sys/devices/system/cpu/cpu*/cpuidle/state1/disable
-> > 0
-> > 0
-> > 0
-> > 0
-> >
-> > $ ping debix
-> > PING debix.farm.ideasonboard.com (192.168.2.230) 56(84) bytes of data.
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=1 ttl=64 time=1.03 ms
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=2 ttl=64 time=0.800 ms
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3 ttl=64 time=0.935 ms
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=4 ttl=64 time=0.902 ms
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=5 ttl=64 time=0.738 ms
-> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=6 ttl=64 time=0.939 ms
-> >
-> >>> What I don't get is why I don't see this issue neither on our IMX8MP
-> >>> specific design nor on the EVK, which uses the same PHY as the Debix board.
-> >>>
-> >>> On 14/04/2025 14:07, Jai Luthra wrote:
-> >>>> On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
-> >>>>> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
-> >>>>>> So far, only WFI is supported on i.MX8mp platform. Add support for
-> >>>>>> deeper cpuidle state "cpu-pd-wait" that would allow for better power
-> >>>>>> usage during runtime. This is a port from NXP downstream kernel.
-> >>>>>>
-> >>>> Since the introduction of this patch in mainline, I am facing sluggish
-> >>>> network performance with my Debix Model-A board with i.MX8mp SoC.
-> >>>>
-> >>>> The network latency jumps to >1s after almost every other packet:
-> >>>>
-> >>>> PING debix (10.0.42.5) 56(84) bytes of data.
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=1008 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=0.488 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=1025 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.810 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=590 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=6 ttl=64 time=0.351 ms
-> >>>> ^C
-> >>>> --- debix ping statistics ---
-> >>>> 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
-> >>>> rtt min/avg/max/mdev = 0.351/437.416/1024.755/459.370 ms, pipe 2
-> >>>> darkapex at freya in ~
-> >>>>
-> >>>> If I revert the patch, or disable the deeper cpuidle state through
-> >>>> sysfs, the issue goes away.
-> >>>>
-> >>>> # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
-> >>>>
-> >>>> PING debix (10.0.42.5) 56(84) bytes of data.
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=0.482 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=2.28 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=2.26 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.848 ms
-> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=0.406 ms
-> >>>> ^C
-> >>>> --- debix ping statistics ---
-> >>>> 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
-> >>>> rtt min/avg/max/mdev = 0.406/1.255/2.280/0.842 ms
-> >>>>
-> >>>>>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-> >>>>> Applied, thanks!
+--tCmZpeXQvPDx/gRW
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Regards,
+-----BEGIN PGP SIGNATURE-----
 
-Laurent Pinchart
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ//kaQAKCRB4tDGHoIJi
+0tq6AP49djHUQH5jaiCOowqiJpYaVCgG0kyxv19IckXOxtg97wEA6PYTFj/uiYGX
+nT4CK+hS2GP7lCkMqKeI3oidnhm9Uw8=
+=D2g7
+-----END PGP SIGNATURE-----
+
+--tCmZpeXQvPDx/gRW--
 
