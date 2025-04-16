@@ -1,97 +1,101 @@
-Return-Path: <devicetree+bounces-167909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09FB9A90B00
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:11:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0ADCA90B21
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93EB4460388
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:11:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C971189438F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCF8221577;
-	Wed, 16 Apr 2025 18:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31022192FE;
+	Wed, 16 Apr 2025 18:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVH68p0V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vFwg2W7u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F33421ABB0;
-	Wed, 16 Apr 2025 18:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EBC18870C;
+	Wed, 16 Apr 2025 18:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744827056; cv=none; b=h7Eh4hWaR1ZWstvK1igU05QkJzCT48sXwTRJ+l4ZjvuCTL8IOfgSThoNRJhrQjy7oaxW83L8dC/KnJ3EreYq9I1J+e/W4UmzHkzcCr5gjgRV2HDM79FZsPDycaYPmtL5Qep7j6qQK+/2DYzqm5gSQGAacMZvZ7ujnCr4lVy/s1M=
+	t=1744827238; cv=none; b=YEYIB6TsEXheBNUv/PgcKnLb8YdXEzt7CmOWwbUCNRb0agMJQeEYJfoc2oMNol3YQNF6uuvKr2UaLpSl5fYDJmDzClNarpjXHTRewItXLO4wYkX1mMwPI+A6vrgL6Rb42MO441bxh0e0ZWc1xHt8bBRNj8kQS7SBXFY/U8m1+h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744827056; c=relaxed/simple;
-	bh=vZh3g5tnBCLLM/Z0GHCroziA4tVUB6U+QZ2RQctdI3A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mqN1P+5HISohp11x+CZ9dXQ6p4GfPU0MacBxbLpxbW2CFBJ7cqIwcol/C+l07tPBtPLKD3TJpAZEwFMc5bpMvn5xgoIs6LhTlqKFfySHMlyfWKDWerqRNEMqu2QKyT07wQtPF9Rp8PUmSfbVVqVSYqz8cOMpKUI6Rac8vKRNlEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVH68p0V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05405C4CEE9;
-	Wed, 16 Apr 2025 18:10:54 +0000 (UTC)
+	s=arc-20240116; t=1744827238; c=relaxed/simple;
+	bh=E4ZCn18zFjw6q5PMnJTlMEpj3cHQAfhZ5PeKZVr6sKw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f/FhSQgZlQUKzJ1BCi9cbej+3+sBOlBL2D/bHAmOhfFRSueVG2iuY6+T8W1wlQ2RecC0m9GUt4ANO+cD7HKgMpmuAFUaGgJ2HnR87mldo1MiUVTz4C5YvqOjOr0hc7emRTbydA5hdW71ZNRV1s3VkJkne62WTxmeTHr80VOx4f8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vFwg2W7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E98A1C4CEE2;
+	Wed, 16 Apr 2025 18:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744827056;
-	bh=vZh3g5tnBCLLM/Z0GHCroziA4tVUB6U+QZ2RQctdI3A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fVH68p0VtZpPOQqQ9ieT7DUabCPZaXg7OPqOjGnOSe9WAu/QEeYqSZwYsFKgl7dbn
-	 J4K6bU/9jnGU4782ukRT35ekvBXdY8D8KFPF1yX/fVuna2qZoOKKFHQ1XB0iUfer8V
-	 CnmVZ+kC8i69FVpAGcMg+D7rIeMkxlLbCHXE/t/mTCZz3lGOmIlLhDGC+UmowzXBIQ
-	 0IjLn8x4bMWts4BJDuvYm4UOtcyEDWOAbf7PbElA2b0NEDBmIiLNbusl46nrKiwB9u
-	 glpJcds0YrLLg5h254zCyVoR4Et1evTmyHDDLiIxTmdt0juvyj6dwggkHmiAuZH/ur
-	 vta4fjIW+fqEQ==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1744827238;
+	bh=E4ZCn18zFjw6q5PMnJTlMEpj3cHQAfhZ5PeKZVr6sKw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vFwg2W7ulzfpoDWHo1BLmWMkAnQCxVGe2j5NOi6tePl5s07giWZMkhjfYjNaGhc+E
+	 DoBfd+PAHJHY/uyGUOngwGsQdhpWJHeDC6rfW5EjIw+t0fUgVImU6oGJEL7ADtGIxP
+	 6XJk9xzY9LEnlV+XZRLm/mfjI0maPA5jnsuQoRLQD7zcaiTgFVGcbomv13di2oNWOD
+	 CRvFOfgosj6N16eIFvBGl8ilBctjMJxXdAbEcVnGTxSMAnidclUHGCLaB9Qu8f16rt
+	 Rwpf8jN2dNbArsyt3fhr1k6LvGZP6RYSu6VLJDX54u6I0+4BdCLquqlRV0xVUbi3ZQ
+	 Fp+tph9YwLL/g==
+Date: Wed, 16 Apr 2025 13:13:56 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: (subset) [PATCH v5 0/4] Update LPASS Audio clock driver for QCM6490 board
-Date: Wed, 16 Apr 2025 13:10:45 -0500
-Message-ID: <174482704422.446874.852481372761594404.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250221-lpass_qcm6490_resets-v5-0-6be0c0949a83@quicinc.com>
-References: <20250221-lpass_qcm6490_resets-v5-0-6be0c0949a83@quicinc.com>
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Shawn Guo <shawnguo@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	imx@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 1/1] dt-bindings: display: imx: convert fsl-imx-drm.txt
+ to yaml format
+Message-ID: <174482723439.3590548.522151644513682982.robh@kernel.org>
+References: <20250415212943.3400852-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250415212943.3400852-1-Frank.Li@nxp.com>
 
 
-On Fri, 21 Feb 2025 15:04:53 +0530, Taniya Das wrote:
-> This series updates the low pass audio clock controller driver for reset
-> functionality. The patches are split from the below series.
-> https://lore.kernel.org/all/20240318053555.20405-1-quic_tdas@quicinc.com/
+On Tue, 15 Apr 2025 17:29:42 -0400, Frank Li wrote:
+> Convert fsl-imx-drm.txt to yaml format and create 5 yaml files for
+> differences purpose.
 > 
-> The QCM6490 board requires only the reset functionality from the LPASS
-> subsystem. Thus separate out the driver probe to provide the same on the
-> QCM6490 boards.
+> Additional changes:
+> - add missed include file in examples.
+> - add clocks, clock-names for ipu.
 > 
-> [...]
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../imx/fsl,imx-display-subsystem.yaml        |  36 ++++
+>  .../display/imx/fsl,imx-parallel-display.yaml |  74 ++++++++
+>  .../bindings/display/imx/fsl,imx6q-ipu.yaml   |  97 +++++++++++
+>  .../bindings/display/imx/fsl,imx6qp-pre.yaml  |  55 ++++++
+>  .../bindings/display/imx/fsl,imx6qp-prg.yaml  |  52 ++++++
+>  .../bindings/display/imx/fsl-imx-drm.txt      | 160 ------------------
+>  6 files changed, 314 insertions(+), 160 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-display-subsystem.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-display.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6q-ipu.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6qp-pre.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6qp-prg.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/imx/fsl-imx-drm.txt
+> 
 
 Applied, thanks!
 
-[3/4] arm64: dts: qcom: qcm6490-idp: Update the LPASS audio node
-      commit: 9361ee93ac9d1b6730a65fc690e64cffaa41335e
-[4/4] arm64: dts: qcom: qcs6490-rb3gen2: Update the LPASS audio node
-      commit: f716f5dcf5cc40a0e883513b93dfaf35c50e7ead
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
 
