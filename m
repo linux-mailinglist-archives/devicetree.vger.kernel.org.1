@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-168170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC06A91B7C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:04:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FECA91B8E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68D1F1645F1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:03:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54827463025
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:04:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4983824A067;
-	Thu, 17 Apr 2025 12:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BB8242928;
+	Thu, 17 Apr 2025 12:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="lgc1Ii9q"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pp8P81wE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F93124A042;
-	Thu, 17 Apr 2025 12:02:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5DE242912;
+	Thu, 17 Apr 2025 12:04:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744891334; cv=none; b=XadWkl9Rv2y+5oI8kCchEpcYKP+z8aW9uIp8cNlxmaL0/MGWWm0Kiz6ag5xfBp1xxkmGpjmMzCgNbFU6OOmM7O7G11sY+NTUBsV2T7osDNwoAYax3zw21aexVUe2fn9gqii3Job4B03VwW/rrNbg3mBX5BlMA24cfAjhBvp0VLE=
+	t=1744891461; cv=none; b=B+HB4gs4KngOHfMTcCid2Qa3Q6UkrFoag/A7ZPPH/IVCf4ayajNo2uPW0HcB8OqkXcidfitRBcUErBqBtb+3kLttSbrFYtiS1+Kr/67oUC5mVjHDMtgNLvJP4CNeR4BOOxcH+v1Vwg4S0eENJwHbkUd6y/J+15oUl2+82zEn+ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744891334; c=relaxed/simple;
-	bh=6ZXpOpKFXe3BQmkcz2CtFn5gZTsYclZ9GbD4T6xOKbg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JczrSAXovPJnJsfm+WFJ/Xq2zZTZPsj9vrLE+d3aJ75Jf9lnc29H46l/mbk88MlxU0w0aTL7pm8JdgoJzSjbeULyrym2OfRXOVvgBMs85SHsUVpyAeZzkGdgiluzYXYVkRJd4g67cLvgRfYNcRPNKxxQKEgrft9SzM749OdWWwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=lgc1Ii9q; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id D18A925DFF;
-	Thu, 17 Apr 2025 14:02:10 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id RTLTMcTzHm4d; Thu, 17 Apr 2025 14:02:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1744891330; bh=6ZXpOpKFXe3BQmkcz2CtFn5gZTsYclZ9GbD4T6xOKbg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=lgc1Ii9q+HCq0tjO48u2cSjz4lhYMGVyVIMDSO6MRA67ndnRauaK9TG3tDkwVQbB9
-	 uJEYAJGAlL3+CLPSC0rxF4BXuJuH4YtY4aHemKLf/mArgpb9Xtoh981ORsFWZfd/P/
-	 uRJR8Dk9Tm5moIfbFNcO6+/5ajtEYrDiT/AiWe8tvAr/UMeKAeQ97ZRwRYO3Eo1O3i
-	 Dkh7MLvi2z/tHiBuAoTAkGG1giLyTa9AGiP4jTFo4ciswujMBxllwjqIHAAcHVD9nB
-	 22m7bEHlbH4jU8okBEr8mZ7cNzAQUPbVZK3UGd4zUAxJlkT4Aot8glBxQa1+Lb+UxS
-	 E0vpi2H/D2AJQ==
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Yao Zi <ziyao@disroot.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Add onboard EEPROM for Radxa E20C
-Date: Thu, 17 Apr 2025 12:01:19 +0000
-Message-ID: <20250417120118.17610-6-ziyao@disroot.org>
-In-Reply-To: <20250417120118.17610-3-ziyao@disroot.org>
-References: <20250417120118.17610-3-ziyao@disroot.org>
+	s=arc-20240116; t=1744891461; c=relaxed/simple;
+	bh=idyzSfJRd1KC3E10h0F8BgvdlVezLDki1ghCKDVY6KU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jJ5eE+FSROCSTfzpvknivlGRuSepQbgY+LneqzTm9ewEtR/sv+Q8uNhESrdWeU4uZHb8qWn0+MC9YG6aqewP4cgtqKOeKGWa4EYK3eXTA8jSFO9EX0+SNoY+gJ8U7DA+I4a9toIwxxBIrHZyHjH+lE1JbwD/AhCpndPXPzrDCo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pp8P81wE; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53HC4B6N683312
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 17 Apr 2025 07:04:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744891452;
+	bh=7BD3WTu9Y4pESy1qOjz0pPRJAJlKcmgN9whPwsT4Ip4=;
+	h=From:To:CC:Subject:Date;
+	b=pp8P81wEalKqbapSYEvKdtiUJ0leuKTn42cR90QiuylGq7lAIn0mCXWhb67K1kWTj
+	 9ddbwRMASlGj0ySxVvJ78sTu/4+p+pPLeqKxRKwarZm9Qf1Ev/YpcJlUz7fDEzx8gq
+	 fRSKWxdutrFeQePmcKqGcZdkx3XO3mPTCyEnAJSY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53HC4BFg023480
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 17 Apr 2025 07:04:11 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 17
+ Apr 2025 07:04:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 17 Apr 2025 07:04:11 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53HC47VI004789;
+	Thu, 17 Apr 2025 07:04:08 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH 0/7] AM64 and J7X DT: Enable PCIe 64-bit Address Space
+Date: Thu, 17 Apr 2025 17:34:00 +0530
+Message-ID: <20250417120407.2646929-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,41 +73,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Radxa E20C ships an onboard I2C EEPROM for storing production
-information. Enable it in devicetree.
+Hello,
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+The Cadence PCIe Controllers in TI's K3 SoCs namely:
+AM64, J7200, J721E, J721S2 (AM68), J722S, J742S2 and J784S4 (AM69)
+support two address regions:
+1. 128 MB address region in the 32-bit address space
+2. 4 GB address region in the 64-bit address space
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index 57a446b5cbd6..6e77f7753ff7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -110,6 +110,20 @@ vcc5v0_sys: regulator-5v0-vcc-sys {
- 	};
- };
- 
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m0_xfer>;
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "belling,bl24c16a", "atmel,24c16";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+		read-only;
-+		vcc-supply = <&vcc_3v3>;
-+	};
-+};
-+
- &pinctrl {
- 	gpio-keys {
- 		user_key: user-key {
+Currently, the 128 MB region in the 32-bit address space is enabled in
+the device-tree. This might be suitable for most of the use-cases, but
+for those use-cases requiring larger address regions than 128 MB it is
+necessary to switch to the 64-bit address space with the 4 GB address
+region. This series implements the corresponding device-tree changes to
+support the 4 GB address region as the default configuration. Existing
+use-cases should continue to work without any regression.
+
+Series is based on linux-next tagged next-20250416.
+
+Series has been tested on AM642-EVM, J7200-EVM, J721E-EVM, J721S2-EVM,
+J722S-EVM and J784S4-EVM using an NVMe SSD connected to the PCIe
+Connector on the EVMs.
+
+Test Logs:
+1. AM642-EVM PCIe0
+https://gist.github.com/Siddharth-Vadapalli-at-TI/5c3e2e462066ed8a976273db94e856e3
+2. J7200-EVM PCIe1
+https://gist.github.com/Siddharth-Vadapalli-at-TI/47e1219258b310a1ac0e4a6d7324af33
+3. J721E-EVM PCIe0
+https://gist.github.com/Siddharth-Vadapalli-at-TI/85abe9ea5032f8e17b2634d616bf0db3
+4. J721E-EVM PCIe1
+https://gist.github.com/Siddharth-Vadapalli-at-TI/3e42d0f46fe92d353c9a2ae950e4cd64
+5. J721S2-EVM PCIe1
+https://gist.github.com/Siddharth-Vadapalli-at-TI/7afcf78a6f2601ca9dcf92ca9164be46
+6. J722S-EVM PCIe0
+https://gist.github.com/Siddharth-Vadapalli-at-TI/6be87d2e2d616db34af0c00b3df66daa
+7. J784S4-EVM PCIe0
+https://gist.github.com/Siddharth-Vadapalli-at-TI/44f3285756c9f62c7f7d69a10a7b5888
+
+Regards,
+Siddharth.
+
+Siddharth Vadapalli (7):
+  arm64: dts: ti: k3-am64-main: switch to 64-bit address space for PCIe0
+  arm64: dts: ti: k3-j7200-main: switch to 64-bit address space for
+    PCIe1
+  arm64: dts: ti: k3-j721e: add ranges for PCIe0 DAT1 and PCIe1 DAT1
+  arm64: dts: ti: k3-j721e-main: switch to 64-bit address space for
+    PCIe0 and PCIe1
+  arm64: dts: ti: k3-j721s2-main: switch to 64-bit address space for
+    PCIe1
+  arm64: dts: ti: k3-j722s-main: switch to 64-bit address space for
+    PCIe0
+  arm64: dts: ti: k3-j784s4-j742s2-main-common: switch to 64-bit address
+    space for PCIe0 and PCIe1
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi           |  7 ++++---
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi          |  7 ++++---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 14 ++++++++------
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi               |  2 ++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi         |  7 ++++---
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi          |  7 ++++---
+ .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 ++++++++------
+ 7 files changed, 34 insertions(+), 24 deletions(-)
+
 -- 
-2.49.0
+2.34.1
 
 
