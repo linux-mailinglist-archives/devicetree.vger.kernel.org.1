@@ -1,248 +1,166 @@
-Return-Path: <devicetree+bounces-168123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 969B1A918A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:02:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E278A918EB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:14:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 394435A151B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 10:02:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E660446096D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 10:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48E122A7E3;
-	Thu, 17 Apr 2025 10:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD0722D795;
+	Thu, 17 Apr 2025 10:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Zj0mc2Mz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="izOz1iOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2ABE22A1D5
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 10:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7003122B587;
+	Thu, 17 Apr 2025 10:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744884140; cv=none; b=pJhmtxvzSgHnrKeEw+krNS5E2KkAcAflD85GrKtKBM60DKFSPLMgFeCGMtzNAqbCiAuqJnDadq3kiLkgEFAVVvjxjNljcFjB6io9yKu6DSppOtJvNCBVeOQbA4/LHDjweRx+aGl0UIr3i936hrH2yJD4jhg/cjxRk8XA4AVa4nE=
+	t=1744884850; cv=none; b=Z9gAJdycoEO6Ih11xcRNM2MlQyb1wX6SCdtseHf0aXdlxkKnexyvQdzeZehtsO1eflm6eRKyycmKstv+M9ngrVLwrd0zX8KsTQ3TsAq59Ycla89YsQMsg9nyc7OpAvrRKbUGqUBV+RQ7RTIG5VzBKPo01MPWXU2sngSr4g34T8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744884140; c=relaxed/simple;
-	bh=nXDID1eMf4+9FTefmpLhDygBj6jexx1U5/4QE4JA044=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=GcUjfg0olDU5NueNsoUP3WKZU/wD1MjEmjUh84FDK9R2HKSD8wxJos7ZQr/2nXyt+pSb3K3ngWzltlmhK4VBaOwd1NihpPnoLT/QMu+dzVQKB266qM7E0ovXeJlhV3Zlru3todZKKl39h/CrEML0LAbfDgolRWt4sSe3EHoghnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Zj0mc2Mz; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744884137;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yI0SZWzvsCLbIwOjEZSyeILvw7T7+gy7laNbgKsObFs=;
-	b=Zj0mc2MzLgiUqQp86HgpSoIDDJfpLKFO9vp5eUiO+noDGXK/etdTMJiAJpLwVaS7wR2tLD
-	Cyz3SrauYbPq4YvHqXeBnNEJnM3lzBFPNRV4xFDkSZnSdTISyrggbEgdFiuCJZA71slRIF
-	mZ/Sb3jHTPWSYUv8IAH/8FmSC1wXwE4=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-606-Kzb09-GOOyCBMq31B9DTKQ-1; Thu,
- 17 Apr 2025 06:02:14 -0400
-X-MC-Unique: Kzb09-GOOyCBMq31B9DTKQ-1
-X-Mimecast-MFC-AGG-ID: Kzb09-GOOyCBMq31B9DTKQ_1744884132
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BA2E019560AE;
-	Thu, 17 Apr 2025 10:02:11 +0000 (UTC)
-Received: from [10.44.33.28] (unknown [10.44.33.28])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 6654B30002C2;
-	Thu, 17 Apr 2025 10:02:05 +0000 (UTC)
-Message-ID: <e22193d6-8d00-4dbc-99be-55a9d6429730@redhat.com>
-Date: Thu, 17 Apr 2025 12:02:03 +0200
+	s=arc-20240116; t=1744884850; c=relaxed/simple;
+	bh=OH7eZX54zgQCjVVOYI4sEIr2A+p5IQRMKEHQ5gWO4Vo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CieopJK+PS/fwYzUefJskf1z7WH56pcGrKy5fzxV3VHmfn7lTH9E+aq+XnK88oMcj/PZAkPOz368eQDim2Rg6bv0qitgXmBWzpoKro/0twFaQxqHxYIFu1z4CJKLMR8S4BtJVOsn6uFoZSLnebVpYprsesCOERtAZt+QX8E5PxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=izOz1iOt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B9806C4CEE4;
+	Thu, 17 Apr 2025 10:14:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744884849;
+	bh=OH7eZX54zgQCjVVOYI4sEIr2A+p5IQRMKEHQ5gWO4Vo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=izOz1iOtENuLuSw9CLjDanuuvIB3V5jiQVKbGjuen6UaSZDHqzSL9tM3DqdQ2X4vm
+	 XHg4r4hM7AT+UaS2U2l4AHzSWoi6p4lcPT7M914rtWSAA/ctwdjzG4b5dOQjteqom4
+	 UAtTQ+V7Lqque7Grti0lWtfEOG/LqByuoOCquR6e/74JZqCLfb4AvMjHlDd6et+oZB
+	 phY/FqqVGLTcMVDRo8i4kGEEJXVRS+N/yEiWX+g/ynljgrt/Ii7xwaDZyKn+s44kdR
+	 L9XRxhjot8JB5u/obVu9YdD3MJ0LqDHDOCXXfRmIdpYy4A/nYCEZQ0JFkb2vN56wJ+
+	 /w+AkH9TQbm8Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A569CC369B2;
+	Thu, 17 Apr 2025 10:14:09 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v6 0/8] arm64: dts: freescale: Add support for the
+ GOcontroll Moduline Display
+Date: Thu, 17 Apr 2025 12:14:01 +0200
+Message-Id: <20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 net-next 5/8] mfd: zl3073x: Add functions to work with
- register mailboxes
-From: Ivan Vecera <ivecera@redhat.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-6-ivecera@redhat.com>
- <d286dec9-a544-409d-bf62-d2b84ef6ecd4@lunn.ch>
- <CAAVpwAvVO7RGLGMXCBxCD35kKCLmZEkeXuERG0C2GHP54kCGJw@mail.gmail.com>
-Content-Language: en-US
-In-Reply-To: <CAAVpwAvVO7RGLGMXCBxCD35kKCLmZEkeXuERG0C2GHP54kCGJw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGnUAGgC/3XNzYrDIBSG4Vsprseix59oV72PMgzGaHsgE4uGM
+ KXk3sd204Lp8v3gPOdOSsgYCjns7iSHBQumqYb+2hF/cdM5UBxqE2CgGICkOOGMbvwZsFxHd6P
+ RGQBuAtNBkXp1zSHi31M8fde+YJlTvj0fLPyxfrYWThlV3vd91FwoKY7n5NM05zSOe59+yQNc4
+ B3RLQIVARFddFwww7tNRLwQAV2LiIrIYGxwXHfa9ZuIfCGSQYvIithorDHCOKPlJqLeEK5aRFU
+ kCladoePS2gZZ1/UfpAYd6scBAAA=
+X-Change-ID: 20250224-initial_display-fa82218e06e5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>, Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744884848; l=3701;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=OH7eZX54zgQCjVVOYI4sEIr2A+p5IQRMKEHQ5gWO4Vo=;
+ b=E5KfrkxKT4ITztZE9VHXJ1UMy+TBUFwiIVRtGdhi8AJLHgzFtO3Ti6Xk8d9b702xDuV1xwg5h
+ GkQi4hhLOy8DXbqlcFul8IeIjVDMQ1b8ruDaiEGXhckZivbPWmsZnbf
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
+Add inital support for 2 variants of the Moduline Display controller.
+This system is powered by the Ka-Ro Electronics tx8p-ml81 COM, which
+features an imx8mp SoC.
 
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+---
+Changes in v6:
+- Fix spi cs formatting in baseboard dts
+- Add model to baseboard dts
+- Fix commit typo in karo tx8p ml81 dtsi
+- Link to v5: https://lore.kernel.org/r/20250415-initial_display-v5-0-f309f8d71499@gocontroll.com
 
-On 16. 04. 25 8:27 odp., Ivan Vecera wrote:
-> On Wed, Apr 16, 2025 at 7:32 PM Andrew Lunn <andrew@lunn.ch> wrote:
->>
->>> +/**
->>> + * zl3073x_mb_dpll_read - read given DPLL configuration to mailbox
->>> + * @zldev: pointer to device structure
->>> + * @index: DPLL index
->>> + *
->>> + * Reads configuration of given DPLL into DPLL mailbox.
->>> + *
->>> + * Context: Process context. Expects zldev->regmap_lock to be held by caller.
->>> + * Return: 0 on success, <0 on error
->>> + */
->>> +int zl3073x_mb_dpll_read(struct zl3073x_dev *zldev, u8 index)
->>> +{
->>> +     int rc;
->>
->> lockdep_assert_held(zldev->regmap_lock) is stronger than having a
->> comment. When talking about i2c and spi devices, it costs nothing, and
->> catches bugs early.
-> 
-> Makes sense to put the assert here...
-> 
-> Will add.
-> 
->>
->>> +/*
->>> + * Mailbox operations
->>> + */
->>> +int zl3073x_mb_dpll_read(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_dpll_write(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_output_read(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_output_write(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_synth_read(struct zl3073x_dev *zldev, u8 index);
->>> +int zl3073x_mb_synth_write(struct zl3073x_dev *zldev, u8 index);
->>
->> I assume these are the only valid ways to access a mailbox?
->>
->> If so:
->>
->>> +static inline __maybe_unused int
->>> +zl3073x_mb_read_ref_mb_mask(struct zl3073x_dev *zldev, u16 *value)
->>> +{
->>> +     __be16 temp;
->>> +     int rc;
->>> +
->>> +     lockdep_assert_held(&zldev->mailbox_lock);
->>> +     rc = regmap_bulk_read(zldev->regmap, ZL_REG_REF_MB_MASK, &temp,
->>> +                           sizeof(temp));
->>> +     if (rc)
->>> +             return rc;
->>> +
->>> +     *value = be16_to_cpu(temp);
->>> +     return rc;
->>> +}
->>
->> These helpers can be made local to the core. You can then drop the
->> lockdep_assert_held() from here, since the only way to access them is
->> via the API you defined above, and add the checks in those API
->> functions.
-> 
-> This cannot be done this way... the above API just simplifies the
-> operation of read and write latch registers from/to mailbox.
-> 
-> Whole operation is described in the commit description.
-> 
-> E.g. read something about DPLL1
-> 1. Call zl3073x_mb_dpll_read(..., 1)
->     This selects DPLL1 in the DPLL mailbox and performs read operation
-> and waits for finish
-> 2. Call zl3073x_mb_read_dpll_mode()
->     This reads dpll_mode latch register
-> 
-> write:
-> 1. Call zl3073x_mb_write_dpll_mode(...)
->     This writes mode to dpll_mode latch register
-> 2. Call zl3073x_mb_dpll_read(..., 1)
->     This writes all info from latch registers to DPLL1
-> 
-> The point is that between step 1 and 2 nobody else cannot touch
-> latch_registers or mailbox select register and op semaphore.
-> 
+Changes in v5:
+- Merge the makefile patch into the two dtso patches
+- Fix references to the root node in the dtso patches
+- Enable the USB bus going to the adapter board in the mainboard dts
+- Fix some formatting issues in the mainboard dts
+- Fix some formatting issues in the COM dts
+- Change a clock as suggested in the COM dts
+- Fix the maintainers entries, remove devicetree list and imx list
+- Rebase on latest linux-next
+- Link to v4: https://lore.kernel.org/r/20250402-initial_display-v4-0-9f898838a864@gocontroll.com
 
-Anyway, I have a different idea... completely abstract mailboxes from 
-the caller. The mailbox content can be large and the caller is barely 
-interested in all registers from the mailbox but this could be resolved 
-this way:
+Changes in v4:
+- Add imx mailing list to ka-ro tx8p maintainer entry
+- Fix several small indentation and ordering issues in devicetrees
+- Change the two display adapter boards to overlays
+- Add the missing patch for the Makefile to actually be able to build
+  the new devicetrees
+- Link to v3: https://lore.kernel.org/r/20250327-initial_display-v3-0-4e89ea1676ab@gocontroll.com
 
-The proposed API e.g for Ref mailbox:
+Changes in v3:
+- Set regulator-boot-on and always-on on LDO5 of the pmic, after 20 ish
+  seconds it auto disabled this LDO causing weird behaviour like
+  ethernet droping out, wifi not working anymore. This LDO can control
+  the IO voltage level of certain pins, just let it keep the u-boot
+  value.
+- Fix the comment style in imx8mp-pinfunc.h
+- Rebase on newest next tag
+- Link to v2: https://lore.kernel.org/r/20250226-initial_display-v2-0-23fafa130817@gocontroll.com
 
-int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index,
-                         struct zl3073x_mb_ref *mb);
-int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index,
-                          struct zl3073x_mb_ref *mb);
+Changes in v2:
+- Dropped the trivial-devices patch
+- Added a patch with bindings for the gocontroll,moduline-module-slot
+- Added a patch to spidev.c to enable the spidev driver for the module
+  slot
+- Added a missing usb-c connector in the av101hdt-a10 variant dts
+- Switched to the new bindings for the module slots in the base dts
+- Fixed some commit typos
+- Link to v1: https://lore.kernel.org/r/20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com
 
-struct zl3073x_mb_ref {
-	u32	flags;
-	u16	freq_base;
-	u16	freq_mult;
-	u16	ratio_m;
-	u16	ratio_n;
-	u8	config;
-	u64	phase_offset_compensation;
-	u8	sync_ctrl;
-	u32	esync_div;
-}
+---
+Maud Spierings (8):
+      dt-bindings: arm: fsl: Add GOcontroll Moduline Display
+      arm64: dts: imx8mp: Add pinctrl config definitions
+      MAINTAINERS: add maintainer for the Ka-Ro tx8p-ml81 COM module
+      MAINTAINERS: add maintainer for the GOcontroll Moduline controllers
+      arm64: dts: freescale: add Ka-Ro Electronics tx8p-ml81 COM
+      arm64: dts: freescale: Add the GOcontroll Moduline Display baseboard
+      arm64: dts: freescale: Add the BOE av101hdt-a10 variant of the Moduline Display
+      arm64: dts: freescale: Add the BOE av123z7m-n17 variant of the Moduline Display
 
-#define ZL3073X_MB_REF_FREQ_BASE			BIT(0)
-#define ZL3073X_MB_REF_FREQ_MULT			BIT(1)
-#define ZL3073X_MB_REF_RATIO_M				BIT(2)
-#define ZL3073X_MB_REF_RATIO_N			 	BIT(3)
-#define ZL3073X_MB_REF_CONFIG			 	BIT(4)
-#define ZL3073X_MB_REF_PHASE_OFFSET_COMPENSATION 	BIT(5)
-#define ZL3073X_MB_REF_SYNC_CTRL			BIT(6)
-#define ZL3073X_MB_REF_ESYNC_DIV			BIT(7)
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ MAINTAINERS                                        |  12 +
+ arch/arm64/boot/dts/freescale/Makefile             |   8 +
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h     |  33 ++
+ ...x8p-ml81-moduline-display-106-av101hdt-a10.dtso |  94 ++++
+ ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso | 139 ++++++
+ .../imx8mp-tx8p-ml81-moduline-display-106.dts      | 526 ++++++++++++++++++++
+ .../arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi | 548 +++++++++++++++++++++
+ 8 files changed, 1361 insertions(+)
+---
+base-commit: fb44e19e78df2950877a9f7b4f24b58db790d293
+change-id: 20250224-initial_display-fa82218e06e5
 
-Then a reader can read this way (read freq and ratio of 3rd ref):
-{
-	struct zl3073x_mb_ref mb;
-	...
-	mb.flags = ZL3073X_MB_REF_FREQ_BASE |
-		   ZL3073X_MB_REF_FREQ_MULT |
-		   ZL3073X_MB_REF_RATIO_M |
-		   ZL3073X_MB_REF_RATIO_N;
-	rc = zl3073x_mb_ref_read(zldev, 3, &mb);
-	if (rc)
-		return rc;
-	/* at this point mb fields requested via flags are filled */
-}
-A writer similarly (write config of 5th ref):
-{
-	struct zl3073x_mb_ref mb;
-	...
-	mb.flags = ZL3073X_MB_REF_CONFIG;
-	mb.config = FIELD_PREP(SOME_MASK, SOME_VALUE);
-	rc = zl3073x_mb_ref_write(zldev, 5, &mb);
-	...
-	/* config of 5th ref was commited */
-}
+Best regards,
+-- 
+Maud Spierings <maudspierings@gocontroll.com>
 
-The advantages:
-* no explicit locking required from the callers
-* locking is done inside mailbox API
-* each mailbox type can have different mutex so multiple calls for
-   different mailbox types (e.g ref & output) can be done in parallel
-
-WDYT about this approach?
-
-Thanks,
-Ivan
 
 
