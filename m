@@ -1,203 +1,186 @@
-Return-Path: <devicetree+bounces-168085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B433AA91559
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:34:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBF9A91587
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:43:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29DDC16FCC6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:33:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C95B7169F2D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCA421A458;
-	Thu, 17 Apr 2025 07:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CvG1tcL+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82A221ABAC;
+	Thu, 17 Apr 2025 07:43:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36CC207678;
-	Thu, 17 Apr 2025 07:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36CBB1E1DEB;
+	Thu, 17 Apr 2025 07:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744875227; cv=none; b=ubWr8CfYw0UeQx3MhEEGNmyMe7DZPnJxcvLnRdIAwkuzTGIxD3WV9p50lcAJIDpTQk/KNbBHACgadURvH+Cb6Bog9qOmkeULtJd3eQEadCjRYYr0PbxhT1+1e1Mfit2AbAf/G/F9QNylQwuntbkjFwlqPL99/gE9M4C2yXappgY=
+	t=1744875825; cv=none; b=SwjoKngO9IbqO+Zb6beGg+9j4WGoYRz389zm+b9jGELq0KlNSCpOrQvyW+RwCfHCZm8BtCIiEP4IjqDPcLjB8AcrnxVYW4MdPVxDjPkW6nBA9DgXgFOkhRA8hnFbNsgCLq8HA6vDfHfRbIswfOcM2rLnXbAKGTCCw3n8ad5y9YU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744875227; c=relaxed/simple;
-	bh=Y/qc0vtTRMrzd2YLM5omTxkfh6yZkGOjYnmsFUzBRYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MEkl/8VQ2fo9PxpFoOVOEJ7Mxpq0qyFcbg37u0EOqILfIFbjTYBoi0Tb8GG6pmORxyFs1zZ3P9ug1J/jywA1R6pm5qL3OvHLimYk3SF/jBlz91Ao9a1UZSCmhFp9Y4qskRfSoWbTrrcEHbwH5drHiCeh7dr5rKSeYATpdgYI6Cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CvG1tcL+; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0B7671039EF2C;
-	Thu, 17 Apr 2025 09:33:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1744875222; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=u0xom2YM8lyIFaJb7oErSmb3c+ED4OylfqTb0GgwBno=;
-	b=CvG1tcL+b+zgb41GwvC6m4xQO6vjuPOzgoQvrY3Bfr/iRSLdc0WvXYEYX/csfLcpbI0Grp
-	vReiazhemuD55KwSeOpMUWTcwxQ4R/DRW5P9KfLigaANWxhDDauvPPAfbeYHgoqf9cjiIb
-	ZlKzSvJmhXXY2iHGQSFe8sufvWb5gOimRy3Va0qL0UvxGaSDP6BdBSh8PW9REt4d6KaqWn
-	2tvTZxQK8P6aM67FQVbQUkppSmvfBEXTaF2ScUJwOcKdf+po/vTAT5O18Ih1hA3egO1/h6
-	jW/72nVBQgjd9dped8D3rBLs9j3SwJmTkUuBT8yqCFfijlbtG+8oElzHaKOq4w==
-Date: Thu, 17 Apr 2025 09:33:38 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Simon Horman
- <horms@kernel.org>
-Subject: Re: [net-next v5 5/6] ARM: mxs_defconfig: Update mxs_defconfig to
- 6.15-rc1
-Message-ID: <20250417093338.0990e37f@wsk>
-In-Reply-To: <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
-References: <20250414140128.390400-1-lukma@denx.de>
-	<20250414140128.390400-6-lukma@denx.de>
-	<41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1744875825; c=relaxed/simple;
+	bh=Bgzo4iWGFalQmXgeWcFdRlUJPi80Z+hTZ60GVUaVKoM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MG4i2XccYOkfHxBkCrH1SNYdlYuTs6feFhIXN67ZCBzj6Y7P7w2rkQReb8etcGDRt6gFPYs+T6ee4twDIhWoMbwi0uxgsgrWag9mFNU7Hnt6GDXSGVDQ/KP6zMNF1BNNgcPvzcFZm9cB7nzF8m3M5O7JwkMw7I8RXQPp5QE/4O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-524038ba657so583127e0c.0;
+        Thu, 17 Apr 2025 00:43:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744875821; x=1745480621;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uANl5Q11SWDJeQns1Rq9+5b2CgEJ0DOnZDyZ8/s4n7I=;
+        b=lqaW+wMTXNqGRz8lLti1X7bGmNiaHdq+elMwPZ+jPwJqDjsi8RPoDIzYxXMVL59yXs
+         8jOO77PJauxtKlr7K3YzKrf/EgSXt3XONixfT0ivVmaFSM9AOCUW6pKoAE7ANB9gwNJw
+         lkiQCEHKb2RMzzYVxeOb/cKYvOdreo761wwZyPIAaBs9eNNX+yr6lmhgOcxor17h4+x8
+         2ep+QFmJ6VuruW7mXOo7AZ+HsyDw3kPVbxbZJQ8AgKB5FIIPCQUphhiRc41tX4ZSpSG7
+         Q+RueyL4U753ebKE/wS/aJSKLm0TmRWjbWfwcrQrte3B/V5PR4ScaDLduK2WjqXrHUuj
+         0kZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUb8a585IYEBKYLuLAZXmZU7fnzY3K1aSOC4Oiay4vG3XVW0B+M16OH8GwC0OqkYHNd3L82cRvnSQLZd5smfDXn4SU=@vger.kernel.org, AJvYcCV7uQyBzM4msNeQKUow3HcD+n7c0TKafG028Z75NF4MNz7wLIfFwRpP6Htwd6o6v4SKw2JAQQOx6I+5@vger.kernel.org, AJvYcCWVIlAOMqRNTnKCTXR0PD1UOLIyBey2qFmyX0y5Pb6ympDc6serK9OS4S0UUF/iwEHP4pkOSVR6uPKZxa8=@vger.kernel.org, AJvYcCXUknV0qtCy3zgvow+BvCpfrruNW1XGbxcjA9jzOhUtdN3TrowmFeyhty5KB3uN3RGufnrK5mXZflZV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTo9OIEFjfBNwZSLyKSgygfdT88gcbhnPUCwpKRcwdPGT7O9b6
+	7mx4cqZtcaHqAlg0kWp0z5UwFNmovI3322f8/TMmp8/HqqBxCn/HCwkJGaGQ
+X-Gm-Gg: ASbGncuNsC3b5fq+I1gR4OCM54gj16e1eRHblmNMT9P1LHb6GiqBOOxvOBdLIG5a5vD
+	SdbBQ2sRPaeiEf9/FBPbvBtBF6S80UPwHTK9QRUb5JcpndnMJZsiX/VMRS9BuOExK7+BQ0fECP2
+	ibA6/OmfEwLcvaNsAOWwWbxFMLoTMrd1Us6Gjxv3IVFv9BIT6VZJJhp1l/usYyRDUbFGzzQS9DQ
+	0oRX9Dwr2j0s7X3w6lkHXbBqS+s2dOEJpb1k5GZuZAbTw0crSVq+ALN5lSYbJR+y1+prmwI/dFZ
+	icLdmhK71SiBdxYmxsvoyPtZHdK4zg6Mm20iRuqsl57mednfuTlgwY0O6aY3bYRwrzOTLhj4HKY
+	trnE=
+X-Google-Smtp-Source: AGHT+IGcljcGH8kYKp2UyBRjUwL3ZGZ18rs7ubHaAyllCJmhHKAOiw6ZyMDeQXey3Geq7xDQ3ZmmEQ==
+X-Received: by 2002:a05:6122:8c7:b0:527:67d9:100d with SMTP id 71dfb90a1353d-5291806c720mr734277e0c.4.1744875821531;
+        Thu, 17 Apr 2025 00:43:41 -0700 (PDT)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd7b25csm3495828e0c.16.2025.04.17.00.43.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 00:43:41 -0700 (PDT)
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-875b8807011so544211241.0;
+        Thu, 17 Apr 2025 00:43:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVY7bxjSObQwdL3Xqg+SBImBVTxd+GHUDF6LWpYo9HAUIaYGGBJUyKu2cIinDgRz1oKxFGmzfjjNnOdKFE3F0EdOWI=@vger.kernel.org, AJvYcCW8ATnt8R0pBbR9AF5x+479l5zeoOI4CBrBDuZJliaGH4jqrRA6Z9fP/kWnjxmhhWRbAJksT/coEvmH@vger.kernel.org, AJvYcCWJIVdZ1tgN4FA00w8nmpbfMvPzdAVjs7Rgvke/adLOWzEWYidRQ/RZKLIP1rdafSE6VgURxr3nSsi/@vger.kernel.org, AJvYcCX8njToacmITDUsSGK4F9zmEttvV3I4yATtUIXIEavrE2q3RsJG3cVP7tA7bdVymbevQyKIeUGhg+cqDu8=@vger.kernel.org
+X-Received: by 2002:a05:6102:3912:b0:4c4:ebb1:4f6d with SMTP id
+ ada2fe7eead31-4cb64d4d131mr1210538137.11.1744875820807; Thu, 17 Apr 2025
+ 00:43:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/a2Zuo_5mcQkE7xKuvovt9yS";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
+ <87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
+ <87msch81yh.wl-kuninori.morimoto.gx@renesas.com> <87plhb4qbb.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87plhb4qbb.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 17 Apr 2025 09:43:29 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUKBdTyA0fnfpQT6iad3S7+z3dJkh4UnS14miqgFcUhuA@mail.gmail.com>
+X-Gm-Features: ATxdqUF2bZHe-ozMJQDNYeXQsVz3rsBcK0YuvI5xGINR3hvEjJy_EjuKdnkB1zE
+Message-ID: <CAMuHMdUKBdTyA0fnfpQT6iad3S7+z3dJkh4UnS14miqgFcUhuA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S
+ Sound support
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
---Sig_/a2Zuo_5mcQkE7xKuvovt9yS
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hi Morimoto-san,
 
-Hi Stefan,
+On Thu, 17 Apr 2025 at 01:52, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > > > +  # "MSIOF-SPI" specific
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        $nodename:
+> > > > +          pattern: '^spi@'
+> > >
+> > > This condition does not match what you wrote in the cover letter:
+> > > the controller is used in I2S mode when a port(s) subnode is present,
+> > > and in SPI mode when no port(s) subnode is present.
+> > >
+> > > > +    then:
+> > > > +      allOf:
+> > > > +        - $ref: spi-controller.yaml#
+> > >
+> > > Documentation/devicetree/bindings/spi/spi-controller.yaml indeed
+> > > requires that the node-name matches "^spi(@.*|-([0-9]|[1-9][0-9]+))?$".
+> > > The controller's node is located in the SoC-specific .dtsi, where its
+> > > intended use case is not yet known, and its node name cannot easily be
+> > > overridden in the board .dts that specifies the use case.  Hence the
+> > > node name must always be "spi" (and cannot be e.g. "serial-engine").
+> > > Let's hope there is no other use case for MSIOF that requires using
+> > > a different node name...
+>
+> Hmm...
+>
+> Now, MSIOF node has "spi@xxxx".
+> SoC file indicates MSIOF-SPI as default, so it has below lines
+>
+>         --- SoC file ----
+>         msiof1: spi@xxxx {
+>                 ...
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 ...
+>         };
+>
+> These are not needed for MSIOF-I2S, so removes these
+>
+>         --- Board file ----
+>         &msiof1 {
+>                 ...
+>                 /delete-property/#address-cells;
+>                 /delete-property/#size-cells;
+>                 ...
+>         };
+>
+> Now, my dt-bindings doesn't load spi-controller.yaml (as sample), but I got
+>
+>         [SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #address-cells for SPI bus
+>           also defined at [Board file]
+>         [SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #size-cells for SPI bus
+>           also defined at [Board file]
+>
+> MSIOF dt-bindings doesn't load spi-controller.yaml, but why I got "spi_bus_bridge"
+> warning ?? I wonder dt compiler (?) automatically check "spi" node ?
+> I have tryed some code, my expectation seems correct (In case of node name was "spi@xxx",
+> I got many SPI related warnings even though I didn't load spi-controller).
 
-> Hi Lukasz,
->=20
-> Am 14.04.25 um 16:01 schrieb Lukasz Majewski:
-> > This file is the updated version of mxs_defconfig for the v6.15-rc1
-> > linux-next. =20
-> thanks for sending this as a separate patch. Unfortunately it's not
-> that simple by replacing the existing mxs_defconfig. We need to
-> double-check all changes to settings, which was enabled before. This
-> should also include a short note for every setting in the commit log,
-> otherwise every reviewer has to do this job. I'll help you here by
-> adding comments ...
-> >
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >
-> > Changes for v5:
-> > - New patch
-> > ---
-> >   arch/arm/configs/mxs_defconfig | 11 -----------
-> >   1 file changed, 11 deletions(-)
-> >
-> > diff --git a/arch/arm/configs/mxs_defconfig
-> > b/arch/arm/configs/mxs_defconfig index c76d66135abb..91723fdd3c04
-> > 100644 --- a/arch/arm/configs/mxs_defconfig
-> > +++ b/arch/arm/configs/mxs_defconfig
-> > @@ -32,9 +32,6 @@ CONFIG_INET=3Dy
-> >   CONFIG_IP_PNP=3Dy
-> >   CONFIG_IP_PNP_DHCP=3Dy
-> >   CONFIG_SYN_COOKIES=3Dy
-> > -# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
-> > -# CONFIG_INET_XFRM_MODE_TUNNEL is not set
-> > -# CONFIG_INET_XFRM_MODE_BEET is not set
-> >   # CONFIG_INET_DIAG is not set
-> >   # CONFIG_IPV6 is not set
-> >   CONFIG_CAN=3Dm
-> > @@ -45,7 +42,6 @@ CONFIG_MTD=3Dy
-> >   CONFIG_MTD_CMDLINE_PARTS=3Dy
-> >   CONFIG_MTD_BLOCK=3Dy
-> >   CONFIG_MTD_DATAFLASH=3Dy
-> > -CONFIG_MTD_M25P80=3Dy =20
-> This is safe because it has been replaced MTD_SPI_NOR, which is still=20
-> enabled.
-> >   CONFIG_MTD_SST25L=3Dy
-> >   CONFIG_MTD_RAW_NAND=3Dy
-> >   CONFIG_MTD_NAND_GPMI_NAND=3Dy
-> > @@ -60,7 +56,6 @@ CONFIG_ENC28J60=3Dy
-> >   CONFIG_ICPLUS_PHY=3Dy
-> >   CONFIG_MICREL_PHY=3Dy
-> >   CONFIG_REALTEK_PHY=3Dy
-> > -CONFIG_SMSC_PHY=3Dy =20
-> This is okay, because it's enabled implicit by USB_NET_SMSC95XX.
-> >   CONFIG_CAN_FLEXCAN=3Dm
-> >   CONFIG_USB_USBNET=3Dy
-> >   CONFIG_USB_NET_SMSC95XX=3Dy
-> > @@ -77,13 +72,11 @@ CONFIG_SERIAL_AMBA_PL011=3Dy
-> >   CONFIG_SERIAL_AMBA_PL011_CONSOLE=3Dy
-> >   CONFIG_SERIAL_MXS_AUART=3Dy
-> >   # CONFIG_HW_RANDOM is not set
-> > -# CONFIG_I2C_COMPAT is not set
-> >   CONFIG_I2C_CHARDEV=3Dy
-> >   CONFIG_I2C_MXS=3Dy
-> >   CONFIG_SPI=3Dy
-> >   CONFIG_SPI_GPIO=3Dm
-> >   CONFIG_SPI_MXS=3Dy
-> > -CONFIG_GPIO_SYSFS=3Dy =20
-> This also okay, because it has been deprecated by moving to EXPERT
-> and its replacement GPIO_CDEV is enabled by default.
-> >   # CONFIG_HWMON is not set
-> >   CONFIG_WATCHDOG=3Dy
-> >   CONFIG_STMP3XXX_RTC_WATCHDOG=3Dy
-> > @@ -138,10 +131,6 @@ CONFIG_PWM_MXS=3Dy
-> >   CONFIG_NVMEM_MXS_OCOTP=3Dy
-> >   CONFIG_EXT4_FS=3Dy
-> >   # CONFIG_DNOTIFY is not set
-> > -CONFIG_NETFS_SUPPORT=3Dm
-> > -CONFIG_FSCACHE=3Dy
-> > -CONFIG_FSCACHE_STATS=3Dy
-> > -CONFIG_CACHEFILES=3Dm =20
-> This is unintended, even it's not your fault Lukasz. NETFS_SUPPORT
-> isn't user select-able anymore, so it's dropped. AFAIU this comes
-> from NFS support, so i think we need to enable CONFIG_NFS_FSCACHE
-> here. Otherwise this caching feature get lost. Since this is a
-> bugfix, this should be separate patch before the syncronization.
->=20
-> @Shawn @Fabio what's your opinion?
-> >   CONFIG_VFAT_FS=3Dy
-> >   CONFIG_TMPFS=3Dy
-> >   CONFIG_TMPFS_POSIX_ACL=3Dy =20
->=20
+These come from dtc, which makes its own assumptions:
 
-Stefan, I will add your comments in next version of this patch.
-Moreover, I'm going to introduce new patch with the NFS_FSCACHE enabled.
+    $ git grep spi_bus_bridge
+    scripts/dtc/checks.c:static void check_spi_bus_bridge(struct check
+*c, struct dt_info *dti, struct node *node)
+    scripts/dtc/checks.c:WARNING(spi_bus_bridge, check_spi_bus_bridge,
+NULL, &addr_size_cells);
+    scripts/dtc/checks.c:WARNING(spi_bus_reg, check_spi_bus_reg, NULL,
+&reg_format, &spi_bus_bridge);
+    scripts/dtc/checks.c:   &spi_bus_bridge,
 
+Perhaps we do need to extend the use of role-specifying properties
+like "interrupt-controller" (in Device Tree Specification v0.4 and in
+dt-schema) and the few others in Documentation/devicetree/bindings:
 
-Best regards,
+    gpio-controller
+    mctp-controller
+    msi-controller
+    system-power-controller
 
-Lukasz Majewski
+Gr{oetje,eeting}s,
 
---
+                        Geert
 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---Sig_/a2Zuo_5mcQkE7xKuvovt9yS
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgArtIACgkQAR8vZIA0
-zr0QsggA43pyZpG7jnH/6DRTCiYI+DqNL055w+1AQPvbmQvmW7/iJpPEJtFbRDJr
-dz30fj3dMp27htfUPT4jhtvhJRZ27lCO2aHDb7xzLQGzFpGe0/4UYuNyZ5oo9c8t
-HXVF/JWZhdQEiRIUomXaPcZaC9ZKHc71XSP/euaoM601NTRSp2emaLrukGklnWFB
-bd42VvXnntJ+7+8UBqfEv9PWibWtYJOIrEKN5wnQ4wG24TPZ5aJRk+fW/HitKVxy
-ZegQ6H3kTZa1CtLq9iXa9/9DC2CZvHZm0AVy3Yu4ARH6EpXK+/EKuFqIAevPBSra
-fsnhejZQdfkbg/ae/X11ConafcHPpg==
-=Ztk9
------END PGP SIGNATURE-----
-
---Sig_/a2Zuo_5mcQkE7xKuvovt9yS--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
