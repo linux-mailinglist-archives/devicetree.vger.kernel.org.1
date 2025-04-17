@@ -1,198 +1,199 @@
-Return-Path: <devicetree+bounces-167985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A523FA91168
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 03:57:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2839A91171
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 04:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1FB6446209
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 01:57:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 587DA7AF2CF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 02:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E004A1A83E6;
-	Thu, 17 Apr 2025 01:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F248818871F;
+	Thu, 17 Apr 2025 02:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hTeqkxjS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l+VjPAos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2071.outbound.protection.outlook.com [40.107.104.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED22C1172A
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 01:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744855022; cv=fail; b=q5mUjdHtjfIUdNebqkmfzJSI/ApMPVBVhp/sLXk8j6fL+KLzKy8V0/ul6hrEOH7/EzrKTymYZs+t8slfBs5feagL2GSdChqUzJ7eVkWqb51+pll2M7bb8FyDubi0DTjmWnIBZI1/g5sPZNold1GFCgZ+oavpGHliR9Gsx6SfNb0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744855022; c=relaxed/simple;
-	bh=CyvMaKVh0MvupBrFYgtF/9SBoBgPjky7WmShrSsPxiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=OJUIxS/zxeMiFq7HSP2b6Fp8Il3qiit4/CL2Wxwr4r/4uGeZ7xP9z2/b7Ec3jPtEgQqL7lCvQ5d34Yz0iT7Aa1QVwxrKjniPhn+9M5CeOV5R8t75KpAwzJRe6awUeNmIeCehHG2GSjeCQWC7rOUixbiCGmhhpKauKQGUzdnsktk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hTeqkxjS; arc=fail smtp.client-ip=40.107.104.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oWQqgdvRrPUW2lUChBrWxnk2A14QERQIgwtePSgLflo2mEqT3Uwb+oxGhX0MX4HmYrHr+b24vT4spRzLv2ZehDie1IFHeDbMJUzlDDCCnqIHbJsMkoLMT754xHjFYhGCS6Ao1KE1BS8AHqWGUHkr6nizwWkUWmxZWOl+ZT4ns0kE55eEH4n43ajvcYUSAph/+Pa6kT3Iyxd6jkhTGWwWtrRlh8Ht11ghmHDS7oTiCLl2R+uxcJZ+BsbMDVmuEeWBnEORSRWRiI3CYn65eaTuSe4wC6ypVgHc5um98e9Uu4gEo/lC7QECYnjLZa2/9iiDCFwIzzSfefGhEAAKGKqd+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1ZpwAzrSxGi/dLluv7xk5tV3z3KMO/mh0/wxydzNIGA=;
- b=fvZ/5d4HaR/wOZWjBVyMupPxWOQDvZ9LpKC3RBd2I0LUj/E6yHBOxkW+hNbh1XJ1i0xzBFvB/xIwiNlMuHSWaiUnLYnukDSyJGRIBE1o0ZpA9oYmMWEJgPbNzugdli1lbY5c3Aof0IXrxtmgZRXOugZvLnr7zfA2eklPMTSvPQLw+fdXH5eueoOtMxTDuqEcMzTfo8IWx+oac3koHDiN9vFn7KiI6iIo0DHwTanCRs1yKbwa8dSDo2jq6pNSHqsXVbCzrGCmApbWHfKjlXUrNaFdyvU6Yvy4aLkyikMJg5FWi6uH7pxvESO6MZnTIKEDQVN9hfUClDmWFymICcTXRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1ZpwAzrSxGi/dLluv7xk5tV3z3KMO/mh0/wxydzNIGA=;
- b=hTeqkxjSlBVl9y3QVJZ651qojVwA1yNFzhrkkYlPyztNmtnY+zQMPuTeXEX9glgL9LU84IiWw2g0KY3XZPCRFHquW025Nj5UXGBGEsLJBgNjtz7KLSJ0wd8EuSLVxVEVNDR8rqklA0Y3hx9taA+j1EpK47UhVQWwEVpxK93QctxqNM66GeG2DaItJanCqTh2zcPsU7DONu3rCI0qW8e8hBKUFeFZbltKRnWTSbJMqqQb3yfuV9aA2iGaFIpw0dSsZryuE+kmNFs1k2Ym0tO5nw7KBqyn0dINc23SBbDMVVVtafafrjxV6UKQMHHb/XHdTSDHmQlyyidAfXl4wrpLfw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by GV2PR04MB11213.eurprd04.prod.outlook.com (2603:10a6:150:279::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Thu, 17 Apr
- 2025 01:56:57 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8632.030; Thu, 17 Apr 2025
- 01:56:56 +0000
-Date: Thu, 17 Apr 2025 09:53:05 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH 1/3] dt-bindings: extcon: ptn5150: Allow "connector" node
- to present
-Message-ID: <20250417015305.trmoqaerhmc3dhtm@hippo>
-References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
- <Z/+9TFLcIBXvlhNY@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z/+9TFLcIBXvlhNY@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: MA0P287CA0008.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:d9::19) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CBD114885D;
+	Thu, 17 Apr 2025 02:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744855611; cv=none; b=lV3DgF0LX8vYvrX1Enz3wpoeurDuUe8WVrZ0SwV6119XvhCssxy5/IWkPfIUhDEpObxUIYBwxNmNjkvbMq/OZzavZiMx682KMM2CpeuESLdxRFygYlSEkbjRFDixGEXGsa+s2ShYcoOyqA4B6KG3tx6RcRrpcjJQhFssUUEaf4E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744855611; c=relaxed/simple;
+	bh=8Vy9aCztAXdVgTN3k4KwowRPP5iUfC36QefL0nSXbdg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=owu4UTCsbMC3c0RAtZqcFrrUou1dd8s+YkU1HIcUzwN+xhlZFLrtsu+2CPnfcgeOYz098X4ducAWE1rSDpaf9KiTKq3BkA574hzUPrDs5KifgWTpf4CoOY3Zyw4DDa0kEFjkmTG9834pq6uP+OKin+4d++Ix6vXvYM7XaktWhqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l+VjPAos; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-225477548e1so2874435ad.0;
+        Wed, 16 Apr 2025 19:06:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744855610; x=1745460410; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5S0Rc5OUApAJHdSC6yQdEbbcqqj1NWTeaGJIvpD8DrQ=;
+        b=l+VjPAosXdFYSJtNVwXmVslZBPhdF5KcPysrCxF7QlbB9Sy9E0SncDmWrHExyg0/UJ
+         jf76LC6VrT7sai/Y5S+4NpBX9uby2r+YsRgS/aEPf+wM93wDF6GgcdN2eXJDb6opnP9s
+         egzkK7stm30e/PRkIq5dEgcJ1qGqBE1x1D5IhBMSf05kgaPTPzbjfBDqxfTApcoxBokx
+         6X19mBqn25QSS3XTZJp99HcFEqPOfC2ATNQhqgarQ6NnpUGUBE9wLvOzDiE5cZH0O+YV
+         /xJa9/etGcJ9o3gLKoWNA33R+ZAoff+p6CzuiQ01Zr8zb4UVOrrHX+ygavlLzF2CHlo7
+         ONqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744855610; x=1745460410;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5S0Rc5OUApAJHdSC6yQdEbbcqqj1NWTeaGJIvpD8DrQ=;
+        b=X0pmwMNEqU0P5mP2tp4e/eo/85m9mmolvdh5GiO/D8NJIGb+tHxuS9YkybQhK9+7r7
+         qag8fuDbxa5NqUliWQuizTPo6eh4gV98FQM2h5P2dCzC0fyrPWLq+6JgXRMe5F+Y6ogE
+         r2M9G3752kEzeLVD9wGlXrsulyKXJtVXylrhINv66d3iYgGTKj3QCETFKKk0Hyk6IjR+
+         GewurtSCK0iTE/qU1NuAosy/cQyvXHfhX3WSiNBFVBIOOrQF+nL/Oqis1DEnFhzn6Woz
+         +FUcAUdVh6TNPE+BAAd7jWDChYKbM/uv0Rs8jnDZJw2RC0i2rmDEQJOQewhW5ix1edYC
+         xmXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWP1ymU7ALzwxTc81DAhCrpXJNt4gBMVjZQDiLmOKFT8xL1CiT9k09qWTe6qKrfYpe+kkHIL331/AmVDFUg@vger.kernel.org, AJvYcCXDMNkRQmPkPOr1ozZrBG+Q26LbUq1iCaakDHF4EVXDlIZ55lu3RB3mBo1/44xqmUYhaFVSWKM1j6ETaQ==@vger.kernel.org, AJvYcCXcN6Zsxpa3pE8Y/QEcUU3FJhcord8mcFcuXwhaoDqqDrAk8dBHP2iND0N/eo7xV+VRirKADyxYTBBY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZDmx1XlNg2+Zjlwcnhgmw9U/evNt06xbijSpGhord2/5tC/07
+	Vnz9U3yTkzSBw6BNtA4xTgOB5tUv9FI6xrorV/628roKuyxRfn2C
+X-Gm-Gg: ASbGncvJzJHcDGcH/cTcJ8Fp+9sqrhgMVQvv8gTG5GXAZiv6ULDYkVIw7TX+fjKnPUS
+	VbzKtje4KQgOpwy5FM5VRP6yfLpVQj9wgsbdL4Zq7sxZIqQHpyvFWa8MBi/u7CFmv6McVAFU8eL
+	/raftauFAk+e9NiubuSl9MhBinlij0Ek/Ca0XocpwQ/uo4LlGOxquJRkZQCTn9ErjMI6rXeVAqs
+	DVB+fnhM0AfyNv2xRJ2sKuXjF/IL+QCi5HGlNo/7vlPd/jiKrJXJDgAq1h+JN7o8xakquZXFA9A
+	wyMDOfRJsjvGXpMB7Pa75tJ/zwHvb1G1I+IpdmuoOmZQ2B0TjAE+yQ==
+X-Google-Smtp-Source: AGHT+IHOSSVJxwJFTvqTyirKYLKDkNN1HsuII60LpoJlqemuqX/oIQnI0UNsOszF22K4816pi4+qdg==
+X-Received: by 2002:a17:902:dac7:b0:220:d601:a704 with SMTP id d9443c01a7336-22c358d71admr50793935ad.18.1744855609467;
+        Wed, 16 Apr 2025 19:06:49 -0700 (PDT)
+Received: from localhost.localdomain ([171.255.57.44])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c33fcea58sm21612685ad.199.2025.04.16.19.06.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 19:06:48 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: krzk+dt@kernel.org
+Cc: pavel@kernel.org,
+	lee@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+Date: Thu, 17 Apr 2025 09:06:22 +0700
+Message-Id: <20250417020622.1562-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
+References: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|GV2PR04MB11213:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ea03939-2a11-4b92-9402-08dd7d53220e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?715rcbdnuDhcibZgnquY+mCHN/sDnY+Xp62WbPfau8UmM6fsIgZvFgONn+1E?=
- =?us-ascii?Q?Q57LZ4VSTiSY2QC7+9SrEtfvRQQo2kMUd48HO8k4JB2ka9FpUQTrPjhKugO3?=
- =?us-ascii?Q?OsUUzISjB82wKHsYosP/h7zDnD92uL5W7dSLhzbm6FodVjrFf0NCpWP9XGgd?=
- =?us-ascii?Q?OERMBn+i8eMCfQqQeu+FewJGFr3YM8835PHOiRop3csvmtptEElR4H7KlvcO?=
- =?us-ascii?Q?XsLs3bhG0piBZnyir6HaG/9hHrQcfyeegCKo1qcxocsTdSWEEVJORAtN6zQ1?=
- =?us-ascii?Q?qj62gkh3P3zygt/HqPIITNyenCiumhS1Rg1UIMtKumjwNc4U91mavlo7T9SV?=
- =?us-ascii?Q?E+FShpe9iflyH5ALcAa1pnmB2FPRGUB8x1V1SaEmFi+3IvC5hbo/nKP0oXku?=
- =?us-ascii?Q?LUcP4O1tpZw1I0ax8vIugAdH9xXjJ3YHGu4WMkx3J0STCm05VYxUDCJOUsLz?=
- =?us-ascii?Q?Z0pVkAzXW5ZmqtWCYp5kqWVZSaxBy4oPIxg/d9NeJpoa39SZLZU+2EbO2w+a?=
- =?us-ascii?Q?48v5sZloZ163kRPWgHs1GsE5DbWyUyvnZ2oPrt1QpS36YvNeb3IQ4QtQbDw3?=
- =?us-ascii?Q?pezAzYi9ztJt6ZsVNdcX/bZkdXDQv+n7JIxUQ3eiz2A3U/VrYv03WyU6pYgk?=
- =?us-ascii?Q?FxveJcOJ3jj6A8wHpfjYo4K5tyfbQgPKK6FQkhNnLHpx5doVm6LQCsuuFmEw?=
- =?us-ascii?Q?1rJXdyFcnYkqcG09wP0rFnYEM+iWF9OTfz/6+HIyddvSqQCLeAqGDZ8EEoFj?=
- =?us-ascii?Q?rJNbQFLSr0WBzlQMjBL/ZWBFFwM2XYB5XUkQpfXYEauIKwN4Saj+voGuzU6F?=
- =?us-ascii?Q?7C9eaPph09T+SYELG4Qt/7VJz12RYFTPqqV0Kstpg1WSH0Ak96BIeurre/71?=
- =?us-ascii?Q?i61EZX3XcrAx8itZIPYJUcoC3cZy7pnBFaXLpvJ7ArIQaWG9L8wC+IxwCHsT?=
- =?us-ascii?Q?oFqCR6kMoudLGPKM1k2uRHq6DXzA6S9EaJ1yBbaXEfRi/yDR83mYN0AYFtKA?=
- =?us-ascii?Q?lE71yvTA17TAlbSjlGFfEalsnZzvVHMLu8h+K/y8EVLpQj3VHSKRl7tf29ao?=
- =?us-ascii?Q?fd7RELk4pjPDw2EJa2W3B5VaZAit5EE1zm7Ypsd6BRcqOvEo+rk9Uc8f1SjM?=
- =?us-ascii?Q?Sp/aJvFDn3vshe2vXZu+zzdF0vBD1BcyzHYZw0ry7YUP9brqV7THlBihnW3k?=
- =?us-ascii?Q?au0zulQt4sZTuOaqapLK1z4bqI7BhRfbhK1s6mYemqI5kkXVFsld6rjWOMNm?=
- =?us-ascii?Q?8h7SfrBprzbxCTlTGiK0dJcRk/G7E+dSowzRoMB7INNNjC3UuOOEX6hMiZy5?=
- =?us-ascii?Q?pBqQB/CCG4kTts1D7ZuvvR0FLmESCw6Pa2GhFPI2kq94IULM0z/TaQHcunnM?=
- =?us-ascii?Q?eOyL7Is9qpH92QPYvaoZKTiXjY6GjO3D1CUYYedZ9aNoJCSKHrwQztIK5aAV?=
- =?us-ascii?Q?5bcJxQ03hW3UsIMixE4bD1ToAzCi/7lwTcvMyMkomw44lD2AflznKw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fESdSmwhs1A9O3ikVvZvtdmrWCd3HPZc0w1hvUw3pO6bjv1RFKBvXUixZ3v9?=
- =?us-ascii?Q?NbuqrFJmKM0yFVJdCwmsGNPeXN1enbpJxl8OGfNmKLgVkBtvobGPMN4PH0tq?=
- =?us-ascii?Q?CaGgFTQBF7MK6+bNGWoPpwEEgtqGiKdAjEVimu+peYxHFSFzvOQr/0HMgPAI?=
- =?us-ascii?Q?vg3umQBb9KYr9My0snumoMq1IfDS0YihqBJ/5pss8rwEz3Co9tR0FKkT87v2?=
- =?us-ascii?Q?IAJhLQzS27DficGEuJa6ZprCy8Ay7QUBwRZ/jCyg4aBENYoURZWHEirdW8cm?=
- =?us-ascii?Q?BjK3Y89FjyNs43lvWzM54gaItESkFHKW9YfNKmoG4ykRBOB0JcMD0fVjHNwm?=
- =?us-ascii?Q?os//aTRnAAj4XDEunUiLq9aVRcyMxbfRqHY0mn2aUG8VyhX5SI9QHDKjGGpE?=
- =?us-ascii?Q?xgUNC9nux41ryogH84L/Y54F2nOa2GjXML5xIirMCcSE6J/z3pSXLB3DyusD?=
- =?us-ascii?Q?1iYL6oQrwph5Ey7VeO75XxVKSvkpeFByacRM3kGWkoE9J1CaBEnvH3dVbepv?=
- =?us-ascii?Q?+jxBO7c43D6Q0Z0lmLMIpI6UVwb47j3vg0xjAnR168PUFEhT5omISVgOVXYv?=
- =?us-ascii?Q?YUteTg66A4T38zbK7+TQ/uq7Tlv+xwKfyzRZ/i7CTGQZTBOfhq5KoCejaFgw?=
- =?us-ascii?Q?VGSEg3MbxmKZrXJ4un729I/7cHjiVDRApi7D+ikqYlmCqDjNemoOec1a09ys?=
- =?us-ascii?Q?p2VYAYMIqC5+ZOvG5wu5hJhfklH+XjWgsi4MXHvsNj+Fgnlbd2M+95B3oiev?=
- =?us-ascii?Q?Kfioe+ztWwC3ZVNAw4ea79/ODH8c1pxJwK4UmfHmGlauLDCDn6bxaXpzCOYh?=
- =?us-ascii?Q?kD7MFYlYq/qJUNE3UOCdgtOFUl31Somxt8fhNlig1jshmOqasSESH2QEklRI?=
- =?us-ascii?Q?VbuKjE2Vcbcyhb8XYo6XAmM1OppeUEHxD6TZK/zYJelqpljfkHE5RPwHgQ/M?=
- =?us-ascii?Q?vdLwMh4FLgD8hfFPb5oHvP5f59XEy7x8tCfeLjD1M1ImTzxhHdLhgY7Q14nD?=
- =?us-ascii?Q?13jSaZLDq8G7iwlVmOTXY0CpBFgmKaXcdFMzOQX6C9/k5HLQehCKfHTL2iFk?=
- =?us-ascii?Q?yjEc1ebTWHr6nbiVszRGmH/aHywMeKDEvPiRp56fjhA1aD8XIPUqRzkpuVSV?=
- =?us-ascii?Q?1gWP/hT0zNh12uiQp6o93vk89pisKaOkUlnB+RgsEPnZQ2oBRlrgKp+nnsK3?=
- =?us-ascii?Q?fbNFkLO37AyXkiUCWL1XEVquQSBbaB1hIQg3X+ttsAykobZqGFMXW3nUtBqZ?=
- =?us-ascii?Q?sxtEVV8TeW5DiX69/SpIBlBVg5yaCLaUNCUukLmCUI01MVe82FTvUNQtXHJO?=
- =?us-ascii?Q?FmKg5BYjewV5fF5urCAxcYXKlyoKEYK5K6VBqThn1O1lIn6y4kg3OpwT+DA6?=
- =?us-ascii?Q?4EqOqfRjBuLaZwlEFJmYT7tzp8TyeimbE+6N2jegnAMp8dneZ98yU7GyJn1v?=
- =?us-ascii?Q?YVqhMXQDxbj/1e8CNItc14uKvrEq2GuQnnUBzXrzNxhxHOAdeXkNSH0OXmsc?=
- =?us-ascii?Q?hinadwYwactd5TpfpZ6J0faxAl2zCZ0bt9VETR78BwAgmCS2kkgyVU4oH1vJ?=
- =?us-ascii?Q?C42el+orOuyb/HrCQTLk+kz3QUH3gzzR+YCoZPi4?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ea03939-2a11-4b92-9402-08dd7d53220e
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 01:56:56.7269
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Usp8JhOYnC4xJ/V0r8zdebE8yBAVdoB6qrhtYbRywr1deo+/b0BN12YIgdzzrDfLqgNe0RKuvdzqFLPkystaag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11213
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 16, 2025 at 10:23:08AM -0400, Frank Li wrote:
-> On Wed, Apr 16, 2025 at 06:59:38PM +0800, Xu Yang wrote:
-> > PTN5150 Type-C chip normally binds to a Type-C connector, so allow
-> > "connector" node to present under it.
-> 
-> Suggest commit message:
-> 
-> PTN5150 is usually used with a Type-C connector, so allow a "connector"
-> node to be defined under it.
+On Tue, 15 Apr 2025, Krzysztof Kozlowski wrote:
 
-Okay. 
+>On 15/04/2025 11:53, Nam Tran wrote:
+>> On Mon, 14 Apr 2025, Krzysztof Kozlowski wrote:
+>> 
+>>> On 14/04/2025 16:57, Nam Tran wrote:
+>>>> +
+>>>> +description: |
+>>>> +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
+>>>> +  For more product information please see the link below:
+>>>> +  https://www.ti.com/product/LP5812#tech-docs
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: ti,lp5812
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  "#address-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 0
+>>>
+>>> No need for supply?
+>> 
+>> Since the hardware uses an external power supply,
+>> we decide not to include the supply property in the binding.
+>
+>So there is power supply? If so, must be in the binding. Bindings
+>describe given hardware (LP5812), not your particular board/setup.
 
-Thanks,
-Xu Yang
+Thank you for the clarification.
+The LP5812 is externally powered and has a dedicated VCC pin.
+I'll update the binding to include a `vcc-supply` property.
 
-> 
-> Frank
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> > index 072b3c0c5fd0..79f88b5f4e5c 100644
-> > --- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> > +++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-> > @@ -42,6 +42,9 @@ properties:
-> >      description:
-> >        A port node to link the usb controller for the dual role switch.
-> >
-> > +  connector:
-> > +    $ref: /schemas/connector/usb-connector.yaml#
-> > +
-> >  required:
-> >    - compatible
-> >    - interrupts
-> > --
-> > 2.34.1
-> >
+>> 
+>>>> +
+>>>> +patternProperties:
+>>>> +  "^led@[0-9a-b]$":
+>>>> +    type: object
+>>>> +    $ref: common.yaml#
+>>>> +    unevaluatedProperties: false
+>>>> +
+>>>> +    properties:
+>>>> +      reg:
+>>>> +        minimum: 0
+>>>> +        maximum: 0xb
+>>>> +
+>>>> +      chan-name:
+>>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>>> +        description: LED channel name
+>>>
+>>> My comment stay valid. I don't think LEDs have channels, datasheet also
+>>> has nothing about channels, so again - use existing properties. Or
+>>> better drop it - I don't see any point in the name. The reg already
+>>> defines it.
+>> 
+>> The channel was named for the output channel to each LED, not the LED channels.
+>
+>I don't understand what you want to say. Please explain why existing
+>label property is not correct here.
+
+I understand that the label property is deprecated and that the preferred approach now is to use function and color instead.
+However, in the case of the LP5812, which is a matrix LED driver, these properties are not a good fit.
+The LP5812 does not associate each output with a specific function (like "status", "activity"),
+and the LEDs driven by LP5812 are not fixed to a particular color.
+
+>> but the person who wants to develop LP5812's matrix-related features can use the "channels" for easy mapping.
+>
+>easy mapping of what? Please show me the usage.
+
+You're right — I cannot provide a meaningful usage example for chan-name.
+The chan-name property was intended to give a more descriptive name for each LED channel, mainly for convenience in user space.
+But since this isn’t standard and you advised against introducing such a property, we’ve decided to drop it.
+
+>> 
+>>>
+>>> However after dropping this, your example has nodes with only reg -
+>>> what's the point of them? Why no properties from common.yaml are
+>>> applicable? If they are not applicable, then the entire subnode should
+>>> be dropped - you don't need them to describe the hardware.
+>> 
+>> Actually, the "color" property can be applied, but the LP5812 is a matrix LED,
+>> so specifying a particular LED color is not necessary when developing LP5812 features.
+>
+>This does not help me much and based on this I see no points in
+>describing individual LEDs, because the only missing information is
+>number of them but even that is fixed for given device, isn't it?
+
+Actually, the number of LED outputs on the LP5812 is not strictly fixed — it depends on the selected operating mode.
+This mode is configurable by the end user at runtime through sysfs interfaces provided by the driver.
+
+I understand your point — if no additional properties from common.yaml are applicable, these subnodes may not be necessary.
+Therefore, we’ve decided to drop them.
+
+Best regards,
+Nam Tran
 
