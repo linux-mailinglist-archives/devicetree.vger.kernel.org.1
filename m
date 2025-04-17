@@ -1,155 +1,86 @@
-Return-Path: <devicetree+bounces-168260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C531EA91FF7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:40:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E47A92000
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3FF3167F2C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:40:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E3DC16C436
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891B02512E8;
-	Thu, 17 Apr 2025 14:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245002517B8;
+	Thu, 17 Apr 2025 14:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Nmpb0fb7"
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="mJ1C4mME"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F131AA7BA;
-	Thu, 17 Apr 2025 14:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399071AA7BA;
+	Thu, 17 Apr 2025 14:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744900831; cv=none; b=MqR4zqnhnxfHhoLr6FQ3x8zsqHB3WEqtnIbkgz+C4pJsAbMZxVkLQNYgBep0P6Fz++vt4LLaOFnkEg02DTqzCG1zVKxkxvjIopXTTjxgqLEUIxfAuAYibanC1GJFMmj/ThzKnrZ6T0koLwll8QfL2gPNHIuWTXZdUaUpP0COy2g=
+	t=1744900904; cv=none; b=rIjsR94erZ4VmORzCJItwGw/23ZxXxESnAr4dtxVjo8KCiRP4Jzk6qdtZvtVtkF0AELJ4L9h6nEF73eGExhOWxRhECTUmzeYuY5jCo/TsQUy31OuQSdh//AoWL4mR9L6jOcs7L4KoX2v1k3n+eRilAI3xPEfJdQnVPvhjnM/Q/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744900831; c=relaxed/simple;
-	bh=ZPvO57N3CWtxySw34yH/mDBNk6iD06GBs31p5atwMFM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HOxOOOn7g3CdJFA21/Tp3jHeS4bp68aINWCo85mDZAuFDLGBiHYV6F9hVCozxT4P9saLAm7KGpZ5HIlA6oWUPX8hg/chz42yyApF43L5+86oAIpwGeD1r5dkfLFbys657DfPYbeVsWIOB0kjJyOdMupbHINfbY0I8EgtAi89lzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Nmpb0fb7; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B601225F8C;
-	Thu, 17 Apr 2025 16:40:27 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id ktOTxphCqx0Q; Thu, 17 Apr 2025 16:40:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1744900820; bh=ZPvO57N3CWtxySw34yH/mDBNk6iD06GBs31p5atwMFM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Nmpb0fb72Zc6OMP5Igu4c63x5SOS8hlyqToQsxFeOSkBa1n/Vw+/jHgYI2heVUZBh
-	 xNi4zA8OMYbpUPs/SMVFWXSEC4GjRq5Lo90IBsjsxP7Qz5Av59BuogJVSQdcpitUvR
-	 5gipKJTpzG+WyiXVJOA1ccQieCe71aBflyUY78gpIQvIKpKUAgBrSs1LREenFUeNHz
-	 UgK8wwdYtqqfUKIROOpE4sgIKyF1/NuKbZwRjXKc1221Ug+TvI9oiay6HmgU8fbi11
-	 DOD3p0kbI96NkmELA+rG7XXdP77wfMLE4fld0MRXBRO1vmbz30XltpqQeIUqnbtb95
-	 NAVR6ovJqLAzg==
-From: Yao Zi <ziyao@disroot.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH v4 5/5] arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
-Date: Thu, 17 Apr 2025 14:40:05 +0000
-Message-ID: <20250417144005.43927-1-ziyao@disroot.org>
-In-Reply-To: <20250417143647.43860-1-ziyao@disroot.org>
-References: <20250417143647.43860-1-ziyao@disroot.org>
+	s=arc-20240116; t=1744900904; c=relaxed/simple;
+	bh=nkD3Ai6sPz5TId+HbEZ4D9DCKviA/qssHMxlH8W2gus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jcbcdhFiX7x9K+bP4ze1XIf0o6ZVAO6kkrZSmm0DOrwDpf6Ez8mgZw0nl2MJQzemO1KjRrVXB+IIfMdC+08uuO1A06tgN5Gqnd1AmQexmqFON2MUuWpLvZDLM7Gem/p3r95G3/Umc0Dpwxa8gyo/SbLsw7+K5L7oI4TGPG58mcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=mJ1C4mME; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (p4ffe03ae.dip0.t-ipconnect.de [79.254.3.174])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 27BAA48658;
+	Thu, 17 Apr 2025 16:41:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1744900900;
+	bh=nkD3Ai6sPz5TId+HbEZ4D9DCKviA/qssHMxlH8W2gus=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mJ1C4mMExs/+iMj/0PL47U2PCET7Lrv1LMiNjzWbVOBN49hZ4phcYRRCLj7idVIW1
+	 +z6O3QEoGeg5dpfa9orG1FqGULOe7JmiR53JRPKnDnyrfTJS50JRrK1DQwB/lHNGe9
+	 BcaZ1qX7mObOJh83jIgXLF/UjUzd57nF2ARQ2Yp1eTNNR4lnBfWHiPGp4p+JT2GOuw
+	 JzSrnu28992HH0TH72xQQbF6TO6yWWdvEuvLM33oZ99GT+0k803ZHbrNz5FGXGoytF
+	 mkHXsjH1CnifDZpMUT1oVZkST9EmTLnWYXWQsz8m07tHjAjIrEoY7IeCTNHhlGAJpH
+	 IGgIIHdC8iK6w==
+Date: Thu, 17 Apr 2025 16:41:39 +0200
+From: Joerg Roedel <joro@8bytes.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: yong.wu@mediatek.com, will@kernel.org, robin.murphy@arm.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, iommu@lists.linux.dev,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 0/2] MediaTek Dimensity 1200 - Add IOMMU support
+Message-ID: <aAETI0hrOiQZDKh2@8bytes.org>
+References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
 
-SD-card is available on Radxa E20C board.
+On Thu, Apr 10, 2025 at 04:40:06PM +0200, AngeloGioacchino Del Regno wrote:
+> In preparation for adding basic support for the OnePlus Nord 2 5G
+> DN2103 smartphone, this series adds support for the IOMMU found in
+> the MediaTek Dimensity 1200 (MT6893) SoC.
+> 
+> AngeloGioacchino Del Regno (2):
+>   dt-bindings: iommu: mediatek: Add binding for MT6893 MM IOMMU
+>   iommu/mediatek: Add support for Dimensity 1200 MT6893 MM IOMMU
+> 
+>  .../bindings/iommu/mediatek,iommu.yaml        |   4 +
+>  drivers/iommu/mtk_iommu.c                     |  37 ++-
+>  .../memory/mediatek,mt6893-memory-port.h      | 288 ++++++++++++++++++
+>  3 files changed, 318 insertions(+), 11 deletions(-)
+>  create mode 100644 include/dt-bindings/memory/mediatek,mt6893-memory-port.h
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index 57a446b5cbd6..09d917a0acc5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -17,6 +17,7 @@ / {
- 
- 	aliases {
- 		mmc0 = &sdhci;
-+		mmc1 = &sdmmc;
- 	};
- 
- 	chosen {
-@@ -108,6 +109,18 @@ vcc5v0_sys: regulator-5v0-vcc-sys {
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	vccio_sd: regulator-vccio-sd {
-+		compatible = "regulator-gpio";
-+		gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc_vol_ctrl_h>;
-+		regulator-name = "vccio_sd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		states = <1800000 0x0>, <3300000 0x1>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
- };
- 
- &pinctrl {
-@@ -130,6 +143,12 @@ wan_led_g: wan-led-g {
- 			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	sdmmc {
-+		sdmmc_vol_ctrl_h: sdmmc-vol-ctrl-h {
-+			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
- };
- 
- &saradc {
-@@ -148,6 +167,17 @@ &sdhci {
- 	status = "okay";
- };
- 
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0m0_xfer>;
--- 
-2.49.0
-
+Applied, thanks.
 
