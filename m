@@ -1,135 +1,423 @@
-Return-Path: <devicetree+bounces-168225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCABA91DD1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:24:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD7EA91DAB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94A9D19E6FDF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 13:24:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 636005A65F2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 13:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE3524C09A;
-	Thu, 17 Apr 2025 13:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F5724166A;
+	Thu, 17 Apr 2025 13:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vbs1VLFt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XSJYNPP7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AD824C065;
-	Thu, 17 Apr 2025 13:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9797C1474B8
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 13:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744896211; cv=none; b=FMaGfJBG2RFb0BHiSF03+eb35g3An1p9LOxXtFC0RMdF1TGv7IxOllyIM2cgM4msGZMAzj+3KK/e2pzdbNtg4PN3LQhl4BmfdxRVFDWLrZvo9za1qNxbUWmINbJOJgGS7KjDUijvqXo3q82+Uwg/YjZRvdVP1TQw5q7f+/Fyak4=
+	t=1744896092; cv=none; b=VumZAs0sqMe97Rt+3GPbn8dKWIKck1/7CniteIyEZeHim4NTMNGtP3uvXFCSnWIF9RVBdmtLwwiKWuqnlx8PdUMki1UorOCo6lAAT2Z9izhKdkEJNP+M28evqal6UNOkNj+oIaq1g1cad+Mi6/dneFN0KHpJ4IeuHRaysQQexvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744896211; c=relaxed/simple;
-	bh=SAogXjErmnUKWUV3LPeC/KcgOjnw/QZRkCVS8VQvp7g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SOVNRZ89da/13P/CkQpVH5nlE9NEyTg082cLVqWqi2mTazUZ0dFfmv3OPsOLuJ/QXTXuhGqcU8pB+QuiMZ1bjEONF4EtBA9jVHMpHZSYSfvVcGcDDxrzryOESh5ZAyP4dmFjYBu6j7hx1qxH76W7m/YwMO923ogWbMwE4T/f7rM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vbs1VLFt; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HB3H6o007078;
-	Thu, 17 Apr 2025 15:22:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	D1vrqcKSTo7wXwCZBje6dgQBk+XJl1AKFrrz1y87N6A=; b=vbs1VLFtptaUArvg
-	0+ANFYsmT+kBHV3k25Ygtk3S9LVXM4ypToKl/IRszAxx+hV9hST9tbaubPR4+mA1
-	AupFrloIdQCXTwqi3dea7N+lqmoO0/1FCJGBZbJtujw+pg4Ep6SyvnM2vgquIEbb
-	TsE0nrgU9uu4gEpA0iI98ILECGrgE7lCqmSdpQhl1RM6GAck5lp1gDGYrtnEYq+2
-	6UiaUR4Tl1O70f6qmYBmOO4fUklhunS5R9Zir4bM0REF2t8uCZ8VRFn79/v8Vokz
-	uWOXmbLm7WpaOd+tm9nnet4xZa+ALT+D4sBTQAiyk4r+4pD3yqMGUQ1HPRWhJg1X
-	M6gp0Q==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4601r4pc06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Apr 2025 15:22:50 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6B93B4004A;
-	Thu, 17 Apr 2025 15:21:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 84E2D9927DE;
-	Thu, 17 Apr 2025 15:20:14 +0200 (CEST)
-Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 17 Apr
- 2025 15:20:14 +0200
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <christian.bruel@foss.st.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <thippeswamy.havalige@amd.com>,
-        <shradha.t@samsung.com>, <quic_schintav@quicinc.com>,
-        <cassel@kernel.org>, <johan+linaro@kernel.org>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 9/9] arm64: dts: st: Enable PCIe on the stm32mp257f-ev1 board
-Date: Thu, 17 Apr 2025 15:18:33 +0200
-Message-ID: <20250417131833.3427126-10-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250417131833.3427126-1-christian.bruel@foss.st.com>
-References: <20250417131833.3427126-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1744896092; c=relaxed/simple;
+	bh=JHS/WvUAYkiKOZ3ZbuG8F3IenA7UGZaubOqqulO3cj0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KBaHPCyOl2QgkWhqKozOLxjrNPTXIpy4RRujEw9yXEdGyCaxpi0bVcrBKDxi0P/gk4mI3AarSbAUTg3wURLafdqND1YIiLe8HZrW1QNk6W55fugrYqsi4k4AO7PSfeKEeVvglo8Z3mvBgQ/i9x6tS5W4RrEoLRW+V5PbOFHtuUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XSJYNPP7; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744896090; x=1776432090;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JHS/WvUAYkiKOZ3ZbuG8F3IenA7UGZaubOqqulO3cj0=;
+  b=XSJYNPP79y6Xtyn08XOi2eY9dppkrzkRNh89tbPnpieV8NCsp4SUdIFh
+   441Y7dfr8FtDclb+BZG4AUh8J9z+8Lzw7tHDC0dsukUh4QcQrxD8pEwIP
+   TTKV9lFKG86NyPpzcomIGfNA6yIatCEszdgfpT8vKKAGJeRBzUbnrVMys
+   s+RObF4mNS6xl7RA0Sn6lvv+tiN9srMBxv8mMyrieP9AxCV3Hz5uIOENZ
+   6XRJ/NIqWSj6z/9qgsj9+2+bKYE1z1w514nlvW1R6zoJUvSyfpin7601V
+   uA687Sf6mMdMkcMfVhj0SxW1sg5NehY6KvEra72DdzlX1IdPA82p0O1tM
+   g==;
+X-CSE-ConnectionGUID: cjQIoiPzQLKV0lgPrxHh/A==
+X-CSE-MsgGUID: zoUJgYPlSES6FfUWKGt+eA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="50293210"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
+   d="scan'208";a="50293210"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 06:21:30 -0700
+X-CSE-ConnectionGUID: GxMmPHJcTcucnYOH1/a1JQ==
+X-CSE-MsgGUID: QlUBjvxBQsaw+2AsscJ4hg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
+   d="scan'208";a="130763412"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 17 Apr 2025 06:21:27 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u5PBE-000MoC-1D;
+	Thu, 17 Apr 2025 13:21:24 +0000
+Date: Thu, 17 Apr 2025 21:20:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xu Yang <xu.yang_2@nxp.com>, krzk@kernel.org, myungjoo.ham@samsung.com,
+	cw00.choi@samsung.com, robh@kernel.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch
+ support
+Message-ID: <202504172148.DEw1gGPg-lkp@intel.com>
+References: <20250416105940.1572672-2-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-17_03,2025-04-17_01,2024-11-22_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250416105940.1572672-2-xu.yang_2@nxp.com>
 
-Add PCIe RC and EP support on stm32mp257f-ev1 board.
-Default to RC mode.
+Hi Xu,
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 1b88485a62a1..a7646503d6b2 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -225,6 +225,27 @@ scmi_vdd_sdcard: regulator@23 {
- 	};
- };
- 
-+&pcie_ep {
-+	pinctrl-names = "default", "init";
-+	pinctrl-0 = <&pcie_pins_a>;
-+	pinctrl-1 = <&pcie_init_pins_a>;
-+	reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
-+	status = "disabled";
-+};
-+
-+&pcie_rc {
-+	pinctrl-names = "default", "init", "sleep";
-+	pinctrl-0 = <&pcie_pins_a>;
-+	pinctrl-1 = <&pcie_init_pins_a>;
-+	pinctrl-2 = <&pcie_sleep_pins_a>;
-+	status = "okay";
-+
-+	pcie@0,0 {
-+		 reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
-+		 wake-gpios = <&gpioh 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+	};
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+[auto build test ERROR on krzk-dt/for-next]
+[also build test ERROR on linus/master v6.15-rc2 next-20250417]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Xu-Yang/extcon-ptn5150-Add-Type-C-orientation-switch-support/20250416-185917
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git for-next
+patch link:    https://lore.kernel.org/r/20250416105940.1572672-2-xu.yang_2%40nxp.com
+patch subject: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch support
+config: parisc-randconfig-001-20250417 (https://download.01.org/0day-ci/archive/20250417/202504172148.DEw1gGPg-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 12.4.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250417/202504172148.DEw1gGPg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504172148.DEw1gGPg-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   hppa-linux-ld: drivers/extcon/extcon-ptn5150.o: in function `ptn5150_work_sync_and_put':
+>> drivers/extcon/extcon-ptn5150.c:252:(.text+0x20): undefined reference to `typec_switch_put'
+   hppa-linux-ld: drivers/extcon/extcon-ptn5150.o: in function `ptn5150_check_state':
+>> drivers/extcon/extcon-ptn5150.c:104:(.text+0x94): undefined reference to `typec_switch_set'
+   hppa-linux-ld: drivers/extcon/extcon-ptn5150.o: in function `ptn5150_irq_work':
+   drivers/extcon/extcon-ptn5150.c:180:(.text+0x29c): undefined reference to `typec_switch_set'
+   hppa-linux-ld: drivers/extcon/extcon-ptn5150.o: in function `ptn5150_i2c_probe':
+>> drivers/extcon/extcon-ptn5150.c:348:(.text+0x618): undefined reference to `fwnode_typec_switch_get'
+
+
+vim +252 drivers/extcon/extcon-ptn5150.c
+
+    77	
+    78	static void ptn5150_check_state(struct ptn5150_info *info)
+    79	{
+    80		unsigned int port_status, reg_data, vbus;
+    81		enum typec_orientation orient = TYPEC_ORIENTATION_NONE;
+    82		enum usb_role usb_role = USB_ROLE_NONE;
+    83		int ret;
+    84	
+    85		ret = regmap_read(info->regmap, PTN5150_REG_CC_STATUS, &reg_data);
+    86		if (ret) {
+    87			dev_err(info->dev, "failed to read CC STATUS %d\n", ret);
+    88			return;
+    89		}
+    90	
+    91		orient = FIELD_GET(PTN5150_REG_CC_POLARITY, reg_data);
+    92		switch (orient) {
+    93		case PTN5150_POLARITY_CC1:
+    94			orient = TYPEC_ORIENTATION_NORMAL;
+    95			break;
+    96		case PTN5150_POLARITY_CC2:
+    97			orient = TYPEC_ORIENTATION_REVERSE;
+    98			break;
+    99		default:
+   100			orient = TYPEC_ORIENTATION_NONE;
+   101			break;
+   102		}
+   103	
+ > 104		ret = typec_switch_set(info->orient_sw, orient);
+   105		if (ret)
+   106			dev_err(info->dev, "failed to set orientation: %d\n", ret);
+   107	
+   108		port_status = FIELD_GET(PTN5150_REG_CC_PORT_ATTACHMENT, reg_data);
+   109	
+   110		switch (port_status) {
+   111		case PTN5150_DFP_ATTACHED:
+   112			extcon_set_state_sync(info->edev, EXTCON_USB_HOST, false);
+   113			gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+   114			extcon_set_state_sync(info->edev, EXTCON_USB, true);
+   115			usb_role = USB_ROLE_DEVICE;
+   116			break;
+   117		case PTN5150_UFP_ATTACHED:
+   118			extcon_set_state_sync(info->edev, EXTCON_USB, false);
+   119			vbus = FIELD_GET(PTN5150_REG_CC_VBUS_DETECTION, reg_data);
+   120			if (vbus)
+   121				gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+   122			else
+   123				gpiod_set_value_cansleep(info->vbus_gpiod, 1);
+   124	
+   125			extcon_set_state_sync(info->edev, EXTCON_USB_HOST, true);
+   126			usb_role = USB_ROLE_HOST;
+   127			break;
+   128		default:
+   129			break;
+   130		}
+   131	
+   132		if (usb_role) {
+   133			ret = usb_role_switch_set_role(info->role_sw, usb_role);
+   134			if (ret)
+   135				dev_err(info->dev, "failed to set %s role: %d\n",
+   136					usb_role_string(usb_role), ret);
+   137		}
+   138	}
+   139	
+   140	static void ptn5150_irq_work(struct work_struct *work)
+   141	{
+   142		struct ptn5150_info *info = container_of(work,
+   143				struct ptn5150_info, irq_work);
+   144		int ret = 0;
+   145		unsigned int int_status;
+   146	
+   147		if (!info->edev)
+   148			return;
+   149	
+   150		mutex_lock(&info->mutex);
+   151	
+   152		/* Clear interrupt. Read would clear the register */
+   153		ret = regmap_read(info->regmap, PTN5150_REG_INT_STATUS, &int_status);
+   154		if (ret) {
+   155			dev_err(info->dev, "failed to read INT STATUS %d\n", ret);
+   156			mutex_unlock(&info->mutex);
+   157			return;
+   158		}
+   159	
+   160		if (int_status) {
+   161			unsigned int cable_attach;
+   162	
+   163			cable_attach = int_status & PTN5150_REG_INT_CABLE_ATTACH_MASK;
+   164			if (cable_attach) {
+   165				ptn5150_check_state(info);
+   166			} else {
+   167				extcon_set_state_sync(info->edev,
+   168						EXTCON_USB_HOST, false);
+   169				extcon_set_state_sync(info->edev,
+   170						EXTCON_USB, false);
+   171				gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+   172	
+   173				ret = usb_role_switch_set_role(info->role_sw,
+   174							       USB_ROLE_NONE);
+   175				if (ret)
+   176					dev_err(info->dev,
+   177						"failed to set none role: %d\n",
+   178						ret);
+   179	
+   180				ret = typec_switch_set(info->orient_sw,
+   181						       TYPEC_ORIENTATION_NONE);
+   182				if (ret)
+   183					dev_err(info->dev,
+   184						"failed to set orientation: %d\n", ret);
+   185			}
+   186		}
+   187	
+   188		/* Clear interrupt. Read would clear the register */
+   189		ret = regmap_read(info->regmap, PTN5150_REG_INT_REG_STATUS,
+   190				&int_status);
+   191		if (ret) {
+   192			dev_err(info->dev,
+   193				"failed to read INT REG STATUS %d\n", ret);
+   194			mutex_unlock(&info->mutex);
+   195			return;
+   196		}
+   197	
+   198		mutex_unlock(&info->mutex);
+   199	}
+   200	
+   201	
+   202	static irqreturn_t ptn5150_irq_handler(int irq, void *data)
+   203	{
+   204		struct ptn5150_info *info = data;
+   205	
+   206		schedule_work(&info->irq_work);
+   207	
+   208		return IRQ_HANDLED;
+   209	}
+   210	
+   211	static int ptn5150_init_dev_type(struct ptn5150_info *info)
+   212	{
+   213		unsigned int reg_data, vendor_id, version_id;
+   214		int ret;
+   215	
+   216		ret = regmap_read(info->regmap, PTN5150_REG_DEVICE_ID, &reg_data);
+   217		if (ret) {
+   218			dev_err(info->dev, "failed to read DEVICE_ID %d\n", ret);
+   219			return -EINVAL;
+   220		}
+   221	
+   222		vendor_id = FIELD_GET(PTN5150_REG_DEVICE_ID_VENDOR, reg_data);
+   223		version_id = FIELD_GET(PTN5150_REG_DEVICE_ID_VERSION, reg_data);
+   224		dev_dbg(info->dev, "Device type: version: 0x%x, vendor: 0x%x\n",
+   225			version_id, vendor_id);
+   226	
+   227		/* Clear any existing interrupts */
+   228		ret = regmap_read(info->regmap, PTN5150_REG_INT_STATUS, &reg_data);
+   229		if (ret) {
+   230			dev_err(info->dev,
+   231				"failed to read PTN5150_REG_INT_STATUS %d\n",
+   232				ret);
+   233			return -EINVAL;
+   234		}
+   235	
+   236		ret = regmap_read(info->regmap, PTN5150_REG_INT_REG_STATUS, &reg_data);
+   237		if (ret) {
+   238			dev_err(info->dev,
+   239				"failed to read PTN5150_REG_INT_REG_STATUS %d\n", ret);
+   240			return -EINVAL;
+   241		}
+   242	
+   243		return 0;
+   244	}
+   245	
+   246	static void ptn5150_work_sync_and_put(void *data)
+   247	{
+   248		struct ptn5150_info *info = data;
+   249	
+   250		cancel_work_sync(&info->irq_work);
+   251		usb_role_switch_put(info->role_sw);
+ > 252		typec_switch_put(info->orient_sw);
+   253	}
+   254	
+   255	static int ptn5150_i2c_probe(struct i2c_client *i2c)
+   256	{
+   257		struct device *dev = &i2c->dev;
+   258		struct device_node *np = i2c->dev.of_node;
+   259		struct fwnode_handle *connector;
+   260		struct ptn5150_info *info;
+   261		int ret;
+   262	
+   263		if (!np)
+   264			return -EINVAL;
+   265	
+   266		info = devm_kzalloc(&i2c->dev, sizeof(*info), GFP_KERNEL);
+   267		if (!info)
+   268			return -ENOMEM;
+   269		i2c_set_clientdata(i2c, info);
+   270	
+   271		info->dev = &i2c->dev;
+   272		info->i2c = i2c;
+   273		info->vbus_gpiod = devm_gpiod_get(&i2c->dev, "vbus", GPIOD_OUT_LOW);
+   274		if (IS_ERR(info->vbus_gpiod)) {
+   275			ret = PTR_ERR(info->vbus_gpiod);
+   276			if (ret == -ENOENT) {
+   277				dev_info(dev, "No VBUS GPIO, ignoring VBUS control\n");
+   278				info->vbus_gpiod = NULL;
+   279			} else {
+   280				return dev_err_probe(dev, ret, "failed to get VBUS GPIO\n");
+   281			}
+   282		}
+   283	
+   284		mutex_init(&info->mutex);
+   285	
+   286		INIT_WORK(&info->irq_work, ptn5150_irq_work);
+   287	
+   288		info->regmap = devm_regmap_init_i2c(i2c, &ptn5150_regmap_config);
+   289		if (IS_ERR(info->regmap)) {
+   290			return dev_err_probe(info->dev, PTR_ERR(info->regmap),
+   291					     "failed to allocate register map\n");
+   292		}
+   293	
+   294		if (i2c->irq > 0) {
+   295			info->irq = i2c->irq;
+   296		} else {
+   297			info->int_gpiod = devm_gpiod_get(&i2c->dev, "int", GPIOD_IN);
+   298			if (IS_ERR(info->int_gpiod)) {
+   299				return dev_err_probe(dev, PTR_ERR(info->int_gpiod),
+   300						     "failed to get INT GPIO\n");
+   301			}
+   302	
+   303			info->irq = gpiod_to_irq(info->int_gpiod);
+   304			if (info->irq < 0) {
+   305				dev_err(dev, "failed to get INTB IRQ\n");
+   306				return info->irq;
+   307			}
+   308		}
+   309	
+   310		ret = devm_request_threaded_irq(dev, info->irq, NULL,
+   311						ptn5150_irq_handler,
+   312						IRQF_TRIGGER_FALLING |
+   313						IRQF_ONESHOT,
+   314						i2c->name, info);
+   315		if (ret < 0) {
+   316			dev_err(dev, "failed to request handler for INTB IRQ\n");
+   317			return ret;
+   318		}
+   319	
+   320		/* Allocate extcon device */
+   321		info->edev = devm_extcon_dev_allocate(info->dev, ptn5150_extcon_cable);
+   322		if (IS_ERR(info->edev)) {
+   323			dev_err(info->dev, "failed to allocate memory for extcon\n");
+   324			return -ENOMEM;
+   325		}
+   326	
+   327		/* Register extcon device */
+   328		ret = devm_extcon_dev_register(info->dev, info->edev);
+   329		if (ret) {
+   330			dev_err(info->dev, "failed to register extcon device\n");
+   331			return ret;
+   332		}
+   333	
+   334		extcon_set_property_capability(info->edev, EXTCON_USB,
+   335						EXTCON_PROP_USB_VBUS);
+   336		extcon_set_property_capability(info->edev, EXTCON_USB_HOST,
+   337						EXTCON_PROP_USB_VBUS);
+   338		extcon_set_property_capability(info->edev, EXTCON_USB_HOST,
+   339						EXTCON_PROP_USB_TYPEC_POLARITY);
+   340	
+   341		/* Initialize PTN5150 device and print vendor id and version id */
+   342		ret = ptn5150_init_dev_type(info);
+   343		if (ret)
+   344			return -EINVAL;
+   345	
+   346		connector = device_get_named_child_node(dev, "connector");
+   347		if (connector) {
+ > 348			info->orient_sw = fwnode_typec_switch_get(connector);
+   349			if (IS_ERR(info->orient_sw))
+   350				return dev_err_probe(info->dev, PTR_ERR(info->orient_sw),
+   351						"failed to get orientation switch\n");
+   352		}
+   353	
+   354		info->role_sw = usb_role_switch_get(info->dev);
+   355		if (IS_ERR(info->role_sw))
+   356			return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
+   357					     "failed to get role switch\n");
+   358	
+   359		ret = devm_add_action_or_reset(dev, ptn5150_work_sync_and_put, info);
+   360		if (ret)
+   361			return ret;
+   362	
+   363		/*
+   364		 * Update current extcon state if for example OTG connection was there
+   365		 * before the probe
+   366		 */
+   367		mutex_lock(&info->mutex);
+   368		ptn5150_check_state(info);
+   369		mutex_unlock(&info->mutex);
+   370	
+   371		return 0;
+   372	}
+   373	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
