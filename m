@@ -1,267 +1,166 @@
-Return-Path: <devicetree+bounces-168284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26555A920D2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE8DDA920D9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D18647A695E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:05:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 614587A4402
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D75253328;
-	Thu, 17 Apr 2025 15:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5221D25291D;
+	Thu, 17 Apr 2025 15:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="c9xtZnby"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="k72PNw5+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012019.outbound.protection.outlook.com [52.101.71.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD022475C7;
-	Thu, 17 Apr 2025 15:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744902386; cv=fail; b=LguzXQjefsfW3/YHT0CTXuHb9NdbBD0TYtUg31VwxEyKWs/4tvwZhptQdiP7K2R2dt/WPKCONUuhvraB3Kbvdf1wL4N7bpXg9dMr6zUb/mAmPupNFn39sC11Bl1/WxYMYpU7f0mZ4SdhuoD7mTcH46dnAXrn2PgHEWg1k/2/Cgs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744902386; c=relaxed/simple;
-	bh=3G/tN8ColP12vYMvimTsQ4xoYLKhDsxhUBRCV7z0NXc=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=mfH0cjH6PgHzYKmbEZ1sxO7FfP+yo/9h7q/eIkitqDgMeZSXPvCdoy8h4lH74nhX/JhUtvXmD75iOO3ua98zi5434D52SnbiIYSUZuMVSpx/htI19g6ZkAtRz+YUspcEuR4bzrWniWCyzzXxowFWEyWqHzzRzUzzNT4tes/ouV4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=c9xtZnby; arc=fail smtp.client-ip=52.101.71.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qRb8Hnf9yQFX3U0EJl8825X0f8cYRxJgLBlABSmmXB6iP92ji5LJ3b5NWx4D2u3quLoJGTnHyecE11XOCWQ29TJACKYVPlUSJbzPX4hKP23aBDL4RS9hsD76Q72MNQTYYAzp4bHsbtPwgFErqgdL/1JkAWG5LRZdYvkmPcCMTy5b93EgbVHFIAr99GBaNvaqcJvMH2pk7cW3LHzMHNw0nSWaGJSg6mvT/oDkxUOo6zp7UmzFcQOzt1c8t+30JZE4zMflqoqiC95H+MYY3Ya0kMZlGBg9pyp9TdTTr5TeimlvGBFCQf+H6YrWUMgG0vEHcjUGwSEwKOalSw9K6953vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nk3lo6Cqhw4w7rUgd9MfqlcCEj8ZPrfcKCOTBWZACYE=;
- b=emQn9b5U3q9esKP+9r0H6M9dTwkpj3vuGdKwRNsSW8cR9LI0DCK4oOeHYxgc7PBkCKbC8z0RDtR9tJzJWbdNlBktL2NT3OyBKm7rSSi3ba+AIP3YuzUXYiAUmY2ldd2a1+EUtg7ofiQfLdo/8EbvYFY+TEuhNzQHZNPxxycdh77+cgWFlXNsvRtGbKrqWiGK756x4kIBDY0zbMxmFywAq4DdVP1UwfgqM+XClwyTedJzjebG62yndC4UERrQlQ5YcJa0fEKEoX/vNOmpflCino48JmtrA2O+PoagRKwn3KOaeaGVdSa3BncvrNKgghLsVBTtKzRAnawyBukVTV81VQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nk3lo6Cqhw4w7rUgd9MfqlcCEj8ZPrfcKCOTBWZACYE=;
- b=c9xtZnby8Ywn0IM7zuLIN5dGSw8pcpBmyNxFdNIePf+btJgNAFye+ziWhFIUQkiJe7oRPXGVqW0bRy/lnAUVCAXrSe+Z8NKRpWcpdZH09e/dzTSaka2nUVZxZ3FRUkuJdx7lkLpwmz6vuzMiz6q8FindJOUWQwm108Iljug1cjXY+kAsvuYXGiaTM8y5fxdzX5yfJFHpSZ6I02ZbpLYw016nnRBvFObsDqUNiZTc3Jvv/xjwMmfZngxi4YjwXglVsK/srKRBgiMIutzhDhFJUXQfBwyL+atsACaPWzQ0pQa++rN3FSGDys/hFqJTluBojp2w+ANNadQAb195Ke7tsQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VE1PR04MB7245.eurprd04.prod.outlook.com (2603:10a6:800:1b1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.22; Thu, 17 Apr
- 2025 15:06:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.035; Thu, 17 Apr 2025
- 15:06:21 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: fsl: convert m4if.txt and tigerp.txt to yaml format
-Date: Thu, 17 Apr 2025 11:06:04 -0400
-Message-Id: <20250417150608.3569512-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0177.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A4A21D3EA
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 15:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744902476; cv=none; b=FvfykPHeQsSBgIe34Uij6jGOV3RxK6vsG67jkb5AB1vqWmEfOlPYOsPFU+VpKaYvwlvRK7RLkaczrs7YWY/2InxR4fAMJRCBJmzED4yrpmh5rmhSlY3v6uBBdpB6wQvIqEFMfzxtO8GNHVXNfy3Ot0CbiTkxourtOlCPIIUK6cY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744902476; c=relaxed/simple;
+	bh=Y7sBMJl9huCoJbTO8M1vR4VKFo+G40GzBvX0w6rClRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LaBf2UO/wexlHF53kWr1XZcjfBSjfwRVwY3uSt/0eLJru6GWXdq2rcSkyOQTUSlOQrVE/D1HyKjNhZjLT3SJNkrGuJ8Cwmqa+ws9MSWcfHNIqkZPor6GcqDFYamsHEWx/9srymrrseowDum6ymkFEw/DGv2i2ov22+tPUvZBTxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=k72PNw5+; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-72c3b863b8eso537696a34.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 08:07:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744902472; x=1745507272; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fO4PGom8r+nn+/7wCMZh1CHX3FkJE/YgsW+Sw+QFjaI=;
+        b=k72PNw5+q0fYh1Ii9h+u2kScdyU9nAN+fbiTPZeQrCDmJOO5I2917xkd6mM0KZt+M2
+         dyBFDCUW/svxMQadEE+GPC0cEZpee+UrHvWKei8KB3liNZ102VsOn0uaKhtjl7PYWuoO
+         cjWsycULv95/gdurn8e1IyyCybDohAAo6q16CDvgZlMubFe8hlY1K33/1eONMZmSAzU6
+         AKV0zO4nakjyeWilMsf1j6qeEQLL4b/cQPNzD3KXE0NUOJe5z0WlzOJQPvUBukF95wI9
+         ZPbkRCPh0B4chRR8nUUZOPhBXv3eMQPgy2ahElv4Z5zOrG8Mihfdl5kmcOP1kLDW6Nvs
+         AKJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744902472; x=1745507272;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fO4PGom8r+nn+/7wCMZh1CHX3FkJE/YgsW+Sw+QFjaI=;
+        b=bkbag5ssPZsZ9w1cdnflwj7UESPcq9+NrJNbHi2ta+wwc5G3YdhPOqGwGCFQ7/TV8n
+         XkA7Uml48/NJOok2jsuHVsbUUJOEEU55t0/qtJ3mnOU6kwF4LUi1J35Wr5fiWdXt1uTo
+         8BFgSw+JsZ0X5Dw6+ulYpN97x7NVF/QMBrHU9DeuhifG7eRDFbX8BsjhqxKyuo2mFTzW
+         GP1MH5+HQSWuUTUbC0nFdQRyCDKJOITEuziG/CXwtEN6d5Ow9gHJuXnPS+Rwa0cRrX1a
+         LGxT6UZvwWgLhh9a2V7ALfEWQZMhuL0e61CXkTkQPWFZ07+0K7Rpn3cKFkLjGniYTr2s
+         lDYg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/ttD9aG5lh1jWfS6DAmLoX3ESZIAeVO9rO8JQ7LDvRxZnBdFsC3SJDe28ZmX+jmvGyt68dpIwt8Db@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVJtYfgZ/3v3Qd1LrQi4SG+ppVZeXgKf5foJ5wi4AbdRcg6dEv
+	+W0xgZOjegeQviwnaNDOnAokpNEY3VhVWIuN9aE9wLw3Hmz3JQwijtm1zu2fA3s=
+X-Gm-Gg: ASbGncufEBG2F30kgwdNSO/T/aKamry+Lt+IUrx87EwyJQWzlCWhV/w1ody3T0HKidA
+	JerZUQXqm6BlkBe2WS0KShI8Wu8/wet5fxh9h7DUd7yXzijDfkZChy27LNjE4KtIc1cd4Noiv74
+	6WqloSF5zuqnNIqhYllbQWKqQRtjgxut7haanw23q9PtAG8JFY0uJo/hX8sX4VtWk6XmwJdK+kn
+	4RjJsjOqgLN8xUhdzc3Wa3jZNhl+l7Ot978Q5Lh3NB5F9GMlFmRh48qqvBtZqjgzugcxVrVmnVb
+	luUinUkrEkwpWN5TFGuZMXXhj7DWRgGvLoClL/nQwoIwb6GbYfxLvTxJ7eZXBmtz/Zx7yweFycs
+	SA3JfeJ0TmzDmx+DOqA==
+X-Google-Smtp-Source: AGHT+IEYK1dnPkBo/RCRsPA4Fw4LOSVoCMCliXwjzRUw7NtO1yHMkAzC2RAg+ysD2YBbHrA5uY1uvg==
+X-Received: by 2002:a05:6808:800e:b0:401:bcaa:c52f with SMTP id 5614622812f47-401bcaad927mr147985b6e.38.1744902472319;
+        Thu, 17 Apr 2025 08:07:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:c91b:eea3:7afd:2dee? ([2600:8803:e7e4:1d00:c91b:eea3:7afd:2dee])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-400763bab7bsm3121606b6e.45.2025.04.17.08.07.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 08:07:51 -0700 (PDT)
+Message-ID: <d6a636c7-36df-4648-92a1-2db1ff4754e6@baylibre.com>
+Date: Thu, 17 Apr 2025 10:07:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VE1PR04MB7245:EE_
-X-MS-Office365-Filtering-Correlation-Id: 029dff3d-cb50-4994-d29f-08dd7dc1698f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|366016|376014|52116014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?vouHIzWUSL0U2csOjTOWBYYA4peIQKV7FLZDKnzhSVOyvXKXqyUSkzmNBi2r?=
- =?us-ascii?Q?tSU3AroXPnX5dcfQXYj94AWkv1pH0gbMeqbJsarsVrY+idEW7Xusm6YlndUg?=
- =?us-ascii?Q?epXXiN7mYrVnxVUfzwB8wpQ3rIr7vvNRiGqEOGawmRTLFzlRhQ4ABFlygk02?=
- =?us-ascii?Q?SsF5ULz4ps598WYGU1hQcdET1Q3aUvkJUEddY4rfhI8I8tp26AEexXv8xUxd?=
- =?us-ascii?Q?XPhYCPme5ZbK1wijNzZ2061BgZGRscsUobQssZPmYkNXrlRphgeC7qSp1epR?=
- =?us-ascii?Q?gDavSkbaK1iOREfGstPiX+Xo+hnUkrEKip3/SxSVjMLks9u9jBWISTJ5zI07?=
- =?us-ascii?Q?RXgqJFltG2I6g7kh+6hMHfne0nwfIf8cpDQ6Sh40A5lg7P1oDzNBv8b5AjG9?=
- =?us-ascii?Q?24+qjgFM7ErbPFZD8K1wSSGz2VEK46HWy5MPinzIVfCGxaVnV6D+OmG1cMmy?=
- =?us-ascii?Q?HxLqL0A8qlyCkvxbVTbSZ183mR2mu9niHtMgDwgExezYFX1e1vbCdXq2Z6Mw?=
- =?us-ascii?Q?Qwx7ozruFLquUULf5/ouWQ4nuEgKRhg++usAYGgWTJ1TUYTaMex6oRR/KyNY?=
- =?us-ascii?Q?R75jLPBqfNxIrrxvyrOgUGynChLqqZTWqlvAlc20TzEYtI7k6RcFouTKw2mA?=
- =?us-ascii?Q?8sPIWsQdUNYR6LbFXS50Lnpoh4ZFjbMzps9zYdm5h2J60Rhz/cti/KFQ2+Rd?=
- =?us-ascii?Q?Z8qIspW1VOR9ifj6k8gK/xxq85Kfx0kV+xb/feOVrKwWg4W8l1AwepgAavBz?=
- =?us-ascii?Q?v7Xgvev15h0JevlxFTp5cx0tHVT7YMJh2cINbTa8BUQvtkwYgF4/TNgOcI9Q?=
- =?us-ascii?Q?yWTcTwi+kRoSUdJ/ztfwgolvZ6DqXutDygJDLOYHrB59cV6LSkq2oK6XM3aS?=
- =?us-ascii?Q?58gEz9SMD8xbjht2ou3BIb0ZQWfe1CvcKTLPtTBWl3W9ah/UaV2VjaFUSXNb?=
- =?us-ascii?Q?q5j/g/GVdGgGgoMUAYeZ5jr8zbjUthEnT2YaLfLmK3E+CqIA4gPA5bvspmJe?=
- =?us-ascii?Q?tqeiEmR23ihrPhLibuh5igxb2GBUdqZDSojNLpDw/PLZgZt8nwIhkmfwhkHf?=
- =?us-ascii?Q?OW3r643DrurNKNriNWRNgj2x6Ds6HA/4fIggbZmHDC4E0aeKsbi/AHb/1ows?=
- =?us-ascii?Q?6CPH7x4UfY/f3QwVX5wWiP/o9OfWdI1V7sM6HqbHBHiAq8kQSbt8gNIrg47f?=
- =?us-ascii?Q?PMhpV8pb3ZZsK1KmMdAMSHLW18lwa3fseq8qdX453JiFziCCwxAFmZeTy6yT?=
- =?us-ascii?Q?ZWFJaNRizAu2LPdo045FI545gcpGjo8riSZc3+C+0mlZxKxXBCCZsFhB/6+r?=
- =?us-ascii?Q?2/gbKmzHAIZ+cC2pis9dXZfdx7uT/Gmuj41f4Dn3/Q70OgFtP3tg+lf5kqDQ?=
- =?us-ascii?Q?UeGr6GrhwkSjUntuum8LW3GHZZYh+iibxaBFaVrwXdrEo4Q9Br2vEP/VogN/?=
- =?us-ascii?Q?PAgK6h5oIhPP+OFfJGKr/X0QkW0VZmjC?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(52116014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jRRwI3CEhIswyk5wARpYaNM0IB/QB64qAlJQrsraO7Qz2KBujsIArpshutmj?=
- =?us-ascii?Q?xwd61AmGLq6MX1KGWmcCHErVDZWePUJ2sqBwvzgP+vuGVf7cLM2zuQmGs8aX?=
- =?us-ascii?Q?dj1jXwl7IS0Xz345XJnIAIsnGeU6NV5sEVN1sutQPunJaf2lx6iH+/WZzz9R?=
- =?us-ascii?Q?Z2jxWbnpTMZLaB+X+GaYHiONSlKdUyayupPI43vnvq0p8Scmz5KcyKuR8Sxu?=
- =?us-ascii?Q?RQv9Qd19ZaTibl5UfnHnrV1LRIcUggQIJWfWBDH1PS7I/n6anPQ8EaZfZC1C?=
- =?us-ascii?Q?sUCd51D0GN3mJbtQ3ZlxeJvE3ZJ9t3SyEfEGHWFR9c/AUmBUtQNKhK5NqCCh?=
- =?us-ascii?Q?6LRuP2NjzXN12pBHefMHPIFx1hNxg9O+ZjRpG8x6FgW2SZktGXS0dDv38YkN?=
- =?us-ascii?Q?YfLGB6gC5EM4CoX2jAg0M8PHGmrYrV/g7CZseg/rl6V/9cRvETTr5hR6wVo6?=
- =?us-ascii?Q?n+NQu9PJoqzLf7PIF4JKswdbEv0GLAaOKI7KDE5KUzeSF0PbRniknBOjrfrU?=
- =?us-ascii?Q?2I2hn5g5yPbrCyQ6we9Wq2ADBg5fo+1h+EtEBSzBgM1tHUo2P9V4sgqTlbB7?=
- =?us-ascii?Q?BGlLyAyPHj27Hy0sQflAlb0xvlbe4mcqxp8hkEVFdQpFOMf0QZ/WkR8I0+6H?=
- =?us-ascii?Q?+JMm6YmGL8Svp2P+u1YKB3C1/zE31nuVWcuz7lU16FjydAvt4pailzG67u10?=
- =?us-ascii?Q?m8Rm82RHgkqq1IKBMQJIwKba0F1fxn5UaDlEMWpBNSXn69lEHMpULn0GM0OX?=
- =?us-ascii?Q?CGvF8m40LIWguAgEj6Abxj+IGKwirZa8cdQ1RJLVHQWyovi5TdBYwhFfFOsL?=
- =?us-ascii?Q?Fkq8dDaLPWE5tXTzZUE61/GaLhPTlXCZ9kZTtcvKRPtxmfIABw/M/jHdeyes?=
- =?us-ascii?Q?/D8+qdtvVTb6HbG+yDX/1ju3YEQ61sIneN5bLTLYFtWnCVHbIgIXOurz2IyH?=
- =?us-ascii?Q?iSbkI2iVJS4fjp+pWegI6fjxq5A2XFvF3xqTSBWqLOG/WlieFdYGEIaC8tYw?=
- =?us-ascii?Q?npBMKuP6akm2Vv9QQOuyEzYIqIgl51bPm7/kygmoPjJRTlfICB1m9r/UW4HE?=
- =?us-ascii?Q?UAmQ7BmZO3K60uV3ILSyg7FkvNbELr/GZgEJsfXxIuAkX6DfPr/kyL/ush+D?=
- =?us-ascii?Q?SEuI96bFRGTmqZpsqG9yPZb203Brhy9F8Xo6fXRJ1lwf1Ij646qPpQ+2yUmi?=
- =?us-ascii?Q?69qzdyeWlaWRWtWDNnnIiUN9oiRHSxw55N5mMEz8dqz1FSvvhoLq6WV9rYkX?=
- =?us-ascii?Q?ceRIW6LWdq2ZSsYJeiaTqOW8W3R+10qbdlBV42jHO4y3ljEWPvPzT6xcJpwX?=
- =?us-ascii?Q?dC1BfPcbUbFGiLJCiaxPqoq1FJFjNB9k1IT2+CMNqEWq5i03mRiXFnVFoAzz?=
- =?us-ascii?Q?fbTeSx7KM10HEdzgOojDU213yNCJzGenxno9iLyg8wj5O0cnYenkSutIeLVs?=
- =?us-ascii?Q?1a1c18GVZn3EI6s03tlIZaiCe+0W1BuNi8Kmi9vfc1ylwNBuVGVkKYtcWBMw?=
- =?us-ascii?Q?iuaWzaQlJfXHQCUsnZq7bNs6LpnVG50NSh9XNPxYiJbeOidM5i2G3D7As5oW?=
- =?us-ascii?Q?/XuuDrSpQ8cAdpyaJ/hF+JrpgIs7sA7Y9oeF69/n?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 029dff3d-cb50-4994-d29f-08dd7dc1698f
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 15:06:21.2492
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6wgpOL7xaP4YQQ9urvz32co42fVMhRJuP5QvkfhGdtGgxrHsTmlxwmq8X512VaCWpsCOEiWvpMbYBEa91/VcFw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7245
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 02/14] dt-bindings: iio: adc: ad7768-1: add
+ trigger-sources property
+To: 3027a9b0-cf4a-4e55-80a7-7f0dd2a008e4@baylibre.com
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
+ marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org
+References: <cover.1744325346.git.Jonathan.Santos@analog.com>
+ <35481552e9ce39a24a0257ab001c0bcfea1a23be.1744325346.git.Jonathan.Santos@analog.com>
+ <3027a9b0-cf4a-4e55-80a7-7f0dd2a008e4@baylibre.com>
+ <aABJ4UuFWDsJX6vT@JSANTO12-L01.ad.analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <aABJ4UuFWDsJX6vT@JSANTO12-L01.ad.analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Convert m4if.txt and tigerp.txt to yaml format. These just use reg to
-indicate memory region.
+On 4/16/25 7:22 PM, Jonathan Santos wrote:
+> On 04/11, David Lechner wrote:
+>> On 4/11/25 10:56 AM, Jonathan Santos wrote:
+>>> In addition to GPIO synchronization, The AD7768-1 also supports
+>>> synchronization over SPI, which use is recommended when the GPIO
+>>> cannot provide a pulse synchronous with the base MCLK signal. It
+>>> consists of looping back the SYNC_OUT to the SYNC_IN pin and send
+>>> a command via SPI to trigger the synchronization.
+>>>
+>>> Introduce the 'trigger-sources' property to support SPI-based
+>>> synchronization, along with additional optional entries for the SPI
+>>> offload trigger and the START signal via GPIO3.
+>>>
+>>> While at it, add description to the interrupts property.
+>>>
+>>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+>>> ---
+>>
+>> ...
+>>
+>>> @@ -57,6 +80,15 @@ properties:
+>>>    "#io-channel-cells":
+>>>      const: 1
+>>>  
+>>> +  "#trigger-source-cells":
+>>> +    description: |
+>>> +      Indicates the trigger source type for each entry:
+>>> +      0 = Synchronization GPIO-based trigger
+>>> +      1 = Synchronization device trigger (e.g., another ad7768-1)
+>>> +      2 = GPIO3 pin acting as START signal
+>>> +      3 = DRDY pin acting as SPI offload trigger
+>>> +    const: 1
+>>> +
+>>
+>> 0 and 1 don't sound like trigger outputs that this ADC is providing, so don't
+>> seem appropriate here. But the SYNC_OUT pin is missing from this list.
+>>
+>> Also, outputs could be used to trigger anything, not just SPI offload, so don't
+>> need to mention that.
+> 
+> You mean like this:
+> 
+> ...
+>   "#trigger-source-cells":
+>     description: |
+>       Cell indicates the trigger output signal: 0 = SYNC_OUT, 1 = GPIO3,
+>       2 = DRDY.
+> 
+>     const: 1
+> ...
+> 
+> It would be like interfacing those output pins for a generic trigger
+> usage?
+> 
+>>
 
-Additional changes:
-- Add compatible string fsl,imx51-aipstz.
-- Add fsl,imx53-tigerp and fail back to fsl,imx51-tigerp
-- Add compatible string fsl,imx7d-pcie-phy, which is not real phy and just
-indicate a memory region.
+Yes this looks correct now.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../arm/freescale/fsl,imx51-m4if.yaml         | 41 +++++++++++++++++++
- .../bindings/arm/freescale/m4if.txt           | 12 ------
- .../bindings/arm/freescale/tigerp.txt         | 12 ------
- 3 files changed, 41 insertions(+), 24 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/m4if.txt
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/tigerp.txt
-
-diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml b/Documentation/devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml
-new file mode 100644
-index 0000000000000..1f515bea39599
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/freescale/fsl,imx51-m4if.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Multi Master Multi Memory Interface (M4IF) and Tigerp module
-+
-+description: collect the imx devices, which only have compatible and reg property
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - fsl,imx51-m4if
-+          - fsl,imx51-tigerp
-+          - fsl,imx51-aipstz
-+          - fsl,imx53-aipstz
-+          - fsl,imx7d-pcie-phy
-+      - items:
-+          - const: fsl,imx53-tigerp
-+          - const: fsl,imx51-tigerp
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    m4if@83fd8000 {
-+        compatible = "fsl,imx51-m4if";
-+        reg = <0x83fd8000 0x1000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/arm/freescale/m4if.txt b/Documentation/devicetree/bindings/arm/freescale/m4if.txt
-deleted file mode 100644
-index 93bd7b867a536..0000000000000
---- a/Documentation/devicetree/bindings/arm/freescale/m4if.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--* Freescale Multi Master Multi Memory Interface (M4IF) module
--
--Required properties:
--- compatible : Should be "fsl,imx51-m4if"
--- reg : Address and length of the register set for the device
--
--Example:
--
--m4if: m4if@83fd8000 {
--	compatible = "fsl,imx51-m4if";
--	reg = <0x83fd8000 0x1000>;
--};
-diff --git a/Documentation/devicetree/bindings/arm/freescale/tigerp.txt b/Documentation/devicetree/bindings/arm/freescale/tigerp.txt
-deleted file mode 100644
-index 19e2aad63d6ef..0000000000000
---- a/Documentation/devicetree/bindings/arm/freescale/tigerp.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--* Freescale Tigerp platform module
--
--Required properties:
--- compatible : Should be "fsl,imx51-tigerp"
--- reg : Address and length of the register set for the device
--
--Example:
--
--tigerp: tigerp@83fa0000 {
--	compatible = "fsl,imx51-tigerp";
--	reg = <0x83fa0000 0x28>;
--};
--- 
-2.34.1
-
+I don't think this is the case, but in general, if GPIO3 could be programmed
+to have different trigger signals, then we would need a 2nd cell. But IIRC,
+it can only be the START signal, so 1 cell should be sufficient in this case.
 
