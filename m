@@ -1,145 +1,200 @@
-Return-Path: <devicetree+bounces-167997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A3AA912BC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:36:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 662BEA912DC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41CDA189EB43
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:36:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73F7E7AE663
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033051DF252;
-	Thu, 17 Apr 2025 05:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB06F1FC7C5;
+	Thu, 17 Apr 2025 05:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pVIVUQga"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WuScEjDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0BD41DED6F;
-	Thu, 17 Apr 2025 05:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD931DF267;
+	Thu, 17 Apr 2025 05:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744868190; cv=none; b=O7KLxucWWO/oYsJYcvIz3Nv8e8pRiEiK5cm3cHDhtCtye36aFTM2XxchXh5JY254idKWNnqhD+9gBwa0Mi1VPh0z4lKFHdErRklrlnxKqwoKtb3zxl7LpDDa07mANndNHTipLY7zKfmfBapflRKpweQaXPml8+XZomBgf+2MQXM=
+	t=1744868384; cv=none; b=HYJWmTzHt2yhNu27b5Eze6OLdL6zu5tg46oVkMvf3XyRLKY4uDLOOZJDty2zZLw2cDwf4F5hhVGcFwFTZRNs7frcnnBFZJWyGLR8+WAs9S0zIriL3a8zAVOj301/1JsmVP1fVzdOPB36iwzWpWR3/q5Y3KxmSZuGfCqUOlBwNu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744868190; c=relaxed/simple;
-	bh=OS0b2KsauNvvGfkShk9mjUrLdvrCpTHIPPjb1jv7SNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tqem9djKjRxKYqkNpHR82g5gVyfqKdhEscmEVBLu40r7RBbNZgeHbBkH90+kgXfy7M7ptj9kk0eI9027NTkVACa+FatyeAgppdCpoGslmTChfnRhd4QHouL4ukv95duAJXWpWDsW6/vjfG3KqYMK3/iHKMmlI2yiKh8iyDuci5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pVIVUQga; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BCF8C4CEE4;
-	Thu, 17 Apr 2025 05:36:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744868190;
-	bh=OS0b2KsauNvvGfkShk9mjUrLdvrCpTHIPPjb1jv7SNY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pVIVUQgaKxIv4Vsg2DvnV8+yqDzspXRYYrI6prsA7A58vOzMEdcQ5blCfM3Dax/3f
-	 Br0c3U3D8QdIaWLRBlu/pGSVOVcvzmXEhjBu7UAOSMKeH62Qd8+JosyD/HCh+HVmWC
-	 QS/rBaL7MuqdLBH8icXBHN7zxFuBR3my4L4SgSkH0I+5c//XRM7tcf15QCkpzPgQ04
-	 /fs90d9RUD3xWIkeQtRlCF/U24GBA8zKKAJfNE7M5bj1sAatPGwlVWD/ERpdUGIlCs
-	 x8h5XTKlv9sC89IZRGWurswbuE0OQfVBckpjlaMsIf+GWiK69/NVR6Yf4YFu7BCPUl
-	 H2nHzjgxozELw==
-Message-ID: <8feea1ba-2d4a-4898-9882-cf3ec8b03852@kernel.org>
-Date: Thu, 17 Apr 2025 07:36:20 +0200
+	s=arc-20240116; t=1744868384; c=relaxed/simple;
+	bh=60xECgzzrEMDgzKBb4c6ebad2qlznZnnVr08FInbLuA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=n6SRX1EVTeGEDnGS0wiUNe4B1JIRYOvv8R5xKwsTHBFyGyijrnQ/Z+kCDLvakIxBo+efd5M5zAuXBNIjzLtxtTdBYwmfSoMEeCgzSjY4uNxfCjTTRJ7qExFHcPpXrTp6mMmXVbDShezMOI0N9CpFVOjFSuQ7ODwWU3JUhdazmSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WuScEjDS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53GLhdE2025365;
+	Thu, 17 Apr 2025 05:39:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=cSAigVRjMpLefxqx9easbtJsL6E6cmsPGx6
+	8qktXvVs=; b=WuScEjDSGEP0UAeBMl9HhvyQAFGoktiyzTLcDkoFEavh5bUQlBv
+	0YGcuj5LlbB1+OQflnPH4cYkKJL9cc8/jeBvKK/6pKN/REeLZBGKBjAqKSBWltUg
+	LKmJErUbfESDRRSZ7rP54ItlqcanXuk2vJbdnfAK1wPicNwnp9aAr/2kvAgktFqS
+	75xcAeeNGVu2NcSTsamMCPXuAeiwdct4jv7DRLy0u4sgGc0JKKiEIjxjJBb1czlL
+	2IoHlfz3fjxIiFyNNbVdvp2Pxi87vqoxcSYZ4RIiJQ9K/8hMEgudBR7J6vrq6QTM
+	WgUC6N6M9QTrKw2fNpXsTfw9tSSVjtE6eRA==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvjdyq7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 05:39:19 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53H5cX6I023614;
+	Thu, 17 Apr 2025 05:39:15 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 462f5dnug8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 05:39:15 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53H5dEB7023906;
+	Thu, 17 Apr 2025 05:39:14 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 53H5dEj6023902
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 05:39:14 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
+	id 9E96358F; Thu, 17 Apr 2025 11:09:13 +0530 (+0530)
+From: Ayushi Makhija <amakhija@qti.qualcomm.com>
+To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
+        dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: [PATCH v4 00/11] Add DSI display support for SA8775P target
+Date: Thu, 17 Apr 2025 11:08:58 +0530
+Message-Id: <20250417053909.1051416-1-amakhija@qti.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] ARM: dts: vt8500: Add VIA APC Rock/Paper board
-To: Alexey Charkov <alchark@gmail.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250416-wmt-updates-v1-0-f9af689cdfc2@gmail.com>
- <20250416-wmt-updates-v1-12-f9af689cdfc2@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250416-wmt-updates-v1-12-f9af689cdfc2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=68009407 cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=dOa0ubpHghBcgs2qjvoA:9 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 8J7XzjFIiRJkaK70sfjGFgY4ub-5pL0g
+X-Proofpoint-ORIG-GUID: 8J7XzjFIiRJkaK70sfjGFgY4ub-5pL0g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-17_01,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504170042
 
-On 16/04/2025 10:21, Alexey Charkov wrote:
-> diff --git a/arch/arm/boot/dts/vt8500/Makefile b/arch/arm/boot/dts/vt8500/Makefile
-> index 255f4403af91c1d6a22416ab694b8eab44bf98a2..c5a2e57d53af4babe40fe2d79b2f8d9c1ae1b8db 100644
-> --- a/arch/arm/boot/dts/vt8500/Makefile
-> +++ b/arch/arm/boot/dts/vt8500/Makefile
-> @@ -4,4 +4,5 @@ dtb-$(CONFIG_ARCH_VT8500) += \
->  	wm8505-ref.dtb \
->  	wm8650-mid.dtb \
->  	wm8750-apc8750.dtb \
-> -	wm8850-w70v2.dtb
-> +	wm8850-w70v2.dtb \
-> +	wm8950a-apc-rock.dtb
-> diff --git a/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts b/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..58b3c8deb4f20ae072bf1381f1dfa5e5adeb414a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts
-> @@ -0,0 +1,21 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
 
+This series enables the support for DSI to DP bridge ports
+(labled as DSI0 and DSI1) of the Qualcomm's SA8775P Ride platform.
 
-Odd license, we don't do GPL v4 in the kernel. We do however dual
-license for bindings and DTS. Why choosing such license? Did you take
-the code from somewhere?
+SA8775P SoC has DSI controller v2.5.1 and DSI PHY v4.2.
+The Ride platform is having ANX7625 DSI to DP bridge chip from Analogix.
 
+---
+This patch depends on following series:
+https://lore.kernel.org/linux-arm-msm/20250127-dts-qcom-dsi-phy-clocks-v1-0-9d8ddbcb1c7f@linaro.org/
+(ARM / arm64: dts: qcom: Use the header with DSI phy clock IDs)
 
-Best regards,
-Krzysztof
+Changes in v4: Fixed review comments from Dmirty, Krzysztof and konard
+    - Add only single compatible string in dsi ctrl pattern properties
+      in patch 3. [Krzysztof/Dmitry]
+    - Move the io_expander RESET and INTR pinctrls from i2c18 node to
+      io_expander node in patch 7. [Dmitry]
+    - Remove the gpio-hogs from io_expander node, as we are already
+      configuring them under anx7625 bridge nodes. [Dmitry/Konard]
+    - Updated the commit message based on hpd_enable() and
+      hpd_disabled() recommendation in patch 8. [Dmitry]
+    - Split the patch 9 of vesrion 3 into two separate patches. [Dmirty]
+    - Updated the commit message and commit text in patch 9 and 
+      patch 10.
+    - Link to v3 : https://lore.kernel.org/all/20250404115539.1151201-1-quic_amakhija@quicinc.com/
+
+Changes in v3: Fixed review comments from Dmitry and Krzysztof
+    - Added qcom,sa8775p-dsi-ctrl compatible based on the set of clocks
+      which are associated with it in patch 2. [Krzysztof]
+    - Drop the blank line and add contains instead of items in pattern
+      properties of dsi ctrl and phy in patch 3. [Krzysztof]
+    - Updated the node name from anx7625@58 to bridge@58 for anx7625
+      dsi-dp bridge in patch 7. [Dmitry/Krzysztof]
+    - Updated endpoint label name for input output ports of analogix bridge chip in patch 7. 
+    - Check the DP or eDP confiuration based on the aux node in patch 9. [Dmitry]
+    - Link to v2 : https://lore.kernel.org/all/20250311122445.3597100-1-quic_amakhija@quicinc.com/
+
+Changes in v2: Fixed review comments from Rob, konard, Dmitry and Krzysztof
+    - Added additionalProperities in dsi and phy patternProperties in patch 3. [Rob's bot]
+    - Updated example in qcom,sa8775p-mdss.yaml of patch 3:
+        - Added port1 and port2 inside mdss0 ports.
+        - Renamed dsi ports from mdss_dsi0_in to mdss0_dsi0_in and mdss_dsi1_in to mdss0_dsi1_in.
+    - Updated the init load value for vdds supply of DSI PHY from
+      150000uA to 48000uA as per chipset power grid in patch 4. [Dmitry]
+    - Updated the init load value for vdda supply for DSI ctrl
+      from 30100uA to 8300uA as per chipset power grid in patch 5.[Dmitry]
+    - Rebase the series to use the header with DSI phy clock IDs to make code more
+      readable in patch 6. [konard]
+    - Added the interrupts-extended in patch 7. [konard]
+    - Fixed the warning from DT checker against DT binding in patch 7. [Krzysztof]
+    - Changed the connector node name from dsi0-connector to dp-dsi0-connector and dsi1-connector to dp-dsi1-connector
+      respectively in patch 7. [Dmitry]
+    - Added the vph_pwr for anx7625 vdda10, vdds18 and vdda33 supply to fix the warnings from DT checker in
+      patch 7. [Rob's bot]
+    - Addressed device tree comments in patch 7. [Konard]
+    - Squash the DT patch 8 into DT patch 7. [Dmitry]
+    - Added hpd_enable() and hpd_disable() bridge funcs in patch 9. [Dmitry]
+    - Update hpd detection bridge op flags logic based on eDP connector in patch 10. [Dmitry]
+    - Link to v1 : https://lore.kernel.org/linux-arm-msm/20250225121824.3869719-1-quic_amakhija@quicinc.com/
+---
+
+Ayushi Makhija (11):
+  dt-bindings: display: msm-dsi-phy-7nm: document the SA8775P DSI PHY
+  dt-bindings: msm: dsi-controller-main: document the SA8775P DSI CTRL
+  dt-bindings: display: msm: document DSI controller and phy on SA8775P
+  drm/msm/dsi: add DSI PHY configuration on SA8775P
+  drm/msm/dsi: add DSI support for SA8775P
+  arm64: dts: qcom: sa8775p: add Display Serial Interface device nodes
+  arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to DP bridge nodes
+  drm/bridge: anx7625: enable HPD interrupts
+  drm/bridge: anx7625: fix drm_bridge ops flags to support hot-plugging
+  drm/bridge: anx7625: fix anx7625_sink_detect() to return correct hpd
+    status
+  drm/bridge: anx7625: change the gpiod_set_value API
+
+ .../display/msm/dsi-controller-main.yaml      |   2 +
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |   1 +
+ .../display/msm/qcom,sa8775p-mdss.yaml        | 181 ++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi    | 180 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 186 +++++++++++++++++-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     |  34 +++-
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c             |  18 ++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h             |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     |  27 +++
+ 11 files changed, 621 insertions(+), 12 deletions(-)
+
+-- 
+2.34.1
+
 
