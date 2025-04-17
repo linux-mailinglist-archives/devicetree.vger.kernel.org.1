@@ -1,116 +1,158 @@
-Return-Path: <devicetree+bounces-168213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B3DA91D46
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:05:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC0DA91D87
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:15:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 203EF463352
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 13:05:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 149233A1EFA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 13:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58A62376E6;
-	Thu, 17 Apr 2025 13:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD8924C078;
+	Thu, 17 Apr 2025 13:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="KPzhyH1W"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GzO0IxHX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBED924BC09;
-	Thu, 17 Apr 2025 13:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2829524BC18;
+	Thu, 17 Apr 2025 13:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744895040; cv=none; b=dfbEkgV6oMS/LQv/7SvbxVeksxF2cSao9S64AqotAU++IwtGFyxxDmO2aSPpWbd/4tkC9hQhC02bfwMD1rMtC18fQNv6M6+PTkop7sY+MvR+xK3V/Fxy48gQOccYhotseeEgxtz5EJCs1S6hySBX5GUZXU6E5yZBmKIs77QEW5g=
+	t=1744895617; cv=none; b=K3I73XM1OG2EurnkJNoUu75uudC4SQGeqqj5c6sAzhnI/BWDI+PTPQd5O7wZiB65Lsw56xVc+/11c/2KfrO82SQJF4NDTr2lQTRHYR+fN4ArfTvy05ee7MHyQv2028tGSq1GIw8wYwTVyAucINixAaWK0wQCBmTmW65qOzwTf2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744895040; c=relaxed/simple;
-	bh=lFeALokJFpgk28Aq35eQ1HRQJYe1F50kbXfYETsPyFI=;
+	s=arc-20240116; t=1744895617; c=relaxed/simple;
+	bh=DzWIUMgO/0aqjQKZLGHzjTpbRlPFNCqYf5Es4PwWA00=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bxtxed7T78gqbgJ1TsX01HeZHBryu+5hf3BXk38D1I2dghO/tXmI5NBpIRVeqDuzBgM/bjk7EVPdfEVuZ2uByY2YTNCQmQ5ieJO5QxRQpsl4Nxl5QtHxkVuHbyEcD398DFohhuYx2hRl9OE7Wmvw0GB+QJQejrXAmS8vcZAiTeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=KPzhyH1W; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id B71961F91A;
-	Thu, 17 Apr 2025 15:03:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1744895028;
-	bh=LVIv+Euugq4tGgOroUBB26lcmJe4QB+yarX/KrXGKoU=; h=From:To:Subject;
-	b=KPzhyH1WrJIKuXn4iDgsC61lXzCe1axXYyM9GRAGE4fsHLHTnE1wAqWGZwfS71ft/
-	 nA0ZpkIoMNpVG8On6N+KDyb5ttYOEERQ4IWBTolo/A2cjwB/nhLdB/CGaqiQTlf2OM
-	 /gSGRJDD8Lr6PSKZjNK8AXLJc4ZqSVQL+V4GkMC53obPRlvHHWgipM4GR0I5+mSGbn
-	 KKWmuEsMXuXmzbktwZlDCWTdCsFzXyFe1GnOUP9uJpdLcctRzzgN5bxc/+20wDuU9Y
-	 vBNiWRRq3YA0jxNMExpISjRCEOFuqgp+vByQIX6uAk0qLQmmvjCyVM70p9tEU552pe
-	 wsPG/35PlJDAA==
-Date: Thu, 17 Apr 2025 15:03:42 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=I+encc8OXags7JTMhyKuZcu3S/sMTYufXKCh1f3+9U66/JUXkE0SALEQlpBpiRbHWdbxUCnngsVVxNt8qhWp6dK27YZ4D1xr/xu3Y92gMMV+Th4nned+/lCt57TBQytRqiCfaHKW9TdRefvzlNNTdIQLkrkIVPh/FX/ET+39BEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GzO0IxHX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=kqSGBFvBco4jOMm/RXWM5jN0BSdqtnNtjafj4ponO5E=; b=Gz
+	O0IxHXQWLgWcGyU7z2o4uuOqx/kIuEPNQdLAVlq0CotfEkWnsIPQTIuvoCEKb4Of9OSgaLZidYGav
+	aQeF/gRXD9syYuO/WRiLA60LEu+NEYuFCqu3dDhxsJQ0ltZ4TL9c4RNPRVyGh6mJtsM7hu9PJUc/+
+	KG963Pq+b22gzAg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u5P3J-009mjg-HR; Thu, 17 Apr 2025 15:13:13 +0200
+Date: Thu, 17 Apr 2025 15:13:13 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mm-verdin: Link reg_nvcc_sd to usdhc2
-Message-ID: <20250417130342.GA18817@francesco-nb>
-References: <20250417112012.785420-1-Wojciech.Dubowik@mt.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 3/8] mfd: Add Microchip ZL3073x support
+Message-ID: <894d4209-4933-49bf-ae4c-34d6a5b1c9f1@lunn.ch>
+References: <20250416162144.670760-1-ivecera@redhat.com>
+ <20250416162144.670760-4-ivecera@redhat.com>
+ <8fc9856a-f2be-4e14-ac15-d2d42efa9d5d@lunn.ch>
+ <CAAVpwAsw4-7n_iV=8aXp7=X82Mj7M-vGAc3f-fVbxxg0qgAQQA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250417112012.785420-1-Wojciech.Dubowik@mt.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAVpwAsw4-7n_iV=8aXp7=X82Mj7M-vGAc3f-fVbxxg0qgAQQA@mail.gmail.com>
 
-Hello Wojciech,
-thanks very much for your patch.
-
-On Thu, Apr 17, 2025 at 01:20:11PM +0200, Wojciech Dubowik wrote:
-> Link LDO5 labeled reg_nvcc_sd from PMIC to align with
-> hardware configuration specified in the datasheet.
+On Wed, Apr 16, 2025 at 08:19:25PM +0200, Ivan Vecera wrote:
+> On Wed, Apr 16, 2025 at 7:11 PM Andrew Lunn <andrew@lunn.ch> wrote:
 > 
-> Without this definition LDO5 will be powered down, disabling
-> SD card after bootup. This has been introduced in commit
-> f5aab0438ef1 (regulator: pca9450: Fix enable register for LDO5).
+>     > +++ b/include/linux/mfd/zl3073x_regs.h
+>     > @@ -0,0 +1,105 @@
+>     > +/* SPDX-License-Identifier: GPL-2.0-only */
+>     > +
+>     > +#ifndef __LINUX_MFD_ZL3073X_REGS_H
+>     > +#define __LINUX_MFD_ZL3073X_REGS_H
+>     > +
+>     > +#include <asm/byteorder.h>
+>     > +#include <linux/lockdep.h>
 > 
-> Fixes: f5aab0438ef1 (regulator: pca9450: Fix enable register for LDO5)
-> Cc: stable@vger.kernel.org
+>     lockdep?
 > 
-> Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> index 7251ad3a0017..6307c5caf3bc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> @@ -785,6 +785,7 @@ &usdhc2 {
->  	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
->  	pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_cd_sleep>;
->  	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	vqmmc-supply = <&reg_nvcc_sd>;
+> lockdep_assert*() is used in later introduced helpers.
 
-I am worried just doing this will have some side effects.
+nitpicking, but you generally add headers as they are needed.
 
-Before this patch, the switch between 1v8 and 3v3 was done because we
-have a GPIO, connected to the PMIC, controlled by the USDHC2 instance
-(MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT, see pinctrl_usdhc2).
+>     > +#include <linux/mfd/zl3073x.h>
+>     > +#include <linux/regmap.h>
+>     > +#include <linux/types.h>
+>     > +#include <linux/unaligned.h>
+>     > +
+>     > +/* Registers are mapped at offset 0x100 */
+>     > +#define ZL_RANGE_OFF        0x100
+>     > +#define ZL_PAGE_SIZE        0x80
+>     > +#define ZL_REG_ADDR(_pg, _off) (ZL_RANGE_OFF + (_pg) * ZL_PAGE_SIZE +
+>     (_off))
+>     > +
+>     > +/**************************
+>     > + * Register Page 0, General
+>     > + **************************/
+>     > +
+>     > +/*
+>     > + * Register 'id'
+>     > + * Page: 0, Offset: 0x01, Size: 16 bits
+>     > + */
+>     > +#define ZL_REG_ID ZL_REG_ADDR(0, 0x01)
+>     > +
+>     > +static inline __maybe_unused int
+>     > +zl3073x_read_id(struct zl3073x_dev *zldev, u16 *value)
+>     > +{
+>     > +     __be16 temp;
+>     > +     int rc;
+>     > +
+>     > +     rc = regmap_bulk_read(zldev->regmap, ZL_REG_ID, &temp, sizeof
+>     (temp));
+>     > +     if (rc)
+>     > +             return rc;
+>     > +
+>     > +     *value = be16_to_cpu(temp);
+>     > +     return rc;
+>     > +}
+> 
+>     It seems odd these are inline functions in a header file.
+> 
+> 
+> There are going to be used by dpll_zl3073x sub-driver in series part 2.
 
-With your change both the PMIC will be programmed with a different
-voltage over i2c and the GPIO will also toggle. It does not sound like
-what we want to do.
+The subdriver needs to know the ID, firmware version, etc?
 
-Maybe we should have a "regulator-gpio" with vin-supply =
-<&reg_nvcc_sd>, as we recently did here
-https://lore.kernel.org/all/20250414123827.428339-1-ivitro@gmail.com/T/#m2964f1126a6732a66a6e704812f2b786e8237354
-?
+Anyway, look around. How many other MFD, well actually, any sort of
+driver at all, have a bunch of low level helpers as inline functions
+in a header? You are aiming to write a plain boring driver which looks
+like every other driver in Linux....
 
-Francesco
+Think about your layering. What does the MFD need to offer to sub
+drivers so they can work? For lower registers, maybe just
+zl3073x_read_u8(), zl3073x_read_u16() & zl3073x_read_read_u32(). Write
+variants as well. Plus the API needed to safely access the mailbox.
+Export these using one of the EXPORT_SYMBOL_GPL() variants, so the sub
+drivers can access them. The #defines for the registers numbers can be
+placed into a shared header file.
 
+The MFD needs to read the ID, firmware version etc, so it can have
+local implementations of these, but if the sub drivers don't need
+them, don't make them global scope.
+
+	Andrew
 
