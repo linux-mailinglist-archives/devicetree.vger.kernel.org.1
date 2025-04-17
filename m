@@ -1,359 +1,140 @@
-Return-Path: <devicetree+bounces-168362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B365A92B4B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 21:00:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A802A92B82
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 21:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E2FF7B3E6B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:58:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA06C170FF8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 19:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C9126156B;
-	Thu, 17 Apr 2025 18:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32621DF733;
+	Thu, 17 Apr 2025 19:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NyFID3TX"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eE9j55Am"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2E31DF728;
-	Thu, 17 Apr 2025 18:58:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C8814B092;
+	Thu, 17 Apr 2025 19:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744916298; cv=none; b=IZhctPvNPQQtEvfDVedMRyxfpTZkgYALPfi6IlaVaMZRVFpupjBoHlPc3r7YruFCcs7EYdd4XuLxNa8yrYX5rQEJaG74YB0mQ8wX4VCtonaoULPJ9MJS+sqi7nXe5WhtxwIdChwRkK1PqAwBxo2cN8enHsev9WFiEfWSOw7j1kY=
+	t=1744917037; cv=none; b=A+FJf7wgXA8yZ5alvIllk9PkokkqmP4UG7iMrNknrLo9D3AOtWIuqUVURuDM9fs5EpZ6M8TmbOy1+cHVDJcsL/U/mxv7qpTxas4b4fhYllom2UsfrwsW/Vk3SUb9Kvv3Yz8c1SDaQ1vSjaRGoTaHUpEI5sDxjlv9LHQAdXCoBY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744916298; c=relaxed/simple;
-	bh=ZXZPMgdCiLPNtLDdf8dTWa06fTMMBzDvSNhm12/e/lA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=jlmyRTtV3tYzCMpMi8QWlVkteHk5+401BYphof4SVWbuRvK6QWbSi4BtbmZdnoZIQksHcdPsQ2x01W8lLP0r1TF+ITopK9pnh5RannQeUTsAGTWW1fYNMYR3KsyMNL3+87c30JxUQi/tSX0CC1rnJl9GJ0D6ISWhoQYfLB4fNc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NyFID3TX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClSbi032057;
-	Thu, 17 Apr 2025 18:58:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rt9KQz4N5mADlnWOMntwvLVE5AQ1pUrBPMdieEmQQ3I=; b=NyFID3TXYdtuzklp
-	KN466vDCnCjCuLPhnsWSsBAknV7zlhUEO3Ff08F4XgM2hgu/sIcsd2OYL7KxoNrC
-	2Q4sjrdxToLI8U2QinI3P4yDQswAISIa6cIk8NIG7tPuSQs4gI04skb+TQbYkilP
-	c8c4uOVToztslBV9yda5a5JV/IQGpsJJKPv0hEhssTMDlm4fWR55S08U5EMlYapj
-	7/XDKsyoIz8NtdU+QtQg/kybQcIPoN6fvPOTkbRU4fyg6mV8cBL6DHiuciBiLcVA
-	VCuvjkLa/zhTsLsvFUGC+BvuhaovKwexQ2+CmrghQqs5vtqIDrGxayruoDmyjPq/
-	JQYwkA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wr05n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Apr 2025 18:58:11 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53HIwAFc010429
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Apr 2025 18:58:10 GMT
-Received: from hu-vgarodia-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 17 Apr 2025 11:58:06 -0700
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-Date: Fri, 18 Apr 2025 00:27:34 +0530
-Subject: [PATCH 4/4] media: iris: add qcs8300 platform data
+	s=arc-20240116; t=1744917037; c=relaxed/simple;
+	bh=bf/89/VY8sX+682N5Xvan/8KvNpWwcjeRGj5ngCaVZw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M0iJSeVemW43LIMABVbrLHWkJMy/2BKm5pzsWyqoC1MTlIMn99F8dtQrxG5WL7yOeBstwrNhcoETODvTdkYUy+i4jwwsaqT/FNNJPGAY0LXgkr9GinW6mpezz+1znh4mxzcpHyd386Dcwv6EjGSBmJFjJqI3XsAg5+pldiWKShY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eE9j55Am; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Bcw9WhJwy8zPhG5QYKyzowO/nlWGUJAb4ocjNVPbD+M=; b=eE9j55AmbmSEjJ79eSUkt8Ug8/
+	ods2pey/Q/s9D0W0kHfocu8rE8/Z9z/WMtxqGXtVWe9L+s8G+jCBc3d/ptkxieHfnT9DCjwAxqxgp
+	AmLgzcFgBoIseY1aOwh16oP9ENkDx8pVzXNDRUKSQHTVgrbxZcuHSbXoMuQ90zZVZAGnCTe+DflZn
+	ZLkhDS+F/nlIF2KbkC6Y7hDziCCThaREaT7MnPFYL4VIn/bPYh3uNlo3RaXbYfi9p2iBBoBQoJwuA
+	qd5FPWkxxK1+EAGm6GNNVDEi7dXv9CytuqL2X2WwKuTstCcUsEYa3S+7LVZgEkoY/LDsJjcqk/WB9
+	RGdZL8og==;
+Received: from i53875b95.versanet.de ([83.135.91.149] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u5Ucj-0001E8-Bd; Thu, 17 Apr 2025 21:10:09 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 2/3] arm64: dts: rockchip: Add I2C controllers for RK3528
+Date: Thu, 17 Apr 2025 21:10:08 +0200
+Message-ID: <13753899.uLZWGnKmhe@diego>
+In-Reply-To: <aAEUS7QQbXSvrcEs@pie.lan>
+References:
+ <20250417120118.17610-3-ziyao@disroot.org>
+ <c6d3e343-7005-48a9-a133-bf39cb6790ee@kernel.org> <aAEUS7QQbXSvrcEs@pie.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250418-qcs8300_iris-v1-4-67792b39ba21@quicinc.com>
-References: <20250418-qcs8300_iris-v1-0-67792b39ba21@quicinc.com>
-In-Reply-To: <20250418-qcs8300_iris-v1-0-67792b39ba21@quicinc.com>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744916269; l=8816;
- i=quic_vgarodia@quicinc.com; s=20241104; h=from:subject:message-id;
- bh=ZXZPMgdCiLPNtLDdf8dTWa06fTMMBzDvSNhm12/e/lA=;
- b=oLFLN7jOPpcOX11ro0rhqT2ourHoCBaVuCT9qdKtMyyMN9cFWnz+gYWrWkEyypayFTCMX6zuF
- EBskGeCy8B3CP3GfX3Fqiw6L3QDgNqfY982r6q0SBeLGL4lKwr40dDp
-X-Developer-Key: i=quic_vgarodia@quicinc.com; a=ed25519;
- pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=68014f43 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=glt1T1EG--dW8uzeodgA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: yPs4sQ514Ebm8TXypCYOHtpLLD4T9Azs
-X-Proofpoint-GUID: yPs4sQ514Ebm8TXypCYOHtpLLD4T9Azs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-17_06,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504170139
 
-QCS8300 has a downscaled video core compared to SM8550, while it has
-same bindings as that of SM8550. QCS8300.h captures the capabilities for
-QCS8300 which is delta from SM8550.
+Hi Krzysztof,
 
-Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
----
- .../platform/qcom/iris/iris_platform_common.h      |   1 +
- .../media/platform/qcom/iris/iris_platform_gen2.c  |  57 ++++++++++
- .../platform/qcom/iris/iris_platform_qcs8300.h     | 124 +++++++++++++++++++++
- drivers/media/platform/qcom/iris/iris_probe.c      |   4 +
- 4 files changed, 186 insertions(+)
+Am Donnerstag, 17. April 2025, 16:46:35 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Yao Zi:
+> On Thu, Apr 17, 2025 at 04:36:57PM +0200, Krzysztof Kozlowski wrote:
+> > On 17/04/2025 16:36, Krzysztof Kozlowski wrote:
+> > > On 17/04/2025 14:01, Yao Zi wrote:
+> > >> Describe I2C controllers shipped by RK3528 in devicetree. For I2C-2,
+> > >> I2C-4 and I2C-7 which come with only a set of possible pins, a defau=
+lt
+> > >> pin configuration is included.
+> > >>
+> > >> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > >> ---
+> > >>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 110 ++++++++++++++++++++=
++++
+> > >>  1 file changed, 110 insertions(+)
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/b=
+oot/dts/rockchip/rk3528.dtsi
+> > >> index 826f9be0be19..2c9780069af9 100644
+> > >> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> > >> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> > >> @@ -24,6 +24,14 @@ aliases {
+> > >>  		gpio2 =3D &gpio2;
+> > >>  		gpio3 =3D &gpio3;
+> > >>  		gpio4 =3D &gpio4;
+> > >> +		i2c0 =3D &i2c0;
+> > >> +		i2c1 =3D &i2c1;
+> > >> +		i2c2 =3D &i2c2;
+> > >> +		i2c3 =3D &i2c3;
+> > >> +		i2c4 =3D &i2c4;
+> > >> +		i2c5 =3D &i2c5;
+> > >> +		i2c6 =3D &i2c6;
+> > >> +		i2c7 =3D &i2c7;
+> > > Aliases are not properties of the SoC but boards.
+> >=20
+> > Of course this should be: Bus/interface aliases are not...
+>=20
+> Thanks for the explanation. Will move them to the board DT.
 
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-index 6bc3a7975b04d612f6c89206eae95dac678695fc..3191a910653ce4bd71de9a0b4465fd583602adf6 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-+++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-@@ -36,6 +36,7 @@ enum pipe_type {
- extern struct iris_platform_data sm8250_data;
- extern struct iris_platform_data sm8550_data;
- extern struct iris_platform_data sm8650_data;
-+extern struct iris_platform_data qcs8300_data;
- 
- enum platform_clk_type {
- 	IRIS_AXI_CLK,
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-index 5ff82296ee8ea5ad3954bd2254594048adcb8404..723e9f4cef42408168aca22b34ccd0a674a4fd25 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-+++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-@@ -11,6 +11,7 @@
- #include "iris_vpu_common.h"
- 
- #include "iris_platform_sm8650.h"
-+#include "iris_platform_qcs8300.h"
- 
- #define VIDEO_ARCH_LX 1
- 
-@@ -326,3 +327,59 @@ struct iris_platform_data sm8650_data = {
- 	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
- 	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
- };
-+
-+/*
-+ * Shares most of SM8550 data except:
-+ * - inst_caps to platform_inst_cap_qcs8300
-+ * - inst_fw_caps to inst_fw_cap_qcs8300
-+ */
-+struct iris_platform_data qcs8300_data = {
-+	.get_instance = iris_hfi_gen2_get_instance,
-+	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
-+	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
-+	.vpu_ops = &iris_vpu3_ops,
-+	.set_preset_registers = iris_set_sm8550_preset_registers,
-+	.icc_tbl = sm8550_icc_table,
-+	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-+	.clk_rst_tbl = sm8550_clk_reset_table,
-+	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
-+	.bw_tbl_dec = sm8550_bw_table_dec,
-+	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
-+	.pmdomain_tbl = sm8550_pmdomain_table,
-+	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
-+	.opp_pd_tbl = sm8550_opp_pd_table,
-+	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
-+	.clk_tbl = sm8550_clk_table,
-+	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
-+	/* Upper bound of DMA address range */
-+	.dma_mask = 0xe0000000 - 1,
-+	.fwname = "qcom/vpu/vpu30_p4_s6.mbn",
-+	.pas_id = IRIS_PAS_ID,
-+	.inst_caps = &platform_inst_cap_qcs8300,
-+	.inst_fw_caps = inst_fw_cap_qcs8300,
-+	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_qcs8300),
-+	.tz_cp_config_data = &tz_cp_config_sm8550,
-+	.core_arch = VIDEO_ARCH_LX,
-+	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-+	.ubwc_config = &ubwc_config_sm8550,
-+	.num_vpp_pipe = 2,
-+	.max_session_count = 16,
-+	.max_core_mbpf = ((4096 * 2176) / 256) * 4,
-+	.input_config_params =
-+		sm8550_vdec_input_config_params,
-+	.input_config_params_size =
-+		ARRAY_SIZE(sm8550_vdec_input_config_params),
-+	.output_config_params =
-+		sm8550_vdec_output_config_params,
-+	.output_config_params_size =
-+		ARRAY_SIZE(sm8550_vdec_output_config_params),
-+	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
-+	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
-+	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
-+	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
-+
-+	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-+	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-+	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-+	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-+};
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..7b198c9c1246e6bafaf7bb09c3e00b3e9057ed62
---- /dev/null
-+++ b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-@@ -0,0 +1,124 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+struct platform_inst_fw_cap inst_fw_cap_qcs8300[] = {
-+	{
-+		.cap_id = PROFILE,
-+		.min = V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE,
-+		.max = V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH,
-+		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE) |
-+			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH) |
-+			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_BASELINE) |
-+			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
-+			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_HIGH),
-+		.value = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
-+		.hfi_id = HFI_PROP_PROFILE,
-+		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-+		.set = iris_set_u32_enum,
-+	},
-+	{
-+		.cap_id = LEVEL,
-+		.min = V4L2_MPEG_VIDEO_H264_LEVEL_1_0,
-+		.max = V4L2_MPEG_VIDEO_H264_LEVEL_6_2,
-+		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1B)  |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_2) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_3) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_2) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_2) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_2) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_2) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_0) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_1) |
-+			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_2),
-+		.value = V4L2_MPEG_VIDEO_H264_LEVEL_6_1,
-+		.hfi_id = HFI_PROP_LEVEL,
-+		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-+		.set = iris_set_u32_enum,
-+	},
-+	{
-+		.cap_id = INPUT_BUF_HOST_MAX_COUNT,
-+		.min = DEFAULT_MAX_HOST_BUF_COUNT,
-+		.max = DEFAULT_MAX_HOST_BURST_BUF_COUNT,
-+		.step_or_mask = 1,
-+		.value = DEFAULT_MAX_HOST_BUF_COUNT,
-+		.hfi_id = HFI_PROP_BUFFER_HOST_MAX_COUNT,
-+		.flags = CAP_FLAG_INPUT_PORT,
-+		.set = iris_set_u32,
-+	},
-+	{
-+		.cap_id = STAGE,
-+		.min = STAGE_1,
-+		.max = STAGE_2,
-+		.step_or_mask = 1,
-+		.value = STAGE_2,
-+		.hfi_id = HFI_PROP_STAGE,
-+		.set = iris_set_stage,
-+	},
-+	{
-+		.cap_id = PIPE,
-+		.min = PIPE_1,
-+		.max = PIPE_2,
-+		.step_or_mask = 1,
-+		.value = PIPE_2,
-+		.hfi_id = HFI_PROP_PIPE,
-+		.set = iris_set_pipe,
-+	},
-+	{
-+		.cap_id = POC,
-+		.min = 0,
-+		.max = 2,
-+		.step_or_mask = 1,
-+		.value = 1,
-+		.hfi_id = HFI_PROP_PIC_ORDER_CNT_TYPE,
-+	},
-+	{
-+		.cap_id = CODED_FRAMES,
-+		.min = CODED_FRAMES_PROGRESSIVE,
-+		.max = CODED_FRAMES_PROGRESSIVE,
-+		.step_or_mask = 0,
-+		.value = CODED_FRAMES_PROGRESSIVE,
-+		.hfi_id = HFI_PROP_CODED_FRAMES,
-+	},
-+	{
-+		.cap_id = BIT_DEPTH,
-+		.min = BIT_DEPTH_8,
-+		.max = BIT_DEPTH_8,
-+		.step_or_mask = 1,
-+		.value = BIT_DEPTH_8,
-+		.hfi_id = HFI_PROP_LUMA_CHROMA_BIT_DEPTH,
-+	},
-+	{
-+		.cap_id = RAP_FRAME,
-+		.min = 0,
-+		.max = 1,
-+		.step_or_mask = 1,
-+		.value = 1,
-+		.hfi_id = HFI_PROP_DEC_START_FROM_RAP_FRAME,
-+		.flags = CAP_FLAG_INPUT_PORT,
-+		.set = iris_set_u32,
-+	},
-+};
-+
-+struct platform_inst_caps platform_inst_cap_qcs8300 = {
-+	.min_frame_width = 96,
-+	.max_frame_width = 4096,
-+	.min_frame_height = 96,
-+	.max_frame_height = 4096,
-+	.max_mbpf = (4096 * 2176) / 256,
-+	.mb_cycles_vpp = 200,
-+	.mb_cycles_fw = 326389,
-+	.mb_cycles_fw_vpp = 44156,
-+	.num_comv = 0,
-+};
-diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-index 7cd8650fbe9c09598670530103e3d5edf32953e7..e5f1896e55c390e920d206e7fc2c2be283bb39d8 100644
---- a/drivers/media/platform/qcom/iris/iris_probe.c
-+++ b/drivers/media/platform/qcom/iris/iris_probe.c
-@@ -349,6 +349,10 @@ static const struct of_device_id iris_dt_match[] = {
- 		.compatible = "qcom,sm8650-iris",
- 		.data = &sm8650_data,
- 	},
-+	{
-+		.compatible = "qcom,qcs8300-iris",
-+		.data = &qcs8300_data,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, iris_dt_match);
+I think we're having that discussion for every soc :-) .
 
--- 
-2.34.1
+Uarts. gpios, i2c and spi are always labeled foo[0-...] in all pieces
+of Rockchip documentation.
+
+The i2c0 controller has pins i2c0-scl, i2c0_sda; i2c0-labeled iomem;
+i2c0-labeled irq, clk_i2c0, resetn_i2c0.
+
+
+I completely _agree_ that {sdhci, sdmmc, emmc, sdio} -> mmcX is fully
+board specific, but i2c0 should always get the i2c0 label and no other
+controller should occupy that soc-specific i2c0-space, because that would
+cause confusion without end.
+
+
+And with the above it makes no real sense repeating the same list for
+every individual board.
+
+If you _insist_ on this, then fine, but I really don't see the point.
+
+
+Heiko
+
 
 
