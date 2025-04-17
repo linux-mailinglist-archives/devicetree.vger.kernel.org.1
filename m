@@ -1,81 +1,68 @@
-Return-Path: <devicetree+bounces-168203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E309CA91CC6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:48:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3986BA91CCC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:49:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC34519E6772
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:48:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3C353B65ED
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C66248876;
-	Thu, 17 Apr 2025 12:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D433B188CDB;
+	Thu, 17 Apr 2025 12:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U+MTvQ+s"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="G/Yb7oau"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B44245017;
-	Thu, 17 Apr 2025 12:47:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB4928E37
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744894041; cv=none; b=qinaQuehdcM4aNbWMco/kVf8UC+ABjwQvqCyJDJekrRsOF6TXFbfykROFLuR3fU6mvmcaYwptPDES5wcCU6SKdbmk3Zl1icPBsYvDkQkU+Jhc5r8p1UEJYqmkjvzKQmYSsNDiepSFJQxArJZCV6RvFwKKko2U0Z42BmclqciJIk=
+	t=1744894089; cv=none; b=GiOiN4qtMd4wdTqR7LwP7lsLsPtlNXTFm2ZOaYESgs2IJY26GG9hYO01QZ0F3IZJ1TJeAeQmD8jAhwCekFMFDzOYFD+LBfFj+3nRiOzKOfABM4Lbs62G/xYTAFJZogjikUd70dlDAO5JHN27SeuVzwKxfuVEBE9ObOJLsbng6u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744894041; c=relaxed/simple;
-	bh=LiuE/7Hvqxov9Zq2+v/0W2sw6XtF+cZL6hiw0yCmTVo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g5MqFYzJdSc1+TjqbHcGi50jNjSlrgXZQBD/9nLpa+mWWQ3B+hgcm55GPsXm6mbRBOgDi6bRf+W6tXd9oA2cPqxV9kPc/H6NmNdXOtM4YNj3aGiJ+R1PS3zhrB+ISSIUHjHY1CBim+dI+MIf0SA4RmGgOm3OXixs5s+OGUuZ/k8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U+MTvQ+s; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HCHvA7025144;
-	Thu, 17 Apr 2025 12:46:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=MhYB+fQY5/H
-	wxFMNmLwlVkIaxwQ//b1WEkAR46glzpg=; b=U+MTvQ+swe05UvI1FOT5ziXxG/K
-	d2ZukcPHhQJTvI4WAQ2SaZ2DUJ9wygPbO66/wLVawewy8hX3tq3uzgTJbKNkTP0n
-	QGAQ/GSxm29P+SGkcLrOSiRYM7tX+Z/1Xk0T9sPeb0neoR0VHVSsU4fS8Tomh3ld
-	8TrWv5ulg0zZxnFT5TSpvZGQrs1dzVtmI6geKLsuBbnafS+PzuqMYZwAjino9P69
-	6UKV5PW3sZXB4Ecl3CD44zqd2UUbszGlumpaMz0+VFoK038VkrPSYtkBYM9/uQMK
-	oLEIcOVJWHCOtIqHtmtq4MdWMifylqg0ea7YI3Frw3KBrUzY5/7qBddCsCQ==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6q18n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Apr 2025 12:46:53 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53HCknrb017631;
-	Thu, 17 Apr 2025 12:46:50 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 462f5drtts-1;
-	Thu, 17 Apr 2025 12:46:50 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53HCkorw017649;
-	Thu, 17 Apr 2025 12:46:50 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 53HCkoi1017648;
-	Thu, 17 Apr 2025 12:46:50 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
-	id AF97C501598; Thu, 17 Apr 2025 18:16:49 +0530 (+0530)
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-To: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org,
-        conor+dt@kernel.org, James.Bottomley@HansenPartnership.com,
-        martin.petersen@oracle.com, beanhuo@micron.com,
-        peter.wang@mediatek.com
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Nitin Rawat <quic_nitirawa@quicinc.com>
-Subject: [PATCH V1 3/3] scsi: ufs: qcom: Add support to disable UFS LPM Feature
-Date: Thu, 17 Apr 2025 18:16:45 +0530
-Message-ID: <20250417124645.24456-4-quic_nitirawa@quicinc.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250417124645.24456-1-quic_nitirawa@quicinc.com>
-References: <20250417124645.24456-1-quic_nitirawa@quicinc.com>
+	s=arc-20240116; t=1744894089; c=relaxed/simple;
+	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=JP1+yEuR/6Tpk/9egYBESMfDFPOYKn+znDExlupNpbooMuJfYpifVMuCEqxUi2eUBIghbSpG0smosQHPIuSSucsoNiZXSSxERVXNGVsa9xmS3tXKbym1oE4Ck4+l/qDapRbNqvcrIVqYvXpihNyT1lM6Jxf0dG/a4ZPHK86hqO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=G/Yb7oau; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1744894084; x=1745498884;
+	i=markus.stockhausen@gmx.de;
+	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
+	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=G/Yb7oaumPdM/8qQ0kugyO+iwx2YrBHRD3y/tjzR7wqJuiVBnFvzIVCYhRuxJhLM
+	 AsNGNbUqWbA9lDEJITMHwgX6hLth9yN+lBUL6Hy8IsWtLFkF0hpJUNjz1neNOHcVn
+	 xZNQ8P9qTV2A1Axm0mCnoDnHGBJHHklNM7kWC8MPwXkhgstjNp3U4k3j446pCWUYS
+	 gK/pSpbO4+b9HKaWS+5iauza/O3uDtas3LHzIb88uoOKq0uDSgmuurg6eHm9pISm5
+	 TcoLjk3c0OVpPksibFWjZcmx5kdOktkrsWkV15IzsdigmA3uLDbPokHWgMl/NDn9Z
+	 Fuez0DXAVAiqubxfAA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from openwrt ([94.31.70.55]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MKKZ3-1uR3DH0o6J-00WwfS; Thu, 17
+ Apr 2025 14:48:04 +0200
+From: Markus Stockhausen <markus.stockhausen@gmx.de>
+To: markus.stockhausen@gmx.de,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	chris.packham@alliedtelesis.co.nz,
+	daniel@makrotopia.org
+Subject: [PATCH v6 0/2] phy: Realtek Otto SerDes: add new driver
+Date: Thu, 17 Apr 2025 08:47:41 -0400
+Message-ID: <20250417124741.2405981-1-markus.stockhausen@gmx.de>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,62 +70,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: i_G93qBxi1AmiFQD0O3d6ZfPKPuSg1vY
-X-Proofpoint-GUID: i_G93qBxi1AmiFQD0O3d6ZfPKPuSg1vY
-X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=6800f83e cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=TfDKAR2Pkyhr9upUyPUA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-17_03,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504170095
+X-Provags-ID: V03:K1:z1q87PWrzmA+wZ6MmSuAOPAUk3WHPvHPmJ2WcsqhdyvaTUUkS6x
+ d11KF+Bs/HBSKNKvH8yRtX0tlCemiijrwTa7D5IU+VsQxy/TEhpOR75hwjjfWWPtC9TGMBd
+ 6XF+Eb8LN9IWmtaeeAupn0aP5J0PmWDnosnCIsfY6ozXVLqJQh4Rayqqw65/rG8tDgEslaJ
+ TbbwSO6lytqaW3Wb/6EsQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:6c0dz2ZZ/uU=;BvYxgyYjX3fK4VnXuNW5l3ye3ag
+ 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
+ UUV5S4uJ9HNamEOLzvFwJ4=
 
-There are emulation FPGA platforms or other platforms where UFS low
-power mode is either unsupported or power efficiency is not a critical
-requirement.
+This patch series adds support for the SerDes in the Realtek Otto platform.
+These are 8-52 port switch SoCs of the RTL83xx and RTL93xx series with MIPS
+cores. The ports are based on 1-8 port PHYs (e.g. RTL8218D) that are connected
+via multiple SerDes.
 
-Disable all low power mode UFS feature based on the "disable-lpm" device
-tree property parsed in platform driver.
+The driver is based on the GPL source drops from the different switch vendors.
+It supports all 4 SoC series and was developed and tested on the following
+devices:
 
-Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
----
- drivers/ufs/host/ufs-qcom.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+RTL838x - codename maple - Linksys LGS310C
+RTL839x - codename cypress - Zyxel GS1920-24
+RTL930x - codename langon - Zyxel XGS1210-10
+RTL931x - codename mango - Linksys LGS352C
 
-diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-index 1b37449fbffc..1024edf36b68 100644
---- a/drivers/ufs/host/ufs-qcom.c
-+++ b/drivers/ufs/host/ufs-qcom.c
-@@ -1014,13 +1014,14 @@ static void ufs_qcom_set_host_caps(struct ufs_hba *hba)
+Due to very little information and fundamentally different I/O handling and
+port ranges of the devices the driver assumes and translates some handling
+to provide a common consistent interface.
 
- static void ufs_qcom_set_caps(struct ufs_hba *hba)
- {
--	hba->caps |= UFSHCD_CAP_CLK_GATING | UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
--	hba->caps |= UFSHCD_CAP_CLK_SCALING | UFSHCD_CAP_WB_WITH_CLK_SCALING;
--	hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
--	hba->caps |= UFSHCD_CAP_WB_EN;
--	hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
--	hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
--
-+	if (!hba->disable_lpm) {
-+		hba->caps |= UFSHCD_CAP_CLK_GATING | UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
-+		hba->caps |= UFSHCD_CAP_CLK_SCALING | UFSHCD_CAP_WB_WITH_CLK_SCALING;
-+		hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
-+		hba->caps |= UFSHCD_CAP_WB_EN;
-+		hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
-+		hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
-+	}
- 	ufs_qcom_set_host_caps(hba);
- }
+Currently only provide the most basic operations for mode set and device
+reset as well as some debugging information if enabled. The strength lies in
+the fact that the driver can run patch sequences for the SerDes registers at
+certain events, e.g. during setup. This allows to run configuration
+operations to get the SerDes up and running.
 
---
-2.48.1
+For more information see:
+
+https://svanheule.net/switches/gpl_source_drops
+https://svanheule.net/realtek/
 
 
