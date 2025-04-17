@@ -1,179 +1,190 @@
-Return-Path: <devicetree+bounces-168010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496C1A912EA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:43:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5017A912F5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 502283A7FFA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:42:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2C7616AB39
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021C81DE2C7;
-	Thu, 17 Apr 2025 05:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RCl6riEp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4627E1DED5E;
+	Thu, 17 Apr 2025 05:43:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6F52135B8;
-	Thu, 17 Apr 2025 05:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D30D1D5CD6;
+	Thu, 17 Apr 2025 05:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744868391; cv=none; b=CsNEmBlf3U2Zn8UKdCZzxq1bNY8Tpi5IrqTLLSAXluO0YQH+2FFRrXCwCYCKx49/e7GcgOy3QkevlTNTBBCqAvGnv33W8fdm45UGUDp/y4sYiypOGbmiXiky+xV2Cu6kb9ykFHdgh1emcTdL+qSg86GzHvntZxxNAhpc2zknY3k=
+	t=1744868621; cv=none; b=tsWkSTHSRV1tBEHTCXn5hHrql8x+Kw75KQ8P057tEKnCPrn5AHXn1JAe50C7ZHjYU50835kJ99NThW8SCtJOitQUg8hDRlxQu59XNstk01crIVBnH05S1/N+oKW/lxOxm7I398LIBa5pPSSZ2guaNlanoxt8tyXcPLcB4oJiLII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744868391; c=relaxed/simple;
-	bh=O+7UduCp8OWrVDAANuMZTwB/Aldeg/z+ZeOeNAciQ+0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vA6gvljWY7X/gVahwqhv7kzalik29rlN4HRpVM2LXLoEaybmJDAUoWBDn4joLJOVmFYFtxCPDej2I/6A5+EviculiPVlQn3z0sdWaAjbrVeYYDggPpCXOHFvY8/UJscJZAJELC1X/TI7vIK13toaL/p2YdBA+iD3AtiH6LGZsHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RCl6riEp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13208C4CEE4;
-	Thu, 17 Apr 2025 05:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744868391;
-	bh=O+7UduCp8OWrVDAANuMZTwB/Aldeg/z+ZeOeNAciQ+0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RCl6riEpixKGXyqSZL1ftlEjmnCLrlYV1FBSZKJAVmkJmdx+PRaHyn0eDO/ZjikuQ
-	 RJpJDoAraOoLBmfQ7JQsrP5U9aUss6PfMktt5X3dSdYJ1Cp5qheMGcd/NsVk9wjTpL
-	 +asjBcncP4M5zhefatZO+mM0XFcMNxx1ubpH3tpDRlTA+jHbSJuIdq0zDv0RFwPJ8P
-	 s0mFV5+UNDivWe883qlQE+aoLmVGPEE+LJ2UlCyiD1LKZvWqNhrMz5Ab68jGh6o5uU
-	 vrAQDPgU3LZsTuIgWKSecxNLmwqZFXq1yC1iFGtkVCLLkSxGPVBY658jQznxwf4QWt
-	 Ll8w+58O91JfQ==
-Message-ID: <f189ec8e-88fc-491f-8552-e1e5d0b7cde7@kernel.org>
-Date: Thu, 17 Apr 2025 07:39:47 +0200
+	s=arc-20240116; t=1744868621; c=relaxed/simple;
+	bh=/PVVCBtyIbtjPzWqAGsOTuFNzHc6YeSHntFYYMJyiGQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ONIpx9RbA7+UECRgbG/0PoI+jcFU8ynehh/YUtopt+RnBJmIxmoEOFo+K1QNsZT1t13Ryl/UWPMreYyC7g+4Uaby4MzOHWrn1e2Bw5728bGnGZ2R8w+OhE5v9xfWygT75GxPB8akmF9VF89L6J9XJaNOyDnOTwJK5WBr5ITnxEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: MVpq/TmQQiiqO+iwqIIoWQ==
+X-CSE-MsgGUID: +XdT1WJoTASpK910HGPVdQ==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 17 Apr 2025 14:43:30 +0900
+Received: from localhost.localdomain (unknown [10.226.92.77])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 09F914035E80;
+	Thu, 17 Apr 2025 14:43:25 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	u.kleine-koenig@baylibre.com,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Simon Horman <horms@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH v9 00/19] Add support for RZ/G3E CANFD
+Date: Thu, 17 Apr 2025 06:43:01 +0100
+Message-ID: <20250417054320.14100-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-To: Bryan Brattlof <bb@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250407-am62lx-v4-0-ce97749b9eae@ti.com>
- <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
- <20250409-calculating-hungry-mosquito-f8cfeb@shite>
- <20250411182608.cpxr357humjq6ln7@bryanbrattlof.com>
- <859a4fc2-45f5-4d72-9727-7979e4c15bd5@kernel.org>
- <20250416144202.4bmm566iqaz6adzo@bryanbrattlof.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250416144202.4bmm566iqaz6adzo@bryanbrattlof.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/04/2025 16:42, Bryan Brattlof wrote:
-> On April 12, 2025 thus sayeth Krzysztof Kozlowski:
->> On 11/04/2025 20:26, Bryan Brattlof wrote:
->>>>> +
->>>>> +		usb0_phy_ctrl: syscon@45000 {
->>>>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
->>>>> +			reg = <0x45000 0x4>;
->>>>> +			bootph-all;
->>>>> +		};
->>>>> +
->>>>> +		usb1_phy_ctrl: syscon@45004 {
->>>>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
->>>>> +			reg = <0x45004 0x4>;
->>>>
->>>> No, you do not get syscon per register. The entire point of syscon is to
->>>> collect ALL registers. Your device is the syscon, not a register.
->>>>
->>>
->>> My understanding from [0] was that we would need to break this up into 
->>> smaller syscon nodes because the alternative would be to mark the entire 
->>> region as a syscon and every other node using it would need to use it's 
->>> base + offset which was kinda undesirable especially for the small 
->>> number of drivers that need data from this region.
->>>
->>>     a-device {
->>>         clocks = <&epwm_tbclk 0>;
->>
->>
->> Hm? That's how you use the syscon, so how it can be undesirable?
->>
->> Anyway, one register is not a device, so no device node per register.
->>
->> In the link you provided I was repeating the same, so you got same
->> review in multiple places.
->>
-> 
-> Interesting. The way I read that thread was the opposite and it's why we 
-> did this for the 62, 62A, and 62P devices. I mainly say it's unfortunate 
+The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
+and RZ/G2L, but differs in some hardware parameters:
+ * No external clock, but instead has ram clock.
+ * Support up to 6 channels.
+ * 20 interrupts.
 
-Really? What was unclear here:
+v8->v9:
+ * Collected tags.
+ * Added missing header bitfield.h.
+ * Fixed logical error ch->BIT(ch) in rcar_canfd_global_error().
+ * Removed unneeded double space in rcar_canfd_setrnc().
+ * Updated commit description in patch#15.
+v7->v8:
+ * Collected tags.
+ * Updated commit description for patch#{5,9,15,16,17}.
+ * Replaced the macro RCANFD_GERFL_EEF0_7->RCANFD_GERFL_EEF.
+ * Dropped the redundant macro RCANFD_GERFL_EEF(ch).
+ * Added patch for dropping the mask operation in RCANFD_GAFLCFG_SETRNC
+   macro.
+ * Converted RCANFD_GAFLCFG_SETRNC->rcar_canfd_setrnc().
+ * Updated RCANFD_GAFLCFG macro by replacing the parameter ch->w, where w
+   is the GAFLCFG index used in the hardware manual.
+ * Renamed the parameter x->page_num in RCANFD_GAFLECTR_AFLPN macro to
+   make it clear.
+ * Renamed the parameter x->cftml in RCANFD_CFCC_CFTML macro to make it
+   clear.
+ * Updated {rzg2l,car_gen3_hw_info} with ch_interface_mode = 0.
+ * Updated {rzg2l,rcar_gen3}_hw_info with shared_can_regs = 0.
+ * Started using struct rcanfd_regs instead of LUT for reg offsets.
+ * Started using struct rcar_canfd_shift_data instead of LUT for shift
+   data.
+ * Renamed only_internal_clks->external_clk to avoid negation.
+ * Updated rcar_canfd_hw_info tables with external_clk entries.
+ * Replaced 10->sizeof(name) in scnprintf().
+v6->v7:
+ * Collected tags
+ * Replaced 'aswell'->'as well' in patch#11 commit description.
+v5->v6:
+ * Replaced RCANFD_RNC_PER_REG macro with rnc_stride variable.
+ * Updated commit description for patch#7 and #8
+ * Dropped mask_table:
+     AFLPN_MASK is replaced by max_aflpn variable.
+     CFTML_MASK is replaced by max_cftml variable.
+     BITTIMING MASK's are replaced by {nom,data}_bittiming variables.
+ * Collected tag from Geert.
+v4->v5:
+ * Collected tag from Geert.
+ * The rules for R-Car Gen3/4 could be kept together, reducing the number
+   of lines. Similar change for rzg2l-canfd aswell.
+ * Keeping interrupts and resets together allows to keep a clear
+   separation between RZ/G2L and RZ/G3E, at the expense of only
+   a single line.
+ * Retained the tags for binding patches as it is trivial changes.
+ * Dropped the unused macro RCANFD_GAFLCFG_GETRNC.
+ * Updated macro RCANFD_GERFL_ERR by using gpriv->channels_mask and
+   dropped unused macro RCANFD_GERFL_EEF0_7.
+ * Replaced RNC mask in RCANFD_GAFLCFG_SETRNC macro by using
+   info->num_supported_rules variable.
+ * Updated the macro RCANFD_GAFLCFG by using info->rnc_field_width
+   variable.
+ * Updated shift value in RCANFD_GAFLCFG_SETRNC macro by using a formula
+   (32 - (n % rnc_per_reg + 1) * field_width).
+ * Replaced the variable name shared_can_reg->shared_can_regs.
+ * Improved commit description for patch{#11,#12}by replacing has->have.
+ * Dropped RCANFD_EEF_MASK and RCANFD_RNC_MASK as it is taken
+   care by gpriv->channels_mask and info->num_supported_rules.
+ * Dropped RCANFD_FIRST_RNC_SH and RCANFD_SECOND_RNC_SH by using a
+   formula (32 - (n % rnc_per_reg + 1) * rnc_field_width.
+ * Improved commit description by "All SoCs supports extenal clock"->
+   "All existing SoCs support an external clock".
+ * Updated error description in probe as "cannot get enabled ram clock"
+ * Updated r9a09g047_hw_info table.
+v3->v4:
+ * Added Rb tag from Rob for patch#2.
+ * Added prefix RCANFD_* to enum rcar_canfd_reg_offset_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_mask_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_shift_id.
+v2->v3:
+ * Collected tags.
+ * Dropped reg_gen4() and is_gen4() by adding mask_table, shift_table,
+   regs, ch_interface_mode and shared_can_reg variables to
+   struct rcar_canfd_hw_info.
+v1->v2:
+ * Split the series with fixes patch separately.
+ * Added patch for Simplify rcar_canfd_probe() using
+   of_get_available_child_by_name() as dependency patch hit on can-next.
+ * Added Rb tag from Vincent Mailhol.
+ * Dropped redundant comment from commit description for patch#3.
 
-https://lore.kernel.org/lkml/20250124-able-beagle-of-prowess-f5eb7a@krzk-bin/
+Biju Das (19):
+  dt-bindings: can: renesas,rcar-canfd: Simplify the conditional schema
+  dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
+  can: rcar_canfd: Use of_get_available_child_by_name()
+  can: rcar_canfd: Drop RCANFD_GAFLCFG_GETRNC macro
+  can: rcar_canfd: Update RCANFD_GERFL_ERR macro
+  can: rcar_canfd: Drop the mask operation in RCANFD_GAFLCFG_SETRNC
+    macro
+  can: rcar_canfd: Add rcar_canfd_setrnc()
+  can: rcar_canfd: Update RCANFD_GAFLCFG macro
+  can: rcar_canfd: Add rnc_field_width variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add max_aflpn variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add max_cftml variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add {nom,data}_bittiming variables to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add ch_interface_mode variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add shared_can_regs variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add struct rcanfd_regs variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add sh variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add external_clk variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Enhance multi_channel_irqs handling
+  can: rcar_canfd: Add RZ/G3E support
 
-Un-acked, I missed the point that you really speak in commit msg about
-register and you really treat one register is a device. I assumed you
-only need that register from this device, but no. That obviously is not
-what this device is. Device is not a single register among 10000 others.
-IOW, You do not have 10000 devices there.
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 171 ++++++++---
+ drivers/net/can/rcar/rcar_canfd.c             | 278 +++++++++++++-----
+ 2 files changed, 340 insertions(+), 109 deletions(-)
 
-NAK
+-- 
+2.43.0
 
-> because if we have a block of miscellaneous registers there's no clear 
-> guidance on how big or small that range can or should be and we still 
-> need to encode the offset to that exact register.
-> 
-> By labeling each register we at least have the opportunity to describe 
-> each register and if they are even used.
-Repeated many times: no device nodes per clock (also TI invention), no
-device nodes per register. This is not an opportunity. This is just not
-desired.
-
-Best regards,
-Krzysztof
 
