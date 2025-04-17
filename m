@@ -1,109 +1,100 @@
-Return-Path: <devicetree+bounces-168248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D04A91F72
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:22:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21FDA91FAE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87235178276
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:22:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48E6E7B15BB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2882512EE;
-	Thu, 17 Apr 2025 14:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F84B2522BF;
+	Thu, 17 Apr 2025 14:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="CuZseRVi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ktDIIfnF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B3624E4B7
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BEA251795;
+	Thu, 17 Apr 2025 14:27:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744899752; cv=none; b=Q80CH8OXUvTGSbu9Q5F9MRrkXPonbU/v5Mf9kmcaYI6mP5FglAJMrv4mffallhZ+07pBR7TXLVXvZEkgHrbLXdMSBwQpyT32NpkjZ3Jy9S/REqOOfZLF4ibHl42NLPj2R+aa45WSGhXj4VkWkTQidHvPM/x8GdQRwg8QE5v3iCk=
+	t=1744900034; cv=none; b=ppfVmV7zSS5DC0lAYAEZ6VYAWwZLWwiRQJf2WmtdbEizpCm/nyqrxtKO6wRSWl2Gf2DQ3McJXWhD7g74Qs8QdG5Jf3uen+bDZJkCq0rpsuL6WP3Gzl2pPwi4B+O8WyM3N5Vtyasdq4rlT0DXsxBcHG1x+pVKFaJtvSbTfGbhPwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744899752; c=relaxed/simple;
-	bh=xrC86xvnJkiy2wsi0KaTZ23wdHmrQQxY6hWpQMlw79Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GNYMt+itj9KKMMWPatpBTcxAwv5SFuTpn2ueERfq9D7bYU8YJWC6rB+Dve+WW3TMXSetiFYkG8lym9oAdIU0z6ceAUcXfXcjQY9L6HSpNp54u0m9Sn7OhlxP5Uj7H25kD4ydJ5z3LEj6FWS0x7sP4lafft/uBrqYpjVW3I+xu/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=CuZseRVi; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <13357f38-f27f-45b5-8c6a-9a7aca41156f@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1744899737;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ChiiEwSa59wY7fvBbAy6iv40vz0WXaWqLI1I0LPkf10=;
-	b=CuZseRViZ/RaXnYZOACNcu4na/IG6hHI8dgeNeVVCuTSOVxXCs2ZnGodyZUZUH3dWE7CeK
-	QyjpUmPSSCLfAhMZ96M4KxFeuPaGKkfxb2/X4sadI1tABc+Cmv/RtAjACgO8b4jAiWWp3V
-	8lcI4vehocZ2Igzm1PT46ptOaVKHTGY=
-Date: Thu, 17 Apr 2025 10:22:09 -0400
+	s=arc-20240116; t=1744900034; c=relaxed/simple;
+	bh=H5LcbxHIEsi6NfNXL48aB+b5/EUn547ceJU8rD/SnfA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YyYoydpjcRvla97a6feVEX7fTX5MRQ0lkoCFxRJhWa5s+bLdpF072zeak+kK+9/MrQKNOZzqV3FtMm7wstd8TCKxlEIM8otaI8BCf6ZewXAJqUQekYQNbGF4HDW55TV3p27o++ijzFZswMyOvShC/N6hYhSyYQmT0+SHcRZBmgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ktDIIfnF; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6febbd3b75cso8028507b3.0;
+        Thu, 17 Apr 2025 07:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744900031; x=1745504831; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=H5LcbxHIEsi6NfNXL48aB+b5/EUn547ceJU8rD/SnfA=;
+        b=ktDIIfnF9QQFR9/iWhuzbLEKrbx2Q57E0vG3JH8tuxa0Lc+wQ7FEs4L/2BDiEqcDMC
+         XAzlYBZE5ikcjwGkTTWDf+wuu/F1dUOksnoDdCi0wB+D9WD20jjclxmbTPJy7Jl/t4kI
+         BOb0+kv7BQUqOx2LR8Qaw6OcovMZ8k06hIxSzBg2BFs/F/hgTv8CFlb/cgLv/hvCjXJq
+         KSIykJVH0Cn6xzo852nUfKK/cBZJZ+DeWspYcLnXj1PntLzgm3G8zb+RFRs51R//YuA4
+         r8agetFM/YytiHNdks6bLWhauofXe7IihZLWzZpL1Wta9/k6jf5BkDiJzTT6MSJCsh5J
+         IBLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744900031; x=1745504831;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H5LcbxHIEsi6NfNXL48aB+b5/EUn547ceJU8rD/SnfA=;
+        b=h4khsZUzCA+fd+7kldmDQtb9UGSzJcsD6euDOCYNMXVQjsc1N4cdjta5rpt6AEBy7w
+         mnaNB0p5XZmkeaAOBRIspVka76uhQs/cxL7bSKLm7KNFETGG2jyQoWY5lDWbh4Nn35zI
+         aEz+SEan7jvOAu345P1VmeU+rt270MN+agnC5Q1TyuQCs6bOshZmAZopTrdS9M5RHPRs
+         fYeNzYpiHzk1YTC9QiM1a8reaCYTLkeolt+Cq++p10nbGBahXGekYx9Wuu3Ax9H6ZM9+
+         sKzCUoTH2CE3tw30cD9dDuOA08F5XNM+OCYOEshEIcebmN13CyEJwrwvxnHQFI6NJEDe
+         +tmA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhixsRHTpkxrQJPu/NJ9IeS4Ku8LMzoQFmBygdTsxmf+1eUKFmEX8hyHnMWAN4AiuH0bs1dcD0ACPpi3yM@vger.kernel.org, AJvYcCVzKs/Zj/gPYXmg2ZndT9+s2h6KvAGpuY4ohBZNCsWaDhWgqKd4rscQ3dnnZTVWAGaDCZy1KTU2GZpx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI5QwSlLKqc0344LB09TQI/dIOxgrk+an5W3Lm0bxwdGIFxHgj
+	cEPj3GR//gdL0zEbSQSmO6UjwxooWVNN8ecunHucBsJSCJAuOFvF6YhHo0BJM595yyGduY9SJvY
+	q96Pael3wDHSFmpH4zzTHVXGPbJc=
+X-Gm-Gg: ASbGncuKHiRaPxnVnfGylAVRw34IyyeWE8K+eLPJO15t3pSVi1AhVFTT5jMb1X7/mwZ
+	d2w+X75p5pYGW+AcuWNIutjmLTvyC14ViWBNBhQxvVCPVrFhZPva1BE4Pcr+56uP0kUe8GfR5+s
+	mSCqn02+adQnGzSh29XCKEnuk=
+X-Google-Smtp-Source: AGHT+IFlsRdoOPNKP+IgFk3s9dutZbcvjVOYZpKbxlSBuHkLsa+WbDm4tMUPjfUhVNf9zruI9fG719C6Puhpz/icXwI=
+X-Received: by 2002:a05:690c:6b83:b0:6fb:91a9:94d9 with SMTP id
+ 00721157ae682-706b3255c50mr92412037b3.2.1744900031538; Thu, 17 Apr 2025
+ 07:27:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [net-next PATCH v3 00/11] Add PCS core support
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, upstream@airoha.com,
- Christian Marangi <ansuelsmth@gmail.com>, linux-kernel@vger.kernel.org,
- Kory Maincent <kory.maincent@bootlin.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Clark Wang <xiaoning.wang@nxp.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Joyce Ooi <joyce.ooi@intel.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Madalin Bucur <madalin.bucur@nxp.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Michal Simek <michal.simek@amd.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Robert Hancock <robert.hancock@calian.com>,
- Saravana Kannan <saravanak@google.com>, UNGLinuxDriver@microchip.com,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Wei Fang <wei.fang@nxp.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20250415193323.2794214-1-sean.anderson@linux.dev>
- <aADzVrN1yb6UOcLh@shell.armlinux.org.uk>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <aADzVrN1yb6UOcLh@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com>
+ <20250415-spmi-nvmem-v1-2-22067be253cf@gmail.com> <81fb1290-fb39-40b7-9d79-f147fae5b269@kernel.org>
+In-Reply-To: <81fb1290-fb39-40b7-9d79-f147fae5b269@kernel.org>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Thu, 17 Apr 2025 16:27:00 +0200
+X-Gm-Features: ATxdqUG-QdtnFm03q8e1kJSl7Bv2F6tlWh8pqcBflMsEFPTlm2gMwGAFKqTZq5A
+Message-ID: <CAMT+MTQ6gtQaMpH=5ATtJ_A7X6EjT2ra2UAe_1XiDAk1YGP2Zw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] nvmem: Add spmi-nvmem driver
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Russell,
+On Thu, 17 Apr 2025 at 15:34, Srinivas Kandagatla <srini@kernel.org> wrote:
+> should it be:
+>
+> depends on ARCH_APPLE || COMPILE_TEST
 
-On 4/17/25 08:25, Russell King (Oracle) wrote:
-> On Tue, Apr 15, 2025 at 03:33:12PM -0400, Sean Anderson wrote:
->> This series adds support for creating PCSs as devices on a bus with a
->> driver (patch 3). As initial users,
-> 
-> As per previous, unless I respond (this response not included) then I
-> haven't had time to look at it - and today is total ratshit so, not
-> today.
-
-Sorry if I resent this too soon. I had another look at the request for
-#pcs-cells [1], and determined that a simpler approach would be
-possible. So I wanted to resend with that change since it would let me
-drop the fwnode_property_get_reference_optional_args patches.
-
---Sean
-
-[1] https://lore.kernel.org/netdev/e7720741-93c5-450b-99a0-3434a5d535f5@linux.dev/
+No, this is not a driver for an apple-specific hw, but a generic thing
+for re-exporting
+a set of spmi registers as nvmem cells.
 
