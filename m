@@ -1,178 +1,241 @@
-Return-Path: <devicetree+bounces-168119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 386FBA917F5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 11:33:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EABA917F9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 11:33:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5542B460227
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:33:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F378D3AB662
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EAAC224AFA;
-	Thu, 17 Apr 2025 09:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="G6vVQSHt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7708226D14;
+	Thu, 17 Apr 2025 09:33:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE93E1B4235
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 09:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2906B224AED
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 09:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744882386; cv=none; b=SPQ3TcIL6zOAZAQFXzLz7piySwd8Rqia1HEO19asBYOWoRxXvRrFVrizQiu0ODnj7C7jkkDQvUvjdNpXns6JeUp4Chdc1Pr5nm1aH5+0SQnJSzh3PUMGpP3EnQHixBoHQFq5c2kb0+vY4WtWbhm2SpAFXFoMEEwhViRqJ+XmD60=
+	t=1744882393; cv=none; b=Cnnm9nuySAgYpa+yzMfBzqsF0yMsPc+h2NLBhw0Mlh4E2Rr4t5J58bTUfiv9UjR4hi0oNS9hmgyBcNBQUw6sRDe19qIcOA0J6OSFQPpy4mI1N+sMtWf2s1MdF0hIQREuxNzc295eV7zoWnF6028nxGJhOm6upfAyfoExj4T8VsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744882386; c=relaxed/simple;
-	bh=lbunJAZ30YCg4tQlPP0ycA03yCNg4s20V6w/IECLPfU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R6czXAbrVDHxUpfvM1YsDBmxlE3VFClnrdAnKzFh5VqvkbFghMEjzjMPyC1uy9l4JnztDfDTA8hlUR1dGnc2TO6W3jrJqIswqV87Y8SKS5Y9TFDfYnxfT296YCO3HVaX3hcn4xXvlllVXeGr/iWKh7aSJ7P5rkWBahy6HwwwDgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=G6vVQSHt; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=i7ZzLydZNojey0
-	WNQEX0yeYcx3y7kYFw7QyvDehJw+k=; b=G6vVQSHtDZkj0x152JC58dcHEaR7v+
-	fBUpbP5uxfDeghhXviriyUJQcDKbTSnIzr3wZRgcA3aqhGMPg2g6gLubBeGRmGvB
-	CMSHY4wKCUpqlCzlDdATBocjh+PDldaH+tnr38Cc7/8HAuDz6eZ55zxdMqmRMUSD
-	jwC91AMPbZHLeZN432hVnI6jBKBQXATLTfu+axMS79Nh0MQsBmUtos9ebOgipvlM
-	rnfWbmCHmRe2BSDVlQTTd2wh5EAJHokDLWrOSCvxiegVQStSOnfN04VIYTtHoPeX
-	2+5vaM13knNOxbi+vjqcZJ6j1rlGfVyhql+1+qG0d0OljivWHxLMA7DA==
-Received: (qmail 1040592 invoked from network); 17 Apr 2025 11:33:00 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Apr 2025 11:33:00 +0200
-X-UD-Smtp-Session: l3s3148p1@IoVtFvYy5MUgAwDPXyfYALbiJ46yNPq3
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
+	s=arc-20240116; t=1744882393; c=relaxed/simple;
+	bh=5HxR8csm8fyNJrtqHHIIMUwA5KzfJLvNOgVPXyjfE2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lan73XW4rNiRSr0NrTV80ct/dPxgY1u2AUgGAGfjVe0VHqdLtjM40rdDlmFR/0UhapDrACXz0zmNIJEQFEpLhl3D8d5x6IInE9O1cKuAi5VE6q/2BLSIMtZv4+doLC3EFVe/Q2mQt6fo+FFgZZPQsMsQ+M30p58MTwE/tr9bLQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5Lc8-0001sN-Hw; Thu, 17 Apr 2025 11:32:56 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5Lc7-000j6u-3B;
+	Thu, 17 Apr 2025 11:32:56 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5Lc7-005taT-2m;
+	Thu, 17 Apr 2025 11:32:55 +0200
+Date: Thu, 17 Apr 2025 11:32:55 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe Debug LEDs
-Date: Thu, 17 Apr 2025 11:28:27 +0200
-Message-ID: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] net: pse-pd: Add Si3474 PSE controller driver
+Message-ID: <aADKx3sAiWO_2KG3@pengutronix.de>
+References: <a92be603-7ad4-4dd3-b083-548658a4448a@adtran.com>
+ <93d3bbf0-742c-41d4-83c6-6d94a0dd779c@adtran.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <93d3bbf0-742c-41d4-83c6-6d94a0dd779c@adtran.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Hi Piotr,
 
-Changes since v2:
-* using function, color, function-enumerator properties now
+Thanks again for the patch! Looking a bit deeper into the Si3474
+architecture based on the datasheet and thinking about future
+extensions, there's a challenge with how the chip mixes shared resources
+with its two-quad/two-address I2C setup that we should probably tackle
+architecturally.
 
-Honestly, this is better than using node names? With V2, the LEDs were
-named as in the schematics, now they are called:
+The current approach, common for multi-address devices, is to treat each
+I2C address (and thus each quad) as a separate i2c_client handled by
+potentially independent driver instances. This works for the basic port
+access implemented here, but might get complicated quickly for the
+Si3474.
 
-lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
-lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
-lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
-...
+The Si3474 has several key resources that are inherently shared across
+the whole chip package, not just per-quad:
 
-Which gets even more confusing if we might later add LEDs not on this
-board, but on the expansion board. 'green:programming-8' sits where?
+- Single RESETb pin
+- Single INTb pin
+- Firmware Update
+- Global Status (Temperature, VDD/VPWR UVLO)
+- OSS Pin
+- ... and likely others.
 
-I really wonder, but if this is the official way now...
+Trying to manage these shared aspects across two potentially independent
+driver instances would a bit challenging :)
 
- .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
+Proposed Architectural Change:
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-index fef40e288679..16babb38eb05 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-@@ -10,6 +10,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/net/pcs-rzn1-miic.h>
- #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
- 
-@@ -86,7 +87,74 @@ switch-8 {
- 			debounce-interval = <20>;
- 			gpios = <&pca9698 15 GPIO_ACTIVE_LOW>;
- 		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
- 
-+		led-dbg0 {
-+			gpios = <&pca9698 0 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <0>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg1 {
-+			gpios = <&pca9698 1 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <1>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg2 {
-+			gpios = <&pca9698 2 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <2>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg3 {
-+			gpios = <&pca9698 3 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <3>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg4 {
-+			gpios = <&pca9698 4 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <4>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg5 {
-+			gpios = <&pca9698 5 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <5>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg6 {
-+			gpios = <&pca9698 6 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <6>;
-+			default-state = "keep";
-+		};
-+
-+		led-dbg7 {
-+			gpios = <&pca9698 7 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_PROGRAMMING;
-+			function-enumerator = <7>;
-+			default-state = "keep";
-+		};
- 	};
- };
- 
+It seems much more robust to treat the entire Si3474 package as one
+logical device within the driver. A possible approach could be:
+
+1. The driver instance probed for the primary address (Quad 0)
+takes ownership.
+2. It finds/acquires the i2c_client for the secondary address (Quad
+1).
+3. The primary instance handles all shared resources (IRQ, global
+state, etc.).
+4. PSE controller registration (devm_pse_controller_register) happens
+only once for all 8 logical PIs.
+5. Internal functions use the "correct" i2c_client based on the target
+channel/PI.
+
+Search for i2c_new_ancillary_device()
+
+Naming Conventions:
+
+- Regarding naming, the goal is to align with IEEE 802.3 terminology where
+  possible. Exzeption are register and bit names.
+
+Regarding naming: Could you please rename `priv->port` (and similar variables
+representing the logical PSE port/`id`) to `priv->pi`? This aligns better with
+the IEEE 802.3 term 'PI' (Power Interface) for the logical port, avoiding the
+datasheet's overloaded use of 'port'. We can stick with 'channel' internally
+for the physical Si3474 control paths (0-7) ('ports'). Adding the introductory
+comment explaining this would still be great too.
+
+Regarding the current patch:
+- The `PB_POWER_ENABLE_REG` seems to be 8-bit register, but the driver
+  is using i2c_smbus_write_word_data(). Please use i2c_smbus_write_byte_data()
+  or add a comment explaining why 'word' version is used.
+
+A comment like this on the top of this driver would be helpful:
+
+/*
+ * Driver for the Skyworks Si3474 PoE PSE Controller
+ *
+ * Chip Architecture & Terminology:
+ *
+ * The Si3474 is a single-chip PoE PSE controller managing 8 physical power
+ * delivery channels. Internally, it's structured into two logical "Quads".
+ *
+ * Quad 0: Manages physical channels ('ports' in datasheet) 0, 1, 2, 3
+ * Quad 1: Manages physical channels ('ports' in datasheet) 4, 5, 6, 7
+ *
+ * Each Quad is accessed via a separate I2C address. The base address range is
+ * set by hardware pins A1-A4, and the specific address selects Quad 0 (usually
+ * the lower/even address) or Quad 1 (usually the higher/odd address).
+ * See datasheet Table 2.2 for the address mapping.
+ *
+ * While the Quads manage channel-specific operations, the Si3474 package has
+ * several resources shared across the entire chip:
+ * - Single RESETb input pin.
+ * - Single INTb output pin (signals interrupts from *either* Quad).
+ * - Single OSS input pin (Emergency Shutdown).
+ * - Global I2C Address (0x7F) used for firmware updates.
+ * - Global status monitoring (Temperature, VDD/VPWR Undervoltage Lockout).
+ *
+ * Driver Architecture:
+ *
+ * To handle the mix of per-Quad access and shared resources correctly, this
+ * driver treats the entire Si3474 package as one logical device. The driver
+ * instance associated with the primary I2C address (Quad 0) takes ownership.
+ * It discovers and manages the I2C client for the secondary address (Quad 1).
+ * This primary instance handles shared resources like IRQ management and
+ * registers a single PSE controller device representing all logical PIs.
+ * Internal functions route I2C commands to the appropriate Quad's i2c_client
+ * based on the target channel or PI.
+ *
+ * Terminology Mapping:
+ *
+ * - "PI" (Power Interface): Refers to the logical PSE port as defined by
+ * IEEE 802.3 (typically corresponds to an RJ45 connector). This is the
+ * `id` (0-7) used in the pse_controller_ops.
+ * - "Channel": Refers to one of the 8 physical power control paths within
+ * the Si3474 chip itself (hardware channels 0-7). This terminology is
+ * used internally within the driver to avoid confusion with 'ports'.
+ * - "Quad": One of the two internal 4-channel management units within the
+ * Si3474, each accessed via its own I2C address.
+ *
+ * Relationship:
+ * - A 2-Pair PoE PI uses 1 Channel.
+ * - A 4-Pair PoE PI uses 2 Channels.
+ *
+ * ASCII Schematic:
+ *
+ * +-----------------------------------------------------+
+ * |                    Si3474 Chip                      |
+ * |                                                     |
+ * | +---------------------+     +---------------------+ |
+ * | |      Quad 0         |     |      Quad 1         | |
+ * | | Channels 0, 1, 2, 3 |     | Channels 4, 5, 6, 7 | |
+ * | +----------^----------+     +-------^-------------+ |
+ * | I2C Addr 0 |                        | I2C Addr 1    |
+ * |            +------------------------+               |
+ * | (Primary Driver Instance) (Managed by Primary)      |
+ * |                                                     |
+ * | Shared Resources (affect whole chip):               |
+ * |  - Single INTb Output -> Handled by Primary         |
+ * |  - Single RESETb Input                              |
+ * |  - Single OSS Input   -> Handled by Primary         |
+ * |  - Global I2C Addr (0x7F) for Firmware Update       |
+ * |  - Global Status (Temp, VDD/VPWR UVLO)              |
+ * +-----------------------------------------------------+
+ *        |   |   |   |        |   |   |   |
+ *        Ch0 Ch1 Ch2 Ch3      Ch4 Ch5 Ch6 Ch7  (Physical Channels)
+ *
+ * Example Mapping (Logical PI to Physical Channel(s)):
+ * * 2-Pair Mode (8 PIs):
+ * PI 0 -> Ch 0
+ * PI 1 -> Ch 1
+ * ...
+ * PI 7 -> Ch 7
+ * * 4-Pair Mode (4 PIs):
+ * PI 0 -> Ch 0 + Ch 1  (Managed via Quad 0 Addr)
+ * PI 1 -> Ch 2 + Ch 3  (Managed via Quad 0 Addr)
+ * PI 2 -> Ch 4 + Ch 5  (Managed via Quad 1 Addr)
+ * PI 3 -> Ch 6 + Ch 7  (Managed via Quad 1 Addr)
+ * (Note: Actual mapping depends on Device Tree and PORT_REMAP config)
+ */
+
+Best Regards,
+Oleksij
 -- 
-2.47.2
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
