@@ -1,153 +1,196 @@
-Return-Path: <devicetree+bounces-167990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91615A91203
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:29:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9537AA91292
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:17:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A473E44329D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 03:29:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3DA217E2D4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617BB1AA1DA;
-	Thu, 17 Apr 2025 03:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76C91CDFC1;
+	Thu, 17 Apr 2025 05:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Oh77/Ta1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TFS22AK8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F9F374C4;
-	Thu, 17 Apr 2025 03:29:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C0BA94A;
+	Thu, 17 Apr 2025 05:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744860580; cv=none; b=o9xW2Vqlit0ZP4iqTYtHuj2zN9nVQYnYSVpcxPGn8v2cpnG082X5L8CV2hId51BPrmNYi1YNogw/O0epLn30nNQZjuCqh8JsgmZJiMJuE7mV3BLvv4eL59s9a7TM7QPuyul6vpDqSFM+AyVEPnSdRZLsQBAqoDmaN8kirpnyuXY=
+	t=1744867062; cv=none; b=A6AyV6h0pXK0lp5wUN8e7vRLEUsiLRYGpwyIPZkeDFZk9snGc0gjNCngAuuPjFhi/dCA1LD2uXQNOPxZUxO3cv7Axquq3cluOgo94cQ6exiUFDXFfqjy2j8JA3ek7x8tB5xKGHwf3bbh7BbB/rJzYReEmzWvGRXz06CqfpeWqmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744860580; c=relaxed/simple;
-	bh=jlqPVasGC1ykd+2aDFH4bupQjT9GBrbdsJAsG4hnLGM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qjOepZqabSuYKa4cLgoPaJZeZ3gtezOgBTB5iF/zlKTaxPYXb9iDubahphE42OHqLgb5kkoQGiyHMfS2pVShAqZtV3nNzir3gFx47jbnA0dD3D9m5FE/R6xALpkfxf7dwvEjos/X06Ufg3itFjHikSpDuaEdl871DtmlIKg1Fd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Oh77/Ta1; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53H3TR952971983
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 16 Apr 2025 22:29:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744860567;
-	bh=ZybCaegNwM4Mhdme7ie8tDG2/MD9+wEJuMfumqWYcxs=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Oh77/Ta1cA2spSYlOCajSt7iUrBWGPh3XMG/daGR1vFMikEl7Ynu9xTRsREyAOP3M
-	 0+NcpyWw+E0aSppYTFBMCKkQN5dKfhABz+RyDSg7F5gsGqjw+/5XnHIhSmKh9Mg6Si
-	 JrLixEMXhsoynS5aJ8mBhw/KnFeZLe9y9ZC5iCns=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53H3TRud019651
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Apr 2025 22:29:27 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 16
- Apr 2025 22:29:27 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 16 Apr 2025 22:29:27 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53H3TRMV044506;
-	Wed, 16 Apr 2025 22:29:27 -0500
-Date: Wed, 16 Apr 2025 22:29:26 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Andrew Davis
-	<afd@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>, Judith Mendez <jm@ti.com>,
-        Andrei Aldea
-	<a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
-        Jason Kridner
-	<jkridner@beagleboard.org>,
-        Deepak Khatri <lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Message-ID: <20250417032926.xamsafgue2ryj7sa@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250415225940.3899486-1-robertcnelson@gmail.com>
- <20250415225940.3899486-2-robertcnelson@gmail.com>
+	s=arc-20240116; t=1744867062; c=relaxed/simple;
+	bh=7OV+f3vDShZtvnmttlNv71PFVC0bYluxMHaeCMRgshQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=S+RScIo7uXWc0NAfT344P2k43h7Q/A4NRSWhWyh65J/64M3Ljq9VYem5DVwNARgGG7rJGYRU/cD9JssD4EmEA5vAizVBgvR/58MFDnKKVHpfb56JUN8OU73PnDt+qj8TFmdF6ilzrrSi9NpJZTX9uTC0PneWh2JBPNbYKNQDB8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TFS22AK8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53GKpWHN007009;
+	Thu, 17 Apr 2025 05:17:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WU3sld5Jbc9P6ug6bv/f4esZGEWlU/0kEIovdrpINqw=; b=TFS22AK82TJRfVMa
+	Ghojh/sufSCQgdGgkISY/xBUkLrUK6K0wnXWDEks077Pfc2BZ091SytpSalLfI11
+	FqcrnNF7LEQVDEB2pLupLClEwZlDHRwwR39/wX4WVbWVJUN0WvPjS3l/kI1BUT3A
+	A/2tkYYoKi7LVSaCeg27BI+rqtiSR/7rljrkpDosqZuTGYh9kDg8Qvl1ABtUw+oy
+	p523zN+oB+YPyDltgiCTpRIFJopHMVXd499vcdu4m+LOnrHKlQFxvms/78xrCFRG
+	oY9BpWVvnsinJazk2L9gmQuoPEpDC7cSGSxBM1cg76P/W1M1TbubASrprskxHUXU
+	HJYqRA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6nt3b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 05:17:33 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53H5HWgN017094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 05:17:32 GMT
+Received: from [10.216.14.157] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 16 Apr
+ 2025 22:17:28 -0700
+Message-ID: <3df9f397-e97c-4224-a388-df6fe211778d@quicinc.com>
+Date: Thu, 17 Apr 2025 10:47:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20250415225940.3899486-2-robertcnelson@gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: Enable TSENS support for QCS615
+ SoC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <amitk@kernel.org>,
+        <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
+        <rui.zhang@intel.com>, <lukasz.luba@arm.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_manafm@quicinc.com>
+References: <cover.1744292503.git.quic_gkohli@quicinc.com>
+ <76e0ce0e312f691abae7ce0fd422f73306166926.1744292503.git.quic_gkohli@quicinc.com>
+ <7f893243-572b-4e23-8f2b-ae364d154107@oss.qualcomm.com>
+ <46cd600e-b388-4225-a839-a6af76524efe@quicinc.com>
+ <2b889254-2847-4c6b-a01d-3626332dcb0a@oss.qualcomm.com>
+Content-Language: en-US
+From: Gaurav Kohli <quic_gkohli@quicinc.com>
+In-Reply-To: <2b889254-2847-4c6b-a01d-3626332dcb0a@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eDbCxEdeKkoIdLgsETCxp75LWZwSdVag
+X-Proofpoint-GUID: eDbCxEdeKkoIdLgsETCxp75LWZwSdVag
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=68008eed cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=5R2SSpfT02JEmUF-5wQA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-17_01,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504170039
 
-On April 15, 2025 thus sayeth Robert Nelson:
-> BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
-> PocketBeagle.  It is based on Texas Instruments AM6232 or AM6254 SoC.
-> Its dual or quad A53 cores can provide higher performance than classic
-> PocketBeagle. The new design comes with pre-soldered headers, a 3-pin
-> JST-SH 1.00mm UART debug port, a USB-C port, Texas Instruments
-> MSPM0L1105 Cortex-M0+ MCU for ADC, 512MB RAM, and a LiPo Battery charger.
+
+
+On 4/14/2025 3:23 PM, Konrad Dybcio wrote:
+> On 4/14/25 10:28 AM, Gaurav Kohli wrote:
+>> thanks for review!
+>>
+>> On 4/12/2025 5:13 AM, Konrad Dybcio wrote:
+>>> On 4/10/25 4:00 PM, Gaurav Kohli wrote:
+>>>> Add TSENS and thermal devicetree node for QCS615 SoC.
+>>>>
+>>>> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+>>>> ---
+>>>
+>>> subject: "arm64: dts: qcom: qcs615: ..">  arch/arm64/boot/dts/qcom/qcs615.dtsi | 281 +++++++++++++++++++++++++++
+>>>>    1 file changed, 281 insertions(+)
+>>>>
+>> will fix this.
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>> index edfb796d8dd3..f0d8aed7da29 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>> @@ -3668,6 +3668,17 @@ usb_2_dwc3: usb@a800000 {
+>>>>                    maximum-speed = "high-speed";
+>>>>                };
+>>>>            };
+>>>> +
+>>>> +        tsens0: tsens@c222000 {
+>>>> +            compatible = "qcom,qcs615-tsens", "qcom,tsens-v2";
+>>>> +            reg = <0x0 0xc263000 0x0 0x1ff>,
+>>>> +                <0x0 0xc222000 0x0 0x8>;
+>>> Pad the address part to 8 hex digits with leading zeroes> +            interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+>>>
+>>> &pdc 26
+>>>
+>>>> +                    <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+>>>
+>>> &pdc 28
+>> we don't want to mark this as wake up capable, so using this approach.
 > 
-> MSPM0L1105 firmware source: https://openbeagle.org/pocketbeagle/mspm0-adc-eeprom
-> * EEPROM 24c32 emulation
-> * ADC ad7291 emulation
+> Why not?
 > 
-> https://www.beagleboard.org/boards/pocketbeagle-2
-> https://openbeagle.org/pocketbeagle/pocketbeagle-2
+Intention was to avoid wake up, as system is already in lowest state, 
+please let me know if you see any concern here.
+>>>> +
+>>>> +        cpuss-0-thermal {
+>>>> +            thermal-sensors = <&tsens0 1>;
+>>>> +
+>>>> +            trips {
+>>>> +
+>>>> +                trip-point0 {
+>>>> +                    temperature = <115000>;
+>>>> +                    hysteresis = <5000>;
+>>>> +                    type = "passive";
+>>>> +                };
+>>>> +
+>>>> +                trip-point1 {
+>>>> +                    temperature = <118000>;
+>>>> +                    hysteresis = <5000>;
+>>>> +                    type = "passive";
+>>>> +                };
+>>>
+>>> Please drop the passive trip point for the *CPU* tzones, see
+>>>
+>>
+>> we are using trip-point 0 for cpu idle injection mitigation which i will add in subsequent patches, if you are fine i will add cpu idle injection cooling map in this series only ?
 > 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Roger Quadros <rogerq@kernel.org>
-> CC: Siddharth Vadapalli <s-vadapalli@ti.com>
-> CC: Judith Mendez <jm@ti.com>
-> CC: Andrei Aldea <a-aldea@ti.com>
-> CC: Dhruva Gole <d-gole@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Ayush Singh <ayush@beagleboard.org>
-> ---
-> Changes since v2:
->  - cleanup unused serial aliases
->  - cleanup unused sdhci0 (un-populated) aliases
->  - cleanup unused main_i2c1 (un-populated) aliases
->  - add missing main_i2c0 aliases
->  - fix bootph, function, color, gpios order in leds nodes
->  - drop local cpsw disable, needs to be moved to k3-am62-main
->  - MSPM0L1105 add firmware source and note where emulated
->  - usb0 add note about Type-C connector, but only wired for USB 2.0
->  - usb1 add compatible note with original PocketBeagle expansion boards
-> Changes since v1:
->  - fix '_' in main-i2c2-default-pins
->  - aliases i2c match original pocketbeagle
->  - add mcu_m4fss with reseved memory and mailbox
->  - drop unused main_gpio0_pins_default pinmux
->  - drop unused main_gpio1_pins_default pinmux
->  - drop unused main_spi2_pins_gpio pinmux
->  - Reserve 128MiB of global CMA
-> ---
+> The folks working on qcs9xxx have made this point too, but I'm lukewarm
+> on duplicating meaningless dt description everywhere. I've asked them to
+> conduct some measurements on whether random default settings (that would
+> be preset in the driver and require no additional dt fluff) show any
+> significant difference - if not, we can save up on boilerplate.
+> 
+> So let's wait to hear back from them on this.
+> 
+Sure will wait for latest update.
+>>> commit 06eadce936971dd11279e53b6dfb151804137836
+>>> ("arm64: dts: qcom: x1e80100: Drop unused passive thermal trip points for CPU")
+>>>
+>>> and add a single critical point instead, see
+>>>
+>> As critical shutdown is already supported by hardware, so we are not defining here.
+> 
+> The hardware critical shutdown will literally pull the plug out with the OS
+> having no chance to sync the filesystem etc.
+> 
+> Please define one that's like 5 degC below the hardware limit, so that the
+> operating system can try to take some steps to avoid data loss
+> 
 
-I must say this is a fun little board! Excited to see all the carrier 
-boards people will make :)
+Sure will post critical in next patch.
+> Konrad
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
-
-~Bryan
 
