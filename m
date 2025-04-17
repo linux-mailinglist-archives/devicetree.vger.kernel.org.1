@@ -1,150 +1,116 @@
-Return-Path: <devicetree+bounces-168352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC6EA926D2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 20:16:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1174AA9280E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 20:30:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4881E8A6832
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:16:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5B217B53FB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AD625523E;
-	Thu, 17 Apr 2025 18:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051DB263F30;
+	Thu, 17 Apr 2025 18:27:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vl9HBA/H"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u98Q6GXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640C78462;
-	Thu, 17 Apr 2025 18:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB260259CB9;
+	Thu, 17 Apr 2025 18:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744913810; cv=none; b=n1w50VwbEEHDx2p0EXsTqrvRCWl0Ql/qH3Ulv1S6venfHJAHQ6axm4npuqIbkQINFpZrW/mEK4xjEpR4p7+aFzztJRElMcTHDtEXACbZ2d0seeEDv1Ane36H4aZ2KA8zsp7VwiA6AYKo2yGRjUyC/zUB5Rk8gVBoJ1WHR0APbD8=
+	t=1744914427; cv=none; b=ncPnUpK85J3NrnT1oirWAZTNKH584wV/96/hUoVl0RRywQqoPrPO63Zd2JhzYm87b6PWiQZCA2VV2t3TNUD3g7yAUGi2nkijuhYgNwW8bEmhDoX73Bi+5w3ApihDnZv0m5tywSR4UxUj3cGqyan1/+UHhRultGv0N2us5JsC0CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744913810; c=relaxed/simple;
-	bh=W03LBu3/5+jQeuXr+KXGcDhUEUqiIGxwXuLCyFLkwfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iMSfirdVy+Lvr/vTW2UONi0BAdmnKs9dvtGIcwbuKqJ/wwMOWjeYmWJNReAelPHZ7PoVOSrsNGu9nBeUqLdjWSNWFaJKIqax7xnv6yU6ADAP4TWHb2FWrPexElgSdsV2XFT1yS7EA6hbP/IXtvb6M1GA311QjXZ1NCisASeiyBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vl9HBA/H; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744913809; x=1776449809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W03LBu3/5+jQeuXr+KXGcDhUEUqiIGxwXuLCyFLkwfk=;
-  b=Vl9HBA/HOE0aK98NFb4iUS5Ogv9/5nMmBjzcsyKTZrIN71huX3c5hLKN
-   hn8OMJnuWDbKKzsZ5/7sYnaNIc8IbvnU5Pb057sNlnbIIYwPD5dhIsIll
-   TXb7Ns+dra5bJfOEDfqclIt8VhFPxZcqXmSC35O/DkMvkgMhxuehzfbJ1
-   M+itpvu9KzyrvylelzlhKKY0QN1xtUP+Vbfo1pZESVKQzzVxhHJSjfPkr
-   01/RPumpIMRDp/NPMMRQC56fU+LP7GozWd/0C0w6x2pa6ZC26LI+kzhiS
-   73EmrkDvN7XW6uySSJgREfGstDCMFmF6GlXcbAhFiEWHAWoA5WkTmNotN
-   g==;
-X-CSE-ConnectionGUID: VeYbz9lcR4+ub0/LzcSgUw==
-X-CSE-MsgGUID: tZ+KAqKySN+1dzKpNtsi+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="46446792"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="46446792"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 11:16:48 -0700
-X-CSE-ConnectionGUID: fkOrqflVTFmaxBYFXnh3Lw==
-X-CSE-MsgGUID: nzNi7pxLQ4u30DkyspUZsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="131200286"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 11:16:43 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1u5Tmy-0000000DHI5-0iqm;
-	Thu, 17 Apr 2025 21:16:40 +0300
-Date: Thu, 17 Apr 2025 21:16:39 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: mathieu.dubois-briand@bootlin.com
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 02/12] mfd: Add max7360 support
-Message-ID: <aAFFh8dvgQDJMyOh@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-2-7a2535876e39@bootlin.com>
+	s=arc-20240116; t=1744914427; c=relaxed/simple;
+	bh=Tmk+mzEJSq3mj2aUVGUL+sKaA99E1w6Lryap8wVtALs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y7zphvWR/4RVCD1AgarMSlqBVv04nqKN4S/eFxdOTOMvWUmtnDkKdragyPsQupuR3C66/Ti4NvmIEyJOej46FmlPLUlM20r4FhawH6e3F6vwQWW9vkVQ8lky47SALLDCh+X++SfSRlS4c/AuThldO7JNL60TMrs6cGwpnVAxwt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u98Q6GXQ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53HIQqBi082707
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 17 Apr 2025 13:26:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744914412;
+	bh=o5fcwYiVSrfnvYIPjwZFdGzKvA+Rhq/XfUgxUYDtTFs=;
+	h=From:To:CC:Subject:Date;
+	b=u98Q6GXQtX/VUJBQxXjKzS3j2CJL5fL2JaJY/f9LePPiCwGF0aw0exUeDT4PJHLqB
+	 eMWYodLZaH4SV0Q9yaf4VHcbGf+kMvkWZx8qcHnVQ0d0hri5bA/q/VLsehPh34qKOB
+	 jeOeGE9RYIc/PIF5bPPUmwVf+f+Zk7PBJ5akPkUM=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53HIQqXF062730
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 17 Apr 2025 13:26:52 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 17
+ Apr 2025 13:26:51 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 17 Apr 2025 13:26:52 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53HIQqh5078217;
+	Thu, 17 Apr 2025 13:26:52 -0500
+From: Judith Mendez <jm@ti.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter
+	<adrian.hunter@intel.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Josua Mayer
+	<josua@solid-run.com>, Moteen Shah <m-shah@ti.com>,
+        Francesco Dolcini
+	<francesco@dolcini.it>,
+        Hiago De Franco <hiagofranco@gmail.com>
+Subject: [PATCH v2 0/2] Fix V1P8_SIGNAL_ENA
+Date: Thu, 17 Apr 2025 13:26:50 -0500
+Message-ID: <20250417182652.3521104-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409-mdb-max7360-support-v6-2-7a2535876e39@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Apr 09, 2025 at 04:55:49PM +0200, mathieu.dubois-briand@bootlin.com wrote:
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> 
-> Add core driver to support MAX7360 i2c chip, multi function device
-> with keypad, GPIO, PWM, GPO and rotary encoder submodules.
+There are eMMC boot failures seen with V1P8_SIGNAL_ENA on Kingston
+eMMC and variouse types of SD cards on Sitara K3 SoCs due to the
+sequencing when enumerating to HS200 mode. Since V1P8_SIGNAL_ENA is
+optional for eMMC, do not set V1P8_SIGNAL_ENA by default for eMMC.
+For SD cards we shall parse DT for ti,suppress-v1p8-ena property
+to determine whether to apply the quirk.
 
-...
+This fix was previously merged in the kernel, but was reverted due
+to the "heuristics for enabling the quirk"[0]. This issue is adressed
+in this patch series by adding optional ti,suppress-v1p8-ena DT property
+to apply the quirk for SD.
 
-> +static int max7360_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	regmap = devm_regmap_init_i2c(client, &max7360_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to initialise regmap\n");
+Changes since v1:
+- Drop patch for High_Speed_ENA
+- Add ti,suppress-v1p8-ena for SD cards
+- Add binding patch for ti,suppress-v1p8-ena
+- Update cover-letter/patch descriptions according to new changes
 
-> +	i2c_set_clientdata(client, regmap);
+[0] https://lore.kernel.org/linux-mmc/20250127-am654-mmc-regression-v2-1-9bb39fb12810@solid-run.com/
 
-Is it used somehow? In children?
+Judith Mendez (2):
+  mmc: sdhci_am654: Add sdhci_am654_start_signal_voltage_switch
+  dt-bindings: mmc: sdhci-am654: Add ti,suppress-v1p8-ena
 
-> +	ret = max7360_reset(regmap);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to reset device\n");
-> +
-> +	/* Get the device out of shutdown mode. */
-> +	ret = regmap_write_bits(regmap, MAX7360_REG_GPIOCFG,
-> +				MAX7360_GPIO_CFG_GPIO_EN,
-> +				MAX7360_GPIO_CFG_GPIO_EN);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable GPIO and PWM module\n");
-> +
-> +	ret = max7360_mask_irqs(regmap);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Could not mask interrupts\n");
-> +
-> +	ret =  devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
-> +				    max7360_cells, ARRAY_SIZE(max7360_cells),
-> +				    NULL, 0, NULL);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register child devices\n");
-> +
-> +	return 0;
-> +}
+ .../devicetree/bindings/mmc/sdhci-am654.yaml  |  5 +++
+ drivers/mmc/host/sdhci_am654.c                | 32 +++++++++++++++++++
+ 2 files changed, 37 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.49.0
 
 
