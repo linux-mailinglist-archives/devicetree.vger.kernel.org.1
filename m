@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-167995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3926A912A5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:28:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2195A912AF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:34:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61134190645A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:28:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E95442B39
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828D71DE4F6;
-	Thu, 17 Apr 2025 05:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E6E1B043C;
+	Thu, 17 Apr 2025 05:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qtemet4D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pY51bz0v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563C018DB2B;
-	Thu, 17 Apr 2025 05:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2560A2DFA2F;
+	Thu, 17 Apr 2025 05:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744867688; cv=none; b=JNwOoL+0/t6DMSLXCuxXTeQPcIrniVasyvtZrgzSUKZ5y7oheec4lVSjsjzMpXG1TB199lCRKrwugzEAQOw3hus+rLZYSPWGQNqWscVml5cw+HL9SPEScyl19IpaiyN9w8Ej3tsx9eRS4FU3GCSAR8G6uodUhIsou5mimxs2Y1I=
+	t=1744868059; cv=none; b=oEMwyJsK9tbknAZNU2PUBfcP9dw4rgplOV6JmmfCAPs9Y8lVvxL+fyMZQyoPVBKYYcvlgGI7UyBT/xP3DxOPeoc3BOxkjcsCEV8BR6scnZSazu7GPTG+n7D1V69lRo5PXslyIOPL00OEQxIrar/qehpcRy9DPAhEXQA8A5YD7TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744867688; c=relaxed/simple;
-	bh=eaR+iOlwPc1wrYjHt4NO2kTcsvS4p229gSXyNaJIYzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=fXsvgOfMbWH3ye6QxTrh9iEq6UbLPAkFYDaFnjEpDnrHRrsyudHSAoCFkxz84oziPNGTO/iiiablZugIOpssvhIbLgKNOFkAs7JbO4c8mTTQch+eqIZIg7DKackU7tyudhqIPtIYyGRf+P2zUUx8CbWUkefTjXzkaVEHrleQqwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qtemet4D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E159CC4CEE4;
-	Thu, 17 Apr 2025 05:28:05 +0000 (UTC)
+	s=arc-20240116; t=1744868059; c=relaxed/simple;
+	bh=zyJNg9uFmfkUUAFiN7I/bWvyZM4TumdpS5tAIZnJYBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=paU0QaT4HHVGVN6EL8cEqc8Al5ts+QDR0iLcHZro/Q7ajfAgtYGXwcNw7UA/yH9SQzs/LqnT4INOVG/G93rhF+7GORU2RdGnabjy2BarLuFy2VftGNVQjRpKCKYDBBQBUzzoWIJnzFQFV2pIjkrCJl9QaGTV1s+uNca8Zx13HS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pY51bz0v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B97C4CEE4;
+	Thu, 17 Apr 2025 05:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744867687;
-	bh=eaR+iOlwPc1wrYjHt4NO2kTcsvS4p229gSXyNaJIYzE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Qtemet4D9ZexycTr8dOTkuaK/J3IJ9v9+9ifCFPtAk6slTam8ri7BIoIXzSVlQXVd
-	 JNhq8S/Q7Q2TKy61TzBDyjvgoJjqIu5X7OvkBtIcfaFrM7SsjEActQ1R/dMqz3axrC
-	 GscaQcjxKxGpkAnhUlHK0y2zimZxa+E7gFcv3HhQTZFv6QVEKhLbASMNFwVM6itM2z
-	 1x8+k4S/ndqYgAdx1833gdqh/MTtmMWumB0+c64DVRzin9oXfI8nyv1w4kNe/5Owq2
-	 V8e9At9ej2CLuQnneM3m5Vx2FKE67VZtNKp/VDfIwihMtIraAc9RvvNll1NTJROckg
-	 Nwf8FHnidDiZQ==
-Message-ID: <68d04be5-d5b6-4cd4-993e-f5fb06405ae7@kernel.org>
-Date: Thu, 17 Apr 2025 07:28:02 +0200
+	s=k20201202; t=1744868058;
+	bh=zyJNg9uFmfkUUAFiN7I/bWvyZM4TumdpS5tAIZnJYBY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pY51bz0vJT44hG2BCVrlTQNlRl2zbbQ2Ls87R6m1/+ew6dJsL9SrZ4UW8Ne4NYYec
+	 O/CuBpZuLev7XSemR8/yUPZDVkIAlj/QeXd5aLekzqGT0jq0mzp13siwGtTSxlPu4D
+	 sEYaLUA1ar2fcMH3l16Voxt9TvhnVLp+qiNKiShW2t7tV0RrDX/XkGzgqZ5f9cGDkF
+	 Mjl+1ODl+GussYybJERu3UH+Mj3kxVg+3UyfDVfQrOVzZHO1ZIkVmm3ADERFsirjng
+	 rzIi+NqBi0OqP9KUPzvoU9SOt2bp4jFQOEtWBL/32Qq8NanewwBi4aaCQvvpILDysI
+	 2SrPZbY8HZRUQ==
+Message-ID: <209070b3-4758-416e-a408-480b2a8e4fbc@kernel.org>
+Date: Thu, 17 Apr 2025 07:34:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: defconfig: enable NVIDIA VRS PSEQ
-To: Shubhi Garg <shgarg@nvidia.com>, lee@kernel.org,
- alexandre.belloni@bootlin.com, thierry.reding@gmail.com,
- jonathanh@nvidia.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20250416120619.483793-1-shgarg@nvidia.com>
- <20250416120619.483793-6-shgarg@nvidia.com>
+Subject: Re: [PATCH 10/13] ARM: dts: vt8500: Use generic compatibles for EHCI
+To: Alexey Charkov <alchark@gmail.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20250416-wmt-updates-v1-0-f9af689cdfc2@gmail.com>
+ <20250416-wmt-updates-v1-10-f9af689cdfc2@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,36 +110,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250416120619.483793-6-shgarg@nvidia.com>
+In-Reply-To: <20250416-wmt-updates-v1-10-f9af689cdfc2@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/04/2025 14:06, Shubhi Garg wrote:
-> Enable NVIDIA VRS (Voltage Regulator Specification) power sequencer
-> device modules. NVIDIA VRS PSEQ controls ON/OFF and suspend/resume
-> power sequencing of system power rails on Tegra234 SoC. This device
+On 16/04/2025 10:21, Alexey Charkov wrote:
+> VIA/WonderMedia SoCs don't have anything special about their EHCI
+> controllers: in fact, vendor provided kernels just use the
 
-Which upstream boards use it?
+It does not have to do anything special - dedicated compatible properly
+describes the hardware.
 
-> also provides 32kHz RTC support with backup battery for system timing.
+> generic PCI driver by emulating a virtual PCI bus with fixed MMIO
+
+PCI? But this is USB.
+
+> mappings just to bind the existing driver as-is. So switch to the
+> generic compatible to save further additions to bindings.
 > 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
-> ---
->  arch/arm64/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 5c85e5da152f..9c6cba664a43 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -780,6 +780,8 @@ CONFIG_MFD_TPS6594_I2C=m
->  CONFIG_MFD_ROHM_BD718XX=y
->  CONFIG_MFD_WCD934X=m
->  CONFIG_MFD_KHADAS_MCU=m
-> +CONFIG_MFD_NVVRS_PSEQ=m
-> +CONFIG_RTC_DRV_NVVRS_PSEQ=m
+> Note that these devices have only ever supported appended-DTB boot,
+> so changing the compatible should not affect any existing users.
 
-Does not look like properly ordered.
+And other users of the DTS?
+
+I don't see benefits in this patch.
 
 Best regards,
 Krzysztof
