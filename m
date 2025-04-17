@@ -1,150 +1,151 @@
-Return-Path: <devicetree+bounces-168029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B985A9132C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:45:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09DA6A912F0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8B0A3A7265
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:44:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF4C27A46A8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE3F1E1DEB;
-	Thu, 17 Apr 2025 05:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087601E0E0A;
+	Thu, 17 Apr 2025 05:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gTVHKvWW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9642195FE8;
-	Thu, 17 Apr 2025 05:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10FC1DF26E;
+	Thu, 17 Apr 2025 05:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744868703; cv=none; b=YiMZFhkuH9e/jKr6ryH62th7dDY/Rth5+xeAgXS+MFErTbstT2gwxqkWNKR9ihawGvSYsrn25JgDkd8H95B+Jk5JPWUnZzQWHY4DkE+2IGeFxy5Vc8TEyC3SjorhWKo/RtAFSHlHB2JussAs+ampjkO2iZNvOqeFmGJXPiEp57Y=
+	t=1744868604; cv=none; b=mJZZuq57PPF6ag+0hm+zDPyILIt4k2Ynss4wxh1fyDkbsaJ9ru6a3yn6zwo7mLZFIps0W/i3TLEHrR3Dj3GkwQPY8ISAqhGQAHk3tvzZBzc9DXjqjVzb6YMuFWe781hYj+Jhi9DEUoIO5YYz8wsGOEpzdQ6bgPjSk0iaz7l3Gw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744868703; c=relaxed/simple;
-	bh=JOvEk0ZxMSTjwN40XaFrosO11fpdRre+GryZqJAMFdk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l6G4XyCw0pjEhLjNHLey9YiYsytoiB3vA0inpUwj8DzZmJS8sVDBgi4Pk7ibeYFS+U98yhaFwdXXaiZzVLdNBrOk9qUtX56u/WVsKniaWb684vUQ7X4XwUphqMrt8sOdVxDJDsTSzR4quizuDXojIe8+wvqCJQUImhDh+nG8/1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: sAmASyWEQXWIkQP4rOD51g==
-X-CSE-MsgGUID: HlB/JQYCQKShfFB1bKbZJg==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Apr 2025 14:45:00 +0900
-Received: from localhost.localdomain (unknown [10.226.92.77])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 14A1F409A288;
-	Thu, 17 Apr 2025 14:44:55 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	u.kleine-koenig@baylibre.com,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Simon Horman <horms@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH v9 17/19] can: rcar_canfd: Add external_clk variable to struct rcar_canfd_hw_info
-Date: Thu, 17 Apr 2025 06:43:18 +0100
-Message-ID: <20250417054320.14100-18-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250417054320.14100-1-biju.das.jz@bp.renesas.com>
-References: <20250417054320.14100-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1744868604; c=relaxed/simple;
+	bh=+H6GJqZe88wszfPLN3DOELIGl3ZeXdSBFTpQYHbYMJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QPMDGC1XjBO706+o6HrSDECuGQGEzwnY0+LqBbYQpYF/KWXUZ95XuBE1ei1p3jdKj7ZZh4XsQAKdbkJs9yQ9NyhbbRCAQik+aPVAeRTbbF9VSzgmTwfH++F6w4xvRHUzl2ME1xkj1KLkvkal6ttluEbye2n0GoyabrZVz9QaZS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gTVHKvWW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07C9AC4CEE4;
+	Thu, 17 Apr 2025 05:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744868604;
+	bh=+H6GJqZe88wszfPLN3DOELIGl3ZeXdSBFTpQYHbYMJY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gTVHKvWWe2zc88whVLBSepXdn6Sn3GQNc6QGHyCp5jebMJIOQXF5eYdd/jVtZ/PHM
+	 PMxfUF5agQAe0MW4c1w3M9GxgXoe5+44sPjsZRU0NV03Oski9Hme2rHPW7Ep9se0QQ
+	 9ZkqF4ijt397cReOmB9CxqpU0SBRubQG/lO2YA86JsHkqKAypHQQE9rNSUuZiP7h+O
+	 lBndNZZ049UxR92FHv/d3A3QYqdciiYR5b7tlcr40mfetZt7FTXrMal1K33rRLxkth
+	 Lw3Jcxnu8SaCRySwYhdax6rlxHFRIkldygthqpvxFUTdatyKWLQnLOQkLNzWfCp9lP
+	 /9LeLxBiMBTSA==
+Message-ID: <878933d0-7062-4b91-ac32-efd5ea190702@kernel.org>
+Date: Thu, 17 Apr 2025 07:43:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor
+ LP5812 LED Driver
+To: Nam Tran <trannamatk@gmail.com>, krzk+dt@kernel.org
+Cc: pavel@kernel.org, lee@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ corbet@lwn.net, devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
+ <20250417020622.1562-1-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250417020622.1562-1-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-All existing SoCs support an external clock, but RZ/G3E has only internal
-clocks. Add external_clk variable to struct rcar_canfd_hw_info to handle
-this difference.
+On 17/04/2025 04:06, Nam Tran wrote:
+> 
+>>>
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  "^led@[0-9a-b]$":
+>>>>> +    type: object
+>>>>> +    $ref: common.yaml#
+>>>>> +    unevaluatedProperties: false
+>>>>> +
+>>>>> +    properties:
+>>>>> +      reg:
+>>>>> +        minimum: 0
+>>>>> +        maximum: 0xb
+>>>>> +
+>>>>> +      chan-name:
+>>>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>>>> +        description: LED channel name
+>>>>
+>>>> My comment stay valid. I don't think LEDs have channels, datasheet also
+>>>> has nothing about channels, so again - use existing properties. Or
+>>>> better drop it - I don't see any point in the name. The reg already
+>>>> defines it.
+>>>
+>>> The channel was named for the output channel to each LED, not the LED channels.
+>>
+>> I don't understand what you want to say. Please explain why existing
+>> label property is not correct here.
+> 
+> I understand that the label property is deprecated and that the preferred approach now is to use function and color instead.
+> However, in the case of the LP5812, which is a matrix LED driver, these properties are not a good fit.
+> The LP5812 does not associate each output with a specific function (like "status", "activity"),
+> and the LEDs driven by LP5812 are not fixed to a particular color.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v8->v9:
- * No change.
-v7->v8:
- * Renamed only_internal_clks->external_clk to avoid negation.
- * Updated commit description.
- * Updated rcar_canfd_hw_info tables.
- * Collected tag.
-v6->v7:
- * No change.
-v5->v6:
- * No change.
-v4->v5:
- * Collected tag.
- * Improved commit description by "All SoCs supports extenal clock"->
-   "All existing SoCs support an external clock".
-v3->v4:
- * No change.
-v2->v3:
- * No change
-v1->v2:
- * No change.
----
- drivers/net/can/rcar/rcar_canfd.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Then use label instead of creating another property. If label is
+deprecated, how creating another property which duplicates the label
+solves anything?
 
-diff --git a/drivers/net/can/rcar/rcar_canfd.c b/drivers/net/can/rcar/rcar_canfd.c
-index 67f7b5f6376c..0bf0e88dfe25 100644
---- a/drivers/net/can/rcar/rcar_canfd.c
-+++ b/drivers/net/can/rcar/rcar_canfd.c
-@@ -541,6 +541,7 @@ struct rcar_canfd_hw_info {
- 	unsigned multi_channel_irqs:1;	/* Has multiple channel irqs */
- 	unsigned ch_interface_mode:1;	/* Has channel interface mode */
- 	unsigned shared_can_regs:1;	/* Has shared classical can registers */
-+	unsigned external_clk:1;	/* Has external clock */
- };
- 
- /* Channel priv data */
-@@ -690,6 +691,7 @@ static const struct rcar_canfd_hw_info rcar_gen3_hw_info = {
- 	.shared_global_irqs = 1,
- 	.ch_interface_mode = 0,
- 	.shared_can_regs = 0,
-+	.external_clk = 1,
- };
- 
- static const struct rcar_canfd_hw_info rcar_gen4_hw_info = {
-@@ -705,6 +707,7 @@ static const struct rcar_canfd_hw_info rcar_gen4_hw_info = {
- 	.shared_global_irqs = 1,
- 	.ch_interface_mode = 1,
- 	.shared_can_regs = 1,
-+	.external_clk = 1,
- };
- 
- static const struct rcar_canfd_hw_info rzg2l_hw_info = {
-@@ -720,6 +723,7 @@ static const struct rcar_canfd_hw_info rzg2l_hw_info = {
- 	.multi_channel_irqs = 1,
- 	.ch_interface_mode = 0,
- 	.shared_can_regs = 0,
-+	.external_clk = 1,
- };
- 
- /* Helper functions */
-@@ -2048,7 +2052,7 @@ static int rcar_canfd_probe(struct platform_device *pdev)
- 		fcan_freq = clk_get_rate(gpriv->can_clk) / info->postdiv;
- 	} else {
- 		fcan_freq = clk_get_rate(gpriv->can_clk);
--		gpriv->extclk = true;
-+		gpriv->extclk = gpriv->info->external_clk;
- 	}
- 
- 	addr = devm_platform_ioremap_resource(pdev, 0);
--- 
-2.43.0
 
+Best regards,
+Krzysztof
 
