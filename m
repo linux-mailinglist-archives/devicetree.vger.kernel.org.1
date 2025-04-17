@@ -1,178 +1,167 @@
-Return-Path: <devicetree+bounces-168089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6B0A915C3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:53:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA55A91601
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 10:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 102D53B8C30
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:52:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C3437AFF03
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9AA221577;
-	Thu, 17 Apr 2025 07:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1872C221F3B;
+	Thu, 17 Apr 2025 07:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="xN4EnJrd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mL5Paba8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E352206BD;
-	Thu, 17 Apr 2025 07:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E509221C19C;
+	Thu, 17 Apr 2025 07:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744876378; cv=none; b=PtAx5aBIKaQajAFmfcXY380DZfxDep9532lEl2smUYNCMeRoO0vHsPitJKZwMWAmHnskqWNIUNOF1UV+hwnUqpqS/MkTRwRcI3uq1NgLVOIrVNTve0iPfmS3COu1sNEtogkKy1NsQbLBClJ/nMZ0MCLpo6sxGh8aVvvm96ujANE=
+	t=1744876757; cv=none; b=W1bXEU+7o34/tRm8Kxu6qpyohOYECvESElV9g/rpKc+XQacWW9N8d5xlW2gJdSsZequVV0YjDATQ853xLH4VJi4PoogHQimIHZfAmNnB6q68wcvMKUaLIKI1SfaTisI4QB5a5VAWfYenY/6KKdkJ1F3k2PaUh6A6l6yi3kOxEGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744876378; c=relaxed/simple;
-	bh=Se+Pb5gvAeaBxEvyD3+E41BEMYCQFUvRfuCjMCS7ljI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=aRjRJBqDcPtOON21TeYax5192/p6VJTy5GZCoFbqptSORzfhcMvpb6pwQXIfXG2TShXLvE7qgrP+gs5e3uAFg1y/c6N40YFq9+nlghdMMNcswASITlOC39Ron4V3chpW4PXY6R+Shwx5xeOg3Iof9gTqN4YEr5Fv6YVBnYsCRMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=xN4EnJrd; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout4.routing.net (Postfix) with ESMTP id A4E8A1008FA;
-	Thu, 17 Apr 2025 07:52:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1744876372;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q82aXZ96SkZQkHH0ZlbXPXUKG4cthRJar29R9w4dfJE=;
-	b=xN4EnJrdVeEEGXY1Uw/cWRtXIx7OgNpTRak8FB9wUaT8xQr96zt6iiIs4H9BNit/k7AFpA
-	b/qa0UTAJVIKjhaGbOTXYxIEWwUqXAj2F399mutRq8k0GBh+apnsVIRCShTmXp9AtFQk/0
-	oZ53q8OoA7fc3ycuuJLtOCKM6Kzq6aE=
-Received: from webmail.hosting.de (unknown [134.0.26.148])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id C3E213605AA;
-	Thu, 17 Apr 2025 07:52:51 +0000 (UTC)
+	s=arc-20240116; t=1744876757; c=relaxed/simple;
+	bh=ltOSBA1CpfWUytOEeCBbrYTdHgz8H9UN/rQ4NISs/Wk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d0JEd5UqDUJ1OFvw2ssOJzY0JZtz4o1L9RkgEDD3oPOtK9/ibqagMjbF8nJM85JfZS+R93X1W8Uzx/ZIo9AKOP69Jk3IS/GNgpYZ1xyM7l+Y2bZTdkZDWmoZ4yPj4fS1+a5UaUL/jhZI0m4eTXe7JxMnphMKvuVgyZUMeG0zl7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mL5Paba8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE67C4CEE4;
+	Thu, 17 Apr 2025 07:59:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744876755;
+	bh=ltOSBA1CpfWUytOEeCBbrYTdHgz8H9UN/rQ4NISs/Wk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mL5Paba83xIKR3EQKPY8iqdamc2Dd5Lhk8p/SjYOXJfH5D6MQNyvET/OzVp+ACKXQ
+	 /47yQdngZ+/xmalOw+7HAlqHvF9Jl9gPwuS6rLiXzzoayO+K9YZvpNGUdcddq5JY/A
+	 wDFODj9bivjqOk+5ovE+AGpOKcrJxpsM3EYcsZ5v2jLBr8vlsf8Z6qAD0YXdLcAEO4
+	 dB46vOLaGO+7cYAc2LK5rtg7tgq7eiNqiW6oXR5Xg7wAzOvj++g5oPvoC3wJ1jXU46
+	 ulJVPTeV+EEH5KaYwxar9suTlEYxvNKiVgvt9kURnwnXDJ+7HTOjJotM3zlBREeN+4
+	 ftl3Idu/9eIuA==
+Message-ID: <caf3da77-f35d-4a39-9102-9592d722d900@kernel.org>
+Date: Thu, 17 Apr 2025 09:59:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 17 Apr 2025 09:52:51 +0200
-From: "Frank Wunderlich (linux)" <linux@fw-web.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Chunfeng Yun
- <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank
- Wunderlich <frank-w@public-files.de>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82eck?=
- =?UTF-8?Q?i?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, Sean
- Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
  by pericfg
-In-Reply-To: <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
+To: "Frank Wunderlich (linux)" <linux@fw-web.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>,
+ Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
 References: <20250416095402.90543-1-linux@fw-web.de>
  <20250416095402.90543-5-linux@fw-web.de>
  <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
-Message-ID: <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
-X-Sender: linux@fw-web.de
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+ <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mail-ID: ffcf56f2-7a7a-4451-b290-b3cd6b547b72
 
-Hi Krzysztof,
-
-thanks for review.
-
-basicly i used the same binding like for tphy.
-
-Am 2025-04-17 08:56, schrieb Krzysztof Kozlowski:
-> On Wed, Apr 16, 2025 at 11:53:56AM GMT, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files.de>
->> 
->> Add support for type switch by pericfg register between USB3/PCIe.
->> 
->> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->> ---
->>  .../devicetree/bindings/phy/mediatek,xsphy.yaml  | 16 
->> ++++++++++++++++
->>  1 file changed, 16 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml 
->> b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
->> index 3b5253659e6f..5033d77c1239 100644
->> --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
->> @@ -151,6 +151,22 @@ patternProperties:
->>          minimum: 1
->>          maximum: 31
->> 
->> +      mediatek,syscon-type:
->> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->> +        maxItems: 1
->> +        description:
->> +          A phandle to syscon used to access the register of type 
->> switch,
->> +          the field should always be 3 cells long.
->> +        items:
->> +          items:
+On 17/04/2025 09:52, Frank Wunderlich (linux) wrote:
+>>>
+>>> +      mediatek,syscon-type:
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +        maxItems: 1
+>>> +        description:
+>>> +          A phandle to syscon used to access the register of type 
+>>> switch,
+>>> +          the field should always be 3 cells long.
+>>> +        items:
+>>> +          items:
+>>
+>> Missing -, because you have one phandle.
 > 
-> Missing -, because you have one phandle.
+> ok, then i need to drop MaxItems and indent 2 spaces more, but no 
+> problem
 
-ok, then i need to drop MaxItems and indent 2 spaces more, but no 
-problem
+I missed that maxItems - should not be placed above description, but
+immediately around items.
 
->> +            - description:
->> +                The first cell represents a phandle to syscon
 > 
-> Don't repeat constraints in free form text. "Foo bar system controller"
-> or "Phandle to foo bar system controller"
-
-i would write only "phandle to system controller". on mt7988 it is the 
-topmisc syscon, but maybe on
-other SoC it is different name.
-
->> +            - description:
->> +                The second cell represents the register offset
+>>> +            - description:
+>>> +                The first cell represents a phandle to syscon
+>>
+>> Don't repeat constraints in free form text. "Foo bar system controller"
+>> or "Phandle to foo bar system controller"
 > 
-> "Baz register offset"
+> i would write only "phandle to system controller". on mt7988 it is the 
+> topmisc syscon, but maybe on
+> other SoC it is different name.
 
-same here, only "register offset".
+This must be specific to what sort of system controller you point. You
+are not interested in phandle to any system controller.
 
->> +            - description:
->> +                The third cell represents the index of config segment
 > 
-> "Index of config segment", but what is index of config?
+>>> +            - description:
+>>> +                The second cell represents the register offset
+>>
+>> "Baz register offset"
+> 
+> same here, only "register offset".
 
-unfortunately we have no detailed documentation here, but based on 
-driver (i guess daniel ported it
-from SDK) this value is multiplied with BITS_PER_BYTE so it can handle 
-up to 4 config-segments in
-the 32bit register (maybe configuring 4 phys). But on mt7988 we use only 
-the first config-segment
-(last cell=0 in dts-patch).
+Also not. You need specific register, not any register.
 
-at the end it will look like this:
 
-       mediatek,syscon-type:
-         $ref: /schemas/types.yaml#/definitions/phandle-array
-         description:
-           A phandle to syscon used to access the register of type 
-switch,
-           the field should always be 3 cells long.
-         items:
-           - items:
-               - description:
-                   Phandle to system controller
-               - description:
-                   Register offset
-               - description:
-                   Index of config segment
-                 enum: [0, 1, 2, 3]
-
-would this be ok?
-
-> Best regards,
-> Krzysztof
-
-regards Frank
+Best regards,
+Krzysztof
 
