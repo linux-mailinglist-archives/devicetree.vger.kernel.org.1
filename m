@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-168270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCE7A92089
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:58:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D443A92092
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BDD419E7CB6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:58:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9133C16966C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBD2253337;
-	Thu, 17 Apr 2025 14:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DC125334A;
+	Thu, 17 Apr 2025 14:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="olKwDyjT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ieznMjOU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508DB252910
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04CA252903
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744901911; cv=none; b=g3NWKPBYV2VYUs+LDevIb00vvjtRY/t2boGjiSVszKo+HgvfYvt+a6/iiXGfjT6QWe6cyljT+5K0Ypu3iKBIGosPY76evEMaLqblH+XGWgz8ydAfNwJBf2D717COBac3sE4HiPgb5/oMOdKyH6OlON/NzrVzyI2pcPGpiI6hBdQ=
+	t=1744901912; cv=none; b=Ueg4ZskNDIFnpVKK6NJOgjv6PA2rZjO26WpNE5SkYub0KwPLARmG6A8wwRecx2c/xF1YIwgmJG2GGdlKsvdFBNxWvXfYV+qBeO1aOYwnqDw/HQAcDD8j0q0Wx2TbgWUAdoGc+xgnJJCO90p64FPeGbNvGNYHDg0AOd6VotUH7eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744901911; c=relaxed/simple;
-	bh=YCMGJIrbmVW1pNIZ0qJ0s5XePF4utvbRblzbX6HAhWU=;
+	s=arc-20240116; t=1744901912; c=relaxed/simple;
+	bh=h2WszHLV5RBLnY9OzouOtqHpT7xeNxaUTENNIBLhvX4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=O3GkH+Fx53vpleriT2g6GmHeM5ANjP+GY/yY9gYLAdYWVsUWxtymNhKT2RvAaVCFZFgj3l1qgODGOkPbBFZ89x6LVO3jm3Wv9f+X/t4/8yDxIuWV8kyzOVCa/x+w9b0FP1pwJiTIOwLXBYeqIi0B8ykL3zeTd7Bbpf9bzPplmqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=olKwDyjT; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=XTgbfFZ+GyWUpiY2XKtFujJXcQ3+V5wfQahfgLr1PSoE1IFMSVbmuu30napqyBMxwxyTVuuagkEDjFwGXSDPqsTnXLcPHTe6O+2u/attCBYY5q4CWGCL1b0Sy1T083ZvQ+58uHsQkPaNxWxanAEzNijSvwI/fiuVpNVoEZCNzs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ieznMjOU; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClant029708
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:28 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClQMQ005006
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:30 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=tgQf2ZIf6Jt
-	g2wmouYbqqZnME7gpzSm3sUd7XK8DmwA=; b=olKwDyjT5hbZyVZW9USXm1m0PKS
-	RjEstyTftEO8ofeBBz2oiDF9vPlp3eR/FNWsvfscvDzGDWHl07wyqtqsSofFw6+S
-	x1Ih0H5n1nImKp9sCJ8esEgHlpmajOJa9vojRg0kAO2uz1xLYcgzYtu9QEH7xHg3
-	lgGWU2UTCLvMBW/PjUdYhGQ0HBtKI2ajyyDxcI12ae86xoAcNLYRLIjdwdsCNt97
-	9eRDSATzPOgJ6ZGW/unol8o7HgaQXtqDoxuyJasZRFEevqMCvsADJ0J/2r25xHJX
-	Lwt5zRaFGisGGXMym56w8bS+D9hBepIYuqhq6BmDOkwkDsKLSIZDpnKplNg==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=zCZTAZsCou4
+	fi+cdg23KsgMfKYpjnEdjfGU2P+0GKKA=; b=ieznMjOUQAho0SLn34sa8GNhdgd
+	NIp9wSF0qJN54de0K+JONflF1XOfQNG0KYafBS+KkbuML0YMwf2mmL+rXVaoSoVI
+	3SQudImlWcHWWlVIlAxoeOcEWKrGAKaTY0Wo7nM4ZZF2zLoC+W45lh4uKpKsd/kN
+	5Nf+4KB8p04882eG3fe9eQU5jh2zCbftvHG8KYzbplUC8u8IsbBFEyiLiPbPc8Jm
+	GU6ocDqQ5EeDuypq9lBto3Cs18k40Z1rn+tzc2P3HqVC1yT76UeX41fwxXaLalkR
+	dhdJtoggcHEuWyOwmsVAJplleI7C4G8hGH6IKD8Knk6ILSADcPwlzeSdZLQ==
 Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygj9f9x3-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf69yb7t-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:27 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6eeb5e86c5fso10056906d6.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 07:58:27 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:58:29 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e8feffbe08so18872406d6.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 07:58:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744901907; x=1745506707;
+        d=1e100.net; s=20230601; t=1744901909; x=1745506709;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tgQf2ZIf6Jtg2wmouYbqqZnME7gpzSm3sUd7XK8DmwA=;
-        b=POjFe9z6pWApFmHpWh1mkGVvRaUlTNuj/b6u4DoyL2zcMNvsbN3S5TlI+YjDwWdGcf
-         ObKv9/9+wpG4KLpPk7r7IO4jGcNP0JxIeIutwEVp1PY3JsFCXtDX8uIxT/YL9aUb87RP
-         /vEslwr11mDNRnHQ6F/QUqCpmNZvHrETp6r6mcRcEH2cJZ36tyZJwrVaAIyINWWXj7Zz
-         RiMcdgLkAs0kY2EFpRp5fO8KH25R+gqO2iW4sRuKb5rMSodeA404fqRyJ1R9uWlWfw+2
-         0MHrix0wuR6L+dTYMKH7B02Et0TrEBV60+nF62e2faJnANVzlCmsYJffy0JA9gWOnMNU
-         /tWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWoUuAE2IdHEp515otNnS3ceoj0NX+9HkeAWuRUW3ajFvm0pBnzHWCsbDLN8FtHm9crmrH9WLssiuPU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywkqsl3SdFCGejHLFdH27jpF+5Qc121jZvImu8LruiC9ea3Utyi
-	NZl6wr+lvjB1yw2pEz93A5EREAD0udNFBj30WKuS4unhpt/2vteKjQi034RrpcXCrWN6cxaSQOv
-	nqDiT22egFPAokaw5sgQP6dcHAhwOm0MIxE6Rj9Ok0kyW3UvAgnmW+YvB0+wR
-X-Gm-Gg: ASbGnctcDbfoGGnm0L1V7D6JbJVD5gDrmmYA5jbley/5ffRgdXiT6zWifYpTKTIq2rW
-	cMJeCEpVymXHtUMJeV08ahtAMFikOG6TzP760+cAqp+VpezpRxFf5ghraYZ82VljDzWBhJ8fDdQ
-	I3/un6AKCol8VWAoJQHiZ0K2Ppc4YsNntAJ6uBATe9xpADLGQmXWPwc3VBwn7ng30Dg8VQEYe5g
-	etDp3z3DOuGcqLKJBMYsbr/UyPwiWtvmBcNmbLsZo7qct6UJsAERvCnNVifinkUL9dNTyiZ6d6M
-	nKgcZ2c+mHSFc2SgyuWBC4s4dO7RyARLCKTmElDDbNVAPJY=
-X-Received: by 2002:ad4:5bc7:0:b0:6ed:126b:a15e with SMTP id 6a1803df08f44-6f2b301b8d2mr88393846d6.33.1744901907100;
-        Thu, 17 Apr 2025 07:58:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG1pAhdSZDqKQs6mT3c5qdWALjcb8bowo+1bd9gK7EPrPG/AiYhuP1MXmeQ3TJwRqLy8I9F9Q==
-X-Received: by 2002:ad4:5bc7:0:b0:6ed:126b:a15e with SMTP id 6a1803df08f44-6f2b301b8d2mr88393336d6.33.1744901906670;
-        Thu, 17 Apr 2025 07:58:26 -0700 (PDT)
+        bh=zCZTAZsCou4fi+cdg23KsgMfKYpjnEdjfGU2P+0GKKA=;
+        b=YSB1KWrhDW7bbutqAJjEI6Va6lfhfK2XdzhwtocOsB4gwtZQk7OuSSMeyX/idoE8Dr
+         fNBYHw2YZbOJckhzC4aEhGGDr8tqEqWHpbM0rH3MkRwDpuXW8ecicnqEzbtzh0zSHlpT
+         yRV+UXska9I3swE7CjUT7NrE2OqYjlfYuFSPk1weYHfPBpvFz12iFLpq9V/lQaKUzi8d
+         71qEa8EqrUn7JNlJ2XCegqo3r9afHTbWNS42UqKgSj57ORa+lZqQMf27W2BLQiZ6gD+S
+         urDCVi9+FONXCAvjYpHfe7/GWoNyXszmMMz8jgUW+PPYlZpTmFRTYU1GN0yhrIV3fiA4
+         YleA==
+X-Forwarded-Encrypted: i=1; AJvYcCWiresqJPjYs53Em1QBmcTZGDbYcd6o3ZMbF+mmq5dw57gBQ+z+zC3UozTK8HV4IwXC3ZpXypsYX2Yy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8LtyrD0xdhj78TMSVXCwJoRPTAiVpb7yE5xTj92sq358HAc2D
+	9x01Q2jZzVs9k9I91UYfAvMaGCBrFSRNzC2xdDgQBy9Eo3mKvJ7VI0/e2Hee8XcuLMRAs2OZ+xS
+	/1DLhW0tN2JXayeWpR79aPkauQRFqwJXMZQCEV9PTlf1X4xH3fTcefDsBYURl
+X-Gm-Gg: ASbGncuoJxxBcunaLuD1VzeL1DO2mIPk1XE7WpcguJJoZ4EDnY53pEmTlt7iwaakcLG
+	MSm+rVJTtxzoWlwy2heC5aZF1+rz4XW8UjFuHzdE3D6IvrTxPZiSOJHfpffFE21dzgYDCRx/QJy
+	xqxnGb6rLyFAH/idzlFf4xsladsV9rhAGE35MbTcitUjdGofRZAKhGTUxfpjppqyZZkBQsEEO8i
+	uieH7tUOzrmffQa7lZqAvOjUicUyIijomRnxBWszXBPWiVbe37OzSZIvDiN0dhjDK03U1JIu/ME
+	le8Xwkny8Z4y3aAgTkwnBpC76+ZhlIOwdd1b6Rbw68mBhpo=
+X-Received: by 2002:a05:6214:19c8:b0:6e8:98a1:3694 with SMTP id 6a1803df08f44-6f2b2f22f33mr92204276d6.8.1744901908817;
+        Thu, 17 Apr 2025 07:58:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGDTgIe+u3MQpYlzzQHhCEIzqdzLLxzH2ADzL3qs8lZFc05tIajUO4R0r5nYZn8VhYDDLGwdg==
+X-Received: by 2002:a05:6214:19c8:b0:6e8:98a1:3694 with SMTP id 6a1803df08f44-6f2b2f22f33mr92203826d6.8.1744901908466;
+        Thu, 17 Apr 2025 07:58:28 -0700 (PDT)
 Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:82c:5f0:15e4:d866:eb53:4185])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef48e5csm3966166b.148.2025.04.17.07.58.25
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef48e5csm3966166b.148.2025.04.17.07.58.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Apr 2025 07:58:26 -0700 (PDT)
+        Thu, 17 Apr 2025 07:58:27 -0700 (PDT)
 From: Loic Poulain <loic.poulain@oss.qualcomm.com>
 To: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
         andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org
 Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
         devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
         Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: [PATCH v2 1/6] media: qcom: camss: Add support for TFE (Spectra 340)
-Date: Thu, 17 Apr 2025 16:58:14 +0200
-Message-Id: <20250417145819.626733-2-loic.poulain@oss.qualcomm.com>
+Subject: [PATCH v2 2/6] media: qcom: camss: Add CSID 340 support
+Date: Thu, 17 Apr 2025 16:58:15 +0200
+Message-Id: <20250417145819.626733-3-loic.poulain@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250417145819.626733-1-loic.poulain@oss.qualcomm.com>
 References: <20250417145819.626733-1-loic.poulain@oss.qualcomm.com>
@@ -98,379 +98,251 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: XYHGk2zNs9QgMrSFh16Zb70Gieo6PSGx
-X-Authority-Analysis: v=2.4 cv=PruTbxM3 c=1 sm=1 tr=0 ts=68011713 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=XR8D0OoHHMoA:10 a=QcRrIoSkKhIA:10 a=EUspDBNiAAAA:8 a=5YBWHmY6e4A8bI1BiDgA:9 a=IZ6BfI08DC7DjxxD:21 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-GUID: XYHGk2zNs9QgMrSFh16Zb70Gieo6PSGx
+X-Proofpoint-GUID: du_-W3mvpvN_YLqIiMkVthZk5-vS9If3
+X-Authority-Analysis: v=2.4 cv=JNc7s9Kb c=1 sm=1 tr=0 ts=68011715 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=XR8D0OoHHMoA:10 a=QcRrIoSkKhIA:10 a=EUspDBNiAAAA:8 a=L3ROWYctCJYvUZd4tikA:9 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-ORIG-GUID: du_-W3mvpvN_YLqIiMkVthZk5-vS9If3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-17_04,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 clxscore=1015 spamscore=0 mlxscore=0 mlxlogscore=999
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ suspectscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
  adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2504170112
 
-Add support for TFE (Thin Front End) found in QCM2290.
+Add support for CSID found in QCM2290, it's a simplified gen-2 version.
+- There is no Test Pattern Generator (moved outside CSID)
+- There is no subsampling (moved to CAMIF module)
 
 Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 ---
  drivers/media/platform/qcom/camss/Makefile    |   1 +
- .../media/platform/qcom/camss/camss-vfe-340.c | 320 ++++++++++++++++++
- drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
- 3 files changed, 322 insertions(+)
- create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-340.c
+ .../platform/qcom/camss/camss-csid-340.c      | 190 ++++++++++++++++++
+ .../media/platform/qcom/camss/camss-csid.h    |   1 +
+ 3 files changed, 192 insertions(+)
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-340.c
 
 diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-index d26a9c24a430..719898f5d32b 100644
+index 719898f5d32b..3217bf40976d 100644
 --- a/drivers/media/platform/qcom/camss/Makefile
 +++ b/drivers/media/platform/qcom/camss/Makefile
-@@ -17,6 +17,7 @@ qcom-camss-objs += \
- 		camss-vfe-4-7.o \
- 		camss-vfe-4-8.o \
- 		camss-vfe-17x.o \
-+		camss-vfe-340.o \
- 		camss-vfe-480.o \
- 		camss-vfe-680.o \
- 		camss-vfe-780.o \
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-340.c b/drivers/media/platform/qcom/camss/camss-vfe-340.c
+@@ -6,6 +6,7 @@ qcom-camss-objs += \
+ 		camss-csid.o \
+ 		camss-csid-4-1.o \
+ 		camss-csid-4-7.o \
++		camss-csid-340.o \
+ 		camss-csid-680.o \
+ 		camss-csid-gen2.o \
+ 		camss-csid-780.o \
+diff --git a/drivers/media/platform/qcom/camss/camss-csid-340.c b/drivers/media/platform/qcom/camss/camss-csid-340.c
 new file mode 100644
-index 000000000000..0b137c04e92c
+index 000000000000..92726de48514
 --- /dev/null
-+++ b/drivers/media/platform/qcom/camss/camss-vfe-340.c
-@@ -0,0 +1,320 @@
++++ b/drivers/media/platform/qcom/camss/camss-csid-340.c
+@@ -0,0 +1,190 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Qualcomm MSM Camera Subsystem - VFE (Video Front End) Module 340 (TFE)
++ * Qualcomm MSM Camera Subsystem - CSID (CSI Decoder) Module 340
 + *
 + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
 + */
 +
-+#include <linux/delay.h>
++#include <linux/completion.h>
 +#include <linux/interrupt.h>
 +#include <linux/io.h>
-+#include <linux/iopoll.h>
++#include <linux/kernel.h>
 +
 +#include "camss.h"
-+#include "camss-vfe.h"
++#include "camss-csid.h"
++#include "camss-csid-gen2.h"
 +
-+#define TFE_GLOBAL_RESET_CMD				(0x014)
-+#define		TFE_GLOBAL_RESET_CMD_CORE	BIT(0)
++#define CSID_RST_STROBES					(0x010)
++#define		CSID_RST_SW_REGS			BIT(0)
++#define		CSID_RST_IRQ				BIT(1)
++#define CSID_RST_IFE_CLK				BIT(2)
++#define		CSID_RST_PHY_CLK			BIT(3)
++#define		CSID_RST_CSID_CLK			BIT(4)
 +
-+#define TFE_REG_UPDATE_CMD				(0x02c)
++#define CSID_IRQ_STATUS						(0x070)
++#define CSID_IRQ_MASK						(0x074)
++#define		CSID_IRQ_MASK_RST_DONE			BIT(0)
++#define CSID_IRQ_CLEAR						(0x078)
++#define CSID_IRQ_CMD						(0x080)
++#define		CSID_IRQ_CMD_CLEAR			BIT(0)
 +
-+#define TFE_IRQ_CMD					(0x030)
-+#define		TFE_IRQ_CMD_CLEAR		BIT(0)
-+#define TFE_IRQ_MASK_0					(0x034)
-+#define		TFE_IRQ_MASK_0_RST_DONE		BIT(0)
-+#define		TFE_IRQ_MASK_0_BUS_WR		BIT(1)
-+#define TFE_IRQ_MASK_1					(0x038)
-+#define TFE_IRQ_MASK_2					(0x03c)
-+#define TFE_IRQ_CLEAR_0					(0x040)
++#define CSID_CSI2_RX_CFG0					(0x100)
++#define		CSI2_RX_CFG0_NUM_ACTIVE_LANES_MASK	GENMASK(1, 0)
++#define		CSI2_RX_CFG0_DLX_INPUT_SEL_MASK		GENMASK(17, 4)
++#define		CSI2_RX_CFG0_PHY_NUM_SEL_MASK		GENMASK(21, 20)
++#define		CSI2_RX_CFG0_PHY_NUM_SEL_BASE_IDX	1
++#define		CSI2_RX_CFG0_PHY_TYPE_SEL		BIT(24)
 +
-+#define TFE_IRQ_STATUS_0				(0x04c)
 +
-+#define BUS_REG(a)					(0xa00 + (a))
++#define CSID_CSI2_RX_CFG1					(0x104)
++#define		CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN	BIT(0)
++#define		CSI2_RX_CFG1_MISR_EN			BIT(6)
++#define		CSI2_RX_CFG1_CGC_MODE			BIT(7)
 +
-+#define TFE_BUS_IRQ_MASK_0				BUS_REG(0x18)
-+#define		TFE_BUS_IRQ_MASK_RUP_DONE_MASK	GENMASK(3, 0)
-+#define		TFE_BUS_IRQ_MASK_RUP_DONE(sc)	FIELD_PREP(TFE_BUS_IRQ_MASK_RUP_DONE_MASK, BIT(sc))
-+#define		TFE_BUS_IRQ_MASK_BUF_DONE_MASK	GENMASK(15, 8)
-+#define		TFE_BUS_IRQ_MASK_BUF_DONE(sg)	FIELD_PREP(TFE_BUS_IRQ_MASK_BUF_DONE_MASK, BIT(sg))
-+#define		TFE_BUS_IRQ_MASK_0_CONS_VIOL	BIT(28)
-+#define		TFE_BUS_IRQ_MASK_0_VIOL		BIT(30)
-+#define		TFE_BUS_IRQ_MASK_0_IMG_VIOL	BIT(31)
++#define CSID_RDI_CFG0(rdi)					(0x300 + 0x100 * (rdi))
++#define		CSID_RDI_CFG0_BYTE_CNTR_EN		BIT(0)
++#define		CSID_RDI_CFG0_TIMESTAMP_EN		BIT(1)
++#define		CSID_RDI_CFG0_DECODE_FORMAT_MASK	GENMASK(15, 12)
++#define		CSID_RDI_CFG0_DECODE_FORMAT_NOP		CSID_RDI_CFG0_DECODE_FORMAT_MASK
++#define		CSID_RDI_CFG0_DT_MASK			GENMASK(21, 16)
++#define		CSID_RDI_CFG0_VC_MASK			GENMASK(23, 22)
++#define		CSID_RDI_CFG0_DTID_MASK			GENMASK(28, 27)
++#define		CSID_RDI_CFG0_ENABLE			BIT(31)
 +
-+#define TFE_BUS_IRQ_MASK_1				BUS_REG(0x1c)
-+#define TFE_BUS_IRQ_CLEAR_0				BUS_REG(0x20)
-+#define TFE_BUS_IRQ_STATUS_0				BUS_REG(0x28)
-+#define TFE_BUS_IRQ_CMD					BUS_REG(0x30)
-+#define		TFE_BUS_IRQ_CMD_CLEAR		BIT(0)
++#define CSID_RDI_CTRL(rdi)					(0x308 + 0x100 * (rdi))
++#define CSID_RDI_CTRL_HALT_AT_FRAME_BOUNDARY		0
++#define CSID_RDI_CTRL_RESUME_AT_FRAME_BOUNDARY		1
 +
-+#define TFE_BUS_STATUS_CLEAR				BUS_REG(0x60)
-+#define TFE_BUS_VIOLATION_STATUS			BUS_REG(0x64)
-+#define TFE_BUS_OVERFLOW_STATUS				BUS_REG(0x68)
-+#define TFE_BUS_IMAGE_SZ_VIOLATION_STATUS		BUS_REG(0x70)
-+
-+#define TFE_BUS_CLIENT_CFG(c)				BUS_REG(0x200 + (c) * 0x100)
-+#define		TFE_BUS_CLIENT_CFG_EN		BIT(0)
-+#define		TFE_BUS_CLIENT_CFG_MODE_FRAME	BIT(16)
-+#define TFE_BUS_IMAGE_ADDR(c)				BUS_REG(0x204 + (c) * 0x100)
-+#define TFE_BUS_FRAME_INCR(c)				BUS_REG(0x208 + (c) * 0x100)
-+#define TFE_BUS_IMAGE_CFG_0(c)				BUS_REG(0x20c + (c) * 0x100)
-+#define		TFE_BUS_IMAGE_CFG_0_DEFAULT	0xffff
-+#define TFE_BUS_IMAGE_CFG_1(c)				BUS_REG(0x210 + (c) * 0x100)
-+#define TFE_BUS_IMAGE_CFG_2(c)				BUS_REG(0x214 + (c) * 0x100)
-+#define		TFE_BUS_IMAGE_CFG_2_DEFAULT	0xffff
-+#define TFE_BUS_PACKER_CFG(c)				BUS_REG(0x218 + (c) * 0x100)
-+#define		TFE_BUS_PACKER_CFG_FMT_PLAIN64	0xa
-+#define TFE_BUS_IRQ_SUBSAMPLE_CFG_0(c)			BUS_REG(0x230 + (c) * 0x100)
-+#define TFE_BUS_IRQ_SUBSAMPLE_CFG_1(c)			BUS_REG(0x234 + (c) * 0x100)
-+#define TFE_BUS_FRAMEDROP_CFG_0(c)			BUS_REG(0x238 + (c) * 0x100)
-+#define TFE_BUS_FRAMEDROP_CFG_1(c)			BUS_REG(0x23c + (c) * 0x100)
-+
-+/*
-+ * TODO: differentiate the port id based on requested type of RDI, BHIST etc
-+ *
-+ * TFE write master IDs (clients)
-+ *
-+ * BAYER		0
-+ * IDEAL_RAW		1
-+ * STATS_TINTLESS_BG	2
-+ * STATS_BHIST		3
-+ * STATS_AWB_BG		4
-+ * STATS_AEC_BG		5
-+ * STATS_BAF		6
-+ * RDI0			7
-+ * RDI1			8
-+ * RDI2			9
-+ */
-+#define RDI_WM(n)		(7 + (n))
-+#define TFE_WM_NUM		10
-+
-+enum tfe_iface {
-+	TFE_IFACE_PIX,
-+	TFE_IFACE_RDI0,
-+	TFE_IFACE_RDI1,
-+	TFE_IFACE_RDI2,
-+	TFE_IFACE_NUM
-+};
-+
-+enum tfe_subgroups {
-+	TFE_SUBGROUP_BAYER,
-+	TFE_SUBGROUP_IDEAL_RAW,
-+	TFE_SUBGROUP_HDR,
-+	TFE_SUBGROUP_BG,
-+	TFE_SUBGROUP_BAF,
-+	TFE_SUBGROUP_RDI0,
-+	TFE_SUBGROUP_RDI1,
-+	TFE_SUBGROUP_RDI2,
-+	TFE_SUBGROUP_NUM
-+};
-+
-+enum tfe_iface tfe_line_iface_map[VFE_LINE_NUM_MAX] = {
-+	[VFE_LINE_RDI0] = TFE_IFACE_RDI0,
-+	[VFE_LINE_RDI1] = TFE_IFACE_RDI1,
-+	[VFE_LINE_RDI2] = TFE_IFACE_RDI2,
-+	[VFE_LINE_PIX] = TFE_IFACE_PIX,
-+};
-+
-+enum vfe_line_id tfe_subgroup_line_map[TFE_SUBGROUP_NUM] = {
-+	[TFE_SUBGROUP_BAYER] = VFE_LINE_PIX,
-+	[TFE_SUBGROUP_IDEAL_RAW] = VFE_LINE_PIX,
-+	[TFE_SUBGROUP_HDR] = VFE_LINE_PIX,
-+	[TFE_SUBGROUP_BG] = VFE_LINE_PIX,
-+	[TFE_SUBGROUP_BAF] = VFE_LINE_PIX,
-+	[TFE_SUBGROUP_RDI0] = VFE_LINE_RDI0,
-+	[TFE_SUBGROUP_RDI1] = VFE_LINE_RDI1,
-+	[TFE_SUBGROUP_RDI2] = VFE_LINE_RDI2,
-+};
-+
-+static inline enum tfe_iface  __line_to_iface(enum vfe_line_id line_id)
++static void __csid_configure_rx(struct csid_device *csid,
++				struct csid_phy_config *phy, int vc)
 +{
-+	if (line_id <= VFE_LINE_NONE || line_id >= VFE_LINE_NUM_MAX) {
-+		pr_warn("VFE: Invalid line %d\n", line_id);
-+		return TFE_IFACE_RDI0;
-+	}
++	u32 val;
 +
-+	return tfe_line_iface_map[line_id];
++	val = FIELD_PREP(CSI2_RX_CFG0_NUM_ACTIVE_LANES_MASK, phy->lane_cnt - 1);
++	val |= FIELD_PREP(CSI2_RX_CFG0_DLX_INPUT_SEL_MASK, phy->lane_assign);
++	val |= FIELD_PREP(CSI2_RX_CFG0_PHY_NUM_SEL_MASK,
++			  phy->csiphy_id + CSI2_RX_CFG0_PHY_NUM_SEL_BASE_IDX);
++	writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG0);
++
++	val = CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN;
++	writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG1);
 +}
 +
-+static inline enum vfe_line_id __iface_to_line(unsigned int iface)
++static void __csid_ctrl_rdi(struct csid_device *csid, int enable, u8 rdi)
++{
++	writel_relaxed(!!enable, csid->base + CSID_RDI_CTRL(rdi));
++}
++
++static void __csid_configure_rdi_stream(struct csid_device *csid, u8 enable, u8 vc)
++{
++	struct v4l2_mbus_framefmt *input_format = &csid->fmt[MSM_CSID_PAD_FIRST_SRC + vc];
++	const struct csid_format_info *format = csid_get_fmt_entry(csid->res->formats->formats,
++								   csid->res->formats->nformats,
++								   input_format->code);
++	u8 lane_cnt = csid->phy.lane_cnt;
++	u8 dt_id;
++	u32 val;
++
++	if (!lane_cnt)
++		lane_cnt = 4;
++
++	/*
++	 * DT_ID is a two bit bitfield that is concatenated with
++	 * the four least significant bits of the five bit VC
++	 * bitfield to generate an internal CID value.
++	 *
++	 * CSID_RDI_CFG0(vc)
++	 * DT_ID : 28:27
++	 * VC    : 26:22
++	 * DT    : 21:16
++	 *
++	 * CID   : VC 3:0 << 2 | DT_ID 1:0
++	 */
++	dt_id = vc & 0x03;
++
++	val = CSID_RDI_CFG0_DECODE_FORMAT_NOP; /* only for RDI path */
++	val |= FIELD_PREP(CSID_RDI_CFG0_DT_MASK, format->data_type);
++	val |= FIELD_PREP(CSID_RDI_CFG0_VC_MASK, vc);
++	val |= FIELD_PREP(CSID_RDI_CFG0_DTID_MASK, dt_id);
++
++	if (enable)
++		val |= CSID_RDI_CFG0_ENABLE;
++
++	dev_dbg(csid->camss->dev, "CSID%u: Stream %s (dt:0x%x vc=%u)\n",
++		csid->id, enable ? "enable" : "disable", format->data_type, vc);
++
++	writel_relaxed(val, csid->base + CSID_RDI_CFG0(vc));
++}
++
++static void csid_configure_stream(struct csid_device *csid, u8 enable)
 +{
 +	int i;
 +
-+	for (i = 0; i < VFE_LINE_NUM_MAX; i++) {
-+		if (tfe_line_iface_map[i] == iface)
-+			return i;
-+	}
-+
-+	return VFE_LINE_NONE;
-+}
-+
-+static inline enum vfe_line_id __subgroup_to_line(enum tfe_subgroups sg)
-+{
-+	if (sg >= TFE_SUBGROUP_NUM)
-+		return VFE_LINE_NONE;
-+
-+	return tfe_subgroup_line_map[sg];
-+}
-+
-+static void vfe_global_reset(struct vfe_device *vfe)
-+{
-+	writel_relaxed(TFE_IRQ_MASK_0_RST_DONE, vfe->base + TFE_IRQ_MASK_0);
-+	writel_relaxed(TFE_GLOBAL_RESET_CMD_CORE, vfe->base + TFE_GLOBAL_RESET_CMD);
-+}
-+
-+static irqreturn_t vfe_isr(int irq, void *dev)
-+{
-+	struct vfe_device *vfe = dev;
-+	u32 status;
-+	int i;
-+
-+	status = readl_relaxed(vfe->base + TFE_IRQ_STATUS_0);
-+	writel_relaxed(status, vfe->base + TFE_IRQ_CLEAR_0);
-+	writel_relaxed(TFE_IRQ_CMD_CLEAR, vfe->base + TFE_IRQ_CMD);
-+
-+
-+	if (status & TFE_IRQ_MASK_0_RST_DONE) {
-+		dev_dbg(vfe->camss->dev, "VFE%u: Reset done!", vfe->id);
-+		vfe_isr_reset_ack(vfe);
-+	}
-+
-+	if (status & TFE_IRQ_MASK_0_BUS_WR) {
-+		u32 bus_status = readl_relaxed(vfe->base + TFE_BUS_IRQ_STATUS_0);
-+
-+		writel_relaxed(bus_status, vfe->base + TFE_BUS_IRQ_CLEAR_0);
-+		writel_relaxed(TFE_BUS_IRQ_CMD_CLEAR, vfe->base + TFE_BUS_IRQ_CMD);
-+
-+		for (i = 0; i < TFE_IFACE_NUM; i++) {
-+			if (bus_status & TFE_BUS_IRQ_MASK_RUP_DONE(i))
-+				vfe->res->hw_ops->reg_update_clear(vfe, __iface_to_line(i));
-+		}
-+
-+		for (i = 0; i < TFE_SUBGROUP_NUM; i++) {
-+			if (bus_status & TFE_BUS_IRQ_MASK_BUF_DONE(i))
-+				vfe_buf_done(vfe, __subgroup_to_line(i));
-+		}
-+
-+		if (bus_status & TFE_BUS_IRQ_MASK_0_CONS_VIOL)
-+			dev_err_ratelimited(vfe->camss->dev, "VFE%u: Bad config violation",
-+					    vfe->id);
-+
-+		if (bus_status & TFE_BUS_IRQ_MASK_0_VIOL)
-+			dev_err_ratelimited(vfe->camss->dev, "VFE%u: Input data violation",
-+					    vfe->id);
-+
-+		if (bus_status & TFE_BUS_IRQ_MASK_0_IMG_VIOL)
-+			dev_err_ratelimited(vfe->camss->dev, "VFE%u: Image size violation",
-+					    vfe->id);
-+	}
-+
-+	status = readl_relaxed(vfe->base + TFE_BUS_OVERFLOW_STATUS);
-+	if (status) {
-+		writel_relaxed(status, vfe->base + TFE_BUS_STATUS_CLEAR);
-+		for (i = 0; i < TFE_WM_NUM; i++) {
-+			if (status & BIT(i))
-+				dev_err_ratelimited(vfe->camss->dev,
-+						    "VFE%u: bus overflow for wm %u\n",
-+						    vfe->id, i);
++	for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS; i++) {
++		if (csid->phy.en_vc & BIT(i)) {
++			__csid_configure_rdi_stream(csid, enable, i);
++			__csid_configure_rx(csid, &csid->phy, i);
++			__csid_ctrl_rdi(csid, enable, i);
 +		}
 +	}
++}
++
++static int csid_reset(struct csid_device *csid)
++{
++	unsigned long time;
++
++	writel_relaxed(CSID_IRQ_MASK_RST_DONE, csid->base + CSID_IRQ_MASK);
++	writel_relaxed(CSID_IRQ_MASK_RST_DONE, csid->base + CSID_IRQ_CLEAR);
++	writel_relaxed(CSID_IRQ_CMD_CLEAR, csid->base + CSID_IRQ_CMD);
++
++	reinit_completion(&csid->reset_complete);
++
++	/* Reset with registers preserved */
++	writel(CSID_RST_IRQ | CSID_RST_IFE_CLK | CSID_RST_PHY_CLK | CSID_RST_CSID_CLK,
++	       csid->base + CSID_RST_STROBES);
++
++	time = wait_for_completion_timeout(&csid->reset_complete,
++					   msecs_to_jiffies(CSID_RESET_TIMEOUT_MS));
++	if (!time) {
++		dev_err(csid->camss->dev, "CSID%u: reset timeout\n", csid->id);
++		return -EIO;
++	}
++
++	dev_dbg(csid->camss->dev, "CSID%u: reset done\n", csid->id);
++
++	return 0;
++}
++
++static irqreturn_t csid_isr(int irq, void *dev)
++{
++	struct csid_device *csid = dev;
++	u32 val;
++
++	val = readl_relaxed(csid->base + CSID_IRQ_STATUS);
++	writel_relaxed(val, csid->base + CSID_IRQ_CLEAR);
++	writel_relaxed(CSID_IRQ_CMD_CLEAR, csid->base + CSID_IRQ_CMD);
++
++	if (val & CSID_IRQ_MASK_RST_DONE)
++		complete(&csid->reset_complete);
++	else
++		dev_warn_ratelimited(csid->camss->dev, "Spurious CSID interrupt\n");
 +
 +	return IRQ_HANDLED;
 +}
 +
-+static int vfe_halt(struct vfe_device *vfe)
++static int csid_configure_testgen_pattern(struct csid_device *csid, s32 val)
 +{
-+	/* rely on vfe_disable_output() to stop the VFE */
-+	return 0;
++	return -EOPNOTSUPP; /* Not part of CSID */
 +}
 +
-+static void vfe_enable_irq(struct vfe_device *vfe)
-+{
-+	writel_relaxed(TFE_IRQ_MASK_0_RST_DONE | TFE_IRQ_MASK_0_BUS_WR,
-+		       vfe->base + TFE_IRQ_MASK_0);
-+	writel_relaxed(TFE_BUS_IRQ_MASK_RUP_DONE_MASK | TFE_BUS_IRQ_MASK_BUF_DONE_MASK |
-+		       TFE_BUS_IRQ_MASK_0_CONS_VIOL | TFE_BUS_IRQ_MASK_0_VIOL |
-+		       TFE_BUS_IRQ_MASK_0_IMG_VIOL, vfe->base + TFE_BUS_IRQ_MASK_0);
-+}
++static void csid_subdev_init(struct csid_device *csid) {}
 +
-+static void vfe_wm_update(struct vfe_device *vfe, u8 rdi, u32 addr,
-+			  struct vfe_line *line)
-+{
-+	u8 wm = RDI_WM(rdi);
-+
-+	writel_relaxed(addr, vfe->base + TFE_BUS_IMAGE_ADDR(wm));
-+}
-+
-+static void vfe_wm_start(struct vfe_device *vfe, u8 rdi, struct vfe_line *line)
-+{
-+	struct v4l2_pix_format_mplane *pix = &line->video_out.active_fmt.fmt.pix_mp;
-+	u32 stride = pix->plane_fmt[0].bytesperline;
-+	u8 wm = RDI_WM(rdi);
-+
-+	/* Configuration for plain RDI frames */
-+	writel_relaxed(TFE_BUS_IMAGE_CFG_0_DEFAULT, vfe->base + TFE_BUS_IMAGE_CFG_0(wm));
-+	writel_relaxed(0u, vfe->base + TFE_BUS_IMAGE_CFG_1(wm));
-+	writel_relaxed(TFE_BUS_IMAGE_CFG_2_DEFAULT, vfe->base + TFE_BUS_IMAGE_CFG_2(wm));
-+	writel_relaxed(stride * pix->height, vfe->base + TFE_BUS_FRAME_INCR(wm));
-+	writel_relaxed(TFE_BUS_PACKER_CFG_FMT_PLAIN64, vfe->base + TFE_BUS_PACKER_CFG(wm));
-+
-+	/* No dropped frames, one irq per frame */
-+	writel_relaxed(0, vfe->base + TFE_BUS_FRAMEDROP_CFG_0(wm));
-+	writel_relaxed(1, vfe->base + TFE_BUS_FRAMEDROP_CFG_1(wm));
-+	writel_relaxed(0, vfe->base + TFE_BUS_IRQ_SUBSAMPLE_CFG_0(wm));
-+	writel_relaxed(1, vfe->base + TFE_BUS_IRQ_SUBSAMPLE_CFG_1(wm));
-+
-+	vfe_enable_irq(vfe);
-+
-+	writel_relaxed(TFE_BUS_CLIENT_CFG_EN | TFE_BUS_CLIENT_CFG_MODE_FRAME,
-+		       vfe->base + TFE_BUS_CLIENT_CFG(wm));
-+
-+	dev_dbg(vfe->camss->dev, "VFE%u: Started RDI%u width %u height %u stride %u\n",
-+		vfe->id, rdi, pix->width, pix->height, stride);
-+}
-+
-+static void vfe_wm_stop(struct vfe_device *vfe, u8 rdi)
-+{
-+	u8 wm = RDI_WM(rdi);
-+
-+	writel_relaxed(0, vfe->base + TFE_BUS_CLIENT_CFG(wm));
-+
-+	dev_dbg(vfe->camss->dev, "VFE%u: Stopped RDI%u\n", vfe->id, rdi);
-+}
-+
-+static const struct camss_video_ops vfe_video_ops_520 = {
-+	.queue_buffer = vfe_queue_buffer_v2,
-+	.flush_buffers = vfe_flush_buffers,
++const struct csid_hw_ops csid_ops_340 = {
++	.configure_testgen_pattern = csid_configure_testgen_pattern,
++	.configure_stream = csid_configure_stream,
++	.hw_version = csid_hw_version,
++	.isr = csid_isr,
++	.reset = csid_reset,
++	.src_pad_code = csid_src_pad_code,
++	.subdev_init = csid_subdev_init,
 +};
-+
-+static void vfe_subdev_init(struct device *dev, struct vfe_device *vfe)
-+{
-+	vfe->video_ops = vfe_video_ops_520;
-+}
-+
-+static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
-+{
-+	vfe->reg_update |= BIT(__line_to_iface(line_id));
-+	writel_relaxed(vfe->reg_update, vfe->base + TFE_REG_UPDATE_CMD);
-+}
-+
-+static void vfe_reg_update_clear(struct vfe_device *vfe, enum vfe_line_id line_id)
-+{
-+	vfe->reg_update &= ~BIT(__line_to_iface(line_id));
-+}
-+
-+const struct vfe_hw_ops vfe_ops_340 = {
-+	.global_reset = vfe_global_reset,
-+	.hw_version = vfe_hw_version,
-+	.isr = vfe_isr,
-+	.pm_domain_off = vfe_pm_domain_off,
-+	.pm_domain_on = vfe_pm_domain_on,
-+	.subdev_init = vfe_subdev_init,
-+	.vfe_disable = vfe_disable,
-+	.vfe_enable = vfe_enable_v2,
-+	.vfe_halt = vfe_halt,
-+	.vfe_wm_start = vfe_wm_start,
-+	.vfe_wm_stop = vfe_wm_stop,
-+	.vfe_buf_done = vfe_buf_done,
-+	.vfe_wm_update = vfe_wm_update,
-+	.reg_update = vfe_reg_update,
-+	.reg_update_clear = vfe_reg_update_clear,
-+};
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-index a23f666be753..9b138849caca 100644
---- a/drivers/media/platform/qcom/camss/camss-vfe.h
-+++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-@@ -242,6 +242,7 @@ extern const struct vfe_hw_ops vfe_ops_4_1;
- extern const struct vfe_hw_ops vfe_ops_4_7;
- extern const struct vfe_hw_ops vfe_ops_4_8;
- extern const struct vfe_hw_ops vfe_ops_170;
-+extern const struct vfe_hw_ops vfe_ops_340;
- extern const struct vfe_hw_ops vfe_ops_480;
- extern const struct vfe_hw_ops vfe_ops_680;
- extern const struct vfe_hw_ops vfe_ops_780;
+diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
+index 9dc826d8c8f6..3399e92658d8 100644
+--- a/drivers/media/platform/qcom/camss/camss-csid.h
++++ b/drivers/media/platform/qcom/camss/camss-csid.h
+@@ -213,6 +213,7 @@ extern const struct csid_formats csid_formats_gen2;
+ 
+ extern const struct csid_hw_ops csid_ops_4_1;
+ extern const struct csid_hw_ops csid_ops_4_7;
++extern const struct csid_hw_ops csid_ops_340;
+ extern const struct csid_hw_ops csid_ops_680;
+ extern const struct csid_hw_ops csid_ops_gen2;
+ extern const struct csid_hw_ops csid_ops_780;
 -- 
 2.34.1
 
