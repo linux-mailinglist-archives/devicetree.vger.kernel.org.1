@@ -1,171 +1,266 @@
-Return-Path: <devicetree+bounces-168372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB1CA92BE0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 21:34:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98461A92C14
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 22:12:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6EB41782AD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 19:34:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DF057B5728
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 20:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13F2202987;
-	Thu, 17 Apr 2025 19:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A01208970;
+	Thu, 17 Apr 2025 20:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ltBH42ik"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i7QZKYap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E629200138
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 19:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989E92AD0C;
+	Thu, 17 Apr 2025 20:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744918436; cv=none; b=kxQKgDGOcNLxsqmJltTg3QcFL7S5ZjnM8VL8QkPt+F/rx1iR+TOd5P3QefPp/EjVd+qNeBssAbsdVg60OkZFOkS08V59ROgQI7BbjKImRysvFMLuS0QDIpIT8Pp2ji7TXiosGiwW/dcluOF7WJ3kfr6rRu2tfs4SqcORVzawaQE=
+	t=1744920764; cv=none; b=VJE8RNQSFmBycsMLYGLtbJLezeFgX4Pel/pZW6Rr2vOdfnw7txx/U4WHpqAWVzlZRFhoUmGbr0tpYzR4Wd1NXBYUY8WP3+6QDJnn0mn4vIdBXjaHcB+ixCqn/fCB1RCwOU2F3xRKmyOT1wRFVUtkLImeE6nZgYDqg3e0YXxxVbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744918436; c=relaxed/simple;
-	bh=yRRVy2xHGh5NhnrsjVe72cTfxvklFClIfnNoEVyS/gw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E6o7mviBmhNq7Q1E1fFWpdPQDCpbABZjeJGEKoRAfZkIZrPOtz3OA1UGVCmpBJ5UhHJ0g3/Oivs6YIq4epd51lzoRCtnlcW1ed39HUVevd97Tu/wcTgWObVh/vK0OeWyOn+oQuITLg2pqk5/BfPY56+nfkC37t/RCoNrUov4VaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ltBH42ik; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClJhk013261
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 19:33:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BBOfhV42VjOm1soXFuVXR2vhbNsgpq/CqM2J31GQXQo=; b=ltBH42iksyPjtR4+
-	N4ikuzHOC7Vp7dULMajfECvZrdKDyUl6nGtyOLzLSd0Sl3Rgz037hPshqEalCKP+
-	H3nwbrxWdDQkiV+WE9QHlHMRdeB+4K0J3BnOkFlFJhs+aW+hRVK3j3pJ9PIhyNxk
-	sEVmED1Y4rdL4L78/r/CEWjykbuWc0Z0o9f9EoVlLewMoTI0OduKYjO4Ju9KB7je
-	JNhJNE1hROH+VQk/d5l2NIIj7zjWKLxnM1ObLhxbEZAfITntHfrS5xyHlm8Lxwiv
-	evJjyHBdwp5NZ0V5UuXm2rAde89yYxeLhWITI6oIGz2be9YrwHl4CTeAQUEwf0yi
-	VLW3oA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4628rvdb8y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 19:33:54 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-47ae8b206a4so10481941cf.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:33:54 -0700 (PDT)
+	s=arc-20240116; t=1744920764; c=relaxed/simple;
+	bh=CLyXGMhrb0Kgq9U+IzhlLk/eIiDAUBijHXHBld/8DVA=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lG+eS88+0FeU4nemmUDJkeplnXk5TDtyYvWC96aBiMMa34/uVNwB3zk8JEWHqGKXaYO+pFOyeyzG8gpUQlE9r3WU+ex/vkjg4JIqBmOGtMEWIj9H7pEWVeKxsx1NQz341NnTp+hMh+aBhhuseMYC9ncdM/9qRgJOOGfRQQ6l8HE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i7QZKYap; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7c54f67db99so219676785a.1;
+        Thu, 17 Apr 2025 13:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744920761; x=1745525561; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:feedback-id:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zoi0ff5wiEnF5NrgHmtLQdqka427yqT8GxfdnoW/sbk=;
+        b=i7QZKYap/xPf1dWVlzwLzYwhRIyTWU9oMYj7gAn3dVQznHPiGjJldvgtAnFOvLDWQP
+         m3BD/IGBargEnTs9OzjlPlPMHbzElvlKmleTTyrCMcLszmShJClK7Qixxdui/0SfZIOF
+         mnlIbaAYjNydul7B9Hnu6/FilI/s660+Rxnvk90s2TdQy/tcNNRHUioEVLRRHcIA4R7J
+         Fy9GFjNa/5AyqkFOkMkrYy9pz52wBoVDOQWSm4Gg1qMd8m0bubKVOh8IicdKfXgD3ne1
+         d+dp3Et68+6XgMTKbROGAD8ebdAd6ILaHxFtahCH820yP+lRWYtOkQYjUNRi9x6CYoIY
+         RpDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744918433; x=1745523233;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744920761; x=1745525561;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:feedback-id:message-id:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BBOfhV42VjOm1soXFuVXR2vhbNsgpq/CqM2J31GQXQo=;
-        b=ZUjrikV+4Dv44B1nYS2MIZdIP8Pypn5dHy3j3y8NdpGTE8jD/5Yne+efyh0fWDfKUz
-         qp28G1StZHYoy5L2AMUij+P2CZ59hT+LlgVSEzBjaLn4dTO+DrSldCfVRRtKh6egcD54
-         ApXWr7KlfS/rTHOkcVC8Z+e5VpJTJcuNJ3yWT1Un00260ZHHCDL8RYhSMVHEd0K2pmpz
-         W27QeX1B7si0XPYpqM4vsCBsmohbCh4tyM9wTnbn+vRDDfgrDWAz304NlKc4LJuS3vNt
-         wN1bGzrTbKag5FxI8qLkPD0ebKIlT+GD3j6ZwpqchTcts6w3aGwT8cq8f+UPW+BiTy/X
-         U4Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZDoa/pnPGOY4gEkUmAxGF6Z2D1upVoeLsrAVRW0obCQOzZj8iYENb9+hZkAtNEODP7rtqlEFGsr5o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt6XiuToR+/c5kuB6i+JYPE/rtzsPQtdIToUieUELYZU1+y4n7
-	x66fUAMLw9iIOGYfRtKv2zG0EjElYsSkf93P+LcuNFDsUTSogE25IV6Lvh0mVOGYoXjB9Z2vaMR
-	k1ZVvBN2/N1BAeoaInZ/Cken63w1aADYpGvdfM8LE3F5pOrpbj36QzF+p26Qwr+afjSTuM9tLQ/
-	UoKqTGhO00Z8XtYQLk94RyzzvjZFAFHg3PMMk=
-X-Gm-Gg: ASbGncvh/QSZzEteJQkS0zlIJYEHry3mWh9xgBKWd9vmPd0UdoGHEDpcoUgp4xDeK3l
-	dOdOfMKwENoK2sKB8khRIGXHzozriwdNHsUssAxNdFPULi+RsGE1TBYkLb6rhNSjkpei3rA==
-X-Received: by 2002:a05:622a:1988:b0:476:a90b:986b with SMTP id d75a77b69052e-47aec3cbd65mr698301cf.28.1744918432978;
-        Thu, 17 Apr 2025 12:33:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGsNTDC1SH0ezt5ouAYo9qCu2e4f97nSM2O0VjLMf1GC5S8PAXQWMHH/GYp2bJil3mMNj9ufrDTFjsgSDgXr2M=
-X-Received: by 2002:a05:622a:1988:b0:476:a90b:986b with SMTP id
- d75a77b69052e-47aec3cbd65mr698071cf.28.1744918432693; Thu, 17 Apr 2025
- 12:33:52 -0700 (PDT)
+        bh=zoi0ff5wiEnF5NrgHmtLQdqka427yqT8GxfdnoW/sbk=;
+        b=AW/7ExKgjdyJUVITXfa4CafXx6PFAQ8rZRdF0NPJtWS/F29flgfWZ6idnqUWTqBpKq
+         s6R00rOtZv+271f6Y2QHCVvsW1S13bdZiSyFEWjZ3E5iTy0/nX5jr5vcP28SjM0f4QlW
+         jFTLOBRbKgxztUm71CDC+gd5l9AiKjh4ciV9+37canKcsIXK8XlycFeYIDxUasXf0EJc
+         9bfykvrWLYrg45VHXs8ENhOV6uCYG2g2XBf/0uDuuOttXcvYfWYOCPeU+i8gN+l4NSdg
+         9Eqgypq55VKBdCTwBKf7p9QXt9w0mQMOPxB8JCuzMM5Dxbayc5PVkMxcEX34Mf+P51TN
+         Tkew==
+X-Forwarded-Encrypted: i=1; AJvYcCU0+P0hfhOgyXKZQqec8AfE2w3l6z8rOqImwk7NryL/o7SW+9jR9nhp51U69csY16IhBZk/DypI8+8oYmLC1C8=@vger.kernel.org, AJvYcCUaYwN5K3LU1D1EsdDdt8PVrZWEd39IPF2PNSDRMAvUBpV2S/wBuQBjMxwWJSuJy1zxqu31NyI6Zy/c5WPO@vger.kernel.org, AJvYcCUbekSlB18Qxo9IA2h9p5RZNmyKvi6/nhYfOTE2XiAr4fcn6dnP7FAhe0ynqla9bRqQ2BNWe61gbt8R@vger.kernel.org, AJvYcCUgwttZCtouLKZbXfFZT/Uf180Sk/fE1Hif0XE5IBZ+8PICfLpRpCjkdzuSpayOWDxLfTF1yL3i@vger.kernel.org, AJvYcCUtp0tAIPOC8itHhv3x+cy48PR9bf8Tv9N2p2a+MfJVOy1d6hfafrRuH178pQSjdkh/6dDV5RMQpwSGxy9Y@vger.kernel.org, AJvYcCV2dXeH59wyH4AvBLNC43LzZan33oODg2dGTn4PhJZyWMskxNHsS+pGA6vA1eD+X75mDr2Sd5XB5m6DTKU=@vger.kernel.org, AJvYcCXLikLaOlJQu+VuoBEs7VQq1pqQNcuZny4XvQOb7ydPL9/MV51Qypc66Ppw6pItr97yP1pR7ZlN/icOkC1nN5yr@vger.kernel.org, AJvYcCXuIPR6nC5ltxM3thItLi5NrGeE3dqqLO2RpPAuKCMpR2AoKBCVen6l9i5k2mvt/DCcjExrKgnECGdH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZh3Gjcai5OUdzm3w5WrESn8O8SN99xodPUVOQSaGAdaMjvXVa
+	G/pKrcncLGztyML4Kto2c5uNouf9nm9vo3v/PuhwsvbYLQx/sSkX
+X-Gm-Gg: ASbGncuguwcPm1+esC4278371B4zd3mVyQNq/YXmADsdAedhENOS3l9ZoFpyqZgJb3H
+	LGE4nLeRNBEln/W7z3BigjTsYxSFg/nA9QuTi4H2Jv7mwU2Y0oyTlWiyV9cs5M1tj7hBEaUjMJW
+	2sOM4+cnYKqPcSoRex7JKfLZbScbv0hRBY/YGqF68jvtZjtDndZTFXe9ZZsbUsjtyWwj1TU3mm2
+	xdReHEgOb196sqfdHFAK3MRBXvBkt1psZkiguH44DR1x4Fc0yyOr+Ykk4mAFV+WGQDLsmkgqGsa
+	aEId5HR1EcYiaxmH7IkXa8SWF8gZgVIRRzD0hGVYNzlDyTAK/zXvV6cd5SxeYpu0tTbqpvJC/qf
+	lGZYHqDXyPaQyQLaMRr5hLNwpuG59kCJVI6uhiTc10Q==
+X-Google-Smtp-Source: AGHT+IGqYa4lJedN6y7Ve4i8uviWQPhLL4HlO4vwMswf+TVFKp5dheFZBpp1BDdZyASOOil8szBySw==
+X-Received: by 2002:a05:620a:4316:b0:7c7:a59a:7d28 with SMTP id af79cd13be357-7c9282a2120mr24247985a.14.1744920761318;
+        Thu, 17 Apr 2025 13:12:41 -0700 (PDT)
+Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c925a90d0csm28737285a.41.2025.04.17.13.12.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Apr 2025 13:12:40 -0700 (PDT)
+Message-ID: <680160b8.050a0220.223d09.180f@mx.google.com>
+X-Google-Original-Message-ID: <aAFgtdIF0u-rLNfH@winterfell.>
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfauth.phl.internal (Postfix) with ESMTP id 8AC19120006A;
+	Thu, 17 Apr 2025 16:12:39 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-05.internal (MEProxy); Thu, 17 Apr 2025 16:12:39 -0400
+X-ME-Sender: <xms:t2ABaEluN5DT2UN3ewEMRhb1e4ZFilXnxFCWA7iJ8UpRCPkkn6Y1RA>
+    <xme:t2ABaD2n8XURyzhrY3rIUR7ig_him5JCzTcFyOeEci1ORrsiOA-WHOhmrzMDqxRc6
+    tC9qwR9bdW60FBjUw>
+X-ME-Received: <xmr:t2ABaCpbwV02LCykqDAfsudF-KwQLdGqtzjr7uf4AQwxBv-SobXhHjRBGqjkXA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfedtudekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
+    vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
+    hlrdgtohhmqeenucggtffrrghtthgvrhhnpefftdeihfeigedtvdeuueffieetvedtgeej
+    uefhhffgudfgfeeggfeftdeigeehvdenucffohhmrghinhepghhithhhuhgsrdgtohhmne
+    cuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghoqhhu
+    nhdomhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqieelvdeghedtieegqdduje
+    ejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepghhmrghilhdrtghomhesfhhigihmvgdr
+    nhgrmhgvpdhnsggprhgtphhtthhopeegjedpmhhouggvpehsmhhtphhouhhtpdhrtghpth
+    htohepthgrmhhirhgusehgmhgrihhlrdgtohhmpdhrtghpthhtohepmhgrshgrhhhirhho
+    hieskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgrthhhrghnsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopehojhgvuggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegr
+    lhgvgidrghgrhihnohhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepghgrrhihsehgrg
+    hrhihguhhordhnvghtpdhrtghpthhtohepsghjohhrnhefpghghhesphhrohhtohhnmhgr
+    ihhlrdgtohhmpdhrtghpthhtohepsggvnhhnohdrlhhoshhsihhnsehprhhothhonhdrmh
+    gvpdhrtghpthhtoheprgdrhhhinhgusghorhhgsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:t2ABaAn51l6h8kcSU9WHdQj5kJvan993M2LqrkdAjhKXJHuO4a1KtQ>
+    <xmx:t2ABaC3j1SO3jyP-mSxmb3cfyHYwW3fYXf8DfvVvnlncH2Sh-LEtMg>
+    <xmx:t2ABaHvEjmDAFlKCngtXS7SBllGdUriEzbfRdTcGDxhlYd9Shva_iQ>
+    <xmx:t2ABaOW7UZ99I_VYCGFNTtdAlRH4ZGv_7Y9Say0vGmDNZbSINMa53A>
+    <xmx:t2ABaF2LaRqardld_ypulw1i-c2D8p68PU-VfbVkCLJsGfqirUaCmpRD>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Apr 2025 16:12:38 -0400 (EDT)
+Date: Thu, 17 Apr 2025 13:12:37 -0700
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Frederic Weisbecker <frederic@kernel.org>,	Lyude Paul <lyude@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+	Anna-Maria Behnsen <anna-maria@linutronix.de>,
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v9 4/6] rust: enable `clippy::as_underscore` lint
+References: <20250416-ptr-as-ptr-v9-0-18ec29b1b1f3@gmail.com>
+ <20250416-ptr-as-ptr-v9-4-18ec29b1b1f3@gmail.com>
+ <68014084.0c0a0220.394e75.122c@mx.google.com>
+ <CAJ-ks9muaNU9v2LZ5=cmfXV6R5AO+joNOoPP=+hs-GJN=APfKQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417145819.626733-1-loic.poulain@oss.qualcomm.com>
- <20250417145819.626733-2-loic.poulain@oss.qualcomm.com> <82415a35-2410-4c5d-aeac-3b4656804369@linaro.org>
-In-Reply-To: <82415a35-2410-4c5d-aeac-3b4656804369@linaro.org>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Thu, 17 Apr 2025 21:33:41 +0200
-X-Gm-Features: ATxdqUFFH9wIe54N2rC2EYrUgetL69hhYOQegURyxTVVzUemQMqTWr70gmFhsJ8
-Message-ID: <CAFEp6-1TEiuDN=By=R03wBtOK5ZcPEEPwNVB7dF9-QcOdq6T3w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] media: qcom: camss: Add support for TFE (Spectra 340)
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: 8Yz3hWJDIpDSMrYxYAaGYoL2Fa9b92hT
-X-Authority-Analysis: v=2.4 cv=RbSQC0tv c=1 sm=1 tr=0 ts=680157a2 cx=c_pps a=JbAStetqSzwMeJznSMzCyw==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=D4ChjzI32PwueRJqcUAA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: 8Yz3hWJDIpDSMrYxYAaGYoL2Fa9b92hT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-17_07,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=728
- suspectscore=0 adultscore=0 impostorscore=0 clxscore=1015 bulkscore=0
- phishscore=0 priorityscore=1501 spamscore=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504170143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ-ks9muaNU9v2LZ5=cmfXV6R5AO+joNOoPP=+hs-GJN=APfKQ@mail.gmail.com>
 
-Hi Bryan,
+On Thu, Apr 17, 2025 at 03:26:14PM -0400, Tamir Duberstein wrote:
+[...]
+> >
+> > >          Ok(())
+> > >      }
+> > > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
+> > > index e5859217a579..4063f09d76d9 100644
+> > > --- a/rust/kernel/device_id.rs
+> > > +++ b/rust/kernel/device_id.rs
+> > > @@ -82,7 +82,7 @@ impl<T: RawDeviceId, U, const N: usize> IdArray<T, U, N> {
+> > >              unsafe {
+> > >                  raw_ids[i]
+> > >                      .as_mut_ptr()
+> > > -                    .byte_offset(T::DRIVER_DATA_OFFSET as _)
+> > > +                    .byte_add(T::DRIVER_DATA_OFFSET)
+> > >                      .cast::<usize>()
+> > >                      .write(i);
+> > >              }
+> > > diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
+> > > index f7e8f5f53622..70d12014e476 100644
+> > > --- a/rust/kernel/devres.rs
+> > > +++ b/rust/kernel/devres.rs
+> > > @@ -45,7 +45,7 @@ struct DevresInner<T> {
+> > >  /// # Example
+> > >  ///
+> > >  /// ```no_run
+> > > -/// # use kernel::{bindings, c_str, device::Device, devres::Devres, io::{Io, IoRaw}};
+> > > +/// # use kernel::{bindings, c_str, device::Device, devres::Devres, ffi::c_void, io::{Io, IoRaw}};
+> > >  /// # use core::ops::Deref;
+> > >  ///
+> > >  /// // See also [`pci::Bar`] for a real example.
+> > > @@ -59,19 +59,19 @@ struct DevresInner<T> {
+> > >  ///     unsafe fn new(paddr: usize) -> Result<Self>{
+> > >  ///         // SAFETY: By the safety requirements of this function [`paddr`, `paddr` + `SIZE`) is
+> > >  ///         // valid for `ioremap`.
+> > > -///         let addr = unsafe { bindings::ioremap(paddr as _, SIZE as _) };
+> > > +///         let addr = unsafe { bindings::ioremap(paddr as bindings::phys_addr_t, SIZE) };
+> >
+> >
+> > ///         let addr = unsafe { bindings::ioremap(bindings::phys_addr_t::from(paddr), SIZE) };
+> >
+> > better? Or even with .into()
+> >
+> > ///         let addr = unsafe { bindings::ioremap(paddr.into(), SIZE) };
+> 
+> This doesn't compile because `paddr` is usize, and
+> `bindings::phys_addr_t` is u64 (on my machine, which is aarch64).
+> 
 
-On Thu, Apr 17, 2025 at 5:49=E2=80=AFPM Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> On 17/04/2025 15:58, Loic Poulain wrote:
-> > +static void vfe_enable_irq(struct vfe_device *vfe)
-> > +{
-> > +     writel_relaxed(TFE_IRQ_MASK_0_RST_DONE | TFE_IRQ_MASK_0_BUS_WR,
-> > +                    vfe->base + TFE_IRQ_MASK_0);
-> > +     writel_relaxed(TFE_BUS_IRQ_MASK_RUP_DONE_MASK | TFE_BUS_IRQ_MASK_=
-BUF_DONE_MASK |
-> > +                    TFE_BUS_IRQ_MASK_0_CONS_VIOL | TFE_BUS_IRQ_MASK_0_=
-VIOL |
-> > +                    TFE_BUS_IRQ_MASK_0_IMG_VIOL, vfe->base + TFE_BUS_I=
-RQ_MASK_0);
-> > +}
->
-> We could mix and match writel() and writel_relaxed() but you almost
-> certainly want your IRQ enable write to be atomic from CPU to AHB/MMIO
-> endpoint reg.
+Ok, looks like Rust yet doesn't provide From/Into between usize and u64
+even if the pointer size is fixed. Latest discussion can be found at:
 
-AFAIU, it's safe here because writel_relaxed will stay ordered in
-respect to each other so the IRQ mask will always be configured before
-we start the device.
+	https://github.com/rust-lang/rust/issues/41619#issuecomment-2056902943
 
-For reset it's an other question because in that case:
-```
-reinit_completion(c)
-writel(1, RESET_REG)
-```
-We don't want the writel to be executed before reinit_completion.
-However in camss case we have:
-```
-reinit_completion(c)
-ops->reset()
-```
-The compiler should not be able to reorder this because of the function poi=
-nter.
-But the CPU may... So that why I initially implemented vfe reset like this:
-```
-writel_relaxed(TFE_IRQ_MASK_0_RST_DONE, vfe->base + TFE_IRQ_MASK_0);
-writel(TFE_GLOBAL_RESET_CMD_CORE, vfe->base + TFE_GLOBAL_RESET_CMD);
-```
-To prevent useless memory barrier instruction while keeping correct
-ordering relatively to normal memory access.
+Lemme see if we can get an issue tracking this. Thanks for taking a
+look.
 
-That said, such micro-optimization is probably overkill for such a
-non-critical path.
+> > >  ///         if addr.is_null() {
+> > >  ///             return Err(ENOMEM);
+> > >  ///         }
+> > >  ///
+> > > -///         Ok(IoMem(IoRaw::new(addr as _, SIZE)?))
+> > > +///         Ok(IoMem(IoRaw::new(addr as usize, SIZE)?))
+> > >  ///     }
+> > >  /// }
+> > >  ///
+> > >  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
+> > >  ///     fn drop(&mut self) {
+> > >  ///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
+> > > -///         unsafe { bindings::iounmap(self.0.addr() as _); };
+> > > +///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); };
+> > >  ///     }
+> > >  /// }
+> > >  ///
+> > [...]
+> > > diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
+> > > index 43ecf3c2e860..851a6339aa90 100644
+> > > --- a/rust/kernel/dma.rs
+> > > +++ b/rust/kernel/dma.rs
+> > > @@ -38,7 +38,7 @@
+> > >  impl Attrs {
+> > >      /// Get the raw representation of this attribute.
+> > >      pub(crate) fn as_raw(self) -> crate::ffi::c_ulong {
+> > > -        self.0 as _
+> > > +        self.0 as crate::ffi::c_ulong
+> >
+> >         crate::ffi::c_ulong::from(self.0)
+> >
+> > maybe, a C unsigned long should always be able to hold the whole `Attr`
+> > and a lossly casting is what this function does.
+> 
+> This also doesn't compile: "the trait `core::convert::From<u32>` is
+> not implemented for `usize`". Upstream has ambitions of running on
+> 16-bit, I guess :)
+> 
 
-> Its simpler to drop the _relaxed() everywhere but, if you want to
-> include the relaxed() variants I think you still need writel() @ IRQ
-> enable as well as WM start and stop.
-
-Yes, fair enough, so I will revisit and use writel for non-critical
-control functions.
+They do but they also have the target_pointer_width cfg, so they can
+totally provide these functions. It's just they want to find a better
+way (like the link I post above).
 
 Regards,
-Loic
+Boqun
 
