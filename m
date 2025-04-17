@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-168204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3986BA91CCC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:49:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC92A91CC9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3C353B65ED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:48:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10B5419E549D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D433B188CDB;
-	Thu, 17 Apr 2025 12:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9359C33CA;
+	Thu, 17 Apr 2025 12:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="G/Yb7oau"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="YVzDSKnJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB4928E37
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A90217C91
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:48:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744894089; cv=none; b=GiOiN4qtMd4wdTqR7LwP7lsLsPtlNXTFm2ZOaYESgs2IJY26GG9hYO01QZ0F3IZJ1TJeAeQmD8jAhwCekFMFDzOYFD+LBfFj+3nRiOzKOfABM4Lbs62G/xYTAFJZogjikUd70dlDAO5JHN27SeuVzwKxfuVEBE9ObOJLsbng6u4=
+	t=1744894118; cv=none; b=hG1n2ybiXzBPnuchnbOJRSgond3LpnoXBLKCpyGl0sXbAiVCaQc2o2zGFmeC9TIoj6FNvs5ZQoCt04m9Em/6Q+/gm8lKp0XktIfq1rDsZbgCV76hcanS7TIqIHELXwBtE0iJe9mxIwANzMKn/ZX5apqg9x9NIA6Dh906exj6G9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744894089; c=relaxed/simple;
-	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=JP1+yEuR/6Tpk/9egYBESMfDFPOYKn+znDExlupNpbooMuJfYpifVMuCEqxUi2eUBIghbSpG0smosQHPIuSSucsoNiZXSSxERVXNGVsa9xmS3tXKbym1oE4Ck4+l/qDapRbNqvcrIVqYvXpihNyT1lM6Jxf0dG/a4ZPHK86hqO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=G/Yb7oau; arc=none smtp.client-ip=212.227.15.18
+	s=arc-20240116; t=1744894118; c=relaxed/simple;
+	bh=48TKBGsyI30vt08+PGJrOZQiAVMMt0Axklb90Gv0e3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U1pKji/yyht7lWUZAVMa2fjJK8AHhTve0dQ0dNMmXHIUQvNjQ1u1k+S81yPVLUne6OuHWSOz4fgcT7dxq2cB61ezFTZsRhx952GuRjmkETXLPLLvNLacFMm7j16Rf91lspL0qs6LNeVKAHh9Y1puATRNfo4aTtmAqy5o2uOByYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=YVzDSKnJ; arc=none smtp.client-ip=212.227.15.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1744894084; x=1745498884;
+	s=s31663417; t=1744894093; x=1745498893;
 	i=markus.stockhausen@gmx.de;
-	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
-	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=G/Yb7oaumPdM/8qQ0kugyO+iwx2YrBHRD3y/tjzR7wqJuiVBnFvzIVCYhRuxJhLM
-	 AsNGNbUqWbA9lDEJITMHwgX6hLth9yN+lBUL6Hy8IsWtLFkF0hpJUNjz1neNOHcVn
-	 xZNQ8P9qTV2A1Axm0mCnoDnHGBJHHklNM7kWC8MPwXkhgstjNp3U4k3j446pCWUYS
-	 gK/pSpbO4+b9HKaWS+5iauza/O3uDtas3LHzIb88uoOKq0uDSgmuurg6eHm9pISm5
-	 TcoLjk3c0OVpPksibFWjZcmx5kdOktkrsWkV15IzsdigmA3uLDbPokHWgMl/NDn9Z
-	 Fuez0DXAVAiqubxfAA==
+	bh=L0s6NH4EfbdI/NoCy+qt2CX429B3oXubeEvjOqW0w3k=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=YVzDSKnJriafvw/Hba+QUb4yY+/U1LFsVUn9LA8na5ZXypirJPSMdJ2FaBOZENhi
+	 N9JAkgLGmyTPYw3xSNBUitgnyCyyJ6kN65fpob5429EweqLnGM7kD6X8fOzTT/+T+
+	 OuaOo63Mw6RRAQrVGScCkTmksDzYLqbGLKG2GAHpNmmzkW7xFGljy2edv1rKx7lHz
+	 t7TygROiOXzmSvFUPgUAU/qBwQQnq5nOizX3szYJtBmmmUp47bYhseFvbSUzgjwxy
+	 TfugzzetfVB5sFJ8NdjCtjCb7Jb3KKUHY3WavvFcV4cvlLq6OHYwCcEUHHMRB2NHb
+	 fb8q1Q/62YCbbgbdBw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from openwrt ([94.31.70.55]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MKKZ3-1uR3DH0o6J-00WwfS; Thu, 17
- Apr 2025 14:48:04 +0200
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MzhnH-1v0e5M0ofR-0129v1; Thu, 17
+ Apr 2025 14:48:13 +0200
 From: Markus Stockhausen <markus.stockhausen@gmx.de>
 To: markus.stockhausen@gmx.de,
 	vkoul@kernel.org,
@@ -59,9 +59,10 @@ To: markus.stockhausen@gmx.de,
 	devicetree@vger.kernel.org,
 	chris.packham@alliedtelesis.co.nz,
 	daniel@makrotopia.org
-Subject: [PATCH v6 0/2] phy: Realtek Otto SerDes: add new driver
-Date: Thu, 17 Apr 2025 08:47:41 -0400
-Message-ID: <20250417124741.2405981-1-markus.stockhausen@gmx.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 1/2] dt-bindings: phy: add realtek,rtl8380m-serdes
+Date: Thu, 17 Apr 2025 08:48:04 -0400
+Message-ID: <20250417124804.2405994-1-markus.stockhausen@gmx.de>
 X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,84 +70,172 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:z1q87PWrzmA+wZ6MmSuAOPAUk3WHPvHPmJ2WcsqhdyvaTUUkS6x
- d11KF+Bs/HBSKNKvH8yRtX0tlCemiijrwTa7D5IU+VsQxy/TEhpOR75hwjjfWWPtC9TGMBd
- 6XF+Eb8LN9IWmtaeeAupn0aP5J0PmWDnosnCIsfY6ozXVLqJQh4Rayqqw65/rG8tDgEslaJ
- TbbwSO6lytqaW3Wb/6EsQ==
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:wrO1KRtti8sZtE1KHEASk/QMlmfqW23lGCpELILjWj54FZFKOfg
+ q1QSOw246obIW29LOlaViZAbgExp1JJLABotzdaPMhuiiDjupUMt7XU3Wc2iKYFQkSWeEXi
+ mhVVdeTDSEchdlyBMmWzN6vBS2fMO1QeUYkfj72+WC1L2D6PPOqBygvvRYxakNWIZ9qSh26
+ BvP5zbknhI8sbbY8QkHpA==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:6c0dz2ZZ/uU=;BvYxgyYjX3fK4VnXuNW5l3ye3ag
- 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
- UUV5S4uJ9HNamEOLzvFwJ4=
+UI-OutboundReport: notjunk:1;M01:P0:vJZdkRCxIao=;wj+6ph4BSIYvKmJE8JJBoIP/eQb
+ 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
 
-This patch series adds support for the SerDes in the Realtek Otto platform.
-These are 8-52 port switch SoCs of the RTL83xx and RTL93xx series with MIPS
-cores. The ports are based on 1-8 port PHYs (e.g. RTL8218D) that are connected
-via multiple SerDes.
+Add bindings for the SerDes of the Realtek Otto platform. These are
+MIPS based network Switch SoCs with up to 52 ports divided into four
+different model lines.
 
-The driver is based on the GPL source drops from the different switch vendors.
-It supports all 4 SoC series and was developed and tested on the following
-devices:
+Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+=2D--
 
-RTL838x - codename maple - Linksys LGS310C
-RTL839x - codename cypress - Zyxel GS1920-24
-RTL930x - codename langon - Zyxel XGS1210-10
-RTL931x - codename mango - Linksys LGS352C
+Changes in v6
+ - add Reviewed-by
 
-Due to very little information and fundamentally different I/O handling and
-port ranges of the devices the driver assumes and translates some handling
-to provide a common consistent interface.
+Changes in v5
 
-Currently only provide the most basic operations for mode set and device
-reset as well as some debugging information if enabled. The strength lies in
-the fact that the driver can run patch sequences for the SerDes registers at
-certain events, e.g. during setup. This allows to run configuration
-operations to get the SerDes up and running.
+ - drop nodename
+ - drop items from compatible
 
-For more information see:
+Changes in v4
 
-https://svanheule.net/switches/gpl_source_drops
-https://svanheule.net/realtek/
+ - fixed addresses in example
+ - missing firmware-name denotes "skip firmware" instead empty string
+ - fixed reg porperty
+
+Changes in v3
+
+ - renamed to realtek,rtl8380m-serdes.yaml
+ - removed parameter controlled-ports
+ - verified with make dt_binding_check
+ - recipient list according to get_maintainers
+
+Changes in v2:
+
+ - new subject
+ - removed patch command sequences
+ - renamed parameter controlled-ports to realtek,controlled-ports
+=2D--
+ .../bindings/phy/realtek,rtl8380m-serdes.yaml | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/realtek,rtl8380m=
+-serdes.yaml
+
+diff --git a/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes=
+.yaml b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
+new file mode 100644
+index 000000000000..13b11c011153
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/realtek,rtl8380m-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek Otto SerDes controller
++
++maintainers:
++  - Markus Stockhausen <markus.stockhausen@gmx.de>
++
++description:
++  The MIPS based Realtek Switch SoCs of the Realtek RTL838x, RTL839x, RTL=
+930x
++  and RTL931x series have multiple SerDes built in. They are linked to si=
+ngle,
++  quad or octa PHYs like the RTL8218B, RTL8218D or RTL8214FC and are one =
+of
++  the integral part of the up-to-52-port switch architecture. Although th=
+ese
++  SerDes controllers have common basics they are designed differently in =
+the
++  SoC families.
++
++properties:
++  compatible:
++    enum:
++      - realtek,rtl8380m-serdes
++      - realtek,rtl8392m-serdes
++      - realtek,rtl9302b-serdes
++      - realtek,rtl9311-serdes
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 4
++    description:
++      The first number defines the SerDes to use. The second number a lin=
+ked
++      SerDes. E.g. if a octa 1G PHY is attached to two QSGMII SerDes. The=
+ third
++      number is the first switch port this SerDes is working for, the fou=
+rth
++      number is the last switch port the SerDes is working for.
++
++  firmware-name:
++    maxItems: 1
++    description:
++      If present, name (or relative path) of the file within the firmware
++      search path containing the firmware image to patch the SerDes.
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    serdes: phy@1b0003b0 {
++      compatible =3D "realtek,rtl9302b-serdes";
++      reg =3D <0x1b0003b0 0x8>;
++      firmware-name =3D "zyxel-xgs1210-12-serdes.fw";
++      #phy-cells =3D <4>;
++    };
+=2D-=20
+2.47.0
 
 
