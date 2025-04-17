@@ -1,108 +1,178 @@
-Return-Path: <devicetree+bounces-168088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2C6A915AD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:49:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED6B0A915C3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D4E0441A51
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:49:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 102D53B8C30
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5628F1DB37B;
-	Thu, 17 Apr 2025 07:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9AA221577;
+	Thu, 17 Apr 2025 07:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q9FueUks"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="xN4EnJrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7946621ABCC
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 07:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E352206BD;
+	Thu, 17 Apr 2025 07:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744876143; cv=none; b=ttYj7zvk3tLJp0TG7hjJoxUH/0RKpFr7o6Db7IV+pJaAcFdCwpxj3sudXxpAUMKCC2ZpOPRyESFrQ1kHvwmzxPvc2Ku1HWr3R+gaZFxS6cUPPhD75QhdK5B++ySHFqjQYxswD/yiEcTzihmTcVq6hfBXZedCPHWXGcMQmpSnemw=
+	t=1744876378; cv=none; b=PtAx5aBIKaQajAFmfcXY380DZfxDep9532lEl2smUYNCMeRoO0vHsPitJKZwMWAmHnskqWNIUNOF1UV+hwnUqpqS/MkTRwRcI3uq1NgLVOIrVNTve0iPfmS3COu1sNEtogkKy1NsQbLBClJ/nMZ0MCLpo6sxGh8aVvvm96ujANE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744876143; c=relaxed/simple;
-	bh=7RxzX09exhIzgLmhmiaw9DLQIcUyhzaVuL7SP9vsi7Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QFZPBGb2xNz6PhO5wP21Rc2bJ7t0GJivEh3pX8zHBvsRSUa/TJyQ4XsCMvjYYqjySz5RnoQWvHQrh+HUTDx0sE/H+hrDSm48abQEXf1yWTK53Y8XYKeiexuuPPvrsPGTyfDGEb/E1ZVV19LwcvS9Gjn+o90guGvha9HimqnZBxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q9FueUks; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54acc0cd458so576686e87.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 00:49:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744876139; x=1745480939; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7RxzX09exhIzgLmhmiaw9DLQIcUyhzaVuL7SP9vsi7Q=;
-        b=q9FueUksayySWoqRwKZrn//UQh0pQL/1CNZQI1shj3c9N4+1roq8nL7j27UksRppiM
-         pF2GRqraXlaKjFd0TCAeQLCFueE2VIYI2P5ZiM6L/leWh9awboL0fuCtqB97p3NvRnaS
-         Sk2f4mASYb0kPx6a2Ix2Bq6YsW/18PjRbFdvO+UO6x3LVXI/FX6X6hwLyPvW8tx1P5u0
-         uNgEG6PbgQ8zBs2gsr17FlCtJ0A1hWpexEBVru0ykg05vk8e/4sR6nd2KHPptSWRrOOA
-         R6YhuFqsYSSwHZGTbW7yNIURNSHol4IuT6WVtk5HNfmrhDn03aUPTzVIUnTVbOg0mVoN
-         arMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744876139; x=1745480939;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7RxzX09exhIzgLmhmiaw9DLQIcUyhzaVuL7SP9vsi7Q=;
-        b=cL5K6b7bvzxZ7wg1KPHf1kOS/r3UQpAhRPSHjb5L16dScfDyJn902bvbizk+tAGTan
-         Jljqmzm8o2BE9qEcs150NzgpD7PyYpJmJCuDIE+73e+ULNI+uImLJ1FJ6+GDZLuLGlIO
-         j3Wj5w7vRD9yLIB3821QmVtT/0AQoi+nC4LKiuXTIi1NU/zlsMZC5Ky6UExbsbeyx+33
-         gJX/+PKV9Us2IaOUtQmzu566HlFyYrO+q4/T8Cy3CeUwLW8dwzz6yZsQsV2j5bEaDhO5
-         YAYEOSg1qq4l13YecWhFN348r4uSckzhn/vdWixuRxZFIQXS0rNjnYsuZhBHjTK+2maR
-         svuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXLE2D48iN1MF8HFS9rtb4vv2neVO6QN92MD2jTcX1zkMuzqIQ19cEGfe5MeKTa++ogY2FkamuofUvD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2ZtSyvTrEb/G7FB2qJ/mYv3K1rwKo4ts/IQl3dnYDVWVDe8Tv
-	b4/dFeAuppIMpe93BlG5IITYctpzg3wbi7iBfACFa7sKO+MBDwlpLMmqFMI1q6QAHoX9EwlB5Ql
-	W6kmw5JU6rZaaHU8XF9dM/A5gEe/VWekH7u4nCQ==
-X-Gm-Gg: ASbGncvsZ8WtvD9TicxiCoBhZsSGZmAn2IpdbWzSSR7u5S6rsN1QtbrB9gPeQPs3QnJ
-	BNI8WQWRjp+aY+bc0JDwMhC5Qi9gh6oln8wEviUQOwQv8mj+VFUd/Frkrfs+A5suK3gYFAsNVz3
-	cGvmSDR3NEnagdMiwPMLnFoFNgjm8Cw4/Y
-X-Google-Smtp-Source: AGHT+IGl0yTbl1NfzL+pnA73vcbs4ZATHO5t0DMm0OPz1AIrbTpPp3OJ9FYZF3EeE/MV9ivlE2ZNC0B+frJYLn4K+3A=
-X-Received: by 2002:a05:6512:3a87:b0:545:2ab1:3de with SMTP id
- 2adb3069b0e04-54d64a98d9amr1453654e87.13.1744876139576; Thu, 17 Apr 2025
- 00:48:59 -0700 (PDT)
+	s=arc-20240116; t=1744876378; c=relaxed/simple;
+	bh=Se+Pb5gvAeaBxEvyD3+E41BEMYCQFUvRfuCjMCS7ljI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=aRjRJBqDcPtOON21TeYax5192/p6VJTy5GZCoFbqptSORzfhcMvpb6pwQXIfXG2TShXLvE7qgrP+gs5e3uAFg1y/c6N40YFq9+nlghdMMNcswASITlOC39Ron4V3chpW4PXY6R+Shwx5xeOg3Iof9gTqN4YEr5Fv6YVBnYsCRMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=xN4EnJrd; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+	by mxout4.routing.net (Postfix) with ESMTP id A4E8A1008FA;
+	Thu, 17 Apr 2025 07:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1744876372;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q82aXZ96SkZQkHH0ZlbXPXUKG4cthRJar29R9w4dfJE=;
+	b=xN4EnJrdVeEEGXY1Uw/cWRtXIx7OgNpTRak8FB9wUaT8xQr96zt6iiIs4H9BNit/k7AFpA
+	b/qa0UTAJVIKjhaGbOTXYxIEWwUqXAj2F399mutRq8k0GBh+apnsVIRCShTmXp9AtFQk/0
+	oZ53q8OoA7fc3ycuuJLtOCKM6Kzq6aE=
+Received: from webmail.hosting.de (unknown [134.0.26.148])
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id C3E213605AA;
+	Thu, 17 Apr 2025 07:52:51 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814061315.112564-1-manikandan.m@microchip.com>
- <20240814061315.112564-3-manikandan.m@microchip.com> <605ff021-0770-4363-9734-ad8114a429f9@tuxon.dev>
- <fcdb9283-07aa-4d50-ac4d-317b0a4e5f7e@pengutronix.de>
-In-Reply-To: <fcdb9283-07aa-4d50-ac4d-317b0a4e5f7e@pengutronix.de>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 17 Apr 2025 09:48:48 +0200
-X-Gm-Features: ATxdqUH-NaQn7pZOyf2E47r3u7Tt7v9sT__5pjl_S36lgww88eFiiLrSfCpmg08
-Message-ID: <CACRpkdarmBy1nd903SmyXPNhS+hxxRSyKNOxdXg51Emr9MgRQQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] ARM: dts: microchip: Remove additional compatible
- string from PIO3 pinctrl nodes
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: claudiu beznea <claudiu.beznea@tuxon.dev>, 
-	Manikandan Muralidharan <manikandan.m@microchip.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nicolas.ferre@microchip.com, 
-	alexandre.belloni@bootlin.com, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, lsc@pengutronix.de, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 17 Apr 2025 09:52:51 +0200
+From: "Frank Wunderlich (linux)" <linux@fw-web.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
+ Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank
+ Wunderlich <frank-w@public-files.de>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82eck?=
+ =?UTF-8?Q?i?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, Sean
+ Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
+ by pericfg
+In-Reply-To: <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
+References: <20250416095402.90543-1-linux@fw-web.de>
+ <20250416095402.90543-5-linux@fw-web.de>
+ <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
+Message-ID: <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
+X-Sender: linux@fw-web.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mail-ID: ffcf56f2-7a7a-4451-b290-b3cd6b547b72
 
-On Wed, Apr 16, 2025 at 4:04=E2=80=AFPM Ahmad Fatoum <a.fatoum@pengutronix.=
-de> wrote:
+Hi Krzysztof,
 
-> The correct resolution would be to add an extra compatible to the
-> binding instead of breaking non-Linux users of the device tree.
+thanks for review.
 
-Ahmad is right, the patch needs to be reverted.
+basicly i used the same binding like for tphy.
 
-Yours,
-Linus Walleij
+Am 2025-04-17 08:56, schrieb Krzysztof Kozlowski:
+> On Wed, Apr 16, 2025 at 11:53:56AM GMT, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files.de>
+>> 
+>> Add support for type switch by pericfg register between USB3/PCIe.
+>> 
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>> ---
+>>  .../devicetree/bindings/phy/mediatek,xsphy.yaml  | 16 
+>> ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml 
+>> b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+>> index 3b5253659e6f..5033d77c1239 100644
+>> --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+>> @@ -151,6 +151,22 @@ patternProperties:
+>>          minimum: 1
+>>          maximum: 31
+>> 
+>> +      mediatek,syscon-type:
+>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +        maxItems: 1
+>> +        description:
+>> +          A phandle to syscon used to access the register of type 
+>> switch,
+>> +          the field should always be 3 cells long.
+>> +        items:
+>> +          items:
+> 
+> Missing -, because you have one phandle.
+
+ok, then i need to drop MaxItems and indent 2 spaces more, but no 
+problem
+
+>> +            - description:
+>> +                The first cell represents a phandle to syscon
+> 
+> Don't repeat constraints in free form text. "Foo bar system controller"
+> or "Phandle to foo bar system controller"
+
+i would write only "phandle to system controller". on mt7988 it is the 
+topmisc syscon, but maybe on
+other SoC it is different name.
+
+>> +            - description:
+>> +                The second cell represents the register offset
+> 
+> "Baz register offset"
+
+same here, only "register offset".
+
+>> +            - description:
+>> +                The third cell represents the index of config segment
+> 
+> "Index of config segment", but what is index of config?
+
+unfortunately we have no detailed documentation here, but based on 
+driver (i guess daniel ported it
+from SDK) this value is multiplied with BITS_PER_BYTE so it can handle 
+up to 4 config-segments in
+the 32bit register (maybe configuring 4 phys). But on mt7988 we use only 
+the first config-segment
+(last cell=0 in dts-patch).
+
+at the end it will look like this:
+
+       mediatek,syscon-type:
+         $ref: /schemas/types.yaml#/definitions/phandle-array
+         description:
+           A phandle to syscon used to access the register of type 
+switch,
+           the field should always be 3 cells long.
+         items:
+           - items:
+               - description:
+                   Phandle to system controller
+               - description:
+                   Register offset
+               - description:
+                   Index of config segment
+                 enum: [0, 1, 2, 3]
+
+would this be ok?
+
+> Best regards,
+> Krzysztof
+
+regards Frank
 
