@@ -1,199 +1,323 @@
-Return-Path: <devicetree+bounces-167986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2839A91171
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 04:06:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB1EA911A1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 04:20:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 587DA7AF2CF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 02:05:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAD80189161A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 02:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F248818871F;
-	Thu, 17 Apr 2025 02:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C0E1A8F93;
+	Thu, 17 Apr 2025 02:20:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l+VjPAos"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lDBHCX+Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2041.outbound.protection.outlook.com [40.107.21.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CBD114885D;
-	Thu, 17 Apr 2025 02:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744855611; cv=none; b=lV3DgF0LX8vYvrX1Enz3wpoeurDuUe8WVrZ0SwV6119XvhCssxy5/IWkPfIUhDEpObxUIYBwxNmNjkvbMq/OZzavZiMx682KMM2CpeuESLdxRFygYlSEkbjRFDixGEXGsa+s2ShYcoOyqA4B6KG3tx6RcRrpcjJQhFssUUEaf4E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744855611; c=relaxed/simple;
-	bh=8Vy9aCztAXdVgTN3k4KwowRPP5iUfC36QefL0nSXbdg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=owu4UTCsbMC3c0RAtZqcFrrUou1dd8s+YkU1HIcUzwN+xhlZFLrtsu+2CPnfcgeOYz098X4ducAWE1rSDpaf9KiTKq3BkA574hzUPrDs5KifgWTpf4CoOY3Zyw4DDa0kEFjkmTG9834pq6uP+OKin+4d++Ix6vXvYM7XaktWhqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l+VjPAos; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-225477548e1so2874435ad.0;
-        Wed, 16 Apr 2025 19:06:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744855610; x=1745460410; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5S0Rc5OUApAJHdSC6yQdEbbcqqj1NWTeaGJIvpD8DrQ=;
-        b=l+VjPAosXdFYSJtNVwXmVslZBPhdF5KcPysrCxF7QlbB9Sy9E0SncDmWrHExyg0/UJ
-         jf76LC6VrT7sai/Y5S+4NpBX9uby2r+YsRgS/aEPf+wM93wDF6GgcdN2eXJDb6opnP9s
-         egzkK7stm30e/PRkIq5dEgcJ1qGqBE1x1D5IhBMSf05kgaPTPzbjfBDqxfTApcoxBokx
-         6X19mBqn25QSS3XTZJp99HcFEqPOfC2ATNQhqgarQ6NnpUGUBE9wLvOzDiE5cZH0O+YV
-         /xJa9/etGcJ9o3gLKoWNA33R+ZAoff+p6CzuiQ01Zr8zb4UVOrrHX+ygavlLzF2CHlo7
-         ONqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744855610; x=1745460410;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5S0Rc5OUApAJHdSC6yQdEbbcqqj1NWTeaGJIvpD8DrQ=;
-        b=X0pmwMNEqU0P5mP2tp4e/eo/85m9mmolvdh5GiO/D8NJIGb+tHxuS9YkybQhK9+7r7
-         qag8fuDbxa5NqUliWQuizTPo6eh4gV98FQM2h5P2dCzC0fyrPWLq+6JgXRMe5F+Y6ogE
-         r2M9G3752kEzeLVD9wGlXrsulyKXJtVXylrhINv66d3iYgGTKj3QCETFKKk0Hyk6IjR+
-         GewurtSCK0iTE/qU1NuAosy/cQyvXHfhX3WSiNBFVBIOOrQF+nL/Oqis1DEnFhzn6Woz
-         +FUcAUdVh6TNPE+BAAd7jWDChYKbM/uv0Rs8jnDZJw2RC0i2rmDEQJOQewhW5ix1edYC
-         xmXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWP1ymU7ALzwxTc81DAhCrpXJNt4gBMVjZQDiLmOKFT8xL1CiT9k09qWTe6qKrfYpe+kkHIL331/AmVDFUg@vger.kernel.org, AJvYcCXDMNkRQmPkPOr1ozZrBG+Q26LbUq1iCaakDHF4EVXDlIZ55lu3RB3mBo1/44xqmUYhaFVSWKM1j6ETaQ==@vger.kernel.org, AJvYcCXcN6Zsxpa3pE8Y/QEcUU3FJhcord8mcFcuXwhaoDqqDrAk8dBHP2iND0N/eo7xV+VRirKADyxYTBBY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZDmx1XlNg2+Zjlwcnhgmw9U/evNt06xbijSpGhord2/5tC/07
-	Vnz9U3yTkzSBw6BNtA4xTgOB5tUv9FI6xrorV/628roKuyxRfn2C
-X-Gm-Gg: ASbGncvJzJHcDGcH/cTcJ8Fp+9sqrhgMVQvv8gTG5GXAZiv6ULDYkVIw7TX+fjKnPUS
-	VbzKtje4KQgOpwy5FM5VRP6yfLpVQj9wgsbdL4Zq7sxZIqQHpyvFWa8MBi/u7CFmv6McVAFU8eL
-	/raftauFAk+e9NiubuSl9MhBinlij0Ek/Ca0XocpwQ/uo4LlGOxquJRkZQCTn9ErjMI6rXeVAqs
-	DVB+fnhM0AfyNv2xRJ2sKuXjF/IL+QCi5HGlNo/7vlPd/jiKrJXJDgAq1h+JN7o8xakquZXFA9A
-	wyMDOfRJsjvGXpMB7Pa75tJ/zwHvb1G1I+IpdmuoOmZQ2B0TjAE+yQ==
-X-Google-Smtp-Source: AGHT+IHOSSVJxwJFTvqTyirKYLKDkNN1HsuII60LpoJlqemuqX/oIQnI0UNsOszF22K4816pi4+qdg==
-X-Received: by 2002:a17:902:dac7:b0:220:d601:a704 with SMTP id d9443c01a7336-22c358d71admr50793935ad.18.1744855609467;
-        Wed, 16 Apr 2025 19:06:49 -0700 (PDT)
-Received: from localhost.localdomain ([171.255.57.44])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c33fcea58sm21612685ad.199.2025.04.16.19.06.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Apr 2025 19:06:48 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: krzk+dt@kernel.org
-Cc: pavel@kernel.org,
-	lee@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
-Date: Thu, 17 Apr 2025 09:06:22 +0700
-Message-Id: <20250417020622.1562-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
-References: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A533A17A2EB
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 02:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744856443; cv=fail; b=PUa9GPmHlI7SP5DGV1DR1JHQHFx3nz6MzScZ6lxqhtkavIfk96w8W9fMGSc+xOrfeXyMjWm2YKe7iGMUbvyMGcOKXUgiXv9ZTURTrA5+OumonmFrC3ghErjFRsd35vM+rAWQgyOOYIiytBY/VIc+XtbIZVUkRFb6fHIHK2hVIJo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744856443; c=relaxed/simple;
+	bh=HUR2FjXjtLzuoBcoCA+nm9enSiME59vwiNdVJMawhmc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=k3CXLVRghuK8ZSQpeAEWGKrSOyf/PAqv93LkLZml/dstxzUvGo5AKsirDL6WKWbuAPEp2A4JbZtO6500NwEyZYTCJvKUS0pIWuupKLr9EiskAk6Sjy2/qfxQC5uD9e+JbFIImvbljb/xTHIDa1cIJmVY1mDAxwU6ZqKkPQVpZf0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lDBHCX+Q; arc=fail smtp.client-ip=40.107.21.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LM/yAI5nC+minMb3CLBuyaMrP6aRx7BAEf+nXLrzLnzOj0zpYrLp/Tkeix7kIpQY7R2iMwmBTuu+lyMdqRQuuDpN1T9Nqj53OLMTo04Ym4Wtt56IkGtR/IQjOw64xhHleRrbXfBoyuF/M6shJlMERqSG2z2OftTIpJl17nbQ64Z6I3tC/MHZqqQjalhiJP6cA/Fkf5Ui85hkuVt5l6fkWH9VUYYgYrRvRvk3qUsNAN8hmltHH3XSTbHQ4fJ8mIsppzqHaM/sYBgMLbwZdpM1WsnDw810hhn4kUiYbi1KHfh0ce/5PQnOwpjXgk8sqrYDuoZpfhgq90MprINxfFnGJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZYHa/XPHV0B4Jsv5YKyALerd9JymxJHIJyBmfExLoI0=;
+ b=KHj1ChWqWNwXoYmwhl8iLJPua22fZfG7xbP76+mymaqj+Efxw8SoavAYmKR3+6XpP9P376ymH7oFmwjRUHu/lEvnfojYtjwL9FLk3Uq0YmDb2ExMAZ5O+0Ob/jTbrfanJDohyvc2YwwyCg1ZyABc3fsvmNLi7PAYp/GMFXzN56x3umph/qCcdX+Pcl7lIJnAL2PQdNi1a7Xx6Qq+kIWZ3Cm1fMcSnR52RlAzibq6iBag19tazVRp1WLlyXPt6ZcuwurVsTH2CRXQBrJhDOj0RSSsOGZFkkN+e7VQrwv3fbF6PeV9DmA8WNYLWURPLasC8IxWba1tpdxZ0VAi/3P9Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZYHa/XPHV0B4Jsv5YKyALerd9JymxJHIJyBmfExLoI0=;
+ b=lDBHCX+Q3lTXsBFVh4BmzEE3Tvoh1gpWDyCiHjRKkfWXwDuihLfT1np6pHMrga8EFy+eQyULBA6RuoTuJQD0iiY1OW8JV02SInobA49nKZo4dSe06OUufyLVkiXM/AnALiWx4Oe8REDl3PbGFql3xISLEZ/Lv0yo4fOFmM4Pj5sb/8rWxmIO9fIm/PS8t/xfksN4HKt+U17Ud4ofyfSx8+M38bbgrePHZstfG8GWy0lkpZ8FYBujNGMfy1N8HJ7r4zuyIp99QnWlPVGcIVsI7KSiegiLvrJmpbOyMr+RhRSuPTIB+03Sq7qLrjFblLHZwJJhyJfbAkYrAdBDzs4PIg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by VI2PR04MB11074.eurprd04.prod.outlook.com (2603:10a6:800:277::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.30; Thu, 17 Apr
+ 2025 02:20:37 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8632.030; Thu, 17 Apr 2025
+ 02:20:37 +0000
+Date: Thu, 17 Apr 2025 10:16:49 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
+	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch
+ support
+Message-ID: <20250417021649.rltm25nmj4etwn4d@hippo>
+References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
+ <20250416105940.1572672-2-xu.yang_2@nxp.com>
+ <Z/+/pgmR4n71iTkE@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z/+/pgmR4n71iTkE@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: SG2P153CA0047.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::16)
+ To DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|VI2PR04MB11074:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b9902e3-fefc-486d-08cb-08dd7d567127
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|1800799024|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Q/I7P5piKM12Lx98RXoe/tyP9VShDV1Q64xbrq3uF+PYuOvui5+gLZZ12EAG?=
+ =?us-ascii?Q?39rUBBgD3jSCKlXpZIZ7FNnMKikR0llaKx16tivxLKK3TrL73xUBg+f5xf5Y?=
+ =?us-ascii?Q?EfE44Il6jifQ/O6bicPlDJDSul+AHpt3zjn39ov6K4Y1L8IjkqLHWcIBr2nv?=
+ =?us-ascii?Q?9kle47iiiMTYpxYg5iLwkxbeaKKsWgpsbhloLZC0BKSsuTW/YrsOBbdL5Pp6?=
+ =?us-ascii?Q?A5BpwVH+zHGfm03I4vxgH/IeaMCttAkkGYmFs663zMQP+K86Sa8GQ7g7DOdN?=
+ =?us-ascii?Q?lfE9l7/gmPoz8O4h0l3ynHkILEw1ajrwmuZL2AvZet8Z4tYrXwNT/vO25VGu?=
+ =?us-ascii?Q?GBg6Qmtf8cjeVOakLx1gdJ4wI9aZQVMCfkeaX0vsiDQGh7qJ/SP8IKm1HoJu?=
+ =?us-ascii?Q?HaBWqJTRu5/b+rZlREY3uyD3EGKzD4Eo+7409wSwUbcaMwUc9SZRxWtLGWFk?=
+ =?us-ascii?Q?GbQ8dRYLPlOwc8ntUVaYnqHX1oJDdZyv8jOc2orT+5S2IZPXXz36ASLKBTVT?=
+ =?us-ascii?Q?KZDs+THwnX94tWSyuthMOjyadPNADSmGxOho7PUdPfYMUwGNQkVDXnp9FhlF?=
+ =?us-ascii?Q?3oirNTLB3CPVjv5LOs2dJ6EQOSHiyI8rCWlFFJRmQjB6WqAUQazJzccCWjyz?=
+ =?us-ascii?Q?L5QK9V3INAVqFpOSi2Oxxat2paRxGfCFBkggjoPdd/vPg03e65ep2u1uNQxG?=
+ =?us-ascii?Q?kW0+m1y7TnhvwFMLK6/7dH0oGSaxBUzZKrXG+qX6DTDyC5enWuOLKYhyDnHL?=
+ =?us-ascii?Q?XCeKm8KdKln7DGXMzHy8/bQekR1XTV3ycFLvN/BcyPdnpTgS7oTrvUzHLf3E?=
+ =?us-ascii?Q?sPRu9AH3P00uC989C18jxXX8iFJlhoRW50QPAEBGWFSRO875zdEeH+gaq6Tx?=
+ =?us-ascii?Q?NN9RancBLZD4U61mDyBXF1f1/Yn34In1Oq6siXe5uNfTc80NtavIF8BUILZ9?=
+ =?us-ascii?Q?x1//pUzth7ENRQWxRMwH5ici+HDI7/WZsIN9LA5in9IFDKccP1r5oBjLYB89?=
+ =?us-ascii?Q?FIstoJQI1P1kvpNLmg+qGs3kooOrX7YoCYA535xbjhXXKfjeHd9QFAp6IrQa?=
+ =?us-ascii?Q?fH3qUGqMatd7vhBrA7yGyrqvfU42hTwJJvhjyuLL7q0dNR70i80VXeU+L3OT?=
+ =?us-ascii?Q?4m2d1R2z4yZG1CIIeWmt0M/SVJrtk8RJ/lnHY+xyssQWswN70mWE0heY1koj?=
+ =?us-ascii?Q?1IDVXgJ74WJtpipimKr1J4jC4El9YSEIoKYYbAo3Y8IfcxKjuJiVL9/E5PUC?=
+ =?us-ascii?Q?lhE3Gs5Pl9waWfxS8hwIiYHXtEX5THDSinPi5v2F4YndPbS6IQUAXvT+w2oa?=
+ =?us-ascii?Q?w4TLE9DB8WaIP7oRTPJd820ChTUNgU9wc0SMZ5tn4zy6KPI+bxKnPpBRRsYS?=
+ =?us-ascii?Q?T2i7feUFk4LltAEmJKg4uIoedQFi49ji50rTQpBJDZZZ4/rAIH0ozhSUhcMo?=
+ =?us-ascii?Q?EkTAmCEJWceYJSU9ide4EZyA4RQL6e9MaD7LFFibpN/2TZ9nb3USSg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(1800799024)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?wVlY7xamWY88oUJdP0WMfXu45BnbXVSj/WskXqTBsLU2H4Sq3IlyVpm5OZoa?=
+ =?us-ascii?Q?hQz2BzJJMlqE6Aidn0lhvCuMCu7Mdo04FfhVJvwwuy78oJjjJQxH4zDCuFWs?=
+ =?us-ascii?Q?kQBq5JwTwxQVG7Sl0nyFo+sa7G8ZZ0WaYORfGlCNdNVIIsLWOORLDhGh0JWs?=
+ =?us-ascii?Q?x6tut9TtzWwXkDKQXq8+wU9sjXhyRRUAS9rr4ybdllEF96gMkd+gZRJGxVLA?=
+ =?us-ascii?Q?4YF08Vz7vZwdayUCARAHH9jcr1IwHwIZ0YQwgntqcMS6D0ec6p7CglklflcZ?=
+ =?us-ascii?Q?iVPgnB4m/BYVckJY9UCgKBr52vTl7JvmLah+9C8jxQnDc8/anYkgwc+a2M7D?=
+ =?us-ascii?Q?XnIJvkvhcfzd2/tutgM9DAPfVA2gpSe7RJDyV9E3DfRXAlEzZc1u2JzmoA9e?=
+ =?us-ascii?Q?Rf4xqF3eWeqBkUR4eAGwJLWKxdDr3lcmrlJaVejhiYFMYtn5zREOMNEoI8wz?=
+ =?us-ascii?Q?AkVBTLpf+enxWnXoA2yApRFhsR8wcT+r94pgyzU4TCk/Gq9mhYZCidEjPQFK?=
+ =?us-ascii?Q?VhPfJN0vKJUHILiNNMjx53EhJkidwekkyUTZ98B29OOzk+g1hs+WQfzoF7I4?=
+ =?us-ascii?Q?jOSVx5yDD60gDiEI0tO2IU2YWA5wmnV1vg2OCMp4BKyMBWJ6QsO4z12lFH2O?=
+ =?us-ascii?Q?BJbthvx4XgjPrUPSzBdUSPWPCRHcf0ir8CwPo/lRBxQMikOd/g9C+i1TXvEX?=
+ =?us-ascii?Q?EIvhDAWnOhLOsRxgacF3uAyi6Ic5VOuLmKb5nZpDDUV6CXHMFWinD9UYbdTp?=
+ =?us-ascii?Q?m3Cg78v6Ic1wr2xytQx7ojYbdlmuRcMVyw5c6MLgmpue2TmpPfmmNqhom2uQ?=
+ =?us-ascii?Q?kNFUWlhfBMC66SYaimQa+yumzNgrLxMpiwL6PuFYju8fn20nTZGCFJ9jm2ng?=
+ =?us-ascii?Q?vgJfDGyOwcjrvswD1jaskautqctR1JvQ1wEDeW6cAWiHxvoJumg+0EvEQ9XJ?=
+ =?us-ascii?Q?6HhsHVuiVBCZE1S/dm0+izmd6Dba8ToQzUuovhRpZXv7DiqZoxw9VMIDusQe?=
+ =?us-ascii?Q?1HQxJnJu14jje8dewtk25eUQAVyJFcEvZUUvblVX1aD1m6ihxm6vxwNAl9GQ?=
+ =?us-ascii?Q?xFtQQbs90DxyH6VE+/5sUcfOc6MMocO4RcyKIvfTXgnGQe2lLUpmkmdghF0R?=
+ =?us-ascii?Q?9Fx7ddBOybUPEQxfZ1BvAB59w/drIzrKJe/ZXFQm617jUmkqzuobBpTaG2Iy?=
+ =?us-ascii?Q?FhghnHQS8FnkAADZFh4hYuBGE5/Zp/m8OT64FPS/jnaxkDpgnuPLY8zfBjMI?=
+ =?us-ascii?Q?BM19F0EnaOaF/m0uwyz3OoxBfqXHb/8WUluWHGHyoR8k9OPg1tqOt9qnQo/t?=
+ =?us-ascii?Q?9jt5UUn2o5+Z1qa2WPGaA5eueuGK+fuzTzXgW5oXtXkASnFwIFjyNPx1O8ZQ?=
+ =?us-ascii?Q?amWTg0uGmLS2ROAnC8tOuTTXil4w7LbdCXobEfSy8ooVs9jNxDsiRTx1lST1?=
+ =?us-ascii?Q?GaZ4egRaXnynVB+eCvsksZt6tLIy/T9L8yY7woEUe5Mc2w3bAa3dBICkTQmj?=
+ =?us-ascii?Q?vIOey+K4807PU9gjq3bN4w3ziq20f8qAAWWibSqXzBGQZVdE9OxrRuxeOxSq?=
+ =?us-ascii?Q?jEGa8/xnCTHh8vciKA//+rP/9DttjL07uAt5wQpO?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b9902e3-fefc-486d-08cb-08dd7d567127
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 02:20:37.7884
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fS11BDjdtaSyLnEhzP88w2yL7Uvb2QwJah9QHkCOSSBngp7BO34SdW0vKYDyIidj5pV76tebxHstNLP3+jG6Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB11074
 
-On Tue, 15 Apr 2025, Krzysztof Kozlowski wrote:
+On Wed, Apr 16, 2025 at 10:33:10AM -0400, Frank Li wrote:
+> On Wed, Apr 16, 2025 at 06:59:39PM +0800, Xu Yang wrote:
+> > PTN5150 is able to detect CC polarity. The field[1:0] of CC status
+> > register (04H) will keep the result.
+> >
+> >   00: Cable Not Attached
+> >   01: CC1 is connected (normal orientation)
+> >   10: CC2 is connected (reversed orientation)
+> >   11: Reserved
+> >
+> > Sometimes this information is necessary, so add orientation switch
+> > support to correctly set orientation of multiplexer.
+> 
+> Add orientation switch support to correctly set orientation of
+> multiplexer according to CC status.
 
->On 15/04/2025 11:53, Nam Tran wrote:
->> On Mon, 14 Apr 2025, Krzysztof Kozlowski wrote:
->> 
->>> On 14/04/2025 16:57, Nam Tran wrote:
->>>> +
->>>> +description: |
->>>> +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
->>>> +  For more product information please see the link below:
->>>> +  https://www.ti.com/product/LP5812#tech-docs
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: ti,lp5812
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  "#address-cells":
->>>> +    const: 1
->>>> +
->>>> +  "#size-cells":
->>>> +    const: 0
->>>
->>> No need for supply?
->> 
->> Since the hardware uses an external power supply,
->> we decide not to include the supply property in the binding.
->
->So there is power supply? If so, must be in the binding. Bindings
->describe given hardware (LP5812), not your particular board/setup.
+OKay.
 
-Thank you for the clarification.
-The LP5812 is externally powered and has a dedicated VCC pin.
-I'll update the binding to include a `vcc-supply` property.
+> 
+> >
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > ---
+> >  drivers/extcon/Kconfig          |  1 +
+> >  drivers/extcon/extcon-ptn5150.c | 40 +++++++++++++++++++++++++++++++++
+> >  2 files changed, 41 insertions(+)
+> >
+> > diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
+> > index a6f6d467aacf..fd4ec5dda0b7 100644
+> > --- a/drivers/extcon/Kconfig
+> > +++ b/drivers/extcon/Kconfig
+> > @@ -145,6 +145,7 @@ config EXTCON_PTN5150
+> >  	tristate "NXP PTN5150 CC LOGIC USB EXTCON support"
+> >  	depends on I2C && (GPIOLIB || COMPILE_TEST)
+> >  	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
+> > +	depends on TYPEC || !TYPEC
+> >  	select REGMAP_I2C
+> >  	help
+> >  	  Say Y here to enable support for USB peripheral and USB host
+> > diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
+> > index 78ad86c4a3be..b7e05d921c79 100644
+> > --- a/drivers/extcon/extcon-ptn5150.c
+> > +++ b/drivers/extcon/extcon-ptn5150.c
+> > @@ -18,6 +18,7 @@
+> >  #include <linux/extcon-provider.h>
+> >  #include <linux/gpio/consumer.h>
+> >  #include <linux/usb/role.h>
+> > +#include <linux/usb/typec_mux.h>
+> >
+> >  /* PTN5150 registers */
+> >  #define PTN5150_REG_DEVICE_ID			0x01
+> > @@ -38,7 +39,11 @@
+> >  #define PTN5150_REG_DEVICE_ID_VERSION		GENMASK(7, 3)
+> >  #define PTN5150_REG_DEVICE_ID_VENDOR		GENMASK(2, 0)
+> >
+> > +#define PTN5150_POLARITY_CC1			0x1
+> > +#define PTN5150_POLARITY_CC2			0x2
+> > +
+> >  #define PTN5150_REG_CC_PORT_ATTACHMENT		GENMASK(4, 2)
+> > +#define PTN5150_REG_CC_POLARITY			GENMASK(1, 0)
+> >  #define PTN5150_REG_CC_VBUS_DETECTION		BIT(7)
+> >  #define PTN5150_REG_INT_CABLE_ATTACH_MASK	BIT(0)
+> >  #define PTN5150_REG_INT_CABLE_DETACH_MASK	BIT(1)
+> > @@ -53,6 +58,7 @@ struct ptn5150_info {
+> >  	int irq;
+> >  	struct work_struct irq_work;
+> >  	struct mutex mutex;
+> > +	struct typec_switch *orient_sw;
+> >  	struct usb_role_switch *role_sw;
+> >  };
+> >
+> > @@ -72,6 +78,7 @@ static const struct regmap_config ptn5150_regmap_config = {
+> >  static void ptn5150_check_state(struct ptn5150_info *info)
+> >  {
+> >  	unsigned int port_status, reg_data, vbus;
+> > +	enum typec_orientation orient = TYPEC_ORIENTATION_NONE;
+> 
+> Move to first variable to keep reverse christmas order
 
->> 
->>>> +
->>>> +patternProperties:
->>>> +  "^led@[0-9a-b]$":
->>>> +    type: object
->>>> +    $ref: common.yaml#
->>>> +    unevaluatedProperties: false
->>>> +
->>>> +    properties:
->>>> +      reg:
->>>> +        minimum: 0
->>>> +        maximum: 0xb
->>>> +
->>>> +      chan-name:
->>>> +        $ref: /schemas/types.yaml#/definitions/string
->>>> +        description: LED channel name
->>>
->>> My comment stay valid. I don't think LEDs have channels, datasheet also
->>> has nothing about channels, so again - use existing properties. Or
->>> better drop it - I don't see any point in the name. The reg already
->>> defines it.
->> 
->> The channel was named for the output channel to each LED, not the LED channels.
->
->I don't understand what you want to say. Please explain why existing
->label property is not correct here.
+Okay.
 
-I understand that the label property is deprecated and that the preferred approach now is to use function and color instead.
-However, in the case of the LP5812, which is a matrix LED driver, these properties are not a good fit.
-The LP5812 does not associate each output with a specific function (like "status", "activity"),
-and the LEDs driven by LP5812 are not fixed to a particular color.
+> 
+> >  	enum usb_role usb_role = USB_ROLE_NONE;
+> >  	int ret;
+> >
+> > @@ -81,6 +88,23 @@ static void ptn5150_check_state(struct ptn5150_info *info)
+> >  		return;
+> >  	}
+> >
+> > +	orient = FIELD_GET(PTN5150_REG_CC_POLARITY, reg_data);
+> > +	switch (orient) {
+> > +	case PTN5150_POLARITY_CC1:
+> > +		orient = TYPEC_ORIENTATION_NORMAL;
+> > +		break;
+> > +	case PTN5150_POLARITY_CC2:
+> > +		orient = TYPEC_ORIENTATION_REVERSE;
+> > +		break;
+> > +	default:
+> > +		orient = TYPEC_ORIENTATION_NONE;
+> > +		break;
+> > +	}
+> > +
+> > +	ret = typec_switch_set(info->orient_sw, orient);
+> > +	if (ret)
+> > +		dev_err(info->dev, "failed to set orientation: %d\n", ret);
+> > +
+> 
+> Does it need return error here?
 
->> but the person who wants to develop LP5812's matrix-related features can use the "channels" for easy mapping.
->
->easy mapping of what? Please show me the usage.
+The context is a void function. So it'll not return error here.
 
-You're right — I cannot provide a meaningful usage example for chan-name.
-The chan-name property was intended to give a more descriptive name for each LED channel, mainly for convenience in user space.
-But since this isn’t standard and you advised against introducing such a property, we’ve decided to drop it.
+Thanks,
+Xu Yang
 
->> 
->>>
->>> However after dropping this, your example has nodes with only reg -
->>> what's the point of them? Why no properties from common.yaml are
->>> applicable? If they are not applicable, then the entire subnode should
->>> be dropped - you don't need them to describe the hardware.
->> 
->> Actually, the "color" property can be applied, but the LP5812 is a matrix LED,
->> so specifying a particular LED color is not necessary when developing LP5812 features.
->
->This does not help me much and based on this I see no points in
->describing individual LEDs, because the only missing information is
->number of them but even that is fixed for given device, isn't it?
-
-Actually, the number of LED outputs on the LP5812 is not strictly fixed — it depends on the selected operating mode.
-This mode is configurable by the end user at runtime through sysfs interfaces provided by the driver.
-
-I understand your point — if no additional properties from common.yaml are applicable, these subnodes may not be necessary.
-Therefore, we’ve decided to drop them.
-
-Best regards,
-Nam Tran
+> 
+> Frank
+> 
+> >  	port_status = FIELD_GET(PTN5150_REG_CC_PORT_ATTACHMENT, reg_data);
+> >
+> >  	switch (port_status) {
+> > @@ -152,6 +176,12 @@ static void ptn5150_irq_work(struct work_struct *work)
+> >  				dev_err(info->dev,
+> >  					"failed to set none role: %d\n",
+> >  					ret);
+> > +
+> > +			ret = typec_switch_set(info->orient_sw,
+> > +					       TYPEC_ORIENTATION_NONE);
+> > +			if (ret)
+> > +				dev_err(info->dev,
+> > +					"failed to set orientation: %d\n", ret);
+> >  		}
+> >  	}
+> >
+> > @@ -219,12 +249,14 @@ static void ptn5150_work_sync_and_put(void *data)
+> >
+> >  	cancel_work_sync(&info->irq_work);
+> >  	usb_role_switch_put(info->role_sw);
+> > +	typec_switch_put(info->orient_sw);
+> >  }
+> >
+> >  static int ptn5150_i2c_probe(struct i2c_client *i2c)
+> >  {
+> >  	struct device *dev = &i2c->dev;
+> >  	struct device_node *np = i2c->dev.of_node;
+> > +	struct fwnode_handle *connector;
+> >  	struct ptn5150_info *info;
+> >  	int ret;
+> >
+> > @@ -311,6 +343,14 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
+> >  	if (ret)
+> >  		return -EINVAL;
+> >
+> > +	connector = device_get_named_child_node(dev, "connector");
+> > +	if (connector) {
+> > +		info->orient_sw = fwnode_typec_switch_get(connector);
+> > +		if (IS_ERR(info->orient_sw))
+> > +			return dev_err_probe(info->dev, PTR_ERR(info->orient_sw),
+> > +					"failed to get orientation switch\n");
+> > +	}
+> > +
+> >  	info->role_sw = usb_role_switch_get(info->dev);
+> >  	if (IS_ERR(info->role_sw))
+> >  		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
+> > --
+> > 2.34.1
+> >
 
