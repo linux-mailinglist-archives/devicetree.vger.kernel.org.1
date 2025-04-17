@@ -1,146 +1,143 @@
-Return-Path: <devicetree+bounces-168179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC1A7A91B8F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:06:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD35A91B9A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B2C17AD871
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:05:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81BE11887C25
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7F424C086;
-	Thu, 17 Apr 2025 12:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F7C2417D4;
+	Thu, 17 Apr 2025 12:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="haR2lQSF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMo0g0wN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8511C242907;
-	Thu, 17 Apr 2025 12:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBCA241693;
+	Thu, 17 Apr 2025 12:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744891485; cv=none; b=jDWF5Q33gVvpiLwUsLtJpS8ClKgDR2Nqxret2yDgSp5BnapfoTINNy4sXD5hHUTlOPhWRRjQBnHA8juZFvixn5n4TngR/noPdny7vdwfO0ghQ+yUi5csM9LdPSm2A3q2cLwqZvpKda3RpAg0xS7LIj+FzcCECU4HIBYBF96uPSo=
+	t=1744891668; cv=none; b=ePOk+xC17UWulMr5M8opUPgpyjmfq9DlRfaKHi/Dmfkk5Kqbr/EVw5ZJSpcNFtjiozCovVWBAvOnKZkNcz1YyApUrtl8vK7rDV2yJUFxT4k8QWXTSeqfaCz1vVNG//yirUPDh7fMM0KuHwMOMTyO4iTBv4uY/dF+QABcCayw20w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744891485; c=relaxed/simple;
-	bh=avD1NpbsEJIlK9wWblnST/7Y9qFyEs5xLtYFXFF5HqI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TAOO+0p1DTWG/LVGnswPdZnd1e/6ITDFsVGUyQR5T782oDK4/HWd1U2QpdmLrlUvOVrDiswUe62R8BUuLVzfjOBeT4EZZo6RdNdrJ1TegSNyFYwJIeD9GUwQDZ2dMR/wb/MI6C0prk/BxBoN3bPpThm2k0YIba82nvsx+nwsTOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=haR2lQSF; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53HC4Zng3094834
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 17 Apr 2025 07:04:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744891475;
-	bh=bNb2Dq3nRm0e9cZYsstRIDuGhQAYPxcy2C0B5OtXSxA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=haR2lQSFJFH6A+nCi48gmimFDOkgu4Gk9bRGANzDO8ngRqPZt87jtFL1swhmWEOjx
-	 io3FAjcSpr6XzyBNhyXSUgnHU8nDHUoPS3+7nPvKU37LvzgH4WjbXF2a++uQ8gGbuz
-	 V7E2uLRSw5i4NM7IGLK+BGrtE9tcIVZxYPJYgtxE=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53HC4Z6F083673
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 17 Apr 2025 07:04:35 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 17
- Apr 2025 07:04:35 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 17 Apr 2025 07:04:35 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53HC47VP004789;
-	Thu, 17 Apr 2025 07:04:32 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 7/7] arm64: dts: ti: k3-j784s4-j742s2-main-common: switch to 64-bit address space for PCIe0 and PCIe1
-Date: Thu, 17 Apr 2025 17:34:07 +0530
-Message-ID: <20250417120407.2646929-8-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250417120407.2646929-1-s-vadapalli@ti.com>
-References: <20250417120407.2646929-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1744891668; c=relaxed/simple;
+	bh=e6imUbkVLSYxslOyA04gkKQdqULW5lSglC/dXRwDQz8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hkac/BR7cOB9RX8c4hvl3fUSg4S0TlQf8z/ccsOpTMWnj0EMz3LlC3y7rLCQqVawZn/4JOdVUFk+J6TvIWtHS34B8Ts44stwzUXD/4VYxGQD/3ofoP0I088eBIiBc6nSMyXIKtAfccoQ9yYjPG9huJF7Ep3AGPwircjGphj3ero=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMo0g0wN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAA9CC4CEE4;
+	Thu, 17 Apr 2025 12:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744891667;
+	bh=e6imUbkVLSYxslOyA04gkKQdqULW5lSglC/dXRwDQz8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WMo0g0wNb/mkwZ+3QmgALVZMBOBodKuzWIcN/N0rBPOH+bGNjksKnOTe5SAfBzVqo
+	 u/0hImxmkwChfalpADpOjBugetDgnroR6yAe7VnJLZikWMioOaFSmd3FXpwKkXj6/Q
+	 GnIqL49ADeQd983rQHaDHM9cmNXppdZyyIPSVbmzRf2WXMkCuLIbHjUfeCWM4K6xm8
+	 WOhOjCp28DaSsOoz9SuFiOPm7XOHF/jnjgMhYgvNu8kJI0/8g8P5jhMB1foaApojBC
+	 OhoOJw7vJO0m8zfDKKO9oGFTSfsRg7r5n7INKVVrvayVcv0t5PcNQCWTFBBd2BBRaZ
+	 rxwTAKQ54yVjg==
+Message-ID: <98dbc394-3628-4244-81cd-6b7f36b47fa4@kernel.org>
+Date: Thu, 17 Apr 2025 14:07:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
+ by pericfg
+To: "Frank Wunderlich (linux)" <linux@fw-web.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>,
+ Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+References: <20250416095402.90543-1-linux@fw-web.de>
+ <20250416095402.90543-5-linux@fw-web.de>
+ <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
+ <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
+ <caf3da77-f35d-4a39-9102-9592d722d900@kernel.org>
+ <b59ccb4541f4eac24fd38a65de770c8c@fw-web.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b59ccb4541f4eac24fd38a65de770c8c@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The PCIe0 and PCIe1 instances of PCIe in J742S2 and J784S4 SoCs support:
-1. 128 MB address region in the 32-bit address space
-2. 4 GB address region in the 64-bit address space
+On 17/04/2025 11:35, Frank Wunderlich (linux) wrote:
+>>>>> +            - description:
+>>>>> +                The first cell represents a phandle to syscon
+>>>>
+>>>> Don't repeat constraints in free form text. "Foo bar system 
+>>>> controller"
+>>>> or "Phandle to foo bar system controller"
+>>>
+>>> i would write only "phandle to system controller". on mt7988 it is the
+>>> topmisc syscon, but maybe on
+>>> other SoC it is different name.
+>>
+>> This must be specific to what sort of system controller you point. You
+>> are not interested in phandle to any system controller.
+> 
+> how about phy configuration controller/register?
+If that's distinctive enough to identify the controller and its
+register, then sure.
 
-The default configuration is that of a 128 MB address region in the
-32-bit address space. While this might be sufficient for most use-cases,
-it is insufficient for supporting use-cases which require larger address
-spaces. Therefore, switch to using the 64-bit address space with a 4 GB
-address region.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 1944616ab357..0cbf0fba9112 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -1055,7 +1055,7 @@ pcie0_rc: pcie@2900000 {
- 		reg = <0x00 0x02900000 0x00 0x1000>,
- 		      <0x00 0x02907000 0x00 0x400>,
- 		      <0x00 0x0d000000 0x00 0x00800000>,
--		      <0x00 0x10000000 0x00 0x00001000>;
-+		      <0x40 0x00000000 0x00 0x00001000>;
- 		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-@@ -1073,8 +1073,9 @@ pcie0_rc: pcie@2900000 {
- 		device-id = <0xb012>;
- 		msi-map = <0x0 &gic_its 0x0 0x10000>;
- 		dma-coherent;
--		ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 0x0010000>,
--			 <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
-+		ranges = <0x01000000 0x00 0x00001000 0x40 0x00001000 0x00 0x00100000>, /* IO (1 MB) */
-+			 <0x02000000 0x00 0x00101000 0x40 0x00101000 0x00 0x08000000>, /* 32-bit Non-Prefetchable MEM (128 MB) */
-+			 <0x43000000 0x40 0x08101000 0x40 0x08101000 0x00 0xf7eff000>; /* 64-bit Prefetchable MEM (4 GB - (129 MB + 4 KB)) */
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
- 		status = "disabled";
- 	};
-@@ -1084,7 +1085,7 @@ pcie1_rc: pcie@2910000 {
- 		reg = <0x00 0x02910000 0x00 0x1000>,
- 		      <0x00 0x02917000 0x00 0x400>,
- 		      <0x00 0x0d800000 0x00 0x00800000>,
--		      <0x00 0x18000000 0x00 0x00001000>;
-+		      <0x41 0x00000000 0x00 0x00001000>;
- 		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-@@ -1102,8 +1103,9 @@ pcie1_rc: pcie@2910000 {
- 		device-id = <0xb012>;
- 		msi-map = <0x0 &gic_its 0x10000 0x10000>;
- 		dma-coherent;
--		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
--			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
-+		ranges = <0x01000000 0x00 0x00001000 0x41 0x00001000 0x00 0x00100000>, /* IO (1 MB) */
-+			 <0x02000000 0x00 0x00101000 0x41 0x00101000 0x00 0x08000000>, /* 32-bit Non-Prefetchable MEM (128 MB) */
-+			 <0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>; /* 64-bit Prefetchable MEM (4 GB - (129 MB + 4 KB)) */
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
- 		status = "disabled";
- 	};
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
