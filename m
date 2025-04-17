@@ -1,158 +1,130 @@
-Return-Path: <devicetree+bounces-168031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7997FA91332
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:45:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42636A91335
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B7D317EDF6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:45:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63581897A2B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1211E834B;
-	Thu, 17 Apr 2025 05:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFEFD1DB933;
+	Thu, 17 Apr 2025 05:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVwKHJv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B889C179A7;
-	Thu, 17 Apr 2025 05:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8469E179A7;
+	Thu, 17 Apr 2025 05:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744868713; cv=none; b=QEC/hf80I3iibfaavG3p2R+3Og2m+aI0q9Nkw54a0E+5tw0nJixf5NdPm7CgUZ00WwvrU00FCCYgVZgzwUP3VCWbKekSlm7AXv79C/QYZxrVoN3H6RRY8I/V+yipHcjFif2kpbZu33o6HwHaZ6ThCHjHhF94J1gu6qoTSk8QyAs=
+	t=1744868812; cv=none; b=srNShlSfwEHS40IsdYmm0LuvDYo4H7qYJqQmlCZ6N1BNxXfODywGE/o/vhGrbq6fdP1eDYEldZVkfRh8ccxa/kha7n7sTr1hmRB3pBlasEF6FDRuLXm92UUc3iBX7UpuIJypt/1CnKzh40idkYeKfnZWhFcid2AMfAM9dREorac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744868713; c=relaxed/simple;
-	bh=hKljaHKyZTE04MHAij+pfZXy6OCT4wDM9UWUfuMMCXk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kCziqS8AjTsbjWKSGv0POQq2iCLkR5xROgcLPpPbBVDGTv5gxZriw7YYN8w6Jj5pXgVpJq1DHOCniqkORHkRho1twp0uJMjJe1EAZYwvC6vi9W8XxDYdUVFALv0SNlHpT6w8l0FpOPe6TCaSLRw82X73bFuc8yvFFnlrKhlq8BE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: lqEideBSTtaFLIberh49LQ==
-X-CSE-MsgGUID: OQCtVt0VSvyuXB/ldBT+LA==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 17 Apr 2025 14:45:11 +0900
-Received: from localhost.localdomain (unknown [10.226.92.77])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id AAD7F44E7E38;
-	Thu, 17 Apr 2025 14:45:06 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	u.kleine-koenig@baylibre.com,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Simon Horman <horms@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH v9 19/19] can: rcar_canfd: Add RZ/G3E support
-Date: Thu, 17 Apr 2025 06:43:20 +0100
-Message-ID: <20250417054320.14100-20-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250417054320.14100-1-biju.das.jz@bp.renesas.com>
-References: <20250417054320.14100-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1744868812; c=relaxed/simple;
+	bh=w+Fw8NVAHUYrbrF2QdmSIueeFjlxwKqtyaXHc3p/lLA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aYSl6cIRC43XMfB64m8uxpConW8Nu/R1NMMv1ial9V0mE64rjIu1vavzeg+WTWlNWkan6lyZGy/wvSUMokmPnvZot/JyadfhuWlDnDxcR3Oef4O7wpTQhuQvft5fcNtyRw+YBKA3LpLTTrv3ya4XREUu+dugsirKsBrJl7A92BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVwKHJv7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E06C4CEE4;
+	Thu, 17 Apr 2025 05:46:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744868811;
+	bh=w+Fw8NVAHUYrbrF2QdmSIueeFjlxwKqtyaXHc3p/lLA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IVwKHJv77n9ud6ICAau+0RNSnlXkz/ZNaoZgcKqgTWhL6RCaInGFTpKMMBURKWtm4
+	 AmK8ByNzCvLMWQdU0mpA3eiPha3gJoTeRACaiNNmAygB4NH9FMudtj1jGbZDO3ADiB
+	 Lxs9CTzS8T3xdiYmqM8rk37j60G1m14SftrVhdqbgcbiDHrY3XA01phZI0ppXMwtkg
+	 Iaq/DupNqE1l5zdWgV9NlTvsz0caXZPpjmMO3qVPgT7QWHIG8vXwpxbKzKt2hzRtbB
+	 k7+MruJAl8anp/e+SnFajn0FzFl3g40csVCVRsSYU4ORgfGc6fVKpuXJOQ9KYaYFnA
+	 3FOkQuO6nMZXA==
+Message-ID: <7dc797c3-36d4-4477-a0c6-2a8c84ef1f11@kernel.org>
+Date: Thu, 17 Apr 2025 07:46:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/11] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
+To: Ayushi Makhija <amakhija@qti.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
+ dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+ quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+ quic_jesszhan@quicinc.com
+References: <20250417053909.1051416-1-amakhija@qti.qualcomm.com>
+ <20250417053909.1051416-4-amakhija@qti.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250417053909.1051416-4-amakhija@qti.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The CAN-FD IP found on the RZ/G3E SoC is similar to R-Car Gen4, but
-it has no external clock instead it has clk_ram, it has 6 channels
-and supports 20 interrupts. Add support for RZ/G3E CAN-FD driver.
+On 17/04/2025 07:39, Ayushi Makhija wrote:
+> From: Ayushi Makhija <quic_amakhija@quicinc.com>
+> 
+> Document DSI controller and phy on SA8775P platform.
+> 
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v8->v9:
- * No change.
-v7->v8:
- * Collected tag.
-v6->v7:
- * No change.
-v5->v6:
- * Collected tag.
- * Updated r9a09g047_hw_info table. 
-v4->v5:
- * Updated error description as "cannot get enabled ram clock"
- * Updated r9a09g047_hw_info table.  
-v3->v4:
- * No change.
-v2->v3:
- * Replaced gen4_type entry with mask_table, shift_table, regs,
-   ch_interface_mode and shared_can_reg.
-v1->v2:
- * No change.
----
- drivers/net/can/rcar/rcar_canfd.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/drivers/net/can/rcar/rcar_canfd.c b/drivers/net/can/rcar/rcar_canfd.c
-index 6a9c970364cb..27d503ac87dc 100644
---- a/drivers/net/can/rcar/rcar_canfd.c
-+++ b/drivers/net/can/rcar/rcar_canfd.c
-@@ -726,6 +726,22 @@ static const struct rcar_canfd_hw_info rzg2l_hw_info = {
- 	.external_clk = 1,
- };
- 
-+static const struct rcar_canfd_hw_info r9a09g047_hw_info = {
-+	.nom_bittiming = &rcar_canfd_gen4_nom_bittiming_const,
-+	.data_bittiming = &rcar_canfd_gen4_data_bittiming_const,
-+	.regs = &rcar_gen4_regs,
-+	.sh = &rcar_gen4_shift_data,
-+	.rnc_field_width = 16,
-+	.max_aflpn = 63,
-+	.max_cftml = 31,
-+	.max_channels = 6,
-+	.postdiv = 1,
-+	.multi_channel_irqs = 1,
-+	.ch_interface_mode = 1,
-+	.shared_can_regs = 1,
-+	.external_clk = 0,
-+};
-+
- /* Helper functions */
- static inline void rcar_canfd_update(u32 mask, u32 val, u32 __iomem *reg)
- {
-@@ -1969,6 +1985,7 @@ static int rcar_canfd_probe(struct platform_device *pdev)
- 	u32 rule_entry = 0;
- 	bool fdmode = true;			/* CAN FD only mode - default */
- 	char name[9] = "channelX";
-+	struct clk *clk_ram;
- 	int i;
- 
- 	info = of_device_get_match_data(dev);
-@@ -2058,6 +2075,11 @@ static int rcar_canfd_probe(struct platform_device *pdev)
- 		gpriv->extclk = gpriv->info->external_clk;
- 	}
- 
-+	clk_ram = devm_clk_get_optional_enabled(dev, "ram_clk");
-+	if (IS_ERR(clk_ram))
-+		return dev_err_probe(dev, PTR_ERR(clk_ram),
-+				     "cannot get enabled ram clock\n");
-+
- 	addr = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(addr)) {
- 		err = PTR_ERR(addr);
-@@ -2220,6 +2242,7 @@ static SIMPLE_DEV_PM_OPS(rcar_canfd_pm_ops, rcar_canfd_suspend,
- 
- static const __maybe_unused struct of_device_id rcar_canfd_of_table[] = {
- 	{ .compatible = "renesas,r8a779a0-canfd", .data = &rcar_gen4_hw_info },
-+	{ .compatible = "renesas,r9a09g047-canfd", .data = &r9a09g047_hw_info },
- 	{ .compatible = "renesas,rcar-gen3-canfd", .data = &rcar_gen3_hw_info },
- 	{ .compatible = "renesas,rcar-gen4-canfd", .data = &rcar_gen4_hw_info },
- 	{ .compatible = "renesas,rzg2l-canfd", .data = &rzg2l_hw_info },
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
