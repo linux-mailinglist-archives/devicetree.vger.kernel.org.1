@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-168244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA900A91F41
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:16:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E36A91F5F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1177119E79D6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:16:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E280D3B17F7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6922512EE;
-	Thu, 17 Apr 2025 14:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3343025228D;
+	Thu, 17 Apr 2025 14:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="U8gAJpex"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="FQydcrTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0ECB2505D6
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7041D251791
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744899355; cv=none; b=QGbW30jBNFfC/GOcyCkq9dn9YNrL4Ue4F4DGebZiFdpzITKyyRTTDDzQQdTR3/9kwOiFhj6+T5tvu9Eo+pO8fuyD8fNwmRU2LxM/HS909wnn+XZuZw0wz5+HhCA+g8QZ04DnoAQWhJFEsr9KzOCp2Jhzul6LsSzSP0VcbymnyN0=
+	t=1744899542; cv=none; b=pibfyBiKu9zvqe6OREXN0bCYfEYPU/9gDwmmQu8nVn7ZTEzN+P01Y5r0lFMKIN7C4g3YtO7VKMezx9L6uO0XsCU+Pfw+hm3f5Es9Ux4rCiOr5UW5EfnQ8I17BjeAfmCoPFHdlwarNEhavZs9DnZ9Tjq6ARJ35eK9tlmHRTHz7JM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744899355; c=relaxed/simple;
-	bh=P9h4O8gdB+tlOXx6aUyTO8Xc61OwjUm9m2At/cnifiw=;
+	s=arc-20240116; t=1744899542; c=relaxed/simple;
+	bh=qquF4gAWxlLcl0NloBMan4FuZEm0GYnvDkpACC9vTGA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FxxD7IPCNPjCHs2daEvLzaQRwkHf7NrsQykQ5LL4lXeDLkkBBGEdkLdaJJEzDw7blBN0ZO6JHmrUqNxp9/3Vgc+ch9EqFruDh32LN5EGir89exo2OlZePPHNiAsaVdvsWEcSljIrMisCwAMIKMXHBlq+m8vrYKI3vOcFg4LZhzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=U8gAJpex; arc=none smtp.client-ip=170.10.129.124
+	 In-Reply-To:Content-Type; b=gRUw96X3A1+5Ic16e1yJBxz0e1uUT6bU/ocPWq8Ue98+CvErcWPPgajAbL+dKv9AunuVCvY/bP839vTbss4H974q6Ip/PTxQtkSq3IncukbVcsU3gJhzOUIHTSaiJ0I6eHAZB34QaNWrTStGYV6/beEiCD5cZfXOqVvsoqxi1wI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=FQydcrTM; arc=none smtp.client-ip=170.10.133.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744899352;
+	s=mimecast20190719; t=1744899539;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jhAPzg/hAd+522tJiICzEiLKQ/EOBtk9V+Wlmbrgn3Y=;
-	b=U8gAJpexsI7r67d6w6Y1etkjlEaxPyv5r+Oc3LTF9+5nqJBT72OZZWrmSEOujEYNNYk4yG
-	n5XkwRkLRVRsBWzfvBPTF6H1G1xtyHNT72B2RWYXb7XgNOTwzW1GuuMAdAv6G7rUBsT5pn
-	FsVKNFZ/OeS9k0T0mZbdVGHjsR74DxI=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	bh=kzF6UYdjczKDEkThEfvJNGwHGPfnks2hj7tHch2bIQQ=;
+	b=FQydcrTMTtFMmAfd4dS99d5AetbJ5dJfbe7nmWdSPnTE1vH7aF7jZ43kB1EhhEqAXGAvjs
+	ufYxasqPUHMnSqw5Y9xgev4PkQa/bwMxcPzVansdRepjJiNluFt0Fbs7EvBvwmjfm9XJgj
+	9/Ah0ABgsUmj8Nb0duAYrw23709oQDs=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-583-tn0r6BnUMEanhjbv4LTkHQ-1; Thu,
- 17 Apr 2025 10:15:48 -0400
-X-MC-Unique: tn0r6BnUMEanhjbv4LTkHQ-1
-X-Mimecast-MFC-AGG-ID: tn0r6BnUMEanhjbv4LTkHQ_1744899344
-Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-450-XFk4lmz7PRSOlAP3HKoenA-1; Thu,
+ 17 Apr 2025 10:18:55 -0400
+X-MC-Unique: XFk4lmz7PRSOlAP3HKoenA-1
+X-Mimecast-MFC-AGG-ID: XFk4lmz7PRSOlAP3HKoenA_1744899533
+Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id F2B501955DDE;
-	Thu, 17 Apr 2025 14:15:43 +0000 (UTC)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4AD4C180056F;
+	Thu, 17 Apr 2025 14:18:52 +0000 (UTC)
 Received: from [10.44.33.28] (unknown [10.44.33.28])
-	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id B33C61956095;
-	Thu, 17 Apr 2025 14:15:38 +0000 (UTC)
-Message-ID: <f9149df7-262e-4420-87b4-79c8a176c203@redhat.com>
-Date: Thu, 17 Apr 2025 16:15:37 +0200
+	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id E3CA419560BA;
+	Thu, 17 Apr 2025 14:18:46 +0000 (UTC)
+Message-ID: <ee0b1569-1c01-4e7b-b4a0-ec1de4634e89@redhat.com>
+Date: Thu, 17 Apr 2025 16:18:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,94 +83,90 @@ References: <20250416162144.670760-1-ivecera@redhat.com>
  <20250416162144.670760-6-ivecera@redhat.com>
  <d286dec9-a544-409d-bf62-d2b84ef6ecd4@lunn.ch>
  <CAAVpwAvVO7RGLGMXCBxCD35kKCLmZEkeXuERG0C2GHP54kCGJw@mail.gmail.com>
- <e22193d6-8d00-4dbc-99be-55a9d6429730@redhat.com>
- <09c3730a-f6f1-4226-ae29-fe02b1663fe7@lunn.ch>
+ <8802b276-b6dd-4235-87dd-18b835edb196@lunn.ch>
 Content-Language: en-US
 From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <09c3730a-f6f1-4226-ae29-fe02b1663fe7@lunn.ch>
+In-Reply-To: <8802b276-b6dd-4235-87dd-18b835edb196@lunn.ch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 
 
 
-On 17. 04. 25 3:27 odp., Andrew Lunn wrote:
->> Anyway, I have a different idea... completely abstract mailboxes from the
->> caller. The mailbox content can be large and the caller is barely interested
->> in all registers from the mailbox but this could be resolved this way:
+On 17. 04. 25 3:22 odp., Andrew Lunn wrote:
+>>>> +/*
+>>>> + * Mailbox operations
+>>>> + */
+>>>> +int zl3073x_mb_dpll_read(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_dpll_write(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_output_read(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_output_write(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_synth_read(struct zl3073x_dev *zldev, u8 index);
+>>>> +int zl3073x_mb_synth_write(struct zl3073x_dev *zldev, u8 index);
+>>>
+>>> I assume these are the only valid ways to access a mailbox?
+>>>
+>>> If so:
+>>>
+>>>> +static inline __maybe_unused int
+>>>> +zl3073x_mb_read_ref_mb_mask(struct zl3073x_dev *zldev, u16 *value)
+>>>> +{
+>>>> +     __be16 temp;
+>>>> +     int rc;
+>>>> +
+>>>> +     lockdep_assert_held(&zldev->mailbox_lock);
+>>>> +     rc = regmap_bulk_read(zldev->regmap, ZL_REG_REF_MB_MASK, &temp,
+>>>> +                           sizeof(temp));
+>>>> +     if (rc)
+>>>> +             return rc;
+>>>> +
+>>>> +     *value = be16_to_cpu(temp);
+>>>> +     return rc;
+>>>> +}
+>>>
+>>> These helpers can be made local to the core. You can then drop the
+>>> lockdep_assert_held() from here, since the only way to access them is
+>>> via the API you defined above, and add the checks in those API
+>>> functions.
 >>
->> The proposed API e.g for Ref mailbox:
+>> This cannot be done this way... the above API just simplifies the
+>> operation of read and write latch registers from/to mailbox.
 >>
->> int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index,
->>                          struct zl3073x_mb_ref *mb);
->> int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index,
->>                           struct zl3073x_mb_ref *mb);
+>> Whole operation is described in the commit description.
 >>
->> struct zl3073x_mb_ref {
->> 	u32	flags;
->> 	u16	freq_base;
->> 	u16	freq_mult;
->> 	u16	ratio_m;
->> 	u16	ratio_n;
->> 	u8	config;
->> 	u64	phase_offset_compensation;
->> 	u8	sync_ctrl;
->> 	u32	esync_div;
->> }
+>> E.g. read something about DPLL1
+>> 1. Call zl3073x_mb_dpll_read(..., 1)
+>>     This selects DPLL1 in the DPLL mailbox and performs read operation
+>> and waits for finish
+>> 2. Call zl3073x_mb_read_dpll_mode()
+>>     This reads dpll_mode latch register
 >>
->> #define ZL3073X_MB_REF_FREQ_BASE			BIT(0)
->> #define ZL3073X_MB_REF_FREQ_MULT			BIT(1)
->> #define ZL3073X_MB_REF_RATIO_M				BIT(2)
->> #define ZL3073X_MB_REF_RATIO_N			 	BIT(3)
->> #define ZL3073X_MB_REF_CONFIG			 	BIT(4)
->> #define ZL3073X_MB_REF_PHASE_OFFSET_COMPENSATION 	BIT(5)
->> #define ZL3073X_MB_REF_SYNC_CTRL			BIT(6)
->> #define ZL3073X_MB_REF_ESYNC_DIV			BIT(7)
+>> write:
+>> 1. Call zl3073x_mb_write_dpll_mode(...)
+>>     This writes mode to dpll_mode latch register
+>> 2. Call zl3073x_mb_dpll_read(..., 1)
+>>     This writes all info from latch registers to DPLL1
 >>
->> Then a reader can read this way (read freq and ratio of 3rd ref):
->> {
->> 	struct zl3073x_mb_ref mb;
->> 	...
->> 	mb.flags = ZL3073X_MB_REF_FREQ_BASE |
->> 		   ZL3073X_MB_REF_FREQ_MULT |
->> 		   ZL3073X_MB_REF_RATIO_M |
->> 		   ZL3073X_MB_REF_RATIO_N;
->> 	rc = zl3073x_mb_ref_read(zldev, 3, &mb);
->> 	if (rc)
->> 		return rc;
->> 	/* at this point mb fields requested via flags are filled */
->> }
->> A writer similarly (write config of 5th ref):
->> {
->> 	struct zl3073x_mb_ref mb;
->> 	...
->> 	mb.flags = ZL3073X_MB_REF_CONFIG;
->> 	mb.config = FIELD_PREP(SOME_MASK, SOME_VALUE);
->> 	rc = zl3073x_mb_ref_write(zldev, 5, &mb);
->> 	...
->> 	/* config of 5th ref was commited */
->> }
->>
->> The advantages:
->> * no explicit locking required from the callers
->> * locking is done inside mailbox API
->> * each mailbox type can have different mutex so multiple calls for
->>    different mailbox types (e.g ref & output) can be done in parallel
->>
->> WDYT about this approach?
+>> The point is that between step 1 and 2 nobody else cannot touch
+>> latch_registers or mailbox select register and op semaphore.
 > 
-> I would say this is actually your next layer on top of the basic
-> mailbox API. This makes it more friendly to your sub driver and puts
-> all the locking in one place where it can easily be reviewed.
+> Again, think about your layering. What does your lower level mailbox
+> API look like? What does the MFD need to export for a safe API?
 > 
-> One question would be, where does this code belong. Is it in the MFD,
-> or in the subdrivers? I guess it is in the subdrivers.
+> So maybe you need zl3073x_mb_read_u8(), zl3073x_mb_read_u16(),
+> zl3073x_mb_read_u32(), as part of your mailbox API. These assert the
+> lock is held.
+> 
+> You could even make zl3073x_mb_read_u8() validate the register is in
+> the upper range, and that zl3073x_read_u8() the register is in the
+> lower range.
 
-No, it should be part of MFD because it does not make sense to implement 
-API above in each sub-driver separately.
-
-Sub-driver would use this MB ABI for MB access and
-zl3073x_{read,write}_u{8,16,32,48} for non-MB registers.
+Yes, this LGTM... Anyway if the MB API would provide reading and writing 
+MBs at once then zl3073x_mb_{read,write}_u* are not necessary as the 
+only caller of these functions is MFD itself and they would be called 
+under MB API that holds the lock.
 
 Ivan
 
