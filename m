@@ -1,119 +1,153 @@
-Return-Path: <devicetree+bounces-168072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52F38A91476
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 08:57:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E5C4A9149F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 499885A2F70
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 06:56:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA054445BF8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3B7421517F;
-	Thu, 17 Apr 2025 06:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3806219A89;
+	Thu, 17 Apr 2025 06:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4A/dWYg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdOtQtMA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82D321ADAB;
-	Thu, 17 Apr 2025 06:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB4F82153E8;
+	Thu, 17 Apr 2025 06:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744872999; cv=none; b=aQW0ssbGP+lm7cY8lMDwS0weBr6KXKNQHutkBgOwVeOWlqpJBK2nx4rCaM2Haow0xiDTNi2gZj4V7PAL8TEmkbcfpsvTpSxgWA/63ovQkn2kGIi6kGesbsW+jRQ38jUS8+92mrlcBZGEZnnzqsl4TlykfIasjDbYVelqY+StK6E=
+	t=1744873124; cv=none; b=U56R9rgwa3Ko/bU3GRGRJrgCLvmOQwzwPrOH8R83A5rCpeCI8gDO9T7pWpcFKYpgqkMbUYubTX/zajjFOAqBJvMsL+HA8BZKBdZxT2q+8ijwQOLXIAfPr8uGggilHeyjqSu7YkxfEXjyuS3jZofOeEKcqRDm5HJnHTzEzx42muY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744872999; c=relaxed/simple;
-	bh=94/KX2GjYz2N9JAPsojJnUJAFMOUlgKCxSZ0WjvUW3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RVByRMi6KbS9wT5rZpO+j27Aq4ec2+vMRp0E7rcnAJEaYESARyWRGZpCLlqueqmUApexDtVZ3lwQoI6u5+23khbPlTs0Q2EFRHfUq0JEUy3LvIzp+SGozrid2NWQHqMMXzX1WWGu3499ZhuZhG023UW6fQ+5lvT2t2wjdyzG9u0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4A/dWYg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A849AC4CEE4;
-	Thu, 17 Apr 2025 06:56:38 +0000 (UTC)
+	s=arc-20240116; t=1744873124; c=relaxed/simple;
+	bh=M8uhNaUfmeUfmXvJOijmkV9Vyu1HDRBd4RGQBNHkCwc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XxhMVfLM8/bA5YSX63AaH/L17w2NLNerLWU1J8BICfoaYr8HyBpUXNGxAMb43ABT0XO0cSYSSAsC5c2xD5XLkwkTsDoGSU0hY4pNDD4eEDa5m/wSbrZlmbC0cEhKVHwR/mr7AsItd2aRcePTIrOhLfwC4LGeYUTGy8opPUhuo10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdOtQtMA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EE74C4CEE4;
+	Thu, 17 Apr 2025 06:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744872999;
-	bh=94/KX2GjYz2N9JAPsojJnUJAFMOUlgKCxSZ0WjvUW3E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L4A/dWYgQVaFF1cTdRfhNl24mWuQxLEvXEtyA0czyDEkhtUJSnjW/tS4CI1kJNW00
-	 WBaLlNHRV4cBVJQeAeUTym8syOtJcfHhHt1xLJX9L8hhWqTrMtH+sU2gLK5XSN8xB3
-	 qY9T8bYvVI0BekjB2AFX2TzWBZkZ6HheCBk9C1VNO6IPVStuJkqKirM7QfNmAWpt7j
-	 sLakMk4HmpXnA6IYGt5QBNN92bO95JeFkjSA1xvPFgkt1S+Lm1R/xDym74k1OAHSwV
-	 AK6CK/leK/qAtkmHHAdUce4k6ylABcAt2ro/d1/jUf1q4XlY8gDMmDW5Rz8F21/kAH
-	 wIxCGjq8y5JFg==
-Date: Thu, 17 Apr 2025 08:56:36 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank Wunderlich <frank-w@public-files.de>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, 
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
- by pericfg
-Message-ID: <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
-References: <20250416095402.90543-1-linux@fw-web.de>
- <20250416095402.90543-5-linux@fw-web.de>
+	s=k20201202; t=1744873124;
+	bh=M8uhNaUfmeUfmXvJOijmkV9Vyu1HDRBd4RGQBNHkCwc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NdOtQtMA1jsQ37MWkDC+nxveJNU226XU5TVyph3Esd5oOMolljHxa8HGtmzToKw78
+	 R4Ta5snFJPGUhPuPIP5vPzlLg+T89NMzWdKXMVNhUe6/sr1P9jh3IyCSYbbLYebhnX
+	 SBM+/KzTeu0mIyxvtiT4boW+ftgywy1g667fugvJJ+1Ddq6q6ihG5365+29wpK1udj
+	 fwzL/S/Db0kvZoV6RxE0ntD+4R+KbLgdodeAdlwljlVRsn5oD9lLcq+wvjFOHEEqXj
+	 LmrN2rKUB9F0Gc/LjcTwR+Wuj042TExn5I1eGp6mqqrl7RXij0LEnReKV4U4ZqlDv4
+	 4GsLC/qj24RLw==
+Message-ID: <b90c05e9-feb7-4569-b79a-b623e535c1d0@kernel.org>
+Date: Thu, 17 Apr 2025 08:58:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250416095402.90543-5-linux@fw-web.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 09/10] arm64: dts: cix: add initial CIX P1(SKY1) dts
+ support
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: soc@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ jassisinghbrar@gmail.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ cix-kernel-upstream@cixtech.com, maz@kernel.org, kajetan.puchalski@arm.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Fugang Duan <fugang.duan@cixtech.com>, Guomin Chen
+ <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>
+References: <20250415072724.3565533-1-peter.chen@cixtech.com>
+ <20250415072724.3565533-10-peter.chen@cixtech.com>
+ <74b9fc25-0815-4ece-845a-5f730c87fe78@kernel.org>
+ <aAChkWPn4ThMx44A@nchen-desktop>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <aAChkWPn4ThMx44A@nchen-desktop>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 16, 2025 at 11:53:56AM GMT, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 17/04/2025 08:37, Peter Chen wrote:
+> On 25-04-17 08:18:44, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL
+>>
+>> On 15/04/2025 09:27, Peter Chen wrote:
+>>> +
+>>> +             mbox_ap2pm: mailbox@6590080 {
+>>> +                     compatible = "cix,sky1-mbox";
+>>> +                     reg = <0x0 0x06590080 0x0 0xff80>;
+>>> +                     interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     #mbox-cells = <1>;
+>>> +                     cix,mbox-dir = "tx";
+>>> +             };
+>>> +
+>>> +             pm2ap_scmi_mem: pm2ap-shmem@65a0000 {
+>>> +                     compatible = "arm,scmi-shmem";
+>>> +                     #address-cells = <2>;
+>>> +                     #size-cells = <2>;
+>>> +                     reg-io-width = <4>;
+>>> +                     reg = <0x0 0x065a0000 0x0 0x80>;
+>>
+>> Messed order of properties. Keep it consistent (see DTS conding style).
+>> Other nodes also have oddly placed reg.
 > 
-> Add support for type switch by pericfg register between USB3/PCIe.
+> Thanks for your reviewing, Krzysztof.
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->  .../devicetree/bindings/phy/mediatek,xsphy.yaml  | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> index 3b5253659e6f..5033d77c1239 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> @@ -151,6 +151,22 @@ patternProperties:
->          minimum: 1
->          maximum: 31
->  
-> +      mediatek,syscon-type:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        maxItems: 1
-> +        description:
-> +          A phandle to syscon used to access the register of type switch,
-> +          the field should always be 3 cells long.
-> +        items:
-> +          items:
+> All the nodes mailbox and shmem (in mailbox) are on the same bus, so
+> I keep it by unit address in ascending order like DTS coding sytle
+> says. I think below rules are two options, isn't it?
 
-Missing -, because you have one phandle.
+You speak about nodes I wrote about properties. I don't understand how
+your question is relevant to my comment.
 
-> +            - description:
-> +                The first cell represents a phandle to syscon
-
-Don't repeat constraints in free form text. "Foo bar system controller"
-or "Phandle to foo bar system controller"
-
-> +            - description:
-> +                The second cell represents the register offset
-
-"Baz register offset"
-
-> +            - description:
-> +                The third cell represents the index of config segment
-
-"Index of config segment", but what is index of config?
 
 Best regards,
 Krzysztof
-
 
