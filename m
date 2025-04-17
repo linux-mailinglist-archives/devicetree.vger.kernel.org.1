@@ -1,131 +1,130 @@
-Return-Path: <devicetree+bounces-168112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA56A91732
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 11:03:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A081DA91753
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 11:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F3A45A43F3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:03:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39DCC19046F2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762132139A4;
-	Thu, 17 Apr 2025 09:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52FB6225A37;
+	Thu, 17 Apr 2025 09:10:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="Wxu0hpju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149BB199E9A;
-	Thu, 17 Apr 2025 09:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61FB2145355;
+	Thu, 17 Apr 2025 09:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744880599; cv=none; b=F/qQERCLVZCHJ4VNM/1F9NN9GufiNfaRULYJETeriEASMA3BUuo2+Gew4AMCNHpnWzHAeTf1mFN9tudvt78JESduvoYq+kGuutpF5GNzHkoPOyYrHmogB9kJ/BOOYSdKWs3zl36bjBXFU4BKAw8NKKriwve//kJGMjBVD9yEejo=
+	t=1744881032; cv=none; b=Svh0qYk72nAhy2fjIBpRrpXOIQvPoGJ2zC0eBKhLNrMmtFdAbUOK4dYgfGuMkH65sWBhiJ29SvRC/sYG8j6gAIRDTw1hjN/MR43W9UYLgiKrGzxdEkxd0sexgmFmVm7fqOtW8hUacmigLD4pLgQ6HmlP1bvg5dcjK9hmQ7KL5Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744880599; c=relaxed/simple;
-	bh=HCuWBCUptqkOU+jDn3R/tfHWvL4P89Xt3ifSZJ3Nphk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BdzNNPKGj3GschMnSee31fAmBIudJHbtsj6X4+/jTAbEsfYQho/oPq2QC+MtTy4T4QN8fcHpQxPQtVUWjQ3vOSd2UXBcckEcaHgzvPg1nT9Jdzbz4vlNbrijOXErC3zzRKR0Il8BifoHEgyhRLHBNiIqyvOeVzupfRVRfbGA+iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7c5e39d1e0eso50723985a.1;
-        Thu, 17 Apr 2025 02:03:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744880594; x=1745485394;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e9iOspZ7qwSi0qr3nNPSumRl4tqdAmsQdsdUQqYUHRQ=;
-        b=FJGFXu7oHmEoSxbf38FdqV5M5vyD8Fv/q1IuYJwLbxiXR9lo5c7ABr6Bpn5pK6QxTz
-         DPTy2g2pFFM6TTcgAXMZ26wWWKyN8F3MsEz130JB1WLzoDe5+8EFZ8/CFTlT85Ixu6x5
-         tX17OjF27rA5ZzVcR9asrqT4zi0ZJAn8kjC0YCSR1nzoUNBdpXzevTVxDGTJvZPnjiaj
-         fE0K5+4oCO/63HqsJj6q3zFc6nDQmJYepQF3t469HIkzxKoevoXznk0ZcRZEe1Cb52e9
-         0PcwRmQPxog2RlCyX7Ln+mT+NGYTdZdpcwwC22LiI/mpa/HeZDZIchEqBdcDPUgQgbZE
-         twUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXrC5qFhvV82tDLlObxBlgVtK2d8MebsrYhzwkWXcXraYLFeGNAVSoRp8qFGwY7/xvB394MD/bRLpbp@vger.kernel.org
-X-Gm-Message-State: AOJu0YydrOdXc/nV2Pb2zYJl5DUHhf6ZnLWhoFV9N5AB/+KcYEAE6w1Q
-	AOb5KvyarG4zOB4ng/DiAibQS0H97lL0Cif04uwJae8M/zOZ9BmuV6sSPLKf
-X-Gm-Gg: ASbGncvq0pvGqKY4X3KM4hFo0BHY51CdSZl4te6fT42KKgSMCCOSqW/r5FxkmWL1i74
-	NcW6RWVIFmbeRvoA9yy+Y5kUH0P5pq7aKB1N2ou+4tJua4gP+61fqwmS377W0qZ1hzCUUyw55+x
-	ewWI7yvyCVCJZTQFNEYtXmjanUQVwDbV60zqAs9c2Iaa32cXwVBrW7RlyXQheoifKZRSNPSZZ3T
-	cMmmxkzInrrF5Hpa8ekZfxo4EyL8jU5N37OZxUQGHZJMRUyj30NmDwyMSHbAm1OYrpTNUZeYriw
-	MlxZc3ZHYPm5lf0wuUky077sq0SkTkDHLvg332YXBX9C4itDU7b6TOlyKY2UJBHf+K0dGWUDxhe
-	lxaYnM7g=
-X-Google-Smtp-Source: AGHT+IExYdKs5RoW4do0Iix6xgAQKy5kPxmV8JJr00RZck3kE2go/bbO6HlSFordhrXmoSQus3WbaQ==
-X-Received: by 2002:a05:620a:1aaa:b0:7c5:5fa0:4617 with SMTP id af79cd13be357-7c9190642dfmr779559185a.40.1744880594376;
-        Thu, 17 Apr 2025 02:03:14 -0700 (PDT)
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a8a1c7d8sm1149511985a.117.2025.04.17.02.03.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Apr 2025 02:03:14 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c7913bab2cso46118285a.0;
-        Thu, 17 Apr 2025 02:03:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWk4Bz1XM7tEsJ5WMoJ44FtqgdxnrHUZThc+vw4muVqkXkf1Z56/lWOfzLp+zFEJs8wYgT5r7U9qtDf@vger.kernel.org
-X-Received: by 2002:a05:620a:2894:b0:7c5:9a1b:4f22 with SMTP id
- af79cd13be357-7c919083ed8mr782230985a.56.1744880593927; Thu, 17 Apr 2025
- 02:03:13 -0700 (PDT)
+	s=arc-20240116; t=1744881032; c=relaxed/simple;
+	bh=KqHU+hq3HbsSzafDT7vxpU6Suxp8dH6jbuuVA8bGmtk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Mk6tkVfKzuq+WWhjs1uVG5WFS8KtfCFm0Lbrhc/A2Ohxa1i2Qybmpa41sjbvTtTlchL262EBTgrIDvK2SsP6y2ewBFxpvAAy1XnHmCC9ZeFYEVq/bjDknaTgu0mXgbJ3f4AiVPu7ujgMiPtJW0vLMzK0MKWJdjGpmgFL1aW3uvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=Wxu0hpju; arc=none smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53H503lJ018418;
+	Thu, 17 Apr 2025 10:10:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=dk201812; bh=D+h2TZ9lOvg86CwKBD1NqPP
+	fMjTY1kN80xOtNUeXHzc=; b=Wxu0hpjuRqf0La5w+XDNluu+PEaBPV7DZ1s828k
+	mrAS0qqoCrnpf1IuQGXKyuyBgiBrnCQBh74sT3nySS4PNARI/bZgUktJAZcv+vcT
+	ANdQKmDH4rIvrKxo1uSujIo4c3X2POtG92oj6gy0sR1gpJwDuucg2UhJm6UWknPQ
+	2bZSZEA4QCg+9tpVXcEUG03OGxJM0ge0u29KzL15s18f8uN2EjxMBFLhr/W5eU0I
+	zohEkYw+aXRkJmgDton2U6Hw3hcwHwSgag7xZ87Wru0P1yv2G/Zu8QYDFLm8xp8x
+	EPOyzTuqH8N8VduUcaZ8/xuEzdYEBs8+Z+d65RkYYAmLQDg==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 461y2mh4tg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 17 Apr 2025 10:10:16 +0100 (BST)
+Received: from Matts-MacBook-Pro.local (172.25.7.98) by HHMAIL05.hh.imgtec.org
+ (10.100.10.120) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 17 Apr
+ 2025 10:10:15 +0100
+From: Matt Coster <matt.coster@imgtec.com>
+Subject: [PATCH v2 0/2] Imagination BXS-4-64 MC1 GPU support (DTS changes)
+Date: Thu, 17 Apr 2025 10:10:01 +0100
+Message-ID: <20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417085228.34679-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250417085228.34679-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 17 Apr 2025 11:03:02 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVCz1=CyMKaKRmn5dEVphEJDUHKGexuxk3hBUXS+EHRGQ@mail.gmail.com>
-X-Gm-Features: ATxdqUGkmBRYatlJ6009iqOxkKz3m778aXyiAc0tQPZ3ib9FUHSU0bW304HWMHU
-Message-ID: <CAMuHMdVCz1=CyMKaKRmn5dEVphEJDUHKGexuxk3hBUXS+EHRGQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- Debug LEDs
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGnFAGgC/3XMSw7CIBSF4a00d+w1gECrI/dhOqg82jvoI0BIT
+ cPexc4d/ic53wHRBXIRHs0BwWWKtC41xKUBMw3L6JBsbRBMKCa5wvceUaKWaFNEc++kZV2rldJ
+ QL1twnvaTe/W1J4ppDZ9Tz/y3/oEyR4a+tTc/MK2Fsk+ax+TM1awz9KWUL/UfaZSpAAAA
+X-Change-ID: 20250415-bxs-4-64-dts-c984d0876556
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+        "Alessio Belle" <alessio.belle@imgtec.com>,
+        Alexandru Dadu
+	<alexandru.dadu@imgtec.com>,
+        Luigi Santivetti <luigi.santivetti@imgtec.com>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1107;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=KqHU+hq3HbsSzafDT7vxpU6Suxp8dH6jbuuVA8bGmtk=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMWQwHC3bz3blnbad22vdG/PXqx/jbt42/XC34C7HmxMn9
+ 7geMt6s0FHKwiDGwSArpsiyY4XlCrU/aloSN34Vw8xhZQIZwsDFKQATWaTO8D/BRMtAI///OffC
+ W/s4f0XoqZ3ojNWfe85MTUtPKGnfXhaG/1nHojfeVlnRLttpFs/n5if7RekUo+ssgdXLVbi/fq6
+ ZwAgA
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Authority-Analysis: v=2.4 cv=LbU86ifi c=1 sm=1 tr=0 ts=6800c578 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=6pm0VhuFVbIA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=sozttTNsAAAA:8
+ a=-EETvfFteC8Pj7O1jf4A:9 a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-GUID: gBBFZuUz9O6x1AC4vTTdtQYDAkS9rPPi
+X-Proofpoint-ORIG-GUID: gBBFZuUz9O6x1AC4vTTdtQYDAkS9rPPi
 
-Hi Wolfram,
+Now that the binding and driver changes to support the Imagination
+BXS-4-64 [1] have landed in a DRM tree, here are the corresponding DTS
+changes without the [DO NOT MERGE] tag.
 
-On Thu, 17 Apr 2025 at 10:52, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Because these LEDs are not connected to a device and have only a single
-> color, we don't need to specify 'color' and 'function' to distinguish
-> them. Even worse, that would lead to namespace collisions:
->
-> leds-gpio leds: Led green:programming renamed to green:programming_1 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_2 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_3 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_4 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_5 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_6 due to name collision
-> leds-gpio leds: Led green:programming renamed to green:programming_7 due to name collision
->
-> So, just let their node name (taken from the schematics) be used as a
-> name.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> Changes since v1:
->         * renamed nodes to match schematics
->         * added default-state
->         * updated commit message why not more LED properties are used
+This GPU is found in the TI AM68 family of SoCs, with initial support
+added to the k3-j721s2 devicetree and tested on a TI SK-AM68 board.
 
-Thanks for the update!
+[1]: https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com
 
-You could still add the color properties without function properties.
-However, the "function-enumerator" property exists to avoid the collisions.
+Reviewed-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 
-Gr{oetje,eeting}s,
+---
+Changes in v2:
+- Add details of the source of the interrupt index
+- Add Randolph's Rb
+- Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com
 
-                        Geert
+---
+Matt Coster (2):
+      arm64: dts: ti: k3-am62: New GPU binding details
+      arm64: dts: ti: k3-j721s2: Add GPU node
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   |  4 +++-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+---
+base-commit: d6fe216caf15d196e1bf76591440f8f17d58e7ee
+change-id: 20250415-bxs-4-64-dts-c984d0876556
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
