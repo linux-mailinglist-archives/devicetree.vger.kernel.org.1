@@ -1,271 +1,181 @@
-Return-Path: <devicetree+bounces-168209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B01A91CFA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:53:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4DEA91D1A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1344F19E671D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:53:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7904E3A5FB7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 13:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C4C23E22B;
-	Thu, 17 Apr 2025 12:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB7238F9C;
+	Thu, 17 Apr 2025 13:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="G2XWn26E"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="aR2vTgLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2100.outbound.protection.outlook.com [40.107.20.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE10188CDB
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744894403; cv=none; b=l8bgmc0xR+6weXp29AalLdRauqfQGQFSVuvXx8FNnSY0osmW8zvpkI27GXb7AP+h/YA2sMqmF6ydF0os3NF7zF6FZ7qhqEexpc7bJk8ETeFsS2KjcGmZ6DJ9zra/Gt9hf7/MlgOFWWsTi0ixDUHpQpuysmuZfQIcG1rW+zU2axU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744894403; c=relaxed/simple;
-	bh=v8LtHKR8VDn4kPK84X0FXJ6nB0e+9YdOgZbGZtUwquw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HcKJfyIj93vojTDUeqnQa6UDhAMtsonSxyzsdcE1PrzGNTv1+z+/Rxlbexe6Jy0UrVEbYL17qx3sCMpE6fqO5ohh/vnmdeivkohEU9ahOJUKn++jTqHb0uvfVyfDXaz7CYcD1vYa4c4mhf0ZQxrUfwVhFme0p2aaQhpRL7UxDs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=G2XWn26E; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso480312f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 05:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1744894399; x=1745499199; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjC36ZPf50aHqfa2Se7VHPLUpGAe6Mh0Hz/kXCMF/9A=;
-        b=G2XWn26EqLH50fNBd1W7q9+CB2rGh9Z6gL2BcTlPPg3VIboifASmLxcPtnvqvowk8+
-         ijqcakHn5Givk4+4Jz4ITTaKEsfVdW2TmXXhplepkmuxZw+6rBiUNWQcUPOiY5Z5dJEJ
-         kkv6ZWym61zXcno06dKSs4OH6Q+GmhOs6PWr0TazSTV0s8GELltaNHCYnoJDM+a5PV1x
-         SRSYoaUGyL0T5figz7B9CSMFFj5v2Bhuyi94PnmxK8p/8DYcAtnohfQMU5f/9yybuwZe
-         WIuLq3ytl60JolwqwDsX5AJhRlgFVWYwLJzumypeAStFjxXGFKV0DBe3Ex569LfoI/dE
-         j5Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744894399; x=1745499199;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zjC36ZPf50aHqfa2Se7VHPLUpGAe6Mh0Hz/kXCMF/9A=;
-        b=tXi30lRBLJsar/+JeReZvIjtDO5EOJZ2j9LubFvWFqBZjpZXSQNzHhgGTK8YPk70mo
-         69UINfOM0TXVQ+lu/XkAUhmqmmAUzU5dqOCYXS0QrBvfuA1hlVavKkMC6H4MYIHS4z+5
-         9AehVcmQ9GPLC8j7RBNmsmN/Ct4h+n0ni/kBGIBVshSo4pO/oAMWLdwUXczBD7IwEwpK
-         GDqFRko0xf68eUv1QalUdDlx7aHVCevcpxiWMYugXDPJqzugztlxDekcytQDnntI69um
-         8RbkJEq0bXYVT6YjeM8AxUr4MxbJZC+RLapAPTgauxWKqOQqWgTnHjer3qAV/5i3XW/W
-         lzvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzhBEL4ceXg0eY1QtC/JBrrm3YKEsaxVTptNgNXi7IRjk6+CZaUI6jkH03Xd/euiBmd5iFtZJo1p/I@vger.kernel.org
-X-Gm-Message-State: AOJu0YzenxHrXVqzv00qBN6h523CrIqPVyNgtU8jh1N0d8HrFkcV0z4v
-	UPncvimXItPdQGIusSsPfPuskLMdO4gW+PWanpK2aLnQNnJPysHnBmaDGXrTV3g=
-X-Gm-Gg: ASbGncuLpoGcizirPBDSCSfmg3MypyTpA6Bjkp25egwhDCM3o39eH9sb3mfmOGh3ikQ
-	o6yftV3oxGGXSH0UPsTTMt/ntrVQTp+CXZt5xpt7zZUap+VAIjY3s3RVsLY+6x+xthVPuQYnCHQ
-	L2qpoezNxcAMGPNHtU69EQ+1MIMKdpvjrAg42+ARN1KSpCiPiXjEOdu+Bd+KTxS9MVJ+hnouXBB
-	qKjC+pfuBT2fLUT1/+6fh8F/CBl0zw1VS5xOJU6R1jjqr3cMA+vCH3aTP+9coIygILwO2/Aq04e
-	d2GYnKkAQ7DVrpQaq0UkvYudbGLXZ2lRCdIbBgL0IRkVeOQbHz26PuoE1zpdjUeTLTDs0i0=
-X-Google-Smtp-Source: AGHT+IHj3kvQNQuwygBClqqZbgOyKaiMJWyTf63buy+7wpnebSi6rnr/xD4tdoeaaLdERbXgJbSGpw==
-X-Received: by 2002:a5d:47a9:0:b0:39c:30d8:32a4 with SMTP id ffacd0b85a97d-39eea30b9e0mr2135444f8f.26.1744894398838;
-        Thu, 17 Apr 2025 05:53:18 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf447914sm20097393f8f.97.2025.04.17.05.53.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Apr 2025 05:53:18 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 17 Apr 2025 14:54:41 +0200
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
-	kernel-list@raspberrypi.com
-Subject: Re: [PATCH v8 05/13] clk: rp1: Add support for clocks provided by RP1
-Message-ID: <aAD6EXrav161J0vS@apocalypse>
-References: <cover.1742418429.git.andrea.porta@suse.com>
- <370137263691f4fc14928e4b378b27f75bfd0826.1742418429.git.andrea.porta@suse.com>
- <23ac3d05-5fb7-4cd8-bb87-cf1f3eab521d@gmx.net>
- <Z__alTyVJOwu_1gR@apocalypse>
- <CAPY8ntD2W5xAHGCD+uBL-0QgyYNj6k9MExns=DFvxU1WGYtO5g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5832F5E
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 13:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744894823; cv=fail; b=Id2CQ6YZwKInxWRkeEZLlfmGXvisUT59s1Hv/9tYndSLZMfq04Eh8xmyU8Vm1J2H93niVYa/3PpobIc/TX8LesBq/ajQHLDGFTnd/PVS9pqLoJXm4cOagyAzAR+0NvcSegG74zg/PuO6KdAFG/91YcXJPm0ftCHsJ17NaJixFPA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744894823; c=relaxed/simple;
+	bh=pYeqaYVXskCtrS7A/LMStB3Wtwh9TMeJ0Th7nWJh8NE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ws2ygHrPP/Be/nv8VPVJ9ZAdgqIwrVBFdUOXSI3nN/T4u4nwWA5BPePq5AvPGtpPs2qi21FOL7qhAYpYHvNb0ODkNYR3B77qQxtzOHok9McCPl0sgmPLGogKsCVaDC99mDw8hy3yMts2KrIi66lfbymCuFd0Wxatm3RHeam6LI8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=aR2vTgLA; arc=fail smtp.client-ip=40.107.20.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qLQ0Qq2W781FXxtoxojaGbAb7OSVcPXyFcnN9Daos+o7KKQ4y89bj5ou+YZ9FraE7xhMnPQ4lGAxLeX/OLq+6ekh1LzvOL3cnof6fyWoAuiMVEUpj9t4kgTgjUSdJOUm8x+54XNtLVZ33or7YWj/kegTRME/QZvmwom0sQjyHaz5AmuYx/fQ2AWWoSvY7jWspzimUhB2FHW5Wjf0TDklyyc0YPz0W7W1CAwHjIORdXi8R5ilOdO7ksMk/7CzZQdJH6FGjLN8DikwMmyMaLxazCkPv8oxnydyXaYekWpaiCwqHgmiRWMjrQq0Asx4PV8C/xsdqnUsMOGEWmKgrDJXFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QfrzKJThfwHn1MDCSW4YI61kPcQvkhcraL8X4f356ys=;
+ b=PO2bLbIKkk1Byv6ewvxdbaE50h4UVoP3Dfyz5ELZY0eqHwhEvgTdK4rD+CCGf95AO7nYFGXPkwyokYRt9bctGg9fV05CnLp3zI/ibIaFmHUK1D8d6h1BiQUcSyx5H+mlDm4HkCXZaH5n7F9E0OKiZQsdfW1kRpKiCJ+Dx0siw9+Ax/oPRqVoJ0VAOVZDfJ/eqpY4X5/QGyVtoYwTJExrvi26D60STtcdcqTGnWEfoKpDGos3y8p48ydbQZNnMzO895aUvIE8jz61MtH4LucgGoKCl5qV3BzADl0a9UoD6HVyZ+LeLIRs/RWQKeNf1MkdNZzwiys1lHfaSxpP8IX2AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QfrzKJThfwHn1MDCSW4YI61kPcQvkhcraL8X4f356ys=;
+ b=aR2vTgLAE8+EI29U7yKIYsY9QNRrRClYDRTqEzpB4S9G8cBUUoOPofT/c7VZ3GYIlA8GfWqKq7zj6XuFhm0o7DRo7XRgOo7tkgf/Co5sq4QNRocFZBNZY/kGfecRXERS9mu+9PBT39U2/saHPPR/s2/TXsXhPSEoucHGQGHqlmZp7B10FK4eWYqDo4kEmnKEhlA5p8bkNiBb+tl0Z0q1esxmuOQHAPfPhjZZmJnje9zFVWxY07ZWSO7KVnHEntDOKXOFi8Cz5Gw5ElrbGlHB3Z3cG4+GWmUPxau1FWOBOlq4rIQZ5dcp6DRyhHEALu9rGN/VjuTUzYkBXFJGIBV1Mg==
+Received: from AS4PR10CA0009.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5dc::12)
+ by AS8P195MB2164.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:5c3::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.32; Thu, 17 Apr
+ 2025 13:00:16 +0000
+Received: from AMS0EPF00000197.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5dc:cafe::cd) by AS4PR10CA0009.outlook.office365.com
+ (2603:10a6:20b:5dc::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.22 via Frontend Transport; Thu,
+ 17 Apr 2025 13:00:16 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ AMS0EPF00000197.mail.protection.outlook.com (10.167.16.219) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8655.12 via Frontend Transport; Thu, 17 Apr 2025 13:00:15 +0000
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 17 Apr
+ 2025 15:00:15 +0200
+Received: from lws-haller.phytec.de (172.25.32.139) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 17 Apr
+ 2025 15:00:15 +0200
+From: Dominik Haller <d.haller@phytec.de>
+To: <robh@kernel.org>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>, <m-chawdhry@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<upstream@lists.phytec.de>
+Subject: [PATCH v3 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC AM68x based hardware
+Date: Thu, 17 Apr 2025 14:59:19 +0200
+Message-ID: <20250417125921.100580-1-d.haller@phytec.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntD2W5xAHGCD+uBL-0QgyYNj6k9MExns=DFvxU1WGYtO5g@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
+ (172.25.0.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000197:EE_|AS8P195MB2164:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c666cb4-ea84-42d1-d752-08dd7dafcc81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?t50E2vk5ZYqTBxaGU3gw854tJcKSsnFU3NqwWxoQUukZ3707ctxZ2sNv389Z?=
+ =?us-ascii?Q?aSY9DSTesYJQzEMBdN4p/6nq1u7VXv9k4QmDE9HFe9geNXmtphvEzYdxhDUf?=
+ =?us-ascii?Q?o9UbN/So7v+rSL5/kPvNUrcYSrkEjUQWVz7eLz1MIdfHBAjfFYRnGOnwQ2e1?=
+ =?us-ascii?Q?N9xZ99zCFneSNwj0zivt3Nj2UztTWbAtdYRWwJuI1z34Jt8/LUwUqcY70NfS?=
+ =?us-ascii?Q?rI8Obh8CTMrTK9hDRvvCeWSaCm/c3pqLY1IyJ8+J1JDtofnPiw5h0YOtzYKn?=
+ =?us-ascii?Q?3a/2/WRPE35Zhm0bsiYipPi0/e+4qq0uzV6R4ybo1SKGqRsVTYQt4CX3iyQk?=
+ =?us-ascii?Q?f4esu5HgLttOwqVSFkIxennHSAnFHH+KKmtN/hlLorvnHK4xgWtBy433QwEl?=
+ =?us-ascii?Q?qE9JNaZ5agDOK667vDO8YFvo/+9udDDAik1IrAM1e21d5PUcAvmjt8GH19Ak?=
+ =?us-ascii?Q?cDoLVPKuqrwmTtnXFaqeWHjiuTIeKUL+JgOvWhLodbiA4DtJd+V7DvSCZwii?=
+ =?us-ascii?Q?J6oarQ1KdD8Bw2pJE9mrcMCna8TmTVycZCpAu41lfoRSjdoLvXyFj4jGW3nm?=
+ =?us-ascii?Q?exG3kk0BI3iqYXBZ5+3Ek6JJb2plv7g0irrHoXKcX//vbQ/tLxgDPVZN2peu?=
+ =?us-ascii?Q?TRC83Rpsk4OudkGNVHLGz63zIDqaKqbomWObxukqkufyA093QB/xCB5NjxcN?=
+ =?us-ascii?Q?qffizuw62QvPOGmXPH4ZSZ1T7EfqOxrmsrjcVjJPL0cu7gRHJ9EBDH0VEfNQ?=
+ =?us-ascii?Q?al8LFALdekT6mfMoteBgRMLh84eAjNZ09RfQT8jiVs9ngLX2niNykTIoY9El?=
+ =?us-ascii?Q?niYTcCs+ZWjpuu9e+gMTeB3N+lTy0gKvajTac6c/2RSgOWRbBw9X5oNNPRS1?=
+ =?us-ascii?Q?b4MaxXSKtWjcRE0sZqGg27FiRN1LBsErw6RhZz5KziDZmWgOKOir8MR5dQqV?=
+ =?us-ascii?Q?XMksaeAj2J+AeMedje2FAIYWxdiDx9O1wHUFIZ92lb4p+LlCJNHBJ4IlZoUk?=
+ =?us-ascii?Q?pRpv25MadZbJMrFEiZHCmofnTy3Y+pAAh2oaY2ug3NwwUQOH9TZ9RAcdXe5z?=
+ =?us-ascii?Q?D4wlNRJ/qnRTonL0+O+3uKHV/pPPBXOEjiphVjOijV+R0FPvnzjrcHLzm0bl?=
+ =?us-ascii?Q?fYEifhB7X4TjBPFxw3H5D9+n8/is4auaELO2Vtwyaxz2ZziWOiwyLdfMr8g5?=
+ =?us-ascii?Q?Jgdyb/upsq/tmNfrfda3oOkAUFABRe8SmWbCqZ3bLTOixMSU3TsikAVHla2Z?=
+ =?us-ascii?Q?5tYv6ApoUFC6avxK7GqIS7HeNLn/BZG2rhzMIfD5sQffLQWY4vo0n6X/zlGk?=
+ =?us-ascii?Q?0hCKTsNBRR8esXhAiLLmqhTvmlesVq0LmbjemV6MNDWpIB9iFVrNWUdgMrSA?=
+ =?us-ascii?Q?U38n8+oxnZKCd6Ok2kdrLj0MYwBB8T8zryKOz1p/UESRLwTlmC50IylPh0BE?=
+ =?us-ascii?Q?rKnyPi9RwkO/gLWrup30BUiRP82GKCbQDtkoahJil0LPREgvDtr2k0iRl3HK?=
+ =?us-ascii?Q?jxYKyxCFY4JNBJCw6o7mVDdhqr2fcYprE019?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 13:00:15.9976
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c666cb4-ea84-42d1-d752-08dd7dafcc81
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000197.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P195MB2164
 
-Hi Dave,
+Add devicetree bindings for the AM68x based phyCORE-AM68x/TDA4x SoM
+and the phyBOARD-Izar carrier board.
 
-On 11:48 Thu 17 Apr     , Dave Stevenson wrote:
-> Hi Andrea & Stefan.
-> 
-> On Wed, 16 Apr 2025 at 17:26, Andrea della Porta <andrea.porta@suse.com> wrote:
-> >
-> > Hi Stefan,
-> >
-> > On 14:09 Mon 14 Apr     , Stefan Wahren wrote:
-> > > Hi Andrea,
-> > >
-> > > Am 19.03.25 um 22:52 schrieb Andrea della Porta:
-> > > > RaspberryPi RP1 is an MFD providing, among other peripherals, several
-> > > > clock generators and PLLs that drives the sub-peripherals.
-> > > > Add the driver to support the clock providers.
-> > > >
-> > > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > > ---
-> > > >   MAINTAINERS           |    5 +
-> > > >   drivers/clk/Kconfig   |    9 +
-> > > >   drivers/clk/Makefile  |    1 +
-> > > >   drivers/clk/clk-rp1.c | 1512 +++++++++++++++++++++++++++++++++++++++++
-> > > >   4 files changed, 1527 insertions(+)
-> > > >   create mode 100644 drivers/clk/clk-rp1.c
-> > > >
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > index 896a307fa065..75263700370d 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -19748,6 +19748,11 @@ S: Maintained
-> > > >   F:        Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
-> > > >   F:        drivers/media/platform/raspberrypi/rp1-cfe/
-> > > >
-> > > > +RASPBERRY PI RP1 PCI DRIVER
-> > > > +M: Andrea della Porta <andrea.porta@suse.com>
-> > > > +S: Maintained
-> > > > +F: drivers/clk/clk-rp1.c
-> > > > +
-> > > >   RC-CORE / LIRC FRAMEWORK
-> > > >   M:        Sean Young <sean@mess.org>
-> > > >   L:        linux-media@vger.kernel.org
-> > > > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> > > > index 713573b6c86c..cff90de71409 100644
-> > > > --- a/drivers/clk/Kconfig
-> > > > +++ b/drivers/clk/Kconfig
-> > > > @@ -88,6 +88,15 @@ config COMMON_CLK_RK808
-> > > >       These multi-function devices have two fixed-rate oscillators, clocked at 32KHz each.
-> > > >       Clkout1 is always on, Clkout2 can off by control register.
-> > > >
-> > > > +config COMMON_CLK_RP1
-> > > > +   tristate "Raspberry Pi RP1-based clock support"
-> > > > +   depends on MISC_RP1 || COMPILE_TEST
-> > > > +   default MISC_RP1
-> > > > +   help
-> > > > +     Enable common clock framework support for Raspberry Pi RP1.
-> > > > +     This multi-function device has 3 main PLLs and several clock
-> > > > +     generators to drive the internal sub-peripherals.
-> > > > +
-> > > >   config COMMON_CLK_HI655X
-> > > >     tristate "Clock driver for Hi655x" if EXPERT
-> > > >     depends on (MFD_HI655X_PMIC || COMPILE_TEST)
-> > > > diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> > > > index bf4bd45adc3a..ff3993ed7e09 100644
-> > > > --- a/drivers/clk/Makefile
-> > > > +++ b/drivers/clk/Makefile
-> > > > @@ -84,6 +84,7 @@ obj-$(CONFIG_CLK_LS1028A_PLLDIG)  += clk-plldig.o
-> > > >   obj-$(CONFIG_COMMON_CLK_PWM)              += clk-pwm.o
-> > > >   obj-$(CONFIG_CLK_QORIQ)                   += clk-qoriq.o
-> > > >   obj-$(CONFIG_COMMON_CLK_RK808)            += clk-rk808.o
-> > > > +obj-$(CONFIG_COMMON_CLK_RP1)            += clk-rp1.o
-> > > >   obj-$(CONFIG_COMMON_CLK_HI655X)           += clk-hi655x.o
-> > > >   obj-$(CONFIG_COMMON_CLK_S2MPS11)  += clk-s2mps11.o
-> > > >   obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o
-> > > > diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
-> > > > new file mode 100644
-> > > > index 000000000000..72c74e344c1d
-> > > > --- /dev/null
-> > > > +++ b/drivers/clk/clk-rp1.c
-> > > > @@ -0,0 +1,1512 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > ...
-> > > > +
-> > > > +static int rp1_pll_divider_set_rate(struct clk_hw *hw,
-> > > > +                               unsigned long rate,
-> > > > +                               unsigned long parent_rate)
-> > > > +{
-> > > > +   struct rp1_clk_desc *divider = container_of(hw, struct rp1_clk_desc, div.hw);
-> > > > +   struct rp1_clockman *clockman = divider->clockman;
-> > > > +   const struct rp1_pll_data *data = divider->data;
-> > > > +   u32 div, sec;
-> > > > +
-> > > > +   div = DIV_ROUND_UP_ULL(parent_rate, rate);
-> > > > +   div = clamp(div, 8u, 19u);
-> > > > +
-> > > > +   spin_lock(&clockman->regs_lock);
-> > > > +   sec = clockman_read(clockman, data->ctrl_reg);
-> > > > +   sec &= ~PLL_SEC_DIV_MASK;
-> > > > +   sec |= FIELD_PREP(PLL_SEC_DIV_MASK, div);
-> > > > +
-> > > > +   /* Must keep the divider in reset to change the value. */
-> > > > +   sec |= PLL_SEC_RST;
-> > > > +   clockman_write(clockman, data->ctrl_reg, sec);
-> > > > +
-> > > > +   /* TODO: must sleep 10 pll vco cycles */
-> > > Is it possible to implement this with some kind of xsleep or xdelay?
-> >
-> > I guess so... unless anyone knows a better method such as checking
-> > for some undocumented register flag which reveals when the clock is stable
-> > so it can be enabled (Phil, Dave, please feel free to step in with advice
-> > if you have any), I think this line could solve the issue:
-> >
-> > ndelay (10 * div * NSEC_PER_SEC / parent_rate);
-> 
-> I've checked with those involved in the hardware side.
-> There's no hardware flag that the clock is stable, so the ndelay is
-> probably the best option. The VCO can go as low as 600MHz, so the max
-> delay would be 166ns.
+Signed-off-by: Dominik Haller <d.haller@phytec.de>
+---
 
-Perfect, I'll use ndelay then. However, shouldn't this be 16ns max?
-I think this formula should give a good estimate:
+Notes:
+    Changes in v3:
+    - reorganized compatibles into their own entry
+    
+    Changes in v2:
+    - no changes
 
-10ULL * div * NSEC_PER_SEC / parent_rate
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-and has the advantage of not depending on hard coded values.
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 18f155cd06c8..30631daf9a84 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -139,6 +139,13 @@ properties:
+               - ti,j721s2-evm
+           - const: ti,j721s2
+ 
++      - description: K3 J721s2 SoC Phytec SoM based boards
++        items:
++          - enum:
++              - phytec,am68-phyboard-izar
++          - const: phytec,am68-phycore-som
++          - const: ti,j721s2
++
+       - description: K3 J722S SoC and Boards
+         items:
+           - enum:
+-- 
+2.43.0
 
-> 
-> Thanks for your continuing work on this.
-
-Thank you for checking.
-
-Regards,
-Andrea
-
-> 
->   Dave
-> 
-> > Many thanks,
-> > Andrea
-> >
-> > > > +   sec &= ~PLL_SEC_RST;
-> > > > +   clockman_write(clockman, data->ctrl_reg, sec);
-> > > > +   spin_unlock(&clockman->regs_lock);
-> > > > +
-> > > > +   return 0;
-> > > > +}
-> > > > +
-> > > >
 
