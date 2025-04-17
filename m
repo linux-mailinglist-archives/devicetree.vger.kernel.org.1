@@ -1,237 +1,195 @@
-Return-Path: <devicetree+bounces-167982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80610A90FCB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 01:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4953EA90FFA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 02:08:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86197446333
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 23:52:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B42C1169685
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 00:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A613F24C06C;
-	Wed, 16 Apr 2025 23:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572355684;
+	Thu, 17 Apr 2025 00:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="HEVO3LF6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QHmqfsng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011009.outbound.protection.outlook.com [40.107.74.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AECA24C061;
-	Wed, 16 Apr 2025 23:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744847571; cv=fail; b=aJg5pT7nmO3faiSrb9bKUnPsqF7f7yn0UNuV14GnN9QDxFAVPY7tR3ONOZt8vklp2JPPOz3Mkadr79UQpApxDuhBEhKLD5OiBcFLnPYQXtNv3vvpKUlCKRhk+2UaBugidIK2j4XYa2PbYw67JKpVu90LepRr4qWh9dpDcnLKHHw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744847571; c=relaxed/simple;
-	bh=AM67WzaBxxVGuyVjazNg0dDXHTGOgzi6idJyvQI2H6Q=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=mJySoYqIUBNUqXcI0DDjcI3Tu0QLGo5AG6mkUam23DXxRQQXga6UBVRZBVMhkBxMt6gX/nZw3LZgJWe/AXCnFWYSh6XN9fdfBYgXVZ3Ul7IQh7loIF4pLe0gcSz+m54jOzLI71to1dS1Aaa48cW9xdG7OMSB5+DbafX6UM1baGc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=HEVO3LF6; arc=fail smtp.client-ip=40.107.74.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aKP7IGRHfVw3k12TMWWKp6ECvQ/jMQihB6iLEJcwmvgec16zeQWyWlwJ5ClkWcJ+NSeibvXrjKbYeLUQSf4smMDfsPL8ounppY3gfC5SaYOiFZDe7AiqLC90HTyYGxOrZn+cc4HD4fy5vJj5Ev/STpAiXYhYp5LNHKEPaI9TO/svmZbzLnRZdP1bgoMcnUe9Y8Zku40UUVOSlBlKKD9Ub4hgs56Del6Q99+0u8TDlOTYuAY9czfNCJ/Puje++M6BaXz9eB+vAxpa+3qrbNBUtRbOF+hRvQ6oq21+TDUNkAzIMkvxcD509c+pgld963tJB6q+pNu3pC1WDgkl84ySWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jCXPV+ejtxClXRfN0O9xKZpMJ/LrtxIfwgv8HocKboI=;
- b=vxfECW03zl1HrdZ3/SNZDdTDhcgY1e1H//TkH6Qbg8KUhnmDDWvBFVUOv8cn0bLtdkaDUsnRJ2DkvpZcGo2HNhM3LDju7RbUcF6aFkCTOXtUSIdSfCAswqvauAZhCx0MwfMmnk0WnqRwBeoVNXZvrdzsIyQ3vDID8qlAfNneHYKALf7mJUePh5lzEbyHIi3AKJ8/QUCY8ICekC7D1hUOfge+4+GdAfyPYYbn4j5WA1MeRJarvP+zQ604ksLlk7zsDqMdrYk37NYdmJ+4ExyX7lLqyNrp8lpnFrI91hVl6K8fPRWoo6O4QTdkozSF54PycjyWzlEOSZkuKNUZey8aTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jCXPV+ejtxClXRfN0O9xKZpMJ/LrtxIfwgv8HocKboI=;
- b=HEVO3LF6mVdZuNGjPv3Sc2pb8E/86+GVPeN8yvGYuKCglQRf9JiszfIMpf91xCHfHa4B1x4mjZdvcM8u323EsnJd5/+EiyKCXbeWb7vYf1nueJmansosLmJfgS9r6VzAMN0SJePaMLbHFHDrHvqVI9B3OW8c6S1VEu6DiRzny0s=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS9PR01MB15859.jpnprd01.prod.outlook.com
- (2603:1096:604:3ce::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.27; Wed, 16 Apr
- 2025 23:52:41 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8632.036; Wed, 16 Apr 2025
- 23:52:41 +0000
-Message-ID: <87plhb4qbb.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-	ALOK TIWARI <alok.a.tiwari@oracle.com>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
-In-Reply-To: <87msch81yh.wl-kuninori.morimoto.gx@renesas.com>
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
-	<87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com>
-	<CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
-	<87msch81yh.wl-kuninori.morimoto.gx@renesas.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 16 Apr 2025 23:52:40 +0000
-X-ClientProxiedBy: TYCP286CA0060.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b5::15) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E4B23C9;
+	Thu, 17 Apr 2025 00:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744848519; cv=none; b=O+9M1aOe9KWqQGXozw6pyax8K55Qu2Xt7q4l0AIGaRUySFHPBUy2pC1jvCRpi0PBdJ6arDvDMz5EkMJ6nDURJlHwWGRlRl/4YksIVK73NsNTVSW87RkGIRUWoYQ32d78PtW4vdTGPaTlrx5g5bAUqWpnnR5oSTFULoy04Nrli44=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744848519; c=relaxed/simple;
+	bh=hGr79s50hbOArFrIr7J2c9YKbRUTXQLJEWlC9VOUCM4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZKoEyxjNNDfddFSyabW16kmWjabyPhO0YhkQE+4aSUpVnB7oOl+myu+FsayWDPErfv4CcW1omYPWpzW47MIBs4RVQ2QSmpSlYF7HZ/BnIohRKTNU5mX+y/I/GDxHKTvscGqxXu+zaewja4oz6F0ZrfnFn2/Ujbzi94bc4G9k9Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QHmqfsng; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6e8fa1f99a6so382826d6.3;
+        Wed, 16 Apr 2025 17:08:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744848516; x=1745453316; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tJqOv8o36TMLKjrK4zXvLAIpyGUhPRv2sP67Kw4EUAY=;
+        b=QHmqfsngc02NTZUUbY02r3j+8FYJDDgaxurqJkkaIcbR+QnzAjWhFfyb580uaOshqB
+         R/K9CpQ9P7yPp2e5gxL8jRQMdyzKCjADMjDFTQr9pmBD3vOcd1pIFmCP8vD+G9OB0E2J
+         bkYcVV+XqbVk0AP6rkdRd5LlFup1kECzfFkIarShXpSZHyluUZOjHV7ZFn9Jb0hdbN5Y
+         9uqXXatpWB9/iUn7qmYtK0tte39ngw1+EmlZQEUPbKEfvQr78bmHW+thAszQATaKT7yr
+         fRs6Yqo0Lt06wm/ZH7IpBpzra1SfWXGNQx9bv8NU1URMDEqy96wxS5WccXcOiiLraurb
+         jSVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744848516; x=1745453316;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tJqOv8o36TMLKjrK4zXvLAIpyGUhPRv2sP67Kw4EUAY=;
+        b=Yln/ozDHkUqA5aAD9mqexvTFctrh2bxRu1d+dpSzGKuuoTcPPCUxTX/+Scsu10k8Fn
+         qzkaB1uJTE713Oh1epKjZlWjst5prDbVPa5JKLEZQfFu+yIj2IqNv1SbCnyWDpSqcOq3
+         Y8rbPCsx0O3HdVedSxdYEgAe3uMPLkE1mBIEpiivv8k3luyQA6V2ccsQDTlG8xjU8Wuc
+         bkZuXqslADQ4Mbgq6DYucZcerYVDJqP909MZ7mslWXq7vJR6iKsm2vrt3NB7nU1MC/Af
+         sdVJOXVJfxdwWEvjpCJumwDUZiutEs+QbZV6EsuLqEn2bXNa7DrccGJLTcRa6g8J6RHW
+         rP8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUL+9IizsFA4UYAzxq3gu/C98ZjIJWeWhccc6qQq4AhFF1EvtI9AzD9TIPSLdyUhY3qS8Gk+Hmp8BTu@vger.kernel.org, AJvYcCUejfPDVytu8KqvI2m3AP73OLJItNz0tj6eUqIwItvR1me3KxozNGBSvai7F23n5Alszw8nCy9ka27/@vger.kernel.org, AJvYcCV2chR7y4T50eW03xNs+Df+9boyylu8LC2rIk8utHhCP58BqmL0vei2t0PFGq74WcCTJUpe6Lp4htJOMk/S@vger.kernel.org, AJvYcCXy3LBeuKtesXXeRvGjM8ZOhgdgZc9Jt1tycmdkJeunjGIMvYbBN0bnIF3YgFyv9MrWdGq/XrT6S6Gfeg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRTLiC0tghdd8VHTjP4G5aNHHwVb+LcqtBjRX6AcieBr7Xi1Dh
+	UTpcOGG3qFo3gOLDN8e+rqoCfItGDgtTv7ZBruo3JIANJcOTBoVf
+X-Gm-Gg: ASbGncuXG/ausKCs0jqQfVZLH9phK0+Du9t1IPWbBaMc32rdfOUmwG1yqyKZtMfYDBX
+	dBRB4zTjOdYAcnDmNofZ/J54DlTnZ5v/Xj9X4TX/ZauhFer6oYV7Gtw5MOKce/39bXnbUddRqPq
+	KFLA7KqY6qPceOvSlvLcg8r0Rj55U6Tps8any/+YZTtF/j3NAnFovuuVUn+ha9lZceYau/r2ZJj
+	5zjcQPKnqeasjNxyGUzbMB+QZE0IjQq+EMv97+Dm3dmc0YgPsjC+NfCikTbaEErlnTyQDGd1gIH
+	ZTNUooTpa3IxnWuoN3RjBsoI4/ZNmgKyj4YT4jEaBgIlPCr/kIz/doeIcSBc/A==
+X-Google-Smtp-Source: AGHT+IEgt/xzdl4pyyhYr8Rve1iU9l/NmW8OKduLXW80EHNhcCRd4MzklhGlnNblENETHjaRR9goIw==
+X-Received: by 2002:ad4:5fc8:0:b0:6e8:98ce:dd75 with SMTP id 6a1803df08f44-6f2b964e60cmr9426336d6.9.1744848516175;
+        Wed, 16 Apr 2025 17:08:36 -0700 (PDT)
+Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f0de9734a8sm122800756d6.48.2025.04.16.17.08.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 17:08:35 -0700 (PDT)
+Date: Wed, 16 Apr 2025 21:08:30 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org
+Subject: Re: [PATCH v5 02/14] dt-bindings: iio: adc: ad7768-1: add
+ trigger-sources property
+Message-ID: <aABGfv+9KxEt5sAq@JSANTO12-L01.ad.analog.com>
+Reply-To: 938b950b-4215-4358-a888-6f6c9aab48e8@baylibre.com
+References: <cover.1744325346.git.Jonathan.Santos@analog.com>
+ <35481552e9ce39a24a0257ab001c0bcfea1a23be.1744325346.git.Jonathan.Santos@analog.com>
+ <938b950b-4215-4358-a888-6f6c9aab48e8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS9PR01MB15859:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4389d9a0-05c1-476b-661b-08dd7d41c64d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ZAskVl94J6oQu+Nk30gl5RLnT1yVwD6x4YzwBO8iemUBxFz0qhhm0OhH04vw?=
- =?us-ascii?Q?jUhKHP0b4VkvQe7FQ3Di+AAOhdde2w5xQcVo5ds1Fkqo+2duyKmtJIDOlnMK?=
- =?us-ascii?Q?A8USN199zeNu/fnb6xWgb3fn0smxUbruLwF5IOGNm8jHH323jPzvwzw7C+k+?=
- =?us-ascii?Q?rSq7o4owIDG2WsmH8yujY+LxHk2tkgcM8f7IQgcNGsQFPVsZ690xfDUDvayZ?=
- =?us-ascii?Q?P6ZEY71lRtc+V/1I7TL2RUYRaEG6zhO2W+v+Vl4dmkXjya+yseaYlakDhG7b?=
- =?us-ascii?Q?OFsbZrVcgnoISsFr5mno3E1e2zs2DFKUO5txUDYiWMMvx1/5LxjKZYhErpmL?=
- =?us-ascii?Q?iz4MdXdkw07qo2HKcnD4Dnk/F4bxPbD+DBNelnt/3pjKdfiTqS/6KgPFvy4I?=
- =?us-ascii?Q?tWeHRlfv2IWL9WIyMmPfx77hPu28XnleOaH6MMP1R6WquZa8pNsi82VYf02t?=
- =?us-ascii?Q?73YScasTqTJqsuxxdSJTiTqdOg8zPpJC49thh/qOAUJLOctohqFHS5093frZ?=
- =?us-ascii?Q?L9KhhsJGDAt46VpQC1dNYHp6x4yIlhTKS5hQTzUvcPuri1PhSnMkMd+e50QL?=
- =?us-ascii?Q?Rl9ni5WIndm3ymH93/MOyg6T4q+GEDiYN+7o2ZGrQdVEXT3dLBPpWp7CKNaR?=
- =?us-ascii?Q?8/oRLhRK0kctwQk1mrZUT+MdM921HOx5G7ka1z6goxLW6LlMfPlXCgQ+yXLQ?=
- =?us-ascii?Q?q3tpVfyxzfji697g50WmwWpnb6cs062/S9lX0IXQxGp92EDYnTb4p+KnvwQj?=
- =?us-ascii?Q?LOFj/lbO12y2DijgJZaQDIEJa7X9R+gyiyvkKzQ10SXF2iYOnYYGwR3pOwRS?=
- =?us-ascii?Q?KE5gDcrIyBW9UQx1KEOH8NfhOvsFAbsqgf6XBUZHJh99ETDSfa/WThUzRfYd?=
- =?us-ascii?Q?MWrV/FONQAYlax55mBIYy1/jjAXwQUwhSFAu1Q17M6g8nG/vpg3Z0hURTk4B?=
- =?us-ascii?Q?jLHk2aXhtkgVdu7aNtX9G9hy1r+jXBG7M90vfmLThuABPVXWFDAr3HIvDfNX?=
- =?us-ascii?Q?RnrInOw0OK8jJW9MPYtTeFHVS77HWa7GYHRJ5iwfBFO+SYLVjAHvd6Ee1bHu?=
- =?us-ascii?Q?lutPNwPiJb5n8F7KQyrPODti14bDYJfRXbCMW5Rwx6LnJqp4Cv7D69NlTIEI?=
- =?us-ascii?Q?8WT+rzeM+5Pqg8mtCrEPNjdPQrK03rkj7JjkpPooirojTusU6gvpo2LErG5p?=
- =?us-ascii?Q?RlycY1jkdh6RIuz1nQCRFq1Nhoim83pQdhZidyCVwFJuja9UlI+KR6BjHhNN?=
- =?us-ascii?Q?MReL6q0F7rNVk9VAgrT9jbxKz+j6Ad6Qd1VsRtmdOWNPX8a2O1q+VVSE33Pc?=
- =?us-ascii?Q?dfaa1J47VG75etU/3DZG1jByklXCvqu9gc16f4JYUXPPRedCiSVYqpgXRcuJ?=
- =?us-ascii?Q?/LLXK+0/bGytEXsQAE5HXJhBBD+8jA6geUcEGfj7K8qTWi2uIyn9aTNCGjKm?=
- =?us-ascii?Q?o6nrXlK8pp0b1kztOEKtxODxd5D8M2mZTnF/W3FegliAWNTPJnch3A=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?X2tQlj00ZSeU1M8/lVDz861hItJHdT8VyrMZKMPSny6tOXFMUil6tvlnOOJA?=
- =?us-ascii?Q?3KGjIN99PguIrdGImaRTnxy2f/lJgMGkTK3jFUNTWBuTqHPJfHSGYnoRObwT?=
- =?us-ascii?Q?lAuGrjKKJxSfgaUlrcInVNHj2ntnnKR1jGXODB+0ZhORk/KhtC8vBg50zmEN?=
- =?us-ascii?Q?KEJnuZyScQXa7qLtegm4aT1uvBjEtsZimcp5wGWGka1qFsKwJDaSyroLyi07?=
- =?us-ascii?Q?0iuCPzjvaNdkibANra04rc2knZCfwE/hk6uCqhSpA2sggqhyn+6zF1o2jj5D?=
- =?us-ascii?Q?R1qjta4ydNIFNZPZAQGJKoWHRra86oGlrb2OgA+XAQ0Il0xFKC9SOD9fR7CA?=
- =?us-ascii?Q?729oykMoOVrcxfOqj7GfEiyWjsHsNiJuIqNvb6KP7i/SXV3+g2+aE14ukSy/?=
- =?us-ascii?Q?7eZrBF3niFYpJmLTLzN+6va/yCveTe0lzdC1sxS9whso2gua8RmVP2dJ4Wt0?=
- =?us-ascii?Q?YEZo3fQadbAYFl49Rg+qyPjVrsxBkGBdhXXkC2mChzucznm0mf3OT4OIZ3/7?=
- =?us-ascii?Q?zuUTNSz9HNLwXwNChvo0Cts+d4B+62c5gyyGNpyuj39eKbeQsLEr7oYOuNVb?=
- =?us-ascii?Q?K18+ditBYYJI6OMtwWtiRKAb9no5cQVwUGwi7ToRjxQLw3Q7iPvOlZ/CKFzu?=
- =?us-ascii?Q?t+WBKhqdm39BevUKwGcT+YGsbHFjVyW+UKd5iK4lTEBpka4gOBFfiA0e04B1?=
- =?us-ascii?Q?/sBrnvVj1KJHsm2yF1ztLC4yEm68InomQDPRTin1PutCjiSI5J+S5eK05eEy?=
- =?us-ascii?Q?t/JUE/iN3djRa9qPwkTU2IqYjJcswuh+tTV8NfU9B9jnLu8MJSxIYuf2Yj+F?=
- =?us-ascii?Q?KUXv7qyqD1Lg/emrIpqEolqvarzAxzIhmSzZ2DM0DzT7XJFgu20qU5n345b6?=
- =?us-ascii?Q?utalUgOA1PKxs2BY2AXRneQDHUTPavd0415fdPqjNMiwGFJcaxRDEbgWYEBG?=
- =?us-ascii?Q?rqmvQjM0D+0nQ/nrSp/28n9Tv0V9PHqkh1V+d9n8Pm2TNH9koCcAXi+3Ztya?=
- =?us-ascii?Q?a26GCp/cpQ5omzocFGS5LgEaDlHFf8YUzCxl1o+nkSSZWUx1yZsILlOHdN2Q?=
- =?us-ascii?Q?8xvzTcwOGJiP997ENw0yfHBSrtM4u0i5dMgAqG6kLtg4GxU2f53lxTiN5DfV?=
- =?us-ascii?Q?VdqUEuLdanIBXBLDIv2hyqV3PhhFW+owGUuZIlcruSHkdeXJyBE7OXEIMcmB?=
- =?us-ascii?Q?ETRkm5IypH3LI1waNGaGUt6ZnEjFiZVoG1OVAVRQ4l5JbuJLKCGOoz3fbccm?=
- =?us-ascii?Q?/IkE3isIA7B7+pLbKjlPfz2cKX5LB5XG/x6oQ7qCiMRevLglcureRQzzi7W8?=
- =?us-ascii?Q?JxltE0FXbUYFxLOgFD1+QeQoXIrlqvYSUdnB8C+V39dTJHr8Yj0JOPw1QFih?=
- =?us-ascii?Q?SqX+gGPV79VCctCmddCsH3lv0A9CeSfpe8JS0fln6aIe9GsGrhVHhpnyBdKc?=
- =?us-ascii?Q?Y4wPiaoBwwQxh2pyDHWu54fukfgmmkabgvReRdIfdniDJi+Par8BS9OmmyIS?=
- =?us-ascii?Q?jENbhAKYgZ2s4di67rCcI/jvmyoQYou0FXlKmU4xLvrETxfQ6rfLjKsx1cvm?=
- =?us-ascii?Q?rfAlzMQMCAbqxS3Cg0hqaUkSfGvXxJu2Wdo6XoHcZZYF20vyGHB5X+nGvzei?=
- =?us-ascii?Q?RPN/WTTjjrAZ7gSS/ED8JM0=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4389d9a0-05c1-476b-661b-08dd7d41c64d
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 23:52:41.2797
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bTG4QtIJ0Ly4r0NUmJ+QTGlQHKT2ub5hM8/c/wJUNt6XYwR0zlWZovoo1B6nX8KF2b6diMWMXfOj7f+7nehStzYhpwNz/KhdroAYjVL5SQlLtl0Vx85c92h5ATW/rueN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB15859
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <938b950b-4215-4358-a888-6f6c9aab48e8@baylibre.com>
 
-
-Hi Geert (as Renesas SoC Maintainer),
-   Rob   (as DT          Maintainer),
-   Mark  (as SPI         Maintainer)
-
-> > > +  # "MSIOF-SPI" specific
-> > > +  - if:
-> > > +      properties:
-> > > +        $nodename:
-> > > +          pattern: '^spi@'
+On 04/11, David Lechner wrote:
+> On 4/11/25 10:56 AM, Jonathan Santos wrote:
+> > In addition to GPIO synchronization, The AD7768-1 also supports
+> > synchronization over SPI, which use is recommended when the GPIO
+> > cannot provide a pulse synchronous with the base MCLK signal. It
+> > consists of looping back the SYNC_OUT to the SYNC_IN pin and send
+> > a command via SPI to trigger the synchronization.
 > > 
-> > This condition does not match what you wrote in the cover letter:
-> > the controller is used in I2S mode when a port(s) subnode is present,
-> > and in SPI mode when no port(s) subnode is present.
+> > Introduce the 'trigger-sources' property to support SPI-based
+> > synchronization, along with additional optional entries for the SPI
+> > offload trigger and the START signal via GPIO3.
 > > 
-> > > +    then:
-> > > +      allOf:
-> > > +        - $ref: spi-controller.yaml#
+> > While at it, add description to the interrupts property.
 > > 
-> > Documentation/devicetree/bindings/spi/spi-controller.yaml indeed
-> > requires that the node-name matches "^spi(@.*|-([0-9]|[1-9][0-9]+))?$".
-> > The controller's node is located in the SoC-specific .dtsi, where its
-> > intended use case is not yet known, and its node name cannot easily be
-> > overridden in the board .dts that specifies the use case.  Hence the
-> > node name must always be "spi" (and cannot be e.g. "serial-engine").
-> > Let's hope there is no other use case for MSIOF that requires using
-> > a different node name...
+> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > ---
+> > v5 Changes:
+> > * Include START pin and DRDY in the trigger-sources description.
+> > * Fixed "#trigger-source-cells" value and description.
+> > * sync-in-gpios is represented in the trigger-sources property.
+> > 
+> > v4 Changes:
+> > * none
+> > 
+> > v3 Changes:
+> > * Fixed dt-bindings errors.
+> > * Trigger-source is set as an alternative to sync-in-gpios, so we
+> >   don't break the previous ABI.
+> > * increased maxItems from trigger-sources to 2.
+> > 
+> > v2 Changes:
+> > * Patch added as replacement for adi,sync-in-spi patch.
+> > * addressed the request for a description to interrupts property.
+> > ---
+> >  .../bindings/iio/adc/adi,ad7768-1.yaml        | 38 +++++++++++++++++--
+> >  1 file changed, 35 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > index 3ce59d4d065f..4c58dbe8f749 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > @@ -26,7 +26,30 @@ properties:
+> >    clock-names:
+> >      const: mclk
+> >  
+> > +  trigger-sources:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    minItems: 1
+> > +    maxItems: 3
+> > +    description: |
+> > +      A list of phandles referencing trigger source devices or GPIOs.
+> 
+> I don't think a gpio phandle should be directly allowed. Only a trigger
+> source provider (something with #trigger-source-cells).
+> 
 
-Hmm...
+Sorry, I meant gpio-trigger, but I phrased it incorrectly.
 
-Now, MSIOF node has "spi@xxxx".
-SoC file indicates MSIOF-SPI as default, so it has below lines
+> > +      Supports up to three entries, each representing a different type of
+> > +      trigger:
+> > +
+> > +        - First entry specifies the device responsible for driving the
+> > +          synchronization (SYNC_IN) pin, as an alternative to adi,sync-in-gpios.
+> > +          This can be a `gpio-trigger` or another `ad7768-1` device. If the
+> > +          device's own SYNC_OUT pin is internally connected to its SYNC_IN pin,
+> > +          reference the device itself or omit this property.
+> > +        - Second entry optionally defines a GPIO3 pin used as a START signal trigger.
+> > +        - Third entry specifies a GPIO line to act as a trigger for SPI offload.
+> 
+> SPI offload is part of the SPI controller, not the ADC chip, so doesn't
+> make sense to have that binding here. In that case, the ADC is the
+> trigger-source provider, not consumer.
 
-        --- SoC file ----
-	msiof1: spi@xxxx {
-		...
-		#address-cells = <1>;
-		#size-cells = <0>;
-		...
-	};
+Right! Maybe a silly question, but this means we would have then two trigger-sources 
+defined, one in the spi controller node and other in the adc node, right? like
+this:
 
-These are not needed for MSIOF-I2S, so removes these
+spi_controller: spi@44a00000 {
+	...
+	trigger-sources = <&offload_trigger_source>;
+	...
+	adc0@ {
+	...
+		trigger-sources = <&sync_trigger_source>;
+		#trigger-source-cells = <1>;
+	...
+	}
+}
 
-        --- Board file ----
-	&msiof1 {
-		...
-		/delete-property/#address-cells;
-		/delete-property/#size-cells;
-		...
-	};
-
-Now, my dt-bindings doesn't load spi-controller.yaml (as sample), but I got
-
-	[SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #address-cells for SPI bus
-	  also defined at [Board file]
-	[SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #size-cells for SPI bus
-	  also defined at [Board file]
-
-MSIOF dt-bindings doesn't load spi-controller.yaml, but why I got "spi_bus_bridge"
-warning ?? I wonder dt compiler (?) automatically check "spi" node ?
-I have tryed some code, my expectation seems correct (In case of node name was "spi@xxx",
-I got many SPI related warnings even though I didn't load spi-controller).
-
-Best regards
----
-Kuninori Morimoto
+> 
+> 
+> 
 
