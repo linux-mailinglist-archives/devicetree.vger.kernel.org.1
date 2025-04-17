@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-168265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C578EA92031
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:49:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECCF0A92035
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A1B7164477
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:49:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88E0219E8151
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C762F2522B3;
-	Thu, 17 Apr 2025 14:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C0F2517A6;
+	Thu, 17 Apr 2025 14:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MWZa7Ns2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6rBNo+2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD612522A2;
-	Thu, 17 Apr 2025 14:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3800714A4C7;
+	Thu, 17 Apr 2025 14:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744901390; cv=none; b=NFI9aC3vXmSHMR7u+b6+ND0KaT71XZl4cLbN1G7WcRETfilhlr4Tw0p3di8JTzzTgNw4Wx/FhoApsGAWwNG2Lia9p5+aHnRA8v7NnzSGrRZHIZSci80BIO9vD+ArrJ/atzsxFspaIgcqTNVvfqEmRc5YVbrB00BriRyXL6hMxgg=
+	t=1744901430; cv=none; b=ZxoSQRq5QGWS/hD1SEmqASFMSplnbTEHbp5j31k6yP7aGw020Urlg+ctLyiNsWx+9iv4ed+MOSudK3DmDOoRTfAMwgO523VDwffldBzc5YOyMjCoPRocfynzIfFX6KTFlCGynroe/6hoSdcwgng34+pLQGkx+cabgi7o7ur3L0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744901390; c=relaxed/simple;
-	bh=Y7Ov+PkxBtSJbpqygju98/xVM6r8zkCzNHMncrX/WXE=;
+	s=arc-20240116; t=1744901430; c=relaxed/simple;
+	bh=ydLwQu78BFvyikLXpxEaVTRiTBaEQwxwQL+LQghN1WU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qQ8nA5UYFHptAJ8KQo6vTX0CBgfEBOe9LI/ZoTC41cdjFq65kJiSTL0Hs3dHIh6PTmN5hQhKZpd9MGuK8UpgSQ4J89e71l6PoFLNra4R5c/tuPvlYMcl1mqLeQEYXMIh7eSi09rllmYxbaFtVGYnaOPV0HbzedGq4mySJP+R45M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MWZa7Ns2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA81C4CEEA;
-	Thu, 17 Apr 2025 14:49:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A4s8cmPcXdL9w5fqQRafRWNINm/PMpSXQ/RJ7oDAWH46KRWvzlJtWsROhv++lPbgt5VyJRrIBUD6QMpZlQWI2PO/3OW3BP8utr5w3lMKIR/JDPzBxY4e0Zyo0WWH80X5+1PQSJvAkKfnxw8e0lR0gRlPXQVnj3kTe/TsikYPbVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6rBNo+2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8413DC4CEE4;
+	Thu, 17 Apr 2025 14:50:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744901390;
-	bh=Y7Ov+PkxBtSJbpqygju98/xVM6r8zkCzNHMncrX/WXE=;
+	s=k20201202; t=1744901429;
+	bh=ydLwQu78BFvyikLXpxEaVTRiTBaEQwxwQL+LQghN1WU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MWZa7Ns2UI35IUdO3AWf8Rgvxl3v9kLKuQYI+hh5qssiVNFy5XO9jMUJ3gjGg0U3v
-	 BRIA+bdUMhKuujlECrD7v2xDS0S6tkimACnv4XoaVYh5taHq7WwQWI/Ub6bIzWmZW/
-	 Z8c03WPWok5FCSkMk2k/3k0gLRW3CaSTLMJVR2Sguf8YjQ/tnMjm6T8yb937j1JmhC
-	 auq7dICFiGF2Ll1Z9w2AkEKPzDt9xB78VJrFFAvkITwhF9JXgGVGYqeUzfWUCohEqk
-	 OofrLr0IxCKnV4pJiSWv8Q4qp4D7k0Tx11kIBOBe37f7DK5KYLwZzp8bhomXvndna0
-	 JNgQuI4KZFjbg==
-Date: Thu, 17 Apr 2025 16:49:43 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=a6rBNo+21GFbSyFtRSgtRLtdRBEHmGBjkySwyyv8xVXSZB9hXmetX8jJGOr/9lcf7
+	 G6088TMvGliHy0mpHsB2NS7yIJtrVHg7067cwIlBMaJNLtbxGhqe/vsNKAktU5NMJT
+	 TY28aVCpRZrico48wx8Wy8qERIAQ6XCCkfn+1P8knxStX68c4rSfB8DRArvkGVoRzM
+	 h4KSd0FMEkEZvY7dX61dEI8XrzL1Hrd8uw2gSZ0HvZbb+26cdbMgNWys25axYOIxci
+	 96r1znetQ1aLdxN0U0pK3PEC1y/O2k9D6vBfQ1h649OFj6KGI9OqrjPgI+gjxJ2BHb
+	 la2CzQ+I0BqXA==
+Date: Thu, 17 Apr 2025 15:50:23 +0100
+From: Srinivas Kandagatla <srini@kernel.org>
+To: Janne Grunau <j@jannau.net>
+Cc: fnkl.kernel@gmail.com, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 18/24] irqchip/gic-v5: Add GICv5 PPI support
-Message-ID: <aAEVB9GpJ2SxTd51@lpieralisi>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-18-1f26db465f8d@kernel.org>
- <877c3uuy7u.ffs@tglx>
- <Z/YiLNzRvXUgcHFc@lpieralisi>
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 2/3] nvmem: Add spmi-nvmem driver
+Message-ID: <20250417145023.GA34166@srini-hackbase>
+References: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com>
+ <20250415-spmi-nvmem-v1-2-22067be253cf@gmail.com>
+ <81fb1290-fb39-40b7-9d79-f147fae5b269@kernel.org>
+ <20250417143053.GD8400@robin.jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,55 +65,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z/YiLNzRvXUgcHFc@lpieralisi>
+In-Reply-To: <20250417143053.GD8400@robin.jannau.net>
 
-On Wed, Apr 09, 2025 at 09:30:52AM +0200, Lorenzo Pieralisi wrote:
-
-[...]
-
-> > > +static int __init gicv5_of_init(struct device_node *node,
-> > > +				struct device_node *parent)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	ret = gicv5_init_domains(&node->fwnode);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	gicv5_set_cpuif_pribits();
-> > > +
-> > > +	ret = gicv5_starting_cpu(smp_processor_id());
+On Thu, Apr 17, 2025 at 04:30:53PM +0200, Janne Grunau wrote:
+> On Thu, Apr 17, 2025 at 02:34:37PM +0100, Srinivas Kandagatla wrote:
 > > 
-> > You invoke the CPU hotplug callback for the boot CPU explicitly, but
-> > what the heck installs the actual hotplug callback for the secondary
-> > CPUs?
+> > 
+> > On 15/04/2025 22:52, Sasha Finkelstein via B4 Relay wrote:
+> > > From: Hector Martin <marcan@marcan.st>
+> > > 
+> > > This driver exposes a SPMI device as an NVMEM device.
+> > > It is intended to be used with e.g. PMUs/PMICs that are used to
+> > > hold power management configuration, such as used on Apple Silicon
+> > > Macs.
+> > > 
+> > > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > > Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> > > ---
+> > >   MAINTAINERS                |  1 +
+> > >   drivers/nvmem/Kconfig      | 14 +++++++++++
+> > >   drivers/nvmem/Makefile     |  2 ++
+> > >   drivers/nvmem/spmi-nvmem.c | 62 ++++++++++++++++++++++++++++++++++++++++++++++
+> > >   4 files changed, 79 insertions(+)
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index e7b2d0df81b387ba5398957131971588dc7b89dc..63c12f901aed1f3e6de8227d6db34af1bd046fe6 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -2298,6 +2298,7 @@ F:	drivers/iommu/io-pgtable-dart.c
+> > >   F:	drivers/irqchip/irq-apple-aic.c
+> > >   F:	drivers/nvme/host/apple.c
+> > >   F:	drivers/nvmem/apple-efuses.c
+> > > +F:	drivers/nvmem/spmi-nvmem.c
+> > >   F:	drivers/pinctrl/pinctrl-apple-gpio.c
+> > >   F:	drivers/pwm/pwm-apple.c
+> > >   F:	drivers/soc/apple/*
+> > > diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> > > index 8671b7c974b933e147154bb40b5d41b5730518d2..9ec907d8aa6ef7df0ea45cc35e92d8239d2705ee 100644
+> > > --- a/drivers/nvmem/Kconfig
+> > > +++ b/drivers/nvmem/Kconfig
+> > > @@ -310,6 +310,20 @@ config NVMEM_SNVS_LPGPR
+> > >   	  This driver can also be built as a module. If so, the module
+> > >   	  will be called nvmem-snvs-lpgpr.
+> > >   
+> > > +config NVMEM_SPMI
+> > > +	tristate "Generic SPMI NVMEM"
+> > > +	default ARCH_APPLE
+> > Why default is set to ARCH_APPLE?
+> > 
+> > This will endup with y in arm64 defconfig, means increasing the size of 
+> > kernel.
+> > 
+> > should it be:
+> > 
+> > depends on ARCH_APPLE || COMPILE_TEST
 > 
-> That comes with a subsequent patch[21]. I mentioned in the cover letter
-> that I tried to split the functionality into interrupt types to ease
-> review (well, it does not look like I succeeded, sorry) and then in
-> patch [21] (when LPIs backing IPIs are implemented), enable SMP.
+> I don't think it should depend on ARCH_APPLE. There is nothing
+> ARCH_APPLE specific in the driver or dt-bindings even apple platforms
+> are currently only user.
+
+irrespective of this is generic or not none of the drivers should have
+default set to y.
+
+
 > 
-> The point is, we need patches [18-21] to enable SMP booting.
+> `default m if ARCH_APPLE` might an alternative but in this specific case
+> the driver which will uses the nvmem cells should just select it. So I
+> would remove the default.
+
+remove the default, and let it be selected in defconfig as m as
+required, like any other drivers.
+
+--srini
 > 
-> I can squash [18-21] all together or I can enable the hotplug callback
-> here but this patch stand alone is not functional for the reasons
-> above, let me know please what's best in your opinion and I will do.
-
-I would squash patches [18-21] for v2 because that's the only option to
-have a single logical and functional SMP working entity, unless you are
-against it.
-
-We need IPIs for SMP booting, those are built on LPIs that in turn
-requires the IRS code to function - I tried to split all this code
-but whatever I came up with makes no sense from a functional
-perspective.
-
-The only thing I could do is taking SPI enablement code (SPI IRQs are
-optional) out of [18-21] and make it a separate patch, to be honest
-SPI management I don't think it is a lot of code so that won't change
-much IMO.
-
-Please let me know, thanks a lot.
-
-Lorenzo
+> Janne
 
