@@ -1,120 +1,128 @@
-Return-Path: <devicetree+bounces-168335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92636A92369
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 19:07:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13887A92370
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 19:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B11EB465D7C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:07:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96F177A3418
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E5D1B6CE5;
-	Thu, 17 Apr 2025 17:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F12254AFB;
+	Thu, 17 Apr 2025 17:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YFH4n0xb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE1D2550B6;
-	Thu, 17 Apr 2025 17:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A78071B6CE5;
+	Thu, 17 Apr 2025 17:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744909649; cv=none; b=G0v7Rpov/PigvL32ybDgePUwXaXfh45ZEQWKdnCfvrt0FgwohmrIXxRIMZk1qTtbM6UZphEY15A829YQjcDF827C5LlXZn/wRfuGEN4C2nIlokf5OIKpGvZNnNFqmVXiLAA6zKqn9YMYwqjEdGR9kyEz2/6N4wjmo4Z/e82dZqc=
+	t=1744909686; cv=none; b=D8vs31RC+bqnf6Cl/BdzeUPr0jHCWLAmMwMYSaB3KzM2gqRkDytOd7W6e6ZUaxvammJHsZWct8RQ5EsUvDtCW9QdVm341Y5Jlc1bZwE4BIiPRtXn5a319TuWZzvwge/EZ1dQNzjiLynt7G/YuiFEvw5s+LKoiG6HGTPw0jfTCJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744909649; c=relaxed/simple;
-	bh=fEPLRrhKmzms7qgN8GEjuB1eEhoQB9sxMKXLJqiOKtk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WitInRqpy7MNfOek0+W2TxzVgELEKTBAkWbi/8Q8fne/lP+87GyhpXuHK+/TCwcjqNhgEvY38h7louhCW5w08Suxok5dUhsQgtflB80Xlhb02GqqcdbYL1gd+TvRidPhae8J0Rk2O6sHYjG/1+ieGQe7YRIiJPfpMij1MQihP8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Zdkjl0nrbz6K9K2;
-	Fri, 18 Apr 2025 01:03:07 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id A57A3140145;
-	Fri, 18 Apr 2025 01:07:24 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 17 Apr
- 2025 19:07:24 +0200
-Date: Thu, 17 Apr 2025 18:07:22 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Robin Murphy <robin.murphy@arm.com>
-CC: <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
-	<dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/2] dmaengine: Add Arm DMA-350 driver
-Message-ID: <20250417180722.00002465@huawei.com>
-In-Reply-To: <6d7d8efefa935d34977b59a74797ab377528db94.1741780808.git.robin.murphy@arm.com>
-References: <cover.1741780808.git.robin.murphy@arm.com>
-	<6d7d8efefa935d34977b59a74797ab377528db94.1741780808.git.robin.murphy@arm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1744909686; c=relaxed/simple;
+	bh=P6WoVi4ryTfmG7rzbEbizit9HWFl+3mgjgEU9XKwk84=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Ja972g356s+rxHU/xtpG57MA6LH4pHECh3HJ5TvBDJK3IucShwiG2P8BBufCT82UdMuGKjmARFDjfWuEDRUZMTtCEalUs+sK8LqNyzslK3GuwSspYziiKSytRwlqp10aUds4yzcel9nLQyUtS98qZgaOmok7zWnXdEqNXv07gDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YFH4n0xb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClKIE014436;
+	Thu, 17 Apr 2025 17:08:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=+6ES9yVqy0rpTR+mjru3bG
+	JLqoJwMupw2CdCmzfVYWU=; b=YFH4n0xbtY2Rn/9zc8lFdJCQc8jCLntoZx85y2
+	z1N+ztyOjOgxGpLT0DGymVm+WyYGFfSjrtq7cMcUiE8qQTwWPR9LOs+sC68wlqpz
+	cv3H5ZPTOJfOudrgO8uGYNgvGTWFQsDusOF8nd07XmY9iSS5hCyNbxy/pNaI6Rht
+	AqRkuqI/zx8qiDFgVgMaNhY8zfDSzSpVwrTG/yputTdG6KiEsyC2UUtmdFFSRnKc
+	6wzVHn0rU1tBzqeIsdNqzGcKYV00aEeKQ1vmMiPdIMB1Av/RyplJR5XxpWQlPyzj
+	yyt3cpWMbtqT6F4pg0CKWM0ZXjPQE/ERtg0BPvg1tax2EPiA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6qrww-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 17:07:59 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53HH7w3E024374
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Apr 2025 17:07:59 GMT
+Received: from hu-ajipan-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 17 Apr 2025 10:07:54 -0700
+From: Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: [PATCH 0/3] pmdomain: qcom: rpmhpd: Add SM4450 power domains
+Date: Thu, 17 Apr 2025 22:37:38 +0530
+Message-ID: <20250417-sm4450_rpmhpd-v1-0-361846750d3a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
- frapeml500008.china.huawei.com (7.182.85.71)
+X-B4-Tracking: v=1; b=H4sIAFo1AWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDE0Nz3eJcExNTg/iigtyMghRds0RzE3NLkxSD5MQkJaCegqLUtMwKsHn
+ RsbW1AOLFRH1fAAAA
+X-Change-ID: 20250417-sm4450_rpmhpd-6a74794d0cab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Imran Shaik <quic_imrashai@quicinc.com>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yYaou16QsglqcelIR8jYYhxhjpn14VUU
+X-Proofpoint-GUID: yYaou16QsglqcelIR8jYYhxhjpn14VUU
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=6801356f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=DN_wUKf7fpAkojsRBh4A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-17_05,2025-04-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=685 suspectscore=0 clxscore=1011 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504170125
 
-On Wed, 12 Mar 2025 12:05:10 +0000
-Robin Murphy <robin.murphy@arm.com> wrote:
+This series add power domains exposed by RPMh in the Qualcomm SM4450 platform.
 
-> Add an initial driver for the Arm Corelink DMA-350 controller, to
-> support basic mem-to-mem async_tx. The design here leaves room for more
-> fun things like peripheral support and scatter-gather chaining to come
-> in future.
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
-> v2:
->  - Fix build warnings
->  - Limit retries for reading live residue
-Drive by review as I was curious...
+Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+---
+Ajit Pandey (3):
+      dt-bindings: power: qcom,rpmpd: Add SM4450 compatible
+      pmdomain: qcom: rpmhpd: Add SM4450 power domains
+      arm64: dts: qcom: sm4450: Add RPMh power domains support
 
-Few things inline but it's been too long since I last looked
-at a DMA driver to give a detailed review.
+ .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
+ arch/arm64/boot/dts/qcom/sm4450.dtsi               | 68 ++++++++++++++++++++++
+ drivers/pmdomain/qcom/rpmhpd.c                     | 16 +++++
+ 3 files changed, 85 insertions(+)
+---
+base-commit: f660850bc246fef15ba78c81f686860324396628
+change-id: 20250417-sm4450_rpmhpd-6a74794d0cab
 
-Jonathan
-
-> +
-> +static int d350_probe(struct platform_device *pdev)
-> +{
-
-
-
-> +
-> +	platform_set_drvdata(pdev, dmac);
-If you used the managed form of register, I don't think you need this?
-> +
-> +	ret = dma_async_device_register(&dmac->dma);
-
-This is pretty noisy on most non -ENOMEM errors anyway. Is it worth another
-layer of error print?
-
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register DMA device\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static void d350_remove(struct platform_device *pdev)
-> +{
-> +	struct d350 *dmac = platform_get_drvdata(pdev);
-> +
-> +	dma_async_device_unregister(&dmac->dma);
-
-dmaenginem_async_device_register() and get rid of remove.
-
-J
-
-
-
-> +}
-
+Best regards,
+-- 
+Ajit Pandey <quic_ajipan@quicinc.com>
 
 
