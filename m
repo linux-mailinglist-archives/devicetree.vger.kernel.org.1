@@ -1,129 +1,118 @@
-Return-Path: <devicetree+bounces-168324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388B7A9228F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:20:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5653A92297
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5789417531C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:20:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D45FD1783EB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E823225485C;
-	Thu, 17 Apr 2025 16:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73983254AE9;
+	Thu, 17 Apr 2025 16:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FB18s3Z3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YuC1nQ5T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B552236EF;
-	Thu, 17 Apr 2025 16:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F1A254AE0;
+	Thu, 17 Apr 2025 16:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744906850; cv=none; b=GkS69UpgHVPZjQvz+k+w+FVze0oEzJsps1or9x8Oco4z1cbTkLV/29LzPaaGH3mA5pS0umaXk2JP70HUUjWfLx53LNnGTTZ5nyIjfpfWtWOn2qgJgFwOwWfzPi0MNa6oV7mx3Do/iYXJpYYmJYf9C9PZBycjAW8HSvbefXARX3U=
+	t=1744906917; cv=none; b=jVdri45HdB6T4Zi+9eEQ+SF98GoZiRa4LwZxXMIGSq/IZYfVAePDpckkBVMOhEB0mbHBOrjnwD7UWnmz5nhrK5rqZ9NDdC86AO37vaqhq0BNVP635ZDldSg+SRT/Mtv1zttfaLH2keJ7y+WprvwQlOQk+8ED8JrK8AP2FwvAJKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744906850; c=relaxed/simple;
-	bh=lE3km04V0huNl5/idlnm7EDpwXke3d0J3Xk+VcvgftQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YX8FnEH/09KKkP2vk9WOe+pd5N4fPtlgCOuvtQwVHxYTmLwPa5st9dx2t4pxFgzg3aRpSxCKw5ePEkJjKrgdUa9aO7fRuNT0B8hFHAtCcetOFPafCOuuHserurM11jajKmBtDnebCW/am5nkqNhdn3lCoyZfhqWVpXFL38i+d38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FB18s3Z3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 214E6C4CEE4;
-	Thu, 17 Apr 2025 16:20:46 +0000 (UTC)
+	s=arc-20240116; t=1744906917; c=relaxed/simple;
+	bh=2x+9YZNT7bxe9lhwnR1Ay+d7g2a7nS8Raa3g1b8LHR4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jYShd6RqFM3cVOQrJLH6eprgHm2EQ1DQ9ltdJo5vryuQ0l6w5/XR9rtGUvRctIhzPm9OEV2PO/+QqNKFBKeMoHWvGXVRjc2WcqI7qRaBE1B508ovJRTUAfO/jC9NCOopY0mRaHtLHC1D0yqUdbN5XDyYFY5g1iuUuudoMwiTd8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YuC1nQ5T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A666EC4CEE4;
+	Thu, 17 Apr 2025 16:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744906850;
-	bh=lE3km04V0huNl5/idlnm7EDpwXke3d0J3Xk+VcvgftQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FB18s3Z31fz8pl7IzUQvYSyIoEd5m6RV3Kp7+tkglkF6sN44yobYBd6H06mJHwFSa
-	 pMdq7VUEGBo36ErDYV5KFCkuLQBbOVDOupIbMe32FM8F5eKYuaEdzaCvKA1AMK42o5
-	 SEFW9wY4iJTVsa5RBXdMjsWToxlUMvFgu5eN9sfjGEMoLDqYFSv1OKFkVcBr2yVnXF
-	 xhRFk9zF7eb3MViUHIkqy5Vuhyk/H3f3LaE786JtTWIwIOlwwjMLUgdHSyP90o/rjK
-	 kgA7tzbKdETi4BKZXxvBAQYFVssi88iSRsMACz54o+T1erOVdvXvQ6Z6m6s+hdtM9n
-	 M+TxVG/ujo5Yg==
-Date: Thu, 17 Apr 2025 17:20:44 +0100
-From: Lee Jones <lee@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-Message-ID: <20250417162044.GG372032@google.com>
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-9-ivecera@redhat.com>
+	s=k20201202; t=1744906916;
+	bh=2x+9YZNT7bxe9lhwnR1Ay+d7g2a7nS8Raa3g1b8LHR4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=YuC1nQ5T76pPqq8GWl13jmGTwr47Mj8+GpH3kmE6f4v3O5Yc+akjec0zYM/Ev2dqT
+	 +oSXklOdzj0yzfjqwV1tgWDSdhj41uB2ztP1vLv/3jC6zujqSuzANknWto+onfFPo6
+	 4IR1MvDJNDhwo/JKLEEfEfN5McvGsuzGnag9zll7Bh/+1ob5UZbljLKfPmPt5QzWHS
+	 ve6GbOFdwmwM1Gi4/X82ZdL4BD7shouDCxSAcI2nTIchzDok+1z5YFDT13BdHD6ua8
+	 8YVTT6gHFd+Nw3Njoo91BhpBadfWYdGd564PauQzRdqq91oDFbyUGKCMo0xEfTCF/Z
+	 Iz0AH2gsw1Gmg==
+From: Mark Brown <broonie@kernel.org>
+To: kernel@collabora.com, Liam Girdwood <lgirdwood@gmail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>, 
+ Julien Massot <julien.massot@collabora.com>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20250417-mt8395-audio-sof-v1-0-30587426e5dd@collabora.com>
+References: <20250417-mt8395-audio-sof-v1-0-30587426e5dd@collabora.com>
+Subject: Re: (subset) [PATCH 0/6] ASoC: mt8195: Add support for MT8395
+ Radxa NIO 12L with MT6359 codec
+Message-Id: <174490691335.121189.17592023292811582537.b4-ty@kernel.org>
+Date: Thu, 17 Apr 2025 17:21:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250416162144.670760-9-ivecera@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-On Wed, 16 Apr 2025, Ivan Vecera wrote:
-
-> Register DPLL sub-devices to expose this functionality provided
-> by ZL3073x chip family. Each sub-device represents one of the provided
-> DPLL channels.
+On Thu, 17 Apr 2025 10:44:31 +0200, Julien Massot wrote:
+> This patch series adds support for audio playback on the MT8395-based Radxa NIO 12L platform, which uses the integrated MT6359 codec via internal DAI links.
 > 
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
->  drivers/mfd/zl3073x-core.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> Key additions:
+> - Support for a new `mediatek,mt8195_mt6359` card configuration that does not rely on external codecs like rt5682.
+> - Proper memory region declarations and pinctrl setup for the audio front-end (AFE) and audio DSP (ADSP).
+> - A device tree sound node for headphone audio routing using `DL_SRC_BE` and `AIF1`.
+> - Enhancements to the DT bindings to document the new compatible string, missing link-name, and additional audio routes (Headphone L/R).
 > 
-> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
-> index 0bd31591245a2..fda77724a8452 100644
-> --- a/drivers/mfd/zl3073x-core.c
-> +++ b/drivers/mfd/zl3073x-core.c
-> @@ -6,6 +6,7 @@
->  #include <linux/device.h>
->  #include <linux/export.h>
->  #include <linux/math64.h>
-> +#include <linux/mfd/core.h>
->  #include <linux/mfd/zl3073x.h>
->  #include <linux/mfd/zl3073x_regs.h>
->  #include <linux/module.h>
-> @@ -774,6 +775,20 @@ int zl3073x_dev_probe(struct zl3073x_dev *zldev,
->  	if (rc)
->  		return rc;
->  
-> +	/* Add DPLL sub-device cell for each DPLL channel */
-> +	for (i = 0; i < chip_info->num_channels; i++) {
-> +		struct mfd_cell dpll_dev = MFD_CELL_BASIC("zl3073x-dpll", NULL,
-> +							  NULL, 0, i);
+> [...]
 
-Create a static one of these with the maximum amount of channels.
+Applied to
 
-> +
-> +		rc = devm_mfd_add_devices(zldev->dev, PLATFORM_DEVID_AUTO,
-> +					  &dpll_dev, 1, NULL, 0, NULL);
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Then pass chip_info->num_channels as the 4th argument.
+Thanks!
 
-> +		if (rc) {
-> +			dev_err_probe(zldev->dev, rc,
-> +				      "Failed to add DPLL sub-device\n");
-> +			return rc;
-> +		}
-> +	}
-> +
->  	/* Register the device as devlink device */
->  	devlink = priv_to_devlink(zldev);
->  	devlink_register(devlink);
-> -- 
-> 2.48.1
-> 
+[1/6] ASoC: mediatek: mt8195: Move rt5682 specific dapm routes
+      commit: 0cb1975c717528b662f096b2874e4dae8a9a2d2e
+[2/6] ASoC: mediatek: mt8195: Set ETDM1/2 IN/OUT to COMP_DUMMY()
+      commit: 7af317f7faaab09d5a78f24605057d11f5955115
+[3/6] ASoC: mediatek: mt8195: Add mt8195-mt6359 card
+      commit: 3046e16d0605765ff0c5b99f1fa13fa35312eae9
+[4/6] ASoC: dt-bindings: mt8195: add compatible mt8195_mt6359
+      commit: 95f6208b20e4d0b427d32e5881be4257a3aab3c8
+[5/6] ASoC: dt-bindings: mt8195: add missing audio routing and link-name
+      commit: 5b974f53424d16165b606e2e2f9208d450a5723c
 
--- 
-Lee Jones [李琼斯]
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
