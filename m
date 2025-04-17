@@ -1,116 +1,110 @@
-Return-Path: <devicetree+bounces-168196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95187A91C7B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:39:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69EC0A91C89
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:40:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F88918890FD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:39:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99B295A68B0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C219241663;
-	Thu, 17 Apr 2025 12:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UM7kBt8u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA182441B8;
+	Thu, 17 Apr 2025 12:40:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6787923ED58
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E157D243968
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744893565; cv=none; b=qawesyLCpcqWnH+j9JFmaAvJye0Qp5hkqloDaLWGW6LDK+VhZU4AIxw8CyV0MO3yzFQOSHlDQRouy4GyXiE9zdTSmb4mAfHt9/uNM/mRE26SC5VTWDjhcfrc3uvA6TWLOLIxlKI9LaaB0cODhdk3mg0mfpHo9xPWDmxcVwKcNaM=
+	t=1744893643; cv=none; b=EOVx3lOZHuEhqzqczWaHowEXTG3/VnID+MyEoMFneSlUkhWiubDspTxUVUXXa/0tj9aUVAnfD/9uT+HlNHLhO6xLVCTACayMLenCLTU86GOd6You5gGdeTqaZN6+OTpILKbG6+5L0TWtyId8MU0TdClVqiybugMU+eqoIJ1YPaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744893565; c=relaxed/simple;
-	bh=Q6ls8nXfCLbg6Gn8VXIwtK9f14Vv3gsPMNnsuO1EQsY=;
+	s=arc-20240116; t=1744893643; c=relaxed/simple;
+	bh=mi5sL7/CvHDMCBHx0lnzGhM6BGM7czEnX+UU1vD0W5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZkFKhisPn8Q4C/1ogPM1ykD4twyTWT4Q1fNkWJXFsi2sDsas3uV4RlM1y8w6hThhsZiWVl8L2mCsByVyZqDlXzHfpHUVd055hFZCQEqD37kZ+DJSJuj0V4DCZBXEB+Kc8Wwcg79j7L7N1BUumeGY75kqYmTMdmSkImvWriY0d3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UM7kBt8u; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744893563; x=1776429563;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Q6ls8nXfCLbg6Gn8VXIwtK9f14Vv3gsPMNnsuO1EQsY=;
-  b=UM7kBt8uwhDQ2rYT21MZ/DGqn80UOMO0uajotMHHeiDEVgpAxHHBC/wy
-   EaHKxBLpXHQ1nTyPKWNGToS3bzlkX0ZqsbD/EjeEaNSelu5VCSvC+T9NR
-   bpDupROXXOd6xy7px2RlCzjYyAzjOSpduAUyHbLVnglcj2ZJyL7Q5J42U
-   6mjcMWRmrmqmzsjjpaEdQvqhapdh0xbKAeEgnfUQS/kf/aLHfaeDJAIaW
-   wNETXrn683t0LwzpZoT0p+kuhJlcYBbr1PbC4Lvmo2g8UMo+4LgcQGfE1
-   5LEeHGYoC5kSHSvyg6OogwzPIBWMJAawUzvuJdvRp2yzW3SOHav40YfKR
-   Q==;
-X-CSE-ConnectionGUID: yKRfTd1lSPuBJUxIkMoYCA==
-X-CSE-MsgGUID: mKlpt3dCTaC2Tt+2CKsHUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="64015064"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="64015064"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 05:39:22 -0700
-X-CSE-ConnectionGUID: v43BFzS3RQ+0avd8i/dxCQ==
-X-CSE-MsgGUID: NzuJVe9/TEiFihEIZEYzkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="135757965"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 17 Apr 2025 05:39:21 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u5OWU-000Mim-0S;
-	Thu, 17 Apr 2025 12:39:18 +0000
-Date: Thu, 17 Apr 2025 20:38:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xu Yang <xu.yang_2@nxp.com>, krzk@kernel.org, myungjoo.ham@samsung.com,
-	cw00.choi@samsung.com, robh@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch
- support
-Message-ID: <202504172041.B86u6VMO-lkp@intel.com>
-References: <20250416105940.1572672-2-xu.yang_2@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HbRg0scDenBFOhh5ZGbLRXTjhPPbxkxpD2M4mnn6jljx48CNojzMaOFwGSIvCIWU66vQWyNCxmMSXyT7Pape83dTaLKKGRNFYYMe16/iRxR1GUXBfgezE7TdK6+NgTcp7DNYYcdyP7h6ArAFTze8PseIbZPYl7XGmrYOebtF3V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5OXW-0007dT-AI; Thu, 17 Apr 2025 14:40:22 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5OXV-000kg9-39;
+	Thu, 17 Apr 2025 14:40:21 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5OXV-005xy7-2i;
+	Thu, 17 Apr 2025 14:40:21 +0200
+Date: Thu, 17 Apr 2025 14:40:21 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v8 08/13] net: ethtool: Add PSE port priority
+ support feature
+Message-ID: <aAD2tSgeZS4UNlWN@pengutronix.de>
+References: <20250416-feature_poe_port_prio-v8-0-446c39dc3738@bootlin.com>
+ <20250416-feature_poe_port_prio-v8-8-446c39dc3738@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250416105940.1572672-2-xu.yang_2@nxp.com>
+In-Reply-To: <20250416-feature_poe_port_prio-v8-8-446c39dc3738@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Xu,
+On Wed, Apr 16, 2025 at 03:44:23PM +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> This patch expands the status information provided by ethtool for PSE c33
+> with current port priority and max port priority. It also adds a call to
+> pse_ethtool_set_prio() to configure the PSE port priority.
+> 
+> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+ 
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on krzk-dt/for-next]
-[also build test ERROR on chanwoo-extcon/extcon-next linus/master v6.15-rc2 next-20250417]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Xu-Yang/extcon-ptn5150-Add-Type-C-orientation-switch-support/20250416-185917
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git for-next
-patch link:    https://lore.kernel.org/r/20250416105940.1572672-2-xu.yang_2%40nxp.com
-patch subject: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch support
-config: csky-randconfig-001-20250417 (https://download.01.org/0day-ci/archive/20250417/202504172041.B86u6VMO-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250417/202504172041.B86u6VMO-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504172041.B86u6VMO-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "typec_switch_set" [drivers/extcon/extcon-ptn5150.ko] undefined!
->> ERROR: modpost: "fwnode_typec_switch_get" [drivers/extcon/extcon-ptn5150.ko] undefined!
-
+Thank you!
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
