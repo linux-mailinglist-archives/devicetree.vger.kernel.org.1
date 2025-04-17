@@ -1,243 +1,168 @@
-Return-Path: <devicetree+bounces-168351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF70A92685
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 20:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E006A9267F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 20:14:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25F9E17B56D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7C711664BE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 18:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99AE2566E8;
-	Thu, 17 Apr 2025 18:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C52255E2B;
+	Thu, 17 Apr 2025 18:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J2+ypom3"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YN5gTegz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0542561A2;
-	Thu, 17 Apr 2025 18:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CEE1A3178
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 18:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744913634; cv=none; b=BMZB0fNXoJmHN68VmBGeOgv+CU2ti1NWYy6Q6W8Oc05hPMLWDG2lk5L+25tL4+qPReRo+mPzclU5JNTwo6NT3apDaNIocJTI8asEuPsYFc9wGyQAvPTazYAI+0KD9mBH3MDGeGsKnaikEi9IThPON/cC+LY10EdVOAYsjwnMAhk=
+	t=1744913631; cv=none; b=M0hP9oqw9MPbz9Hx+wVFBgM5ZfMqFortcGLaCAKEUDnbaCpivkdqLAyMWqNOjPwJNod9z5RFbRcUClmODyDHtwps69WdGPHf5qsj4ZZK5DSNKMfAZO76J+TNXqEWJh8aano3caWohGxDEJAFtdQaTdL00ISglhYAOKxFaI3USpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744913634; c=relaxed/simple;
-	bh=jhQcOuzugiusV1wCkewmVx873muTFqglAedGjPVY23w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tGLyzrJMRtVVId+tUM0tAPBgwDNz+rdmEQ/kLOwtOZpXeIZMiAHB2hag2cNcmLMTsA2Li795ipPHmp/1EsCXcmKSZTw8aAhofW51S3+QmzQ1r5OnqwYJSA3sVEQ60Amr28BRomfbYbfqENsyhciUnpKa7L1ZCkc6rnTWoxrtiDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J2+ypom3; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744913632; x=1776449632;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jhQcOuzugiusV1wCkewmVx873muTFqglAedGjPVY23w=;
-  b=J2+ypom3ybiab0tmxYnB4lG08kK+Sls0tZXWPEKIzA/pXXQjp5gFeWRG
-   3htAxfFt3Ql2uWW+7xjPgYeE0iE69HVOaW8EtHM+167pXwvMlbJc55dGO
-   J4HE5x1b+WGCsLgLD6++joEb1yg3NHkMf9eG5c+FSNNK/15H3ot+vV/h1
-   35OVMKVPUBwKLqjjvrspVIEGb6rQnNdD6vwX8BgFzl3QakrvLld/j9pUc
-   3m9NEu5NT4MHufqZ6WaQkOmWa7DCdqDczfRyQPHEHKkLe6saM2SnLmjw1
-   tRzlCF/Fu3DIal0g7XSvvDp3XWU9TY1Z+OzQ37SunEmb43agqed87ODGp
-   A==;
-X-CSE-ConnectionGUID: CwItz0+WRhiMj6vKMFjDjQ==
-X-CSE-MsgGUID: j5ERu+XMSha7JZ0j/Kax6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="57516499"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="57516499"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 11:13:52 -0700
-X-CSE-ConnectionGUID: 8G43IVxDQH25aqgxxkbV7w==
-X-CSE-MsgGUID: QzEElvMvQuGTYcHTJLzjrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; 
-   d="scan'208";a="130843461"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2025 11:13:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1u5Tk7-0000000DHFe-3Nus;
-	Thu, 17 Apr 2025 21:13:43 +0300
-Date: Thu, 17 Apr 2025 21:13:43 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 09/12] gpio: max7360: Add MAX7360 gpio support
-Message-ID: <aAFE18Yn5rtnuooc@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-9-7a2535876e39@bootlin.com>
+	s=arc-20240116; t=1744913631; c=relaxed/simple;
+	bh=mpX+CmBVaCVWcFZGuCrXiu41jZW4H6Ayv+1Rt/1mmGU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kSVlKff8cV/RjRg3XksnnJfB0Hbzp3Nw986HlfiTDmveoShHDKtGKywGBGyWaJpziaz72eAf6xAK36pU6MW46kPqf0HnufTSQiYXwv3cmlbXVGosErEz9luFAHvOEwP+RanHmN8Wdalzx79tc7uYNDnoHo2oXlaIDWsYJ2vUx7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=YN5gTegz; arc=none smtp.client-ip=209.85.161.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-6041e84715eso747961eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 11:13:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1744913628; x=1745518428; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zC8ZJE9fPc4qyAJqoLyq653txnvRnlRjFpjJ7hjJ1Vg=;
+        b=YN5gTegzJFexXkxeC61p2ZanfYjMgNKymx0Hj9+dyJ4R8FG4NFgB17VXQGN8ijLckX
+         3yySnglMu+/nSVYmr14ABbrdGzZn1mvP7ciPEoqSPQX0bieGK4hgh3jS1TAzAQU5SVTB
+         ABMuBUZjKTgqY4H6217uJinUM2qwgkz3Puz88=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744913628; x=1745518428;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zC8ZJE9fPc4qyAJqoLyq653txnvRnlRjFpjJ7hjJ1Vg=;
+        b=w+ziAAYWtIdRbKewTT+IDaoGXoRN9CWElByFhwQ6eHbPH3dsFzhD30mIhHZ/Vugd88
+         QBYS3X0/MxHL2RnSz6d08xu0sJSsWcGaivJShJARQtAlb0z/CeByEDYnkV0sPYNKfNMs
+         YP/umMOxBPpdcsL+lBP/pHLMzDn9vG7eSyhp7RR5LFpUeFHTxHPwGjyfv5Nh1FGdnds/
+         hsBHqvfwMn0rSsJnEoBecrQIPVi8Myv1hBGWWpNv/y/QwWpOwg8aQs8S3AVPkiEg/zRZ
+         Df9SYoAxI7Z9EzBNPQQcr5GWu3FGacvld8Hq5kdz1PDbpUEDNFJm/6TK+KwpPGCndX/1
+         AkXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvLTSCQbNPPuwS1Oi99xNMCp2TqVJF2Ng8VE1gqswV3Dk81oLYvyRLexV0qfpfpOm3iOytTCb+379e@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEkwtMPqGg9AFXlC5Ji/tOgoBm4cOvUaMvnwLss88WJ6svP2Cs
+	+uFBxPbCIMUpmvMZAK2oeN4i05F7oXWDJvxgEU7jhycEPD8yOBBcBJLl6C51SQ==
+X-Gm-Gg: ASbGnctDlwvZi4+/uTl+lXID1JPFsVyXzIC23rQ9mioel/fYxgXNtbHByRYRwizrAE+
+	/APDBiVFqbYmBwz4GhpPCyJZLLYYUCAa2+nP+GxZ+RRsLv5o7/yiHGcX3Pp0Mr7PA1pHUSUpqAi
+	xWEwrOQzLnyjoCvE6uikJTv0DhaSU1ztCWiPXGZz8SpGt28SwlfGGVV+rIHplDw805VWa3ARu2E
+	AG9aOSCM4MGR/gFRoLTNgjUVpcPfgieiB2VNQY2cz1S3tLL9YdI2W9QmrJYZ31o6lZhVVdvJq0T
+	+L4k44HRSlANt41pF285Tlzhv05btGooDZ1lZV1l3oHUyUm16bxNF1E6v+9AZnhUto1ZAVaNifx
+	pbun3
+X-Google-Smtp-Source: AGHT+IHAUz1TIcKTp0qZyVxkurzKipSvBgixZXnaA6wvbeHjZDdrv/X/UeMAeehjDTtmr9wcvRUS2w==
+X-Received: by 2002:a05:6820:1b8d:b0:602:15e6:4559 with SMTP id 006d021491bc7-6060055bb21mr34942eaf.6.1744913628457;
+        Thu, 17 Apr 2025 11:13:48 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-605ff5f7a1dsm51220eaf.20.2025.04.17.11.13.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 11:13:46 -0700 (PDT)
+Message-ID: <84187c48-43bf-41a9-9151-05de335a172a@broadcom.com>
+Date: Thu, 17 Apr 2025 11:13:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409-mdb-max7360-support-v6-9-7a2535876e39@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 4/5] net: bcmasp: Add support for asp-v3.0
+To: Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: rafal@milecki.pl, linux@armlinux.org.uk, hkallweit1@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, pabeni@redhat.com,
+ kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
+ andrew+netdev@lunn.ch
+References: <20250416224815.2863862-1-justin.chen@broadcom.com>
+ <20250416224815.2863862-5-justin.chen@broadcom.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250416224815.2863862-5-justin.chen@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 09, 2025 at 04:55:56PM +0200, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
+On 4/16/25 15:48, Justin Chen wrote:
+> The asp-v3.0 is a major HW revision that reduced the number of
+> channels and filters. The goal was to save cost by reducing the
+> feature set.
 > 
-> Two sets of GPIOs are provided by the device:
-> - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities.
->   These GPIOs also provide interrupts on input changes.
-> - Up to 6 GPOs, on unused keypad columns pins.
+> Changes for asp-v3.0
+> - Number of network filters were reduced.
+> - Number of channels were reduced.
+> - EDPKT stats were removed.
+> - Fix a bug with csum offload.
+> 
+> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> ---
 
-...
+[snip]
 
-> +#include <linux/bitfield.h>
-> +#include <linux/bitmap.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-
-> +#include <linux/slab.h>
-
-I don't think you use this header directly.
-
-...
-
-> +static int max7360_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap_irq_chip *irq_chip;
-> +	struct gpio_regmap_config gpio_config = { };
-> +	struct device *dev = &pdev->dev;
-> +	unsigned long gpio_function;
-> +	struct regmap *regmap;
-> +	unsigned int outconf;
-> +	int ret;
+>   MODULE_DEVICE_TABLE(of, bcmasp_mdio_of_match);
+> @@ -1285,6 +1310,17 @@ static int bcmasp_probe(struct platform_device *pdev)
+>   	 * how many interfaces come up.
+>   	 */
+>   	bcmasp_core_init(priv);
 > +
-> +	regmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!regmap)
-> +		return dev_err_probe(dev, -ENODEV, "could not get parent regmap\n");
+> +	priv->mda_filters = devm_kzalloc(dev, sizeof(*priv->mda_filters)
+> +					 * priv->num_mda_filters, GFP_KERNEL);
 
-> +	gpio_function = (uintptr_t)device_get_match_data(dev);
+Nit: those are candidates for devm_kcalloc().
 
-Somebody pointed me out the Linus' rant on uintptr_t, so he prefers not to see
-this in the entire kernel. He suggested to use (unsigned long), but ideally one
-should operate with the info structures instead.
+> +	if (!priv->mda_filters)
+> +		return -ENOMEM;
+> +
+> +	priv->net_filters = devm_kzalloc(dev, sizeof(*priv->net_filters)
+> +					 * priv->num_net_filters, GFP_KERNEL);
 
-...
-
-> +	if (gpio_function == MAX7360_GPIO_PORT) {
-> +		if (device_property_read_bool(dev, "interrupt-controller")) {
-> +			/*
-> +			 * Port GPIOs with interrupt-controller property: add IRQ
-> +			 * controller.
-> +			 */
-> +			gpio_config.regmap_irq_flags = IRQF_ONESHOT | IRQF_SHARED;
-> +			gpio_config.regmap_irq_irqno =
-> +				fwnode_irq_get_byname(dev_fwnode(dev->parent), "inti");
-> +			if (gpio_config.regmap_irq_irqno < 0)
-> +				return dev_err_probe(dev, gpio_config.regmap_irq_irqno,
-> +						     "Failed to get IRQ\n");
-> +
-> +			irq_chip = devm_kzalloc(dev, sizeof(*irq_chip), GFP_KERNEL);
-> +			gpio_config.regmap_irq_chip = irq_chip;
-> +			if (!irq_chip)
-> +				return -ENOMEM;
-> +
-> +			irq_chip->name = dev_name(dev);
-> +			irq_chip->status_base = MAX7360_REG_GPIOIN;
-> +			irq_chip->status_is_level = true;
-> +			irq_chip->num_regs = 1;
-> +			irq_chip->num_irqs = MAX7360_MAX_GPIO;
-> +			irq_chip->irqs = max7360_regmap_irqs;
-> +			irq_chip->handle_mask_sync = max7360_handle_mask_sync;
-> +			irq_chip->irq_drv_data = regmap;
-> +
-> +			for (unsigned int i = 0; i < MAX7360_MAX_GPIO; i++) {
-> +				ret = regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
-> +							MAX7360_PORT_CFG_INTERRUPT_EDGES,
-> +							MAX7360_PORT_CFG_INTERRUPT_EDGES);
-> +				if (ret)
-> +					return dev_err_probe(dev, ret,
-> +							     "Failed to enable interrupts\n");
-> +			}
-> +		}
-> +
-> +		/*
-> +		 * Port GPIOs: set output mode configuration (constant-current or not).
-> +		 * This property is optional.
-> +		 */
-> +		outconf = 0;
-> +		ret = device_property_read_u32(dev, "maxim,constant-current-disable", &outconf);
-> +		if (!ret) {
-> +			ret = regmap_write(regmap, MAX7360_REG_GPIOOUTM, outconf);
-> +			if (ret)
-> +				return dev_err_probe(dev, ret,
-> +						     "Failed to set constant-current configuration\n");
-> +		}
-
-This will look better as if-else:
-
-		ret = device_property_read_u32(dev, "maxim,constant-current-disable", &outconf);
-		if (ret) {
-			outconf = 0;
-		} else {
-			ret = regmap_write(regmap, MAX7360_REG_GPIOOUTM, outconf);
-			if (ret)
-				return dev_err_probe(dev, ret,
-						     "Failed to set constant-current configuration\n");
-		}
-
-> +	}
-> +
-> +	/* Add gpio device. */
-> +	gpio_config.parent = dev;
-> +	gpio_config.regmap = regmap;
-> +	if (gpio_function == MAX7360_GPIO_PORT) {
-> +		gpio_config.ngpio = MAX7360_MAX_GPIO;
-> +		gpio_config.reg_dat_base = GPIO_REGMAP_ADDR(MAX7360_REG_GPIOIN);
-> +		gpio_config.reg_set_base = GPIO_REGMAP_ADDR(MAX7360_REG_PWMBASE);
-> +		gpio_config.reg_dir_out_base = GPIO_REGMAP_ADDR(MAX7360_REG_GPIOCTRL);
-> +		gpio_config.ngpio_per_reg = MAX7360_MAX_GPIO;
-> +		gpio_config.reg_mask_xlate = max7360_gpio_reg_mask_xlate;
-> +	} else {
-> +		ret = max7360_set_gpos_count(dev, regmap);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to set GPOS pin count\n");
-> +
-> +		gpio_config.reg_set_base = GPIO_REGMAP_ADDR(MAX7360_REG_PORTS);
-> +		gpio_config.ngpio = MAX7360_MAX_KEY_COLS;
-> +		gpio_config.init_valid_mask = max7360_gpo_init_valid_mask;
-> +	}
-> +
-> +	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &gpio_config));
-> +}
+Likewise.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Florian
 
