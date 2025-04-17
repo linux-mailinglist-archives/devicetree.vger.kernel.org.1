@@ -1,236 +1,546 @@
-Return-Path: <devicetree+bounces-168267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E5AA92038
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:50:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9638AA92061
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:58:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8D3C3BA9AE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:50:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1513D19E61F0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129652528E8;
-	Thu, 17 Apr 2025 14:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964122528E1;
+	Thu, 17 Apr 2025 14:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="aPfXkfuJ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="m3IyPNV5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2066.outbound.protection.outlook.com [40.107.21.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF42F2475CB
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 14:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744901441; cv=none; b=jtSQ/yxpjVirWttjztxHWokM5/bU7QYPARbhCj6RyRimBhFM/+1fAjhopZb5WPhjOvWu0zosfeEHjR9t2y5O++TJrJXS5+SufM5+iM7YykFf5iVjlgLw2xKll/7Hzsj2ipAoK8TIF1n6pJilNn0WNhh/QJr/16uuK1MkNJ9eXtQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744901441; c=relaxed/simple;
-	bh=lfFcddiYY0f2/ajdCn13Ssqz/6k7ckZ4gPrPUQzxMQg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBjd9Xl1FILRmYIoBZOhCfel/ZRiWJ/17IEwuMI66k3ig4OWNE6HIQqxoL0eD8BskfoYDhETF1KQLJzeie39kYxbktMdadEDUrBUX5GbkT4Sw2URH/UHCTJpeMvdZeM0S/76WvZNWbcS0cYicxtaWToHnx9HjS3qQtL+Kum2EeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=aPfXkfuJ; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744901438;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n69F12b8gb5rkYnrsYjWLffA9DRH6Ubd/djGhMzPmIg=;
-	b=aPfXkfuJG4wLNN0frXzQgXp8hYJhexfwfA7NGu2xGeJyM3jVmfiYJllwTStQ/1A0pEwvhP
-	eErgtegkz/aHVVrAKLxjO4sgZNbqZ15Uw3SJhdEuTMFbwYoCOIo5OgBV8PIqLGQ2wttORb
-	x/abiBjWHml7pNpk57QqggHWEMdQm04=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-541-0BTaddYTPTi8ReVuyeNSuw-1; Thu,
- 17 Apr 2025 10:50:35 -0400
-X-MC-Unique: 0BTaddYTPTi8ReVuyeNSuw-1
-X-Mimecast-MFC-AGG-ID: 0BTaddYTPTi8ReVuyeNSuw_1744901433
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C42B719560AD;
-	Thu, 17 Apr 2025 14:50:32 +0000 (UTC)
-Received: from [10.44.33.28] (unknown [10.44.33.28])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 4AE8E19560A3;
-	Thu, 17 Apr 2025 14:50:27 +0000 (UTC)
-Message-ID: <03afdbe9-8f55-4e87-bec4-a0e69b0e0d86@redhat.com>
-Date: Thu, 17 Apr 2025 16:50:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FE42517A7;
+	Thu, 17 Apr 2025 14:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744901890; cv=fail; b=oZ63+59F1yEP0YmPgSipNX9xtRjhEzfK2oG8rR83zH/enamJzJQBgoZnZVVNiiIJSSR1XH6drbP354Q8VNh4voemZ3IrWxZOoXbMSMaCiQZ8l28humhN6hGiTJLH9Gkx31MYCxxYQV4j6a64zzFzu18FeFJ3JNk04QqoKXzox+g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744901890; c=relaxed/simple;
+	bh=/bW6xqCdvm8BPZPwOo33YkovRiPxNBWPVaCn1Q0NXU8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MJxvIoEKHjwLzp27GCE1K+F3mtjGHWJwUE+XI04hu++zKvL5QgAL0fi92emtARDXmOJlB8OEj4DEKeoltM15k22S+abGEJ+fJYNh7NdhzUXwJmn39Ojyy8gMm5eXQpJGpcrhWTE0pNp1ib11EQPcXPk+RJJ0zhIjZYS2aveo+h8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=m3IyPNV5; arc=fail smtp.client-ip=40.107.21.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NQuJvKZ9a5E0hffIOheAMTi/OXx06k6/Y674cXfRBnYE2ZfRxzWGDUeQHUXqKBCGkPlL0ngFk2m/9dnuvhBpqK67L2Q2YWoDfX/TsN4EpU5ES174xKQKD+tJK+oaszpGhrvHlVQkobi2ZSvyZWWotGQCQD6TUDDiWhpKXdCVe7FsXqxvSz5RGpyOIH4uxE/1LZ7wjqW5nKExOrRif7waxza58fP5gbVlREQruIMKZIS76IOMYwhSvRSCwY5/4kkIbNVeJGRmfMhFT3ETy0B07eiR9ThbKlQ75k7+BqeZICxBzq+U2rHZOWXEtQIgrqDPLhOGzjRvS1P9EHffjU8igQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q84IkEPMpqSOBlm5UmYmQLhggw7ll6HBtAnErTlTk2c=;
+ b=MlJeEQojxZJVBIlHp7sO7Rc8lU5Yfw7nJ3+aoZdPYkIXn4/T9j0Cx6oo8Ve6XY55mxGNYfNQmCHBNfMvBI2XrO+w1g4AbrmvcLuSRjbqwzjugWajtth1oHywK6h0b7y62hemf6XoRPx271dlRWz6GJt87yhNWDrIyZUFnOpZvuEEzs3M9FA8ualBK2Vl4Vjy3XRfec1EkWYGZszYm6SvywYMvz9SgzWj6Xtr7px6FSLZqxxza7inCzZltHjnvUxKDf14wgYsrmkkN6+sLgb/6Lfi4vkBA3lzZ246VeAkfhcX1hcGfQC/OsKbu/G1V6/kqDEa7LfLrT0E9rq7WdzTLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q84IkEPMpqSOBlm5UmYmQLhggw7ll6HBtAnErTlTk2c=;
+ b=m3IyPNV5T+5SRjiA9LL+pqVsF1B3FlgzWmyFMEjQz8M0m7wB0yYv+xl/uppfANYm1cAGWHTlxaViP678x9tW5m0sHcbVX+pIywGPXKWG7jzw5g3mK5FVJoH4QYbZ0s7Dx+BaokJNI6JlwjeSsuflqjYPOvw3ZnKMjRro5jQVqwbfLtsProrM88fxqwHa05A1MIoNwkD3P/5ToMzVALPk5iSxlBvjcaEWn5y/mdMSBrq4IF/EGUVpuEpWtzl2RoWf4OP7gba/YdofOSVm5AfrvHUDgihVdlFZkRTCUaBe2onOaBN/OWbYQvcMXFeUmAmwW2fHyDPL91cXL8YZaZM70A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA1PR04MB10603.eurprd04.prod.outlook.com (2603:10a6:102:484::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.28; Thu, 17 Apr
+ 2025 14:58:02 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.035; Thu, 17 Apr 2025
+ 14:58:01 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR FREESCALE IMX 5/6),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: display: imx: convert ldb.txt to yaml format
+Date: Thu, 17 Apr 2025 10:57:41 -0400
+Message-Id: <20250417145742.3568572-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH7PR10CA0003.namprd10.prod.outlook.com
+ (2603:10b6:510:23d::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 net-next 3/8] mfd: Add Microchip ZL3073x support
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-4-ivecera@redhat.com>
- <8fc9856a-f2be-4e14-ac15-d2d42efa9d5d@lunn.ch>
- <CAAVpwAsw4-7n_iV=8aXp7=X82Mj7M-vGAc3f-fVbxxg0qgAQQA@mail.gmail.com>
- <894d4209-4933-49bf-ae4c-34d6a5b1c9f1@lunn.ch>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <894d4209-4933-49bf-ae4c-34d6a5b1c9f1@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10603:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ee0f721-77e4-4c2b-476b-08dd7dc03f85
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|52116014|376014|1800799024|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?aXKL57rnm/9j+DEULveSwslXJzr0a6y6qHAhDXJfIB9VUU5ZIo92IbWCrxrq?=
+ =?us-ascii?Q?Yc1azda/P6VHXXLZFao0WSxyKLqSsLzeGp3DiNcatgsS9emO36I5pwyCL1bD?=
+ =?us-ascii?Q?98IooiV6L3Q6piFcsQfUmbMiQnvPhZX2rv/iuWA753utmmEvosGqsNklKi/J?=
+ =?us-ascii?Q?6QNshPVpjoRtI/nURxGmbtQTb2lSgyNzSpGQEV5Zal6fBBg6acMkqCvrODGU?=
+ =?us-ascii?Q?TUqH9E43yq7+h4PtRTQB1avOK0+Lb08HTvdmYR5Wn/+iJmYxCd3kSYqWS+Ul?=
+ =?us-ascii?Q?ZgcYippQFVeXqpnpSncZE7mcc6ujrrSv6WWDg0ROvx7Ks9soYtyOj5rFCzkt?=
+ =?us-ascii?Q?WuaGARmk9GrHN1eoJUVHQZ9yoAhPgbT5jEVyrcB39GXFc0WaxzN5wEHvM8JQ?=
+ =?us-ascii?Q?KG2jLtsKC3iQDmw7lA9rocClUestYgrOeEz67zLfmeHzPyeTnJmeIDy4oksb?=
+ =?us-ascii?Q?Wx9Ebm5FBm4+qdQKW0gvjAaD2/w9XapZE66QQPONiHVgSI0ZNW4oQpTXRFw2?=
+ =?us-ascii?Q?OQsao2ZUFmQCsez0dbvLxNB4oMIXM4JuftfpKC/WGhWX9fz1TMXomW8tEMJJ?=
+ =?us-ascii?Q?Q97PR/JU4zIcjr8hrfF1iJ8Dxf9f5rst2nTj+pvG1/niNk7nvCzH7PpcSYyO?=
+ =?us-ascii?Q?LvyxrF2OK3FMyvvtda8FPEudYqK/JOueaDTRG99ExNUzI3wEgPQ/dKzmgN0C?=
+ =?us-ascii?Q?x819Hu1eHh7tou6C52Q2jjXdX8KD3Q/rw+RazLCqt9xnvYKGNMwrBty08fPo?=
+ =?us-ascii?Q?DpdlBJywzzVS3qLy+XMcSyTtSm5F4Drld4hixgBnSfUHquCRKHyImEgfznBF?=
+ =?us-ascii?Q?njlSL/Ef4J5u2rKz9jq0+UXA5GVhW+LR5GhRMeGVqKzL1HbVtLgfK+/tMgxu?=
+ =?us-ascii?Q?buhrm+A9B6Aww9QiZMaB014OPq+a+RArGHgtwr9tEgMnG8S7MUJ7VP0oeG7Z?=
+ =?us-ascii?Q?AO/UrUZOwLoSycl6fjBLSeBwsWrx1JRF4yyvpvaQvBCYk2eMu8NQFBjK3/cL?=
+ =?us-ascii?Q?NcEhjJcQiLHrHlmZ+AvdNsnfMuXPhuq61jHupomI5zVBTgQLt0R0+Y1EISwW?=
+ =?us-ascii?Q?O4+M7LVp0sZjH+9xOdDONX+jBq6t8CpV04jGQ/YNfLfm7JD3kcloyd+veTtI?=
+ =?us-ascii?Q?ObibH9ApK7ZR99c+QhsYexgSD9QcJ6z8+WVeciSVJecsCyjA/POBeZ6rj+6U?=
+ =?us-ascii?Q?Zsb4i/lfmfrRndUPGBia/6gmm996P9E5l+J4Yu9d57t7z+S/0v3tqvKGavnv?=
+ =?us-ascii?Q?SEJ5J0MhC8H5dcC4VnMnYMAlEAvHE0ouajpqRNgLcHf+zQ85CSjO/lLrpvqe?=
+ =?us-ascii?Q?/4ZXRIJC7JeHHfOMwnTecNC/gcJCO0L1a2ttKNyxKowYCcL38tKctQIgflak?=
+ =?us-ascii?Q?bgu0HCqr1whm1NCjJUVpKxqNAZTuklzvxU8lV8xFFzk7GV2kWO78f1o7D86T?=
+ =?us-ascii?Q?LTHVajm2bCY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?k8gAkKZVSIYit0d7P2TLw+ps5+wImqiGVggPuJ74DVjmVOXptuKYU4cq2yBI?=
+ =?us-ascii?Q?k+XPdWS2R/OPZK2HdduMhy1ukhv1Wx0ptmkayr+KVizSUcJx5UGSevgwZyQK?=
+ =?us-ascii?Q?14anDpSB6lglWpofAhiQAs9H4CHqV/IwJXsLr4M1/r/P4AGFVKO6tDm087jA?=
+ =?us-ascii?Q?scaKg0q2JWI9aFsS0/iH9fVakV4UgCKsRviW43vDgroXgtPTyn05RRpSYyt6?=
+ =?us-ascii?Q?QthGWenVgZ3rnOaQCri1u9dN9dv6s7FL1ZMXhi76pveWOgsEuz4MLafdtLOR?=
+ =?us-ascii?Q?aHwFn594qTjglg3lI+22uT0OreKyrPxRgS7NJskfTA9KRsY6CnyvEWpwRDzE?=
+ =?us-ascii?Q?obkn7xKmiw1XpQ19Fk5rfaNnqFWiiLYIy6Aq7UqMasUlLOdHaDIooapBDBSm?=
+ =?us-ascii?Q?eIK5gYv9VwZAnPPDFaZBdOWd4oek9yv1ktH57tSLmjzisjNfiBoWQz8gNX4b?=
+ =?us-ascii?Q?2mhqeo7Z0q8782EBOijto+N8gCeSPrFvTvRBeXOHMkHsHUdqw06w/J5v8SfV?=
+ =?us-ascii?Q?spAX8BLk5XAsW7jHrYmIhWQ058U6ePT3+IVzWjb4XVEANgSKd3nsgW776zss?=
+ =?us-ascii?Q?MnuFObv3FoCaMGJROjyAeFl2q7YnJy9G2xb7Pk3KFx4VY3zyixTIkndhiPIL?=
+ =?us-ascii?Q?mHEirxzfeRw2BlSBgoNyq5ZtMYGu9pyrNJg+3OmjtvEcLSKoJYkBJpQ88Dmr?=
+ =?us-ascii?Q?M+jO0fmxEYUJ/d+j6SdWCwi3Tx19uHi/D6Ll+yVGXxTBAom9QmoGImwnWSKd?=
+ =?us-ascii?Q?ycqgsbrNXJlmf8qc0D5aeyLaSEexyvW1TzVsM4GuCH/jCZ9ZSHree4D9eOsE?=
+ =?us-ascii?Q?ce/bbqpTGH0d/9/f88RV6LA+WBFXYlUFarkq4xw7GlBzihNcoXNRIcAbS5rN?=
+ =?us-ascii?Q?SrXn/ulCCx6NXzuWjIob4EeR0YPH+/WXwkipwSCA88CVcj/Gq85YP40OZIqL?=
+ =?us-ascii?Q?ZfK5juKrQrMw/E7JxX8cmmYCt7zyGJcHjwHp9Ktboe8sFIChmJ1o5MNzkbIo?=
+ =?us-ascii?Q?FU94PMUnzrNX7iyTFw7NJ3FkVtTZ2kEx872Jd6VADMhhEB+Uo2WY28OGa1ki?=
+ =?us-ascii?Q?FAFonjKt5L6ZHqmq78MIDhOIiUq+/5gskyD1/O/U+TYpirKpvF66myO36hve?=
+ =?us-ascii?Q?h4pDZ/+b8lGl+ZQk7+Gi7hp5wFdlLHy+nlOjdOYoosQ2WNxkM080icFYWRrd?=
+ =?us-ascii?Q?j3FiI9bw1BB4uhScow34uc0kzp2GedlSuGdSOncGaCDZuDzrd7npcEyRIj8B?=
+ =?us-ascii?Q?5Uzo6Oe9q5BhlRwmMXv0YRH7tZVx936VQy3HxnMWlLMHR0G539QgUkkDBGX2?=
+ =?us-ascii?Q?2eRcH+M/vx8xgEJHvaB2KJDEwsJ3IFGVN/1Uhm2shbIPi8evX2izBaYHpyMm?=
+ =?us-ascii?Q?Q3nf6NSv15mKf2sReAeDE7KSsldnmYtuRwPz32ZrYf+I2BhfZbuS7S3pFTLc?=
+ =?us-ascii?Q?OxiNVfMQXnFNWQMLKDFhanZWIUCZkBm1yTBDw+dxob/jjAPLX54/ZdUOks+5?=
+ =?us-ascii?Q?S/Yu7CiYSRpQ7wnUusgtCFOzJHju811v9Lj0lvwmgYELMehx9l5EhL7JBPvG?=
+ =?us-ascii?Q?NwGjJ7rm6fsHblqp8YE=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ee0f721-77e4-4c2b-476b-08dd7dc03f85
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 14:58:01.3742
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XM2Bg6L8svV2ZYZXugM4lHfoOUufrmfQVAvBbVAJcdmpdby855s6mG2pu0OJn5NDbCl0Oy6fZuuLjnd3VpQLWg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10603
 
+Convert ldb.txt to yaml format.
 
+Additional changes
+- fix clock-names order to match existed dts file.
+- remove lvds-panel and iomuxc-gpr node in examples.
+- fsl,imx6q-ldb fail back to fsl,imx53-ldb.
+- add fsl,panel property to match existed dts.
 
-On 17. 04. 25 3:13 odp., Andrew Lunn wrote:
-> On Wed, Apr 16, 2025 at 08:19:25PM +0200, Ivan Vecera wrote:
->> On Wed, Apr 16, 2025 at 7:11 PM Andrew Lunn <andrew@lunn.ch> wrote:
->>
->>      > +++ b/include/linux/mfd/zl3073x_regs.h
->>      > @@ -0,0 +1,105 @@
->>      > +/* SPDX-License-Identifier: GPL-2.0-only */
->>      > +
->>      > +#ifndef __LINUX_MFD_ZL3073X_REGS_H
->>      > +#define __LINUX_MFD_ZL3073X_REGS_H
->>      > +
->>      > +#include <asm/byteorder.h>
->>      > +#include <linux/lockdep.h>
->>
->>      lockdep?
->>
->>
->> lockdep_assert*() is used in later introduced helpers.
-> 
-> nitpicking, but you generally add headers as they are needed.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change from v1 to v2
+- use oneof in clock-names. imx6dl use imx6q-ldb comaptible string, but
+the clock-names is the same as imx53. To reduce dts impact, use oneof to
+allow two group clock-names list
+- fix typo pannel
+---
+ .../bindings/display/imx/fsl,imx6q-ldb.yaml   | 194 ++++++++++++++++++
+ .../devicetree/bindings/display/imx/ldb.txt   | 146 -------------
+ 2 files changed, 194 insertions(+), 146 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/imx/ldb.txt
 
-+1
-
-
->>      > +#include <linux/mfd/zl3073x.h>
->>      > +#include <linux/regmap.h>
->>      > +#include <linux/types.h>
->>      > +#include <linux/unaligned.h>
->>      > +
->>      > +/* Registers are mapped at offset 0x100 */
->>      > +#define ZL_RANGE_OFF        0x100
->>      > +#define ZL_PAGE_SIZE        0x80
->>      > +#define ZL_REG_ADDR(_pg, _off) (ZL_RANGE_OFF + (_pg) * ZL_PAGE_SIZE +
->>      (_off))
->>      > +
->>      > +/**************************
->>      > + * Register Page 0, General
->>      > + **************************/
->>      > +
->>      > +/*
->>      > + * Register 'id'
->>      > + * Page: 0, Offset: 0x01, Size: 16 bits
->>      > + */
->>      > +#define ZL_REG_ID ZL_REG_ADDR(0, 0x01)
->>      > +
->>      > +static inline __maybe_unused int
->>      > +zl3073x_read_id(struct zl3073x_dev *zldev, u16 *value)
->>      > +{
->>      > +     __be16 temp;
->>      > +     int rc;
->>      > +
->>      > +     rc = regmap_bulk_read(zldev->regmap, ZL_REG_ID, &temp, sizeof
->>      (temp));
->>      > +     if (rc)
->>      > +             return rc;
->>      > +
->>      > +     *value = be16_to_cpu(temp);
->>      > +     return rc;
->>      > +}
->>
->>      It seems odd these are inline functions in a header file.
->>
->>
->> There are going to be used by dpll_zl3073x sub-driver in series part 2.
-> 
-> The subdriver needs to know the ID, firmware version, etc?
-
-No
-
-> Anyway, look around. How many other MFD, well actually, any sort of
-> driver at all, have a bunch of low level helpers as inline functions
-> in a header? You are aiming to write a plain boring driver which looks
-> like every other driver in Linux....
-
-Well, I took inline functions approach as this is safer than macro usage
-and each register have own very simple implementation with type and
-range control (in case of indexed registers).
-
-It is safer to use:
-zl3073x_read_ref_config(..., &v);
-...
-zl3073x_read_ref_config(..., &v);
-
-than:
-zl3073x_read_reg8(..., ZL_REG_REF_CONFIG, &v);
-...
-zl3073x_read_reg16(..., ZL_REG_REF_CONFIG, &v); /* wrong */
-
-With inline function defined for each register the mistake in the 
-example cannot happen and also compiler checks that 'v' has correct type.
-
-> Think about your layering. What does the MFD need to offer to sub
-> drivers so they can work? For lower registers, maybe just
-> zl3073x_read_u8(), zl3073x_read_u16() & zl3073x_read_read_u32(). Write
-> variants as well. Plus the API needed to safely access the mailbox.
-> Export these using one of the EXPORT_SYMBOL_GPL() variants, so the sub
-> drivers can access them. The #defines for the registers numbers can be
-> placed into a shared header file.
-
-Would it be acceptable for you something like this:
-
-int zl3073x_read_reg{8,16,32,48}(..., unsigned int reg, u{8,16,32,64} *v);
-int zl3073x_write_reg{8,16,32,48}(..., unsigned int reg, u{8,16,32,64} v);
-int zl3073x_read_idx_reg{8,16,32,48}(..., unsigned int reg, unsigned int 
-idx, unsigned int max_idx, unsigned int stride, u{8,16,32,64} *v);
-int zl3073x_write_idx_reg{8,16,32,48}(..., unsigned int reg, unsigned 
-int idx, unsigned int max_idx, unsigned int stride, u{8,16,32,64} v);
-
-/* Simple non-indexed register */
-#define ZL_REG_ID	ZL_REG_ADDR(0 /* page */, 0x01 /* offset */
-#define ZL_REG_ID_BITS	8
-
-/* Simple indexed register */
-#define ZL_REG_REF_STATUS	ZL_REG_ADDR(2, 0x44)
-#define ZL_REG_REF_STATUS_BITS	16
-#define ZL_REG_REF_STATUS_ITEMS	10
-#define ZL_REG_REF_STATUS_STRIDE 2
-
-/* Read macro for non-indexed register */
-#define ZL3073X_READ_REG(_zldev, _reg, _v)	\
-	__PASTE(zl3073x_read_reg, _reg##_BITS)(_zldev, _reg, _v)
-
-/* For indexed one */
-#define ZL3073X_READ_IDX_REG(_zldev, _reg, _idx, _v)	\
-	__PASTE(zl3073x_read_idx_reg, _reg##_BITS)(_zldev, _reg, _v,
-						   _idx, \
-						   _reg##_ITEMS, \
-						   _reg##_STRIDE, _v)
-
-This would allow to call simply
-ZL3073X_READ_REG(zldev, ZL_REG_ID, &val);
-or
-ZL3073X_READ_IDX_REG(zldev, ZL_REG_REF_STATUS, 4);
-
-and caller does not need to know register size and range constraints.
-
-WDYT?
-
-Thanks,
-Ivan
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml
+new file mode 100644
+index 0000000000000..0f0a229956b78
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml
+@@ -0,0 +1,194 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/imx/fsl,imx6q-ldb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale LVDS Display Bridge (ldb)
++
++description:
++  The LVDS Display Bridge device tree node contains up to two lvds-channel
++  nodes describing each of the two LVDS encoder channels of the bridge.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,imx53-ldb
++      - items:
++          - enum:
++              - fsl,imx6q-ldb
++          - const: fsl,imx53-ldb
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  gpr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle points to the iomuxc-gpr region containing the LVDS
++      control register.
++
++  clocks:
++    minItems: 6
++    maxItems: 8
++
++  clock-names:
++    oneOf:
++      - items:
++          - const: di0_pll
++          - const: di1_pll
++          - const: di0_sel
++          - const: di1_sel
++          - const: di0
++          - const: di1
++      - items:
++          - const: di0_pll
++          - const: di1_pll
++          - const: di0_sel
++          - const: di1_sel
++          - const: di2_sel
++          - const: di3_sel
++          - const: di0
++          - const: di1
++
++  fsl,dual-channel:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      if it exists, only LVDS channel 0 should
++      be configured - one input will be distributed on both outputs in dual
++      channel mode
++
++patternProperties:
++  '^lvds-channel@[0-1]$':
++    type: object
++    description:
++      Each LVDS Channel has to contain either an of graph link to a panel device node
++      or a display-timings node that describes the video timings for the connected
++      LVDS display as well as the fsl,data-mapping and fsl,data-width properties.
++
++    properties:
++      reg:
++        maxItems: 1
++
++      '#address-cells':
++        const: 1
++
++      '#size-cells':
++        const: 0
++
++      display-timings:
++        $ref: /schemas/display/panel/display-timings.yaml#
++
++      fsl,data-mapping:
++        enum:
++          - spwg
++          - jeida
++
++      fsl,data-width:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: should be <18> or <24>
++        enum:
++          - 18
++          - 24
++
++      fsl,panel:
++        $ref: /schemas/types.yaml#/definitions/phandle
++        description: phandle to lcd panel
++
++    patternProperties:
++      '^port@[0-4]$':
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          On i.MX5, the internal two-input-multiplexer is used. Due to hardware
++          limitations, only one input port (port@[0,1]) can be used for each channel
++          (lvds-channel@[0,1], respectively).
++          On i.MX6, there should be four input ports (port@[0-3]) that correspond
++          to the four LVDS multiplexer inputs.
++          A single output port (port@2 on i.MX5, port@4 on i.MX6) must be connected
++          to a panel input port. Optionally, the output port can be left out if
++          display-timings are used instead.
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - gpr
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx5-clock.h>
++
++    ldb@53fa8008 {
++        compatible = "fsl,imx53-ldb";
++        reg = <0x53fa8008 0x4>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        gpr = <&gpr>;
++        clocks = <&clks IMX5_CLK_LDB_DI0_SEL>,
++                 <&clks IMX5_CLK_LDB_DI1_SEL>,
++                 <&clks IMX5_CLK_IPU_DI0_SEL>,
++                 <&clks IMX5_CLK_IPU_DI1_SEL>,
++                 <&clks IMX5_CLK_LDB_DI0_GATE>,
++                 <&clks IMX5_CLK_LDB_DI1_GATE>;
++        clock-names = "di0_pll", "di1_pll",
++                      "di0_sel", "di1_sel",
++                      "di0", "di1";
++
++        /* Using an of-graph endpoint link to connect the panel */
++        lvds-channel@0 {
++                reg = <0>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    endpoint {
++                        remote-endpoint = <&ipu_di0_lvds0>;
++                    };
++                };
++
++                port@2 {
++                    reg = <2>;
++
++                    endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++               };
++        };
++
++        /* Using display-timings and fsl,data-mapping/width instead */
++        lvds-channel@1 {
++                reg = <1>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                fsl,data-mapping = "spwg";
++                fsl,data-width = <24>;
++
++                display-timings {/* ... */
++                };
++
++                port@1 {
++                     reg = <1>;
++
++                     endpoint {
++                         remote-endpoint = <&ipu_di1_lvds1>;
++                     };
++                };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/display/imx/ldb.txt b/Documentation/devicetree/bindings/display/imx/ldb.txt
+deleted file mode 100644
+index 03653a291b549..0000000000000
+--- a/Documentation/devicetree/bindings/display/imx/ldb.txt
++++ /dev/null
+@@ -1,146 +0,0 @@
+-Device-Tree bindings for LVDS Display Bridge (ldb)
+-
+-LVDS Display Bridge
+-===================
+-
+-The LVDS Display Bridge device tree node contains up to two lvds-channel
+-nodes describing each of the two LVDS encoder channels of the bridge.
+-
+-Required properties:
+- - #address-cells : should be <1>
+- - #size-cells : should be <0>
+- - compatible : should be "fsl,imx53-ldb" or "fsl,imx6q-ldb".
+-                Both LDB versions are similar, but i.MX6 has an additional
+-                multiplexer in the front to select any of the four IPU display
+-                interfaces as input for each LVDS channel.
+- - gpr : should be <&gpr> on i.MX53 and i.MX6q.
+-         The phandle points to the iomuxc-gpr region containing the LVDS
+-         control register.
+-- clocks, clock-names : phandles to the LDB divider and selector clocks and to
+-                        the display interface selector clocks, as described in
+-                        Documentation/devicetree/bindings/clock/clock-bindings.txt
+-        The following clocks are expected on i.MX53:
+-                "di0_pll" - LDB LVDS channel 0 mux
+-                "di1_pll" - LDB LVDS channel 1 mux
+-                "di0" - LDB LVDS channel 0 gate
+-                "di1" - LDB LVDS channel 1 gate
+-                "di0_sel" - IPU1 DI0 mux
+-                "di1_sel" - IPU1 DI1 mux
+-        On i.MX6q the following additional clocks are needed:
+-                "di2_sel" - IPU2 DI0 mux
+-                "di3_sel" - IPU2 DI1 mux
+-        The needed clock numbers for each are documented in
+-        Documentation/devicetree/bindings/clock/imx5-clock.yaml, and in
+-        Documentation/devicetree/bindings/clock/imx6q-clock.yaml.
+-
+-Optional properties:
+- - pinctrl-names : should be "default" on i.MX53, not used on i.MX6q
+- - pinctrl-0 : a phandle pointing to LVDS pin settings on i.MX53,
+-               not used on i.MX6q
+- - fsl,dual-channel : boolean. if it exists, only LVDS channel 0 should
+-   be configured - one input will be distributed on both outputs in dual
+-   channel mode
+-
+-LVDS Channel
+-============
+-
+-Each LVDS Channel has to contain either an of graph link to a panel device node
+-or a display-timings node that describes the video timings for the connected
+-LVDS display as well as the fsl,data-mapping and fsl,data-width properties.
+-
+-Required properties:
+- - reg : should be <0> or <1>
+- - port: Input and output port nodes with endpoint definitions as defined in
+-   Documentation/devicetree/bindings/graph.txt.
+-   On i.MX5, the internal two-input-multiplexer is used. Due to hardware
+-   limitations, only one input port (port@[0,1]) can be used for each channel
+-   (lvds-channel@[0,1], respectively).
+-   On i.MX6, there should be four input ports (port@[0-3]) that correspond
+-   to the four LVDS multiplexer inputs.
+-   A single output port (port@2 on i.MX5, port@4 on i.MX6) must be connected
+-   to a panel input port. Optionally, the output port can be left out if
+-   display-timings are used instead.
+-
+-Optional properties (required if display-timings are used):
+- - display-timings : A node that describes the display timings as defined in
+-   Documentation/devicetree/bindings/display/panel/display-timing.txt.
+- - fsl,data-mapping : should be "spwg" or "jeida"
+-                      This describes how the color bits are laid out in the
+-                      serialized LVDS signal.
+- - fsl,data-width : should be <18> or <24>
+-
+-example:
+-
+-gpr: iomuxc-gpr@53fa8000 {
+-	/* ... */
+-};
+-
+-ldb: ldb@53fa8008 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	compatible = "fsl,imx53-ldb";
+-	gpr = <&gpr>;
+-	clocks = <&clks IMX5_CLK_LDB_DI0_SEL>,
+-		 <&clks IMX5_CLK_LDB_DI1_SEL>,
+-		 <&clks IMX5_CLK_IPU_DI0_SEL>,
+-		 <&clks IMX5_CLK_IPU_DI1_SEL>,
+-		 <&clks IMX5_CLK_LDB_DI0_GATE>,
+-		 <&clks IMX5_CLK_LDB_DI1_GATE>;
+-	clock-names = "di0_pll", "di1_pll",
+-		      "di0_sel", "di1_sel",
+-		      "di0", "di1";
+-
+-	/* Using an of-graph endpoint link to connect the panel */
+-	lvds-channel@0 {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0>;
+-
+-		port@0 {
+-			reg = <0>;
+-
+-			lvds0_in: endpoint {
+-				remote-endpoint = <&ipu_di0_lvds0>;
+-			};
+-		};
+-
+-		port@2 {
+-			reg = <2>;
+-
+-			lvds0_out: endpoint {
+-				remote-endpoint = <&panel_in>;
+-			};
+-		};
+-	};
+-
+-	/* Using display-timings and fsl,data-mapping/width instead */
+-	lvds-channel@1 {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <1>;
+-		fsl,data-mapping = "spwg";
+-		fsl,data-width = <24>;
+-
+-		display-timings {
+-			/* ... */
+-		};
+-
+-		port@1 {
+-			reg = <1>;
+-
+-			lvds1_in: endpoint {
+-				remote-endpoint = <&ipu_di1_lvds1>;
+-			};
+-		};
+-	};
+-};
+-
+-panel: lvds-panel {
+-	/* ... */
+-
+-	port {
+-		panel_in: endpoint {
+-			remote-endpoint = <&lvds0_out>;
+-		};
+-	};
+-};
+-- 
+2.34.1
 
 
