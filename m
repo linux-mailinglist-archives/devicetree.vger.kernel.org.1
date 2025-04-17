@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-168032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42636A91335
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:46:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB846A9134F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:52:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63581897A2B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:47:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9FEC443914
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFEFD1DB933;
-	Thu, 17 Apr 2025 05:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE50F1DB365;
+	Thu, 17 Apr 2025 05:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVwKHJv7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lff+rNjZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8469E179A7;
-	Thu, 17 Apr 2025 05:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835792DFA4B;
+	Thu, 17 Apr 2025 05:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744868812; cv=none; b=srNShlSfwEHS40IsdYmm0LuvDYo4H7qYJqQmlCZ6N1BNxXfODywGE/o/vhGrbq6fdP1eDYEldZVkfRh8ccxa/kha7n7sTr1hmRB3pBlasEF6FDRuLXm92UUc3iBX7UpuIJypt/1CnKzh40idkYeKfnZWhFcid2AMfAM9dREorac=
+	t=1744869156; cv=none; b=SiaBse+mvvvcyqPgc+sOz14Al0IxXt375+7+TW2R/ap4TzoxygZN1UGqnW8LA5WBSj7ejMWI1RuuHs2BLk/BXTjpfar1DRXdH7VExL9XFD7s+r8TNd9sXFMdCUq4HZWyfnMcydVDxTzcmafXHd7uc8gW4f6RI/gnb8m9yjZLkL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744868812; c=relaxed/simple;
-	bh=w+Fw8NVAHUYrbrF2QdmSIueeFjlxwKqtyaXHc3p/lLA=;
+	s=arc-20240116; t=1744869156; c=relaxed/simple;
+	bh=5ZOcrtFfYlg3ZbRJkYNzpERIkmi2m8m/vs8RWTT0uHQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aYSl6cIRC43XMfB64m8uxpConW8Nu/R1NMMv1ial9V0mE64rjIu1vavzeg+WTWlNWkan6lyZGy/wvSUMokmPnvZot/JyadfhuWlDnDxcR3Oef4O7wpTQhuQvft5fcNtyRw+YBKA3LpLTTrv3ya4XREUu+dugsirKsBrJl7A92BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVwKHJv7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E06C4CEE4;
-	Thu, 17 Apr 2025 05:46:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Dfm4l2QJjyvQfWTXj7rMA7ELQHPWU2YopUqv8UHEvvhvQv8PQjaBjGZYpf5f84hSeEf0iHukhsVoxnHBsgEnd7TMFYAZOtEmSRLBSeB98MBOBH2es9J0zoC1m5IwKgVdUElIyqhhxAr/nrIYDi6B/HR0UcPH183ciItDmnngzGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lff+rNjZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E43AC4CEE4;
+	Thu, 17 Apr 2025 05:52:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744868811;
-	bh=w+Fw8NVAHUYrbrF2QdmSIueeFjlxwKqtyaXHc3p/lLA=;
+	s=k20201202; t=1744869156;
+	bh=5ZOcrtFfYlg3ZbRJkYNzpERIkmi2m8m/vs8RWTT0uHQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IVwKHJv77n9ud6ICAau+0RNSnlXkz/ZNaoZgcKqgTWhL6RCaInGFTpKMMBURKWtm4
-	 AmK8ByNzCvLMWQdU0mpA3eiPha3gJoTeRACaiNNmAygB4NH9FMudtj1jGbZDO3ADiB
-	 Lxs9CTzS8T3xdiYmqM8rk37j60G1m14SftrVhdqbgcbiDHrY3XA01phZI0ppXMwtkg
-	 Iaq/DupNqE1l5zdWgV9NlTvsz0caXZPpjmMO3qVPgT7QWHIG8vXwpxbKzKt2hzRtbB
-	 k7+MruJAl8anp/e+SnFajn0FzFl3g40csVCVRsSYU4ORgfGc6fVKpuXJOQ9KYaYFnA
-	 3FOkQuO6nMZXA==
-Message-ID: <7dc797c3-36d4-4477-a0c6-2a8c84ef1f11@kernel.org>
-Date: Thu, 17 Apr 2025 07:46:44 +0200
+	b=Lff+rNjZ1ZLdPZLB/m/v5IquctpGpnT5YRyTTILaqHvxCXLBkf6tGCxqOmTNuGGYY
+	 jH6paSB+vZp/fBrRtiB+CdUvB4+UvGfmiFyO/2EddR+q8HPDsXSHoLcXvRpYbrSqsq
+	 f7kfSkPeU4a8MsFfRYVEVWKLZBFH8N5U57C1G1DOeHS4NAX6jGJImjKUSsmDsIYjaM
+	 Hb5ueVqB2b0SpLbRFxJRUr1GYuo8dn+7MkjMoKcmHUnZTJBl7t+h4OpIQvQBZUHqok
+	 8gmL/eb7h+MxVVlFJlPenI0NA+wJYWBqzm0pTSoYiqsGkfzHoCq1hxOUv4J6Veii11
+	 vsafG/PeF2Xgw==
+Message-ID: <0b30168d-6969-4385-b184-c2fa69c82390@kernel.org>
+Date: Thu, 17 Apr 2025 07:52:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/11] dt-bindings: display: msm: document DSI
- controller and phy on SA8775P
-To: Ayushi Makhija <amakhija@qti.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
- dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
- marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
- quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
- quic_jesszhan@quicinc.com
-References: <20250417053909.1051416-1-amakhija@qti.qualcomm.com>
- <20250417053909.1051416-4-amakhija@qti.qualcomm.com>
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: brcm,asp-v2.0: Add v3.0
+ and remove v2.0
+To: Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: rafal@milecki.pl, linux@armlinux.org.uk, hkallweit1@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, pabeni@redhat.com,
+ kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
+ andrew+netdev@lunn.ch, florian.fainelli@broadcom.com
+References: <20250416224815.2863862-1-justin.chen@broadcom.com>
+ <20250416224815.2863862-2-justin.chen@broadcom.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,18 +106,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250417053909.1051416-4-amakhija@qti.qualcomm.com>
+In-Reply-To: <20250416224815.2863862-2-justin.chen@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/04/2025 07:39, Ayushi Makhija wrote:
-> From: Ayushi Makhija <quic_amakhija@quicinc.com>
+On 17/04/2025 00:48, Justin Chen wrote:
+> Add asp-v3.0 support. v3.0 is a major revision that reduces
+> the feature set for cost savings. We have a reduced amount of
+> channels and network filters.
 > 
-> Document DSI controller and phy on SA8775P platform.
-> 
-> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> Remove asp-v2.0 which was only supported on one SoC that never
+> saw the light of day.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+That's independent commit with its own justification.
+
+> 
+> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> ---
+>  .../bindings/net/brcm,asp-v2.0.yaml           | 19 +++++++++----------
+>  1 file changed, 9 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+> index 660e2ca42daf..21a7f70d220f 100644
+> --- a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+> +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/net/brcm,asp-v2.0.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Broadcom ASP 2.0 Ethernet controller
+> +title: Broadcom ASP Ethernet controller
+>  
+>  maintainers:
+>    - Justin Chen <justin.chen@broadcom.com>
+> @@ -15,6 +15,10 @@ description: Broadcom Ethernet controller first introduced with 72165
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm74110-asp
+> +          - const: brcm,asp-v3.0
+>        - items:
+>            - enum:
+>                - brcm,bcm74165b0-asp
+> @@ -23,10 +27,6 @@ properties:
+>            - enum:
+>                - brcm,bcm74165-asp
+>            - const: brcm,asp-v2.1
+> -      - items:
+> -          - enum:
+> -              - brcm,bcm72165-asp
+> -          - const: brcm,asp-v2.0
+>  
+>    "#address-cells":
+>      const: 1
+> @@ -42,8 +42,7 @@ properties:
+>      minItems: 1
+>      items:
+>        - description: RX/TX interrupt
+> -      - description: Port 0 Wake-on-LAN
+> -      - description: Port 1 Wake-on-LAN
+> +      - description: Wake-on-LAN interrupt
+
+Why all devices now have different interrupts?
 
 Best regards,
 Krzysztof
