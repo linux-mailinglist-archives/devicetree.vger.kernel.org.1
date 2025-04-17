@@ -1,167 +1,193 @@
-Return-Path: <devicetree+bounces-168090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA55A91601
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 10:00:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0071CA9177E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 11:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C3437AFF03
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:58:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0570F445CAB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1872C221F3B;
-	Thu, 17 Apr 2025 07:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75097227E92;
+	Thu, 17 Apr 2025 09:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mL5Paba8"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tXvJB1hL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E509221C19C;
-	Thu, 17 Apr 2025 07:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BD018BC0C
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 09:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744876757; cv=none; b=W1bXEU+7o34/tRm8Kxu6qpyohOYECvESElV9g/rpKc+XQacWW9N8d5xlW2gJdSsZequVV0YjDATQ853xLH4VJi4PoogHQimIHZfAmNnB6q68wcvMKUaLIKI1SfaTisI4QB5a5VAWfYenY/6KKdkJ1F3k2PaUh6A6l6yi3kOxEGE=
+	t=1744881456; cv=none; b=W2h7/x7X7eLAaSGwngMKj0ADpra4MpzGfjZQ9y5L6bQKPDV9nkyZ1/sLpu2FyqgQISB2GoMGYn1qZK4HHAMEOWN7T/1Im1hAMzHjZ5LtrD2yAi68MfPA0usgS8nacPnhHJCDC2mnRwEXazrN9VAo+zR1AnxKHT6EQaLMb8OawxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744876757; c=relaxed/simple;
-	bh=ltOSBA1CpfWUytOEeCBbrYTdHgz8H9UN/rQ4NISs/Wk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d0JEd5UqDUJ1OFvw2ssOJzY0JZtz4o1L9RkgEDD3oPOtK9/ibqagMjbF8nJM85JfZS+R93X1W8Uzx/ZIo9AKOP69Jk3IS/GNgpYZ1xyM7l+Y2bZTdkZDWmoZ4yPj4fS1+a5UaUL/jhZI0m4eTXe7JxMnphMKvuVgyZUMeG0zl7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mL5Paba8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE67C4CEE4;
-	Thu, 17 Apr 2025 07:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744876755;
-	bh=ltOSBA1CpfWUytOEeCBbrYTdHgz8H9UN/rQ4NISs/Wk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mL5Paba83xIKR3EQKPY8iqdamc2Dd5Lhk8p/SjYOXJfH5D6MQNyvET/OzVp+ACKXQ
-	 /47yQdngZ+/xmalOw+7HAlqHvF9Jl9gPwuS6rLiXzzoayO+K9YZvpNGUdcddq5JY/A
-	 wDFODj9bivjqOk+5ovE+AGpOKcrJxpsM3EYcsZ5v2jLBr8vlsf8Z6qAD0YXdLcAEO4
-	 dB46vOLaGO+7cYAc2LK5rtg7tgq7eiNqiW6oXR5Xg7wAzOvj++g5oPvoC3wJ1jXU46
-	 ulJVPTeV+EEH5KaYwxar9suTlEYxvNKiVgvt9kURnwnXDJ+7HTOjJotM3zlBREeN+4
-	 ftl3Idu/9eIuA==
-Message-ID: <caf3da77-f35d-4a39-9102-9592d722d900@kernel.org>
-Date: Thu, 17 Apr 2025 09:59:07 +0200
+	s=arc-20240116; t=1744881456; c=relaxed/simple;
+	bh=xJIneGHQFK1SKyGaskC9aNAvjinoc3j1fHHRtqNl3Sw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ZODxlS/1BN56RlRdXkKLy5RcdW8dd3HW+QBLZmqb5HtTn0Ane/3em1QsS7I4bM8lIR0Tbof5xBSC/8fNQbENYnN1YAuv60Iuqyce6PXGmp7QRc+AsFHcaZdpf/ZqdAyCr7ugodRf8U2jPyV9AAdqq52AtK1PUfD7cynTigAhxpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tXvJB1hL; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250417091732epoutp039e0299fd7987c6b016b4300961545484~3EG_Zeivj1186311863epoutp03D
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 09:17:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250417091732epoutp039e0299fd7987c6b016b4300961545484~3EG_Zeivj1186311863epoutp03D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1744881452;
+	bh=vTGzoo+jwwIa4vhDbzzqp28Av2O/B79ZMnl3txb9+EI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=tXvJB1hL+77XVy6X4oCeju6K2EfekGSn/Bqg5dh5W4I74VERLz3kwrCmlDeme2wn7
+	 bSTHRJu2ebzLk0nG/Cb1PjR0xKGAoOhBBsIDrfzMIwgsBM/9zrrksrK2urA/wvh+pn
+	 chijUJzsMMo6+01WoKKN3yc+5kVeuRrF7rmh/EAY=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250417091731epcas5p30f62b25725ddc0e7d1bb574d56365a6a~3EG9_eMkR2653126531epcas5p3-;
+	Thu, 17 Apr 2025 09:17:31 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.181]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4ZdXNT27w6z6B9m4; Thu, 17 Apr
+	2025 09:17:29 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	07.80.19608.927C0086; Thu, 17 Apr 2025 18:17:29 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250417050330epcas5p296757d6cf79352bfdbcd38695c6f8f3d~3ApLjNhDf2151521515epcas5p2V;
+	Thu, 17 Apr 2025 05:03:30 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250417050330epsmtrp2bba4a97f42c7d4047c8ae4e36902ae5c~3ApLieM6h2966829668epsmtrp2J;
+	Thu, 17 Apr 2025 05:03:30 +0000 (GMT)
+X-AuditID: b6c32a50-225fa70000004c98-87-6800c7296980
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	23.F0.19478.2AB80086; Thu, 17 Apr 2025 14:03:30 +0900 (KST)
+Received: from INBRO000519 (unknown [107.122.1.150]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250417050328epsmtip129419b78204c6004c161bfd7be41e3d4~3ApJ0Oo7E3037630376epsmtip1j;
+	Thu, 17 Apr 2025 05:03:28 +0000 (GMT)
+From: "Faraz Ata" <faraz.ata@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <alim.akhtar@samsung.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>,
+	<suyash.bitti@samsung.com>
+In-Reply-To: <a52969f2-8ea2-41e5-b4c8-8a03220cbf51@kernel.org>
+Subject: RE: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
+Date: Thu, 17 Apr 2025 10:33:12 +0530
+Message-ID: <06b501dbaf56$0fab3b90$2f01b2b0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
- by pericfg
-To: "Frank Wunderlich (linux)" <linux@fw-web.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>,
- Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-References: <20250416095402.90543-1-linux@fw-web.de>
- <20250416095402.90543-5-linux@fw-web.de>
- <20250417-competent-rattlesnake-of-intensity-98d6ff@kuoka>
- <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <d2da81ccb6b9b267288a3d2f5b1bb977@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIiLJ9Qel8GAkpX5i6PIbvAaC3kAAM/bP3AAeJrQQMCHSEhZgHUtyXcstGu3fA=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFJsWRmVeSWpSXmKPExsWy7bCmuq7mcYYMg99TuC0ezNvGZrFm7zkm
+	i3s7lrFbzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2Txf88OdosvPx8wW8yeX+PA
+	47FpVSebx+Yl9R59W1YxenzeJBfAEpVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hp
+	Ya6kkJeYm2qr5OIToOuWmQN0mJJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwKRA
+	rzgxt7g0L10vL7XEytDAwMgUqDAhO2PhXe2CLv6KZ6tfMTcwLuPpYuTkkBAwkWhbeouti5GL
+	Q0hgD6NEx/U9bCAJIYFPjBLd06ohEkD2lr17mGA6Jl/fyAxRtJNRYsblWIiil4wSx44cYAVJ
+	sAloStz5/JQJJCEi0MUosfPBZFYQh1ngEaPEgU//WECqOAXsJH70/WIHsYUFvCT6mm4xdjFy
+	cLAIqEq8644ECfMKWEpM27aPCcIWlDg58wlYK7OAtsSyha+ZIS5SkPj5dBkrSKuIgJ/Evc1u
+	ECXiEi+PHmGHKFnLIXHqVCqE7SLxa8J9VghbWOLV8S1QNVISn9/tZYOwfSQmH/0Gdo2EQIbE
+	nbUiEGF7idULzoBtYgZ6cf0ufYiwrMTUU+uYILbySfT+fgINKl6JHfNgbGWJk3v2QG2VlDh0
+	+wXrBEalWUj+moXkr1lIHpiFsG0BI8sqRqnUguLc9NRk0wJD3bzUcnhsJ+fnbmIEJ1qtgB2M
+	qzf81TvEyMTBeIhRgoNZSYT3nPm/dCHelMTKqtSi/Pii0pzU4kOMpsDAnsgsJZqcD0z1eSXx
+	hiaWBiZmZmYmlsZmhkrivM07W9KFBNITS1KzU1MLUotg+pg4OKUamPJCq5Uc+os8XKL15J2m
+	RxjfKlCrkDg656VmhMBl/YdBb0qtepNMQxy+LM89LWa99z5H69Lvv+utlod4Tk20ftmxcuPu
+	C4/ez2ZeqtzcEnyYp0Jrs3r6S1kuW73yyM9T1rCV8UxTtF8vq9tqoTo/Z/1NsWkPVp184xl0
+	S/HT7/ysmPz5WZxCUy+GR34U/Jcgvr4uSTJlblRN2rtpkfIq12zzFqwtbxXfYm40/fKRP7v8
+	75lvb/C6WaGz/s7nDxm15jzWIiLPIr4u6ejgfLXBtGx2XsfutVOrOBd88G9T/c7mERvvufxk
+	+EOR8xc1eFc//a3Vc3t2fFXslD9Lrv6QPlq1agnbipwawTNuNcFnlViKMxINtZiLihMBpqyx
+	sj0EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWy7bCSnO6iboYMg7nTxS0ezNvGZrFm7zkm
+	i3s7lrFbzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2Txf88OdosvPx8wW8yeX+PA
+	47FpVSebx+Yl9R59W1YxenzeJBfAEsVlk5Kak1mWWqRvl8CVseLkKqaCD3wV079/Z25gbOHp
+	YuTkkBAwkZh8fSNzFyMXh5DAdkaJpubrTBAJSYnDT++yQtjCEiv/PWeHKHrOKPH5xjJmkASb
+	gKbEnc9PmUASIgITGCWmbNkI5jALvGCUeLLgBCtEywImiaWH1oLN5RSwk/jR94sdxBYW8JLo
+	a7rF2MXIwcEioCrxrjsSJMwrYCkxbds+JghbUOLkzCcsIDazgLbE05tP4exlC18zQ5ynIPHz
+	6TJWkDEiAn4S9za7QZSIS7w8eoR9AqPwLCSTZiGZNAvJpFlIWhYwsqxiFE0tKM5Nz00uMNQr
+	TswtLs1L10vOz93ECI42raAdjMvW/9U7xMjEwXiIUYKDWUmE95z5v3Qh3pTEyqrUovz4otKc
+	1OJDjNIcLErivMo5nSlCAumJJanZqakFqUUwWSYOTqkGJpeEmylPJjp/fr8+/qvY9qzX3m7e
+	l1lDJGPaf7685/v2lcC3XXd/Hq/+NuFUtMti4xcrJ519+qOj5GWZxgGNpIVaRoFPjDtXbNaZ
+	6lrUfdA66XKceqTGXZWSU8kC9eXbXprExBi4hBVkb5T0fCgvdCy3V3GG2Px2z/aEvTzy05sv
+	buxfGXH2YKn9zDVK1fa8Pm7nt5QK/z9ZNStsX4bY89CP3DPfLF9Umfv/kFnQqzw2Z9njlpaB
+	jKsYepd/+CjSrRSfslfjvPyxw4YngzgZRR3fR1Z/SZham+ry+Grk7No/xo63NmldcRZeJCTD
+	E7D6SCnD6j03NdiTVfbteZZqLb0jYOLt6r1rFCYXZ9blK7EUZyQaajEXFScCALtXOuclAwAA
+X-CMS-MailID: 20250417050330epcas5p296757d6cf79352bfdbcd38695c6f8f3d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80
+References: <CGME20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80@epcas5p3.samsung.com>
+	<20250318075635.3372599-1-faraz.ata@samsung.com>
+	<befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
+	<03e501dbaab0$65bb47a0$3131d6e0$@samsung.com>
+	<a52969f2-8ea2-41e5-b4c8-8a03220cbf51@kernel.org>
 
-On 17/04/2025 09:52, Frank Wunderlich (linux) wrote:
->>>
->>> +      mediatek,syscon-type:
->>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +        maxItems: 1
->>> +        description:
->>> +          A phandle to syscon used to access the register of type 
->>> switch,
->>> +          the field should always be 3 cells long.
->>> +        items:
->>> +          items:
->>
->> Missing -, because you have one phandle.
-> 
-> ok, then i need to drop MaxItems and indent 2 spaces more, but no 
-> problem
+Hello Krzysztof
 
-I missed that maxItems - should not be placed above description, but
-immediately around items.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Saturday, April 12, 2025 3:41 PM
+> To: Faraz Ata <faraz.ata=40samsung.com>; alim.akhtar=40samsung.com;
+> robh=40kernel.org; krzk+dt=40kernel.org; conor+dt=40kernel.org
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> suyash.bitti=40samsung.com
+> Subject: Re: =5BPATCH v2=5D arm64: dts: exynos: Add DT node for all UART =
+ports
+>=20
+> On 11/04/2025 09:07, Faraz Ata wrote:
+> > Hello Krzysztof
+> >
+> >> Subject: Re: =5BPATCH v2=5D arm64: dts: exynos: Add DT node for all UA=
+RT
+> >> ports
+> >>
+> >> On 18/03/2025 08:56, Faraz Ata wrote:
+> >>> +
+> >>> +		usi_17: usi=4010d800c0 =7B
+> >>
+> >> Messed order. Keep nodes sorted by unit address (see DTS coding style)=
+.
+> >>
+> >>
+> > Thanks for your review
+> > Based on the DTS coding style, it is acceptable to group nodes of the
+> > same type together, even if it breaks the unit address ordering.
+>=20
+> That's accepted alternative because some subsystems do that way. I don't
+> think we ever applied such rule to Samsung? Do you have any prior
+> reference about this? I accepted mess in the past, but that does not mean
+> that mess is the rule.
+>=20
+> > https://docs.kernel.org/6.12/devicetree/bindings/dts-coding-style.html
+> > Please let me know your opinion on this.
+> > Do you mean I should move all the USI_ node after pwm node?
+>=20
+> Please it according to sorting by unit address.
+>=20
+USI is spread across two blocks BLK_PERIC0 and BLK_PERIC1,
+USI00 to USI08 fall under BLK_PERIC0
+USI09 to USI17 fall under BLK_PERIC1.
+Will send another version with USI nodes sorted by unit address with respec=
+t to BLK_PERIC0 and BLK_PERIC1.
+>=20
+> Best regards,
+> Krzysztof
 
-> 
->>> +            - description:
->>> +                The first cell represents a phandle to syscon
->>
->> Don't repeat constraints in free form text. "Foo bar system controller"
->> or "Phandle to foo bar system controller"
-> 
-> i would write only "phandle to system controller". on mt7988 it is the 
-> topmisc syscon, but maybe on
-> other SoC it is different name.
-
-This must be specific to what sort of system controller you point. You
-are not interested in phandle to any system controller.
-
-> 
->>> +            - description:
->>> +                The second cell represents the register offset
->>
->> "Baz register offset"
-> 
-> same here, only "register offset".
-
-Also not. You need specific register, not any register.
-
-
-Best regards,
-Krzysztof
 
