@@ -1,212 +1,462 @@
-Return-Path: <devicetree+bounces-168308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C431DA921B4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:32:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D51A921BD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 17:33:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA0141708FE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:32:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8885188F446
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 15:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE607253F0E;
-	Thu, 17 Apr 2025 15:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980F5253345;
+	Thu, 17 Apr 2025 15:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="NOeV2v4v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xPdaOgkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2082.outbound.protection.outlook.com [40.107.220.82])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF84F253B79;
-	Thu, 17 Apr 2025 15:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.82
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744903963; cv=fail; b=BjS9ifuAJx3bb/2fm9kcJnhCFCOO2lzw4vy4yiLLGAQ9kDA3KDYetmpFsGMLyscUMBZS5u5pZ6pqcz7vyy9UvPqoi4x5qjdD/E+WYeEjXRjXWIr1CfyPpE567crfCS1pxV3sjq2EDh24aPlUqbN/qP+c/qNL6fUlGkfPU+GwRkM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744903963; c=relaxed/simple;
-	bh=cXI81Fr/zk8w7hwQFBaGEKL1XfkNwLbauU8Bf3J0h+M=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=p3tBeyH9gKC6jXfAd5eSQXacKccxm9MV0w3SSuXVkHJDk5YHUsIUDhPBfXkAeKZLzQArUDPX00O71iFa6sceKxOhhVOYFg66cFbIFy/EaI8Xfm2IpQ11yL6A2talaeKZtdUWZ/XLaekLZRda8SXi8McPNyqQSpai1goaddVKcDI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=NOeV2v4v; arc=fail smtp.client-ip=40.107.220.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FE+7DNzz47FtnR223xvNAGicf7mzTSrYo4yzyjmeLvJgp3dzkEvPootz95A0HfHmMDOx/YFctK2RCjcjQiimXIW0+i94v3pv7LNZzjrHrr6v6PozkBvkgUXh/2/tDYn9YrmcyYPc2d4Gll7pluvUWDjQvN/MCuj9GPQTpHNR/L3yhILhZVtXL1k/VSBLBum651LWUTtQDc0kfg1TpdemQSjMPYssTSnSIKC+xycv7qyO3D5qmEeB/CEvOGGs4QgcH5FR3yyT1/7piQFV+9eIe48i4Bb1HvRqJ+2SWalIz9WpZxo9Fk7z+NaTcbhvHhcoBsxzaudSFw5oYOVSSASV+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=btGeTh/88ExStNSgt6CKiNz6JULHX4XzUi6m+IzxOEQ=;
- b=eNIMFPu1q8dE46tyoPJLve4kc6eqiYzYFw+Q7jrZg+w/mb0G3j9ii4c5x6iyPcHPNi6rDT3Jquca8FVvBZhcQj8n3wxQbQ1wLD7YwHg1KE6dhTgTZq1NxxuRsMC5ejnwSDc8/QVyj+2ZzisfJkuu+J3k5bnrnasx610kJEXLXJyyTZ4RJSVHjoWMmsy8p0n69UGSqnCWqkfRagCczZOkrjnf69IelQq7K5UU13TUwGydKqBfmHpJeHyzkE0ojlex4ENc2SKY8WoKabeIL0zxt9Cp6XyOrG8mAFNu5Z4qIGNEKzLL2AFnFIjRvndVz9k78pK2YrYMGCgZP+4xme//JQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=btGeTh/88ExStNSgt6CKiNz6JULHX4XzUi6m+IzxOEQ=;
- b=NOeV2v4vJgpAzwfa7xoLJQBzEKe2UapZ4JqJj2TP2uy1ATOpIK1QRc0GRAjMmEI/5x2tz8WKvXT4EmNajD8unOlnegvwuOxjj1Ezwwmq+4LEwdVg99ZBDDdVYpfPgIQcO8qAD6dx0DHLm/xwbESAbgHvtA1jG0c2og4SdBvDifw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CH3PR12MB9193.namprd12.prod.outlook.com (2603:10b6:610:195::14)
- by PH7PR12MB7913.namprd12.prod.outlook.com (2603:10b6:510:27b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.31; Thu, 17 Apr
- 2025 15:32:39 +0000
-Received: from CH3PR12MB9193.namprd12.prod.outlook.com
- ([fe80::7818:d337:2640:e6c7]) by CH3PR12MB9193.namprd12.prod.outlook.com
- ([fe80::7818:d337:2640:e6c7%5]) with mapi id 15.20.8655.022; Thu, 17 Apr 2025
- 15:32:39 +0000
-Message-ID: <5f49d271-fdf3-3b52-664a-3f576bc3c61e@amd.com>
-Date: Thu, 17 Apr 2025 21:02:15 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
-Content-Language: en-US
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, davem@davemloft.net,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
- gregkh@linuxfoundation.org, robh@kernel.org, conor+dt@kernel.org,
- ogabbay@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de,
- praveen.jain@amd.com, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
- srivatsa@csail.mit.edu, code@tyhicks.com, ptsm@linux.microsoft.com,
- linux-crypto@vger.kernel.org, David Howells <dhowells@redhat.com>,
- Lukas Wunner <lukas@wunner.de>, Ignat Korchagin <ignat@cloudflare.com>,
- keyrings@vger.kernel.org
-References: <20250409173033.2261755-1-nipun.gupta@amd.com>
- <20250409173033.2261755-2-nipun.gupta@amd.com>
- <20250410-sly-inventive-squirrel-ddecbc@shite>
- <bf851be7-74a5-8f9d-375b-b617691b6765@amd.com>
- <Z_imAnYu1hGRb8An@gondor.apana.org.au>
- <4f365fae-aae2-a0df-e8e9-268b536378b1@amd.com>
- <Z_nAo7UpzBqeXLbA@gondor.apana.org.au>
-From: "Gupta, Nipun" <nipun.gupta@amd.com>
-In-Reply-To: <Z_nAo7UpzBqeXLbA@gondor.apana.org.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0107.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:276::10) To CH3PR12MB9193.namprd12.prod.outlook.com
- (2603:10b6:610:195::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5903253B43
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 15:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744904007; cv=none; b=rTmIrADsZkRxKg1Id0TILcUugoUr/pa6dQJmhTUbL6qAwm4iQG3IKPvSvssSTRjWsuUfUDFO7gWvQkJli/z5QMH3ac6FPWRywo7xpjSr7hBZu4Bzp8xmJkiUzhpKmm2ooXkeWrE9RXlPZDnnVIxJzTYYPvhk1WkEJBLppWA+3K0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744904007; c=relaxed/simple;
+	bh=K3iLNXyJEzlCnDNUMxpE2Wr/g8TUeZ+PpBw5iVCHCV8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=jUOK57NtGLP+PaLs/q3dqLLshtP+8pvol5XiU6DJ3wYZkqHpcps9PEjMBBBWFQ0v804k+75Y2tr179Bh25lzwnC7rUwPaUCvQpl9pLIu2BAnGI3MkWSwaE4IbWZaxqlM+855Os+ib57RZAPiq24v+7SCoZmIlu5k4APCM+n6eSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xPdaOgkA; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cf3192f3bso9374905e9.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 08:33:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744904002; x=1745508802; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HJU0YKLI3O3XfSZX1Z7o87cRZxiutDHxVPjCfrI5PcM=;
+        b=xPdaOgkAlH8/v2aJf5+DYq5uwfsWdO45KjuS5bEQ5IbgrtM9c9eqqJFFOyYCxFLXjm
+         RuEn0ZxzgfSnc5LU/Zb2DXfwElRgQZumUBx4fg7ivnYRi0/iKWG+d81rExgeyRafOQ38
+         nil1HydvIT727Cmj6Bb6nPOHkbr3AenqCIiMC4AkaLz7x7AAv7D3k2r/pWAjDstW1UFy
+         KvgCc3rDEYHHBs/hyf0ik3oxRGLZ/MrnQLxDg9NV3k7Vl4Jj5DlWStFKt6zSP+fT97l4
+         JFU7bMTsXud1quHoK8ei/EPKcLtQRLCOpcd5OYo16H8gYRk9iqkp0SHP6PzUAIl2FMjD
+         qdqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744904002; x=1745508802;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HJU0YKLI3O3XfSZX1Z7o87cRZxiutDHxVPjCfrI5PcM=;
+        b=KurAT6cDTZs4g58iNTUM3q1tA7vMjymzm9VeNJfm1OAFqNQhRY3s9WMGeU6EmtdQFu
+         Pp4pdRFu2QmpLC7fbNYD6h09a2Kj5YriK55FJIDDqqrzHKfPBzADPrKmioTE1kgISiZi
+         R6I5Jk0CMfOYSrTCnDqRsig+ki/QU+3ItN/S6w5RWW0ff1Tdd23Sg9N6K2NDaQ9bqcb5
+         LYjggBxO4UFUVW6M/V7uTFmKBWWdauGwI1PtVbgXow9Jowz4xfV0/wVjjzEiGAXyLuw5
+         AIr0kVIccetUaE/7ZmrQOkWoTl9cUy91OvI+gNM1zEy1n6h3v0qi7k9WBQx0PhYYabOv
+         kk7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWxDfTETlLBe913DiCAUCZweIbxi9wcwrE1KtzAJIy95g01jBinZrbj3Yx3r3/Hx69sTD5E0WA4YcyJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk8HbVp+p3LzNrXNecxDPnhwUl69gC63LiummSqwk56IW3kfuy
+	86QXGXummHGZnhFFSo5LrRAvUCX28gK4ZpLkchvPTzUK2ciZB/qis9O3vvw6j/8=
+X-Gm-Gg: ASbGncsQvQluEgTWTJc/2KpSM7Qp2GiDl/000f+dtwZi7jN9+veu2hBp2d6Xj0PpyaP
+	fnzttnd3E4y3dxz96MbvgKU1+14UJ3PtTFvfyVT4aAQkQ44s1VrUHkuzBtseoZ1SkcUlOJ5B5sJ
+	GO9gTHuHxyZfU8AgKlmtTFx6XW6WdJ9T545xh3DvXV7LPwV/7U56e5Kp4/AwdwNsC2Eh+3kU2G8
+	k88K77cK2/mYiZNgeuKmYeA3Ghv4akFSpVcllUsAykEk4+V6YyPYncQRC5ZNgB2Gvs6gZLTx+5i
+	u//uvhVRHnmG/tncRcSLWuhS8nfRRWP1VblAuL9TiuTpDBB35zyXBCqs/7mMrOT320tIf4HY3zu
+	SzKY+Oe7Zi0EO7rQ=
+X-Google-Smtp-Source: AGHT+IHl/iJqSPWLXHFLfXn1RWvFeEQD5851u9lh41q0RF/5itUaj3iomTMY3WyXh953wOfL5h54rA==
+X-Received: by 2002:a05:6000:144f:b0:39c:1257:ccae with SMTP id ffacd0b85a97d-39ee5ba01e5mr6361648f8f.57.1744904002001;
+        Thu, 17 Apr 2025 08:33:22 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:a7f9:634b:42d:1546? ([2a01:e0a:3d9:2080:a7f9:634b:42d:1546])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae9640fdsm20429438f8f.7.2025.04.17.08.33.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 08:33:21 -0700 (PDT)
+Message-ID: <422dd45d-dab3-4bff-a0c2-669deb6d081d@linaro.org>
+Date: Thu, 17 Apr 2025 17:33:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB9193:EE_|PH7PR12MB7913:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c2038d8-331f-4201-5269-08dd7dc515f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UTQ5VndQRktUQThnUGRpVTBXRUE5blNsM3ZTV2JhWmtFL0FONk9zbzVvUzNW?=
- =?utf-8?B?bXNKL2sxVlk1bm56YjFMNCt6SFo3VTJaL05jTzhWY3UwMC9FVGlIT2ZBWnJx?=
- =?utf-8?B?YW5vL0NrVFRwSG9OZkpMVHRyWDRWV0FZd3U3RDlza1l1RzVqeURCVG1OaFdU?=
- =?utf-8?B?WnVXN0VDN2hzYmxraVJmRWVjZDc3Z0pCeTFWRlBaMCswcTZQTjRjMEtJczY2?=
- =?utf-8?B?ZlB0RDdOdkRGSmtXczNReEUrZ0JXcmdzUjNxR0QzandQUmtDcFQxcDJSZzc1?=
- =?utf-8?B?RVFXRDBNLytqaEVLdmJrZGtmTzBjbXo5Z1Erc1IzYi9nTnJRQ1hTQ2pOOGor?=
- =?utf-8?B?WWlVdk5BZUxUaXAyOVpYM3NVVDUwQWtKejg2NStpZ2JxUkRPWE03ejM1MHVi?=
- =?utf-8?B?ZlhLS2JYVUczWTB1OWl5ci9rZHhYV29mSHdEeWttVmJVVm9GeHpYOHBwZnRx?=
- =?utf-8?B?NFhUbitMVStGeHRmZ1BuK1BaUFQ2OTVrcitsSmxtTzBTN0pKNEcrVXp2RGF2?=
- =?utf-8?B?YnJJc3gwL3R1RW5HZE1Ickw3UnZCZDdTSXloS3g3OVBVZlpCd3p2TGNUck5n?=
- =?utf-8?B?UUNKSjU1TkN6NXFRTVlaMXA0eEFIakFCSUFUbzZrQ21aUVNzTDFtaGF6MHAr?=
- =?utf-8?B?ODFtZXd5Y0dFNFp2WjVvZUJnSVZkOWhJanZwVE14ekUwOGNoQWNVWGJaUnFr?=
- =?utf-8?B?elQ0YitaS0FIZmlISW5nME8wR3ZnQlFHbzViYllTK3VYU3FKb0IvZWNHaUVD?=
- =?utf-8?B?NDBZaHcwVXRXWnIwUmR5NFJPUW1ucnA4L0FibXcySVRSZHk3a3pFMGc5VXdL?=
- =?utf-8?B?U09XdldzTTVjQ2JGQmYrc2ZVUGtMN3haTHRvSGMyNkoyM1l5V0FtenpXOENS?=
- =?utf-8?B?WkFVZTlodm1rQWdyK1JBWlZITWZLQjJaTi90VFY0Y2NKUmNGSUhjTDdpWGZY?=
- =?utf-8?B?Mm45M0ZiY1laVUtVdVBIYXdwUzY1YlZBL1BBQmdPUnNLdk5waDhXUytuT2t2?=
- =?utf-8?B?U2FVN3VyWVVRVXA3cW9YWWROVW9QQkdsenEycE9DL1g4d3REYVVSQ3BmQ243?=
- =?utf-8?B?VWZXYjVqV0ZnVk5JR3R2Ky9CZTJ0d1E1QW53QkcrWDJBZmwyTXVvSXEvd3pu?=
- =?utf-8?B?T280UnNjNHNkN1krbHFLZ1pxbGx2cDcrWDFJc0d3akdOSmF5Sk01OW9tVlRl?=
- =?utf-8?B?SjhyeFRXR0kzSFNOanpKUGI4Z2RqSERUTzFRZ1cwa29qUVVwVjVnR3RqbWho?=
- =?utf-8?B?dkxRN1dZSHFYdEFPSHl1ajRVOVFLTFV2ZVpQbWIveUZsT052RFROVHcvdy9n?=
- =?utf-8?B?RUlxZ1JJVjZRU0oxY0k0RGxTQlZ6YTFVd3BrTVRPdEhDSFNNcDhnQWtTeXV5?=
- =?utf-8?B?MzZmeDJLak9yM1ZkbmVqdGpJRFUzS0FzdG9oM3E4RE9PajVRamZzVUVaNm5N?=
- =?utf-8?B?UkxlaExURmdrZ1FkNWhtOXdpNWxmMGpWNEJYWUFnVnV3cTlGM0hMUFFsdkdt?=
- =?utf-8?B?M1dnMDlYSHNsYlRDUjUwMWI5K2JHZnVubHpZeGpOdTNlblRtYk1OREFZZjdY?=
- =?utf-8?B?Y3puM1NXZ0pkQzk1UXhyWXpYZVVxWlJyREVzYVFuOUVTT3RpRnpjSHk3dndu?=
- =?utf-8?B?RkZNYVllMG11UUt0cmVJb0tCWkNsU2oram1CVVRhVjljbVA5bVZiYjk5YTBD?=
- =?utf-8?B?Y0ZuZ010bEt6UDhvbFhLYjRYVnpDTkdjaU9lTDlxV0dvUWVyTk4rNjBQNXF4?=
- =?utf-8?B?N3pDTFJBODByRlloeFlQNDMvTi8wTERtWjlRc2dGQkhqQlhKVmxjbGZJeTlx?=
- =?utf-8?B?SS9JRGRWMmRuenhwL3JPTmY2N2lEbllJYWRnWllLYldyRmNkWmJ4aC9LWW0z?=
- =?utf-8?B?TFdnc3M3bDQxRyszbGkvTHFEUWo1K1ZqcHc1MHFueitZRGhhYlNtTTFHUGEy?=
- =?utf-8?Q?c+hKWQ91TeE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB9193.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UU1lL3JXVFJVZlB0SEJydlAvSThwOEJ6eEV1RlgyS013RlZjYmJERW5UR1pt?=
- =?utf-8?B?RllEcGJ1d2hjRUFTUzFQRUZXb1RxQ2x0TXlNOUxLeHVWdC9hbEFWTzMyOXA2?=
- =?utf-8?B?cW16SjhlK29RYnJiZUR1dEFVUlRKbW02WXBSaUZmaDV3V2FYdDRsRjRJUmxV?=
- =?utf-8?B?WkxKOGtqWEVaYVRXdFJnckMwSWlUZ3M2YmhsNk5iSXgxdVQ0YmVQY1B4NENu?=
- =?utf-8?B?WmpHQUhLNDNhTHYyUFZWaE10Njc1WWdkelhYYUV5K245TitMWjhsT2RQK0RK?=
- =?utf-8?B?bEdaOVdmWmpzUkh3N0JnL2VUbnIvQ3NxREZtS0pnZW9HbkRGZ2xuMFdBdThj?=
- =?utf-8?B?aUxwQUpYeW41aTVQaGx1UWp5VFRiS2dQckpTMmk0UkMxcDhLMkhvQ0lWZHRl?=
- =?utf-8?B?VlVZbGVscHpOc3dPYUw1ekdEdVJpZU8yMVBBdzdsRCs5UmR6SGcyNFR5Z0d5?=
- =?utf-8?B?cGRGdHdmQVlIcjRCWHl5Q2VHY0dMU05rVEpPVWVLTkFSZ0tEWGZYcG56T3Jh?=
- =?utf-8?B?cU1XOEpWSlpkT1lPakxhYlc4RnBxNVU4em9YbE42V3VPQThNcDU0MUkvMFB4?=
- =?utf-8?B?OVhNMi9HKzFjV3dqSGxneWdFSS85cU12T2JtMjZMSkd1RkJ5WHY4ZENBK1ZG?=
- =?utf-8?B?bGZ1OHhUNDJEaDJROExLZ1RVK3N1aFBENnV4VWo5WXAycEpodGEwWUtyTlhu?=
- =?utf-8?B?Tmx1OTNoWlNFTkJrOFRpZ1pGZWRMWmtWdG4yaklKbFdGZUV4WDZnUmJiRFp1?=
- =?utf-8?B?bmJmWHJzMllVWVRiNmhFeERYSXFaK2c0eC9Gd1Nwd3pMTW5WMEVnMFZVdFhQ?=
- =?utf-8?B?T0lYc2pReGlHbU9UM3BVUUJvSEdWYWhQcXhBUUlJTEJsSnpuRDBlcTF0N3hQ?=
- =?utf-8?B?amx4cGRsUExBUG5zRllsS1U5REUyZlNrSldqV0VtYWNiRmlFZ0JCeUdXbnlO?=
- =?utf-8?B?djBPdC9SaTZveE05eFN0RzZzY083Z2ZJTGxRRWJwNnB2d01TdTYvOFp4TllJ?=
- =?utf-8?B?L2I0UXFFMWY3OFlCYTBLRnFObFpEWU5YWHRPR0pMVFRBMDVTNjJ1cnMvbGJi?=
- =?utf-8?B?M1ozL1hucTR2aE5qcjA4RHZtSjN5M0QzUThXZVBneVd3bWRtYWxKMFJZWXo0?=
- =?utf-8?B?RnZadTYrNEZYeHA1YkExSGZvVDB2T0NvVS83aVNiM21FL2Fzc2VVZEdSUE14?=
- =?utf-8?B?UDlBZ1dXTlN4R0xlbStrR2tkak5BOFpjQ1lTNVpQVzdUNkZHUEtvbXlkTDB3?=
- =?utf-8?B?MzJJVk00dTZXcGkrcytjeTlyMlUrczlpZWZKN0kyUmdMN3F3KytnaUswTHFJ?=
- =?utf-8?B?eDI3RkN0aWtOSFA1WnRPVGM3ZjlVSmJ2cTZMMzA2SlYzUGxlbVo4SVdJZjJF?=
- =?utf-8?B?bFptaVJYQkp1bUlQT1lqbFhJcDRsMkl2RGYyLzVCMmhVR1JObGw4VGllSExN?=
- =?utf-8?B?VlJRMU1tZTlWZllGZU9zSzlYRHpjODhOOTlUd3RNR2k1eU5IVEtVa1JldjBB?=
- =?utf-8?B?NEZ2UFdFWktXNkFOWFZRc21CZ3JaWitCUjZ1L1VxODlWanJoZTRNSWxDSWE3?=
- =?utf-8?B?OUtDMkVFMlR4NnlrVTRhbE1QeEYxNDR3T0ZpSmtOQ2REMFhWdXczb3ZTSjd1?=
- =?utf-8?B?WlJWSjhabWdHREw1aFZoU09wQ2pqMXVqMm45RjFjbTVtUWJWS05xUHpkV1NO?=
- =?utf-8?B?dUtzdjNteW04RVIyejc2elgwRU5HejRYTEM1Sy9JM1JudHQ4NENXcWpyYlRU?=
- =?utf-8?B?WFRPQ0xBcmY2NkJpZmtlOGFWR0FqRnBWMFpzMCtVbjNRd0NOWHBBd29BVXF6?=
- =?utf-8?B?Rk83UXJKNW00VGR4RTFiQk0xS0IrV0hIQzRzak9MbTRVenpUbzVlbWgyRTF5?=
- =?utf-8?B?c2pXMVdkMDZoTCs1cTNqVVZXR2w2aDJtanVBWlQ5eUt4bTI0K29ubHNKMmE4?=
- =?utf-8?B?U1pFd3BxVXhKZFNodEJlZ3pLVTR2S2FESzNpVDExYlJrRVIxT0ZLTU1FMHA0?=
- =?utf-8?B?YUVjL0xoZ3A0aUdJMTV0VGpYNG56bVpwc3dpQzI5QkpiK0hHRXZ4WHRoS2Uz?=
- =?utf-8?B?eUdzTzBLdjJqQWpSaHpQT1diTE1xWU1RM0FGck9zdVFjNHNKR2ZNbUtBNHlL?=
- =?utf-8?Q?/gnMIfZHYZd4L73b36SL+56Ir?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c2038d8-331f-4201-5269-08dd7dc515f5
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9193.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 15:32:39.0952
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ph6xE0tQRd0aV8VhQZelv0/oFGyvDNITMaDB1mJEk0NIQbk0LXQ/004qVtX8YtlH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7913
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 2/2] drm/panel: Add Visionox G2647FB105 panel driver
+To: Alexander Baransky <sanyapilot496@gmail.com>, quic_jesszhan@quicinc.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250414172637.197792-1-sanyapilot496@gmail.com>
+ <20250414172637.197792-3-sanyapilot496@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250414172637.197792-3-sanyapilot496@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 12-04-2025 06:53, Herbert Xu wrote:
-> On Fri, Apr 11, 2025 at 11:50:54PM +0530, Gupta, Nipun wrote:
->>
->> AFAIU after looking into it, the keyring subsystem is not to perform the
->> data operations, but for managing keys for these operations. Kindly correct
->> me if I am wrong here.
+On 14/04/2025 19:26, Alexander Baransky wrote:
+> Add the driver for Visionox G2647FB105 6.47" FHD Plus CMD mode AMOLED panel
+> support found in:
+> - Xiaomi Mi Note 10 / CC9 Pro (sm7150-xiaomi-tucana)
+> - Xiaomi Mi Note 10 Lite (sm7150-xiaomi-toco)
 > 
-> Have a look at
+> Signed-off-by: Alexander Baransky <sanyapilot496@gmail.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |   9 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   .../gpu/drm/panel/panel-visionox-g2647fb105.c | 280 ++++++++++++++++++
+>   3 files changed, 290 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-visionox-g2647fb105.c
 > 
-> security/keys/keyctl_pkey.c
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index e059b06e0239..8b73f1e8bef4 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -996,6 +996,15 @@ config DRM_PANEL_TRULY_NT35597_WQXGA
+>   	  Say Y here if you want to enable support for Truly NT35597 WQXGA Dual DSI
+>   	  Video Mode panel
+>   
+> +config DRM_PANEL_VISIONOX_G2647FB105
+> +	tristate "Visionox G2647FB105"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for the Visionox
+> +	  G2647FB105 (2340x1080@60Hz) AMOLED DSI cmd mode panel.
+> +
+>   config DRM_PANEL_VISIONOX_R66451
+>   	tristate "Visionox R66451"
+>   	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index 1bb8ae46b59b..911400bca51a 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -101,6 +101,7 @@ obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) += panel-tpo-td028ttec1.o
+>   obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
+>   obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
+>   obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
+> +obj-$(CONFIG_DRM_PANEL_VISIONOX_G2647FB105) += panel-visionox-g2647fb105.o
+>   obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
+>   obj-$(CONFIG_DRM_PANEL_VISIONOX_RM692E5) += panel-visionox-rm692e5.o
+>   obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
+> diff --git a/drivers/gpu/drm/panel/panel-visionox-g2647fb105.c b/drivers/gpu/drm/panel/panel-visionox-g2647fb105.c
+> new file mode 100644
+> index 000000000000..413849f7b4de
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-visionox-g2647fb105.c
+> @@ -0,0 +1,280 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
+> + *   Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> + *   Copyright (c) 2025, Alexander Baransky <sanyapilot496@gmail.com>
+> + */
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +
+> +struct visionox_g2647fb105 {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data *supplies;
+> +};
+> +
+> +static const struct regulator_bulk_data visionox_g2647fb105_supplies[] = {
+> +	{ .supply = "vdd3p3" },
+> +	{ .supply = "vddio" },
+> +	{ .supply = "vsn" },
+> +	{ .supply = "vsp" },
+> +};
+> +
+> +static inline
+> +struct visionox_g2647fb105 *to_visionox_g2647fb105(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct visionox_g2647fb105, panel);
+> +}
+> +
+> +static void visionox_g2647fb105_reset(struct visionox_g2647fb105 *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +}
+> +
+> +static int visionox_g2647fb105_on(struct visionox_g2647fb105 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x70, 0x04);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x40);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x4d, 0x32);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x40);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbe, 0x17);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbf, 0xbb);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xdd);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0xff);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0xd0);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x03, 0x24);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x04, 0x03);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x08);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x00);
+> +
+> +	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0x0000);
+> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 100);
+> +
+> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int visionox_g2647fb105_off(struct visionox_g2647fb105 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+> +
+> +	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 50);
+> +
+> +	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 20);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int visionox_g2647fb105_prepare(struct drm_panel *panel)
+> +{
+> +	struct visionox_g2647fb105 *ctx = to_visionox_g2647fb105(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(visionox_g2647fb105_supplies), ctx->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	visionox_g2647fb105_reset(ctx);
+> +
+> +	ret = visionox_g2647fb105_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int visionox_g2647fb105_unprepare(struct drm_panel *panel)
+> +{
+> +	struct visionox_g2647fb105 *ctx = to_visionox_g2647fb105(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = visionox_g2647fb105_off(ctx);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(visionox_g2647fb105_supplies), ctx->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode visionox_g2647fb105_mode = {
+> +	.clock = (1080 + 28 + 4 + 36) * (2340 + 8 + 4 + 4) * 60 / 1000,
+> +	.hdisplay = 1080,
+> +	.hsync_start = 1080 + 28,
+> +	.hsync_end = 1080 + 28 + 4,
+> +	.htotal = 1080 + 28 + 4 + 36,
+> +	.vdisplay = 2340,
+> +	.vsync_start = 2340 + 8,
+> +	.vsync_end = 2340 + 8 + 4,
+> +	.vtotal = 2340 + 8 + 4 + 4,
+> +	.width_mm = 69,
+> +	.height_mm = 149,
+> +};
+> +
+> +static int visionox_g2647fb105_get_modes(struct drm_panel *panel,
+> +					struct drm_connector *connector)
+> +{
+> +	struct drm_display_mode *mode;
+> +
+> +	mode = drm_mode_duplicate(connector->dev, &visionox_g2647fb105_mode);
+> +	if (!mode)
+> +		return -ENOMEM;
+> +
+> +	drm_mode_set_name(mode);
+> +
+> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> +	connector->display_info.width_mm = mode->width_mm;
+> +	connector->display_info.height_mm = mode->height_mm;
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	return 1;
+> +}
+> +
+> +static const struct drm_panel_funcs visionox_g2647fb105_panel_funcs = {
+> +	.prepare = visionox_g2647fb105_prepare,
+> +	.unprepare = visionox_g2647fb105_unprepare,
+> +	.get_modes = visionox_g2647fb105_get_modes,
+> +};
+> +
+> +static int visionox_g2647fb105_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct backlight_ops visionox_g2647fb105_bl_ops = {
+> +	.update_status = visionox_g2647fb105_bl_update_status,
+> +};
+> +
+> +static struct backlight_device *
+> +visionox_g2647fb105_create_backlight(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	const struct backlight_properties props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.brightness = 1023,
+> +		.max_brightness = 2047,
+> +	};
+> +
+> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> +					      &visionox_g2647fb105_bl_ops, &props);
+> +}
+> +
+> +static int visionox_g2647fb105_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct visionox_g2647fb105 *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_regulator_bulk_get_const(dev,
+> +					    ARRAY_SIZE(visionox_g2647fb105_supplies),
+> +					    visionox_g2647fb105_supplies,
+> +					    &ctx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	ctx->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
+> +
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	drm_panel_init(&ctx->panel, dev, &visionox_g2647fb105_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = visionox_g2647fb105_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +				     "Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	ret = devm_mipi_dsi_attach(dev, dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&ctx->panel);
+> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void visionox_g2647fb105_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct visionox_g2647fb105 *ctx = mipi_dsi_get_drvdata(dsi);
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id visionox_g2647fb105_of_match[] = {
+> +	{ .compatible = "visionox,g2647fb105" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, visionox_g2647fb105_of_match);
+> +
+> +static struct mipi_dsi_driver visionox_g2647fb105_driver = {
+> +	.probe = visionox_g2647fb105_probe,
+> +	.remove = visionox_g2647fb105_remove,
+> +	.driver = {
+> +		.name = "panel-visionox-g2647fb105",
+> +		.of_match_table = visionox_g2647fb105_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(visionox_g2647fb105_driver);
+> +
+> +MODULE_AUTHOR("Alexander Baransky <sanyapilot496@gmail.com>");
+> +MODULE_DESCRIPTION("DRM driver for Visionox G2647FB105 AMOLED DSI panel");
+> +MODULE_LICENSE("GPL");
 
-Thanks for pointing out to the C file, but as these these system calls 
-can support only synchronous operations, precludes their use for 
-asynchronous operations. In the TLS handshakes, where multiple 
-connections occur simultaneously, asynchronous operations are 
-beneficial. OpenSSL ASYNC support can very well utilizes the 
-asynchronous operations while establishing multiple TLS connections.
-
-Thanks,
-Nipun
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
