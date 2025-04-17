@@ -1,110 +1,117 @@
-Return-Path: <devicetree+bounces-168197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EC0A91C89
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:40:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC58A91C91
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99B295A68B0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:40:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F7C2189DE04
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 12:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA182441B8;
-	Thu, 17 Apr 2025 12:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C7DE24339C;
+	Thu, 17 Apr 2025 12:41:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="g42nueKz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E157D243968
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC37241678
+	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 12:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744893643; cv=none; b=EOVx3lOZHuEhqzqczWaHowEXTG3/VnID+MyEoMFneSlUkhWiubDspTxUVUXXa/0tj9aUVAnfD/9uT+HlNHLhO6xLVCTACayMLenCLTU86GOd6You5gGdeTqaZN6+OTpILKbG6+5L0TWtyId8MU0TdClVqiybugMU+eqoIJ1YPaY=
+	t=1744893711; cv=none; b=LsQoV9bX3MUfuA79ob4+dcOyEWjgOdxNLh30GSwGeQnjgLHED8z5zxkqhsgHdTessWzedl36Tu1ATDW6SbgQbkQSKeGvV4QuWpivxASvhbgE9wCSuH6TOTghwT5437GA+aAkigYA2gOUiBbaCIHEti/s+TBMNPBs88vySynYpoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744893643; c=relaxed/simple;
-	bh=mi5sL7/CvHDMCBHx0lnzGhM6BGM7czEnX+UU1vD0W5s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HbRg0scDenBFOhh5ZGbLRXTjhPPbxkxpD2M4mnn6jljx48CNojzMaOFwGSIvCIWU66vQWyNCxmMSXyT7Pape83dTaLKKGRNFYYMe16/iRxR1GUXBfgezE7TdK6+NgTcp7DNYYcdyP7h6ArAFTze8PseIbZPYl7XGmrYOebtF3V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1u5OXW-0007dT-AI; Thu, 17 Apr 2025 14:40:22 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1u5OXV-000kg9-39;
-	Thu, 17 Apr 2025 14:40:21 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1u5OXV-005xy7-2i;
-	Thu, 17 Apr 2025 14:40:21 +0200
-Date: Thu, 17 Apr 2025 14:40:21 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v8 08/13] net: ethtool: Add PSE port priority
- support feature
-Message-ID: <aAD2tSgeZS4UNlWN@pengutronix.de>
-References: <20250416-feature_poe_port_prio-v8-0-446c39dc3738@bootlin.com>
- <20250416-feature_poe_port_prio-v8-8-446c39dc3738@bootlin.com>
+	s=arc-20240116; t=1744893711; c=relaxed/simple;
+	bh=nQIIrU067YTPjOc8LmZh4/vPjF2wg8asBmSLf3GZb2Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kvee42ma+MzCZxI/qYnl1MJ0lSfnusSPfo1AbhY7VloeKgwlPhVoP6sQqXwW5q2qyUhdBJmja/52o1Bqa3ckhIiW0LRosH1M/OnhYPWOjXzOrnSWDti4CwUGQyLZGfexeRcaoUZ/QVj4z+6mQiRFL+fZ0csARGBMVqnQ1kJQzsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=g42nueKz; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54298ec925bso208069e87.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 05:41:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1744893708; x=1745498508; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lZ5lyKYfN+K0uYV9se5bx7j4N0g/Y1mbf+XUFGCcm+I=;
+        b=g42nueKzZ04eVy6vvZmlMsoemoK8Hj/WzbiclabKX+DVq23/NEUMdXtZ9Td/5lkqy8
+         RSA+kXAClrcSFInJCXyLPz44r8/WmmaW5eT0MU3682gv2zhITYNPgmkSwnC2GDQ/QCWf
+         lf/EJyozmkFYDa0gyInvRi7wSzVHXll+UUOWKO+QZ1nl4vtFLfwm9b4/CCpMP+wvUfJ5
+         qtupkr6jGWpGDBePjwPsKOL5NzXrbgUeQYgZUiylvrtN9MS/0oB7UxP/2FqYrhSZuI8I
+         Yeo6tWuzs0nne1XOHSBEqFQpjthZlh7ZLPfKOs+qVaVxfW2LsbLnV1qUR/zdk5mrBNHG
+         6VrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744893708; x=1745498508;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lZ5lyKYfN+K0uYV9se5bx7j4N0g/Y1mbf+XUFGCcm+I=;
+        b=LHp86bi7nHK0HlTnwFiro7fgWRvfKSjrdeK0z+UdzJC8wvkAFJzLxL/wpOBNeKHd2o
+         ACVaJJhvyptMWQ5uSCqx6K1g1HtymHffotpkcVgOozu3T/wB0LS2j0hWrSkLHxy2K1by
+         SfSh+U5WMxaPne78vlURyhcsY76axRDfYZmscJqdDg4q0cde8AP/6sHfcUGuFCatOBc0
+         oHjedRjsJEpXc6g3F91vt6Q5hHV0uY2Y0TwCrUhNBSBraQO/cR3jyFhc0JEMo+6FpBI2
+         bhRsw6mi9wSir3s4t36xq2ZvCsixf9s/8DR3TckwY3RMDPnNeXlF2maSI3xSZ6MN90eK
+         TKuA==
+X-Forwarded-Encrypted: i=1; AJvYcCVts66hVihfY/1g4XkA7HoNQ4Zc4HGxUVvfwNUaEksWCT2jiVXESwH5wIoH0sS6VYR6k9M8K73mOaqb@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywcn9ujtCo1eCND6oaiMqfMZ2A3dlgRF8R4PMynb6Fv2HAknlWL
+	ApsdUXe5V4qGpXZD96JXtOptaZ5FlcYdoihTW07xaRxPCciXh1RgCZ/pUpKs7/3GQ2KSdBdHrlo
+	8lzFRBlRRqYwQTiFH2J/hl4sqhs2IaohHMGzdjA==
+X-Gm-Gg: ASbGncuA+dwbMx5kcX3aeBl4yYpiOzeqwYunLwSbByNEVIhuHKlHI9lPKMetPI/Pg5K
+	ZsR6AJspKl6dHqJBKv9+9Q5VmnmWzWokRcb9kwdToLXQqKk78ah1sTOMSop425bRVlZRBWwVyjQ
+	QOaDwsvDOaXXbTXoDE+WKJ6puDXGm9QIl2WmmsnkNAU8z79fnrYiFD1ws=
+X-Google-Smtp-Source: AGHT+IGCeVLIonXAZLoZuX26dLN3o/5NzBTerYwwXcLsLxVnsPGKrq48ijHC2fwB40UH+JZf3EjGuDJ2/FAZWXTNCFQ=
+X-Received: by 2002:a05:6512:3d0d:b0:545:1082:91a1 with SMTP id
+ 2adb3069b0e04-54d64a7b6f0mr1692690e87.7.1744893707675; Thu, 17 Apr 2025
+ 05:41:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250416-feature_poe_port_prio-v8-8-446c39dc3738@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com> <20250409-mdb-max7360-support-v6-9-7a2535876e39@bootlin.com>
+In-Reply-To: <20250409-mdb-max7360-support-v6-9-7a2535876e39@bootlin.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 17 Apr 2025 14:41:36 +0200
+X-Gm-Features: ATxdqUHVnRgKXXdU0felXL5SR5G-r5Je-4YU4gveufkl7eBQ6Hnf24ePYuscRak
+Message-ID: <CAMRc=MdKswkm2jzok6Uw3cG6uDkVq+CMXbJgP3fRY+jHo+rPkQ@mail.gmail.com>
+Subject: Re: [PATCH v6 09/12] gpio: max7360: Add MAX7360 gpio support
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
+	=?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 16, 2025 at 03:44:23PM +0200, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> This patch expands the status information provided by ethtool for PSE c33
-> with current port priority and max port priority. It also adds a call to
-> pse_ethtool_set_prio() to configure the PSE port priority.
-> 
-> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
- 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On Wed, Apr 9, 2025 at 4:56=E2=80=AFPM Mathieu Dubois-Briand
+<mathieu.dubois-briand@bootlin.com> wrote:
+>
+> Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
+>
+> Two sets of GPIOs are provided by the device:
+> - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities.
+>   These GPIOs also provide interrupts on input changes.
+> - Up to 6 GPOs, on unused keypad columns pins.
+>
+> Co-developed-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
 
-Thank you!
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Looks good to me.
+
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
