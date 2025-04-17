@@ -1,204 +1,171 @@
-Return-Path: <devicetree+bounces-167988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FA9A911AA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 04:28:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BC4A911F4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 05:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F50819019A3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 02:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 328363BC3BC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 03:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166EF1CAA71;
-	Thu, 17 Apr 2025 02:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TFrmR7Oe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F391CB9F0;
+	Thu, 17 Apr 2025 03:14:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2045.outbound.protection.outlook.com [40.107.103.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131C71AB52F
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 02:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744856911; cv=fail; b=bBhEyT+21u6EaARQ2eMZX6+TtIMqHb7kpJiVFy3ndHWRGQ1b0/AfThz5W4vfHF29y5/wIZGkRd5tGRX3qsphZ1+CMfCdchOfy79lbE8RDNED2a99zSeZPq5ffhwwlNnZjvGPr7hGV43+Rwcj0y9bXERhBUKtTU8w9xOpyLNUQE0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744856911; c=relaxed/simple;
-	bh=P3tZxFhvQA9Ngd1f7ocTlGMYfocvmIRjuqJ2ONm3A3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=lCIEqRUXPJbQdTDD+drFQ3ODYUMpl7LE8auIF5yb2rOp12PIX5Cm8Q/qochZmj0gGCxF8JXm0LybclepcSnuv5LKtqgkHS+PTDzJPJ2/wX0a5pHmTKFDs/+etGlF+ssMAdqxdhcin7bRMbrpMm8P+/UNxkAt1h7mBWyQQIg0aiY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TFrmR7Oe; arc=fail smtp.client-ip=40.107.103.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yNBse5+ow1PQ0xDgts1EGwSnguuJV4lxkLB1KpnO+adBtiUBr3ErDGEgtnC2AnJA7oBHDMYAItErrSa/YqEvv8DyFyz0+hJS+/oidYx0q1Iugdp9WYSSIg0F4gNI07Id41mHNhkckaaeUr0U2bngUYgKIE3T4J/8k1hmn5P5SZhnfSi24z6m2h3Peh5Ffp4wFJZfZSKwtx1ThIuj9PVjUq0ZDEz011ztTU1koaT0KCCYZ76xdVuqSZtnvKyitBq3WueP8Cf870ermjqFzFiP30TUG5prJXjaVKBHTJPBB3S/03yBcEMqgUWtnRfaYBsaBsQ+6RvU3hIw8aF6Irr/Ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JxZnRh8yXRHjENgi49CfFeQaX6vAwqEuw1NFhJW2Nrw=;
- b=tJkpCNkCm+DAAojaLgPMnuVjnP5t2rPlnShSc+Qjf+CGi03313/awVQ5fnHyDj6KkRGZ2RD5gsNn64OTuFK3KWVHQP/SCJY8S7E+X32uv6YVGWxx5Dhp0raAZcaK3B3J8azVQrdKIU9kHJZq0CCb4l3W9V5Sl2kzYZN52dD0m33BRLefQFBxgRjKrP1khjPcH2nW237m/hkf7VExPArLN4HPiYYSxcUUsELzAgbDesBxb5fx0CSIptfIfcF9ET1irIuVIJRUAUIu4YGd+BepmuqHctdpm66s0vVBYXYOTk11sDJStjCld8ZsbyTya0TfiZLfHxi1FDT6bu+fGhNLzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JxZnRh8yXRHjENgi49CfFeQaX6vAwqEuw1NFhJW2Nrw=;
- b=TFrmR7OeWUmo2kQ8Dpe3kMiLrwHh/585EjxQUsjUts/90gnFgXPXZbZV72BEtY3iE/4qZ4XY5gkqIILH4S02SnmLGCnsT3WqsxMUqkWLRPS+M2dcUzIjtQ6Y8tfpzynAlLk9BV13TDVPr0LzbX9/8MBdSdXynLF2e8G6KA9gtGX+r0kr08S78bdCmjvbafmOkQNsVA2bageTA47IBpoD5nfOPFmfUgogx+ytiEA1cdEAWIMKigDGmTEUFVBTftrhtfbCe9p8rli2pAvATiWtrP4G+gVh3Ber9ymGXIHvJjhcsrZWZTcPcm59kvg6YfvZfuik3tvYaU8S7cYuWuMBaQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by DU4PR04MB10364.eurprd04.prod.outlook.com (2603:10a6:10:560::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.34; Thu, 17 Apr
- 2025 02:28:24 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8632.030; Thu, 17 Apr 2025
- 02:28:24 +0000
-Date: Thu, 17 Apr 2025 10:24:36 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH 3/3] extcon: ptn5150: Try to get usb role switch from
- connector fwnode
-Message-ID: <20250417022436.xxv66vo5vfrbgqdn@hippo>
-References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
- <20250416105940.1572672-3-xu.yang_2@nxp.com>
- <Z//AtayeLP6zRGBT@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z//AtayeLP6zRGBT@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SI2PR02CA0050.apcprd02.prod.outlook.com
- (2603:1096:4:196::11) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7B6155C82;
+	Thu, 17 Apr 2025 03:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744859680; cv=none; b=uNnBGsjQxAWg/nkmae1bL5pWnxv0etWbOjH87pU1gHcwq6WY3qey8fpMOHGs8A3UvVq8DzmoqyEkqw798suzjI3QiKgi8LzFjVpbm/Ql7//MuSe321R8iqs/bK8qCxJi+YNMOIhkDI4xy+5CcUJ6odOdII19mOlq35kqjiNw0Q4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744859680; c=relaxed/simple;
+	bh=RR+y52SUTPzi+E8u5B+AgHaBLqVXGgwSNZgKMma1sBg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uw3j01ouZ4w9y8fIOzUBTYt63E5CLLCWcxZiv4LyJW/5PlrkvjzspIBrbFGeOnleSxYRXcGzvrEttz74koo2Kjvat7W5pewXWnI0qQOwQvWbsGwl1SMzHZBF8Kz/h5GAHZT57a5qOSGun/14wmZt9TNYnDNLloK8h8+2CkcD7xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-30db1bd3bddso2841151fa.3;
+        Wed, 16 Apr 2025 20:14:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744859674; x=1745464474;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lEAcyQxjxEddEf75aHlB/SZ9GV/mTO73qRXKgW1f4Hc=;
+        b=Q+hsQbguMkjhnHrUgFG9XaH2T86NOgkDlPrR/e+XMEn42gCk1Q83oBiJ8HwEMHaiQj
+         8/NlurMvYtzRD2R9RHeXwjPkada4heAnNWx2Ajj57wi5sPwrKvHZJ5RVqdVh5W2UIDob
+         n2tM2SgQ6L/+lN0P0w01wKDdRQHpoQdCDHB7O1nATXh4RfNswPeaZyZrTcAjSKDIw1Zp
+         B/CMY44s35DtoHnXlyRuydtUgcqqz7NcxnyOEX1XiqKRaNxqN6eVsQf1X8bbyGJoly0Z
+         U+Q4wNlYtg5lBOZ/MtO2pq8+WJKh19fQOzsgqI4EvX62xl+0+4e6ktBs2nXYcCyNUD8K
+         j90Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWBbdoCU8Q2x9nBXh854fTOm0QBVHcImkpWVAD9v6eNxCRCBAN5CDIUdLEDiDCAio+qLQSf5kEl0jI=@vger.kernel.org, AJvYcCWIzUdCeaxkOiGoURLFB5TTgdbn6Rk4uGJe/2bm8HpC29/X/4w89TRnCt0ADAKHjxXEx8gwFA6toMHC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxio2Gf/9K+1azjGwoWv1GFDasx5naUFlZeJAlyddy9m0nYPdDy
+	fr1iMehw5lqxVoBNPyHBL/cqYheuTmt2R2ZzF5VI3NFAntjkLtCSsBFnRoNq
+X-Gm-Gg: ASbGncuaviA1zKL1HM/DfFAwH3mcN/u4QVDUo9W9FkKfuKqBVgE0k9HO9+z0+9DMagY
+	jSRB0Obp6nVTQrWc1NqPmVI4gfewMA6LPIs4rFczQVRG1K5mN9M+a1svuoiinO9RFg/lGhg4ibQ
+	eSw617QNNAx9Sz9vgodRCqsmA3TtDIfKfjdSkLdANMKDx0YP/MC9Ht+e14XcjUAn0ZV7MZ34WyE
+	QsqAvMK9Sk4T6IIWKsdFF3sXZlCrlRTUjUpdQeXniMWfBuid9KCgBnGV+J5KpAM84Farsp9fP/T
+	X6sL1JKU4NVAbTv0yM0Zqqevx2uo4QcE0jWTyxdD+aBN2V/l1yso7EPNwZwiTP6FMlEpMTV/hy/
+	KXI5EVGyb
+X-Google-Smtp-Source: AGHT+IHNORkSni0l5QvzQhmP0tEhJ+Kq86XU+re6tw+D2AUVkYq+fj3xODGRSJLfAO32v1+P4Lt1ww==
+X-Received: by 2002:a05:6512:118c:b0:549:b0f3:43a2 with SMTP id 2adb3069b0e04-54d64ae7edfmr1243897e87.40.1744859674099;
+        Wed, 16 Apr 2025 20:14:34 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d6799a931sm197703e87.76.2025.04.16.20.14.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 20:14:33 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30dd5a93b49so2958131fa.0;
+        Wed, 16 Apr 2025 20:14:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU7ezg+L8C1CXE1wsNjN/JYWHu/QsUvlciv+tmyVWFT6DAGYDjSJ6eZvTT9yJllLESG637A0iLTrUQ=@vger.kernel.org, AJvYcCXWarMuUyUxMXYot3i1voc4sFLce9VNDtK/Bsj61EaRwir1rA7GqDcQCBDnF7+qJCoYSvKslE9ub1Xa@vger.kernel.org
+X-Received: by 2002:a05:651c:30c2:b0:30c:3099:13d0 with SMTP id
+ 38308e7fff4ca-3107f6ce071mr16267491fa.21.1744859673381; Wed, 16 Apr 2025
+ 20:14:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|DU4PR04MB10364:EE_
-X-MS-Office365-Filtering-Correlation-Id: b353fd67-b202-460e-3427-08dd7d57875c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|52116014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?z/f71XVwGYGUiZ2p4A9zZdynuS5bUfmyOGG3YhXVklLryKAvfWVOkzajw0mV?=
- =?us-ascii?Q?CezVnYQNhj8aKs5j8BXbAGZTPWi+0riAIlM4PoIehl3AespgbRkOv0eRGQLe?=
- =?us-ascii?Q?l22jjamVqphaIJ43OVw5T2ZVhXfkiAWIWi0KW16tP3zHB/87nSXLLTMLpD2h?=
- =?us-ascii?Q?vdEdY5ooawoHn7bfGOvxMSbOigJrVf5XHeVL55gnuSBJ3zT/I7QSyUti3dhD?=
- =?us-ascii?Q?rJqqoo0vub+f/U5XQ0uyRUTYAOE5nN0Qwcu+W8pgTo8yH6ZvnUDrgf8ClX2I?=
- =?us-ascii?Q?ZfW5yoLL6StUc1wzc6CpmPcL2KtdOMpH84lwYOErrjk2PP9LqT+zwiqCb6Wc?=
- =?us-ascii?Q?DRK4qIWaj5r/J+5S45m0NZgl5F8Lr5rSm1Xqow7Oolk1HTP3XXFI/G0catch?=
- =?us-ascii?Q?cALS10EJJr6D1xaSvR2kQNfAX2ZKQMgsp6fjYWOLBYKi7Jc0c6H7GDlhFaS7?=
- =?us-ascii?Q?CzG+HYTErbTVSwixEnyI3DNrBATgzy3Nva+553klaMY7F5CuBCk/hh7YrW5+?=
- =?us-ascii?Q?vlZ7vVUphZ9rTeC+ePgTAi2VIAyJr53yjAMqcClKvVMEfXz/VYLrjnlcENCH?=
- =?us-ascii?Q?7vKsrVkcjfTl+IuXrX/Q5F+d/jhXEYti5a0jTRe5G38Uh3+uuEVDaL4WlcO1?=
- =?us-ascii?Q?CuyHgrOjp/443WOYPnI+puIL55sTVTdE+78N0PcCRCjwOhB7qNILIB4GFhtm?=
- =?us-ascii?Q?9NHHoCW7NqtLH1xxb/pEEx4RLViOiFlXyawM/iDajTEyDv3NtMVjZiKqFa8P?=
- =?us-ascii?Q?BBFD9Kg67JfDToxX+AZWeHjRbqfBFIIzQoXxjrSTjVABOtTC05TlJdKBNZ+F?=
- =?us-ascii?Q?eBZX2rgsIPJ6RuREwxFsBF3uo+ZW+Fs15A3h/OXW6/Gcfffs/qU1O8BsCwtQ?=
- =?us-ascii?Q?mEpYbDe3Ybb3bpimtJXixLWLuPPy81FP4V3NPKwHkKCa43wk025uQXeCCnLr?=
- =?us-ascii?Q?dy4dhqGmJkUrk761eBxLGGmsN1L6HmzuxEUb5uCpCnABnuul2Y1u5eHsHLIT?=
- =?us-ascii?Q?+04N++Obn2w6KQZZYQpjEDLhAHt0Pxasv2tBw+vkz1fOM90m57V4j2O3jZXu?=
- =?us-ascii?Q?x6iYTJh3/ohrWLahzcTNnySpI9sEnaCFV9KedJvfRrwIAd7q9oXjSp6d6rbh?=
- =?us-ascii?Q?y2A6Q2HM9AValWbKxYYyvV9DkGWEDfiIieRezqVSiTePTghhJDg6r0UmhEJJ?=
- =?us-ascii?Q?L7P6g4vLdmhZRRBLrgd5SsQYhpabUAF98d3M8Qnwyjs0Q9SRP+sGRz6iSrIs?=
- =?us-ascii?Q?SqC42/e5WXV3U+ltiYim/nqffpij2lPMYA1raLDUE7eYxiIWVzPze613A39p?=
- =?us-ascii?Q?zPo4pGDgC8upgkpixnhwudTKT4qNYqwZV5jltwGGCyw8ItR1+tpolA+MQcdp?=
- =?us-ascii?Q?8+wavT122e0iGfd+YVYFdR0dOMdIs7hwHN1sGLVoU27WZ65DrYin0b1aVoWN?=
- =?us-ascii?Q?OO2APzr+Saa+bbj4HvkERLY1gBE9ZTD9lfWAEkVXyWhd5oHJzRY/qQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Y8Y4mVaBhW/La8pb5TiFBot7Q/ZZz0YxUo1s0+IeHSNFbc4SZ3ccgAacc6Q9?=
- =?us-ascii?Q?xu04jgQEck1SSKCY1ME14p0pdyJp2kfbMRl+Qmszdjn8el5qqTfI+lQR/rCX?=
- =?us-ascii?Q?iBdXUW3hDARa3GhrSOjrZ6ZPwWDKpZT91NyBd/s1Kj7YwPbhpgpc5qSkuwLw?=
- =?us-ascii?Q?rqRvSZtLRZ0MxBzfxFaAc3+lZa6ShnJDBbozqIfNQcy5KW4xwqAE4iHvGEbP?=
- =?us-ascii?Q?rZYdbI0klhxZWfCXohGHdXZiYxAqoYtJEYjDyMwkjC1AWCD5g2pHDpyGZ7sH?=
- =?us-ascii?Q?RS51FDdN1Io/xj/xq/00kXCooZZFkUXp6UbvXmwVNIKqQtiAmLBYT1LmFe3z?=
- =?us-ascii?Q?6wGXOu/JWlYaoatfo01NwJEhA1yp5MFi19ShkyPb7SHG3LXoKQcDr4ZBUj1p?=
- =?us-ascii?Q?JTYBtoxhj/QEX9hhdXanWgIogu+VMPD9GUbcGSXgZkmX8XqEF0FLbKFmlzdL?=
- =?us-ascii?Q?qafR7Kw3r5ujeV3fw3BK5n7gnsWn30AHDytCxKmHvkRODc+6xAQvjewX8sTs?=
- =?us-ascii?Q?L41UbjBVnadPIvyllTyvBCA7Fwor0CIPOp/y6pEwLPSXlSheD1LVKd+oKw91?=
- =?us-ascii?Q?FgN2tFPTes1c7RkgiVN+La0pSvv1YXWLWaKcAc6qYk+pqnPKtDkRNUz+t1Ib?=
- =?us-ascii?Q?NgkpOZ2oO5I7P3v5oaQIhrBRiv/I7XemF5SvnBcvesB+iR4Pt0EAkVR7SZ9p?=
- =?us-ascii?Q?WQvSVGU3iCZub7W1myCb9AsiAGrmb85IXisogyLvUlO1F96cnOEUA8oH1wu0?=
- =?us-ascii?Q?KiOCHV19hDMt+MVTP6E8OriTNS2i5mjNZ8IcAS0IwJ00zY6bZbF4ys6ZTtit?=
- =?us-ascii?Q?Dz6Y+gp+F/+PdmZXQ1mR5IDNMDAEXx4koLNuZ4pLxfC8FMJBP8G/fA+A9eAu?=
- =?us-ascii?Q?dXiutUf1u1MrAulyyo7t0iqtOSB2fYBIJQZUGRq/0KyN6rIYyFYp7uZhxUx1?=
- =?us-ascii?Q?7r7JQOaFwQKDb/KlQKxf7sBfPbvJSVCarDWUt96sUKEUHm40YI/jslbUacjP?=
- =?us-ascii?Q?caKDml0JTWwLum56eFXDb8y0grPNWZRbaPNBjql9rIZX1x9XVYGL2WPyqX8g?=
- =?us-ascii?Q?huUDkdH4YHksUtIuD0+IgPiQwPURA88BGNpp6kFxHHjmU3nw+MAqkc9pJqSE?=
- =?us-ascii?Q?H3NJQSqv5v8mUhcKoehZMSfuY3Gh9unBqUDnorlIZ2pWw4/xeTFSXgbuYm2a?=
- =?us-ascii?Q?L6ysirePb5KNifMIL/R9+7Pq3DXJozYDIr38TpFjyo55UxErPpmujbanFurd?=
- =?us-ascii?Q?jkWkoyUfOn1lPW3ujfGXJF3U+yB+JE7IQcWpEfGF4NX4vKb4esJEoStuWDdH?=
- =?us-ascii?Q?DSsj36xidd78eXV/dW5j/WFKbI+NXn2uI95xvC5Qwbr1UhEW64sNiDQLsQ3i?=
- =?us-ascii?Q?hWyv080kI6k116vZ3j1aDMFUmhLLYsPyrc+LU6iiqs17ILsY7uQB57DcXQCF?=
- =?us-ascii?Q?xaDgJ5P7XUcWD3XkhBhwgcKZSYRouU+ij3YUaZdDybp2fxlgSbDXWmb3bTGd?=
- =?us-ascii?Q?mo5SnEjW+OQeUdB5WTuPzdWrxLY0EUwJErF960zqBj6cH6TRsZm/UwHEmjq2?=
- =?us-ascii?Q?Q3Ia/DO2wBhnNuV1qdDRCHlDOQWgphhaz1nX/t6O?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b353fd67-b202-460e-3427-08dd7d57875c
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 02:28:24.6021
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TiCGELk+c/GgwwMStEGO1opP09nl3wh9L91tH5nMmdueEbzy5f19zeirorZ7XpzWLY6rdx50HYzW9ZvOTMZ6bw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10364
+References: <20250416224839.9840-1-andre.przywara@arm.com> <20250416224839.9840-2-andre.przywara@arm.com>
+In-Reply-To: <20250416224839.9840-2-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 17 Apr 2025 11:14:21 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67-wqA4A1=NKee0JNEW2+SABdixN0H-HBg8aJjGZjKdJw@mail.gmail.com>
+X-Gm-Features: ATxdqUHs7z3ZrbeWhMV3p3pM4JurppAfWHNtXUVUqdTkjloev5549-NL7E-N6XA
+Message-ID: <CAGb2v67-wqA4A1=NKee0JNEW2+SABdixN0H-HBg8aJjGZjKdJw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: Add Allwinner H6/H616 PRCM PPU
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Philippe Simons <simons.philippe@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 16, 2025 at 10:37:41AM -0400, Frank Li wrote:
-> On Wed, Apr 16, 2025 at 06:59:40PM +0800, Xu Yang wrote:
-> > Since PTN5150 is a Type-C chip, we normally need to describe some
-> > properties under connector node. Due to this, the port node will
-> > locate at connector node in the future. To support it, we need to
-> > get usb role switch via connector fwnode. For compatibility, this
-> > will not remove usb_role_switch_get() function.
-> 
-> Your patch 2 already return error if there not connector, which already
-> broken compatibility.
-> 
-> You should handle compatibility in patch 2 or before patch 2.
+On Thu, Apr 17, 2025 at 6:49=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The Allwinner H6 and some later SoCs contain some bits in the PRCM (Power
+> Reset Clock Management) block that control some power domains.
+> Those power domains include the one for the GPU, the PLLs and some
+> analogue circuits.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../power/allwinner,sun50i-h6-prcm-ppu.yaml   | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/allwinner,sun=
+50i-h6-prcm-ppu.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/power/allwinner,sun50i-h6-=
+prcm-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun50i-h6=
+-prcm-ppu.yaml
+> new file mode 100644
+> index 0000000000000..7eaff9baf7268
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/allwinner,sun50i-h6-prcm-pp=
+u.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/allwinner,sun50i-h6-prcm-ppu.ya=
+ml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner SoCs PRCM power domain controller
+> +
+> +maintainers:
+> +  - Andre Przywara <andre.przywara@arm.com>
+> +
+> +description:
+> +  The Allwinner Power Reset Clock Management (PRCM) unit contains bits t=
+o
+> +  control a few power domains.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun50i-h6-prcm-ppu
+> +      - allwinner,sun50i-h616-prcm-ppu
+> +      - allwinner,sun55i-a523-prcm-ppu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    prcm_ppu: power-controller@7010210 {
 
-Since connector is not a required node, so patch2 doesn't return error if
-connector node doesn't exist. It only handle orientation switch thing. This
-will not break compatibility of usb role switch (eg: port node is outside of
-connector node).
+This doesn't match the address below.
 
-Thanks,
-Xu Yang
+ChenYu
 
-> 
-> Frank
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > ---
-> >  drivers/extcon/extcon-ptn5150.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
-> > index b7e05d921c79..160998e163f0 100644
-> > --- a/drivers/extcon/extcon-ptn5150.c
-> > +++ b/drivers/extcon/extcon-ptn5150.c
-> > @@ -352,6 +352,8 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
-> >  	}
-> >
-> >  	info->role_sw = usb_role_switch_get(info->dev);
-> > +	if (!info->role_sw && connector)
-> > +		info->role_sw = fwnode_usb_role_switch_get(connector);
-> >  	if (IS_ERR(info->role_sw))
-> >  		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
-> >  				     "failed to get role switch\n");
-> > --
-> > 2.34.1
-> >
+> +        compatible =3D "allwinner,sun50i-h616-prcm-ppu";
+> +        reg =3D <0x07010250 0x10>;
+> +        #power-domain-cells =3D <1>;
+> +    };
+> --
+> 2.46.3
+>
 
