@@ -1,63 +1,69 @@
-Return-Path: <devicetree+bounces-168263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3267A92009
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:43:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C918A92015
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 16:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3159B3AB406
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:43:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC183176A34
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 14:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B90E2517B8;
-	Thu, 17 Apr 2025 14:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379C42522BA;
+	Thu, 17 Apr 2025 14:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2cl2VpN"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="luH7tDRQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0022517A7;
-	Thu, 17 Apr 2025 14:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14782522A0;
+	Thu, 17 Apr 2025 14:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744901017; cv=none; b=UG/ydPsw2bLHtud4qk5SYOFpSTGmfnNk+qZ22zCgMtwBdrH4sx05aQD4MBzXgWBu7RCvR9fAyf6NXUX3PLrFaFBahzkw+0WYHA55i26UWuljnFeBTnnRKGi3D+/2jjOFv129iX31em9QJbpMuO3/2IbIEVAia5U68v3j21klrsc=
+	t=1744901216; cv=none; b=U5UWZfSLcUV2NYQ9ptAnXV9aD+PPINixPUMqCoPWmNzQmzqdGJEVqn7PEaFIQgTp8HwDb25aKS6NCjBOI0f+x8rdpNX6vpEJxCjWZv3ONARC5Gyc/VDo31FY5Lo3n5MFSABrfItP6IwIy5rtl9akIqpYAJwSUrJysCSDbeROhrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744901017; c=relaxed/simple;
-	bh=S5ZVaseqUuvrABoaIpwk0yu6FEYrxOLklzkrs//Q+eQ=;
+	s=arc-20240116; t=1744901216; c=relaxed/simple;
+	bh=H70yVHYWvJ5Z8+txqrRrnuk6aHTbOYbR3Ii5eVeOgvM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rQXthp6X8IC0ueYret/w18hvpz5Kd3YANABzcC4GO21l6j8r1Ek4STK2aQeq0vwlwV5rQf8WiImM43L2ERwsjdWjOs+0b8D6XleCUaEXUkUvJg/ZZmtYmyGuRAGL7LGwKOyJJ/xFGweSfjZpCddPG5v6pISohQo07UZAl/C+iOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2cl2VpN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90346C4CEEA;
-	Thu, 17 Apr 2025 14:43:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744901016;
-	bh=S5ZVaseqUuvrABoaIpwk0yu6FEYrxOLklzkrs//Q+eQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A2cl2VpN0eoon2IuVVtJZ84THZGWSgoQt4AZf+EudG7D3pBjk/4CeZCY4GHhhtOZU
-	 7fKp+/5U3Q5+/e/h65mXl++6XQPlOAqSWJiRPYKsHlJkzVeG3YB6uW8LIIfwGz8HV9
-	 BATM0TdruGKibHKJFXc59Ub6l+6n2Pd3EZAfcC+uagnoAtCP7aBtAV6HyeSwOe4++F
-	 x2SQCUuvfW6hhiY/iRdYI0QsGw8N30r3V753hxkx/WKHHv9rnO2PHmDZK4jFjmUULx
-	 E/Z7HXHFW8OjsAjPLlJzv7nmP87tZrEW6csnYlxs3kg2u5deILG849IgbAXljxAVu0
-	 0O+Xlob8ylo2w==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u5QSm-0000000016t-457c;
-	Thu, 17 Apr 2025 16:43:37 +0200
-Date: Thu, 17 Apr 2025 16:43:36 +0200
-From: Johan Hovold <johan@kernel.org>
-To: jens.glathe@oldschoolsolutions.biz
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=E2YvAFvSLglvX6Dc1vkVBKATTMmH4LW60vjA23F1zYeY3Eqzzc7kbWbDP3xLiAA+IM+qLw83M2DRxWJS37JE3tNvCZ4xtGdINw13HgAYtH6XdHy0r+K6rWw4KC+rWF1ws++hOUgcSsZZtPOA4Fen8Tm6WPRthQAnofwfRTAa5vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=luH7tDRQ; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 260612053D;
+	Thu, 17 Apr 2025 16:46:53 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Yks9lixajrJd; Thu, 17 Apr 2025 16:46:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1744901210; bh=H70yVHYWvJ5Z8+txqrRrnuk6aHTbOYbR3Ii5eVeOgvM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=luH7tDRQhPOJIbn/CeP7p11nW39ynuzSqQO3wQqRbdFcN6g6xV8Y1tEEfAE2qxG5x
+	 aV0WQflcd7f4fnhm84pQSUW4Ls4kUBc/lq20rjm7Aoy4Jh7/UmjzwoPbGCC43bGrbC
+	 R/cyqUNjfzlTUR5zlVoPkB/l+QGtImggJMOxiP/uxozzBFo3pT6Or+p/aIY9hE5YKQ
+	 yT4FrLlKTyZrYkxU3Eo3Fs4kF0G9b/mmdDMHS+Yh+1YVA484zRXjwsJ4HDrwsxzFyr
+	 KpvCz8k8xX+yjihoTtR/uOF5mBvpNG+2yGOQxMgFGBVRhCdUdiLA87D6+XMltkRaIO
+	 LtMEmPytLFcGg==
+Date: Thu, 17 Apr 2025 14:46:35 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
- retimers, dp altmode support
-Message-ID: <aAETmEB4liEf29bP@hovoldconsulting.com>
-References: <20250417-slim7x-retimer-v1-1-5813a7835903@oldschoolsolutions.biz>
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add I2C controllers for
+ RK3528
+Message-ID: <aAEUS7QQbXSvrcEs@pie.lan>
+References: <20250417120118.17610-3-ziyao@disroot.org>
+ <20250417120118.17610-5-ziyao@disroot.org>
+ <ff583eb3-d01d-4850-9f9b-f6b15ddaf137@kernel.org>
+ <c6d3e343-7005-48a9-a133-bf39cb6790ee@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,43 +72,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250417-slim7x-retimer-v1-1-5813a7835903@oldschoolsolutions.biz>
+In-Reply-To: <c6d3e343-7005-48a9-a133-bf39cb6790ee@kernel.org>
 
-On Thu, Apr 17, 2025 at 01:38:39PM +0200, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On Thu, Apr 17, 2025 at 04:36:57PM +0200, Krzysztof Kozlowski wrote:
+> On 17/04/2025 16:36, Krzysztof Kozlowski wrote:
+> > On 17/04/2025 14:01, Yao Zi wrote:
+> >> Describe I2C controllers shipped by RK3528 in devicetree. For I2C-2,
+> >> I2C-4 and I2C-7 which come with only a set of possible pins, a default
+> >> pin configuration is included.
+> >>
+> >> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 110 +++++++++++++++++++++++
+> >>  1 file changed, 110 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> index 826f9be0be19..2c9780069af9 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> @@ -24,6 +24,14 @@ aliases {
+> >>  		gpio2 = &gpio2;
+> >>  		gpio3 = &gpio3;
+> >>  		gpio4 = &gpio4;
+> >> +		i2c0 = &i2c0;
+> >> +		i2c1 = &i2c1;
+> >> +		i2c2 = &i2c2;
+> >> +		i2c3 = &i2c3;
+> >> +		i2c4 = &i2c4;
+> >> +		i2c5 = &i2c5;
+> >> +		i2c6 = &i2c6;
+> >> +		i2c7 = &i2c7;
+> > Aliases are not properties of the SoC but boards.
 > 
-> comparing with CRD and other dts for a more complete support of the 7X
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
- 
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
+> Of course this should be: Bus/interface aliases are not...
 
-Unrelated change.
+Thanks for the explanation. Will move them to the board DT.
 
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> Best regards,
+> Krzysztof
 
-Not needed with another unrelated change further down dropped.
-
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  
->  #include "x1e80100.dtsi"
-
-> +&pm8550ve_8_gpios {
-> +	misc_3p3_reg_en: misc-3p3-reg-en-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		bias-disable;
-> +		input-disable;
-> +		output-enable;
-> +		drive-push-pull;
-> +		power-source = <1>; /* 1.8 V */
-> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-> +	};
-> +};
-
-Unrelated change.
-
-Johan
+Best regards,
+Yao Zi
 
