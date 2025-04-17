@@ -1,91 +1,162 @@
-Return-Path: <devicetree+bounces-168058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47501A9140F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 08:29:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54967A9143E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 08:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E1BB3BF301
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 06:28:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9B6C1901B18
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 06:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFD71F91E3;
-	Thu, 17 Apr 2025 06:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17DB2066E4;
+	Thu, 17 Apr 2025 06:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XgFcS3y3"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="afXSZzFL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6211F8908;
-	Thu, 17 Apr 2025 06:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1432C205E2F;
+	Thu, 17 Apr 2025 06:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744871344; cv=none; b=fyxdAgCpmoEEAI4O19wZs3Lvx2G7KMEglPI4//zogs7Vu5c0VySyC7YiRZarNozKzISp9yOKTYq1Sl7csVAfcfDq+ib64XJwUvzBZIrGSQH98h5EkhQQDEcMxaet2Pktt33wunEBUJiooYRzwmmDTWtq9ppve0zfFkjDuyzTAz8=
+	t=1744872132; cv=none; b=OKEKF2BG/JXT3pkkbTkVsoi15t+ynt/W4AmUT9xMkimIII7hLzpQClu07ihIZoZwfDL26jWzEqsZeSSQNKe1EWQ/5SVK/0Ivh7/7/jTYRMN20apAdM+khOfYat1lal7kDnOTmuafVxO6wamKcaXZkQ4cXvdjK3EI6UEiF/b6908=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744871344; c=relaxed/simple;
-	bh=7IAS7u/qyeDA+3kCVGKykpqGrK/XcXN5eUwS62reNK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rotCshyEO8iu87sOhHINLjLDq/nlW4oe2sAb8uBmPr6ZvCFht7G6weq2SwPGw7vISzFGa6CLnqeyLWewZ0shOiIb6Wnx513QAlvhFEWdC4wz2Ga3MNLzCNNpSeN/ZeHaULR+ahnn85kKImClFjBJjNmkbpy9bdKXMbK2zw8vn+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XgFcS3y3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C96E3C4CEE7;
-	Thu, 17 Apr 2025 06:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744871343;
-	bh=7IAS7u/qyeDA+3kCVGKykpqGrK/XcXN5eUwS62reNK4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XgFcS3y3UHQw9SyyZDhs8yKzZcuIEoe57HITDLImj6A11NPPAyrHQSJ9xUg/AFuFe
-	 xOLpwLraz8ffZcLpYyyyGF0como1vwUQvXhYFRLmfNOOomn7obPIhTAKjouuUrCrYd
-	 +UwlcZGslCBWCMrUyueRUD4aVASK7sggMb1Jmx/k7S05AdSqcowupyn9XUAMA4wL59
-	 tjfzjPP987AIoUMM7NYFD00DgbqU4xvofP+Ey2tfzVogiJW6bIa4uMLAUTo+Yt9ttG
-	 +7qZeJPNyE9VsEiVwYdy6kPfDRKUvbpuGqTZW7+omMmdBXv0pQNyJR26D6XLizcpBc
-	 ttBso8DqragWA==
-Date: Thu, 17 Apr 2025 08:28:58 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank Wunderlich <frank-w@public-files.de>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, 
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 1/8] dt-bindings: arm: mediatek: add bpi-r4 2g5 phy
- variant
-Message-ID: <20250417-red-smilodon-of-aurora-e5beaf@shite>
-References: <20250416095402.90543-1-linux@fw-web.de>
- <20250416095402.90543-2-linux@fw-web.de>
+	s=arc-20240116; t=1744872132; c=relaxed/simple;
+	bh=qBPeov2ee89LdDp4bu5sttFc3P5GRCw9vxvmNL6dVTg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eTFE8h8shdD0NpbskUqJ5VgfOtLEX25V53xkX91SgcgZT1FC6BGylnq1clcGxcK7SQzYJ7W7X2wEjneiVf915AZ+/O71cJ9pVsuqjqR0JpvDeiNbIrDiPfL5QTrODho2R58ECbqhk/vRHtrJ6uRuzeKXyWP9EKw3rmXaM0tuvuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=afXSZzFL; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 88C5E1039EF2C;
+	Thu, 17 Apr 2025 08:33:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1744871623; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=pWQQRs0tNulqLLtU6X0X0rTBDfrE7GYWj3CFIceXYpw=;
+	b=afXSZzFLb1a2k7ibreW8JrPnIz18s/tOxCEP8LPHLrvqzy7iC3k+Sb54OJvH8lETFgRDws
+	34fOPk2HzF0pgqCpoaZj4GK/KcG+B8/i7PjxYjji8r94LTopk9GdDHreJXLjlNFKYgX++X
+	ftVu6jWGAkW5Ijbq8gyaGCeCeGFVMQQHgF0ZS8pH0TN4/CUecPt1GPR38DhPVmTC75+xA2
+	Xm+sQEE3XkfYb7055LhVq397AIuuz2aha661U55f2VUaUn2YhENdEu+uIWDpBEBMbD+az8
+	sjOiiHPy/sWtJ1noGDjo0NJWR0kMBfLSSq2SbhO92Qmzx1Z3CuCZ/YmJRlufoQ==
+Date: Thu, 17 Apr 2025 08:33:34 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Simon Horman
+ <horms@kernel.org>
+Subject: Re: [net-next v5 2/6] ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2
+ switch description
+Message-ID: <20250417083334.69b565b0@wsk>
+In-Reply-To: <2c9a5438-40f1-4196-ada9-bfb572052122@lunn.ch>
+References: <20250414140128.390400-1-lukma@denx.de>
+	<20250414140128.390400-3-lukma@denx.de>
+	<06c21281-565a-4a2e-a209-9f811409fbaf@gmx.net>
+	<2c9a5438-40f1-4196-ada9-bfb572052122@lunn.ch>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250416095402.90543-2-linux@fw-web.de>
+Content-Type: multipart/signed; boundary="Sig_/4vV2OQm1rnprx1JCFrQMEAC";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Apr 16, 2025 at 11:53:53AM GMT, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add new compatible for Bananapi R4 with 2.5G phy.
-> Base board is compatible with existing BPI-R4 only 1 SFP is replaced
-> by RJ45 port and use mt7988 internal phy.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v3:
-> - new patch adding compatible for 2.5g variant
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+--Sig_/4vV2OQm1rnprx1JCFrQMEAC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Andrew,
+
+> > > -		eth_switch: switch@800f8000 {
+> > > -			reg =3D <0x800f8000 0x8000>;
+> > > +		eth_switch: switch@800f0000 {
+> > > +			compatible =3D "nxp,imx28-mtip-switch";
+> > > +			reg =3D <0x800f0000 0x20000>;
+> > > +			interrupts =3D <100>, <101>, <102>;
+> > > +			clocks =3D <&clks 57>, <&clks 57>, <&clks
+> > > 64>, <&clks 35>;
+> > > +			clock-names =3D "ipg", "ahb", "enet_out",
+> > > "ptp"; status =3D "disabled"; =20
+> > from my understanding of device tree this file should describe the
+> > hardware, not the software implementation. After this change the
+> > switch memory region overlaps the existing mac0 and mac1 nodes.
+> >=20
+> > Definition in the i.MX28 reference manual:
+> > ENET MAC0 ENET 0x800F0000 - 0x800F3FFF 16KB
+> > ENET MAC1 ENET 0x800F4000 - 0x800F7FFF 16KB
+> > ENT Switch SWITCH 0x800F8000 - 0x800FFFFF 32KB
+> >=20
+> > I'm not the expert how to solve this properly. Maybe two node
+> > references to mac0 and mac1 under eth_switch in order to allocate
+> > the memory regions separately. =20
+>=20
+> I get what you are saying about describing the hardware, but...
+>=20
+> The hardware can be used in two different ways.
+>=20
+> 1) Two FEC devices, and the switch it left unused.
+>=20
+> For this, it makes sense that each FEC has its own memory range, there
+> are two entries, and each has a compatible, since there are two
+> devices.
+>=20
+> 2) A switch and MAC conglomerate device, which makes use of all three
+>    blocks in a single driver.
+>=20
+> The three hardware blocks have to be used as one consistent whole, by
+> a single driver. There is one compatible for the whole. Given the
+> ranges are contiguous, it makes little sense to map them individually,
+> it would just make the driver needlessly more complex.
+>=20
+> It should also be noted that 1) and 2) are mutually exclusive, so i
+> don't think it matters the address ranges overlap. Bad things are
+> going to happen independent of this if you enable both at once.
+>=20
+
++1
+
+>       Andrew
+
 
 Best regards,
-Krzysztof
 
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/4vV2OQm1rnprx1JCFrQMEAC
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgAoL8ACgkQAR8vZIA0
+zr1dXAf+KoIdy7wyBtKjBP15Tbe4F8OveobBmbcJKV0P6JQ5JNNxIFEwSKWjtTuk
+BY6L/6XG6JF1r/k/kHMe6/RemX45J3eVx0YJlUDNo/ESLK6Eez9YZIkgcfuNom3w
+XwkUNjydQLSEbB+tkY1fizdyBqIGBRiTLq0A2ZHuvklpu9TsgHoLZ7ebuvJaFANd
+9ov3lp9/PRK7+0fQ13XMFoPoDv0Svu4LN0yXwR4d8uhYCxmy8bQbs2Ec40Cb2puN
+DZcrSwXFw9GCgTMXW5NgoAR9Gx/SaOSmS9lBBqR1wIeu0QrPZ6bTsf/zIj8LO8HC
+uiEW59nmY3d05Emg0PG7Wa9MIou19A==
+=SqyS
+-----END PGP SIGNATURE-----
+
+--Sig_/4vV2OQm1rnprx1JCFrQMEAC--
 
