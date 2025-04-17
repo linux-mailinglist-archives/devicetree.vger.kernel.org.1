@@ -1,459 +1,203 @@
-Return-Path: <devicetree+bounces-168084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C60A914DF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B433AA91559
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 09:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95BF644592C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:16:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29DDC16FCC6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 07:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A4E2066DD;
-	Thu, 17 Apr 2025 07:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCA421A458;
+	Thu, 17 Apr 2025 07:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JVOXR6is"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CvG1tcL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7587F17332C
-	for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 07:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36CC207678;
+	Thu, 17 Apr 2025 07:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744874210; cv=none; b=uGeTkmr27rM3CwT2SuHUJVI7fsroBsppqzdQml7AqFQcJmaCWensURAegq8nddwOiz0Trola93qaZc+KN+85IlnE4URqYIKfr42g72+fFwEO72r3TIxoLc4YqfJf8Jhl7+aR5pEwJRcvNZ31Y5Gb4bkPr3I4WYgMG3rgmK/185o=
+	t=1744875227; cv=none; b=ubWr8CfYw0UeQx3MhEEGNmyMe7DZPnJxcvLnRdIAwkuzTGIxD3WV9p50lcAJIDpTQk/KNbBHACgadURvH+Cb6Bog9qOmkeULtJd3eQEadCjRYYr0PbxhT1+1e1Mfit2AbAf/G/F9QNylQwuntbkjFwlqPL99/gE9M4C2yXappgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744874210; c=relaxed/simple;
-	bh=MX0IdD1U9geWBV3o2UciI05J9+smrC9yf+cOK7+Kq2Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b5i6OrAoVZmoiPecf8CdqrQQYFnc6Xv0GjCdZdOH05rxNveECSbYTo2kCCa8WUjZUmqP/12hhubdfdggEZn/fkfsqODrMu5AsWBOsjm4xhYU1v+KDDzvwi+cEqxY7kKHLF3NEG/4ggDQ77PHULy6A3cJrM2EVduR7iBO1SRBlZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JVOXR6is; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54af20849bbso546376e87.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 00:16:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1744874206; x=1745479006; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TSu41B/073E+BmbBPL0RX6pQMcurIbuXS1d0yZLR2sY=;
-        b=JVOXR6isNlG1XsgDzPFTW6qQzXA6Y9eG1eaYVS7AWMzqVZ2DxTM1iywN4NdvEcyrvy
-         6w0uP26FTAWo0irmKc59wBeMk0NgVb/22wQcwpCg32ybGUR4ZUwacWVcjaJfIgF8fpb4
-         Jxlx/Ujedpzko6xoFyou/0v0QYEer3rzrD2n0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744874206; x=1745479006;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TSu41B/073E+BmbBPL0RX6pQMcurIbuXS1d0yZLR2sY=;
-        b=YOdhsMYdPjk61k1QvcaiAePjR831fHbvlPAuRL6l763d585VFgt94Xja7wMGmQJRVO
-         AB7jVsoMpVxprfNBTqO0m+iB2IBvWIaQmdwPWG1C26SPtDu8RGjSzIChSRFjwgefNVou
-         llMSKpJQWfadhpYTd84xWutaocGi77SrXR0rF5abB7l5E6HThbTuwXIQs8unU6rNJp5X
-         Ohg9SRdutt5CPN5HcGIx4ZyDK5BtaFVqUlrcIJCmL2pXzdYeAOO4IR+p6aeJFUDPJp7Z
-         ck0Tqb3WT7+6AOtCfn8T5e6Az3YSeUbTkzSADv+tFnIhEcdtYJRtmB5+VpSDSHoBdvMz
-         NZRA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZEpfg9ohOiNltr4zkKgmSeEpkBm24Xk4wk1mQf6Kvnx6bkKLCwaMEZLE43px0q0dZNXPXkwgByZtH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/1PiyVuKC39+Ry4WW6vycZdFcwbuT1rEoNbQOoKpjnJ8UEeiW
-	aUXEK2AB4kh3UE/xOaUHUXO37hlfJlkXfRsFGTN8S9KPFbtQj2TG2RTJYXUOpNYAP4Dw7Zf6kJJ
-	zLcpE1r3zst4ZlfPDYORNvHKU8Xgnj0YvzV13
-X-Gm-Gg: ASbGncuAnTRWXJ4VFoifwoFZg6gSHNO5aBwH26spX+HPAsSxGIl7CQAdl2CX2TrSpot
-	JL2jtgXrXYIvGo1wjQ2UmtRTdcLxEvbqSniYgqiue9VEbYkWtmQ5EDlPd+oNISdBgLKtwftZb0W
-	WnH7J9Y9fBnyN629uIMc9koqeues2o6LF+pZMH8aEwbnHj+qA+BA==
-X-Google-Smtp-Source: AGHT+IE55YBoHKt1cqUQ/q9enTP2N5DYuWb68KXh7Y0d6a3dhKUWY0alWZkAPJSqLFDg1OolN5gYCpvah5VGX2l2C5o=
-X-Received: by 2002:a05:6512:3b13:b0:549:8cbb:5441 with SMTP id
- 2adb3069b0e04-54d64a9c19amr1556192e87.15.1744874206243; Thu, 17 Apr 2025
- 00:16:46 -0700 (PDT)
+	s=arc-20240116; t=1744875227; c=relaxed/simple;
+	bh=Y/qc0vtTRMrzd2YLM5omTxkfh6yZkGOjYnmsFUzBRYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MEkl/8VQ2fo9PxpFoOVOEJ7Mxpq0qyFcbg37u0EOqILfIFbjTYBoi0Tb8GG6pmORxyFs1zZ3P9ug1J/jywA1R6pm5qL3OvHLimYk3SF/jBlz91Ao9a1UZSCmhFp9Y4qskRfSoWbTrrcEHbwH5drHiCeh7dr5rKSeYATpdgYI6Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CvG1tcL+; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0B7671039EF2C;
+	Thu, 17 Apr 2025 09:33:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1744875222; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=u0xom2YM8lyIFaJb7oErSmb3c+ED4OylfqTb0GgwBno=;
+	b=CvG1tcL+b+zgb41GwvC6m4xQO6vjuPOzgoQvrY3Bfr/iRSLdc0WvXYEYX/csfLcpbI0Grp
+	vReiazhemuD55KwSeOpMUWTcwxQ4R/DRW5P9KfLigaANWxhDDauvPPAfbeYHgoqf9cjiIb
+	ZlKzSvJmhXXY2iHGQSFe8sufvWb5gOimRy3Va0qL0UvxGaSDP6BdBSh8PW9REt4d6KaqWn
+	2tvTZxQK8P6aM67FQVbQUkppSmvfBEXTaF2ScUJwOcKdf+po/vTAT5O18Ih1hA3egO1/h6
+	jW/72nVBQgjd9dped8D3rBLs9j3SwJmTkUuBT8yqCFfijlbtG+8oElzHaKOq4w==
+Date: Thu, 17 Apr 2025 09:33:38 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Simon Horman
+ <horms@kernel.org>
+Subject: Re: [net-next v5 5/6] ARM: mxs_defconfig: Update mxs_defconfig to
+ 6.15-rc1
+Message-ID: <20250417093338.0990e37f@wsk>
+In-Reply-To: <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
+References: <20250414140128.390400-1-lukma@denx.de>
+	<20250414140128.390400-6-lukma@denx.de>
+	<41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317083822.891-1-jjian.zhou@mediatek.com> <375d5281-41f5-49e8-ac20-d58931c0c1f9@collabora.com>
- <CAGXv+5G4KRbv=qcKurn5u300XPp4KNovmUD9OBfX7mKk57tucg@mail.gmail.com> <dbc60fcb-1759-49e8-90da-6afce5075fbf@collabora.com>
-In-Reply-To: <dbc60fcb-1759-49e8-90da-6afce5075fbf@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 17 Apr 2025 15:16:34 +0800
-X-Gm-Features: ATxdqUGJkdmLzcyorX63OQZAnZ_VSf2hf9dsS-2r-IO5DX-6A2TwrOJBmPmRNJE
-Message-ID: <CAGXv+5FXqZb_v2dQNgCKbFpJrLhbVk3f0sWrrMCVk3jaWwoBqA@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 0/3] add VCP mailbox and IPC driver
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Jjian Zhou <jjian.zhou@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="Sig_/a2Zuo_5mcQkE7xKuvovt9yS";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
+
+--Sig_/a2Zuo_5mcQkE7xKuvovt9yS
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Stefan,
 
-Sorry for the late reply.
-
-On Wed, Apr 2, 2025 at 5:58=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 18/03/25 08:44, Chen-Yu Tsai ha scritto:
-> > On Mon, Mar 17, 2025 at 6:07=E2=80=AFPM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Il 17/03/25 09:38, Jjian Zhou ha scritto:
-> >>> The VCP mailbox has 5 groups. Each group has corresponding interrupts=
-,
-> >>> registers, and 64 slots (each slot is 4 bytes). Since different featu=
-res
-> >>> share one of the mailbox groups, the VCP mailbox needs to establish a
-> >>> send table and a receive table. The send table is used to record the
-> >>> feature ID, mailbox ID, and the number of slots occupied. The receive=
- table
-> >>> is used to record the feature ID, mailbox ID, the number of slots occ=
-upied,
-> >>> and the receive options. The API setup_mbox_table in mtk-vcp-ipc.c ca=
-lculates
-> >>> the slot offset and pin index for each feature ID based on the mailbo=
-x ID and
-> >>> slot number in the send and receive tables (several slots form a pin,=
- and
-> >>> each pin can trigger an interrupt). These descriptions are written in=
- the
-> >>> mtk-vcp-ipc.c file -- we call it the IPC layer.
-> >>>
-> >>> We have two questions:
-> >>> How should we describe the mailbox and IPI?
-> >>> Can the intermediate IPC layer be rewritten as a virtual mailbox laye=
-r?
-> >>>
-> >>
-> >> So, for this remote processor messaging system you have:
-> >>    - Dynamic channel allocation
-> >>      - Each channel has its own endpoint
+> Hi Lukasz,
+>=20
+> Am 14.04.25 um 16:01 schrieb Lukasz Majewski:
+> > This file is the updated version of mxs_defconfig for the v6.15-rc1
+> > linux-next. =20
+> thanks for sending this as a separate patch. Unfortunately it's not
+> that simple by replacing the existing mxs_defconfig. We need to
+> double-check all changes to settings, which was enabled before. This
+> should also include a short note for every setting in the commit log,
+> otherwise every reviewer has to do this job. I'll help you here by
+> adding comments ...
 > >
-> > The rpmsg model has:
+> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > ---
 > >
-> > - device -> the remote processor
-> > - channel
-> > - endpoint
+> > Changes for v5:
+> > - New patch
+> > ---
+> >   arch/arm/configs/mxs_defconfig | 11 -----------
+> >   1 file changed, 11 deletions(-)
 > >
-> > However here for the VCP and possibly all the coprocessors using the
-> > tinysys model, channel and endpoint are basically the same.
->
-> For now, yes. Though, I expect multiple endpoints to become a thing in fu=
-ture
-> iterations of MediaTek SoCs, and this is based off how the hardware seems=
- to
-> be evolving.
+> > diff --git a/arch/arm/configs/mxs_defconfig
+> > b/arch/arm/configs/mxs_defconfig index c76d66135abb..91723fdd3c04
+> > 100644 --- a/arch/arm/configs/mxs_defconfig
+> > +++ b/arch/arm/configs/mxs_defconfig
+> > @@ -32,9 +32,6 @@ CONFIG_INET=3Dy
+> >   CONFIG_IP_PNP=3Dy
+> >   CONFIG_IP_PNP_DHCP=3Dy
+> >   CONFIG_SYN_COOKIES=3Dy
+> > -# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
+> > -# CONFIG_INET_XFRM_MODE_TUNNEL is not set
+> > -# CONFIG_INET_XFRM_MODE_BEET is not set
+> >   # CONFIG_INET_DIAG is not set
+> >   # CONFIG_IPV6 is not set
+> >   CONFIG_CAN=3Dm
+> > @@ -45,7 +42,6 @@ CONFIG_MTD=3Dy
+> >   CONFIG_MTD_CMDLINE_PARTS=3Dy
+> >   CONFIG_MTD_BLOCK=3Dy
+> >   CONFIG_MTD_DATAFLASH=3Dy
+> > -CONFIG_MTD_M25P80=3Dy =20
+> This is safe because it has been replaced MTD_SPI_NOR, which is still=20
+> enabled.
+> >   CONFIG_MTD_SST25L=3Dy
+> >   CONFIG_MTD_RAW_NAND=3Dy
+> >   CONFIG_MTD_NAND_GPMI_NAND=3Dy
+> > @@ -60,7 +56,6 @@ CONFIG_ENC28J60=3Dy
+> >   CONFIG_ICPLUS_PHY=3Dy
+> >   CONFIG_MICREL_PHY=3Dy
+> >   CONFIG_REALTEK_PHY=3Dy
+> > -CONFIG_SMSC_PHY=3Dy =20
+> This is okay, because it's enabled implicit by USB_NET_SMSC95XX.
+> >   CONFIG_CAN_FLEXCAN=3Dm
+> >   CONFIG_USB_USBNET=3Dy
+> >   CONFIG_USB_NET_SMSC95XX=3Dy
+> > @@ -77,13 +72,11 @@ CONFIG_SERIAL_AMBA_PL011=3Dy
+> >   CONFIG_SERIAL_AMBA_PL011_CONSOLE=3Dy
+> >   CONFIG_SERIAL_MXS_AUART=3Dy
+> >   # CONFIG_HW_RANDOM is not set
+> > -# CONFIG_I2C_COMPAT is not set
+> >   CONFIG_I2C_CHARDEV=3Dy
+> >   CONFIG_I2C_MXS=3Dy
+> >   CONFIG_SPI=3Dy
+> >   CONFIG_SPI_GPIO=3Dm
+> >   CONFIG_SPI_MXS=3Dy
+> > -CONFIG_GPIO_SYSFS=3Dy =20
+> This also okay, because it has been deprecated by moving to EXPERT
+> and its replacement GPIO_CDEV is enabled by default.
+> >   # CONFIG_HWMON is not set
+> >   CONFIG_WATCHDOG=3Dy
+> >   CONFIG_STMP3XXX_RTC_WATCHDOG=3Dy
+> > @@ -138,10 +131,6 @@ CONFIG_PWM_MXS=3Dy
+> >   CONFIG_NVMEM_MXS_OCOTP=3Dy
+> >   CONFIG_EXT4_FS=3Dy
+> >   # CONFIG_DNOTIFY is not set
+> > -CONFIG_NETFS_SUPPORT=3Dm
+> > -CONFIG_FSCACHE=3Dy
+> > -CONFIG_FSCACHE_STATS=3Dy
+> > -CONFIG_CACHEFILES=3Dm =20
+> This is unintended, even it's not your fault Lukasz. NETFS_SUPPORT
+> isn't user select-able anymore, so it's dropped. AFAIU this comes
+> from NFS support, so i think we need to enable CONFIG_NFS_FSCACHE
+> here. Otherwise this caching feature get lost. Since this is a
+> bugfix, this should be separate patch before the syncronization.
+>=20
+> @Shawn @Fabio what's your opinion?
+> >   CONFIG_VFAT_FS=3Dy
+> >   CONFIG_TMPFS=3Dy
+> >   CONFIG_TMPFS_POSIX_ACL=3Dy =20
+>=20
 
-I don't see it happening yet. What I think will happen is they will add
-more coprocessors and corresponding mailbox controllers. And I think we
-should focus on what the current firmware implements and try to model
-that.
-
-I think we should just ask MediaTek if their firmware interface is fixed
-and what they would do if they ran out of IPI space.
-
-> > If we
-> > consider the "channel" to be the storage plus the interrupt vector,
-> > and the "endpoint" to be the function running on the remote processor
-> > servicing a given IPI ID, then it's always one endpoint per channel.
->
-> Like this, yes - but if you consider ipi_id as the endpoint things will c=
-hange.
->
-> Alternatively, if you consider the endpoint as function running on the re=
-mote
-> processor as you propose, and that I think could be the better alternativ=
-e,
-> I still expect functions to grow in future SoCs.
-
-Sure, but it's more than likely they will add more IPIs to handle that.
-
-> >
-> > IMHO rpmsg gives too much latitude to make things confusing here.
-> >
-> > rpmsg also requires the remote processor to support name service
-> > announcements, which really doesn't exist.
->
-> I have doubts about that: all this is not properly documented and a kind =
-of
-> service announcement could actually be existing - but let's assume that i=
-t
-> does not as that's the right thing to do.
->
-> There's still a way around that anyway, and even though it's not the pret=
-tiest
-> thing on Earth, it's not a big deal imo.
->
-> > The endpoints and how
-> > they map to the various hardware mailbox interrupt vectors and
-> > storage is statically allocated, and thus needs to be described
-> > in the driver.
-> >
->
-> I'm not sure I understand this sentence, but it feels like this can be av=
-oided
-> by simply using a cell in devicetree.
->
-> rpmsg =3D <&something 1 0>;  or  rpmsg =3D <&something 0>;
-
-That could work. Then again rpmsg is some software construct. Also not
-all coprocessors implement the same thing. See below.
-
-> >>      - Each channel has its own interrupt
-> >>    - Data send operation
-> >>      - Both with and without ACK indication from the remote processor
-> >>      - To channel -> endpoint
-> >>    - Data receive operation
-> >>      - From channel <- endpoint
-> >>      - When interrupt fires
-> >>      - Could use polling to avoid blocking in a few cases
-> >>    - A custom message structure not adhering to any standard
-> >>
-> >> Check drivers/rpmsg/ :-)
-> >
-> > While discussing this internally, I felt like that wasn't a really
-> > correct model. IIUC rpmsg was first created to allow userspace to
-> > pass messages to the remote processor. Then somehow devices were
-> > being created on top of those channels.
-> >
->
-> Heh, if I recall correctly, I did see some userspace messaging in one of =
-the
-> downstream kernels for other chips that are heavily using the IPI - check=
- below
-> for a model hint :-)
-
-Is that direct messaging or going through some ioctl interface? I think
-direct messaging to some system critical firmware without any sanity
-checks is potentially dangerous.
-
-> > Also, the existing mtk_rpmsg driver seemed a bit weird, like requiring
-> > a DT node for each rpmsg endpoint.
-> >
->
-> Weird... it's weird, agreed - but I call that necessary evil.
-> The other way around could be worse (note: that statement is purely by he=
-art and
-> general knowledge around MediaTek SoCs, not about any specific code in pa=
-rticular).
->
-> > That's why I thought mailboxes made more sense, as the terminology mapp=
-ed
-> > better. As a result I never brought up rpmsg in the discussion.
->
-> I think I do understand your thinking here - and I am not *strongly* disa=
-greeing,
-> but I don't really agree for the reasons that I'm explaining in this repl=
-y.
->
-> >
-> > Perhaps that could be improved with better documentation for the MediaT=
-ek
-> > specific implementation.
-> >
->
-> Now that's what I'd really like to see here, because I feel like many thi=
-ngs around
-> MediaTek SoCs are suboptimally engineered (in the software sense, because=
- in the HW
-> sense I really do like them) and the *primary* reason for this is exactly=
- the lack
-> of documentation... -> even internally <-.
-
-That I agree with.
-
-> >> On MediaTek platforms, there are many IPI to handle in many subsystems=
- for
-> >> all of the remote processors that are integrated in the SoC and, at th=
-is
-> >> point, you might as well just aggregate all of the inter processor com=
-munication
-> >> stuff in one place, having an API that is made just exactly for that, =
-instead
-> >> of keeping to duplicate the IPI stuff over and over (and yes I know th=
-at for each
-> >> remote processor the TX/RX is slightly different).
-> >>
-> >> If you aggregate the IPI messaging in one place, maintenance is going =
-to be easier,
-> >> and we stop getting duplication... more or less like it was done with =
-the mtk_scp
-> >> IPI and mtk-vcodec .. and that's also something that is partially hand=
-led as RPMSG
-> >> because, well, it is a remote processor messaging driver.
-> >>
-> >> Just to make people understand *how heavily* MediaTek SoCs rely on IPI=
-, there's
-> >> a *partial* list of SoC IPs that use IPI communcation:
-> >>
-> >> thermal, ccu, ccd, tinysys, vcp, atsp, sspm, slbc, mcupm, npu, mvpu, a=
-ps, mdla,
-> >> qos, audio, cm_mgr.... and... again, it's a partial list!
-> >
-> > Indeed, the newest chip has become quite complicated.
-> >
->
-> ..and I'd like to add: for many good reasons :-)
-
-It also creates new problems, such as resource handover. There are
-internal regulators or clock controls that are controlled by the
-firmware after the coprocessor is brought up. But until then, in
-some cases those resources are still under the control of the kernel;
-in other cases they are left turned on by the bootloader so as not
-to block consumers. Some delicate (read: fragile) handover was done,
-which I'm not very fond of.
-
-> >> That said... any other opinion from anyone else?
-> >
-> > I tried to describe why I thought a virtual mailbox was better.
-> >
->
-> The implementation issue arising with a virtual mailbox driver is that th=
-en each
-> driver for each IP (thermal, ccu, vcp, slbc, this and that) will contain =
-a direct
-> copy of the same part-two implementation for IPI communication: this can =
-especially
-> be seen on downstream kernels for MediaTek Dimensity 9xxx smartphone chip=
-s.
-
-For the code that MediaTek has provided for MT8196, I can say that there
-are at least three types of firmware interfaces:
-
-- ADSP
-
-We're running SOF, so that might be different from the Android stuff that
-you saw for 9300. The ADSP mailboxes don't have any shared storage or
-channels. They are simply doorbells. The shared storage interface is
-likely common to SOF implementations
-
-- Tinysys over SCMI
-
-This seems to be the main coprocessor, which seems to be the SSPM.
-Judging by the associated drivers, the firmware implements a vendor
-extension protocol (0x80) over SCMI, over which it provides various
-commands.
-
-From the code we have it looks like this part manages the QOS, SLBC, and
-CM_MGR parts.
-
-- Tinysys over mailbox controllers (with scratch registers)
-
-This covers the other coprocessors such as VCP, GPUEB, MCUPM and
-probably others that we don't currently have included in our tree.
-This is the part we are discussing.
-
-Given how the communication channels are crammed into the mailboxes,
-it's unlikely you can get rid of said part-two implementation. There
-needs to be something that maps individual channels onto the mailbox
-channels and combined storage. The question is simply how we want to
-model this. And regardless of whether it be rpmsg or virtual mailbox,
-we will end up with some shared library code to implement this
-translation. This is what currently exists as mtk-mbox.c and
-mtk_tinysys_ipi.c under drivers/soc/mediaktek/ in our tree. I assume
-there is something similar in the code that you have, given that
-most of the code we have for MT8196 was ported over from their
-internal trees without much modification.
-
-mtk-mbox.c handles the grouped mailboxes, while mtk_tinysys_ipi.c provides
-the IPI interface. I assume the latter is what you are referring to as
-"part-two IPI". mtk_tinysys_ipi.c goes even further as it builds the
-IPI interface on top of rpmsg (implemented in drivers/rpmsg/mtk_rpmsg_mbox.=
-c).
-
-What I would like to see is to drop the low level mailbox stuff from
-mtk-mbox.c, move the mailbox combining and repartitioning bits to a
-library that implements the IPI interface, using rpmsg or virtual
-mailboxes or whatever. I don't see why this would end up with multiple
-copies. The only thing that coprocessor drivers need to have is a
-table on how the IPIs map to the mailboxes.
-
-> If done with a mailbox, there's going to be no way around it - describing=
- it all
-> will be very long, so I am not doing that right now in this reply, but I =
-invite
-> you to check the MT6989 kernel to understand what I'm talking about :-)
-
-You'll have to provide a link to that. However I think a lot of the code
-for MT8196 is derived from the same source.
+Stefan, I will add your comments in next version of this patch.
+Moreover, I'm going to introduce new patch with the NFS_FSCACHE enabled.
 
 
-Thanks
-ChenYu
+Best regards,
 
+Lukasz Majewski
 
-> Cheers!
->
-> >
-> > Thanks
-> > ChenYu
-> >
-> >> Cheers,
-> >> Angelo
-> >>
-> >>> Example of send and recve table:
-> >>> Operation | mbox_id | ipi_id | msg_size | align_size | slot_ofs | pin=
-_index |  notes
-> >>> send          0          0       18          18           0          =
-0
-> >>> recv          0          1       18          18          18          =
-9
-> >>> send          1         15        8           8           0          =
-0
-> >>> send          1         16       18          18           8          =
-4
-> >>> send          1          9        2           2          26         1=
-3
-> >>> recv          1         15        8           8          28         1=
-4       ack of send ipi_id=3D15
-> >>> recv          1         17       18          18          36         1=
-8
-> >>> recv          1         10        2           2          54         2=
-7       ack of send ipi_id=3D2
-> >>> send          2         11       18          18           0          =
-0
-> >>> send          2          2        2           2          18          =
-9
-> >>> send          2          3        3           4          20         1=
-0
-> >>> send          2         32        2           2          24         1=
-2
-> >>> recv          2         12       18          18          26         1=
-3
-> >>> recv          2          5        1           2          44         2=
-2
-> >>> recv          2          2        1           2          46         2=
-3
-> >>>
-> >>> Recv ipi_id=3D2 is the ack of send ipi_id=3D2(The ipi_id=3D15 is the =
-same.)
-> >>>
-> >>> Jjian Zhou (3):
-> >>>     mailbox: mediatek: Add mtk-vcp-mailbox driver
-> >>>     firmware: mediatek: Add vcp ipc protocol interface
-> >>>     dt-bindings: mailbox: mtk,vcp-mbox: add mtk vcp-mbox document
-> >>>
-> >>>    .../bindings/mailbox/mtk,mt8196-vcp-mbox.yaml |  49 ++
-> >>>    drivers/firmware/Kconfig                      |   9 +
-> >>>    drivers/firmware/Makefile                     |   1 +
-> >>>    drivers/firmware/mtk-vcp-ipc.c                | 481 ++++++++++++++=
-++++
-> >>>    drivers/mailbox/Kconfig                       |   9 +
-> >>>    drivers/mailbox/Makefile                      |   2 +
-> >>>    drivers/mailbox/mtk-vcp-mailbox.c             | 179 +++++++
-> >>>    include/linux/firmware/mediatek/mtk-vcp-ipc.h | 151 ++++++
-> >>>    include/linux/mailbox/mtk-vcp-mailbox.h       |  34 ++
-> >>>    9 files changed, 915 insertions(+)
-> >>>    create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,m=
-t8196-vcp-mbox.yaml
-> >>>    create mode 100644 drivers/firmware/mtk-vcp-ipc.c
-> >>>    create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
-> >>>    create mode 100644 include/linux/firmware/mediatek/mtk-vcp-ipc.h
-> >>>    create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
-> >>>
-> >>
-> >>
-> >>
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/a2Zuo_5mcQkE7xKuvovt9yS
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgArtIACgkQAR8vZIA0
+zr0QsggA43pyZpG7jnH/6DRTCiYI+DqNL055w+1AQPvbmQvmW7/iJpPEJtFbRDJr
+dz30fj3dMp27htfUPT4jhtvhJRZ27lCO2aHDb7xzLQGzFpGe0/4UYuNyZ5oo9c8t
+HXVF/JWZhdQEiRIUomXaPcZaC9ZKHc71XSP/euaoM601NTRSp2emaLrukGklnWFB
+bd42VvXnntJ+7+8UBqfEv9PWibWtYJOIrEKN5wnQ4wG24TPZ5aJRk+fW/HitKVxy
+ZegQ6H3kTZa1CtLq9iXa9/9DC2CZvHZm0AVy3Yu4ARH6EpXK+/EKuFqIAevPBSra
+fsnhejZQdfkbg/ae/X11ConafcHPpg==
+=Ztk9
+-----END PGP SIGNATURE-----
+
+--Sig_/a2Zuo_5mcQkE7xKuvovt9yS--
 
