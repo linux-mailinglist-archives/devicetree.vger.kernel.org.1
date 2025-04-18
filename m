@@ -1,482 +1,145 @@
-Return-Path: <devicetree+bounces-168526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 180CAA935C5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:06:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7FEA935F0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 854B219E4439
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:06:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48E0B7B40E3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080EC26FDA2;
-	Fri, 18 Apr 2025 10:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B20F270EDF;
+	Fri, 18 Apr 2025 10:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YzaviCwS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zkmtQaSk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0E02566E3
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 10:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6615526FDA3
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 10:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744970758; cv=none; b=b4PeK0e3FY7D35MlDQMyS10gNihvmqZMFG92cmGWVQSS4cDw43UByGfvRRsxb6nCT8axUMcu7meLMwbD2UJ2/WZaY0A3TlRQcTgNiDwRQrv8boWt4ZtmHzR0/I2m2h2DInA6J116o1puVbe8FfDroknEJXxHMuTRKGov4/+prPM=
+	t=1744971778; cv=none; b=Q6bqIsSbRzoy/jla/+2cVwRtwVhsDaC3VqL1nwYpPrTjFDiyP1/tXgzKM3Z7hLQTrOZf692d8A6mGgKgRlXbNsIBawly++L3BELKD9+iRh6lx2rJXurJqdS4uT8mKmSVXzg3tPR0DW1Vjw9//FEURn5Der3w/QUbOu97RXNekbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744970758; c=relaxed/simple;
-	bh=f2niFzj2+T4w38MzzaQOnsBrvuhWF82yvxdzktB/quw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tBN4K/aIfIoqek6mb8+13h85LM2rQUKgTwN1Du7smcERJZNivfLBFBSxD72kANQYA1s9V46io0MvpQSfmgs4jtZxdk/ASUF3T0RyROmPHzDEOcciUURXyuy+jJtz3yDgNc/qVpI9zNM5wSQU76jqhmtZ9BT036MAfXGAxmSfBc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YzaviCwS; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1744971778; c=relaxed/simple;
+	bh=kdcZo7k40rdzUo4iOEDODFuxSFIAmXugWOJxYj68wOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oDkgNZVbP14I1+wmKzdd6RFn4aYSRG5dDmvKht2O3n0tlI/2D8OSpbc6vqQnbd76LNHk/yeo4ewDFMDCvKeasbdFtKklM+9oiKUZAksN0oRyOrhKHbsI4x1yeiJBpm6FAjsjAWbAmVey7/fQhUWdx0LZGCWbQ/aFUV4MRRCToek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zkmtQaSk; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so12326385e9.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 03:05:56 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so11480405e9.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 03:22:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744970755; x=1745575555; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CTlk+jYHZEiHwrDu7oq1VdZKiF0Z5rQ01+MOkfIYifY=;
-        b=YzaviCwSkOlZjTfX9vzJRbSnmL7UVWTz3FgoUtOlxjKHGecxBVNGHB99J/n82l6mnK
-         7A6bjKKTxgB2jgLdksM1hfQV2wbh0hziKyIIUEuP6Z63ap/u0b4RkFc7CwMgX6qZLDRI
-         XJ20nHQMCEIiiJsEKoPF1kx3a+z9cIwxtPtix9JtcXRE7tDC1U+nyjIs5/ePjbnmwh9a
-         6RyCBHKzVUrrguG6OkzWbmI84fdggj1O/Rp3/xlOrYKIF5G+BAPRM/dD9VQNxhW9tOuO
-         U2exjTZV7WRQtavtrXtAIz8Riyezt9AuODMbI1eKYSxn7nDSbbecAqnp3IZF8ASUSfbk
-         LYeg==
+        d=linaro.org; s=google; t=1744971774; x=1745576574; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/k0Y0aoMA2GBez0xVc7/5fQuBfWbJDDhwqoAabodniI=;
+        b=zkmtQaSkONnWKoe3Lk3IQcZtBDYyiiVoOV0AACyTUGAL5BMnfEbe0ybHqE/XHBPVH9
+         OWqPC+xC1oHeDEw4UzLkG1Ziulenj9Udyyp34ps0/cAJDZSXpHt20Mmco3R1Dz9la1Hy
+         rr7XabZEvJ76dXvifA7Vx1nm1ePcYXRmRVjRG1uNve/K2cGWsL8xXSIg18uypEIWmKsJ
+         QPtzfKv3PYdAwkPleWUnUfyU5cU+z+ezaWTQWfC3r0O84RF+xRRFdolK9DzQISRCWvXa
+         FNIJ2bucZA0fSFP1m04CBwKOZGbin/pIRSsxAGTz9KXuVAvFV2GamJm8rz59P48F6wGj
+         WhgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744970755; x=1745575555;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1744971774; x=1745576574;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CTlk+jYHZEiHwrDu7oq1VdZKiF0Z5rQ01+MOkfIYifY=;
-        b=gFbFeUYEbDlTXI29G6/hLo6Ez8Uu3zBjPFpm0hjqquY+1WxKYhaO8zuUX6fxDr/o+c
-         7b2OPsqkeQS5C/qwvt6G0oOLRTEEERkWCtVW2+o7hw2VwCS2fuIIpygeC1/SKwTZFSS0
-         Hr5ZAeT2DiF2/AZe47I7sqx0WqtbOZlDLTCbhvZIDnksI67FRg7BCQ8uuaFu3GA1Ti5E
-         wfs7Go6OM5x9VR2uPLMLOQ8nj01VX+tCaqEu2MUrB25cTj6l7QcAU+fobI1LC2L/i7tt
-         9HjdAAtiHavJVdDgxX4LtFmD02G8hx4eGD4+qCnUKkwAo9Ja/WcYJ/9ymU725yrWiSNM
-         QMPw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlUV7PPDkwcNsVhas3SIDVRxgl/JlTzIv1MkuK2V6Jjp57sDl6BRx02aZHE9u15Ub9Ek0o13v0ywkP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz63U1bcqI45Q+xqQqGEGkR4lFn3Jyo7odhnjQqmGBxi66Urvjm
-	5GNU4v3zQVn855Xu44cT3oJF6o4QQz6u48WY6zewS8rPZkppgx9eEPn1+NS/GUY=
-X-Gm-Gg: ASbGnct9HHeurmF3G0mKZTNiH/cJsevb4riPDHGeeGgDQlbatK9yTeg99N5Nh4Qcfvn
-	0YlUn8q+DCCRMvrOaoee+L0CfBu7jbNRQd4f1fzPlEHuHuj8VhMjTd42yWVbHRIUC327PEhg4sO
-	MnX38TidCCSDp0TFtRcVMCVn9J4l9ErQ6JW6h5q2mVWTBt/w39x4IUvHWmLt9BBZtoHDpJo09PB
-	xmpwSyZhe/2au+S4sCdhNokuSJXdK490lY6Go92dEt08F5XJdrf7ZmcE7Rpjeg8kEtMa/KlKbLh
-	fAo9nzKxpWXlubxSpqDbDTd+iPyk14LdCkZO49EfV+p58l7+T+P6yCJPDSmlWs1jljsgDdQx5iu
-	Hr+U=
-X-Google-Smtp-Source: AGHT+IE32VVV4WI0syEHCfftDy3qQR8UsE5hWgnvTO3T4+yc+FIYsXr0vx8CYH0HyyE7uZXj039ibg==
-X-Received: by 2002:a05:600c:1c07:b0:43c:f6c6:578c with SMTP id 5b1f17b1804b1-4406aba5a1amr20867675e9.15.1744970754834;
-        Fri, 18 Apr 2025 03:05:54 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5bbd5fsm16485565e9.22.2025.04.18.03.05.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 03:05:54 -0700 (PDT)
-Date: Fri, 18 Apr 2025 12:05:52 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengfei Li <pengfei.li_1@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ye.li@nxp.com, joy.zou@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH RESEND v6 2/2] thermal: imx91: Add support for i.MX91
- thermal monitoring unit
-Message-ID: <aAIkAF_AHta8_vuS@mai.linaro.org>
-References: <20250407-imx91tmu-v6-0-e48c2aa3ae44@nxp.com>
- <20250407-imx91tmu-v6-2-e48c2aa3ae44@nxp.com>
+        bh=/k0Y0aoMA2GBez0xVc7/5fQuBfWbJDDhwqoAabodniI=;
+        b=fEUZt1y/Hi7aGqjbBCIAwT5DkbEKuNDVvqf2RvG9HvByEd4Lgqsa6AklgDJ88AbfNU
+         Aq7+rLaAw1BuOzT6hdQTd+GysKyirtf8wRlwF2ptGQgvSlyTF/O7tZBfn4A8TFHrjidX
+         hPVjBzrt/p0JzXdI2O2eqHUUiIDUGNQ7zeUEO+FG1HvDdpFTB7FjnrcN2ferLz87pGF/
+         nENpgmS/ROGP7bJpD8Q2SYt4GKNakHSBWgjs5R2V1+7vx+WlIVE5hiaXs3OYz6YZ1uZ+
+         PbzpxlKIKjNGHwITMqLDiAJH9xfxtjl+dDtwg2pAFCj+UymR4G+GG4RI6i6L5hdcPLkT
+         flsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYsbYkeJ5ky81iQSW+TDK3UBZJeI1HG0wTOHlI0NFypJYkIRaEUdSRe7W9o9Sn5hPBdo5pKvcq0mbO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjBwcl94VfC09BicPypZ8oNC15VyJACCpK5ZYNkxrGmji8aeAQ
+	oYprtTmVNRJuLQJksvU+3M0lWkvcTD6w2BUSGHob7hJoXIOnHKuWJ7AegxcEouY=
+X-Gm-Gg: ASbGncuY0r7FZGVYXJGUTBqkMc7bJ7nBW5ghUiJSjFFDbRvYXlV8P5S1WDBkwZqmfg6
+	HNaeyUyxDow6+iMpzx/98fxZNyK9/U3zXs3ry81NYfIdtY2JrpI+8kwFwSshq3iERSf26n3vpoQ
+	WpZUxNcgmqdTMH9n4VH8FghvqiGlOJA2ckTrtP39+6D/0kwsDeMh60nMHyP8R3KLD7wAlvGeCil
+	S4+BDm17J8LtRpiSQX1azONfFd7sxJUTBn187svmaGZ+W3dE2bw+as3h6jItGg0ibnwOIIrOy7j
+	sUTaaB6K9PblSh2+5dKVj1SChVaZ93NlW7//JMzbmm6vcBNYikSxERv0hQOEqjXNoziaNRHJ25N
+	baUsAbQ==
+X-Google-Smtp-Source: AGHT+IEV+ngZedvb1G9GddVsd006y6aowAa3golTbSy0UL6/dPU7ikOlFtQiwJbx/8C4Y2tbwGajLA==
+X-Received: by 2002:a05:600c:43d4:b0:440:67d4:ec70 with SMTP id 5b1f17b1804b1-44069732095mr22695595e9.8.1744971773715;
+        Fri, 18 Apr 2025 03:22:53 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4a4c8fsm2264681f8f.89.2025.04.18.03.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Apr 2025 03:22:53 -0700 (PDT)
+Message-ID: <a6689177-0f82-4b1e-b1c5-c50751d0f0bf@linaro.org>
+Date: Fri, 18 Apr 2025 11:22:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250407-imx91tmu-v6-2-e48c2aa3ae44@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: qcom,sm8550-iris: document
+ QCS8300 IRIS accelerator
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com>
+ <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 07, 2025 at 04:05:40PM -0400, Frank Li wrote:
-> From: Pengfei Li <pengfei.li_1@nxp.com>
+On 18/04/2025 07:28, Vikash Garodia wrote:
+> Document the IRIS video decoder and encoder accelerator found in the
+
+Document the IRIS video "encoder/decoder" or "transcoder"
+
+
+> QCS8300 platform. QCS8300 is a downscaled version of SM8550, thereby
+
+is a down-scaled version of the SM8550.
+
+QCS8300 has a fewer capabilities compared to SM8550.
+
+Note: It might be nice to give a brief overview of what the differences 
+are since you mention them or instead of making it a diff of 8550 just 
+to state what the QCS8300 can do.
+
+> have different(lower) capabilities when compared to SM8550.
 > 
-> Introduce support for the i.MX91 thermal monitoring unit, which features a
-> single sensor for the CPU. The register layout differs from other chips,
-> necessitating the creation of a dedicated file for this.
+> This patch depends on patch 20250225-topic-sm8x50-iris-v10-a219b8a8b477
 > 
-> This sensor provides a resolution of 1/64°C (6-bit fraction). For actual
-> accuracy, refer to the datasheet, as it varies depending on the chip grade.
-> Provide an interrupt for end of measurement and threshold violation and
-> Contain temperature threshold comparators, in normal and secure address
-> space, with direction and threshold programmability.
-> 
-> Datasheet Link: https://www.nxp.com/docs/en/data-sheet/IMX91CEC.pdf
-> 
-> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
 > ---
-> Change from v5 to v6
-> - remove Macro's review tag
-> - remove mutex lock
-> - use set_trips callback
+>   Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> Change from v4 to v5
-> - add irq support
-> - use period mode
-> - Marco, if need drop review tag, let me know
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> index f567f84bd60d439b151bb1407855ba73582c3b83..3dee25e99204169c6c80f7db4bad62775aaa59b5 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> @@ -24,6 +24,7 @@ properties:
+>         - enum:
+>             - qcom,sm8550-iris
+>             - qcom,sm8650-iris
+> +          - qcom,qcs8300-iris
+>   
+>     power-domains:
+>       maxItems: 4
 > 
-> Change from v3 to v4
-> - Add Macro's review tag
-> - Use devm_add_action()
-> - Move pm_runtim_put before thermal_of_zone_register()
-> 
-> change from v2 to v3
-> - add IMX91_TMU_ prefix for register define
-> - remove unused register define
-> - fix missed pm_runtime_put() at error path in imx91_tmu_get_temp()
-> - use dev variable in probe function
-> - use pm_runtime_set_active() in probe
-> - move START to imx91_tmu_get_temp()
-> - use DEFINE_RUNTIME_DEV_PM_OPS()
-> - keep set reset value because there are not sw "reset" bit in controller,
-> uboot may change and enable tmu.
-> 
-> change from v1 to v2
-> - use low case for hexvalue
-> - combine struct imx91_tmu and tmu_sensor
-> - simplify imx91_tmu_start() and imx91_tmu_enable()
-> - use s16 for imx91_tmu_get_temp(), which may negative value
-> - use reverse christmas tree style
-> - use run time pm
-> - use oneshot to sample temp
-> - register thermal zone after hardware init
-> ---
->  drivers/thermal/Kconfig         |  10 +
->  drivers/thermal/Makefile        |   1 +
->  drivers/thermal/imx91_thermal.c | 398 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 409 insertions(+)
-> 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index d3f9686e26e71..78a05d1030882 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -296,6 +296,16 @@ config IMX8MM_THERMAL
->  	  cpufreq is used as the cooling device to throttle CPUs when the passive
->  	  trip is crossed.
->  
-> +config IMX91_THERMAL
-> +	tristate "Temperature sensor driver for NXP i.MX91 SoC"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  Include one sensor and six comparators. Each of them compares the
-> +	  temperature value (from the sensor) against the programmable
-> +	  threshold values. The direction of the comparison is configurable
-> +	  (greater / lesser than).
-> +
->  config K3_THERMAL
->  	tristate "Texas Instruments K3 thermal support"
->  	depends on ARCH_K3 || COMPILE_TEST
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index 9abf43a74f2bb..08da241e6a598 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -50,6 +50,7 @@ obj-$(CONFIG_ARMADA_THERMAL)	+= armada_thermal.o
->  obj-$(CONFIG_IMX_THERMAL)	+= imx_thermal.o
->  obj-$(CONFIG_IMX_SC_THERMAL)	+= imx_sc_thermal.o
->  obj-$(CONFIG_IMX8MM_THERMAL)	+= imx8mm_thermal.o
-> +obj-$(CONFIG_IMX91_THERMAL)	+= imx91_thermal.o
->  obj-$(CONFIG_MAX77620_THERMAL)	+= max77620_thermal.o
->  obj-$(CONFIG_QORIQ_THERMAL)	+= qoriq_thermal.o
->  obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
-> diff --git a/drivers/thermal/imx91_thermal.c b/drivers/thermal/imx91_thermal.c
-> new file mode 100644
-> index 0000000000000..e8deb0b07dc98
-> --- /dev/null
-> +++ b/drivers/thermal/imx91_thermal.c
-> @@ -0,0 +1,398 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2025 NXP.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/nvmem-consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/thermal.h>
-> +#include <linux/units.h>
-> +
-> +#define REG_SET					0x4
-> +#define REG_CLR					0x8
-> +#define REG_TOG					0xc
-> +
-> +#define IMX91_TMU_CTRL0				0x0
-> +#define   IMX91_TMU_CTRL0_THR1_IE		BIT(9)
-> +#define   IMX91_TMU_CTRL0_THR1_MASK		GENMASK(3, 2)
-> +#define   IMX91_TMU_CTRL0_CLR_FLT1		BIT(21)
-> +
-> +#define IMX91_TMU_THR_MODE_LE			0
-> +#define IMX91_TMU_THR_MODE_GE			1
-> +
-> +#define IMX91_TMU_STAT0				0x10
-> +#define   IMX91_TMU_STAT0_THR1_IF		BIT(9)
-> +#define   IMX91_TMU_STAT0_THR1_STAT		BIT(13)
-> +#define   IMX91_TMU_STAT0_DRDY0_IF_MASK		BIT(16)
-> +
-> +#define IMX91_TMU_DATA0				0x20
-> +
-> +#define IMX91_TMU_CTRL1				0x200
-> +#define IMX91_TMU_CTRL1_EN			BIT(31)
-> +#define IMX91_TMU_CTRL1_START			BIT(30)
-> +#define IMX91_TMU_CTRL1_STOP			BIT(29)
-> +#define IMX91_TMU_CTRL1_RES_MASK		GENMASK(19, 18)
-> +#define IMX91_TMU_CTRL1_MEAS_MODE_MASK		GENMASK(25, 24)
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_SINGLE	0
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_CONTINUES	1
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_PERIODIC	2
-> +
-> +#define IMX91_TMU_THR_CTRL01			0x30
-> +#define   IMX91_TMU_THR_CTRL01_THR1_MASK	GENMASK(31, 16)
-> +
-> +#define IMX91_TMU_REF_DIV			0x280
-> +#define IMX91_TMU_DIV_EN			BIT(31)
-> +#define IMX91_TMU_DIV_MASK			GENMASK(23, 16)
-> +#define IMX91_TMU_DIV_MAX			255
-> +
-> +#define IMX91_TMU_PUD_ST_CTRL			0x2b0
-> +#define IMX91_TMU_PUDL_MASK			GENMASK(23, 16)
-> +
-> +#define IMX91_TMU_TRIM1				0x2e0
-> +#define IMX91_TMU_TRIM2				0x2f0
-> +
-> +#define IMX91_TMU_TEMP_LOW_LIMIT		-40000
-> +#define IMX91_TMU_TEMP_HIGH_LIMIT		125000
-> +
-> +#define IMX91_TMU_DEFAULT_TRIM1_CONFIG		0xb561bc2d
-> +#define IMX91_TMU_DEFAULT_TRIM2_CONFIG		0x65d4
-> +
-> +#define IMX91_TMU_PERIOD_CTRL			0x270
-> +#define   IMX91_TMU_PERIOD_CTRL_MEAS_MASK	GENMASK(23, 0)
-> +
-> +#define IMX91_TMP_FRAC				64
-> +
-> +struct imx91_tmu {
-> +	void __iomem *base;
-> +	struct clk *clk;
-> +	struct device *dev;
-> +	struct thermal_zone_device *tzd;
-> +	int high;
-> +	bool enable;
-> +};
-> +
-> +static void imx91_tmu_start(struct imx91_tmu *tmu, bool start)
-> +{
-> +	u32 val = start ? IMX91_TMU_CTRL1_START : IMX91_TMU_CTRL1_STOP;
-> +
-> +	writel_relaxed(val, tmu->base + IMX91_TMU_CTRL1 + REG_SET);
-> +}
-> +
-> +static void imx91_tmu_enable(struct imx91_tmu *tmu, bool enable)
-> +{
-> +	u32 reg = IMX91_TMU_CTRL1;
-> +
-> +	reg += enable ? REG_SET : REG_CLR;
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL1_EN, tmu->base + reg);
-> +}
-> +
-> +static int imx91_tmu_to_mcelsius(int x)
-> +{
-> +	return x * MILLIDEGREE_PER_DEGREE / IMX91_TMP_FRAC;
-> +}
-> +
-> +static int imx91_tmu_from_mcelsius(int x)
-> +{
-> +	return x * IMX91_TMP_FRAC / MILLIDEGREE_PER_DEGREE;
-> +}
-> +
-> +static int imx91_tmu_get_temp(struct thermal_zone_device *tz, int *temp)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	s16 data;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(tmu->dev);
-> +	if (ret < 0)
-> +		return ret;
+Otherwise looks good an applies, please update your commit long and add:
 
-Why using pm_runtime* all over the place ?
-
-It would make sense to have in the probe/remove functions (or in the set_mode -
-enabled / disabled), suspend / resume but the other place it does not make
-sense IMO. If the sensor is enabled by the set_mode function and then
-pm_runtime_get() is called, then the ref is taken during all the time the
-sensor is in use, so others pm_runtime_get / pm_runtime_put will be helpless,
-no ?
-
-
-> +	/* DATA0 is 16bit signed number */
-> +	data = readw_relaxed(tmu->base + IMX91_TMU_DATA0);
-> +	*temp = imx91_tmu_to_mcelsius(data);
-> +	if (*temp < IMX91_TMU_TEMP_LOW_LIMIT || *temp > IMX91_TMU_TEMP_HIGH_LIMIT)
-> +		ret = -EAGAIN;
-
-When the measured temperature can be out of limits ?
-
-> +	if (*temp <= tmu->high && tmu->enable) {
-
-I suggest to provide a change in the thermal core to return -EAGAIN if the
-thermal zone is not enabled when calling thermal_zone_get_temp() and get rid of the tmu->enable
-
-> +		writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
-> +	}
-
-For my understanding what are for these REG_CLR and REG_SET in this function?
-
-> +	pm_runtime_put(tmu->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx91_tmu_set_trips(struct thermal_zone_device *tz, int low, int high)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	int val;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(tmu->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (high >= IMX91_TMU_TEMP_HIGH_LIMIT)
-> +		return -EINVAL;
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +
-> +	/* Comparator1 for temperature threshold */
-> +	writel_relaxed(IMX91_TMU_THR_CTRL01_THR1_MASK, tmu->base + IMX91_TMU_THR_CTRL01 + REG_CLR);
-> +	val = FIELD_PREP(IMX91_TMU_THR_CTRL01_THR1_MASK, imx91_tmu_from_mcelsius(high));
-> +	writel_relaxed(val, tmu->base + IMX91_TMU_THR_CTRL01 + REG_SET);
-> +
-> +	writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
-> +
-> +	tmu->high = high;
-
-Why is 'high' needed?
-
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
-> +	pm_runtime_put(tmu->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx91_init_from_nvmem_cells(struct imx91_tmu *tmu)
-> +{
-> +	struct device *dev = tmu->dev;
-> +	u32 trim1, trim2;
-> +	int ret;
-> +
-> +	ret = nvmem_cell_read_u32(dev, "trim1", &trim1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = nvmem_cell_read_u32(dev, "trim2", &trim2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (trim1 == 0 || trim2 == 0)
-> +		return -EINVAL;
-> +
-> +	writel_relaxed(trim1, tmu->base + IMX91_TMU_TRIM1);
-> +	writel_relaxed(trim2, tmu->base + IMX91_TMU_TRIM2);
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx91_tmu_action_remove(void *data)
-> +{
-> +	struct imx91_tmu *tmu = data;
-> +
-> +	/* disable tmu */
-> +	imx91_tmu_enable(tmu, false);
-> +}
-> +
-> +static irqreturn_t imx91_tmu_alarm_irq_thread(int irq, void *dev)
-> +{
-> +	struct imx91_tmu *tmu = dev;
-> +	int val;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(tmu->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	thermal_zone_device_update(tmu->tzd, THERMAL_EVENT_UNSPECIFIED);
-
-Ack the IRQ before calling thermal_zone_device_update()
-
-> +	val = readl_relaxed(tmu->base + IMX91_TMU_STAT0);
-
-One blank line to let the code breath
-
-> +	/* Have to use CLR register to clean up w1c bits */
-> +	writel_relaxed(val, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +
-> +	pm_runtime_put(tmu->dev);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int imx91_tmu_change_mode(struct thermal_zone_device *tz, enum thermal_device_mode mode)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	int ret;
-> +
-> +	if (mode == THERMAL_DEVICE_ENABLED) {
-> +		ret = pm_runtime_get(tmu->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		imx91_tmu_start(tmu, true);
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
-> +		tmu->enable = true;
-> +	} else {
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +		imx91_tmu_start(tmu, false);
-> +		pm_runtime_put(tmu->dev);
-> +		tmu->enable = false;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct thermal_zone_device_ops tmu_tz_ops = {
-> +	.get_temp = imx91_tmu_get_temp,
-> +	.change_mode = imx91_tmu_change_mode,
-> +	.set_trips = imx91_tmu_set_trips,
-> +};
-> +
-
-[ ... ]
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
