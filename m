@@ -1,103 +1,120 @@
-Return-Path: <devicetree+bounces-168410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25DCA92EC7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 02:22:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C54CEA92F82
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 03:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2676189B1C5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 00:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F00B94658FF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 01:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAB0288D2;
-	Fri, 18 Apr 2025 00:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C5E25E462;
+	Fri, 18 Apr 2025 01:49:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A952AEED;
-	Fri, 18 Apr 2025 00:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9959725E455;
+	Fri, 18 Apr 2025 01:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744935765; cv=none; b=T9qRnFjmQ7ZDWtCKUTL2res65VkYv45b/k4um1fYxcxIuTW3fBMJPCQoqfWbJ2eJAByEMCdeubVzlByDR5ao9wTy0aAkYrvvAPNOBzJBSWa3qmywyorxPLgY1ehW27UDSsvqqXXxbjFg2mFcyMNsXJOoaec6ZdnF8ArT5J36FHo=
+	t=1744940969; cv=none; b=gVz1qBulJ54aWYQhEKOU6RkgaFwFdd2aWwiFakIahyHOtxcGTS14qA3B/IDhCZgyacfx3x9ln0RlXrDXzcghHnZryc4xcgoYWZ4RZG2/7+VYRAIyLzd9BydBlsdcA90u3M6fWP7db5733SYcjTbZS+1GjQ+jb7Ku/Ypw6Rshhtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744935765; c=relaxed/simple;
-	bh=eCJzhCM/N9tfeIoXxAgMxE9th3g84gBE4CoN6UFnlco=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lQURFE4gYkB2g9bbOV+L76jKILiY0VqMDImPA8OS9Ot09nW/0xN6KVbJKqhffqrx2UaZqFqmV0AKGP5S0aVZ6GFVxN57NKrecaqX7pcpdvdEX5ICpUadwaQoBY/UFH+74z7GSF+4nn25zGt6d0CSS6NpA+w8JcrP5pm6ss2odTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost.localdomain (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 624F7342FE7;
-	Fri, 18 Apr 2025 00:22:37 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1744940969; c=relaxed/simple;
+	bh=B/85nIAgaufDDrEWIOlC0tWiCnzSQtFEMAoQLqN8pwI=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=gbNQEIwNk5oRGT/sOCU6Hv7ePTO1tiFIDyxlkCiKD5q/czen1peFVmU1QxEzhDiamp8eEkwjRHEqxGX5juU4Nq7oKexdvki2dJTLxE9ACFTEKpBXg2CvZRaRZNiKGoZR2Z32OwiIlP4tulsq/1bCBHjytWQ/CrWWvWaMgre5XGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=airkyi.com; spf=none smtp.mailfrom=airkyi.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=airkyi.com
+X-QQ-mid: izesmtp80t1744940890t33e52999
+X-QQ-Originating-IP: xxYq8I7Tn0LYbD/zhGkQUHqaOq+30P2WCr1qDmsQs4c=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 18 Apr 2025 09:48:08 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12449981161467156277
+EX-QQ-RecipientCnt: 20
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Haylen Chu <heylenay@4d2.org>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: (subset) [PATCH v8 0/6] Add clock controller support for SpacemiT K1
-Date: Fri, 18 Apr 2025 08:22:03 +0800
-Message-ID: <174484549885.160158.3249067849153986093.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250416135406.16284-1-heylenay@4d2.org>
-References: <20250416135406.16284-1-heylenay@4d2.org>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add support for RK3588 EVB2 board
+Date: Fri, 18 Apr 2025 09:47:55 +0800
+Message-Id: <20250418014757.336-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: izesmtp:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: N7MSp95pYuqVdt5Ada0qswa5Q85vZDVGKwMX0tgjkJInZHvrW3t2kIpT
+	OabEc/IShIOWW3qSfCsOgAEefqUTTq/dAPi02SD1iVVe+rS2fdmg/5CYwuKVHzMCW4eCdsn
+	4036/i/hYgy9bNJHpSrFvj0mqUUtdn2YXPbxLrGzBhB+OMbORGxv+KL4vvlEPInj9Wolx4B
+	kFj7Tng+HkPScXFqjTmLtPpyv2i15aAGK/097QUG2k9sPQKStbu6mvmfDviP7/zSWpwYosy
+	ylzNndWfRELk8wFjC6833Yn8whG1OFYfz9Ty9GgAwihNFukwpQjOvLw5nhGMQ+2tYp59EhB
+	G/Zrm8AsxXs+t1NgKX9WATZH+GA0Qc+1kkcpHuV+BwIA25xTKpKEt65UNySiY4CEmp9vpmf
+	MjjzqvYAgDJuP0ZMQ3xlxd4cQSp+8uzZwBfSltgFhf3RxKh+7qRCbvBfIXQYyY1jz3nMLvL
+	Kb2b44Xlbt6l2KJ+4bmcI8YI7CkE0yZSRtez1D8j9/hv2qg5+vmu6asg1iNBSVwBR4y4JN+
+	a1i0XNvmYAM2luKuwzAPpPxQL8JA/JDBHQfukP6YG+mz6mb74XJLpWSHSH5+JsSGCIfhB8y
+	tLlNnpvpyVDdXDlrp5Tje6D6HItrtPV25zOpXWRnateo7J+oKXoPKKwGz5T9DElh7zSNBUJ
+	ZifqHDfVPZl0IdW1W/S/t/LnK6bo+vpWJUKYj7cx53Bu33VLYCPNfUSbspZx/nUE5nnN0xs
+	dVIhhoLwiK4YMiZYdsi+jlhq6HsaG9otNhlLJQBMt8lrVoIeWtJE0yGFR+9g05xytoWVi2y
+	aROrv2f/3c3qH9e9PBDCszgiU34dTtGEabd8Ln3rMTlJMBbaMgfrrlNUBJFm45raCY3zkl1
+	9u6mE0qLHjnKM+/N9YOPQsmuqO6hyQlamx+4J+N7OlDwlGT+oaN6YSvWfiWFjevg+4DzeTc
+	TOgdlpI37bx+B9ShpZV1LS6d9+Xc4u4o8B0bVlkHtczBoi9vrLSQ40AKrJ9MQwUp+wmm+Pc
+	ujswug52tnXc06RgCOnSTRM0ZM7L/xuWgMXUol7A==
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-On Wed, 16 Apr 2025 13:54:00 +0000, Haylen Chu wrote:
-> The clock tree of SpacemiT K1 is managed by several independent
-> multifunction devices, some of them are
-> 
-> - Application Power Manage Unit, APMU
-> - Main Power Manage Unit, MPMU
-> - APB Bus Clock Unit, APBC
-> - APB Spare, APBS
-> 
-> [...]
+General features for rk3588 evb2 board:
+- Rockchip RK3588
+- LPDDR4/4X
+- eMMC5.1
+- RK806-2x2pcs + DiscretePower
+- 1x HDMI2.1 TX / HDMI2.0 RX
+- 1x full size DisplayPort
+- 3x USB3.0 Host
+- 1x USB2.0 Host
+- WIFI/BT
 
-Applied, thanks!
+v2:
+- Fix wrong indentation in dt bindings
 
-[1/6] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
-      https://github.com/spacemit-com/linux/commit/61e312a001a394a93998c353af859841ddf50d5d
-[2/6] dt-bindings: clock: spacemit: Add spacemit,k1-pll
-      https://github.com/spacemit-com/linux/commit/8090804045066ab8cd92737c8e2adfb46f166c0f
-[3/6] clk: spacemit: Add clock support for SpacemiT K1 SoC
-      https://github.com/spacemit-com/linux/commit/1b72c59db0add8e47fa116b21f78ed0b09a264f3
-[4/6] clk: spacemit: k1: Add TWSI8 bus and function clocks
-      https://github.com/spacemit-com/linux/commit/49625c6e4d90a9221127c49a11eb8c95732bb690
+Chaoyi Chen (2):
+  dt-bindings: arm: rockchip: Add rk3588 evb2 board
+  arm64: dts: rockchip: Add rk3588 evb2 board
 
-Best regards,
--- 
-Yixun Lan
+ .../devicetree/bindings/arm/rockchip.yaml     |   4 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-evb2-v10.dts     | 931 ++++++++++++++++++
+ 3 files changed, 935 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+
+--
+2.49.0
 
 
