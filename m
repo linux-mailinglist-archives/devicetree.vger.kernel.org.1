@@ -1,73 +1,83 @@
-Return-Path: <devicetree+bounces-168475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6C2A9321E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 08:34:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372D9A93315
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 09:02:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 888AF441A25
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 06:33:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A33D13A9F0A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 07:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D3D26FD8D;
-	Fri, 18 Apr 2025 06:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5026326A0EE;
+	Fri, 18 Apr 2025 06:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cKH8Jjz3"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JETgk1bO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90FD26F44D;
-	Fri, 18 Apr 2025 06:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C874F268C6F;
+	Fri, 18 Apr 2025 06:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744957887; cv=none; b=eW1IkYuZFjRBnWqj0XdYGE9XPeqvEgNXy9zotZBVqnB+KJN0ULEh6rBu9NrDNhr8w/X6go1bAn0BI5jipBKRQRdQMsoVaTjyJgWb00yDYNfImXJ8kZ8c7WuTdn8gUiJyh0HUhh7JE7GUCt72dUMPdipbhfx/vIy9SJrGxugtEtA=
+	t=1744959218; cv=none; b=GaQaOQqMpsMNDbiERcDQI19iJRF8Pgt44AA8jKkNv7M+wi1XHfG2K6LBvf0Q6OSdKScwpuQZSK7GsZIc/ic4MV55yWGE2CFJdPoWZKxlAWd9vrMiLCozmI+qU/S2wvNmRRa5FrfPKnE4dhRp7bMwErhWdT4lBpasOldduEMc2jU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744957887; c=relaxed/simple;
-	bh=r/Ex6zbqfmmSqV6pPOofSWL8wLYsy0vJ40McfaddmnA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=p0QZJKKeKkCpobwi0AqH4+7sccAjP4el1gAOQYQKNFXdl1tCZKAhua6guOOaob7rLWLGLip+qU4jP2cUVD5xKXa70IEWUDBiVFv5TmN5gETeiLUDfG6qi49MaVsVjHwZuqN6+mMAp/4xrjOPQ1a+hNHGfjSNs9Vk16NNymYqp70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cKH8Jjz3; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=oTg5xlBMV3ZpioVnQMKMCNtn41a6TiUkCbtv/ticY0Q=; b=cKH8Jjz3UhDIikWoDUs9Pr6GlI
-	Mmz/6GL+pGzQYRY4NUFxkPQ1reeW+aRqBnalYDxz5Cs/EBek0U2vd9bYn3wnMVO9bcz7K6nvF8a8y
-	vZ03y5b1HiShBsMyWEt/U56nCsO4sNA2kIgj17dyWhsUnjVS0Lug+UUFVqVMkWM+vgi9oHHr1CpC3
-	u/PxqDkEA+4KxZd1OM8JjV0tL7PKohBHdlAp7guW4A9Dh4Ii6FkbCo1ybIlEqu9YT73lbykd/uyPq
-	6lgqy2uq2Pj9oAYd1IP0qumexjCyfEGGNJtKkWmG7S+eMaVoK9mq5Pp93074AtyBlQDRSkxrgG5fz
-	SV6z8cgw==;
-Received: from [89.212.21.243] (port=56446 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1u5fG0-00AbM0-1a;
-	Fri, 18 Apr 2025 08:31:24 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v3 15/15] arm64: dts: freescale: imx93-phyboard-segin: Order node alphabetically
-Date: Fri, 18 Apr 2025 08:31:04 +0200
-Message-Id: <20250418063104.2202085-16-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250418063104.2202085-1-primoz.fiser@norik.com>
-References: <20250418063104.2202085-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1744959218; c=relaxed/simple;
+	bh=8DRQcjETAh73+uSdh9HICm/6bDWCcItxwNGGJVyypxo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NF1FN+vt4JV3xRC3GJSMSJEoKRYOGmQsH4ohsUzHt01bx2jCOqBckjGNmyGHwPM+Lssdcipe1tvZMySN0BTtCIFkD9MQpumgBRiAfEDpi5ESI0aXAThyOhAhuZ/XjMN13+1dD9d5g0/XkR6/pFvceizy/sspDlssgiF15hhBN8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=JETgk1bO; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d069ea061c2111f08eb9c36241bbb6fb-20250418
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=vP/pmjYB/UEc9jBjVVzZ4eruBcoBstw0sXKps7+hEW0=;
+	b=JETgk1bOq9I+bfN0qa37MTkSaYf8vRtD+HneZIQNFOPrbb0SVErqT7nssAaiVwQ42xPhV6ojtSn8MgaaJdxdAm0VmvqqZAnTxfF35r6bzzb2sszr2M/l0c+sgiw/+MZ52zxb0mQrkAASOzgyXjJj8wcAB3NZEhPMvQICM30B8Iw=;
+X-CID-CACHE: Type:Local,Time:202504181451+08,HitQuantity:1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:f4cf5a3e-aeb1-41c5-b9f1-47e4c5077365,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:2c3e668b-0afe-4897-949e-8174746b1932,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d069ea061c2111f08eb9c36241bbb6fb-20250418
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <bincai.liu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 343564215; Fri, 18 Apr 2025 14:53:20 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 18 Apr 2025 14:53:19 +0800
+Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 18 Apr 2025 14:53:18 +0800
+From: Bincai Liu <bincai.liu@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Chunfeng Yun
+	<chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
+ Abraham I <kishon@kernel.org>, Jitao shi <jitao.shi@mediatek.com>, CK Hu
+	<ck.hu@mediatek.com>
+CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-phy@lists.infradead.org>,
+	Bincai Liu <bincai.liu@mediatek.com>
+Subject: [PATCH 0/5] eDP driver for mt8196
+Date: Fri, 18 Apr 2025 14:52:27 +0800
+Message-ID: <20250418065313.8972-1-bincai.liu@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,62 +85,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain
 
-Move pinctrl_uart1 to keep nodes in alphabetical order. No functional
-changes.
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
-Changes in v3:
-- add Reviewed-by tag
+Bincai Liu (5):
+  dt-bindings: eDP: mediatek: add eDP yaml for mt8196
+  dt-bindings: dvo: mediatek: add dvo yaml for mt8196
+  drm/mediatek: Add dvo driver for mt8196
+  drm/mediatek: Add eDP driver for mt8196
+  drm/mediatek: Add eDP phy driver for mt8196
 
- .../boot/dts/freescale/imx93-phyboard-segin.dts    | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ .../display/mediatek/mediatek,dp.yaml         |   2 +
+ .../display/mediatek/mediatek,dpi.yaml        |   1 +
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |   5 +-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |   1 +
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 484 +++++++++++++++---
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         | 126 +++++
+ drivers/gpu/drm/mediatek/mtk_dpi.c            | 240 +++++++--
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h       |  66 +++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   5 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   1 +
+ drivers/phy/mediatek/Makefile                 |   1 +
+ drivers/phy/mediatek/phy-mtk-edp.c            | 262 ++++++++++
+ 12 files changed, 1100 insertions(+), 94 deletions(-)
+ create mode 100644 drivers/phy/mediatek/phy-mtk-edp.c
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-index c62cc06fad4b..0c55b749c834 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-@@ -228,13 +228,6 @@ MX93_PAD_I2C2_SDA__LPI2C2_SDA		0x40000b9e
- 		>;
- 	};
- 
--	pinctrl_uart1: uart1grp {
--		fsl,pins = <
--			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
--			MX93_PAD_UART1_TXD__LPUART1_TX		0x30e
--		>;
--	};
--
- 	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
- 		fsl,pins = <
- 			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
-@@ -257,6 +250,13 @@ MX93_PAD_SAI1_RXD0__SAI1_RX_DATA00	0x1402
- 		>;
- 	};
- 
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX		0x30e
-+		>;
-+	};
-+
- 	pinctrl_usdhc2_cd: usdhc2cdgrp {
- 		fsl,pins = <
- 			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
 -- 
-2.34.1
+2.45.2
 
 
