@@ -1,384 +1,368 @@
-Return-Path: <devicetree+bounces-168479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FFCA93317
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 09:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDACA93332
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 09:08:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED9513B09A3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 07:01:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A93C3B385D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 07:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2D726A1B6;
-	Fri, 18 Apr 2025 06:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27DE26981A;
+	Fri, 18 Apr 2025 07:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="RI29SC/N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lkOUrKN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A651326A08F;
-	Fri, 18 Apr 2025 06:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF49226983B
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 07:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744959219; cv=none; b=g/XdA7ayYT9CCT/mPsUsfmMzd1A2THqgQYVnfEV8XLmYqU23LAbWeb1eBpibjHoIlDthccb5XntsiUtfm8g3/+OL7xpdoVwWBupGYRX9jbMrXBa6QFKPDMRjndzxLNJrXEQDF4PelfY/QsLpi83IHD+KvwTp4xTGLWmdVsN+0hM=
+	t=1744960087; cv=none; b=Q9s2fQs788YH3fTgbbc2h39h2VIAKnnIuCrAEpqpWilScJGNlKxQC2A4WZFrTH4/nZJ8VJ59l6Fpq34G+U4OrQJOGzPSxt9boZ3In77bsM77ho+C362ti4jxaBPBvDEttySTMNkhh8pWUIX2h6GaM50QQGZU8s7OVARZHgv9bao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744959219; c=relaxed/simple;
-	bh=YSTwngCXYUn3OMNWxwmpYdm65cPd3lDts5wsoY0FMuc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bOtD69q93DLb9sprIu1KiSElZo0VKsvlHTSz5ltRHdyEI+DRSv7rigmYRHC5ecm3KrXbqRiUgPtEj+h9DDSvhIAiVeuoJ4d4lmAnGrxDY2I1wq8b55afXvIyS0Wo9+RPNvcwRcubv78ItweGC1MsOMBh846A2sUDlYqWEe/BMxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=RI29SC/N; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: d2ab9e541c2111f0aae1fd9735fae912-20250418
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=cxjQDLdx0UG7gRjGuFA0+lUdD8dcgO/jR8OOL1qmwZk=;
-	b=RI29SC/NHo58iR/64b2d8HqYZudnXkTinpMrNfri0k8p9uMUmuA5itqSQJ/T75EWSl0QanjhClN1MyFzP5b+JSgGk2NMuvaqO/5qAyrsvnMnffoj3MoBVMg/Hfh1Ag8t/GApAvravmjwsHgjszL02qgx6razUEuyyl19XBIRdZ4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:dcdfe057-a988-44f0-b48a-71aeabe2647f,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:8d44668b-0afe-4897-949e-8174746b1932,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: d2ab9e541c2111f0aae1fd9735fae912-20250418
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <bincai.liu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1054836075; Fri, 18 Apr 2025 14:53:24 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 18 Apr 2025 14:53:23 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 18 Apr 2025 14:53:22 +0800
-From: Bincai Liu <bincai.liu@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Chunfeng Yun
-	<chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Jitao shi <jitao.shi@mediatek.com>, CK Hu
-	<ck.hu@mediatek.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-phy@lists.infradead.org>,
-	Bincai Liu <bincai.liu@mediatek.com>
-Subject: [PATCH 5/5] drm/mediatek: Add eDP phy driver for mt8196
-Date: Fri, 18 Apr 2025 14:52:32 +0800
-Message-ID: <20250418065313.8972-6-bincai.liu@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250418065313.8972-1-bincai.liu@mediatek.com>
-References: <20250418065313.8972-1-bincai.liu@mediatek.com>
+	s=arc-20240116; t=1744960087; c=relaxed/simple;
+	bh=MjTcnivbppFuWDxiJMyMXQle7rxti96tn0uQEqxDf6I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p+Rsqt1xtWoYMetJPECmWpo4emgHTP/cdkOncNtEZdG5DmEtJcvYNsBsTZytmtX3+7pUjS2urVpymedNfrWAEh4pJVmxyzQi+HDRw6/rDA+XD2crQyKJJ7qRLpRx5fOGmiSxvuWIfNphRj7InM1Q+/33iEeZ2N1KoEjtWD19YDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lkOUrKN6; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39c0dfad22aso1028005f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744960084; x=1745564884; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HWjp8y8vFcOu+OSEBcB4uctMZzi0CJU4vWPxTMamQ/Q=;
+        b=lkOUrKN6oVbIv4nKYBD0yYQiDqytiez2cv5X5pNkwD+jLIdkNe5VWDJSEj5Bbo/hzR
+         RMAIVwIkNLCWs9f9HRkBKJn7Y6GreRx+gVhi/ETP+NYDCiv7mr1Um9nAix9RxFncAWaM
+         cZv18m6IIQK2Vd5Gex+iMHJoJhC5O1nN42TE8zeq+4grNQzCmhBM96eQSWa7P/fR4BsA
+         MG7Ojemy8dSeAf2ZaJc+lxPN8roJ7/4jIkdggytmn0+j34Ll45zYMwWUIBkUwbJHCymD
+         5UZ6Ef7qoJw0Me2MW7QjonJZdE6CC54f5bjsvjBVfl5mJerGd51RYDQRZePHZgehklsa
+         pjVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744960084; x=1745564884;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HWjp8y8vFcOu+OSEBcB4uctMZzi0CJU4vWPxTMamQ/Q=;
+        b=JS6/qJDiSxCkV1XDjB/4M8ScG9WyY6z2r9iVqkSu4tTfSZV4ZFrgOo/f/w9K1PFRvH
+         nacqv0O6ApmYY6h0O2uv2slDSzYkb5rkkrLsMTKDLd23rYMJ9nn54XiMt0+/da3IqSDY
+         WBI/LZM9futvpqZ3rgkJhVFG0ADl3Bc9bU9CQVjE4AbggwfF1f4TkeZ/hj24KrvKKPpN
+         OnJFG5J/RvLvMtGPmiLxVH5iQI0iXikyqlbgRgtPxhPkMqyRq8TGw8L3sim2OdT8XJKy
+         h/Ik5HuxGKcCQ4S2dmwKLvhNOcPffs57Q2Ksz3VlBJiwRWUvMUX3JlVkTAdNRreMh6AW
+         jMfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQZ0aS8dBVjocaE9EBdDmzouPpHg0XYHmrt4AwE3e42jaSPChhwYpKrSH0aI5XP5A1bCNKuGyaqqyb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzjs4q5ZvssFPv88BJMmnxCUkT4iRQlXgbZO0EGpU49fBfgWrra
+	XbieJENGnm9AvCe8+yWwtC/ZgiuEdB8loSP4yv62E8vNOf/7JrLdbv6rnAkoX/mae/IC8dNbeb2
+	Vlj9izQ==
+X-Gm-Gg: ASbGncsYX6sLm9NXgxISaAnyjEfbwEYuqWeOly7HoLXWbAm0tvHjCRMgtNtfIuhAu9E
+	hrdnorRvhIjG7lPtrjo5WF/Z4cbucAIliKqwQDVi6LBTzTG2nH45B34YrI+zYLqKTBVLAd1Mqi5
+	z9gebxEiStBrw8+6OhUqUwMSynvGwAFB5jpTyGQcqxfuOnuJK9sBohFMb2j7kdp7YsybAJ1mmzQ
+	RXnpvCg+c6X5JGb6AN/aGUIQ7cyoVyphGklp2o5+RYllRM+L0Umu1pnOOj7s3JRfWP0L0aIoJdI
+	Ycmg3x4otn6icdk4qIAWwBFoZczYvhrjzO3dPE/as4YzFUKB0bwluKnjrBA0QhRMesffd7N+bhP
+	IF0AzdQ==
+X-Google-Smtp-Source: AGHT+IGnTH5vOZF2u4It+TIDbYVDJ9lOX/4CXNAQQY4+Sw+Dr3UKWjzq+JbcKdHZOf/M/NXavbawLA==
+X-Received: by 2002:a05:6000:40df:b0:39c:1401:679c with SMTP id ffacd0b85a97d-39efba4e291mr1224722f8f.21.1744960083940;
+        Fri, 18 Apr 2025 00:08:03 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa43315esm1856612f8f.26.2025.04.18.00.08.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Apr 2025 00:08:03 -0700 (PDT)
+Message-ID: <ae4492fe-1b1b-444e-a4f3-4b99258a1ee0@linaro.org>
+Date: Fri, 18 Apr 2025 08:08:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: camss: Add
+ qcom,qcm2290-camss binding
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>, rfoss@kernel.org,
+ konradybcio@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
+References: <20250417145819.626733-1-loic.poulain@oss.qualcomm.com>
+ <20250417145819.626733-6-loic.poulain@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250417145819.626733-6-loic.poulain@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add code to support eDP phy for mt8196.
+On 17/04/2025 15:58, Loic Poulain wrote:
+> Add bindings for qcom,qcm2290-camss in order to support the camera
+> subsystem found in the Qualcomm Robotics RB1 Platform (QRB2210).
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>   .../bindings/media/qcom,qcm2290-camss.yaml    | 261 ++++++++++++++++++
+>   1 file changed, 261 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml
+> new file mode 100644
+> index 000000000000..1af6ed298c66
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml
+> @@ -0,0 +1,261 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,qcm2290-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QCM2290 Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Loic Poulain <loic.poulain@oss.qualcomm.com>
+> +
+> +description:
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,qcm2290-camss
+> +
+> +  reg:
+> +    maxItems: 9
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: tpg0
+> +      - const: tpg1
+> +      - const: top
+> +
+> +  clocks:
+> +    maxItems: 15
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ahb
+> +      - const: axi
+> +      - const: top_ahb
+> +      - const: csi0
+> +      - const: csi1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy0_timer
+> +      - const: csiphy1_timer
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe1_cphy_rx
+> +      - const: camnoc_nrt_axi
+> +      - const: camnoc_rt_axi
+> +
+> +  interrupts:
+> +    maxItems: 8
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: tpg0
+> +      - const: tpg1
+> +
+> +  interconnects:
+> +    maxItems: 3
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ahb
+> +      - const: hf_mnoc
+> +      - const: sf_mnoc
+> +
+> +  iommus:
+> +    maxItems: 4
+> +
+> +  power-domains:
+> +    items:
+> +      - description: GDSC CAMSS Block, Global Distributed Switch Controller.
+> +
+> +  vdda-phy-supply:
+> +    description:
+> +      Phandle to a 1.2V regulator supply to CSI PHYs.
+> +
+> +  vdda-pll-supply:
+> +    description:
+> +      Phandle to 1.8V regulator supply to CAMSS refclk pll block.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    description:
+> +      CSI input ports.
 
-Signed-off-by: Bincai Liu <bincai.liu@mediatek.com>
----
- drivers/phy/mediatek/Makefile      |   1 +
- drivers/phy/mediatek/phy-mtk-edp.c | 262 +++++++++++++++++++++++++++++
- 2 files changed, 263 insertions(+)
- create mode 100644 drivers/phy/mediatek/phy-mtk-edp.c
+patternProperties would be nicer here
 
-diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
-index 1b8088df71e8..49d9ea42497a 100644
---- a/drivers/phy/mediatek/Makefile
-+++ b/drivers/phy/mediatek/Makefile
-@@ -4,6 +4,7 @@
- #
- 
- obj-$(CONFIG_PHY_MTK_DP)		+= phy-mtk-dp.o
-+obj-$(CONFIG_PHY_MTK_DP)		+= phy-mtk-edp.o
- obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
- obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
- obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
-diff --git a/drivers/phy/mediatek/phy-mtk-edp.c b/drivers/phy/mediatek/phy-mtk-edp.c
-new file mode 100644
-index 000000000000..fadcbda55b70
---- /dev/null
-+++ b/drivers/phy/mediatek/phy-mtk-edp.c
-@@ -0,0 +1,262 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019-2022 MediaTek Inc.
-+ * Copyright (c) 2022 BayLibre
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define PHYD_OFFSET			0x0000
-+#define PHYD_DIG_LAN0_OFFSET		0x1000
-+#define PHYD_DIG_LAN1_OFFSET		0x1100
-+#define PHYD_DIG_LAN2_OFFSET		0x1200
-+#define PHYD_DIG_LAN3_OFFSET		0x1300
-+#define PHYD_DIG_GLB_OFFSET		0x1400
-+
-+#define DP_PHY_DIG_PLL_CTL_0		(PHYD_DIG_GLB_OFFSET + 0x10)
-+#define FORCE_PWORE_STATE_FLDMASK		GENMASK(2, 0)
-+#define FORCE_PWORE_STATE_VALUE			0x7
-+
-+#define IPMUX_CONTROL			(PHYD_DIG_GLB_OFFSET + 0x98)
-+#define EDPTX_DSI_PHYD_SEL_FLDMASK		0x1
-+#define EDPTX_DSI_PHYD_SEL_FLDMASK_POS		0
-+
-+#define DP_PHY_DIG_TX_CTL_0		(PHYD_DIG_GLB_OFFSET + 0x74)
-+#define TX_LN_EN_FLDMASK			0xf
-+
-+#define mtk_edp_PHY_DIG_PLL_CTL_1	(PHYD_DIG_GLB_OFFSET + 0x14)
-+#define TPLL_SSC_EN				BIT(8)
-+
-+#define mtk_edp_PHY_DIG_BIT_RATE		(PHYD_DIG_GLB_OFFSET + 0x3C)
-+#define BIT_RATE_RBR				0x1
-+#define BIT_RATE_HBR				0x4
-+#define BIT_RATE_HBR2				0x7
-+#define BIT_RATE_HBR3				0x9
-+
-+#define mtk_edp_PHY_DIG_SW_RST		(PHYD_DIG_GLB_OFFSET + 0x38)
-+#define DP_GLB_SW_RST_PHYD			BIT(0)
-+#define DP_GLB_SW_RST_PHYD_MASK			BIT(0)
-+
-+#define DRIVING_FORCE			0x30
-+#define EDP_TX_LN_VOLT_SWING_VAL_FLDMASK	0x6
-+#define EDP_TX_LN_VOLT_SWING_VAL_FLDMASK_POS	1
-+#define EDP_TX_LN_PRE_EMPH_VAL_FLDMASK		0x18
-+#define EDP_TX_LN_PRE_EMPH_VAL_FLDMASK_POS	3
-+
-+struct mtk_edp_phy {
-+	struct regmap *regs;
-+};
-+
-+enum DPTX_LANE_NUM {
-+	DPTX_LANE0 = 0x0,
-+	DPTX_LANE1 = 0x1,
-+	DPTX_LANE2 = 0x2,
-+	DPTX_LANE3 = 0x3,
-+	DPTX_LANE_MAX,
-+};
-+
-+enum DPTX_LANE_COUNT {
-+	DPTX_LANE_COUNT1 = 0x1,
-+	DPTX_LANE_COUNT2 = 0x2,
-+	DPTX_LANE_COUNT4 = 0x4,
-+};
-+
-+static void mtk_edptx_phyd_reset_swing_pre(struct mtk_edp_phy *edp_phy)
-+{
-+	regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN0_OFFSET + DRIVING_FORCE,
-+			   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+			   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK, 0x0);
-+	regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN1_OFFSET + DRIVING_FORCE,
-+			   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+			   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK, 0x0);
-+	regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN2_OFFSET + DRIVING_FORCE,
-+			   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+			   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK, 0x0);
-+	regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN3_OFFSET + DRIVING_FORCE,
-+			   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+			   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK, 0x0);
-+}
-+
-+static int mtk_edp_phy_init(struct phy *phy)
-+{
-+	struct mtk_edp_phy *edp_phy = phy_get_drvdata(phy);
-+
-+	regmap_update_bits(edp_phy->regs, IPMUX_CONTROL, 0,
-+			   EDPTX_DSI_PHYD_SEL_FLDMASK);
-+
-+	regmap_update_bits(edp_phy->regs, DP_PHY_DIG_PLL_CTL_0,
-+			   FORCE_PWORE_STATE_VALUE,
-+			   FORCE_PWORE_STATE_FLDMASK);
-+
-+	return 0;
-+}
-+
-+static int mtk_edp_phy_configure(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	struct mtk_edp_phy *edp_phy = phy_get_drvdata(phy);
-+	u32 val;
-+
-+	if (opts->dp.set_rate) {
-+		switch (opts->dp.link_rate) {
-+		case 1620:
-+			val = BIT_RATE_RBR;
-+			break;
-+		case 2700:
-+			val = BIT_RATE_HBR;
-+			break;
-+		case 5400:
-+			val = BIT_RATE_HBR2;
-+			break;
-+		case 8100:
-+			val = BIT_RATE_HBR3;
-+			break;
-+		default:
-+			dev_err(&phy->dev,
-+				"Implementation error, unknown linkrate %x\n",
-+				opts->dp.link_rate);
-+			return -EINVAL;
-+		}
-+		regmap_write(edp_phy->regs, mtk_edp_PHY_DIG_BIT_RATE, val);
-+	}
-+
-+	if (opts->dp.set_lanes) {
-+		for (val = 0; val < 4; val++) {
-+			regmap_update_bits(edp_phy->regs, DP_PHY_DIG_TX_CTL_0,
-+					   ((1 << (val + 1)) - 1),
-+					   TX_LN_EN_FLDMASK);
-+		}
-+	}
-+
-+	if (opts->dp.set_voltages) {
-+		switch (opts->dp.lanes) {
-+		case DPTX_LANE_COUNT1:
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN0_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE0] << 1 |
-+					   opts->dp.pre[DPTX_LANE0] << 3);
-+		break;
-+		case DPTX_LANE_COUNT2:
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN0_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE0] << 1 |
-+					   opts->dp.pre[DPTX_LANE0] << 3);
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN1_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE1] << 1 |
-+					   opts->dp.pre[DPTX_LANE1] << 3);
-+		break;
-+		case DPTX_LANE_COUNT4:
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN0_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE0] << 1 |
-+					   opts->dp.pre[DPTX_LANE0] << 3);
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN1_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE1] << 1 |
-+					   opts->dp.pre[DPTX_LANE1] << 3);
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN2_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE2] << 1 |
-+					   opts->dp.pre[DPTX_LANE2] << 3);
-+			regmap_update_bits(edp_phy->regs, PHYD_DIG_LAN3_OFFSET +
-+					   DRIVING_FORCE,
-+					   EDP_TX_LN_VOLT_SWING_VAL_FLDMASK |
-+					   EDP_TX_LN_PRE_EMPH_VAL_FLDMASK,
-+					   opts->dp.voltage[DPTX_LANE3] << 1 |
-+					   opts->dp.pre[DPTX_LANE3] << 3);
-+		break;
-+		default:
-+			dev_err(&phy->dev, "Wrong lanes config: %x\n",
-+				opts->dp.lanes);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	regmap_update_bits(edp_phy->regs, mtk_edp_PHY_DIG_PLL_CTL_1,
-+			   TPLL_SSC_EN, opts->dp.ssc ? 0 : TPLL_SSC_EN);
-+
-+	return 0;
-+}
-+
-+static int mtk_edp_phy_reset(struct phy *phy)
-+{
-+	struct mtk_edp_phy *edp_phy = phy_get_drvdata(phy);
-+
-+	regmap_update_bits(edp_phy->regs, mtk_edp_PHY_DIG_SW_RST,
-+			   0, DP_GLB_SW_RST_PHYD_MASK);
-+	usleep_range(50, 200);
-+	regmap_update_bits(edp_phy->regs, mtk_edp_PHY_DIG_SW_RST,
-+			   DP_GLB_SW_RST_PHYD, DP_GLB_SW_RST_PHYD_MASK);
-+	regmap_update_bits(edp_phy->regs, DP_PHY_DIG_TX_CTL_0,
-+			   0x0, TX_LN_EN_FLDMASK);
-+	mtk_edptx_phyd_reset_swing_pre(edp_phy);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops mtk_edp_phy_dev_ops = {
-+	.init = mtk_edp_phy_init,
-+	.configure = mtk_edp_phy_configure,
-+	.reset = mtk_edp_phy_reset,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int mtk_edp_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_edp_phy *edp_phy;
-+	struct phy *phy;
-+	struct regmap *regs;
-+
-+	regs = *(struct regmap **)dev->platform_data;
-+	if (!regs)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "No data passed, requires struct regmap**\n");
-+
-+	edp_phy = devm_kzalloc(dev, sizeof(*edp_phy), GFP_KERNEL);
-+	if (!edp_phy)
-+		return -ENOMEM;
-+
-+	edp_phy->regs = regs;
-+	phy = devm_phy_create(dev, NULL, &mtk_edp_phy_dev_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy),
-+				     "Failed to create DP PHY\n");
-+
-+	phy_set_drvdata(phy, edp_phy);
-+	if (!dev->of_node)
-+		phy_create_lookup(phy, "edp", dev_name(dev));
-+
-+	return 0;
-+}
-+
-+struct platform_driver mtk_edp_phy_driver = {
-+	.probe = mtk_edp_phy_probe,
-+	.driver = {
-+		.name = "mediatek-edp-phy",
-+	},
-+};
-+
-+module_platform_driver(mtk_edp_phy_driver);
-+
-+MODULE_AUTHOR("Markus Schneider-Pargmann <msp@baylibre.com>");
-+MODULE_DESCRIPTION("MediaTek DP PHY Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.45.2
+https://gitlab.freedesktop.org/linux-media/media-committers/-/blob/next/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml?ref_type=heads#L129
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - interconnects
+> +  - interconnect-names
+> +  - iommus
+> +  - power-domains
+> +  - vdda-phy-supply
+> +  - vdda-pll-supply
+
+Similarly we are looking for the voltage level on these rails as part of 
+the name.
+
+https://gitlab.freedesktop.org/linux-media/media-committers/-/blob/next/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml?ref_type=heads#L173
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
+> +    #include <dt-bindings/interconnect/qcom,rpm-icc.h>
+> +    #include <dt-bindings/interconnect/qcom,qcm2290.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        camss: camss@5c6e000 {
+> +            compatible = "qcom,qcm2290-camss";
+> +
+> +            reg = <0 0x5c6e000 0 0x1000>,
+> +                  <0 0x5c75000 0 0x1000>,
+> +                  <0 0x5c52000 0 0x1000>,
+> +                  <0 0x5c53000 0 0x1000>,
+> +                  <0 0x5c6f000 0 0x4000>,
+> +                  <0 0x5c76000 0 0x4000>,
+> +                  <0 0x5c66000 0 0x400>,
+> +                  <0 0x5c68000 0 0x400>,
+> +                  <0 0x5c11000 0 0x1000>;
+
+Recent guidance is for <0x0 0x5c11000 0x0 0x1000> i.e. using hex for 
+both values instead of mixing base 10 and base 16.
+
+> +            reg-names = "csid0",
+> +                        "csid1",
+> +                        "csiphy0",
+> +                        "csiphy1",
+> +                        "vfe0",
+> +                        "vfe1",
+> +                        "tpg0",
+> +                        "tpg1",
+
+csitpg0,
+csitpg1
+
+alphabetise the regs by name too please
+
+https://gitlab.freedesktop.org/linux-media/media-committers/-/blob/next/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml?ref_type=heads#L213
+
+https://gitlab.freedesktop.org/linux-media/media-committers/-/blob/next/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml?ref_type=heads
+
+> +                        "top";
+> +
+> +            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +                     <&gcc GCC_CAMSS_AXI_CLK>,
+> +                     <&gcc GCC_CAMSS_TOP_AHB_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_0_CSID_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_1_CSID_CLK>,
+> +                     <&gcc GCC_CAMSS_CPHY_0_CLK>,
+> +                     <&gcc GCC_CAMSS_CPHY_1_CLK>,
+> +                     <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
+> +                     <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_0_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_1_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_0_CPHY_RX_CLK>,
+> +                     <&gcc GCC_CAMSS_TFE_1_CPHY_RX_CLK>,
+> +                     <&gcc GCC_CAMSS_NRT_AXI_CLK>,
+> +                     <&gcc GCC_CAMSS_RT_AXI_CLK>;
+> +            clock-names = "ahb",
+> +                          "axi",
+> +                          "top_ahb",
+> +                          "csi0",
+> +                          "csi1",
+> +                          "csiphy0",
+> +                          "csiphy1",
+> +                          "csiphy0_timer",
+> +                          "csiphy1_timer",
+> +                          "vfe0",
+> +                          "vfe1",
+> +                          "vfe0_cphy_rx",
+> +                          "vfe1_cphy_rx",
+> +                          "camnoc_nrt_axi",
+> +                          "camnoc_rt_axi";
+
+here too
+
+> +
+> +            interrupts = <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 309 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 310 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "csid0",
+> +                              "csid1",
+> +                              "csiphy0",
+> +                              "csiphy1",
+> +                              "vfe0",
+> +                              "vfe1",
+> +                              "tpg0",
+> +                              "tpg1";
+> +
+> +            interconnects = <&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
+> +                             &config_noc SLAVE_CAMERA_CFG RPM_ACTIVE_TAG>,
+> +                            <&mmrt_virt MASTER_CAMNOC_HF RPM_ALWAYS_TAG
+> +                             &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
+> +                            <&mmnrt_virt MASTER_CAMNOC_SF RPM_ALWAYS_TAG
+> +                             &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>;
+> +            interconnect-names = "ahb",
+> +                                 "hf_mnoc",
+> +                                 "sf_mnoc";
+> +
+> +            iommus = <&apps_smmu 0x400 0x0>,
+> +                     <&apps_smmu 0x800 0x0>,
+> +                     <&apps_smmu 0x820 0x0>,
+> +                     <&apps_smmu 0x840 0x0>;
+> +
+> +            power-domains = <&gcc GCC_CAMSS_TOP_GDSC>;
+> +
+> +            vdda-phy-supply = <&pm4125_l5>;
+> +            vdda-pll-supply = <&pm4125_l13>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +            };
+> +        };
+> +    };
+---bod
 
