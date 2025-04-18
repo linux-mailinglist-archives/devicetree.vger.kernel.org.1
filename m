@@ -1,273 +1,482 @@
-Return-Path: <devicetree+bounces-168524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514C4A9359B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 11:52:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180CAA935C5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65561446C41
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 09:52:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 854B219E4439
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D340B269B11;
-	Fri, 18 Apr 2025 09:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080EC26FDA2;
+	Fri, 18 Apr 2025 10:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nKtytBLr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YzaviCwS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41AB20897F;
-	Fri, 18 Apr 2025 09:51:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0E02566E3
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 10:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744969919; cv=none; b=ijqUyXFFAG+N84d//vjY6qvRI2GqQSZfPPOzOrZ+xrGdg2WFxOhWlLHERl2sto+z6p3vahkbEd/JAHBEUGVP0tlKFCdc9H4GSbyua7hx0OlyfxOjh6b/v1eEjN0hkHxxI7fU+Sz2lMZXAS5TFMCQugy68zpZTf+WxxaOzQV/ysk=
+	t=1744970758; cv=none; b=b4PeK0e3FY7D35MlDQMyS10gNihvmqZMFG92cmGWVQSS4cDw43UByGfvRRsxb6nCT8axUMcu7meLMwbD2UJ2/WZaY0A3TlRQcTgNiDwRQrv8boWt4ZtmHzR0/I2m2h2DInA6J116o1puVbe8FfDroknEJXxHMuTRKGov4/+prPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744969919; c=relaxed/simple;
-	bh=/fYqAZVBQ8oqYvm33CfkvC9JPG/SUstnVYJb39g1x8I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sK25AHKrdqHK/2tE8vNHVv2jA/TxXbgXUtPBWc7+Cx9LYJXV1r1FKWMKpmMKvtTnolJ5IXQyXG0CVpd5ZSWLLbUSo1YibyrPCoRnibwXCaDU1s8qfyUmsBN9h1kz78qEzcWctwn9ELD0WMa5lMizPO9cFbSZ53GJhvbc68h2q6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nKtytBLr; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so12243665e9.0;
-        Fri, 18 Apr 2025 02:51:57 -0700 (PDT)
+	s=arc-20240116; t=1744970758; c=relaxed/simple;
+	bh=f2niFzj2+T4w38MzzaQOnsBrvuhWF82yvxdzktB/quw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tBN4K/aIfIoqek6mb8+13h85LM2rQUKgTwN1Du7smcERJZNivfLBFBSxD72kANQYA1s9V46io0MvpQSfmgs4jtZxdk/ASUF3T0RyROmPHzDEOcciUURXyuy+jJtz3yDgNc/qVpI9zNM5wSQU76jqhmtZ9BT036MAfXGAxmSfBc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YzaviCwS; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so12326385e9.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 03:05:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744969916; x=1745574716; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LTriGcJf1+d2mqFYAg9DFYbIx+5WzZgXxQPOJC5ixQk=;
-        b=nKtytBLrLnB/R5kdnPjoO5ThYp0OPfxA6xlNFl+DM+5cvoGkCULMWRq/mMV6q8vrVr
-         wWbqdUQB51f+yqtH9czQ492L50Qy0KSMlvfKPXwGKW3VqzarswjfmeZaCQJ/6o5Ungxk
-         SY+zJ5Y87n1ndHmlcwvEXp6Qo+XvrraOKWXr8SsEaU0wSVE0faFvZYS3ujDngsJoilGz
-         HOwUt5lGH9yGO1lw87sPTjR9PGJI2XCfs24dChs1LBFGOiV9aH+MJcQ9M7CjKmaFNdgT
-         KBbKV/hIEfsp47BNAL7atcmfX11E6EL7McXd6JC0Z9y+VpJY9hiNTXbUIUKbNP0HPN5d
-         7kwg==
+        d=linaro.org; s=google; t=1744970755; x=1745575555; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CTlk+jYHZEiHwrDu7oq1VdZKiF0Z5rQ01+MOkfIYifY=;
+        b=YzaviCwSkOlZjTfX9vzJRbSnmL7UVWTz3FgoUtOlxjKHGecxBVNGHB99J/n82l6mnK
+         7A6bjKKTxgB2jgLdksM1hfQV2wbh0hziKyIIUEuP6Z63ap/u0b4RkFc7CwMgX6qZLDRI
+         XJ20nHQMCEIiiJsEKoPF1kx3a+z9cIwxtPtix9JtcXRE7tDC1U+nyjIs5/ePjbnmwh9a
+         6RyCBHKzVUrrguG6OkzWbmI84fdggj1O/Rp3/xlOrYKIF5G+BAPRM/dD9VQNxhW9tOuO
+         U2exjTZV7WRQtavtrXtAIz8Riyezt9AuODMbI1eKYSxn7nDSbbecAqnp3IZF8ASUSfbk
+         LYeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744969916; x=1745574716;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LTriGcJf1+d2mqFYAg9DFYbIx+5WzZgXxQPOJC5ixQk=;
-        b=n11DANOfNWHWPeHt8GzznVPCtB4W0uERW6IuppiJWMmuTIAwvF1otry5lrKHWEHX2z
-         l2a+z9KAysveJ5/hndDsOQFUnL0dEYQWJ92CFxvWNENiDmDizvEreii4JY0C13w0LdG/
-         s3QTFYWu9WP8zJiKnbW99bDdiLV+dUdUUeiBR1pqKxUyNhINOruP5Yf022stIUjBvCm2
-         kRCpGnE36RyQq0XIpfY0aw9xooBR0qHmReJGm106inZYA07FlLfrLjYwI40RAdFhCF9+
-         ubMsJgQrZFOhOPsuIX/5j7gGM6HnfE210LwKa2g8leZZUh7J7Z46kpfMwgNXGs/iAiRA
-         UOzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBhDg4vjhXneKBvC3RIOC8uAcneA8XGWnZO/ZzR/8iwY15y67Xwgo626E/yGK1jvq5s+vkgnB6Ebic@vger.kernel.org, AJvYcCV0WbLLrCXMpC5ZjV5cthPwcY/GqsgqMqANsuWkUaBshoZ2VObK5bvj973x83jm6YyIpBgStD20fOzG+dZ3@vger.kernel.org, AJvYcCWFH6CD3CQurXPZ4MZ1qvASr4lPd4tsmbumqaELFgY1K83h7EYyHRFNq4GpxUfIylqcZMSdyTV94kCg@vger.kernel.org, AJvYcCWghwdulCYCLHYhr5BKCjo8YbEuwJj0JixCorxmW9E0QDUZ02ZCW9LM7wD7DwzU5FfuQUKH1OeYQzJA+aH/HI1Ty4g=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5d704Q9oqSJr+gtlCKfFF9d14yAXQl5TPQ+6GVNDD/iW1G2JQ
-	sQ5NFcuRKGQGCR6cKN53bzHzouPFzXHpiMYAB+WhRuq8z4lkMZuabCsriCpKpG9M9V+CZ0cA0Fd
-	nPA/yFxpsmLiOs8pbeKXuTJrO3SU=
-X-Gm-Gg: ASbGnct2IMYZoLn/eqWnTqHdxf//C1GJKM4eqsW5vYtIm1aomnjjpyAcMcL7gAFJyB6
-	jicOxEfbMyMcYBikU6BWkd2dIR+XfFTkcVtZd80aGeUqCvRZv+lfJPAJBnd+aH30pC1+eB6w7Jg
-	TkiytDdYiHmkDRpZtownj6qyU8D1DOKiFRhslZH+QhL45ANSmL6hpQkCXO/y+ndOCF2w==
-X-Google-Smtp-Source: AGHT+IH+R0wDsPZxpttzWIBTizKL16OUAhkIs8Ybf3Z1XefroUvyq7u8MBaLKEnIreBCTXJI7j1Hi4bmT3L3IR1EI3Q=
-X-Received: by 2002:a05:6000:40ce:b0:39e:cbd2:9211 with SMTP id
- ffacd0b85a97d-39efbaf70b4mr1420004f8f.55.1744969915990; Fri, 18 Apr 2025
- 02:51:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744970755; x=1745575555;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CTlk+jYHZEiHwrDu7oq1VdZKiF0Z5rQ01+MOkfIYifY=;
+        b=gFbFeUYEbDlTXI29G6/hLo6Ez8Uu3zBjPFpm0hjqquY+1WxKYhaO8zuUX6fxDr/o+c
+         7b2OPsqkeQS5C/qwvt6G0oOLRTEEERkWCtVW2+o7hw2VwCS2fuIIpygeC1/SKwTZFSS0
+         Hr5ZAeT2DiF2/AZe47I7sqx0WqtbOZlDLTCbhvZIDnksI67FRg7BCQ8uuaFu3GA1Ti5E
+         wfs7Go6OM5x9VR2uPLMLOQ8nj01VX+tCaqEu2MUrB25cTj6l7QcAU+fobI1LC2L/i7tt
+         9HjdAAtiHavJVdDgxX4LtFmD02G8hx4eGD4+qCnUKkwAo9Ja/WcYJ/9ymU725yrWiSNM
+         QMPw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlUV7PPDkwcNsVhas3SIDVRxgl/JlTzIv1MkuK2V6Jjp57sDl6BRx02aZHE9u15Ub9Ek0o13v0ywkP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz63U1bcqI45Q+xqQqGEGkR4lFn3Jyo7odhnjQqmGBxi66Urvjm
+	5GNU4v3zQVn855Xu44cT3oJF6o4QQz6u48WY6zewS8rPZkppgx9eEPn1+NS/GUY=
+X-Gm-Gg: ASbGnct9HHeurmF3G0mKZTNiH/cJsevb4riPDHGeeGgDQlbatK9yTeg99N5Nh4Qcfvn
+	0YlUn8q+DCCRMvrOaoee+L0CfBu7jbNRQd4f1fzPlEHuHuj8VhMjTd42yWVbHRIUC327PEhg4sO
+	MnX38TidCCSDp0TFtRcVMCVn9J4l9ErQ6JW6h5q2mVWTBt/w39x4IUvHWmLt9BBZtoHDpJo09PB
+	xmpwSyZhe/2au+S4sCdhNokuSJXdK490lY6Go92dEt08F5XJdrf7ZmcE7Rpjeg8kEtMa/KlKbLh
+	fAo9nzKxpWXlubxSpqDbDTd+iPyk14LdCkZO49EfV+p58l7+T+P6yCJPDSmlWs1jljsgDdQx5iu
+	Hr+U=
+X-Google-Smtp-Source: AGHT+IE32VVV4WI0syEHCfftDy3qQR8UsE5hWgnvTO3T4+yc+FIYsXr0vx8CYH0HyyE7uZXj039ibg==
+X-Received: by 2002:a05:600c:1c07:b0:43c:f6c6:578c with SMTP id 5b1f17b1804b1-4406aba5a1amr20867675e9.15.1744970754834;
+        Fri, 18 Apr 2025 03:05:54 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5bbd5fsm16485565e9.22.2025.04.18.03.05.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 03:05:54 -0700 (PDT)
+Date: Fri, 18 Apr 2025 12:05:52 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengfei Li <pengfei.li_1@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ye.li@nxp.com, joy.zou@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH RESEND v6 2/2] thermal: imx91: Add support for i.MX91
+ thermal monitoring unit
+Message-ID: <aAIkAF_AHta8_vuS@mai.linaro.org>
+References: <20250407-imx91tmu-v6-0-e48c2aa3ae44@nxp.com>
+ <20250407-imx91tmu-v6-2-e48c2aa3ae44@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250408200916.93793-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250408200916.93793-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW9WhKeMyKfdiLWmLC8mabNe-4ROW5uCZhx6z503GE0Ug@mail.gmail.com>
-In-Reply-To: <CAMuHMdW9WhKeMyKfdiLWmLC8mabNe-4ROW5uCZhx6z503GE0Ug@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 18 Apr 2025 10:51:29 +0100
-X-Gm-Features: ATxdqUGJ33rQ0RpZLlTvPOwYpzkjsOoa22XiNfmq9rKmqKxtHcumo8VUIXPTNAE
-Message-ID: <CA+V-a8tCtVQA3DnzKMy+4gZDwZqhg29E0H+7cS0YojFkQ2Os_g@mail.gmail.com>
-Subject: Re: [PATCH v2 01/15] clk: renesas: rzv2h-cpg: Add support for DSI clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250407-imx91tmu-v6-2-e48c2aa3ae44@nxp.com>
 
-Hi Geert,
+On Mon, Apr 07, 2025 at 04:05:40PM -0400, Frank Li wrote:
+> From: Pengfei Li <pengfei.li_1@nxp.com>
+> 
+> Introduce support for the i.MX91 thermal monitoring unit, which features a
+> single sensor for the CPU. The register layout differs from other chips,
+> necessitating the creation of a dedicated file for this.
+> 
+> This sensor provides a resolution of 1/64°C (6-bit fraction). For actual
+> accuracy, refer to the datasheet, as it varies depending on the chip grade.
+> Provide an interrupt for end of measurement and threshold violation and
+> Contain temperature threshold comparators, in normal and secure address
+> space, with direction and threshold programmability.
+> 
+> Datasheet Link: https://www.nxp.com/docs/en/data-sheet/IMX91CEC.pdf
+> 
+> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v5 to v6
+> - remove Macro's review tag
+> - remove mutex lock
+> - use set_trips callback
+> 
+> Change from v4 to v5
+> - add irq support
+> - use period mode
+> - Marco, if need drop review tag, let me know
+> 
+> Change from v3 to v4
+> - Add Macro's review tag
+> - Use devm_add_action()
+> - Move pm_runtim_put before thermal_of_zone_register()
+> 
+> change from v2 to v3
+> - add IMX91_TMU_ prefix for register define
+> - remove unused register define
+> - fix missed pm_runtime_put() at error path in imx91_tmu_get_temp()
+> - use dev variable in probe function
+> - use pm_runtime_set_active() in probe
+> - move START to imx91_tmu_get_temp()
+> - use DEFINE_RUNTIME_DEV_PM_OPS()
+> - keep set reset value because there are not sw "reset" bit in controller,
+> uboot may change and enable tmu.
+> 
+> change from v1 to v2
+> - use low case for hexvalue
+> - combine struct imx91_tmu and tmu_sensor
+> - simplify imx91_tmu_start() and imx91_tmu_enable()
+> - use s16 for imx91_tmu_get_temp(), which may negative value
+> - use reverse christmas tree style
+> - use run time pm
+> - use oneshot to sample temp
+> - register thermal zone after hardware init
+> ---
+>  drivers/thermal/Kconfig         |  10 +
+>  drivers/thermal/Makefile        |   1 +
+>  drivers/thermal/imx91_thermal.c | 398 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 409 insertions(+)
+> 
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index d3f9686e26e71..78a05d1030882 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -296,6 +296,16 @@ config IMX8MM_THERMAL
+>  	  cpufreq is used as the cooling device to throttle CPUs when the passive
+>  	  trip is crossed.
+>  
+> +config IMX91_THERMAL
+> +	tristate "Temperature sensor driver for NXP i.MX91 SoC"
+> +	depends on ARCH_MXC || COMPILE_TEST
+> +	depends on OF
+> +	help
+> +	  Include one sensor and six comparators. Each of them compares the
+> +	  temperature value (from the sensor) against the programmable
+> +	  threshold values. The direction of the comparison is configurable
+> +	  (greater / lesser than).
+> +
+>  config K3_THERMAL
+>  	tristate "Texas Instruments K3 thermal support"
+>  	depends on ARCH_K3 || COMPILE_TEST
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index 9abf43a74f2bb..08da241e6a598 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -50,6 +50,7 @@ obj-$(CONFIG_ARMADA_THERMAL)	+= armada_thermal.o
+>  obj-$(CONFIG_IMX_THERMAL)	+= imx_thermal.o
+>  obj-$(CONFIG_IMX_SC_THERMAL)	+= imx_sc_thermal.o
+>  obj-$(CONFIG_IMX8MM_THERMAL)	+= imx8mm_thermal.o
+> +obj-$(CONFIG_IMX91_THERMAL)	+= imx91_thermal.o
+>  obj-$(CONFIG_MAX77620_THERMAL)	+= max77620_thermal.o
+>  obj-$(CONFIG_QORIQ_THERMAL)	+= qoriq_thermal.o
+>  obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
+> diff --git a/drivers/thermal/imx91_thermal.c b/drivers/thermal/imx91_thermal.c
+> new file mode 100644
+> index 0000000000000..e8deb0b07dc98
+> --- /dev/null
+> +++ b/drivers/thermal/imx91_thermal.c
+> @@ -0,0 +1,398 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025 NXP.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/thermal.h>
+> +#include <linux/units.h>
+> +
+> +#define REG_SET					0x4
+> +#define REG_CLR					0x8
+> +#define REG_TOG					0xc
+> +
+> +#define IMX91_TMU_CTRL0				0x0
+> +#define   IMX91_TMU_CTRL0_THR1_IE		BIT(9)
+> +#define   IMX91_TMU_CTRL0_THR1_MASK		GENMASK(3, 2)
+> +#define   IMX91_TMU_CTRL0_CLR_FLT1		BIT(21)
+> +
+> +#define IMX91_TMU_THR_MODE_LE			0
+> +#define IMX91_TMU_THR_MODE_GE			1
+> +
+> +#define IMX91_TMU_STAT0				0x10
+> +#define   IMX91_TMU_STAT0_THR1_IF		BIT(9)
+> +#define   IMX91_TMU_STAT0_THR1_STAT		BIT(13)
+> +#define   IMX91_TMU_STAT0_DRDY0_IF_MASK		BIT(16)
+> +
+> +#define IMX91_TMU_DATA0				0x20
+> +
+> +#define IMX91_TMU_CTRL1				0x200
+> +#define IMX91_TMU_CTRL1_EN			BIT(31)
+> +#define IMX91_TMU_CTRL1_START			BIT(30)
+> +#define IMX91_TMU_CTRL1_STOP			BIT(29)
+> +#define IMX91_TMU_CTRL1_RES_MASK		GENMASK(19, 18)
+> +#define IMX91_TMU_CTRL1_MEAS_MODE_MASK		GENMASK(25, 24)
+> +#define   IMX91_TMU_CTRL1_MEAS_MODE_SINGLE	0
+> +#define   IMX91_TMU_CTRL1_MEAS_MODE_CONTINUES	1
+> +#define   IMX91_TMU_CTRL1_MEAS_MODE_PERIODIC	2
+> +
+> +#define IMX91_TMU_THR_CTRL01			0x30
+> +#define   IMX91_TMU_THR_CTRL01_THR1_MASK	GENMASK(31, 16)
+> +
+> +#define IMX91_TMU_REF_DIV			0x280
+> +#define IMX91_TMU_DIV_EN			BIT(31)
+> +#define IMX91_TMU_DIV_MASK			GENMASK(23, 16)
+> +#define IMX91_TMU_DIV_MAX			255
+> +
+> +#define IMX91_TMU_PUD_ST_CTRL			0x2b0
+> +#define IMX91_TMU_PUDL_MASK			GENMASK(23, 16)
+> +
+> +#define IMX91_TMU_TRIM1				0x2e0
+> +#define IMX91_TMU_TRIM2				0x2f0
+> +
+> +#define IMX91_TMU_TEMP_LOW_LIMIT		-40000
+> +#define IMX91_TMU_TEMP_HIGH_LIMIT		125000
+> +
+> +#define IMX91_TMU_DEFAULT_TRIM1_CONFIG		0xb561bc2d
+> +#define IMX91_TMU_DEFAULT_TRIM2_CONFIG		0x65d4
+> +
+> +#define IMX91_TMU_PERIOD_CTRL			0x270
+> +#define   IMX91_TMU_PERIOD_CTRL_MEAS_MASK	GENMASK(23, 0)
+> +
+> +#define IMX91_TMP_FRAC				64
+> +
+> +struct imx91_tmu {
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +	struct device *dev;
+> +	struct thermal_zone_device *tzd;
+> +	int high;
+> +	bool enable;
+> +};
+> +
+> +static void imx91_tmu_start(struct imx91_tmu *tmu, bool start)
+> +{
+> +	u32 val = start ? IMX91_TMU_CTRL1_START : IMX91_TMU_CTRL1_STOP;
+> +
+> +	writel_relaxed(val, tmu->base + IMX91_TMU_CTRL1 + REG_SET);
+> +}
+> +
+> +static void imx91_tmu_enable(struct imx91_tmu *tmu, bool enable)
+> +{
+> +	u32 reg = IMX91_TMU_CTRL1;
+> +
+> +	reg += enable ? REG_SET : REG_CLR;
+> +
+> +	writel_relaxed(IMX91_TMU_CTRL1_EN, tmu->base + reg);
+> +}
+> +
+> +static int imx91_tmu_to_mcelsius(int x)
+> +{
+> +	return x * MILLIDEGREE_PER_DEGREE / IMX91_TMP_FRAC;
+> +}
+> +
+> +static int imx91_tmu_from_mcelsius(int x)
+> +{
+> +	return x * IMX91_TMP_FRAC / MILLIDEGREE_PER_DEGREE;
+> +}
+> +
+> +static int imx91_tmu_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
+> +	s16 data;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(tmu->dev);
+> +	if (ret < 0)
+> +		return ret;
 
-Thank you for the review.
+Why using pm_runtime* all over the place ?
 
-On Tue, Apr 15, 2025 at 4:57=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, 8 Apr 2025 at 22:09, Prabhakar <prabhakar.csengg@gmail.com> wrote=
-:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support for PLLDSI and PLLDSI divider clocks.
-> >
-> > The `renesas-rzv2h-dsi.h` header file is added to share the PLL divider
-> > algorithm between the CPG and DSI drivers.
-> >
-> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/clk/renesas/rzv2h-cpg.c
-> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
-> > @@ -196,6 +225,253 @@ static int rzv2h_cpg_pll_clk_enable(struct clk_hw=
- *hw)
-> >         return ret;
-> >  }
-> >
-> > +static unsigned long rzv2h_cpg_plldsi_div_recalc_rate(struct clk_hw *h=
-w,
-> > +                                                     unsigned long par=
-ent_rate)
-> > +{
-> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
-> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
-> > +       struct ddiv ddiv =3D dsi_div->ddiv;
-> > +       u32 div;
-> > +
-> > +       div =3D readl(priv->base + ddiv.offset);
-> > +       div >>=3D ddiv.shift;
-> > +       div &=3D ((2 << ddiv.width) - 1);
-> > +
-> > +       div =3D dsi_div->dtable[div].div;
-> > +
-> > +       return DIV_ROUND_CLOSEST_ULL(parent_rate, div);
-> > +}
-> > +
-> > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
-> > +                                              struct clk_rate_request =
-*req)
-> > +{
-> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
-> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
-> > +       struct rzv2h_plldsi_parameters *dsi_dividers =3D &priv->plldsi_=
-div_parameters;
-> > +       unsigned long long rate_mhz;
-> > +
-> > +       /*
-> > +        * Adjust the requested clock rate (`req->rate`) to ensure it f=
-alls within
-> > +        * the supported range of 5.44 MHz to 187.5 MHz.
-> > +        */
-> > +       req->rate =3D clamp(req->rate, 5440000UL, 187500000UL);
-> > +
-> > +       rate_mhz =3D req->rate * MILLI * 1ULL;
->
-> The first multiplication overflows on 32-bit systems.
-> Probably you wanted to use mul_u32_u32() instead?
->
-Ok, I'll switch to mul_u32_u32() .
+It would make sense to have in the probe/remove functions (or in the set_mode -
+enabled / disabled), suspend / resume but the other place it does not make
+sense IMO. If the sensor is enabled by the set_mode function and then
+pm_runtime_get() is called, then the ref is taken during all the time the
+sensor is in use, so others pm_runtime_get / pm_runtime_put will be helpless,
+no ?
 
-> More review later, I fell too deep in the wrong rabbit hole ("mhz !=3D
-> megaHertz"), again...
->
-After fixing the review comments on this I'll send out a v3 with this
-change, so that its easier to review.
 
-> > --- /dev/null
-> > +++ b/include/linux/clk/renesas-rzv2h-dsi.h
-> > @@ -0,0 +1,207 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Renesas RZ/V2H(P) DSI CPG helper
-> > + *
-> > + * Copyright (C) 2025 Renesas Electronics Corp.
-> > + */
-> > +
-> > +#include <linux/limits.h>
-> > +#include <linux/math.h>
-> > +#include <linux/math64.h>
-> > +#include <linux/units.h>
-> > +
-> > +#define OSC_CLK_IN_MEGA                (24 * MEGA)
-> > +
-> > +struct rzv2h_plldsi_div_limits {
-> > +       struct {
-> > +               u64 min;
-> > +               u64 max;
->
-> u32 should be sufficient?
->
-Agreed.
+> +	/* DATA0 is 16bit signed number */
+> +	data = readw_relaxed(tmu->base + IMX91_TMU_DATA0);
+> +	*temp = imx91_tmu_to_mcelsius(data);
+> +	if (*temp < IMX91_TMU_TEMP_LOW_LIMIT || *temp > IMX91_TMU_TEMP_HIGH_LIMIT)
+> +		ret = -EAGAIN;
 
-> > +       } fvco;
-> > +
-> > +       struct {
-> > +               u16 min;
-> > +               u16 max;
-> > +       } m;
-> > +
-> > +       struct {
-> > +               u8 min;
-> > +               u8 max;
-> > +       } p;
-> > +
-> > +       struct {
-> > +               u8 min;
-> > +               u8 max;
-> > +       } s;
-> > +
-> > +       struct {
-> > +               s16 min;
-> > +               s16 max;
-> > +       } k;
-> > +
-> > +       struct {
-> > +               u8 min;
-> > +               u8 max;
-> > +       } csdiv;
-> > +};
-> > +
-> > +struct rzv2h_plldsi_parameters {
-> > +       u64 freq_mhz;
-> > +       s64 error_mhz;
-> > +       u16 m;
-> > +       s16 k;
-> > +       u8 csdiv;
-> > +       u8 p;
-> > +       u8 s;
-> > +};
-> > +
-> > +#define RZV2H_CPG_PLL_DSI_LIMITS(name)                                =
- \
-> > +       static const struct rzv2h_plldsi_div_limits (name) =3D {       =
-   \
-> > +               .m =3D { .min =3D 64, .max =3D 533 },                  =
-       \
-> > +               .p =3D { .min =3D 1, .max =3D 4 },                     =
-       \
-> > +               .s =3D { .min =3D 0, .max =3D 6 },                     =
-       \
-> > +               .k =3D { .min =3D -32768, .max =3D 32767 },            =
-       \
-> > +               .csdiv =3D { .min =3D 2, .max =3D 32 },                =
-       \
-> > +               .fvco =3D { .min =3D 1600 * MEGA, .max =3D 3200 * MEGA =
-}      \
->
-> Please initialize the members in declaration order.
->
-Ok.
+When the measured temperature can be out of limits ?
 
-Cheers,
-Prabhakar
+> +	if (*temp <= tmu->high && tmu->enable) {
+
+I suggest to provide a change in the thermal core to return -EAGAIN if the
+thermal zone is not enabled when calling thermal_zone_get_temp() and get rid of the tmu->enable
+
+> +		writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
+> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
+> +	}
+
+For my understanding what are for these REG_CLR and REG_SET in this function?
+
+> +	pm_runtime_put(tmu->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int imx91_tmu_set_trips(struct thermal_zone_device *tz, int low, int high)
+> +{
+> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
+> +	int val;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(tmu->dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (high >= IMX91_TMU_TEMP_HIGH_LIMIT)
+> +		return -EINVAL;
+> +
+> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
+> +
+> +	/* Comparator1 for temperature threshold */
+> +	writel_relaxed(IMX91_TMU_THR_CTRL01_THR1_MASK, tmu->base + IMX91_TMU_THR_CTRL01 + REG_CLR);
+> +	val = FIELD_PREP(IMX91_TMU_THR_CTRL01_THR1_MASK, imx91_tmu_from_mcelsius(high));
+> +	writel_relaxed(val, tmu->base + IMX91_TMU_THR_CTRL01 + REG_SET);
+> +
+> +	writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
+> +
+> +	tmu->high = high;
+
+Why is 'high' needed?
+
+> +
+> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
+> +	pm_runtime_put(tmu->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx91_init_from_nvmem_cells(struct imx91_tmu *tmu)
+> +{
+> +	struct device *dev = tmu->dev;
+> +	u32 trim1, trim2;
+> +	int ret;
+> +
+> +	ret = nvmem_cell_read_u32(dev, "trim1", &trim1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = nvmem_cell_read_u32(dev, "trim2", &trim2);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (trim1 == 0 || trim2 == 0)
+> +		return -EINVAL;
+> +
+> +	writel_relaxed(trim1, tmu->base + IMX91_TMU_TRIM1);
+> +	writel_relaxed(trim2, tmu->base + IMX91_TMU_TRIM2);
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx91_tmu_action_remove(void *data)
+> +{
+> +	struct imx91_tmu *tmu = data;
+> +
+> +	/* disable tmu */
+> +	imx91_tmu_enable(tmu, false);
+> +}
+> +
+> +static irqreturn_t imx91_tmu_alarm_irq_thread(int irq, void *dev)
+> +{
+> +	struct imx91_tmu *tmu = dev;
+> +	int val;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(tmu->dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	thermal_zone_device_update(tmu->tzd, THERMAL_EVENT_UNSPECIFIED);
+
+Ack the IRQ before calling thermal_zone_device_update()
+
+> +	val = readl_relaxed(tmu->base + IMX91_TMU_STAT0);
+
+One blank line to let the code breath
+
+> +	/* Have to use CLR register to clean up w1c bits */
+> +	writel_relaxed(val, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
+> +
+> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
+> +
+> +	pm_runtime_put(tmu->dev);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int imx91_tmu_change_mode(struct thermal_zone_device *tz, enum thermal_device_mode mode)
+> +{
+> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
+> +	int ret;
+> +
+> +	if (mode == THERMAL_DEVICE_ENABLED) {
+> +		ret = pm_runtime_get(tmu->dev);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		imx91_tmu_start(tmu, true);
+> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
+> +		tmu->enable = true;
+> +	} else {
+> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
+> +		imx91_tmu_start(tmu, false);
+> +		pm_runtime_put(tmu->dev);
+> +		tmu->enable = false;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct thermal_zone_device_ops tmu_tz_ops = {
+> +	.get_temp = imx91_tmu_get_temp,
+> +	.change_mode = imx91_tmu_change_mode,
+> +	.set_trips = imx91_tmu_set_trips,
+> +};
+> +
+
+[ ... ]
 
