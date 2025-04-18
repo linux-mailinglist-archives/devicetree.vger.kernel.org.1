@@ -1,114 +1,249 @@
-Return-Path: <devicetree+bounces-168568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E005A93810
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:43:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB83A93829
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:57:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5E117215F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:43:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0DA73A371B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6253427815B;
-	Fri, 18 Apr 2025 13:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4CE137C37;
+	Fri, 18 Apr 2025 13:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NOfOAshs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HfuaEvbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65566E555;
-	Fri, 18 Apr 2025 13:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2378634C;
+	Fri, 18 Apr 2025 13:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744983834; cv=none; b=tOzGnuEM/41YX3CGsia/oUDcYtZS6t/hzzPG44AOynSMr6SG3OHdIUnEeFyfKO3UHeZazJdyE07P+Cc1kMVocRtFBbq1qjPG5HnpqVnzLEIS3BlhG4Y0qQia16Tgb8ycVVAqrneR0Lis3mwQ0KkGCPl8IjXfKBSVUnfLHE4ztFc=
+	t=1744984661; cv=none; b=ZfEgI8HAhqA229s/BtZxL4Dr+B9DKA3NKuD9NEUQqXNcqr4YtuOvfCKCBTSWNY0VPkZkbibuKNZlylbW78V3dkLEmuyQGbbm9mrUor15ZVVcMH+Symeiln07zIUFOB4maAlBrPJ31PbISAwh9Nz/rHVXi27k/8AKqTbGG9g6c2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744983834; c=relaxed/simple;
-	bh=Cnktq8nDwOo0enCBi8xzUPVV/YQByN0c6KsnAyAr6qo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k8MxPcHAKnRQJOxNk8XcPGtANmfml8tdthzgfaU48R2JRdGbUvLXGotmSCe13oLUb8/1W4X1sfZIZeSRLcJKdnVramZN60gxz6km4K/srB5Pq0xx9gwXElLfh2vLJi/o4sU+aW3USeGap8xB2hzDNlHDGpjdYACdSe01j8HNS3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NOfOAshs; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53IDhPpX310236
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 18 Apr 2025 08:43:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744983805;
-	bh=WNj2Be0bKSfGk+fsGABndEIKFa0Oidh9U8eYMXOA2ds=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=NOfOAshsqJxkwafY5dgPwxjMkNwFRwWVc5bemqBrcPclY5Xy/klRH9ioK/07GcrwY
-	 OP2M/cROoTuC9+oD47MyO41WFVfv5PKiqVBc5aEOnx+jlEWSfQaEyfw6zIPSlHd6tK
-	 OkbqwLKecAsg090lWHGb/o4s4Ji5I0sc7MTiNY8Y=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53IDhPbo003348
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Apr 2025 08:43:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
- Apr 2025 08:43:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 18 Apr 2025 08:43:24 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53IDhOLc051358;
-	Fri, 18 Apr 2025 08:43:24 -0500
-Date: Fri, 18 Apr 2025 08:43:24 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <helgaas@kernel.org>, <m.szyprowski@samsung.com>, <robin.murphy@arm.com>,
-        <baocheng.su@siemens.com>, <bhelgaas@google.com>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <diogo.ivo@siemens.com>, <jan.kiszka@siemens.com>, <kristo@kernel.org>,
-        <krzk+dt@kernel.org>, <kw@linux.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>,
-        <robh@kernel.org>, <s-vadapalli@ti.com>, <ssantosh@kernel.org>,
-        <vigneshr@ti.com>, <iommu@lists.linux.dev>
-Subject: Re: [PATCH v7 0/8] soc: ti: Add and use PVU on K3-AM65 for DMA
- isolation
-Message-ID: <20250418134324.ewsfnze2btnx2r2w@country>
-References: <20241030205703.GA1219329@bhelgaas>
- <20250418073026.2418728-1-huaqian.li@siemens.com>
+	s=arc-20240116; t=1744984661; c=relaxed/simple;
+	bh=ajVr3yuI4k7/Pim7AdIiw4kKFIHaClFo40nc4H6fqBk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bUF7NUjNRY6CqkURtIX5jAOV28fuzkgamFBMxn9MTgixbOLbhtSKxodnPPeVSKTXTpF1A/uPtRH8FYJ7P8od9GIsWX4hOIztPaekwj/33497iZC+RLpwnWHhjH5+6qkw9edf+2+wMlZaImDfWSYP5W6n7LSfPgW77dnoDPuYqYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HfuaEvbl; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43d0782d787so13548645e9.0;
+        Fri, 18 Apr 2025 06:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744984658; x=1745589458; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZUUEBM3tYUb/t6AkwMd62lhApOXYl97kh+AIMbiifmg=;
+        b=HfuaEvblwuufalBCLbJQNJDxoPt3NMlyTX3lzMGIBf4xcCmCM76IHbnkS3AcbDYTBv
+         m9mGWus0lOx3iqFSBZ9tOpO0iwhiFzGrr/T4W/qFcKyfA8aPTkgRy2FVSApc3ij72aCg
+         rQfwLFRSSKltcTm5FSbJb7YHOA2077pbypQAFSRprIyrgG5dCyMJMB/RXNrZeEOVrb/w
+         CyQSujDg9h+mb6C6CD+PB6NV8X3aHQRP6dgqTqXW+OuOfnRBVgt3yo6GK8KP0DAMx0Sb
+         3DSewQmBi8aU4ojkagwYWytpZlhR35uLJlJHSbLdEVAaOdpEv5LCwygSwexKtMcSPBQg
+         KxeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744984658; x=1745589458;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZUUEBM3tYUb/t6AkwMd62lhApOXYl97kh+AIMbiifmg=;
+        b=XexKzQ3ySGA6J3peJeUtxWTNKfaVHhqLhqVjR9KD+iiFNJToNHkITCLJnptCMPIuu4
+         wT5OeB4W1/8461lBeQoTdb2ICIelLV+MYlIactY9WeXGGUStl7QJt3cIDuNcX6d4dGuQ
+         4DyMEQVIT0GMwOudrkXdmg7lP7P/o1A8Afyoj0to8LYbdXMzoITKH3z7W4FQHttRzlm4
+         V9Y75zv2tv/EjQRdUy9ez4nP7J+2JG3gdYDQxGtz0XxJtbRDGE9PNhJOMMU0KCGRn2Wt
+         utWsSKbBXH0BF3qLJgjh4KN0Zv9emShuXfcP0CgwBuB0KSREgpVYij3+0WDTetimFofI
+         aqyA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgQRvjpPUGnXBu7Qvl7MP6lEpAjAng+h5XrO1z/x6YphupC7Xi2kDichVfa4aanKGbriMQCiH7NfZ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZkKWzZArbRhtRfwbxkz1g74UVXBGd2naEeplFg2TwTDIiCW5u
+	Y6se2L98j56d3VpnFF75DahpuhmmfEO2CRDjlsbJ3xJ1t+zmRk/K
+X-Gm-Gg: ASbGncsoehN1ULEZafd7g8xxIWxX+SkJbj9BnJ0N4+2MzkQGthfnEPuGLsC2VRDL4dp
+	IKtZsCfDhHXkLAkw9kFlIk+MWDPEaXuiMmPW7epkjoklOweZYd0BsK5iyDROK4plHZ6gX6kcZiC
+	KPuA+w/WcBBK69+aAmppDCk/UDzGpEzZyBXm4G7I/VqW0n+MZzO3AXDlWSNmOrG/tga8KxI7lGG
+	5OVR9i1b5kfyPQ3ZupbtpZcwvjRR6UuGg7W4JLdfAFA0ahNWtX1ktbucv3r4bkeE9DhMfIvHExm
+	6dJWDBzm8DrwY3wEKOaGeCIaPOLX3tE2Ion7O6zpvAhd0GgahZv0
+X-Google-Smtp-Source: AGHT+IHGw4uQbywJb5vE8Eiogx+8whJZ0txrLQuGF1Ig4JvfkEMUcOo9p/AQGsffVLl8DH3+8WKBng==
+X-Received: by 2002:a05:6000:40cf:b0:391:1923:5a91 with SMTP id ffacd0b85a97d-39efbb1a366mr2018094f8f.55.1744984658009;
+        Fri, 18 Apr 2025 06:57:38 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4332b2sm2884691f8f.30.2025.04.18.06.57.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 06:57:37 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 18 Apr 2025 17:57:25 +0400
+Subject: [PATCH v2] dt-bindings: interrupt-controller: via,vt8500-intc:
+ Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250418073026.2418728-1-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAERaAmgC/x3MSwqAMAxF0a1IxhY0+N+KSLEa9U2itCKCuHeLw
+ zO496EgHhKoSx7yciFg1whOE5q2UVcxmKOJMy6zIm/MhdFCz8k66AxdTS2tc9xUXNQ5xezwsuD
+ +l/3wvh8xRwrIYgAAAA==
+X-Change-ID: 20250418-via_intc_binding-7e9bb2862471
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744984663; l=5333;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=ajVr3yuI4k7/Pim7AdIiw4kKFIHaClFo40nc4H6fqBk=;
+ b=EnlSEOAw4wpYdueqn4gI8kfDgR4AfCA1yks+ccgbdmVGF1i1d2KcpNBD046D0P46Cs5p0BYZD
+ 5+Aej3TIm2jD1+sQhWVEjuDdTdZFMZz8pRr0G1GfSL9p4zXwpKzLtCM
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-On 15:30-20250418, huaqian.li@siemens.com wrote:
-> 
-> Jan Kiszka (7):
->   dt-bindings: soc: ti: Add AM65 peripheral virtualization unit
->   dt-bindings: PCI: ti,am65: Extend for use with PVU
->   soc: ti: Add IOMMU-like PVU driver
->   PCI: keystone: Add support for PVU-based DMA isolation on AM654
->   arm64: dts: ti: k3-am65-main: Add PVU nodes
->   arm64: dts: ti: k3-am65-main: Add VMAP registers to PCI root complexes
->   arm64: dts: ti: iot2050: Add overlay for DMA isolation for devices
->     behind PCI RC
-> 
-> Li Hua Qian (1):
->   swiotlb: Make IO_TLB_SEGSIZE configurable
+Rewrite the textual description for the VIA/WonderMedia interrupt
+controller as YAML schema.
 
-I see at least 3 or 4 maintainers needing to co-ordinate, gets
-complicated as I am not sure which maintainer needs to pick up what
-patches in what dependency order. This looks like a mixed bag. Can
-we split this patch into independent series for each maintainer with
-clear indication of dependencies that is spread around a couple of
-kernel windows (maybe dts comes in last?)
+The original textual version did not contain information about the
+usage of 'interrupts' to describe the connection of a chained
+controller to its parent, add it here. A chained controller can
+trigger up to 8 different interrupts (IRQ0~7) on its parent.
 
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Split the series from v1 into separate bindings patches so as not to
+spam all the subsystems with unrelated changes, per Rob's suggestion
+
+Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-2-f9af689cdfc2@gmail.com/
+---
+ .../interrupt-controller/via,vt8500-intc.txt       | 16 -----
+ .../interrupt-controller/via,vt8500-intc.yaml      | 76 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ 3 files changed, 77 insertions(+), 16 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt
+deleted file mode 100644
+index 0a4ce1051b0252bbbdeef3288b90e9913d3f16f0..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-VIA/Wondermedia VT8500 Interrupt Controller
+------------------------------------------------------
+-
+-Required properties:
+-- compatible : "via,vt8500-intc"
+-- reg : Should contain 1 register ranges(address and length)
+-- #interrupt-cells : should be <1>
+-
+-Example:
+-
+-	intc: interrupt-controller@d8140000 {
+-		compatible = "via,vt8500-intc";
+-		interrupt-controller;
+-		reg = <0xd8140000 0x10000>;
+-		#interrupt-cells = <1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc14c74bf7d57d6da75135cbb4ae27ed59c6b9e6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/via,vt8500-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: VIA and WonderMedia SoCs Interrupt Controller
++
++description:
++  This is the interrupt controller used in single-core ARM SoCs made by
++  VIA and WonderMedia (up to and including WM8950). Each block handles
++  up to 64 interrupt sources (level or edge triggered) and can generate
++  up to 8 interrupts to its parent when used in a chained configuration.
++
++maintainers:
++  - Alexey Charkov <alchark@gmail.com>
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    const: via,vt8500-intc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description:
++          Interrupt number raised by the IRQ0 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ1 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ2 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ3 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ4 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ5 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ6 output of this controller
++          Only used if this controller is chained
++      - description:
++          Interrupt number raised by the IRQ7 output of this controller
++          Only used if this controller is chained
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@d8140000 {
++        compatible = "via,vt8500-intc";
++        interrupt-controller;
++        reg = <0xd8140000 0x10000>;
++        #interrupt-cells = <1>;
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 96b82704950184bd71623ff41fc4df31e4c7fe87..d3d8e31e547e8775272911df156d6574ae7acdac 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3428,6 +3428,7 @@ M:	Krzysztof Kozlowski <krzk@kernel.org>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Odd Fixes
+ F:	Documentation/devicetree/bindings/i2c/i2c-wmt.txt
++F:	Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
+ F:	arch/arm/boot/dts/vt8500/
+ F:	arch/arm/mach-vt8500/
+ F:	drivers/clocksource/timer-vt8500.c
+
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250418-via_intc_binding-7e9bb2862471
+
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Alexey Charkov <alchark@gmail.com>
+
 
