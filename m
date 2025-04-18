@@ -1,166 +1,103 @@
-Return-Path: <devicetree+bounces-168409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1FFA92E93
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 02:03:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25DCA92EC7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 02:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A0418A03DF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 00:03:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2676189B1C5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 00:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1BCB29A9;
-	Fri, 18 Apr 2025 00:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bWHSHncb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAB0288D2;
+	Fri, 18 Apr 2025 00:22:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84C8171D2
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A952AEED;
+	Fri, 18 Apr 2025 00:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744934606; cv=none; b=KRsvxrd5tLEyWlUvGEx4HMI25dipgt90FunK9XwaXgksxnPzfUvhmKXaj9duGuSl1fZ7H/9kA4u2/iMRNVXUfOlx0/qv0HsniMz66wCK6vdIBUj2TQ6otBgG4MBR42lrZPTCGAFAnq7alGPvdFAhtfqaa5DsR8kag0u6He31kyA=
+	t=1744935765; cv=none; b=T9qRnFjmQ7ZDWtCKUTL2res65VkYv45b/k4um1fYxcxIuTW3fBMJPCQoqfWbJ2eJAByEMCdeubVzlByDR5ao9wTy0aAkYrvvAPNOBzJBSWa3qmywyorxPLgY1ehW27UDSsvqqXXxbjFg2mFcyMNsXJOoaec6ZdnF8ArT5J36FHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744934606; c=relaxed/simple;
-	bh=xkDQfit0Ny3iyzLvzjqr923cX1Xhwn74NDE/lifPT18=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PMmr09BMFXcec6oPNLFu5EMMUXDPau/AkPvyCqqxdjgOdnn9f1oIYnPP2zJo3QZFBaO1+fSEKZnoMvsCqsEiLNWjLFdFHVGSxItzTJF3aX/iTHnGASw6G5Zm0fVPAJYbVbI99Je84iCMyZ9PTXUFjGznolMyirSQWKw6rUJQZRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bWHSHncb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClMTk022813
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=jJkocawK74IHVR8GG2dYux9L
-	W2UbP5wOCkAP2RU5Rpw=; b=bWHSHncbmPt6gikdLZmn1hyrWc0tm9hKLyenD2UF
-	lshwKyh6ufPC+1ezDuhAOcXZGnfhOwo4CLMtQYAgU2kV4ShVqCSvCfYXW7A/2LyW
-	BYWops45xStt4Yaps3vvBnmr6ciPF/LhixIctgQt5yuQuk3fSp/tkzzUkh/Nuiiv
-	65w0RYSnkd+axqZpjNY6fdNgixFPYnOwjuU7HIzkix8V6U1ovIMvW/StzfNPbS9+
-	g8YHOu/E5M3qFYlin/30kFNT5G3S2adUtLQeeqF9P8Opx/lGo5Z+PUCg+/Oj0YKP
-	lYF+icWgyV/SFO73vVd1dawj1d3l095re5/ow88nxFm4qA==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbq095c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:23 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-306b51e30ffso1098942a91.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 17:03:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744934603; x=1745539403;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jJkocawK74IHVR8GG2dYux9LW2UbP5wOCkAP2RU5Rpw=;
-        b=Yf9q9bUa0qlshxe4ZZYvDMAcZFHBT44Sa3GPovjDywNjeAOFvOy0pEBMvrUcjtsJyG
-         3n/GBtExipuD/xSGqVB/Uj59pA3x+wtwnorfiiW0+4bOZLDU3tR9NuYk8NjMIL1J4lv3
-         kc1M1StJmxYdr/KuRF6pMoNllE5aFHUlB7IoQjntyBA9Nv8T6ImJLsvXwEp1d3tGd+Wp
-         9sEUv+UdXx1gLUNjxggVzI34J3c3AvOj6vFp6MfFdLyr8G+qiPC58wAgbaUtdowXbwR1
-         AwsxJw1s6mKIuOsFpAzEEO+VvUd8aIg3xL+hjMCAeEI6bcrpzBxKtpoKTt5LgF5cyt8q
-         z4FQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXh3OddaoAjeQfqWzm/Oanfsg+cnHd2RIP0q30Cn6kMEowjbtGQWJmlcIjqedhgyuQkHwjf+9/in1es@vger.kernel.org
-X-Gm-Message-State: AOJu0YytKS59nTvcZLiHF62orPyOripOGWtIwzOZLcSaZP3VU0zvym/k
-	wxGkl4uNSw99et6IhzfbErbJouiMr2kjoIKpRmNFdA44JqXnOFemdAKstugZYfCHyurBgrFytsW
-	CWOtD4miwvfOIdTJYl05HYrmXLoJrnzKxHSBDq9/Hn+b1b0/6pVf0qoQscl+S97n337gt/YhB1w
-	aEJSppAOvIgV+34jSH6WYp9YKlvkGxWGuJx0w=
-X-Gm-Gg: ASbGncsOnLU6R26nylMsxyZBHDCPvB2EEoY1dKgZLCaiwdN9vWgWi48/WciMtmr9lzw
-	sM9vYNtRHYNO2y666/7mdwUMoWjaWzPbP/jhyYPEvexxxBfUNM2jq+tR4Er1+E/ct7Z9AT6yOB6
-	qUFZGx/wXdQnpEIfWVbaVV41of3g==
-X-Received: by 2002:a17:90b:2807:b0:2ee:ee5e:42fb with SMTP id 98e67ed59e1d1-3087bb4d0bbmr1348849a91.13.1744934603067;
-        Thu, 17 Apr 2025 17:03:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHt3zEHzT/caZi4wnZ175L8zlXV3e1qMB/QyXjcrkOHqa4wh1gNr+1LZYEHvAQ/csu/mkfLj9QPTnPMCwx+vTk=
-X-Received: by 2002:a17:90b:2807:b0:2ee:ee5e:42fb with SMTP id
- 98e67ed59e1d1-3087bb4d0bbmr1348781a91.13.1744934602616; Thu, 17 Apr 2025
- 17:03:22 -0700 (PDT)
+	s=arc-20240116; t=1744935765; c=relaxed/simple;
+	bh=eCJzhCM/N9tfeIoXxAgMxE9th3g84gBE4CoN6UFnlco=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lQURFE4gYkB2g9bbOV+L76jKILiY0VqMDImPA8OS9Ot09nW/0xN6KVbJKqhffqrx2UaZqFqmV0AKGP5S0aVZ6GFVxN57NKrecaqX7pcpdvdEX5ICpUadwaQoBY/UFH+74z7GSF+4nn25zGt6d0CSS6NpA+w8JcrP5pm6ss2odTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost.localdomain (unknown [116.232.27.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 624F7342FE7;
+	Fri, 18 Apr 2025 00:22:37 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Haylen Chu <heylenay@4d2.org>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+Subject: Re: (subset) [PATCH v8 0/6] Add clock controller support for SpacemiT K1
+Date: Fri, 18 Apr 2025 08:22:03 +0800
+Message-ID: <174484549885.160158.3249067849153986093.b4-ty@gentoo.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250416135406.16284-1-heylenay@4d2.org>
+References: <20250416135406.16284-1-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417-sar2130p-display-v4-0-b91dd8a21b1a@oss.qualcomm.com>
- <20250417-sar2130p-display-v4-1-b91dd8a21b1a@oss.qualcomm.com>
- <20250417-arboreal-turkey-of-acumen-e1e3da@shite> <7b559f03-f131-435e-95de-b5faee37b4d5@oss.qualcomm.com>
- <a8f7f571-e81a-49d6-a40d-895960165039@linaro.org>
-In-Reply-To: <a8f7f571-e81a-49d6-a40d-895960165039@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 18 Apr 2025 03:03:11 +0300
-X-Gm-Features: ATxdqUHUTgGLYvTODPooo91SkskG-gwTNA2jG92kWlujJbztIUTMTuUwe0XuE_s
-Message-ID: <CAO9ioeWgtsTtMmqm4w4KTYYSVOWpj1Sgb6D4oy+54wBHU_DZ8g@mail.gmail.com>
-Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm: dp-controller:
- describe SAR2130P
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-ORIG-GUID: o4iKibUvDAenNSLTWqra7krCfr7LUJNj
-X-Proofpoint-GUID: o4iKibUvDAenNSLTWqra7krCfr7LUJNj
-X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=680196cb cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=hD80L64hAAAA:8 a=ni2JVXtQXpgTILOyzusA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-17_07,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=562 clxscore=1015 impostorscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504170178
-
-On Thu, 17 Apr 2025 at 15:04, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/04/2025 13:12, Konrad Dybcio wrote:
-> > On 4/17/25 8:03 AM, Krzysztof Kozlowski wrote:
-> >> On Thu, Apr 17, 2025 at 02:16:31AM GMT, Dmitry Baryshkov wrote:
-> >>> From: Dmitry Baryshkov <lumag@kernel.org>
-> >>>
-> >>> Describe DisplayPort controller present on Qualcomm SAR2130P platform.
-> >>>
-> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>
-> >> Addresses do not match. You re-authored the commit, so now everywhere is
-> >> mess.
-> >
-> > It's git's fault with replacing the linaro address based on .mailmap
-> No. You can easily see:
-> $ git show 51a6256b00008a3c520f6f31bcd62cd15cb05960
-> top author is like you say - mailmapped, but Sob is my @samsung.com
->
-> $ git format-patch 51a6256b00008a3c520f6f31bcd62cd15cb05960 -1
-> What is in "From" field? Samsung, not mailmapped.
->
-> I believe that's a known problem in b4, already reported. I don't
-> remember if this was fixed, but till it is - you need to use some sort
-> of workaround.
-
-No worries, I will resend.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
+On Wed, 16 Apr 2025 13:54:00 +0000, Haylen Chu wrote:
+> The clock tree of SpacemiT K1 is managed by several independent
+> multifunction devices, some of them are
+> 
+> - Application Power Manage Unit, APMU
+> - Main Power Manage Unit, MPMU
+> - APB Bus Clock Unit, APBC
+> - APB Spare, APBS
+> 
+> [...]
+
+Applied, thanks!
+
+[1/6] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+      https://github.com/spacemit-com/linux/commit/61e312a001a394a93998c353af859841ddf50d5d
+[2/6] dt-bindings: clock: spacemit: Add spacemit,k1-pll
+      https://github.com/spacemit-com/linux/commit/8090804045066ab8cd92737c8e2adfb46f166c0f
+[3/6] clk: spacemit: Add clock support for SpacemiT K1 SoC
+      https://github.com/spacemit-com/linux/commit/1b72c59db0add8e47fa116b21f78ed0b09a264f3
+[4/6] clk: spacemit: k1: Add TWSI8 bus and function clocks
+      https://github.com/spacemit-com/linux/commit/49625c6e4d90a9221127c49a11eb8c95732bb690
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Yixun Lan
+
 
