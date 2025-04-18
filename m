@@ -1,99 +1,77 @@
-Return-Path: <devicetree+bounces-168540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E08A93708
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:26:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E797DA93715
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:31:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5F6440F57
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:26:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 888368A501C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:30:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913B82749E8;
-	Fri, 18 Apr 2025 12:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="qL35lBxh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48610274FD4;
+	Fri, 18 Apr 2025 12:31:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E392741D4;
-	Fri, 18 Apr 2025 12:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C3878F3B
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 12:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744979179; cv=none; b=sPlB2kipTIJmfkoT4oEQfRmBk/KZPVb3EFytiI7/+SSgdXiOaSIXS9o6Lh3SYSDz9U64GiaWSxdO6Zp/bYYqrDMi5+S6HKxr6PPxVBlC1DKqsIKATSLvIBkjxfVlT+Pqb4cIhhsqouPl/MLj/2ryc0JpPunMqux/Mx8ozF/KCJA=
+	t=1744979460; cv=none; b=TdooqASZoenYEKZi2SxSV7s9WK3o/DbeUrb0RBrNKUkRQjuNAPnwBXYkXJSf7jn452v0+Ru1TqOCJ/RICWzfD1mOzyEv+rMIKlfmpiC9/+O34bLPdXU03/kOEjeDnrtk6moA9+TPbGNhwGqOeNc0i9iTzjcJqUw1KlCj1H/5GBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744979179; c=relaxed/simple;
-	bh=pLMUnkQ7i8zl1lKTBgrZZ9T1S73Ro147jf8kegIJRpk=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=B13EwEamsBqq6uOj6k0/eV8gTC1PsK+E4NGKmV3jmOiwyTIeSWQ1C/iYkCm/jZXeGELFFSckW5UCBp2Z0Y6Pn5UawctSWmqtwcn7lwR9y/ZSK+cktcnZG/59500UVSUlS8yHTKxCZu+1BNtbpF6IsFueQ7brGaXcOPOAWTvZfhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=qL35lBxh; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=zgYuDIxcDeA+599F/9fuaQ38vA4OYPsLsjN7kvIiw/A=; b=qL35lBxh8HZH+xEXQjiD+NBNXE
-	wNElmDImRWWhkgSUAkTAKAvD4A2Bg1rFoFY72ssTci5CgP6FLHMs+ECg9A7qt9ivU53nw324XanVl
-	qkpsYTci/5Bna7eT0uxaPi5epE6P1BeIjQR71beALBzkYZ2aAYbp1PBiNpCwVmanuGA/7a8sBD982
-	7NUOj/9M2EWXaP9/0ICVQZiW64P8hMvBaW8vil5Fh1bh98tAuiJVjnYU0Ry0EacdiyadJFKbKp0Sm
-	xrYduuzHfoPDbx8i2FSvqP9QcBSait/nAkIxKOPnaG+iiS5vRVAOAndvnwGe0qhomfYqyGB8xpfxb
-	EepeXgKg==;
-Received: from [122.175.9.182] (port=48418 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1u5knI-000000004eF-42yZ;
-	Fri, 18 Apr 2025 17:56:09 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id E862917823F4;
-	Fri, 18 Apr 2025 17:55:57 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id BEABC1783F61;
-	Fri, 18 Apr 2025 17:55:57 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id hhW7TFWjAhWH; Fri, 18 Apr 2025 17:55:57 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 7D65F17823F4;
-	Fri, 18 Apr 2025 17:55:57 +0530 (IST)
-Date: Fri, 18 Apr 2025 17:55:57 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: horms <horms@kernel.org>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
-	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
-	richardcochran <richardcochran@gmail.com>, 
-	glaroque <glaroque@baylibre.com>, schnelle <schnelle@linux.ibm.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, s hauer <s.hauer@pengutronix.de>, 
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
-	basharath <basharath@couthit.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	m-malladi <m-malladi@ti.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <2126437499.1093120.1744979157393.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250415195756.GI395307@horms.kernel.org>
-References: <20250414113458.1913823-1-parvathi@couthit.com> <20250414130237.1915448-8-parvathi@couthit.com> <20250415195756.GI395307@horms.kernel.org>
-Subject: Re: [PATCH net-next v5 07/11] net: ti: prueth: Adds support for
- network filters for traffic control supported by PRU-ICSS
+	s=arc-20240116; t=1744979460; c=relaxed/simple;
+	bh=53WJCtEF4x/FRHG1qN8FcMOsysGaCEFynU9OIFXf44Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CTVltkF3JH40a7+fou/YxFqT9WS7yF86LLdMna2DY+DH8dKGiXsDq2IePaCfpvO6z2LpnZNiwWCRt0H+R+sBHATfCzlGmTZilGWBW0Yd/kQxIjUPXxeAC3z/a91Trlw2vcwBB9KwvmE7uGrDbcuEVPpZD1HsUysf5XO2Ii+KBak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5krO-0001RH-TJ; Fri, 18 Apr 2025 14:30:22 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5krN-000ucV-07;
+	Fri, 18 Apr 2025 14:30:21 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u5krM-007qKT-2m;
+	Fri, 18 Apr 2025 14:30:20 +0200
+Date: Fri, 18 Apr 2025 14:30:20 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v8 09/13] net: pse-pd: pd692x0: Add support for
+ PSE PI priority feature
+Message-ID: <aAJF3EfUug175Qjl@pengutronix.de>
+References: <20250416-feature_poe_port_prio-v8-0-446c39dc3738@bootlin.com>
+ <20250416-feature_poe_port_prio-v8-9-446c39dc3738@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,84 +79,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds support for network filters for traffic control supported by PRU-ICSS
-Thread-Index: N2IoJ9p4SeRG9XkM6ibtWxtAWdIZLA==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Disposition: inline
+In-Reply-To: <20250416-feature_poe_port_prio-v8-9-446c39dc3738@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Apr 16, 2025 at 03:44:24PM +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> This patch extends the PSE callbacks by adding support for the newly
+> introduced pi_set_prio() callback, enabling the configuration of PSE PI
+> priorities. The current port priority is now also included in the status
+> information returned to users.
+> 
+> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 
-> On Mon, Apr 14, 2025 at 06:32:33PM +0530, Parvathi Pudi wrote:
->> From: Roger Quadros <rogerq@ti.com>
->> 
->> Driver updates to enable/disable network filters and traffic control
->> features supported by the firmware running on PRU-ICSS.
->> 
->> Control of the following features are now supported:
->> 1. Promiscuous mode
->> 2. Network Storm prevention
->> 3. Multicast filtering and
->> 4. VLAN filtering
->> 
->> Firmware running on PRU-ICSS will go through all these filter checks
->> prior to sending the rx packets to the host.
->> 
->> Ethtool or dev ioctl can be used to enable/disable these features from
->> the user space.
->> 
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> 
-> ...
-> 
->> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth_dos.c
->> b/drivers/net/ethernet/ti/icssm/icssm_prueth_dos.c
-> 
-> ...
-> 
->> +static int icssm_emac_configure_clsflower(struct prueth_emac *emac,
->> +					  struct flow_cls_offload *cls)
->> +{
->> +	struct flow_rule *rule = flow_cls_offload_flow_rule(cls);
->> +	struct netlink_ext_ack *extack = cls->common.extack;
->> +	const struct flow_action_entry *act;
->> +	int i;
->> +
->> +	flow_action_for_each(i, act, &rule->action) {
->> +		switch (act->id) {
->> +		case FLOW_ACTION_POLICE:
->> +			return icssm_emac_flower_parse_policer
->> +				(emac, extack, cls,
->> +				 act->police.rate_bytes_ps);
->> +		default:
->> +			NL_SET_ERR_MSG_MOD(extack,
->> +					   "Action not supported");
->> +			return -EOPNOTSUPP;
->> +		}
->> +	}
->> +	return -EOPNOTSUPP;
-> 
-> nit: This line cannot be reached.
->     I think you can just remove it.
-> 
->     Flagged by Smatch.
-> 
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-We will cleanup this in the next version.
-
-Thanks and Regards,
-Parvathi.
-
+Thank you!
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
