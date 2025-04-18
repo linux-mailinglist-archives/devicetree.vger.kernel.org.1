@@ -1,83 +1,81 @@
-Return-Path: <devicetree+bounces-168554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BC3A937AE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:14:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D26A937B2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:14:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79C9B920B4C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7334817A77D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369C227781E;
-	Fri, 18 Apr 2025 13:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA2A278175;
+	Fri, 18 Apr 2025 13:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="vXG3U9ER"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="SyiuupG7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EABC27605C
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 13:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC8D277805
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 13:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744982044; cv=none; b=qz+Gdki0NUlHJzLfVOQTC0imU4EAY+mLSRBPzy+9CBingT5g9L6cw8ghaBuvutFioJ38K/tWbHK2bTrTpb1l9pokiNRERAj4uv8NCs/J5MKQ92x2pcv/wUN1VW9v0re3Lm/PjAIxBnnLm+cFcTRWb4SgthcHLe7GEZfAlrBOHLQ=
+	t=1744982045; cv=none; b=mm08jdd6sxTISFizZMPbXUc6CwVZERMeZxe/tQOlHW08mmdgb0t4W+EZx6DI95XuINUXVTf/YnHdIj35geT7U1XemazaGdk9VP6/nJMliZ8LMQF00wiO0JBSb4YaPelmuFFiM+vRdil/xC2giIWxrBSSPTMky6Btt+C04SzP2ZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744982044; c=relaxed/simple;
-	bh=YzHH+rPNmlCw7nAjTMSEOMMyWvfPWgugAOZbphqTg0U=;
+	s=arc-20240116; t=1744982045; c=relaxed/simple;
+	bh=6LWWCl+fw76HY+PZdOokf+xdGWSBmr74emQwtZNOoaw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gPqyBv8tEWK8NSDjK3mD+RwuQaKbcI2zZNbw3mnONAHnRzapecMh0e5IDcUIttng1wFn0KUortClHC9ILL2Me+SXSS2SxgcKMQaUate1cNEq7h5HIE631JiV4FkXrxJeiTpnntIjkzCyn/hhEFPjLQHbpCLF/IqvpwBp9LLwlg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=vXG3U9ER; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:To:Cc; b=i95MDyHVAGr8x5cL2u8/t6tPvMkLoSNCTZA+L5rW7Du1Fw0UwI8zUKCNh7xtk/iarRIfDHJ/CGxtQlNZniK4ibIWouAmOilIDLUm9/URelKVxdSUGYHELhNLjgK3/wC2fpDZLUGbpVzL/d9QFcQC9YmmzwE+Z9ZeRMtiucrUBvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=SyiuupG7; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2bb7ca40bso342065566b.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 06:14:01 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac6ed4ab410so278592866b.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 06:14:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1744982040; x=1745586840; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1744982041; x=1745586841; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8+iXn1oW4dzOU1w6dTTVa2iMvBmWei5kk2HA1UjOPDk=;
-        b=vXG3U9ERiw+gC5ee8RwFhcBpnEsu9oKkfl9Bjrp/STu1WBM2yM4TNzZhwWvCYBkRgE
-         nrAocFoK9oqj1zSglBMf3P9OGIwlb9xVq/yVAcrPmcIuYowihDt0VqwXVo3H+jxF6duY
-         BUxP8+4EHZYLVsO8l7ylAJMJ2a+GxRMZcomqkz4mnCFPo9h/OBXm4DBbhUJ+6R60ZhtH
-         9s7pb+LKYvLoL3gonwJYKVKaAlJxF8fuDkhny83cFwLBNHQ9pwMM/NO2S8MJhnAMx4YE
-         H4Hd2uCCvfhGzrgGljqH7fBMfIAz8JnYTSVllcf6X2ZpqxG/83Qbvuu5+sILdFwMXB0N
-         LXZQ==
+        bh=Ih9KqGuWJ1rc0JvwhZbwATHF/82WoHzu4xe2IRdIO6A=;
+        b=SyiuupG7H306YWVn0b4dY0TBaDmRtwIL6sVFw4/ennSWl1NemCLouC80dO3bUVG9Um
+         5M/dfjs/DRX5qDbpVBdQpLP1xQsr8pxzAZFgxyTRCmaQVwQc67Rso8gQedp4lsJiBnpH
+         kMLuz0gB851OwXqYcAQw7KMa47CZrLt8c0e/WZwmkWTvYK4xGWTQtja1tBUSnf8bzHrY
+         H4VWnrlbLy7K4TQ4qxq/w1L+Qw4zGb2DVJzmL6SvpPm+13fTrsbvW+H/FBZ++BMqJa4a
+         TwuEzCX82+WpaikrPTmMnHehN5DtBl6feHHLoAF7v5WD7Ewk8p2KFaxAYRXpS7c28OQZ
+         apXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744982040; x=1745586840;
+        d=1e100.net; s=20230601; t=1744982041; x=1745586841;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8+iXn1oW4dzOU1w6dTTVa2iMvBmWei5kk2HA1UjOPDk=;
-        b=Z6n0HQuSV9BOlv7f9vUbrFN+lFZJj8lAqGykqfYFOOc/Mxt4xVkGGj6YDq8UYrSvUS
-         h43oCRsx5RtMcUJNioCB7CKin3T9R8CjWZ8x5iN/wiJRlNlB/YZyUY+0Xl7FzU2ETrPw
-         45Vy46cwK5J1JP3fW6NDj2qxl8LL/us00KIuR6t/Jn9hW4AmSr3LBY7yy9QM0pKh+j8u
-         ylMOpoYm/zN7XODuXPBWEBQ1JyP0F+0RDYCO2BoeZJ3/BmdSIGTJ2ZAdECtN+qj88e/I
-         ZocxuHR3PMzpvz2luFxmhc2YzRM3tskihNI8Ta6dmmHM5Co5CC4Ga0vhqRn4tgxVxM17
-         uvAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQxi/FpCQQWeiODqAEGnzvYGWPr/YGDkUTBDyPzmZ0exBvQQnLtk+BNCtPO6VSLXrK/1pqLDAB+WYR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxerqY1MLk8HsEHpDUlkGfCtGygnNu1p9xbHyf0A/aaUo3OeIa0
-	992cY4gVVarbrTNXoESVqACRpVu1DZXoXiMSNkK1APtuCHUTsUYozDCFcDh53eBKLrXN3fQ+xTj
-	w
-X-Gm-Gg: ASbGnctTlu1qGDkrOvw2aMUaa4JHP8TzC6I7hwzqQ5ZgaC+xzld/OSZJ/Cqp7xXmdkY
-	NvHkfkOuwE8Z+eGLSLHJo54BqpyY03AbciuIqYJKH1s7iKwoLkqZoj1WrbN8w6d6Iwz+n+WMqYe
-	sBk6qoQYz4tLhktZMa1KOW2KwYt7FK6YpDNhyCDX9u/zGL6/exeSc9kLuvihA92tgz4+wnfzU4T
-	xBosPFpShMgvZGjLalI7fwECZhOhzugbH6rIiyINfY6tdV9gXXqmdbf5dCvXvMPscoGSOw2NKDn
-	vHVDLe3PJTfSnh0JWuPsEow4PlH48adwQDUt4/147yUOQLriX5xR6PhRqMt8ziYMKmyUGMqGhAH
-	oGihovTNZDO8kgQ==
-X-Google-Smtp-Source: AGHT+IEvyHMxyvjGL4iGOJh/qfXqtVq90WdGbNIlyJO0slfHahtv2sJybNJICOISqOrAqVq+TJLnEg==
-X-Received: by 2002:a17:907:6d19:b0:ac7:33d0:dbe with SMTP id a640c23a62f3a-acb74b8e568mr220791766b.33.1744982040350;
-        Fri, 18 Apr 2025 06:14:00 -0700 (PDT)
+        bh=Ih9KqGuWJ1rc0JvwhZbwATHF/82WoHzu4xe2IRdIO6A=;
+        b=gbcML4olwgWRK0kU+2LLLbT2X19YfKdyUJ46eQKdCzSDdP/8j/jn+lM9+YQ5M7i2UU
+         lmc0+IpvlnDmGUiI+f/or8JUOt6yMqODKPE1QFsMG9J2VNXPszlqrGmqofm2ofRBTOdt
+         sZtvFANJ7CMhhMhFj+DpLnJt3NIt5Rck/af6unsosU27alWUN++K95Y4wswelvg7V2c9
+         z4L1YLsi/RjgqJUE5dvWRzitjF0nw0x55SIX/potrmvva49gwgjSlaG5QB/bu1FJoDtV
+         OGR3kwu08wSZ6eU5dtZV9WCOOzJnHOiw5PtTqRamy05AqbnjyGp3/jT9YcARtvFpbVfK
+         2f8w==
+X-Forwarded-Encrypted: i=1; AJvYcCUPAPOjB0cY5RevWnxAf0IM4hDD5pzR6m/tQ/tH59k+F58POwiHHO3c7jgaQnJHqD06XN3xXS0OCJO8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0bGeaIPnU9f2TpoMr4h7LVyyA1SZjdw46T75c7EGiSahD4XI3
+	x4Bt14itAEPCJ+zVLlPE9Sl/zNv0yHWtgbcxvHZZygNhURGvQOWWqRoiqrqChOY=
+X-Gm-Gg: ASbGncsriDXC0EEQsNhMx7NWizh+lzOA468omRh19S+KDxvHv/OphOQH7fh1yNp86V/
+	598fZB+LDWNzJhucVy18b23JQH7M60BFV2AnL2rnGHF9yzxDoYJGqHk7qQvp/UG4O3grgxgLneW
+	C37SlcsdWJmzCzZZ8ZAwUICgtHno4VzitGovpddnSEPQFxNHkzkqPB1aqPagxALrdXuZxmSZU4s
+	gs5WbQpR9XAlBqP6+sPjcVIaO2BGhC7p3yAjlR1bxx77OAXvBRQZbzeWnZUaKdDZS/LwMUiE9bS
+	aWrDHVICi892lM17aukhUMxor4DkVsGj74ayBjkS8s71qqRv1TkyrcYyWjEv63cdKY1DvQgrq2Z
+	Hw0AcTIPRTLoQrQ==
+X-Google-Smtp-Source: AGHT+IEQnUcQbXMaqk61okzrXh46x/KQ61UJQzrcCrJS6MAJvzXtug796hcDtEBAuUVns86R4gHd4w==
+X-Received: by 2002:a17:906:6a23:b0:ac7:391a:e158 with SMTP id a640c23a62f3a-acb74dda17dmr237991466b.59.1744982041377;
+        Fri, 18 Apr 2025 06:14:01 -0700 (PDT)
 Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef41605sm115901966b.124.2025.04.18.06.13.58
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef41605sm115901966b.124.2025.04.18.06.14.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 06:13:59 -0700 (PDT)
+        Fri, 18 Apr 2025 06:14:00 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 18 Apr 2025 15:13:43 +0200
-Subject: [PATCH v2 2/5] ASoC: qcom: sm8250: set card driver name from match
- data
+Date: Fri, 18 Apr 2025 15:13:44 +0200
+Subject: [PATCH v2 3/5] ASoC: qcom: sm8250: add DisplayPort Jack support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250418-fp5-dp-sound-v2-2-05d65f084b05@fairphone.com>
+Message-Id: <20250418-fp5-dp-sound-v2-3-05d65f084b05@fairphone.com>
 References: <20250418-fp5-dp-sound-v2-0-05d65f084b05@fairphone.com>
 In-Reply-To: <20250418-fp5-dp-sound-v2-0-05d65f084b05@fairphone.com>
 To: Srinivas Kandagatla <srini@kernel.org>, 
@@ -102,53 +100,50 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.2
 
-Sound machine drivers for Qualcomm SoCs can be reused across multiple
-SoCs. But user space ALSA UCM files depend on the card driver name which
-should be set per board/SoC.
-
-Allow such customization by using driver match data as sound card driver
-name.
-
-Also while we're already touching these lines, sort the compatibles
-alphabetically.
+Add support for DisplayPort Jack events, so that user space can
+configure the audio routing correctly.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- sound/soc/qcom/sm8250.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ sound/soc/qcom/sm8250.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index b70b2a5031dfbf69024666f8a1049c263efcde0a..e920b413b762c803cfcc4049f35deba828275478 100644
+index e920b413b762c803cfcc4049f35deba828275478..aa3b4bc3fcc7b8a8dccc75ef1309bb26a2a8105a 100644
 --- a/sound/soc/qcom/sm8250.c
 +++ b/sound/soc/qcom/sm8250.c
-@@ -16,7 +16,6 @@
- #include "usb_offload_utils.h"
- #include "sdw.h"
- 
--#define DRIVER_NAME		"sm8250"
- #define MI2S_BCLK_RATE		1536000
- 
- struct sm8250_snd_data {
-@@ -200,15 +199,15 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	card->driver_name = DRIVER_NAME;
-+	card->driver_name = of_device_get_match_data(dev);
- 	sm8250_add_be_ops(card);
- 	return devm_snd_soc_register_card(dev, card);
- }
- 
- static const struct of_device_id snd_sm8250_dt_match[] = {
--	{.compatible = "qcom,sm8250-sndcard"},
--	{.compatible = "qcom,qrb4210-rb2-sndcard"},
--	{.compatible = "qcom,qrb5165-rb5-sndcard"},
-+	{ .compatible = "qcom,qrb4210-rb2-sndcard", .data = "sm8250" },
-+	{ .compatible = "qcom,qrb5165-rb5-sndcard", .data = "sm8250" },
-+	{ .compatible = "qcom,sm8250-sndcard", .data = "sm8250" },
- 	{}
+@@ -25,6 +25,7 @@ struct sm8250_snd_data {
+ 	struct snd_soc_jack jack;
+ 	struct snd_soc_jack usb_offload_jack;
+ 	bool usb_offload_jack_setup;
++	struct snd_soc_jack dp_jack;
+ 	bool jack_setup;
  };
  
+@@ -34,12 +35,17 @@ static int sm8250_snd_init(struct snd_soc_pcm_runtime *rtd)
+ 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+ 	int ret;
+ 
+-	if (cpu_dai->id == USB_RX)
+-		ret = qcom_snd_usb_offload_jack_setup(rtd, &data->usb_offload_jack,
+-						      &data->usb_offload_jack_setup);
+-	else
+-		ret = qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
+-	return ret;
++	switch (cpu_dai->id) {
++	case DISPLAY_PORT_RX:
++		return qcom_snd_dp_jack_setup(rtd, &data->dp_jack, 0);
++	case USB_RX:
++		return qcom_snd_usb_offload_jack_setup(rtd, &data->usb_offload_jack,
++						       &data->usb_offload_jack_setup);
++	default:
++		break;
++	}
++
++	return qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
+ }
+ 
+ static void sm8250_snd_exit(struct snd_soc_pcm_runtime *rtd)
 
 -- 
 2.49.0
