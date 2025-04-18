@@ -1,288 +1,229 @@
-Return-Path: <devicetree+bounces-168537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A458A936B1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:49:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6AAA936DB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96158461C52
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 11:49:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 826A77A88FB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF9B2222CF;
-	Fri, 18 Apr 2025 11:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38502741CC;
+	Fri, 18 Apr 2025 12:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="GFiW2Fbm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iMkjdkvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFAF199947;
-	Fri, 18 Apr 2025 11:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B5F2222D9;
+	Fri, 18 Apr 2025 12:08:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744976989; cv=none; b=dG8+MGUUshnpmnOXV+M5NokGmVsbuL/EgfoxZS5daaCxNn+/vkWrF2nshNUI7cG6DAM9ZY7HJAxVD/CXE7CXFVuXFYdeUkXsXbbsz51VVfkkU47GRSfAxzzDaheAih5dS4Zx3R5Z1UiyuvvDJHOgIATggt4oUgL3O5OEASVFaK4=
+	t=1744978122; cv=none; b=onxwc3PZQgrKmD97Ds3J42HhvrIdkfFgIDnr7RCghqn7u6jcVgRzD+pDCH6NOqSUNtJ0DIT326AU+FzzKZ9p4MmcTyvuVf0MJ7VJH6PVo9R/yrQEJlMmG3lbm3x8Kqtp0pc8EnsyjtaF7td3Ki6QMZToN1qCviaEq3Ib8vYOFnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744976989; c=relaxed/simple;
-	bh=0xqfItQyN6ROhVXcQYA8qrLVNEC/rcSRqgoktrpt8MA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S0yqynB5rSCqZASe1bLdNkD48Cd4evivhEq5XHvqGVjx0XDREnRrbw0LLQi0HXNMeSVlInepCGzqgw1VNyBsu/GdhO0lnqbJoDzqdqfLTVnHpzP65of7CWfKcr1Tfr8rajBC+RQMNZYQ70xXgkNPG5UDdELmP2V4fS33CdB0nSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=GFiW2Fbm; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.185] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id A5947166598;
-	Fri, 18 Apr 2025 13:42:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1744976521;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=5uRv3rAKMiUBBg+1+0mXz1mGMZQOP4uPKMKJVmKxbCQ=;
-	b=GFiW2FbmlbicCZXJfrIJG7I75y49Jdzrt0L4YwIxh8auJP7c/Out8+Yz9zT9rKQOp46Lr1
-	kcEAlTmznogxdB3SRadvHWJ0jMYLHBo0dSrRx68oUCVacjxfsIWQs44t35ye/Mxr6P6ucP
-	r8aNwRixDO65HkQAbcgR5Ly8XbBKnRc=
-Message-ID: <7ae72214-3f91-4bd7-b5f0-07391006f531@ixit.cz>
-Date: Fri, 18 Apr 2025 13:42:01 +0200
+	s=arc-20240116; t=1744978122; c=relaxed/simple;
+	bh=QXeq9F4+RajzYztSsJzdtvy0tQ/+4StzIC1gvWiMpT8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FBrDig5XWdxMO++kq96uiUnBl0yOgjiOrlCogEcfZQFcVnGDV1Q8/5Gy7kyVoo44wXYaAqo+P2Y5ipzhXrkxknnmphXhBXoc8iQmpS1UVFGzW/lTwd34nK9URev3HU2sDbCifeS7LK5CVpWyF+wTsKnVC1nLgBB+e1mv7CEXniw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iMkjdkvE; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54ac9b3ddf6so1783784e87.1;
+        Fri, 18 Apr 2025 05:08:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744978119; x=1745582919; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1K31X9OFoOMTBOdzael8QB7KwUChqs1GlIHBZO6H7qI=;
+        b=iMkjdkvEd7UjAHMTGKg06Ohj0QHo78n84kbzfj9t+5Onf8fw2xUtTe8KJHGGtl8ilN
+         +BHsyKvdPKX1QAUXl8B+L9rMPhEP5eYW9rJr4fYhFHROu4cHTtNIfly6f+nlU6I8ZHFJ
+         hpcdatHbuwahvqKq0Lo04jmpkJFgCZJDSWjHakwSOhns9TcymN9/Fd7XMaDGL2h9Cxfi
+         fgDJBcKukeHsHj/GXzwEZEE9RIwdDFM46EIkrDSlMlYUbT8jNtmHZ91OcTU1pGiwlZ8N
+         OZBp0hdBg1iuBnZssjEVCLE3pCjbyV7k+DOEDl0z5Li4zEvWipjAHrXZ171rUjSMnhRz
+         om+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744978119; x=1745582919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1K31X9OFoOMTBOdzael8QB7KwUChqs1GlIHBZO6H7qI=;
+        b=haAo0c5CAlyh8zUnHNHc39IkBdXT1t+9+IDCnY0JYFa+EANBDPfFbCyVAWpWSIIT18
+         BZ5Qxq78+y1vRGC5eiBq/QK0pj9JH5vZ9nqMFuLDLn7O3GUDbgRNMEZfzwkuGNT06qZz
+         ayXS7lKJMD36SatNWnCV5T1j5nlqIXEvo1ZrlUQYgrerJ5y2gj9hBWnups6ia41luPU1
+         2yOw+adrJth6BJAE6+u8p9C+3YnNO/R38MePg3d87CxQ7HmqKaGMs1uahfbF5S39mSzQ
+         bNC2V64cuOhrfK2SaGv/aNTpV59v3/NZyvNkfOHUbbSFQhZj1a5PCqk3FPhF2bO0Z0IJ
+         tyuw==
+X-Forwarded-Encrypted: i=1; AJvYcCU969sXTd1+zHLwXb+qq+6uC77YfvtbC09SNQXOJgYM9U0EuXs0JdsrPofPlcgJTNCgw3xGh6lhk9eqGATv@vger.kernel.org, AJvYcCVAlOyanZ5hw2SBKtB0KIzLBpkQghyAPUdfqP1yKcCamTlAuGLds4mb3saKJ2kV53eSlK9xUqZMAM7t87SF@vger.kernel.org, AJvYcCVS0BNgU/Di1Ase5w7OxlC3v59AbugNi1MzlsaUyTaagcmTYjvTMC8/pjPUUdLwYy7zhtCrnrdnv43MYI0GZeDz@vger.kernel.org, AJvYcCVXUHqHVtM+o8zflETIpWcrNGt/7YaxUgoAsuRdDcHVgsPco8S6kxucTi7A05GyD9TRkUCnFepkO0s9@vger.kernel.org, AJvYcCWp/0bdvMutelY744NPm5gi9Kw1RyFhxsoVMn7FGgkyCywbOHXg2qHjNmBwMnhdxkpwuUjUIj4yFVK76zo=@vger.kernel.org, AJvYcCX5WfS+h2mDzLLtTL7+POCxAIqQBnTqF+Ou/a6N0Ot3p6fdLtQ/8mdksZM7DGcHSDjI4Yuzv0ol+3HN@vger.kernel.org, AJvYcCXkwv9jH+zlf0KrCc5NeoygB8n9QqiLY7brBZ/QfV9tM2Ir9Kk5ausvkLEuCogjfqnOfbLqwfrZc+3VY+xTT2k=@vger.kernel.org, AJvYcCXu0FJBSYoBO32DDKBcW4MnsFPYatJJSCpeP0QqutWQzMhA4oV81wILyRGsTfT0CNsZ8qRgQGrp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzbY5/GP6DseZf6U3KD43afZiebXMms8LlbIVdWEoJTff5Fyp5
+	CrOsBtn77oqD6HRmEnPxzh+7t0sJNfPjsDzjWGsgSAe6EXxad18K3m5YLObkaaleGfbI/imzlW/
+	+IAvpB4XXfUHjSxl4TYlzh7URSvo=
+X-Gm-Gg: ASbGncsqxPqpO8tWbbuX8vwP0RydoUZE6iHf9b/7N/SXWASslHOmjqnPRqzrGCZ7eo/
+	WjH1hpwBK5LWTPqfXPNvFHS9Bb3JI6hrcTRrXvlXjIswAUVdLBGbT5ezYuEceJE9826Wie+cuWR
+	cYIszxeNOTqA1UxdsTi6MG4xk9a0E+j1ZXK9RgQM2PNlTECaZwz2igGpmnVlglhIEPMw==
+X-Google-Smtp-Source: AGHT+IF8kKbV5UC52Ac9mSy0x9OfKQssvbteOWX4HNd6egKudSVM9JvkIrKNxIs0ohLhnyxnMsd3TXRcYhnO17vRS0A=
+X-Received: by 2002:a05:6512:401a:b0:549:8a44:493e with SMTP id
+ 2adb3069b0e04-54d6e61c6a5mr601106e87.5.1744978118388; Fri, 18 Apr 2025
+ 05:08:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] media: dt-bindings: Convert Analog Devices ad5820 to
- DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Pavel Machek <pavel@ucw.cz>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250414-b4-ad5820-dt-yaml-v3-1-39bbb5db7b2b@ixit.cz>
- <20250415223557.GA940473-robh@kernel.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20250415223557.GA940473-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250416-ptr-as-ptr-v9-0-18ec29b1b1f3@gmail.com>
+ <20250416-ptr-as-ptr-v9-4-18ec29b1b1f3@gmail.com> <68014084.0c0a0220.394e75.122c@mx.google.com>
+ <CAJ-ks9muaNU9v2LZ5=cmfXV6R5AO+joNOoPP=+hs-GJN=APfKQ@mail.gmail.com> <680160b8.050a0220.223d09.180f@mx.google.com>
+In-Reply-To: <680160b8.050a0220.223d09.180f@mx.google.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Fri, 18 Apr 2025 08:08:02 -0400
+X-Gm-Features: ATxdqUE65QceaCS4mRYzjRsd6XCyLrCNHhZ8_Q1GJ1KEma-RrDsEP9owSjJfvAc
+Message-ID: <CAJ-ks9=TXjk8W18ZMG4mx0JpYvXr4nwnUJqjCnqvW9zu2Y1xjA@mail.gmail.com>
+Subject: Re: [PATCH v9 4/6] rust: enable `clippy::as_underscore` lint
+To: Boqun Feng <boqun.feng@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16/04/2025 00:35, Rob Herring wrote:
-> On Mon, Apr 14, 2025 at 06:04:01PM +0200, David Heidelberg wrote:
->> Convert the Analog Devices ad5820 to DT schema format.
->>
->> Added the io-channel-cells property, because it's already used by the
-> 
-> You mean #io-channel-cells?
-> 
->> Nokia N900 device-tree and defines ad5820 as having only single output.
->>
->> Acked-by: Pavel Machek <pavel@ucw.cz>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->> Changes in v3:
->> - Removed documentation of io-channel-cells property. Now it's 1:1 to
->>    the original binding. The reference to it from the Nokia N900 dts
->>    was removed in the -next.
-> 
-> Added or removed? I'm confused.
-> 
->> - Link to v2: https://lore.kernel.org/r/20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz
->>
->> Changes in v2:
->> - added MAINTAINERS entry for the binding
->> - documented why io-channel-cells got added into the binding.
->> - dropped io-channel-cells in required properties.
->> - adjusted example indentation to 4 spaces.
->> - Link to v1: https://lore.kernel.org/r/20250209203940.159088-1-david@ixit.cz
->> ---
->>   .../devicetree/bindings/media/i2c/ad5820.txt       | 28 ----------
->>   .../devicetree/bindings/media/i2c/adi,ad5820.yaml  | 59 ++++++++++++++++++++++
->>   MAINTAINERS                                        |  1 +
->>   3 files changed, 60 insertions(+), 28 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ad5820.txt b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
->> deleted file mode 100644
->> index 5764cbedf9b73387ad1bfa9acf99c643f959b84a..0000000000000000000000000000000000000000
->> --- a/Documentation/devicetree/bindings/media/i2c/ad5820.txt
->> +++ /dev/null
->> @@ -1,28 +0,0 @@
->> -* Analog Devices AD5820 autofocus coil
->> -
->> -Required Properties:
->> -
->> -  - compatible: Must contain one of:
->> -		- "adi,ad5820"
->> -		- "adi,ad5821"
->> -		- "adi,ad5823"
->> -
->> -  - reg: I2C slave address
->> -
->> -  - VANA-supply: supply of voltage for VANA pin
->> -
->> -Optional properties:
->> -
->> -   - enable-gpios : GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is
->> -active low, a high level on the pin enables the device.
->> -
->> -Example:
->> -
->> -       ad5820: coil@c {
->> -               compatible = "adi,ad5820";
->> -               reg = <0x0c>;
->> -
->> -               VANA-supply = <&vaux4>;
->> -               enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
->> -       };
->> -
->> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..93349e7daf262fc8939f984fbe93cf064a0cbaf8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
->> @@ -0,0 +1,59 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/adi,ad5820.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices AD5820 autofocus coil
->> +
->> +maintainers:
->> +  - Pavel Machek <pavel@ucw.cz>
->> +
->> +description:
->> +  The AD5820 is a current sink driver designed for precise control of
->> +  voice coil motors (VCMs) in camera autofocus systems.
->> +
->> +allOf:
->> +  - $ref: /schemas/iio/iio.yaml#
-> 
-> You have the ref, so #io-channel-cells is allowed, but you need to say
-> what the value for it should be for *this* binding. IOW, you still need
-> to list it explicitly.
+On Thu, Apr 17, 2025 at 4:12=E2=80=AFPM Boqun Feng <boqun.feng@gmail.com> w=
+rote:
+>
+> On Thu, Apr 17, 2025 at 03:26:14PM -0400, Tamir Duberstein wrote:
+> [...]
+> > >
+> > > >          Ok(())
+> > > >      }
+> > > > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
+> > > > index e5859217a579..4063f09d76d9 100644
+> > > > --- a/rust/kernel/device_id.rs
+> > > > +++ b/rust/kernel/device_id.rs
+> > > > @@ -82,7 +82,7 @@ impl<T: RawDeviceId, U, const N: usize> IdArray<T=
+, U, N> {
+> > > >              unsafe {
+> > > >                  raw_ids[i]
+> > > >                      .as_mut_ptr()
+> > > > -                    .byte_offset(T::DRIVER_DATA_OFFSET as _)
+> > > > +                    .byte_add(T::DRIVER_DATA_OFFSET)
+> > > >                      .cast::<usize>()
+> > > >                      .write(i);
+> > > >              }
+> > > > diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
+> > > > index f7e8f5f53622..70d12014e476 100644
+> > > > --- a/rust/kernel/devres.rs
+> > > > +++ b/rust/kernel/devres.rs
+> > > > @@ -45,7 +45,7 @@ struct DevresInner<T> {
+> > > >  /// # Example
+> > > >  ///
+> > > >  /// ```no_run
+> > > > -/// # use kernel::{bindings, c_str, device::Device, devres::Devres=
+, io::{Io, IoRaw}};
+> > > > +/// # use kernel::{bindings, c_str, device::Device, devres::Devres=
+, ffi::c_void, io::{Io, IoRaw}};
+> > > >  /// # use core::ops::Deref;
+> > > >  ///
+> > > >  /// // See also [`pci::Bar`] for a real example.
+> > > > @@ -59,19 +59,19 @@ struct DevresInner<T> {
+> > > >  ///     unsafe fn new(paddr: usize) -> Result<Self>{
+> > > >  ///         // SAFETY: By the safety requirements of this function=
+ [`paddr`, `paddr` + `SIZE`) is
+> > > >  ///         // valid for `ioremap`.
+> > > > -///         let addr =3D unsafe { bindings::ioremap(paddr as _, SI=
+ZE as _) };
+> > > > +///         let addr =3D unsafe { bindings::ioremap(paddr as bindi=
+ngs::phys_addr_t, SIZE) };
+> > >
+> > >
+> > > ///         let addr =3D unsafe { bindings::ioremap(bindings::phys_ad=
+dr_t::from(paddr), SIZE) };
+> > >
+> > > better? Or even with .into()
+> > >
+> > > ///         let addr =3D unsafe { bindings::ioremap(paddr.into(), SIZ=
+E) };
+> >
+> > This doesn't compile because `paddr` is usize, and
+> > `bindings::phys_addr_t` is u64 (on my machine, which is aarch64).
+> >
+>
+> Ok, looks like Rust yet doesn't provide From/Into between usize and u64
+> even if the pointer size is fixed. Latest discussion can be found at:
+>
+>         https://github.com/rust-lang/rust/issues/41619#issuecomment-20569=
+02943
+>
+> Lemme see if we can get an issue tracking this. Thanks for taking a
+> look.
+>
+> > > >  ///         if addr.is_null() {
+> > > >  ///             return Err(ENOMEM);
+> > > >  ///         }
+> > > >  ///
+> > > > -///         Ok(IoMem(IoRaw::new(addr as _, SIZE)?))
+> > > > +///         Ok(IoMem(IoRaw::new(addr as usize, SIZE)?))
+> > > >  ///     }
+> > > >  /// }
+> > > >  ///
+> > > >  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
+> > > >  ///     fn drop(&mut self) {
+> > > >  ///         // SAFETY: `self.0.addr()` is guaranteed to be properl=
+y mapped by `Self::new`.
+> > > > -///         unsafe { bindings::iounmap(self.0.addr() as _); };
+> > > > +///         unsafe { bindings::iounmap(self.0.addr() as *mut c_voi=
+d); };
+> > > >  ///     }
+> > > >  /// }
+> > > >  ///
+> > > [...]
+> > > > diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
+> > > > index 43ecf3c2e860..851a6339aa90 100644
+> > > > --- a/rust/kernel/dma.rs
+> > > > +++ b/rust/kernel/dma.rs
+> > > > @@ -38,7 +38,7 @@
+> > > >  impl Attrs {
+> > > >      /// Get the raw representation of this attribute.
+> > > >      pub(crate) fn as_raw(self) -> crate::ffi::c_ulong {
+> > > > -        self.0 as _
+> > > > +        self.0 as crate::ffi::c_ulong
+> > >
+> > >         crate::ffi::c_ulong::from(self.0)
+> > >
+> > > maybe, a C unsigned long should always be able to hold the whole `Att=
+r`
+> > > and a lossly casting is what this function does.
+> >
+> > This also doesn't compile: "the trait `core::convert::From<u32>` is
+> > not implemented for `usize`". Upstream has ambitions of running on
+> > 16-bit, I guess :)
+> >
+>
+> They do but they also have the target_pointer_width cfg, so they can
+> totally provide these functions. It's just they want to find a better
+> way (like the link I post above).
 
-I considered to keep the previous and new binding 1:1 and drop 
-#io-channel-chells with the all references to it (missed this one).
-
-Would that be ok for v4?
-
-> 
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - adi,ad5820
->> +      - adi,ad5821
->> +      - adi,ad5823
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  enable-gpios:
->> +    maxItems: 1
->> +    description:
->> +      GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is active low,
->> +      a high level on the pin enables the device.
->> +
->> +  VANA-supply:
->> +    description: supply of voltage for VANA pin
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - VANA-supply
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        coil@c {
->> +            compatible = "adi,ad5820";
->> +            reg = <0x0c>;
->> +
->> +            enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
->> +            VANA-supply = <&vaux4>;
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index af3537005de35dfd0ded11bdc2b9c63e10c70e93..366ed4905fc9b32862a4fd665cf5f4e09fafc989 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -17274,6 +17274,7 @@ M:	Pavel Machek <pavel@kernel.org>
->>   M:	Sakari Ailus <sakari.ailus@iki.fi>
->>   L:	linux-media@vger.kernel.org
->>   S:	Maintained
->> +F:	Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
->>   F:	drivers/media/i2c/ad5820.c
->>   F:	drivers/media/i2c/et8ek8
->>   
->>
->> ---
->> base-commit: b425262c07a6a643ebeed91046e161e20b944164
->> change-id: 20250314-b4-ad5820-dt-yaml-3220bf2f1e40
->>
->> Best regards,
->> -- 
->> David Heidelberg <david@ixit.cz>
->>
-
--- 
-David Heidelberg
-
+Did you want me to hold off on the respin on this point, or shall I go ahea=
+d?
 
