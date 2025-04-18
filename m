@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-168590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E045EA938E3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:54:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CA8A938E6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:54:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 802CC7AC112
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:53:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04CD319E7668
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216301DC075;
-	Fri, 18 Apr 2025 14:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91001DE3D6;
+	Fri, 18 Apr 2025 14:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="yJjm3nfG"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Dzad+r+i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232F01D6DB5
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 14:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33391D9A49
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 14:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744988052; cv=none; b=PXE5NT5r4D5qW3Qld4UYLr5sh5vnWVpOGm+RwFMFNwj2bf5KRXZsGYd7QqRWlr1WbTCXJKYT8TZIeEE8b7//2uGZdOYKVcT9crylNAQigYiPyclGNh6V9kmu2G8/CYCqxxI9B8IOaKpEqpl8fiFrlVghMTlmuEuOnQQGmbblOSY=
+	t=1744988053; cv=none; b=bwQ93oEJkdFSPS0Jr8PYkO3Oia55IlbLbaEPULYqhVPORqLY94eoEC9hXboVDN7Nnf5RX4GIMFjfL/Umi9sAo9S5SVUkO9ssK382XzjZ3YqEQc1G9jA3xd0CIyfgv51Bon2FdwoVxtw2uwdKUSPVB/u9kvXsp5HVLCeX0F0eP6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744988052; c=relaxed/simple;
-	bh=pcYI/mBPHAIWHl1kcIeUbuno01L8luoMXUN7kqO9X+A=;
+	s=arc-20240116; t=1744988053; c=relaxed/simple;
+	bh=LcM+0F3zugynCUcrEX7U/7HbeipG1GSteIItXQPdhjs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lL6ZLWwosYl7VYK+YHs2jTPH9l0fuJxTc0dHL3auNoWnro3RtBApFyaoP4L7BaMT/UdaB5/m032KkMj1S5XNMnncoS7lX8tlU5mkuMZ7mSBFYbqaYVpXJ410pdg2cjT4LGFqOW+TLLEXBZ4iYXzpucjYfV7QSjsyjHLP4qoRWw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=yJjm3nfG; arc=none smtp.client-ip=209.85.160.172
+	 MIME-Version; b=a1FDd6f6BN9IAs7C0Q2AicpLVnJntxpdaJHIcnagXtmLc1J9k8K4ixrCI0tj46cdQtQrVPtuXfF58Tmw5wLd+S8JgSHz/o2F+/0mechwux1tP97Xb7TpXfnq1X014PEy2RCZdc88zhDM1FdluR8rN2D/Kr3qJVx3iT0N/LxY6dI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Dzad+r+i; arc=none smtp.client-ip=209.85.160.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-477296dce8dso18122971cf.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 07:54:09 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-476ae781d21so19903901cf.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 07:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744988049; x=1745592849; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744988050; x=1745592850; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DGLQrJG9/WVjMRDCZD5X9MgDJzulV+jWlnrfByD2cXU=;
-        b=yJjm3nfGGFwCMhLTbM9QCdFKam47oKexNPthQejTVZCObvifVhqvEGpyyfOxfacI7L
-         pOvtpELsUfeEjNRkJ2UuaQuCDKMKkawc2XwBRFIkfOHKcLPEOoH1QbPb4VoPDZ65c810
-         m6RPritvZgWn7MkTq/odQF8MiNiYj8KUYYTAfz7LESSl6UyOWN6/caDzdnRbeUdCeyYv
-         nRz6mGP8UlQfh9jmZJ6vfooeLz5apxa6gq3gcqz0YyJ4py/TBFXj8X2lw5qRb3WLGdnk
-         lJA+LhM4KWWwrlo7laYz0i9EDLaBYp56twahWCKx0vIkAf82gyJHyRQpWq0NDDMLHeQo
-         bKHg==
+        bh=yaw5lt81qT1qo0WLXCCCbUzvwZO95HiGQh1l0h3tFD4=;
+        b=Dzad+r+ihEY8oL0hhMMu/j0gpmvV4/9z84c9+WKOilLf4tXaC831eMjB4AdyDAF9Bf
+         6ELsTCBm4jffPtFkY8yusTShbE8uyShLqY/m12zZ/tURkfn8+fUs2IqBfGMKS/A8ybcJ
+         zX82dWUuXZ2yuV0jhl3ip/b2KEV39sdY+rM5FCoux/5hXiB0HroaEbnu62yAq/xYHC6L
+         XCpuxWLxwyycggiWZUlvv3WTnAwpL0+/Do/2OGl3QAQcATv9pSb7Z+8Y4nXqxiv2peWb
+         JVyPhbNr7W/WFzH9jUvzv+iJMpH+mkuh7l+8YZ885fXqN2QppgneKnhMX6JTwLVY/xXd
+         plbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744988049; x=1745592849;
+        d=1e100.net; s=20230601; t=1744988050; x=1745592850;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DGLQrJG9/WVjMRDCZD5X9MgDJzulV+jWlnrfByD2cXU=;
-        b=aN4eLJb6mgjGcOs6LIJX58ctXOspjau6IE2c8qhYihDDYHmpZVT1kroA+1B2AjKlf3
-         yfia/NBMRGJp8+lO6M0ofRjCEHjJ1twWg9SR5diUu8XHq4BbnpD4IDS/F9kku0aVLBYK
-         8gD3Kh525CjyXK3aqD0MNJ7YhlLH0n4z/X+RLp8I2pxx0eA3eRhX8+z/ssK9kSvMrmz/
-         ndqi77GXKx4AottRUjheqgGelhhbo13uufEu3s1i8W7XoCy3S0g7zkqS/rIpKrDJztj2
-         I4ESdDQmIwG9Q2rnHOeW4+L8dh+94Al9aGsix8D55VwU364gPesNFHmOV843VPtFO9hf
-         GETQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZMze0jqwGwpzPngVzl0dTJi6qMQy0FsD1Dae2+u+75WT1OnXC0IqdoCrSdEacIqShrqydpbcNEHFO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHgQwBlOnEBwTeIJ1q41AN9eHpgOz05oGJXxceuMhssGqaXqIk
-	Uj4150yGe44Yxsy3QYJ7ygVZUsUZL9xczGXySkSQzT8Ehoxo0jzttvrvTrysaRk=
-X-Gm-Gg: ASbGncuUvwDuul5AU3J1PyBYru83Loso/EhX9N5iJBjnv1cajeClB0DIzZNOys2DMCP
-	x7vkh4KHYbyNrYv3bktR0uzrQvVGTAtxwBdLVA3FjQRQocLbJvGq4L4glkQUq5Wu3fwR/B0or+3
-	RSPrUHiHcomcsd/Y+I7GfOIfA0mAy8BqbOQPYymN47nts081AlJBwekBCSBzGvq6lPDWGJ+3lFq
-	TP3GEocdcbJbvyt40KHr+eWHMz2OWJsez11t/9eCOzxePCs16JjdPYxMBfI3zB7qE86V6JUdwWu
-	b2fei6Mwmo5u7wMiNFooDf//Kwom2aobCZ1VnMYUrE7RSWk0O4qqKn2kcZDKSfAVAIsqKPHM77Y
-	UJdm1c6zzITsIfA==
-X-Google-Smtp-Source: AGHT+IHEqzlEJZsM9ibzpxY3pVimq3gvrY9lGtxVp45evTuL1ehJDJBIbt283Y62JHB4YPt3Xe3sXw==
-X-Received: by 2002:a05:622a:1987:b0:472:133f:93ae with SMTP id d75a77b69052e-47aec4cf703mr39891641cf.48.1744988049055;
-        Fri, 18 Apr 2025 07:54:09 -0700 (PDT)
+        bh=yaw5lt81qT1qo0WLXCCCbUzvwZO95HiGQh1l0h3tFD4=;
+        b=bt9FBPJSh6fna27sg4A4G996VaOtJBAZNBTrF5RyS2zghc5Bai+wOfSgmFcTAVw7e0
+         I8qGykSK1ecVHexpze4dBvQuBagbunBNA34yENNcCwcPEJ4GbJzpR+t17jtjdFzg3esw
+         1IyeUkrxG9NFxoUgqr/syI3ggBCakfWe8/FaaEEqak+7NXb+Z6giONT+lTixKRKp+MpM
+         aqFc2qffQqRSDqPObLVvgXk3eHFuuk6m+An0vRvzeCuSs9eQKcZx82eIATZhw+dmnU9g
+         1vdQv9N7qGOW3M0GCuNczGOWLJR5wSw/aJAflF6iY9mIVIqurnYv+Cy/mXLErV4fYej1
+         DThQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZUnAG4SlbzA9Gc5MJ8Ya2eXZSk1JFMZLambNoYg+kDrTP233/wSaW0LU/M1a8zDXNGTzju8awnahf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzL77eMU8EUQbkIzyYmlewwkIjJKlPadtWladdwNcYgUs/jC5vi
+	WbAHd02A09H84C0vI+pJjrwTdvuiFe1yZHqMYh1Y9Z0CrqV84N/AKW2byJ5U3afT9FhoAJFD0TC
+	2gMs=
+X-Gm-Gg: ASbGnctChyuKpknSa4EuuytRiPCeD0B71H/Vgvqx133eVBWF9zMPOxufjw0oV5cYIy8
+	EuYvSIjaM4jWOoV2ISucIdlfdb4/RFilUbeU0LmTPEE3yWegd5NBF+qebP8Y4qgnzQdU4VsTZi7
+	+gUVsKUS/QgZwo0PuPGyhis/eo1d4GnBlfh0SWOtvbr7uDu5IoncXdysn2ScmKSUViOM3SDaQXA
+	Hg+dGdPUlSGKPW72vOx1hbowJ8+0kh8qn4B+ysVI9zCjHn+Flu+NhkYZAxutL04mxKZYf3LGntL
+	T/RdrUp+n7Of/MnhCvbcUITH+AM0DqMMlbgk77zRLDBZOCEXHGzPzkHPJTWwmqV+MByOurFHqeT
+	Fq4VclNwSn/Wwgg==
+X-Google-Smtp-Source: AGHT+IFvYy7PkzuSyv6/DahcPqSuURSVxow9I8GZ9PMmiSUagXcMHnpfEu6YrBdLJKJ9ltUJ181r5g==
+X-Received: by 2002:ac8:57cf:0:b0:47a:e70c:e1ad with SMTP id d75a77b69052e-47aec399e28mr54297341cf.1.1744988050449;
+        Fri, 18 Apr 2025 07:54:10 -0700 (PDT)
 Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47ae9c16ddesm11329201cf.3.2025.04.18.07.54.07
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47ae9c16ddesm11329201cf.3.2025.04.18.07.54.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 07:54:08 -0700 (PDT)
+        Fri, 18 Apr 2025 07:54:10 -0700 (PDT)
 From: Alex Elder <elder@riscstar.com>
 To: mturquette@baylibre.com,
 	sboyd@kernel.org,
@@ -91,9 +92,9 @@ Cc: p.zabel@pengutronix.de,
 	linux-clk@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/7] clk: spacemit: rename spacemit_ccu_data fields
-Date: Fri, 18 Apr 2025 09:53:54 -0500
-Message-ID: <20250418145401.2603648-3-elder@riscstar.com>
+Subject: [PATCH v5 3/7] clk: spacemit: add reset controller support
+Date: Fri, 18 Apr 2025 09:53:55 -0500
+Message-ID: <20250418145401.2603648-4-elder@riscstar.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250418145401.2603648-1-elder@riscstar.com>
 References: <20250418145401.2603648-1-elder@riscstar.com>
@@ -105,101 +106,166 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add "clk_" to the names of the fields in the spacemit_ccu_data structure
-type.  This prepares it for the addition of two similar fields dedicated
-to resets.
+Define ccu_reset_data as a structure that contains the constant
+register offset and bitmasks used to assert and deassert a reset
+control on a SpacemiT K1 CCU. Add a pointer to an array of those
+structures to the spacemit_ccu_data structure, along with a field
+indicating how many elements are in that array.  Resets will be
+optional, and if none are defined the reset array pointer will be
+null.
+
+Define a new ccu_reset_controller structure, which (for a CCU with
+resets) contains a pointer to the constant reset data, the regmap
+to be used for the controller, and an embedded a reset controller
+structure.
+
+Each reset control is asserted or deasserted by updating bits in
+a register.  The bits used are defined by an assert mask and a
+deassert mask.  In some cases, one (non-zero) mask asserts reset
+and a different (non-zero) mask deasserts it.  Otherwise one mask
+is nonzero, and the other is zero.  Either way, the bits in
+both masks are cleared, then either the assert mask or the deassert
+mask is set in a register to affect the state of a reset control.
 
 Signed-off-by: Alex Elder <elder@riscstar.com>
-Reviewed-by: Haylen Chu <heylenay@4d2.org>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- drivers/clk/spacemit/ccu-k1.c | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ drivers/clk/spacemit/ccu-k1.c | 86 +++++++++++++++++++++++++++++++++--
+ 1 file changed, 83 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-index cdde37a052353..a7712d1681a11 100644
+index a7712d1681a11..9152cce00ce90 100644
 --- a/drivers/clk/spacemit/ccu-k1.c
 +++ b/drivers/clk/spacemit/ccu-k1.c
-@@ -130,8 +130,8 @@
+@@ -11,6 +11,7 @@
+ #include <linux/minmax.h>
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
++#include <linux/reset-controller.h>
+ 
+ #include "ccu_common.h"
+ #include "ccu_pll.h"
+@@ -129,9 +130,23 @@
+ #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
  #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
  
++struct ccu_reset_data {
++	u32 offset;
++	u32 assert_mask;
++	u32 deassert_mask;
++};
++
  struct spacemit_ccu_data {
--	struct clk_hw **hws;
--	size_t num;
-+	struct clk_hw **clk_hws;
-+	size_t clk_num;
+-	struct clk_hw **clk_hws;
++	struct clk_hw **clk_hws;			/* array */
+ 	size_t clk_num;
++	const struct ccu_reset_data *reset_data;	/* array */
++	size_t reset_num;
++};
++
++struct ccu_reset_controller {
++	struct regmap *regmap;
++	const struct spacemit_ccu_data *data;
++	struct reset_controller_dev rcdev;
  };
  
  /* APBS clocks start, APBS region contains and only contains all PLL clocks */
-@@ -819,8 +819,8 @@ static struct clk_hw *k1_ccu_pll_hws[] = {
+@@ -1042,6 +1057,39 @@ static const struct spacemit_ccu_data k1_ccu_apmu_data = {
+ 	.clk_num	= ARRAY_SIZE(k1_ccu_apmu_hws),
  };
  
- static const struct spacemit_ccu_data k1_ccu_pll_data = {
--	.hws	= k1_ccu_pll_hws,
--	.num	= ARRAY_SIZE(k1_ccu_pll_hws),
-+	.clk_hws	= k1_ccu_pll_hws,
-+	.clk_num	= ARRAY_SIZE(k1_ccu_pll_hws),
- };
- 
- static struct clk_hw *k1_ccu_mpmu_hws[] = {
-@@ -860,8 +860,8 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
- };
- 
- static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
--	.hws	= k1_ccu_mpmu_hws,
--	.num	= ARRAY_SIZE(k1_ccu_mpmu_hws),
-+	.clk_hws	= k1_ccu_mpmu_hws,
-+	.clk_num	= ARRAY_SIZE(k1_ccu_mpmu_hws),
- };
- 
- static struct clk_hw *k1_ccu_apbc_hws[] = {
-@@ -968,8 +968,8 @@ static struct clk_hw *k1_ccu_apbc_hws[] = {
- };
- 
- static const struct spacemit_ccu_data k1_ccu_apbc_data = {
--	.hws	= k1_ccu_apbc_hws,
--	.num	= ARRAY_SIZE(k1_ccu_apbc_hws),
-+	.clk_hws	= k1_ccu_apbc_hws,
-+	.clk_num	= ARRAY_SIZE(k1_ccu_apbc_hws),
- };
- 
- static struct clk_hw *k1_ccu_apmu_hws[] = {
-@@ -1038,8 +1038,8 @@ static struct clk_hw *k1_ccu_apmu_hws[] = {
- };
- 
- static const struct spacemit_ccu_data k1_ccu_apmu_data = {
--	.hws	= k1_ccu_apmu_hws,
--	.num	= ARRAY_SIZE(k1_ccu_apmu_hws),
-+	.clk_hws	= k1_ccu_apmu_hws,
-+	.clk_num	= ARRAY_SIZE(k1_ccu_apmu_hws),
- };
- 
++static int spacemit_reset_update(struct reset_controller_dev *rcdev,
++				 unsigned long id, bool assert)
++{
++	struct ccu_reset_controller *controller;
++	const struct ccu_reset_data *data;
++	u32 mask;
++	u32 val;
++
++	controller = container_of(rcdev, struct ccu_reset_controller, rcdev);
++	data = &controller->data->reset_data[id];
++	mask = data->assert_mask | data->deassert_mask;
++	val = assert ? data->assert_mask : data->deassert_mask;
++
++	return regmap_update_bits(controller->regmap, data->offset, mask, val);
++}
++
++static int spacemit_reset_assert(struct reset_controller_dev *rcdev,
++				 unsigned long id)
++{
++	return spacemit_reset_update(rcdev, id, true);
++}
++
++static int spacemit_reset_deassert(struct reset_controller_dev *rcdev,
++				   unsigned long id)
++{
++	return spacemit_reset_update(rcdev, id, false);
++}
++
++static const struct reset_control_ops spacemit_reset_control_ops = {
++	.assert		= spacemit_reset_assert,
++	.deassert	= spacemit_reset_deassert,
++};
++
  static int spacemit_ccu_register(struct device *dev,
-@@ -1050,13 +1050,13 @@ static int spacemit_ccu_register(struct device *dev,
- 	struct clk_hw_onecell_data *clk_data;
- 	int i, ret;
+ 				 struct regmap *regmap,
+ 				 struct regmap *lock_regmap,
+@@ -1090,9 +1138,37 @@ static int spacemit_ccu_register(struct device *dev,
+ 	return ret;
+ }
  
--	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->clk_num),
- 				GFP_KERNEL);
- 	if (!clk_data)
- 		return -ENOMEM;
++static int spacemit_reset_controller_register(struct device *dev,
++					      struct regmap *regmap,
++					      const struct spacemit_ccu_data *data)
++{
++	struct ccu_reset_controller *controller;
++	struct reset_controller_dev *rcdev;
++
++	/* Resets are optional */
++	if (!data->reset_data)
++		return 0;
++
++	controller = devm_kzalloc(dev, sizeof(*controller), GFP_KERNEL);
++	if (!controller)
++		return -ENOMEM;
++
++	controller->regmap = regmap;
++	controller->data = data;
++
++	rcdev = &controller->rcdev;
++	rcdev->ops = &spacemit_reset_control_ops;
++	rcdev->owner = THIS_MODULE;
++	rcdev->of_node = dev->of_node;
++	rcdev->nr_resets = data->reset_num;
++
++	return devm_reset_controller_register(dev, rcdev);
++}
++
+ static int k1_ccu_probe(struct platform_device *pdev)
+ {
+ 	struct regmap *base_regmap, *lock_regmap = NULL;
++	const struct spacemit_ccu_data *data;
+ 	struct device *dev = &pdev->dev;
+ 	int ret;
  
--	for (i = 0; i < data->num; i++) {
--		struct clk_hw *hw = data->hws[i];
-+	for (i = 0; i < data->clk_num; i++) {
-+		struct clk_hw *hw = data->clk_hws[i];
- 		struct ccu_common *common;
- 		const char *name;
- 
-@@ -1081,7 +1081,7 @@ static int spacemit_ccu_register(struct device *dev,
- 		clk_data->hws[i] = hw;
+@@ -1121,11 +1197,15 @@ static int k1_ccu_probe(struct platform_device *pdev)
+ 					     "failed to get lock regmap\n");
  	}
  
--	clk_data->num = data->num;
-+	clk_data->num = data->clk_num;
- 
- 	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+-	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
+-				    of_device_get_match_data(dev));
++	data = of_device_get_match_data(dev);
++	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap, data);
  	if (ret)
+ 		return dev_err_probe(dev, ret, "failed to register clocks\n");
+ 
++	ret = spacemit_reset_controller_register(dev, base_regmap, data);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to register reset controller\n");
++
+ 	return 0;
+ }
+ 
 -- 
 2.45.2
 
