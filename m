@@ -1,371 +1,197 @@
-Return-Path: <devicetree+bounces-168530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3F2A9360C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:36:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B716A93674
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F03FE8E4031
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:35:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08EBC3ADD7C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 11:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F47270ECF;
-	Fri, 18 Apr 2025 10:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C3C2741DC;
+	Fri, 18 Apr 2025 11:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OJkJhd3I"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Agx7h2pJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A828720B218
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 10:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1285321ABCD
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 11:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744972549; cv=none; b=kjsr3lZx864pjb48iHRpLHf6jHq7ttr/2ERedIxUzv76LCqM115wee3Ez4OKOcQdY9ObX5LRCRsPX7MXav+LR0Y4q39g9s18HHMMjwqlbUdsk6uneABymf4sqGip5F1BIZL9t9jiSh/W4KXG78p7Otr2AqOjJDxhlZvheGPz30M=
+	t=1744975383; cv=none; b=InW3GwZugvENFFQbehQjC67NJ3rj7F+KcjeKh9WuDGy+OZ3MXnb55Bkm5FtSntcrZmWo5yaXggVliENFShFZPsNghYmfeFxy/sXEjy1NtFzHkXjUIYYPCMsma+y3lwEb+CaTI9ujxf7wWlRjutjXX5Z7F6u5khZhmQEnFryeR3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744972549; c=relaxed/simple;
-	bh=qfCYl+OJzIRFinR3TpG+qTi/erJTDER0ehv05sjy6vQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jNw8XFKhrIQd9eBa4Em/M+XC9nZgNCbiv2KJpdGgmNWLwAxasFY9dNOJDeF2XykYHkuCQusIUTQQ2bPi9b6GBA4Udg3J8jT87PmkT4U3iHlyVZuj/MzwOrySgMZDHS1TJ796uwexAqZ/2hqb2EpuOFXB5P/BfrtwpxZTQvMho88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OJkJhd3I; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43edb40f357so12538045e9.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 03:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744972545; x=1745577345; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XyW2t+GtwgeOQ8iFogAaRYVPbyvbI7FZnfPpco3ULPs=;
-        b=OJkJhd3I8ofGTvelv+oxsLn18zOm3NDtUWhryu8yiE6fhaICQ1f+WcrRt+/Fw2RmVM
-         Y9SlUMsxIRKWYp+9h31FgcqK4MzZktONf3lAkqrl8vv9lxAQ0WhhQvqrkwr+9C+++LAq
-         VlzAlnzqmsVdU9b/kKXq2Bu+QPFtbVd7EU1wEY/UmVqNFVoEaNmn31UUgKpBAYEdi3FE
-         zDZcRU96NeMtNgDpe3h15m+ncNjPITqx6EuS6C4u6pOTR6z8V+7na8W4wF1djSU2nKeC
-         2NxzlgYpzLRaqFKPYgigC7yUtaezaCB/aReTbaCrwQAOBA4swy2SNAdNuhdSzfi3rVNH
-         z4EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744972545; x=1745577345;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XyW2t+GtwgeOQ8iFogAaRYVPbyvbI7FZnfPpco3ULPs=;
-        b=GKCV8eX4RpI7j39cjbyXrN06vkQGL9XnFG2AjDJQPTHUXGXoaU+uPbLnf5DqAFmUY2
-         s+fe7gAuGaO3i500vi+Pq2ECJewo3QgKfSEn3kmUbNBunmLScpyLSby2oSuHDX+WD8Pk
-         0gk5gYX9P6cxUb6eoAxeq85hh4f/X650L2WH+16Rc06wGeZmQKcYrr3cek3NgrzOdjOZ
-         fY47vhWwJOCGEBK4K0Zeq1+1yCOWR8lAhAhJ9zUlt22OhOTwj13R0Rp8vEV45hr0FGGx
-         EIJ6ROKNC314OoDJLw3ZRPEI1AXKLebrwCpUaphLA2jnaIVzA+v9s5t2NnLRIPu2T42y
-         NImg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZb5nMebBFS0h5X/7OSzvlj1noNtxiyHh8O5zICxIm3pusrGzkfOrrKZK+eWYrCWxC1c5+3DPcPBzA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWd4g9Dzim646Dk1UV0ym5o+q5r8QA+Ay3aC0/WZ68yN6GPRZ4
-	CEuimQMDHzJdsnR/AcJYVVeir8eV0C284uEtf1dQSfhJPqik6Fttlv1t4YeEqDc=
-X-Gm-Gg: ASbGnctDWEaUhdYpYtZAw0GdjHSxFJ1zwnHGYba2ypNO3QTmgaHVW+9VxZ4otpSIMfx
-	tmdtHOrNvV10GgpVnrbqkZM2qQVlqYtLCj2ofOulfpbZKgbr9pe+T7f+2naAjFuBPzxOYQkVM0s
-	Ll7SArJpG599qy/5X6xE6raemwDNqHMe6kgYDkbi8Nzvdk/8FTD+CFq+k1x1cGJIB2/TJaZ8N2X
-	jKblDWZpj/oSLsy4FH87JYJ6STXfuBP+LzklTWOy3cshrRdWxJwdwSv/4uXGhxWg1x8MElG367c
-	jJh688oeUVX1O0olfXYRjaQl2WHPiAVcKoozcWjOBKKvpN9JxvRrYVeWTrmwJTJXqbAfHSqK46z
-	xYMy97w==
-X-Google-Smtp-Source: AGHT+IG1ldrPaFqZ19ooBr1X8BkUfim3jehNH+IxNKoWTFlbOTGloFPIDBOe5Sy+jV5arTlmIQ6fJg==
-X-Received: by 2002:a05:6000:1acb:b0:390:f6aa:4e80 with SMTP id ffacd0b85a97d-39efbaf1ee3mr1914119f8f.53.1744972544885;
-        Fri, 18 Apr 2025 03:35:44 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5bbd35sm17111785e9.22.2025.04.18.03.35.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Apr 2025 03:35:44 -0700 (PDT)
-Message-ID: <59ffb7c7-95b8-47e9-91ab-3c7cd7b3fe02@linaro.org>
-Date: Fri, 18 Apr 2025 11:35:43 +0100
+	s=arc-20240116; t=1744975383; c=relaxed/simple;
+	bh=pHEFsooV5rBns7mZj4los8jHrPhPRhvke1rDrFVgp2U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To:Cc:Content-Type:
+	 References; b=s6UsZ0x8+N/UuN1JvOSvxbbxcUOPN3v4wtaxIM1NQLID8D/c4pF9oQ8VgcYarWz0/rrBlQENLo9aRrK1BM0Fw+rnXmh8vQJfKk5mIHEheZzIpJ5BPyj3DiZWt28UfqP8ltcbOjcNYlJhBsFNBIf1cr9MPaeqEhSCvGTct6mK+pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Agx7h2pJ; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250418112259euoutp01263cad42312c7d197daa500471766408~3Zdy181X22567425674euoutp019
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 11:22:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250418112259euoutp01263cad42312c7d197daa500471766408~3Zdy181X22567425674euoutp019
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1744975379;
+	bh=yzaBvKzzEWWyLTE1pyTYFM8f6ViBLwOiNdNueDjhZzg=;
+	h=From:Subject:Date:To:Cc:References:From;
+	b=Agx7h2pJRQjZPeRRRAb5stJUq58TRl+E6MIK+pVqgQZpqZ0xstoDmn7OiV5wpjac0
+	 HDWaCN3g3E57aKJan17328BYFgcAe09HbXT0W4DLN03TDxsUBiDg/W6asWn3E8G07N
+	 tBYD7PUU2GWBxcR52lU401cT72wQtjcyRD9gLKDI=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250418112258eucas1p22468c70dfc2f1313fb1427ee76939b89~3ZdycMMLE1933319333eucas1p2D;
+	Fri, 18 Apr 2025 11:22:58 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 9E.AE.20821.21632086; Fri, 18
+	Apr 2025 12:22:58 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250418112258eucas1p28186b27890dbed4cbc05b2ddd8f94327~3ZdxtNRXh0304303043eucas1p2g;
+	Fri, 18 Apr 2025 11:22:58 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250418112257eusmtrp1343528e483703d9339388d0e6e724f8a~3Zdxde5Rp2607526075eusmtrp1m;
+	Fri, 18 Apr 2025 11:22:57 +0000 (GMT)
+X-AuditID: cbfec7f2-b11c470000005155-d7-6802361210da
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 41.98.19654.11632086; Fri, 18
+	Apr 2025 12:22:57 +0100 (BST)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250418112256eusmtip237aa76492b51754773f723e760e428c2~3ZdwrNQwu3259732597eusmtip2V;
+	Fri, 18 Apr 2025 11:22:56 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v6 0/2] Add optional reset for the drm/imagination driver
+Date: Fri, 18 Apr 2025 13:22:47 +0200
+Message-Id: <20250418-apr_18_reset_img-v6-0-85a06757b698@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] media: iris: add qcs8300 platform data
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com>
- <20250418-qcs8300_iris-v2-4-1e01385b90e9@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250418-qcs8300_iris-v2-4-1e01385b90e9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAc2AmgC/x3MTQqAIBBA4avIrBNUMqyrREg/k82ikjEikO6et
+	PwW72VIyIQJOpGB8aZE51HQVALmbTwCSlqKwShjVa2dHCN77TxjwsvTHuSklWmdU9YsCCWLjCs
+	9/7If3vcDMSsFS2IAAAA=
+X-Change-ID: 20250418-apr_18_reset_img-b102988052de
+To: Frank Binns <frank.binns@imgtec.com>,  Matt Coster
+	<matt.coster@imgtec.com>, David Airlie <airlied@gmail.com>,  Simona Vetter
+	<simona@ffwll.ch>,  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,  Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,  Michal Wilczynski
+	<m.wilczynski@samsung.com>
+X-Mailer: b4 0.15-dev
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHKsWRmVeSWpSXmKPExsWy7djPc7pCZkwZBp8valicuL6IyWLN3nNM
+	FvOPnGO1uPL1PZvFuqcX2C1ezrrHZrH39VZ2i8u75rBZrD1yl91i/df5TBYLP25lsViyYxej
+	RVvnMlaLu/dOsFj837OD3WL2u/3sFlveTGR1EPTY+20Bi8fOWXfZPXp2nmH02LSqk83jzrU9
+	bB7zTgZ63O8+zuTR/9fAo2/LKkaPzaerPT5vkgvgjuKySUnNySxLLdK3S+DK+P/TsmCacMXW
+	r23MDYx3+bsYOTkkBEwk1j39ytTFyMUhJLCCUeL++bOsEM4XRonZMx6yglQJCXxmlLjxVRqm
+	4+LnTSwQRcsZJV5uuQjltDFJ3Dk/jRmkik3ASOLB8vlg3cICnhKH1u8Bsjk4WARUJea/0gUJ
+	8wq4SuydfZ0RwhaUODnzCQuIzSwgL7H97RxmkJkSAhsYJZbemMQOsdlYYkfjU7DzRAReMktc
+	WLeEEcRhFjjJKLGw6zAjRJWoxO/Ju1gg2g9zSnxYcIsZIuEiseLxJ6hRwhKvjm+BsmUkTk/u
+	YYGw8yUebP0EVV8jsbPnOJRtLXHn3C82kBeYBTQl1u/Shwg7Suz5voUFJCwhwCdx460gxAd8
+	EpO2TWeGCPNKdLQJQVSrSUzt6YVbem7FNqYJjEqzkPw/C8n/sxB2LWBkXsUonlpanJueWmyY
+	l1quV5yYW1yal66XnJ+7iRGYBE//O/5pB+PcVx/1DjEycTAeYpTgYFYS4Z2uw5QhxJuSWFmV
+	WpQfX1Sak1p8iFGag0VJnHfR/tZ0IYH0xJLU7NTUgtQimCwTB6dUA5Or4mI1RQ8dwaWF/Qvz
+	dxvZtr79uGTui+6TWU/DpyRN3xEfX5kZffYk041bO3fd//VnwXvBp6uWeiwODVz0psPkzjr3
+	E79ST8dI/LM5d6Qv8pTu2/y5WVvM5uq8fHZD/Lrew56tnKG/F7s/kn7DGHNgTx+n6zw3vcPB
+	ywTW7VnU6ZKW6K4w19fDpWSi1qKWlJUCV2sszCbueadtnbDreM2yYI0EBrWW4657udi2bZ7P
+	4fBTVLFk747Hk6SlnfO4qt6eUbk6a/7fpp+ZkTYcVn/f3Jdn9zqVeH/BsmtNf5ULUhl+v84L
+	ez7DeId0HttU7xvheeW/K5f6B03xOnTy3hzt17o10yaGv9uY/vzzvKAwJZbijERDLeai4kQA
+	wR8/zfEDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsVy+t/xe7qCZkwZBgtna1qcuL6IyWLN3nNM
+	FvOPnGO1uPL1PZvFuqcX2C1ezrrHZrH39VZ2i8u75rBZrD1yl91i/df5TBYLP25lsViyYxej
+	RVvnMlaLu/dOsFj837OD3WL2u/3sFlveTGR1EPTY+20Bi8fOWXfZPXp2nmH02LSqk83jzrU9
+	bB7zTgZ63O8+zuTR/9fAo2/LKkaPzaerPT5vkgvgjtKzKcovLUlVyMgvLrFVija0MNIztLTQ
+	MzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DL+P/TsmCacMXWr23MDYx3+bsYOTkkBEwkLn7e
+	xNLFyMUhJLCUUWJ/z3oWiISMxLXul1C2sMSfa11sILaQQAuTRP85bxCbTcBI4sHy+awgtrCA
+	p8Sh9XuAbA4OFgFVifmvdEHCvAKuEntnX2eEsAUlTs58wgJSwiygKbF+lz5ImFlAXmL72znM
+	ICdICGxglNiy/h4zxFpjiR2NT1lBEiICb5glVj74xgjiMAucYpSYMPUqO0SVqMTvybtYJjAK
+	zkKyZBbCkllIlixgZF7FKJJaWpybnltspFecmFtcmpeul5yfu4kRGNvbjv3csoNx5auPeocY
+	mTgYDzFKcDArifBO12HKEOJNSaysSi3Kjy8qzUktPsRoCvTnRGYp0eR8YHLJK4k3NDMwNTQx
+	szQwtTQzVhLnZbtyPk1IID2xJDU7NbUgtQimj4mDU6qBqeNc3oHF33R0N+hYczO5WYRUGDEo
+	3nr2b4m0o3XDot+cLQ6H2A6v33eJ+2ud8/fwiKYdjB8WdymJuLlf01KJ2/LhXK5VUPHp37zv
+	rFmufW1hnNa14MwE5guTn05oOH7BrOy1/oafC0rUb6gdO2635Nfzh58rHNmeCT+2V3PUdSi5
+	F66ZdNTc+XD8uvdnwic9lCloCdeJa/ZJNChYsS6x79Ntk4k9dhb9WUXB6rY+0llzLOz39kSV
+	cljtKpWZ9UevMKL3E+eRDScal2ZZK5Srn7NIj2tWtRG73NDzfNr1yEUHFx3IZJx1/ljpWyep
+	y9M/C9v4s79puxn8jLHdU3BvzBXRGY7XJ/xZlXiwdTa/EktxRqKhFnNRcSIAMWuHpXYDAAA=
+X-CMS-MailID: 20250418112258eucas1p28186b27890dbed4cbc05b2ddd8f94327
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250418112258eucas1p28186b27890dbed4cbc05b2ddd8f94327
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250418112258eucas1p28186b27890dbed4cbc05b2ddd8f94327
+References: <CGME20250418112258eucas1p28186b27890dbed4cbc05b2ddd8f94327@eucas1p2.samsung.com>
 
-On 18/04/2025 07:28, Vikash Garodia wrote:
-> QCS8300 has a downscaled video core compared to SM8550, while it has
-> same bindings as that of SM8550. QCS8300.h captures the capabilities for
-> QCS8300 which is delta from SM8550.
+This patch series introduces and documents optional reset support for
+the drm/imagination driver. While developed as part of a larger effort
+to enable the Imagination BXM-4-64 GPU upstream, these patches can merge
+independently.
 
-QCS8300 as a down-scaled .... compared to the SM8550.
-QSC8300 has the same bindings as SM8550 ?
+During the upstreaming process, we discovered that the T-HEAD TH1520 SoC
+requires custom code to manage resets and clocks from the power-domain
+driver [1]. Nevertheless, adding this reset capability is necessary, as
+the GPU Device Tree node would own the reset control and would manage it
+for boards like BPI-F3 that don't have custom requirements for handling
+clocks and resets during their startup sequence.
 
-Actually that makes not a world of sense as I read it.
+For more context, please see the cover letter for the larger series [2].
 
-I'd suggest rewording this commit to just state what the QSC8300 itself 
-can do without assuming the reader has any prior knowledge of the SM8550.
+[1] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-0-70c5af2af96c@samsung.com/
+[2] - https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 
-Same comment for the other commits.
+This series is versioned to maintain continuity with the bigger patchset
+it is a subseries of. Please find below changelog for the
+drm/imagination reset part:
 
-Tell us what the QCS8300 is and what it does.
+v6:
+ - no changes, just a re-send, bumping version to avoid confusion
 
-> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> ---
->   .../platform/qcom/iris/iris_platform_common.h      |   1 +
->   .../media/platform/qcom/iris/iris_platform_gen2.c  |  57 ++++++++++
->   .../platform/qcom/iris/iris_platform_qcs8300.h     | 124 +++++++++++++++++++++
->   drivers/media/platform/qcom/iris/iris_probe.c      |   4 +
->   4 files changed, 186 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index 6bc3a7975b04d612f6c89206eae95dac678695fc..3191a910653ce4bd71de9a0b4465fd583602adf6 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -36,6 +36,7 @@ enum pipe_type {
->   extern struct iris_platform_data sm8250_data;
->   extern struct iris_platform_data sm8550_data;
->   extern struct iris_platform_data sm8650_data;
-> +extern struct iris_platform_data qcs8300_data;
->   
->   enum platform_clk_type {
->   	IRIS_AXI_CLK,
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> index 5ff82296ee8ea5ad3954bd2254594048adcb8404..723e9f4cef42408168aca22b34ccd0a674a4fd25 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> @@ -11,6 +11,7 @@
->   #include "iris_vpu_common.h"
->   
->   #include "iris_platform_sm8650.h"
-> +#include "iris_platform_qcs8300.h"
->   
->   #define VIDEO_ARCH_LX 1
->   
-> @@ -326,3 +327,59 @@ struct iris_platform_data sm8650_data = {
->   	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
->   	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
->   };
-> +
-> +/*
-> + * Shares most of SM8550 data except:
-> + * - inst_caps to platform_inst_cap_qcs8300
-> + * - inst_fw_caps to inst_fw_cap_qcs8300
-> + */
-> +struct iris_platform_data qcs8300_data = {
-> +	.get_instance = iris_hfi_gen2_get_instance,
-> +	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
-> +	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
-> +	.vpu_ops = &iris_vpu3_ops,
-> +	.set_preset_registers = iris_set_sm8550_preset_registers,
-> +	.icc_tbl = sm8550_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-> +	.clk_rst_tbl = sm8550_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
-> +	.bw_tbl_dec = sm8550_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
-> +	.pmdomain_tbl = sm8550_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
-> +	.opp_pd_tbl = sm8550_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
-> +	.clk_tbl = sm8550_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
-> +	/* Upper bound of DMA address range */
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/vpu/vpu30_p4_s6.mbn",
-> +	.pas_id = IRIS_PAS_ID,
-> +	.inst_caps = &platform_inst_cap_qcs8300,
-> +	.inst_fw_caps = inst_fw_cap_qcs8300,
-> +	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_qcs8300),
-> +	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.core_arch = VIDEO_ARCH_LX,
-> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-> +	.ubwc_config = &ubwc_config_sm8550,
-> +	.num_vpp_pipe = 2,
-> +	.max_session_count = 16,
-> +	.max_core_mbpf = ((4096 * 2176) / 256) * 4,
-> +	.input_config_params =
-> +		sm8550_vdec_input_config_params,
-> +	.input_config_params_size =
-> +		ARRAY_SIZE(sm8550_vdec_input_config_params),
-> +	.output_config_params =
-> +		sm8550_vdec_output_config_params,
-> +	.output_config_params_size =
-> +		ARRAY_SIZE(sm8550_vdec_output_config_params),
-> +	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
-> +	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
-> +	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
-> +	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
-> +
-> +	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-> +	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f82355d72fcffe7e361bd30877cccb83fe9b549f
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-> @@ -0,0 +1,124 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +static struct platform_inst_fw_cap inst_fw_cap_qcs8300[] = {
-> +	{
-> +		.cap_id = PROFILE,
-> +		.min = V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE,
-> +		.max = V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_BASELINE) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_HIGH),
-> +		.value = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
-> +		.hfi_id = HFI_PROP_PROFILE,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = LEVEL,
-> +		.min = V4L2_MPEG_VIDEO_H264_LEVEL_1_0,
-> +		.max = V4L2_MPEG_VIDEO_H264_LEVEL_6_2,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1B)  |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_2) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_3) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_2) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_2) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_2) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_2) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_0) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_1) |
-> +			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_2),
-> +		.value = V4L2_MPEG_VIDEO_H264_LEVEL_6_1,
-> +		.hfi_id = HFI_PROP_LEVEL,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = INPUT_BUF_HOST_MAX_COUNT,
-> +		.min = DEFAULT_MAX_HOST_BUF_COUNT,
-> +		.max = DEFAULT_MAX_HOST_BURST_BUF_COUNT,
-> +		.step_or_mask = 1,
-> +		.value = DEFAULT_MAX_HOST_BUF_COUNT,
-> +		.hfi_id = HFI_PROP_BUFFER_HOST_MAX_COUNT,
-> +		.flags = CAP_FLAG_INPUT_PORT,
-> +		.set = iris_set_u32,
-> +	},
-> +	{
-> +		.cap_id = STAGE,
-> +		.min = STAGE_1,
-> +		.max = STAGE_2,
-> +		.step_or_mask = 1,
-> +		.value = STAGE_2,
-> +		.hfi_id = HFI_PROP_STAGE,
-> +		.set = iris_set_stage,
-> +	},
-> +	{
-> +		.cap_id = PIPE,
-> +		.min = PIPE_1,
-> +		.max = PIPE_2,
-> +		.step_or_mask = 1,
-> +		.value = PIPE_2,
-> +		.hfi_id = HFI_PROP_PIPE,
-> +		.set = iris_set_pipe,
-> +	},
-> +	{
-> +		.cap_id = POC,
-> +		.min = 0,
-> +		.max = 2,
-> +		.step_or_mask = 1,
-> +		.value = 1,
-> +		.hfi_id = HFI_PROP_PIC_ORDER_CNT_TYPE,
-> +	},
-> +	{
-> +		.cap_id = CODED_FRAMES,
-> +		.min = CODED_FRAMES_PROGRESSIVE,
-> +		.max = CODED_FRAMES_PROGRESSIVE,
-> +		.step_or_mask = 0,
-> +		.value = CODED_FRAMES_PROGRESSIVE,
-> +		.hfi_id = HFI_PROP_CODED_FRAMES,
-> +	},
-> +	{
-> +		.cap_id = BIT_DEPTH,
-> +		.min = BIT_DEPTH_8,
-> +		.max = BIT_DEPTH_8,
-> +		.step_or_mask = 1,
-> +		.value = BIT_DEPTH_8,
-> +		.hfi_id = HFI_PROP_LUMA_CHROMA_BIT_DEPTH,
-> +	},
-> +	{
-> +		.cap_id = RAP_FRAME,
-> +		.min = 0,
-> +		.max = 1,
-> +		.step_or_mask = 1,
-> +		.value = 1,
-> +		.hfi_id = HFI_PROP_DEC_START_FROM_RAP_FRAME,
-> +		.flags = CAP_FLAG_INPUT_PORT,
-> +		.set = iris_set_u32,
-> +	},
-> +};
-> +
-> +static struct platform_inst_caps platform_inst_cap_qcs8300 = {
-> +	.min_frame_width = 96,
-> +	.max_frame_width = 4096,
-> +	.min_frame_height = 96,
-> +	.max_frame_height = 4096,
-> +	.max_mbpf = (4096 * 2176) / 256,
-> +	.mb_cycles_vpp = 200,
-> +	.mb_cycles_fw = 326389,
-> +	.mb_cycles_fw_vpp = 44156,
-> +	.num_comv = 0,
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 7cd8650fbe9c09598670530103e3d5edf32953e7..e5f1896e55c390e920d206e7fc2c2be283bb39d8 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -349,6 +349,10 @@ static const struct of_device_id iris_dt_match[] = {
->   		.compatible = "qcom,sm8650-iris",
->   		.data = &sm8650_data,
->   	},
-> +	{
-> +		.compatible = "qcom,qcs8300-iris",
-> +		.data = &qcs8300_data,
-> +	},
-This is out-of-order, alphanumeric sorting puts qcs8300 before smX.
+v5:
+ - moved the recommended 1 microsecond delay after de-asserting GPU
+   reset to the Imagination driver itself 
 
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(of, iris_dt_match);
-> 
+v4:
+ - reverted reset-cells configuration to single cell as in v2
+ - addressed minor implementation issues in the DRM/Imagination reset driver
 
-Also the ordering of this patch in the series is a bit odd.
+v3:
+ - refactored reset driver to use zero cells
 
-- Compat string
-- Driver changes
-- DT updates
-
-Please fix.
+v2:
+ - updated the drm/imagination driver to act as a reset controller
+   consumer. While this patchset is focused on the LPI4A board, the
+   reset controller is designed to be useful for other boards, such as the
+   BPI-3F, which also require a reset sequence after power-up.
 
 ---
-bod
+Michal Wilczynski (2):
+      dt-bindings: gpu: Add 'resets' property for GPU initialization
+      drm/imagination: Add reset controller support for GPU initialization
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  3 +++
+ drivers/gpu/drm/imagination/pvr_device.c           | 21 +++++++++++++++++++++
+ drivers/gpu/drm/imagination/pvr_device.h           |  9 +++++++++
+ drivers/gpu/drm/imagination/pvr_power.c            | 22 +++++++++++++++++++++-
+ 4 files changed, 54 insertions(+), 1 deletion(-)
+---
+base-commit: fc96b232f8e7c0a6c282f47726b2ff6a5fb341d2
+change-id: 20250418-apr_18_reset_img-b102988052de
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
+
 
