@@ -1,274 +1,142 @@
-Return-Path: <devicetree+bounces-168632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B45D6A93B67
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 18:54:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7424BA93CA9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 20:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A19861B62F28
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:54:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988954479C5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 18:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E576821A928;
-	Fri, 18 Apr 2025 16:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBB6221F37;
+	Fri, 18 Apr 2025 18:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j+LMRDGB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWKsCClJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBA621A43B;
-	Fri, 18 Apr 2025 16:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8502E215795;
+	Fri, 18 Apr 2025 18:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744995228; cv=none; b=MnB26BJKBn/Ui9s0E6JEQJpd54N9DLPboRx+8D7ITPBhBSLBSdIetxGOTXcDz7mYQNJTXDR0wuELAv5ULO7BEfd+ZFRgqAnQfh5DWEMzK41myjprikyjYT2zTl9ErskUm0j8586am87zLJSMuV2xqR21+SxG+XbU3BqrUDY/aoI=
+	t=1745000217; cv=none; b=YeVtndBYyj7AXL38reh5O1cxDXKlGca1JrlSA5u74l8xLRHXl3N7YwLHjfIT64AJPUwWAoSuWqdL6dX4pVwrul4mdyxELNvnvP6AHhMxLEB/vsVw85NK7WrPQsPv+N3BuTEfTJPQbh6tv7RXcef6RZQOnxb3TyCY7O6KeLhv8Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744995228; c=relaxed/simple;
-	bh=tZYYONwzDkApmp/34Q7EaXBholg+tMiIkIlNEDsexvg=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/WJ2gfqTJh4JTwFruzqZpIVkjMN6N06VyudifVLbc8gQjOoM3oeWRjBIbylhLUIt4vQu8mHdQTdPlnH1T3V6fk9Y4g9EXivl/jo6nuT/4B7hd41Cic787MwVYAUIuuo0lBfI8BhYidZQqGSKVb8H2BYPzibXiKGZj7u4uuOPJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j+LMRDGB; arc=none smtp.client-ip=209.85.219.42
+	s=arc-20240116; t=1745000217; c=relaxed/simple;
+	bh=UAlPrAxnp/DLqF+0rLeMaenQeG5p6cS3srtCNlyxhGY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TkAwD30cHHApYcoGjTMfJmWsw1kkU43Ik2gi2e15lOtpcKrIwGCzUBucSWmo8fkj1uPv8o+l60UZ1EklZAK/VNYqdtSBZa8zMAZIqs22JH0v8e7ott+0pI8qfnkR93YW7KvxNfY8Fxa2JyPnNs6VhBaS3Iii1queCr0IcXIT2Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iWKsCClJ; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6e8ec399427so16345876d6.2;
-        Fri, 18 Apr 2025 09:53:46 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-73972a54919so1868039b3a.3;
+        Fri, 18 Apr 2025 11:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744995226; x=1745600026; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:feedback-id
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3t/WaZrLOk89oF+EDQCe/b1X08N9WTsCNvmuCONFWag=;
-        b=j+LMRDGB0RNfCBFu3APD/ADBdWP2yGo3HeB2kYiJH3BPx8xnrhsnofsceuQonW6lCi
-         GXeAPl09qTocEpxQDsKS6fRg/dR0lMRDYA8X/meXr/ZVbrIEJYIsAfWDDZYYQFcexvi9
-         fUSR1TJEKvFkQYd7aHXEAVUILic2aTvc8MolyQ7H/7J90yOQ3Er6yvaY7C1afDoAiryu
-         ReQGPK2JYNYc1urNodWKW+EfXrVnnmy1CnHk4Ov8XRN+rFbr7/MgfmISwDWm8q5B8XHK
-         Io2Vu7KHED0RimZWTIKwIWKjC1b3ZrucMtIoUzBqlHtWaATL0FK0uYHP0CKKLRxKhtc5
-         cDKA==
+        d=gmail.com; s=20230601; t=1745000216; x=1745605016; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RtR9yi+Z296JQYsaYU+wI+paZc4GBr03eUA9SnJEG0s=;
+        b=iWKsCClJyP+kHRGa1OWFPEIZcMXw0udk+eUXArIjIh2kzPCSJFLW/5ZaPbS5E5pVlE
+         1a8Smp8IcL2CTHqtdW9d6qCLYHkpVIfQ1OOUGi13kfxFLi/2pwS0drLFZNqh8jsIM6x3
+         9D0wY6qxkK3ZmqPx/lJPbuljbpu3LUSKQwQ3sBmD01P0AbkAwWgAoNn+0x0KSSevEzud
+         Exb/KheIocIwzdGVHrqmVAbAddC8bgHp0RfK0sxad/ZykYtxnKxBrlohh8AutRvZ568i
+         VPuE8cTaizyXsNgwsUTUO356ERZwi9QFfo1KTd8PSckTEftEKvWfrLQSoBBgFuZHQ+Gv
+         5xhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744995226; x=1745600026;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:feedback-id
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3t/WaZrLOk89oF+EDQCe/b1X08N9WTsCNvmuCONFWag=;
-        b=mlP3mzrpt46SPfX1kLokiPsQE/b+Vi0SPDGCNwdVtM9nIeg7p3yRLd8nHadvHXAY0K
-         TsWdOCmsQPS8iPGf0u5EC+UPz2abUodEFvGeI/MfBrn2DI96+q7lLonh+2kAZDBrTdPg
-         eDXd7zL69EeBDXv+KQVF7prAzu674Ps0gEI8rEk5651d1s6OH/D7T4YuPpF3vUjBQTLs
-         wfTixHzyqBk9+5iCzAASSpjEto89WSHgozSfXtgKXEHV7KeCxGvylPNReBFw549LBg1v
-         vJvyxC642JuZP4zjo+zaSRmex6V5Dh5fw1Kfkm1QYUp5rlPXDaRmPCQzQGD12XIGzkPd
-         Su4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUBE9oRQ/5V7XpC9Uqzs7EYWPxNwXOqc5ETip11M0SyD72BkJLl2suYg/ULkkNB6L6WId/xEnz4un8ZS1Ml@vger.kernel.org, AJvYcCUg9TlaW61hVdd8zQeQbnXDTnKgt3P9qN+TBh/Cva/mRMCKExizPbSW8vQL2ko140x1FKOPufV6C5EqLM2o0Eo=@vger.kernel.org, AJvYcCUnFsiTdzk9fMp5WkAz+ijRCHJj6YjPT3EOuMf1Q+X+/0qAv/bQLr14H6yL2uuufi+R80ZeZMUfSwR/@vger.kernel.org, AJvYcCVmJ5DruueRyRDgAFTxbD8U5XfCByrfgPrcYOzwzPy8yGPoWdtipm6Vlsrzh1ouIpkhDULXaQISJFkO@vger.kernel.org, AJvYcCWKJKFAyMsM//5kd8nKyRSexgm/3MiQwMOXg7MZID0um801q7Gau5SpW0O1WFRESomNrNG6yBSNvcp+Ajw=@vger.kernel.org, AJvYcCWXbrtg/SRQq6HA7oYojQ+fUmQ83zsC+BwRoG8MMr0anmVGrjI2wpC+qj+WHa1bJAzE4HEJ6v79lObf0v26fY8d@vger.kernel.org, AJvYcCWdeHJC4ySQx4Uhe6Lsrn8yq4FQ9VGrKeLSJtGaQvGedNoKD+1y9RM8y2hPWvwvFHn/k0TobzEk@vger.kernel.org, AJvYcCXkLbhSUggWgFML2i+pVusc/Gkw1Ovmy19Q4m8QjCi2247rsgxW+DFvTfexj/QxdWATjF2od/vBu6ZT1wXU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyNH3ysd8YlIFxiW1fXvdlUhGx3V+ws9B9hLOMJptpczWTmP14
-	P6zG2WOQi4BuSNGFqcB6cScdTc9o0f/nFUCjYnCzZXB1k0QFLJ4m
-X-Gm-Gg: ASbGncsLiG+sCa/xL5Uq2LcLGp38ZWOyl9BVLyhpuBNTLR/DzeeT8CbhK5WDZOizDSR
-	Kr8u9rmSjJPirv7kUR08JQnG1/RIutB+YbU576v8h6amF+mThZPczc0oiMtJiiBpmKkxIKzCuOW
-	4Hnrr3F7nqVVT3qaUhnH/ManTz4mWKlTc7Qj7aWVF8WHUbRt+q/BsE835NQkowdRWrPnN0QODXP
-	pqYKSZmOvbIvFNdzJcQsOkDldgV/+UbvD8ldUEykbjjK1LWw2Cp74ZJecpKu45u7M7A7aHkHL2j
-	ZbLJL02Br13SjGpYZL5IurAMvVeubGDYC4VA4auzSTwSU1iZTuXsKIv97QVkg+ge0y13X3ZQCHr
-	4Xi1H7Q0WKZdrHIjBL5Lk/9QdmyqtW6k=
-X-Google-Smtp-Source: AGHT+IFK5F7pjTh+gDI22NM3J/gMlBfdXSYFP16c7YCh2IMcJ2ycP9QTVW7R2aFWqMe//5+hwErVFQ==
-X-Received: by 2002:ad4:5d4a:0:b0:6e6:61f1:458a with SMTP id 6a1803df08f44-6f2c454e561mr61427996d6.14.1744995225599;
-        Fri, 18 Apr 2025 09:53:45 -0700 (PDT)
-Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f2c2b0dc58sm12429256d6.30.2025.04.18.09.53.44
+        d=1e100.net; s=20230601; t=1745000216; x=1745605016;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RtR9yi+Z296JQYsaYU+wI+paZc4GBr03eUA9SnJEG0s=;
+        b=Gd6dZ6pypa3DCErUj+9TH3N/MpnxN6rDmPIDihSrq19rc2Oj17NRxlsOEzkyUIhlQd
+         vld5meKkOkdPzTzatp2YRjbFiq8Jkg+Gs88aHHiS/IKm/JNoZo4PtabZwPzDfoGBCWEM
+         3w3I/jQk79vSHmSLWRF/WNckv5Cx6ashyrVP5jz2t4BBqFydnwjXn7XqhWkPXzjGlC0q
+         R0tN0YqmIpLWrgADSlOkPf3ee8MAlIXwgHZKCzTZDTNkKHQWNpdSlpOd83Qm0PH7vknx
+         Zn9l7m/1dgvgwo8mY+idHVjvwTT4h3EZ8zivVwUk2ASMkFAeeDMbuNzM6eJUMl+sfIXJ
+         Rs4A==
+X-Forwarded-Encrypted: i=1; AJvYcCU5atMSF5a5zaqn1jq83bPjgDoZ9a6t38HHTBP5MADkit8tu/dfwO3cbvSlGwlmadXndUXEs4yHsapGu2IC@vger.kernel.org, AJvYcCVVLJ8f9tUCeOk749Q32G4QSySdD8mNqGaJFL0URGpz2X233JzT4tsgtNPiIHAYCFOSk/0O8zfYSJHrpW8=@vger.kernel.org, AJvYcCWIGcz0hbzU3/clPuyFe7wRs15nBX2YYQfhiGpvUGAWDa3AL4BvaTn9czk5K8JMkM1rmHA2tDJ9W1xb/w==@vger.kernel.org, AJvYcCX0WnWx76FmwY3ZGYlyqO+yk0bXO3RoPrH9fBvseT6ksf8DdX3MeqgFLVhcz+HSeliiip2J9STJSa7e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9GQjVwyMLDJ5EEowVyOLUzgLeZfGwEGRxuYM1z4nz9fFFVCCP
+	VWMW/qTU7//kD4XUzCcGxre/uG7QucB3Ii1mPO2xO2HxDGBQkpZc
+X-Gm-Gg: ASbGnctsEFAtryZefhFdf6NHtwrdTFOtvQvusRCy70gZuQBvW1mvPPzadsWqVv55SPB
+	/u3N5lH4wultka1jg416noskrVGNCKvdYzhLZKk0ld4aDArcW7xEgov/D3Ep6IM5pKKUKzLAaTC
+	iMXlVop33TGxwWJ/1OgmwI/Kzc/pgPkRqT+N0fVvkKHhKtAejmGyxzAaJK7U0UbWns/dc/L2rtY
+	exlwfiSjmg9oMLQvSSnNnzD9un3kqlcz7WBJAd7qmNofxeRKHs06b2HYfNQFs5z36KmMdduttSs
+	YzxQbVEQHbstMY46PYIBAkHmXg9i8/Q1IsKOA4c=
+X-Google-Smtp-Source: AGHT+IEgYyHoFNXqS+ng4zUSLjzFVHFHhp6c/GtXYk71PYeQLEijwI6Tlhvtyx+SG+0mbA7k2GDG+A==
+X-Received: by 2002:a17:90b:5884:b0:2fe:a545:4c84 with SMTP id 98e67ed59e1d1-3087bcc72c1mr4640664a91.34.1745000215613;
+        Fri, 18 Apr 2025 11:16:55 -0700 (PDT)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3087df25d80sm1560674a91.25.2025.04.18.11.16.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 09:53:45 -0700 (PDT)
-Message-ID: <68028399.0c0a0220.389db7.61aa@mx.google.com>
-X-Google-Original-Message-ID: <aAKDlapFVulZac94@winterfell.>
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfauth.phl.internal (Postfix) with ESMTP id 066C51200043;
-	Fri, 18 Apr 2025 12:53:44 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Fri, 18 Apr 2025 12:53:44 -0400
-X-ME-Sender: <xms:l4MCaOS0MZu7VrDm1Ob2LRUYzATn3lvCrSx3mxKtRJynmiJf91vuQw>
-    <xme:l4MCaDz51H7htPFXnN1I5J2eYclIkY2hxlzLEpBwVsysaX8a6d4yyVxY1Z2XsvVGA
-    osS__YVT1a0RizI-w>
-X-ME-Received: <xmr:l4MCaL1eShu7QA0LgrTDuktgHW2xyyXGbxMkMlvWru2HnE6VgzKO-vQd-oIGFw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfedvieekucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnegoufhushhpvggtthffohhmrghinhculdegledmnecujfgu
-    rhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeeuohhquhhnuc
-    fhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecuggftrfgrthht
-    vghrnhepkeekheeuudefgeelfedthfduheehkeellefhleegveeljeduheeufeelkeejie
-    egnecuffhomhgrihhnpehgihhthhhusgdrihhopdhkvghrnhgvlhdrohhrghenucevlhhu
-    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquhhnodhmvg
-    hsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedqudejjeekheeh
-    hedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghmvg
-    dpnhgspghrtghpthhtohepgeejpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeht
-    rghmihhrugesghhmrghilhdrtghomhdprhgtphhtthhopehmrghsrghhihhrohihsehkvg
-    hrnhgvlhdrohhrghdprhgtphhtthhopehnrghthhgrnheskhgvrhhnvghlrdhorhhgpdhr
-    tghpthhtohepohhjvggurgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrd
-    hgrgihnhhorhesghhmrghilhdrtghomhdprhgtphhtthhopehgrghrhiesghgrrhihghhu
-    ohdrnhgvthdprhgtphhtthhopegsjhhorhhnfegpghhhsehprhhothhonhhmrghilhdrtg
-    homhdprhgtphhtthhopegsvghnnhhordhlohhsshhinhesphhrohhtohhnrdhmvgdprhgt
-    phhtthhopegrrdhhihhnuggsohhrgheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:l4MCaKCQ5_AOxgrM9RUujgkgseBZnmKKzmalnkhJG6SECBu9lWm2pg>
-    <xmx:l4MCaHgYTO7zyl3noT53XHpiSgVpbmcFFmbFQNR8UOf2kvASWVyHpA>
-    <xmx:l4MCaGrX6PPw9obSYJcN3qrnBS7WfC_zXPJu5mxchXy92dGdyigYSQ>
-    <xmx:l4MCaKiFAgA2HoDBXSctPHo_XFldUBwHaFxEgeDfvkjr87N1ON2s_A>
-    <xmx:mIMCaGSluDRYYRt5sBgRuiMWR_Dz1ykK0mZeKIfuwnIwbJoOeQ4WxXkb>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 18 Apr 2025 12:53:43 -0400 (EDT)
-Date: Fri, 18 Apr 2025 09:53:41 -0700
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Nicolas Schier <nicolas.schier@linux.dev>,
-	Frederic Weisbecker <frederic@kernel.org>,	Lyude Paul <lyude@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>,
-	Anna-Maria Behnsen <anna-maria@linutronix.de>,
-	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
-	linux-block@vger.kernel.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v10 5/6] rust: enable `clippy::cast_lossless` lint
-References: <20250418-ptr-as-ptr-v10-0-3d63d27907aa@gmail.com>
- <20250418-ptr-as-ptr-v10-5-3d63d27907aa@gmail.com>
+        Fri, 18 Apr 2025 11:16:55 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: krzk@kernel.org
+Cc: conor+dt@kernel.org,
+	danielt@kernel.org,
+	deller@gmx.de,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	jingoohan1@gmail.com,
+	krzk+dt@kernel.org,
+	lee@kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	lujianhua000@gmail.com,
+	mitltlatltl@gmail.com,
+	pavel@kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH 2/4] backlight: ktz8866: add slave handler
+Date: Sat, 19 Apr 2025 02:14:41 +0800
+Message-ID: <20250418181442.207436-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <eb23737f-5b6c-47fd-8b39-637e059bd5f1@kernel.org>
+References: <eb23737f-5b6c-47fd-8b39-637e059bd5f1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250418-ptr-as-ptr-v10-5-3d63d27907aa@gmail.com>
 
-On Fri, Apr 18, 2025 at 11:37:21AM -0400, Tamir Duberstein wrote:
-> Before Rust 1.29.0, Clippy introduced the `cast_lossless` lint [1]:
-> 
-> > Rust’s `as` keyword will perform many kinds of conversions, including
-> > silently lossy conversions. Conversion functions such as `i32::from`
-> > will only perform lossless conversions. Using the conversion functions
-> > prevents conversions from becoming silently lossy if the input types
-> > ever change, and makes it clear for people reading the code that the
-> > conversion is lossless.
-> 
-> While this doesn't eliminate unchecked `as` conversions, it makes such
-> conversions easier to scrutinize.  It also has the slight benefit of
-> removing a degree of freedom on which to bikeshed. Thus apply the
-> changes and enable the lint -- no functional change intended.
-> 
-> Link: https://rust-lang.github.io/rust-clippy/master/index.html#cast_lossless [1]
-> Suggested-by: Benno Lossin <benno.lossin@proton.me>
-> Link: https://lore.kernel.org/all/D8ORTXSUTKGL.1KOJAGBM8F8TN@proton.me/
-> Reviewed-by: Benno Lossin <benno.lossin@proton.me>
+On Mon, Apr 7, 2025 at 6:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 07/04/2025 11:51, Pengyu Luo wrote:
+> > Kinetic ktz8866, found in many android devices, nowadays, some oem use
+> > dual ktz8866 to support a larger panel and  higher brightness, original
+> > driver would only handle half backlight region on these devices,
+> > registering it twice is unreasonable, so adding the slave handler to
+> > support it.
 
-Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
+[...]
 
-Regards,
-Boqun
+> 
+> I wrote on IRC - phandle to express the relationship between hardware -
+> and I do not see it implemented.
+> 
+> If you have devices depending on each other, you need to express it -
+> for links, for resource dependencies etc. phandle is for that usually.
+> Or OF graph. Or parent-child relationship.
+> 
 
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> ---
->  Makefile                        | 1 +
->  drivers/gpu/drm/drm_panic_qr.rs | 2 +-
->  rust/bindings/lib.rs            | 1 +
->  rust/kernel/net/phy.rs          | 4 ++--
->  rust/uapi/lib.rs                | 1 +
->  5 files changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index 57080a64913f..eb5a942241a2 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -476,6 +476,7 @@ export rust_common_flags := --edition=2021 \
->  			    -Wclippy::all \
->  			    -Wclippy::as_ptr_cast_mut \
->  			    -Wclippy::as_underscore \
-> +			    -Wclippy::cast_lossless \
->  			    -Wclippy::ignored_unit_patterns \
->  			    -Wclippy::mut_mut \
->  			    -Wclippy::needless_bitwise_bool \
-> diff --git a/drivers/gpu/drm/drm_panic_qr.rs b/drivers/gpu/drm/drm_panic_qr.rs
-> index f2a99681b998..7555513a4fd8 100644
-> --- a/drivers/gpu/drm/drm_panic_qr.rs
-> +++ b/drivers/gpu/drm/drm_panic_qr.rs
-> @@ -386,7 +386,7 @@ fn next(&mut self) -> Option<Self::Item> {
->          match self.segment {
->              Segment::Binary(data) => {
->                  if self.offset < data.len() {
-> -                    let byte = data[self.offset] as u16;
-> +                    let byte = u16::from(data[self.offset]);
->                      self.offset += 1;
->                      Some((byte, 8))
->                  } else {
-> diff --git a/rust/bindings/lib.rs b/rust/bindings/lib.rs
-> index 0486a32ed314..b105a0d899cc 100644
-> --- a/rust/bindings/lib.rs
-> +++ b/rust/bindings/lib.rs
-> @@ -25,6 +25,7 @@
->  )]
->  
->  #[allow(dead_code)]
-> +#[allow(clippy::cast_lossless)]
->  #[allow(clippy::ptr_as_ptr)]
->  #[allow(clippy::undocumented_unsafe_blocks)]
->  mod bindings_raw {
-> diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
-> index a59469c785e3..f821480ad72b 100644
-> --- a/rust/kernel/net/phy.rs
-> +++ b/rust/kernel/net/phy.rs
-> @@ -142,7 +142,7 @@ pub fn is_autoneg_enabled(&self) -> bool {
->          // SAFETY: The struct invariant ensures that we may access
->          // this field without additional synchronization.
->          let bit_field = unsafe { &(*self.0.get())._bitfield_1 };
-> -        bit_field.get(13, 1) == bindings::AUTONEG_ENABLE as u64
-> +        bit_field.get(13, 1) == u64::from(bindings::AUTONEG_ENABLE)
->      }
->  
->      /// Gets the current auto-negotiation state.
-> @@ -426,7 +426,7 @@ impl<T: Driver> Adapter<T> {
->          // where we hold `phy_device->lock`, so the accessors on
->          // `Device` are okay to call.
->          let dev = unsafe { Device::from_raw(phydev) };
-> -        T::match_phy_device(dev) as i32
-> +        T::match_phy_device(dev).into()
->      }
->  
->      /// # Safety
-> diff --git a/rust/uapi/lib.rs b/rust/uapi/lib.rs
-> index f03b7aead35a..d5dab4dfabec 100644
-> --- a/rust/uapi/lib.rs
-> +++ b/rust/uapi/lib.rs
-> @@ -14,6 +14,7 @@
->  #![cfg_attr(test, allow(unsafe_op_in_unsafe_fn))]
->  #![allow(
->      clippy::all,
-> +    clippy::cast_lossless,
->      clippy::ptr_as_ptr,
->      clippy::undocumented_unsafe_blocks,
->      dead_code,
-> 
-> -- 
-> 2.49.0
-> 
+I got you now, as a non-native speaker, I often misunderstood the first
+time, you expected that accessing node phandle in relationship or graph
+way, I did only access node phandle regardless of relationship or graph
+description, I only implied it in compatible string, but there would be
+a better way.
+
+> You did not provide any description of the hardware in the binding, so I
+> really do not have any idea what is this setup thus how to represent it.
+> Use hardware terms, diagrams etc to explain the hardware in the bindings
+> commit. What are the addresses? Are there any shared resources? What
+> buses are devices sitting on, etc.
+
+Agree.
+
+Best wishes,
+Pengyu
 
