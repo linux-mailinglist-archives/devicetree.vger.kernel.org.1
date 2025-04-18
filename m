@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-168582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E951CA938BC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:33:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2CDA938BE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:33:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DAF53BF241
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:33:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9B18189CE40
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3958B1AF4E9;
-	Fri, 18 Apr 2025 14:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447D21AF0C8;
+	Fri, 18 Apr 2025 14:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="OkUchrQk"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="POAZK0UX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAA32C1A2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD2F1ACEDC
 	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 14:33:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744986801; cv=none; b=B7ILvtRaqtENgVC00G5TMG997iyzp+fAsNuWFm/dYmwAO2UzEz98h9rpzkFZDIi+GPlSxi7fMPNI9NobpqRItCcFauCzWKUO9oKPZ72LJaGXN41lWEVJaOmwCWfe5yrKrTZ0tPU1tSgkeO4Xbkk80Chhuievm7p/cKg0wocKkbI=
+	t=1744986802; cv=none; b=ZMLoJ5bO2EI7KosO+dQTv13xZcXdlvxOdhVcEUUTAHQ41VWzYS0IpW65C3UfQ1WG3ONTKnn76OYspK1pPRfEWEg9FL856fw1gWyBrabL//m2426hmPgJhIilN95FchrTXAWjAo3P83kiDkD5X0VF3soP9fORr1GG5jc1uAvuUrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744986801; c=relaxed/simple;
-	bh=Xv5RyA4ZcOSwtiF2gtiI97VkjD1EkVCw2edTSSIianY=;
+	s=arc-20240116; t=1744986802; c=relaxed/simple;
+	bh=V1FR/AZZgPsA/aW2KEQzSBcqStshlddKw2fV5cdft/E=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NbQAlzVDkGlQI8IZqC5cVZObgqsAZJuKcScNStqNfoYhxzvRYJDUGQlFplR81vqkYrEl74szgUtxFPZ0SIY3xkcAXkexJ06n4oS6D/iM8fHbImwuAFwxRpDIopWnHoD26MwoGr+0AO0k8bRLcxfxgWFlM7B9UEP3tHPPNAlS0SM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=OkUchrQk; arc=none smtp.client-ip=212.227.15.18
+	 MIME-Version; b=Hei0SA29MKqDXUUo7gq22LCnlUXbyaIHl2xh6slDHgxwMj4nVzLSrlc49kQod2WMQIrBKead70hQa08UIH4OaWTv4isMCav3POA2Wy/u0kd/4NIJQC836G7RguBSOoYDSblaLjrxfxdhM3iLJjnuz1SURJrwGCz30fzJu4gj2cU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=POAZK0UX; arc=none smtp.client-ip=212.227.15.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
 	s=s31663417; t=1744986793; x=1745591593; i=wahrenst@gmx.net;
-	bh=8Qtk8Mk+yAsi8PZKvvAnkX80B7hGezKFi6PNqm4vw3o=;
+	bh=cvwob2Kb8gXyKg36Nh6z9XqX/lokgGWDJCODrEsWX94=;
 	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
 	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=OkUchrQkqVGf8/RPv7hgmkVju6B5dS6Ncnpo++cVUMl9cEM196nZYtioWyLEDmtj
-	 CyAkqimhAMtIny7addl1i80qoUnfzm3FSU1tRuo3lgpKZr7tLyCSrhcqmypAnexC3
-	 ElqQrgMariw0IbwJp0HTBkwPR7xcV5d4/meujj69wTyNESz8yRfM52WS09zR8X4P3
-	 cKl/RoDtEdLG5x+NKbuGbVnVaeyke5RV0FsVtH5OT8qHrl8U235UCEpVWrHoOGyzz
-	 y128P78ZP/0N9ToiZz22rYl/z7DaqZvpkaeTXMPdT4OabEa22hkcu1fkaPUePkySE
-	 UMinDZP2lPiLsD55jA==
+	b=POAZK0UXx6wSCp+KYwVrOkidKcNUwx4+jSIntkgzfGIy1dW1Sv7GkTADMQiwCESj
+	 4OJMilU3Jd1fBczVesZCC3A6X2WK7uUTOf3OUQHueK/1RT7aAiGzcy4PfmiTmnMH8
+	 Lyk4l8leTrsuDJNrynklIoJ+cAOOgxHe+M/v94lkMjQULLTkCDuGkLbj2L02XGize
+	 RaFvuDiANrDu5r5BXa35gPDbOJ6e36RtYcrvOuWj9SfYcN2AEiGwR+qY4n1M131Zo
+	 5Hiz2diX+Qu2ioN4tWSBpjHgD5a4BcKM16eJHNHmh1Olq/075E84JMG25cZiZ9sbq
+	 oBhbYJvFFhXYotNcTA==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from stefanw-SCHENKER ([37.4.251.153]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MkHQh-1uqMzY0bs1-00duv0; Fri, 18
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MhU9Z-1ujGGY2ZCl-00l2Ro; Fri, 18
  Apr 2025 16:33:13 +0200
 From: Stefan Wahren <wahrenst@gmx.net>
 To: Rob Herring <robh@kernel.org>,
@@ -61,9 +61,9 @@ Cc: Ray Jui <rjui@broadcom.com>,
 	kernel-list@raspberrypi.com,
 	devicetree@vger.kernel.org,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 2/3] ARM: dts: bcm: Add support for Raspberry Pi 2 (2nd rev)
-Date: Fri, 18 Apr 2025 16:33:06 +0200
-Message-Id: <20250418143307.59235-3-wahrenst@gmx.net>
+Subject: [PATCH 3/3] arm64: dts: bcm: Add reference to RPi 2 (2nd rev)
+Date: Fri, 18 Apr 2025 16:33:07 +0200
+Message-Id: <20250418143307.59235-4-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250418143307.59235-1-wahrenst@gmx.net>
 References: <20250418143307.59235-1-wahrenst@gmx.net>
@@ -74,225 +74,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:y7O0Rfo7jqg1Ebhhoh7HemSlghKyfXuVVnlWJbi/I8o2cIlQF8x
- eGjUg1GT4Bfu9G9LJ6U74tC42PRD221Pwz/WC1IjAwfr4d5XcNS5lCmtWIYA7YwB+Y5LjhG
- vggRQgIvK7Jr0bj0LFDxhBwSVtiNgY+miokf/nmtJBM+ncLbssQIWcDd3hcJZkSFepsi4wP
- iYCowWFZQtUPgTRBPAt2Q==
+X-Provags-ID: V03:K1:yC1oGAsOqhIPcLlzaT65AWaVWLWqwjaKHgHdIwkT1u2ymciZ2i6
+ Lx1FzMG33NqwNMY5MAvc8UV1djfPb9elVG6sf1WSIPbiGTxT+58X7P+MOhhfBW5Z8eHInmj
+ Be3rTKFqNpeHwUnO1R50aQC+KZqGQq6k+doI08SRpOe/Pda871O+EQDr0YF0sJw4sSl+0nU
+ i8GFgyTavG2FjrT7aDSNw==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:cTbzaFQmCfk=;M67bwDXNpd39b6ZF9GRQ4hgpBIL
- 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
+UI-OutboundReport: notjunk:1;M01:P0:OF+lGlJnBxA=;X4Q89FamiQ+Elp1zApsHvvxXy46
+ JKZB3R3Uf1PmYiy4qXjjDvL/eprE/mu1sDT62m1rRcJVK5cIRx4uXj0QC6QIvBdml2FXTI9i1
+ 4HlwI5fYN5GymyUhJDskPBZd4SuQ1TGCHuerHk8/sWtlSGwDVNwHaMU2lfzp9ulZcwVuApN9t
+ faoaxtUwHZb+TDjRuIUVe3Rp85Hh/vhERrUTCpnnT6qRPk5JO5EAbdbao8dWWAwUYF68EWkko
+ OsNTqPOEd/bfpUNVf5uke5+yvurZNtbOUp52ZZtlZlE2tlGoypMMYSZJIedXZMZ4LbkOksNsP
+ lrquB6Yc5pnujjwwZBTlXXjSJU/CgYPN5SnARlyLvSEhrZe6M37Kg+sdVhDgxz+qmXMRhfIDz
+ oJJw6B8LU8WqGiZmkRkSfTrAw0MUH7Vl23JwDTUxcwTzslLNv6H7C/jnvGBF/1X29sDs5iCSJ
+ wFADGLv/EfUE7lPluqPMgu68/sK3H3sMNNPrrZiv6PYbxWl+MMDZrNQ0di96O5uPmn/RSZmPP
+ 5RTvsIs/Gbnj9jtdJojLOl4dNxPOoTVv9uEZeWdHMWTlGWCngUAyF70jx2iWAbr9IFrjeQFkX
+ VRucFImhFmv3l7AlAdgODo80gwoaAwSZBd7A2kX1C2jdBDcj+OiGLR5pxvxFphpEENXmaGl+a
+ BzguE8eveR61euIulR5Mxn+zD/T2IRwZHjhgZeTUsm8Nb2UGU4XJRtCTLRIdjZNmaGhI4hxlh
+ UEsVZJRGqrFyuejrsow3mZMwMvQCnyPDAWIDdESGNnkUoUUszMcnUUlmejhyKCnaZ8DO8x0Ff
+ oN0UflPCLBTGTKdyI3QxIaMGc9LoXy00BIh2uhPF09s5pMlgI2HSp99OmzuxJ0SeYeTsNCjPr
+ UH7tcC0trCHrwsN069mIxBh2mCQo15wVZUH6GCLncL8XHGNHmr57pVi+9/dUW1ZuV7Fx25wrv
+ qzrufX9eA6Ltc6uJdnUY7bVOYccnPNFCNemrsTVIjwWhkLmCOIY0TCYzqEbXiNOYu7XCRXFLj
+ R8cbbo/WIMFjOzDRaExymHy7ETZouSoy53VbY2Z8xTha9jix4RvPy9phXNF2PhL+cbHqgKYPo
+ yMp5UHRXcDM+1Z4TvUK+3/esY8UYLVE9D6H1ylZ/tEBeQSYhQ6V+kzr9u7vmRH2MBEikco55U
+ 5B75XZcFWibHkljtwcPKEAtaXqOrkUvGr4NoB9cc2Rk82Uyq6yhnKSobQCTSofcbC4g4sic2U
+ Dba7a4t/kyQ96WKG97AX8KpNCs+83bwg/AbQW6pGVfFYdeGO4CqkFmTJ28nKxtP+cq8crmDVR
+ XV5qPGMTsGQ6PWpUruaeQ0n4ReHPI31WPEIHDqyW2HpbDAd4dpEbeVKdgcpkQn1ZqqK0NpUsK
+ 7ni1RNclqKGkOuB53oLK6qxSsmiLS0vt83J/tLjbTUDT6Gt2l1TBzd9uMNexdpead1NOXtmnW
+ McLNys1aU+vT4qnpwj9oF5KsoL+IHvjsjyGkVHMl6NEzePVsxOBP3viscLGawHPOE1AmjL7xn
+ oh8vctYxwpifHWJ/2bXPZu3qPGe7pRfhbxnxt2KpmUHT2OEW3VcmcQqsRu2iMrgusymxqCddz
+ skOt3HX1u3+ZR4lwDu9zz5kFEsEwQLni076M7SRU1HRbjhhh8FAkJNP6IRja58gzvAYt6EYj5
+ AUHIbIfVXttvCmJ2MqXo19extM60LoZgj1VEyFGPKxw/sE3gMn7+dvRBKN6XDRDOc3u7QoJ6T
+ vz3pC7JivygdmsJVPRDxNLDslWj0Hh01Ib0qE9oa4ArdAaIGt4WRq5iGgFjGbmIChf784IAS6
+ x3Owin6Y6650OLVfvzQVIBIcPhC6f6mf07NKVDenevFSKSdqplj/Is6ShfDDATnoPu3wy3MaC
+ vm/8DlYpupEAHtMxVWPua+UIwUJsUBGSFKeVNl0EPvPYtOdPEEqGYOj0iYyMsdKIhDlgPvo6x
+ 6kNfD4ZNdw+T+LmYL0nB22hXx17ecQqm2l4MBJMQLEPt4JQB+w8CnoZfRUFZNgoh2KNqPJhFc
+ oNq3n6tujrD/pQ/2/ZvmTvBx43nHLrGy0M+5po9CZbtlY4NxtXIVhGRSIPWJZCodwZvKOtauu
+ IfzJnr67GTUPloGenKBRiPMkxQ+5NO9NIBVrj9LJL6SN9eiGt7RLAoPYnzNk9162+T5hvqmHH
+ 6RR5NYUtZ9Vr/Pdkuxw0E085fk4oCTnl25fU2eQ0DOu5w6KpwOdpZ5L+xdC1VcERD4OzPmkBd
+ boOx9zWEjS15rodTLaZCEv4lg95qkes5trk5uPuy9RrQLZHlH9tU9QUZndXvaibZ2OM3hFz5z
+ X/YY9gnM2DH8s0LiygCqUT4MOfcSr6A9u1w0ZNcVjrR0hNKSzjjWLCxAf/IAbmCo8yHoAgdQl
+ ZIQQfAhv9qzFKKy5Wq+ouso68flscSepeaF5iBW1HDT5TwOTTKiIFLT7ik6omVMeo9IyxMsYN
+ a5LqCVJNErG7QPjh6PjxPRW48PZxpODTIIGh4Y/7AKBkRltk9WcbTqGRucEmT2EMJ5DKEXl5b
+ iItYwkn5cE7r4IKfCPm3dK6qgjXleiGUY4tNX0FhPQkuEfQ69E7aaoDFirEj1ZY5unbgYJhz0
+ wHP6JG5ZNNssBQTbV5F27WQ0Uf7M2EPQATbDNQxX6KoWVtRDrIoDtwiRi/lY/2eNO2GKIkSrJ
+ juxwWsilfchMamYbQZzQq1d+pffxr9scpJM0qV/HLJoxP7PFH9h3fVZASC/8I8gj2RB4y2sOA
+ Maow5M7GiA3uEMt9zX3bplIpicOfnJ0mQe0hEcxFlOIOZ+hhxVrH8XebMvSJzg0qdWvJXJcPD
+ Az4e3MhyPMbg+J16UOjp4BL2Eds8TK7/IDAumSdQd37f55VcnB1K6GwN9c9vSLAG9OnUAX1ef
+ pk/tO1cCrON2WOzZmF2KXOm6+9QaY4zjSu/JHwS3SGB/dLnqNUwijithP2ye+2HryvHs9Yhu6
+ 7gv8tOxqhw0kmSOvYxAaLljN09FvotjB69z94zJW4sZSCLQRUhRnbeZqqQIWORAtdhG4Pt4bG
+ PmDY1NBDXVKi3j2cBOccj/6QOLrYs7lO9r1L9daO5oU
 
-The Raspberry Pi 2 (2nd rev) has the BCM2837 SoC instead of the
-BCM2836. Except of this the configuration of the board is same
-as the predecessor (no WLAN, no BT).
+This adds a reference to the dts of the Raspberry Pi 2 (2nd rev),
+so we don't need to maintain the content in arm64.
 
 Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 =2D--
- arch/arm/boot/dts/broadcom/Makefile           |   2 +
- .../arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts | 130 ++++++++++++++++++
- 2 files changed, 132 insertions(+)
- create mode 100644 arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts
+ arch/arm64/boot/dts/broadcom/Makefile            | 1 +
+ arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts | 2 ++
+ 2 files changed, 3 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts
 
-diff --git a/arch/arm/boot/dts/broadcom/Makefile b/arch/arm/boot/dts/broad=
-com/Makefile
-index d23cf466127b..71062ff9adbe 100644
-=2D-- a/arch/arm/boot/dts/broadcom/Makefile
-+++ b/arch/arm/boot/dts/broadcom/Makefile
-@@ -7,6 +7,7 @@ DTC_FLAGS_bcm2835-rpi-b-plus :=3D -@
- DTC_FLAGS_bcm2835-rpi-a-plus :=3D -@
- DTC_FLAGS_bcm2835-rpi-cm1-io1 :=3D -@
- DTC_FLAGS_bcm2836-rpi-2-b :=3D -@
-+DTC_FLAGS_bcm2837-rpi-2-b :=3D -@
- DTC_FLAGS_bcm2837-rpi-3-a-plus :=3D -@
- DTC_FLAGS_bcm2837-rpi-3-b :=3D -@
- DTC_FLAGS_bcm2837-rpi-3-b-plus :=3D -@
-@@ -25,6 +26,7 @@ dtb-$(CONFIG_ARCH_BCM2835) +=3D \
- 	bcm2835-rpi-a-plus.dtb \
- 	bcm2835-rpi-cm1-io1.dtb \
- 	bcm2836-rpi-2-b.dtb \
-+	bcm2837-rpi-2-b.dtb \
- 	bcm2837-rpi-3-a-plus.dtb \
- 	bcm2837-rpi-3-b.dtb \
- 	bcm2837-rpi-3-b-plus.dtb \
-diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts b/arch/arm/boo=
-t/dts/broadcom/bcm2837-rpi-2-b.dts
+diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/b=
+roadcom/Makefile
+index 3d0efb93b06d..01ecfa304184 100644
+=2D-- a/arch/arm64/boot/dts/broadcom/Makefile
++++ b/arch/arm64/boot/dts/broadcom/Makefile
+@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
+ 			      bcm2711-rpi-cm4-io.dtb \
+ 			      bcm2712-rpi-5-b.dtb \
+ 			      bcm2712-d-rpi-5-b.dtb \
++			      bcm2837-rpi-2-b.dtb \
+ 			      bcm2837-rpi-3-a-plus.dtb \
+ 			      bcm2837-rpi-3-b.dtb \
+ 			      bcm2837-rpi-3-b-plus.dtb \
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts b/arch/arm64=
+/boot/dts/broadcom/bcm2837-rpi-2-b.dts
 new file mode 100644
-index 000000000000..1868cee05853
+index 000000000000..57742ed40049
 =2D-- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts
-@@ -0,0 +1,130 @@
++++ b/arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts
+@@ -0,0 +1,2 @@
 +// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+#include "bcm2837.dtsi"
-+#include "bcm2836-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
-+#include "bcm283x-rpi-smsc9514.dtsi"
-+#include "bcm283x-rpi-usb-host.dtsi"
-+
-+/ {
-+	compatible =3D "raspberrypi,2-model-b-rev2", "brcm,bcm2837";
-+	model =3D "Raspberry Pi 2 Model B rev 1.2";
-+
-+	memory@0 {
-+		device_type =3D "memory";
-+		reg =3D <0 0x40000000>;
-+	};
-+};
-+
-+&gpio {
-+	/*
-+	 * Taken from rpi_SCH_2b_1p2_reduced.pdf and
-+	 * the official GPU firmware DT blob.
-+	 *
-+	 * Legend:
-+	 * "FOO" =3D GPIO line named "FOO" on the schematic
-+	 * "FOO_N" =3D GPIO line named "FOO" on schematic, active low
-+	 */
-+	gpio-line-names =3D "ID_SDA",
-+			  "ID_SCL",
-+			  "GPIO2",
-+			  "GPIO3",
-+			  "GPIO4",
-+			  "GPIO5",
-+			  "GPIO6",
-+			  "GPIO7",
-+			  "GPIO8",
-+			  "GPIO9",
-+			  "GPIO10",
-+			  "GPIO11",
-+			  "GPIO12",
-+			  "GPIO13",
-+			  "GPIO14",
-+			  "GPIO15",
-+			  "GPIO16",
-+			  "GPIO17",
-+			  "GPIO18",
-+			  "GPIO19",
-+			  "GPIO20",
-+			  "GPIO21",
-+			  "GPIO22",
-+			  "GPIO23",
-+			  "GPIO24",
-+			  "GPIO25",
-+			  "GPIO26",
-+			  "GPIO27",
-+			  "SDA0",
-+			  "SCL0",
-+			  "", /* GPIO30 */
-+			  "LAN_RUN",
-+			  "CAM_GPIO1",
-+			  "", /* GPIO33 */
-+			  "", /* GPIO34 */
-+			  "PWR_LOW_N",
-+			  "", /* GPIO36 */
-+			  "", /* GPIO37 */
-+			  "USB_LIMIT",
-+			  "", /* GPIO39 */
-+			  "PWM0_OUT",
-+			  "CAM_GPIO0",
-+			  "SMPS_SCL",
-+			  "SMPS_SDA",
-+			  "ETH_CLK",
-+			  "PWM1_OUT",
-+			  "HDMI_HPD_N",
-+			  "STATUS_LED",
-+			  /* Used by SD Card */
-+			  "SD_CLK_R",
-+			  "SD_CMD_R",
-+			  "SD_DATA0_R",
-+			  "SD_DATA1_R",
-+			  "SD_DATA2_R",
-+			  "SD_DATA3_R";
-+
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&gpioout &alt0 &i2s_alt0>;
-+
-+	/* I2S interface */
-+	i2s_alt0: i2s_alt0 {
-+		brcm,pins =3D <18 19 20 21>;
-+		brcm,function =3D <BCM2835_FSEL_ALT0>;
-+	};
-+};
-+
-+&hdmi {
-+	hpd-gpios =3D <&gpio 46 GPIO_ACTIVE_LOW>;
-+	power-domains =3D <&power RPI_POWER_DOMAIN_HDMI>;
-+	status =3D "okay";
-+};
-+
-+&led_act {
-+	gpios =3D <&gpio 47 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label =3D "PWR";
-+		gpios =3D <&gpio 35 GPIO_ACTIVE_HIGH>;
-+		default-state =3D "keep";
-+		linux,default-trigger =3D "default-on";
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pwm0_gpio40 &pwm1_gpio45>;
-+	status =3D "okay";
-+};
-+
-+&sdhost {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&sdhost_gpio48>;
-+	bus-width =3D <4>;
-+	status =3D "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&uart0_gpio14>;
-+	status =3D "okay";
-+};
++#include "arm/broadcom/bcm2837-rpi-2-b.dts"
 =2D-=20
 2.34.1
 
