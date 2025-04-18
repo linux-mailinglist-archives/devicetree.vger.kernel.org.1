@@ -1,135 +1,129 @@
-Return-Path: <devicetree+bounces-168659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B7A93E14
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 21:00:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D7FA93E1C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 21:05:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 114381B67392
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 19:00:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFF05460998
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 19:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFF8202996;
-	Fri, 18 Apr 2025 19:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B9B21128A;
+	Fri, 18 Apr 2025 19:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GDueWkKA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vWLwv5/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765CF14EC5B;
-	Fri, 18 Apr 2025 19:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D46222594;
+	Fri, 18 Apr 2025 19:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745002826; cv=none; b=QMXCrQwx0iWIQp7AtkWWLUhFtk+3OIPjv/PEChWZXkvCiUjk6CN0HK19G+gko1yVyFee2zRzIXmkfoiI9rE74Gy16IkJ6h3FImgEI9sLkXfsfQj3hzy6I8gkT+p2uhs+gEUqpXmd6JiDQ+0T9mKJEyjFppnM/Mzi0+3EQ+3gpq4=
+	t=1745003100; cv=none; b=oMle9U7duyZE5T07LjsNIG1UwXIh/Y3nGxiDMXWm6cLuSC7PgQ1dsF81xAKNAfiWGtAHHkigXW+4HlAkhxH76nt85kh7CD7l20+JshTR4D2eRdciq+04LC3njJLAFvSnws1rHg+KhEBISb/C5OQECWhS/7LkNuFPnWKg9mrP77k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745002826; c=relaxed/simple;
-	bh=F3VmWRHx+UIETMeqIT7KP7lQ0w/tMPCOqgmLpGNNeQY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sYAMpwN9anx8uM/S+yz/dyz4JmN5CIegKeC6gVp3RbQG2iO1eUTIbkSQhT1822K3TpgpWINlXcgcF556SVxgfxwwYRlFu+FrgEQ60ZaIjnb2NVVuwnR6RSxOt3s+xHZJzTIynhBsff4g4HwwNpuxUmL1SLpSyAWUzNqOXvrxLm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GDueWkKA; arc=none smtp.client-ip=198.47.23.235
+	s=arc-20240116; t=1745003100; c=relaxed/simple;
+	bh=NynOvSj7sxcedY3VZBsXlo21ZHktklRq+uP/VAoPVGI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m2jfTWIPrexF8mG0RxqA8oKzzAueVuCkESMmoWk0+Va+QktPpeNNkmdaC6xBB8MedtsHh39J3dBBu+xHHw3MdTO+NMujd2fIdlp36rnu4hhejQtE/GP75r4WJ+wF3PokwtETx4pcEyBIi0+umBWA3NFbju7xYbgZdco7elo1cK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vWLwv5/P; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53IJ0C2j1061682
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53IJ4UWC354523
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 18 Apr 2025 14:00:12 -0500
+	Fri, 18 Apr 2025 14:04:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745002812;
-	bh=AOMCPCVH5mFNR9+7E9QB2UW9eCxznsJSzMrjdheXjNA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GDueWkKAplp3xSed2AeDL9KGQk9PjCwJ8ZOM0dZp3oL5z4XNaFxzRt7ViscW6dxTq
-	 /lw/eGMnwGyZVO54YmxeJmzvzcKRzP8qfecuynkhgG8+CD/fnQndU8qeMyz08qy8Od
-	 yOT63BXsjMLce9Refs76emj9Tj1SKwI8u0yU113o=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53IJ0BpT111217
+	s=ti-com-17Q1; t=1745003070;
+	bh=FB+Mopw+KqIVgqvvOn7oaKklU78nD3/cxIwgMbOunWQ=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=vWLwv5/PaGhUDQv7GsHSU4MvHYboclMD12ndQi7ynfvL3LgspKFHGgekxZn2BdC33
+	 U7YBXgM/HFX+Kxk3I0k90Cu7Wyo8ywn9RmObP2RFYjIgIYMP5sG452I9Snli9BrQSV
+	 o8GGHTRr+lNqzYjPfaE/S6uKVI79P4ZerHWx0rWE=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53IJ4ULQ118070
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Apr 2025 14:00:12 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 18 Apr 2025 14:04:30 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
- Apr 2025 14:00:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 14:04:30 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 18 Apr 2025 14:00:11 -0500
-Received: from localhost ([10.249.36.23])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53IJ0Buc121849;
-	Fri, 18 Apr 2025 14:00:11 -0500
+ Frontend Transport; Fri, 18 Apr 2025 14:04:30 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53IJ4Tth126391;
+	Fri, 18 Apr 2025 14:04:29 -0500
+Date: Fri, 18 Apr 2025 14:04:30 -0500
 From: Nishanth Menon <nm@ti.com>
-To: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Robert Nelson <robertcnelson@gmail.com>
-CC: Nishanth Menon <nm@ti.com>, Conor Dooley <conor.dooley@microchip.com>,
-        Dhruva Gole <d-gole@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-        Andrei Aldea
-	<a-aldea@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Deepak Khatri
-	<lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add PocketBeagle2
-Date: Fri, 18 Apr 2025 14:00:09 -0500
-Message-ID: <174500275378.96085.17582484120065140121.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250415225940.3899486-1-robertcnelson@gmail.com>
-References: <20250415225940.3899486-1-robertcnelson@gmail.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <huaqian.li@siemens.com>, <m.szyprowski@samsung.com>,
+        <robin.murphy@arm.com>, <baocheng.su@siemens.com>,
+        <bhelgaas@google.com>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <diogo.ivo@siemens.com>,
+        <jan.kiszka@siemens.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
+        <kw@linux.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <lpieralisi@kernel.org>, <robh@kernel.org>, <s-vadapalli@ti.com>,
+        <ssantosh@kernel.org>, <vigneshr@ti.com>, <iommu@lists.linux.dev>
+Subject: Re: [PATCH v7 0/8] soc: ti: Add and use PVU on K3-AM65 for DMA
+ isolation
+Message-ID: <20250418190430.onhuowuu4bwtlm5f@sequel>
+References: <20250418134324.ewsfnze2btnx2r2w@country>
+ <20250418163401.GA159541@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250418163401.GA159541@bhelgaas>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Robert Nelson,
-
-On Tue, 15 Apr 2025 17:59:39 -0500, Robert Nelson wrote:
-> This board is based on ti,am625 family using the am6232 and am6254 variations.
+On 11:34-20250418, Bjorn Helgaas wrote:
+> On Fri, Apr 18, 2025 at 08:43:24AM -0500, Nishanth Menon wrote:
+> > On 15:30-20250418, huaqian.li@siemens.com wrote:
+> > > 
+> > > Jan Kiszka (7):
+> > >   dt-bindings: soc: ti: Add AM65 peripheral virtualization unit
+> > >   dt-bindings: PCI: ti,am65: Extend for use with PVU
+> > >   soc: ti: Add IOMMU-like PVU driver
+> > >   PCI: keystone: Add support for PVU-based DMA isolation on AM654
+> > >   arm64: dts: ti: k3-am65-main: Add PVU nodes
+> > >   arm64: dts: ti: k3-am65-main: Add VMAP registers to PCI root complexes
+> > >   arm64: dts: ti: iot2050: Add overlay for DMA isolation for devices
+> > >     behind PCI RC
+> > > 
+> > > Li Hua Qian (1):
+> > >   swiotlb: Make IO_TLB_SEGSIZE configurable
+> > 
+> > I see at least 3 or 4 maintainers needing to co-ordinate, gets
+> > complicated as I am not sure which maintainer needs to pick up what
+> > patches in what dependency order. This looks like a mixed bag. Can
+> > we split this patch into independent series for each maintainer with
+> > clear indication of dependencies that is spread around a couple of
+> > kernel windows (maybe dts comes in last?)
 > 
-> https://www.beagleboard.org/boards/pocketbeagle-2
-> https://openbeagle.org/pocketbeagle/pocketbeagle-2
+> The keystone patch ("[4/8] PCI: keystone: Add support for PVU-based
+> DMA isolation on AM654") depends on interfaces added by "[3/8] soc:
+> ti: Add IOMMU-like PVU driver", so I can't really take 4/8 by itself.
 > 
+> But I've acked 4/8, so it can be merged along with the rest of the
+> series.  I assumed the easiest would be via the drivers/soc/ti/
+> maintainer, i.e., you, Nisanth :)
 > 
+> Let me know if I can do anything.
 
-I have applied the following to branch ti-k3-dts-next on [1].
+Thanks Bjorn, the swiotlb probably is one of the first to go in, I
+guess.. I will let Li Hua/Jan suggest how they'd like to queue this.
 
-I have dropped the Cc list as Krystoff pointed out this time around when I
-applies the patch, but, please take care of this from the next series on.
-
-Thank you!
-
-[1/2] dt-bindings: arm: ti: Add PocketBeagle2
-      commit: 3a5ff313ac521ff034f07ea6687ffb3f2229d62a
-[2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-      commit: 92d8c028aa924286f10ac75b7f9e8edfc9ed432b
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
 Regards,
 Nishanth Menon
 Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
 
