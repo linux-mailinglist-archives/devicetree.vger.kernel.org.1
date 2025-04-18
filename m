@@ -1,263 +1,281 @@
-Return-Path: <devicetree+bounces-168544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22786A93747
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:39:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADEDA9375B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BE3D1B669FF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:39:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 858DC466B2D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 432C1275115;
-	Fri, 18 Apr 2025 12:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8DC2550A8;
+	Fri, 18 Apr 2025 12:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SSgW0ree"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IwYugg4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA532750F3;
-	Fri, 18 Apr 2025 12:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AF61C683
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 12:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744979927; cv=none; b=eFEMCJF2z4u4AQqWRgPeM3mtaCcGnwqAlYpKyGPlTLcXqlrovsH1t1g6iKqvSoceW0f0PXFWSmW8EwnKbWHerfYcm092Hd3hvS6TLG2Fl5JLttrweYSznghYU8W/g1ElZY8SKoscZlXFb1QySb09ibHZTVYWXLrBD0HZCBMcbzI=
+	t=1744980328; cv=none; b=tViAOmjrIhV++aZmVTWRKA/6dVfeJzlZL3Ykz4U6woA0w1icbaXYcE9wuTBNBMk+7NYwz3tlOi754dfXp+dEssUeE9wJXs+9q1nWPqZ5O7N1qx+V2/mo3y1W6C8eg3h1aaz//SCPqtXqmVF46ykg6Y/OyURrHDN1oUE9hwTLY8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744979927; c=relaxed/simple;
-	bh=Sz2OvhT1YtRxCswr5Ix9aIntavDUyOJ8JgBM2MSHo+Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DT0aIjFftkumctMky2Iv3lNhuGEFwXq1rpgZPWuEMnProgzG2m2gMHmMqJzwnr0cM1GAeTMY2sQH1mx/r9az+fAYKflcntnYnzVK3v+YFbMkkKgflmBAVEqtzY7SKcyTe0eccyAAAklaluPNijuQ+BzH2UnQgkXTDeyKUwyh1a0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SSgW0ree; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4769bbc21b0so17288491cf.2;
-        Fri, 18 Apr 2025 05:38:45 -0700 (PDT)
+	s=arc-20240116; t=1744980328; c=relaxed/simple;
+	bh=ySaDkmAZLcWXKeerdT0+7BpoPFagSkw4YMtZbNCe4BM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ffOpl0aS75pJy15kSpCVSNvmjcPXahMDjJ9WB8elHCU7KjJEVCUAXbBMhClaKQNZSrZSM1ntVu+qJFa0QjgZ1h7Ku/LVsH2zUfyB3pqYAd3VzKyag/JDgyWEUsji1oBlCxdMW3joeyGnMxLBgs6aVrwb30sKTWNlnXzR4vZWkOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IwYugg4L; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so21206185e9.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 05:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744979924; x=1745584724; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ex4CZQWgxkClQmKHcyHVLX17Io0C6G4ejKLtSY01Ru4=;
-        b=SSgW0reeY78B1eoSwWx+CkIligLnZ2pFiR1IscalmP2AUFDIpNAgtXrOL9sxzIlV/g
-         K7ld9Sn02yEJ17DEC3wx0w8wFZSlOxgVSOz90fQUNe7Sq/ZmsjaNZUvRee4pRJghlr0a
-         CX2sn4HCQ1i2BmuaJKaKMhehTQgKQxNms7j5ALHgpYE8hlrMKnIyPBYtltEe5SirfWWt
-         F8aIeIl+BzI9UcBgxMmturYw0IaTtvdFhS4hsylyh2iTxxCGFVizQwBlYdEHywd+W5+r
-         kO4DZPPcCUiZgJuvc9vN7xUTCnjZJlkIKKz4OJXIFfmt2op+UPi+ConJNe6GU4OebZ8F
-         AXiA==
+        d=linaro.org; s=google; t=1744980325; x=1745585125; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PzF4QvjdSMS9bXofNemSyEoZVZlzopDIhUwrac2fwoU=;
+        b=IwYugg4Lopj579wkO7iilZpdJCUUx/O/xnKp/bA0LJ99xF6api7ygkBHzrKHSYvqEF
+         ITkyfI5E1LxtXDUKpW6maAOqGpP1E6axpATcnCEMmKyKnA/U+771ERgyskajFuMjEN7a
+         sCRWF1p278Z3RCVbHUHnShT7V7m84jY/32w1yKQ5XTX+7BVPZ6peo3KURMAjU3MUkyz8
+         lBpkcD6ZANDNKhwzrRMOVsi54nDrsxmF8n2iaJ0d8tMxd1czxRhQPPK98elk56IEXuFt
+         GfT5Fk7m2UXHyw7v28fPn6SY6KqGEG4eOt4vgbVON+a3DQ79qY2IymYD6bwQ0KKkiy8v
+         FqXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744979924; x=1745584724;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ex4CZQWgxkClQmKHcyHVLX17Io0C6G4ejKLtSY01Ru4=;
-        b=U40Dik3n8ZLesvDT3Hbmxe6TicqFA2Bd+PTpkrdruX0W7cI9EqeIQUuhfL25Iqnuce
-         wntF/wArkD1ocWbE7rbkP2F3qlF/4FzBADShpWk1UQWRbAYbSKrXMN5+bKHRP+1Ml8lQ
-         orCo7QyYixtr0pAh/b6MhC/Ihukzj7qjkpBE7ZHBkQgCvaOqYdPE2FU21te2u2P0HS0Z
-         SNzaZ/XMtOziuqN40dTu9jsbXJlHiFoT+5r8IOg3mD6OxVp3OAFJL+unSeP5nqP+jFGS
-         IIRO5FvlQN2mhEA/OrC/aJsqobEMJZGjCShvXDzQ8vuRU9YeD8PCqsNEBO7a+SOMNsm0
-         NQbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUAgmzvyuuPg+WsCzFfQZYNJWKcEbQmU8y5zVADdbhvtweYw7xdAhY85ZvMFotx0qLjgTHuo7xNc3nw@vger.kernel.org, AJvYcCUDU6faJciWOAcPzgIxWnUSPlYoRD7iCuwHLLBV2l5/S9BTjDR6FH4JMP6H6/ccAy0u2oN5nB5xzdjvG6Ha@vger.kernel.org, AJvYcCUweMNquWoF9KR2Z8CMboeoWwq/v8DtmVliBfGShLgbzcTb14M+tbWfBsEO+n1nOkvwt7wTu4bBUV8l@vger.kernel.org, AJvYcCV5sVeqbZ8YwWwVF9B0W55cXS8kpgISV399lw38YK8T7Diza/IcougdG+flYWg4YqdW4z6DIQFTdx0g@vger.kernel.org, AJvYcCWd6M+D4M0JXmjXEGfJe4JR7Og5CsyqrjLBA4w3FYWF7KyAnqg++vWC47NIlIG6IVDGdEtODaKcoWqg@vger.kernel.org, AJvYcCXlis+JTjApgiMTliaUXrPPFq2iO8rLrPHfXYKPdFw7u4fl0l6a1n2xiVca4unrjdygGynylxYz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEwIbWFeN/+J52IVcWjeQ1jt9p9uCvS9SzQ80mwOtCtYuoPpS6
-	T6Fw7HodvkHQMpKTzs8qtGZVKwdhEyVtO2fnJsHwCRxXsiTlTR1FE56asJz6/oGZu173kqOrQGR
-	4uFTgF9RGbbH2nhQ/+WEIkKTA7tA=
-X-Gm-Gg: ASbGncuQwctuvQCU/G9SEZe+VVKuIPsOB3uSs/RYBzyGW5piyQcGIYlWz/W7Yg73nmQ
-	xGyAH13GLuB6MVs6bejro6HFrOx5+gL1X0d6nxeHJuIDCPEBSLokPs2jS1Ppvv03QvvBUUXDzAI
-	NMqueRCsGN8UIbeDV0XVB8vz/iYeEX0VYfjNMUxKQz6rme0AsxMChBvw==
-X-Google-Smtp-Source: AGHT+IGB0+9rYEJMYSumpu6Vzq9goNJmJbJ95NPX/w0TApxD1IhEm9WvTNPQJ7w305XUYtnHZHJIiC78RgW25GjDsKk=
-X-Received: by 2002:a05:622a:1828:b0:476:8225:dac9 with SMTP id
- d75a77b69052e-47aec4c57a5mr39379541cf.45.1744979924108; Fri, 18 Apr 2025
- 05:38:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744980325; x=1745585125;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PzF4QvjdSMS9bXofNemSyEoZVZlzopDIhUwrac2fwoU=;
+        b=ZUufZDEtbYoG8AkIzbiDy8BLnkT+fAFS5H7X4V/G3cDNWsZH3AwHwmUfzFOI0/sbee
+         cy8g7lsj/ArhnewEJczdpUBn40CeLYZQEqj0TM1xlP40P7glsXQshQ/dGOAeL78FLShf
+         Tu39HOfuksu8J8MnkrXOzVl1XG+jqLhpoZ2Q2cjXZssKfpTed8aigaNcB/UNazpE4dpR
+         KiKK/CzrAttccL01xZKgAEcxU3wUDy9QMhKyG/P1XA9u3JoYp9q/32pwLda7ekdvmd8k
+         wKyiXm5GoLl9rrVxAh8z6sPoC6g0aEdgNnSHwHlvQ3vuraYD5AgBtovqLoxc4tVB32aA
+         7Skw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqng/t5kfFABd6yn7jnMN/y/RTdggBY1JstY8lfxNIac4yfck4X4LqBCOaut9uDFKPCsWrxm9/1Gsn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBqqVYv5s7aRqsHa+6XOmPqztG7LMxfcAgUHzHzXRAOKkQQfAN
+	lr462IN7yBmAp26NCj5mQoRhwopYEzpXMC/rmiejVuR3qUUBFC6BBztmCjmKax+RU38mWxjUdh5
+	y
+X-Gm-Gg: ASbGncseWFpWNaZT5Or27oW5n0KOVVgzBB1vS9FOQcvXCzH2gGT0eBBQ1UWulk2Iqgq
+	wzYFICxQ5YUA3l6jNtNvYOFScdKXRlKqLtCbfNmr+B7FagTUCvtUttHn92jU48KUZ6M3TTCcNNw
+	aDjbF2Fu9/8U3i31geWCrzXDpFC0XhKGFqK3i4Y8yyUgI8KDOta2ip5kfkDLCKQNPCh5m4igcAF
+	NrCBLU2Hw8qwinzCbgXNtWzHFB0vzx2IfNjZr3Rbzqw59E5TlKF+RT5na1icRyz9jhmFuhMR+zJ
+	S0FlLAjvSlMh8KSWsLGpahS0D2pXs+4flMMM/E00K2eZIqKK8BSM8PFP6O4KsQ==
+X-Google-Smtp-Source: AGHT+IHgpHdFF5FAGO5pXbDNVi8cBzrcCACrOsiB2WSI6yfHEVf4hpfwpZG+0s+lDQZqK27HlvQiyQ==
+X-Received: by 2002:a05:600c:1c12:b0:43e:ee80:c233 with SMTP id 5b1f17b1804b1-4406ac20146mr19035325e9.32.1744980324644;
+        Fri, 18 Apr 2025 05:45:24 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5d6cd2sm20748285e9.33.2025.04.18.05.45.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 05:45:24 -0700 (PDT)
+From: neil.armstrong@linaro.org
+Date: Fri, 18 Apr 2025 14:45:22 +0200
+Subject: [PATCH v2] arm64: dts: qcom: sm8550: add iris DT node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250416-wmt-updates-v1-0-f9af689cdfc2@gmail.com>
- <20250416-wmt-updates-v1-3-f9af689cdfc2@gmail.com> <20250416201407.GC3811555-robh@kernel.org>
- <CABjd4YyTKquLcYC+DVg_koi3p7AhqwBNiazCiC713DQKjCaBSA@mail.gmail.com>
-In-Reply-To: <CABjd4YyTKquLcYC+DVg_koi3p7AhqwBNiazCiC713DQKjCaBSA@mail.gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 18 Apr 2025 16:38:40 +0400
-X-Gm-Features: ATxdqUHZEjWs_YUTRnLI_mqfQ2sstLgHtYWGD2PkyOOwUEJjeYm4m7FuAwUHjuc
-Message-ID: <CABjd4Yxi4SLqsAk_fb9C=1BW6XjnZ8LQ_JKYu6KZ3TtMS0fnhg@mail.gmail.com>
-Subject: Re: [PATCH 03/13] dt-bindings: mmc: vt8500-sdmmc: Convert to YAML
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250418-topic-sm8x50-upstream-iris-8550-dt-v2-1-9218636acbdd@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAGFJAmgC/5WNQQ6CMBBFr2K6dkwpLRRX3sOwKDDAJELJtBIM4
+ e5WbmD+6v3Fe7sIyIRB3C+7YFwpkJ8TqOtFtKObBwTqEgsllZFalhD9Qi2EyW5GwnsJkdFNQEw
+ BrElXF0FZXTS6yrEwSiTRwtjTdkaedeKRQvT8OZtr9nv/0q8ZpPWla3Jp815XjxfNjv3N8yDq4
+ zi+J1h9/9UAAAA=
+X-Change-ID: 20250407-topic-sm8x50-upstream-iris-8550-dt-2846b493e652
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4981;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=33kMnRk8KY4MfqsVoLkT68Na/QT/GIo51XhjktRXhGY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoAkljUYVrX5BMJy8VeB7b28GsHyDEVd694FTLliq+
+ fjCIsdeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaAJJYwAKCRB33NvayMhJ0cdzEA
+ CLc5rrcOPFm5bFxQNNWxXMjwAPY5MTpdfDh01tNAro70vLg+sXvhMGVWOVmCZAGJCFMkwtYhVVorW4
+ sz0hxzwxiJYncwf3W6i0uOoi2BytU4m+Nn99DcNQXJMBsh3MKIuYT7BAyIM+efOkbKnA+3/+bf9b3Y
+ EcvtpJLACTAlabjzikyK6d13g6EmWgSAoh9BLmNgll/4hOqbQzXsAJm0kvRV+ZHvcOMnWhmJd35f8v
+ gNB8kmoD2vLD24ibEPRDtTtSne2OdSnbs03Wbmv8193xop7ZFlu6JKh3bxX61S5jRZGd/u9cP8h3kB
+ xM5AGaA6SbapgpQ2cuF1lIVcKs/mT19Nm6Ry5HVg+hkfQhhRhxsXveJKoSs7qtwn4mDpXfvA5T6kXP
+ MW/EuuNGErXRX64ghxUJakaQFB0L+I6B9hDzEwAVgPwxpB5dYHlH5+W2SaRNb92LEb6vjZfQ/qLaLA
+ ug8nJF5qy0FMT2EH0fGrZ2uIcSEvHlD2KTmJUI0OFmh1wPTlKHdpPEHIOGhK2830FoOnlj2fPvQKX/
+ 57qRKEo2pv9ElWmIN4Y/oRKhcgJILyospz4FlEEFjxhg5IBAAD8KfIqNtG50rptiWMbxvmjYhFyJPu
+ YqqLZGukFScItVPFV3kwnKZUw4pa5q+kw2feqOFK/fanGqoHfFsAQYVcuhjA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Thu, Apr 17, 2025 at 10:25=E2=80=AFAM Alexey Charkov <alchark@gmail.com>=
- wrote:
->
-> On Thu, Apr 17, 2025 at 12:14=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
-> > On Wed, Apr 16, 2025 at 12:21:28PM +0400, Alexey Charkov wrote:
-> > > Rewrite the textual description for the WonderMedia SDMMC controller
-> > > as YAML schema, and switch the filename to follow the compatible
-> > > string.
-> > >
-> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/mmc/vt8500-sdmmc.txt       | 23 --------
-> > >  .../devicetree/bindings/mmc/wm,wm8505-sdhc.yaml    | 61 ++++++++++++=
-++++++++++
-> > >  MAINTAINERS                                        |  1 +
-> > >  3 files changed, 62 insertions(+), 23 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt b=
-/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
-> > > deleted file mode 100644
-> > > index d7fb6abb3eb8c87e698ca4f30270c949878f3cbf..000000000000000000000=
-0000000000000000000
-> > > --- a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
-> > > +++ /dev/null
-> > > @@ -1,23 +0,0 @@
-> > > -* Wondermedia WM8505/WM8650 SD/MMC Host Controller
-> > > -
-> > > -This file documents differences between the core properties describe=
-d
-> > > -by mmc.txt and the properties used by the wmt-sdmmc driver.
-> > > -
-> > > -Required properties:
-> > > -- compatible: Should be "wm,wm8505-sdhc".
-> > > -- interrupts: Two interrupts are required - regular irq and dma irq.
-> > > -
-> > > -Optional properties:
-> > > -- sdon-inverted: SD_ON bit is inverted on the controller
-> > > -
-> > > -Examples:
-> > > -
-> > > -sdhc@d800a000 {
-> > > -     compatible =3D "wm,wm8505-sdhc";
-> > > -     reg =3D <0xd800a000 0x1000>;
-> > > -     interrupts =3D <20 21>;
-> > > -     clocks =3D <&sdhc>;
-> > > -     bus-width =3D <4>;
-> > > -     sdon-inverted;
-> > > -};
-> > > -
-> > > diff --git a/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yam=
-l b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..a7d962bc13c7ff70b5044=
-8201b0416efc7f787af
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
-> > > @@ -0,0 +1,61 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mmc/wm,wm8505-sdhc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: WonderMedia SOC SoC SDHCI Controller
-> > > +
-> > > +maintainers:
-> > > +  - Alexey Charkov <alchark@gmail.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: mmc-controller.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - const: wm,wm8505-sdhc
-> > > +      - items:
-> > > +          - const: wm,wm8650-sdhc
-> > > +          - const: wm,wm8505-sdhc
-> > > +      - items:
-> > > +          - const: wm,wm8750-sdhc
-> > > +          - const: wm,wm8505-sdhc
-> > > +      - items:
-> > > +          - const: wm,wm8850-sdhc
-> > > +          - const: wm,wm8505-sdhc
-> >
-> > Combine the last 3 entries into 1 using 'enum' for the 1st compatible.
->
-> Fair enough, will do.
->
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    items:
-> > > +      - description: SDMMC controller interrupt
-> > > +      - description: SDMMC controller DMA interrupt
-> > > +
-> > > +  sdon-inverted:
-> > > +    type: boolean
-> > > +    description: SD_ON bit is inverted on the controller
-> >
-> > This implies I know what the non-inverted state is. If you know, please
-> > state that here.
->
-> This is a tricky one. The only answer I have is "it's inverted in
-> later versions vs. the first version I saw in the wild, and I'm not
-> sure if it's board related or IP version related - nor if the original
-> was active low or high". No docs, no schematics, no vendor left around
-> to chase for answers.
->
-> Will dig around some more and update the description if I succeed in
-> uncovering any further clues :)
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
 
-I've found some extra clues and would like to consult on the best way forwa=
-rd.
+Add DT entries for the sm8550 iris decoder.
 
-It turns out (if my understanding of the decompiled binary-only WM8505
-vendor driver is correct) that all chips before (not including) WM8505
-rev. A2 treated their "clock stop" bit (register offset 0x08 a.k.a.
-SDMMC_BUSMODE, bit 0x10 a.k.a. BM_CST in vendor sources, BM_SD_OFF in
-mainline) as "set 1 to disable SD clock", while all the later versions
-treated it as "set 0 to disable SD clock". Which means that there are
-WM8505 based systems that rely on either of those behaviours, while
-any later chips need "set 0 to disable". This is not a board related
-quirk but an on-chip SDMMC controller revision related quirk.
+Since the firmware is required to be signed, only enable
+on Qualcomm development boards where the firmware is
+publicly distributed.
 
-I'd love to switch to a compatible-based logic and drop the
-"sdon-inverted" flag altogether from the binding I'm writing, but here
-are my doubts where I'd love to consult.
+Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Only enable on qcom dev boards
+- Link to v1: https://lore.kernel.org/r/20250407-topic-sm8x50-upstream-iris-8550-dt-v1-1-1f7ab3083f49@linaro.org
+---
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts |  5 +++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  5 +++
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts |  5 +++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 76 +++++++++++++++++++++++++++++++++
+ 4 files changed, 91 insertions(+)
 
-* Looks like WM8505 rev. A2 needs a separate compatible string vs.
-prior WM8505. Can we have something like "wm,wm8505a2-sdhc" and
-"wm,wm8505-sdhc" respectively? WM8505a2 not being an actual chip name,
-but something discoverable by reading its hardware ID from a system
-configuration register at runtime
-* If I introduce new compatible strings for "wm,wm8650-sdhc",
-"wm,wm8750-sdhc", "wm,wm8850-sdhc" and "wm,wm8880-sdhc" in bindings,
-DTS and driver code, then the new driver and new DTB should work fine,
-and the DTS should pass schema checks. New driver code won't work with
-older DTB unless I keep the logic to parse "sdon-inverted" which
-wouldn't be part of the binding. Old driver code would not work with
-newer DTB except for pre-A2 versions of WM8505. Is that acceptable?
-* Existing DTS doesn't differentiate between pre-A2 vs. post-A2
-revisions of WM8505 and is bound to fail on the latter
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index 29bc1ddfc7b25f203c9f3b530610e45c44ae4fb2..866f4235ddb58a5e0776e34b9bb0277ef73236e5 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -945,6 +945,11 @@ &ipa {
+ 	status = "okay";
+ };
+ 
++&iris {
++	firmware-name = "qcom/vpu/vpu30_p4.mbn";
++	status = "okay";
++};
++
+ &gpi_dma1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 5648ab60ba4c4bfaf5baa289969898277ee57cef..2362937729e8c5340d565b6199f6a6f9e29d2120 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -672,6 +672,11 @@ fsa4480_sbu_mux: endpoint {
+ 	};
+ };
+ 
++&iris {
++	firmware-name = "qcom/vpu/vpu30_p4.mbn";
++	status = "okay";
++};
++
+ &lpass_tlmm {
+ 	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+ 		pins = "gpio17";
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 3a6cb279130489168f8d20a6e27808647debdb41..4f713127310be54361e29ddb97e7f209493109be 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -779,6 +779,11 @@ &ipa {
+ 	status = "okay";
+ };
+ 
++&iris {
++	firmware-name = "qcom/vpu/vpu30_p4.mbn";
++	status = "okay";
++};
++
+ &gpi_dma1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index f78d5292c5dd5ec88c8deb0ca6e5078511ac52b7..dbe01392b436d03ef58733a59f60c3021bac3e6b 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -3220,6 +3220,82 @@ opp-202000000 {
+ 			};
+ 		};
+ 
++		iris: video-codec@aa00000 {
++			compatible = "qcom,sm8550-iris";
++
++			reg = <0 0x0aa00000 0 0xf0000>;
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++
++			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
++					<&videocc VIDEO_CC_MVS0_GDSC>,
++					<&rpmhpd RPMHPD_MXC>,
++					<&rpmhpd RPMHPD_MMCX>;
++			power-domain-names = "venus", "vcodec0", "mxc", "mmcx";
++			operating-points-v2 = <&iris_opp_table>;
++
++			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
++				 <&videocc VIDEO_CC_MVS0C_CLK>,
++				 <&videocc VIDEO_CC_MVS0_CLK>;
++			clock-names = "iface", "core", "vcodec0_core";
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
++					<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "cpu-cfg", "video-mem";
++
++			/* FW load region */
++			memory-region = <&video_mem>;
++
++			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
++			reset-names = "bus";
++
++			iommus = <&apps_smmu 0x1940 0x0000>,
++				 <&apps_smmu 0x1947 0x0000>;
++			dma-coherent;
++
++			/*
++			 * IRIS firmware is signed by vendors, only
++			 * enable in boards where the proper signed firmware
++			 * is available.
++			 */
++			status = "disabled";
++
++			iris_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-240000000 {
++					opp-hz = /bits/ 64 <240000000>;
++					required-opps = <&rpmhpd_opp_svs>,
++							<&rpmhpd_opp_low_svs>;
++				};
++
++				opp-338000000 {
++					opp-hz = /bits/ 64 <338000000>;
++					required-opps = <&rpmhpd_opp_svs>,
++							<&rpmhpd_opp_svs>;
++				};
++
++				opp-366000000 {
++					opp-hz = /bits/ 64 <366000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>,
++							<&rpmhpd_opp_svs_l1>;
++				};
++
++				opp-444000000 {
++					opp-hz = /bits/ 64 <444000000>;
++					required-opps = <&rpmhpd_opp_turbo>,
++							<&rpmhpd_opp_turbo>;
++				};
++
++				opp-533333334 {
++					opp-hz = /bits/ 64 <533333334>;
++					required-opps = <&rpmhpd_opp_turbo_l1>,
++							<&rpmhpd_opp_turbo_l1>;
++				};
++			};
++		};
++
+ 		videocc: clock-controller@aaf0000 {
+ 			compatible = "qcom,sm8550-videocc";
+ 			reg = <0 0x0aaf0000 0 0x10000>;
 
-I realize that breaking backward/forward compatibility is undesirable,
-but frankly these systems seem to have few mainline users, and those
-people who do run mainline on them ought to be compiling the kernel
-and its DTB at the same time, because the firmware doesn't know
-anything about DT and any modern kernel can only be booted in
-"appended DTB" mode. I also don't know of any non-Linux code that
-might be using these device trees.
-
-Any guidance would be much appreciated.
+---
+base-commit: 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
+change-id: 20250407-topic-sm8x50-upstream-iris-8550-dt-2846b493e652
 
 Best regards,
-Alexey
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
