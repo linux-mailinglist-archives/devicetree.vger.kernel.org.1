@@ -1,79 +1,42 @@
-Return-Path: <devicetree+bounces-168569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB83A93829
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:57:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFACA93844
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:08:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0DA73A371B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 13:57:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40D2F19E1695
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4CE137C37;
-	Fri, 18 Apr 2025 13:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HfuaEvbl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1531537C8;
+	Fri, 18 Apr 2025 14:08:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-42a8.mail.infomaniak.ch (smtp-42a8.mail.infomaniak.ch [84.16.66.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2378634C;
-	Fri, 18 Apr 2025 13:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E591519A2;
+	Fri, 18 Apr 2025 14:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744984661; cv=none; b=ZfEgI8HAhqA229s/BtZxL4Dr+B9DKA3NKuD9NEUQqXNcqr4YtuOvfCKCBTSWNY0VPkZkbibuKNZlylbW78V3dkLEmuyQGbbm9mrUor15ZVVcMH+Symeiln07zIUFOB4maAlBrPJ31PbISAwh9Nz/rHVXi27k/8AKqTbGG9g6c2g=
+	t=1744985328; cv=none; b=taijTxxrOp2krRJa/aZhu8ZwcK50ITc86xPhUM2YuFY7j/3od+EsiWXCRG30Hui9u0LJqu5DXKnn5I5tf7J+qeYg4k1JGUn1BG3tKYVgJ0gHQRw1j/yL1pdGaaUeanS4z/F7oOru25ECnIWhjyoiMwdAjbZrAeWby2aQMd3NyNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744984661; c=relaxed/simple;
-	bh=ajVr3yuI4k7/Pim7AdIiw4kKFIHaClFo40nc4H6fqBk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bUF7NUjNRY6CqkURtIX5jAOV28fuzkgamFBMxn9MTgixbOLbhtSKxodnPPeVSKTXTpF1A/uPtRH8FYJ7P8od9GIsWX4hOIztPaekwj/33497iZC+RLpwnWHhjH5+6qkw9edf+2+wMlZaImDfWSYP5W6n7LSfPgW77dnoDPuYqYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HfuaEvbl; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43d0782d787so13548645e9.0;
-        Fri, 18 Apr 2025 06:57:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744984658; x=1745589458; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZUUEBM3tYUb/t6AkwMd62lhApOXYl97kh+AIMbiifmg=;
-        b=HfuaEvblwuufalBCLbJQNJDxoPt3NMlyTX3lzMGIBf4xcCmCM76IHbnkS3AcbDYTBv
-         m9mGWus0lOx3iqFSBZ9tOpO0iwhiFzGrr/T4W/qFcKyfA8aPTkgRy2FVSApc3ij72aCg
-         rQfwLFRSSKltcTm5FSbJb7YHOA2077pbypQAFSRprIyrgG5dCyMJMB/RXNrZeEOVrb/w
-         CyQSujDg9h+mb6C6CD+PB6NV8X3aHQRP6dgqTqXW+OuOfnRBVgt3yo6GK8KP0DAMx0Sb
-         3DSewQmBi8aU4ojkagwYWytpZlhR35uLJlJHSbLdEVAaOdpEv5LCwygSwexKtMcSPBQg
-         KxeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744984658; x=1745589458;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZUUEBM3tYUb/t6AkwMd62lhApOXYl97kh+AIMbiifmg=;
-        b=XexKzQ3ySGA6J3peJeUtxWTNKfaVHhqLhqVjR9KD+iiFNJToNHkITCLJnptCMPIuu4
-         wT5OeB4W1/8461lBeQoTdb2ICIelLV+MYlIactY9WeXGGUStl7QJt3cIDuNcX6d4dGuQ
-         4DyMEQVIT0GMwOudrkXdmg7lP7P/o1A8Afyoj0to8LYbdXMzoITKH3z7W4FQHttRzlm4
-         V9Y75zv2tv/EjQRdUy9ez4nP7J+2JG3gdYDQxGtz0XxJtbRDGE9PNhJOMMU0KCGRn2Wt
-         utWsSKbBXH0BF3qLJgjh4KN0Zv9emShuXfcP0CgwBuB0KSREgpVYij3+0WDTetimFofI
-         aqyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgQRvjpPUGnXBu7Qvl7MP6lEpAjAng+h5XrO1z/x6YphupC7Xi2kDichVfa4aanKGbriMQCiH7NfZ4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZkKWzZArbRhtRfwbxkz1g74UVXBGd2naEeplFg2TwTDIiCW5u
-	Y6se2L98j56d3VpnFF75DahpuhmmfEO2CRDjlsbJ3xJ1t+zmRk/K
-X-Gm-Gg: ASbGncsoehN1ULEZafd7g8xxIWxX+SkJbj9BnJ0N4+2MzkQGthfnEPuGLsC2VRDL4dp
-	IKtZsCfDhHXkLAkw9kFlIk+MWDPEaXuiMmPW7epkjoklOweZYd0BsK5iyDROK4plHZ6gX6kcZiC
-	KPuA+w/WcBBK69+aAmppDCk/UDzGpEzZyBXm4G7I/VqW0n+MZzO3AXDlWSNmOrG/tga8KxI7lGG
-	5OVR9i1b5kfyPQ3ZupbtpZcwvjRR6UuGg7W4JLdfAFA0ahNWtX1ktbucv3r4bkeE9DhMfIvHExm
-	6dJWDBzm8DrwY3wEKOaGeCIaPOLX3tE2Ion7O6zpvAhd0GgahZv0
-X-Google-Smtp-Source: AGHT+IHGw4uQbywJb5vE8Eiogx+8whJZ0txrLQuGF1Ig4JvfkEMUcOo9p/AQGsffVLl8DH3+8WKBng==
-X-Received: by 2002:a05:6000:40cf:b0:391:1923:5a91 with SMTP id ffacd0b85a97d-39efbb1a366mr2018094f8f.55.1744984658009;
-        Fri, 18 Apr 2025 06:57:38 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4332b2sm2884691f8f.30.2025.04.18.06.57.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 06:57:37 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 18 Apr 2025 17:57:25 +0400
-Subject: [PATCH v2] dt-bindings: interrupt-controller: via,vt8500-intc:
- Convert to YAML
+	s=arc-20240116; t=1744985328; c=relaxed/simple;
+	bh=lu1thmBnmj6RCUgXCdD4m/vjaN2AsZlWOYwTDC0zvCU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Mnm1MlJq7o44DkEdQxIsIvEXu6XEQP/3fABPOjTp49AWIKVTwzuTbSkS+O5HS++owoBRQCMX6RdrTtBsTuTppWTIUX+3jE2yGmyh226Kx2QM4cfltSol3/sa+x0X87ccHV2/HefFBiC5NvOmCn8XH0bzESHCjVCdCESKB+fjGJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-3-0001.mail.infomaniak.ch (smtp-3-0001.mail.infomaniak.ch [10.4.36.108])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4ZfGny40gGzjJm;
+	Fri, 18 Apr 2025 16:08:38 +0200 (CEST)
+Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4ZfGnx2HJKzrrT;
+	Fri, 18 Apr 2025 16:08:37 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Date: Fri, 18 Apr 2025 16:08:20 +0200
+Subject: [PATCH v2] dt-bindings: usb: usb-device: relax compatible pattern
+ to a contains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,168 +45,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAERaAmgC/x3MSwqAMAxF0a1IxhY0+N+KSLEa9U2itCKCuHeLw
- zO496EgHhKoSx7yciFg1whOE5q2UVcxmKOJMy6zIm/MhdFCz8k66AxdTS2tc9xUXNQ5xezwsuD
- +l/3wvh8xRwrIYgAAAA==
-X-Change-ID: 20250418-via_intc_binding-7e9bb2862471
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+Message-Id: <20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de>
+X-B4-Tracking: v=1; b=H4sIANNcAmgC/5WNTQ6CMBBGr0Jm7Zi2QERX3sOw6M8UJtFCWiQS0
+ rtbuYHL9yXfezskikwJbtUOkVZOPIUC6lSBHXUYCNkVBiVUKxrZolvQcHAcBnwng658LKGdXrN
+ e2Dwpoew6fzFCd9I0UDxzJM+fo/HoC4+cliluR3KVv/Uf+ypR4lX42npfK63F3Y4U43Z2BH3O+
+ Qv5Ahiv0gAAAA==
+X-Change-ID: 20250415-dt-binding-usb-device-compatibles-188f7b0a81b4
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
+Cc: =?utf-8?q?=C5=81ukasz_Czechowski?= <lukasz.czechowski@thaumatec.com>, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744984663; l=5333;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=ajVr3yuI4k7/Pim7AdIiw4kKFIHaClFo40nc4H6fqBk=;
- b=EnlSEOAw4wpYdueqn4gI8kfDgR4AfCA1yks+ccgbdmVGF1i1d2KcpNBD046D0P46Cs5p0BYZD
- 5+Aej3TIm2jD1+sQhWVEjuDdTdZFMZz8pRr0G1GfSL9p4zXwpKzLtCM
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+X-Infomaniak-Routing: alpha
 
-Rewrite the textual description for the VIA/WonderMedia interrupt
-controller as YAML schema.
+From: Quentin Schulz <quentin.schulz@cherry.de>
 
-The original textual version did not contain information about the
-usage of 'interrupts' to describe the connection of a chained
-controller to its parent, add it here. A chained controller can
-trigger up to 8 different interrupts (IRQ0~7) on its parent.
+The dt-core typically allows multiple compatibles[1] but usb-device
+currently forces a single compatible.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+This is an issue when multiple devices with slightly different productID
+all behave the same. This would require the driver to keep updating its
+compatible matching table to include this new productID instead of doing
+what is usually done: have two compatibles, the leftmost which matches
+exactly the HW device definition, and the rightmost one as a fallback
+which is assumed to be 100% compatible with the device at hand. If this
+assumption turns out to be wrong, it is easy to work around this without
+having to modify the device tree by handling the leftmost compatible in the driver.
+
+[1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/dt-core.yaml#L21-L25
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
-Split the series from v1 into separate bindings patches so as not to
-spam all the subsystems with unrelated changes, per Rob's suggestion
+This came up while working on fixing USB on an RK3399 Puma which has an
+onboard USB hub whose productID isn't in any driver compatible list
+but which can be supported by a driver with a slightly different
+productID matching another variant of the same IC, from the same
+datasheet.
 
-Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-2-f9af689cdfc2@gmail.com/
+See https://lore.kernel.org/linux-rockchip/20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com/
 ---
- .../interrupt-controller/via,vt8500-intc.txt       | 16 -----
- .../interrupt-controller/via,vt8500-intc.yaml      | 76 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 3 files changed, 77 insertions(+), 16 deletions(-)
+Changes in v2:
+- use contains: instead of pattern: to relax the check, similarly to
+  what's done for PCI (suggested by Rob),
+- Link to v1: https://lore.kernel.org/r/20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de
+---
+ Documentation/devicetree/bindings/usb/usb-device.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt
-deleted file mode 100644
-index 0a4ce1051b0252bbbdeef3288b90e9913d3f16f0..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--VIA/Wondermedia VT8500 Interrupt Controller
-------------------------------------------------------
--
--Required properties:
--- compatible : "via,vt8500-intc"
--- reg : Should contain 1 register ranges(address and length)
--- #interrupt-cells : should be <1>
--
--Example:
--
--	intc: interrupt-controller@d8140000 {
--		compatible = "via,vt8500-intc";
--		interrupt-controller;
--		reg = <0xd8140000 0x10000>;
--		#interrupt-cells = <1>;
--	};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..bc14c74bf7d57d6da75135cbb4ae27ed59c6b9e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/via,vt8500-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: VIA and WonderMedia SoCs Interrupt Controller
-+
-+description:
-+  This is the interrupt controller used in single-core ARM SoCs made by
-+  VIA and WonderMedia (up to and including WM8950). Each block handles
-+  up to 64 interrupt sources (level or edge triggered) and can generate
-+  up to 8 interrupts to its parent when used in a chained configuration.
-+
-+maintainers:
-+  - Alexey Charkov <alchark@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: via,vt8500-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description:
-+          Interrupt number raised by the IRQ0 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ1 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ2 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ3 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ4 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ5 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ6 output of this controller
-+          Only used if this controller is chained
-+      - description:
-+          Interrupt number raised by the IRQ7 output of this controller
-+          Only used if this controller is chained
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@d8140000 {
-+        compatible = "via,vt8500-intc";
-+        interrupt-controller;
-+        reg = <0xd8140000 0x10000>;
-+        #interrupt-cells = <1>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96b82704950184bd71623ff41fc4df31e4c7fe87..d3d8e31e547e8775272911df156d6574ae7acdac 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3428,6 +3428,7 @@ M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Odd Fixes
- F:	Documentation/devicetree/bindings/i2c/i2c-wmt.txt
-+F:	Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
- F:	arch/arm/boot/dts/vt8500/
- F:	arch/arm/mach-vt8500/
- F:	drivers/clocksource/timer-vt8500.c
+diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+index c676956810331b81f11f3624340fc3e612c98315..09fceb469f10525e9dcdb91435b142b0d21964b8 100644
+--- a/Documentation/devicetree/bindings/usb/usb-device.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+@@ -28,7 +28,8 @@ description: |
+ 
+ properties:
+   compatible:
+-    pattern: "^usb[0-9a-f]{1,4},[0-9a-f]{1,4}$"
++    contains:
++      pattern: "^usb[0-9a-f]{1,4},[0-9a-f]{1,4}$"
+     description: Device nodes or combined nodes.
+       "usbVID,PID", where VID is the vendor id and PID the product id.
+       The textual representation of VID and PID shall be in lower case
 
 ---
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250418-via_intc_binding-7e9bb2862471
+base-commit: 834a4a689699090a406d1662b03affa8b155d025
+change-id: 20250415-dt-binding-usb-device-compatibles-188f7b0a81b4
 
 Best regards,
 -- 
-Alexey Charkov <alchark@gmail.com>
+Quentin Schulz <quentin.schulz@cherry.de>
 
 
