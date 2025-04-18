@@ -1,171 +1,146 @@
-Return-Path: <devicetree+bounces-168549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A953CA9376B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:48:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE30A93782
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:56:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0B3C8A07EE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:48:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66355188D72A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 12:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CCEE275872;
-	Fri, 18 Apr 2025 12:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0CA276045;
+	Fri, 18 Apr 2025 12:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dYboGRGQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vz5KydBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B007274FED
-	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 12:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1476727602D
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 12:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744980488; cv=none; b=nHe5jncI0rXXCKh4fW0KMoceTfZIv8sCQJTs3lieMfm98vwdlDXrS99xTUGWppI1LdkMZviXPSPUQ46DD4phXh8tpVkdTLxkc8VIP/d8KdVB/g/46Va/cdkje0ouIyRuOfWWeM1gQPao0mctGBVTQJ0x1E9JeVulmc0l7YsPZXY=
+	t=1744980982; cv=none; b=qxGvwlreVsTzHe8Qh/IFFEf8LDwUgic8k4HyO0he8FUgop6VtBUWd8SuRIqjGRZE1qo01R0pvVOJQbxTuYxkpXNsnEU16mNydCjlVZwxDYVp3WQ+TAeu/0DNBQnKO/KZfvcMqdqWDypO5A9i+OfGidWvXr4tptSGDullpoWZ1aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744980488; c=relaxed/simple;
-	bh=pV1rzCsr8FYCVhfWMYFrJeFTmf49atITKo8uKg1wnyg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I76+cHY58H44ggS32YY8ynDpacquG1hr3Hb5R4xvN3d4Hlzy9hLOqlRmxzzsQ15ks1koB1y/Nw1Vo8DjpLd00v4fvXqZbqG9XNGvmCZX7gYiKRmR74DwflRjyJvBr7EbLYR0wtPIqcAVWkaXcObOy/3JHDEq3s6YBJO3kuVvjrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dYboGRGQ; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac34257295dso359200766b.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 05:48:06 -0700 (PDT)
+	s=arc-20240116; t=1744980982; c=relaxed/simple;
+	bh=QxBStM653qMk3zt33ESZg7QC2ipeeh37FGKF/pH07fM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ESHKFFCE85Cyx0QCHeKeR2C6FqbsbakZK6YuFUegXXwOFeM3fce6UZj40Z7WO2JxoVTk44A7z72lvnWrM5HbdSyPAlyURAX9a6w0E3RgLVudNUOp9xc+ryluOHKmVW3UFQhHV2RsCOQ7VxgumP8yYCDH0UUSfBCFstXhuz4KrVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vz5KydBB; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cf034d4abso11051195e9.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 05:56:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1744980485; x=1745585285; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7XNN0Tem4xu6RZArPHYvTvbcnQvUc79+UNyXgXNy6Cc=;
-        b=dYboGRGQLK/iphKt7or08i312U/MdrGDeftywb+tVOJQpvcy/mUsyvNaMOBOTJppEO
-         3UsCcvCYjQCsbNfWO0txdRxeXTJO1SluqgTWXoANT74n+IKwn2+GX3jRx7JQLelr2m/0
-         wzJJHAhVLCYEI066TNZ7Yym3ABAt49RqxsGtQ=
+        d=linaro.org; s=google; t=1744980977; x=1745585777; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WwW9U1zOxpNrw/kpyRdt72dH90TWTeKHCaa+HyJpTYg=;
+        b=Vz5KydBBpT8pK85BuKGKM/6q8tEJ1zH0J2r+57UzNzdnzKkwlsKlp+vcv8B/GTpLx/
+         ZOoMQzXXebKiC1EBvU6rHIzwC708vb2k72MJ71k4gaAfKmaHEoj3pViW/vCs1xRHA8qM
+         0DfzRgIsrw9vVLEPVLewig1dvlsVDP2rUUY7tneS0FuNeP1rW8WyYNBw9tm8o11x1DCg
+         hArWFa3nHJOA972xiLqta0ehCCMaOixfM0t8qBdZd1P11oy0qVi+gXUoQ3SH37URz0t2
+         jsH6DrS2u8vrW6Z9DshGgK5ekrF07x/ZlznwaHEJyvbRi7F/tqcXkIunsDN0ejFddpz4
+         Fzvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744980485; x=1745585285;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7XNN0Tem4xu6RZArPHYvTvbcnQvUc79+UNyXgXNy6Cc=;
-        b=K5GfOxlnDRVnQpq8udcXrLxNNzoH/VjDqd4vjco/Csbx6VHPwyOr1IBpGg1UVnDxm0
-         5ZupnkfFfzVb80UwYF5qy9K686wI0eVLWfNmGvaEuzAWLcVZyJJa7+jynESw9OCnq0d4
-         o4QDKPyETNhl3ZlkduEOEKszYYkgVka0JYZwfG+q3oCK2QWG6pVxTNnlYSWyDsgRs4T7
-         0Ah/ZGyMHUubUz/E5eTb3568G8BKu7qzXJwfqlSxl7P35aXX/shg2LSmnGSRLNKEOF1Z
-         FkBdP9BqCOORs5MX0Uz51bhMNSkgkeb3qVWn4aB0KqRgKjvJm/pVJYTd8q3jUnIVyuYv
-         872w==
-X-Forwarded-Encrypted: i=1; AJvYcCUKeppq/IWncAzoKHPNV7f7jzQ1pFM5jkUoNVXfPhN8GgrbZq15jfQCr4yC9Y16T80+T+CCXCL45AfC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIdl0k45TGkWqkUAc8cx6SeN+bunnIUd+c4Yn812AB1+LTQ+Ye
-	YZoHhJ64wo6Hqz0DM//38xIqinivxL0Dtax0jWEgcq93x/ijeDgKGtwwR9kzmA==
-X-Gm-Gg: ASbGncv+MAj81EgDRnQ04qbRFJH8IO9hohEFJVHo23jqLEsimAadtD8ZYF9bnm99k2U
-	3DbIh0sENbwZmqj61/YlQ2AyXswuJg/NYc4giRg1Xe05VU9YcyFhEG5Lwz8z02EFByhWgpJPXWU
-	RITGz8zE8HHjkJc5ZPilakkgqpftfNoVFn53n8O0SWyLwZaO7Gr9+Y5JR+rjoi0DLKsF5luIw6+
-	7TqA7mu2JAioY5bwTo0QH07odGSIPRomkwqXS1fNxEyTFM9wgYhWq1izn6GWodafVq6uRZSYZPt
-	jBRCMFZHYpnVrJYp1Jw59w+eDbP5KrS0xvvISYlD2y9O9ij1nyoS6v4gaOANfphVkG473u1IP/9
-	M7Mk8RLnepp0QxuAyj+ToqJkjkLjHSM2j0A==
-X-Google-Smtp-Source: AGHT+IG6P9eJLmL9+eikfNPnUZ7wxWv+V7OiUcpJHJFZyEg5TP66XxZUXXNNSx/PygO5dYxQPBqHMg==
-X-Received: by 2002:a17:907:3d8a:b0:ac7:150e:8013 with SMTP id a640c23a62f3a-acb74b1ce20mr256181666b.15.1744980484716;
-        Fri, 18 Apr 2025 05:48:04 -0700 (PDT)
-Received: from jaz-virt.c.googlers.com.com (8.236.90.34.bc.googleusercontent.com. [34.90.236.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ec51601sm117445166b.74.2025.04.18.05.48.03
+        d=1e100.net; s=20230601; t=1744980977; x=1745585777;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WwW9U1zOxpNrw/kpyRdt72dH90TWTeKHCaa+HyJpTYg=;
+        b=UWgxzvwKmrYBQ3w9+RcBdpcgeVGLV5lPJwS4C7xbfLnmV4fH+nGgHzmjpsPTJox2PB
+         vmuGgC/NBR75IkwS0KLhChcvFZ3qFPKjnCQ8BRJwSQjabFpfbDhr59hHt6f5KpEl6js0
+         oiMiPz2UsWzBP3kNsGRWi1MzMwibwjpAOJ2ZamjoMZgdz/ASd5v7UoOcSRgo9nd7Rx3H
+         slO4AYzmQV4VKsvf9PUH3zAp1/V4p9dC0rdsLorH2W7mA27gJcQ5yOYZgOxKRq43/MTn
+         lKstM1ZduIgOd5TReMfq6af54NVVHnqcP8L2zEX3Dfw1k76ZXJpXycyvSMo5N31VpDMN
+         +MeQ==
+X-Gm-Message-State: AOJu0YyiXAcLcOhYhUMkKvE3oex8Kk4v7CExhp5oeCa5QjF5AmG7ZSen
+	PqLprFnpsWPav21ErPWvluwPWggnnW20W1R0Jl25aF6nyhsZ8Q4zUVrOUtIxnOU=
+X-Gm-Gg: ASbGncuB2iheGipvbnzE7kl4Ok/LFrUJg/Bv5ZVrYSwQ+AiOZUDISOd6NoQzX4ftDRI
+	Hc5A3Op0ZHbDFB9YxBisIk2Jt4mfF0Rj+TEZ4WmmEJqlK+YGlu/L0/yahux+SbSNsUTwH+81Zpi
+	0iZvaAiercaXabCnKVntmVMcqRiPUalYrCUnb8X1BkuAXRwtWKkKCRGx9T2tuskBeURun9qT6Km
+	lgXpQodIDHWivWKE3Wh8+nvNGuo/+tycMqhE9b5RDX5UYHVZQk9pFOBG3f/RkGbyRNX8b4adMnA
+	Zkqh+G40mqpe445MTutDGTC3npda/yqQLJq70EVyHVPZnLkC6sh5yTRaaKkwbQJYpUtpp49A
+X-Google-Smtp-Source: AGHT+IEtQ3+kUGoWlflvNpT36iuQHA8E2I2tANb/xw4Dqj0OGaTP2fa2pBh2QoG3I6k/9gJ1uU22wg==
+X-Received: by 2002:a05:600c:35cf:b0:43c:f8fc:f6a6 with SMTP id 5b1f17b1804b1-4406ab982aamr23728395e9.9.1744980977296;
+        Fri, 18 Apr 2025 05:56:17 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5a9de9sm21705635e9.6.2025.04.18.05.56.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 05:48:03 -0700 (PDT)
-From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
-To: tglx@linutronix.de,
-	robh@kernel.org
-Cc: mingo@redhat.com,
-	bp@alien8.de,
-	dave.hansen@linux.intel.com,
-	x86@kernel.org,
-	hpa@zytor.com,
-	saravanak@google.com,
-	dmaluka@chromium.org,
-	bgrzesik@google.com,
-	jaszczyk@google.com,
-	ilpo.jarvinen@linux.intel.com,
-	usamaarif642@gmail.com,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	tnowicki@google.com,
-	mazurekm@google.com,
-	vineethrp@google.com
-Subject: [PATCH v2 2/2] x86/of: add support for reserved memory defined by DT
-Date: Fri, 18 Apr 2025 12:47:18 +0000
-Message-ID: <20250418124718.1009563-3-jaszczyk@chromium.org>
-X-Mailer: git-send-email 2.49.0.805.g082f7c87e0-goog
-In-Reply-To: <20250418124718.1009563-1-jaszczyk@chromium.org>
-References: <20250418124718.1009563-1-jaszczyk@chromium.org>
+        Fri, 18 Apr 2025 05:56:16 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Fri, 18 Apr 2025 14:56:16 +0200
+Subject: [PATCH] dt-bindings: arm/cpus: allow up to 3 interconnects entries
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250418-topic-sm8x50-upstream-cpu-icc-max3-v1-1-87d9c2713d72@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAO9LAmgC/x3NTQqEMAxA4atI1gbaqvhzFZlFycQxi2ppdCiId
+ 7e4/DbvXaCchBWm6oLEf1HZtwJbV0Cr336M8i0GZ1xnWjvgsUch1DDkzuAZ9UjsA1I8UYgw+Nx
+ g31imxfmxNQ5KKCZeJL+T+XPfD8WHX5F0AAAA
+X-Change-ID: 20250418-topic-sm8x50-upstream-cpu-icc-max3-731ecf2a9402
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sudeep Holla <sudeep.holla@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1099;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=QxBStM653qMk3zt33ESZg7QC2ipeeh37FGKF/pH07fM=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoAkvwifxZrr8v7fgOAmy3xR8mz1YwLLAHXPIJqGPD
+ qqrutsOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaAJL8AAKCRB33NvayMhJ0YimD/
+ 4m2g/DVnkw3HtvQp6cOV3xnwB34lAFeTWuxANyLRoGcW2DuUBqTBerK7fQYp8WGGsxaZB/2ZYoa065
+ F6dwVqH/jMfMIfaQZ4OSfUmBJOil5Y6iggaxitTAttvL/uy59Cz06shLuxpXuSffiDt/yQaJa1/gHN
+ xM+D6vIlPnLU/wi8Rn0UKff5R+urBihW3vJsRpFucXQFupdi3u8prBmCXK1qdDTuak+9/0RBEJP3tk
+ DlhDNEUc81Eb5VrhSPsr4ePszPwe2b6MBMND23Ig8BG0CmzS/EBvKOAdlpngUqHh/ASVSuT7sDGuJx
+ O8Aqfx4XOaoJAtOe9ntocCugWIbj0XrUHghdP+1NAIYMrU5gbpno6F2j4gF2Ojn74c+FSJtT+8FI0R
+ hdXGG+VYGrJrvrwXqxaV5jEKCJFZ+NfCXFAETnR5F1QXIk8D/DjIZetyDRevIH7x3mCoGPaws9Fl1w
+ pRmzeO+K5ALxl3eewexuuHsgKqxD4kuzVeTfVynHaXF1Xg6hETtA59YqFObiy/3jA6d1qMJ8H8r2Go
+ daxSFfP8YXZPBin9IEsyAhEb57EFxcarDbx3otGR/wOIocIyEFzYlCh18VI9YSmp80n8zwP1hIXFAZ
+ U9tyTq+p38itx7iUzXbSIvO3wgn8w1t97AVH5yVwlCPtqjxwCYx2BC9wzWWw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-From: Grzegorz Jaszczyk <jaszczyk@google.com>
+Allow up to 3 entries as used on the Qualcomm SM8650 CPU nodes.
 
-The DT reserved-memory nodes can be present in DT as described in
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
-Similar to other architecture, which supports DT, there is a need to
-create reserved memory regions for such nodes.
+This fixes the following errors:
+cpu@0: interconnects: [[7, 3, 3, 7, 15, 3], [8, 0, 3, 8, 1, 3], [9, 0, 9, 1]] is too long
 
-Additionally, the x86 architecture builds its memory map based on E820
-description passed by bootloader and not on DT. Since x86 already has
-some DT support and allows booting with both ACPI and DT at the same
-time, let's register an arch specific hook which will validate if a
-reserved-memory region passed by DT is valid (covered by E820 reserved
-region entry).
-
-Without this check, the reserved memory from DT could be successfully
-registered, even though such a region could conflict with e820
-description e.g. it could be described as E820_RAM and could be already
-used at early x86 boot stage for memblock initialization (which happens
-before DT parsing).
-
-Co-developed-by: Bartłomiej Grzesik <bgrzesik@google.com>
-Signed-off-by: Bartłomiej Grzesik <bgrzesik@google.com>
-Signed-off-by: Grzegorz Jaszczyk <jaszczyk@google.com>
+Fixes: 791a3fcd2345 ("dt-bindings: arm/cpus: Add missing properties")
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/x86/kernel/devicetree.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ Documentation/devicetree/bindings/arm/cpus.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-index dd8748c45529..9a93eddfcedb 100644
---- a/arch/x86/kernel/devicetree.c
-+++ b/arch/x86/kernel/devicetree.c
-@@ -18,6 +18,7 @@
- #include <linux/of_pci.h>
- #include <linux/initrd.h>
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 3d61313ca00ea4fc50f07f1e353be49ddc2377fa..f04ce5355806e6bd575aa1f7c0a69d0b3b605fbf 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -301,7 +301,7 @@ properties:
  
-+#include <asm/e820/api.h>
- #include <asm/irqdomain.h>
- #include <asm/hpet.h>
- #include <asm/apic.h>
-@@ -289,6 +290,11 @@ static void __init x86_dtb_parse_smp_config(void)
- 	dtb_apic_setup();
- }
+   interconnects:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 3
  
-+static bool __init x86_is_region_reserved(phys_addr_t base, phys_addr_t size)
-+{
-+	return e820__mapped_all(base, base + size, E820_TYPE_RESERVED);
-+}
-+
- void __init x86_flattree_get_config(void)
- {
- #ifdef CONFIG_OF_EARLY_FLATTREE
-@@ -307,6 +313,9 @@ void __init x86_flattree_get_config(void)
- 		}
- 
- 		early_init_dt_verify(dt, __pa(dt));
-+
-+		early_init_set_rsv_region_verifier(x86_is_region_reserved);
-+		early_init_fdt_scan_reserved_mem();
- 	}
- 
- 	unflatten_and_copy_device_tree();
+   nvmem-cells:
+     maxItems: 1
+
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250418-topic-sm8x50-upstream-cpu-icc-max3-731ecf2a9402
+
+Best regards,
 -- 
-2.49.0.805.g082f7c87e0-goog
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
