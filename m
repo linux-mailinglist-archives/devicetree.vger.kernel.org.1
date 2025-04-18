@@ -1,119 +1,179 @@
-Return-Path: <devicetree+bounces-168510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1711CA93496
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:24:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95F8A934B8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 10:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B808D1B66310
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 08:24:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0DB68A624B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 08:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537C426B2BF;
-	Fri, 18 Apr 2025 08:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B8F26B96E;
+	Fri, 18 Apr 2025 08:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jeu8QH+M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f7MMKEc5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1884B268C55;
-	Fri, 18 Apr 2025 08:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3851DFFD
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 08:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744964678; cv=none; b=oJAulFQb3ibNg1lC26mea1Pbt2mBmN+LBDb8DFasBzGJbPICrZ0RdDFjyh3o6rx2yb85Yerbsf7Ye+iBQmxWhyGb7mXykatamUG58+z+Vk4r80SV8ua1i33wclb/9itZpp8bMrsrk7n7mr5BIAuy1iM9ewiGuCmExCXjkDZ2uRc=
+	t=1744965464; cv=none; b=lPf/aJEI2YbKV2cf/Tj/6omB7+cEYhYKBnorwxiO4K1wYPzd2pGq59YnJW089OSqIDvumrCTHRHe5dUuPoe7taue8tqTGynjKG4JngTlBlNVX2+/uozdnJZGfTGh/Iy7+FgqydoWZ9946Fgij9Oa8jwZ0nj+ULExPGbjgYzC57o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744964678; c=relaxed/simple;
-	bh=/9OfrWnCUxMfe0bzWWpOCEaGqaGAQjbwJjWfCuAqTJo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JOGb3BJogmtqYrBHoh67YdEvVEdMcTE7K94IuFjQe93wRVHl0ZsuGIiKPT7jFaZWBjsc8Vc+GjjKjtX8gTU4uwyzvj3H/ddI62p20HHPz8ID9X0OdVg0tksrJzP6v6aUxCU/8k89/lo6P7smGxTCpaPU+eYkpF02aSKuxasz6BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jeu8QH+M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7E8CC4CEE2;
-	Fri, 18 Apr 2025 08:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744964677;
-	bh=/9OfrWnCUxMfe0bzWWpOCEaGqaGAQjbwJjWfCuAqTJo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Jeu8QH+M1Br42zGYHGcZhAAXWDmCsjRzAlZ5hrEVlRdeHLRNgShMGYULuWj2jXTUu
-	 Gz7qZ/eC1LrK3mZRFcZPWAT+IQyGAZenZFtPYjcTwJ1eHyVOd433z8hLR083M13UnG
-	 Yz/+BNG057GgyY5KPqpOgSbRjjTVgnHLeq1Ud0qZ2tGps68D/qD0WQ7yukthbeyyXl
-	 Paw/QUmFQnR9Kbj1T+Hv5MbVp9AdYXzzTInkm93qqgjZdJGkWNWWB3uLc4zoT3AMWE
-	 N6c8o0QTJOlGOc0MMWELCLcwB8D4a+uh/yHZFCLHNgGQafGvhfq5bL0WPin3TZ3DYa
-	 lL5fCH47k7yLw==
-Date: Fri, 18 Apr 2025 03:24:34 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1744965464; c=relaxed/simple;
+	bh=9wFd+LWaeWbb8ByS2WTwvKaa9Aazj1pXPEB3WNZjVzk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZKQLkCH0lFEoDd89i1t41RLEPyryeSgG2hKuYJ/25X+ZSRjgNQpCI2wCGJIegZYu4psgZlgIZauSAMTODSugeE42aOBIWhc8EMWI1C+GTlGB0Gysrdnq0xZc6e9cNJNKXlpSful+Cbbab6L5FZun+9MJkgJF98na1VA2orn2RsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f7MMKEc5; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so12641975e9.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 01:37:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744965461; x=1745570261; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=H338YpIXIN0Gvnxx0CNTxMSFWd6J6lOzxWOZLc2fN3E=;
+        b=f7MMKEc5en/GP/4ZgRucQJmQw7hfysdCimw6S47n/pSgl8NmgFJD0dsdnrWmODgljN
+         R3CXNOJse2S8Wr7M+U8XwDKwjRf7BVmLdEU4ZhROYDp4M4/e2/ijgKNUIBka4yZItvah
+         ZZgxNkS7iHNM7RQ0w+qvneroMC76cvdg9zKEDarpdeWuE22yhEx6+YTQ49+GnuE4jzho
+         jNOLnlAM5KyOPtjFnZIoTxjNfB0/DuZlNwOGd6iJgcvPY70EDnn5sE5Ktwr+4SVg3hgh
+         bBuiMs8yPsUSUCCUJUBTyp5l+aex5CCimmWU+QAl5Q9Vp2BAyK6cDOtZjdPqTQc/wE01
+         1zlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744965461; x=1745570261;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H338YpIXIN0Gvnxx0CNTxMSFWd6J6lOzxWOZLc2fN3E=;
+        b=dpeA5Zvkn07ZFUQqbycoznfqoEIx1OArGechN6CuzssHhokAEX7Wpbp99qYj1Hd1lK
+         +Sf43cL9ID+3IbamLPy5Z09LjWb53mqOKU62y7zZbcCTZFCc4XdMG3CxRJVkN6HXLtdj
+         l/EFObRqxK/gUASw2BToafw7phzATh1pYpxSBkPfoXdOxALsZmc+shoY2v79MYuxv0+p
+         Ay1uIYc141EIfBQYl9oMdMLOvOC/GMSfNagInyt75UwNOo/7iPAut3xHaeV+iJG7Y1mL
+         3HRIj7I6kbMxogkJp5YOaeCvIX8BF1pMOQsaY2XSf58KhcZTWPM5EfrqTvrSHMmQlHuT
+         txvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVeJvwin4XpxNSqy2ZwraZ/T5CQMTElshU+OCP9M2CKtHfObUmsVAw3mj/vwtx/ZXe5m6iSr+0xVMmx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2N07JjlMdVnV0DhlMb0VXDG6ZDky3evcwtJS7fv9nVmXRoRAA
+	POnE+IiJv141xkiYfpcz7amDRKW3f+4UQgcFi/OBTfSbWsKZtI6ePo4FOanUkA4=
+X-Gm-Gg: ASbGncuu3wTEXHmJrPP83/1GXgQ74MFk2JBgpdv+3YqyQAXkhea7ypOwwFKraGYUWWQ
+	j0tk7+pax+iosLRy60Aj+a1SDJc8x99SqPUetB6GK4C0i+sgWOK8XXn0/gA05gDUgU0fvG6QgD/
+	qGhRzl/ZW4RLvzSz8zApaP991CU9Nj5jlcYhQdmEsXzZgp87/i/FxRoEZjbhPNc5Fh5/JWGBWWv
+	37MazNLQDcLFhc6jCe/o0QaID4ZQ/rB1kq3icRONQ+MPdM0BTg2t7RSvzGnA2bCqMkzEidB9TK+
+	gFxHq0sm/2yDma/C8dsSE85IiMJnB/3BSCv/guB36H8Hm6Mn4lLmPkQvJhLPeO86o1H1WOl8FrA
+	EqMM=
+X-Google-Smtp-Source: AGHT+IHiLpagTJs2SbpQ7T/yPM+PTl/lUYMdfib3CeXF6j4CoViiiMG4uhTpPH8XNuL/o5PBHm8qrg==
+X-Received: by 2002:a05:600c:54c7:b0:43d:683:8caa with SMTP id 5b1f17b1804b1-4407076031dmr2922635e9.15.1744965460792;
+        Fri, 18 Apr 2025 01:37:40 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5acec8sm13487175e9.16.2025.04.18.01.37.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 01:37:40 -0700 (PDT)
+Date: Fri, 18 Apr 2025 10:37:37 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: iuncuim <iuncuim@gmail.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>,
+	Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Subject: Re: [PATCH 1/6] thermal/drivers/sun8i: add gpadc clock
+Message-ID: <aAIPUcS_cNRHoxwq@mai.linaro.org>
+References: <20250411003827.782544-1-iuncuim@gmail.com>
+ <20250411003827.782544-2-iuncuim@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: nm@ti.com, baocheng.su@siemens.com, linux-pci@vger.kernel.org, 
- diogo.ivo@siemens.com, krzk+dt@kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, kw@linux.com, 
- robin.murphy@arm.com, jan.kiszka@siemens.com, kristo@kernel.org, 
- s-vadapalli@ti.com, linux-arm-kernel@lists.infradead.org, 
- lpieralisi@kernel.org, vigneshr@ti.com, iommu@lists.linux.dev, 
- linux-kernel@vger.kernel.org, bhelgaas@google.com, helgaas@kernel.org, 
- m.szyprowski@samsung.com, devicetree@vger.kernel.org, conor+dt@kernel.org, 
- ssantosh@kernel.org
-To: huaqian.li@siemens.com
-In-Reply-To: <20250418073026.2418728-3-huaqian.li@siemens.com>
-References: <20241030205703.GA1219329@bhelgaas>
- <20250418073026.2418728-1-huaqian.li@siemens.com>
- <20250418073026.2418728-3-huaqian.li@siemens.com>
-Message-Id: <174496467399.2597920.14844354232532512833.robh@kernel.org>
-Subject: Re: [PATCH v7 2/8] dt-bindings: PCI: ti,am65: Extend for use with
- PVU
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250411003827.782544-2-iuncuim@gmail.com>
 
-
-On Fri, 18 Apr 2025 15:30:20 +0800, huaqian.li@siemens.com wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On Fri, Apr 11, 2025 at 08:38:21AM +0800, Mikhail Kalashnikov wrote:
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
 > 
-> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
-> to specific regions of host memory. Add the optional property
-> "memory-regions" to point to such regions of memory when PVU is used.
+> Some processors (e.g. Allwinner A523) require GPADC clocking activation for
+> temperature sensors to work. So let's add support for enabling it.
 > 
-> Since the PVU deals with system physical addresses, utilizing the PVU
-> with PCIe devices also requires setting up the VMAP registers to map the
-> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
-> mapped to the system physical address. Hence, describe the VMAP
-> registers which are optional unless the PVU shall be used for PCIe.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
 > ---
->  .../bindings/pci/ti,am65-pci-host.yaml        | 34 +++++++++++++++++--
->  1 file changed, 31 insertions(+), 3 deletions(-)
+>  drivers/thermal/sun8i_thermal.c | 18 +++++++++++++++---
+>  1 file changed, 15 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
+> index 226747906..1f3908a60 100644
+> --- a/drivers/thermal/sun8i_thermal.c
+> +++ b/drivers/thermal/sun8i_thermal.c
+> @@ -66,8 +66,9 @@ struct tsensor {
+>  };
+>  
+>  struct ths_thermal_chip {
+> -	bool            has_mod_clk;
+> -	bool            has_bus_clk_reset;
+> +	bool		has_gpadc_clk;
+> +	bool		has_mod_clk;
+> +	bool		has_bus_clk_reset;
+>  	bool		needs_sram;
+>  	int		sensor_num;
+>  	int		offset;
+> @@ -89,7 +90,8 @@ struct ths_device {
+>  	struct regmap_field			*sram_regmap_field;
+>  	struct reset_control			*reset;
+>  	struct clk				*bus_clk;
+> -	struct clk                              *mod_clk;
+> +	struct clk				*mod_clk;
+> +	struct clk				*gpadc_clk;
+>  	struct tsensor				sensor[MAX_SENSOR_NUM];
+>  };
+>  
+> @@ -417,6 +419,16 @@ static int sun8i_ths_resource_init(struct ths_device *tmdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (tmdev->chip->has_gpadc_clk) {
+> +		tmdev->gpadc_clk = devm_clk_get_enabled(&pdev->dev, "gpadc");
+> +		if (IS_ERR(tmdev->gpadc_clk))
+> +			return PTR_ERR(tmdev->gpadc_clk);
+
+			return dev_err_probe();
+
+> +	}
+> +
+> +	ret = clk_prepare_enable(tmdev->gpadc_clk);
+> +	if (ret)
+> +		return ret;
+> +
+
+Why calling clk_prepare_enable() ? devm_clk_get_enabled() did the job no ?
+
+>  	if (tmdev->chip->needs_sram) {
+>  		struct regmap *regmap;
+>  
+> -- 
+> 2.49.0
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+-- 
 
-yamllint warnings/errors:
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/ti,am65-pci-host.example.dtb: pcie@5500000 (ti,am654-pcie-rc): 'memory-region' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/ti,am65-pci-host.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250418073026.2418728-3-huaqian.li@siemens.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
