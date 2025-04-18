@@ -1,166 +1,122 @@
-Return-Path: <devicetree+bounces-168614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D51A93996
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 17:27:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F61AA939B5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 17:37:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA23E464BAE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:27:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D29F81B660B5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 15:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71825211278;
-	Fri, 18 Apr 2025 15:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D912B21325D;
+	Fri, 18 Apr 2025 15:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jRh0PjBQ"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="xH+/z9Gs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93AC638FB9;
-	Fri, 18 Apr 2025 15:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0045B13790B
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 15:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744990017; cv=none; b=QFHWcwGXbgCOo+H1UdXzlTNKtby+yn+fcVkdTLrL738VqYLZp4av+5n8sw1osw5ZvfdrYHFitYYuLKb60c8uct2wv/UquuEgm9y23gzjxEWTt6+lP9BpO6j+BDiEIl1qM1G7zMY2viODfw9kEwqLlh0hss6PwqKCXo8J2HXzs7E=
+	t=1744990619; cv=none; b=LyIe6a0HFz4vb4+e4QgayihTxgKfcrziyjPPk4YkT9+lN/vBUY24o5lFJeOq4utNZetT5O0k0AvhlW6mQKksxcWD783dyr3Ffwqg5lJiX3tMCjEP4PkdZYQXUt1LyilQYXqqMcVlo7uEHekjL1wq1bCIpHiGAYkvAoqmmmX4j7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744990017; c=relaxed/simple;
-	bh=XWSsNQuWP0x2aUg9USTmWsxm+dnGjwDvN4FzCiXZMoo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=gcftZ02DWbNtE82k+2z6kLYlHVHsf3ZiSjBR7RgIf99OAfDkcsCsLP9P8s8DCIFvB4H28/goBiE0EQDUBi8WmDrhxEeCVOBb6raONV6GdkzHa/HJ65TOvlg8T7XHpCr97A857XtdXTrYpE2rITlRns9yvI60hYeQ5hxt5HVuVOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jRh0PjBQ; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7BC97431BA;
-	Fri, 18 Apr 2025 15:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744990006;
+	s=arc-20240116; t=1744990619; c=relaxed/simple;
+	bh=C5fq7l2Ahsb27LgEO4/lHCMuhJMXpnJ8WZoqeYkZ6ms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GGI9aXiU7vn22UUj8jAKBYRsDe3gNKSbI4+yojjIsUdCJyi551SWtmaMS2BmNSSfPZTGTLM7bPgHchbW4dBXkiSR1PWRJlFAkRpKOcqrCKIK6muWKUqbcnnyoycxfeATOZBFZb+yEEiZ3vaVHoR2IKqMAftRCovF+kAWBrLpu6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=xH+/z9Gs; arc=none smtp.client-ip=95.215.58.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Fri, 18 Apr 2025 21:05:53 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1744990605;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YNDVjS9Ecf/JVJ+se63WO9MhluBgtWHZjFkXlGycTfI=;
-	b=jRh0PjBQf+DtVoqsLFAM80NGxwbyPkkPSCdcERiSIGYksp9EK1p5UkOY6OI/w7CtMcgo3w
-	qg/xNIZdROduFXw+V7QZGPzwOO+GGsTAqCn82QHizytQoNE+dYX9g8r588MtnBhsgBrCX/
-	py1ZUZDQkFbiXnAb35zazjfBrBxBAjAQXcN0fnoHEI2ekpCVLOdNd8hROR819Bl1WZvBz6
-	TaV/SHNLz2g7dLw1Vw/yRWi7HYu8kH3MQuIWlLo+MK0SYLQMQCUXP7PZBoc0yX1j+ZMfni
-	slkE8zpd262MJKsRnRdjUBLG83Cb3IbsUBOZnMmvsllaSHWwsZoYhIAT3pq/OA==
+	bh=6wrOfCKY3zK3SNy182P4/7XcrrLA8TgpWNc3DXhpeIc=;
+	b=xH+/z9GsJZEtYeFxQtwc/KttJRMlMezXrO8YZel9QR5V1rmv6P8jisb5twwnwlzBfl/zpY
+	iWYTbBg45EN7xMq5hfdxG1geMyRIcXyOc6wlAlw/N5iiM/6+/OMwoaXCf0k2Gdir5XB9Xs
+	nulXxfdQUhW4YM4oOpnv6HGHSJjSeds=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Jai Luthra <jai.luthra@linux.dev>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, mripard@kernel.org, mchehab@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devarsht@ti.com, vaishnav.a@ti.com, 
+	r-donadkar@ti.com, u-kumar1@ti.com
+Subject: Re: [PATCH v6 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq
+ interrupt and add support for VIDIOC_LOG_STATUS
+Message-ID: <see7ve2j7hxqt7c4vqlowprsptjjl5dpfuaagqzj6uk73mhzcu@lhl7qvtwjd2q>
+X-PGP-Key: http://jailuthra.in/files/public-key.asc
+References: <20250416121938.346435-1-y-abhilashchandra@ti.com>
+ <20250416121938.346435-3-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vgb7ndcpx6r2z555"
+Content-Disposition: inline
+In-Reply-To: <20250416121938.346435-3-y-abhilashchandra@ti.com>
+X-Migadu-Flow: FLOW_OUT
+
+
+--vgb7ndcpx6r2z555
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 18 Apr 2025 17:26:44 +0200
-Message-Id: <D99VBXHNLWCW.2PQQZ21537GHQ@bootlin.com>
-Subject: Re: [PATCH v6 09/12] gpio: max7360: Add MAX7360 gpio support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-9-7a2535876e39@bootlin.com>
- <aAFE18Yn5rtnuooc@smile.fi.intel.com>
-In-Reply-To: <aAFE18Yn5rtnuooc@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfedvheduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
- dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+Subject: Re: [PATCH v6 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq
+ interrupt and add support for VIDIOC_LOG_STATUS
+MIME-Version: 1.0
 
-On Thu Apr 17, 2025 at 8:13 PM CEST, Andy Shevchenko wrote:
-> On Wed, Apr 09, 2025 at 04:55:56PM +0200, Mathieu Dubois-Briand wrote:
->
->> +#include <linux/slab.h>
->
-> I don't think you use this header directly.
->
+Hi Abhilash,
 
-Right.
+Thanks for the patch.
 
-> ...
->
->> +static int max7360_gpio_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap_irq_chip *irq_chip;
->> +	struct gpio_regmap_config gpio_config =3D { };
->> +	struct device *dev =3D &pdev->dev;
->> +	unsigned long gpio_function;
->> +	struct regmap *regmap;
->> +	unsigned int outconf;
->> +	int ret;
->> +
->> +	regmap =3D dev_get_regmap(dev->parent, NULL);
->> +	if (!regmap)
->> +		return dev_err_probe(dev, -ENODEV, "could not get parent regmap\n");
->
->> +	gpio_function =3D (uintptr_t)device_get_match_data(dev);
->
-> Somebody pointed me out the Linus' rant on uintptr_t, so he prefers not t=
-o see
-> this in the entire kernel. He suggested to use (unsigned long), but ideal=
-ly one
-> should operate with the info structures instead.
->
+On Wed, Apr 16, 2025 at 05:49:38PM +0530, Yemike Abhilash Chandra wrote:
+> Enable the csi2rx_err_irq interrupt to record any errors during streaming
+> and also add support for VIDIOC_LOG_STATUS ioctl. This allows users to
+> retrieve detailed error information during streaming, including FIFO
+> overflow, packet errors, and ECC errors.
+>=20
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 
-Ok, let's define my own platform data structure, this is not a lot of
-work to be honest.
+Tested-by: Jai Luthra <jai.luthra@linux.dev>
 
-> ...
->
->> +
->> +		/*
->> +		 * Port GPIOs: set output mode configuration (constant-current or not=
-).
->> +		 * This property is optional.
->> +		 */
->> +		outconf =3D 0;
->> +		ret =3D device_property_read_u32(dev, "maxim,constant-current-disable=
-", &outconf);
->> +		if (!ret) {
->> +			ret =3D regmap_write(regmap, MAX7360_REG_GPIOOUTM, outconf);
->> +			if (ret)
->> +				return dev_err_probe(dev, ret,
->> +						     "Failed to set constant-current configuration\n");
->> +		}
->
-> This will look better as if-else:
->
-> 		ret =3D device_property_read_u32(dev, "maxim,constant-current-disable",=
- &outconf);
-> 		if (ret) {
-> 			outconf =3D 0;
-> 		} else {
-> 			ret =3D regmap_write(regmap, MAX7360_REG_GPIOOUTM, outconf);
-> 			if (ret)
-> 				return dev_err_probe(dev, ret,
-> 						     "Failed to set constant-current configuration\n");
-> 		}
+> ---
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 131 +++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>=20
+[snip]
 
-Yes, actually there is no need to set outconf if the property was not
-specified.
+--
+Jai
 
+--vgb7ndcpx6r2z555
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks for your review.
+-----BEGIN PGP SIGNATURE-----
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmgCcVkACgkQQ96R+SSa
+cUWBsRAA0slrHvDhdrNsjQEhqpC5jjgl3FD2acCj5VLsgpp9wIq+AXSt8ZxFYdgb
+W+UhPJVoI+tVt2GgdBNhLFuFGdxZXIRv+crzPKh0t8wdgXm7Go7gEHmAA+pa313m
+Cxzx2vQtyoRUOrQU3fjvPVDuwjBEmxnfwyyAfxmCpxLpNOc0Khk2VzRTkWmkRy3b
+32o7TLq3rrokHbIzLT/wnRICkMAwaZ8QB/2IyTzBziA9TBOh7Md2A2OgZ7K4FzIs
+cBFmJskdEmw56TMwKndFjkp1AjkhxnJx3zNJ5H0rki3pVn8M54wNHKjWSz6aBUQ2
+EwvjoCD8RLBWz6XbLyAWVyEQmIOI00ZirgenkDonK5Gh4RhGjpBrHiAF7V4lswfr
+2sov+efU3n8+fyFW4lgskLvZkoSwUMRQYocGC4L/LtiuiEJUJw28gyAYpghN2CU2
+DXOnECSPBNEyvCuaAtGP00My9EVLQthL2fbeWcd3+rKrEVbi4gXthMQCJUJemL8n
+IhUvmeGk2hR/wMjzKPDI6K9XZSuH2gC6PQvvhebbYEn1ALETkL1e8Dd9a+9kcUX3
+uDEeef4R5ZS+OxgANGIyYiGndLdm5Ds0edsCIYOvV50LkAoCQyghIocWCz/kKZMt
+X4rhiMuAMSTTZ3GLLQqAii4Is74zUv4+DQYi9OBgLJu5b5YDx2k=
+=xyFP
+-----END PGP SIGNATURE-----
 
+--vgb7ndcpx6r2z555--
 
