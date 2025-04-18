@@ -1,51 +1,76 @@
-Return-Path: <devicetree+bounces-168652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277E4A93DF3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 20:50:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A7EA93E03
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 20:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF29B1B67377
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 18:50:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 899903B78C4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 18:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A02722CBE3;
-	Fri, 18 Apr 2025 18:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11EEC21B8F6;
+	Fri, 18 Apr 2025 18:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qDXo/Ncv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mLJWMsWc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBAB22B8C6;
-	Fri, 18 Apr 2025 18:48:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CEE645009;
+	Fri, 18 Apr 2025 18:57:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745002104; cv=none; b=g7irOy0NviWLdXSHZASRm71FnoX0PaHd6ypQHe+RDwlu2BUbpm8NwNygx2bFxkNdO9W8jatZ9XjcLegjHtlMxmdjysiNdlTTUyFBctRWE+UIaryIno/lguvd/F1SxfdTDhPaF3mjJZ8N3+OR+sCgRNLct9lmA5XzKPMPJP//p00=
+	t=1745002625; cv=none; b=sdiGDxuEQXNaIECxwv/cjSnGMZj3dzbZCvhQdVBM7bk+khVIe0kRskTy6u/B8QSVmy1Iwo1L7f85wzfCHFSYukDSw7ssNTi/xkzImlR5dvI4FkssF3RPdPxCzZeHPYl6FUdwPrZauDeHoB3kaB2xlZo0FWGyuBUtwY1Dfw4TqP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745002104; c=relaxed/simple;
-	bh=HEU4YutA9kG/s0/mba3Ytoq2491mLHZZ1L9DBov7nkM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=g7UcE2AeCZHiAbqXV2DPGMd7uCle2bGlNO+hst4JKLaW2d1gXzFBK+8FWQ+ziuWu3N0J64cYY43XtKKzfdYEmkogZTKFBtyvzS5ZHQApDQT5fS9dUIskyputdKlzle5kn0qo+8RJ/cnFtPlRpBHq9kLjiRx0EGoNV1A2fo73jDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qDXo/Ncv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 74F55C4CEE2;
-	Fri, 18 Apr 2025 18:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745002103;
-	bh=HEU4YutA9kG/s0/mba3Ytoq2491mLHZZ1L9DBov7nkM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=qDXo/Ncv7gRvbyUXc1P8PIjOCWAB8BXXi8u3a3c6zNMziFoRBIqe+IvYHMfEdlDJK
-	 hAUYJBaIdqglqaMWnHJnZBpB/y9KeQNuAJO+QN6EYQo0ChUBCd2uXBEZyQ1I5cvL/i
-	 Q1i9nDU14/8nGaA2pFMdT197bJFGyRVVoJHAWsCgSdE/82cMWQMp5ZshFm4ubqJtEk
-	 UDT1rfVGEDa9Zp83jtCEbX1m6WZX2JBwZTL0pjgdHi5e6DFlpjD3+wfZp4agFU66OX
-	 zAqfJFNhiFoDCFJHp37y/eKNY5KIG6UK+Qhmw8mu9tnUDtUv10L1T2yEOihjXUzxeF
-	 Avnd9JJ5Joc2w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EF10C369AB;
-	Fri, 18 Apr 2025 18:48:23 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Fri, 18 Apr 2025 20:48:14 +0200
-Subject: [PATCH] powerpc: dts: mpc8315erdb: Add GPIO controller node
+	s=arc-20240116; t=1745002625; c=relaxed/simple;
+	bh=AMz0+a5YMHK1AZJpcT6+WmTciGSPZiOTZwixeeNRYTw=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q/MHNjtaQz4DgcUeYIRUYWVjgDZdwAvz2lB7UDnFFenFkRGynQY3ewbIBC4uKl0X1aKXiqOfAM7KKOOKygLxZR5P+Y7mb6r3Gk4fN5YF+YkqHWA/Y9Pm9DYnqXzhI2FpdFFNQMxJUTkAkRUy/TYdq/kjEq5n4v53ksTB746hPCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mLJWMsWc; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53IIuvaS1061144
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 18 Apr 2025 13:56:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745002618;
+	bh=tcrNxE+0JGcCoKsLbE+QviBfNrctHLlmF8zwyaLUIlQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=mLJWMsWc4stQvTtBi9jK5QAkx4VF2Ik1jqVIEvb2KhZhfb2G0wLWQfsrtkg5Daz+m
+	 LnoOJ/nx9fj6FrIqhiO1MwcGn2pMCPM6pU71YbeT31oNf+UTRkbvsRddYok/n8vwqh
+	 rZD0WAXMGq4/rdKmGNwT0ycANWlV4G273bzbZm3g=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53IIuvuR108580
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 18 Apr 2025 13:56:57 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
+ Apr 2025 13:56:57 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 18 Apr 2025 13:56:57 -0500
+Received: from localhost ([10.249.36.23])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53IIuv9T116986;
+	Fri, 18 Apr 2025 13:56:57 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm-usxgmii-exp1-exp2: drop pinctrl-names
+Date: Fri, 18 Apr 2025 13:56:56 -0500
+Message-ID: <174500258303.95192.1919212906702588939.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250411061425.640718-1-s-vadapalli@ti.com>
+References: <20250411061425.640718-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,83 +79,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250418-mpc-gpio-v1-1-24be2365992a@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAG2eAmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDE0ML3dyCZN30gsx8XXPLlOREyzRzA1MTMyWg8oKi1LTMCrBR0bG1tQA
- w6h8oWgAAAA==
-X-Change-ID: 20250418-mpc-gpio-79dca9f70546
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745002102; l=1409;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=yIo4OMFzwIHk/Y7Ad7fIh7vacgPJLYwfWJ8zjzP38HI=;
- b=MzF7If4e34vj/JrF+b0JokWfYf8Phq6bZVN/3vliB9QLi2BrnJARDvJb1SwTr4FhTogpGdi+M
- FirkRP7a6TaAqPvGZ9/xqAYQDYkFSgt9bL21NT0rt0QrvtFJl/aFXy7
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+Hi Siddharth Vadapalli,
 
-The MPC8315E SoC and variants have a GPIO controller at IMMR + 0xc00.
-This node was previously missing from the device tree.
+On Fri, 11 Apr 2025 11:44:25 +0530, Siddharth Vadapalli wrote:
+> The "pinctrl-names" property is not required since it doesn't have an
+> associated pinctrl configuration. Hence, drop it.
+> 
+> 
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-A version of this patch was previously part of the series "powerpc:
-MPC83xx cleanup and LANCOM NWAPP2 board", but I'm splitting it out to
-reduce the size of that series.
----
- arch/powerpc/boot/dts/mpc8315erdb.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-diff --git a/arch/powerpc/boot/dts/mpc8315erdb.dts b/arch/powerpc/boot/dts/mpc8315erdb.dts
-index e09b37d7489d01bfd16a26e9786868f630fa0262..a89cb3139ca8c3d4f22e43838a4b7d2dd5109aa5 100644
---- a/arch/powerpc/boot/dts/mpc8315erdb.dts
-+++ b/arch/powerpc/boot/dts/mpc8315erdb.dts
-@@ -6,6 +6,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	compatible = "fsl,mpc8315erdb";
-@@ -358,6 +359,15 @@ pmc: power@b00 {
- 			interrupt-parent = <&ipic>;
- 			fsl,mpc8313-wakeup-timer = <&gtm1>;
- 		};
-+
-+		gpio: gpio-controller@c00 {
-+			compatible = "fsl,mpc8314-gpio";
-+			reg = <0xc00 0x100>;
-+			interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-parent = <&ipic>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
- 	};
- 
- 	pci0: pci@e0008500 {
+[1/1] arm64: dts: ti: k3-j784s4-evm-usxgmii-exp1-exp2: drop pinctrl-names
+      commit: 5e5da30f2e255f14c3098723fe171e6aec8d7db0
 
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250418-mpc-gpio-79dca9f70546
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Best regards,
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
 
