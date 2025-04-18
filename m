@@ -1,63 +1,79 @@
-Return-Path: <devicetree+bounces-168427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021E9A93145
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 06:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB38A93151
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 06:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D01848E2C62
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 04:44:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9F83ADA6D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 04:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C2E253B78;
-	Fri, 18 Apr 2025 04:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1221254AE9;
+	Fri, 18 Apr 2025 04:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M1mz5CpV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2KEmUav"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F0922DFA7;
-	Fri, 18 Apr 2025 04:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316EB1DA21;
+	Fri, 18 Apr 2025 04:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744951463; cv=none; b=FRJshpsdHmNEa/0D5AaJkvCKDOn0JSFUnSz4FX0/SsN8nJQt47GAcPR87ZDC76UOuX/ejQphIDp8pxR8o1s61OuwGZFmJVnwj9CLJTgtptWNf+R64bqT8uq0Rqb9sqZkp6OWf5AkdA6yVtp3QVJ4I1+ngqSWhVzXtTwG7wnC53M=
+	t=1744952075; cv=none; b=qqrmVfM1w7hFDqsvIrXcmNb8ILtnzmr45vq4iCQqepT05PVKa6/VhgiPrUH5Sy3Q+wFDt/YWZ023gvSe0Sn2tQKbDQd6TW0HIgKOEeEt4y3t0vjjeI2WSRTyK6TP1641FnfOivdf+hAFO3fkgvDLgvZh2lg1wg6RiIeNzuCarR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744951463; c=relaxed/simple;
-	bh=HvpDoFmE8C8Lfh7/meePgZTyKzQrDFh5ry62b5Wy9M4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EZzr1PO4eZRAGqUHo6LFOByQiwv/t8UUYqBRRYwKLYWDcUSM2/Bu/ohrbkQsSecUalWJGAwXFJ8KKmEwRtn5+Euq0xiAhMcQGKS2U541bfFUQwrzqBq0Uv0aXc/DjzoKZM2H22XWINCeRBPjFG35bHHN74m/v7oncXnD32C3Z3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M1mz5CpV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53I20ITf013014;
-	Fri, 18 Apr 2025 04:43:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DhTVCz7oFnQ85dTd3BSO8mwUPp42l8g6+QUPGTRqihY=; b=M1mz5CpVusGX7VBe
-	6GWKq2xSphuPCPg8/UzX/KKrqQGcKGaaXT6tdXluG0AIwnykw9eGNX7cXoDOpvGm
-	SMA0dEV8S9sdhJxdV0CoAcD4JsjXLyBCrH1aNvM//tkoOa67//jGM/4oMPjoif0W
-	aVJsqFrfSzuF3A1uCFfqI00990lkbFsrLwJ3JqeMok9NKXrsnpKGoPlqqT0IHQfy
-	+Z8wGbBwtf4Sydy4KsToNrIBPsK0e3xMXcWsqmehbHNLecJQf3OXMiHMApn41bLB
-	Bzl30f58CwLwTWXFwProdFYYR8EnSj8Wbs4EbS9SByr0o3zD/WqBUORVlEi+D3p6
-	2naHMw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfgjrvs8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Apr 2025 04:43:54 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53I4hrIH031764
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Apr 2025 04:43:53 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 17 Apr
- 2025 21:43:49 -0700
-Message-ID: <0a121c0f-edcb-4d5d-8427-f1eddddcb9bc@quicinc.com>
-Date: Fri, 18 Apr 2025 10:13:46 +0530
+	s=arc-20240116; t=1744952075; c=relaxed/simple;
+	bh=miGWfcaPFFeXZKyL4q8RKZf6XsZtwS2QXeSpQEPB9j8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K5124bC2ZDAKSDofOyG0ONoyUmIZUpbw8tOOi5p3q5W1n/s8dq1Rx7rfhSQfifasYqHouXtzkb5xf+a0Lg+/1wM/5XY3sdzA1oyORShLPBTVD5457FIs9pEcp6cqFGEIHnKI+mmWqdB2nI8D7UR519E0Q2uAc4imkJyPrGgLmVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2KEmUav; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22928d629faso17513815ad.3;
+        Thu, 17 Apr 2025 21:54:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744952073; x=1745556873; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=miGWfcaPFFeXZKyL4q8RKZf6XsZtwS2QXeSpQEPB9j8=;
+        b=W2KEmUavZk5qHQm0PtN3lRE1Gj1QX888C80FwC3lcK7cJqkIPSSJW+xCjBs8Yh5O9N
+         TqsRYJQ52nInTmzWgzcGUXqhfa1Pe/F2ne4fKcRJlODkmwFayZ5H/YHVOLzclsDcM7+f
+         6tZ/Ga1CwH709TcClhrS6DFCMjRJzKDA5Epa+gb2tX/SiKBdUPuAU6+Q5XWscCwSXhfQ
+         PNglDs9cGo8uCtaTP2muBh3x3BjO1MmBOkcYRgphODUn7+5/Bx3lUzM7mqptLNS0ujZ1
+         bt4A+lKBkI2vpe49DUB8RTEmNlYfuX81Sog74tGMXRmlIx8bNoB/cUOX0Z1D6iR2OyRb
+         luKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744952073; x=1745556873;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=miGWfcaPFFeXZKyL4q8RKZf6XsZtwS2QXeSpQEPB9j8=;
+        b=P9aeIBmGaUhXCpB6ZlB9EW3MBfSIN4JRbGg0OWi6DFhA8GXwQP5QIGpLQeF1xT7MCJ
+         7Y7YBnT3Osd02JGjW7pyYFqqW6mX/Xp4h7u/u/bFnf77epe2552iHc6H1A6Df7NTrkmM
+         M0PmvG1Bup7mUTh+hcSU3J60InnF99NkLJy7a3s9XE1lZvnFvWDuzu1tMN8sNpkpEifr
+         PnheUGc3q/F2N3uZkQkGVXsrhOjD92OhQHiT5bhLTH5RCGyRQ1bnT9Rt7aZDBJozG+5I
+         RyL7XgsasqUkFHB7Y3YWyA0bdAEjF/lbNY4z97nyXcuiwIqo12cxH/s65twbOkWFdQ7K
+         8Xlw==
+X-Forwarded-Encrypted: i=1; AJvYcCUT9+KS2Bcps+4Sp/cxb1fMAGgNpD6qeJwVCkQVwyl6XytVDeYEKfu85B9FF56bzw3OEYrgEZW6UWIJ@vger.kernel.org, AJvYcCWagN/6H6qwBgjoBbYl7HsCSB4UJByG9dL7TUu2U4/j4aOqDnIpuUTiarjyYuc4oY+LnZta1nCPstkNtNeL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkd1kkEochrzPq/fhIPZzOrEojR7MLiR37R7GV6Yn+3uCqd9gT
+	pa6VdNw7Nvb63fcMi3+CzM9aoRAkhz31bS6efdxICL5cDrJ2u4pl
+X-Gm-Gg: ASbGncs9yDxiRV/XK7BseHYs/vr7J26kJVCmlH5Koz+hTwHPcPhcT1wZoRElOuoqS2H
+	HPlwqweDD0p5FBfqOlpSkeEqCsWp5uIMWRT+HZfUMs9gKV6pWj901DKMiQ4HF8+5Qp3vc05TmZG
+	cVAc5A0c8t9/srwHr8cnCrbA1aq3iQlTpDtIcC+ZXE4iMmMHgzsYQiApVsN9TXWwyg4hB1o1l8L
+	shotE9JkETpKHXLCVex2jPwfzTDcKtj4TantddX1Ph+VReefKGO4TQCOelZsriT9ZZ2UFRgcxsQ
+	gX9iYJaCD+PlWENgFnNLO7C+kAUzouOsHXEZLBENpG4vge/PFMcKJwGYHA7MerhnXGvcMg==
+X-Google-Smtp-Source: AGHT+IGV/fWbJMmWtA4WBhTr5NRFS7XNEqC6SndfF5cUfWSxSGh8GbNlHBkKJARuTfoFoRcRWxs5jw==
+X-Received: by 2002:a17:902:f708:b0:224:ab0:9b00 with SMTP id d9443c01a7336-22c535ac5d7mr21475505ad.27.1744952073304;
+        Thu, 17 Apr 2025 21:54:33 -0700 (PDT)
+Received: from [192.168.0.101] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50bf1424sm9178635ad.53.2025.04.17.21.54.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 21:54:32 -0700 (PDT)
+Message-ID: <06b513ac-1734-452c-a967-de3c178ce80c@gmail.com>
+Date: Fri, 18 Apr 2025 12:54:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,61 +81,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/3] scsi: ufs: pltfrm: Add parsing support for disable
- LPM property
-To: Nitin Rawat <quic_nitirawa@quicinc.com>, <alim.akhtar@samsung.com>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>, <krzk+dt@kernel.org>,
-        <robh@kernel.org>, <mani@kernel.org>, <conor+dt@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>,
-        <beanhuo@micron.com>, <peter.wang@mediatek.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250417124645.24456-1-quic_nitirawa@quicinc.com>
- <20250417124645.24456-3-quic_nitirawa@quicinc.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: apple: Add PMU NVMEM
+To: fnkl.kernel@gmail.com, Sven Peter <sven@svenpeter.dev>,
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Hector Martin <marcan@marcan.st>
+References: <20250417-spmi-nvmem-v2-0-b88851e34afb@gmail.com>
+ <20250417-spmi-nvmem-v2-3-b88851e34afb@gmail.com>
 Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <20250417124645.24456-3-quic_nitirawa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: V377Z0ZTJKasj_fyz_2PIJy5GvNWe9xW
-X-Proofpoint-ORIG-GUID: V377Z0ZTJKasj_fyz_2PIJy5GvNWe9xW
-X-Authority-Analysis: v=2.4 cv=Cve/cm4D c=1 sm=1 tr=0 ts=6801d88a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=c46ZkW_Sk1zESUiFrnIA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-18_01,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
- malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504180032
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <20250417-spmi-nvmem-v2-3-b88851e34afb@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-
-On 4/17/2025 6:16 PM, Nitin Rawat wrote:
+Sasha Finkelstein via B4 Relay 於 2025/4/18 凌晨4:14 寫道:
+> From: Hector Martin <marcan@marcan.st>
+>
+> Add device tree entries for NVMEM cells present on the PMU
+The commit message should say PMIC instead of PMU.
+With that in mind,
+Reviewed-by: Nick Chan <towinchenmi@gmail.com>
 [...]
-> +/**
-> + * ufshcd_parse_lpm_support - read from DT whether LPM modes should be disabled.
-> + * @hba: host controller instance
-> + */
-> +static void ufshcd_parse_lpm_support(struct ufs_hba *hba)
-> +{
-> +	struct device *dev = hba->dev;
-> +
-> +	hba->disable_lpm = of_property_read_bool(dev->of_node, "disable-lpm");
-> +	if (hba->disable_lpm)
-> +		dev_info(hba->dev, "UFS LPM is disabled\n");
-How about keeping as debug ?
-> +}
-> +
-[...]
-> --
-> 2.48.1
-> 
-> 
 
+Nick Chan
 
