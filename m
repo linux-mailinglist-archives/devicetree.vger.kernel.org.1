@@ -1,70 +1,68 @@
-Return-Path: <devicetree+bounces-168669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B89A93EC3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 22:18:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A28A93ECD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 22:20:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D7EA17A08C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 20:18:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB38A7B4AE4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 20:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B3523817C;
-	Fri, 18 Apr 2025 20:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC27215076;
+	Fri, 18 Apr 2025 20:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="C4Hwted9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G1z7L7iB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7424F2A1C9;
-	Fri, 18 Apr 2025 20:18:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6ED78F29;
+	Fri, 18 Apr 2025 20:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745007521; cv=none; b=Qt20eBUowZvegcdjvyu2Hg8qNWZNr+BGyKHbgdjI08eGkYqjwZqZtHM+m6DRQ/8QQVh/p/Tcm7kBv1CQZYCDikCy3qv07jL+o2zLFhM24RhiElPGx24RQHHrBrGG2cIzGhZr8EpOHAUalhrHrPUT6QY40GaHfDh+4KsnUi5bHvk=
+	t=1745007622; cv=none; b=H/jZxtB7JHjLx40ePjbhVQw9GZqAB9gG1wF+0D656prsUPAzee2lpVYHvHDc1tZfdZ3/wlpCRvoxpUsuD0MpW6kgQQeU9lbIyNsc8qMtJ0a6wKnx6Z7wf+PkmxOkGdUqSyzdLzw84mqYVZTUz8LxCRtogzW1XQ5fR6UbVxtBo/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745007521; c=relaxed/simple;
-	bh=c8nxojaQOgQcyXY1gD2OR0f7FP2pwNRSCMcMPyqrfEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dLYDa6Bf4zkBDCABDSa+mEKd4Oc+0kpiDr+TLt6Q0JtjLKeXsnJd8soiv9lRozAZvXyGMn7rGxS0iAW7lLMiIME0ZIoskpBSrUSKAjniH9L/bsQkKceKYWAHol3+dValmWTM09Ic3b1TzNCBTjiZJXfDr/6ATLm7bDwm+KLBAnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=C4Hwted9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QwFKe2ISZRDD95Kaksh0NVFyftzgKAb4kAfOTZyXfEY=; b=C4Hwted9QqiCwBlRns8C6ZEFw/
-	tIIAU0L98GYbB6GCZr21h9IL/Qwu0SLqQSVk2ZQa8OcCU7ugu5bcerksfMNb19KVO8uHnw3ZWNkYd
-	hQIWV2G3n0bwhnJJMoreBk8hlXEd9WJV8kE5H6WAjPg063RVGpDIU5JZYkEFuBQ2gI94=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u5sAI-009w9h-4G; Fri, 18 Apr 2025 22:18:22 +0200
-Date: Fri, 18 Apr 2025 22:18:22 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1745007622; c=relaxed/simple;
+	bh=MVeJhPEmeexQpjg9M2wm0OGPImruejcEPAgo67i7vak=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=g6O/lPbP0GXFaZq+8YVQlGIyHxIiPnrss8f++PwnMl82UR+1m5OxCiskvua1SKMEaSjmjlDwtwKHJ8+YX3r1KrFpezoB0fxAEqME9aYwku/gLctkDSSamHAaMUMIHfyhztP0lakYdfLlZy/fXhpKAcOOF8Ck5bz87EF1Z9eTsJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G1z7L7iB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA6F0C4CEE2;
+	Fri, 18 Apr 2025 20:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745007621;
+	bh=MVeJhPEmeexQpjg9M2wm0OGPImruejcEPAgo67i7vak=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=G1z7L7iBIZWWkH41VrRdvYugKdt1ozQMxCWQP7KGbx1wzKt6ryK2IZQBPCinF4yT+
+	 9LigXAdZNnmr5kvxjqyN6onCj/j9ORdK6Oh/dhHVGaCrnerR3Xj/nywRtYZt5zYrCQ
+	 kdoP5Xl1Uz7/MJwBDe/gyqcdr/65UxQhUHPPi7vGTbmgizOdd6RBws9KAry0/JKCcu
+	 u8yoZGvlOlSo1iBG8+UpBI/vKt2fpgWrSBLUxnOzT2C5r74se+wdKRj6QtOLgi5EHx
+	 G2kKC99y073P8WkbUA85xyDJAeLfCW+mHG00pdF7X2Uwy4HchCUeN/nYBxJG2MpXEa
+	 13qxqXA0C9eHg==
+Date: Fri, 18 Apr 2025 15:20:20 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 3/8] mfd: Add Microchip ZL3073x support
-Message-ID: <5a360c39-405c-4108-9800-0f71307804a0@lunn.ch>
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-4-ivecera@redhat.com>
- <8fc9856a-f2be-4e14-ac15-d2d42efa9d5d@lunn.ch>
- <CAAVpwAsw4-7n_iV=8aXp7=X82Mj7M-vGAc3f-fVbxxg0qgAQQA@mail.gmail.com>
- <894d4209-4933-49bf-ae4c-34d6a5b1c9f1@lunn.ch>
- <03afdbe9-8f55-4e87-bec4-a0e69b0e0d86@redhat.com>
- <eb4b9a30-0527-4fa0-b3eb-c886da31cc80@redhat.com>
+	chaitanya chundru <quic_krichai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+	amitk@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v5 3/9] PCI: Add new start_link() & stop_link function ops
+Message-ID: <20250418202020.GA81734@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,21 +71,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <eb4b9a30-0527-4fa0-b3eb-c886da31cc80@redhat.com>
+In-Reply-To: <20250412-qps615_v4_1-v5-3-5b6a06132fec@oss.qualcomm.com>
 
-> > > Anyway, look around. How many other MFD, well actually, any sort of
-> > > driver at all, have a bunch of low level helpers as inline functions
-> > > in a header? You are aiming to write a plain boring driver which looks
-> > > like every other driver in Linux....
-> > 
-> > Well, I took inline functions approach as this is safer than macro usage
-> > and each register have own very simple implementation with type and
-> > range control (in case of indexed registers).
+On Sat, Apr 12, 2025 at 07:19:52AM +0530, Krishna Chaitanya Chundru wrote:
+> As the controller driver already enables link training as part of
+> its probe, the moment device is powered on, controller and device
+> participates in the link training and link can come up immediately
+> and maynot have time to configure the device.
 
-Sorry, i was a bit ambiguous. Why inline? Why not just plain
-functions. Are there lots of other drivers with a large number of
-inline functions? No. inline functions are typically only used for
-stubs when code is not being built due to CONFIG_ settings.
-
-	Andrew
+s/maynot/may not/
 
