@@ -1,126 +1,166 @@
-Return-Path: <devicetree+bounces-168408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B40A92E5F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 01:32:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1FFA92E93
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 02:03:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9229467EDF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Apr 2025 23:32:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A0418A03DF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 00:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A4B20E02A;
-	Thu, 17 Apr 2025 23:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1BCB29A9;
+	Fri, 18 Apr 2025 00:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OW6CQJvs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bWHSHncb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C5D1DF260;
-	Thu, 17 Apr 2025 23:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84C8171D2
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744932772; cv=none; b=i7c0r5m7jJsx/UQ314LLXENjt+xpkaRpzJ2JfD4un49gPb2gg2wBLuoFRyCqRLQMgM8Nywr4MLnTkYtX+elHZjI/vkrRn7cei2rr5Dw/lY8LxCm5GjCS9AaCqdoy5mUKI+y61wRW9W0mAjGyoffhkvfaqY4tsv4uu0PFlNt6W1w=
+	t=1744934606; cv=none; b=KRsvxrd5tLEyWlUvGEx4HMI25dipgt90FunK9XwaXgksxnPzfUvhmKXaj9duGuSl1fZ7H/9kA4u2/iMRNVXUfOlx0/qv0HsniMz66wCK6vdIBUj2TQ6otBgG4MBR42lrZPTCGAFAnq7alGPvdFAhtfqaa5DsR8kag0u6He31kyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744932772; c=relaxed/simple;
-	bh=NjeDRiJTwUo1cP3hkUv6xDm1gfr1mj3fB9ermM3sWkI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=mSYw/+bmSuVeHS4GnXamFBjIx/U+6A6we4b48Q8TClUjIrCjQH5RHv8mVg42hnslsdi0rS1dt13MTTdY8nLz+KzsUy92SYfc6nPNafLzxoJW2e8V6Ydue5Eb6Wt9qxobty6dvAt1f+Gbn61bHOsFziU+Ay48Fxd4OvmcPyqBGq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OW6CQJvs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 31C8EC4CEEA;
-	Thu, 17 Apr 2025 23:32:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744932772;
-	bh=NjeDRiJTwUo1cP3hkUv6xDm1gfr1mj3fB9ermM3sWkI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=OW6CQJvs7mRM8Ph4luHzB5TaTF/gDC0wIDwXS+GHSid/HWyY1ZfwUKwWc1BAZgOIq
-	 Q3o98pAK+tt/DmxJPBEZuy+EXseDivse2c8XsEUTc7pL/h+VGzVC3FsJqi4FbKvhAA
-	 UKA2uDXMHQOtT9j2/8Ege7CcHaLs1ezhtfZCC65c3oBV60Qo614sRF/bb9ajKT0Joz
-	 cpuLFja2dsor6zIobA9IS3EVzklgprGS9Dzn5QLu/7S64VbtkNoxDYGbwAcJCcPW3g
-	 8hjN65fsgewJ7aAuetF07k+Nb7judNAoXsaBp93TA58OfR8qE3Pe5ADfIvHQIrAa/k
-	 8CgSu3zoYTy0g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F3D4C369C2;
-	Thu, 17 Apr 2025 23:32:52 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Fri, 18 Apr 2025 01:32:49 +0200
-Subject: [PATCH] ARM: dts: allwinner: orangepi-zero: Enable audio codec
+	s=arc-20240116; t=1744934606; c=relaxed/simple;
+	bh=xkDQfit0Ny3iyzLvzjqr923cX1Xhwn74NDE/lifPT18=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PMmr09BMFXcec6oPNLFu5EMMUXDPau/AkPvyCqqxdjgOdnn9f1oIYnPP2zJo3QZFBaO1+fSEKZnoMvsCqsEiLNWjLFdFHVGSxItzTJF3aX/iTHnGASw6G5Zm0fVPAJYbVbI99Je84iCMyZ9PTXUFjGznolMyirSQWKw6rUJQZRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bWHSHncb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53HClMTk022813
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=jJkocawK74IHVR8GG2dYux9L
+	W2UbP5wOCkAP2RU5Rpw=; b=bWHSHncbmPt6gikdLZmn1hyrWc0tm9hKLyenD2UF
+	lshwKyh6ufPC+1ezDuhAOcXZGnfhOwo4CLMtQYAgU2kV4ShVqCSvCfYXW7A/2LyW
+	BYWops45xStt4Yaps3vvBnmr6ciPF/LhixIctgQt5yuQuk3fSp/tkzzUkh/Nuiiv
+	65w0RYSnkd+axqZpjNY6fdNgixFPYnOwjuU7HIzkix8V6U1ovIMvW/StzfNPbS9+
+	g8YHOu/E5M3qFYlin/30kFNT5G3S2adUtLQeeqF9P8Opx/lGo5Z+PUCg+/Oj0YKP
+	lYF+icWgyV/SFO73vVd1dawj1d3l095re5/ow88nxFm4qA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbq095c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 00:03:23 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-306b51e30ffso1098942a91.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Apr 2025 17:03:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744934603; x=1745539403;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jJkocawK74IHVR8GG2dYux9LW2UbP5wOCkAP2RU5Rpw=;
+        b=Yf9q9bUa0qlshxe4ZZYvDMAcZFHBT44Sa3GPovjDywNjeAOFvOy0pEBMvrUcjtsJyG
+         3n/GBtExipuD/xSGqVB/Uj59pA3x+wtwnorfiiW0+4bOZLDU3tR9NuYk8NjMIL1J4lv3
+         kc1M1StJmxYdr/KuRF6pMoNllE5aFHUlB7IoQjntyBA9Nv8T6ImJLsvXwEp1d3tGd+Wp
+         9sEUv+UdXx1gLUNjxggVzI34J3c3AvOj6vFp6MfFdLyr8G+qiPC58wAgbaUtdowXbwR1
+         AwsxJw1s6mKIuOsFpAzEEO+VvUd8aIg3xL+hjMCAeEI6bcrpzBxKtpoKTt5LgF5cyt8q
+         z4FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXh3OddaoAjeQfqWzm/Oanfsg+cnHd2RIP0q30Cn6kMEowjbtGQWJmlcIjqedhgyuQkHwjf+9/in1es@vger.kernel.org
+X-Gm-Message-State: AOJu0YytKS59nTvcZLiHF62orPyOripOGWtIwzOZLcSaZP3VU0zvym/k
+	wxGkl4uNSw99et6IhzfbErbJouiMr2kjoIKpRmNFdA44JqXnOFemdAKstugZYfCHyurBgrFytsW
+	CWOtD4miwvfOIdTJYl05HYrmXLoJrnzKxHSBDq9/Hn+b1b0/6pVf0qoQscl+S97n337gt/YhB1w
+	aEJSppAOvIgV+34jSH6WYp9YKlvkGxWGuJx0w=
+X-Gm-Gg: ASbGncsOnLU6R26nylMsxyZBHDCPvB2EEoY1dKgZLCaiwdN9vWgWi48/WciMtmr9lzw
+	sM9vYNtRHYNO2y666/7mdwUMoWjaWzPbP/jhyYPEvexxxBfUNM2jq+tR4Er1+E/ct7Z9AT6yOB6
+	qUFZGx/wXdQnpEIfWVbaVV41of3g==
+X-Received: by 2002:a17:90b:2807:b0:2ee:ee5e:42fb with SMTP id 98e67ed59e1d1-3087bb4d0bbmr1348849a91.13.1744934603067;
+        Thu, 17 Apr 2025 17:03:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHt3zEHzT/caZi4wnZ175L8zlXV3e1qMB/QyXjcrkOHqa4wh1gNr+1LZYEHvAQ/csu/mkfLj9QPTnPMCwx+vTk=
+X-Received: by 2002:a17:90b:2807:b0:2ee:ee5e:42fb with SMTP id
+ 98e67ed59e1d1-3087bb4d0bbmr1348781a91.13.1744934602616; Thu, 17 Apr 2025
+ 17:03:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250418-opz-audio-v1-1-4e86bb5bc734@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAKCPAWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDE0Nz3fyCKt3E0pTMfF0LSwMLE8tki6Qko1QloPqCotS0zAqwWdGxtbU
- AXPuJz1sAAAA=
-X-Change-ID: 20250417-opz-audio-890849c8bb2e
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744932771; l=1299;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=k/eQQFQjUWyBWBOWbfy/ABZzzwLp3ynUUvGy69783PQ=;
- b=XFDURnfsrz3fEywg3lhFqDKzoRTAi/FcZG9XBdQ96YdDa7CZFBotwe5QPeCWFtnsRKebQD/SK
- u4ZHjkpmgcCB6noff2Vt0VoZe7aulUZBUyOZs83ORW4NTGoV7Puxm/G
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+References: <20250417-sar2130p-display-v4-0-b91dd8a21b1a@oss.qualcomm.com>
+ <20250417-sar2130p-display-v4-1-b91dd8a21b1a@oss.qualcomm.com>
+ <20250417-arboreal-turkey-of-acumen-e1e3da@shite> <7b559f03-f131-435e-95de-b5faee37b4d5@oss.qualcomm.com>
+ <a8f7f571-e81a-49d6-a40d-895960165039@linaro.org>
+In-Reply-To: <a8f7f571-e81a-49d6-a40d-895960165039@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Date: Fri, 18 Apr 2025 03:03:11 +0300
+X-Gm-Features: ATxdqUHUTgGLYvTODPooo91SkskG-gwTNA2jG92kWlujJbztIUTMTuUwe0XuE_s
+Message-ID: <CAO9ioeWgtsTtMmqm4w4KTYYSVOWpj1Sgb6D4oy+54wBHU_DZ8g@mail.gmail.com>
+Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm: dp-controller:
+ describe SAR2130P
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-ORIG-GUID: o4iKibUvDAenNSLTWqra7krCfr7LUJNj
+X-Proofpoint-GUID: o4iKibUvDAenNSLTWqra7krCfr7LUJNj
+X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=680196cb cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=hD80L64hAAAA:8 a=ni2JVXtQXpgTILOyzusA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-17_07,2025-04-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 mlxlogscore=562 clxscore=1015 impostorscore=0 malwarescore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504170178
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Thu, 17 Apr 2025 at 15:04, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 17/04/2025 13:12, Konrad Dybcio wrote:
+> > On 4/17/25 8:03 AM, Krzysztof Kozlowski wrote:
+> >> On Thu, Apr 17, 2025 at 02:16:31AM GMT, Dmitry Baryshkov wrote:
+> >>> From: Dmitry Baryshkov <lumag@kernel.org>
+> >>>
+> >>> Describe DisplayPort controller present on Qualcomm SAR2130P platform.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>
+> >> Addresses do not match. You re-authored the commit, so now everywhere is
+> >> mess.
+> >
+> > It's git's fault with replacing the linaro address based on .mailmap
+> No. You can easily see:
+> $ git show 51a6256b00008a3c520f6f31bcd62cd15cb05960
+> top author is like you say - mailmapped, but Sob is my @samsung.com
+>
+> $ git format-patch 51a6256b00008a3c520f6f31bcd62cd15cb05960 -1
+> What is in "From" field? Samsung, not mailmapped.
+>
+> I believe that's a known problem in b4, already reported. I don't
+> remember if this was fixed, but till it is - you need to use some sort
+> of workaround.
 
-Line out playback and microphone capture work, after enabling the
-corresponding ALSA controls. Tested with the Orange Pi Zero interface
-board, which is a (mostly) passive adapter from the 13-pin header to
-standard connectors (2x USB A, 1x Audio/Video output, 1x built-in
-microphone).
+No worries, I will resend.
 
-  https://orangepi.com/index.php?route=product/product&product_id=871
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
- arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts
-index 1b001f2ad0efd2e77218742efe6d8edfdd18a816..d65ede3dd6ed1206248a39c91e46065684e7ba29 100644
---- a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts
-+++ b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts
-@@ -112,6 +112,14 @@ wifi_pwrseq: pwrseq {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing =
-+		"Line Out", "LINEOUT",
-+		"MIC1", "Mic",
-+		"Mic",  "MBIAS";
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_vdd_cpux>;
- };
-
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250417-opz-audio-890849c8bb2e
-
-Best regards,
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+With best wishes
+Dmitry
 
