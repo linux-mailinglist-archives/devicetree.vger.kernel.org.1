@@ -1,231 +1,182 @@
-Return-Path: <devicetree+bounces-168587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10CEA938C4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:37:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A09EFA938DD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 16:54:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42C821B61F6F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:37:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362AD19E7167
+	for <lists+devicetree@lfdr.de>; Fri, 18 Apr 2025 14:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98AB81B4243;
-	Fri, 18 Apr 2025 14:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3231D61B7;
+	Fri, 18 Apr 2025 14:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DtEKHrLW"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="eNWgBPiU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682881E492;
-	Fri, 18 Apr 2025 14:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E70EEEC8
+	for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 14:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744987042; cv=none; b=S/PvtNhHK692OukhvKN+gdB4P3V+leOxYWlEfrDJtZCWqpI3lobyRyVw3iILpXf4bLN0w5ZO13cS0FLDypMXbVabVzhqyyxweUj0tFIcbVZNHEgdOl6hA8iNUEyzJ5kSdAu9KHbfxMxQ7Y+GuK3511+DbUcFCHv/uApo6Y79Efw=
+	t=1744988049; cv=none; b=FEDg3/tEixrfyn7p3zIa6P8hVljJH/eHjsj9hWcM2AD4nCndECMxCNO/pxpJWuI/QtMQjZHRUVIOP6LS/r+4SCkUW8q/0fvPztSHjann95zmBxK0XxjgqXcgyBJeo9/HV6vqmtCvaXWjJtgH4pH4bcpf0AxtT+qbpRcxMS2YhGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744987042; c=relaxed/simple;
-	bh=rElrW8ZwB8SCquR/fgdOOeqkQMqqBIIiDIb2R7RWjdc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l6ElXT6JjbMeJ/fz+qqkDFO3oifSKOOTZUC0rEnqXtmLNdoEpvj6GEOvYBsuMqjMxnAjk2EBmbQOwHGBYZWxiTB+O+IQ17HzTAS7rBheZrd+FEJNnfDsBhgg0zzrw3iGxlwp6O/34XyjtnJd5yqd+NRhd3zWcNs5Di3HwELVIww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DtEKHrLW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98500C4CEE2;
-	Fri, 18 Apr 2025 14:37:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744987041;
-	bh=rElrW8ZwB8SCquR/fgdOOeqkQMqqBIIiDIb2R7RWjdc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DtEKHrLWgdLuVTaMvCpwtPF6eL9aLLrX8/h2ZpO69r9WayECvo2W5pgxwztZrbvBD
-	 nYhFojsQ6udK+V5YdcB27PCrksIelixTxjPzoQgH9vAhIptvDLo7l4zCnmVEpZTMd4
-	 eDs37SrTJAJB+9VCJivizQEQkIqv0zdJrjw3K/iYGK/gs/5GdspzwnfzgAtiU1CKag
-	 ZkLhgRVmCjv+AUgadXFRZyzquXUCYhxw7tQjbgLS62X+Br6vDpt9aNzMVu2fJvQ4RS
-	 tipNidGax5NqxdN2TmILUByxABCpqQcnXgLjdFeCS4P0nrWXFZ5RsyfVQnw1KTSw/F
-	 IWriTn2kfx0eQ==
-Date: Fri, 18 Apr 2025 15:37:14 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?=
- <noname.nuno@gmail.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Message-ID: <20250418153714.501d3cb0@jic23-huawei>
-In-Reply-To: <ef90f91a-c5eb-46ce-934f-93ff1a18af14@baylibre.com>
-References: <20250412-togreg-v4-0-cb9e5309b99d@analog.com>
-	<20250412-togreg-v4-3-cb9e5309b99d@analog.com>
-	<ef90f91a-c5eb-46ce-934f-93ff1a18af14@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1744988049; c=relaxed/simple;
+	bh=dlNXHuUORBV8qyM4a+/YpF7hE5uuPIDHKUaPv4eKnS4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NVx5/IoH9POpvh/uO8X5PSBXs93aiq9VrNizSujLfOw76Yc6DO4g7olLX7yqF0YNzgANVVI4cbyCLjc2b7rO6ZFJ8iKgISm7u0MR9ibDmqQepYQU2TazalUEgAG0wRcjyGxYP6Q8ZZ5I1/Q8ioCS+4XhHGJ+p38a2FJ1e68WnT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=eNWgBPiU; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-476a720e806so16510051cf.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 07:54:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744988046; x=1745592846; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HpNDOPRCFGOfXdIE71HVXdbzEYefPrTNzqdoa96DBP0=;
+        b=eNWgBPiUZBBGywto8apaQKwi0lvLeSL9o8o75LMShhgWvF7u9JpTMdOij00XXoRr+Y
+         2YEvPfNzv8KOURvdDiyTu/pIWrX4o95B+wENzOQBgCFIH63/p0iImXAMCJuR36JamtIk
+         9G/K6VapKRl25yzpMIne3PAKSCFZNP6hjYK88sBufFg1NurCtfdyJZg6Rjxn21X8EKzV
+         /sQYwA94VV1kRg9j2f96mykISRusQoeUck0aKPmE1y6uDl+0sEjN6SVggHF92NG8qbMq
+         sBrUa+RVBaLmgVktiUHM0o6DM9nx1k3t/5JUJjHwKuSDZsmguusYhAlF9+xhY445he31
+         BsxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744988046; x=1745592846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HpNDOPRCFGOfXdIE71HVXdbzEYefPrTNzqdoa96DBP0=;
+        b=gplJKMwBlKgdyy+skmKzVUz0sIg+ACuni89si9RFPvzMYzomsKWC3dIjpN44djgB94
+         ziBWsI83+vO/Kl1nHfzzcRmERWBCknd0Iz93bqHsunboB77eo7eYov4DT5tM4pKkWHqY
+         Ewxy3oA7s6+6h/W+JAfmN5CnxiqGHW4JcWIs6WuNyBnZ+ablQmVBbcQffW2erkDMedtf
+         hElvOEcZZwYzwE1eM9JIhIYefpx28ldEsgwI8Gi+hCR0gR/KyYEsWP+uWTSSFhdRlJwa
+         Ds8SlJlzUhODRLOanbje/tReefTVIBfRZnZQoXPgX47yZhKayB7mqepxdGX3QPLHgSXG
+         NAiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmkKUIwhCwg7pDYw0KZV3ST7Bxq/DzOEqAsFyYUzpyDDwhZvfSmcIQPcJoR5K0bKblXFnBBU2yvqRl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5vDEGpUD1FYM9SCd5iMAXMcoXzizhy154n8NjDnR+zntmqgVO
+	XV27smP6D14nWeOq6rc5omosD/eyvCp+kCxtz4mvUy12MkE/m4LT7zuLiR39AsE=
+X-Gm-Gg: ASbGncunAYoSXx4bs9wxrNnmfxZGRJNR1hAZom0GXq3MLrAfpWiWq7rlGqpEnbLvvm7
+	j1yyzsVNBjHTcXLVsNQ1JdrEAEVkmzQgGhMjXGvvQwOCGBdPbr0IbWYHcdOAsWGorLIFBt12M+X
+	K+D5VvQRJ+kIDzm7Yjq4UaOCAs9PisLS9OhMOcXx3iz4MnwI7y5iVHJWkifFqyzzgHtKeDz628Q
+	opFi5vndBwUQcKs8n+zO2Avc1sKLf6xY4kiB2nBUr7+zBO48ojyOO6UwY5CmrVph31GVu7Jl+cb
+	FbzopJohkBDpfrJypxnDCsjjLUS8n0FYvMf6UOH6yRjCeHhDWCLRpYvYK9ZrZd5qAMG8zOBN7rD
+	Sujpn8VE5cosIR/3oyrBMgSCk
+X-Google-Smtp-Source: AGHT+IHiEG1eSrMtmu7ABawgdFJIO6lV2wB6Q3AXU/kHDB1pdQpbBxefqDVD369wLGK+b6k5u7CG9g==
+X-Received: by 2002:ac8:5a92:0:b0:476:7327:382b with SMTP id d75a77b69052e-47aec396ac0mr52829231cf.16.1744988046352;
+        Fri, 18 Apr 2025 07:54:06 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47ae9c16ddesm11329201cf.3.2025.04.18.07.54.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 07:54:05 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: p.zabel@pengutronix.de,
+	dlan@gentoo.org,
+	heylenay@4d2.org,
+	guodong@riscstar.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/7] clk: spacemit: add K1 reset support
+Date: Fri, 18 Apr 2025 09:53:52 -0500
+Message-ID: <20250418145401.2603648-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 16 Apr 2025 14:23:11 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+This series adds reset controller support for the SpacemiT K1 SoC.
 
-> On 4/12/25 12:57 AM, Kim Seer Paller wrote:
-> > The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are
-> > low-power, 16-bit, buffered voltage output DACs with software-
-> > programmable gain controls, providing full-scale output spans of 2.5V or
-> > 5V for reference voltages of 2.5V. These devices operate from a single
-> > 2.7V to 5.5V supply and are guaranteed monotonic by design. The "R"
-> > variants include a 2.5V, 5ppm/=C2=B0C internal reference, which is disa=
-bled
-> > by default.
-> >=20
-> > Support for monitoring internal die temperature, output voltages, and
-> > current of a selected channel via the MUXOUT pin using an external ADC
-> > is currently not implemented.
-> >=20
-> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> > --- =20
->=20
-> Looks very good now. :-)
->=20
-> A made a few comments but maybe nothing serious enough to require a v5.
+Most of the the clock controller driver that Haylen Chu had out for
+review has been accepted (at v8).  So this time this series is
+based on the "for-next" branch in the SpacemiT repository:
+  https://github.com/spacemit-com/linux/tree/for-next
 
-We have plenty of time in the cycle, so I think I would prefer a v5
-just tidying up these last few bits.
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v5
 
-Thanks,
+Between version 4 and version 5:
+  - Added Haylen's Reviewed-by on the second patch.
+  - Added Philipp's Reviewed-by on the third patch.
+  - In patch 4, added a const qualifier to some structures, and removed
+    parentheses surrounding integer constants, as suggested by Philipp
+  - Now based on the SpacemiT for-next branch
 
-Jonathan
+Here is version 4 of this series.
+  https://lore.kernel.org/lkml/20250414191715.2264758-1-elder@riscstar.com/
 
->=20
-> > diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..ffa04f678b86d8da6f5e47c=
-35c265b6648121843
-> > --- /dev/null
-> > +++ b/drivers/iio/dac/ad3530r.c
-> > @@ -0,0 +1,506 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * AD3530R/AD3530 8-channel, 16-bit Voltage Output DAC Driver
-> > + * AD3531R/AD3531 4-channel, 16-bit Voltage Output DAC Driver
-> > + *
-> > + * Copyright 2025 Analog Devices Inc.
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bits.h>
-> > +#include <linux/cleanup.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/device.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/kernel.h> =20
->=20
-> Usually, we try to avoid including kernel.h - it includes too much.
->=20
-> > +#include <linux/module.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/spi/spi.h>
-> > + =20
-> ...
->=20
-> > +
-> > +static int ad3530r_setup(struct ad3530r_state *st, int vref,
-> > +			 bool has_external_vref)
-> > +{
-> > +	struct device *dev =3D regmap_get_device(st->regmap);
-> > +	struct gpio_desc *reset_gpio;
-> > +	int i, ret;
-> > +	bool has_range_multiplier;
-> > +
-> > +	reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(reset_gpio))
-> > +		return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> > +				     "Failed to get reset GPIO\n");
-> > +
-> > +	if (reset_gpio) {
-> > +		/* Perform hardware reset */
-> > +		fsleep(1000);
-> > +		gpiod_set_value_cansleep(reset_gpio, 0);
-> > +	} else {
-> > +		/* Perform software reset */
-> > +		ret =3D regmap_update_bits(st->regmap, AD3530R_INTERFACE_CONFIG_A,
-> > +					 AD3530R_SW_RESET, AD3530R_SW_RESET);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	fsleep(10000);
-> > +
-> > +	has_range_multiplier =3D false;
-> > +	if (device_property_present(dev, "adi,range-double")) { =20
->=20
-> Since this is a flag, I think device_property_read_bool() is preferred.
->=20
-> > +		ret =3D regmap_set_bits(st->regmap, AD3530R_OUTPUT_CONTROL_0,
-> > +				      AD3530R_OUTPUT_CONTROL_RANGE);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		has_range_multiplier =3D true;
-> > +	}
-> > +
-> > +	if (!has_external_vref && st->chip_info->internal_ref_support) {
-> > +		ret =3D regmap_set_bits(st->regmap, AD3530R_REFERENCE_CONTROL_0,
-> > +				      AD3530R_REFERENCE_CONTROL_SEL);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		st->vref_mv =3D has_range_multiplier ?
-> > +			      2 * AD3530R_INTERNAL_VREF_MV :
-> > +			      AD3530R_INTERNAL_VREF_MV;
-> > +	}
-> > +
-> > +	if (has_external_vref)
-> > +		st->vref_mv =3D has_range_multiplier ? 2 * vref / 1000 : vref / 1000;
-> > + =20
->=20
-> I think this would be simpler as:
->=20
-> 	st->vref_mv =3D range_multiplier * vref / 1000;
->=20
-> where range_multiplier is 1 or 2.
->=20
-> > +	/* Set operating mode to normal operation. */
-> > +	ret =3D regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_0,
-> > +			   AD3530R_NORMAL_OPERATION);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (st->chip_info->num_channels > AD3531R_MAX_CHANNELS) {
-> > +		ret =3D regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_1,
-> > +				   AD3530R_NORMAL_OPERATION);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	for (i =3D 0; i < st->chip_info->num_channels; i++)
-> > +		st->chan[i].powerdown_mode =3D AD3530R_POWERDOWN_32K;
-> > +
-> > +	st->ldac_gpio =3D devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_HIGH=
-); =20
->=20
-> I guess it doesn't matter which state this starts in but GPIOD_OUT_LOW se=
-ems
-> more natural since we toggle it high the low later.
->=20
-> > +	if (IS_ERR(st->ldac_gpio))
-> > +		return dev_err_probe(dev, PTR_ERR(st->ldac_gpio),
-> > +				     "Failed to get ldac GPIO\n");
-> > +
-> > +	return 0;
-> > +}
-> > + =20
+Between version 3 and version 4:
+  - Now based on Haylen Chu's v7 clock code, built on v6.15-rc2.
+  - Added Krzysztof's Reviewed-by on the first patch.
+
+Here is version 3 of this series.
+  https://lore.kernel.org/lkml/20250409211741.1171584-1-elder@riscstar.com/
+
+Between version 2 and version 3 there was no feedback, however:
+  - Haylen posted v6 of the clock series, and it included some changes
+    that affected the logic in this reset code.
+  - I was informed that defining CCU nodes without any clocks led to
+    warnings about "clocks" being a required property when running
+    "make dtbs_check".  For that reason, I made clock properties
+    optional for reset-only CCU nodes.
+  - This code is now based on v6.15-rc1, which includes a few commits
+    that were listed as dependencies previously.
+
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Added Rob's Reviewed-by tag on the first patch
+  - Renamed the of_match_data data type (and one or two other symbols) to
+    use "spacemit" rather than "k1".
+  - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+    sympols with "reset" or "RESET" respectively.
+  - Eliminated rcdev_to_controller(), which was only used once.
+  - Changed a function that unsafely did a read/modify/write of a register
+    to use regmap_update_bits() instead as suggested by Haylen.
+  - Eliminated a null check for a pointer known to be non-null.
+  - Reordered the assignment of reset controller device fields.
+  - Added a "sentinel" comment as requested by Yixun.
+  - Updated to be based on Linux v6.14 final.
+
+Here is the first version of this series.
+  https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
+*** BLURB HERE ***
+
+Alex Elder (7):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  clk: spacemit: rename spacemit_ccu_data fields
+  clk: spacemit: add reset controller support
+  clk: spacemit: define existing syscon resets
+  clk: spacemit: make clocks optional
+  clk: spacemit: define new syscons with only resets
+  riscv: dts: spacemit: add reset support for the K1 SoC
+
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 +
+ drivers/clk/spacemit/ccu-k1.c                 | 330 +++++++++++++++++-
+ .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 +++++++
+ 4 files changed, 482 insertions(+), 23 deletions(-)
+
+
+base-commit: 279d51ad9f6dc0c667f6f141a669b2c921277d1a
+-- 
+2.45.2
 
 
