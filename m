@@ -1,156 +1,127 @@
-Return-Path: <devicetree+bounces-168766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC93A94472
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 18:15:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F45DA944C5
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 19:10:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7826117909A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 16:15:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A16E7ACFDF
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 17:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEDE5FDA7;
-	Sat, 19 Apr 2025 16:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54DDD1D61B7;
+	Sat, 19 Apr 2025 17:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kAyMGADY"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="E9E+SLpW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E878F77;
-	Sat, 19 Apr 2025 16:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745079349; cv=none; b=WOX9rSn6r7cDEP1iEjbdeVK6SiCIhEPcN1CGG9F7RyK+xHLukfsDQkASCPtlVUPYfhDCA/B+OFar2ItON7vtHUT6vgXlnPdvz2KN+bGXqiY1SeGBPIDgd2hz1ssFPPTBnZ9Q/y/u2Tw31F1ytV1pVFbn34ckYMQAw97dWveRU5Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745079349; c=relaxed/simple;
-	bh=Cmo2UhTaXsgRgiUjO3fcZDWhOPOsuWohkxEDQ85u2eA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Y4Sff0OSbA7dKv29oUNCXgCUs/EqfK+vZ6Wx//faaXyK+0jNSL1y8F0M7Te29fG7eKYuQqgvO2a6vPwAs2qNGHFG4vUcVRTDMt0iJpamahmr4/VmyHVTxL/Ha4rFT/VKbR8lr4CUaWGzP8M89/c0rhx4GmSC9n+iUnClbb6Slys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kAyMGADY; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53JGFajR524814
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 19 Apr 2025 11:15:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745079336;
-	bh=buWGzw4SE9V2hN3R6H8rNumoiIUsgBjz7GkDcf7R8Fg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=kAyMGADYTNjGpP9Ph+/+fvtINwW9fYM2IuO+uLJjEQqVCiM1Mbe0H7btQu+utg0eo
-	 Slo8+BnxrqUCEQe2u1oif0FT58DxggVsDUqZh5X+n6LOpjORgURXLY9w6OV+4lmr8T
-	 79qUPI83/UCjAJALiBmMZiOfydkCFzWOZ6ihBwt0=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53JGFaZI092901
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 19 Apr 2025 11:15:36 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 19
- Apr 2025 11:15:34 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 19 Apr 2025 11:15:35 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53JGFU4H086384;
-	Sat, 19 Apr 2025 11:15:30 -0500
-Message-ID: <8017c015-73aa-4807-a177-d5391e073981@ti.com>
-Date: Sat, 19 Apr 2025 21:45:29 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDBB3BBC9;
+	Sat, 19 Apr 2025 17:10:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745082646; cv=pass; b=aFTpdGuGRQh3Uv2+svB14Y9Ko+Br9XqK+vb5H61pv3mKiPlKjB1Bb47/jLGEHDfMPRY1++1/1GtzZ3KJSHJ8Uda7heEDd/0zQZ/V2yCAnqZJRfLMk284Uc2oQxAHSfF7QcdvUgAF8yHulC1GHUHNaUwRJ89D/LZZTNiS9lP3ODU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745082646; c=relaxed/simple;
+	bh=FScS832+VFdZStqXHlWridVxQQzyABZcH6GmzQcbCaA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QYaTBL0P/0Hi6S4qQUkgYI1XvWLqsi8COE9VgsvHJiKbz5FH4HRp5DVjmjbDf658bxMQPoLmkwt9ylaoQRTDexkoNDwN2KvNLArir/VLOYud3/PFMtCLyvrdpXyVfkLfuAjQXPBYOrMWfAA7GWuYIyubheT/DbvC/IOmAAM4A2U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=E9E+SLpW; arc=pass smtp.client-ip=136.143.188.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1745082620; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=kUPtjhyulj4lKNZSr5Q506nPr9Rhwq7BjADHGzZk6aGdlfuF0hQhyDy3kmqP65sKUMmiNlMlCSeCNx7cGlXnSuxeQdx8nEnx8TUTGJl2HjuYdl6YqOqcD6u1boF35DwZ7dQVuaLlpJsgRUywBBNIj2CX8ME1LX6BcANYYnebhcw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745082620; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=zc6hW+RokbtJ0HkiqvbdqKYh3HQtrMeP7KANf84SHQU=; 
+	b=DYOPJQgPAPgdubZGMf+TVfjRYjlp3smGoeUOiTPOoNkin0Sb94UIJnCTTiNbpp2lTzmzhMPZ3ZhEylRvr6KJiX+9LyXEeFZsE3S3fxGDgF00dHVCgyzKdgUK0QpKTzhtUq3Xiel435HdOJNX8YcVI0SAADxURLKaWEtbb2dfyPA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745082620;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=zc6hW+RokbtJ0HkiqvbdqKYh3HQtrMeP7KANf84SHQU=;
+	b=E9E+SLpWImkk9kyjBZ1vaTepXEWMnulIwzrUi0fqLjZbcqni5rOxVuJiDe5+hTW7
+	aK8C/+dfGrK4x86Gbbq4XPWNRjvctpehJZb3NPHJOJW7qNEz86IdpRxKs9wbwU0J7FE
+	CGm52atno1IotD7UZ3O0vriwGUDn0tD4SPL7xPCs=
+Received: by mx.zohomail.com with SMTPS id 1745082617967477.42022053116546;
+	Sat, 19 Apr 2025 10:10:17 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH v2 0/2] reset: canaan: add Kendryte K230 reset support
+Date: Sun, 20 Apr 2025 01:09:43 +0800
+Message-Id: <20250420-k230-reset-v2-0-f1b4a016e438@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
-To: Matt Coster <matt.coster@imgtec.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
-        Alessio
- Belle <alessio.belle@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        <u-kumar1@ti.com>
-References: <20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com>
- <20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIANjYA2gC/1XMQQ7CIBCF4as0sxYzUKrFlfcwXShM7aRaDGCja
+ bi7tDuX/0vet0CkwBThVC0QaObIfiqhdhXY4TrdSbArDQpVgxq1GFWNIlCkJGpl2qM99EiugXJ
+ 4Ber5s2GXrvTAMfnw3exZruvKaDTqj5mlQOHQOiulaQ3dzv6dHt6Pe+uf0OWcf1S31ZSmAAAA
+X-Change-ID: 20250404-k230-reset-32987c6f0ed5
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745082602; l=1733;
+ i=junhui.liu@pigmoral.tech; s=20250223; h=from:subject:message-id;
+ bh=FScS832+VFdZStqXHlWridVxQQzyABZcH6GmzQcbCaA=;
+ b=ntVwPG4tNYZHH4Spqv0J8dovVCQpHAe6gzM+PcyDRQMdVcz7dFr1zaHI000Z7hcmCKFs59mNq
+ QjQdVUUgCr6AtZhupq0pmKpeP3w0owPe5h/zG0bUbr+aMRJBDJ4/1id
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=ZRZkOjG47iI+To+oAo2R4KIpMwtz8r0TffJ5/nO2tcg=
+X-ZohoMailClient: External
 
-Hello Matt,
+This patch series add reset controller support for the Canaan Kendryte
+K230 SoC.
 
-On 4/17/2025 2:40 PM, Matt Coster wrote:
-> The J721S2 binding is based on the TI downstream binding in commit
-> 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-> but with updated compatible strings.
+Tested on CanMV-K230-V1.1 board. Some of the HW_DONE and SW_DONE reset
+type was tested by reseting the submodule and checking the reset
+register value[1]. The CPU reset type was tested by a temporary rproc
+driver[2][3].
 
-Downstream kernel[1] sha 5657fc069e8b3 ("PENDING: arm64: dts: ti: 
-k3-j721s2-main: add gpu node")
+link: https://gist.github.com/pigmoral/cc45de673775575750ac7fe49d4456a2 [1]
+link: https://github.com/pigmoral/linux/tree/k230/rproc-cpu0 [2]
+link: https://github.com/pigmoral/linux/tree/k230/rproc-cpu1 [3]
 
-also has assigned-clock-rates.
+---
+Changes in v2:
+- Turn to_k230_rst from macro to inline function
+- Use guard to replace spin_lock_irqsave and spin_unlock_irqrestore
+- Remove assert and deassert operations for self-clearing reset types,
+  only reserve the reset operation
+- Add delay to accommodate the reset time
+- Remove blank line inside read-modify-write operations
+- Remove redundant default case in enum switch
+- Update copyright dates and my email address
+- Link to v1: https://lore.kernel.org/r/20240924-k230-reset-v1-0-d0cdc11989eb@outlook.com
 
-Please check if gpu node needs assigned-rate too.
+---
+Junhui Liu (2):
+      dt-bindings: reset: add support for canaan,k230-rst
+      reset: canaan: add reset driver for Kendryte K230
 
+ .../devicetree/bindings/reset/canaan,k230-rst.yaml |  39 +++
+ drivers/reset/Kconfig                              |   9 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-k230.c                         | 355 +++++++++++++++++++++
+ include/dt-bindings/reset/canaan,k230-rst.h        |  90 ++++++
+ 5 files changed, 494 insertions(+)
+---
+base-commit: 8560697b23dc2f405cb463af2b17256a9888129d
+change-id: 20250404-k230-reset-32987c6f0ed5
 
-> The clock[2] and power[3] indices were verified from HTML docs, while
-> the intterupt index comes from the TRM[4] (appendix
-> "J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
-> "GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
+Best regards,
+-- 
+Junhui Liu <junhui.liu@pigmoral.tech>
 
-> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-> [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-> [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-> [4]: https://www.ti.com/lit/zip/spruj28 (revision E)
->
-> Reviewed-by: Randolph Sapp <rs@ti.com>
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
-> Changes in v2:
-> - Add interrupt reference details
-> - Add Randolph's Rb
-> - Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com
->
-> This patch was previously sent as [DO NOT MERGE]:
-> https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
-> ---
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
->   		/* reserved for MAIN_R5F1_1 */
->   		status = "reserved";
->   	};
-> +
-> +	gpu: gpu@4e20000000 {
-> +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-> +		reg = <0x4e 0x20000000 0x00 0x80000>;
-> +		clocks = <&k3_clks 130 1>;
-> +		clock-names = "core";
-> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-> +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-> +		power-domain-names = "a", "b";
-> +		dma-coherent;
-> +	};
->   };
->
 
