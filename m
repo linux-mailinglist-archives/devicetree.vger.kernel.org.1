@@ -1,153 +1,152 @@
-Return-Path: <devicetree+bounces-168781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 983DAA94534
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 21:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AAA9A9454D
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 21:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B38AC3BC99D
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 19:09:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E3FA3B5EFD
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 19:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730F71DF256;
-	Sat, 19 Apr 2025 19:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4AC1E32C3;
+	Sat, 19 Apr 2025 19:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="bdbKUuBD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HCwfrPct"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5251DC98C
-	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 19:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AAE715CD74;
+	Sat, 19 Apr 2025 19:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745089802; cv=none; b=HvitCoys0THhUHysPrNYdGDSLxmm4AtOaJbSmlbk3WAsPCxxjNc8qwAYTO+teAMg/z6A7HYWwdIO4unidDs1vJyJciwNOva7EH+7o8DuurewfnESV/alWitngYLb/ytpTi99LpdSOQmUuAkeowNRjJttmHSticMk2d/Fpr1TeGo=
+	t=1745091988; cv=none; b=lLaQ3kNXU+GXEY/oMzNaEg/54MfYrvp1FQ3d1HZOPnUuo5J7IlyKxGnrqb4oU9CT6dfIm4VtGpO/YDT6fxplYOWagl4zjjXiPShZA611WxFQ3bmnKJS1T1b2u6a3qx1aEm5+fbCtrMAnu7RXTxis/ibXvZmrxCA2jaO10j+0rmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745089802; c=relaxed/simple;
-	bh=CvUo7ZEVGQkRI/Tl+PNYklXAI1DxJ6GpVsoi7Pb4tIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MOcLI0aao3fQbjWziYX6Yspi3aTWbRmlTxE2tEBQszoMYDDfZLToHMdg03bUxDNbPMsU4HNYbgjduUe9Gl5DA8g2r+eUu22OnrWqn6OBy/5LahjKbcB0hL+hAG7c6GtDl4wqIC2M8A41b/vXiNjMJd5T5B7gWVkC5EGzyMYEhsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=bdbKUuBD; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-73712952e1cso2675478b3a.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 12:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1745089800; x=1745694600; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Deyh+kw6etAKus8FLe7WroHoH3C1oetm0Mie3XbPmnk=;
-        b=bdbKUuBDsSWg/MznC+jTbYpxXmuy4oUSs4iSTrcbgRCG4NsinWYtNdCxr+ngxIhcdX
-         bYJ8y+x29GSBmxwXKWKIXqQ9V3M9yADuXD1BtBwUv97zqPdkECZltu8j5yigl08iAulx
-         e2FcnqL50TZlZKOzRGws5bU5+bCj0E4ICwm+LbbqqS/K86K4JqXAWMk9HGGfrillQVTd
-         2iqxQUoeQTlUBUyPToNFBUwSqe/ELiYJjgbjw1yqTjGaJfSv+A+UjhhFqkOUwkyS8ByO
-         GvBQL0uHfkiTiNwlT5a8HrAMbQCIQtbekxyRA7P698XNAvC5VEaCG2WStVKTDrcy0Psi
-         9nRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745089800; x=1745694600;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Deyh+kw6etAKus8FLe7WroHoH3C1oetm0Mie3XbPmnk=;
-        b=A1xK796gMsbsfrgaGHLwNOMHeyCcZZhtHttwOmrAh+OxHk8JyDrqyu2iNQU0W+DCoN
-         dne3EZpGfrGEGv5uAgqehqjTuKTUQEfhvpUptUzaxFrQNlM5zFrRKIG3zYSt92FgG1sN
-         QQ9SAyJejGCHcLY0IwwSTll4Wis8KW2f+7Kq6UwVdqpPo78e4bBxkIXVnce14jae3/lM
-         vqOsZ0OjhpfOXijXL5/5ryErtmHYE04P7ijekX708YcvN3UMCx2LO3PzxeLFQSxx7veq
-         J8arRgQJ6qyW2Eu5EoLYPdd8miJH1mSRnZCqB7/l4FG4gXzs0CGi3GgH6+D694NofcCb
-         Xd+w==
-X-Forwarded-Encrypted: i=1; AJvYcCVljmOCmO54Dj77Fj1YlKIWhqJAQsNDx17UHegGHMCn63j5bP5fOq0iycVhZ9H0WJrxXvJSD82X+hp3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWRYGGhwLXMgObfnrN3CDRp9pxjORuSgt/jhmRffWey2E/iTck
-	CTvyufZXd7T1bCqGgYBtnVTSosFL9kYcmQCB014fOfqZWYcynHaTx6YScnSrcfs=
-X-Gm-Gg: ASbGnctNM9WG9e7OaULzF+TZzC20wZjkzzfyoTiMqzMmnC/qOuFbR/sPQZWlzAHuZQN
-	JcZviRKDur0Uy3tiGVFxfXiwfzItqEtkVDybc7EaLe/4A0Pmte7wz1xeMwNXIlkFJi4dharTur3
-	zwI9qXk45xBrtsrFa/w7Wc7iFj44n0BfY8YMKQHQP8RjgdW1IHli+DoZNmD3P7s7PcgG0lGKQd3
-	tPuuSVS5zerzbbokqenFfJYdeFL2GaSy3ip7RdfErQJYi1c3VLCffVuJWEcch1M7cCaV4KUKk7m
-	K3BgiOCyU07546uaGfPcEQP27ij9v2CN++Csz6w1g7v+6k8=
-X-Google-Smtp-Source: AGHT+IEulD0uH2vbpuR4f4ZA7Mcq0ByRrFg1az3eKDUNZKezFcapWJg4o30Tvo+Xd7BMD278/s2TCg==
-X-Received: by 2002:a05:6a00:9281:b0:736:9f20:a175 with SMTP id d2e1a72fcca58-73dc1442ee6mr9314401b3a.2.1745089799961;
-        Sat, 19 Apr 2025 12:09:59 -0700 (PDT)
-Received: from x1 (97-120-122-6.ptld.qwest.net. [97.120.122.6])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf90d7easm3611489b3a.84.2025.04.19.12.09.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Apr 2025 12:09:59 -0700 (PDT)
-Date: Sat, 19 Apr 2025 12:09:57 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org,
-	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
-	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, ulf.hansson@linaro.org, jszhang@kernel.org,
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 20/21] riscv: dts: thead: Introduce reset controller
- node
-Message-ID: <aAP1BW3RmMb/Irya@x1>
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
- <CGME20250219140316eucas1p29a76023868946f090f261bf78d5103e3@eucas1p2.samsung.com>
- <20250219140239.1378758-21-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1745091988; c=relaxed/simple;
+	bh=74mO15uFIckJUXnXnTZxaEJt7loiHy0xGNx6hkYoLZA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZyZYC28UjUw0VtHpSJWUlz7oOHs1LGHIpOnVIEFtZPJ0rE+qMyBp2YaF2SNX2vfGKA85d6xW4xg/CdfvQz1XVMxOQIHln0Yrnz1wegRRiZ0OhxJ5CmTSmPmF3J/lk0YcijzgcSncmUmGW/nnvZk5YsIqwuccJEBhv8Z2ZIPWD70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HCwfrPct; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B07C8C4CEE7;
+	Sat, 19 Apr 2025 19:46:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745091987;
+	bh=74mO15uFIckJUXnXnTZxaEJt7loiHy0xGNx6hkYoLZA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HCwfrPctLCTsWA+uXc4CGeVYSg/Bjs6JeROHrYRKpfFcWnNHiZbh0A1PxSNiRc+Ci
+	 ralXOP6QbVoPf058iXXlg4R+nVPdAKD41w2ZzZ0xhHprbL8HAMNZUyLpq4yKoYRXnV
+	 +Y0rQhccLF1VKwVCdFaUN9M7wWgUQFT+mwggd9dhJNd1FbbKA7PGwbYMm84oSz+A/h
+	 Yg3AW3rSEfhjBmGEh4+rDjW20EH/uxSN+p+TFvHYKm+qeUtn+JGntE4YCvSuwO1Q33
+	 aThFwcmNRmC3v/L1gcc1D96Beb9c/SNdOkCWkPpn/WnG/yTLmktVbAQ5I13svlGwjr
+	 npG/dsST80VPQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A503C369CF;
+	Sat, 19 Apr 2025 19:46:27 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v5 0/2] Add support for sound profile switching and
+ leverage for OnePlus 6 slider
+Date: Sat, 19 Apr 2025 21:46:23 +0200
+Message-Id: <20250419-op6-tri-state-v5-0-443127078517@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250219140239.1378758-21-m.wilczynski@samsung.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI/9A2gC/22MywrCMBBFf0VmbUISkz5c+R/iIrRjOyBNmcRgK
+ f130+4El+dyz1khIhNGuJ5WYMwUKUwF3PkE3einAQX1hcEo45TVrQhzJRKTiMknFNhrr5zXWhs
+ HxZkZn/Q5evdH4ZFiCrwc+Wz3FbqQkaWu6loZY7WVAyUZw4J8I37J8Q27mC+/56pxqtHtn/O2b
+ V9r8B5LxgAAAA==
+X-Change-ID: 20250419-op6-tri-state-ed1a05a11125
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>, 
+ Benjamin Tissoires <bentiss@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, Gergo Koteles <soyer@irl.hu>, 
+ David Heidelberg <david@ixit.cz>, Casey Connolly <casey@connolly.tech>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1873; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=74mO15uFIckJUXnXnTZxaEJt7loiHy0xGNx6hkYoLZA=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBoA/2SkOtINWWfOxhOqR6NZROxrKFHxdFskpbDu
+ FNfy0HVQp+JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaAP9kgAKCRBgAj/E00kg
+ ch7gD/429cSbsyDMFzlPEAsnkV+EoxRbi5H+Z04vttfsz+8YGmbLxZg5h3i99laliyXP1HJMBAT
+ 3zU/FYdRCH9O1xGML3n/I4Wb44Eno8gXsIcVdD5cZ5VQD+GBo7yEG2IWOoin+spVc9jjCr4oSmA
+ E0JoGJdlzKuGJ8K0Anf4XenzGfkzo7gOBms9e4qCWOoyrxzXIlBBpJJGP+cwkBYW/tSYEsRb3On
+ tcTElPPAIH98+2W35Q31o/3FKPZBejQfDGkR0g0H+fhC7zlpdwpVJ6FhXhAzr+O5scECjnA46nA
+ 3s/n0ZWsaI7CREY9BQnfqOrGXTbe4/rnQgFymttWICI5HIZmQp6dE1h4xxKX8Oo1hDPpSN/ofSf
+ jW0trUt4jp++VLAMdRn1sQp1gpidEwzfQR4u1WaUuImEh6UK4wPA+hwf1VPuAXBzlmDuPUBGgJU
+ w4YEv23EuurQkX0UEbj2GRT0DQakl+t9fdKjDRRm24Z80dBKuJ2rSJ0ve/kjJ1mbj8AhT3a9BkD
+ 0stv+1V3vmWx/EH31W7fojf6KWwfBsjcoPhjMmv6t+DBc3NQlILPBuknrDcYb9ulA33zdfYYV2A
+ 1yKnNX/IoI8NTaAvWG3VJivL9wIJXx7i4rlFAdVI9I9aaHwxxUkDGUO5+Xei7eW399gF9x8AnLV
+ bd6PX14Edlsf4jQ==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On Wed, Feb 19, 2025 at 03:02:38PM +0100, Michal Wilczynski wrote:
-> T-HEAD TH1520 SoC requires to put the GPU out of the reset state as part
-> of the power-up sequence.
-> 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index 474f31576a1b..6b34aab4b455 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/clock/thead,th1520-clk-ap.h>
->  #include <dt-bindings/power/thead,th1520-power.h>
-> +#include <dt-bindings/reset/thead,th1520-reset.h>
+This code was tested for two years within the downstream Snapdragon 845 tree.
+It is now perfectly integrated with feedbackd in the Phosh environment.
 
-Are you okay if I omit this hunk? My thead-dt-for-next branch is based
-on 6.15-rc1 but thead,th1520-reset.h only exists in next until the merge
-window.
+Changes in v5:
+- Dropped merged
+  "Input: gpio-keys - add support for linux,input-value DTS property"
+- Link to v4: https://lore.kernel.org/all/cover.1677022414.git.soyer@irl.hu/
 
->  
->  / {
->  	compatible = "thead,th1520";
-> @@ -497,6 +498,12 @@ clk: clock-controller@ffef010000 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		rst: reset-controller@ffef528000 {
-> +			compatible = "thead,th1520-reset";
-> +			reg = <0xff 0xef528000 0x0 0x4f>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		clk_vo: clock-controller@ffef528050 {
->  			compatible = "thead,th1520-clk-vo";
->  			reg = <0xff 0xef528050 0x0 0xfb0>;
-> -- 
-> 2.34.1
-> 
+Changes in v4:
+- DTS: use default debounce-interval, order alphabetically
+- Link to v3: https://lore.kernel.org/lkml/cover.1676850819.git.soyer@irl.hu/
 
-With the above caveat:
+Changes in v3:
+- rename tri-state-key to alert-slider, fix DTS warnings,
 
-Reviewed-by: Drew Fustini <drew@pdp7.com>
+Changes in v2:
+- rebase to qcom/for-next
+add SND_PROFILE_* identifiers to input-event-codes.h
+
+Gergo Koteles (3):
+  Input: gpio-keys - add support for linux,input-value DTS property
+  Input: add ABS_SND_PROFILE
+  arm64: dts: qcom: sdm845-oneplus: add alert-slider
+
+ Documentation/input/event-codes.rst           |  6 +++
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
+ drivers/hid/hid-debug.c                       |  1 +
+ drivers/input/keyboard/gpio_keys.c            |  3 ++
+ include/uapi/linux/input-event-codes.h        |  9 +++++
+ 5 files changed, 56 insertions(+), 2 deletions(-)
+
+--
+2.39.2
+
+base-commit: 02ac8d2a011b630481d959298a1cc76ca0717f3e
+---
+Gergo Koteles (2):
+      Input: add ABS_SND_PROFILE
+      arm64: dts: qcom: sdm845-oneplus: Add alert-slider
+
+ Documentation/input/event-codes.rst                |  6 ++++
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 39 ++++++++++++++++++++--
+ drivers/hid/hid-debug.c                            |  1 +
+ include/uapi/linux/input-event-codes.h             |  9 +++++
+ 4 files changed, 53 insertions(+), 2 deletions(-)
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250419-op6-tri-state-ed1a05a11125
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
 
--Drew
 
