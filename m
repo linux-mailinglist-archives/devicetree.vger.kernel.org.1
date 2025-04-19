@@ -1,203 +1,129 @@
-Return-Path: <devicetree+bounces-168696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D14A94173
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 05:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F57DA9417E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 05:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A69D3B8D2F
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 03:33:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC2778A6AF1
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 03:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D321143C61;
-	Sat, 19 Apr 2025 03:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E837613D893;
+	Sat, 19 Apr 2025 03:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UtdRLOIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23DD13EFF3;
-	Sat, 19 Apr 2025 03:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB9554654;
+	Sat, 19 Apr 2025 03:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745033585; cv=none; b=WEqq8grOKDi3imB4zpU4Vwq3z7gEFOCNVl2njwn5JfMqYT4z16juEDiolJta6NnA7nRk+mLIM1OWeKDDSpzM6nSmssIa+yevx1JU0LI591iTOWTJ+BuBP+STOo24TQWWzZQDTWVgqjqIlCZtu12213jAjVpmB/DJSdRsQjs9Ugs=
+	t=1745035152; cv=none; b=sc6lXpKL9jPWGVeLeWk3VKSaQVsuugnWjr5RYQK4RerTUheQRLSsc+rXt/HvzWmxIbyfb044n/o8ihRUZ9flJPabciSGQfwn8VXwKL/6Ub2kArBYrwP7mCTsqBdtEpqlU9MradwleohyTWSnvBjEYiwQwhz2HnDneLJOWhmHZfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745033585; c=relaxed/simple;
-	bh=qG33W8pZh9cohXq8CNvMyPhQr05ENy2yUo6n0wyKswk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mtKF/3Vlt1fvM53hg+cOjKQKPBaZ6U2ImQkwcnKyzHd7hUtn6lSOyTU4RmhCSfifOMZILC5dWiteek4X14hN1mbHxkgeeA72Sr9lN7En20UVfXow11p1UwCG+WuqeNy64LTwsrsxP+ZviRghZ2s1ENcluFm3+2r6KQ0eCZ9UozE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from [127.0.0.1] (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 18798342FFE;
-	Sat, 19 Apr 2025 03:32:56 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-Date: Sat, 19 Apr 2025 11:32:31 +0800
-Subject: [PATCH 2/2] riscv: dts: spacemit: Acquire clocks for UART
+	s=arc-20240116; t=1745035152; c=relaxed/simple;
+	bh=LAZLZXXR4fpH4UmJ7A0K0g2nbKcoE4qbISCBceZtsLE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AjIM/EUsEE1TG/GIeovU5WSwc0iBwHfRz4XO0c7y32VpzXYWH/CQJ+dfqwnLJMy+KEkA2YegXfs6mhiPpx5qyVXnrxnTwsz2THMsy43qgQzedNR4NtWDDqQZJNd07wBLACqx9ohxDf0m/vvIR7L8OX5Rf9rJ7oTfeO6xAKUGlpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UtdRLOIu; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53J3x1jV1073856
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 18 Apr 2025 22:59:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745035141;
+	bh=OxIm5BWYRHWRtfm3BI4yfvGxCISf/AMNRZprOku6zEE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UtdRLOIu0pJM/6XS5NGxLt3cnLdiygCDXQ/ujxTPjbsX+mBNG/QBs2WHXto0YAQZL
+	 QThe7bTqs19acGe17QtazFNyPc5lbM5uyEi2z7qus6Izdy7sAouZQIiL4SrAJJJ87J
+	 OOQsZeQy+LZ4UlN+sZPtfRMx2/LFe+O/hFviUXsQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53J3x1fX045034
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 18 Apr 2025 22:59:01 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
+ Apr 2025 22:59:01 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 18 Apr 2025 22:59:01 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53J3wwhQ128798;
+	Fri, 18 Apr 2025 22:58:59 -0500
+Message-ID: <80b5867b-958a-41ff-854a-6a3173ddbdc0@ti.com>
+Date: Sat, 19 Apr 2025 09:28:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-common-proc-board: Add
+ bootph-all to HBMC nodes
+To: Anurag Dutta <a-dutta@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>
+CC: <vaishnav.a@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250411082637.2271746-1-a-dutta@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250411082637.2271746-1-a-dutta@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250419-05-dts-clock-v1-2-1cce5d59aba2@gentoo.org>
-References: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
-In-Reply-To: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4275; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=qG33W8pZh9cohXq8CNvMyPhQr05ENy2yUo6n0wyKswk=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoAxla/CuSzJaQd3efb8dgbHtSmb3zQpqQCiCBL
- CBemk1p3raJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaAMZWl8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277Y8uD/0aDEL9y1ipWFny2s
- Q/8scp0VWSTj7mU1DwAhO65jJ3yS9eYJChvJasDXDZukcMrHXxCMXTo5NEL+x0dTAd67TehU9Cb
- KogxfclpbSgkCHrQe0MTxrByjFd9DUHXU5i4a67KmT4exYcl1D4BbJKXS/1KU1n/68GYgZ4YApr
- cZkMd6T0gkY/jdrUF2VWCilp0iabpPhFMLcHjTzALtsfjJMb/24ZVwdyDUO2c5nWx3qDeaxVbf7
- 0J7uWfTCamGpWePfnjQfl163ZjzLIcpfzsyGCQ+ctoAOdEwnHiLNyQXhyMqdbZAOZ5WBgL6kpq3
- zo88xoGGNvjj1Th9ECoHAcBGs/Uz1Cqy3ngtarlaBL+d4jI/sJb71r8PdWp6EFzwmWLZ+leM1s6
- vNL+U/jH0kFkwkmq+xjj0Ve6vjRAO+LDIYGz0V5J4D2sDmiu3ykgaTO2U5n7+3Y04PFCGbPw0fE
- MCX686u7nxNoJUFr29tY5zRsTN5TmjhGCa+kQGw8SOavaF8JrIQYaHDvNu6bwFyDm06YZmVOrT1
- qVVhWDniWCAD1qZ1Hmof1kknBWbF1bGJ5qGsu5mrFtgbftllfTMGc0lFsUk6AAUgaTt1VTckHT8
- Mlog5Mqv6LGA71hkoOBziQvFKNxrXO/I4MbKZCvULP6+ECXSogvynude9N9/yISgzBhA==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The K1 SoC features two clocks for UART controller,
-Acquire them explicitly in the driver.
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 36 +++++++++++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 9 deletions(-)
+On 4/11/2025 1:56 PM, Anurag Dutta wrote:
+> Add bootph-all to HBMC controller and hyperflash nodes for successful
+> hyperflash boot on j721e-evm.
+>
+> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> ---
+>
+> Test logs : https://gist.github.com/anuragdutta731/90a492589557c2ec2881e1de50a62006
+>
+>   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 4421852161dd..9ada749f16ba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -570,6 +570,13 @@ &usb1 {
+>   	maximum-speed = "high-speed";
+>   };
+>   
+> +&hbmc {
+> +	bootph-all;
+> +	flash@0,0 {
+> +		bootph-all;
+> +	};
+> +};
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 153fd1160182b42fe1a2f7f042c9c1da90f63b0c..415e1c3e1c78db987cbb65759adc26e98aaa24d3 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -360,8 +360,10 @@ syscon_apbc: system-control@d4015000 {
- 		uart0: serial@d4017000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017000 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART0>,
-+				 <&syscon_apbc CLK_UART0_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <42>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -370,8 +372,10 @@ uart0: serial@d4017000 {
- 		uart2: serial@d4017100 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017100 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART2>,
-+				 <&syscon_apbc CLK_UART2_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <44>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -380,8 +384,10 @@ uart2: serial@d4017100 {
- 		uart3: serial@d4017200 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017200 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART3>,
-+				 <&syscon_apbc CLK_UART3_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <45>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -390,8 +396,10 @@ uart3: serial@d4017200 {
- 		uart4: serial@d4017300 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017300 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART4>,
-+				 <&syscon_apbc CLK_UART4_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <46>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -400,8 +408,10 @@ uart4: serial@d4017300 {
- 		uart5: serial@d4017400 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017400 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART5>,
-+				 <&syscon_apbc CLK_UART5_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <47>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -410,8 +420,10 @@ uart5: serial@d4017400 {
- 		uart6: serial@d4017500 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017500 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART6>,
-+				 <&syscon_apbc CLK_UART6_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <48>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -420,8 +432,10 @@ uart6: serial@d4017500 {
- 		uart7: serial@d4017600 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017600 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART7>,
-+				 <&syscon_apbc CLK_UART7_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <49>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -431,7 +445,9 @@ uart8: serial@d4017700 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017700 0x0 0x100>;
- 			interrupts = <50>;
--			clock-frequency = <14857000>;
-+			clocks = <&syscon_apbc CLK_UART8>,
-+				 <&syscon_apbc CLK_UART8_BUS>;
-+			clock-names = "core", "bus";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -441,7 +457,9 @@ uart9: serial@d4017800 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017800 0x0 0x100>;
- 			interrupts = <51>;
--			clock-frequency = <14857000>;
-+			clocks = <&syscon_apbc CLK_UART9>,
-+				 <&syscon_apbc CLK_UART9_BUS>;
-+			clock-names = "core", "bus";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
+Could you check once , if this is duplicated
 
--- 
-2.49.0
+commit fbdb8aa4eab84 "arm64: dts: ti: k3-j721e-evm*: Add bootph-* 
+properties"
 
+adds bootph-all in arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi file for 
+flash.
+
+AFAIK, parent node should inherit property of child for bootph.
+
+In case you are not getting in u-boot then u-boot shall fix this[0]
+
+[0] : https://lore.kernel.org/all/20250327080642.2269856-1-m-shah@ti.com/
+
+> +
+>   &ospi1 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
 
