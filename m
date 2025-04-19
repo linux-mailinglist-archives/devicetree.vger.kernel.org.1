@@ -1,114 +1,142 @@
-Return-Path: <devicetree+bounces-168772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1804EA944FC
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 20:10:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 539DAA94506
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 20:25:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 357D23BE79B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 18:09:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A7116DA41
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 18:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4098D1DE3DC;
-	Sat, 19 Apr 2025 18:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2D519066D;
+	Sat, 19 Apr 2025 18:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YhqxFwNb"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Gxm3iyXA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5114013C3F2;
-	Sat, 19 Apr 2025 18:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DF1130A54
+	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 18:25:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745086209; cv=none; b=BMpDiyh2prxOVzMWuU0ZgC+psYNM/1cjm1LH3xJf3m9hjTk8NRMCZtf4oH1gFyisDUCRIwUr1ew5eUYybJNe19vKgOim7bQ/lIoAZ8nMuyx6gyRugchYhYVWYxAtmzsmo03aOQoINWxGmeJHxo+sCuE2IcrTKicvvnW9iWOKfDg=
+	t=1745087132; cv=none; b=nCpNm7G0Ce4lUvrc9HBGbRccySq913JLI1or2HHpWSDL8L/3DCeweq8cRv+mXiMZ2yX+5VCqyODTn1UymQd0hBNp2iVBJOt6iA0dxX00Yv2wbxmMvbucWJMnadgNcrDxrhpB3w3cDnyhJbsdO9UInfCHv0LGjcnGaTa3Gs3R3kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745086209; c=relaxed/simple;
-	bh=/IuFW5aK4FfMSf52f3qJzkXebXja+M+kxr/aRzHxdQ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mclO6I6geNhwoDaiDfehVLces4yi30yqkhroq18Ng304itOo47iOBMr8uZR2XxQjueRAS0WbiqBIB5vYX8lwuYvHH0LrxncGji3PUFT0VgrUpdK11ywd6NxXF+VDeiPzoI1s/9LgQopmwOsOCEzkx+AUhdZN3Q/XM7RAmGpRM5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YhqxFwNb; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53JIA2NU1243663
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 19 Apr 2025 13:10:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745086202;
-	bh=VY17ZoztUK1pT2AXyZLmBdvwKx3peOWAZrkwlCco0uU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=YhqxFwNbNXQkPfqJXbR4q6CJmrabNNr657kRZobA205KRF53mUgOHFlecDuzOO44+
-	 Cq3wEZ6d9yxKeHo2ndqHRdrTTzNd8uQk6hsuW0IObJQLwJGsscghRLJnFEh/4BngRM
-	 E6hL/ifdchctkF92VCqwzxSKTJ4OyiwpE3r+pIGw=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53JIA2Ac003447
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 19 Apr 2025 13:10:02 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 19
- Apr 2025 13:10:01 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 19 Apr 2025 13:10:01 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53JI9uIZ071610;
-	Sat, 19 Apr 2025 13:09:57 -0500
-Message-ID: <f9cb52e2-d211-47b1-9536-3aa81db916c7@ti.com>
-Date: Sat, 19 Apr 2025 23:39:55 +0530
+	s=arc-20240116; t=1745087132; c=relaxed/simple;
+	bh=hyTYWXL6hBuyI/gvaFl/eQGGe0uzyPYy+WTnYz+jCPU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WYvkxnnbUhYgK2ofJpoRh3qMp6xufBsr4kg7gTpkmfSsW0sYou4OddjnjscW00bIDi1ZDwaxOHiRNFa6sMzs4YsLSLcvdjbexBjn1N/4rsalqP7979cKX3nR8O5wn+rzeBeOWrEFq0nlSqSNRdHCl1ascyChJEasQMSzaM52nIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Gxm3iyXA; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] arm64: dts: ti: k3-j721e: add ranges for PCIe0 DAT1
- and PCIe1 DAT1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <u-kumar1@ti.com>
-References: <20250417120407.2646929-1-s-vadapalli@ti.com>
- <20250417120407.2646929-4-s-vadapalli@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250417120407.2646929-4-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1745087127;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=b/Yf3GYBLMjcbsQjmUcazNuprLTTnJ8iv6nWe+Zhemk=;
+	b=Gxm3iyXAzq9C3ct3zpb2lzTWXFZxRey/272QctC48Hj97wwL6ExDUnrKgHs4aHpsBzBYdM
+	HAXA/EQIjPmpgrG2oQYhjkE35YnlB6XptMLChG7leM8UAE7Ywv0itH0gI6bbr3I8fbenIo
+	orWdBoasjHC52OSN5AZNnD3BLRn25pZfKdukQF0OLvQ6pIGjq0vAj1Ck810xsRnMyLCqZS
+	4FrOXrJaEb1YLbdBYy9i4ot+83TykofTvSwrU22sfOR6WVoHvqSCchbaLWp7P2paISozP3
+	SzG398V79rxHJLx4PYJnK0kvaiFbxLrIC3SXKvIblb0IVDQMVMVKDHcvEs1i9Q==
+Date: Sat, 19 Apr 2025 20:25:27 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Peter Robinson <pbrobinson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 1/2] arm64: dts: allwinner: a64: Add WiFi/BT header on
+ Pine64
+In-Reply-To: <20250419160051.677485-2-pbrobinson@gmail.com>
+References: <20250419160051.677485-1-pbrobinson@gmail.com>
+ <20250419160051.677485-2-pbrobinson@gmail.com>
+Message-ID: <17c65a34625b328efad258a2ffc7a688@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Peter,
 
-On 4/17/2025 5:34 PM, Siddharth Vadapalli wrote:
-> The PCIe0 DAT1 and PCIe1 DAT1 are 4 GB address regions in the 64-bit
-> address space of the respective PCIe Controllers. Hence, update the
-> ranges to include them.
->
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+On 2025-04-19 18:00, Peter Robinson wrote:
+> This adds all the pin mappings on the WiFi/BT header on
+> the original Pine64. They're disabled by default as the
+> modules don't ship by default. This includes, where they
+> haven't been already, UART1 for BT and mmc1 for WiFi.
+> 
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 > ---
->   arch/arm64/boot/dts/ti/k3-j721e.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index a7f2f52f42f7..4f5d277c97a4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -126,6 +126,8 @@ cbass_main: bus@100000 {
->   			 <0x00 0x10000000 0x00 0x10000000 0x00 0x10000000>, /* PCIe DAT */
->   			 <0x00 0x64800000 0x00 0x64800000 0x00 0x00800000>, /* C71 */
->   			 <0x00 0x6f000000 0x00 0x6f000000 0x00 0x00310000>, /* A72 PERIPHBASE */
-> +			 <0x40 0x00000000 0x40 0x00000000 0x00 0x08000000>, /* PCIe0 DAT1 */
-> +			 <0x41 0x00000000 0x41 0x00000000 0x00 0x08000000>, /* PCIe1 DAT1 */
+>  .../boot/dts/allwinner/sun50i-a64-pine64.dts   | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+> index 09e71fd60785..764fb191107a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+> @@ -35,6 +35,11 @@ hdmi_con_in: endpoint {
+>  			};
+>  		};
+>  	};
+> +
+> +	wifi_pwrseq: pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
+> +	};
 
-Do you want to map whole 4GB or just 128M ?
+Is there a reason why the status of this node isn't set to
+"disabled"?  Or even better, why don't we move this node
+entirely into the proposed DT overlay?
 
+The required reset procedure actually depends on what's
+found on the add-on module, so it should belong to the DT
+overlay that defines the add-on module.
 
->   			 <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* PCIe2 DAT */
->   			 <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* PCIe3 DAT */
->   			 <0x4d 0x80800000 0x4d 0x80800000 0x00 0x00800000>, /* C66_0 */
+>  };
+> 
+>  &codec {
+> @@ -124,6 +129,18 @@ &mmc0 {
+>  	status = "okay";
+>  };
+> 
+> +/* On Wifi/BT connector */
+> +&mmc1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mmc1_pins>;
+> +	vmmc-supply = <&reg_dldo4>;
+> +	vqmmc-supply = <&reg_eldo1>;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+
+Of course, the "mmc-pwrseq" property would then also be moved
+to the DT overlay that defines the add-on module.
+
+> +	bus-width = <4>;
+> +	non-removable;
+> +	status = "disabled";
+> +};
+> +
+>  &ohci0 {
+>  	status = "okay";
+>  };
+> @@ -286,6 +303,7 @@ &uart0 {
+>  &uart1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+> +	uart-has-rtscts;
+>  	status = "disabled";
+>  };
 
