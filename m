@@ -1,211 +1,341 @@
-Return-Path: <devicetree+bounces-168689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86F2A94108
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 04:37:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 440AFA94115
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 04:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8367D19E6D79
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 02:37:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55F56460A0B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 02:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7560171A1;
-	Sat, 19 Apr 2025 02:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C530378F37;
+	Sat, 19 Apr 2025 02:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OIursNo6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6g1d2St"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 166BB5CB8;
-	Sat, 19 Apr 2025 02:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145D13594F;
+	Sat, 19 Apr 2025 02:44:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745030243; cv=none; b=rrZcpkHoAkWa56m13M+3J42xTVZTOJ0dtLIfScoOOUgMI62O3lbTNmA8Y56iH+0tPr4h7OBVXMtfIf81QxdR7MHhllf/19gNXx+upMjLVu3JQr6/gOuouLwGVLL7oV8hWwiE/3HCkrf0sb4GI0q2RZCHi5c2HE1I7uJtRhNJ/jM=
+	t=1745030698; cv=none; b=W9v3hPUri+hNOuKZ2p2EWOFKGGCSN4/4laN8SLVX9yCqjG7koatO8kshe9fDH113e3wSaqt+/0NfPCETgL2Tjo8MJIg9s1HqUKcRFVjmMnZaq+bY/BpPuoRcfkbj/xnqIYsFFtCe0Wix8o+Ayoa9l9cIRcYrsfbRn/9UDjJPglg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745030243; c=relaxed/simple;
-	bh=tfrXw1DjRTmeGExSbf1IaMbXWS34iw2WemWDqIBxo/Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ULQsM7ilL/IcA2apbpSROiMNFTJmPX1OYAVpD8dx0LACgOxP36AIZtGzW4LQyhg25lTbsN1pwfH4gKpu1dLKsjRJVaTyG7e19WHG0WwnriWT1UBllbTu5jI4UDWziVZTCYi2wXZe+5WSijcq6qHFqnqL+VcHNn5RCaH1DZ2l0Gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OIursNo6; arc=none smtp.client-ip=209.85.222.175
+	s=arc-20240116; t=1745030698; c=relaxed/simple;
+	bh=sQEzpq9sGDSgziVBQQkH/GPD70ut2wnPIuvMakEUSjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QYnONXQTj/mh6ZVd3Ykc52rgBrkZodViWtoFJ1dHGGR3lBtkLQnlKqV6NMHnFw1Ux1S5gQ2uNvTg1c2l3oMo0hdF86UvwQQXXVGo5uwKt/9HhpKokzM/OfB7gkc4TLZRQXlQvt3ho+uUImNxy8Z1aKMApLxA+IhmkZe11Xy4fk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B6g1d2St; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c55500cf80so184163485a.1;
-        Fri, 18 Apr 2025 19:37:21 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso2698081a12.2;
+        Fri, 18 Apr 2025 19:44:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745030240; x=1745635040; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=z5xMW6JQzRFC3RypkMpl7HC+Ok1HS+DBoXUN4t3IzPg=;
-        b=OIursNo6woC3T10i6le0rDlL4FHMpPw/nNewS0g3w4VBgEUukQXDhMn8qhos8lpLgn
-         oUyUCEbljL68LaCrqb4yrUuy1+Ms9WbuNIhJVEy8n1wtRao6KZHMUnjn0KwH32fhBknV
-         cbRLGE6DP4UMdgoUROSydOBEPNSEV+4HwzFz5xA71EjItulHKcfVqBm49lYUS20WeBr7
-         rrETExrwR0eW2X7wLFy5fL1pPnmHpxBo0J+v82f74gIJk8/9h1NOSmwty9CaSXHCgMSe
-         Xl5kJMGXxMBXOr+140yP5WJ5g32auS0NPJAcwnOy/vCQsmQI8S9KP/ORZojTRXHSCJGN
-         pmxA==
+        d=gmail.com; s=20230601; t=1745030696; x=1745635496; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aqgFnrx8BBMXWFzIyUvrRovP2jhEZ8LSSxNcKE+lNjE=;
+        b=B6g1d2St0odmnixQ4CuEc/KrXqavFijO0+w7sRGsgF1DE70hsujWGH2G7zXVzLRCJw
+         H8DkixVwRZkDx7J8UtqQV0SkJ+yLO2H/EPYGiwUChZDbYTY4CzqaRRYySJvXXHBhjnD5
+         Tvb0Ft5gqMJ1mm8lZnyEOt1JxN+nSDicTmMP9wpB0ATqDzTjcRyjMqZ0sNNxc2qEoceS
+         vMkf1eXzXBXfqi6T+XD+rvoiw6qG6o0pGUdhcmEVervCdQST9bHmXCWd0vtyIjEvZeKH
+         7HbqC9rzU5zU3195Xgs2KGfuR6cRWV9HdQPYIbHfaMJt2M+E+6I4HmREouaOaejIEKn1
+         Kvcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745030240; x=1745635040;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z5xMW6JQzRFC3RypkMpl7HC+Ok1HS+DBoXUN4t3IzPg=;
-        b=ojqiWAz6uaXpFkDdhdOSmASurTL3yxoI4bKIfxLYNMB9FvRKh6RHEFe10eB7C8PKyZ
-         7EvqM1sscUiYUG0ERs68jKUtRi7YrjYL7EWVIEkLwF2VH0LbHuXYRqq297bguIHW1Ou7
-         +EK6uOAMuVmli/MMBJP7xyyHVi3dc1rdTh+/8cSWfKqeQjwV2KQaeMUfwgjV/If8JN99
-         YrxxKQnx+E3Bs7RX3kHlb1wrA/WkWdvZ7ql32l0CZeDm99HjgWgGcr+pUMmNpZcmaQlk
-         qWkn1CrrAGtMby+mgMMz2XE0Qk/ouPCGzbUGwiT7Nr2C58M3+EmEg/2ebhTqcpJi5Q8+
-         4NFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXCZ4G54maYVKLl8ILa+0ZcyK/dEYu//eqkZXGbjk/SsUBcC9JuukXaDjVhwX3p7HzbyVs9z7UIHMIy7vs=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0YmX0nCo0gIBEZ6fTzWCnq5XSBwCYobwId6ElGd3uPfWyfmxc
-	WzuH0g71vIP3tBiVV55/Olak6YJgY+82snjy6jdAgBee2y/LQVohKe7Y1TAK
-X-Gm-Gg: ASbGncsXZeN5SnZK3fWJ7661K8DciYS9AZMcp1fyD8F/UxKUTkr9hQCzAT80FoUXbhy
-	Y0XOdzQ20cc+V65uv4aHwdPa8LeK8ZWEY0aTn4UnJ9EqgjyAvatU2HUae8SO/sfwyAI/VlPmoib
-	fw63nvtIZIRDoHVjsQd40hfrPMrzDgl0I9Pybj7uN2CA4bXMSI9+X1z4VIOSS0DZYi9382BELbE
-	6itTEkS38IijF0/79Zh1jV05VtubBfosGLFblArhqg60jCaCJTj0ovMQxaF/fUBxkhjf9kZHNza
-	LGiW1fjGio/y2cFwBOclw99/0PHIkT1DDEGztIlTC+IlRSeuYF4T
-X-Google-Smtp-Source: AGHT+IHye/ATWWxQYKG94Z32CtV6NgziY9q4KsfM+OTqg+TdECswRmqN026PmdK91mfchx0mVjT56Q==
-X-Received: by 2002:a05:620a:4413:b0:7c5:5e9f:eb2d with SMTP id af79cd13be357-7c92803945fmr784446185a.44.1745030240096;
-        Fri, 18 Apr 2025 19:37:20 -0700 (PDT)
-Received: from localhost.localdomain ([216.237.233.165])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c925b4ddb2sm169612985a.88.2025.04.18.19.37.19
+        d=1e100.net; s=20230601; t=1745030696; x=1745635496;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aqgFnrx8BBMXWFzIyUvrRovP2jhEZ8LSSxNcKE+lNjE=;
+        b=qnGJbOQ54Wg3c2k5pEqOQY/IaKfiSujSBDRGdhG7uHzUvvsvFFI4wKeWKpZCyGdJn3
+         U8E00P/uatPwvLuZYfrpb4rm1Zm7cxJdv0TKnylaizDto+Vecvvx5pcJPuk0p7+2b1Rr
+         S5RF6amtH3q3NyJKzx714T4/UGWF5neOBWe8jbjo05h7d4VWQnAk+nJChUEyFKWIFHRw
+         YuM31FWKLKzh4BPh7WQpJT+lefPRqMTQ0Cg9APb8c9vydF+CXSVhVHeRlmQcQanrt3ec
+         +Y9WC6u8/ZEc5DRW2mQ9WfxwltvT6I7N1vpNv3Jyg+uE3yNXwrE4lthMKZhzKXaz9bye
+         iWMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUpezutJB/sh9fxyfRdXQG4/3rLF2KGbXd5aw270zWi430gpsF+oiNkD5Lvw8EFsqT0/+08PTSRcxyg@vger.kernel.org, AJvYcCW806hIcgaZaM/n5HpHkAf4sCU6YcRMJiJo3UJOOw06iJfLY2xLnz+8wDSX22oVnak/mOGT+QnZg5/5FGI=@vger.kernel.org, AJvYcCXqqRuKLevdsI02+NzuMyKyW0++krJ5PfszhidmQ6gKit3bWwC+F4KnysVL12Tp6g5cv+CIiL6U7H5u@vger.kernel.org
+X-Gm-Message-State: AOJu0YyarXqDB2IDGF47NmkYh8ajHePcpNnR+a3HfQZ0j6M49TwHzEyy
+	yObmuMPAy01MBuLwepVuPlkbyCg5t6/yR99ft+OX2S6PiDXeDd8c
+X-Gm-Gg: ASbGncsldAfQjP8q64ZU7t7QIctV0cDSwT+17/LSdMp/oo91mcOHhbeklmTLv9ILFY9
+	+annrtXCz6Kn28VBh7rcEHrwfKGA5CNvBy1Fn+uDfblgmPnnwbuTISYCuC/0zj5f3Hu41o0o98n
+	gnJaH6ZaSvVHJCs/hSSsLlcHAdYPt1x3hHfPKD0aw06fnuhpRjzLGjQF4tmNmn5aMlIdtUCmqwr
+	9PepPT4saKxYBX1y2UdiidzAiAENb0dnXLcwM3qJwOq0hYyZCStBbxOQGErDJJzyci0+o2AwS2r
+	USa8enuxsl1Oh3IE/yPmvU4PzZj5MC56uNQFoFu/EC8S3dzY6/HB
+X-Google-Smtp-Source: AGHT+IGl8ov5ezlYRG4ldec2lzDStegkYiKtw2ROtgkP2CwlTjT33MqqeCaZWuKa+LOa/TsBYK5CSA==
+X-Received: by 2002:a05:6a21:2d05:b0:201:b65:81ab with SMTP id adf61e73a8af0-203cbc698c7mr6270114637.23.1745030696022;
+        Fri, 18 Apr 2025 19:44:56 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:eaea:89f0:c84d:941a])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf8c0200sm2317871b3a.1.2025.04.18.19.44.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 19:37:19 -0700 (PDT)
-From: John Clark <inindev@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Marcin Juszkiewicz <mjuszkiewicz@redhat.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	John Clark <inindev@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: rk3588-nanopc-t6: fix usb-c port functionality
-Date: Fri, 18 Apr 2025 22:37:15 -0400
-Message-Id: <20250419023715.16811-1-inindev@gmail.com>
-X-Mailer: git-send-email 2.39.5
+        Fri, 18 Apr 2025 19:44:55 -0700 (PDT)
+Date: Fri, 18 Apr 2025 19:44:52 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v2 12/17] Input: adp5585: Add Analog Devices ADP5585/89
+ support
+Message-ID: <4v2ohz5zuyijwxunm2zfr4xhj55ny6leytgsym43rzx5qwqc7g@2igv7sx22y3m>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+ <20250415-dev-adp5589-fw-v2-12-3a799c3ed812@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250415-dev-adp5589-fw-v2-12-3a799c3ed812@analog.com>
 
-The USB-C port on the NanoPC-T6 was not providing VBUS (vbus5v0_typec
-regulator disabled, gpio-58 out lo) due to misconfiguration. The
-original setup with regulator-always-on and regulator-boot-on forced
-the port on, masking the issue, but removing these properties revealed
-that the fusb302 driver was not enabling the regulator dynamically.
+Hi Nuno,
 
-Changes:
-- Removed regulator-always-on and regulator-boot-on from vbus5v0_typec
-  and vbus5v0_usb to allow driver control.
-- Changed power-role from "source" to "dual" in the usb-c-connector
-  to support OTG functionality.
-- Add pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>; to the FUSB302MPX node
-  to specify USB Power Delivery (PD) Revision 2.0, Version 1.2,
-  ensuring the driver correctly advertises PD capabilities and
-  negotiates power roles (source/sink) per the FUSB302MPXâ€™s supported
-  PD protocol.
-- Added op-sink-microwatt and sink-pdos for proper sink mode
-  configuration (1w min, 15w max).
-- Add typec-power-opmode = "3.0A"; to enable 3.0A (15W) fallback for
-  non-PD USB-C devices with the FUSB302MPX.
-- Set try-power-role to "source" to prioritize VBUS enablement.
-- Adjusted usb_host0_xhci dr_mode from "host" to "otg" and added
-  usb-role-switch for dual-role support.
+On Tue, Apr 15, 2025 at 03:49:28PM +0100, Nuno Sá via B4 Relay wrote:
+> From: Nuno Sá <nuno.sa@analog.com>
+> 
+> The ADP5585 is a 10/11 input/output port expander with a built in keypad
+> matrix decoder, programmable logic, reset generator, and PWM generator.
+> This driver supports the keyboard function using the platform device
+> registered by the core MFD driver.
+> 
+> The ADP5589 has 19 pins and also features an unlock function.
 
-Testing:
-- Verified VBUS (5V) delivery to a sink device (USB thumb drive).
-- Confirmed USB host mode with lsusb detecting connected devices.
-- Validated USB device mode with adb devices when connected to a PC.
-- Tested dual-role (OTG) functionality with try-power-role set to
-  "source" and "sink"; "source" prioritizes faster VBUS activation.
-- Validated functionality with a mobile device, including USB Power
-  Delivery, file transfer, USB tethering, MIDI, and image transfer.
-- Tested USB-C Ethernet adapter compatibility, ensuring proper
-  operation in host mode.
-- Tested USB-C hub compatibility, ensuring proper operation in host mode.
+This looks mostly good, just a few nits.
 
-Signed-off-by: John Clark <inindev@gmail.com>
----
- .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 21 ++++++++++---------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+> +
+> +static int adp5585_keys_parse_fw(const struct adp5585_dev *adp5585,
+> +				 struct adp5585_kpad *kpad)
+> +{
+> +	unsigned long row_map, col_map;
+> +	struct device *dev = kpad->dev;
+> +	u32 cols = 0, rows = 0;
+> +	int ret;
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index cecfb788bf9e..8f2bd30786d9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -174,8 +174,6 @@ vbus5v0_typec: regulator-vbus5v0-typec {
- 		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&typec5v_pwren>;
--		regulator-always-on;
--		regulator-boot-on;
- 		regulator-name = "vbus5v0_typec";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-@@ -188,8 +186,6 @@ vbus5v0_usb: regulator-vbus5v0-usb {
- 		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb5v_pwren>;
--		regulator-always-on;
--		regulator-boot-on;
- 		regulator-name = "vbus5v0_usb";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-@@ -465,24 +461,30 @@ regulator-state-mem {
- };
- 
- &i2c6 {
--	clock-frequency = <200000>;
- 	status = "okay";
- 
--	fusb302: typec-portc@22 {
-+	usbc0: usb-typec@22 {
- 		compatible = "fcs,fusb302";
- 		reg = <0x22>;
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
--		pinctrl-0 = <&usbc0_int>;
- 		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
- 		vbus-supply = <&vbus5v0_typec>;
-+		status = "okay";
- 
- 		connector {
- 			compatible = "usb-c-connector";
- 			data-role = "dual";
- 			label = "USB-C";
--			power-role = "source";
-+			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
-+			power-role = "dual";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
- 			source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
-+			try-power-role = "source";
-+			typec-power-opmode = "3.0A";
- 
- 			ports {
- 				#address-cells = <1>;
-@@ -1135,9 +1137,8 @@ &usb_host0_ohci {
- };
- 
- &usb_host0_xhci {
--	dr_mode = "host";
--	status = "okay";
- 	usb-role-switch;
-+	status = "okay";
- 
- 	port {
- 		usb_host0_xhci_drd_sw: endpoint {
+Please name variables holding error code or 0 "error".
+
+> +
+> +	row_map = bitmap_read(adp5585->keypad, 0, kpad->max_rows);
+> +	col_map = bitmap_read(adp5585->keypad, kpad->max_rows, kpad->max_cols);
+> +	/*
+> +	 * Note that given that we get a mask (and the HW allows it), we
+> +	 * can have holes in our keypad (eg: row0, row1 and row7 enabled).
+> +	 * However, for the matrix parsing functions we need to pass the
+> +	 * number of rows/cols as the maximum row/col used plus 1. This
+> +	 * pretty much means we will also have holes in our SW keypad.
+> +	 */
+> +	if (!bitmap_empty(&row_map, kpad->max_rows))
+> +		rows = find_last_bit(&row_map, kpad->max_rows) + 1;
+> +	if (!bitmap_empty(&col_map, kpad->max_cols))
+> +		cols = find_last_bit(&col_map, kpad->max_cols) + 1;
+> +
+> +	if (!rows && !cols)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "No rows or columns defined for the keypad\n");
+> +
+> +	if (cols && !rows)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Cannot have columns with no rows!\n");
+> +
+> +	if (rows && !cols)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Cannot have rows with no columns!\n");
+> +
+> +	ret = matrix_keypad_build_keymap(NULL, NULL, rows, cols,
+> +					 kpad->keycode, kpad->input);
+> +	if (ret)
+> +		return ret;
+> +
+> +	kpad->row_shift = get_count_order(cols);
+> +
+> +	if (device_property_present(kpad->dev, "autorepeat"))
+
+"autorepeat" is essentially a boolean property, so please use
+device_property_read_bool() here.
+
+> +		__set_bit(EV_REP, kpad->input->evbit);
+> +
+> +	return 0;
+> +}
+> +
+> +static int adp5585_keys_setup(const struct adp5585_dev *adp5585,
+> +			      struct adp5585_kpad *kpad)
+> +{
+> +	unsigned long keys_bits, start = 0, nbits = kpad->max_rows;
+> +	const struct adp5585_regs *regs = adp5585->info->regs;
+> +	unsigned int i = 0, max_cols = kpad->max_cols;
+> +	int ret;
+
+	int error;
+
+> +
+> +	/*
+> +	 * Take care as the below assumes max_rows is always less or equal than
+> +	 * 8 which is true for the supported devices. If we happen to add
+> +	 * another device we need to make sure this still holds true. Although
+> +	 * adding a new device is very unlikely.
+> +	 */
+> +	do {
+> +		keys_bits = bitmap_read(adp5585->keypad, start, nbits);
+> +		if (keys_bits) {
+> +			ret = regmap_write(adp5585->regmap, regs->pin_cfg_a + i,
+> +					   keys_bits);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+> +		start += nbits;
+> +		if (max_cols > 8) {
+> +			nbits = 8;
+> +			max_cols -= nbits;
+> +		} else {
+> +			nbits = max_cols;
+> +		}
+> +
+> +		i++;
+> +	} while (start < kpad->max_rows + kpad->max_cols);
+> +
+> +	return 0;
+> +}
+> +
+> +static void adp5585_keys_ev_handle(struct device *dev, unsigned int key,
+> +				   bool key_press)
+> +{
+> +	struct adp5585_kpad *kpad = dev_get_drvdata(dev);
+> +	unsigned int row, col, code;
+> +
+
+Please check that key is not 0 to avoid OOB access. While the device is
+unlikely to ever send 0 cosmic rays may happen. And I guess we should
+check the max as well.
+
+> +	row = (key - 1) / (kpad->max_cols);
+> +	col = (key - 1) % (kpad->max_cols);
+> +	code = MATRIX_SCAN_CODE(row, col, kpad->row_shift);
+> +
+> +	dev_dbg_ratelimited(kpad->dev, "report key(%d) r(%d) c(%d) code(%d)\n",
+> +			    key, row, col, kpad->keycode[code]);
+> +
+> +	input_report_key(kpad->input, kpad->keycode[code], key_press);
+> +	input_sync(kpad->input);
+> +}
+> +
+> +static void adp5585_keys_ev_handle_clean(void *adp5585)
+> +{
+> +	adp5585_keys_ev_handle_set(adp5585, NULL, NULL);
+> +}
+> +
+> +static int adp5585_keys_probe(struct platform_device *pdev)
+> +{
+> +	struct adp5585_dev *adp5585 = dev_get_drvdata(pdev->dev.parent);
+> +	struct device *dev = &pdev->dev;
+> +	struct adp5585_kpad *kpad;
+> +	unsigned int revid;
+> +	const char *phys;
+> +	int ret;
+
+	int error;
+
+> +
+> +	kpad = devm_kzalloc(dev, sizeof(*kpad), GFP_KERNEL);
+> +	if (!kpad)
+> +		return -ENOMEM;
+> +
+> +	if (!adp5585->irq)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "IRQ is mandatory for the keypad\n");
+> +
+> +	kpad->dev = dev;
+> +	kpad->max_cols = adp5585->info->max_cols;
+> +	kpad->max_rows = adp5585->info->max_rows;
+> +
+> +	kpad->input = devm_input_allocate_device(dev);
+> +	if (!kpad->input)
+> +		return -ENOMEM;
+> +
+> +	ret = regmap_read(adp5585->regmap, ADP5585_ID, &revid);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to read device ID\n");
+> +
+> +	phys = devm_kasprintf(dev, GFP_KERNEL, "%s/input0", pdev->name);
+> +	if (!phys)
+> +		return -ENOMEM;
+> +
+> +	kpad->input->name = pdev->name;
+> +	kpad->input->phys = phys;
+> +	kpad->input->dev.parent = dev;
+
+No need to set parent because devm_input_allocate_device() does it for
+you.
+
+> +
+> +	input_set_drvdata(kpad->input, kpad);
+
+I do not see input_get_drvdata() anywhere, so maybe remove this call?
+
+> +
+> +	kpad->input->id.bustype = BUS_I2C;
+> +	kpad->input->id.vendor = 0x0001;
+> +	kpad->input->id.product = 0x0001;
+> +	kpad->input->id.version = revid & ADP5585_REV_ID_MASK;
+> +
+> +	device_set_of_node_from_dev(dev, dev->parent);
+> +
+> +	ret = adp5585_keys_parse_fw(adp5585, kpad);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = adp5585_keys_setup(adp5585, kpad);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, kpad);
+> +	adp5585_keys_ev_handle_set(adp5585, adp5585_keys_ev_handle, dev);
+> +	ret = devm_add_action_or_reset(dev, adp5585_keys_ev_handle_clean,
+> +				       adp5585);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return input_register_device(kpad->input);
+
+	error = input_register_device(...);
+	if (error)
+		dev_err_probe(...);
+
+	return 0;
+
+> +}
+> +
+> +static const struct platform_device_id adp5585_keys_id_table[] = {
+> +	{ "adp5585-keys" },
+> +	{ "adp5589-keys" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(platform, adp5585_keys_id_table);
+> +
+> +static struct platform_driver adp5585_keys_driver = {
+> +	.driver	= {
+> +		.name = "adp5585-keys",
+> +	},
+> +	.probe = adp5585_keys_probe,
+> +	.id_table = adp5585_keys_id_table,
+> +};
+> +module_platform_driver(adp5585_keys_driver);
+> +
+> +MODULE_AUTHOR("Nuno Sá <nuno.sa@analog.com>");
+> +MODULE_DESCRIPTION("ADP5585 Keys Driver");
+> +MODULE_LICENSE("GPL");
+
+Thanks.
+
 -- 
-2.39.5
-
+Dmitry
 
