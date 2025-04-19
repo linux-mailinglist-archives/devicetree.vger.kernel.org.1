@@ -1,118 +1,115 @@
-Return-Path: <devicetree+bounces-168730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B5BA942BF
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 12:08:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DE4A942DC
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 12:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5994C1892F6B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 10:09:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C68B3175DA2
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 10:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9BA81C3BF1;
-	Sat, 19 Apr 2025 10:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B41C1CD215;
+	Sat, 19 Apr 2025 10:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kio4HHdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4552513CFB6;
-	Sat, 19 Apr 2025 10:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94C517C224;
+	Sat, 19 Apr 2025 10:38:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745057331; cv=none; b=eHIrqEDr8INBLNxVeUP7SlRlxvkVUhUjAtdhgbvpu6VCkWnSKXYP9x7nZHd4Ffmrl4NIDes52D9w14F/3atznRLY5NMz7bZfDjkR8c3fNgsXao3MQlflgyFCXasJmNRO+e2LWghL3/b+TCHr3wKpHFrTcBfc+O1B6EGZ7RYnKj8=
+	t=1745059138; cv=none; b=SqIXcReqtJ9I9W+rgS2fp/4jgqGAM2aiUtT8QmMw9jbCCVnvaw/esQhrNlcXqVDTaY2AYJxN+fFFgiCoMoSMLE+MG/gdOpbzwohZb5MuHRgKnMvX3VVcO4R+eaK8zXhA2GQhaEeZONPcBi7CooarBT7m6ZELou5yzqFIAxGkU20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745057331; c=relaxed/simple;
-	bh=B2EqCOFVYPJGm4kbIcA38H8ygbgF+b1tGvM63gAKFoU=;
+	s=arc-20240116; t=1745059138; c=relaxed/simple;
+	bh=xY0aaUKiZ3nf6klLxrhBlG9cVhweGxQOTCb/Ekznwd4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S/p2fob7Zlc5JyFrA1c8nQgTiGrv+UaRlnzsEPN1PZjnCmAcPYjeDME0u8L/ihDtTqvSwsfahToFlCqke7SaLELLc4RsiRe2hjamcEc8pIdOTNA/RZjzKS8e7QVHifOnR+6ueoQeTZV2GdX1jOgBSgxvrLS/PCxWF2HrH+ioSmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 02F9A34301B;
-	Sat, 19 Apr 2025 10:08:48 +0000 (UTC)
-Date: Sat, 19 Apr 2025 10:08:44 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Haylen Chu <heylenay@4d2.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alex Elder <elder@riscstar.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] riscv: dts: spacemit: Add clocks to pinctrl and UART
-Message-ID: <20250419100844-GYA38730@gentoo>
-References: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
- <aANwGZCIpMcd47IB@ketchup>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wv5sQSVNMEz8AYJebST3BE5G+do1GG35G3Ir1WncWHYMUiqgSAROPBO6vJEZSoPhEx+KL+frRQgtMhAtA4FdTlH+TPSmP/F0FGFV496+QMQS5FQ4Nhg1uBe2mY6d/Lm4PtHYgiSlRlnM0SyU5jgcWeILk1VcOBTMHBdL1o1b2sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kio4HHdO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5053C4CEE7;
+	Sat, 19 Apr 2025 10:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745059137;
+	bh=xY0aaUKiZ3nf6klLxrhBlG9cVhweGxQOTCb/Ekznwd4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kio4HHdOutRt0lX2iSm8cL9uJdAUhJ+605V0kO6NHfszftpZB1SzbYW1Zb7rFcau4
+	 r/9DIAxMBLwzRRUT9e5NVgI0dmKFFewiROwZI6Eq1alhEhv4fL4GQmgY0yQ+Otk7ly
+	 M62eiTqiLW3tdSXi8iC8Lhkbvr0f6CYqrYbOfKAsCqhvIbJui4wNP61RMfR1KiE1Zf
+	 9nIufnoRKDrJyIWV4yFuP3RARs+ugw4NFriv59FhMTJyM8p9KNSHiu0K4iyEHAC588
+	 tRHoW13+hfHVSQhTZRCwy4dJ+wlVMTJPaLVYcKoNnV3FoDsH6QFw9MHAHvdtASQLgh
+	 tQf3vWUTqHPjw==
+Date: Sat, 19 Apr 2025 12:38:54 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, 
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Michael Walle <mwalle@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
+	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+Message-ID: <innhzhoplngaorr3oqsxigccbzho7eptp42lmd4otux4xsuvhx@pdhzjy6jwrtf>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+ <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="i2qjelbfoeyv45bu"
 Content-Disposition: inline
-In-Reply-To: <aANwGZCIpMcd47IB@ketchup>
-
-On 09:42 Sat 19 Apr     , Haylen Chu wrote:
-> On Sat, Apr 19, 2025 at 11:32:29AM +0800, Yixun Lan wrote:
-> > Populate clock property for pinctrl and UART controller.
-> > 
-> > The pinctrl's clock dt-binding patch is still waiting to be merged[1].
-> > 
-> > The UART's dt-binding and driver code has already been accepted[2],
-> > so we now are only sending the DT part patch.
-> > 
-> > These two patches are abased on SpacemiT SoC tree's for-next branch[3]
-> > 
-> > Link: https://lore.kernel.org/r/20250416-02-k1-pinctrl-clk-v2-0-2b5fcbd4183c@gentoo.org [1]
-> > Link: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/log/?h=tty-next [2]
-> > Link: https://github.com/spacemit-com/linux/tree/for-next [3]
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> 
-> Generally this looks good to me, but I realized that splitting the
-> commit that introduces clock controllers and the one that correctly
-> fills clock properties for various peripherals may cause bisectable
-> issues, i.e. the UART won't function with only the clock controller
-> introduced and no clk_ignore_unused specified on commandline.
-> 
-I don't think you should worry about this, my plan is to apply
-these two patches to for-next branch of spacemiT SoC tree, which
-exactly on top of clock patches, besides pinctrl[1], uart[2] patches
-will go via different subsystem, and this series depend on them
-in order to work properly at run time phase, so regarding this, it's
- kind of broken already.. but if take a high picture that they all
-will be merged into for-next/master branch, then it's fine
+In-Reply-To: <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
 
 
-> If this isn't really a problem, for the whole series,
-> 
-> Reviewed-by: Haylen Chu <heylenay@4d2.org>
-> 
-> > ---
-> > Yixun Lan (2):
-> >       riscv: dts: spacemit: Acquire clocks for pinctrl
-> >       riscv: dts: spacemit: Acquire clocks for UART
-> > 
-> >  arch/riscv/boot/dts/spacemit/k1.dtsi | 39 +++++++++++++++++++++++++++---------
-> >  1 file changed, 30 insertions(+), 9 deletions(-)
-> > ---
-> > base-commit: 279d51ad9f6dc0c667f6f141a669b2c921277d1a
-> > change-id: 20250419-05-dts-clock-026bfca75e5b
-> > 
-> > Best regards,
-> > -- 
-> > Yixun Lan
-> > 
-> 
+--i2qjelbfoeyv45bu
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+MIME-Version: 1.0
 
--- 
-Yixun Lan (dlan)
+On Wed, Apr 09, 2025 at 04:19:27PM +0100, Mark Brown wrote:
+> On Wed, Apr 09, 2025 at 04:55:52PM +0200, Mathieu Dubois-Briand wrote:
+> > BUG() never returns, so code after it is unreachable: remove it.
+>=20
+> BUG() can be compiled out, CONFIG_BUG.
+
+In that case BUG is defined as:
+
+	#define BUG() do {              \
+		do {} while (1);        \
+		unreachable();          \
+	} while (0)
+
+so the return can be dropped as suggested in the patch.
+
+Best regards
+Uwe
+
+--i2qjelbfoeyv45bu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgDfTEACgkQj4D7WH0S
+/k7/vwf8ClL68F1xm5thX7WLNjkcCjj0pl/3M+1HJ25yTuZ6yblDFzo6mRfBwfM5
+X0JG3yzxvMGlWGNLLql8B1J5DundDprN2qp6YOpMl1f5JneoI0KIXTY3lNT+0y4N
+P0V5eGYy96j3JGZ9p60X05EFHvfxMLZPBnTkj31X0fux7eodlRHQCmx4rjyOct4G
+TYUeb/HE+qZ/TnZKSU2biAzWsegr7RgnT8/oMVE+GFp6UZT5n6MAC6ZtjRt3p2jE
+KCG83+YMP9Vul2ZDXphhp3Vk6N8rIJgIaM0/PY0UotrGSyGyXccPAU7YC/srM4yA
+5RSfNSBdYe055b1jwS4NM5wo2lYXnw==
+=g+OB
+-----END PGP SIGNATURE-----
+
+--i2qjelbfoeyv45bu--
 
