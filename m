@@ -1,141 +1,187 @@
-Return-Path: <devicetree+bounces-168706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65882A94203
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 08:55:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0B5EA94216
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 09:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E7FD446FC3
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 06:55:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87DC44286F
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 07:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD086194A45;
-	Sat, 19 Apr 2025 06:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA1319580B;
+	Sat, 19 Apr 2025 07:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CjYh+aDd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YGvfR6CU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54A113B59B
-	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 06:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A7A18C004;
+	Sat, 19 Apr 2025 07:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745045705; cv=none; b=ng2nlngShhyga/t5TzvE5GTSDqtVYZUZX4+iFV5utR/PXpwBMRa0zxVyDOy0FK2L7kZA54nOQoFwoybrq8GjxXVaTLy2rqL5sJ3vhhRvZjNgeKv73IJzEGvna7XyGnF4IY8y21g7gGD252Bv73o08aMofgByO9fWLL3IIwwW2bA=
+	t=1745047211; cv=none; b=pJjzVZne8UgtTwV8myI/Namr6xAicgQAwUJ2FbxPS5PSqpTh7ub07JV9QAmPYFkFmDwbag72fA5WzWE7c9xxYp35jjArD5ubMvS3+2boJyyuvAs+pJsZi4+7+JQaOkR/j+EDM8a1tSmHhJWZuAP5oV4iOC2MEApKP47wQqm/jn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745045705; c=relaxed/simple;
-	bh=7V8yw5J+1i1mhYMW7TfQ/SiJZ+3ro2qr9nOVTet9OK8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZNWm9y4UOiPkhrhb5IQwNhRW28F3MuMPd7XY73c7Mr52WXmUvsUhhzgkqpb2RCJ8EewXsVBzz0leBCkrAcgvJkp/xK+bn05eJwekTUK4XarZAZ6j7AzdCG+8FxCbuPQ4ZxmPUgBRkVGu8z+Agh4o4gfLVZOsVYr7w7LnPq8/Ebg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CjYh+aDd; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7fd581c2bf4so2089163a12.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 23:55:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745045703; x=1745650503; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TICD64AIOfQs/ZYDCIR8qIZ9IkU5scdShX781+egCtQ=;
-        b=CjYh+aDdsGaFzFCww/y1+WE/ILdbPlvJIS4u2LADV5HY5o+/yePU7RAFGHDe13afQh
-         tVOYTE7fVZPkhuP/tpJ3JPAfDNOyfqw0XvvcoVx9bNx4pFTJM7b6m+5SJN/G75NXLf+r
-         qOazSH9n1UMrg4brq7ugh/BCbI5SuFpPw58N2tXt6a+Sd9nxM1/fq9s+3S57X9CO7TqJ
-         ovu0DcEMQXqsOjur2i8yilgdfk+3N/TTxA1jt1/Mwr5pUmSanLFOGNBOSPLdq72LXcS9
-         SdZPlr1kLCq47CpzYPJXg2uV4TGsotzdVStTxMlbGVY4FdggR+C/feORJ207YYUCCy/t
-         lQpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745045703; x=1745650503;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TICD64AIOfQs/ZYDCIR8qIZ9IkU5scdShX781+egCtQ=;
-        b=BOPmnTe0SvNX5sfGnvVXyV7ZwhNIqlnEYqZBewtEJxMwJCStPd0PeqaX07XLnqIw3R
-         VkWycVZl3FB6jIi9M7mCEhNVgvSWiprhWOI5zoMEslSEIMjM4dFIQYP453HsBXrdc4zw
-         vPHuD7JAR8oyKoujoVfCR/371g966TOYJkJ3LWCZP5EGp+R6wMYdONfcFN5pqIfkzx8Q
-         Q0cz+p7/a41a8LKnd/VKdGV4dLO6cSglE1hw1lBDShi0pm3WAglxkE4sgF8KvP7IT6S7
-         o/yYMpOyQQBr2G1AGO1N93lcTPqBc7Lq5DPU/rtFy9l05gsq/eekLyi8RzSk9l+PrU77
-         0CVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ5xDyYzN25oQtFMNyBMWwtyAN/SVchXs/td/K9jHA1zp8hNvtlQXpMZeT/3zTXTGfqV4Fo9HeqUvD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxM7+/qxBHPto8laqGRwd+R34aqs7lJ/XbE4WdYmckc1sXzsvx
-	WfsbzlXcM9TnFE27jVWFwSln5jqUhMoAxiD1Byj1iiNZYcFw68jVBSNkjyllig==
-X-Gm-Gg: ASbGncud1LxpcvlH3Va8xpoypHcxNs97Jzc76yrrDj591iVgKpiC/mMGPluEtVLblli
-	on1jyQ2GiTyAUFR232b8W4Q2ZFRiihbNgIv+89tdFzAzv3Klfnzj24MeU4QdAFnoc3ugg490wkW
-	AKlvnZHxQkvHuarTB1Lui9Hgnb//Gl1nJw1sRq5Yj6V4GlJL6ykKBwmiKEJFTHrROmamPnAqCAo
-	nz3ftuliT02NLcbzxLKz5LV70GiVUsltxL3daEamctnQ42i/HTU7kBQ+DxNqlJzMuKKYRRXrz4w
-	Pne7pXLaM8gcmfpOa9vwdhy726UZtwFmshgjBdRnZbZ+b64wAkao5w==
-X-Google-Smtp-Source: AGHT+IEF+s5cUaANZHoNtJTxHRWI2o+ROo6OeQ0i0fU+x5mBKy6gzJ99hJDGFllQSCcfHn9Y0iJK4Q==
-X-Received: by 2002:a17:90b:5827:b0:2ee:f076:20f1 with SMTP id 98e67ed59e1d1-3087ba53cd7mr8741809a91.0.1745045703223;
-        Fri, 18 Apr 2025 23:55:03 -0700 (PDT)
-Received: from thinkpad.. ([36.255.17.167])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3087e1149bcsm2380251a91.41.2025.04.18.23.54.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Apr 2025 23:55:02 -0700 (PDT)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1745047211; c=relaxed/simple;
+	bh=LCM9rcBiQnj8FfSNnDAtZd+MbtyPlq5KB3By1/gIDRI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NZIstrY+ST3tDMuma0m4B6P25tAUQbpNrGOyeD00TmAZVNMb+F5EEwcajNUARwZOpbhMplKJ/kvdDwbFQNF1ndEzQUquy2Lsot1EBHa6yzVhblwRYGxvtoo+FE0RObN6Q0dnoiCojMGVKFTpE03BtgTVCWddw0ULo+D3LMzK8k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YGvfR6CU; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745047209; x=1776583209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LCM9rcBiQnj8FfSNnDAtZd+MbtyPlq5KB3By1/gIDRI=;
+  b=YGvfR6CU/AhTYZwWhWZDs3ESEQW6e6wSy6CYX6HVYc45H5r2xXU4E4kg
+   FGtUhF9Qt5LrP8Cg+MgTYKKr5eLGFhLUX1ZdiqxsIqwCdO8MAedqpVoto
+   Ru6pbUjnMDK1Vews6pR980POfBiqAaCuvTZYeUrhrj0wx9JnU6dkiDakX
+   E5sucvAN/qTEFw/6XOskflb/pNeLPFK47bM/7HCDJ0FpeOaKDjoLYZDXJ
+   AYstCLM2jolNRmDh8u/BZA9gxKzUROZyjytNBvxKZE5qozuhdQdkxBqw2
+   7DU526q4yeDerZSPoHv+soJ1hcjI6muq9XA220QVcAexU+i6p/4OJsuIR
+   w==;
+X-CSE-ConnectionGUID: y373mTZgQdCn7KCo2NOyiA==
+X-CSE-MsgGUID: af8iy/c7R4i8wpS3tfPaJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11407"; a="34282307"
+X-IronPort-AV: E=Sophos;i="6.15,223,1739865600"; 
+   d="scan'208";a="34282307"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2025 00:20:08 -0700
+X-CSE-ConnectionGUID: eV3b6fYpTTWiRJQ+acA7Vg==
+X-CSE-MsgGUID: EKqWrkPHRKuPxYfGpv6kyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,223,1739865600"; 
+   d="scan'208";a="132179622"
+Received: from lkp-server01.sh.intel.com (HELO 61e10e65ea0f) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 19 Apr 2025 00:20:02 -0700
+Received: from kbuild by 61e10e65ea0f with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u62UZ-0003gD-2g;
+	Sat, 19 Apr 2025 07:19:59 +0000
+Date: Sat, 19 Apr 2025 15:19:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bincai Liu <bincai.liu@mediatek.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	quic_mrana@quicinc.com,
-	quic_vbadigan@quicinc.com,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v9 0/5] PCI: dwc: Add support for configuring lane equalization presets
-Date: Sat, 19 Apr 2025 12:24:49 +0530
-Message-ID: <174504563258.14560.1691218790091373846.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
-References: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Jitao shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	Bincai Liu <bincai.liu@mediatek.com>
+Subject: Re: [PATCH 3/5] drm/mediatek: Add dvo driver for mt8196
+Message-ID: <202504191551.u0FJoQ3O-lkp@intel.com>
+References: <20250418065313.8972-4-bincai.liu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250418065313.8972-4-bincai.liu@mediatek.com>
+
+Hi Bincai,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on pza/reset/next linus/master v6.15-rc2 next-20250417]
+[cannot apply to pza/imx-drm/next drm-misc/drm-misc-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Bincai-Liu/dt-bindings-eDP-mediatek-add-eDP-yaml-for-mt8196/20250418-145911
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250418065313.8972-4-bincai.liu%40mediatek.com
+patch subject: [PATCH 3/5] drm/mediatek: Add dvo driver for mt8196
+config: i386-buildonly-randconfig-006-20250419 (https://download.01.org/0day-ci/archive/20250419/202504191551.u0FJoQ3O-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250419/202504191551.u0FJoQ3O-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504191551.u0FJoQ3O-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/mediatek/mtk_ddp_comp.c:476:3: error: use of undeclared identifier 'DDP_COMPONENT_DVO0'
+     476 |         [DDP_COMPONENT_DVO0]            = { MTK_DVO,                    0, &ddp_dpi },
+         |          ^
+   1 error generated.
 
 
-On Fri, 28 Mar 2025 15:58:28 +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
-> 
-> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
-> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
-> configure lane equalization presets for each lane to enhance the PCIe
-> link reliability. Each preset value represents a different combination
-> of pre-shoot and de-emphasis values. For each data rate, different
-> registers are defined: for 8.0 GT/s, registers are defined in section
-> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
-> an extra receiver preset hint, requiring 16 bits per lane, while the
-> remaining data rates use 8 bits per lane.
-> 
-> [...]
+vim +/DDP_COMPONENT_DVO0 +476 drivers/gpu/drm/mediatek/mtk_ddp_comp.c
 
-Applied to controller/qcom, thanks!
+   456	
+   457	static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX] = {
+   458		[DDP_COMPONENT_AAL0]		= { MTK_DISP_AAL,		0, &ddp_aal },
+   459		[DDP_COMPONENT_AAL1]		= { MTK_DISP_AAL,		1, &ddp_aal },
+   460		[DDP_COMPONENT_BLS]		= { MTK_DISP_BLS,		0, NULL },
+   461		[DDP_COMPONENT_CCORR]		= { MTK_DISP_CCORR,		0, &ddp_ccorr },
+   462		[DDP_COMPONENT_COLOR0]		= { MTK_DISP_COLOR,		0, &ddp_color },
+   463		[DDP_COMPONENT_COLOR1]		= { MTK_DISP_COLOR,		1, &ddp_color },
+   464		[DDP_COMPONENT_DITHER0]		= { MTK_DISP_DITHER,		0, &ddp_dither },
+   465		[DDP_COMPONENT_DP_INTF0]	= { MTK_DP_INTF,		0, &ddp_dpi },
+   466		[DDP_COMPONENT_DP_INTF1]	= { MTK_DP_INTF,		1, &ddp_dpi },
+   467		[DDP_COMPONENT_DPI0]		= { MTK_DPI,			0, &ddp_dpi },
+   468		[DDP_COMPONENT_DPI1]		= { MTK_DPI,			1, &ddp_dpi },
+   469		[DDP_COMPONENT_DRM_OVL_ADAPTOR]	= { MTK_DISP_OVL_ADAPTOR,	0, &ddp_ovl_adaptor },
+   470		[DDP_COMPONENT_DSC0]		= { MTK_DISP_DSC,		0, &ddp_dsc },
+   471		[DDP_COMPONENT_DSC1]		= { MTK_DISP_DSC,		1, &ddp_dsc },
+   472		[DDP_COMPONENT_DSI0]		= { MTK_DSI,			0, &ddp_dsi },
+   473		[DDP_COMPONENT_DSI1]		= { MTK_DSI,			1, &ddp_dsi },
+   474		[DDP_COMPONENT_DSI2]		= { MTK_DSI,			2, &ddp_dsi },
+   475		[DDP_COMPONENT_DSI3]		= { MTK_DSI,			3, &ddp_dsi },
+ > 476		[DDP_COMPONENT_DVO0]            = { MTK_DVO,                    0, &ddp_dpi },
+   477		[DDP_COMPONENT_GAMMA]		= { MTK_DISP_GAMMA,		0, &ddp_gamma },
+   478		[DDP_COMPONENT_MERGE0]		= { MTK_DISP_MERGE,		0, &ddp_merge },
+   479		[DDP_COMPONENT_MERGE1]		= { MTK_DISP_MERGE,		1, &ddp_merge },
+   480		[DDP_COMPONENT_MERGE2]		= { MTK_DISP_MERGE,		2, &ddp_merge },
+   481		[DDP_COMPONENT_MERGE3]		= { MTK_DISP_MERGE,		3, &ddp_merge },
+   482		[DDP_COMPONENT_MERGE4]		= { MTK_DISP_MERGE,		4, &ddp_merge },
+   483		[DDP_COMPONENT_MERGE5]		= { MTK_DISP_MERGE,		5, &ddp_merge },
+   484		[DDP_COMPONENT_OD0]		= { MTK_DISP_OD,		0, &ddp_od },
+   485		[DDP_COMPONENT_OD1]		= { MTK_DISP_OD,		1, &ddp_od },
+   486		[DDP_COMPONENT_OVL0]		= { MTK_DISP_OVL,		0, &ddp_ovl },
+   487		[DDP_COMPONENT_OVL1]		= { MTK_DISP_OVL,		1, &ddp_ovl },
+   488		[DDP_COMPONENT_OVL_2L0]		= { MTK_DISP_OVL_2L,		0, &ddp_ovl },
+   489		[DDP_COMPONENT_OVL_2L1]		= { MTK_DISP_OVL_2L,		1, &ddp_ovl },
+   490		[DDP_COMPONENT_OVL_2L2]		= { MTK_DISP_OVL_2L,		2, &ddp_ovl },
+   491		[DDP_COMPONENT_POSTMASK0]	= { MTK_DISP_POSTMASK,		0, &ddp_postmask },
+   492		[DDP_COMPONENT_PWM0]		= { MTK_DISP_PWM,		0, NULL },
+   493		[DDP_COMPONENT_PWM1]		= { MTK_DISP_PWM,		1, NULL },
+   494		[DDP_COMPONENT_PWM2]		= { MTK_DISP_PWM,		2, NULL },
+   495		[DDP_COMPONENT_RDMA0]		= { MTK_DISP_RDMA,		0, &ddp_rdma },
+   496		[DDP_COMPONENT_RDMA1]		= { MTK_DISP_RDMA,		1, &ddp_rdma },
+   497		[DDP_COMPONENT_RDMA2]		= { MTK_DISP_RDMA,		2, &ddp_rdma },
+   498		[DDP_COMPONENT_RDMA4]		= { MTK_DISP_RDMA,		4, &ddp_rdma },
+   499		[DDP_COMPONENT_UFOE]		= { MTK_DISP_UFOE,		0, &ddp_ufoe },
+   500		[DDP_COMPONENT_WDMA0]		= { MTK_DISP_WDMA,		0, NULL },
+   501		[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,		1, NULL },
+   502	};
+   503	
 
-[2/5] PCI: of: Add of_pci_get_equalization_presets() API
-      commit: 2f12e20457a27599b6e1e1b0f08e6175e37c7e05
-[3/5] PCI: dwc: Update pci->num_lanes to maximum supported link width
-      commit: f1eb5da4d28b3788049ef98428b395fbab3478fd
-[4/5] PCI: Add lane equalization register offsets
-      commit: 165d80061e771390da26a29d362ceff96ab75da8
-[5/5] PCI: dwc: Add support for configuring lane equalization presets
-      commit: 3b35b43825f4e906d46519908dfff76a58d58bbb
-
-Best regards,
 -- 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
