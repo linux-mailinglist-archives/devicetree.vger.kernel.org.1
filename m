@@ -1,114 +1,102 @@
-Return-Path: <devicetree+bounces-168705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A0AA941F6
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 08:42:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65882A94203
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 08:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FA44445720
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 06:42:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E7FD446FC3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 06:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991AC18DF6E;
-	Sat, 19 Apr 2025 06:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD086194A45;
+	Sat, 19 Apr 2025 06:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="Oh9mfdsp";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UfrNYTHn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CjYh+aDd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D168828E0F;
-	Sat, 19 Apr 2025 06:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54A113B59B
+	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 06:55:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745044966; cv=none; b=HIqQ+aMOVuRSjQoymd2/Shde7UaX40CcuAsjGpbM4SC+Jq9YuSJHcyvyJk6HhG82L0tG1roZWn8w5ccKtskOvdax1p9u/fxEvthKw0ENmBFIEV3o5uyCc19wu80mX4pXCBDufM92QNKucTOc9yIdg21Oc+rVPtsfYY/BvmbWpbA=
+	t=1745045705; cv=none; b=ng2nlngShhyga/t5TzvE5GTSDqtVYZUZX4+iFV5utR/PXpwBMRa0zxVyDOy0FK2L7kZA54nOQoFwoybrq8GjxXVaTLy2rqL5sJ3vhhRvZjNgeKv73IJzEGvna7XyGnF4IY8y21g7gGD252Bv73o08aMofgByO9fWLL3IIwwW2bA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745044966; c=relaxed/simple;
-	bh=RpDJN/CwCIEnkvfWDcWekSrBuACy5eLCDUNY+0W0a4g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z4RgwoggI8u/Bfd9mAZDjl81UDDpkCAkbPY44igkyNg+34IhD7IhOb/C60iTp5L57Ci5Mf1nT4e366vph6Hd2wYUHgJ1kg0UIZ4S6ASs1zYfsafrpm44MLsNAP5Aa2MMRZ2ZW2JJbS0fw6N+2pY8pmV/DmL5eK7+3Ve5017GhgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=Oh9mfdsp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UfrNYTHn; arc=none smtp.client-ip=202.12.124.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 417362540395;
-	Sat, 19 Apr 2025 02:42:42 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-05.internal (MEProxy); Sat, 19 Apr 2025 02:42:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1745044962; x=1745131362; bh=zjt7NfBTzseQQMbU4/Y8LSDbLij1PLqZ
-	aamI7Qx/jKQ=; b=Oh9mfdsplZ7i20GBTkOnAnIP3l43QK4SIe0Oew6G5Vn8rjDH
-	Jkzx6Xdgkqau6Tr9sg6fdh9RdZmVngGuaEtFU+s91KEFO1/Ty6LBUjLiSCsSTO+W
-	GZUMjhe0t0VDHHH4Furz/W2aUTkg7Noicw1E/u+ICm+7VtCRR2bSyTQo6D5KIxzv
-	5Gdaf/gtacF04VHSEJetuAZdz2DPbURnQqQY9l6yvu/anIX2QYfdJUkLJFHfvD9N
-	p2lS4e1nW0I5t1UEAXUW86f+FRXwslbZdodOAweJLz09CVm71WKWsfQal8RDNNaY
-	m9PboVUhZQ9IUGx7Mkhh9f6rfkJKDV8bFwRjkQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1745044962; x=
-	1745131362; bh=zjt7NfBTzseQQMbU4/Y8LSDbLij1PLqZaamI7Qx/jKQ=; b=U
-	frNYTHneRJPrz+u2FZYVGWYEb/oJPDEkfkJmCemiKjDbphzYsj9to3yvXzqDuxND
-	tma2eP3q2rFbCngaSqNEd6mxezuQLYb004rM+y059La1SvmTz2fYdUAPv/cfOIMe
-	be/oRvTS9uSnHx4ievbR4ahwaPunb5Ok+ozS4/D+5seBOuGDwk8N373HI7xHfUEl
-	PJ+0Qbbt/XeG63phsDUHo9ewLubEpHlrgq0OkkksMMv4oz5xn14av/fCLhgEJ7Re
-	9b99upCdxMZS2xgcaSdNSS7eglKr8zz3wY5f0fSW2L7BchEEkPsYSUufwD/mjmhn
-	5V5b6/qyr376NoM1kmwhg==
-X-ME-Sender: <xms:4UUDaIs5Ny7GF38C8WnUn0nR48lDcMXrwqpGX9IZvw4kHNogcGPeCg>
-    <xme:4UUDaFd-UCklpb-X5bxoUNiEQd1yoiR1mFOE-qv1BXUD2Msvrk52lW0Va2AwT_WIQ
-    SSLTAS7LANOosagsDA>
-X-ME-Received: <xmr:4UUDaDxNXMpVP_b_QdrhZ0KjRd8enuK4YtIXq1wjQXK2gaAdwkm2dtBbLia8TL4IOoVX>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfeegfeefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhggtgfgsehtkeertder
-    tdejnecuhfhrohhmpefuvhgvnhcurfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrh
-    druggvvheqnecuggftrfgrthhtvghrnhepleetudehlefgteduffeijeehfeduudekhffg
-    fedvueekvedvveeuhefgieetgfegnecuffhomhgrihhnpehgihhthhhusgdrtghomhenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhes
-    shhvvghnphgvthgvrhdruggvvhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmth
-    hpohhuthdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgt
-    phhtthhopehnvggrlhesghhomhhprgdruggvvhdprhgtphhtthhopehrohgshheskhgvrh
-    hnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhr
-    tghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtoh
-    ifihhntghhvghnmhhisehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhhnkhhlrdhkvghr
-    nhgvlhesghhmrghilhdrtghomhdprhgtphhtthhopehjsehjrghnnhgruhdrnhgvthdprh
-    gtphhtthhopehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:4UUDaLM25JbRuYmCuFzy8hpuXXbZDn8mw_IgxhT6pDJw7zQAJYqThA>
-    <xmx:4UUDaI_glysPJGPj2VfOhzjRGHrEa_5Fl9_Nfw8Ome00AyJKkUJYJQ>
-    <xmx:4UUDaDWzJYoLb2zfyJ7NEkkQxLixy39eC_5VqQ-DtSKcTfpushl5vQ>
-    <xmx:4UUDaBd9iE4KcB8v0v61cUf9HSWGj1B7fI-2B5x15ZE04mZsHfdHxQ>
-    <xmx:4kUDaILQRmgzG8Z9BoOLGaiybrwn3SiiHE4Ym-YYn-dMGZdocIVv0jJR>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 19 Apr 2025 02:42:39 -0400 (EDT)
-From: Sven Peter <sven@svenpeter.dev>
-To: Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
+	s=arc-20240116; t=1745045705; c=relaxed/simple;
+	bh=7V8yw5J+1i1mhYMW7TfQ/SiJZ+3ro2qr9nOVTet9OK8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZNWm9y4UOiPkhrhb5IQwNhRW28F3MuMPd7XY73c7Mr52WXmUvsUhhzgkqpb2RCJ8EewXsVBzz0leBCkrAcgvJkp/xK+bn05eJwekTUK4XarZAZ6j7AzdCG+8FxCbuPQ4ZxmPUgBRkVGu8z+Agh4o4gfLVZOsVYr7w7LnPq8/Ebg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CjYh+aDd; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7fd581c2bf4so2089163a12.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Apr 2025 23:55:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745045703; x=1745650503; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TICD64AIOfQs/ZYDCIR8qIZ9IkU5scdShX781+egCtQ=;
+        b=CjYh+aDdsGaFzFCww/y1+WE/ILdbPlvJIS4u2LADV5HY5o+/yePU7RAFGHDe13afQh
+         tVOYTE7fVZPkhuP/tpJ3JPAfDNOyfqw0XvvcoVx9bNx4pFTJM7b6m+5SJN/G75NXLf+r
+         qOazSH9n1UMrg4brq7ugh/BCbI5SuFpPw58N2tXt6a+Sd9nxM1/fq9s+3S57X9CO7TqJ
+         ovu0DcEMQXqsOjur2i8yilgdfk+3N/TTxA1jt1/Mwr5pUmSanLFOGNBOSPLdq72LXcS9
+         SdZPlr1kLCq47CpzYPJXg2uV4TGsotzdVStTxMlbGVY4FdggR+C/feORJ207YYUCCy/t
+         lQpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745045703; x=1745650503;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TICD64AIOfQs/ZYDCIR8qIZ9IkU5scdShX781+egCtQ=;
+        b=BOPmnTe0SvNX5sfGnvVXyV7ZwhNIqlnEYqZBewtEJxMwJCStPd0PeqaX07XLnqIw3R
+         VkWycVZl3FB6jIi9M7mCEhNVgvSWiprhWOI5zoMEslSEIMjM4dFIQYP453HsBXrdc4zw
+         vPHuD7JAR8oyKoujoVfCR/371g966TOYJkJ3LWCZP5EGp+R6wMYdONfcFN5pqIfkzx8Q
+         Q0cz+p7/a41a8LKnd/VKdGV4dLO6cSglE1hw1lBDShi0pm3WAglxkE4sgF8KvP7IT6S7
+         o/yYMpOyQQBr2G1AGO1N93lcTPqBc7Lq5DPU/rtFy9l05gsq/eekLyi8RzSk9l+PrU77
+         0CVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ5xDyYzN25oQtFMNyBMWwtyAN/SVchXs/td/K9jHA1zp8hNvtlQXpMZeT/3zTXTGfqV4Fo9HeqUvD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxM7+/qxBHPto8laqGRwd+R34aqs7lJ/XbE4WdYmckc1sXzsvx
+	WfsbzlXcM9TnFE27jVWFwSln5jqUhMoAxiD1Byj1iiNZYcFw68jVBSNkjyllig==
+X-Gm-Gg: ASbGncud1LxpcvlH3Va8xpoypHcxNs97Jzc76yrrDj591iVgKpiC/mMGPluEtVLblli
+	on1jyQ2GiTyAUFR232b8W4Q2ZFRiihbNgIv+89tdFzAzv3Klfnzj24MeU4QdAFnoc3ugg490wkW
+	AKlvnZHxQkvHuarTB1Lui9Hgnb//Gl1nJw1sRq5Yj6V4GlJL6ykKBwmiKEJFTHrROmamPnAqCAo
+	nz3ftuliT02NLcbzxLKz5LV70GiVUsltxL3daEamctnQ42i/HTU7kBQ+DxNqlJzMuKKYRRXrz4w
+	Pne7pXLaM8gcmfpOa9vwdhy726UZtwFmshgjBdRnZbZ+b64wAkao5w==
+X-Google-Smtp-Source: AGHT+IEF+s5cUaANZHoNtJTxHRWI2o+ROo6OeQ0i0fU+x5mBKy6gzJ99hJDGFllQSCcfHn9Y0iJK4Q==
+X-Received: by 2002:a17:90b:5827:b0:2ee:f076:20f1 with SMTP id 98e67ed59e1d1-3087ba53cd7mr8741809a91.0.1745045703223;
+        Fri, 18 Apr 2025 23:55:03 -0700 (PDT)
+Received: from thinkpad.. ([36.255.17.167])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3087e1149bcsm2380251a91.41.2025.04.18.23.54.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Apr 2025 23:55:02 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nick Chan <towinchenmi@gmail.com>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@svenpeter.dev>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: apple: touchbar: Mark ps_dispdfr_be as always-on
-Date: Sat, 19 Apr 2025 08:42:34 +0200
-Message-Id: <174504490666.63781.1711699267217097502.b4-ty@svenpeter.dev>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250416-arm64_dts_apple_touchbar-v1-1-e1c0b53b9125@jannau.net>
-References: <20250416-arm64_dts_apple_touchbar-v1-1-e1c0b53b9125@jannau.net>
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	quic_mrana@quicinc.com,
+	quic_vbadigan@quicinc.com,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v9 0/5] PCI: dwc: Add support for configuring lane equalization presets
+Date: Sat, 19 Apr 2025 12:24:49 +0530
+Message-ID: <174504563258.14560.1691218790091373846.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
+References: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,21 +106,36 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Wed, 16 Apr 2025 20:06:18 +0200, Janne Grunau wrote:
-> The driver depends on boot loader initialized state which resets when the
-> ps_dispdfr_be power-domain is powered off. This happens on suspend or
-> when the driver is missing during boot.
-> Mark the domain as always on until the driver can handle this.
-> 
-> 
 
-Applied to git@github.com:AsahiLinux/linux.git (asahi-soc/fixes), thanks!
+On Fri, 28 Mar 2025 15:58:28 +0530, Krishna Chaitanya Chundru wrote:
+> PCIe equalization presets are predefined settings used to optimize
+> signal integrity by compensating for signal loss and distortion in
+> high-speed data transmission.
+> 
+> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+> configure lane equalization presets for each lane to enhance the PCIe
+> link reliability. Each preset value represents a different combination
+> of pre-shoot and de-emphasis values. For each data rate, different
+> registers are defined: for 8.0 GT/s, registers are defined in section
+> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+> an extra receiver preset hint, requiring 16 bits per lane, while the
+> remaining data rates use 8 bits per lane.
+> 
+> [...]
 
-[1/1] arm64: dts: apple: touchbar: Mark ps_dispdfr_be as always-on
-      https://github.com/AsahiLinux/linux/commit/dc5befecbe26
+Applied to controller/qcom, thanks!
+
+[2/5] PCI: of: Add of_pci_get_equalization_presets() API
+      commit: 2f12e20457a27599b6e1e1b0f08e6175e37c7e05
+[3/5] PCI: dwc: Update pci->num_lanes to maximum supported link width
+      commit: f1eb5da4d28b3788049ef98428b395fbab3478fd
+[4/5] PCI: Add lane equalization register offsets
+      commit: 165d80061e771390da26a29d362ceff96ab75da8
+[5/5] PCI: dwc: Add support for configuring lane equalization presets
+      commit: 3b35b43825f4e906d46519908dfff76a58d58bbb
 
 Best regards,
 -- 
-Sven Peter <sven@svenpeter.dev>
-
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
