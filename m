@@ -1,129 +1,142 @@
-Return-Path: <devicetree+bounces-168743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F1EA943AD
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 16:03:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5359EA943B9
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 16:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3424317A8AE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 14:03:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17037189D094
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 14:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1911DB122;
-	Sat, 19 Apr 2025 14:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED771D5173;
+	Sat, 19 Apr 2025 14:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VTh3k4Bk"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vDHHg3dr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3CF41ADC7E;
-	Sat, 19 Apr 2025 14:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BD813C3F2;
+	Sat, 19 Apr 2025 14:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745071420; cv=none; b=F3jwTcvp+FEB+WkslR3ASFvS0SOCgmfxoTci94QakEQa9B6Qs73gL2+0hO9k1Sp8qN2l9FXG2YzUKk8kyLqDyYZ7tLMUOzHTWtdE8J/Yq5PscbTPv8xe1/cQj3ItCHb6Vj9PHLGb0na4silPWWt0UGSGIPp9XdR+N4NThXNFqE8=
+	t=1745072924; cv=none; b=NdujKvqkTIObOpzZihzYzIvpm89S2iV50CDd5eH3ZPMKna1AYsc+qFu1T6NbajZrIwoNSp5RxyVSjYYF5GFJbHdwXOX8mta4LddWJsMyd2AZq+Hqvpr+07unnBauhvwLGWICCa7SGtSgYS2biaeOL47YblaSFqQzGJt14JFyA7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745071420; c=relaxed/simple;
-	bh=GAXSd6P51bCdcrlHYICGtiJPhrHgJGc7cexJ3Fvo3TU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tCIpyX5sV/43cQRe8ZUMCOjxrx8a4J+gkQStHaIN+HcFnueR4grVbyawHNJCZlcTW5GVwamSoVFjAuw62j80hSWzh2NEM0haiGrOsoViIenzFebKBv8eZyQ143WSXR5dF6GQMPkAKB4ZQZPuOktPLnntLPK0kOwkYr4N9DgqFYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VTh3k4Bk; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745071419; x=1776607419;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GAXSd6P51bCdcrlHYICGtiJPhrHgJGc7cexJ3Fvo3TU=;
-  b=VTh3k4BkzdXC2/x1wfhYcJEcGWECOthZbaqWuUBIvdYHGxqRCgnCrjEQ
-   7dzGq2Kv1jAY6yCCeoJeyvuB48s1reyBZHyVqFRliqF9V9l3Jxfymn7WG
-   5tWyuDAFk/yhPMmjN0IhcMp67azDvSb9hONri2iuioZbWu8lZofTKM/2z
-   VJRME7fLOBTAVxPZ2GEj2Au4rS2sdlJ+j83mlWVfj+wXHm/8a2mJwJUOG
-   OhepzgkjpIsVthlucUg/86qg9AVEdgwFEJdanBi6jcZGpX8HaxbUSF7Xo
-   g2Nc++phGJdOBd0tlZ+jHakF18l7ENLLfJuecx5SVYim7OB87VXP+LsHN
-   A==;
-X-CSE-ConnectionGUID: LyKSWrsaQDSfTcszldEitQ==
-X-CSE-MsgGUID: 0BDs/wutQ8+06ar1gzj7Mg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11408"; a="34292407"
-X-IronPort-AV: E=Sophos;i="6.15,224,1739865600"; 
-   d="scan'208";a="34292407"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2025 07:03:38 -0700
-X-CSE-ConnectionGUID: XdbiROmrSbmrdAVKpH0EQQ==
-X-CSE-MsgGUID: vXO5A6SyQDCixNkSFvRNGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,224,1739865600"; 
-   d="scan'208";a="135430196"
-Received: from lkp-server01.sh.intel.com (HELO 61e10e65ea0f) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 19 Apr 2025 07:03:34 -0700
-Received: from kbuild by 61e10e65ea0f with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u68n5-0003uH-2q;
-	Sat, 19 Apr 2025 14:03:31 +0000
-Date: Sat, 19 Apr 2025 22:03:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 04/14] mfd: zl3073x: Register itself as devlink device
-Message-ID: <202504192124.BZN8TTbm-lkp@intel.com>
-References: <20250409144250.206590-5-ivecera@redhat.com>
+	s=arc-20240116; t=1745072924; c=relaxed/simple;
+	bh=uzvmIdzNKMJvRDHxUKWWpbzGyBYgL/QazvZXZg5y6JQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iH0MJ+1Dz8MAa1scHamRhVw47Tsp/FopvvX3wgFCGh+VzUftnx1eoTXVnBept4W+ldvvEqkWWOnpYrzrpiSm8RitJAGvicX9TTXAcg6Y8dFeCMdKfyhl/Qv8bffXHMwXSVP6QFQBtDNjdl/MmaRbfGaUdapM4WO3sYIdFjwiBxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vDHHg3dr; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53JESXnD512670
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 19 Apr 2025 09:28:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745072913;
+	bh=bnT6SpimH/suvUjF2ZXLGhM0wMOvau/mRpChBQiDxrQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=vDHHg3drJ3ss897hg7P1UhiTvhAogx3/cclr3BePV84xckZIrWXh7z8Z0PMgy4j/+
+	 YKS3G4eTfZ4k+Z3f3z5zpXDPhjiVs014BUotYgtp+WUGJSLbAKkrY3vHzu9hw1QP0N
+	 TdQKGhrZsSF0VzllDILxmX3cEwRLvRs8oqX668sg=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53JESXYO023232
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 19 Apr 2025 09:28:33 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 19
+ Apr 2025 09:28:33 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 19 Apr 2025 09:28:33 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53JESTrG107279;
+	Sat, 19 Apr 2025 09:28:30 -0500
+Message-ID: <a34e8c08-0259-417a-8312-9f6efbdccead@ti.com>
+Date: Sat, 19 Apr 2025 19:58:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409144250.206590-5-ivecera@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-j784s4-j742s2-evm: Add overlay to
+ enable USB0 Type-A
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <u-kumar1@ti.com>
+References: <20250409100853.4179934-1-s-vadapalli@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250409100853.4179934-1-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Ivan,
 
-kernel test robot noticed the following build warnings:
+On 4/9/2025 3:38 PM, Siddharth Vadapalli wrote:
+> The USB0 instance of the USB controller on both the J742S2 EVM and the
+> J784S4 EVM supports a single USB interface at a time among the following:
+> 1. USB3.1 Gen1 Type C interface
+> 2. Two USB2.0 Type A interfaces via an on-board USB Hub.
+>
+> By default, the USB3.1 Gen1 Type C interface is supported on both of the
+> EVMs. Enable the USB2.0 Type A interface by configuring the USB2.0_MUX_SEL
+> mux. Additionally, set the Dual-Role Mode to Host since a Type-A interface
+> is only associated with the Host Mode of operation.
+>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>
+> Hello,
+>
+> This patch is based on linux-next tagged next-20250409.
+>
+> v2 of this patch is at:
+> https://lore.kernel.org/r/20250226124245.9856-4-s-vadapalli@ti.com/
+> Changes since v2:
+> - Rebased patch on next-20250409 and dropped other patches which were
+>    present in the v2 series.
+>
+> Regards,
+> Siddharth.
+>
+>   arch/arm64/boot/dts/ti/Makefile               |  7 +++++
+>   .../ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso  | 29 +++++++++++++++++++
+>   2 files changed, 36 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
+>
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> [..]index 03d4cecfc001..c7f23fbce660 100644
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +&exp2 {
+> +	p12-hog {
+> +		/* P12 - USB2.0_MUX_SEL */
+> +		gpio-hog;
+> +		gpios = <12 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "USB2.0_MUX_SEL";
+> +	};
+> +};
+> +
+> +&usb0 {
+> +	dr_mode = "host";
+> +};
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.15-rc2 next-20250417]
-[cannot apply to lee-mfd/for-mfd-next lee-mfd/for-mfd-fixes horms-ipvs/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ivan-Vecera/dt-bindings-dpll-Add-device-tree-bindings-for-DPLL-device-and-pin/20250409-225519
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250409144250.206590-5-ivecera%40redhat.com
-patch subject: [PATCH v2 04/14] mfd: zl3073x: Register itself as devlink device
-config: nios2-kismet-CONFIG_MFD_ZL3073X_CORE-CONFIG_MFD_ZL3073X_SPI-0-0 (https://download.01.org/0day-ci/archive/20250419/202504192124.BZN8TTbm-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250419/202504192124.BZN8TTbm-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504192124.BZN8TTbm-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for MFD_ZL3073X_CORE when selected by MFD_ZL3073X_SPI
-   WARNING: unmet direct dependencies detected for MFD_ZL3073X_CORE
-     Depends on [n]: HAS_IOMEM [=y] && NET [=n]
-     Selected by [y]:
-     - MFD_ZL3073X_SPI [=y] && HAS_IOMEM [=y] && SPI [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
