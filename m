@@ -1,200 +1,119 @@
-Return-Path: <devicetree+bounces-168761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F285A9442B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 17:30:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 143A2A9445B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 18:01:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D5A018989AB
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 15:31:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 619A87A2094
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 15:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DD61DDC11;
-	Sat, 19 Apr 2025 15:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAFD1DE4D5;
+	Sat, 19 Apr 2025 16:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kqy9yxI0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MXJca3H0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCB72D613;
-	Sat, 19 Apr 2025 15:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396F517E
+	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 16:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745076646; cv=none; b=WZMdtSjrXxXjbG9omWsJNp5GH8guhQDe0Pl3oLmFnTmzdcNlLagtKsbPSAHsSFOMsRhKbYSCTDCjst3KHujoXGj7uydlVaNqR5kwyjKUwf1tv+DJ1Gw6WcMNdENlHK8ZplugqQMBC5RDOJ726toijEb8shHN/y6IXGitu/KEzFI=
+	t=1745078459; cv=none; b=ZGdUkzoNlXjfKaujr/j2e6MoLHAwKj6qtnblswvwWlcBhDy4Qw3AjXpEAkpnW31i63XFN/tDPPvwzwPkEGkmCb6z++sRqz1M8sNF5yGKX+87Zywc3fB3VBm6YTPzhaBNZofRHtOS5DniXwykQWDhiH+aDWY5Laqaous9sdUtPUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745076646; c=relaxed/simple;
-	bh=EJY6VnbO/oorT+t/r51LBHIJCvd7pfE+OXcRXcdWp/Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ti17lqHbCON2jdLEZmzsy2kys466Bas8u5XvAfHoiBAlqukOGGy9Z8KTyaRseiSaL4WwKXbS06GNfNFV+NcEaUhk3r3TnsFJBOrO49tzDv9WJcykqKJZTq488p3U8dgZBmIX4YK8zoY4l+uuM3u29XvQaa1vaX1sHiCTtnRljuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kqy9yxI0; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745076645; x=1776612645;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=EJY6VnbO/oorT+t/r51LBHIJCvd7pfE+OXcRXcdWp/Y=;
-  b=kqy9yxI0ZfoOWs1glYcuiUfAd8IeLhIOjzDKlyVWWtXmPI8Z9C3j6jdY
-   xg8nQpw9MkLbdPvL8dbzKq056ND84nxA0H+5Qujl7xO/ooR7uS2K/OOds
-   xAl+EoI3kw/L4UDV6+XO/MuBhtCt9LcHiEcCONqz+TvmGRdhQYERB0RHg
-   M/V4SXIwfEoEHO4b5XXwlXMh8dS4RWo6KnvzNsRFPiB2mIY3wGRL4f0VB
-   xW/6CqPb+7xI7w6rSL8+LulS6lJ4oL0UqgRQRwtzfgvZKF+8945e8fvif
-   qumRL0jDAoG5D4fndeSpAOK3l/R9fwoLOz1iZID/agGds9sJy/s0ohkO4
-   A==;
-X-CSE-ConnectionGUID: OO56U8EaR3y71mlFyqiocg==
-X-CSE-MsgGUID: 2P+9OFUcSfyqAHX5Eluckg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11408"; a="46806652"
-X-IronPort-AV: E=Sophos;i="6.15,224,1739865600"; 
-   d="scan'208";a="46806652"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2025 08:30:44 -0700
-X-CSE-ConnectionGUID: CuoieLxUT1K3ksC/Kut48Q==
-X-CSE-MsgGUID: ZSJTu6nsQF+IEiTNRnHGnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,224,1739865600"; 
-   d="scan'208";a="154517506"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2025 08:30:35 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u6A9I-0000000DqsB-0AwJ;
-	Sat, 19 Apr 2025 18:30:32 +0300
-Date: Sat, 19 Apr 2025 18:30:31 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 11/16] of: property: Allow fw_devlink device-tree support
- for x86
-Message-ID: <aAPBl7qdbUizMQko@smile.fi.intel.com>
-References: <20250407145546.270683-1-herve.codina@bootlin.com>
- <20250407145546.270683-12-herve.codina@bootlin.com>
- <Z_Pw_MoPpVNwiEhc@smile.fi.intel.com>
- <20250408154925.5653d506@bootlin.com>
- <Z_U0DkSemHK0lrJW@smile.fi.intel.com>
- <20250418151036.719f982b@bootlin.com>
+	s=arc-20240116; t=1745078459; c=relaxed/simple;
+	bh=rlh4EjIVhJN5IBowA7mWxMHg/irPG8SmD6ZGXExhwkU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T2NDgbKThRyOJVDL6JhgoB3BNyesxrKQiP/MBE8QHNpEjm7VzeBQ7lZD+28hmOs3pXtk8HADRZS+n/lxP+aVS3tbLwKn6FLiL/ayCb9POG/+iY/ZLNQBUpZ+fF4CZ83+gyIjigh5OlvbpZf3Rn7ZLawAjEdp0dHObhf/DTOdH0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MXJca3H0; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d07ca6a80so13530795e9.1
+        for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 09:00:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745078456; x=1745683256; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W/fbFejZy4nIPoWrA0dBRfXvnbry7Fz4n31+Xfuj1TI=;
+        b=MXJca3H0t/Nr1IfGJzR38+oHHrNZtE1jiFTlVMsY1dtDI8+chTLb0Kwz1Wy6NdmIWO
+         NLhxCI1Whh17PgyYIP8RoKQ6nAY9HOOYJ10TgM0t89/uVj4HAbZtBkQJ1CHyvgmhuuc/
+         Qo8cmKYd4fE/jamNgGh/nmhPTxp8bOT0NZQlLf6pBUy3I2szBCLwHpl0F+IdK9lXfTJv
+         9nn9b2FxYvYwIGMg4Gy7lqHgxoMTffWEIP92/dka39TC7BGty1kOjsEhNqOhDiWPmH5L
+         74wcteOVoHdiIY8iMitigbw39MLs3H6yzCv5a7P3nHf/4iaDmjHwByuX6jVnqzOQIRGW
+         igLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745078456; x=1745683256;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W/fbFejZy4nIPoWrA0dBRfXvnbry7Fz4n31+Xfuj1TI=;
+        b=rAr1LNVYm/dDaROi9RnmtW2vDtOXBLKrev4BN58pV6vu4xJZQdpyxY9fqTmHWg5wqs
+         rjKNougKzXWqi24Ye8GuZahTW0JEAL+P5IpXVrsmAsmHw2F3wLz/pVbolsps4dxlMRwZ
+         XhAMVU1KAJnDSQYtrsHYamcgTv8RKNZi00gHtC516GCygUvBJuJwxBT6th0XqKXj2PLW
+         JPqxwgxOChSlGj0oqpKJec2FgdWG4spubsyD5QGKhUOSVLsrT+GYurfIO7nFZNTZc370
+         UMxv/2Ow1z3Nf9Y+5DsIZOtwRFiitvS1A08qvnXcmri/5OaysIX3OVuL6f6eutTPa8UJ
+         3QXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZdyR/ba4JzKuZdt/A6+NzXT4vCurxJjB51rgRlIGYS+Htkg+PIRUE3hkWpLBXXwoEzpz7Ld4DP/DZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzavRI+WojzDpBylXJjpMEEvyZtxyReyOHVtJje0h/hsw7hVvYi
+	0+dAHAbROYooE7uqWLNHVidVaB4Ca+U70eYLGvi6Ou0B5vIUuACN
+X-Gm-Gg: ASbGncu/53RXsxZzbALaH0sH2MpZX8QLSnEtYh7DHEJmhV9BwEEqFOiZ1pRqKjMxRiw
+	7EvwFBOSUGneXSZB/rditfvHyjD5uD/BTp5gfgJ2Tm9iZDyL9jZLpftLSAxJXEmf5KsSy1h3LaB
+	/+g1iBAosSOiwDhJlEPwkLzy08ozeLawtaDMSTJ+bY0QWcDLYHhz2xQiTfLHq1YyRpaoUulfWaX
+	UVVlbT2UrT+v5GJ/TTkrYNTnJruaLUs+ro1hK+Jt8sjI3NS1SHAW0TzNXkPmZQSif1gU/3WGJFn
+	8QF8BsH61/pD4cAzC3f9/aZBlWsTTaD8UYzF24nd+k/5/5CS9GH0y3YPYJQ2n9RPKnEP+mk5GK5
+	XzvzrXaWzkST0f9wFR2hBGOBwuLBQDuOJBG0JDtcMf55A5KJeMrSnkoq1tChSkP6+kVe3XjyJYd
+	g=
+X-Google-Smtp-Source: AGHT+IGnC36Pr2Pwb4ykt7IfU37k/BXh1PqT9qkdlZ9ToWVt+IpsfmlkELLWVuksNL2ab2S/sOLkPA==
+X-Received: by 2002:a05:600c:1c07:b0:43c:f6c6:578c with SMTP id 5b1f17b1804b1-4406aba5a1amr65142375e9.15.1745078455985;
+        Sat, 19 Apr 2025 09:00:55 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4406d5acdd4sm65136215e9.14.2025.04.19.09.00.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Apr 2025 09:00:55 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH v3 0/2] Add support for WiFi/BT header on Pine64 A64
+Date: Sat, 19 Apr 2025 17:00:45 +0100
+Message-ID: <20250419160051.677485-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250418151036.719f982b@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Apr 18, 2025 at 03:10:36PM +0200, Herve Codina wrote:
-> On Tue, 8 Apr 2025 17:34:54 +0300
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Tue, Apr 08, 2025 at 03:49:25PM +0200, Herve Codina wrote:
-> > > On Mon, 7 Apr 2025 18:36:28 +0300
-> > > Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:  
-> > > > On Mon, Apr 07, 2025 at 04:55:40PM +0200, Herve Codina wrote:  
+Add the BT and WiFi pins on the WiFi/BT header on the Pine64/Sopine
+boards.
 
-...
+Changes in v3:
+- Explicitly disable mmc WiFi section in DT even though it's already
+  disabled in the SoC DT.
 
-> > > > This is incorrect, they never had ACPI to begin with. Also there is third
-> > > > platform that are using DT on x86 core — SpreadTrum based phones.  
-> > > 
-> > > I will rework the commit log to avoid 'mixing ACPI and device-tree'
-> > > 
-> > > For "SpreadTrum based phones", do you have an idea about the Kconfig symbol
-> > > I could use to filter our this x86 systems?  
-> > 
-> > Hmm... good question. I don't think it was anything. The Airmont core just
-> > works and doesn't require anything special to be set. And platform is x86 with
-> > the devices that are established on ARM, so nothing special in device tree
-> > either, I suppose. Basically any x86 platform with OF should be excluded,
-> > rather think of what should be included. But I see that as opposite
-> > requirements to the same function. I have no idea how to solve this. Perhaps
-> > find that SpreadTrum Intel Atom-based device? Would be really hard, I believe.
-> > Especially if we want to install a custom kernel there...
-> > 
-> > > Anything I find upstream related to SpreadTrum seems base on ARM cpus.
-> > > I probably miss something.  
-> > 
-> > There were two SoCs that were Intel Atom based [1]. And some patches [2] to x86
-> > DT code were made to support those cases.
-> > 
-> > > > And not sure about AMD stuff (Geode?).  
-> > > 
-> > > Same here, if some AMD devices need to be filtered out, is there a specific
-> > > Kconfig symbol I can use ?  
-> > 
-> > This is question to AMD people. I have no clue.
-> > 
-> > [1]: https://www.anandtech.com/show/11196/mwc-2017-spreadtrum-launches-8core-intel-airmontbased-soc-with-cat-7-lte-for-smartphones
-> > 
-> > [2]: 4e07db9c8db8 ("x86/devicetree: Use CPU description from Device Tree")
-> > and co. `git log --no-merges 4e07db9c8db8 -- arch/x86/kernel/devicetree.c
-> 
-> I have tried to find a solution for this topic.
-> 
-> Indeed, this patch enables fw_devlink based on device-tree on all x86
-> platform except OLPC and CE4100.
-> 
-> You have mentioned some other x86 based system that could have issues with
-> fw_devlink and it seems to be hard to have a complete list of systems for
-> which we should not enable fw_devlink (potential issues and so regression
-> against current kernel behavior).
-> 
-> As you also proposed, we can thing on the opposite direction and enable
-> fw_devlink on x86 systems that need it.
-> 
-> We need it because we need the device-tree description over PCI device feature
-> (CONFIG_PCI_DYNAMIC_OF_NODES) on x86 in order to support the LAN966x use case.
-> 
-> What do you think about the following condition?
-> 
-> 	if (IS_ENABLED(CONFIG_X86) && !IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES))
->  		return 0; /* Not enabled */
-> 
-> CONFIG_PCI_DYNAMIC_OF_NODES has already to set explicitly by the user.
-> 
-> Do you think it makes sense and could be a good alternative instead of
-> filtering out a list of x86 systems ?
+Changes in v2:
+- drop patch that enables the WiFi module, it'll move to a overlay later
 
-At least this won't break old platforms that won't set that configuration
-option. Ideally, of course, it would be nice to have some kind of detection
-at run-time...
+Peter Robinson (2):
+  arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
+  arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
+
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 18 +++++++++++++
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 25 +++++++++++++++++++
+ 2 files changed, 43 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.49.0
 
 
