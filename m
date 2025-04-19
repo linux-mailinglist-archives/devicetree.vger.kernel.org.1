@@ -1,65 +1,101 @@
-Return-Path: <devicetree+bounces-168756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E41FA94403
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 16:54:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE79A9440C
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 16:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C28918880C3
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 14:54:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCFC23B7F37
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 14:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604151E2614;
-	Sat, 19 Apr 2025 14:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04E61DC9B0;
+	Sat, 19 Apr 2025 14:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OQdnhnsM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QvOgQpwy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92761DF748;
-	Sat, 19 Apr 2025 14:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6655199E89
+	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 14:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745074400; cv=none; b=W0JGAnr/aN0oXJ3CScnwcH3r5mqHW1O4fSV9JN6OPXxmTUjDyG5RUmvPFsz+oHfB6QNMcrlJnp9FAaVcEahcx8KV6OZ6K48ZyZooMwRqTKgYHrxVf/KFYGOSurZZPO8Iek2lEMXT+mVP4wJ2MFH20AG3Et/MVuYuFjUuNmrTqks=
+	t=1745074774; cv=none; b=AMX4yb6erojMMIyy7DuC/KH1e0pzWocPFZW3/oygF8HUDgS7e5ngtDzn49wKS2bB8kbrugyqJcFflggDeNMZQkbaf1sq7Dv9kCEve1KyMoy5pRuytXKnV7O8Ct6fTDkumLqU6jY1DyuhXMQKr0j/P/hlHGuIu9TmLo+qie5X9L0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745074400; c=relaxed/simple;
-	bh=4T/HC8WzUNag3b/TdI9h2sRpr8wstnE/YPlEJLgaE0k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=EtRuBwcHoHi/X3PhLzIonApM6WCyjpQm6/+9krK7Wtm9AN2mRGbt6s4GdgFApOOqAvMPXFv0gtX38DTyW7SgraynJxoXuxPKhQrLNrZvH/hMuETCHGPqwN9py0+JtLONGcHT5C0GaF38yTdQj4bcpiADKJXYa9RWeqn+xBy09xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OQdnhnsM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53JCrWg7029716;
-	Sat, 19 Apr 2025 14:52:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Bwb4ARwyOqLXEZJuxL4XbgDNIeBe8WVK6SbMRHhkI0Q=; b=OQdnhnsMGmSEyhwS
-	Q0eYzAX29n8O1/I1uUQYq4e4bAKnsMRPKdTdkMaCqqDljvepA7Aw+8I7xqgaQwvy
-	LNdj+BE709VZZygvRw3SUFapv0Tp4R5M9QnZyH2NJX00GXBs7o3BNvQ7nl2DReyl
-	Claouvyjg/Wvt88Ab27Tj89OQjd4UcPohIzzW2Il4CLMM7Z/Nw4aEZH6gp0yinil
-	5pwrtNx8dGDUi88c63K+7wYpkDx92OuO7MhUCSsDaWEgTYUU+nqDXFq9/wMrAYuz
-	F7T4Iakj+ZVa8aQGi3ojhdh041o7AgP/EFRMNlbGEMsfqS1w2JR1jLEpoqVPU05c
-	090RnQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4644kj8kk8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 19 Apr 2025 14:52:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53JEqrmQ011225
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 19 Apr 2025 14:52:53 GMT
-Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 19 Apr
- 2025 07:52:47 -0700
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Date: Sat, 19 Apr 2025 20:21:36 +0530
-Subject: [PATCH v5 7/7] arm64: dts: qcom: x1e80100: Add OPPs up to Turbo L3
- for GPU
+	s=arc-20240116; t=1745074774; c=relaxed/simple;
+	bh=YBkcA+8VZy/wu0v2Bt7u8fQ1puMwyzk0J7Ggy/XGRnw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=axl2pRASa/Ecz9Ym6Si3Hsm1Uen4WQhpCmkSF+A2UnW7ggpd7476Yab2vs68OxqNv3Gb0djlT0bYMBj/yJ31CqBeweTfaeF+RcBJtta5Ls2/V/95W3rzGf9FA7vmPGwnFYYdgi0y3dQUWWocCbooqNtVW2ku1o+PBEpSHAbUVVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QvOgQpwy; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-736a72220edso2659294b3a.3
+        for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 07:59:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745074771; x=1745679571; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9q1NBR20RdtEJv8ykkYuXpJV8gE5og1ezdr6jbBl9lI=;
+        b=QvOgQpwyT0Dv2wXZm/PkFEOPPHR6kAGJ4ZmFDNmHVujVOgrxn3f/5IqyZsMTowUzWP
+         bQ464Qs1PZadMjJB3QbvZjH8fRxnXwyahWLJa3mNS++Y37PhsxpZffbI5wSIJxwSyk6V
+         1NesAeKS/yMu/KRU+dM8I1iXyc2ZJA4x+8l6UTZvUeBhTZMfWptlWFUlr3SvSZm8SEOS
+         ixkC5Kd+fXcVZ2OCKOyQ6EaieJDhiGklmkq9c1Ruw5JhNCZT4F8MgPt+KcjQNZzXqrs1
+         wFzZthD57IjiCIJyvFZKTpGg9UWpVj3mgNrxlwDEL/fvBT9VYeXBeJy8E1dgtFkuBplI
+         CZog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745074771; x=1745679571;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9q1NBR20RdtEJv8ykkYuXpJV8gE5og1ezdr6jbBl9lI=;
+        b=BN8HGrJUP4nUT8TUoU5TgjKJ8Q/Zdqq7zUywAnfFcBc7EJHQCS0RHBOjcxjQMaOETv
+         mnigf6clTCm0RZklM3CjtNAVo6oapRViHVv64A9S2/kl0DM+oGFYCgyUiLn1pak47mvk
+         jEmk5DPpoJodBWwtlmYCbrZ50zfftlvRXQ0BqDsIbm5pOLeYDfDx6VQ78V0Y5Jcb/yDF
+         rdiq28ZHbpWUv5fFIfe6hF0YCaO+n0/xzMefHSxY1x7QidYgCIPp6CAkhCPayEOH0yUH
+         VHYuCDgVx19fIFV3wof4cuh7HreApoBLv/2CfdiUNRUJ0u1ua5hyTdrWwh1B/qcAXumL
+         /15w==
+X-Forwarded-Encrypted: i=1; AJvYcCUdFhxUf4v1aFMz1diLRbd6QeMiMhYRUy+vtbILeVHKsoiROeMXU8XBCeaLc4QqMyC4ia3IKJICmjKs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3w2qa5xrZnFfnUE6lyuAQ5/boKyPTgaPJj8lnqqKf8YGeex+n
+	qhFZ/3SbKCFn3YDQ5oLDPyBwUCNctVU20qg4/QH2Fo1E6UDUV/Gt2I91/cXgTg==
+X-Gm-Gg: ASbGncsgYEVOgeBhyQoAMn2nSdXxNq0vNYxJBtl1mKjoDy765MevMQZvkAC5UPGzpxi
+	fhRyzrZplV0UjlfGDVv6zQKiimG566S6xOVtb7fGaQ++HL/T2k4u/ftUkl5Hhx/TZqcfYuVtDPT
+	vGxc7/s0ruHkK3iUg+Y8rNF2GWJnP2xgSfanKN9fFjfMFeYraHKz+1QkNeiHWfbJ2gX3LO5DjpC
+	fTm9NBeYOGSFMPzmDFL4Ct5+pwR+lsAD2NYVk0olbLJ1J/jf5bk5MyzGHdysQOE77nrzV3C4KlK
+	4b3Bk8sNnw9CDZ2gn+QmJ+6zbLloFaek3U8Qn2z/bxRSjSmbuB920Q==
+X-Google-Smtp-Source: AGHT+IE8xaP7gnD8F/5xNGraXuOjC5ioTqc6szU4p31LKem0A/5JV3SxYxZJSVmaL3fJhJ5WcSXIAg==
+X-Received: by 2002:a05:6a00:884:b0:730:97a6:f04 with SMTP id d2e1a72fcca58-73dc1494019mr9292391b3a.7.1745074771096;
+        Sat, 19 Apr 2025 07:59:31 -0700 (PDT)
+Received: from thinkpad.. ([36.255.17.167])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf90bd8csm3411547b3a.79.2025.04.19.07.59.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Apr 2025 07:59:30 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	Marc Zyngier <maz@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Janne Grunau <j@jannau.net>,
+	Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mark Kettenis <mark.kettenis@xs4all.nl>
+Subject: Re: [PATCH v3 00/13] PCI: apple: Add support for t6020
+Date: Sat, 19 Apr 2025 20:29:18 +0530
+Message-ID: <174507447951.53343.12422475035572217541.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250401091713.2765724-1-maz@kernel.org>
+References: <20250401091713.2765724-1-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,105 +103,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250419-gpu-acd-v5-7-8dbab23569e0@quicinc.com>
-References: <20250419-gpu-acd-v5-0-8dbab23569e0@quicinc.com>
-In-Reply-To: <20250419-gpu-acd-v5-0-8dbab23569e0@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Viresh Kumar
-	<vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Akhil P Oommen
-	<quic_akhilpo@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Maya
- Matuszczyk" <maccraft123mc@gmail.com>,
-        Anthony Ruhier <aruhier@mailbox.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745074319; l=1555;
- i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
- bh=4T/HC8WzUNag3b/TdI9h2sRpr8wstnE/YPlEJLgaE0k=;
- b=SPrpVMe6gPY8xO31yY4dNQtmho0P0E+RHd/Y7BByIm6m0qPQVD6u2uu9RubnEr3sFvvX1d9nB
- +Y/TMsFnIHrCF+O69rPsRWi68Adlh87NgxBrpBzl+WVk+znMAxwyZ3d
-X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iiDqqIGQXDt2awhmICwderBpiQ22fTix
-X-Authority-Analysis: v=2.4 cv=f5pIBPyM c=1 sm=1 tr=0 ts=6803b8c6 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8
- a=b3CbU_ItAAAA:8 a=1Bjw1aJ-qlzXb4ygRX0A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=Rv2g8BkzVjQTVhhssdqe:22
-X-Proofpoint-ORIG-GUID: iiDqqIGQXDt2awhmICwderBpiQ22fTix
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-19_06,2025-04-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- mlxlogscore=928 mlxscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504190122
+Content-Transfer-Encoding: 8bit
 
-Now that we have ACD support for GPU, add additional OPPs up to
-Turbo L3 which are supported across all existing SKUs.
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Tested-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-Tested-by: Anthony Ruhier <aruhier@mailbox.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+On Tue, 01 Apr 2025 10:17:00 +0100, Marc Zyngier wrote:
+> As Alyssa didn't have the bandwidth to deal with this series, I have
+> taken it over. All bugs are therefore mine.
+> 
+> The initial series [1] stated:
+> 
+> "This series adds T6020 support to the Apple PCIe controller. Mostly
+>  Apple shuffled registers around (presumably to accommodate the larger
+>  configurations on those machines). So there's a bit of churn here but
+>  not too much in the way of functional changes."
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index a9c8cca1c6356393962cef856b3dbd9420733999..8eddf0c9609871b8660587a22b008212a67604b3 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3754,10 +3754,24 @@ zap-shader {
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2-adreno", "operating-points-v2";
- 
-+				opp-1250000000 {
-+					opp-hz = /bits/ 64 <1250000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L3>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
-+				opp-1175000000 {
-+					opp-hz = /bits/ 64 <1175000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L2>;
-+					opp-peak-kBps = <14398438>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
- 				opp-1100000000 {
- 					opp-hz = /bits/ 64 <1100000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
--					opp-peak-kBps = <16500000>;
-+					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82a5ffd>;
- 				};
- 
+Applied, thanks! 
 
+[01/13] PCI: apple: Set only available ports up
+        commit: 751bec089c4eed486578994abd2c5395f08d0302
+[02/13] dt-bindings: pci: apple,pcie: Add t6020 compatible string
+        commit: 6b7f49be74758a60b760d6c19a48f65a23511dbe
+[03/13] PCI: host-generic: Extract an ecam bridge creation helper from pci_host_common_probe()
+        commit: 03d6077605a24f6097681f7938820ac93068115e
+[04/13] PCI: ecam: Allow cfg->priv to be pre-populated from the root port device
+        commit: f998e79b80da3d4f1756d3289f63289fb833f860
+[05/13] PCI: apple: Move over to standalone probing
+        commit: cf3120fe852f5a5ff896aa3b2b6a0dfd9676ac31
+[06/13] PCI: apple: Dynamically allocate RID-to_SID bitmap
+        commit: d5d64a71ec55235810b4ef8256c7f400b24d7ce8
+[07/13] PCI: apple: Move away from INTMSK{SET,CLR} for INTx and private interrupts
+        commit: 0dcb32f3e12e56f5f3bc659195e5691acbfb299d
+[08/13] PCI: apple: Fix missing OF node reference in apple_pcie_setup_port
+        commit: 02a982baee109180da03bb8e7e89cf63f0232f93
+[09/13] PCI: apple: Move port PHY registers to their own reg items
+        commit: 5da38e665ad59b15e4b8788d4c695c64f13a53e7
+[10/13] PCI: apple: Drop poll for CORE_RC_PHYIF_STAT_REFCLK
+        commit: 3add0420d2574344fc2b29d70cfde25bd9d67d47
+[11/13] PCI: apple: Use gpiod_set_value_cansleep in probe flow
+        commit: 484af093984c35773ee01067b8cea440c5d7e78c
+[12/13] PCI: apple: Abstract register offsets via a SoC-specific structure
+        commit: 0643c963ed0f902e94b813fdcbf97cbea48a6d1a
+[13/13] PCI: apple: Add T602x PCIe support
+        commit: f80bfbf4f11758c9e1817f543cd97e66c449d1b4
+
+I've fixed some trivial conflicts while applying. But please check the end
+result to make sure I didn't mess up:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=controller/apple
+
+Best regards,
 -- 
-2.48.1
-
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
