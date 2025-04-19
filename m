@@ -1,168 +1,133 @@
-Return-Path: <devicetree+bounces-168725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43345A9429B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 11:33:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F79A9429F
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 11:35:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBA2C189F25D
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 09:34:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29926189F2A3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 09:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A02F1B2186;
-	Sat, 19 Apr 2025 09:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC671BBBFD;
+	Sat, 19 Apr 2025 09:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="2XzxFNgv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WU8mhadh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EDF719E975;
-	Sat, 19 Apr 2025 09:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20A118A6A7;
+	Sat, 19 Apr 2025 09:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745055227; cv=none; b=YelUmHYYCuU30oSmxwaihNF/OTApZxuYhV8mUKf6M7bTCe3xZnh76xzaraaVtbGj81hLlnLdw9jeca4i7SVCitttdvvlB5QB8L7h6X2ykhXejTHCLFGfYVbEdmxXAzq2Jrt6IcJoEWSIk2KgiiFkEhzNd0oLQS38bqdrHOH+eYA=
+	t=1745055305; cv=none; b=oizJ+nQyUnjqDven+NifbErX39rcldR+Fr0wnxZGW6bBh78F1HyHlXQ/kpWNM9KI46yvlZ4+D9vbMaGqUgc9V1Upc1QRPgqLZN+UY/SAEi5kD3CMtwTCPmVvqQwPn/1pH0j3cHNOWOxYlbk3Yxep8sOHKH7I/IxJKsyTuqty0ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745055227; c=relaxed/simple;
-	bh=tujxZc5FPqQZaxnHUo43K6r9AT/xvx1PqUeV+WBpWHI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rJhUDqodz2uBADBMjtsoCvEiD0/ZXD5vZ8L7bZTxKf6j2fiLp4ahgu4PBSMvwiQrKz3Fp+vW7Y9WFPi885cstiXeb1xhvImzjMxH0gt8doYJenw95SHOP2Urpe3WZKaFmA8pN0ntww383oh/DpB3stljspx/s1KJj43BRe4rh6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=2XzxFNgv; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1745055223; bh=tujxZc5FPqQZaxnHUo43K6r9AT/xvx1PqUeV+WBpWHI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=2XzxFNgvjEvYAKv7VH49Xsa9L9X9dmjsKP5Rc3yeXS+PiL6qd2ai6CZZl3OmbkYa5
-	 U0TTddQHNBriLMSeZnpGOhhng2EzCz+/0UOZp1tcxjUuZJX8TfcYXKZrPulvrIy3MZ
-	 NploxEi+Nniuc1bQNEWEODsmuAnzbBp9hEZWtuCY=
-Message-ID: <89d37770-48b4-474e-abbe-99c974032613@lucaweiss.eu>
-Date: Sat, 19 Apr 2025 11:32:50 +0200
+	s=arc-20240116; t=1745055305; c=relaxed/simple;
+	bh=WolXuewx7OlA5cu8AF4VVhCTZxn5SojxszGM0R0x200=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mabsmheDKMo0ElHakIZAvC3gCVUtwXrapuMIyLUOnTDCkyLUR1nhH9HiOa2xmIs4+hGtOzdZ3bv+VXpAtyjjbwku0Cad9KjeUs1zWmnjy92EevWb1/4pG50/0AVfOjFVEtI7MJWjjugkQCG3XsXKzFyg7nt0j4Afu/+dmIXxdj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WU8mhadh; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53J9Yw8m474476
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 19 Apr 2025 04:34:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745055298;
+	bh=gft5NuX6qVKgd8gTmf59OKqmKGXTRiwgf8HWTh+DF7E=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=WU8mhadhngmBa/ah+C0F72oEmz78Ms2gn+eanhVvPcR7ZOEnNWmG4iR28aVcX2dXV
+	 2AX40nlSeWZpui7cVZjUDOeTu3NeMtupeU+WwgKhVyGIRRvXnRYCqKtxcgs6WlJPpq
+	 Fdm5arMpuSnKko7k63wAfw0f0MihaK2U6ViXMW7k=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53J9YwXf087851
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 19 Apr 2025 04:34:58 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 19
+ Apr 2025 04:34:58 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 19 Apr 2025 04:34:57 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53J9Ys4F081127;
+	Sat, 19 Apr 2025 04:34:55 -0500
+Message-ID: <4144abf5-82aa-49db-82d7-c1429c12292e@ti.com>
+Date: Sat, 19 Apr 2025 15:04:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ARM: dts: qcom: msm8974-samsung-hlte: Add touchkey
- support
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Adam Honse <calcprogrammer1@gmail.com>
-References: <20250419-hlte-touchkey-v1-1-9d93c3e2b31f@lucaweiss.eu>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/7] arm64: dts: ti: k3-am68-sk: Enable DSI on
+ DisplayPort-0
+To: Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <devarsht@ti.com>, <linux-kernel@vger.kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20250411105155.303657-1-j-choudhary@ti.com>
+ <20250411105155.303657-8-j-choudhary@ti.com>
 Content-Language: en-US
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <20250419-hlte-touchkey-v1-1-9d93c3e2b31f@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250411105155.303657-8-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 4/19/25 11:08 AM, Luca Weiss wrote:
-> From: Adam Honse <calcprogrammer1@gmail.com>
-> 
-> Add support for the touchkeys on the Samsung Galaxy Note 3 (hlte).
-> 
-> Signed-off-by: Adam Honse <calcprogrammer1@gmail.com>
+
+On 4/11/2025 4:21 PM, Jayesh Choudhary wrote:
+> Enable DSI support for AM68-SK platform.
+>
+> Add DT node for DSI2eDP bridge. The DSI to eDP bridge is sn65dsi86
+> on the board.
+>
+> Add the endpoint nodes to describe connection from:
+> DSS => DSI => SN65DSI86 bridge => DisplayPort-0
+>
+> Set status for all required nodes for DisplayPort-0 as 'okay'.
+>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
-
-This Signed-off-by is obviously meant to be above the ---
-
-B4 is unfortunately not warning when your own Signed-off-by is missing 
-and it added this one from the "cover letter".
-
-Regards
-Luca
-
-> ---
->   .../boot/dts/qcom/qcom-msm8974-samsung-hlte.dts    | 45 ++++++++++++++++++++++
->   1 file changed, 45 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts b/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts
-> index 903bb4d125135771504281df50aa11c9b6576a28..17d3e319941b8fd0363af600d93fc10127e4ab21 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts
-> @@ -50,6 +50,34 @@ key-volume-up {
->   		};
+>   .../boot/dts/ti/k3-am68-sk-base-board.dts     | 96 +++++++++++++++++++
+>   1 file changed, 96 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> index 11522b36e0ce..df54de2d8236 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> @@ -124,6 +124,35 @@ transceiver4: can-phy3 {
+>   		max-bitrate = <5000000>;
 >   	};
 >   
-> +	i2c-gpio-touchkey {
-> +		compatible = "i2c-gpio";
+> +	edp0_refclk: clock-edp0-refclk {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <19200000>;
+> +	};
+
+I assume on this board and through out series, display is DP not eDP.
+
+do you see possibility to change wording from eDP to DP
+
+
 > +
-> +		sda-gpios = <&tlmm 95 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&tlmm 96 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +
-> +		pinctrl-0 = <&i2c_touchkey_pins>;
-> +		pinctrl-names = "default";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		touchkey@20 {
-> +			compatible = "cypress,midas-touchkey";
-> +			reg = <0x20>;
-> +
-> +			interrupts-extended = <&pm8941_gpios 29 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +			pinctrl-0 = <&touchkey_pin>;
-> +			pinctrl-names = "default";
-> +
-> +			vcc-supply = <&pm8941_lvs3>;
-> +			vdd-supply = <&pm8941_l13>;
-> +
-> +			linux,keycodes = <KEY_APPSELECT KEY_BACK>;
-> +		};
+> +	dp0_pwr_3v3: fixedregulator-dp0-pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dp0-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;     /*P0 - DP0_3V3 _EN */
+> +		enable-active-high;
+> +		regulator-always-on;
 > +	};
 > +
->   	touch_ldo: regulator-touch {
->   		compatible = "regulator-fixed";
->   		regulator-name = "touch-ldo";
-> @@ -149,6 +177,14 @@ touch_ldo_pin: touchscreen-ldo-state {
->   		power-source = <PM8941_GPIO_S3>;
->   		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
->   	};
-> +
-> +	touchkey_pin: touchkey-int-state {
-> +		pins = "gpio29";
-> +		function = "normal";
-> +		bias-disable;
-> +		input-enable;
-> +		power-source = <PM8941_GPIO_S3>;
-> +	};
->   };
->   
->   &remoteproc_adsp {
-> @@ -332,6 +368,9 @@ pm8941_l24: l24 {
->   			regulator-min-microvolt = <3075000>;
->   			regulator-max-microvolt = <3075000>;
->   		};
-> +
-> +		pm8941_lvs1: lvs1 {};
-> +		pm8941_lvs3: lvs3 {};
->   	};
->   };
->   
-> @@ -378,6 +417,12 @@ sdhc3_pin_a: sdhc3-pin-active-state {
->   		drive-strength = <8>;
->   		bias-disable;
->   	};
-> +
-> +	i2c_touchkey_pins: i2c-touchkey-state {
-> +		pins = "gpio95", "gpio96";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +	};
->   };
->   
->   &usb {
-> 
-> ---
-> base-commit: 8ffd015db85fea3e15a77027fda6c02ced4d2444
-> change-id: 20250419-hlte-touchkey-8ea2f37a0795
-> 
-> Best regards,
-
+> [..]
 
