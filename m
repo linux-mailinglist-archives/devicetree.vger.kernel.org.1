@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-168727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5025A942A7
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 11:43:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5145AA942AD
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 11:50:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0966617E5FE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 09:43:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E39B8A3337
+	for <lists+devicetree@lfdr.de>; Sat, 19 Apr 2025 09:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D128E1C3F36;
-	Sat, 19 Apr 2025 09:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055BF1C5D4B;
+	Sat, 19 Apr 2025 09:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="bNiPjR1W";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="wr5TvnpU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rhgFJfQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238C41BB6BA;
-	Sat, 19 Apr 2025 09:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DBB71B6CE3
+	for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 09:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745055794; cv=none; b=BOIF2effXCbjLMGxYcMYXV8a/StgGq4whfZCVfQmn19ywUmPEZQnq3QgAZu/PE/3KVcfdRkIaaKW2PxWHpqpXq44puM8AybNPIpATLrOKCrYivD1ugBxQ7t/6f7RiNaZZxk9zwRCKt3fFL2tuBnrcW8X7L28Yd6X28YRPtofQj8=
+	t=1745056213; cv=none; b=isTqmVvkiPOO2gwrxiwSQO13fbg/SxLbNHTR7th50kqjKXPztAPzY99307m1SzelEP4J08rviJ9buDI3sehe5DYbpymukxCaTtDwiSyj2ek2/666rZRKywrRfofy4zy8/+CRnyU8O3uZAJqWfVdqM5LY+8n/YRofUabahzvF3RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745055794; c=relaxed/simple;
-	bh=TOBj/1ChDvQnz19HxGfDD7N1HbsUAezNiKIuArHitj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LHft8G3V38+uEnRBTkktkDyB7iMr4NS4S6FwhmHzELkMQfE+4jq9/JXG1lOGKOTgwRmGJezmQqELarZVd7VqfBX1Ij4dCb9tx+19EobkihO9hSTEDIwcItszTpdyNzuDQud63xBGg7Noj7Xeo9vPM6a8QfXSYIB2mmDcX1ZemvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=bNiPjR1W; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=wr5TvnpU; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 509B812FB42D;
-	Sat, 19 Apr 2025 02:43:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1745055784; bh=TOBj/1ChDvQnz19HxGfDD7N1HbsUAezNiKIuArHitj0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bNiPjR1WKT0/qO+GEwYV3ti6DJ49pPMOi+jbfO3N4GODOi6p9j7inA8FOc4vLpH0j
-	 dASyRqNb9Ps//zuysI/icCS/35r1suh21OW8Dyvi8U21b3KGu1skl21hqr4nujNhPS
-	 fK9kkNKbisx1GGZYD8p4g7ufqTrBNPrBtKILL4eq7aALULnaYuBWd+BO0x+S2h2jez
-	 rtx7zRUEblW9Qo3MFEJWNC343Bx4N7zSpd+K5ngRlq4ZRV2f8iuKnD6hmFl25XlTwZ
-	 PpufaHD2LZCRWQ+IeSezOZCOTVJxXre1ccd4tqIENSw4w+pgSMXBeWSOltGEziruhb
-	 b5TXUlIq0VYXQ==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 0FlYzok8K45B; Sat, 19 Apr 2025 02:42:58 -0700 (PDT)
-Received: from ketchup (unknown [183.217.80.191])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 45D7A12FB42F;
-	Sat, 19 Apr 2025 02:42:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1745055778; bh=TOBj/1ChDvQnz19HxGfDD7N1HbsUAezNiKIuArHitj0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wr5TvnpUG18QOtD4HGV0Oi94la5waO52Jiofd6Nl/C7t150TDDWF6P9nogJSy4wwj
-	 QO0Vc3/weoQtsh5XMDhY4DECXbfbUA+1utkqvvQDj/xIjvytH7eVGMIA5ULw8bHZ9D
-	 5O36SRf6xhB+L2cBZmyEscMyH4QVLxuQyD/fmiUYr+x5l8Hy26AE9rq7c93CKU902Q
-	 5MjNu38Nw76QU2Wffp/kIgzp6yDLwAbpEE0RVOrkOiq3D1AViAx2VqFwkPKhZJtY7y
-	 KxSnacvzI3AEoySjQZZYh/o50y+d5G/kQ1Wksix/r4ixg2HdLakYBjozgfRqCVuCGv
-	 R9ImEj7ciEC8A==
-Date: Sat, 19 Apr 2025 09:42:49 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1745056213; c=relaxed/simple;
+	bh=OCJCK8IzVfDDMk/Wahm3g+Lsd3Yj6wZBzFZ29NKosLk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=P2Nx112pGqCfZvraD8RwuUrx+/hZLd67viiyCrqj54pc7gUjXNxVzFARUVJIAufVV8k1e5+FiEL8e9ANwSm6FvFWpL9hAuQVzpGM0syfrM3snY60caYHuH9/yEB5MgbmspJD4Yoyz3Ck0RUR9jDDYeZkayGbRK1axuYQfQyYkEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rhgFJfQv; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-af52a624283so2242424a12.0
+        for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 02:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745056211; x=1745661011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s1smWoXBsF07yb0kdhSazKV5zZrD5jTCHEvASrG6ZXY=;
+        b=rhgFJfQvBEQ3MuHJ+9f1DqKoWJ7JoHseq00r8qNeghZbjNT4yhWHrZjrNzIzbOw3Su
+         ZJij+fgHUgEGx1NZyIGoUqMLK4962fE+WDmTigWX/p5VJnvF4cXR1//OwL6FHy7ONBzB
+         VxwdBsS4lEhxyPHIfVYtPaFvK9psAchv1n4CuF9NuGwSJCnt6MUSomT/o/6pYRvd+sEz
+         Fop8euFqObuwYiYzsoySXTEMTlJUprJXaKrFRHuYFoymLC8nE2YIQioF4h4i/YzcsS+F
+         ORsI4oYuc3MEOTgu9x6650ryUnWbg9qpd+0LD5iK2w5hFjQkPHbpjnqdBCeimsi5f+q1
+         Rwvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745056211; x=1745661011;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s1smWoXBsF07yb0kdhSazKV5zZrD5jTCHEvASrG6ZXY=;
+        b=gTFXkHzivn5BLFaya5mgvrrHgHtPLmja+U75JQqrw6prSctb5pada+prTZn11Y8DKM
+         MAoib/VUIror1YxKq7gcaYhqV1e9WwkZjR5TTYtbkkUnMCnXM/WopXXvNyBTjHuUyJ3a
+         2YJ55qHv4Zsd7olqmZnZyOt6vxzbX0542uaqFX6nZOGjSHbZAKgcD/qaG0RqBUnSlqGj
+         x9NlNSxtawXqXcX0syhhv5HZe+DHhkA8VWsg4y32VvcK9TUFLz9hSXDJH2M3sRzaiNwa
+         p9nnm3UbuRi/vKRMiUkKFfDLLMqzXeT0KKZRRjnQUNZH/1Lxr/maRtNgMFW+G/8JvsfE
+         FKQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOwvXaWxWyUkoU4Q9Y55DpBePPgocwIDbuaVbe1S1sq8oWrXgJUrIT/wA1QWQMoldN8L4bgcsPnKdk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxz7EZ7Z6HJQ7VRMimSMvSLRoUYlsTGU8HHn0uYZgmEhm6NI6h4
+	n5s+9YQcPwMrDqBLA/d6hH0bfQbmVdu2D95rSMc0lPaEL1GykKX+J6Zi+oE07g==
+X-Gm-Gg: ASbGncs3HkxLErjZ1HwxWWEUicDDDyP8u8qkjXeMEI0MQQAcWnncjDVsWfkqsSoBMCU
+	38ZideKN7A3IRK6AYqi5yCFGCqPXip3AfGh56KOkl5j+j4uzJSu1EKnQ9gHE/JV+dJElZdViHl2
+	MiobYqqI+O99jsf0FRI65dBETAMIx2e7J3nOBavw/InP4BgoMWn8i2Of+0d/mLq1UXcd7oMcgvz
+	ub9gC3nvKKsY0WttktFTkmqoXfWpuF6W7nfRYDWon+T8zTGz77KlIRSgVBNCm1XmbQRTSofGV1S
+	zREiiZi/YnRWohNS/1QfJFzO+f9NPgRAAmLymfkSJWzxuE5YO6dorg==
+X-Google-Smtp-Source: AGHT+IEq9phG3rDT0nEB9hkvWvaXKiYNwe1s5RXKu8uLzKTD8MFTWep3kqRGNKf8OTR2vRkuBkxE6g==
+X-Received: by 2002:a17:90b:2705:b0:2ee:8cbb:de28 with SMTP id 98e67ed59e1d1-3087c2ca65fmr8403803a91.8.1745056211696;
+        Sat, 19 Apr 2025 02:50:11 -0700 (PDT)
+Received: from thinkpad.. ([36.255.17.167])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3087df4e12asm2697981a91.37.2025.04.19.02.50.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Apr 2025 02:50:11 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: heiko@sntech.de,
+	Kever Yang <kever.yang@rock-chips.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	andersson@kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Simon Xue <xxm@rock-chips.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alex Elder <elder@riscstar.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] riscv: dts: spacemit: Add clocks to pinctrl and UART
-Message-ID: <aANwGZCIpMcd47IB@ketchup>
-References: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
+	Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
+Date: Sat, 19 Apr 2025 15:19:59 +0530
+Message-ID: <174505612709.29229.7221551173436866910.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250414145110.11275-2-kever.yang@rock-chips.com>
+References: <20250414145110.11275-1-kever.yang@rock-chips.com> <20250414145110.11275-2-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sat, Apr 19, 2025 at 11:32:29AM +0800, Yixun Lan wrote:
-> Populate clock property for pinctrl and UART controller.
-> 
-> The pinctrl's clock dt-binding patch is still waiting to be merged[1].
-> 
-> The UART's dt-binding and driver code has already been accepted[2],
-> so we now are only sending the DT part patch.
-> 
-> These two patches are abased on SpacemiT SoC tree's for-next branch[3]
-> 
-> Link: https://lore.kernel.org/r/20250416-02-k1-pinctrl-clk-v2-0-2b5fcbd4183c@gentoo.org [1]
-> Link: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/log/?h=tty-next [2]
-> Link: https://github.com/spacemit-com/linux/tree/for-next [3]
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-Generally this looks good to me, but I realized that splitting the
-commit that introduces clock controllers and the one that correctly
-fills clock properties for various peripherals may cause bisectable
-issues, i.e. the UART won't function with only the clock controller
-introduced and no clk_ignore_unused specified on commandline.
-
-If this isn't really a problem, for the whole series,
-
-Reviewed-by: Haylen Chu <heylenay@4d2.org>
-
-> ---
-> Yixun Lan (2):
->       riscv: dts: spacemit: Acquire clocks for pinctrl
->       riscv: dts: spacemit: Acquire clocks for UART
+On Mon, 14 Apr 2025 22:51:09 +0800, Kever Yang wrote:
+> rk3576 is using DWC PCIe controller, with msi interrupt directly to GIC
+> instead of using GIC ITS, so
+> - no ITS support is required and the 'msi-map' is not required,
+> - a new 'msi' interrupt is needed.
 > 
->  arch/riscv/boot/dts/spacemit/k1.dtsi | 39 +++++++++++++++++++++++++++---------
->  1 file changed, 30 insertions(+), 9 deletions(-)
-> ---
-> base-commit: 279d51ad9f6dc0c667f6f141a669b2c921277d1a
-> change-id: 20250419-05-dts-clock-026bfca75e5b
 > 
-> Best regards,
-> -- 
-> Yixun Lan
-> 
+
+Applied to pci/dt-bindings, thanks!
+
+[1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
+      commit: b5516efc1ec610e75f320385a3a2ecb5932a49d3
+
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
