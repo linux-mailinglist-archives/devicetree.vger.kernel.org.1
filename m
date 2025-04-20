@@ -1,371 +1,151 @@
-Return-Path: <devicetree+bounces-168827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32305A94827
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 17:13:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45272A94854
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 18:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D901893DBB
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 15:13:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D6C188EB16
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 16:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2056820C006;
-	Sun, 20 Apr 2025 15:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FAC20B81B;
+	Sun, 20 Apr 2025 16:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="DtceAKp4"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lvLO2rNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D0320B7FA;
-	Sun, 20 Apr 2025 15:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B04367;
+	Sun, 20 Apr 2025 16:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745161997; cv=none; b=EMb4QApcMG4x4zFoRJ+8EcR2uOyXVmXKwz1PBaEXKxtNy8BbVVGGpW8oPJ/XfL2UsTp5r9QDpVZVoOajKOFeqdrhs58reoCYGXRV+z0hm+ZpLmM5m6aeYEH+LQyVjyou5gh6pjPDl+ORIxcze6RnpB/7Lo/yA8Z76sbETYn3xnI=
+	t=1745167705; cv=none; b=iE+I0Hru25lDN6SxjNZ8V92v4WbA9QyseygukxJ3hdQKk6C4xZoZylmBRTuhK732noAt07IATaDeYcOBPElU9vzDTDrjsh0nktEBV+05Zwcl8oZ2Dmz50n5Omsr2i1MgJoJNiqa7vzZTuToX5KmPeZYE3BnEWhU/hJl7SrM1T3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745161997; c=relaxed/simple;
-	bh=g+dFWsKlFgRyW7EJ6jXOHtRDeV6k2WDLr4sAplzSxuM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CBKSBlneIEzlZjx7/3zU2Mh4QVrAHBJjglniYi7UUwImIAyCZgJizMy+c4p7xNocI8fE+MSoMgsnuTo5TuOifOlMCztR0VDJ4fQNY8B+A2aE60P4Ey0d0caUKNlom0pmGkCkvvs18sdNVGjyP8wuhR0++MrhDJfU2S8bF2P6vkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=DtceAKp4; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1745161986; bh=g+dFWsKlFgRyW7EJ6jXOHtRDeV6k2WDLr4sAplzSxuM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=DtceAKp4Vml5x+eUFlqMyIugUitYrmhTeX7RrDQDofKyCsPhB5RJtXIKYnLYILMWK
-	 gt3GhuZX6oXpszuY5prwuX9CGkjiDNcdwJuycabOYgWgNGlWpTZyTGFJnqeAHOudO9
-	 Ed9E6l8V5iZHf5ySgNODwSDpgb8Sqq/VRWxL3zuY=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Sun, 20 Apr 2025 17:12:44 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: msm8953: Add interconnects
+	s=arc-20240116; t=1745167705; c=relaxed/simple;
+	bh=r5BUDroOZ6LSp7aT9+MILiAhHhSHpvQ1qz+XAOWXZU4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YJDHHh/U0x3Ca1qT4pmD+EMtTXVb/NY6wRFwhZCv+G74sukLjTAjfyx03PLOvdwUs4LPwzJ6g+4hVwpjIlm/0j1kOvwLNY+PF9C9VPpjwUGCmFurx6pTm121gsOtnTtTOQ8cD6qnFha6emFpmOPeq2fZ+unT0BlQH6oCwj33zJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=lvLO2rNj; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ac289147833so594401066b.2;
+        Sun, 20 Apr 2025 09:48:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1745167702; x=1745772502; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EEGw4ei1ltPqT9EdfPygnEz1mrR7+WwPBOwxKSKXcf4=;
+        b=lvLO2rNjUtTsYXU056/zBfSYyoK7mrqW1c9UFqy4VGs77q3I2SestFUxUOqbYfJfEX
+         TIWtzKNaL+J0R5yKzladIGc36uaOGVbr+LRLBO3BdiJTEZ7H2K/g1H8dzbc32R6KpuZ1
+         zJMsdF4W70qpbTPC7gal3QjHXVAw51seP6xyGfO2c69gaHmPURbVVmtXwHmJUTNap0Fz
+         +BUVQ9L+XeItZKAmAT20CMMFKL3CAHEW5+1118F6P/qutt2jMhXmnx2xICefk4HfZJe7
+         wHNbD/Ccf9KdFqRIS40WJ4htAYhPgKPFItOEmQQNQBg2xNrn7kXX6h1ELdvH88/sz1ts
+         Cc5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745167702; x=1745772502;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EEGw4ei1ltPqT9EdfPygnEz1mrR7+WwPBOwxKSKXcf4=;
+        b=TMshiEigWbukZpGhwaJ0E2r+wzX+u6+MBGr8Xjvh2wiFnunTjeK4rIoR0orV1ZcGlP
+         dUs6nutuhHjXaIDpxIGx/JFzjusYc57RyeSxFMpPa9YfU6H2UPmXpIN5RUcjg5fsmlxh
+         Pyn+ThnnMG7lIrSZ2PwPW/pDgSzbVEsjlfhWoBTy2GzZ7s41iwM3LtoRbD8767cUgDWx
+         NwDHci5S4M8IvUlOvbxxEi6kglg1Av2ITkDs0Yx9JKB/hL5ofv8Yjp72JuMxoYSRkxfJ
+         huV5ndeK937aLNq3/yIU/LL6sLaDMf+dJNIXg5vKYkBk66jekrE+Rtdi1hM0pejJoHhl
+         yAkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpm+v1Q+/JBWB1H/djW0afjZZyGkkzg+/eW0I3XY4s5yM1RCJZUTjLXW+xRUzEbvv7Tm3h5eWUxOU/RANe@vger.kernel.org, AJvYcCWgqlq6h6M61wgMnvnRCoepam10cCd2zwiUzwxB/Rirggt7nuCuZzslbxo/YtA2ufUC66G0sovrn8JH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYYM0199x03kJkFLp24mVo0+gb+KGFUOmTQmx4e+r1sSe4wRFh
+	xxU5FRdlZNsquvfvboi+xGBo2e5nNQRhEwgJlKxblqgQmGr9pEHPgzT1lA==
+X-Gm-Gg: ASbGncsPyOOTmbHaTKxk1pXTm4GEQoG3SXi2aCULRK71s7iqZ+mge2HQvMerLj9Lmyo
+	8RPcWNn/ODWdCaUOmJLlg2AXog+RNnqV6KICt0wzlKjtZzY5TK3znvXWQd21vutis0XzMbE1L39
+	Nz8k19BEIADLrN39MgxPnCvt+xixX8118IPqnYfETrhXMItZju+0uuLZwlGG828O0w63rD3Qb8Q
+	C/AQYN0gABnPAfO7gtow5ojQeSmVFgDK9HyYXNn9s2Kq3UMthuF2mWiOJuQTXrm8705FqMdaX7M
+	pVvUNKQ9Ono+CisfyiAkBZioLir/Af40ExIoSAO9KcI2nFzorRg+iKqft/k1pFG+eowwt9PrnQH
+	IgMMGk7Bap5iEb34PbI4GQvlJYWIFK+KnNGobI4vp19SPpyot4VJBt0wAf1KrXa0NLw==
+X-Google-Smtp-Source: AGHT+IE3PsQolxVL2KiqFnBgslOuRCqoai4HIDr8cg10JY7uGcdQOpXmUPJ3NaFiU0N/NqtaE0v6vQ==
+X-Received: by 2002:a17:907:7207:b0:acb:168e:c257 with SMTP id a640c23a62f3a-acb74b7f3c5mr939128866b.26.1745167701617;
+        Sun, 20 Apr 2025 09:48:21 -0700 (PDT)
+Received: from localhost.localdomain (dynamic-2a02-3100-9ddb-f900-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:9ddb:f900::e63])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-acb6ef48e5csm416142366b.148.2025.04.20.09.48.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Apr 2025 09:48:21 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
+Cc: neil.armstrong@linaro.org,
+	jbrunet@baylibre.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	christianshewitt@gmail.com,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 0/4] dts: amlogic: fix FCLK{3,4} clocks for new PWM controller binding
+Date: Sun, 20 Apr 2025 18:47:57 +0200
+Message-ID: <20250420164801.330505-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250420-msm8953-interconnect-v2-2-828715dcb674@lucaweiss.eu>
-References: <20250420-msm8953-interconnect-v2-0-828715dcb674@lucaweiss.eu>
-In-Reply-To: <20250420-msm8953-interconnect-v2-0-828715dcb674@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Vladimir Lypak <vladimir.lypak@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@lucaweiss.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8701; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=AsEYTmF1t9X+NWEy7gCDSqCCG1OMc8UYvim11gW4/gU=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBoBQ78JP+55thzNMNxM6+SHI634C3J7hGgPnHNq
- y37KGIih3CJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCaAUO/AAKCRBy2EO4nU3X
- VkhaEACVTmcE3fK1p6fp92QH5iugi0PXX1BeBkMaUTp7lUJbthWrbK32cphjXgmywtQxOded8b7
- wclSH48AQ51UwnhXbc4RZXCNQ37S/c97pU4o+dOrLEjrGh+dEklwGmO05SerP5eAAuV8g2Jd47V
- FURcAwNiDvBeDWdiHQHsMrrll0wR89BEdDPlKahNQ44jDEjt/h1Zy26mOBaStR5LM3N0Z87OaVa
- C8fvuuViauTNWCtd7XELh9lB4dK+WEERNJz8QAAwKFfTz69nrQBBXQFcZeyQAEMfLjEicRObnOJ
- N5r7z4+BuuQ5N97MP70v5E7Es+fQsIdljLOTs8pceuuUmRjoEELCmFgOaiOyo2uza5zw9wK0toc
- DrBN7IX9ttT9IJAAizvN4Fr2y86q0bOgk4hBKnQjcbwBXk91hc1xoy4jazLQavf+qbRJrGfyfrG
- 35kiR58k8ZVGXIgiZePgkfZ8MItDehmJcySxFs2vaYqN6oqNOCEm5nUaNSJFsx/mmH13c6EKYHX
- J+TQtXVJiHWAtGBZN0VixayFjWDrxzM4LaO01LRUHvFmDtfL6Io1Ptkps2vgUbSn2FmhZ64wYqz
- Jq0KCKQSBH5jYq7hNYKH/1rXazLo1kaxtp5x6vCiguf/OD6XpRQNZu7PuQ3eOTphA9fEu0bBOai
- Unb7zxIDS4jDvuQ==
-X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Transfer-Encoding: 8bit
 
-From: Vladimir Lypak <vladimir.lypak@gmail.com>
+Christian has reported Bluetooth issues on some of his boards, for
+example on a (GXBB) WeTek Play 2:
+  # dmesg | grep -i blue
+  Bluetooth: Core ver 2.22
+  NET: Registered PF_BLUETOOTH protocol family
+  Bluetooth: HCI device and connection manager initialized
+  Bluetooth: HCI socket layer initialized
+  Bluetooth: L2CAP socket layer initialized
+  Bluetooth: SCO socket layer initialized
+  Bluetooth: HCI UART driver ver 2.3
+  Bluetooth: HCI UART protocol H4 registered
+  Bluetooth: HCI UART protocol Three-wire (H5) registered
+  Bluetooth: HCI UART protocol Broadcom registered
+  Bluetooth: HCI UART protocol QCA registered
+  Bluetooth: HCI UART protocol AML registered
+  Bluetooth: null: hu 0000000023fa9791
+  Bluetooth: hci0: hu 0000000023fa9791
+  Bluetooth: hci0: hu 0000000023fa9791 skb 000000003f7acf2f
+  Bluetooth: hci0: command 0x0c03 tx timeout
+  Bluetooth: hci0: BCM: Reset failed (-110)
+  Bluetooth: hci0: hu 0000000023fa9791
+  Bluetooth: hci0: hu 0000000023fa9791
 
-Add the nodes for the bimc, pcnoc, snoc and snoc_mm. And wire up the
-interconnects where applicable.
+It turns out there's a typo in the references to the untested/unknown
+clock input that made it into the already applied series
+"dts: amlogic: switch to the new PWM controller binding" [0]
 
-Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-[luca: Prepare patch for upstream submission]
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
----
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 101 ++++++++++++++++++++++++++++++++++
- 1 file changed, 101 insertions(+)
+The original goal was to skip this input. This can be achieved by
+specifying a clock input as <0> (which this series does). When using
+<> (note the lack of 0) the clock is completely ignored when parsing
+the .dtb, resulting in a shift in index of the FCLK DIV4 / DIV3 inputs.
+This then results in the PWM controller driver calculating the
+frequencies for a different clock compared to what the actual hardware
+uses.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index 6f5e6c407194d16682d1e6401fd4d10f3b73c195..155efb093ff863f2068ba4b2a7fbb5336174ef83 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -4,6 +4,8 @@
- #include <dt-bindings/clock/qcom,gcc-msm8953.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,msm8953.h>
-+#include <dt-bindings/interconnect/qcom,rpm-icc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,apr.h>
-@@ -44,6 +46,8 @@ cpu0: cpu@0 {
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -54,6 +58,8 @@ cpu1: cpu@1 {
- 			reg = <0x1>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -64,6 +70,8 @@ cpu2: cpu@2 {
- 			reg = <0x2>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -74,6 +82,8 @@ cpu3: cpu@3 {
- 			reg = <0x3>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -84,6 +94,8 @@ cpu4: cpu@100 {
- 			reg = <0x100>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -94,6 +106,8 @@ cpu5: cpu@101 {
- 			reg = <0x101>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -104,6 +118,8 @@ cpu6: cpu@102 {
- 			reg = <0x102>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -114,6 +130,8 @@ cpu7: cpu@103 {
- 			reg = <0x103>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -470,6 +488,13 @@ rng@e3000 {
- 			clock-names = "core";
- 		};
- 
-+		bimc: interconnect@400000 {
-+			compatible = "qcom,msm8953-bimc";
-+			reg = <0x00400000 0x5a000>;
-+
-+			#interconnect-cells = <2>;
-+		};
-+
- 		tsens0: thermal-sensor@4a9000 {
- 			compatible = "qcom,msm8953-tsens", "qcom,tsens-v2";
- 			reg = <0x004a9000 0x1000>, /* TM */
-@@ -486,6 +511,29 @@ restart@4ab000 {
- 			reg = <0x004ab000 0x4>;
- 		};
- 
-+		pcnoc: interconnect@500000 {
-+			compatible = "qcom,msm8953-pcnoc";
-+			reg = <0x00500000 0x12080>;
-+
-+			clocks = <&gcc GCC_PCNOC_USB3_AXI_CLK>;
-+			clock-names = "pcnoc_usb3_axi";
-+
-+			#interconnect-cells = <2>;
-+		};
-+
-+		snoc: interconnect@580000 {
-+			compatible = "qcom,msm8953-snoc";
-+			reg = <0x00580000 0x16080>;
-+
-+			#interconnect-cells = <2>;
-+
-+			snoc_mm: interconnect-snoc {
-+				compatible = "qcom,msm8953-snoc-mm";
-+
-+				#interconnect-cells = <2>;
-+			};
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,msm8953-pinctrl";
- 			reg = <0x01000000 0x300000>;
-@@ -849,6 +897,13 @@ mdss: display-subsystem@1a00000 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 
-+			interconnects = <&snoc_mm MAS_MDP RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_DISP_SS_CFG RPM_ACTIVE_TAG>;
-+			interconnect-names = "mdp0-mem",
-+					     "cpu-cfg";
-+
- 			clocks = <&gcc GCC_MDSS_AHB_CLK>,
- 				 <&gcc GCC_MDSS_AXI_CLK>,
- 				 <&gcc GCC_MDSS_VSYNC_CLK>,
-@@ -1065,6 +1120,11 @@ gpu: gpu@1c00000 {
- 				      "alwayson";
- 			power-domains = <&gcc OXILI_GX_GDSC>;
- 
-+			interconnects = <&bimc MAS_OXILI RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_GPU_CFG RPM_ACTIVE_TAG>;
-+
- 			iommus = <&gpu_iommu 0>;
- 			operating-points-v2 = <&gpu_opp_table>;
- 
-@@ -1302,6 +1362,13 @@ usb3: usb@70f8800 {
- 					  <&gcc GCC_USB30_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <133330000>;
- 
-+			interconnects = <&pcnoc MAS_USB3 RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_USB3 RPM_ACTIVE_TAG>;
-+			interconnect-names = "usb-ddr",
-+					     "apps-usb";
-+
- 			power-domains = <&gcc USB30_GDSC>;
- 
- 			qcom,select-utmi-as-pipe-clk;
-@@ -1354,6 +1421,13 @@ sdhc_1: mmc@7824900 {
- 				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			clock-names = "iface", "core", "xo";
- 
-+			interconnects = <&pcnoc MAS_SDCC_1 RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_SDCC_1 RPM_ACTIVE_TAG>;
-+			interconnect-names = "sdhc-ddr",
-+					     "cpu-sdhc";
-+
- 			power-domains = <&rpmpd MSM8953_VDDCX>;
- 			operating-points-v2 = <&sdhc1_opp_table>;
- 
-@@ -1374,26 +1448,36 @@ sdhc1_opp_table: opp-table-sdhc1 {
- 
- 				opp-25000000 {
- 					opp-hz = /bits/ 64 <25000000>;
-+					opp-peak-kBps = <200000>, <100000>;
-+					opp-avg-kBps = <65360>, <32768>;
- 					required-opps = <&rpmpd_opp_low_svs>;
- 				};
- 
- 				opp-50000000 {
- 					opp-hz = /bits/ 64 <50000000>;
-+					opp-peak-kBps = <400000>, <200000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
-+					opp-peak-kBps = <400000>, <400000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-192000000 {
- 					opp-hz = /bits/ 64 <192000000>;
-+					opp-peak-kBps = <800000>, <600000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
- 				opp-384000000 {
- 					opp-hz = /bits/ 64 <384000000>;
-+					opp-peak-kBps = <800000>, <800000>;
-+					opp-avg-kBps = <261438>, <300000>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 			};
-@@ -1414,6 +1498,13 @@ sdhc_2: mmc@7864900 {
- 				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			clock-names = "iface", "core", "xo";
- 
-+			interconnects = <&pcnoc MAS_SDCC_2 RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_SDCC_2 RPM_ACTIVE_TAG>;
-+			interconnect-names = "sdhc-ddr",
-+					     "cpu-sdhc";
-+
- 			power-domains = <&rpmpd MSM8953_VDDCX>;
- 			operating-points-v2 = <&sdhc2_opp_table>;
- 
-@@ -1430,26 +1521,36 @@ sdhc2_opp_table: opp-table-sdhc2 {
- 
- 				opp-25000000 {
- 					opp-hz = /bits/ 64 <25000000>;
-+					opp-peak-kBps = <200000>, <100000>;
-+					opp-avg-kBps = <65360>, <32768>;
- 					required-opps = <&rpmpd_opp_low_svs>;
- 				};
- 
- 				opp-50000000 {
- 					opp-hz = /bits/ 64 <50000000>;
-+					opp-peak-kBps = <400000>, <400000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
-+					opp-peak-kBps = <800000>, <400000>;
-+					opp-avg-kBps = <130718>, <130718>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-177770000 {
- 					opp-hz = /bits/ 64 <177770000>;
-+					opp-peak-kBps = <600000>, <600000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
- 				opp-200000000 {
- 					opp-hz = /bits/ 64 <200000000>;
-+					opp-peak-kBps = <800000>, <800000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 			};
+Neil, please apply this as a fix for the next 6.15-rc.
+
+
+[0] https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.blumenstingl@googlemail.com/
+
+
+Martin Blumenstingl (4):
+  ARM: dts: amlogic: meson8: fix reference to unknown/untested PWM clock
+  ARM: dts: amlogic: meson8b: fix reference to unknown/untested PWM
+    clock
+  arm64: dts: amlogic: gx: fix reference to unknown/untested PWM clock
+  arm64: dts: amlogic: g12: fix reference to unknown/untested PWM clock
+
+ arch/arm/boot/dts/amlogic/meson8.dtsi             | 6 +++---
+ arch/arm/boot/dts/amlogic/meson8b.dtsi            | 6 +++---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 6 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 6 +++---
+ 5 files changed, 15 insertions(+), 15 deletions(-)
 
 -- 
 2.49.0
