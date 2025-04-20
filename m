@@ -1,114 +1,94 @@
-Return-Path: <devicetree+bounces-168836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BACBCA9486A
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:14:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDACBA9486F
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE11E3B1AA5
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 17:14:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED60516EDFD
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 17:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF85020C016;
-	Sun, 20 Apr 2025 17:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0633920C484;
+	Sun, 20 Apr 2025 17:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="mQtqfyAM"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="M+CCltMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D22617A302;
-	Sun, 20 Apr 2025 17:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD5D1BCA0F
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 17:17:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745169261; cv=none; b=C4j7enAdTuQiYDZuRRByXpGZJlnv41IZmg8nwUPhQpGfwSFnUROWK732trKQWbkgq7U8MxHgcSOYPZf40v1/EOG6ThKiaifJbGFavNfqaddBlzRjQ3v0Q/FoOrGXRCqAWcv0S9Smb8VBP09/6IDaRpGFXr7fxR7J6y2d1ZIxun8=
+	t=1745169473; cv=none; b=RRvRNkM0i/9b7vBa48WVx2Kwh57NdxlvHMDhoyfvaRXTnQfBvKGMFxubR1PW8av5c0J94P5V1geTAMkIRZDVdDerkiPjooyWzsz80JozFDQmPSAhXhxBk8jBHZRQVgMEHkHUazdwtu1kXNYTyk8hnTg4vmh2J64Jy6mUOCGoyzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745169261; c=relaxed/simple;
-	bh=DR9RTXhjwQk+raJBaZzX7DBA8S0Sta84T2246rAqUCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CqGkqUP2+MOIywh4KFRIOuS+U9KDkj4QLMVx/o6hA9F38Aa3/rYK6q/+QE3TwxbmSQD8o5U5RRkMVyaXPGVU7GLLPhq+wJmZCYMJnK0yQMvy85GYxNqTfO4dNTQ3QYVs6O75An4VLrxUBMZrjVMv2ULiCF6DK5tsUrLFjd2B0uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=mQtqfyAM; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1745169253; bh=DR9RTXhjwQk+raJBaZzX7DBA8S0Sta84T2246rAqUCU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=mQtqfyAMZ1vquFtvYte5peCKA43juMwEZ5JjD4lg8Jpk8fepWjOsLcDIqTVqkI/3d
-	 KdU92Pml8tC4HcfRjJKK5hjI9CYt/AGDPQCM7dipZnqV68grAjGVkxD5zm2LkRFAqH
-	 cv2CWYvih9Nb1BGiMgExi3IVXpWGSLb1x83dYJ5U=
-Message-ID: <ea7ac010-3b9d-4915-9a19-cb5ebb77c764@lucaweiss.eu>
-Date: Sun, 20 Apr 2025 19:14:12 +0200
+	s=arc-20240116; t=1745169473; c=relaxed/simple;
+	bh=vicVh3jDUH0fdfHYZEUOnXF+nnJsdoo5d7tw9rYs0lI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=cgrzUze2dfPmBYyYQmwB/Yyu3SlAg97F9mKxJSYXwmxCzgclsTfW/5XtVBxsQIaFFES1L9AyBnDPIDj5rXu7dDa4XTJuUK0/bATVH1ViZxdOtfIhkZMVbt/ONRlWL4Fosi1lPjcKK2WcWAssUpv0sCI2pFWZRPNXQi7MG/cW4Mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=M+CCltMe; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: msm8974-oneplus-bacon: Add alias for
- mmc0
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250419-msm8974-mmc-alias-v1-0-82aa131224b6@lucaweiss.eu>
- <20250419-msm8974-mmc-alias-v1-1-82aa131224b6@lucaweiss.eu>
- <k7dm2tpw3mg34fydyug3rjnkwgfu2lwwzddd4edmano6jsgoiv@6klzba5rjpdy>
-Content-Language: en-US
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <k7dm2tpw3mg34fydyug3rjnkwgfu2lwwzddd4edmano6jsgoiv@6klzba5rjpdy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1745169469;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UjLrWMwnOdyPXmg9OSM+mcr+ohUq3DRJbZapfAmwaH4=;
+	b=M+CCltMeK35q8jJfYJNdDJQGnKCKXyIAIolLIH9oDy1hUycv6F4cZawK/npxGQnTElWtN0
+	EqgKJh7NZ93Gt18DxlBrz2bdB/z1BWbf1qIwfzVHSi2YeRNMlB/S3RTxRiRKwMs91IT00y
+	wNpTzs2Nb7QYmKO6g/7MK4acaHWkxMgzfjKdcbdmFEdDABoSU7M0eYnQjyzO5BdpdUoAe0
+	ZmfC07DNfGl9chvZUPIU0fJH9FoqFnoVVMli70WbVsaIiTcvx3Kg9MS8zHkmsy72Y3bH6t
+	+T9vrH+GOqonO9y/ei1E4ymdKgZmz/n1rO1cZC1TC29Zul+GwbWz0FW1/LQT6w==
+Date: Sun, 20 Apr 2025 19:17:48 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Peter Robinson <pbrobinson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 2/2] arm64: dts: allwinner: a64: Add WiFi/BT header on
+ SoPine
+In-Reply-To: <CALeDE9Nyt7Di2_u-Vf=6OCAg-6wmbz75Cs_MCfZrk6upbD9nZw@mail.gmail.com>
+References: <20250419160051.677485-1-pbrobinson@gmail.com>
+ <20250419160051.677485-3-pbrobinson@gmail.com>
+ <5dd7825c9fcc83764fbb4b0b53704152@manjaro.org>
+ <CALeDE9Nyt7Di2_u-Vf=6OCAg-6wmbz75Cs_MCfZrk6upbD9nZw@mail.gmail.com>
+Message-ID: <e111f8b9f499a158af5fad1942951e0f@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Bjorn,
+Hello Peter,
 
-On 20-04-2025 7:05 p.m., Bjorn Andersson wrote:
-> On Sat, Apr 19, 2025 at 11:03:57AM +0200, Luca Weiss wrote:
->> Add an alias for the internal storage so it always becomes mmcblk0.
->>
+On 2025-04-20 11:33, Peter Robinson wrote:
+>> > This adds all the pin mappings on the WiFi/BT header on
+>> > the SoPine baseboard/A64-LTS. They're disabled by default
+>> > as the modules don't ship by default. This includes, where
+>> > they haven't been already, UART1 for BT and mmc1 for WiFi.
+>> 
+>> The patch subject should be improved a bit, to include
+>> "Baseboard" as well.  Having just "SoPine" is a bit too
+>> vague, and it should actually be written as "SOPINE"
+>> at all places in the prose.
 > 
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> calls for a problem description to start your commit message. Sometimes
-> the problem is obvious, but here &sdhc_2 is disable on this board, so
-> when does this not become mmcblk0? What is the problem you're solving?
+> It literally has baseboard in the second line of the description.
 
-I have really seen internal storage become mmcblk1 on one of these 
-devices with no SD card. I can't recall which one anymore, but this was 
-the main idea why I wrote these patches. Maybe it's something to do with 
-the mmc wifi on some of the boards?
-
-But I think it's not a bad idea to make this explicit for all, and align 
-the boards with each other.
-
-Regards
-Luca
-
-> 
-> Regards,
-> Bjorn
-> 
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->> ---
->>   arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
->> index 4c8edadea0ac63db668dbd666fbb8d92e23232b7..88ff6535477bffefe475cc5fe927b3cc5d223084 100644
->> --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
->> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
->> @@ -13,6 +13,7 @@ / {
->>   	qcom,board-id = <8 0>;
->>   
->>   	aliases {
->> +		mmc0 = &sdhc_1;
->>   		serial0 = &blsp1_uart2;
->>   	};
->>   
->>
->> -- 
->> 2.49.0
->>
-
+True, but the patch subject should also contain "Baseboard",
+because SOPINE is a system on module, and the SOPINE Baseboard
+turns it into an SBC that actually has the add-on headers that
+the patch addresses.  I hope it makes sense.
 
