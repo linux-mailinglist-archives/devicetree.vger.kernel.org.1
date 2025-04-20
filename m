@@ -1,120 +1,112 @@
-Return-Path: <devicetree+bounces-168853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A7CA948FF
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 21:24:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A3AA9495B
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 21:31:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 798A2170538
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:24:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7515E7A89A5
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8F12116EB;
-	Sun, 20 Apr 2025 19:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFDC21578F;
+	Sun, 20 Apr 2025 19:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ANuzMosm"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="kC6Om7iF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E702262A6;
-	Sun, 20 Apr 2025 19:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264E82147E8
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 19:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745177076; cv=none; b=DYHGm90HIgYyJK1RVKl0qhwAnqkcG0ls7B4siOuh+nQJ6gJfr5wQr56X6kKm7668a2ELDRgkYjA/jU4BGtHMUKmyS+vqrTnbF5L690DiqLOHEclYI1o4GzVHhpmt17k12SAp0s++KH7xLZtQWQOCFU0O3y/kDHCkQREz+iuQ6dw=
+	t=1745177338; cv=none; b=JgEs4pOu9sDdM12n+bvsPJEC+bzLXP0rhQvskWpWKd7v16mGtlwSsSmo/7waTeOzZB4wIT2X4bEJ/RKXhzrmMsCfv7vCrKwUKa5o2ghQktbi00Wo32RGplYl8K2O+PLiTKdaHmP74U/hnKtHb2j9ZvOYjrUy8iat7BPY4gIZRWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745177076; c=relaxed/simple;
-	bh=+ZwG6TUds/zF9L/s4eqi8J+qsvAhJczC3oXNu+yOCgU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o5+4Y8JK7m2gyBFw0uJQIdQIkWsyQnVsKjirNHDr635JlZVYJoFg2EebwcPvWQfTYUPbqRw4Cg3HvTQ4rrE6M8qavp0c8k7xh0YHWKkfHGjsYBKtoc7m+VTXQ4p7f31y5aRiLSd0wUd3nBrCE59WBmzEmMWKi7W8cvh8z05Alnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ANuzMosm; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso354549666b.1;
-        Sun, 20 Apr 2025 12:24:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745177073; x=1745781873; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yAb3IW2U+Y0CEoYIgTerDejZkVTNHvlFmMSCCEr/Dk8=;
-        b=ANuzMosmtUwDcmR+N8exKOhx5ZpRSzf3FNmoH6Q4OFVw2Ud/Wzxtic2oFN6v/UydiI
-         G4XkXefwGSb/UOAqerikzFemd7+oi/rUT/do/Pfx9cwqo5ROAfFVOmk4iIWoVcFCbKTF
-         79umOo/spw6gxqYAYZSuHGEoKagbfKxbVGlQ/5dXDht1sVK05qVUFlEPurY6q7GTkJX5
-         6FAOZ41UjmclRQeeVF3j35xeJvW6OToSBv1y5vlDrE9aaSKR59RueZvsLXOFx/o88A4r
-         B9A/7X1394nNfkKxY8rXPSIXnolpXvE0p3SF3T2jI082XFuG+2YQtC59te6QPzvS51ck
-         WvYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745177073; x=1745781873;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yAb3IW2U+Y0CEoYIgTerDejZkVTNHvlFmMSCCEr/Dk8=;
-        b=u6LQP5WgYWOrFhxhUUlviQIrpPGrslvmlKNajN0Q7qlVmiLIrM/GLr2gxk45XFtqZp
-         2zyhHdeNbtApHnzAEl52LCr1F0dYgKUdNTCY544rUT9n0xxW4NQuiBph3Mhev4dIw5yf
-         7pJumKFQruEBq6aNJFQExDsocQ8Vei8yXC44XeOTuA1JGTMiQDBVYIa/LzqBg/P+udrL
-         kOkO9reU2/x6+oG3rfbegEZw+8ey5CnJsrfu0KOjjNIYrO+DJ64YzjVUYZGTT8UZmGrS
-         6cPdXj5ytEChGYyHg/rE7XzhC+/maLAhAXoHA4mRgRV6iUb8urIeKd6zdCCcPmUpw7N6
-         O+5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUY/3hfoFjQbau8FP8ZQ88q92aLwKHlC++c8/p7bC6QmA++2Tk6BhATzz0DoWuxvZTlydsYL/5dC8AS@vger.kernel.org, AJvYcCVzj5GLEVTnVbsYDftanvA0/x5t2osoLdW7HJhYw3p4op5+Q6/FkSQTV5x0UPmWk9t7AeymodhVMUaA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTAEr/dUX9+PUJFH3xSJlyOMIvmn6JVIxe2twWLYgMCbS8wam2
-	0qM40JkGa1qGtiwVAUQrcezc/YB/V0a0TC93ySnUrskQBublWOjIIi/Qqd2PsTalo5n0ifnOzQf
-	rVXpjGmF0wV5wiu89Av2yq5m9C2mZcYQn
-X-Gm-Gg: ASbGncuvel+iRUKgYP4KonTf1j7H0U0BNOYA7yJR6gGqgrPEEcmH6FRI63xRFxagjoq
-	FUrcqMY7LI8p+hTZVOSYWl5OT7tKpEF0RqhuRF4B8Opq6oZo3Ff03UQWQTJGAJhwF2tUPkwJsyL
-	Qz3Nli+RWNwPf7+W+QDH31jA==
-X-Google-Smtp-Source: AGHT+IH/tETSgsJJ15TqqBJbxinQZ77VukpTFuX5UaoPFmdF/4CFn4G1YEWQx6DqmBpRFhObs2yay4bY89EWUQiCytQ=
-X-Received: by 2002:a17:906:7315:b0:ac7:d0fe:e9e4 with SMTP id
- a640c23a62f3a-acb74b2c99bmr922584266b.19.1745177073186; Sun, 20 Apr 2025
- 12:24:33 -0700 (PDT)
+	s=arc-20240116; t=1745177338; c=relaxed/simple;
+	bh=yhkfGEEcnbf9CwY/Rpk+yRBtiyW3R/ZeFCf3WAeNpmw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RNtycMkVHsPQDAdFTt25df6Nc5Aeq31SIn9NAdVlyUN02H2mPCzGKzi9WRAo+J0/Zg4r//t5WBDoJyjtRriMblTinNNhZhNvS2NwOiipcYT2I9PrhAzhxyoxSqDJu6OCiOhQU3rLINcHpZNM4ckq5p3VkGroL+3CudBTke+cXcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=kC6Om7iF; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=kC6Om7iFg7lgKg7K5cMA+4Pbk0/FtwzWNG+TTZqCGTBYZp8n2i084deJ+iC5ktCHwblTxMyIvxEqWwfsCjqmEKnLoAQ+IMKQmlXU6GIWitrnVOE+HsaglWd9z3rKOfOoB0MbEMTRNhbS5/WYkvJvKrxGcdjVVL9CcGaeGSyQF7FBIb8/ZYXdnX8uATmvnjHBAnXpGRk3pwltGO2Ze0QaOnIcDIYMdpu/DRZidKYFOyB1h/nWbW/Gb3Okg0wK5bii/6vEjcnL7VhHD1JMhdEk5kEDsfE4z/IZQaX8ndyZDurZLkG9UMIhWkSROzJ/C5JeCTGkvFChDUHr3/RxJ5zSVA==; s=purelymail3; d=purelymail.com; v=1; bh=yhkfGEEcnbf9CwY/Rpk+yRBtiyW3R/ZeFCf3WAeNpmw=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1149203934;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Sun, 20 Apr 2025 19:28:42 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH v2 0/2] USB PHY support for Exynos990 SoCs
+Date: Sun, 20 Apr 2025 21:28:20 +0200
+Message-Id: <20250420-usb-resends-april-v2-0-25dc7d2e6dd4@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250420181015.492671-1-gye976@gmail.com> <20250420181015.492671-4-gye976@gmail.com>
- <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
-In-Reply-To: <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sun, 20 Apr 2025 22:23:57 +0300
-X-Gm-Features: ATxdqUEdISURzEmcs5ylX67eb2MGhK84k2Lb9gWkVAIdn2hNwQhrrPBI3cyvLls
-Message-ID: <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
-To: Gyeyoung Baek <gye976@gmail.com>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANRKBWgC/x3MzQpAUBBA4VfRrE3dxk/yKrLADKZ0aSZS8u5ul
+ t/inAdcTMWhzR4wudR1jwmUZzCtQ1wElZOBAlWhpICnj2jiEtlxOEw3LOuJuBgbDlxD6g6TWe/
+ /2fXv+wEXGZFoYwAAAA==
+X-Change-ID: 20250420-usb-resends-april-46c2d3b8d0d6
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745177319; l=1365;
+ i=igor.belwon@mentallysanemainliners.org; s=20241206;
+ h=from:subject:message-id; bh=yhkfGEEcnbf9CwY/Rpk+yRBtiyW3R/ZeFCf3WAeNpmw=;
+ b=YakDTBXcfdEyDqqwA7lSGKU4ju4xj728i4uc7zQTWyGqm86FxAyUgW2/dQ/+HWaqf+z1E5oeE
+ ael57tIvXlEA0pcobeavz05qm1KdMVsR1Hbk0M6OdVIhinscYz2/ML1
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-On Sun, Apr 20, 2025 at 10:21=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail.com> =
-wrote:
+Hi all!
 
-...
+This patchset adds support for the USB 2.0 PHY of the Exynos990 SoC.
+This SoC has a combo PHY that supports highspeed, superspeed USB and
+DisplayPort, however due to my inability to test the superspeed part of
+the combo phy (device always enumerated as high-speed, even on the
+vendor kernels/bootloaders) only the highspeed part is brought up.
 
-> > --- a/drivers/iio/chemical/Makefile
-> > +++ b/drivers/iio/chemical/Makefile
+These changes have been tested and confirmed working (with the USB_ETH
+gadget and telnet/ssh in a ramdisk) on a device from the hubble family
+(x1s) and also a device from the canvas family (c1s).
 
-> >  obj-$(CONFIG_SPS30_I2C) +=3D sps30_i2c.o
-> >  obj-$(CONFIG_SPS30_SERIAL) +=3D sps30_serial.o
-> >  obj-$(CONFIG_VZ89X)            +=3D vz89x.o
-> > +obj-$(CONFIG_WINSEN_MHZ19B) +=3D mhz19b.o
->
-> Preserve order.
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Changes in v2:
+- rebase patch to apply cleanly after Exynos7870 merge
+- collect Reviewed-by tags by Krzysztof Kozlowski (thanks!)
 
-Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
-option and no such thing in the filename? I would drop that from the
-config option.
+---
+Igor Belwon (2):
+      dt-bindings: phy: samsung,usb3-drd-phy: Add exynos990 compatible
+      phy: exynos5-usbdrd: Add support for the Exynos990 usbdrd phy
 
-Jonathan, what do you think about this? Which order (in case of
-misalignment between module name and configuration option) should be
-taken?
+ .../bindings/phy/samsung,usb3-drd-phy.yaml         |  2 ++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c           | 32 ++++++++++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h        |  3 ++
+ 3 files changed, 37 insertions(+)
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250420-usb-resends-april-46c2d3b8d0d6
 
---=20
-With Best Regards,
-Andy Shevchenko
+Best regards,
+-- 
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
 
