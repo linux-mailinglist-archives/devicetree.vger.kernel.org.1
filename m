@@ -1,113 +1,170 @@
-Return-Path: <devicetree+bounces-168800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E89A946D1
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 08:40:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23098A946E4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 09:04:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5AF73B63D5
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 06:39:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43392174FD2
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 07:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC26418B47E;
-	Sun, 20 Apr 2025 06:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230E51C5F1B;
+	Sun, 20 Apr 2025 07:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="SfuMBaqC"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="dyHewTCW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5BC41373;
-	Sun, 20 Apr 2025 06:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F99319D8AC
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 07:04:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745131211; cv=none; b=hcI2UGYbqn4rbi+sWlTxUX6bRWI28/Djc77rdOVYM6HmPo79/DbhuLGX2c2+n79eBBWQkhLVTPPvqdTK324wrfU3qKWrfKTr0Vvol3iSsUxAa1+mRv68AssqNiU/F3mZDjXEzHlLRBlzeZUE3Ul6jt6seyYddjQpPzn2JzPBqKM=
+	t=1745132666; cv=none; b=GfwRe9b+zZmo8q0COS30qezIkivHaEWlMGjzaN4pD+Mgdfm7NA7u+KcyFFuuMoWzwwdpxdv98ncctDbJQhgngscECYii+bj+bJjBxlcm7n2xMrIi/UhiLpTp9q5/63Hsayl7tRPpDtOquyFqgWkVhMdGZzykHMXzSJvUU/WVHzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745131211; c=relaxed/simple;
-	bh=TMKqFLJUPKsSq4QBQnnNnTSgXYg1nBK+QD4qSFt1mt0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FwkGaGoFAsm3SLFinwpEroH/1Zh3LLAcN3DLo+wiin6qDlyF+hmnDfyyj7Z4E1Y/I83+YIZuPWyyMPrc4qcw5Z5I9ZWhZf0AY8fWS/z/KjAktq21F4BcypezakTT3QVpORNSlGkIh5WoN/eg7FD7stJ6jH9SB46UADILuAm4rOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=SfuMBaqC; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=8yBRXEpl/zJ2DC6+BgwWilj/xw5IQ+a0xstsD+P+cM0=; b=SfuMBaqCsK502ZPFFK7FlC6u7N
-	9lKYLN7KvkrCS54daxBdS6M20Lk0jdHWpT2aYdDZFoAJ22FipPZCbbJq22aca4QORUBCpn5L5BD8b
-	7U70QCi3ZnWit1QzA+SKI9Zgof0Wza9Jl+8CjCwvBk794kVM7FBiJJmYWBWr/1+fjCoQXW0rpwkIy
-	NCAlpJYacjC+W/wOBefRSNw84iUsETtUKT5ZLQUukNLpI8BfqAZvl6uyBkofvWTIFZxJ25JhMEwcO
-	P3aI5xtOGGzQPuOc0xAMDJnmI/H0ForWRdtO5y7RcdYLbPARZr1WDlieT0Z+0Vwig2yulJSvW8TdD
-	hTSfO6Mg==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1u6OKa-00H6Gs-0J;
-	Sun, 20 Apr 2025 14:39:09 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sun, 20 Apr 2025 14:39:08 +0800
-Date: Sun, 20 Apr 2025 14:39:08 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: "Gupta, Nipun" <nipun.gupta@amd.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, davem@davemloft.net,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
-	gregkh@linuxfoundation.org, robh@kernel.org, conor+dt@kernel.org,
-	ogabbay@kernel.org, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, derek.kiernan@amd.com, dragan.cvetic@amd.com,
-	arnd@arndb.de, praveen.jain@amd.com, harpreet.anand@amd.com,
-	nikhil.agarwal@amd.com, srivatsa@csail.mit.edu, code@tyhicks.com,
-	ptsm@linux.microsoft.com, linux-crypto@vger.kernel.org,
-	David Howells <dhowells@redhat.com>, Lukas Wunner <lukas@wunner.de>,
-	Ignat Korchagin <ignat@cloudflare.com>, keyrings@vger.kernel.org,
-	Stephan =?iso-8859-1?Q?M=FCller?= <smueller@chronox.de>
-Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
-Message-ID: <aASWjGNpn1QZYgZb@gondor.apana.org.au>
-References: <20250409173033.2261755-1-nipun.gupta@amd.com>
- <20250409173033.2261755-2-nipun.gupta@amd.com>
- <20250410-sly-inventive-squirrel-ddecbc@shite>
- <bf851be7-74a5-8f9d-375b-b617691b6765@amd.com>
- <Z_imAnYu1hGRb8An@gondor.apana.org.au>
- <4f365fae-aae2-a0df-e8e9-268b536378b1@amd.com>
- <Z_nAo7UpzBqeXLbA@gondor.apana.org.au>
- <5f49d271-fdf3-3b52-664a-3f576bc3c61e@amd.com>
+	s=arc-20240116; t=1745132666; c=relaxed/simple;
+	bh=hn7YA7XmCyOpYGIUjgJ8uMsi3N8R4QuPxrjMUjRQFKQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OSTmmiHT7U/QSXLPFUUxoLHpW++d20mMVkxgiNjWnDqi++C7K0yLeTKIOnAt8+FAzFcoBmhNNCHmkk41tc5zGySusdivvDeIPHhX4gvfYK+/13MnOMZO7FIWf3GlqqoV3nCjSlE7iz0WiSt1lD7IS+09/cu6UEKr8xzD7KSVUFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=dyHewTCW; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-736dd9c4b40so3649159b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 00:04:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1745132662; x=1745737462; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLrawCtHSQaSge3rP8I64g0W6VpqwKb/nSX+gldLJv4=;
+        b=dyHewTCWmKHwB7zJbrX5zZixFiGLQQ62XkcZu4tRDEqToH2t0vB41BDO/00Zjc7nnz
+         BTQhneIeIdJKQy2jzSDYAN3iDpQ2UzsuFT/35hKmhnOj/+RhmK7U3OtyRV7BC0YZMKZn
+         MClaDOvjj4UvYl/NOXb90n6vTZZBvNK1OAR6QAg0GdxhdqutwMFk9fSg/5wNm37dfP11
+         ua3R3X7UhqfISrM4v4fFU+Q4+GVH1B9m0yEnnIhxLGMN9ZW9zf2R/wh9g+vcm5Blt7SI
+         Gtf+8T8Icnv1HHNbaq+mr14jZSAL//Y81C2IktBYpeQtRRDsVypwJPQVQzt0aDeMbHPn
+         q9sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745132662; x=1745737462;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aLrawCtHSQaSge3rP8I64g0W6VpqwKb/nSX+gldLJv4=;
+        b=Vku2i4gXG2G1tXyCTX8YQ33eiwp752iNDjmR/qZSZhSe3+DojkjbeWJr0mLLdW8OpK
+         pzcnt+QRFlXy/9PBJQN1To7+V5C8biVVJWEUkaQVgzrbI3wxL8FBM8lRbiudeu3L3wva
+         SRhOe5G5OibvAwhXFKB5gsEEufzXHi6XkNnIMuwpmWbx+4SluCPyxGJ4BuJ6UClQYVbw
+         XDg/e2pCNB3EUj+Pe8Y+toGyXyc6Mw+ar/Uwdp0chNky6CVWzhekslBumrMrBrvKfRiz
+         PkQC9Uo9Tk5cyQgoIHGYWfnzHHA3JNVn0T6U+FbOKY6Tji5azoV8GbNkpg2cEGc/sOk+
+         IuRw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3SszptwItSmWn2cuL7a5Rfvxcoxu0ubiHW36QOJypXG1MSGyBu3kLwFTwVLW9RoyoQ0IRrZpM9w8g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnFyrNIubpts59M0PCK4HFm141MGQtrsNa8UxGVffhO10dGPh7
+	QvbTrg4OgGvm96jCeKC2cd9tltOyVajHz10oYksXqUbS4MArVmiw36DgkAc0qlo=
+X-Gm-Gg: ASbGncuFXu0isp1b9tk31eMqV07HrTB1m4K5ZEzwySgEXvXQYH6POYhCzgxGeFu22MT
+	B3KkFkIPsaZAS/nOTnKZelnXQf1zOc6gjq/KMo9PfvBhPs5SKA5cOI1u2hDtoySwB9gD2I9u4lA
+	NgQvxcannJNFjD+dQrsHPBrJzVeNrUeJf8bGSlBfh518lGijXjeSJRk39CtG7ozen5lIHNSIex3
+	4ZHhstZwqd2INrT4ldNDz38LMjquR7ZGVBh/5Ew8cZw6P8NYIdbULoVrDjpxrMvBtSFL0V7o5Sy
+	JixUJQlCsXvFhHCgT24EexU+GO1LKA==
+X-Google-Smtp-Source: AGHT+IGsw49Y1EZHbpB/CU2efSGqgI49mepGyjPNnwH7IpvujjQyW84NHrrsk0hDbuCp/nEw8aQw0Q==
+X-Received: by 2002:a05:6a20:d705:b0:1f3:1ba1:266a with SMTP id adf61e73a8af0-203cc4ae6ddmr10558452637.0.1745132662405;
+        Sun, 20 Apr 2025 00:04:22 -0700 (PDT)
+Received: from localhost.localdomain ([2a11:3:200::40b3])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b0db12743afsm3742626a12.16.2025.04.20.00.04.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Apr 2025 00:04:21 -0700 (PDT)
+From: Guodong Xu <guodong@riscstar.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	dlan@gentoo.org,
+	p.zabel@pengutronix.de,
+	drew@pdp7.com,
+	inochiama@gmail.com,
+	geert+renesas@glider.be,
+	heylenay@4d2.org,
+	tglx@linutronix.de,
+	hal.feng@starfivetech.com,
+	unicorn_wang@outlook.com,
+	duje.mihanovic@skole.hr
+Cc: elder@riscstar.com,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	guodong@riscstar.com
+Subject: [PATCH v2 0/6] pwm: Update PWM_PXA driver for SpacemiT K1
+Date: Sun, 20 Apr 2025 15:02:45 +0800
+Message-ID: <20250420070251.378950-1-guodong@riscstar.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5f49d271-fdf3-3b52-664a-3f576bc3c61e@amd.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Apr 17, 2025 at 09:02:15PM +0530, Gupta, Nipun wrote:
->
-> Thanks for pointing out to the C file, but as these these system calls can
-> support only synchronous operations, precludes their use for asynchronous
-> operations. In the TLS handshakes, where multiple connections occur
-> simultaneously, asynchronous operations are beneficial. OpenSSL ASYNC
-> support can very well utilizes the asynchronous operations while
-> establishing multiple TLS connections.
+This patchset adds support for the SpacemiT K1 SoC in the PWM_PXA driver
+and updates related device tree bindings. The changes enable PWM
+functionality on the K1 platform through driver enhancements,
+configuration updates, and device tree additions.
 
-In that case we should extend af_alg to support akcipher algorithms.
+Functionality has been verified on the Banana Pi BPI-F3 board using PWM14,
+configured as a pwm-backlight. Per community feedback, the actual
+pwm-backlight node is not included in this patchset but can be found in
+patch 7 of the v1 series.
 
-Having every crypto driver make up its own user-space PKI interface
-is not scalable.
+This patchset is based on the following dependencies:
+1. Clock controller driver, posted by Heylen Chu (v8), with
+   most of it has been accepted:
+https://lore.kernel.org/all/20250416135406.16284-1-heylenay@4d2.org/
+2. Reset controller driver, posted by Alex Elder (v5):
+https://lore.kernel.org/all/20250418145401.2603648-1-elder@riscstar.com/
 
-I held back on adding akcipher to af_alg because it would lead to
-the freezing of our akcipher API.  But it's time to do this.
+Major differences between v2 and v1:
+ - Dropped the addition of spacemit,k1-pwm as a compatible string in the
+   PWM_PXA driver; instead, it now falls back to marvell,pxa910-pwm.
+ - Removed pinctrl settings for all PWM nodes (pwm0-pwm14); only the
+   pwm14_1 configuration is included in this version.
+ - Changed PWM_PXA from built-in to a loadable module (=m) in the
+   riscv defconfig.
 
-Being the first user of such an interface, could you please post
-your OpenSSL patches as well so that we can look at what's actually
-needed?
+V2 consists of the following patches:
+Patch 1: Add spacemit,k1-pwm compatible string (with fallback to
+           marvell,pxa910-pwm) and support optional resets property.
+Patch 2: Add reset controller support to the PWM_PXA driver.
+Patch 3: Add device tree nodes for all 20 PWM instances on K1.
+Patch 4: Add pinctrl settings for PWM14.
+Patch 5: Add ARCH_SPACEMIT dependency to the PWM_PXA Kconfig entry.
+Patch 6: Enable PWM and PWM_PXA in riscv defconfig for SpacemiT K1.
 
-Thanks,
+Best regards,
+Guodong Xu
+
+v1:
+https://lore.kernel.org/all/20250411131423.3802611-1-guodong@riscstar.com/
+
+Guodong Xu (6):
+  dt-bindings: pwm: marvell,pxa-pwm: Add SpacemiT K1 PWM support
+  pwm: pxa: add optional reset control
+  riscv: dts: spacemit: add PWM support for K1 SoC
+  riscv: dts: spacemit: add pwm14_1 pinctrl setting
+  pwm: Kconfig: add depends on ARCH_SPACEMIT to PWM_PXA
+  riscv: defconfig: Enable PWM support for SpacemiT K1 SoC
+
+ .../bindings/pwm/marvell,pxa-pwm.yaml         |  17 +-
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |   7 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 180 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |   2 +
+ drivers/pwm/Kconfig                           |   2 +-
+ drivers/pwm/pwm-pxa.c                         |  14 +-
+ 6 files changed, 212 insertions(+), 10 deletions(-)
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.43.0
+
 
