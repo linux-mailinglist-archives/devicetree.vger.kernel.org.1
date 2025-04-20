@@ -1,128 +1,102 @@
-Return-Path: <devicetree+bounces-168848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A01A948C9
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 20:10:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2BBA948F6
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 21:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E25ED1713CC
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 18:10:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5315C3B337A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514C520D4F0;
-	Sun, 20 Apr 2025 18:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827892144AC;
+	Sun, 20 Apr 2025 19:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ne8denad"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="0xX/eF37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC801E98FE;
-	Sun, 20 Apr 2025 18:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF48EC5
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 19:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745172648; cv=none; b=R9IjuZNH4z0lHP/5dyABfTf6n3XaUOn9y1mAeVxlJC7u2QZ2CbltUIlCsQURsdroiwylI6pLLUoSWrujO9FpS9E3QwGcepssmRVO/ZipjPOdOxOkxOfpIGh3HS3p36/C19czDpY7SCaynL3apqkBbdVWhFbTHDk2z3CLZxPoMzM=
+	t=1745175686; cv=none; b=EPFEvWUSiNHH9qn1WZ0tAYKpukqEK8OLWFxpucAGmkS1uXGQu8b+GCiItVXumtoh8zWiQCvkM3Rt83Ub6sOYbOn0aF4qH/z5FIiScWOwHviKm6KqN2EmfyOG1xnNzGwOTAvj2fmBbhBHojQcVrX5Ju+SIeCjcFH0te9sIo6J5gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745172648; c=relaxed/simple;
-	bh=/E0EO+RMPCLWe0n9DvGXcNqxis0WymELc05enWsVUNc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LPMNiyrGB/400XP+zaK9TqnUqKt/Dy01yde8aBWjMxZ9SSjPv8642Cf03kAxMDNSTh7yCzD2Fmj5/6qSuYrEPn6uUcecmfglVEy8dv1pUB/d5fo+5GHLR+VK/Tk8xNjEeZxnl1YSm5VYfCnkt555HRFqCzM/a+N2zHcC7dXmris=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ne8denad; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso2920989b3a.2;
-        Sun, 20 Apr 2025 11:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745172646; x=1745777446; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=Ne8denadB762TeyQt5E5cD7SZebyG9NfiJR3FSbyqjUjErVJlPLtTLRgQhXj8NUbxm
-         3xBEAK/HtY9UaMo9pM5sKv6LNYv/DUIIzvIJmu3WFLZQjZqseu3GWLANuSr26AJLNzxS
-         1gU2DmP8EAVV0HysuUG3mkO5HKxmZbY0wX4/jOp6a6fqdRd/f23B80xS1xCFxD5fnNWH
-         iXbnjAAPkwKSMoGcuHQJ+vNLbkfJF3/a+6K0X1sa4Fn5RKV1iirc/gy6d5s0c09aQeyJ
-         lVeTgzPFpA6/f4E4wA8JrnClymJfkFVdHaVlFxAbU72xo6wOdBDb+qlg6OR5j/X9VSnJ
-         /8zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745172646; x=1745777446;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=WFnwHTLRI6Lf8j0VFkXeNmYwQ25+o5LXdfSjgNVygxgqAEUQOfEex5SBVqyYrZ0NeZ
-         PXquOOglZu165UVV5KdbBFA1Xuh3RR1+KRcjJ7Kl0lM/Z3dYiXukE3onVj2JnWG5OIkr
-         fu7PxJOtlH/XfBQWFB45GPRSitSLZpMS/N/NCH6OJbT86jAJygi9o6xzrlSI1C8ESr0f
-         Jysqma+zuxdhQcdbD/t+rIxFoI+/c7mCY+KaDAJRwtyjssjdxtjgR2VHiqA5i8gegeMM
-         5Fb3oGnPcm/iE7RhBh6AqB3zZNVlHSMpHwZBooEQJHAVgl1jUlt2fyBYEhtMeOVlZ26W
-         c6MA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuUxUnjuJ5+I2tiscxWqbmE6TTDmlEJUfkYkje/qepVM3OYYJi97DNPRWLuU1OjNeAygiRZaNbu4my@vger.kernel.org, AJvYcCWIT6gby0jLVH3jRCibD0UQ4YX/XkpHxdoivKd+vP5v+KzqX+n2m2HZI3chKDtGwS4A41AO7mZUbuR7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUy7DYQdYVznv/x7pz1mx4LLfNBYAgpf9e1u58Tt8z9Rnu3qyh
-	AZqGEKKAHlLE7cTm6c+d46Ff5Wybk1wtsB3sOZklg/rZvtrDCMnv
-X-Gm-Gg: ASbGnct8Nm8vCLauvMKtOkG/vHgvNwOvpXLd94at9TOZ/BP9SXrQFM0Rk155rFOtQru
-	VbZLDuwPGlzS4xuMbhT63Mf5z/1HD1Ig1ZxJeZ6wddAjDHFS98jQfDsXSAX4pGAl5HurmCmtLEW
-	UO6bvgl5uR4w4xNzXxT3SDT4At2kKYYOLN1TTWdgZqrpfvoDZ2aoPZuORt/cHjRqyWfxMXa+FLR
-	2TN6hl/coNGUhd3gx2VKDXMjZQuw2+DEd/Jt8DtvEdXpWMfZjWdvEow89kg50YhrbZCF69+KdYx
-	k/sik6jxekkZz3ZC+y6ouqdjZOno5b0y+KfvfRbaabfAF34=
-X-Google-Smtp-Source: AGHT+IEYqB4eMMP8CBLHl/wmGfa6rxsQTach7+xCAcAoQWMxGfKFxrHwHC8yy8bV6ZYa2mEGbfnkNQ==
-X-Received: by 2002:a05:6a00:4285:b0:737:9b:582a with SMTP id d2e1a72fcca58-73dc15d8d78mr13422614b3a.24.1745172645739;
-        Sun, 20 Apr 2025 11:10:45 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([39.120.225.141])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73dbf8c05b0sm5009347b3a.35.2025.04.20.11.10.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Apr 2025 11:10:45 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: jic23@kernel.org
-Cc: Gyeyoung Baek <gye976@gmail.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: [PATCH v4 4/4] MAINTAINERS: Add WINSEN MHZ19B
-Date: Mon, 21 Apr 2025 03:10:15 +0900
-Message-Id: <20250420181015.492671-5-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250420181015.492671-1-gye976@gmail.com>
-References: <20250420181015.492671-1-gye976@gmail.com>
+	s=arc-20240116; t=1745175686; c=relaxed/simple;
+	bh=f31ZqoUi2cLrlBE6sOstnrARr8afP+5sSmKf/ykpvkU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V7hz2HL+bh0MMoea8RTSNnvo4y42uwixd529k4ihW4AvYCgVw9j0yAjgthhVG0OPi2LqaPwSerm9WoWbDQHbGSbQBbD9xWoucvsKzO/fhV/2yO4W0RAEWGA5TefOx2lHaVRP1rKNMN3oIBjEuxxxS37yJkqjNLVGTYtu+V2IH8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=0xX/eF37; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=0xX/eF37cMhK7cmWjEm/0Fjxpgl2dGrqC8Ncj0HoRIUsN9iF0ur+EWqMzvZTIcLM1ii7hrfnhW/pfq/+pN8JD4jx5czfL8OzmxfyATqK1Bz+nPdfgPF1gPwe4Q867tqhEX2E0J4NlgIqXx8fCsCpQbg7eDq+AmeTkpNzl9Q2xoIbwHUugo/6PVweGDHdEfcZ9tGVZxdhL3deHJfpoTXEb+iDIRFObh9kYr91Wsa0CVCwiGls6KQejlQ+G6DteurXmoLKrifNjhYnwKC/FLYuOJdw8pMPY5KHU5SY+a3wMf9O3sDExxIZKXOJzcnSpB2qqer1es0MCNQ4Q4fU4z94vQ==; s=purelymail3; d=purelymail.com; v=1; bh=f31ZqoUi2cLrlBE6sOstnrARr8afP+5sSmKf/ykpvkU=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1640089901;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Sun, 20 Apr 2025 19:00:40 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 0/2] RESEND: watchdog: Exynos990 WDT enablement
+Date: Sun, 20 Apr 2025 21:00:37 +0200
+Message-Id: <20250420-wdt-resends-april-v1-0-f58639673959@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFVEBWgC/x3MMQqAMAxA0atIZgO11IpeRRykjRqQKomoIN7d4
+ viG/x9QEiaFrnhA6GTlLWVUZQFhGdNMyDEbrLG1cdbgFQ8UUkpRcdyFV2x81QRvnIu+hdztQhP
+ f/7Mf3vcDFeigy2MAAAA=
+X-Change-ID: 20250420-wdt-resends-april-7617c6044d69
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745175638; l=1062;
+ i=igor.belwon@mentallysanemainliners.org; s=20241206;
+ h=from:subject:message-id; bh=f31ZqoUi2cLrlBE6sOstnrARr8afP+5sSmKf/ykpvkU=;
+ b=aeMb1mip4EuNFqnut4/hMZguKoBKG/Zi7/f1mbPVfUPZVCbVdFvTE4znVX8+yT+f8d+8MRYBh
+ DeRPJLpgeT8D/uu+14I3oXVub138Ah77Vj20pHmReqMqoGxPvVmOU8y
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-Add undersigned as a maintainer for the WINSEN MHZ19B.
+Hi all!
+This series enables the two clusters of the Exynos990 watchdog timer
+to be used. Weirdly enough, this SoC is missing the cl1 cluster, it has
+the cl0 cluster and then jumps over to cl2. As such, new cluster index
+code has been added to accomodate this oddity.
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v2:
+- bindings: Fix cluster-index limiting
+- Link to v1: https://lore.kernel.org/r/20250217-exynos990-wdt-v1-0-9b49df5256b0@mentallysanemainliners.org
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 01079a189c93..4a0089db6670 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26015,6 +26015,12 @@ M:	David Härdeman <david@hardeman.nu>
- S:	Maintained
- F:	drivers/media/rc/winbond-cir.c
- 
-+WINSEN MHZ19B
-+M:	Gyeyoung Baek <gye976@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-+F:	drivers/iio/chemical/mhz19b.c
-+
- WINSYSTEMS EBC-C384 WATCHDOG DRIVER
- L:	linux-watchdog@vger.kernel.org
- S:	Orphan
+---
+Igor Belwon (2):
+      dt-bindings: watchdog: samsung-wdt: Add exynos990-wdt compatible
+      watchdog: s3c2410_wdt: Add exynos990-wdt compatible data
+
+ .../devicetree/bindings/watchdog/samsung-wdt.yaml  | 11 +++---
+ drivers/watchdog/s3c2410_wdt.c                     | 39 +++++++++++++++++++++-
+ 2 files changed, 45 insertions(+), 5 deletions(-)
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250420-wdt-resends-april-7617c6044d69
+
+Best regards,
 -- 
-2.34.1
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
 
 
