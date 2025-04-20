@@ -1,120 +1,291 @@
-Return-Path: <devicetree+bounces-168797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CF8A946AE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 06:15:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4F0A946B9
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 06:38:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 287E6175064
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 04:15:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 187FA174FE2
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 04:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565451A5BB0;
-	Sun, 20 Apr 2025 04:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD6D548EE;
+	Sun, 20 Apr 2025 04:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x0++PaRm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vtwLVdYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDC917A2E2
-	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 04:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C688EEDE
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 04:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745122509; cv=none; b=h93z3LR4EAXzd3SR+Vvw5mzmv7QohefjJuOKkNA1Pky+QrYkFJXmt1pUr/u4YlwN7PpDwuWrICymXMY6Mti2RiYUflVz1K4cobblss1Mkk042cOrMWaKp3SI34T+wNuZvh2IsdJUwWRkwPwoJPTsnExvF9Qp2y2xwloSxiij87Q=
+	t=1745123919; cv=none; b=msq4buHtH6j2EOTf/odgJPODybC2UlUXVmWNW2zqYCiToBDKYX3cVwqp0+oCFRjDxFfFXE/h8xqAu30IKKb5xFp37yRLPd4aXlZp0ACItpX1fzs6cJlQZOKxIsqnnrMxyQE29sSnQSHLpsz08YuSYcOUbZLB+843Ano8WRmqFqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745122509; c=relaxed/simple;
-	bh=l/JQQddlhPynwDPY0hqUzEhGKbXSBZE37ftjqTkM7uw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tMS0fSTMuEA+Qh6px/C4PC0BmSf5LOqiGPrRDHhPFmo/WI+s8I+Sbne+fRETxNUfSiJ+m996w4q4G3SjboTd7q3S9NNCrjUWPhZyCyU4ZG7l1XsYiFCHj2G1pisUh4fhhLm+mPByed99kJbW7p2ZCNP5bLAFLTlFpUp9bcYncis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x0++PaRm; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-226185948ffso33929985ad.0
-        for <devicetree@vger.kernel.org>; Sat, 19 Apr 2025 21:15:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745122507; x=1745727307; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BWq/yk6egdF/dXjQzH1qk63eH8P6QSiGPtgR+xWOm0g=;
-        b=x0++PaRmLDoHAJ78CbRoeeO9R+zELfcHVkmVZ8WBOWNAcaFAhEWISbLWimo6WRA9bO
-         HlMIs7fF/8kuwMRdXKFs8xWVMV+eHzqCwIm3m9PNX6IaJL3MKY0ac32kiC33DhJSGHjC
-         uQ7GuwIxisQbaeId0vOxL/TyrX1LeF+vcAsAwc1h4Gj0OY5h4dwBd/SD9fs73qqpU3W9
-         rnTeEaFbhW/hWTL1bk+M56LcOD6OppbnzG3/vwmL6zo/MqYkUj5vedlPLfXldCZjWlFf
-         bENaQk7iIgvKOM0MbX/5wRNJHHinmrz7HJlinhfWb5m/CL8HPJMwivT8urp/Y82KzPyh
-         SGkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745122507; x=1745727307;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BWq/yk6egdF/dXjQzH1qk63eH8P6QSiGPtgR+xWOm0g=;
-        b=oeurtY/ZWmQg9c5smEtbawlEBDY+sWgtIgfvCJIzl4DuIQL9tQ6SI15rItvE42XWGR
-         fiX5G+vpYEueeY9pJSxgweVneInRwSX7RYj60oc5ysZuFYHXiGU6FRriffgMH3T8HVTD
-         f9ytF/YF4oMtxqJjatmHM8ZwpPieKVtxOPS+RbHE81NzPwPGwk6bATnhZLBJ36J975y0
-         Wl4nDpS+rWk7PQkWPpdLOw83I0StxhxYiXwUjKIqRJ9I+zPelInG747rIAvNB1d/NrnG
-         Y+K7GFz0RyxqoB8XvPncat/DIGLgbADZ80sEDLokthwZ/WD8Y7SsxXVLwtB6bJKmXGSV
-         zORg==
-X-Forwarded-Encrypted: i=1; AJvYcCXuJFhYt0d3ocJJNQx+V96gU3pi8agBZ9ZI5JR+aa2+Gyme+JnoVgNC7Lcq/DNyNAm9IHy4dfBtOtCP@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy32P1cKOk1IdibVITwsxaS9C9An0mWhTCJFmAzaV947NXWgqL
-	kDRLgDruKESRRIGKSew9QoK7ph/jpLu2oxu7C9l2bvCQzNyj2OF3WDxOx+Tw7Q==
-X-Gm-Gg: ASbGncsWgoxHya+T6sm/QY1VDtNJWh3C4as3L6sxueyE6tfVo9G/YPeP1oQPiu5m8xq
-	daYdKdXGs0KaEtt6G/KPrrq3+mTSa6MXx5MllQdtEjzgEcQgp0MIWRojynmVZxyqR4T4afIsqcF
-	RB7S0kbVgbca6lVztT7zaNeOjUSgWvqTXZMRZKDBW6I/L+OtXg29P+IbbPAmwR5HzEZbqN7vnB8
-	tP/nQzuTH8Ul2jXa2JxOB9Pg6Kt5cjE1bqkjsuc404hWlstureTaybE89w2M0dg331mZQE3qQLf
-	PDCEUgow+IYYyHKBiaEXA//R5P5bZHn+QmTZSmSV5GhKFR+OC73z9A==
-X-Google-Smtp-Source: AGHT+IEwT70MqJZh1REZd2GwFUgsulJR3hGmpXtb4k2hyt7Uf4STg11Rb+IyyGIokskY4EblKXX3ZQ==
-X-Received: by 2002:a17:903:1a24:b0:223:47d9:1964 with SMTP id d9443c01a7336-22c53607709mr128586875ad.34.1745122506897;
-        Sat, 19 Apr 2025 21:15:06 -0700 (PDT)
-Received: from [127.0.1.1] ([36.255.17.92])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50fde851sm41412575ad.239.2025.04.19.21.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Apr 2025 21:15:06 -0700 (PDT)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Vidya Sagar <vidyas@nvidia.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250404221559.552201-1-robh@kernel.org>
-References: <20250404221559.552201-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: PCI: Remove obsolete .txt docs
-Message-Id: <174512250279.7011.5486812509432679947.b4-ty@linaro.org>
-Date: Sun, 20 Apr 2025 09:45:02 +0530
+	s=arc-20240116; t=1745123919; c=relaxed/simple;
+	bh=mV8TvVQNo/AH7gh0rqE8nPO6kuOoDUzCBrdrqj6E4Ls=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B814dSOSpfmYoIPdQSZUeI60ITrQoCOcHz84BpYXt0G83L6r+zUt1ImhhNoMkmuvW87hD/7D4ZNbWGP4jUF1I1e49lssQVM7QnN3v7iDuwiyAXiTaj2BFYp4xJgKw/i78LmS2F53jh2aJIzAuv6cYtWxAUaC1A+XxhI6izTo/5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vtwLVdYw; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53K4cNQq1317944
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 19 Apr 2025 23:38:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745123903;
+	bh=E+92oJ6MzaNo2BZvoRTKDsk2yJVhwkV0jeSyiXIjKTA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=vtwLVdYwuXHVdyOgbmpQdTOKi/1+L0hGJQQbWdvjYNiSOU1djKtsAYyY+M6ZQPRkU
+	 yt2ZhREs9t7u7d3v4jq/sSDn0m2Ocx2NjKFVSQmfkFo7P3iRu9WaD48icR4yI4qPBb
+	 bxIw9bKTAlBIbMBcLbs8TMt5/NkBkPR9Z/CdBwgc=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53K4cNiu001057
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 19 Apr 2025 23:38:23 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 19
+ Apr 2025 23:38:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 19 Apr 2025 23:38:22 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53K4cINR018601;
+	Sat, 19 Apr 2025 23:38:19 -0500
+Message-ID: <385e8f6a-6f25-4729-8ccc-877a551a3e9b@ti.com>
+Date: Sun, 20 Apr 2025 10:08:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add basic support for
+ phyBOARD-Izar-AM68x
+To: Dominik Haller <d.haller@phytec.de>, <robh@kernel.org>,
+        <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>, <m-chawdhry@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <upstream@lists.phytec.de>, <u-kumar1@ti.com>
+References: <20250417125921.100580-1-d.haller@phytec.de>
+ <20250417125921.100580-2-d.haller@phytec.de>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250417125921.100580-2-d.haller@phytec.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hello Dominik,
+
+Thanks for patch.
+
+Few minor feedback
+
+On 4/17/2025 6:29 PM, Dominik Haller wrote:
+> The phyCORE-AM68x/TDA4x [1] is a SoM (System on Module) featuring TI's
+> AM68x/TDA4x SoC. It can be used in combination with different carrier
+> boards. This module can come with different sizes and models for DDR,
+> eMMC, SPI NOR Flash and various SoCs from the AM68x/TDA4x (J721S2) family.
+>
+> A reference carrier board design, called phyBOARD-Izar is used for the
+> phyCORE-AM68x/TDA4x development kit [2].
+>
+> Supported features:
+> * Debug UART
+> * 2x SPI NOR Flash
+> * eMMC
+> * 2x Ethernet
+> * Micro SD card
+> * I2C EEPROM
+> * I2C RTC
+> * 2x I2C GPIO Expander
+> * LEDs
+> * USB 5 Gbit/s
+> * PCIe
+>
+> For more details see the product pages for the SoM and the
+> development kit:
+>
+> [1] https://www.phytec.eu/en/produkte/system-on-modules/phycore-am68x-tda4x/
+> [2] https://www.phytec.eu/en/produkte/development-kits/phyboard-izar/
+>
+> Signed-off-by: Dominik Haller <d.haller@phytec.de>
+> Acked-by: Moteen Shah <m-shah@ti.com>
+> ---
+>
+> Notes:
+>      Bootlog:
+>      https://gist.github.com/dominiknh90/644e753c752b232117e12092e3691124
+>      
+>      Link to v2:
+>      https://lore.kernel.org/linux-arm-kernel/20250415130458.33714-1-d.haller@phytec.de/
+>      
+>      Link to v1:
+>      https://lore.kernel.org/linux-arm-kernel/20250411101004.13276-1-d.haller@phytec.de/
+>      
+>      Changes in v3:
+>      - added phytec,am68-phycore-som compatible
+>      - pickup up Acked-by: Moteen Shah
+>      
+>      Changes in v2:
+>      - aliases reordered
+>      - stdout-path set to &main_uart8
+>      - fixed coding style in serdes0 node
+>      - dropped whitespaces in commit message
+>
+>   arch/arm64/boot/dts/ti/Makefile               |   1 +
+>   .../boot/dts/ti/k3-am68-phyboard-izar.dts     | 579 +++++++++++++++++
+>   .../boot/dts/ti/k3-am68-phycore-som.dtsi      | 594 ++++++++++++++++++
+>   3 files changed, 1174 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 03d4cecfc001..3f18ca4029c3 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -109,6 +109,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
+>   
+> [..]
+> +
+> +&wkup_pmx1 {
+> +	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
+> +			J721S2_WKUP_IOPAD(0x024, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
+> +			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
+> +			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
+> +			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
+> +			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
+> +		>;
+
+Please have bootph-all in case, this is boot device
 
 
-On Fri, 04 Apr 2025 17:15:57 -0500, Rob Herring (Arm) wrote:
-> The content in these files has been moved to the schemas in dtschema.
-> pci.txt is covered by pci-bus-common.yaml and pci-host-bridge.yaml.
-> pci-iommu.txt is covered by pci-iommu.yaml. pci-msi.txt is covered in
-> msi-map property in pci-host-bridge.yaml.
-> 
-> 
+> [..]
+> +
+> +	wkup_uart0_pins_default: wkup-uart0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721S2_WKUP_IOPAD(0x070, PIN_INPUT, 0) /* (E25) WKUP_GPIO0_6.WKUP_UART0_CTSn */
+> +			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (F28) WKUP_GPIO0_7.WKUP_UART0_RTSn */
+> +			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (D28) WKUP_UART0_RXD */
+> +			J721S2_WKUP_IOPAD(0x04c, PIN_OUTPUT, 0) /* (D27) WKUP_UART0_TXD */
+> +		>;
+> +		bootph-all;
 
-Applied, thanks!
+Since this is shared with TIFS fw (debug prints), then i suggest not to 
+have flow control on this UART
 
-[1/1] dt-bindings: PCI: Remove obsolete .txt docs
-      commit: 7ab8db9042cb37222bebf77beeb1ff4df0789a84
 
-Best regards,
--- 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +	};
+> +};
+> +
+> [..]
+> +
+> +&ospi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-max-frequency = <40000000>;
+> +		cdns,tshsl-ns = <60>;
+> +		cdns,tsd2d-ns = <60>;
+> +		cdns,tchsh-ns = <60>;
+> +		cdns,tslch-ns = <60>;
+> +		cdns,read-delay = <2>;
 
+Bootph-all  here
+
+
+> +	};
+> [..]
+> +/* Shared with TIFS */
+> +&wkup_uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&wkup_uart0_pins_default>;
+> +	uart-has-rtscts;
+> +	bootph-all;
+> +	status = "okay";
+> +};
+
+Do you see possibility to keep reserve for fw ?
+
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
+> new file mode 100644
+> index 000000000000..f9fb0c78ccde
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
+> @@ -0,0 +1,594 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
+> + * Author: Dominik Haller <d.haller@phytec.de>
+> + *
+> + * https://www.phytec.eu/en/produkte/system-on-modules/phycore-am68x-tda4x/
+> [..]
+> +
+> +/* eMMC */
+> +&main_sdhci0 {
+> +	disable-wp;
+
+I think no need to disable-wp for eMMC
+
+
+> +	non-removable;
+> +	ti,driver-strength-ohm = <50>;
+> +	bootph-all;
+> +	status = "okay";
+> +};
+> +
+> [..]
+> +
+> +	pmic@48 {
+> +		compatible = "ti,tps6594-q1";
+> +		reg = <0x48>;
+> +		system-power-controller;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_irq_pins_default>;
+> +		interrupt-parent = <&wkup_gpio0>;
+> +		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		buck12-supply = <&vcc_3v3>;
+> +		buck3-supply = <&vcc_3v3>;
+> +		buck4-supply = <&vcc_3v3>;
+> +		buck5-supply = <&vcc_3v3>;
+> +		ldo1-supply = <&vcc_3v3>;
+> +		ldo2-supply = <&vcc_3v3>;
+> +		ldo3-supply = <&vcc_3v3>;
+> +		ldo4-supply = <&vcc_3v3>;
+> +		ti,primary-pmic;
+> +
+> +		regulators {
+> +			bucka12: buck12 {
+> +				regulator-name = "VDD_DDR_1V1";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+
+In case you want to enable ESM reset in u-boot,
+
+Please carry bootph-all or bootph-pre-ram in one of regulator node
+
+
+> +			};
+> [..]
 
