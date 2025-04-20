@@ -1,166 +1,270 @@
-Return-Path: <devicetree+bounces-168851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2D4A948F2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 21:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6FAA948FD
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 21:22:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A45E2171012
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:01:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87A116ED3C
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 19:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9537C199947;
-	Sun, 20 Apr 2025 19:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA6620D4F4;
+	Sun, 20 Apr 2025 19:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="rx3eCw78"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hzj1sVPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB9D21420B
-	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 19:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909B113BC02;
+	Sun, 20 Apr 2025 19:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745175686; cv=none; b=o3f1mYUtd8h78lMGFa500ptFHfkwftUvBPeR39Q+skCxQlj8ymUDIiKPvyoeNgsBu/QgRVMq9zi4u2PT0zVloK0gQvdtnZJr1OYEZHJ2preq4DL9fTOhyT75g1IrnutryfPUF59yVPINUMatHZtoHDRfxsEyB7DdcsMosSc/ge4=
+	t=1745176936; cv=none; b=MJ2sG8J3jyjmyuInrqHxkZE2Fqepjuz965RiQBNM7F+re+o9F8fpKVlvBFcPAPytvxW3Sa4v685uGSVCEIG/vJYlAkbabChn1239v3lY8i1NWHR8BZYQVAvzRrShhV4gBcr+0ygokshaxiO6Bb4z6qJKAqPxlHYbHgO570uE9V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745175686; c=relaxed/simple;
-	bh=Fxg61Yte1UPz7xtMEapmFGrdMeVN/z75TtaNETL9lu4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mj7WdZTpSBAmYovxDtKGWQq7Xt9Za+XSd6oU6+91JHmYc84RiuAJdLklD8ox7MT6POpgeTh0AE5vrjMtN0FYuVV2EC4aR3w0lwEheS4f2W9PahhLee74D11nnzqsz5HcIRWq+QrzOyBg9py4NcE0BbAFZH7xny1IXtZ4Oxw39Zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=rx3eCw78; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=rx3eCw78qPhYWNuVRMoyRSAjmJCKBcAPF4akoG2OB04SC+117kpMAyYjYQjgz3+wlNUKgYTEPiQVPlNL8Bxp/e0nYcBG7SBQL+oCU2Utc+SRmhAN5N/UAW4w45WSoM81Xwz+V6MEXgkeU+vmy6OoJfBC4hUZ+v6my8fbZnKa3cJgV8jGD5j9YPBvlVIYPCpW+sQZanK9OYteZt/E2FC0sf087Lp1gAVCt1cu13TL4OVqKrjmzZb6amia3ZIbqmP6hoz+ur483/NXy857405jj7fGvUVIaORu023lUGeL8U1xGeIeG5uGGlCJziV+nonN4IRSGDXQe/Pyuz8zeq+gWw==; s=purelymail3; d=purelymail.com; v=1; bh=Fxg61Yte1UPz7xtMEapmFGrdMeVN/z75TtaNETL9lu4=; h=Feedback-ID:Received:From:Date:Subject:To;
-Feedback-ID: 68247:10037:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1640089901;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Sun, 20 Apr 2025 19:00:45 +0000 (UTC)
-From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Date: Sun, 20 Apr 2025 21:00:39 +0200
-Subject: [PATCH 2/2] watchdog: s3c2410_wdt: Add exynos990-wdt compatible
- data
+	s=arc-20240116; t=1745176936; c=relaxed/simple;
+	bh=Yn3Ui4BSmWrPvxM8HgP0RwD5oDibc5XZTD1yLziOZmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M1qmPVA0Fq7UhcAkTjZdl41PjFOHu9hCEBEUiBel6PMf5k5esM0Wd2gcA8rsGng2ly9HmfYu3rxFCLdW3OPh3QR47jWdYQQhtGxvSvJS9AuPfOsIno7NwF6zHK/6PxHapJcQbevdvyDERf2OuWxZtM/mjicOLXZ71nKXshRmN8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hzj1sVPJ; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e5e63162a0so5271778a12.3;
+        Sun, 20 Apr 2025 12:22:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745176933; x=1745781733; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MMMeqm+7ovbinPtAMFN5chfs5DhVtKsfhUKKqgjctSk=;
+        b=hzj1sVPJpnfSPo5/O+330LbUo7ZoOnZWqbxduZ73kdMpJVJSepS6irEp3h8SSTERlu
+         nAjc2G+/Glr/eGKPWj+EwizJdaVM+ctle1OtXw61Bp+dve23SHfFm9mFXeXd8HJTu2tO
+         7mY0BNajIXjj2QG8yl+ceQymXr9goCCUoGYo6VzfpCnLICNpas+zRz8kFVcS/MUGatyj
+         SMwsdnB6evIElh4icx85O72LHSIhtWRXTiXg0GD4BHPEGz0iUJbEpiXQblptsgoMQCDG
+         fk8Jsp7jqDf7VX3xdXCOAxqFiXatEpTxUqPqgs9SoikSF/6dZpcl5UKMDghcPcaHjIci
+         WDuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745176933; x=1745781733;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MMMeqm+7ovbinPtAMFN5chfs5DhVtKsfhUKKqgjctSk=;
+        b=MfBxZLa1C2/sU9cKpky3Ll5OOBlr9XuE0MRNtPOVLG+bQgaRSfrqiTVyUR1DjdV05/
+         nWkbOo7xnbSzcxEpUlsJ2V0najRVdAUSbi5JIusFx2UCIyyz0DuxMt/VY+gh7G6FC4XN
+         V25eD3LeGZ1n+7/J6EN5L4HyxFQ1aYmbBHfDoHpXGfyC9CJvs6D+E/EfR4TzkD3pkghF
+         BJSELArIH8LyZWv2MOIF2tSCODM0qjJhvJ+6NwKzHyin4oYuCsr5YNJ2PbbcfBV+zw6u
+         p0VFFDwxJABrRgjTjD1HKPL4mhBt1+C2X4tSFgRMXDNTBoYncfHWLve9yjQaM9Iz9RS5
+         SJww==
+X-Forwarded-Encrypted: i=1; AJvYcCVHDi9avU9pPK01N2m0/VPTNNv57hKM3BjGgBRBiqjLHZbTAgvHfr8ThX5yX6iK6fH/gUmkkCA/FPdO@vger.kernel.org, AJvYcCX3MKYYg43fZ2jA39OTCCa5C6UCFzbklr1ojFdUeZJDd9Qj6tl9VcmiMXB6UnIjs735zbd/bNxgAQ/p@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlW/IvrhAcwCrPV0s+HHPtkzySU9js1ccCI27Xohmo8C9anEbY
+	Z1au1jliwDp+OYOZIW7L2A5UHa8Ly5kgE+HQ9NwDz/3PvTjtT8hvm3bmLwk1lz4PUfdZL2V1W56
+	O8ZDhJUqM/KanPiIg9Q9lWAdUNIUoFsA1
+X-Gm-Gg: ASbGncvPGvhDLL/LqQ3K8VMGNiwIlknNkksUjUzBquB9FEqSZrURz+v3IevWk5yjjP5
+	zN2CrcnHSPDx+F5ny4IPo4NTI9ujqUbGslT/wriFt8tDEUahI7HuzFxJtLlMDflIM//QGm1qnFl
+	m2vOZv6Y9kDhe5OP8MwQUnTw==
+X-Google-Smtp-Source: AGHT+IEdc9v/Rh79UA07krqpQv3EuaguJEAxDEnogniGQUeXs1GaYLbUKImVAGwG6f6PhyEIWm+61gyqBtpCJM3CFZk=
+X-Received: by 2002:a17:906:4ad1:b0:acb:abff:a5b6 with SMTP id
+ a640c23a62f3a-acbabffa98dmr60619666b.13.1745176932594; Sun, 20 Apr 2025
+ 12:22:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250420-wdt-resends-april-v1-2-f58639673959@mentallysanemainliners.org>
-References: <20250420-wdt-resends-april-v1-0-f58639673959@mentallysanemainliners.org>
-In-Reply-To: <20250420-wdt-resends-april-v1-0-f58639673959@mentallysanemainliners.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745175638; l=3556;
- i=igor.belwon@mentallysanemainliners.org; s=20241206;
- h=from:subject:message-id; bh=Fxg61Yte1UPz7xtMEapmFGrdMeVN/z75TtaNETL9lu4=;
- b=JS2lGNZDyaaVkljswDbu0dXHW1KjOUlEXMzWb1hi1S0JfSb0OvEezHI/eSl5ZSjQDddueAUxa
- mC7O1cSh3l1D1Da+z7cGPy79Iul+5yUJOh1EurlCLDM9Vu0H/B8bbrF
-X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
- pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
+References: <20250420181015.492671-1-gye976@gmail.com> <20250420181015.492671-4-gye976@gmail.com>
+In-Reply-To: <20250420181015.492671-4-gye976@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sun, 20 Apr 2025 22:21:36 +0300
+X-Gm-Features: ATxdqUGOS7jaAoDUMjKVRs_bX-z1fydDzYTkTKugooCCAB5PtFxV10LPIbWhh5U
+Message-ID: <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
+To: Gyeyoung Baek <gye976@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Exynos990 has two watchdog clusters - cl0 and cl2. Add new
-driver data for these two clusters, making it possible to use the
-watchdog timer on this SoC.
+On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail.com> wr=
+ote:
+>
+> Add support for winsen MHZ19B CO2 sensor.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
----
- drivers/watchdog/s3c2410_wdt.c | 39 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+> The datasheet is available at
+> Link: https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-c=
+o2-ver1_0.pdf
 
-diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-index bdd81d8074b2496d68c2b0f086f477dc8652e452..40901bdac42613458f93c09654353190785ff072 100644
---- a/drivers/watchdog/s3c2410_wdt.c
-+++ b/drivers/watchdog/s3c2410_wdt.c
-@@ -82,6 +82,10 @@
- #define GS_CLUSTER2_NONCPU_INT_EN		0x1644
- #define GS_RST_STAT_REG_OFFSET			0x3B44
- 
-+#define EXYNOS990_CLUSTER2_NONCPU_OUT		0x1620
-+#define EXYNOS990_CLUSTER2_NONCPU_INT_EN	0x1644
-+#define EXYNOS990_CLUSTER2_WDTRESET_BIT		23
-+
- /**
-  * DOC: Quirk flags for different Samsung watchdog IP-cores
-  *
-@@ -259,6 +263,32 @@ static const struct s3c2410_wdt_variant drv_data_exynos850_cl1 = {
- 		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
- };
- 
-+static const struct s3c2410_wdt_variant drv_data_exynos990_cl0 = {
-+	.mask_reset_reg = GS_CLUSTER0_NONCPU_INT_EN,
-+	.mask_bit = 2,
-+	.mask_reset_inv = true,
-+	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-+	.rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT,
-+	.cnt_en_reg = EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT,
-+	.cnt_en_bit = 7,
-+	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-+		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-+		  QUIRK_HAS_DBGACK_BIT,
-+};
-+
-+static const struct s3c2410_wdt_variant drv_data_exynos990_cl2 = {
-+	.mask_reset_reg = EXYNOS990_CLUSTER2_NONCPU_INT_EN,
-+	.mask_bit = 2,
-+	.mask_reset_inv = true,
-+	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-+	.rst_stat_bit = EXYNOS990_CLUSTER2_WDTRESET_BIT,
-+	.cnt_en_reg = EXYNOS990_CLUSTER2_NONCPU_OUT,
-+	.cnt_en_bit = 7,
-+	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-+		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-+		  QUIRK_HAS_DBGACK_BIT,
-+};
-+
- static const struct s3c2410_wdt_variant drv_data_exynosautov9_cl0 = {
- 	.mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN,
- 	.mask_bit = 2,
-@@ -350,6 +380,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
- 	  .data = &drv_data_exynos7 },
- 	{ .compatible = "samsung,exynos850-wdt",
- 	  .data = &drv_data_exynos850_cl0 },
-+	{ .compatible = "samsung,exynos990-wdt",
-+	  .data = &drv_data_exynos990_cl0 },
- 	{ .compatible = "samsung,exynosautov9-wdt",
- 	  .data = &drv_data_exynosautov9_cl0 },
- 	{ .compatible = "samsung,exynosautov920-wdt",
-@@ -678,7 +710,8 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev, struct s3c2410_wdt *wdt)
- 	if (variant == &drv_data_exynos850_cl0 ||
- 	    variant == &drv_data_exynosautov9_cl0 ||
- 	    variant == &drv_data_gs101_cl0 ||
--	    variant == &drv_data_exynosautov920_cl0) {
-+	    variant == &drv_data_exynosautov920_cl0 ||
-+	    variant == &drv_data_exynos990_cl0) {
- 		u32 index;
- 		int err;
- 
-@@ -700,6 +733,10 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev, struct s3c2410_wdt *wdt)
- 			else if (variant == &drv_data_exynosautov920_cl0)
- 				variant = &drv_data_exynosautov920_cl1;
- 			break;
-+		case 2:
-+			if (variant == &drv_data_exynos990_cl0)
-+				variant = &drv_data_exynos990_cl2;
-+			break;
- 		default:
- 			return dev_err_probe(dev, -EINVAL, "wrong cluster index: %u\n", index);
- 		}
+Instead, just make it Datasheet: tag.
 
--- 
-2.47.2
+>
 
+Should not be this blank line here.
+
+> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+
+...
+
+> --- a/drivers/iio/chemical/Makefile
+> +++ b/drivers/iio/chemical/Makefile
+> @@ -27,3 +27,4 @@ obj-$(CONFIG_SPS30) +=3D sps30.o
+>  obj-$(CONFIG_SPS30_I2C) +=3D sps30_i2c.o
+>  obj-$(CONFIG_SPS30_SERIAL) +=3D sps30_serial.o
+>  obj-$(CONFIG_VZ89X)            +=3D vz89x.o
+> +obj-$(CONFIG_WINSEN_MHZ19B) +=3D mhz19b.o
+
+Preserve order.
+
+...
+
+> +/*
+> + * mh-z19b co2 sensor driver
+
+Please, use the marketing name of the chip and we can spell CO=E2=82=82.
+
+> + * Copyright (c) 2025 Gyeyoung Baek <gye976@gmail.com>
+> + *
+> + * Datasheet:
+> + * https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2=
+-ver1_0.pdf
+> + */
+
+...
+
+> +#include <linux/completion.h>
+> +#include <linux/device.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/serdev.h>
+> +#include <linux/unaligned.h>
+
+Semi-baked list, see below what's missing (actually a lot). I believe
+I already pointed that out.
+
+...
+
+> +#define MHZ19B_SERDEV_TIMEOUT msecs_to_jiffies(100)
+
+Missing header for msec_to_jiffies().
+
+...
+
+> +       u8 buf_idx;
+
+Needs types.h
+
+...
+
+> +       switch (cmd) {
+> +       case MHZ19B_ABC_LOGIC_CMD:
+> +               cmd_buf[3] =3D (arg) ? 0xA0 : 0;
+
+Unneeded parentheses.
+
+> +               break;
+> +       case MHZ19B_SPAN_POINT_CMD:
+> +               put_unaligned_be16(arg, &cmd_buf[3]);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+
+...
+
+> +               if (st->buf[8] !=3D mhz19b_get_checksum(st->buf)) {
+> +                       dev_err(dev, "checksum err");
+> +                       return -EINVAL;
+
+Needs errno.h
+
+> +               }
+
+...
+
+> +       ret =3D kstrtobool(buf, &enable);
+
+It's defined in kstrtox.h.
+
+> +       if (ret)
+> +               return ret;
+
+...
+
+> +/*
+> + * echo 0 > calibration_forced_value            : zero point calibration
+> + *     (make sure the sensor has been worked under 400ppm for over 20 mi=
+nutes.)
+
+working
+
+> + * echo [1000 1 5000] > calibration_forced_value : span point calibratio=
+n
+> + *     (make sure the sensor has been worked under a certain level co2 f=
+or over 20 minutes.)
+
+working
+
+It seems you ignored this comment from the previous review.
+
+> + */
+
+...
+
+> +       if (ppm) {
+> +               if (!in_range(ppm, 1000, 4001)) {
+
+Missing minmax.h.
+
+The second parameter is length of the range.
+
+> +                       dev_dbg(&indio_dev->dev,
+> +                               "span point ppm should be 1000~5000");
+
+The above range check doesn't agree with this message.
+
+> +                       return -EINVAL;
+> +               }
+> +
+> +               cmd =3D MHZ19B_SPAN_POINT_CMD;
+> +       } else
+> +               cmd =3D MHZ19B_ZERO_POINT_CMD;
+
+Have you run checkpatch? This needs {} per Coding Style.
+
+...
+
+> +       memcpy(st->buf + st->buf_idx, data, len);
+
+Requires string.h.
+
+...
+
+> +       serdev_device_set_baudrate(serdev, 9600);
+
+> +
+
+Redundant blank line.
+
+> +       serdev_device_set_flow_control(serdev, false);
+
+...
+
+> +       dev_set_drvdata(dev, indio_dev);
+
+Is it really used?
+
+...
+
+> +       indio_dev->num_channels =3D ARRAY_SIZE(mhz19b_channels);
+
+Needs array_size.h.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
