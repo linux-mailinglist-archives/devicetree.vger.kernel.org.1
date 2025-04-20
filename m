@@ -1,176 +1,123 @@
-Return-Path: <devicetree+bounces-168815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C39A9475B
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 11:33:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8765EA94761
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 11:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED44B3ABA83
-	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 09:33:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 585FA1890877
+	for <lists+devicetree@lfdr.de>; Sun, 20 Apr 2025 09:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB20192D96;
-	Sun, 20 Apr 2025 09:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960D41E47A5;
+	Sun, 20 Apr 2025 09:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bzbDXCf/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axY7WEXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9961CA9C
-	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 09:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08B71885B8
+	for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 09:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745141605; cv=none; b=l6y1B1amzAJpWk5tYhe8U8TmfPBHzpNhf1o2oDYYAe5nPH98n1GU3n5owFp05P4Ec81qiLoyXYLzrQ55cULn2Z3v1oJKFhMqc48vMnwuYwmXZzPSQYaCbjHqufmto1YP/5GZmzDXum3eyGoJeDDTfgfEZXVjLvbS/h+eIOC5znA=
+	t=1745142510; cv=none; b=VfLkpHbFm+oeDqTJoxZpRQNc95cYRJRA75ljFw4HI4DcP7wB3XvYNkd/zVzuEAtl09A+4WhDNUuLhNKm5EUSRP6LP/qHnIVViCVTu0yxlduCIraoyt/mZqwEdTsLLdbLh6CmgIEq5yMAEMg0QRK4d7QnssIqtHBX3fSvTLGZzgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745141605; c=relaxed/simple;
-	bh=CERzLF2HMMagvpVmZ72rVu4QgARchQ1fUnnFwJHdGug=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k+EJiPDQgvUIC5IX6Jy9cgwOKLzw9LeIRi0MsMqa+Sa4xpv0rwNxaJhRfqWmGfasTuJmBrb7noxmsQ6vI99pLq1Y1i4xgjhUU2pCuP2Q54rkGX48vv6XHOoeuUfw9W0YhSn9OW1oil/ezvndOnlsrVKhrR0ukRoo3MRRLLlNKGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bzbDXCf/; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1745142510; c=relaxed/simple;
+	bh=mXn0pXoDkpgm87elDCujDFMi7Ct5l0c6E7cMwevo+KI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ptHByNsrzmyeHlv/9C/pNmYV+0dJE8S9UFfjSU+IU6e0W6qjUb15eaM88WnPrDs9f/aKZxYI49UzzWd6axE9i97bNh733Yt/cn0OVQOiaIVGGB+7txpdIy1CWMnLmpoS3ucVf/zbw+LS/vX3yc0wJQM8KKExd4SHQSkXBmQKqEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axY7WEXG; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso479190366b.1
-        for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 02:33:23 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43690d4605dso24418625e9.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Apr 2025 02:48:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745141602; x=1745746402; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/8TOZ1wqavZra/je2htJyl9Z7dmGZ7iMnPc5kvx9b5c=;
-        b=bzbDXCf/soA6AvLAj0QQBlMA2Pne5PX2zQCd+NVb6TtYibyBFTZdEgAp+mr1uAn43y
-         h/wk/2qeukXsJy3HY7EGiu4XXccA//9hUFLFIoml+Iqh2bOXCyz3Rv0fkYeNa/Q54vw9
-         nAasv+nN5pLW/lp+NoTeEoGKSwj5QBSQVTH7Bby98Nxgt8eIFHAyu8eu/3dz9fwEWPTS
-         iqtLJfC4z+G6G4OCeOOPQBYVDNsS+UM+aS3U7aDBuj4LQr06vmB+dU0J35UK2jIXoZ6C
-         eXwBHnZQUUtgtOEoslNwBMZjfNld7LZBFkdZHkX7uCLUTBKHsI4zKJvPwy0UK7CrpLSg
-         BUZg==
+        d=gmail.com; s=20230601; t=1745142507; x=1745747307; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KgaxCKXwOIlos19HVgBcYzf4uVbvhuNW1VHVexNu6qo=;
+        b=axY7WEXGOU8bdc790nW2/IdUexsFDz6JTTw1s1OBGmDpbLfnNhy1t2Jrc3lEapaOuV
+         TRjwUUfHdAvlFb4SqBfhqANAeSPbcCdfsgA/cvUDjS7ATw6ssDbLdLVyGf1hMijgKTF9
+         0wuP7nJvjQIEWwDM3c5puG4O3iV6miXoQEIzHzF12j4JlxTbYNBybXfWQHfIuDlb2I5k
+         H0C0C9jw8idJHNaHAaXRAmi2bD2Ggoa/h8bv005akCsjKpROJFuCmR8vT7gKxfjP43yN
+         twqmBJ7u1PLIqzgj0w57G+vMYcTqio9mjdMgzI7ElWLvsqGCRki/M6vblV9VI5L3QnDC
+         Ez0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745141602; x=1745746402;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1745142507; x=1745747307;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/8TOZ1wqavZra/je2htJyl9Z7dmGZ7iMnPc5kvx9b5c=;
-        b=V9u/GE1P3IgEywZxbwttCDdOjv1WHSQq1Gtb5TwMyy8d+2T4q4bRiaqT/dqNRjnKfR
-         X22uRWckdCFTrzWlLZQtto5BwMSomzZ3Du9HR/Yc/XFOhGlzzEvxldifUlIIPK9+EiTc
-         9+XGDQg/b7/HCr8NX78gk3AkSOnhJ6++3B4JbUd0ibzR2xq011n+S4joxVUMnYptsmtR
-         wd678scCuCP1/QdKLeRozCn2HGDsIjFs16gw6FqTY4JBtLUZxWlLqFzO91XeQSFbvEvr
-         LJ+IYGA/jmLDJymQVyhBWUyGCz7Ym2zPCD7HA4tkBIiLQOgv2bbble6UnrG/ZJWyovzr
-         IalQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgp1rRVPEaxqnCYty4zQXEhcW5o62pNt0v1AgSBx1nJNGgruBJfxPcuZWV9ozRj0bcoobFhHViAdRf@vger.kernel.org
-X-Gm-Message-State: AOJu0YytOg99j6ihhSwUaV8alWFv0BRyPXaYecOJMROx/kwSntbFr0uq
-	191HfwnsylKRGhl6tSH3Nkbx0/3jXgyrbqAkoLOIeu61HJZfrlQbAxQlCl+is7UUQodazu2Jc3L
-	FnldQ2+ko+7RP7CvW/6qmDTVJAsJ5ckr3
-X-Gm-Gg: ASbGncvVOSGJMENbSdNYtbfiBQ0lVSxxbNdRiZGzq2JxukX85ErtWSMkbQTCgglK9y6
-	5mm9RyqgGLt6fzS0C9hswX8xxvDk98ROAYulUQjTYgd5PTIY4Ii9O20ssioVHjxkl+aPsNHRlRp
-	IwmvvhPCySsiQ3/9+cP8KEIvzBsyH9IPsJdVx4F+WZJKsBj/tvLW7vHSM=
-X-Google-Smtp-Source: AGHT+IGX10xsrDu5V/UjkEupGH0LyUzW3ha9EoTXPcUMoBfunRTwSAC3I1NonXEe/hPiG88ngXa6JOs1oqW3vl3TGZA=
-X-Received: by 2002:a17:907:1c07:b0:ac6:e20f:fa48 with SMTP id
- a640c23a62f3a-acb74bdcde0mr706379066b.33.1745141602109; Sun, 20 Apr 2025
- 02:33:22 -0700 (PDT)
+        bh=KgaxCKXwOIlos19HVgBcYzf4uVbvhuNW1VHVexNu6qo=;
+        b=cFDMLpykzWfhGgvst/HSnyPIgS5QnGz4Nz+EMgpUWXULqSqXrR+A5bkJBNrWKPbhGe
+         w9I8GpMdOdHTW6s9WQ4dTCwKQcMQJHQKHS3tkMTX8nBFQo0b9lh3Z6BxGvRRA9kfV6OA
+         FT1/BOontlIadUtePQwDQDjc84JuO9dzvwoO+HioKDUC7vVc9xfPaqp67tTRr6MRoc4s
+         5ZOx8qVzsAGwP1Iaa5J/BTzVOr4gWXrH8HQTPYpB0k7ckQtH7tkVAL5ZFn3z/k6vgWp+
+         g5+Lmr8q/cUp8f8qXCkSHqwpXDUdVIlJOTg0FMDwu7RvtLefmQGx2XHxHc+6Ivy6lONg
+         90Fw==
+X-Forwarded-Encrypted: i=1; AJvYcCUYBhoc/Fmr1H6VBSHaclo18+j25+0EZszXmV5N9bLSTZMdglJBvrXGy1mmuc5oB2a8WhS8jOf72+K9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/mHDLIVfMVWfdwv9nRtCdjq6fQsO/labXb10leuXB7mOecbR3
+	wX7YKsaw/YZkVYGBHk0pJEIFeJNjrE76620lYFPtAvlZUd/OyTgM
+X-Gm-Gg: ASbGncvv//SsE4Pt+n8jnoRR+79XEdJhDZqpsvH8M0wrLQ4XQktUEix5CXquawMU0wu
+	Wsc0F1AX/msHgLsTcORUd0KHCzSKmppFScOX9ZN2RPS3PbJpu9b9tDzYUAbMTYHQTAhx5ZVlMD0
+	MbD97AHYYStpfkRAsLPXq/s/PFkCmkUxKQZnTTIvlm35NOJ9rVNQ/0QWFZqa0BEN9n3qUhP5mAV
+	zDkVkzyhIw1ZGojIomcNe72b7zYnlMwOVZc7kwfkJsRA+BzF+TG+sR8k7JsQ5PhT9NwK4MbB1wh
+	1qrxrF/lTqUcDU/2RQ/Iv3l0wFLZ5gU478NjVKI9ukJWRwuAMVg0jgYPDGd/pw9BJoQ/IZGmjgr
+	H4ieozhY0SBRyAEbcyHvn6UbfPKGPFybTIYAG4wHm+dZHEB5wah2HI86i2x3e6xJOkBTV8j6/rT
+	E=
+X-Google-Smtp-Source: AGHT+IHVc6Fk+YrhS4HlpEYRPoMy6wYmziWX+WTODzzhxnE0xaUTS8l8K3F3aATJnU07+Pf/6vdLeQ==
+X-Received: by 2002:a05:600c:138d:b0:43c:fffc:7886 with SMTP id 5b1f17b1804b1-4406ab98f54mr52685925e9.8.1745142506851;
+        Sun, 20 Apr 2025 02:48:26 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39efa43bef1sm8273712f8f.49.2025.04.20.02.48.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Apr 2025 02:48:26 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH v4 0/2] Add support for WiFi/BT header on Pine64 A64 devices
+Date: Sun, 20 Apr 2025 10:48:03 +0100
+Message-ID: <20250420094823.954073-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250419160051.677485-1-pbrobinson@gmail.com> <20250419160051.677485-3-pbrobinson@gmail.com>
- <5dd7825c9fcc83764fbb4b0b53704152@manjaro.org>
-In-Reply-To: <5dd7825c9fcc83764fbb4b0b53704152@manjaro.org>
-From: Peter Robinson <pbrobinson@gmail.com>
-Date: Sun, 20 Apr 2025 10:33:11 +0100
-X-Gm-Features: ATxdqUG50NCyTDEBxJuIUN4T06VkkXzEZg9j2zhXsssvhxuy2mRvejdomh4GKDo
-Message-ID: <CALeDE9Nyt7Di2_u-Vf=6OCAg-6wmbz75Cs_MCfZrk6upbD9nZw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Dragan,
+Add the BT and WiFi pins on the WiFi/BT header on the Pine64/SOPINE boards.
 
-> > This adds all the pin mappings on the WiFi/BT header on
-> > the SoPine baseboard/A64-LTS. They're disabled by default
-> > as the modules don't ship by default. This includes, where
-> > they haven't been already, UART1 for BT and mmc1 for WiFi.
->
-> The patch subject should be improved a bit, to include
-> "Baseboard" as well.  Having just "SoPine" is a bit too
-> vague, and it should actually be written as "SOPINE"
-> at all places in the prose.
+Changes in v4:
+- Remove the pwrseq section
+- Tweak the device descriptions in the commit
 
-It literally has baseboard in the second line of the description.
+Changes in v3:
+- Explicitly disable mmc WiFi section in DT even though it's already
+  disabled in the SoC DT.
 
-> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-> > ---
-> >  .../allwinner/sun50i-a64-sopine-baseboard.dts | 25 +++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> >
-> > diff --git
-> > a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-> > b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-> > index be2347c8f267..64d696f110ee 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-> > @@ -42,6 +42,11 @@ reg_vcc1v8: vcc1v8 {
-> >               regulator-min-microvolt = <1800000>;
-> >               regulator-max-microvolt = <1800000>;
-> >       };
-> > +
-> > +     wifi_pwrseq: pwrseq {
-> > +             compatible = "mmc-pwrseq-simple";
-> > +             reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
-> > +     };
->
-> Is there a reason why the status of this node isn't set to
-> "disabled"?  Or even better, why don't we move this node
-> entirely into the proposed DT overlay?
->
-> The required reset procedure actually depends on what's
-> found on the add-on module, so it should belong to the DT
-> overlay that defines the add-on module.
->
-> >  };
-> >
-> >  &ac_power_supply {
-> > @@ -103,6 +108,18 @@ ext_rgmii_phy: ethernet-phy@1 {
-> >       };
-> >  };
-> >
-> > +/* On Wifi/BT connector */
-> > +&mmc1 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&mmc1_pins>;
-> > +     vmmc-supply = <&reg_dldo4>;
-> > +     vqmmc-supply = <&reg_eldo1>;
-> > +     mmc-pwrseq = <&wifi_pwrseq>;
->
-> Of course, the "mmc-pwrseq" property would then also be moved
-> to the DT overlay that defines the add-on module.
->
-> > +     bus-width = <4>;
-> > +     non-removable;
-> > +     status = "disabled";
-> > +};
-> > +
-> >  &mmc2 {
-> >       pinctrl-names = "default";
-> >       pinctrl-0 = <&mmc2_pins>;
-> > @@ -175,6 +192,14 @@ &uart0 {
-> >       status = "okay";
-> >  };
-> >
-> > +/* On Wifi/BT connector, with RTS/CTS */
-> > +&uart1 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-> > +     uart-has-rtscts;
-> > +     status = "disabled";
-> > +};
-> > +
-> >  /* On Pi-2 connector */
-> >  &uart2 {
-> >       pinctrl-names = "default";
+Changes in v2:
+- drop patch that enables the WiFi module, it'll move to a overlay later
+
+Peter Robinson (2):
+  arm64: dts: allwinner: a64: Add WiFi/BT header on PINE A64
+  arm64: dts: allwinner: a64: Add WiFi/BT header on SOPINE Baseboard
+
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 12 ++++++++++++
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 19 +++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+
+-- 
+2.49.0
+
 
