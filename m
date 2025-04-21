@@ -1,147 +1,111 @@
-Return-Path: <devicetree+bounces-169136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADC2A958DB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:04:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A948A958DE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 626BD7A74C1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:03:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4434E165B9A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52833221FA0;
-	Mon, 21 Apr 2025 22:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FAC21CFEF;
+	Mon, 21 Apr 2025 22:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="a8BO/IX5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="niazVZue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7633221F0A;
-	Mon, 21 Apr 2025 22:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265E22192F5;
+	Mon, 21 Apr 2025 22:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745273018; cv=none; b=ESPd8xWdZQ5ODy1Ofgjt4E4N7TJIF13S6TmeNh3iVpAdkTy1EWQovBjt4oDtxRPMPkxRLIIg+0iJCBwsUFwcCHiMz7YLz0FCv6eFaI0pseZ2rr+h7FS8NWk7Qx0BuqeakV9hjfOwixyVhkp28R7MwQWJHef6e9MaYkP+dkobQC0=
+	t=1745273037; cv=none; b=o4+k/Xkx4yyhqwK7oSi7yj3IH6irgUXYr30NPubM+oHZrKV9PPsTzmuY5DNCandJDKqr7xZi89TIgq4sncLSxuzi6tgxWYgLubCcnGTp2Jz4IK32/mlKUxgH/NRhSQzjfuTrpYFJuXp22kURNelyQRdtA24AiNqni1tF0GzAInk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745273018; c=relaxed/simple;
-	bh=L4Vm17wQXJt18C/sghPsQAjFU4r6TeOLbu1yYf7tbM4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aibYZGcBo4VYtKo29jU91CwNonLiggMk1sFEWnmxWxrmyH1j08iiGOBMDQZX5oNIfZjfkDpwcg23P7FKFwz7SPbIbb81UhU6VtMktZXvTZVE5yLHaKbjtpkKqhttVFZSFlWBINPfMW7Q1L1Mw3nn8OrVWE9cIAbOqArqaNkvRBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=a8BO/IX5; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BBB10F01;
-	Tue, 22 Apr 2025 00:01:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745272887;
-	bh=L4Vm17wQXJt18C/sghPsQAjFU4r6TeOLbu1yYf7tbM4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a8BO/IX52LNbxPTSI8RPpLv5mqe8JTQvgdkJE/68qzmONPMzE3XLo2f2aLcNddFhs
-	 TIkb7OvPuB/wBhVg65fCTnrbZfunWW3rzBsciPMHY1HV6VzyCJg7jfj23gr5Zvr3ic
-	 UhiAttG0hGeDYco1X6yNOI1cAIHyF2W/EsxSH2Kw=
-Date: Tue, 22 Apr 2025 01:03:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 02/17] mfd: adp5585: enable oscilator during probe
-Message-ID: <20250421220332.GU17813@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-2-3a799c3ed812@analog.com>
- <20250421085758.GB29968@pendragon.ideasonboard.com>
- <aadec5eae6645e3e9c2f8f09dcf842510515122f.camel@gmail.com>
+	s=arc-20240116; t=1745273037; c=relaxed/simple;
+	bh=01rp54CilMkAwqIJ6zYTHUJAgrWddf98A/Ksdxy40H8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RrFl/MK0uJIlMQiyXtPHSc1vtfY3RvcuviGC26imkniCHSQJJC6/N0aGaM+GId3/PDLSvmuNQD7lJ4+YaUDWVWHhJuPn+1aRqtgKBdxLk2Dg8gIX9i6ikJ/IqS+bANqiEYxMC9TWqjblJuC3r+fdfhdOJfqeRnauuiC/uGztwmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=niazVZue; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7F63C4CEEE;
+	Mon, 21 Apr 2025 22:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745273036;
+	bh=01rp54CilMkAwqIJ6zYTHUJAgrWddf98A/Ksdxy40H8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=niazVZueFSQ2KvVxM1rVDNi77ZtQR9FgG2KKza5Ya9JH4acJh3hjyyGvs2NbS8T0C
+	 QZpRWc7BVqGofg3U48tIcaAF4YbPaTyQplyC7dPOwxQFXfzSfUlwCMOXJHtw9fNq9Z
+	 5qAPFcCU4x37EWTn7q43qh5bdSpljhEJz1DgkCqF0MLddyL72ATBiqG3eNbCERg97o
+	 d39fcwkpUP3IFxyWH/M8ky10YA4aJJBjhWbkNO1ZZ6FuA6rKMdMaueC75OaZDFx+eG
+	 WD4JxITWCJyHBP2+FN3o3VRmNCTb7MQtb4dvcAlUSN2+8hDTv/quTlImi63IPrr6sv
+	 9MK7+yV99R4pw==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2aeada833so838836666b.0;
+        Mon, 21 Apr 2025 15:03:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVkETo9GOzwY4og9/w9pgqJ/8FxYO6NJzNzVxDS39tRk7kE+7U8J7/C1Bcw9GhSM4yiigzrpNXXf+z6@vger.kernel.org, AJvYcCWRsd0mUZFy02tiX2iCadoWmY5ZAoo0Xsu7mSJklFH166uhitjiK97OT4Er/HAYrt6rYcE/z5l0W7AJRkM=@vger.kernel.org, AJvYcCXqWDjGR/3II/irlCiY4bn7JiuD/FmQDCMtv1ZlktKWWlB82HBy0EnyK+xYaE21oWi4Epqn5nTSz33XW+pI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3+JyaW5UM+xEsMikPLYDV7UI+iRbYJFdZJYgyTNxl/gd3RjUY
+	EomWKHhuPw4q+KSndfOxy5LIAGe0FyuJPs4xRPR5PZbM1B58Dj7+HBvhl9FQ8MRIMqWmA5EBpa/
+	BNQMY7gZRLB+gTXJ/QdgtNDAmIQ==
+X-Google-Smtp-Source: AGHT+IHxl6XK2QfRQVyCNWgLvJRj7ZuUIQ5fwQHcvIkQqattyeeIKmTOKM9JhGckpjhW3C3lyZts07ybe/w3rZATy8k=
+X-Received: by 2002:a17:906:1f05:b0:acb:aa0e:514c with SMTP id
+ a640c23a62f3a-acbaa0e5185mr349993566b.2.1745273035071; Mon, 21 Apr 2025
+ 15:03:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aadec5eae6645e3e9c2f8f09dcf842510515122f.camel@gmail.com>
+References: <20250416120619.483793-1-shgarg@nvidia.com> <20250416120619.483793-2-shgarg@nvidia.com>
+ <20250421220209.GA2975150-robh@kernel.org>
+In-Reply-To: <20250421220209.GA2975150-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 21 Apr 2025 17:03:43 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Wy326DXXp=UGQ6WsB7-30RTJNMY3ckytk9auAh6Ec2Q@mail.gmail.com>
+X-Gm-Features: ATxdqUGmWpmb8bR3-MQ-Nby0OrOQO3Xpm-Hrp3ML4dt6UzrpLCyrIfNheD-Tbpg
+Message-ID: <CAL_Jsq+Wy326DXXp=UGQ6WsB7-30RTJNMY3ckytk9auAh6Ec2Q@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mfd: add bindings for NVIDIA VRS PSEQ
+To: Shubhi Garg <shgarg@nvidia.com>
+Cc: lee@kernel.org, alexandre.belloni@bootlin.com, thierry.reding@gmail.com, 
+	jonathanh@nvidia.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nuno,
+On Mon, Apr 21, 2025 at 5:02=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Wed, Apr 16, 2025 at 12:06:15PM +0000, Shubhi Garg wrote:
+> > Add bindings for NVIDIA VRS (Voltage Regulator Specification) power
+> > sequencer device. NVIDIA VRS PSEQ controls ON/OFF and suspend/resume
+> > power sequencing of system power rails on Tegra234 SoC. This device
+> > also provides 32kHz RTC support with backup battery for system timing.
+> >
+> > Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> > ---
+> >  .../bindings/mfd/nvidia,vrs-pseq.yaml         | 61 +++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/nvidia,vrs-ps=
+eq.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml=
+ b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
+> > new file mode 100644
+> > index 000000000000..d4c5984930e9
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFI=
+LIATES. All rights reserved.
+>
+> First I've seen this...
+>
+> According to this[1], you shouldn't have 'Copyright (c)'. But better
+> check with your lawyers.
 
-On Mon, Apr 21, 2025 at 01:14:28PM +0100, Nuno Sá wrote:
-> On Mon, 2025-04-21 at 11:57 +0300, Laurent Pinchart wrote:
-> > On Tue, Apr 15, 2025 at 03:49:18PM +0100, Nuno Sá via B4 Relay wrote:
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > Make sure to enable the oscillator in the top device. This will allow to
-> > > not control this in the child PWM device as that would not work with
-> > > future support for keyboard matrix where the oscillator needs to be
-> > > always enabled (and so cannot be disabled by disabling PWM).
-> > 
-> > Setting this bit unconditionally increases power consumption. It should
-> > only be set when needed.
-> 
-> Well, not sure if the effort for that pays off... The only usecase were it would
-> make sense to do that would be for PWM. For the other devices (and assuming I'm
-> right with the GPI case) we need this always set.
+With the link now:
 
-For the keypad, can't the device be kept powered off if the input device
-exposed to userspace is not open ? And for GPIOs, OSC_EN isn't needed
-when all requested GPIOs are configured as outputs, as far as I can
-tell.
-
-I'm fine addressing this issue on top of this series.
-
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c | 16 ++++++++++++++++
-> > >  1 file changed, 16 insertions(+)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..f17b5f2474cac6a403556694066f438288
-> > > 264a49 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -110,6 +110,13 @@ static const struct regmap_config adp5585_regmap_configs[] = {
-> > >  	},
-> > >  };
-> > >  
-> > > +static void adp5585_osc_disable(void *data)
-> > > +{
-> > > +	const struct adp5585_dev *adp5585 = data;
-> > > +
-> > > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
-> > > +}
-> > > +
-> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  {
-> > >  	const struct regmap_config *regmap_config;
-> > > @@ -138,6 +145,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  		return dev_err_probe(&i2c->dev, -ENODEV,
-> > >  				     "Invalid device ID 0x%02x\n", id);
-> > >  
-> > > +	ret = regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
-> > > +			      ADP5585_OSC_EN);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable, adp5585);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > >  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
-> > >  				   adp5585_devs, ARRAY_SIZE(adp5585_devs),
-> > >  				   NULL, 0, NULL);
-
--- 
-Regards,
-
-Laurent Pinchart
+[1] https://reuse.software/faq/
 
