@@ -1,126 +1,150 @@
-Return-Path: <devicetree+bounces-168868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E556A94B67
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 05:10:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EC1A94BA2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 05:29:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2455C16FFE0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 03:10:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99B043AE06A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 03:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874552580FF;
-	Mon, 21 Apr 2025 03:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="bmmBAkN9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CAD8256C90;
+	Mon, 21 Apr 2025 03:29:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2134.outbound.protection.partner.outlook.cn [139.219.146.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE54325743C;
-	Mon, 21 Apr 2025 03:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745204974; cv=none; b=LmepqQdl4stKCpxOLmLMbYB7fKyj9cQisvM18VLgThJiVg5iR3AZfXSbiqU/2J6d5gqYzBtJGjTqrDWheBoppNFumYUVgMvexIN7k0tnl8Kd5laiort8o+FhJ92a80bwvVCDwOodR22jhz9c+2BV8qGzAdtaiPFDbQ7l+9l6UzU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745204974; c=relaxed/simple;
-	bh=fAfyXieDjeLVW7PmrL+oK+9YbBprYzNzlpQ7ltV8A0Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hcT7Cw1IIDEFX3BW2Fp8JflyWDQq0ovexjdYcOBrJIWkIZGqpX9kVL94NFg9K+gxvBKKNuEKRsZr9cYrgTFRoGEHSoTJ3y15pE6/FizcIpP0kon0Hqq9Jvo+GQ+jMcfbRY/p56fn1XQS6hALwZ4G033hrTKXCowALNX1WUyAwuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=bmmBAkN9; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.183.162] (254C255A.nat.pool.telekom.hu [37.76.37.90])
-	by mail.mainlining.org (Postfix) with ESMTPSA id ADECDBBB03;
-	Mon, 21 Apr 2025 03:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1745204970;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D4erXkx1N6odG+LR0LejQIlj+eK/ZO/Lp1JgPLjIo9Q=;
-	b=bmmBAkN95K4IlrqMxNY9XRjPbRR7+U9XQ1PN253AF6O+qtZ/rJ2zhkfdBuujpGAjswLrk5
-	uc2dsvR+fC5qjaRUWDwvgNhR98xeuuN3dp5sJSBdtuC96w74VTehS4kSC7FgQDnSqexoxc
-	Lq2KADQU1Lm8/0KUCYsQsIjoenI/eeqZnKUJ4twcgFlIPOY1WcBZbbh7Be6Uk0Q4rrWG4W
-	VS7iUEhEU3MtgKez7B5XoZUKtkxnsOjvxTNdLnepRgfOysoen2GwhkSzYHcLUNZQ9GUXvG
-	7BpoFv64ZFzt2luPMYJ1CqSwgyorNPrEQ17kK4ZBdyfSGm02+W02HLmz6T3fnw==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Mon, 21 Apr 2025 05:09:23 +0200
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8976: sort adreno clocks
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEED1EB1BA;
+	Mon, 21 Apr 2025 03:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745206174; cv=fail; b=Ajbwrsc+u3oppUes8dT88euMAndQsCMGKgJ/OoaN2hrEGgizY5vwhyzZEnLz2zQuaNXg+Hzu11osGwNM6AzwfQw48xI30YUzJ02Py3fReMF3VZu9IySRGuOAFVsvWbJ6OuOuGFuz3kSa2Z4nUAPjsUZyYvkGSnpj3urHTpPtlYY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745206174; c=relaxed/simple;
+	bh=m7zSr++p/K1LZKQjqPs9FXCJ0530VPsRkd/Q9Dvr3W0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SFqZdOzgwdO2QWC4UdcAb2dbJsWIbjoymFUcF3qCkB1WkmhhD63YdYyvQqy2Ww2+lqjHozmOuUXicFvVb3m7kDYhwNxDdkYmEvT0wV/a9Kdm3diDyIv3AJYbMqfGXmeTS/WyhMB1U+XPVefHvuvVp+qZNfKqgMHt3bzBLyCP2ZI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JF7A50HK34pMdu1wYsH3HZR3LLnUwQ4MXjF4Z94N9A9SCk66xlsu11I0uzgNKos26Md5oroK0p+oe9BVYEn+93nHRdfUPE3RxdeLpCQj/mnGM4npGkQ9mAB/8FWed+P7tbMV2OLw5x1IAlx7DDXn7J8dShq6rESKTMCdXh9pwDPD1TrvJ3EGjokD/JnLiUmsQpSNbloWjBcOPkUZyw+zyTGRBkXlmItlukPPAlPy4OS/EZpiKnWIt7lh7HlDaOW/tE0rD6ZpuKjUkjO7tacGzxHHhNg4iiWNVolVt/QVeWonmQ0GOpSVkMVVsrqLP+knlTI5jcq6JIwfNvAURNmEKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sESeRFmd+/vde2FbmYt5/7JPn8mt5njyU7DiuJqm2GM=;
+ b=epUQkXCGbjLyjmopK0A4vqWbDih+8kQA+NCnpYxQu4Kd2Ta1SVLmn9L+T2SJtz83J+7KQN/MM1raMfWXANyHrZeF6ORyiJ02I08oPvevwsDABMVwkHQ1PyOwhLTDWWspoxEBcuK3VbapyEMv1k7O6RdEgdPGQbIOWBAVwAfWzlBLw7DYd2cXu2CEVjYMJGhZ0zibP3fcZdwHskFN32QKYCkojErUFHgRjXEyeZy1Fpk9Cr35oS65rKqgCI2O8SjcXROdewL4NB4cC2x9OHm4E4thOKEDKhfQbCYmm5Aonkzki286eRZ48EBjMsqTQ8tqxwuGjver8BPV1keC1/lQ2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1b::9) by ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1b::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
+ 2025 03:29:18 +0000
+Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ ([fe80::64c5:50d8:4f2c:59aa]) by
+ ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn ([fe80::64c5:50d8:4f2c:59aa%5])
+ with mapi id 15.20.8655.033; Mon, 21 Apr 2025 03:29:18 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: y-abhilashchandra@ti.com
+Cc: conor+dt@kernel.org,
+	devarsht@ti.com,
+	devicetree@vger.kernel.org,
+	jai.luthra@linux.dev,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	mchehab@kernel.org,
+	mripard@kernel.org,
+	r-donadkar@ti.com,
+	robh@kernel.org,
+	u-kumar1@ti.com,
+	vaishnav.a@ti.com,
+	changhuang.liang@starfivetech.com
+Subject: [PATCH v6 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq interrupt and add support for VIDIOC_LOG_STATUS
+Date: Sun, 20 Apr 2025 20:29:10 -0700
+Message-Id: <20250421032910.41146-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250416121938.346435-3-y-abhilashchandra@ti.com>
+References: <20250416121938.346435-3-y-abhilashchandra@ti.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0017.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:5::18) To ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1b::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250421-a5xx-schema-v1-3-7d96b889322a@mainlining.org>
-References: <20250421-a5xx-schema-v1-0-7d96b889322a@mainlining.org>
-In-Reply-To: <20250421-a5xx-schema-v1-0-7d96b889322a@mainlining.org>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745204964; l=1290;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=fAfyXieDjeLVW7PmrL+oK+9YbBprYzNzlpQ7ltV8A0Q=;
- b=k+ltu8PJiKWj7fBFhPfjLb0vyR3IdskK9K/Dotz1CAdug3F4FC1aBBsn6aKX4LIQxplwPNPg5
- 2kURV563nu8CQVvBohjt8M6PWcd+KTqeVtpyZvpvbGipgmfjYTTsLcg
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1302:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c035892-4cef-4e97-9864-08dd8084b2e3
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|41320700013|1800799024|7416014|52116014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	qLS5jqp57gTvV2JIyWjwCwpgGPoKJQUKppYoTEyZdH5fiFKL/NJbowEd+xIkJE82PqaIXOHPX3mbHpRX6yOkWBpa8R2YF46kvxHmO2AV3v7GfzJbmjI6EQB11iWMCmRXxeV1bM1H4QxsMO7L2Yq4rPIz1kisn/ldWs2UUb2ASyqBA0u3zRZ9OyL3molf3Xmg0wNIbrAMRKlVe1oRhNT1GSdx7ca2hC17LvETlYqgUS/ticP2E59Z7rw8cRXyOB51/zHTqF9wR8U40yvoUlPep1s8AndENTHhz8Ak4CzJw+koQv/DDFNgKtTIUOmHOA+QRkVbI1FH7BM253+jtXAHQ/OkypSjy9pZWHdK7qfF9goW3XGJVH8ql/MNltjIMBQaxwxErJ0oX8ctHJTF9C27kcMmO3NW49MLNdGvWKjddf1I8+Ff5LJFRLWPcqfCGqiKsCyR284jNKmpEgbX28OhnryinXvFX6DJ2EBnvwwxN737F6UnFvUwWmUX02YsvQI8q/SZ3y0fGfrFQK4LG8hF4moNDfFyJ/fBsqRKo1/lEWwj5CTqKLnbFNMQYsT8y94kWHbyOn3BAUKtarUpyPxgB7Zkpyie2av+IZJWCFXhXYQ=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(41320700013)(1800799024)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KK9pI7VjYoZuFwOfbggsI4DGB4EAtriBCUTpex9bFtY88trYRd3T7ngExQAN?=
+ =?us-ascii?Q?2GtTczwfu1gvWyfaCBGML8Db+oxSGWMUP7DVu4YcedJ5u16ZWzrJDeW/tcJO?=
+ =?us-ascii?Q?1zC6n1w32wdwhihN9+UEiqfoMx/Pu7YrMW4WbapDlYbughI2UGWHcYPK5cyU?=
+ =?us-ascii?Q?rA7uz042iXsbR/XGMO3eFHluvHffV6Ryal40TJaBsVPVFXlXw2ZUlYjDmd69?=
+ =?us-ascii?Q?Bbo7+OR3eo+Y4dh68ENhqNCYMPmPbzKUMm3ZyWRrqKlbXk1v12pCNmpZp/r/?=
+ =?us-ascii?Q?+T54ki3fYRza6oNyckVB6O2Gii7p7KNgcci4E+o5nuD0NbEf9SEsejaitqr/?=
+ =?us-ascii?Q?bRGIMa8o+56rhu5IaJhgE/Achk3x8wp4CIh3/3wT0n8BxS7dahqsqMr4SlKV?=
+ =?us-ascii?Q?FQqhAk+/2aZshXzSgc0krqQDhFWuq39KBSK2tGzz/bVjzub7TH3z1JFBP6nO?=
+ =?us-ascii?Q?1xE49DWZragHSN2G/+3vhiS090/ZuETbTQ4EmBV1kerek6dvb+3FF0WWP+7a?=
+ =?us-ascii?Q?wIEYt1kK39HeVGMda5i5GiSRkZvYX8UAM3mn8z56F74YygWEjKqt8Or0KNBE?=
+ =?us-ascii?Q?QxusPDpqA+dIoTM/4Zey6eLLCKC1/Pqo0GoiPSQ70zMko6EmEA6ttQEVtULO?=
+ =?us-ascii?Q?Y5PjDMZ/dI30n9j6GDaRfGcCcnmpdWLHf7agMNwHDBYoGHyziv63YBzCngFo?=
+ =?us-ascii?Q?HQOWI7hBrzFQV9972FT3zHaw7xHCZSHGoSyacCiEagTBwTP+cu0aL1l8tCJO?=
+ =?us-ascii?Q?zn/dqld8qgBqW+jcuJAYdmHFdrCYKz6jMv4kEUJFEk3iHZiP+gRiykfDb2ox?=
+ =?us-ascii?Q?jKVGp0O7kSYkHBYvOm+kFHfscH81tS4UdTJyJY5GL5Rc63hyPyCM+3CAxnUV?=
+ =?us-ascii?Q?o+5keRDsCB2F5tEi3KbN4Mk9PRerVXQqEbtM9pXvvYTJii1v+1nzIQ8jM0Hk?=
+ =?us-ascii?Q?2evPxzclmEH19f5gTP8RaXfk0KpnEeZBj/3W9p3Lb3vjejvo1RVX9+ZHoc+C?=
+ =?us-ascii?Q?SpJdibJr88ingcA46wvYsV+PCzOKW6EWgDodczaai3DSxVG/8OBPG5K9x72D?=
+ =?us-ascii?Q?rWYahERukTjjZr6ZJy7m/wL9tvANQ0rpov0w02YvIYxW92V/BV0eSdaBhGiR?=
+ =?us-ascii?Q?1MM4qSCK2I6Sm8AGmX7wX0G2VT0M5Yhk1cHmijcCkyOdlOJC8NQklMlVGOVf?=
+ =?us-ascii?Q?AAQsUkzkBGFCbLb/rQRYvpG7MDciO6NMKnVsekUszPtrs5LK6osEEABEtSo/?=
+ =?us-ascii?Q?7wTGZeAJ+sTYnpTv3VYS6wMGaNGey9sIFNaj3ZosJBzzwS5iDsIdwKc0CzEI?=
+ =?us-ascii?Q?3DrPlX1hvlBXPY6u0rSyLXBSrerY9M3FiR/ihunMGLS5FMwIyG3XDoFc2SSo?=
+ =?us-ascii?Q?ONIuJ29WUJ1qlfgkJum4rmlMoJqByLAFE5boFn7q1SQty4AhhY+UHL5eQlyD?=
+ =?us-ascii?Q?ov0RA318CLY7Wchv4WC5Lk+K/6qz0RN85AFvrLAIJFyoccZj+aOq6V9tL3Wt?=
+ =?us-ascii?Q?W2QtW0NjBSadUN4ZvZpnLfB9MDaN4Gqf+I0rMmwviqB8YX4hrPq3jiyM69+Q?=
+ =?us-ascii?Q?ZjMnCJPkTC9X3B4fhEvJAz/2E/LETbFgZvWTnkxioT9IdNNLgW9fhzoUc20X?=
+ =?us-ascii?Q?R09KgUd75TaEZoy436m03vc=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c035892-4cef-4e97-9864-08dd8084b2e3
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2025 03:29:18.3896
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WAZZ9kSRVZ8C7YZm8wyGaK6OlAR4crtAOVeL6ruxtfIchRjXpnKvFTBCl3eqbMZUuJHaI/cbvSLDZNJRKWlb9mdEWipASPqAlTvCSbJDUXCVro5tq35282iwNzxIoQBX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1302
 
-Sort adreno clocks in alphabetical order.
+> Enable the csi2rx_err_irq interrupt to record any errors during streaming
+> and also add support for VIDIOC_LOG_STATUS ioctl. This allows users to
+> retrieve detailed error information during streaming, including FIFO
+> overflow, packet errors, and ECC errors.
+>
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- arch/arm64/boot/dts/qcom/msm8976.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-index e2ac2fd6882fcf47e846a92d45e0fcb9beba633a..86a9d24da0faab2dc7ecc53d60aa0c78703eef91 100644
---- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-@@ -1129,18 +1129,18 @@ adreno_gpu: gpu@1c00000 {
- 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "kgsl_3d0_irq";
- 
--			clocks = <&gcc GCC_GFX3D_OXILI_CLK>,
-+			clocks = <&gcc GCC_GFX3D_OXILI_AON_CLK>,
-+				 <&gcc GCC_GFX3D_OXILI_CLK>,
- 				 <&gcc GCC_GFX3D_OXILI_AHB_CLK>,
- 				 <&gcc GCC_GFX3D_OXILI_GMEM_CLK>,
- 				 <&gcc GCC_GFX3D_BIMC_CLK>,
--				 <&gcc GCC_GFX3D_OXILI_TIMER_CLK>,
--				 <&gcc GCC_GFX3D_OXILI_AON_CLK>;
--			clock-names = "core",
-+				 <&gcc GCC_GFX3D_OXILI_TIMER_CLK>;
-+			clock-names = "alwayson",
-+				      "core",
- 				      "iface",
- 				      "mem",
- 				      "mem_iface",
--				      "rbbmtimer",
--				      "alwayson";
-+				      "rbbmtimer";
- 
- 			power-domains = <&gcc OXILI_GX_GDSC>;
- 
-
--- 
-2.49.0
-
+> ---
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 131 +++++++++++++++++++
+>  1 file changed, 131 insertions(+)
 
