@@ -1,221 +1,197 @@
-Return-Path: <devicetree+bounces-169152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AE2A959B4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 01:12:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D072DA959F2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 01:51:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA58017502F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 23:12:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C03C1891606
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 23:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B068622ACDB;
-	Mon, 21 Apr 2025 23:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D5F221FB9;
+	Mon, 21 Apr 2025 23:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="faEGl61t"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="abNSGcUX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1628920C016;
-	Mon, 21 Apr 2025 23:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03AE139D;
+	Mon, 21 Apr 2025 23:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745277137; cv=none; b=EgpUhhtJm/22IbYEhGyeeYVBZ+dmbzgu+kh+qGPmPTu4wVB/IlWs0GOctiS9JrsdZuv3N5BsevZorg2Vv+7pC3ur1gOaLx9eUfvVacxcY9z8YstJy4UREqU2Z4RD+x3njZrMjT7A6CtIe1yDapEQgnfxi3vDGVC9vlnPfby6h0o=
+	t=1745279503; cv=none; b=UNMgRRXA2t6tLVXAKwLUtNwkngYGDcSrCqug75iYlcfxVOYxoN1cn5yGZeRi0DgtJfX+1zRup+3TfU8kmRZdj67sog+JElPNVYCgjeusrdbpzymvzHA0T6diTaPzWA733k9eVSQc1gCSrqv4eeCFT5Jb29nqVo5/eihClkDbdQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745277137; c=relaxed/simple;
-	bh=4Q9QOck4LEaT8mQGUHQrpRn2qWlOd028X/Rn3doSDD8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZeRQig+yhceb9SrVqviBjXoVFCd/9qUbRNB2EegyM/nt+URGsQBykVM3h29KnaKVUm1DunrnGORdtqDYXnWZtTWgaXYet+0CXKBqUoa/altDyBqdMNIsPiQIsXwe/Zc8vgUiG6cxXhTPFiPuvVh3pxYBPw2IuH7ug6ShCai1AK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=faEGl61t; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22423adf751so45129575ad.2;
-        Mon, 21 Apr 2025 16:12:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745277134; x=1745881934; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K7uD5qXzvc6aMulN+BeaNa7iatoiX4T3pgrjFm94VSk=;
-        b=faEGl61t6YR+8dxQ6ZpO2NB8r0pkO4aYvSS/5iHfFOYg76yyOPJNwd5STJd0We9f4O
-         ieXuipxRLJxUAMeU3/yY7F9TjOgFe1Dt2bo9Ina0Bky5CAps2wGLYJ2pXfOoNk9qLNw6
-         O+VP2hHkzV2iT4Dn59FCeMrs4sFgWCZkT72v8R+MhlF5ktHpfzPGjtrUejVIvrJQ3ax/
-         xhjnfyvpZm0e7dB+138johGyST5ZEv9IB7JFToyh93r4KG2GuAw0tXTXfWrnPku+lE1q
-         e3bOxIVFPB+buTU3Q5nTo3+GcLail4cmVMvRWBP2VgKz9HUnZHdRFe34KZGL0qImj9PY
-         X8ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745277134; x=1745881934;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K7uD5qXzvc6aMulN+BeaNa7iatoiX4T3pgrjFm94VSk=;
-        b=a8qrQYFY9+3+ZJpie7qkTgOWkasuV8WbkAVpuaRcyZWDS8DE8FdLx45Pjo6NsH/3m1
-         DznE1fuWh9XsXwrjtiAP8vl/IlxSFsEgUX1v2wltzB6yP+rU3iZcUB7kQvc76khWSElV
-         SiAPfdd0Us/Kkvwald2wVeR/WJbN/WWAfXDk7dsmEZs4K/0BDiPQK75d/AeOElTHIQ6G
-         2BNiR+LwYP222P9xbM4OrBQ4LsszRgWw5VCezIjuSzjnzoHCmPaASpxb37UdqGBPA6cR
-         IWhpU0YrLATU7P64Do1WolksC7LBzt9EFeGNQytnXAQEP7YX8iTFbb6dmPba7oj/90L8
-         mqug==
-X-Forwarded-Encrypted: i=1; AJvYcCVGY5b38zYKG73PM6pxJfrZPlWh8k6ND0TTlfO3E0BMVMO4cF4Y3myp87dws0DBO6ng+Q0KOKOq7Zbp8Xo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaDMThqS8OKeJqhDKUwGg+a+XwER3a4btUzhWblPpQ0YiUKSvd
-	8wfAihdFGK3Xmq1o4GndE/mZ27TquRWS6unVDhnW9vb3y449jFzj
-X-Gm-Gg: ASbGncvP8kB2Sed002uLqppoMTxbZI/bkUpQ0Ohv7fEu0GWXPs8BPylSimNeNyvcI7n
-	YD2J3jcXMLS9FFL3YUqhCNW4ElZ1gV86/DS87GFQ+myltD9sfAfRS6O2D152SGJ7V2uI5Lih8tB
-	OInLVhyaV6oW2nj6uGNbXV8S2L/gvStTS7zT5ctPzZoTSXN78oz9j3v2SE1CBNrQ0eQWpDG+hjX
-	SQEitnXSiT5P+fJh9AAHRn+lCBLk5bhOB8skrO3QbMcn1HN0WTeUy5gueoqXxHrVMdIEo9f06Nc
-	Qye3xLF+nmnNysES6QKt2BwhKwAC75DnwyzpSCB7Bf146XJ11C3pbA==
-X-Google-Smtp-Source: AGHT+IHT5fKKS1SMCd+Tj+8NxbOpVvUcbxkPakCnNVQ1oPl2cEDp8mNkaefvPYVXcT9AzKeGfB9Oyg==
-X-Received: by 2002:a17:902:f706:b0:224:1c41:a4cd with SMTP id d9443c01a7336-22c5356dfbbmr179816285ad.3.1745277134121;
-        Mon, 21 Apr 2025 16:12:14 -0700 (PDT)
-Received: from ?IPV6:2a02:8010:6606:0:4561:1890:fe60:cec1? ([2a02:8010:6606:0:4561:1890:fe60:cec1])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50eceb74sm70766835ad.166.2025.04.21.16.12.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Apr 2025 16:12:13 -0700 (PDT)
-Message-ID: <bda07179-1ff4-46e4-9dda-ece9c63fd613@gmail.com>
-Date: Tue, 22 Apr 2025 00:12:02 +0100
+	s=arc-20240116; t=1745279503; c=relaxed/simple;
+	bh=p/sfA16fe0Wj9u4skqJ1CJF3bVc7XjoSOdYT3UVBuGM=;
+	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
+	 References:In-Reply-To; b=ag29M6rnUa9gfgpiNT6kRxwP47lvB97vBPxAWwXPe4Rv2xGbaJWYCI0mhVHedACx46l7vZJV/3hZDXpD8lwYeVFIPyhFyFoybXz5g6Fac9RiZge14ytsBfRB2RIOITpw2hiIz0X9BgAXwxCnSxXzdNa5patEaM5SONnAma+WL8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=abNSGcUX; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LNpTqf1039141
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 21 Apr 2025 18:51:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745279489;
+	bh=2OW+FjKgr+O+cpJJ1XHA+YESDflZ1mtQz9BgoDkDH4A=;
+	h=Date:CC:Subject:From:To:References:In-Reply-To;
+	b=abNSGcUXGMIxSfyLAvWh5xaiAtLz1u+YRM2TwrirqC0yvvM8U/QNwWXTiuKZrx2D1
+	 nWm80umC6G8/mEm86/81lQvamCCIVz6NCFv8LaRb6zZuWF2KbmoBGJpOWZYq5SSI5A
+	 0H55lK2G2Bsutr60XAQRtmMXUH2ad6oQHKXj04Q8=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LNpT99029435
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 21 Apr 2025 18:51:29 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
+ Apr 2025 18:51:28 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 21 Apr 2025 18:51:28 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LNpSYR033139;
+	Mon, 21 Apr 2025 18:51:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3588-nanopc-t6: fix usb-c port
- functionality
-Content-Language: en-GB
-To: John Clark <inindev@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Marcin Juszkiewicz <mjuszkiewicz@redhat.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonas Karlman <jonas@kwiboo.se>
-References: <20250419023715.16811-1-inindev@gmail.com>
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-In-Reply-To: <20250419023715.16811-1-inindev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 21 Apr 2025 18:51:28 -0500
+Message-ID: <D9CPY0IDAJSR.39JPPAXZAUNQE@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+        Alessio
+ Belle <alessio.belle@imgtec.com>,
+        Alexandru Dadu <alexandru.dadu@imgtec.com>,
+        Luigi Santivetti <luigi.santivetti@imgtec.com>,
+        Darren Etheridge
+	<detheridge@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
+From: Randolph Sapp <rs@ti.com>
+To: "Kumar, Udit" <u-kumar1@ti.com>, Matt Coster <matt.coster@imgtec.com>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com>
+ <20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com>
+ <8017c015-73aa-4807-a177-d5391e073981@ti.com>
+In-Reply-To: <8017c015-73aa-4807-a177-d5391e073981@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi John,
+On Sat Apr 19, 2025 at 11:15 AM CDT, Udit Kumar wrote:
+> Hello Matt,
+>
+> On 4/17/2025 2:40 PM, Matt Coster wrote:
+>> The J721S2 binding is based on the TI downstream binding in commit
+>> 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
+>> but with updated compatible strings.
+>
+> Downstream kernel[1] sha 5657fc069e8b3 ("PENDING: arm64: dts: ti:=20
+> k3-j721s2-main: add gpu node")
+>
+> also has assigned-clock-rates.
+>
+> Please check if gpu node needs assigned-rate too.
 
-On 19/04/2025 03:37, John Clark wrote:
-> The USB-C port on the NanoPC-T6 was not providing VBUS (vbus5v0_typec
-> regulator disabled, gpio-58 out lo) due to misconfiguration. The
-> original setup with regulator-always-on and regulator-boot-on forced
-> the port on, masking the issue, but removing these properties revealed
-> that the fusb302 driver was not enabling the regulator dynamically.
-> 
-> Changes:
-> - Removed regulator-always-on and regulator-boot-on from vbus5v0_typec
->   and vbus5v0_usb to allow driver control.
-> - Changed power-role from "source" to "dual" in the usb-c-connector
->   to support OTG functionality.
-> - Add pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>; to the FUSB302MPX node
->   to specify USB Power Delivery (PD) Revision 2.0, Version 1.2,
->   ensuring the driver correctly advertises PD capabilities and
->   negotiates power roles (source/sink) per the FUSB302MPX’s supported
->   PD protocol.
-> - Added op-sink-microwatt and sink-pdos for proper sink mode
->   configuration (1w min, 15w max).
-> - Add typec-power-opmode = "3.0A"; to enable 3.0A (15W) fallback for
->   non-PD USB-C devices with the FUSB302MPX.
-> - Set try-power-role to "source" to prioritize VBUS enablement.
-> - Adjusted usb_host0_xhci dr_mode from "host" to "otg" and added
->   usb-role-switch for dual-role support.
-> 
-> Testing:
-> - Verified VBUS (5V) delivery to a sink device (USB thumb drive).
-> - Confirmed USB host mode with lsusb detecting connected devices.
-> - Validated USB device mode with adb devices when connected to a PC.
-> - Tested dual-role (OTG) functionality with try-power-role set to
->   "source" and "sink"; "source" prioritizes faster VBUS activation.
-> - Validated functionality with a mobile device, including USB Power
->   Delivery, file transfer, USB tethering, MIDI, and image transfer.
-> - Tested USB-C Ethernet adapter compatibility, ensuring proper
->   operation in host mode.
-> - Tested USB-C hub compatibility, ensuring proper operation in host mode.
-> 
-> Signed-off-by: John Clark <inindev@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 21 ++++++++++---------
->  1 file changed, 11 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> index cecfb788bf9e..8f2bd30786d9 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> @@ -174,8 +174,6 @@ vbus5v0_typec: regulator-vbus5v0-typec {
->  		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&typec5v_pwren>;
-> -		regulator-always-on;
-> -		regulator-boot-on;
->  		regulator-name = "vbus5v0_typec";
->  		regulator-min-microvolt = <5000000>;
->  		regulator-max-microvolt = <5000000>;
-> @@ -188,8 +186,6 @@ vbus5v0_usb: regulator-vbus5v0-usb {
->  		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&usb5v_pwren>;
-> -		regulator-always-on;
-> -		regulator-boot-on;
->  		regulator-name = "vbus5v0_usb";
->  		regulator-min-microvolt = <5000000>;
->  		regulator-max-microvolt = <5000000>;
-> @@ -465,24 +461,30 @@ regulator-state-mem {
->  };
->  
->  &i2c6 {
-> -	clock-frequency = <200000>;
->  	status = "okay";
->  
-> -	fusb302: typec-portc@22 {
-> +	usbc0: usb-typec@22 {
->  		compatible = "fcs,fusb302";
->  		reg = <0x22>;
->  		interrupt-parent = <&gpio0>;
->  		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
-> -		pinctrl-0 = <&usbc0_int>;
->  		pinctrl-names = "default";
-> +		pinctrl-0 = <&usbc0_int>;
->  		vbus-supply = <&vbus5v0_typec>;
-> +		status = "okay";
->  
->  		connector {
->  			compatible = "usb-c-connector";
->  			data-role = "dual";
->  			label = "USB-C";
-> -			power-role = "source";
-> +			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-> +			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
-> +			power-role = "dual";
-> +			op-sink-microwatt = <1000000>;
-> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
->  			source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
-> +			try-power-role = "source";
-> +			typec-power-opmode = "3.0A";
+If I remember correctly, J721S2 was one of the few platforms that actually
+defaulted to 800MHz, so it may not be necessary for that platform specifica=
+lly.
+(I don't have a board to test this right now though. This very well may hav=
+e
+changed.) AM62 also defaults to the correct value, and that one I did manag=
+e to
+verify.
 
-According to the manufacturer wiki [1] "Power Output Capacity" table, the USB-C
-port maximum output is 5V/2A. So I think "1.5A" would be a better value here.
+That being said, Udit is right, it's generally a good idea to explicitly se=
+t the
+clock speed for our devices. I know AM62P, for example, used to default our
+clock to the bus speed.
 
-[1]: https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6
+At one point though this driver was experimenting with a DVFS mechanism. Ma=
+tt,
+use of assigned-clocks shouldn't interfere with that assuming there is no
+defined opp-table, right? May be a good idea to set our usual 800 MHz for J=
+721S2
+and 500 MHz for AM625. This shouldn't require any binding related changes.
 
->  
->  			ports {
->  				#address-cells = <1>;
-> @@ -1135,9 +1137,8 @@ &usb_host0_ohci {
->  };
->  
->  &usb_host0_xhci {
-> -	dr_mode = "host";
-> -	status = "okay";
->  	usb-role-switch;
-> +	status = "okay";
->  
->  	port {
->  		usb_host0_xhci_drd_sw: endpoint {
+On the topic of opp tables for the GPU, I did some testing on the proprieta=
+ry
+driver a little while back. These devices do not support voltage scaling an=
+d
+simple frequency scaling saw a general decrease in performance and increase=
+ in
+power draw for the usual utilization bursts a single application running at=
+ 60
+FPS generates. I have a feeling this will carry over to the open source dri=
+ver,
+but we can always do additional testing if you are curious.
 
-br, Hugh
+- Randolph
+
+>> The clock[2] and power[3] indices were verified from HTML docs, while
+>> the intterupt index comes from the TRM[4] (appendix
+>> "J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
+>> "GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
+>
+>> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
+>> [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.h=
+tml
+>> [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.=
+html
+>> [4]: https://www.ti.com/lit/zip/spruj28 (revision E)
+>>
+>> Reviewed-by: Randolph Sapp <rs@ti.com>
+>> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+>> ---
+>> Changes in v2:
+>> - Add interrupt reference details
+>> - Add Randolph's Rb
+>> - Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3f=
+a06625d@imgtec.com
+>>
+>> This patch was previously sent as [DO NOT MERGE]:
+>> https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5=
+865f@imgtec.com
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boo=
+t/dts/ti/k3-j721s2-main.dtsi
+>> index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133=
+864428bd35a5e835 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>> @@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
+>>   		/* reserved for MAIN_R5F1_1 */
+>>   		status =3D "reserved";
+>>   	};
+>> +
+>> +	gpu: gpu@4e20000000 {
+>> +		compatible =3D "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
+>> +		reg =3D <0x4e 0x20000000 0x00 0x80000>;
+>> +		clocks =3D <&k3_clks 130 1>;
+>> +		clock-names =3D "core";
+>> +		interrupts =3D <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>> +		power-domains =3D <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
+>> +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
+>> +		power-domain-names =3D "a", "b";
+>> +		dma-coherent;
+>> +	};
+>>   };
+>>
+
 
