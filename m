@@ -1,361 +1,354 @@
-Return-Path: <devicetree+bounces-169039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C169A954FD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:03:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 780FEA95524
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:19:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 109FB3B0B01
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:03:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2097166058
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:19:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63611DF98D;
-	Mon, 21 Apr 2025 17:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E07319F41C;
+	Mon, 21 Apr 2025 17:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fEArDoiv"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="pb6oPNTA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811C618DF86;
-	Mon, 21 Apr 2025 17:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F641171CD;
+	Mon, 21 Apr 2025 17:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745255024; cv=none; b=CU4ScghQVw+55UO5GIdGUngM+AQBrjh5aEp9KmkXbgv5GQWvhDsUeapUY5uj/eWciqrx5+nDI55dZk4mxESu2cULNKytv4EkW4yID/t9JFDsGx8QSyytR3NtXcRYPLswvDiiwgEKYt3Yer2NOkotiYzqzjKAcR8rS/Zk/WLnUos=
+	t=1745255986; cv=none; b=fosG0nqqpd+651gkEEMcX+qE2omQZZEcRH/tB5qbO/6BrmP8JvmIgOB0KzHvmW4cXRyykXtS56EvWSJABTnP13d3TQhlHD7u3F8yxdX03k+MPORnuHhbXxSRK5TqXIysctofTRW6zM9guYm1QzEOcGNnc20wSs91eKPJzh7Qic0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745255024; c=relaxed/simple;
-	bh=Vny4bWMFKnBdf3xSKwxxHgOaEckoWiuTsqW/E71R23Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NtVUPGSEwUsc8DcKrQOZ3uBPyJ0FOQJASU9HVe+PD+IHsUy5pGCSO6sG1pUiOhVRiFt75kPZtxRa+kjj5DApRJGXGCYHpgL3pqVa17YMBo9v6Oyam/i52zagOTCAmScOoZ7ftTVFVTQ+/BqpLMw5A4WuxYfZs3rAK9h80fD8RDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fEArDoiv; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LH3WIK982210
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 12:03:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745255012;
-	bh=UHFfKBVtmQ9cLWyCnu/zSQRBEYxq2/KCU52MqnF0ShQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fEArDoivfE9xqX15M7RDilroaj0Xz/va2NKV6oCsjcK/FtmbQoX1uHO6tr9s1Ssuk
-	 uOopwbH7vnD/86CvjiHv/6TF1BJg/5Pn2rBk+uI9z6iTVtQj8wUF+6K2x2asx5yMyL
-	 Mp9yVVqtsuqrqoQQwZrEGrgaTu8sX1w6sch/feTs=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LH3WeG108292
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 12:03:32 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 12:03:31 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 12:03:31 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LH3VXs121488;
-	Mon, 21 Apr 2025 12:03:31 -0500
-Message-ID: <6241ff00-27e6-45ab-808e-f04e39854753@ti.com>
-Date: Mon, 21 Apr 2025 12:03:31 -0500
+	s=arc-20240116; t=1745255986; c=relaxed/simple;
+	bh=3LurhjwMUmuNoKtt7NXtW+M+MP06+41+2d+QeUwRrwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EYKgyHj+eu2ASuTx9GBawztr0dn8wx+niqjcPBkSn3jl3FoXhuHG39UWSVaRgRH6Ue0RzTFHk9aKZNbzGlY8s58UFK5eR4bwZIBtKSWSXucD6Q5NLQgM4MjJdeASKa+xItv2sLJklYQJsR2x+nVMDka0a50lDU8pLvLMw3Fm9ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=pb6oPNTA; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CADBF754A0;
+	Mon, 21 Apr 2025 19:10:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1745255449; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=8bR4w4w+rvs6ov0KHOAszI5SgWh2IY/Tx10eFtuUhFY=;
+	b=pb6oPNTAHpmYwpWBxw/xka0wMMt+qA153aFarogn5dcQRC9sjFlsZMNifDU3mhXStj+BbG
+	I7TZ2leGa622+vjq2di4gTf2yqDiHFXK5/MEuD6yOa2VdWd581QsCNU2f1zQwmz4Tykh4q
+	mcmyBrw1gmW2/UDYMllnN4/tbAxXKKhkFZddOAn0AA/JUXO1wh++hZQHogoyXl7TytBsEa
+	yIrm33kXppUPwGajaVzHX5+iu8qs/8XGX8ghr2nEjgdWez20EQ53p/obg6bEgx3pkGIXBH
+	OlVXryFAc/MNKEy5S9Dsgu6lSNoiHhaYWU3FwR2hdz1NCBqdvcOykTJSdoO21w==
+Message-ID: <0758a293-abf6-4b98-86c5-2f11fad8c9ca@cjdns.fr>
+Date: Mon, 21 Apr 2025 19:10:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>
-CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
- <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
- <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
- <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
- <mocfnpebc67xegcis6tx3ekhsjcsqnvhwtipufycrtq2be4nbh@pmxhir5gmkos>
- <639b4e3a-3f68-4fba-aa33-c46dcb6fc88f@linaro.org>
- <d6252b73-0bcc-4724-8144-d6a98c8980f8@ti.com>
- <74ee6d9b-fd78-4d8a-a94f-b2c4dc794b60@linaro.org>
- <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
- <f9a2247e-e0eb-4e22-8626-80e87afa9386@linaro.org>
- <qjwlppsq4eorzepvjsgjjyyaddouo5w2rjguu5c2mqesd6luwp@f426xeghy2ht>
- <2130b439-74d0-475d-8429-1a1b4d9738aa@linaro.org>
- <b7f6570f-3b80-4fc1-8201-d44f5692867f@ti.com>
- <07bf9f93-deb8-48a1-aae9-a8a053680cc9@linaro.org>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v3 05/10] clocksource/drivers: Add EcoNet Timer HPT driver
+To: linux-mips@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu,
+ linux-mediatek@lists.infradead.org
+References: <20250330170306.2584136-1-cjd@cjdns.fr>
+ <20250330170306.2584136-6-cjd@cjdns.fr>
 Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <07bf9f93-deb8-48a1-aae9-a8a053680cc9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20250330170306.2584136-6-cjd@cjdns.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 4/15/25 12:17 AM, Krzysztof Kozlowski wrote:
-> On 09/04/2025 19:39, Andrew Davis wrote:
->> On 2/12/25 1:35 PM, Krzysztof Kozlowski wrote:
->>> On 10/02/2025 11:35, Markus Schneider-Pargmann wrote:
->>>> On Sun, Feb 09, 2025 at 01:21:27PM +0100, Krzysztof Kozlowski wrote:
->>>>> On 07/02/2025 15:40, Markus Schneider-Pargmann wrote:
->>>>>> Hi Krzysztof,
->>>>>>
->>>>>> On Mon, Jan 27, 2025 at 01:09:49PM +0100, Krzysztof Kozlowski wrote:
->>>>>>> On 24/01/2025 23:35, Andrew Davis wrote:
->>>>>>>> On 1/24/25 10:48 AM, Krzysztof Kozlowski wrote:
->>>>>>>>> On 24/01/2025 17:05, Markus Schneider-Pargmann wrote:
->>>>>>>>>> Hi Krzysztof,
->>>>>>>>>>
->>>>>>>>>> On Fri, Jan 24, 2025 at 09:22:54AM +0100, Krzysztof Kozlowski wrote:
->>>>>>>>>>> On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
->>>>>>>>>>>> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
->>>>>>>>>>>>> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
->>>>>>>>>>>>> register in the wkup-conf register space of am62a and am62p. This
->>>>>>>>>>>>> register controls DDR power management.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->>>>>>>>>>>>> ---
->>>>>>>>>>>>>     Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->>>>>>>>>>>>>     1 file changed, 2 insertions(+)
->>>>>>>>>>>>
->>>>>>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>>>>>>
->>>>>>>>>>> Un-acked, I missed the point that you really speak in commit msg about
->>>>>>>>>>> register and you really treat one register is a device. I assumed you
->>>>>>>>>>> only need that register from this device, but no. That obviously is not
->>>>>>>>>>> what this device is. Device is not a single register among 10000 others.
->>>>>>>>>>> IOW, You do not have 10000 devices there.
->>>>>>>>>>
->>>>>>>>>> Do I understand you correctly that the whole register range of the
->>>>>>>>>> wkup_conf node as seen in arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->>>>>>>>>> should be considered a single syscon device?
->>>>>>>>>
->>>>>>>>> I don't have the datasheets (and not my task to actually check this),
->>>>>>>>> but you should probably follow datasheet. I assume it describes what is
->>>>>>>>> the device, more or less.
->>>>>>>>>
->>>>>>>>> I assume entire wkup_conf is considered a device.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> Unfortunately wkup_conf is modeled as a simple-bus with currently 5
->>>>>>>>>> subnodes defined of which 4 of them consist of a single register. Most
->>>>>>>>>> of them are syscon as well. So I think I can't change the simple-bus
->>>>>>>>>> back to syscon.
->>>>>>>>>
->>>>>>>>> Huh... Maybe TI folks will help us understand why such design was chosen.
->>>>>>>>>
->>>>>>>>
->>>>>>>> Many of the devices inside the wkup_conf are already modeled as such.
->>>>>>>> Clocks and muxes for instance already have drivers and bindings, this
->>>>>>>> is nothing new to TI.
->>>>>>>>
->>>>>>>> If we just use a blank "syscon" over the entire region we would end up
->>>>>>>> with drivers that use phandles to the top level wkup_conf node and
->>>>>>>> poke directly the registers they need from that space.
->>>>>>>>
->>>>>>>> Would you rather have
->>>>>>>>
->>>>>>>> some-device {
->>>>>>>> 	ti,epwm_tbclk = <&wkup_conf>;
->>>>>>>> }
->>>>>>>>
->>>>>>>> or
->>>>>>>>
->>>>>>>> some-device {
->>>>>>>> 	clocks = <&epwm_tbclk 0>;
->>>>>>>> }
->>>>>>>
->>>>>>> How is this comparable? These are clocks. You would have clocks property
->>>>>>> in both cases.
->>>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>> with that epwm_tbclk being a proper clock node inside wkup_conf?
->>>>>>>> I would much prefer the second, even though the clock node
->>>>>>>> only uses a single register. And in the first case, we would need
->>>>>>>> to have the offset into the wkup_conf space hard-coded in the
->>>>>>>> driver for each new SoC. Eventually all that data would need to be
->>>>>>>> put in tables and we end up back to machine board files..
->>>>>>>>
->>>>>>>> I'm not saying every magic number in all drivers should
->>>>>>>> be offloaded into DT, but there is a line somewhere between
->>>>>>>> that and having the DT simply contain the SoC's name compatible
->>>>>>>
->>>>>>> That's not the question here.
->>>>>>>
->>>>>>>> and all other data going into the kernel. That line might be a
->>>>>>>> personal preference, so my question back is: what is wrong
->>>>>>>> if we do want "1000 new syscons per each register" for our
->>>>>>>> SoCs DT?
->>>>>>>
->>>>>>> Because it is false representation of hardware. You do not have 1000
->>>>>>> devices. You have only one device.
->>>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>> (and the number is not 1000, scanning the kernel I can see
->>>>>>>> the largest wkup_conf region node we have today has a grand
->>>>>>>> total number sub-nodes of 6)
->>>>>>>
->>>>>>> But what is being added here is device per each register, not per feature.
->>>>>>
->>>>>> The register layout is like this:
->>>>>
->>>>> The register layout of what? How is the device called? Is datasheet
->>>>> available anywhere?
->>>>
->>>> Yes, it is available here: https://www.ti.com/de/lit/pdf/spruj16
->>>>
->>>> 14 Registers
->>>> 14.2 Device Configuration Registers
->>>> 14.2.1 CTRL_MMR Registers
->>>> 14.2.1.1 General Purpose Control Registers
->>>> 14.2.1.1.3 WKUP_CTRL_MMR0 Registers
->>>>
->>>> Each domain has their own set of general purpose control registers,
->>>> CTRL_MMR for the main domain, MCU_CTRL_MMR0 for the MCU domain,
->>>> WKUP_CTRL_MMR0 for the wakeup domain.
->>>
->>>
->>> So according to the doc you have only one device - CTRL_MMR. All other
->>> splits are superficial.
->>>
->>
->> It is not one device, it is a collection of devices under one labeled
->> bus range. Some items here are full normal devices, already modeled by DT
->> as stand-alone devices, for instance our chipid, efuse, clock controller,
->> etc. even our pinmux is part of this bus range.
->>
->> They are grouped as we have one set for each domain (MAIN, WKUP, MCU).
->>
->> All other splits are not superficial, if we go down that path then
->> the whole SoC is one "device". We could simply have the whole address
->> bus be one node and have Linux hard-code offsets in the drivers, we
->> end up back at board files..
->>
->> DT should break things into logically distinct and reusable units
->> so we don't have to store that in the kernel. That is what we do
->> here, even if some units end up being very small.
->>
->>>>
->>>> So I understand this to just be a collection of general purpose control
->>>> registers. If you go by feature, then many of the registers can be
->>>> grouped into units with a specific purpose or controlling a specific
->>>> device which are also grouped by the offsets they represent. I assume
->>>
->>> It could work if you have distinctive groups, but here:
->>> 1. You do not have this grouped, you just judge by yourself "oh, that's
->>> group A, that's B".
->>> 2. Group per one register is not that.
->>>
->>> For me this is one big block and even CLKSEL is spread all over so
->>> cannot be really made distinctive.
->>>
->>>> this is why the other nodes in this wkup_conf node were created. Also in
->>>
->>> The other nodes represent some sort of fake or totally arbitrary
->>> grouping. That's abuse of the syscon.
->>>
->>
->> They are grouped by function.
-> 
-> Not really - other DTS sent just few days ago created each entry per one
-> register.
-> 
->>
->>>> my opinion this makes the relation between the original device and this
->>>> general purpose control registers better understandable.
->>>>
->>>> For this patch the ddr-pmctrl regsiter is just a single register, but it
->>>> has the purpose of controlling the DDR device power management.
->>>
->>> Sure, but that is NOT syscon. One register of entire block is not system
->>> controller. The entire block is system controller.
->>>
->>
->> The whole block cannot be a system controller as there are regular
->> devices inside this range. If we made the whole region a syscon and
-> 
-> That's still system controller. It's nothing special here.
-> 
->> also left the device nodes inside, then we would have overlapping
->> register owners, one register would be controlled by two or more
-> 
-> No, owner is the parent device always.
 
-Which parent device? That is my point, if the top level node for the
-whole CTRL_MMR region is made into one big syscon, then a big regmap
-is made that covers the whole region. All the child devices also make
-regmaps covering their device range. Now these registers under the child
-device belong to two different regmaps. No synchronization is done as
-these are not the same regmap, regmap only handles this for multiple
-access to registers within the same regmap.
+On 30/03/2025 19:03, Caleb James DeLisle wrote:
+> Introduce a clocksource driver for the so-called high-precision timer (HPT)
+> in the EcoNet EN751221 MIPS SoC.
+>
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
 
-Let's take a real example, here is part of AM62A CTRL_MMR node.
 
-main_conf: bus@100000 {
-	compatible = "simple-bus";
-	#address-cells = <1>;
-	#size-cells = <1>;
-	ranges = <0x00 0x00 0x00100000 0x20000>;
+Hello all,
 
-	phy_gmii_sel: phy@4044 {
-		compatible = "ti,am654-phy-gmii-sel";
-		reg = <0x4044 0x8>;
-		#phy-cells = <1>;
-	};
+It's been a couple of weeks and I wanted to check if this is good and/or
+if there's anything I can do to help make the process easier.
 
-	...
-};
+Thanks to Tglx, Rob, Krzysztof, and Sergey for your time reviewing my code.
+In v3 I updated this patch in accordance with feedback I received on the
+interrupt controller. Unless there's advice to do otherwise, I can resend
+the remaining patches later on this week.
 
-If we turn "main_conf" into a syscon, then who "owns" 0x4044?
-Both the top level syscon and phy_gmii_sel nodes would build
-a different regmap instance that contains those same registers.
+Thanks,
 
-Bit of back story, this is actually how I got involved in sorting
-out this "syscon" stuff for our devices. I built a checker into
-the regmap framework core that would detect when multiple regmaps
-are created that contain overlapping registers.
+Caleb
 
-I found several bugs this way and want to push the check upstream at
-some point. But first I wanted to fix the biggest cause of warnings,
-which was from syscon being used as described above.
 
-> 
->> drivers. How would we synchronize mappings, access, updates, etc.
->> Any one register should belong to exactly one device.
-> 
-> regmap synchronizes everything. There is no problem here, at all.
-> 
->>
->> Is your issue the name "system controller", as yes I agree some of
->> these regions are not "system controllers".
->>
->> Would it work better if we didn't call this "ti,am62-ddr-pmctrl"
->> node a "syscon"? That can be done, we just would add a normal
->> binding doc for it, instead of trying to reuse the generic
->> bindings/mfd/syscon.yaml file.
-> 
-> You still do not have multiple subnodes, one per each register or even
-> few registers.
-
-If this ddr-pmctrl device is not modeled as a syscon device, then who
-says it has to be more than a few (3?) registers in size? This seems like
-a rather arbitrary rule, and completely unfeasible for several whole
-classes of devices that only have/need a few registers to work them.
-
-Andrew
-
-> 
-> Best regards,
-> Krzysztof
+> ---
+>   drivers/clocksource/Kconfig                 |   8 +
+>   drivers/clocksource/Makefile                |   1 +
+>   drivers/clocksource/timer-econet-en751221.c | 216 ++++++++++++++++++++
+>   3 files changed, 225 insertions(+)
+>   create mode 100644 drivers/clocksource/timer-econet-en751221.c
+>
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index 487c85259967..976afb0b2312 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -73,6 +73,14 @@ config DW_APB_TIMER_OF
+>   	select DW_APB_TIMER
+>   	select TIMER_OF
+>   
+> +config ECONET_EN751221_TIMER
+> +	bool "EcoNet EN751221 High Precision Timer" if COMPILE_TEST
+> +	depends on HAS_IOMEM
+> +	select CLKSRC_MMIO
+> +	select TIMER_OF
+> +	help
+> +	  Support for CPU timer found on EcoNet MIPS based SoCs.
+> +
+>   config FTTMR010_TIMER
+>   	bool "Faraday Technology timer driver" if COMPILE_TEST
+>   	depends on HAS_IOMEM
+> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+> index 43ef16a4efa6..d2998601eda5 100644
+> --- a/drivers/clocksource/Makefile
+> +++ b/drivers/clocksource/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_CLKBLD_I8253)	+= i8253.o
+>   obj-$(CONFIG_CLKSRC_MMIO)	+= mmio.o
+>   obj-$(CONFIG_DAVINCI_TIMER)	+= timer-davinci.o
+>   obj-$(CONFIG_DIGICOLOR_TIMER)	+= timer-digicolor.o
+> +obj-$(CONFIG_ECONET_EN751221_TIMER)	+= timer-econet-en751221.o
+>   obj-$(CONFIG_OMAP_DM_TIMER)	+= timer-ti-dm.o
+>   obj-$(CONFIG_OMAP_DM_SYSTIMER)	+= timer-ti-dm-systimer.o
+>   obj-$(CONFIG_DW_APB_TIMER)	+= dw_apb_timer.o
+> diff --git a/drivers/clocksource/timer-econet-en751221.c b/drivers/clocksource/timer-econet-en751221.c
+> new file mode 100644
+> index 000000000000..9cfeead09377
+> --- /dev/null
+> +++ b/drivers/clocksource/timer-econet-en751221.c
+> @@ -0,0 +1,216 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Timer present on EcoNet EN75xx MIPS based SoCs.
+> + *
+> + * Copyright (C) 2025 by Caleb James DeLisle <cjd@cjdns.fr>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/clockchips.h>
+> +#include <linux/sched_clock.h>
+> +#include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_address.h>
+> +#include <linux/cpuhotplug.h>
+> +#include <linux/clk.h>
+> +
+> +#define ECONET_BITS			32
+> +#define ECONET_MIN_DELTA		0x00001000
+> +#define ECONET_MAX_DELTA		GENMASK(ECONET_BITS - 2, 0)
+> +/* 34Kc hardware has 1 block and 1004Kc has 2. */
+> +#define ECONET_NUM_BLOCKS		DIV_ROUND_UP(NR_CPUS, 2)
+> +
+> +static struct {
+> +	void __iomem	*membase[ECONET_NUM_BLOCKS];
+> +	u32		freq_hz;
+> +} econet_timer __ro_after_init;
+> +
+> +static DEFINE_PER_CPU(struct clock_event_device, econet_timer_pcpu);
+> +
+> +/* Each memory block has 2 timers, the order of registers is:
+> + * CTL, CMR0, CNT0, CMR1, CNT1
+> + */
+> +static inline void __iomem *reg_ctl(u32 timer_n)
+> +{
+> +	return econet_timer.membase[timer_n >> 1];
+> +}
+> +
+> +static inline void __iomem *reg_compare(u32 timer_n)
+> +{
+> +	return econet_timer.membase[timer_n >> 1] + (timer_n & 1) * 0x08 + 0x04;
+> +}
+> +
+> +static inline void __iomem *reg_count(u32 timer_n)
+> +{
+> +	return econet_timer.membase[timer_n >> 1] + (timer_n & 1) * 0x08 + 0x08;
+> +}
+> +
+> +static inline u32 ctl_bit_enabled(u32 timer_n)
+> +{
+> +	return 1U << (timer_n & 1);
+> +}
+> +
+> +static inline u32 ctl_bit_pending(u32 timer_n)
+> +{
+> +	return 1U << ((timer_n & 1) + 16);
+> +}
+> +
+> +static bool cevt_is_pending(int cpu_id)
+> +{
+> +	return ioread32(reg_ctl(cpu_id)) & ctl_bit_pending(cpu_id);
+> +}
+> +
+> +static irqreturn_t cevt_interrupt(int irq, void *dev_id)
+> +{
+> +	struct clock_event_device *dev = this_cpu_ptr(&econet_timer_pcpu);
+> +	int cpu = cpumask_first(dev->cpumask);
+> +
+> +	if (!cevt_is_pending(cpu)) {
+> +		pr_debug("%s IRQ %d on CPU %d is not pending\n", __func__, irq, cpu);
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	iowrite32(ioread32(reg_count(cpu)), reg_compare(cpu));
+> +	dev->event_handler(dev);
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int cevt_set_next_event(ulong delta, struct clock_event_device *dev)
+> +{
+> +	u32 next;
+> +	int cpu;
+> +
+> +	cpu = cpumask_first(dev->cpumask);
+> +	next = ioread32(reg_count(cpu)) + delta;
+> +	iowrite32(next, reg_compare(cpu));
+> +
+> +	if ((s32)(next - ioread32(reg_count(cpu))) < ECONET_MIN_DELTA / 2)
+> +		return -ETIME;
+> +
+> +	return 0;
+> +}
+> +
+> +static int cevt_init_cpu(uint cpu)
+> +{
+> +	struct clock_event_device *cd = &per_cpu(econet_timer_pcpu, cpu);
+> +	u32 reg;
+> +
+> +	pr_info("%s: Setting up clockevent for CPU %d\n", cd->name, cpu);
+> +
+> +	reg = ioread32(reg_ctl(cpu)) | ctl_bit_enabled(cpu);
+> +	iowrite32(reg, reg_ctl(cpu));
+> +
+> +	enable_percpu_irq(cd->irq, IRQ_TYPE_NONE);
+> +
+> +	/* Do this last because it synchronously configures the timer */
+> +	clockevents_config_and_register(
+> +		cd, econet_timer.freq_hz,
+> +		ECONET_MIN_DELTA, ECONET_MAX_DELTA);
+> +
+> +	return 0;
+> +}
+> +
+> +static u64 notrace sched_clock_read(void)
+> +{
+> +	/* Always read from clock zero no matter the CPU */
+> +	return (u64)ioread32(reg_count(0));
+> +}
+> +
+> +/* Init */
+> +
+> +static void __init cevt_dev_init(uint cpu)
+> +{
+> +	iowrite32(0, reg_count(cpu));
+> +	iowrite32(U32_MAX, reg_compare(cpu));
+> +}
+> +
+> +static int __init cevt_init(struct device_node *np)
+> +{
+> +	int i, irq, ret;
+> +
+> +	irq = irq_of_parse_and_map(np, 0);
+> +	if (irq <= 0) {
+> +		pr_err("%pOFn: irq_of_parse_and_map failed", np);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = request_percpu_irq(irq, cevt_interrupt, np->name, &econet_timer_pcpu);
+> +
+> +	if (ret < 0) {
+> +		pr_err("%pOFn: IRQ %d setup failed (%d)\n", np, irq, ret);
+> +		goto err_unmap_irq;
+> +	}
+> +
+> +	for_each_possible_cpu(i) {
+> +		struct clock_event_device *cd = &per_cpu(econet_timer_pcpu, i);
+> +
+> +		cd->rating		= 310,
+> +		cd->features		= CLOCK_EVT_FEAT_ONESHOT |
+> +					  CLOCK_EVT_FEAT_C3STOP |
+> +					  CLOCK_EVT_FEAT_PERCPU;
+> +		cd->set_next_event	= cevt_set_next_event;
+> +		cd->irq			= irq;
+> +		cd->cpumask		= cpumask_of(i);
+> +		cd->name		= np->name;
+> +
+> +		cevt_dev_init(i);
+> +	}
+> +
+> +	cpuhp_setup_state(CPUHP_AP_MIPS_GIC_TIMER_STARTING,
+> +			  "clockevents/en75/timer:starting",
+> +			  cevt_init_cpu, NULL);
+> +	return 0;
+> +
+> +err_unmap_irq:
+> +	irq_dispose_mapping(irq);
+> +	return ret;
+> +}
+> +
+> +static int __init timer_init(struct device_node *np)
+> +{
+> +	int num_blocks = DIV_ROUND_UP(num_possible_cpus(), 2);
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	clk = of_clk_get(np, 0);
+> +	if (IS_ERR(clk)) {
+> +		pr_err("%pOFn: Failed to get CPU clock from DT %ld\n", np, PTR_ERR(clk));
+> +		return PTR_ERR(clk);
+> +	}
+> +
+> +	econet_timer.freq_hz = clk_get_rate(clk);
+> +
+> +	for (int i = 0; i < num_blocks; i++) {
+> +		econet_timer.membase[i] = of_iomap(np, i);
+> +		if (!econet_timer.membase[i]) {
+> +			pr_err("%pOFn: failed to map register [%d]\n", np, i);
+> +			return -ENXIO;
+> +		}
+> +	}
+> +
+> +	/* For clocksource purposes always read clock zero, whatever the CPU */
+> +	ret = clocksource_mmio_init(reg_count(0), np->name,
+> +				    econet_timer.freq_hz, 301, ECONET_BITS,
+> +				    clocksource_mmio_readl_up);
+> +	if (ret) {
+> +		pr_err("%pOFn: clocksource_mmio_init failed: %d", np, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = cevt_init(np);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	sched_clock_register(sched_clock_read, ECONET_BITS,
+> +			     econet_timer.freq_hz);
+> +
+> +	pr_info("%pOFn: using %u.%03u MHz high precision timer\n", np,
+> +		econet_timer.freq_hz / 1000000,
+> +		(econet_timer.freq_hz / 1000) % 1000);
+> +
+> +	return 0;
+> +}
+> +
+> +TIMER_OF_DECLARE(econet_timer_hpt, "econet,en751221-timer", timer_init);
 
