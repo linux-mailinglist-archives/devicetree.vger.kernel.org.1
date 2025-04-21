@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-169144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD7CA95936
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:23:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 650B6A95956
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:27:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5934E3B866A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:23:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 561DA18884ED
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58648223329;
-	Mon, 21 Apr 2025 22:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BF02236E4;
+	Mon, 21 Apr 2025 22:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awIyxrwq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9J69WdB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A77221D596;
-	Mon, 21 Apr 2025 22:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45AF41DF984;
+	Mon, 21 Apr 2025 22:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745274216; cv=none; b=Uzap6J3Eg0ARduWs5WtP/rSlWeKk7r0mQ6wPiJomKe+wVoCzJRnUl4bmiKtvxZzzvQILzYyx50An7L1QtdIWQGWUbmaqWdzTnHhkDsalUydoAtjtNv5/CahEFLkGOe90zRfqXL4czHjX//lt41MebLtewvtrP1CgqE6BwmIdses=
+	t=1745274417; cv=none; b=RqHkwk8H21jL8UadqIPUQHZnI48r7nAdvBKUBEqXHOx4Qw2jZXuFrscB0Hvm9EDpxu4P5fCU3x3YX0AZa6dK3L1BWFv8ATKeuRNed/CLFxOj27iZw+UKOGFpoccWsVpm9+sGaEPn/X28r37k2OIKg9s0lMUqakJwsknGUyvGd7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745274216; c=relaxed/simple;
-	bh=gJ2dCcE3gYGwRnKZEz2qvzraAtdeODS27tt9wyVK3Fk=;
+	s=arc-20240116; t=1745274417; c=relaxed/simple;
+	bh=sjB84uxPDLrSxZbudQCJO1bZYpvmP3+3SV0sD3RB5aU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FzJhfa2QhcqjSbKqROKdd/jaYxBq0K6LsoFeRhqoRT1Awr3jbVUmaM+pOXHP5tgyMktCzIEDpJq3YK14/1P879NjFlxf1m8suji6JIrpUk5g3lBsA0SoPLyX+icJIYOzpsP4QMeRmB4N3c/7APFpSd6daJvAFlf84dlb2+P2gaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awIyxrwq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70EFAC4CEE4;
-	Mon, 21 Apr 2025 22:23:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UT0VmCQbDTTa4iYhV3kar0kMP2kG/LGXraCoJFiGUobZUplddJphRQpEJZ0fKW5SOMshzGDh7K7u/CgUctHh1uveXOnTJ7f6Dtvf0tJ4UdnUJ05d6Wnpdtc1gRNKXfOuHB7BOISuvFRsQf8YjNMhE8SDdsiNVyxQ/HquZnXA6EI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9J69WdB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DB8DC4CEE4;
+	Mon, 21 Apr 2025 22:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745274215;
-	bh=gJ2dCcE3gYGwRnKZEz2qvzraAtdeODS27tt9wyVK3Fk=;
+	s=k20201202; t=1745274415;
+	bh=sjB84uxPDLrSxZbudQCJO1bZYpvmP3+3SV0sD3RB5aU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=awIyxrwqcbcgWRB1IRhjSCBA2q329xGXyOl7eQNCMdIcv0KZnqVBnJE7Droi1mysA
-	 DgKwNAjmaJlIVIjSvPEOLqa/9agI99lCefTJaM6kqwdRUV+ijH04EIdNr4NiCgEnbc
-	 JfSk4Do9R3rtRnpCoMDl2hdp8XCMaFpM8J/Ag6NsDARdRjn+wOtcADnxnUM0uaHy1f
-	 G7/sYDOiFbLlBDvOlsIqasC/zHsHjGU1qSDPWw8iSTDl9LCGPhDja//8GU1KdUoP6E
-	 hOcRSFUbpNloxCpKFW3BHSNU4TMtG4281/l+LPbnJBr95GVije8YPbRtPKdJNPTyrb
-	 o62EP7zFen2fQ==
-Date: Mon, 21 Apr 2025 17:23:33 -0500
+	b=t9J69WdBBkV3WEGtVhU7DQwRwiwNhebcdw8EfDY4tpzK2HPX1q6/L1UU8nMvKiMEN
+	 3hC99k9LoPNNdE331GHT4+vHtkpzaui3+DfTRw7pkItjJ+sdEftZ3IDlU7fF2nIzUu
+	 Z3eY1Jg1rjobEQkPCS70yeCx6DGtZC6vsswbG5CCddxesIWPGkExX0qNGVrj3EZEex
+	 XD72cUD/vWbnV9+w7DKOvJ7vW4Sdxaka+xf/XHEFw2kDjDKUEIfFs3fBOWc3lfbrGU
+	 jvertGBLyRu0A7QzasJ1qBbbEexZy1MOBiM+FEt1FQ2uSsyvEEzYolVpDyGvLoNU9t
+	 stAkkdDO/oALQ==
+Date: Mon, 21 Apr 2025 17:26:53 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Russell King <linux@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
-	Andrew Davis <afd@ti.com>, Florian Fainelli <f.fainelli@gmail.com>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: dp83822: add
- constraints for mac-termination-ohms
-Message-ID: <174527421249.3182555.7274225771521228648.robh@kernel.org>
-References: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
- <20250416-dp83822-mac-impedance-v3-2-028ac426cddb@liebherr.com>
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: krzk+dt@kernel.org, mchehab@kernel.org, devarsht@ti.com,
+	hverkuil-cisco@xs4all.nl, s-jain1@ti.com, jack.zhu@starfivetech.com,
+	vigneshr@ti.com, linux-media@vger.kernel.org,
+	jai.luthra@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+	changhuang.liang@starfivetech.com, linux-kernel@vger.kernel.org,
+	tomi.valkeinen@ideasonboard.com, vaishnav.a@ti.com,
+	y-abhilashchandra@ti.com, jai.luthra@linux.dev,
+	devicetree@vger.kernel.org, mripard@kernel.org,
+	sakari.ailus@linux.intel.com, conor+dt@kernel.org
+Subject: Re: [PATCH v3 01/13] dt-bindings: media: ti,j721e-csi2rx-shim:
+ Support 32 dma chans
+Message-ID: <174527441344.3212247.14328786024565701263.robh@kernel.org>
+References: <20250417065554.437541-1-r-donadkar@ti.com>
+ <20250417065554.437541-2-r-donadkar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,17 +66,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416-dp83822-mac-impedance-v3-2-028ac426cddb@liebherr.com>
+In-Reply-To: <20250417065554.437541-2-r-donadkar@ti.com>
 
 
-On Wed, 16 Apr 2025 19:14:48 +0200, Dimitri Fedrau wrote:
-> Property mac-termination-ohms is defined in ethernet-phy.yaml. Add allowed
-> values for the property.
+On Thu, 17 Apr 2025 12:25:42 +0530, Rishikesh Donadkar wrote:
+> From: Jai Luthra <j-luthra@ti.com>
 > 
-> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> The CSI2RX SHIM IP can support 32x DMA channels. These can be used to
+> split incoming "streams" of data on the CSI-RX port, distinguished by
+> MIPI Virtual Channel (or Data Type), into different locations in memory.
+> 
+> Actual number of DMA channels allocated to CSI-RX is dependent on the
+> usecase, and can be modified using the K3 Resource Partitioning tool [1].
+> So set the minimum channels as 1 and maximum as 32.
+> 
+> Link: https://software-dl.ti.com/processor-sdk-linux/esd/AM62X/10_00_07_04/exports/docs/linux/How_to_Guides/Host/K3_Resource_Partitioning_Tool.html [1]
+> Link: https://www.ti.com/lit/pdf/spruiv7
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
 > ---
->  Documentation/devicetree/bindings/net/ti,dp83822.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/media/ti,j721e-csi2rx-shim.yaml  | 39 +++++++++++++++++--
+>  1 file changed, 36 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
