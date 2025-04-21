@@ -1,237 +1,162 @@
-Return-Path: <devicetree+bounces-169015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7DDA952C7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87ED9A952E1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:37:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A82B63B32C8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:30:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E3403A9DC7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE10B83A14;
-	Mon, 21 Apr 2025 14:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484AC1C32FF;
+	Mon, 21 Apr 2025 14:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ef7CMLD2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B5wcgbML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010024.outbound.protection.outlook.com [52.101.228.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7061D647;
-	Mon, 21 Apr 2025 14:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745245830; cv=fail; b=utiOXM1yruAyYwPhb8n9bwK/jdTW/ICUikmV9OYMsRwdIYpRpRiYfjoTerDK9RS7qvS5oXG/jIlcCjrrko4yT8jkLjfMOFBVMToYv6xDQUOjAhgRSdwkPnAdyiiOy5tu40iSBqW3vEYsWG4TmrmHwambsGFql2Uebd1zQh7IC+8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745245830; c=relaxed/simple;
-	bh=bMfQmIu4BJtmmZ2orqBz0cpraT3mI3qlPnGRhhHcHC8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Y/DDcw5J8DrnDNTwtkIrmCiWQ/EJ7j4IqI1hS1GbD2EPXmdgZxncIUCphJtub1N5KvxP5n7iDYzpiDnb3Icm7YG6dnrdys7Xw0nyJ4Poz+Suk3tsnPBd6mc7aTLiUBTn4p+/FXYE8pAiCuzDFgerw6aDmqGcc+MGjFch8g1WFfM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ef7CMLD2; arc=fail smtp.client-ip=52.101.228.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bOruU2AIMM8Vjql3rYcUAL2hBwMIZUsuOYxoyPBhLjCgWl4UIDytRGx2j18z5dBNv7sqWe1QiKhikApL4QgPyHlz+6I1IGuADnbbG+QLiLHqu+sy17PxP+ClZrNl49QETtAzuV8Kl8O0x51Z0SYjVXpUwF+NbtBkYOB5JbPgowcymwDgnBM2mjErVvbyjtX7jzGNYWT/TXANtz9xVD7ZZXunAqW/ea08qiy6Wl72nijXpqlJl95I7dPQkD5cd5jqXdNCi1pMkAjmALO3hwk5K2NLr9ViqD4f7m34gUDQ2ABK/wsud0avaViMZtovwji/l6s5+f8TGIJXnbBWfmDPuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bMfQmIu4BJtmmZ2orqBz0cpraT3mI3qlPnGRhhHcHC8=;
- b=N8AvLOaWxkt6HT3u8tgIEj8gNYuKLOih4sbHddYxg16gvVGXynk7h3lqN9yflqgnFp2HHdwknrXcypVDdeGWh1+QVBbP/aOBAR9Rg8r/GX2o20/SNDQxslqK+eSTrm9FmatNIETDIlEZTdKeo3F3Ejn9+8T+nQenknis+iv4kZ8ZdFnvJqcHvuCiN58FK7udfG3aKNvYYD7um3pqWJYl2rhStHwgvIXYLS5BOMZPiaiZU08JqimeEQHREMGCRKbufANf5z1mjseDDhjRB0KtNE1kKFFjByL+vKTwF51PM6L+xWOaXan1XBLfFnRlwd0d/mHUG+1fQYPljoszlqb70g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bMfQmIu4BJtmmZ2orqBz0cpraT3mI3qlPnGRhhHcHC8=;
- b=ef7CMLD2VaPo1iWjzZPPz3L5SadmbW8EAFMmeAadPGcgHGSG62QTzx95y0ygxFtVnMgjNGoH0KV9hpOZwJxJDcVvw9odIeFlMfbwnGNs6s1w0gBHR+h7EQglCFpZu1xLSMJ37an2/6hXaznC07hzN570BNfBVJAlWWUn4wg4YbY=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OS3PR01MB9771.jpnprd01.prod.outlook.com (2603:1096:604:1ed::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
- 2025 14:30:20 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.8655.031; Mon, 21 Apr 2025
- 14:30:20 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Andrew Lunn <andrew@lunn.ch>
-CC: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, "Russell King (Oracle)"
-	<linux@armlinux.org.uk>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
- Torgue <alexandre.torgue@foss.st.com>, Richard Cochran
-	<richardcochran@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu
-	<joabreu@synopsys.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, Fabrizio Castro
-	<fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-Thread-Topic: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-Thread-Index:
- AQHbp7UXRdTsn2oCYUWD5qYhUQGHu7OjbUQAgAAVgQCAATLSgIAJgP8QgAAGBICAAAEN4IAABoxg
-Date: Mon, 21 Apr 2025 14:30:19 +0000
-Message-ID:
- <TY3PR01MB11346DD203DEE8A30F1963DC886B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Z_0-iH91A4Sexlzj@shell.armlinux.org.uk>
- <CA+V-a8sS0TtS-TEdkQ8MB5F4JtzV9358Y9fmKe5MggGU+wP=4Q@mail.gmail.com>
- <CA+V-a8tbW2Zs6op20yRTcihSm1bcMC2dYnRXVCKRf=q4fymZyg@mail.gmail.com>
- <TY3PR01MB1134633A8CB82788BB98C6E6286B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <f27b0531-11dd-4074-9c79-172953d28292@lunn.ch>
- <TY3PR01MB11346FA4767B74B2CBB2CAFB786B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To:
- <TY3PR01MB11346FA4767B74B2CBB2CAFB786B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS3PR01MB9771:EE_
-x-ms-office365-filtering-correlation-id: da74ded4-e385-496f-815c-08dd80e10b2c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?ZmcnMk0WeJbo1FsF8C1j0JqQ0jHzYhoZYnRevKI407eiC2BnMb2cagWBt9IS?=
- =?us-ascii?Q?QXCUYfFNkpViJ3Fuxawk94JxuEGN2rpytP4jxDy6Ls/qe4h9/tLlS8C+sF1h?=
- =?us-ascii?Q?lxh/E09iA43xV/vIIQ1oaeQ1HV4fwUYDJOTbRwRNFZntbIuS0bVI3CLplFYA?=
- =?us-ascii?Q?Yl0h462L8rIPGIHWIRKdVNj4lO3idRhrY3R53FNkTWdGX0udRPzmWaVgZwAv?=
- =?us-ascii?Q?MMe3Rvg7l7j3nPrJoqcZZ8kiteU1NMqLTeR950rUwKNBMPTlKMpY6lBs0on/?=
- =?us-ascii?Q?x2Jbc8WyMT2rxOLUmCpnOVkVJfRrkCgmLpYcFOt5RRnXrrlcs/oFRxXnZGsW?=
- =?us-ascii?Q?hvH14w8NFiHyclbKL4zr9bhIZ9HsreVRP/Gjp2H0Ul25mQvhFvLm8N3096i/?=
- =?us-ascii?Q?gVHHdwRJcZ78h3vm4QBbmQGvP+hc+V1glXv6w+6vmgCUqrQioX0qak901poN?=
- =?us-ascii?Q?01oiJXgW3tUj+DmtnX77kGOxI+UQ25X6elq8WdFfsr1NtasKRXYASZp1p5Uu?=
- =?us-ascii?Q?fdteJQ7j97U84gPbbgnzUDnSZgdvhdV0uoVZ5X5rJHjhruTCb7gJ7rDGzuRX?=
- =?us-ascii?Q?CWU4YNOLuHmTSdsDzBCmYX/zvoArLEi9DAX5YcNDRtrngkoObUEWcuWtLgs5?=
- =?us-ascii?Q?MGV8Dv6D8datIRwnRziv+hwIl04jNiUWl+2kUVm0hpFvQx6riFkFYgTYMqqP?=
- =?us-ascii?Q?nr3yHJe77QDm92ThNWxv9Fu4SopVMdpwOoPJg7b7f+AM1TKFtzqT/DA4x/Ra?=
- =?us-ascii?Q?VzxCBYTtjC7n+0/SDIwwPF9/e+WdFVnvRpDbNkaEcKn5z8NgSD8bHWd3R+zy?=
- =?us-ascii?Q?ZgJ9YjGgPbEHxuCqBXVjAFP87b3QDYSqKqLvHTQ/pC743KZ3Qr+GeqbAFCaW?=
- =?us-ascii?Q?KAmRWlzO9hhmiMHeVLhclM83DMuEPAbDuxFqjImZ/ZBotPmW0d/kvxDuirFo?=
- =?us-ascii?Q?QIkztObhoYTVDph8A+ZFhsFLiNkzHCdzu4b2GB5FyXY+N0RoR7ETpcuiGBU1?=
- =?us-ascii?Q?k70iP8wKt/+pEDwnQvWyMxSF4EKwSTr7MzjXIGJE6jSnEOWODLtwnTMX2qHY?=
- =?us-ascii?Q?ydmfz7c4rPtyvrR+sgwvq8MtzHdm3cNAvOgMxn7lkm+ArXw3EqwGEymQr5jy?=
- =?us-ascii?Q?vZrlWFUqO1HnQh0EdpHUkKRs21Z8LYFvTqCFeZLgCfivL2nUMjufYI5Atemg?=
- =?us-ascii?Q?kSfD6XUsxZOxVPqiSSh+9S2cGG2XRbw+45zM94sbnYVjjT09H1psq5q7PMvX?=
- =?us-ascii?Q?UQ90i6liAr7aOx7qQBZ0EBj4M8DT0LMJvGIhAxte6irDvvOnWMrsSCwABAeo?=
- =?us-ascii?Q?yqrDAqqFTY7OxQaBmym/8R9B1tg/fXZFLXLILd8dtkzDgJgipjn43zZewolj?=
- =?us-ascii?Q?gxaRmvAv2cmviSFUzn/bHjcNUSl3+V1PwrTcpcrK9x02f4Isot1apZcJ1ANY?=
- =?us-ascii?Q?Wyln479Cl/iojRvkgnW6Ahdv3iI+RH4z25/3+n1nEEtMFeqL51mfeQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?71LcgRzd+w1FmcR6MhC22aC08B9qOv7lnRXHSXLg1WSv5g8I3iUWDYNzBBTn?=
- =?us-ascii?Q?BSRbPIDEsjjgjNGacgeyuOwRXn4cGl+taZXvQIenmKKfgvo9UiFNpbMDVLKZ?=
- =?us-ascii?Q?z9/JvauiMqbu2Er0yrd23fPvfi5+8DGArE/MQwhdL/zNddW97x7tZPLzrXeS?=
- =?us-ascii?Q?2S6cwaKYDT9ZSoJTNoaS0G7fwNyInkIjvzznaczZvLrDa/0QqwdAy66UMKpX?=
- =?us-ascii?Q?COpTmfs/edBU+5D6ADyTODUM/eZcXnfPgGhZnTWV0+Z/ZJ/4MUDAB16hjXVL?=
- =?us-ascii?Q?UvQmAUxypoI4oevRPvbaStx2QA0EftkLEI3Z9UWRG8xuXBo+TOGxp9T3jPWR?=
- =?us-ascii?Q?RDP8dhSDsbSBlet3NJq7sOI62T3zkJoNqKadivNJ70MCHcYVDyr1A5/qPQx/?=
- =?us-ascii?Q?YrzmNLfecS0+GzaPKzi2dB9geSQi15L6Taf4CkXI+tgSHBivPGEtdqjm2aiT?=
- =?us-ascii?Q?9EgoO2nDxlWyQyLZ0qxwUmDuQrw3C0/mgR5dW8HiUwzaNW+0tbsnkiDdOFgt?=
- =?us-ascii?Q?NA25kaoV/hZbapkn83ZZSXAkQJozzhAr4AHd7gIbPmHlCRXZOcQv7aAVNuKn?=
- =?us-ascii?Q?cPhFv5G+bzrKgoXbb8pCYX5Gicikz0DmWDL018wW5y2wTbSTUUGRG5CmaXWi?=
- =?us-ascii?Q?ekmN+56Rr7p/QbNHwyAjcGH9PXfWSxTKHuV2orEG2qFVOc0l4QFidCl1i+SY?=
- =?us-ascii?Q?VF9GDqCndNTyo0w8Rff8KfFRJv+yOsxvpBKmqHLMcWovoeUirauSf6/nkf/V?=
- =?us-ascii?Q?8jZWLHkeeCJgQXyYRjmvCaDAzFvkgO3UVgReY/MFVv694ViwZj7HaveHFePs?=
- =?us-ascii?Q?e4pM2RF/sPpj83p3uuQA3Osib8AIt50f6Ezkmuv2cSNevoI6Vx8KXmya6m5K?=
- =?us-ascii?Q?ioCGxwlGo7RnhI+J9AwiO1pMisvSN7x5p8f4hiCtaeGSPH7zE69Z5fpI7NX8?=
- =?us-ascii?Q?Z8aDqYwAj5vf1yHgF4qhD7+UXwn9htvibgqxhNzDMSXh0Xl/F0Nd4ULrTMff?=
- =?us-ascii?Q?7Zwl9cys+iTFr/tiqSP7egj+Doq4r9ZN4hRgqdd8tbnwmWW4WtrZePKu6WLy?=
- =?us-ascii?Q?TPF6jWNH8bS5UZH6FTQEZhIFxJFYh0Jl3FQ9pzUfReAePzHNcMzjoxv8uwa2?=
- =?us-ascii?Q?0KmhgXDBzDxBkTEQ04KRRQ+slyXOXGD5CcgkJ2GQaXyFOQulLj6h+9gBqHvO?=
- =?us-ascii?Q?Fhv1nZbrWubabScxhyemXxOwsmLdrvRUzzc10WOrv/nrXsALLz/zfMwj3bk/?=
- =?us-ascii?Q?9FtI4vVz3PHooEV2LlwjfS5744Wopv6nSxvz8GD4+nxkPo6r6enMvdm8hY9t?=
- =?us-ascii?Q?WGVHYKOS+3NOFAssMJrBU8YWU3ygEQtYTKiqBuP22nUvN45p5JDUy4ZomSwk?=
- =?us-ascii?Q?2j2TLwgPeEKnsM7Eje4j5DLrq/31IOIsyt5UQLKLmDNIKRjTkEoeRR63nr6o?=
- =?us-ascii?Q?WTGNlN9nzTQ/JyTHe4rYjqzQ2R19FvjJPO21mTfMPT2lwtmGYviTV1Xwzot9?=
- =?us-ascii?Q?QcMknAz8DPt3LeYY6HQ1Z8i5NQ8Pp0auKQT0FxHGFsDE396GNa7SboWX/tFv?=
- =?us-ascii?Q?BHqOxk9hMs2CB60LUZlnMuGwuwT6MelCDW7XLO8QmoPOZfhoTNrY819BD2tb?=
- =?us-ascii?Q?Yg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F6F1A3150;
+	Mon, 21 Apr 2025 14:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745246203; cv=none; b=bTQ7dDrUOx7TH57H+4kUzuGeexqCSscIrWp8jPY2n704D7q5MQmtQrIH8T039uNV5njGJr1CRet8hBYxpUBboSCaM2PqE4EEUzOdP8rh+cqcJPwd59TSqSwuKqbXkUcPleAstKduJR4EUDnhI0ialrtzwONuJx9c3pKiaJYBkk0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745246203; c=relaxed/simple;
+	bh=/2K7IVPpkiZRln/JiYfTiki7Tdib7ROz7ZBUlHe3nnc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l+JogfCQl6qR5NByP9WXXMN5wUIrskMpAuNsR539OALAjaK3ohSNg5EQ6QnFHldhlfGTZS2JrjS6lEYRK1HX/XRI+CmTx/01QnsMIdnMbw4rRJQZqxbiolp1WsSziuzhygydMR6e3mbVo7+NW+tV6l2O9GGsI19kPNdkkC3laVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B5wcgbML; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3d8fc9dbce4so6393475ab.0;
+        Mon, 21 Apr 2025 07:36:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745246201; x=1745851001; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/2K7IVPpkiZRln/JiYfTiki7Tdib7ROz7ZBUlHe3nnc=;
+        b=B5wcgbMLIxOJLkMrEXRNj2/ZVejvvjIegwX15slJACmi0aGgdfpHWEaM8Ng5NvlyrI
+         Jx9gpizcLwEi5cR1y/xHuAcbkdmfCctTwApdMyRe6WYeuZMFyfLZyXAXT0bc5vtba5Tn
+         swm2reyHYgb8MSl8CWVwMinfVldz42RZq0zbzn7Q808iZNB7KOD7Xp3cin8sQwmaeClV
+         V4ghkD9/ZUkqo09yUpcq8NxWdQf3S3hPOpuHzW8R94iI84/GQajRJe92ZBm49A7WBhTt
+         /BZHGFMxSv7fSqncMpVoM8JLG8qCHYdsV6ABG5vIRYN5pnNUkYvMR4H7tmdEkY+KdW1K
+         C5yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745246201; x=1745851001;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/2K7IVPpkiZRln/JiYfTiki7Tdib7ROz7ZBUlHe3nnc=;
+        b=a6PrlbOSym0OgQ16oiNGOJuNPv3OqaCzlgiw4A7OfauSi28Lcx7f9GmAcJYYVY4o/u
+         2Ug/XSoD5CKTr2MfhbHhIk6m7FhuenRzhSF/y71f76reJwvWsxGBfYesGDBl8ewRfYtG
+         BI3bFJJEjQUFqplU36bCfagC7zkfICYP0xt0NXHNvPAfsIG4JEvpWLAM7PI/Y8fKKx8l
+         5KzZZBikYrqTI/RY36rPjQsWsf8+gDA5lXF4UgTv+VLb35cNxtNNclhrPLbp/XgM22wX
+         PSmcTEBc1B7iH08sbUKUR6sYYe20dpSl5TyZTr4EA/FW3YcqRHQ4gXlvSbOm3BNOJxrs
+         iY/g==
+X-Forwarded-Encrypted: i=1; AJvYcCULY+u8nPWzUMkvI3pwPt/f8vrVQ++6hJLAjfqzyxmt1g3M3oiXpXJHJZVpIwsibs9+WE0aUw20X3mP@vger.kernel.org, AJvYcCUXYGEQHG/6rdf11kIRHBol3SiOFzE2luDckqy8ijgQZjBZXjFrZRECzWXX//lcA9Jbegixs8PhvLjx@vger.kernel.org, AJvYcCVO1xXpluOAACN23J31g5wF5edP+HbZA2IhH1DBa+K6PFXMqqrlIb1NLprrSCAGkzkx86sQ6SGIHHPQz3hwWg==@vger.kernel.org, AJvYcCX+vk4jVEl4poqQ/BKdegISVMX35yw0tWCG67TH0OtBw01wygGoeNNn6IgEczBzUjPTeYU3XJcAymdCRsL7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7s50+VqSK+yJpIEnpXz3z/KaQnVaFQe4ry2qG1sWEhP77lFQz
+	YueTBU0dN2TNsC11+1dbG0JS0qcqNewGjQz0dMV75W1YjE+5Szf0w66tYu7m7//BpDNHPWjdfgG
+	R+jX+w67XoupgcFumwhIPnE29hes=
+X-Gm-Gg: ASbGncvhv3Thpy9W1zcIHqZO/faQIGmqpKaPKrqNY7evRBZrqDRwYF9JCgTXVliIhzL
+	t5SjVwmJ7XN6HEpi39SWxIOHAlYfJ1rXarqAa7F9YRQ7/WgpJyBwPq8N+Kzzy6D7v39c6rthMBg
+	k0/PPw22FvFARyfz0QHP8DBoGY+cz1jcbIrq++VYcJ+0f4yFlKti/f
+X-Google-Smtp-Source: AGHT+IHzxhf+U9PepZ/IDthCt00hJJp/yp/MeNIIWjESRtsobvwQIbW+O9TvwfEKUN0l8hvXgbPjNieg66LpQnwCv54=
+X-Received: by 2002:a05:6e02:1649:b0:3d1:84ad:165e with SMTP id
+ e9e14a558f8ab-3d821ea72f8mr109372935ab.7.1745246200649; Mon, 21 Apr 2025
+ 07:36:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da74ded4-e385-496f-815c-08dd80e10b2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2025 14:30:19.9632
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sCPSJjYo13nVGFsqWs2PEVIPb5kbbwUgeOQkBRVqglflf49HG/i4p2GzU128fKIt7qbseTqV/LHajTY9yN0m4mP5VraAx4a27/QWXUZhmVU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9771
+References: <20250120144152.11949-1-johan+linaro@kernel.org> <20250127002026.GA2534668-robh@kernel.org>
+In-Reply-To: <20250127002026.GA2534668-robh@kernel.org>
+From: Rob Clark <robdclark@gmail.com>
+Date: Mon, 21 Apr 2025 07:36:28 -0700
+X-Gm-Features: ATxdqUEWUGd6HHT0L1UvSEXAA_vQSQxLK3W6gP0ue6F-PKOCMrzm5vSh8JiNzhA
+Message-ID: <CAF6AEGsfke=x0p1b2-uNX6DuQfRyEjVbJaxTbVLDT2YvSkGJbg@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
+To: Rob Herring <robh@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Jonathan Marek <jonathan@marek.ca>, 
+	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Rob Clark <robdclark@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
-
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: 21 April 2025 15:22
-> Subject: RE: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer fo=
-r Renesas GBETH
->=20
-> Hi Andrew,
->=20
-> > -----Original Message-----
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > Sent: 21 April 2025 15:02
-> > Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer
-> > for Renesas GBETH
+On Sun, Jan 26, 2025 at 4:20=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Mon, Jan 20, 2025 at 03:41:45PM +0100, Johan Hovold wrote:
+> > This series adds support for utilising the UEFI firmware RTC offset to
+> > the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
+> > Elite machines.
 > >
-> > > > On the RZ/G3E, the upstream support for testing S2R is not yet in
-> > > > a usable state. So for now, I'll switch to using init/exit callback=
-s and drop the PM callback.
-> > >
-> > > FYI, On RZ/G3E, for STR to work with mainline, we need to reinitializ=
-e the PHY.
-> > > I have done below changes on top of [1] to make STR working.
+> > Included is also a patch to switch the Lenovo ThinkPad X13s over to
+> > using the UEFI offset.
 > >
-> > Can you explain why you need to reinitialise the PHY? The MAC driver
-> > should not need to do this, so something is wrong somewhere. If we
-> > understand the 'Why?' we can probably tell you a better way to do this.
->=20
-> Without this change bind/unbind works. But for the STR case, without rein=
-itializing the PHY, even
-> though the IP link is UP, I am not able to talk the NFS server or ping th=
-e host properly.
->=20
-> I checked clock/reset before and after reset everything set as expected.
+> > The RTCs in many Qualcomm devices are effectively broken due to the tim=
+e
+> > registers being read-only. Instead some other non-volatile memory can b=
+e
+> > used to store an offset which a driver can take into account. On Window=
+s
+> > on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
+> > storing such an offset.
+> >
+> > When RTC support for the X13s was added two years ago we did not yet
+> > have UEFI variable support for these machines in mainline and there wer=
+e
+> > also some concerns regarding flash wear. [1] As not all Qualcomm
+> > platforms have UEFI firmware anyway, we instead opted to use a PMIC
+> > scratch register for storing the offset. [2]
+> >
+> > On the UEFI machines in question this is however arguable not correct
+> > as it means that the RTC time can differ between the UEFI firmware (and
+> > Windows) and Linux.
+> >
+> > Now that the (reverse engineered) UEFI variable implementation has been
+> > merged and thoroughly tested, let's switch to using that to store the
+> > RTC offset also on Linux. The flash wear concerns can be mitigated by
+> > deferring writes due to clock drift until shutdown.
+> >
+> > Note that this also avoids having to wait for months for Qualcomm to
+> > provide a free PMIC SDAM scratch register for X1E and future platforms,
+> > and specifically allows us to enable the RTC on X1E laptops today.
+> >
+> > Rob had some concerns about adding a DT property for indicating that a
+> > machine uses UEFI for storing the offset and suggested that the driver
+> > should probe for this instead. Unfortunately, this is easier said than
+> > done given that UEFI variable support itself is probed for and may not
+> > be available until after the RTC driver probes.
+>
+> This information would be useful in the binding commit...
+>
+> Seems like something I would say, but this is v1 and I have no memory of
+> discussing this. I would also say probe ordering is not a DT problem,
+> but sounds like an OS problem. Aren't there other things needing EFI
+> variables earlyish too? Do you really want to have to update the DT to
+> enable this?
 
-Typo 'after reset'->'after STR'
+I was debugging why RTC offset was not working properly for me, and
+eventually realized it was exactly this problem (efivars not avail
+when rtc probes).
 
->=20
-> Only change during STR is, on wakeup we need to restore direction (MII/RG=
-MII) of IO block for
-> ET0/1_TXC_TXCLK (IO attribute) in the pin control driver. After that look=
-s like PHY init is required
-> to talk to server.
->=20
-> Cheers,
-> Biju
+Hacking up rtc-pm8xxx to return -EPROBE_DEFER "fixes" it
 
+BR,
+-R
+
+> OTOH, it's one property, meh.
+>
+> Rob
+>
 
