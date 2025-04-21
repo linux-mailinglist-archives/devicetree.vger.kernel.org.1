@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-169042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C954DA95564
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:40:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359C5A95565
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 751D1188FB5D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:40:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AF7F3B4B9E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:40:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D791E833F;
-	Mon, 21 Apr 2025 17:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A991E990A;
+	Mon, 21 Apr 2025 17:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="grzTbOcV"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="wmbyjvsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8820D1E5B62
-	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 17:40:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6961E7C06
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 17:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745257220; cv=none; b=VMHhpgBOTY8nHDMREJQR0n2jCwVm+EgoE0+RMPtEMRpU8Bxa36hlPSZcbhv85HCdXS7wEz2QEhScfuWa0RIOqMdlcWzW6tUhUBCs28psWlef9XWuq3F/Y+fTe1ASNIIihr91P4kIhENMtVe1TSvjkq099KBIa/lDrThBaqUv29g=
+	t=1745257221; cv=none; b=CDswatOd7ugH65R7CBMR98oHK+NaOafrhk5LX2stMKAJESBBghLkBHY0iMrh+H4TdRGwBhgsYxLldfByHbqIkSxHM1pWRAOFbLerCOtORblzJgEZh1BpTjh2fzP+LDu6B7hrxVKuhyfQ6sI11MSDuyqhuEGde+oC6SyEpsDfaqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745257220; c=relaxed/simple;
-	bh=66L2iY9H9WYl2CXA3EnQx1lmEezQGIEG61bPGBz+f9k=;
+	s=arc-20240116; t=1745257221; c=relaxed/simple;
+	bh=PDMX/gz7bhm8/YvqOGZSqtmA9Ej+TwrV8JeRfvfYLxM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVDspzMb2B/kx0TKeThWxLJg+dfW7Oq45xQQVBbt12NUPMEXOf0ZqQqjWBCvpQhDk71ShUPQDMeKQqpqaUoNVc9Deey/c7G9IkROc7Qly3vnoyyx5PLmVkh6DhUQJPWoZuQzasw5pL8udOS2822z3TMqtFCGE62wMia5XoVGdn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=grzTbOcV; arc=none smtp.client-ip=209.85.219.45
+	 In-Reply-To:Content-Type; b=V0HUKt9yIYYtZdJ4ML+G/sNyb1CEo6XAzSii0S8F+Eku4A2QDNgwmACPnUZsAvjZaGDOhcA3ttUi40LwSnfONyOM9pRoAzwohsCDUWG6vly9H8iVceUIx7I51Q+q08n7C43wj9FWwUqYuwkppR4UP9NwOS6TlAdOCWZFJ/wyIz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=wmbyjvsf; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6e8fc176825so35471496d6.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 10:40:17 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c55b53a459so425683985a.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 10:40:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1745257216; x=1745862016; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1745257219; x=1745862019; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aKl9K7y0OZr7wC01nlMRwEWzh4W8ODSSw6dPpbMz4Bw=;
-        b=grzTbOcVPSt+k4KPzGJzpU1f2Plae2v39zSx8n+wfNtrzMewOMbehuVhHkoPFJSPCq
-         D5JM2RPHFzb4wYUQpbpfTj9QyV6b8Jp/Ypm8W52DEs9CtVsTCOUHX7Bdd/scFkkposgL
-         L6TG18Q8SPPqOaiId2lttpnJbLdXGqoCPRcTL3Sd1OHwn3OwLoxXQXMbvzkqKsRxtAfQ
-         WdOgZgqtcoeRCvUDulCPC7MFVqQ03Hk1LypCPzehPr3V4lERTtWP6Pklr9SD5z98tp9n
-         l8W5ooC6NHMYJiRuuL9YFByE412xyb2Zhkk83TizjFxOlWT3mMvNmaGlxfOkFV2uMs6H
-         zacg==
+        bh=/kIVu58H//mZx9i9dCRDIy5r3dYFEIXqq3Oo6gJVw3Q=;
+        b=wmbyjvsfDSLZSi5D5NQm/snAH4oBfxM2NwSeNukHmdcHYEzXSYxi4YyMK0ipZyREZ2
+         gvvZ0lGyp979aEEphpQ599cOd77V5Csu/E7sj4pHJGII0JETH9HStHYv6UfrUL2R0TLR
+         BrdjG98Ojq5NPeutZDC57G7SG4/GZtxeKSZf17l0021uUFeEgwhYDofWUivO1SH4j7qW
+         Ax/ktckmhUJKs8kt2bMRS/FEHtwsZaT8Ow7ObzTbO431LKC0kE3w0CVgQ8qMP7+Fxxce
+         YJxDCTaklsPMDR+oiJTjwCIvh+vNSde+PVkBm0befcURowYo6OY84DQ+bUQrnnceh5uq
+         zNrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745257216; x=1745862016;
+        d=1e100.net; s=20230601; t=1745257219; x=1745862019;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aKl9K7y0OZr7wC01nlMRwEWzh4W8ODSSw6dPpbMz4Bw=;
-        b=H3mxnRGiFpellyh2pEa1B3dDcfZ3TNoG+JSnjFgc0fM5ut7nzHmk1P0/o43ki4Knsd
-         r5LvfdwKBsGthfbEATEuleNzCgjB357UznG4qD5XJtUTGg855C015JF2IZSSW63FOl75
-         bIh0jh4ykSAdNB5YCzJPjO8xGj2j2RZfft9ZQj3kbzuI3lbjCk56XQ0KSNar69hOBws0
-         2N4Blei8EWSEtqg2rUqCb/O3XcKu0XsgEwAa0SRwQZhdrqvargTDRLoCK+w2jiFAVgcp
-         SeHGV+H03UPxkm5YXa9zO72P5dgSlgAtGdILFGdnbMg1Vtrk+2ak0+Sn7t/BiR80+sM/
-         2Cbg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUP3Ga4nYKi6LzgKYh9bI0XbNL2TBKzvbJugkZvNWZwZWKuEG6XNj/kvWh9xupXIJMxTCN68IQwBhK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrPrvDeu6bo/HOAc7ITt30roVB/1Fgxasb/50hpJ5MA7PTLtiZ
-	ZMSNkMVswYIqJB2wVAcEMmOZ1qMgm3D0/Wm9SNaf+xTg3bFNiwkDaFPlUcyJsPo=
-X-Gm-Gg: ASbGnctcyppLlNZWjO/9k6Tcv9hEzK3KzcDLeculdW3OyphOOjVwXdxeNtUKMutZcDo
-	QRJ1Y/5peHNFgH8MHYX0U8At15A6Gy4WjAPeTbjyJ5XkTGaQiu1i3QFD0vZIOsaRCUyHIC+w4x4
-	BIGhIYysFKP32uP4Ax5nUyacuNon1vCbGTX8NVI7C6ZaT4xo+4DCpa2SM9qJotB29gK0oX5dMrZ
-	wZYbePY2QPXmAALX+yxXMfCm3Supf0jAI4ZNdk00ftBHdU1tgBXmxm9/11TbXItF+yAQ21Niv/6
-	xXFJ9ejKTQfZ9V0qoUmlzc6ad4V+7TtfLBzzetZ+pTgoR6LQ6vRrb2wCjHjIkZWMqzZf/4dObGz
-	ceLyj
-X-Google-Smtp-Source: AGHT+IFKSFfC6wpoUNvWav/Eqan/OSxBfbY3a7qMaAdUxlTtjGB0fwBAnW5re7pY3Pjp5k2BOvypNA==
-X-Received: by 2002:a05:6214:500c:b0:6e8:9b52:7a1d with SMTP id 6a1803df08f44-6f2c450edd4mr263991346d6.8.1745257216244;
-        Mon, 21 Apr 2025 10:40:16 -0700 (PDT)
+        bh=/kIVu58H//mZx9i9dCRDIy5r3dYFEIXqq3Oo6gJVw3Q=;
+        b=r9tmnuzcvynUv8pYBh6Ugmkhtz5Hfs5fjCn1YZg5x+y8bWuactKfoDwxBt5GR1t01f
+         HT1YC+Z/hZiMv7CGmkPQjDVHDPqsh1SAo3mz1NrlbQYqVlPK//lEKIWVEPoeHqw/9agu
+         nw2yHP2k0G9H75rmXClWSwLBeXnAzyTQCueK3XqR1fEeiYcO5viMcOXX0J7vLOZgirJX
+         GM3skpO6JLr7K0/SNN9vGvrP5OB0tKp5JpBaRJOAkf1Ejx+lhyHk1ZYLyZASH3ivugY4
+         wg4IdmWJCit/8NHkZXlwtHWO7hXvlxD4uwQoPOgHlX5mcn8Moz/qNNaGbUp+n6Xy90av
+         FKOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWXOrWTVNgpdFRCh10hz05X8eylHsta2RG921CrTmebEf01JIBv+F8J/2l/rpWcfMt33Ii/bro44bDV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8VT59KGlmF99uVXlrqTW0c4iIPDi8cBs8hEcPOKvBnHJKhFf5
+	LEkZ1t2l0QMH8N84QK29vBc/DKJgmkAE1I1/EUJ4cD4kMXPZsiTfnh8+9Yy2DOA=
+X-Gm-Gg: ASbGnctpMhAdRSBZUguqaa61aLuQAc+ZDgsxF3UpuMS+DcsIM/EWB935Q4vlTGcTkC3
+	wVzpmDZF2CxxkO7FQrTkg7uDten2S0nqlyKryyKBpncqi+y4TIrZBptfJik0QE++TNvb8IS7snt
+	NkqxftbLoScuAJgQ4DoTfXoQPealr5qWFbYYHE9JQFMpIqRJcCkMWNEiLwQYJpBlm58pmtCHVdI
+	8wi80YPIWTIJ144SUYIs0U3wSbNEP1+CsocYiSA3dHdw3kPq1g8MeJhNQoPMacIcwfkeYjGqg7B
+	eS5/KT6lsexxKIaRR9gnb0VZgRZpzSazfP1iX1m3NjcqrRsVqZzzxZ6wkQRXuZSqi650qoabVRW
+	UCKkbmr6A+YYXVJY=
+X-Google-Smtp-Source: AGHT+IF+vsdmKg2vXpeajIoJuLo47wQiw/dv7wnI49ZF4AY0SLVO/f7XcVPIz2huHaNJ7F/AqME9ng==
+X-Received: by 2002:a05:6214:500f:b0:6eb:2f7a:45b0 with SMTP id 6a1803df08f44-6f2c46baaaamr274256056d6.38.1745257218647;
+        Mon, 21 Apr 2025 10:40:18 -0700 (PDT)
 Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f2c2af120esm46284596d6.1.2025.04.21.10.40.15
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f2c2af120esm46284596d6.1.2025.04.21.10.40.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Apr 2025 10:40:15 -0700 (PDT)
-Message-ID: <81788fbe-1344-49c4-9619-ea95956ddf15@riscstar.com>
-Date: Mon, 21 Apr 2025 12:40:14 -0500
+        Mon, 21 Apr 2025 10:40:18 -0700 (PDT)
+Message-ID: <2d086fee-47d5-4be2-8b86-bf1cac6af803@riscstar.com>
+Date: Mon, 21 Apr 2025 12:40:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] riscv: dts: spacemit: Acquire clocks for pinctrl
+Subject: Re: [PATCH 2/2] riscv: dts: spacemit: Acquire clocks for UART
 To: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
@@ -92,38 +92,155 @@ Cc: Haylen Chu <heylenay@4d2.org>, devicetree@vger.kernel.org,
  linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
  linux-kernel@vger.kernel.org
 References: <20250419-05-dts-clock-v1-0-1cce5d59aba2@gentoo.org>
- <20250419-05-dts-clock-v1-1-1cce5d59aba2@gentoo.org>
+ <20250419-05-dts-clock-v1-2-1cce5d59aba2@gentoo.org>
 Content-Language: en-US
 From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250419-05-dts-clock-v1-1-1cce5d59aba2@gentoo.org>
+In-Reply-To: <20250419-05-dts-clock-v1-2-1cce5d59aba2@gentoo.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 4/18/25 10:32 PM, Yixun Lan wrote:
-> Pinctrl of K1 SoC need two clocks, so explicitly acquire them.
+> The K1 SoC features two clocks for UART controller,
+> Acquire them explicitly in the driver.
 > 
 > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->   arch/riscv/boot/dts/spacemit/k1.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index 584f0dbc60f5b0d078c7127cc4021ad6022cb182..153fd1160182b42fe1a2f7f042c9c1da90f63b0c 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -450,6 +450,9 @@ uart9: serial@d4017800 {
->   		pinctrl: pinctrl@d401e000 {
->   			compatible = "spacemit,k1-pinctrl";
->   			reg = <0x0 0xd401e000 0x0 0x400>;
-> +			clocks = <&syscon_apbc CLK_AIB>,
-> +				 <&syscon_apbc CLK_AIB_BUS>;
-> +			clock-names = "func", "bus";
->   		};
->   
->   		syscon_mpmu: system-controller@d4050000 {
-> 
 
-This looks good.
+I had an almost identical patch queued up to do this.
+
+I think I'd mention explicitly in this description that you
+are removing the clock-frequency property from all these nodes
+(it is required to do this, otherwise the clock properties are
+ignored by of_platform_serial_setup() in "8250_of.c").
+
+Two more requests below.  Otherwise this looks good.
+
+If you address all three of my comments, feel free to add:
 
 Reviewed-by: Alex Elder <elder@riscstar.com>
+
+> ---
+>   arch/riscv/boot/dts/spacemit/k1.dtsi | 36 +++++++++++++++++++++++++++---------
+>   1 file changed, 27 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index 153fd1160182b42fe1a2f7f042c9c1da90f63b0c..415e1c3e1c78db987cbb65759adc26e98aaa24d3 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -360,8 +360,10 @@ syscon_apbc: system-control@d4015000 {
+>   		uart0: serial@d4017000 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017000 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART0>,
+> +				 <&syscon_apbc CLK_UART0_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <42>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -370,8 +372,10 @@ uart0: serial@d4017000 {
+>   		uart2: serial@d4017100 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017100 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART2>,
+> +				 <&syscon_apbc CLK_UART2_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <44>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -380,8 +384,10 @@ uart2: serial@d4017100 {
+>   		uart3: serial@d4017200 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017200 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART3>,
+> +				 <&syscon_apbc CLK_UART3_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <45>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -390,8 +396,10 @@ uart3: serial@d4017200 {
+>   		uart4: serial@d4017300 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017300 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART4>,
+> +				 <&syscon_apbc CLK_UART4_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <46>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -400,8 +408,10 @@ uart4: serial@d4017300 {
+>   		uart5: serial@d4017400 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017400 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART5>,
+> +				 <&syscon_apbc CLK_UART5_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <47>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -410,8 +420,10 @@ uart5: serial@d4017400 {
+>   		uart6: serial@d4017500 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017500 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART6>,
+> +				 <&syscon_apbc CLK_UART6_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <48>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -420,8 +432,10 @@ uart6: serial@d4017500 {
+>   		uart7: serial@d4017600 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017600 0x0 0x100>;
+> +			clocks = <&syscon_apbc CLK_UART7>,
+> +				 <&syscon_apbc CLK_UART7_BUS>;
+> +			clock-names = "core", "bus";
+>   			interrupts = <49>;
+> -			clock-frequency = <14857000>;
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -431,7 +445,9 @@ uart8: serial@d4017700 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017700 0x0 0x100>;
+>   			interrupts = <50>;
+> -			clock-frequency = <14857000>;
+> +			clocks = <&syscon_apbc CLK_UART8>,
+> +				 <&syscon_apbc CLK_UART8_BUS>;
+> +			clock-names = "core", "bus";
+
+Please insert the clocks and clock-names properties *above* the
+interrupts property, as you did for all of the above.
+
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> @@ -441,7 +457,9 @@ uart9: serial@d4017800 {
+>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+>   			reg = <0x0 0xd4017800 0x0 0x100>;
+>   			interrupts = <51>;
+> -			clock-frequency = <14857000>;
+> +			clocks = <&syscon_apbc CLK_UART9>,
+> +				 <&syscon_apbc CLK_UART9_BUS>;
+> +			clock-names = "core", "bus";
+
+Same comment here.
+
+					-Alex
+
+>   			reg-shift = <2>;
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+> 
+
 
