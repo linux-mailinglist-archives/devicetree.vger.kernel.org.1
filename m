@@ -1,87 +1,157 @@
-Return-Path: <devicetree+bounces-169036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798AEA95399
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:35:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC791A953FC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 18:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61FAD18943A0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 15:36:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4AD16D094
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863161DC9B1;
-	Mon, 21 Apr 2025 15:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7235D1DFDA5;
+	Mon, 21 Apr 2025 16:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luyQ7B4u"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="GjLXh95a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594EF1DA61B;
-	Mon, 21 Apr 2025 15:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB31B1C861F
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 16:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745249747; cv=none; b=ZX/Ub4lPEKoZDXQWp7mIbnHrsTZV8WLrM1RYOlpJ0mFrifXjvuI1FNMY0I0+KnYfFhHETzSYMMrzIdvfMlAmiky7MJFwcu6alK2whK08jewP5PeUeBRQqebBSX+yISSmSvLUmv9LOkzgVTOG7fU4+PrHt8LCneoT6EEKsWvAxSw=
+	t=1745252724; cv=none; b=MZUkGK7Tz+qwZZ6kVOqg5JmPKII0ADJncyW24/JXFBLVtetkpjA5+rUDOexNd6neVv78EISRpZkvf+Lzk6rh/z2jzteFZaLwn3R05DJtS+Wn33RFwTMt85T7SUGw7c/1XV3aeMTVfg7ZPDYaAkXPtKtcOqyLUNASDJOjBCmtsG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745249747; c=relaxed/simple;
-	bh=CNcB+iCvJ2cwygcDuB+sL6/PpkRT2R0AC4Opt0P+wZY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=geH/faP0VNuJdlQmIn68KEVSUnGUPjCF7ngqRyISlluN3e9F2VRKbIIACJpx6TrTPZQuF5SGCIBpR93q/jdfhj1hcD018cf9Uhij0w3LErAj9691Q0Z/cCmy4kd7Wm57Q6Q6mGoxzXoIGO7LVTJHkBSRAXuNMMs1//so6qbtC9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luyQ7B4u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8701DC4CEE4;
-	Mon, 21 Apr 2025 15:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745249746;
-	bh=CNcB+iCvJ2cwygcDuB+sL6/PpkRT2R0AC4Opt0P+wZY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=luyQ7B4ugsLZEkcEvRDvCYtKngIAPUNJ3ra/MclmXQCfCzUyYWSiOx+Dy26TaflBc
-	 wsJbDTLGaU+Tih4pdNOvoUFF1sRnUfymDhBzTz2hS2mQ05xXnBWsQLhRvtkrniFiYG
-	 1yN/i3lPVIvGF7sJ99p93/M/3sleWsqjYVnEehNgK8PtUgccpm2TIWs0l79w717x1L
-	 zmV2/fVl8itCllUUupT9VAegHm7JqlECG0Ko6gIA8wli9C2LBTar+dL4y2Jby1yBia
-	 Ha6aBTGC5rDWpd6NKC96Jth35B3XYN7sJdEfrlq0LVDo1mOO0nEho2gR9dyyEgebk0
-	 x9LI8aM3xSj0g==
-Date: Mon, 21 Apr 2025 10:35:44 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-	Larisa.Grigore@nxp.com, thomas.fossati@linaro.org, S32@nxp.com,
-	ghennadi.procopciuc@nxp.com, tglx@linutronix.de,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Add NXP System Timer Module
-Message-ID: <174524973711.2547826.10808274774618846859.robh@kernel.org>
-References: <20250417151623.121109-1-daniel.lezcano@linaro.org>
- <20250417151623.121109-2-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1745252724; c=relaxed/simple;
+	bh=athkDzxW7iFCfzDVR6ahqyWmKXvvfjxgQ3Yu7ffSaU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tGZ1Gx/0oKfS/RKv8KASUhiQy3XgQtYkVTWFOe3SfqYea8AZbg7VrltbYUrIcBp5PlH3gwngY9WEV45iWu/gPHH2dptt6KAEToU68qXNUjOnIBproS618jYHzKnGtF1Bh5u4rXTVb9pcUxmqccm/9W4gb56/P/dHVX+NW1BtWis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=GjLXh95a; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1745252714;
+ bh=esv+rDKVix0ldoFrtD4D3MGlv5tCJf22iS0JUE37zVs=;
+ b=GjLXh95aq8BWXosfr7bDOMZ2F62TVlpUQeBIUQLK6pvfDgZ5f24/eFjgg4I3/h6yuj7H9PiAJ
+ 16cZN7i2lXPC/jQ+mr7UBXJFH9BjiBoxShaab985yLxGlfpQ8S0UnPAOB+K6UB7+ZfZHlmwsZsp
+ jCPjsA2vzyUastTTNnsEY85tj2T9yk2KKViFBp41oUD8N1BvYozuTCeAQ7rqsijaiHgYj6nP5tG
+ 9eUjorlY9VIIQ0rPrG8vecWF4IseeiBLGS5nZ5a+OTF1DBxYi0XCfIydtdfnIHkO4ackVpmAF91
+ 7rpLMvX1w8S2J5vIclSX9A0uIcn4t6c7W/LwuUQpyzkw==
+X-Forward-Email-ID: 680671678a5cda485177d286
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <18705cc3-ef2c-49f4-b284-bca2308950f9@kwiboo.se>
+Date: Mon, 21 Apr 2025 18:25:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250417151623.121109-2-daniel.lezcano@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: Add support for rk3562 dwmac
+To: Kever Yang <kever.yang@rock-chips.com>, "heiko@sntech.de"
+ <heiko@sntech.de>
+Cc: "linux-rockchip@lists.infradead.org"
+ <linux-rockchip@lists.infradead.org>,
+ Conor Dooley <conor.dooley@microchip.com>, Jose Abreu
+ <joabreu@synopsys.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, Rob Herring <robh@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, David Wu <david.wu@rock-chips.com>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Eric Dumazet
+ <edumazet@google.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20250418095114.271562-1-kever.yang@rock-chips.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250418095114.271562-1-kever.yang@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Kever,
 
-On Thu, 17 Apr 2025 17:16:18 +0200, Daniel Lezcano wrote:
-> Add the System Timer Module description found on the NXP s32 platform
-> and the compatible for the s32g2 variant.
+On 2025-04-18 11:51, Kever Yang wrote:
+> Add a rockchip,rk3562-gmac compatible for supporting the 2 gmac
+> devices on the rk3562.
+> rk3562 only has 4 clocks available for gmac module.
 > 
-> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-> Cc: Thomas Fossati <thomas.fossati@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/timer/nxp,s32g2-stm.yaml         | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/nxp,s32g2-stm.yaml
 > 
+> Changes in v3:
+> - Collect ack tag
+> - rebase to v6.15-rc1
+> 
+> Changes in v2:
+> - Fix schema entry and add clocks minItem change
+> 
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 3 +++
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml     | 1 +
+>  2 files changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index 0ac7c4b47d6b..a0814e807bd5 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -25,6 +25,7 @@ select:
+>            - rockchip,rk3368-gmac
+>            - rockchip,rk3399-gmac
+>            - rockchip,rk3528-gmac
+> +          - rockchip,rk3562-gmac
+>            - rockchip,rk3568-gmac
+>            - rockchip,rk3576-gmac
+>            - rockchip,rk3588-gmac
+> @@ -51,6 +52,7 @@ properties:
+>        - items:
+>            - enum:
+>                - rockchip,rk3528-gmac
+> +              - rockchip,rk3562-gmac
+>                - rockchip,rk3568-gmac
+>                - rockchip,rk3576-gmac
+>                - rockchip,rk3588-gmac
+> @@ -149,6 +151,7 @@ allOf:
+>              contains:
+>                enum:
+>                  - rockchip,rk3528-gmac
+> +                - rockchip,rk3562-gmac
+>      then:
+>        properties:
+>          clocks:
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 78b3030dc56d..7498bcad895a 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -83,6 +83,7 @@ properties:
+>          - rockchip,rk3328-gmac
+>          - rockchip,rk3366-gmac
+>          - rockchip,rk3368-gmac
+> +        - rockchip,rk3562-gmac
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This compatible does not need to be added in snps,dwmac.yaml because
+snps,dwmac-4.20a is already listed in this file.
+
+Regards,
+Jonas
+
+>          - rockchip,rk3576-gmac
+>          - rockchip,rk3588-gmac
+>          - rockchip,rk3399-gmac
 
 
