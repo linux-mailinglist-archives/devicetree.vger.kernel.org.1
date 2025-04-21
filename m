@@ -1,161 +1,147 @@
-Return-Path: <devicetree+bounces-169135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D40A958D8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:04:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ADC2A958DB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AD7E3B6522
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:03:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 626BD7A74C1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1665E21D3F3;
-	Mon, 21 Apr 2025 22:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52833221FA0;
+	Mon, 21 Apr 2025 22:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ToZ+8yHC"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="a8BO/IX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE74C21D018;
-	Mon, 21 Apr 2025 22:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7633221F0A;
+	Mon, 21 Apr 2025 22:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745272932; cv=none; b=sDIU1WEBEBLkULaPauOLhMuycKLHRgYwWtEqBXh/Ds38+HFUSc4hJfghI0pSAKUa2cBNJwOPikX6O3EZJpR+4H2Bv6ovou4xFUYuTA1wpYesp6uDWpNpI1y+u47r1T3dkD/LR185qAgT3JuQIQzFGxdVq4LkOin/rmAiv6Bzipw=
+	t=1745273018; cv=none; b=ESPd8xWdZQ5ODy1Ofgjt4E4N7TJIF13S6TmeNh3iVpAdkTy1EWQovBjt4oDtxRPMPkxRLIIg+0iJCBwsUFwcCHiMz7YLz0FCv6eFaI0pseZ2rr+h7FS8NWk7Qx0BuqeakV9hjfOwixyVhkp28R7MwQWJHef6e9MaYkP+dkobQC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745272932; c=relaxed/simple;
-	bh=pnTTNOLSkxWgo8Qpo1kxsqzHcI0XFENBkLcqQ6rfLjM=;
+	s=arc-20240116; t=1745273018; c=relaxed/simple;
+	bh=L4Vm17wQXJt18C/sghPsQAjFU4r6TeOLbu1yYf7tbM4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k2p4J2RDAbAOHUuO6MqboJZcuskyLLbApjhMR/9py7vlHgLtYiRWNr7N3vRPoJc9710Bmk9m0icQBMuPAlyZQ99NhbcEw35itWfRKdvoaJYlqWOM66LmDjoD2WHsX41DNluVO/0+mvBSFmUH/7yHjjp48P9AFnDZWCQ+cHz9h2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ToZ+8yHC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D492C4CEE4;
-	Mon, 21 Apr 2025 22:02:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745272931;
-	bh=pnTTNOLSkxWgo8Qpo1kxsqzHcI0XFENBkLcqQ6rfLjM=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=aibYZGcBo4VYtKo29jU91CwNonLiggMk1sFEWnmxWxrmyH1j08iiGOBMDQZX5oNIfZjfkDpwcg23P7FKFwz7SPbIbb81UhU6VtMktZXvTZVE5yLHaKbjtpkKqhttVFZSFlWBINPfMW7Q1L1Mw3nn8OrVWE9cIAbOqArqaNkvRBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=a8BO/IX5; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BBB10F01;
+	Tue, 22 Apr 2025 00:01:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1745272887;
+	bh=L4Vm17wQXJt18C/sghPsQAjFU4r6TeOLbu1yYf7tbM4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ToZ+8yHCXCux86okMYpevI8uPxvYaOKGoiuyDBuvYwL1Xq4SP1HQVZus9Zp2LQhE/
-	 EJFlAdapCK7Q4KScyiexuZefQh0+M2nNbrn0eyJOzF206UZs7tq8E3sazeRHJyjGAr
-	 vNOZb9rgoqWfORJyQIxWBj7ZylZpyl+xac5TRHpw4rrJm9QK7Ja6RClIIfNH29C+uc
-	 JmT3AGNCyAsIhObUVWxaf7H7ad5gPlsN5g+s7O+H0Cd7SWkLdaY2mT0ojHaaIdwsju
-	 nLyAz6nJyrvFhpHjENv20eKBrl/oEVaXrkx+uOzeSfqHyrhGi8yRvAWk7396pM5kW1
-	 ju4Tnxv35Tm2g==
-Date: Mon, 21 Apr 2025 17:02:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shubhi Garg <shgarg@nvidia.com>
-Cc: lee@kernel.org, alexandre.belloni@bootlin.com, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: mfd: add bindings for NVIDIA VRS PSEQ
-Message-ID: <20250421220209.GA2975150-robh@kernel.org>
-References: <20250416120619.483793-1-shgarg@nvidia.com>
- <20250416120619.483793-2-shgarg@nvidia.com>
+	b=a8BO/IX52LNbxPTSI8RPpLv5mqe8JTQvgdkJE/68qzmONPMzE3XLo2f2aLcNddFhs
+	 TIkb7OvPuB/wBhVg65fCTnrbZfunWW3rzBsciPMHY1HV6VzyCJg7jfj23gr5Zvr3ic
+	 UhiAttG0hGeDYco1X6yNOI1cAIHyF2W/EsxSH2Kw=
+Date: Tue, 22 Apr 2025 01:03:32 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v2 02/17] mfd: adp5585: enable oscilator during probe
+Message-ID: <20250421220332.GU17813@pendragon.ideasonboard.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+ <20250415-dev-adp5589-fw-v2-2-3a799c3ed812@analog.com>
+ <20250421085758.GB29968@pendragon.ideasonboard.com>
+ <aadec5eae6645e3e9c2f8f09dcf842510515122f.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250416120619.483793-2-shgarg@nvidia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aadec5eae6645e3e9c2f8f09dcf842510515122f.camel@gmail.com>
 
-On Wed, Apr 16, 2025 at 12:06:15PM +0000, Shubhi Garg wrote:
-> Add bindings for NVIDIA VRS (Voltage Regulator Specification) power
-> sequencer device. NVIDIA VRS PSEQ controls ON/OFF and suspend/resume
-> power sequencing of system power rails on Tegra234 SoC. This device
-> also provides 32kHz RTC support with backup battery for system timing.
+Hi Nuno,
+
+On Mon, Apr 21, 2025 at 01:14:28PM +0100, Nuno Sá wrote:
+> On Mon, 2025-04-21 at 11:57 +0300, Laurent Pinchart wrote:
+> > On Tue, Apr 15, 2025 at 03:49:18PM +0100, Nuno Sá via B4 Relay wrote:
+> > > From: Nuno Sá <nuno.sa@analog.com>
+> > > 
+> > > Make sure to enable the oscillator in the top device. This will allow to
+> > > not control this in the child PWM device as that would not work with
+> > > future support for keyboard matrix where the oscillator needs to be
+> > > always enabled (and so cannot be disabled by disabling PWM).
+> > 
+> > Setting this bit unconditionally increases power consumption. It should
+> > only be set when needed.
 > 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
-> ---
->  .../bindings/mfd/nvidia,vrs-pseq.yaml         | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> new file mode 100644
-> index 000000000000..d4c5984930e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> Well, not sure if the effort for that pays off... The only usecase were it would
+> make sense to do that would be for PWM. For the other devices (and assuming I'm
+> right with the GPI case) we need this always set.
 
-First I've seen this...
+For the keypad, can't the device be kept powered off if the input device
+exposed to userspace is not open ? And for GPIOs, OSC_EN isn't needed
+when all requested GPIOs are configured as outputs, as far as I can
+tell.
 
-According to this[1], you shouldn't have 'Copyright (c)'. But better 
-check with your lawyers.
+I'm fine addressing this issue on top of this series.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/nvidia,vrs-pseq.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Voltage Regulator Specification Power Sequencer
-> +
-> +maintainers:
-> +  - Shubhi Garg <shgarg@nvidia.com>
-> +
-> +description:
-> +  NVIDIA Voltage Regulator Specification Power Sequencer device controls ON/OFF
+> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> > > ---
+> > >  drivers/mfd/adp5585.c | 16 ++++++++++++++++
+> > >  1 file changed, 16 insertions(+)
+> > > 
+> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> > > index
+> > > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..f17b5f2474cac6a403556694066f438288
+> > > 264a49 100644
+> > > --- a/drivers/mfd/adp5585.c
+> > > +++ b/drivers/mfd/adp5585.c
+> > > @@ -110,6 +110,13 @@ static const struct regmap_config adp5585_regmap_configs[] = {
+> > >  	},
+> > >  };
+> > >  
+> > > +static void adp5585_osc_disable(void *data)
+> > > +{
+> > > +	const struct adp5585_dev *adp5585 = data;
+> > > +
+> > > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
+> > > +}
+> > > +
+> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > >  {
+> > >  	const struct regmap_config *regmap_config;
+> > > @@ -138,6 +145,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > >  		return dev_err_probe(&i2c->dev, -ENODEV,
+> > >  				     "Invalid device ID 0x%02x\n", id);
+> > >  
+> > > +	ret = regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
+> > > +			      ADP5585_OSC_EN);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable, adp5585);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > >  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
+> > >  				   adp5585_devs, ARRAY_SIZE(adp5585_devs),
+> > >  				   NULL, 0, NULL);
 
-Wrap at 80 char.
+-- 
+Regards,
 
-> +  and suspend/resume power sequencing of system power rails for NVIDIA
-> +  SoCs. It provides 32kHz RTC clock support with backup battery for
-> +  system timing.
-
-Nothing in this description indicates it's also an interrupt controller.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,vrs-pseq
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +    description:
-> +      The first cell is the IRQ number, the second cell is the trigger type.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        vrs@3c {
-> +            compatible = "nvidia,vrs-pseq";
-> +            reg = <0x3c>;
-> +            interrupt-parent = <&pmc>;
-> +            interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +            status = "disabled";
-
-Examples should be enabled or removed.
-
-> +       };
-> +    };
-> -- 
-> 2.25.1
-> 
+Laurent Pinchart
 
