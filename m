@@ -1,180 +1,241 @@
-Return-Path: <devicetree+bounces-168911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B81AAA94DEE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:18:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF887A94DF6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D9463B38F8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:17:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A177F3A49E8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15BA1D5178;
-	Mon, 21 Apr 2025 08:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E391C8603;
+	Mon, 21 Apr 2025 08:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j3Iz+LpB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XfC71U7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524081A38E1
-	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8162110;
+	Mon, 21 Apr 2025 08:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745223376; cv=none; b=lLvGXPGahnCxNttPw0OMTbAHXAPZf4TzHBAsnyfY7tB4WxvC4sv+BRSbTfD2lYx+j9P8yimYTWGn+PWjhI9c5Op1SUwh845NlcKG8mIqxwQ8b4s0HEe97S94yzqEgrxHBaRX6vyzp4HOILjnOsEKmQ2xfM00htjp1TF7xQ6FcaI=
+	t=1745223616; cv=none; b=VGlbeA0yhji68Atu+YDXvJkLPNz/bzbkYNn6UEHy4Kgmtc7e54639C/B437ng8B5cGMoEAUXPADoTzr5MJf1woCQRRnNcn6KSQ/Ep5kO0ssH/ufbz1oplXSfaqHJP5C/FXWDZJ2JvuyFm0OfvoYqKRRkb6xWn9yCRZ9qzh5UXo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745223376; c=relaxed/simple;
-	bh=6HD1n8xs7n5w8LD46uLZq9L7Kk07vE8rM1+aHeJvTPA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=frLzppPPlWZbtq+hJHAWVFgNW7Jo2oF37Uf/UVNBc+fE6Xdr+eT8yfPql+kVG/aBnDzE0eUEo66z1P3yT4od/rbW2yGsOEpiPFTCJsZi8DY6TePdgofIV79lEIhpKC6hClsD33CkJlhreyr0HgtYZ0OMsa5mu+iWjsOSJYM14mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j3Iz+LpB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53KMKDSF008977
-	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:16:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qARCO4unAM6dJGj6oIu6kaF+8Quq5ZnXo3x6/YySZCc=; b=j3Iz+LpB8LorWG4/
-	1CRgb50Hdr7BG4LFJAXQcqfgg1+Uj9+RXqkWfEfMwjm6Apr+D8X6NSY0xWaIuiPb
-	/8b4y4IATVJqv5A4W1NFSukAznl4+FtXIAf29CGI6SUP8+15uI+PgyGQ/vJlGzTc
-	OJC/P7bHBUgYXsXmTkC2GpGB/vr5ToGLBauB5n6BbdB3Fw2TqPrV7e/ha9ILEL1n
-	zai/mocynsO2NurF4QT4Cn0FxuUSuYd3QNDdlXDj+Bkzhx+1gn/wTaoigp8VD9EZ
-	bkn2lu58n0V5tc2ASxUlKGGAUnFYjV7lMu5pulZzGR+MYYZPmuNf1VZjQpDQ51By
-	NTUDIw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46450pbc3r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:16:14 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5b9333642so455286585a.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 01:16:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745223373; x=1745828173;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qARCO4unAM6dJGj6oIu6kaF+8Quq5ZnXo3x6/YySZCc=;
-        b=fsXAqOTlQag/xQSZl2OLWhykAnoVHNUzNriwPaBQQ7DW9IdlJB9/IXFfHVTsYpoIqP
-         1016GurMFBAqdTC8SSoiS+fjSLngff8w8MAEHFOfkkD8HSyje0/5LUne0bmkcJ6viNQ0
-         KNRk1NgC5xZzGBXDTN8LdRk4SVR8zVOHmo4TOItmjZTS6EQU8bmTR77fTF6xGGoGjzxZ
-         AqId0nJIb4CoNTYrt5bEsH5LExgVebJBgsf8vgS/PJCpFLGvSuiIRrfpyS/uJptGNpCn
-         HdHsefBzU/+vVztCgcovtbo3dthSqmCuIbCqsyPdaXK9DwUnMFQk2xHx59hMwUh0ZLwA
-         pFqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUA0BoVlt3qie5nu9+8FGjjQXmtAdlEpSU6/WA2ptxjP4vh2QqhObLz9sIiWFyBW3xdiUweXWFkWuds@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXH6Zu0ja9h02hV/XiqpsNeFvMdhwRR930hUbqeT+nBmkoQq83
-	65SqXHNGw07G6+z+dk9rUelyo0z2O753csyTUGTbDNT6PdzK7h1vGA4Dp0nriOXXaVjsvAoeGtK
-	HZdAnnVTtiBJS7/gFyR163rF6BMMxRuJVLq+mwpW3UueGoegDVz4QLetOGmQ2
-X-Gm-Gg: ASbGncsGwnbZW4TxTGmVQeueOmFmGno+mIkLLKuDG1eL3dRSr4MFEzJ8Q2JBHYhs3ou
-	KG+Oep0l3TfGR4ZtU4LjOXy0/KTh455u51TgY9sgSsWy3YBjMaFO9ku7qIlA+lnVy0X+AzqYiVM
-	hLqStnxb/7LSCW5aEwVwE7LVDbmxGPYYnWMb7z6fvVbU76yjQTwH1YJG89MXXeG8Xv7X2k0N+ro
-	cHz893JEXkiH0GbzDROnoWQmOpPRw4s05Ic9r16G0OTYKbua+VwGM+XXa7VWf+UZ8nIRRDygmL8
-	rTrZcQ1rR1viHB4SRjIdiw9kTn4svnAjZQo5MK2JjnEXN7Lp16gI1uw0qTHGO4S1wuGPshAS2iM
-	=
-X-Received: by 2002:a05:620a:28c2:b0:7c5:5670:bd77 with SMTP id af79cd13be357-7c928049ca2mr1716048685a.55.1745223372992;
-        Mon, 21 Apr 2025 01:16:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjwyE7MQkTDxkTD4bMTdrQVyq0KgcRLomu9pE/oxDMbBAj8GbWGPITnj/B2mJvuVUIGwaJfg==
-X-Received: by 2002:a05:620a:28c2:b0:7c5:5670:bd77 with SMTP id af79cd13be357-7c928049ca2mr1716045985a.55.1745223372683;
-        Mon, 21 Apr 2025 01:16:12 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d6e5424b5sm869330e87.95.2025.04.21.01.16.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Apr 2025 01:16:10 -0700 (PDT)
-Date: Mon, 21 Apr 2025 11:16:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8953: sort adreno clocks
-Message-ID: <nxv2k2ofiao47w7gmqcgfgn57heucs6yp2og3lkzlavjarado7@p5u4663yw3oz>
-References: <20250421-a5xx-schema-v1-0-7d96b889322a@mainlining.org>
- <20250421-a5xx-schema-v1-2-7d96b889322a@mainlining.org>
+	s=arc-20240116; t=1745223616; c=relaxed/simple;
+	bh=Z9CzQaeGzkqPRPlWBkWUdRbBrMnMrSvzj+/0z84P8Uo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=up/Ik21+F2g31r3FM6uPQ+B2J9GD8S0eAiF37SetL2aFy0ewdLRLENDDtWGB3o5RpC+f9Q+hFRvb7bMOsuiU4NtivGWZP6phIxDdmYDKqNxlj4pEQ6OrtLXF+uq3LkMW1m4uF8kwa680uIPWEuozeh0afWgaxtKf33xJPOS0XGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XfC71U7D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 84FF5C4CEEB;
+	Mon, 21 Apr 2025 08:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745223616;
+	bh=Z9CzQaeGzkqPRPlWBkWUdRbBrMnMrSvzj+/0z84P8Uo=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=XfC71U7Dp2TszuL4yb/fVCS+9qannc1LpaMUQwUmpVWZxGkqWwudQ+gV+mKZzmpKb
+	 IPx3zBIFMb1iswS18hMYJRJ3vaefIeJwl1Uv9ru6cBZgUkRr6PhIXb0YKxQY7OviGb
+	 rxpVrBxgjyRVKS4ipkN430UEhzNjh9Y29RevQSlh/7U6MWggqhQRMZ6AjK69XW2TYB
+	 athomUw/O9/rGPD95rsi0M0p/eoqwFDPmPFwmK4a7+1lHUsGPglBj0acrkF7n9exCj
+	 oH/4JGiIqih5Dj7AtwinICyX1auhcQCCzvvhP5SFrDUOpJuIWrZrGZt2CcWGGWCAX2
+	 EtE7UthUVW2ww==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A4C7C369AB;
+	Mon, 21 Apr 2025 08:20:16 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Mon, 21 Apr 2025 10:20:15 +0200
+Subject: [PATCH v4] media: dt-bindings: Convert Analog Devices ad5820 to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250421-a5xx-schema-v1-2-7d96b889322a@mainlining.org>
-X-Authority-Analysis: v=2.4 cv=Hd0UTjE8 c=1 sm=1 tr=0 ts=6805fece cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10 a=XR8D0OoHHMoA:10 a=OuZLqq7tAAAA:8 a=StrfYul8zGH_qiMLSD8A:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-GUID: lEQhhzGnN7eF8t0BYNxA1K_uTDEJI68j
-X-Proofpoint-ORIG-GUID: lEQhhzGnN7eF8t0BYNxA1K_uTDEJI68j
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-21_04,2025-04-21_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- adultscore=0 mlxlogscore=863 phishscore=0 clxscore=1015 spamscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504210063
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250421-b4-ad5820-dt-yaml-v4-1-cc026ce316c6@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAL//BWgC/23NywrCMBQE0F+RrI3c3CQ0ceV/iIu8ai/4oilBL
+ f13U10UocsZODMjy6mnlNl+M7I+Fcp0v9WgthsWOnc7J06xZoaAGqRQ3CvuojYIPA785a4XLhH
+ Bt9iKpIBV9+hTS8/v5vFUc0d5uPev70URc/tbQ7AI0irYCW3BGC54dIXigZ407MKbzbjgAtbvC
+ 1aIprHaBBmgCf9eLl6te1m9tN57HX3j0S9+mqYPmA+rwCEBAAA=
+X-Change-ID: 20250314-b4-ad5820-dt-yaml-3220bf2f1e40
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4451; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=CF3DZGYBahplVU8yiF0C7k1jZnNIBq7jSEDJSUBVBls=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBoBf+/kvKKdKmDnTex9fGSTvWvmVBjGMz/0Ulji
+ A1Oj4fvTg+JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaAX/vwAKCRBgAj/E00kg
+ csb/EAC3831AqeWjuqifFw45sS3zES2VZGICEIOIU5VUg3VSj7+wirBHe45I/jGLCS//0lEuZUT
+ R5A8JbY8tnc26uT1qgnk90Ntm2BwS5S2+hAu3AgjqPaTNEMGe35d/wcl+e7O4jI+F+hzNKDUF1/
+ G0wWRtv9DEU6yA4jSnmTxjMVfnp+LW5zD7L2f9PEJ2+w0t+DHSjWBbcH1hpLLYnX9cJ7oisIY0e
+ pAUwK61wmZtR9pRASLdlmvyax8SUiVpAaGsRIqpxlbuZyXh/M5dWZif7pTUMRzeGKoiHPwCOhU2
+ pYjI3Yb3XhgBsBOWJZYyR/VC+6UjbbrIWgEP4SH82VUUcKVAESFCgKegBxBodKooOg2LHt5esZJ
+ mXVGg2qsfMx2qhTP8op3Jj9NFxpOFScMjp+3j4ZZYf4SCG2rXfyLIEYLnAovhiQ3qKETxIDEzvQ
+ YLkR8kCx3OiDlARndylgaZ/9d+F1AJKC3rUPkvHgPnBe3mVhpHpgz4Lp6UWlj2K1VaOqEMFqfD7
+ gI4b4dzdP/DQA0sCExey7nfkXnn1a9o3Oc016t3RU+dCU1UWOc27uKa38nS6mbqtx3QI0crrhX2
+ fnhYXpexIglQiGUiM21vv+nVGTRYsbwIzEF4qHXi7dPD6vGJt7rTX49HhamDhP4DBb4lpHB/6/j
+ 67OWoshfU4g9yRg==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On Mon, Apr 21, 2025 at 05:09:22AM +0200, Barnabás Czémán wrote:
-> Sort adreno clocks in alphabetical order.
+From: David Heidelberg <david@ixit.cz>
 
-Why? The order of the clocks here matches the order in which they should
-be brought up.
+Convert the Analog Devices ad5820 to DT schema format.
 
-> 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> index 4793a60fa946195d3220b6c44dec170d443f56db..8a7e80c959fad09f950fe202eba76d3aae01d1ea 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> @@ -1052,18 +1052,18 @@ gpu: gpu@1c00000 {
->  			reg-names = "kgsl_3d0_reg_memory";
->  			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->  
-> -			clocks = <&gcc GCC_OXILI_GFX3D_CLK>,
-> +			clocks = <&gcc GCC_BIMC_GPU_CLK>,
-> +				 <&gcc GCC_OXILI_AON_CLK>,
-> +				 <&gcc GCC_OXILI_GFX3D_CLK>,
->  				 <&gcc GCC_OXILI_AHB_CLK>,
->  				 <&gcc GCC_BIMC_GFX_CLK>,
-> -				 <&gcc GCC_BIMC_GPU_CLK>,
-> -				 <&gcc GCC_OXILI_TIMER_CLK>,
-> -				 <&gcc GCC_OXILI_AON_CLK>;
-> -			clock-names = "core",
-> +				 <&gcc GCC_OXILI_TIMER_CLK>;
-> +			clock-names = "alt_mem_iface",
-> +				      "alwayson",
-> +				      "core",
->  				      "iface",
->  				      "mem_iface",
-> -				      "alt_mem_iface",
-> -				      "rbbmtimer",
-> -				      "alwayson";
-> +				      "rbbmtimer";
->  			power-domains = <&gcc OXILI_GX_GDSC>;
->  
->  			iommus = <&gpu_iommu 0>;
-> 
-> -- 
-> 2.49.0
-> 
+Acked-by: Pavel Machek <pavel@ucw.cz>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v4:
+- Drop remaining pieces of iio-channel-cells introduced in previous
+  revisions.
+- Link to v3: https://lore.kernel.org/r/20250414-b4-ad5820-dt-yaml-v3-1-39bbb5db7b2b@ixit.cz
 
+Changes in v3:
+- Removed documentation of io-channel-cells property. Now it's 1:1 to
+  the original binding. The reference to it from the Nokia N900 dts
+  was removed in the -next.
+- Link to v2: https://lore.kernel.org/r/20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz
+
+Changes in v2:
+- added MAINTAINERS entry for the binding
+- documented why io-channel-cells got added into the binding.
+- dropped io-channel-cells in required properties.
+- adjusted example indentation to 4 spaces.
+- Link to v1: https://lore.kernel.org/r/20250209203940.159088-1-david@ixit.cz
+---
+ .../devicetree/bindings/media/i2c/ad5820.txt       | 28 -----------
+ .../devicetree/bindings/media/i2c/adi,ad5820.yaml  | 56 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ 3 files changed, 57 insertions(+), 28 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ad5820.txt b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
+deleted file mode 100644
+index 5764cbedf9b73387ad1bfa9acf99c643f959b84a..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/ad5820.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* Analog Devices AD5820 autofocus coil
+-
+-Required Properties:
+-
+-  - compatible: Must contain one of:
+-		- "adi,ad5820"
+-		- "adi,ad5821"
+-		- "adi,ad5823"
+-
+-  - reg: I2C slave address
+-
+-  - VANA-supply: supply of voltage for VANA pin
+-
+-Optional properties:
+-
+-   - enable-gpios : GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is
+-active low, a high level on the pin enables the device.
+-
+-Example:
+-
+-       ad5820: coil@c {
+-               compatible = "adi,ad5820";
+-               reg = <0x0c>;
+-
+-               VANA-supply = <&vaux4>;
+-               enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
+-       };
+-
+diff --git a/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..0c8f24f692cac37fc565f3ec770acfc63eecbda4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/adi,ad5820.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD5820 autofocus coil
++
++maintainers:
++  - Pavel Machek <pavel@ucw.cz>
++
++description:
++  The AD5820 is a current sink driver designed for precise control of
++  voice coil motors (VCMs) in camera autofocus systems.
++
++properties:
++  compatible:
++    enum:
++      - adi,ad5820
++      - adi,ad5821
++      - adi,ad5823
++
++  reg:
++    maxItems: 1
++
++  enable-gpios:
++    maxItems: 1
++    description:
++      GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is active low,
++      a high level on the pin enables the device.
++
++  VANA-supply:
++    description: supply of voltage for VANA pin
++
++required:
++  - compatible
++  - reg
++  - VANA-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        coil@c {
++            compatible = "adi,ad5820";
++            reg = <0x0c>;
++
++            enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
++            VANA-supply = <&vaux4>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 17ed0b5ffdd203db658f9bedb990bd58a3ffcb91..c060a7ca103d2a9252fcb4b2bcd6e1a35d94f2d7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17295,6 +17295,7 @@ M:	Pavel Machek <pavel@kernel.org>
+ M:	Sakari Ailus <sakari.ailus@iki.fi>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
+ F:	drivers/media/i2c/ad5820.c
+ F:	drivers/media/i2c/et8ek8
+ 
+
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250314-b4-ad5820-dt-yaml-3220bf2f1e40
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+David Heidelberg <david@ixit.cz>
+
+
 
