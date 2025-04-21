@@ -1,104 +1,222 @@
-Return-Path: <devicetree+bounces-169009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA3BA9525D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:02:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1708BA95282
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F17A93AB0A0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:02:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEBC41892FD8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7016C4C8E;
-	Mon, 21 Apr 2025 14:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C58D73176;
+	Mon, 21 Apr 2025 14:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Yfj43mif"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKOto67R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84ABC800;
-	Mon, 21 Apr 2025 14:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D5618B03;
+	Mon, 21 Apr 2025 14:09:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745244169; cv=none; b=WKwxKHx4Vk1/qf2OG8UAo1QEf9HR2jQ+6zE8J2NUDffbCMJOsjPB4KiBIbAo0WdbuH/KBF+WXQ9jO8brmF5vIxHc3ok865EBZY1s+sxQooQIjQwVvtPpMY3E91ieIWNbzeJhU/eElmWwBm0yPfssQmM1JWO4ZeRAYoDr+5HxCUo=
+	t=1745244569; cv=none; b=hyAMyt04ebBlc7dIBsLWAVM77QwdbPh8RiZuFfqzYuC9AuFAI9WRSA1Vqby+k6EUiRfYq62s8dLNdRFyu73Fly3ZAoY6Gw+xKQIz82SPk1IPYQEnWV/7qfRiejs+G68ZjfGcRXmofyMJtxBJIkybPQz72pQSOmlrRgLz4kv4yGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745244169; c=relaxed/simple;
-	bh=h3ZZv/KKSCup7m16HhNAZBWRkEaSvqwI2RSI3gp6O0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pU9STy8zRdlophMoNc09WKpCEtx9cNi3W2s6hnPOHdBZR4cMGyGaZ5ZmGWkaSqeGIh9kxx+8XyY/G7bc1MDlh54mpYhvYyoxCyYJUddYrtNYwFg3GgI1NWzZwGDNXnZ+a0wT+zFqPsW3PH5mhyfBfDvJbbjY3YtM5F0K23sc73Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Yfj43mif; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=MFZYwdxSqn/pFGqwhSvTBkmdr1A9qUoYYSdRvkpZ+zg=; b=Yfj43mif1iLXl35Re3XXeWfgok
-	y54IzdMSn1t55kC8cNw+ljM+poCJjFGQoUwM/JFbw7/Ddd3dF/sAvBKQsepPvdyUNaHjsq7UURv61
-	WdgeM5vEeCu415wob/Uu/XLLvTFs7JjeIzdOuBos8bSJz5V2TeqIKmJpqtkPKGSzYLXM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u6rj7-00A5uB-T1; Mon, 21 Apr 2025 16:02:25 +0200
-Date: Mon, 21 Apr 2025 16:02:25 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-Message-ID: <f27b0531-11dd-4074-9c79-172953d28292@lunn.ch>
-References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Z_0-iH91A4Sexlzj@shell.armlinux.org.uk>
- <CA+V-a8sS0TtS-TEdkQ8MB5F4JtzV9358Y9fmKe5MggGU+wP=4Q@mail.gmail.com>
- <CA+V-a8tbW2Zs6op20yRTcihSm1bcMC2dYnRXVCKRf=q4fymZyg@mail.gmail.com>
- <TY3PR01MB1134633A8CB82788BB98C6E6286B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1745244569; c=relaxed/simple;
+	bh=WYXRdWWnpgKTBUjE3p3Mz4j6ZPQ5w+kSpIXksD6tN68=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ly13ncOE9WiobXquaKs9LdBPvJSYMtO15lErYC6G3mHhTsYrLpQPZGwhKwYas3vtDDB1rMcabRfHWMB3welOD0s/lOCUKdeQi30SBOVc6JH+VCDPWw3D7TXYw47suHeNJZjloljLTU+4DV03XN1jJP2KGwutzae7GBjtCFq5jSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKOto67R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F10C4AF09;
+	Mon, 21 Apr 2025 14:09:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745244568;
+	bh=WYXRdWWnpgKTBUjE3p3Mz4j6ZPQ5w+kSpIXksD6tN68=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tKOto67RaYFfUzDqmXLJK8aJvIy6sKsvTmLnTsCMOs1O56tH9Vo7gIqyO4PVryOVx
+	 CEyJ+toAkHjPasJBv0Z3DXpxfFqHrbFljL43OR4d6crPNgIMej7BUXfdTN9WGaeZAN
+	 66LtIk5lebiXDOASN6aXc6yVX9HCcieeI/c0+urJtsyFl8MW75Tmkb344gDvsq2onb
+	 /RlUMqZTyMiy5nWzFScGFVrrB65pBBJdefuMoEtDx/XAQB3Fqo5GhQmRH7/v0K+XE5
+	 eU5M9RUToJ66L5zJz9u6nQkG+dTwd4P13vVRfpXEDEnDOMXDOYozSV6SYRg221jsi1
+	 KBRyzu4ByURVg==
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7376e311086so5484614b3a.3;
+        Mon, 21 Apr 2025 07:09:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWnxCgB+sgx1Mjf4xDUbuQ4xd5hi6XZQmBG42RZ+9eq5kAMaiBSOS6WiJ6U+pAMZEE2UrxmDcbLi8w1@vger.kernel.org, AJvYcCX3MLv93893m/B0kUBe9flur9vZYAc+Uqa7KQAm5NdxP1UOdF4qYTbjrOwZZ1slr0zSvG0Uns1EHHXKWBDh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGEvpLL1SagfIi3ReSome2PTKXOZuXM/wPTG5G5zKLN3afp2Vq
+	w0UuGagWNYV2V+4P4LsNwvjzT0qZZSmLjqsjOJTgNRwASq1xphGf8No+5DHQlFvyl72io4W9gdh
+	tiz1tbI3Faxlp1QKOkQim3uCx5Q==
+X-Google-Smtp-Source: AGHT+IGS9uz21hRPGhlJ4UMeP7sf9taxpboldIRO54ve55gM+l4Zm966plB6VQpw/Y3RbDZK4VoWG7AVra1mhRruBl4=
+X-Received: by 2002:a17:90b:248e:b0:309:cf0b:cb37 with SMTP id
+ 98e67ed59e1d1-309cf0bcb7amr532295a91.7.1745244568069; Mon, 21 Apr 2025
+ 07:09:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TY3PR01MB1134633A8CB82788BB98C6E6286B82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250415104321.51149-1-angelogioacchino.delregno@collabora.com> <20250415104321.51149-16-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250415104321.51149-16-angelogioacchino.delregno@collabora.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 21 Apr 2025 22:10:25 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__Tvrx2vfss16jecTQsQU2oSjEmTGoFZZq5ZJZmgyypqg@mail.gmail.com>
+X-Gm-Features: ATxdqUGktFaFTj-3L_NPDr-W-E9d8SqAjhcUgYMe9iV6oOSARNcqSrzlMtbkNXg
+Message-ID: <CAAOTY__Tvrx2vfss16jecTQsQU2oSjEmTGoFZZq5ZJZmgyypqg@mail.gmail.com>
+Subject: Re: [PATCH v9 15/23] drm/mediatek: mtk_hdmi: Improve
+ mtk_hdmi_get_all_clk() flexibility
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
+	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
+	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
+	jason-jh.lin@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> > On the RZ/G3E, the upstream support for testing S2R is not yet in a usable state. So for now, I'll
-> > switch to using init/exit callbacks and drop the PM callback.
-> 
-> FYI, On RZ/G3E, for STR to work with mainline, we need to reinitialize the PHY.
-> I have done below changes on top of [1] to make STR working.
+Hi, Angelo:
 
-Can you explain why you need to reinitialise the PHY? The MAC driver
-should not need to do this, so something is wrong somewhere. If we
-understand the 'Why?' we can probably tell you a better way to do
-this.
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2025=E5=B9=B44=E6=9C=8815=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:4=
+4=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> In preparation for splitting common bits of this driver and for
+> introducing a new version of the MediaTek HDMI Encoder IP, improve
+> the flexibility of function mtk_hdmi_get_all_clk() by adding a
+> pointer to the clock names array and size of it to its parameters.
+>
+> Also change the array of struct clock pointers in the mtk_hdmi
+> structure to be dynamically allocated, and allocate it in probe.
 
-	Andrew
+Build error happen,
+
+../drivers/gpu/drm/mediatek/mtk_hdmi.c: In function
+\u2018mtk_hdmi_get_cec_dev\u2019:
+../drivers/gpu/drm/mediatek/mtk_hdmi.c:1353:15: error: too few
+arguments to function \u2018mtk_hdmi_get_all_clk\u2019
+ 1353 |         ret =3D mtk_hdmi_get_all_clk(hdmi, np);
+      |               ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/mediatek/mtk_hdmi.c:1075:12: note: declared here
+ 1075 | static int mtk_hdmi_get_all_clk(struct mtk_hdmi *hdmi, struct
+device_node *np,
+      |            ^~~~~~~~~~~~~~~~~~~~
+
+I've apply some patches of this series to mediatek-drm-next [1], and
+I've already fixed some build error.
+I wonder how many error would happen in rest patches,
+so please fix the build error in rest patches and resend patches.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c | 26 ++++++++++++++++----------
+>  1 file changed, 16 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
+ek/mtk_hdmi.c
+> index b4fbd2e60089..b17f8df145eb 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> @@ -159,7 +159,7 @@ struct mtk_hdmi {
+>         struct phy *phy;
+>         struct device *cec_dev;
+>         struct i2c_adapter *ddc_adpt;
+> -       struct clk *clk[MTK_HDMI_CLK_COUNT];
+> +       struct clk **clk;
+>         struct drm_display_mode mode;
+>         bool dvi_mode;
+>         struct regmap *sys_regmap;
+> @@ -1072,17 +1072,18 @@ static const char * const mtk_hdmi_clk_names[MTK_=
+HDMI_CLK_COUNT] =3D {
+>         [MTK_HDMI_CLK_AUD_SPDIF] =3D "spdif",
+>  };
+>
+> -static int mtk_hdmi_get_all_clk(struct mtk_hdmi *hdmi,
+> -                               struct device_node *np)
+> +static int mtk_hdmi_get_all_clk(struct mtk_hdmi *hdmi, struct device_nod=
+e *np,
+> +                               const char * const *clock_names, size_t n=
+um_clocks)
+>  {
+>         int i;
+>
+> -       for (i =3D 0; i < ARRAY_SIZE(mtk_hdmi_clk_names); i++) {
+> -               hdmi->clk[i] =3D of_clk_get_by_name(np,
+> -                                                 mtk_hdmi_clk_names[i]);
+> +       for (i =3D 0; i < num_clocks; i++) {
+> +               hdmi->clk[i] =3D of_clk_get_by_name(np, clock_names[i]);
+> +
+>                 if (IS_ERR(hdmi->clk[i]))
+>                         return PTR_ERR(hdmi->clk[i]);
+>         }
+> +
+>         return 0;
+>  }
+>
+> @@ -1377,15 +1378,15 @@ static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *=
+hdmi, struct device *dev, struc
+>         return 0;
+>  }
+>
+> -static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi,
+> -                                  struct platform_device *pdev)
+> +static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platfor=
+m_device *pdev,
+> +                                  const char * const *clk_names, size_t =
+num_clocks)
+>  {
+>         struct device *dev =3D &pdev->dev;
+>         struct device_node *np =3D dev->of_node;
+>         struct device_node *remote, *i2c_np;
+>         int ret;
+>
+> -       ret =3D mtk_hdmi_get_all_clk(hdmi, np);
+> +       ret =3D mtk_hdmi_get_all_clk(hdmi, np, clk_names, num_clocks);
+>         if (ret)
+>                 return dev_err_probe(dev, ret, "Failed to get clocks\n");
+>
+> @@ -1634,6 +1635,7 @@ static int mtk_hdmi_probe(struct platform_device *p=
+dev)
+>  {
+>         struct mtk_hdmi *hdmi;
+>         struct device *dev =3D &pdev->dev;
+> +       const int num_clocks =3D MTK_HDMI_CLK_COUNT;
+>         int ret;
+>
+>         hdmi =3D devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
+> @@ -1643,7 +1645,11 @@ static int mtk_hdmi_probe(struct platform_device *=
+pdev)
+>         hdmi->dev =3D dev;
+>         hdmi->conf =3D of_device_get_match_data(dev);
+>
+> -       ret =3D mtk_hdmi_dt_parse_pdata(hdmi, pdev);
+> +       hdmi->clk =3D devm_kcalloc(dev, num_clocks, sizeof(*hdmi->clk), G=
+FP_KERNEL);
+> +       if (!hdmi->clk)
+> +               return -ENOMEM;
+> +
+> +       ret =3D mtk_hdmi_dt_parse_pdata(hdmi, pdev, mtk_hdmi_clk_names, n=
+um_clocks);
+>         if (ret)
+>                 return ret;
+>
+> --
+> 2.49.0
+>
 
