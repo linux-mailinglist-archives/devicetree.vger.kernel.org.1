@@ -1,84 +1,71 @@
-Return-Path: <devicetree+bounces-168970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63C8A95055
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:41:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F301A9505E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:44:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B9277A2718
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 11:39:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 530A61890191
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 11:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019E72641FF;
-	Mon, 21 Apr 2025 11:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D4826461E;
+	Mon, 21 Apr 2025 11:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mRUydRqy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PPPHtQpM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3FC126BFF;
-	Mon, 21 Apr 2025 11:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311EE264619;
+	Mon, 21 Apr 2025 11:44:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745235653; cv=none; b=EQmPIt90yz4cK5gkCUCBM4vOzfUIMpbthpkFpstVBn1hkKgv7ZoH2u1yUwJCiG5kVaOOH9VB5TGbXGRbb/CNrPoGGf9UrfjZa8fO66ZrQX7C5cArXOdqf0m3JpgGw3ocXMD1wY2X0ZPrKXaRzRpACu/K8do0QxFEP4pDvKLvVls=
+	t=1745235867; cv=none; b=fWAMI11NfxV0d/Vy1iz2w+8Jm9GYWfuAZzyELjzBmS0ZEu/SA/HYGXDsUItC/xrQuq2dZk7Q6mzso8ebU6MH7LqH/tgxwrnudeb94NtKoDE3wzG954yTLbY5ot0ehZ997PTTXRw1X65RqW+TyeZS58RVWf8zxBpNq4AgWZec0ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745235653; c=relaxed/simple;
-	bh=VXSlM78gVVSfw+WCIpCDUFRnxSD9qH9eab8KDWthqfU=;
+	s=arc-20240116; t=1745235867; c=relaxed/simple;
+	bh=K2yDIHrClKJMzFSfH79towDwJE2UtYL4T0nd7cHxXio=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EYtoy7fAcGJjIwaO4ZWJhtTugmPgrU/4UVSY4FMR2ip9FURgOXz5ZLEOESKKyLINlNticKNtMxJwMKxUOdlMUSg2ZTQRl79bIfYEqEHqNF+dyFrUPrxC9u6Xrog39j0mUvisHPz+waDKCbsosKJoBAU24PaKJKua9EUWjpCSj+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mRUydRqy; arc=none smtp.client-ip=198.47.23.234
+	 Content-Type:Content-Disposition:In-Reply-To; b=oyGx0YjbzIk5kV0UNusT/OZOOTgOHK0/bF/Z+a7v5s+V2LBoSCRrsvEliaAuAArmcN7gXZgLShsjrkQ/orl5yUR7M98G/M9W3eXpEZ5PksXcrQlizFu5r8eyzPqGCFKlu1ro4z8ct29H4MoxpD+8HR2jwG3WF2Oea2MEtQZ/yho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PPPHtQpM; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBehE7908920
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBiLBC1538159
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 06:40:43 -0500
+	Mon, 21 Apr 2025 06:44:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745235643;
-	bh=fMXw+PmwxrAjfO8VUjrovK3MKKuJexE2bKrL5R7FNS0=;
+	s=ti-com-17Q1; t=1745235861;
+	bh=dgV536aKTURayOABQgXkmovr+QyXvP7zhUmjnkrwm5M=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=mRUydRqyyHUgvdbVoUJg2XDFi0wiujx68Zz+Zf4uZtfVW8PHWHvBzhAyeE9GptwEs
-	 RuhuSb8td0xm9NxguHXLUdJYfp6nQ7TZFR1Noqk2mS+Bai7iFd1zsqBibA6g8XGv17
-	 eP74CrNen3NsaAvOQ9aidzkC5TeqrOtHm9GdT4YU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBehK9011764
+	b=PPPHtQpMHPxFn0vUFkBubAbpbv9Y9otaMEmRss1vSJxtNZ/DTA9cZ4owWfweKhkdx
+	 ojw6FHIYrP1URZJUqqryZYePV5kOrYOYbhX9PQ2qYomf+/CWEwDMJ0wd1fBhz8z4T5
+	 QeH9nCcIFPEbFhKMKmjad3nVmkE4ycgDs1dK4m24=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBiLC0008738
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 06:40:43 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 21 Apr 2025 06:44:21 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 06:40:43 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 06:44:21 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 06:40:43 -0500
+ Frontend Transport; Mon, 21 Apr 2025 06:44:21 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LBegd8110641;
-	Mon, 21 Apr 2025 06:40:42 -0500
-Date: Mon, 21 Apr 2025 06:40:42 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LBiLat113661;
+	Mon, 21 Apr 2025 06:44:21 -0500
+Date: Mon, 21 Apr 2025 06:44:21 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Bryan Brattlof <bb@ti.com>
-CC: Judith Mendez <jm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Prasad <b-padhi@ti.com>, Andrew Davis <afd@ti.com>,
-        Markus Schneider-Pargmann
-	<msp@baylibre.com>,
-        Devarsh Thakkar <devarsht@lewv0571a.ent.ti.com>
-Subject: Re: [PATCH v7 06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with
- remote processors
-Message-ID: <20250421114042.riw2kw472murjzcc@surfer>
-References: <20250415153147.1844076-1-jm@ti.com>
- <20250415153147.1844076-7-jm@ti.com>
- <20250419150451.v3jgtgp4yisou65u@bryanbrattlof.com>
+To: Anurag Dutta <a-dutta@ti.com>
+CC: <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-som-p0: Add bootph-all to
+ HBMC node
+Message-ID: <20250421114421.pj6vceavzjl2qkky@filing>
+References: <20250416060754.2393701-1-a-dutta@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,68 +74,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250419150451.v3jgtgp4yisou65u@bryanbrattlof.com>
+In-Reply-To: <20250416060754.2393701-1-a-dutta@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 10:04-20250419, Bryan Brattlof wrote:
-> On April 15, 2025 thus sayeth Judith Mendez:
-> > From: Devarsh Thakkar <devarsht@ti.com>
-> > 
-> > For each remote proc, reserve memory for IPC and bind the mailbox
-> > assignments. Two memory regions are reserved for each remote processor.
-> > The first region of 1MB of memory is used for Vring shared buffers
-> > and the second region is used as external memory to the remote processor
-> > for the resource table and for tracebuffer allocations.
-> > 
-> > Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> > Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> > Signed-off-by: Judith Mendez <jm@ti.com>
-> > Acked-by: Andrew Davis <afd@ti.com>
-> > Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-> > Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 96 +++++++++++++++++++++++--
-> >  1 file changed, 90 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> > index 1c9d95696c839..7d817b447c1d0 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> > @@ -52,6 +52,42 @@ linux,cma {
-> >  			linux,cma-default;
-> >  		};
-> >  
-> > +		c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
-> > +			compatible = "shared-dma-pool";
-> > +			reg = <0x00 0x99800000 0x00 0x100000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		c7x_0_memory_region: c7x-memory@99900000 {
-> > +			compatible = "shared-dma-pool";
-> > +			reg = <0x00 0x99900000 0x00 0xf00000>;
-> > +			no-map;
-> > +		};
-> > +
+On 11:37-20250416, Anurag Dutta wrote:
+> Add bootph-all to HBMC controller node for successful hyperflash
+> boot on j721e-evm
 > 
-> I know this has been a push for our IPC and MCU+ teams for a couple 
-> windows now, though I do want to point out that some AM62A devices 
-> (AM62A12AQMSIAMBRQ1) will not even have a C7x. 
+> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> ---
+> Test log : https://gist.github.com/anuragdutta731/103e84e84f013093fa089803719d997d
 > 
-> It's relatively easy to cut nodes out that describe the hardware in the 
-> bootloaders, but once we start configuring them to demo something it 
-> becomes impossible to unwind that during boot.
+> Changelog : v1:
+> 1. Added bootph-all to hbmc node in k3-j721e-som-p0.dtsi
+> 2. Removed bootph-all from v1 patch from flash@0,0 node
 > 
-> We can clam we only support the superset devices but I just wanted to 
-> make this email so I could point people to it when they inevitably ask 
-> why their parts do not work out of the box with Linux.
+> Link to v1 : https://lore.kernel.org/all/20250411082637.2271746-1-a-dutta@ti.com/
 > 
-> Naked-by: Bryan Brattlof <bb@ti.com>
+>  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index 0722f6361cc8..5665b9490003 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -440,6 +440,7 @@ &hbmc {
+>  	pinctrl-0 = <&mcu_fss0_hpb0_pins_default>;
+>  	ranges = <0x00 0x00 0x05 0x00000000 0x4000000>, /* 64MB Flash on CS0 */
+>  		 <0x01 0x00 0x05 0x04000000 0x800000>; /* 8MB RAM on CS1 */
+> +	bootph-all;
+>  
+>  	flash@0,0 {
+>  		compatible = "cypress,hyperflash", "cfi-flash";
 
+This node already has bootph-all, only the child nodes need bootph
+properties. Am i missing something?
 
-I am confused. I do not see support for AM62A1 in upstream. We have
-AM62A7-SK in upstream. I am not sure what direction you are suggesting
-here.
+> -- 
+> 2.34.1
+> 
 
 -- 
 Regards,
