@@ -1,142 +1,161 @@
-Return-Path: <devicetree+bounces-169016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8692FA952DE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:36:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4556DA952EF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 16:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2CD2163E62
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:36:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E31D3B0113
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E600519CC36;
-	Mon, 21 Apr 2025 14:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0841543172;
+	Mon, 21 Apr 2025 14:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GL3NzM2I"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FhOIiwZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD3B73176;
-	Mon, 21 Apr 2025 14:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6BA647;
+	Mon, 21 Apr 2025 14:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745246199; cv=none; b=k6ehK0W5VYxzerjChIiVrzWcn10YyV8gT+2lpRbfp2u5rOoCp9hR5gqEgvQvP4Cv/vHXSkxYoarGNtVI6w/cif0BdYA0kr51EyNcCo1RTAw3IYzsxxSh/Fop0PsSpWBj+8j4/8vfucLukjZpqHWd43Sp/g2DkXZf4oreGLbxoqI=
+	t=1745246844; cv=none; b=f2bdBu+2H+P8tSc9CA2VkIhbA5rKyCf0qMpOp8C9wZq8MRVKnGANL17dJMcHgmxqJpmUz3Wr5GczYRMLelfh9/XPHI9xTSO1/0eVW8cTvyj7rOBZSECY9cHKwTeYethzjmQY0LBkAVHx0PK4zuqMBRVFw9rHy8jnxQceQMOwwFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745246199; c=relaxed/simple;
-	bh=0bJhpJKQ3nJRTFkQ/pqybiIWmMqAROz09idBX242AVw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aD6/g5kczP+lQjftMH16s0PevhAaPjYJZeiFxoiYEUW0h0W/a/zCtIRgliaQpPmE65t+n2suFHdt/Wynm08QLd8YSxwKMgaLPA1tfiLFFQa3dA4HfNDMJSaYT5klonbSh06Zkvcs/wAsXo1p4/vg08ZheHLn4KfAK3pXIQZCYzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GL3NzM2I; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LEaT6M1579788
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 09:36:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745246189;
-	bh=o1W9mftwbolHHmlTfjC6lOdNljrRQ0/SgyP7qtHrY8k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GL3NzM2I9vO6IZMJJIEmDlwM7rLfulOcXStPtQUGNVa1g09vqHXC2edRC05P2q/r7
-	 s47Er1z1ZK/dZ5MLMxhBKr4LxpZlX8T173Ou3toeGhtKW6BLRMs9QzG5AsrzS0Q0Lf
-	 QFe7Kjs/RMr+VZ8MGc3obGS3FwVHC2bo+WNzWh50=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LEaTkr030349
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 09:36:29 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 09:36:28 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 09:36:29 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LEaSsx074451;
-	Mon, 21 Apr 2025 09:36:28 -0500
-Message-ID: <7bc92282-6ce3-4ae4-8eef-897df992487f@ti.com>
-Date: Mon, 21 Apr 2025 09:36:28 -0500
+	s=arc-20240116; t=1745246844; c=relaxed/simple;
+	bh=GJP+NzoZRbU0xIH+5vo6gpsqentwg0czNwjfZAOG/kg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ql6YFPjjVEbhvQlXHeBjQRZCvIl6xJcO2MyR75cUKuwpIzyaRZlS10EC6F13pU/fXeMjLDCUGdetvZdia2d8tJp4zLd98KLM5IYZ1aOBNSUjScVZDC505IH4Rx71bZY4kyvyrXq0l20mvXz5n/YBPonJMV0aA4KX/LReQdA6asw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FhOIiwZS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53LA0moL011086;
+	Mon, 21 Apr 2025 14:47:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Z7yhPAhQJaMyvHPEF9d6vS
+	0lc/iN28y7qUQsWT4DGro=; b=FhOIiwZSV23aYGTDi1zRA5aTZAiyNIP5juqNGQ
+	DOR0QSOQRRZdEkrOD/Kh5xqukZ06op0NpeK2fOxUHhANfoU/hd6KBrBheEHr4u4T
+	Y6H0fVbZ6HN6TVi53CgZHuOpszJdjn8jec6wzmiUpUSIloDn9rUBFxr/dt2I37Hm
+	aCaW/J++t8s7n6Ts1CBVf3VaP1dT5b32H3yMAq1TQG+xu6JcKdlPns9QefcJ0vcK
+	4ql0FDVdH/5uSg6W/9Xdq08PdPTp+OrzH0tzCDdII4rycXUnutpBowNcGatBuKyb
+	bOAqyqfvpqhk58CYEbBBQRBvcyRmZtt49kP/Tus2r52dsexg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4642u9chky-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Apr 2025 14:47:18 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53LElHUk028085
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Apr 2025 14:47:17 GMT
+Received: from hu-vgarodia-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 21 Apr 2025 07:47:12 -0700
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+Subject: [PATCH v5 0/3] media: qcom: iris: add support for SA8775P
+Date: Mon, 21 Apr 2025 20:16:54 +0530
+Message-ID: <20250421-dtbinding-v5-0-363c1c05bc80@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-am6*: Set eMMC clock parents to
- default
-To: "Kumar, Udit" <u-kumar1@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>
-References: <20250417233040.3658761-1-jm@ti.com>
- <20250417233040.3658761-2-jm@ti.com>
- <8f9aad2c-8e51-409e-be90-21230a53a4cf@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <8f9aad2c-8e51-409e-be90-21230a53a4cf@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF5aBmgC/3WOQQrCMBBFryJZG8kkpq2uvIe4SCcTnYWpNhoU6
+ d1NC0JFXL7PvMe8RKKeKYnt4iV6ypy4iwXsciHw5OKRJPvCQittlQEl/a3l6DkeZbPR0AYEC7Q
+ R5f7SU+DH1NofCp843br+OaUzjOunArNKBqmkxUbV3phQO9pd74wccYXdWYydrGeunn+QdXEb3
+ 5Bza6orxF/X/HVNcbWDKiB5C95+u8MwvAFe3rBqHAEAAA==
+X-Change-ID: 20250310-dtbinding-8921bfc151e9
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745246832; l=1452;
+ i=quic_vgarodia@quicinc.com; s=20241104; h=from:subject:message-id;
+ bh=GJP+NzoZRbU0xIH+5vo6gpsqentwg0czNwjfZAOG/kg=;
+ b=MZrJnwkQn6TJ0QamAk0ln8+iJmgm0+d3aY9q1C9mgUf7TPy4Wa6ewbTYzSi/6052rZqM8vv6/
+ RJUAUHhuinVC7spCzm04chx5znCM0S0XO/wVuSCq8kXV5xGyk2g0Jd8
+X-Developer-Key: i=quic_vgarodia@quicinc.com; a=ed25519;
+ pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=TYaWtQQh c=1 sm=1 tr=0 ts=68065a76 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=uUO1Guatd2edvWoe2zcA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: -j7GK614oiUGl4tF7WE9YSXUn4fXKslU
+X-Proofpoint-GUID: -j7GK614oiUGl4tF7WE9YSXUn4fXKslU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-21_07,2025-04-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ mlxlogscore=980 mlxscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504210115
 
-Hi Udit,
+add support for video hardware acceleration on SA8775P platform.
 
-On 4/19/25 10:00 AM, Kumar, Udit wrote:
-> 
-> On 4/18/2025 5:00 AM, Judith Mendez wrote:
->> Set eMMC clock parents to the defaults which is MAIN_PLL0_HSDIV5_CLKOUT
->> for eMMC. This change is necessary since DM is not implementing the
->> correct procedure to switch PLL clock source for eMMC and we have a
->> non-glich-free mux. To remove any potential issues, lets switch back to
->> the defaults.
-> 
-> IMO, we need to fix DM  if not then documentation [0] .
+Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+---
+Changes in v5:
+- Fix clock corner and a power domain specifier
+- Link to v4: https://lore.kernel.org/all/20250321-dtbinding-v4-0-6abd4575bff4@quicinc.com
 
-DM cannot be fixed for only one IP and documentation says what clock
-parents are supported, it does not have to say what are the issues
-that come with using a specific clock parent.
+Changes in v4:
+- Fix the order of video node.
+- Link to v3: https://lore.kernel.org/r/20250320-dtbinding-v3-0-2a16fced51d5@quicinc.com
 
-> 
-> Then only this patch is ok because as per document [0]
-> 
-> removed clock by this patch is valid parent for eMMC.
+Changes in v3:
+- Fix nit review comments.
+- Link to v2: https://lore.kernel.org/r/20250320-dtbinding-v2-0-8d8eaa4e76cc@quicinc.com
 
-The clock parent currently set is a valid parent, but we have non-
-glitch-free muxes and to avoid any potential issues with these, we
-should switch back to the defaults. It seems like we randomly switched
-from the default for no good reason and it has been copy paste per
-platforms since then, so we are switching back to the defaults now.
+Changes in v2:
+- Drop 01/04 patch as it was not needed.
+- Introduce sa8775p as fallback compatible to sm8550.
+- Move firmware files to board DT
+- Link to v1: https://lore.kernel.org/r/20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com
 
-~ Judith
+---
+Vikash Garodia (3):
+      dt-bindings: media: qcom,sm8550-iris: document SA8775p IRIS accelerator
+      arm64: dts: qcom: sa8775p: add support for video node
+      arm64: dts: qcom: sa8775p-ride: enable video
 
-> 
-> [0] https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j722s/clocks.html
-> 
-> Thanks
-> 
-> Udit
-> 
->>
->> Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral 
->> nodes")
->> Fixes: d3ae4e8d8b6a ("arm64: dts: ti: k3-am62a-main: Add sdhci0 
->> instance")
->> Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
->>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
->>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
->>   3 files changed, 6 deletions(-)
->>
->> [..]
+ .../bindings/media/qcom,sm8550-iris.yaml           |  7 ++-
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi         |  6 ++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 71 ++++++++++++++++++++++
+ 3 files changed, 83 insertions(+), 1 deletion(-)
+---
+base-commit: f2151613e040973c868d28c8b00885dfab69eb75
+change-id: 20250310-dtbinding-8921bfc151e9
+
+Best regards,
+-- 
+Vikash Garodia <quic_vgarodia@quicinc.com>
 
 
