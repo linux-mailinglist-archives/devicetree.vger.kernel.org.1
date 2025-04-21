@@ -1,174 +1,128 @@
-Return-Path: <devicetree+bounces-168995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F99A95136
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:45:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F9FA95143
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE7A61702D7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 12:45:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 953963ACD3C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 12:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FDB264FBE;
-	Mon, 21 Apr 2025 12:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B60265603;
+	Mon, 21 Apr 2025 12:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GrFMLU77"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="F0+d1xv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942FB264FBC;
-	Mon, 21 Apr 2025 12:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F94D1C5489;
+	Mon, 21 Apr 2025 12:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745239507; cv=none; b=ZbrjjeU6qmL2060Cilq6Z37AplRM/XsSNbMIdoc5Yh5hsaWrNaBMcqtCOT87AAsSBYWXhaYZx216ihlNc0X7wnJ/E3xDM/7FzpOHyCziwetNA4TnzYUlVuiJ2cbbxp6+SZJV95LeHZMqlGxRWMuo5/9xq1OIHtESABwQI1EnA9o=
+	t=1745240297; cv=none; b=bWrRFEqFSmSgzaIJosYyZcQRxUm4pCL6JzJtIyq9tazMuVjw28Z++0rgPkfFX35y2crCFp72MiNECk8R4jWlxIq/Nm+UwP1P7HQ54p4qDZ1f9iSuudrmCgR1IQc55o/Ed2uliPTWEiRFm73yqr2cWJFcykWSl775QFfT8+ZAXf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745239507; c=relaxed/simple;
-	bh=nRThIm4QiiJ7kuGTaVkNpVUEQAd1ECcV9p7e7chNtEs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=M0RwYnxJ7slJE2DUGCxO73tRfT1lzL/aegE/olTlUUvj8bmZV6nRJZ0gazYIiFDsBl+KThMoxsCvSCRKffL+WtUMjNgiPznZ/2n8ZupmO4RQgd3sQYB+Osm03ZPH1GOjepna12zMhRxBIEl7rYYNySr4AMzQ2igr7K5axSqZgbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GrFMLU77; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso26970905e9.1;
-        Mon, 21 Apr 2025 05:45:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745239504; x=1745844304; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nRThIm4QiiJ7kuGTaVkNpVUEQAd1ECcV9p7e7chNtEs=;
-        b=GrFMLU77hFPx5PHJConusN1taLnEW3T41kCGxh81+yzgRYmsyYvvhexDHhGih1Slww
-         i7mZsUEdAnuCE7Mhdwt282S+Rn4BcSgY1IQX5lRRIVSZ/HIwphL8K5hyEvZqXgzg6DXh
-         HlR5RLTufS/q2iBzhAjmd3Z6jhlfiGW9Lrna1f5K2Qoyq98077S0zNupKAfv/pmIrCSj
-         OTtSt7dtLVwHi3GmTT0n/w2U8bAacQZn/JCjED86PUrH6CcQJYeub0Pi/pILX0+9gjdq
-         SgeVUarN3CIHzyklTFe51squKoanWydUL9zy9wPV3sKXZnIL+ISudUrkhzyd1PccOT8i
-         b6Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745239504; x=1745844304;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nRThIm4QiiJ7kuGTaVkNpVUEQAd1ECcV9p7e7chNtEs=;
-        b=hsHchfw7TMM036Uegt9sxPmtqRdrEcwJ1U8vPshxEzbsQWlu2J++VhjZO4EUwQNAvE
-         nUBhshCE6BQ8sH3xWMRGCwJl1kAxJAhhDs1sL8TsU+C/xEowHnL8SxbxOhd0wJoRsZiO
-         RdwWbvd3z4hDnEATyJ0V+TITy8mFJHE/1vbTVXZsfO8GJqKMv/3Xj3AzTseU9Atiz0IH
-         CexU9H45h6KyR2SszDrCI3F2zj//oqxG+/racrWPIUw0Rur769Ug1B72eXI3CKT2zJ9s
-         n5m5u3Nqc5ENhv5KBABbwuDHodAfD9KKdh1W2Jz7J/ucl1C/lLml3g6VwMimC6x8oqLo
-         PyOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZsAgK+PLTMUM+i0yTsWqlDybLlnRzTxZbP7mI7TpZv4gRp6RDSKttOyR7SQg/VVvoRApN7fGvg8cd@vger.kernel.org, AJvYcCVfkSfAIEqkZ4ahxhgEij+7NYv10wnHyJjp5jmiZ+jbGCxuWV+zGJhS5KYILGK9483kl8WlEeQX1J0qbg==@vger.kernel.org, AJvYcCXMJwDQ7TaN0paZCEB5Z6E3vX47cVodrKB7j3LWLRITpirdGERI00LSpV6OpPIpROa2VqthOiDoTIK3gxw=@vger.kernel.org, AJvYcCXzzzH72//d4tRubesLNYYPqYAnzvfyxod5owt9Gk5h3K5WAQ1HekpK4FRLi/kbkVTEBqhHfFDNPI5j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3E2Ui98/MHbQdbwx+tX6Aw/cwAXSeMrUusoKwTlhrvDRvRXWH
-	Qo6uLeZEhB1hwKz9aO3SvrJcl+hHoI55QXaEImqjMLWR8TB4bjXf
-X-Gm-Gg: ASbGnctQtrHbFFJIwN8GQ+emmIkkY3hSXkeIaIBGD6BGhtXeROZCBUl+ZO2ILsWMu83
-	7WUzbBCp4/OS24K5kuB72kMTHOpMooZKMXIikI1YPpBapFFYHNqV15/2DqjlDhw42Gi/wCustVJ
-	yyFOcdGAXorgoZoZN1EgaIfIdzHoHpjEHJihn7E9vPqNyCtHjreZf1z78gWsoHvK1XMPWvQYKSR
-	FRnI0EIFzylM7X3EWVsIXIiG2Z4Qncwx+iihGk4MIBC4Hfr7WIpJvNXb/ii3Q6Xu1GVQ0BhC2tD
-	AQcOOUNfJxB+TnQ05JD/XymQZ/T7ciFWWEMH8oLcYTBB++asOauWBXwh5BKB4Nq96nxlcRkRaQg
-	WDv/omnnyzBzv
-X-Google-Smtp-Source: AGHT+IHX5sZDtw2J4O+0VuZUCUrvhbTSUb9QlVlmfhGWgqrjSCURjxngX+0/EESTIEO7EsSTWHd7Rw==
-X-Received: by 2002:a5d:5c84:0:b0:390:f394:6271 with SMTP id ffacd0b85a97d-39efbae066bmr9450052f8f.43.1745239503762;
-        Mon, 21 Apr 2025 05:45:03 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4235dasm11622069f8f.9.2025.04.21.05.45.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Apr 2025 05:45:03 -0700 (PDT)
-Message-ID: <ca9b9fb77e4308fbb2042d49188162d494568835.camel@gmail.com>
-Subject: Re: [PATCH v2 01/17] dt-bindings: mfd: adp5585: ease on the
- required properties
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
- linux-pwm@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>,  Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=	
- <ukleinek@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Liu Ying <victor.liu@nxp.com>
-Date: Mon, 21 Apr 2025 13:45:06 +0100
-In-Reply-To: <20250421122929.GA32759@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-	 <20250415-dev-adp5589-fw-v2-1-3a799c3ed812@analog.com>
-	 <20250421085605.GA29968@pendragon.ideasonboard.com>
-	 <66dd1d165df00d271491a6a5d2a8beaa25f7aec6.camel@gmail.com>
-	 <20250421122929.GA32759@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1745240297; c=relaxed/simple;
+	bh=0Q6C7OIuloJnN8yMRGcP4R9BixqDIyAOo76AKxjy0bg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ilfIUR3JR0YtyNs/ZQ8tT73WIevenau6ILRQv21MY8dpn+EuA2id8C5RFCgp77DH4bJgdEmeVGUcbeMYh8V+vSW8HXxgOxCV4NsLN0Fd/5DmZr4+NwnVBZ5ux/O25XJKX5/7jMNeAMUfa+oTvXrQsYR5J8tzM4uE68sefs6y74Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=F0+d1xv5; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LCw9RD919322
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 21 Apr 2025 07:58:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745240289;
+	bh=MGl6wj1twMafrqAJ2Ap7n/PE7X+QSY313AzQP/HONtY=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=F0+d1xv58ycA9lNCvOmeLd8kmTng4Jk9EMYvwDXZGiq1Y6+dRa/CaR7IGCmiS7GFB
+	 qS60ZHPAo6VLRX9nByzeT9H9vfJ5BEqF7vqPhro2PHQzhXfsua59XisHBupH45i6PA
+	 AgPMdoifeiDSn3VgpSRLdc/AYFJ7C5rJ81sDUWWM=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LCw9XL083520
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 21 Apr 2025 07:58:09 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
+ Apr 2025 07:58:09 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 21 Apr 2025 07:58:09 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LCw9bV083581;
+	Mon, 21 Apr 2025 07:58:09 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Jared McArthur <j-mcarthur@ti.com>,
+        Robert Nelson
+	<robertcnelson@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Nishanth Menon
+	<nm@ti.com>
+CC: Roger Quadros <rogerq@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am67a-beagley-ai: Add bootph for main_gpio1
+Date: Mon, 21 Apr 2025 07:58:07 -0500
+Message-ID: <174524025290.1975926.6373479464630602638.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250411203950.2859356-1-nm@ti.com>
+References: <20250411203950.2859356-1-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, 2025-04-21 at 15:29 +0300, Laurent Pinchart wrote:
-> On Mon, Apr 21, 2025 at 01:12:33PM +0100, Nuno S=C3=A1 wrote:
-> > On Mon, 2025-04-21 at 11:56 +0300, Laurent Pinchart wrote:
-> > > On Tue, Apr 15, 2025 at 03:49:17PM +0100, Nuno S=C3=A1 via B4 Relay w=
-rote:
-> > > > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > >=20
-> > > > It is not mandatory to use all the capabilities of the device. One =
-can
-> > > > very well only use it as a gpio controller without the PWM support.=
- This
-> > > > will be even more evident when support for the matrix keymap is add=
-ed.
-> > > > Hence drop the requirements for PWM and GPIO.
-> > >=20
-> > > This seems to make sense.
-> > >=20
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > >=20
-> > > I however expected changes in this series to *not* register MFD cells
-> > > for the devices not enabled in DT. Could you do so in v3, on top of t=
-his
-> > > patch ?
-> >=20
-> > Makes sense... In theory, I would go with MFD_CELL_OF() but that would =
-need
-> > (I
-> > guess) bindings for all the devices and since PWM and GPIO were not
-> > introduced
-> > with that...
->=20
-> I initially designed the bindings with child nodes, but got told to
-> instead use a single DT node :-(
->=20
+Hi Nishanth Menon,
 
-Interesting, I would expect the child nodes approach to be encouraged...
+On Fri, 11 Apr 2025 15:39:50 -0500, Nishanth Menon wrote:
+> main_gpio1 controls the voltage for the SDcard from 3.3v to 1.8v.
+> This is required for proper operation of SDcard through various boot
+> stages.
+> 
+> 
 
-> > Anyways, I'll look into some "mandatory" property for each of the suppo=
-rted
-> > cells and use that as deciding point.
->=20
-> Sounds good to me.
->=20
-> > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > ---
-> > > > =C2=A0Documentation/devicetree/bindings/mfd/adi,adp5585.yaml | 3 --=
--
-> > > > =C2=A01 file changed, 3 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > > > b/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > > > index
-> > > > ee2272f754a339569c793102928ddd13249f8fee..e30e22f964f78519b2ec207e9=
-415e4
-> > > > 897d
-> > > > b5c702 100644
-> > > > --- a/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > > > @@ -52,9 +52,6 @@ patternProperties:
-> > > > =C2=A0required:
-> > > > =C2=A0=C2=A0 - compatible
-> > > > =C2=A0=C2=A0 - reg
-> > > > -=C2=A0 - gpio-controller
-> > > > -=C2=A0 - "#gpio-cells"
-> > > > -=C2=A0 - "#pwm-cells"
-> > > > =C2=A0
-> > > > =C2=A0allOf:
-> > > > =C2=A0=C2=A0 - if:
+I have applied the following to branch ti-k3-dts-next on [1].
+I have dropped the Fixes tag as it is not impacting the linux kernel.
+
+Thank you!
+
+[1/1] arm64: dts: ti: k3-am67a-beagley-ai: Add bootph for main_gpio1
+      commit: 6a7023118fd7901d8b7967388923604d5d646cca
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
 
