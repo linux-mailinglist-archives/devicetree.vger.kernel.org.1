@@ -1,186 +1,157 @@
-Return-Path: <devicetree+bounces-169004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8481AA951B8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 15:34:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA63A951D7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 15:42:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 452191893BA3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:34:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C1CA7A233B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471D225A2C3;
-	Mon, 21 Apr 2025 13:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JIZOPSHe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BE9266560;
+	Mon, 21 Apr 2025 13:42:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CE41A83F9;
-	Mon, 21 Apr 2025 13:34:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1A4263F59;
+	Mon, 21 Apr 2025 13:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745242464; cv=none; b=lTeUt4c/Ywhx7PKokv6b88/mN4FUWUcIDtT3AqzbvMB+9R9KJyKxPkL1eFh8xQK8ihE8nzVxAt8jRMFcHdMQbIe3usqaOl7aL5hhw79DC+rwg2UrHwA9Yu72AXXsdSRy0kHqcXVwTGcjlRiM8QTx2o+/2eGNCRZC/dta49afMKQ=
+	t=1745242959; cv=none; b=Dv7OX4tzHmz+uGo3JZyYmA/eqpceo2+4pZYXeXd1PaOI0Hxd5ZLJqQQetLeDgL9uQwdXnM7R9RjfUbQhvRBItMsYs8ueuEV0M0nyzUqwRX+iwNH1vWhYMec2EWKD97U0MHSGgGEPbctE5bJTv6nzrfnwSP1VXHH33ehFgNRN7r8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745242464; c=relaxed/simple;
-	bh=e9mCg59LrHYpTZnERz1wXVXjp85owru2+efmUdmDizU=;
+	s=arc-20240116; t=1745242959; c=relaxed/simple;
+	bh=KXhw3FajxBFcewp5L1yFXiHWp2yt8zvAASSzbJIy+9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oDlYS+xeDfRoiSxD0PTziBQxn2d3tzpPrw1WuJFD1rG2E8fLEsg3UPaz3Ybc5yFoLTd5qwxZel7M9vgVCts/kClQo1YZRcmclX4lHjgUItXAMFBwSzDgMnYFPGrEHpxWJnZotbB51r1k8x1POFA9gSyLJVQqC2y8Dt0z3SEC12Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JIZOPSHe; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E14B36D5;
-	Mon, 21 Apr 2025 15:32:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745242334;
-	bh=e9mCg59LrHYpTZnERz1wXVXjp85owru2+efmUdmDizU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JIZOPSHesmF8U0ddr3mJx9VlZOHs/dG2qqtbErG2SAXw121dCfTs9YWzWl5seT2ia
-	 w/8WKKbYHRCOvOBM+cZvqLN7RmA9slCkQVDy0IHAE1hh4vITKZ2yxG4ysj0NeAORbb
-	 qAzje2ibjZYOpggjMr0fkx6z8kZcDfS3KPIOFwdo=
-Date: Mon, 21 Apr 2025 16:34:18 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rishikesh Donadkar <r-donadkar@ti.com>
-Cc: jai.luthra@linux.dev, mripard@kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	devarsht@ti.com, y-abhilashchandra@ti.com, mchehab@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	vaishnav.a@ti.com, s-jain1@ti.com, vigneshr@ti.com,
-	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-	tomi.valkeinen@ideasonboard.com, jai.luthra@ideasonboard.com,
-	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com
-Subject: Re: [PATCH v3 08/13] media: ti: j721e-csi2rx: add support for
- processing virtual channels
-Message-ID: <20250421133418.GI29483@pendragon.ideasonboard.com>
-References: <20250417065554.437541-1-r-donadkar@ti.com>
- <20250417065554.437541-9-r-donadkar@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sVc/Kog+EJ7hRMJr1gEBcPZ26ZYPACrRM0CaNrR1k3IlRoMCQ3QaYkTMLWAGI4Mq//kBMk24Zg3zkdXrqGL/Qtj0SPLcDYKrwmgfFWa2ArXjPyysfKIUUTZvl8DthO/Glj++huwOnT0j/mweH8hP9iq+mt9zcnBQ/E1jZ057KxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 1CCB6342FB1;
+	Mon, 21 Apr 2025 13:42:35 +0000 (UTC)
+Date: Mon, 21 Apr 2025 13:42:18 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/7] clk: spacemit: add K1 reset support
+Message-ID: <20250421134218-GYA42923@gentoo>
+References: <20250418145401.2603648-1-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250417065554.437541-9-r-donadkar@ti.com>
+In-Reply-To: <20250418145401.2603648-1-elder@riscstar.com>
 
-Hi Rishikesh,
+Hi Alex,
+  I'm good with this version, but would wait a few more days for
+people to comment before taking them..
 
-Thank you for the patch.
+Hi Philipp,
+  Since these reset patches [3, 4, 6] are sitting on top of clk driver,
+I'd assume you're ok with taking them through clk tree? I'd plan to queue
+them for 6.16.. if yes, would you be able to give an ACK? I'd appreciate!
 
-On Thu, Apr 17, 2025 at 12:25:49PM +0530, Rishikesh Donadkar wrote:
-> From: Jai Luthra <j-luthra@ti.com>
+
+
+for the patch series, I'll give my rb
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
+
+On 09:53 Fri 18 Apr     , Alex Elder wrote:
+> This series adds reset controller support for the SpacemiT K1 SoC.
 > 
-> Use get_frame_desc() to get the frame desc from the connected source,
-> and use the provided virtual channel instead of hardcoded one.
+> Most of the the clock controller driver that Haylen Chu had out for
+> review has been accepted (at v8).  So this time this series is
+> based on the "for-next" branch in the SpacemiT repository:
+>   https://github.com/spacemit-com/linux/tree/for-next
 > 
-> get_frame_desc() works per stream, but as we don't support multiple
-> streams yet, we will just always use stream 0. If the source doesn't
-> support get_frame_desc(), fall back to the previous method of always
-> capturing virtual channel 0.
+> All of these patches are available here:
+>   https://github.com/riscstar/linux/tree/outgoing/reset-v5
 > 
-> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
+> Between version 4 and version 5:
+>   - Added Haylen's Reviewed-by on the second patch.
+>   - Added Philipp's Reviewed-by on the third patch.
+>   - In patch 4, added a const qualifier to some structures, and removed
+>     parentheses surrounding integer constants, as suggested by Philipp
+>   - Now based on the SpacemiT for-next branch
 > 
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index e85d04d7c2ff9..3e2a0517a9096 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -29,6 +29,7 @@
->  #define SHIM_DMACNTX_EN			BIT(31)
->  #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
->  #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
-> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
->  #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
->  #define SHIM_DMACNTX_YUV422_MODE_11	3
->  #define SHIM_DMACNTX_SIZE_8		0
-> @@ -105,6 +106,8 @@ struct ti_csi2rx_ctx {
->  	struct media_pad		pad;
->  	u32				sequence;
->  	u32				idx;
-> +	u32				vc;
-> +	u32				stream;
->  };
->  
->  struct ti_csi2rx_dev {
-> @@ -573,6 +576,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
->  	}
->  
->  	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
-> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
->  
->  	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
->  
-> @@ -846,6 +850,33 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
->  	}
->  }
->  
-> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
-> +{
-> +	struct ti_csi2rx_dev *csi = ctx->csi;
-> +	struct v4l2_mbus_frame_desc fd;
-> +	struct media_pad *pad;
-> +	int ret, i;
-
-i can never be negative, you can make it an unsigned int.
-
-> +
-> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
-> +	if (!pad)
-> +		return -ENODEV;
-> +
-> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index,
-> +			       &fd);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
-> +		return -EINVAL;
-> +
-> +	for (i = 0; i < fd.num_entries; i++) {
-> +		if (ctx->stream == fd.entry[i].stream)
-> +			return fd.entry[i].bus.csi2.vc;
-> +	}
-> +
-> +	return -ENODEV;
-> +}
-> +
->  static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  {
->  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
-> @@ -866,6 +897,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  	if (ret)
->  		goto err;
->  
-> +	ret = ti_csi2rx_get_vc(ctx);
-> +	if (ret == -ENOIOCTLCMD)
-> +		ctx->vc = 0;
-> +	else if (ret < 0)
-> +		goto err;
-> +	else
-> +		ctx->vc = ret;
-> +
-
-When you'll add support for multiple streams in patch 11/13, you will
-end up calling .get_frame_desc() once per stream. All calls will return
-the same information, so it's a bit wasteful. Would it be possible to
-call this function once only at start time, and cache and use the
-results for all video devices ?
-
->  	ti_csi2rx_setup_shim(ctx);
->  
->  	ctx->sequence = 0;
+> Here is version 4 of this series.
+>   https://lore.kernel.org/lkml/20250414191715.2264758-1-elder@riscstar.com/
+> 
+> Between version 3 and version 4:
+>   - Now based on Haylen Chu's v7 clock code, built on v6.15-rc2.
+>   - Added Krzysztof's Reviewed-by on the first patch.
+> 
+> Here is version 3 of this series.
+>   https://lore.kernel.org/lkml/20250409211741.1171584-1-elder@riscstar.com/
+> 
+> Between version 2 and version 3 there was no feedback, however:
+>   - Haylen posted v6 of the clock series, and it included some changes
+>     that affected the logic in this reset code.
+>   - I was informed that defining CCU nodes without any clocks led to
+>     warnings about "clocks" being a required property when running
+>     "make dtbs_check".  For that reason, I made clock properties
+>     optional for reset-only CCU nodes.
+>   - This code is now based on v6.15-rc1, which includes a few commits
+>     that were listed as dependencies previously.
+> 
+> Here is version 2 of this series.
+>   https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
+> 
+> Between version 1 and version 2:
+>   - Added Rob's Reviewed-by tag on the first patch
+>   - Renamed the of_match_data data type (and one or two other symbols) to
+>     use "spacemit" rather than "k1".
+>   - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+>     sympols with "reset" or "RESET" respectively.
+>   - Eliminated rcdev_to_controller(), which was only used once.
+>   - Changed a function that unsafely did a read/modify/write of a register
+>     to use regmap_update_bits() instead as suggested by Haylen.
+>   - Eliminated a null check for a pointer known to be non-null.
+>   - Reordered the assignment of reset controller device fields.
+>   - Added a "sentinel" comment as requested by Yixun.
+>   - Updated to be based on Linux v6.14 final.
+> 
+> Here is the first version of this series.
+>   https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
+> *** BLURB HERE ***
+> 
+> Alex Elder (7):
+>   dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+>   clk: spacemit: rename spacemit_ccu_data fields
+>   clk: spacemit: add reset controller support
+>   clk: spacemit: define existing syscon resets
+>   clk: spacemit: make clocks optional
+>   clk: spacemit: define new syscons with only resets
+>   riscv: dts: spacemit: add reset support for the K1 SoC
+> 
+>  .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +-
+>  arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 +
+>  drivers/clk/spacemit/ccu-k1.c                 | 330 +++++++++++++++++-
+>  .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 +++++++
+>  4 files changed, 482 insertions(+), 23 deletions(-)
+> 
+> 
+> base-commit: 279d51ad9f6dc0c667f6f141a669b2c921277d1a
+> -- 
+> 2.45.2
+> 
 
 -- 
-Regards,
-
-Laurent Pinchart
+Yixun Lan (dlan)
 
