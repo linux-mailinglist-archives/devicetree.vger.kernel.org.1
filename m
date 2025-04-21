@@ -1,192 +1,257 @@
-Return-Path: <devicetree+bounces-168897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2712A94D93
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:00:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988E0A94DB2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9093918902D7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:00:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 543227A1333
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF325213220;
-	Mon, 21 Apr 2025 08:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16DF20D516;
+	Mon, 21 Apr 2025 08:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="f7xBbe5w"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Cl4sFDKt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD713597B;
-	Mon, 21 Apr 2025 08:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC75B1FDA
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745222404; cv=none; b=n12Twg2QsnBLRepNF5OXJouplu9co7leGdSbfOedNUgDyvsnoFR6qWw+zxg+of098WiVZYU3FRqbdw8NqooSkX6FOlxM6CRuZuVsuA3ddfuhbwdID5FdRqJns4P1LOU1hkCm7ZHnK5umK0D/+JNFjnMDeY6VqFFng7goq7L+qms=
+	t=1745223070; cv=none; b=TFRZcueD0yGsCjQ9fNWva04VKH+paRh069r6JGn0tqp83qSVh1h0ED4dfML91S9e9NFABWIyY1ovQZYHXQk/aTF9Qg/ZPnkGdF+2UfAlAa+jteMrwAbj0Le/WZwcNHaUGMsTqhlyv/OHEWx8tfJESN/k8GclMkbPsA9m+1sGehU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745222404; c=relaxed/simple;
-	bh=AmRZAZ+4oNxOx4V1t7gmV4I0LqgEnDoXqNH/485r1TI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B1b7bJWlTw7CBkqb0WhA5Zf9SuDeUqe1IyJIRTl/O/7ro/i9tBXJ5AjHAjMQ9Y9aJr1QJpZRgIlF7M4MDaEzmxB+ZkQ3AHJzr9FqMwGUPspY3RhtBIAHJDkTlbWmL2uah0jQkCttazfVjP0/gG50CeupvWa2T+ZgbKm+DAzGZt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=f7xBbe5w; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53L7xqf7859994
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 02:59:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745222392;
-	bh=3KE2Gy26ZzuCmAUw5vnv1H2E8aAjLIG+uFRQDf8v+UA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=f7xBbe5w9agULXZz1JqJrgurC9ih2x7qO7h0QVWUHfQdD1CuROAKDlBaDx5QzDvju
-	 65egL6vDf+ypH2Mw+1dpiymmb636YnQebeTXocl1td53R/iz5h2yfm3rmfw3QEHNr2
-	 cjZRPhdk8Tz3yRXUHyy1EhpCIsQPUvLWNJcZl2HA=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53L7xqQd130356
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 02:59:52 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 02:59:51 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 02:59:52 -0500
-Received: from [172.24.18.98] (lt5cd2489kgj.dhcp.ti.com [172.24.18.98])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53L7xmsR113313;
-	Mon, 21 Apr 2025 02:59:49 -0500
-Message-ID: <8c7b68fc-c275-45c3-830a-3ea3174f38f5@ti.com>
-Date: Mon, 21 Apr 2025 13:29:47 +0530
+	s=arc-20240116; t=1745223070; c=relaxed/simple;
+	bh=aJrF1jHhxaE+04sPMq9ku+AVuLNApaE8XcPsSAQRF6Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GYWYbHZyxc+Qs8/GflJwKlub4IB6ef5wQGNvDVf14iJ4ZscX8XJ/NY4/Mj3FOV20UcX3mRPej9yyo12t8QzLeKa58U9fvRQk42upELCeLDZpMzz5TCLlOmqjvj1LMlFjcEiLn3TG4GicSITU8OySfGRVezjDUKph2DwsehuOwLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Cl4sFDKt; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-acae7e7587dso510239866b.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 01:11:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745223066; x=1745827866; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cEJYEsOWRgA7P01GIapAjk9rxCwc/KpwxFDRiqa3Ck8=;
+        b=Cl4sFDKtRoJAj3uAIeHZ36iEy0uMCxhhkduxvj6Wz4O+6c7B8SJZsVihNfj5fDUOys
+         wi99wYspO5Kqm/jYDLFn5p7NtewKrG7+9P7SV9Te143uklMseyk3lfzLJ7gN25SPGDM+
+         3mieFoRCn96jvfRUNviyKLF+o8guOHU8x33fMNL9frAujFLoRwSUqh1FpZOv0LLXiIZV
+         UP/UBpJ5tavA/nVTSVZ6mTM45y1kCQ/Cqb5GSiHUxkJ/+v/SLmXN18Pcm1HcJxPWL9J5
+         EKP7rMjAD6T9P9cWZUfkOdmZxDe15TTYtNUVsp7g4dAVqZb3eXcvbmqZmQSDUsiIshtA
+         Q3HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745223066; x=1745827866;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cEJYEsOWRgA7P01GIapAjk9rxCwc/KpwxFDRiqa3Ck8=;
+        b=K7mOswl9W82toAP3a2r/CVEyTvcM+YnolRxTStkNQLJr/HsaiyeuaWuPPOg864uPFj
+         TMjn1cP5gsnZ0PR+jBqDBkkFy8TJj4Zu6WEe/guIUdhiD3xq5VP52U54ewOBprB6W+3y
+         AkV2SrFlMXOIE46HP7Y7dnIv5QCS0YZS/tV066NFj4l0IXiOqhw6KWIHRU73oy9Uc2Ic
+         YIkn04TpleaM1Uo2KlhEjzeR2Ox04mzUyodywVg/z6+Ks+OSfVi6RPJG8JZ+FOuNaJLt
+         JoU/Q6ihRdoapwmJp0BF/mlj2HlqrjiDSW8DywmJgtAdxSbADFT+2iaYPgf3ZLKVVloc
+         UBMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW+qqt8qP6UllNC4df3/1lE+dPFWF2nlWXI7t7g+hA0/9UPabvnEGGWurqTaNSb3FnIUaSklw+rsyFX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgbIlNI9V/P1ho5wu9+hYVWhxOwuUntrN+f6OWTNqSd1q/gaix
+	OzRcBgFSYZh2ZS+A/aqWvFNyI0xhm34OgmnRDKfCoAb7FhNnmi6fnyc7YQ1nVzU=
+X-Gm-Gg: ASbGnctw2p+PidLnh52/UAGK0WnHN5VNhif7MHYkdwEk2aPd/hWUKPSWnt1u6gY1kuF
+	IbHActkZBFJHOOXfaijuyfUbTIw3l4PNLuEKvqVq9A2c0OJelpBek/nKNLqpVSElCmQLlPe03EQ
+	nHlpRFvJufkx/Qaz4eH3NpI7uR5zXBnonGddW08ES6yYPhHGpRjbKXvbAN1PGPmI+d3VpTatjWU
+	VADOv3K2ZZGV0rgx8O4ox71Pfc/hSURq32gIud/FrxTUOothDw1i8gAxQL8C8hgTCwNXk2Yvlw9
+	bI+tL08XVCiiUvhXPJECqapkHr2/3bp8nUs=
+X-Google-Smtp-Source: AGHT+IHvLk6YuYVa5Syy+904cU3h1XTCDFrimnT9QPpf0L9dA4NRFUoveK3cJI8jJuekMw8oBIrHTg==
+X-Received: by 2002:a17:907:9708:b0:ac3:ed4c:6a17 with SMTP id a640c23a62f3a-acb74b0d079mr1094129266b.24.1745223066116;
+        Mon, 21 Apr 2025 01:11:06 -0700 (PDT)
+Received: from localhost ([2001:4091:a245:826e:c0c:4cef:7dd:26bd])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-acb6eefc685sm484815566b.96.2025.04.21.01.11.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Apr 2025 01:11:05 -0700 (PDT)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v7 0/4] can: m_can: Add am62 wakeup support
+Date: Mon, 21 Apr 2025 10:10:36 +0200
+Message-Id: <20250421-topic-mcan-wakeup-source-v6-12-v7-0-1b7b916c9832@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-j7200-main: switch to 64-bit
- address space for PCIe1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <u-kumar1@ti.com>
-References: <20250417120407.2646929-1-s-vadapalli@ti.com>
- <20250417120407.2646929-3-s-vadapalli@ti.com>
- <8b707fbc-9d82-48d0-a227-366d4e83e8a7@ti.com>
- <231e009e-0dc2-4876-b052-d11b64ee5a0a@ti.com>
- <d517b2bb-2bf2-44ec-8509-6281c5566972@ti.com>
- <8d43fdc6-760d-49cd-b4f5-95d13a52220b@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <8d43fdc6-760d-49cd-b4f5-95d13a52220b@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHz9BWgC/4XQwWoDIRAG4FcJnjvF0VXXnPoeJQdXZxtpsy6am
+ Iaw714TCg0lsJeBfw7fP8yVFcqRCtturixTjSWmqQXzsmF+76YPghhaZoKLDjm3cExz9HDwboK
+ z+6TTDCWdsieoGlBA7zFoayUOoWcNmTON8fte8L5reR/LMeXLva/K2/aXRlyjqwQO1ijhDXYuo
+ Hgb3OUrDplefTqwm167R1Gtil0Tx+DazUjGOf1EVA+i6FdF1UQpKXjuBqeFfSLqP1Hg6kPb5IB
+ SaW9G49ux/8RlWX4AYYAzfMUBAAA=
+X-Change-ID: 20241009-topic-mcan-wakeup-source-v6-12-8c1d69931bd8
+To: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, 
+ Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+ Simon Horman <horms@kernel.org>, 
+ Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, linux-can@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Markus Schneider-Pargmann <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6309; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=aJrF1jHhxaE+04sPMq9ku+AVuLNApaE8XcPsSAQRF6Q=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhgzWv/U5zw9qel/gWnc572qh6orkKysaP5120LzyK+doS
+ nh85s9lHaUsDGJcDLJiiiydiaFp/+V3HktetGwzzBxWJpAhDFycAjCR2wYM/zNvyG6M3iD6ufHj
+ Zx2pD8sOcOXPcOTc9W5qso+YuWvAakWGf8rzEvcnGjg828T5KknLcdrd76IuB7vDwnWUF0+Zbsp
+ uzgkA
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
+Hi,
 
-On 4/20/2025 7:48 PM, Siddharth Vadapalli wrote:
-> On Sun, Apr 20, 2025 at 10:17:46AM +0530, Kumar, Udit wrote:
->> Hello Siddharth
->>
->> On 4/20/2025 8:33 AM, Siddharth Vadapalli wrote:
->>> On Sat, Apr 19, 2025 at 11:35:50PM +0530, Kumar, Udit wrote:
->>>
->>> Hello Udit,
->>>
->>>> On 4/17/2025 5:34 PM, Siddharth Vadapalli wrote:
->>>>> The PCIe0 instance of PCIe in J7200 SoC supports:
->>>>> 1. 128 MB address region in the 32-bit address space
->>>>> 2. 4 GB address region in the 64-bit address space
->>>>>
->>>>> The default configuration is that of a 128 MB address region in the
->>>>> 32-bit address space. While this might be sufficient for most use-cases,
->>>>> it is insufficient for supporting use-cases which require larger address
->>>>> spaces. Therefore, switch to using the 64-bit address space with a 4 GB
->>>>> address region.
->>>>>
->>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>>>> ---
->>>>>     arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 7 ++++---
->>>>>     1 file changed, 4 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->>>>> index 5ab510a0605f..e898dffdebbe 100644
->>>>> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->>>>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->>>>> @@ -759,7 +759,7 @@ pcie1_rc: pcie@2910000 {
->>>>>     		reg = <0x00 0x02910000 0x00 0x1000>,
->>>>>     		      <0x00 0x02917000 0x00 0x400>,
->>>>>     		      <0x00 0x0d800000 0x00 0x00800000>,
->>>>> -		      <0x00 0x18000000 0x00 0x00001000>;
->>>>> +		      <0x41 0x00000000 0x00 0x00001000>;
->>>>>     		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
->>>>>     		interrupt-names = "link_state";
->>>>>     		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
->>>>> @@ -778,8 +778,9 @@ pcie1_rc: pcie@2910000 {
->>>>>     		device-id = <0xb00f>;
->>>>>     		msi-map = <0x0 &gic_its 0x0 0x10000>;
->>>>>     		dma-coherent;
->>>>> -		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
->>>>> -			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
->>>>> +		ranges = <0x01000000 0x00 0x00001000 0x41 0x00001000 0x00 0x00100000>, /* IO (1 MB) */
->>>>> +			 <0x02000000 0x00 0x00101000 0x41 0x00101000 0x00 0x08000000>, /* 32-bit Non-Prefetchable MEM (128 MB) */
->>>>> +			 <0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>; /* 64-bit Prefetchable MEM (4 GB - (129 MB + 4 KB)) */
->>>> Sorry for novice question,
->>>>
->>>> with this change,  How do you see  old EP working which supports 32 bit
->>>> addressing,
->>>>
->>>> or some translation is possible ?
->>>>
->>>> 0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
->>>>
->>>> to
->>>>
->>>> 0x63000000 0x00 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
->>> I didn't understand the question completely, but I shall try to explain
->>> the changes being made which might possibly answer your question.
->> If I understood well then what you are doing here
->>
->> 0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
->>
->> PCIe address
->> 0x43000000 0x41 0x08101000 -->
->> Property 0x43
->> 0x43 as npt000ss ->relocatable, prefetch and 64 Bit memory space PCIe Bus address  0x41 0x08101000
->> CPU address space 0x41 0x08101000
->> This will work fine, if EP supports 64 bit addressing scheme.
->>
->> In case, we want to work with EP of 32 Bit, Then do you see , we need to relocate PCIe (lower 32 bits) to CPU address (64 bits)
-> A total of 3 Address Regions have been defined:
-> 1. 1 MB IO in the 32-bit PCIe Bus Address Space
-> 2. 128 MB Non-Prefetchable MEM in the 32-bit PCIe Bus Address Space
-> 3. (4 GB - 129 MB - 4 KB) Prefetchable MEM in the 64-bit PCIe Bus
-> Address Space
->
-> '1' and '2' above provide backward compatibility with Endpoint Devices
-> that can only support 32-bit PCIe Bus Addressing. The __newly__ added
-> '3' enables Endpoint Devices that support 64-bit PCIe Bus Addressing to
-> claim larger Memory Address Space on top of what is supported by '1' and
-> '2'.
+This series adds support for wakeup capabilities to the m_can driver, which 
+is necessary for enabling Partial-IO functionality on am62, am62a, and am62p 
+SoCs. It implements the wake-on-lan interface for m_can devices and handles 
+the pinctrl states needed for wakeup functionality.
 
-Thanks Siddharth,
+am62, am62a and am62p support Partial-IO, a low power system state in which 
+nearly everything is turned off except the pins of the CANUART group. This group
+contains mcu_mcan0, mcu_mcan1, wkup_uart0 and mcu_uart0 devices.
 
-I understand, you are enabling 64 bit addressing, keeping previous 
-addressing scheme unchanged.
+To support mcu_mcan0 and mcu_mcan1 wakeup for the mentioned SoCs, the
+series introduces a notion of wake-on-lan for m_can. If the user decides
+to enable wake-on-lan for a m_can device, the device is set to wakeup
+enabled. A 'wakeup' pinctrl state is selected to enable wakeup flags for
+the relevant pins. If wake-on-lan is disabled the default pinctrl is
+selected.
 
-Since, you are changing, it will be good to give max possible addresses 
-for 32 bits EP.
+Partial-IO Overview
+------------------
+Partial-IO is a low power system state in which nearly everything is
+turned off except the pins of the CANUART group (mcu_mcan0, mcu_mcan1, 
+wkup_uart0 and mcu_uart0). These devices can trigger a wakeup of the system 
+on pin activity. Note that this does not resume the system as the DDR is 
+off as well. So this state can be considered a power-off state with wakeup 
+capabilities.
 
-or
+A documentation can also be found in section 6.2.4 in the TRM:
+  https://www.ti.com/lit/pdf/spruiv7
 
-If you are saying , 32 bit EP has to be limited to 128MB then
+Implementation Details
+----------------------
+The complete Partial-IO feature requires three coordinated series, each handling
+a different aspect of the implementation:
 
-Acked-by: Udit Kumar <u-kumar1@ti.com>
+1. This series (m_can driver): Implements device-specific wakeup functionality
+   for m_can devices, allowing them to be set as wakeup sources.
 
-> Regards,
-> Siddharth.
+2. Devicetree series: Defines system states and wakeup sources in the
+   devicetree for am62, am62a and am62p.
+   https://gitlab.baylibre.com/msp8/linux/-/tree/topic/am62-dt-partialio/v6.15?ref_type=heads
+
+3. TI-SCI firmware series: Implements the firmware interface to enter Partial-IO
+   mode when appropriate wakeup sources are enabled.
+   https://gitlab.baylibre.com/msp8/linux/-/tree/topic/tisci-partialio/v6.15?ref_type=heads
+
+Devicetree Bindings
+-------------------
+The wakeup-source property is used with references to
+system-idle-states. This depends on the dt-schema pull request that adds
+bindings for system-idle-states and updates the binding for wakeup-source:
+  https://github.com/devicetree-org/dt-schema/pull/150
+
+Testing
+-------
+A test branch is available here that includes all patches required to
+test Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-partialio/v6.15?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Previous versions:
+ v1: https://lore.kernel.org/lkml/20240523075347.1282395-1-msp@baylibre.com/
+ v2: https://lore.kernel.org/lkml/20240729074135.3850634-1-msp@baylibre.com/
+ v3: https://lore.kernel.org/lkml/20241011-topic-mcan-wakeup-source-v6-12-v3-0-9752c714ad12@baylibre.com
+ v4: https://lore.kernel.org/r/20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com
+ v5: https://lore.kernel.org/r/20241028-topic-mcan-wakeup-source-v6-12-v5-0-33edc0aba629@baylibre.com
+ v6: https://lore.kernel.org/r/20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com
+
+Changes in v7:
+ - Separate this series from "firmware: ti_sci: Partial-IO support"
+   again as was requested internally
+ - All DT changes are now in their own series to avoid conflicts
+ - wakeup-source definition in the m_can binding is now only an
+   extension to the dt-schema binding and a pull request was created
+
+Changes in v6:
+ - Rebased to v6.13-rc1
+ - After feedback of the other Partial-IO series, I updated this series
+   and removed all use of regulator-related patches.
+ - wakeup-source is now not only a boolean property but can also be a
+   list of power states in which the device is wakeup capable.
+
+Changes in v5:
+ - Make the check of wol options nicer to read
+
+Changes in v4:
+ - Remove leftover testing code that always returned -EIO in a specific
+ - Redesign pincontrol setup to be easier understandable and less nested
+ - Fix missing parantheses around wol_enable expression
+ - Remove | from binding description
+
+Changes in v3:
+ - Rebase to v6.12-rc1
+ - Change 'wakeup-source' to only 'true'
+ - Simplify m_can_set_wol by returning early on error
+ - Add vio-suuply binding and handling of this optional property.
+   vio-supply is used to reflect the SoC architecture and which power
+   line powers the m_can unit. This is important as some units are
+   powered in special low power modes.
+
+Changes in v2:
+ - Rebase to v6.11-rc1
+ - Squash these two patches for the binding into one:
+   dt-bindings: can: m_can: Add wakeup-source property
+   dt-bindings: can: m_can: Add wakeup pinctrl state
+ - Add error handling to multiple patches of the m_can driver
+ - Add error handling in m_can_class_allocate_dev(). This also required
+   to add a new patch to return error pointers from
+   m_can_class_allocate_dev().
+
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+---
+Markus Schneider-Pargmann (4):
+      dt-bindings: can: m_can: Add wakeup properties
+      can: m_can: Map WoL to device_set_wakeup_enable
+      can: m_can: Return ERR_PTR on error in allocation
+      can: m_can: Support pinctrl wakeup state
+
+ .../devicetree/bindings/net/can/bosch,m_can.yaml   |  22 ++++
+ drivers/net/can/m_can/m_can.c                      | 111 ++++++++++++++++++++-
+ drivers/net/can/m_can/m_can.h                      |   4 +
+ drivers/net/can/m_can/m_can_pci.c                  |   4 +-
+ drivers/net/can/m_can/m_can_platform.c             |   4 +-
+ drivers/net/can/m_can/tcan4x5x-core.c              |   4 +-
+ 6 files changed, 140 insertions(+), 9 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20241009-topic-mcan-wakeup-source-v6-12-8c1d69931bd8
+
+Best regards,
+-- 
+Markus Schneider-Pargmann <msp@baylibre.com>
+
 
