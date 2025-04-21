@@ -1,121 +1,104 @@
-Return-Path: <devicetree+bounces-168971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F301A9505E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:44:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DEE2A9506F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 530A61890191
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 11:44:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 760D83B08CC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 11:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D4826461E;
-	Mon, 21 Apr 2025 11:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B38264637;
+	Mon, 21 Apr 2025 11:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PPPHtQpM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jiMfBl+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311EE264619;
-	Mon, 21 Apr 2025 11:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5214B263F45;
+	Mon, 21 Apr 2025 11:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745235867; cv=none; b=fWAMI11NfxV0d/Vy1iz2w+8Jm9GYWfuAZzyELjzBmS0ZEu/SA/HYGXDsUItC/xrQuq2dZk7Q6mzso8ebU6MH7LqH/tgxwrnudeb94NtKoDE3wzG954yTLbY5ot0ehZ997PTTXRw1X65RqW+TyeZS58RVWf8zxBpNq4AgWZec0ys=
+	t=1745236261; cv=none; b=VRVxVElRsTSqtvSfStUzBdP9+aqYWxb4+IHTw8kWKB2rrf10vhQr7CHfmamMp9GVe4xPS2TZvx2B6T3VktkeOXCNA7vEt7Ypz/dibuSHRJpqTKqER/XxmP5qKPVKkNqQNkjkW5R7+GaVqSV2k767SDivhA+UNPKj2aKA1aJT0vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745235867; c=relaxed/simple;
-	bh=K2yDIHrClKJMzFSfH79towDwJE2UtYL4T0nd7cHxXio=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oyGx0YjbzIk5kV0UNusT/OZOOTgOHK0/bF/Z+a7v5s+V2LBoSCRrsvEliaAuAArmcN7gXZgLShsjrkQ/orl5yUR7M98G/M9W3eXpEZ5PksXcrQlizFu5r8eyzPqGCFKlu1ro4z8ct29H4MoxpD+8HR2jwG3WF2Oea2MEtQZ/yho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PPPHtQpM; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBiLBC1538159
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 06:44:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745235861;
-	bh=dgV536aKTURayOABQgXkmovr+QyXvP7zhUmjnkrwm5M=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=PPPHtQpMHPxFn0vUFkBubAbpbv9Y9otaMEmRss1vSJxtNZ/DTA9cZ4owWfweKhkdx
-	 ojw6FHIYrP1URZJUqqryZYePV5kOrYOYbhX9PQ2qYomf+/CWEwDMJ0wd1fBhz8z4T5
-	 QeH9nCcIFPEbFhKMKmjad3nVmkE4ycgDs1dK4m24=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LBiLC0008738
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 06:44:21 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 06:44:21 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 06:44:21 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LBiLat113661;
-	Mon, 21 Apr 2025 06:44:21 -0500
-Date: Mon, 21 Apr 2025 06:44:21 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Anurag Dutta <a-dutta@ti.com>
-CC: <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-som-p0: Add bootph-all to
- HBMC node
-Message-ID: <20250421114421.pj6vceavzjl2qkky@filing>
-References: <20250416060754.2393701-1-a-dutta@ti.com>
+	s=arc-20240116; t=1745236261; c=relaxed/simple;
+	bh=iqzPLokdK52iTpABVBzXV5mawjNYeU3GNuEBmXtj0Sc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oDsbAK0Ox23FyFAGudS0IxjlF0GLDpzRbKYffkDSSiH4dCbC7LCgvoBBp6ymR2/buGA8KNOKH8JXVpIIgN0bjCeOTHzoSQXoiI4xq4rM5fsRkRmC4afEWJz1eLi3mB/pXR5tm4d0a733GnCv2aQNLtXSuiCsEBDWDyD+5i1PJXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jiMfBl+W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC73CC4CEE4;
+	Mon, 21 Apr 2025 11:51:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745236261;
+	bh=iqzPLokdK52iTpABVBzXV5mawjNYeU3GNuEBmXtj0Sc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jiMfBl+WiGNzMNDskLdjxsWJ1xbphBDHUNEzCl6zgnu5E+6vHSqP8G2CoxpwDt0Kk
+	 JCFz16JEJdx3r4rESJM9MR0odx5QryDpXs4u3foDhLVrGf8DENFn9STrR5c0kagkUl
+	 m1l6u7L0dbcaE7iOC9H8p3VVrCq+nyymT6nwYl+3zodawnrLFirgk2dox+qDmkeGpm
+	 L1/pvNcH/KFj5gq8U7m3ghqVo4M2cXDSJKtXDEoFCb2sjIR0udC4CbZIqF38/SgwtH
+	 fawJN+jS/4G/TrVkjXRcCoxHk9/7uV50JbznoV7ajndhtJGQBANkRRJw7/X2OMuXaW
+	 xr19/OfSuLiTQ==
+Date: Mon, 21 Apr 2025 06:50:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vikash Garodia <quic_vgarodia@quicinc.com>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: qcom,sm8550-iris: document
+ QCS8300 IRIS accelerator
+Message-ID: <20250421115059.GA1624060-robh@kernel.org>
+References: <20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com>
+ <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416060754.2393701-1-a-dutta@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
 
-On 11:37-20250416, Anurag Dutta wrote:
-> Add bootph-all to HBMC controller node for successful hyperflash
-> boot on j721e-evm
+On Fri, Apr 18, 2025 at 11:58:39AM +0530, Vikash Garodia wrote:
+> Document the IRIS video decoder and encoder accelerator found in the
+> QCS8300 platform. QCS8300 is a downscaled version of SM8550, thereby
+> have different(lower) capabilities when compared to SM8550.
 > 
-> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> This patch depends on patch 20250225-topic-sm8x50-iris-v10-a219b8a8b477
+
+An incomplete message-id is not useful. It also should go below the 
+'---' so it is not recorded in git forever.
+
+> 
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
 > ---
-> Test log : https://gist.github.com/anuragdutta731/103e84e84f013093fa089803719d997d
-> 
-> Changelog : v1:
-> 1. Added bootph-all to hbmc node in k3-j721e-som-p0.dtsi
-> 2. Removed bootph-all from v1 patch from flash@0,0 node
-> 
-> Link to v1 : https://lore.kernel.org/all/20250411082637.2271746-1-a-dutta@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 1 +
+>  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> index 0722f6361cc8..5665b9490003 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> @@ -440,6 +440,7 @@ &hbmc {
->  	pinctrl-0 = <&mcu_fss0_hpb0_pins_default>;
->  	ranges = <0x00 0x00 0x05 0x00000000 0x4000000>, /* 64MB Flash on CS0 */
->  		 <0x01 0x00 0x05 0x04000000 0x800000>; /* 8MB RAM on CS1 */
-> +	bootph-all;
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> index f567f84bd60d439b151bb1407855ba73582c3b83..3dee25e99204169c6c80f7db4bad62775aaa59b5 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> @@ -24,6 +24,7 @@ properties:
+>        - enum:
+>            - qcom,sm8550-iris
+>            - qcom,sm8650-iris
+> +          - qcom,qcs8300-iris
 >  
->  	flash@0,0 {
->  		compatible = "cypress,hyperflash", "cfi-flash";
-
-This node already has bootph-all, only the child nodes need bootph
-properties. Am i missing something?
-
+>    power-domains:
+>      maxItems: 4
+> 
 > -- 
 > 2.34.1
 > 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
