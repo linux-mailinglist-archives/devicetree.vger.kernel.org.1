@@ -1,454 +1,389 @@
-Return-Path: <devicetree+bounces-168988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AD4A950FA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E03A950FF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:34:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76843B33D8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 12:33:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E37F33A82FD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 12:33:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFBA264A7C;
-	Mon, 21 Apr 2025 12:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263C0264A90;
+	Mon, 21 Apr 2025 12:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lrsKwCO/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fjRH5zQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A3B1D8A10;
-	Mon, 21 Apr 2025 12:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8E413212A;
+	Mon, 21 Apr 2025 12:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745238807; cv=none; b=QRp6n/8DrTlNgU8zGvdxhyMMCuhgLx6JCb5CZNRhMy6Hvp3QXqqBJNuPhS8T4P7EQ9N13cui6e4LD8cqAT9tMvgWGm2/Z3ndaTGGHFD0vMGuBdTYPbDgc36SrbcbaeG0Cn6OBKBaIRJi9kMizF5FDdEWTKbfhI4wmQiLJoyPO+g=
+	t=1745238834; cv=none; b=YtGJMgUZ/JgEF8Bz7bDBbxWUdVMocLVbewJl8sSZ8gNMwnYbsAL6niQT/u3qzDTR0YNoLtfgIG9mPA4E+zBHjyq/BAouSwgtbmThnT9pP5NcJR6W1r3d0kjb2hZqWuIARa01ELu+ysIgBs2aPojxSlNDHPJzeZAKlJzDkykg1ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745238807; c=relaxed/simple;
-	bh=XYhs1QSYSNftVM2iKdS6m58WtbH/0U/2gs8X2yJh2mM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sn795/HT9GGK5pdNvcd9UiRGqkWPiR0NCg/N5tb0phTCPBN/8ND6E8lF0YbX8b4jzd21YHajHB08QN8i/r/qz7eIfrRonnDwIdyV+/JVT2s/vSTorcZJgjxUDTriUaqQMfvDAYkL2BVLtAegDvwQ3LMs34w4iJVqTYrfZBUfN+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lrsKwCO/; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d0618746bso29538695e9.2;
-        Mon, 21 Apr 2025 05:33:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745238803; x=1745843603; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=efo80VRYiMCepf8aSp7sne2o+vO5Bogjl6QzIBkDjNw=;
-        b=lrsKwCO/tH3IGAcOtzfxvkUT3eZo1iaiAJesRhCTzLSplRqg6P7fQe3Va4QSVaKQp6
-         8lv27mbgHJLOJJeUxxUsI9Aquqktjjj7XM7FEXV5yOuodfeVEZOQQP3QDGhdIaO1yRw0
-         0QHJwMwdYKaNpapHEbsiIYNcj+35imlZJe5VGw2zSq8hRY4iB3ZMdml2+iLrQc7K+uM8
-         YLWRyS/JnsMRU+dD1LYg9c3p1xG4RcpSFI6769zCYppVkdnp6EU/VyMLU/HH4PM4QIZj
-         mOvYoYYaAvRpJYmLB76E1aUVaz7DEPayd9CkhBINJU7xM02WN4Qdrscy65elqDuQRU0P
-         YXMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745238803; x=1745843603;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=efo80VRYiMCepf8aSp7sne2o+vO5Bogjl6QzIBkDjNw=;
-        b=WSXeJJUDLtiaJBf9EKV0dF2Jct4xtkO1tCdO9qNUcdOY9rZA0VTicNmubE3nxNN79n
-         oPlkBMZwAbH/adGJRfLbcS14sdlS6lewXklfcNEgaZAIsdQUekprxNjwGRVNv/ltTJSa
-         M0u88PZ8pm9SqtTeY1k6FzXf3VkmkooEYMMKpf9Szsg4ocOwZeGTya4HF1iuNijo8hQI
-         UChdML9uZqI+Q+pGvMYwr1bXwbqzAWkBpEWlvqgIJaiFjRPr/onWi0NL4i6sQTQN6EbS
-         1RAuPmflPK69LGpA2Q++KgLXqp+uKY1DEpOl//hPrToLdw5Io3Kopv57aoibahZ1C9vh
-         Wrkw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOJHGQcIbdGjUxZOFxpUPWq6O8UnuFvqT+lDjnbDvjFd3e3ipiFaexNrIB3VSWVHlVoHwT/X7f4gMQ@vger.kernel.org, AJvYcCWXqs1xFYmozgXEdNQiEBD0s5YCCRR/lObPm03/g2eRFpkpB2m/C5knjoZRzKJYtPP8bEDnNo+RHEuf0iE=@vger.kernel.org, AJvYcCWxFQcBez4I6jtzptPrexs+f8D7j5gxkzE1Nqe5MG3IR1wEOAesErpZwTG8URXo+npCmebiOhgnvSmP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0R6ayiUL0lsZoIw/TK7DOa+abiHfLGdbkja5R0twFNg8KzVjs
-	EarrT63A2EgAJ+9nHYQgKt2WZBnxGgAoqzkcqZBi3/Itpm6lWIMZNcUlXyt2ZTw=
-X-Gm-Gg: ASbGncssfNjCB9LvkylQyGmSKZL0evMVzfFAOhaAgC3mhXgHV/W0Kdy79DWKfV/EOnD
-	95nmRN55iRfrhdsx5kMqcdxm7koHXo8nwnbYpSwK8aBeYvsx2kjdRtJVBF4cAjKVfjO1wZP39Q0
-	h2rxY2uzHkAhw47cmNYbvvhf+JNzOmNJk1oPN7bU9uETv1e2j9o57Ldr30HewIQrbP+SFzz/9Da
-	OzEx32XajONnHQdW6ypg9jOKkGwreDTg1w+wCJfxLUFwdPXQP+KWiIHkQimECsmGyPULal/Vvyk
-	9Bc8e0qfJtiwPXhCgtL2wohSGvyQVD2siwliLRcaBqDf7c1fHhnM6Rm71OKuca2Q3MpuuO2iFr+
-	1fxI8FA9C/kAp
-X-Google-Smtp-Source: AGHT+IFTgyDm7cbA5B9xbJTkTE3f6RC1M7JDG7gduTo/ZV8LPoX+hfNHXJWYAqmuOSv5EjLNXhO2Bw==
-X-Received: by 2002:a05:600c:3c87:b0:43d:ea:51d2 with SMTP id 5b1f17b1804b1-4406aba2c6cmr108206515e9.14.1745238803232;
-        Mon, 21 Apr 2025 05:33:23 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5bbd35sm132707155e9.22.2025.04.21.05.33.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Apr 2025 05:33:22 -0700 (PDT)
-Message-ID: <f6896ba5c4bc0596db5950220ef956b629df7b04.camel@gmail.com>
-Subject: Re: [PATCH v2 12/17] Input: adp5585: Add Analog Devices ADP5585/89
- support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones
- <lee@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?=	 <ukleinek@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry
- Torokhov <dmitry.torokhov@gmail.com>, Liu Ying <victor.liu@nxp.com>
-Date: Mon, 21 Apr 2025 13:33:23 +0100
-In-Reply-To: <20250421093515.GI29968@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-	 <20250415-dev-adp5589-fw-v2-12-3a799c3ed812@analog.com>
-	 <20250421093515.GI29968@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1745238834; c=relaxed/simple;
+	bh=w3jVRkUzSU6xT+Vsxh3flhA4WFck7Z0fyeNRc1U9o2I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D56oNxkwx3yt3UntkgKX6fP05PbIvRwbRcJPRwdqsLBGjfGxqI3/MgEkLHUeSeaBxExMhJwlVjlN64/eWeId5XPgJkOTvvBhNeXKfrKO5Hn1/MvB0yf3lCEMho4liSPikaYDh5gwUEzhw2uf3mIdCPjPRHPwceVhCFsndsndlwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fjRH5zQB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53LA5WM7005727;
+	Mon, 21 Apr 2025 12:33:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iAStOVR6nXLVjg+Wn12gPmbybLZ9XWQDUMuqXipQ2xA=; b=fjRH5zQBraCfroZ/
+	gmQtH4kaVI5nV5XNWIl8r38/3Uh7JnoqREEeHzRvJoDVbnXyt/mWhEUiZFxIsXtB
+	56Vvx+VgneLPX7qDyRK2b83YW6NieFyhUOsKy65bIuBJqmSExp8sR2cgit2SzEWD
+	cDdltCKSvTul6RXZKSMFKAqee0nUkolb58s7puKeHYR6+KeLbF40u0kox7rDEqYP
+	ZdYO9qflxI4G8pGeIAI3xo8KAq2NKl6J4evgHFo+1SquLScZOTtko0PNT3q1kR1A
+	Kw/ghmUze0YlRNrg75MCUtpqVJ08FJXpNjhRVbgQ7lvWd+bW/cemQHAL78tKlQZb
+	uesGWA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 464426m41m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Apr 2025 12:33:48 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53LCXlHc024734
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Apr 2025 12:33:47 GMT
+Received: from [10.204.100.69] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Apr
+ 2025 05:33:43 -0700
+Message-ID: <71f3e23d-4f47-b047-9d41-9e3818f08849@quicinc.com>
+Date: Mon, 21 Apr 2025 18:03:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 4/4] media: iris: add qcs8300 platform data
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dikshita Agarwal
+	<quic_dikshita@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com>
+ <20250418-qcs8300_iris-v2-4-1e01385b90e9@quicinc.com>
+ <59ffb7c7-95b8-47e9-91ab-3c7cd7b3fe02@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <59ffb7c7-95b8-47e9-91ab-3c7cd7b3fe02@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zDI7HLxZxuzDNxDuCva5mUHONCBLvRS1
+X-Proofpoint-GUID: zDI7HLxZxuzDNxDuCva5mUHONCBLvRS1
+X-Authority-Analysis: v=2.4 cv=IP8CChvG c=1 sm=1 tr=0 ts=68063b2c cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=W6ytlbDq_6f7t7Mh7GMA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-21_06,2025-04-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ mlxscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 bulkscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504210097
 
-On Mon, 2025-04-21 at 12:35 +0300, Laurent Pinchart wrote:
-> Hi Nuno,
->=20
-> Thank you for the patch.
->=20
-> On Tue, Apr 15, 2025 at 03:49:28PM +0100, Nuno S=C3=A1 via B4 Relay wrote=
-:
-> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> >=20
-> > The ADP5585 is a 10/11 input/output port expander with a built in keypa=
-d
-> > matrix decoder, programmable logic, reset generator, and PWM generator.
-> > This driver supports the keyboard function using the platform device
-> > registered by the core MFD driver.
-> >=20
-> > The ADP5589 has 19 pins and also features an unlock function.
-> >=20
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > ---
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/input/keyboard/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 11 ++
-> > =C2=A0drivers/input/keyboard/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/input/keyboard/adp5585-keys.c | 221
-> > ++++++++++++++++++++++++++++++++++
-> > =C2=A04 files changed, 234 insertions(+)
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index
-> > b5acf50fc6af4322dec0dad2169b46c6a1903e3c..48bd39a1a96d9c57145cf2560eec5=
-42484
-> > 27fc89 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -549,6 +549,7 @@ L:	linux-pwm@vger.kernel.org
-> > =C2=A0S:	Maintained
-> > =C2=A0F:	Documentation/devicetree/bindings/*/adi,adp5585*.yaml
-> > =C2=A0F:	drivers/gpio/gpio-adp5585.c
-> > +F:	drivers/input/adp5585-keys.c
-> > =C2=A0F:	drivers/mfd/adp5585.c
-> > =C2=A0F:	drivers/pwm/pwm-adp5585.c
-> > =C2=A0F:	include/linux/mfd/adp5585.h
-> > diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kc=
-onfig
-> > index
-> > 721ab69e84ac6586f4f19102890a15ca3fcf1910..322da0957067db77c7f66ab26a181=
-d39c2
-> > c1d513 100644
-> > --- a/drivers/input/keyboard/Kconfig
-> > +++ b/drivers/input/keyboard/Kconfig
-> > @@ -37,6 +37,17 @@ config KEYBOARD_ADP5520
-> > =C2=A0	=C2=A0 To compile this driver as a module, choose M here: the mo=
-dule
-> > will
-> > =C2=A0	=C2=A0 be called adp5520-keys.
-> > =C2=A0
-> > +config KEYBOARD_ADP5585
-> > +	tristate "ADP5585 and similar=C2=A0 I2C QWERTY Keypad and IO Expander=
-s"
-> > +	depends on MFD_ADP5585
-> > +	select INPUT_MATRIXKMAP
-> > +	help
-> > +	=C2=A0 This option enables support for the KEYMAP function found in t=
-he
-> > Analog
-> > +	=C2=A0 Devices ADP5585 and similar devices.
-> > +
-> > +	=C2=A0 To compile this driver as a module, choose M here: the
-> > +	=C2=A0 module will be called adp5585-keys.
-> > +
-> > =C2=A0config KEYBOARD_ADP5588
-> > =C2=A0	tristate "ADP5588/87 I2C QWERTY Keypad and IO Expander"
-> > =C2=A0	depends on I2C
-> > diff --git a/drivers/input/keyboard/Makefile
-> > b/drivers/input/keyboard/Makefile
-> > index
-> > 1e0721c3070968a6339a42f65a95af48364f6897..f00ec003a59aa28577ae164c0539c=
-c5aff
-> > 9579fc 100644
-> > --- a/drivers/input/keyboard/Makefile
-> > +++ b/drivers/input/keyboard/Makefile
-> > @@ -7,6 +7,7 @@
-> > =C2=A0
-> > =C2=A0obj-$(CONFIG_KEYBOARD_ADC)		+=3D adc-keys.o
-> > =C2=A0obj-$(CONFIG_KEYBOARD_ADP5520)		+=3D adp5520-keys.o
-> > +obj-$(CONFIG_KEYBOARD_ADP5585)		+=3D adp5585-keys.o
-> > =C2=A0obj-$(CONFIG_KEYBOARD_ADP5588)		+=3D adp5588-keys.o
-> > =C2=A0obj-$(CONFIG_KEYBOARD_ADP5589)		+=3D adp5589-keys.o
-> > =C2=A0obj-$(CONFIG_KEYBOARD_AMIGA)		+=3D amikbd.o
-> > diff --git a/drivers/input/keyboard/adp5585-keys.c
-> > b/drivers/input/keyboard/adp5585-keys.c
-> > new file mode 100644
-> > index
-> > 0000000000000000000000000000000000000000..93961a9e822f8b10b1bca526b9486=
-eed4a
-> > d7f8f7
-> > --- /dev/null
-> > +++ b/drivers/input/keyboard/adp5585-keys.c
-> > @@ -0,0 +1,221 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Analog Devices ADP5585 Keys driver
-> > + *
-> > + * Copyright (C) 2025 Analog Devices, Inc.
-> > + */
-> > +
-> > +#include <linux/bitmap.h>
-> > +#include <linux/device.h>
-> > +#include <linux/find.h>
-> > +#include <linux/input.h>
-> > +#include <linux/input/matrix_keypad.h>
-> > +#include <linux/mfd/adp5585.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/types.h>
-> > +
-> > +/* As needed for the matrix parsing code */
-> > +#define ADP5589_MAX_KEYMAPSIZE		123
-> > +
-> > +struct adp5585_kpad {
-> > +	struct input_dev *input;
-> > +	unsigned short keycode[ADP5589_MAX_KEYMAPSIZE];
-> > +	struct device *dev;
-> > +	int row_shift;
-> > +	u8 max_rows;
-> > +	u8 max_cols;
-> > +};
-> > +
-> > +static int adp5585_keys_parse_fw(const struct adp5585_dev *adp5585,
-> > +				 struct adp5585_kpad *kpad)
-> > +{
-> > +	unsigned long row_map, col_map;
-> > +	struct device *dev =3D kpad->dev;
-> > +	u32 cols =3D 0, rows =3D 0;
-> > +	int ret;
-> > +
-> > +	row_map =3D bitmap_read(adp5585->keypad, 0, kpad->max_rows);
-> > +	col_map =3D bitmap_read(adp5585->keypad, kpad->max_rows, kpad-
-> > >max_cols);
-> > +	/*
-> > +	 * Note that given that we get a mask (and the HW allows it), we
-> > +	 * can have holes in our keypad (eg: row0, row1 and row7 enabled).
-> > +	 * However, for the matrix parsing functions we need to pass the
-> > +	 * number of rows/cols as the maximum row/col used plus 1. This
-> > +	 * pretty much means we will also have holes in our SW keypad.
-> > +	 */
-> > +	if (!bitmap_empty(&row_map, kpad->max_rows))
-> > +		rows =3D find_last_bit(&row_map, kpad->max_rows) + 1;
-> > +	if (!bitmap_empty(&col_map, kpad->max_cols))
-> > +		cols =3D find_last_bit(&col_map, kpad->max_cols) + 1;
-> > +
-> > +	if (!rows && !cols)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "No rows or columns defined for the
-> > keypad\n");
-> > +
-> > +	if (cols && !rows)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Cannot have columns with no
-> > rows!\n");
-> > +
-> > +	if (rows && !cols)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Cannot have rows with no
-> > columns!\n");
-> > +
-> > +	ret =3D matrix_keypad_build_keymap(NULL, NULL, rows, cols,
-> > +					 kpad->keycode, kpad->input);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	kpad->row_shift =3D get_count_order(cols);
-> > +
-> > +	if (device_property_present(kpad->dev, "autorepeat"))
-> > +		__set_bit(EV_REP, kpad->input->evbit);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int adp5585_keys_setup(const struct adp5585_dev *adp5585,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct adp5585_kpad *kpad)
-> > +{
-> > +	unsigned long keys_bits, start =3D 0, nbits =3D kpad->max_rows;
-> > +	const struct adp5585_regs *regs =3D adp5585->info->regs;
-> > +	unsigned int i =3D 0, max_cols =3D kpad->max_cols;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * Take care as the below assumes max_rows is always less or equal
-> > than
-> > +	 * 8 which is true for the supported devices. If we happen to add
-> > +	 * another device we need to make sure this still holds true.
-> > Although
-> > +	 * adding a new device is very unlikely.
-> > +	 */
-> > +	do {
-> > +		keys_bits =3D bitmap_read(adp5585->keypad, start, nbits);
-> > +		if (keys_bits) {
-> > +			ret =3D regmap_write(adp5585->regmap, regs->pin_cfg_a
-> > + i,
-> > +					=C2=A0=C2=A0 keys_bits);
-> > +			if (ret)
-> > +				return ret;
-> > +		}
-> > +
-> > +		start +=3D nbits;
-> > +		if (max_cols > 8) {
-> > +			nbits =3D 8;
-> > +			max_cols -=3D nbits;
-> > +		} else {
-> > +			nbits =3D max_cols;
-> > +		}
-> > +
-> > +		i++;
-> > +	} while (start < kpad->max_rows + kpad->max_cols);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void adp5585_keys_ev_handle(struct device *dev, unsigned int ke=
-y,
-> > +				=C2=A0=C2=A0 bool key_press)
-> > +{
-> > +	struct adp5585_kpad *kpad =3D dev_get_drvdata(dev);
-> > +	unsigned int row, col, code;
-> > +
-> > +	row =3D (key - 1) / (kpad->max_cols);
-> > +	col =3D (key - 1) % (kpad->max_cols);
-> > +	code =3D MATRIX_SCAN_CODE(row, col, kpad->row_shift);
-> > +
-> > +	dev_dbg_ratelimited(kpad->dev, "report key(%d) r(%d) c(%d)
-> > code(%d)\n",
-> > +			=C2=A0=C2=A0=C2=A0 key, row, col, kpad->keycode[code]);
-> > +
-> > +	input_report_key(kpad->input, kpad->keycode[code], key_press);
-> > +	input_sync(kpad->input);
-> > +}
-> > +
-> > +static void adp5585_keys_ev_handle_clean(void *adp5585)
-> > +{
-> > +	adp5585_keys_ev_handle_set(adp5585, NULL, NULL);
-> > +}
-> > +
-> > +static int adp5585_keys_probe(struct platform_device *pdev)
-> > +{
-> > +	struct adp5585_dev *adp5585 =3D dev_get_drvdata(pdev->dev.parent);
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct adp5585_kpad *kpad;
-> > +	unsigned int revid;
-> > +	const char *phys;
-> > +	int ret;
-> > +
-> > +	kpad =3D devm_kzalloc(dev, sizeof(*kpad), GFP_KERNEL);
-> > +	if (!kpad)
-> > +		return -ENOMEM;
-> > +
-> > +	if (!adp5585->irq)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "IRQ is mandatory for the keypad\n");
->=20
-> This causes the following messages to be printed in the kernel log on a
-> platform where the keypad feature is not declared in DT:
->=20
-> [=C2=A0=C2=A0 11.625591] adp5585-keys adp5585-keys.1.auto: error -EINVAL:=
- IRQ is
-> mandatory for the keypad
-> [=C2=A0=C2=A0 11.625637] adp5585-keys adp5585-keys.1.auto: probe with dri=
-ver adp5585-
-> keys failed with error -22
->=20
-> The MFD driver should detect which features are declared, and only
-> register the corresponding MFD cells.
 
-Oh right, the above does not look right!
+On 4/18/2025 4:05 PM, Bryan O'Donoghue wrote:
+> On 18/04/2025 07:28, Vikash Garodia wrote:
+>> QCS8300 has a downscaled video core compared to SM8550, while it has
+>> same bindings as that of SM8550. QCS8300.h captures the capabilities for
+>> QCS8300 which is delta from SM8550.
+> 
+> QCS8300 as a down-scaled .... compared to the SM8550.
+> QSC8300 has the same bindings as SM8550 ?>
+> Actually that makes not a world of sense as I read it.
+> 
+> I'd suggest rewording this commit to just state what the QSC8300 itself can do
+> without assuming the reader has any prior knowledge of the SM8550.
+> 
+> Same comment for the other commits.
+> 
+> Tell us what the QCS8300 is and what it does.
+Given the patch adds the structures which are delta over 8550, it is more
+relevant to compare with 8550 and describe the delta aspects.
+> 
+>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>> ---
+>>   .../platform/qcom/iris/iris_platform_common.h      |   1 +
+>>   .../media/platform/qcom/iris/iris_platform_gen2.c  |  57 ++++++++++
+>>   .../platform/qcom/iris/iris_platform_qcs8300.h     | 124 +++++++++++++++++++++
+>>   drivers/media/platform/qcom/iris/iris_probe.c      |   4 +
+>>   4 files changed, 186 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> index
+>> 6bc3a7975b04d612f6c89206eae95dac678695fc..3191a910653ce4bd71de9a0b4465fd583602adf6 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> @@ -36,6 +36,7 @@ enum pipe_type {
+>>   extern struct iris_platform_data sm8250_data;
+>>   extern struct iris_platform_data sm8550_data;
+>>   extern struct iris_platform_data sm8650_data;
+>> +extern struct iris_platform_data qcs8300_data;
+>>     enum platform_clk_type {
+>>       IRIS_AXI_CLK,
+>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+>> b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+>> index
+>> 5ff82296ee8ea5ad3954bd2254594048adcb8404..723e9f4cef42408168aca22b34ccd0a674a4fd25 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+>> @@ -11,6 +11,7 @@
+>>   #include "iris_vpu_common.h"
+>>     #include "iris_platform_sm8650.h"
+>> +#include "iris_platform_qcs8300.h"
+>>     #define VIDEO_ARCH_LX 1
+>>   @@ -326,3 +327,59 @@ struct iris_platform_data sm8650_data = {
+>>       .dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+>>       .dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+>>   };
+>> +
+>> +/*
+>> + * Shares most of SM8550 data except:
+>> + * - inst_caps to platform_inst_cap_qcs8300
+>> + * - inst_fw_caps to inst_fw_cap_qcs8300
+>> + */
+>> +struct iris_platform_data qcs8300_data = {
+>> +    .get_instance = iris_hfi_gen2_get_instance,
+>> +    .init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
+>> +    .init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
+>> +    .vpu_ops = &iris_vpu3_ops,
+>> +    .set_preset_registers = iris_set_sm8550_preset_registers,
+>> +    .icc_tbl = sm8550_icc_table,
+>> +    .icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
+>> +    .clk_rst_tbl = sm8550_clk_reset_table,
+>> +    .clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
+>> +    .bw_tbl_dec = sm8550_bw_table_dec,
+>> +    .bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
+>> +    .pmdomain_tbl = sm8550_pmdomain_table,
+>> +    .pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
+>> +    .opp_pd_tbl = sm8550_opp_pd_table,
+>> +    .opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
+>> +    .clk_tbl = sm8550_clk_table,
+>> +    .clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
+>> +    /* Upper bound of DMA address range */
+>> +    .dma_mask = 0xe0000000 - 1,
+>> +    .fwname = "qcom/vpu/vpu30_p4_s6.mbn",
+>> +    .pas_id = IRIS_PAS_ID,
+>> +    .inst_caps = &platform_inst_cap_qcs8300,
+>> +    .inst_fw_caps = inst_fw_cap_qcs8300,
+>> +    .inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_qcs8300),
+>> +    .tz_cp_config_data = &tz_cp_config_sm8550,
+>> +    .core_arch = VIDEO_ARCH_LX,
+>> +    .hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
+>> +    .ubwc_config = &ubwc_config_sm8550,
+>> +    .num_vpp_pipe = 2,
+>> +    .max_session_count = 16,
+>> +    .max_core_mbpf = ((4096 * 2176) / 256) * 4,
+>> +    .input_config_params =
+>> +        sm8550_vdec_input_config_params,
+>> +    .input_config_params_size =
+>> +        ARRAY_SIZE(sm8550_vdec_input_config_params),
+>> +    .output_config_params =
+>> +        sm8550_vdec_output_config_params,
+>> +    .output_config_params_size =
+>> +        ARRAY_SIZE(sm8550_vdec_output_config_params),
+>> +    .dec_input_prop = sm8550_vdec_subscribe_input_properties,
+>> +    .dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
+>> +    .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+>> +    .dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+>> +
+>> +    .dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
+>> +    .dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
+>> +    .dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+>> +    .dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+>> +};
+>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
+>> b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
+>> new file mode 100644
+>> index
+>> 0000000000000000000000000000000000000000..f82355d72fcffe7e361bd30877cccb83fe9b549f
+>> --- /dev/null
+>> +++ b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
+>> @@ -0,0 +1,124 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +static struct platform_inst_fw_cap inst_fw_cap_qcs8300[] = {
+>> +    {
+>> +        .cap_id = PROFILE,
+>> +        .min = V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE,
+>> +        .max = V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH,
+>> +        .step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_BASELINE) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_PROFILE_HIGH),
+>> +        .value = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+>> +        .hfi_id = HFI_PROP_PROFILE,
+>> +        .flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
+>> +        .set = iris_set_u32_enum,
+>> +    },
+>> +    {
+>> +        .cap_id = LEVEL,
+>> +        .min = V4L2_MPEG_VIDEO_H264_LEVEL_1_0,
+>> +        .max = V4L2_MPEG_VIDEO_H264_LEVEL_6_2,
+>> +        .step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1B)  |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_2) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_3) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_2) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_2) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_2) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_2) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_0) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_1) |
+>> +            BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_2),
+>> +        .value = V4L2_MPEG_VIDEO_H264_LEVEL_6_1,
+>> +        .hfi_id = HFI_PROP_LEVEL,
+>> +        .flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
+>> +        .set = iris_set_u32_enum,
+>> +    },
+>> +    {
+>> +        .cap_id = INPUT_BUF_HOST_MAX_COUNT,
+>> +        .min = DEFAULT_MAX_HOST_BUF_COUNT,
+>> +        .max = DEFAULT_MAX_HOST_BURST_BUF_COUNT,
+>> +        .step_or_mask = 1,
+>> +        .value = DEFAULT_MAX_HOST_BUF_COUNT,
+>> +        .hfi_id = HFI_PROP_BUFFER_HOST_MAX_COUNT,
+>> +        .flags = CAP_FLAG_INPUT_PORT,
+>> +        .set = iris_set_u32,
+>> +    },
+>> +    {
+>> +        .cap_id = STAGE,
+>> +        .min = STAGE_1,
+>> +        .max = STAGE_2,
+>> +        .step_or_mask = 1,
+>> +        .value = STAGE_2,
+>> +        .hfi_id = HFI_PROP_STAGE,
+>> +        .set = iris_set_stage,
+>> +    },
+>> +    {
+>> +        .cap_id = PIPE,
+>> +        .min = PIPE_1,
+>> +        .max = PIPE_2,
+>> +        .step_or_mask = 1,
+>> +        .value = PIPE_2,
+>> +        .hfi_id = HFI_PROP_PIPE,
+>> +        .set = iris_set_pipe,
+>> +    },
+>> +    {
+>> +        .cap_id = POC,
+>> +        .min = 0,
+>> +        .max = 2,
+>> +        .step_or_mask = 1,
+>> +        .value = 1,
+>> +        .hfi_id = HFI_PROP_PIC_ORDER_CNT_TYPE,
+>> +    },
+>> +    {
+>> +        .cap_id = CODED_FRAMES,
+>> +        .min = CODED_FRAMES_PROGRESSIVE,
+>> +        .max = CODED_FRAMES_PROGRESSIVE,
+>> +        .step_or_mask = 0,
+>> +        .value = CODED_FRAMES_PROGRESSIVE,
+>> +        .hfi_id = HFI_PROP_CODED_FRAMES,
+>> +    },
+>> +    {
+>> +        .cap_id = BIT_DEPTH,
+>> +        .min = BIT_DEPTH_8,
+>> +        .max = BIT_DEPTH_8,
+>> +        .step_or_mask = 1,
+>> +        .value = BIT_DEPTH_8,
+>> +        .hfi_id = HFI_PROP_LUMA_CHROMA_BIT_DEPTH,
+>> +    },
+>> +    {
+>> +        .cap_id = RAP_FRAME,
+>> +        .min = 0,
+>> +        .max = 1,
+>> +        .step_or_mask = 1,
+>> +        .value = 1,
+>> +        .hfi_id = HFI_PROP_DEC_START_FROM_RAP_FRAME,
+>> +        .flags = CAP_FLAG_INPUT_PORT,
+>> +        .set = iris_set_u32,
+>> +    },
+>> +};
+>> +
+>> +static struct platform_inst_caps platform_inst_cap_qcs8300 = {
+>> +    .min_frame_width = 96,
+>> +    .max_frame_width = 4096,
+>> +    .min_frame_height = 96,
+>> +    .max_frame_height = 4096,
+>> +    .max_mbpf = (4096 * 2176) / 256,
+>> +    .mb_cycles_vpp = 200,
+>> +    .mb_cycles_fw = 326389,
+>> +    .mb_cycles_fw_vpp = 44156,
+>> +    .num_comv = 0,
+>> +};
+>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c
+>> b/drivers/media/platform/qcom/iris/iris_probe.c
+>> index
+>> 7cd8650fbe9c09598670530103e3d5edf32953e7..e5f1896e55c390e920d206e7fc2c2be283bb39d8 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+>> @@ -349,6 +349,10 @@ static const struct of_device_id iris_dt_match[] = {
+>>           .compatible = "qcom,sm8650-iris",
+>>           .data = &sm8650_data,
+>>       },
+>> +    {
+>> +        .compatible = "qcom,qcs8300-iris",
+>> +        .data = &qcs8300_data,
+>> +    },
+> This is out-of-order, alphanumeric sorting puts qcs8300 before smX.
+ok.
+> 
+>>       { },
+>>   };
+>>   MODULE_DEVICE_TABLE(of, iris_dt_match);
+>>
+> 
+> Also the ordering of this patch in the series is a bit odd.
+> 
+> - Compat string
+> - Driver changes
+> - DT updates
+> 
+> Please fix.
+above sugested order looks better.
 
-- Nuno S=C3=A1
->=20
-> > +
-> > +	kpad->dev =3D dev;
-> > +	kpad->max_cols =3D adp5585->info->max_cols;
-> > +	kpad->max_rows =3D adp5585->info->max_rows;
-> > +
-> > +	kpad->input =3D devm_input_allocate_device(dev);
-> > +	if (!kpad->input)
-> > +		return -ENOMEM;
-> > +
-> > +	ret =3D regmap_read(adp5585->regmap, ADP5585_ID, &revid);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to read device
-> > ID\n");
-> > +
-> > +	phys =3D devm_kasprintf(dev, GFP_KERNEL, "%s/input0", pdev->name);
-> > +	if (!phys)
-> > +		return -ENOMEM;
-> > +
-> > +	kpad->input->name =3D pdev->name;
-> > +	kpad->input->phys =3D phys;
-> > +	kpad->input->dev.parent =3D dev;
-> > +
-> > +	input_set_drvdata(kpad->input, kpad);
-> > +
-> > +	kpad->input->id.bustype =3D BUS_I2C;
-> > +	kpad->input->id.vendor =3D 0x0001;
-> > +	kpad->input->id.product =3D 0x0001;
-> > +	kpad->input->id.version =3D revid & ADP5585_REV_ID_MASK;
-> > +
-> > +	device_set_of_node_from_dev(dev, dev->parent);
-> > +
-> > +	ret =3D adp5585_keys_parse_fw(adp5585, kpad);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret =3D adp5585_keys_setup(adp5585, kpad);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	platform_set_drvdata(pdev, kpad);
-> > +	adp5585_keys_ev_handle_set(adp5585, adp5585_keys_ev_handle, dev);
-> > +	ret =3D devm_add_action_or_reset(dev, adp5585_keys_ev_handle_clean,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adp5585);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return input_register_device(kpad->input);
-> > +}
-> > +
-> > +static const struct platform_device_id adp5585_keys_id_table[] =3D {
-> > +	{ "adp5585-keys" },
-> > +	{ "adp5589-keys" },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(platform, adp5585_keys_id_table);
-> > +
-> > +static struct platform_driver adp5585_keys_driver =3D {
-> > +	.driver	=3D {
-> > +		.name =3D "adp5585-keys",
-> > +	},
-> > +	.probe =3D adp5585_keys_probe,
-> > +	.id_table =3D adp5585_keys_id_table,
-> > +};
-> > +module_platform_driver(adp5585_keys_driver);
-> > +
-> > +MODULE_AUTHOR("Nuno S=C3=A1 <nuno.sa@analog.com>");
-> > +MODULE_DESCRIPTION("ADP5585 Keys Driver");
-> > +MODULE_LICENSE("GPL");
+Regards,
+Vikash
+> 
+> ---
+> bod
 
