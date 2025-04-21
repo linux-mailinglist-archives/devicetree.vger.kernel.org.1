@@ -1,216 +1,429 @@
-Return-Path: <devicetree+bounces-169122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF2D5A9587D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 23:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A7BA9588C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 23:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2E553A5BBC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 21:53:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E3FD3AF03C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 21:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1450219A91;
-	Mon, 21 Apr 2025 21:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2A421ABBF;
+	Mon, 21 Apr 2025 21:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ugb/cgBn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OOZbEV2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA4E1D95A3;
-	Mon, 21 Apr 2025 21:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873811EF387;
+	Mon, 21 Apr 2025 21:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745272439; cv=none; b=cbFlcqChQ/0Hleh2sGa3DgTa/E7+062tCkGNqHQLEE9kepWDtGfOx2fu5ysUSS29oKSSDGy4gsTRYKLWzOT6FywsY+ww25W1tDK5N61FEjnkUpBlnX8r4dhqMcYUFpnxXC6qHae5+yS0Nwog6vuNVdaNsKtE++0YEQm3lvsZR0I=
+	t=1745272741; cv=none; b=iK1nJfxfZLU+ORSPsJvZm1jYKt8LKJfW+pdDZGuEXiueM46JWZ8ixgGmNcG9xtUInBzqkKnZbhpvCEJy4cOnlzsBwjRTLHvY/rcMXPvGA15hIGz5IUMBzh23ICEAIK66cM1fyz2ZYWfE4qDfQbKee2SG7EP9b/EJwDSLmdelcPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745272439; c=relaxed/simple;
-	bh=Vm6Hkxbe37lldY/TsbKzLITo18iBkisy8BO+yd9b7/Y=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=fSBCkU+CnoabH3orYh9mjZAOvHMvEHNSLGDFx8Vua3AVm6hAYH2v277cQZ04n0sh1TZziSHxVINdXcsZz6eo6rrlQl0ny847Xx70xbxuGxefdffKw1fmEX+GgGV6v/Tvxh5o0v+eOwrRHANlIXK9Bb66PLLuPUUhAYBIBLMplrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ugb/cgBn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8FCFC4CEE4;
-	Mon, 21 Apr 2025 21:53:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745272439;
-	bh=Vm6Hkxbe37lldY/TsbKzLITo18iBkisy8BO+yd9b7/Y=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Ugb/cgBn9+QWTEBsbA4mE3sdjXkL/4OThNwXfUOeiJh8hqn9WlhgAQ/jeECsp/eOD
-	 U/59hlDa72oTvZs241K/6kHa0g0q0rkHf9QgS/UcYIFHKSk8+txKl5VGiseNmlK825
-	 cB9Zj2I8h7wKsZ87RNaeUmj8pgEN2afnoZByYR1t6xfF4BPTrgxeX6YrHTH5d6EPEO
-	 55HBN47bnCd7cN61PYHrjp/00JBQUGNi+JnJF16YBXqcf4RzWri3Nh4DKAZiX4yQRH
-	 3tWYmSnUtGnHAXXD4tDwiq+41DS+K8PvDfujHBxaGk2djSwCceakvjPje54SIPF0vS
-	 E11WaaDo19yHQ==
-Date: Mon, 21 Apr 2025 16:53:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1745272741; c=relaxed/simple;
+	bh=IhvTrBPT9MajnxD0h1Zm9/Y9wvCGsNsEcHqoA7mdQ5w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFcxllnTJ5MqYx68h6OOMUKIX7tTauj02cyLdW0z06+Y3ZV8JdrFI85+yF2DNjSgIAb9eoeu/UlohChXl1PKpsXrKQHzWqazGnGoVOtJ/HY8U7NGUOWCAk0gsaOLdWCN3OgHZYhXsAVUtzQ2OfTv/qZRB2OfuSsXDx8Jt1AlpCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=OOZbEV2U; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CA24C6D6;
+	Mon, 21 Apr 2025 23:56:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1745272611;
+	bh=IhvTrBPT9MajnxD0h1Zm9/Y9wvCGsNsEcHqoA7mdQ5w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OOZbEV2UQiH6RcClkRuaM/ImkkkPeLr3TDOIT3KK/1+7lP1ed4pT0AC6SgUG5QQaZ
+	 +DLn7UJMiDqyQSgONrJdIbEeGliH86t+cm1ZWVSWIyvUrVAYPzmGoDZvfqIb6nUTuf
+	 zQhHoyomXTWl+XU/59/yMfXNHnPX3Xi1pHUGJE5U=
+Date: Tue, 22 Apr 2025 00:58:55 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v3 03/12] media: dt-bindings: Add binding doc for
+ i.MX8QXP and i.MX8QM ISI
+Message-ID: <20250421215855.GA31885@pendragon.ideasonboard.com>
+References: <20250210-8qxp_camera-v3-0-324f5105accc@nxp.com>
+ <20250210-8qxp_camera-v3-3-324f5105accc@nxp.com>
+ <20250327184425.GE4861@pendragon.ideasonboard.com>
+ <Z+WzZDNxpPcYScYT@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Will Deacon <will@kernel.org>, 
- devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>
-To: Thomas Antoine <t.antoine@uclouvain.be>
-In-Reply-To: <20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be>
-References: <20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be>
-Message-Id: <174527239330.2996733.2164044396415620097.robh@kernel.org>
-Subject: Re: [PATCH v3 0/5] Google Pixel 6 (oriole): max77759 fuel gauge
- enablement and driver support
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Z+WzZDNxpPcYScYT@lizhi-Precision-Tower-5810>
 
+Hi Frank,
 
-On Mon, 21 Apr 2025 20:13:31 +0200, Thomas Antoine wrote:
-> The Google Pixel 6 has a Maxim MAX77759 which provides a fuel gauge with
-> an interface with a lot in common with the Maxim max1720x.
+On Thu, Mar 27, 2025 at 04:21:56PM -0400, Frank Li wrote:
+> On Thu, Mar 27, 2025 at 08:44:25PM +0200, Laurent Pinchart wrote:
+> > On Mon, Feb 10, 2025 at 03:59:22PM -0500, Frank Li wrote:
+> > > Add binding documentation for i.MX8QXP and i.MX8QM ISI. The clock-names,
+> > > power-domains, and ports differ significantly from the existing
+> > > nxp,imx8-isi.yaml. Create a new file to avoid complex if-else branches.
+> >
+> > Mixed feelings about having different bindings files for what is
+> > essentially the same IP, but I won't object.
 > 
-> Modify the Maxim MAX1720x driver to be compatible with the Maxim MAX77759
-> and enable it for the gs101-oriole board.
+> Rob suggest split it at v1.
 > 
-> The voltage, current, capacity, temperature and charge have all been
-> tested and show coherent results. The charge full design and capacity
-> equal the ones seen on android, the ratio between average charge and
-> average current does predict pretty accurately the time to empty under
-> a constant workload and temperature is coherent with the dynamic state
-> of the device.
+> https://lore.kernel.org/all/20250203221659.GA130749-robh@kernel.org/
 > 
-> Health is not enabled as it always reports overheating. The time to empty
-> is wrong by about a factor 2 and is thus also disabled.
+> "I think this addition is borderline whether it should be its own schema
+> doc. The if/then schemas are larger than the main part. The ports are
+> not even the same."
 > 
-> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> >
+> > > Add new file to MAINTAINERS.
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > > change from v2 to v3
+> > > - none
+> > > change from v1 to v2
+> > > - create new file for 8qm and 8qxp accroding rob's suggestion.
+> > > ---
+> > >  .../devicetree/bindings/media/fsl,imx8qm-isi.yaml  | 117 +++++++++++++++++++++
+> > >  .../devicetree/bindings/media/fsl,imx8qxp-isi.yaml | 103 ++++++++++++++++++
+> > >  MAINTAINERS                                        |   1 +
+> > >  3 files changed, 221 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/fsl,imx8qm-isi.yaml b/Documentation/devicetree/bindings/media/fsl,imx8qm-isi.yaml
+> > > new file mode 100644
+> > > index 0000000000000..61c551673e2a4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/fsl,imx8qm-isi.yaml
+> > > @@ -0,0 +1,117 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/fsl,imx8qm-isi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: i.MX8QM Image Sensing Interface
+> > > +
+> > > +maintainers:
+> > > +  - Frank Li <Frank.Li@nxp.com>
+> > > +
+> > > +description:
+> > > +  The Image Sensing Interface (ISI) combines image processing pipelines with
+> > > +  DMA engines to process and capture frames originating from a variety of
+> > > +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+> > > +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+> > > +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8qm-isi
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 8
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: per0
+> > > +      - const: per1
+> > > +      - const: per2
+> > > +      - const: per3
+> > > +      - const: per4
+> > > +      - const: per5
+> > > +      - const: per6
+> > > +      - const: per7
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 8
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 8
+> >
+> > This surprises me. The reference manual does list 8 clocks and
+> > interrupts, but only 6 channels in the ISI section (for instance in
+> > 15.6.1.1.4). Which one is wrong ?
 > 
-> ---
-> Changes in v3:
-> - Update base tree to avoid conflicts
-> - Fix capacity computation for max1720x
-> - Add separate properties for the max7759 to disable non-functional ones
-> - Take TASKPERIOD into account for voltage computation of max77759
-> - Simplify vcell computation (Dimitri Fedrau)
-> - Switch has_nvmem to bool and keep it only in chip_data (Dimitri Fedrau)
-> - Drop the yes_range from the write table (Sebastian Reichel)
-> - Add test_power_supply_properties.sh to cover letter (Sebastian Reichel)
-> - Switch back some changes to binding and actually use allOf:if: to
->   restrict constraints (Krzysztof Kozlowski)
-> - Fix style errors
-> - Link to v2: https://lore.kernel.org/r/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be
+> Support 6 input, 8 output.
 > 
-> Changes in v2:
-> - Add fallback for voltage measurement (André Draszik)
-> - Add regmap for the max77759 (André Draszik)
-> - Add chip identification for the max77759 (André Draszik, Peter Griffin)
-> - Move RSense value to a devicetree property shunt-resistor-micro-ohms
->   (Dimitri Fedrau, André Draszik)
-> - Use allOf:if to narrow binding per variant (Krzysztof Kozlowski)
-> - Remove binding example (Krzysztof Kozlowski)
-> - Change defconfig order to follow savedefconfig (Krzysztof Kozlowski)
-> - Fix style errors
-> - Link to v1: https://lore.kernel.org/r/20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be
+> "The crossbar is a 6 input 8 output multiplexer where each output port can
+> be configured to connect to any of the 6 inputs."
+
+Which version of the reference manual are you looking at ? The latest
+version I can find on the nxp.com website is "i.MX 8QuadMax Applications
+Processor Reference Manual, Rev. 1.1, 05/2024", and it states on page 
+
+    The crossbar is a 6 input, 6 output multiplexer where each output
+    port can be configured to connect to any of the 6 inputs.
+
+> 8 irq and clocks is for output dmac.
 > 
-> tools/testing/selftests/power_supply/test_power_supply_properties.sh:
-> ok 1 max77759-fg.exists
-> ok 2 max77759-fg.uevent.NAME
-> ok 3 max77759-fg.sysfs.type
-> ok 4 max77759-fg.uevent.TYPE
-> ok 5 max77759-fg.sysfs.usb_type # SKIP
-> ok 6 max77759-fg.sysfs.online # SKIP
-> ok 7 max77759-fg.sysfs.present
-> ok 8 max77759-fg.sysfs.status # SKIP
-> ok 9 max77759-fg.sysfs.capacity
-> ok 10 max77759-fg.sysfs.capacity_level # SKIP
-> ok 11 max77759-fg.sysfs.model_name
-> ok 12 max77759-fg.sysfs.manufacturer
-> ok 13 max77759-fg.sysfs.serial_number # SKIP
-> ok 14 max77759-fg.sysfs.technology # SKIP
-> ok 15 max77759-fg.sysfs.cycle_count # SKIP
-> ok 16 max77759-fg.sysfs.scope # SKIP
-> ok 17 max77759-fg.sysfs.input_current_limit # SKIP(Dimitri Fedrau)
-> ok 18 max77759-fg.sysfs.input_voltage_limit # SKIP
-> ok 19 max77759-fg.sysfs.voltage_now
-> ok 20 max77759-fg.sysfs.voltage_min # SKIP
-> ok 21 max77759-fg.sysfs.voltage_max # SKIP
-> ok 22 max77759-fg.sysfs.voltage_min_design # SKIP
-> ok 23 max77759-fg.sysfs.voltage_max_design # SKIP
-> ok 24 max77759-fg.sysfs.current_now
-> ok 25 max77759-fg.sysfs.current_max # SKIP
-> ok 26 max77759-fg.sysfs.charge_now # SKIP
-> ok 27 max77759-fg.sysfs.charge_full
-> ok 28 max77759-fg.sysfs.charge_full_design
-> ok 29 max77759-fg.sysfs.power_now # SKIP
-> ok 30 max77759-fg.sysfs.energy_now # SKIP
-> ok 31 max77759-fg.sysfs.energy_full # SKIP
-> ok 32 max77759-fg.sysfs.energy_full_design # SKIP
-> ok 33 max77759-fg.sysfs.energy_full_design # SKIP
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +    properties:
+> > > +      port@2:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: MIPI CSI-2 RX 0
+> > > +      port@3:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: MIPI CSI-2 RX 1
+> > > +      port@4:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: HDMI RX
+> >
+> > Figure 15-59 in the reference manual list MIPI CSI-2 RX 0 and RX 1 as
+> > connected to inputs 0 and 1 respectively.
 > 
-> ---
-> Thomas Antoine (5):
->       power: supply: correct capacity computation
->       power: supply: add support for max77759 fuel gauge
->       dt-bindings: power: supply: add max77759-fg flavor
->       arm64: defconfig: enable Maxim max1720x driver
->       arm64: dts: exynos: gs101-oriole: enable Maxim max77759 fuel gauge
+> Reference document should be wrong, I reference another internal document
+
+Ah, that answers my question above.
+
+Could you report this issue, to get it fixed in the next version of the
+reference manual ? Same for the QXP.
+
+> 0: display control 0
+> 1: display control 1
+> 2: csi2 rx0
+> 3: csi2 rx1
+> 4: hdmi rx
+
+I assume you've tested the driver, so I'll trust those values more than
+the ones from the reference manual.
+
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - interrupts
+> > > +  - power-domains
+> > > +  - ports
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    #include <dt-bindings/clock/imx8-clock.h>
+> > > +    #include <dt-bindings/clock/imx8-lpcg.h>
+> > > +    #include <dt-bindings/firmware/imx/rsrc.h>
+> > > +
+> > > +    image-controller@58100000 {
+> > > +        compatible = "fsl,imx8qm-isi";
+> > > +        reg = <0x58100000 0x90000>;
+> >
+> > The memory map in the reference manual lists the "Pixel DMA" region as
+> > ending at 0x5817ffff. Shouldn't the length of the region be 0x80000 ?
 > 
->  .../bindings/power/supply/maxim,max17201.yaml      |  34 ++-
->  .../boot/dts/exynos/google/gs101-pixel-common.dtsi |  10 +
->  arch/arm64/configs/defconfig                       |   1 +
->  drivers/power/supply/max1720x_battery.c            | 271 ++++++++++++++++++---
->  4 files changed, 280 insertions(+), 36 deletions(-)
-> ---
-> base-commit: e48e99b6edf41c69c5528aa7ffb2daf3c59ee105
-> change-id: 20241202-b4-gs101_max77759_fg-402e231a4b33
+> Yes, it should be 0x80000.
 > 
-> Best regards,
-> --
-> Thomas Antoine <t.antoine@uclouvain.be>
+> > > +        interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        clocks = <&pdma0_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma1_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma2_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma3_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma4_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma5_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma6_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma7_lpcg IMX_LPCG_CLK_0>;
+> > > +        clock-names = "per0", "per1", "per2", "per3",
+> > > +                      "per4", "per5", "per6", "per7";
+> > > +        power-domains = <&pd IMX_SC_R_ISI_CH0>, <&pd IMX_SC_R_ISI_CH1>,
+> > > +                        <&pd IMX_SC_R_ISI_CH2>, <&pd IMX_SC_R_ISI_CH3>,
+> > > +                        <&pd IMX_SC_R_ISI_CH4>, <&pd IMX_SC_R_ISI_CH5>,
+> > > +                        <&pd IMX_SC_R_ISI_CH6>, <&pd IMX_SC_R_ISI_CH7>;
+> > > +
+> > > +        ports {
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +
+> > > +            port@2 {
+> > > +                reg = <2>;
+> > > +                endpoint {
+> > > +                    remote-endpoint = <&mipi_csi0_out>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +...
+> > > diff --git a/Documentation/devicetree/bindings/media/fsl,imx8qxp-isi.yaml b/Documentation/devicetree/bindings/media/fsl,imx8qxp-isi.yaml
+> > > new file mode 100644
+> > > index 0000000000000..818fea0e4679f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/fsl,imx8qxp-isi.yaml
+> > > @@ -0,0 +1,103 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/fsl,imx8qxp-isi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: i.MX8QXP Image Sensing Interface
+> > > +
+> > > +maintainers:
+> > > +  - Frank Li <Frank.Li@nxp.com>
+> > > +
+> > > +description:
+> > > +  The Image Sensing Interface (ISI) combines image processing pipelines with
+> > > +  DMA engines to process and capture frames originating from a variety of
+> > > +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+> > > +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+> > > +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8qxp-isi
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 5
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: per0
+> > > +      - const: per4
+> > > +      - const: per5
+> > > +      - const: per6
+> > > +      - const: per7
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 5
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 5
+> >
+> > Here you have 5 channels, while the reference manual lists 8 interrupts
+> > and 6 channels in the ISI documentation.
 > 
+> QXP should only have 5 irqs and clocks. QM have 8, see above reply.
 > 
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +    properties:
+> > > +      port@2:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: MIPI CSI-2 RX 0
+> > > +      port@6:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: CSI-2 Parallel RX
+> >
+> > Table 15-6 in the reference manual lists the parallel port as input 4.
 > 
+> Reference manual is wrong.
+> 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - interrupts
+> > > +  - power-domains
+> > > +  - ports
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    #include <dt-bindings/clock/imx8-clock.h>
+> > > +    #include <dt-bindings/clock/imx8-lpcg.h>
+> > > +    #include <dt-bindings/firmware/imx/rsrc.h>
+> > > +
+> > > +    image-controller@58100000 {
+> > > +        compatible = "fsl,imx8qxp-isi";
+> > > +        reg = <0x58100000 0x90000>;
+> >
+> > Same comment here about the registers range.
+> >
+> > > +        interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        clocks = <&pdma0_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma4_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma5_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma6_lpcg IMX_LPCG_CLK_0>,
+> > > +                 <&pdma7_lpcg IMX_LPCG_CLK_0>;
+> > > +        clock-names = "per0", "per4", "per5", "per6", "per7";
+> > > +        power-domains = <&pd IMX_SC_R_ISI_CH0>, <&pd IMX_SC_R_ISI_CH4>,
+> > > +                        <&pd IMX_SC_R_ISI_CH5>, <&pd IMX_SC_R_ISI_CH6>,
+> > > +                        <&pd IMX_SC_R_ISI_CH7>;
+> > > +
+> > > +        ports {
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +
+> > > +            port@2 {
+> > > +                reg = <2>;
+> > > +                endpoint {
+> > > +                    remote-endpoint = <&mipi_csi0_out>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +...
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 40d1b7ec30fde..f243257ef7653 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -17000,6 +17000,7 @@ NXP i.MX 8M ISI DRIVER
+> > >  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >  L:	linux-media@vger.kernel.org
+> > >  S:	Maintained
+> > > +F:	Documentation/devicetree/bindings/media/fsl,imx8*-isi.yaml
+> > >  F:	Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> >
+> > Should nxp,imx8-isi.yaml be renamed to fsl,imx8-isi.yaml ?
+> 
+> Suppose yes, it should match one of compatible string name. This patch
+> have not touch nxp,imx8-isi.yaml. we may rename it later
+> 
+> > >  F:	drivers/media/platform/nxp/imx8-isi/
+> > >
 
+-- 
+Regards,
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit e48e99b6edf41c69c5528aa7ffb2daf3c59ee105
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/exynos/' for 20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be:
-
-arch/arm64/boot/dts/exynos/google/gs101-raven.dtb: fuel-gauge@36 (maxim,max77759-fg): reg: [[54]] is too short
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-arch/arm64/boot/dts/exynos/google/gs101-raven.dtb: fuel-gauge@36 (maxim,max77759-fg): reg-names: ['m5'] is too short
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-arch/arm64/boot/dts/exynos/google/gs101-raven.dtb: fuel-gauge@36 (maxim,max77759-fg): Unevaluated properties are not allowed ('reg-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-arch/arm64/boot/dts/exynos/google/gs101-oriole.dtb: fuel-gauge@36 (maxim,max77759-fg): reg: [[54]] is too short
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-arch/arm64/boot/dts/exynos/google/gs101-oriole.dtb: fuel-gauge@36 (maxim,max77759-fg): reg-names: ['m5'] is too short
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-arch/arm64/boot/dts/exynos/google/gs101-oriole.dtb: fuel-gauge@36 (maxim,max77759-fg): Unevaluated properties are not allowed ('reg-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17201.yaml#
-
-
-
-
-
+Laurent Pinchart
 
