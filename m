@@ -1,150 +1,226 @@
-Return-Path: <devicetree+bounces-168869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0EC1A94BA2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 05:29:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43547A94BB7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 05:44:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99B043AE06A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 03:29:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAC06188E7BE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 03:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CAD8256C90;
-	Mon, 21 Apr 2025 03:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A102566F7;
+	Mon, 21 Apr 2025 03:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="TlIMsNPa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2134.outbound.protection.partner.outlook.cn [139.219.146.134])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEED1EB1BA;
-	Mon, 21 Apr 2025 03:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.134
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F961D9663
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 03:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745206174; cv=fail; b=Ajbwrsc+u3oppUes8dT88euMAndQsCMGKgJ/OoaN2hrEGgizY5vwhyzZEnLz2zQuaNXg+Hzu11osGwNM6AzwfQw48xI30YUzJ02Py3fReMF3VZu9IySRGuOAFVsvWbJ6OuOuGFuz3kSa2Z4nUAPjsUZyYvkGSnpj3urHTpPtlYY=
+	t=1745207047; cv=pass; b=PqrZayHKkCh0/tl+zPri+Oc+39AePoKDz7AKb7F+fDJ1uDLgHBe2iA/1IUM+KCmxikyzP8S9OrTYYS0/zaQQqochfBLNdaLX1JIca9jBWrQE/u1k18a9qjVKR+9addkTT8E4InUm1PvMfE1mK1O1iCjEG9vMqXuN/1OAOkVJPXA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745206174; c=relaxed/simple;
-	bh=m7zSr++p/K1LZKQjqPs9FXCJ0530VPsRkd/Q9Dvr3W0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SFqZdOzgwdO2QWC4UdcAb2dbJsWIbjoymFUcF3qCkB1WkmhhD63YdYyvQqy2Ww2+lqjHozmOuUXicFvVb3m7kDYhwNxDdkYmEvT0wV/a9Kdm3diDyIv3AJYbMqfGXmeTS/WyhMB1U+XPVefHvuvVp+qZNfKqgMHt3bzBLyCP2ZI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JF7A50HK34pMdu1wYsH3HZR3LLnUwQ4MXjF4Z94N9A9SCk66xlsu11I0uzgNKos26Md5oroK0p+oe9BVYEn+93nHRdfUPE3RxdeLpCQj/mnGM4npGkQ9mAB/8FWed+P7tbMV2OLw5x1IAlx7DDXn7J8dShq6rESKTMCdXh9pwDPD1TrvJ3EGjokD/JnLiUmsQpSNbloWjBcOPkUZyw+zyTGRBkXlmItlukPPAlPy4OS/EZpiKnWIt7lh7HlDaOW/tE0rD6ZpuKjUkjO7tacGzxHHhNg4iiWNVolVt/QVeWonmQ0GOpSVkMVVsrqLP+knlTI5jcq6JIwfNvAURNmEKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sESeRFmd+/vde2FbmYt5/7JPn8mt5njyU7DiuJqm2GM=;
- b=epUQkXCGbjLyjmopK0A4vqWbDih+8kQA+NCnpYxQu4Kd2Ta1SVLmn9L+T2SJtz83J+7KQN/MM1raMfWXANyHrZeF6ORyiJ02I08oPvevwsDABMVwkHQ1PyOwhLTDWWspoxEBcuK3VbapyEMv1k7O6RdEgdPGQbIOWBAVwAfWzlBLw7DYd2cXu2CEVjYMJGhZ0zibP3fcZdwHskFN32QKYCkojErUFHgRjXEyeZy1Fpk9Cr35oS65rKqgCI2O8SjcXROdewL4NB4cC2x9OHm4E4thOKEDKhfQbCYmm5Aonkzki286eRZ48EBjMsqTQ8tqxwuGjver8BPV1keC1/lQ2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::9) by ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
- 2025 03:29:18 +0000
-Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
- ([fe80::64c5:50d8:4f2c:59aa]) by
- ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn ([fe80::64c5:50d8:4f2c:59aa%5])
- with mapi id 15.20.8655.033; Mon, 21 Apr 2025 03:29:18 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: y-abhilashchandra@ti.com
-Cc: conor+dt@kernel.org,
-	devarsht@ti.com,
-	devicetree@vger.kernel.org,
-	jai.luthra@linux.dev,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	mchehab@kernel.org,
-	mripard@kernel.org,
-	r-donadkar@ti.com,
-	robh@kernel.org,
-	u-kumar1@ti.com,
-	vaishnav.a@ti.com,
-	changhuang.liang@starfivetech.com
-Subject: [PATCH v6 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq interrupt and add support for VIDIOC_LOG_STATUS
-Date: Sun, 20 Apr 2025 20:29:10 -0700
-Message-Id: <20250421032910.41146-1-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250416121938.346435-3-y-abhilashchandra@ti.com>
-References: <20250416121938.346435-3-y-abhilashchandra@ti.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZQ0PR01CA0017.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:5::18) To ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::9)
+	s=arc-20240116; t=1745207047; c=relaxed/simple;
+	bh=2iXvIt0PZVb4xa0VWA2Fs/VCdHxp9uSiFZs7ozi9RsY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pLzMSmZuX1JnV0CogaoqGYoGBABaceAGCQZpmy+tRjqtMStUhgCLKfRgBUM51MP6ePrgSh1Z6pZ+riW9Bu4l6810iflBD7OvhfBX9C+yjYh5ylb3rvYoLL1kapvXtWBcax42/fuxbsJXC1Pi/YbDQz5Nd33Plve+xlOt8OtSvTA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=TlIMsNPa; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745207015; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=LWn/J8Kn8/FXQ5g61xOUlIKReeSHlN20ryLlwElQ6d5tK0hQO27T8RCsOr0cLX30iuDb65wjAA+PbaElNEVse0F9cfFztATp32fJQ5T3dEwBWEA85E492hXK74/+Gvl0NtUKS6pOaDC0UgRFHsP7Bb8+Jh9ekcaG8P3bkEkWNTM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745207015; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=2iXvIt0PZVb4xa0VWA2Fs/VCdHxp9uSiFZs7ozi9RsY=; 
+	b=gyj3gj6vXvqLBIcN+W/lAlNYsIjMMEjGOR9MeY0FgOOpdy7scDUNDJBvjAw7FLr9AZrnChMP2jmeEHJSSqjeag0y/w693JaHDLeUQv2knmOuFAdIwCBk7Gif/HHSd2aKNnrp2HbBWkRr8N0PIVMGQGjJ5gTn6u+hWf9cxTbeRdk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745207015;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=2iXvIt0PZVb4xa0VWA2Fs/VCdHxp9uSiFZs7ozi9RsY=;
+	b=TlIMsNPaORWeO2slWf/9EEigjPHsSH3IkJ61TylvBpI2vfw8EH2Vx4k0VbtaCvAE
+	t2hI7B/+CtyaECM0wcsRdWarP0D8VAXbh1PtRguITgaU45lH4VPqmcFqehIBV0qUeDh
+	SQ/nO/uz5ZJu8iZ+JoylGrfm2oXkoAxZnGEK3zmKNljPWYI72mPFeuVJK7xHaYeGi/W
+	pQpCks2pOj4+frJklXt9rcOqymgFsYmg7rPqcigTIpR8AHE1GwJyDK9n8gSbznrpTO2
+	Di1EtKKnOs0ZFqGTG/wCjWF49QOgfJPOI+ymZwd9Zda06tooMjQur6eomNfInmceMNd
+	oOHUyy/poA==
+Received: by mx.zohomail.com with SMTPS id 17452070129989.976056380052796;
+	Sun, 20 Apr 2025 20:43:32 -0700 (PDT)
+Message-ID: <16b34d85a710b4900e6d842c001a38b3d538bc2a.camel@icenowy.me>
+Subject: Re: [RFC] arm64: dts: allwinner: a64: Add overlay for Realtek
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Dragan Simic <dsimic@manjaro.org>, Peter Robinson <pbrobinson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>,  Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev
+Date: Mon, 21 Apr 2025 11:43:27 +0800
+In-Reply-To: <f063ced3436e239eaad8ab0589ba2cb1@manjaro.org>
+References: <20250419160751.678827-1-pbrobinson@gmail.com>
+	 <f063ced3436e239eaad8ab0589ba2cb1@manjaro.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1302:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c035892-4cef-4e97-9864-08dd8084b2e3
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|41320700013|1800799024|7416014|52116014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	qLS5jqp57gTvV2JIyWjwCwpgGPoKJQUKppYoTEyZdH5fiFKL/NJbowEd+xIkJE82PqaIXOHPX3mbHpRX6yOkWBpa8R2YF46kvxHmO2AV3v7GfzJbmjI6EQB11iWMCmRXxeV1bM1H4QxsMO7L2Yq4rPIz1kisn/ldWs2UUb2ASyqBA0u3zRZ9OyL3molf3Xmg0wNIbrAMRKlVe1oRhNT1GSdx7ca2hC17LvETlYqgUS/ticP2E59Z7rw8cRXyOB51/zHTqF9wR8U40yvoUlPep1s8AndENTHhz8Ak4CzJw+koQv/DDFNgKtTIUOmHOA+QRkVbI1FH7BM253+jtXAHQ/OkypSjy9pZWHdK7qfF9goW3XGJVH8ql/MNltjIMBQaxwxErJ0oX8ctHJTF9C27kcMmO3NW49MLNdGvWKjddf1I8+Ff5LJFRLWPcqfCGqiKsCyR284jNKmpEgbX28OhnryinXvFX6DJ2EBnvwwxN737F6UnFvUwWmUX02YsvQI8q/SZ3y0fGfrFQK4LG8hF4moNDfFyJ/fBsqRKo1/lEWwj5CTqKLnbFNMQYsT8y94kWHbyOn3BAUKtarUpyPxgB7Zkpyie2av+IZJWCFXhXYQ=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(41320700013)(1800799024)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?KK9pI7VjYoZuFwOfbggsI4DGB4EAtriBCUTpex9bFtY88trYRd3T7ngExQAN?=
- =?us-ascii?Q?2GtTczwfu1gvWyfaCBGML8Db+oxSGWMUP7DVu4YcedJ5u16ZWzrJDeW/tcJO?=
- =?us-ascii?Q?1zC6n1w32wdwhihN9+UEiqfoMx/Pu7YrMW4WbapDlYbughI2UGWHcYPK5cyU?=
- =?us-ascii?Q?rA7uz042iXsbR/XGMO3eFHluvHffV6Ryal40TJaBsVPVFXlXw2ZUlYjDmd69?=
- =?us-ascii?Q?Bbo7+OR3eo+Y4dh68ENhqNCYMPmPbzKUMm3ZyWRrqKlbXk1v12pCNmpZp/r/?=
- =?us-ascii?Q?+T54ki3fYRza6oNyckVB6O2Gii7p7KNgcci4E+o5nuD0NbEf9SEsejaitqr/?=
- =?us-ascii?Q?bRGIMa8o+56rhu5IaJhgE/Achk3x8wp4CIh3/3wT0n8BxS7dahqsqMr4SlKV?=
- =?us-ascii?Q?FQqhAk+/2aZshXzSgc0krqQDhFWuq39KBSK2tGzz/bVjzub7TH3z1JFBP6nO?=
- =?us-ascii?Q?1xE49DWZragHSN2G/+3vhiS090/ZuETbTQ4EmBV1kerek6dvb+3FF0WWP+7a?=
- =?us-ascii?Q?wIEYt1kK39HeVGMda5i5GiSRkZvYX8UAM3mn8z56F74YygWEjKqt8Or0KNBE?=
- =?us-ascii?Q?QxusPDpqA+dIoTM/4Zey6eLLCKC1/Pqo0GoiPSQ70zMko6EmEA6ttQEVtULO?=
- =?us-ascii?Q?Y5PjDMZ/dI30n9j6GDaRfGcCcnmpdWLHf7agMNwHDBYoGHyziv63YBzCngFo?=
- =?us-ascii?Q?HQOWI7hBrzFQV9972FT3zHaw7xHCZSHGoSyacCiEagTBwTP+cu0aL1l8tCJO?=
- =?us-ascii?Q?zn/dqld8qgBqW+jcuJAYdmHFdrCYKz6jMv4kEUJFEk3iHZiP+gRiykfDb2ox?=
- =?us-ascii?Q?jKVGp0O7kSYkHBYvOm+kFHfscH81tS4UdTJyJY5GL5Rc63hyPyCM+3CAxnUV?=
- =?us-ascii?Q?o+5keRDsCB2F5tEi3KbN4Mk9PRerVXQqEbtM9pXvvYTJii1v+1nzIQ8jM0Hk?=
- =?us-ascii?Q?2evPxzclmEH19f5gTP8RaXfk0KpnEeZBj/3W9p3Lb3vjejvo1RVX9+ZHoc+C?=
- =?us-ascii?Q?SpJdibJr88ingcA46wvYsV+PCzOKW6EWgDodczaai3DSxVG/8OBPG5K9x72D?=
- =?us-ascii?Q?rWYahERukTjjZr6ZJy7m/wL9tvANQ0rpov0w02YvIYxW92V/BV0eSdaBhGiR?=
- =?us-ascii?Q?1MM4qSCK2I6Sm8AGmX7wX0G2VT0M5Yhk1cHmijcCkyOdlOJC8NQklMlVGOVf?=
- =?us-ascii?Q?AAQsUkzkBGFCbLb/rQRYvpG7MDciO6NMKnVsekUszPtrs5LK6osEEABEtSo/?=
- =?us-ascii?Q?7wTGZeAJ+sTYnpTv3VYS6wMGaNGey9sIFNaj3ZosJBzzwS5iDsIdwKc0CzEI?=
- =?us-ascii?Q?3DrPlX1hvlBXPY6u0rSyLXBSrerY9M3FiR/ihunMGLS5FMwIyG3XDoFc2SSo?=
- =?us-ascii?Q?ONIuJ29WUJ1qlfgkJum4rmlMoJqByLAFE5boFn7q1SQty4AhhY+UHL5eQlyD?=
- =?us-ascii?Q?ov0RA318CLY7Wchv4WC5Lk+K/6qz0RN85AFvrLAIJFyoccZj+aOq6V9tL3Wt?=
- =?us-ascii?Q?W2QtW0NjBSadUN4ZvZpnLfB9MDaN4Gqf+I0rMmwviqB8YX4hrPq3jiyM69+Q?=
- =?us-ascii?Q?ZjMnCJPkTC9X3B4fhEvJAz/2E/LETbFgZvWTnkxioT9IdNNLgW9fhzoUc20X?=
- =?us-ascii?Q?R09KgUd75TaEZoy436m03vc=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c035892-4cef-4e97-9864-08dd8084b2e3
-X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2025 03:29:18.3896
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WAZZ9kSRVZ8C7YZm8wyGaK6OlAR4crtAOVeL6ruxtfIchRjXpnKvFTBCl3eqbMZUuJHaI/cbvSLDZNJRKWlb9mdEWipASPqAlTvCSbJDUXCVro5tq35282iwNzxIoQBX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1302
+X-ZohoMailClient: External
 
-> Enable the csi2rx_err_irq interrupt to record any errors during streaming
-> and also add support for VIDIOC_LOG_STATUS ioctl. This allows users to
-> retrieve detailed error information during streaming, including FIFO
-> overflow, packet errors, and ECC errors.
->
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+=E5=9C=A8 2025-04-19=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 20:08 +0200=EF=BC=
+=8CDragan Simic=E5=86=99=E9=81=93=EF=BC=9A
+> Hello Peter,
+>=20
+> On 2025-04-19 18:07, Peter Robinson wrote:
+> > Add overlay for the Pine64 Realtek rtl8723bs WiFi
+> > module that works on the Pine64/64+/SoPine devices.
+> >=20
+> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+> >=20
+> > I've looked at overlays for other vendors, such as available
+> > for some of the Rockchip devices, and I believe I have this
+> > mostly correct but would like some feedback both on if I have
+> > everything needed for Allwinner devices, but also what's needed
+> > to be able to use a single overlay across more than one device.
+> >=20
+> > This is dependent on the following [1] patch series.
+> >=20
+> > Peter
+> >=20
+> > [1]=20
+> > https://lore.kernel.org/linux-devicetree/20250419160051.677485-3-pbrobi=
+nson@gmail.com/t/#u
+> >=20
+> > ---
+> > =C2=A0arch/arm64/boot/dts/allwinner/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 6 ++++
+> > =C2=A0.../allwinner/sun50i-a64-pine64-realtek.dtso=C2=A0 | 30
+> > +++++++++++++++++++
+> > =C2=A02 files changed, 36 insertions(+)
+> > =C2=A0create mode 100644=20
+> > arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-realtek.dtso
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+> > b/arch/arm64/boot/dts/allwinner/Makefile
+> > index 00bed412ee31..be991f8d8110 100644
+> > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D=20
+> > sun50i-a64-olinuxino-emmc.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-orangepi-win.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pine64-lts.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pine64-plus.dtb=20
+> > sun50i-a64-pine64.dtb
+> > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pine64-realtek.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinebook.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1.0.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1.1.dtb
+> > @@ -52,3 +53,8 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D
+> > sun50i-h700-anbernic-rg35xx-2024.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-h.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-plus.dt=
+b
+> > =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-sp.dtb
+> > +
+> > +# Overlays
+> > +sun50i-a64-pine64-realtek-dtbs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :=3D sun5=
+0i-a64-pine64.dtb
+> > sun50i-a64-pine64-realtek.dtbo
+> > +sun50i-a64-pine64-lts-realtek-dtbs=C2=A0 :=3D sun50i-a64-pine64-lts.dt=
+b
+> > sun50i-a64-pine64-realtek.dtbo
+> > +sun50i-a64-pine64-plus-realtek-dtbs :=3D sun50i-a64-pine64-plus.dtb
+> > sun50i-a64-pine64-realtek.dtbo
+>=20
+> Thanks for the patch, having this DT overlay makes perfectly
+> sense to me.=C2=A0 The only possible issues may arise from the
+> resulting size increase of the compiled .dtb files, caused by
+> the implicit inclusion of symbols.
+>=20
+> However, please see an earlier linux-rockchip thread [2] that
+> shows the desired layout of the additions to the Makefile, which
+> was determined through a few rounds of discussion.
+>=20
+> Finally, I think we should choose a slightly better name for the
+> DT overlay, instead of "sun50i-a64-pine64-realtek.dtso", in which
+> "-realtek" seems a bit to vague.=C2=A0 Perhaps "-wifi-bt-addon" as the
+> filename suffix would fit better, and it's virtually guaranteed
+> that there will be no new version of that add-on board, so there
+> should be no potential for name clashing.
 
-Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+Yes. In fact I think Pine64 messed up with pinouts of Wi-Fi modules and
+only the RTL8723BS module works with Pine A64. (The Broadcom/Ampak ones
+only work with Rockchip boards, as what I assumed.)
 
-> ---
->  drivers/media/platform/cadence/cdns-csi2rx.c | 131 +++++++++++++++++++
->  1 file changed, 131 insertions(+)
+>=20
+> As a minor suggestion, the patch subject should also be tweaked
+> a bit, because "Realtek" is also a bit too vague there.
+>=20
+> [2]=20
+> https://lore.kernel.org/linux-rockchip/20250226140942.3825223-4-heiko@snt=
+ech.de/
+>=20
+> > diff --git
+> > a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-realtek.dtso
+> > b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-realtek.dtso
+> > new file mode 100644
+> > index 000000000000..51b57a46e23f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-realtek.dtso
+> > @@ -0,0 +1,30 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +// Copyright (c) 2025 Peter Robinson
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +&mmc1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0rtl8723bs: wifi@1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&r_pio>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupts =3D <0 3 IRQ_TYPE_LEVEL_LOW>; /* PL3 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-names =3D "host-wake";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +&uart1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bluetooth {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "realtek,rtl8723bs-bt";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0device-wake-gpios =3D <&r_pio 0 6 GPIO_ACTIVE_HIGH>;
+> > /* PL6 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0enable-gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /*
+> > PL4 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0host-wake-gpios =3D <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /*
+> > PL5 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+>=20
+
 
