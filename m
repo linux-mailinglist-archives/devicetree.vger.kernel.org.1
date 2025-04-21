@@ -1,509 +1,224 @@
-Return-Path: <devicetree+bounces-169091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1248A95744
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:20:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F48BA95759
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 22:28:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82E9116BAC6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 20:19:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31C981895E32
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 20:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C471F37D8;
-	Mon, 21 Apr 2025 20:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370EA1F09B6;
+	Mon, 21 Apr 2025 20:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="KfPy02tO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jI0vGZgz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D531F03FA;
-	Mon, 21 Apr 2025 20:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E701F09A3;
+	Mon, 21 Apr 2025 20:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745266726; cv=none; b=S61byHxqWWLz+mn65Bes33UI5ycYv87CtUd97PtaTYU2z8dzKdrfs+CBZXAtO5Lbq2cpwuYICinrSzzPn5ZRkaJPI7q96J4AY0YmDXFmIqgv5UMXge/JxwnceEMOsx2M1sdjuQzEy3s1GQPPMcR2t35VI9XkniYXTjxQO0t8RKU=
+	t=1745267319; cv=none; b=d0RpNVurzM88lcg62258A+MhCt3omioMT7DjpBaLJmP8kkTcA79MqjOyvcBP68ILElWZDM/CPOO9YG67zUq8tFKE3dNBgpD0+D4X+cYEgXy0xAPO1KJXkd7s0tgI03r/kmWBjaaOWIWqvGWqdwTeOKDLzmLUYdJbCT4m741MXGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745266726; c=relaxed/simple;
-	bh=JDB54FoTLeLwyo470fOwKknJanfkTVUJo3AeUpSczaU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YnZfnwF+1RX+xbSZfuTvIyEOpmOgwypr2PoxNyCE7M4V9lbKJoKZw1k8AxgbKO2tOJQozLO828UefDxlKU+bjPcmF2IOAE/WUjcNw+i1UijngDITGGySvCwYIDRulNZCF4KHd2I4OMVpdD75V9sgKz6Jbmqq/3yRFJjuYknPT8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=KfPy02tO; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.183.162] (254C2769.nat.pool.telekom.hu [37.76.39.105])
-	by mail.mainlining.org (Postfix) with ESMTPSA id A60EBBBB09;
-	Mon, 21 Apr 2025 20:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1745266721;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dvAZ7WHxT1ib3U22U7YzaEM5wJPBeAMgcRsnmo/EFiw=;
-	b=KfPy02tOIt2WezpTLGBdI2HW25sRJ4gaf5/5JSG6nTYJ7N20uuLTfeYo0fFY+xqlrh4x6m
-	AkshjGrn23I+FkygkLohQ07V3kG4ALv3AdKp9aW1YIsCOev89fcgngWASRTzUJMii+ZTrM
-	H8BEYSJRlzAsWAJi5M0lCN2sqoqSAB53KPwsejIRsxMW0LvpWPNLBT3tyRM6Cx7Ab4K9kL
-	y0WMYr08k99dN+MjRjoU0fjXh6WRErLN3lc2Eq9PM60PYHQqGbaWPPWQt80p4AQkiOLdjR
-	EdBztwPQPPhB2qc+c4o1qDD7YBGuDw5AqLb9lre8Lh2C6Sx23JknlFmIUgOVgA==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Mon, 21 Apr 2025 22:18:27 +0200
-Subject: [PATCH v5 5/5] arm64: dts: qcom: Add Xiaomi Redmi 3S
+	s=arc-20240116; t=1745267319; c=relaxed/simple;
+	bh=Qv3GiaigVBI8RPKceEvBVYMwHqbrAy4KnvBI0z9NFhc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P7DcwM2GALso7DtR0co0f2i30vrRGWOgyRB90AEEqMWhz2uM/gcI1h5EvhFd9THfObdVFOMhmLjmop3mXrjYxqznpl8KO8585YJJihfkf+D5Z+450k7GpU+Z1rZd7wfdpsEm5z6lKPu/CVRA1TKUJlbj+yRXtDRHSc5DTpYnZ90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jI0vGZgz; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LKSMbJ1001882
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 21 Apr 2025 15:28:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745267303;
+	bh=dnNkv6k8IQgenOO7joIG/X5SjFJOTCMWYPaYyeyB8aw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=jI0vGZgzfkBCg/7x/3kb2wZu9pZDY3Gyo4heLUAjWkiJO+oTQW7PBDWGFKEEkEyIq
+	 sBBeTcVb88g5cFUS9MD46viF0zT5RmVoWmkKIDtUIXFbUMNhmnyjPa5w3n1+fG+Krx
+	 8fWIsK/Cy99SYqPDR3FsGT0YvRW9q2Qy0SQbM3cg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LKSMuq030210
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 21 Apr 2025 15:28:22 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
+ Apr 2025 15:28:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 21 Apr 2025 15:28:22 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LKSLEn093699;
+	Mon, 21 Apr 2025 15:28:21 -0500
+Message-ID: <3f95eb2c-d9ea-4acd-a57f-3ffdd43fd505@ti.com>
+Date: Mon, 21 Apr 2025 15:28:21 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with
+ remote processors
+To: Judith Mendez <jm@ti.com>, Bryan Brattlof <bb@ti.com>,
+        Nishanth Menon
+	<nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla
+	<hnagalla@ti.com>,
+        Beleswar Prasad <b-padhi@ti.com>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>,
+        Devarsh Thakkar <devarsht@ti.com>
+References: <20250415153147.1844076-1-jm@ti.com>
+ <20250415153147.1844076-7-jm@ti.com>
+ <20250419150451.v3jgtgp4yisou65u@bryanbrattlof.com>
+ <20250421114042.riw2kw472murjzcc@surfer>
+ <20250421162645.gkgthbl6t2xemnbz@bryanbrattlof.com>
+ <54cbad41-3508-4ffa-99f5-df5618a8fd4c@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <54cbad41-3508-4ffa-99f5-df5618a8fd4c@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250421-msm8937-v5-5-bf9879ef14d9@mainlining.org>
-References: <20250421-msm8937-v5-0-bf9879ef14d9@mainlining.org>
-In-Reply-To: <20250421-msm8937-v5-0-bf9879ef14d9@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
- Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Adam Skladowski <a_skl39@protonmail.com>, 
- Sireesh Kodali <sireeshkodali@protonmail.com>, 
- Srinivas Kandagatla <srini@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux@mainlining.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745266705; l=9557;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=JDB54FoTLeLwyo470fOwKknJanfkTVUJo3AeUpSczaU=;
- b=zHB9MNa3HZvJuqqpLqFLsCa1PDmyqfxeI4jSjiWHNHbycN7oc6nSxjyZPtoR27dNWV/QbZRzx
- dB73PoUDMFSD6NvOgGBKyYpXdhbzPJXRz5tgfl1X2/1s7e4gyRd3Ikq
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add initial support for Xiaomi Redmi 3S (land).
+On 4/21/25 2:05 PM, Judith Mendez wrote:
+> Hi Bryan,
+> 
+> On 4/21/25 11:26 AM, Bryan Brattlof wrote:
+>> On April 21, 2025 thus sayeth Nishanth Menon:
+>>> On 10:04-20250419, Bryan Brattlof wrote:
+>>>> On April 15, 2025 thus sayeth Judith Mendez:
+>>>>> From: Devarsh Thakkar <devarsht@ti.com>
+>>>>>
+>>>>> For each remote proc, reserve memory for IPC and bind the mailbox
+>>>>> assignments. Two memory regions are reserved for each remote processor.
+>>>>> The first region of 1MB of memory is used for Vring shared buffers
+>>>>> and the second region is used as external memory to the remote processor
+>>>>> for the resource table and for tracebuffer allocations.
+>>>>>
+>>>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>>>>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>> Acked-by: Andrew Davis <afd@ti.com>
+>>>>> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+>>>>> Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
+>>>>> ---
+>>>>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 96 +++++++++++++++++++++++--
+>>>>>   1 file changed, 90 insertions(+), 6 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>>> index 1c9d95696c839..7d817b447c1d0 100644
+>>>>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>>> @@ -52,6 +52,42 @@ linux,cma {
+>>>>>               linux,cma-default;
+>>>>>           };
+>>>>> +        c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
+>>>>> +            compatible = "shared-dma-pool";
+>>>>> +            reg = <0x00 0x99800000 0x00 0x100000>;
+>>>>> +            no-map;
+>>>>> +        };
+>>>>> +
+>>>>> +        c7x_0_memory_region: c7x-memory@99900000 {
+>>>>> +            compatible = "shared-dma-pool";
+>>>>> +            reg = <0x00 0x99900000 0x00 0xf00000>;
+>>>>> +            no-map;
+>>>>> +        };
+>>>>> +
+>>>>
+>>>> I know this has been a push for our IPC and MCU+ teams for a couple
+>>>> windows now, though I do want to point out that some AM62A devices
+>>>> (AM62A12AQMSIAMBRQ1) will not even have a C7x.
+>>>>
+>>>> It's relatively easy to cut nodes out that describe the hardware in the
+>>>> bootloaders, but once we start configuring them to demo something it
+>>>> becomes impossible to unwind that during boot.
+>>>>
+>>>> We can clam we only support the superset devices but I just wanted to
+>>>> make this email so I could point people to it when they inevitably ask
+>>>> why their parts do not work out of the box with Linux.
+>>>>
+>>>> Naked-by: Bryan Brattlof <bb@ti.com>
+>>>
+>>>
+>>> I am confused. I do not see support for AM62A1 in upstream. We have
+>>> AM62A7-SK in upstream. I am not sure what direction you are suggesting
+>>> here.
+>>
+>> All I'm trying to point out is for every part we upstream there are >10
+>> times the number of parts that for one reason or another will not make
+>> it to these upstream repositories.
+>>
+>> Most of these parts will have trivial changes like having lower CPU
+>> counts, some will not have a GPU, MCU, PRU, or display, or maybe it's
+>> just a package change and the thermal zones are different, or it's just
+>> the speeds the IP can confidently run at, or it could be as simple as
+>> DDR part changes. Each variant will be mostly the superset device with
+>> one or two nodes disabled or modified in some way.
+>>
+>> For a while now, without configuring the remote cores to demo anything,
+>> it's been relatively seamless to support these variants in the
+>> bootloaders by disabling or modifying the nodes that do not exist so
+>> Linux can at least boot to a shell and provides a great foundation for
+>> others to start their development
+>>
+>> If we want to use these boards to demo a advanced usecases we can do
+>> that but I worry it will come at the cost of supporting all the part
+>> variants.
+>>
+>> My hope was we could define the board as minimally as possible here so
+>> we can maximize their flexibility with what timers, mailboxes and memory
+>> carve-outs each remote processor uses.
+>>
+> 
+> Is it not agreed upon to support the superset device upstream? It seems
+> like what we need is a detailed whitepaper on board bring-up for each
+> part variant instead of NOT adding support for the superset device
+> upstream approach.
+> 
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- arch/arm64/boot/dts/qcom/Makefile                |   1 +
- arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts | 381 +++++++++++++++++++++++
- 2 files changed, 382 insertions(+)
+We would still support the superset device upstream, Bryan is simply
+suggesting (correct me if I'm wrong) a different way of supporting
+the superset device such that later adding support for the cutdowns
+is less painful.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index adb4d026bcc4b24d73de92e204db8d525b0770e6..8c101d07e78fb2d9837ecca84cc53005f9265506 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -64,6 +64,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8937-xiaomi-land.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts b/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..91837ff940f1b6b13a9ef519519f471a7a4cdac0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts
-@@ -0,0 +1,381 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Barnabas Czeman
-+ */
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "msm8937.dtsi"
-+#include "pm8937.dtsi"
-+#include "pmi8950.dtsi"
-+
-+/delete-node/ &qseecom_mem;
-+
-+/ {
-+	model = "Xiaomi Redmi 3S (land)";
-+	compatible = "xiaomi,land", "qcom,msm8937";
-+	chassis-type = "handset";
-+
-+	qcom,msm-id = <QCOM_ID_MSM8937 0x0>;
-+	qcom,board-id = <0x1000b 1>, <0x2000b 1>;
-+
-+	aliases {
-+		mmc0 = &sdhc_1;
-+		mmc1 = &sdhc_2;
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		charge-full-design-microamp-hours = <4100000>;
-+		constant-charge-current-max-microamp = <1000000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "framebuffer0";
-+
-+		framebuffer0: framebuffer@8dd01000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x8dd01000 0x0 (720 * 1280 * 3)>;
-+			width = <720>;
-+			height = <1280>;
-+			stride = <(720 * 3)>;
-+			format = "r8g8b8";
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+			power-domains = <&gcc MDSS_GDSC>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		key-volup {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	irled {
-+		compatible = "gpio-ir-tx";
-+		gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reserved-memory {
-+		reserved@84a00000 {
-+			reg = <0x0 0x84a00000 0x0 0x1900000>;
-+			no-map;
-+		};
-+
-+		framebuffer: memory@8dd01000 {
-+			reg = <0x0 0x8dd01000 0x0 (720 * 1280 * 3)>;
-+			no-map;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&blsp1_i2c2 {
-+	status = "okay";
-+
-+	led-controller@45 {
-+		compatible = "awinic,aw2013";
-+		reg = <0x45>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		vcc-supply = <&pm8937_l10>;
-+		vio-supply = <&pm8937_l5>;
-+
-+		led@0 {
-+			reg = <0>;
-+			function = LED_FUNCTION_STATUS;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@1 {
-+			reg = <1>;
-+			function = LED_FUNCTION_STATUS;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			function = LED_FUNCTION_STATUS;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c3 {
-+	status = "okay";
-+
-+	touchscreen@3e {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x3e>;
-+
-+		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&pm8937_l10>;
-+		iovcc-supply = <&pm8937_l5>;
-+
-+		pinctrl-0 = <&tsp_int_rst_default>;
-+		pinctrl-names = "default";
-+
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1280>;
-+	};
-+};
-+
-+&pm8937_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
-+&pm8937_spmi_regulators {
-+	/* APC */
-+	pm8937_s5: s5 {
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1350000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&pmi8950_wled {
-+	qcom,num-strings = <2>;
-+	qcom,external-pfet;
-+	qcom,current-limit-microamp = <20000>;
-+	qcom,ovp-millivolt = <29600>;
-+
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm8937-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+
-+		vdd_l1_l19-supply = <&pm8937_s3>;
-+		vdd_l2_l23-supply = <&pm8937_s3>;
-+		vdd_l3-supply = <&pm8937_s3>;
-+		vdd_l4_l5_l6_l7_l16-supply = <&pm8937_s4>;
-+		vdd_l8_l11_l12_l17_l22-supply = <&vph_pwr>;
-+		vdd_l9_l10_l13_l14_l15_l18-supply = <&vph_pwr>;
-+
-+		pm8937_s1: s1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8937_s3: s3 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+		};
-+
-+		pm8937_s4: s4 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8937_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8937_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l8: l8 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l10: l10 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8937_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <200000>;
-+		};
-+
-+		pm8937_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8937_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8937_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l17: l17 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l19: l19 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8937_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8937_l23: l23 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+	};
-+};
-+
-+&sdc2_cmd_default {
-+	drive-strength = <12>;
-+};
-+
-+&sdc2_data_default {
-+	drive-strength = <12>;
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8937_l8>;
-+	vqmmc-supply = <&pm8937_l5>;
-+
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 67 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&pm8937_l11>;
-+	vqmmc-supply = <&pm8937_l12>;
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <20 4>;
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio91";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio67";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	tsp_int_rst_default: tsp-int-rst-default-state {
-+		pins = "gpio64", "gpio65";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8937_l5>;
-+
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+	vddxo-supply = <&pm8937_l7>;
-+	vddrfa-supply = <&pm8937_l19>;
-+	vddpa-supply = <&pm8937_l9>;
-+	vdddig-supply = <&pm8937_l5>;
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&xo_board {
-+	clock-frequency = <19200000>;
-+};
+To this I 100% agree, and I've suggested the same before in
+cases where we know a subset device is in the works. Sometimes
+plans for a cutdown happen after we have added support and that
+makes a bit of a mess (see J78424 / J742s2). Even when we know
+this is going to happen we still make a mess of DT which we end
+up having to clean up later (see AM62p / J722s).
 
--- 
-2.49.0
+Easy manipulation of the DT in this way was one of the promises
+of "System Device Trees". Until we have that, the next best thing
+is DT overlays. The solution here then is to factor out the components
+we know will be conditional into a device tree overlays. These
+overlays will be applied by default to form the superset DT as the
+out-of-box supported device, while also allowing easy removal without
+having the bootloader perform complex DT surgery. Win-Win
 
+The plan we agreed on for this series (back in v2 IIRC) is to add
+these items as part of the base board DT to match what is already
+done for all our other devices. *then* we factor it out from all
+devices in one go to make that series more coherent.
+
+So if that sounds good, Bryan feel free to un-NAK this and we
+we will be sure to make your task of supporting all these subset
+devices much easier in the follow up series :)
+
+Andrew
 
