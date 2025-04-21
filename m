@@ -1,104 +1,146 @@
-Return-Path: <devicetree+bounces-168972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEE2A9506F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 13:51:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF321A95087
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 14:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 760D83B08CC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 11:50:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E116B1893DE3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 12:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B38264637;
-	Mon, 21 Apr 2025 11:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4BA1DED56;
+	Mon, 21 Apr 2025 12:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jiMfBl+W"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xssQn3jC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5214B263F45;
-	Mon, 21 Apr 2025 11:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C577B1362;
+	Mon, 21 Apr 2025 12:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745236261; cv=none; b=VRVxVElRsTSqtvSfStUzBdP9+aqYWxb4+IHTw8kWKB2rrf10vhQr7CHfmamMp9GVe4xPS2TZvx2B6T3VktkeOXCNA7vEt7Ypz/dibuSHRJpqTKqER/XxmP5qKPVKkNqQNkjkW5R7+GaVqSV2k767SDivhA+UNPKj2aKA1aJT0vg=
+	t=1745236948; cv=none; b=Mqi5ledGZJdMXqUJ5RlBLw/IQicvtzOKiRr85ajdHZnTUUvp9BeUZuGtvQo7CaLuQOdAlw4ke0MzmMqXpCgYqSIRnHhF41Zxp595Pzem2pJnFX8AXHIr6W5weXf/TBbG7VX0RRbwWCDy4dbvdR8JI4aOfHyy5EVt9Q0anxH/i/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745236261; c=relaxed/simple;
-	bh=iqzPLokdK52iTpABVBzXV5mawjNYeU3GNuEBmXtj0Sc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oDsbAK0Ox23FyFAGudS0IxjlF0GLDpzRbKYffkDSSiH4dCbC7LCgvoBBp6ymR2/buGA8KNOKH8JXVpIIgN0bjCeOTHzoSQXoiI4xq4rM5fsRkRmC4afEWJz1eLi3mB/pXR5tm4d0a733GnCv2aQNLtXSuiCsEBDWDyD+5i1PJXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jiMfBl+W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC73CC4CEE4;
-	Mon, 21 Apr 2025 11:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745236261;
-	bh=iqzPLokdK52iTpABVBzXV5mawjNYeU3GNuEBmXtj0Sc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jiMfBl+WiGNzMNDskLdjxsWJ1xbphBDHUNEzCl6zgnu5E+6vHSqP8G2CoxpwDt0Kk
-	 JCFz16JEJdx3r4rESJM9MR0odx5QryDpXs4u3foDhLVrGf8DENFn9STrR5c0kagkUl
-	 m1l6u7L0dbcaE7iOC9H8p3VVrCq+nyymT6nwYl+3zodawnrLFirgk2dox+qDmkeGpm
-	 L1/pvNcH/KFj5gq8U7m3ghqVo4M2cXDSJKtXDEoFCb2sjIR0udC4CbZIqF38/SgwtH
-	 fawJN+jS/4G/TrVkjXRcCoxHk9/7uV50JbznoV7ajndhtJGQBANkRRJw7/X2OMuXaW
-	 xr19/OfSuLiTQ==
-Date: Mon, 21 Apr 2025 06:50:59 -0500
-From: Rob Herring <robh@kernel.org>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: media: qcom,sm8550-iris: document
- QCS8300 IRIS accelerator
-Message-ID: <20250421115059.GA1624060-robh@kernel.org>
-References: <20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com>
- <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
+	s=arc-20240116; t=1745236948; c=relaxed/simple;
+	bh=1vMq+rgVXm+nnHuhn8FvZrITzH6C+P1zT/oD8UHsssA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=f+tJZuGxrTLNiAwz8KazgWFJtp9udlJSwNTRO4HgZV1wofdjWK3na13jteJtb5UDofvcHJmEncED0GU25u9dxHU5c/lF+c6P1ViwzFGJSRdiX65BIaI+I0YPP77DBeHjSQYihsMtT1smXRwqTfcRptI9Ok9gy0zg8hBP3SJ3iIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xssQn3jC; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LC2FoM1616124
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 21 Apr 2025 07:02:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745236935;
+	bh=BD7xSvDOtjjn0N4MV1/8yTlPk2LHTF7F477X62OPbhQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xssQn3jCFG+ePxngYzVYU/SBHq6vynTNR0kPMnSYV96Ru9/uTz2E7Tm1lN2p7wRAK
+	 2rL7LTeH2MEz5dJfemqGJMmlKhNmMoo+i0GSMgF7DQVcu2pMOcbimjoVkdDLY4TdWu
+	 DjLgxJE1XvTcJi4w/5s4p/TCdIB3vNNhQP3cq/qo=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LC2FqL021846
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 21 Apr 2025 07:02:15 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
+ Apr 2025 07:02:14 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 21 Apr 2025 07:02:14 -0500
+Received: from [10.24.72.182] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.72.182])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LC2B4g006706;
+	Mon, 21 Apr 2025 07:02:11 -0500
+Message-ID: <18ff4046-34fa-48bf-a1e8-3472de46ac01@ti.com>
+Date: Mon, 21 Apr 2025 17:32:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250418-qcs8300_iris-v2-1-1e01385b90e9@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-j721s2-common-proc-board: Enable
+ DisplayPort-1
+To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <devarsht@ti.com>, <linux-kernel@vger.kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250411105155.303657-1-j-choudhary@ti.com>
+ <20250411105155.303657-7-j-choudhary@ti.com>
+ <945e0247-a971-48de-adb1-60a1e7fe5f24@ti.com>
+Content-Language: en-US
+From: Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <945e0247-a971-48de-adb1-60a1e7fe5f24@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Apr 18, 2025 at 11:58:39AM +0530, Vikash Garodia wrote:
-> Document the IRIS video decoder and encoder accelerator found in the
-> QCS8300 platform. QCS8300 is a downscaled version of SM8550, thereby
-> have different(lower) capabilities when compared to SM8550.
-> 
-> This patch depends on patch 20250225-topic-sm8x50-iris-v10-a219b8a8b477
+Hello Udit,
 
-An incomplete message-id is not useful. It also should go below the 
-'---' so it is not recorded in git forever.
+On 19/04/25 14:59, Kumar, Udit wrote:
+> 
+> On 4/11/2025 4:21 PM, Jayesh Choudhary wrote:
+>> Enable DSI display for J721S2 EVM.
+>>
+>> Add the endpoint nodes to describe connection from:
+>> DSS => DSI Bridge => DSI to eDP bridge => DisplayPort-1
+>>
+>> Set status for all required nodes for DisplayPort-1 as 'okay'.
+>>
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 95 +++++++++++++++++++
+>>   1 file changed, 95 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts 
+>> b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> index f691ae4c19e6..15a7d9b813d3 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> @@ -93,6 +93,29 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
+>>                <3300000 0x1>;
+>>       };
+>> [..]
+>> +
+>> +&dss {
+>> +    /*
+>> +     * These clock assignments are chosen to enable the following 
+>> outputs:
+>> +     *
+>> +     * VP0 - DisplayPort SST
+>> +     * VP1 - DPI0
+>> +     * VP2 - DSI
+>> +     * VP3 - DPI1
+>> +     */
+> 
+> Sorry for basic question,  In this series , you are enabling only DSI 
+> interface.
+> 
+> why you need clocking for other interfaces ?
+> 
+
+We do not need them.
+
+We only need clockID 14 with its parent clock as 16 (which is not the
+selected parent by default)
+
+The other display on the EVM (MHDP on DP-0) will consume clockID 2
+whose default parent selection is okay.
+
+I will change this.
+
+Thanks,
+Jayesh
 
 > 
-> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index f567f84bd60d439b151bb1407855ba73582c3b83..3dee25e99204169c6c80f7db4bad62775aaa59b5 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -24,6 +24,7 @@ properties:
->        - enum:
->            - qcom,sm8550-iris
->            - qcom,sm8650-iris
-> +          - qcom,qcs8300-iris
->  
->    power-domains:
->      maxItems: 4
-> 
-> -- 
-> 2.34.1
-> 
+>> +    status = "okay";
+>> [..]
 
