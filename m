@@ -1,82 +1,108 @@
-Return-Path: <devicetree+bounces-168913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E54BA94E01
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EBB2A94E10
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 10:26:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A534188BDBE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:21:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30EF8188BD18
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7847C20F069;
-	Mon, 21 Apr 2025 08:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3FA20F070;
+	Mon, 21 Apr 2025 08:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jHfwiB9w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YH1+Q21i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3503F1D5178;
-	Mon, 21 Apr 2025 08:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8D420F067
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:25:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745223694; cv=none; b=cF8BZVq7aUHskwfcYh2P9Xz6bBIdvUQLZ6VOp7/YLoGMTY4hVJRoYi5qcMJxgOCyDIibIjiz1qdEQYmLriNNdOMqVcJQRVr98VkCC9Mb77BrfxnaAyUuzJL3Nhu8xSTlXGcpu4BiQpdUkVup5vN+/jQf2J/i0Lc6J2gD94OLEpM=
+	t=1745223958; cv=none; b=oOg0hHCMjXtD3avaG6u/M3CXda+RkbFt6ZDtAUjDvI0VUmzx1IceiispA4oR7Eh6JJRwZXr4payNN+X85UQST1dOWqfNlyoPz/gKT0dl7u8DXZJauAoSaNgCd971z5xk6wturN61/3HErgDDplcc5QqOICUEXMkFMs+vBYg2DfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745223694; c=relaxed/simple;
-	bh=C7Yr9B85WuyxzW/DyvbRmztxW7xiL896fdLQzr9xw6o=;
+	s=arc-20240116; t=1745223958; c=relaxed/simple;
+	bh=7xJP6Yy/B37Y8apR0mdSnVjJHCFypBW0KXssFokEAmU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nw7VMsKmFw9hljs7cqdxRZGSGPCaYe5+GM7Q9S7TJZDrp+K9A9FEdlk5wbXCWhUhNhi0lfWsC+ZMnTE2jmiLN+QtmXdS7zoukix9spMF6ZZ+OTTQHtlyiPxJW8qEOBOWXWHmssRE5TfMYL3jkWXErHJDUHC6aac2XZu5ie0r6zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jHfwiB9w; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745223692; x=1776759692;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=C7Yr9B85WuyxzW/DyvbRmztxW7xiL896fdLQzr9xw6o=;
-  b=jHfwiB9wL40LX16Qab3oTybHGUBnbu3AjyoIgFgYSFtIS2ORVWCXZh6B
-   O+WN4hCNqANfr6kTrifPj2ndYfhPru08prZbRGqoXNW9yEpJ/DiVorU0B
-   6wk/NWNB1/UzGfJBlNHQ6h/uBnbF7YfyaUD9BLFB5CqHejMlGdMRMBux4
-   eRadN1AULaRGudVckK7O8wFqeF5u1+OyBrSA4TC2Nhk0mbF4PMHsHiNoR
-   IhsVnabdXeA9vOF1yP1Uvw51Ah9pTDo+G4x45Wc/wwhYytaiO44Fm0Xek
-   TReeiIsy/R2xVfutA1Xf/VZItaUZYf+UBrbxxDPgL99tjLDdeX+CJou/L
-   A==;
-X-CSE-ConnectionGUID: w/qyha6xRt2AzLKQTnoYUw==
-X-CSE-MsgGUID: 2m3MhDhqT7+IMInIfsa03g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11409"; a="46635718"
-X-IronPort-AV: E=Sophos;i="6.15,227,1739865600"; 
-   d="scan'208";a="46635718"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2025 01:21:31 -0700
-X-CSE-ConnectionGUID: 9zpDJSyeTBKPkrXoSj84vw==
-X-CSE-MsgGUID: s+znY0pVR464Y46mObjRPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,227,1739865600"; 
-   d="scan'208";a="168862263"
-Received: from lkp-server01.sh.intel.com (HELO 9c2f37e2d822) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 21 Apr 2025 01:21:27 -0700
-Received: from kbuild by 9c2f37e2d822 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u6mP6-0000H1-2v;
-	Mon, 21 Apr 2025 08:21:24 +0000
-Date: Mon, 21 Apr 2025 16:20:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: carlos.song@nxp.com, miquel.raynal@bootlin.com, Frank.Li@nxp.com,
-	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com,
-	conor.culhane@silvaco.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-i3c@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] i3c: master: svc: switch to bulk clk API for
- flexible clock support
-Message-ID: <202504211643.FJsMtmVl-lkp@intel.com>
-References: <20250421061544.2471379-3-carlos.song@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JCbf8Bz0gUTo64oxSSHYoqRmSuK4dzdCtOwHvt5wHc8ADQFUzPfbXH4Uu0dRud6tE1/zDBAZDngmRN19pG5PU3SAxHuUoN6DWulbzIpuBvrdao+T2YPplCT+HS8uDJ21Gn8A6dJLneW+eke3p/qHZ9GgKQCy2Sr7zQlePuMJQVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YH1+Q21i; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53KML3iY023193
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:25:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=FRb6vmGaZWj66VKHke2gwyzE
+	xYa6h3+rIt/MDpsOeAI=; b=YH1+Q21ixLsZoKOFBaFCve80V8EjcW9WBgn4y8X1
+	CbKmC/skwooMzbudLcoFWR2xDA7v6/fhCvCYPkUa+d7POH29TIrCeNPF6O6dc+Dj
+	SEAdWZXKV2a4+tes+UPcogaQgRrBrE+Ze3rmo3s2g6QgsoWSONjJ6kpdBJWBzR3K
+	zQESnLM38pmIejBjxsDU1UyruF6FI4gRjF+c+l3CbjUJzz2XjNrqPamDiL6ldZpb
+	d1xRgwfEaXroI8sYAevtIDQbD/a1xWyyVsmAnAWmb42VF7pov/oZFN9q2H/B2jat
+	bQJEjy03rJ/SYqQBOJYwGSC7gqjsdN742sDtobFgh3qWPA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4641hhkmgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 08:25:55 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f0e2d30ab4so76219536d6.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 01:25:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745223937; x=1745828737;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FRb6vmGaZWj66VKHke2gwyzExYa6h3+rIt/MDpsOeAI=;
+        b=v/4lRp+maVphFi1lQK5v7ZAMdrAOP9ULzwAOmqtOwAl5jWT6Y37PkrtF+7GfAdyf2Y
+         K+rj/D+R+cpNtL0EidwFgjBKkH436eu0cDdC4ZA/8yMvJZ3rTuNHT9uVlA857+Ojyt7T
+         f6hGkDjCl8+PaSOnV/L1z1GttQQuv80kHJjF/pqfRtefPy+YvFFdrETlW29QpsUvlm29
+         e+qk1sR+ZQd99CnpGLqx9/lJKjeIr7nRnr5ONCc0VD2fLPm8qosS8Trq/jSrsbYltH+i
+         TucL//MhhXQo2pVW+baSEHPo1pLNxhMi3bu8wufKSHiFH65xBJEwlFPqwn0V7vcC4VKI
+         nDdg==
+X-Forwarded-Encrypted: i=1; AJvYcCV7P0jy57zp/lahYSV+ROfQtw1lZPjx+1YSz7xlXfPQFGhLr4EobtfUDUedjXqXYhxbqCqqNsBeOfr9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZC/uPBFpm9+gjxJxhtENj5Ack0JkaC9xBIIBSaURVNnnosPeh
+	VybPUecxo5Hz/gPxpaIL7xnLEPKMvcftGV0I1OGNrq3lyMngbt3l29e1MHgAdk2A/VEJVDQy/fD
+	NUQjArY3RM+86/yskkzVtVqcTvsaSAjQPkDIaMgpeOC90SyAZR3CJ+SyUTTYy
+X-Gm-Gg: ASbGncun84WdMXv49by9bMvfQm0hGM8qKfx7ZF+SwNx/JRgeKWs4bV1KJjhBzF6uslg
+	lTL3oAC6tr8ZCd9c1n+cjOvY9Qj5II+CgTwM0r+pcZNC0LcB2Gc9Hv2GB+SLtV0n95MiRcrlosl
+	LD5m5tC/J4nM2pqPJNNlh/M9klCdtYWlnskUZHT+0V33WNNd+vTBlYnmpB6kv5e7kARKmnr23Tt
+	SVB86GqsEVthT4yxOK0LI2FrGx4K/+jdApQ7LcXo+4YRnDSXXQHQIoF/aCjiQr/w+teGPaa1v2+
+	JeHB+uS5rBry51iLTFeSyPLLFDF9dpu/vv2gwi+PsMNQjOffO207zyhsCMqxabCJk8pIesczWqg
+	=
+X-Received: by 2002:ad4:5965:0:b0:6e8:e828:820d with SMTP id 6a1803df08f44-6f2c4655860mr234166426d6.36.1745223937556;
+        Mon, 21 Apr 2025 01:25:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGcwFV65OMdQz9ncrfoufy1rJ3V3naoM3eXJeqCGxfS+6c9u1tp+a8GZ25KDTC2huv5liCQYQ==
+X-Received: by 2002:ad4:5965:0:b0:6e8:e828:820d with SMTP id 6a1803df08f44-6f2c4655860mr234166086d6.36.1745223937199;
+        Mon, 21 Apr 2025 01:25:37 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3109075e91bsm10810151fa.1.2025.04.21.01.25.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Apr 2025 01:25:36 -0700 (PDT)
+Date: Mon, 21 Apr 2025 11:25:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Subject: Re: [PATCH v4 5/7] dt-bindings: opp: Add v2-qcom-adreno vendor
+ bindings
+Message-ID: <fvi3cshu253kfxiwreny66g3niff6zjdpv2xwfr3644gbrj4et@ypzjy4naj55f>
+References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
+ <20250109-gpu-acd-v4-5-08a5efaf4a23@quicinc.com>
+ <0cd538c0-7d1f-44a4-b89d-f285535c0fcb@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,150 +111,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250421061544.2471379-3-carlos.song@nxp.com>
+In-Reply-To: <0cd538c0-7d1f-44a4-b89d-f285535c0fcb@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=Fe43xI+6 c=1 sm=1 tr=0 ts=68060113 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=COk6AnOGAAAA:8 a=DdzL4o_DZVg8PLORQZwA:9
+ a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: ynuihPfrrg-qIglhUx4nEvm87MkbBCX2
+X-Proofpoint-ORIG-GUID: ynuihPfrrg-qIglhUx4nEvm87MkbBCX2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-21_04,2025-04-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ bulkscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504210065
 
-Hi,
+On Sat, Apr 19, 2025 at 08:03:35PM +0530, Akhil P Oommen wrote:
+> On 1/9/2025 2:10 AM, Akhil P Oommen wrote:
+> > Add a new schema which extends opp-v2 to support a new vendor specific
+> > property required for Adreno GPUs found in Qualcomm's SoCs. The new
+> > property called "qcom,opp-acd-level" carries a u32 value recommended
+> > for each opp needs to be shared to GMU during runtime.
+> > 
+> > Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
+> > 
+> > Cc: Rob Clark <robdclark@gmail.com>
+> > Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> > ---
+> >  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
+> >  MAINTAINERS                                        |  1 +
+> >  2 files changed, 98 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+> > new file mode 100644
+> > index 000000000000..de1f7c6c4f0e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Adreno compatible OPP supply
+> > +
+> > +description:
+> > +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
+> > +  ACD related information tailored for the specific chipset. This binding
+> > +  provides the information needed to describe such a hardware value.
+> > +
+> > +maintainers:
+> > +  - Rob Clark <robdclark@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: opp-v2-base.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: operating-points-v2-adreno
+> > +      - const: operating-points-v2
+> 
+> https://lore.kernel.org/all/173637143564.1057127.5997544431977689674.robh@kernel.org/
+> 
+> Krzysztof, sorry for the late response. I was checking further about the
+> above bot error. AFAIU, we should not include "const:
+> operating-points-v2" here, otherwise all opp tables compatible with
+> "operating-points-v2" get matched with opp-v2-qcom-adreno.yaml during
+> validation. So I am sending the v5 revision with the below fix:
 
-kernel test robot noticed the following build warnings:
+This is not quite correct. The table is compatible with op-v2. Instead
+you should add 'select:' clause which will limit the cases where this
+schema gets selected.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.15-rc3 next-20250417]
-[cannot apply to shawnguo/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/carlos-song-nxp-com/dt-bindings-i3c-silvaco-i3c-master-add-i-MX94-and-i-MX95-I3C/20250421-140716
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250421061544.2471379-3-carlos.song%40nxp.com
-patch subject: [PATCH 2/3] i3c: master: svc: switch to bulk clk API for flexible clock support
-config: arm-randconfig-001-20250421 (https://download.01.org/0day-ci/archive/20250421/202504211643.FJsMtmVl-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250421/202504211643.FJsMtmVl-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504211643.FJsMtmVl-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/i3c/master/svc-i3c-master.c:1898:29: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-    1898 |                 return dev_err_probe(dev, ret, "can't get I3C clocks\n");
-         |                                           ^~~
-   drivers/i3c/master/svc-i3c-master.c:1882:9: note: initialize the variable 'ret' to silence this warning
-    1882 |         int ret, i;
-         |                ^
-         |                 = 0
-   1 warning generated.
-
-
-vim +/ret +1898 drivers/i3c/master/svc-i3c-master.c
-
-  1877	
-  1878	static int svc_i3c_master_probe(struct platform_device *pdev)
-  1879	{
-  1880		struct device *dev = &pdev->dev;
-  1881		struct svc_i3c_master *master;
-  1882		int ret, i;
-  1883	
-  1884		master = devm_kzalloc(dev, sizeof(*master), GFP_KERNEL);
-  1885		if (!master)
-  1886			return -ENOMEM;
-  1887	
-  1888		master->drvdata = of_device_get_match_data(dev);
-  1889		if (!master->drvdata)
-  1890			return -EINVAL;
-  1891	
-  1892		master->regs = devm_platform_ioremap_resource(pdev, 0);
-  1893		if (IS_ERR(master->regs))
-  1894			return PTR_ERR(master->regs);
-  1895	
-  1896		master->num_clks = devm_clk_bulk_get_all(dev, &master->clks);
-  1897		if (master->num_clks < 0)
-> 1898			return dev_err_probe(dev, ret, "can't get I3C clocks\n");
-  1899	
-  1900		for (i = 0; i < master->num_clks; i++) {
-  1901			if (!strcmp(master->clks[i].id, "fast_clk"))
-  1902				break;
-  1903		}
-  1904	
-  1905		if (i == master->num_clks)
-  1906			return dev_err_probe(dev, -EINVAL,
-  1907					     "can't get I3C peripheral clock\n");
-  1908	
-  1909		master->fclk = devm_clk_get(dev, "fast_clk");
-  1910		if (IS_ERR(master->fclk))
-  1911			return PTR_ERR(master->fclk);
-  1912	
-  1913		master->irq = platform_get_irq(pdev, 0);
-  1914		if (master->irq < 0)
-  1915			return master->irq;
-  1916	
-  1917		master->dev = dev;
-  1918		ret = clk_bulk_prepare_enable(master->num_clks, master->clks);
-  1919		if (ret)
-  1920			return dev_err_probe(dev, ret, "can't enable I3C clocks\n");
-  1921	
-  1922		INIT_WORK(&master->hj_work, svc_i3c_master_hj_work);
-  1923		INIT_WORK(&master->ibi_work, svc_i3c_master_ibi_work);
-  1924		mutex_init(&master->lock);
-  1925	
-  1926		ret = devm_request_irq(dev, master->irq, svc_i3c_master_irq_handler,
-  1927				       IRQF_NO_SUSPEND, "svc-i3c-irq", master);
-  1928		if (ret)
-  1929			goto err_disable_clks;
-  1930	
-  1931		master->free_slots = GENMASK(SVC_I3C_MAX_DEVS - 1, 0);
-  1932	
-  1933		spin_lock_init(&master->xferqueue.lock);
-  1934		INIT_LIST_HEAD(&master->xferqueue.list);
-  1935	
-  1936		spin_lock_init(&master->ibi.lock);
-  1937		master->ibi.num_slots = SVC_I3C_MAX_DEVS;
-  1938		master->ibi.slots = devm_kcalloc(&pdev->dev, master->ibi.num_slots,
-  1939						 sizeof(*master->ibi.slots),
-  1940						 GFP_KERNEL);
-  1941		if (!master->ibi.slots) {
-  1942			ret = -ENOMEM;
-  1943			goto err_disable_clks;
-  1944		}
-  1945	
-  1946		platform_set_drvdata(pdev, master);
-  1947	
-  1948		pm_runtime_set_autosuspend_delay(&pdev->dev, SVC_I3C_PM_TIMEOUT_MS);
-  1949		pm_runtime_use_autosuspend(&pdev->dev);
-  1950		pm_runtime_get_noresume(&pdev->dev);
-  1951		pm_runtime_set_active(&pdev->dev);
-  1952		pm_runtime_enable(&pdev->dev);
-  1953	
-  1954		svc_i3c_master_reset(master);
-  1955	
-  1956		/* Register the master */
-  1957		ret = i3c_master_register(&master->base, &pdev->dev,
-  1958					  &svc_i3c_master_ops, false);
-  1959		if (ret)
-  1960			goto rpm_disable;
-  1961	
-  1962		pm_runtime_mark_last_busy(&pdev->dev);
-  1963		pm_runtime_put_autosuspend(&pdev->dev);
-  1964	
-  1965		return 0;
-  1966	
-  1967	rpm_disable:
-  1968		pm_runtime_dont_use_autosuspend(&pdev->dev);
-  1969		pm_runtime_put_noidle(&pdev->dev);
-  1970		pm_runtime_disable(&pdev->dev);
-  1971		pm_runtime_set_suspended(&pdev->dev);
-  1972	
-  1973	err_disable_clks:
-  1974		clk_bulk_disable_unprepare(master->num_clks, master->clks);
-  1975	
-  1976		return ret;
-  1977	}
-  1978	
+> 
+> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+> @@ -19,9 +19,8 @@ allOf:
+> 
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: operating-points-v2-adreno
+> -      - const: operating-points-v2
+> +    contains:
+> +      const: operating-points-v2-adreno
+> 
+> -Akhil.
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
