@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-169024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08CEA9534D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:07:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A314BA9534F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 17:07:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81CB5188FA6B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 15:07:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA6A616E468
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 15:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40221CD1E1;
-	Mon, 21 Apr 2025 15:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484F21D86D6;
+	Mon, 21 Apr 2025 15:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jmb0xUEU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNeRvD3u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC2E1C8FB5
-	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 15:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C78F1D5CF2;
+	Mon, 21 Apr 2025 15:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745248052; cv=none; b=A3U3j1HUs+V6gma1O6kbLxoOqOc5bOJVN25iXzr1OsMBQSEdOUsypDFUr7Uo34S4sXJUCl1IHyQj/8wpIGa9af9rWaoKs9kpbNqliZlM3XSzAsvt07RYsE+bIDNM2PtMvFF/DJLpm2IXjnAY4dNBp7I+eS4dPkAZvRLaStfxk3g=
+	t=1745248054; cv=none; b=GuLTULuXP76bwBmqVpwfgq7NLe+mfrdjfeUfby5zzYMvzfrC9aB1iNBialiaN4E3J1UraMzGDvXXv9QIuMq+dtmMSZnCrr3spm7jC2nA57YL49SgQrY0Gl72cU4s284eAyyDuCKU2p91u6kIdoRtP6JVtpUYccBMJSeEgReywqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745248052; c=relaxed/simple;
-	bh=XpBF592IiIG1LQEjR9hQKkk7p0JSOSBHnaLBwRYlLEY=;
+	s=arc-20240116; t=1745248054; c=relaxed/simple;
+	bh=kw64iU4YMwLhqLglY+NTrWxwg2cQIuZ8MS4yYFaqHeQ=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=l6QH5Pwmo05tDGR5Ubaj/kY5pO7N1eSegaIfFn+iMBmU30/RI5kY4dcBF5XfpKRXThpgeDvVKrQ+sCEUflx6Z7nC2/1AiPRgrXqYsOUvj9kA1GEj0OQDykhe7cLp6dBnavbo/BWi/iuC/WtsaDzUDRAgskcHYWGtiJcQ7nFHeAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jmb0xUEU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4632BC4CEEE;
-	Mon, 21 Apr 2025 15:07:32 +0000 (UTC)
+	 Message-Id:Subject; b=ABMYfRXRxggvToVzZkwj6RpglKF3rKMmf+5roDNX/8IqH5lyU87xqiXbO+qXJZEnNOeFfz/qfxsnP9k5vhn80VKgC+tgzzNyhzijzM42lSF4KJ/kTmO4gJsH43NctKhc6SC7UpY4dZyhgRAwLwFbEHD6yRmaHLbn85GySlgkuN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNeRvD3u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C821AC4CEEA;
+	Mon, 21 Apr 2025 15:07:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745248052;
-	bh=XpBF592IiIG1LQEjR9hQKkk7p0JSOSBHnaLBwRYlLEY=;
+	s=k20201202; t=1745248054;
+	bh=kw64iU4YMwLhqLglY+NTrWxwg2cQIuZ8MS4yYFaqHeQ=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Jmb0xUEUloBJKmK089RRQkHpaDUU5jfGzx4kpKwljevq90TBKkZOL2PqM0oguUH+W
-	 CF6aXcFVg3x/Uyr24c2/17TLNTEaL5y+6rfWvxBxb/okvha4RxokeKrCkBFHq4o1MV
-	 GWPNSzRJ6G13k9lVUumWyyon5f6fvZyTG3jcL0g4aLVk/UVQcJkJ1/1XDfxZLPiUN9
-	 21ih5cG5/TU1/sys79t869STIBRCXtd8lQN7j4OyEdiTykj+ON6fOTyk0BfgDvcprn
-	 uk+1fN8MQBq6PBdfSPme5LHQLa93GLhFJn3GyikPKDFj0vPpZe3D7P/W7R98j3LHV8
-	 GUw9wl30vc2Wg==
-Date: Mon, 21 Apr 2025 10:07:30 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	b=GNeRvD3u4ATE9GpIi6Q0jAaR2uoIXpToaPo4IH2ocdP+4AhlIUsBgbjqdn7ZnQgj6
+	 VjHsh9qA0wIXWhTrNj0cveKObg5agc/g4GKFGbQgYZguXXPOZmF/VGlsHwWXoNT33X
+	 vrDjrXE5qndoU34TM4Pw1ovM5vpPksk8iRKdqx98pVwdaF+7NwhYVO1H0nWX+302Jk
+	 R/GBdaa1ImCc4t3C/be19fWpj72TyOXWi+puBy0N5o7K9vBNl1rPLDEJMbJLkXQObJ
+	 4mL/nuKUZY4ItsHtfqJl9MCDkvjsJUz+bjkRZ6WuG/QnGIyKehX+V7AfhjwayK9HJ5
+	 vRcZhwz+qDJrA==
+Date: Mon, 21 Apr 2025 10:07:32 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,42 +51,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Andrea della Porta <andrea.porta@suse.com>, 
- bcm-kernel-feedback-list@broadcom.com, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel-list@raspberrypi.com, 
- devicetree@vger.kernel.org
-To: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20250418143307.59235-1-wahrenst@gmx.net>
-References: <20250418143307.59235-1-wahrenst@gmx.net>
-Message-Id: <174524752073.2425603.8578531358448226652.robh@kernel.org>
-Subject: Re: [PATCH 0/3] ARM: dts: bcm: Add support for Raspberry Pi 2 (2nd
- rev)
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org>
+References: <20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org>
+Message-Id: <174524752131.2425678.9933516191586672546.robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: add iris DT node
 
 
-On Fri, 18 Apr 2025 16:33:04 +0200, Stefan Wahren wrote:
-> This series adds support for the Raspberry Pi 2 (2nd rev).
+On Fri, 18 Apr 2025 15:20:35 +0200, Neil Armstrong wrote:
+> Add DT entries for the sm8650 iris decoder.
 > 
-> Stefan Wahren (3):
->   dt-bindings: arm: bcm2835: Add Raspberry Pi 2 (2nd rev)
->   ARM: dts: bcm: Add support for Raspberry Pi 2 (2nd rev)
->   arm64: dts: bcm: Add reference to RPi 2 (2nd rev)
+> Since the firmware is required to be signed, only enable
+> on Qualcomm development boards where the firmware is
+> available.
 > 
->  .../devicetree/bindings/arm/bcm/bcm2835.yaml  |   1 +
->  arch/arm/boot/dts/broadcom/Makefile           |   2 +
->  .../arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts | 130 ++++++++++++++++++
->  arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->  .../boot/dts/broadcom/bcm2837-rpi-2-b.dts     |   2 +
->  5 files changed, 136 insertions(+)
->  create mode 100644 arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts
-> 
-> --
-> 2.34.1
-> 
-> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650-hdk.dts |  5 ++
+>  arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  5 ++
+>  arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  5 ++
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi    | 94 +++++++++++++++++++++++++++++++++
+>  4 files changed, 109 insertions(+)
 > 
 
 
@@ -105,27 +94,18 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
+ Base: base-commit a7dca088884312d607fff89f2666c670cb7073ac not known, ignoring
  Base: attempting to guess base-commit...
  Base: tags/next-20250417 (exact match)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/broadcom/' for 20250418143307.59235-1-wahrenst@gmx.net:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org:
 
-arch/arm/boot/dts/broadcom/bcm958625-meraki-mx65w.dtb: usb@2a000 (generic-ehci): Unevaluated properties are not allowed ('dma-coherent' was unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): gpu: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): firmware: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): power: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/cprman@7e101000: failed to match any schema with compatible: ['brcm,bcm2835-cprman']
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/gpio@7e200000: failed to match any schema with compatible: ['brcm,bcm2835-gpio']
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/i2s@7e203000: failed to match any schema with compatible: ['brcm,bcm2835-i2s']
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/aux@7e215000: failed to match any schema with compatible: ['brcm,bcm2835-aux']
-arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/interrupt-controller@7e00b200: failed to match any schema with compatible: ['brcm,bcm2836-armctrl-ic']
+arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: /soc@0/video-codec@aa00000: failed to match any schema with compatible: ['qcom,sm8650-iris']
+arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: /soc@0/video-codec@aa00000: failed to match any schema with compatible: ['qcom,sm8650-iris']
+arch/arm64/boot/dts/qcom/sm8650-qrd.dtb: /soc@0/video-codec@aa00000: failed to match any schema with compatible: ['qcom,sm8650-iris']
 
 
 
