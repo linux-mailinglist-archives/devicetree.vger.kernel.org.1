@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-169072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B852A95687
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 21:11:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA212A95690
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 21:12:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 376CA7A57C0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:10:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8418189198F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 19:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B481EDA28;
-	Mon, 21 Apr 2025 19:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652A71EC006;
+	Mon, 21 Apr 2025 19:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbC0NnAi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAx3N4f6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25971EDA14;
-	Mon, 21 Apr 2025 19:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 353D84690;
+	Mon, 21 Apr 2025 19:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745262682; cv=none; b=UH5zkDySKAtZuQP2k0LrDnNeTeqqYp2Ie2JPx/PSx07cjlLAx6uLcwVZGapOrph7HhYQItAaTtiSXwgOH/DocKtAMCGMP00kdDl/uNXUjO3gGQjxStxsCe8GKuvYju0iYiQXE4Ywq9KoX7OIVSojXgZ6mk7No8/wm2fgfskxoiA=
+	t=1745262763; cv=none; b=LTO1lPemeVkNxG3aiOaf+WcFsT2mXoZn76nnKTGLDf0R8t/XIjsurRCasQrp0Qinco29jPf/23jJXVaIxDgiO3Uf9gyNnXmCQ9itrQgBgh5rrTGMogmHEUs3bCGBix+yWmIEkUBDZ6hKZNkkPKjK50HX9spZqf+p8TobXF4/0ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745262682; c=relaxed/simple;
-	bh=h7Ge3JqI2gUvZQ3tKqKvk1UQ6gAx76a/Wgupd8InyfI=;
+	s=arc-20240116; t=1745262763; c=relaxed/simple;
+	bh=Jp9/MbgyD+WYv3nurqRtjn3Bmfwk56xudmIrl7LsNdA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SpZaAPAEDbRbVjAGuFUmLGN7sQs9BS3ouCxvPMO8Wg/6FNPiEC33YDAJPDfkNIj/vt57RGrO0qBF2cFeEOkPe8D9rdq9DFCUn/VRaisHnXHmLyZeQIyGaRRe0B7SZLDxbwRI/FbSOHqvV2Kh0bpqxOavIUx1LnZ3Z/1KTFLAbx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbC0NnAi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF655C4CEE4;
-	Mon, 21 Apr 2025 19:11:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hbgR1jxlyuz7LMy8k7eQkOXi69Q0zFjeRqD5X3w9EiI83nQROjjgYf/TeYi55jp9mwQYSPWzbBZ+vsfnumn1QG3z9Im9PsPOnnH2yaM8UaLVnHp+89r9x7aRZyERKgm5+GiZqvf5mJnrmsbWv2+sLvBY8y5w7hMu6feT+YpNS/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAx3N4f6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F98BC4CEE4;
+	Mon, 21 Apr 2025 19:12:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745262681;
-	bh=h7Ge3JqI2gUvZQ3tKqKvk1UQ6gAx76a/Wgupd8InyfI=;
+	s=k20201202; t=1745262761;
+	bh=Jp9/MbgyD+WYv3nurqRtjn3Bmfwk56xudmIrl7LsNdA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bbC0NnAizemZjXaq5L97y59y6hQNh6bjPjqf/2hSnifbBDjzWQaw1oFn8tBxaA+yU
-	 ad5lMhd4r2JU1ZbjD0Xps/X2EB0fAmbj+umO45aoiza5/R048EkZ4XSvktgbyqe/nT
-	 E1jieRne9VQDbWeWT2bWnTFRhW5/svlmVpordBRXe93kIWIHWRBENvN71qJ/Wj8YQ8
-	 Nt7m5jHUwB9aukmeG/tXfpOJGfpQb7QO2KPLoTFqyWtinOJCfSmfqMzaR9u/yWqYGQ
-	 Y43e2dcVQvNojJ06XC79rePdJn8EivPj/uv2ayDYD40b3OhA09+Nsd6Hdi++//CTzM
-	 agu1CAVkTFGdQ==
-Date: Mon, 21 Apr 2025 14:11:19 -0500
+	b=qAx3N4f6hjmb5KHbvpXwlPx2LW5V04YL/hflyI3p8lF6I7NKDyvX06HzXS7nf5nvC
+	 6lHDsaiKwGkF043VC2nQGcQOPfqiIlWPcwhegqc3vKcSc92dvThPGQkU49QMJWh80W
+	 HmALNYnz89TLpzTtE5DR7FShcXD45oceo1xoieKPz5kbu9MgjC6D8fPRJFSAeeNn77
+	 8EUTtbH0ruGZxwCYjPjwJra29kZSJMuoGtdwoSvI1BBlBHbirUigkCUo8YyOYteBGd
+	 5SNQhy6gQldVc3btDxJsNyIuM+IeU8DvjgIzCv5Ww1Y5B7PvHCehOQ0phNDyumLqOp
+	 MyO9Sz7y+6MbQ==
+Date: Mon, 21 Apr 2025 14:12:40 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, spacemit@lists.linux.dev,
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: spacemit: add clock and
- reset property
-Message-ID: <174526267847.2645979.6771559999426063209.robh@kernel.org>
-References: <20250416-02-k1-pinctrl-clk-v2-0-2b5fcbd4183c@gentoo.org>
- <20250416-02-k1-pinctrl-clk-v2-1-2b5fcbd4183c@gentoo.org>
+	Guenter Roeck <linux@roeck-us.net>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	linux-watchdog@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: sram: qcom,imem: Document IPQ5424
+ compatible
+Message-ID: <174526275947.2647870.14926534175640777767.robh@kernel.org>
+References: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com>
+ <20250416-wdt_reset_reason-v2-1-c65bba312914@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +66,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416-02-k1-pinctrl-clk-v2-1-2b5fcbd4183c@gentoo.org>
+In-Reply-To: <20250416-wdt_reset_reason-v2-1-c65bba312914@oss.qualcomm.com>
 
 
-On Wed, 16 Apr 2025 08:15:27 +0800, Yixun Lan wrote:
-> SpacemiT K1 SoC's pinctrl controller requires two clocks in order
-> to work properly, also has one reset line from hardware perspective.
+On Wed, 16 Apr 2025 13:59:18 +0530, Kathiravan Thirumoorthy wrote:
+> Add compatible for Qualcomm's IPQ5424 IMEM.
 > 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
 > ---
->  .../bindings/pinctrl/spacemit,k1-pinctrl.yaml          | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> Changes in v2:
+> 	- No changes
+> ---
+>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
