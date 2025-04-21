@@ -1,225 +1,194 @@
-Return-Path: <devicetree+bounces-168885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1D4A94CAC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:42:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBBAA94CB1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 08:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71F01170B88
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 06:42:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32AF016E23F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 06:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B79257448;
-	Mon, 21 Apr 2025 06:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C969A258CC2;
+	Mon, 21 Apr 2025 06:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nomho5gh"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XDl0J6X2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2061.outbound.protection.outlook.com [40.107.247.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0A3FC08;
-	Mon, 21 Apr 2025 06:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745217731; cv=none; b=XTo9PONgkoy2cbDSEilbWyesGBz1e3mWxxflCq6NjpbkQaw5gx1SwC1W2CCq2pq0CErnEm5iX9Dr/M01IItoje9CiDD6ok8GPuwxkiBuBjiTQtmLhA/VvRn4nT85nO4WtA4uTvSnOPVknN0Zg6PoBOh4QymU2l6r0rBBiaYeyUc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745217731; c=relaxed/simple;
-	bh=Y9HnLPvN25MNFm/b8/YAXkzfu/Lfubhj/l5eVhmJX2g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kLGrjTFF2TdncoWGL35gWgrGlUgk1rlbY8rg7CHWJmqYUzTYVNEwR4jalch4BMGnFvAVmHwvdcjJN6RSh4xzwgdrwdQaDDlwS/b71Lw+k/xVnxJUk5cycrODEZO/Z6Je8IoZb9/cNQOuImJqX13q8LjbHxWTYCSYoFrpdixpmIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nomho5gh; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso3206277b3a.2;
-        Sun, 20 Apr 2025 23:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745217729; x=1745822529; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ugs8lJ14AIbApKr9W0oBVK0o4S2j2Z4DyYGZRqIdOAE=;
-        b=Nomho5ghgeghxTAn3fWJp2QJJQioxnFTCI9TcHacztgjKLphczHAfFqbegBABIcQaD
-         tw6d+sutYo2M9qh+06YWDrgF4EFTbkXgXlCtrXRckCAKRr9f01F/u0sZbObkN+o+jFId
-         7oRG0vnd91r7aFZ/DQRQTPSlVFTSky/7ft1lGeCnSRvYI8vfNOLpr/155UnjBkkiR7ou
-         /ocLjmIqgkwv1B6JCz6eGpfs6gxvwmeOOV8PixaqyG5q6hC8m1plCF/7mrByWLt+iqcZ
-         V5paWshZRFWYid5tMtYD1xDNX/YzeWMIqoE58H3BQ5wWbNCyORnr3OiOGWHO0VYZlNEF
-         qq9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745217729; x=1745822529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ugs8lJ14AIbApKr9W0oBVK0o4S2j2Z4DyYGZRqIdOAE=;
-        b=oyKBDX1FHczvwAfyir+gp+CYJUuq2vBt8PAr3cihjH/lenN+U510HovTi+kd8xjUDX
-         VrrrWe5QSlIpnYZEyRtQdqF/knfoB9cXKY62zRAUhEbYCCEwBfK/WJPDw0ErX7Js/A2b
-         7nw/nI05zGt7+Lanp+NjFu6MqsJkyduJRyg0gTBoP/N29ry8l3wm0bsJEacIOQB+C419
-         KnxYOEf5DkzwCnDLgOu1bH9YKT04uEyiVubeWMSo/wyMCC+Mr8E2c3rBDFlBo8S+VRb+
-         D5cBTI2XAQqfVm3b+/8VYcOecgvH0F+y5lUcvsorVyK9KSrA38GFTuPW7A1Yy3O8vvLc
-         tJ0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUet0sjOC2JNQ820S5q8KRx4d1xkL1Ls6kThWCxjMWtDzL8GoJ0Vp0WKkVrzSbhRPQdAhTVtGa0aOYN@vger.kernel.org, AJvYcCVAhTkXHzAzCK3CPIXjllKkngeuOnXKHDSGBfwgzkw35+4YVe4EtBdiSQQSR5V+/WlYKKQfFPM/AlFk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzx5dDgRpa6yHas9mDtuS7bGzwlYEp9JaCJe/bbWiZcSlUJY1QX
-	BBveunCd1FfYmGAJcQCTTsJrMnDITPA2SdMR4B74PfT+FnLY++PHD/QrkPT9wiLz25yuzFEeoAC
-	NjzYnX9MwWa4mtRfrDmB2xLzxxeE=
-X-Gm-Gg: ASbGncvrV/sV2pqmmX6KKPaF+hywMgcRsihEWdRjEtq5QO5bgmQFmGyP2VVInzrUKNU
-	DIqKXy61zS+soYYsA3TkNWUg48l/BE7+wxbSfWrBEIYM5NMqz4oZFBQGwLwvQ+pLSCpq6YRtyps
-	FSkTnUAo58CibBTKHje/Y0khWqc+/Y1PDS7Q==
-X-Google-Smtp-Source: AGHT+IGlCV2xGhABt1QWMbT5r4sfGaYS75eVG4A6Rg1bj/CCsva+E6d7GDLX+Jv5TRXZj1Hz15MTDaCzOMpKJgTcI4s=
-X-Received: by 2002:a05:6a00:9281:b0:736:ab1d:83c4 with SMTP id
- d2e1a72fcca58-73dc11a04bemr14828592b3a.0.1745217729229; Sun, 20 Apr 2025
- 23:42:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFED1255E2F
+	for <devicetree@vger.kernel.org>; Mon, 21 Apr 2025 06:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745218198; cv=fail; b=hoXZHKwEhY3AWhmYm1J0SP+yiuwxoqHcdBYtq/s9FYlTnhpswMEfylpnIU4PaFR6k+EZz0FmPJ08izDCW3FDZCsilTDv+CxcMezNvT0m0eYbapPaLEzmloW4FQr4JEd8NRg7A79vR0bKEpjKKd+iDDQ44AU0lJ1Hih4fDxyDv7s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745218198; c=relaxed/simple;
+	bh=S+XEnmGAPe0NC9O3AeHS6Y9FzcKCWMflz2uGphoIxLs=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=hOqqBWQVncM3D7wDqacEpR/zKHY6ZVLUFoVu7MNoKUDfzWCwieVZ5zw414ZI47WDZ6U5YPDMu04xmq0aHXk3lDPDuBswb4j4blL3PZTn+u0qh/WlVjjrU9Z9x34CaPYTPxC8XDo/026z6kEiGqJY+e71pLpTFDnyiBLGIxvsEE8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XDl0J6X2; arc=fail smtp.client-ip=40.107.247.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cgzW22rLl5/2pzVvarE0TEVr/9sCNVaqPmzK3jzomGqmF/55rocAl+PX1bzlr7R/kUm5BdhxQS/FG2oLPhK1VqMyJs5F3ieUIWEc0VD3MCMSEUE1prld+BTh4gJvop/vKSk2hJqQ3jNhTm4BTmGUEuevT42tFtVrxMQ/wHdgf1p/+Rhq/J9gYWip38E46JrPMG2bqDF+I2XHmwKpNgSbNNfwVJ2nm6PbeXqwz2UhJPJnN/JV8YQp1GaaMHqYHGpmxOiJKHCY4UDu5IojVtLJNXBrVmOqU/ovoSpB0owkDkQVTREqGOn24LRfcYasxQMx9gUoywAjfXsWo0IYz47yTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lmmtXSNdzvn+VDAG4dYK9COp4UznOAk2DTljkPxmiAc=;
+ b=ffkVRbzvuImhS2DT0IQTObjkRk2FwtrldHcVeVCDsHQloO7RPLvIqB5sMGVhf1aeOMMdGZj5CGh/cGKmtBeYrwqQ458n/nLiT9itkc4HzSJGd0OKUbnE5ltCDTPccwsuVtT+PjzoHVMYLwuu2bWhQ0Y67m9K2OQ3E3JBcPv14S6VPFJrL1jdeoiLAgAwQPnH0md8RvZsA2iv6KL551AI+cMftIoXQc6B8EKWZHWb6sj5osDipe72I1ddvu3P78WZiBPGNUA0o8EyU+5Zp7AJzjITuF0o+0hCj7QMkhe9mzWy4fNBVWiWialKoahoDdGk+rSZ6OTdhB1djPv2E4t/Qw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lmmtXSNdzvn+VDAG4dYK9COp4UznOAk2DTljkPxmiAc=;
+ b=XDl0J6X2JaM0akjZ1QO8FOGCVLxJ11C5VWX+7he/3s6kd8CKktMgCzVNYJFmSWpQpfjQvr1Kpmud0o3UEJPapko046Pt5A2Lb420rgBYX4f2GmER49YuuITY1eFjod+wW8HcsQNUKC8PWLce4AbHA68h0rT0mDSA44qoarg3Nuv74Oddf11EoXblaKEV1KGb6/Ry91tRF4IHNEAPuBXZEKGNr4n4R64/gLUeAulI+N0VPiSB3NnnnPAZVsmJm+HNqsGDe8UmqaLVn/yTDgeBYG747tBIHglQQSxA2g0u95YinQA5nvtRnQmz07zaf6/AnOTIPfXcvDQ1OlMO5ImIiQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by DB9PR04MB9723.eurprd04.prod.outlook.com (2603:10a6:10:4ce::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
+ 2025 06:49:53 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::50d3:c32a:2a83:34bb]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::50d3:c32a:2a83:34bb%4]) with mapi id 15.20.8655.033; Mon, 21 Apr 2025
+ 06:49:53 +0000
+From: Jacky Bai <ping.bai@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: linus.walleij@linaro.org,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	aisheng.dong@nxp.com,
+	peng.fan@nxp.com,
+	frank.li@nxp.com
+Subject: [PATCH v6 0/3] Add i.MX943 basic dts support
+Date: Mon, 21 Apr 2025 14:51:36 +0800
+Message-Id: <20250421065139.3073232-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0042.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::11)
+ To AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250420181015.492671-1-gye976@gmail.com> <20250420181015.492671-4-gye976@gmail.com>
- <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
-In-Reply-To: <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
-From: Gyeyoung Baek <gye976@gmail.com>
-Date: Mon, 21 Apr 2025 15:41:58 +0900
-X-Gm-Features: ATxdqUHj76YXzGSdsbQXjNO1cJU1Vaiqsh-s-tbZsvBZczsEIl9Z8PHB8QTX3Ms
-Message-ID: <CAKbEznvax5maXFH9V7ZLkME2=Ydt4DiJ9pwfyL_nbsJ5_G3B8A@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|DB9PR04MB9723:EE_
+X-MS-Office365-Filtering-Correlation-Id: cca3f662-20ae-4d2a-4758-08dd80a0b830
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?szWgVgTe6rXN21PrrAQXdVflDiZyUtfe00lGk1peqVFdvGvb4iT4yOMmYom2?=
+ =?us-ascii?Q?qwZIBqXGnIiuury4AVZLkwL3T8Ek049Xaw/oSCVQVrorllvxOb7sct2STjT1?=
+ =?us-ascii?Q?/FPhhTVb2NEIFpU/HUN/5i/Fm+CEA7Z7KgZFW3wnf/xxnBxhhTh7d6OkF1HE?=
+ =?us-ascii?Q?z03RBjo/vKy9islepcrYkDXMQy4GW7yP2/xkyl+0n8rpw/2ucLuRND6GgUda?=
+ =?us-ascii?Q?vs5vLzcmN89cOeaCpMig+FLOBiOMSEKtPkyGzs2W5mD9sirflQAF7EVZxuu3?=
+ =?us-ascii?Q?AgfKjx/RilwzEmEFH+GBvbS6klNHeM79ES8XeA+mYteMp6KuskD3gVPAGVx+?=
+ =?us-ascii?Q?qONc1nLOqByPRMLVJHWc6jcdWjDZChXcQ3KnRafXw6yoGNKAAQsAsxoL/y/q?=
+ =?us-ascii?Q?VBeXdDBP7h1OqFRUs498H06AIOT9gDfug22ls4UQ+/BvZv7Rxv+pNupZ2K4a?=
+ =?us-ascii?Q?W/JhIqsRqSgQSkMNEJv5NJGIjlf9gjg3tkQtPrfXATiwJEeGh2bREXODRhIZ?=
+ =?us-ascii?Q?BwyUb+TI7iSzkXlRY9lBegAFfbpc2uf8ku/VCf4ALxIFTHou19tVOkTEKMRH?=
+ =?us-ascii?Q?fOmi6uLz7RzYst9Wpv1VCx7wnOG4uujWX9MwG8F6K2aDeR/8VuKA4jKcgVbN?=
+ =?us-ascii?Q?bhyxv56vBhHvnNDShbuYoTeSHXCiOfgyk/0yMT++3T0sYNvb2iLjebvmpHql?=
+ =?us-ascii?Q?UX/zsZ8nO2NqbcX12iYFr7RpH9Oq90xXwfFFcZXttII9dgio6gjBgoNpzVSd?=
+ =?us-ascii?Q?dcTf8O8NVBtZuno13N6TuYV9BFgCV+V+XoAYjLCM0tRIYSzBjE2xKWpFQ6UR?=
+ =?us-ascii?Q?F95e/FDc2cMpXADRNMRC3sT3RVRvMyecIZhEfW6XX284QZ8HZzakYXgkw1Fe?=
+ =?us-ascii?Q?fFOWvITSG405UzUfgqkLtwIdIyaaLwmvxErXoKkFFYXEs67LOZlxi44LwIEf?=
+ =?us-ascii?Q?xx4lHGn/i0H9ZA5PNz7qAnc+rY0dBnkTAEWJKcu/GFaGSIGvQJjzFS07/Axg?=
+ =?us-ascii?Q?hdyD1ymRnO33tJ9giTVgpEGRpFWk7Xpl5PGf24hEuwgaQmLvZ9HDnomzV5O3?=
+ =?us-ascii?Q?a2mEKLsmnpttF2le27/bPVk+uR9RuvyYovdq6Qo7zpIgFvu5c/SRVPNzIM2v?=
+ =?us-ascii?Q?uF8fBEFIWQ7kEFJHdqxCy4YxvjBa1EO5N0cjGDVOxlp7N9mtUHyjNOrk8u1m?=
+ =?us-ascii?Q?Fg+u+l9uEETS/l28oX4RIJFLbV1rOpfuoCNEmXzckeKs1kZAAYdz9iRwqGBl?=
+ =?us-ascii?Q?rIOpVAgHChDWnPiyYEWV4GHaloW9AmgfZzBa5rSrlE1cfImgoKq11Ra0i162?=
+ =?us-ascii?Q?7pboRONJqImxvSxeCk94Sb6Q3FUlhrpSdP4SHTjqVt6qokXklcFKfyVZ8RFq?=
+ =?us-ascii?Q?wrol8p4/V/l5RYNfqRUzcIXfnz5907ixdmlBGRTodiuE+Lp+MLX12chVt0w9?=
+ =?us-ascii?Q?wJ74w5R61A6wkxssJrNW4r2GBQYasMgOUiSbE7mOFS7varLcbGcHRQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?oB3U9lq+SL/M27UG6yYJI8zEdqzDAdJsOb8SRFg1ZBt8nR6Xk1tc1ta72Fi8?=
+ =?us-ascii?Q?iB/BRge5kkP560UbvK1K4trSatxejPShRWfXHGywV2J2l1MUCpmULEIATPSo?=
+ =?us-ascii?Q?vZmPNq4iLdsgjYBtSOHeNhYm5RD4yicLNg/UAoDNa2asvePosnLqg4dxjeHL?=
+ =?us-ascii?Q?PhbAa68/kEJaELszwXFoddxp17LZQI9BjwxOOtpZtxvSO9H3nOzw8luTOTn1?=
+ =?us-ascii?Q?cz3hRkSEybqdsOc/Dijcz5kk3iJVIYZMvOVO/+S1mrw2TDk1A7zOOspFyNPa?=
+ =?us-ascii?Q?tB+Ttd3hsDcUmav94QCt+SBXu33Lo3hcxcm4YSycUIxrDWioOFgkxrb9uof7?=
+ =?us-ascii?Q?iDybM7cT86ZN+CIINXhpbtUO5cHCcVszjKsAMUWLhhK0kj6e/g37HSZFlvcs?=
+ =?us-ascii?Q?35sYQDik4s94X3mFzhBk+Yv534z11gaQhuR8XlfMoZ5Ey47wp1MnlsL/+Map?=
+ =?us-ascii?Q?9kH1i8maqKnWsDNPu39lS26XVobV29EzW6LDZBWUgifMWYytUAkfHC63xmm0?=
+ =?us-ascii?Q?uB/5j8hoafYemodTI4TIBGlGhCsB797Lo8g7RxQZDD4hv77WunE/7tmES4Zc?=
+ =?us-ascii?Q?jv6rV/oEgceWlYWQn6+RIr2zOLDhzfLCCXt1rGU8yD1Hiq4yM8IqXtpXlz7P?=
+ =?us-ascii?Q?s03Pz1Uvr3GinesG87wSzWxpwxl3Ik286TcjhBfmMMU45wnbx63/zt1WlXjO?=
+ =?us-ascii?Q?m9EWFgpsh17Fje3yFchmsKpip5SlJKpf7tZsCzKHMqWfD112oFVrYrbcGW2Z?=
+ =?us-ascii?Q?b6TL9Fe37esJQTjm7f+yiun6dDvSZtBN8QZm8M06z8L59WFklUzA9Indp5ig?=
+ =?us-ascii?Q?gd3pBoMMzZ2OcHCCBQ7gWFO+X5vzGxPLN5eXuB0Nati6VFEI/21BSX7XOFpI?=
+ =?us-ascii?Q?NxNC5qSBTKwxxZy4ZMwx7CFcire81N5zp8QLQuXbB2FfFDeInHLZ+rY8IyOK?=
+ =?us-ascii?Q?qjv54KK4sHm/kJagYJkRbuyJi0wPoFJJK/2HN4yd5omsdI2xLDBAMt9VcMYE?=
+ =?us-ascii?Q?SFWH/GI6GlzbETDtPQBFFR4EX9HkncSdiVnnSZF0QYouDl24bt6cBCP9sov6?=
+ =?us-ascii?Q?z3d7km2M70lLzYnhrPbZ4rXyzGdGQzpaLnhZ3DFnSUUUAM5spA4vy/u7lhS3?=
+ =?us-ascii?Q?itxUEw/QHtxdF0S7Ed4XsCRfGvKqjXdQWBbsRo5qlw+03FvGVnz9maYkIB0Y?=
+ =?us-ascii?Q?Oiapxkt4toxw0s/NYAZCNQ932RMe0n0ZDfnFy1zSSfFBu4jNhrAKQAaGPHmR?=
+ =?us-ascii?Q?2sx8mWMZPT+wm/rfsUEpQWFhqEC/DlMq6ZmAESD7/wlCQZih6VMhXO76RVoG?=
+ =?us-ascii?Q?cAOnZTv8e/3MLSfVO+C2pjZbyTcGDSCvSYz08Eo872WnRj+6C2Jl/HVd7J5S?=
+ =?us-ascii?Q?zW+pI7QBP0VVrom/7lcbaWwvZc0EqkDUuXbqE/hiLUhQY9WjHEhmrxn2VXr5?=
+ =?us-ascii?Q?DTbkJDM5AYe+DAC2zDKJzb5UTOAiUQOAJvs/dlHGn9qDGRez8HjuaxFJvIKS?=
+ =?us-ascii?Q?v8X26VASv9GD3X1cSwxfSiQ+HpdfOHXyMc+WGySvt1RNZ648oqe/ry8nzHyE?=
+ =?us-ascii?Q?cg/LZzFFWxm517oRVECNBxoxfSiFXV6U16jcFhLc?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cca3f662-20ae-4d2a-4758-08dd80a0b830
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2025 06:49:53.2005
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sBloiVAa7/Gxd8batfWdp+tDxg5UEpGP4jn6unk349XTktHnhERGhPwkX8h7gmy6loGCJrkshlOiH7US0LI0Zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9723
 
-Hello Andy, thanks for the review.
+i.MX943 is the first SoC of the i.MX94 family, all the SoCs of this family
+are pin to pin compatible with only several peripherals differance.
 
-On Mon, Apr 21, 2025 at 4:22=E2=80=AFAM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail.com> =
-wrote:
-> >
-> > Add support for winsen MHZ19B CO2 sensor.
->
-> > The datasheet is available at
-> > Link: https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b=
--co2-ver1_0.pdf
->
-> Instead, just make it Datasheet: tag.
->
-> >
->
-> Should not be this blank line here.
-> > Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
->
+For i.MX943 device tree support, we split the dtsi into two part, one for
+the common dtsi that shared for the i.MX94 family, and an i.MX943 specific
+part.
 
-Sorry, I now understand what you mean.
-('Datasheet:' is a tag, not an explanation. So there should be no
-space between the tags.)
-However, when I use the 'Datasheet:' tag, I get the following warning
-by checkpatch.pl.
-Would it be OK? then I'll use 'Datasheet:' tag.
+Jacky Bai (3):
+  dt-bindings: arm: fsl: add i.MX943 EVK board
+  arm64: dts: freescale: Add basic dtsi for imx943
+  arm64: dts: freescale: Add minimal dts support for imx943 evk
 
-    "WARNING: Unknown link reference 'Datasheet:', use 'Link:' or
-'Closes:' instead
-     #8:
-     Datasheet:
-https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_=
-0.pdf"
+ .../devicetree/bindings/arm/fsl.yaml          |    6 +
+ arch/arm64/boot/dts/freescale/Makefile        |    1 +
+ arch/arm64/boot/dts/freescale/imx94-clock.h   |  195 ++
+ arch/arm64/boot/dts/freescale/imx94-pinfunc.h | 1570 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx94-power.h   |   41 +
+ arch/arm64/boot/dts/freescale/imx94.dtsi      | 1148 ++++++++++++
+ arch/arm64/boot/dts/freescale/imx943-evk.dts  |  195 ++
+ arch/arm64/boot/dts/freescale/imx943.dtsi     |  148 ++
+ 8 files changed, 3304 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-clock.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-power.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
 
----
+-- 
+2.34.1
 
-> > +#include <linux/completion.h>
-> > +#include <linux/device.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/iio/sysfs.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/serdev.h>
-> > +#include <linux/unaligned.h>
->
-> Semi-baked list, see below what's missing (actually a lot). I believe
-> I already pointed that out.
-
-From the last review, I understood the two main points as:
-(1) Avoid using large headers and explicitly include only the necessary one=
-s.
-(2) Reduce including headers as much as possible to improve build times.
-
-However, I found that removing headers like 'types.h' didn't cause any
-build failure,
-So I thought it would be better to remove headers that are unnecessary
-to improve build time.
-But in the next patch, I'll explicitly include the headers you've pointed o=
-ut.
-
----
-
-> > +/*
-> > + * echo 0 > calibration_forced_value            : zero point calibrati=
-on
-> > + *     (make sure the sensor has been worked under 400ppm for over 20 =
-minutes.)
->
-> working
->
-> > + * echo [1000 1 5000] > calibration_forced_value : span point calibrat=
-ion
-> > + *     (make sure the sensor has been worked under a certain level co2=
- for over 20 minutes.)
->
-> working
->
-> It seems you ignored this comment from the previous review.
-
-Sorry, I only changed 'had -> has'.
-I missed changing 'worked -> working' ..
-
----
-
-> > +       if (ppm) {
-> > +               if (!in_range(ppm, 1000, 4001)) {
->
-> Missing minmax.h.
->
-> The second parameter is length of the range.
->
-> > +                       dev_dbg(&indio_dev->dev,
-> > +                               "span point ppm should be 1000~5000");
->
-> The above range check doesn't agree with this message.
-
-in_range() uses the range 'start <=3D val && val < (start + len)'.
-So, to allow 5000, the 'len' should be 4001, not 4000.
-I have tested this.
-But would it be correct that I understand your point?
-
----
-
-> > +                       return -EINVAL;
-> > +               }
-> > +
-> > +               cmd =3D MHZ19B_SPAN_POINT_CMD;
-> > +       } else
-> > +               cmd =3D MHZ19B_ZERO_POINT_CMD;
->
-> Have you run checkpatch? This needs {} per Coding Style.
-
-Yes, checkpatch.pl didn't raise any warnings.
-And after making the changes as you point out, there were no warnings eithe=
-r.
-It seems that checkpatch.pl allows both.
-But for consistency, I'll add the { }.
-
----
-
-> > +       dev_set_drvdata(dev, indio_dev);
->
-> Is it really used?
-
-Yes, this 'dev' is the same as '&serdev->dev'.
-But I found 'serdev_device_set_drvdata()', so I'll change it to that.
-
---
-Thanks,
-Gyeyoung
 
