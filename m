@@ -1,218 +1,235 @@
-Return-Path: <devicetree+bounces-169460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EFCA96F54
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:54:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1DAA96F75
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:57:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B55C71B62943
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:54:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95D71B62854
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4AB28EA5D;
-	Tue, 22 Apr 2025 14:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0A728CF4D;
+	Tue, 22 Apr 2025 14:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tSS+p85r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KksdeuTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5531F4706
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C0B27CCDC;
+	Tue, 22 Apr 2025 14:57:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745333667; cv=none; b=IwSU/qjjfrJRrrIUbnaSJvIijrDky3qFh5c5c3JKQLlBEOnnAeYfbKmG1ebO6+4jFHEQXec0BQl4TusUEmh/iFDRSU71Qpekibfd5al7aIOus/iQpK6nXx2pxd3Kg7bletKcMY6z1KKJ2Lgp+jk9EJgzUfydQYPHN/uHwOj3xfA=
+	t=1745333824; cv=none; b=fINyNabZxkzNkxGe9HGXKaIO5by4Wg7qGld1wPPXZMgSjWlQ0ipFIJP6dMP1aDua8S/IwRw5B7tCbfXlmGeIiFyopHWfJDnDtOAqvAxMJ5UbCqFB5Rg9tX49Xhec+GBpbbGX1fd/6uaT7mdm+umnUQWHqR6bxfZ4KynnHq0MR7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745333667; c=relaxed/simple;
-	bh=a+RMGqONBoTe4mIS7kPQEgEl4KGlE4sPktA/RI2Z9ZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=Jqt5cNIs3u6x6Yo6HS96wnDhZ/LSoSnB4RlvR8roFmi95K1VMGTKuXMv7L0UugS6Y/nJtEkFcLQpfoOEvHRuBV9tdSiguRPw0hgDFxmZ0B+JfDFdVlLVq9Bi2CvYcMlnVaJHeQ44l1iofS85WGDFxt4HYQnAAI5pUYZVg0X8j5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tSS+p85r; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250422145422euoutp01b3ea454f1c584c5e1ed2ef879679efb1~4q7gco9-z1216712167euoutp011
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:54:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250422145422euoutp01b3ea454f1c584c5e1ed2ef879679efb1~4q7gco9-z1216712167euoutp011
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745333662;
-	bh=YRW1ozB27p7LSQVL82m2hy5NmybGDZRAWQakTtaYo28=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=tSS+p85rHu3lbGT3RxhlyqXghoDTFhaQ3ytGDY2bGXFV2bi0ybgFqObv6NMmvQExj
-	 ztg+k/ZjPDQOuvE9Sp9Ya2lxc5EcSHeZdHPbcejTXZhWRj99HzeV8hQ5irPU91+g5g
-	 3x4bQLbR/JgX81GV8ayof1BHgyHIbmS1GErj+UzE=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250422145422eucas1p2f987a8c414cd947de26e8e6df5c94756~4q7f5urFv0361703617eucas1p2n;
-	Tue, 22 Apr 2025 14:54:22 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 04.BB.00837.E9DA7086; Tue, 22
-	Apr 2025 15:54:22 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250422145421eucas1p2f01bb5cadb9836b26cc5b9bfd5197bef~4q7feyoxh0578205782eucas1p2Y;
-	Tue, 22 Apr 2025 14:54:21 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250422145421eusmtrp2a29928f65b73f47fe7e1ca7f999a9a66~4q7fdxjPT0501605016eusmtrp2H;
-	Tue, 22 Apr 2025 14:54:21 +0000 (GMT)
-X-AuditID: cbfec7f2-32fff70000000345-20-6807ad9ee550
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id FF.54.19920.D9DA7086; Tue, 22
-	Apr 2025 15:54:21 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250422145420eusmtip224b1553af434b83ad7a84489799c4da9~4q7eg8VVw1574315743eusmtip2U;
-	Tue, 22 Apr 2025 14:54:20 +0000 (GMT)
-Message-ID: <50da445f-d6f9-407d-b25d-5b9c7ccf867c@samsung.com>
-Date: Tue, 22 Apr 2025 16:54:20 +0200
+	s=arc-20240116; t=1745333824; c=relaxed/simple;
+	bh=oWc23/LVBOnPum4bXkUAmwkFu6HTjjdCTro8tbTf3ro=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jHOuQb5cW+YPL5wvtKGLQVvfrkRZDLOFFKN6zzuJ9nQPWstznNEwfZZF1DxgB5S90/ZLBpwpQvQWT+d6xFgdGwU6PgqsDh1AqAb2veOn7r7IPCBRtJyXQ8vF1uQyxdN0ukkk/akBFG8WYGrRm7Bmd1PRv0xG5juMwLzM9wfmuoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KksdeuTJ; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 50AF143982;
+	Tue, 22 Apr 2025 14:56:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1745333819;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=25dGErpsgSK+6Qme1lz5T7KzeEdLFbxsVij93iSZUbw=;
+	b=KksdeuTJtDSj/qM3t4aggkMFnjFS2MriztX/J0ZNz0BHflzhZy/Z5USG4+PWz5Mde4SyGa
+	SxRmevCqMae8SmG35npaWWQOh8TCdUUvabtAbbeVaZGcEZ7S9HZEpzlZZzH/XF4LCvbOi5
+	HixjZhnsb8Cj85a75LhOrU7/PjhE7SICxzxUkvSi+GC5nhx6ds56pbph8obH+o7RmwJVti
+	0wuyyGZ0/7Q3lOllJ99V/y91SBdyBYjbpM1BLwAKA84auqa/B2O/uBio4ZcVspHTQx2vKe
+	athcSUunSoBamRASxqYypstdKvUqgqE0X9l6sE0eUJcnJ7wG0C6YD46d0MNzDg==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH net-next v9 00/13] Add support for PSE budget evaluation
+ strategy
+Date: Tue, 22 Apr 2025 16:56:33 +0200
+Message-Id: <20250422-feature_poe_port_prio-v9-0-417fc007572d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/3] Add T-HEAD TH1520 VO clock support for LicheePi
- 4A GPU enablement
-To: sboyd@kernel.org, Drew Fustini <drew@pdp7.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, Rob Herring
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Fu
-	Wei <wefu@redhat.com>, "paul.walmsley@sifive.com"
-	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, alex@ghiti.fr,
-	"jszhang@kernel.org" <jszhang@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250403094425.876981-1-m.wilczynski@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJKsWRmVeSWpSXmKPExsWy7djPc7rz1rJnGGzYzG3x7M5XVoutv2ex
-	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZfOy5x2pxedccNottn1vYLNYeuctu
-	cfGUq8XdeydYLF5e7mG2aJvFb/F/zw52i3/XNrJYtOyfwuIg7PH+Riu7x5uXL1k8Dnd8Yfe4
-	d2Iaq8emVZ1sHpuX1Hu0rD3G5NH/18Dj/b6rbB59W1Yxelxqvs7u8XmTXABPFJdNSmpOZllq
-	kb5dAldGz7k/bAVrZSsu9S9mb2DcLt7FyMkhIWAisX7bebYuRi4OIYEVjBLfJr1hgXC+MErM
-	u/6DHcL5zChx/tkdZpiWjp4bUFXLGSUaZ7xlhHDeMkqsaXnGBFLFK2AnMa/xDxuIzSKgKrGp
-	fSsbRFxQ4uTMJywgtqiAvMT9WzPYQWxhgXiJH9fns4LYIgJGEo8XPWYCGcos0M8qsXjyQrCh
-	zALiEreezAez2YCKHiyHaOAUsJfYMOUxI0SNvMT2t3OYQZolBF5xSpy9O5kR4m4Xic9T7jBB
-	2MISr45vYYewZST+75wPFc+XeLD1E9SfNRI7e45D2dYSd879AvqAA2iBpsT6XfoQYUeJsxf6
-	GEHCEgJ8EjfeCkKcwCcxadt0Zogwr0RHmxBEtZrE1J5euKXnVmxjmsCoNAspVGYheXIWkmdm
-	IexdwMiyilE8tbQ4Nz212DAvtVyvODG3uDQvXS85P3cTIzB1nv53/NMOxrmvPuodYmTiYDzE
-	KMHBrCTC+8uNPUOINyWxsiq1KD++qDQntfgQozQHi5I476L9relCAumJJanZqakFqUUwWSYO
-	TqkGJqWSna3FC2apWpX8ODTP1Ku4ZUrL6XzTBYfuc/TEquc76K6MLJqw6oD9gnCNjcZ9T34d
-	/bNc9WR3r9Lmy1JT6nyjFgRFPOUxPvRuYd4/Vud7TgWFUllz6/gXiu1xCWIzPHvReMqGMxnb
-	Hr877btcQe2G8NJALZvTOVJMl+zuFxj1MMSZhFlfWno7RrjcpMmKuae/38htxq+VP/sv/Taw
-	ZPH7soQ7n2nzlsrwsxPyFz1OWLWRSVd70zrdpfePy+3PN743R9j0P+uT6SK3BfQ/hrk4Poy3
-	PKwvUro26ahZtMfulxtcjO7xb/O5uXS3Il9Bc5Ff+aGGkoe82u6GS+NmHz7rbflPefm3eQse
-	GPfMV2Ipzkg01GIuKk4EABNDGbEMBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkleLIzCtJLcpLzFFi42I5/e/4Pd25a9kzDB49UrN4ducrq8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsPvbcY7W4vGsOm8W2zy1sFmuP3GW3
-	uHjK1eLuvRMsFi8v9zBbtM3it/i/Zwe7xb9rG1ksWvZPYXEQ9nh/o5Xd483Llywehzu+sHvc
-	OzGN1WPTqk42j81L6j1a1h5j8uj/a+Dxft9VNo++LasYPS41X2f3+LxJLoAnSs+mKL+0JFUh
-	I7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS+j59wftoK1shWX+hez
-	NzBuF+9i5OSQEDCR6Oi5wdLFyMUhJLCUUWLfpDZWiISMxLXulywQtrDEn2tdbCC2kMBrRol/
-	v0JBbF4BO4l5jX/A4iwCqhKb2reyQcQFJU7OfALWKyogL3H/1gz2LkYODmGBeIm7p0tBwiIC
-	RhKPFz1mAtnLLDCRVeLkj5uMEEdMYpR4uWcq2BHMAuISt57MZwKx2YA6HiyfDxbnFLCX2DDl
-	MSPIUGYBdYn184QgyuUltr+dwzyBUWgWkjNmIZk0C6FjFpKOBYwsqxhFUkuLc9Nziw31ihNz
-	i0vz0vWS83M3MQLTxLZjPzfvYJz36qPeIUYmDsZDjBIczEoivL/c2DOEeFMSK6tSi/Lji0pz
-	UosPMZoCg2Iis5Rocj4wUeWVxBuaGZgamphZGphamhkrifO6XT6fJiSQnliSmp2aWpBaBNPH
-	xMEp1cDE2LFAb8Hvu9P33F3xoHI797yC6jRVUZ5vJw09jeYbSaZN22yfU9d8mLf5u+Bl1kv/
-	lU9eOuawuWzfttPpJxZJ2Nh19mT+fnuCybGeic2SWTrl26zg6Fq1ZKFPSv/uqrref6HIYPXw
-	X81H89uSUcJFf/QkGdY9S19ymOv5/4kdVor6/ddlePlP3OBwMY5IU2vO/f+RNevfhisvdnRJ
-	G0ekxBZdXntTtt6v7YB4lbKR2wn3ipRlvLu2abEqPmoPiVZpLZmv+f5govThcF75P1c7+R/a
-	L7Vl+eN6pj1lgVy56i4BLl/5/61B9y75/Xx96jeXqNj2Tz93KSnPnpy0TOyNa4/k3t/+SkKT
-	BFK/tSuxFGckGmoxFxUnAgBtar/ZnAMAAA==
-X-CMS-MailID: 20250422145421eucas1p2f01bb5cadb9836b26cc5b9bfd5197bef
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa
-References: <CGME20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa@eucas1p2.samsung.com>
-	<20250403094425.876981-1-m.wilczynski@samsung.com>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACGuB2gC/3XQyWrDMBAA0F8JOldF+5JT/6OUoEqjRtBaRlZNS
+ vC/VzYUpxgd5jAM82a5owlKggmdT3dUYE5TykNL7NMJ+asbPgCn0HLECBPEUo4juPpd4DLmNUq
+ 9jCVl7CR1EDTnDDxqvWOBmG6b+4oGqHiAW0VvrXJNU83lZxs4062+2pQQ1rFnignWRhMpohYQ5
+ Mt7zvUzDc8+f23mzB4cTnoOa46V0irGAIR2R4fvDmW05/DmGM6sjU5Zpf3REX+OJG2hniOaE7y
+ ljnviqdFHR+4Oo6bnyObw4IRRIGNQ4ujo3RGk6+j1P1FGb6Fd58PRMQ8OVT3HNEcI5bkNnmtu/
+ jvLsvwCC2TdxHYCAAA=
+To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
+ Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-8cb71
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvgeegtdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthekredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduhfevudetfffgkedvhfevheeghedtleeghfffudeiffefvdehfeegieeivdekteenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdekpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopeguvghvihgtvghtrhgvv
+ gesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghnthhprhhojhgvtghtsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: kory.maincent@bootlin.com
 
+From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 
+This series brings support for budget evaluation strategy in the PSE
+subsystem. PSE controllers can set priorities to decide which ports should
+be turned off in case of special events like over-current.
 
-On 4/3/25 11:44, Michal Wilczynski wrote:
-> This is a subset of a larger patch series enabling the Imagination BXM-4-64 GPU
-> on the LicheePi 4A board, which is powered by the T-HEAD TH1520 SoC. While the
-> full series includes power-domain, reset, and firmware changes, this part
-> focuses solely on the clock subsystem needed for the GPU and other VO (video
-> output) blocks. By merging these clock patches independently, we prepare the
-> groundwork for future GPU integration via the `drm/imagination` driver.
-> 
-> The T-HEAD TH1520 SoC features multiple clock controllers. Initially, only the
-> AP clock controller was supported upstream. The patches below add support for
-> the VO (video output) clock controller, which manages GPU-related gates, HDMI,
-> and other multimedia clocks.
-> 
-> Bigger series cover letter:
-> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
-> 
-> v7:
-> - remove commits 3,4 from the patch series, those would handle empty MEM clock
->   stub, and reset management. It's not necessary anymore, as this would be
->   implemented in power-domain driver
-> - added the device tree patch at the end for the SoC maintainers to take after
->   the other patches get OK-ed
-> - added Acked-by, from Connor for the dt-binding patch
-> - re-added Reviewed-by from Krzysztof, as the dt-binding patch is the same as
->   for the v5
-> 
-> v6:
-> - squashed the "dt-bindings: clock: thead: Add GPU clkgen reset property"
->   with the "dt-bindings: clock: thead: Add TH1520 VO clock controller". As
->   a result, also removed the Reviewed-by from Krzysztof, since the new
->   resets property has been introduced, which is mandatory in the VO
->   case
-> 
-> v5:
-> - introduced a new macro CCU_GATE_CLK_OPS, which allows providing custom clk_ops.
->   In the case of the 'MEM' clock, it provides empty clk_nops. Later, this clock
->   is provided to the GPU node, thereby avoiding any ABI breakage
-> - used the CCU_GATE_CLK_OPS macro to implement a workaround for de-asserting
->   the clkgen reset only after both core and sys clocks are enabled. This
->   sequence is required to properly initialize the GPU
-> 
-> v4:
->  - enhanced documentation for new Video Output (VO) clock inputs in device tree
->    bindings
-> 
-> v3:
->  - reworked driver to support multiple clock controllers through .compatible
->    and .data instead of using multiple address spaces in dt-binding. This change
->    allows to re-use the driver code for multiple clock controllers
-> 
-> v2:
->  - removed AP_SUBSYS clock refactoring commits (1-6):
->  - instead of refactoring, I opted to extend the current driver and its
->    associated device tree node to include support for a second address space.
->  - resolved all checkpatch issues using --strict, except for the call to
->    devm_clk_hw_register_gate_parent_data().  The current implementation remains
->    preferable in this context, and clang-format aligns with this choice
-> 
-> Michal Wilczynski (3):
->   dt-bindings: clock: thead: Add TH1520 VO clock controller
->   clk: thead: Add clock support for VO subsystem in T-HEAD TH1520 SoC
->   riscv: dts: thead: Add device tree VO clock controller
-> 
->  .../bindings/clock/thead,th1520-clk-ap.yaml   |  17 +-
->  arch/riscv/boot/dts/thead/th1520.dtsi         |   7 +
->  drivers/clk/thead/clk-th1520-ap.c             | 196 +++++++++++++++---
->  .../dt-bindings/clock/thead,th1520-clk-ap.h   |  34 +++
->  4 files changed, 223 insertions(+), 31 deletions(-)
-> 
+This patch series adds support for two budget evaluation strategy.
+1. Static Method:
 
-Hi Stephen, I think Drew is already collecting DT commits for the next
-merge window. Do you think the patches 1-2 will make it for the 6.16
-release ?
+   This method involves distributing power based on PD classification.
+   It’s straightforward and stable, the PSE core keeping track of the
+   budget and subtracting the power requested by each PD’s class.
+
+   Advantages: Every PD gets its promised power at any time, which
+   guarantees reliability.
+
+   Disadvantages: PD classification steps are large, meaning devices
+   request much more power than they actually need. As a result, the power
+   supply may only operate at, say, 50% capacity, which is inefficient and
+   wastes money.
+
+2. Dynamic Method:
+
+   To address the inefficiencies of the static method, vendors like
+   Microchip have introduced dynamic power budgeting, as seen in the
+   PD692x0 firmware. This method monitors the current consumption per port
+   and subtracts it from the available power budget. When the budget is
+   exceeded, lower-priority ports are shut down.
+
+   Advantages: This method optimizes resource utilization, saving costs.
+
+   Disadvantages: Low-priority devices may experience instability.
+
+The UAPI allows adding support for software port priority mode managed from
+userspace later if needed.
+
+Patches 1-2: Add support for interrupt event report in PSE core, ethtool
+	     and ethtool specs.
+Patch 3: Adds support for interrupt and event report in TPS23881 driver.
+Patches 4,5: Add support for PSE power domain in PSE core and ethtool.
+Patches 6-8: Add support for budget evaluation strategy in PSE core,
+	     ethtool and ethtool specs.
+Patches 9-11: Add support for port priority and power supplies in PD692x0
+	      drivers.
+Patches 12,13: Add support for port priority in TPS23881 drivers.
+
+Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+---
+Changes in v9:
+- Add a missing check after skb creation.
+- Link to v8: https://lore.kernel.org/r/20250416-feature_poe_port_prio-v8-0-446c39dc3738@bootlin.com
+
+Changes in v8:
+- Rename a few functions for better clarity.
+- Add missing kref_init in PSE power domain support and a wrong error
+  check condition.
+- Link to v7: https://lore.kernel.org/r/20250408-feature_poe_port_prio-v7-0-9f5fc9e329cd@bootlin.com
+
+Changes in v7:
+- Add reference count and mutex lock for PSE power domain.
+- Add support to retry enabling port that failed to be powered in case of
+  port disconnection or priority change.
+- Use flags definition for pse events in ethtool specs.
+- Small changes in the TPS23881 driver.
+- Link to v6: https://lore.kernel.org/r/20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com
+
+Changes in v6:
+- Few typos.
+- Use uint instead of bitset for PSE_EVENT.
+- Remove report of budget evaluation strategy in the uAPI.
+- Link to v5: https://lore.kernel.org/r/20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com
+
+Changes in v5:
+- Remove the first part of the patch series which tackled PSE
+  improvement and already gets merged:
+  https://lore.kernel.org/netdev/20250110-b4-feature_poe_arrange-v3-0-142279aedb94@bootlin.com/
+- Remove the PSE index support which is useless for now. The PSE power
+  domain ID is sufficient.
+- Add support for PD692x0 power supplies other than Vmain which was already
+  in the patch series.
+- Few other small fixes.
+- Link to v4: https://lore.kernel.org/r/20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com
+
+Changes in v4:
+- Remove disconnection policy.
+- Rename port priority mode to budget evaluation strategy.
+- Add cosmetic changes in PSE core.
+- Add support for port priority in PD692x0 driver.
+- Link to v3: https://lore.kernel.org/r/20241121-feature_poe_port_prio-v3-0-83299fa6967c@bootlin.com
+
+Changes in v3:
+- Move power budget to regulator core.
+- Add disconnection policies with PIs using the same priority.
+- Several fixes on the TPS23881 drivers.
+- Several new cosmetic patches.
+- Link to v2: https://lore.kernel.org/r/20241030-feature_poe_port_prio-v2-0-9559622ee47a@bootlin.com
+
+Changes in v2:
+- Rethink the port priority management.
+- Add PSE id.
+- Add support for PSE power domains.
+- Add get power budget regulator constraint.
+- Link to v1: https://lore.kernel.org/r/20241002-feature_poe_port_prio-v1-0-787054f74ed5@bootlin.com
+
+---
+Kory Maincent (13):
+      net: ethtool: Add support for ethnl_info_init_ntf helper function
+      net: pse-pd: Add support for reporting events
+      net: pse-pd: tps23881: Add support for PSE events and interrupts
+      net: pse-pd: Add support for PSE power domains
+      net: ethtool: Add support for new power domains index description
+      net: pse-pd: Add helper to report hardware enable status of the PI
+      net: pse-pd: Add support for budget evaluation strategies
+      net: ethtool: Add PSE port priority support feature
+      net: pse-pd: pd692x0: Add support for PSE PI priority feature
+      net: pse-pd: pd692x0: Add support for controller and manager power supplies
+      dt-bindings: net: pse-pd: microchip,pd692x0: Add manager regulator supply
+      net: pse-pd: tps23881: Add support for static port priority feature
+      dt-bindings: net: pse-pd: ti,tps23881: Add interrupt description
+
+ .../bindings/net/pse-pd/microchip,pd692x0.yaml     |  22 +-
+ .../bindings/net/pse-pd/ti,tps23881.yaml           |   8 +
+ Documentation/netlink/specs/ethtool.yaml           |  47 +
+ Documentation/networking/ethtool-netlink.rst       |  49 +
+ drivers/net/mdio/fwnode_mdio.c                     |  26 +-
+ drivers/net/pse-pd/pd692x0.c                       | 225 +++++
+ drivers/net/pse-pd/pse_core.c                      | 988 ++++++++++++++++++++-
+ drivers/net/pse-pd/tps23881.c                      | 404 ++++++++-
+ include/linux/ethtool_netlink.h                    |   9 +
+ include/linux/pse-pd/pse.h                         |  90 +-
+ include/uapi/linux/ethtool.h                       |  34 +
+ include/uapi/linux/ethtool_netlink_generated.h     |  12 +
+ net/ethtool/netlink.c                              |   7 +-
+ net/ethtool/netlink.h                              |   2 +
+ net/ethtool/pse-pd.c                               |  70 ++
+ 15 files changed, 1934 insertions(+), 59 deletions(-)
+---
+base-commit: d0200e6dd9f1b3c053c104e595b0715fb40d2cb6
+change-id: 20240913-feature_poe_port_prio-a51aed7332ec
 
 Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
