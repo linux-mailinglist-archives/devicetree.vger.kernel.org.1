@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-169556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE8CA974EF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:54:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C892AA974EB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:54:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F16115A06BD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:54:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9E71189B27B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:54:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211C5298CD2;
-	Tue, 22 Apr 2025 18:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13A129CB27;
+	Tue, 22 Apr 2025 18:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="eSgnqTod"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KuDvxyHy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C2629B765
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 18:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7969729B224
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 18:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745347941; cv=none; b=XILXoAYzE7W2TNc5fwQHpOyBOIuuvCle4CB6hQauVKP6gc5PqabxWUFUFxGLh6hINtcucwMGgEww7ZLgu9QV0wjp5jsWmhWs/pEu4P8ZaXB98AnZoL7AcqBjJlmcA22ZSCylrABGcNfUWqqbFVqFSGCfA7frCQb+MUiME7/fZPM=
+	t=1745347940; cv=none; b=lpSCp81tdf73IaPZJ2PtHnFEU10WD41+HrnQ/u4mNdaMZrMpw7cLDBQOLuGaYQnXxWPUSeMjRjBE/63HxCUUNjVp/jfSvvK+yEY4tPXUQ1y8ecHvSRKbFO8+C1m3PYJJcY1+7BLcv4rBnzYHFPi0pr6TH0EiG7peaBjWAZ94fJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745347941; c=relaxed/simple;
-	bh=tljGp2ZGKwz5xKjRNtfJTi8eXf68cWZGNi4Xd9Pss8U=;
+	s=arc-20240116; t=1745347940; c=relaxed/simple;
+	bh=1k1unQkkbNJWyNIqqzpizkZc3aIKLdvvcUxlVK4aZEM=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MuGJYBiuthr10snwweB2tEoVNMPYHGqAw+4p0cZuK+/VdMaXbLFmmxxVESkI27I3SdnTLFxcBDylhxjkJJKq0i2puBTZTvTlpsJgCVtWn6a/mq+7BJB8TwQpLtq7/xp2kWywWKCTsxK5u6N9saCcdWpFwjGv27cQ5nTX+uKRSK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=eSgnqTod; arc=none smtp.client-ip=209.85.221.51
+	 MIME-Version; b=m1qrOZ6oFtwMkdIxVr+6hw9ikPLr57CZUTHsG7myJl/rPPPhwtQopj4NQbqWye6yonyX1ycSopu/B2BSyDHu3KNw8tySvGtk459D47+LpSuXswpirWmi996+u9ni6t7mEt2NrcAnu7Nqalw8ACJydHmPqL886HmHeKScOtsllmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KuDvxyHy; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39ee5ac4321so5950587f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:52:16 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3914aba1ce4so3716491f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:52:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=suse.com; s=google; t=1745347935; x=1745952735; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yYOOl2kWPUOmT3lYpRPa0NBvw7HXmwvyakqo8gvrf7U=;
-        b=eSgnqTodInpfl9trHXd+Ua1Dbb35Sgi71tHW0zp6JsG8x1omRxZOCc/yRljPKBMQdj
-         rZODUSU42Ip7InsMn9V7swpgWOYCnbcgWtqyfKynXlBWecB0CLfayfvvuefyaxs5wS79
-         WbsO6R5AIoDKYhXf76uYm4vPhMtfoSEqeoSZUegzQ4IgKG2V4UVpP89BLjylb4yiZ/Rn
-         KIgSVweyKEqqlZOJb+7mBZtPSnhTGqMkZwiICHvdv4Zl2H7Z/KBr/B4cU9aee4EGB2xe
-         fQc69KAtBA/emofCZPCvPZXqZ1jW8T0Y2d2+MCuq59SQiCGwZzbNp90VBko5w7MazvDz
-         Wuvg==
+        bh=ADsz4nM5zt5mk0SaIqSNaWehe790A/IESs0jsUHL+uk=;
+        b=KuDvxyHyGrC25lEjuJl0sHhcCvZF/pF3czD68drf8To7cQccp2Y8qxi3RM0ChZwcqX
+         NbVxTb518ACxsReOslqkprpiBHaHOsJ8IdMQTCRFEV963Ovpcki1WXdbPdsJohoN2OaC
+         DdHN2FholbvCNcoeBTvuMjkjOshdifxbF5wOtUb4xrs4i7LW5nrDHyYm3+H8uo/1UK3R
+         t0mskDWsLu/XNkDzlLEQfHxAoLRN8rqABMX3JXLWx81j8DkSdtZVUAXKY/eYCtcAODTV
+         Na/ivldAIglcA0uzm1Yo6rn9BUBgEVJ6BV7RqnMUXGgkFTqOb49hZ6SdHUNbe0dfMVTC
+         M5nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1745347935; x=1745952735;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yYOOl2kWPUOmT3lYpRPa0NBvw7HXmwvyakqo8gvrf7U=;
-        b=D3Z7Euxl/5diqrntil9gLPJUZCfGvfklb9HRfjQgurGUvAVePiSr7MrgIGW69MjhLN
-         HzAKUSiwWhGsIsXw/9yNNPCrTNUvSHl43WeWzxVxK9siXXgvZJNpBTfrh0Apgs/zKRnn
-         wcWyeqhdfKiHm6GSgtGGUylsRzDWRU2Rqaz7H8UIyp8Wi2X+8RrSsxAKgQaVwW3EWLkG
-         V5K2ROrXNLd+YbYxOZWLeSHCRAXTu8QI+t00Ixcvnw89jF7uUZ+EjCLCJWiNWV2SkV/5
-         sl3wC/7rgU2kTT09qchdjQMMz8/ffl/v855HHcfRu/xXDzCt6cgQij4bCFOcysbiG99M
-         3Nfw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWCHZ3FQxoHVRMOqdR/TdC28QYOmowiawUXjN6b5NpkPixSnZPAHNSfjDjYcBY5rr7ubFtX7byQgC7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAVJMZeet3QvUVKF7jODJoiXGgOnvPM9rX/QFwQupFb+RMoWJf
-	cLDP5cKmKeYXkpz8/4Ic3lY0EunQ99NLoER5ITxU069oPGBb61dJWBbYLbL1i74=
-X-Gm-Gg: ASbGncsvGhallA7twmovS9oXcpEn4AM+avEERbKgyaoAGs+j5sOe1YL/xR9+ZgPR4FQ
-	DMmrmfnhtnWa0H6QHj0v7pGg8gAFeZ26X9hKnYWe3RLO41Z12+JDN+6Irn264mo01HCLnvI7m+U
-	ukyVtafEMAWx3UfVwgS3T1stWDOJBt3kp/2TvWF7b3tQaknIEXUXK3jE1YgYQ+8DRk4E6TprlqU
-	b7FCcwM+sveM/wgDVHNI1nc4aGSkocdm7Zk56GpqiNdne0yubiy03pCY0IAq6CBBIqLQlt1GoFs
-	AljKu6TQsAVUR+8rK9dl8UYFn9MTIzmMMOlwen4fqP300Mo4McR9GIE3vrtFSxlA6tSFHSI=
-X-Google-Smtp-Source: AGHT+IFJkUzhohlFWFD4tnJxylRaHX8kyBRjPpJLd4zTyh/XarWYhUWFDm8KDecIRtmuP1EH+CI8eA==
-X-Received: by 2002:a05:6000:2509:b0:39e:e75b:5cd with SMTP id ffacd0b85a97d-39efba2c98emr14139193f8f.3.1745347934622;
-        Tue, 22 Apr 2025 11:52:14 -0700 (PDT)
+        bh=ADsz4nM5zt5mk0SaIqSNaWehe790A/IESs0jsUHL+uk=;
+        b=sSRc+4+jznqj8nvVB8OelcTUMc6toB/di4xtZZq0P/GfDZoxeK/5O5Vly4Juuw7VXb
+         SPf75w5GYwaQDYgdCKd6midF7+KUimKK8Asb/0iFZfuW1x5U4HkP8eFt2PcdRnjUdnWy
+         ex5ITuwqzZsZ/n1NCIRJaDhorYHn1P0UUxOJbYbIxHC/WdROh4dQ+AuLoXMAS8OUodVk
+         repEGXBpr6VZvIRWpdc1Obpz4iC1j5MgdZCH7CsF+1lSh0vGzaA/44o6MHmCyobxRwGT
+         mwFRXS9H0RiwtG0yDOZ5dc056LDPGfjc34aFJnrQR0IeueNffsgvcmKRK5bElwHLt/es
+         oRBg==
+X-Forwarded-Encrypted: i=1; AJvYcCWlKgIxgPNl5MA7AG+TS0d21gG0/oyRFL9wM1cPp9ZsHrvG0D6NL9zxKdqTYX9ksjrh3GcWFWUobDf3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzb+LW1h/8boE3m9yYJrqwm0EbxhLiAw09SRVwCErb6ujLlWQr9
+	NXk9VAU4/e6rg3/p8cGVh5Qnf+LnuhzPVAPu3sl70cAUxi3E9WzHhDI6O0BYl4E=
+X-Gm-Gg: ASbGncuLu54aJq/aNtdurfgp9vipx1/IxktYpOt/xUHeQ1+QwFnGHhrKtNdxjKmRw7A
+	e/TBp/DMnKRdETJfCdctmhUxjaERFMuoKRk6SkiB9V9sB+6g6wgxSwZLoF9da13aG2EfKr2eBp9
+	ZQ9FfHn7YsWGHzisfQx1QV5+c4O3RWtEkaJRbXw8cbfAdrOnQ6/JDfeXeNOn1SMIO5oLWL5+1W0
+	C68eWDJyLqx4Dmm17e/k01WrweLJwws0a7VrgMBbAIGT/Eog9B6ehyzRU05ap70sssWRVf5sVUO
+	him+N5QCDChOxxnfTnHUpIg57XjLhTEpyLpFTkDmdOpR7tgfs6oh6fHtRm1B+RQBj3JCYDEzL9T
+	oEdKflQ==
+X-Google-Smtp-Source: AGHT+IHaQWcyIld8HmOWqZEWQ8mfScJy5XfhH5TexVF3JHDuC1C8WH0PzZCZR43OQba1F6XglJkm3Q==
+X-Received: by 2002:a5d:648d:0:b0:39c:141b:904a with SMTP id ffacd0b85a97d-39efba2ca27mr13013041f8f.11.1745347935584;
+        Tue, 22 Apr 2025 11:52:15 -0700 (PDT)
 Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39f069df9fcsm10861464f8f.16.2025.04.22.11.52.14
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4207afsm16278846f8f.12.2025.04.22.11.52.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 11:52:14 -0700 (PDT)
+        Tue, 22 Apr 2025 11:52:15 -0700 (PDT)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Andrea della Porta <andrea.porta@suse.com>,
 	Michael Turquette <mturquette@baylibre.com>,
@@ -110,9 +111,9 @@ To: Andrea della Porta <andrea.porta@suse.com>,
 	Dave Stevenson <dave.stevenson@raspberrypi.com>,
 	kernel-list@raspberrypi.com,
 	Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH v9 -next 11/12] arm64: defconfig: Enable RP1 misc/clock/gpio drivers
-Date: Tue, 22 Apr 2025 20:53:20 +0200
-Message-ID: <928679d1511a43b8dda150009eb023b4eaaff5a2.1745347417.git.andrea.porta@suse.com>
+Subject: [PATCH v9 -next 12/12] arm64: defconfig: Enable OF_OVERLAY option
+Date: Tue, 22 Apr 2025 20:53:21 +0200
+Message-ID: <8baf7818aae1fe5be046015e4bd8121ccc9acb20.1745347417.git.andrea.porta@suse.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <cover.1745347417.git.andrea.porta@suse.com>
 References: <cover.1745347417.git.andrea.porta@suse.com>
@@ -124,44 +125,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Select the RP1 drivers needed to operate the PCI endpoint containing
-several peripherals such as Ethernet and USB Controller. This chip is
-present on RaspberryPi 5.
+The RP1 driver uses the infrastructure enabled by OF_OVERLAY config
+option. Enable that option in defconfig in order to produce a kernel
+usable on RaspberryPi5 avoiding to enable it separately.
 
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 ---
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 9e16b494ab0e..53748ea4a5cb 100644
+index 53748ea4a5cb..23656b0bb7e0 100644
 --- a/arch/arm64/configs/defconfig
 +++ b/arch/arm64/configs/defconfig
-@@ -622,6 +622,7 @@ CONFIG_PINCTRL_QCS615=y
- CONFIG_PINCTRL_QCS8300=y
- CONFIG_PINCTRL_QDF2XXX=y
- CONFIG_PINCTRL_QDU1000=y
-+CONFIG_PINCTRL_RP1=m
- CONFIG_PINCTRL_SA8775P=y
- CONFIG_PINCTRL_SC7180=y
- CONFIG_PINCTRL_SC7280=y
-@@ -704,6 +705,7 @@ CONFIG_SENSORS_RASPBERRYPI_HWMON=m
- CONFIG_SENSORS_SL28CPLD=m
- CONFIG_SENSORS_INA2XX=m
- CONFIG_SENSORS_INA3221=m
-+CONFIG_MISC_RP1=m
- CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
- CONFIG_CPU_THERMAL=y
- CONFIG_DEVFREQ_THERMAL=y
-@@ -1301,6 +1303,7 @@ CONFIG_COMMON_CLK_CS2000_CP=y
- CONFIG_COMMON_CLK_FSL_SAI=y
- CONFIG_COMMON_CLK_S2MPS11=y
- CONFIG_COMMON_CLK_PWM=y
-+CONFIG_COMMON_CLK_RP1=m
- CONFIG_COMMON_CLK_RS9_PCIE=y
- CONFIG_COMMON_CLK_VC3=y
- CONFIG_COMMON_CLK_VC5=y
+@@ -1640,6 +1640,7 @@ CONFIG_FPGA_BRIDGE=m
+ CONFIG_ALTERA_FREEZE_BRIDGE=m
+ CONFIG_FPGA_REGION=m
+ CONFIG_OF_FPGA_REGION=m
++CONFIG_OF_OVERLAY=y
+ CONFIG_TEE=y
+ CONFIG_OPTEE=y
+ CONFIG_MUX_GPIO=m
 -- 
 2.35.3
 
