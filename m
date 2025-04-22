@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-169336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4A4A966DC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:04:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFAEA966E2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:05:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91A00189F104
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:05:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A3D0168310
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD452750F3;
-	Tue, 22 Apr 2025 11:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB97B278179;
+	Tue, 22 Apr 2025 11:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a1fNGtnV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bfFaIEuT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA8027702F
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:04:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF6C2777F5
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745319863; cv=none; b=U0GOGqitP6PeN8sMT6xs/xNqVtaYChEBPPO1YH8BbsPLwqgEhg8fc82glEPN0CM9F4wwtdbMoO0a2/CXR3nxUR9+FcbnZKVTUJAHvXORCSSpIIZVSDFQpXZWnJ1oQJWigrK80ImBYplDkYlIwcWeg/qSlp/RumpAPQw6MlLFUlw=
+	t=1745319864; cv=none; b=dmE1IO5nXr/W/6aeVVKU7dK8fNPkl6F5Ccq47mWUnNNN232TO3n3IIFfG+7xjCEIV1Ml75kNX9SCLRI7GBxUf7rW+duODzaG5ncMfOLrPkO1Sn9T9ZevacMOnnqavjLZML8TrL5vAKNtW9PKp7az5FJLwdaM4T3iyU4k2iwguxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745319863; c=relaxed/simple;
-	bh=7OOpqHwAl6ZsroNDq7h1uadbYYWiGNX5+yXf9CWEZY0=;
+	s=arc-20240116; t=1745319864; c=relaxed/simple;
+	bh=5kbIp82RPAZiz/xlTwKFHo0uGiODTBWvbN8fRxPfuhQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WsqDnBDr2ImS+GZiciQr6nmFaCCqTtJ4ewmckPAz5+P/i6jdW/FgaNK7keXBRWknHHKIMGhW+4SZqoPyUXvNz/9HOAP6nvNcj54jDFVaq/Dai1FhmnTRRUNjQ9MOPmR4LZCNBVR2Wt5KO8/3HLEq82K3N2QarhRCw3kfSkUgRhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a1fNGtnV; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=ch+gLIvWPe22vapT46GLihbaoXbrNE/cvuvcmDsk2paIygebMwEfX9vg/L/PM9eKLAUvQt+qIBo1DoIatU4sjuubdbzMWIy+ZF3n55LWFT73sXPalsCStOl+E6nTjPBsnlM8TJtrarxbt2tR5F2oDCCsXNBn69zEXmOtrHE0qCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bfFaIEuT; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so39995965e9.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:04:20 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39ac8e7688aso2978673f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:04:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745319859; x=1745924659; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745319860; x=1745924660; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ao68ISDYdAe/LpOy6+LvZhiAStAN5lmsqAbHwNcsg74=;
-        b=a1fNGtnVj3FPwJbdSbaAI4l4uSj1qZkbhpOnsAKNRCtwVAclJhki6kiNEHO/d0piZK
-         JLQFII9o5rAyJNzP3KwhrN13K2Vw6CwYxu5Q29y/z+YJN6xcp/9Gn+3fZDSgH1pJhmR6
-         Lzr2KACRCfA8IPQS6JMwHvlxzYaiaTekkAloAnMQqdmM/o+qLW7FNToyFOpy4mGJEq5x
-         krHnNXlpB1MMshRkJvYTgakWsZEOy2LBk1I4jBdU6Oq35gpp6IRECUoWT57WlKxwJEcr
-         d4dAqz1kfzKBKy0+T/pGxD0PC9nlrTVbGx2ILnoCyJe53yTP5r0ZF3yc9J4ctd5HCkFI
-         /QRQ==
+        bh=hH4RIXXguM7lHrs/AeYp8nicZoPIjvYCmKUcwhiq8VI=;
+        b=bfFaIEuT+XzJdQmqfthCTG/mcVsUzVhAz9IeT5n1B4oZFT2ij4r0wwRfDIC7qVrzNC
+         hEPnxT6dC1PTD6ONPFLZMc6xLbOOX+xZw147FhIFc4HnhYX1wclMys0FRXm9WsAKjXm4
+         0qkr+NNp6FC3KwFVbC0O66ur4/AiG1fuxb5v4uN4UFnlnACDC2I33NSUHfj11a2Gght6
+         R+TD96w5m3DGU6sdX8MeveVUvWc0mSx3F3Oy6dCt5CGcNbvdQABqfKQRR4/hX3xlYFOM
+         +EpuGHoJZVAAhlLms3pb71Q5RpFAXGJPv5ff5rbSLVlxsNZftk3/FHn39q0r+fC5rSfW
+         5njQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745319859; x=1745924659;
+        d=1e100.net; s=20230601; t=1745319860; x=1745924660;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ao68ISDYdAe/LpOy6+LvZhiAStAN5lmsqAbHwNcsg74=;
-        b=byQUCKYXsbDhZHBXeumbb/tDF1BZFTHzwI7w8AQsBe/zhJTot8Rrr2lYUUM137A7Nh
-         815llWC0/tgvq1fRC0mbwSQQdCeOdCBTH8NLCFXLdQ/8mJXkenHxEMACiPmJs7bkyeix
-         4ljfe7gtevdA9Vejdj/yjNzmS41QIvog2V7gMRra1pX9IzgfkzPiql3GlduZGB63B3C/
-         +UJ93jYCs3c/HKyShNUPs8JIHjmEt3qpdvi7jmeYyT68oYo2pRDqygePZXAb42SSqW03
-         GT7cPC4EqB6toz9fEF2wKdobyvsmh9LpqlUR+SqElrgG8Dm4NW56bqBCFH4+/2FSNTzW
-         i+TA==
-X-Forwarded-Encrypted: i=1; AJvYcCXG35yJcNAFSblDji9K0oGi+BuPNIU7OsYf/2b55pg3Fg4AocA98PL7fDGh54tQcEP2ATuY01n14Sb2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbHW2Yeubukr93fTH65NfL3CoaTVJdqNb30V6QYE8gd2gRaqd/
-	38sZdJJcVU9ZFCvfIHMCUgZe1Vil3kQwIOkS7Ca9fKyB89JWIExPKQz367XSy+g=
-X-Gm-Gg: ASbGncuJgbO+tkmpP36NnbWPicopV9bU676qm6YVCrFwZMpUlShOrLjos2GMmeivonH
-	X33HsbwCfyzyLjxgYnDgiFaxowdccvntTJoGIU3z+izGxLwzHw/8P/U+HDRYBqqliV9zqLN2IYD
-	WrF63H9GAF4kj5x7Yvc5q1XFwoTyHDvjKgYgxtXjJ1cbBfpCQKZkFJLB1eAnoHpi/UJxFZVsBTz
-	vigquHJKpHgLekkYuO11+3GHi2msRFM/1pItuUAlPydvDLlLF4oNLTnMPPqJrbxKZdaQ2DsvvJ8
-	XdyPeWSDIbodwgdiqCBnhA6tUKQXdq7NvbqeegTZaH50cKnhyUaRB7U=
-X-Google-Smtp-Source: AGHT+IFnYz2Y0/0qxK9WJrqa+QqzRTeaqkUgmZSNsSOH5LL62CPMEyS2mK+2KEEHAF1X1Jefr4TeRg==
-X-Received: by 2002:a05:600c:1383:b0:43d:585f:ebf5 with SMTP id 5b1f17b1804b1-4406ab7a7dfmr124462585e9.1.1745319859243;
-        Tue, 22 Apr 2025 04:04:19 -0700 (PDT)
+        bh=hH4RIXXguM7lHrs/AeYp8nicZoPIjvYCmKUcwhiq8VI=;
+        b=R3eRwfJWu9BXiV2qTwF7F9tuD1Ky6Gd2JUOPby7NFXTA/PrK0yVAOXC/BkVbxLk/wx
+         qjhloae5esovQL4GPbXkAKFQEtYsBSxR5FpbwkCN7Ld8sgp5hd5L6tmaQQJHX2kgrZYc
+         2apVn4uf1t3PnaE1hnvJwh1/xAb9yn/eVdIUkGHB19eeVFZBwfc7Dz2yo//w+URZUE7Y
+         QGvdRNW775q2bBQA5d/JxnsMEeriUy2VfTS7j7kkhFmPktL8P2pyxA5wF1Nd/rc1+NVr
+         bHCm/us+4rgIePMv9ulvlW8fOfo+gGAy1HAVhxUk3bxtVX/k8lzBgGRzIA3+sYd0kv5y
+         u6IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVL+rM6csuMyTKMFqMfleZppSj+M/Awn+9dXw6SckK1ZEXy+dYqG8IKLuKGlWd/eUY13q4gbNIt188o@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvkqOawSzXMx+59/1nUHGmUHJh6hXcoiCVA0vHQ2nJseHZUt26
+	Wjg8n4BL/yz2s5VWn5bFs0Y9b56DCdy7/cDxJAh9pUCCQuGymLHAqEBz/IgFSoI=
+X-Gm-Gg: ASbGncuTDdwmIMtjJOwXdtihRyW5jr/JB4AZHFoQ0U5P6naL7cb402/bZC/ivkIOxVj
+	QJ5SLA1IFxXXxVF10Y+y1kaZ0+vfw58t1h1fpWd0NR+5Qg6e+Nky/PboN/sZ6oPPDbXXGfoZrtn
+	urq8hgb1sZstg53YAUiI0DZGasmzdCKp8fvt5zs/0GAAnes8FuFH1aY7Hur52Vh584t4qUqC3hP
+	+xZxVx1p+KP9muY6WYomNzlZaKsj7UYty0lYeKhP+RXTNBOc3gAqQex0uwMs/ovXpG+WNf63Vhm
+	WJDT5iCRZgwSAG31/OBQZSv9SKNC9qnksikIehHn+GEe4vT+7HsP/Qc=
+X-Google-Smtp-Source: AGHT+IFrhUEdiZQd68uZIJyQ5IJiCEtaO9t1bpG+0s26gO28q3G/g9OGy1Vj8lzjp2xNhaJdoZTwsA==
+X-Received: by 2002:a5d:5f49:0:b0:39e:cbe3:881 with SMTP id ffacd0b85a97d-39efba246e0mr11245366f8f.12.1745319860102;
+        Tue, 22 Apr 2025 04:04:20 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:8847:e39a:2a2f:e614])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5acddfsm169609725e9.15.2025.04.22.04.04.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5acddfsm169609725e9.15.2025.04.22.04.04.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 04:04:18 -0700 (PDT)
+        Tue, 22 Apr 2025 04:04:19 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Tue, 22 Apr 2025 13:03:51 +0200
-Subject: [PATCH v2 4/6] arm64: dts: qcom: msm8916-motorola: Use UART1
- console pinctrl
+Date: Tue, 22 Apr 2025 13:03:52 +0200
+Subject: [PATCH v2 5/6] arm64: dts: qcom: msm8916: Drop generic UART
+ pinctrl templates
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250422-msm8916-console-pinctrl-v2-4-f345b7a53c91@linaro.org>
+Message-Id: <20250422-msm8916-console-pinctrl-v2-5-f345b7a53c91@linaro.org>
 References: <20250422-msm8916-console-pinctrl-v2-0-f345b7a53c91@linaro.org>
 In-Reply-To: <20250422-msm8916-console-pinctrl-v2-0-f345b7a53c91@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -92,51 +92,151 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sam Day <me@samcday.com>, Casey Connolly <casey.connolly@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+ Sam Day <me@samcday.com>, Casey Connolly <casey.connolly@linaro.org>
 X-Mailer: b4 0.14.2
 
-The Motorola MSM8916-based smartphones all use UART1 with 2 pins (TX, RX)
-as debug UART console, so make use of the new &blsp_uart1_console_default
-template. This applies the needed bias-pull-up to avoid garbage input,
-bootph-all for U-Boot and avoids having to override the UART pins.
+Remove the generic UART pinctrl templates from msm8916.dtsi and copy the
+definition for the custom UART use cases into the board DT files. This
+makes it clear that the set of pins/pull etc are specific to the board and
+UART use case.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+No functional change.
+
 Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916-motorola-common.dtsi | 12 ++----------
- 1 file changed, 2 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 15 ++++++++++
+ .../boot/dts/qcom/apq8016-schneider-hmibsc.dts     | 35 +++++++++++++++++++---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              | 24 +--------------
+ 3 files changed, 47 insertions(+), 27 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-motorola-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-motorola-common.dtsi
-index 48134e5ff524fd5708db7b9c3a567ec3f751868c..4e202e7ed7db1921f347ca8b4a01ccec593a8d8e 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-motorola-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-motorola-common.dtsi
-@@ -69,8 +69,8 @@ rmi4-f11@11 {
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+index f12a5e2b1e8c2cce6e85b8444c97a7e0d7b7c58f..b0c594c5f236c9c1d334e6acfcaa7e41c1f9f3a5 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+@@ -597,6 +597,21 @@ &tlmm {
+ 		"USR_LED_2_CTRL", /* GPIO 120 */
+ 		"SB_HS_ID";
+ 
++	blsp_uart1_default: blsp-uart1-default-state {
++		/* TX, RX, CTS_N, RTS_N */
++		pins = "gpio0", "gpio1", "gpio2", "gpio3";
++		function = "blsp_uart1";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
++	blsp_uart1_sleep: blsp-uart1-sleep-state {
++		pins = "gpio0", "gpio1", "gpio2", "gpio3";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
+ 	sdc2_cd_default: sdc2-cd-default-state {
+ 		pins = "gpio38";
+ 		function = "gpio";
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+index 7a03893530c7b89705f5544491c14edd7120acdc..ce75046ffdac48a206d14499bc711f8f4a777fe5 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
++++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+@@ -373,6 +373,37 @@ adv7533_switch_suspend: adv7533-switch-suspend-state {
+ 		bias-disable;
+ 	};
+ 
++	blsp_uart1_default: blsp-uart1-default-state {
++		/* TX, RX, CTS_N, RTS_N */
++		pins = "gpio0", "gpio1", "gpio2", "gpio3";
++		function = "blsp_uart1";
++		drive-strength = <16>;
++		bias-disable;
++		bootph-all;
++	};
++
++	blsp_uart1_sleep: blsp-uart1-sleep-state {
++		pins = "gpio0", "gpio1", "gpio2", "gpio3";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	blsp_uart2_default: blsp-uart2-default-state {
++		/* TX, RX */
++		pins = "gpio4", "gpio5";
++		function = "blsp_uart2";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
++	blsp_uart2_sleep: blsp-uart2-sleep-state {
++		pins = "gpio4", "gpio5";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
+ 	msm_key_volp_n_default: msm-key-volp-n-default-state {
+ 		pins = "gpio107";
+ 		function = "gpio";
+@@ -469,10 +500,6 @@ &blsp_i2c6_default {
+ 	drive-strength = <16>;
  };
  
- &blsp_uart1 {
--	pinctrl-0 = <&blsp_uart1_default>;
--	pinctrl-1 = <&blsp_uart1_sleep>;
-+	pinctrl-0 = <&blsp_uart1_console_default>;
-+	pinctrl-1 = <&blsp_uart1_console_sleep>;
- 	pinctrl-names = "default", "sleep";
- 	status = "okay";
- };
-@@ -132,14 +132,6 @@ &wcnss_mem {
- 	status = "okay";
- };
- 
--/* CTS/RTX are not used */
 -&blsp_uart1_default {
--	pins = "gpio0", "gpio1";
--};
--&blsp_uart1_sleep {
--	pins = "gpio0", "gpio1";
+-	bootph-all;
 -};
 -
- &tlmm {
- 	gpio_keys_default: gpio-keys-default-state {
- 		pins = "gpio107";
+ /* Enable CoreSight */
+ &cti0 { status = "okay"; };
+ &cti1 { status = "okay"; };
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 07ae0b921afa1fec7350467cf1b299fe91112a60..de9fdc0dfc5f9b223ee252b80fc18d45c9bb6582 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1232,21 +1232,6 @@ blsp_spi6_sleep: blsp-spi6-sleep-state {
+ 				bias-pull-down;
+ 			};
+ 
+-			blsp_uart1_default: blsp-uart1-default-state {
+-				/* TX, RX, CTS_N, RTS_N */
+-				pins = "gpio0", "gpio1", "gpio2", "gpio3";
+-				function = "blsp_uart1";
+-				drive-strength = <16>;
+-				bias-disable;
+-			};
+-
+-			blsp_uart1_sleep: blsp-uart1-sleep-state {
+-				pins = "gpio0", "gpio1", "gpio2", "gpio3";
+-				function = "gpio";
+-				drive-strength = <2>;
+-				bias-pull-down;
+-			};
+-
+ 			blsp_uart1_console_default: blsp-uart1-console-default-state {
+ 				tx-pins {
+ 					pins = "gpio0";
+@@ -1272,13 +1257,6 @@ blsp_uart1_console_sleep: blsp-uart1-console-sleep-state {
+ 				bias-pull-down;
+ 			};
+ 
+-			blsp_uart2_default: blsp-uart2-default-state {
+-				pins = "gpio4", "gpio5";
+-				function = "blsp_uart2";
+-				drive-strength = <16>;
+-				bias-disable;
+-			};
+-
+ 			blsp_uart2_console_default: blsp-uart2-console-default-state {
+ 				tx-pins {
+ 					pins = "gpio4";
+@@ -1297,7 +1275,7 @@ rx-pins {
+ 				};
+ 			};
+ 
+-			blsp_uart2_sleep: blsp_uart2_console_sleep: blsp-uart2-sleep-state {
++			blsp_uart2_console_sleep: blsp-uart2-console-sleep-state {
+ 				pins = "gpio4", "gpio5";
+ 				function = "gpio";
+ 				drive-strength = <2>;
 
 -- 
 2.47.2
