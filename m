@@ -1,142 +1,136 @@
-Return-Path: <devicetree+bounces-169641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50411A97B27
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 01:42:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1582BA97B68
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 01:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D14417A5E9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 23:42:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4492917917F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 23:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBB220C460;
-	Tue, 22 Apr 2025 23:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36EAF21C9E1;
+	Tue, 22 Apr 2025 23:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="KmI9jC2K"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZC8qoxc7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C66D21517E
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 23:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7B121ADCC
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 23:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745365317; cv=none; b=FAiOueeXuyQGnx54lgoyeCzszH4EopoCDGLnW5EE0MrGps4qHmQyxu5CGzWHkQFN8Q2A4Qi5tV4mXb4euuvbHGKyl3ltMRQizIzRpXHBypH3pgsDrb0F7P8CahHhaXE4kzle52M1p3mQ9nMBLdwSJ1Ys+Yp9pk5iAr9i6EYHwNs=
+	t=1745366134; cv=none; b=pXE5eO+eeV1ZHTE4oXSiWWSvJG+HgpMQBHpl9hVd+XUh2i1yL5OKy7ygNUcR8S4O+arncmCr3JEFH5DEEtqObLFyi/GMrvCjMBAPCtJHbHc8NruXfxD9Mw72IL3Ie9pPq6NjCiUp6a0i23R/cBzaUDGC8YT4rsrBpuyF/qzJ58U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745365317; c=relaxed/simple;
-	bh=d7gFECswBR82rOuJZXYrMO6x34hzdB9wF7yn3yimsy0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fPXU/QmZx8iu2tU0hUc1FMNtGM7x1lAztaN+UoooeKMtbBb3ACy/RXvJQfMGhPGkX5ozh/XqC8/qwDN84MfcZ4FM052IESXu0YCkPMEs+x8Esv8vo2VRhZ/sqxz+879Cf1n8EDzyC0kxQrRUjKExyDeLN1ASP4m4ifTN3aAllrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=KmI9jC2K; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4774d68c670so71314601cf.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:41:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1745365314; x=1745970114; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=d7gFECswBR82rOuJZXYrMO6x34hzdB9wF7yn3yimsy0=;
-        b=KmI9jC2K6mVfdrT/JKcCjRxSZJ34NfN1lwMtmTTY44LQxNRxO9tyaiY9fNSN16ZlJB
-         OAqZSYK/zAUkC3j8tMdVWOgc69xj+tLv033Wx+xJ/R/KHsKd1Ggu+r/gj3NeIdYInPe/
-         1qe6+yFI05Tn5uEvkWkZPvx2bPfnAlLFOfB/QzQHioHm1R2wJ3TDC7QHzhPkgUL6fEu7
-         3Dp5G4CJVtD2a0lNTloyLnSKKzlpOekSTE+xT1XT7v4PvhcppkGh5+7AJJzz3yr5pi7H
-         SrVgZBuGjseZvEgJ/QoLnHT7zPg+4QdLBXpJRIpwJjM0THel7Jb/EmOCIB7UB93nw3lp
-         pniQ==
+	s=arc-20240116; t=1745366134; c=relaxed/simple;
+	bh=1uXwF1nWfvBIYeAK4gSOok5hMVJKS76PKakAup+bCLA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+DHZZzMueIpT3lPN8h+sQSoFtGeXVmO9z7fGR0h/BSj7z6+aJgQswBQQ1Ohgccfzd2NGTb+UCsvIdRSwMa84KUIjeJVDmtqYHtZX4J2/S4APFEaH4hTcld3/3plRPOg7zvVho8HbGLm/o3WjfFW9gCwYLQKNNcqsmOApXl7/08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZC8qoxc7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MKpG9w026348
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 23:55:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4SibCIoJLPofORnNhgtOkaJm+Ip5k/Pjt+gz3fvgMRA=; b=ZC8qoxc7CQdP2CNZ
+	gjEvDtH4JxQAupCMm8zmFo0A9OnDxqQcN9EQhmxlNjq18u8eyl+1FLs9JVM2tTnW
+	1Ed5xjXSFE11Hee/kETgt/S+iE+HKbjv7y4C0AF8fnPf0cHPaNxBhDiVOMUZZXOR
+	YdN6sJAm5Ar3H2hNPXztuj6BCd52JFYdZXZP4pS/+mTG9cNtuyrVHVUCum7f5Fgm
+	4qLouDg3BhBDzZycpLRgEIxHv/b7lpHAAR1gjJdhTEwzujwyP1JIDLJ8+C9KXAil
+	/RnX/8LAIKXK+zVr4nXBEbw6XmQrd3w+IiaOcb8fAhiR9dhaX+oc1vyCt4UZy0VG
+	JuU/cg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh00afh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 23:55:31 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-476695e930bso10114021cf.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:55:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745365314; x=1745970114;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d7gFECswBR82rOuJZXYrMO6x34hzdB9wF7yn3yimsy0=;
-        b=SSbxD4IQnHFoq3llmtH1WMyPi/JJBpr95Dry4PvEArETXZ1YQ4QmFwDEONf745a2/6
-         UiBBUbJm2y6uUqZhZEkaSmAuisqTf25vQcMBALhcyQF1psOLk1JRPXL6mfkRqwxxm/st
-         e1rZGR3rgq1Rixy0lACuryCvtDhJ/HUnG9HJ1XORKMij2fV4hBHzrjU/KHNcqHGso6FH
-         g8RBHgEX2n405XSAuF2tyltqXXsoqK8lX2GXF8j1ObxIj5n8uaYNe/FpyRFeIO9gVTBS
-         smrpv5boXfHx4V9zoRa5iG1zF5zgJ4nxEPSYybGUcKUCLGWZAbsriyp2Dnbnn5L3tjmC
-         +XLA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmi6tbv12EvOrPOAlii2BZ4I+7gMVUxuEBg5sYpiuNZhdeRuy6LVRVMZ6xwnHberoelO677X990Yib@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5ieKxPW8ATRt7GRLDr4l1SMoUw/uqFH5GG51anOcctfMcFtUT
-	nETBlXe1wkTc11OU4gL3U5YPZ8cIiKIKaebwcSvKhExvos81JYPvvBXWXHhZ3Ro=
-X-Gm-Gg: ASbGncvQYpbRHFLL+2M5xUdbYj5uBFLblSToSYwyvBr4/eZVyb/yXlJbpWD9DPUsgdY
-	pkfSf0qitgyZPv0odZ3w1F1DGPfxsoczkLEH1c1NkhSEqkuffGmjMZApPeDOTjYvaeVDrYo9n58
-	l42s5OhOtetjo5PQaKO4dnQIAdAE0ZrmHmcroHHm2AOzodM7Tp4jSwDLHSzgY5M4/Y1p8QQqObB
-	cxrGhF5DXDQhfz60ggLZDz+/J474xDeVh1dCWjzL6aSJF+nhREb6K7ea9zfTRCPPppu//lB0728
-	Z2rlE9OArl4YF9HmuAXgrx8856hJz4Sfqw4NnUBX1Qa49aIw5iOxvYIqFC7IQ8Wio8ZaBRjBCzA
-	IlPvcCMnjwYGpVHAB1tM=
-X-Google-Smtp-Source: AGHT+IHMJVzBS9ofe/pFhoyhF1nSXR0nkPPB8mnB6Kmq2s/kk2ojN9lhj/BWknemUlGIDrPDFrdQpA==
-X-Received: by 2002:a05:622a:255:b0:476:6189:4f30 with SMTP id d75a77b69052e-47aec4b5239mr303709741cf.36.1745365314381;
-        Tue, 22 Apr 2025 16:41:54 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-167-219-86.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.219.86])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47ae9c4d68csm62754761cf.47.2025.04.22.16.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 16:41:53 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1u7NFR-00000006xuY-19ey;
-	Tue, 22 Apr 2025 20:41:53 -0300
-Date: Tue, 22 Apr 2025 20:41:53 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: William McVicker <willmcvicker@google.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-Message-ID: <20250422234153.GD1213339@ziepe.ca>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <aAa2Zx86yUfayPSG@google.com>
- <20250422190036.GA1213339@ziepe.ca>
- <aAgQUMbsf0ADRRNc@google.com>
+        d=1e100.net; s=20230601; t=1745366130; x=1745970930;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4SibCIoJLPofORnNhgtOkaJm+Ip5k/Pjt+gz3fvgMRA=;
+        b=q0qHHWB4/2zbJOqjGPanpNXTw+ho0bAKtr1rhdaCBXimuCEGwJrC7fypCpryXOoA0v
+         e8kdVQP2UH2JUlAfzBiwR3uc9MR7Qv8XrbaeCob0hzYfOS9ytnjm34Lrlx9SaS2FOPRg
+         O/GYRJ2eHqXCB6q/d3qPZCpxQcko3X0ZrvMBdtA0DVI2JzLrde8pen6nSwOA96QbEBsl
+         Op9bXlqQE+P+ZUNnSvzy6h0K9thk9ZfJRG9VgSLd31oQB7Q0Z4WhAO1HqpbS0YKH3f4I
+         PT2aYxnrUuWVdscgxg5SogzTOBaGIBJ0qe+cj8W3IgW+CH0amGv6Aep6LQK2KG4hhbXu
+         uOhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCViQ0AZS56KvzEfUwHReo5jKM95+N4e92UlX9khsVbPO4qKsqJMvecDVO2uc9njixHzEyz1xldHSI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0lxPSJyWpxrvS2rsjPtTXQMFk+n5XN/EHGeeGJyTfztB9yMNt
+	OiNVbszJsElZcxvjM3H+4H5ukkj7UV0rCp4m048SHhx96PHN3x1Rg0P+OBTebCrz4rfTqIX/yfV
+	iRG1DXwe4ayikxCdXxiNKnqiWWKGS7zit/2/f3A/tkH0nBSsm/kzO4U5qutbr
+X-Gm-Gg: ASbGnctpe/FTzn5anNTdjkyqkPqSnc7CkFGZk0ikFiijn9mPZgG0HAUrXakEVv63Hf2
+	lV1yrpCa9S7UpKazWunZWbM/D3EdPXNYQs9K/1/cMxj+K3/gdC8i1vwu0xMlfASz4xf4OM3dS9n
+	NVyUwAPlTIIZo4fq96VqdcMxmrPZFPN7QezsraVe5ncgEV15Fqmco1a7vRM4g72jWZP08dFtaeB
+	gxMQ5AAPx0VsjO3chMkbtprPW8rCEmlshAcygmbk4EJ4mpAMtdciMeFwv7/LeArW1gII05UBolm
+	CMNQ6f4hOS7xjnxL2+ETGVh9fjYkJ01+RFBctgaKli/9xfhUIqAFX1EZsKzw5vtjIrw=
+X-Received: by 2002:ac8:7dc5:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-47d1d9cd5cfmr5273001cf.12.1745366130609;
+        Tue, 22 Apr 2025 16:55:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGR8WOuTeaBqmC8HY7gKGm3GRXoWCrCxlpeSTPYTgdFKgYeceHJhp2S7nDIq6tfwkx7ivcQ5Q==
+X-Received: by 2002:ac8:7dc5:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-47d1d9cd5cfmr5272961cf.12.1745366130332;
+        Tue, 22 Apr 2025 16:55:30 -0700 (PDT)
+Received: from [192.168.65.141] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f6258342fbsm6701884a12.49.2025.04.22.16.55.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Apr 2025 16:55:29 -0700 (PDT)
+Message-ID: <8c0c0740-3f75-47dd-8f11-c03fbf8b1583@oss.qualcomm.com>
+Date: Wed, 23 Apr 2025 01:55:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aAgQUMbsf0ADRRNc@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add support for Sony Xperia Z Ultra (togari)
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Kevin Widjaja <kevin.widjaja21@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250419-togari-v1-0-45840c677364@lucaweiss.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250419-togari-v1-0-45840c677364@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIyMDE3OSBTYWx0ZWRfX8cbEROdxn590 wm1znQ3YwdfnGIZyL829wIlpRDuaAOdo/Cpks03zdQDeyYnkDRGmmwqAXBxYtiVqDe6xR2vy0jy 8wZd07jpeXH/vcJ5IUFo2js6kiQk+L+LYgHvmNFnOf5O2mTeX5P8AjKgAZ2y32inkLA/uBE2w9N
+ lklDe9hwXfvXTXYYbDye2r0VbI6AxXtFxgZC6+s8kAuxYQzRLWeoPsCbbCqTETvX3D3Wl7TbGP1 xTYlQnspd7LfBFcUmETytVgbRff8TQNt9AdnHXGROWVAPez9VGAeQWtUWiZnyjN4e86IzEOp3V6 SvLB6MxwAxc3XB3ByOGxTlHdKqh/WZjrNt1XTZ00vkwvX5hod4PbMHz+IR4VNrt1Yt/Sxh0koeG
+ 4VD/euxqFeCnWKm+dndLinurFr4W+w61vRYDec0FzSLudHDDXaV4/aeeVfaF664nKzQmk+eC
+X-Proofpoint-GUID: 05oqPet7TTo5xIwgEKK8hC_hAnDCHXWr
+X-Authority-Analysis: v=2.4 cv=ZuTtK87G c=1 sm=1 tr=0 ts=68082c73 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=dlmhaOwlAAAA:8 a=Kb3nHg1V0brCK_6dO4AA:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=y4cfut4LVr_MrANMpYTh:22
+X-Proofpoint-ORIG-GUID: 05oqPet7TTo5xIwgEKK8hC_hAnDCHXWr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_11,2025-04-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=984 priorityscore=1501 malwarescore=0 suspectscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504220179
 
-On Tue, Apr 22, 2025 at 02:55:28PM -0700, William McVicker wrote:
+On 4/19/25 11:00 AM, Luca Weiss wrote:
+> Do some tweaks to the common file for the devices in the 'rhine' family
+> of Sony devices, and add a dts for togari.
+> 
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
 
-> On this note, I was looking through `of_dma_configure_id()` and am also
-> wondering if we may hit other race conditions if the device is still being
-> probed and the dma properties (like the coherent dma mask) haven't been fully
-> populated? Just checking if the driver is bound, doesn't seem like enough to
-> start configuring the DMA when async probing can happen.
+I don't really know for sure, but maybe this driver could be suitable
+for its touchscreen
 
-I think the reasoning at work here is that the plugin path for a
-struct device should synchronously setup the iommu.
+drivers/input/touchscreen/atmel_mxt_ts.c
 
-There is enough locking there that the iommu code won't allow the
-device plugin to continue until the iommu is fully setup under the
-global lock.
-
-The trick of using dev->driver is only a way to tell if this function
-is being called from the driver plugin path just before starting the
-driver, or from the iommu code just before configuring the iommu.
-
-Given that explanation can you see issues with of_dma_configure_id() ?
-
-Jason
+Konrad
 
