@@ -1,54 +1,57 @@
-Return-Path: <devicetree+bounces-169174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD7EA95C4F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 04:49:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D69A95C7B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 05:07:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B77D616C9CB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 02:49:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AAFB1896435
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 03:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98CE347A2;
-	Tue, 22 Apr 2025 02:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8D318DB1A;
+	Tue, 22 Apr 2025 03:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="czg1r706"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WWBOz97n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AB5196
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 02:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808E0EAFA;
+	Tue, 22 Apr 2025 03:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745290160; cv=none; b=StSlmQYZZIR7a7KracLyXJ3m+xZ9RNHlmoDPswdGYf0hYo9CZGJnhxSPqcb3F5d6WoExcCR8lmyco8LwquGyAw3sb0jNJRstg1v2fTs9oBc4zFaW4JQrLdZcaD8aUgaG2Rt8oPRbo3x2sYYjZtVPIbYZBmrdpg+vge5XbMebmwE=
+	t=1745291267; cv=none; b=p3jFmXf8uGZdW5fXCQXY9b5GGozP1D6sMe3o1uBxCY1YR/ggq9SQ7bSeomBCvS1ufry5EcPhQOE1IpKzPWZYZP/m2ejEyX5ccHisFkW/ikqKzJwYrAcFJdeeh+KaxoAprpeMhgAvctQp4cBd56WVoy/WwNRUNz0+EY+/HbdEQ0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745290160; c=relaxed/simple;
-	bh=G6+dnTJ/YNat46txBZhlm1KMeHdftCHNu4LxP/fY/P0=;
+	s=arc-20240116; t=1745291267; c=relaxed/simple;
+	bh=hDLIaVfCxpkNARq3mDMRwM8hQH3+H+6ffO0Q6/SvR/Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uqPsa2XQt8vb4sNZdS5W7DE6RB7HQ/KFqTLerLCGzDnTpx4w0bZuK+NpN3cbPpppWddMz1e5vDm1vrTirOJFirbOdIM01poHkgj7ZyAyR7U1Mu69LLGvlHv9nDmKhC6Nw4qK6fI41vby+tOsHYjczCIJe+WeJDpOaIbuXHCRbvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=czg1r706; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=KvogLW0vTftTbQ5YeleIkJJD9iVzSYcjCsYzzdeUXSP2S5TdDR2rZsJBufjKDd3XXlWEYipcwDp2Bmibwy0G7+tCvNzrz0h2guotTT71YNBUGwaq4Ii2SOkLHrnyK9sYSblKOTMXsWV8E/JodrfXt4abrNtGAAa68AXjQLJnK7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WWBOz97n; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=trhyNIM9mIFtIbavFty/Wnrrd5K7EkciM85AXCfhM0Y=;
-	b=czg1r706O01f0jhnKMve4+UToK2y5T1nFdPfcJ53ettuM4ljIj1Phpk7/FTSJD
-	RBzyEAxFjz4jdWPrnPQ7L8rb/Ci/RVyH4d7e1EI2LV3FwBdN0YPY5UkdkX+PBYDQ
-	ldDWmOobM5AU3xruIhPfdqb5AvtIEU7k8NNRd50lexVxU=
+	Content-Type; bh=n/JvTCs/sCVXGz6hg3teVfW2as6Q4XHGy/um0GGV72Y=;
+	b=WWBOz97niOMrfuAQf948QNWtsLZb9k2XaXOOyu8avbFG4LiblVDbZQnmyDbBF+
+	TEzEtT4BJdWMlk0tF5t67UTUQFFVM2GrVC3dtXZUMDyi6q1m0ZQBKkE5GZvdC+E4
+	H+R5SViHRoN16UWNs4aptgkEw1WBKo77y+v4OvUtuBwPI=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgC3QjyGAwdofxCrAw--.442S3;
-	Tue, 22 Apr 2025 10:48:40 +0800 (CST)
-Date: Tue, 22 Apr 2025 10:48:38 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXbUbXBwdoi1GrAw--.548S3;
+	Tue, 22 Apr 2025 11:07:05 +0800 (CST)
+Date: Tue, 22 Apr 2025 11:07:03 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, hector.palacios@digi.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v3] ARM: dts: imx51-digi-connectcore-som: Fix MMA7455
- compatible
-Message-ID: <aAcDhqrCthjDtKbw@dragon>
-References: <20250317123109.2216509-1-festevam@gmail.com>
+To: Daniel Baluta <daniel.baluta@nxp.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, krzk+dt@kernel.org, conor+dt@kernel.org,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	frank.li@nxp.com, aisheng.dong@nxp.com, daniel.baluta@gmail.com,
+	laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com,
+	iuliana.prodan@nxp.com, a.fatoum@pengutronix.de,
+	mathieu.poirier@linaro.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] Configure imx8mp dsp node for rproc usage
+Message-ID: <aAcH170yqRMMwVXe@dragon>
+References: <20250320121004.2542314-1-daniel.baluta@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,22 +60,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250317123109.2216509-1-festevam@gmail.com>
-X-CM-TRANSID:Mc8vCgC3QjyGAwdofxCrAw--.442S3
+In-Reply-To: <20250320121004.2542314-1-daniel.baluta@nxp.com>
+X-CM-TRANSID:Mc8vCgCXbUbXBwdoi1GrAw--.548S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxpnQUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBB83ZWgG2pu5jgABsQ
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUTHGQDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBB83ZWgG2pu5jgACsT
 
-On Mon, Mar 17, 2025 at 09:31:09AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The "fsl,mma7455l" compatible string is not documented anywhere.
-> 
-> MMA7455L is the exact same device as the MMA7455, with the exception that
-> it is lead-free. Use the documented compatible string.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On Thu, Mar 20, 2025 at 02:09:50PM +0200, Daniel Baluta wrote:
+> Daniel Baluta (5):
+>   arm64: dts: imx8mp: Use resets property
+>   arm64: dts: imx8mp: Add mu2 root clock
+>   arm64: dts: imx8mp: Configure dsp node for rproc usage
+>   arm64: dts: imx8mp: Add DSP clocks
+>   arm64: dts: Enable DSP node for remoteproc usage
 
-Applied, thanks!
+arm64: dts: imx8mp-evk: Enable DSP node for remoteproc usage
+
+Changed the subject a bit and applied all, thanks!
 
 
