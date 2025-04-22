@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-169332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB11BA966CF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:03:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B9AA966D3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:04:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 990BC3A1B12
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:03:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79C59189CAEA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6AEC275852;
-	Tue, 22 Apr 2025 11:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30552750F3;
+	Tue, 22 Apr 2025 11:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wvdVwnhq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NwHEIMze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945BC275840
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:03:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2AE71EFFB8
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745319824; cv=none; b=IA+Q48oYiYqxv35n7dxrH5a0qwT1uJG9BAfzLOgPJpK/hKBRkh7yEDqMwwsr3kIcYqm5FkvvbyIHSn2WEfwWORI/FrHKcj3QIlD/fQb3QBmWxBnV3C6zTynaUw32G6TtwKokGekvhrIbg/IzLRNqM2CMU0P14Xw1cE5Q51KcTos=
+	t=1745319857; cv=none; b=dOsos/8PH46FE72FEWsd6vClVzUUcnq2H7urUl1S9zGd0zDIkDRxlDl2wBXfdX3QrZPI6rzoDTmn87awkCnWR1uzZDHfgvGzpbWst8e8ix4/Og7mpoSVtOuKaRbUyaMlFhJ9D+ugNM9Lc1orTa79d7uNUPyBiDeXkPjhHQ/aWeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745319824; c=relaxed/simple;
-	bh=huaRCgTVnoU4ujqM6yRWiZZZluuDLRVVHL6ECRdplqs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jSYV7OcG5+UYuolyYqIa27TF1aGt2f/0WxSNYl3utyFG8i6BQwTCz5jYVe9L1D3/PikbNq98LUus0DBS/Y+e4Rrlkw57ZuWtL7+mJTy16RpvzDoynNbobFkdhw1FImYP31DZqSAd6YhJBRyPh4o8wYGfDUT/ijAQBamWwX4IOg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wvdVwnhq; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1745319857; c=relaxed/simple;
+	bh=uV6ujamVStXpEvao7zFqfEA0uxJwBaOVhk8e6yHSv8Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K/+AXV6W84E+vJVvfoZHMNeK8V8VuzisYqzAatqzRrpWaFpaS466EgeWa+0cO0R6vZCdfSZKKXf3FFjgBvNVcZDYr2sX6vReqNl4Kqs+iwS9yWSmYCXltwww89b64E513B9E5nExugB6Va+mE2maX786ch9acmu2cb8vTrpCZpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NwHEIMze; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ac28e66c0e1so616905866b.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:03:42 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so57465205e9.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:04:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745319821; x=1745924621; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hPR5KSp4R+lImMTEyIVXZliHdY6c2d0H/1+T0vAPSew=;
-        b=wvdVwnhqIAH50n8DitYGfa11jqjXHOkeY6WSqsaCvD0iYzIxlPs+fc+2HgJfGT1f3Q
-         HDInH5nVrB1VWjUd1J31sbMzFGKr03ZJo9SnMUIMftSRFzotTVT2jJb+OpswmgSGrtm2
-         Xg1hEJH+M6NPUH4GuEEmELV0FjMjoq7ZGeCD6p/J46VquDb9qbe2U2KxvWJEW+11fZG8
-         wkq1yC96nHwOTfLl/GzDrLxpE/QMKbsziRArpTFxg777hq5cJcGd7Eu8CELAMiX1xdYv
-         CwIkFQIlIS8+69+roQbtRfofl6sA7K7er6PWMStykNaU5QPz2IDzUGiHTPaCYNVL1rRQ
-         2tsw==
+        d=linaro.org; s=google; t=1745319854; x=1745924654; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=stczcmLF4CwDu8wpHpVgUDiohWhx/z3wF2KWIWtxeUA=;
+        b=NwHEIMzebIozlxCGTqBCIZz/uRx6uhsCEVE1CwXfyrf5JAWF4WOE/XbGW1JXvFPUaJ
+         QF4LWqRYYFd1tqTfn21oVIDpV9bLt0bIGEtJV78Jm7PeKWvZn9ULMD4ws6JKeUbTVc2s
+         b7Zdiovx9rETsB/fGHWsmcaWWfNGr7VrUp//gyV/oIxesDDq1fezCkLbDtVq32ZtN9BY
+         ZQA3ttW2SONVq3e2lPjgfyx0hLihApxZPDOZGst8DnwFFoRUqEs0IXUbs2AN76LEzTSE
+         e9v0s1DWeFSn8kDtW170eEz+D5Ex50sU1iQ3c9plfDNtzZLT7v7jcscFLsoAsste8IZz
+         SU9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745319821; x=1745924621;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1745319854; x=1745924654;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hPR5KSp4R+lImMTEyIVXZliHdY6c2d0H/1+T0vAPSew=;
-        b=dd22xHNM4Qqi4/P2yF4vuHkOjNajcWIC4ROAdRR8lALyJabh+zrmuFadKZzIARyxjN
-         TN2QssA2CoDenXy4h7xaRTiCpeap9hzYds0f938UoQ7ALseXjisMBkFD8tkinj7694cY
-         CDX972RVt0Guo7ofD4PeYsMiL+nZSPLyVdjAjlF7ZKOh01pFEuh/Ragc5xIfiJ4hYy7v
-         0xYxjorXzVmfsgbZwmqIQXgd5kkxYkEKGnr5br9vY4Q5R59zFXt+9o2eDPW/3exAIXit
-         F8erKkbLhV8lsnqdu3c0HMlGdDf0slj9Ax+pbELNRsuMshYD2Pbn41ekng1844Z2PVE9
-         STQw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8fV4ZuSZIBycp5KLCVJM/rTl5oX1Iot4fI6Fn2f4gXjYBrkto29uv5pHDJKfh/4jD//lrQyXOB4TL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyemvRJp2BibsIpAcfaMN6RBm1em4uMXa+HiscbCSJOejRLqXvs
-	zxk3GP2gbHL6esMMF6VEOlR5FuSxZIo9eJbLu05OCWMwa1RoAaZwlsIy85tzfGM=
-X-Gm-Gg: ASbGnctL9wuXViHjHmb0cGhg6Sj4AUh4k+d/hy6Ojq45Ku1uZK4AzPcBRNGlqIP+gcR
-	E8lSupL+VmxEuTq5lklQNxWKCYnQ+vrKDCzQzwJSSfhfMU3jc1bF+2sj7B2JWr+alDFl9nBkpAc
-	OgWJOb8srIHVw/X9eLJP3WgQ9+XrPxgp/WPQs5I7fEeC9jHdg857ocarPN+oQpEUS7aw+qW7Tak
-	nK5nQmYAZKROIn2NVAhYcm/+HEsUyFXo5xEnzOkDfgwwHfDhKId8bMABu1P3PGwBHS8kj6/wkJ6
-	Nru0dyUfa0nS+H/zZzLnSvCd43kIk/i9w3jbk00=
-X-Google-Smtp-Source: AGHT+IHyR8xd5cZJWHsTUNdku8nt1qwWkdqsAnZ5XMN2nR7jFivttenunL1Z4EoJjDpq0m8Ab7J8BQ==
-X-Received: by 2002:a17:907:7b96:b0:abf:742e:1fd7 with SMTP id a640c23a62f3a-acb74dd80c8mr1391000066b.57.1745319820709;
-        Tue, 22 Apr 2025 04:03:40 -0700 (PDT)
-Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6efadd16sm653085466b.172.2025.04.22.04.03.39
+        bh=stczcmLF4CwDu8wpHpVgUDiohWhx/z3wF2KWIWtxeUA=;
+        b=QAVi1uSaswPYu67KhIbiuur3ZOD2zZDF8dXKgEHOq6bE7GXMnmVXFl4XnXoKUhDGz/
+         /8NF19xFu2xvIDoqPSdAflPFinwa+i90JjTu/fd6pBbKqHK23qX23SeTrh7LklbGaxZ1
+         sISR+GO/4OT2JAVwa9H4DGxBos+wYbEz+oy+7OU/KtOxStBE7DT1sMSYqIDt3F7sZbWB
+         cE/2rrRA7zRVSxnIUMJsqEVWQqRvEqZFobHFupImrSv62QzPehJ5KGyTBunr2o1ZqQjQ
+         g6kacGunC99ONNrf4cZbYZo6ACOJijs6PsjDGWvByO37lQXfEobHanI+73E85CKAFntR
+         0Awg==
+X-Forwarded-Encrypted: i=1; AJvYcCUm38J37MA/3yJj2WYOVKI5bCicj2wmjGCjNSFbiNhUtmGza1kQlzFq3yzxCblIVwaZ/huqJbEvr3dz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDr/4dFKjOxLH6yezTiQnRYehjM01iW8eLZ86lW47wAS+MwW7c
+	lwVR0qOq3zt9D1UC8HNGr5CZOVRkJsAB/VD9LaGobRLXtw+e+22XadzAHoEArx4=
+X-Gm-Gg: ASbGncsgAotGVj3E/Psj2OKVI8u45mIgY2RDDVo2i9V8aUb9xSZ2y7HFUaLNqhhLjlZ
+	rFGWmgQi1mfzPete3HbLVP1u3B4gTrGv4VzybeFaG8uhxBrNJCFBEbe4/weGu0ebZMcWeciE+IC
+	PtP+RrAtGq7+D9dmhyN5SERjO9F/zV8FtOJUWHdaxm69+uZBEgtjnbusIxWLL0+vXT9rE2UEhUs
+	HP8NZD4QLc7usCQHz/t5wGiujL+EDR+I3HinO0McxFvObieCvK8T8OJFA/mptmgDdr0h3qFoKdy
+	9PTcFWZ5Lbhck6733go5fvqXsBwuv76CqOPB1uC0cW9icWxMLPYKS9e6kv4Ll8dthQ==
+X-Google-Smtp-Source: AGHT+IH2uZN2Zbzw3YJ2WJTh6/sZb1U2AgQZkrjJhlf1vz4G/pbKrEq84c6eL9i7fbiSyw55mnPV5A==
+X-Received: by 2002:a05:600c:1e1b:b0:43d:22d9:4b8e with SMTP id 5b1f17b1804b1-4406ab93fb0mr172402695e9.10.1745319853872;
+        Tue, 22 Apr 2025 04:04:13 -0700 (PDT)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:8847:e39a:2a2f:e614])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5acddfsm169609725e9.15.2025.04.22.04.04.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 04:03:39 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 22 Apr 2025 14:03:16 +0300
-Subject: [PATCH] arm64: dts: qcom: x1e80100: Fix PCIe 3rd controller DBI
- size
+        Tue, 22 Apr 2025 04:04:13 -0700 (PDT)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH v2 0/6] arm64: dts: qcom: msm8916/39: Cleanup/fix UART
+ console pinctrl
+Date: Tue, 22 Apr 2025 13:03:47 +0200
+Message-Id: <20250422-msm8916-console-pinctrl-v2-0-f345b7a53c91@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,68 +83,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250422-x1e80100-dts-fix-pcie3-dbi-size-v1-1-c197701fd7e4@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHN3B2gC/x2NSwqFMAwAryJZv0BSP4hXkbeobdRsVBoRUby7x
- eXAMHODSVIx6Iobkhxqui4Z+FdAmP0yCWrMDI5cTZVzeLK0xEQYd8NRT9yCSolxUDS9BOtmDMz
- kfdlEyJUtSba+Q/9/nheHQUqGcQAAAA==
-X-Change-ID: 20250422-x1e80100-dts-fix-pcie3-dbi-size-56fc110aa36d
+X-B4-Tracking: v=1; b=H4sIAJN3B2gC/3WNywqDMBBFf0Vm3ZQkPmi66n8UF9GMOqCJTCS0i
+ P/eVOiyy3PgnrtDRCaMcC92YEwUKfgM+lJAP1k/oiCXGbTUtayUEktcbkY1og8+hhnFSr7feBa
+ yMYPT2nboHOT1yjjQ6yw/28wTxS3w+zxK6mt/zfpvMykhhVWuLNEaU3XmMZO3HK6BR2iP4/gA0
+ pSsg78AAAA=
+X-Change-ID: 20250411-msm8916-console-pinctrl-069fd22abedd
 To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Johan Hovold <johan+linaro@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1161; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=huaRCgTVnoU4ujqM6yRWiZZZluuDLRVVHL6ECRdplqs=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoB3eFYQA6McFojm6TYHFp6Ic5jRHrXj/gA1xhF
- pfaTBGh8RWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaAd3hQAKCRAbX0TJAJUV
- VizBD/kBAO13UvafFHuA3rOP4JUWc4uMmYjD+jqLpWQcZbcApHDYnb24+PkReRkMPaPu5IUAzX0
- DTpoBjqQkiYL0G78akN9YE1rD7/mZSjV2AcNUhPiKfDxMaiYx1EO5ieL3pwuS8VMmSE/5hLx5Wo
- 9jleY363mhEiJw4vIj/B5f8Lh5qA6gvvE8sUgbUiI+QQzAHCdJioAjX+RL73pbLIRMtcLQH5XLb
- 1Mc+8KpOgBsYgRsM/kPTtEX85zw96blxV7acKRp62HoZmtIrpi9/1/UdiORV7IvDXx6DDoBk8OV
- 1/FXlFGvmwlTKjK0KMFRCgi/aIvpXXniZMoX6y+PVZwSf4VT9OJjK8juWx3uWjke64SBzLkATdr
- 9hdznYY+UOT1aINlOSV680ETpI8RqW1lYmylx7wGdKVESJ0WikLpTbGxtUSJ3Xjm6/EnNvmsToX
- fUyREDIONpOsY352SaEQ9ftKQLXeBVtXEFmH8LrPxumcNtTXbpXa0zdmwRivjYSBt5/xyGrVgPI
- c3uBcP0cAuwdp7UWjhT2dnmwM+pQhKo/fMZohSi6Wkzj8pyqFH8JdvdSE7Q4QhAOO/TEWChxvpp
- Hadh3jNo2NeFahuB2zCbhch+BW7A7Aw+vSjcIfPvMolJ94Bs1P8el4B6ex5lm8RPAjclMLXgn1D
- myFCohF9ZsUXLcg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sam Day <me@samcday.com>, Casey Connolly <casey.connolly@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
-According to documentation, the DBI range size is 0xf20. So fix it.
+At the moment, msm8916/39.dtsi have two inconsistent UART pinctrl templates
+that are used by all the boards:
 
-Cc: stable@vger.kernel.org # 6.14
-Fixes: f8af195beeb0 ("arm64: dts: qcom: x1e80100: Add support for PCIe3 on x1e80100")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+ - &blsp_uart1_default configures all 4 pins (TX, RX, CTS, RTS), some
+   boards then limit this to just TX and RX
+ - &blsp_uart2_default only configures 2 pins (TX, RX), even though UART2
+   also supports CTS/RTS
+
+It's difficult to define a generic pinctrl template for all UART use cases,
+since they are quite different in practice. The main use case for most of
+the boards is the UART debug console. Unfortunately, the current generic
+pinctrl template doesn't work well for that either:
+
+ - We need bias-pull-up for the RX pin to avoid potential garbage at
+   runtime when the console UART is not connected, but this may be
+   unneeded, unexpected or even unwanted for other UART use cases.
+
+ - U-Boot needs to know which pinctrl to apply during early boot stages, so
+   we should specify "bootph-all" for the console UART pinctrl. It doesn't
+   make sense to apply this for other UART use cases.
+
+The solution proposed in this series is to abandon the idea that one
+generic pinctrl template can fit for all the UART use cases. Instead, add a
+new pinctrl specific to the very common console use case, and move the few
+other UART use cases directly to the board-specific DT files. This ensures
+that people are forced to consider what exactly their UART use case needs
+when porting new boards.
+
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 46b79fce92c90d969e3de48bc88e27915d1592bb..34ccabc3cc302b17e944b4343a37fab0bb6334e9 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3126,7 +3126,7 @@ pcie3: pcie@1bd0000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-x1e80100";
- 			reg = <0x0 0x01bd0000 0x0 0x3000>,
--			      <0x0 0x78000000 0x0 0xf1d>,
-+			      <0x0 0x78000000 0x0 0xf20>,
- 			      <0x0 0x78000f40 0x0 0xa8>,
- 			      <0x0 0x78001000 0x0 0x1000>,
- 			      <0x0 0x78100000 0x0 0x100000>,
+Changes in v2:
+- Add new line between tx-pins/rx-pins in PATCH 2 (Konrad)
+- Squash patches 5,6,8.0 and 7,8.1 (one patch for 8916/8939 dropping the
+  generic UART pinctrl templates) (Konrad)
+- Link to v1: https://lore.kernel.org/r/20250415-msm8916-console-pinctrl-v1-0-a1d33ea994b9@linaro.org
 
 ---
-base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
-change-id: 20250422-x1e80100-dts-fix-pcie3-dbi-size-56fc110aa36d
+Stephan Gerhold (6):
+      arm64: dts: qcom: msm8916/39: Move UART pinctrl to board files
+      arm64: dts: qcom: msm8916/39: Introduce new UART console pinctrl
+      arm64: dts: qcom: msm8919/39: Use UART2 console pinctrl where appropriate
+      arm64: dts: qcom: msm8916-motorola: Use UART1 console pinctrl
+      arm64: dts: qcom: msm8916: Drop generic UART pinctrl templates
+      arm64: dts: qcom: msm8939: Drop generic UART pinctrl templates
+
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 21 +++++++++
+ .../boot/dts/qcom/apq8016-schneider-hmibsc.dts     | 41 ++++++++++++++--
+ arch/arm64/boot/dts/qcom/apq8039-t2.dts            | 28 +++++++----
+ arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts   |  3 ++
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts      |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts     |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts     |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts        |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-lg-m216.dts       |  3 ++
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts      |  3 ++
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts      |  3 ++
+ .../boot/dts/qcom/msm8916-motorola-common.dtsi     | 11 ++---
+ arch/arm64/boot/dts/qcom/msm8916-mtp.dts           |  3 ++
+ .../dts/qcom/msm8916-samsung-a2015-common.dtsi     |  3 ++
+ .../dts/qcom/msm8916-samsung-fortuna-common.dtsi   |  3 ++
+ .../boot/dts/qcom/msm8916-samsung-gt5-common.dtsi  |  3 ++
+ .../boot/dts/qcom/msm8916-samsung-j5-common.dtsi   |  3 ++
+ .../boot/dts/qcom/msm8916-samsung-serranove.dts    |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi          |  3 ++
+ .../boot/dts/qcom/msm8916-wingtech-wt865x8.dtsi    |  3 ++
+ .../boot/dts/qcom/msm8916-wingtech-wt88047.dts     |  3 ++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              | 55 ++++++++++++++--------
+ arch/arm64/boot/dts/qcom/msm8939-huawei-kiwi.dts   |  3 ++
+ .../boot/dts/qcom/msm8939-longcheer-l9100.dts      |  3 ++
+ arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts    |  3 ++
+ .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    |  3 ++
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 54 +++++++++++++--------
+ 28 files changed, 217 insertions(+), 59 deletions(-)
+---
+base-commit: 39155a896925c3af2156ad61e821aa9fa5a1dbdb
+change-id: 20250411-msm8916-console-pinctrl-069fd22abedd
 
 Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
