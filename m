@@ -1,194 +1,224 @@
-Return-Path: <devicetree+bounces-169374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB982A96885
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:04:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B18A968EF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03151168C76
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:04:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66AEE3BB8C0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B33224AE8;
-	Tue, 22 Apr 2025 12:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF7A27D76A;
+	Tue, 22 Apr 2025 12:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OGpJAC0V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eo39yckB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A52614658D;
-	Tue, 22 Apr 2025 12:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E0F27CCCF;
+	Tue, 22 Apr 2025 12:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745323478; cv=none; b=QNqfExSYVMz2gHvNoV2X62Gq21n0FkO7vPXGwdx2wNOD1MtRt01kvLxvc8n2lSAKcTk8413qPyxFAUcVITX7RvxPa/AKSEfHukbChKaOly8zsriM1AFed6h9eZ3v0wG5D2IF0/kgrrfvtSfiZuEK5txFNjrpN3KckYbSRE3Zfak=
+	t=1745324320; cv=none; b=AqUE9vEKei/gmQJsBt93BauW2rr9vOO8km3wuZ4Nqp7fFUM4aUa9rNA8R8QDICHoGQCp2HT1kpkx4DkGfCphIp9iJvSXKHewzwFi7Zs877tK6GCvf9S30kvpQMQIHRN4mTXTAOPXf8IO0i0OjYf14jjW2TyXIk98Rg2INPpZnWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745323478; c=relaxed/simple;
-	bh=5Pa8g3IJqdhiZWX0wLsFf/nB0V8aFoefwW3jLed1Oiw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pO6gyqsCua8FTDyRK8ar9Z09vtZPBCjXze3WnuWgSchCU/gy/viMO3CtfhLn7CQ25Vn2xszs12xAK89hMusHmMpfbx/lShSIWtaUJ4m5NB7bmvYDLJ6Y0vKAo/HPMZUFpgqLYoZ7fOf4ed3P0aRS716NjvV6erWP5klDpqCvI1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OGpJAC0V; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53MC4Lkr1937743
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 22 Apr 2025 07:04:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745323461;
-	bh=oPoHsPfy/OgluxiJX0tnkjqLEl8vAeTNXImQ3O20BnU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=OGpJAC0VuVGOA3kOuyjgqGq8wsS0jXgYJnzMjjBz0VafePx6UoBIIZAkruXPKloTq
-	 a7VGhNc048jSWr9uKP1GpMse6iaUqQCqQYUaXHVwEx0RYER+seXV1F+O5VvMX93rO7
-	 ap+k5QnhRF2zQsdcFdd8TdPBIiPKfAecr1rFQGRk=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53MC4Lnm129809
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Apr 2025 07:04:21 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
- Apr 2025 07:04:20 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 22 Apr 2025 07:04:20 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53MC4KYl099080;
-	Tue, 22 Apr 2025 07:04:20 -0500
-Date: Tue, 22 Apr 2025 07:04:20 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Randolph Sapp <rs@ti.com>
-CC: "Kumar, Udit" <u-kumar1@ti.com>, Matt Coster <matt.coster@imgtec.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns
-	<frank.binns@imgtec.com>,
-        Alessio Belle <alessio.belle@imgtec.com>,
-        Alexandru
- Dadu <alexandru.dadu@imgtec.com>,
-        Luigi Santivetti
-	<luigi.santivetti@imgtec.com>,
-        Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
-Message-ID: <20250422120420.iv2hbaf4ykqazvlx@bleak>
-References: <20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com>
- <20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com>
- <8017c015-73aa-4807-a177-d5391e073981@ti.com>
- <D9CPY0IDAJSR.39JPPAXZAUNQE@ti.com>
+	s=arc-20240116; t=1745324320; c=relaxed/simple;
+	bh=zGIA3giuG78kc+j93vXPJJvT30mzAC2qUyglKlcVYtw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wg8z9UDn11CEQfnbQ1YKuZ0HyZo+wAnbfuES5XIbPVaoV58jsZarDc4tZr2s9nrK/SsRFK/vR8Yuv6rZ14UGMRAclNKT+TqS0bQ+hdp+VEviLvbdYVplfHxx2nLtON0R68WAG4O+RIsdssWHyx8g5tVEe9ujj/hWVlHRo5csnVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eo39yckB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29E36C4CEEA;
+	Tue, 22 Apr 2025 12:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745324319;
+	bh=zGIA3giuG78kc+j93vXPJJvT30mzAC2qUyglKlcVYtw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Eo39yckBjPwIQKtznL+1UvdBuAwI3WYn9qkWSEGBzf/uOatdo1uzcddLl8R/KTPbu
+	 Hu6saBCpgnunIaquZiDtlofgwbJO3Rej8YmuzNHdcWMgdQIt0uFRM6lEQZcMK6+7SL
+	 n9RUYeOA8njFMuSbjvX8/STWX/1z7rC+xDwOaxxAZYxS1eF1yhs8WPX0CEDqpa2phe
+	 07mCC0N6FtdHcxrPQ0aPs3MNsp0EI8tmTOsMI4IB1vtDSAglnbtUVLui7coW4LBFVU
+	 UoNulww5GYTMdWOzoCO4AryDvq4s20kLwcqxpWQrnx2mMchmuJEbC8udqFL5D+eeaN
+	 iRTYyVO1wgTxQ==
+Date: Tue, 22 Apr 2025 07:18:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: Tzung-Bi Shih <tzungbi@kernel.org>, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lee Jones <lee@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	chrome-platform@lists.linux.dev,
+	Pin-yen Lin <treapking@chromium.org>,
+	Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
+	=?utf-8?Q?=C5=81ukasz?= Bartosik <ukaszb@chromium.org>,
+	Jameson Thies <jthies@google.com>,
+	Andrei Kuchynski <akuchynski@chromium.org>
+Subject: Re: [PATCH 5/7] dt-bindings: usb: google,cros-ec-typec: Add ports
+ for DP altmode
+Message-ID: <20250422121837.GA734359-robh@kernel.org>
+References: <20250416000208.3568635-1-swboyd@chromium.org>
+ <20250416000208.3568635-6-swboyd@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <D9CPY0IDAJSR.39JPPAXZAUNQE@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250416000208.3568635-6-swboyd@chromium.org>
 
-On 18:51-20250421, Randolph Sapp wrote:
-> On Sat Apr 19, 2025 at 11:15 AM CDT, Udit Kumar wrote:
-> > Hello Matt,
-> >
-> > On 4/17/2025 2:40 PM, Matt Coster wrote:
-> >> The J721S2 binding is based on the TI downstream binding in commit
-> >> 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-> >> but with updated compatible strings.
-> >
-> > Downstream kernel[1] sha 5657fc069e8b3 ("PENDING: arm64: dts: ti: 
-> > k3-j721s2-main: add gpu node")
-> >
-> > also has assigned-clock-rates.
-> >
-> > Please check if gpu node needs assigned-rate too.
+On Tue, Apr 15, 2025 at 05:02:05PM -0700, Stephen Boyd wrote:
+> Add a DT graph binding to google,cros-ec-typec so that it can combine
+> DisplayPort (DP) and USB SuperSpeed (SS) data into a USB type-c endpoint
+> that is connected to the usb-c-connector node's SS endpoint. Allow there
+> to be multiple 'typec' nodes underneath the EC node so that one DT graph
+> exists per DP bridge. The EC is actually controlling TCPCs and redrivers
+> that combine the DP and USB signals together so this more accurately
+> reflects the hardware design without introducing yet another DT node
+> underneath the EC for USB type-c "stuff".
 > 
-> If I remember correctly, J721S2 was one of the few platforms that actually
-> defaulted to 800MHz, so it may not be necessary for that platform specifically.
-> (I don't have a board to test this right now though. This very well may have
-> changed.) AM62 also defaults to the correct value, and that one I did manage to
-> verify.
+> If the type-c ports are being shared between a single DP controller then
+> the ports need to know about each other and determine a policy to drive
+> DP to one type-c port or the other. If the type-c ports each have their
+> own dedicated DP controller then they're able to operate independently
+> and enter/exit DP altmode independently as well. We can't connect the DP
+> controller's endpoint to one usb-c-connector port@1 endpoint and the USB
+> controller's endpoint to another usb-c-connector port@1 endpoint either
+> because the DP muxing case would have DP connected to two
+> usb-c-connector endpoints which the graph binding doesn't support.
 > 
-> That being said, Udit is right, it's generally a good idea to explicitly set the
-> clock speed for our devices. I know AM62P, for example, used to default our
-> clock to the bus speed.
+> Therefore, one typec node is required per the capabilities of the type-c
+> port(s) being managed. Add a port to the DisplayPort altmode as well, so
+> that we can show the connection between the DP controller and the DP
+> altmode. This lets us indicate which type-c ports the DP controller is
+> wired to. For example, if DP was connected to ports 0 and 2, while port
+> 1 was connected to another DP controller we wouldn't be able to
+> implement that without having some other DT property to indicate which
+> output ports are connected to the DP endpoint.
 > 
-> At one point though this driver was experimenting with a DVFS mechanism. Matt,
-> use of assigned-clocks shouldn't interfere with that assuming there is no
-> defined opp-table, right? May be a good idea to set our usual 800 MHz for J721S2
-> and 500 MHz for AM625. This shouldn't require any binding related changes.
+> Furthermore, this supports ChromeOS designs like Corsola where a DP
+> controller/PHY is split with two lanes going to one connector and the
+> other two lanes going to another connector. In this case, we wouldn't
+> have the graph binding under the cros-ec-typec node, but we would have
+> the graph binding in the DP altmode directly connected to the DP
+> controller's two output endpoints.
 > 
-> On the topic of opp tables for the GPU, I did some testing on the proprietary
-> driver a little while back. These devices do not support voltage scaling and
-> simple frequency scaling saw a general decrease in performance and increase in
-> power draw for the usual utilization bursts a single application running at 60
-> FPS generates. I have a feeling this will carry over to the open source driver,
-> but we can always do additional testing if you are curious.
+> Cc: Rob Herring (Arm) <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Acked-by: Lee Jones <lee@kernel.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Pin-yen Lin <treapking@chromium.org>
+> Cc: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+> Cc: Łukasz Bartosik <ukaszb@chromium.org>
+> Cc: Jameson Thies <jthies@google.com>
+> Cc: Andrei Kuchynski <akuchynski@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/connector/usb-connector.yaml     |   6 +
+>  .../bindings/mfd/google,cros-ec.yaml          |   7 +-
+>  .../bindings/usb/google,cros-ec-typec.yaml    | 165 ++++++++++++++++++
+>  3 files changed, 175 insertions(+), 3 deletions(-)
 > 
-> - Randolph
-> 
-> >> The clock[2] and power[3] indices were verified from HTML docs, while
-> >> the intterupt index comes from the TRM[4] (appendix
-> >> "J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
-> >> "GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
-> >
-> >> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-> >> [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-> >> [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-> >> [4]: https://www.ti.com/lit/zip/spruj28 (revision E)
-> >>
-> >> Reviewed-by: Randolph Sapp <rs@ti.com>
-> >> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> >> ---
-> >> Changes in v2:
-> >> - Add interrupt reference details
-> >> - Add Randolph's Rb
-> >> - Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com
-> >>
-> >> This patch was previously sent as [DO NOT MERGE]:
-> >> https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
-> >> ---
-> >>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
-> >>   1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> >> index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
-> >> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> >> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> >> @@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
-> >>   		/* reserved for MAIN_R5F1_1 */
-> >>   		status = "reserved";
-> >>   	};
-> >> +
-> >> +	gpu: gpu@4e20000000 {
-> >> +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-> >> +		reg = <0x4e 0x20000000 0x00 0x80000>;
-> >> +		clocks = <&k3_clks 130 1>;
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 11e40d225b9f..e3d60997c03e 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -179,6 +179,12 @@ properties:
+>              $ref: /schemas/types.yaml#/definitions/uint32
+>              description: VDO returned by Discover Modes USB PD command.
+>  
+> +          port:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: OF graph bindings modeling a data bus to the
+> +              DisplayPort altmode from the DisplayPort controller. Used when
+> +              the altmode switch is part of the port manager.
+> +
 
-On the basis of the above discussion, Matt,
-please add:
-assigned-clocks = <&k3_clks 130 1>;
-assigned-clock-rates = <800000000>;
+Why can't this connection be another endpoint on port@1 as that is the 
+port for the SS signals.
 
-> >> +		clock-names = "core";
-> >> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> >> +		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-> >> +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-> >> +		power-domain-names = "a", "b";
-> >> +		dma-coherent;
-> >> +	};
-> >>   };
-> >>
-> 
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description: OF graph bindings modeling a data bus to the connector, e.g.
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index ac89696fa649..63d506e88abb 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -98,9 +98,6 @@ properties:
+>  
+>    gpio-controller: true
+>  
+> -  typec:
+> -    $ref: /schemas/usb/google,cros-ec-typec.yaml#
+> -
+>    ec-pwm:
+>      $ref: /schemas/pwm/google,cros-ec-pwm.yaml#
+>      deprecated: true
+> @@ -163,6 +160,10 @@ patternProperties:
+>      type: object
+>      $ref: /schemas/extcon/extcon-usbc-cros-ec.yaml#
+>  
+> +  "^typec(-[0-9])*$":
+> +    type: object
+> +    $ref: /schemas/usb/google,cros-ec-typec.yaml#
+> +
+>  required:
+>    - compatible
+>  
+> diff --git a/Documentation/devicetree/bindings/usb/google,cros-ec-typec.yaml b/Documentation/devicetree/bindings/usb/google,cros-ec-typec.yaml
+> index 3272d0e01f7e..611345bbe884 100644
+> --- a/Documentation/devicetree/bindings/usb/google,cros-ec-typec.yaml
+> +++ b/Documentation/devicetree/bindings/usb/google,cros-ec-typec.yaml
+> @@ -26,6 +26,55 @@ properties:
+>    '#size-cells':
+>      const: 0
+>  
+> +  mux-gpios:
+> +    description: GPIOs indicating which way the DisplayPort mux is steered
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  no-hpd:
+> +    description: Indicates this device doesn't signal HPD for DisplayPort
+> +    type: boolean
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Port for DisplayPort (DP) data
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: Input DP port
+> +
+> +        patternProperties:
+> +          '^endpoint@[1-8]$':
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: Output to the usb-c connector's DP altmode
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+This is odd. Generally (or always?) a port is 1 direction.
+
+Other bindings IIRC have 3 ports in the device doing the muxing: 1 
+output for connector port@1, 1 USB SS input, and 1 DP input.
+
+Rob
 
