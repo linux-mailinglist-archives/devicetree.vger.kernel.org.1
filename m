@@ -1,263 +1,120 @@
-Return-Path: <devicetree+bounces-169536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB11DA973E3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:45:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2589A973B8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F279016B152
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:45:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F8574010AD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E947296179;
-	Tue, 22 Apr 2025 17:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9392283687;
+	Tue, 22 Apr 2025 17:39:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F298E1E0E0B;
-	Tue, 22 Apr 2025 17:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E7E1D5CEA;
+	Tue, 22 Apr 2025 17:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745343924; cv=none; b=K7FHkR3VlsFJ7cuEnV9XTE25VKoM5yPrqGu/Msa2Ap8Cd2U0eKN0s7VUMnteLK13gj5i/VkJhgaROHfzHMNWOuPcngF0qGmFnPiw0epxTwyZhbdLWOOGIZEBcjKxT91iJecUu2LHofMF0NEL9NdTeIA2qtpng089AJ3a8K6yb58=
+	t=1745343598; cv=none; b=lOQa5B1pp5qjdYFV7w3tPL//uxm+087nOZZkTcz7IccB0jKAtjfazDwoGNoqW59yC4TxbLHg5VM0nIuH/aewRrEJJVkcPKI7FAcBByVFhLUSMnCAmIy8jff+KPixnhpZgK/t4idDv5XkRQlm05vzI4/+PT7EzJI41L4Uyi5ruF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745343924; c=relaxed/simple;
-	bh=TP92gUWGVkFzH3MKoN1aN8S/2F6S96syX8J46GyVAg0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ri7mibtGjC8a7uJsYk0IuNEnrNXo1usXUNSHMKuQJZy4yJxZyHSneUbzN2JfCXpfGiASHCQmJovNjbfNkaGQyZPTfP44csOoEMlLrfte0LbC/mdpt7k1FSf62vHag/a4WkwAwtcMPqZ8Cvy48hsx4etdVBTctoJfAMoZeCrHYRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: wfq5pVq0Qai6PcUL5g4+XQ==
-X-CSE-MsgGUID: sJkLmvwBSdCwTRIyHgaEQw==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 23 Apr 2025 02:40:08 +0900
-Received: from mulinux.home (unknown [10.226.92.16])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 800B34045852;
-	Wed, 23 Apr 2025 02:40:05 +0900 (JST)
-From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v6 6/6] arm64: dts: renesas: r9a09g057: Add DMAC nodes
-Date: Tue, 22 Apr 2025 18:39:37 +0100
-Message-Id: <20250422173937.3722875-7-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
-References: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
+	s=arc-20240116; t=1745343598; c=relaxed/simple;
+	bh=ISxSKKIa8EAlBomVCdUrDutWyKsrFuzFJxYPtPbNT/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UwjZ1UXiu00mSZZj6tHk+vrtVJ2GvwZH1X0bpfL7Fv9wlUeLKlhlTmBghtMpofMKzuLt6YBWQaLCUpcMbj2WGPA4huF5CuQ2EvVbRHFm0bYLsvXnL25sQFo9tjAA9iwTUL402RYgT3W6FmCxtmDt+yoqmEYP+aDpOJv+Mgi07HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: Qir6DKd4T7auYjQLsBoCGQ==
+X-CSE-MsgGUID: K1OKJxvzTrKVOa0yJEIZaQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="64444987"
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
+   d="scan'208";a="64444987"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:39:56 -0700
+X-CSE-ConnectionGUID: SVs67TxxT16G88MMSk09rA==
+X-CSE-MsgGUID: pUqEj53aT2SqXgSxZCVM2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
+   d="scan'208";a="163043491"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:39:53 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1u7Hb4-0000000EneY-2iuI;
+	Tue, 22 Apr 2025 20:39:50 +0300
+Date: Tue, 22 Apr 2025 20:39:50 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Gyeyoung Baek <gye976@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v5 3/4] iio: chemical: add support for winsen MHZ19B CO2
+ sensor
+Message-ID: <aAfUZuujO0FUkJEG@smile.fi.intel.com>
+References: <20250422155302.669960-1-gye976@gmail.com>
+ <20250422155302.669960-4-gye976@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250422155302.669960-4-gye976@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Add nodes for the DMAC IPs found on the Renesas RZ/V2H(P) SoC.
+On Wed, Apr 23, 2025 at 12:53:01AM +0900, Gyeyoung Baek wrote:
+> Add support for winsen MHZ19B CO2 sensor.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v5->v6:
-* Rebased on top of the latest changes.
-* Added Prabhakar's Reviewed-by tag.
-v4->v5:
-* Collected tags.
-v3->v4:
-* No change.
-v2->v3:
-* No change.
-v1->v2:
-* No change.
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 165 +++++++++++++++++++++
- 1 file changed, 165 insertions(+)
+Winsen (name capitalisation)?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 18ab5639b301..0f3501951409 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -280,6 +280,171 @@ sys: system-controller@10430000 {
- 			resets = <&cpg 0x30>;
- 		};
- 
-+		dmac0: dma-controller@11400000 {
-+			compatible = "renesas,r9a09g057-dmac";
-+			reg = <0 0x11400000 0 0x10000>;
-+			interrupts = <GIC_SPI 499 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 89  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 90  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 91  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 92  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 93  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 94  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 95  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 96  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 97  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 98  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 99  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 101 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 103 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 104 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD 0x0>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x31>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 4>;
-+		};
-+
-+		dmac1: dma-controller@14830000 {
-+			compatible = "renesas,r9a09g057-dmac";
-+			reg = <0 0x14830000 0 0x10000>;
-+			interrupts = <GIC_SPI 495 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 25  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 26  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 27  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 28  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 29  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 30  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 31  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 32  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 33  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 34  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 35  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 36  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 37  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 38  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 39  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 40  IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD 0x1>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x32>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 0>;
-+		};
-+
-+		dmac2: dma-controller@14840000 {
-+			compatible = "renesas,r9a09g057-dmac";
-+			reg = <0 0x14840000 0 0x10000>;
-+			interrupts = <GIC_SPI 496 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 41  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 42  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 43  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 44  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 45  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 46  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 47  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 48  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 49  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 50  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 51  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 52  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 53  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 54  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 55  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 56  IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD 0x2>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x33>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 1>;
-+		};
-+
-+		dmac3: dma-controller@12000000 {
-+			compatible = "renesas,r9a09g057-dmac";
-+			reg = <0 0x12000000 0 0x10000>;
-+			interrupts = <GIC_SPI 497 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 57  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 58  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 59  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 60  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 61  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 62  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 63  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 64  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 65  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 66  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 67  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 68  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 69  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 70  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 71  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 72  IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD 0x3>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x34>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 2>;
-+		};
-+
-+		dmac4: dma-controller@12010000 {
-+			compatible = "renesas,r9a09g057-dmac";
-+			reg = <0 0x12010000 0 0x10000>;
-+			interrupts = <GIC_SPI 498 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 73  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 74  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 75  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 76  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 77  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 78  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 79  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 80  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 81  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 82  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 83  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 84  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 85  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 86  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 87  IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 88  IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD 0x4>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x35>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 3>;
-+		};
-+
- 		ostm0: timer@11800000 {
- 			compatible = "renesas,r9a09g057-ostm", "renesas,ostm";
- 			reg = <0x0 0x11800000 0x0 0x1000>;
+...
+
+> +static ssize_t calibration_forced_value_store(struct device *dev,
+> +					      struct device_attribute *attr,
+> +					      const char *buf, size_t len)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	u16 ppm;
+> +	int cmd, ret;
+> +
+> +	ret = kstrtou16(buf, 0, &ppm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (ppm) {
+> +		if (!in_range(ppm, 1000, 4001)) {
+> +			dev_dbg(&indio_dev->dev,
+> +				"span point ppm should be between 1000 and 5000 inclusive.");
+> +			return -EINVAL;
+> +		}
+
+I proposed to define the _MIN and _MAX constants for the range and use them in
+the parameters. Any objection?
+
+> +		cmd = MHZ19B_SPAN_POINT_CMD;
+> +	} else {
+> +		cmd = MHZ19B_ZERO_POINT_CMD;
+> +	}
+> +
+> +	ret = mhz19b_serdev_cmd(indio_dev, cmd, ppm);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return len;
+> +}
+
+Otherwise LGTM, thanks!
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
