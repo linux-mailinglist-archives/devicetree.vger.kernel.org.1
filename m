@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-169521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4AB3A9735A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:09:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB70AA9736C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 362127A38E8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:07:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A3C63BCDE7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B6A296178;
-	Tue, 22 Apr 2025 17:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB93296167;
+	Tue, 22 Apr 2025 17:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GVbjpSQB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VO1FPIiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD3313C3F6;
-	Tue, 22 Apr 2025 17:08:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356BC290086;
+	Tue, 22 Apr 2025 17:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745341733; cv=none; b=bvl0sxby7v5tidMEc3EXCIM+0bQiGKfnvm9eRq/eImewrzDkgAmH/lz2cyppdI1XbbiFyzke1moZm4EAuquj8QIGoSyvA2q7G+YV/zrv2pfl39IQW8Q9FdZi8kWGwN9Mt8Z5K9MwBkGBLw77iVIxRftX5ECDJvC6geBLEjaauUg=
+	t=1745342262; cv=none; b=LpMcdAhwKAtKDrMpoZeoyFn73idjDYKfbh2T/J+M0lzD/mCjt81XJ6cO90hfBCxd5bj7zTBdiB9ltVLoFgx9/b50Y6At+/Nz42JQVtGHaUBJpVk9TzNSV+bQnN7LZKMtQydd7OUm6cTq6uP6YPyU89FTjdFKKZTpCfYrdz+JvaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745341733; c=relaxed/simple;
-	bh=tNSqlnQv4PhNulf8LTTvZEON1j+91hk0BJf6+XuBtaM=;
+	s=arc-20240116; t=1745342262; c=relaxed/simple;
+	bh=8poqqm7vc2Ve000nDYf0GkZYrPmtHQzeCmimWoQulrs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nx+XMqH5Fl92rCGKUw0rd6eQeuwvmS/R3a0qGRoZFk00zU2L/V71b4xO5sNbTDUgLamAV5X5V7r1CAEZXDv/GIU8uTxgIrdp6RAp64lrbJQp0sECPk+nuED0GEpumxWD4yauSQ5JTEypa3fj4lqITkPrxvvz6fScK8Bg3gFyFG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GVbjpSQB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MCSGgg000493;
-	Tue, 22 Apr 2025 17:08:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ltOm7Cp+SJCEusXF3mlfu3arUXedvGyVWgd5yFun3C8=; b=GVbjpSQBBpZbXkg/
-	c0m+sp0DQP3hzY1QHVQbvd2zxhWYS2ptmcancRuM4KfjP9CYmkllEsxr/fVvbEJi
-	x0agFeaiAiHlxZB5bPyUdJNcf/It79FJXiX/OcJv0vv7f4Shua/KKBMwDHJH649P
-	GZPhqqn8ePZRgqvhcKC13ic/M+qwMClcNAlXbpKII1etykeGIoB9i6AwA6XoaV1+
-	SU5DIlb7j28SaJ40bmGBlb4bT+YAFGUoPqh1qCduhza7e078gklNi1vIeZcOOWlI
-	PQjENvGaLuvzFM/eqjsN4f6kfCDfs6ViXRb0CpJwcOpfhJd6nInYv47+kOB3N4vd
-	0+8aiA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4641hhrn77-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 17:08:48 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53MH8lRS030429
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 17:08:47 GMT
-Received: from [10.216.4.61] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
- 2025 10:08:44 -0700
-Message-ID: <54746caa-f326-4736-b06c-904e413ce8ff@quicinc.com>
-Date: Tue, 22 Apr 2025 22:38:40 +0530
+	 In-Reply-To:Content-Type; b=FELh2V/8TJGZaKCaE3ZdvkGbiPrgUw91bgQ0Y/7x2MJQRRjtIHLtRnJ0TfpAoEpfozAIo0UukravCp5zFqoFUACJBgSla0PMsgiVd/G6wF/HNmZJ/s3TIYo5+3V4fKNmMFzYdRyuAzv1fjx5DSfE3MSgcMVjkoIesq0umP6h20s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VO1FPIiy; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHHUFF2042207
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 22 Apr 2025 12:17:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745342250;
+	bh=QGUpihRZQBbTbpTIMhyUswxIu4pqCe+6Ya73/2AzMEI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VO1FPIiyvT3vx2bdBFuGi1iL5A2vE6hMLlLBrYf/ri4LBw16yq11Sv+p9bWxZ3nCW
+	 x93awVF4NR5Kv7G/ICD+ta9jEWRyqX0sik4Dz48zeXH7Sy9S6b2oEcxIFaoeUeVSV0
+	 t5DYPvfRvqAFwEqUE6i43SfnchlQXFl9oB9Y+jV0=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHHUlP024937
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Apr 2025 12:17:30 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
+ Apr 2025 12:17:30 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 22 Apr 2025 12:17:30 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53MHHUH3077716;
+	Tue, 22 Apr 2025 12:17:30 -0500
+Message-ID: <9726c8c5-5702-4e03-94fc-eaa820f8cdf3@ti.com>
+Date: Tue, 22 Apr 2025 12:17:30 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,117 +66,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/8] arm64: dts: qcom: qcs6490-rb3gen2: add WSA8830
- speakers amplifier
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
+Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-am6*: Set eMMC clock parents to
+ default
+To: "Kumar, Udit" <u-kumar1@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-References: <20250317054151.6095-1-quic_pkumpatl@quicinc.com>
- <20250317054151.6095-5-quic_pkumpatl@quicinc.com> <Z+Q5IM0Qj8J5xZUm@trex>
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Moteen Shah
+	<m-shah@ti.com>
+References: <20250417233040.3658761-1-jm@ti.com>
+ <20250417233040.3658761-2-jm@ti.com>
+ <8f9aad2c-8e51-409e-be90-21230a53a4cf@ti.com>
+ <7bc92282-6ce3-4ae4-8eef-897df992487f@ti.com>
+ <20250422123748.ugkk2pzp54vzmyii@acorn>
+ <12a748ff-2c33-44e7-b685-fa7d7d0138ca@ti.com>
 Content-Language: en-US
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-In-Reply-To: <Z+Q5IM0Qj8J5xZUm@trex>
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <12a748ff-2c33-44e7-b685-fa7d7d0138ca@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Fe43xI+6 c=1 sm=1 tr=0 ts=6807cd20 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=vC_a7ZyuHw2JGkk7z40A:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 7cd6NAMhNN1mr2Ms0-4dtQE6RYu72EXa
-X-Proofpoint-ORIG-GUID: 7cd6NAMhNN1mr2Ms0-4dtQE6RYu72EXa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_08,2025-04-22_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- bulkscore=0 malwarescore=0 mlxlogscore=817 mlxscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220128
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Udit,
 
-
-On 3/26/2025 10:58 PM, Jorge Ramirez wrote:
-> On 17/03/25 11:11:47, Prasad Kumpatla wrote:
->> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->>
->> Add nodes for WSA8830 speakers amplifier on qcs6490-rb3gen2 board.
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 27 ++++++++++++++++++++
->>   1 file changed, 27 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 23dea375c213..a1a3df77ad57 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -870,6 +870,33 @@ &sdhc_2 {
->>   	status = "okay";
->>   };
->>   
->> +&swr2 {
->> +	qcom,din-ports = <0>;
->> +	qcom,dout-ports = <8>;
+On 4/22/25 9:08 AM, Kumar, Udit wrote:
 > 
-> are these number of ports correct? from my unit tests, 8 seems to be out
-> of bounds (soundwire probe error)
+> On 4/22/2025 6:07 PM, Nishanth Menon wrote:
+>> On 09:36-20250421, Judith Mendez wrote:
+>>> Hi Udit,
+>>>
+>>> On 4/19/25 10:00 AM, Kumar, Udit wrote:
+>>>> On 4/18/2025 5:00 AM, Judith Mendez wrote:
+>>>>> Set eMMC clock parents to the defaults which is 
+>>>>> MAIN_PLL0_HSDIV5_CLKOUT
+>>>>> for eMMC. This change is necessary since DM is not implementing the
+>>>>> correct procedure to switch PLL clock source for eMMC and we have a
+>>>>> non-glich-free mux. To remove any potential issues, lets switch 
+>>>>> back to
+>>>>> the defaults.
+>>>> IMO, we need to fix DM  if not then documentation [0] .
+>>> DM cannot be fixed for only one IP and documentation says what clock
+>>> parents are supported, it does not have to say what are the issues
+>>> that come with using a specific clock parent.
+>> As I understand the arasan IP requirement is that the IP must be held in
+>> reset while the clock is switched, which is not reasonable to implement
+>> given decoupled systems like DM and Linux OS.
+> 
+> 
+> Thanks , then fix should be extended to sdhci1 as well
 
-ACK,
-Will fix it in next patchset version.
+sdhci1 and sdhci2 should already be using the defaults: 
+https://gist.github.com/jmenti/e280232ae3d5bb5097df7b0f04c85e8a
+This change is only needed for eMMC.
+
+~ Judith
 
 > 
->> +
->> +	left_spkr: speaker@0,1 {
->> +		compatible = "sdw10217020200";
->> +		reg = <0 1>;
->> +		powerdown-gpios = <&tlmm 158 GPIO_ACTIVE_LOW>;
->> +		#sound-dai-cells = <0>;
->> +		sound-name-prefix = "SpkrLeft";
->> +		#thermal-sensor-cells = <0>;
->> +		vdd-supply = <&vreg_l18b_1p8>;
->> +		qcom,port-mapping = <1 2 3 7>;
->> +	};
->> +
->> +	right_spkr: speaker@0,2 {
->> +		compatible = "sdw10217020200";
->> +		reg = <0 2>;
->> +		powerdown-gpios = <&tlmm 158 GPIO_ACTIVE_LOW>;
->> +		#sound-dai-cells = <0>;
->> +		sound-name-prefix = "SpkrRight";
->> +		#thermal-sensor-cells = <0>;
->> +		vdd-supply = <&vreg_l18b_1p8>;
->> +		qcom,port-mapping = <4 5 6 8>;
->> +	};
->> +};
->> +
 > 
-> also, should we enable the soundwire controller?
-
-ACK,
-yes need to enable soundwire controller, Will take care to enable in 
-next patchset version.
-
-Thanks,
-Prasad
-
-> 
->>   &tlmm {
->>   	gpio-reserved-ranges = <32 2>, /* ADSP */
->>   			       <48 4>; /* NFC */
->> -- 
->> 2.34.1
 >>
+>>>> Then only this patch is ok because as per document [0]
+>>>>
+>>>> removed clock by this patch is valid parent for eMMC.
+>>> The clock parent currently set is a valid parent, but we have non-
+>>> glitch-free muxes and to avoid any potential issues with these, we
+>>> should switch back to the defaults. It seems like we randomly switched
+>>> from the default for no good reason and it has been copy paste per
+>>> platforms since then, so we are switching back to the defaults now.
+>>>
+>>> ~ Judith
+>>>
+>>>> [0] 
+>>>> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j722s/clocks.html
+>>>>
+>>>> Thanks
+>>>>
+>>>> Udit
+>>>>
+>>>>> Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral
+>>>>> nodes")
+>>>>> Fixes: d3ae4e8d8b6a ("arm64: dts: ti: k3-am62a-main: Add sdhci0
+>>>>> instance")
+>>>>> Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more 
+>>>>> IPs")
+>> Please follow ./Documentation/process/stable-kernel-rules.rst - this is
+>> easier to backport if these were to be split into 3 different patches.
+>> Please do not forget to add Cc: stable@vger.kernel.org as per the rules
+>> as well.
+>>
+>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
+>>>>>    arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
+>>>>>    arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
+>>>>>    3 files changed, 6 deletions(-)
+>>>>>
+>>>>> [..]
 
 
