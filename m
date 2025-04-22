@@ -1,162 +1,129 @@
-Return-Path: <devicetree+bounces-169254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE03DA9625A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:45:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9DAA962A1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10DA618980C8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:40:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B215189BDF4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C8629899A;
-	Tue, 22 Apr 2025 08:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C91F2571DC;
+	Tue, 22 Apr 2025 08:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Q0U0vOb3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OJBmLnMz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFBB2980D0
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 08:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786F0256C62;
+	Tue, 22 Apr 2025 08:32:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745310621; cv=none; b=UYQy3HjvIfIQkRQjuL3zxJTD/wwxaZeDFl/9zHKVRPkhlPQnSUAI7R/OzerWCkEBI8BoHkZCfabvgwzR/1OXuSxjzdgv7sWpvGS+bbSVwF/LE/3ZE4BjlEcWohmPgytatX/U+tEz5Q9RgIzc2OzvXdRxPjR5cEqVq0ptfGKdjZU=
+	t=1745310773; cv=none; b=BMNryjnVB4bKGWzixVERFm5JqikIAAITxM/1EFtTSh1mjhCzrg1vilSnN5uQlXrwYGol2E3WmE0jcZZuJlM/ZvJ/rJZxhvymbDFNSAL1BT8pPJzcqN5bw8uvwLZcsP8BcM4McYV1OnfhAl8MwA1d6VI4fSmjQEtMEl00VNRq3EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745310621; c=relaxed/simple;
-	bh=gBnvR1I1ZnFzb4vg65PBtlZBg4X6LVpbCReLzWaUhJg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FJf6AnOiIPRKRVfN+NCrv7ITP+IRLXfVLizclA9JvzANkWLIlESHLUr4LrZ+bovqs/Sr0XaauYFQ2DF7WfW9eEiZ/b1aForBNROX8GJSJXFifPOlA0XIa8GkucLriwzmCAyH1vdhuggWBJChNb+3GScmdvR2D6AYrRYZt2/CWZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Q0U0vOb3; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-736ab1c43c4so4945827b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 01:30:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745310619; x=1745915419; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mhnP5fHmR2Q8bheAgrl4QJ3VtrLDUwvDbOgI8e/2CDY=;
-        b=Q0U0vOb32HFqTuyURLC878BQfNxM7IzgvSOIjD55i/oMdzYfGjga3m1eSUNcB5u2lO
-         hL5rBDkkuUAeUZaq6ciCdsZI1o2unSZFGms1rfJhAegNcQVyFcYsEYAT5BbESQszm77s
-         VSwIox65hVUfBDa46fAzqtcxOsRZnOfzF4q/c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745310619; x=1745915419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mhnP5fHmR2Q8bheAgrl4QJ3VtrLDUwvDbOgI8e/2CDY=;
-        b=mUHsAEemdpve89jd0S7TCsBtJdl5pK7CDWbMswBuEfbNp1ckiETH2Z8qnqlYO9IIB+
-         0jMxKbGqgFn/TmtsgSwwMAInvoKUbwFd0q8iw7sEjXqzlzdOzNj9j67w35rAdVdAgjiZ
-         NtQpqtckU+Od6vFwm2h7KgD9eIuTvNP3MG7u2M5LgNqmRCBLKEoeJwlF8MYuPGsiFwCs
-         y5jTKvWETkdkA29wRXgCgKD+9ZdoEm/6lfq5fWE9+niVkGzGmrhtGEycP2RTs0/WamVQ
-         5+1egitCe8aQKFqCzYeIaBGQTKKeyitdA12Xs7YB2WEi0mfwYe5DT25P0lxHJn12R+dP
-         FBOg==
-X-Gm-Message-State: AOJu0YxdNPHzb3tkTBfhXOP1DHAMtnCVeUHYkllNnwdZ6EfApdIK54kx
-	qLRRjgosnefRzSh6m9auzeH8eoIq0A7M1oSnXcbLbrYYIVJU4walS4fHfE6I+w==
-X-Gm-Gg: ASbGncuMTK3lx8PZNTDcb9S/koJoq5PygKeOYPAfYY935QWoWtKQyYU4SeaL/TWXTOW
-	ZJyrkGjlMPJCvL4lL5GvceX2v16Df/SyWaVnbDzX2g38HUfm750qpNfCs030YLjzzjE/lxjmXWe
-	p5w8W+3Kuqsr8Yi5yihLjzwHw5hSv4Kl+bsXDX1QddpyuLqAk0a+RPE5T0tOR6K9AcOoB/Fj9Ac
-	dLBQWs17pM5GUkJdZhdDzHN7B07clj91ulqkUAzHZoGBG+NMxAQdVOiUGZjtj8MvRYRNXOlsvxu
-	c7Wew4zo3FQyc99Kv3vkoIXF8JlCd6uFErJG2SYvmOE4p96mGJ6YHDmYH2oV9TS0
-X-Google-Smtp-Source: AGHT+IHvMg/U3wawJMIjtv8NdwlNXjSugJsH0Z0eeETts37HBEVjcFftSg9+DA7CLUjYcHqi3e59Dg==
-X-Received: by 2002:a05:6300:42:b0:1f5:8a69:f41b with SMTP id adf61e73a8af0-203cbd41774mr23233480637.37.1745310618738;
-        Tue, 22 Apr 2025 01:30:18 -0700 (PDT)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:90d6:56e4:9d90:9df3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf8e0be0sm7993576b3a.49.2025.04.22.01.30.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 01:30:18 -0700 (PDT)
-From: Pin-yen Lin <treapking@chromium.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Kaehlcke <mka@chromium.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pin-yen Lin <treapking@chromium.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	linux-usb@vger.kernel.org
-Subject: [PATCH v3 4/4] usb: misc: onboard_usb_dev: Add Parade PS5511 hub support
-Date: Tue, 22 Apr 2025 16:28:30 +0800
-Message-ID: <20250422082957.2058229-5-treapking@chromium.org>
-X-Mailer: git-send-email 2.49.0.805.g082f7c87e0-goog
-In-Reply-To: <20250422082957.2058229-1-treapking@chromium.org>
-References: <20250422082957.2058229-1-treapking@chromium.org>
+	s=arc-20240116; t=1745310773; c=relaxed/simple;
+	bh=Dq5wQrlUTf47COvIKJ6NECUkx4HGTP50OXZKgvmXnIY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bMZ0WBI7DOsx0AfYAW7+5XuZnlaBg6WuTI+5HRuX228tlEYyiev20WxvfvbZw5zBLOVWzle7gu+G2dqYAJuxrcetI478BsZjIiq2X+YnacfNEP2BtxTKQg+RX29+3oazGuhEYeXYrK0bOSTNJa+OBZsKg0KHtCOBW7W/jt0tueQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OJBmLnMz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53M4OjGc006443;
+	Tue, 22 Apr 2025 08:32:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YYbsaB//72owVvHfmFOaZEketf2iik/PzXc+Wi3iH14=; b=OJBmLnMzEdMhEPeI
+	2I3pXD5cUU97Uo34qsuOAB0bCyITrMMUlUh+i4VOrQyijEEjC3oYgClfs0AOriU5
+	rVPRCXnE8dOQOTIDdb16UkOyG98VuGpBQxsfGAblwdx1Z/SgfENPchDVtQsHojz+
+	oo4vTpPkWAG+5htsapGf+Q3CuaiAJnRvn2g5aMF/swS1bAj7/9texQBtQjpdX6lv
+	rsA87QOplUbc9FXW5zQirlwpuOe4ulmVGaNokDM7RXtvnY86jyn2MkGqz6GLuwO6
+	k3huLA0vnoj4rCp+Nkncvhv9ckpxIXJCVeMp2a98pKgl0lCl3S92WQiArRrvE0rh
+	BPEiYA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 464426pmtx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 08:32:32 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53M8WVDJ006787
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 08:32:31 GMT
+Received: from [10.218.18.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
+ 2025 01:32:26 -0700
+Message-ID: <9ad0d6ec-1391-5c41-24cd-7add0d3b1e08@quicinc.com>
+Date: Tue, 22 Apr 2025 14:02:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sdx75: Add QPIC BAM support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <vkoul@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <agross@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>
+References: <20250415072756.20046-1-quic_kaushalk@quicinc.com>
+ <20250415072756.20046-4-quic_kaushalk@quicinc.com>
+ <68a48388-f42b-4136-a97f-9d575fb84d42@oss.qualcomm.com>
+Content-Language: en-US
+From: Kaushal Kumar <quic_kaushalk@quicinc.com>
+In-Reply-To: <68a48388-f42b-4136-a97f-9d575fb84d42@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rHOX6qJnXPjGnITH3nhT2nOPxGeo3gMW
+X-Proofpoint-GUID: rHOX6qJnXPjGnITH3nhT2nOPxGeo3gMW
+X-Authority-Analysis: v=2.4 cv=IP8CChvG c=1 sm=1 tr=0 ts=68075420 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=mRvqLfeVl_ZLl3yoDasA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_04,2025-04-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=919 spamscore=0
+ mlxscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 bulkscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504220064
 
-Parade PS5511 is 4+1 port USB 3.2 gen 1 hub with a reset pin and two power
-supplies (3V3 and 1V1).
-
-Add the support for this hub for the reset pin control and power supply.
-
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-
----
-
-(no changes since v1)
-
- drivers/usb/misc/onboard_usb_dev.c | 3 +++
- drivers/usb/misc/onboard_usb_dev.h | 9 +++++++++
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index 75ac3c6aa92d0d..91b49e58664d6b 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -490,6 +490,7 @@ static struct platform_driver onboard_dev_driver = {
- #define VENDOR_ID_CYPRESS	0x04b4
- #define VENDOR_ID_GENESYS	0x05e3
- #define VENDOR_ID_MICROCHIP	0x0424
-+#define VENDOR_ID_PARADE	0x1da0
- #define VENDOR_ID_REALTEK	0x0bda
- #define VENDOR_ID_TI		0x0451
- #define VENDOR_ID_VIA		0x2109
-@@ -580,6 +581,8 @@ static const struct usb_device_id onboard_dev_id_table[] = {
- 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2517) }, /* USB2517 USB 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2744) }, /* USB5744 USB 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x5744) }, /* USB5744 USB 3.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_PARADE, 0x5511) }, /* PS5511 USB 3.2 */
-+	{ USB_DEVICE(VENDOR_ID_PARADE, 0x55a1) }, /* PS5511 USB 2.0 */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1 HUB */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 HUB */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 HUB */
-diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
-index 933797a7e0841c..2963689958fc2a 100644
---- a/drivers/usb/misc/onboard_usb_dev.h
-+++ b/drivers/usb/misc/onboard_usb_dev.h
-@@ -38,6 +38,13 @@ static const struct onboard_dev_pdata microchip_usb5744_data = {
- 	.is_hub = true,
- };
- 
-+static const struct onboard_dev_pdata parade_ps5511_data = {
-+	.reset_us = 500,
-+	.num_supplies = 2,
-+	.supply_names = { "vddd11", "vdd33"},
-+	.is_hub = true,
-+};
-+
- static const struct onboard_dev_pdata realtek_rts5411_data = {
- 	.reset_us = 0,
- 	.num_supplies = 1,
-@@ -122,6 +129,8 @@ static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
-+	{ .compatible = "usb1da0,5511", .data = &parade_ps5511_data, },
-+	{ .compatible = "usb1da0,55a1", .data = &parade_ps5511_data, },
- 	{ .compatible = "usb2109,817", .data = &vialab_vl817_data, },
- 	{ .compatible = "usb2109,2817", .data = &vialab_vl817_data, },
- 	{ .compatible = "usb20b1,0013", .data = &xmos_xvf3500_data, },
--- 
-2.49.0.805.g082f7c87e0-goog
-
+On 4/15/2025 3:20 PM, Konrad Dybcio wrote:
+> On 4/15/25 9:27 AM, Kaushal Kumar wrote:
+>> Add devicetree node to enable support for QPIC BAM DMA controller on
+>> Qualcomm SDX75 platform.
+>>
+>> Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdx75.dtsi | 14 ++++++++++++++
+>>   1 file changed, 14 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> index b0a8a0fe5f39..e3a0ee661c4a 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> @@ -880,6 +880,20 @@
+>>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>>   		};
+>>   
+>> +		qpic_bam: dma-controller@1c9c000 {
+>> +			compatible = "qcom,bam-v1.7.0";
+> v1.7.4, looks good otherwise
+Ack. v1.7.4 is backward compatible with v1.7.0 supported by the driver. 
+I will update this in next patch version.
+> Konrad
+- Kaushal
 
