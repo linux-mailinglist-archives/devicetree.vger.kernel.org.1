@@ -1,97 +1,108 @@
-Return-Path: <devicetree+bounces-169309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034C0A96553
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:02:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CEFA9655A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E6B517B815
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:02:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736533AE52D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6471F1512;
-	Tue, 22 Apr 2025 10:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E2A1F1512;
+	Tue, 22 Apr 2025 10:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="VRpkuyDW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TdgRI5u2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4601E3DEF;
-	Tue, 22 Apr 2025 10:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729401531E9;
+	Tue, 22 Apr 2025 10:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745316167; cv=none; b=hR5+py3gV1ye+BMea7CtB9hMLF/FYnzNwIXjvOTbEs7NxlQy+uCfJ7cS62PcQuY482TfNUL7R1pP8+fAgnDv7Uk+cuakMtNZVCH1Y6JF35iG7T/gHQqNFoxgqPJb7lP8UFhE8g6nDFOHg7Ug5+FGKRotlFiUZVtIQ2Y3BYzEh5Q=
+	t=1745316336; cv=none; b=C1R8NKkgSUwUJGTQpD2QPFjXUYiaAOaiSDD2YJLYQvXYhJA1vRa9opQcIriGPiG4d6+4qjT+7LVl3E3mwmpRujNsoB8LUhMjsyHJAGmEsIaAYZBv98NoAH8uG5/bYNQpyUiQYxRdXrFuSV3pd3Vu3LflnDLmax351nxY8BQR+i8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745316167; c=relaxed/simple;
-	bh=/i+M89FhVSXaTlMiWBGQb5ELGk5s8fZWdKUGGhl5vHc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FNoFymmBiW4iE/+++VQqGbOD4cEMPhLQTAveOhGEB1kqD5eDr6owq/SRrgsB2HkPtrDZzdw4VTrC8T56yrshkEXWtnSRlrJ35efyjg+VPLcKFyPhUdKU+v1slc1vfZoru7L/8Mcc1ZBhiPm2VOkmEHYnVVMY5lzhfrVHa0lOoK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=VRpkuyDW; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 45CFA1F92B;
-	Tue, 22 Apr 2025 12:02:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745316163;
-	bh=5MJcsDy2OhQnbeBMx1UynLRxiyBn3DMKWGrFzw5aL6E=; h=From:To:Subject;
-	b=VRpkuyDWG8e5xqejt1ao1ybkm89AggTICBQO7j4twnnOd5RQ57W1AqZQmVfgfCKh4
-	 v9Wayn4RAIeYnW21i/uXaMNSUsrsdE3imWiph1UoGH1eI5y1IIvPuynzUP50XwpKmD
-	 5q2SPiSK4WeOHzbr+6x+vrpKCjqjbgM4gI5eObpCJBthNLbfqVP9kYtKPk6d8noN3i
-	 gponeJVFa+9yUJOBAELyn6rq7OK3vLCs9LYGkl/qRywrlpyL/LFtZh0qntEaSyoKNj
-	 B0xB+Msvw19QM1ncTHOUG6pg3LdmqxTH5wQhJqY+lDYFBjswkHD6uyQwGBj0SlzMST
-	 c0Q4v6NRPi9zQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: imx8qm: add ethernet aliases
-Date: Tue, 22 Apr 2025 12:02:39 +0200
-Message-Id: <20250422100239.58799-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1745316336; c=relaxed/simple;
+	bh=MCyas/ZQmYRO09vMAKd2USMq+gG5S05o1bktOFmHhNE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gT3cy+0XpINvXsgig8XCOQESzEKnkvjYsDTKAfOa4SWAHh2aOgGy0FtUQBLwLMEOTga9byNzYrKtYmbDtEwmNA2Iu0HQAbHkH24JTBDm76OeAPhXze1eizkj1LjR8fDBEkTZE/Cn5m3QMzQ8GC2xN3i2QSA09COdK5D3wVObWZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TdgRI5u2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB4C3C4CEE9;
+	Tue, 22 Apr 2025 10:05:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745316335;
+	bh=MCyas/ZQmYRO09vMAKd2USMq+gG5S05o1bktOFmHhNE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TdgRI5u2eSVDkgPTyjkZeU9I2EZJMTtkmgGFzP4nGBa+cBskbl3uPU+QVvemp7Wi3
+	 xeO6ReDhaeJPrA1YOGZDQ5rt5yxJbyhavge4ibVUbYmHsrY0KKVZoaN9zSjIF/dPSW
+	 TlUjjDUguI4NB8dOsfUcKJUQFx1PS53+dPVmS14eOjeFCIM+lC9L/SY+Tc5IvIVbPF
+	 uEwx3pdOoTz3GxGpPtr0qqAt7mAH1BvVM/ohs862zQ5ozkhy7gitskklDI9JMc1QE+
+	 VR/loMlqCBpT5DYXb8dG3MTCOvHSeo6/MWfu9UMQgqzOqJVq64fp6wFmm+9BJLVMQ2
+	 Tj1O6BHLccrSw==
+Date: Tue, 22 Apr 2025 12:05:31 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Thomas Antoine <t.antoine@uclouvain.be>
+Cc: Rob Herring <robh@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: power: supply: add max77759-fg flavor
+Message-ID: <20250422-tireless-swine-of-fascination-6eba8b@kuoka>
+References: <20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be>
+ <20250421-b4-gs101_max77759_fg-v3-3-50cd8caf9017@uclouvain.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250421-b4-gs101_max77759_fg-v3-3-50cd8caf9017@uclouvain.be>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Mon, Apr 21, 2025 at 08:13:34PM GMT, Thomas Antoine wrote:
+> +allOf:
+> +  - $ref: power-supply.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - maxim,max17201
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +          maxItems: 2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - maxim,max77759-fg
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            minItems: 1
 
-Add ethernet aliases, they are used by the firmware to set the MAC
-address and by systemd to rename network interfaces to predictable
-interface names, e.g. end0 and end1.
+If there is going to be resend, drop minItems.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8qm.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> +            maxItems: 1
+> +        shunt-resistor-micro-ohms:
+> +          description: The value of current sense resistor in microohms.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-index 6fa31bc9ece8..eccd0087efa7 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-@@ -17,6 +17,8 @@ / {
- 	#size-cells = <2>;
- 
- 	aliases {
-+		ethernet0 = &fec1;
-+		ethernet1 = &fec2;
- 		mmc0 = &usdhc1;
- 		mmc1 = &usdhc2;
- 		mmc2 = &usdhc3;
--- 
-2.39.5
+Property should be defined top-level list of properties and in other
+variant if:then: you disallow it if it is not applicable at all
+(shunt-resistor-micro-ohms: false).
+
+Best regards,
+Krzysztof
 
 
