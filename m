@@ -1,57 +1,54 @@
-Return-Path: <devicetree+bounces-169532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088D9A973BC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:40:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB11DA973E3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:45:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C37D1400DDB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:40:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F279016B152
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B185A29346F;
-	Tue, 22 Apr 2025 17:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E947296179;
+	Tue, 22 Apr 2025 17:45:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5E381E0DDC;
-	Tue, 22 Apr 2025 17:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F298E1E0E0B;
+	Tue, 22 Apr 2025 17:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745343599; cv=none; b=FuSolycJllFZUk6uxrCIXnn7g80OUOA2zAKrOON22dPnoeq0A++uy2gu1edF56wbStvX9YER96DUp0xQbE+JDXolTlXHn73hMTwGKURrXZD3X3G3tLqRbcw9dubmw+s9dkyT675Ufc82s1VJunoRJ0AoijXl+oenPKgVaXk/ngk=
+	t=1745343924; cv=none; b=K7FHkR3VlsFJ7cuEnV9XTE25VKoM5yPrqGu/Msa2Ap8Cd2U0eKN0s7VUMnteLK13gj5i/VkJhgaROHfzHMNWOuPcngF0qGmFnPiw0epxTwyZhbdLWOOGIZEBcjKxT91iJecUu2LHofMF0NEL9NdTeIA2qtpng089AJ3a8K6yb58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745343599; c=relaxed/simple;
-	bh=hM5uRm2ZzSyafoF0r32/Knq4faTcoF4fBnWkJJ6N15M=;
+	s=arc-20240116; t=1745343924; c=relaxed/simple;
+	bh=TP92gUWGVkFzH3MKoN1aN8S/2F6S96syX8J46GyVAg0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FLeiwYmQG5atY42EwecPbzzwaXWUgosKQG2g4ln4pgISWlrfVSZTf1nxulncKZUv0i52424xhZl9IAFY01TZ3L/zhBrydQeRaN0DVxCl3WKvE5OLfHqqeK1jr6KJSg5yc6djeZDUOCICRLYLK1h1g/yK7aoDE+uD153aNPC3iPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=Ri7mibtGjC8a7uJsYk0IuNEnrNXo1usXUNSHMKuQJZy4yJxZyHSneUbzN2JfCXpfGiASHCQmJovNjbfNkaGQyZPTfP44csOoEMlLrfte0LbC/mdpt7k1FSf62vHag/a4WkwAwtcMPqZ8Cvy48hsx4etdVBTctoJfAMoZeCrHYRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: LR4Od9yIRm6E4O261/rJbw==
-X-CSE-MsgGUID: DOQZYdAHSmS7WYuPTn3GlQ==
+X-CSE-ConnectionGUID: wfq5pVq0Qai6PcUL5g4+XQ==
+X-CSE-MsgGUID: sJkLmvwBSdCwTRIyHgaEQw==
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Apr 2025 02:39:55 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 23 Apr 2025 02:40:08 +0900
 Received: from mulinux.home (unknown [10.226.92.16])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0BC1A4043788;
-	Wed, 23 Apr 2025 02:39:50 +0900 (JST)
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 800B34045852;
+	Wed, 23 Apr 2025 02:40:05 +0900 (JST)
 From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	dmaengine@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 2/6] dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family of SoCs
-Date: Tue, 22 Apr 2025 18:39:33 +0100
-Message-Id: <20250422173937.3722875-3-fabrizio.castro.jz@renesas.com>
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v6 6/6] arm64: dts: renesas: r9a09g057: Add DMAC nodes
+Date: Tue, 22 Apr 2025 18:39:37 +0100
+Message-Id: <20250422173937.3722875-7-fabrizio.castro.jz@renesas.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
 References: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
@@ -63,206 +60,203 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
-The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
-Renesas RZ/G2L family of SoCs, but there are some differences:
-* It only uses one register area
-* It only uses one clock
-* It only uses one reset
-* Instead of using MID/IRD it uses REQ No
-* It is connected to the Interrupt Control Unit (ICU)
+Add nodes for the DMAC IPs found on the Renesas RZ/V2H(P) SoC.
 
 Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
 v5->v6:
-* Reworked the description of `#dma-cells`.
-* Reworked `renesas,icu` related descriptions.
-* Added `reg:`->`minItems: 2` for `renesas,r7s72100-dmac`.
-* Since the structure of the document remains the same, I have kept
-  the tags I have received. Please let me know if that's not okay.
+* Rebased on top of the latest changes.
+* Added Prabhakar's Reviewed-by tag.
 v4->v5:
-* Removed ACK No from the specification of the dma cell.
-* I have kept the tags received as this is a minor change and the
-  structure remains the same as v4. Please let me know if this is
-  not okay.
+* Collected tags.
 v3->v4:
 * No change.
 v2->v3:
 * No change.
 v1->v2:
-* Removed RZ/V2H DMAC example.
-* Improved the readability of the `if` statement.
+* No change.
 ---
- .../bindings/dma/renesas,rz-dmac.yaml         | 101 ++++++++++++++----
- 1 file changed, 82 insertions(+), 19 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 165 +++++++++++++++++++++
+ 1 file changed, 165 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-index 82de3b927479..6cdf6658b672 100644
---- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-@@ -11,19 +11,23 @@ maintainers:
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+index 18ab5639b301..0f3501951409 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+@@ -280,6 +280,171 @@ sys: system-controller@10430000 {
+ 			resets = <&cpg 0x30>;
+ 		};
  
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r7s72100-dmac # RZ/A1H
--          - renesas,r9a07g043-dmac # RZ/G2UL and RZ/Five
--          - renesas,r9a07g044-dmac # RZ/G2{L,LC}
--          - renesas,r9a07g054-dmac # RZ/V2L
--          - renesas,r9a08g045-dmac # RZ/G3S
--      - const: renesas,rz-dmac
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r7s72100-dmac # RZ/A1H
-+              - renesas,r9a07g043-dmac # RZ/G2UL and RZ/Five
-+              - renesas,r9a07g044-dmac # RZ/G2{L,LC}
-+              - renesas,r9a07g054-dmac # RZ/V2L
-+              - renesas,r9a08g045-dmac # RZ/G3S
-+          - const: renesas,rz-dmac
++		dmac0: dma-controller@11400000 {
++			compatible = "renesas,r9a09g057-dmac";
++			reg = <0 0x11400000 0 0x10000>;
++			interrupts = <GIC_SPI 499 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 89  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 90  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 91  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 92  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 93  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 94  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 95  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 96  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 97  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 98  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 99  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 101 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 103 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 104 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "error",
++					  "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15";
++			clocks = <&cpg CPG_MOD 0x0>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x31>;
++			#dma-cells = <1>;
++			dma-channels = <16>;
++			renesas,icu = <&icu 4>;
++		};
 +
-+      - const: renesas,r9a09g057-dmac # RZ/V2H(P)
- 
-   reg:
-     items:
-       - description: Control and channel register block
-       - description: DMA extended resource selector block
-+    minItems: 1
- 
-   interrupts:
-     maxItems: 17
-@@ -52,6 +56,7 @@ properties:
-     items:
-       - description: DMA main clock
-       - description: DMA register access clock
-+    minItems: 1
- 
-   clock-names:
-     items:
-@@ -61,10 +66,10 @@ properties:
-   '#dma-cells':
-     const: 1
-     description:
--      The cell specifies the encoded MID/RID values of the DMAC port
--      connected to the DMA client and the slave channel configuration
--      parameters.
--      bits[0:9] - Specifies MID/RID value
-+      The cell specifies the encoded MID/RID or the REQ No values of
-+      the DMAC port connected to the DMA client and the slave channel
-+      configuration parameters.
-+      bits[0:9] - Specifies the MID/RID or the REQ No value
-       bit[10] - Specifies DMA request high enable (HIEN)
-       bit[11] - Specifies DMA request detection type (LVL)
-       bits[12:14] - Specifies DMAACK output mode (AM)
-@@ -80,12 +85,26 @@ properties:
-     items:
-       - description: Reset for DMA ARESETN reset terminal
-       - description: Reset for DMA RST_ASYNC reset terminal
-+    minItems: 1
- 
-   reset-names:
-     items:
-       - const: arst
-       - const: rst_async
- 
-+  renesas,icu:
-+    description:
-+      It must contain the phandle to the ICU, and the index of the DMAC as seen
-+      from the ICU (e.g. parameter k from register ICU_DMkSELy).
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to the ICU node.
-+          - description:
-+              The number of the DMAC as seen from the ICU, i.e. parameter k from
-+              register ICU_DMkSELy. This may differ from the actual DMAC instance
-+              number.
++		dmac1: dma-controller@14830000 {
++			compatible = "renesas,r9a09g057-dmac";
++			reg = <0 0x14830000 0 0x10000>;
++			interrupts = <GIC_SPI 495 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 25  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 26  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 27  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 28  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 29  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 30  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 31  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 32  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 33  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 34  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 35  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 36  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 37  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 38  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 39  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 40  IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "error",
++					  "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15";
++			clocks = <&cpg CPG_MOD 0x1>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x32>;
++			#dma-cells = <1>;
++			dma-channels = <16>;
++			renesas,icu = <&icu 0>;
++		};
 +
- required:
-   - compatible
-   - reg
-@@ -98,13 +117,25 @@ allOf:
-   - $ref: dma-controller.yaml#
- 
-   - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              enum:
--                - renesas,r7s72100-dmac
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a07g043-dmac
-+              - renesas,r9a07g044-dmac
-+              - renesas,r9a07g054-dmac
-+              - renesas,r9a08g045-dmac
-     then:
-+      properties:
-+        reg:
-+          minItems: 2
-+        clocks:
-+          minItems: 2
-+        resets:
-+          minItems: 2
++		dmac2: dma-controller@14840000 {
++			compatible = "renesas,r9a09g057-dmac";
++			reg = <0 0x14840000 0 0x10000>;
++			interrupts = <GIC_SPI 496 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 41  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 42  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 43  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 44  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 45  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 46  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 47  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 48  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 49  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 50  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 51  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 52  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 53  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 54  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 55  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 56  IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "error",
++					  "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15";
++			clocks = <&cpg CPG_MOD 0x2>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x33>;
++			#dma-cells = <1>;
++			dma-channels = <16>;
++			renesas,icu = <&icu 1>;
++		};
 +
-+        renesas,icu: false
++		dmac3: dma-controller@12000000 {
++			compatible = "renesas,r9a09g057-dmac";
++			reg = <0 0x12000000 0 0x10000>;
++			interrupts = <GIC_SPI 497 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 57  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 58  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 59  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 60  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 61  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 62  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 63  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 64  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 65  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 66  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 67  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 68  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 69  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 70  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 71  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 72  IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "error",
++					  "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15";
++			clocks = <&cpg CPG_MOD 0x3>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x34>;
++			#dma-cells = <1>;
++			dma-channels = <16>;
++			renesas,icu = <&icu 2>;
++		};
 +
-       required:
-         - clocks
-         - clock-names
-@@ -112,13 +143,45 @@ allOf:
-         - resets
-         - reset-names
- 
--    else:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r7s72100-dmac
-+    then:
-       properties:
-+        reg:
-+          minItems: 2
++		dmac4: dma-controller@12010000 {
++			compatible = "renesas,r9a09g057-dmac";
++			reg = <0 0x12010000 0 0x10000>;
++			interrupts = <GIC_SPI 498 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 73  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 74  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 75  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 76  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 77  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 78  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 79  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 80  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 81  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 82  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 83  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 84  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 85  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 86  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 87  IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 88  IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "error",
++					  "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15";
++			clocks = <&cpg CPG_MOD 0x4>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x35>;
++			#dma-cells = <1>;
++			dma-channels = <16>;
++			renesas,icu = <&icu 3>;
++		};
 +
-         clocks: false
-         clock-names: false
-         power-domains: false
-         resets: false
-         reset-names: false
-+        renesas,icu: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g057-dmac
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 1
-+        clocks:
-+          maxItems: 1
-+        resets:
-+          maxItems: 1
-+
-+        clock-names: false
-+        reset-names: false
-+
-+      required:
-+        - clocks
-+        - power-domains
-+        - renesas,icu
-+        - resets
- 
- additionalProperties: false
- 
+ 		ostm0: timer@11800000 {
+ 			compatible = "renesas,r9a09g057-ostm", "renesas,ostm";
+ 			reg = <0x0 0x11800000 0x0 0x1000>;
 -- 
 2.34.1
 
