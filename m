@@ -1,128 +1,229 @@
-Return-Path: <devicetree+bounces-169499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80529A971B8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:53:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 772E4A971C2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:59:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A83251889D71
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:53:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84D9817FCD0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F89728FFE9;
-	Tue, 22 Apr 2025 15:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4362B28FFDE;
+	Tue, 22 Apr 2025 15:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tt7QWzD5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SEC0aWcU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B1327BF7F;
-	Tue, 22 Apr 2025 15:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBF119ABB6;
+	Tue, 22 Apr 2025 15:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745337218; cv=none; b=JK+LAumLh2bEUy4UgvnQzWP43Jf8AHmHPSC/KLYo2fm6jFlE+6Q4oUzKewZqydp8QsYKWJ2CiZNEiGfZ7Kh7bUg7snGfmAefwl7fGCmZ5jHgen23Gm1QVGdI6DQqdosHHLqxPtSUcl0qzCw3TbkPe8Fw8IrS6wj0k4+XXxAKlKE=
+	t=1745337545; cv=none; b=HkDDCtZrNjraxHatKXJNh6BiuwVY+uit38YEGDk+ukXMU8ErgHHi1l5pVN7eo+04/hbGLOT5RUzKTcWGhuusz3QTt2myzg3NgLnCAIDdwx5I8izZgHqlEbMwwqP6GXge+U1DVdg0UD11xeMLqBhMerDcuABowEw/T/Gz/rnQTzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745337218; c=relaxed/simple;
-	bh=/E0EO+RMPCLWe0n9DvGXcNqxis0WymELc05enWsVUNc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A17JWnG7lUL48xRQ/8x9aUlLZjIUo68gR99TcEyWILjyVuKKZtI2RbzoOM8FxWnBgHpEWXGj2VtW4ZDHdW5GNgw7V4IU9UGCoDFENcNlAWaCpJTR1Tf4pgiv8D8Ln2s5KXpXuNQaVVKLPsJSB+FkwASaHxaTZkMgbAmjnQ31mXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tt7QWzD5; arc=none smtp.client-ip=209.85.214.171
+	s=arc-20240116; t=1745337545; c=relaxed/simple;
+	bh=lnd9254tLyB4tDweSMgFvtABXfEUVEra/aiVSRDp8Ig=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GSh27vqlZ2pn7NhMTUB3labXYao+Zf4fDh+7lTSl6IdjKxZcZmN99zqa/fPKLZx2zl5uZOrC6MZ/Q3BOFpfuA+eNELEPvYgeBGPNGfVdlCHTwioetqtjLlfsN0uImMMtDHyp8D3yCLFeHCoRb9CjOaWNmMHgZv47U9F7N8KNZlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SEC0aWcU; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-227a8cdd241so60383035ad.3;
-        Tue, 22 Apr 2025 08:53:36 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-3104ddb8051so47985191fa.1;
+        Tue, 22 Apr 2025 08:59:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745337215; x=1745942015; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1745337541; x=1745942341; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=Tt7QWzD5pMdnEIXGvwjReTaGIp/oxVCYTeUOap5vE4wD5ylFJxMjFbbTmxPWGateDc
-         GSsrp8jMT1mO1Uti/MlIck6PUMbiaCC1SxykW+1zhKBvZMdTS/qfF4qtpw+5IlAiBHdP
-         L2hvKZWJBHo4SDnsluM0Cqkotsac2zsE8/QXaCj1gICW6kcRXMsQaFKkI2qk1c2OZ/iD
-         1KFQRV9/KHOeFg0ZbsH2sn33yWnlM+8EF/2OgXB9vwlqhMtxh0KRaLFwji0yzlgg7Az0
-         ECMZDYgOX7H8SydgLO3ocSiep20XG5jOYWr1SIKlj8kJXW5cwW9mutOSQYNd8IYFbBU9
-         Jv4A==
+        bh=P95RfQEOnb0c2BR6K6QObHOaYZy5sb19nz4J8BmXf8Q=;
+        b=SEC0aWcUFmu+GrxhMf8R5rX13VawlwEe+5nxJk8CNdnF8L0E1SyOU1LfYnTwfyfsou
+         2D+lcaoW/17TWbCJRHyk3Bu1+gYYwFDSn6CgI/IYUbZ+qNt2iau6pCtyIsBhxdqJL5am
+         DDfmEDnGHa+91NTj2M87plDqhTxhDKNBzNszqpVXdUKLV/cln5XSIeU5/D1RgnF3pG86
+         wea4T7b5GON4EW2ccKTfmi+/RiLt0DL53iV4g7z/ZhW0zWei30RcWiieNlFpAHNIyXMc
+         iUG6bz6/Ea7aPwkqJBbLogAg6bGQ0DvoHG+DnrTx7OKLG0E90rda1NtU6Cb0UVgXTWAf
+         p7OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745337215; x=1745942015;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1745337541; x=1745942341;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=teTsszW2CXvbKHlUu8hkAHK7OAbtaucJAq+fXSYEk7oo/YKRTcdC7vGOhpAA9soiF3
-         Grzd3l1WYyd5xBk90AKtclD9CFP/fK8pDTRjKM70omgRbqQk6bCe0vKili261L8QpKn7
-         STKS6SABnePf3uWNL7nYOitpZl5DCBg4YkiOVgII5rEMGsg+Tk+6SUyxLALbkjyFbuVC
-         Z5Fq+gMXEaI+/9VT4x46UAQUjuttc33rUblzvFiPyc9L+QlEhE/2MzN5h2XG4md0moCR
-         KAel84655TdolXaYgTvnW2+JqNvJN4a0VonScxEWP6pT9lz0Klf6j4brGmb9QVuHDO3T
-         /XqA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAGYTu6i4YNovos0/rg4XYYfZy66EBjElMZa1Fb5zZzTZD5Zxkz0l7ue0JwPfI64CRafn/hGpz5XrG@vger.kernel.org, AJvYcCXCT9XvcmdCKZFThrC/TW+rZNuwHWxSkVOkbfOVGgHSjOq4BHG67OL00N4+mZ3fUPgYtTfKE0LrZJzk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmjFFVMnxq9m4r29upn7cVV0hBRLemRELkWrQfGkZ7a6/ppRCw
-	t6WyLpEATZaEDA4cxNfyNkGx/6vN5fvxeGCrR1n8WDLCCuKORmHH
-X-Gm-Gg: ASbGnctXuYCUnoGMihjRVMmcwj45kuzwoCKGtUteLpU/J0u+kHqMDHEjbM1wUhmYjmB
-	aT/kbPi5f0ri7jA7e0AdkJWdXlYXPmXZ6FITYy+YTjYz6/fSkVxa1GFXA+/4r3uT4ezLQrgsgWn
-	fZYKwPjfqbXh2BmLvYIOb+8pVoILReOzw8Qw9Av9XsVuVef9drOgbNvsby8/61FCRAJwM1Sh6u3
-	N+Y/MCAtvuEmUgDoOgWJBtsaDlINENBjPusC/8tdLdvtHAKZqVgMp+CkK5oHME2XmZFLLiDhWkJ
-	09WGXYoAagConJHiL8oZaQNbp1ojUSOfq5UN3e+g8YeF9/E=
-X-Google-Smtp-Source: AGHT+IFKMCemr4LeC/jglsJ72yGCSaFJfMAinE1oR1e+fXSBwosonUsSwP7Fic+HT+AmkV/bTUXvqw==
-X-Received: by 2002:a17:902:d4cd:b0:21f:35fd:1b6c with SMTP id d9443c01a7336-22c5364235fmr203026975ad.45.1745337215555;
-        Tue, 22 Apr 2025 08:53:35 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([39.120.225.141])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-22c50bdda46sm87078705ad.3.2025.04.22.08.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 08:53:35 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: jic23@kernel.org
-Cc: Gyeyoung Baek <gye976@gmail.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: [PATCH v5 4/4] MAINTAINERS: Add WINSEN MHZ19B
-Date: Wed, 23 Apr 2025 00:53:02 +0900
-Message-Id: <20250422155302.669960-5-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250422155302.669960-1-gye976@gmail.com>
-References: <20250422155302.669960-1-gye976@gmail.com>
+        bh=P95RfQEOnb0c2BR6K6QObHOaYZy5sb19nz4J8BmXf8Q=;
+        b=wHw8m8bvfy7lLL0e4FMCdul8WqDOrPXpxUDke7CHiryb5+rP4r/maaafa3/Qqgvhrc
+         uZWy9LqiLGL932zJigNmL+UWxtalUQMB+Z+QZlTJXCHshtOy2tVcoJDpgOP8xeabsC6q
+         zxX0FISk9eT31fzk3FTJUzLFa4gMpPRFxSvf3Unvk9NzVu9+hUWVX/bAtqgjtW4MVDBg
+         bjuD6i69r/a7yv8W+X28B/bxGC2Z0aDrGV0j00z8ba4DpJ3s3xoIPCHqNheNuNtq+q7U
+         kbPWsxi2Mb3R0SSBztgbE256KwwpUBLtva8ZRGTvgivG66jZwwOgeR89BTZ+jGowpX2N
+         WdvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjA/DOz/aVEJrbJBB+O7hV+rekxvbdXHuPbLqtaMLB9qN0IsCIj0xJPxfnBGdcWhhCDO/f+hQeFwfF@vger.kernel.org, AJvYcCVdkEHN13tccxkzEfpjk2fVMniu27lRcdhYiXBlaOvxXf+WOsOGfbmiNjNT9hjveJ/i5ouVDlB+0ErSnbc=@vger.kernel.org, AJvYcCXQ3+JQ4qpn0GDV6uSwE1E3xQefsVFFSn/6ld1y1QjmqYx//C11S/FZfM0uit0KzmAnIx/1eQGkEDOQpHMA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxT4Q/LSUL/rgR8ijrOYj0cnVX6rgvS+APl5aSaquwxqqwo+B/2
+	ojKtdXW7F+uk+NTf/k4el0oSpQ7ekeFjcrDMEG1bhm6H23o2ekWn5S8MWEv7vwyMd2Hop3YK4Ee
+	vlPhGaqm92hKDxW1sGwojQCMFdpA=
+X-Gm-Gg: ASbGncvFfPpQAhK0A/E6ZXpG74CIKZpuhGp68Irf3/hB6XB2vbngfxWdnUd2qIyp9ck
+	er+eb6Cs8B8j372Ard8dZJQ2ykt903iv+vcYLG1BkC3X6SjYW5wdKY8R3jhSPwVCbCB2H+j2qg1
+	sAUAjwob8nYqW+GYDzeak7Re6DKZ7Iosgv
+X-Google-Smtp-Source: AGHT+IHKgcdmILgvUVpncrj//ODq1JMHClCH1kVZRazRm5jxoTJWPHIfWhHjDuVHUsHNkKtQU34Ao2kGXyWLUr7HxTE=
+X-Received: by 2002:a05:651c:210b:b0:308:f860:7c1 with SMTP id
+ 38308e7fff4ca-31090556ab0mr53568471fa.30.1745337541131; Tue, 22 Apr 2025
+ 08:59:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com> <d0da9dbd-7ea7-4047-bab3-22f416c45938@gmail.com>
+In-Reply-To: <d0da9dbd-7ea7-4047-bab3-22f416c45938@gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 22 Apr 2025 10:58:48 -0500
+X-Gm-Features: ATxdqUH0WevZlJR3IBcYgltJzhkm5svybFPJXfp0ABMbamr4Xh6jcse-_SS3tzY
+Message-ID: <CALHNRZ-1wY2D4FOauh7tD+2QKBfhtfdJcvpV_B9Y0tEpE1kTVA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable PWM fan on the Jetson TX1 Devkit
+To: Tomasz Maciej Nowak <tmn505@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add undersigned as a maintainer for the WINSEN MHZ19B.
+On Tue, Apr 22, 2025 at 9:52=E2=80=AFAM Tomasz Maciej Nowak <tmn505@gmail.c=
+om> wrote:
+>
+> Hi.
+>
+> W dniu 21.04.2025 o 00:42, Aaron Kling via B4 Relay pisze:
+> > From: Aaron Kling <webgeek1234@gmail.com>
+> >
+> > This is based on 6f78a94, which enabled added the fan and thermal zones
+> > for the Jetson Nano Devkit. The fan and thermal characteristics of the
+> > two devkits are similar, so usng the same configuration.
+>
+> Does this work on Your DevKit? Doesn't on mine, the fan won't budge. Mayb=
+e the
+> revision difference? What I'm using ATM is [1] and [2]. Because inverted =
+polarity
+> of PWM, not submitted since that'll need the driver changes [3],[4].
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+I would have sworn I verified this before sending it in. I've had the
+patches for some time. But you are correct, this does not work as-is.
+Maybe I lost something cleaning up for submission or just plain
+misremembered the verification. I will send a v2 once I've fixed and
+verified. Apologies to the list for the bad submission.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 01079a189c93..4a0089db6670 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26015,6 +26015,12 @@ M:	David Härdeman <david@hardeman.nu>
- S:	Maintained
- F:	drivers/media/rc/winbond-cir.c
- 
-+WINSEN MHZ19B
-+M:	Gyeyoung Baek <gye976@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-+F:	drivers/iio/chemical/mhz19b.c
-+
- WINSYSTEMS EBC-C384 WATCHDOG DRIVER
- L:	linux-watchdog@vger.kernel.org
- S:	Orphan
--- 
-2.34.1
+For inverted polarity, listing them backwards already has precedence
+in mainline, see the Banana Pi R3 dt. This makes me want to double
+check the existing Nano pwm-fan entry in mainline, though. Cause I
+thought all the t210 devices were the same in regards to pwm fan
+inversion. And it doesn't have reversed entries.
 
+Sincerely,
+Aaron Kling
+
+>
+> 1. https://github.com/tmn505/linux/commit/a78c520ec94aeab2c9dc8e1f46597c4=
+174ff957d
+> 2. https://github.com/tmn505/linux/commit/99beee4f0cd5d3a6f30e1829d823c11=
+cb8b54bac
+> 3. https://libera.irclog.whitequark.org/tegra/2024-07-19#36707118;
+> 4. https://libera.irclog.whitequark.org/tegra/2024-10-14#37145211;
+>
+> Regards
+>
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 60 ++++++++++++++++++=
+++++++++
+> >  1 file changed, 60 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm6=
+4/boot/dts/nvidia/tegra210-p2597.dtsi
+> > index 83ed6ac2a8d8f403fb588edce83dc401065c162f..bc02f2eb14bcbd99627c58b=
+398bbf43061c8110b 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+> > @@ -1623,6 +1623,14 @@ key-volume-up {
+> >               };
+> >       };
+> >
+> > +     fan: pwm-fan {
+> > +             compatible =3D "pwm-fan";
+> > +             pwms =3D <&pwm 3 45334>;
+> > +
+> > +             cooling-levels =3D <0 64 128 255>;
+> > +             #cooling-cells =3D <2>;
+> > +     };
+> > +
+> >       vdd_sys_mux: regulator-vdd-sys-mux {
+> >               compatible =3D "regulator-fixed";
+> >               regulator-name =3D "VDD_SYS_MUX";
+> > @@ -1778,4 +1786,56 @@ vdd_usb_vbus_otg: regulator-vdd-usb-vbus-otg {
+> >               enable-active-high;
+> >               vin-supply =3D <&vdd_5v0_sys>;
+> >       };
+> > +
+> > +     thermal-zones {
+> > +             cpu-thermal {
+> > +                     trips {
+> > +                             cpu_trip_critical: critical {
+> > +                                     temperature =3D <96500>;
+> > +                                     hysteresis =3D <0>;
+> > +                                     type =3D "critical";
+> > +                             };
+> > +
+> > +                             cpu_trip_hot: hot {
+> > +                                     temperature =3D <70000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "hot";
+> > +                             };
+> > +
+> > +                             cpu_trip_active: active {
+> > +                                     temperature =3D <50000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "active";
+> > +                             };
+> > +
+> > +                             cpu_trip_passive: passive {
+> > +                                     temperature =3D <30000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> > +                     };
+> > +
+> > +                     cooling-maps {
+> > +                             cpu-critical {
+> > +                                     cooling-device =3D <&fan 3 3>;
+> > +                                     trip =3D <&cpu_trip_critical>;
+> > +                             };
+> > +
+> > +                             cpu-hot {
+> > +                                     cooling-device =3D <&fan 2 2>;
+> > +                                     trip =3D <&cpu_trip_hot>;
+> > +                             };
+> > +
+> > +                             cpu-active {
+> > +                                     cooling-device =3D <&fan 1 1>;
+> > +                                     trip =3D <&cpu_trip_active>;
+> > +                             };
+> > +
+> > +                             cpu-passive {
+> > +                                     cooling-device =3D <&fan 0 0>;
+> > +                                     trip =3D <&cpu_trip_passive>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> >  };
+> >
+> > ---
+> > base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+> > change-id: 20250420-tx1-therm-9fb3c30fa43f
+> >
+> > Best regards,
+> --
+> TMN
+>
 
