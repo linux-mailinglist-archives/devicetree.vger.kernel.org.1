@@ -1,152 +1,140 @@
-Return-Path: <devicetree+bounces-169456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E70FA96E91
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:29:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887F6A96EEB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75FF01B61418
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:28:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 377AE1797C8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28C5E28D858;
-	Tue, 22 Apr 2025 14:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFA0284B5F;
+	Tue, 22 Apr 2025 14:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vClEnKbT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MTHjseVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2947C2857D8
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71FE75FB95;
+	Tue, 22 Apr 2025 14:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745332015; cv=none; b=lszaH05NxcqSWIH0zBVORbdvz9vi3pcPSHPHFG7m6JzgC5nsbLcG4BY2YBQBhcHNFluGgieG2IFJs8OK7kdADY05fiOffSOSzfbc6+/OXWdKz7J5DNtyPamm5rbttv5+H19BaPWD0OSDy6rR7+GtZRQZNtWV/0uUtKH85H937bg=
+	t=1745332300; cv=none; b=rXM6Qgj5Wx/zk7u+L/ay21hGfAkHQcHvcxpn15N4W5KbMkVQi1kSC30Dwt7Lr7Nj97zya2FwR9+0aKoIkU99vP6biCtTnQ4Qsc/gWQSvYa0acdZp8HLlNqoYoRguVkjLJU+W3Zcn0ua0pyynvakRe9GlEKgrhlY1LgFoeABtrAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745332015; c=relaxed/simple;
-	bh=2nuL24sxykMJ7Rms6bRBYY6C+lB4kirIqrm1dYwAlII=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dkUPzylhtDB8osmzFqACVK3AtUjjSRtJh0pdQYxqPpoR+tHESkUNjUHqxgGGQi7+dYHCV+7EeksPxZNsE8/cqiZ57n2ZB2STuATI4AJoz7U9zc5SG2FAA1cyJbsi9xGOCqTkXp2KhMsa4Z3Ho/O+tvW/Uronrs6O2CLmT1hqWG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vClEnKbT; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39c1efc4577so2787681f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:26:51 -0700 (PDT)
+	s=arc-20240116; t=1745332300; c=relaxed/simple;
+	bh=aPTEjEJvTaqK7QfdNneuXA5RGpq3RiNIyz1EOWySdY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Clr7+dMShkCExTQR3KVTbN6Z6svbkjPb4US0A1J42iUeWMljELxecinNB5jXbUXcUWxwtaiX2A+jQI7/NWdtihaUa01bvLnpyoQpJzpsow6zO0c5tpImD4FAdLGbf6jtUeD++N20yAIUSO0w/Zq1k++BXekfHsQ1ABdJMvaYiGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MTHjseVn; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac7bd86f637so1138338566b.1;
+        Tue, 22 Apr 2025 07:31:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745332010; x=1745936810; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6/8FBWOKis/5gAhZl+kumNEFhsuTOTp0Tn1yNZmhUVg=;
-        b=vClEnKbTuUX/Tn/89pK2/LS9DFgehutKCQZ0xekC+37DFEKSWAP+bzxp/c5GAm0adb
-         6RkIBd8ksYkgFcR69ttGRQ6b+W+QyTRhdXi9nmFX54fCPcrsS1qOI79YriwPuhad3UR2
-         WQ3Wnd3geyPJUbt6++CcE9Zuax9mSBurXLPlq2ITHR84kzbcH7AHVzizepSNjjmu05UW
-         vnQgpYZsMZKtNLsbDybDIdUe/msQZVowaXqru1tOXWcQoz2ugKF9P1xNtzc8zGn7Tt8f
-         nmRPFh4k6qZ1m9Mz2rL134DMDXsMZ0aQFMHFB2fMVcebMLUbIM6OlQmHoVucaOFKNiTm
-         52aA==
+        d=gmail.com; s=20230601; t=1745332297; x=1745937097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9D2Ohj7BMKhRiIF2UiB0PW+jmy/zmiJ2pgDRvvl1DdQ=;
+        b=MTHjseVnwQQxG7mxXwyyOiioDZ6jgbLkRHuzZY5wwigbJbV9KFkdjmg+Mo93GzJNTm
+         ykpdMyEScaz9uP0ougUh2Sz2lWV9ZTeCDUlHxYl3t6eCB8f12x6cRm+dIMVxTgWT4LsY
+         1XvfS4mELBOPyCx9XVAHInqBL+oggjLWNPpD8Ig3s5+b0lE6RYXwoPIEL14vW9xK3Sha
+         wHe8gQ6A4MSrUtTlYt6o9x3O5DLKl9xII0KLuuaymKo0MQTwhjcUWL5gthZqXSxJ+6r9
+         YnNKL2DLomG2EGn6lLa2j26CR1g03atEbXds+EgsXyvdmnJoZAPMalY9Kun+1CEkDzUy
+         65cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745332010; x=1745936810;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6/8FBWOKis/5gAhZl+kumNEFhsuTOTp0Tn1yNZmhUVg=;
-        b=YsuNc0gDStStWl2x6ltUv97NBlnSfyQQW0tgW+nZsqkRfF2A7dy21P2RqjhKWG12l3
-         mne9Z7r3rFAZw7kHy2gZ/XVIg0FoMQsmWYlhR9hZIi+5rI6EfcctUm3FzmHxNAlGxbvI
-         lkhCEJSXmiu+0TZb1EdFxGnSO6URIdNddJ4oglUaODBwAZX5FdvZfYSs2uW3vcu79NFT
-         8bV8+AE+hbe8cqULXnDpaa3HD2VNn09hL4GrkRzp379UEZVj3bZ1ok54+SR6zIRrzNFF
-         GGtV9hpcgTkDAuofMTYvGxHIJ8xKy5mS+twQY/uNywqIh19rrgLMl2HaerGR2gJoG2Ak
-         Q1xQ==
-X-Gm-Message-State: AOJu0YzaaixewJxFYLElN12uYI7svzvknLg3WRG1D4Hegi/uwhbm71Su
-	hgdEYjl3JeNATxedrHXQK++7iCFh2sFRkPu+lMsJuyGcHEbH03YjYr9crqBdUE9pCpknZ0dcXcu
-	W
-X-Gm-Gg: ASbGncuSdlCSY6g6sFEQ9Tw0Wrl905FtI/kvx7N1HAMCSZENYYJmo0LF6hWRtu25PcB
-	pVBsi07QulgtX5lGiDnOy4MQfenMfdZCW3iIWZxN6pMVwiT93khBUGY4fbSTBa/0EEWFPDzzOA7
-	09gho36kknBA76csZYoUW4XoqYiFTAI888IM3GCUXwK6yFSzVcyNbosWwFcBzKdmUvLdMZ8ojYP
-	aIq1V/5CbnMQWoCdnlQLzTB/0nwLm2fKlSEclHIsbAYMrbUpWR+LeK/NCURLVFTFsqURF7GuMu0
-	3Kakrr9l+Vf2vlsOLmu47K98FQns6uxmIk49xmIIk3Bf5IvPGj1LMhkGnX8WsA==
-X-Google-Smtp-Source: AGHT+IErweWrqcRE3OUYv1Tr/uF6zeqr9g8jYjpvjE6dgePIWhMhbjuHUYd714wO1Cy0fgJwbMEbXQ==
-X-Received: by 2002:a05:6000:4308:b0:39f:f5f:5373 with SMTP id ffacd0b85a97d-39f0f5f53c0mr3774129f8f.57.1745332010416;
-        Tue, 22 Apr 2025 07:26:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4207dbsm15318011f8f.4.2025.04.22.07.26.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 07:26:50 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org
-In-Reply-To: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
-References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
-Subject: Re: (subset) [PATCH 0/7] Baisc devicetree support for Amlogic S6
- S7 and S7D
-Message-Id: <174533200972.67056.15609256008080950446.b4-ty@linaro.org>
-Date: Tue, 22 Apr 2025 16:26:49 +0200
+        d=1e100.net; s=20230601; t=1745332297; x=1745937097;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9D2Ohj7BMKhRiIF2UiB0PW+jmy/zmiJ2pgDRvvl1DdQ=;
+        b=l7Htr4mDNXvUnG6V9rBBoauJcujAY75Ng8m+YJ41nXzgu5rTKEy0S9jWzoOOugJZ2v
+         TIk1O89ZU1/hRLQbUS8+GCQRE2Z+/AyR4LcCgl8BeGaOhCDHnwZNWrpWJwJwkYDYXDnj
+         qABqvlXevDzuSoSAStLNU3zBL87xM/l/5M+tOMiybz/E+zrFty1WvenqDezQRYLsc/EV
+         JZGuvhzz6AiAvhAKVm4XHxCwbLt8r3BLbzQ+PRgg9QfU0K+5jb8Qi1aGZRt3Nqw/iJaT
+         sQLrEPlNqCU0c2wvvDWV7JUereo1ExvM2agBvpzgMNiHgkuUuhzONiNSvlINadW06Dhc
+         Uxxw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4eVcvdGvfIkTbNHs0JCUxZQ0CQhWuPyU0f6/oaoHA9n5Rh0XjWZR1M6CFGtVpuUrhF/ixHylW9CnIINo=@vger.kernel.org, AJvYcCVRdM6sbIOxAhuv/MXddCA/5glFL5paxkbZLLT9hGBIxYNYTFcvPMGz+QeAimnR0LR+vb+tWuBPWlN7@vger.kernel.org, AJvYcCXJx0nd1USZYr/a4E6cFNXfTVzqQC1TtoMkM/CDheeb6zFFq2Vjmaps/V2wQcu774ZcE2JLEarlBNYSQp0g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYz8dEMpc77RSSgUUPu568IiHydIOGb3GRwVX7aW389veAEeWS
+	dtSmaqenWA3n7gnXZAq8ZzqpL9aH2Ue/T0Pw0vQjOeJtCB6x5WhG
+X-Gm-Gg: ASbGncvRG5BHU8ptX5+dH5/5CyzxGgsst04PCxo8cbNrUaGWAOd+MU7DoQeQACEbXei
+	T5IU8U3h2Ck8ZD0PLJ1XaLNmPhkAVo9iqxEA1L55CtYpyMoeTsBEgauQFvUaY70cir8pop8UilI
+	O6aXY7ATMonJps0BLCutq6b9IvBhYsU90spQoWkNk4Xs1aZXZioFZBW+KDs8n+Ur3SdDjJplGyx
+	AsaO3lQL3g1K2lky+9FkjP44oRJRHDCn5ARbS6sQKeHLLjtaXw57LhCFzMfl9GwZkNf1SRWN11A
+	oxOZT5FHHUzKA12i0wzOoLTkevxm2OgHyqdDMPtZ+u4=
+X-Google-Smtp-Source: AGHT+IHxR50TFifkBPFb1XIbV7o2Uld6KWH6bgmxrkwABwpSwd3+oXjHqcT/SSW4faB3cyazbRU9pg==
+X-Received: by 2002:a17:907:3f91:b0:ac8:1bbe:1a5b with SMTP id a640c23a62f3a-acb6ec51617mr1298187766b.9.1745332296250;
+        Tue, 22 Apr 2025 07:31:36 -0700 (PDT)
+Received: from [192.168.1.101] ([212.106.161.104])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6eefc685sm672352866b.96.2025.04.22.07.31.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Apr 2025 07:31:35 -0700 (PDT)
+Message-ID: <de6aa1b0-3557-4b8b-86a3-919fd9e5dec6@gmail.com>
+Date: Tue, 22 Apr 2025 16:31:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: tegra: Add uartd serial alias for Jetson TX1
+ module
+To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250420-tx1-bt-v1-1-153cba105a4e@gmail.com>
+Content-Language: en-US, pl-PL
+From: Tomasz Maciej Nowak <tmn505@gmail.com>
+In-Reply-To: <20250420-tx1-bt-v1-1-153cba105a4e@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On Mon, 17 Mar 2025 15:16:51 +0800, Xianwei Zhao wrote:
-> Amlogic S6 S7 and S7D are application processors designed for
-> hybrid OTT/IP Set Top Box and high-end media box applications.
+W dniu 20.04.2025 o 16:35, Aaron Kling via B4 Relay pisze:
+> From: Aaron Kling <webgeek1234@gmail.com>
 > 
-> Add the new S6 SoC/board device tree bindings.
-> Add the new S7 SoC/board device tree bindings.
-> Add the new S7D SoC/board device tree bindings.
+> If a serial-tegra interface does not have an alias, the driver fails to
+> probe with an error:
+> serial-tegra 70006300.serial: failed to get alias id, errno -19
+> This prevents the bluetooth device from being accessible.
 > 
-> [...]
+> Fixes: 6eba6471bbb7 ("arm64: tegra: Wire up Bluetooth on Jetson TX1 module")
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+Reviewed-by: Tomasz Maciej Nowak <tmn505@gmail.com>
 
-[1/7] dt-bindings: arm: amlogic: add S6 support
-      https://git.kernel.org/amlogic/c/93d968adbba3d30c625149d7aa12369a42b89d3e
-[2/7] dt-bindings: arm: amlogic: add S7 support
-      https://git.kernel.org/amlogic/c/5c9871f98b187747a873dad2773493f2117b5203
-[3/7] dt-bindings: arm: amlogic: add S7D support
-      https://git.kernel.org/amlogic/c/c0c89503f6b722d9eb450ce1cfe52f785be07cfd
-[5/7] arm64: dts: add support for S6 based Amlogic BL209
-      https://git.kernel.org/amlogic/c/5fdecaafa2377731b84c9f3af5994d990224015e
-[6/7] arm64: dts: add support for S7 based Amlogic BP201
-      https://git.kernel.org/amlogic/c/1b753fcfcff8ad1a63512b5be01cc6f3968a859b
-[7/7] arm64: dts: add support for S7D based Amlogic BM202
-      https://git.kernel.org/amlogic/c/1a30661c20dee51675a1ddee1b81b6a0e8580412
+Thanks.
 
-These changes has been applied on the intermediate git tree [1].
-
-The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+> index 9b9d1d15b0c7eafd3895f02db1bc747d7cc8923c..1bb1f9640a800af6c10fabf0ee3916f2566a6d4b 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+> @@ -11,6 +11,7 @@ aliases {
+>  		rtc0 = "/i2c@7000d000/pmic@3c";
+>  		rtc1 = "/rtc@7000e000";
+>  		serial0 = &uarta;
+> +		serial3 = &uartd;
+>  	};
+>  
+>  	chosen {
+> 
+> ---
+> base-commit: 119009db267415049182774196e3cce9e13b52ef
+> change-id: 20250419-tx1-bt-5f202a7e4cac
+> 
+> Best regards,
+Regards
 
 -- 
-Neil
+TMN
 
 
