@@ -1,100 +1,98 @@
-Return-Path: <devicetree+bounces-169390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675B0A96AEE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:50:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A67A96B18
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4599164781
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:50:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F63B189C5A2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68FEC27BF9D;
-	Tue, 22 Apr 2025 12:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865C827F4F4;
+	Tue, 22 Apr 2025 12:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQfXeIP0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0MKeG0i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429EE1E3774;
-	Tue, 22 Apr 2025 12:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5409827EC9D;
+	Tue, 22 Apr 2025 12:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745326238; cv=none; b=Qc1e8eOasZOSAtvYP11ZCoWWNOdyBhc3nLROYRYag/kl7TOmdfk8tr5dosdgcn4yR+J+acC/JlKIx2y2aHjIgSEfxs8plvECpaKZkTkHmuhQo5yzJeHQnTEuDowqZ3mHg9/e3bAqD8VN0p5taY1/PswF8CrVV0wMpsjeWcbVRKE=
+	t=1745326526; cv=none; b=NZ4Lh58BgLEQNKgG6cRDqzrivOxdS0xwgCVGdRvTa7Y4qL54cLRbrOsDG050VyEXgtjsEdj3+gaqHZvjo3zV8qPbZ/KCDgkpNzA+kGlOzIML6E9VwDMSH79aeEg17xmfvhG2CyjPQbnajCjrysRplt4waDIurt+9jBan7U+C8A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745326238; c=relaxed/simple;
-	bh=ezUAAvrWZq+SfBhumiyZwTC1b8cAjSVNn0r03WnlHbY=;
+	s=arc-20240116; t=1745326526; c=relaxed/simple;
+	bh=5J5vS+tSTeC2z4T6bEh4qSkSbF4o4ICwzhXYHWtnIoc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sEtR5K9lHpFPQa/w/ZbayGvDe5vF86ddOAmru60QQ62awNkrgmYProaSofNNyHoFQP2ivS8jsNUw7mgnZr7mN9rMlhe2qo3e8epOT5DAtEbTLHUum/qKrKWiLFAezVppqBNMvNwisZEj4pHvxm+yNDrfyJaZrdG7iG/rqcAkw24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQfXeIP0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91DFDC4CEEA;
-	Tue, 22 Apr 2025 12:50:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5/OmzFpSENIAeKsjViupHP4l8IdmbMfcbN9YRDSgDqrbGMpKvkVHrc0ikZArMD+fwNcIlVsD1yH6cQiUXeEU5Z34q7opnOAMaRWyZrZWg7a4B0zuVOE0/yMoTegBY1rZkstemloVjh92PswVPQzS/DXQHO5fpNMVIwIqOGDYo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0MKeG0i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF79C4CEE9;
+	Tue, 22 Apr 2025 12:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745326237;
-	bh=ezUAAvrWZq+SfBhumiyZwTC1b8cAjSVNn0r03WnlHbY=;
+	s=k20201202; t=1745326525;
+	bh=5J5vS+tSTeC2z4T6bEh4qSkSbF4o4ICwzhXYHWtnIoc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sQfXeIP0FUDQkmQeNKo3qBQXsZ2p1REsH/Rj5cc5Ec1jdgX+eik8C+na4GVgWdEBl
-	 VKg6iH/Rx3hGrRXOCB3wuKBdbeuXoX0j8bk+y0t1hIiQ6IRp5Ld0/Ggt3eIZQoMLry
-	 vEibG7bdts7/IZYnXID1EwrV7+RMzcEY7if8nniC3uiYcrKpaR7bfkqQO68Mh0bz90
-	 IllVIIPlS0zjZrDa68OZodTqvlH+pew4aO7NXp/TSNOBTXowm2g28pkATIwzTKI9y2
-	 IdaKQrcUNRWQrVTm5vycOHMjz9dj4g8ZfPga6A82/CO4XXLwfJrOJfeWEdr6VJtCy2
-	 ZIX121RSoHZhg==
-Date: Tue, 22 Apr 2025 07:50:35 -0500
+	b=c0MKeG0i9UB1rJMZhVnH1wFUcNcgQXUdMCCFUNcuFJzt85/QZH+ittf0htZg4cFSF
+	 zp8erxnPGi2pOrvKMLF5aBDtOGxqWr6/7ZsWv7igYe4rFDTJvoDfxvk8ixAMs4Auk7
+	 aCWet/lbt2351cFk8n1dg5LUfOO9ez7Mu/jsVCvRCGl7CgukrhN5EXWfVQYP7PipCA
+	 N/y53TKsuY11paq2Lz5R8KweS+rdnG+vSqmNwqw550FL8dG0vYTeGRZxRdMxexyPeC
+	 FonJtKBeOh2yKCTOU/DhfQhIB0fA9IvUuewD0tzPo1Gmmu4sxPEh6XeAxZlshg5RUu
+	 03dak/v+xBmeA==
+Date: Tue, 22 Apr 2025 07:55:23 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, Naveen N Rao <naveen@kernel.org>,
-	devicetree@vger.kernel.org,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Conor Dooley <conor+dt@kernel.org>, Crystal Wood <oss@buserror.net>
-Subject: Re: [PATCH v3] dt-bindings: powerpc: Convert fsl/pmc.txt to YAML
-Message-ID: <174532623458.953813.9838833701705754537.robh@kernel.org>
-References: <20250417-fslpmc-yaml-v3-1-b3eccd389176@posteo.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Simona Vetter <simona@ffwll.ch>, Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: display: imx: convert ldb.txt to
+ yaml format
+Message-ID: <174532652176.960722.2664945532929851168.robh@kernel.org>
+References: <20250417145742.3568572-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250417-fslpmc-yaml-v3-1-b3eccd389176@posteo.net>
+In-Reply-To: <20250417145742.3568572-1-Frank.Li@nxp.com>
 
 
-On Thu, 17 Apr 2025 16:21:14 +0200, J. Neuschäfer wrote:
-> This patch rewrites pmc.txt into YAML format. Descriptive texts are
-> expanded or shortened in a few places to better fit today's conventions.
+On Thu, 17 Apr 2025 10:57:41 -0400, Frank Li wrote:
+> Convert ldb.txt to yaml format.
 > 
-> The list of compatible strings (and combinations of them) is based on
-> existing device trees in arch/powerpc as well as compatible strings
-> already mentioned in the plain-text version of the binding.
+> Additional changes
+> - fix clock-names order to match existed dts file.
+> - remove lvds-panel and iomuxc-gpr node in examples.
+> - fsl,imx6q-ldb fail back to fsl,imx53-ldb.
+> - add fsl,panel property to match existed dts.
 > 
-> One thing I didn't handle are soc-clk@... nodes as seen in
-> arch/powerpc/boot/dts/fsl/pq3-power.dtsi. They are also ignored
-> by Linux drivers.
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> Changes in v3:
-> - Combine two compatible strings into one "enum"
-> - Remove sleep consumer (sata@19000) from example
-> - Fix reference to example for soc-clk@... nodes, and explain why they
->   are not modeled
-> - Link to v2: https://lore.kernel.org/r/20250412-fslpmc-yaml-v2-1-98c0948a2921@posteo.net
-> 
-> Changes in v2:
-> - Rebase on v6.15-rc1
-> - Link to v1: https://lore.kernel.org/r/20250315-fslpmc-yaml-v1-1-10ba354a85c2@posteo.net
+> change from v1 to v2
+> - use oneof in clock-names. imx6dl use imx6q-ldb comaptible string, but
+> the clock-names is the same as imx53. To reduce dts impact, use oneof to
+> allow two group clock-names list
+> - fix typo pannel
 > ---
->  .../devicetree/bindings/powerpc/fsl/pmc.txt        |  63 ---------
->  .../devicetree/bindings/powerpc/fsl/pmc.yaml       | 152 +++++++++++++++++++++
->  2 files changed, 152 insertions(+), 63 deletions(-)
+>  .../bindings/display/imx/fsl,imx6q-ldb.yaml   | 194 ++++++++++++++++++
+>  .../devicetree/bindings/display/imx/ldb.txt   | 146 -------------
+>  2 files changed, 194 insertions(+), 146 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/imx/ldb.txt
 > 
 
 Applied, thanks!
