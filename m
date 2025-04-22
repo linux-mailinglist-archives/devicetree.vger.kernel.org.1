@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-169391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A67A96B18
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:55:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F13A96B1F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:57:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F63B189C5A2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:55:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A8313B58C9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:56:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865C827F4F4;
-	Tue, 22 Apr 2025 12:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB239280A2C;
+	Tue, 22 Apr 2025 12:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0MKeG0i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CyOfS9Co"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5409827EC9D;
-	Tue, 22 Apr 2025 12:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF248280A21;
+	Tue, 22 Apr 2025 12:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745326526; cv=none; b=NZ4Lh58BgLEQNKgG6cRDqzrivOxdS0xwgCVGdRvTa7Y4qL54cLRbrOsDG050VyEXgtjsEdj3+gaqHZvjo3zV8qPbZ/KCDgkpNzA+kGlOzIML6E9VwDMSH79aeEg17xmfvhG2CyjPQbnajCjrysRplt4waDIurt+9jBan7U+C8A8=
+	t=1745326616; cv=none; b=dZF5woX42rwqEYAi8wY2KmzMx9cq4cSLj8z2tIJNK+LFIFQA6UrL4KPR/90dg05HhapfG5+bsUFbBTgxrAl1y8w52AQqHDxpfowUWEi+UUwlONFQCTEvlajU9PtBER+IdVnjhU0ibIYDpza2aDsm5S12Ek5auZDWXcFlvnHGA9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745326526; c=relaxed/simple;
-	bh=5J5vS+tSTeC2z4T6bEh4qSkSbF4o4ICwzhXYHWtnIoc=;
+	s=arc-20240116; t=1745326616; c=relaxed/simple;
+	bh=jYEOUEpAwOn3yr5q5yZLWBNVs85A+4vFAdoYWIC0Rz4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5/OmzFpSENIAeKsjViupHP4l8IdmbMfcbN9YRDSgDqrbGMpKvkVHrc0ikZArMD+fwNcIlVsD1yH6cQiUXeEU5Z34q7opnOAMaRWyZrZWg7a4B0zuVOE0/yMoTegBY1rZkstemloVjh92PswVPQzS/DXQHO5fpNMVIwIqOGDYo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0MKeG0i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF79C4CEE9;
-	Tue, 22 Apr 2025 12:55:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgyXv1G/4cm+MXvKX6+2X3MlR+44jg2eafA1Y1/SlVuldNYgEfZDg1etymdt3mzN1OLPyifnZXMkYg1/IpFJMUn9q61EEd5M/JcHq01sFh3MosIFS8OI11+KFZgQZ6i+SxgOZSDTXFIg/RMFcFxgs2lZ+nHcB9SBXTb+GZHat8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CyOfS9Co; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 082ABC4CEE9;
+	Tue, 22 Apr 2025 12:56:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745326525;
-	bh=5J5vS+tSTeC2z4T6bEh4qSkSbF4o4ICwzhXYHWtnIoc=;
+	s=k20201202; t=1745326616;
+	bh=jYEOUEpAwOn3yr5q5yZLWBNVs85A+4vFAdoYWIC0Rz4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c0MKeG0i9UB1rJMZhVnH1wFUcNcgQXUdMCCFUNcuFJzt85/QZH+ittf0htZg4cFSF
-	 zp8erxnPGi2pOrvKMLF5aBDtOGxqWr6/7ZsWv7igYe4rFDTJvoDfxvk8ixAMs4Auk7
-	 aCWet/lbt2351cFk8n1dg5LUfOO9ez7Mu/jsVCvRCGl7CgukrhN5EXWfVQYP7PipCA
-	 N/y53TKsuY11paq2Lz5R8KweS+rdnG+vSqmNwqw550FL8dG0vYTeGRZxRdMxexyPeC
-	 FonJtKBeOh2yKCTOU/DhfQhIB0fA9IvUuewD0tzPo1Gmmu4sxPEh6XeAxZlshg5RUu
-	 03dak/v+xBmeA==
-Date: Tue, 22 Apr 2025 07:55:23 -0500
+	b=CyOfS9ConEWjGM9GoZPRI7lw2WMPgFn5fzB7Cx+VjgMJx0eJULzecJomjQgXLGV/6
+	 B2ghLoLBIxIPFPxGxJAhACE03s8LUoYHb/rd18Ax/C7O8wBCQGVw9OUnCvOCD0px6m
+	 Ovg99aoTtyImGfWjsqtRFKqXld0aZuOjQAPuS6w5VqftkBVmffwORSWdwEN7k/Rf0L
+	 19I07Z7sQRmLFFTtYLeyMcndzgjiSeXHcIAkcx/8c5mqSxGGVB/xWGYdUOjO/GVw7t
+	 5wggmaSBPT1950LSiYz+GmjQ42Ld+BEkJpQtnoTY0VnWv5hbV6DQkFG5diIStAKd58
+	 6KtDcOCs9ixNQ==
+Date: Tue, 22 Apr 2025 07:56:54 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Frank Li <Frank.Li@nxp.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+	Fabio Estevam <festevam@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Simona Vetter <simona@ffwll.ch>, Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: display: imx: convert ldb.txt to
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: fsl: convert m4if.txt and tigerp.txt to
  yaml format
-Message-ID: <174532652176.960722.2664945532929851168.robh@kernel.org>
-References: <20250417145742.3568572-1-Frank.Li@nxp.com>
+Message-ID: <174532661282.962885.3469691185487125433.robh@kernel.org>
+References: <20250417150608.3569512-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,31 +65,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250417145742.3568572-1-Frank.Li@nxp.com>
+In-Reply-To: <20250417150608.3569512-1-Frank.Li@nxp.com>
 
 
-On Thu, 17 Apr 2025 10:57:41 -0400, Frank Li wrote:
-> Convert ldb.txt to yaml format.
+On Thu, 17 Apr 2025 11:06:04 -0400, Frank Li wrote:
+> Convert m4if.txt and tigerp.txt to yaml format. These just use reg to
+> indicate memory region.
 > 
-> Additional changes
-> - fix clock-names order to match existed dts file.
-> - remove lvds-panel and iomuxc-gpr node in examples.
-> - fsl,imx6q-ldb fail back to fsl,imx53-ldb.
-> - add fsl,panel property to match existed dts.
+> Additional changes:
+> - Add compatible string fsl,imx51-aipstz.
+> - Add fsl,imx53-tigerp and fail back to fsl,imx51-tigerp
+> - Add compatible string fsl,imx7d-pcie-phy, which is not real phy and just
+> indicate a memory region.
 > 
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> change from v1 to v2
-> - use oneof in clock-names. imx6dl use imx6q-ldb comaptible string, but
-> the clock-names is the same as imx53. To reduce dts impact, use oneof to
-> allow two group clock-names list
-> - fix typo pannel
-> ---
->  .../bindings/display/imx/fsl,imx6q-ldb.yaml   | 194 ++++++++++++++++++
->  .../devicetree/bindings/display/imx/ldb.txt   | 146 -------------
->  2 files changed, 194 insertions(+), 146 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6q-ldb.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/imx/ldb.txt
+>  .../arm/freescale/fsl,imx51-m4if.yaml         | 41 +++++++++++++++++++
+>  .../bindings/arm/freescale/m4if.txt           | 12 ------
+>  .../bindings/arm/freescale/tigerp.txt         | 12 ------
+>  3 files changed, 41 insertions(+), 24 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/freescale/m4if.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/freescale/tigerp.txt
 > 
 
 Applied, thanks!
