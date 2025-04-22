@@ -1,189 +1,232 @@
-Return-Path: <devicetree+bounces-169303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44636A964AA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:40:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EBFA964BD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:42:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67B88179F00
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:39:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 329AA189BD2B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8EC02135B9;
-	Tue, 22 Apr 2025 09:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E795202F8D;
+	Tue, 22 Apr 2025 09:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="SWZ0ZAaV"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="qicOSTEy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2077.outbound.protection.outlook.com [40.107.100.77])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F291020E030;
-	Tue, 22 Apr 2025 09:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46125202978;
+	Tue, 22 Apr 2025 09:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745314726; cv=fail; b=gWUbJzPw1JDx/hF8rdxQUgV3006K4zkjkX4akeZLW/XecWgU0ACckUfdQuiRE0A++o/DUBUMLAyJp76e6J35b0gdt2YpQnyvOQKBKzbsjNy9r5EWzNmmqXQ9sgi99XRfBtcZmr1so/ZOFKOdM6TMeCg9j8vrVyBBTqEmkxRvOd0=
+	t=1745314912; cv=pass; b=q28cUzj573RP6p3s8beAfMSZhp2gNzAjvS99aZhMjVPipV/zc7epS7hWfsl656IMd9kQtQFdW4c/LW2aUMzHmwmQJbszmmlj/6sSYZGbUtsTggNqC0AclLOWsiAShCVFkXbLbQ1o0/u/+Mh1nBaXFWEkpahYIntT10XmJsh8Q0E=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745314726; c=relaxed/simple;
-	bh=MKiy7ay/+K7VfiYJa8C/aKY3VL2aKPivL0sZC4+zq2M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sFHriaZlz0PRA/ID3XcTi9/XF0ybdVioW6lRtTkhKgd5jH3N0QEwFPvcBvmGK+Jmpn63lQE5Zl5tMe4qbNTK/Xle1KF84HDIiIeDATZjZ+FPSgKgi0Y0AAupcak0Sz7i/1SyiPsJq0VqGdNnCRyho0+9PtYSn6ysugOHKnUbMYw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=SWZ0ZAaV; arc=fail smtp.client-ip=40.107.100.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=La9nOBOi7iG6jUKUWgY17AoWwsE+MJ4sDBBHJohJ/YF0Pd2AnRljErh2xndtMcgAydo1OJX/cy7u3XXSCazMFxcwU79fk06u8+7OeB/t25qJov5pqoVMvYaAw83vHNu1YzckhectJSDSsC7gCQJhZLlrc8c2LiiF3p22dkv+vaMzbetWICOkFfiGVOnLxk+nRkh/Ur4KkhjnATh2uApeFeu4il+zXWdyYNfABkTpnrYzAAZr8ACNeRhX1cLj5k1EraJ3wqleqrfG5fpRIBVOv41muZgNcTOxp3WI1bvbkq/kooFbV1yujybAGjb4/PNhMScT1Y8zILE/8dinG4SPuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tJmBtqYN1kJQixBip+LnbcKnQ4BKV0oovXrTFIeddvI=;
- b=Hn2v2g2B6Rz/1f6wP9jEAZaoJSmAicAdlGwc0OapJpUyB9H+viubM3w3wDFQcrrofwMzYo16V70yfopn9l4WpYQwvPoeJl6l9aNi0Ojy0Jx0Daq2i7PeyXoEQqHM8JyK3zK8TbT489ByC0M7eYBmWvMK3CQFzmf+938r2WNjC7zu1H6ePlUDzpdaoqc4Q6qS5SmR4McwxRgwB9U8AQGwV9FQJAM17SEgPVep8bivTsvzv+ETOfLwjxXIU0SjtYrJFgjIacp7eB4lEGdU8B8lQhBoE4LU90AwmP6EloWoBQ/eqmGmfdwE8inTI8RxM8gEMtlsjhPOEHwaWjZBWOCUoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tJmBtqYN1kJQixBip+LnbcKnQ4BKV0oovXrTFIeddvI=;
- b=SWZ0ZAaV7oFq8X4T4BnvzbkwFQEGm2+cMOnonsOpNb/qhos8+CFqV0USUlPl2OpAA87UxHLcw6E5R7Yra0GkrDbb2hDz+q6m3MDRoqda8dXb8SrKigNl2Or6mSdn1aFhF0x+Ee5n7s/YgixjStButqzCo1YaSYWDDvUbYcKjLVCrTsIo/FOqKNi8TWPLUMKaGjCjEmHtBlilxlM21+BVSgtohSxpJp1A+Dtk32nun1CfWNzVMgHcIYxA2Wz2ezjmsQOZn1/PFhT13NjeVb6N2+OUrNRG0U1P2zlAFg9pquTxWDeC77gr8b3fB+t3ioHUWfgHbfnoey0LXr3W5MlK+A==
-Received: from BL1PR13CA0354.namprd13.prod.outlook.com (2603:10b6:208:2c6::29)
- by BL3PR12MB6473.namprd12.prod.outlook.com (2603:10b6:208:3b9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.36; Tue, 22 Apr
- 2025 09:38:39 +0000
-Received: from BN2PEPF0000449F.namprd02.prod.outlook.com
- (2603:10b6:208:2c6:cafe::86) by BL1PR13CA0354.outlook.office365.com
- (2603:10b6:208:2c6::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.31 via Frontend Transport; Tue,
- 22 Apr 2025 09:38:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN2PEPF0000449F.mail.protection.outlook.com (10.167.243.150) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.12 via Frontend Transport; Tue, 22 Apr 2025 09:38:39 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 22 Apr
- 2025 02:38:24 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 22 Apr
- 2025 02:38:23 -0700
-Received: from build-sheetal-bionic-20250305.nvidia.com (10.127.8.13) by
- mail.nvidia.com (10.129.68.6) with Microsoft SMTP Server id 15.2.1544.14 via
- Frontend Transport; Tue, 22 Apr 2025 02:38:23 -0700
-From: "Sheetal ." <sheetal@nvidia.com>
-To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-sound@vger.kernel.org>
-CC: <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-	<jonathanh@nvidia.com>, <thierry.reding@gmail.com>, <mkumard@nvidia.com>,
-	<spujar@nvidia.com>, Sheetal <sheetal@nvidia.com>
-Subject: [RESEND PATCH 10/10] ASoC: tegra: Tegra264 support in isomgr_bw
-Date: Tue, 22 Apr 2025 09:38:15 +0000
-Message-ID: <20250422093815.506810-11-sheetal@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250422093815.506810-1-sheetal@nvidia.com>
-References: <20250422093815.506810-1-sheetal@nvidia.com>
+	s=arc-20240116; t=1745314912; c=relaxed/simple;
+	bh=uTkwJ/WbfW8Z/8nTRxZWDGPgqfutEjIO92axs+CnfSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oxRMAbDlpAkIjwSC7K6xW2HRTWGMOeLekWqK1kNa//QdG2M/PDPTU/w7dCF8ng2BzrOZZSsRYCk9TwQiGduxnWbWNu74i1nZb4PIVcTfw2ULDP+FYLuhJwAukIIm8O9k2kqmNpbEDX860af+XaPemTnkzQtLVjcU0CGd1WUdXVw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=qicOSTEy; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Zhch549X6z49PyD;
+	Tue, 22 Apr 2025 12:41:41 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1745314903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yzvWMTOgzf7if1kVHwP1oNPdQ8L2Mw7WSkfk2wPslAk=;
+	b=qicOSTEyYc7sA/QjKA1qVWdj64vEms6wfD9eCtL982tlFiPR5EfNDge0EsDD0Rm+jpge2j
+	CAfBkEmK6Fr0nftqByv8zbzMxbT3iRY1m1WKs18Ospo8cRMyduw3dS7CuOticjIkS2baE4
+	8JmElRG3BKbGjVghANskc/6HOyKY+guYKWVs0HTjHzk+CuDqWaD5/iKiQtKv4zDparrtRK
+	wQW/56Mz6EBBoqNDr5acYv8axo7BqQgOfgsfXDB1ydLX6TiS7nIg5F++nFep4rwU/fDcRQ
+	Uj0qPMzQb7ZLx47l8Y4V34EoyhzEsvg1vk4id1sKiiVVRJEvPyUNnTi4qYj2eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1745314903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yzvWMTOgzf7if1kVHwP1oNPdQ8L2Mw7WSkfk2wPslAk=;
+	b=lzGE7zO0JUUMDNrHFh3uJsZQ+U4EdY7juQQiKLS1ywqDgnQNesDLA+T7RtBQssH3GsRmnM
+	gG0WBZWdTBQu1ayW6qRIjmLlmo1H6SlP/uin6YexU+vxjYTOjumRnFwii2Dw7CX+nsB30p
+	V8UodkZZ7BNy+7NRNbNuEWa7yB88l73FnynAb7itUYxmSZOX2cfTSf1mVdKSepRB7P1pQH
+	qWs2n4IZq5gq4R8jLdZyDPj3cBx5KYxuSlwh47UbO0mQpiyOX1epEew2YLsenqzB5eHD3/
+	9Pz/km3linE+lQDXQ1jr6RMf/nfHBRkFzCmMPssbG/xDNX4iGI2QjnQ1MKTgBA==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1745314903; a=rsa-sha256;
+	cv=none;
+	b=VK2WE+/pL6Dw/fkdQpef2bUsSxujW7pRl2Lj0yM4hRuPe4xSJu/1VGzys80G9u5b6wBaa/
+	QXFsEclTUUb6p1cHK3DRw7YaEcgkmkHbVFac109QVQFhU/H/ZpQpYwiJSOHN03C0939eLc
+	pXRVeK6lfE6Qs1lPQQafA/ynlHojsthOJZcYzJcDfTdhOwJgck6IqpOMBv2T+ZUUp2Jwjj
+	1Oneens2wkNC7UfVnPLQH16xryMz65H9DUclnBi+/qA4WBjK1avG6rrZZ3xgeGSGI4tsNJ
+	5lZ2kKzqVqjjlaWd+qr4GUnN01iOCkoGQNIwF1XELsw6VGjzOwqbw/KALqm8wQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 1AA02634C93;
+	Tue, 22 Apr 2025 12:41:39 +0300 (EEST)
+Date: Tue, 22 Apr 2025 09:41:39 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Ricardo Ribalda <ribalda@chromium.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 3/8] media: v4l: fwnode: Support acpi devices for
+ v4l2_fwnode_device_parse
+Message-ID: <aAdkU65ruBfyRjss@valkosipuli.retiisi.eu>
+References: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
+ <20250403-uvc-orientation-v1-3-1a0cc595a62d@chromium.org>
+ <Z_uIyEe4uU_BC5aY@valkosipuli.retiisi.eu>
+ <CANiDSCvQC25ZrSZgUuFt6deCogFL6=GPsYYrsegK1NOK=uzRJA@mail.gmail.com>
+ <dd471b51-333b-4537-ac58-29ad2a10f1e2@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449F:EE_|BL3PR12MB6473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14527d51-69a9-4093-c6f7-08dd818176b8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?9rksTQKZlsCPJRO4MlGy3pKvh67tQEDPLBlCiOGXu9ZgGRbzrDJiJoW6GRa7?=
- =?us-ascii?Q?mERcAEAV4PK40i9dAeHUgGCE1p8uLu66BVxUH9tGKpuLAon+ivNv2OjQdq0v?=
- =?us-ascii?Q?4eGfbv+M3Cfe8gYb2X7C2FqYAQWW3nO/iK1/6bDWe9BXvC67PJoyWk0xvekj?=
- =?us-ascii?Q?gczHP2onv4+Kz75dgEaOQLdy974WaSdhG3++QNMRal1L1KxmFJqIDuJ1nAZj?=
- =?us-ascii?Q?tS73bO0DuIJ+jHP2/Fx+RlK3BOEQ1VIpznb8/3nTOPcifo+xfWyWJTFdPdJA?=
- =?us-ascii?Q?VlTBI3X9stY3wbvmwJk6yCMN1nY5Tyf2DHTnWNI2UjZV4vNY4ayW0DeO/Fsq?=
- =?us-ascii?Q?P9oMnPpwQnJYs5ztiwjh/ybka22GSiOPyR0OrQf3CzkdDXU2dtostR2MeNag?=
- =?us-ascii?Q?2NlRLQugITDLHnXSftVPDbOaukK37wzC4+gRSuqZEv9vc3zCTSR1NmTpncYD?=
- =?us-ascii?Q?vLRaDZVx+D7oUGMYDC8kkuuGwc3aNmKEXnucIpxSBAC8Mx0iDCmXgfPnD1iI?=
- =?us-ascii?Q?y6u+l9AXJpQa5Wrvb+9wK58a8iyPY+TYL0o0NXwFpSyxay0qFC47MD4GvMBV?=
- =?us-ascii?Q?wD+A0tgvy+tMg2R1Grl7b6pqiSAhj6JR2jJyr0zPYlbvay2R/dRZpFLuUuWr?=
- =?us-ascii?Q?LX2pBqJUaOxLK8W2h0A16KRe3dH2GcHxlN9AtHk8WKbewie16wKSQaRZC8ah?=
- =?us-ascii?Q?zVGjNSh1OKuzY+Hm7/0qh9bMRySdF4HMw/StWtzez0F2fqBHzlUw96Q0yIro?=
- =?us-ascii?Q?59wphu0dFEYhsQbLooypLXS+aPbqN13wSn3AhxZMzIb4zMhKZTn9ssh/yUa2?=
- =?us-ascii?Q?vej86qXu5BIrDRilY/DlLZdCRJtdDSJGCu8EtAm+SCBGSL2/co4cMZEP9wgn?=
- =?us-ascii?Q?mreEVdl2eMoLuTjBdkbtXbAOlqB/sDQgpnqUrQDEKleI4t8dKNSSqWug7W8N?=
- =?us-ascii?Q?66zHwWfaxhqbvloEb1bLe11DJNaIptsKsWh1JwuOS6N3ZeOzOrnGOb3w8QZy?=
- =?us-ascii?Q?6VuajNTqKHcTnY3VGaZMn2eYZsiNO0ggZ+3TOuuKROFwEhwjuXYzNA0aN93O?=
- =?us-ascii?Q?//xHm5xZ0eclReJncf/ZPOqVp8/E4dOU90nsAHv1NSx7cjPfzhNkIdkVIwe+?=
- =?us-ascii?Q?+addQvEnPr/bRqxvUVZnwoxC7hnVJXuE+Bg6mOer0aaXGrwN4cnC8m7SwDLg?=
- =?us-ascii?Q?JYj3hqpQuGR2hM22lso3HAbWHCaWRBj8tGQIvLRL4uCfTSBSCv1HdbTZQuKL?=
- =?us-ascii?Q?TDArDT7LqlAw98ERA1JEmXeY5Do7tTG4YpTAeJuKN/nhoMPoZ8f8NB7WZR7z?=
- =?us-ascii?Q?vgAp1u9m1KnA+I583nKxLqMhKxo5uFa2csy9Q724MSE2pTtdGf13ByX6Feb6?=
- =?us-ascii?Q?8LcRUGQWvS6FFmlVyDDDv+wVUKVItln09heL2n4mRweZHJrC9+NhpMr9nN03?=
- =?us-ascii?Q?bhUpvzRIUaS+FVsnRC4GYEz2tcwLHwfJwllQb8VJYgGnhmky+QzAocfaIeFN?=
- =?us-ascii?Q?gSnTqkRi+55ROiiq0fJQ/4LaNTOC14IL3pNn?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2025 09:38:39.7049
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14527d51-69a9-4093-c6f7-08dd818176b8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF0000449F.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6473
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dd471b51-333b-4537-ac58-29ad2a10f1e2@redhat.com>
 
-From: Sheetal <sheetal@nvidia.com>
+Hi Hans, Ricardo,
 
-Tegra264 supports max 32 channels, hence calculating the max
-bandwidth using the channel info from soc_data.
+On Tue, Apr 22, 2025 at 10:44:41AM +0200, Hans de Goede wrote:
+> Hi Ricardo,
+> 
+> On 22-Apr-25 2:23 AM, Ricardo Ribalda wrote:
+> > Hi Sakari
+> > 
+> > On Sun, 13 Apr 2025 at 17:50, Sakari Ailus <sakari.ailus@iki.fi> wrote:
+> >>
+> >> Hi Ricardo,
+> >>
+> >> Thanks for the patch.
+> >>
+> >> On Thu, Apr 03, 2025 at 07:16:14PM +0000, Ricardo Ribalda wrote:
+> >>> This patch modifies v4l2_fwnode_device_parse() to support ACPI devices.
+> >>>
+> >>> We initially add support only for orientation via the ACPI _PLD method.
+> >>>
+> >>> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> >>> ---
+> >>>  drivers/media/v4l2-core/v4l2-fwnode.c | 58 +++++++++++++++++++++++++++++++----
+> >>>  1 file changed, 52 insertions(+), 6 deletions(-)
+> >>>
+> >>> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+> >>> index cb153ce42c45d69600a3ec4e59a5584d7e791a2a..81563c36b6436bb61e1c96f2a5ede3fa9d64dab3 100644
+> >>> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> >>> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> >>> @@ -15,6 +15,7 @@
+> >>>   * Author: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> >>>   */
+> >>>  #include <linux/acpi.h>
+> >>> +#include <acpi/acpi_bus.h>
+> >>>  #include <linux/kernel.h>
+> >>>  #include <linux/mm.h>
+> >>>  #include <linux/module.h>
+> >>> @@ -807,16 +808,47 @@ int v4l2_fwnode_connector_add_link(struct fwnode_handle *fwnode,
+> >>>  }
+> >>>  EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_add_link);
+> >>>
+> >>> -int v4l2_fwnode_device_parse(struct device *dev,
+> >>> -                          struct v4l2_fwnode_device_properties *props)
+> >>> +static int v4l2_fwnode_device_parse_acpi(struct device *dev,
+> >>> +                                      struct v4l2_fwnode_device_properties *props)
+> >>> +{
+> >>> +     struct acpi_pld_info *pld;
+> >>> +     int ret = 0;
+> >>> +
+> >>> +     if (!acpi_get_physical_device_location(ACPI_HANDLE(dev), &pld)) {
+> >>> +             dev_dbg(dev, "acpi _PLD call failed\n");
+> >>> +             return 0;
+> >>> +     }
+> >>
+> >> You could have software nodes in an ACPI system as well as DT-aligned
+> >> properties. They're not the primary means to convey this information still.
+> >>
+> >> How about returning e.g. -ENODATA here if _PLD doesn't exist for the device
+> >> and then proceeding to parse properties as in DT?
+> > 
+> > Do you mean that there can be devices with ACPI handles that can also
+> > have DT properties?
+> 
+> Yes it is possible to embed DT properties in ACPI, but I don't
+> think that is really applicable here.
 
-Signed-off-by: Sheetal <sheetal@nvidia.com>
----
- sound/soc/tegra/tegra_isomgr_bw.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+This is determined by
+Documentation/firmware-guide/acpi/DSD-properties-rules.rst . So rotation
+and orientation shouldn't come from _DSD properties on ACPI systems.
 
-diff --git a/sound/soc/tegra/tegra_isomgr_bw.c b/sound/soc/tegra/tegra_isomgr_bw.c
-index 18e802bca6a6..fa979960bc09 100644
---- a/sound/soc/tegra/tegra_isomgr_bw.c
-+++ b/sound/soc/tegra/tegra_isomgr_bw.c
-@@ -11,8 +11,8 @@
- #include "tegra_isomgr_bw.h"
- #include "tegra210_admaif.h"
- 
--/* Max possible rate is 192KHz x 16channel x 4bytes */
--#define MAX_BW_PER_DEV 12288
-+#define MAX_SAMPLE_RATE		192	/* KHz*/
-+#define MAX_BYTES_PER_SAMPLE	4
- 
- int tegra_isomgr_adma_setbw(struct snd_pcm_substream *substream,
- 			    struct snd_soc_dai *dai, bool is_running)
-@@ -98,7 +98,8 @@ int tegra_isomgr_adma_register(struct device *dev)
- 	}
- 
- 	adma_isomgr->max_pcm_device = admaif->soc_data->num_ch;
--	adma_isomgr->max_bw = STREAM_TYPE * MAX_BW_PER_DEV * adma_isomgr->max_pcm_device;
-+	adma_isomgr->max_bw = STREAM_TYPE * MAX_SAMPLE_RATE * MAX_BYTES_PER_SAMPLE *
-+			      admaif->soc_data->max_stream_ch * adma_isomgr->max_pcm_device;
- 
- 	for (i = 0; i < STREAM_TYPE; i++) {
- 		adma_isomgr->bw_per_dev[i] = devm_kzalloc(dev, adma_isomgr->max_pcm_device *
+> 
+> But we also have secondary software-fwnodes which are used
+> extensively on x86 to set device-properties on devices by
+> platform code to deal with ACPI tables sometimes having
+> incomplete information.
+> 
+> For example atm _PLD is already being parsed in:
+> 
+> drivers/media/pci/intel/ipu-bridge.c and that is then used to add
+> a standard "orientation" device-property on the sensor device.
+> 
+> This is actually something which I guess we can drop once your
+> patches are in, since those should then do the same in a more
+> generic manner.
+
+DisCo for Imaging support currently also digs this information from _PDL
+(see init_crs_csi2_swnodes() in drivers/acpi/mipi-disco-img.c), but this
+is only done if a _CRS CSI-2 descriptor is present. It could also be done
+for devices with the IPU Windows specific ACPI objects and it would be a
+natural location for handing quirks -- there are some
+unrelated Dell DSDT quirks already.
+
+> 
+> > What shall we do if _PLD contradicts the DT property? What takes precedence?
+> 
+> As for priorities, at east for rotation it seems that we are going
+> to need some quirks, I already have a few Dell laptops where it seems
+> that the sensor is upside down and parsing the rotation field in
+> the IPU6 specific SSDB ACPI package does not yield a 180° rotation,
+> so we are going to need some quirks.
+> 
+> I expect these quirks to live in the bridge code, while your helper
+> will be called from sensor drivers, so in order to allow quirks to
+> override things, I think that first the "orientation" device-property
+> should be checked (which the ACPI glue code we have can set before
+> the sensor driver binds) and only then should _PLD be checked.
+> 
+> IOW _PLD should be seen as the fallback, because ACPI tables are
+> often a copy and paste job so it can very well contain wrong info
+> copy-pasted from some example ACPI code or from another hw model.
+
+Unfortunately that does happen. :-(
+
 -- 
-2.17.1
+Regards,
 
+Sakari Ailus
 
