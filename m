@@ -1,119 +1,129 @@
-Return-Path: <devicetree+bounces-169432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26181A96D1F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:39:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8375A96D40
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9501516CDED
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:39:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83BE33A5E95
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05721281363;
-	Tue, 22 Apr 2025 13:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CA527CCEF;
+	Tue, 22 Apr 2025 13:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecEvA8KN"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J1IHv8tU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C812D280CD2;
-	Tue, 22 Apr 2025 13:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E1C27602A;
+	Tue, 22 Apr 2025 13:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745329189; cv=none; b=tP+GmjSf249bk3cG6qYBj1a5iDX+tf5r9Ii++YcXPMgbPGhhDWB7QiY2zi5ptd35KYlK7IhexZNKqm27ON5xHmCYTSADVsQI6RE3dCkfvBQqMEfd8HMQChrmX52zBDlK+s1qFdOCObrd3iBtx9XSPVNJTNsNm10NrkTLOZSkzNI=
+	t=1745329448; cv=none; b=boRwM/JzB4ckL3/ouKoHGkC3k+wPekVOlRj9wUfg6pZSHaDZmc0SG5qC3SGV9sN/r0hD6t0BSLx7k4AVyY67doqaKBdnvcNn0cmmPeTL0X6xZ7x3iFKv5AMH/iFMAxCKSguA0ww3bisJ4s5zy/s/ER6G/63rTdYLEq8iLpMcN8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745329189; c=relaxed/simple;
-	bh=RRMkSQ6dpu08+r+o2kINCZkfxWvHTejP9hsfltA7pwA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E/oSt6Cfohcu5nFbQV3gE4jh0jnIer2gZLnwAf30G/byL0wBv5nLkKNrUASAKqF+gqum9HQ0ARLWObUnQ8Ot8tQKRgpTkyX4IJaRVfVVNQpMrGoDYKwISvEG+5qHz7hCAoXxphLeT+wP3rRX4QLGIHNgg3ulRHnZb5eZRI55tkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecEvA8KN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E25C4CEE9;
-	Tue, 22 Apr 2025 13:39:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745329189;
-	bh=RRMkSQ6dpu08+r+o2kINCZkfxWvHTejP9hsfltA7pwA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ecEvA8KNq5aqRqgySwz19zoc5spezyErx6ZrvJS3CLpyo15NfNPnUhKqXMnn0Gaxd
-	 7k1Tt49aQAGe9+g19yQxZjVl07jzdFT+6b55nRkHE2poFZNVYlSZtGKEkMKbYt6fHz
-	 nZamK3v7b8RV0Spb7bMRJvB4rYKJzVUYCQQG31Wji8wDhAqU0QctoEiYvygAwWv9mS
-	 RHNddLw3L0EwI0OC90BLILKWFmJpAlARfB/NaY0OCX9nY3doSOTzZAELOcRg6Obdt8
-	 8yPk1/IMJzuh0rwSfAq2oiqkLZdSJ3JQ3S0IoVhTelN/Im8/IjNNIbifTr5D5l0rQI
-	 d5TSy8WSKEHYA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u7Dqk-000000005rC-3LpE;
-	Tue, 22 Apr 2025 15:39:47 +0200
-Date: Tue, 22 Apr 2025 15:39:46 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Rob Clark <robdclark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <aAecIkgmTTlThKEZ@hovoldconsulting.com>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
- <20250127002026.GA2534668-robh@kernel.org>
- <CAF6AEGsfke=x0p1b2-uNX6DuQfRyEjVbJaxTbVLDT2YvSkGJbg@mail.gmail.com>
+	s=arc-20240116; t=1745329448; c=relaxed/simple;
+	bh=4DLjZ0GtZDfpf9Y+X2fCfeTSaPWs41kU9nP2/X/cyNQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LvERvGE3KrotChR0Uso927GdwcOCo5JqpdzwCJBMuNVxYhIWL6L19g/I3HxZT049za1I3CEsaUhd4z+Ld3kTwWOHxkd46NpLFJYHwerLCPFFKSLYgy+DaWwupHpROg6RAx4PAnDbWFK/K4jwSoS9dNU5V548QFE43XuEKqnROMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J1IHv8tU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1745329444;
+	bh=4DLjZ0GtZDfpf9Y+X2fCfeTSaPWs41kU9nP2/X/cyNQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=J1IHv8tU3VNYbRw81M3WLG61BspSVXRPAMqt1cHr7qQ7MUvmm1t7TdYn+ZzuOksJG
+	 quEMnv9lDyFzOvHLPVoDogC1M+3+SnkMNsTOhIY9vyzCST4ot8aYVcXpaMtl3hgTYR
+	 wf+Q6A9iFdOUMZyUFJgrzx7QvKzmouCx3iTT25yBOoMd2ci2Z6ws2dvbUSHv8sfqlp
+	 HdDHDiVcZkLxk/r0y7vAoh4KqXgtF+KCO2NW5cb0EWK5u8ctyTiatgHnRDGtDT7aeX
+	 zgOWyzkWJAGhFdB/OdYy8pG0axAzSBNr0d5uEMEOtXbeOxfVMDLaOQ9Vv7WoK6D7Br
+	 C5QmxkLJ/yANw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C1EAA17E0B9D;
+	Tue, 22 Apr 2025 15:44:03 +0200 (CEST)
+Message-ID: <4f4a1761-dbb3-4c95-8c68-359c7e9ae6b4@collabora.com>
+Date: Tue, 22 Apr 2025 15:44:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAF6AEGsfke=x0p1b2-uNX6DuQfRyEjVbJaxTbVLDT2YvSkGJbg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mailbox: mediatek,gce-mailbox: Add support
+ for MT6893
+To: Rob Herring <robh@kernel.org>
+Cc: jassisinghbrar@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20250416120230.147844-1-angelogioacchino.delregno@collabora.com>
+ <20250421213833.GA2966253-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250421213833.GA2966253-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 21, 2025 at 07:36:28AM -0700, Rob Clark wrote:
-> On Sun, Jan 26, 2025 at 4:20 PM Rob Herring <robh@kernel.org> wrote:
-> > On Mon, Jan 20, 2025 at 03:41:45PM +0100, Johan Hovold wrote:
-> > > This series adds support for utilising the UEFI firmware RTC offset to
-> > > the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> > > Elite machines.
-
-> > > Rob had some concerns about adding a DT property for indicating that a
-> > > machine uses UEFI for storing the offset and suggested that the driver
-> > > should probe for this instead. Unfortunately, this is easier said than
-> > > done given that UEFI variable support itself is probed for and may not
-> > > be available until after the RTC driver probes.
-> >
-> > This information would be useful in the binding commit...
-> >
-> > Seems like something I would say, but this is v1 and I have no memory of
-> > discussing this. I would also say probe ordering is not a DT problem,
-> > but sounds like an OS problem. Aren't there other things needing EFI
-> > variables earlyish too? Do you really want to have to update the DT to
-> > enable this?
+Il 21/04/25 23:38, Rob Herring ha scritto:
+> On Wed, Apr 16, 2025 at 02:02:30PM +0200, AngeloGioacchino Del Regno wrote:
+>> Add a compatible string for the MediaTek Dimensity 1200 (MT6893)
+>> SoC using MT8195 as a fallback, and add a header for the GCE
+>> mailbox found in MT6893.
+>>
+>> Similarly to MT8195, this SoC has two GCE hardware instances, but
+>> the event values are different (hence requiring its own header).
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../mailbox/mediatek,gce-mailbox.yaml         |   4 +
+>>   include/dt-bindings/gce/mediatek,mt6893-gce.h | 312 ++++++++++++++++++
+>>   2 files changed, 316 insertions(+)
+>>   create mode 100644 include/dt-bindings/gce/mediatek,mt6893-gce.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+>> index 73d6db34d64a..277d290d852b 100644
+>> --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+>> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+>> @@ -19,6 +19,7 @@ properties:
+>>       oneOf:
+>>         - enum:
+>>             - mediatek,mt6779-gce
+>> +          - mediatek,mt6893-gce
+>>             - mediatek,mt8173-gce
+>>             - mediatek,mt8183-gce
+>>             - mediatek,mt8186-gce
+>> @@ -29,6 +30,9 @@ properties:
+>>         - items:
+>>             - const: mediatek,mt6795-gce
+>>             - const: mediatek,mt8173-gce
+>> +      - items:
+>> +          - const: mediatek,mt6893-gce
+>> +          - const: mediatek,mt8195-gce
 > 
-> I was debugging why RTC offset was not working properly for me, and
-> eventually realized it was exactly this problem (efivars not avail
-> when rtc probes).
+> You shouldn't have with and without a fallback.
+> 
 
-Hmm. It seems dropping that property for v2 under the assumption that
-efivars would be available at module init time (since the driver can
-only be built-in) was a mistake.
+OOOPS! Sorry, that wasn't intentional - I was meaning to add mt6893-gce to the
+enum only, without that mt8195 fallback.
 
-I see now that the current qcom efivars driver does not probe until
-module init time itself, but even if we change that the scm driver
-depends on an interconnect driver which can be built as a module...
+Will send a v2, thanks for pointing out!
 
-> Hacking up rtc-pm8xxx to return -EPROBE_DEFER "fixes" it
+Cheers,
+Angelo
 
-> > OTOH, it's one property, meh.
+>>   
+>>     "#mbox-cells":
+>>       const: 2
 
-I guess we need that property on these platforms as I had initially
-concluded after all. As with the rest of this driver, hopefully all of
-this goes away for future Qualcomm platforms once they fix their UEFI
-implementation so that the time service can be used directly.
 
-Johan
+
 
