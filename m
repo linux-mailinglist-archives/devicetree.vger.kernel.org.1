@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-169525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0660FA97377
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:19:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED94A97374
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:19:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 059AC189DCD6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC985176BAB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835FB2973A4;
-	Tue, 22 Apr 2025 17:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC1DF2973B6;
+	Tue, 22 Apr 2025 17:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NraC96FR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DoiaAl5b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5642D2980B0
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 17:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4AE296D15;
+	Tue, 22 Apr 2025 17:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745342367; cv=none; b=FF+ySnUV4ZbyASmUYqFcDsGC/Bw4KR3nyUx6pseZbWV1+OrJ924ZnqQ5wY13aS/kliRA9hEcdrEABYFFP//bPk5xg8pZrZshd//fjGTNVerzWW+wgKZsOcDCKAnughs8/BrQMdM3ObGV1Eab6TNV39Dgff4cpuFt/IfZMwgADIc=
+	t=1745342362; cv=none; b=I1Z8OouWBLuV7w2L334+Ei3j3LmgeH+Qb6WMhkw9HfCtgJGUBFSoAUjwitADTWqMJarKVN7tE0Cd7+NKqd9Gv8OxhQzZOoqBzD1GiHt2W3y3G8MEUtts8ASfLnWpSY7xx2FZyypmtg1qbH1hfOlCbABj//mFOQTYtiZ+Q95FUso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745342367; c=relaxed/simple;
-	bh=+8dodPam0ZHUruvisBw0IyVvK8u/zVW6/zs4Kru8rzQ=;
+	s=arc-20240116; t=1745342362; c=relaxed/simple;
+	bh=zxmQJhaD0Jx7np6ox/4CDrz8WPw6dRpUvgDoO1voHyQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RSm5t8P7AmzpA6n0mxPr0BWP+rCu28fHvpnVqdBQ0H+/hCsjqlysOMO+q8Y3Q1zdTBeFkfNFQ75dWf0/EvcQSzvxRg8yuAYhCcO1JwKV88mJxLR4Q/Pf/iVUsGPC8XFT+WtUOnCQmLLhLknE8jT0Qsv2sfjSEtVpAVBThJ3S5f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NraC96FR; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHJB5v1288307
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 22 Apr 2025 12:19:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745342351;
-	bh=Te7Gv5UjpurtX8eYF0wNNRibtVhqh8MFhbmu5ug5EmA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NraC96FRzJ/kO7IRCGeefUAGB3Y8kNOkcOmDIYfXNQMf/REd+v4DrH9Z7I+UPfZVv
-	 iOiUcJ166FOAg2prr5VmStS9bhC0QN47E3xxgjSZ/TJ/cS1S3mcX+hGxW2yQtbAseJ
-	 sfslF+f3c2pYXqUTFYzPCRPTMmJJYJv5nL18l/VU=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHJBK0076493
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Apr 2025 12:19:11 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
- Apr 2025 12:19:11 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 22 Apr 2025 12:19:11 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53MHJ7uk089948;
-	Tue, 22 Apr 2025 12:19:08 -0500
-Message-ID: <2f33eb19-40b0-47be-a57f-f071b9bc9e08@ti.com>
+	 In-Reply-To:Content-Type; b=ocsOpOdD5LyFhYGVnrgYDVpKjclqTOy7eI2N0Mi0lA5ngNf88/fUIutzl7w0/DtRXZXxq6opPJxPISsp5kD9h4tOANH3RGynRujlo8iQVjILcSE7cib0zkhI3tjMIbT1fy32NFXHgMa4881qdNPAZWVnU4ffqaTdhp9cDs4lILM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DoiaAl5b; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MC6XAT019392;
+	Tue, 22 Apr 2025 17:19:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nK+Db4mhiEUSM7oAVNyZrsDghh2QBsZyD+JXp4oq5ks=; b=DoiaAl5bIfVv8kgL
+	zAxPdFo+fnFDV6pT4nnL6lv/mk+DJKxnHGECZ5LaAWxk4mvw8j/uZx7nNVLGD9kr
+	UW0D8thEslcbDP+QMnjowFZ1uVlbD1pd3EkjKoKNqFjRwOMqRFk24qEZWBzKPDMt
+	+Lasa6lMAHsDXJ/zKXrggOzuGp/UdzTt1RwCvEFXDWWFuWkDFFMo+yoCjqWKBkEC
+	RBMAl5X2aPq+mz/yhzLypCDEOZXaUpYlcySlkWsT6TcWVOk7/yqzdIasBRNSfvYV
+	hSDM4bak6+1ohWuYPycocnvYlZlphBPQRVH+ZUEQsMgAJjxYqe1VgxXjujRLAeCi
+	/bzI1g==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46454brfeu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 17:19:13 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53MHJDg5008618
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 17:19:13 GMT
+Received: from [10.216.4.61] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
+ 2025 10:19:09 -0700
+Message-ID: <fb1ca5fa-6bf8-40ee-a7bd-8ce356687714@quicinc.com>
 Date: Tue, 22 Apr 2025 22:49:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,132 +65,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add basic support for
- phyBOARD-Izar-AM68x
-To: Dominik Haller <D.Haller@phytec.de>, "robh@kernel.org" <robh@kernel.org>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "vigneshr@ti.com" <vigneshr@ti.com>, "nm@ti.com" <nm@ti.com>,
-        "m-chawdhry@ti.com" <m-chawdhry@ti.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "upstream@lists.phytec.de"
-	<upstream@lists.phytec.de>,
-        <u-kumar1@ti.com>
-References: <20250417125921.100580-1-d.haller@phytec.de>
- <20250417125921.100580-2-d.haller@phytec.de>
- <385e8f6a-6f25-4729-8ccc-877a551a3e9b@ti.com>
- <e1e2e4c0d831f917728d3a4245d8e18ae1186288.camel@phytec.de>
+Subject: Re: [PATCH v1 5/8] arm64: dts: qcom: qcs6490-rb3gen2: Add sound card
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+References: <20250317054151.6095-1-quic_pkumpatl@quicinc.com>
+ <20250317054151.6095-6-quic_pkumpatl@quicinc.com>
+ <5917043c-9f22-4d3e-abc3-855ca84ea32a@oss.qualcomm.com>
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <e1e2e4c0d831f917728d3a4245d8e18ae1186288.camel@phytec.de>
+From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+In-Reply-To: <5917043c-9f22-4d3e-abc3-855ca84ea32a@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=cdrSrmDM c=1 sm=1 tr=0 ts=6807cf91 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EkdEwCnvp131_jYCVQ4A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: kacnnrTLN2TKEo7Sj36SNKrw92-zOi7U
+X-Proofpoint-GUID: kacnnrTLN2TKEo7Sj36SNKrw92-zOi7U
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_08,2025-04-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 adultscore=0 mlxlogscore=787 malwarescore=0 clxscore=1015
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504220130
 
-Hi Dominik,
 
 
-On 4/22/2025 9:14 PM, Dominik Haller wrote:
-> On Sun, 2025-04-20 at 10:08 +0530, Kumar, Udit wrote:
->> Hello Dominik,
+On 4/2/2025 3:02 AM, Konrad Dybcio wrote:
+> On 3/17/25 6:41 AM, Prasad Kumpatla wrote:
+>> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 >>
->> Thanks for patch.
+>> Add the sound card node with tested playback over WSA8835 speakers
+>> and msm mics.
 >>
->> Few minor feedback
-> Hello Udit,
->
-> thanks for the feedback.
->> On 4/17/2025 6:29 PM, Dominik Haller wrote:
->>> The phyCORE-AM68x/TDA4x [1] is a SoM (System on Module) featuring
->>> TI's
->>> AM68x/TDA4x SoC. It can be used in combination with different
->>> carrier
->>> boards. This module can come with different sizes and models for
->>> DDR,
->>> eMMC, SPI NOR Flash and various SoCs from the AM68x/TDA4x (J721S2)
->>> family.
->>>
->>> A reference carrier board design, called phyBOARD-Izar is used for
->>> the
->>> phyCORE-AM68x/TDA4x development kit [2].
->>>
->>> Supported features:
->>> * Debug UART
->>> * 2x SPI NOR Flash
->>> * eMMC
->>> * 2x Ethernet
->>> * Micro SD card
->>> * I2C EEPROM
->>> * I2C RTC
->>> * 2x I2C GPIO Expander
->>> * LEDs
->>> * USB 5 Gbit/s
->>> * PCIe
->>>
->>> For more details see the product pages for the SoM and the
->>> development kit:
->>>
->>> [1]
->>> https://www.phytec.eu/en/produkte/system-on-modules/phycore-am68x-tda4x/
->>> [2]
->>> https://www.phytec.eu/en/produkte/development-kits/phyboard-izar/
->>>
->>> Signed-off-by: Dominik Haller <d.haller@phytec.de>
->>> Acked-by: Moteen Shah <m-shah@ti.com>
->>> ---
->>>
->>> Notes:
->>>       Bootlog:
->>>
->>> [..]
->>> Please have bootph-all in case, this is boot device
-> I only plan to add OSPI0 as boot source in mainline U-boot since
-> booting from OSPI1/QSPI won't work with the same binaries.
-
-Ok,
-
-
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 80 ++++++++++++++++++++
+>>   1 file changed, 80 insertions(+)
 >>
->>> [..]
->>> +
->>> +   wkup_uart0_pins_default: wkup-uart0-default-pins {
->>> +           pinctrl-single,pins = <
->>> +                   J721S2_WKUP_IOPAD(0x070, PIN_INPUT, 0) /*
->>> (E25) WKUP_GPIO0_6.WKUP_UART0_CTSn */
->>> +                   J721S2_WKUP_IOPAD(0xas OSPI1/QSPI needs at
->>> least a different CONFIG_SF_DEFAULT_BUS.074, PIN_OUTPUT, 0) /*
->>> (F28) WKUP_GPIO0_7.WKUP_UART0_RTSn */
->>> +                   J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /*
->>> (D28) WKUP_UART0_RXD */
->>> +                   J721S2_WKUP_IOPAD(0x04c, PIN_OUTPUT, 0) /*
->>> (D27) WKUP_UART0_TXD */
->>> +           >;
->>> +           bootph-all;
->> Since this is shared with TIFS fw (debug prints), then i suggest not
->> to
->> have flow control on this UART
-> So if you see the flow control pins causing issues with tifs I'll drop
-> them. And if you recommend setting the wkup_uart0 to "reserved" in the
-> devicetree by default to begin with I'll do that too.
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index a1a3df77ad57..5d4d3df6eff9 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -219,6 +219,56 @@ vph_pwr: vph-pwr-regulator {
+>>   		regulator-min-microvolt = <3700000>;
+>>   		regulator-max-microvolt = <3700000>;
+>>   	};
+>> +
+>> +	sound: sound {
+> 
+> The label is not used, please drop
 
-For debug port, often flow control is not used.
+ACK,
+Will fix it.
 
-I am not sure, what use case you are targeting with wkup_uart0.
+> 
+>> +		compatible = "qcom,qcs6490-rb3gen2-sndcard";
+>> +		model = "qcs6490-rb3gen2-snd-card";
+>> +
+>> +		audio-routing =
+> 
+> Please don't break the line here
 
-But if possible , I suggest to leave this for fw usage,
+Yes, Will update.
 
-reference EVM you can refer at below
+> 
+>> +			"SpkrLeft IN", "WSA_SPK1 OUT",
+>> +			"SpkrRight IN", "WSA_SPK2 OUT",
+>> +			"VA DMIC0", "vdd-micb",
+>> +			"VA DMIC1", "vdd-micb",
+>> +			"VA DMIC2", "vdd-micb",
+>> +			"VA DMIC3", "vdd-micb";
+>> +
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +		wsa-dai-link {
+>> +			link-name = "CODEC_DMA-LPAIF_WSA-RX-0";
+> 
+> Very unusual link name
 
-https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts#L322 
+ACK,
+Will check and update.
 
+> 
+>> +
+>> +			cpu {
+>> +				sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&left_spkr>, <&right_spkr>, <&swr2 0>,
+>> +					    <&lpass_wsa_macro 0>;
+>> +			};
+> 
+> 'co'dec < 'cp'u
 
+ACK,
+Will update in next patchset.
 
->>
->>> +   };
->>> +};
->>> [..]
+Thanks,
+Prasad
+
+> 
+> 
+> Konrad
+
 
