@@ -1,153 +1,199 @@
-Return-Path: <devicetree+bounces-169281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB47A9636B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:03:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F07A9638F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C862A163290
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:57:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CCC31885551
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46383256C97;
-	Tue, 22 Apr 2025 08:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0182F1EFF80;
+	Tue, 22 Apr 2025 09:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="dhUS5N9/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X3y1EiME"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F43256C8D;
-	Tue, 22 Apr 2025 08:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5118B19D8B7;
+	Tue, 22 Apr 2025 09:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745312180; cv=none; b=GBFq3yM83B/4dH8ULcjsXQpa6l4CDdhrSCiM8a6sOGA9CizhwmyaPZlcc7H+2k4bOdEDFWgABJ4JxHUZ78dwyJw50jJ2QAgDtASvNT+3EXMyFp1ndwLl5q2nEsdoLrDylGXn1z6RmOJ4uYNFfkPi3VN+Hqm1cwI/TbIpJEDd+B4=
+	t=1745312508; cv=none; b=L2OOGawpefzP0Qm0GynVdAp4r7OE57GdCJHTGJ1xcz9VSvWbuRrBmcC7OOfFXZpU1k/Usv69eLL8fbbzx2I3Mki5x9puxtYHaSJbFM8Oouc6CHbi4pbR6gHY2RSoCO+rihPDGJd9wYyDavajxoQgNbMA4h0UnbjTsfli/3Bpzv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745312180; c=relaxed/simple;
-	bh=TpKXeLZ7Fi+2qay5P5RV1UBl1jpJkvwlMTQnMA8coUs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bh3kzWzrYxH5X0UCFf5CFAsIRDvdni2qJPxDNqI37TQjq+8ZtGoj6WI4DjLjfkrfXHSoy+e/YkEGXSCBn9G8tpC5OtLJtbKlCghcAEd5CJ3R16lZFztSc76fGtJT2KLcCYfRna7glF5n8HHbEG03G0nPoAm0VIaAcPSSW3ANkPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=dhUS5N9/; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EoAqUPC7IVwxmkA7v4AtUYOCTo2JDd0ZDzX1gHoE3Oo=; b=dhUS5N9/CZazvrG6bBoCPIiULc
-	RP+iML0Sv+6n2QvgRsCZEBAzY10DbxiZboYDTZg+prGbs17egcc8U61xixAmlp3HPmhhTdzP70Y4K
-	gxPwb3ynSQGCwepoG0/FfSmUlObNynI4+jq+O9GpuNCSVrfxqwkTo+ckrpydKAHSjx/yvE5xY5eCe
-	A6xVEI97qgYY8XMclRHmTmMocOgiE2iJvzO8kGfMfN6s6b+mYNlv/q37/Kx9wcxtq169tSCONMK/c
-	HHyIZADGB/5CJPmiQtaFkzXiOATDTJftaHvDkn7I7lxDxsn7AMvagAVqFzcY2SBAPCwTmSal4nXcj
-	K4E0b1iQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39526)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1u79QC-00044U-0b;
-	Tue, 22 Apr 2025 09:56:04 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1u79Q8-0007Ll-1n;
-	Tue, 22 Apr 2025 09:56:00 +0100
-Date: Tue, 22 Apr 2025 09:56:00 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc: Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Whitcroft <apw@canonical.com>,
-	Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
- update descriptions of RGMII modes
-Message-ID: <aAdZoMge_CKtqokU@shell.armlinux.org.uk>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
- <cd483b43465d6e50b75f0b11d0fae57251cdc3db.camel@ew.tq-group.com>
- <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
- <b53fba84c8435859a40288f3a12db40685b8863a.camel@ew.tq-group.com>
+	s=arc-20240116; t=1745312508; c=relaxed/simple;
+	bh=xwAiim+BzPpGaX7BSuXBzGYxP0hQVbNoyy/nha9lMnc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z+NqTKpPAzkpvI30tkVd27xA/IZAcQSvTlRdV2TPRw3Z8DBgBJqFCgovPhqEIok7XsYz0kAuhKISvTvSWSnTuX4xpcFXHQjt+mapB/K+ldnkZk1rjpJSkgjesj53u2oQFMhvLP3XAMWik9sjm8avtMt0Kps0SnjEgs7vDuJgsiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X3y1EiME; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c5675dec99so458005385a.0;
+        Tue, 22 Apr 2025 02:01:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745312506; x=1745917306; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bI4tM5u6hlOmKAY3jmb6sm9muPDkxLfs7d3SJ5djx70=;
+        b=X3y1EiMEt9UYslUa1kg5GJxLXlxZpahsIz669QuQ2XdeSS4dNRHLZQ83L1nWko8U7o
+         7JI/5YdkZimREjEp6iqnAANmGoo0BAcviaA7NpTwrLkc7BOgyqE6K3VZdzQNw6gc+Q4m
+         G3uAV4aVaQd3fV6oM6CjaJGiv44Tzx4mOxjwcAHJ8mkZ7X9lraJC2+BasBmMOw42nw8R
+         LWnhLhssrJg1bcRBepDEASf4jKVpWacjs6Bv0IH0S4irfRNjf4Y1u951Y3QKMwwZuQsT
+         /v7KpGYu51cNBk7d5dvhWVKFFYGYVqdAeQGOsmkdcoajri/4Leul3Ejmpk7d0keANkzZ
+         rkMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745312506; x=1745917306;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bI4tM5u6hlOmKAY3jmb6sm9muPDkxLfs7d3SJ5djx70=;
+        b=jQ+ZNiIYr1YmNIwXmZFyYnTRmNEd+huOCV6uf3L7Jwh0x722upnRmu2LR2cFlKusvJ
+         nulnu+LUh1/J8bi5Kki2isQXzgFEIPAeaTaF6deQYq3bvwqtYwoRHw84NZKqFj+A4dy5
+         imYMlRmI7dOqDqsS5ck9Mb3SGej0eedvec2lH5sz5y4RPeL9IwCBCPhElXcVDp3Xqkjo
+         YGJww1+oJMnGpxZ9wfD1hnAZUdhBjoTpJbGk+CdTjO1W9rsvLoqIK3AAMBB4wD390Tw+
+         S17AD4gUr5mv5HeQLeZ8tGKS/51OZtEuuIqVLJQngsXG4XpEr/U61YCoQkh1Vu3AkQZ7
+         zDAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUUZfib64LKeYo/8C4gL9cBWF/i0zTtBI6GNaE6IE1CVb/9+qPDmoufvrnt6WC2EaE1b7PALO1x/B+N@vger.kernel.org, AJvYcCVIXf463i0d5xm5KvwvTnNA5RtvWDY3+XE+Xg8kSJ8zBXigDHJ1vsZMJVYXYpR2ETpeG83gpl8axfjJ@vger.kernel.org, AJvYcCW7pQJagTqNh3mjmn7isvA9qTTdoLiUTuMHlXFayuBQIe2O9t6cqn39SXi6SD7I6NO3cl/khslYxtek@vger.kernel.org, AJvYcCWgwa0UCnn1RTNUVeNhyW27K57DCJRX5ilpKAnOJdNgeovCNsHZWcsydck+RPdep5Fapm7GUt7W@vger.kernel.org, AJvYcCX5Suh7zeF+y3iMoq4xKPoyw5PWa1R2/HpsCxiWfxeqCLU5QdyQe0VDVzhezkzVGw2tIN500TQ2KqAJ@vger.kernel.org, AJvYcCXV/I+cAC3ybTHHn4h5rr7lzLIjVchDg6/i3jjOhX7pHfpRKoLj2MFu/nNEuQ23RNjFiCbu26TRXfmjPP5m@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeGm7eVLm6XUyFg2Zc3Wsi+kFcg2caP9nEkmiB3KaTOxmSx0Hr
+	zZI0n4WtO192hoR8JteG+16veYHKSo4uhmbW7wcaRY+D+qn/t+np7duE0Po9CyDCOUVy6Dn9+TQ
+	geZw4U4rnB8XaDD2TyBW7OxU83vM=
+X-Gm-Gg: ASbGncs0ARJqzrwVxfQVOA4fhvoo2W/pR1t5LgWpkKq+8bMgPBD+OdIIylN8QxAgS6K
+	1r20SvH1DZp36BDFbjyH5MPEchB2PmxX0IumiNEKrXwdI4Q2W0plpbVK9GWrZ2Eioyc9bM6/HvI
+	LUMDFNTo2PMzTfRGpArVCytCOaV32bO2lX+I1f7LvhbiCdzsAijZ82rQ==
+X-Google-Smtp-Source: AGHT+IHPgdQcr6+EJ2c2GBm62vKYoe1rNLruGx6vpyIyteGjKou1apc6OLDwP+NZ9T6S5hjDnfeJTmR8mETK+wK+bzs=
+X-Received: by 2002:a05:620a:2684:b0:7c5:5909:18e5 with SMTP id
+ af79cd13be357-7c927f6f84fmr1960081385a.3.1745312506200; Tue, 22 Apr 2025
+ 02:01:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b53fba84c8435859a40288f3a12db40685b8863a.camel@ew.tq-group.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20250416-wmt-updates-v1-0-f9af689cdfc2@gmail.com>
+ <20250416-wmt-updates-v1-3-f9af689cdfc2@gmail.com> <20250416201407.GC3811555-robh@kernel.org>
+ <CABjd4YyTKquLcYC+DVg_koi3p7AhqwBNiazCiC713DQKjCaBSA@mail.gmail.com>
+ <CABjd4Yxi4SLqsAk_fb9C=1BW6XjnZ8LQ_JKYu6KZ3TtMS0fnhg@mail.gmail.com> <14de236b-e2a7-4bde-986d-1e5ffddd01b4@kernel.org>
+In-Reply-To: <14de236b-e2a7-4bde-986d-1e5ffddd01b4@kernel.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 22 Apr 2025 13:01:44 +0400
+X-Gm-Features: ATxdqUGmp6GiWAgqNWbO-0WSin1O6yJxUf9gHQTl5ZTyEce7EbX-dkQTVJBozo4
+Message-ID: <CABjd4YwpKYr3q06E7H3upFxyUT6uGg-Jzt2_FiyfS8R=j0ye8w@mail.gmail.com>
+Subject: Re: [PATCH 03/13] dt-bindings: mmc: vt8500-sdmmc: Convert to YAML
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-pwm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 16, 2025 at 09:41:57AM +0200, Matthias Schiffer wrote:
-> Also note that (as I understand it) I'm not changing anything, I'm updating the
-> documentation to reflect what has been the intended behavior already. Please see
-> the previous discussion with Andrew that I linked, where he convinced me that
-> this is the correct approach.
+On Tue, Apr 22, 2025 at 12:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 18/04/2025 14:38, Alexey Charkov wrote:
+> >>
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  clocks:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    items:
+> >>>> +      - description: SDMMC controller interrupt
+> >>>> +      - description: SDMMC controller DMA interrupt
+> >>>> +
+> >>>> +  sdon-inverted:
+> >>>> +    type: boolean
+> >>>> +    description: SD_ON bit is inverted on the controller
+> >>>
+> >>> This implies I know what the non-inverted state is. If you know, plea=
+se
+> >>> state that here.
+> >>
+> >> This is a tricky one. The only answer I have is "it's inverted in
+> >> later versions vs. the first version I saw in the wild, and I'm not
+> >> sure if it's board related or IP version related - nor if the original
+> >> was active low or high". No docs, no schematics, no vendor left around
+> >> to chase for answers.
+> >>
+> >> Will dig around some more and update the description if I succeed in
+> >> uncovering any further clues :)
+> >
+> > I've found some extra clues and would like to consult on the best way f=
+orward.
+> >
+> > It turns out (if my understanding of the decompiled binary-only WM8505
+> > vendor driver is correct) that all chips before (not including) WM8505
+> > rev. A2 treated their "clock stop" bit (register offset 0x08 a.k.a.
+> > SDMMC_BUSMODE, bit 0x10 a.k.a. BM_CST in vendor sources, BM_SD_OFF in
+> > mainline) as "set 1 to disable SD clock", while all the later versions
+> > treated it as "set 0 to disable SD clock". Which means that there are
+> > WM8505 based systems that rely on either of those behaviours, while
+> > any later chips need "set 0 to disable". This is not a board related
+> > quirk but an on-chip SDMMC controller revision related quirk.
+> >
+> > I'd love to switch to a compatible-based logic and drop the
+> > "sdon-inverted" flag altogether from the binding I'm writing, but here
+> > are my doubts where I'd love to consult.
+> >
+> > * Looks like WM8505 rev. A2 needs a separate compatible string vs.
+> > prior WM8505. Can we have something like "wm,wm8505a2-sdhc" and
+> > "wm,wm8505-sdhc" respectively? WM8505a2 not being an actual chip name,
+> > but something discoverable by reading its hardware ID from a system
+> > configuration register at runtime
+>
+> Then maybe it can be fully detected runtime? E.g. via soc_id driver (see
+> drivers/soc/)?
 
-I think you are as I stated in my email yesterday. The use of "MAC or
-PHY" in your new descriptions opens avenues for confusion such as the
-scenarios that I described in yesterday's email.
+Thanks for pointing this out! Yes, it should work. A separate
+mini-driver to identify the SoC based on the system configuration
+register readings and a match table on soc_device_attribute inside the
+wmt-sdmmc driver to differentiate between different controller
+versions which are all identified as "wm,wm8505-sdhc" in current
+device trees.
 
-> Andrew specifically asked to leave it open in the DT bindings whether MAC
-> or PHY add the delay, and it might differ between drivers (and different
-> operating systems using the same Device Tree).
+> > * If I introduce new compatible strings for "wm,wm8650-sdhc",
+> > "wm,wm8750-sdhc", "wm,wm8850-sdhc" and "wm,wm8880-sdhc" in bindings,
+> > DTS and driver code, then the new driver and new DTB should work fine,
+> > and the DTS should pass schema checks. New driver code won't work with
+> > older DTB unless I keep the logic to parse "sdon-inverted" which
+> > wouldn't be part of the binding. Old driver code would not work with
+> > newer DTB except for pre-A2 versions of WM8505. Is that acceptable?
+> > * Existing DTS doesn't differentiate between pre-A2 vs. post-A2
+> > revisions of WM8505 and is bound to fail on the latter
+>
+> That's an old platform, so we should not break the ABI, thus drivers
+> must fully support old DTBs.
 
-I'm hoping that Andrew will read my email form yesterday and reconsider
-because to me this is a backwards step - it doesn't solve the problem
-with unclear documentation. I believe it makes the problem worse, and
-will lead to more bugs and misunderstandings in this area.
+Noted, thanks.
 
-> Whether the MAC should add a required delay in cases where it's configurable
-> is an interesting question - not one of the Device Tree bindings, but of
-> driver implementation.
+> > I realize that breaking backward/forward compatibility is undesirable,
+> > but frankly these systems seem to have few mainline users, and those
+> > people who do run mainline on them ought to be compiling the kernel
+> > and its DTB at the same time, because the firmware doesn't know
+>
+> There might be other users of DTS and anyway what would be exactly the
+> benefit? This hardware aspect is already documented via sdon-inverted
+> property.
 
-Where Andrew gets this from are MAC drivers that detect the rgmii-*id
-modes, apply the delay at the MAC, and then convert the value passed to
-phylib to PHY_INTERFACE_MODE_RGMII. This is a load of additional special
-handling in the MAC driver, and I'd say it's "advanced" usage and takes
-more time to review. It's open to mistakes without review by those who
-know this "trick", and the chances of phylib maintainers being Cc'd on
-MAC drivers is pretty low.
+The benefit is rather cosmetic (to properly describe different
+versions of this controller using SoC-specific compatible strings, and
+to avoid defining bindings for random vendor-specific properties such
+as sdon-inverted).
 
-So, I don't think it's something we want to be generally encouraging,
-but instead the more normal "phy-mode describes the phy_interface_mode_t
-that is passed to phylib" and only allow the "advanced" case in
-exceptional cases.
-
-> On Linux, there currently isn't a way for the MAC driver to query from the PHY
-> whether it could include the delays itself. My assumption is that most PHYs
-> either don't have internal delays, or the delays are configurable.
-
-motorcomm, dp83tg720, icplus, marvell, dp 838678, adin, micrel, tja11xx,
-vitesse, dp83822, mscc, at803x, microchip_t1, broadcom, dp83869,
-intel-xway, realtek all do handle internal delays. I haven't checked
-whether there are PHYs that don't - that's harder because we don't know
-whether PHYs that don't mention RGMII in the driver actually support
-RGMII or not.
-
-> If this is
-> the case, having the MAC add them in internal-delay modes and not adding them on
-> the PHY side would be the best default (also for PHY-less/fixed-link setups,
-> which should be handled like a PHY without internal delay capabilities.)
-
-See my "advanced" use case above. We do have drivers doing that.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Best regards,
+Alexey
 
