@@ -1,79 +1,72 @@
-Return-Path: <devicetree+bounces-169459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DDE1A96F4A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:52:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EFCA96F54
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:54:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 433DF3BF6C9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:52:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B55C71B62943
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1086328C5AE;
-	Tue, 22 Apr 2025 14:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4AB28EA5D;
+	Tue, 22 Apr 2025 14:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eIVvTvYR"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tSS+p85r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDD82AE68;
-	Tue, 22 Apr 2025 14:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5531F4706
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745333572; cv=none; b=uKmg6vzoK2jlpw1ptcMKwRjfl/Z8w37ZG+OH5DuQB+oQt+ZtsrBkCy5bO4qzWyQWHL2M3qh4E3YHQt7CE4fQsE2vryo5FUfoX+uMZ6S/DPgdETdP3Lr2bB3c6KJ4Wvmv2x7PGh5msWYUGa0Kxb8WunwezskPNdDUZ+3R1sC6g7w=
+	t=1745333667; cv=none; b=IwSU/qjjfrJRrrIUbnaSJvIijrDky3qFh5c5c3JKQLlBEOnnAeYfbKmG1ebO6+4jFHEQXec0BQl4TusUEmh/iFDRSU71Qpekibfd5al7aIOus/iQpK6nXx2pxd3Kg7bletKcMY6z1KKJ2Lgp+jk9EJgzUfydQYPHN/uHwOj3xfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745333572; c=relaxed/simple;
-	bh=QTtMhN+qUIN28sTfIHm6cAZpcMSYeG7RgKue75sEfOs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MwUvlhZrCAxi9+Kw1Rn20dWVmsXMkt/nvfEFYBxPMWN3UWf47J+NHI9KhYjJBZjZRE1CcxaM3/cWSt5J8gGmC312KQvYaKwapnsfBkUxCtTyjba6SwHjV9SLWFaIQhWss8pmISrZB+Z/9CfGgB51oQIRMyv6o/Hoquoe57xmWdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eIVvTvYR; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-acb39c45b4eso772089466b.1;
-        Tue, 22 Apr 2025 07:52:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745333568; x=1745938368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ne0UrOQ10ywUV4yIx/6vzg9wa/Lu7VvCl++7DoTSGgQ=;
-        b=eIVvTvYR6WD1RCVQqtvGuj3aVfMgu+pxrNPAJrbim6sr3NGF+hDbo89PhaQ3xx9Szf
-         rZD5MUTNTDjafQvSAm9kOdSj98dMTpx0Qmxw+z4KHIVQYgMCgU0CJzQSlZuhSy1Lm9ZY
-         AwnIlj0+eJxWkkQhBC8b5pPjObOcrDw9iwqB5ZrKRWNnwKi5SOI+QBXyyhCQ/ttn/ONA
-         T919e/nh+kKDy6vgY5huFISfe9GXSyE2KT8EV7VcCK+so+0YOt7jG9IZ1ZqHfAcH3TiT
-         vW+TmUdzFAdl4DYXT44WToqzqLosnXMJXTNGi5j+39oH9WZqTSETd/xLIHXhcBKC8AYW
-         FczA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745333568; x=1745938368;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ne0UrOQ10ywUV4yIx/6vzg9wa/Lu7VvCl++7DoTSGgQ=;
-        b=TOTP7gKmtyD4/FpChMfqgZ5sF4ZdPzMHMcNeLF8gsXdHWPN3+2wEWjybFbiRDZMMm7
-         wYMhrJLTgJiz4x9ZgLq79xcLPcQDdLmVLMvuB1m6J8yetrlNW8CLOKWQ5P6djX1PbO7N
-         7NlEnfok2JSyKTAzYPHoZc6IA9bBm3pErqWpBxQsGNR3p2sEZM/6Fr3Ks/yDjAwusZHA
-         VmOvCKPV2qVbnB1vmstMT/rIxtEiqaHcndwKsVT+Xdf7ONH0q5EzNy8Sx/YLdmULOuKz
-         8nvA/rzUpw5CvMvwTGeBX7kU+hnclJVR+nlrvsipfjw6Ne2htJzRF7OHGISf1DZ9tmXl
-         G2oA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqTNQ2ctHFVnSwuP4/3Zk44NdfGleb7gxASu244IaQF8lTH2cIeGdNxNjPUG99FWVhPfpH1DJFwbeYyb0=@vger.kernel.org, AJvYcCXUvGonwvvhKL+Y69rJ6Zl6xjaeMhXlde31mXicyo9Y0xyE3wpxzeX9qQ5H935vZ/i5f778X4dHXBuF2UE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbNkdeCIfqMSKMTHvbhbh1fQuFrC0Fl9nD7has9U9qW/EGSyvP
-	U+b/5TM3BSWadXeno/UtTAomEjdjCTIM9EdiND2cars/10uyIxT3
-X-Gm-Gg: ASbGncuuk1uxxUP1PfgtulOerkI24LOEyPjsc32N0rUZc8niGtFrlTcdbfwKy6n9FsJ
-	1fCfT8sAeT9a1pokTEP2zR/779sU+BJ+8wfU5Ol9vmhCUHHIngjwbynf6ghFPtO6VPc6EW2oLoB
-	7uSo+jc3WWgalJMEbT/T6OZ3m3JbrRp1wy/EeVAER5i/geMYCRmy/tTzP8NFufTSU2lPI17wOrq
-	ZfHOzao/XT/cBLWbqy+i77PkZ5hwyIDIB2rg9/KJdV1YBYPtAtMZby6YqVfMnk3Zb8739IOC6gN
-	b+NjCGLw1wVzBFG+J3tQ8V/2wmZGIi/dsBdMO1rMvy8=
-X-Google-Smtp-Source: AGHT+IGb9MBfCkRoB/jqq7loWg9l+w4QKcOEEXBWwwBNICQDiX2ECXBkrt0pwz/SUpiy+0yG92zd4A==
-X-Received: by 2002:a17:906:6a1e:b0:aca:c924:c14 with SMTP id a640c23a62f3a-acb74b34dbemr1383647666b.17.1745333568369;
-        Tue, 22 Apr 2025 07:52:48 -0700 (PDT)
-Received: from [192.168.1.101] ([212.106.161.104])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef9e7e6sm657013966b.162.2025.04.22.07.52.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 07:52:47 -0700 (PDT)
-Message-ID: <d0da9dbd-7ea7-4047-bab3-22f416c45938@gmail.com>
-Date: Tue, 22 Apr 2025 16:52:46 +0200
+	s=arc-20240116; t=1745333667; c=relaxed/simple;
+	bh=a+RMGqONBoTe4mIS7kPQEgEl4KGlE4sPktA/RI2Z9ZE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=Jqt5cNIs3u6x6Yo6HS96wnDhZ/LSoSnB4RlvR8roFmi95K1VMGTKuXMv7L0UugS6Y/nJtEkFcLQpfoOEvHRuBV9tdSiguRPw0hgDFxmZ0B+JfDFdVlLVq9Bi2CvYcMlnVaJHeQ44l1iofS85WGDFxt4HYQnAAI5pUYZVg0X8j5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tSS+p85r; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250422145422euoutp01b3ea454f1c584c5e1ed2ef879679efb1~4q7gco9-z1216712167euoutp011
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:54:22 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250422145422euoutp01b3ea454f1c584c5e1ed2ef879679efb1~4q7gco9-z1216712167euoutp011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745333662;
+	bh=YRW1ozB27p7LSQVL82m2hy5NmybGDZRAWQakTtaYo28=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=tSS+p85rHu3lbGT3RxhlyqXghoDTFhaQ3ytGDY2bGXFV2bi0ybgFqObv6NMmvQExj
+	 ztg+k/ZjPDQOuvE9Sp9Ya2lxc5EcSHeZdHPbcejTXZhWRj99HzeV8hQ5irPU91+g5g
+	 3x4bQLbR/JgX81GV8ayof1BHgyHIbmS1GErj+UzE=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250422145422eucas1p2f987a8c414cd947de26e8e6df5c94756~4q7f5urFv0361703617eucas1p2n;
+	Tue, 22 Apr 2025 14:54:22 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 04.BB.00837.E9DA7086; Tue, 22
+	Apr 2025 15:54:22 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250422145421eucas1p2f01bb5cadb9836b26cc5b9bfd5197bef~4q7feyoxh0578205782eucas1p2Y;
+	Tue, 22 Apr 2025 14:54:21 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250422145421eusmtrp2a29928f65b73f47fe7e1ca7f999a9a66~4q7fdxjPT0501605016eusmtrp2H;
+	Tue, 22 Apr 2025 14:54:21 +0000 (GMT)
+X-AuditID: cbfec7f2-32fff70000000345-20-6807ad9ee550
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id FF.54.19920.D9DA7086; Tue, 22
+	Apr 2025 15:54:21 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250422145420eusmtip224b1553af434b83ad7a84489799c4da9~4q7eg8VVw1574315743eusmtip2U;
+	Tue, 22 Apr 2025 14:54:20 +0000 (GMT)
+Message-ID: <50da445f-d6f9-407d-b25d-5b9c7ccf867c@samsung.com>
+Date: Tue, 22 Apr 2025 16:54:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,129 +74,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: tegra: Enable PWM fan on the Jetson TX1 Devkit
-To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com>
-Content-Language: en-US, pl-PL
-From: Tomasz Maciej Nowak <tmn505@gmail.com>
-In-Reply-To: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v7 0/3] Add T-HEAD TH1520 VO clock support for LicheePi
+ 4A GPU enablement
+To: sboyd@kernel.org, Drew Fustini <drew@pdp7.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, Rob Herring
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Fu
+	Wei <wefu@redhat.com>, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, alex@ghiti.fr,
+	"jszhang@kernel.org" <jszhang@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20250403094425.876981-1-m.wilczynski@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJKsWRmVeSWpSXmKPExsWy7djPc7rz1rJnGGzYzG3x7M5XVoutv2ex
+	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZfOy5x2pxedccNottn1vYLNYeuctu
+	cfGUq8XdeydYLF5e7mG2aJvFb/F/zw52i3/XNrJYtOyfwuIg7PH+Riu7x5uXL1k8Dnd8Yfe4
+	d2Iaq8emVZ1sHpuX1Hu0rD3G5NH/18Dj/b6rbB59W1Yxelxqvs7u8XmTXABPFJdNSmpOZllq
+	kb5dAldGz7k/bAVrZSsu9S9mb2DcLt7FyMkhIWAisX7bebYuRi4OIYEVjBLfJr1hgXC+MErM
+	u/6DHcL5zChx/tkdZpiWjp4bUFXLGSUaZ7xlhHDeMkqsaXnGBFLFK2AnMa/xDxuIzSKgKrGp
+	fSsbRFxQ4uTMJywgtqiAvMT9WzPYQWxhgXiJH9fns4LYIgJGEo8XPWYCGcos0M8qsXjyQrCh
+	zALiEreezAez2YCKHiyHaOAUsJfYMOUxI0SNvMT2t3OYQZolBF5xSpy9O5kR4m4Xic9T7jBB
+	2MISr45vYYewZST+75wPFc+XeLD1E9SfNRI7e45D2dYSd879AvqAA2iBpsT6XfoQYUeJsxf6
+	GEHCEgJ8EjfeCkKcwCcxadt0Zogwr0RHmxBEtZrE1J5euKXnVmxjmsCoNAspVGYheXIWkmdm
+	IexdwMiyilE8tbQ4Nz212DAvtVyvODG3uDQvXS85P3cTIzB1nv53/NMOxrmvPuodYmTiYDzE
+	KMHBrCTC+8uNPUOINyWxsiq1KD++qDQntfgQozQHi5I476L9relCAumJJanZqakFqUUwWSYO
+	TqkGJqWSna3FC2apWpX8ODTP1Ku4ZUrL6XzTBYfuc/TEquc76K6MLJqw6oD9gnCNjcZ9T34d
+	/bNc9WR3r9Lmy1JT6nyjFgRFPOUxPvRuYd4/Vud7TgWFUllz6/gXiu1xCWIzPHvReMqGMxnb
+	Hr877btcQe2G8NJALZvTOVJMl+zuFxj1MMSZhFlfWno7RrjcpMmKuae/38htxq+VP/sv/Taw
+	ZPH7soQ7n2nzlsrwsxPyFz1OWLWRSVd70zrdpfePy+3PN743R9j0P+uT6SK3BfQ/hrk4Poy3
+	PKwvUro26ahZtMfulxtcjO7xb/O5uXS3Il9Bc5Ff+aGGkoe82u6GS+NmHz7rbflPefm3eQse
+	GPfMV2Ipzkg01GIuKk4EABNDGbEMBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkleLIzCtJLcpLzFFi42I5/e/4Pd25a9kzDB49UrN4ducrq8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsPvbcY7W4vGsOm8W2zy1sFmuP3GW3
+	uHjK1eLuvRMsFi8v9zBbtM3it/i/Zwe7xb9rG1ksWvZPYXEQ9nh/o5Xd483Llywehzu+sHvc
+	OzGN1WPTqk42j81L6j1a1h5j8uj/a+Dxft9VNo++LasYPS41X2f3+LxJLoAnSs+mKL+0JFUh
+	I7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS+j59wftoK1shWX+hez
+	NzBuF+9i5OSQEDCR6Oi5wdLFyMUhJLCUUWLfpDZWiISMxLXulywQtrDEn2tdbCC2kMBrRol/
+	v0JBbF4BO4l5jX/A4iwCqhKb2reyQcQFJU7OfALWKyogL3H/1gz2LkYODmGBeIm7p0tBwiIC
+	RhKPFz1mAtnLLDCRVeLkj5uMEEdMYpR4uWcq2BHMAuISt57MZwKx2YA6HiyfDxbnFLCX2DDl
+	MSPIUGYBdYn184QgyuUltr+dwzyBUWgWkjNmIZk0C6FjFpKOBYwsqxhFUkuLc9Nziw31ihNz
+	i0vz0vWS83M3MQLTxLZjPzfvYJz36qPeIUYmDsZDjBIczEoivL/c2DOEeFMSK6tSi/Lji0pz
+	UosPMZoCg2Iis5Rocj4wUeWVxBuaGZgamphZGphamhkrifO6XT6fJiSQnliSmp2aWpBaBNPH
+	xMEp1cDE2LFAb8Hvu9P33F3xoHI797yC6jRVUZ5vJw09jeYbSaZN22yfU9d8mLf5u+Bl1kv/
+	lU9eOuawuWzfttPpJxZJ2Nh19mT+fnuCybGeic2SWTrl26zg6Fq1ZKFPSv/uqrref6HIYPXw
+	X81H89uSUcJFf/QkGdY9S19ymOv5/4kdVor6/ddlePlP3OBwMY5IU2vO/f+RNevfhisvdnRJ
+	G0ekxBZdXntTtt6v7YB4lbKR2wn3ipRlvLu2abEqPmoPiVZpLZmv+f5govThcF75P1c7+R/a
+	L7Vl+eN6pj1lgVy56i4BLl/5/61B9y75/Xx96jeXqNj2Tz93KSnPnpy0TOyNa4/k3t/+SkKT
+	BFK/tSuxFGckGmoxFxUnAgBtar/ZnAMAAA==
+X-CMS-MailID: 20250422145421eucas1p2f01bb5cadb9836b26cc5b9bfd5197bef
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa
+References: <CGME20250403094430eucas1p21515d7f693708fc2ad0cd399cb0b81aa@eucas1p2.samsung.com>
+	<20250403094425.876981-1-m.wilczynski@samsung.com>
 
-Hi.
 
-W dniu 21.04.2025 o 00:42, Aaron Kling via B4 Relay pisze:
-> From: Aaron Kling <webgeek1234@gmail.com>
+
+On 4/3/25 11:44, Michal Wilczynski wrote:
+> This is a subset of a larger patch series enabling the Imagination BXM-4-64 GPU
+> on the LicheePi 4A board, which is powered by the T-HEAD TH1520 SoC. While the
+> full series includes power-domain, reset, and firmware changes, this part
+> focuses solely on the clock subsystem needed for the GPU and other VO (video
+> output) blocks. By merging these clock patches independently, we prepare the
+> groundwork for future GPU integration via the `drm/imagination` driver.
 > 
-> This is based on 6f78a94, which enabled added the fan and thermal zones
-> for the Jetson Nano Devkit. The fan and thermal characteristics of the
-> two devkits are similar, so usng the same configuration.
-
-Does this work on Your DevKit? Doesn't on mine, the fan won't budge. Maybe the
-revision difference? What I'm using ATM is [1] and [2]. Because inverted polarity
-of PWM, not submitted since that'll need the driver changes [3],[4].
-
-1. https://github.com/tmn505/linux/commit/a78c520ec94aeab2c9dc8e1f46597c4174ff957d
-2. https://github.com/tmn505/linux/commit/99beee4f0cd5d3a6f30e1829d823c11cb8b54bac
-3. https://libera.irclog.whitequark.org/tegra/2024-07-19#36707118;
-4. https://libera.irclog.whitequark.org/tegra/2024-10-14#37145211;
-
-Regards
-
+> The T-HEAD TH1520 SoC features multiple clock controllers. Initially, only the
+> AP clock controller was supported upstream. The patches below add support for
+> the VO (video output) clock controller, which manages GPU-related gates, HDMI,
+> and other multimedia clocks.
 > 
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 60 ++++++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
+> Bigger series cover letter:
+> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> index 83ed6ac2a8d8f403fb588edce83dc401065c162f..bc02f2eb14bcbd99627c58b398bbf43061c8110b 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> @@ -1623,6 +1623,14 @@ key-volume-up {
->  		};
->  	};
->  
-> +	fan: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		pwms = <&pwm 3 45334>;
-> +
-> +		cooling-levels = <0 64 128 255>;
-> +		#cooling-cells = <2>;
-> +	};
-> +
->  	vdd_sys_mux: regulator-vdd-sys-mux {
->  		compatible = "regulator-fixed";
->  		regulator-name = "VDD_SYS_MUX";
-> @@ -1778,4 +1786,56 @@ vdd_usb_vbus_otg: regulator-vdd-usb-vbus-otg {
->  		enable-active-high;
->  		vin-supply = <&vdd_5v0_sys>;
->  	};
-> +
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			trips {
-> +				cpu_trip_critical: critical {
-> +					temperature = <96500>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +
-> +				cpu_trip_hot: hot {
-> +					temperature = <70000>;
-> +					hysteresis = <2000>;
-> +					type = "hot";
-> +				};
-> +
-> +				cpu_trip_active: active {
-> +					temperature = <50000>;
-> +					hysteresis = <2000>;
-> +					type = "active";
-> +				};
-> +
-> +				cpu_trip_passive: passive {
-> +					temperature = <30000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				cpu-critical {
-> +					cooling-device = <&fan 3 3>;
-> +					trip = <&cpu_trip_critical>;
-> +				};
-> +
-> +				cpu-hot {
-> +					cooling-device = <&fan 2 2>;
-> +					trip = <&cpu_trip_hot>;
-> +				};
-> +
-> +				cpu-active {
-> +					cooling-device = <&fan 1 1>;
-> +					trip = <&cpu_trip_active>;
-> +				};
-> +
-> +				cpu-passive {
-> +					cooling-device = <&fan 0 0>;
-> +					trip = <&cpu_trip_passive>;
-> +				};
-> +			};
-> +		};
-> +	};
->  };
+> v7:
+> - remove commits 3,4 from the patch series, those would handle empty MEM clock
+>   stub, and reset management. It's not necessary anymore, as this would be
+>   implemented in power-domain driver
+> - added the device tree patch at the end for the SoC maintainers to take after
+>   the other patches get OK-ed
+> - added Acked-by, from Connor for the dt-binding patch
+> - re-added Reviewed-by from Krzysztof, as the dt-binding patch is the same as
+>   for the v5
 > 
-> ---
-> base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
-> change-id: 20250420-tx1-therm-9fb3c30fa43f
+> v6:
+> - squashed the "dt-bindings: clock: thead: Add GPU clkgen reset property"
+>   with the "dt-bindings: clock: thead: Add TH1520 VO clock controller". As
+>   a result, also removed the Reviewed-by from Krzysztof, since the new
+>   resets property has been introduced, which is mandatory in the VO
+>   case
 > 
-> Best regards,
+> v5:
+> - introduced a new macro CCU_GATE_CLK_OPS, which allows providing custom clk_ops.
+>   In the case of the 'MEM' clock, it provides empty clk_nops. Later, this clock
+>   is provided to the GPU node, thereby avoiding any ABI breakage
+> - used the CCU_GATE_CLK_OPS macro to implement a workaround for de-asserting
+>   the clkgen reset only after both core and sys clocks are enabled. This
+>   sequence is required to properly initialize the GPU
+> 
+> v4:
+>  - enhanced documentation for new Video Output (VO) clock inputs in device tree
+>    bindings
+> 
+> v3:
+>  - reworked driver to support multiple clock controllers through .compatible
+>    and .data instead of using multiple address spaces in dt-binding. This change
+>    allows to re-use the driver code for multiple clock controllers
+> 
+> v2:
+>  - removed AP_SUBSYS clock refactoring commits (1-6):
+>  - instead of refactoring, I opted to extend the current driver and its
+>    associated device tree node to include support for a second address space.
+>  - resolved all checkpatch issues using --strict, except for the call to
+>    devm_clk_hw_register_gate_parent_data().  The current implementation remains
+>    preferable in this context, and clang-format aligns with this choice
+> 
+> Michal Wilczynski (3):
+>   dt-bindings: clock: thead: Add TH1520 VO clock controller
+>   clk: thead: Add clock support for VO subsystem in T-HEAD TH1520 SoC
+>   riscv: dts: thead: Add device tree VO clock controller
+> 
+>  .../bindings/clock/thead,th1520-clk-ap.yaml   |  17 +-
+>  arch/riscv/boot/dts/thead/th1520.dtsi         |   7 +
+>  drivers/clk/thead/clk-th1520-ap.c             | 196 +++++++++++++++---
+>  .../dt-bindings/clock/thead,th1520-clk-ap.h   |  34 +++
+>  4 files changed, 223 insertions(+), 31 deletions(-)
+> 
+
+Hi Stephen, I think Drew is already collecting DT commits for the next
+merge window. Do you think the patches 1-2 will make it for the 6.16
+release ?
+
+Best regards,
 -- 
-TMN
-
+Michal Wilczynski <m.wilczynski@samsung.com>
 
