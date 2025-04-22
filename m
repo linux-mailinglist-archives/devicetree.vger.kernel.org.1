@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-169318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF58A966A0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:57:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC37A966A6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B99A7A7125
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:56:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B746189C73D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BF9214A77;
-	Tue, 22 Apr 2025 10:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3642153D0;
+	Tue, 22 Apr 2025 10:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="ADXypFDZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="a9lmirbJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10340210F58;
-	Tue, 22 Apr 2025 10:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6840721171F;
+	Tue, 22 Apr 2025 10:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745319415; cv=none; b=GsprGjnn5HwQqmvrQPPL6zcUXTvoL2PkOZzSesz/6Bg7qouZNfw8ASj3zjP9JwcZnY0wrkaiyOiuGHMrzY1n2Z+fCFqs8PxqYFOy5gsnEC7x4TViI0Ur/4AbEZ0u8Cm9KqI3ISI2nzHzASgHaIscsZNNG1nIOvhI4shytrhsYus=
+	t=1745319416; cv=none; b=kCX7/kWfQkk88g0jQ0L5/e45oIv0TlM05hkBImOG4GnAEwFfbIM2M7q7GG19/WA9++IxHUGfMVtrD7kSwQh39xnMTYnXWhC2GoJKOi8BpzS0QksAn3wYtXGssAf7fJ6xarrjEB53yRuioX5p2BfXUnm6Yx/i7m8tkzjJi6byd0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745319415; c=relaxed/simple;
-	bh=7dNi4yaE2vZu+NT3me9hRD03+wiMLK7okioOpq/8xzg=;
+	s=arc-20240116; t=1745319416; c=relaxed/simple;
+	bh=trQ7R1ZMvRztTCV+UytHNIX2ZW4SwO1GK2PCh7Ph9Yk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NGwvYVIE1kJQ9xRHiTjXHMDyDni3I+F6y4F1hEpOf7rAVzKDwsrFklx5/yIHrCPrzhq5ZPS2u0iqoiNT4gM5VbHRAAq2iHI2oL6xB7z1HnpW1s5v+0ZF+fMT4tzN1fThN6hfjICiFmBVOCmzMWC3OEdteZR20jzHMja8imiWIlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=ADXypFDZ; arc=none smtp.client-ip=46.19.9.99
+	 MIME-Version; b=t58IWdtmxSLgepBGeyzpUR+ZmPwUNW+BjDpKdNNTjOp1znubaCIlTDFvtgmfsm1NCFOLnCHQEuVQyulnx1oCbvZstU+jwZjhs8l6b7b1oG3AcOckWF4RFThYWvcYbZiBQJ0rpvn3v7s1cSXCqEeDIyMUH0UE9tO/lzTYV8eA+/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=a9lmirbJ; arc=none smtp.client-ip=46.19.9.99
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
@@ -37,17 +37,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
 	List-Post:List-Owner:List-Archive;
-	bh=y4EAGj8J/OPfCu3FA7uzowZgFMJ6Fv3iSV5Sq1MEBIk=; b=ADXypFDZXhEAfy+zl1MRSpjDu+
-	9NX1+bxB7aa4OHdbxvnV0cWjXIJ7CZkEhq/37WasBLmd1dQjQ2+O2jhlz2pFhmTw9dR0l/79nMuN3
-	WQqPxgX9HsT8lsb/pdAU3+rWmmtI3gkRj6VM5HG0GwZDMgDtfYqfygsBE59pswZn4iueDdR1rzLC6
-	MM5Hj4CJH1Y3t7Y5TBLZ4fKQ8sKhZgA2JCm4y87vJR/ifnJ4thPYyZ6yVHB9XoUXlds/bcL33HSyb
-	g1P2hSrytChJtnrZ+AmtWH76CM2Ej07QoqjNApBDWSvd9zg/vlzAwTG5fIYnGkjWP7lwgwonBX/um
-	FvEQkXRg==;
+	bh=qi64zYGWTjyBdDF33eHKHjh8/xTghzVYD8WvMJ87Ttg=; b=a9lmirbJ73ZR20+q6Yg9tsW9JI
+	lk6cmAuxLGpsvLy7+YtWb2Hn/0ZE8S7lYbGIlo9M6QCwEh6g0ljf4OGD7spK/fCByzUWaGwcx6I+J
+	QbOIux1tfBplCHKmk+zh3Py5wOaKHV1HxebvFC+ra5FyfacjuPbQcz2KC3RTV6ek2orfGVLEhGjM4
+	b8UgCDFcXyDAO9kXesZnd1rPGIhpneIUjuS6wqb0RFZ08/wi5+w9o6Tgar871FYAG2SgV0jJpDka5
+	RH7KkEwBbFmcfjVwudTfuogGWPrjFhh4GhjTs9CCEZ8QEYDYgjH0MnhLPLLChWyT/2Jz3UT6I2/MJ
+	45wUYJ5g==;
 Received: from [89.212.21.243] (port=36562 helo=localhost.localdomain)
 	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <primoz.fiser@norik.com>)
-	id 1u7BJ5-008kyr-11;
+	id 1u7BJ5-008kyr-1K;
 	Tue, 22 Apr 2025 12:56:51 +0200
 From: Primoz Fiser <primoz.fiser@norik.com>
 To: Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	upstream@lists.phytec.de
-Subject: [PATCH v4 06/15] arm64: dts: freescale: imx93-phyboard-segin: Drop eMMC no-1-8-v flag
-Date: Tue, 22 Apr 2025 12:56:35 +0200
-Message-Id: <20250422105644.2725168-7-primoz.fiser@norik.com>
+Subject: [PATCH v4 07/15] arm64: dts: freescale: imx93-phyboard-segin: Disable SD-card write-protect
+Date: Tue, 22 Apr 2025 12:56:36 +0200
+Message-Id: <20250422105644.2725168-8-primoz.fiser@norik.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250422105644.2725168-1-primoz.fiser@norik.com>
 References: <20250422105644.2725168-1-primoz.fiser@norik.com>
@@ -86,8 +86,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Drop redundant 'no-1-8-v' flag from usdhc1 (eMMC) node. Flag is now set
-by default in the SOM include file (imx93-phycore-som.dtsi).
+Add disable-wp flag (write-protect) to usdhc2 node (SD-card) to get rid
+of the following kernel boot warning:
+
+  host does not support reading read-only switch, assuming write-enable
+
+Micro SD cards can't be physically write-protected like full-sized
+cards anyways.
 
 Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 Reviewed-by: Frank Li <Frank.Li@nxp.com>
@@ -95,25 +100,21 @@ Reviewed-by: Frank Li <Frank.Li@nxp.com>
 Changes in v4:
 - no changes
 
- arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts | 5 -----
- 1 file changed, 5 deletions(-)
+ arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-index 85fb188b057f..902b523fc92c 100644
+index 902b523fc92c..3d5cd0561362 100644
 --- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
 +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-@@ -40,11 +40,6 @@ &lpuart1 {
- 	status = "okay";
- };
- 
--/* eMMC */
--&usdhc1 {
--	no-1-8-v;
--};
--
- /* SD-Card */
- &usdhc2 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+@@ -48,6 +48,7 @@ &usdhc2 {
+ 	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
+ 	bus-width = <4>;
+ 	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
++	disable-wp;
+ 	no-mmc;
+ 	no-sdio;
+ 	vmmc-supply = <&reg_usdhc2_vmmc>;
 -- 
 2.34.1
 
