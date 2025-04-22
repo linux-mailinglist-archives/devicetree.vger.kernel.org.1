@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-169284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61880A963EE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:17:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD302A963FF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 215723AB7F0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:14:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB071882F05
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EB3D1F12FB;
-	Tue, 22 Apr 2025 09:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130F21F12FB;
+	Tue, 22 Apr 2025 09:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fItYFOUB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jpGVb0kt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189271EFF8E;
-	Tue, 22 Apr 2025 09:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF79E1E5B89;
+	Tue, 22 Apr 2025 09:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745313311; cv=none; b=GcxPLWhZ1SjwsjYHXeKj1APeb0TW0RO2iDKQOmJTm2cCA9Y0+zA+0t0rB1bDB+bn0h4nlu/y4WWgn8Dmat/6UbLbVD5D1GDVGuanWi9ypa82+YEOeNHzv3Fn8IvndQldVfZvLVXaK2mhZlHr73Qfz7lZOgHA8pgfyreFxBseQFo=
+	t=1745313377; cv=none; b=aR6VqqoZpai+lVR3vnhkONQudockwZ9tJSVBNNDpxzQU5dy7W44Q2dPXeC9nMQuUQK9LcWAFtIBPDtGg4zExrDz9gP8nXNydaIaB0KgVm9MS9+D6kABPAnvrfbxSoG9taSxKhV16ABnyhIEev+xjO7bwWOEjmJJLyEEGrVwrg8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745313311; c=relaxed/simple;
-	bh=vFat0su/4X5yP1ZpaEZzgKt0hc7bkHOFHvaRVkfn9OI=;
+	s=arc-20240116; t=1745313377; c=relaxed/simple;
+	bh=FNhxKZMiPJsSRSoVxUInTBZMwbEMCNxWVqfU2PiaY3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RJBI3GvtQEXLGYI0gjl4q9pRX3igFtxj8WQue4v4KHV10Y2zG9Mapk5Am8T/o4lk3DhnSYAdb5/lteannaHhu4K5teEm2LdgvdwfdcOWCsJ+qfa5L6bIIWdnQfvE+HnSqtK03rdGEy3HnlfUVbinJeBHfrW60cygekreIb+Dt2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fItYFOUB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88767C4CEE9;
-	Tue, 22 Apr 2025 09:15:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S+frBAdua1HPKFXnzObCUeD7vd23ItWsAKI8wLfQz9IaoGEif/rO/veJI44A8B5B0u3giVaKf4AZt8tOVcRHL8qwfnORtN5mcuP0SdVl+mIl8MLBt4Lc6zdWmlZXJi/jLcwCYH/zr8CoJTUdEztkQzwkmyGQAMxjNCOFjPcIHHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jpGVb0kt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ECE4C4CEE9;
+	Tue, 22 Apr 2025 09:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745313310;
-	bh=vFat0su/4X5yP1ZpaEZzgKt0hc7bkHOFHvaRVkfn9OI=;
+	s=k20201202; t=1745313376;
+	bh=FNhxKZMiPJsSRSoVxUInTBZMwbEMCNxWVqfU2PiaY3g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fItYFOUBxL6mdje/VfZQ1pv1ekKhU7midy//z+ARxoMiwgjYn1OReMDpshtbFL/fC
-	 zjKOYiPDZPEg7aWqvZWDoen4KpmsFRXdoorUD8BkdzGff7Qy0zIK6x7+WZObRbiY0X
-	 DiB6u/wqYqZtMJxGlOp6z5as4zfjFxphjni2nBfZH2j4L1y9joT/Ox2JpTPVvdC/Hv
-	 G6B7+hFSgB3Z0aBw5FQbAtwmIfcPrxZ7jFoFkZXY2kLJRB150ItKgkE0L1BaxsifDJ
-	 EEwjF7QIPBmUm6/QvTEmQPJSfogjNb4UJuselZsMCUTp3KglyhiCQ5FmHgHFbr4ma6
-	 1xykwWt0EGRzQ==
-Date: Tue, 22 Apr 2025 11:15:06 +0200
+	b=jpGVb0ktKWIsgZFaHuqw5cM/044YdDlZxWsIEeZduBhaDYSziCNCN+t5WV3ok9RZi
+	 fhE1qMivQHu0rNli884RPNp748Q/RoFgFgRurnJSQTGuCY6cuoYOwvTCTFHrCkTnKG
+	 Zl4ryt+iXVcfUKV5VwDH0bUddM/ajVkNROXqxA2/k9btno0RHvERx3nAfwSepxuHzo
+	 giyDsQbzcNLLsP5H16SVK8U42bC8pxe5StHE3GGEnScNpOXB+M93dNQlj5+jaCnDRj
+	 9mKbzKwApDlQ58P29CXGSwFcm1gXBnoUJY7VgVQ4LMFUwJlj7Xkhu+PKLOZSDqgGd+
+	 Kc7SMj+YwjBqA==
+Date: Tue, 22 Apr 2025 11:16:12 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org, 
-	andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	dmitry.baryshkov@oss.qualcomm.com
-Subject: Re: [PATCH v3 5/6] media: dt-bindings: media: camss: Add
- qcom,qcm2290-camss binding
-Message-ID: <20250422-nonchalant-bald-mink-7c2d34@kuoka>
-References: <20250418141147.205179-1-loic.poulain@oss.qualcomm.com>
- <20250418141147.205179-6-loic.poulain@oss.qualcomm.com>
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Jonathan Corbet <corbet@lwn.net>, Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: add lt3074
+Message-ID: <20250422-coua-of-serious-inspiration-fbc9ad@kuoka>
+References: <20250421-upstream-lt3074-v3-0-71636322f9fe@analog.com>
+ <20250421-upstream-lt3074-v3-1-71636322f9fe@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,54 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250418141147.205179-6-loic.poulain@oss.qualcomm.com>
+In-Reply-To: <20250421-upstream-lt3074-v3-1-71636322f9fe@analog.com>
 
-On Fri, Apr 18, 2025 at 04:11:46PM GMT, Loic Poulain wrote:
-> Add bindings for qcom,qcm2290-camss in order to support the camera
-> subsystem found in the Qualcomm Robotics RB1 Platform (QRB2210).
+On Mon, Apr 21, 2025 at 08:18:18PM GMT, Cedric Encarnacion wrote:
+> Add Analog Devices LT3074 Ultralow Noise, High PSRR Dropout Linear
+> Regulator.
 > 
-
-Just one subject prefix media. No need for two. See DT submitting
-patches.
-
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
 > ---
->  .../bindings/media/qcom,qcm2290-camss.yaml    | 243 ++++++++++++++++++
->  1 file changed, 243 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml
->
+>  .../bindings/hwmon/pmbus/adi,lt3074.yaml           | 50 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  7 +++
+>  2 files changed, 57 insertions(+)
 
-...
-
-> +  interconnects:
-> +    maxItems: 3
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: ahb
-> +      - const: hf_mnoc
-> +      - const: sf_mnoc
-> +
-> +  iommus:
-> +    maxItems: 4
-> +
-> +  power-domains:
-> +    items:
-> +      - description: GDSC CAMSS Block, Global Distributed Switch Controller.
-> +
-> +  vdda-csiphy-1p2-supply:
-
-Why isn't this named vdd-phy-supply like in every other binding?
-
-> +    description:
-> +      Phandle to a 1.2V regulator supply to CSI PHYs.
-> +
-> +  vdda-pll-1p8-supply:
-
-Similar question.
-
-> +    description:
-> +      Phandle to 1.8V regulator supply to CAMSS refclk pll block.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
