@@ -1,72 +1,86 @@
-Return-Path: <devicetree+bounces-169261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CBFA96304
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:54:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39822A962E6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F6EC19E00AB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:47:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB4254007C8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162E1259CAC;
-	Tue, 22 Apr 2025 08:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AD725A2CF;
+	Tue, 22 Apr 2025 08:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="penu3/YZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="yPUsWyuC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE7DD25743F;
-	Tue, 22 Apr 2025 08:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A053C25A2C3;
+	Tue, 22 Apr 2025 08:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745311288; cv=none; b=cI1o5uiJzjk3WVYsWSL9r7uk+TJDVv1YG1D2LSiJPS4vDjPdBPhfIay3dBllrqPPWGHPYLUmbOp/p4aQY16afSmEuWNkaOLZQMEMMAarnjRA+Edp1CfMlFgED9TPCd4dqQv24FFrTETt+jgndUT2Jtvhkxi8acMGgkX9aE9TmAk=
+	t=1745311332; cv=none; b=IyJGTXfhPp4b3KdDb38wiW1uAHG8CteY09LrLNZdPwBngPWPL2a5SRDwmiHrCO7oNVkF1f+0/TvD+jJPOhp5xiFYz2m/JsN7E5hyQwCBD37zjy9DtK8NC+/X1RSPjmbENC01tBQIcbPW6JnqpdoowZ7oCV6ZVXz8JlESbgpZDpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745311288; c=relaxed/simple;
-	bh=1Vpx6IWGw8fnpaFdAhzIBN6OlsDoegH8mN06+Y65eVQ=;
+	s=arc-20240116; t=1745311332; c=relaxed/simple;
+	bh=DMUEgWT1IONXSjjzWV9s6i78gMC3EiOES5rQkWX860w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j+zOzyqkh2fML7tAuV6YvhKg+VhU5eHzh2soCqwFfmPzlCbUMVpRoQo0h8ZNYPpqy8mgTHdJdi6fgYc/d3JyBjqCE7ztgCqU3BavfWsA0JnTKpgPGhQGdB33E6IsuGw82Pmd4AqzYSlMTcvyfwW6HmSsunKzknAA6jY41QKej4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=penu3/YZ; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id E3BA01F929;
-	Tue, 22 Apr 2025 10:41:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745311277;
-	bh=j42C1neK3aBXGc+3YIjfO2v8Xt2aMCt3/0zWgtV9maI=;
-	h=Received:From:To:Subject;
-	b=penu3/YZVEI07stg2iQTLUOpNVxP1HOxBAdODDevRCDZPAJCgLpfGVefwkW/zq4yK
-	 Rak6XOa9G2kod7SBw6TJPCJ8uFa/q4TQywOm1J8XqIZRCAQC7Cztqt3vlepvWqF3XT
-	 N/iwt/q2/75cJAr1Z5Tu3KOekjVlUNaxDglJORQrY+OnSA9KpRbBSkA4AqHJ3ztnhq
-	 jjOzB8olRLLfUBsiTQ32s30FTValKeVCLAYqQIprBaFJ9B/QTcV1BcD0vyFNI6aqkK
-	 0n3YhqZKABBuSIbdQL2m2/WzkSM55NQYD5xfqDTdh2wrHev+pNuTxS8L5C0xnmF5YA
-	 CCcGAsK+D5jmg==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id 952EE7F820; Tue, 22 Apr 2025 10:41:16 +0200 (CEST)
-Date: Tue, 22 Apr 2025 10:41:16 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Philippe Schenker <philippe.schenker@impulsing.ch>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jfRrgh3HsOby5Cg6bqiNJHF6JnQ8MdcpOfWhqmWXeBOKc6jTCccoEBDugl/93VyUGa1gPj321FMpZ1Ij8Pa8ZtgmQbebfKJAHYz1mz0lDBt0UzWVl3nqs1z6ouoPjTmDntHwmgp7MXZWNqLiZ6MYhSkfpG9gU932LCv06tVcsE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=yPUsWyuC; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=S54P5rf09JI3kvunV4HEvrJrmrs+ZWs16gH9mbduXto=; b=yPUsWyuCuwXN3/Bg2nhooh3nNK
+	Svw04aOt11SnDpbJXWhhJW/TiAybsS/AlgHxMw+TE0x+HMZMr+ZWktRKxjylbtGDmPrxXt6v0lZWo
+	NNVnPkT8gm8MgrNEMjtiCMUS8+j3KzG2KaJuz9fs+IfqrPVP2A5+mFTw0i8Vz67D3fEetPgcAetU2
+	LAszEtD+NQW9nJfm4+pNzL6h+T/5D4hJL+GFjqNy87bp2rIUtbYjhZ8VEsinU8d2JFlFd8mnLqyyK
+	qX0nyycdC4zfwLtYU/k+15PyPQfe30gxP8yyjtciZ3/44LNGRqNr4MpZZTZCPot7BttLS8VRxhAno
+	dpNBcDfA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48000)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1u79CX-00043D-1U;
+	Tue, 22 Apr 2025 09:41:57 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1u79CV-0007LW-0t;
+	Tue, 22 Apr 2025 09:41:55 +0100
+Date: Tue, 22 Apr 2025 09:41:55 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mm-verdin: Link reg_nvcc_sd to usdhc2
-Message-ID: <aAdWLFS2UYciaJc8@gaggiata.pivistrello.it>
-References: <20250417112012.785420-1-Wojciech.Dubowik@mt.com>
- <20250417130342.GA18817@francesco-nb>
- <95107ed358b735cbe9e5a1af20a2d6db74c5ed64.camel@impulsing.ch>
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <aAdWU4xPc2UOU5wu@shell.armlinux.org.uk>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
+ <cd483b43465d6e50b75f0b11d0fae57251cdc3db.camel@ew.tq-group.com>
+ <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,31 +89,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <95107ed358b735cbe9e5a1af20a2d6db74c5ed64.camel@impulsing.ch>
+In-Reply-To: <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Apr 22, 2025 at 07:57:32AM +0000, Philippe Schenker wrote:
-> Hi Francesco,
-Hey Philippe!
+On Tue, Apr 15, 2025 at 05:25:23PM +0530, Siddharth Vadapalli wrote:
+> For a fixed PHY,
 
-> Not sure this causes any side-effects maybe you guys want to
-> investigate further about this.
+No such thing in reality. The kernel has an obsolete idea of a fixed PHY
+which is a software-emulated PHY to represent a fixed link, but that is
+basically dead with phylink (there is now no PHY for fixed links under
+phylink).
 
-Yes, we did, the correct implementation would be the one I linked
-in the previous email.
+As I stated, "phy-mode" describes how the MAC needs to configure its
+PHY facing interface, whether there is or is not a PHY present. One can
+argue that it's misnamed, but it's buried in deep DT history going back
+decades, and there's a rule that we don't break backwards compatibility.
 
-> I needed it due to the strange requirements I had (described in commit
-> message).  From my point of view it is correct to link the vqmmc-supply so
-> the voltage can be set also to something different than the default fusing
-> values.
-
-It does not really work fine, because you have this IO driven by the SDHCI
-core that is going to affect the PMIC behavior at the same time as the I2C
-communication. And even if you remove it from the pinctrl, it's the default
-out-of-reset function, so you would have to override it and set this pin as
-GPIO even when not used (this would work, of course).
-
-My request is to fix it in a slighlty different way that matches with the way
-the HW was designed.
-
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
