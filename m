@@ -1,62 +1,100 @@
-Return-Path: <devicetree+bounces-169398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CE6A96C29
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:12:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB33AA96C41
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:14:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6691516BF42
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:12:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 104D93A6AE9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF34281368;
-	Tue, 22 Apr 2025 13:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D690281501;
+	Tue, 22 Apr 2025 13:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="n15q944H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oNEfJKOo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473D618CBE1;
-	Tue, 22 Apr 2025 13:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8B120E703
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 13:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745327518; cv=none; b=pXHB7nQGbjdt4hiWueJwKv03oRtQjHtb0RQVMyEcz9NC3bVm00u7Gg+gWP523n7vqqoamM90pwDU8QYfDE7BLfStvsJBPlQF6CqBakQJwUGODrv0Wwct7wraYb6nFPpaG2s7MAv3RWg8yApCqhnePFHRKSOHKeMH/3YYhT8RaU0=
+	t=1745327682; cv=none; b=WB7EM3WdQD6Gjlxm8qwksk4zZaQ/YZnZ924tyZ33joXy+7eCHRqgtiinw6O066PjWDgR9/GbsLV1/TJ/Va3G8nRYl6clOJtFaR4LDYoy6+jiIazVOCnkVu1eNf7YiQ+OzrZouGTWgdnSdiTDNUY8ZokV84w4RwLSTRgIMbcS8lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745327518; c=relaxed/simple;
-	bh=rRjktDJ0MUBAM/q9snEfNjjc72sE7/oAhMScX+HK/Jc=;
+	s=arc-20240116; t=1745327682; c=relaxed/simple;
+	bh=471gRc3HzjQUQw4PVwLo7uOoZBgByN/FB/87Co4jC+Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k3USzz0GVM+qk3yqEF018f/GtnS9GHtl0pCw1Lq+d5vauhODF9cKR/c9ryXcqpRcs5dFXXKqULyueOFlP8k63fEYFbEXgXoRGDbvtLNeZWpLwG1E7GlAgme2qCNwgfx1P7v/F4WpYNJQt3qU05ncYEa9Sk8bN7sDH+bzNTwSQoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=n15q944H; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 27961666;
-	Tue, 22 Apr 2025 15:09:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745327386;
-	bh=rRjktDJ0MUBAM/q9snEfNjjc72sE7/oAhMScX+HK/Jc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n15q944HIcA5QyAjmzJSVdftRaVtGEC7F6+mf7fB3FkKL4hDZDbnAe6j7io+0+q91
-	 tNaNqLfle9GtruOaJZlnjvCAs6pjNrCHib92f0H6NUF4MpZZE9ggRgsAiIcA2O+SQC
-	 KScLGn7kuOzSrSXDf60UpqtGz7v1+3BJYkd9SnDA=
-Date: Tue, 22 Apr 2025 16:11:51 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Le/IpaLkkAStICWl6bNgJbqWQHdCazKA34XeA8BfT1K45dkdLB/WWg4fvOiIaRL6FSYZkRNRlhv3qF9VKea7XUtyjx6kW6M3JR5a6mk1eODl8lG32uWpngziYVift8l3WFLT/oC7pFojcw322SMGjYmtsFlRuX/+l5cSMAxQvTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oNEfJKOo; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-acbb85ce788so285016666b.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 06:14:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745327678; x=1745932478; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5zqq1b+/6XeRHzzRXttJKkEQgtsEyG1k8HuMNcYU8Wk=;
+        b=oNEfJKOoY93vTzSGBw6iIQ8OX5u4NUqq75JVovgzKVmeFgzgxMSjGGG+csgPkdgIv5
+         Nj3GTYSLjcvlo0OgZjtYyVJhdeFIur9G3sVOizcE6S/lrP8pKCRPLoeJPZnab/jJCkhQ
+         xivlBqfsCNkP9ffyVN+oiD3wt5TIRIHZSVuoadRTxMCkRtc+P7Pgy8eWi0x2MrrTLIwV
+         HhrTVZnJ9zjhXJZMgHpaUyUzYZ0FxVd0nEDhRaPN1YAlflU1nioGJLOEPauRLCv+5G7r
+         Ym1Uz4frQM9uh9mOH5w/FdO6RJZDUZ4hzOExueptqCYniQ72H9lYHpmC+J6HtjagCmiD
+         +x5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745327678; x=1745932478;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5zqq1b+/6XeRHzzRXttJKkEQgtsEyG1k8HuMNcYU8Wk=;
+        b=E3hQLBp1r3QfAZcMbTiPZoGndju75MpjySRyJBVF6GVRmhzcldPoX8SEBxt3rVlUv8
+         JWK6DblB+xS5wYHg6MyCm7nN5FVmxwlEJSwrlxiu2e0NIh0QlCToe8pxxkoIQ5pxpII6
+         mWIG9AfD/rv48QWS49t5t5fZziYLb78nldEJjam71mzt+rwJ7H63jC5nTL0GvPcCb9mO
+         Ej2ahzo8ZEtSYIbn0iBxI+LowS3vusVDMZln/Wf3nOxwRzMmPbfyccDEFUydAhy8AyAV
+         XeahMTr3Hcp8m4SsueDm6VRtdPZhv+yS3U6qUqtAmrd3OkoNZBBjGKj+Ebp93khlNBTE
+         q2zw==
+X-Forwarded-Encrypted: i=1; AJvYcCV57je5AVvdp/3Z7/wDDEXyOB5m2y9J7r8w7Hbj+sH966YghznacPO/FKKC3sh3s/B1PRx55kkHMmb9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8g3kVs05SptJ6WqxiN0s/v+tzo50QlN3UwVqSFaeuSY9ukalI
+	6Z109fgk0qaCPIGRgIICTznIsAjzvzJk0d9CS1QSoCc/a2oMdl14WAyYLVbzcUA=
+X-Gm-Gg: ASbGncursbCCOTmia0huAeizeKhH8Zll6DxOMaFLYb/lsET5qM2eFapfuwuj7kIliav
+	Undjv4W4EjQeJwA+AwMKhRaD/EviUhNwkr/i2zVZYKeetsALAIzLVi93OOfsbfWHwbhJIR6Vs1b
+	ducSRb1QXCr9PKoOx7O329Yd59+D51wZKqT/okkh+YhkAxjX6dGlKZHT38xuRUXHBr0pnmr8bsh
+	lqKOp+bFKWdfjWU5LLWW6z7oag9p3gZIDkxF9HaStkbM8uAxJpez8iWQwk+Bd/3olqFHCNxLDuD
+	YR36/dBMZVvusPTAyK+UgxGj3NgrzguDyEeNeA==
+X-Google-Smtp-Source: AGHT+IHTXXC4b0G4QfA+kk60IhLLae377q0zTFxBB+eBZqx0IkvXugcFNIxSpugNQp492BWJKEid2g==
+X-Received: by 2002:a17:907:1b17:b0:acb:3f1d:ca7e with SMTP id a640c23a62f3a-acb74af0066mr1171765766b.8.1745327677594;
+        Tue, 22 Apr 2025 06:14:37 -0700 (PDT)
+Received: from linaro.org ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef49e40sm650708166b.139.2025.04.22.06.14.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Apr 2025 06:14:36 -0700 (PDT)
+Date: Tue, 22 Apr 2025 16:14:34 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Peng Fan <peng.fan@oss.nxp.com>, Stephen Boyd <sboyd@kernel.org>,
+	Abel Vesa <abelvesa@kernel.org>, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>, linux-amarula@amarulasolutions.com,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
-Message-ID: <20250422131151.GA16823@pendragon.ideasonboard.com>
-References: <20250404-b4-vd55g1-v5-0-98f2f02eec59@foss.st.com>
- <20250404-b4-vd55g1-v5-1-98f2f02eec59@foss.st.com>
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v10 00/18] Support spread spectrum clocking for i.MX8M
+ PLLs
+Message-ID: <aAeWOryhXosM0Rat@linaro.org>
+References: <20250306112959.242131-1-dario.binacchi@amarulasolutions.com>
+ <20250314093503.GD12210@nxa18884-linux>
+ <CABGWkvq2X9L6P39K5OeQW4+c2OmSYGHN03mUW-96U5okO1CK5A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,193 +103,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250404-b4-vd55g1-v5-1-98f2f02eec59@foss.st.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABGWkvq2X9L6P39K5OeQW4+c2OmSYGHN03mUW-96U5okO1CK5A@mail.gmail.com>
 
-Hi Benjamin,
-
-Thank you for the patch.
-
-On Fri, Apr 04, 2025 at 04:50:51PM +0200, Benjamin Mugnier wrote:
-> Also update MAINTAINERS file accordingly.
+On 25-04-11 10:38:17, Dario Binacchi wrote:
+> On Fri, Mar 14, 2025 at 9:27 AM Peng Fan <peng.fan@oss.nxp.com> wrote:
+> >
+> > On Thu, Mar 06, 2025 at 12:27:49PM +0100, Dario Binacchi wrote:
+> > >This version keeps the version v9 patches that can be merged and
+> > >removes the patches that will need to be modified in case Peng's
+> > >PR https://github.com/devicetree-org/dt-schema/pull/154 is accepted.
+> > >The idea is to speed up the merging of the patches in the series
+> > >that have already been reviewed and are not dependent on the
+> > >introduction of the assigned-clocks-sscs property, and postpone
+> > >the patches for spread spectrum to a future series once it becomes
+> > >clear what needs to be done.
+> > >
+> > Although I give R-b, there is an idea just come out in my mind that this
+> > might break OS distribution that use firmware(e.g. U-Boot) to publish
+> > device tree for Linux Kernel, such as ARM System-Ready complaint OS.
+> > I overlooked this point in previous patchset reviewing.
+> >
+> > Since this patchset is to move anatop stuff to a new driver to reflect
+> > the HW truth.  And requires new entries in CCM node, so old bootloader
+> > with new kernel will not boot for OS distribution, such as Fedora/openSuse.
+> >
+> > Not sure how to keep backwards support as before. Leave to maintainers
+> > to say if they are ok with this.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> ---
->  .../devicetree/bindings/media/i2c/st,vd55g1.yaml   | 132 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 ++
->  2 files changed, 139 insertions(+)
+> Many thanks to Peng for the review, and a gentle ping to the maintainers.
+> This series has been ongoing for a few months and has reached version 10,
+> thanks to the reviews from Krzysztof and Peng.
+> I kindly ask you to consider it as well.
+
+Hi Dario,
+
+Please rebase and resend. I intend to apply the clk ones. Hope Shawn
+will apply the DT ones as well.
+
+Thanks for this effort and sorry for the delays.
+
+Abel
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml b/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6b777f86790da4e5941ac1cad86dc1a5021f9f5b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
-> @@ -0,0 +1,132 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2025 STMicroelectronics SA.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/st,vd55g1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics VD55G1 Global Shutter Image Sensor
-> +
-> +maintainers:
-> +  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +  - Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +
-> +description: |-
-> + The STMicroelectronics VD55G1 is a global shutter image sensor with an active
-> + array size of 804H x 704V. It is programmable through I2C interface. The I2C
-> + address is fixed to 0x10.
-
-If you intend for this block of text to be split in two paragraphs, it's
-missing a blank line here. Otherwise, it should be reflowed as a single
-paragraph.
-
-> + Image data is sent through MIPI CSI-2, which is configured as only 1 data
-> + lane. The sensor provides 4 GPIOS that can be used for external LED signal
-> + (synchronized with sensor integration periods).
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,vd55g1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  vcore-supply:
-> +    description: Digital core power supply (1.15V)
-> +
-> +  vddio-supply:
-> +    description: Digital IO power supply (1.8V)
-> +
-> +  vana-supply:
-> +    description: Analog power supply (2.8V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset active low GPIO (XSHUTDOWN)
-> +    maxItems: 1
-> +
-> +  st,leds:
-> +    description:
-> +      List sensor's GPIOs used to control strobe light sources during exposure
-> +      time. The numbers identify the sensor pin on which the illumination
-> +      system is connected. GPIOs are active-high.
-
-If multiple GPIOs are specified, do they all serve the exact same
-purpose, or is there a need to differentiate them ?
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      minimum: 0
-> +      maximum: 3
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            items:
-> +              - const: 1
-> +
-> +          link-frequencies:
-> +            maxItems: 1
-> +            items:
-> +              minimum: 125000000
-> +              maximum: 600000000
-> +
-> +          lane-polarities:
-> +            minItems: 1
-> +            maxItems: 2
-
-Does the sensor support non-continuous D-PHY clock ?
-
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - vcore-supply
-> +  - vddio-supply
-> +  - vana-supply
-> +  - reset-gpios
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera-sensor@10 {
-> +            compatible = "st,vd55g1";
-> +            reg = <0x10>;
-> +
-> +            clocks = <&camera_clk_12M>;
-> +
-> +            vcore-supply = <&camera_vcore_v1v15>;
-> +            vddio-supply = <&camera_vddio_v1v8>;
-> +            vana-supply = <&camera_vana_v2v8>;
-> +
-> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
-> +            st,leds = <2>;
-> +
-> +            orientation = <2>;
-> +            rotation = <0>;
-> +
-> +            port {
-> +                endpoint {
-> +                    data-lanes = <1>;
-> +                    link-frequencies = /bits/ 64 <600000000>;
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2286200b355bde3604607be916ef09aa88feed0e..4f5e9005063a157de69e81b10f8def9da9e6c04c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22410,6 +22410,13 @@ S:	Maintained
->  F:	Documentation/hwmon/stpddc60.rst
->  F:	drivers/hwmon/pmbus/stpddc60.c
->  
-> +ST VD55G1 DRIVER
-> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
-> +
->  ST VGXY61 DRIVER
->  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-
--- 
-Regards,
-
-Laurent Pinchart
+> Thanks and regards,
+> Dario
+> 
+> >
+> > Regards,
+> > Peng
+> 
+> 
+> 
+> -- 
+> 
+> Dario Binacchi
+> 
+> Senior Embedded Linux Developer
+> 
+> dario.binacchi@amarulasolutions.com
+> 
+> __________________________________
+> 
+> 
+> Amarula Solutions SRL
+> 
+> Via Le Canevare 30, 31100 Treviso, Veneto, IT
+> 
+> T. +39 042 243 5310
+> info@amarulasolutions.com
+> 
+> www.amarulasolutions.com
 
