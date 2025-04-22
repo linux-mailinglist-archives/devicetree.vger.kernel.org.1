@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-169253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9281A9621B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:42:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE03DA9625A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 575743BB770
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:39:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10DA618980C8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFC32980C0;
-	Tue, 22 Apr 2025 08:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C8629899A;
+	Tue, 22 Apr 2025 08:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="geVCaNVv"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Q0U0vOb3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CCD2980A6
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 08:30:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFBB2980D0
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 08:30:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745310619; cv=none; b=GRc2MMZ3sSQpN0wonG/LVdEhloz8MlRo/8A9I2xNIYGvvY5hgTSaz6UxV1EpEzwcucyqgI8FQiWScMtvcK7O9TiL9CD3z5+bt1TFUEdyFiKwmUEeG5+ZxvzNwPs+MbEaqaZRPp1wKZGQ2gC8b4f6F/uPocXA1oqs0bgqeKWiBkA=
+	t=1745310621; cv=none; b=UYQy3HjvIfIQkRQjuL3zxJTD/wwxaZeDFl/9zHKVRPkhlPQnSUAI7R/OzerWCkEBI8BoHkZCfabvgwzR/1OXuSxjzdgv7sWpvGS+bbSVwF/LE/3ZE4BjlEcWohmPgytatX/U+tEz5Q9RgIzc2OzvXdRxPjR5cEqVq0ptfGKdjZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745310619; c=relaxed/simple;
-	bh=mxkGjy74EQbDXjJNT5mOuVxMkvs+6xBiyP2rOL0F1RM=;
+	s=arc-20240116; t=1745310621; c=relaxed/simple;
+	bh=gBnvR1I1ZnFzb4vg65PBtlZBg4X6LVpbCReLzWaUhJg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F9gESxi639Xk9fMEc9RDFHc4ov4NhR0hWuXGubNgZ5NPTcI7TERww3onA9xsb54KknFm0xJ0kP3dHMwNxapdD/q71cHSINd7Qzhog2lupxQpvbfbBZxCuTTnBtpE/ID9e8kI3wIZgqcRQwTSDp6gMdJyS6DFMRPtp1zMq3HLEs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=geVCaNVv; arc=none smtp.client-ip=209.85.210.176
+	 MIME-Version; b=FJf6AnOiIPRKRVfN+NCrv7ITP+IRLXfVLizclA9JvzANkWLIlESHLUr4LrZ+bovqs/Sr0XaauYFQ2DF7WfW9eEiZ/b1aForBNROX8GJSJXFifPOlA0XIa8GkucLriwzmCAyH1vdhuggWBJChNb+3GScmdvR2D6AYrRYZt2/CWZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Q0U0vOb3; arc=none smtp.client-ip=209.85.210.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-73bf5aa95e7so4387224b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 01:30:16 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-736ab1c43c4so4945827b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 01:30:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745310616; x=1745915416; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1745310619; x=1745915419; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6MvplzL87H/4ihBut+ua8FE1FYMETCy70fkGX4prNlk=;
-        b=geVCaNVviqD2Xuo2KtoRHS3e/kH9HRrbW3YAIxGOsZyzHZxSXNbPGN2a17flByESIT
-         fyfyURSn9bQMJtdTAxuRxF8eh6Rdg90Vz6JSyx1ZAbXTTtkHCoVDgXbZ7qBKo+5oG0VM
-         Shk4ygUQZzakH1a9GnDr9fF2XfJTwBd8LBg2s=
+        bh=mhnP5fHmR2Q8bheAgrl4QJ3VtrLDUwvDbOgI8e/2CDY=;
+        b=Q0U0vOb32HFqTuyURLC878BQfNxM7IzgvSOIjD55i/oMdzYfGjga3m1eSUNcB5u2lO
+         hL5rBDkkuUAeUZaq6ciCdsZI1o2unSZFGms1rfJhAegNcQVyFcYsEYAT5BbESQszm77s
+         VSwIox65hVUfBDa46fAzqtcxOsRZnOfzF4q/c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745310616; x=1745915416;
+        d=1e100.net; s=20230601; t=1745310619; x=1745915419;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6MvplzL87H/4ihBut+ua8FE1FYMETCy70fkGX4prNlk=;
-        b=WeIkxmGQABOUdj4sz0xkczcNJzgEnAczJZHwwuM+cSZdnET3UOjjWuujpq+sFNkznC
-         t21XI8aqVt1oLVIxEQWcPM9oox/0G8I1+6jHtlDBf0jLkSXlToGCZtXY9MP+9AbbVkWp
-         8ZDa7tBChHjPUQ3fmsa+ewasYcCqelzdk+sxobmIlMYTR2ONKw+Tvr/jYz8go94S10wQ
-         32lRmot4Qy/Pp1qgF/wkT/cRCjuFfbNvKigEvXGJ+y8GjKkll7Hqt4k4FvpH77go9fcf
-         Z1bEsLD56zALLoRzwptTwiFvXYw6QQ/CvnrIDRA7SNmdvnTLq3AElhaR5J5ptD8MpPXR
-         CY/w==
-X-Gm-Message-State: AOJu0YyfL1YlQx5V2LAjZfVQhPjxEoF8CNLNJFOfcIj4t+iJeca7XcBQ
-	SxJK7pMryZ0CNT4inZydfvxnh41pe4ss7qvXy9/Z3eHVaMjlqX5Yjj5kTE/EYQ==
-X-Gm-Gg: ASbGnct2emBLVafhdS5G41EXGgi7fSyPd513mwneMwZCLcHH8TFTfXgRJpW7HyaQYzr
-	QR2ZNdp2npAN++NeU6k5n9GXq7tvDbZXRRh+tVNao77CZV83IAls6mAo6Zh17hsiCTIDelJsHPR
-	ESYdrcDSn/iEJS9uHqkYesTJnb0epttkiMYCh+dS1DU/bOtxnFtfQZ8KMe1Y9GA2k4Lt8+KY8ha
-	uBjqBpSmqQVUajPKyaHb73SndcHy/iMSPt81Fr4wLFFbcvmEscW05D0ADKd8cGFvZL5IqkataLk
-	d8v8+NMAWNgJqaRAqoTWF14YDlag1O7jYMmjN+r70rTFbqldT77E6bKlRsuakovl
-X-Google-Smtp-Source: AGHT+IHELay4Fe7ScimI0hCKyiKwYc7S7OtU/xOLpm2AArEqdrf4gn0UkIULLKLNLVAOqFO0noMvEw==
-X-Received: by 2002:a05:6a00:32ce:b0:736:3954:d78c with SMTP id d2e1a72fcca58-73dc14a11b9mr18582101b3a.6.1745310616207;
-        Tue, 22 Apr 2025 01:30:16 -0700 (PDT)
+        bh=mhnP5fHmR2Q8bheAgrl4QJ3VtrLDUwvDbOgI8e/2CDY=;
+        b=mUHsAEemdpve89jd0S7TCsBtJdl5pK7CDWbMswBuEfbNp1ckiETH2Z8qnqlYO9IIB+
+         0jMxKbGqgFn/TmtsgSwwMAInvoKUbwFd0q8iw7sEjXqzlzdOzNj9j67w35rAdVdAgjiZ
+         NtQpqtckU+Od6vFwm2h7KgD9eIuTvNP3MG7u2M5LgNqmRCBLKEoeJwlF8MYuPGsiFwCs
+         y5jTKvWETkdkA29wRXgCgKD+9ZdoEm/6lfq5fWE9+niVkGzGmrhtGEycP2RTs0/WamVQ
+         5+1egitCe8aQKFqCzYeIaBGQTKKeyitdA12Xs7YB2WEi0mfwYe5DT25P0lxHJn12R+dP
+         FBOg==
+X-Gm-Message-State: AOJu0YxdNPHzb3tkTBfhXOP1DHAMtnCVeUHYkllNnwdZ6EfApdIK54kx
+	qLRRjgosnefRzSh6m9auzeH8eoIq0A7M1oSnXcbLbrYYIVJU4walS4fHfE6I+w==
+X-Gm-Gg: ASbGncuMTK3lx8PZNTDcb9S/koJoq5PygKeOYPAfYY935QWoWtKQyYU4SeaL/TWXTOW
+	ZJyrkGjlMPJCvL4lL5GvceX2v16Df/SyWaVnbDzX2g38HUfm750qpNfCs030YLjzzjE/lxjmXWe
+	p5w8W+3Kuqsr8Yi5yihLjzwHw5hSv4Kl+bsXDX1QddpyuLqAk0a+RPE5T0tOR6K9AcOoB/Fj9Ac
+	dLBQWs17pM5GUkJdZhdDzHN7B07clj91ulqkUAzHZoGBG+NMxAQdVOiUGZjtj8MvRYRNXOlsvxu
+	c7Wew4zo3FQyc99Kv3vkoIXF8JlCd6uFErJG2SYvmOE4p96mGJ6YHDmYH2oV9TS0
+X-Google-Smtp-Source: AGHT+IHvMg/U3wawJMIjtv8NdwlNXjSugJsH0Z0eeETts37HBEVjcFftSg9+DA7CLUjYcHqi3e59Dg==
+X-Received: by 2002:a05:6300:42:b0:1f5:8a69:f41b with SMTP id adf61e73a8af0-203cbd41774mr23233480637.37.1745310618738;
+        Tue, 22 Apr 2025 01:30:18 -0700 (PDT)
 Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:90d6:56e4:9d90:9df3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf8e0be0sm7993576b3a.49.2025.04.22.01.30.14
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbf8e0be0sm7993576b3a.49.2025.04.22.01.30.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 01:30:15 -0700 (PDT)
+        Tue, 22 Apr 2025 01:30:18 -0700 (PDT)
 From: Pin-yen Lin <treapking@chromium.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
@@ -79,9 +79,9 @@ Cc: devicetree@vger.kernel.org,
 	Pin-yen Lin <treapking@chromium.org>,
 	Stephen Boyd <swboyd@chromium.org>,
 	linux-usb@vger.kernel.org
-Subject: [PATCH v3 3/4] dt-bindings: usb: realtek,rts5411: Adapt usb-hub.yaml
-Date: Tue, 22 Apr 2025 16:28:29 +0800
-Message-ID: <20250422082957.2058229-4-treapking@chromium.org>
+Subject: [PATCH v3 4/4] usb: misc: onboard_usb_dev: Add Parade PS5511 hub support
+Date: Tue, 22 Apr 2025 16:28:30 +0800
+Message-ID: <20250422082957.2058229-5-treapking@chromium.org>
 X-Mailer: git-send-email 2.49.0.805.g082f7c87e0-goog
 In-Reply-To: <20250422082957.2058229-1-treapking@chromium.org>
 References: <20250422082957.2058229-1-treapking@chromium.org>
@@ -93,109 +93,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Inherit usb-hub.yaml and remove duplicated schemas.
+Parade PS5511 is 4+1 port USB 3.2 gen 1 hub with a reset pin and two power
+supplies (3V3 and 1V1).
+
+Add the support for this hub for the reset pin control and power supply.
 
 Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
 ---
 
-Changes in v3:
-- Remove redundant schemas
-- Update the schema for downstream ports and devices
+(no changes since v1)
 
-Changes in v2:
-- New in v2
+ drivers/usb/misc/onboard_usb_dev.c | 3 +++
+ drivers/usb/misc/onboard_usb_dev.h | 9 +++++++++
+ 2 files changed, 12 insertions(+)
 
- .../bindings/usb/realtek,rts5411.yaml         | 52 +++++--------------
- 1 file changed, 13 insertions(+), 39 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-index 6577a61cc07531..a020afaf2d6e7a 100644
---- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-+++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Matthias Kaehlcke <mka@chromium.org>
+diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
+index 75ac3c6aa92d0d..91b49e58664d6b 100644
+--- a/drivers/usb/misc/onboard_usb_dev.c
++++ b/drivers/usb/misc/onboard_usb_dev.c
+@@ -490,6 +490,7 @@ static struct platform_driver onboard_dev_driver = {
+ #define VENDOR_ID_CYPRESS	0x04b4
+ #define VENDOR_ID_GENESYS	0x05e3
+ #define VENDOR_ID_MICROCHIP	0x0424
++#define VENDOR_ID_PARADE	0x1da0
+ #define VENDOR_ID_REALTEK	0x0bda
+ #define VENDOR_ID_TI		0x0451
+ #define VENDOR_ID_VIA		0x2109
+@@ -580,6 +581,8 @@ static const struct usb_device_id onboard_dev_id_table[] = {
+ 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2517) }, /* USB2517 USB 2.0 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2744) }, /* USB5744 USB 2.0 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x5744) }, /* USB5744 USB 3.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_PARADE, 0x5511) }, /* PS5511 USB 3.2 */
++	{ USB_DEVICE(VENDOR_ID_PARADE, 0x55a1) }, /* PS5511 USB 2.0 */
+ 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 HUB */
+diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
+index 933797a7e0841c..2963689958fc2a 100644
+--- a/drivers/usb/misc/onboard_usb_dev.h
++++ b/drivers/usb/misc/onboard_usb_dev.h
+@@ -38,6 +38,13 @@ static const struct onboard_dev_pdata microchip_usb5744_data = {
+ 	.is_hub = true,
+ };
  
- allOf:
--  - $ref: usb-device.yaml#
-+  - $ref: usb-hub.yaml#
- 
- properties:
-   compatible:
-@@ -19,61 +19,35 @@ properties:
-           - usbbda,5411
-           - usbbda,411
- 
--  reg: true
--
--  '#address-cells':
--    const: 1
--
--  '#size-cells':
--    const: 0
--
-   vdd-supply:
-     description:
-       phandle to the regulator that provides power to the hub.
- 
--  peer-hub:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description:
--      phandle to the peer hub on the controller.
-+  peer-hub: true
- 
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
--    properties:
--      port@1:
--        $ref: /schemas/graph.yaml#/properties/port
--        description:
--          1st downstream facing USB port
--
--      port@2:
-+    patternProperties:
-+      '^port@':
-         $ref: /schemas/graph.yaml#/properties/port
--        description:
--          2nd downstream facing USB port
- 
--      port@3:
--        $ref: /schemas/graph.yaml#/properties/port
--        description:
--          3rd downstream facing USB port
-+        properties:
-+          reg:
-+            minimum: 1
-+            maximum: 4
- 
--      port@4:
--        $ref: /schemas/graph.yaml#/properties/port
--        description:
--          4th downstream facing USB port
--
--patternProperties:
--  '^.*@[1-4]$':
--    description: The hard wired USB devices
--    type: object
--    $ref: /schemas/usb/usb-device.yaml
--    additionalProperties: true
-+additionalProperties:
-+  properties:
-+    reg:
-+      minimum: 1
-+      maximum: 4
- 
- required:
-   - peer-hub
-   - compatible
-   - reg
- 
--additionalProperties: false
--
- examples:
-   - |
-     usb {
++static const struct onboard_dev_pdata parade_ps5511_data = {
++	.reset_us = 500,
++	.num_supplies = 2,
++	.supply_names = { "vddd11", "vdd33"},
++	.is_hub = true,
++};
++
+ static const struct onboard_dev_pdata realtek_rts5411_data = {
+ 	.reset_us = 0,
+ 	.num_supplies = 1,
+@@ -122,6 +129,8 @@ static const struct of_device_id onboard_dev_match[] = {
+ 	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
+ 	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
+ 	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
++	{ .compatible = "usb1da0,5511", .data = &parade_ps5511_data, },
++	{ .compatible = "usb1da0,55a1", .data = &parade_ps5511_data, },
+ 	{ .compatible = "usb2109,817", .data = &vialab_vl817_data, },
+ 	{ .compatible = "usb2109,2817", .data = &vialab_vl817_data, },
+ 	{ .compatible = "usb20b1,0013", .data = &xmos_xvf3500_data, },
 -- 
 2.49.0.805.g082f7c87e0-goog
 
