@@ -1,125 +1,105 @@
-Return-Path: <devicetree+bounces-169259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F89CA96253
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:45:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CBFA96304
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96D417A30EA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:44:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F6EC19E00AB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF7B283CB6;
-	Tue, 22 Apr 2025 08:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162E1259CAC;
+	Tue, 22 Apr 2025 08:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bkall4kD"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="penu3/YZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23359283CAD;
-	Tue, 22 Apr 2025 08:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE7DD25743F;
+	Tue, 22 Apr 2025 08:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745311149; cv=none; b=ofZAwbRrKTdhnb+xnGRGXCCPleCyioO5DnV3TN+gZtbhHGjdo/0VrbXoLZ4Lm7xtWHC5sJSiKAuCDKMZmeT5DRZNOp/LPTqJiMAy5+O0Iy58+cL3Y15WHkKaZ6wU5HCO04oN9VrU31r7tNJGR/8OyTijEg99IvSM1FIwqZBas0w=
+	t=1745311288; cv=none; b=cI1o5uiJzjk3WVYsWSL9r7uk+TJDVv1YG1D2LSiJPS4vDjPdBPhfIay3dBllrqPPWGHPYLUmbOp/p4aQY16afSmEuWNkaOLZQMEMMAarnjRA+Edp1CfMlFgED9TPCd4dqQv24FFrTETt+jgndUT2Jtvhkxi8acMGgkX9aE9TmAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745311149; c=relaxed/simple;
-	bh=IQFl72OzJ4mBTOQPAIwQGKqNCYqAnIWUEXWp5iXWCeg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sEEOHeJStX/EvBuIS1OFxnHZqHcU0j/i+pQa8J/p9nKGbAUeNO9yaU276fLGdUEjE1m9XNtLEI6SpEHwhfmS6WQa2NZOhZ9juhXdwhFIMgQSFDE4N/mWETGvM2tM8Mr+dWjmwjCVumhasJv3Uo08n16C5IW03eGeqUN00WGHDAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bkall4kD; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-739be717eddso3621468b3a.2;
-        Tue, 22 Apr 2025 01:39:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745311147; x=1745915947; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CCvA/v2EUituzS9kNtyUPMk5f4h9VA5Fx3x52Zgd4YE=;
-        b=Bkall4kDbQEDDdGOL3qER4eWI+RYnboB0jYAMcKsw+jcZq7CGYiPIXW2Zb8C63ZmXZ
-         AfoIdUvcjf8rCxf59pQDPKzujBAFYE69Kixg0+wAwpI+mH2HyblnL9MWHKF3tuQH019+
-         2VgBSEb5BCi9SyhVsVrP+bJP2j1PofHGgOXTuMiCBh6QqfjOv9H6hYycyTc382F6ypFj
-         Grk8QTi3Yz4DC+123H4DEcyvOphemSbui6cAg9PlsMz1gwF47isWom9SYSkVqcTtf8dC
-         8Y75Q80cbq3RGNYSsqC88FLnT03RF22s2Vw4DfswaFn5eJCK5ttLET7mDu22HsXr6A7C
-         I3pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745311147; x=1745915947;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CCvA/v2EUituzS9kNtyUPMk5f4h9VA5Fx3x52Zgd4YE=;
-        b=I0R5cPM/cZUSe0mlLKum9T9rFGe0RgP3Z+CJ+Jq4QQi9Uzs38U669hr63QKtPXvm2G
-         J+hkWnogteFqbU7nLP7P34ztP1oVpJvy+OptImXHdTmt+xsBLCZ6lnm3jNgm6BW3ubcM
-         LARUhMyZ2uZ1L1Bf6Zfh36QVopPZz8Kj9cW51ju26vV5ayrCTk4jAyjk8NuW6qME8Sa/
-         6Zz1DxBPHgePLahO7vCAaW4vA58LpbPAw4DpEv59VNd7kEuIJE7BVxroeKVVKAOihxa3
-         vX84I/4N3QLVbklytq54ERlvMqXghnWVJYsg6YFU3T01PVgRgeIngSIScBYSxhyx7F/4
-         4NUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVq1z821hXbtw8eeIO5zOxWEg/r4VI2+u8Lt7e0+EVagwO+m+ysv4bAKnZissvJOY7KPBrzADdKVjXb@vger.kernel.org, AJvYcCXS4p5prGcNUH2jhZyZ1DbFT8amUALX/7dbhL2mcKHNeWIQ8QZ44Wdi1K4JE4x6vRXM1zzmuCiNdGQL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOlafZfT2r3JLc3gFk/WPwlzuI8F+jEUygWII1LrGbRuoUMKFL
-	CSdtpUvkzA0R/Z9h6uaBjSPD0QkhfGi168lT17yZR68rC1bWO96ydY6BJpzRdTPhN0wE7L9XYAs
-	DQSnY1Y5UapMya/INHa8UneFU/I4=
-X-Gm-Gg: ASbGncsJu+O/P6+wMBUUNjgARK6JzW3fFfSF897Jj/rEEIq2hFs+QZdJeUYe5DloMhg
-	YNAip3VWNGX15FHpENYiuEoshlu5+BBYs/bqemfV+bTIsZ51fTQv8guSiHAC+CHfnxj482iFyv4
-	MvA6Wzq/ibxo436vrKJRoeJVw=
-X-Google-Smtp-Source: AGHT+IG3YORNxBuSlbAhFau+N9rvGD7+/9/RdXTUKn/Kh/4XSDX1FAf35cZy5fMzyCG5uvoyK9JuoYkTcUJ6i/fljrY=
-X-Received: by 2002:a05:6a20:c6cb:b0:1f3:388b:3b4b with SMTP id
- adf61e73a8af0-203cbc524f1mr21369900637.15.1745311147329; Tue, 22 Apr 2025
- 01:39:07 -0700 (PDT)
+	s=arc-20240116; t=1745311288; c=relaxed/simple;
+	bh=1Vpx6IWGw8fnpaFdAhzIBN6OlsDoegH8mN06+Y65eVQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j+zOzyqkh2fML7tAuV6YvhKg+VhU5eHzh2soCqwFfmPzlCbUMVpRoQo0h8ZNYPpqy8mgTHdJdi6fgYc/d3JyBjqCE7ztgCqU3BavfWsA0JnTKpgPGhQGdB33E6IsuGw82Pmd4AqzYSlMTcvyfwW6HmSsunKzknAA6jY41QKej4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=penu3/YZ; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id E3BA01F929;
+	Tue, 22 Apr 2025 10:41:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1745311277;
+	bh=j42C1neK3aBXGc+3YIjfO2v8Xt2aMCt3/0zWgtV9maI=;
+	h=Received:From:To:Subject;
+	b=penu3/YZVEI07stg2iQTLUOpNVxP1HOxBAdODDevRCDZPAJCgLpfGVefwkW/zq4yK
+	 Rak6XOa9G2kod7SBw6TJPCJ8uFa/q4TQywOm1J8XqIZRCAQC7Cztqt3vlepvWqF3XT
+	 N/iwt/q2/75cJAr1Z5Tu3KOekjVlUNaxDglJORQrY+OnSA9KpRbBSkA4AqHJ3ztnhq
+	 jjOzB8olRLLfUBsiTQ32s30FTValKeVCLAYqQIprBaFJ9B/QTcV1BcD0vyFNI6aqkK
+	 0n3YhqZKABBuSIbdQL2m2/WzkSM55NQYD5xfqDTdh2wrHev+pNuTxS8L5C0xnmF5YA
+	 CCcGAsK+D5jmg==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 952EE7F820; Tue, 22 Apr 2025 10:41:16 +0200 (CEST)
+Date: Tue, 22 Apr 2025 10:41:16 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Philippe Schenker <philippe.schenker@impulsing.ch>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mm-verdin: Link reg_nvcc_sd to usdhc2
+Message-ID: <aAdWLFS2UYciaJc8@gaggiata.pivistrello.it>
+References: <20250417112012.785420-1-Wojciech.Dubowik@mt.com>
+ <20250417130342.GA18817@francesco-nb>
+ <95107ed358b735cbe9e5a1af20a2d6db74c5ed64.camel@impulsing.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250420181015.492671-1-gye976@gmail.com> <20250420181015.492671-4-gye976@gmail.com>
- <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com> <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
-In-Reply-To: <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
-From: Gyeyoung Baek <gye976@gmail.com>
-Date: Tue, 22 Apr 2025 17:38:56 +0900
-X-Gm-Features: ATxdqUH6KFlOdTRKwJGiiGzCSdBIeAWcBl164uuauYurpsla6SOBr9ewPOQhegA
-Message-ID: <CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <95107ed358b735cbe9e5a1af20a2d6db74c5ed64.camel@impulsing.ch>
 
-Hello Andy,
+On Tue, Apr 22, 2025 at 07:57:32AM +0000, Philippe Schenker wrote:
+> Hi Francesco,
+Hey Philippe!
 
-On Mon, Apr 21, 2025 at 4:24=E2=80=AFAM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Sun, Apr 20, 2025 at 10:21=E2=80=AFPM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail.com=
-> wrote:
->
-> ...
->
-> > > --- a/drivers/iio/chemical/Makefile
-> > > +++ b/drivers/iio/chemical/Makefile
->
-> > >  obj-$(CONFIG_SPS30_I2C) +=3D sps30_i2c.o
-> > >  obj-$(CONFIG_SPS30_SERIAL) +=3D sps30_serial.o
-> > >  obj-$(CONFIG_VZ89X)            +=3D vz89x.o
-> > > +obj-$(CONFIG_WINSEN_MHZ19B) +=3D mhz19b.o
-> >
-> > Preserve order.
->
-> Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
-> option and no such thing in the filename? I would drop that from the
-> config option.
+> Not sure this causes any side-effects maybe you guys want to
+> investigate further about this.
 
-I followed the 'vendor_device' naming pattern seen in examples like
-'CONFIG_SENSEAIR_SUNRISE_CO2'
-But I'll drop the vendor prefix in the next patch, thanks.
+Yes, we did, the correct implementation would be the one I linked
+in the previous email.
 
---
-Regards,
-Gyeyoung
+> I needed it due to the strange requirements I had (described in commit
+> message).  From my point of view it is correct to link the vqmmc-supply so
+> the voltage can be set also to something different than the default fusing
+> values.
+
+It does not really work fine, because you have this IO driven by the SDHCI
+core that is going to affect the PMIC behavior at the same time as the I2C
+communication. And even if you remove it from the pinctrl, it's the default
+out-of-reset function, so you would have to override it and set this pin as
+GPIO even when not used (this would work, of course).
+
+My request is to fix it in a slighlty different way that matches with the way
+the HW was designed.
+
+
 
