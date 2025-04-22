@@ -1,112 +1,114 @@
-Return-Path: <devicetree+bounces-169528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADB4A9739D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:31:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B398A973B2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5E7189E89A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:31:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17F84400E1F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1001D19D89B;
-	Tue, 22 Apr 2025 17:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE231DFD86;
+	Tue, 22 Apr 2025 17:39:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56CB738382;
-	Tue, 22 Apr 2025 17:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB4D1A304A;
+	Tue, 22 Apr 2025 17:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745343068; cv=none; b=SELcEcnoN1ULDfbRsULMl5/Ja+GQe3jp2qET++7P8u+AZdksSSZ/n+LJciLBgQ87PtSrGvBGFKms1IEyfARO8sMoeIx09VXw9YBczws8Ae8pS4HtJDHDxBhSMmhdqatbrksN8jK1jliADf14K5liGUmYmkXB4wzn4ScY8Rnz9FI=
+	t=1745343596; cv=none; b=uddu8YKuIwuL1sR0SvAq0OIBdeC7TyrkOeHiPD3xwUwWgdDL4UJnGmgv/aW+zMiGbsWt7k7iSUjhCDF3SWaXugnbBKVJpP9kaRjMIcv9ns+lpp7DsF3WnnMCET+f9Z5zAwTuB9exqiQaPFuRSC3GVpuSF4etMEd1Vuw5PtBsTMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745343068; c=relaxed/simple;
-	bh=+u5lJ3//Nx10YkQWNldvdtuPfI6RVP2CDF+nDTeEWow=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OmfoLMLiS/p+mnwyAng6fBqWstTHYeOnCfGU9xXTkYYoKd+ctNpfOtyZATHAHdqbeadsKG+eUke8sx9Ijk4AYA7AEOUV1jkrG1gjY1d4VY/em+zqMGhWVWv0WqFglaud6g494s49QBoQOk5VvzdlQ7u/uzm34kH1GfkDj0gzdJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-CSE-ConnectionGUID: DjE+0xOmStSIflA3Cg9bJg==
-X-CSE-MsgGUID: frgl/NqgRWmExoPpoZ8iyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="57573891"
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="57573891"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:31:03 -0700
-X-CSE-ConnectionGUID: 7yeI17VmT+KNRJsRZ2y64g==
-X-CSE-MsgGUID: lt0D1RopSmeI71SqT7R0GA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="136164120"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:31:01 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1u7HSU-0000000EnW7-2UCl;
-	Tue, 22 Apr 2025 20:30:58 +0300
-Date: Tue, 22 Apr 2025 20:30:58 +0300
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Gyeyoung Baek <gye976@gmail.com>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2
- sensor
-Message-ID: <aAfSUjFh_eB8Dtl2@smile.fi.intel.com>
-References: <20250420181015.492671-1-gye976@gmail.com>
- <20250420181015.492671-4-gye976@gmail.com>
- <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
- <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
- <CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
+	s=arc-20240116; t=1745343596; c=relaxed/simple;
+	bh=8tUVVV01tcIGNH/0m7tdeQsLKQBE6i5+He7iePk0j4w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qhk9mR1sQrY15zkMIg3BrFWNCEVeC3f+sVysywiIFvKsHf4uw3tr8DYk8eVPby/kwAtU+OVofC/PnMnDE+8DdHDi6RIlpuvb7I4LPWBaefR6cL38k62Lq8SPAVOjvI7Eb8DVSqJr+4zplw32V35nuY/k0bMaIHtf5QO4ROIqtdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: mEY1gjZPS62smDfocteWvw==
+X-CSE-MsgGUID: fWVepJYYTVyoxYF5L7mLbw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Apr 2025 02:39:45 +0900
+Received: from mulinux.home (unknown [10.226.92.16])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4047740437A5;
+	Wed, 23 Apr 2025 02:39:40 +0900 (JST)
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v6 0/6] Add DMAC support to the RZ/V2H(P)
+Date: Tue, 22 Apr 2025 18:39:31 +0100
+Message-Id: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Apr 22, 2025 at 05:38:56PM +0900, Gyeyoung Baek wrote:
-> On Mon, Apr 21, 2025 at 4:24 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Sun, Apr 20, 2025 at 10:21 PM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
-> > > On Sun, Apr 20, 2025 at 9:10 PM Gyeyoung Baek <gye976@gmail.com> wrote:
+Dear All,
 
-...
+This series adds DMAC support for the Renesas RZ/V2H(P) SoC.
 
-> > > > --- a/drivers/iio/chemical/Makefile
-> > > > +++ b/drivers/iio/chemical/Makefile
-> >
-> > > >  obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
-> > > >  obj-$(CONFIG_SPS30_SERIAL) += sps30_serial.o
-> > > >  obj-$(CONFIG_VZ89X)            += vz89x.o
-> > > > +obj-$(CONFIG_WINSEN_MHZ19B) += mhz19b.o
-> > >
-> > > Preserve order.
-> >
-> > Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
-> > option and no such thing in the filename? I would drop that from the
-> > config option.
-> 
-> I followed the 'vendor_device' naming pattern seen in examples like
-> 'CONFIG_SENSEAIR_SUNRISE_CO2'
+Cheers,
+Fab
 
-Interesting... Now I understand why the above was pulled without any comment,
-because the vendor and device names start with the same letter 'S'!
+v5->v6:
+* Reworked the RZ/V2H specific dt-bindings patch as per Geert's
+  comments.
+* Collected tags throughout.
+v4->v5:
+* Clock patch queued up for v6.15, therefore dropped from this
+  version of the series
+* Adjusted the dmac cell specification according to Geert's
+  comments
+* Removed registration of ACK No. throughout
+* Reworked DMAC driver as per Geert's comments
+v3->v4:
+* Fixed an issue with mid_rid/req_no/ack_no initialization
+v2->v3:
+* Replaced rzv2h_icu_register_dma_req_ack with
+  rzv2h_icu_register_dma_req_ack() in ICU patch changelog
+* Added dummy for rzv2h_icu_register_dma_req_ack()
+* Reworked DMAC driver as per Geert's suggestions.
+v1->v2:
+* Improved macros in ICU driver
+* Shared new macros between ICU driver and DMAC driver
+* Improved dt-bindings
 
-> But I'll drop the vendor prefix in the next patch, thanks.
+Fabrizio Castro (6):
+  dt-bindings: dma: rz-dmac: Restrict properties for RZ/A1H
+  dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family of SoCs
+  irqchip/renesas-rzv2h: Add rzv2h_icu_register_dma_req()
+  dmaengine: sh: rz-dmac: Allow for multiple DMACs
+  dmaengine: sh: rz-dmac: Add RZ/V2H(P) support
+  arm64: dts: renesas: r9a09g057: Add DMAC nodes
+
+ .../bindings/dma/renesas,rz-dmac.yaml         | 107 ++++++++++--
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 165 ++++++++++++++++++
+ drivers/dma/sh/rz-dmac.c                      |  84 ++++++++-
+ drivers/irqchip/irq-renesas-rzv2h.c           |  35 ++++
+ include/linux/irqchip/irq-renesas-rzv2h.h     |  23 +++
+ 5 files changed, 388 insertions(+), 26 deletions(-)
+ create mode 100644 include/linux/irqchip/irq-renesas-rzv2h.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
