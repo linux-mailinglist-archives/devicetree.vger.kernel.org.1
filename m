@@ -1,165 +1,95 @@
-Return-Path: <devicetree+bounces-169353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319DFA967F0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C56A96809
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FA9D163D79
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:42:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE67316CB3C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFC127815B;
-	Tue, 22 Apr 2025 11:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF4827BF85;
+	Tue, 22 Apr 2025 11:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c9xli2O7"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="L2hb+1eX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24461F130B;
-	Tue, 22 Apr 2025 11:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1C3433A6;
+	Tue, 22 Apr 2025 11:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745322106; cv=none; b=tbH5/Ph2CH/LW5OMpSTUDC3lRHCTOnBm330AiSoj6ZARjrmY/ejzqm6GutpR3BEgGEElWLNimZaB0LdRW3cjJQY87nspkGI354k124C2A4JcfUoHSnjMxjVuy62znc741XPcdo0/78N98ydSyybPFUbka7OXSs4jN2AEsm7LkVo=
+	t=1745322284; cv=none; b=sECR/uUbx8S7WiUaBpMLve/0Q66JhEBDeefhkvKi9TFaorlpn15sFVWpAHw3NrSq0ZEJS8Iz6oAxBPYIHylYQdE8IbYgPRoOO9qxN4n+fi7l6473lHaNa4GXCz28xOFndT0HfSa7lw4zsv+LraJshLDARWaJuS/CeKtAXi5lw+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745322106; c=relaxed/simple;
-	bh=6IOm0GI+w2cJIUM3Q4iTv/LtXZ6qVFV7EMQPid+JNLo=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=f8bnRJpEhyDK0aXmXmcmRTCqhCxJOay4rVtTZgRnkxU4oVfR0b0jF5VqpQYmk4epgeLu3GCLgjKPwcVu/ZWlSXgI8SqreEmvqI/YVYegQvgsb9WiKCF45odFtoMVuW57x90zWSQdTixDFoVmcSwdVBqLB/w3oUBF9k0M2geTij0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c9xli2O7; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so37110465e9.1;
-        Tue, 22 Apr 2025 04:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745322102; x=1745926902; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZtZe5MkVjequJl/v4wkcEgW5OwyMOzW+8kGSPcfrHu0=;
-        b=c9xli2O7I0zAg5XpJAYJpLkkQEKu1nwX1wJOEDyc4lqhk3JDFgg1IEcuk7Wbd7p10C
-         JKSponzh4UDqp5vHQyZ2+EeGlw/FjLRogICJscynwjwJ9fTx+qTVJbjL66qCPHsnE46X
-         K0mUquQ6X+Iwn6qY8lZalRnw4Q1zgzqJ9wF9bZ00dIuRVtF5Jqz7kMNbQAxaMY3Hs/mF
-         u8DviiqH1Dr24lKu8ytYklUHIwElF6T/+fF0vp3CORNLhEqZVbC+S11uJd3wKYOcgYmR
-         i8ApzycOqobYB73xyZ6c+qs/QcNEYSdC+h00NYfHn7mxSrzHohurAS08EIG4LNCWZ8AK
-         JtCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745322102; x=1745926902;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZtZe5MkVjequJl/v4wkcEgW5OwyMOzW+8kGSPcfrHu0=;
-        b=oceT97tMqWuQxK+fOCG10bhGDYVytL8hB6h2u36zRyg4WsaUx9qchwHQbO0VZyKkBA
-         9Dqd0MMAC/2wl1PheRKsB4BxgCo26Oi8vrvQWBQ+qze4qCnX25Td/kVH9CDNYXRt+JNQ
-         06VRUfdXo9PyefthykauoI+wfLIRM7KuASvLz7uECAEWAbRRT29mf0jBSRENQUFFwSwG
-         lkAnNFQLN3eWLuKhd/iLUAXyrl8knxAfnISd4jinqHPUhFSdHWvotuXFwx/NvXqBUZoH
-         s6PRZ2CEb3Z1fBCnCsNQozVq0JEywQwDsEsjwb1TBEMlFnwBxDsA8gCkaQOb+c+zuB2z
-         BP3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUfYgjyEPu4/Cb9FIoc+/rVTc61k1EW0YddocVTQkffogKnCGc5H7ZrijFJu4SPD0YpZt8+xhaVSatW@vger.kernel.org, AJvYcCUwID2/+IeGI3TQ+xnO3tWk01qB2vMLCMKMdI7DGggEMaf7HrDIZGanf+OZjznP5mhl9xwlxfX+7wb5@vger.kernel.org, AJvYcCUzs8fBQgbmQQqWHiPRNhSkp+/wLebVLhAw19weADnKqv0oVX67OOIXRWpdK8BFnTMqcEqNB961DUo8vn7H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQ3gNJJUDcebxq5G3BiSgPua+pfLaKdMn+zMGZsXM5vqNwMaOW
-	Yk8I7fKZwBV9gu6Faow6Fyb9nY9fTir3yUCKG2xh/J8zZ+J75k9Yob4bEBIj
-X-Gm-Gg: ASbGncsUiAYyNrEoGPZGS2X5IcDjpYxWNT3mwmkNyeK3lUE8qIdpby4tKUv9I+i1CEj
-	IK7MA7Kp38GaWyTOdqj/0Xw5/UdDfmxK93qubkZcWNSyrXCI/mdtWPcQDDIZE1Tr9Z3qk9RgcAd
-	Y+ILf6IzyOoFbEQ7tZ774Jv5qJ39Qr50eyV2Vl0isn9q+L0yydJFTNg7C/K3lgQjpCRROdTi0l6
-	e4d7rOPEZYHJtdUu7pIyF24n8xQMXguIcGh4ZB/6tvLqDXvVpWFZMW0MikomWj6knUmG1iq6Qz5
-	5yosH9zNNVGaW6mVHmoZXLhh0GANyrAm3TlwIt+ib325+2Rj/FlzR07itqnevJHCsATw68s9umx
-	OAMWJDGUW4ajTNqFKpW8Yi0g=
-X-Google-Smtp-Source: AGHT+IGPGWhYJLYhscw5CnJUTDwYkVxOBQadnF+fTJQ6W/mQbI7fGiZwUihxjmQMtGMJPEvXJYT8VA==
-X-Received: by 2002:a05:600c:3d19:b0:440:68db:a045 with SMTP id 5b1f17b1804b1-4406abff89emr124135945e9.26.1745322101709;
-        Tue, 22 Apr 2025 04:41:41 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5bbcaasm173681615e9.21.2025.04.22.04.41.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 04:41:41 -0700 (PDT)
-Message-ID: <d7e6660e0263f167e881bcb32d8d241450a21a66.camel@gmail.com>
-Subject: Re: [PATCH 2/2] iio: dac: ad7293: add adc reference configuration
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
-	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Tue, 22 Apr 2025 12:41:44 +0100
-In-Reply-To: <20250422085529.4407-2-antoniu.miclaus@analog.com>
-References: <20250422085529.4407-1-antoniu.miclaus@analog.com>
-	 <20250422085529.4407-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1745322284; c=relaxed/simple;
+	bh=EdwYZFSFjLIu2qTKO0uo1rUfdkI6jb3DPa92uYe5N9Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a4k8bNYlx+u5j8roPVpfQLbDmBH651kYfxWNSh6KzPjfEB5EHY28BsWxCauxGGizbQ/S1RKxwFz6+DZcOMckMOxPzgc8QAuLcf/iwl0v2QiU8QpYTlkb5udiad55nLS8Oni1Ef4XDbwYb1irEF+bszZj3AdCQt3kRpTZnnwsDtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=L2hb+1eX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=5ivL5Ti0Q3RhIMz3cs6p0pT2tGV00FkMsE3PCGA6DQc=; b=L2hb+1eXc4+jkulhn4CY7JiPMu
+	dv9x9FghMf2tSeBqEH85SPHARyjSF9XKCJA8JiXIYah9w0bTIIlvzvyZwZzSM/kwuzasuXY8O/0Dp
+	QzP7IrR9igpe+w/YeDWKiXAmU6Ofkm6f7EdEX4jNFtXMqEBDymsAbx4aWmcshTPa4ALGuIUEYY35i
+	V4p2YZF6JZZlxfqHXwVFORF/omyAugz7mv+B/0pssUNdlPtyAjZpGU3FoGmQrKyc2k0KAlXWQtDjU
+	Cw1K0WD1IP19Go2evvzV3L55EUCxQLU28zARhbgSC+lTZMmrtAdyjpnFElcZMRhRdoBnX1ch6aDyg
+	7MLaueIw==;
+Received: from i53875b95.versanet.de ([83.135.91.149] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u7C3G-0002kK-9A; Tue, 22 Apr 2025 13:44:34 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	inux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Rename hdmi-con to hdmi0-con for Cool Pi CM5 EVB
+Date: Tue, 22 Apr 2025 13:44:22 +0200
+Message-ID: <174532226020.263993.13170766558495320938.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250419121326.388298-1-andyshrk@163.com>
+References: <20250419121326.388298-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 2025-04-22 at 11:55 +0300, Antoniu Miclaus wrote:
-> Add support for configurating the ADC reference (internal/external).
->=20
-> According to the datasheet, the external reference is enabled by
-> default.
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
 
-LGTM:
+On Sat, 19 Apr 2025 20:13:16 +0800, Andy Yan wrote:
+> There are two hdmi connector on Cool Pi CM5 EVB, the current supported
+> is hdmi0, assign corresponding index to it. It will be convenient for
+> us to add support for another one.
+> 
+> 
 
-Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+Applied, thanks!
 
-> =C2=A0drivers/iio/dac/ad7293.c | 13 +++++++++++++
-> =C2=A01 file changed, 13 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/ad7293.c b/drivers/iio/dac/ad7293.c
-> index 99fa2d1f8299..c3797e40cdd9 100644
-> --- a/drivers/iio/dac/ad7293.c
-> +++ b/drivers/iio/dac/ad7293.c
-> @@ -114,6 +114,7 @@
-> =C2=A0#define AD7293_REG_DATA_RAW_MSK			GENMASK(15, 4)
-> =C2=A0#define AD7293_REG_VINX_RANGE_GET_CH_MSK(x, ch)	(((x) >> (ch)) & 0x=
-1)
-> =C2=A0#define AD7293_REG_VINX_RANGE_SET_CH_MSK(x, ch)	(((x) & 0x1) << (ch=
-))
-> +#define AD7293_GENERAL_ADC_REF_MSK			BIT(7)
-> =C2=A0#define AD7293_CHIP_ID				0x18
-> =C2=A0
-> =C2=A0enum ad7293_ch_type {
-> @@ -141,6 +142,7 @@ struct ad7293_state {
-> =C2=A0	/* Protect against concurrent accesses to the device, page selecti=
-on
-> and data content */
-> =C2=A0	struct mutex lock;
-> =C2=A0	struct gpio_desc *gpio_reset;
-> +	bool vrefin_en;
-> =C2=A0	u8 page_select;
-> =C2=A0	u8 data[3] __aligned(IIO_DMA_MINALIGN);
-> =C2=A0};
-> @@ -785,6 +787,12 @@ static int ad7293_properties_parse(struct ad7293_sta=
-te
-> *st)
-> =C2=A0	if (ret)
-> =C2=A0		return dev_err_probe(&spi->dev, ret, "failed to enable
-> VDRIVE\n");
-> =C2=A0
-> +	ret =3D devm_regulator_get_enable_optional(&spi->dev, "vrefin");
-> +	if (ret < 0 && ret !=3D -ENODEV)
-> +		return dev_err_probe(&spi->dev, ret, "failed to enable
-> VREFIN\n");
-> +
-> +	st->vrefin_en =3D ret !=3D -ENODEV;
-> +
-> =C2=A0	st->gpio_reset =3D devm_gpiod_get_optional(&st->spi->dev, "reset",
-> =C2=A0						 GPIOD_OUT_HIGH);
-> =C2=A0	if (IS_ERR(st->gpio_reset))
-> @@ -818,6 +826,11 @@ static int ad7293_init(struct ad7293_state *st)
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> =C2=A0
-> +	if (!st->vrefin_en)
-> +		return __ad7293_spi_update_bits(st, AD7293_REG_GENERAL,
-> +						AD7293_GENERAL_ADC_REF_MSK,
-> +						AD7293_GENERAL_ADC_REF_MSK);
-> +
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
+[1/3] arm64: dts: rockchip: Rename hdmi-con to hdmi0-con for Cool Pi CM5 EVB
+      commit: 99685162462c2c70f9e2fbe06481a84a5d0220ca
+[2/3] arm64: dts: rockchip: Enable HDMI1 on Cool Pi CM5 EVB
+      commit: 85e3fd37204a79e0cd3105176081439ddefbd3b2
+[3/3] arm64: dts: rockchip: Enable HDMI audio outputs for Cool Pi CM5 EVB
+      commit: abfe411af85aa6ecde580b1f75b9c8145b635fa7
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
