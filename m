@@ -1,180 +1,112 @@
-Return-Path: <devicetree+bounces-169527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF2EA97386
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:22:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ADB4A9739D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:31:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28FAF7ADC0B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:21:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5E7189E89A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FBB296D1B;
-	Tue, 22 Apr 2025 17:22:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GYVzVM61"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1001D19D89B;
+	Tue, 22 Apr 2025 17:31:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF3B1DFE8;
-	Tue, 22 Apr 2025 17:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56CB738382;
+	Tue, 22 Apr 2025 17:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745342528; cv=none; b=bHq75sAB+++t+koLQ6PIb8hDL/Uu1rCqhPZv1NBYmvx3e7zCEFmqiErDQJcXadcjBKu56loh41nwjdI24bUuR9jKhIZ+onV7HXLHra32b5F1HXlwOLYjf/gtzvZssT0A4lZmgY7F6vFI/v6Q2FuEjgpypGN9jNezOt+1by1XTzY=
+	t=1745343068; cv=none; b=SELcEcnoN1ULDfbRsULMl5/Ja+GQe3jp2qET++7P8u+AZdksSSZ/n+LJciLBgQ87PtSrGvBGFKms1IEyfARO8sMoeIx09VXw9YBczws8Ae8pS4HtJDHDxBhSMmhdqatbrksN8jK1jliADf14K5liGUmYmkXB4wzn4ScY8Rnz9FI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745342528; c=relaxed/simple;
-	bh=zJSp/bwOXvMhRdez26eGJNJp6+8CfDXPIfIKPinG9EM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nQDB7g+aYj+e5r4CJrf1li2MihpxXtp5v1qSGsdeXOvW18gF1TxIy+0pQ9IR5XPuisCRLwrgBC67quArviAMX511LvyZOxMr4u0fcWxMikPeayq/78cYVptfQe8nxrttgVxnA0UvpWqBNBQMlCO/F6PHpYSH5wRaxefTqzvXefk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GYVzVM61; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHLv7s2043117
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 22 Apr 2025 12:21:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745342517;
-	bh=3FN6UjMSqo2ohgR4GHz37K0iMMwOg2nEdtLQZximw+4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GYVzVM61vqBpGKeassa+KWQrnDPvxNzNJqxioDQNTf1IYLbUiImLo/bqL8kSc0yZ0
-	 wRJLDA9ehWw1P/ozLjuZlYz6emtyazHV6R2PuXYvSoS5qIJ7qUw8HNvcnlrPqVwu6l
-	 LjgVT4jXWn9UnF1zQDcUfxeoJZkfdCwpiFWs8P4o=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53MHLvO1079038
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Apr 2025 12:21:57 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
- Apr 2025 12:21:56 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 22 Apr 2025 12:21:56 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53MHLrMa092939;
-	Tue, 22 Apr 2025 12:21:53 -0500
-Message-ID: <8c801213-2ca7-4336-a8a2-05d43a4a9251@ti.com>
-Date: Tue, 22 Apr 2025 22:51:52 +0530
+	s=arc-20240116; t=1745343068; c=relaxed/simple;
+	bh=+u5lJ3//Nx10YkQWNldvdtuPfI6RVP2CDF+nDTeEWow=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OmfoLMLiS/p+mnwyAng6fBqWstTHYeOnCfGU9xXTkYYoKd+ctNpfOtyZATHAHdqbeadsKG+eUke8sx9Ijk4AYA7AEOUV1jkrG1gjY1d4VY/em+zqMGhWVWv0WqFglaud6g494s49QBoQOk5VvzdlQ7u/uzm34kH1GfkDj0gzdJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-CSE-ConnectionGUID: DjE+0xOmStSIflA3Cg9bJg==
+X-CSE-MsgGUID: frgl/NqgRWmExoPpoZ8iyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="57573891"
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
+   d="scan'208";a="57573891"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:31:03 -0700
+X-CSE-ConnectionGUID: 7yeI17VmT+KNRJsRZ2y64g==
+X-CSE-MsgGUID: lt0D1RopSmeI71SqT7R0GA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
+   d="scan'208";a="136164120"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 10:31:01 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1u7HSU-0000000EnW7-2UCl;
+	Tue, 22 Apr 2025 20:30:58 +0300
+Date: Tue, 22 Apr 2025 20:30:58 +0300
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Gyeyoung Baek <gye976@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2
+ sensor
+Message-ID: <aAfSUjFh_eB8Dtl2@smile.fi.intel.com>
+References: <20250420181015.492671-1-gye976@gmail.com>
+ <20250420181015.492671-4-gye976@gmail.com>
+ <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
+ <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
+ <CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-am6*: Set eMMC clock parents to
- default
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah
-	<m-shah@ti.com>,
-        <u-kumar1@ti.com>
-References: <20250417233040.3658761-1-jm@ti.com>
- <20250417233040.3658761-2-jm@ti.com>
- <8f9aad2c-8e51-409e-be90-21230a53a4cf@ti.com>
- <7bc92282-6ce3-4ae4-8eef-897df992487f@ti.com>
- <20250422123748.ugkk2pzp54vzmyii@acorn>
- <12a748ff-2c33-44e7-b685-fa7d7d0138ca@ti.com>
- <9726c8c5-5702-4e03-94fc-eaa820f8cdf3@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <9726c8c5-5702-4e03-94fc-eaa820f8cdf3@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Tue, Apr 22, 2025 at 05:38:56PM +0900, Gyeyoung Baek wrote:
+> On Mon, Apr 21, 2025 at 4:24 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Sun, Apr 20, 2025 at 10:21 PM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> > > On Sun, Apr 20, 2025 at 9:10 PM Gyeyoung Baek <gye976@gmail.com> wrote:
+
+...
+
+> > > > --- a/drivers/iio/chemical/Makefile
+> > > > +++ b/drivers/iio/chemical/Makefile
+> >
+> > > >  obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
+> > > >  obj-$(CONFIG_SPS30_SERIAL) += sps30_serial.o
+> > > >  obj-$(CONFIG_VZ89X)            += vz89x.o
+> > > > +obj-$(CONFIG_WINSEN_MHZ19B) += mhz19b.o
+> > >
+> > > Preserve order.
+> >
+> > Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
+> > option and no such thing in the filename? I would drop that from the
+> > config option.
+> 
+> I followed the 'vendor_device' naming pattern seen in examples like
+> 'CONFIG_SENSEAIR_SUNRISE_CO2'
+
+Interesting... Now I understand why the above was pulled without any comment,
+because the vendor and device names start with the same letter 'S'!
+
+> But I'll drop the vendor prefix in the next patch, thanks.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-On 4/22/2025 10:47 PM, Judith Mendez wrote:
-> Hi Udit,
->
-> On 4/22/25 9:08 AM, Kumar, Udit wrote:
->>
->> On 4/22/2025 6:07 PM, Nishanth Menon wrote:
->>> On 09:36-20250421, Judith Mendez wrote:
->>>> Hi Udit,
->>>>
->>>> On 4/19/25 10:00 AM, Kumar, Udit wrote:
->>>>> On 4/18/2025 5:00 AM, Judith Mendez wrote:
->>>>>> Set eMMC clock parents to the defaults which is 
->>>>>> MAIN_PLL0_HSDIV5_CLKOUT
->>>>>> for eMMC. This change is necessary since DM is not implementing the
->>>>>> correct procedure to switch PLL clock source for eMMC and we have a
->>>>>> non-glich-free mux. To remove any potential issues, lets switch 
->>>>>> back to
->>>>>> the defaults.
->>>>> IMO, we need to fix DM  if not then documentation [0] .
->>>> DM cannot be fixed for only one IP and documentation says what clock
->>>> parents are supported, it does not have to say what are the issues
->>>> that come with using a specific clock parent.
->>> As I understand the arasan IP requirement is that the IP must be 
->>> held in
->>> reset while the clock is switched, which is not reasonable to implement
->>> given decoupled systems like DM and Linux OS.
->>
->>
->> Thanks , then fix should be extended to sdhci1 as well
->
-> sdhci1 and sdhci2 should already be using the defaults: 
-> https://gist.github.com/jmenti/e280232ae3d5bb5097df7b0f04c85e8a
-> This change is only needed for eMMC.
->
-> ~ Judith
-
-Ok, thanks for confirmation
-
-
-Acked-by: Udit Kumar <u-kumar1@ti.com>
-
-
->
->>
->>
->>>
->>>>> Then only this patch is ok because as per document [0]
->>>>>
->>>>> removed clock by this patch is valid parent for eMMC.
->>>> The clock parent currently set is a valid parent, but we have non-
->>>> glitch-free muxes and to avoid any potential issues with these, we
->>>> should switch back to the defaults. It seems like we randomly switched
->>>> from the default for no good reason and it has been copy paste per
->>>> platforms since then, so we are switching back to the defaults now.
->>>>
->>>> ~ Judith
->>>>
->>>>> [0] 
->>>>> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j722s/clocks.html 
->>>>>
->>>>>
->>>>> Thanks
->>>>>
->>>>> Udit
->>>>>
->>>>>> Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral
->>>>>> nodes")
->>>>>> Fixes: d3ae4e8d8b6a ("arm64: dts: ti: k3-am62a-main: Add sdhci0
->>>>>> instance")
->>>>>> Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for 
->>>>>> more IPs")
->>> Please follow ./Documentation/process/stable-kernel-rules.rst - this is
->>> easier to backport if these were to be split into 3 different patches.
->>> Please do not forget to add Cc: stable@vger.kernel.org as per the rules
->>> as well.
->>>
->>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
->>>>>> ---
->>>>>> arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
->>>>>> arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
->>>>>> arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
->>>>>>    3 files changed, 6 deletions(-)
->>>>>>
->>>>>> [..]
->
 
