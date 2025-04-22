@@ -1,185 +1,147 @@
-Return-Path: <devicetree+bounces-169341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6ADAA96726
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:21:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77DBA96745
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 782BA3BAA67
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:21:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21D4B17BB8A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9AD277013;
-	Tue, 22 Apr 2025 11:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D0727BF88;
+	Tue, 22 Apr 2025 11:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EOuKw/Og"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MvWbxX9q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7405F2777E1;
-	Tue, 22 Apr 2025 11:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4FF1E9B12
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745320886; cv=none; b=Bmo6wcqp4isXT9qYigbAdz0qJ/mNeVNWZ1y+XEG3u6lrul/fFvAwZolr2B3tQyMxhXanupBFd74gwY5ApLJ3h3ojP/W/IVJjanwW8o/56Ws6cvahinr8J1oBh248KHzLzofBKxoQ0PugqEtegkz23lcn13MeF4kCUIf31aoAbLQ=
+	t=1745321142; cv=none; b=Ow6aSwi/j7EZcDHiZVbj17Y1hV95b2JqB58TO2eJviBIF78ymb6KFe3sa+MO4KJ3tiBZMQrNKgbYVam/T57FdzaM4UTJZex/Lt3a6N2zXfK//XCFlAG61DpnFPOF/bt1Y6c8t0vVRGd2rdkMu/Vm9HgpADZ8Nt9YTglXmXuFs1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745320886; c=relaxed/simple;
-	bh=nmR4TdV4+M08iCOThs59/0QH8E7V51DggdtN2U37lq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=brB/rZfflCcGIt6rFdZkJVHjBgwdDOJZGoV7P3EiHrXdAZlqQgxjKwZMxwC+aJtXcOOw50K4fRvMH/JwMV5xLvf7GTXrpHZVRSYN2FW0KSXl3gNEOyyxz48+4H345kNEpRNadfPlRAGStplDqC28K9z3I5V/15hTvzNiNkJvyVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EOuKw/Og; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53M4OlZa006174;
-	Tue, 22 Apr 2025 11:21:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	M4nBCRh0WFy4RUD4NZmrTdHCdTJnYmLhpp2J6H/klno=; b=EOuKw/OgGQVVRJBt
-	lfBnVRBq/o/K4/CPggde60dMSZBY9jtHWTwI+1geBtVVPvXXF9O4MGTo7/JPb5ol
-	e2NfLwL0Z+KgcwkQh/QoTKKyBuhHie3LGntDNdS10THN9WVg7afaSMKoHnKpPdGb
-	rYQiWWLCkZCYzb/vvhZTdmQ8Jzw97XG48feOEa82HFmcHBE/SV/W95Hp11U1Gwxs
-	e759pkf2qsxRUDW4SfgA1aFBHR5AVByTmP/4/3wLrLPbXiVnbz59HG/1LJoUu45V
-	DtZPNpmbKmNHkv4QHdicaYfTgcsUFhw2DkyH2pFOfaCX3d7nYJQAlczu4UOKOS84
-	eAm4JQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46435jf8xc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 11:21:20 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53MBLJkr013888
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 11:21:19 GMT
-Received: from [10.50.21.133] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
- 2025 04:21:15 -0700
-Message-ID: <ed284074-d12a-497d-b8c3-de913bcffb6a@quicinc.com>
-Date: Tue, 22 Apr 2025 16:51:12 +0530
+	s=arc-20240116; t=1745321142; c=relaxed/simple;
+	bh=mjcZIS1sSTOV3vBIaA/aDPuvoJjWXpCDTghUnSk+/1I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rn3auYpQN5+mucOPD+J65Gj6RaIzCpl/BpGG/YjgA4eW7vFCfsToTZBMP0OlOlUU6hhVCjXW86ayKoIfaRqsxY6saZJZpc00G20RCb6ZDOfzCQP/VM4f8Rykl+/8f7fQ0rECsULATPgTLKmXh/WfjTZkuyM7cr4qBy+3w1Zkw9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MvWbxX9q; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acbb48bad09so257947066b.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745321138; x=1745925938; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fe3P15Atc+bTSOXM06LPyzPgb3J7Ws1BpA/wm5ZQuHM=;
+        b=MvWbxX9qflME7sftJS3+y51EYd5eCZdc0y9WEftxss4uZaMaUAhkLN8pVUf0EVQDVp
+         boVQ/orjldID9vfm1trdNxeNO54rL53BSysH3Tpv0MBdVLxqIHPFgVaimcIhfNfZW7wT
+         qyLuwPn99T3wdoy0GleOvgJrXmwvbb1hXBPKKb5UN6udMgAntJ/LzxzAia/vIzdoLGDh
+         H0ruj1ePjlttQKHvC/kby8ggC/VGNyeKczWHzGTF8SBC75R34IjxxgIZFC1alMn7Zmyw
+         WzWJCRov/PHmjkuwM8/66HLZXSd4vdVQGB0fSPL9PqW885ENVbGgAQQBI6cv7lZlaEEk
+         P+gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745321138; x=1745925938;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fe3P15Atc+bTSOXM06LPyzPgb3J7Ws1BpA/wm5ZQuHM=;
+        b=NetZfDtjkFHflpbq86UlRVOqowQGNYBmLgQR8fJdiTiWzZgafYiAq4Yhd1wEbbCg0H
+         TnNipEkvaC+hhXZehJ/ieXOJqJbaEXLCR/70ergM9M8iPKHJFEYQpIhZ7azpwL6iFMKu
+         fhO+9tPllR0hivKbfgb83lFICm87gSlMU81QDGalC6qVupmbVoMjS/6gWht//I14cR5G
+         ptF4S+0CNT+hqwPts5UKvXmNBfUuRPwZGytYgh4zbjyI1uxApgTv0EXpx6sGwGVBWrHx
+         kBrNTTeWCYjYG4+kgFw5DUNRWjAQXJct6y1tgHdk55O8oBo4ynAb7xh+9Mgdoa4MXBMW
+         4g1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUOhD8iEIyQv4lZ/yxjXzmdbwYsOSU/aUdAqzPWsAKWUG1gjzTT961rnOv3t8ZwFd3rgrD6+KjzntmE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWXPspYph3VikrEGHyTV4z4KZoSlPmnSFTIRZpFIAiNLGfu3Ys
+	zUm2VFtOuml3YHYAh37NaTzBySDqmq3mj5mnuDi9w9CIzgAzlrKufqpp6SkOyP65NudGmDcbIDE
+	K
+X-Gm-Gg: ASbGnctm/SBdi3LbllxwnA8aio7GxmhWjzHUheo89My+XXfohl0xybEfAq5yYopE93P
+	If5vmM8yWUfokr90R2Ow8q1LHUeTpiWpdYFK/Vk2LK/ScqLnfVyrfgXqOebQUJ5PLZ0k6og/Yj6
+	m9cQyOQdEzfiepe5zAkwjzTd0pFEF8InZAuocA0Gsu4TP6oPmCCax23IkpGo+/tbgBKgYQn4o8b
+	FSVB3eeV0c/gcYashqupJJH1MT6RvmPQtscTsR+B1hW98Xea1WiNO2J2ZeHfn9kDi+g4/R1HB2T
+	gOrHH0acYEjdO25dYW/XQJEW54GfXr4W6ZLZAVU=
+X-Google-Smtp-Source: AGHT+IE9lW5g0YYInkFbQ5pngf6VKtN0ACE4saTnFH+bjEE/AkZ3cK9UlUfQkhNYOk92oXCpU/M3gg==
+X-Received: by 2002:a17:907:3e9f:b0:ac7:ed72:3426 with SMTP id a640c23a62f3a-acb74d65adfmr1090219466b.40.1745321138071;
+        Tue, 22 Apr 2025 04:25:38 -0700 (PDT)
+Received: from [127.0.1.1] ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef45784sm630692366b.129.2025.04.22.04.25.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Apr 2025 04:25:37 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/2] arm64: dts: x1e001de-devkit: USB retimers related
+ fixes
+Date: Tue, 22 Apr 2025 14:25:21 +0300
+Message-Id: <20250422-x1e001de-devkit-dts-fix-retimer-gpios-v2-0-0129c4f2b6d7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 RESEND] arm64: dts: qcom: sa8775p: Add default pin
- configurations for QUP SEs
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20250416101411.1444248-1-quic_vdadhani@quicinc.com>
- <pxywhhhtraaykx32z7aifyd63gxydwrf4byuanv4zbfeqhk2fx@h6lyn7btyrtz>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <pxywhhhtraaykx32z7aifyd63gxydwrf4byuanv4zbfeqhk2fx@h6lyn7btyrtz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=EOYG00ZC c=1 sm=1 tr=0 ts=68077bb0 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=_55ISlHlL2tq_TlyrwIA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: vS9HXyPTtFfcn-WsfgnPcCH88VJzi26w
-X-Proofpoint-ORIG-GUID: vS9HXyPTtFfcn-WsfgnPcCH88VJzi26w
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_05,2025-04-21_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 mlxscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 spamscore=0 adultscore=0 impostorscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220086
+X-B4-Tracking: v=1; b=H4sIAKF8B2gC/5WNQQ6CMBBFr0K6dsxMUQKuvIdhAe0AE5WStmkwh
+ LtbuYHL9/Pz3qYCe+GgbsWmPCcJ4uYM+lQoM3XzyCA2s9Kor1hSDSsxIlkGy+kpEWwMMMgKnqO
+ 82cO4iAvQs61LqpoLklHZtXjOp6PzaDNPEqLznyOb6Lf+W0gECGSw0UNVYo/m/pK58+7s/Kjaf
+ d+/t/zWwdsAAAA=
+X-Change-ID: 20250318-x1e001de-devkit-dts-fix-retimer-gpios-bed83169401c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1005; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=mjcZIS1sSTOV3vBIaA/aDPuvoJjWXpCDTghUnSk+/1I=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoB3ypv5idLYFVDXUdPZ4YXrQTcWQbWsK+ZLCDM
+ qmMFAuyb6KJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaAd8qQAKCRAbX0TJAJUV
+ Vl0FD/9VwX0a0oaNmU3G2ewc/ieUXpKxf7dDVZUcVQxk8CTrClGkuHVFYYpbvHCOSdxGzlERTFt
+ jmsj/jaOYZETTblFbbbKdtpQ400kL6FmQLecF1ODm5p3OSyMnUDdKDka4mhXzIaUNlXSIwGpLhY
+ Iq/A5uNU23ygfwBewPXfmCvJN3jywDgVWFg6jtPNdmeJXyXckJVnpJxJKJSy2taURVrFwgrU7X2
+ ai0i+U5Yo2Shj0goQgEvqkj3clh3jAvS/3Qifncpzr/p2bSHBySM0o61ibDEmsyvYPXjmcJ/J30
+ 4ZC7euxnnKsivwjljHAx4kvkQL5y/XG7/0J6sXem563VPjjdskgYolX0NseL3+xZqZeyWdBX1pn
+ CnyZzsq+lkosE12EYIeiAWXDnvDqojCpZ9Q3zZtm5XDCHKDJq6r+AH5eW/Q4tk/L3l1dj32YVzu
+ kkmPR1uXMkrFrN1D/M4PjPDPV6M4NjH/99eYmts0VIj5lGFupv9WawqThl/RyswNvKfmP+SXFmI
+ pBENx9mBUBSxgelpK6NuXqfJM4NNj+3KAQ0yPK74QKFIk5fmbKliZ7NLq6Wb+SgBYFl9RT8J+uD
+ OTwqA78c+nLkuRyopgfOBKlH7O9cVX7cXPBXYyiUiG9nJPXeRNRCMnM3uGH8MjN/2joDvBJKpZg
+ SmTV2EAplmihTgQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
+These fixes align all the USB retimer related nodes on the Devkit with the
+CRD and T14s.
 
+This patchset is based on Johan's:
+https://lore.kernel.org/all/20250318074907.13903-1-johan+linaro@kernel.org/
 
-On 4/20/2025 10:40 PM, Bjorn Andersson wrote:
-> On Wed, Apr 16, 2025 at 03:44:11PM +0530, Viken Dadhaniya wrote:
->> Default pinctrl configurations for all QUP (Qualcomm Universal Peripheral)
->> Serial Engines (SEs) are missing in the SoC device tree. These
->> configurations are required by client teams when enabling any SEs as I2C,
->> SPI, or Serial protocols.
->>
->> Add default pin configurations for Serial Engines (SEs) for all supported
->> protocols, including I2C, SPI, and UART, to the sa8775p device tree.  This
->> change facilitates slave device driver clients to enable usecase with
->> minimal modifications.
->>
->> Remove duplicate pin configurations from target-specific file as same pin
->> configuration is included in the SoC device tree.
->>
->> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->> ---
->> v1 -> v2:
->>
->> - Drop drive-strength and bias property from soc dtsi.
->> - Update commit log.
->>
->> v1 Link: https://lore.kernel.org/lkml/20250225154136.3052757-1-quic_vdadhani@quicinc.com/
->> ---
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |   7 -
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 750 +++++++++++++++++++++
->>   2 files changed, 750 insertions(+), 7 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> index 967913169539..17c3f662d14b 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> @@ -712,11 +712,6 @@ ethernet0_mdio: ethernet0-mdio-pins {
->>   		};
->>   	};
->>   
->> -	qup_uart10_default: qup-uart10-state {
->> -		pins = "gpio46", "gpio47";
->> -		function = "qup1_se3";
->> -	};
->> -
->>   	qup_spi16_default: qup-spi16-state {
->>   		pins = "gpio86", "gpio87", "gpio88", "gpio89";
->>   		function = "qup2_se2";
->> @@ -917,8 +912,6 @@ &remoteproc_gpdsp1 {
->>   
->>   &uart10 {
->>   	compatible = "qcom,geni-debug-uart";
->> -	pinctrl-0 = <&qup_uart10_default>;
->> -	pinctrl-names = "default";
->>   	status = "okay";
->>   };
->>   
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> [..]
->> +			qup_spi16_default: qup-spi16-state {
->> +				pins = "gpio86", "gpio87", "gpio88", "gpio89";
->> +				function = "qup2_se2";
->> +			};
-> 
-> Now we have qup_spi16_default in both sa8775p-ride.dtsi and sa8775p.dtsi
-> 
-> I presume you forgot to clean that up?
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Added space between voltage value and SI unit in comments, like Johan
+  suggested.
+- Picked up Konrad's R-b tags
+- Link to v1: https://lore.kernel.org/r/20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org
 
-Sure will update in next patch.
+---
+Abel Vesa (2):
+      arm64: dts: qcom: x1e001de-devkit: Describe USB retimers resets pin configs
+      arm64: dts: qcom: x1e001de-devkit: Fix pin config for USB0 retimer vregs
 
-> 
-> 
-> PS. I don't know why the word "RESEND" is present in $subject. Why was
-> this resent?
-> 
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 44 ++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+---
+base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
+change-id: 20250318-x1e001de-devkit-dts-fix-retimer-gpios-bed83169401c
 
-Hi Bjorn,
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
-I apologize, but I'm not entirely sure if there has been any approval or 
-if the patch will be accepted. Since it's been over three weeks, I 
-thought it might be a good idea to resend it.
-
-I apologize for any confusion caused by resending the patch.
-
-> Regards,
-> Bjorn
 
