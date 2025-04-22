@@ -1,117 +1,119 @@
-Return-Path: <devicetree+bounces-169573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A02A976E3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 22:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CDEA97739
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 22:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA9E65A078A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:21:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D77D3AE71C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C36229C33D;
-	Tue, 22 Apr 2025 20:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26732C2ABC;
+	Tue, 22 Apr 2025 20:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="h2QGGRsn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tgq/4TT/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3CF29AAE1;
-	Tue, 22 Apr 2025 20:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E21F72BF3D3
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 20:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745353267; cv=none; b=LbqmeDgOdeDtFTOihxEYWUBajuUPaE1gQWyfHpP1yW77RoRC7H9cSDovIHf5AwUZ1vRZBdPG6B8W9RrT8YVl/ZQJVaxw4h9n2uHZ/oxKU2mXtpwwGykvvEExEWI2N0iSPEEBlEnF6nsfurhbwaQ3n3y4vxNlX30OVL7d8+GpNvI=
+	t=1745353414; cv=none; b=KQVBKkgxuqdD62dri4b8MtbLPy1DKyy7oRwZxr6GxXKJeB79xC2JSz4UkPM9PjEXv0hSBU9qlzvO1GqJfXKQfZq8jqmfE770sTQM6r/e5NhfH49cvrb+U0zU+zrw/zoZK538eWGLCxVDdrTLsBzNyJKsBcGM3Q6cxFWEk5fm5zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745353267; c=relaxed/simple;
-	bh=CS7AKF/9vLtf/TyeLql6jdatBRJcEof29RHJq/23Jog=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J02mU8NjMrOfFzOxbn+TVQpjPEfRF6McfVYI0kGXq0Lb0Fa+NoawFD+9XKnDA9RLL0eNrnyFL1xkQzshKoSrTMSKSz6e35lN5AJXcdO9loKV4IorSwUGmvSdl4Kl2UiV9FLEaFTGEm5qNlBCrPVYJa4q+rxxVrUIKoyf8mRdVFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=h2QGGRsn; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=T+6cHpd/27XGOPMFydca7fk610QISCEGPK2+n0P8YDM=; b=h2QGGRsnQ9gaBZ+OcdcyJxrwEJ
-	H0uZvJY1p2AAy1KxNcFffKkp1A8h0pF3M1z+0DMaNZOl5coJD7+Fn3Mneg+CI0DnPM/FKyHs+ItfZ
-	yYSqLtx7A6rjZ0xcZXjdQQ4Q2wmKGplUvjavR7/9zmtlVrzmfNF8PuyuJOIOtmGeoegOYFr7APmDr
-	/Q2JaE4tcSvHcTWESIfpFIEmcSqzO9Z6U3j9aV52cz/DdzbYrbzcAQtHAAWNMpYs5Pm7E43v3U3Ga
-	49jcfd9X9E1r1X7ChmTHicF7OEPY3RyKodXf5+rO+5SoBG7jeCuWG0t417BCtY+EgNJq1uLchbNoJ
-	19XS1GbQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58702)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1u7K6w-0004yU-11;
-	Tue, 22 Apr 2025 21:20:54 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1u7K6s-0007mx-3B;
-	Tue, 22 Apr 2025 21:20:51 +0100
-Date: Tue, 22 Apr 2025 21:20:50 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Simon Horman <horms@kernel.org>
-Cc: Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, rafal@milecki.pl, hkallweit1@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
-	davem@davemloft.net, andrew+netdev@lunn.ch,
-	florian.fainelli@broadcom.com
-Subject: Re: [PATCH net-next 3/5] net: bcmasp: Remove support for asp-v2.0
-Message-ID: <aAf6IgSCOlWuJn_2@shell.armlinux.org.uk>
-References: <20250416224815.2863862-1-justin.chen@broadcom.com>
- <20250416224815.2863862-4-justin.chen@broadcom.com>
- <20250422183235.GN2843373@horms.kernel.org>
+	s=arc-20240116; t=1745353414; c=relaxed/simple;
+	bh=r7VN/7Fwi7LiN6yHe4w5kse7GPTw6IFPJr8dfDaKAtc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r+g6lUYxVRkEao5FyHtcLdxFDfiqkigWXD/1ISK7tbtWvygPvtEA2zjRAhdCYuN1Dcsn3bXKIsWWCZj59hE7IeULK4SYGO+pLqJHU9axiZnPMX70tZ83px9daW4/hkdgKa/L6ECi4kblOfU4VhdpQHPktuPVzrLxqqvqzsToyFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tgq/4TT/; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2aeada833so52892966b.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 13:23:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745353410; x=1745958210; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NKmp2FHEFAuiUwLcrSsEVcw270aFZSaF5P3fuGST3Ec=;
+        b=tgq/4TT/VtgRFxTLJg57kr3MEhrwvkIuKAcR5MeiutgTY34yDHL6UaXjrtP1wZ1r0/
+         LjA590VpM6nsL3dnlU96cGNouGY+ytsbTX4KyEMOzvWewyo1Uo+4/lwpAgH5UCZlzFh1
+         Pyg6JufnAp3jK6C+xxEKdlm8lmnHhhoc/EypKmcDiqqEHwRG3jlIyAlerhaBuD+4eUv1
+         CNmNzV4dgy9JREbuPnw9eTZTDpD6YoGJKa0wVG81dtg+lqg/5tIvEg8GlffwDsIco+bA
+         fdcuTLphHYO2HSB0LQGtb0IsqTeXfpIHsHITywl8Jdu4zTlWFUAv19q72pbk+YLbxRzM
+         /UWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745353410; x=1745958210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NKmp2FHEFAuiUwLcrSsEVcw270aFZSaF5P3fuGST3Ec=;
+        b=qP5m6uWBuILkkzykPY0/5HnxiYDcQIdebGcL35MdQUx2eGgc/kY8zXky4zaJOyoqLW
+         kRQLRsQRsTlODbtcumDOu9hSS14vfIEcT8tOwDKjE8xT98lqdcKTG1cDfgnHi/1Whsxy
+         KXLjpAIQlRkchvqVksR/mhedgCTabeZqN8aCN5lSvcts9xXpBrjyaq5Ljr6uaNIH1LmX
+         WAAMOZ6ZyymXvFxlKMcJdsMLfwyRUwY9dJ2lVZrsoaDo4hAErABxSiXAAFcdawhdjcir
+         0HakUgPtuHp4Tv2CPUazNglOLQKdYFT97kalZL9Sh8XKrndDtwNHTMy6ekVzYS88BEjN
+         TmFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvaReejeZOsOzq6xazU/FkHW9EXmJ5k2zhXHHO8GqgJnOMjgs4RunTli+4iEoE7WKwNpZ/baY/Je9F@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEysRzmfHCaffDB3/eLkac84OIwu3L4iN+QmJFGxRcJ27alvrI
+	yJSPj1O3LlzUoL7Zch8oCa0FsEgeDlqtQ5gs01vaTck0nGNpI8YzMqBKIw2QGR4=
+X-Gm-Gg: ASbGncujIl+BYLlWG1o35wZIxJBv7/+GF7KXwIq6An5e2FW9+6rnz6WpLxpikpHjplb
+	WW1Hm5OdQLpnX24smrd+ygXHLqOA8dlNgHrrNQXITzH33EY6XQxGa0CVwoBjtJ7QyYxEMTcJ1c4
+	c1mCNic1c//m+2zPMnJ5G3/sTy0eZ+vQjROm7nfT8EiaC7BwWUjViBmf3xHHpB55V5obMuuArPv
+	9UBurf18nHFRl44q4GZ2EFDj4mstVaHJZfC3v09Qg/42lHk1Wf7mP4zob889xSvyLwuHg6sw5rb
+	8Eb6xAds8FY2fCmfJOvyyFtd0O+LV2oHCwjMO00QGrbeUBrEK+3A6FMVDK690KuxqDvzAWT2y2c
+	sosJ1Jg==
+X-Google-Smtp-Source: AGHT+IHDWbdX3oYlKDdl8Py4UsbyXU5LNv4eXhMD0AhhXKJZ3V/Gp5bf0YjPavO4S4LF0mBvKGNmkQ==
+X-Received: by 2002:a17:907:9704:b0:aca:d29e:53f1 with SMTP id a640c23a62f3a-ace3f4e3ce2mr24940266b.12.1745353410101;
+        Tue, 22 Apr 2025 13:23:30 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6eefc703sm706512966b.94.2025.04.22.13.23.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Apr 2025 13:23:29 -0700 (PDT)
+Message-ID: <1a35fa10-cd83-4f36-9cc2-179c3a2a4909@linaro.org>
+Date: Tue, 22 Apr 2025 21:23:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250422183235.GN2843373@horms.kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/20] media: iris: Add handling for no show frames
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
+ <20250408-iris-dec-hevc-vp9-v1-6-acd258778bd6@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250408-iris-dec-hevc-vp9-v1-6-acd258778bd6@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 22, 2025 at 07:32:35PM +0100, Simon Horman wrote:
-> On Wed, Apr 16, 2025 at 03:48:13PM -0700, Justin Chen wrote:
-> > The SoC that supported asp-v2.0 never saw the light of day. asp-v2.0 has
-> > quirks that makes the logic overly complicated. For example, asp-v2.0 is
-> > the only revision that has a different wake up IRQ hook up. Remove asp-v2.0
-> > support to make supporting future HW revisions cleaner.
-> > 
-> > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-> > ---
-> >  drivers/net/ethernet/broadcom/asp2/bcmasp.c   | 98 ++-----------------
-> >  drivers/net/ethernet/broadcom/asp2/bcmasp.h   | 45 ++-------
-> >  .../ethernet/broadcom/asp2/bcmasp_ethtool.c   | 21 +---
-> >  .../net/ethernet/broadcom/asp2/bcmasp_intf.c  |  2 +-
-> >  .../ethernet/broadcom/asp2/bcmasp_intf_defs.h |  3 +-
-> >  5 files changed, 23 insertions(+), 146 deletions(-)
-> > 
-> > diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.c b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-> 
-> ...
-> 
-> >  static const struct bcmasp_plat_data v21_plat_data = {
-> > -	.init_wol = bcmasp_init_wol_shared,
-> > -	.enable_wol = bcmasp_enable_wol_shared,
-> > -	.destroy_wol = bcmasp_wol_irq_destroy_shared,
-> >  	.core_clock_select = bcmasp_core_clock_select_one,
-> > -	.hw_info = &v21_hw_info,
-> > +	.eee_fixup = NULL;
-> 
-> 	.eee_fixup = NULL,
+On 08/04/2025 16:54, Dikshita Agarwal wrote:
+> @@ -642,9 +644,6 @@ static int iris_hfi_gen2_handle_session_property(struct iris_inst *inst,
+>   {
+>   	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
+>   
+> -	if (pkt->port != HFI_PORT_BITSTREAM)
+> -		return 0;
+> -
 
-Even better... omit it entirely.
+How is this part of the change related to adding no show frames ?
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+---
+bod
 
