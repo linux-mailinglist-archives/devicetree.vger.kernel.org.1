@@ -1,128 +1,178 @@
-Return-Path: <devicetree+bounces-169364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075E6A96847
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:59:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA84A96857
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:00:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C69DC179592
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:59:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF2B3A564E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D1027C875;
-	Tue, 22 Apr 2025 11:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4941C6BE;
+	Tue, 22 Apr 2025 12:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xreADrxM"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="FCtdW4K7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mWK2dk0L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899621E3774
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B59277819;
+	Tue, 22 Apr 2025 12:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745323152; cv=none; b=hnW4ewxLeh+cheAY9w6KRkTGMIo86OU4HuxHHX+MaqkatNR8MsNqDUPFirnGX8Q6JDS7JDpF6h3cYihgqFuQdMYuqJrQm94DgAllwo1La7Y3DCAvUeKiPTOB/hm4+F2rKG5BZS7kRoRB5e3b8U+YnDGjLBapWTRoRMXd90SWShY=
+	t=1745323238; cv=none; b=J66aHpPUFHi3PdCHTkvRu4qvPH/GUAm6/t0ZFxGGKkyNSNvyYSf0kaLLA3dWa2QwnnBdAliMjhzsemgJljcRWpRVtv2FJkBJfuSI3+mmoEYZeJq7TUeSYUNgybE3SGctqn5FF5Nd+AzD+CnAIEaRd//GbcC51SZWxtXOATSZWWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745323152; c=relaxed/simple;
-	bh=B8KDn3QvXvfYLh7t8A/lONT5acg89ujQ4x71zHRXKm8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BPhzRqT5A4CGBB/zOuWgVbIUJfzWEv9TKR6iToC897BOsABwXJZRpvMYv5GzSV9QxzVtrb/7sVzVuZ7dZBZelEr0SIprt+QQcrZE1rFsZAufV5T6rZ8lyqyV1hcNKhNru4ugmmlXeSbhAUMLdWR6VdJ3+uo31l3l7ocJnL08rRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xreADrxM; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39ac56756f6so5006380f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745323148; x=1745927948; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZtemBd3G/uirmnOoOQusjnqcdAhM8s88bXls8NzP5Fk=;
-        b=xreADrxMbOd7nlDXWdt/NNWXmNZjNDEbLWeofh1TLSTPaR7YeWtH2om/GyLNnTuFwF
-         MQshkEa8q0zor3+fqNiSkQWI5iBzADFggkeEbAmryDAovXFxs1ju6G4bHblUAuizF2Zj
-         Yib3cr6Maw2t/TKyLJ3OrhkFBB7OZ+I3F+huuLPsWkMfPnfTfBlJTgutUzaqt+XwNyTk
-         NdwWmRxa0aSt5oArN6j9vhwmilGBTj5maOXWSxDafR7TqEtGWO1p4xRwMH3m0/ZPs4PZ
-         fX3C1496TGNpskbhSDWEEYMphOzg9p5TVtXe7IEJMfPsSRXtJhspAzFVYDKUzQM1NSAY
-         7W6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745323148; x=1745927948;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZtemBd3G/uirmnOoOQusjnqcdAhM8s88bXls8NzP5Fk=;
-        b=vZPw7VcZiaHGGVoMyZu4H5oGVnXvfLdlgWC5pORnGB/r9OMBsOm3Kpy7YCPn+864l+
-         VlNlFc0kIxMIVTIW1tZwZrqnT5oLrHM1YJnkGCy3tyKlSUUgoAiSqZtrXuAwzKoD359Z
-         yk0g3JQNVqTuzOy8gBxWwZ5NV0Nu0HUMI7UzlMaDteXsp+cBSW+fGXeryEVN4BJaTfhE
-         Kk34z7/gcuh8+ZuG7PCFw+Qvqybx/S0BiTeOTHx9HGS6W+np0c+2adVgt8P32I4qP/GL
-         W1z51cDVLRe9Lm5DjTRN0ZLxOTsbewjD++U7rCUWqrNPzgB8MLVzLyrqH4BjcEms979c
-         numQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVslU9bdEgVuqR2yjtLZlgts24LxB14LnQDLK1hFUN1zxr3CV8FD68NqdOfbR4CSvOvclTKvAI9TrXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQUCNwU0by7CVkuo005ALH3omKi1Z1eov9mRnyrVM4r/sOwoQ1
-	1voGBmwuxVRZEaD5R6TPAE+1vVCmSwM5rbzPLBXoUJzm/PcDX2aw7SiPeoG8F48=
-X-Gm-Gg: ASbGncudR3bL0+FhukEET1OfYOkljv8BuIZ9oK8/EViqC03p4IGP5Js+FCAwChdGsHy
-	6OUnKFMmXypWdVD5+Nr692iX1jLz6DMs1Vd8y6E3CfaMoGbpevokiZoHpVuzMUMPWxjMU9b2rx6
-	UXYsjKpZ2sCooZN1Zha6P1hHQvgWdosmVo3jAIw0XwNiXa0TucUGP143MDOFLn5y7AqixvAqi41
-	+Gas29dMf+FcMhohmkrHPRB+t1CPFW7HaCS2tE8MiRwAiWDH6T+lmc77bDse5PnrK72jgCXGiB0
-	Tf8qBjUv/lN7Jja6FKZYmFGLYvM1d5Ttgj/LH14p8cdSVr/1sBBxYdVCOtXwgD5X8LHmDQaejfW
-	/qtROBg==
-X-Google-Smtp-Source: AGHT+IF1y0d12KuMkqHmAdbxu4rB1xn7kfvQc2RyPvUyr9/eORSwE/0jB/0/qhRoefW+QRojCB8LlQ==
-X-Received: by 2002:a05:6000:290b:b0:390:eb6f:46bf with SMTP id ffacd0b85a97d-39efba3867amr13238328f8f.5.1745323147811;
-        Tue, 22 Apr 2025 04:59:07 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4235dasm14809380f8f.9.2025.04.22.04.59.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 04:59:07 -0700 (PDT)
-Message-ID: <d19ce1ba-2b72-4c04-b405-f5a9d3df07e1@linaro.org>
-Date: Tue, 22 Apr 2025 12:59:06 +0100
+	s=arc-20240116; t=1745323238; c=relaxed/simple;
+	bh=PE32aOICxpf9Il971tWVYUOauqB5/VNm8nNUXdWIFZU=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=bX6IB1r32ke51NUX5qyW0628CAdH6F+Z9i9Opw8eaQ9793xFlAp/keRrTvm1YmmZTIN1YDkrsLAJjs2Lh8sBIQ4vgeczMmjt0e+iF+728enAuHNnoUO/a8sXa6aZ4dMxcLuDi0/peGsXuEAefDDrC6L9P6U10ndQBcfUHIk7Zxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=FCtdW4K7; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mWK2dk0L; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id CD0161140251;
+	Tue, 22 Apr 2025 08:00:34 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-05.internal (MEProxy); Tue, 22 Apr 2025 08:00:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1745323234;
+	 x=1745409634; bh=8nthwYMKR4aOFINu9xZgH8QRFGdfF9jUoUvoZlCSYU4=; b=
+	FCtdW4K7I5zRyUQp1mclIzfaXPPDcsgT0G2XsPEkSGSS8BJ40XFJNF2l/bzcVak8
+	PJLftEKTePKlehKHr+AnSvI7TJIxO7SmiCXgJsU8scKoUhwtBOBCWVCKyZ2jO5Dl
+	rBxjlwr3fQORHFVrP9KtM8XvSwYXecX888kwoZr3ZjMZWPbq5U+GcaDO9fA15UkU
+	mmCcRxJwJkrWzHG54q5ElF+wJVS2G3JqYc3Jw0U2WG7ocF+5lNFPTeG9rvmuWCsi
+	njglbjyrOiOLj2cIiTM3373DP7mgJGa16rLBBiZx6hT1WzvvUHLFcDBFtrF6P71X
+	yXIm2hKpVmQmddjLM2RTVA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1745323234; x=
+	1745409634; bh=8nthwYMKR4aOFINu9xZgH8QRFGdfF9jUoUvoZlCSYU4=; b=m
+	WK2dk0L1aVa94+bunBhLx17FVJznnvK/AdKm8nEPfZUUS7IgF0ziI7PzIWNBofEQ
+	8CZP7gBY7bFYlNyj5QRhlUrNMvKSkF1nUwZOM7WaUPvrmIdCKqTGDpIZ9FJRrMrs
+	rY0dJK3JYP7Dr0c16X1Bp+SqDKHx6gHlSLl7FwmrAry9AEdQl7UZOnjQKjYZj+B6
+	vvrboj+7geoKTlI3tPb17BOxBo5pSKE6uOpB5ryVL8Hvhcip4IQ4CnrOLRyuJokn
+	nRUzuu1LC2c51effPU6RF18xX6fkizjG8VKovi8vuJXpvIaMldvoBAgALUzx2XUW
+	Fu8/l8WsLkMTIO1/RIRvQ==
+X-ME-Sender: <xms:4IQHaIwwAg2ARtGf3jGlqMBsIagJvBoGj0v_BftaGeTLZUA9fgBI2A>
+    <xme:4IQHaMSPkvJvmtb0CK21vKbtTwBPmE5CK5CbIBK6vPn0gPn4v1aYB4jF5XJoOGGAX
+    T6MbIL_0gzIP5Ud60k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvgeefieejucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertder
+    tdejnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
+    gsrdguvgeqnecuggftrfgrthhtvghrnhepvdfhvdekueduveffffetgfdvveefvdelhedv
+    vdegjedvfeehtdeggeevheefleejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
+    gedtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeguvghrvghkrdhkihgvrhhnrg
+    hnsegrmhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdr
+    tghomhdprhgtphhtthhopehpvggurgesrgigvghnthhirgdrshgvpdhrtghpthhtohepmh
+    htuhhrqhhuvghtthgvsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehhvghrvhgv
+    rdgtohguihhnrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehluhgtrgdrtggvrh
+    gvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvght
+    rgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepghgvvghrthdorhgvnh
+    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegujhhrshgtrghllhihsehgmhgr
+    ihhlrdgtohhm
+X-ME-Proxy: <xmx:4IQHaKWmoW2di_TlBk_3LC0bIqSqcvphy6ets2e-rndyOqir4PbyCA>
+    <xmx:4IQHaGiei-Ql0GRpXERiVlv65LxFK-7j6r-KkvhG1fj3vn-8NEFwVQ>
+    <xmx:4IQHaKCm5zPJpibs-8kVLkqGWNg8UD2hn4Z8TqFJIGHP--QssqYrRg>
+    <xmx:4IQHaHJOvBUka2beZuMcFi1smo_KB-gJx9FuTpNKCqV5ylIZza69NQ>
+    <xmx:4oQHaJYK6LHO-f8uu6Lf4HNT_VDikvi48Yp8jo6RBxgTdQ2SDj7VOZ4o>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id D0CBA2220073; Tue, 22 Apr 2025 08:00:32 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] media: dt-bindings: media: camss: Add
- qcom,qcm2290-camss binding
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- dmitry.baryshkov@oss.qualcomm.com
-References: <20250418141147.205179-1-loic.poulain@oss.qualcomm.com>
- <20250418141147.205179-6-loic.poulain@oss.qualcomm.com>
- <20250422-nonchalant-bald-mink-7c2d34@kuoka>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250422-nonchalant-bald-mink-7c2d34@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-ThreadId: T51aa6c607dc631ce
+Date: Tue, 22 Apr 2025 14:00:12 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Herve Codina" <herve.codina@bootlin.com>,
+ "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+ "Fabio Estevam" <festevam@gmail.com>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Andi Shyti" <andi.shyti@kernel.org>,
+ "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
+ "Peter Rosin" <peda@axentia.se>,
+ "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
+ "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>,
+ "Bjorn Helgaas" <bhelgaas@google.com>, "Mark Brown" <broonie@kernel.org>,
+ "Len Brown" <lenb@kernel.org>, "Daniel Scally" <djrscally@gmail.com>,
+ "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
+ "Sakari Ailus" <sakari.ailus@linux.intel.com>,
+ "Wolfram Sang" <wsa@kernel.org>,
+ "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org,
+ "Allan Nielsen" <allan.nielsen@microchip.com>,
+ "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ "Steen Hegelund" <steen.hegelund@microchip.com>,
+ "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Message-Id: <68b23799-29c2-4309-b55a-87d83dc6fbe9@app.fastmail.com>
+In-Reply-To: <20250408154925.5653d506@bootlin.com>
+References: <20250407145546.270683-1-herve.codina@bootlin.com>
+ <20250407145546.270683-12-herve.codina@bootlin.com>
+ <Z_Pw_MoPpVNwiEhc@smile.fi.intel.com> <20250408154925.5653d506@bootlin.com>
+Subject: Re: [PATCH 11/16] of: property: Allow fw_devlink device-tree support for x86
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 22/04/2025 10:15, Krzysztof Kozlowski wrote:
-> On Fri, Apr 18, 2025 at 04:11:46PM GMT, Loic Poulain wrote:
->> +  vdda-csiphy-1p2-supply:
-> 
-> Why isn't this named vdd-phy-supply like in every other binding?
-> 
->> +    description:
->> +      Phandle to a 1.2V regulator supply to CSI PHYs.
->> +
->> +  vdda-pll-1p8-supply:
-> 
-> Similar question.
-> 
->> +    description:
->> +      Phandle to 1.8V regulator supply to CAMSS refclk pll block.
-> 
-> Best regards,
-> Krzysztof
-> 
+On Tue, Apr 8, 2025, at 15:49, Herve Codina wrote:
+> On Mon, 7 Apr 2025 18:36:28 +0300
+>> On Mon, Apr 07, 2025 at 04:55:40PM +0200, Herve Codina wrote:
+>>=20
+>> This is incorrect, they never had ACPI to begin with. Also there is t=
+hird
+>> platform that are using DT on x86 core =E2=80=94 SpreadTrum based pho=
+nes.
+>
+> I will rework the commit log to avoid 'mixing ACPI and device-tree'
+>
+> For "SpreadTrum based phones", do you have an idea about the Kconfig s=
+ymbol
+> I could use to filter our this x86 systems?
+>
+> Anything I find upstream related to SpreadTrum seems base on ARM cpus.
+> I probably miss something.
 
-In this series we agreed to include the voltage level in the regulator name.
+This is the Intel SOFIA platform with chips from both Spreadtrum (now
+Unisoc) and Rockchips, using a port of the arch/arm/ code DT on x86,
+about 10 years ago.
 
-https://lore.kernel.org/linux-arm-msm/20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org/
+That code was never upstreamed, and is long abandoned by everyone.
 
----
-bod
+>> And not sure about AMD stuff (Geode?).
+>
+> Same here, if some AMD devices need to be filtered out, is there a spe=
+cific
+> Kconfig symbol I can use ?
+
+The only one I can think of is CONFIG_OLPC, the XO-1 was a Geode LX,
+while XO-1.5 used a VIA C7, both with actual open firmware (not just
+fdt).
+
+       Arnd
 
