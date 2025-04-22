@@ -1,197 +1,171 @@
-Return-Path: <devicetree+bounces-169153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D072DA959F2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 01:51:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CA9A95A04
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 02:08:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C03C1891606
-	for <lists+devicetree@lfdr.de>; Mon, 21 Apr 2025 23:51:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F9F21692D3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 00:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D5F221FB9;
-	Mon, 21 Apr 2025 23:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A11EBE;
+	Tue, 22 Apr 2025 00:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="abNSGcUX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VzG50OGr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03AE139D;
-	Mon, 21 Apr 2025 23:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38C1376;
+	Tue, 22 Apr 2025 00:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745279503; cv=none; b=UNMgRRXA2t6tLVXAKwLUtNwkngYGDcSrCqug75iYlcfxVOYxoN1cn5yGZeRi0DgtJfX+1zRup+3TfU8kmRZdj67sog+JElPNVYCgjeusrdbpzymvzHA0T6diTaPzWA733k9eVSQc1gCSrqv4eeCFT5Jb29nqVo5/eihClkDbdQ4=
+	t=1745280478; cv=none; b=IXShSihH9ps/fnzf5anN0e2NJziLAdg+G92+MeBCNUzNabbuJdgGfSrFSC7NGAr2PhfaWwHRlHB3KHtiPAkOPtB9TBHCoJQw25TMxHJbQihyMwhIvv/P5O4ecth+q9clWqcC1hCqW+gcvc4MU0VkuTQMehDCPa7OPqYZ/Xy4I+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745279503; c=relaxed/simple;
-	bh=p/sfA16fe0Wj9u4skqJ1CJF3bVc7XjoSOdYT3UVBuGM=;
-	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
-	 References:In-Reply-To; b=ag29M6rnUa9gfgpiNT6kRxwP47lvB97vBPxAWwXPe4Rv2xGbaJWYCI0mhVHedACx46l7vZJV/3hZDXpD8lwYeVFIPyhFyFoybXz5g6Fac9RiZge14ytsBfRB2RIOITpw2hiIz0X9BgAXwxCnSxXzdNa5patEaM5SONnAma+WL8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=abNSGcUX; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53LNpTqf1039141
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 21 Apr 2025 18:51:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745279489;
-	bh=2OW+FjKgr+O+cpJJ1XHA+YESDflZ1mtQz9BgoDkDH4A=;
-	h=Date:CC:Subject:From:To:References:In-Reply-To;
-	b=abNSGcUXGMIxSfyLAvWh5xaiAtLz1u+YRM2TwrirqC0yvvM8U/QNwWXTiuKZrx2D1
-	 nWm80umC6G8/mEm86/81lQvamCCIVz6NCFv8LaRb6zZuWF2KbmoBGJpOWZYq5SSI5A
-	 0H55lK2G2Bsutr60XAQRtmMXUH2ad6oQHKXj04Q8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53LNpT99029435
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Apr 2025 18:51:29 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
- Apr 2025 18:51:28 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 21 Apr 2025 18:51:28 -0500
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53LNpSYR033139;
-	Mon, 21 Apr 2025 18:51:28 -0500
+	s=arc-20240116; t=1745280478; c=relaxed/simple;
+	bh=2BLvXagvYikmLi9CDsCGDuJ7fhv0pFHO/AxxIdaKngo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AiJ5DgCXeoRWJTm2zPhnf7ydywGa1C9leHAn0uL9kF1U95HZYs6AaxKCbMMXkHSQnthuXHeTvoHqU+dnll0JLf9CoOe1AbdhlArmrcf52x0EudWL/hIJPmzeJ5PztKtt9V94XY45ZRbmvnKqg9TosTIxxwn5yhihvuKbD0DCXVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VzG50OGr; arc=none smtp.client-ip=209.85.219.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6e8f06e13a4so55457436d6.0;
+        Mon, 21 Apr 2025 17:07:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745280475; x=1745885275; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H8wLDV1hb56J4g1qGTPdYS2+5saoEpO4u3c0/B+uqvk=;
+        b=VzG50OGrHS0O/tcICe9o0HHIaOJXQn2xKirIYeWPdU4mcWu7ml6kvGznuxp8YuiUKT
+         Y5OjKnQdPDNSq7YXOD6ofwC00iLhVmF9nka5q43Ca1tNshLdBBMkoPjD2ZuVhP5mobAS
+         k2+tYFX2oOzvCK96gRsMgbglr/FoPYqZbmL/vgxJv3HHtAlPuW7bulchTATmFCAcZWzq
+         NXDqNNUSirSYTyUPRp4u3ydZb5tw/Ad0nL9XrVRMM2B1BQqi9GR+ggqGSeZjLVJat5i7
+         M4uWkOZgXLqWp/a5ftFWIq1KzeRXvvtl6IE7O3FYTNzXrtHrc3xhiq43NX9AOHe4o50x
+         cuAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745280475; x=1745885275;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H8wLDV1hb56J4g1qGTPdYS2+5saoEpO4u3c0/B+uqvk=;
+        b=EU6Pc6dsLN/2SmsXU1K0ALTVDQ2ypf5kTcz0SQM1ZhwtxK1bRM+sfsSzpodVORi769
+         6kMyynMdqlLqvuuhvOEPYfouLV03BhURhP+REog5aXDYslWbUwNTqSzAJk7dhXoJtiTK
+         XyyyPSsCl6IHVP/bB+c86BKoDJxkW7hbZDr+NvdzwduY593MiuRnYvPnfA0S0iQqHbeT
+         7MjAjWeqdl26/bXccLzs0D9OM8aGS+VPXD3Tw6YfSTbeYwfJSiSgB0xelfLJmWuzrMjQ
+         3sWZjFUrsDZJndoa2rmTJ4Utc2svYu7L503XGvFHG7y+iNx4Sifhpu59jBJcjMA+7cfW
+         /4TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUjIa43PugOxDDDiwebBXx9v6rMqOeMM/Q4W9j0tDeGe/e34Q3u+vn+FIOotRl8OJ42A+q/NFODXpKpQ7c=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywpy3jdM04tJWqjBl/e4XsITASc2r7HBOV3KAXYyot3+ZpbN41h
+	NJRPk2QNovMKuBK+5aTeesXiTOK99/OENd4YCyUe00TgUx2w8xZV
+X-Gm-Gg: ASbGncunMc+ucW32qvNEIzI6SBs9RhwZJJ1lN/m1hF1OUrrWbFis9/TPjC1uChx12z1
+	pY/gBnFC2Iml6CBuSuekefcDg4sTGqr55/ILLBCNBElXF8k8TFLma50s+gc5+L8bV3IddBEH/eL
+	0UCsje+OmwfP+NbIaKz8ITPwBtShd9Y8t/+5K38sIsX02vpn1PltWU2nhHpVan1n1ETVyAl3SQP
+	3XJZSmfUYNzvE9SvcHou+qspPhFTlJ9BwypK5TkgZlo4gBhWHd6aXGePsnNXoAG3N5NpJcr3Npr
+	TQDTqqj4z6/Bzh4pjdATOa4eEGdcz9ZKTk/Axlh6et8C0U+Gs6a+
+X-Google-Smtp-Source: AGHT+IFfDWwvneQduY1xpp0BmYEQ8b2EqMecuS/b3VvGJHRaIDr0uNIu9yTru25IprQs8WvetVgDkQ==
+X-Received: by 2002:a05:6214:1c84:b0:6e2:383f:4acd with SMTP id 6a1803df08f44-6f2c4d8b11emr226098736d6.7.1745280475490;
+        Mon, 21 Apr 2025 17:07:55 -0700 (PDT)
+Received: from localhost.localdomain ([216.237.233.165])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f2c2b0f11fsm50085206d6.39.2025.04.21.17.07.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Apr 2025 17:07:55 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: sigmaris@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	mjuszkiewicz@redhat.com,
+	sebastian.reichel@collabora.com,
+	jonas@kwiboo.se,
+	John Clark <inindev@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: rk3588-nanopc-t6: fix usb-c port functionality
+Date: Mon, 21 Apr 2025 20:07:48 -0400
+Message-Id: <20250422000748.59664-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <bda07179-1ff4-46e4-9dda-ece9c63fd613@gmail.com>
+References: <20250419023715.16811-1-inindev@gmail.com> <bda07179-1ff4-46e4-9dda-ece9c63fd613@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Mon, 21 Apr 2025 18:51:28 -0500
-Message-ID: <D9CPY0IDAJSR.39JPPAXZAUNQE@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
-        Alessio
- Belle <alessio.belle@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Darren Etheridge
-	<detheridge@ti.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
-From: Randolph Sapp <rs@ti.com>
-To: "Kumar, Udit" <u-kumar1@ti.com>, Matt Coster <matt.coster@imgtec.com>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com>
- <20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com>
- <8017c015-73aa-4807-a177-d5391e073981@ti.com>
-In-Reply-To: <8017c015-73aa-4807-a177-d5391e073981@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat Apr 19, 2025 at 11:15 AM CDT, Udit Kumar wrote:
-> Hello Matt,
+On Tue, Apr 22, 2025 at 00:12:02 +0100, Hugh Cole-Baker <sigmaris@gmail.com> wrote:
+> Hi John,
 >
-> On 4/17/2025 2:40 PM, Matt Coster wrote:
->> The J721S2 binding is based on the TI downstream binding in commit
->> 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
->> but with updated compatible strings.
->
-> Downstream kernel[1] sha 5657fc069e8b3 ("PENDING: arm64: dts: ti:=20
-> k3-j721s2-main: add gpu node")
->
-> also has assigned-clock-rates.
->
-> Please check if gpu node needs assigned-rate too.
-
-If I remember correctly, J721S2 was one of the few platforms that actually
-defaulted to 800MHz, so it may not be necessary for that platform specifica=
-lly.
-(I don't have a board to test this right now though. This very well may hav=
-e
-changed.) AM62 also defaults to the correct value, and that one I did manag=
-e to
-verify.
-
-That being said, Udit is right, it's generally a good idea to explicitly se=
-t the
-clock speed for our devices. I know AM62P, for example, used to default our
-clock to the bus speed.
-
-At one point though this driver was experimenting with a DVFS mechanism. Ma=
-tt,
-use of assigned-clocks shouldn't interfere with that assuming there is no
-defined opp-table, right? May be a good idea to set our usual 800 MHz for J=
-721S2
-and 500 MHz for AM625. This shouldn't require any binding related changes.
-
-On the topic of opp tables for the GPU, I did some testing on the proprieta=
-ry
-driver a little while back. These devices do not support voltage scaling an=
-d
-simple frequency scaling saw a general decrease in performance and increase=
- in
-power draw for the usual utilization bursts a single application running at=
- 60
-FPS generates. I have a feeling this will carry over to the open source dri=
-ver,
-but we can always do additional testing if you are curious.
-
-- Randolph
-
->> The clock[2] and power[3] indices were verified from HTML docs, while
->> the intterupt index comes from the TRM[4] (appendix
->> "J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
->> "GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
->
->> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
->> [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.h=
-tml
->> [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.=
-html
->> [4]: https://www.ti.com/lit/zip/spruj28 (revision E)
+> On 19/04/2025 03:37, John Clark wrote:
+>> The USB-C port on the NanoPC-T6 was not providing VBUS (vbus5v0_typec
+>> regulator disabled, gpio-58 out lo) due to misconfiguration. The
+>> original setup with regulator-always-on and regulator-boot-on forced
+>> the port on, masking the issue, but removing these properties revealed
+>> that the fusb302 driver was not enabling the regulator dynamically.
 >>
->> Reviewed-by: Randolph Sapp <rs@ti.com>
->> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+>> Signed-off-by: John Clark <inindev@gmail.com>
 >> ---
->> Changes in v2:
->> - Add interrupt reference details
->> - Add Randolph's Rb
->> - Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3f=
-a06625d@imgtec.com
+>>  .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 21 ++++++++++---------
+>>  1 file changed, 11 insertions(+), 10 deletions(-)
 >>
->> This patch was previously sent as [DO NOT MERGE]:
->> https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5=
-865f@imgtec.com
->> ---
->>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> index cecfb788bf9e..8f2bd30786d9 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> @@ -174,8 +174,6 @@ vbus5v0_typec: regulator-vbus5v0-typec {
+>>  		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
+>>  		pinctrl-names = "default";
+>>  		pinctrl-0 = <&typec5v_pwren>;
+>> -		regulator-always-on;
+>> -		regulator-boot-on;
+>>  		regulator-name = "vbus5v0_typec";
+>> @@ -465,24 +461,30 @@ regulator-state-mem {
+>>  &i2c6 {
+>> -	clock-frequency = <200000>;
+>>  	status = "okay";
 >>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boo=
-t/dts/ti/k3-j721s2-main.dtsi
->> index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133=
-864428bd35a5e835 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->> @@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
->>   		/* reserved for MAIN_R5F1_1 */
->>   		status =3D "reserved";
->>   	};
->> +
->> +	gpu: gpu@4e20000000 {
->> +		compatible =3D "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
->> +		reg =3D <0x4e 0x20000000 0x00 0x80000>;
->> +		clocks =3D <&k3_clks 130 1>;
->> +		clock-names =3D "core";
->> +		interrupts =3D <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->> +		power-domains =3D <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
->> +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
->> +		power-domain-names =3D "a", "b";
->> +		dma-coherent;
->> +	};
->>   };
->>
+>> -	fusb302: typec-portc@22 {
+>> +	usbc0: usb-typec@22 {
+>>  		compatible = "fcs,fusb302";
+>>  		connector {
+>>  			compatible = "usb-c-connector";
+>>  			data-role = "dual";
+>>  			label = "USB-C";
+>> -			power-role = "source";
+>> +			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
+>> +			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
+>> +			power-role = "dual";
+>> +			op-sink-microwatt = <1000000>;
+>> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+>>  			source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
+>> +			try-power-role = "source";
+>> +			typec-power-opmode = "3.0A";
+>
+> According to the manufacturer wiki [1] "Power Output Capacity" table, the USB-C
+> port maximum output is 5V/2A. So I think "1.5A" would be a better value here.
+>
+> [1]: https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6
 
+Hi Hugh,
+
+Thank you for your feedback and for referencing the manufacturer’s wiki. To clarify, the line in question:
+
+source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
+
+was not modified in my patch. This value, which sets the USB-C port’s source capability to 5V/2A, is unchanged from the existing device tree.
+
+Furthermore, the schematic for the NanoPC-T6 and the vendor’s upstream Linux device tree (e.g., FriendlyARM’s kernel at https://github.com/friendlyarm/kernel-rockchip/blob/nanopi6-v6.1.y/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-rev01.dts#L346) also specify the source capability as 5V/2A. Given this consistency across the schematic and vendor sources, I believe 2A is an appropriate value for this configuration.
+
+Please let me know if you have further concerns or suggestions!
+
+Best regards,
+John Clark
 
