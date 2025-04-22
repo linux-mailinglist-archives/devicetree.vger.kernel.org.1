@@ -1,91 +1,257 @@
-Return-Path: <devicetree+bounces-169397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C09DA96C1A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:09:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CE6A96C29
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:12:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 723E6189E741
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:10:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6691516BF42
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:12:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CDB28135E;
-	Tue, 22 Apr 2025 13:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF34281368;
+	Tue, 22 Apr 2025 13:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gZpXQOku"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="n15q944H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9475A27466;
-	Tue, 22 Apr 2025 13:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473D618CBE1;
+	Tue, 22 Apr 2025 13:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745327390; cv=none; b=kSApXvsc0CVe+tdVjqTr0ChKe0WxgUkt7JUszLr1tv3Xd4vEJnHpjxQgOaoOwzCN6TiEaDm/ZMT06qgndCcJ7gMwdOVAkYnSI9dxpEnkoJsp/OSt2a/3dd60JSjnwx0ijGLwme5O7ea7oLlY8CO5ffuCj4H2UjROFTTcL/gBADs=
+	t=1745327518; cv=none; b=pXHB7nQGbjdt4hiWueJwKv03oRtQjHtb0RQVMyEcz9NC3bVm00u7Gg+gWP523n7vqqoamM90pwDU8QYfDE7BLfStvsJBPlQF6CqBakQJwUGODrv0Wwct7wraYb6nFPpaG2s7MAv3RWg8yApCqhnePFHRKSOHKeMH/3YYhT8RaU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745327390; c=relaxed/simple;
-	bh=BEx2KaD/mS0zMAQs7LahMUkYPebN7yNtc+yXj3QXDNU=;
+	s=arc-20240116; t=1745327518; c=relaxed/simple;
+	bh=rRjktDJ0MUBAM/q9snEfNjjc72sE7/oAhMScX+HK/Jc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FKWwheElKgcx9ZE/Wyxoi2TxWBkMK2S7ycexiEPpnW6k/0XhCZJjWTwF6IqM+sYBtygTl7MeevlLR/nx2/kJOLQguOBholEtR4USV5MLaykeVzS7kJMSY4lcPwDzTn9JP0ZZ8iCx09dOQJKqpP1tcL56hUI3dZaSpUb1Dtfen+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gZpXQOku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7313C4CEE9;
-	Tue, 22 Apr 2025 13:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745327390;
-	bh=BEx2KaD/mS0zMAQs7LahMUkYPebN7yNtc+yXj3QXDNU=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=k3USzz0GVM+qk3yqEF018f/GtnS9GHtl0pCw1Lq+d5vauhODF9cKR/c9ryXcqpRcs5dFXXKqULyueOFlP8k63fEYFbEXgXoRGDbvtLNeZWpLwG1E7GlAgme2qCNwgfx1P7v/F4WpYNJQt3qU05ncYEa9Sk8bN7sDH+bzNTwSQoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=n15q944H; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 27961666;
+	Tue, 22 Apr 2025 15:09:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1745327386;
+	bh=rRjktDJ0MUBAM/q9snEfNjjc72sE7/oAhMScX+HK/Jc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gZpXQOku0cTPUuOLSbem5KBzHMXQSFgGD8UvL8Bgola6TijHA8i8dI1fZdJa/SGrs
-	 rJNrQ5e04CMvgjkjAhWWs0ec2zqbALFifzOWPV95KK5wCr97J1BrTHtDofRONx4BsX
-	 /k2pnqBXqQdJ80q1fcKb1bnDtUITwsgQitg/KArtlIoxKMtp8Vu/QlFy2Stfo9Ft6G
-	 +EGu0N0A38sFznGSmrzYK96HsDFWEg1i1PZkzCbOM5H7DpblLsTeadhI5mVAWoIdSo
-	 eh42bm3b1zB0+lHI21J471ba+CWMHqvHQEerCjjuMc9OX7r8WwMJZb/285dET8PUwK
-	 FZAh94y2wi5eQ==
-Date: Tue, 22 Apr 2025 08:09:48 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: NXP S32 Linux Team <s32@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	imx@lists.linux.dev, Jacky Bai <ping.bai@nxp.com>,
-	linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-	linux-gpio@vger.kernel.org, Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	b=n15q944HIcA5QyAjmzJSVdftRaVtGEC7F6+mf7fB3FkKL4hDZDbnAe6j7io+0+q91
+	 tNaNqLfle9GtruOaJZlnjvCAs6pjNrCHib92f0H6NUF4MpZZE9ggRgsAiIcA2O+SQC
+	 KScLGn7kuOzSrSXDf60UpqtGz7v1+3BJYkd9SnDA=
+Date: Tue, 22 Apr 2025 16:11:51 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/1] dt-bindings: pinctrl: convert
- fsl,imx7ulp-pinctrl.txt to yaml format
-Message-ID: <174532738787.1019688.10866076280609935749.robh@kernel.org>
-References: <20250417152158.3570936-1-Frank.Li@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
+Message-ID: <20250422131151.GA16823@pendragon.ideasonboard.com>
+References: <20250404-b4-vd55g1-v5-0-98f2f02eec59@foss.st.com>
+ <20250404-b4-vd55g1-v5-1-98f2f02eec59@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250417152158.3570936-1-Frank.Li@nxp.com>
+In-Reply-To: <20250404-b4-vd55g1-v5-1-98f2f02eec59@foss.st.com>
 
+Hi Benjamin,
 
-On Thu, 17 Apr 2025 11:21:57 -0400, Frank Li wrote:
-> Convert fsl,imx7ulp-pinctrl.txt to yaml format.
+Thank you for the patch.
+
+On Fri, Apr 04, 2025 at 04:50:51PM +0200, Benjamin Mugnier wrote:
+> Also update MAINTAINERS file accordingly.
 > 
-> Additional changes:
-> - remove label in example
-> - fsl,pin direct use hex value instead of macro because macro define in
-> dts local directory.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
 > ---
->  .../bindings/pinctrl/fsl,imx7ulp-iomuxc1.yaml | 99 +++++++++++++++++++
->  .../bindings/pinctrl/fsl,imx7ulp-pinctrl.txt  | 53 ----------
->  2 files changed, 99 insertions(+), 53 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx7ulp-iomuxc1.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx7ulp-pinctrl.txt
+>  .../devicetree/bindings/media/i2c/st,vd55g1.yaml   | 132 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 ++
+>  2 files changed, 139 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml b/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6b777f86790da4e5941ac1cad86dc1a5021f9f5b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
+> @@ -0,0 +1,132 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2025 STMicroelectronics SA.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/st,vd55g1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics VD55G1 Global Shutter Image Sensor
+> +
+> +maintainers:
+> +  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> +  - Sylvain Petinot <sylvain.petinot@foss.st.com>
+> +
+> +description: |-
+> + The STMicroelectronics VD55G1 is a global shutter image sensor with an active
+> + array size of 804H x 704V. It is programmable through I2C interface. The I2C
+> + address is fixed to 0x10.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+If you intend for this block of text to be split in two paragraphs, it's
+missing a blank line here. Otherwise, it should be reflowed as a single
+paragraph.
 
+> + Image data is sent through MIPI CSI-2, which is configured as only 1 data
+> + lane. The sensor provides 4 GPIOS that can be used for external LED signal
+> + (synchronized with sensor integration periods).
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: st,vd55g1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  vcore-supply:
+> +    description: Digital core power supply (1.15V)
+> +
+> +  vddio-supply:
+> +    description: Digital IO power supply (1.8V)
+> +
+> +  vana-supply:
+> +    description: Analog power supply (2.8V)
+> +
+> +  reset-gpios:
+> +    description: Sensor reset active low GPIO (XSHUTDOWN)
+> +    maxItems: 1
+> +
+> +  st,leds:
+> +    description:
+> +      List sensor's GPIOs used to control strobe light sources during exposure
+> +      time. The numbers identify the sensor pin on which the illumination
+> +      system is connected. GPIOs are active-high.
+
+If multiple GPIOs are specified, do they all serve the exact same
+purpose, or is there a need to differentiate them ?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      minimum: 0
+> +      maximum: 3
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            items:
+> +              - const: 1
+> +
+> +          link-frequencies:
+> +            maxItems: 1
+> +            items:
+> +              minimum: 125000000
+> +              maximum: 600000000
+> +
+> +          lane-polarities:
+> +            minItems: 1
+> +            maxItems: 2
+
+Does the sensor support non-continuous D-PHY clock ?
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - vcore-supply
+> +  - vddio-supply
+> +  - vana-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera-sensor@10 {
+> +            compatible = "st,vd55g1";
+> +            reg = <0x10>;
+> +
+> +            clocks = <&camera_clk_12M>;
+> +
+> +            vcore-supply = <&camera_vcore_v1v15>;
+> +            vddio-supply = <&camera_vddio_v1v8>;
+> +            vana-supply = <&camera_vana_v2v8>;
+> +
+> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
+> +            st,leds = <2>;
+> +
+> +            orientation = <2>;
+> +            rotation = <0>;
+> +
+> +            port {
+> +                endpoint {
+> +                    data-lanes = <1>;
+> +                    link-frequencies = /bits/ 64 <600000000>;
+> +                    remote-endpoint = <&csiphy0_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2286200b355bde3604607be916ef09aa88feed0e..4f5e9005063a157de69e81b10f8def9da9e6c04c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22410,6 +22410,13 @@ S:	Maintained
+>  F:	Documentation/hwmon/stpddc60.rst
+>  F:	drivers/hwmon/pmbus/stpddc60.c
+>  
+> +ST VD55G1 DRIVER
+> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
+> +
+>  ST VGXY61 DRIVER
+>  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+
+-- 
+Regards,
+
+Laurent Pinchart
 
