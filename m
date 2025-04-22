@@ -1,162 +1,101 @@
-Return-Path: <devicetree+bounces-169486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB53A970A1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:27:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 499E3A970A7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:28:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D19947A5AD0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:26:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D0EA16CC82
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:28:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8D228F921;
-	Tue, 22 Apr 2025 15:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE97C28F95A;
+	Tue, 22 Apr 2025 15:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="uwGsrZXY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="anTkKwmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E6DE28936D;
-	Tue, 22 Apr 2025 15:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E3C19ABB6
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 15:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745335639; cv=none; b=o2uPECxH95oAYtRn+DtkHiofqAneY5ZZ2cHW13xWtK+tuXAJH7ge6KGjP2LFPN5kVRcDQH4NJglTNtE7lEAE2ukQVfeNc3r/F2M0QW6yCPSDKYl8U8cVAloh2ZtetswpcTYQtzeJScmwAJiZ4M08Sm/9vcy1HbvEJjvD871F/Eo=
+	t=1745335657; cv=none; b=Xhrikj30NY9zh7OgDSsmYS+oxR1FIbZBhqwzveqHrAWax6LDLnZfSfNwASQfhSLrqLwE56rXtVKKbeXa1hAljcpB87pnLNvDqHCIBna8TIjFrhJX1jnvv4RcJiP1QF3JxibXEGLrm06KPeJkQoLU90tIgZkjZCPdwJ6pGgyYkxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745335639; c=relaxed/simple;
-	bh=mXB1POJe6HuTvqTx1N0QPtvkf3Ravu1KC3w1Y+Ekgk4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=PdvEMc5Fw0nifxQZTopJZ8tXy87okKNInjz49FblaN0udHEPlDwoqKHxucqvBOb1+PgJumwdt5GLyGk+Ps1pxN/7fcCiipr37vDgSVOvOxH7FLN6GzMHkYudmkuNAbdivW6Y2m2bJ6V8+Q8S9aTC36PvnI6wA9DCrni9YbT/0Sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=uwGsrZXY; arc=none smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53M6JMlD025210;
-	Tue, 22 Apr 2025 16:26:53 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=T
-	+8Dbi8Dp/XcgVzvDsUkk0RdPIiusdPwHu4nNqKQNjw=; b=uwGsrZXY02oLjlZTm
-	H6PKnOy1+UiGPSL0/bT9CgYqUGVNlk295bP2p+eZ4d7BNTxpgZry08uxHsMmbdOr
-	IOJeels+2qpjhPuIhx0qwIvF1+vd17KYlfDmMxwVrq8yLSAJk/u0Zhkdtebli85O
-	cJrWC/TSX/jN0VZxLzaVUSVw53qUW0dira6Bmq9Jc8FrCWrhtU7PnZ/Yp3Xbi0t8
-	iQaKnK+UIFBkSnlFGPgQ0L1CUZ46FS1KmPItogB7g16b0daijbmuh2ACdZghQoeX
-	WppNPMrZFNldrkY3tyUMzE7B7Xz3n1y889wMZcNo/Hs9QWlywH7UoWc8Tug8Mlor
-	6j6iw==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 4643ww22a3-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 22 Apr 2025 16:26:52 +0100 (BST)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.7.98) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 22 Apr 2025 16:26:51 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Tue, 22 Apr 2025 16:26:42 +0100
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
+	s=arc-20240116; t=1745335657; c=relaxed/simple;
+	bh=+IZB028ZDzPRhAaCOR+1QbVbPztoSOEaa6sdgv+oVj8=;
+	h=Message-ID:Date:MIME-Version:From:To:Subject:Content-Type; b=UkV2qKQpsct9/92LXKnWedzEEcnzqmbbnHTNO6o/KMjLu4f+qZ9xqySnFsCzjxOMAob32RNzDiECAgkh8c7zjkv2fPrhh3U+B2o0qdx1LDvflRy8nut+Jn2NHrxUP6cQTkUUqUJGJvLrkKdYdbUm3DL+zOOLisaBjHaZAscdqWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=anTkKwmD; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so3307407f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 08:27:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745335653; x=1745940453; darn=vger.kernel.org;
+        h=content-transfer-encoding:subject:to:from:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+IZB028ZDzPRhAaCOR+1QbVbPztoSOEaa6sdgv+oVj8=;
+        b=anTkKwmDwu6PUiMnaP1GzKU+sM1AvyBzd9Buu2LjEBb1BNK/OgCnXlwHUe7Reb4WfR
+         4W7fgKM8HPsJwWVmq8xQwau1npUV+QSdySag7Fz7L+uWHwXXZ7ewajZWGkJrmRWrH95z
+         akFO1UBdcP8JYzMqMJ7IGhawXzC+Sl4a1zrfJzj3aQJ52B2iyn19GUGfATpbs7+e1BAZ
+         OUi0EqlEZ1EjPFDeNMa/G/yhUtJ1/0rgj2gjGPt+zT+ddXmGP3Y+dQGweQmw1dXIztrQ
+         3bl7OvOmkl9ZmECfbozV2nPqGmcnfPA6SdspN22qKhsFfciwpehvnmA9zBOw6T8gBXQl
+         Y7cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745335653; x=1745940453;
+        h=content-transfer-encoding:subject:to:from:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+IZB028ZDzPRhAaCOR+1QbVbPztoSOEaa6sdgv+oVj8=;
+        b=Lz8SZHJev9qaxLjAmF5TL/ngeuIhzOWrPmyXo49nY1HyAf23cfFG/HA/mye9qy/Ds0
+         TMHQUvydi+TLXE3SBj5L+MAkmuRI6csuSN+13adyoIkTW8tAOe++Z6AIjd+JF0dDuFfe
+         pOq7fhm6KNMpOzBidxsxep1y8QNOgUp4UZTTP3AktHY97suLhF+ciq2GTisASCBR/0aq
+         BYUXgjHL6HUE9xAOWAUcQNjz/3mvLifQqWF5ZUEN6VRuyTlf4pXwIjhnlDxYUPsYef7W
+         cg9jOncETE9REDP6nK5Cm5SOUI2HbkR4kvLhF+nDeZPB5b619ccFqC1WkHZeDzX+7xXQ
+         9Hvg==
+X-Gm-Message-State: AOJu0YzgAGHsoTmUcmuE9z2f7p1bgmkX6yb4c5o0KLisZ0N9Xb62fmqY
+	HPWfA68GsRDhIcjcdko1M8Z/GXvlhd7RJtPS3K/U9ygw4Tb8Oe8dQvEcmJ9b
+X-Gm-Gg: ASbGnctdkRocN95P1QOOaHeMmhZgBPUstaHIueb9Cb61yCH3+RGMhvI2++snhUNGdhR
+	u5FifO/eZAepUO9h4iYgofxZcxwZYV6k2W+lRZDyZ6Dk/+CgP4EG3BUSIH0U6qBK9PKmLOSjbUF
+	xHUQ7xfIlSEM64lVyXSleSR+UYlWESvRMUiyQFm9pscIcTS5gO/os6IUej+w8MgDFKldwBBxzx6
+	WhRWuEtweSzyoCC8VzLpcNp1zQ91/hu80TloUe/9L7s10a6/WvMuqLpUBw95tzfEsnGf4eq/6bO
+	C43Wei2uNOgNzEtJ7g==
+X-Google-Smtp-Source: AGHT+IFHGr4TsUx/p8wf/fVvYCo9wL5hZQcyvltzXO3URXwcwPIpiA2x82/AO0nMyxcRggdaGN6o/A==
+X-Received: by 2002:a5d:648c:0:b0:39c:1f02:449f with SMTP id ffacd0b85a97d-39efba26220mr13284459f8f.2.1745335652857;
+        Tue, 22 Apr 2025 08:27:32 -0700 (PDT)
+Received: from ULRICH ([197.234.221.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa43cb43sm15810115f8f.53.2025.04.22.08.27.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Tue, 22 Apr 2025 08:27:32 -0700 (PDT)
+Message-ID: <6807b564.df0a0220.1db702.5ee0@mx.google.com>
+Date: Tue, 22 Apr 2025 08:27:32 -0700 (PDT)
+X-Google-Original-Date: 22 Apr 2025 16:27:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250422-bxs-4-64-dts-v3-2-ec6657bde135@imgtec.com>
-References: <20250422-bxs-4-64-dts-v3-0-ec6657bde135@imgtec.com>
-In-Reply-To: <20250422-bxs-4-64-dts-v3-0-ec6657bde135@imgtec.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
-        "Alessio Belle" <alessio.belle@imgtec.com>,
-        Alexandru Dadu
-	<alexandru.dadu@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2296;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=mXB1POJe6HuTvqTx1N0QPtvkf3Ravu1KC3w1Y+Ekgk4=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMWSwb7VUnH9dPdf864vKwpbYd5tkP59m/HFq0uqg7W9OT
- ZxRv3F2QUcpC4MYB4OsmCLLjhWWK9T+qGlJ3PhVDDOHlQlkCAMXpwBM5O8Whv9F015djdG9W31i
- T+PXq9MqbvPO+KT216b7cbrsxRlOqs27GRn+fryUdvT027bdlvnzvj561iba+1Dj4ctbmh7NL2T
- a/99jAQA=
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIyMDExNyBTYWx0ZWRfX3rWUZOaXWHkx 0wTfY4be60nNiUfCWFNoe6YMCFgSdhcJna+2z/t++Hs03KjZlvU7rUR6TxgKnkFOieKhubKK6g4 NEow7qXFvLK4d5EwOMXwy9yLM6AdZEpoicklvwqEAKOMD7MzWF8SO/FOpdktXBLlOAkRsEpjyT7
- vkUQbMOTTpJ/p3y4NEdgviK8ZQHQ3QXJNETOh46Fho8U+vs4uk92dwNPRmc70JQqO4sSbpE4iU9 G5VDWpoc8npbF4Cu79asxT8K+C2zC8AvwgWxQcQORF5ENiBPLQpoC+E1dF8/doKaTraiYICoj6v e1i4HZieotYiERZO0isGdG1c98VuxhSHCWJq/YI0new8MVwXxYYcSlFMT9Tza3ovkInvP+uIy/U
- pQoL/yeyCSjrd1mshsg5vGGjdXjJ/zZAmS+bRLRLqddQ051YvqoCdAiWHkCDsvSp4rruJDqh
-X-Authority-Analysis: v=2.4 cv=ApTu3P9P c=1 sm=1 tr=0 ts=6807b53c cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=6pm0VhuFVbIA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=sozttTNsAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
- a=KjGJ_YhaLPe-tYgPVq4A:9 a=QEXdDO2ut3YA:10 a=S-JV1fTmrHgA:10 a=j2-svP0xy3wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: Qf6AAKGH_HyWb1uWf-E221Ro5JHQIyNQ
-X-Proofpoint-ORIG-GUID: Qf6AAKGH_HyWb1uWf-E221Ro5JHQIyNQ
+From: magotomariam@gmail.com
+To: devicetree@vger.kernel.org
+Subject: =?utf-8?B?ZWnDpHJrbcO9xI1hZcW+?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-The J721S2 binding is based on the TI downstream binding in commit
-54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-but with updated compatible strings.
-
-The clock[2] and power[3] indices were verified from HTML docs, while
-the intterupt index comes from the TRM[4] (appendix
-"J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
-"GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
-
-[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-[2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-[3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-[4]: https://www.ti.com/lit/zip/spruj28 (revision E)
-
-Reviewed-by: Randolph Sapp <rs@ti.com>
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
----
-Changes in v3:
-- Use assigned-clocks to pre-load the frequency of the core clock
-- Link to v2: https://lore.kernel.org/r/20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com
-Changes in v2:
-- Add interrupt reference details
-- Add Randolph's Rb
-- Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com
-
-This patch was previously sent as [DO NOT MERGE]:
-https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..9e36cbbe0ea2fefceedcc95b78068ded7ef395f0 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -2048,4 +2048,18 @@ watchdog8: watchdog@23f0000 {
- 		/* reserved for MAIN_R5F1_1 */
- 		status = "reserved";
- 	};
-+
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = <0x4e 0x20000000 0x00 0x80000>;
-+		clocks = <&k3_clks 130 1>;
-+		clock-names = "core";
-+		assigned-clocks = <&k3_clks 130 1>;
-+		assigned-clock-rates = <800000000>;
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
-
--- 
-2.49.0
+V2VubiBTaWUgZsO8ciBJaHJlIFByb2pla3RlIGFuIGVpbmVtIFByaXZhdGtyZWRpdCBp
+bnRlcmVzc2llcnQgc2luZCwgc3RlaGUgaWNoIElobmVuIGdlcm5lIGbDvHIgd2VpdGVy
+ZSBJbmZvcm1hdGlvbmVuIHp1ciBWZXJmw7xndW5nLiBEYW5rIGFuZ2VwYXNzdGVyIEZp
+bmFuemllcnVuZ3Nsw7ZzdW5nZW4gYmlldGUgaWNoIElobmVuIGVpbmUgaW5kaXZpZHVl
+bGxlIEJldHJldXVuZy4gVmVyZsO8Z2JhcmUgQmV0csOkZ2U6IDEwLjAwMCBiaXMgNTAw
+LjAwMCwgbWl0IExhdWZ6ZWl0ZW4gdm9uIDEyIGJpcyAyNDAgTW9uYXRlbi4NCg0KUG91
+ciB2b3MgcHJvamV0cywgc2kgdW4gcHLDqnQgcGVyc29ubmVsIHZvdXMgaW50w6lyZXNz
+ZSwgamUgc3VpcyBsw6AgcG91ciB2b3VzIGZvdXJuaXIgcGx1cyBk4oCZaW5mb3JtYXRp
+b25zLiBHcsOiY2Ugw6AgZGVzIHNvbHV0aW9ucyBkZSBmaW5hbmNlbWVudCBhZGFwdMOp
+ZXMsIGplIHZvdXMgb2ZmcmUgdW4gYWNjb21wYWduZW1lbnQgcGVyc29ubmFsaXPDqS4g
+TW9udGFudHMgZGlzcG9uaWJsZXMgOiAxMCAwMDAgw6AgNTAwIDAwMCwgYXZlYyBkZXMg
+ZHVyw6llcyBkZSAxMiDDoCAyNDAgbW9pcy4=
 
 
