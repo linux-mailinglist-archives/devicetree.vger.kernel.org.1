@@ -1,150 +1,209 @@
-Return-Path: <devicetree+bounces-169235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C80A95FCA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:46:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 075B1A95FCE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B323016804E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 07:46:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEABF1896B45
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 07:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAC21E2848;
-	Tue, 22 Apr 2025 07:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94C81EB5F0;
+	Tue, 22 Apr 2025 07:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CR8KgOZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9072B15B115;
-	Tue, 22 Apr 2025 07:46:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148F517BED0
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745308003; cv=none; b=RpsQZokRsGcJlLCUUbT5j7O38cBPCLTYxNnEbBhoRcaxtwhLyxs4xv0MieBgJS0+B5YObQVcNpOtFRnwz0WjoXRLD/bPl0eEMZ8lLhOQ1bRyWlFbJTwzWBHZex/hb7vbhdy/ZR5ARWSNRvqOIAJIoljvey8mPNNthIitAhwioNM=
+	t=1745308067; cv=none; b=LjLTU3t9PMl4GgJ/6z097CahVKmWwC7eEGHRsGPXskb010Nrhap1xWXXGwo4U3WJZCiBeIpzoSo80q+eHOSnnqtIE9bRuzd3GY+fHN5LZPzeI+YGDlDyFn1pv9Gk7PDTJBgsZiax0SB5H0gy7YEtuIdXh0CLVsOXDtOdDxip5e0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745308003; c=relaxed/simple;
-	bh=zMQCHFevzijF0AxHhH+gusR4CT8pHCOpcLy7M10lK5s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FjeTTmPbSwHauLzI8v5L7BtqZ9q0E/XR36KN4RmUdQ2HlTcXeugOVxHTvRqlX2/AYTAWd/dyspOZpeJ8TQkVY99PTC6iGWSTRESjMx0kYqdbbjnHzElN0R5gcYzqhoxgGgxPD+zb0sf01FDWvGegKLqSMQugZ7Jj7nqSpmZYLlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-86d2fba8647so4002438241.0;
-        Tue, 22 Apr 2025 00:46:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745307998; x=1745912798;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oSFRSq2pGngywe5PAtRGvPoQXPxTMBPmVFi4/RAkfR4=;
-        b=Z3g1/2OCrRbldlb2I4uRcYP5RZ44z7rN+L6m6su7h5eatJkuz0+44CV+tiGCsQ28pU
-         /riuCXnwpZoVR0C9kuOi5/Mg57FZVFvjc6Bf1ax6Tc4MRI+mLNVLPgVDqNRACsUpfTvx
-         BH39E+zMtBXa+Cnc3K9kfl0VCkK+z5uAhiYB8on6znLb3Dz4UGswfnyp3kfITRBM1upq
-         4h2HvzSqSLplfNzyacvZn7REd1MxeKrarK2N+VNd8AN9r8qdUxxD8hdl6lWl4fZcqfHa
-         QvfWUKt+5A4XRyQHw9KWZBD7355nd2znzRS4w3h4ezrqvkjdtmQ7amqOfU3wj6lRzQIq
-         8QVA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1NIbRafvTsmHkW37j+TN5cMCZkl88t/N9aS/gsh7UCTBH6RzVbEMeJL8rZgUwhMuWtf9iVkYFImSC@vger.kernel.org, AJvYcCVtoeXbaOXQ2zKMs7gtnOI6Ar1PI3DTJy9Pxhxk4pDb3+SvxZ337AoPmdiEQT9LfAW7Lym61cJrnOskf+7mIMyLQJQ=@vger.kernel.org, AJvYcCWHI1tw4qU44mir2/lXAXwyAM2gfzA2Zf6ZkIO/H726D8x0R3NPpqpv4ZZyFXr5FEPFYxSMY5lVmLvv@vger.kernel.org, AJvYcCX2a4k+sWO6K42r8J+DvKPIGbOwDwIB0QgddiiLnLhalpcF/AF3XCwbY1zVnJlWkSDj7XacyPFtVU++vmE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRELMq2xmSYAa7zNdyVWCHWlBblD3fCmO7Ovm6o0ZZsqhnVVq6
-	Hai5mfmMFsrefJeyTjctLhdEIgy+OoVhkIyOPfQMfUXe5U+AHUI/c+4lS033
-X-Gm-Gg: ASbGnctzLU2N9CF+UW7Ojg4h+iiBW7a7vu2mzc+KKobHTVzXRIwITrU2qITlvSwPkre
-	aaHpBXUEE5iWvGnZ+VDJPRb2PyPLs8jaYWB1vD1kA2ec4j0k79wwCUGDEUX+p3aSYsNu4hx1tkp
-	sCBSpkOOWIqgQNYkSPjCjYey0R/atg5dkt9/K8Og1YSTy+bn30UfeKIIlitnyYXVqCBxFMYKcic
-	iSC63L6ICR+r/wqGA+I4V/FNtGCs9ypuYdjnVS5t+DZIwXKcbIcQrGvqkqcF8pE6X8CMjBgFnlq
-	HlVutl9WL9a2W7NI4COWbgx2CHboSex+/QG7Dr0KCZ6j1+gZMAvtD+2f2cyk+1frWs2b5wbEsEA
-	x3SXGPF0=
-X-Google-Smtp-Source: AGHT+IHM+gzmYnsjJsgEWvUwCgPk2WJMeHHKA51LqEK3DaMENbiFPYx7zC92RGgfQZmahkkbEMtgqw==
-X-Received: by 2002:a05:6102:21a9:b0:4bb:e36f:6a35 with SMTP id ada2fe7eead31-4cb80132831mr8320319137.14.1745307998165;
-        Tue, 22 Apr 2025 00:46:38 -0700 (PDT)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4cb7ddb214esm2106172137.8.2025.04.22.00.46.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 00:46:37 -0700 (PDT)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-51eb1a714bfso4553687e0c.3;
-        Tue, 22 Apr 2025 00:46:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU3sIIPjj+gX1ulVD5cMSataBGb+bMgINxznCGsJ7MIMV/hlSH0aT3jwnlOJCHrtoohJ1M58Sj7jt6DvefOn2Oo5Zw=@vger.kernel.org, AJvYcCU7pR2yW/6OXWVkog4WvOFbZR8dZx8ugWFJE7rx63r4sLOeRRJnQt7GhiITFj39Zr9QpUl/KqIDCArBkfA=@vger.kernel.org, AJvYcCWejdTfn5Q7pdFIyUgjBNtRjwSWou2VTgUdNWSJh8cnpPzwoRy6w3oUNvREHKYcV7z8FvKuDt4cSc3k@vger.kernel.org, AJvYcCXC/C3BZKnyh1ErW72+MvxUZ83Y4SseNXKNr0qK4orb6gJQyagyacFPll/fGgMUytfmzDwpkP6Li7rx@vger.kernel.org
-X-Received: by 2002:a05:6122:885:b0:523:7c70:bc9c with SMTP id
- 71dfb90a1353d-5292541d3demr10328462e0c.5.1745307997189; Tue, 22 Apr 2025
- 00:46:37 -0700 (PDT)
+	s=arc-20240116; t=1745308067; c=relaxed/simple;
+	bh=gYBCtmcJwyBrgGgeZj1AG+YLAnJPuvkOb/Fa/7ENihU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=HcXZYEcWAucZNLJfH+M7GBGDQUjeZN1YyScDNebZBcVIuOorzlBl1F7dYbgEspkvWrkdI0CP7oHbLZjDvjaA2Dz2XcNzexup2lnnO0AL48UOdW7HU5ei43A0LQ3FFTBKpFxrs+L4CbRWDRizr1Ciq9NMt6fzJ/3eG/npHOkxESo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CR8KgOZU; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250422074737euoutp02e48c33da640b7a1cd7286a93ac1ca521~4lG5x_k_F2280622806euoutp02f
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:47:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250422074737euoutp02e48c33da640b7a1cd7286a93ac1ca521~4lG5x_k_F2280622806euoutp02f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745308057;
+	bh=YhGFLkEzKgz+GfyN4OdYyuMG4I+CyiVDnG8UcSjurlI=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=CR8KgOZUrftR9/Eqo4u0/5IySoaChZq+JpkQg/Y5g60SlY35JuhD4tImWkpqj6N8f
+	 sdTxik2CqHBYBNHgAORBVan/z23C051OkWAlXzl2DM273g6WgEVfxTAB93Sk/AF14T
+	 t+Mqc2JfBTC27GyPmmbxcDSI3qW8lq4cAgmk2lRA=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250422074736eucas1p26785e0aa606a0551d57b635f9f7cb724~4lG5EMJ6s0798107981eucas1p2P;
+	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 57.65.06072.89947086; Tue, 22
+	Apr 2025 08:47:36 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250422074736eucas1p229d8a46d24bc2b62fba4835f225d34cc~4lG4cllm00585305853eucas1p2Z;
+	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250422074736eusmtrp25d4f37e4a76d45889912395ff4e4d1f6~4lG4brYS01493814938eusmtrp2h;
+	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
+X-AuditID: cbfec7f5-7f7fe700000017b8-f9-680749984146
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 3D.78.19920.89947086; Tue, 22
+	Apr 2025 08:47:36 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250422074734eusmtip23ed507b3f619e62e76af9e5cdabc81a4~4lG3Mfp3_1123511235eusmtip20;
+	Tue, 22 Apr 2025 07:47:34 +0000 (GMT)
+Message-ID: <81e53e3a-5873-44c7-9070-5596021daa42@samsung.com>
+Date: Tue, 22 Apr 2025 09:47:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
- <87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
- <87msch81yh.wl-kuninori.morimoto.gx@renesas.com> <87plhb4qbb.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdUKBdTyA0fnfpQT6iad3S7+z3dJkh4UnS14miqgFcUhuA@mail.gmail.com> <875xj24dzq.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <875xj24dzq.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 22 Apr 2025 09:46:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUHEiik6aO84OxY8=9=ZUh7uanQL6nY-r+Fp2qo2Z6CXg@mail.gmail.com>
-X-Gm-Features: ATxdqUGZ3Mch_gBjSIlT_XBINsA8ob6lZOupoAgYV8_Pr8U469hqQQi0vIOzvcU
-Message-ID: <CAMuHMdUHEiik6aO84OxY8=9=ZUh7uanQL6nY-r+Fp2qo2Z6CXg@mail.gmail.com>
-Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S
- Sound support
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 20/21] riscv: dts: thead: Introduce reset controller
+ node
+To: Drew Fustini <drew@pdp7.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
+	jassisinghbrar@gmail.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, frank.binns@imgtec.com, matt.coster@imgtec.com,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+	airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
+	jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <aAP1BW3RmMb/Irya@x1>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTVxjHc25v773tLF4KhCOTuBRfoslA3D6cAXO66LxsixFiWELcsBnX
+	4sZrC3MsQ0FeBKnAxAUpTLAQ6IroJgUpo4NUUoqMOwcIRGkhE5fBBCyIhBfpKBc3vv2e//M/
+	z1sOJZCaCB/qdHwyq4yXx8oIMd5kWeDevBpKxux9NroHWQe1GGpc0pDohonDUEUHJ0T2XgOG
+	+uemCXTzyX0S/W3KwNGA7gcSZVpuEWhcYyeQQ20Xor6WcgLNXuoAqGk2i0D1HTYSXXc04qi6
+	uQWgnLwaIfrj3mFks1txNN6nFqAczWbkbG0m0crAzzgqm2ojkeHpd0LUWf8Jymq7gh/wZaaH
+	sknm6fg4ztzNfU4ypheVOGPU2EhGbfwNMLf1eQQzPNBKMNe6wpiR/E6Maag+x2TVWzCm8OVe
+	ZvrXBwRTYNADpjdzkDwmjRSHRLOxp79ilQH7T4pjfhzIJRO76a8n8yLTQavkIhBRkH4bnrdk
+	EheBmJLSOgC5SquAD54DmGvWknwwC+Cyfkrw6kn65Zl1Vy2AZueNddckgDnL5WsuCb0fFuX3
+	Ahfj9A74uKpjXXeHXaVjuIu96G1w5OFV0sUedDh85PxlTfek34CcrhdzFRXQdULY0T6LuRIC
+	2hs+HKtYY4LeB0drK4QuFtEyWDs0D3jPNnhnsnxtPEh3iWG2th/wcx+CdVnFQp494ESngeR5
+	K3Qa+aKQToCjjTPre34LjerOdQ6Gw9zi6pmo1Qa74a2WAF4+CH+vLgMuGdJucGjSnR/BDV5u
+	KhHwsgTm5kh59074vfrSf005XRNWBGSaDVfRbFhSs2EZzf99KwGuB95siipOwareimfP+Kvk
+	caqUeIX/5wlxt8HqD+9e6ZxrBroJh78ZYBQwA0gJZJ6SxQ/IGKkkWp76DatMiFKmxLIqM3id
+	wmXeEm1btkJKK+TJ7Jcsm8gqX2UxSuSTjqUXPLYc/zN08/zHh5MWj2CiuffCSs+x6hoYdX3H
+	iLJq+mZttDWYUqT5v2MOXzGKPJoKkxzWGT9lj5u76cLUrrRGR0g6WTfRnursfm1h+wlb0O6z
+	RZ9tOmgq5E5FcTa0FPrP1EK7Ma0q+eX9XXORx4NNJ3XzDaKjrDRDlPHXdrzoTNHZxIiawaEt
+	+e/7Ej2c3yOzJdJKBx5xnrqrfTLeUNcTmPJpyYOgyX6rZt6yEhSxLzXsxJZi8c5qqyAu5MWU
+	b/By65WAytDw2jx1WJKnhwIRY5vchxv77F4lX7xbeuFDr6VrW4/95DcfoT90/kC04SOfO719
+	xUZ5exn7rOBeWPhRGa6KkQfuEShV8n8BLph1sFAEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7ozPNkzDH6d5LQ4cX0Rk8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
+	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
+	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
+	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
+	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
+	Uov07RL0MlZe62AvOC1Q8bYzqoFxD28XIyeHhICJRMOkT8xdjFwcQgJLGSXOz21mhEjISFzr
+	fskCYQtL/LnWxQZR9JpR4mzPdrAiXgE7iQndl8BsFgFViceLjzBDxAUlTs58AtYsKiAvcf/W
+	DHYQW1ggSOL2/91gcREBBYlzKy4xgQxlFljNKrH8611GiA0PGCU+73vAClLFLCAucevJfCYQ
+	m03ASOLB8vlgcU4BJYnlN74DNXAA1ahLrJ8nBFEuL7H97RzmCYxCs5DcMQvJpFkIHbOQdCxg
+	ZFnFKJJaWpybnltsqFecmFtcmpeul5yfu4kRmLK2Hfu5eQfjvFcf9Q4xMnEwHmKU4GBWEuH9
+	5caeIcSbklhZlVqUH19UmpNafIjRFBgWE5mlRJPzgUkzryTe0MzA1NDEzNLA1NLMWEmc1+3y
+	+TQhgfTEktTs1NSC1CKYPiYOTqkGpsyl17LvrjOo49vy7/j3PQ/+JHi9XtFQLyr2wdr9adcq
+	xgNPf8w+7bH0EsvSidofU4MXXPJJNrnusYlJrzFdW8rwtWcmW5nRj7W+LuzKiRuvZ0j0He9X
+	nnxxV+qr8C1nz6eskTpV+KXj5pVXzK9v/JX98C0sUXlReamww0krn/yKcvftCxQl/16Wf/Mg
+	Ty/AqZzx+c8mjjSvw13NnTqT3gkvbDV2Xcl97zxL0D5nhVTNf7Y5yz44/WfecKv7REXesjlJ
+	y+f9/8ttwsZw+Mwddo/XThOTHzpfYL3Aka7SoaK241xZpe7efbdOtjDFZDkYl+m8P+NcuzpK
+	Trft/Kzrxy02tdqk5nsnbxY1eNHjpsRSnJFoqMVcVJwIAGzRxpviAwAA
+X-CMS-MailID: 20250422074736eucas1p229d8a46d24bc2b62fba4835f225d34cc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250219140316eucas1p29a76023868946f090f261bf78d5103e3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250219140316eucas1p29a76023868946f090f261bf78d5103e3
+References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
+	<CGME20250219140316eucas1p29a76023868946f090f261bf78d5103e3@eucas1p2.samsung.com>
+	<20250219140239.1378758-21-m.wilczynski@samsung.com> <aAP1BW3RmMb/Irya@x1>
 
-Hi Morimoto-san,
 
-On Fri, 18 Apr 2025 at 00:31, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > >         [SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #address-cells for SPI bus
-> > >           also defined at [Board file]
-> > >         [SoC file]: Warning (spi_bus_bridge): /soc/spi@xxxx: incorrect #size-cells for SPI bus
-> > >           also defined at [Board file]
-> > >
-> > > MSIOF dt-bindings doesn't load spi-controller.yaml, but why I got "spi_bus_bridge"
-> > > warning ?? I wonder dt compiler (?) automatically check "spi" node ?
-> > > I have tryed some code, my expectation seems correct (In case of node name was "spi@xxx",
-> > > I got many SPI related warnings even though I didn't load spi-controller).
-> >
-> > These come from dtc, which makes its own assumptions:
-> >
-> >     $ git grep spi_bus_bridge
-> >     scripts/dtc/checks.c:static void check_spi_bus_bridge(struct check
-> > *c, struct dt_info *dti, struct node *node)
-> >     scripts/dtc/checks.c:WARNING(spi_bus_bridge, check_spi_bus_bridge,
-> > NULL, &addr_size_cells);
-> >     scripts/dtc/checks.c:WARNING(spi_bus_reg, check_spi_bus_reg, NULL,
-> > &reg_format, &spi_bus_bridge);
-> >     scripts/dtc/checks.c:   &spi_bus_bridge,
-> >
-> > Perhaps we do need to extend the use of role-specifying properties
-> > like "interrupt-controller" (in Device Tree Specification v0.4 and in
-> > dt-schema) and the few others in Documentation/devicetree/bindings:
-> >
-> >     gpio-controller
-> >     mctp-controller
-> >     msi-controller
-> >     system-power-controller
->
-> Hmm... but I'm not familiar with DT. Should I do it ??
 
-I do not think you should do that.
-This is something to be decided by the DT and SPI maintainers.
+On 4/19/25 21:09, Drew Fustini wrote:
+> On Wed, Feb 19, 2025 at 03:02:38PM +0100, Michal Wilczynski wrote:
+>> T-HEAD TH1520 SoC requires to put the GPU out of the reset state as part
+>> of the power-up sequence.
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  arch/riscv/boot/dts/thead/th1520.dtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+>> index 474f31576a1b..6b34aab4b455 100644
+>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+>> @@ -7,6 +7,7 @@
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+>>  #include <dt-bindings/power/thead,th1520-power.h>
+>> +#include <dt-bindings/reset/thead,th1520-reset.h>
+> 
+> Are you okay if I omit this hunk? My thead-dt-for-next branch is based
+> on 6.15-rc1 but thead,th1520-reset.h only exists in next until the merge
+> window.
 
-> Except from SPI warning, and focus to MSIOF-I2S, my patch itself is
-> not so bad, right ?
-> I will post v4 patch-set, with comment above.
+Yeah, I'm not exactly sure how to coordinate such stuff, obviosuly it
+would be best if this chunk would make it to the 6.16, but if you think
+it would be problematic then omit it, no problem.
 
-Thanks!
+I will then update this patch series v3 [1] to gracefully handle lack of
+reset, as the 6.16 will not contain the required reset line for sure.
 
-Gr{oetje,eeting}s,
+[1] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-2-70c5af2af96c@samsung.com/
 
-                        Geert
+> 
+>>  
+>>  / {
+>>  	compatible = "thead,th1520";
+>> @@ -497,6 +498,12 @@ clk: clock-controller@ffef010000 {
+>>  			#clock-cells = <1>;
+>>  		};
+>>  
+>> +		rst: reset-controller@ffef528000 {
+>> +			compatible = "thead,th1520-reset";
+>> +			reg = <0xff 0xef528000 0x0 0x4f>;
+>> +			#reset-cells = <1>;
+>> +		};
+>> +
+>>  		clk_vo: clock-controller@ffef528050 {
+>>  			compatible = "thead,th1520-clk-vo";
+>>  			reg = <0xff 0xef528050 0x0 0xfb0>;
+>> -- 
+>> 2.34.1
+>>
+> 
+> With the above caveat:
+> 
+> Reviewed-by: Drew Fustini <drew@pdp7.com>
+> 
+> 
+> -Drew
+> 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
