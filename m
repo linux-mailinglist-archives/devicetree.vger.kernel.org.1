@@ -1,94 +1,139 @@
-Return-Path: <devicetree+bounces-169482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6AF3A9705A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:19:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C61DA970A0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6AC3B9FCA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:18:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDDDE163C05
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9482828F92A;
-	Tue, 22 Apr 2025 15:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB2428F924;
+	Tue, 22 Apr 2025 15:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWBQ/H/2"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="O7wPBaYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DA42853EE;
-	Tue, 22 Apr 2025 15:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB2C28CF50;
+	Tue, 22 Apr 2025 15:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745335110; cv=none; b=Wfafzv0iOW1Qujso5BxIAefOUOyt7QRBLYszP9wmhD140+pAra1GAIsAQ28r9pfDFCzmN44MXHPVj2SsAbXtic0uziTdt74mNJzNuX9qHr5WWTZAVtr+UIDrdFCm/h71xeq2gjxl3RErVql5kW8JxEYfJs66lTxY+agCRPQHW7o=
+	t=1745335639; cv=none; b=ALamL/OEfBYxC0e1TzVoGDSrehRk+G1P8BaAvfCFhEi1cZVwlm6qjoa54UaxmCD3g9+H3xeybm807SY9WrBK1MTksRVluxpCyHzr8MYn64C3qNNXt1fnSCwRAAdogCJ81/vkKIlVMnBibWUbhpNbrRDXFvkbMKT2nJdIGyC68O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745335110; c=relaxed/simple;
-	bh=WSMzleGFy5SmEw/j4q9eyuXjRU6ZVJnLQEIuew9yvVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RICT4Fm6slqY6SiOhOxY8wVFhB4mlfV1HjeBHgE9iwbtdQigFjQo2jmqmie099mdYre1GvQ8prEacOUESR/v99V0DizK5xHvIt6EZzKlPDxdqQIHEwV0OBa0J0+0elL7BvE508gUgwSV1O2gS6uxETvb0JtKB02Ei9XoSJXYt3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWBQ/H/2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33B8DC4CEE9;
-	Tue, 22 Apr 2025 15:18:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745335109;
-	bh=WSMzleGFy5SmEw/j4q9eyuXjRU6ZVJnLQEIuew9yvVE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tWBQ/H/2TVFvh3OZ/Tt93sOb71VNku4po0HT1VsmH436FwKK6EliKkY3dzmRtHT0C
-	 dYvjZBMqmQpXXI6SE/44S8O2bl7XNZ/xg4cdnqK/zUpG6dhOecOCaeI+ImDp2jzEst
-	 aSEZs0N0wByyhsO/as/LKs7V9mi6qneEfFWXwoNkE0SMyI66/PmRcE7JghcHVQg2Ww
-	 3LJ1Mm/Nrm/sGNdFQtUFf0z9Wq5RbsXW69OKU1BzTe2qjobyOAdffcxmjmsYiOLfyE
-	 SdnlohYB4zqRKQTa6pfCZ+ChEbOVNA6gj01lgeDHY4bprH395RXB/sqCHaJrNyVYYd
-	 v6FOY3VqvP+mg==
-Date: Tue, 22 Apr 2025 16:18:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Cyan Yang <cyan.yang@sifive.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, samuel.holland@sifive.com,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/12] dt-bindings: riscv: Add xsfvfwmaccqqq ISA
- extension description
-Message-ID: <20250422-dictate-parade-3ad965f6c9c6@spud>
-References: <20250418053239.4351-1-cyan.yang@sifive.com>
- <20250418053239.4351-10-cyan.yang@sifive.com>
+	s=arc-20240116; t=1745335639; c=relaxed/simple;
+	bh=osF8SRCtVm7uYw0wV8+zhPfygDG1r4KTYhsXoYexelE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=uafJcjq0hVjfZHlDZp9rqTtOMbATJTliUd3Urr+1YjT/L4jXDo3a0LkVxdWrma6oVabdFxV/jAqzSdTAAKJhu1y/HJS3/BAtfiG5oU2vcc4fxjOjFl4GpVOFy1b78Xb/z4T3mlRFU4xeDIdGejGINKYBYB95ox+uqv3TBzAT7wQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=O7wPBaYt; arc=none smtp.client-ip=91.207.212.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
+	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53M7sLlD009013;
+	Tue, 22 Apr 2025 16:26:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=dk201812; bh=2oGiXeRJ3zc5ZF+d499Pf2V
+	ijeVDbIWsPwwy9McpzxY=; b=O7wPBaYtqRicm1+wJJKjQVjjU16RhdwbKObb2D0
+	H7GJeCuq+73Kg9f/zFQ2LgkAe4BJw1JKYVCizI9ZQff8B7OrEbGCW5NrNYVSxdFw
+	lfEglHuSoWuIjrYV8RPuaJdQT+PjVcBBl4HJ1dQR5Il84bGAPkLWLmKmrXeqaRo8
+	HfAaETmfJ7++BJ5+sGaVKrj+RZcDvB2IcsWwj8B5jw9nth4GovjS/cKSI65p8smU
+	InY1Ix4lfOnm2F26kojmSz4JfPWYe8dsBxIR4ICPDmzaDUiCApUyhbIFGhAzoBqm
+	PPpgc8ms0XPaUfTYZ8r++9w3GPJrmmbPXpybXcqAYUIrykA==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 46423t1u0t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Tue, 22 Apr 2025 16:26:51 +0100 (BST)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ (172.25.7.98) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 22 Apr 2025 16:26:50 +0100
+From: Matt Coster <matt.coster@imgtec.com>
+Subject: [PATCH v3 0/2] Imagination BXS-4-64 MC1 GPU support (DTS changes)
+Date: Tue, 22 Apr 2025 16:26:40 +0100
+Message-ID: <20250422-bxs-4-64-dts-v3-0-ec6657bde135@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PSo2xE1X0sDiDPUV"
-Content-Disposition: inline
-In-Reply-To: <20250418053239.4351-10-cyan.yang@sifive.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADC1B2gC/3XMSw6CMBSF4a2QO/aavgFH7sM4wD6gA8C0TYMh7
+ N3CSE0cnpN8/wrRBm8jXKoVgs0++nkqg58q0EM39Ra9KRsYYZIIKvGxRBSoBJoUUbeNMKSplZQ
+ KCnkG6/xy5G73sgcf0xxeRz3T/f0TyhQJutpw1xGlmDRXP/bJ6rOeR9hLmX3q+kezolvXaNIyz
+ ikVX3rbtjdrsbSM5wAAAA==
+X-Change-ID: 20250415-bxs-4-64-dts-c984d0876556
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+        "Alessio Belle" <alessio.belle@imgtec.com>,
+        Alexandru Dadu
+	<alexandru.dadu@imgtec.com>,
+        Luigi Santivetti <luigi.santivetti@imgtec.com>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1296;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=osF8SRCtVm7uYw0wV8+zhPfygDG1r4KTYhsXoYexelE=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMWSwb7V8Njn2rNGfQ/v3hfRqu20R2tibu5L7fvEevxXRC
+ +OWyF462VHKwiDGwSArpsiyY4XlCrU/aloSN34Vw8xhZQIZwsDFKQATMWxi+Gda5n/T/8eX2++/
+ LWe0/7XFbnP1KxEh1Tfdbq2C6td+pUcwMkxQLwn5kXk/Ne1+4t6dYdLixwtWFm7//279381WBjL
+ FtUwA
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Authority-Analysis: v=2.4 cv=L60dQ/T8 c=1 sm=1 tr=0 ts=6807b53b cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=6pm0VhuFVbIA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=sozttTNsAAAA:8
+ a=_yRp58ONHCnQFu2M2WYA:9 a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-ORIG-GUID: pd8aAIL72NSechMn-Ap2aj1T9LbpDTOQ
+X-Proofpoint-GUID: pd8aAIL72NSechMn-Ap2aj1T9LbpDTOQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIyMDExNyBTYWx0ZWRfXxbe5BKxbbxwi pkYBnpcgrtnbSxWQa8pFhkUmcM9LlTcEIiJDrW5QlDlIbtRHnq8Wlp2Mit3gYpk8GqCphMGM94R TGfVGKPNswwqy3uRevzYgVvNB0NYJ5qa3oaQ+ID3capvn8kqP+BpafxGqIadDccPMzn4LRMSMzB
+ PRja5kHKjxo+0zkmba4aAke7rg5CDQfaFUwG+FqHi5M0U73JC1Qhg30loWD9LtHANhKS//5vr7A ldb0YIvUWHac5S9UBsdpuLYQmPaOWOmNTude+HLOO7iyMrT38zySPFX7RWsgHlpc22+FDQGA8OZ QQ+TmlcOnagQF4PiGabjYxRWmlftsqZqPZdWzNNInDXpUTHAHvYzKZ8UtSEIZAh41Eg9yDAgSbr
+ AV5uaMjV9tcMp/JcsjZzKElj+xY9AOeUylCv9icqJeCO4gJAhKvIKNxpnK+imiMVvRhcRwqI
 
+Now that the binding and driver changes to support the Imagination
+BXS-4-64 [1] have landed in a DRM tree, here are the corresponding DTS
+changes without the [DO NOT MERGE] tag.
 
---PSo2xE1X0sDiDPUV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This GPU is found in the TI AM68 family of SoCs, with initial support
+added to the k3-j721s2 devicetree and tested on a TI SK-AM68 board.
 
-On Fri, Apr 18, 2025 at 01:32:36PM +0800, Cyan Yang wrote:
-> Add "xsfvfwmaccqqq" ISA extension which is provided by SiFive for
-> matrix multiply accumulate instructions support.
->=20
-> Signed-off-by: Cyan Yang <cyan.yang@sifive.com>
+[1]: https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 
---PSo2xE1X0sDiDPUV
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Changes in v3:
+- Use assigned-clocks to pre-load the frequency of the core clock (P2)
+- Link to v2: https://lore.kernel.org/r/20250417-bxs-4-64-dts-v2-0-9f8c09233114@imgtec.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v2:
+- Add details of the source of the interrupt index (P2)
+- Add Randolph's Rb
+- Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAezQAAKCRB4tDGHoIJi
-0lVhAQC6EzX10joPYVO8GsoAVGpEsRXt1kEptH5AAgI6JS9alwD/VqeWssBvDGY6
-G0Cp3nBek9TbCmYL+hYS2935WUSTbwA=
-=QwvL
------END PGP SIGNATURE-----
+---
+Matt Coster (2):
+      arm64: dts: ti: k3-am62: New GPU binding details
+      arm64: dts: ti: k3-j721s2: Add GPU node
 
---PSo2xE1X0sDiDPUV--
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   |  4 +++-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 14 ++++++++++++++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+---
+base-commit: dcbd5dcc956e2331414fd7020b4655df08deeb87
+change-id: 20250415-bxs-4-64-dts-c984d0876556
+
 
