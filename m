@@ -1,131 +1,209 @@
-Return-Path: <devicetree+bounces-169458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E62A96F1C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:40:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DDE1A96F4A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 750277ABA89
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:39:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 433DF3BF6C9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA2D28CF5C;
-	Tue, 22 Apr 2025 14:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1086328C5AE;
+	Tue, 22 Apr 2025 14:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LNDMR9KG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eIVvTvYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88B728C5C5;
-	Tue, 22 Apr 2025 14:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDD82AE68;
+	Tue, 22 Apr 2025 14:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745332846; cv=none; b=VmoetwgB6NtQHn7EH/9oG08jp+TFRE2NKLewYTyfa/Z1MO7+d4I+CpEQwH3nzebgHE3QJjl59mGWBvi+YBXcKS53iPP2ryLL2AbYDFJK1mAZ4lWW9gHAFkGFjrglk8dAId/o7GygeAfJ8bn+uft7dKCLKvNNG5wiEcjcb2I+mmM=
+	t=1745333572; cv=none; b=uKmg6vzoK2jlpw1ptcMKwRjfl/Z8w37ZG+OH5DuQB+oQt+ZtsrBkCy5bO4qzWyQWHL2M3qh4E3YHQt7CE4fQsE2vryo5FUfoX+uMZ6S/DPgdETdP3Lr2bB3c6KJ4Wvmv2x7PGh5msWYUGa0Kxb8WunwezskPNdDUZ+3R1sC6g7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745332846; c=relaxed/simple;
-	bh=M9Zr7hxLPheS12ZSZNWK5qMbOtisljKEvNuI/iEukEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nlIEiEMb9l14rdR/cwvLq9yosAgSfbmVz/9v8x4ekioyMGmh2ZznPzGPRYmybkBHrfBN9I2kPygN7ZANGjjGFz6EKJG1LbVjBzbfOIeSuEXgQh4rDJ2D3CGoQuWeo71FTLugIU0dy1VvgjdbaErz/HJEb8FoHy2yWQEP/BASIZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LNDMR9KG; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=W0S8t/6FGxg47c0LEtOaE/CH+Zrp13P24zwNFo5jGGw=; b=LNDMR9KGZUOWw2nq8JndcvNeF/
-	UlrAChAS6n9brfhMKUvxfErkEiAKWZfUakTgo1Kkbz1sy/lTjGFy4FUuQ/j1f6howOfcfwKPT3E3w
-	xIqAYCKilAfznPhLUM091UBTLzpjpG4jgH+P8NwnhBhr/88g68aCbnmxfY71+QOETvkc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u7EnR-00ADBy-Ka; Tue, 22 Apr 2025 16:40:25 +0200
-Date: Tue, 22 Apr 2025 16:40:25 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Whitcroft <apw@canonical.com>,
-	Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
- update descriptions of RGMII modes
-Message-ID: <d79ed229-f0b7-441a-b075-31fd2b2f8fe6@lunn.ch>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
- <cd483b43465d6e50b75f0b11d0fae57251cdc3db.camel@ew.tq-group.com>
- <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
- <b53fba84c8435859a40288f3a12db40685b8863a.camel@ew.tq-group.com>
- <aAdZoMge_CKtqokU@shell.armlinux.org.uk>
+	s=arc-20240116; t=1745333572; c=relaxed/simple;
+	bh=QTtMhN+qUIN28sTfIHm6cAZpcMSYeG7RgKue75sEfOs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MwUvlhZrCAxi9+Kw1Rn20dWVmsXMkt/nvfEFYBxPMWN3UWf47J+NHI9KhYjJBZjZRE1CcxaM3/cWSt5J8gGmC312KQvYaKwapnsfBkUxCtTyjba6SwHjV9SLWFaIQhWss8pmISrZB+Z/9CfGgB51oQIRMyv6o/Hoquoe57xmWdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eIVvTvYR; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-acb39c45b4eso772089466b.1;
+        Tue, 22 Apr 2025 07:52:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745333568; x=1745938368; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ne0UrOQ10ywUV4yIx/6vzg9wa/Lu7VvCl++7DoTSGgQ=;
+        b=eIVvTvYR6WD1RCVQqtvGuj3aVfMgu+pxrNPAJrbim6sr3NGF+hDbo89PhaQ3xx9Szf
+         rZD5MUTNTDjafQvSAm9kOdSj98dMTpx0Qmxw+z4KHIVQYgMCgU0CJzQSlZuhSy1Lm9ZY
+         AwnIlj0+eJxWkkQhBC8b5pPjObOcrDw9iwqB5ZrKRWNnwKi5SOI+QBXyyhCQ/ttn/ONA
+         T919e/nh+kKDy6vgY5huFISfe9GXSyE2KT8EV7VcCK+so+0YOt7jG9IZ1ZqHfAcH3TiT
+         vW+TmUdzFAdl4DYXT44WToqzqLosnXMJXTNGi5j+39oH9WZqTSETd/xLIHXhcBKC8AYW
+         FczA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745333568; x=1745938368;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ne0UrOQ10ywUV4yIx/6vzg9wa/Lu7VvCl++7DoTSGgQ=;
+        b=TOTP7gKmtyD4/FpChMfqgZ5sF4ZdPzMHMcNeLF8gsXdHWPN3+2wEWjybFbiRDZMMm7
+         wYMhrJLTgJiz4x9ZgLq79xcLPcQDdLmVLMvuB1m6J8yetrlNW8CLOKWQ5P6djX1PbO7N
+         7NlEnfok2JSyKTAzYPHoZc6IA9bBm3pErqWpBxQsGNR3p2sEZM/6Fr3Ks/yDjAwusZHA
+         VmOvCKPV2qVbnB1vmstMT/rIxtEiqaHcndwKsVT+Xdf7ONH0q5EzNy8Sx/YLdmULOuKz
+         8nvA/rzUpw5CvMvwTGeBX7kU+hnclJVR+nlrvsipfjw6Ne2htJzRF7OHGISf1DZ9tmXl
+         G2oA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqTNQ2ctHFVnSwuP4/3Zk44NdfGleb7gxASu244IaQF8lTH2cIeGdNxNjPUG99FWVhPfpH1DJFwbeYyb0=@vger.kernel.org, AJvYcCXUvGonwvvhKL+Y69rJ6Zl6xjaeMhXlde31mXicyo9Y0xyE3wpxzeX9qQ5H935vZ/i5f778X4dHXBuF2UE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbNkdeCIfqMSKMTHvbhbh1fQuFrC0Fl9nD7has9U9qW/EGSyvP
+	U+b/5TM3BSWadXeno/UtTAomEjdjCTIM9EdiND2cars/10uyIxT3
+X-Gm-Gg: ASbGncuuk1uxxUP1PfgtulOerkI24LOEyPjsc32N0rUZc8niGtFrlTcdbfwKy6n9FsJ
+	1fCfT8sAeT9a1pokTEP2zR/779sU+BJ+8wfU5Ol9vmhCUHHIngjwbynf6ghFPtO6VPc6EW2oLoB
+	7uSo+jc3WWgalJMEbT/T6OZ3m3JbrRp1wy/EeVAER5i/geMYCRmy/tTzP8NFufTSU2lPI17wOrq
+	ZfHOzao/XT/cBLWbqy+i77PkZ5hwyIDIB2rg9/KJdV1YBYPtAtMZby6YqVfMnk3Zb8739IOC6gN
+	b+NjCGLw1wVzBFG+J3tQ8V/2wmZGIi/dsBdMO1rMvy8=
+X-Google-Smtp-Source: AGHT+IGb9MBfCkRoB/jqq7loWg9l+w4QKcOEEXBWwwBNICQDiX2ECXBkrt0pwz/SUpiy+0yG92zd4A==
+X-Received: by 2002:a17:906:6a1e:b0:aca:c924:c14 with SMTP id a640c23a62f3a-acb74b34dbemr1383647666b.17.1745333568369;
+        Tue, 22 Apr 2025 07:52:48 -0700 (PDT)
+Received: from [192.168.1.101] ([212.106.161.104])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef9e7e6sm657013966b.162.2025.04.22.07.52.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Apr 2025 07:52:47 -0700 (PDT)
+Message-ID: <d0da9dbd-7ea7-4047-bab3-22f416c45938@gmail.com>
+Date: Tue, 22 Apr 2025 16:52:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aAdZoMge_CKtqokU@shell.armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: tegra: Enable PWM fan on the Jetson TX1 Devkit
+To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com>
+Content-Language: en-US, pl-PL
+From: Tomasz Maciej Nowak <tmn505@gmail.com>
+In-Reply-To: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-> I'm hoping that Andrew will read my email form yesterday and reconsider
-> because to me this is a backwards step
+Hi.
 
-I will get back to that in a minute.
-
-> > On Linux, there currently isn't a way for the MAC driver to query from the PHY
-> > whether it could include the delays itself. My assumption is that most PHYs
-> > either don't have internal delays, or the delays are configurable.
+W dniu 21.04.2025 o 00:42, Aaron Kling via B4 Relay pisze:
+> From: Aaron Kling <webgeek1234@gmail.com>
 > 
-> motorcomm, dp83tg720, icplus, marvell, dp 838678, adin, micrel, tja11xx,
-> vitesse, dp83822, mscc, at803x, microchip_t1, broadcom, dp83869,
-> intel-xway, realtek all do handle internal delays. I haven't checked
-> whether there are PHYs that don't - that's harder because we don't know
-> whether PHYs that don't mention RGMII in the driver actually support
-> RGMII or not.
+> This is based on 6f78a94, which enabled added the fan and thermal zones
+> for the Jetson Nano Devkit. The fan and thermal characteristics of the
+> two devkits are similar, so usng the same configuration.
 
-I did look through this once. There are no PHYs with Linux drivers
-which support any of the RGMII without supporting all 4 RGMII
-modes. So we should just assume all RGMII PHYs can add the delays.
+Does this work on Your DevKit? Doesn't on mine, the fan won't budge. Maybe the
+revision difference? What I'm using ATM is [1] and [2]. Because inverted polarity
+of PWM, not submitted since that'll need the driver changes [3],[4].
 
-If i remember the history correctly, Renesas built an RDK with a PHY
-which did not support RGMII delays. So they where forced to do the
-delays in the MAC. But it seems like mainline support for that PHY
-never happened.
+1. https://github.com/tmn505/linux/commit/a78c520ec94aeab2c9dc8e1f46597c4174ff957d
+2. https://github.com/tmn505/linux/commit/99beee4f0cd5d3a6f30e1829d823c11cb8b54bac
+3. https://libera.irclog.whitequark.org/tegra/2024-07-19#36707118;
+4. https://libera.irclog.whitequark.org/tegra/2024-10-14#37145211;
+
+Regards
 
 > 
-> > If this is
-> > the case, having the MAC add them in internal-delay modes and not adding them on
-> > the PHY side would be the best default (also for PHY-less/fixed-link setups,
-> > which should be handled like a PHY without internal delay capabilities.)
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 60 ++++++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
 > 
-> See my "advanced" use case above. We do have drivers doing that.
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+> index 83ed6ac2a8d8f403fb588edce83dc401065c162f..bc02f2eb14bcbd99627c58b398bbf43061c8110b 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+> @@ -1623,6 +1623,14 @@ key-volume-up {
+>  		};
+>  	};
+>  
+> +	fan: pwm-fan {
+> +		compatible = "pwm-fan";
+> +		pwms = <&pwm 3 45334>;
+> +
+> +		cooling-levels = <0 64 128 255>;
+> +		#cooling-cells = <2>;
+> +	};
+> +
+>  	vdd_sys_mux: regulator-vdd-sys-mux {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "VDD_SYS_MUX";
+> @@ -1778,4 +1786,56 @@ vdd_usb_vbus_otg: regulator-vdd-usb-vbus-otg {
+>  		enable-active-high;
+>  		vin-supply = <&vdd_5v0_sys>;
+>  	};
+> +
+> +	thermal-zones {
+> +		cpu-thermal {
+> +			trips {
+> +				cpu_trip_critical: critical {
+> +					temperature = <96500>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +
+> +				cpu_trip_hot: hot {
+> +					temperature = <70000>;
+> +					hysteresis = <2000>;
+> +					type = "hot";
+> +				};
+> +
+> +				cpu_trip_active: active {
+> +					temperature = <50000>;
+> +					hysteresis = <2000>;
+> +					type = "active";
+> +				};
+> +
+> +				cpu_trip_passive: passive {
+> +					temperature = <30000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				cpu-critical {
+> +					cooling-device = <&fan 3 3>;
+> +					trip = <&cpu_trip_critical>;
+> +				};
+> +
+> +				cpu-hot {
+> +					cooling-device = <&fan 2 2>;
+> +					trip = <&cpu_trip_hot>;
+> +				};
+> +
+> +				cpu-active {
+> +					cooling-device = <&fan 1 1>;
+> +					trip = <&cpu_trip_active>;
+> +				};
+> +
+> +				cpu-passive {
+> +					cooling-device = <&fan 0 0>;
+> +					trip = <&cpu_trip_passive>;
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+> 
+> ---
+> base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+> change-id: 20250420-tx1-therm-9fb3c30fa43f
+> 
+> Best regards,
+-- 
+TMN
 
-I agree with Russell here, it is the worse default, not the best
-default. It makes it different to nearly every other MAC driver. It
-needs extra work in the MAC, which most MAC drivers get wrong. They
-also tend not to call out they have done it different to every other
-MAC driver in Linux, and so it does not get the needed extra review,
-and so is broken. I also think there is some 'vendor SDK' mentality
-here. Our MAC can do this, our SDK allows it, the Linux driver must
-have it and use it. Pretty much all hardware has features which never
-get used, but vendors sometimes have issues with just leaving it
-unused.
-
-	Andrew
 
