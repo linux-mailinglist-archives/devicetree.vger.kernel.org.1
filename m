@@ -1,140 +1,131 @@
-Return-Path: <devicetree+bounces-169457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887F6A96EEB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:34:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E62A96F1C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:40:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 377AE1797C8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:32:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 750277ABA89
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFA0284B5F;
-	Tue, 22 Apr 2025 14:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA2D28CF5C;
+	Tue, 22 Apr 2025 14:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MTHjseVn"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LNDMR9KG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71FE75FB95;
-	Tue, 22 Apr 2025 14:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88B728C5C5;
+	Tue, 22 Apr 2025 14:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745332300; cv=none; b=rXM6Qgj5Wx/zk7u+L/ay21hGfAkHQcHvcxpn15N4W5KbMkVQi1kSC30Dwt7Lr7Nj97zya2FwR9+0aKoIkU99vP6biCtTnQ4Qsc/gWQSvYa0acdZp8HLlNqoYoRguVkjLJU+W3Zcn0ua0pyynvakRe9GlEKgrhlY1LgFoeABtrAo=
+	t=1745332846; cv=none; b=VmoetwgB6NtQHn7EH/9oG08jp+TFRE2NKLewYTyfa/Z1MO7+d4I+CpEQwH3nzebgHE3QJjl59mGWBvi+YBXcKS53iPP2ryLL2AbYDFJK1mAZ4lWW9gHAFkGFjrglk8dAId/o7GygeAfJ8bn+uft7dKCLKvNNG5wiEcjcb2I+mmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745332300; c=relaxed/simple;
-	bh=aPTEjEJvTaqK7QfdNneuXA5RGpq3RiNIyz1EOWySdY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Clr7+dMShkCExTQR3KVTbN6Z6svbkjPb4US0A1J42iUeWMljELxecinNB5jXbUXcUWxwtaiX2A+jQI7/NWdtihaUa01bvLnpyoQpJzpsow6zO0c5tpImD4FAdLGbf6jtUeD++N20yAIUSO0w/Zq1k++BXekfHsQ1ABdJMvaYiGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MTHjseVn; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac7bd86f637so1138338566b.1;
-        Tue, 22 Apr 2025 07:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745332297; x=1745937097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9D2Ohj7BMKhRiIF2UiB0PW+jmy/zmiJ2pgDRvvl1DdQ=;
-        b=MTHjseVnwQQxG7mxXwyyOiioDZ6jgbLkRHuzZY5wwigbJbV9KFkdjmg+Mo93GzJNTm
-         ykpdMyEScaz9uP0ougUh2Sz2lWV9ZTeCDUlHxYl3t6eCB8f12x6cRm+dIMVxTgWT4LsY
-         1XvfS4mELBOPyCx9XVAHInqBL+oggjLWNPpD8Ig3s5+b0lE6RYXwoPIEL14vW9xK3Sha
-         wHe8gQ6A4MSrUtTlYt6o9x3O5DLKl9xII0KLuuaymKo0MQTwhjcUWL5gthZqXSxJ+6r9
-         YnNKL2DLomG2EGn6lLa2j26CR1g03atEbXds+EgsXyvdmnJoZAPMalY9Kun+1CEkDzUy
-         65cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745332297; x=1745937097;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9D2Ohj7BMKhRiIF2UiB0PW+jmy/zmiJ2pgDRvvl1DdQ=;
-        b=l7Htr4mDNXvUnG6V9rBBoauJcujAY75Ng8m+YJ41nXzgu5rTKEy0S9jWzoOOugJZ2v
-         TIk1O89ZU1/hRLQbUS8+GCQRE2Z+/AyR4LcCgl8BeGaOhCDHnwZNWrpWJwJwkYDYXDnj
-         qABqvlXevDzuSoSAStLNU3zBL87xM/l/5M+tOMiybz/E+zrFty1WvenqDezQRYLsc/EV
-         JZGuvhzz6AiAvhAKVm4XHxCwbLt8r3BLbzQ+PRgg9QfU0K+5jb8Qi1aGZRt3Nqw/iJaT
-         sQLrEPlNqCU0c2wvvDWV7JUereo1ExvM2agBvpzgMNiHgkuUuhzONiNSvlINadW06Dhc
-         Uxxw==
-X-Forwarded-Encrypted: i=1; AJvYcCV4eVcvdGvfIkTbNHs0JCUxZQ0CQhWuPyU0f6/oaoHA9n5Rh0XjWZR1M6CFGtVpuUrhF/ixHylW9CnIINo=@vger.kernel.org, AJvYcCVRdM6sbIOxAhuv/MXddCA/5glFL5paxkbZLLT9hGBIxYNYTFcvPMGz+QeAimnR0LR+vb+tWuBPWlN7@vger.kernel.org, AJvYcCXJx0nd1USZYr/a4E6cFNXfTVzqQC1TtoMkM/CDheeb6zFFq2Vjmaps/V2wQcu774ZcE2JLEarlBNYSQp0g@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYz8dEMpc77RSSgUUPu568IiHydIOGb3GRwVX7aW389veAEeWS
-	dtSmaqenWA3n7gnXZAq8ZzqpL9aH2Ue/T0Pw0vQjOeJtCB6x5WhG
-X-Gm-Gg: ASbGncvRG5BHU8ptX5+dH5/5CyzxGgsst04PCxo8cbNrUaGWAOd+MU7DoQeQACEbXei
-	T5IU8U3h2Ck8ZD0PLJ1XaLNmPhkAVo9iqxEA1L55CtYpyMoeTsBEgauQFvUaY70cir8pop8UilI
-	O6aXY7ATMonJps0BLCutq6b9IvBhYsU90spQoWkNk4Xs1aZXZioFZBW+KDs8n+Ur3SdDjJplGyx
-	AsaO3lQL3g1K2lky+9FkjP44oRJRHDCn5ARbS6sQKeHLLjtaXw57LhCFzMfl9GwZkNf1SRWN11A
-	oxOZT5FHHUzKA12i0wzOoLTkevxm2OgHyqdDMPtZ+u4=
-X-Google-Smtp-Source: AGHT+IHxR50TFifkBPFb1XIbV7o2Uld6KWH6bgmxrkwABwpSwd3+oXjHqcT/SSW4faB3cyazbRU9pg==
-X-Received: by 2002:a17:907:3f91:b0:ac8:1bbe:1a5b with SMTP id a640c23a62f3a-acb6ec51617mr1298187766b.9.1745332296250;
-        Tue, 22 Apr 2025 07:31:36 -0700 (PDT)
-Received: from [192.168.1.101] ([212.106.161.104])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6eefc685sm672352866b.96.2025.04.22.07.31.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 07:31:35 -0700 (PDT)
-Message-ID: <de6aa1b0-3557-4b8b-86a3-919fd9e5dec6@gmail.com>
-Date: Tue, 22 Apr 2025 16:31:33 +0200
+	s=arc-20240116; t=1745332846; c=relaxed/simple;
+	bh=M9Zr7hxLPheS12ZSZNWK5qMbOtisljKEvNuI/iEukEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nlIEiEMb9l14rdR/cwvLq9yosAgSfbmVz/9v8x4ekioyMGmh2ZznPzGPRYmybkBHrfBN9I2kPygN7ZANGjjGFz6EKJG1LbVjBzbfOIeSuEXgQh4rDJ2D3CGoQuWeo71FTLugIU0dy1VvgjdbaErz/HJEb8FoHy2yWQEP/BASIZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LNDMR9KG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=W0S8t/6FGxg47c0LEtOaE/CH+Zrp13P24zwNFo5jGGw=; b=LNDMR9KGZUOWw2nq8JndcvNeF/
+	UlrAChAS6n9brfhMKUvxfErkEiAKWZfUakTgo1Kkbz1sy/lTjGFy4FUuQ/j1f6howOfcfwKPT3E3w
+	xIqAYCKilAfznPhLUM091UBTLzpjpG4jgH+P8NwnhBhr/88g68aCbnmxfY71+QOETvkc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u7EnR-00ADBy-Ka; Tue, 22 Apr 2025 16:40:25 +0200
+Date: Tue, 22 Apr 2025 16:40:25 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <d79ed229-f0b7-441a-b075-31fd2b2f8fe6@lunn.ch>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
+ <cd483b43465d6e50b75f0b11d0fae57251cdc3db.camel@ew.tq-group.com>
+ <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
+ <b53fba84c8435859a40288f3a12db40685b8863a.camel@ew.tq-group.com>
+ <aAdZoMge_CKtqokU@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: tegra: Add uartd serial alias for Jetson TX1
- module
-To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250420-tx1-bt-v1-1-153cba105a4e@gmail.com>
-Content-Language: en-US, pl-PL
-From: Tomasz Maciej Nowak <tmn505@gmail.com>
-In-Reply-To: <20250420-tx1-bt-v1-1-153cba105a4e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aAdZoMge_CKtqokU@shell.armlinux.org.uk>
 
-W dniu 20.04.2025 o 16:35, Aaron Kling via B4 Relay pisze:
-> From: Aaron Kling <webgeek1234@gmail.com>
+> I'm hoping that Andrew will read my email form yesterday and reconsider
+> because to me this is a backwards step
+
+I will get back to that in a minute.
+
+> > On Linux, there currently isn't a way for the MAC driver to query from the PHY
+> > whether it could include the delays itself. My assumption is that most PHYs
+> > either don't have internal delays, or the delays are configurable.
 > 
-> If a serial-tegra interface does not have an alias, the driver fails to
-> probe with an error:
-> serial-tegra 70006300.serial: failed to get alias id, errno -19
-> This prevents the bluetooth device from being accessible.
+> motorcomm, dp83tg720, icplus, marvell, dp 838678, adin, micrel, tja11xx,
+> vitesse, dp83822, mscc, at803x, microchip_t1, broadcom, dp83869,
+> intel-xway, realtek all do handle internal delays. I haven't checked
+> whether there are PHYs that don't - that's harder because we don't know
+> whether PHYs that don't mention RGMII in the driver actually support
+> RGMII or not.
+
+I did look through this once. There are no PHYs with Linux drivers
+which support any of the RGMII without supporting all 4 RGMII
+modes. So we should just assume all RGMII PHYs can add the delays.
+
+If i remember the history correctly, Renesas built an RDK with a PHY
+which did not support RGMII delays. So they where forced to do the
+delays in the MAC. But it seems like mainline support for that PHY
+never happened.
+
 > 
-> Fixes: 6eba6471bbb7 ("arm64: tegra: Wire up Bluetooth on Jetson TX1 module")
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-
-Reviewed-by: Tomasz Maciej Nowak <tmn505@gmail.com>
-
-Thanks.
-
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-> index 9b9d1d15b0c7eafd3895f02db1bc747d7cc8923c..1bb1f9640a800af6c10fabf0ee3916f2566a6d4b 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-> @@ -11,6 +11,7 @@ aliases {
->  		rtc0 = "/i2c@7000d000/pmic@3c";
->  		rtc1 = "/rtc@7000e000";
->  		serial0 = &uarta;
-> +		serial3 = &uartd;
->  	};
->  
->  	chosen {
+> > If this is
+> > the case, having the MAC add them in internal-delay modes and not adding them on
+> > the PHY side would be the best default (also for PHY-less/fixed-link setups,
+> > which should be handled like a PHY without internal delay capabilities.)
 > 
-> ---
-> base-commit: 119009db267415049182774196e3cce9e13b52ef
-> change-id: 20250419-tx1-bt-5f202a7e4cac
-> 
-> Best regards,
-Regards
+> See my "advanced" use case above. We do have drivers doing that.
 
--- 
-TMN
+I agree with Russell here, it is the worse default, not the best
+default. It makes it different to nearly every other MAC driver. It
+needs extra work in the MAC, which most MAC drivers get wrong. They
+also tend not to call out they have done it different to every other
+MAC driver in Linux, and so it does not get the needed extra review,
+and so is broken. I also think there is some 'vendor SDK' mentality
+here. Our MAC can do this, our SDK allows it, the Linux driver must
+have it and use it. Pretty much all hardware has features which never
+get used, but vendors sometimes have issues with just leaving it
+unused.
 
+	Andrew
 
