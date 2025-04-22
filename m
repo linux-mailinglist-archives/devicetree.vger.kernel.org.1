@@ -1,1042 +1,405 @@
-Return-Path: <devicetree+bounces-169207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB8AAA95E36
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:32:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC540A95E71
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAC2616F455
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 06:32:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6819F3AE74B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 06:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DB02192F5;
-	Tue, 22 Apr 2025 06:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4E217A2F7;
+	Tue, 22 Apr 2025 06:39:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SYBylvLr"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="d7bEfscG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2071.outbound.protection.outlook.com [40.107.102.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A964F50F;
-	Tue, 22 Apr 2025 06:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745303563; cv=none; b=DKFKWP+4+JfNU+w3en33itW4TwgD691q8NvZ8aoxPBm9J+5y85x4E8A5DJoM+aFMqZ3hG4V50IQwIen9f82e8PdzD/TJWHMrBmNbDje43iduM5ZhQg1Oz0n8B3JnsbHCzNJpkJUKvW9EGei1ppwqUve1CIyNF9yHjwEPKK6bz40=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745303563; c=relaxed/simple;
-	bh=3bOFDqZN8mFfzHH7/oBFTkb4ylRc8sQAN164yjzSJJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dw34awO0zAwwrV6QCTFtVquL4MWDo+t6BbuBP4bMu6itBdl7KX9tqsEE3TpVIuk6Hh2Nyht5YDEBj022Pmc398dSeVuCRAUYJxdiRd3hasweLsiJIOgEjJKjhcAq3+Kqlhi6gnIENkCiX/WeeuMWD6Zxb/Bm0QlODHuJuxosOt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SYBylvLr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53M4P07j008287;
-	Tue, 22 Apr 2025 06:32:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mH3KFYXHmoelahwHcXBa7Aplg+FXOXJN/xBTrVHjFbc=; b=SYBylvLrFKtlSX/j
-	RsZBvbOoOrTSedSVHmeHfFO02ujd38kIWlFAEVjWKAIBBmJDzaKNmuvJCrnxQGq/
-	/EZ5Uu44QJ7RrQ6ru8Ho+I/WTZBYMI1d0s3hHVigm5v3DVXqUbeOsl+WKrAXil4G
-	GB8BJs3aj71i4u7ck95G51OWkgi/euicZVnplw7ge97/n/MPLLd6LZNbyEJUCkeS
-	TF/BrwjsatvvPqrBIYFXHxDHzX9SK0yLOto/QmidqL68l4Mm+NjIeO3UpEqJqlpN
-	5021yZwnDgWqvyZL9nEra3EPvHiQAtJexsLVDoA7aO2wcSOoc/m5vBTepxceNSKQ
-	3xrfzw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4643e1ed3p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 06:32:33 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53M6WWJl021849
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 06:32:32 GMT
-Received: from [10.50.21.133] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Apr
- 2025 23:32:26 -0700
-Message-ID: <ac2f3d9a-1dd5-48c0-abc3-b541720d244c@quicinc.com>
-Date: Tue, 22 Apr 2025 12:02:23 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1142A1A3162;
+	Tue, 22 Apr 2025 06:39:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745303962; cv=fail; b=YoO5DwaX4e67ffn7OvsOfLscnRUpehHpj/fYrJVEoJ8UtDkVrZTG0XZY/5rPpCPEIr1lnuhHAwd5Ir3lPZMl58uSa6JSqZKLfs47BXYOZlfkTy+jmpTq2ufXRBjDxjHuXuDRC5+86cFw5S0fB3vp648rsK7e/7g3s6c8fOt2i8g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745303962; c=relaxed/simple;
+	bh=bpJCSg7kyFXPCSNMWIfmtMUrLs9+gzsK4JZm0eK3PYw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=F6sFyNRhVyXgbeeYe6YYg7ZRKJTyphenBwbjCEuCrgDmJN/33mbX5raqZfXE/3a9a9AN0nwlNZsYtf2hxaeoyEJ8WvqWNILMzdu/oGk1zgAFRdLpxII4tXWFhS+kRxaSvzSAatUiIiufl1XBHPgxaOKHpRrVei4DETxC0WvGYtk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=d7bEfscG; arc=fail smtp.client-ip=40.107.102.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V6dulWSPP/BQXHsO9yZe4I/UKlnI2+iiDKqDUh1Y3Xi935fr2qSodLozjbM8Gc43RHpF8PcqABZvmZW9O0AsnFvgUAEm8/Hmo/hD7P7eF78B/SIgjZf7EatMlVFeQMTPpK1WMMI0mHA2cMWkEjwmpYkMlTb5YVnZ82Y3ItZjkqATiyLf35N6sK89X2Gi9wCI7pLtWadDClB7xvDae/CXwJyEpBFGrBb3MKUdokeNgMukpuoGfc/v/+BBrPz5IxQ85Elk1+NYQDfnIviyD/zx83AVWjEuV0++JSMuOGlszQdwLKjK3/+pyBhcUL6OQ90SSXgVkKA94ZcKr6/6LbMh0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bpJCSg7kyFXPCSNMWIfmtMUrLs9+gzsK4JZm0eK3PYw=;
+ b=bYN6OjjQgyJAJ4PeezAHniiU1XXC0oJbZawY2XtDKKtmXYynGH7YHhXZsmUdCItcRhFPlQUOWBtw1QuBlfxSRTgirDScrDBOhJa05rCGdlYy9N3sJfzMKfvVmp2JujiFry6/e4LRY+wmfWnUxxPRspKEOuos5yy8JoAfeagtDjp21E8RBIrI74D5XOoaSHP4kzUTZ6iHMYqdRFSqR5IKoBOlnHW2EQd+ZlePcWyXCUfZVNH1ki7XGunqjS9zCbjRNT34vsz1Tb9CW007c5VeS+rewC7jDwBtkq+E18Uv76svtPaTq2mqQ4cdLxD3sGXBzF8pXXWcEXz+Rc/sgR/ayg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bpJCSg7kyFXPCSNMWIfmtMUrLs9+gzsK4JZm0eK3PYw=;
+ b=d7bEfscGoAyOnJi0l8iLlnRi3E37GAUeJQi8dOqQn6Rj9nHCqIwnxo1bRScHafpkMuQ98rar7IxHI3453g/qUw/Z3yx5PtLdgrAFILu1WiyeGrWysDpSQu82tfAoAqae8Xtx/U9JTkvVQWMQEImar+0AOkOOOQ210EuSZcNESrE=
+Received: from DM4PR12MB6158.namprd12.prod.outlook.com (2603:10b6:8:a9::20) by
+ DM4PR12MB8498.namprd12.prod.outlook.com (2603:10b6:8:183::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.35; Tue, 22 Apr 2025 06:39:17 +0000
+Received: from DM4PR12MB6158.namprd12.prod.outlook.com
+ ([fe80::b639:7db5:e0cc:be5e]) by DM4PR12MB6158.namprd12.prod.outlook.com
+ ([fe80::b639:7db5:e0cc:be5e%7]) with mapi id 15.20.8655.033; Tue, 22 Apr 2025
+ 06:39:16 +0000
+From: "Musham, Sai Krishna" <sai.krishna.musham@amd.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "cassel@kernel.org"
+	<cassel@kernel.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Simek,
+ Michal" <michal.simek@amd.com>, "Gogada, Bharat Kumar"
+	<bharat.kumar.gogada@amd.com>, "Havalige, Thippeswamy"
+	<thippeswamy.havalige@amd.com>
+Subject: RE: [PATCH v6 2/2] PCI: xilinx-cpm: Add support for PCIe RP PERST#
+ signal
+Thread-Topic: [PATCH v6 2/2] PCI: xilinx-cpm: Add support for PCIe RP PERST#
+ signal
+Thread-Index:
+ AQHbnfbpjrXLjxd/8EKiaV/Ed5MZLrOHPpIAgAvQa+CAB+3HAIAGHwqQgANULoCACvXJoA==
+Date: Tue, 22 Apr 2025 06:39:16 +0000
+Message-ID:
+ <DM4PR12MB6158DAB09A651A0626CC23D9CDBB2@DM4PR12MB6158.namprd12.prod.outlook.com>
+References: <20250326022811.3090688-1-sai.krishna.musham@amd.com>
+ <20250326022811.3090688-3-sai.krishna.musham@amd.com>
+ <cjrb3idrj3x7vo4fujl6nakj3foyu64gtxwovmxd4qvovvhwqq@26bpt5b4zjao>
+ <DM4PR12MB6158EFFB5F245FAA5CB022A8CDA92@DM4PR12MB6158.namprd12.prod.outlook.com>
+ <kjfnox7hefk7ribdhkzj4kbkwyeg7lf62oep7duw6vfarmx5hl@eg5nzkbusm4n>
+ <DM4PR12MB6158FAECAA9D3FEFFFCCC95ECDB02@DM4PR12MB6158.namprd12.prod.outlook.com>
+ <vtz5abgqdcv4os7vr4li7yv2yaqj4mjhlbvia7uv65kfyamvxb@4j4wk36xxs7i>
+In-Reply-To: <vtz5abgqdcv4os7vr4li7yv2yaqj4mjhlbvia7uv65kfyamvxb@4j4wk36xxs7i>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=4a12c916-079f-4758-a930-3ea310f7a4c8;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-04-22T06:36:17Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB6158:EE_|DM4PR12MB8498:EE_
+x-ms-office365-filtering-correlation-id: 9a585d0e-cbd1-4c12-b5ae-08dd8168676c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?OVlWRkk5c3pKYUdYSmVtRVgvRGJGTHNDV2FtRG03TlRSRkRDSW8rUVFYR2J0?=
+ =?utf-8?B?eGcvV1RKOVFmMVpzMVh1UTZSdVl5TzRCdHc2NE5Helo0YzhtNjlwTWt5RkFL?=
+ =?utf-8?B?N1VHY3djWS9TYzBuU2hjSHl4b1pVNmFReWJycFVuQVcrQU9JZFQxczM4dWxJ?=
+ =?utf-8?B?ZjA3YkRhaURoODZXNnBUSUc0WHhtdlNmVU83K2NwVWZIcWhkUHZOcjhpcUJr?=
+ =?utf-8?B?c1dFNG1kMzgxbGpGYU02VmhRYk1OUlFLeVBBTlBXWVlkdG9iMW5ZL2tLZ2dh?=
+ =?utf-8?B?QkhMZ2p1VCtadzJKWXFReVRVejM4SU9xNWpiYzBhLzN5VVN3SDdzU3BUUThK?=
+ =?utf-8?B?R3E1VmNZTklRSkR6d095R0pnOWpqT3Q0YnAreGRRWEQrdzJnTXNJWG90QWl4?=
+ =?utf-8?B?anZ0SzVWbWZxNjcycW8wMVVaS2c3VXp2Uzk1eWhrSGFuQ1NleGFMV2cwSWdR?=
+ =?utf-8?B?V2NOR0dLZ2RwYktrY2ZhWVI5elhkMnA0bkFBTzBHOWRmWmY3T2xHV0pYakxX?=
+ =?utf-8?B?Tm9ST01waUw1ZkUyRU5kTEx0bXBJSGlzUE5kV2RFMFVzeVVZRW4vd3FpWmdI?=
+ =?utf-8?B?RHlGRFEzMmRyUnJRSkRnRUJ3eWpyVTRiMExCcWtKZ09wWFBOMGdnWUMveTlP?=
+ =?utf-8?B?MEZTQkNKdzlQT3c2V0g3V283YXpibi94ZHNxRHNpbkZ0Y0hTWmQ4V2JEV2xu?=
+ =?utf-8?B?UzhHT0YwZHRSK0NDdCtOUmptY0piZEtWVE9FejlCamJZU3FoYVFyMlRMMEh4?=
+ =?utf-8?B?bmhabmtsKzdMdUU3Yi9WN2o0SkM5NDAvTHZpa3Z1Zi9qRW95TEc4eWNyVmZt?=
+ =?utf-8?B?MUpVdGh5TTIrQm1PaUdFQXBPK1BpMGVxZzltenByQTVVaFc5M241MlVqZVpq?=
+ =?utf-8?B?dnJBWFhzTzRqR0tuNm5xVXlwUE05Mk1Lc3dWZjBuVzhCZHNMQWpSaWdSTmgz?=
+ =?utf-8?B?clZsd04zWi9lWW92cm1OM29kd2libS90enIwdVBGYTYyajA2OXBuTmlFRTBu?=
+ =?utf-8?B?OTU1MS9oZUI3dGMzUjQvWkR4RjY5aHkxMmZUdHJEYlZNc0U2WE9IczBEMFd6?=
+ =?utf-8?B?bjVXSWUrTWcwMFBSVWVuVUhqaWZ3dUhmRGFka2srN3VmU291QlcveDlpUUpC?=
+ =?utf-8?B?SDRoOTRSN0ZXVzVxRzZ0RGhhZTUzUUpHb09KSkpjWXJZQmFCT0VzN2NGSlk3?=
+ =?utf-8?B?dW5SZzhod3JVT3VXOHFvVkFXQVdIRFpEell3RXJIZG5qNmhGSFhCbXZhMWxE?=
+ =?utf-8?B?QlhEdlhvMUxkYVRIUTczaGlVczE0SSs3bVpzOS9IUXQvMnloR0dBcTI2dmtw?=
+ =?utf-8?B?NVZMay9JR2VGcituOTJCamNFR3VHL0NseFNGK0lablJaOU9ST2pxY1BYRitO?=
+ =?utf-8?B?aEo5SGZEeUJ5Y2R6MUlza0RIakFKSXlsVDducldHaUdZNkZESEU3aC90Zk9s?=
+ =?utf-8?B?UW1QUFdYQmdwWjlJM1lsNUFSNlI4MGNJSVlEei9iczZ6bEM4RkdRT3QzZTU4?=
+ =?utf-8?B?a25EeFI5cWJmNTZHdEhvT2M3QmdMK1RrV0QvVTlMSmF4ckJhdUdoZXhDV2tZ?=
+ =?utf-8?B?dFNINmlJc1c5MjN2UU94cXlGajlnYTFkYktWdmZTTnk0OHFycklxcDhvbW9M?=
+ =?utf-8?B?L1U0UDZpMUE5RlVZNlYweWw5akZyTVBCT3hmSGdjVkRVbURJbUFRUG1RVVRr?=
+ =?utf-8?B?bVVYZEVhYWczODhBTWxmTjJIMGFtT1hmMUFKVXlocHdOcHdFME82ZHdwRzUy?=
+ =?utf-8?B?MkMrUE5hRzB3aDJiK3V3RTBlSFQ1MElkUUZBbC9lbXZrTDlBZ1ZacXNSZkN0?=
+ =?utf-8?B?YVUvWnFNMzlGcWJCNC9lb2llamRtc0hXd255VnlYM2VPbWNnYUZzeER3V3Jx?=
+ =?utf-8?B?Q0xUNUlhWU9jSUVsS1Q4b2lQTk16bEV5cFlzRnlFRHJuVFIxSzdjVENiTndx?=
+ =?utf-8?B?NnFyNUtLMEhRTmpWT1dwK3ZBL2M1b0lWTDEwQXB0a0VyZUc4NmlSNldFNEJP?=
+ =?utf-8?Q?S3YlJ5s6DTeigRh57zj8XvrPW+sdsI=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6158.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?VUV5WDNLdWREaGZQcjF1a2w0MDU0cDlXRVg1K1NNTlAyc1UxZHRUN29QN3hK?=
+ =?utf-8?B?YXpqa3VPM0pyMmlFOFNSNDZJTUkwcWJiVVVqV0o2MlgwMFMyN24vdTdsL1VX?=
+ =?utf-8?B?VmxvRmdhcVNEQ0xOTTlqUGxTNWdTckV4RGVIOTVaQ1JhZTVqc2RJSnJhL3Bu?=
+ =?utf-8?B?S2NmbGsybG52ck00ZEplRDJKUG1Cc3YvNUtNd2FWemVscGJIeGJBNmZ0YmJT?=
+ =?utf-8?B?Zlh1UEUwZEg3cVVET3dzd0FyRG9tRnBLRkthY0hVUW83ck1VbEtuY0creWJz?=
+ =?utf-8?B?d1ZCeXdUYXR0RU9ONFlZems4d1lkVENOUWMzdnd2S2NKWVozQzZYR2xuWnh2?=
+ =?utf-8?B?cFlOU015SGdiWVZpNFlCRy9HOGk0Rkd1djhXM2tsZjQ0UUw4YjhrMGZWdVRx?=
+ =?utf-8?B?S1JPOGgxSEx4OTU3elRsQkJhckhEbDgwRnhibVJubFdybE0waWNidmRvQit1?=
+ =?utf-8?B?ZnpCMFJ4bGlkSldNMkh0MXI5Y1JTaURNWEVqT09CZTk3MHVBYXY2aGhPM1Ay?=
+ =?utf-8?B?NjBTQ29UN0Rqa3ExSklNdVAvY3hlb3NkKzY2djl2ZGZSWHRLRWdNVmJpS2FE?=
+ =?utf-8?B?RHZIdFRhM21raUlFOFdWcStncUhMTUkrQUNYZVhBTWdvSmlWY2gvRmpLS0NU?=
+ =?utf-8?B?OUxaaENQd1AyK1VBaFczaWxOSnM2M3A5eWFVeGNxVklvWWdPdEpwYS9zamN6?=
+ =?utf-8?B?enFFaWZ5cFdRckIwTkN3NVhJTmtPSGw1d2duRmJOYXJGenhDeXVBVjRPZzNa?=
+ =?utf-8?B?aDFwMTNkQlhZYllwTGpPODJXUmRjaFUxdjNlZUhHcDg4WGxIOXlZL2Jhb25K?=
+ =?utf-8?B?dVpoanN3WmY0NjRKWjlINXFnUHFXMnlyVTNRU1E5VS9BQ2Y2bVRoQ2d6d2Vv?=
+ =?utf-8?B?SWgrK294dUVZV291VVFvTTYzdnBVUlFNMTE5bDBMNk4rOWNJUGZoRnZiMXNv?=
+ =?utf-8?B?eDZtdnNXeEVLeVJNTUdNaFRoZk90eHFuUG9lelNMNjhLcjVEcWhTTVc1c2ZY?=
+ =?utf-8?B?NHp0NUpyZHpEMmpERGhieXBUMTZyWUxtVkRFdi8rWEI3ZTBZQm1pdUx0V3Av?=
+ =?utf-8?B?NmI5S3RGb1pWTE9JL2owQXNqbEN1cHN4czI5Mkh4NXFHQWtiTmZXZVczOFFm?=
+ =?utf-8?B?ZTVTcGdXQklyeEVjWjRrblFaU3FJSWxjbW1aRXZCTFk3M2dTYkNwWXdZdWVk?=
+ =?utf-8?B?N2E2TVNkeC9VYmVjYmZ3SXdxc2pJdWticnIvNmg0TVRTbzVSUG8wQkduTGY5?=
+ =?utf-8?B?YVRYUGxhektJU28reUNVRlZTVllpUEpjNzRSa0xibGM5Rmtwc2lTOUljNjk3?=
+ =?utf-8?B?b2RQdWJORXZCOG5ZZW8yNThWMnZUREpFa3J6WXFCNFZuaFVpYjZLWDFDdzRW?=
+ =?utf-8?B?UGFyYUFWVi9ncXk0QnZKc01sWmplK3NJTFpsakNoeTNRNE45MHUyUnp6czNV?=
+ =?utf-8?B?ZW54djdya0FpT0F5eFM0RHAveDhrY3FwUGdyUWV3MGVEM292T1BkbmhrM1lw?=
+ =?utf-8?B?UGxqN3BybmZ6cVkrTG94VllEei8zakc3NmtOMEd4Z3FyK2owVGhITUsybUhs?=
+ =?utf-8?B?OGNkQTBMdkNkNnVzRFN4SlZrbVhZRFg1MzFWRlhtOXBTdzZzRWlKL2xSTTRJ?=
+ =?utf-8?B?UGZTWXRoVkFob21PakFrdlBqWEg5YW9zU1Q0VlBLZTRDeUdqU0pQTmdMYnFn?=
+ =?utf-8?B?ZEJGUHFjUlZkTmRiaktjeC9FNVlmVjNadWhnQTBiUGZkV256UjZSOVlZRFlj?=
+ =?utf-8?B?UmZCRFBSWm02UUcvMmNvQ1RtU1RtWWZjRE9qcnBVTlBGVW8rY1hpNjlhOEVU?=
+ =?utf-8?B?alpOYUlxS3JKeHJ4Y3hUWTgwVUkyMkNpNzV2UUVlWFQ4OTFRMmlMSkJ4U2ln?=
+ =?utf-8?B?dEpGdm1TaW43WHZHL0xQZ25tYThVbmd2NFYxNmZ6WE44K2kvckhkbkF4K3h6?=
+ =?utf-8?B?elJxVEIzRFkrbVNxdGdadWFoSE55VHF3ZXRHSGJwY0Y1SGRGOWRVL0diNlhy?=
+ =?utf-8?B?akxWT2tkZmpzYTZxREZadzR6YzhVbksrZng1VytnNDUxSEdTQ1B4SHA5SDcy?=
+ =?utf-8?B?VXA4bnpXWkZRN2drWFlkeTlxY2NoNUYzL0o1eHE2MzV6N0tvbXBWRi9QRHc3?=
+ =?utf-8?Q?d5z0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/9] soc: qcom: geni-se: Add support to load QUP SE
- Firmware via Linux subsystem
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jirislaby@kernel.org>, <broonie@kernel.or>, <konradybcio@kernel.org>,
-        <johan+linaro@kernel.org>, <dianders@chromium.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <quic_msavaliy@quicinc.com>,
-        <quic_anupkulk@quicinc.com>
-References: <20250303124349.3474185-1-quic_vdadhani@quicinc.com>
- <20250303124349.3474185-7-quic_vdadhani@quicinc.com>
- <2kmnhxj3je366livo67btpbmjiyeyx4q23of42ng4co6xngemj@kitsdtqepgce>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <2kmnhxj3je366livo67btpbmjiyeyx4q23of42ng4co6xngemj@kitsdtqepgce>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZOrXmW7b c=1 sm=1 tr=0 ts=68073801 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=P8Qh-Th4AjyJXTUAxt8A:9
- a=KGXNd6_PMDzJ1iBM:21 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=-_B0kFfA75AA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: SpYblxVVzujVdRBRk9QC6XSz790MvqS6
-X-Proofpoint-ORIG-GUID: SpYblxVVzujVdRBRk9QC6XSz790MvqS6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_03,2025-04-21_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- mlxlogscore=999 bulkscore=0 adultscore=0 lowpriorityscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 suspectscore=0 phishscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220049
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6158.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a585d0e-cbd1-4c12-b5ae-08dd8168676c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2025 06:39:16.8050
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6mbMYV9Zf8PS6QZJTBc1CFKbRUIV0kk9Y2rIkZCMqOZCeLR3VOJAY8dhQbmGnCkZSqfyQsw7wiwEvt7+3V6DbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8498
 
-
-
-On 3/6/2025 4:57 AM, Bjorn Andersson wrote:
-> On Mon, Mar 03, 2025 at 06:13:46PM +0530, Viken Dadhaniya wrote:
->> Load the firmware to QUP SE based on the 'firmware-name' property specified
-> 
-> Please start your commit message with a description of "the problem"
-> you're trying to solve, explain that QUP firmware is typically loaded by
-> the "bootloader" and that for <reason> you're adding support for loading
-> firmware are load time. Please read and follow:
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
->> in devicetree. Populate Serial engine and base address details in the probe
->> function of the protocol driver and pass to firmware load routine.
-> 
-> Don't describe the code flow, describe how this fits into the bigger
-> picture. E.g. that SE-functional drivers will load this at bootup.
-> 
->>
->> Skip the firmware loading if the firmware is already loaded in Serial
->> Engine's firmware memory area.
->>
-> 
-> Above description should be clear enough that this is obvious.
-> 
->> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->> ---
->> v2 -> v3:
->>
->> - Remove code related to the 'qcom,xfer-mode' property.
->> - Add logic to read the boolean property 'qcom,gsi-dma-allowed' and select the transfer mode.
->> - Hardcode FIFO mode for the serial driver as GSI mode is currently not supported.
->> - Update function descriptions as suggested.
->> - Enhance error handling and remove redundant if conditions.
->> - Drop the ternary operator.
->>
->> v2 Link: https://lore.kernel.org/linux-arm-msm/20250124105309.295769-6-quic_vdadhani@quicinc.com/
->>
->> v1 -> v2:
->>
->> - Remove the fixed firmware path and add logic to read the path from the device tree.
->> - Remove code related to the 'qcom,load-firmware' property.
->> - Resolve kernel test robot warnings.
->> - Update the commit message.
->> - Update Copyright year.
->>
->> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-5-quic_vdadhani@quicinc.com/
->> ---
->> ---
->>   drivers/soc/qcom/qcom-geni-se.c      | 423 +++++++++++++++++++++++++++
->>   include/linux/soc/qcom/geni-se.h     |  18 ++
->>   include/linux/soc/qcom/qup-fw-load.h | 179 ++++++++++++
->>   3 files changed, 620 insertions(+)
->>   create mode 100644 include/linux/soc/qcom/qup-fw-load.h
->>
->> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
->> index 4cb959106efa..345181ad6fcc 100644
->> --- a/drivers/soc/qcom/qcom-geni-se.c
->> +++ b/drivers/soc/qcom/qcom-geni-se.c
->> @@ -1,5 +1,6 @@
->>   // SPDX-License-Identifier: GPL-2.0
->>   // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
->> +// Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> 
-> Odd, this should be a multiline comment.
-> 
->>   
->>   /* Disable MMIO tracing to prevent excessive logging of unwanted MMIO traces */
->>   #define __DISABLE_TRACE_MMIO__
->> @@ -15,6 +16,7 @@
->>   #include <linux/pinctrl/consumer.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/soc/qcom/geni-se.h>
->> +#include <linux/soc/qcom/qup-fw-load.h>
->>   
->>   /**
->>    * DOC: Overview
->> @@ -110,6 +112,9 @@ struct geni_se_desc {
->>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
->>   						"qup-memory"};
->>   
->> +static const char * const protocol_name[] = { "None", "SPI", "UART",
->> +					      "I2C", "I3C", "SPI SLAVE"};
->> +
->>   #define QUP_HW_VER_REG			0x4
->>   
->>   /* Common SE registers */
->> @@ -891,6 +896,424 @@ int geni_icc_disable(struct geni_se *se)
->>   }
->>   EXPORT_SYMBOL_GPL(geni_icc_disable);
->>   
->> +/**
->> + * elf_phdr_valid() - Validate an ELF header.
->> + * @phdr: Pointer to the ELF header.
->> + *
->> + * Validate the ELF header by comparing the fields stored in p_flags and the payload type.
-> 
-> The interesting piece of information here would be what the definition
-> of "valid" is - because you're not checking that the program header
-> entry is valid, you're checking that it's a specific valid.
-> 
->> + *
->> + * Return: true if the validation is successful, false otherwise.
->> + */
-> 
-> That said, I think you should just inline these checks in "read_elf()"
-> below, preferably with a comment about what you're looking for.
-> 
->> +static bool elf_phdr_valid(const struct elf32_phdr *phdr)
->> +{
->> +	if (phdr->p_type != PT_LOAD || !phdr->p_memsz)
->> +		return false;
->> +
->> +	if (MI_PBT_PAGE_MODE_VALUE(phdr->p_flags) == MI_PBT_NON_PAGED_SEGMENT &&
->> +	    MI_PBT_SEGMENT_TYPE_VALUE(phdr->p_flags) != MI_PBT_HASH_SEGMENT &&
->> +	    MI_PBT_ACCESS_TYPE_VALUE(phdr->p_flags) != MI_PBT_NOTUSED_SEGMENT &&
->> +	    MI_PBT_ACCESS_TYPE_VALUE(phdr->p_flags) != MI_PBT_SHARED_SEGMENT)
->> +		return true;
->> +
->> +	return false;
->> +}
->> +
->> +/**
->> + * valid_seg_size() - Validate the segment size.
->> + * @pelfseg: Pointer to the ELF header.
->> + * @p_filesz: Pointer to the file size.
->> + *
->> + * Validate the ELF segment size by comparing the file size.
->> + *
->> + * Return: true if the segment is valid, false if the segment is invalid.
->> + */
->> +static bool valid_seg_size(struct elf_se_hdr *pelfseg, Elf32_Word p_filesz)
->> +{
->> +	if (p_filesz >= pelfseg->fw_offset + pelfseg->fw_size_in_items * sizeof(u32) &&
->> +	    p_filesz >= pelfseg->cfg_idx_offset + pelfseg->cfg_size_in_items * sizeof(u8) &&
->> +	    p_filesz >= pelfseg->cfg_val_offset + pelfseg->cfg_size_in_items * sizeof(u32))
->> +		return true;
->> +	return false;
->> +}
->> +
->> +/**
->> + * read_elf() - Read an ELF file.
->> + * @rsc: Pointer to the SE resources structure.
->> + * @fw: Pointer to the firmware buffer.
->> + * @pelfseg: Pointer to the SE-specific ELF header.
->> + * @phdr: Pointer to one of the valid headers from the list in the firmware buffer.
->> + *
->> + * Read the ELF file and output a pointer to the header data, which
->> + * contains the firmware data and any other details.
->> + *
->> + * Return: 0 if successful, otherwise return an error value.
->> + */
->> +static int read_elf(struct qup_se_rsc *rsc, const struct firmware *fw,
-> 
-> I think this name is too generic, please prefix it with "geni_" to make
-> it easier to search for.
-> 
->> +		    struct elf_se_hdr **pelfseg, struct elf32_phdr **phdr)
->> +{
->> +	const struct elf32_hdr *ehdr = (const struct elf32_hdr *)fw->data;
->> +	struct elf32_phdr *phdrs = (struct elf32_phdr *)(ehdr + 1);
->> +	const u8 *addr;
->> +	int i;
->> +
->> +	ehdr = (struct elf32_hdr *)fw->data;
-> 
-> Please validate that fw->size is sufficient before accessing - here and
-> in the loop.
-> 
->> +
->> +	if (ehdr->e_phnum < 2)
->> +		return -EINVAL;
->> +
->> +	for (i = 0; i < ehdr->e_phnum; i++) {
->> +		*phdr = &phdrs[i];
->> +		if (!elf_phdr_valid(*phdr))
->> +			continue;
->> +
->> +		if ((*phdr)->p_filesz >= sizeof(struct elf_se_hdr)) {
->> +			addr =  fw->data + (*phdr)->p_offset;
->> +			*pelfseg = (struct elf_se_hdr *)addr;
-> 
-> Don't assign *pelfseg until you've found a match.
-> 
->> +
->> +			if ((*pelfseg)->magic == MAGIC_NUM_SE &&
->> +			    (*pelfseg)->version == 1 &&
->> +			    valid_seg_size(*pelfseg, (*phdr)->p_filesz) &&
->> +			    (*pelfseg)->serial_protocol == rsc->protocol &&
->> +			    (*pelfseg)->serial_protocol != GENI_SE_NONE)
-> 
-> There's so much going on in this one conditional. Turn this the way
-> around:
-> 
-> if (phdr->p_filesz < sizeof(struct elf_se_hdr))
-> 	continue;
-> 
-> if (se->magic != MAGIC_NUM_SE)
-> 	continue;
-> 
-> ...
-> 
-> Makes is super easy to read and each one encapsulates one disqualifying
-> factor.
-> 
->> +				return 0;
->> +		}
->> +	}
->> +	return -EINVAL;
->> +}
->> +
->> +/**
->> + * geni_config_common_control() - Configure common CGC and disable high priority interrupt.
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + *
->> + * Configure the common CGC and disable high priority interrupts until the current low priority
->> + * interrupts are handled.
-> 
-> What do you mean with "low priority interrupt", this is called from the
-> firmware loading operation - that doesn't sound like an interrupt at
-> all.
-> 
-> It leaves me with the question about why interrupts should be disabled
-> and why they should be disabled in a function called "config common
-> control".
-> 
-> 
-> Unless it makes the code easier to read, you should wrap it at 80
-> characters. I don't think this sentence is easier to read in it's
-> unwrapped form.
-> 
->> + *
->> + * Return: None.
-> 
-> Drop this for void functions.
-> 
->> + */
->> +static void geni_config_common_control(struct qup_se_rsc *rsc)
->> +{
->> +	/*
->> +	 * Disable high priority interrupt until current
->> +	 * low priority interrupts are handled.
->> +	 */
->> +	setbits32(rsc->se->wrapper->base + QUPV3_COMMON_CFG,
-> 
-> I find that the qup_se_rsc structure makes these functions overflow with
-> pointer dereferences, and it makes it impossible to know if a function
-> operates on 1, 2, or 3 of its members.
-> 
-> Please just pass the arguments around where necessary.
-> 
->> +		  FAST_SWITCH_TO_HIGH_DISABLE_BMASK);
->> +
->> +	/*
->> +	 * Set AHB_M_CLK_CGC_ON to indicate hardware controls
->> +	 * se-wrapper cgc clock.
->> +	 */
->> +	setbits32(rsc->se->wrapper->base + QUPV3_SE_AHB_M_CFG,
->> +		  AHB_M_CLK_CGC_ON_BMASK);
->> +
->> +	/* Let hardware to control common cgc. */
->> +	setbits32(rsc->se->wrapper->base + QUPV3_COMMON_CGC_CTRL,
->> +		  COMMON_CSR_SLV_CLK_CGC_ON_BMASK);
->> +}
->> +
->> +/**
->> + * geni_configure_xfer_mode() - Set the transfer mode.
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + *
->> + * Set the transfer mode to either FIFO or DMA according to the mode specified by the protocol
->> + * driver.
->> + *
->> + * Return: 0 if successful, otherwise return an error value.
->> + */
->> +static int geni_configure_xfer_mode(struct qup_se_rsc *rsc)
->> +{
->> +	/* Configure SE FIFO, DMA or GSI mode. */
->> +	switch (rsc->mode) {
->> +	case GENI_GPI_DMA:
->> +		setbits32(rsc->se->base + QUPV3_SE_GENI_DMA_MODE_EN,
->> +			  GENI_DMA_MODE_EN_GENI_DMA_MODE_EN_BMSK);
->> +		writel_relaxed(0x0, rsc->se->base + SE_IRQ_EN);
->> +		writel_relaxed(SE_GSI_EVENT_EN_BMSK, rsc->se->base + SE_GSI_EVENT_EN);
->> +		break;
->> +
->> +	case GENI_SE_FIFO:
->> +		clrbits32(rsc->se->base + QUPV3_SE_GENI_DMA_MODE_EN,
->> +			  GENI_DMA_MODE_EN_GENI_DMA_MODE_EN_BMSK);
->> +		writel_relaxed(SE_IRQ_EN_RMSK, rsc->se->base + SE_IRQ_EN);
->> +		writel_relaxed(0x0, rsc->se->base + SE_GSI_EVENT_EN);
->> +		break;
->> +
->> +	case GENI_SE_DMA:
->> +		setbits32(rsc->se->base + QUPV3_SE_GENI_DMA_MODE_EN,
->> +			  GENI_DMA_MODE_EN_GENI_DMA_MODE_EN_BMSK);
->> +		writel_relaxed(SE_IRQ_EN_RMSK, rsc->se->base + SE_IRQ_EN);
->> +		writel_relaxed(0x0, rsc->se->base + SE_GSI_EVENT_EN);
->> +		break;
->> +
->> +	default:
->> +		dev_err(rsc->se->dev, "invalid se mode: %d\n", rsc->mode);
-> 
-> Please make this error more descriptive so that it's easier for someone
-> finding it in the kernel log to understand what the problem is.
-> 
->> +		return -EINVAL;
->> +	}
->> +	return 0;
->> +}
->> +
->> +/**
->> + * geni_enable_interrupts() Enable interrupts.
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + *
->> + * Enable the required interrupts during the firmware load process.
->> + *
->> + * Return: None.
->> + */
->> +static void geni_enable_interrupts(struct qup_se_rsc *rsc)
->> +{
->> +	u32 reg_value;
->> +
->> +	/* Enable required interrupts. */
->> +	writel_relaxed(M_COMMON_GENI_M_IRQ_EN, rsc->se->base + GENI_M_IRQ_ENABLE);
->> +
->> +	reg_value = S_CMD_OVERRUN_EN | S_ILLEGAL_CMD_EN |
->> +				S_CMD_CANCEL_EN | S_CMD_ABORT_EN |
-> 
-> Please confirm that the indentation is correct here.
-> 
->> +				S_GP_IRQ_0_EN | S_GP_IRQ_1_EN |
->> +				S_GP_IRQ_2_EN | S_GP_IRQ_3_EN |
->> +				S_RX_FIFO_WR_ERR_EN | S_RX_FIFO_RD_ERR_EN;
->> +	writel_relaxed(reg_value, rsc->se->base + GENI_S_IRQ_ENABLE);
->> +
->> +	/* DMA mode configuration. */
->> +	reg_value = DMA_TX_IRQ_EN_SET_RESET_DONE_EN_SET_BMSK |
->> +		    DMA_TX_IRQ_EN_SET_SBE_EN_SET_BMSK |
->> +		    DMA_TX_IRQ_EN_SET_DMA_DONE_EN_SET_BMSK;
->> +	writel_relaxed(reg_value, rsc->se->base + DMA_TX_IRQ_EN_SET);
->> +	reg_value = DMA_RX_IRQ_EN_SET_FLUSH_DONE_EN_SET_BMSK |
->> +		    DMA_RX_IRQ_EN_SET_RESET_DONE_EN_SET_BMSK |
->> +		    DMA_RX_IRQ_EN_SET_SBE_EN_SET_BMSK |
->> +		    DMA_RX_IRQ_EN_SET_DMA_DONE_EN_SET_BMSK;
->> +	writel_relaxed(reg_value, rsc->se->base + DMA_RX_IRQ_EN_SET);
->> +}
->> +
->> +/**
->> + * geni_flash_fw_revision() - Flash the firmware revision.
-> 
-> It's not really "flashing", it's more just "writing"...right?
-> 
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + * @hdr: Pointer to the ELF header of the Serial Engine.
-> 
-> That's not the ELF header, it's the serial engine firmware header. That
-> said, you only consume the serial_protocol and fw_version, so a function
-> called "geni_write_fw_revision()" could perhaps just take those two
-> values as parameters?
-> 
->> + *
->> + * Flash the firmware revision and protocol into the respective register.
-> 
-> Again, no flashing, just writing.
-> 
->> + *
->> + * Return: None.
->> + */
->> +static void geni_flash_fw_revision(struct qup_se_rsc *rsc, struct elf_se_hdr *hdr)
->> +{
->> +	u32 reg_value;
->> +
->> +	/* Flash firmware revision register. */
->> +	reg_value = (hdr->serial_protocol << FW_REV_PROTOCOL_SHFT) |
->> +		    (hdr->fw_version & 0xFF << FW_REV_VERSION_SHFT);
->> +	writel_relaxed(reg_value, rsc->se->base + SE_GENI_FW_REVISION);
->> +
->> +	reg_value = (hdr->serial_protocol << FW_REV_PROTOCOL_SHFT) |
->> +		    (hdr->fw_version & 0xFF << FW_REV_VERSION_SHFT);
->> +
->> +	writel_relaxed(reg_value, rsc->se->base + SE_S_FW_REVISION);
->> +}
->> +
->> +/**
->> + * geni_load_se_fw() - Load Serial Engine specific firmware.
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + * @fw: Pointer to the firmware structure.
->> + *
->> + * Load the protocol firmware into the IRAM of the Serial Engine.
->> + *
->> + * Return: 0 if successful, otherwise return an error value.
->> + */
->> +static int geni_load_se_fw(struct qup_se_rsc *rsc, const struct firmware *fw)
->> +{
->> +	const u32 *fw_val_arr, *cfg_val_arr;
->> +	const u8 *cfg_idx_arr;
->> +	u32 i, reg_value, mask, ramn_cnt;
->> +	int ret;
->> +	struct elf_se_hdr *hdr;
->> +	struct elf32_phdr *phdr;
->> +
->> +	ret = geni_icc_set_bw(rsc->se);
->> +	if (ret) {
->> +		dev_err(rsc->se->dev, "%s: Failed to set ICC BW %d\n", __func__, ret);
-> 
-> Drop the __func__ from all your printouts.
-> 
->> +		return ret;
->> +	}
->> +
->> +	ret = geni_icc_enable(rsc->se);
->> +	if (ret) {
->> +		dev_err(rsc->se->dev, "%s: Failed to enable ICC %d\n", __func__, ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = geni_se_resources_on(rsc->se);
-> 
-> Why do you turn on the buses and clocks before you're parsing the
-> firmware file?
-> 
->> +	if (ret) {
->> +		dev_err(rsc->se->dev, "%s: Failed to enable common clocks %d\n", __func__, ret);
->> +		goto err;
->> +	}
->> +
->> +	ret = read_elf(rsc, fw, &hdr, &phdr);
-> 
-> Why is phdr returned here? Makes read_elf() harder to read...
-> 
->> +	if (ret) {
->> +		dev_err(rsc->se->dev, "%s: ELF parsing failed ret: %d\n", __func__, ret);
->> +		goto err;
->> +	}
->> +
->> +	fw_val_arr = (const u32 *)((u8 *)hdr + hdr->fw_offset);
-> 
-> Why is this a "firmware value array", isn't it the "firmware data"? Why
-> is it chunks of u32? Does it also need to be written in words?
-> 
->> +	cfg_idx_arr = (const u8 *)hdr + hdr->cfg_idx_offset;
->> +	cfg_val_arr = (const u32 *)((u8 *)hdr + hdr->cfg_val_offset);
->> +
->> +	geni_config_common_control(rsc);
->> +
->> +	/* Allows to drive corresponding data according to hardware value. */
->> +	writel_relaxed(0x0, rsc->se->base + GENI_OUTPUT_CTRL);
->> +
->> +	/* Set SCLK and HCLK to program RAM */
->> +	setbits32(rsc->se->base + GENI_CGC_CTRL, GENI_CGC_CTRL_PROG_RAM_SCLK_OFF_BMSK |
->> +			GENI_CGC_CTRL_PROG_RAM_HCLK_OFF_BMSK);
->> +	writel_relaxed(0x0, rsc->se->base + SE_GENI_CLK_CTRL);
->> +	clrbits32(rsc->se->base + GENI_CGC_CTRL, GENI_CGC_CTRL_PROG_RAM_SCLK_OFF_BMSK |
->> +			GENI_CGC_CTRL_PROG_RAM_HCLK_OFF_BMSK);
->> +
->> +	/* Enable required clocks for DMA CSR, TX and RX. */
->> +	reg_value = DMA_GENERAL_CFG_AHB_SEC_SLV_CLK_CGC_ON_BMSK |
->> +		DMA_GENERAL_CFG_DMA_AHB_SLV_CLK_CGC_ON_BMSK |
->> +		DMA_GENERAL_CFG_DMA_TX_CLK_CGC_ON_BMSK |
->> +		DMA_GENERAL_CFG_DMA_RX_CLK_CGC_ON_BMSK;
->> +
->> +	setbits32(rsc->se->base + DMA_GENERAL_CFG, reg_value);
->> +
->> +	/* Let hardware control CGC by default. */
->> +	writel_relaxed(DEFAULT_CGC_EN, rsc->se->base + GENI_CGC_CTRL);
->> +
->> +	/* Set version of the configuration register part of firmware. */
->> +	writel_relaxed(hdr->cfg_version, rsc->se->base + GENI_INIT_CFG_REVISION);
->> +	writel_relaxed(hdr->cfg_version, rsc->se->base + GENI_S_INIT_CFG_REVISION);
->> +
->> +	/* Configure GENI primitive table. */
->> +	for (i = 0; i < hdr->cfg_size_in_items; i++)
->> +		writel_relaxed(cfg_val_arr[i],
->> +			       rsc->se->base + GENI_CFG_REG0 + (cfg_idx_arr[i] * sizeof(u32)));
-> 
-> What goes into this configuration?
-> 
->> +
->> +	/* Configure condition for assertion of RX_RFR_WATERMARK condition. */
->> +	reg_value = readl_relaxed(rsc->se->base + QUPV3_SE_HW_PARAM_1);
->> +	mask = (reg_value >> RX_FIFO_WIDTH_BIT) & RX_FIFO_WIDTH_MASK;
-> 
-> Based on the WIDTH_MASK, those 6 bits doesn't sound like a "BIT"... And
-> is the RX_FIFO_WIDTH really a "mask"?
-> 
->> +	writel_relaxed(mask - 2, rsc->se->base + GENI_RX_RFR_WATERMARK_REG);
-> 
-> mask - 2?
-> 
-> Use FIELD_GET() and name things with the intention of making it easy for
-> others to understand what the code does.
-> 
->> +
->> +	/* Let hardware control CGC */
->> +	setbits32(rsc->se->base + GENI_OUTPUT_CTRL, DEFAULT_IO_OUTPUT_CTRL_MSK);
->> +
->> +	ret = geni_configure_xfer_mode(rsc);
->> +	if (ret)
->> +		goto err_resource;
->> +
->> +	geni_enable_interrupts(rsc);
->> +
->> +	geni_flash_fw_revision(rsc, hdr);
->> +
->> +	ramn_cnt = hdr->fw_size_in_items;
->> +	if (hdr->fw_size_in_items % 2 != 0)
->> +		ramn_cnt++;
->> +
->> +	if (ramn_cnt >= MAX_GENI_CFG_RAMn_CNT)
->> +		goto err_resource;
-> 
-> As far as I can tell this error path is based entirely on the firmware
-> being read from the file system, so you could have checked it before you
-> turned on any resources - making a cleaner exit on failure.
-> 
->> +
->> +	/* Program RAM address space. */
->> +	memcpy((void *)(rsc->se->base + SE_GENI_CFG_RAMN), fw_val_arr, ramn_cnt * sizeof(u32));
-> 
-> I presume this typecast to void * is to hide the fact that se->base is
-> flagged as __iomem? Use memcpy_toio() intead.
-> 
->> +
->> +	/* Put default values on GENI's output pads. */
->> +	writel_relaxed(0x1, rsc->se->base + GENI_FORCE_DEFAULT_REG);
->> +
->> +	/* High to low SCLK and HCLK to finish RAM. */
->> +	setbits32(rsc->se->base + GENI_CGC_CTRL, GENI_CGC_CTRL_PROG_RAM_SCLK_OFF_BMSK |
->> +			GENI_CGC_CTRL_PROG_RAM_HCLK_OFF_BMSK);
->> +	setbits32(rsc->se->base + SE_GENI_CLK_CTRL, GENI_CLK_CTRL_SER_CLK_SEL_BMSK);
->> +	clrbits32(rsc->se->base + GENI_CGC_CTRL, GENI_CGC_CTRL_PROG_RAM_SCLK_OFF_BMSK |
->> +			GENI_CGC_CTRL_PROG_RAM_HCLK_OFF_BMSK);
->> +
->> +	/* Serial engine DMA interface is enabled. */
->> +	setbits32(rsc->se->base + SE_DMA_IF_EN, DMA_IF_EN_DMA_IF_EN_BMSK);
->> +
->> +	/* Enable or disable FIFO interface of the serial engine. */
->> +	if (rsc->mode == GENI_SE_FIFO)
->> +		clrbits32(rsc->se->base + SE_FIFO_IF_DISABLE, FIFO_IF_DISABLE);
->> +	else
->> +		setbits32(rsc->se->base + SE_FIFO_IF_DISABLE, FIFO_IF_DISABLE);
->> +
->> +err_resource:
->> +	geni_se_resources_off(rsc->se);
->> +err:
->> +	geni_icc_disable(rsc->se);
->> +	return ret;
->> +}
->> +
->> +/**
->> + * qup_fw_load() - Initiate firmware load.
->> + * @rsc: Pointer to a structure representing SE-related resources.
->> + *
->> + * Load the firmware into a specific SE. Read the associated ELF file,
->> + * copy the data into a buffer in kernel space using the request_firmware API, write the
->> + * data into the SE's IRAM register, and then free the buffers. Handle firmware loading
->> + * and parsing for a specific protocol.
->> + *
->> + * Return: 0 if successful, otherwise return an error value.
->> + */
->> +static int qup_fw_load(struct qup_se_rsc *rsc, const char *fw_name)
->> +{
->> +	int ret;
->> +	const struct firmware *fw;
->> +	struct device *dev = rsc->se->dev;
->> +
->> +	ret = request_firmware(&fw, fw_name, dev);
->> +	if (ret) {
->> +		dev_err(dev, "request_firmware failed for %d: %d\n", rsc->protocol, ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = geni_load_se_fw(rsc, fw);
->> +
->> +	release_firmware(fw);
->> +
->> +	return ret;
->> +}
->> +
->> +/**
->> + * geni_load_se_firmware() - Initiate firmware loading.
->> + * @se: Serial engine details.
->> + * @protocol: Protocol (SPI, I2C, or UART) for which the firmware is to be loaded.
->> + *
->> + * If the device tree properties are configured to load QUP firmware and the firmware
->> + * is not already loaded, start the firmware loading process. If the device tree properties
->> + * are not defined, skip loading the firmware, assuming it is already loaded by TZ.
->> + *
->> + * Return: 0 if successful, otherwise return an error value.
->> + */
->> +int geni_load_se_firmware(struct geni_se *se,
->> +			  enum geni_se_protocol_type protocol)
-> 
-> This line is 82 characters long if you don't line break it, but it's
-> cleaner to read...so please unbreak it.
-> 
->> +{
->> +	struct qup_se_rsc rsc;
->> +	const char *fw_name;
->> +	int ret;
->> +
->> +	ret = device_property_read_string(se->wrapper->dev, "firmware-name", &fw_name);
->> +	if (ret)
->> +		return  -EINVAL;
->> +
->> +	rsc.se = se;
->> +	rsc.protocol = protocol;
->> +	/* Set default xfer mode to FIFO */
-> 
-> This isn't the "default" mode, this is the else statement in the
-> conditional below.
-> 
->> +	rsc.mode = GENI_SE_FIFO;
->> +
->> +	if (of_property_read_bool(se->dev->of_node, "qcom,gsi-dma-allowed"))
->> +		rsc.mode = GENI_GPI_DMA;
-> 
-> if (of_property_present())
-> 	sc.mode = GENI_GPI_DMA;
-> else
-> 	sc.mode = GENI_GPI_FIFO;
-> 
-> /* Comment about UART, because it's actually worth mentioning */
-> if (serial)
-> 
-> 
->> +
->> +	/* GSI mode is not supported by the UART driver; therefore, setting FIFO mode */
->> +	if (protocol == GENI_SE_UART)
->> +		rsc.mode = GENI_SE_FIFO;
->> +
->> +	ret = qup_fw_load(&rsc, fw_name);
->> +	if (ret)
->> +		return ret;
->> +
->> +	dev_dbg(se->dev, "Firmware load for %s protocol is successful for xfer mode %d\n",
->> +		protocol_name[rsc.protocol], rsc.mode);
-> 
-> How do you know that rsc.protocol < ARRAY_SIZE(protocol_name)?
-> 
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(geni_load_se_firmware);
->> +
->>   static int geni_se_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->> diff --git a/include/linux/soc/qcom/geni-se.h b/include/linux/soc/qcom/geni-se.h
->> index 2996a3c28ef3..fd8cf5c6791f 100644
->> --- a/include/linux/soc/qcom/geni-se.h
->> +++ b/include/linux/soc/qcom/geni-se.h
->> @@ -1,6 +1,7 @@
->>   /* SPDX-License-Identifier: GPL-2.0 */
->>   /*
->>    * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   #ifndef _LINUX_QCOM_GENI_SE
->> @@ -36,6 +37,7 @@ enum geni_se_protocol_type {
->>   	GENI_SE_I2C,
->>   	GENI_SE_I3C,
->>   	GENI_SE_SPI_SLAVE,
->> +	GENI_SE_INVALID_PROTO = 255,
-> 
-> This is unused.
-> 
->>   };
->>   
->>   struct geni_wrapper;
->> @@ -72,6 +74,19 @@ struct geni_se {
->>   	struct geni_icc_path icc_paths[3];
->>   };
->>   
->> +/**
->> + * struct qup_se_rsc - Structure containing se details protocol and xfer mode
->> + *
->> + * @mode: transfer mode se fifo, dma or gsi.
->> + * @protocol: Protocol spi or i2c or serial.
->> + * @se: Pointer to the concerned serial engine.
-> 
-> I'd like you to drop this struct, so it doesn't really matter...but
-> order of parameters doesn't match the structure.
-> 
->> + */
->> +struct qup_se_rsc {
->> +	struct geni_se *se;
->> +	enum geni_se_xfer_mode mode;
->> +	enum geni_se_protocol_type protocol;
->> +};
->> +
->>   /* Common SE registers */
->>   #define GENI_FORCE_DEFAULT_REG		0x20
->>   #define GENI_OUTPUT_CTRL		0x24
->> @@ -531,5 +546,8 @@ void geni_icc_set_tag(struct geni_se *se, u32 tag);
->>   int geni_icc_enable(struct geni_se *se);
->>   
->>   int geni_icc_disable(struct geni_se *se);
->> +
->> +int geni_load_se_firmware(struct geni_se *se,
->> +			  enum geni_se_protocol_type protocol);
-> 
-> Unbreak the line.
-> 
->>   #endif
->>   #endif
->> diff --git a/include/linux/soc/qcom/qup-fw-load.h b/include/linux/soc/qcom/qup-fw-load.h
->> new file mode 100644
->> index 000000000000..f139720987f9
->> --- /dev/null
->> +++ b/include/linux/soc/qcom/qup-fw-load.h
->> @@ -0,0 +1,179 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +#ifndef _LINUX_QCOM_QUP_FW_LOAD
->> +#define _LINUX_QCOM_QUP_FW_LOAD
->> +
->> +#include <linux/device.h>
->> +#include <linux/elf.h>
->> +#include <linux/firmware.h>
-> 
-> Why are device.h, elf.h and firmware.h included here, they are not used.
-> 
->> +#include <linux/kernel.h>
->> +
->> +/*Magic numbers*/
->> +#define MAGIC_NUM_SE			0x57464553
-> 
-> Prefix things.
-> 
->> +
->> +/* Common SE registers*/
->> +#define GENI_INIT_CFG_REVISION		0x0
->> +#define GENI_S_INIT_CFG_REVISION	0x4
->> +#define GENI_FORCE_DEFAULT_REG		0x20
-> 
-> A bunch of these registers and bitmasks area already defined in
-> include/soc/qcom/geni-se.h why are they duplicated here?
-> 
->> +#define GENI_CGC_CTRL			0x28
->> +#define GENI_CFG_REG0			0x100
->> +
->> +#define QUPV3_SE_HW_PARAM_1		0xE28
-> 
-> Lowercase hex digits please.
-> 
->> +#define RX_FIFO_WIDTH_BIT		24
->> +#define RX_FIFO_WIDTH_MASK		0x3F
->> +
->> +/*Same registers as GENI_DMA_MODE_EN*/
->> +#define QUPV3_SE_GENI_DMA_MODE_EN	0x258
->> +#define GENI_M_IRQ_ENABLE		0x614
->> +#define GENI_S_IRQ_ENABLE		0x644
->> +#define GENI_RX_RFR_WATERMARK_REG	0x814
->> +#define DMA_TX_IRQ_EN_SET		0xC4C
->> +#define DMA_RX_IRQ_EN_SET		0xD4C
->> +#define DMA_GENERAL_CFG			0xE30
->> +#define SE_GENI_FW_REVISION		0x1000
->> +#define SE_S_FW_REVISION		0x1004
->> +#define SE_GENI_CFG_RAMN		0x1010
->> +#define SE_GENI_CLK_CTRL		0x2000
->> +#define SE_DMA_IF_EN			0x2004
->> +#define SE_FIFO_IF_DISABLE		0x2008
->> +
->> +#define MAX_GENI_CFG_RAMn_CNT		455
->> +
->> +#define MI_PBT_NON_PAGED_SEGMENT	0x0
->> +#define MI_PBT_HASH_SEGMENT		0x2
->> +#define MI_PBT_NOTUSED_SEGMENT		0x3
->> +#define MI_PBT_SHARED_SEGMENT		0x4
->> +#define MI_PBT_FLAG_PAGE_MODE_MASK	0x100000
->> +#define MI_PBT_FLAG_PAGE_MODE_SHIFT	0x14
->> +#define MI_PBT_FLAG_SEGMENT_TYPE_MASK	0x7000000
->> +#define MI_PBT_FLAG_SEGMENT_TYPE_SHIFT	0x18
->> +#define MI_PBT_FLAG_ACCESS_TYPE_MASK	0xE00000
->> +#define MI_PBT_FLAG_ACCESS_TYPE_SHIFT	0x15
->> +
->> +#define MI_PBT_PAGE_MODE_VALUE(x) \
->> +	(((x) & MI_PBT_FLAG_PAGE_MODE_MASK) >> \
->> +	  MI_PBT_FLAG_PAGE_MODE_SHIFT)
-> 
-> Please replace masking and shifting with FIELD_GET() from
-> linux/bitfield.h.
-> 
->> +
->> +#define MI_PBT_SEGMENT_TYPE_VALUE(x) \
->> +	(((x) & MI_PBT_FLAG_SEGMENT_TYPE_MASK) >> \
->> +		MI_PBT_FLAG_SEGMENT_TYPE_SHIFT)
->> +
->> +#define MI_PBT_ACCESS_TYPE_VALUE(x) \
->> +	(((x) & MI_PBT_FLAG_ACCESS_TYPE_MASK) >> \
->> +	  MI_PBT_FLAG_ACCESS_TYPE_SHIFT)
->> +
->> +/* GENI_FORCE_DEFAULT_REG fields */
->> +#define FORCE_DEFAULT			BIT(0)
->> +
->> +/* FW_REVISION_RO fields */
->> +#define FW_REV_PROTOCOL_SHFT		8
->> +#define FW_REV_VERSION_SHFT		0
->> +
->> +#define GENI_FW_REVISION_RO		0x68
->> +#define GENI_S_FW_REVISION_RO		0x6C
->> +
->> +/* SE_GENI_DMA_MODE_EN */
->> +#define GENI_DMA_MODE_EN		BIT(0)
->> +
->> +/* GENI_M_IRQ_EN fields */
->> +#define M_CMD_DONE_EN			BIT(0)
->> +#define M_IO_DATA_DEASSERT_EN		BIT(22)
->> +#define M_IO_DATA_ASSERT_EN		BIT(23)
->> +#define M_RX_FIFO_RD_ERR_EN		BIT(24)
->> +#define M_RX_FIFO_WR_ERR_EN		BIT(25)
->> +#define M_RX_FIFO_WATERMARK_EN		BIT(26)
->> +#define M_RX_FIFO_LAST_EN		BIT(27)
->> +#define M_TX_FIFO_RD_ERR_EN		BIT(28)
->> +#define M_TX_FIFO_WR_ERR_EN		BIT(29)
->> +#define M_TX_FIFO_WATERMARK_EN		BIT(30)
->> +#define M_COMMON_GENI_M_IRQ_EN	(GENMASK(6, 1) | \
->> +				M_IO_DATA_DEASSERT_EN | \
->> +				M_IO_DATA_ASSERT_EN | M_RX_FIFO_RD_ERR_EN | \
->> +				M_RX_FIFO_WR_ERR_EN | M_TX_FIFO_RD_ERR_EN | \
->> +				M_TX_FIFO_WR_ERR_EN)
->> +
->> +/* GENI_S_IRQ_EN fields */
->> +#define S_CMD_OVERRUN_EN		BIT(1)
->> +#define S_ILLEGAL_CMD_EN		BIT(2)
->> +#define S_CMD_CANCEL_EN			BIT(4)
->> +#define S_CMD_ABORT_EN			BIT(5)
->> +#define S_GP_IRQ_0_EN			BIT(9)
->> +#define S_GP_IRQ_1_EN			BIT(10)
->> +#define S_GP_IRQ_2_EN			BIT(11)
->> +#define S_GP_IRQ_3_EN			BIT(12)
->> +#define S_RX_FIFO_RD_ERR_EN		BIT(24)
->> +#define S_RX_FIFO_WR_ERR_EN		BIT(25)
->> +#define S_COMMON_GENI_S_IRQ_EN	(GENMASK(5, 1) | GENMASK(13, 9) | \
->> +				 S_RX_FIFO_RD_ERR_EN | S_RX_FIFO_WR_ERR_EN)
->> +
->> +#define GENI_CGC_CTRL_PROG_RAM_SCLK_OFF_BMSK		0x00000200
->> +#define GENI_CGC_CTRL_PROG_RAM_HCLK_OFF_BMSK		0x00000100
->> +
->> +#define GENI_DMA_MODE_EN_GENI_DMA_MODE_EN_BMSK		0x00000001
->> +
->> +#define DMA_TX_IRQ_EN_SET_RESET_DONE_EN_SET_BMSK	0x00000008
->> +#define DMA_TX_IRQ_EN_SET_SBE_EN_SET_BMSK		0x00000004
->> +#define DMA_TX_IRQ_EN_SET_DMA_DONE_EN_SET_BMSK		0x00000001
->> +
->> +#define DMA_RX_IRQ_EN_SET_FLUSH_DONE_EN_SET_BMSK	0x00000010
->> +#define DMA_RX_IRQ_EN_SET_RESET_DONE_EN_SET_BMSK	0x00000008
->> +#define DMA_RX_IRQ_EN_SET_SBE_EN_SET_BMSK		0x00000004
->> +#define DMA_RX_IRQ_EN_SET_DMA_DONE_EN_SET_BMSK		0x00000001
->> +
->> +#define DMA_GENERAL_CFG_AHB_SEC_SLV_CLK_CGC_ON_BMSK	0x00000008
->> +#define DMA_GENERAL_CFG_DMA_AHB_SLV_CLK_CGC_ON_BMSK	0x00000004
->> +#define DMA_GENERAL_CFG_DMA_TX_CLK_CGC_ON_BMSK		0x00000002
->> +#define DMA_GENERAL_CFG_DMA_RX_CLK_CGC_ON_BMSK		0x00000001
->> +
->> +#define GENI_CLK_CTRL_SER_CLK_SEL_BMSK			0x00000001
->> +#define DMA_IF_EN_DMA_IF_EN_BMSK			0x00000001
->> +#define SE_GSI_EVENT_EN_BMSK				0x0000000f
->> +#define SE_IRQ_EN_RMSK					0x0000000f
->> +
->> +#define QUPV3_COMMON_CFG				0x0120
->> +#define FAST_SWITCH_TO_HIGH_DISABLE_BMASK		0x00000001
->> +
->> +#define QUPV3_SE_AHB_M_CFG				0x0118
->> +#define AHB_M_CLK_CGC_ON_BMASK				0x00000001
->> +
->> +#define QUPV3_COMMON_CGC_CTRL				0x021C
->> +#define COMMON_CSR_SLV_CLK_CGC_ON_BMASK			0x00000001
->> +
->> +/* access ports */
->> +#define setbits32(_addr, _v) out_be32((_addr), in_be32(_addr) |  (_v))
->> +#define clrbits32(_addr, _v) out_be32((_addr), in_be32(_addr) & ~(_v))
-> 
-> These names are way too generic.
-> 
->> +
->> +#define out_be32(a, v) writel_relaxed(v, a)
->> +#define in_be32(a) readl_relaxed(a)
-> 
-> Don't create aliases.
-> 
->> +
->> +/**
->> + * struct elf_se_hdr - firmware configurations
->> + *
->> + * @magic: set to 'SEFW'
->> + * @version: A 32-bit value indicating the structure’s version number
->> + * @core_version: QUPV3_HW_VERSION
->> + * @serial_protocol: Programmed into GENI_FW_REVISION
->> + * @fw_version: Programmed into GENI_FW_REVISION
->> + * @cfg_version: Programmed into GENI_INIT_CFG_REVISION
->> + * @fw_size_in_items: Number of (uint32_t) GENI_FW_RAM words
->> + * @fw_offset: Byte offset of GENI_FW_RAM array
->> + * @cfg_size_in_items: Number of GENI_FW_CFG index/value pairs
->> + * @cfg_idx_offset: Byte offset of GENI_FW_CFG index array
->> + * @cfg_val_offset: Byte offset of GENI_FW_CFG values array
->> + */
->> +struct elf_se_hdr {
-> 
-> This structure doesn't seem to relate to ELF at all, it seems to be the
-> header for the serial engine configuration.
-> 
-> It happens to be packaged up in a ELF segment, but I don't see a reason
-> for defining the format of the outer container here.
-
-This structure is related to firmware written in an ELF file. I didn't 
-understand your concern. Could you please clarify what is required here?
-
-> 
->> +	u32 magic;
-> 
-> What endian is that u32? Please be specific.
-> 
-> Regards,
-> Bjorn
-> 
->> +	u32 version;
->> +	u32 core_version;
->> +	u16 serial_protocol;
->> +	u16 fw_version;
->> +	u16 cfg_version;
->> +	u16 fw_size_in_items;
->> +	u16 fw_offset;
->> +	u16 cfg_size_in_items;
->> +	u16 cfg_idx_offset;
->> +	u16 cfg_val_offset;
->> +};
->> +#endif /* _LINUX_QCOM_QUP_FW_LOAD */
->> -- 
->> 2.34.1
->>
+W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
+Cg0KSGkgTWFuaXZhbm5hbiwNCg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
+b206IE1hbml2YW5uYW4gU2FkaGFzaXZhbSA8bWFuaXZhbm5hbi5zYWRoYXNpdmFtQGxpbmFyby5v
+cmc+DQo+IFNlbnQ6IFR1ZXNkYXksIEFwcmlsIDE1LCAyMDI1IDEyOjQ0IFBNDQo+IFRvOiBNdXNo
+YW0sIFNhaSBLcmlzaG5hIDxzYWkua3Jpc2huYS5tdXNoYW1AYW1kLmNvbT4NCj4gQ2M6IGJoZWxn
+YWFzQGdvb2dsZS5jb207IGxwaWVyYWxpc2lAa2VybmVsLm9yZzsga3dAbGludXguY29tOyByb2Jo
+QGtlcm5lbC5vcmc7DQo+IGtyemsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsg
+Y2Fzc2VsQGtlcm5lbC5vcmc7IGxpbnV4LQ0KPiBwY2lAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0
+cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gU2lt
+ZWssIE1pY2hhbCA8bWljaGFsLnNpbWVrQGFtZC5jb20+OyBHb2dhZGEsIEJoYXJhdCBLdW1hcg0K
+PiA8YmhhcmF0Lmt1bWFyLmdvZ2FkYUBhbWQuY29tPjsgSGF2YWxpZ2UsIFRoaXBwZXN3YW15DQo+
+IDx0aGlwcGVzd2FteS5oYXZhbGlnZUBhbWQuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY2
+IDIvMl0gUENJOiB4aWxpbngtY3BtOiBBZGQgc3VwcG9ydCBmb3IgUENJZSBSUCBQRVJTVCMNCj4g
+c2lnbmFsDQo+DQo+IENhdXRpb246IFRoaXMgbWVzc2FnZSBvcmlnaW5hdGVkIGZyb20gYW4gRXh0
+ZXJuYWwgU291cmNlLiBVc2UgcHJvcGVyIGNhdXRpb24NCj4gd2hlbiBvcGVuaW5nIGF0dGFjaG1l
+bnRzLCBjbGlja2luZyBsaW5rcywgb3IgcmVzcG9uZGluZy4NCj4NCj4NCj4gT24gU3VuLCBBcHIg
+MTMsIDIwMjUgYXQgMDQ6Mjg6NTVBTSArMDAwMCwgTXVzaGFtLCBTYWkgS3Jpc2huYSB3cm90ZToN
+Cj4gPiBbQU1EIE9mZmljaWFsIFVzZSBPbmx5IC0gQU1EIEludGVybmFsIERpc3RyaWJ1dGlvbiBP
+bmx5XQ0KPiA+DQo+ID4gSGkgTWFuaXZhbm5hbiwNCj4gPg0KPiA+IFRoYW5rcyBmb3IgdGhlIHJl
+dmlldy4NCj4gPg0KPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206
+IE1hbml2YW5uYW4gU2FkaGFzaXZhbSA8bWFuaXZhbm5hbi5zYWRoYXNpdmFtQGxpbmFyby5vcmc+
+DQo+ID4gPiBTZW50OiBXZWRuZXNkYXksIEFwcmlsIDksIDIwMjUgMTI6MjUgUE0NCj4gPiA+IFRv
+OiBNdXNoYW0sIFNhaSBLcmlzaG5hIDxzYWkua3Jpc2huYS5tdXNoYW1AYW1kLmNvbT4NCj4gPiA+
+IENjOiBiaGVsZ2Fhc0Bnb29nbGUuY29tOyBscGllcmFsaXNpQGtlcm5lbC5vcmc7IGt3QGxpbnV4
+LmNvbTsNCj4gPiA+IHJvYmhAa2VybmVsLm9yZzsNCj4gPiA+IGtyemsrZHRAa2VybmVsLm9yZzsg
+Y29ub3IrZHRAa2VybmVsLm9yZzsgY2Fzc2VsQGtlcm5lbC5vcmc7IGxpbnV4LQ0KPiA+ID4gcGNp
+QHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+ID4gPiBsaW51
+eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBTaW1laywgTWljaGFsIDxtaWNoYWwuc2ltZWtAYW1k
+LmNvbT47DQo+ID4gPiBHb2dhZGEsIEJoYXJhdCBLdW1hciA8YmhhcmF0Lmt1bWFyLmdvZ2FkYUBh
+bWQuY29tPjsgSGF2YWxpZ2UsDQo+ID4gPiBUaGlwcGVzd2FteSA8dGhpcHBlc3dhbXkuaGF2YWxp
+Z2VAYW1kLmNvbT4NCj4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMi8yXSBQQ0k6IHhpbGlu
+eC1jcG06IEFkZCBzdXBwb3J0IGZvciBQQ0llIFJQDQo+ID4gPiBQRVJTVCMgc2lnbmFsDQo+ID4g
+Pg0KPiA+ID4gQ2F1dGlvbjogVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZWQgZnJvbSBhbiBFeHRlcm5h
+bCBTb3VyY2UuIFVzZSBwcm9wZXINCj4gPiA+IGNhdXRpb24gd2hlbiBvcGVuaW5nIGF0dGFjaG1l
+bnRzLCBjbGlja2luZyBsaW5rcywgb3IgcmVzcG9uZGluZy4NCj4gPiA+DQo+ID4gPg0KPiA+ID4g
+T24gRnJpLCBBcHIgMDQsIDIwMjUgYXQgMDY6NTk6MjNBTSArMDAwMCwgTXVzaGFtLCBTYWkgS3Jp
+c2huYSB3cm90ZToNCj4gPiA+ID4gW0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5h
+bCBEaXN0cmlidXRpb24gT25seV0NCj4gPiA+ID4NCj4gPiA+ID4gSGkgTWFuaXZhbm5hbiwNCj4g
+PiA+ID4NCj4gPiA+ID4gVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KPiA+ID4gPg0KPiA+ID4gPiA+
+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiA+ID4gRnJvbTogTWFuaXZhbm5hbiBT
+YWRoYXNpdmFtIDxtYW5pdmFubmFuLnNhZGhhc2l2YW1AbGluYXJvLm9yZz4NCj4gPiA+ID4gPiBT
+ZW50OiBUaHVyc2RheSwgTWFyY2ggMjcsIDIwMjUgMTA6NTYgUE0NCj4gPiA+ID4gPiBUbzogTXVz
+aGFtLCBTYWkgS3Jpc2huYSA8c2FpLmtyaXNobmEubXVzaGFtQGFtZC5jb20+DQo+ID4gPiA+ID4g
+Q2M6IGJoZWxnYWFzQGdvb2dsZS5jb207IGxwaWVyYWxpc2lAa2VybmVsLm9yZzsga3dAbGludXgu
+Y29tOw0KPiA+ID4gPiA+IHJvYmhAa2VybmVsLm9yZzsNCj4gPiA+ID4gPiBrcnprK2R0QGtlcm5l
+bC5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmc7IGNhc3NlbEBrZXJuZWwub3JnOw0KPiA+ID4gPiA+
+IGtyemsrbGludXgtDQo+ID4gPiA+ID4gcGNpQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2
+Z2VyLmtlcm5lbC5vcmc7DQo+ID4gPiA+ID4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsg
+U2ltZWssIE1pY2hhbA0KPiA+ID4gPiA+IDxtaWNoYWwuc2ltZWtAYW1kLmNvbT47IEdvZ2FkYSwg
+QmhhcmF0IEt1bWFyDQo+ID4gPiA+ID4gPGJoYXJhdC5rdW1hci5nb2dhZGFAYW1kLmNvbT47IEhh
+dmFsaWdlLCBUaGlwcGVzd2FteQ0KPiA+ID4gPiA+IDx0aGlwcGVzd2FteS5oYXZhbGlnZUBhbWQu
+Y29tPg0KPiA+ID4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMi8yXSBQQ0k6IHhpbGlueC1j
+cG06IEFkZCBzdXBwb3J0IGZvcg0KPiA+ID4gPiA+IFBDSWUgUlAgUEVSU1QjIHNpZ25hbA0KPiA+
+ID4gPiA+DQo+ID4gPiA+ID4gQ2F1dGlvbjogVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZWQgZnJvbSBh
+biBFeHRlcm5hbCBTb3VyY2UuIFVzZQ0KPiA+ID4gPiA+IHByb3BlciBjYXV0aW9uIHdoZW4gb3Bl
+bmluZyBhdHRhY2htZW50cywgY2xpY2tpbmcgbGlua3MsIG9yIHJlc3BvbmRpbmcuDQo+ID4gPiA+
+ID4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IE9uIFdlZCwgTWFyIDI2LCAyMDI1IGF0IDA3OjU4OjEx
+QU0gKzA1MzAsIFNhaSBLcmlzaG5hIE11c2hhbSB3cm90ZToNCj4gPiA+ID4gPiA+IEFkZCBQQ0ll
+IElQIHJlc2V0IGFsb25nIHdpdGggR1BJTy1iYXNlZCBjb250cm9sIGZvciB0aGUgUENJZQ0KPiA+
+ID4gPiA+ID4gUm9vdCBQb3J0IFBFUlNUIyBzaWduYWwuIFN5bmNocm9uaXppbmcgdGhlIFBDSWUg
+SVAgcmVzZXQgd2l0aA0KPiA+ID4gPiA+ID4gdGhlIFBFUlNUIyBzaWduYWwncyBhc3NlcnRpb24g
+YW5kIGRlYXNzZXJ0aW9uIGF2b2lkcyBMaW5rIFRyYWluaW5nDQo+IGZhaWx1cmVzLg0KPiA+ID4g
+PiA+ID4NCj4gPiA+ID4gPiA+IEFkYXB0IHRvIHVzZSBHUElPIGZyYW1ld29yayBhbmQgbWFrZSBy
+ZXNldCBvcHRpb25hbCB0bw0KPiA+ID4gPiA+ID4gbWFpbnRhaW4gYmFja3dhcmQgY29tcGF0aWJp
+bGl0eSB3aXRoIGV4aXN0aW5nIERUQnMuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gQWRkIGNs
+ZWFyIGZpcmV3YWxsIGFmdGVyIExpbmsgcmVzZXQgZm9yIENQTTVOQy4NCj4gPiA+ID4gPiA+DQo+
+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBTYWkgS3Jpc2huYSBNdXNoYW0gPHNhaS5rcmlzaG5h
+Lm11c2hhbUBhbWQuY29tPg0KPiA+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gPiBDaGFuZ2VzIGZv
+ciB2NjoNCj4gPiA+ID4gPiA+IC0gQ29ycmVjdCB2ZXJzaW9uIGNoZWNrIGNvbmRpdGlvbiBvZiBD
+UE01TkNfSE9TVC4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBDaGFuZ2VzIGZvciB2NToNCj4g
+PiA+ID4gPiA+IC0gSGFuZGxlIHByb2JlIGRlZmVyIGZvciByZXNldF9ncGlvLg0KPiA+ID4gPiA+
+ID4gLSBSZXNvbHZlIEFCSSBicmVhay4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBDaGFuZ2Vz
+IGZvciB2NDoNCj4gPiA+ID4gPiA+IC0gQWRkIFBDSWUgUEVSU1QjIHN1cHBvcnQgZm9yIENQTTVO
+Qy4NCj4gPiA+ID4gPiA+IC0gQWRkIFBDSWUgSVAgcmVzZXQgYWxvbmcgd2l0aCBQRVJTVCMgdG8g
+YXZvaWQgTGluayBUcmFpbmluZyBFcnJvcnMuDQo+ID4gPiA+ID4gPiAtIFJlbW92ZSBQQ0lFX1Rf
+UFZQRVJMX01TIGRlZmluZSBhbmQgUENJRV9UX1JSU19SRUFEWV9NUw0KPiBhZnRlcg0KPiA+ID4g
+PiA+ID4gICBQRVJTVCMgZGVhc3NlcnQuDQo+ID4gPiA+ID4gPiAtIE1vdmUgUENJZSBQRVJTVCMg
+YXNzZXJ0IGFuZCBkZWFzc2VydCBsb2dpYyB0bw0KPiA+ID4gPiA+ID4gICB4aWxpbnhfY3BtX3Bj
+aWVfaW5pdF9wb3J0KCkgYmVmb3JlIGNwbV9wY2llX2xpbmtfdXAoKSwgc2luY2UNCj4gPiA+ID4g
+PiA+ICAgSW50ZXJydXB0cyBlbmFibGUgYW5kIFBDSWUgUlAgYnJpZGdlIGVuYWJsZSBzaG91bGQg
+YmUgZG9uZSBhZnRlcg0KPiA+ID4gPiA+ID4gICBMaW5rIHVwLg0KPiA+ID4gPiA+ID4gLSBVcGRh
+dGUgY29tbWl0IG1lc3NhZ2UuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gQ2hhbmdlcyBmb3Ig
+djM6DQo+ID4gPiA+ID4gPiAtIFVzZSBQQ0lFX1RfUFZQRVJMX01TIGRlZmluZS4NCj4gPiA+ID4g
+PiA+DQo+ID4gPiA+ID4gPiBDaGFuZ2VzIGZvciB2MjoNCj4gPiA+ID4gPiA+IC0gTWFrZSB0aGUg
+cmVxdWVzdCBHUElPIG9wdGlvbmFsLg0KPiA+ID4gPiA+ID4gLSBDb3JyZWN0IHRoZSByZXNldCBz
+ZXF1ZW5jZSBhcyBwZXIgUEVSU1QjDQo+ID4gPiA+ID4gPiAtIFVwZGF0ZSBjb21taXQgbWVzc2Fn
+ZQ0KPiA+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9w
+Y2llLXhpbGlueC1jcG0uYyB8IDg2DQo+ID4gPiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysr
+LS0NCj4gPiA+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgODIgaW5zZXJ0aW9ucygrKSwgNCBkZWxl
+dGlvbnMoLSkNCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9w
+Y2kvY29udHJvbGxlci9wY2llLXhpbGlueC1jcG0uYw0KPiA+ID4gPiA+ID4gYi9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL3BjaWUteGlsaW54LQ0KPiA+ID4gPiA+IGNwbS5jDQo+ID4gPiA+ID4gPiBp
+bmRleCBkMGFiMTg3ZDkxN2YuLmIxMGMwNzUyYTk0ZiAxMDA2NDQNCj4gPiA+ID4gPiA+IC0tLSBh
+L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS14aWxpbngtY3BtLmMNCj4gPiA+ID4gPiA+ICsr
+KyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS14aWxpbngtY3BtLmMNCj4gPiA+ID4gPiA+
+IEBAIC02LDYgKzYsOCBAQA0KPiA+ID4gPiA+ID4gICAqLw0KPiA+ID4gPiA+ID4NCj4gPiA+ID4g
+PiA+ICAjaW5jbHVkZSA8bGludXgvYml0ZmllbGQuaD4NCj4gPiA+ID4gPiA+ICsjaW5jbHVkZSA8
+bGludXgvZGVsYXkuaD4NCj4gPiA+ID4gPiA+ICsjaW5jbHVkZSA8bGludXgvZ3Bpby9jb25zdW1l
+ci5oPg0KPiA+ID4gPiA+ID4gICNpbmNsdWRlIDxsaW51eC9pbnRlcnJ1cHQuaD4NCj4gPiA+ID4g
+PiA+ICAjaW5jbHVkZSA8bGludXgvaXJxLmg+DQo+ID4gPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4
+L2lycWNoaXAuaD4NCj4gPiA+ID4gPiA+IEBAIC0yMSw2ICsyMywxMyBAQA0KPiA+ID4gPiA+ID4g
+ICNpbmNsdWRlICJwY2llLXhpbGlueC1jb21tb24uaCINCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4g
+PiAgLyogUmVnaXN0ZXIgZGVmaW5pdGlvbnMgKi8NCj4gPiA+ID4gPiA+ICsjZGVmaW5lIFhJTElO
+WF9DUE1fUENJRTBfUlNUICAgICAgICAgMHgwMDAwMDMwOA0KPiA+ID4gPiA+ID4gKyNkZWZpbmUg
+WElMSU5YX0NQTTVfUENJRTBfUlNUICAgICAgICAgICAgICAgIDB4MDAwMDAzMTgNCj4gPiA+ID4g
+PiA+ICsjZGVmaW5lIFhJTElOWF9DUE01X1BDSUUxX1JTVCAgICAgICAgICAgICAgICAweDAwMDAw
+MzFDDQo+ID4gPiA+ID4gPiArI2RlZmluZSBYSUxJTlhfQ1BNNU5DX1BDSUUwX1JTVCAgICAgICAg
+ICAgICAgMHgwMDAwMDMyNA0KPiA+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ID4gKyNkZWZpbmUgWElM
+SU5YX0NQTTVOQ19QQ0lFMF9GUldBTEwgICAweDAwMDAxMTQwDQo+ID4gPiA+ID4gPiArDQo+ID4g
+PiA+ID4gPiAgI2RlZmluZSBYSUxJTlhfQ1BNX1BDSUVfUkVHX0lEUiAgICAgICAgICAgICAgMHgw
+MDAwMEUxMA0KPiA+ID4gPiA+ID4gICNkZWZpbmUgWElMSU5YX0NQTV9QQ0lFX1JFR19JTVIgICAg
+ICAgICAgICAgIDB4MDAwMDBFMTQNCj4gPiA+ID4gPiA+ICAjZGVmaW5lIFhJTElOWF9DUE1fUENJ
+RV9SRUdfUFNDUiAgICAgMHgwMDAwMEUxQw0KPiA+ID4gPiA+ID4gQEAgLTk5LDYgKzEwOCw3IEBA
+IHN0cnVjdCB4aWxpbnhfY3BtX3ZhcmlhbnQgew0KPiA+ID4gPiA+ID4gICAgICAgdTMyIGlyX3N0
+YXR1czsNCj4gPiA+ID4gPiA+ICAgICAgIHUzMiBpcl9lbmFibGU7DQo+ID4gPiA+ID4gPiAgICAg
+ICB1MzIgaXJfbWlzY192YWx1ZTsNCj4gPiA+ID4gPiA+ICsgICAgIHUzMiBjcG1fcGNpZV9yc3Q7
+DQo+ID4gPiA+ID4gPiAgfTsNCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiAgLyoqDQo+ID4gPiA+
+ID4gPiBAQCAtMTA2LDYgKzExNiw4IEBAIHN0cnVjdCB4aWxpbnhfY3BtX3ZhcmlhbnQgew0KPiA+
+ID4gPiA+ID4gICAqIEBkZXY6IERldmljZSBwb2ludGVyDQo+ID4gPiA+ID4gPiAgICogQHJlZ19i
+YXNlOiBCcmlkZ2UgUmVnaXN0ZXIgQmFzZQ0KPiA+ID4gPiA+ID4gICAqIEBjcG1fYmFzZTogQ1BN
+IFN5c3RlbSBMZXZlbCBDb250cm9sIGFuZCBTdGF0dXMNCj4gPiA+ID4gPiA+IFJlZ2lzdGVyKFNM
+Q1IpIEJhc2UNCj4gPiA+ID4gPiA+ICsgKiBAY3J4X2Jhc2U6IENQTSBDbG9jayBhbmQgUmVzZXQg
+Q29udHJvbCBSZWdpc3RlcnMgQmFzZQ0KPiA+ID4gPiA+ID4gKyAqIEBjcG01bmNfYXR0cl9iYXNl
+OiBDUE01TkMgQ29udHJvbCBhbmQgU3RhdHVzIFJlZ2lzdGVycw0KPiA+ID4gPiA+ID4gKyBCYXNl
+DQo+ID4gPiA+ID4gPiAgICogQGludHhfZG9tYWluOiBMZWdhY3kgSVJRIGRvbWFpbiBwb2ludGVy
+DQo+ID4gPiA+ID4gPiAgICogQGNwbV9kb21haW46IENQTSBJUlEgZG9tYWluIHBvaW50ZXINCj4g
+PiA+ID4gPiA+ICAgKiBAY2ZnOiBIb2xkcyBtYXBwaW5ncyBvZiBjb25maWcgc3BhY2Ugd2luZG93
+IEBAIC0xMTgsNg0KPiA+ID4gPiA+ID4gKzEzMCw4IEBAIHN0cnVjdCB4aWxpbnhfY3BtX3BjaWUg
+ew0KPiA+ID4gPiA+ID4gICAgICAgc3RydWN0IGRldmljZSAgICAgICAgICAgICAgICAgICAqZGV2
+Ow0KPiA+ID4gPiA+ID4gICAgICAgdm9pZCBfX2lvbWVtICAgICAgICAgICAgICAgICAgICAqcmVn
+X2Jhc2U7DQo+ID4gPiA+ID4gPiAgICAgICB2b2lkIF9faW9tZW0gICAgICAgICAgICAgICAgICAg
+ICpjcG1fYmFzZTsNCj4gPiA+ID4gPiA+ICsgICAgIHZvaWQgX19pb21lbSAgICAgICAgICAgICAg
+ICAgICAgKmNyeF9iYXNlOw0KPiA+ID4gPiA+ID4gKyAgICAgdm9pZCBfX2lvbWVtICAgICAgICAg
+ICAgICAgICAgICAqY3BtNW5jX2F0dHJfYmFzZTsNCj4gPiA+ID4gPiA+ICAgICAgIHN0cnVjdCBp
+cnFfZG9tYWluICAgICAgICAgICAgICAgKmludHhfZG9tYWluOw0KPiA+ID4gPiA+ID4gICAgICAg
+c3RydWN0IGlycV9kb21haW4gICAgICAgICAgICAgICAqY3BtX2RvbWFpbjsNCj4gPiA+ID4gPiA+
+ICAgICAgIHN0cnVjdCBwY2lfY29uZmlnX3dpbmRvdyAgICAgICAgKmNmZzsNCj4gPiA+ID4gPiA+
+IEBAIC00NzUsMTIgKzQ4OSw0NSBAQCBzdGF0aWMgaW50IHhpbGlueF9jcG1fc2V0dXBfaXJxKHN0
+cnVjdA0KPiA+ID4gPiA+ID4geGlsaW54X2NwbV9wY2llDQo+ID4gPiA+ID4gKnBvcnQpDQo+ID4g
+PiA+ID4gPiAgICogeGlsaW54X2NwbV9wY2llX2luaXRfcG9ydCAtIEluaXRpYWxpemUgaGFyZHdh
+cmUNCj4gPiA+ID4gPiA+ICAgKiBAcG9ydDogUENJZSBwb3J0IGluZm9ybWF0aW9uDQo+ID4gPiA+
+ID4gPiAgICovDQo+ID4gPiA+ID4gPiAtc3RhdGljIHZvaWQgeGlsaW54X2NwbV9wY2llX2luaXRf
+cG9ydChzdHJ1Y3QgeGlsaW54X2NwbV9wY2llDQo+ID4gPiA+ID4gPiAqcG9ydCkNCj4gPiA+ID4g
+PiA+ICtzdGF0aWMgaW50IHhpbGlueF9jcG1fcGNpZV9pbml0X3BvcnQoc3RydWN0IHhpbGlueF9j
+cG1fcGNpZQ0KPiA+ID4gPiA+ID4gKypwb3J0KQ0KPiA+ID4gPiA+ID4gIHsNCj4gPiA+ID4gPiA+
+ICAgICAgIGNvbnN0IHN0cnVjdCB4aWxpbnhfY3BtX3ZhcmlhbnQgKnZhcmlhbnQgPQ0KPiA+ID4g
+PiA+ID4gcG9ydC0+dmFyaWFudDsNCj4gPiA+ID4gPiA+ICsgICAgIHN0cnVjdCBkZXZpY2UgKmRl
+diA9IHBvcnQtPmRldjsNCj4gPiA+ID4gPiA+ICsgICAgIHN0cnVjdCBncGlvX2Rlc2MgKnJlc2V0
+X2dwaW87DQo+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiArICAgICAvKiBSZXF1ZXN0IHRoZSBH
+UElPIGZvciBQQ0llIHJlc2V0IHNpZ25hbCAqLw0KPiA+ID4gPiA+ID4gKyAgICAgcmVzZXRfZ3Bp
+byA9IGRldm1fZ3Bpb2RfZ2V0X29wdGlvbmFsKGRldiwgInJlc2V0IiwNCj4gR1BJT0RfT1VUX0hJ
+R0gpOw0KPiA+ID4gPiA+ID4gKyAgICAgaWYgKElTX0VSUihyZXNldF9ncGlvKSkgew0KPiA+ID4g
+PiA+ID4gKyAgICAgICAgICAgICBpZiAoUFRSX0VSUihyZXNldF9ncGlvKSAhPSAtRVBST0JFX0RF
+RkVSKQ0KPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAiRmFp
+bGVkIHRvIHJlcXVlc3QgcmVzZXQgR1BJT1xuIik7DQo+ID4gPiA+ID4gPiArICAgICAgICAgICAg
+IHJldHVybiBQVFJfRVJSKHJlc2V0X2dwaW8pOw0KPiA+ID4gPiA+ID4gKyAgICAgfQ0KPiA+ID4g
+PiA+ID4NCj4gPiA+ID4gPiA+IC0gICAgIGlmICh2YXJpYW50LT52ZXJzaW9uID09IENQTTVOQ19I
+T1NUKQ0KPiA+ID4gPiA+ID4gLSAgICAgICAgICAgICByZXR1cm47DQo+ID4gPiA+ID4gPiArICAg
+ICBpZiAocmVzZXRfZ3BpbyAmJiBwb3J0LT5jcnhfYmFzZSkgew0KPiA+ID4gPiA+ID4gKyAgICAg
+ICAgICAgICAvKiBBc3NlcnQgdGhlIFBDSWUgSVAgcmVzZXQgKi8NCj4gPiA+ID4gPiA+ICsgICAg
+ICAgICAgICAgd3JpdGVsX3JlbGF4ZWQoMHgxLCBwb3J0LT5jcnhfYmFzZSArDQo+ID4gPiA+ID4g
+PiArIHZhcmlhbnQtPmNwbV9wY2llX3JzdCk7DQo+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiAr
+ICAgICAgICAgICAgIC8qIENvbnRyb2xsZXIgc3BlY2lmaWMgZGVsYXkgKi8NCj4gPiA+ID4gPiA+
+ICsgICAgICAgICAgICAgdWRlbGF5KDUwKTsNCj4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPg0KPiA+
+ID4gPiA+IFRoZXJlIHNob3VsZCBiZSBhdGxlYXN0IDEwMG1zIGRlbGF5IGJlZm9yZSBQRVJTVCMg
+ZGVhc3NlcnQgYXMNCj4gPiA+ID4gPiBwZXIgdGhlIHNwZWMuIFNvIHVzZSBQQ0lFX1RfUFZQRVJM
+X01TLiBJIGtub3cgdGhhdCB5b3UgaGFkIGl0DQo+ID4gPiA+ID4gYmVmb3JlLCBidXQgcmVtb3Zl
+ZCBpbiB2NC4gSSBkb24ndCBzZWUgYSB2YWxpZCByZWFzb24gZm9yIHRoYXQuDQo+ID4gPiA+DQo+
+ID4gPiA+IEZvciBDUE0vQ1BNNS9DUE01TkMsIHRoZSAiUG93ZXIgVXAiIHNlcXVlbmNlIG1lbnRp
+b25lZCBpbiBzZWN0aW9uDQo+ID4gPiA+IDIuMi4xIG9mIFBDSWUgRWxlY3Ryb21lY2hhbmljYWwg
+U3BlYyBpcyBoYW5kbGVkIGluIHRoZSBkZXNpZ24uIFRoZQ0KPiA+ID4gPiBQRVJTVCMgd2UgYXJl
+IHVzaW5nIGhlcmUgaXMgYXBwbGllZCBhZnRlciB0aGUgUG93ZXIgVXAgc2VxdWVuY2UNCj4gPiA+
+ID4gYW5kIHdpbGwgYmUgdXNlZCBmb3Igd2FybSByZXNldCwgd2hlcmUgcG93ZXIgb2YgdGhlIHN5
+c3RlbSBpcyBhbHJlYWR5IHN0YWJsZS4NCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBJIGRvbid0IHF1
+aXRlIHVuZGVyc3RhbmQgd2hhdCB5b3UgbWVhbiBieSAnd2FybSByZXNldCcgaGVyZS4gRXZlbiBp
+Zg0KPiA+ID4gdGhlIHBvd2VyIHdhcyBhbHJlYWR5IHN0YWJsZSwgd2hhdCBpcyB0aGUgZ3VhcmFu
+dGVlIHRoYXQgdGhlIDEwMG1zDQo+ID4gPiB0aW1lIGlzIGVsYXBzZWQgYmVmb3JlIGRlYXNzZXJ0
+aW5nIHRoZSBQRVJTVCM/IERvZXMgdGhlIGhhcmR3YXJlDQo+ID4gPiBsb2dpYyBlbnN1cmUgMTAw
+bXMgdGltZSBpcyBlbGFwc2VkIGJlZm9yZSB0aGUgZHJpdmVyIGlzIHByb2JlZD8NCj4gPiA+DQo+
+ID4NCj4gPiBUaGUgSW5pdGlhbCBQb3dlciBVcCBzZXF1ZW5jZSBpcyBoYW5kbGVkIGluIGhhcmR3
+YXJlIGxvZ2ljLCBhbmQgMTAwbXMNCj4gPiAoVF9QVlBFUkwpIGRlbGF5IGlzIHByb3ZpZGVkIGFm
+dGVyIHRoZSBwb3dlciBiZWNvbWVzIHN0YWJsZS4gWWVzLCB0aGlzDQo+ID4gcGFydCBpcyBoYW5k
+bGVkIGJlZm9yZSB0aGUgZHJpdmVyIGlzIHByb2JlZC4NCj4gPg0KPg0KPiBPaywgaW4gdGhhdCBj
+YXNlLCBwbGVhc2UgbWVudGlvbiBpdCBpbiBjb21tZW50cyBiZWZvcmUgZGVhc3NlcnRpbmcgUEVS
+U1QjLg0KPiBPdGhlcndpc2UsIG5vIG9uZSBleGNlcHQgeW91IHdpbGwga25vdy4NCj4NCg0KRHVy
+aW5nIHRoZSBwb3dlci11cCBzZXF1ZW5jZSwgdGhlIGhhcmR3YXJlIGxvZ2ljIGRlYXNzZXJ0cyB0
+aGUgUEVSU1QjIHNpZ25hbC4NCkJ5IHRoZSB0aW1lIHRoZSBkcml2ZXIgaXMgcHJvYmVkLCB0aGUg
+UEVSU1QjIHNpZ25hbCB3aWxsIGFscmVhZHkgYmUgaW4NCmRlYXNzZXJ0ZWQgc3RhdGUuDQoNCkxh
+dGVyLCB0aGUgZHJpdmVyIGFzc2VydHMgYW5kIHRoZW4gZGVhc3NlcnRzIHRoZSBQRVJTVCMgc2ln
+bmFsLiBGb2xsb3dpbmcgeW91cg0Kc3VnZ2VzdGlvbiBhbmQgYWRoZXJpbmcgdG8gdGhlIHNwZWNp
+ZmljYXRpb25zLCBJIGFtIGNoYW5naW5nIHRoZSBkZWxheSBiZWZvcmUNCmRlYXNzZXJ0aW5nIHRo
+ZSBQRVJTVCMgc2lnbmFsIGluIHRoZSBkcml2ZXIgdG8gMTAwbXMuIEkgd2lsbCBzZW5kIHdpdGgg
+dGhpcyBjaGFuZ2UNCmluIG5leHQgcGF0Y2guIFRoYW5rcy4NCg0KPiA+IEJ5ICJ3YXJtIHJlc2V0
+IiBoZXJlLCBJJ20gcmVmZXJyaW5nIHRvIGEgcmVzZXQgdGhhdCBkb2VzIG5vdCBpbnZvbHZlDQo+
+ID4gcG93ZXIgY3ljbGluZyB0aGUgZGV2aWNlLCBhcyBwZXIgUENJZSBzcGVjIHNlY3Rpb24gNi42
+LjEuIFRoZSBwb3dlcg0KPiA+IHJhaWxzIHJlbWFpbiBzdGFibGUsIGFuZCBvbmx5IFBFUlNUIyBp
+cyB0b2dnbGVkIHRocm91Z2ggdGhlIGRyaXZlci4NCj4gPg0KPiA+IEFzIHBlciB0aGUgUENJZSBT
+cGVjIHJlcGxhY2VkIDUwdXMgd2l0aCAxMDB1cyAoVF9QRVJTVCkgYmVmb3JlIFBFUlNUIw0KPiA+
+IGRlYXNzZXJ0IGluIGRyaXZlciwgd2lsbCBzZW5kIGl0IGluIG5leHQgcGF0Y2guDQo+ID4NCj4N
+Cj4gWW91IG1lYW4gVF9QRVJTVC1DTEs/IEkgZG9uJ3QgdGhpbmsgeW91IG5lZWQgdG8gd2FpdCBm
+b3IgdGhpcy4gSUlVQywgdGhpcyBkZWxheSBpcw0KPiBhbHJlYWR5IHBhcnQgb2YgaW4gVF9QVlBF
+UkwuIFRoaXMgcmVxdWlyZW1lbnQgaXMgdG8gbWFrZSBzdXJlIHRoYXQgdGhlIHJlZmNsaw0KPiBi
+ZWNvbWVzIGFjdGl2ZSBhdGxlYXN0IFRfUEVSU1QtQ0xLIHRpbWUgYmVmb3JlIGRlYXNzZXJ0aW5n
+IFBFUlNUIy4gSSBkb24ndA0KPiB0aGluayB5b3UgY2FuIGd1YXJhbnRlZSB0aGF0IGluIHNvZnR3
+YXJlIGJ5IGludHJvZHVjaW5nIGEgZGVsYXkgd2l0aG91dCBjb250cm9sbGluZw0KPiByZWZjbGsu
+DQo+DQo+IC0gTWFuaQ0KPg0KPiAtLQ0KPiDgrq7grqPgrr/grrXgrqPgr43grqPgrqngr40g4K6a
+4K6k4K6+4K6a4K6/4K614K6u4K+NDQoNClRoYW5rcywNClNhaSBLcmlzaG5hDQo=
 
