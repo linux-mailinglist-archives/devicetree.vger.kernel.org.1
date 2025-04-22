@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-169342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77DBA96745
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:25:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25613A96746
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 13:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21D4B17BB8A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:25:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFFD6189DA39
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D0727BF88;
-	Tue, 22 Apr 2025 11:25:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAAC27C158;
+	Tue, 22 Apr 2025 11:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MvWbxX9q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k9rZFv5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4FF1E9B12
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:25:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756D027BF7B
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745321142; cv=none; b=Ow6aSwi/j7EZcDHiZVbj17Y1hV95b2JqB58TO2eJviBIF78ymb6KFe3sa+MO4KJ3tiBZMQrNKgbYVam/T57FdzaM4UTJZex/Lt3a6N2zXfK//XCFlAG61DpnFPOF/bt1Y6c8t0vVRGd2rdkMu/Vm9HgpADZ8Nt9YTglXmXuFs1M=
+	t=1745321143; cv=none; b=LkdddbxTB+RoyxzE98su0MtcTTTYH8xhS4wPZ9uypV4aLnVg1ebPGwq3UlwAU2DRm+yPPdaiPk9uSg1nyE4rW8X0EbLOr8WWgA6x2j6PBquWusH2nee31YCcd3BU4YTCWBDD+fNWE992FnTeLx0wrleSajjAALrM6k4HaOYThk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745321142; c=relaxed/simple;
-	bh=mjcZIS1sSTOV3vBIaA/aDPuvoJjWXpCDTghUnSk+/1I=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rn3auYpQN5+mucOPD+J65Gj6RaIzCpl/BpGG/YjgA4eW7vFCfsToTZBMP0OlOlUU6hhVCjXW86ayKoIfaRqsxY6saZJZpc00G20RCb6ZDOfzCQP/VM4f8Rykl+/8f7fQ0rECsULATPgTLKmXh/WfjTZkuyM7cr4qBy+3w1Zkw9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MvWbxX9q; arc=none smtp.client-ip=209.85.218.54
+	s=arc-20240116; t=1745321143; c=relaxed/simple;
+	bh=ZgUctIQTYjWrXxfNyYBxpGZo3m0nZVj0c8WONv4n52c=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=sS+Ecwmn4cqp6WyXQIILEwkBrKZXyHLT0kwpQ+HAyPJ0zkFQW1H1PIEtSo7rTi+wJbpLTafR9U8ko6XdkH/T1r2vwinQLyHWXEmsFLKtvcekqtcXrNK+PctV8nFrvpNnrRg6kWBbESXQGYpJFol4DQupMFW7eu3OwW7BcoMUE/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k9rZFv5n; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acbb48bad09so257947066b.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:25:39 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso10588075a12.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 04:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745321138; x=1745925938; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fe3P15Atc+bTSOXM06LPyzPgb3J7Ws1BpA/wm5ZQuHM=;
-        b=MvWbxX9qflME7sftJS3+y51EYd5eCZdc0y9WEftxss4uZaMaUAhkLN8pVUf0EVQDVp
-         boVQ/orjldID9vfm1trdNxeNO54rL53BSysH3Tpv0MBdVLxqIHPFgVaimcIhfNfZW7wT
-         qyLuwPn99T3wdoy0GleOvgJrXmwvbb1hXBPKKb5UN6udMgAntJ/LzxzAia/vIzdoLGDh
-         H0ruj1ePjlttQKHvC/kby8ggC/VGNyeKczWHzGTF8SBC75R34IjxxgIZFC1alMn7Zmyw
-         WzWJCRov/PHmjkuwM8/66HLZXSd4vdVQGB0fSPL9PqW885ENVbGgAQQBI6cv7lZlaEEk
-         P+gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745321138; x=1745925938;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1745321140; x=1745925940; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fe3P15Atc+bTSOXM06LPyzPgb3J7Ws1BpA/wm5ZQuHM=;
-        b=NetZfDtjkFHflpbq86UlRVOqowQGNYBmLgQR8fJdiTiWzZgafYiAq4Yhd1wEbbCg0H
-         TnNipEkvaC+hhXZehJ/ieXOJqJbaEXLCR/70ergM9M8iPKHJFEYQpIhZ7azpwL6iFMKu
-         fhO+9tPllR0hivKbfgb83lFICm87gSlMU81QDGalC6qVupmbVoMjS/6gWht//I14cR5G
-         ptF4S+0CNT+hqwPts5UKvXmNBfUuRPwZGytYgh4zbjyI1uxApgTv0EXpx6sGwGVBWrHx
-         kBrNTTeWCYjYG4+kgFw5DUNRWjAQXJct6y1tgHdk55O8oBo4ynAb7xh+9Mgdoa4MXBMW
-         4g1g==
-X-Forwarded-Encrypted: i=1; AJvYcCUOhD8iEIyQv4lZ/yxjXzmdbwYsOSU/aUdAqzPWsAKWUG1gjzTT961rnOv3t8ZwFd3rgrD6+KjzntmE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWXPspYph3VikrEGHyTV4z4KZoSlPmnSFTIRZpFIAiNLGfu3Ys
-	zUm2VFtOuml3YHYAh37NaTzBySDqmq3mj5mnuDi9w9CIzgAzlrKufqpp6SkOyP65NudGmDcbIDE
-	K
-X-Gm-Gg: ASbGnctm/SBdi3LbllxwnA8aio7GxmhWjzHUheo89My+XXfohl0xybEfAq5yYopE93P
-	If5vmM8yWUfokr90R2Ow8q1LHUeTpiWpdYFK/Vk2LK/ScqLnfVyrfgXqOebQUJ5PLZ0k6og/Yj6
-	m9cQyOQdEzfiepe5zAkwjzTd0pFEF8InZAuocA0Gsu4TP6oPmCCax23IkpGo+/tbgBKgYQn4o8b
-	FSVB3eeV0c/gcYashqupJJH1MT6RvmPQtscTsR+B1hW98Xea1WiNO2J2ZeHfn9kDi+g4/R1HB2T
-	gOrHH0acYEjdO25dYW/XQJEW54GfXr4W6ZLZAVU=
-X-Google-Smtp-Source: AGHT+IE9lW5g0YYInkFbQ5pngf6VKtN0ACE4saTnFH+bjEE/AkZ3cK9UlUfQkhNYOk92oXCpU/M3gg==
-X-Received: by 2002:a17:907:3e9f:b0:ac7:ed72:3426 with SMTP id a640c23a62f3a-acb74d65adfmr1090219466b.40.1745321138071;
-        Tue, 22 Apr 2025 04:25:38 -0700 (PDT)
+        bh=sVK6SAMdQtK0FFO3trNDw7APCuecG0j/aMOLgynyWRQ=;
+        b=k9rZFv5ncRCqZCBBGx/YPgkpc3Ql1QBEpk9K1u7fR3vLwT2gXUuKDSjGGhitv4hOHZ
+         Aro4qvJwIVgFepQJOoxgGk+KiBjC7xri6f6XjFF0BVKXcV64h3wXYjpl4BOEaiNCygt0
+         /Oui2zYjCYDTfWn+AMypbDPcVVjpJYKAMuyR7V4y4jkbcG1X+45w+fIVLfk6frt1sTUA
+         V7vvm3dy5G2zl0tw4dpAjjq659e+I+s3zZ+KhXiw2SaFeD7qU1n/gRbz3JF2GNvLjQbv
+         Vot08vuNdiRC3fXRVKLXgQlUBAepj3IZO3Ou3QH8nHYCBn/RzYhHJxF+Pibz9iF9GGEJ
+         mh+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745321140; x=1745925940;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sVK6SAMdQtK0FFO3trNDw7APCuecG0j/aMOLgynyWRQ=;
+        b=n6VmQq0qX6kq5Iti2U9v5PBFMJS/BlfoEiE23qUcvqdYS+HXjKldyzOBRXn9DYsEr9
+         bv6HtWPhHg718lnoehDkw9qslJs+o6wVAVPsBi7beOQX5/fYh2Y3x4Nd3ZmdmPlMnvwN
+         9bf6b3Cv30CqtND3pbxb98lpdh22X1mpCzaJT6IQY1a0FOJdvZY12gl7TIk1WPY4DA8I
+         qFcNCGuYJ7JgtcTRcm7wgg4M5ulcOmnpmwXpkZrz1TMluq1eF+tfvLwyBqXUKL2g4q1j
+         /Y8esIcVg6/WoFRfKS1vUsauElOfmUnItt0WHGH7VGWzK9aPpVyOrqxffnukRwOU/atq
+         wkzg==
+X-Forwarded-Encrypted: i=1; AJvYcCWR3DyGtN2zHJQBGZgbtZADjt6Awueatf/1Ii0whAqOeVjv0UvjOGgjeJ0s348VW+3MYXwW41oXEwdf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtOyKlCrFbtysHsNH4lEhcFfG78d0b2Isq7zeI60Q3izsaIeOo
+	Fc1hfuLijyKtpT2NjLYVgWzDe5x8Kxvi9kQPgwSelN7/wrXPPy7A+46OA8gWcvk=
+X-Gm-Gg: ASbGncs7sEPKcVnDQtOxO/DQlcEqwCkW8zFMrkRjJyKNkVd+611IrfnH5dlSXghk4fM
+	f3XIKaE2goXJVwEe4qadk63IhLgu1CcG1oo+JB23zpcFSxCdAk49W3DWErhogF1biZG5FRFUvei
+	xyTscfB1BhZ6Lt86+B2ppvHAZakvOawT2zcWr8XvQIHLSk809drxSjBFdZ9ik8TK6bu1UfWOlMB
+	LQtQEQv0sAgAPAi7ewaDouORlKrdZl2CFKCRxrfALujOh4ZGMKhTbMUnxWpIqXbigoV6BoVvsc4
+	7guCBYgmQ+y+GmjkIPuSgic8TlPyFZC17P37qJQ=
+X-Google-Smtp-Source: AGHT+IGFak/38L5C9a/ywlZnr61etyWEsgyGtnyILz14A2eKTkDqB2+k60+UZb924U/AV1523eF9sg==
+X-Received: by 2002:a17:906:f590:b0:aca:aeb4:938e with SMTP id a640c23a62f3a-acb75120039mr1221113166b.8.1745321139737;
+        Tue, 22 Apr 2025 04:25:39 -0700 (PDT)
 Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef45784sm630692366b.129.2025.04.22.04.25.36
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef45784sm630692366b.129.2025.04.22.04.25.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 04:25:37 -0700 (PDT)
+        Tue, 22 Apr 2025 04:25:39 -0700 (PDT)
 From: Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH v2 0/2] arm64: dts: x1e001de-devkit: USB retimers related
- fixes
-Date: Tue, 22 Apr 2025 14:25:21 +0300
-Message-Id: <20250422-x1e001de-devkit-dts-fix-retimer-gpios-v2-0-0129c4f2b6d7@linaro.org>
+Date: Tue, 22 Apr 2025 14:25:22 +0300
+Subject: [PATCH v2 1/2] arm64: dts: qcom: x1e001de-devkit: Describe USB
+ retimers resets pin configs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,11 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKF8B2gC/5WNQQ6CMBBFr0K6dsxMUQKuvIdhAe0AE5WStmkwh
- LtbuYHL9/Pz3qYCe+GgbsWmPCcJ4uYM+lQoM3XzyCA2s9Kor1hSDSsxIlkGy+kpEWwMMMgKnqO
- 82cO4iAvQs61LqpoLklHZtXjOp6PzaDNPEqLznyOb6Lf+W0gECGSw0UNVYo/m/pK58+7s/Kjaf
- d+/t/zWwdsAAAA=
-X-Change-ID: 20250318-x1e001de-devkit-dts-fix-retimer-gpios-bed83169401c
+Message-Id: <20250422-x1e001de-devkit-dts-fix-retimer-gpios-v2-1-0129c4f2b6d7@linaro.org>
+References: <20250422-x1e001de-devkit-dts-fix-retimer-gpios-v2-0-0129c4f2b6d7@linaro.org>
+In-Reply-To: <20250422-x1e001de-devkit-dts-fix-retimer-gpios-v2-0-0129c4f2b6d7@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -98,50 +96,109 @@ Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
  Abel Vesa <abel.vesa@linaro.org>, 
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1005; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=mjcZIS1sSTOV3vBIaA/aDPuvoJjWXpCDTghUnSk+/1I=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoB3ypv5idLYFVDXUdPZ4YXrQTcWQbWsK+ZLCDM
- qmMFAuyb6KJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaAd8qQAKCRAbX0TJAJUV
- Vl0FD/9VwX0a0oaNmU3G2ewc/ieUXpKxf7dDVZUcVQxk8CTrClGkuHVFYYpbvHCOSdxGzlERTFt
- jmsj/jaOYZETTblFbbbKdtpQ400kL6FmQLecF1ODm5p3OSyMnUDdKDka4mhXzIaUNlXSIwGpLhY
- Iq/A5uNU23ygfwBewPXfmCvJN3jywDgVWFg6jtPNdmeJXyXckJVnpJxJKJSy2taURVrFwgrU7X2
- ai0i+U5Yo2Shj0goQgEvqkj3clh3jAvS/3Qifncpzr/p2bSHBySM0o61ibDEmsyvYPXjmcJ/J30
- 4ZC7euxnnKsivwjljHAx4kvkQL5y/XG7/0J6sXem563VPjjdskgYolX0NseL3+xZqZeyWdBX1pn
- CnyZzsq+lkosE12EYIeiAWXDnvDqojCpZ9Q3zZtm5XDCHKDJq6r+AH5eW/Q4tk/L3l1dj32YVzu
- kkmPR1uXMkrFrN1D/M4PjPDPV6M4NjH/99eYmts0VIj5lGFupv9WawqThl/RyswNvKfmP+SXFmI
- pBENx9mBUBSxgelpK6NuXqfJM4NNj+3KAQ0yPK74QKFIk5fmbKliZ7NLq6Wb+SgBYFl9RT8J+uD
- OTwqA78c+nLkuRyopgfOBKlH7O9cVX7cXPBXYyiUiG9nJPXeRNRCMnM3uGH8MjN/2joDvBJKpZg
- SmTV2EAplmihTgQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2247; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=ZgUctIQTYjWrXxfNyYBxpGZo3m0nZVj0c8WONv4n52c=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoB3ys6pR51rXun/I4Lejqlq8TRZIAVAIHHczS/
+ I9tqMz00xWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaAd8rAAKCRAbX0TJAJUV
+ VjEbD/9vdJtQUMnw32dowM67hrTvuQO4yOFlEv89ZQVN7fmGRR36YU7eW6FLhH+resuFrTEaAuO
+ mA8gYg+L0yXu19yAImIMhzSkTsRpshtCwgw09eWVAJgLYZ92zOvtxh+gsk9D/E2fikYTT2y49Vi
+ sKWp/ZaR4svDlClJsERb9o75EKsnLtIq72YQtJ2G4YugaoIUL67GBpjSo2EHtnNMQcxicQ4KBpK
+ BreQyPN9upDcPJLRyOaMpiVk+GFf9nqx+PchV5Bhtcw93xcRS89ZRY1EmFoW0G3Ug2DkPtFlvhu
+ pWL7i/dtFdKQxaQMCyfM0FDESkyqjryC8aqdL/Ht/5H1zFVET1mc9AFYHBpl93eKP5B618nl+5w
+ ppfUzuRItT9aj6JGMlUpd2VfQM9W29901bKcPJJYmzpXheZctdYbJV+bXByzzccDONMY4HRukMT
+ 5ErkIOcQTPxzjH3YbVmxUOSY0OinH5D+6Ho/t5JDXDXnUefG7J/yVvZcALf+RkcvMSBMzoXWZtN
+ tA+a0Xn7zHyEcV0aHMjRGw3hpzE56E6k134/+iH4iKProLBhLng7FKlmb7q+wv/nXpYJXTi4SDB
+ moGiSITGw7FSmAgQSBSi8x7U+9FwohSHgYxzacuM+M6CdRRp55L17h+LBsmdgbn940K2KTr1vT3
+ NmY4g8FTiEPsFsQ==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-These fixes align all the USB retimer related nodes on the Devkit with the
-CRD and T14s.
+Currently, on the X Elite Devkit, the pin configuration of the reset
+gpios for all three PS8830 USB retimers are left configured by the
+bootloader.
 
-This patchset is based on Johan's:
-https://lore.kernel.org/all/20250318074907.13903-1-johan+linaro@kernel.org/
+Fix that by describing their pin configuration.
 
+Fixes: 019e1ee32fec ("arm64: dts: qcom: x1e001de-devkit: Enable external DP support")
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
-Changes in v2:
-- Added space between voltage value and SI unit in comments, like Johan
-  suggested.
-- Picked up Konrad's R-b tags
-- Link to v1: https://lore.kernel.org/r/20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 32 ++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
----
-Abel Vesa (2):
-      arm64: dts: qcom: x1e001de-devkit: Describe USB retimers resets pin configs
-      arm64: dts: qcom: x1e001de-devkit: Fix pin config for USB0 retimer vregs
+diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+index 74911861a3bf2606add8cf4aaa3816542e837513..13516ae253fea6a7872da6c48bcf91eb95167a42 100644
+--- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
++++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+@@ -789,6 +789,9 @@ typec-mux@8 {
+ 
+ 		reset-gpios = <&tlmm 185 GPIO_ACTIVE_LOW>;
+ 
++		pinctrl-0 = <&rtmr2_default>;
++		pinctrl-names = "default";
++
+ 		orientation-switch;
+ 		retimer-switch;
+ 
+@@ -843,6 +846,9 @@ typec-mux@8 {
+ 
+ 		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_LOW>;
+ 
++		pinctrl-0 = <&rtmr0_default>;
++		pinctrl-names = "default";
++
+ 		retimer-switch;
+ 		orientation-switch;
+ 
+@@ -897,6 +903,9 @@ typec-mux@8 {
+ 
+ 		reset-gpios = <&tlmm 176 GPIO_ACTIVE_LOW>;
+ 
++		pinctrl-0 = <&rtmr1_default>;
++		pinctrl-names = "default";
++
+ 		retimer-switch;
+ 		orientation-switch;
+ 
+@@ -1018,6 +1027,15 @@ &pcie6a_phy {
+ };
+ 
+ &pm8550_gpios {
++	rtmr0_default: rtmr0-reset-n-active-state {
++		pins = "gpio10";
++		function = "normal";
++		power-source = <1>; /* 1.8 V */
++		bias-disable;
++		input-disable;
++		output-enable;
++	};
++
+ 	usb0_3p3_reg_en: usb0-3p3-reg-en-state {
+ 		pins = "gpio11";
+ 		function = "normal";
+@@ -1205,6 +1223,20 @@ wake-n-pins {
+ 		};
+ 	};
+ 
++	rtmr1_default: rtmr1-reset-n-active-state {
++		pins = "gpio176";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr2_default: rtmr2-reset-n-active-state {
++		pins = "gpio185";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	rtmr1_1p15_reg_en: rtmr1-1p15-reg-en-state {
+ 		pins = "gpio188";
+ 		function = "gpio";
 
- arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 44 ++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
----
-base-commit: bc8aa6cdadcc00862f2b5720e5de2e17f696a081
-change-id: 20250318-x1e001de-devkit-dts-fix-retimer-gpios-bed83169401c
-
-Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+2.34.1
 
 
