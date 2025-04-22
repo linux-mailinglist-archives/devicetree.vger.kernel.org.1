@@ -1,209 +1,198 @@
-Return-Path: <devicetree+bounces-169236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075B1A95FCE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C50EA95FE2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 09:50:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEABF1896B45
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 07:48:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77111898750
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 07:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94C81EB5F0;
-	Tue, 22 Apr 2025 07:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFDF1EE031;
+	Tue, 22 Apr 2025 07:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CR8KgOZU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2Cp3T4d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148F517BED0
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:47:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C67315B115;
+	Tue, 22 Apr 2025 07:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745308067; cv=none; b=LjLTU3t9PMl4GgJ/6z097CahVKmWwC7eEGHRsGPXskb010Nrhap1xWXXGwo4U3WJZCiBeIpzoSo80q+eHOSnnqtIE9bRuzd3GY+fHN5LZPzeI+YGDlDyFn1pv9Gk7PDTJBgsZiax0SB5H0gy7YEtuIdXh0CLVsOXDtOdDxip5e0=
+	t=1745308209; cv=none; b=QHl65D+xfH1gR3OvDiqgcoj+lNJVQnTp2FjbuINnJYV9je2Kux3YpmWNEBkaGyTCrVneE1r+iuPz+WrX/CvmDtFAT/A1cJLqeuMdfE2wQdh1ZwUqfkg3R4EaIf+KMprpd/mXCPXbVV0yLcocS6NcHFkyTmIzWokQi7iUN6dwRLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745308067; c=relaxed/simple;
-	bh=gYBCtmcJwyBrgGgeZj1AG+YLAnJPuvkOb/Fa/7ENihU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=HcXZYEcWAucZNLJfH+M7GBGDQUjeZN1YyScDNebZBcVIuOorzlBl1F7dYbgEspkvWrkdI0CP7oHbLZjDvjaA2Dz2XcNzexup2lnnO0AL48UOdW7HU5ei43A0LQ3FFTBKpFxrs+L4CbRWDRizr1Ciq9NMt6fzJ/3eG/npHOkxESo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CR8KgOZU; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250422074737euoutp02e48c33da640b7a1cd7286a93ac1ca521~4lG5x_k_F2280622806euoutp02f
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:47:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250422074737euoutp02e48c33da640b7a1cd7286a93ac1ca521~4lG5x_k_F2280622806euoutp02f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745308057;
-	bh=YhGFLkEzKgz+GfyN4OdYyuMG4I+CyiVDnG8UcSjurlI=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=CR8KgOZUrftR9/Eqo4u0/5IySoaChZq+JpkQg/Y5g60SlY35JuhD4tImWkpqj6N8f
-	 sdTxik2CqHBYBNHgAORBVan/z23C051OkWAlXzl2DM273g6WgEVfxTAB93Sk/AF14T
-	 t+Mqc2JfBTC27GyPmmbxcDSI3qW8lq4cAgmk2lRA=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250422074736eucas1p26785e0aa606a0551d57b635f9f7cb724~4lG5EMJ6s0798107981eucas1p2P;
-	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 57.65.06072.89947086; Tue, 22
-	Apr 2025 08:47:36 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250422074736eucas1p229d8a46d24bc2b62fba4835f225d34cc~4lG4cllm00585305853eucas1p2Z;
-	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250422074736eusmtrp25d4f37e4a76d45889912395ff4e4d1f6~4lG4brYS01493814938eusmtrp2h;
-	Tue, 22 Apr 2025 07:47:36 +0000 (GMT)
-X-AuditID: cbfec7f5-7f7fe700000017b8-f9-680749984146
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 3D.78.19920.89947086; Tue, 22
-	Apr 2025 08:47:36 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250422074734eusmtip23ed507b3f619e62e76af9e5cdabc81a4~4lG3Mfp3_1123511235eusmtip20;
-	Tue, 22 Apr 2025 07:47:34 +0000 (GMT)
-Message-ID: <81e53e3a-5873-44c7-9070-5596021daa42@samsung.com>
-Date: Tue, 22 Apr 2025 09:47:34 +0200
+	s=arc-20240116; t=1745308209; c=relaxed/simple;
+	bh=NJtgEOvcoWxtKXd1JFhHVKcXLnVSR8a6c//yHFlTBDs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=OZaPGxDdSSMGfgAw4oGfV6cC9BtdndsND66YgXIJ8+P9SWtsrJvuLL8+8DmMf7p0usuz+n38YGx/F0j5V7CMhL0fEJW4OotSp7O/YcgMSFWQGnSUB4sD6ri8egLMopFwkGQnWHHIfrMwG9xt5cAs3IL7I9mN+A1vdv6muzgEdKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g2Cp3T4d; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39ee651e419so2620251f8f.3;
+        Tue, 22 Apr 2025 00:50:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745308206; x=1745913006; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AU68JbSJMerX79mNlx+AQyiWjCnknjAgapt7O28YwFs=;
+        b=g2Cp3T4dNRcw7wlGPLvyzWn0jficwPCK9jAc7L1zbkWxPYifNHMZcj0Ppu/8VIucyf
+         irtRq3ut/iGPusRrnWtutHS26TZLT+pthDVt942Q9x2R2P6Cmwtup0AQVMBzgEnGPQ97
+         s02SvVhecy1WwN2soDjWPEYCfonWt/ldBC1DIVCp53NX4ipzHeRviR68HNMGuwvoA3VD
+         VSywXmbekjqmCqyeKx12WJZAS27VNmDEB+ltov4MM7+gXAGFUd0SpItcVcLuoFl+HeJG
+         y7DSkT+k0cbOJl7Ojo5nDMf+OtR3/c4230TZePvzGwizBZc9Yb3epI2NmYhcQDLnNtB4
+         m4nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745308206; x=1745913006;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AU68JbSJMerX79mNlx+AQyiWjCnknjAgapt7O28YwFs=;
+        b=grIecwPkKfEwQsrUFlmxJ2sFPXQXLbXI0S4PN52l71AHEvpCvoIPrCFz0PrtN+5pvy
+         +gldZS99VrETBrDpWQ5oEuShGsDK56EId0G9v4wKViI61h7KwZKBMC1flFaOfs40tU1G
+         arJhttwI5a7uWr12g3wcDN8Jq3sDlnFbLpexDihLX03UQRJwoTk2ZeKEn5rr5W7oXhr+
+         RuYSxKLGxG7htFlucsGMI39gZq8C4tz/q9qlS2zK9yBoZQCkaLuU+uh1BBoq7ywAIGM1
+         5YDBxlIt1dQqX5KLj7j0VB6zGwZZ6viTG5zcy2LGfF25uVe5ft0LlN2+C35ehkiD1kJG
+         gdZA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzas7xyUKxlnKy68/tCPHDfVzpQyQ1JGa9Ehsp7shDeFMI3iFVPG2DSLB7tY1P0vcmtc/ilg7YZkCu@vger.kernel.org, AJvYcCWJYdXSw3w0WYzUvUSzs6vcRA7oSe+HLE3qcPM7T7Hw+L26AcyQeVOW9UGDlVt35p2jFl5mC0R9WkQPwQ==@vger.kernel.org, AJvYcCWbSgoukuIkAn3A5FTUb3WQJlhz+4ojxSXo5bFowlKQHTKeK53tYoo3ujCUKC4v7cwUkr0IR9JAenqH@vger.kernel.org, AJvYcCXBUl1c3+14X1QuQea4pXV0IWCQV8SXqvAwmjy7EH49iCJ281OkgW0Nz9gDPpwGAvsOtQ8fd57P4Jntla0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWU6AXYxrxehJQFUtE1RC5RIegmHNIQwPz4QyKosLHrAlKcBM5
+	pZpyx7JBkP7GNGLpfg1wiXWxrAkkVZDoMHea1LAUNRnDnSjisGky
+X-Gm-Gg: ASbGncse+9cL/ijbsu3+BgoeNgP752uveGHJqJUOyAnJGsXajQMkrbTxa1d+w8nyI86
+	kClEaEKIRH+TlMr9FM6YSfu2RxpzHi9h4cir+ZM0WWrigbIEKODw+gGHLs6Rhps6Ef/5dkWTToN
+	NxvEtpnWu0x2j9FkKprg8qjzP7HPSzdny8WgiH6QraDiBkQWfA3kC2lwIKJNqtTiceuiWxqd3qg
+	j8GKy85kMr8KJorfL3q15WIkrZAQAzKkO+SVUDvgCrp08E2ENp//WUnaBYACTXOTytBuGIhgOrQ
+	ehKzTBnsB3zh/ZxxxavObVEK02vSfTSpKhHg/sPc1LPsrIIkXStzzk+cJQNG9PP0OiozKhsg7ou
+	/F6T0wQqxmuzt
+X-Google-Smtp-Source: AGHT+IF6dL2bJ9C5RvXlIDkCiyGCQfJ5fcWo3OkK/2v/CO8fK8JiWhGS5yE7Z+4rE/t9RZwKxPV7AA==
+X-Received: by 2002:a05:6000:2281:b0:390:ea34:7d83 with SMTP id ffacd0b85a97d-39efba6dcb8mr13096953f8f.31.1745308205690;
+        Tue, 22 Apr 2025 00:50:05 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d56328asm163855655e9.0.2025.04.22.00.50.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Apr 2025 00:50:05 -0700 (PDT)
+Message-ID: <24be790f9c664dac31ac78ae6210b0bd55c04df0.camel@gmail.com>
+Subject: Re: [PATCH v2 02/17] mfd: adp5585: enable oscilator during probe
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
+ linux-pwm@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>,  Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=	
+ <ukleinek@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Liu Ying <victor.liu@nxp.com>
+Date: Tue, 22 Apr 2025 08:50:08 +0100
+In-Reply-To: <20250421220332.GU17813@pendragon.ideasonboard.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+	 <20250415-dev-adp5589-fw-v2-2-3a799c3ed812@analog.com>
+	 <20250421085758.GB29968@pendragon.ideasonboard.com>
+	 <aadec5eae6645e3e9c2f8f09dcf842510515122f.camel@gmail.com>
+	 <20250421220332.GU17813@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 20/21] riscv: dts: thead: Introduce reset controller
- node
-To: Drew Fustini <drew@pdp7.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, frank.binns@imgtec.com, matt.coster@imgtec.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
-	airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
-	jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aAP1BW3RmMb/Irya@x1>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTVxjHc25v773tLF4KhCOTuBRfoslA3D6cAXO66LxsixFiWELcsBnX
-	4sZrC3MsQ0FeBKnAxAUpTLAQ6IroJgUpo4NUUoqMOwcIRGkhE5fBBCyIhBfpKBc3vv2e//M/
-	z1sOJZCaCB/qdHwyq4yXx8oIMd5kWeDevBpKxux9NroHWQe1GGpc0pDohonDUEUHJ0T2XgOG
-	+uemCXTzyX0S/W3KwNGA7gcSZVpuEWhcYyeQQ20Xor6WcgLNXuoAqGk2i0D1HTYSXXc04qi6
-	uQWgnLwaIfrj3mFks1txNN6nFqAczWbkbG0m0crAzzgqm2ojkeHpd0LUWf8Jymq7gh/wZaaH
-	sknm6fg4ztzNfU4ypheVOGPU2EhGbfwNMLf1eQQzPNBKMNe6wpiR/E6Maag+x2TVWzCm8OVe
-	ZvrXBwRTYNADpjdzkDwmjRSHRLOxp79ilQH7T4pjfhzIJRO76a8n8yLTQavkIhBRkH4bnrdk
-	EheBmJLSOgC5SquAD54DmGvWknwwC+Cyfkrw6kn65Zl1Vy2AZueNddckgDnL5WsuCb0fFuX3
-	Ahfj9A74uKpjXXeHXaVjuIu96G1w5OFV0sUedDh85PxlTfek34CcrhdzFRXQdULY0T6LuRIC
-	2hs+HKtYY4LeB0drK4QuFtEyWDs0D3jPNnhnsnxtPEh3iWG2th/wcx+CdVnFQp494ESngeR5
-	K3Qa+aKQToCjjTPre34LjerOdQ6Gw9zi6pmo1Qa74a2WAF4+CH+vLgMuGdJucGjSnR/BDV5u
-	KhHwsgTm5kh59074vfrSf005XRNWBGSaDVfRbFhSs2EZzf99KwGuB95siipOwareimfP+Kvk
-	caqUeIX/5wlxt8HqD+9e6ZxrBroJh78ZYBQwA0gJZJ6SxQ/IGKkkWp76DatMiFKmxLIqM3id
-	wmXeEm1btkJKK+TJ7Jcsm8gqX2UxSuSTjqUXPLYc/zN08/zHh5MWj2CiuffCSs+x6hoYdX3H
-	iLJq+mZttDWYUqT5v2MOXzGKPJoKkxzWGT9lj5u76cLUrrRGR0g6WTfRnursfm1h+wlb0O6z
-	RZ9tOmgq5E5FcTa0FPrP1EK7Ma0q+eX9XXORx4NNJ3XzDaKjrDRDlPHXdrzoTNHZxIiawaEt
-	+e/7Ej2c3yOzJdJKBx5xnrqrfTLeUNcTmPJpyYOgyX6rZt6yEhSxLzXsxJZi8c5qqyAu5MWU
-	b/By65WAytDw2jx1WJKnhwIRY5vchxv77F4lX7xbeuFDr6VrW4/95DcfoT90/kC04SOfO719
-	xUZ5exn7rOBeWPhRGa6KkQfuEShV8n8BLph1sFAEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7ozPNkzDH6d5LQ4cX0Rk8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
-	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
-	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
-	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
-	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
-	Uov07RL0MlZe62AvOC1Q8bYzqoFxD28XIyeHhICJRMOkT8xdjFwcQgJLGSXOz21mhEjISFzr
-	fskCYQtL/LnWxQZR9JpR4mzPdrAiXgE7iQndl8BsFgFViceLjzBDxAUlTs58AtYsKiAvcf/W
-	DHYQW1ggSOL2/91gcREBBYlzKy4xgQxlFljNKrH8611GiA0PGCU+73vAClLFLCAucevJfCYQ
-	m03ASOLB8vlgcU4BJYnlN74DNXAA1ahLrJ8nBFEuL7H97RzmCYxCs5DcMQvJpFkIHbOQdCxg
-	ZFnFKJJaWpybnltsqFecmFtcmpeul5yfu4kRmLK2Hfu5eQfjvFcf9Q4xMnEwHmKU4GBWEuH9
-	5caeIcSbklhZlVqUH19UmpNafIjRFBgWE5mlRJPzgUkzryTe0MzA1NDEzNLA1NLMWEmc1+3y
-	+TQhgfTEktTs1NSC1CKYPiYOTqkGpsyl17LvrjOo49vy7/j3PQ/+JHi9XtFQLyr2wdr9adcq
-	xgNPf8w+7bH0EsvSidofU4MXXPJJNrnusYlJrzFdW8rwtWcmW5nRj7W+LuzKiRuvZ0j0He9X
-	nnxxV+qr8C1nz6eskTpV+KXj5pVXzK9v/JX98C0sUXlReamww0krn/yKcvftCxQl/16Wf/Mg
-	Ty/AqZzx+c8mjjSvw13NnTqT3gkvbDV2Xcl97zxL0D5nhVTNf7Y5yz44/WfecKv7REXesjlJ
-	y+f9/8ttwsZw+Mwddo/XThOTHzpfYL3Aka7SoaK241xZpe7efbdOtjDFZDkYl+m8P+NcuzpK
-	Trft/Kzrxy02tdqk5nsnbxY1eNHjpsRSnJFoqMVcVJwIAGzRxpviAwAA
-X-CMS-MailID: 20250422074736eucas1p229d8a46d24bc2b62fba4835f225d34cc
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250219140316eucas1p29a76023868946f090f261bf78d5103e3
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250219140316eucas1p29a76023868946f090f261bf78d5103e3
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
-	<CGME20250219140316eucas1p29a76023868946f090f261bf78d5103e3@eucas1p2.samsung.com>
-	<20250219140239.1378758-21-m.wilczynski@samsung.com> <aAP1BW3RmMb/Irya@x1>
+
+On Tue, 2025-04-22 at 01:03 +0300, Laurent Pinchart wrote:
+> Hi Nuno,
+>=20
+> On Mon, Apr 21, 2025 at 01:14:28PM +0100, Nuno S=C3=A1 wrote:
+> > On Mon, 2025-04-21 at 11:57 +0300, Laurent Pinchart wrote:
+> > > On Tue, Apr 15, 2025 at 03:49:18PM +0100, Nuno S=C3=A1 via B4 Relay w=
+rote:
+> > > > From: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > >=20
+> > > > Make sure to enable the oscillator in the top device. This will all=
+ow to
+> > > > not control this in the child PWM device as that would not work wit=
+h
+> > > > future support for keyboard matrix where the oscillator needs to be
+> > > > always enabled (and so cannot be disabled by disabling PWM).
+> > >=20
+> > > Setting this bit unconditionally increases power consumption. It shou=
+ld
+> > > only be set when needed.
+> >=20
+> > Well, not sure if the effort for that pays off... The only usecase were=
+ it
+> > would
+> > make sense to do that would be for PWM. For the other devices (and assu=
+ming
+> > I'm
+> > right with the GPI case) we need this always set.
+>=20
+> For the keypad, can't the device be kept powered off if the input device
+> exposed to userspace is not open ? And for GPIOs, OSC_EN isn't needed
+> when all requested GPIOs are configured as outputs, as far as I can
+> tell.
+
+Yes, I do know it's doable (well, TBH for the input case I just learned we =
+can
+define .open()/.close() callbacks). My point was just this adds some comple=
+xity
+and I'm not sure of the added value (while saving power is always nice)
+>=20
+> I'm fine addressing this issue on top of this series.
+
+Agreed. I would prefer that. This series is already big enough.
 
 
-
-On 4/19/25 21:09, Drew Fustini wrote:
-> On Wed, Feb 19, 2025 at 03:02:38PM +0100, Michal Wilczynski wrote:
->> T-HEAD TH1520 SoC requires to put the GPU out of the reset state as part
->> of the power-up sequence.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  arch/riscv/boot/dts/thead/th1520.dtsi | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
->> index 474f31576a1b..6b34aab4b455 100644
->> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
->> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
->> @@ -7,6 +7,7 @@
->>  #include <dt-bindings/interrupt-controller/irq.h>
->>  #include <dt-bindings/clock/thead,th1520-clk-ap.h>
->>  #include <dt-bindings/power/thead,th1520-power.h>
->> +#include <dt-bindings/reset/thead,th1520-reset.h>
-> 
-> Are you okay if I omit this hunk? My thead-dt-for-next branch is based
-> on 6.15-rc1 but thead,th1520-reset.h only exists in next until the merge
-> window.
-
-Yeah, I'm not exactly sure how to coordinate such stuff, obviosuly it
-would be best if this chunk would make it to the 6.16, but if you think
-it would be problematic then omit it, no problem.
-
-I will then update this patch series v3 [1] to gracefully handle lack of
-reset, as the 6.16 will not contain the required reset line for sure.
-
-[1] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-2-70c5af2af96c@samsung.com/
-
-> 
->>  
->>  / {
->>  	compatible = "thead,th1520";
->> @@ -497,6 +498,12 @@ clk: clock-controller@ffef010000 {
->>  			#clock-cells = <1>;
->>  		};
->>  
->> +		rst: reset-controller@ffef528000 {
->> +			compatible = "thead,th1520-reset";
->> +			reg = <0xff 0xef528000 0x0 0x4f>;
->> +			#reset-cells = <1>;
->> +		};
->> +
->>  		clk_vo: clock-controller@ffef528050 {
->>  			compatible = "thead,th1520-clk-vo";
->>  			reg = <0xff 0xef528050 0x0 0xfb0>;
->> -- 
->> 2.34.1
->>
-> 
-> With the above caveat:
-> 
-> Reviewed-by: Drew Fustini <drew@pdp7.com>
-> 
-> 
-> -Drew
-> 
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+>=20
+> > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > > ---
+> > > > =C2=A0drivers/mfd/adp5585.c | 16 ++++++++++++++++
+> > > > =C2=A01 file changed, 16 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> > > > index
+> > > > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..f17b5f2474cac6a4035566940=
+66f43
+> > > > 8288
+> > > > 264a49 100644
+> > > > --- a/drivers/mfd/adp5585.c
+> > > > +++ b/drivers/mfd/adp5585.c
+> > > > @@ -110,6 +110,13 @@ static const struct regmap_config
+> > > > adp5585_regmap_configs[] =3D {
+> > > > =C2=A0	},
+> > > > =C2=A0};
+> > > > =C2=A0
+> > > > +static void adp5585_osc_disable(void *data)
+> > > > +{
+> > > > +	const struct adp5585_dev *adp5585 =3D data;
+> > > > +
+> > > > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
+> > > > +}
+> > > > +
+> > > > =C2=A0static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > > > =C2=A0{
+> > > > =C2=A0	const struct regmap_config *regmap_config;
+> > > > @@ -138,6 +145,15 @@ static int adp5585_i2c_probe(struct i2c_client
+> > > > *i2c)
+> > > > =C2=A0		return dev_err_probe(&i2c->dev, -ENODEV,
+> > > > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid device ID 0x%02x\n", id=
+);
+> > > > =C2=A0
+> > > > +	ret =3D regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
+> > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ADP5585_OSC_EN);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	ret =3D devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable,
+> > > > adp5585);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > =C2=A0	ret =3D devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
+> > > > =C2=A0				=C2=A0=C2=A0 adp5585_devs,
+> > > > ARRAY_SIZE(adp5585_devs),
+> > > > =C2=A0				=C2=A0=C2=A0 NULL, 0, NULL);
 
