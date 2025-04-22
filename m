@@ -1,87 +1,55 @@
-Return-Path: <devicetree+bounces-169565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3AC0A9752E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 21:14:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 237E4A97533
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 21:14:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F42D1B60CD8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:14:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BCD1B61446
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442CA29617E;
-	Tue, 22 Apr 2025 19:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FF1297A60;
+	Tue, 22 Apr 2025 19:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AOk5D0rZ"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ZbgjCBN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83922857CD
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 19:14:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043242857CD;
+	Tue, 22 Apr 2025 19:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745349254; cv=none; b=lnx9Jog0czsHNrY1dG0F6ZYrmjdx2/H2Gxb+Qmx0aGnYFEnCx7egwTjnOUyrThUTGdHmwl9rrhd1V+qfTQSBF87kZ5PNvtPfmFLKlRv6nxTAx9meaVSl15+3G1F8/r34iAhMGr2U74INwVirNV5K/hXaNyzcLIju8hwW0GaqtqY=
+	t=1745349277; cv=none; b=j0L8tzoomYmYGiT19nSgsC9CcjpmKzwG8J1EBOsZcTGP5V88p007avRbZS5c/GOMKqyUv9UwQIw6H/3+ebesSINMeQgvTVMW2iT7MemEi+W1cXF4sCAgkkoq/ky1i0Y9a6vjYZPfFcFdRkJi6ZYfMue8+TIlPD6EzrQknHI6Qy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745349254; c=relaxed/simple;
-	bh=ktElfp4y9jLiB76b0Lw+Bu81gNc+EGDgrxca1gyyqYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OK9GAk4Q1K48MN+SfM4mlY1XbDwPlEVIWCLInYUD9vGkx9yeWE0kkbS4Yj7Wnx9WhIOGLOPRCvQ5FesbOj5Sqeq1wxzdOnZXwQnnmHk1IswAcQbvagfQhRyalxRIq+R0T1CB07Y0yWDAjtaNL4bsjmEFISQf5ZqffG9Fu75vYzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AOk5D0rZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MI6pB4024997
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 19:14:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vDfBUzxdqcOodqK0x53+9B7Qwb91WQYtR62iZ46QXiI=; b=AOk5D0rZ8GXmkTGS
-	OTj0/lfCOFxNMK6SvsP0kJMxehSGUc0NnT0KYybKGvV4ScuIejqCb4j8mPlBS2rI
-	Aox8SXAC9p90WKSmW2geLKOFac/HW5/ox5X6ckOHiVskWuIqgcI1AZ/4GQF1fEWd
-	PpoSYprpXpZPeNMzlS99PlhMZsi57RvZXde9En5AZ2JhkMe/XJ0bRgtf2l1vZ+iA
-	S0nKczjlkspJohAj8QiANmAmkwPAWvSQD0ZV3+EivpDpvtv4BbftgRIT/K7Ke8Ns
-	B0Hi9LNG2zx3RgFSTgV+jm5sjWZGKS787lg//pP8C1MvrYY8qfMK/i6YcLMpO1SB
-	yx7UXw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 464426rp3r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 19:14:11 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5560e0893so34102785a.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 12:14:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745349250; x=1745954050;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vDfBUzxdqcOodqK0x53+9B7Qwb91WQYtR62iZ46QXiI=;
-        b=U7a84D1MKDBXnfMmpBOE6mgEMrO9Gtwr4BSoMzQIIbwnt8DZyLPIiou24Z3d8nymU8
-         z7lXsCb3N9YqBYA3stHRb75c/Gd3G6DcgQyOHlfzqPXbbAYAtEihOADQPKnq+tiEpotc
-         evFC4VQmxLHYrdZpJ96Am71BJIJHcTqqAqxtyarOBgC8viDdQaiQJ/NirWOQsWxn5Oxn
-         ahT3KcmHDIQcb3LNbFnXoJhg0qwAXIua/BF4SWXkZrFbLZxN1RY1gP6iLK7gRmaKlwVF
-         LAi0CwKsDeO1L7Mpfvcp2F9cutaBzMJRFn6XDZd05Jddq4ELUoMmJfQaLK+ltwNt89Er
-         iAaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXcSNf+ez6gt2X38Cend+bepNExz69yKRhuAT/rfHtXeWu5FpdUSppZoabLeGEuXtCEJvGB6Z3tXMMc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ/kqiurUPCXDiHasPvF66gxIArprPZUGiupULVgE3IqgpX+PJ
-	Ape4r7EbtOFGiUvUQIJwx4Tadjhhvh+qAPlHTXdPGW7UeEIvByL9TQ0TFacU3mN5qhZOXg7b3KV
-	psND5Z7HWio6l74JYpf7/+hoM53Zqwy2vKrqbOomYqozhJIhe9Xe3sqacxRir
-X-Gm-Gg: ASbGnct0CuTdE8x81FkIV5AExk8Q03mv6dGfq8tMvb4iq6cgGg8lP36xnQ+6o2CL0bx
-	iXpCQzorLwg0Usc/GXgpLYh6od0i0C6hp2Fp3uTn8+IpfFHI1ozu+BKh4QNCTwlTfAS3pC//Mvq
-	vje3bEA3TWd4E1pQCoMD77jqC2m7vpxvXWkdIz2AzgFHxQVk+BwDZ08snvasE1951tovNTeUFAe
-	euTXRlk+dLrqJynKBz/Cq4+XFAN0I5up0EViyYQK+zN7y/3WGEQOnB+9CfvmeE/IEZ6qOFxgU/6
-	DOQoc+EvhxVqpwADixgzPLRoEVxKAajpg4kU0/q36XUrdcq0UlWiJIkVWAbmBhJIgmQ=
-X-Received: by 2002:a05:620a:4095:b0:7c5:687f:d79d with SMTP id af79cd13be357-7c94d29ade9mr27751185a.8.1745349250427;
-        Tue, 22 Apr 2025 12:14:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG7HiqvOyIsraSAjIugd3xjXilpVZSiFuqvb5lB5h6IcYI3MvuV9H6EVgiP8btR3FsQ1k8Z9g==
-X-Received: by 2002:a05:620a:4095:b0:7c5:687f:d79d with SMTP id af79cd13be357-7c94d29ade9mr27749785a.8.1745349250048;
-        Tue, 22 Apr 2025 12:14:10 -0700 (PDT)
-Received: from [192.168.65.141] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f625596138sm6572178a12.45.2025.04.22.12.14.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 12:14:09 -0700 (PDT)
-Message-ID: <1f36d303-fcfc-4aed-8d8d-01a3c4dae57e@oss.qualcomm.com>
-Date: Tue, 22 Apr 2025 21:14:05 +0200
+	s=arc-20240116; t=1745349277; c=relaxed/simple;
+	bh=7jgnpxJBroqmGgF9RegbrqkOqfq6AUI492Gh3HYB7II=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
+	 In-Reply-To:Content-Type; b=fXi56m4f2pugt32inYseLPQjcFnV8De77kb9NGLGPO0zX+k8VlFWwkWALqwtA30mcUt6+rReirRLOmtNoc5A6IQWM4ZcXnA18z+vUm01tfabEEz9QX5N9UPJSod5xuH9dyDU3VQEMzDGx3Catx/ta//nEPb++W9gwqlQYcx5qdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ZbgjCBN8; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1745349268; x=1745954068; i=wahrenst@gmx.net;
+	bh=7jgnpxJBroqmGgF9RegbrqkOqfq6AUI492Gh3HYB7II=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+	 References:In-Reply-To:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=ZbgjCBN8g2+IcErVhtpHqXb8euo8B+ldrBMmTlDlQ3VckIuQwsyiTUHMPDV5Fb8W
+	 mHP07pcRaOHdv48BCOllfvuKdgaz5LD6qGIFvjfrVqK4MNqg632AXIDNjYzhZT6BS
+	 sIovTZzQw5NWIddIGqNeG6Y30/fkGHe8bvPGg+XLMqDgZ1zoYIEfFbRSwq1rt6ZPS
+	 gk6Iajqvqpc62YUKmOjDo/yUs6SMePaXng0F2aUnug8utD/qHfvA42H9zbTcli1KX
+	 PP4wuQCglghMiWTt+LMvPPvRjH6O1n4TVbt0cDWpsNgsGwu9M0R4ss0ntAuPviPbw
+	 8aAaLd0ksDO608f1/g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M9Wyy-1uAczI2nxM-000Hyo; Tue, 22
+ Apr 2025 21:14:28 +0200
+Message-ID: <20c11fba-421d-4f73-bd4c-f9d177e7167e@gmx.net>
+Date: Tue, 22 Apr 2025 21:14:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,57 +57,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8953: Add interconnects
-To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250420-msm8953-interconnect-v2-0-828715dcb674@lucaweiss.eu>
- <20250420-msm8953-interconnect-v2-2-828715dcb674@lucaweiss.eu>
+From: Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v9 -next 04/12] clk: rp1: Add support for clocks provided
+ by RP1
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
+References: <cover.1745347417.git.andrea.porta@suse.com>
+ <e8a9c2cd6b4b2af8038048cda179ebbf70891ba7.1745347417.git.andrea.porta@suse.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250420-msm8953-interconnect-v2-2-828715dcb674@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <e8a9c2cd6b4b2af8038048cda179ebbf70891ba7.1745347417.git.andrea.porta@suse.com>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 3qZEjRjH4EvG5pDQ9eJ-R544H_h48Ehv
-X-Proofpoint-GUID: 3qZEjRjH4EvG5pDQ9eJ-R544H_h48Ehv
-X-Authority-Analysis: v=2.4 cv=IP8CChvG c=1 sm=1 tr=0 ts=6807ea83 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=dlmhaOwlAAAA:8 a=EUspDBNiAAAA:8 a=Dw-YgVe96UOjDrfUO-cA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=y4cfut4LVr_MrANMpYTh:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_09,2025-04-22_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=964 spamscore=0
- mlxscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220144
+X-Provags-ID: V03:K1:Ntqta0IiidRZQq7Lb9rAcotXlATvSMUgzlP7Se2sAXsQhLJBxQ4
+ yyWYwBm2nrVVOv7vwfEvZbEHdhYpbmL0SgbF4Q+3/x1PYOo/hxmHsMf5yHadkEFCJQtJO3r
+ VXXdBu/ZUbnnBDhbuukVjKfXsM2ugFlO4GQ2cOvaLT/XaUvjG6l8NyjWwqfUdAkRYo5pacf
+ VzEgZeMbhtRcBfppw6s2w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:GXGW574ymxc=;wFIfr50NKDhE8PgYJYzjDQS0Vrz
+ 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
 
-On 4/20/25 5:12 PM, Luca Weiss wrote:
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> 
-> Add the nodes for the bimc, pcnoc, snoc and snoc_mm. And wire up the
-> interconnects where applicable.
-> 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> [luca: Prepare patch for upstream submission]
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
-> ---
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+Am 22.04.25 um 20:53 schrieb Andrea della Porta:
+> RaspberryPi RP1 is an MFD providing, among other peripherals, several
+> clock generators and PLLs that drives the sub-peripherals.
+> Add the driver to support the clock providers.
+>
+> Signed-off-by: Andrea della Porta<andrea.porta@suse.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
