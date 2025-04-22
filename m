@@ -1,223 +1,134 @@
-Return-Path: <devicetree+bounces-169269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFEEFA96315
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:55:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A59A962A3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:49:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32C9B17D847
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:48:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75BC77A1150
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E5D25B697;
-	Tue, 22 Apr 2025 08:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECF1256C81;
+	Tue, 22 Apr 2025 08:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KdrXX7D9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nhw/4tAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39352258CF7;
-	Tue, 22 Apr 2025 08:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792B4256C7D;
+	Tue, 22 Apr 2025 08:42:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745311355; cv=none; b=nUVqbKCQRtMpk78P/gJf8cwDmL0ytCt34+SMbVs+XbMlND508OuCLcrkw7QBIzGxNQRPZzbzFuPaCAkU4YJNTrRBDYcQ5Iq861UmNnTfsfsCRqUn6FsKAeCDyY5au5fpUxrHbw426jLkpX/fIGYeJ/SQmar5pkQKcJgGCjEMHjE=
+	t=1745311365; cv=none; b=EU35PsC/BYmXmauXHQlnMNdyeIyYUljxsuv3UF26p95BnwgjBtZPpxHvurvB/ylgQURctW1Vt/fNR2j9asCEb+wq1cNuKsmsvNYpM0IubKzr9mWoji/WtRmK+v7xHOSPECOv8Zam1RdqrYuv4pDeLfdeF4eoJQuefMltJnpo+vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745311355; c=relaxed/simple;
-	bh=HllI2mmo1MTRNB7i4U5FUDBsGrO/lRgawXYhh1xch5M=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=hippl9AYHEe2HV5L1B8NR7ms3K2SubV2GeEhFun/BmTed1uyDlOIVZMh7aYgitlL//J6K7ixx2xbl+2JEmlHARi6WaqIFrssOZ0aT63v+0HhBN/KE2tNFc0TfxsmHakZ2yX4JIZUxXmx0TrB+zabsiD+h+4OSMO1TfkpxldjSMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KdrXX7D9; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53M8gPit1164978
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 22 Apr 2025 03:42:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745311345;
-	bh=UwJf0BaT/sEyp931/8IreL5XjG62aGTsxqkYlNz021s=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=KdrXX7D9zqIiQ14yBd0rbXzb6qRSbY05SZ52sjo1xv+FiWHaTw809lo4EuvAvlzRi
-	 AmXCqOCMt86k0OACa0UdPHfMr/kaybxXlBiouqfinlr780bXhW/oRcLzbVA8CsyV2R
-	 GP4ZFX4SOkJE9OOADhHPDlaynAYPpaWqhbRm8avc=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53M8gPQw032312
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Apr 2025 03:42:25 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
- Apr 2025 03:42:25 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 22 Apr 2025 03:42:25 -0500
-Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53M8gL7d004161;
-	Tue, 22 Apr 2025 03:42:22 -0500
-Message-ID: <1ce1fc6b-fc16-4fb7-9f68-57b495aa5eae@ti.com>
-Date: Tue, 22 Apr 2025 14:12:21 +0530
+	s=arc-20240116; t=1745311365; c=relaxed/simple;
+	bh=xZqSNLlN/1aQNo2XrEbX5OaqDAT9LgK6KDw6FW1HPkY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F8diPm0EdYgRuCeyse9hgXVFCyXxjnvncre0w3oBwJtYySiWxZcNzw/BEF6FMO4rOM1Ki4pbc5WyQqdSIVCNBGYdv1MjXpxir1tHVqKz8yAw+tqLExC8kmRM+TpQuRaU/5CY6x7+kwGs4rfwSUxGp+YUC862Hh+gxRNv+N6hiug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nhw/4tAf; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-30828fc17adso4188575a91.1;
+        Tue, 22 Apr 2025 01:42:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745311364; x=1745916164; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dl4p7DRFRIT+f45qPT/jcA3pklzI/QxdUifagNm8DiM=;
+        b=nhw/4tAfmd6CSYdZ6vE9lqdNzinPuu8xIEeN36bhN13UtL5BzMFN89xAOFUyXiYKP9
+         +uHLXnsJiHtVHnpBGhIQulRcnJNlVflhkGNTg3w/AxGrX+fu1071NXaYaAKQIG8ipa1R
+         FxV+cnvYUPUdqWXQGIad7afruMRSCgvZL9JMkiddGuXDZDpdSr++3RLbgIfBuLa6IZwA
+         WNZKPoDf+Qr847LEIHYI1hVllN3ZPOur/IFKSfMMlA9q/fOBwrdXsnW17IPtuejtETud
+         bYjMwVvo5NPJk4mt+jFKsqMC4JZ9aHjAxHf8SFyk7j0SDctIbbhZAGjfzhsth1DHVv0F
+         5iig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745311364; x=1745916164;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dl4p7DRFRIT+f45qPT/jcA3pklzI/QxdUifagNm8DiM=;
+        b=gMAEFvB2OMnmUAmp9hDq52mm5dWOApGre1FHb2HX1l5Tm1e7e6WgruuiU0+S/DpKHx
+         pe0vjdo06Ose57P7ssoJXxcO5VqllnyUFr3vAeMLOoKymouzUimfiXf97mxYzqLUDiez
+         kYmJPmDI4ERcYBkuOtZuFtRDKia8JwCXTZ3rfvKkpMwpojuxdJkr/L907mKeoZflDh3r
+         vFHeH5j5KiAeQW8d+bZ7jzsZHmPvYcMlYsoPoeipXIvpvTTFR3iChxuh22SrApY7pM/K
+         hUymza5E6+F9NXweNwq3FYFZ4m5JUvJPoOyB9oLgqxJIRum9IZF0CteapPM4QARbuUKB
+         T9ZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAgeAuHVa58fg609jRqTkBMRQycssAZSGc9QGY1my8TgD9vs+e4RIEU2iyUvWhj8uM5CqYIGqvjOgS@vger.kernel.org, AJvYcCXxNJVXLYrsPXw5HSgWgyogVzjMvC868+rc6OFeMPnQhRLg5fFiEtLVeqGts6affhA252E2XmCeNjII@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGzKSV4UIC8kJKUzNI9iOx++930qNVx3orzbAu2Q2RUSc7DFSy
+	tyYfnlibSre+C1uEv7UC9VQ0Q+YruwCDDvElRJqMDBTd7SfIqbavknUrB7J/+ofyhT0p4TgNoDZ
+	CPUnHIDryEXgV/fGpFDtZ2wdaLdU=
+X-Gm-Gg: ASbGncuW2QBeEzzp6ifnd30hVUyRGQTn5W5+S3KtDuVv0KfnSW7KrlXUBTjwzX14rkt
+	boRVhQLZZDDJ7iwYFwqQl423VOsxfXGvc/Io3rThbR+1OCKtkukOC1Rk/YolU7RUj+8eOL+xITQ
+	0MUMRbU0dbzx24QtkgQ5QPi/Y=
+X-Google-Smtp-Source: AGHT+IGqXBZzaRg3JHihoddQX0W5bstPf8xwZ6lzPnpvfWf0BpAYOl+Mq9UE7bYkMjao+4aXeYhJhmCS0WoWJS3Z2aQ=
+X-Received: by 2002:a17:90b:2647:b0:2fa:15ab:4de7 with SMTP id
+ 98e67ed59e1d1-3087bb53159mr25282363a91.12.1745311363829; Tue, 22 Apr 2025
+ 01:42:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
- bindings for reg-mux for new property
-From: Chintan Vankar <c-vankar@ti.com>
-To: Rob Herring <robh@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Peter Rosin <peda@axentia.se>, <s-vadapalli@ti.com>,
-        <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth
- Menon <nm@ti.com>
-References: <20250304102306.2977836-1-c-vankar@ti.com>
- <20250304102306.2977836-2-c-vankar@ti.com>
- <20250304153959.GA2654372-robh@kernel.org>
- <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
- <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
- <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
- <CAL_JsqLb5hrYD_-dqW5ELtbXohd8a1UL7nOuP2a9ZhE+3+f=eA@mail.gmail.com>
- <b6fdfe6e-dbd3-4dc8-acf2-f2983f150df1@ti.com>
-Content-Language: en-US
-In-Reply-To: <b6fdfe6e-dbd3-4dc8-acf2-f2983f150df1@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250420181015.492671-1-gye976@gmail.com> <20250420181015.492671-4-gye976@gmail.com>
+ <CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
+ <CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com> <20250421142531.2084092e@jic23-huawei>
+In-Reply-To: <20250421142531.2084092e@jic23-huawei>
+From: Gyeyoung Baek <gye976@gmail.com>
+Date: Tue, 22 Apr 2025 17:42:32 +0900
+X-Gm-Features: ATxdqUH-BGQfiB5JAWsTB-8h8Z8k_s4xUFodmxDcDVsMtg_yWULk-zBnPoGU4gc
+Message-ID: <CAKbEzntJzKYsB3Nehyoo=2FrTnzKXcu0NcJEcvCXdi5HxvJk8A@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Rob,
+Hello Jonathan,
 
-The reason to introduce new bindings for mux-controller is to make use
-of it to implement Timesync Router. Timesync Router module provides a
-mechanism to mux M interrupt inputs to N interrupt outputs, where all M
-inputs are selectable to be driven per N ouput.
+On Mon, Apr 21, 2025 at 10:25=E2=80=AFPM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+>
+> On Sun, 20 Apr 2025 22:23:57 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>
+> > On Sun, Apr 20, 2025 at 10:21=E2=80=AFPM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> > > On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail.c=
+om> wrote:
+> >
+> > ...
+> >
+> > > > --- a/drivers/iio/chemical/Makefile
+> > > > +++ b/drivers/iio/chemical/Makefile
+> >
+> > > >  obj-$(CONFIG_SPS30_I2C) +=3D sps30_i2c.o
+> > > >  obj-$(CONFIG_SPS30_SERIAL) +=3D sps30_serial.o
+> > > >  obj-$(CONFIG_VZ89X)            +=3D vz89x.o
+> > > > +obj-$(CONFIG_WINSEN_MHZ19B) +=3D mhz19b.o
+> > >
+> > > Preserve order.
+> >
+> > Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
+> > option and no such thing in the filename? I would drop that from the
+> > config option.
+> >
+> > Jonathan, what do you think about this? Which order (in case of
+> > misalignment between module name and configuration option) should be
+> > taken?
+> >
+>
+> Hmm.. No idea.  It think just dropping it from the CONFIG name
+> is the right way to avoid the question ;)
 
-More details about Timesync Router can be found in section 11.3.2.1 of
-TRM at: https://www.ti.com/lit/ug/spruiu1d/spruiu1d.pdf
+Thanks for your suggestion. I'll just drop that.
 
-Timesync Router is identical to mux-controller, but the issue to use
-mux-controller subsystem for it is it's current binding. As it is
-discussed in the series, drawback of this approach is, while configuring
-mux-controller one need to specify every register of memory space with
-offset and mask in "mux-reg-masks" and "idle-states" property, it would
-be complex for the devices with large memory space. To overcome this
-limitation, new bindings are introduced, which allows to define all
-these values in the same property, making it easy to define and extend
-the mux-controller node.
-
-We tried to implement Timesync Router by modeling it as an Interrupt
-Router. But that is not accepted, RFC series for that is at:
-https://lore.kernel.org/r/20250205160119.136639-1-c-vankar@ti.com/.
-
-Also we tried to implement it as a new driver in MUX subsystem, but that
-is almost identical to "mmio.c" driver, which I posted it as this
-series.
-
-I want your suggestion on whether a new bindings can be acceptable and
-we can use the same to implement Timesync Router, if not can you please
-advice me on how can I implement it ?
-
-Regards,
-Chintan.
-
-On 06/03/25 04:00, Vankar, Chintan wrote:
-> Hello Rob,
-> 
-> On 3/6/2025 3:44 AM, Rob Herring wrote:
->> On Wed, Mar 5, 2025 at 3:43 PM Vankar, Chintan <c-vankar@ti.com> wrote:
->>>
->>> Hello Rob,
->>>
->>> On 3/5/2025 2:10 AM, Rob Herring wrote:
->>>> On Tue, Mar 4, 2025 at 1:03 PM Vankar, Chintan <c-vankar@ti.com> wrote:
->>>>>
->>>>> Hello Rob,
->>>>>
->>>>> On 3/4/2025 9:09 PM, Rob Herring wrote:
->>>>>> On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
->>>>>>> DT-binding of reg-mux is defined in such a way that one need to 
->>>>>>> provide
->>>>>>> register offset and mask in a "mux-reg-masks" property and 
->>>>>>> corresponding
->>>>>>> register value in "idle-states" property. This constraint forces 
->>>>>>> to define
->>>>>>> these values in such a way that "mux-reg-masks" and "idle-states" 
->>>>>>> must be
->>>>>>> in sync with each other. This implementation would be more 
->>>>>>> complex if
->>>>>>> specific register or set of registers need to be configured which 
->>>>>>> has
->>>>>>> large memory space. Introduce a new property 
->>>>>>> "mux-reg-masks-state" which
->>>>>>> allow to specify offset, mask and value as a tuple in a single 
->>>>>>> property.
->>>>>>
->>>>>> Maybe in hindsight that would have been better, but having 2 ways to
->>>>>> specify the same thing that we have to maintain forever is not an
->>>>>> improvement.
->>>>>>
->>>>>> No one is making you use this binding. If you have a large number of
->>>>>> muxes, then maybe you should use a specific binding.
->>>>>>
->>>>>
->>>>> Thank you for reviewing the patch. The reason behind choosing mux
->>>>> subsystem is working and implementation of mmio driver. As we can see
->>>>> that implementing this new property in mux-controller is almost
->>>>> identical to mmio driver, and it would make it easier to define and
->>>>> extend mux-controller's functionality. If we introduce the new driver
->>>>> than that would be most likely a clone of mmio driver.
->>>>
->>>> I'm talking about the binding, not the driver. They are independent.
->>>> Generic drivers are great. I love them. Generic bindings, not so much.
->>>>
->>>>> Let me know if implementation would be accepted by adding a new
->>>>> compatible for it.
->>>>
->>>> Adding a new compatible to the mmio driver? Certainly. That happens
->>>> all the time.
->>>>
->>>> I also didn't say don't use this binding as-is. That's fine too.
->>>>
->>>
->>> Can you please review the following binding:
->>>
->>> oneOf:
->>>     - required: [ mux-reg-masks ]
->>>     - required: [ mux-reg-masks-state ]
->>>
->>> allOf:
->>>     - if:
->>>         required:
->>>           - mux-reg-masks-state
->>>       then:
->>>         properties:
->>>           idle-states: false
->>>
->>> required:
->>>     - compatible
->>>     - '#mux-control-cells'
->>>
->>> I think it won't disturb the current bindings and keep backward
->>> compatibility with existing implementation.
->>
->> Wasn't that the case before? There's nothing really different here.
->>
-> 
-> No, the binding before was not considering "mux-reg-masks" as required
-> property which was breaking actual dt-binding. In this binding, one of
-> the properties from "mux-reg-masks" or "mux-reg-masks-state" is required
-> which keeps the binding as it is unless someone wants to use
-> "mux-reg-masks-state".
-> 
-> Regards,
-> Chintan.
-> 
->> Rob
+Thanks,
+Gyeyoung
 
