@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-169455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC4EA96E4D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:25:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E70FA96E91
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:29:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EF277A4375
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:24:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75FF01B61418
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 14:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DC228541F;
-	Tue, 22 Apr 2025 14:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28C5E28D858;
+	Tue, 22 Apr 2025 14:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TGsoT4C7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vClEnKbT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A747D284B51
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2947C2857D8
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 14:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745331900; cv=none; b=I0gsQpXHWpDyGVtrLFpjiUaIkdAfc3TPf71lf4aUCrYMoz2xrhsUFZbWS+GDKn8rIUhzn2rKZFOzSdV0GFizMs+GUM7tO5y1G1frCuvkbLqrYYUEWcpKEuqfgYsWtGoQV4CMSnvTYX1HuTVXK218Du0zClRbqgC2xXe6ZyAp8xU=
+	t=1745332015; cv=none; b=lszaH05NxcqSWIH0zBVORbdvz9vi3pcPSHPHFG7m6JzgC5nsbLcG4BY2YBQBhcHNFluGgieG2IFJs8OK7kdADY05fiOffSOSzfbc6+/OXWdKz7J5DNtyPamm5rbttv5+H19BaPWD0OSDy6rR7+GtZRQZNtWV/0uUtKH85H937bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745331900; c=relaxed/simple;
-	bh=xTUfvuKK3CXOlCmv6ULKR27CtF4luRCZUB3LOCIZ7Q0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DzcKiNnE+NE4MJCBd9AgKSgzmqEjubxksU/fucp5JNiUSIgsueNcF7yTZlQKs/8mfJ8hJ/fh2ZRuMLc5eLYrz69UjmgtSSjaAv+/RwtwVMygshFN/+AoZbH/cmTpqyLYLu3jc5Q1MhQh42Kx9DdfTLvgTuYqv+N3bfSm6+dB/Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TGsoT4C7; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1745332015; c=relaxed/simple;
+	bh=2nuL24sxykMJ7Rms6bRBYY6C+lB4kirIqrm1dYwAlII=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=dkUPzylhtDB8osmzFqACVK3AtUjjSRtJh0pdQYxqPpoR+tHESkUNjUHqxgGGQi7+dYHCV+7EeksPxZNsE8/cqiZ57n2ZB2STuATI4AJoz7U9zc5SG2FAA1cyJbsi9xGOCqTkXp2KhMsa4Z3Ho/O+tvW/Uronrs6O2CLmT1hqWG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vClEnKbT; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39c1efc457bso3255536f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:24:57 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39c1efc4577so2787681f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 07:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745331896; x=1745936696; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5Jdsjo/xqjalOgmmmiDVixlLCvZSDipVTEuGlq4N+fo=;
-        b=TGsoT4C73yCkwGFhTdpCEBq9rB4k6qf5Wy3oCkGbTuRnSxn7yolRSI3K6wxG48+ydj
-         dLdf+WrnakMpBtkoIrI1kubWsPqv3HJl/Z7B1/9N64O58qLkKdY3Els44V7ImJgTQZIa
-         yaI6CbCUCIlgMDgXXdaJfyCEX0Ba2QjcAgPnXqBWS0ojkcWMBYaMf2RbAVggj+zMxAQf
-         MJq3Qv0rsFkkpCLgTgpu5s3afpbpD0UaNSXF2odfUN3sOYh90sZEjO4ElTcfhD54sUgW
-         E4h72iArkT/5b5TUgtYztNG2MMdTuYzK3ANMCRnldJiRj1O1dX/hZw0IDfEApyq1ijih
-         77Hw==
+        d=linaro.org; s=google; t=1745332010; x=1745936810; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6/8FBWOKis/5gAhZl+kumNEFhsuTOTp0Tn1yNZmhUVg=;
+        b=vClEnKbTuUX/Tn/89pK2/LS9DFgehutKCQZ0xekC+37DFEKSWAP+bzxp/c5GAm0adb
+         6RkIBd8ksYkgFcR69ttGRQ6b+W+QyTRhdXi9nmFX54fCPcrsS1qOI79YriwPuhad3UR2
+         WQ3Wnd3geyPJUbt6++CcE9Zuax9mSBurXLPlq2ITHR84kzbcH7AHVzizepSNjjmu05UW
+         vnQgpYZsMZKtNLsbDybDIdUe/msQZVowaXqru1tOXWcQoz2ugKF9P1xNtzc8zGn7Tt8f
+         nmRPFh4k6qZ1m9Mz2rL134DMDXsMZ0aQFMHFB2fMVcebMLUbIM6OlQmHoVucaOFKNiTm
+         52aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745331896; x=1745936696;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5Jdsjo/xqjalOgmmmiDVixlLCvZSDipVTEuGlq4N+fo=;
-        b=keKgcWKC0bnugsGI3gaJJejaDphHqw9vUfeW3COE15TQXcEYfV8CtPJ3BBwDQO2GvD
-         O5dMA19Ngfz1AcKGx8cP7viqvxu9nSuJOoSPvzns1T0oYXjYfsgcHjs982nLdr6bolGs
-         19WeJ2Ta3hxSpF5H7v2CWgee/2SCAIFwrAU0A1Ur5t5mcuecAr8KpE0tOv7BClh99vMO
-         Tci7lAQhHD3pAMeUfX1OABJi7ZD1aIE0qzz94ycAGnztPtQvuIjhs8a+OgDcWOxdQZ/9
-         oyq1EJ3duxNKqsTj8AeWvEQbCED8/rIopUuWv/juJK81zw+2wjnotB1K/XBollIqchyG
-         Sz7w==
-X-Gm-Message-State: AOJu0YxCxcoFfAbcokpQsOyJZvSXzJ+8rOsBhwsPTQCrf5jsVuTHl4OV
-	zPfWALHm06zOFam4qViZ/AmOE8bhvss2P42xzAwOqkvy07pwIawO3uwB/P99LvQ=
-X-Gm-Gg: ASbGncsOUEhZR6un7r0rf5u98AWINHYWhy6kAYxs2Y220pKNBP//h8cDeuWo6nsxGIH
-	8bdiFXR9uENFngC+xJ80RcwexHCNCjIzWVzfQu+Gc6fsA+fiJcK5jyyZKo0PtejY/Ui/BNrB1yX
-	+7W+QYyzH96AXOdx8deHSEHHCR6cURhcOtgcYnEVyCuZqcnv84NpicJSSp7Dxq8Rd83T1O2ISbO
-	IKZ8eYLnOfj4VQBBbRac3xYk/qzbHegVjNY5ce5DuhLpON5sYZAc9D/n2JIVhuREn9OKop2JBV2
-	upsSeEESHsTnwqsi8T3D7DvPeyaAfYOyRE7vXHWP4+YpSgvrJiJY/7SozTCUu56qEr357tpW4gb
-	NKDpMG7FUptf1XD3jLA==
-X-Google-Smtp-Source: AGHT+IEMq6D90tumtgiQfuL2iL5ojy1eqb4ZpCOQZ/eL/OvCUSv21+5Nv4KHfhG+kRfhKAADVI9aCQ==
-X-Received: by 2002:a05:6000:4201:b0:39a:ca0c:fb0c with SMTP id ffacd0b85a97d-39efba5f80amr12032095f8f.28.1745331895992;
-        Tue, 22 Apr 2025 07:24:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b137:7670:8eb9:746f? ([2a01:e0a:3d9:2080:b137:7670:8eb9:746f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d6e05d6sm181482765e9.40.2025.04.22.07.24.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 07:24:55 -0700 (PDT)
-Message-ID: <71a6cd6a-cb2b-4628-b558-01c2172a94f9@linaro.org>
-Date: Tue, 22 Apr 2025 16:24:54 +0200
+        d=1e100.net; s=20230601; t=1745332010; x=1745936810;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6/8FBWOKis/5gAhZl+kumNEFhsuTOTp0Tn1yNZmhUVg=;
+        b=YsuNc0gDStStWl2x6ltUv97NBlnSfyQQW0tgW+nZsqkRfF2A7dy21P2RqjhKWG12l3
+         mne9Z7r3rFAZw7kHy2gZ/XVIg0FoMQsmWYlhR9hZIi+5rI6EfcctUm3FzmHxNAlGxbvI
+         lkhCEJSXmiu+0TZb1EdFxGnSO6URIdNddJ4oglUaODBwAZX5FdvZfYSs2uW3vcu79NFT
+         8bV8+AE+hbe8cqULXnDpaa3HD2VNn09hL4GrkRzp379UEZVj3bZ1ok54+SR6zIRrzNFF
+         GGtV9hpcgTkDAuofMTYvGxHIJ8xKy5mS+twQY/uNywqIh19rrgLMl2HaerGR2gJoG2Ak
+         Q1xQ==
+X-Gm-Message-State: AOJu0YzaaixewJxFYLElN12uYI7svzvknLg3WRG1D4Hegi/uwhbm71Su
+	hgdEYjl3JeNATxedrHXQK++7iCFh2sFRkPu+lMsJuyGcHEbH03YjYr9crqBdUE9pCpknZ0dcXcu
+	W
+X-Gm-Gg: ASbGncuSdlCSY6g6sFEQ9Tw0Wrl905FtI/kvx7N1HAMCSZENYYJmo0LF6hWRtu25PcB
+	pVBsi07QulgtX5lGiDnOy4MQfenMfdZCW3iIWZxN6pMVwiT93khBUGY4fbSTBa/0EEWFPDzzOA7
+	09gho36kknBA76csZYoUW4XoqYiFTAI888IM3GCUXwK6yFSzVcyNbosWwFcBzKdmUvLdMZ8ojYP
+	aIq1V/5CbnMQWoCdnlQLzTB/0nwLm2fKlSEclHIsbAYMrbUpWR+LeK/NCURLVFTFsqURF7GuMu0
+	3Kakrr9l+Vf2vlsOLmu47K98FQns6uxmIk49xmIIk3Bf5IvPGj1LMhkGnX8WsA==
+X-Google-Smtp-Source: AGHT+IErweWrqcRE3OUYv1Tr/uF6zeqr9g8jYjpvjE6dgePIWhMhbjuHUYd714wO1Cy0fgJwbMEbXQ==
+X-Received: by 2002:a05:6000:4308:b0:39f:f5f:5373 with SMTP id ffacd0b85a97d-39f0f5f53c0mr3774129f8f.57.1745332010416;
+        Tue, 22 Apr 2025 07:26:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4207dbsm15318011f8f.4.2025.04.22.07.26.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Apr 2025 07:26:50 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org
+In-Reply-To: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
+References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
+Subject: Re: (subset) [PATCH 0/7] Baisc devicetree support for Amlogic S6
+ S7 and S7D
+Message-Id: <174533200972.67056.15609256008080950446.b4-ty@linaro.org>
+Date: Tue, 22 Apr 2025 16:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/7] Baisc devicetree support for Amlogic S6 S7 and S7D
-To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 17/03/2025 08:16, Xianwei Zhao via B4 Relay wrote:
+Hi,
+
+On Mon, 17 Mar 2025 15:16:51 +0800, Xianwei Zhao wrote:
 > Amlogic S6 S7 and S7D are application processors designed for
 > hybrid OTT/IP Set Top Box and high-end media box applications.
 > 
@@ -135,44 +108,45 @@ On 17/03/2025 08:16, Xianwei Zhao via B4 Relay wrote:
 > Add the new S7 SoC/board device tree bindings.
 > Add the new S7D SoC/board device tree bindings.
 > 
-> Add basic support for the S6 based Amlogic BL209 board, which describes
-> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
-> booting up into the serial console.
-> 
-> Add basic support for the S7 based Amlogic BP201 board, which describes
-> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
-> booting up into the serial console.
-> 
-> Add basic support for the S7D based Amlogic BM202 board, which describes
-> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
-> booting up into the serial console.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Xianwei Zhao (7):
->        dt-bindings: arm: amlogic: add S6 support
->        dt-bindings: arm: amlogic: add S7 support
->        dt-bindings: arm: amlogic: add S7D support
->        dt-bindings: serial: amlogic,meson-uart: Add compatible string for S6/S7/S7D
->        arm64: dts: add support for S6 based Amlogic BL209
->        arm64: dts: add support for S7 based Amlogic BP201
->        arm64: dts: add support for S7D based Amlogic BM202
-> 
->   Documentation/devicetree/bindings/arm/amlogic.yaml | 18 ++++
->   .../bindings/serial/amlogic,meson-uart.yaml        |  3 +
->   arch/arm64/boot/dts/amlogic/Makefile               |  3 +
->   .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   | 42 +++++++++
->   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 97 +++++++++++++++++++++
->   .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   | 41 +++++++++
->   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 99 ++++++++++++++++++++++
->   .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
->   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 ++++++++++++++++++++++
->   9 files changed, 443 insertions(+)
-> ---
-> base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
-> change-id: 20250221-s6-s7-basic-f300c30877e6
-> 
-> Best regards,
+> [...]
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+
+[1/7] dt-bindings: arm: amlogic: add S6 support
+      https://git.kernel.org/amlogic/c/93d968adbba3d30c625149d7aa12369a42b89d3e
+[2/7] dt-bindings: arm: amlogic: add S7 support
+      https://git.kernel.org/amlogic/c/5c9871f98b187747a873dad2773493f2117b5203
+[3/7] dt-bindings: arm: amlogic: add S7D support
+      https://git.kernel.org/amlogic/c/c0c89503f6b722d9eb450ce1cfe52f785be07cfd
+[5/7] arm64: dts: add support for S6 based Amlogic BL209
+      https://git.kernel.org/amlogic/c/5fdecaafa2377731b84c9f3af5994d990224015e
+[6/7] arm64: dts: add support for S7 based Amlogic BP201
+      https://git.kernel.org/amlogic/c/1b753fcfcff8ad1a63512b5be01cc6f3968a859b
+[7/7] arm64: dts: add support for S7D based Amlogic BM202
+      https://git.kernel.org/amlogic/c/1a30661c20dee51675a1ddee1b81b6a0e8580412
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
