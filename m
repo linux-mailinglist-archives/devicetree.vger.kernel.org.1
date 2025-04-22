@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-169539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0E3A97417
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:00:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6020EA97419
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 296BA7AAEB0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C1A31B61F83
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7F12980A0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3F22980AB;
 	Tue, 22 Apr 2025 17:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b="iiAapg8g"
+	dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b="Jw2SoAzL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641ED296D14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294D229617D
 	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 17:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745344784; cv=none; b=n7qsabCFHINqXGFrgkEV1vXg4lUbaRJIQLeMwnz09Pdqspp0hfrH4BK/CmBTk4zqicw+oGk/ramfqOC3JJfT5bcyQDfA4IoSRV59ypCartXgbrXuy83pxc/FovTj3QBdHHkNubXPeISUvcKgBTTGbkS9W7XB/8PLtwmGKcGLVfw=
+	t=1745344784; cv=none; b=rRNc3jxB4j3udpGNDGqmMDriXoyH0/H7Zh469mvwS7il4O4+wnBoUQEURAN+bXjP7Crq8ARh6gg0kpBb79Efva5BpVI84mNz/kHFcUrXod+fS+m6f+wuQFmAr7oZvl+AFHrBFHieDXZ/Pbi1WmkUEZp+GOkijFmP7H2OX4tLmCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1745344784; c=relaxed/simple;
-	bh=NGXz1/C84LouGjqEw3CBsAoV1AGsU6iLIRZzXDV0zJU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m8Q+HV5GQfWfBdsOTLJse0uecVyzVm74lugZz4EupVypy2C9eSYDUixlzU49t0qyE9mTVkaNgMkNkRCnOAohFOL1PU0TNfKAODUnXkpULXecosTbiZNENidCtpXCj3pnxT6N/P+QejWP0bKUhXlVto/VIpg2FV9sZiF/eN9ZlaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=conclusive.pl; spf=pass smtp.mailfrom=conclusive.pl; dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b=iiAapg8g; arc=none smtp.client-ip=209.85.218.52
+	bh=rX4pZAx+Fw4Z9aS7brID/2V6XdrCArIiB7uoJZcdUlQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=i/8US4MIbYoLuWDyr5AGryNtE2pYUICPAj+UxCEQ+qTNLLNp7g1YTaiGo6zfqj4uS4Dv6m327pFSd88kEka+0GDk80vpNoTrFjQWNrDawLbZlrA4rzNoPUZn9XuvGkk4cBasumr9bXZPtqpq+r6rtFP8G7XYKgMkNm/gWOJsQRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=conclusive.pl; spf=pass smtp.mailfrom=conclusive.pl; dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b=Jw2SoAzL; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=conclusive.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=conclusive.pl
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-acb39c45b4eso804214066b.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 10:59:40 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-acb2faa9f55so653571566b.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 10:59:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conclusive.pl; s=google; t=1745344779; x=1745949579; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vmDFRe336F7jeHxUtjEEM738t0/3jAPa2su7mI8vUM=;
-        b=iiAapg8gTmYaEpIXQTglf1KBocMYKn7RC83FIvH1jXCzMmsw+7ypb5bVE1FoGghlfK
-         QlOJICsdDNtqPtEeBr9WVW4NEbJxJ9sDiuEGgfcnd+5ycCLhLtqEbAsIKOl8b4PsKZUo
-         pfQGMJyoEtGzGumDkcyNLlxYQ77qsynSpoOAwZw3cWTe1oZDvEeFi3o4c0ud2UWUpJri
-         fPWf1quMCOYji66tOLRujhorvS8ypPNmCniA6j6WhVk0sOmw4sOf7cLVQkRE7gy28E1W
-         FaiMYW9DijHhBppbAC34SSEbkE0+g5H7LwDI45OOwEhTtgh3s9BVhrx5Fl4XG32wby5r
-         Fu9A==
+        d=conclusive.pl; s=google; t=1745344780; x=1745949580; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EsoqhQJqReGblLVET6rA99edyyj8MD7IJfz2aWYWya0=;
+        b=Jw2SoAzLD0Ux3rSnqVrTEAPE7WXaDzdhOAAOCq/bNU/+JscOL6pMXRYeIXwAbET/h/
+         Knn2hxyAVlGe3GsfgR7ObUoihLgzvklcbSME5ETE7cFIsyKktuoYyD9RZat9YrKopSfK
+         8tJo/Z5r4dW1y9g8vjZdfvNd/UoNZy9AW/zQUVgt0jziPy/u7lRwAA1RbRdNCMn30+1A
+         OCHEuB+tcY8kx9ojykrs7tJgqafO+tgCKhdVZqoJgOhBJ5W67yQ7NvrFwCgC2bo+v8g/
+         PMNV18vvFyikDIDDNhKo8NGMH/rIXxcLgn6Pe0ZGwnaOsaymK481O69uu+SJjIxG55P5
+         hKJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745344779; x=1745949579;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5vmDFRe336F7jeHxUtjEEM738t0/3jAPa2su7mI8vUM=;
-        b=eFRfyKsSYd2M1e9ia4gI6RA2lbWOlhBulBSpTXUU5wt57osCQfntbPFv2wXIXjFf3p
-         QMDl+8kGSniFkhurdi7oGPWWTyps63ZxKe8CmdlEMDU+14Oo0PM5aIzQJPBYxwnhG4H4
-         zxN77paHKAL8PC4dyUHIK4abqvzRiE6I4A+9mD50QewiQwViHIuLIJBPF2fB3JAPqaun
-         F2Is/paddSSls8kG82WgLize2eFRWG6ff1lU/cTNLzpoR/b/ltNViut0SQePmG9ro6YK
-         Of+iYxt5icAwuV4kgsb+jFsOm6Nfty28vycGirswxJpTPzYW11LyyZWjI+FRU9uS0oAN
-         qwyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUldWW9OKtooE8SV0dqtTZnShm2TJc0f+1cbuXEWYKklpC7O7xCsUuQquBrdYQx0ZVl0HRpzcBIjEwU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6VFQ7aQG3wI1Nu/iFad+wvm4tWZoWPM8u4DIq7dgZ82hfMcEs
-	zyYn+Cg0YVOgO0+BfwVDD0voaMJJdMPRZo9gGnryDvkBQv0Se9QF6tNMnISItrk=
-X-Gm-Gg: ASbGncvbsInjA3zAkQUsQesDfJXpAOvU8W81Bah93BYpxhpwQJqUbOyVgiXYXZQqrEj
-	5bypQfFv+/sGB0+5kLiRhpuVG/t0/0TW16hICcOJqJwG/RSL7VzIUj3R4MYaO8jBR0DMX23N8Ee
-	f+TdVlwhf4JbTM3mPWo+iEqJcd22rz8bc5l+io58OUFabMtAOxj5Uv3RRZU3mR+GiHbZ+IsX8bz
-	vbtqMIRmOqmun+1s+/M2rwqqMmWTNceLOA218/vO0ezDRzfx6uYeUCGmLoyUfI9zZ+2CYN5svb2
-	HgSRE0r5piNieGiyT7dplQW6ENR4TtqZglvp/gclZzl/JSW9gFYMpa1N8DcRTJHSSCAonzIbIJD
-	vMdkcDxK8
-X-Google-Smtp-Source: AGHT+IFuB00QPLtb3gbpigfCavyTE7nKWB/3ILqnGrcipA/uEF7A5WS0H1m/Gfrg87ZGf4Wv+vqyVA==
-X-Received: by 2002:a17:907:1c0c:b0:ac2:4db0:1d22 with SMTP id a640c23a62f3a-acb74db7cffmr1265583466b.42.1745344779566;
-        Tue, 22 Apr 2025 10:59:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1745344780; x=1745949580;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EsoqhQJqReGblLVET6rA99edyyj8MD7IJfz2aWYWya0=;
+        b=CO+O5As5zFmADLx1Pc8rgDqU20lkr3I0DhuN4vqmmJOpzVBGl+SdwmPh/D8+X44wFS
+         LzMYJ7pid1Q4HVI//rLDxlOSnNLD6rN/dbOuZOXEzxcF+7/SIAW5iL76vYLEA7LEOSHA
+         KVs5ThEwG70jf7CV0MxvM6Ee6WQI5Gxo2TCRwHh4uOAdFHxKwCZT1r8Cm84Hv+j4wp40
+         6VP0KBGvigCOHfyAEsZovKTSWIuW1CyfZ2utdldk20e8u7JDi0hR+1ots0eIZymi+K9T
+         azjPznxe1qXUYC4O58WgULy7S8AOs0OUglGdBpXRMsDnVCaRPk4RxZHAzDkJnzvQ4k6W
+         nU7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWwvtl7n12jOg3j7Mf8Lf9uS3Ja02UVtiurd3O3zMAQSNu0Ic9u7KijmTtho17hLM/8qrGHsJTV65kP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9jYiPwVbCkcb3IxeBriCDS5wHfq9epdzeMP7/rZkTkuC7Br6O
+	+txuqcTUCZ9gyNSje3QPRgIiKwaVJooWowz5F6KfGOgG95/yhk8glgXZPjOtItU=
+X-Gm-Gg: ASbGncuhk/1MXJpgo4UmHDpVvJySGen8lNd5pPkVKr2lYu3E+5Jz4EL8B3cLwJY8qH+
+	+10sOLzkc4vHQ7LyPW+U5+Z+Oe4pGJgKFkiiCFCzMzTKNLNcB+qDSxBOOfvSMtq8NhzKO1vqBmG
+	RJF7CeRQUq0rVF+1bYEB1XdvwQul5zudFr3hjFX4LSQIh69EDpIm2WVa/6QcSr/FRb6LJ/5tfOE
+	1M8+WsFAOFD9TnoXaHWXWJKrDX3gMWmUcO3APgUTOFYrrhLcCrdJBbM3gOpIEJTISQYmTCdSld6
+	dq/egJWF017k1c64FTBxleIoDLERD5MWyfJCTk4pHTQ6R+rIpQ3M2Gi7LbFMfO4l6/YqlhY4prC
+	UDcMrHvX1
+X-Google-Smtp-Source: AGHT+IFDevBClHWL43+s8ObNwls2JReJQHbOXyOW76f7cvBTjIZlKeT5m3zNvNHjFdlY+e7U8WVEGA==
+X-Received: by 2002:a17:907:da2:b0:ac4:169:3664 with SMTP id a640c23a62f3a-acb74b7b640mr1311993966b.33.1745344780516;
+        Tue, 22 Apr 2025 10:59:40 -0700 (PDT)
 Received: from wiesia.conclusive.pl (host-89.25.128.123.static.3s.pl. [89.25.128.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef47733sm690208466b.144.2025.04.22.10.59.38
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef47733sm690208466b.144.2025.04.22.10.59.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 10:59:39 -0700 (PDT)
+        Tue, 22 Apr 2025 10:59:40 -0700 (PDT)
 From: Artur Rojek <artur@conclusive.pl>
 To: Johannes Berg <johannes@sipsolutions.net>,
 	Rob Herring <robh@kernel.org>,
@@ -86,10 +88,12 @@ Cc: linux-wireless@vger.kernel.org,
 	Wojciech Kloska <wojciech@conclusive.pl>,
 	Ulf Axelsson <ulf.axelsson@nordicsemi.no>,
 	Artur Rojek <artur@conclusive.pl>
-Subject: [RFC PATCH v2 0/2] wifi: Nordic nRF70 series
-Date: Tue, 22 Apr 2025 19:59:16 +0200
-Message-ID: <20250422175918.585022-1-artur@conclusive.pl>
+Subject: [RFC PATCH v2 1/2] dt-bindings: wifi: Add support for Nordic nRF70
+Date: Tue, 22 Apr 2025 19:59:17 +0200
+Message-ID: <20250422175918.585022-2-artur@conclusive.pl>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250422175918.585022-1-artur@conclusive.pl>
+References: <20250422175918.585022-1-artur@conclusive.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,81 +102,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi all,
+Add a documentation file to describe the Device Tree bindings for the
+Nordic Semiconductor nRF70 series wireless companion IC.
 
-this is v2 of the Nordic nRF70 series.
-The order of patches has been swapped to reflect the Device Tree
-submission rules (bindings before implementation). I also replaced
-the 'net: wireless:' prefix with 'wifi:' for the series, so hopefully
-this time it correctly shows up in Patchwork.
+Signed-off-by: Artur Rojek <artur@conclusive.pl>
+---
 
-Patch [1/2] now resolves all issues uncovered by dt_binding_check.
-All gpio based properties have also been replaced with *-supply and
-interrupts properties, where appropriate, and their usage clarified in
-respective description fields.
+v2: - rename the patch subject to comply with DT submission rules 
+    - fix a typo in reg property name and correct its indentation
+    - replace all gpio based properties as follows:
+      - irq-gpios with interrupts/interrupt-names
+      - bucken-gpios/iovdd-gpios with vpwr-supply/vio-supply
+    - clarify usage of said properties in their descriptions
+    - add a reference to spi-peripheral-props.yaml#
+    - specify unevaluatedProperties
+    - drop unused voltage-ranges property
+    - update bindings example accordingly w/ above changes
 
-Patch [2/2] addresses the same gpio usage concerns, now utilizing
-the regulator API. Another major change is migration of
-nrf7002_qfn_rf_params from being an array into a struct, in order to
-better access its individual fields. All the remaining concerns from v1
-have been addressed as well. 
-
-As this is RFC, and none of my questions from v1 have been answered, I
-will feature them again, while also adding a new one:
-
-1) Nordic gave us permission to upstream the firmware blob [1] required
-   to use this driver. As that needs to go through separate
-   linux-firmware repository and is subject to different licensing,
-   should I try to upstream it in parallel with this series, or does it
-   need to wait until the kernel driver gets in? 
-
-2) In AP mode, for each connected peer I maintain a pending queue for TX
-   skbs that can't be transmitted while the peer is in power save mode.
-   I then use a wiphy_work (nrf70_pending_worker) to move the collected
-   skbs into a single hw queue once the peer is able to receive again.
-   This means there can be multiple workers putting skbs onto the hw
-   queue at any given time. As this scheme relies on the wiphy_work
-   workqueue, can I assume that multiple workers will be able to run in
-   parallel, even on a system with a single CPU? If not, what would be
-   a better solution to the above problem?
-
-3) nRF70 hardware communicates using byte packed, little-endian
-   payloads (documented in nrf70_cmds.h). As these can get very large
-   and complicated, I decided against writing some sort of endianness
-   conversion scheme, and simply dropped big endian support by this
-   driver. Is that acceptable?
-
-4) Please put particular attention to the wiphy configuration. I am not
-   100% confident I got all the flags/features/band caps right.
-
-5) Should I add myself to the MAINTAINERS file regarding this driver, or
-   is that not mandatory?
-
-Cheers,
-Artur
-
-[1] https://github.com/nrfconnect/sdk-nrfxlib/raw/refs/heads/main/nrf_wifi/bin/ncs/default/nrf70.bin
-
-Artur Rojek (2):
-  dt-bindings: wifi: Add support for Nordic nRF70
-  wifi: Add Nordic nRF70 series Wi-Fi driver
-
- .../bindings/net/wireless/nordic,nrf70.yaml   |   71 +
- drivers/net/wireless/Kconfig                  |    1 +
- drivers/net/wireless/Makefile                 |    1 +
- drivers/net/wireless/nordic/Kconfig           |   26 +
- drivers/net/wireless/nordic/Makefile          |    3 +
- drivers/net/wireless/nordic/nrf70.c           | 4703 +++++++++++++++++
- drivers/net/wireless/nordic/nrf70_cmds.h      | 1137 ++++
- drivers/net/wireless/nordic/nrf70_rf_params.h |   65 +
- 8 files changed, 6007 insertions(+)
+ .../bindings/net/wireless/nordic,nrf70.yaml   | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
- create mode 100644 drivers/net/wireless/nordic/Kconfig
- create mode 100644 drivers/net/wireless/nordic/Makefile
- create mode 100644 drivers/net/wireless/nordic/nrf70.c
- create mode 100644 drivers/net/wireless/nordic/nrf70_cmds.h
- create mode 100644 drivers/net/wireless/nordic/nrf70_rf_params.h
 
+diff --git a/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml b/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
+new file mode 100644
+index 000000000000..c9a41b61c624
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/wireless/nordic,nrf70.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nordic Semiconductor nRF70 series wireless companion IC
++
++maintainers:
++  - Artur Rojek <artur@conclusive.tech>
++
++properties:
++  compatible:
++    const: nordic,nrf70
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: HOST_IRQ line, used for host processor interrupt requests.
++
++  interrupt-names:
++    description: Name for the HOST_IRQ line. This must be set to "host-irq".
++    const: host-irq
++
++  vpwr-supply:
++    description: BUCKEN line, used for PWR IP state control.
++
++  vio-supply:
++    description: IOVDD line, used for I/O pins voltage control. Optional.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - vpwr-supply
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    reg_nrf70_buck: regulator-nrf70-buck {
++        compatible = "regulator-fixed";
++        regulator-name = "nrf70_buck";
++        gpio = <&gpio2 24 GPIO_ACTIVE_HIGH>;
++        enable-active-high;
++    };
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nrf7002@0 {
++            compatible = "nordic,nrf70";
++            reg = <0>;
++            spi-max-frequency = <32000000>;
++            interrupt-parent = <&gpio2>;
++            interrupts = <13 GPIO_ACTIVE_HIGH>;
++            interrupt-names = "host-irq";
++            vpwr-supply = <&reg_nrf70_buck>;
++            spi-rx-bus-width = <4>;
++            spi-tx-bus-width = <4>;
++        };
++    };
 -- 
 2.49.0
 
