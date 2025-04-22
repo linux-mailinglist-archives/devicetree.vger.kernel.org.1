@@ -1,131 +1,174 @@
-Return-Path: <devicetree+bounces-169516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FDC6A97300
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:46:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A51A97304
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:47:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3DD13A39E0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:46:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D48B01897203
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241482853F2;
-	Tue, 22 Apr 2025 16:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A76929009F;
+	Tue, 22 Apr 2025 16:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lxKst7I/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7B5EC5;
-	Tue, 22 Apr 2025 16:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA08627C875
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745340398; cv=none; b=QtND8avdLlA1P0nVoidDBJ59orjbTVBhR5JWMjZ+mpI9cO0vm5twuq5e67g/qi8oQxiNrGo9sYm34vWqy+8j4SDOx43s9zvs256aqf95qWqXrQ/O4lcmO2OFmoEakCr8qCGbyplaZGMZkYnAs+2ycdAFIMxr47J0y/ME0oTJwdg=
+	t=1745340433; cv=none; b=HVCFD7hLtxEcHA10Wfzvz7JNp+b8zi3mFuZUNK9fkbec8nnhhT9QPVrh8gU+22idj8ci80jS93xhpfZifCe670+m5aql+poqoissuPohbQgZLNFU7F6S76yRLAGbfFLM9rX4Nhb7VjsSGZbjgkfG9T+hL1myaNB0uBmxosZpsOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745340398; c=relaxed/simple;
-	bh=APY464O4qEktr3qLUXmra9T6Ngn9Z0W6MxO6bYmyA8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rCOi6u6qqIC6XsKXoAfE+JKiLZlphhoSG8lSfTyguLozAbyO76ZvIE2O0jFHRmEAYfN9iH0xQQtxriU1gh92qH24mK45bFZBabrkOMTIUYfd1b286kACmte71Yf01KwIEvsTD8CZf/uYbo51ASxYMqJi9Km2RatDhnbm3gJyCP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: lAR9fY7oTOewj91sitGvyg==
-X-CSE-MsgGUID: XqLKaA8dRNO0z+L7zLPLfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="57569423"
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="57569423"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 09:46:34 -0700
-X-CSE-ConnectionGUID: iR7O+dteTAO3FgIgZ51IbQ==
-X-CSE-MsgGUID: 9/cf9DuxSlit+M+ugccYJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="155266018"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 09:46:31 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1u7GlQ-0000000EmZO-3qDQ;
-	Tue, 22 Apr 2025 19:46:28 +0300
-Date: Tue, 22 Apr 2025 19:46:28 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Message-ID: <aAfH5IiVBLLE95ct@smile.fi.intel.com>
-References: <20250421-togreg-v5-0-94341574240f@analog.com>
- <20250421-togreg-v5-3-94341574240f@analog.com>
- <aAexmOU1e-7hXq6Y@smile.fi.intel.com>
- <efec7563-9591-4539-a154-bf486d35df0e@baylibre.com>
+	s=arc-20240116; t=1745340433; c=relaxed/simple;
+	bh=q41FPq0f05JtlihZrGKwdFbEk/8bWbV9HQOdX61yRiM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HLQbmpRQ7ZabJeFN/y3UjMpq8NTkxS6RkeZBFKeQ7m+FuH3vr4EUmFO0SEscno5CcyXgJDI20AVwCg1zsccKMPu9IDEZp7IuK47UcU/6qF14Fq85wsEZlgbtgQicRYrOKA20/tAPiAR7VcE6GuluwTaP4I4Z64EjQX6ni3Z8Z4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lxKst7I/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MCpl69006201
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:47:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7esB2aoHj/zc0balrbTUPwT6TMFaoUq/f2Uz5vJdfmo=; b=lxKst7I/+9Bi83c5
+	mRfFLwOADJxxj31+h04X6djc8PCdSjKmy3psDs1N7IPwiw46AaRQOI+xx886sWao
+	oFTb9r3nMQ7Lg2BfYh+NaUO50e7l9RO/xl9ju8LySWm0igAtHzArqnYeNOMBiTwM
+	5cpUE+hdF942nJy1MIEIfL9YMtlSzZX5L6npAC3Wz/g6+fzSso1u5Irln0QHlpPX
+	SQjgslyYLA4kz1pemYVz/Yh6EiS+lENZs0UOhohkV0TPpHJLrYZ2f/bI1tbvbkUW
+	s0fRdZg6ilKSmDNZ1tco7UAghvVvwOsHIU1iumvIu46UaD+zxbXZ+Flmo+KzEwxm
+	2LRBFw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46435jgdy4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:47:10 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c9305d29abso617078685a.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 09:47:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745340429; x=1745945229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7esB2aoHj/zc0balrbTUPwT6TMFaoUq/f2Uz5vJdfmo=;
+        b=BRfUHoDQwGUFYIFMPyiPhw9N/eEegvPEt9o8lqfEamD8XUXYerq+AjfCzr0aVrdATa
+         FtgauSPx34JgxicvY29N0WMpOYcepYziSZ96hVQAKGPAc/EBwSqDaPhcsI0tPVv9sEx6
+         A4aDzOsba1Hb9pjASa5Wn3eAwZX+M9WDleMMLnb/g/dt0T0HCB5NQzxKAhxik6yPRlJb
+         ZLqdjPe5SP1qkIS9Ifg4ztPiKHu8DG23ufBiTnsMd1dAGpmcspn04wOc6AZa1ggG7/3L
+         R7AqnGkSGj+6NUoBGT6YXFYuj09BMyoXm3H/QH80q/QMfT/w2ayJBSMhcMuGcpWlFTdz
+         NLZA==
+X-Forwarded-Encrypted: i=1; AJvYcCWe5Ouju2+5UwExlGJ3vtkewgcds98sWBHW6ACTJQhws3upOrQXfkgprj5mJGoXraY4l5TChSzZaPJj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGRkih11sQu7gMrjG8EXtJUQkO+3R03lhc1Dbmyov/4+RyTNbv
+	kjhmc+6e1x7gRxIHLPknxccF3QKj4C7ivxOhHM4tXJNaUE7/awgmo3RTPG7ZF+tLIWqoaOuAZYB
+	7mG9C0Vtnmk4angPuVRju2MpWiUfECh2L6y7BlVHFGIADiYdMzbgsHsc+z8sD0kjK7yuteR1q1a
+	ldcXK8UrxI7gUarXXsttusXnpFPuzqqfnEpNI=
+X-Gm-Gg: ASbGncsQ6WsL+1NTk4eXI+rTfdLOgHfpq0CiRxI/WqI3ckVNEp+QodV3gnGe66It7GZ
+	jTEVc6DwxrRJDCWy4py0kGNC1CzbJKauObswtBAJ1l8Wi/wI0h+UySDc+LW6g9UJjJTxrSg==
+X-Received: by 2002:a05:620a:d8b:b0:7c5:4463:29a3 with SMTP id af79cd13be357-7c927fb6abemr2521238485a.25.1745340429685;
+        Tue, 22 Apr 2025 09:47:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEG3qOQXOo9TwfXy+ZCRASfPs61YghUNcjXEoKQ9Cb2mxOyUAtnFLUy/fxANhDcySjFS+vdZv7enndytIuRPD4=
+X-Received: by 2002:a05:620a:d8b:b0:7c5:4463:29a3 with SMTP id
+ af79cd13be357-7c927fb6abemr2521232685a.25.1745340429232; Tue, 22 Apr 2025
+ 09:47:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <efec7563-9591-4539-a154-bf486d35df0e@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250418141147.205179-1-loic.poulain@oss.qualcomm.com>
+ <20250418141147.205179-6-loic.poulain@oss.qualcomm.com> <20250422-nonchalant-bald-mink-7c2d34@kuoka>
+In-Reply-To: <20250422-nonchalant-bald-mink-7c2d34@kuoka>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Tue, 22 Apr 2025 18:46:58 +0200
+X-Gm-Features: ATxdqUFjcv7S-nnV4aqImBi-gZ-qp_DaZjNj_vXIRlmLVC63QNcKlWPv4CoSSKA
+Message-ID: <CAFEp6-365xBQJL7A6vP99R5sBcYPDgwJEQyUfoFtuBBMRO2WVw@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] media: dt-bindings: media: camss: Add
+ qcom,qcm2290-camss binding
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
+        andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=EOYG00ZC c=1 sm=1 tr=0 ts=6807c80e cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=FiTWQ0jTrq8e0WeyI4oA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: ffiGtUBCfPtGk9wVRpo8fjHfFlWdBjNg
+X-Proofpoint-ORIG-GUID: ffiGtUBCfPtGk9wVRpo8fjHfFlWdBjNg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_08,2025-04-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 mlxscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 spamscore=0 adultscore=0 impostorscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504220125
 
-On Tue, Apr 22, 2025 at 11:37:06AM -0500, David Lechner wrote:
-> On 4/22/25 10:11 AM, Andy Shevchenko wrote:
-> > On Mon, Apr 21, 2025 at 12:24:54PM +0800, Kim Seer Paller wrote:
+On Tue, Apr 22, 2025 at 11:15=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Fri, Apr 18, 2025 at 04:11:46PM GMT, Loic Poulain wrote:
+> > Add bindings for qcom,qcm2290-camss in order to support the camera
+> > subsystem found in the Qualcomm Robotics RB1 Platform (QRB2210).
+> >
+>
+> Just one subject prefix media. No need for two. See DT submitting
+> patches.
 
-...
-
-> >> +#define AD3530R_INTERNAL_VREF_MV		2500
-> > 
-> > _mV (yes, with Volts and Amperes we use proper spelling).
-> 
-> When did we start doing that? No one asked me to do this in any of the new
-> drivers I did in the last year, so I didn't know this was a thing we should
-> be doing.
-
-I remember a discussion for one driver a year or so ago. But I can't find
-quickly a reference. The rationale is to be as closer as possible to real
-world (physics). And, for instance, regulator framework does that already.
-It's a pity not many people aware...
-
-...
-
-> >> +static const char * const ad3530r_powerdown_modes[] = {
-> >> +	"1kohm_to_gnd",
-> > 
-> > kOhm
-> > 
-> >> +	"7.7kohm_to_gnd",
-> > 
-> > Ditto.
-> > 
-> >> +	"32kohm_to_gnd",
-> > 
-> > Ditto.
-> 
-> These are defined by sysfs ABI, so can't be changed otherwise it would break
-> userspace.
-
-Ah, okay then.
-
-> Comes from...
-> What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_powerdown_mode
-
-> >> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks for the review. I will resubmit with the corrected subject,
+keeping the supply names listed below unchanged, if you're ok with
+Bryan's comment.
 
 
+>
+> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > ---
+> >  .../bindings/media/qcom,qcm2290-camss.yaml    | 243 ++++++++++++++++++
+> >  1 file changed, 243 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm229=
+0-camss.yaml
+> >
+>
+> ...
+>
+> > +  interconnects:
+> > +    maxItems: 3
+> > +
+> > +  interconnect-names:
+> > +    items:
+> > +      - const: ahb
+> > +      - const: hf_mnoc
+> > +      - const: sf_mnoc
+> > +
+> > +  iommus:
+> > +    maxItems: 4
+> > +
+> > +  power-domains:
+> > +    items:
+> > +      - description: GDSC CAMSS Block, Global Distributed Switch Contr=
+oller.
+> > +
+> > +  vdda-csiphy-1p2-supply:
+>
+> Why isn't this named vdd-phy-supply like in every other binding?
+>
+> > +    description:
+> > +      Phandle to a 1.2V regulator supply to CSI PHYs.
+> > +
+> > +  vdda-pll-1p8-supply:
+>
+> Similar question.
+>
+> > +    description:
+> > +      Phandle to 1.8V regulator supply to CAMSS refclk pll block.
+>
+> Best regards,
+> Krzysztof
+>
 
