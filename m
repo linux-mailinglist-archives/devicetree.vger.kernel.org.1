@@ -1,265 +1,198 @@
-Return-Path: <devicetree+bounces-169312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC58A9659D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:14:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BECA965EC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 12:28:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12780189E1E4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6093A5A95
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4423720E00A;
-	Tue, 22 Apr 2025 10:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B68F2144B1;
+	Tue, 22 Apr 2025 10:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Ny5G3pbi";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="jh5PkcDA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EfgEK072"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE5720C03F;
-	Tue, 22 Apr 2025 10:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48EA32139CE;
+	Tue, 22 Apr 2025 10:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745316807; cv=none; b=cJuKeHB6/m14Fb4AOEAjnR3z+d/ahpsY1v+k8rHzf0H/bih77TdijzeDsUErLUdP/IR7XqyhHi6t//mGeorwryDGIVRcVSeGfqesztG3NPlHHfS0pWq/Yia6rg/D5zBD5cC57bWI95d6ZmU3tcRvfsdG70VMRFG/PaTi0xQ/Jbw=
+	t=1745317677; cv=none; b=lWX6i2ZiWKHciNX3B2JB1so8oJGtN0vapXeV4qdFWw4xHEVP68QVThUCRrGCfBNCUiC9yy/CTp95kWCnkcIvwytVOhHD77fenVDr1kPXx2Rq+w/3RLi4InrIvhyNP2pED008s2TJ/mrHvOFW9463/R+iWDiknY4fBBr6I1t3dWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745316807; c=relaxed/simple;
-	bh=rrmozzNxumnGfR9XKl/Tk4HoyfrHtNJ6j/pS/lYfCG8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lqaDcc8jEvrmEtKzJV7yYaxFZ0rM3NMzJGWDRnlGfnapIUHos8ZleY5NIkkbRD47r10xvE0fA1hqWeihorrIlwMV19RWhG1iXzy+jLKklMT9D3dDOwcNmSl+qZxalQs9zBkTvFl8pXN1/UeK27cd8THdk48raz81zaVQbemBcjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Ny5G3pbi; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=jh5PkcDA reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1745316802; x=1776852802;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=GTgyBYM0atbB7o8tyo96ALPdwLqQ7fnnytL7AnbCemc=;
-  b=Ny5G3pbi6964mSBk9xceTVUd8b7J8SJK1m9+rl+5FgBiWAFVjbF9BVgD
-   lupwHqmUXwbHBgwJyFKlLAM3zPW2XkqnOX7K9BLJD/p6L669egqi0crZl
-   GgREhn43soZ7rAjB2sRxhGpnaTzd/0UdVU2vBoDpM0XM5by/esgg9LKYd
-   nSve7kcUFsUdBoqquKOo5gPZJAvwDkre4iKojnBAkrbYxRQcwn0IE6uX7
-   bb8UAsgbhtJJ5rp0aX6vDqpPhOtsGbwOQADzq9VSr7PP+ubKf7EnUGM7X
-   pPQe4Z4ePeXPOCNN7U10FZ69lRkgJkEGL/YCjwIDbhLM6tW/r4lwiKCL1
-   g==;
-X-CSE-ConnectionGUID: aFnZ/5SfRwmMZma6TXZltg==
-X-CSE-MsgGUID: zm9SyFfMT+ynQMFBCmSLdA==
-X-IronPort-AV: E=Sophos;i="6.15,230,1739833200"; 
-   d="scan'208";a="43643392"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 22 Apr 2025 12:13:13 +0200
-X-CheckPoint: {68076BB9-D-DC4DC9A0-F4F29281}
-X-MAIL-CPID: E85EBD5DCC334B9006B24DBC4B5A8702_0
-X-Control-Analysis: str=0001.0A006368.68076BC7.004D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4392516157F;
-	Tue, 22 Apr 2025 12:13:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1745316787;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GTgyBYM0atbB7o8tyo96ALPdwLqQ7fnnytL7AnbCemc=;
-	b=jh5PkcDACdr42zBpglMQlTtHe2GsSeBycBax5AeNrIxoKMDEJi7pZOJGlvzcbqZPXoEuQW
-	itX8TLKWSVXdsogH8yaE3qZS5OuU1HYtmNkf2FX4wEkhC/kWqwImVYs+TJAapW5oJYdJs1
-	89o/8/ZpbhEe5nLHs9mSAI6iZLeSl9p2sxmMCWrCo2sr/bfNrYq7stmyIWZwc6hcLLrj7Y
-	BLaiAxio5vEP2Ka1JGJJNPal5ZJBBH8IuYQc37TxJwWtH9Hw5TKQ8ZTCblhwH2Qwq+3Zfw
-	jERP+NMjT+g1hrYcyTSSkzKjWX1+FZAGQs7slMKzOq6v31gpOcqFoqlTN+LlvQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
- Alison Wang <alison.wang@nxp.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] dt-bindings: display: imx: convert fsl,
- dcu.txt to yaml format
-Date: Tue, 22 Apr 2025 12:13:04 +0200
-Message-ID: <2782645.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250417151934.3570681-1-Frank.Li@nxp.com>
-References: <20250417151934.3570681-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1745317677; c=relaxed/simple;
+	bh=B2UZi9ugbozdfNpiJDP5cOj3pRIQYoJbDLco0LpvDNM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lpj9klk7d7ShpJpN8fsbgidVCacS9cjubnp4azHZjzXAVjVrs62WvfgeqyOuRyUEZvszj7I+GFEgKrmHkYFX0zD4LgBAM9XI2jL4jRkNAF5y94vP0zKroux6dZbOpK/aG5pzvzhfXVqH6K3w7ARG5P11ms1F8u/A3ApMmvn0/m8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EfgEK072; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53MARlGm1181497
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 22 Apr 2025 05:27:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745317667;
+	bh=+tqEJztsEGWVhO4AAXHU0QU5LU+OnvvfKfNHDEDrh+I=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=EfgEK072ZvCgXi6UPy5O9lKiZLuZ3SpBheWeO8X1yZ3jramrmXyXkVRHDBiVBQKlK
+	 EtIpygt05eMkYrYipLoI7pEqy7lkK0ixc7uFZ4RDzspHHaxi2ey/JwrkTC04eeFdmb
+	 Mir8OGBUqYtmc4+3wbPsn0ujb/4gYVkDwe77QL60=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53MARlxQ006133
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Apr 2025 05:27:47 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
+ Apr 2025 05:27:46 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 22 Apr 2025 05:27:46 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53MARj4Y125210;
+	Tue, 22 Apr 2025 05:27:46 -0500
+Date: Tue, 22 Apr 2025 15:57:45 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: "Kumar, Udit" <u-kumar1@ti.com>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-j7200-main: switch to 64-bit
+ address space for PCIe1
+Message-ID: <7f6ea98c-df6d-4c94-8f42-76cc8306b6c4@ti.com>
+References: <20250417120407.2646929-1-s-vadapalli@ti.com>
+ <20250417120407.2646929-3-s-vadapalli@ti.com>
+ <8b707fbc-9d82-48d0-a227-366d4e83e8a7@ti.com>
+ <231e009e-0dc2-4876-b052-d11b64ee5a0a@ti.com>
+ <d517b2bb-2bf2-44ec-8509-6281c5566972@ti.com>
+ <8d43fdc6-760d-49cd-b4f5-95d13a52220b@ti.com>
+ <8c7b68fc-c275-45c3-830a-3ea3174f38f5@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8c7b68fc-c275-45c3-830a-3ea3174f38f5@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Am Donnerstag, 17. April 2025, 17:19:33 CEST schrieb Frank Li:
-> Convert fsl,dcu.txt to yaml format.
->=20
-> Additional changes:
-> - remove label in example.
-> - change node to display-controller in example.
-> - use 32bit address in example.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/display/fsl,dcu.txt   | 34 ----------
->  .../bindings/display/fsl,ls1021a-dcu.yaml     | 68 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 69 insertions(+), 35 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/fsl,dcu.txt
->  create mode 100644 Documentation/devicetree/bindings/display/fsl,ls1021a=
-=2Ddcu.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/fsl,dcu.txt b/Docu=
-mentation/devicetree/bindings/display/fsl,dcu.txt
-> deleted file mode 100644
-> index 63ec2a624aa94..0000000000000
-> --- a/Documentation/devicetree/bindings/display/fsl,dcu.txt
-> +++ /dev/null
-> @@ -1,34 +0,0 @@
-> -Device Tree bindings for Freescale DCU DRM Driver
-> -
-> -Required properties:
-> -- compatible:		Should be one of
-> -	* "fsl,ls1021a-dcu".
-> -	* "fsl,vf610-dcu".
-> -
-> -- reg:			Address and length of the register set for dcu.
-> -- clocks:		Handle to "dcu" and "pix" clock (in the order below)
-> -			This can be the same clock (e.g. LS1021a)
-> -			See ../clocks/clock-bindings.txt for details.
-> -- clock-names:		Should be "dcu" and "pix"
-> -			See ../clocks/clock-bindings.txt for details.
-> -- big-endian		Boolean property, LS1021A DCU registers are big-endian.
-> -- port			Video port for the panel output
-> -
-> -Optional properties:
-> -- fsl,tcon:		The phandle to the timing controller node.
-> -
-> -Examples:
-> -dcu: dcu@2ce0000 {
-> -	compatible =3D "fsl,ls1021a-dcu";
-> -	reg =3D <0x0 0x2ce0000 0x0 0x10000>;
-> -	clocks =3D <&platform_clk 0>, <&platform_clk 0>;
-> -	clock-names =3D "dcu", "pix";
-> -	big-endian;
-> -	fsl,tcon =3D <&tcon>;
-> -
-> -	port {
-> -		dcu_out: endpoint {
-> -			remote-endpoint =3D <&panel_out>;
-> -	     };
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.ya=
-ml b/Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.yaml
-> new file mode 100644
-> index 0000000000000..7246c89271a8d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/fsl,ls1021a-dcu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale DCU DRM Driver
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,ls1021a-dcu
-> +      - fsl,vf610-dcu
-> +
-> +  reg:
-> +    maxItems: 1
+On Mon, Apr 21, 2025 at 01:29:47PM +0530, Kumar, Udit wrote:
+> 
+> On 4/20/2025 7:48 PM, Siddharth Vadapalli wrote:
+> > On Sun, Apr 20, 2025 at 10:17:46AM +0530, Kumar, Udit wrote:
+> > > Hello Siddharth
+> > > 
+> > > On 4/20/2025 8:33 AM, Siddharth Vadapalli wrote:
+> > > > On Sat, Apr 19, 2025 at 11:35:50PM +0530, Kumar, Udit wrote:
+> > > > 
+> > > > Hello Udit,
+> > > > 
+> > > > > On 4/17/2025 5:34 PM, Siddharth Vadapalli wrote:
+> > > > > > The PCIe0 instance of PCIe in J7200 SoC supports:
+> > > > > > 1. 128 MB address region in the 32-bit address space
+> > > > > > 2. 4 GB address region in the 64-bit address space
+> > > > > > 
+> > > > > > The default configuration is that of a 128 MB address region in the
+> > > > > > 32-bit address space. While this might be sufficient for most use-cases,
+> > > > > > it is insufficient for supporting use-cases which require larger address
+> > > > > > spaces. Therefore, switch to using the 64-bit address space with a 4 GB
+> > > > > > address region.
+> > > > > > 
+> > > > > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > > > > ---
+> > > > > >     arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 7 ++++---
+> > > > > >     1 file changed, 4 insertions(+), 3 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > > > > > index 5ab510a0605f..e898dffdebbe 100644
+> > > > > > --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > > > > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > > > > > @@ -759,7 +759,7 @@ pcie1_rc: pcie@2910000 {
+> > > > > >     		reg = <0x00 0x02910000 0x00 0x1000>,
+> > > > > >     		      <0x00 0x02917000 0x00 0x400>,
+> > > > > >     		      <0x00 0x0d800000 0x00 0x00800000>,
+> > > > > > -		      <0x00 0x18000000 0x00 0x00001000>;
+> > > > > > +		      <0x41 0x00000000 0x00 0x00001000>;
+> > > > > >     		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
+> > > > > >     		interrupt-names = "link_state";
+> > > > > >     		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+> > > > > > @@ -778,8 +778,9 @@ pcie1_rc: pcie@2910000 {
+> > > > > >     		device-id = <0xb00f>;
+> > > > > >     		msi-map = <0x0 &gic_its 0x0 0x10000>;
+> > > > > >     		dma-coherent;
+> > > > > > -		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
+> > > > > > -			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
+> > > > > > +		ranges = <0x01000000 0x00 0x00001000 0x41 0x00001000 0x00 0x00100000>, /* IO (1 MB) */
+> > > > > > +			 <0x02000000 0x00 0x00101000 0x41 0x00101000 0x00 0x08000000>, /* 32-bit Non-Prefetchable MEM (128 MB) */
+> > > > > > +			 <0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>; /* 64-bit Prefetchable MEM (4 GB - (129 MB + 4 KB)) */
+> > > > > Sorry for novice question,
+> > > > > 
+> > > > > with this change,  How do you see  old EP working which supports 32 bit
+> > > > > addressing,
+> > > > > 
+> > > > > or some translation is possible ?
+> > > > > 
+> > > > > 0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
+> > > > > 
+> > > > > to
+> > > > > 
+> > > > > 0x63000000 0x00 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
+> > > > I didn't understand the question completely, but I shall try to explain
+> > > > the changes being made which might possibly answer your question.
+> > > If I understood well then what you are doing here
+> > > 
+> > > 0x43000000 0x41 0x08101000 0x41 0x08101000 0x00 0xf7eff000>
+> > > 
+> > > PCIe address
+> > > 0x43000000 0x41 0x08101000 -->
+> > > Property 0x43
+> > > 0x43 as npt000ss ->relocatable, prefetch and 64 Bit memory space PCIe Bus address  0x41 0x08101000
+> > > CPU address space 0x41 0x08101000
+> > > This will work fine, if EP supports 64 bit addressing scheme.
+> > > 
+> > > In case, we want to work with EP of 32 Bit, Then do you see , we need to relocate PCIe (lower 32 bits) to CPU address (64 bits)
+> > A total of 3 Address Regions have been defined:
+> > 1. 1 MB IO in the 32-bit PCIe Bus Address Space
+> > 2. 128 MB Non-Prefetchable MEM in the 32-bit PCIe Bus Address Space
+> > 3. (4 GB - 129 MB - 4 KB) Prefetchable MEM in the 64-bit PCIe Bus
+> > Address Space
+> > 
+> > '1' and '2' above provide backward compatibility with Endpoint Devices
+> > that can only support 32-bit PCIe Bus Addressing. The __newly__ added
+> > '3' enables Endpoint Devices that support 64-bit PCIe Bus Addressing to
+> > claim larger Memory Address Space on top of what is supported by '1' and
+> > '2'.
+> 
+> Thanks Siddharth,
+> 
+> I understand, you are enabling 64 bit addressing, keeping previous
+> addressing scheme unchanged.
+> 
+> Since, you are changing, it will be good to give max possible addresses for
+> 32 bits EP.
+> 
+> or
+> 
+> If you are saying , 32 bit EP has to be limited to 128MB then
 
-interrupts:
-  maxItems: 1
+Based on the offline discussion, since the total address region is 4 GB,
+and given that all of it is addressable in the 32-bit PCIe Bus Address
+Space, I will update the patch series to allocate the 4 GB region as:
+1. 1MB IO in the 32-bit PCIe Bus Address Space
+2. (4GB - 1MB - 4KB) Non-Prefetchable MEM in the 32-bit PCIe Bus Address
+   Space
 
-2D-ACE (DCU) has a single interrupt (204 in RM)
-
-Best regards,
-Alexander
-
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: dcu
-> +      - const: pix
-> +
-> +  big-endian: true
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description: Video port for the panel output
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +  fsl,tcon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle to the timing controller node.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    display-controller@2ce0000 {
-> +        compatible =3D "fsl,ls1021a-dcu";
-> +        reg =3D <0x2ce0000 0x10000>;
-> +        clocks =3D <&platform_clk 0>, <&platform_clk 0>;
-> +        clock-names =3D "dcu", "pix";
-> +        big-endian;
-> +        fsl,tcon =3D <&tcon>;
-> +
-> +        port {
-> +            endpoint {
-> +                remote-endpoint =3D <&panel_out>;
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 65e0716554203..02504134e1f5d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7894,7 +7894,7 @@ M:	Alison Wang <alison.wang@nxp.com>
->  L:	dri-devel@lists.freedesktop.org
->  S:	Supported
->  T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-> -F:	Documentation/devicetree/bindings/display/fsl,dcu.txt
-> +F:	Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.yaml
->  F:	Documentation/devicetree/bindings/display/fsl,tcon.txt
->  F:	drivers/gpu/drm/fsl-dcu/
-> =20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Regards,
+Siddharth.
 
