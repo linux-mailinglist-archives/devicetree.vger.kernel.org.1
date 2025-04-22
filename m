@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-169593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12F1A977EF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 22:46:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF152A97823
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 23:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B6057A9BDF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:44:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CC1C1890F5C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 21:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60CF82D9973;
-	Tue, 22 Apr 2025 20:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D47A2C3741;
+	Tue, 22 Apr 2025 21:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O0fw7DBu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dlb0u8Az"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8219D265615
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 20:45:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D38E244677;
+	Tue, 22 Apr 2025 21:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745354758; cv=none; b=adNoRmBFoND47l7oW8zSidKFnU7KGRl554mS2L9AYatx8r5BNbIOI20NV7RHra31x0SULdB6FnU0X4bvHubhkt2oU0P0NCsFOiArwpEGoQLvyIY5dPkDsLjsod4K54ArAkYlDNl2AbfkvS7Tgu9IinBmsAFGorUffiDjR1msJPA=
+	t=1745355821; cv=none; b=dwDvfNv+eglGj+FKVQsfFtpLBGpVEkInIRaTTsGVCGzOzdh454ehfy1353OIUnfPK4I3bykLxcOmZD7tyGDesQ5uzsdVEiJXqKW9fSP0yo4Jn9dbjPZ/eneVR8kKuz/A3/SlLyznKReVjEHA3N1u9nYmZgjWKsLg8ONPetCUshw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745354758; c=relaxed/simple;
-	bh=T8MBUVCWxYofTrKp4GRcnmCtd9t0xV55BNUyuCp6fVo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QtMjtlR8FtZS6QCu6pfGegfVrLXgD3nJk0DFKK7fM7/GCRl7UB3ltM9KHlB88sk5HG52nJixBvaCcOio2+wPWlKcFVd6WJbMHRfZMeMJFxtUMa/q+7KivEyF/q9lkXqmLNHv6liQw0iZp0O/JnNsVUOoHYpzml1rVxxtClqu06w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O0fw7DBu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MI6vZK013132
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 20:45:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Qe1AqUfBNNSz2We8dhDKc49BliCl8BOCKYFYp/kgBg8=; b=O0fw7DBuJnfEFTnJ
-	doKyeUJQmi49b4Mqt75zHKsEGvJz82mtOsWCgUUxG78rmII4YRUWcJ4gQnmAEJDy
-	zxMLNpP25vEBpewt5Fx+vNdvt3kGgrKlhGf/x9nTkMKDx7pCnvvRYBDVkDpB78Te
-	FH/3XL2U6B8lmKf6EA3FX7gQq1i+j4S3NwqQcg36uWuJcjgh3sttd5XSnEEdZG/u
-	SdkiVSovdrKooOQc9+IOdSyxgy9yRMibXmrup+HrckobA6U5LUVi538qAMAus56t
-	PJ10gy/hZihw9nu/MhlBq7nGdJ/SxYJ7t9bvEigrnMbBvLF4ODsjlsyIP+uA01ZE
-	19Sbsg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4644kjgt0y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 20:45:54 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c7789335f7so17480185a.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 13:45:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745354753; x=1745959553;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qe1AqUfBNNSz2We8dhDKc49BliCl8BOCKYFYp/kgBg8=;
-        b=AZ7YmdAHWFKSh8DOim5SHQdebFqzDkLOk4C/TzikdtAZ5ngBQoxHDt9r5VbYDmbvCz
-         /8XDeEUv/xeh2NujO4FNjMj7w3tzT3mze7AfPcT9k2NcI/Mz0ZHLc4JkrwT5kRqhJ1G3
-         FuBH2LYy6CrmMB32OE0v5yDkyR4VJND0j6GwTRbUS/RVqjuPs3Rd0m/IRj8v1ca1uSpz
-         Lne1zMhsUK/ipwLGoCBbwUzcadnEFNnj38RVATAfT+LtpdoaRnHKYcjy1pYdilsbu/Zc
-         PB5GFN6Aekf9/Mmuc4cyLN4V5ihTyqdUXM2nyH+O2GwfM4thGeTPTxZHaaWATOwNoXa4
-         NQKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVan3d4guIUvipCr7btnhZW7sVEAtDPgbFHqymVpNmJIMK014dz5MTE/J5YBjg00AUg+UBnjliu5S1s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwbnXpzH39LtFOD9XtqkYTIgJFfz5NLC0qQKaYpEI1H1bzLQ1U
-	2UDHidfMFyswB7H0rO1E9T/6bD2ZScjU9sre8ui5TRMqbRnj1yKrZbYno9+3ekXNeCM1/juYuA7
-	rwe+qasb5XGRrhEp6lktnmlW/1AdishT8W0uYkbNptPv2fGuHINz1PQ96c550
-X-Gm-Gg: ASbGncs+T7GjcoXIO2haoCaPdHqHxJiEI9MjK8Dsf+AKul5ldOBsZE482Nropg1fu/S
-	GAe6NQ5ikvCtYZWGk35qzW3XT6vlNVqbT9M5HMShFLPy/3kbe/3Yz2G2WLdVo2mjTHLPMzcnavu
-	TnsOyXYbq5NxumyTd/gEXf2Yktij3DosicoKLsO8+XG1dwKddWZaGRH5U24dA7ijDLMOxZlWLhk
-	BvAghoW5PhXYXakXBAcLluIRd1mp0fuzwoxO9DTlXe/QWVyHTPpC+U9xtXeSfFTrU8EsRSarMg8
-	p2TaZbhkqH/omgAHEFRvpirnqFnzJYybcNU9WrrX/2cl5NGsGFhwlZInh27z5RiEqUA=
-X-Received: by 2002:a05:620a:2584:b0:7c7:a574:c0ac with SMTP id af79cd13be357-7c94d234d2bmr49139885a.3.1745354753281;
-        Tue, 22 Apr 2025 13:45:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGzE1JLopbHa8TgCguglBA6+yMgoTOr4plS4X95RX42YJC/ZKWJV+SYHIWUESjwqyFN1LJYVA==
-X-Received: by 2002:a05:620a:2584:b0:7c7:a574:c0ac with SMTP id af79cd13be357-7c94d234d2bmr49137685a.3.1745354752949;
-        Tue, 22 Apr 2025 13:45:52 -0700 (PDT)
-Received: from [192.168.65.141] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6eefd8e3sm704214066b.98.2025.04.22.13.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 13:45:52 -0700 (PDT)
-Message-ID: <9be69535-08dd-4d60-b007-e9c50e706a58@oss.qualcomm.com>
-Date: Tue, 22 Apr 2025 22:45:49 +0200
+	s=arc-20240116; t=1745355821; c=relaxed/simple;
+	bh=aLAZefkdS1Yqhu3HlvfIlraeV4CC8+Sc3yfKnjjUre8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NVTrtSjSgWJsWRfl1QWxzZ8ghbuNvRTYWnJwfNv+nxtrvFoEOZlEB+S+fmCqiTwq6xDWbsDZm5mTvz9oCurANmikt24CrrpDyCrsm/67Wh6tOm8D5PcLAz2/0cSGj1hKfsepaaa1ot4LtkMqrlAT3JL6krcl5hIbgyZxkeklUxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dlb0u8Az; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53ML3PC42106738
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 22 Apr 2025 16:03:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745355805;
+	bh=ZKS0/gN4dBFreWXVuJOftMxAtj1ZsfyEUQwImitbTEw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=dlb0u8AzqAanDz5qn48rBJUOsXVrOrgjgQQ94APP52zCIRIP+tfCaAYtbfY08zrEz
+	 y2c4mwoUtstOgGuKDAQI32WetlAiB3gQiUnJx/q0CafAnvbz05KFYRaav5wqSV15wE
+	 mStvJ81TPu36jCYrnKAA8NmFBDj4plo3bZqH90/k=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53ML3PXX075601
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Apr 2025 16:03:25 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
+ Apr 2025 16:03:25 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 22 Apr 2025 16:03:25 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53ML3Ox6073564;
+	Tue, 22 Apr 2025 16:03:24 -0500
+Message-ID: <d271122d-fabb-482f-b5ac-35af56de32f8@ti.com>
+Date: Tue, 22 Apr 2025 16:03:24 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,82 +66,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] PCI: qcom: Add support for multi-root port
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-References: <20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com>
- <20250419-perst-v3-2-1afec3c4ea62@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/3] Add ti,suppress-v1p8-ena
+To: Ulf Hansson <ulf.hansson@linaro.org>, Nishanth Menon <nm@ti.com>,
+        Adrian
+ Hunter <adrian.hunter@intel.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Josua Mayer <josua@solid-run.com>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Hiago De Franco
+	<hialgofranco@gmail.com>
+References: <20250422204413.272679-1-jm@ti.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250419-perst-v3-2-1afec3c4ea62@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250422204413.272679-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 8h2REBVcxoTwBiT3968bt2dibIxZCc0B
-X-Authority-Analysis: v=2.4 cv=f5pIBPyM c=1 sm=1 tr=0 ts=68080002 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=UglFlXkU1CO26sHhVHIA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: 8h2REBVcxoTwBiT3968bt2dibIxZCc0B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_10,2025-04-22_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- mlxlogscore=999 mlxscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220156
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 4/19/25 7:19 AM, Krishna Chaitanya Chundru wrote:
-> Move phy, perst handling to root port and provide a way to have multi-port
-> logic.
+Hi all,
+
+On 4/22/25 3:44 PM, Judith Mendez wrote:
+> There are MMC boot failures seen with V1P8_SIGNAL_ENA on Kingston eMMC
+> and Microcenter/Patriot SD cards on Sitara K3 boards due to the HS200
+> initialization sequence involving V1P8_SIGNAL_ENA. Since V1P8_SIGNAL_ENA
+> is optional for eMMC, do not set V1P8_SIGNAL_ENA by default for eMMC.
+> For SD cards we shall parse DT for ti,suppress-v1p8-ena property to
+> determine whether to suppress V1P8_SIGNAL_ENA. Add new ti,suppress-v1p8-ena
+> to am62x, am62ax, and am62px SoC dtsi files since there is no internal LDO
+> tied to sdhci1 interface so V1P8_SIGNAL_ENA only affects timing.
 > 
-> Currently, qcom controllers only support single port, and all properties
-> are present in the controller node itself. This is incorrect, as
-> properties like phy, perst, wake, etc. can vary per port and should be
-> present in the root port node.
+> This fix was previously merged in the kernel, but was reverted due
+> to the "heuristics for enabling the quirk"[0]. This issue is adressed
+> in this patch series by adding optional ti,suppress-v1p8-ena DT property
+> which determines whether to apply the quirk for SD.
 > 
-> To maintain DT backwards compatibility, fallback to the legacy method of
-> parsing the controller node if the port parsing fails.
-> 
-> pci-bus-common.yaml uses reset-gpios property for representing PERST, use
-> same property instead of perst-gpios.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
 
-[...]
+Sorry for the noise. Please ignore this series, will be re-sending with
+fixed cc list.
 
-> -static void qcom_ep_reset_assert(struct qcom_pcie *pcie)
-> +static void qcom_perst_assert_deassert(struct qcom_pcie *pcie, bool assert)
->  {
-> -	gpiod_set_value_cansleep(pcie->reset, 1);
-> +	struct qcom_pcie_port *port, *tmp;
-> +	int val = assert ? 1 : 0;
-
-assert is already a boolean - are some checkers complaining?
-
-[...]
-
-> +	/*
-> +	 * In the case of failure in parsing the port nodes, fallback to the
-> +	 * legacy method of parsing the controller node. This is to maintain DT
-> +	 * backwards compatibility.
-
-It'd be simpler to call qcom_pcie_parse_port on the PCIe controller's
-OF node, removing the need for the if-else-s throughout the patch
-
-Konrad
-
+~ Judith
 
 
