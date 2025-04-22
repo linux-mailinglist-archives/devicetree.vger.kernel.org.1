@@ -1,416 +1,96 @@
-Return-Path: <devicetree+bounces-169478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1EEA97013
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:11:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC08AA97087
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 17:25:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFAE77A2202
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:10:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF51E3B895B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 15:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB819281537;
-	Tue, 22 Apr 2025 15:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94F528FFC9;
+	Tue, 22 Apr 2025 15:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="kut5Npwf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mail-106109.protonmail.ch (mail-106109.protonmail.ch [79.135.106.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3BB1096F;
-	Tue, 22 Apr 2025 15:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09CF428F951
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 15:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.109
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745334688; cv=none; b=eWNZmncvXLXuJ7u8wh/Cb2fR9yUsQ2Mts9+USPbZr3ehodfTo0IMMXx+gQkvuOntQAJo4w9rKuId4ugQ5/Lo6qJwys3AqAs1YuTJ5YJFwZdZivVNzJDMViGpuEjp7H/wAJB1bFyJScTV2axMW7sp9RlvtiquHIaYyi2KpJ4aFds=
+	t=1745335370; cv=none; b=pEZTUSjO++qM28L92kYFHijYoT/3uDHDabX3IBkJKrFokalT5eb4PajyhwmE6YXtTDBpXJFafpDm8MNvsrdXpT5qBc1GOz5Lk2rdN1rZXT+Xe9JI78JH9YPXON8lb2W/Uw6nJm692qDSmgUzOBtRaE6WM6kwGZj7uEfeEex30n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745334688; c=relaxed/simple;
-	bh=xNXDzUTuTrUu2Dls8bhjT9zRT+jFoMj7N/0BCd4+A0o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JYk9Za/LSOw0Qw3cn//XtYC+/OW48awMbCRHJsNWzHvuS7JK3BzSrFvv0OPKA+MvHuzlkkhpe/DLRLt1smdiiOtCrxNX4JkIuIY+XU7zHdACtG8X9XjCtyvGSDkA/TUYbT9vInRFClwh3q7C3oLbCHHJLw0S14JA6Y8s+718LIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: aAtQHXbnSpK8/3wPQ9MHbQ==
-X-CSE-MsgGUID: l1zEvIScSAegCZY3NC68mg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46814642"
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="46814642"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 08:11:27 -0700
-X-CSE-ConnectionGUID: uv3Az2R8TJezN6uZhN//HQ==
-X-CSE-MsgGUID: tcI+jmuUSIG13bJr+yuHMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; 
-   d="scan'208";a="163001766"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2025 08:11:24 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1u7FHM-0000000ElFV-2XCL;
-	Tue, 22 Apr 2025 18:11:20 +0300
-Date: Tue, 22 Apr 2025 18:11:20 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Message-ID: <aAexmOU1e-7hXq6Y@smile.fi.intel.com>
-References: <20250421-togreg-v5-0-94341574240f@analog.com>
- <20250421-togreg-v5-3-94341574240f@analog.com>
+	s=arc-20240116; t=1745335370; c=relaxed/simple;
+	bh=agBlO360QS5qNy/3UMg3y1FA7SFwQtiXCvg4rIouDvo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dqy75KGgjed6T/5XCYHHf0xLFkYVsipPJNQc9sYtbjm3x5v3D7792vHR8e8GY/NbahYNCRplUFGMaYz+OiMzEL2wcPtG1ryz25lZID8CGheJGUObo0jEFAH0l7zgKMbQ8CwB6EfynaOxfkM02fYMX2FUcruNYh3HHoeBjPbDu9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=kut5Npwf; arc=none smtp.client-ip=79.135.106.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail; t=1745334913; x=1745594113;
+	bh=ILoWC/sy2iITa4NSo18LSU+Ros/OxARhBaBtR8WnMRw=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector:List-Unsubscribe:
+	 List-Unsubscribe-Post;
+	b=kut5Npwf/uVvFhC7/VPTDKzQComJndJ4S3b6BQJpDnImAX6LtOIpUvG8VpvJ7pGLB
+	 mqo+qnPgVPGpCeZpCbpjFVmWf9Jcxn+Itl1xEhI2Q8x4IySYRz8AjXI4rFuE1Pbhnd
+	 y4CDQlthNGaeHHYtkviP6/3ir3GyF5S8Dii4a+1I87Zv7LQkQ5B0TJvB7hON+Agctw
+	 1XDFpoVDIJpobx81DtGrzRYd/3LDmo0issgCPurdU0yPI7SbZWS3dBxokX53dAGkfA
+	 AzlAQ3YCVfm2FUnVkxfee+EecxcUkY1XcHEWNX3JAERuB3Hp22Nxu1l4lY1KKiPhnA
+	 ShSYA1Fnc2png==
+From: Esben Haabendal <esben@geanix.com>
+Subject: [PATCH 0/2] input: touch: goodix: Extend reset pull-up fix to DT
+ platforms
+Date: Tue, 22 Apr 2025 17:15:01 +0200
+Message-Id: <20250422-goodix-no-reset-pull-up-v1-0-3983bb65a1bf@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250421-togreg-v5-3-94341574240f@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Mon, Apr 21, 2025 at 12:24:54PM +0800, Kim Seer Paller wrote:
-> The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are
-> low-power, 16-bit, buffered voltage output DACs with software-
-> programmable gain controls, providing full-scale output spans of 2.5V or
-> 5V for reference voltages of 2.5V. These devices operate from a single
-> 2.7V to 5.5V supply and are guaranteed monotonic by design. The "R"
-> variants include a 2.5V, 5ppm/°C internal reference, which is disabled
-> by default.
-> 
-> Support for monitoring internal die temperature, output voltages, and
-> current of a selected channel via the MUXOUT pin using an external ADC
-> is currently not implemented.
-
-...
-
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/delay.h>
-
-> +#include <linux/device.h>
-
-I don't see how you use this. But
-
-+ dev_printk.h
-
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-
-...
-
-> +#define AD3530R_SW_RESET			(BIT(7) | BIT(0))
-
-> +#define AD3530R_MAX_CHANNELS			8
-> +#define AD3531R_MAX_CHANNELS			4
-
-Sounds to me that these two shouldn't be grouped with the rest here. Perhaps
-move them out to after the LDAC_PULSE?
-
-> +#define AD3530R_INTERNAL_VREF_MV		2500
-
-_mV (yes, with Volts and Amperes we use proper spelling).
-
-> +#define AD3530R_LDAC_PULSE_US			100
-
-...
-
-> +	int (*input_ch_reg)(unsigned int c);
-
-c? channel?
-
-...
-
-> +	int vref_mv;
-
-_mV
-
-...
-
-> +static int ad3530r_input_ch_reg(unsigned int c)
-> +{
-> +	return 2 * c + AD3530R_INPUT_CH;
-> +}
-> +
-> +static int ad3531r_input_ch_reg(unsigned int c)
-> +{
-> +	return 2 * c + AD3531R_INPUT_CH;
-> +}
-
-c --> channel
-
-...
-
-> +static const char * const ad3530r_powerdown_modes[] = {
-> +	"1kohm_to_gnd",
-
-kOhm
-
-> +	"7.7kohm_to_gnd",
-
-Ditto.
-
-> +	"32kohm_to_gnd",
-
-Ditto.
-
-> +};
-
-...
-
-> +static const struct iio_enum ad3530r_powerdown_mode_enum = {
-> +	.items = ad3530r_powerdown_modes,
-> +	.num_items = ARRAY_SIZE(ad3530r_powerdown_modes),
-
-+ array_size.h
-
-> +	.get = ad3530r_get_powerdown_mode,
-> +	.set = ad3530r_set_powerdown_mode,
-> +};
-
-...
-
-> +static ssize_t ad3530r_get_dac_powerdown(struct iio_dev *indio_dev,
-> +					 uintptr_t private,
-> +					 const struct iio_chan_spec *chan,
-> +					 char *buf)
-> +{
-> +	struct ad3530r_state *st = iio_priv(indio_dev);
-> +
-> +	guard(mutex)(&st->lock);
-> +	return sysfs_emit(buf, "%d\n", st->chan[chan->channel].powerdown);
-
-+ sysfs.h
-
-> +}
-
-...
-
-> +static ssize_t ad3530r_set_dac_powerdown(struct iio_dev *indio_dev,
-> +					 uintptr_t private,
-> +					 const struct iio_chan_spec *chan,
-> +					 const char *buf, size_t len)
-> +{
-> +	struct ad3530r_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +	unsigned int mask, val, reg;
-> +	bool powerdown;
-> +
-> +	ret = kstrtobool(buf, &powerdown);
-
-+ kstrtox.h
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +	mask = GENMASK(chan->address + 1, chan->address);
-> +	reg = chan->channel < AD3531R_MAX_CHANNELS ?
-> +	      AD3530R_OUTPUT_OPERATING_MODE_0 :
-> +	      AD3530R_OUTPUT_OPERATING_MODE_1;
-> +	val = (powerdown ? st->chan[chan->channel].powerdown_mode : 0)
-> +	       << chan->address;
-
-Please, move the operator to the previous line, Or even
-
-	... pdmode;
-
-	pdmode = powerdown ? st->chan[chan->channel].powerdown_mode : 0;
-	val = pdmode << ...;
-
-> +	ret = regmap_update_bits(st->regmap, reg, mask, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->chan[chan->channel].powerdown = powerdown;
-> +
-> +	return len;
-> +}
-
-...
-
-> +	struct ad3530r_state *st = iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		if (val < 0 || val > U16_MAX)
-
-U16_MAX is an abstract type with this limit, do you have any predefined HW
-limit instead? Probably better to use that one as defined via BIT() / GENMASK().
-
-> +			return -EINVAL;
-> +
-> +		return ad3530r_dac_write(st, chan->channel, val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-
-...
-
-> +static const struct iio_chan_spec_ext_info ad3530r_ext_info[] = {
-> +	{
-> +		.name = "powerdown",
-> +		.shared = IIO_SEPARATE,
-> +		.read = ad3530r_get_dac_powerdown,
-> +		.write = ad3530r_set_dac_powerdown,
-> +	},
-> +	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &ad3530r_powerdown_mode_enum),
-> +	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
-> +			   &ad3530r_powerdown_mode_enum),
-> +	{ }
-> +};
-> +
-> +#define AD3530R_CHAN(_chan, _pos) {					\
-
-Slightly better to have the curly braces on the same column as it's easier to
-read.
-
-#define AD3530R_CHAN(_chan, _pos)				\
-{								\
-
-(and make it one TAB less for the backslash).
-
-> +	.type = IIO_VOLTAGE,						\
-> +	.indexed = 1,							\
-> +	.channel = _chan,						\
-> +	.address = _pos,						\
-> +	.output = 1,							\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-> +			      BIT(IIO_CHAN_INFO_SCALE),			\
-> +	.ext_info = ad3530r_ext_info,					\
-> +}
-
-...
-
-> +static int ad3530r_setup(struct ad3530r_state *st, int vref,
-> +			 bool has_external_vref)
-> +{
-> +	struct device *dev = regmap_get_device(st->regmap);
-> +	struct gpio_desc *reset_gpio;
-> +	int i, ret;
-> +	u8 range_multiplier;
-
-+ types.h (and especially for boolean type along with true/false definitions.
-
-> +
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> +				     "Failed to get reset GPIO\n");
-
-+ err.h
-
-> +	if (reset_gpio) {
-> +		/* Perform hardware reset */
-> +		fsleep(1000);
-
-(1 * USEC_PER_MSEC) ?
-
-> +		gpiod_set_value_cansleep(reset_gpio, 0);
-> +	} else {
-> +		/* Perform software reset */
-> +		ret = regmap_update_bits(st->regmap, AD3530R_INTERFACE_CONFIG_A,
-> +					 AD3530R_SW_RESET, AD3530R_SW_RESET);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-> +	fsleep(10000);
-
-10 * USEC_PER_MSEC
-
-With these constants it's less error prone (when 3 or more zeroes) and easier
-to get the units without looking into fsleep() implementation / documentation.
-
-> +	range_multiplier = 1;
-> +	if (device_property_read_bool(dev, "adi,range-double")) {
-> +		ret = regmap_set_bits(st->regmap, AD3530R_OUTPUT_CONTROL_0,
-> +				      AD3530R_OUTPUT_CONTROL_RANGE);
-> +		if (ret)
-> +			return ret;
-> +
-> +		range_multiplier = 2;
-> +	}
-> +
-> +	if (!has_external_vref && st->chip_info->internal_ref_support) {
-> +		ret = regmap_set_bits(st->regmap, AD3530R_REFERENCE_CONTROL_0,
-> +				      AD3530R_REFERENCE_CONTROL_SEL);
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->vref_mv = range_multiplier * AD3530R_INTERNAL_VREF_MV;
-> +	}
-> +
-> +	if (has_external_vref)
-> +		st->vref_mv = range_multiplier * vref / 1000;
-
-MILLI?
-
-
-> +	/* Set operating mode to normal operation. */
-> +	ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_0,
-> +			   AD3530R_NORMAL_OPERATION);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (st->chip_info->num_channels > AD3531R_MAX_CHANNELS) {
-> +		ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_1,
-> +				   AD3530R_NORMAL_OPERATION);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	for (i = 0; i < st->chip_info->num_channels; i++)
-> +		st->chan[i].powerdown_mode = AD3530R_POWERDOWN_32K;
-> +
-> +	st->ldac_gpio = devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->ldac_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->ldac_gpio),
-> +				     "Failed to get ldac GPIO\n");
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	vref = devm_regulator_get_enable_read_voltage(dev, "ref");
-> +	if (vref < 0 && vref != -ENODEV)
-> +		return vref;
-> +
-> +	has_external_vref = vref != -ENODEV;
-
-Wouldn't be better just make this 0 when it's == -ENODEV and check just the
-value without having this additional boolean variable (note, I haven't checked
-the meaning of Vref == 0 in case it's possible in real life and hardware
-behaves adequately)?
-
-> +	if (!st->chip_info->internal_ref_support && !has_external_vref)
-> +		return -ENODEV;
-
-> +	ret = ad3530r_setup(st, vref, has_external_vref);
-> +	if (ret)
-> +		return ret;
-
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHWyB2gC/x3MQQqEMBAF0atIr22IrTKMVxlcBPPVBklCMoog3
+ t3g8i2qLspIikxDdVHCoVmDL2jqiqbV+gWsrpjESG86EV5CcHqyD5yQ8ee4bxvvkZ2gs1/bwnw
+ slTomzHq+59943w9Eu3lRaQAAAA==
+X-Change-ID: 20250422-goodix-no-reset-pull-up-d2e4a9a3e07a
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hdegoede@redhat.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745334911; l=715;
+ i=esben@geanix.com; s=20240523; h=from:subject:message-id;
+ bh=agBlO360QS5qNy/3UMg3y1FA7SFwQtiXCvg4rIouDvo=;
+ b=J2eFeZ5CJbMnKOF17nODJxt3ofiVjkIpIBWwFomqgHaInTHKG6yUDkGuuUGc9SDfsSBaa2uJi
+ Z5uVNMWJVRnBo2NrObEFAujEzm+oRZ0O/ZKUyTc2KPHWehvTZfgCbKt
+X-Developer-Key: i=esben@geanix.com; a=ed25519;
+ pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
+
+This extends the fix for platforms without external pull-up on reset pin
+to device-tree platforms.
+
+Signed-off-by: Esben Haabendal <esben@geanix.com>
+---
+Esben Haabendal (2):
+      dt-bindings: input: touchscreen: goodix: Add no-reset-pull-up property
+      Input: goodix - Allow DT specification of missing reset pull-up
+
+ .../devicetree/bindings/input/touchscreen/goodix.yaml          |  4 ++++
+ drivers/input/touchscreen/goodix.c                             | 10 +++++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+---
+base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+change-id: 20250422-goodix-no-reset-pull-up-d2e4a9a3e07a
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Esben Haabendal <esben@geanix.com>
 
 
