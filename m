@@ -1,56 +1,63 @@
-Return-Path: <devicetree+bounces-169518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3CB7A97317
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:52:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415C0A97334
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:59:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E8CC3BA74E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:52:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14AB01B63884
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 16:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7743C29009F;
-	Tue, 22 Apr 2025 16:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F683296167;
+	Tue, 22 Apr 2025 16:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="AACxaMUU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="osaZni8u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1081818D63A
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 16:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9CE84A35;
+	Tue, 22 Apr 2025 16:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745340735; cv=none; b=JtJQjYOcBV2wNZr0IxeMeMHnYOg/+0WCbOGgc4tUyvul0lLpFkWEEUc9qsZeXJCmBJCHKcSji02iXzUlbqreYm2ZevltM3LXWPVs3bdXCMpv+R3TDvHcKdthJ9CmEXbppu8tj+0pbRnjqu55yKeeAlVtiiDkQG/4gGBrLJVA6es=
+	t=1745341177; cv=none; b=r0FRoKWT76t/xsBxs/aNZszQd9ciPibskz4My/lmiCavTi08iCiTc1JRB9oA/bqO+IP60Wga0khz6jRtf+LQat8zARyUD0gmnD7UOzS1TSZwS9UCTQjPPxazs6IsRDBJ6EIwpSRCtriNDob2pKWmS4YddRYsEDvA1j/w+Bkqdx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745340735; c=relaxed/simple;
-	bh=vb/UuvQJ/MnxnkENHhrxTGWHwd2hZbL1WTOH5EmxuVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g0UXTfl2m1J2lzGDOk4+6ebZ845A7YPjtje0ngWJwujD3w+27PQJW2yKseUdF9fgakux0dOO05uQWRpgQ5+264d4NF+CroiG+zhCUL2WasXl6++zvaQZvqRaRctKQj8SCeA7m+h/QBLrIJa2EXVzPLyjJlcyDR811K9ndz10HQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=AACxaMUU; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1745340718; x=1745945518; i=wahrenst@gmx.net;
-	bh=TvEkbWyeDxETYr2xfBNsQE8AupZVuzc0vP1e8ZAeTgU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=AACxaMUUNMLVYm3wTFk90u+JHSdp/YytQIqJTT0yL6Lsd1Bvss6zadeGGYYqXXBh
-	 Sde5IWA+PR+RWpFaXmkwwEPcSDqbReXtzQG61o5BsQM2BgeA0e0v6m6upzB+U5BCT
-	 KIhMW5M/O2kMNI9cQ0BKG0XWq8MLkYhbU7gM+0C43xmYJXkhXYv3qD5i+B0T+rLEu
-	 iUhak+5vzZKrxPld2VoWMUD4L2CCB7rXTGSfo1bOGMJ50uemaDljZHvH0X5Q3wxJL
-	 nhmN/YjJYY10yTGdaVhDoA61NO+7o+ekiRgoa6prQTmvNQ8qKsMRpffZ+vefdOQTx
-	 Z5pPXDFF16vd0mhXFw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mq2jC-1ut2C41tis-00phRS; Tue, 22
- Apr 2025 18:51:58 +0200
-Message-ID: <52e33f92-3b65-48e3-b0ed-78d677c090de@gmx.net>
-Date: Tue, 22 Apr 2025 18:51:57 +0200
+	s=arc-20240116; t=1745341177; c=relaxed/simple;
+	bh=HPm7ebMS1pT5xFP2rNYsmOVPV0KcSwCCVw0mVMUXIY8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qi+vnnmCyIPZTL3rtLvZugeA6XICmSYGMIvdtYL8NlyRZ6Cjub/GiaMJp2NSnDNhBe2jCOs+vJtR4vDVG1AzyyC+HjYAjD2EhvFEc1iPryajgDRIcIzICntHwt2Fs3y64kc7Jnlmru5/EIM7dugfFvu9PfdLJt0njTL9OEb3XYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=osaZni8u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MD0E6g018249;
+	Tue, 22 Apr 2025 16:59:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6B5gQZViqAt6vdbEtYYBmsgMhaXVPhTXCt1gQpeDBTE=; b=osaZni8uucwFz7nw
+	fULqIphI2LPOI25x1tGjzs8BbyOzkkTbrhqJLZv7ZPS0VUVs3idJQ/648+EMM/Wb
+	8jJPqEmoLhviScPt047VG46/Coi6LJl4ji8U9JS1oAs5uNKA6jvHu6j6DYKiUmN+
+	69NVXx+ozp8mMpJphH+aMFvkhfJM2jFKJaKVoirwaZE4mtBQ6AkTyaz5dOIvw431
+	JPct0j1bz73hb/g1t45VuLTKKAKpWZT41FrSHXptEhhx6SCkYBA6w9xjdai0BEsK
+	6VW4F5r7NaTVJbU7/iTCnaazw30GAFgHvps5o5KgLOzrFwpwTVo/G58dxf3YCT14
+	rhAuvg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46416r0q2y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 16:59:29 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53MGxSKv028867
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Apr 2025 16:59:28 GMT
+Received: from [10.216.4.61] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
+ 2025 09:59:23 -0700
+Message-ID: <04b7212c-d048-46d2-b5d4-e929cfc17f63@quicinc.com>
+Date: Tue, 22 Apr 2025 22:29:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,159 +65,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: dts: bcm: Add support for Raspberry Pi 2 (2nd
- rev)
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Andrea della Porta <andrea.porta@suse.com>,
- bcm-kernel-feedback-list@broadcom.com,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel-list@raspberrypi.com,
- devicetree@vger.kernel.org
-References: <20250418143307.59235-1-wahrenst@gmx.net>
- <174524752073.2425603.8578531358448226652.robh@kernel.org>
+Subject: Re: [PATCH v1 3/8] arm64: dts: qcom: qcs6490-rb3gen2: Modify WSA and
+ VA macro clock nodes for audioreach solution
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+References: <20250317054151.6095-1-quic_pkumpatl@quicinc.com>
+ <20250317054151.6095-4-quic_pkumpatl@quicinc.com>
+ <4c27d6b9-781b-4106-8165-97c9750cf99f@oss.qualcomm.com>
+ <D8XO1JU37NEV.YN595H7NEOU7@fairphone.com>
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <174524752073.2425603.8578531358448226652.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:xhaZFITCMcJp7IiI3n4ec3XnEN2eODn6rnC6yhZbT4CmkeeKN9L
- RRFlDyYUc3cDFn2ACHLyhRDjSQZPbhuXUxe7U5TG5dRJfkjnFoQRLyM+K467dvPt1m1WgTj
- x1WMTHQL/q4s16SVCZvrFS12pmBpSh1Ig4zyvcyRdTSbQtietoVZggYGvQLfS2oe3HmasYF
- 7tsRnAHesx/Smdebcz4Gw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:VMMSKMR7IDo=;NMvkvdufqTOCMD5dLradufHHlVK
- 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
+From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+In-Reply-To: <D8XO1JU37NEV.YN595H7NEOU7@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=N7UpF39B c=1 sm=1 tr=0 ts=6807caf1 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=iUpcbqiyXAxGOh159EUA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: fTE02pQjfL6OqxssP8D5mT1R94alvSCy
+X-Proofpoint-ORIG-GUID: fTE02pQjfL6OqxssP8D5mT1R94alvSCy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_08,2025-04-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ mlxscore=0 clxscore=1011 lowpriorityscore=0 priorityscore=1501
+ mlxlogscore=999 impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504220127
 
-Am 21.04.25 um 17:07 schrieb Rob Herring (Arm):
-> On Fri, 18 Apr 2025 16:33:04 +0200, Stefan Wahren wrote:
->> This series adds support for the Raspberry Pi 2 (2nd rev).
->>
->> Stefan Wahren (3):
->>    dt-bindings: arm: bcm2835: Add Raspberry Pi 2 (2nd rev)
->>    ARM: dts: bcm: Add support for Raspberry Pi 2 (2nd rev)
->>    arm64: dts: bcm: Add reference to RPi 2 (2nd rev)
->>
->>   .../devicetree/bindings/arm/bcm/bcm2835.yaml  |   1 +
->>   arch/arm/boot/dts/broadcom/Makefile           |   2 +
->>   .../arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts | 130 +++++++++++++++++=
-+
->>   arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->>   .../boot/dts/broadcom/bcm2837-rpi-2-b.dts     |   2 +
->>   5 files changed, 136 insertions(+)
->>   create mode 100644 arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dts
->>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2837-rpi-2-b.dts
->>
->> --
->> 2.34.1
->>
->>
->>
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to repl=
-y
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->    pip3 install dtschema --upgrade
->
->
-> This patch series was applied (using b4) to base:
->   Base: attempting to guess base-commit...
->   Base: tags/next-20250417 (exact match)
->
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
->
-> New warnings running 'make CHECK_DTBS=3Dy for arch/arm/boot/dts/broadcom=
-/' for 20250418143307.59235-1-wahrenst@gmx.net:
->
-> arch/arm/boot/dts/broadcom/bcm958625-meraki-mx65w.dtb: usb@2a000 (generi=
-c-ehci): Unevaluated properties are not allowed ('dma-coherent' was unexpe=
-cted)
-> 	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
-this is not relevant here
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): gpu: '=
-ranges' is a required property
-> 	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): firmwa=
-re: 'ranges' is a required property
-> 	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: soc (simple-bus): power:=
- 'ranges' is a required property
-> 	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/cprman@7e101000: fa=
-iled to match any schema with compatible: ['brcm,bcm2835-cprman']
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/gpio@7e200000: fail=
-ed to match any schema with compatible: ['brcm,bcm2835-gpio']
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/i2s@7e203000: faile=
-d to match any schema with compatible: ['brcm,bcm2835-i2s']
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/aux@7e215000: faile=
-d to match any schema with compatible: ['brcm,bcm2835-aux']
-> arch/arm/boot/dts/broadcom/bcm2837-rpi-2-b.dtb: /soc/interrupt-controlle=
-r@7e00b200: failed to match any schema with compatible: ['brcm,bcm2836-arm=
-ctrl-ic']
-AFAICS all of these comes from existing dtsi files. I will try to=20
-address some of them in a separate series as soon as my backlog is empty.
 
-Best regards
+
+On 4/4/2025 12:42 PM, Luca Weiss wrote:
+> Hi Konrad,
+> 
+> On Tue Apr 1, 2025 at 6:05 PM CEST, Konrad Dybcio wrote:
+>> On 3/17/25 6:41 AM, Prasad Kumpatla wrote:
+>>> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>>
+>>> Modify and enable WSA, VA and lpass_tlmm clock properties.
+>>> For audioreach solution mclk, npl and fsgen clocks
+>>> are enabled through the q6prm clock driver.
+>>>
+>>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>>> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>>> ---
+>>
+>> Instead, put the inverse changes in sc7280-chrome-common.dtsi please
+> 
+> How are we going to handle other sc7280-based platforms, such as my
+> QCM6490 Fairphone 5 needing to use q6afecc instead of q6prmcc which gets
+> used in this patchset?
+> 
+> One solution might be to put q6afecc into the base sc7280.dtsi file,
+> then we have a sc7280-audioreach.dtsi which overwrites q6afecc with
+> q6prmcc which then gets included by boards using audioreach.
+> 
+> I also don't think we can split this across sc7280 vs qcm6490 vs sm7325,
+> there seems to be any combination possible on any of these SoCs -
+> depending on the firmware shipped with it.
+> 
+> So somewhat similar to the current sc7280-chrome-common.dtsi but just
+> for audioreach.
+> 
+> Regards
+> Luca
+ACK, We will handle in next patchset version by creating a new 
+qcs6490-audioreach.dtsi file.
+
+Thanks,
+Prasad>
+>>
+>> Konrad
+> 
+
 
