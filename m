@@ -1,153 +1,159 @@
-Return-Path: <devicetree+bounces-169555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C892AA974EB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 20:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA98A97503
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 21:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9E71189B27B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 18:54:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE7FF1B62405
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 19:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13A129CB27;
-	Tue, 22 Apr 2025 18:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4653296157;
+	Tue, 22 Apr 2025 19:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KuDvxyHy"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="JY8owS40"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7969729B224
-	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 18:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79771E1E00
+	for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 19:00:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745347940; cv=none; b=lpSCp81tdf73IaPZJ2PtHnFEU10WD41+HrnQ/u4mNdaMZrMpw7cLDBQOLuGaYQnXxWPUSeMjRjBE/63HxCUUNjVp/jfSvvK+yEY4tPXUQ1y8ecHvSRKbFO8+C1m3PYJJcY1+7BLcv4rBnzYHFPi0pr6TH0EiG7peaBjWAZ94fJM=
+	t=1745348441; cv=none; b=ccR0xi6BGAPErxtBcmrXx7Bi2QhcKiVcwFsFXxKKjl4A7VYasRD6Sl7xFc5YlvnGCs0cMmPNklVfcp7V6Ux5eDZ8XCzRUx+0MspeQZ+ZtzT6u23QYdWfbNwmHG2+kodm4NhWcoBT144rdj7xoGeDNTeiU0EalIZH6w7y0tfBcTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745347940; c=relaxed/simple;
-	bh=1k1unQkkbNJWyNIqqzpizkZc3aIKLdvvcUxlVK4aZEM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m1qrOZ6oFtwMkdIxVr+6hw9ikPLr57CZUTHsG7myJl/rPPPhwtQopj4NQbqWye6yonyX1ycSopu/B2BSyDHu3KNw8tySvGtk459D47+LpSuXswpirWmi996+u9ni6t7mEt2NrcAnu7Nqalw8ACJydHmPqL886HmHeKScOtsllmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KuDvxyHy; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3914aba1ce4so3716491f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 11:52:17 -0700 (PDT)
+	s=arc-20240116; t=1745348441; c=relaxed/simple;
+	bh=4QLSLmrkPbs1yBBussuVmcH9d86k1ZJ8t0dZp5NXcyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eWRACCbajuThIFyOwOQsSa+Dpz7wamZ3K9OE/yZgTFkBBm2o5RLqMJYwYZJ4V3vZrkZloTVS30puH9hqvHEPTXjxdJlhACw6yaNbJiu6Bk02BmrxveS0Q3Npc9N87ZCz3Qm/as19DyqCANJhKUvt9WJvmvMQmk+s7fU+oKK1kBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=JY8owS40; arc=none smtp.client-ip=209.85.219.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6e8f6970326so52113236d6.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 12:00:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1745347935; x=1745952735; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ADsz4nM5zt5mk0SaIqSNaWehe790A/IESs0jsUHL+uk=;
-        b=KuDvxyHyGrC25lEjuJl0sHhcCvZF/pF3czD68drf8To7cQccp2Y8qxi3RM0ChZwcqX
-         NbVxTb518ACxsReOslqkprpiBHaHOsJ8IdMQTCRFEV963Ovpcki1WXdbPdsJohoN2OaC
-         DdHN2FholbvCNcoeBTvuMjkjOshdifxbF5wOtUb4xrs4i7LW5nrDHyYm3+H8uo/1UK3R
-         t0mskDWsLu/XNkDzlLEQfHxAoLRN8rqABMX3JXLWx81j8DkSdtZVUAXKY/eYCtcAODTV
-         Na/ivldAIglcA0uzm1Yo6rn9BUBgEVJ6BV7RqnMUXGgkFTqOb49hZ6SdHUNbe0dfMVTC
-         M5nA==
+        d=ziepe.ca; s=google; t=1745348437; x=1745953237; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TMh0izLSzqmAU5ORZxGehcX6J35ZOvbIe3zUy9tlNbQ=;
+        b=JY8owS40K0jtYFjGrIcxtLhyDsimWfnz3h5yTgIVzRuElVJmlJtejUKPgbU/d59FzH
+         MSC5YMdutpF5U5TrzKTZ4tEEAnoX31AJvZJi9BcoxUsjNBlsZwT/XLGs3PQdnqSRtbSf
+         Tz9+BEKtRg033DJQzjJWU6M0t+3S6Csle0omxMsJXQxtBB9Nl+cJ0kA9OPbLljaBYiO6
+         1BEiewxh8X5Cad7DJj/PMq7mXBGxiWqpmD+Yktr5aKLE94WyqP9nRUuvDv7TL8h5L8Bg
+         b68MuACOKY5ZBE28Tnzo6CdslZSUTJKarqMcGjp55aEhLW6I6THokC/tX36ovO0y4Wif
+         8w5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745347935; x=1745952735;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ADsz4nM5zt5mk0SaIqSNaWehe790A/IESs0jsUHL+uk=;
-        b=sSRc+4+jznqj8nvVB8OelcTUMc6toB/di4xtZZq0P/GfDZoxeK/5O5Vly4Juuw7VXb
-         SPf75w5GYwaQDYgdCKd6midF7+KUimKK8Asb/0iFZfuW1x5U4HkP8eFt2PcdRnjUdnWy
-         ex5ITuwqzZsZ/n1NCIRJaDhorYHn1P0UUxOJbYbIxHC/WdROh4dQ+AuLoXMAS8OUodVk
-         repEGXBpr6VZvIRWpdc1Obpz4iC1j5MgdZCH7CsF+1lSh0vGzaA/44o6MHmCyobxRwGT
-         mwFRXS9H0RiwtG0yDOZ5dc056LDPGfjc34aFJnrQR0IeueNffsgvcmKRK5bElwHLt/es
-         oRBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWlKgIxgPNl5MA7AG+TS0d21gG0/oyRFL9wM1cPp9ZsHrvG0D6NL9zxKdqTYX9ksjrh3GcWFWUobDf3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb+LW1h/8boE3m9yYJrqwm0EbxhLiAw09SRVwCErb6ujLlWQr9
-	NXk9VAU4/e6rg3/p8cGVh5Qnf+LnuhzPVAPu3sl70cAUxi3E9WzHhDI6O0BYl4E=
-X-Gm-Gg: ASbGncuLu54aJq/aNtdurfgp9vipx1/IxktYpOt/xUHeQ1+QwFnGHhrKtNdxjKmRw7A
-	e/TBp/DMnKRdETJfCdctmhUxjaERFMuoKRk6SkiB9V9sB+6g6wgxSwZLoF9da13aG2EfKr2eBp9
-	ZQ9FfHn7YsWGHzisfQx1QV5+c4O3RWtEkaJRbXw8cbfAdrOnQ6/JDfeXeNOn1SMIO5oLWL5+1W0
-	C68eWDJyLqx4Dmm17e/k01WrweLJwws0a7VrgMBbAIGT/Eog9B6ehyzRU05ap70sssWRVf5sVUO
-	him+N5QCDChOxxnfTnHUpIg57XjLhTEpyLpFTkDmdOpR7tgfs6oh6fHtRm1B+RQBj3JCYDEzL9T
-	oEdKflQ==
-X-Google-Smtp-Source: AGHT+IHaQWcyIld8HmOWqZEWQ8mfScJy5XfhH5TexVF3JHDuC1C8WH0PzZCZR43OQba1F6XglJkm3Q==
-X-Received: by 2002:a5d:648d:0:b0:39c:141b:904a with SMTP id ffacd0b85a97d-39efba2ca27mr13013041f8f.11.1745347935584;
-        Tue, 22 Apr 2025 11:52:15 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4207afsm16278846f8f.12.2025.04.22.11.52.15
+        d=1e100.net; s=20230601; t=1745348437; x=1745953237;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TMh0izLSzqmAU5ORZxGehcX6J35ZOvbIe3zUy9tlNbQ=;
+        b=t44ztrduyz0agWXmcDeu7OAxuAuzyOez5ua8JOZ/sCguOQkHHoXRoajLr/negfaInh
+         lDs0lJufzNtOxBeK6KbZsB5mPYgS6KUTZCb8HU7aH8WpOW5FaVaRIYvX5oPMGkT4+j+b
+         iaDJhfX6/niMJ4qg3EMwEcaJzq/1vSIiyDCR6T7yKXDjZzfpuzr9HdWbWHrhUzjfdCn7
+         5u8w2z1Sw/g/X0HFdG96cZY0iwLhTBCgA9qo4yuPougR225VDYZqQNXj55PGIzfrWFm+
+         aZn52jjCSZ9HdsTR4AUIYSyyp0tRyNF6qbM9m9SWT0sOASX2owq9avbosB1JabFxM7c7
+         ldYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUZp2zDma+5W3EB52EQWsDNMoL9g1loD8W/ijMKKD1+K8xdziw3NuM0IhcRWQslwQaQE9cG7VZj1cyj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzE2a+WYYJ/cymOav2IiskI+zm/3CjLEPUvyGkUb9J2ztM+ef02
+	i9Bg3J9VpR3EgfqJsVwqhZ6VvrSwPlETigkTImvsHbQoavRZKvGacujc6RcQF5Y=
+X-Gm-Gg: ASbGncuaKkcyg0+r7BRsr9BPesW7Z+N1m4a95Hfc68t8/N1CU5ZbQHHCGsMB6FtxnJN
+	CjjqjrHkWmoeGiUmHQPo5so0sjbSBrYQl7/8xT1rERE0tx+7y3efw3qnJQxNOIRx7sAR++5p/nD
+	X25Cyb/JvlbVLTj1tqMpl33mnx0z8GFECYtyjeIyaDGyHekBl4+38QnixAKnYp1aD9XegbBbwFa
+	op+v5u6sO6/ycYFQ3FYs20CStn9EcxKBSmYIs4dG6ZrwZrSRfFA6/Trgd0tQ7qGQsvSYzBYfVk5
+	DE0ujL7Vgrik1LKk+dTv0U0NVv6MVS+ChDwXfW42jsDeqUv61NCcVPwwgp1CAINf8RvJs8Lu4nq
+	sK447lccBy7e5kH2TQoM=
+X-Google-Smtp-Source: AGHT+IHbq+pHzTQuxxdUufVp0+5UWeEWnmEdvfzQVGDaZiAVyxBLUWwXVLbiir8zvtHTZQ/owxmlMQ==
+X-Received: by 2002:a05:6214:3008:b0:6ea:d361:a4ca with SMTP id 6a1803df08f44-6f2c46557e7mr318335806d6.32.1745348437625;
+        Tue, 22 Apr 2025 12:00:37 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-167-219-86.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.219.86])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f2c2c21da6sm60863536d6.98.2025.04.22.12.00.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 11:52:15 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Tue, 22 Apr 2025 12:00:36 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1u7IrE-00000006vVF-1Cvg;
+	Tue, 22 Apr 2025 16:00:36 -0300
+Date: Tue, 22 Apr 2025 16:00:36 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: William McVicker <willmcvicker@google.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
 	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com,
-	Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH v9 -next 12/12] arm64: defconfig: Enable OF_OVERLAY option
-Date: Tue, 22 Apr 2025 20:53:21 +0200
-Message-ID: <8baf7818aae1fe5be046015e4bd8121ccc9acb20.1745347417.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1745347417.git.andrea.porta@suse.com>
-References: <cover.1745347417.git.andrea.porta@suse.com>
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+Message-ID: <20250422190036.GA1213339@ziepe.ca>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+ <aAa2Zx86yUfayPSG@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aAa2Zx86yUfayPSG@google.com>
 
-The RP1 driver uses the infrastructure enabled by OF_OVERLAY config
-option. Enable that option in defconfig in order to produce a kernel
-usable on RaspberryPi5 avoiding to enable it separately.
+On Mon, Apr 21, 2025 at 02:19:35PM -0700, William McVicker wrote:
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index 1813cfd0c4bd..6d124447545c 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -1440,8 +1440,8 @@ static void platform_shutdown(struct device *_dev)
+>  
+>  static int platform_dma_configure(struct device *dev)
+>  {
+> -       struct platform_driver *drv = to_platform_driver(dev->driver);
+>         struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +       struct platform_driver *drv;
+>         enum dev_dma_attr attr;
+>         int ret = 0;
+>  
+> @@ -1451,8 +1451,12 @@ static int platform_dma_configure(struct device *dev)
+>                 attr = acpi_get_dma_attr(to_acpi_device_node(fwnode));
+>                 ret = acpi_dma_configure(dev, attr);
+>         }
+> -       /* @drv may not be valid when we're called from the IOMMU layer */
+> -       if (ret || !dev->driver || drv->driver_managed_dma)
+> +       /* @dev->driver may not be valid when we're called from the IOMMU layer */
+> +       if (ret || !dev->driver)
+> +               return ret;
+> +
+> +       drv = to_platform_driver(dev->driver);
+> +       if (drv->driver_managed_dma)
+>                 return ret;
+>  
+>         ret = iommu_device_use_default_domain(dev);
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+The diagnosis looks right to me, but pedantically I think it should
+have a READ_ONCE():
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 53748ea4a5cb..23656b0bb7e0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1640,6 +1640,7 @@ CONFIG_FPGA_BRIDGE=m
- CONFIG_ALTERA_FREEZE_BRIDGE=m
- CONFIG_FPGA_REGION=m
- CONFIG_OF_FPGA_REGION=m
-+CONFIG_OF_OVERLAY=y
- CONFIG_TEE=y
- CONFIG_OPTEE=y
- CONFIG_MUX_GPIO=m
--- 
-2.35.3
+struct driver *drv = READ_ONCE(dev->driver);
 
+And then never touch dev->driver again in the function.
+
+Send a proper patch?
+
+Jason
 
