@@ -1,70 +1,64 @@
-Return-Path: <devicetree+bounces-169277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E71FA9633E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 10:59:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C94A96363
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 11:03:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A80F3A6C23
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:53:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE38019E0F97
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 08:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C17E266EE4;
-	Tue, 22 Apr 2025 08:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9717625523A;
+	Tue, 22 Apr 2025 08:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmYN7D6/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yd+/1hHg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD452580E0;
-	Tue, 22 Apr 2025 08:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6002C1E9B37;
+	Tue, 22 Apr 2025 08:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745311588; cv=none; b=EOZb1HkVJL9M+wEms59b0HQxMLLYr8T3S2SMXH9kbKTKXok8ndCW+M1myS+RK5Z4NIUdX/r3ET3JaYpXILVS5IMlApfEXj0T6PdwjNCuU7glVtS8TCi8CWA2LaalWydJRWm9SVSVkgY5Qxgw9G67Ne4777IWDr6M/T1nfvBcFQM=
+	t=1745311838; cv=none; b=PENX0XhW7UDRo1yFJf0DR8F+U2+v4xQL9zf5kD6HRFsFMUThl1DhQ4caXyaY6QUHJVCYYIax8XsWLt+cxesm4eB1XhifoGnlHdCSNR0+4EMqWAQwHp7SkuGruq6zqpEPqLRCbfJVxMFMjjxUSiqPJIucVjXjdmiISnGXLw9oA7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745311588; c=relaxed/simple;
-	bh=H44nKWfJpflFFXOrn5cncTRUymqZaUjYXbKXiW88Txw=;
+	s=arc-20240116; t=1745311838; c=relaxed/simple;
+	bh=zT5yjxc1BjzTyrF7qU74cHTpuWHBzYOk4qyMnCNGTHU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6JV5+oCgSKSEeDYrthd0hku+ZHi1+r3Ic3fSI4kBJlcDNoVp45gT/rauM+ksatTf1t1w566xNWWNnG3pOpMSEcIf7tR44k5enaW5YI3ayGRz0P3KP8GqhKZwQCVPXo1xAS5TBMR0fvPxaXyc9o5DwybSHMuGESsX2i82KW4VE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmYN7D6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9A82C4CEE9;
-	Tue, 22 Apr 2025 08:46:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ivmOSc5cyWVDHpnDfRtfNFLeGDOKQmOO7tAQPAuFMcrNeKJu7TIZg2ks+KN6F0ZslRVMsDZ348LFFx6Qif0mEhdNiyHCyZY9sHF4yloLjAxpb/Hy3/FHvx708cF2R6r0bbsxEjamWCVfXJF+uAJFv1TE9IBXa/gJQPDDHVwX2qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yd+/1hHg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC458C4CEE9;
+	Tue, 22 Apr 2025 08:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745311587;
-	bh=H44nKWfJpflFFXOrn5cncTRUymqZaUjYXbKXiW88Txw=;
+	s=k20201202; t=1745311837;
+	bh=zT5yjxc1BjzTyrF7qU74cHTpuWHBzYOk4qyMnCNGTHU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QmYN7D6/vQ3fhyXfvF2TBLjn9Eh6HHivB2z2YJK9Q1otgITmYvXWco87nUQ/XQFej
-	 d24PAugK941acJt881sWsHAnIbR9eKNrky+nbiRiL4mup5twIh0m67xqu46jrSWmRD
-	 8EPJxxMkxH/Vj/arYSTCAmWqj9iHXT7hyxLH9R9ouO3DvdjiwDA57a1hsnfA2oh+l/
-	 e9VnSQ8AiR2H7lLMrYiS9GbwvK3nvogHF+tFOyZtAZ5JPdY+8Mv7Fqt+XS2A39TlML
-	 XwuNTkJURqd4th6YNyQVCEGs1aHB+mD21WwZyZKVOSEvInoYdj422SG6TzvMh2cnJp
-	 NpNyOEY6X8TCQ==
-Date: Tue, 22 Apr 2025 10:46:24 +0200
+	b=Yd+/1hHgLMKAkVj5RRoxdtfnlZvK1uI+LWg7GeK5M7op2BTQbEt3E1GQzqqDCAx3O
+	 4ktpx0Uki5Ub3ZQqHJuHeLAyNfUt7LTucKDPSaPQF7JTirLi5GOQ9KIjUbvwe06P/Z
+	 cdAP/YmPAq/PfQcfhfHIFk2qtwvJvl1o5FujvGoYLq1/nIQkHM+wlYACfH55/MQgmN
+	 DglqVLwpW5Y3PBwzvSbi37lHwFjF2Fqfv9OH3B18VVwhpgVoV67X3+CQQQOft3ht3Y
+	 o69MQnmF2YrNOLhe1/jOFxWICf2rgJVeDMq3PM/AZkdQrc7dTZ2wS2+CcGr50H7D2s
+	 KMZplLLJazrAA==
+Date: Tue, 22 Apr 2025 10:50:34 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephan Gerhold <stephan@gerhold.net>, Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
-	Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, Joerg Roedel <joro@8bytes.org>, 
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Adam Skladowski <a_skl39@protonmail.com>, Sireesh Kodali <sireeshkodali@protonmail.com>, 
-	Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	iommu@lists.linux.dev, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: qcom: Add MSM8937 Global
- Clock Controller
-Message-ID: <20250422-ermine-of-pastoral-courage-bb7bcd@kuoka>
-References: <20250421-msm8937-v5-0-bf9879ef14d9@mainlining.org>
- <20250421-msm8937-v5-1-bf9879ef14d9@mainlining.org>
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Ghiti <alex@ghiti.fr>, Mark Brown <broonie@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, sophgo@lists.linux.dev, 
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, dlan@gentoo.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] spi: dt-bindings: snps,dw-apb-ssi: Add compatible
+ for SOPHGO SG2042 SoC
+Message-ID: <20250422-super-giraffe-of-drizzle-b388bf@kuoka>
+References: <20250422-sfg-spi-v5-0-c7f6554a94a0@gmail.com>
+ <20250422-sfg-spi-v5-2-c7f6554a94a0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,23 +67,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250421-msm8937-v5-1-bf9879ef14d9@mainlining.org>
+In-Reply-To: <20250422-sfg-spi-v5-2-c7f6554a94a0@gmail.com>
 
-On Mon, Apr 21, 2025 at 10:18:23PM GMT, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wrot=
-e:
-> Add device tree bindings for the global clock controller on Qualcomm
-> MSM8937 platform.
->=20
-> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
-=2Eorg>
+On Tue, Apr 22, 2025 at 10:27:09AM GMT, Zixian Zeng wrote:
+> Sophgo SG2042 ships an SPI controller [1] compatible with the Synopsys
+> DW-SPI IP. Add SoC-specific compatible string and use the generic one
+> as fallback.
+> 
+> Link: https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/SPI.rst [1]
+> 
+> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
 > ---
->  .../devicetree/bindings/clock/qcom,gcc-msm8953.yaml   | 11 ++++++++---
->  include/dt-bindings/clock/qcom,gcc-msm8917.h          | 19 +++++++++++++=
-++++++
->  2 files changed, 27 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index a43d2fb9942d85b1482a52782c0a97cd5c6edd99..d32380a2e5b18f61ed66715b4ac67c04fbda10ef 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -67,6 +67,7 @@ properties:
+>                - mscc,jaguar2-spi
+>                - renesas,rzn1-spi
+>                - thead,th1520-spi
+> +              - sophgo,sg2042-spi
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Messed order. s goes before t.
 
 Best regards,
 Krzysztof
