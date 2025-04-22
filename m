@@ -1,82 +1,77 @@
-Return-Path: <devicetree+bounces-169172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A8BFA95C43
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 04:43:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F879A95C4D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 04:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1BF7163C74
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 02:43:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F95A1886C4C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 02:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F49C8634A;
-	Tue, 22 Apr 2025 02:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177C2770FE;
+	Tue, 22 Apr 2025 02:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WXAaQiA9"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TkTpbH+K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2055433C9;
-	Tue, 22 Apr 2025 02:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329CD196;
+	Tue, 22 Apr 2025 02:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745289785; cv=none; b=tQeRBd4YJ1JJFyf7+Bknfz4Rua8wTSVFmRbhEXRW0vJ7vfbpdwstDbkUqlnq1ujBqzzaVbAGDQ2pqBgDOUO1gUwhKLMMzBfSbv7jam3gOO31PnOskJ3SvFoIGOlFWSU28pAcuy/FF4revfA5M4A3JNwfXMf0kKe9ew8ygy+94JA=
+	t=1745290115; cv=none; b=uw84f/illIvGJPvCLkDBKzUEfr9PPthbfjPKX9TJv73So8SAq10HLLDxLBCqwZlh2Ghf+dWMM5Skoms0bEr5qi1BATOUKv1nmWH36dUlJ/tz8trsayebymGKt7dduaiuUk5QgNz7q3wEVY2lkeF1Ea7SjRHWguckXKeH/wBXao8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745289785; c=relaxed/simple;
-	bh=xpHrAJAJFPedpOrzRaEiKA30G7AWT2p9S4LcTSMGqGw=;
+	s=arc-20240116; t=1745290115; c=relaxed/simple;
+	bh=8Oi/7h1l6BwvkLMdRM7TN5xBdft1n/bpQEmit7jQzwg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Clhm3mvqU8nKZuQyEpwuAuC0QrfmLeFzLjrPBIdXndFfDNIqSfL0Ibzuu6FaDSr1SqbGnyuJpb5qjN0zD7GMjLin/caFLapMu/S8En6iyfNmgGUaOJEmmsnwQggZAhepE+Q+cOpTh7T9wqsCsB4iWP3WTBRcsy04+cM63a6qoyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WXAaQiA9; arc=none smtp.client-ip=1.95.21.14
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rw0MItGzs7FmX0/3p/lnEizYUXSNH4FXnVh02U89e7NKqTUf3dzNjkgyW6syTFJInFrjfX0r879UyeTyA7Tocp8nuINNrtky4Vpo3hkhC7JkDdWtJlMyPUPhRK4o6mvH0SkZa3Z7ZgsgYrx+0roefw3DMmwhVghdgM4C131lBhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TkTpbH+K; arc=none smtp.client-ip=220.197.32.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=cUmlgYxptIyCDT5PtD6XKTU21aZLoOCOFtmQ8g7a1dw=;
-	b=WXAaQiA9yyF3hY/Sa591LBbEdVNrTZYGNWOtMOtS+7dloeJ0DRJPcgdEruuLTz
-	itRwd2LcOwZyAL/rlc4/XZMju/yXtq8EF6mEBQvhbceuaSpn9gjUjHq7KXjgseIA
-	NOf+siWJ7LW/qnOFE/+QNVaM4HXlKoop7tJ6icBa/ZDhk=
+	Content-Type; bh=iYJPrUWUZYghHqO5DdKs7mZT6xUZJXtvop8ZZkPf7T8=;
+	b=TkTpbH+K5yOkEdzap3zS5GUTC/2ZYBl/NYQEJ6K4dMYepqC1ud8Erl9OXNw+DR
+	anO2rS0YhEHhi6RkRHuDPJym1TES3HguTXpnX0Rk68Hua/N9tFvIKAgIWaDHWXCq
+	dMLzlbL9o03513N8Ua+jJ3mWAVVi7c7yWhK9i/yFGx/no=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgC3tUIWAgdouj+8Aw--.13044S3;
-	Tue, 22 Apr 2025 10:42:32 +0800 (CST)
-Date: Tue, 22 Apr 2025 10:42:30 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgC3Z0tYAwdoG4yjAw--.32361S3;
+	Tue, 22 Apr 2025 10:47:54 +0800 (CST)
+Date: Tue, 22 Apr 2025 10:47:52 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: =?iso-8859-1?Q?S=E9bastien?= Szymanski <sebastien.szymanski@armadeus.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Julien Boibessot <julien.boibessot@armadeus.com>
-Subject: Re: [PATCH] ARM: dts: opos6ul: add ksz8081 phy properties
-Message-ID: <aAcCFtuktdDOXyoS@dragon>
-References: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: nxp: Align NAND controller node name with
+ bindings
+Message-ID: <aAcDWI/ehg2v8kgd@dragon>
+References: <20250317111853.43708-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
-X-CM-TRANSID:Ms8vCgC3tUIWAgdouj+8Aw--.13044S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4CD7UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRs3ZWgG8J5SSAAAsa
+In-Reply-To: <20250317111853.43708-1-krzysztof.kozlowski@linaro.org>
+X-CM-TRANSID:M88vCgC3Z0tYAwdoG4yjAw--.32361S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUa0tCUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBB83ZWgG2pu5jgAAsR
 
-On Fri, Mar 14, 2025 at 05:20:38PM +0100, Sébastien Szymanski wrote:
-> Commit c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific
-> PHY fixup") removed a PHY fixup that setted the clock mode and the LED
-> mode.
-> Make the Ethernet interface work again by doing as advised in the
-> commit's log, set clock mode and the LED mode in the device tree.
+On Mon, Mar 17, 2025 at 12:18:53PM +0100, Krzysztof Kozlowski wrote:
+> Bindings expect NAND controller device nodes to be named
+> "nand-controller".
 > 
-> Fixes: c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific PHY fixup")
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied, thanks!
 
