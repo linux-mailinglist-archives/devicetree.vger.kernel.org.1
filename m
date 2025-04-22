@@ -1,142 +1,117 @@
-Return-Path: <devicetree+bounces-169188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A4B3A95CF3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 06:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB77A95D2D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 07:01:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8485416875C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 04:27:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C615D177451
+	for <lists+devicetree@lfdr.de>; Tue, 22 Apr 2025 05:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075CD1A38E4;
-	Tue, 22 Apr 2025 04:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F084418FC89;
+	Tue, 22 Apr 2025 05:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hCNYov93"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MfieWodQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2D7196;
-	Tue, 22 Apr 2025 04:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFEBEAFA;
+	Tue, 22 Apr 2025 05:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745296055; cv=none; b=muEo2PBg6HIk1QP+HjAww7V3lclnMCcTWTn4it3YT2IDMCW4y+3Vt9OUXn6j4MLpllAUFHqkTnmgbR7jX6MTOK7l6YWHjw8z4d1/49YlZ7eqeF+802JQ2fRaib/gO7qOFqgZeevtMPorPo14ay94b1uQUrlFusRHVvC7T+EgYuM=
+	t=1745298069; cv=none; b=TEuXJOJHMUxPhPrr9TOgujnBUYuVi9+lXEl4iuPqlbM2lTRmaydZTl3sgqdmaAvPHR5t2Do7HXUfHZzkdmGOB6dwNEmNCz1PHFJSdrScsc+1lhCJ1j/HoyLtwCpee+ylZKkPolII2c69TnToRvAddSjTfHrKocp7/uUuNrqtXWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745296055; c=relaxed/simple;
-	bh=cVee4LUILXsvDSQHmDz/+cDq84rklpyfDtZScWy3/9A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DA+P9/StHPYawlR1DzJuhqaeNewgwDocKccuxZKG3kXjGE0rHO1BDGqT4QMIGW36icXigRK5+yv3EvQyDeWiDbD46mb6zTvX+2xz7YPePqA/khA2w5iqZTC2N3Iy0+TwQdMwQq2XQhB7z+ux/1nawpWP/pXnWovxTPH5b51UNdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hCNYov93; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3366BC4CEEA;
-	Tue, 22 Apr 2025 04:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745296055;
-	bh=cVee4LUILXsvDSQHmDz/+cDq84rklpyfDtZScWy3/9A=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hCNYov93mbQwiwGq/v9EuebjO1gs3R4Argvzm2Eexn8mrLPpLJ9sTv0gxunegVUcn
-	 RfYVImigt2nEHU3EWZ5TQkJ7cZTp62r7qlvlPavnyiW0SinkJ4I7vajs+nfP30UFVT
-	 R5XYAXhjcKEweuWteBukTjmUf2wOQePXYgT4PBtInusq/7mTxnxgWIEnzq2YzDs/z3
-	 /b4oX1xE3RN3s0Nmytpk2bE3zawfKMY6iVtDXf3BKuLSbmoF8888M9/BJPoFxZvmXb
-	 EYSZxkBbHRSK81vAXmCx5I+vJcw/FuTPEe0NZG6svLSnrLzDO/39+shy8wBaAi3Sg+
-	 9rZ9l+G1HZADg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23125C369DC;
-	Tue, 22 Apr 2025 04:27:35 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 21 Apr 2025 23:27:34 -0500
-Subject: [PATCH 2/2] power: bq24190: Add BQ24193 support
+	s=arc-20240116; t=1745298069; c=relaxed/simple;
+	bh=WCouwR7uTqaHThXCXrNZQl8pWxx4Gkb+qwPRJNiDbJA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XBKx2at9+jffBGF/sKPdjXv5HaHaU6RT/0sm2dxkGbKCezavKVtBTbUdgd4wuGu6Fe7AJksNnbPML1Oin0UYxSbGydyAM1fVmJpe4byxAcyXBfm0a7UMcKbmzmKOjVqpcAd1JTQR/gkpviZKGyxwWMNv56sIUsotrZqAuDkj2qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MfieWodQ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53M50rVn1116663
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 22 Apr 2025 00:00:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745298053;
+	bh=S+rfxkhJ2uRVgkvDr5SGLSGdiYjFntxQGRjvdTnKR/M=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=MfieWodQynoJ9H638e1BShbI4G//i+9dDNYJBn1Cm4N5O58nSnlOssnB1QMcyuhcF
+	 onJkVD8iIlRJLTjFAEO4Ee+/77iOF4+a0KPKaFIAevAJYZ03TZJl2stT22d0SMkQCs
+	 RYysu3xCK7oVREKNQi9A02eZPGCEvr/MUnHTlxD4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53M50rEG019135
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Apr 2025 00:00:53 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
+ Apr 2025 00:00:53 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 22 Apr 2025 00:00:52 -0500
+Received: from [172.24.227.136] (moteen-ubuntu-desk.dhcp.ti.com [172.24.227.136])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53M50nMg123169;
+	Tue, 22 Apr 2025 00:00:50 -0500
+Message-ID: <bd73d05a-6859-42aa-b1d9-91d8e122a677@ti.com>
+Date: Tue, 22 Apr 2025 10:30:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] arm64: dts: ti: k3-am65-main: Add missing taps to
+ sdhci0
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250417233040.3658761-1-jm@ti.com>
+ <20250417233040.3658761-4-jm@ti.com>
+Content-Language: en-US
+From: Moteen Shah <m-shah@ti.com>
+In-Reply-To: <20250417233040.3658761-4-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250421-bq24193-v1-2-f125ef396d24@gmail.com>
-References: <20250421-bq24193-v1-0-f125ef396d24@gmail.com>
-In-Reply-To: <20250421-bq24193-v1-0-f125ef396d24@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745296054; l=2741;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=KH4KqT7liHBctKmamnaT1uEJSQP5ipoPIY0y4ceij+8=;
- b=Srn+RTLP3md8VYiBjljZ37a3S1R0CduOg6wqznLn1iltRbI1KzYPK0p9LlysICu9NcpAxThg0
- EIUWqWUVeY2C9w2VxyUlgHILOtW2HxlJ50EBusLHtAZ/DkBKPS1O+2B
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-
-From: Aaron Kling <webgeek1234@gmail.com>
-
-The BQ24193 is most similar to the BQ24192. This is used in many Nvidia
-Tegra devices such as the SHIELD Portable. This variant works as-is with
-the existing BQ24192 code, but cannot be probed with a simple fallback
-compatible to ti,bq24192. So add it same as how BQ24196 is handled.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- drivers/power/supply/bq24190_charger.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/power/supply/bq24190_charger.c b/drivers/power/supply/bq24190_charger.c
-index f0d97ab45bd87f3baab20bb316eaebef77d99ae8..1867beadd7afff8273d6fc7770b470209e4845e2 100644
---- a/drivers/power/supply/bq24190_charger.c
-+++ b/drivers/power/supply/bq24190_charger.c
-@@ -207,6 +207,7 @@ enum bq24190_chip {
- 	BQ24190,
- 	BQ24192,
- 	BQ24192i,
-+	BQ24193,
- 	BQ24196,
- 	BQ24296,
- 	BQ24297,
-@@ -2014,6 +2015,17 @@ static const struct bq24190_chip_info bq24190_chip_info_tbl[] = {
- 		.ichg_array_size = ARRAY_SIZE(bq24190_ccc_ichg_values),
- #ifdef CONFIG_REGULATOR
- 		.vbus_desc = &bq24190_vbus_desc,
-+#endif
-+		.check_chip = bq24190_check_chip,
-+		.set_chg_config = bq24190_battery_set_chg_config,
-+		.ntc_fault_mask = BQ24190_REG_F_NTC_FAULT_MASK,
-+		.get_ntc_status = bq24190_charger_get_ntc_status,
-+		.set_otg_vbus = bq24190_set_otg_vbus,
-+	},
-+	[BQ24193] = {
-+		.ichg_array_size = ARRAY_SIZE(bq24190_ccc_ichg_values),
-+#ifdef CONFIG_REGULATOR
-+		.vbus_desc = &bq24190_vbus_desc,
- #endif
- 		.check_chip = bq24190_check_chip,
- 		.set_chg_config = bq24190_battery_set_chg_config,
-@@ -2308,6 +2320,7 @@ static const struct i2c_device_id bq24190_i2c_ids[] = {
- 	{ "bq24190", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24190] },
- 	{ "bq24192", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24192] },
- 	{ "bq24192i", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24192i] },
-+	{ "bq24193", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24193] },
- 	{ "bq24196", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24196] },
- 	{ "bq24296", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24296] },
- 	{ "bq24297", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24297] },
-@@ -2319,6 +2332,7 @@ static const struct of_device_id bq24190_of_match[] = {
- 	{ .compatible = "ti,bq24190", .data = &bq24190_chip_info_tbl[BQ24190] },
- 	{ .compatible = "ti,bq24192", .data = &bq24190_chip_info_tbl[BQ24192] },
- 	{ .compatible = "ti,bq24192i", .data = &bq24190_chip_info_tbl[BQ24192i] },
-+	{ .compatible = "ti,bq24193", .data = &bq24190_chip_info_tbl[BQ24193] },
- 	{ .compatible = "ti,bq24196", .data = &bq24190_chip_info_tbl[BQ24196] },
- 	{ .compatible = "ti,bq24296", .data = &bq24190_chip_info_tbl[BQ24296] },
- 	{ .compatible = "ti,bq24297", .data = &bq24190_chip_info_tbl[BQ24297] },
-
--- 
-2.48.1
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
+On 18/04/25 05:00, Judith Mendez wrote:
+> For am65x, add missing ITAPDLYSEL values for Default Speed and High
+> Speed SDR modes to sdhci0 node according to the device datasheet [0].
+>
+> Fixes: eac99d38f861 ("arm64: dts: ti: k3-am654-main: Update otap-del-sel values")
+> [0] https://www.ti.com/lit/gpn/am6548
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 94a812a1355ba..5ebf7ada6e485 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -449,6 +449,8 @@ sdhci0: mmc@4f80000 {
+>   		ti,otap-del-sel-mmc-hs = <0x0>;
+>   		ti,otap-del-sel-ddr52 = <0x5>;
+>   		ti,otap-del-sel-hs200 = <0x5>;
+> +		ti,itap-del-sel-legacy = <0xa>;
+> +		ti,itap-del-sel-mmc-hs = <0x1>;
+
+Reviewed-by: Moteen Shah <m-shah@ti.com>
+
+>   		ti,itap-del-sel-ddr52 = <0x0>;
+>   		dma-coherent;
+>   		status = "disabled";
 
