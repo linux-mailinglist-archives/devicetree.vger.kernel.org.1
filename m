@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-169693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0964FA97EA5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:06:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530DCA97EB6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57EF3BF6F1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:06:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 833B717F953
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4E626B099;
-	Wed, 23 Apr 2025 06:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FC81C8633;
+	Wed, 23 Apr 2025 06:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="CLxbm5cJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="XeFXRXVx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15DE826A0B0
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 06:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AA619ABDE;
+	Wed, 23 Apr 2025 06:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745388210; cv=none; b=ASj0L0ipmfkG9XcgvvJNaGgM9nXsA3OoK8XL89IeqOGPPyvXp4YrvrS8LpjKzvGpTVQf36e6SXEAJoLAH6QMOWYfsysEdHW4LYg3Xwnu0Q2vfvdvlEJslBNFnHCwIDxZ1kiOcxVTABDb8lR0GaKKemkd//K8aG0DntByW3gs9DQ=
+	t=1745388481; cv=none; b=Myhrp/CehVdFCrgS3Kzk2NmfkBCi2j/yL7EVQxHo1qkcOrV/8G7hFrZ9osqhynac/AyTKehssfcB0EYhDT+u94czqryQSr3/XkuXFF22sNPkDcDAui4TvPT//bNAqWe5dOXBM/p/9JIPzX2s1dRlZvmx6mUbbq0cJj20csxmEDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745388210; c=relaxed/simple;
-	bh=6KSGxPUnS1mPNRJ96C4CkAbWKnuWJ5Byr6T4Z3L2c0M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sOUoHEw2QHdGfLY65xQ0qxUFt7DvLma/E95aa1OQh3Ykh7CfHRkt/4f2+iviRzbhkJQk3m+73L9YNdTaZN3COHR0m0EAhCmWpnNMlEaMJ7iq7MwScVVrH5XaE6ZTTsNdqFtTTsOsgAer/XF3RYhj0O0qOhA7/KSieGnDrb07qXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=CLxbm5cJ; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac3b12e8518so975813666b.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 23:03:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1745388205; x=1745993005; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qwnDSUvK6FGHCaa/OUJvqxFp0aKtITa+jYSMw/i6jvs=;
-        b=CLxbm5cJtLwuUx3J69Ru0l4YnRYGSdRppt047NX/doT/cDrAsmj+Rj7QD03PZuYlRj
-         sIUSIvDugj9+Qo8YOIDdrDaEvLMSJ4qeIdqkSj9QoxZzXreIIlKGu9BJWeEVgUVFWRY+
-         1JoGzIUlsSJkQlou3+9VxI69eCm/Tr8FjiFmY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745388205; x=1745993005;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qwnDSUvK6FGHCaa/OUJvqxFp0aKtITa+jYSMw/i6jvs=;
-        b=GdUMb8CQDhS+bAm1kL00bX68yiXOIuuRCfYo88fcZPke8d8+U66QEBN7naGpuUg8ZZ
-         uqEoDEpuUu769UqfS4Nfsc8liSictNkxT31ApE5pahSrnGbNREnXlKHFJVYG2I4e5St+
-         9b8+Vc8c+oZwrvhFKEH1WPGWeToF7WfAmCIGSzZmLzpfcsxG/cvULl3fTLdXKpqHthiv
-         uI4x+53okrCJAc85KUJs7Q0W3Cdn6BMNq3GbNEaxDi/44QY6znPH0WewkSRfAK7BnwaE
-         hCBoym7zaWwUFY9TG8mhrNdTM/q0005x7PyEdGDrOuTzTJRcIw38qNMlwiPdYZEPvAom
-         BOMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNA28FnCVQPXZ+8PK71RSOn8AfJBrvGJ2odHjPSil8xxMnFK38CmZ6V7vYeU4Jkhjs1JRuR8I2joGg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyUAhYWGHRMB4Mv0VrOUedOAahHhXW7nfsIUngBU+Lj2AJ5mnl
-	h34d6JIqhID6RRhaAb/5Pw4fNMBSVg38HILahUD0bbKD2mCci+TU9I5gfwaH3xw=
-X-Gm-Gg: ASbGncty7SGR7fQjrrQL6I28GBsa1lrd/mpVgSGgderZm4qBQc22zsfu+cmkNRqdtpD
-	fobTsKhPs/fPCR4tWKmH8dQt6d0qCFCKsEkB+9zop0708ClrtgVVsZrRMxAF8eVqzW7+3ddmnLk
-	+ftWI5G8/UnJvZJBSPBjb2GuZQ7kddn8HRc6sQrFC7K6IKHfyQbznix+RaPpxcjih6qaxYUeDso
-	12S2w3Gsgq2fq7MxP/rEtQgsPQ+oeiAkwtcMdfQF7CH9wNVkPYFMitgVvdqr1y/YZHo7EKPLeyT
-	mm3yJr+mjclM1gxFZgH2R7HpMsq5OntZsJaaluX5Ru8R5UTZfVoW5eZE/zW13CpWtvIOd+7TLxn
-	JPdfKVQ7d3mZN4DM=
-X-Google-Smtp-Source: AGHT+IGsUxDaV1VG5VEFOK4UELVg2Pwf+4jwnx9ulQMNovrjSuWKEHY8T3Kxuf+EnYLtMT72UxcKgQ==
-X-Received: by 2002:a17:906:7c43:b0:acb:b381:c28b with SMTP id a640c23a62f3a-acbb381cc4dmr568952866b.47.1745388205316;
-        Tue, 22 Apr 2025 23:03:25 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.40.29])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef9e7e6sm745234366b.162.2025.04.22.23.03.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 23:03:25 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+	s=arc-20240116; t=1745388481; c=relaxed/simple;
+	bh=vijcN1043BaQdNjTZvALAoqugL9Bd4MGR/UJgc7K/j4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=N7EqrcrUvwiZil82GUJOYtA4tIeeRu+X2xzZm6vDiFBs8rC0ewCeMi7TXM6GA20PUR7+Zuf5V0Yi/ITNmfrtYr8WlXIh6Dh7wgz+ZBbA1gRi6yowcBzlW9iJArnGrKE0UArBRGE4fvHqVu+3Qhh3BClUPeCWfSiD3LD3wxei+SQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=XeFXRXVx; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=wdX/bMI/LzSHjR1uTwVc0cakrhXDnlPS90Xxz11uQT0=; b=XeFXRXVx1HXJ2DvP5gWd0T0h1h
+	LWHhk6MWNT4SqIG9YC6ZIpzb2HbVqnCN4CGdSANorqOwLavkmnLKqxsAkK0XAk8wk8Gzb3Tj11MIG
+	S2UhyWjlkbhUd0yVritOFrwPaiqrpcqL2QXQKdD4q70Q/i42lhh98OtZnwwaKuQQQ/L3+upJChb7r
+	UOwumuBTsuZdRLzG9juvEmCt2FaGtPimH8NWPzKt75KJMvehpN1s76/WVpbAqnFZKYT1lEu/tX2y9
+	jPqSMGjygRcr7GoLSu6uudcaPGqDZdT/P5a52owzOXlG6PtEcBN2oRknzCa6j2RCboCsfhOsNNIJh
+	1LtFSZ6A==;
+Received: from [122.175.9.182] (port=33870 helo=cypher.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1u7TGp-0000000045y-0459;
+	Wed, 23 Apr 2025 11:37:43 +0530
+From: Parvathi Pudi <parvathi@couthit.com>
+To: danishanwar@ti.com,
+	rogerq@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nm@ti.com,
+	ssantosh@kernel.org,
+	tony@atomide.com,
+	richardcochran@gmail.com,
+	glaroque@baylibre.com,
+	schnelle@linux.ibm.com,
+	m-karicheri2@ti.com,
+	s.hauer@pengutronix.de,
+	rdunlap@infradead.org,
+	diogo.ivo@siemens.com,
+	basharath@couthit.com,
+	parvathi@couthit.com,
+	horms@kernel.org,
+	jacob.e.keller@intel.com,
+	m-malladi@ti.com,
+	javier.carrasco.cruz@gmail.com,
+	afd@ti.com,
+	s-anna@ti.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v11 18/18] arm64: dts: imx8mp: add PLLs to clock controller module (CCM)
-Date: Wed, 23 Apr 2025 08:02:35 +0200
-Message-ID: <20250423060241.95521-19-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250423060241.95521-1-dario.binacchi@amarulasolutions.com>
-References: <20250423060241.95521-1-dario.binacchi@amarulasolutions.com>
+	linux-kernel@vger.kernel.org,
+	pratheesh@ti.com,
+	prajith@ti.com,
+	vigneshr@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	pmohan@couthit.com,
+	mohan@couthit.com
+Subject: [PATCH net-next v6 00/11] PRU-ICSSM Ethernet Driver
+Date: Wed, 23 Apr 2025 11:36:56 +0530
+Message-Id: <20250423060707.145166-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,125 +100,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Add the PLLs generated by anatop to the clock list of the Clock
-Controller Module (CCM) node.
+Hi,
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
+is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
+Megabit ICSS (ICSSM).
 
----
+Support for ICSSG Dual-EMAC mode has already been mainlined [1] and the
+fundamental components/drivers such as PRUSS driver, Remoteproc driver,
+PRU-ICSS INTC, and PRU-ICSS IEP drivers are already available in the mainline
+Linux kernel. The current set of patch series builds on top of these components
+and introduces changes to support the Dual-EMAC using ICSSM on the TI AM57xx,
+AM437x and AM335x devices.
 
-Changes in v11:
-- Fix conflict while rebasing on master for patches:
-  13/18 clk: imx: add support for i.MX8MP anatop clock driver
-  14/18 clk: imx8mp: rename ccm_base to base
-  15/18 dt-bindings: clock: imx8m-clock: add PLLs
-- Add 'Reviewed-by' tag of Peng Fan for patches:
-  11/18 clk: imx: add support for i.MX8MM anatop clock driver
-  13/18 clk: imx: add support for i.MX8MP anatop clock driver
-  14/18 clk: imx8mp: rename ccm_base to base
+AM335x, AM437x and AM57xx devices may have either one or two PRU-ICSS instances
+with two 32-bit RISC PRU cores. Each PRU core has (a) dedicated Ethernet interface
+(MII, MDIO), timers, capture modules, and serial communication interfaces, and
+(b) dedicated data and instruction RAM as well as shared RAM for inter PRU
+communication within the PRU-ICSS.
 
-Changes in v10:
-- Drop the v9 patches:
-  16/23 dt-bindings: clock: imx8m-clock: support spread spectrum clocking
-  17/23 clk: imx: pll14xx: support spread spectrum clock generation
-  17/23 clk: imx8mn: support spread spectrum clock generation
-  21/23 clk: imx8mp: support spread spectrum clock generation
-  23/23 clk: imx8mm: support spread spectrum clock generation
+These patches add support for the following features:
+- RX and TX over PRU Ethernet ports in Dual-EMAC mode
+- Full duplex with 100 Mbps link speed.
+- VLAN Filtering
+- Multicast Filtering
+- Promiscuous mode
+- Storm prevention
+- Interrupt coalescing
+- Linux PTP (ptp4l) Ordinary clock
 
-Changes in v9:
-- Add 'Reviewed-by' tag of Peng Fan for imx8mn platform patches
-- Fix building warning raised by the kernel test robot for patch
-  v8, 11/18 clk: imx: add support for i.MX8MN anatop clock driver
-- Add patches for imx8m{m,p} platforms:
-  - 23/23 clk: imx8mm: support spread spectrum clock generation
-  - 22/23 clk: imx: add support for i.MX8MM anatop clock driver
-  - 21/23 clk: imx8mp: support spread spectrum clock generation
-  - 20/23 clk: imx8mp: rename ccm_base to base
-  - 19/23 clk: imx: add support for i.MX8MP anatop clock driver
+Further, note that these are the first set of patches for a single instance of
+PRU-ICSS Ethernet. Switch mode support for AM335x, AM437x and AM57x along with
+support for a second instance of PRU-ICSS on AM57x will be posted subsequently.
 
-Changes in v8:
-- Drop the patches added in version 7:
-  - 10/23 dt-bindings: clock: imx8m-clock: add phandle to the anatop
-  - 11/23 arm64: dts: imx8mm: add phandle to anatop within CCM
-  - 12/23 arm64: dts: imx8mn: add phandle to anatop within CCM
-  - 13/23 arm64: dts: imx8mp: add phandle to anatop within CCM
-  - 14/23 arm64: dts: imx8mq: add phandle to anatop within CCM
+The patches presented in this series have gone through the patch verification
+tools and no warnings or errors are reported. Sample test logs obtained from AM33x,
+AM43x and AM57x verifying the functionality on Linux next kernel are available here:
 
-Changes in v7:
-- Add and manage fsl,anatop property as phandle to the anatop node with
-  the new patches:
-  - 10/23 dt-bindings: clock: imx8m-clock: add phandle to the anatop
-  - 11/23 arm64: dts: imx8mm: add phandle to anatop within CCM
-  - 12/23 arm64: dts: imx8mn: add phandle to anatop within CCM
-  - 13/23 arm64: dts: imx8mp: add phandle to anatop within CCM
-  - 14/23 arm64: dts: imx8mq: add phandle to anatop within CCM
+[Interface up Testing](https://gist.github.com/ParvathiPudi/5651e5bbc4fb8b051a8f9b75bebd6c23)
 
-Changes in v6:
-- Merge patches:
-  10/20 dt-bindings: clock: imx8mm: add binding definitions for anatop
-  11/20 dt-bindings: clock: imx8mn: add binding definitions for anatop
-  12/20 dt-bindings: clock: imx8mp: add binding definitions for anatop
-  to
-  05/20 dt-bindings: clock: imx8m-anatop: define clocks/clock-names
-  now renamed
-  05/18 dt-bindings: clock: imx8m-anatop: add oscillators and PLLs
-- Split the patch
-  15/20 dt-bindings-clock-imx8m-clock-support-spread-spectru.patch
-  into
-  12/18 dt-bindings: clock: imx8m-clock: add PLLs
-  16/18 dt-bindings: clock: imx8m-clock: support spread spectrum clocking
+[Ping Testing](https://gist.github.com/ParvathiPudi/29666c12a2ce83908d8ca4316a0ebf1c)
 
-Changes in v5:
-- Fix compilation errors.
-- Separate driver code from dt-bindings
+[Iperf Testing](https://gist.github.com/ParvathiPudi/6500b9e611df1d09123676a7b87109f1)
 
-Changes in v4:
-- Add dt-bindings for anatop
-- Add anatop driver
-- Drop fsl,ssc-clocks from spread spectrum dt-bindings
-- New
+[1] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/
+[2] https://lore.kernel.org/all/20250108125937.10604-1-basharath@couthit.com/
 
-Changes in v3:
-- Patches 1/8 has been added in version 3. The dt-bindings have
-  been moved from fsl,imx8m-anatop.yaml to imx8m-clock.yaml. The
-  anatop device (fsl,imx8m-anatop.yaml) is indeed more or less a
-  syscon, so it represents a memory area accessible by ccm
-  (imx8m-clock.yaml) to setup the PLLs.
-- Patches {3,5}/8 have been added in version 3.
-- Patches {4,6,8}/8 use ccm device node instead of the anatop one.
+This is the v6 of the patch series [v1]. This version of the patchset
+addresses the comments made on [v5] of the series.
 
-Changes in v2:
-- Add "allOf:" and place it after "required:" block, like in the
-  example schema.
-- Move the properties definition to the top-level.
-- Drop unit types as requested by the "make dt_binding_check" command.
+Changes from v5 to v6 :
 
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+*) Addressed Simon Horman comments on patch 2, 7 and 11 of the series.
+*) Addressed Andrew Lunn comments on patch 5 of the series.
+*) Rebased the series on latest net-next.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 78d71aacd0a5..212596927f0a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -751,9 +751,14 @@ clk: clock-controller@30380000 {
- 					     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
- 				#clock-cells = <1>;
- 				clocks = <&osc_32k>, <&osc_24m>, <&clk_ext1>, <&clk_ext2>,
--					 <&clk_ext3>, <&clk_ext4>;
-+					 <&clk_ext3>, <&clk_ext4>,
-+					 <&anatop IMX8MP_ANATOP_AUDIO_PLL1>,
-+					 <&anatop IMX8MP_ANATOP_AUDIO_PLL2>,
-+					 <&anatop IMX8MP_ANATOP_DRAM_PLL>,
-+					 <&anatop IMX8MP_ANATOP_VIDEO_PLL>;
- 				clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
--					      "clk_ext3", "clk_ext4";
-+					      "clk_ext3", "clk_ext4", "audio_pll1", "audio_pll2",
-+					      "dram_pll", "video_pll";
- 				assigned-clocks = <&clk IMX8MP_CLK_A53_SRC>,
- 						  <&clk IMX8MP_CLK_A53_CORE>,
- 						  <&clk IMX8MP_CLK_NOC>,
+Changes from v4 to v5 :
+
+*) Addressed Andrew Lunn and Keller, Jacob E comments on patch 5 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v3 to v4 :
+
+*) Added support for AM33x and AM43x platforms.
+*) Removed SOC patch [2] and its dependencies.
+*) Addressed Jakub Kicinski, MD Danish Anwar and Nishanth Menon comments on cover
+   letter of the series.
+*) Addressed Rob Herring comments on patch 1 of the series.
+*) Addressed Ratheesh Kannoth comments on patch 2 of the series.
+*) Addressed Maxime Chevallier comments on patch 4 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v2 to v3 :
+
+*) Addressed Conor Dooley comments on patch 1 of the series.
+*) Addressed Simon Horman comments on patch 2, 3, 4, 5 and 6 of the series.
+*) Addressed Joe Damato comments on patch 4 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn, Rob Herring comments on patch 1 of the series.
+*) Addressed Andrew Lunn comments on patch 2, 3, and 4 of the series.
+*) Addressed Richard Cochran, Jason Xing comments on patch 6 of the series.
+*) Rebased patchset on next-202401xx linux-next.
+
+[v1] https://lore.kernel.org/all/20250109105600.41297-1-basharath@couthit.com/
+[v2] https://lore.kernel.org/all/20250124122353.1457174-1-basharath@couthit.com/
+[v3] https://lore.kernel.org/all/20250214054702.1073139-1-parvathi@couthit.com/
+[v4] https://lore.kernel.org/all/20250407102528.1048589-1-parvathi@couthit.com/
+[v5] https://lore.kernel.org/all/20250414113458.1913823-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi.
+
+Murali Karicheri (1):
+  net: ti: prueth: Adds support for RX interrupt coalescing/pacing
+
+Parvathi Pudi (1):
+  dt-bindings: net: ti: Adds DUAL-EMAC mode support on PRU-ICSS2 for
+    AM57xx, AM43xx and AM33xx SOCs
+
+Roger Quadros (9):
+  net: ti: prueth: Adds ICSSM Ethernet driver
+  net: ti: prueth: Adds PRUETH HW and SW configuration
+  net: ti: prueth: Adds link detection, RX and TX support.
+  net: ti: prueth: Adds ethtool support for ICSSM PRUETH Driver
+  net: ti: prueth: Adds HW timestamping support for PTP using PRU-ICSS
+    IEP module
+  net: ti: prueth: Adds support for network filters for traffic control
+    supported by PRU-ICSS
+  net: ti: prueth: Adds power management support for PRU-ICSS
+  net: ti: prueth: Adds support for PRUETH on AM33x and AM43x SOCs
+  net: ti: prueth: Adds PTP OC Support for AM335x and AM437x
+
+ .../devicetree/bindings/net/ti,icss-iep.yaml  |   10 +-
+ .../bindings/net/ti,icssm-prueth.yaml         |  233 ++
+ .../bindings/net/ti,pruss-ecap.yaml           |   32 +
+ .../devicetree/bindings/soc/ti/ti,pruss.yaml  |    9 +
+ drivers/net/ethernet/ti/Kconfig               |   24 +
+ drivers/net/ethernet/ti/Makefile              |    5 +
+ drivers/net/ethernet/ti/icssg/icss_iep.c      |  258 +-
+ drivers/net/ethernet/ti/icssg/icss_iep.h      |   12 +
+ drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  326 +++
+ drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 2478 +++++++++++++++++
+ drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  448 +++
+ .../net/ethernet/ti/icssm/icssm_prueth_dos.c  |  222 ++
+ .../net/ethernet/ti/icssm/icssm_prueth_ecap.c |  312 +++
+ .../net/ethernet/ti/icssm/icssm_prueth_ecap.h |   47 +
+ .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |   85 +
+ drivers/net/ethernet/ti/icssm/icssm_switch.h  |  285 ++
+ .../ti/icssm/icssm_vlan_mcast_filter_mmap.h   |  120 +
+ 17 files changed, 4902 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/ti,pruss-ecap.yaml
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_ethtool.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_dos.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ecap.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ecap.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_switch.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_vlan_mcast_filter_mmap.h
+
 -- 
-2.43.0
+2.34.1
 
 
