@@ -1,96 +1,89 @@
-Return-Path: <devicetree+bounces-169981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4AFA992D9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:50:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C898AA99362
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:57:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 234817A2507
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:47:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB7531B87AD4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5923629B228;
-	Wed, 23 Apr 2025 15:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772E2BEC50;
+	Wed, 23 Apr 2025 15:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uD/qEYJx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVs5btwD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3108B29AAF1;
-	Wed, 23 Apr 2025 15:34:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06F928B4E6;
+	Wed, 23 Apr 2025 15:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745422494; cv=none; b=uUTc3ktKcUF7WfUZJ/1V1QIN4qJJR1O4oVVbxp2C76AJb1gCobzkl3TJYRAN0fuSj6rntt2mlc/RbLR8/jmP73uA/V8T/mjYoDhQXqbDNUy9ciIxSVqSdfp1PvH496nhfI41RAwMB97NGpIaRi9yOReBFoj1M6i+9WOlvwbw+Zc=
+	t=1745422507; cv=none; b=fQqlpeOSatVUo9UPDpCBMGldSZIyXmt03Gyje7WDvkFUJfuGtzEnUrJ/JeGpcKCxZZ6tricLSrxCpmRmte4+pSf3ukfFhsH73Ky83/bhwLqwaKXf0o1ihIGHS3IadxaK1UV8/9ZX+shzTqjZYBSkNSIWdJhVdvtsjT8UZK2HoUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745422494; c=relaxed/simple;
-	bh=p/nh3OW4M+82zbNV28nOlVLNUKAQWBOI2NC59sQvgzI=;
+	s=arc-20240116; t=1745422507; c=relaxed/simple;
+	bh=MMIH4c9f3R0GEKAXxJujBZ87iFYId9rJoLzBcxhINgk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4B3YvFQE5TofP1/1S7Mx7bDxjX99A0iYVVqORM6t62A6Vvg4shU8Wc+p1RM99KKvyEEHHJRGp5eLc7J3cliKZCrJst+F3lea0krNV6dPdsf4m8OBzPh5w6dEoGt+fmywZCn003521F43AbVnay+ApJTq49OmzfCZR95xLWTMOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uD/qEYJx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D89C9C4CEE2;
-	Wed, 23 Apr 2025 15:34:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nmeu9yebBnexeKO3kkeYfa9nMhfvxgF0nerJEliZg3ownEy7ENAZJDYqoDVGLdeBrwYmF8ylmCJyOCtbMDK5ZJCR8Dys9u8YjAYMsz37ICPYM93ZcfqVUIBi+dGwPkC11caUwyTwDLrtUth6inGWu5CGqTwzTD8rgpq4Zj4GZqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVs5btwD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21ABEC4CEE2;
+	Wed, 23 Apr 2025 15:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745422493;
-	bh=p/nh3OW4M+82zbNV28nOlVLNUKAQWBOI2NC59sQvgzI=;
+	s=k20201202; t=1745422507;
+	bh=MMIH4c9f3R0GEKAXxJujBZ87iFYId9rJoLzBcxhINgk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uD/qEYJxcJIIhciJ5jhtNU70eFBcW9LhOFCIVuy1HeJxfE2LeS/5l8x3/sOwDYIEH
-	 FDOzoDVPJIuED+wvFBvzVNWFS5B/RVzbND67k6thEY7lMSOmNBQPxxhWa+AjfK6vI9
-	 5Ruf8RuzMxvMCjj4IXsf8nrK4sx3JcRoSxwGtwY8nrp93VuvvZvmaE18lWVk0x++1C
-	 WwLUrcmrvKK+qPUtWQUdA9KEP/osRlF/WK7L7+I5Fqse/weCRhXLRPRSs9yGjSV96L
-	 pCUOtG8A+bNZZ/64fIJmulpwuoi+5g5MX9HMM4ejEPkeMuovlc9pHwPvi2E9mLcinX
-	 re0hJFHV04z7A==
-Date: Wed, 23 Apr 2025 16:34:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Justin Chen <justin.chen@broadcom.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, rafal@milecki.pl,
-	linux@armlinux.org.uk, hkallweit1@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
-	davem@davemloft.net, andrew+netdev@lunn.ch,
-	florian.fainelli@broadcom.com
-Subject: Re: [PATCH net-next v2 1/8] dt-bindings: net: brcm,asp-v2.0: Remove
- asp-v2.0
-Message-ID: <20250423-hardly-answering-87ec478ef51d@spud>
-References: <20250422233645.1931036-1-justin.chen@broadcom.com>
- <20250422233645.1931036-2-justin.chen@broadcom.com>
+	b=oVs5btwDpqmTwjTLKB5WWihojmdkZEl/iZjp4WhTpIt6wjy+w3FotUaK87jWMyLb7
+	 cVZIhXpBwkzOFjDrq7ZRC1lmdjofLrDlrca+tuuyxDUT2Hyjr7QDm5kQg6geHF/od8
+	 T8i/txQACIlXw4GYxmaWeCs2ijxJpFIYT8zRK+21IAiZYtJB0TR8qAx+3iAbaTrkvZ
+	 XtwxjDel/oIiTkz1hWBUvQdTbg3Ief7jaYuTse7m/gdmxtqgfpb5ydrs8C9oZD6vNJ
+	 kU/3kyC3osgBBzAUGWm5tTdHUzeE3GgFd0RZQa/bWihkQEortmFYkGreO3Bxj4oHi7
+	 G9Gf7EPkhUdhA==
+Date: Wed, 23 Apr 2025 10:35:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper
+ boards
+Message-ID: <20250423153505.GA561193-robh@kernel.org>
+References: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5Yh4ycaxJJXdv8FW"
-Content-Disposition: inline
-In-Reply-To: <20250422233645.1931036-2-justin.chen@broadcom.com>
-
-
---5Yh4ycaxJJXdv8FW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
 
-On Tue, Apr 22, 2025 at 04:36:38PM -0700, Justin Chen wrote:
-> Remove asp-v2.0 which was only supported on one SoC that never
-> saw the light of day.
->=20
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+On Fri, Apr 18, 2025 at 07:24:25PM +0400, Alexey Charkov wrote:
+> APC Rock is a development board based on WonderMedia WM8950 SoC
+> released around 2013. Paper is the same as Rock but lacking a
+> VGA port and shipped with a recycled cardboard case.
+> 
+> While at that, put myself as the maintainer, given that Tony is
+> unavailable as of lately.
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+> Split the series from v1 into separate bindings patches so as not to
+> spam all the subsystems with unrelated changes, per Rob's suggestion
+> 
+> Changes in v2:
+> - kept single-valued compatibles in a single enum (thanks Rob)
+> - dropped the empty overall description node
+> 
+> Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-7-f9af689cdfc2@gmail.com/
+> ---
+>  Documentation/devicetree/bindings/arm/vt8500.yaml | 23 ++++++++++++++---------
+>  1 file changed, 14 insertions(+), 9 deletions(-)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Do you want me to apply or you will take via vt8500 tree?
 
---5Yh4ycaxJJXdv8FW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAkIlwAKCRB4tDGHoIJi
-0hA1AP90p1vX9aj5sXfGtpEOiHnEj97spwAeSnFvApbg2bKLdQD+MJhVSI5nqBCM
-mxX7nXNjPHrKSrFuuRFvqjdVxHBsaQo=
-=SspX
------END PGP SIGNATURE-----
-
---5Yh4ycaxJJXdv8FW--
+Rob
 
