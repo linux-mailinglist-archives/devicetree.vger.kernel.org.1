@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-169890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664C9A9891B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9BEA9892D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:07:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECDAA3AC61A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:04:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDB03AA750
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469C8215F63;
-	Wed, 23 Apr 2025 12:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F69D1F1936;
+	Wed, 23 Apr 2025 12:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SG9Tmj7y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FWEqqU8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A434202C4E
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394D52CCC9
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745409849; cv=none; b=sEJyo/+s7aPd2nadBpNa8PrnwpuXJ65rArjNx9PNE9hPOP4h/C5OFr2f11dcDl/QXYcMTm6rD+1EW7WnmWDHbMdkL48iyaLRlxV7dZko4502Yb+gApbdtCTJKlDfkPEru3/3C0xLmXHVEKbM2+SFmqtc+ErUjAk/1AVYb/7k+14=
+	t=1745410069; cv=none; b=czu7Mv1pd01dxQ+JSNslTqLkIuEVDkLXVwsXY4Gm1iGVJLC6Q58gCBj0NQ9Vv+sMp6NOmEzgZTD8cQuh7vql0AfL86CvtKPcy4kwipqMHokuU+LfaITlPKSuay5PFJzHCvEFY5h7yvovNEs9MAjvV6KmC3oi2+UC986CcJphxok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745409849; c=relaxed/simple;
-	bh=nO6Rg8RoPt3fGEMckf1bI8pF/9LXP6clHDAG+/ggTdA=;
+	s=arc-20240116; t=1745410069; c=relaxed/simple;
+	bh=MMQdY9N6ChtJBawtVbRqnqsgfr7DqCxaryDpCq6+jq8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kgzovs82vtXl5oKu+MSQ2aFMzWRTg7sEF7U7uD/Cc+s+s1A2/nvSG/ue4CnDnERI7jXGmS5gNfSd05fzbgR5JFYoS8xJZiVRQMQq46rPuPeDN1RcZUiXP4VUZjrIkVt2XAvYgKh52oS9HmaltfPflinE/gFi2ME/nb8pKYuo5zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SG9Tmj7y; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=PD+jowcvsjZ6B5GRhqO3Dw/6GBn9fmN1ETjFZypITPuZWlGi2HdIr+BGPj+GQNSDN+TEZBZLnqIfOt1XYXUxPZVU+7tJjgAuRLbQI3xdXT18NCjUrKjzChUwH0ZyVL0QY18+Ixjqn5sspYHdDqx6YkonZ0UxjK/qbgE5ODz88mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FWEqqU8o; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43cfe99f2a7so7544845e9.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 05:04:05 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac79fa6e1c2so83398466b.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 05:07:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745409844; x=1746014644; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745410065; x=1746014865; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nO6Rg8RoPt3fGEMckf1bI8pF/9LXP6clHDAG+/ggTdA=;
-        b=SG9Tmj7yVHO80wQItgxm9Y5e+gR+cmIMI6DdQnA9l3Ukm+K2Z7PJcYy1hWUPNQ0h9B
-         HrypxPLziXhDMgfkBiBQTq5k5h0O6SjP1wW8qJ1xawkdQJoERI/mj0e6XPwPaBcL9aKD
-         rNa14hoUHZs7wu8dGfQFiseBp35SVlYTRupr0wHCoHFsMN4fce+C0HkCBefNdXucmq2Z
-         7Ak4wVd059DaVedVezhtJPRwhOVzWJQAbQP/jVjbNo/VcWPtZrXwe8NETK2uL2w3bf6M
-         Gt2BbzSzkl+aTTuWy1x1uyQODNHS//KxC1ZsWKiJ1ydUzbBLTXMJZsmMEips+tm51WxO
-         3NDA==
+        bh=+IyBR9G/7UgBoXHNqf3NAUb6y3RdyTJStukCSmDm3Lc=;
+        b=FWEqqU8oWH8hdqbKjey451Xx3YlGb111c5q/oMgDOhAGHhXfGXuwkjNeARV3IMNfzX
+         wyxRKHVWjnAJno4fPIqzGJGgPjw0WhyBfbwZ0c9mQtA59tB4ilCNYnZOjw7BeiMd4ioi
+         V8K9yINcTLbgx8X3DZOPoQtlid/kxWND+UNGb4u4GJuN1vYDqgiLYqioIatASm0U3kQE
+         XZVVI5a0iNsxTRgI3hj5mrhB/wA5PqGh7uEyHGuQJlxhWpWRUxoVkKdElRxkX1zg231Q
+         t/TFvqt7j4bBBAWxpirMHOD7whHPaGGLrw7Nnqj7zRn5jiYJKnZtu7+AXN1V2WgsAHk4
+         3EJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745409844; x=1746014644;
+        d=1e100.net; s=20230601; t=1745410065; x=1746014865;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nO6Rg8RoPt3fGEMckf1bI8pF/9LXP6clHDAG+/ggTdA=;
-        b=MqGu5lTQ9TbqH8voGf45J/ZZUsuaGL+q+ixkwUWlEWvAkbUO0gcUZuGM5SikyxvsM1
-         fMrIQz5BkQ8Z96o+dI2oqUIuXSLHLNttL6QlsLtQHsL2R4nbWEf6QkfgbSVABn2EJmHW
-         d7qcnp8H2JqaPr+zhMdqTDT9EHaYD4woUNgDsxEgGB4ZZvkAa1CzBoE66ya8I7NEKP7J
-         0rj32i6b41glVZJH31KjDuR7vTGwnzrTSQsZWB+F6R+orVUbGu5w9FnPxdFvAVLRO+lw
-         tXXn8/aQ/Lf8ur8D2W8FVh3LZNERMFnYa8JhpQpbUIg7508zSdDWJjldPlqvlCoEMg/Q
-         Z6pA==
-X-Gm-Message-State: AOJu0YyFsxtWtxMlJTkxrR6JUlNHWvGEsNJ+pEQxwh0BI6vfhGq9OuDl
-	bzGHbZzdhyYSOdwbWcto0hBlpr9Ew81iFoS2QWrw1LxmxEjGd5Ae/sbtWT1CmBQ=
-X-Gm-Gg: ASbGnctOBMR+BOF/LoHgIPeoHCq9hfK7Z6w8GBCDQFfZ7q5qIw/ofHE2KVjkRb75MyX
-	tRIZ8GDl/4zGnx93rZM08Av+NekEB2niqf7UamJ3vqx0gfmFS9fh+mMktshO2Z8n42NUO4Q5ARz
-	bDfqYmkC5I6/Q9xH71XETYADn4k9ipgqTi08TwcCc8f7OWn56e0FeCxsaKCzfVfi+dSHi2rUOlS
-	as9ziDQSzDjmuzYbr179hx6xwmOpwOr47ZrR7sPkpnUQxGK6oNAZyyLc+d1y+wK4YMKd8pebp7u
-	mYbf4dliLAAYJ6AshgQJj8EEa20Rf/xw/E0hQARMyaVkI/NvMLBkunA4akE=
-X-Google-Smtp-Source: AGHT+IHBmQn5KrPTQJfeGklq9iOK8t35CZPk8g0XpKG9bcIRUP76LQys6TvjZPdcNOM3Gg/IO+LciQ==
-X-Received: by 2002:a05:600c:1c12:b0:439:9a1f:d73d with SMTP id 5b1f17b1804b1-4406aca6d18mr64398105e9.8.1745409844268;
-        Wed, 23 Apr 2025 05:04:04 -0700 (PDT)
+        bh=+IyBR9G/7UgBoXHNqf3NAUb6y3RdyTJStukCSmDm3Lc=;
+        b=Q6UGhBDrflkx5GQQl2cPnu8wqNAyJXlgBxfFRAVbdn4B2mD0hqdcIErlRcRv/bI9gE
+         csexZ2OB7Ihuod0m6smU7PtcguxMe8Xk9DDgntx/8ddutNPJA8YxAs4/Ai3vGFQqyzLI
+         bG8iF1hHuKzNFYRJAPVPMC68aKNRx8rSK1pVUZHrnot/mhgQP6EAtrLQiZL0CZzicpkw
+         AX177jW6W1LEE6jSMS673N+6nuyOHi6p5MN/+DNTNiN7NGaw5PeSKFTOT9+UIRavx06e
+         cRNMkAasR04TV3yE2/HGVrbmL9MwMCnxtal3Tw8fVLBE8jtg3mTT6F2dKvDpCwDQp91M
+         xdXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUekRWKfOt1tkgu5Cwo44fE4Cj1sLKH58MyVui7a8cg+wrVXat9lwrOAzk8zx9IQfCvujV1xfOk6IC3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzW7xAqExUzrYHDg5DQadnQZ03sgvcrf9EwfPKppqR5gCBGyvEw
+	entGd/eToW8vP6RMaESJd5tx2QJ1r5wL2HNgU4X1nWu/eYVBjD2eSvBG4TBb86g=
+X-Gm-Gg: ASbGncs6RVBisYjLBgcMzoxnXUR1BAt/uHlQ3HRvvTlXp0LKr4/kuu1f+qj5+o/6ear
+	YGLgf1hJFf90eErBHFV63aXZCnfZ/yRiwCcaZgn9MYGBNNogj1Nvs5fOaQw4Uv6p2QPicEGexMa
+	02MIYDvEpPPSemFGqp2sQgs8q/taOBMxeht9pfmwNkqm6xedMTjmzVQjH0293sr3GmNTY5HpWBL
+	sd75yWtziZ3dnH594cBFquyJ11EJoUUXS0m3Y0vaYBcDm8qanwR2W3Uzjl8Ie+/hUtguhgUL6wd
+	NrvyE8nbOaf/NzwNQTaFHz1lpLG0b3Bh0Cu2vPER2/EURl3AZr31sVilkuY=
+X-Google-Smtp-Source: AGHT+IFnqK44hXq299eEIuyqU9Pqmw0+4vYvktV5v5DBUMzd5dKzVLQTM2DFnNi8cE7Dh0+KZlO5/w==
+X-Received: by 2002:a17:907:d90:b0:ac7:50d6:e872 with SMTP id a640c23a62f3a-ace3de3145dmr84362866b.1.1745410065360;
+        Wed, 23 Apr 2025 05:07:45 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa433141sm18723340f8f.35.2025.04.23.05.03.58
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f6255955bfsm7433640a12.44.2025.04.23.05.07.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Apr 2025 05:04:03 -0700 (PDT)
-Message-ID: <6166e76f-286a-4c59-be78-e188e5847ea9@linaro.org>
-Date: Wed, 23 Apr 2025 14:03:57 +0200
+        Wed, 23 Apr 2025 05:07:44 -0700 (PDT)
+Message-ID: <ac0ae8cd-451b-49dd-840e-5fc0cce1605d@linaro.org>
+Date: Wed, 23 Apr 2025 14:07:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,62 +82,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/33] Add support for Qualcomm Snapdragon SM7150 SoC and
- Google Pixel 4a
-To: Danila Tikhonov <danila@jiaxyga.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
+To: Andrew Davis <afd@ti.com>, Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rajendra Nayak <quic_rjendra@quicinc.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Thomas Gleixner <tglx@linutronix.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Souradeep Chowdhury <quic_schowdhu@quicinc.com>, Lee Jones <lee@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Alex Elder <elder@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- Andy Gross <agross@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>, Georgi Djakov <djakov@kernel.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
- Sibi Sankar <quic_sibis@quicinc.com>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- David Wronek <david@mainlining.org>, Jens Reidel <adrian@mainlining.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-mmc@vger.kernel.org,
- netdev@vger.kernel.org, linux-scsi@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- linux-remoteproc@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-hardening@vger.kernel.org, linux@mainlining.org,
- ~postmarketos/upstreaming@lists.sr.ht, Connor Mitchell <c.dog29@hotmail.com>
-References: <20250422-sm7150-upstream-v1-0-bf9a9081631d@jiaxyga.com>
+ <conor+dt@kernel.org>, Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
+ <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
+ <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+ <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
+ <mocfnpebc67xegcis6tx3ekhsjcsqnvhwtipufycrtq2be4nbh@pmxhir5gmkos>
+ <639b4e3a-3f68-4fba-aa33-c46dcb6fc88f@linaro.org>
+ <d6252b73-0bcc-4724-8144-d6a98c8980f8@ti.com>
+ <74ee6d9b-fd78-4d8a-a94f-b2c4dc794b60@linaro.org>
+ <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
+ <f9a2247e-e0eb-4e22-8626-80e87afa9386@linaro.org>
+ <qjwlppsq4eorzepvjsgjjyyaddouo5w2rjguu5c2mqesd6luwp@f426xeghy2ht>
+ <2130b439-74d0-475d-8429-1a1b4d9738aa@linaro.org>
+ <b7f6570f-3b80-4fc1-8201-d44f5692867f@ti.com>
+ <07bf9f93-deb8-48a1-aae9-a8a053680cc9@linaro.org>
+ <6241ff00-27e6-45ab-808e-f04e39854753@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -183,19 +151,278 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250422-sm7150-upstream-v1-0-bf9a9081631d@jiaxyga.com>
+In-Reply-To: <6241ff00-27e6-45ab-808e-f04e39854753@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/04/2025 22:17, Danila Tikhonov wrote:
-> This patch series adds support for the Qualcomm Snapdragon 730/730G/732G
-> (SM7150) platform along with the Google Pixel 4a (sunfish) device. Since
-> the most critical drivers were submitted and applied in separate patch
-> series, this series is largely composed of DT bindings and device‑trees.
+On 21/04/2025 19:03, Andrew Davis wrote:
+> On 4/15/25 12:17 AM, Krzysztof Kozlowski wrote:
+>> On 09/04/2025 19:39, Andrew Davis wrote:
+>>> On 2/12/25 1:35 PM, Krzysztof Kozlowski wrote:
+>>>> On 10/02/2025 11:35, Markus Schneider-Pargmann wrote:
+>>>>> On Sun, Feb 09, 2025 at 01:21:27PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On 07/02/2025 15:40, Markus Schneider-Pargmann wrote:
+>>>>>>> Hi Krzysztof,
+>>>>>>>
+>>>>>>> On Mon, Jan 27, 2025 at 01:09:49PM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>> On 24/01/2025 23:35, Andrew Davis wrote:
+>>>>>>>>> On 1/24/25 10:48 AM, Krzysztof Kozlowski wrote:
+>>>>>>>>>> On 24/01/2025 17:05, Markus Schneider-Pargmann wrote:
+>>>>>>>>>>> Hi Krzysztof,
+>>>>>>>>>>>
+>>>>>>>>>>> On Fri, Jan 24, 2025 at 09:22:54AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>> On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>>> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
+>>>>>>>>>>>>>> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
+>>>>>>>>>>>>>> register in the wkup-conf register space of am62a and am62p. This
+>>>>>>>>>>>>>> register controls DDR power management.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>     Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>>>>>>>>>>>>>>     1 file changed, 2 insertions(+)
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Un-acked, I missed the point that you really speak in commit msg about
+>>>>>>>>>>>> register and you really treat one register is a device. I assumed you
+>>>>>>>>>>>> only need that register from this device, but no. That obviously is not
+>>>>>>>>>>>> what this device is. Device is not a single register among 10000 others.
+>>>>>>>>>>>> IOW, You do not have 10000 devices there.
+>>>>>>>>>>>
+>>>>>>>>>>> Do I understand you correctly that the whole register range of the
+>>>>>>>>>>> wkup_conf node as seen in arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+>>>>>>>>>>> should be considered a single syscon device?
+>>>>>>>>>>
+>>>>>>>>>> I don't have the datasheets (and not my task to actually check this),
+>>>>>>>>>> but you should probably follow datasheet. I assume it describes what is
+>>>>>>>>>> the device, more or less.
+>>>>>>>>>>
+>>>>>>>>>> I assume entire wkup_conf is considered a device.
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> Unfortunately wkup_conf is modeled as a simple-bus with currently 5
+>>>>>>>>>>> subnodes defined of which 4 of them consist of a single register. Most
+>>>>>>>>>>> of them are syscon as well. So I think I can't change the simple-bus
+>>>>>>>>>>> back to syscon.
+>>>>>>>>>>
+>>>>>>>>>> Huh... Maybe TI folks will help us understand why such design was chosen.
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Many of the devices inside the wkup_conf are already modeled as such.
+>>>>>>>>> Clocks and muxes for instance already have drivers and bindings, this
+>>>>>>>>> is nothing new to TI.
+>>>>>>>>>
+>>>>>>>>> If we just use a blank "syscon" over the entire region we would end up
+>>>>>>>>> with drivers that use phandles to the top level wkup_conf node and
+>>>>>>>>> poke directly the registers they need from that space.
+>>>>>>>>>
+>>>>>>>>> Would you rather have
+>>>>>>>>>
+>>>>>>>>> some-device {
+>>>>>>>>> 	ti,epwm_tbclk = <&wkup_conf>;
+>>>>>>>>> }
+>>>>>>>>>
+>>>>>>>>> or
+>>>>>>>>>
+>>>>>>>>> some-device {
+>>>>>>>>> 	clocks = <&epwm_tbclk 0>;
+>>>>>>>>> }
+>>>>>>>>
+>>>>>>>> How is this comparable? These are clocks. You would have clocks property
+>>>>>>>> in both cases.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> with that epwm_tbclk being a proper clock node inside wkup_conf?
+>>>>>>>>> I would much prefer the second, even though the clock node
+>>>>>>>>> only uses a single register. And in the first case, we would need
+>>>>>>>>> to have the offset into the wkup_conf space hard-coded in the
+>>>>>>>>> driver for each new SoC. Eventually all that data would need to be
+>>>>>>>>> put in tables and we end up back to machine board files..
+>>>>>>>>>
+>>>>>>>>> I'm not saying every magic number in all drivers should
+>>>>>>>>> be offloaded into DT, but there is a line somewhere between
+>>>>>>>>> that and having the DT simply contain the SoC's name compatible
+>>>>>>>>
+>>>>>>>> That's not the question here.
+>>>>>>>>
+>>>>>>>>> and all other data going into the kernel. That line might be a
+>>>>>>>>> personal preference, so my question back is: what is wrong
+>>>>>>>>> if we do want "1000 new syscons per each register" for our
+>>>>>>>>> SoCs DT?
+>>>>>>>>
+>>>>>>>> Because it is false representation of hardware. You do not have 1000
+>>>>>>>> devices. You have only one device.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> (and the number is not 1000, scanning the kernel I can see
+>>>>>>>>> the largest wkup_conf region node we have today has a grand
+>>>>>>>>> total number sub-nodes of 6)
+>>>>>>>>
+>>>>>>>> But what is being added here is device per each register, not per feature.
+>>>>>>>
+>>>>>>> The register layout is like this:
+>>>>>>
+>>>>>> The register layout of what? How is the device called? Is datasheet
+>>>>>> available anywhere?
+>>>>>
+>>>>> Yes, it is available here: https://www.ti.com/de/lit/pdf/spruj16
+>>>>>
+>>>>> 14 Registers
+>>>>> 14.2 Device Configuration Registers
+>>>>> 14.2.1 CTRL_MMR Registers
+>>>>> 14.2.1.1 General Purpose Control Registers
+>>>>> 14.2.1.1.3 WKUP_CTRL_MMR0 Registers
+>>>>>
+>>>>> Each domain has their own set of general purpose control registers,
+>>>>> CTRL_MMR for the main domain, MCU_CTRL_MMR0 for the MCU domain,
+>>>>> WKUP_CTRL_MMR0 for the wakeup domain.
+>>>>
+>>>>
+>>>> So according to the doc you have only one device - CTRL_MMR. All other
+>>>> splits are superficial.
+>>>>
+>>>
+>>> It is not one device, it is a collection of devices under one labeled
+>>> bus range. Some items here are full normal devices, already modeled by DT
+>>> as stand-alone devices, for instance our chipid, efuse, clock controller,
+>>> etc. even our pinmux is part of this bus range.
+>>>
+>>> They are grouped as we have one set for each domain (MAIN, WKUP, MCU).
+>>>
+>>> All other splits are not superficial, if we go down that path then
+>>> the whole SoC is one "device". We could simply have the whole address
+>>> bus be one node and have Linux hard-code offsets in the drivers, we
+>>> end up back at board files..
+>>>
+>>> DT should break things into logically distinct and reusable units
+>>> so we don't have to store that in the kernel. That is what we do
+>>> here, even if some units end up being very small.
+>>>
+>>>>>
+>>>>> So I understand this to just be a collection of general purpose control
+>>>>> registers. If you go by feature, then many of the registers can be
+>>>>> grouped into units with a specific purpose or controlling a specific
+>>>>> device which are also grouped by the offsets they represent. I assume
+>>>>
+>>>> It could work if you have distinctive groups, but here:
+>>>> 1. You do not have this grouped, you just judge by yourself "oh, that's
+>>>> group A, that's B".
+>>>> 2. Group per one register is not that.
+>>>>
+>>>> For me this is one big block and even CLKSEL is spread all over so
+>>>> cannot be really made distinctive.
+>>>>
+>>>>> this is why the other nodes in this wkup_conf node were created. Also in
+>>>>
+>>>> The other nodes represent some sort of fake or totally arbitrary
+>>>> grouping. That's abuse of the syscon.
+>>>>
+>>>
+>>> They are grouped by function.
+>>
+>> Not really - other DTS sent just few days ago created each entry per one
+>> register.
+>>
+>>>
+>>>>> my opinion this makes the relation between the original device and this
+>>>>> general purpose control registers better understandable.
+>>>>>
+>>>>> For this patch the ddr-pmctrl regsiter is just a single register, but it
+>>>>> has the purpose of controlling the DDR device power management.
+>>>>
+>>>> Sure, but that is NOT syscon. One register of entire block is not system
+>>>> controller. The entire block is system controller.
+>>>>
+>>>
+>>> The whole block cannot be a system controller as there are regular
+>>> devices inside this range. If we made the whole region a syscon and
+>>
+>> That's still system controller. It's nothing special here.
+>>
+>>> also left the device nodes inside, then we would have overlapping
+>>> register owners, one register would be controlled by two or more
+>>
+>> No, owner is the parent device always.
+> 
+> Which parent device? That is my point, if the top level node for the
+> whole CTRL_MMR region is made into one big syscon, then a big regmap
+> is made that covers the whole region. All the child devices also make
 
-Targeting 20 or 30 different maintainers in one patchset is not the way
-to go. The minimum is to split/group by few patches (e.g. you have few
-remoteprocs, so separate).
+Children take the parent regmap or you do not have even the children.
+Actually the second point is what we talk here: you created fake devices
+per each register and these are supposed to be squashed into the parent.
+I am repeating this 3rd time or more.
+
+
+> regmaps covering their device range. Now these registers under the child
+> device belong to two different regmaps. No synchronization is done as
+> these are not the same regmap, regmap only handles this for multiple
+> access to registers within the same regmap.
+> 
+> Let's take a real example, here is part of AM62A CTRL_MMR node.
+> 
+> main_conf: bus@100000 {
+> 	compatible = "simple-bus";
+> 	#address-cells = <1>;
+> 	#size-cells = <1>;
+> 	ranges = <0x00 0x00 0x00100000 0x20000>;
+> 
+> 	phy_gmii_sel: phy@4044 {
+> 		compatible = "ti,am654-phy-gmii-sel";
+> 		reg = <0x4044 0x8>;
+> 		#phy-cells = <1>;
+> 	};
+> 
+> 	...
+> };
+> 
+> If we turn "main_conf" into a syscon, then who "owns" 0x4044?
+> Both the top level syscon and phy_gmii_sel nodes would build
+> a different regmap instance that contains those same registers.
+
+Two registers is hardly a separate device.
+
+> 
+> Bit of back story, this is actually how I got involved in sorting
+> out this "syscon" stuff for our devices. I built a checker into
+> the regmap framework core that would detect when multiple regmaps
+> are created that contain overlapping registers.
+> 
+> I found several bugs this way and want to push the check upstream at
+> some point. But first I wanted to fix the biggest cause of warnings,
+> which was from syscon being used as described above.
+> 
+>>
+>>> drivers. How would we synchronize mappings, access, updates, etc.
+>>> Any one register should belong to exactly one device.
+>>
+>> regmap synchronizes everything. There is no problem here, at all.
+>>
+>>>
+>>> Is your issue the name "system controller", as yes I agree some of
+>>> these regions are not "system controllers".
+>>>
+>>> Would it work better if we didn't call this "ti,am62-ddr-pmctrl"
+>>> node a "syscon"? That can be done, we just would add a normal
+>>> binding doc for it, instead of trying to reuse the generic
+>>> bindings/mfd/syscon.yaml file.
+>>
+>> You still do not have multiple subnodes, one per each register or even
+>> few registers.
+> 
+> If this ddr-pmctrl device is not modeled as a syscon device, then who
+> says it has to be more than a few (3?) registers in size? This seems like
+> a rather arbitrary rule, and completely unfeasible for several whole
+> classes of devices that only have/need a few registers to work them.
+
+What does the syscon description say? Collection of registers, a set of
+miscellaneous registers. Registers in plural. Do not use syscon for
+other purposes.
+
+It is not arbitrary. It is written in binding description.
 
 Best regards,
 Krzysztof
