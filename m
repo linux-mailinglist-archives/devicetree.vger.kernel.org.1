@@ -1,191 +1,238 @@
-Return-Path: <devicetree+bounces-170040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3E5A997C9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:23:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027E2A997FF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D8C03B60ED
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:23:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E48CC1B60842
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1258828DF1F;
-	Wed, 23 Apr 2025 18:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EA528BABA;
+	Wed, 23 Apr 2025 18:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Zin839r2"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fkeFdL9+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F45285401;
-	Wed, 23 Apr 2025 18:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61082283C82
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 18:36:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745432618; cv=none; b=sIBwM7+7h1yJncIXv9lqckoPvo9Wq+Q1LWCaMSpMJhithyDtn6y/W1Lmmr2RmRTs00QLK3PicI6r4/ZsEVSw28ky2jUvNECUs8VNEMGlx1DdZ2zbiYVili6/4aAxnSOvrHZ3WPYeaO7wOyHM4Mp66ts+Ezj21EhdLgD/fr0dIZw=
+	t=1745433370; cv=none; b=FXNOP+hLll61SEgS6s9KlF2CrtcvIpFbFKcqyzVDlQa6Vx4zAW9Q01vU/PXmzs4/Dz9JbZeTCCOyb2k+YW4lQ4gA+OM8bmNzmpg0+rzgwyz/VYWFMoFuLLxrWY8xNZ6OBl1f9SuvuWYPA1o3bo59bMAW9hzRpKba8+vTOkDr8yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745432618; c=relaxed/simple;
-	bh=0LUBeef6xrlXs1nsTaXFb3OvfS2lrB8cuZ2f25cjJqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HVlcCUs3tGjOMBlH7q5HnZPXVk3IadKyiRnrzg8S08F9igo5dZHmEvjnf8V4giaiov0yeemYCx7/KLE2W3oHIZ3/G27+dBWwNAWJKpDptWVPil7Z27kBurX/pl427xwbDe5VdXBHbtNyr++MRBR7uau158Eth3c+4lGzYNg3S2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Zin839r2; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 34E811AE2;
-	Wed, 23 Apr 2025 20:23:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745432613;
-	bh=0LUBeef6xrlXs1nsTaXFb3OvfS2lrB8cuZ2f25cjJqU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zin839r2ha3Nqip/xCVgPMtbd0uyKQCtF4Xr8JHx8sB4sZ+7qPcSwG75qUL0dIvsc
-	 krJMCkJKf24JvSHzUewTvGiyhycNJzlFFpLxmz2GDPnqF9O79wC/wEhN2R5sj+2c0v
-	 nUBMgqRb7refHC7ZiUaaH4ALhBdRFWBb26iPEsfE=
-Date: Wed, 23 Apr 2025 21:23:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Mathis Foerst <mathis.foerst@mt.com>
-Cc: linux-kernel@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	manuel.traut@mt.com, mathis.foerst@zuehlke.com
-Subject: Re: [PATCH v4 6/6] media: mt9m114: Set pad-slew-rate
-Message-ID: <20250423182332.GE2675@pendragon.ideasonboard.com>
-References: <20250307093140.370061-1-mathis.foerst@mt.com>
- <20250307093140.370061-7-mathis.foerst@mt.com>
+	s=arc-20240116; t=1745433370; c=relaxed/simple;
+	bh=clejbQ4VzB8jGnNyEiAAp7gBsdDMipc8xfdNdEV/f6o=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ApCY8eLr3lafptNplMMLXDRzDWdUEckJwlyV4dDKv8cs6+0n0QinpS8mmxcEY0ej7h8NmJ2Rhm0cNbmkg3FsqpZtnc9KWOVANrsXPgConrmcIoNRed+dZqHVXix16LK0iOVreEwSZQX/ezV/4ipOSzAXRRlrb4gV1a9pkb8OdnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fkeFdL9+; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1745433367;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DZNe45ridILK2CdOVqF5AQIHmwtE4BwCZt3v56x2yIY=;
+	b=fkeFdL9+8BwbTdHQBFysdJUPvniobzSxoGcx+958FUSDazIrM1cZOf0FCZTfmnTHLpaGZx
+	JF5jYQthuWYSq2+inBroYZVQm8WUM0rr6fJooKvBXzKAUc+USBvKZdR/zDBzrzoYEUdCnM
+	r5lIDF4tQQv5jLCWgMb86vVOgbvsxIE=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-593-RyPfd3jhNr2_9ZoZ6NTNbA-1; Wed, 23 Apr 2025 14:36:04 -0400
+X-MC-Unique: RyPfd3jhNr2_9ZoZ6NTNbA-1
+X-Mimecast-MFC-AGG-ID: RyPfd3jhNr2_9ZoZ6NTNbA_1745433364
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-43d209dc2d3so522795e9.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:36:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745433363; x=1746038163;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DZNe45ridILK2CdOVqF5AQIHmwtE4BwCZt3v56x2yIY=;
+        b=ZXqA/OJ4b1oPwWCWM4LHBLDiqFH6bhBkQdkDI4XHvBh+J4aaINHNvS40Zp4NhRK/1k
+         t1511yVMmkWuepxhk62E/hDvpInGHcbQlvSnpvSdtU186OB1sx3phySdA7+3rlg8LSnw
+         bdUul9An40MvyLDAvPwg8wkh+rhMQYjMrP4/dUUeqZimUdWwnHfLKU51JCXZQ5JFJwwu
+         xZiP2LKk8tCuvKI/Pjfa7dELpYAHwlSzc225Dl0yPKjqdmw5KjaWwtoTvzt3Mdh4QhO4
+         hGcHU6+6nN5ZELEHFyeTdG/6pYFG/QFicv63vRTxVbjm1nX2Rl1OyDxVTL0oNErKrgpV
+         peZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUUHSOGQ5+xPNydiQjFU/zJvITJv/BjYFMp5ipq98p3H+qbU1N1rXQArfGkbNwwHO+oi3MApm4pMbop@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxuyu+sPsy48hFx6Ysrz+NGMhzIkKDVBhW2zKsfrZ+G5EjZ1/2h
+	x6cHMJMtVkx9Dj9pzL/jb0zhPAs2LwqynmxgxpJhRQJr1b2fpmXVNPtTgtIemb4401ZqSR6N8GC
+	lWCwBk7arhwYsQUPKfBAkkXvyiBHRLAG73AYaDqszs1q0uS0NnA1YJ96yBvA=
+X-Gm-Gg: ASbGnct9zZAIYSWVTRmRzs63W5ei59BLrdllZeTP097utMwslQChBO+f3Rkk17yomAd
+	1/UTUgdhXc6tfLdcZxckyNgikglcBcyHYiqB6ySaZgEfnjhlicZFzL/Aax4tRXiIeLXUe4q9yon
+	MYsnh/yf7CsqZcipQHV2tpkDTbmQz9JRJyzbyahQJDwf5CkN6zjWNmrIySOvGsBtEOST5VMzmMx
+	+OwgD4hnumqrYlIMY0dzCK6VI/No/VFlM50pUWsbA9bjU6WXZ/6I2DPiJmLNvV876LL6p+otvQQ
+	O6hgcLS/MZOqNoJscoKSusfHoPfjkuGZNfj/9xfzrNgxZRw/mDRmaKvUFRf1yHAjR0M5Pw==
+X-Received: by 2002:a5d:648d:0:b0:39c:142c:e889 with SMTP id ffacd0b85a97d-3a06c4154f3mr579125f8f.27.1745433363539;
+        Wed, 23 Apr 2025 11:36:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEscSOJRnvzbjZw78Ojyv2Eu8GFNx3irhr5ooUj/zzBGPxiIgsSfqlwkRsklP5kZCHqZ8vATw==
+X-Received: by 2002:a5d:648d:0:b0:39c:142c:e889 with SMTP id ffacd0b85a97d-3a06c4154f3mr579105f8f.27.1745433363150;
+        Wed, 23 Apr 2025 11:36:03 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa5a2300sm19349612f8f.101.2025.04.23.11.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 11:36:02 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Marcus Folkesson
+ <marcus.folkesson@gmail.com>, Thomas Zimmermann <tzimmrmann@suse.de>
+Subject: Re: [PATCH v5 2/3] drm/st7571-i2c: add support for Sitronix ST7571
+ LCD controller
+In-Reply-To: <20250423-st7571-v5-2-a283b752ad39@gmail.com>
+References: <20250423-st7571-v5-0-a283b752ad39@gmail.com>
+ <20250423-st7571-v5-2-a283b752ad39@gmail.com>
+Date: Wed, 23 Apr 2025 20:36:01 +0200
+Message-ID: <87v7quafou.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250307093140.370061-7-mathis.foerst@mt.com>
+Content-Type: text/plain
 
-Hi Mathis,
+Marcus Folkesson <marcus.folkesson@gmail.com> writes:
 
-Thank you for the patch.
+Hello Marcus,
 
-On Fri, Mar 07, 2025 at 10:31:40AM +0100, Mathis Foerst wrote:
-> The MT9M114 supports the different slew rates (0 to 7) on the output pads.
-> At the moment, this is hardcoded to 7 (the fastest rate).
-> The user might want to change this values due to EMC requirements.
-> 
-> Read the 'slew-rate' from the DT and configure the pad slew rates of
-> the output pads accordingly in mt9m114_initialize().
-> Remove the hardcoded slew rate setting from the mt9m114_init table.
-> 
-> Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
+I tried to apply your patches to drm-misc and found some issues, so I will
+have to ask you to do a final re-spin. Sorry about that...
+
+> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
+> The controller has a SPI, I2C and 8bit parallel interface, this
+> driver is for the I2C interface only.
+>
+> Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 > ---
->  drivers/media/i2c/mt9m114.c | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-> index 79c97ab19be9..fce24c587782 100644
-> --- a/drivers/media/i2c/mt9m114.c
-> +++ b/drivers/media/i2c/mt9m114.c
-> @@ -42,6 +42,9 @@
->  #define MT9M114_RESET_AND_MISC_CONTROL			CCI_REG16(0x001a)
->  #define MT9M114_RESET_SOC					BIT(0)
->  #define MT9M114_PAD_SLEW				CCI_REG16(0x001e)
-> +#define MT9M114_PAD_SLEW_MIN					0x00
-> +#define MT9M114_PAD_SLEW_MAX					0x07
-> +#define MT9M114_PAD_SLEW_DEFAULT				0x07
-
-You can use decimal values here.
-
->  #define MT9M114_PAD_CONTROL				CCI_REG16(0x0032)
+>  drivers/gpu/drm/tiny/Kconfig      |   11 +
+>  drivers/gpu/drm/tiny/Makefile     |    1 +
+>  drivers/gpu/drm/tiny/st7571-i2c.c | 1007 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1019 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+> index 94cbdb1337c07f1628a33599a7130369b9d59d98..e4a55482e3bcd3f6851df1d322a14cbe1f96adfb 100644
+> --- a/drivers/gpu/drm/tiny/Kconfig
+> +++ b/drivers/gpu/drm/tiny/Kconfig
+> @@ -232,6 +232,17 @@ config TINYDRM_ST7586
 >  
->  /* XDMA registers */
-> @@ -388,6 +391,7 @@ struct mt9m114 {
+>  	  If M is selected the module will be called st7586.
 >  
->  	unsigned int pixrate;
->  	bool streaming;
-> +	u32 pad_slew_rate;
->  
->  	/* Pixel Array */
->  	struct {
-> @@ -645,9 +649,6 @@ static const struct cci_reg_sequence mt9m114_init[] = {
->  	{ MT9M114_CAM_SENSOR_CFG_FINE_INTEG_TIME_MAX,	1459 },
->  	{ MT9M114_CAM_SENSOR_CFG_FINE_CORRECTION,	96 },
->  	{ MT9M114_CAM_SENSOR_CFG_REG_0_DATA,		32 },
-> -
-> -	/* Miscellaneous settings */
-> -	{ MT9M114_PAD_SLEW,				0x0777 },
->  };
->  
->  /* -----------------------------------------------------------------------------
-> @@ -778,6 +779,13 @@ static int mt9m114_initialize(struct mt9m114 *sensor)
->  	if (ret < 0)
->  		return ret;
->  
-> +	value = (sensor->pad_slew_rate & 0xF)
-> +	      | (sensor->pad_slew_rate & 0xF) << 4
-> +	      |	(sensor->pad_slew_rate & 0xF) << 8;
-
-No need for ' & 0xF' as you've ensured the slew rate value is in the
-valid [0, 7] range.
-
-> +	cci_write(sensor->regmap, MT9M114_PAD_SLEW, value, &ret);
-> +	if (ret < 0)
-> +		return ret;
+> +config DRM_ST7571_I2C
+> +	tristate "DRM support for Sitronix ST7571 display panels (I2C)"
+> +	depends on DRM && I2C && MMU
+> +	select DRM_GEM_SHMEM_HELPER
+> +	select DRM_KMS_HELPER
+> +	select REGMAP_I2C
+> +	help
+> +	  DRM driver for Sitronix ST7571 panels controlled over I2C.
 > +
->  	ret = mt9m114_set_state(sensor, MT9M114_SYS_STATE_ENTER_CONFIG_CHANGE);
->  	if (ret < 0)
->  		return ret;
-> @@ -2357,6 +2365,8 @@ static int mt9m114_parse_dt(struct mt9m114 *sensor)
->  {
->  	struct fwnode_handle *fwnode = dev_fwnode(&sensor->client->dev);
->  	struct fwnode_handle *ep;
-> +	struct device_node *dev_node = sensor->client->dev.of_node;
-> +	u32 slew_rate;
->  	int ret;
->  
->  	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
-> @@ -2385,6 +2395,11 @@ static int mt9m114_parse_dt(struct mt9m114 *sensor)
->  		goto error;
->  	}
->  
-> +	ret = of_property_read_u32(dev_node, "slew-rate", &slew_rate);
-
-Direct usage of OF functions is discouraged. Use
-device_property_read_u32() instead, which abstracts the firmware backend
-(OF, ACPI, ...). Don't forget to include linux/property.h.
-
-> +	if (ret || slew_rate < MT9M114_PAD_SLEW_MIN || slew_rate > MT9M114_PAD_SLEW_MAX)
-> +		slew_rate = MT9M114_PAD_SLEW_DEFAULT;
-
-If the value is erroneous, it indicates the DT is incorrect. I'd log a
-message and return an error. As the DT property is optional, you can do
-something like
-
-	sensor->slew_rate = MT9M114_PAD_SLEW_DEFAULT;
-	device_property_read_u32(&sensor->client.dev, "slew-rate",
-				 &sensor->slew_rate);
-
-	if (sensor->slew_rate < MT9M114_PAD_SLEW_MIN ||
-	    sensor->slew_rate > MT9M114_PAD_SLEW_MAX) {
-	    	dev_err(&sensor->client.dev, "Invalid slew-rate %u\n",
-			sensor->slew_rate);
-		return -EINVAL;
-	}
-
-With this,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +	sensor->pad_slew_rate = slew_rate;
+> +	  if M is selected the module will be called st7571-i2c.
 > +
->  	return 0;
->  
->  error:
+
+checkpatch here complains about:
+
+WARNING: please write a help paragraph that fully describes the config symbol with at least 4 lines
+#144: FILE: drivers/gpu/drm/tiny/Kconfig:215:                                                            
++config DRM_ST7571_I2C
++       tristate "DRM support for Sitronix ST7571 display panels (I2C)"                                  
++       depends on DRM && I2C && MMU                                                                     
++       select DRM_GEM_SHMEM_HELPER                                                                      
++       select DRM_KMS_HELPER                                                                                                                                                                                      
++       select REGMAP_I2C
++       help                                                                                             
++         DRM driver for Sitronix ST7571 panels controlled over I2C.                                     
+
+but honestly I think is just silly and your explanation is good enough so
+you could ignore it if you want.
+
+>  config TINYDRM_ST7735R
+>  	tristate "DRM support for Sitronix ST7715R/ST7735R display panels"
+>  	depends on DRM && SPI
+> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+> index 60816d2eb4ff93b87228ed8eadd60a0a33a1144b..eab7568c92c880cfdf7c2f0b9c4bfac4685dbe95 100644
+> --- a/drivers/gpu/drm/tiny/Makefile
+> +++ b/drivers/gpu/drm/tiny/Makefile
+> @@ -7,6 +7,7 @@ obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
+>  obj-$(CONFIG_DRM_OFDRM)			+= ofdrm.o
+>  obj-$(CONFIG_DRM_PANEL_MIPI_DBI)	+= panel-mipi-dbi.o
+>  obj-$(CONFIG_DRM_SIMPLEDRM)		+= simpledrm.o
+> +obj-$(CONFIG_DRM_ST7571_I2C)		+= st7571-i2c.o
+
+this chunk doesn't apply on top of the drm-misc/drm-next branch [1] due
+the simpledrm driver being moved out of the tiny directory. Please do a
+rebase on top of that branch when posting a v6.
+
+[1]: https://gitlab.freedesktop.org/drm/misc/kernel/-/tree/drm-misc-next
+
+[...]
+
+> +++ b/drivers/gpu/drm/tiny/st7571-i2c.c
+
+Please run ./scripts/checkpatch.pl --strict -f -- drivers/gpu/drm/tiny/st7571-i2c.c
+since checkpatch complains about some issues. Other than some style nits, it has some
+good points IMO. In particular:
+
+[...]
+
+> +
+> +static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb, struct drm_rect *rect)
+> +{
+> +	struct st7571_device *st7571 = drm_to_st7571(fb->dev);
+> +	uint32_t format = fb->format->format;
+
+CHECK: Prefer kernel type 'u32' over 'uint32_t'                                                          
+#523: FILE: drivers/gpu/drm/tiny/st7571-i2c.c:348:
++       uint32_t format = fb->format->format;
+
+[...]
+
+> +
+> +static const uint64_t st7571_primary_plane_fmtmods[] = {
+> +	DRM_FORMAT_MOD_LINEAR,
+> +	DRM_FORMAT_MOD_INVALID
+> +};
+
+CHECK: Prefer kernel type 'u64' over 'uint64_t'                                                          
+#611: FILE: drivers/gpu/drm/tiny/st7571-i2c.c:436:                                                       
++static const uint64_t st7571_primary_plane_fmtmods[] = {
+
+[...]
+
+> +static void st7571_reset(struct st7571_device *st7571)
+> +{
+> +	gpiod_set_value_cansleep(st7571->reset, 1);
+> +	udelay(20);
+
+CHECK: usleep_range is preferred over udelay; see function description of usleep_range() and udelay().
+#993: FILE: drivers/gpu/drm/tiny/st7571-i2c.c:818:                                                       
++       udelay(20);
+
+Specially since this is not in atomic context AFAIK. The Delay and sleep
+mechanisms [2] doc has a good explanation about the different functions
+provided by the Linux kernel for this.
+
+Feel free to keep my R-B tag if you decide that some of the checkpatch
+suggestions are applicable. The most important bit for me is the rebase,
+to allow your patch to be cleanly applied on the drm-misc-next branch.
 
 -- 
-Regards,
+Best regards,
 
-Laurent Pinchart
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
 
