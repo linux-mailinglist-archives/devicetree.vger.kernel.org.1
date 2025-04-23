@@ -1,88 +1,130 @@
-Return-Path: <devicetree+bounces-170002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E107BA994A1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:18:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43662A99492
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:18:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A68CD4A702A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:04:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B50714A7A75
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8313F29DB93;
-	Wed, 23 Apr 2025 15:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E626E28E615;
+	Wed, 23 Apr 2025 16:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQll1ySt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UwRDh2N8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5458D28A40F;
-	Wed, 23 Apr 2025 15:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A9A27F4E5;
+	Wed, 23 Apr 2025 16:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745423719; cv=none; b=eI5V6q4vg04j5ejMDFY1RVpdK6ib25hq/kVoueb+y9ETMQwnowpnwYtvgjcpDuuwjZn/aq4mJfp7G4s/Wa/zgyVZXTfKJ7Ld6PVrbPw1WK9Oq2h1ZamnCx/ff5HA3zznj3uURKzCVVh1CPOfhtzLI3WWzaulbh0s38rlmj9QNCM=
+	t=1745424009; cv=none; b=D1i/jXd7gCky+OOuFenJO4+5ulZSMC1CbjSyeR5E/HbwUtRpEGIqngHm0tmhQ5R8fkRhf9+9NmyyupjZEhps2aJlI6MbLmpYYKbafgTLiS7/9Me586xLM1vJdj2WWeM7Co0Qfc7OeNKcxsJi8mz03/VjjgqzgUvD9q83hWw8E+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745423719; c=relaxed/simple;
-	bh=A/JbmNFtiekFMU17Tr7eADwSvSKXMsVykZ17Vq2oUnU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W8GRyCclOsAgGRyhH7/Nqe2N+Zhl7Wzl+40wL7HUXuyWGVGY1Q4jDNwVM1v/Eg50FHVBsc5gKeCiE0Dl2TT9OCYW1SssKxNfcD1k77YvbDjqaPD2lgjejomgMQIV9UUP4iTDM5I6uwYCIkhLyx9XtXQvSiuBWxvGJ/B32YnjW14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQll1ySt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D4F3C4CEE2;
-	Wed, 23 Apr 2025 15:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745423717;
-	bh=A/JbmNFtiekFMU17Tr7eADwSvSKXMsVykZ17Vq2oUnU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tQll1yStHKhTaR4zdvp1Egn9CiTLoyK0QwNCsg+lODX9vRHTlby75pgxQ7RYZnmBz
-	 Ia+4p8llQPRG8162UsYv1YuHogzK8mdLPltMsszNlDtNVfuYckw9sb6xsOsdGqtVaN
-	 maFCB9opni+OJctVEsMTktj9LS15CoS7TCmybasjoCo+F76Dgn183Pj4840gKRWCZ2
-	 0wAPQ1cLgfGSm9gvArRJbtmPqUqfRufgAG6tybfMFZT9I7xF84xH0nf+d8i+zkD468
-	 n8HrrtWN5HTpu/aazWKW1DM3VXABQiDizV/as14RZd4zO8eyB8WYxJNdIVeaBzh08a
-	 JLNQsQRJhni3w==
-Date: Wed, 23 Apr 2025 10:55:16 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: linux-mmc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mmc: vt8500-sdmmc: Convert to YAML
-Message-ID: <174542371550.599081.5723331661512709392.robh@kernel.org>
-References: <20250423-vt8500-sdmmc-binding-v2-1-ea4f17fd0638@gmail.com>
+	s=arc-20240116; t=1745424009; c=relaxed/simple;
+	bh=cWtUR1s+oX3cSyY2WWRDByfeehfCzTt4oDy/yxEDtOo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PBOUOAiNlPRdgcb/bHubnFnxJa+kT4Kjq70+mjyW0/8sPrapDZXquML/5TGmAnGptsLAZDSK9Km/mbR/Nial9EZsV+ugbQLWUaI55O9EhlJr9qWfu2du/L22VaX6Hgbhxtvve8TSurJkSJEgYvm1d9H22uUAJkAP0uaeXfPRpdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UwRDh2N8; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-223fb0f619dso77043805ad.1;
+        Wed, 23 Apr 2025 09:00:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745424008; x=1746028808; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5EvTbEH5kh8Gvs5zc8XdxJafo/2/TNuXbSiBQMUuVYw=;
+        b=UwRDh2N8ZVpN/ruJuQB1hYcrXJMsE7kdXI8KU6uwDxXCxOiWcOLFsbdL4HTsUeOZxx
+         U/qwdgIcQt6QKa/gf2qICP18Xxi/Yjg9EBVuNTKVdPLjoAGGKnBfbBQvt6xd+C3SSX6V
+         02Q6kWkGrrtfCa/LUOg75FFwaTckTI3klTEQEuPa6oCm/fsIVv11N9VxMN+0i03fFbXt
+         co+C/3szazfLLJZFDdnVFT6LNOqLhcJzI6bi4N44leSJwqt7+7I8uYhDvqpvk6hVMeTg
+         X7oMEwgfKFQOdjpcrH+9dGcecA/8jEc1WzYe6EnG+keDn7Lczhq8F0p0w5kIck1H5ISe
+         reww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745424008; x=1746028808;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5EvTbEH5kh8Gvs5zc8XdxJafo/2/TNuXbSiBQMUuVYw=;
+        b=MYbB9FFakliUvhiAWjg9qGHcnVBRUMYxrqQ4DG+3kAT4khzYr35YDcWf1aM2PZW0aP
+         pEdiIrznxDpowDsKfvgaEwv42iwZ6Tjn4zwH8qL6dtKn8Qg7AMmJPYtgPwU1nToM35ZO
+         bkDGxk5VtK7EyKp1rrQxl/1zyyIP93ygVxEkiPc5a5glmBYIX71PgsoMnePNtZHmCUFX
+         z38To2Q25aJy0BWl+s6zuYbyivl7pf/3ZV3Ail4Ec5zhukfcy7Vzz74zwUr3T1CVeXuH
+         4tKxvP9uHBOUaetFKSq2MQyknlkhaLwYRfwSbW8b6ctS1ARnR55E7n0cox26sc2jyeW4
+         27Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCUg8R4hfD4Ea5tG016QWj3IufqbEI42tFec1IefiHnO6S5Vr4gUINDOAq2KInmatR/JqeS9Rzz8gPPn@vger.kernel.org, AJvYcCUqlfBWjiNOeAogYlPIRLhSbGZmv7McOKTbAdh3hEVWFQTocItADZhq747UcdRJWOLF/48QU1WUz2hk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7qWmbieStSBizkrl2K73d9ZcWcpPPQICcx/8JroQIgLTz/JIn
+	haMy94tSoAj8KZMIy2PLFrLzJKH1fiWcgQLkuThf0wMVXh/3Y0sI
+X-Gm-Gg: ASbGncvIbORhNSXwuEHYCVyud56LLNIbjP2BhMbDg/5NeMVLjb2rTVCH4eIUNE6ahob
+	/3DEPKNDC2X+vw/YWilUZHmilJPfTBCbPLjqkcLlIMviVF5lZ0sQ7Y1upvr6QE3FUsEzhEoeJnd
+	z6QHiGiE7XfsWnIjx65aGPdfYAEZy+Pz90at/Qj/NHJ13bPaQCQY7p2m8Jyg/w7jLHXuwIS8g3x
+	HlbYP0ci4pI80aNxQzlroj2w3569Wbj71lT2nHJM+1d4MvxT584IOf78sKUXFZI6kuNDnvgTLRS
+	63dx/+tcp2WOdHP1S5qnDWtx7aSHjZxtheOikPDN2yI7b3E=
+X-Google-Smtp-Source: AGHT+IED/lqrZnxvUHI1aAwGMY1lTJXmENoRyzf6pSkwVzPpPujy+wy5G1OHh0E7tjuPHBwKDdoJSg==
+X-Received: by 2002:a17:902:ec90:b0:229:1717:8826 with SMTP id d9443c01a7336-22c535b4a1cmr292423255ad.28.1745424007506;
+        Wed, 23 Apr 2025 09:00:07 -0700 (PDT)
+Received: from gye-ThinkPad-T590.. ([39.120.225.141])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-22c50bde283sm106933665ad.6.2025.04.23.09.00.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 09:00:07 -0700 (PDT)
+From: Gyeyoung Baek <gye976@gmail.com>
+To: andy@kernel.org
+Cc: Gyeyoung Baek <gye976@gmail.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH v5 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
+Date: Thu, 24 Apr 2025 00:59:48 +0900
+Message-Id: <20250423155948.20576-1-gye976@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <aAfUZuujO0FUkJEG@smile.fi.intel.com>
+References: <20250422155302.669960-1-gye976@gmail.com> <aAfUZuujO0FUkJEG@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250423-vt8500-sdmmc-binding-v2-1-ea4f17fd0638@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+> > +	if (ppm) {
+> > +		if (!in_range(ppm, 1000, 4001)) {
+> > +			dev_dbg(&indio_dev->dev,
+> > +				"span point ppm should be between 1000 and 5000 inclusive.");
+> > +			return -EINVAL;
+> > +		}
+>
+> I proposed to define the _MIN and _MAX constants for the range and use them in
+> the parameters. Any objection?
 
-On Wed, 23 Apr 2025 14:53:29 +0400, Alexey Charkov wrote:
-> Rewrite the textual description for the WonderMedia SDMMC controller
-> as YAML schema, and switch the filename to follow the compatible
-> string.
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
-> Split the series from v1 into separate bindings patches so as not to
-> spam all the subsystems with unrelated changes, per Rob's suggestion
-> 
-> Changes in v2:
-> - described the sdon-inverted property in greater detail (thanks Rob)
-> - dropped the hunk that updates MAINTAINERS for easier merging - will
->   be updated later in a single pass to cover all VT8500 related files
-> 
-> Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-3-f9af689cdfc2@gmail.com/
-> ---
->  .../devicetree/bindings/mmc/vt8500-sdmmc.txt       | 23 --------
->  .../devicetree/bindings/mmc/wm,wm8505-sdhc.yaml    | 66 ++++++++++++++++++++++
->  2 files changed, 66 insertions(+), 23 deletions(-)
-> 
+I'm sorry, my Gmail didn’t show your replies for some reason, so I missed your previous review. 
+I only noticed it after checking iio lore directly.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+It seems more readable to use _MIN and _MAX. I'll use those, thanks!
 
+---
+
+> > +
+> > +	return len;
+> > +}
+> 
+> Otherwise LGTM, thanks!
+
+I'll send new patch based on your other review comments.
+thanks.
+
+--
+Regards,
+Gyeyoung
 
