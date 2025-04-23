@@ -1,248 +1,313 @@
-Return-Path: <devicetree+bounces-169679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D275A97E33
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:41:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1473A97E68
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:55:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D0DC3AB292
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 05:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1DE617E3C8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 05:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E86B26657C;
-	Wed, 23 Apr 2025 05:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF136265CAE;
+	Wed, 23 Apr 2025 05:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GPdYm5XM"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="JVkuvcMz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011036.outbound.protection.outlook.com [52.103.68.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88FC210F9;
-	Wed, 23 Apr 2025 05:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745386873; cv=none; b=WP+t21qDxfWsVWdG1mQbIxAry8YCz2jyLGMssUT99eZ9V+LTfphEyh5Id7XUqcD0O19fEn1iuGJKvkYz3B9fm0hhvLzuExkaziTHPTixyqv1dyT9J1Y6fAff6t8xHKldbgT4zdZ4DwpCgwDMR27GXjIQvpAyaotivLMrzPjJOnE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745386873; c=relaxed/simple;
-	bh=zsPRY0TiBWxpnqSZaAUdwhWJKup+BPdS4MnfScC1suQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YNyV4lf5QnFjaUD0BabwCBD0EgGBA4eEjGERilepnq+6OvAodl2/bVNF/I9oTgLsHWScoTvmfYlFLpWgU9+UkhrwYXSOUzdDn8jRie8vjGU9l1uh/b9gIOCq750amQdEC5e+dgEYdzIF14mVLJqY4NvgghtUsAiOc6i4aI2JuhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GPdYm5XM; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3104ddb8051so53972821fa.1;
-        Tue, 22 Apr 2025 22:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745386869; x=1745991669; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DR1efZenm2P7g4aFt/2B/58uRm9sc+D/LgJ45nCb2q4=;
-        b=GPdYm5XMcTdDOmipL41gjU8iDK/n2zI7VKbTAF6C4T8H613ccpMfbwMKEkhsL1q3DD
-         4tyYMrw14zPEkB9bw3TRoB2YmANiAV9892ElPNJuFdVK2oYJf9yVIXE25TfPZgBjpgPF
-         nez5q32IzkiDWHSsL+JBWwphtCDQ7Kn1A/xa4y6RgXsxH2kmN0h5yXmzjm1jFVmdD3xH
-         Cfkv3A/t9pGzHxDYMFfAXQrDIOh8+jSzYJ1dBoQ8WV/zFoMOHygS2nCHUGe9DSJ5FyB7
-         i0AEFY4zuP8XoljYmiADak7dh2qVDrneDtztPgINMhl7THp2SBy/h/Of1NyJozdPwqn6
-         DHTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745386869; x=1745991669;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DR1efZenm2P7g4aFt/2B/58uRm9sc+D/LgJ45nCb2q4=;
-        b=UdEXrglmxx1m5WdMDo3l2mtYeWatY6g7e51bAMYT7niAPYEwfk/lhwdWqml/pOA6vj
-         /lEGj/LFvqqeULzVHbCngQmPLDbsstKm6tlriAThn5aQl5wQyM3yGktBxa0eqSXmHotV
-         28DXN8j8JkpQMVsi8Sp1+rOIKpmWux00FiMEQx72MSeKsN9bAE65V9YO4Dc4EguEY0iu
-         WBLZ3PkrCLSm37+5rUxFrH8+7+JdHWRNMKrrEBc/w19K5RZH+yGIUIvuJtzlp6d2xU8N
-         6gtpKuw0yiZEfqk3qNKmd+Q1PvlymoqkFohoXTdYU3ole2GG11uglXYBcRTadiSXOFSF
-         2nJw==
-X-Forwarded-Encrypted: i=1; AJvYcCViVPZaF8XM1V5kUfhPFDVi+jeTc7VU3dxwqy3FlAnq9Ry3Txv+Up+On+R7bqC6vlll+etLNEAHqHOU@vger.kernel.org, AJvYcCWUTPzfiT91VEToJAZYLZHd3n141ZwjYrbOUStIH+XauaVZop1v9baE7DLjM+eLWJRQM5+C/TpjUMSC12Mp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT2eljts/QE34+TuRkrrzJlu8t9q4GCgl3E44gC2FV9B7G/Xou
-	iAkohphJWQqgO+4qM96Bfk4Z5pihQWRnLhypZeKAidCcBsvo7xn6IAC6dN0uIck=
-X-Gm-Gg: ASbGncsNvSdYV3JB5vvw+3qlBq8BKwIfWP6xglmuBwmP7d+YrtrAcu1i4gxIbwGmWYH
-	Q09Hxw3mslMpuxrauOq0Yq9yfqP0dWuTlVDdwixqas1zDrEXaQApE0JMhBnGUpKEg0LksQ7lFes
-	PeTyfvc+gIAhX7tXCdFSRVSdPo1n4aUOorKPeeB2QGrA+4w2EZfPT4nvOvgb0Cg9PTrqIrJSSMd
-	bLCz7uI1Ht3k3DBqjhvtEQ3SkWEZ6nnR+G1Ojq2/KKx7SGhx0SeXifLYtnAuFGUrpaQk2q/FjdZ
-	cldlEYFDg8OzYaoKzVCt88jmnuRnwevfp/Pdl/z7xBf+KPpGGGaUOFM4PUpJMPBEbscAo0VxPNn
-	SlQ==
-X-Google-Smtp-Source: AGHT+IHQHfQNMReW4DBewS6Oyk/+hyQARniOvNCBPWBnCxlka5W1mb3oSEgjNK+uMq63AFolkjntOQ==
-X-Received: by 2002:a05:6512:2206:b0:545:48c:6352 with SMTP id 2adb3069b0e04-54d6e658dadmr4907975e87.43.1745386869149;
-        Tue, 22 Apr 2025 22:41:09 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d6e54144esm1388050e87.93.2025.04.22.22.41.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 22:41:08 -0700 (PDT)
-Date: Wed, 23 Apr 2025 07:41:06 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v4 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-Message-ID: <aAh9ckXlJcXyB3BA@gmail.com>
-References: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
- <20250415-st7571-v4-2-8b5c9be8bae7@gmail.com>
- <871ptjbxr8.fsf@minerva.mail-host-address-is-not-set>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F147EAFA;
+	Wed, 23 Apr 2025 05:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.36
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745387732; cv=fail; b=pq9bG1+ADFgXG3QhQhRA1PZKK+wIR36R+fAtJBTwbaEQViZt4JdyYQW4DmDp1+9xqI1k910ZCQL3/t4SQiVSbDKoNvRZcr6XX4tpwjPJcX3qIpUWkA9bBmPHyLrRd7Wfv2EE6PuFOnWvySxbCgSoztFl5UK/QsDVFkv82ExY3ig=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745387732; c=relaxed/simple;
+	bh=lV7PMUJiFkS0PbMvcvLZngBRAXiRSBkX1R5xhncet1M=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=I6O3yQM41R08BC+Gn2vYi0xBXrMMuhe0cZujOsRo5UrpQf1njFDIEPETVhQELyN9aROrP1/ILL2IxbjqBs4hGM8PdEPMclemGQKsAXGRaq7c3gzEg7mwD8pa9ifXef42HbvNSMZTWryIIoAExJJdHyXKRkB88ySGXZdch2HNG14=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=JVkuvcMz; arc=fail smtp.client-ip=52.103.68.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ax7lafvtA5Xg6qtuWyWc+apqMo7Q68NQGAwIqEeVSB/vK7IlVEGH5q+TEQegLE3IjF8UfpLH9+6jQDKCUV3FE3c+MaFHHPVmZYCFed3kczecTbv2VSaulOkO9f9ZpKMfdya0PVEmu2viUsBN4npTwNtyo/I9oaGQrKXND++ZecOyO+NIYc4DRqdwRcUg60Dht4EH4nV2eAIXqeED8xJdwhvjkZ0YXqphNY5dATlHITvQbupHwqqJp48+LzFuh7uPM4R2lAvLctmWua7tYL2bhXh9vXwdYOrsAZ4AtD7Xl0mB0mwjrY4NIh9CaGQRpz1bqv3uVPBvmeS8nhmN6DcS9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0fFb3UpJkHLozct4ZQPQiNCI9Fl5TlfOenc0DLB7iso=;
+ b=Uff9NKKl9J5hbw2V/Zz0mFityrs1xgS4qlCN6lPjyHdeKJI7yGNGxcEB9fv001P1wLXZUblS86T/dxdIfUIDXnQvoeHHq612rjMJsFfw8WE1sIadW/7zhoKgfw7e8C+mhZJoBUWjQK7oAqD+hpWkUULxFu6P6DcTlgg14nPF7Nt3FHWzOrnYt0rCSodrA+l2trqIkk8xUTlAuWUPxdzpJ/i0PLrMbB4T824G0HjR/P3z8r+f6Al3EIYOw6EifwrsNxxVTSx3f6JLAY+t81d9UYt6oyoUQKOgFHU9QCyiHrdOC5LyCwaJeIZRX2JZ55VHAVMGxVDOSJNlu6fckYd8kQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0fFb3UpJkHLozct4ZQPQiNCI9Fl5TlfOenc0DLB7iso=;
+ b=JVkuvcMzATRATa1pYBCGlYIp4ESJzIXzjlVoOcfQbvRtBYpDwAAeze2qJSByGmVVst7Q+9a83ZUwTV6QXUuxooaCEqqOExGz9NubpN5waXgVnCpZ+FXL3C40jSG2Gt+McxACTduCfATdquaC6NlZ9X4yo9PrKKPLz+/3IVbO6L1Wkur6LuO0UkUvZUvluNQJYDrHYLb3zqcI8pMeB2DEAu+9sgojvIkuwGLkj94Lt8eLPmoMcowrS5UNoRtkiz3aYwLV/nrOFE9o3UdIK9XWOz5mVtInWOup4Hpa3dRF9lvOOuoA/TZYaHN94oDlnPZsOrlBRfwKmEllfM5GhbnG+A==
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
+ by MA0P287MB1771.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:f9::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.23; Wed, 23 Apr
+ 2025 05:55:18 +0000
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4]) by MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4%5]) with mapi id 15.20.8678.021; Wed, 23 Apr 2025
+ 05:55:18 +0000
+Message-ID:
+ <MA0P287MB226255035355E9F97F0A9486FEBA2@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 23 Apr 2025 13:55:12 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] reset: canaan: add reset driver for Kendryte K230
+To: Junhui Liu <junhui.liu@pigmoral.tech>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <1838dbd48ec5bec8.2608aebcdac475bc.43d59215091781cc@Jude-Air.local>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <1838dbd48ec5bec8.2608aebcdac475bc.43d59215091781cc@Jude-Air.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TYCP286CA0227.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c7::14) To MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:100::6)
+X-Microsoft-Original-Message-ID:
+ <9be4b47e-fd79-4232-a2d0-c6251610d55e@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vlQ/Rf3bjfEdQ8vd"
-Content-Disposition: inline
-In-Reply-To: <871ptjbxr8.fsf@minerva.mail-host-address-is-not-set>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2262:EE_|MA0P287MB1771:EE_
+X-MS-Office365-Filtering-Correlation-Id: a92f67c5-7355-47d8-9caa-08dd822b6bfe
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|15080799006|5072599009|461199028|7092599003|8060799006|6090799003|1602099012|440099028|4302099013|3412199025|10035399004|12071999003|12091999003|21061999003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SUhzSnF3MmFhQnJpNFFJYmFEaVlkckdVYXozL1R2Y0YveHJyU1hpTGVHRjUw?=
+ =?utf-8?B?SDBkUElNazMzYmtOblZ6OHRveXRTM1FZRmhIYnl3N1JLRFJVd0crM1ptblhx?=
+ =?utf-8?B?a1ZEbDQwemMwRWd1TlZxR0tETGpaRmF5UlRwdWF2VTNPTitFY1FHWHFYbyto?=
+ =?utf-8?B?aWVPY2dhSHVUcVVZU0RTUE16Q0g5NG42TEtubS9MSHNXNlJNTk5zdDRvTTA3?=
+ =?utf-8?B?V0R0cHgwNURqTDVqS2NVakN1L1lPWHVEZ0xwVWJGRC9ISndBQ1M1VEhnTXVj?=
+ =?utf-8?B?bXh5RXRNaVdSVmJJZ0I5OGtOUXUrOWZFd0pZZzRvOVg2Ym91ZHhIVmwwU1V3?=
+ =?utf-8?B?Q2lyWnkyRzBjc2dMUHBYRjRra3hIY0NqeGh6MjAxbzJwRElZT2diZ3FGK2Fz?=
+ =?utf-8?B?cGtWL1EzNTVJcDNGSlZoNXNCVnhjNmpTd1NzM21WcWR5YUZCMklBU0JaSU1G?=
+ =?utf-8?B?aFhwQW5tcHEwL2UrOWlhNWZEamptRGExMEFTSjR3dWZ3NjZiRmNINklpZyt0?=
+ =?utf-8?B?cTd1amV1M0xhVDF5N0E2cDZIQ0ZGVjRORWJhSWxuc1pEc1dLdXNyU2l2MnFn?=
+ =?utf-8?B?WjF0elRlRGtMRUZFbndZcEQ4UXZaMjAvaTBXY3VxSE8rSHFmQUlicTh1disx?=
+ =?utf-8?B?eXZCVzBla3U0T3d2cDAwWVhuRnRJRjNuK2NCUlhVYkw0QlhZcnBia0pUblg2?=
+ =?utf-8?B?SVhiUmYwWWYzclhtYzArYzlGamx2cW56VEhUZGhIZ1A4cTY1MEFlOGhCWE9M?=
+ =?utf-8?B?aktiZWc4am9oUmVWZ2FxQng0eld2NE1SYkxaVUgwRjlxMmo0bE1UVXMwV1Jz?=
+ =?utf-8?B?QUlVYVlxakVlemlSK1FOeHltd3FtUk1vWSt2U2tjdHp6VG5jQjdEbGVZdVRl?=
+ =?utf-8?B?d3pTVVo3bURDOUdUOVpQOVlYNW5ReUZPclcyaDIwUVpGT2ZON2MyY05wbStL?=
+ =?utf-8?B?Qm14UGd4NHEzWG9hdEJoT1BNbnRKSllQdlRwalM1NVpZaXlta2FZbkZrZ0FL?=
+ =?utf-8?B?M1YwVXJhbjNtS3NvbERhbDU2SVhYN0xIVXk5YzJpNTVmUzFmYXJNY2dLaTNE?=
+ =?utf-8?B?K3lwUDU4UjgrUW9WMkFsU1k0U1R5Mk8rUElEUVZwWUU0Mm8zWDJOSExyZnJl?=
+ =?utf-8?B?YzI4K1Z3TU9ZZzZ1aWxtRGdvQ001UVpPUVNjOE53dEM3TVNEMHhiVHlOSDlF?=
+ =?utf-8?B?enJLY2xFd0UzWFJSVk5vS0Znam9VR25qMGZkSFZMMnUxeGF4dGpYUjlvcE14?=
+ =?utf-8?B?bUd2OUp6WElZaVVTRlZqY2tZNWY0N1ZsNjBmYlc1VFlucUNuV1E1NXVaQVZa?=
+ =?utf-8?B?N0xWVWVMTlhJdzFsZktIeFhUU1BPaGpNVEpjbE0yTGpPT01JRHZKMWJiWExO?=
+ =?utf-8?B?bUdYTUJQMFBkVWZQUCsxaUhsejNkTDBQS3pGOGVBeXhrc0IyMzc4YXR6VDJj?=
+ =?utf-8?B?Um5WY2ZzMzN4eGZPY2dUZTF5WkIyRG9XcFRXNFU4OFF4Ty9RMjRDYytIM3d3?=
+ =?utf-8?B?U2tYN2Vuck1OU04vaVFodldsTFlqaUJuQjlQb0xlaVhXak1Ic1RsM00xVmVi?=
+ =?utf-8?B?UFJkQitRbzNOeGkyVWJHR092UUhKeGlrM1hta2FIOC8yNWpzd3B5Ymx0dEZz?=
+ =?utf-8?B?TDFYTGtjUFRxOHk0aE5TNFNlUUIzS3BrbFNxM2lUY0F3MEp5SktKemlMWUE2?=
+ =?utf-8?B?YzJ0a3QzWGVlYVFFWDdiNUpuZWFvcjBHdDZmRmZEeUt0TGM5Y3VXQ1RoR0V4?=
+ =?utf-8?B?dGVWNTlCWCtLb3k3L1pLN0xOdkFsUjlJU2JPcG5VMk5kRVVUTkxlY2lWYXVm?=
+ =?utf-8?Q?Ubzr2bTL5wWJWIJP5lCBO9nHYwiiXLVSZ78iU=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bEhkaitWUll3Q2RQTnR3eCswSzZrM0tTeGVwWXRSRTdlMDRKaTJkOXdZSXdG?=
+ =?utf-8?B?Mm5wTFJiYi9CVHkzYkZIZ2VlM1BMTlpDeEhOMjhFdHVtcVlEMDhmRHF2dytm?=
+ =?utf-8?B?UzRIRHZydTA4bHRscTBPbTV0TW5rYVJ2b1RuZ2NjNk5GdUpQakUrRU95ejJI?=
+ =?utf-8?B?N29qTFkyR0t4dGpCUUtZanFPT1BTUkJUQkViVU54c2hHL3dVUFV6ZFJzZGNj?=
+ =?utf-8?B?Y2Vha1pWbE1DdGN6MVVCS3hkRTJjZUVxNXQ3YkxvRWtna2h4cGQ4UXlRcTRm?=
+ =?utf-8?B?M2VWSGcwTEc0YUEyZHZ0Q3dFT2g3bmxhYWV1K1dVSzdLaXlXTjRSUktGQkJ1?=
+ =?utf-8?B?VFU3alBVYzRxYzdjbjdkRHIxdzh4RVlSbHNyWGdFenQzU01lbXdlYUdxRnJH?=
+ =?utf-8?B?a3p5Nm43bWFqbGl2UnhENUh6dVQ4NzVMdjJUR3k2UDdlM1JEM2ZoQlZiN1pm?=
+ =?utf-8?B?aHoyQ0ZWWFp1Vm5kTi9tb1JXZWZyMGVTRmZLZUJVZnJVamxIOEora3Y2K0Fa?=
+ =?utf-8?B?TCtaU2NPYThaTWIwQ3JSL1pkTWRJdVd5OWx2RTE5UFJHYkhpMlV5OTZ0akVp?=
+ =?utf-8?B?THc0U1QzL0tVQkwzUkhNSlgzSjhQeHNOTXR2WlBpY3hjMFVIejhKZ2M1VDRJ?=
+ =?utf-8?B?NzlrenJVbVp3SjFaZGpWSURVd2dVcUcwdkFOTElBa2lPZXg0OFJUb2JXMklW?=
+ =?utf-8?B?ZGtkQnZrN0hHUEhaUlloTDB0K3IvWU91ZnkwK1ozRzd4MWtlMFFHcjhKWVZn?=
+ =?utf-8?B?TElPbCsxRmJOZkNxWGRBOUR0NmdGd0wveE51VklkZks0cHpMU1p6dHVuU2JK?=
+ =?utf-8?B?RjlqT2dFYWVTV2FSZVVyWW5mRnBCaWEyQlluRzZydzN3VVJRclNpVFc5Y2lj?=
+ =?utf-8?B?MG1HNTFvdHk4VFB1K2N2Uk1xUGNJMUpjZGdlT0tRMk82Y1pLUXFBTGNBSjRU?=
+ =?utf-8?B?YmIrdUVFdGE3cG9uVzNwdXEzYXEwVm5VK0JxWTNTQjRCdTlLR3FZMktGUVFv?=
+ =?utf-8?B?NlNIVERvTmVzQmFRYUI0YkZzaXpjbEtXbDR4YXA3YzJDQlBZRWlHaWtNVWtv?=
+ =?utf-8?B?VjlKK0djMlNrSU40UHdFYThTQ1JHbUxRRklrYk9RZGtOcnI4UHMyWjQvRmo3?=
+ =?utf-8?B?U0dWVVg5ZFNkc1FEUGVrUVNqQWJSWE5tdUFOcFhVL0NnbWZxOHZhQnJ1c0lN?=
+ =?utf-8?B?a3d1cTVlU3A3YUp4U1hzdTZHaFZjWGR2K2gxemlVR0JlNitWTG5rYXFCMHN4?=
+ =?utf-8?B?WDBNVHlKRmw1RTFqUTFsRjg1dnduR1VrM2tvV1IwNXNqSVVXTTZXWkwvekgz?=
+ =?utf-8?B?K01RRG1Wbzhqd3BYZFNlKzQzazhXWGpLYmhscXR1ZTNBM0hDOXp4bHZJb2FT?=
+ =?utf-8?B?NDVMYWo2Y1F2bk51dE5yVVVWMTdETDlqcG5iM21oVzNPSFVGUTdzb0d5YXA0?=
+ =?utf-8?B?N0xUbnpQdTcvdTV6SXF0VStqbitpRWJWYWhkaW5OSHdKenZVZEhCTUxkanhJ?=
+ =?utf-8?B?c0xaMmszTm9VVzJQNmdPN29PV3l4R0drdlZjODYxeUppMitDOVlmKy83bkxT?=
+ =?utf-8?B?UmhwbGpyL3lHY1pVTURiZEF1L1F4elVza1g2blJ5RlRPTk9FcXZjeFlDVXBk?=
+ =?utf-8?B?SWNxTmJQUGl4Q09aemtkNkJUZXgzSGRUekhtWisvL3NNdW5NcmlzUmhZODZn?=
+ =?utf-8?B?bjF4T0lyelRHOC9KNHhNTlFaTlVPRkxFbEdmSUJYR1ROUWtZSmR2ZFFtdW1y?=
+ =?utf-8?Q?KYc+tYUM3WHAnr1e7+hA4JylnkxRyLZYcfF8sS6?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a92f67c5-7355-47d8-9caa-08dd822b6bfe
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2025 05:55:16.6162
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1771
 
 
---vlQ/Rf3bjfEdQ8vd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Javier,
-
-On Wed, Apr 23, 2025 at 01:08:11AM +0200, Javier Martinez Canillas wrote:
-> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
->=20
-> Hello Marcus,
->=20
-> > Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
-> > The controller has a SPI, I2C and 8bit parallel interface, this
-> > driver is for the I2C interface only.
-> >
-> > Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
->=20
-> [...]
->=20
-> > +#define ST7571_SET_COLUMN_LSB(c)		(0x00 | ((c) & 0xf))
-> > +#define ST7571_SET_COLUMN_MSB(c)		(0x10 | ((c) >> 4))
-> > +#define ST7571_SET_COM0_LSB(x)			((x) & 0x7f)
-> > +#define ST7571_SET_COM0_MSB			(0x44)
-> > +#define ST7571_SET_COM_SCAN_DIR(d)		(0xc0 | (((d) << 3) & 0x8))
->=20
-> You could also use the GENMASK() and FIELD_PREP() macros for these, e.g:
->=20
-> #define ST7571_SET_COLUMN_LSB(c)		(0x00 | FIELD_PREP(GENMASK(3, 0), (c)))
-> #define ST7571_SET_COLUMN_MSB(c)		(0x10 | FIELD_PREP(GENMASK(3, 0), (c) >=
-> 4))
-> #define ST7571_SET_COM0_LSB(x)			(FIELD_PREP(GENMASK(6, 0), (x)))
-> #define ST7571_SET_COM0_MSB			(0x44)
-> #define ST7571_SET_COM_SCAN_DIR(d)		(0xc0 | FIELD_PREP(GENMASK(3, 3), (d)=
-))
-
-That looks better, I will change to use those macros.
->=20
-> [...]
->=20
-> Maybe a comment here that this function only exists due regmap expecting
-> both a .write and .read handler even for devices that are write only, e.g:
-
-Sure
-
->=20
-> /* The st7571 driver does not read registers but regmap expects a .read */
-> > +static int st7571_regmap_read(void *context, const void *reg_buf,
-> > +			       size_t reg_size, void *val_buf, size_t val_size)
-> > +{
-> > +	return -EOPNOTSUPP;
-> > +}
-> > +
->=20
-> [...]
->=20
-> > +static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb,=
- struct drm_rect *rect)
-> > +{
->=20
-> [...]
->=20
-> > +	for (int y =3D rect->y1; y < rect->y2; y +=3D ST7571_PAGE_HEIGHT) {
-> > +		for (int x =3D x1; x < x2; x++)
-> > +			row[x] =3D st7571_transform_xy(st7571->hwbuf, x, y);
-> > +
-> > +		st7571_set_position(st7571, rect->x1, y);
-> > +
-> > +		/* TODO: Investige why we can't write multiple bytes at once */
-> > +		for (int x =3D x1; x < x2; x++) {
-> > +			regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
-> > +
-> > +			/* Write monochrome formats twice */
->=20
-> Why this is needed ?
-
-If the display is 4bit grayscale it still expect each pixel to be
-written as two bits. The mapping is as follows:
-0 0 =3D> White
-0 1 =3D> Light gray
-1 0 =3D> Dark gray
-1 1 =3D> Black
-
-So here I write the data twice to get a black&white image for monochrome
-formats.
-This is not tested though, I only have a monochrome display to test
-with.
-
-I will extend the comment to explain this.
-
->=20
-> > +			if (format =3D=3D DRM_FORMAT_R1 || format =3D=3D DRM_FORMAT_XRGB888=
-8)
-> > +				regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
->=20
-> The driver looks great to me now, thanks a lot for taking my comments int=
-o account!
-
-Thanks!
-
->=20
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
->=20
-> --=20
-> Best regards,
->=20
-> Javier Martinez Canillas
-> Core Platforms
-> Red Hat
->=20
-
-Best regards,
-Marcus Folkesson
-
---vlQ/Rf3bjfEdQ8vd
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmgIfWsACgkQiIBOb1ld
-UjJrOBAAsndlQ6aC/cblkWzinnmx1bnC6BYv17GBy0hFpsliau7s7sIDAYLiGqgu
-U4qqJSrH3Gre8GMEnLVcPpomtng37c/JzZyl3+a+rt07kfaV1Fiq5u8gUi/aV6pm
-n7tD0ILy5rTecfYNzdsux062TzkQhu2KhuQPwgx+9oox5op1sY+EwF0Edm89xVZJ
-ajYOmmAernVvLSBLhRkwSLFaAWpyDVJ07tpWgkeYqRezaRum8PpzAobIhnVcQEOP
-vGtqZrTS7IO59u+J3q3W9l8i9ne+QrWI/6gPwKkNB8BrMz2mm8KEUaLkERW9dLNO
-yLumUxkSRzRsimDyfooL9eMqDUaHsUuhN1PEgZfrQhdYGdSgUrhgvKXqODWF/aAx
-BPCZxB43ctXXqt15CC9f74u/KzD7lsAvgf6WAasxYnmwkpdhjHnX03vJEkVSvnMb
-Rf9UyrLFuMGadiObsikIqPGWlkUM3l90S+zVNBFhTmuYB72lReyFsK8x8PsB99kg
-84PIEhg607jKSoKh02Q5QdIFzhhOErTntBR7qnQSLfaDTf+4lsIurzDzmt7XH4fM
-phxBpj9WSPJkIt7X4A9QpYnc6olkQ+iCCunywkpFPYJZg7uJmx4HkxI9jCTGXgWJ
-rkY2AbyZwykY4UX2N9i3R4R1rrsvsxi2n+JB7TsucVzsZiB3nNU=
-=Olpq
------END PGP SIGNATURE-----
-
---vlQ/Rf3bjfEdQ8vd--
+On 2025/4/23 13:36, Junhui Liu wrote:
+> Hi Chen,
+>
+> Thanks for your review.
+>
+> On 23/04/2025 11:21, Chen Wang wrote:
+>> Hi, Junhui,
+>>
+>>
+>> On 2025/4/20 1:09, Junhui Liu wrote:
+>>> Add support for the resets on Canaan Kendryte K230 SoC. The driver
+>>> support CPU0, CPU1, L2 cache flush, hardware auto clear and software
+>>> clear resets.
+>>>
+>>> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>>>
+>>> ---
+>>> The reset management module in the K230 SoC also provides reset time
+>>> control registers. For RST_TYPE_CPU0, RST_TYPE_CPU1 and RST_TYPE_SW_DONE,
+>>> the time period when reset is applyed/removed but the clock is stopped
+>>> can be set up to 15*0.25 = 3.75 us. For some RST_TYPE_HW_DONE cases, the
+>>> time period can be set up to 255*0.25 = 63.75 us. For RST_TYPE_FLUSH,
+>>> the reset bit will automatically cleared by hardware when flush done.
+>>>
+>>> Although the current reset driver does not support configuration of
+>>> reset time registers, delay has been added to the assert, deassert and
+>>> reset functions to accommodate the longest reset time.
+>>>
+>>> Besides, although some reset types have done bits, the reference manual
+>>> does not explicitly indicate whether the hardware removes reset or the
+>>> clock stop time period has passed when done bits toggle. Therefore, I
+>>> think it is a safer way to keep delay for reset types with done bits.
+>>>
+>>> link: https://kendryte-download.canaan-creative.com/developer/k230/HDK/K230%E7%A1%AC%E4%BB%B6%E6%96%87%E6%A1%A3/K230_Technical_Reference_Manual_V0.3.1_20241118.pdf
+>> Regards these notes, please move it to the beginning of source code, see
+>> example: drivers/pwm/pwm-sophgo-sg2042.c
+>>> ---
+>>>    drivers/reset/Kconfig      |   9 ++
+>>>    drivers/reset/Makefile     |   1 +
+>>>    drivers/reset/reset-k230.c | 355 +++++++++++++++++++++++++++++++++++++++++++++
+>>>    3 files changed, 365 insertions(+)
+>>>
+>>> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+>>> index 99f6f9784e6865faddf8621ccfca095778c4dc47..248138ffba3bfbf859c74ba1aed7ba2f72819f7a 100644
+>>> --- a/drivers/reset/Kconfig
+>>> +++ b/drivers/reset/Kconfig
+>>> @@ -140,6 +140,15 @@ config RESET_K210
+>>>    	  Say Y if you want to control reset signals provided by this
+>>>    	  controller.
+>>>    
+>>> +config RESET_K230
+>>> +	tristate "Reset controller driver for Canaan Kendryte K230 SoC"
+>>> +	depends on ARCH_CANAAN || COMPILE_TEST
+>>> +	depends on OF
+>>> +	help
+>>> +	  Support for the Canaan Kendryte K230 RISC-V SoC reset controller.
+>>> +	  Say Y if you want to control reset signals provided by this
+>>> +	  controller.
+>>> +
+>>>    config RESET_LANTIQ
+>>>    	bool "Lantiq XWAY Reset Driver" if COMPILE_TEST
+>>>    	default SOC_TYPE_XWAY
+>>> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+>>> index 31f9904d13f9c3a107fc1ee1ec9f9baba016d101..13fe94531bea1eb91268b1804e1321b167815a4b 100644
+>>> --- a/drivers/reset/Makefile
+>>> +++ b/drivers/reset/Makefile
+>>> @@ -20,6 +20,7 @@ obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
+>>>    obj-$(CONFIG_RESET_IMX8MP_AUDIOMIX) += reset-imx8mp-audiomix.o
+>>>    obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
+>>>    obj-$(CONFIG_RESET_K210) += reset-k210.o
+>>> +obj-$(CONFIG_RESET_K230) += reset-k230.o
+>>>    obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+>>>    obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
+>>>    obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
+>>> diff --git a/drivers/reset/reset-k230.c b/drivers/reset/reset-k230.c
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..492d2274893675b0ff1967426c8fa9e75aed1791
+>>> --- /dev/null
+>>> +++ b/drivers/reset/reset-k230.c
+>>> @@ -0,0 +1,355 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Copyright (C) 2016-2017 Linaro Ltd.
+>> Linaro? Are you sure?
+> Actually, I kept this from vendor's code.
+>
+> link: https://github.com/kendryte/k230_sdk/blob/v1.9/src/little/linux/drivers/reset/canaan/reset-k230.c#L19
+No reason to keep this, I suggest dropping this line.
+>
+>>> + * Copyright (C) 2022-2024 Canaan Bright Sight Co., Ltd
+>>> + * Copyright (C) 2024-2025 Junhui Liu <junhui.liu@pigmoral.tech>
+>>> + */
+>>> +
+>>> +#include <linux/cleanup.h>
+>>> +#include <linux/delay.h>
+>>> +#include <linux/io.h>
+>>> +#include <linux/iopoll.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/platform_device.h>
+>>> +#include <linux/reset-controller.h>
+>>> +#include <linux/spinlock.h>
+>>> +
+>>> +#include <dt-bindings/reset/canaan,k230-rst.h>
+>>> +
+>>> +/**
+>>> + * enum k230_rst_type - K230 reset types
+>>> + * @RST_TYPE_CPU0: Reset type for CPU0
+>>> + *	Automatically clears, has write enable and done bit, active high
+>>> + * @RST_TYPE_CPU1: Reset type for CPU1
+>>> + *	Manually clears, has write enable and done bit, active high
+>>> + * @RST_TYPE_FLUSH: Reset type for CPU L2 cache flush
+>>> + *	Automatically clears, has write enable, no done bit, active high
+>>> + * @RST_TYPE_HW_DONE: Reset type for hardware auto clear
+>>> + *	Automatically clears, no write enable, has done bit, active high
+>>> + * @RST_TYPE_SW_DONE: Reset type for software manual clear
+>>> + *	Manually clears, no write enable and done bit,
+>>> + *	active high if ID is RST_SPI2AXI, otherwise active low
+>>> + */
+>>> +enum k230_rst_type {
+>>> +	RST_TYPE_CPU0,
+>>> +	RST_TYPE_CPU1,
+>>> +	RST_TYPE_FLUSH,
+>>> +	RST_TYPE_HW_DONE,
+>>> +	RST_TYPE_SW_DONE,
+>>> +};
+>>> +
+>>> +struct k230_rst_map {
+>>> +	u32			offset;
+>>> +	enum k230_rst_type	type;
+>>> +	u32			done;
+>>> +	u32			reset;
+>>> +};
+>>> +
+>>> +struct k230_rst {
+>>> +	struct reset_controller_dev	rcdev;
+>>> +	struct device			*dev;
+>> Why don't usercdev.dev to store the dev, so we can save a pointer.
+> Thanks for your reminder, I will store it in rcdev.dev.
+>
+>>> +	void __iomem			*base;
+>>> +	spinlock_t			lock;
+>>> +};
+>> [......]
+>>
+>> Thanks,
+>>
+>> Chen
 
