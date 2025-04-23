@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-169994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE03BA99422
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:08:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34CBA99401
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 532691BA501C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:57:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85BEC4A4A7C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA91280CD9;
-	Wed, 23 Apr 2025 15:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CF2279792;
+	Wed, 23 Apr 2025 15:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbWuiVyx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R0f0eh/2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67AFE262FD6;
-	Wed, 23 Apr 2025 15:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A092135D0;
+	Wed, 23 Apr 2025 15:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745423090; cv=none; b=OB4Ys9gScWV5Oig/jNSh+7PjHJGN3aEbS4t3zLILv1iEVlXER7uK+fOqgh+0YlGC/FUftTVwaYHgJFar2ASNrd0r0F1PetmrbL8L2vTt21C1ZSFar2r+vyKb3Huk/r/l0w+ptzo3hqDvfVgs5EwXKT+Qk0ZL+gMuRsjRV73EBeY=
+	t=1745423145; cv=none; b=Ke8c0kmO+axNV5w/OC5U4kMOlItiqvriTFToYQHLmn3mQj01DRipfUE/FswH4ya9HxQJJzt4q5wHn6gcQz59Ez43c+H1mdyh2YKRKgIM6J7sQbVYs72Z4zawsWZ9XlIgXZMDbBneV8hpQzJRi+YMTtXK3ojqzTk+deBJPjvOCrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745423090; c=relaxed/simple;
-	bh=mU7RaJADMtOBjxf+d4tBnzAuSnv660NigxByrWv6krg=;
+	s=arc-20240116; t=1745423145; c=relaxed/simple;
+	bh=uXGY1VAD0ezdy/ybNS4JN/GqOzUTWI23//dv6QmQUdA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uGu3s6zddWK6kn85d9ATlupomD6rOoCbUVy2xJ+23j8g9z6QV9uwY3f3CfxMGpzN31e+j2Zb3v2bRssDkIXkFUpXqrfq05KIW6FV/PUeOC+v6dJAO1p1HJZwpPkR7Go2nnhq2HPur+3qkvJvCf6LirI7dSzmnNZwOQwA0YR2/dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbWuiVyx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF91C4CEE2;
-	Wed, 23 Apr 2025 15:44:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FCwtNAtPOrg2q3f61In6tpOOGPWSJfb/8NkpJiMq2tW2B8xC+Q60L4zusnFTDF0O1Izj6gETnuu74d/9lHnZLKniuB4dnPxtIuDHZPCb5NC6vPXUcWsVusuUWAcKvIBswoDZzjxJOVRps3Ec2tgQ2+4dtzZFHG4rZLZkVSECzUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R0f0eh/2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3897C4CEE2;
+	Wed, 23 Apr 2025 15:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745423089;
-	bh=mU7RaJADMtOBjxf+d4tBnzAuSnv660NigxByrWv6krg=;
+	s=k20201202; t=1745423144;
+	bh=uXGY1VAD0ezdy/ybNS4JN/GqOzUTWI23//dv6QmQUdA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VbWuiVyxE5gpO9GDBcvrE4Lz0Ybw8SIEaRr6+zJBzzRatwbBPsE50OXDU/X3f40L2
-	 eZX2zSQTGaAb+XiO22bWQxkcmO2b/NtvzIOij98aydrlneqUSPG1Ft9X8mfZTErRVi
-	 sIyFXUBvf2PcTOUmCDxQ1RHj5pfO75X4b0kNgoKpAo2MZD1kbp9yq8akQ5lYsJWdnc
-	 ITc0i2XARv5KyuudviyoqVZoWnzkKt6iskEN4cfM3h4g6zfSt2dvnKdnpaytoCGJn9
-	 ToivmEJT0CBKA2oXOKdfwl6Z0VrabAEdn0ttOmKGqE+sS3wFqm3CzlxQ/7D21HdLwK
-	 K4KI/4PdNPiRw==
-Date: Wed, 23 Apr 2025 10:44:48 -0500
+	b=R0f0eh/2LvsfL4iutKlrnN7chSnjyw9pMqdFl73WtrDzgT2ZydtvcA8ApMRrfVIYy
+	 0CZgrRPJS++EmO8LsVSliQHDPcJ4RjdLHd80VCSoQOqGK2G/sxQPoZ0XojLkat0gbl
+	 X9euuD1yjltFR9FrI4sj7wt/r4snbcmpPCPgsfGpPE6QkuX0XI/6o5kEQETPqu2/NC
+	 34NzBeNuKsBs5HwcJNh7E93sOIpOuLw5h5wZ4lGRL6HeCBSSF4EK6B1Vxc96zgxjOV
+	 XwqUIMgq4hiEEAgxXOvGPFodHikCT0z4VCIUYX0Ma0thcWjIropdyYMZw+iZRxy4cb
+	 R0dclULDW9zZA==
+Date: Wed, 23 Apr 2025 10:45:42 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	Pavel Machek <pavel@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v4] media: dt-bindings: Convert Analog Devices ad5820 to
- DT schema
-Message-ID: <174542308706.575894.15505508811321272785.robh@kernel.org>
-References: <20250421-b4-ad5820-dt-yaml-v4-1-cc026ce316c6@ixit.cz>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Douglas Anderson <dianders@chromium.org>,
+	Benson Leung <bleung@chromium.org>, chrome-platform@lists.linux.dev,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: HID: i2c-hid: elan: Introduce Elan
+ eKTH8D18
+Message-ID: <174542314188.576994.12974029497689302557.robh@kernel.org>
+References: <20250421101248.426929-1-wenst@chromium.org>
+ <20250421101248.426929-2-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,37 +67,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250421-b4-ad5820-dt-yaml-v4-1-cc026ce316c6@ixit.cz>
+In-Reply-To: <20250421101248.426929-2-wenst@chromium.org>
 
 
-On Mon, 21 Apr 2025 10:20:15 +0200, David Heidelberg wrote:
-> Convert the Analog Devices ad5820 to DT schema format.
+On Mon, 21 Apr 2025 18:12:39 +0800, Chen-Yu Tsai wrote:
+> The Elan eKTH8D18 touchscreen controller is an I2C HID device with a
+> longer boot-up time. Power sequence timing wise it is compatible with
+> the eKTH6A12NAY, with a power-on delay of at least 5ms, 20ms
+> out-of-reset for I2C ack response, and 150ms out-of-reset for I2C HID
+> enumeration, both shorter than what the eKTH6A12NAY requires.
+> Enumeration and subsequent operation follows the I2C HID standard.
 > 
-> Acked-by: Pavel Machek <pavel@ucw.cz>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Add a compatible string for it with the ekth6a12nay one as a fallback.
+> No enum was used as it is rare to actually add new entries. These
+> chips are commonly completely backward compatible, and unless the
+> power sequencing delays change, there is no real effort being made to
+> keep track of new parts, which come out constantly.
+> 
+> Also drop the constraints on the I2C address since it's not really
+> part of the binding.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
-> Changes in v4:
-> - Drop remaining pieces of iio-channel-cells introduced in previous
->   revisions.
-> - Link to v3: https://lore.kernel.org/r/20250414-b4-ad5820-dt-yaml-v3-1-39bbb5db7b2b@ixit.cz
-> 
-> Changes in v3:
-> - Removed documentation of io-channel-cells property. Now it's 1:1 to
->   the original binding. The reference to it from the Nokia N900 dts
->   was removed in the -next.
-> - Link to v2: https://lore.kernel.org/r/20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz
-> 
-> Changes in v2:
-> - added MAINTAINERS entry for the binding
-> - documented why io-channel-cells got added into the binding.
-> - dropped io-channel-cells in required properties.
-> - adjusted example indentation to 4 spaces.
-> - Link to v1: https://lore.kernel.org/r/20250209203940.159088-1-david@ixit.cz
+> Changes since v1:
+> - Reworded commit message
+> - Dropped the enum for the new compatible string entry
+> - Dropped constraint on I2C address completely
 > ---
->  .../devicetree/bindings/media/i2c/ad5820.txt       | 28 -----------
->  .../devicetree/bindings/media/i2c/adi,ad5820.yaml  | 56 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  3 files changed, 57 insertions(+), 28 deletions(-)
+>  .../devicetree/bindings/input/elan,ekth6915.yaml     | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
