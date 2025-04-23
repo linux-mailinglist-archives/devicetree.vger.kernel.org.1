@@ -1,133 +1,83 @@
-Return-Path: <devicetree+bounces-170071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D799A998EE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A01B4A9990B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C9417AEA09
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:48:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ECF07A468F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4088F265609;
-	Wed, 23 Apr 2025 19:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF4B268685;
+	Wed, 23 Apr 2025 19:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aEZilbFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ucgK0ncl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C748322D4C0;
-	Wed, 23 Apr 2025 19:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BC526657B;
+	Wed, 23 Apr 2025 19:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745437787; cv=none; b=CsMTnTyGELwpBnew2sPqz3OO2TdLzerPR9l2lOQuJZZV+/YDgna+VqmdxXtfC0IDXWJCXZspPndGHlfbX5qLJGuOL9GNRzVdR43uqTs2Cve/oQFOfOaEZXc9zKZHsQYqFcmrIJ2VjjukHz1D1xeaQjROPVMTs1LDHzqvZACrdnw=
+	t=1745438313; cv=none; b=YHFnoY39yXe4LIfPzV0hkWkeQ1t3in6ME2blxdUx38Wk0FoPVBKGSMEN+Jyog2BnFpJ/lbXDdh1StTry3CwlJebGGb1XmvvnsaZQ9oS2ZspFhr+2CrUzsphZJVYrXSyVu7/KdL8oJencj1pwZo6YmLKn1X1bxxcwCBHmwaqc9aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745437787; c=relaxed/simple;
-	bh=/gqHgIWvYDoh2ay4Dt66VfQN7r7ooPdcaJZKWyVPCKs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sANUSswtoNY9ztOKpmBT0Pf0tNWh4chlUN8QZyLFDaZWofCTWA25X9tR2pICPJ48gu3J4ZMIyGp7P2iG/7cp8mROcgtCohjHbS05TAP+LSiDrfZkZiKwMQH3FsCMJGUbw/U0jbTh1S0csLIgMwQzz6P3a2c4SLnx6/b0nRd0bvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aEZilbFr; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso150508b3a.2;
-        Wed, 23 Apr 2025 12:49:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745437785; x=1746042585; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IfqjFKQjrrhlniO3DJvD09VooUIqHiiSwxn0+0MLQUI=;
-        b=aEZilbFrnExwTaVaMsmMasFlDwmW6gif8rlOmDXo4agNZFuZF0E3D3Q5YiLKZOcTJA
-         QXtmzNin0h2AKgBtLCMmJJ2xHR7yhw+KEyrfgKAyQ7GEW4dGqVAwQIEewX3vAHYm272F
-         tASuumoZZ4TKz8xDn4V9/xpFefXLzQKYf3qY/OBw5fTkUtzvhDKo2r0MbDyqDKL14MOx
-         bgi9TWpTggugFnCeqKOLNnsxp7pYsV/a19SJFZ7KXak71GL65kd0eVPqyn9eTu5MdIM9
-         GHEhs9VuMEZ9Efc2PfZW4MFWnWLT3F5AAqBAHQIVZUKrpTAXymMq2oWU7Ic8UcW0D1FT
-         HXtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745437785; x=1746042585;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IfqjFKQjrrhlniO3DJvD09VooUIqHiiSwxn0+0MLQUI=;
-        b=IpR0YCx5zWK+YrAeYfwE3mAfEh8M6jRhIJRNvy+ZMz+kGoaCkf3Vxdxu5Ciew/vJkz
-         7yPy2sDyyqcGXM1dzN44PCYfMy2AMbPyzp4iUnUNcjh4PYiQBoKawHooOF0llGD34wsH
-         dyVOHU2DiKPBCjO3EoZDJmw0P9+mynyjZn1tz59xEj8R8BRb/unVC05hjSj98RwBkqE4
-         gCfp3YeC58hT8QTLUWbwj0kALJGvL2V3Z4x/SIBQsiYWUJUbvHs6ma/y+s+Yn8RVndx9
-         EtMq7miI13tCX+ql+HP8sb6UcFr83X1CJmhty3ocwhejqYzgEKNxmumFY1b2PfDTXMTt
-         GHTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFrcUN6I6kqOBres9DfsF0rv05Nypt/GyaeJ1TXEyoSNpD2kqn3Y2yWm5aaq5IFgNn5YakkDeB7PmB@vger.kernel.org, AJvYcCWlJOm1bZihCroFSzAL6m6tReDH+bz9y8ARSfQCIFVqHc96pWkgyOeFC260SHf73OEvxckW6JADCvnw2yNc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjaleA4nGrrSrdXv3GY06NAqV8BFmtEPgIvQ314NHbTZPKi4EI
-	VazY1XJOzETM+WWKTFqPlLX8nhD1L2EGHpgsG/ZghsEauA344rBf
-X-Gm-Gg: ASbGncsu1l20EGk9f86EMyJlPIGy2uZHdFwjDjZKON1L7O4BLCMJs3pJRDZ+GhTTPVW
-	xEPm+1qlU29lGV+hv+461drJnQZ/BghjFFliUsA4lQP8NhaGyzorb9Q3Yj/ZoCw1Y2KV0NMlY67
-	BApSrmjY1WtZc+joaIABwHuk5r3cBpEDBOGFigbEIHJzJP3E2gABxcr/4aj7tOst3wtQ46mRyp7
-	HrFjQsCRLB+L9q7hhH7VjJpTzvLHFgVM8zKhFy+jy02hGoCZ6Wtec0P7eOOoTVSVirZIjDqSXFl
-	hi2OPh7r0abfJPGyxOCwU4M+49/dAp7zt1zcmHYR6ordVJhuMuRaZ8Tkt2ltqVg=
-X-Google-Smtp-Source: AGHT+IERPQh4Y7V/l8lpr/XRnfwQmrzpEaU9fiS3c+vk4gGTjri+1BnCKpknXP9KXB9GLNf1W7dR0A==
-X-Received: by 2002:a05:6a00:4642:b0:736:ab1d:83c4 with SMTP id d2e1a72fcca58-73e23ca12aamr97912b3a.0.1745437784854;
-        Wed, 23 Apr 2025 12:49:44 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbfaeb525sm11406279b3a.173.2025.04.23.12.49.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 12:49:44 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 23 Apr 2025 23:49:45 +0400
-Subject: [PATCH] dt-bindings: usb: generic-ehci: Add VIA/WonderMedia
- compatible
+	s=arc-20240116; t=1745438313; c=relaxed/simple;
+	bh=ZE+EzztTUSSYHUKRMcrzjo1dZmr1lvdw/aF918XXCQA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZVH8mNMgfPKaeR+AWIge075KiqO4wmnmKClByIPEGXOMu2WayTrfR3TMZ9LgMKK4BzKi0WBLcbt5lBclWrSOcerBPqPhHCsB12lF6EGIajPAVsNJjn0vY3DMSmRU22IkQ5VsLYUmbM3D+MYL4M05c8kVs6WNmHef0EvYXX+j6i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ucgK0ncl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C56DEC4CEE2;
+	Wed, 23 Apr 2025 19:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745438312;
+	bh=ZE+EzztTUSSYHUKRMcrzjo1dZmr1lvdw/aF918XXCQA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ucgK0nclBGDo0bkNslgVdTLV+rdbYtrOkNJyLY2Y1i/SMm+9piNoBL3GMZmxTZCQJ
+	 JJI7CuCCtFzHrVCNZwDFJTt+h1kJiNm+33jT3EpZROcEugibNsqJZGzv+gPCvZYBCn
+	 bMfZOVDSaT73H2Bgaw+jGNutE7sUBDZxp4O1y6BB+alrI/PXkMeo9a5s2wJcRK0yuA
+	 hlWGbu4dA+UfDN4VGogLaJjcUsyDKPIW0qS+kvvknTnT6lYSPJlfW/eUn/FsQl1NFO
+	 X8+27KJsEUhNwo5fq7SbI1G1AKiVF3XDhOU4p4iEmQYSkl2bcpn4+EfGn2oJo3m/3a
+	 mY6YJy96der0w==
+Date: Wed, 23 Apr 2025 14:58:30 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Sven Peter <sven@svenpeter.dev>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	asahi@lists.linux.dev, Janne Grunau <j@jannau.net>,
+	linux-arm-kernel@lists.infradead.org, Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v3 1/3] dt-bindings: spmi: Add Apple SPMI NVMEM
+Message-ID: <174543830880.954251.4323421300724973645.robh@kernel.org>
+References: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
+ <20250423-spmi-nvmem-v3-1-2985aa722ddc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250423-vt8500-ehci-binding-v1-1-1edcb0d330c2@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAFhECWgC/x3MTQqAIBBA4avErBuY7JeuEi1SR52NhUYE0d2Tl
- t/ivQcyJ+EMc/VA4kuy7LGgqSswYYueUWwxKFI9darF65x6IuRgBLVEK9EjDzRqtzlrtINSHom
- d3P91Wd/3A17/u5hlAAAA
-X-Change-ID: 20250423-vt8500-ehci-binding-e607bfafdcbf
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745437797; l=984;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=/gqHgIWvYDoh2ay4Dt66VfQN7r7ooPdcaJZKWyVPCKs=;
- b=Uxzl8ig5PbeEHBkzgXe9Pk6zvaBfDgPpzs3GgsQwzbwNlruzYZq1HwUzXyuWm4M2cmk//lxLU
- rY3BPSXCVidDqxFW19O+M+kIEb7K/XXKhiS/2m7MIFQXIZUhXSb7JlP
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250423-spmi-nvmem-v3-1-2985aa722ddc@gmail.com>
 
-VIA/WonderMedia SoCs use a plain vanilla EHCI controller with a
-compatible string "via,vt8500-ehci". Add it to the binding.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, 23 Apr 2025 19:55:13 +0200, Sasha Finkelstein wrote:
+> Add bindings for exposing SPMI registers of Apple PMICs as NVMEM cells
+> 
+> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
+>  .../bindings/nvmem/apple,spmi-nvmem.yaml           | 54 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 55 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-index 223f2abd5e592ff8cc3ad97f9a325356ea57044a..508d958e698c2e8dad748a6fcdef65d6e883b97d 100644
---- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-@@ -86,6 +86,7 @@ properties:
-           - nuvoton,npcm845-ehci
-           - ti,ehci-omap
-           - usb-ehci
-+          - via,vt8500-ehci
- 
-   reg:
-     minItems: 1
-
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250423-vt8500-ehci-binding-e607bfafdcbf
-
-Best regards,
--- 
-Alexey Charkov <alchark@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
