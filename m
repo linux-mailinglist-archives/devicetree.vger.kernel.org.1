@@ -1,100 +1,147 @@
-Return-Path: <devicetree+bounces-170076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCFCA9996A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:25:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16E5A99965
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:23:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC86F1B84CF0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:25:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E57861B84A27
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CA4C269CEB;
-	Wed, 23 Apr 2025 20:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838DE269816;
+	Wed, 23 Apr 2025 20:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NG0dgRVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DADB244670;
-	Wed, 23 Apr 2025 20:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5980B191F6D;
+	Wed, 23 Apr 2025 20:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745439916; cv=none; b=E6yN+BiGglU76hgn84ysOqoXVs1U3s4Hc/UC0rdpunax03gxKYuSO/mJ6sAO43jaMkO2BDqbZWb0DF9k1LVLkw6sS8YtOpVJNDw/HR/MM7iPV0X86tX5z/dk7zqd6U4Pry2B8tEIkvxOHwgv0CXMbk69rsjDOBjwdrcJVZ4SNyc=
+	t=1745439810; cv=none; b=jFvxIBoBJ23DHamsYGDhAeq2yjwKoaHpZE5WZoOiPeUEAjTCEXddfEAUh8nJ1/wCD1OBzwYzjKO0Yi9BegfuKWiQqGrwS5yBkqZZN1GW/I4hOz3B5+wSZBs/paG12kEb0TK8v6sPPRmHcNQFj8H3t0AWX0U5KWvSb9eY5Jwp9vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745439916; c=relaxed/simple;
-	bh=L9c8Wbib4Le+3TFbPIViZCMxCLCeZwmVDh80pjYJCwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uKvGa8Sp8ziqyqRaU9l6bcemZNYdlHf/TKGYZXHir6s44tt3tIVJgKmp3Nj8Tq1n9wc7TPZUljaHZLaq1MU6E/5iBxb7ebcsasiKxpwk8kGnzvhIRfsLC5T9x+dd+g5g6Tkcx/ikXgObvZxTY/eLJn4nZgD9VAO8hlMeHuA1QVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.35] (unknown [98.97.25.173])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id EEF91B4C0D36;
-	Wed, 23 Apr 2025 22:18:07 +0200 (CEST)
-Message-ID: <1044b038-1e29-4058-9cb5-155551cd62ae@freeshell.de>
-Date: Wed, 23 Apr 2025 13:18:06 -0700
+	s=arc-20240116; t=1745439810; c=relaxed/simple;
+	bh=2xy5f8GYxsUlqbYSP/km4q6c6Yl2NXnT5erRgySRqZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BhoMnH4s0vg3n2CZLnLFiLhLO/1bQXcGfQTL6GSq48qHr/pqKfcsCivoZbgPNIuQRFVVih0/lA1QrJeOZiQ7dLLEFacQ8UjrLL3l+x15ye9mU6GMkF+7BGKr5qPttU5BlgPDX5pO4G7STDWVLoxO24BNdyM+Azpqfb1xp0wZE4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NG0dgRVL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A379FC4CEE2;
+	Wed, 23 Apr 2025 20:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745439807;
+	bh=2xy5f8GYxsUlqbYSP/km4q6c6Yl2NXnT5erRgySRqZQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NG0dgRVLwlDgdHJMYZpT5sve3BVuSnGdZ85VR45mSFiIg7+MPHQBJJKLlPVvt/tle
+	 RWNKP76e8sRmFYVpzOk8exTQoXaZvIJI0tjacXp+ibZ/RXix433kTz5Z8gb+kDztVm
+	 iYhnNP55bqsw34wCDRZPHGwIYO9DTAuh7TGIWhI7uf+LdqWKmlYuSGCUty6pY8Ku6f
+	 kprr+efhThbotBlCyfcbGNWf8dMtt2uLMMvOQDCkR4qqJF7VXdtQKm0TX1n2FPwx2q
+	 zbTDjP8aq/Cq3tPVA3uanbQxpNvCRES0S5XHyejIiKMwXht8mSWzyrDdhu7Qr551nn
+	 aWhvna8rStb3A==
+Date: Wed, 23 Apr 2025 15:23:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bartosz Szczepanek <bsz@amazon.de>
+Cc: Saravana Kannan <saravanak@google.com>, nh-open-source@amazon.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] fdt: Extend warnings on error paths
+Message-ID: <20250423202326.GA1025526-robh@kernel.org>
+References: <20250423091018.51831-1-bsz@amazon.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] riscv: dts: starfive: jh7110-common: assign 24MHz
- clock-frequency to uart0
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20250203013730.269558-1-e@freeshell.de>
- <20250203013730.269558-4-e@freeshell.de>
- <CAJM55Z95pwTZmw-WPcUaB1BGpVoNgaRYYjUnqSFcLTNyVmZahg@mail.gmail.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <CAJM55Z95pwTZmw-WPcUaB1BGpVoNgaRYYjUnqSFcLTNyVmZahg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250423091018.51831-1-bsz@amazon.de>
 
-
-
-On 2/5/25 02:29, Emil Renner Berthing wrote:
-> E Shattow wrote:
->> Set uart0 clock-frequency for better compatibility with operating system
->> and downstream boot loader SPL secondary program loader.
->>
->> Signed-off-by: E Shattow <e@freeshell.de>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->> index 8a59c3001339..6bb13af82147 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->> @@ -635,6 +635,7 @@ GPOEN_DISABLE,
->>  };
->>
->>  &uart0 {
->> +	clock-frequency = <24000000>;
->>  	pinctrl-names = "default";
->>  	pinctrl-0 = <&uart0_pins>;
->>  	status = "okay";
+On Wed, Apr 23, 2025 at 09:10:17AM +0000, Bartosz Szczepanek wrote:
+> Print out adress and size if elfcorehdr is overlapped. Be more verbose
+> about what went wrong in case early_init_dt_verify fails. Other than
+> improving logging, no functional change is intended in this commit.
 > 
-> The uart0 node already has a reference to the uart0_core clock, so it shouldn't
-> need this property.
+> Signed-off-by: Bartosz Szczepanek <bsz@amazon.de>
+> ---
+>  drivers/of/fdt.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
 > 
-> /Emil
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index aedd0e2dcd89..c9b5e056b713 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -469,21 +469,22 @@ static u32 of_fdt_crc32;
+>   * described in the device tree. This region contains all the
+>   * information about primary kernel's core image and is used by a dump
+>   * capture kernel to access the system memory on primary kernel.
+>   */
+>  static void __init fdt_reserve_elfcorehdr(void)
+>  {
+>  	if (!IS_ENABLED(CONFIG_CRASH_DUMP) || !elfcorehdr_size)
+>  		return;
+>  
+>  	if (memblock_is_region_reserved(elfcorehdr_addr, elfcorehdr_size)) {
+> -		pr_warn("elfcorehdr is overlapped\n");
+> +		pr_warn("elfcorehdr is overlapped (addr=0x%llx, size=%llu)\n",
+> +			elfcorehdr_addr, elfcorehdr_size);
+>  		return;
+>  	}
+>  
+>  	memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
+>  
+>  	pr_info("Reserving %llu KiB of memory at 0x%llx for elfcorehdr\n",
+>  		elfcorehdr_size >> 10, elfcorehdr_addr);
+>  }
+>  
+>  /**
+> @@ -1128,26 +1129,33 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+>  	memblock_add(base, size);
+>  }
+>  
+>  static void * __init early_init_dt_alloc_memory_arch(u64 size, u64 align)
+>  {
+>  	return memblock_alloc_or_panic(size, align);
+>  }
+>  
+>  bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
+>  {
+> -	if (!dt_virt)
+> +	int rc;
+> +
+> +	if (!dt_virt) {
+> +		pr_warn("FDT wasn't correctly mapped");
 
-Okay. I'll drop this patch from next version of the series, and asking
-on U-Boot mailing list what to do about it there [1]. Thanks for reviewing!
+You need a '\n' here. Technically, it doesn't, but IIRC it won't get 
+flushed out immediately without. Of course, this runs too early to see 
+the message typically.
 
--E
+It's possible some arch has a fallback if this function fails and 
+doesn't want the warning, but we can apply and see.
 
-1:
-https://lore.kernel.org/u-boot/c0023d23-4614-40c5-b612-9c0cb5b4d8b1@freeshell.de/
+>  		return false;
+> +	}
+>  
+>  	/* check device tree validity */
+> -	if (fdt_check_header(dt_virt))
+> +	rc = fdt_check_header(dt_virt);
+> +	if (rc) {
+> +		pr_warn("FDT header is invalid: status=%d", rc);
+>  		return false;
+> +	}
+>  
+>  	/* Setup flat device-tree pointer */
+>  	initial_boot_params = dt_virt;
+>  	initial_boot_params_pa = dt_phys;
+>  	of_fdt_crc32 = crc32_be(~0, initial_boot_params,
+>  				fdt_totalsize(initial_boot_params));
+>  
+>  	/* Initialize {size,address}-cells info */
+>  	early_init_dt_scan_root();
+
+Normal context is 3 lines. Please send patches that way.
+
+Rob
 
