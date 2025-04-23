@@ -1,98 +1,116 @@
-Return-Path: <devicetree+bounces-169934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69633A98BC4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:48:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D671A98BCF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:49:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62FD4166310
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 977BE167E07
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515421A314E;
-	Wed, 23 Apr 2025 13:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E517C1A08A6;
+	Wed, 23 Apr 2025 13:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="JzGmmKZg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txMPS8mz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7157C57C9F;
-	Wed, 23 Apr 2025 13:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4414137750;
+	Wed, 23 Apr 2025 13:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745416073; cv=none; b=bArw1dosQO1m2h2iOp8CEvl0iL+ego7HmLEwzgTBRSWTF3UOIBp1G6xGienTOJA6xzxkj89jR/WWFnhltLAUN53Ygad0NCYdZAH7teDRKDIMIA3rubfKYQHuQpxAqRADbo+8XJy0Zr0cAX458GvUosLxDOKz0b78Z5c8rttAmQ4=
+	t=1745416165; cv=none; b=T8MWToVDXwGtyA1UzP0xlMXj1XBUo3Lja18u94FUYCXhLazjSu9wnHHujca37f2ZRDYx1GcLoNEL+bCMJNxiyg37fzzXrr5pq3+7w5RUF2n+Xmc4I88wqWYZvd8ZNEDr3msS3rSdLkpzXYHKDgGOn/dU2EoyeF3GwlvDr2QYqiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745416073; c=relaxed/simple;
-	bh=hdJG21TL+AvOeJeTB8RJ+cFa9H+iGGwKryVw2CrsL0k=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=lYdjRgdW0N7COnM1wJjvuTEU5tMNeWRY7HlUQMCWQR8VnKDYkkteqc3d70oNyA1GBoDPD7l8pNM1weLEPV5TswznG3lhDkgCmCVBoy67g44hcs9bxicdZ/o713ys8jUxWRz9wUzrzNAEcwKh559ZcaQRtASZvWN/Z1AIWeSpQeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=JzGmmKZg; arc=none smtp.client-ip=134.0.28.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-	by mxout3.routing.net (Postfix) with ESMTP id 28C5961667;
-	Wed, 23 Apr 2025 13:47:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1745416063;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hdJG21TL+AvOeJeTB8RJ+cFa9H+iGGwKryVw2CrsL0k=;
-	b=JzGmmKZgT3R57Pwt0GXRMMsCtFazMoMWkuqMY2D9xQOuB/NE14E7uWC74E3A77pWXlqw1e
-	QuosA8MFdJteMooqttO5xwm6HcODZ8FDCeF2ppRJL+GU/zvn1S3g7UkMLdvJBMXGoC6kxV
-	LU2dsNj/nY/0lXQ+YCJZXB3+ZKiVvjU=
-Received: from [IPv6:::1] (unknown [IPv6:2a01:599:a06:ae47:924d:415c:d602:5492])
-	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id AE5951005B4;
-	Wed, 23 Apr 2025 13:47:41 +0000 (UTC)
-Date: Wed, 23 Apr 2025 15:47:41 +0200
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
- Daniel Golle <daniel@makrotopia.org>, Sean Wang <sean.wang@mediatek.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_1/8=5D_dt-bindings=3A_arm=3A?=
- =?US-ASCII?Q?_mediatek=3A_add_bpi-r4_2g5_phy_variant?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250423123339.GA191369-robh@kernel.org>
-References: <20250422132438.15735-1-linux@fw-web.de> <20250422132438.15735-2-linux@fw-web.de> <20250423123339.GA191369-robh@kernel.org>
-Message-ID: <D036900A-79D2-4C87-9D77-DBF443E12028@fw-web.de>
+	s=arc-20240116; t=1745416165; c=relaxed/simple;
+	bh=osGtOXoJ3/G4yq2pLf+qpaLC++EVm4B+QQ46Ny8HTnk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=pJLk855lv/D5VpDFtaNsPW4d819w4QcAmQKMlcPg5wy3l1Rfk38SO1USYkPT0fBGoCT75LqkUxGEneh3nyPw93RTCHqw4wEhm8DFtXuG/nZjuTjdxPMbECLV8oW9phRk73vk3Xf3eljXMoXigB9mCFyBJFUAjX7zuNy6/axfldA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txMPS8mz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8FE6C4CEE2;
+	Wed, 23 Apr 2025 13:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745416165;
+	bh=osGtOXoJ3/G4yq2pLf+qpaLC++EVm4B+QQ46Ny8HTnk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=txMPS8mzhOH4JqWs1/gpActbHw272wesasElzGIudFpTPjkYoE2Fidl1RznTJYoB6
+	 HrIW0sUUeMDYBEGX9A/z9xoQkqHITBpJgrLpcBLkoETNeCWg2Ppw1Z4WTmIhG6Zt5M
+	 2S7JGvwX4KzuRr6fzQEyVX5BPNuqZhTBegeRGEdr3O0aPf6H5i5qWfemZZRNWldNdt
+	 ylCBx4jutIwZmwtbc/01ACKzZptf2DOuKlb60SkdBqPU9zb3pJJHQlnDh3EdZDXjGD
+	 dP7fKeCj1xnj6YDBpdC9zQ5dxsTbRteEBjFwyn8anEIXhn2f3+SuZo2N/hs4VsISpY
+	 keUVg1uVu8MiA==
+From: Mark Brown <broonie@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Sugar Zhang <sugar.zhang@rock-chips.com>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250410-rk3576-sai-v2-0-c64608346be3@collabora.com>
+References: <20250410-rk3576-sai-v2-0-c64608346be3@collabora.com>
+Subject: Re: (subset) [PATCH v2 00/11] Add RK3576 SAI Audio Controller
+ Support
+Message-Id: <174541616068.423395.2187976314107237451.b4-ty@kernel.org>
+Date: Wed, 23 Apr 2025 14:49:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: c11d15a8-4a69-4433-87de-3e7ec32e89b2
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-Am 23=2E April 2025 14:33:39 MESZ schrieb Rob Herring <robh@kernel=2Eorg>:
->On Tue, Apr 22, 2025 at 03:24:24PM +0200, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Add new compatible for Bananapi R4 with 2=2E5G phy=2E
->> Base board is compatible with existing BPI-R4 only 1 SFP is replaced
->> by RJ45 port and use mt7988 internal phy=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->
->You didn't add Krzysztof's acks on these patches=2E
+On Thu, 10 Apr 2025 21:39:52 +0200, Nicolas Frattaroli wrote:
+> This series adds support for Rockchip's Serial Audio Interface (SAI)
+> controller, found on SoCs such as the RK3576. The SAI is a flexible
+> controller IP that allows both transmitting and receiving digital audio
+> in the I2S, TDM and PCM formats. Instances of this controller are used
+> both for externally exposed audio interfaces, as well as for audio on
+> video interfaces such as HDMI.
+> 
+> [...]
 
-Sorry,i thought i've added them in my local branch before running format-p=
-atch,but it seems i missed that somehow, possibly dropped these changes whi=
-le aborting rebase=2E
+Applied to
 
-regards Frank
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[05/11] ASoC: dt-bindings: add schema for rockchip SAI controllers
+        commit: fd55908d3278300ec4cbbacbfb07748bb9166314
+[06/11] ASoC: rockchip: add Serial Audio Interface (SAI) driver
+        commit: cc78d1eaabad3caf3c425c83037cd8ba1c9f2bc6
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
