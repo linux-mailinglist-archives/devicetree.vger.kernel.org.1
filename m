@@ -1,109 +1,161 @@
-Return-Path: <devicetree+bounces-169835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64825A985A5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:35:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9434FA985BC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:37:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A45CB442907
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:35:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 771531894BE2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974131DF991;
-	Wed, 23 Apr 2025 09:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5CD25C82E;
+	Wed, 23 Apr 2025 09:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GuOO2u3C"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="Dbhj7gOF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6716A2701A9;
-	Wed, 23 Apr 2025 09:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F1022F76E
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 09:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745400912; cv=none; b=Xi7gXOPj3qdBWfwacrRysnUOJeUPQ0u2EPi5oZ+BnJPI8PVg2H6OLYs4CReohY10QoFfgOQzXg40pcsjKk3hDb04So43DKJSK6MBuMCch2Bing/C7SC4yMp7hXUs5HGztHs9xtcQ0T0WNO3LYXD+N1eRk058VRUvMiUQwEIonC0=
+	t=1745401016; cv=none; b=spzHiJP9JxKcru2R09l1yE1CKrEpPFny4v52Ee5SM4lW3M2M+s5u46ai6h4xyO5B3mn8PDzAqS8FxagK/lE95OvG32sNkSueoyQViIpy3lPFoisxyfTlgW7/ZJumc+NWuIlsuFpcRrrp7rzqaVFzDUp1a9u4S4LaIxRt0wGbyC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745400912; c=relaxed/simple;
-	bh=8P8sDzkahWhhCT64GZn0Nrgekze9oIVFg2YRSKyBcuM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G+tzJeVEL3FrZXAsnOBIIxuNtr08fdH1tXX4G3HWs4CVYQiOqm5QO0ZoVywut8Ok2fu8EWr4sjCb5bI3JvXXNnUN9lKbkMqWUnQl/rU5WL5ImsXIGGxvXV8QZfl/mia+0PtZhf4Ckm0OPxVwePcScnNvduNcoPaE10KkDU1+uiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GuOO2u3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A295C4CEE2;
-	Wed, 23 Apr 2025 09:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745400911;
-	bh=8P8sDzkahWhhCT64GZn0Nrgekze9oIVFg2YRSKyBcuM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GuOO2u3Cx4wJMRt8kBTyR7w4O1A5fCUCktQ4067IV9XrWECd0zsGQfyY2KXwxAAjL
-	 bcohNDuApp3O+XrdnY7uN+usEaYxwX1yS5bW6BeAimRk9Xgno0J5GiT9MVR2mnXPBN
-	 0E3zZDYnKAb2am/Q7VVMX5WUzUcH7Nnoy+QO+ZeydZSfVQeTcfyMkkPw16JDXiVjcq
-	 hIYhw9l+oTK8KdKsyCpi9E6fcRrdCdIMfsZloOkdGe8FRrlhSFYm01VHm+aXb0sL7B
-	 mu8yCzZuBzSAtS9DhgxEgrg4iO7jUPCZEjqSpOtE7BI19pxeClVa8CuSD6GBu20Pe9
-	 rEfdqPBtuTPGg==
-Date: Wed, 23 Apr 2025 11:35:08 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, jitao.shi@mediatek.com, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH] dt-bindings: pwm: mediatek,pwm-disp: Add compatible for
- MT6893
-Message-ID: <5j5sp6jkayy3xojrnuiwlfm4gwd65dcoevef24l2wjnw7vm7qr@lh3ztubq4cxz>
-References: <20250416120253.147977-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1745401016; c=relaxed/simple;
+	bh=ay9u22d4cvFKC85mIYrra57bfWbo2XoJZcsvh3N3gJ8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KtDDxsgCi1jWZGzwIOHE7swTKCVTHy0nBSBNRe21D7I886A8n6YAXSdRGnfZcDRnfS9+eu65uNPMyGYsrzJqb+rOJ8gdRFMc4FDLsUWMmMwBn5jf/bMtrBl6/1lBJZUb31DoA5zv3XU2T1hHMHpgfMlyj42hBgxLOCWNOi2uINc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=Dbhj7gOF; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-227d6b530d8so64555925ad.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 02:36:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1745401014; x=1746005814; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+QxK+Tc2ZVbe+5BePsqof8LIo5Vk1Mj0GQ50Wfpr8bE=;
+        b=Dbhj7gOFV+B34YuXHtX9JuGgWgkuefUxRvKYSJhEw9ZILYOljTiMRbs9wRm/erbg/i
+         +I+WS+jF/WokutrD4Jga4qdFQSTmwV4CwCBbe1VXkzhDmM5sObpq8uwZJM7hmNz2lb5S
+         UTmdDdvjIYg+chSeQKeRiksAd51HF4Fr+O+by7oZlxTFilCV+qlcNTWeAZpXDhTyYnv4
+         bH3TqSxMUmzGfoiQAyjRKMZesbYjEgKQQRe+Pjv+rHOXxjtoc6xWWB4dW2WzUasg3FfU
+         8dcuMwOLpvByJDoOSA7TLBqVVOSRSp5amG8zN0lBb468MjCGT7v3LqXkIiLOi3P1Ghh8
+         3W2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745401014; x=1746005814;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+QxK+Tc2ZVbe+5BePsqof8LIo5Vk1Mj0GQ50Wfpr8bE=;
+        b=iQvQpQ7tcdhaTPvxDbU2JLMspZ3Nfna0us1mHXFP/knmpmSUmlLYn5V8NftvjbjXmj
+         2prgM3Spul3VFBimJ1AP9C73YiupctdSI13JP3Mkr96Q2yoE+K3SYrkzmVvJpWYag57m
+         zzngG6A0yjgUBICyxkbfb6aWlaZDwVD5uCnUAmEPwAHqP0ATxC/7grmNdD51wV4FVpsZ
+         NRuhYuXc9ooUswKfUjlJZxttlW38ge39HGQ5Fbv3/ZmFrL2caL9wZ/HRBM+z22LReGNg
+         YPeWKYyOaLz+g0WW45veU84PA7wcja1O295KjwIvMY14DnVuBr4KIvMWTjqx0k8GHnWD
+         9OUg==
+X-Forwarded-Encrypted: i=1; AJvYcCVolarirEp3rSdOUW4LPX0lt6LZlf/PNAL59MoApZPhpEouteGeaBUo4HCZqYj2U63sLa/RZO9DIIP/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIph5oMu8EYCXciiN2369za+AB+ToY8/oBDDgqUZXOQt8WbV+E
+	0TtSArKs03xOXRPLqowgiJ5b9hLal8ETnAQ5pF1uKT0tA4UBsCiR9sZqmFeJMJk=
+X-Gm-Gg: ASbGnctpBoJPdn8sPDUInjIkDchVDwmNCLQxp2n2NZhsDC+Ix1NKvcf3W/Zwx59LOlx
+	EXh6aL27QEVxLzjX+YEd0G2FlC/hJAOpFNHwVqYcUV51SXttQ+Alvj0Xqn5L6yA2DAs2RKfIf/p
+	Ifv/zu44A66rfAcqe1OSpWt2zm5vzIxsMt4O4ev0ISQu06+ZUQTUakkH7IfL8OLAUoclP7yIwMv
+	Aw3bNFk0+CJo9KPIjZlcoUZ7S+DXLLLZZaGM3pNFTgLIVU8HpLBcIcQvHKFyimjD8EQyuEAntrR
+	drEOvD+AxB4g+J3QVan6q7qVhb7/DoG59IRU2Yj+5zL1zmuGIGh2K4prgEkPIv4qthX4+8y0aXs
+	=
+X-Google-Smtp-Source: AGHT+IFGuOW6Tpkgou6NY/aO5b7J0ZgNyZb2L7+1Em7PC2gecYR8PaSxzzzBVlry/acNwbDrg5EeYA==
+X-Received: by 2002:a17:903:3c43:b0:223:501c:7576 with SMTP id d9443c01a7336-22c53583deamr299094675ad.12.1745401014467;
+        Wed, 23 Apr 2025 02:36:54 -0700 (PDT)
+Received: from zjn.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50ecec54sm99557885ad.168.2025.04.23.02.36.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 02:36:54 -0700 (PDT)
+From: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+To: sam@ravnborg.org,
+	neil.armstrong@linaro.org,
+	daniel@ffwll.ch,
+	dianders@google.com,
+	hsinyi@google.com,
+	angelogioacchino.delregno@collabora.com,
+	matthias.bgg@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	knoxchiou@google.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Subject: [PATCH v10 0/2]
+Date: Wed, 23 Apr 2025 17:36:45 +0800
+Message-Id: <20250423093647.4074135-1-cengjianeng@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p4q2qghcrkefhmt2"
-Content-Disposition: inline
-In-Reply-To: <20250416120253.147977-1-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
 
+This is v10 of the MT8186 Chromebook device tree series.
+---
+Changes in v10:
+- PATCH 1/2: Add enum for ponyta sku.
+- Link to v9:https://lore.kernel.org/all/20250328094034.3400233-2-cengjianeng@huaqin.corp-partner.google.com/
 
---p4q2qghcrkefhmt2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: pwm: mediatek,pwm-disp: Add compatible for
- MT6893
-MIME-Version: 1.0
+Changes in v9:
+- PATCH 2/2: Add sound model to fix the warning.
+- Link to v8:https://lore.kernel.org/all/20240914063122.1622196-1-cengjianeng@huaqin.corp-partner.google.com/
 
-Hello AngeloGioacchino,
+Changes in v8:
+- PATCH 1/2: Remove custom label.
+- PATCH 2/2: Change the commit about ponyta.
+- Link to v7:https://lore.kernel.org/all/20240913031505.372868-1-cengjianeng@huaqin.corp-partner.google.com/
 
-On Wed, Apr 16, 2025 at 02:02:53PM +0200, AngeloGioacchino Del Regno wrote:
-> Add a compatible string for the Display Controller PWM IP found in
-> the MediaTek Dimensity 1200 (MT6893) SoC, which is compatible with
-> the one found in MT8183.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Changes in v7:
+- PATCH 2/2: Remove prototype sku.
+- PATCH 2/2: Disable the other trackpad to enable one of them.
+- Link to v5:https://lore.kernel.org/all/20240913015503.4192806-1-cengjianeng@huaqin.corp-partner.google.com/
 
-Applied to
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-next
-with Rob's Ack.
+Changes in v6:
+- No change.
 
-Best regards
-Uwe
+Changes in v5:
+- PATCH 1/2: Remove sku2147483647.
+- PATCH 2/2: Remove sku2147483647.
+- Link to v4:https://lore.kernel.org/all/20240906085739.1322676-1-cengjianeng@huaqin.corp-partner.google.com/
 
---p4q2qghcrkefhmt2
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v4:
+- PATCH 1/2: Add more info for Ponyta custom label in commit.
+- Link to v3:https://lore.kernel.org/all/20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com/
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+- PATCH 0/2: Add the modify records.
+- PATCH 1/2: Modify lable to label.
+- Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgItEkACgkQj4D7WH0S
-/k55tQgAlq1/IAh3RsXMDwoqCzmUuiKr7II2d4Wm5ALC76/irLZDfA5QQVU51/ai
-+TfOCRLuh9K5Hqki3o7pEkYBS9naCujh5JYMyG9rVmFawRsO/eV1IJ0PS493ZF+7
-0ELBMhPpmGol96JgkYpKeDBWlLTH8jLDK4pnH2FmE1tvN/OU8mSPvD6LuIJmhBdI
-p5G4SIQNeTy9ydeJuoWnxO/NSiOBEyqfJxKE8xEFvWhEC4fpjXPzkYYqvQ+2MJbp
-qQiHymfCWi5Zz2YUnnsm9c0I1GgoJTPl2Ad0FxPg5eGxpCj95WyyZJxM2VAG6SjA
-xKukBj6MTSvGXAYh0VvNwBQ4LkaDfA==
-=vDOt
------END PGP SIGNATURE-----
+Changes in v2:
+- PATCH 2/2: Modify the dtb name without rev2.
+- Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
 
---p4q2qghcrkefhmt2--
+Jianeng Ceng (2):
+  dt-bindings: arm: mediatek: Add MT8186 Ponyta Chromebook
+  arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
+
+ .../devicetree/bindings/arm/mediatek.yaml     | 13 +++++
+ arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+ .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 18 +++++++
+ .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 22 +++++++++
+ .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 49 +++++++++++++++++++
+ 5 files changed, 104 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
+
+-- 
+2.34.1
+
 
