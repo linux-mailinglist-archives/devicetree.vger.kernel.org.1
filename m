@@ -1,191 +1,112 @@
-Return-Path: <devicetree+bounces-169893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A271A98950
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:12:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A27BA98959
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 658F31B6410C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:12:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6FDE7A50D7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231F3214229;
-	Wed, 23 Apr 2025 12:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4334121517E;
+	Wed, 23 Apr 2025 12:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=htecgroup.com header.i=@htecgroup.com header.b="i/lJMD9V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3x145LH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11023116.outbound.protection.outlook.com [52.101.72.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B8A1A0BFD;
-	Wed, 23 Apr 2025 12:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745410330; cv=fail; b=Gyl01SgrwTceARfNwOQ1GdptOGLvipLM2NLFt4/69t0tOWUdEeLakhMsIwoDiWCAYzXeJBRv07sBYFMHmkh+NLbWToePyRLBStF/TS/t8H9isMmXzewr2hyZcZp+J8EhVR6LbBSwh7W6aMhwohW69uP/pSBCI2YJ/29ODd0A2Cw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745410330; c=relaxed/simple;
-	bh=qI4UyKj0oDZFrshmZyt4BU0cZX29Mdcsn0kOJGo5Aq8=;
-	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=N93c3yebPPRUVSGO1Kw+ITLjYiGO46Iov+QlCagcAZ64TlBeCEj/hL211l4qNDxMmK3MyrwUBV5K/QY2cQsLlhXFR4W15HgkOF5qBISYbSAMcOX/L+GaZGzVe1q0bmFbzmRSpTlEXyDo5v5Vqb3/MTtkdbXzpA+J+bICJDS9/mg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=htecgroup.com; spf=pass smtp.mailfrom=htecgroup.com; dkim=pass (2048-bit key) header.d=htecgroup.com header.i=@htecgroup.com header.b=i/lJMD9V; arc=fail smtp.client-ip=52.101.72.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=htecgroup.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=htecgroup.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nddUa0d14xAzGFXmS/wQNdQqLYO/alLKBpdV10bLYI8nQUK7qaGYE/aedjse9zVyNld8Si6z+KSJbV5LgDgzxmgA/Gp6SP+xq2+1vFP85Ms2JGA5If2MKAoWfx/QntAZJ6QxZynWaUzfowiU/i2bNSBnKFVyfvEutzo6t57RnYWNKXgvl10bB4RsltVyYi3F39EUnCRx7OPFxwSn+tSDD0K+O95fzH3Gg3inT5tS1UGmhdrqfSLjxGP7k/hPaDcurrsLZxRcSc0Cvxk+gheTUql1aMxB4utDTvkXn6NKhzm4Ludjjb7yYmkHJzZgVY9FjewP+CLeHe/nGTqictu2IA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+Kf4adpV+Zy5zabkSi7na2J8Hkrn8G520yK27INw74M=;
- b=kKFFP+WK6gljt22t6WtHvuxsFGW9IYb+xzM2y1iFw3KNNqOQcPStfdypl6caTI6L81M/+50sEcjPIZh2v/68cLOuRg1Ow6aVEFt+uLk/0zcxk7jCxQFyxdGZRxGbLrxMaD05/CeGs/rXvc8GvSl+U50fBiV/dB+F8n63Om3cdSWGO/odwWXLJ2URS++D3Xo/dBxtdWOgalfPX1LLMJHBtEbpfUMOjbfIoDPhyh9oHCNJLKfY2UYbImtv5woFfMC7TSmYW0IxY3JpQK/+QxZYDjaI0wFH4HyMRAoXYSUz/G4jnx9tuz11pl/L+xYhRKgSPdUlgRyPBB+/9fU7NiSZYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=htecgroup.com; dmarc=pass action=none
- header.from=htecgroup.com; dkim=pass header.d=htecgroup.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=htecgroup.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+Kf4adpV+Zy5zabkSi7na2J8Hkrn8G520yK27INw74M=;
- b=i/lJMD9V7iH9Au/Yd+tR7vgDAWp7GewAzheu/P57bpspVeapUPqMNcZP+1DPv0YX8x754/TugvDqQeuTRjiwT/5KhCz/cUknRm+KQ3AQjNcb4Kt/0GcRkfDat816dYd+zTbHKURl6K6Tbk9dTEXi908dlrewH7rKirndFATSdrf2UKGtirJGS1hmvWOfyJ6YLnwnBJkUdfd1z8MwBd+s5kIzq9tv2KYrhj6jugUAvq2XKX5g1Mn+Xhdx5a5hAF1ua0a5pMwN7+sboIvMK72t2Xy2KwzjCPqYvwuRKGsq3drTiJYLoZ+JGc/yxTjGYfN//EkVsq3trTt8ExsfHqqKNw==
-Received: from DU0PR09MB6196.eurprd09.prod.outlook.com (2603:10a6:10:47f::9)
- by PAVPR09MB6605.eurprd09.prod.outlook.com (2603:10a6:102:32b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Wed, 23 Apr
- 2025 12:12:02 +0000
-Received: from DU0PR09MB6196.eurprd09.prod.outlook.com
- ([fe80::a9c6:101d:ef46:7f95]) by DU0PR09MB6196.eurprd09.prod.outlook.com
- ([fe80::a9c6:101d:ef46:7f95%6]) with mapi id 15.20.8655.033; Wed, 23 Apr 2025
- 12:12:02 +0000
-From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-To: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-CC: Djordje Todorovic <djordje.todorovic@htecgroup.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Conor Dooley <conor@kernel.org>, Aleksandar Rikalo
-	<arikalo@gmail.com>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v3 0/2] Use GCR.U timer device as clocksource
-Thread-Topic: [PATCH v3 0/2] Use GCR.U timer device as clocksource
-Thread-Index: AQHbtEe4AW+VZsPs8EGs7hseKDfKbA==
-Date: Wed, 23 Apr 2025 12:12:02 +0000
-Message-ID:
- <DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Enabled=True;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_SiteId=9f85665b-7efd-4776-9dfe-b6bfda2565ee;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_SetDate=2025-04-23T12:12:01.593Z;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Name=HTEC
- Public;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_ContentBits=0;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Method=Privileged;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=htecgroup.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR09MB6196:EE_|PAVPR09MB6605:EE_
-x-ms-office365-filtering-correlation-id: 2fe77388-62e2-415a-49ef-08dd82600e22
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?kI5n+qr4Md8hnzsG9xYjJuqjfLp2MwUIHRUjRC/FxTkYov3nBmM5im7MiZ?=
- =?iso-8859-1?Q?QO3T4GgYOSl1jRxbThsdEq9QbFiUbAXjFEX2Wc1YftBl9mccc+1hBKnpmC?=
- =?iso-8859-1?Q?fUcdyVVKt8KJ3Qs9Ge6y38SfRD89ctUImPowF+WUy2/YcLQeq0JLWlUpJz?=
- =?iso-8859-1?Q?oYWIoKILfJKYJ/8xfzrdoOYdnU+jBit5CpDEE1kyDshrRt/05bZWZQ8p89?=
- =?iso-8859-1?Q?f/sULfNognUPuk7CM7b38EE+rH6d6lTtvVml0n9evBhqlVmd1vZlVOmXLi?=
- =?iso-8859-1?Q?LWKGRS7YzQPUHAdJyX9EZ6sZuVzGqhZ4GhGdzxpa5dDR4M1mR3cfeasHM1?=
- =?iso-8859-1?Q?tSjExOxQC923FzxWzhZzvN7MCAsiAVjABSxNxERLjlr1k2lBQd6uizPcPz?=
- =?iso-8859-1?Q?IMnFdc/VYnShocH1n7GiBqGyJYexBUXKAgP0GUQ5wLy1QU0/vZd521lc07?=
- =?iso-8859-1?Q?ija4gnQLGWBp+RvwWrmBdyntg+LZDuB14RCruQoP0Vu6jJlF1BNCEECQIx?=
- =?iso-8859-1?Q?2mquxakvd8pA89qo/M2bFMn2tJgcSfBhXGeZE6USWDSnyJLGwWNRfZ4UGx?=
- =?iso-8859-1?Q?GZrSGdoOx4fxY4hAeD1HvGKiCGyuvf2itiNsNowzX+H90M44Sua+xOUaeu?=
- =?iso-8859-1?Q?QRY4QWj125ED5HXDg4231YvXxTRh5wjfwsBI4tao6/vKSs3GxDLBI1pHQ5?=
- =?iso-8859-1?Q?TtDD9W1u8Qzj8j61PtdrBHnS2P0/tPKv57MUaKSkr5dN19K2cShMPnQPUa?=
- =?iso-8859-1?Q?mQhHIYKJ1euXraFTTT6/hmZGa0cB2dPiDaBYepZ5xZvOmKBhL2Fm1VdXrk?=
- =?iso-8859-1?Q?7vT5xXtaHX0hw2fCiVOkxPoX9BXG3bO6kbhOrZUd66KP8H/Hl7423Hq8U6?=
- =?iso-8859-1?Q?UhKcPXq6aI+8vjRxj8k7ymVgVUB9jT7Rn6WrNecGmzykqwqwORiye15KlJ?=
- =?iso-8859-1?Q?YdYJOoP0ZoyWcnueSLt+iafJsrLBk/cFUBYsYjqvosKvJoK+rlh6Af0C1g?=
- =?iso-8859-1?Q?bvCBYDO7pbUjURVLMH7Xn4s909UXlySocP//62ZacTtqtpJrXe/NfZscAe?=
- =?iso-8859-1?Q?vVjiQx1Wi7rILDOZEPeguBJe0Uthp+qbiMTFm6cPuBlPppb2cnJBt3LSuv?=
- =?iso-8859-1?Q?LP/Xf+6sheFmIbuMx7nmfQAaypIQIAuca5+uf3sDJlpSsW5tjZJDcw+ZuN?=
- =?iso-8859-1?Q?ysBYHItRI+AWKceTHIEkEjtfu/WMasj+No2CxzTBia419RTxZewDkRH2Ds?=
- =?iso-8859-1?Q?70PMmAB9XPqVzDz9RCZzLoWlv2yaGcHm7yLIQbCSefIn5SOOZOOO7SXjY8?=
- =?iso-8859-1?Q?Bt1L/k1GtL9qwGPJ69sOHH3P/IEri5j9ySWE8fE32Xo+unKsEF2tXmYeiI?=
- =?iso-8859-1?Q?+QEVgzJ2pufOn4nDXlf9y47jGlfYbpxrEhMFA+2J4Tj2EyC6RoO6/wNUmA?=
- =?iso-8859-1?Q?1DxTUU1GfvEJ2nPAOe52MTipsY6BtzJ9ljr7IuCdWgjUhwqPw14GETEfg/?=
- =?iso-8859-1?Q?nF3zlwHWoSjmgmrMl4ejTbTuBZpPAnMIM69X71Bxk+e0owCgdGbwPxb3W1?=
- =?iso-8859-1?Q?4avbHMs=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR09MB6196.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?qBBZAToTmeB/rf5X3M1lh1G+th6+Az1JqnlNJRJEsMn6A3KAHLNHmQFHAV?=
- =?iso-8859-1?Q?isXqEWlxfdfY+i8Y7lupnk3DN4fLPUXazWwd94a4VMN6esm3YaKSDPV9H2?=
- =?iso-8859-1?Q?nuE26j63cfIH77aj43sRjO2m6klVJxAwgJ3QD6SxpqcxfhGoqI3X01EOCy?=
- =?iso-8859-1?Q?hSqOSZZSjdlXEA57rPqe9YmutzhTiPEaXdgSXK4IavTn4qZYocUL0GYFcB?=
- =?iso-8859-1?Q?s155ivNBkBUT+me/ohvr3O9Hqvmq0xOcN5stP6XDvTGFIhCqRPuaqByxIq?=
- =?iso-8859-1?Q?qvgVFLZ/x3SVtOQYkRgQNw/c310tJBX4tv+ZVs3gnzlY7/UrLRKPLhHJMi?=
- =?iso-8859-1?Q?Be0PEoIJeS2c5JnzAndDdtrj+CwEjG5caWX6qzkSJh+YwtMy0Q8aB2Y4o9?=
- =?iso-8859-1?Q?CvQ0Rs/L71pBMg70fokk1p46Dazp/SPDCwtVjToCCffJZMFfZwIKmary19?=
- =?iso-8859-1?Q?pXt5MjEYExM8Qw7M368oKAXp3YLsqYSyESsogjef+vm2P8NC+OWq+skZc+?=
- =?iso-8859-1?Q?DTRb2jCfXH3odjTAikb1uog0IHPFBS4bhGtYbCpW98KHH9YErqHyQAw0GZ?=
- =?iso-8859-1?Q?WFcRkVkDHOT7zebAH/s9begBRDNMy9E1TDvRUBhXzG0QZQkdsvHl9Y83ap?=
- =?iso-8859-1?Q?kiOGWTfF8FfT4sVzo84e3tkcWbDmwR81Etl1RakohanSD3vIuU+bNMASw8?=
- =?iso-8859-1?Q?6lnBMe0ovRg4gtL+Eujlxo9U1uFVNDIXoj5RHwcoiAJYSOp6qNBSZcik0Z?=
- =?iso-8859-1?Q?Ed/MpNFzA7y6XCZtEDyFVkJTSFH5QwS/HDVlRV7HlMBR9G2DYaXVyua6pf?=
- =?iso-8859-1?Q?YT+8wX86QmYB3kJ5rNFlVD+ONTiHfL5OwrCcZd/fN9r+aM3hrHw8G58JUL?=
- =?iso-8859-1?Q?yDdbbwQTaCIK25Lz1sMipbVIRXiYKyaKYN08GlC2AAAse3PS46BeRRrdmB?=
- =?iso-8859-1?Q?0Opfj12bXptw8k2y0Mjv+xMmvLE2v81AHhaQ+2qBD4XXR29+vPnYJue+4C?=
- =?iso-8859-1?Q?BodybtBRdyejJ9gbG074qYRF5N4gDoHEqSrkC2F3PQ39Pi3mfWwmggHvHW?=
- =?iso-8859-1?Q?Kbk2vPm77rXUCQZKEls/KCjmeYFD+4ou9pGTr52X+eBzdj/Lng5vbUBix6?=
- =?iso-8859-1?Q?8fQQFmV4HrSjFpUrnyU6RJSlFizWTCj75U5cOeqvf/R0GDanlQdiipT0OU?=
- =?iso-8859-1?Q?YCxFlqaivxZ5NG7NeDWEuK+NLT7AYzeew2pc0T1FN2r7rnYI4N4AmhiXAt?=
- =?iso-8859-1?Q?s+JFkZaUCzwJ7+DrUStdz4b8GrD4zZEF8EjLIObGnzfi4NNuy22kPZGsDl?=
- =?iso-8859-1?Q?EqQbcMW3OC9WcqujQZODcf3f9DZLp98jehZMKO3iI9a7NrEAvZccSBebf/?=
- =?iso-8859-1?Q?nT75ftZi77xjxWubBzATXNlPdsmkZOwriU77xNwlmb1VFovC38UUGWh9Dt?=
- =?iso-8859-1?Q?l8OJTEZ5AmeXXfkKHcWFkAP0v7vEGX6zZo8tNgFiILinJb00d4Ek+6MHVX?=
- =?iso-8859-1?Q?yuja9XfE/m0Kfoh+dcomb5YClhAwX0wwKuWxVsStzKYCUtwvkHUKWYZkNM?=
- =?iso-8859-1?Q?fea2A23fMVYZGJSlrL/iRxci2EdApkGhG1G4maa6LOE8M4E8tyKqIGYgog?=
- =?iso-8859-1?Q?u87IyYgWlQmzX6S6206GJqwYGs8xkN+FhS6Lg/aYMr26vSDmSiM786Fw?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100231D90DF;
+	Wed, 23 Apr 2025 12:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745410417; cv=none; b=gdfwXe+WPmTVZO991fw//hlBZOBi5F2havtTcu08uK5xpsd3Um2z/a2LJI/xVS3OWgpc2vBh54C53iGl5dd+k8fhezMZE+qHWm/nB8zBYaoYmMkY/TBhkukDcDHlGTvf/tWwl4i5mko9Afr9QjX/rr8n3FyfrCsMo+cDJjEuPX4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745410417; c=relaxed/simple;
+	bh=HMgH1+9XyIkutzq+xKi6DmcGLLwEOVIX2ELaW0OhH3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RXrZ9gXmLNufCpldhZaNMR0W3EsZ42TpgJ/WsrsQwvVTFgrPJGNjChd1Di/pyXMTV8XtmpCBGyOEYwNWrXcAijItfJduL2uwI9oPLfyDeevFske+TpC+eqhgNqWIJkwhDwoqO1ppDfJ4kZd7USfmFY2lSBA91fmUXGRmtcfGouQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3x145LH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 441D2C4CEE2;
+	Wed, 23 Apr 2025 12:13:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745410416;
+	bh=HMgH1+9XyIkutzq+xKi6DmcGLLwEOVIX2ELaW0OhH3E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V3x145LHTniTXMJzsrhUROlGFjM16I5YzmcBHE3FXBZD97LaHKfJ5597d40HpIwdJ
+	 /n/usmDjUzkGsUtgdvzvF0T5SaAAXYmTGsVOqRUIcNJuSSyMbEtob9hLbuDV5BBIdY
+	 3hy4PG64YyZGByTm5rT46yY2AfgkBTqkvCZdr4LApMON9caYe1HsGQum5kDYUPVCQt
+	 ToKJORV7i+Cz+YMBo/olR8utRITpy63q12syC98PBE4SJbJ/aIF5Y0l+U0Et/hU9uq
+	 0vy3esOBXvQeAwXNtUAG7+M5pAy9mRv/t3t4zngXI40pvd8o+YDu8MgQVypiG4Nevk
+	 JwSfYjs3MlZMA==
+Date: Wed, 23 Apr 2025 07:13:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v6 2/6] dt-bindings: dma: rz-dmac: Document RZ/V2H(P)
+ family of SoCs
+Message-ID: <174541041414.56228.14869219817347630764.robh@kernel.org>
+References: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
+ <20250422173937.3722875-3-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: htecgroup.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR09MB6196.eurprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fe77388-62e2-415a-49ef-08dd82600e22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2025 12:12:02.1772
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9f85665b-7efd-4776-9dfe-b6bfda2565ee
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ufwP9O9Q9GcOhstgjrmfzRWmx4wFvlwYthB4IFHtKFo1qR7ouW3vkzDnnBRdOP9rCB1Zms4xZZAERD8vVXyUhB8WT5Phkt6fdM7Oebw1hvE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR09MB6605
-
-HTEC Public
-
-This series adds bindings for the GCR.U timer device and corresponding
-driver support. Accessing the memory mapped mtime register in the GCR.U
-region should be faster than trapping to M mode each time the timer
-needs to be read.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250422173937.3722875-3-fabrizio.castro.jz@renesas.com>
 
 
-Aleksa Paunovic (2):
-  dt-bindings: timer: mti,gcru
-  Allow for riscv-clock to pick up mmio address.
+On Tue, 22 Apr 2025 18:39:33 +0100, Fabrizio Castro wrote:
+> Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
+> The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
+> Renesas RZ/G2L family of SoCs, but there are some differences:
+> * It only uses one register area
+> * It only uses one clock
+> * It only uses one reset
+> * Instead of using MID/IRD it uses REQ No
+> * It is connected to the Interrupt Control Unit (ICU)
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v5->v6:
+> * Reworked the description of `#dma-cells`.
+> * Reworked `renesas,icu` related descriptions.
+> * Added `reg:`->`minItems: 2` for `renesas,r7s72100-dmac`.
+> * Since the structure of the document remains the same, I have kept
+>   the tags I have received. Please let me know if that's not okay.
+> v4->v5:
+> * Removed ACK No from the specification of the dma cell.
+> * I have kept the tags received as this is a minor change and the
+>   structure remains the same as v4. Please let me know if this is
+>   not okay.
+> v3->v4:
+> * No change.
+> v2->v3:
+> * No change.
+> v1->v2:
+> * Removed RZ/V2H DMAC example.
+> * Improved the readability of the `if` statement.
+> ---
+>  .../bindings/dma/renesas,rz-dmac.yaml         | 101 ++++++++++++++----
+>  1 file changed, 82 insertions(+), 19 deletions(-)
+> 
 
- .../devicetree/bindings/timer/mti,gcru.yaml   | 47 +++++++++++++++
- arch/riscv/include/asm/timex.h                | 59 ++++++++++++-------
- drivers/clocksource/Kconfig                   | 12 ++++
- drivers/clocksource/timer-riscv.c             | 32 ++++++++++
- 4 files changed, 130 insertions(+), 20 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/timer/mti,gcru.yaml
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
---
-2.34.1
 
