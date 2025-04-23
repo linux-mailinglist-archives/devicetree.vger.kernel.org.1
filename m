@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-169973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 184BDA99262
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:43:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE05A992BB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 932475A79F5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:35:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A805A1B83F58
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2FE28C5B9;
-	Wed, 23 Apr 2025 15:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3D12C10BB;
+	Wed, 23 Apr 2025 15:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j2MfFQT3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTHh/ZVh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060BA28C5B2;
-	Wed, 23 Apr 2025 15:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8C328CF76;
+	Wed, 23 Apr 2025 15:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745421862; cv=none; b=tAfjMmYZeCKSBP+DL713KvHSK6eXKURlNVgOoUU1tZfUFeEfM01u/IeVGmzDPulgzOSLCVnYg9Te4I/6sWjf31YfqBboI6pJc8L9nvJ2agKX3e2660emAQdxu5r6gF7HebYN1FcS4E49aLytPgmjXVlkOnCkmC0NLYDuDXhkTQI=
+	t=1745421885; cv=none; b=pR1Gk2HEnyFSyFsQHvd+jteMpFFGgR22l77QRNSdMlsYG7QiTtBMYsFjv3/i2iD6TPARHuSPs02xEXgx6TpXF6CRWceyKW1qqCBHwQM9MXH4WCMTTBLcQHE9kZh0uoudsrQBGLaipUQ/C1RClFp08tpA6kIRojWTO91G2kWsxMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745421862; c=relaxed/simple;
-	bh=MGkSDAhmsttNEFpJt61N5qgZgDOhGEDQKGrmLoEGji8=;
+	s=arc-20240116; t=1745421885; c=relaxed/simple;
+	bh=3GqdD9EsYekxTXVnDEaqYUNg6+oGL8a/ncx/IINGhz0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IKyQroetbFLlqlCIfVo1Gl0zA7lEdqt+rwkYYanH11DcKa7YvPbCNxlboRJk+Y4qDOOpt1Aq5wa7LIPjGy0+DFqgkoHPvRMf9fS1uqScrZlCZ1z4o5oK8QlFjGuPesrWyCHoQqRt4ErLjPZYhixGyWWr+0ycF4x4ZJ7XwkMar7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2MfFQT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A06D5C4CEE2;
-	Wed, 23 Apr 2025 15:24:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uGmWjqnr2JXXJXwHsL6CrPJLmXl3qzlra4yQs8WogEpaJ1ubCVp8HVK0tFbdmZAFu3JSjpCgoBUMLJSvL0ssDfhZK/uZt4F1Z2VXIuvN4BqTp5AtKyXzim09CBz+28A1TCTHFjiWmO11ZBn+3mNBwpauugJiUoSixn1m9da/XUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTHh/ZVh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA26C4CEE2;
+	Wed, 23 Apr 2025 15:24:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745421861;
-	bh=MGkSDAhmsttNEFpJt61N5qgZgDOhGEDQKGrmLoEGji8=;
+	s=k20201202; t=1745421885;
+	bh=3GqdD9EsYekxTXVnDEaqYUNg6+oGL8a/ncx/IINGhz0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j2MfFQT34oLMAfbpJVPfDpvwGmvcGh/TuufkBrvtdvQ+wp63PV7M3qQKVsVOwYoKa
-	 X9n3Pn+LUi83ar1QffPqYBT946ICCF2dt1yhqP52ONfcaPmd6xQo75YxT5mtkIJNfy
-	 13JXoSeG/V7oytYAxNAlCp8vIAxHjcwYgNLYLWGyHnPDEtLDHgZzXX/ZTzM0JOP/9D
-	 QkbO4i/7WAycKSJKdmmO9N2WakwKAhP9PwU9lSWhWdKfg/R9Im/QyUptOLvZB/Hk+a
-	 sUkoSfCggUA/CKcHS42UfruWqzkTUBMHujQpKxM5qahvydJ57GzOWodhepSqm2Aa9j
-	 f24LBdQ7bHY3A==
-Date: Wed, 23 Apr 2025 10:24:20 -0500
+	b=lTHh/ZVhwKtm3WTFvXhFHAc4u2dMYSa9kc/5UANUuEMhBzI1z5q9twt0ELKCRgK+z
+	 HePHwlB3IOsO9Y/Qshg/Q8NVvkUNrzWSPLlXGvHVPJIjCIygM/3YnZo0Tb154ddD6R
+	 fucKRN4vDR+ZCdFI9SwPNssuj2WRlpuCQcguTESu2mbxW2pJmkdR+NyUdHHBwixpMM
+	 s9UiyBtLLy2pLhJ9o2eFfXHWFyGm4eo50VtfNiBEdhQzgCA6sjbc2olmg37x6dAiKh
+	 ZNsvfB/eWMe+iFkDLmjWkktTrmRPDHs+rcjSQMKt79GNQ2NftO1bap9z5X0GeXjhH+
+	 N6/0F+xHlMp7A==
+Date: Wed, 23 Apr 2025 10:24:43 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>,
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	=?utf-8?Q?=C5=81ukasz?= Czechowski <lukasz.czechowski@thaumatec.com>,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: via,vt8500-intc:
- Convert to YAML
-Message-ID: <174542185825.550926.14913949740445861454.robh@kernel.org>
-References: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v2] dt-bindings: usb: usb-device: relax compatible
+ pattern to a contains
+Message-ID: <174542188274.551504.11808715673086067536.robh@kernel.org>
+References: <20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,31 +62,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
+In-Reply-To: <20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de>
 
 
-On Fri, 18 Apr 2025 17:57:25 +0400, Alexey Charkov wrote:
-> Rewrite the textual description for the VIA/WonderMedia interrupt
-> controller as YAML schema.
+On Fri, 18 Apr 2025 16:08:20 +0200, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> The original textual version did not contain information about the
-> usage of 'interrupts' to describe the connection of a chained
-> controller to its parent, add it here. A chained controller can
-> trigger up to 8 different interrupts (IRQ0~7) on its parent.
+> The dt-core typically allows multiple compatibles[1] but usb-device
+> currently forces a single compatible.
 > 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> This is an issue when multiple devices with slightly different productID
+> all behave the same. This would require the driver to keep updating its
+> compatible matching table to include this new productID instead of doing
+> what is usually done: have two compatibles, the leftmost which matches
+> exactly the HW device definition, and the rightmost one as a fallback
+> which is assumed to be 100% compatible with the device at hand. If this
+> assumption turns out to be wrong, it is easy to work around this without
+> having to modify the device tree by handling the leftmost compatible in the driver.
+> 
+> [1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/dt-core.yaml#L21-L25
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 > ---
-> Split the series from v1 into separate bindings patches so as not to
-> spam all the subsystems with unrelated changes, per Rob's suggestion
+> This came up while working on fixing USB on an RK3399 Puma which has an
+> onboard USB hub whose productID isn't in any driver compatible list
+> but which can be supported by a driver with a slightly different
+> productID matching another variant of the same IC, from the same
+> datasheet.
 > 
-> Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-2-f9af689cdfc2@gmail.com/
+> See https://lore.kernel.org/linux-rockchip/20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com/
 > ---
->  .../interrupt-controller/via,vt8500-intc.txt       | 16 -----
->  .../interrupt-controller/via,vt8500-intc.yaml      | 76 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  3 files changed, 77 insertions(+), 16 deletions(-)
+> Changes in v2:
+> - use contains: instead of pattern: to relax the check, similarly to
+>   what's done for PCI (suggested by Rob),
+> - Link to v1: https://lore.kernel.org/r/20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de
+> ---
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
