@@ -1,136 +1,193 @@
-Return-Path: <devicetree+bounces-170096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F528A99C09
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 01:29:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BFDA99C53
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 01:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8385E177E3E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 23:29:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3314E1B809E4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 23:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A1A22F773;
-	Wed, 23 Apr 2025 23:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E1F21FF24;
+	Wed, 23 Apr 2025 23:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L4ZWiKd/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a0FQWjks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE3D2701A3;
-	Wed, 23 Apr 2025 23:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A4B223DC5
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 23:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745450951; cv=none; b=JFiwWBfxcUfgS74/7nhUEiDYPSIOhNFmbnKoZwSY8o4HlZN0l1MtoF5F47/M97IzWM1Z/2QpiXbpmxtGV3IInQ9qecbv85fAdPinMbjtV0TrkvgcIyUqAOJFZ2MPvdNkCbG48+XLJX3Um3plZDu6+p01Hg7uVYJkvxqtKWquMJ8=
+	t=1745452418; cv=none; b=a05ZMcn1MiGlp9Ewen+9AWt9KgU7doLqdDep3875QCbh7it9fppHEC9CeGb8yNWH+v2xfbhgQdqTC8IPa0uy4XOigsQyRAGj8rCccxOBOPT7Zybs3xh2/u+y7JqNQrdQ9V5MD/z/INyylRSf5/5naDhG3wRYdXtJPQ4zPcxexaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745450951; c=relaxed/simple;
-	bh=DvZwdeg1gjnZ2bnEEsCjDZhllW177XmaR7bRp5eJQCo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UXymEQFilgqFyd6ra4QFE75dCcXJB3oxh/94p30KdN77HQH+MqRSYMhf7h5HpCW0bv6VHchKIlVknWvmCykIZ7OuNwspBnN7yYNrnnuYiJCqebjxL7za4/Vg9lfP7UC9oQp1q2Lc51/UkHtalWhzhkRZJjAxZiIBUhmYz9oqExk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L4ZWiKd/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NMTYX0014698;
-	Wed, 23 Apr 2025 23:28:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WplJrvdeqCjaznQVQGVrkmvzyaGuwuO9MWuZjZ0uVX4=; b=L4ZWiKd/knp+ebB9
-	oT5PEZzM/yaeX+o+W7X4xm3BDE/2mZ+WhAWAaORNi7ulSvMcwjHnXZhc323SIgNH
-	UT0g7AbPRFyVvLye/i4ozHozvcijZG4voI1GUBSKOuM8sHYFWGT6jGZvCl5r3gIZ
-	2l27XIsnH0/wGl/oVaZZqSlTEFAi2DcuAiaYdGMemG4YKLVc7uimQsfpQftKy/aY
-	HfAILok0k8jjTxY8ns9egDcJ5HK7ebr1Y0qNvjPPwBgn1vQedZboFJAZYjA6E7QA
-	K06W9the0S/QTA/u5w3ZBkkJ/KMW1ODmSOGhDugEe+BS9h1C9trclgqg662vgbgx
-	Mnog/w==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh0kmbe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 23:28:50 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53NNSm60029994
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 23:28:48 GMT
-Received: from [10.71.110.123] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Apr
- 2025 16:28:48 -0700
-Message-ID: <7cc93a39-3812-43e8-b9d5-c61397528e47@quicinc.com>
-Date: Wed, 23 Apr 2025 16:28:47 -0700
+	s=arc-20240116; t=1745452418; c=relaxed/simple;
+	bh=jaLXeHZO4CRuSfkEnW7KZDso1O1Ra9XizhBwaGnF/+A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fkvYbRZ1mPLZt9bdY1O8RZEDCgYi5Bs83FZ4Eq9vxx5M/zXTlQ7dAG6yxepBFvO3SddMsEKKx58yZK6GIZr2yGIEqBTG2Wh+rfERiQgwfuu4v/HxTk/BN0voHQWgN0eJD0SD8ucAj/mzDU49OBlyAyAwBOZh7LBCmi5OBNSbN3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a0FQWjks; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf06eabdaso3482255e9.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 16:53:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745452415; x=1746057215; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wO5ZtydfTuZc/OeSHhlLm38Bhmnhb7Sjq7pggZ24Pwg=;
+        b=a0FQWjkspxTHUMtwdnuiZHsmFKaRP9IBbvVwObHeJfrI3/+uR4dtnxGQVhvK23CtcI
+         yQf+i5xMphYn8QGDEx9pEA/uLHcK3uOyDHdGYlN+tzJQGMZqx17RyaeiI27srGaI+C54
+         fdYCovGvGYs2c2FgBa0PeY/X8Q0j5lmRODM4kkGbXsM5YaSa6HPu40ijsTlBqUY66QUD
+         4fshxRTF9SYw7DuukB7I1552O6Bdy1ZwZY3LIJJljIvVyN7GW+LJagl8KJXyML/e6UK9
+         mJPSWu6US3geIAf3tZyDW+07ZPRzIXpgXbsgEjJXOO5cCVmE0u0bS6d2s5ya09bdgxUB
+         6+BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745452415; x=1746057215;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wO5ZtydfTuZc/OeSHhlLm38Bhmnhb7Sjq7pggZ24Pwg=;
+        b=XAsJRRRYGuO9cmnnwkRFO86VoVN4xDugZJSFr8a5XBQL8bz7fIDRpiwacs3LNHi4PX
+         A+3kxCR149mStom9cKv+BdAesk2K6oTrc0huCAU2j+lNDUn07YWWGkTSnlOCuXexvUYG
+         Z53SaAQrOWYoRs58APd/rwDpobOaioUJH58pX3gE+/RpUCWTqSpmX1xmst8onIoJBvDZ
+         SMzCJFcgyeRw/jxpLGf6MFYkAnphIfPxy2ySHkIqzQELrCIc1oce/G8GDZW2wvuu7WWJ
+         Ot2wVBF5+n+2/6Irntb9gXXgtIVyFZDqMl/LNsjsHXKP06OGzLVvtRfswlBG6KRf6sPU
+         wYGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVfEUQJ7M/akWNcmNj2r1XxvQ2WXANsA2I0CwkYkmBWROad36gjFgkKdjS8D4RQxvf9clz5/aOPlSY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOVKHmqvRN/CB7DITBwkDn3k6t37miJq2hiBZDqU/whNSwQ5vU
+	uUVPAb0T8oOwaYQrqZAflXAvUZks5NJEbo0nk/105kgYBWAHvhdCCVEq5o4cH2KpjQlOr+dUXsh
+	Oqx8=
+X-Gm-Gg: ASbGncsHaQikPZpSQ1sFrZKWjzoviNP4YStoALSH1CeFyCazFZUnpxJ8A/5FeyTJVQs
+	hRifQF52ZbBpOt8+lAzD0gfwKOjLHlRf+sswZ4CZHrybUsjBrhCUzQ0sVOSBvTIe7fSsrxqY0+G
+	ywMMmqKHFkM7i40NWyxVaRCaWPt1eKXcaIumcRoQFAQxyWpR9Wb/eyW0VhczuLeLVFhSyd1kVMU
+	9L2SUC9yxjUvC7zBpdw1tvUCIf+3uM5b+hZMn8KlkgESy9u+zWB5m3NtvlZvGeo1elqzlpgimP6
+	KY0YtUmMVtyAQlCudOqDv62mjgiOn3sgb96hK5cp2n4L4j4a63LNPsdg3eTbrlZF6G6gL/5pl6E
+	z4VWH8g==
+X-Google-Smtp-Source: AGHT+IEL7K147MPG6PBlmwpddEI+LEssXzodaiLUooF3Dgc29dngHpS4HGqJu+u7hUYFAUxsKxskhw==
+X-Received: by 2002:a05:600c:1ca5:b0:43c:fa52:7d2d with SMTP id 5b1f17b1804b1-4409bd77e75mr2628275e9.20.1745452414836;
+        Wed, 23 Apr 2025 16:53:34 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d4a7ff8sm267265f8f.13.2025.04.23.16.53.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 16:53:33 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH 0/3] Add x1e Dell Inpsiron 14p
+Date: Thu, 24 Apr 2025 00:53:29 +0100
+Message-Id: <20250424-qcom-linux-arm64-for-6-16-dell-inspiron14p-v1-0-ace76b31d024@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/7] drm/msm/mdp4: move move_valid callback to
- lcdc_encoder
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
- <20250227-fd-mdp4-lvds-v3-5-c983788987ae@linaro.org>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20250227-fd-mdp4-lvds-v3-5-c983788987ae@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 13umqkYPdPPqv0b_hbfEaSkR_iipsBLe
-X-Authority-Analysis: v=2.4 cv=ftfcZE4f c=1 sm=1 tr=0 ts=680977b2 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=DzGNWYmfupfO5EKgpE0A:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 13umqkYPdPPqv0b_hbfEaSkR_iipsBLe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDE1NiBTYWx0ZWRfX3FNgGtCn6TiB aJ6RXsI2UXQoEpQWGYZCkdQC24bXDfsBdFxhkAOpRrWmq66ZF4PtLhd/5uIHT6BqgKnWpLcGHzl az+ivgQqRWESwuKgPo5JQKhIrAQBxOEbHCm7t4WDpkISAeDgAeZIO1Bzro/GMtP2bPMNp8xfJq8
- 9QlRbNlluyO59hMbeP7neB7FvpgkOSaazck7m/cU3f6Lez38TFrqnZbPOiWEqe7vscj28+UnrU2 eiHoAooGrLcoLEndmsj+EXm87tqWdiZQ8er3q8C6IZZbZNWy1s5fmir4Dudr3t/lHG+dycQM5ZZ MqBHvYf2PwXXTjCXFmOe96wKwz3n4PRR1RSiGa9PzuJC8V30kBQhUstmCorLneOirsGKmT3KuXu
- XRmswqcNtWKF1UjUN2mo2Zm1MDOEH6F4bZCjCJgi9ESQtsm3ivSz4vQUACqFAnbqv1gV7APi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-23_12,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- suspectscore=0 mlxlogscore=999 lowpriorityscore=0 phishscore=0
- malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 clxscore=1015
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230156
+X-B4-Tracking: v=1; b=H4sIAHp9CWgC/x3NwQrCMAyA4VcZORtYRxfFVxEPtc000KU1RRmMv
+ bvF43f5/x0am3CD67CD8VeaFO1wpwHiK+iTUVI3TOM0j96d8R3Liln0s2GwlTwuxZDQESbOGUV
+ bFSvqfEVOdImJZn6EBD1YjRfZ/rPb/Th+QB7pT3wAAAA=
+X-Change-ID: 20250417-qcom-linux-arm64-for-6-16-dell-inspiron14p-ed68cd65ebad
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2534;
+ i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
+ bh=jaLXeHZO4CRuSfkEnW7KZDso1O1Ra9XizhBwaGnF/+A=;
+ b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBoCX17JDDl1Hv3g49j3MkaaiHt5iGQ+QUsf8d0k
+ GwcUksRJEOJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaAl9ewAKCRAicTuzoY3I
+ OqgLD/4nN0vlwAieibgBh5P1eCaSWbaXK/2xFzLXm/e5rwoyoWy52YwX6wAwLRQq9pnd9O1Xxm9
+ MIkbI6PLBfwN84Ho//C7Z8wrztm9ZqsiWkO4Loi0ONhFcPAjz4pI/lMocmiwxfeCs+Gz9+Z0fRV
+ ME2+//nLPeCHEbH4wIZqcexPLqwtCjnwFnqZ03JJA8H7EBuBYB+jjclpYOrmFWTjd0P/BBgkDJ2
+ EPB0CuhozaKn1OwhiaW+04oFrz4Vvr7/ZWmA+ouU6V2yXQp85vduc+j68q2SXz6b0HvppCFd7HY
+ 0VtyqW9EMTK5qHCKqhJD527Z+c7JPRUujgqhzD9XnkUP2Wd2esm2vtOPFDXajxZcB8o0081r01H
+ pPX5iPVcn2N7n65ekKka5syM7IEzfbv73Xim4neDrP35k4rfFsuL5TOH/26eSlZ/2DjC/8YxQgq
+ D09wnkH2dPQHvvKVTRrN3gIl/ZwmMXMb2oD1nCLHAknEgo7Zq0WSJ03ptLJdYkQcuI3h1ZLFZnK
+ KJ1/AJNh+OQZovve8x9HNFRErklcqcZbKe1PvmMmxwRHRIk4atPoEnB1/FWVUO0YAIC73PVsLPE
+ YCI2C7ZCUs0GB8j1vxb/Y0Rh4BRtLWBkX3UfG1phYGwIq2VVbKygr1wX7F5w9SabSAYfP8fbj7K
+ T845M4n11bV6yOw==
+X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
+ fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
+Add in a dtsi for the Dell Inspiron 14p.
 
+I'm currently using this as a daily driver including sending this series
+from. Its reasonably stable on 6.15-rcX.
 
-On 2/26/2025 6:25 PM, Dmitry Baryshkov wrote:
-> We can check the LCDC clock directly from the LCDC encoder driver, so
-> remove it from the LVDS connector.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h           |  1 -
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  | 27 ++++++++++++++++------
->   .../gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c    | 21 -----------------
->   3 files changed, 20 insertions(+), 29 deletions(-)
-> 
+The first two patches can be applied without dependency, the final patch
+relies on patches staged for -next in the media tree to be applied,
+presently.
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+https://gitlab.freedesktop.org/linux-media/media-committers/-/commit/2ab7f87a7f4bf392e3836a2600f115a1baa1415c
+https://lore.kernel.org/linux-media/20250407-b4-media-comitters-next-25-03-13-ov02e10-v4-0-211e3e6fae90@linaro.org/
+
+Working for me included in this series:
+
+- USB
+  Both Type-C USB ports
+  Type-A port
+  Fingerprint reader
+- WiFi
+- Bluetooth
+- RGB Camera
+- Toucpad, keyboard
+- Display
+
+Working for me but not included:
+- Audio jack
+- Iris
+
+Not working:
+- Speaker output
+  Still WiP haven't touched this in a while
+
+- Battery
+  Dell has its own Embedded Controller likely from the x86 platform reused
+  on Qcom which we need to reverse engineer or get some information on to
+  make faster progress on.
+
+- cDSP
+  Haven't tried to bring this up.
+
+- EVA
+  No driver haven't tried it.
+
+- Bugs
+  Occasionally when resuming I get a fencing error with hyperlock and
+  freedreno, TBH it looks like something in the GPU or SMMU according to
+  Rob Clark: https://pastebin.com/AWjCyaap
+
+  Ath12k has been splatting for me up to 6.14 when removing a SSID.
+  I switched on ath12k debug when going to 6.15 and predictably couldn't
+  reproduce the bug, either because the timings have changed as a result
+  of Heisenbugging or because a fix has been slipped into ath12k.
+
+  Other than those two I'm pretty happy with this system.
+
+  The DTS is based on Aleksandrs Vinarskis XPS, Lenovo T14s and Qcom CRD.
+ 
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (3):
+      dt-bindings: arm: qcom: Add Dell Inspiron 14 Plus 7441
+      arm64: dts: qcom: Add support for X1E80100 Dell Inspirion 14 Plus 7441
+      arm64: dts: qcom: x1e80100-dell-inspiron14-7441: Switch on CAMSS RGB sensor
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../qcom/x1e80100-dell-inspirion-14-plus-7441.dts  | 1490 ++++++++++++++++++++
+ 3 files changed, 1492 insertions(+)
+---
+base-commit: f7570505263aff2b63142f0d68fa607cd60eb060
+change-id: 20250417-qcom-linux-arm64-for-6-16-dell-inspiron14p-ed68cd65ebad
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
