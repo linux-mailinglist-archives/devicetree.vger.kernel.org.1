@@ -1,168 +1,92 @@
-Return-Path: <devicetree+bounces-169849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39BF1A98695
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E697A986A8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:02:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 798E61688A9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:55:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4DC178F0F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705A92566DF;
-	Wed, 23 Apr 2025 09:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A892566DA;
+	Wed, 23 Apr 2025 10:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="KsqFhg/1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="G8dgid8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5081A83E2;
-	Wed, 23 Apr 2025 09:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9252420D4F6;
+	Wed, 23 Apr 2025 10:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745402152; cv=none; b=rKNkzoEH4qqBYkYr/6hFdo5yxz0HE7dK7ynSEdvTXUw2W4JuJfx25z/4GvhRiVjxXDOZTATfqUYv6x815M8HqhbML7vQivmCHcg7PO/uSpjaNRfvOobZsy3b2GvCc/RNMfzgBf6nKg1gGbxMR+FoKy6CViidZRrL1xkMMdeDf2Y=
+	t=1745402553; cv=none; b=Iwy9u1Tg+E5d38I4xfbNsIdykyJFMleA5hRQPXB/L3qoHnNQrXssp+bTxDRdyDifUn/UBn+86GhiUzE7r2EFFDX6itCJGzSGzh3FV6FP0aCQse2+gqJ5FPQdlWtdVAjgGFbSd6ryeLYg/yEme3ixVS7yO8/zTEmlyCiiDiGYH3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745402152; c=relaxed/simple;
-	bh=IX355T5bF+gY8hYv3hsDrYQj7EXvm48oDjcOSaLE15Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n8jozom497YxQZl5khUzep6O/Oi4Sg1FSmpX2gQZ/A2bRRZ9ChvI1gYEtqiNAKFGj5OsZClbtV9IBIwWb2qIyLhwJ97Fbco09rP8lhSCJAM18Lt5o8rzAEB+v+1UJPLKCVY9Ec7NzWtONDNX5bXrJI9Z1GUAsU+OGwxM9WHAdnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=KsqFhg/1; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=NlhH8WEkZpuN13W3VEIII6VHYDH2gaUlvN68bRqY43U=;
-	b=KsqFhg/1z+Wlpt1mkRvAVzxScxkUwbLEiLR9Mk8dymJf9frcxhtvyZt/0v4j2A
-	rxsY5FsARt9RdCppDIP17UtGdGdeP/7TBjeVhNwe9g2M0vfpFz1eUQP53x7GIA6h
-	nZ2+m9/K2vEpM7qVZMrln+BW3tAVNdJ4h8yDFfsCg3GdY=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCHItjtuAhoHeXSAw--.33364S3;
-	Wed, 23 Apr 2025 17:54:55 +0800 (CST)
-Date: Wed, 23 Apr 2025 17:54:53 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 5/7] ARM: dts: ls1021a-tqmals1021a: Add overlay for
- CDTech FC21 RGB display
-Message-ID: <aAi47dGoKbHqEo7Q@dragon>
-References: <20250408093059.551700-1-alexander.stein@ew.tq-group.com>
- <20250408093059.551700-6-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1745402553; c=relaxed/simple;
+	bh=ktV0WTPer3asI6aYq9UAR47uR805GI8B92zxNTsMtn0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=E/obkVKs8apa6wjgjPU7SGQLL+zfBgtXh869D4EKZ+dReNaan49r0pfR/g6HT2kaO1EA8gXSMP/QWZT+QcqyVnvL1a8ZvwKlWai1VKaM9rdqdvLfJw4nLTcHd4n41fAFeQKTZpKYwffIHoIavGBFDOVE20oYplXOn/WXvtXhIn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=G8dgid8o; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1745402549;
+	bh=ktV0WTPer3asI6aYq9UAR47uR805GI8B92zxNTsMtn0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=G8dgid8oB/Uln65s3r/q+ZfQYLOBCybERkwrw9drzKh6Lel2fcpNt0XucNtrDaEEz
+	 xWvAldiHmhVo4DvfvZB76gBu+x6JNL5DrxFYJ6dLC/b4/AmIYZy4B9xj3rV85mLhhy
+	 UapOt6TsbWw7mAxwMPGltm84Jorfhj1CV6YIsA4PChAmpCRI3c9MjrqDz4ea+W1N+K
+	 ElSLFEAPkLpsDuc1WzJKPw9S96Ogo39Ema2RZ0wNVJPRRsLGgRk8Hft+Aziyg5YGlO
+	 eQDmaWCgq6wZBILdOWnCyGCm30c/Ks2g24FRKLlQOtJ6ySwrQQGNcVtDsQrDiQkv0q
+	 RKG7ZGY0ovw6w==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D4F9817E0702;
+	Wed, 23 Apr 2025 12:02:28 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pin-yen Lin <treapking@chromium.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Enric Balletbo i Serra <eballetbo@kernel.org>, 
+ Hsin-Yi Wang <hsinyi@chromium.org>, Jitao Shi <jitao.shi@mediatek.com>, 
+ Nicolas Boichat <drinkcat@chromium.org>
+In-Reply-To: <20250423040354.2847447-1-treapking@chromium.org>
+References: <20250423040354.2847447-1-treapking@chromium.org>
+Subject: Re: [PATCH v2] arm64: dts: mt8183: Add port node to mt8183.dtsi
+Message-Id: <174540254879.65934.8631292816995667484.b4-ty@collabora.com>
+Date: Wed, 23 Apr 2025 12:02:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250408093059.551700-6-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:Ms8vCgCHItjtuAhoHeXSAw--.33364S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGw1DWr1rWF17Jr4fCF13XFb_yoW5Zw1xpr
-	nrAayDCr4UGF4UXr18GFs8Kr1DK3yFg3W3ZFyYyFWjqrsruw17JFZ8KFnxWry3ZrW5Gw15
-	XasY9ayFgFnxJaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jO8nOUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNA+F6mgIuO8d-AAA3C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Tue, Apr 08, 2025 at 11:30:52AM +0200, Alexander Stein wrote:
-> This adds an overlay for the supported RGB display CDTech FC21.
-> DCU graphics chain is configured accordingly.
+On Wed, 23 Apr 2025 12:03:39 +0800, Pin-yen Lin wrote:
+> Add the port node to fix the binding schema check. Also update
+> mt8183-kukui to reference the new port node.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm/boot/dts/nxp/ls/Makefile             |  2 +
->  ...-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso | 56 +++++++++++++++++++
->  2 files changed, 58 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
 > 
-> diff --git a/arch/arm/boot/dts/nxp/ls/Makefile b/arch/arm/boot/dts/nxp/ls/Makefile
-> index 7f96de6f80224..7b97b718ebc16 100644
-> --- a/arch/arm/boot/dts/nxp/ls/Makefile
-> +++ b/arch/arm/boot/dts/nxp/ls/Makefile
-> @@ -9,5 +9,7 @@ dtb-$(CONFIG_SOC_LS1021A) += \
->  
->  ls1021a-tqmls1021a-mbls1021a-hdmi-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-hdmi.dtbo
->  ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtbo
-> +ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtbo
->  dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-hdmi.dtb
->  dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtb
-> +dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtb
-> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
-> new file mode 100644
-> index 0000000000000..31494d9d09f8f
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
-> @@ -0,0 +1,56 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-> +/*
-> + * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> + * Copyright 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
-> + * D-82229 Seefeld, Germany.
-> + * Author: Alexander Stein
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&backlight_dcu {
-> +	status = "okay";
-> +};
-> +
-> +&dcu {
-> +	status = "okay";
-> +
-> +	port {
-> +		dcu_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&display {
-> +	compatible = "cdtech,s070pws19hp-fc21";
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	polytouch: touchscreen@38 {
-> +		compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
-> +		reg = <0x38>;
-> +		interrupt-parent = <&pca9554_0>;
-> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> +		/* LCD_PWR_EN -> TSC_WAKE */
-> +		wake-gpios = <&pca9554_1 4 GPIO_ACTIVE_HIGH>;
-> +		iovcc-supply = <&reg_3p3v>;
-> +		vcc-supply = <&reg_3p3v>;
-> +		gain = <20>;
-> +		touchscreen-size-x = <800>;
-> +		touchscreen-size-y = <480>;
-> +	};
-> +};
-> +
-> +&panel_in {
-> +	remote-endpoint = <&dcu_out>;
-> +};
-> +
 
-Whitespace at EOF.  Fixed it and applied the series.
+Applied to v6.15-next/dts64, thanks!
 
-Shawn
+[1/1] arm64: dts: mt8183: Add port node to mt8183.dtsi
+      commit: d15059f7be59f887c1a370037cc2337c2ff2ad56
 
-> -- 
-> 2.43.0
-> 
+Cheers,
+Angelo
+
 
 
