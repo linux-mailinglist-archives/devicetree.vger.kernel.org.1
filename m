@@ -1,276 +1,129 @@
-Return-Path: <devicetree+bounces-170082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05F5A99B34
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 00:05:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27118A99B44
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 00:10:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E29B5A688E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:05:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AE8A4642A1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19BA1E5B66;
-	Wed, 23 Apr 2025 22:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29B51F0996;
+	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MwqrlAYL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4qcdH3x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580981E32D5
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 22:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892861EA7CD;
+	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745445918; cv=none; b=OZyxkgBvYIQWGGxHdpXeSMhCLf87YD4dcEYNXhHwC+kqziswnHTBySV7UWKGomzU7D3ngz9JaUuaKazkVDv29O0y36YcAYEyYLH3Ce2xD3tDHkVeJegNEiAqgdQIh3fQQre+lX0KG3YQfkCoAWaTNe80/BCyTGKtWKM8W9T72EA=
+	t=1745446249; cv=none; b=OPUL6VngJzj09Qoli0pAqO/e9mSjonzxQy4Yv/0KFMWr5720bzeWX5HQZ9Hx4Az66P2sa2e6aplktOr+TLRBG26UMlFEjaFPt3ZxmTojnUFPYHrePS/3ssOqhSPoUKHbLqODDGIHE/F7PZyyN7uaZOofoE1M6l/Bq59cpk97t1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745445918; c=relaxed/simple;
-	bh=0RgWlD++dai0ShsK29FeHW5kZU0mhofgjOIuyR4gaas=;
+	s=arc-20240116; t=1745446249; c=relaxed/simple;
+	bh=wPVwqfvhDxUSgXQZO2FFZ+5lq0NMHtnmq0FFq5U6Ge8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dl5t4qSPPh0C9vyNoQe0d1UH14woe6lMWczBeFcNHCTKtVEuHzGQCeLWdUqbKuhXLz9c5ZxNquD1m84fhiIp/J7ceTCK2eOHj4Pf9NgbNS6hM1Nhd1CyyQNRLrX0Dp9eSEWSi3wZMWtAXpLrGCGb3lBBjrIZYYPKq8IZSs/9iGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MwqrlAYL; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-525b44ec88aso181490e0c.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 15:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745445915; x=1746050715; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OPRkZJ58BSq7sWIenQSBLWI6JDYVj/zzAhaRJ7wMxFY=;
-        b=MwqrlAYLth/DJ7N174KBGOHa5ukE2x4/wwTwQPH5RtpNzvW7HCuDc7+6tI3q5jAiul
-         LhyUhmvMsZZIPWY8rUouhRgIX4BtFLp82a+ZXC3RS0D7GS8uN4pCGKA/pI6+JSSEApW3
-         HOAIyBm1GlsuGoaj0kQqs3cwGX26yN382IyDo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745445915; x=1746050715;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OPRkZJ58BSq7sWIenQSBLWI6JDYVj/zzAhaRJ7wMxFY=;
-        b=q+uz45/HLAnwwS4qZeJsWkWSHDUHoDq+EdBhHhgKxXGD8gdICySwillhvRZaQhX/ND
-         eL3PXUY+JWMD81/+LXbj7J8XYyxZbTeig9RSBfcnuDDFmo2LlXSCXwuPe18C8Mzp7LGl
-         oAjRvZ3IlNrWufXo4gVNqhIRY3vr7rPM3eMydAS5X2lIGkvkHjKM4oFc4hDKu/YcCcZu
-         2iTEN/Ay+QHVbuaeFAvcrTaM1eCMuroox9i8EiV8ON4imJ/fwv5GlE7QygewCz1EQL3w
-         9KW8ay0xWG+WEjmEIs/I3fIll5uMjLkN35NJ29OLca/MR6Ot4FMnq0MFz8BAin+Ozcuj
-         8Csg==
-X-Forwarded-Encrypted: i=1; AJvYcCUi9UD8lk7GDAQIKBwMN8UvDyb1KJbwKPpMg4s4Z6gIejPX2mCa0iqiWxWEOX9jjBpMAwWwIJyYm0//@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFXw/AMpqSXWDFYAkfSbMUpxQUELed1HnFTGGyg7uaZDJjttj1
-	n8Lhv5HTLT4u5hrlkdAUvFs2bNWqWKap3ixoUJMhxmnf4HM553UrkvTl+rd8FmYAigZxLF8N5fd
-	3p3/GkLq2H+bgsQce3uEERLFRQmFxF0C5KL4p
-X-Gm-Gg: ASbGncuW8xzP3+CMCD7Ykoq+0qyWRx89/22tCwemCOpu/A+03h74iT+ctpHDCaZoVhP
-	FRGpgQrEvcZ3vRoyadb+i8Xf1d+fH7DbnCuWrFSRfwGnfgZSKt2P1wTRukxNu0N2UP0DRaBArm3
-	RUh4kWU3NCBlrRCgfYZwbWmUYeSSXgkiZA+a19YrXNXd2aKmc=
-X-Google-Smtp-Source: AGHT+IHACjkHF1JhmqKNvkCjrjFp5IlPqI32PqceAcktEz1uSgkBIbcq3PdfCz48LI4RIIb6CZzBwhSupJSUIeB85DI=
-X-Received: by 2002:a05:6122:d85:b0:520:61ee:c814 with SMTP id
- 71dfb90a1353d-52a78248971mr404779e0c.1.1745445914934; Wed, 23 Apr 2025
- 15:05:14 -0700 (PDT)
+	 To:Cc:Content-Type; b=po56YX6Uwg5/U6B4TdJQtwUrHfq56y27gmxB9TiYnZWQ0VAurZGHmloSuaKEQivSDpco7xWfoD9ADqo0G98PVHQSgEBRuZnkuj84rsU0A2TWT2chWH+W42Nm6inWL7dBSr5YaKASKjzF+2tWWH2wYC7R/QcDv0UMvhbW7I71bOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4qcdH3x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E946C4CEEA;
+	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745446249;
+	bh=wPVwqfvhDxUSgXQZO2FFZ+5lq0NMHtnmq0FFq5U6Ge8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=F4qcdH3xGnLjeEH9C3Zc/7LWDd9p0hWCghECiOuc9SXp4kgl/w2NovFQn02Xh9pXT
+	 ElELxeG1eWSikAk+zaCQBTqyZm9S8GDuMWcLZp7mt97bbPJ74k8Kkg316rCkSZZrrW
+	 JbZUXshm6NJ3HFiKwhFTOKm53RSH8qB+Da+yXO50qcJqBfnOjPZemHFnQ29GkVZCDZ
+	 iRvDqSqU+UX/xmoevMT3Ve+IZslU/xtub5ehm582XNPEwn8pvzwJNo1Iv/tj4z525e
+	 glS10aZ7JNew1aUrFzhce9yxP69whIq+Zs0BRJZWbUh9ladu/CQLaCff/Rnw2ue6QN
+	 WsKxbihOAfrzA==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5f4d28d9fd8so432892a12.3;
+        Wed, 23 Apr 2025 15:10:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU5ofvULFeHMAmxgz9lkwCwncTmAnqe3W1SX5Qj1IfItgWhKkwpGUaLAhbXHW087jSu50ObCjoBrcCIrgr3@vger.kernel.org, AJvYcCXnXHN148TrKofjgjemLwVA7wIE15qywczNxvKz+xj/JY6HD7GF0fVrzN8u0TFu3dR9zq/2j7Oj+5cX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBS/95kxurMyfNrla80ZjY0sxizgvjW/iRA2XMlwHbkoc2ulsm
+	XWKut7KvUKk976TPAodPV1ojO6yXqKCjrhnHXzftaapPtTaMagejQ9U8GgMEdemCtj/Lc3ytFHW
+	R0xNeaUsZyXjTV/tIsfXetO6/sQ==
+X-Google-Smtp-Source: AGHT+IFDXb59jsrSiQWazRzVF6MX1xHN2yOvk09fTJp6+S5+KTTfA8GHRCxZzKpcjOL1zz1Lu7BOyABsSp6K1Ir8yTI=
+X-Received: by 2002:a05:6402:42c7:b0:5e0:8c55:50d with SMTP id
+ 4fb4d7f45d1cf-5f6de69507emr566857a12.14.1745446247615; Wed, 23 Apr 2025
+ 15:10:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAPUE2uuY=BaPFro5cQSmQg4JS1Z5J5aBL7XvqqAo-X=LR4be3Q@mail.gmail.com>
- <20250408155619.2169189-1-gwendal@chromium.org> <20250412114256.41602d67@jic23-huawei>
-In-Reply-To: <20250412114256.41602d67@jic23-huawei>
-From: Gwendal Grignou <gwendal@chromium.org>
-Date: Wed, 23 Apr 2025 15:05:03 -0700
-X-Gm-Features: ATxdqUH9kIEs8tPt571DX3_0lEEpV2Ju8NJAKkecugPLh4XsF0QtpQ2-sXXLlPQ
-Message-ID: <CAPUE2ut-2Cp9pt_MkhnmrM3R4Lb-3d__3RyJzhQ+xYnoyUpgkw@mail.gmail.com>
-Subject: Re: [PATCH v3] iio: cros_ec_sensors: Flush when changing the FIFO timeout
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: tzungbi@kernel.org, linux-iio@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+References: <tencent_BA80A2305727877DEE7BE20655D9CA825B09@qq.com> <a4277fb4-c982-43c7-9f02-e0050eff417a@arm.com>
+In-Reply-To: <a4277fb4-c982-43c7-9f02-e0050eff417a@arm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 23 Apr 2025 17:10:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLNq6DcLkJm=vSaGKs0cyup5Y6VpQFOWs+-+KeO0qyVJw@mail.gmail.com>
+X-Gm-Features: ATxdqUHIu8UauUnkdGsx_QuCD9-EMRnwcpKGlVgg_eSdye0AL5GO0jXOz7y42po
+Message-ID: <CAL_JsqLNq6DcLkJm=vSaGKs0cyup5Y6VpQFOWs+-+KeO0qyVJw@mail.gmail.com>
+Subject: Re: [PATCH] of: Build warn for missing fn() in _OF_DECLARE
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Liya Huang <1425075683@qq.com>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Apr 12, 2025 at 3:43=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
+On Wed, Apr 23, 2025 at 7:18=E2=80=AFAM Robin Murphy <robin.murphy@arm.com>=
  wrote:
 >
-> On Tue,  8 Apr 2025 08:56:19 -0700
-> Gwendal Grignou <gwendal@chromium.org> wrote:
->
-> > |hwfifo_timeout| is used by the EC firmware only when new samples are
-> > available.
-> > When the timeout changes, espcially when the new timeout is shorter tha=
-n
-> > the current one, send the samples waiting in the FIFO to the host.
-> > Inline the call to transmit |hwfifo_timeout| value to the firmware.
+> On 2025-04-17 2:23 pm, Liya Huang wrote:
+> > The function pointer fn() in _OF_DECLARE macro might be NULL. For examp=
+le,
+> > in __reserved_mem_init_node(), only non-NULL cases are handled, and NUL=
+L
+> > function pointers are ignored.
 > >
-> > Now flush when a sensor is suspended (ODR set to 0) as well.
+> > This patch introduces a check to handle cases where fn() is NULL. If fn=
+()
+> > is found to be NULL, a warning is issued during compilation to notify
+> > developers about the missing function pointer.
 > >
-> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> Firstly.  Don't send a new version in reply to an old one.
-> In general the reasons for this are:
-> 1 - it can get very confusing if a thread gets deeply nested.
-> 2 - at least some well known kernel folk start at their most recent email=
-s
->     and work backwards when looking for what to review.  They will probab=
-ly
->     never get to your thread!
->
-> There may be other parts of the kernel that prefer this style, but most
-> do not and I've never had anyone 'ask' for it (as opposed to not object).
-Point taken. Applied all the comments in v4.
-
-Thanks,
-Gwendal.
->
-> Various minor comments inline.
->
-> Thanks,
-> Jonathan
->
 > > ---
-> > Changes in v3:
-> > - Fix error detection when setting the sensor frequency
+> > The function pointer fn() in _OF_DECLARE macro might be NULL. For examp=
+le,
+> > in __reserved_mem_init_node(), only non-NULL cases are handled, and NUL=
+L
+> > function pointers are ignored.
 > >
-> > Changes in v2:
-> > - Fix sysfs attribute in commit message
-> > - Indicated the function to send the content of the attribute is now
-> >   inline.
-> > - Improve error detection when setting the sensor frequency and flusing
-> >   the FIFO.
-> >  .../cros_ec_sensors/cros_ec_sensors_core.c    | 50 ++++++++++++-------
-> >  1 file changed, 33 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/iio/common/cros_ec_sensors/cros_ec_sensors_core.c =
-b/drivers/iio/common/cros_ec_sensors/cros_ec_sensors_core.c
-> > index b1abd6e16c4ba..67ffe88df7b23 100644
-> > --- a/drivers/iio/common/cros_ec_sensors/cros_ec_sensors_core.c
-> > +++ b/drivers/iio/common/cros_ec_sensors/cros_ec_sensors_core.c
-> > @@ -103,22 +103,6 @@ static void get_default_min_max_freq(enum motionse=
-nsor_type type,
-> >       }
-> >  }
-> >
-> > -static int cros_ec_sensor_set_ec_rate(struct cros_ec_sensors_core_stat=
-e *st,
-> > -                                   int rate)
-> > -{
-> > -     int ret;
-> > -
-> > -     if (rate > U16_MAX)
-> > -             rate =3D U16_MAX;
-> > -
-> > -     mutex_lock(&st->cmd_lock);
-> > -     st->param.cmd =3D MOTIONSENSE_CMD_EC_RATE;
-> > -     st->param.ec_rate.data =3D rate;
-> > -     ret =3D cros_ec_motion_send_host_cmd(st, 0);
-> > -     mutex_unlock(&st->cmd_lock);
-> > -     return ret;
-> > -}
-> > -
-> >  static ssize_t cros_ec_sensor_set_report_latency(struct device *dev,
-> >                                                struct device_attribute =
-*attr,
-> >                                                const char *buf, size_t =
-len)
-> > @@ -134,7 +118,25 @@ static ssize_t cros_ec_sensor_set_report_latency(s=
-truct device *dev,
-> >
-> >       /* EC rate is in ms. */
-> >       latency =3D integer * 1000 + fract / 1000;
-> > -     ret =3D cros_ec_sensor_set_ec_rate(st, latency);
-> > +
-> > +     mutex_lock(&st->cmd_lock);
-> Maybe use cleanup.h and
->         guard(mutex)(&st->cmd_lock);
-> mostly because it simplifies code and...
-> > +     st->param.cmd =3D MOTIONSENSE_CMD_EC_RATE;
-> > +     st->param.ec_rate.data =3D min(U16_MAX, latency);
-> > +     ret =3D cros_ec_motion_send_host_cmd(st, 0);
-> > +     mutex_unlock(&st->cmd_lock);
+> > This patch introduces a check to handle cases where fn() is NULL. If fn=
+()
+> > is found to be NULL, a warning is issued during compilation to notify
+> > developers about the missing function pointer.
 >
-> I'm not sure why you unlock briefly here?
-We don't have to; the intent was to let another command waiting go
-through since flush can be sent at anytime. But all in all it does not
-improve multi-tasking, so removed.
+> This patch in -next appears to be responsible for syzbot complaining
+> about build errors for some configs:
 >
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     /*
-> > +      * Flush samples currently in the FIFO, especially when the new l=
-atency
-> > +      * is shorter than the old one: new timeout value is only conside=
-red when
-> > +      * there is a new sample available. It can take a while for a slo=
-w
-> > +      * sensor.
-> > +      */
-> > +     mutex_lock(&st->cmd_lock);
-> > +     st->param.cmd =3D MOTIONSENSE_CMD_FIFO_FLUSH;
-> > +     ret =3D cros_ec_motion_send_host_cmd(st, 0);
-> > +     mutex_unlock(&st->cmd_lock);
-> >       if (ret < 0)
-> >               return ret;
-> >
-> > @@ -764,6 +766,8 @@ EXPORT_SYMBOL_GPL(cros_ec_sensors_capture);
-> >   * @mask:    specifies which values to be requested
-> >   *
-> >   * Return:   the type of value returned by the device
-> > + *
-> > + * cmd_lock mutex held.
+> "
+> kernel/dma/coherent.c:410:1: error: static assertion expression is not
+> an integral constant expression
+> kernel/dma/contiguous.c:497:1: error: static assertion expression is not
+> an integral constant expression
+> "
 >
-> Maybe true, but has that changed in a fashion that means this should
-> be in this fix patch rather than a follow up improving documentation?
-Removed for now.
+> https://lore.kernel.org/linux-iommu/6808d00a.050a0220.7184a.0010.GAE@goog=
+le.com/
+
+Humm, doesn't seem to repro for me with clang-19.
+
 >
-> >   */
-> >  int cros_ec_sensors_core_read(struct cros_ec_sensors_core_state *st,
-> >                         struct iio_chan_spec const *chan,
-> > @@ -836,6 +840,8 @@ EXPORT_SYMBOL_GPL(cros_ec_sensors_core_read_avail);
-> >   * @mask:    specifies which values to write
-> >   *
-> >   * Return:   the type of value returned by the device
-> > + *
-> > + * cmd_lock mutex held.
-> As above.
-Removed for now.
+> Also on closer inspection, just outside the diff context we still seem
+> to be explicitly anticipating fn being NULL with:
 >
-> >   */
-> >  int cros_ec_sensors_core_write(struct cros_ec_sensors_core_state *st,
-> >                              struct iio_chan_spec const *chan,
-> > @@ -853,6 +859,16 @@ int cros_ec_sensors_core_write(struct cros_ec_sens=
-ors_core_state *st,
-> >               st->param.sensor_odr.roundup =3D 1;
-> >
-> >               ret =3D cros_ec_motion_send_host_cmd(st, 0);
-> I'd rather see
->                 if (ret)
->                         break;
-> given local style.
-Done.
->
-> Ideal would actually be to make this whole function do direct returns on =
-error
-> as that is easier to follow in cases like this where there is no cleanup.
-> However that change doesn't belong in a fix. Something for another day!
->
-> > +
-> > +             /* Flush the FIFO in case we are stopping a sensor.
-> Comment syntax slightly wrong.
->
->                 /*
->                  * Flush the FIFO
->
-> > +              * If the FIFO has just been emptied, pending samples wil=
-l be
-> > +              * stuck until new samples are available. It will not hap=
-pen
-> > +              * when all the sensors are stopped.
-> > +              */
-> > +             if (ret =3D=3D 0 && frequency =3D=3D 0) {
->
-> With the break above, only need to check frequency here.
->
-> > +                     st->param.cmd =3D MOTIONSENSE_CMD_FIFO_FLUSH;
-> > +                     ret =3D cros_ec_motion_send_host_cmd(st, 0);
-> > +             }
-> >               break;
-> >       default:
-> >               ret =3D -EINVAL;
->
+>         .data =3D (fn =3D=3D (fn_type)NULL) ? fn : fn
+
+No, that is checking that the function parameters match the defined
+type. If fn's type doesn't match fn_type, then you get a compiler
+error.
+
+Anyway, dropping it for now.
+
+Rob
 
