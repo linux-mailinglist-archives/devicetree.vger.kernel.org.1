@@ -1,155 +1,109 @@
-Return-Path: <devicetree+bounces-169665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05825A97DB0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:04:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6F8A97DB6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C5BE189350C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 04:04:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44FE8189D321
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 04:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4869A21504E;
-	Wed, 23 Apr 2025 04:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476BA262804;
+	Wed, 23 Apr 2025 04:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Gsjzm51o"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Wq6yq8rE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32C812E1CD
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 04:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38F812E1CD;
+	Wed, 23 Apr 2025 04:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745381042; cv=none; b=PAyfaUmgZINCOuam4oAfYr+NH8dCUSmBibGYnoyCQXW93PpF4Y0cLPQ4PGrPQj9dU0BYtGyCztNN5PLgB7dtWIdQH9L9rNDqTdi4tuhpzYOUn4NGMBmA4fobSBDfQ5aMLZAv1h0s2kY3QzMCSEH/PYGbI1mdK1fdN+5I27VnN/w=
+	t=1745381273; cv=none; b=hJNB6DTlEuuxHFKuxzDiNXlw14X1G+QRl9Xgg7WGFAUWZhlHyLoI/ImPWdYiPb8WAqppatY2p1NCsU4u3htgqzQ9sijfI35u2XaEUT0yNuzocFtrCu1LFkakqfVYc2Lkg9MiqJz7wiHF0B/5NtqOIDkmTcoBK4VdQ5GQpBliEMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745381042; c=relaxed/simple;
-	bh=+j/hlJqo+Cr2NdAPkpmhUUZtSiMvuhpM0bAG7t2CnPM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cb+/g0SDS8bif9Q8Z74la2hD8HHW36BnL3W4do6qizJHjoMUIlpKzRvxLZNZ3xRnWZHjWsFYPpW78SAuFEUUBQat0LyDL0LALUTaAQ2adUZIrW+8Ya+xC5oxeJglmxGtHZJmn7H/LKqAzafILM9zDa4JQT4DpDi7fnzZtvAqNEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Gsjzm51o; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2295d78b433so69810465ad.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Apr 2025 21:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745381040; x=1745985840; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=69P3nlnxBw2v6kIwtTKkT8ULduVaYQnRi8mlA610Ew4=;
-        b=Gsjzm51ortokTs6VEJXt6JT4oTxQefmZpW7PQRcejm6WFrIQThxPI/+JgkxafOK7rW
-         rpWu0pDAoYUQxSyVjbXbVFsYYUtiKxUHdbPBoFNPjfkBVlgSt1uvJdGMgyxQVTFbeCfH
-         cq90psBl2B8xMbu1M+2mSel+W6KRPtQIFu2GY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745381040; x=1745985840;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=69P3nlnxBw2v6kIwtTKkT8ULduVaYQnRi8mlA610Ew4=;
-        b=tF/Tli0uM2oUb24K28N2uNWGqv38ul2FPWiYQmn8wLJigNiO7eRO5eVDtXaECUq6Ug
-         /xTIIjJesAtUFFml3k7vh/C85q5Jx8vcyG0OlcaVi1gpAsNpA4zyhMoX7nMjM/2IXwa8
-         weTOh3i3+I/J1b0Y1RniD7ak4Xocm7FW4YIL0o6wh64XHyXoUktjNC5GRpnHipWuxj71
-         O2Z8CkfIJvv1xLcITGeiKcQ6UCa9PmXvl9ZwgC11eleG9BFuBYQTe4u/ADhOuORDFNxL
-         v2AO5A33mSUkODYibRn/CqUYoSNQSGwXsG8m6UZDJj2CIv9cZl7lS3Yg6CCFPNPmB6OZ
-         /3UA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7TQ/QdW2OK3okolZgQ5VdVt0e0Fp+vE1JI2ZksSvGCXQgyd9Ri8uLiSsQrluuQ/O1Gw+E9criEpU0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYMinrloX8+cmChhzc8A+0pRXD9NLDx+blQahKHLBfFLps9hta
-	nSrezZwhdd8gN8vB90djbsuEJrZRk/uwongKDh6pF3EvhRMDtskiQ+JAUzkhkA==
-X-Gm-Gg: ASbGnctEqIXie6mW32XfoDcvSJJ5EC5ZYo02mMAknFDnqqQHwIiS5vW3m3Bw0EKiSll
-	u20EC46CfXfVEZzmV/zDBgQHSqXW7NDyULhhMdvP/SnpU4eeti5nPpy/Lv1EvBsdf6PPxQPemCL
-	O2EEoULwi8OY3PYZXhmWsvUQDZDCJSWNQX0UdYtyt/2lF3dhC4sWss12CGnNORh80cmCDYGEy+R
-	/t+zpcV3nKtPMOmlzIC2OlG4I/aa4gvYdFm9cCaPOu5HngIJbDtd00as0I2//GKhjdo/RPdTtye
-	Zd+QEt7lMPCzaks4p+WsOSqVy5nAHp5vSCldwndBS8hX1jQUGnSvghB1xFfQBXYjFpuDTZJyOJg
-	=
-X-Google-Smtp-Source: AGHT+IFs37l1XCtk6TUjNGxDgTahK0TxvEQaxIjTsLH7CENRysCfaJj2nfs1pz+8IvfdUhEasSay/g==
-X-Received: by 2002:a17:903:46c8:b0:224:584:6eef with SMTP id d9443c01a7336-22c53606ee5mr301444085ad.41.1745381040103;
-        Tue, 22 Apr 2025 21:04:00 -0700 (PDT)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:d4b1:49c5:60dd:89a7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbfa5828esm9512894b3a.112.2025.04.22.21.03.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Apr 2025 21:03:59 -0700 (PDT)
-From: Pin-yen Lin <treapking@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Pin-yen Lin <treapking@chromium.org>,
-	Enric Balletbo i Serra <eballetbo@kernel.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Jitao Shi <jitao.shi@mediatek.com>,
-	Nicolas Boichat <drinkcat@chromium.org>
-Subject: [PATCH v2] arm64: dts: mt8183: Add port node to mt8183.dtsi
-Date: Wed, 23 Apr 2025 12:03:39 +0800
-Message-ID: <20250423040354.2847447-1-treapking@chromium.org>
-X-Mailer: git-send-email 2.49.0.805.g082f7c87e0-goog
+	s=arc-20240116; t=1745381273; c=relaxed/simple;
+	bh=kV8z5224tWKx0kzRUSIFU26oNwRaueVw97eKf8TxL1U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=o9gv6UFMz24KBbwBImR0qd461J9A+5Hq844zu/gUqxAVotKbuA+bTRKOzBsZ1D9t1/eQlvcSPHRK5w+gEKVp53bbQ47dwpxnwTJhy1KO8kWoteAkx1WzJ03Glm+Q9VU36pYBvZYG+wdYA1ZG4oiLWMboTRKUz3+GMtaIPYkLsno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Wq6yq8rE; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53N47i4O1431365
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 22 Apr 2025 23:07:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745381264;
+	bh=1gfH0CvoQ7Geo0FA4RUBrH4DyaOF0f+aUMlwOVjCD6Q=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Wq6yq8rEK6GtFebuJ0ENZhn+v0QoUKiSuMycW1d1Vopdobge/D5R1flS/BGC1q89e
+	 LirAC8x7eHLUVZWGPSjF/SsokH7RC4KlPNZ35OpubSeAVaKg2zXEESN1wteblWOXcX
+	 I2SMV+MMcUeD1NjrPY/BJ8954gW8Brs36G7YXSXE=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53N47ilj081943
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Apr 2025 23:07:44 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
+ Apr 2025 23:07:43 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 22 Apr 2025 23:07:43 -0500
+Received: from [172.24.22.140] (lt5cd2489kgj.dhcp.ti.com [172.24.22.140])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53N47e57034287;
+	Tue, 22 Apr 2025 23:07:40 -0500
+Message-ID: <d987c7f7-181a-4d1a-a88c-3b6c5aac6f63@ti.com>
+Date: Wed, 23 Apr 2025 09:37:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/7] arm64: dts: ti: k3-j784s4-j742s2-main-common:
+ switch to 64-bit address space for PCIe0 and PCIe1
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20250422120042.3746004-1-s-vadapalli@ti.com>
+ <20250422120042.3746004-8-s-vadapalli@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250422120042.3746004-8-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add the port node to fix the binding schema check. Also update
-mt8183-kukui to reference the new port node.
 
-Fixes: 88ec840270e6 ("arm64: dts: mt8183: Add dsi node")
-Fixes: 27eaf34df364 ("arm64: dts: mt8183: config dsi node")
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+On 4/22/2025 5:30 PM, Siddharth Vadapalli wrote:
+> The PCIe0 and PCIe1 instances of PCIe in J742S2 and J784S4 SoCs support:
+> 1. 128 MB address region in the 32-bit address space
+> 2. 4 GB address region in the 64-bit address space
+>
+> The default configuration is that of a 128 MB address region in the
+> 32-bit address space. While this might be sufficient for most use-cases,
+> it is insufficient for supporting use-cases which require larger address
+> spaces. Therefore, switch to using the 64-bit address space with a 4 GB
+> address region.
+>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>
+> [..]
+> +			 <0x02000000 0x00 0x00101000 0x41 0x00101000 0x00 0xffeff000>; /* 32-bit Non-Prefetchable MEM (4 GB - 1 MB - 4 KB) */
 
----
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-Changes in v2:
-- Rebase to v6.15-next/dts64
 
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 10 +++-------
- arch/arm64/boot/dts/mediatek/mt8183.dtsi       |  4 ++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index e1495f1900a7b4..f9ca6b3720e915 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -259,14 +259,10 @@ panel_in: endpoint {
- 			};
- 		};
- 	};
-+};
- 
--	ports {
--		port {
--			dsi_out: endpoint {
--				remote-endpoint = <&panel_in>;
--			};
--		};
--	};
-+&dsi_out {
-+	remote-endpoint = <&panel_in>;
- };
- 
- &gic {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 0aa34e5bbaaa87..3c1fe80e64b9c5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1836,6 +1836,10 @@ dsi0: dsi@14014000 {
- 			phys = <&mipi_tx0>;
- 			phy-names = "dphy";
- 			status = "disabled";
-+
-+			port {
-+				dsi_out: endpoint { };
-+			};
- 		};
- 
- 		dpi0: dpi@14015000 {
--- 
-2.49.0.805.g082f7c87e0-goog
-
+>   		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+>   		status = "disabled";
+>   	};
 
