@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-169972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E99B2A99292
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:46:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 184BDA99262
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:43:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBAF79A0D4F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:34:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 932475A79F5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B7229AB09;
-	Wed, 23 Apr 2025 15:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2FE28C5B9;
+	Wed, 23 Apr 2025 15:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLQsHTSR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j2MfFQT3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B67B298CB0;
-	Wed, 23 Apr 2025 15:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060BA28C5B2;
+	Wed, 23 Apr 2025 15:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745421807; cv=none; b=fL/q7hCnKs8HTFOdg8RKXscYmXK9nuy5Oz/eaVT5/C6uP1o6Qs0Qv/S8Xt/lblqQ58vJkL/A5rlpAOx0DZEnGOUn6uxsVhi/7/X+gdOmBRfFIBucPWH/mmYKzITPfHX5As58c4gg78YjNBNCTbIhVO/o5OrYK87edsjDuuu9/lA=
+	t=1745421862; cv=none; b=tAfjMmYZeCKSBP+DL713KvHSK6eXKURlNVgOoUU1tZfUFeEfM01u/IeVGmzDPulgzOSLCVnYg9Te4I/6sWjf31YfqBboI6pJc8L9nvJ2agKX3e2660emAQdxu5r6gF7HebYN1FcS4E49aLytPgmjXVlkOnCkmC0NLYDuDXhkTQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745421807; c=relaxed/simple;
-	bh=ttYFtyupJCMupeSXwyqSaNxnbRiKjhqkBV9hyVnYY30=;
+	s=arc-20240116; t=1745421862; c=relaxed/simple;
+	bh=MGkSDAhmsttNEFpJt61N5qgZgDOhGEDQKGrmLoEGji8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A7dLB4nmy3LkG3ZMebUsb/0cCDJkKzTqqqw9BDvxIlOFb5uOcJH7t3kvtaCZE42BMOi/mg/KS5DjLu5Rk/fQUdm5TFbnzxO8qPmMrfJ2FPKU9mJ/kfGSaJaF6gATeyh24Osabd+S16nRMUxxJzhyd93Tlnf2e/yz9KzpGCKtrMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLQsHTSR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64D98C4CEE2;
-	Wed, 23 Apr 2025 15:23:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IKyQroetbFLlqlCIfVo1Gl0zA7lEdqt+rwkYYanH11DcKa7YvPbCNxlboRJk+Y4qDOOpt1Aq5wa7LIPjGy0+DFqgkoHPvRMf9fS1uqScrZlCZ1z4o5oK8QlFjGuPesrWyCHoQqRt4ErLjPZYhixGyWWr+0ycF4x4ZJ7XwkMar7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2MfFQT3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A06D5C4CEE2;
+	Wed, 23 Apr 2025 15:24:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745421806;
-	bh=ttYFtyupJCMupeSXwyqSaNxnbRiKjhqkBV9hyVnYY30=;
+	s=k20201202; t=1745421861;
+	bh=MGkSDAhmsttNEFpJt61N5qgZgDOhGEDQKGrmLoEGji8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fLQsHTSROUAK6ThwkWXhF5VTQtSjbjK5MKQgPWBeAYm3OnQl3xo9vUW3c5NIrFpzg
-	 z+lp7GpBGY+WxxQMdQI0S5e9vR73KD0m+fgVfer7oIVylZ0pDaQSMvatCNmhoAYjJz
-	 WjC+opRME537JuHl44GZKOV0qEjjp92qrZ18eFetM0akxL79A+P90DDu+CKlRgaKUc
-	 +2oRVCZHEj7iQ802qNTm67K8mbY+93IrU7H5otIH+P13xmfpnzMl3ELoTX0YE+MNMi
-	 zDHktPncfG76nUvxqFwQANV/QL0RWZHJPaNKtMlkPxd2+oKXeWR5eToaz5f6GmRs6a
-	 qhWfSTuHn/N6Q==
-Date: Wed, 23 Apr 2025 10:23:25 -0500
+	b=j2MfFQT34oLMAfbpJVPfDpvwGmvcGh/TuufkBrvtdvQ+wp63PV7M3qQKVsVOwYoKa
+	 X9n3Pn+LUi83ar1QffPqYBT946ICCF2dt1yhqP52ONfcaPmd6xQo75YxT5mtkIJNfy
+	 13JXoSeG/V7oytYAxNAlCp8vIAxHjcwYgNLYLWGyHnPDEtLDHgZzXX/ZTzM0JOP/9D
+	 QkbO4i/7WAycKSJKdmmO9N2WakwKAhP9PwU9lSWhWdKfg/R9Im/QyUptOLvZB/Hk+a
+	 sUkoSfCggUA/CKcHS42UfruWqzkTUBMHujQpKxM5qahvydJ57GzOWodhepSqm2Aa9j
+	 f24LBdQ7bHY3A==
+Date: Wed, 23 Apr 2025 10:24:20 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: linux-phy@lists.infradead.org, linux-riscv@lists.infradead.org,
-	Junzhong Pan <junzhong.pan@spacemit.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
-	devicetree@vger.kernel.org,
+To: Alexey Charkov <alchark@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] dt-bindings: phy: spacemit: add K1 PCIe/USB3
- combo PHY
-Message-ID: <174542180456.549434.17717366396864684617.robh@kernel.org>
-References: <20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn>
- <20250418-b4-k1-usb3-phy-v2-v2-2-b69e02da84eb@whut.edu.cn>
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: via,vt8500-intc:
+ Convert to YAML
+Message-ID: <174542185825.550926.14913949740445861454.robh@kernel.org>
+References: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +61,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250418-b4-k1-usb3-phy-v2-v2-2-b69e02da84eb@whut.edu.cn>
+In-Reply-To: <20250418-via_intc_binding-v2-1-b649ce737f71@gmail.com>
 
 
-On Fri, 18 Apr 2025 21:19:51 +0800, Ze Huang wrote:
-> Introduce support for SpacemiT K1 PCIe/USB3 combo PHY controller.
+On Fri, 18 Apr 2025 17:57:25 +0400, Alexey Charkov wrote:
+> Rewrite the textual description for the VIA/WonderMedia interrupt
+> controller as YAML schema.
 > 
-> PCIe portA and USB3 controller share this phy, only one of them can work
-> at any given application scenario.
+> The original textual version did not contain information about the
+> usage of 'interrupts' to describe the connection of a chained
+> controller to its parent, add it here. A chained controller can
+> trigger up to 8 different interrupts (IRQ0~7) on its parent.
 > 
-> Co-developed-by: Junzhong Pan <junzhong.pan@spacemit.com>
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  .../bindings/phy/spacemit,k1-combphy.yaml          | 72 ++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
+> Split the series from v1 into separate bindings patches so as not to
+> spam all the subsystems with unrelated changes, per Rob's suggestion
+> 
+> Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-2-f9af689cdfc2@gmail.com/
+> ---
+>  .../interrupt-controller/via,vt8500-intc.txt       | 16 -----
+>  .../interrupt-controller/via,vt8500-intc.yaml      | 76 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  3 files changed, 77 insertions(+), 16 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
