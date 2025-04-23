@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-169974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE05A992BB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 053ABA99326
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A805A1B83F58
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:37:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F5211BA44DF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3D12C10BB;
-	Wed, 23 Apr 2025 15:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFD629008A;
+	Wed, 23 Apr 2025 15:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTHh/ZVh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SAsUjbv4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8C328CF76;
-	Wed, 23 Apr 2025 15:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE2928D84D
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 15:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745421885; cv=none; b=pR1Gk2HEnyFSyFsQHvd+jteMpFFGgR22l77QRNSdMlsYG7QiTtBMYsFjv3/i2iD6TPARHuSPs02xEXgx6TpXF6CRWceyKW1qqCBHwQM9MXH4WCMTTBLcQHE9kZh0uoudsrQBGLaipUQ/C1RClFp08tpA6kIRojWTO91G2kWsxMo=
+	t=1745421936; cv=none; b=itab873rgA0Ohd8agOVZVQUvcg682afkXQs2o1TwBtJ4ZwTZlfMl892CgmcBB+mfxkChWvrVR1FYujIykkpEudsRN7yuCLV7s0Td1O86XObvczsio53AJFaSfg47NgSXFXX1WT+s1sksUu1uJJ5gKCL3I3CPIfTA23TLc00iIto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745421885; c=relaxed/simple;
-	bh=3GqdD9EsYekxTXVnDEaqYUNg6+oGL8a/ncx/IINGhz0=;
+	s=arc-20240116; t=1745421936; c=relaxed/simple;
+	bh=G9/2avOv+6YP3rqQlxPZIf0rfrgI6wXZ+XhqCkNxxp0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uGmWjqnr2JXXJXwHsL6CrPJLmXl3qzlra4yQs8WogEpaJ1ubCVp8HVK0tFbdmZAFu3JSjpCgoBUMLJSvL0ssDfhZK/uZt4F1Z2VXIuvN4BqTp5AtKyXzim09CBz+28A1TCTHFjiWmO11ZBn+3mNBwpauugJiUoSixn1m9da/XUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTHh/ZVh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA26C4CEE2;
-	Wed, 23 Apr 2025 15:24:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=vGIH8twWg8xkUak8T8Y6bSh7rxPJN95wXpHPz7PZdTuEbh7x0APC+2gmpbrHXL+QIr+tuSeSylTI4OBcyB3IgP+A0wzusTWuTtu0UNGKWVTY9D22a2Lm9iY7P6CKHlkhM2Y8c2QvCtYsLyLvIq9jA2/MHG42bi8HwiP/jRNFG/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SAsUjbv4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBAE8C4CEE2;
+	Wed, 23 Apr 2025 15:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745421885;
-	bh=3GqdD9EsYekxTXVnDEaqYUNg6+oGL8a/ncx/IINGhz0=;
+	s=k20201202; t=1745421936;
+	bh=G9/2avOv+6YP3rqQlxPZIf0rfrgI6wXZ+XhqCkNxxp0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lTHh/ZVhwKtm3WTFvXhFHAc4u2dMYSa9kc/5UANUuEMhBzI1z5q9twt0ELKCRgK+z
-	 HePHwlB3IOsO9Y/Qshg/Q8NVvkUNrzWSPLlXGvHVPJIjCIygM/3YnZo0Tb154ddD6R
-	 fucKRN4vDR+ZCdFI9SwPNssuj2WRlpuCQcguTESu2mbxW2pJmkdR+NyUdHHBwixpMM
-	 s9UiyBtLLy2pLhJ9o2eFfXHWFyGm4eo50VtfNiBEdhQzgCA6sjbc2olmg37x6dAiKh
-	 ZNsvfB/eWMe+iFkDLmjWkktTrmRPDHs+rcjSQMKt79GNQ2NftO1bap9z5X0GeXjhH+
-	 N6/0F+xHlMp7A==
-Date: Wed, 23 Apr 2025 10:24:43 -0500
+	b=SAsUjbv45Iu2JeeGdv5hD72TtTwW42t4fM296dyG+CtPvoZVAnTaYED0b8goY32lj
+	 aWZiNqXe9iVgGTEOL9KN3xWV33GBVsaVUFZMKppxcX40AnZkMDv22l3SqkpWLhv2tr
+	 Qv+MpHyCsz8FDxp6khYR2+Hy7FsCDIhrUmK0rsaKih6+tWoxcd8dqq8M6JlJjiN+HR
+	 wheTAHqMYsswXimW6HSTYtwvtqZ+ut+aqZ0xpoEPhvE39JKABTEcbWnUVZmR6Wc8wb
+	 fQATDyCq69GiDnGF/+ObuJbWZCgPyo9mPQjdwXTV4zi1KDFXWblVQl8J6PkVYx2BKQ
+	 hnNhvrQ9WIAjg==
+Date: Wed, 23 Apr 2025 10:25:34 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	=?utf-8?Q?=C5=81ukasz?= Czechowski <lukasz.czechowski@thaumatec.com>,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v2] dt-bindings: usb: usb-device: relax compatible
- pattern to a contains
-Message-ID: <174542188274.551504.11808715673086067536.robh@kernel.org>
-References: <20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de>
+	Scott Branden <sbranden@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-arm-kernel@lists.infradead.org, kernel-list@raspberrypi.com,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: arm: bcm2835: Add Raspberry Pi 2 (2nd
+ rev)
+Message-ID: <174542193386.552497.9194165667630567957.robh@kernel.org>
+References: <20250418143307.59235-1-wahrenst@gmx.net>
+ <20250418143307.59235-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,45 +65,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de>
+In-Reply-To: <20250418143307.59235-2-wahrenst@gmx.net>
 
 
-On Fri, 18 Apr 2025 16:08:20 +0200, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Fri, 18 Apr 2025 16:33:05 +0200, Stefan Wahren wrote:
+> Add the Raspberry Pi 2 (2nd rev) based on BCM2837 to DT schema.
 > 
-> The dt-core typically allows multiple compatibles[1] but usb-device
-> currently forces a single compatible.
-> 
-> This is an issue when multiple devices with slightly different productID
-> all behave the same. This would require the driver to keep updating its
-> compatible matching table to include this new productID instead of doing
-> what is usually done: have two compatibles, the leftmost which matches
-> exactly the HW device definition, and the rightmost one as a fallback
-> which is assumed to be 100% compatible with the device at hand. If this
-> assumption turns out to be wrong, it is easy to work around this without
-> having to modify the device tree by handling the leftmost compatible in the driver.
-> 
-> [1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/dt-core.yaml#L21-L25
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 > ---
-> This came up while working on fixing USB on an RK3399 Puma which has an
-> onboard USB hub whose productID isn't in any driver compatible list
-> but which can be supported by a driver with a slightly different
-> productID matching another variant of the same IC, from the same
-> datasheet.
-> 
-> See https://lore.kernel.org/linux-rockchip/20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com/
-> ---
-> Changes in v2:
-> - use contains: instead of pattern: to relax the check, similarly to
->   what's done for PCI (suggested by Rob),
-> - Link to v1: https://lore.kernel.org/r/20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de
-> ---
->  Documentation/devicetree/bindings/usb/usb-device.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
