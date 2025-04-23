@@ -1,134 +1,144 @@
-Return-Path: <devicetree+bounces-169645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA7FA97B9D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 02:18:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C76A97BBB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 02:39:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 937523AB7A6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 00:18:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BC563B909D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 00:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7E71EF368;
-	Wed, 23 Apr 2025 00:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DFD25522B;
+	Wed, 23 Apr 2025 00:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="ZXnPxwMI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eW+Xq4iF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C611EA7DD;
-	Wed, 23 Apr 2025 00:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59FE1EA7C3;
+	Wed, 23 Apr 2025 00:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745367489; cv=none; b=JCGBqTvtg2gks6N7iPAamLo3uXaLCnpaVSJ4S8lUpVMbtSEJfgD0qUJ9DzqsO/lkGxJ4vsvU5ESzyFK5d9iXcqRE0LKMNQKbiwsvL04OVuNvjHDb0xycREI6Ah4FUvYQEVeN5IokfwolIk2KZj1ShX5JyyNJPVUqvjHHoGc3pm0=
+	t=1745368738; cv=none; b=H+IJzSHA9usa4ydqw2Wrd1yNs8KDc4QKHIwz8Byqo6crPM5VpRVWhWj00+SKV3Ni2NeruVfdhFOr4x4JQnSocWw5YNkKFcUvqMOVCTsPs23r4BvSh2SFiFbWi+kNoZELi2T7d7G2o/eGDhpS1j9LgHZFgLC4qaT6ckIjBSTtJUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745367489; c=relaxed/simple;
-	bh=oCq3FEMp4oYWYDtLba7KpYl9dlOTixalU2uzeiDdgFQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r5rXM3BSqtJCu1Rajt0MC9ba5Sith6bhMlAXPt46P/G/lWVrgWciKDZ3LSkVx3y087oxe7shmZT/3SJv8+HOPa1+JjmHY/CGAudoXqVDjv7mz36cHwAjXPTWxE+l5QJQ79di+4g+6o7IKUxiv+H7F/PJ1bGqGjNxnjDwfWYZVYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=ZXnPxwMI; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <9d827020-ee6c-40c2-a83d-7eb9a00f8aa8@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1745367484;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QxWWJwIhRG++LmaYSHq+CfihXUQKS791vet7ACFep64=;
-	b=ZXnPxwMIzj+wa71041mXF8qVCG8DMEdoDp5cKh6/OMUSbnHJsUOr8pPMBvEd3bQ/lHmxd/
-	261GdghcLYCbTAGewnTK4Ot6fNFDvrhR49od4TTjQzTj23cS2qBBQ4F8ovitKxuEcZ+fxm
-	Zux3jbOBlbr4jgIwtMYVJCM6Qj1SoZM=
-Date: Tue, 22 Apr 2025 17:17:56 -0700
+	s=arc-20240116; t=1745368738; c=relaxed/simple;
+	bh=3reR6DxtUZCA5LPVIJw8McPNOcN3HkBvgNpR130vmcs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZhSm9P8hb26UIWCm0yh4a0fbEXpTEc2Ky0W7HQOfljmTc77+d6BvDQ2Q63RCj5Jj/21zuYZZytTAtuNRS9eClvJh9WVCPJIr3QbBanw34T6tlcFS4uRPfpem/4hKAORh4pgOssDVI3QrgbOK9go2pxw4ASmkWJGXhbTILr58580=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eW+Xq4iF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53MKpMua020721;
+	Wed, 23 Apr 2025 00:38:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=aPGtqtyvVRCM1LlzoTmuBO
+	6mn2leG1iuqML8BkVOIEo=; b=eW+Xq4iF/qJqnRb0pQIn6meeC2l7wbw6VlL6r/
+	fMjALC5XMAwnW6XUIG4HzwTjBNLxzsracSziPnKbepneEEacX3zuBUYbgc6Mo1iA
+	5dHxNSek8mUSSWRdYyAhqXIp8kWsKTvTL6SHiDhkyN1x4fKQJpEuU1n+HRvfBGL9
+	npPK2Sy0IY73ZfGfj2gTr6XZvjslbPFjBUeM+Y+J8wP5s9NJGIvurZXZ1vMkRXaS
+	iU0ufNVlRfabUbyjHHDbzcxwnhFUCiMlqxMFig+bBofFD/qBPlDynDrLnXh1W7uc
+	2cfiI7+rOMnWHGXm/+WfYGNI3YAH+J2ErhshR4RJBs/fBr4Q==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh1gcrs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 00:38:52 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53N0cpPg024523
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 00:38:51 GMT
+Received: from hu-djaggi-lv.qualcomm.com (10.49.16.6) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 22 Apr 2025 17:38:51 -0700
+From: Deepti Jaggi <quic_djaggi@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ptalari@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <quic_djaggi@quicinc.com>,
+        <quic_shazhuss@quicinc.com>
+Subject: [PATCH v3] dt-bindings: arm: qcom: add SA8255p Ride board
+Date: Tue, 22 Apr 2025 17:38:45 -0700
+Message-ID: <20250423003845.3980330-1-quic_djaggi@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v5 20/21] tools/perf: Pass the Counter constraint values
- in the pmu events
-To: Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
- kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
- Jiri Olsa <jolsa@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Anup Patel <anup@brainfault.org>,
- Atish Patra <atishp@atishpatra.org>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Adrian Hunter <adrian.hunter@intel.com>
-References: <20250327-counter_delegation-v5-0-1ee538468d1b@rivosinc.com>
- <20250327-counter_delegation-v5-20-1ee538468d1b@rivosinc.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Atish Patra <atish.patra@linux.dev>
-In-Reply-To: <20250327-counter_delegation-v5-20-1ee538468d1b@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZWa1VJilE0XsWqVE37Zb2SqS731m9KH3
+X-Proofpoint-ORIG-GUID: ZWa1VJilE0XsWqVE37Zb2SqS731m9KH3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDAwMSBTYWx0ZWRfX0Bq5oTSjJiw6 WZVQzGYj6vySF6kTy0zFi9obXcUShO7RwxlP0NL8HH4EDO24wrAIXufYKfaUAk+m8LQhCr1kYSD pq3V5nbutsAzsJkrY/Q+stogBIe8H1rrISGyrgLMTB7zDRf0ilW+MuLapIng0Zu5F9Tv65ZNrgV
+ fOZ3FB70Asc9pZdBoid4HBox+MYoCcXV7fkVIsnz/ud2LTHlWyIDMIJcwM2/xARHZPunxcIZImW gVg/LsDlYtKg0rwXsomPz1TUBSD5+D5Avb9MId8+sstm/S3ttCQzYojZDCKw/vp5K/t5AsNTdbD d91DlCqietCEep3jhjjKeRcVgEwPDOL8yVmkh9+L/y/6JJZOGDTAvVyhpOx0LJq+A8bev9IMfJa
+ nu8sDcSfICSLdVnCEQtS3ysZk3JXsfPb7Yg1TWNaW1oTCDgZoxJXPh/RIfjyu1LLvYVl0mtJ
+X-Authority-Analysis: v=2.4 cv=ZpjtK87G c=1 sm=1 tr=0 ts=6808369c cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=3H110R4YSZwA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=Xa2697xR4UaWZu1uWHMA:9
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-22_11,2025-04-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 clxscore=1011
+ bulkscore=0 suspectscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230001
 
-On 3/27/25 12:36 PM, Atish Patra wrote:
-> RISC-V doesn't have any standard event to counter mapping discovery
-> mechanism in the ISA. The ISA defines 29 programmable counters and
-> platforms can choose to implement any number of them and map any
-> events to any counters. Thus, the perf tool need to inform the driver
-> about the counter mapping of each events.
-> 
-> The current perf infrastructure only parses the 'Counter' constraints
-> in metrics. This patch extends that to pass in the pmu events so that
-> any driver can retrieve those values via perf attributes if defined
-> accordingly.
-> 
+From: Nikunj Kela <quic_nkela@quicinc.com>
 
-Hi Ian/Arnaldo/Namhyung,
-Any thoughts on this patch ? Please let me know if there are any other 
-better approaches to pass the counter constraints to the driver ?
+Document the SA8255p SoC and its reference board: sa8255p-ride.
 
-The RISC-V pmu driver maps the attr.config2 with counterid_mask value
-so that driver can parse the counter restrictions.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+Signed-off-by: Deepti Jaggi <quic_djaggi@quicinc.com>
+---
+Changes in v3:
+	Removed the patches from original series[1]
 
+Changes in v2:
+	Added Reviewed-by tag
 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->   tools/perf/pmu-events/jevents.py | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/tools/perf/pmu-events/jevents.py b/tools/perf/pmu-events/jevents.py
-> index fdb7ddf093d2..f9f274678a32 100755
-> --- a/tools/perf/pmu-events/jevents.py
-> +++ b/tools/perf/pmu-events/jevents.py
-> @@ -274,6 +274,11 @@ class JsonEvent:
->           return fixed[name.lower()]
->         return event
->   
-> +    def counter_list_to_bitmask(counterlist):
-> +      counter_ids = list(map(int, counterlist.split(',')))
-> +      bitmask = sum(1 << pos for pos in counter_ids)
-> +      return bitmask
-> +
->       def unit_to_pmu(unit: str) -> Optional[str]:
->         """Convert a JSON Unit to Linux PMU name."""
->         if not unit or unit == "core":
-> @@ -427,6 +432,10 @@ class JsonEvent:
->         else:
->           raise argparse.ArgumentTypeError('Cannot find arch std event:', arch_std)
->   
-> +    if self.counters['list']:
-> +      bitmask = counter_list_to_bitmask(self.counters['list'])
-> +      event += f',counterid_mask={bitmask:#x}'
-> +
->       self.event = real_event(self.name, event)
->   
->     def __repr__(self) -> str:
-> 
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 08c329b1e919..5fe098566979 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -64,6 +64,7 @@ description: |
+         qrb4210
+         qru1000
+         sa8155p
++        sa8255p
+         sa8540p
+         sa8775p
+         sar2130p
+@@ -948,6 +949,11 @@ properties:
+               - qcom,sa8155p-adp
+           - const: qcom,sa8155p
+ 
++      - items:
++          - enum:
++              - qcom,sa8255p-ride
++          - const: qcom,sa8255p
++
+       - items:
+           - enum:
+               - qcom,sa8295p-adp
+-- 
+2.25.1
 
 
