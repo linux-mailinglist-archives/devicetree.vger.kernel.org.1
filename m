@@ -1,74 +1,67 @@
-Return-Path: <devicetree+bounces-170020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EDAA995C5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:52:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6197A995EA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EB8E46534D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:52:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46AE77A7B1C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BF6288CAF;
-	Wed, 23 Apr 2025 16:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35EE28937F;
+	Wed, 23 Apr 2025 16:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="n989T3S3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523F0283CBE;
-	Wed, 23 Apr 2025 16:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94CF2820AF;
+	Wed, 23 Apr 2025 16:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745427141; cv=none; b=FdnOo+iV2HUi/tR8R19riM2Vd4WHchCDkj53LZ1B3J1nKb5GqTiQd5/iERQCORUddapvkZ09l/DbMC7Zl1y40okUo+IO2d49J/OViGXN0LjxwQgXltvOdpod7xAVjDAVLJRzLV7h7VxkhW03AYKsitfxxVTlLUVzoL1AU1NWNWM=
+	t=1745427554; cv=none; b=IpYBQWEZKLdiAfMu/M3OnHPPY80wA03KGpufJyS7Y8NEsJdn19vPmzeLo7B9f7xeLJn/MusXdgo5WkhWY2bGtQxH44W26dBox0d6CuBJSLLq6lvyRJi+UZkZOELHTs+gE5QozTH/oRbuRS5PEluNMj7feRcghd4SHf9F8zLXTQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745427141; c=relaxed/simple;
-	bh=U2YyWhUTicbwTOh8eX4yTkro+SROMld4NCwJfUFwNyc=;
+	s=arc-20240116; t=1745427554; c=relaxed/simple;
+	bh=ZBYjCWap5snCq+ls10DvvCuKnV6nwylAsutQrwPX7Gw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d4nxAvQpQLYK7h5M7Ggo8LyH3WReqvOysbe5Hv3j4/4fRYCotOhrQN5w7Ai4BMBoAxCb1LDjfMMfm3e3uKyjDIljk0VKbJgEBobQ+C1YMtp/PkwUQ5Wggfj0+z3LKiKeNcaYSQJ6wa/Oa9sgU5MtEslXrHaW2xFspSh7J78jV50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: x+83gatzQ6qr+9XvmobN6w==
-X-CSE-MsgGUID: bmRmHubcQF2eMg821Jx3QQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="49696226"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
-   d="scan'208";a="49696226"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 09:52:20 -0700
-X-CSE-ConnectionGUID: 97kzSc65R/qtFRaVTufbeA==
-X-CSE-MsgGUID: 29xBDD7YSwmONmO2q6ANiQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
-   d="scan'208";a="137225871"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 09:52:17 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1u7dKX-0000000F7a8-36fm;
-	Wed, 23 Apr 2025 19:52:13 +0300
-Date: Wed, 23 Apr 2025 19:52:13 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	"Sa, Nuno" <Nuno.Sa@analog.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Message-ID: <aAkavQVd7Px3qPU0@smile.fi.intel.com>
-References: <20250421-togreg-v5-0-94341574240f@analog.com>
- <20250421-togreg-v5-3-94341574240f@analog.com>
- <20250421144800.0db0a84e@jic23-huawei>
- <PH0PR03MB7141E6D1A077B0E02368CBDDF9BA2@PH0PR03MB7141.namprd03.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dq2teiRiM2x2eio9dPmMI0miKgtMbW7oSXJ5xbq0sogQrD5PO4Y5IqOpR5MIIXmXXBfPk9h1JUVYDGAMSEaSGIi0xzvl6EMwU/zmX/t69vaYhMWjfN8yvyLU8zOuS256FVEQRZJqJZ8g0uJmmYQ2oO0RK533rI1gjHLPxFJdNlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=n989T3S3; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+pGhfX/4H3scf/HydnEYjfq1z6zKounijmYTLMLhC5E=; b=n989T3S3GDIXGm1qZvGBeYMZus
+	FFbkrtH8uTUC5JEGWWDg1gzaXJKpIm6WJL4xNXmsGG607YJy9Sp2XJvWYbYSJ+eTA6KLJDm+L9UsP
+	YP9DGWt/OIbhPtQv9sfilbwMU7bSjlKGpijJY28Qhe1jNNoKo/3GIi2LLSDCk7AQOo0M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u7dQj-00AMSb-42; Wed, 23 Apr 2025 18:58:37 +0200
+Date: Wed, 23 Apr 2025 18:58:37 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <aa38baed-f528-4650-9e06-e7a76c25ec89@lunn.ch>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+ <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,40 +70,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <PH0PR03MB7141E6D1A077B0E02368CBDDF9BA2@PH0PR03MB7141.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
 
-On Wed, Apr 23, 2025 at 07:50:51AM +0000, Paller, Kim Seer wrote:
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Monday, April 21, 2025 9:48 PM
-> > To: Paller, Kim Seer <KimSeer.Paller@analog.com>
-> > On Mon, 21 Apr 2025 12:24:54 +0800
-> > Kim Seer Paller <kimseer.paller@analog.com> wrote:
+> +&emac0 {
+> +	phy-mode = "rgmii";
 
-...
+Does the PCB have extra long clock lines in order to provide the
+needed 2ns delay? I guess not, so this should be rgmii-id.
 
-> > > +	mask = GENMASK(chan->address + 1, chan->address);
-> > 
-> > I think maybe we need a macro to get the mask from the channel number?
-> > Using address for this seems overkill given how simple that maths is.
-> > Ideally that macro could perhaps be used in the code below to avoid
-> > all the defines I suggested.
-> 
-> The motivation for using the chan->address field was to hide the calculation a bit.
-> However, would using a macro like 
-> #define AD3530R_OP_MODE_CHAN_MSK(chan)	GENMASK(2 * chan + 1, 2 * chan) 
-> be a good approach in this case? This drops the need for the address field and
-> can also be used to explicitly set the operating mode for the 4 fields of the register.
-> What do you think?
+> +	phy-handle = <&ext_rgmii_phy>;
+> +
+> +	allwinner,tx-delay-ps = <300>;
+> +	allwinner,rx-delay-ps = <400>;
 
-Please, note that doing GENMASK(foo + X, foo) is highly discouraged as it may
-give a very bad generated code (although I haven't checked recently if it's
-still the case). The preferred way is GENMASK(X, 0) << foo. Where X is a
-compile time constant.
+These are rather low delays, since the standard requires 2ns. Anyway,
+once you change phy-mode, you probably don't need these.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+     Andrew
 
