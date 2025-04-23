@@ -1,139 +1,144 @@
-Return-Path: <devicetree+bounces-169912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2DFA98A47
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:03:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDC8A98A51
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:03:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED0685A48C3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:02:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD0861B674CF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2727533CFC;
-	Wed, 23 Apr 2025 13:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E74981749;
+	Wed, 23 Apr 2025 13:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hiChBJcf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CvHBibE0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3B0BA50;
-	Wed, 23 Apr 2025 13:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC6374040
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745413353; cv=none; b=fBWq67fkM6SPuzkNRiEuDqc+4Sp+yXvxsZds/yMy5avlQMPUh1EOVUPGk5GZcd5kh88FZSjuOOEo7Po50oNahcfjoZ7fEE4r6ncs1vJXpE3yS+F+y11VH9ZMU+aF87W/F2k35S/K43BQC9sij1U3C6bOOyfb4WZUDbtkxdEHdmk=
+	t=1745413375; cv=none; b=W81bHogvalYDf+E6Ielor4OUP00JKqrMvpKmP5cQqp3h25wBhQSIbkWjRcYGSxtDIEl/WXG4yUpIWSfiyVP57dLHhtqhitJ/+M01eTsh4O0Cgfdnn58m0lvJmLBEDk2tJPqBtTv1E/pqRb58yd39zFV8gcJr4S364f8o9TIqcYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745413353; c=relaxed/simple;
-	bh=PRh04SSEpvmrrEMEKu0f4KPtxIFVTGV6VTf/pzMW9PA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HlvidII7kXfjeWRF9Nh5I7jcZmoVq070N+BrMBUylvI7ZbmSneZg+y59fVhypZMWqyufqsXUle0yLSYnJazUUaJJn92v79zTXiLtd6rC0nDQuizGNgmaFZMsgp6ptoDL7h9i34N6lu+eEec2NCK6OKMup1kj9DPLWOZaqGRO4Hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hiChBJcf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CF65C4CEEF;
-	Wed, 23 Apr 2025 13:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745413351;
-	bh=PRh04SSEpvmrrEMEKu0f4KPtxIFVTGV6VTf/pzMW9PA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hiChBJcfIDyoFjpXxQdz1+1BR4jg6JOMZGSbKXW6TXNLPw2rYfwumxvuzKYG94mTb
-	 SI4L8WXEL/31FefubR4SpbWJnLxEr/Ifyluy5Qr9xR2dwOloKL3cjtCFYQQe5AahdQ
-	 S3i4GYq4FgbdFZ0p2MaSq4zsrvoxD8lIdwKdKiw6PSjhtZZZtjcAOCct3uQfQInJbx
-	 c8SIgJZpXJXA5H9qlA77V8tRA0gAiVjN7ZxRdkyDatShvZYY9GKlZAcqL52/B0nWfF
-	 jOdB3JEbAHJ1h4BtH2DRnmSwMdUUl8GM4wh0S5ehjSRHgPkMbaznUOyYpomKM9OWtY
-	 k6l7EYb2n/anA==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54b10956398so1176217e87.0;
-        Wed, 23 Apr 2025 06:02:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV1jPavYpdfF4pXOF0a0INYi9Nj8WU9FYcanDamHy3/eOnpKrL2Dol0uUllC7QTKFDuyY9F0YGsE0zfEdKl@vger.kernel.org, AJvYcCWwhAB/6MKkvXQHObGMjZNZ+GEcVGbFMULh3z5FgwWILqF4VGforMQrdRMGk0kRSkWmL4vflDfu3STvBhk=@vger.kernel.org, AJvYcCXASmTBXBIap7zTgOOxZut0qzJCzeliqByaK2jdIPDZQg9Uz6arFKqy6dzjJUHv8aSxqvm1edIemUGr@vger.kernel.org, AJvYcCXwYTPmYyBDonVGIYOWDSXhn7rfP7rgRarGgBdcNlI6C/HKZ4A4MtWzOcKOsTmjvkrbOdSWkwaQ9buw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC0JBRaTFecRBWQtHuI2okC7r8uzZRhicqTwzNfTsu3nEUxtfD
-	zEA5NTrDlgwXqpWTyqoetrmYjErXqzVNlKpUtVOuqMGUkTNmHM9aFfzC2GV4kWDpjPdlHyKdPsI
-	5A23eQq6ffgSeC3o4zIzl63oBsw==
-X-Google-Smtp-Source: AGHT+IFF61cNsysSViFU5Q1HGHd+IghJ6rm0yOqybKjpeUhaBtp/MtfvNvuL2E7bT+y7AYWOaIXE3wXMBX9+129E39Q=
-X-Received: by 2002:a05:6402:42c9:b0:5f4:c7b5:fd16 with SMTP id
- 4fb4d7f45d1cf-5f6cf41b4b2mr2527881a12.6.1745413338544; Wed, 23 Apr 2025
- 06:02:18 -0700 (PDT)
+	s=arc-20240116; t=1745413375; c=relaxed/simple;
+	bh=BnvOXO+boD8aoX/yVyEiclGZPfk5b7M+Q3WLNEqtKXE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rn7gdaLIP8yToAue2Bz8LCjhx73bhPvopj5AWOXbfVJgs1hA+zWK4U8ueBfExenKsqnmnbBS/7GVr6w2qwlfWr1EM1TWRyZZeK3jUTd5cZTs0e+NIkgVJQLEF8QVo2LdPrE1dbZP68Lw3usMS28/vxpYZeUPlx3HfHCnkTwJQzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CvHBibE0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAF8Na008503
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:02:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zfAVF+aMaiSo/7Us8CKrNfv3JkPdUAHjwZh9PyIZpAw=; b=CvHBibE04Ca2Uz9v
+	lsgtR5XjledecTmtOP1xlkizF62cGjd1jH+g7A3Yadj6RK3aVxGiXykOBBWGhaal
+	+oqEAQOv7l7jkwq3+02kMK91m2MxE9dt5XMEjpVTTL6awk9nY7ivOibVfqHwhzFd
+	ygEFR7YcHzzT9/2OxV/G/7/wiyB1Xv5Be2f32ord0ohi6v9Llr682/iodh6WRS5g
+	UN6L2glMhMHXkkEPRIo1vBwfSky54vZ0uj8cN5oI025R6VzUCutVd8LQqIB93d/y
+	bVj7JGyGpHZpF3wkhj5SkmbudItYqmvSFyWEdsQCnE3+R7WaDIggDXZobQv37qJI
+	K2zi5w==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5a6sy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:02:51 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c7789335f7so21966485a.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 06:02:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745413371; x=1746018171;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zfAVF+aMaiSo/7Us8CKrNfv3JkPdUAHjwZh9PyIZpAw=;
+        b=vDXTApYfForrMDtfoPQP9Px2uF46vlNvQO2EbFWt9JY/h8dJ4lygjU919UnCOh69U8
+         JJlahbPTZIlBto3nQdLo/J26UOSzdJ2wMNHEHLmVTXgaKY44veTy8lykYXiBfEsh6Yos
+         5vZjlx0rBv8K1gVdFK/7wIo3j/jWQwmJ7cYvQgSLTJ89PNQKLxp04blLIG5BpiKbMr6N
+         BBjYS9eW+ztDNJzO2bTp7Nh1I+9VXXNF/Z9XVrp1BZGHqxNNlkl9gSUNKbrPTMPB41w/
+         Of13pPV5i8LsCqhGih5oI0JI7TVZU8HqCS3OiBZq9Nrpg9Z2cQfhT9TpVHGTgbmAycAc
+         CG6A==
+X-Forwarded-Encrypted: i=1; AJvYcCVX6IWZySgbrztwgINrOXXUOs4lZo996EIAenQzhRW2JLafBnAT86ryQ/P7g6K0NswaTzgCjpsGKHK7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLMoB0BsQQI0oV2vTr5n5EoFyHJ6/TMjLoz559EXtd2H5taUxp
+	SeJwKS7rIWR1xf2v3GivBYcw08wKRjIu6dkIVaeYb5ShctU9yib5YWKzkaWP5zBF68u8JxIlcz8
+	TGv3Z0DHOlj8ZZOYxlCspaXnxK7rbNLVn5L8HjWNEN8hjxMirAinUikk34UN6
+X-Gm-Gg: ASbGncu45H60e7a3uRpdYRMtNHycc/3qoCzTKaB3s+57tqKraT436UV+7pusPx2MVO2
+	k98mHaMkqjq7N/5VnOctyYlnpD7YdJVYm4lCL4Xz8rJiC8tNZzltv4sp7/dCAGmSA3AixXWJiZs
+	XcyX7aPk/NLtk7s0nQjuwX+BEmkyuBoPMkriQYfwZLPL2PCaTq6SG2Id6OozgHSHhW4mWULPvys
+	771ygpvzFoO2+480fIpvpugUy/0xEfl+DJOFizkG1tOGtJMoaaDPjt2Q3xz6g9uXGIud3jY5TAR
+	NOoLo71HHBDlL8VgHryWoIBcNW9A55mqcgiQcjSmnb12lzaEB9xXkMSovZR4ITwTLCg=
+X-Received: by 2002:a05:620a:17a1:b0:7c0:c42a:707d with SMTP id af79cd13be357-7c94d32ec56mr169897985a.15.1745413370764;
+        Wed, 23 Apr 2025 06:02:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH/ovwutEM93izQp2u3D8TlzNzpz5TZzJ2ihH4iRdeWJCL9e6H4/DMIlsm5XIOUTBCuAmehFg==
+X-Received: by 2002:a05:620a:17a1:b0:7c0:c42a:707d with SMTP id af79cd13be357-7c94d32ec56mr169895285a.15.1745413370184;
+        Wed, 23 Apr 2025 06:02:50 -0700 (PDT)
+Received: from [192.168.65.183] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6eefcf37sm805661966b.97.2025.04.23.06.02.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Apr 2025 06:02:49 -0700 (PDT)
+Message-ID: <2dae7d88-4b3e-452f-9555-05f10b42dabc@oss.qualcomm.com>
+Date: Wed, 23 Apr 2025 15:02:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250404221559.552201-1-robh@kernel.org> <20250422171830.GA335614@bhelgaas>
-In-Reply-To: <20250422171830.GA335614@bhelgaas>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 23 Apr 2025 08:02:04 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLS8qfRRRQ-FEirqo6FGWD4ypU5_=uc1mVu_U_Voga1=w@mail.gmail.com>
-X-Gm-Features: ATxdqUGDmT6Oa9be3YThQJN1rEFFXXEIWZljvkTyKuzEsju7EEKCXD71GZrP2u8
-Message-ID: <CAL_JsqLS8qfRRRQ-FEirqo6FGWD4ypU5_=uc1mVu_U_Voga1=w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: Remove obsolete .txt docs
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Vidya Sagar <vidyas@nvidia.com>, Frank Li <Frank.li@nxp.com>, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add GFX power domain to GPU
+ clock controller
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
+        stable@vger.kernel.org
+References: <20250423-x1e80100-add-gpucc-gfx-pd-v1-1-677d97f61963@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250423-x1e80100-add-gpucc-gfx-pd-v1-1-677d97f61963@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA5MSBTYWx0ZWRfX1Uf3InWkyTsi 9weJAVMxVBn663MERLDFWAok8AMeah4LgyrXGohbTf+rIkR5g6VkSZxxXCP6SkiHFmYY1yygdZu bA7bbsRO/m+gm98K2Tz9dbDSX/KXWG92Ir066/Q5jv5NWZtOL4IDMSVzBq9O5hbtxNZnP6ovVvA
+ fV+lft3vPpShxG9VXR9p473SVcNuebZceU850rxLBXhyXg4w5TTSxRBFQQJgWpoCuEC1dMIdaAH c+hM4seSVb3DBBlB6+aJqToEwPzEwLhv4yVC8L90TkFIx040yETmYVSzhgqoPKw2+R7H9QM/SWw 8bQoRhiSn+/d26grE/+wUvH4FzF7hCfKaPY0b5allzOtn4h1jDNqbCs739U+fzWGF0LgjAVCMUi
+ G8uLpkkogGSqXDCUBtTxzlHTifn74/J0S9vYkrAb/AMPKk0ZiUwK+cet93dfQ8dIRPl5GMGw
+X-Proofpoint-GUID: UFMD6ibVDGqe3zzazmTMCU0ttwCefn7R
+X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=6808e4fb cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=O4X4kKYYB9jgRp4dNnsA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: UFMD6ibVDGqe3zzazmTMCU0ttwCefn7R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_08,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=994
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230091
 
-On Tue, Apr 22, 2025 at 12:18=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org>=
- wrote:
->
-> [+cc Jean-Philippe for virtio dangling ref]
->
-> On Fri, Apr 04, 2025 at 05:15:57PM -0500, Rob Herring (Arm) wrote:
-> > The content in these files has been moved to the schemas in dtschema.
-> > pci.txt is covered by pci-bus-common.yaml and pci-host-bridge.yaml.
-> > pci-iommu.txt is covered by pci-iommu.yaml. pci-msi.txt is covered in
-> > msi-map property in pci-host-bridge.yaml.
->
-> I guess "dtschema" refers to
-> https://github.com/devicetree-org/dt-schema?
+On 4/23/25 2:58 PM, Abel Vesa wrote:
+> According to documentation, the VDD_GFX is powering up the whole GPU
+> subsystem. The VDD_GFX is routed through the RPMh GFX power domain.
+> 
+> So tie the RPMh GFX power domain to the GPU clock controller.
+> 
+> Cc: stable@vger.kernel.org # 6.11
+> Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-Yes.
+You shouldn't be messing with VDD_GFX on platforms with a GMU.
 
-> I kinda wish there was some direct link from the Linux kernel source
-> to dt-schema where all this information now lives (Requester ID
-> format, iommu-map, msi-map, linux,pci-domain, reg (and reference to
-> IEEE Std 1275-1994), interrupt mapping info, external-facing, etc).
-> Being a DT neophyte, I need all the help I can get ;)
+Parts of the clock controller are backed by one of the MX rails,
+with some logic depending on CX/GFX, but handling of the latter is
+fully deferred to the GMU firmware.
 
-Links to each property wouldn't really scale. Might as well copy all
-the common schemas into the kernel tree at that point.
-
-I've thought about some tool to look-up the info. It would be easy
-enough to write. I'm just not sure what's useful to folks and what the
-interface should look like. It could be something like this:
-
-$ dt-info iommu-map
-schema file: path/to/schema.yaml
-type: uint32-matrix
-description:
- blah blah
-
-But maybe that needs to be "dt-info property <prop>" so we could also
-do "dt-info compatible <compat>".
-
->
-> There are a few dangling references to pci.txt:
->
->   Documentation/devicetree/bindings/pci/aardvark-pci.txt: - max-link-spee=
-d: see pci.txt
->   Documentation/devicetree/bindings/pci/aardvark-pci.txt: - reset-gpios: =
-see pci.txt
->   Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt:- bus-range: s=
-ee pci.txt
->   Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt:  1275-1994 (s=
-ee pci.txt) with the following restriction:
-
-If no one cares enough to convert these, then I don't think the link matter=
-s.
-
->   Documentation/devicetree/bindings/virtio/pci-iommu.yaml:      zero. See=
- Documentation/devicetree/bindings/pci/pci.txt
-
-That's fixed in my tree already.
-
-Rob
+Konrad
 
