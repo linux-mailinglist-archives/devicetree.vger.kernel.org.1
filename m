@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-169676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10E7FA97E0D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:26:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C437DA97E1A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:36:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17860189B357
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 05:27:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0107317A131
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 05:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E260264628;
-	Wed, 23 Apr 2025 05:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C17265CC6;
+	Wed, 23 Apr 2025 05:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="bt6qR3qb"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="OKATLw2c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100D34A07;
-	Wed, 23 Apr 2025 05:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D6C2CCC1;
+	Wed, 23 Apr 2025 05:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745386003; cv=pass; b=G99v6P1P1blo5Dbl9IqTaK1gMRiulvmZvAlshbdR2oA4/OUNyOI7I+xyRN3mTxyxOgZOWD7i2ZRijlX6N5ymTXkouXg+Yoj7PyCmMD2ba0zKsxpTzx7GYUhSkkAioG3eCKop8tA+UHHFMHBv3IIWI+dsVQEc1+w94QGR1Y2Bo4o=
+	t=1745386589; cv=pass; b=Yh/At9T/fT+7f0f5s9uCU44+oNqe9L0yJ8/hrk4Stc5XyCz2JuGHy/cPPEsXDIr1Hy2u/SNpS71N07Gp9+5QA4auO0tcF9S6+3b4O6xdMl3k1jLnFhfjhKSLQFUlkBlmRMahG03UcJ6MHa4DhqgjhNmtD+1lQpxPyU6ElGkLsdE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745386003; c=relaxed/simple;
-	bh=+cGzy8p5Hu1QW1PrXpI4A/MLob/NPjQUezEh99E0rGI=;
+	s=arc-20240116; t=1745386589; c=relaxed/simple;
+	bh=LdS3LUmU4qGNG7NUp2FF5c+FcHbq3trzA2G/gNFTXVA=;
 	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=jKYVaoR0BTbagjSFpBX6ZKwoXsj8oLdneMg7Bq3LtvbiRD2YYOKBVkbIvz67FHs+Ru4dtLaw98fhz81RZo5Pn5xHnHcm53DFXaOKC8TU448Lo4DHZr4tJaRv+1L7UBcXPznNASZWwQVUDTW2m8w4ET41XrcsjhUAb51TWLy23V0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=bt6qR3qb; arc=pass smtp.client-ip=136.143.188.15
+	 Content-Type; b=KOnKkjVRVW1uUgbcDAqLMDfsQOR2k/JASkPZ/k1KnyuWh5VBI6Rrzd0uTCwYhaQI1ffu6yi96oWuxisSv9QuQxX/AKX9AJdKKaNTGMn4rRyXIUT5ZsONI8C9IIZ9BOuACRXaXmqIs+WQYvdc0Fwm7nHVsLhJYHc3JIJ7dlEmDZw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=OKATLw2c; arc=pass smtp.client-ip=136.143.188.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1745385976; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1745386570; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=j4T1Ed4R3k73KdamnHsMmZBsui+ZsxIU0PSccow0xZM0eu7Dy4xb6O7wADSX8FI30nDHGCRV2XxJ1Uhkdp16TSyGLmQ0q/AdrV0cmRIYhnFJ9gRsqTqQE3KLGHfHA1XKUA+QSADPlw2gNdgvdtAugDAtUISlnhKc3QGy67o//G8=
+	b=oLMQEbTvzter91y7rik4YXUWAcUzhuxT0DfbOBHaqn2kyQn5sS220L3/aSk4TtzX5R7midvPAxYO2nxaUMM8z4WCc/7fDEpeT82RKmbEbvdJ3GqQno2HGvHzqDMAkO1y+0GRHVj9+5y6dnLHUiDz7rfukUCljRQGaES++RGtFuw=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745385976; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=hGYoMoYLu8GyrYod3MxWMAE0ztSXKwl0WzJYu/+s57g=; 
-	b=Vs/uDy9QYkaGMQlMXWZOqEkcJ0QDD4+gjCOan11DXouG0Rix4ZvrjHO2/4D2ARF/ueZ15WTMRoJxXHUemSGoOGYihAyUjkRhXbkTDvvOQnrGwkN04APySYhbqeICTNrofsK4Rc5qIpn3Km5da1bCMRX8omCNVqW1nhfX8L+kOaA=
+	t=1745386570; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=xWm9idKxktKuRyOaM251AEIXWCz5M1GMk+daAs2zXwY=; 
+	b=jLOCU6mjBCnTVbkBQ3F9tfg8vBTj4YlWpnUOUKCq69S1p2sZKxEjLdMTbokC2pIQuyOrJsFrqn5SbnKWa2nPOwa5ICIx1oGan8m1t1ygNPUHoeYILTEmPmsdp3pwcd2I3LARyQlYhHVN10+4Mz9/irC5b3/VOpyJrPiYWXZaWL8=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=pigmoral.tech;
 	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
 	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745385976;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745386570;
 	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
 	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=hGYoMoYLu8GyrYod3MxWMAE0ztSXKwl0WzJYu/+s57g=;
-	b=bt6qR3qbnNiKIZqBr6dQ+D8yb4g0XCObFe6Bk5UnFixxfM5euX9NAMhVvhy5xatR
-	NAHF2MvefKOgOyDxFAXbt8Uu22jF42Rk96HVRqxl1n/F4NjH/L3tDu4pL6CI+NjKaFd
-	AZazMXncniJsSOx+xRcLYUqLGyTvlUCPY211IEeI=
-Received: by mx.zohomail.com with SMTPS id 1745385974137770.0188727737329;
-	Tue, 22 Apr 2025 22:26:14 -0700 (PDT)
+	bh=xWm9idKxktKuRyOaM251AEIXWCz5M1GMk+daAs2zXwY=;
+	b=OKATLw2cnYHHBKcW5NsCPnxOGyyBvCrwu7nBCWqXfFZ9oz3IbaqfiT8u0bs8dAjG
+	2HeThX5KDlWADiZEUwgIB3mTYWcYsHGIUFFdMBBw6MF65jtYt/yePT37sUudDttTHiK
+	yfnHXuOrGfZF50+Yx37SamSzZ9zP/s/NyXH9VMQg=
+Received: by mx.zohomail.com with SMTPS id 1745386567771409.44652875982854;
+	Tue, 22 Apr 2025 22:36:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +62,12 @@ To: "Chen Wang" <unicorn_wang@outlook.com>,
 	"Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring" <robh@kernel.org>, 
 	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
 	"Conor Dooley" <conor+dt@kernel.org>
-In-Reply-To: <MA0P287MB22620E425A4AC72E5C32D325FEBA2@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <MA0P287MB226271093B2CC475E80784DFFEBA2@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, 
-	<linux-riscv@lists.infradead.org>, 
-	"Conor Dooley" <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: add support for canaan,k230-rst
-Message-ID: <1838db49cac2e508.c9188a72125bc5d9.d099f51ccc5d9fb5@Jude-Air.local>
-Date: Wed, 23 Apr 2025 05:26:05 +0000
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 2/2] reset: canaan: add reset driver for Kendryte K230
+Message-ID: <1838dbd48ec5bec8.2608aebcdac475bc.43d59215091781cc@Jude-Air.local>
+Date: Wed, 23 Apr 2025 05:36:01 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-ZohoMailClient: External
@@ -77,151 +76,161 @@ Hi Chen,
 
 Thanks for your review.
 
-On 23/04/2025 10:21, Chen Wang wrote:
-> hi=EF=BC=8CJunhui=EF=BC=8C
+On 23/04/2025 11:21, Chen Wang wrote:
+> Hi, Junhui,
+>=20
 >=20
 > On 2025/4/20 1:09, Junhui Liu wrote:
->> Introduces a reset controller driver for the Kendryte K230 SoC,
->> resposible for managing the reset functionality of the CPUs and
->> various sub-modules.
+>> Add support for the resets on Canaan Kendryte K230 SoC. The driver
+>> support CPU0, CPU1, L2 cache flush, hardware auto clear and software
+>> clear resets.
 >>
 >> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>   .../devicetree/bindings/reset/canaan,k230-rst.yaml | 39 ++++++++++
->>   include/dt-bindings/reset/canaan,k230-rst.h        | 90 +++++++++++++++=
-+++++++
->>   2 files changed, 129 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/reset/canaan,k230-rst.yaml=
- b/Documentation/devicetree/bindings/reset/canaan,k230-rst.yaml
+>> ---
+>> The reset management module in the K230 SoC also provides reset time
+>> control registers. For RST_TYPE_CPU0, RST_TYPE_CPU1 and RST_TYPE_SW_DONE,
+>> the time period when reset is applyed/removed but the clock is stopped
+>> can be set up to 15*0.25 =3D 3.75 us. For some RST_TYPE_HW_DONE cases, th=
+e
+>> time period can be set up to 255*0.25 =3D 63.75 us. For RST_TYPE_FLUSH,
+>> the reset bit will automatically cleared by hardware when flush done.
+>>
+>> Although the current reset driver does not support configuration of
+>> reset time registers, delay has been added to the assert, deassert and
+>> reset functions to accommodate the longest reset time.
+>>
+>> Besides, although some reset types have done bits, the reference manual
+>> does not explicitly indicate whether the hardware removes reset or the
+>> clock stop time period has passed when done bits toggle. Therefore, I
+>> think it is a safer way to keep delay for reset types with done bits.
+>>
+>> link: https://kendryte-download.canaan-creative.com/developer/k230/HDK/K2=
+30%E7%A1%AC%E4%BB%B6%E6%96%87%E6%A1%A3/K230_Technical_Reference_Manual_V0.3.=
+1_20241118.pdf
+> Regards these notes, please move it to the beginning of source code, see=
+=20
+> example: drivers/pwm/pwm-sophgo-sg2042.c
+>> ---
+>>   drivers/reset/Kconfig      |   9 ++
+>>   drivers/reset/Makefile     |   1 +
+>>   drivers/reset/reset-k230.c | 355 ++++++++++++++++++++++++++++++++++++++=
++++++++
+>>   3 files changed, 365 insertions(+)
+>>
+>> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+>> index 99f6f9784e6865faddf8621ccfca095778c4dc47..248138ffba3bfbf859c74ba1a=
+ed7ba2f72819f7a 100644
+>> --- a/drivers/reset/Kconfig
+>> +++ b/drivers/reset/Kconfig
+>> @@ -140,6 +140,15 @@ config RESET_K210
+>>   	  Say Y if you want to control reset signals provided by this
+>>   	  controller.
+>>  =20
+>> +config RESET_K230
+>> +	tristate "Reset controller driver for Canaan Kendryte K230 SoC"
+>> +	depends on ARCH_CANAAN || COMPILE_TEST
+>> +	depends on OF
+>> +	help
+>> +	  Support for the Canaan Kendryte K230 RISC-V SoC reset controller.
+>> +	  Say Y if you want to control reset signals provided by this
+>> +	  controller.
+>> +
+>>   config RESET_LANTIQ
+>>   	bool "Lantiq XWAY Reset Driver" if COMPILE_TEST
+>>   	default SOC_TYPE_XWAY
+>> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+>> index 31f9904d13f9c3a107fc1ee1ec9f9baba016d101..13fe94531bea1eb91268b1804=
+e1321b167815a4b 100644
+>> --- a/drivers/reset/Makefile
+>> +++ b/drivers/reset/Makefile
+>> @@ -20,6 +20,7 @@ obj-$(CONFIG_RESET_IMX7) +=3D reset-imx7.o
+>>   obj-$(CONFIG_RESET_IMX8MP_AUDIOMIX) +=3D reset-imx8mp-audiomix.o
+>>   obj-$(CONFIG_RESET_INTEL_GW) +=3D reset-intel-gw.o
+>>   obj-$(CONFIG_RESET_K210) +=3D reset-k210.o
+>> +obj-$(CONFIG_RESET_K230) +=3D reset-k230.o
+>>   obj-$(CONFIG_RESET_LANTIQ) +=3D reset-lantiq.o
+>>   obj-$(CONFIG_RESET_LPC18XX) +=3D reset-lpc18xx.o
+>>   obj-$(CONFIG_RESET_MCHP_SPARX5) +=3D reset-microchip-sparx5.o
+>> diff --git a/drivers/reset/reset-k230.c b/drivers/reset/reset-k230.c
 >> new file mode 100644
->> index 0000000000000000000000000000000000000000..d352d0e12d8106a232bb5e6d7=
-e138697d2106937
+>> index 0000000000000000000000000000000000000000..492d2274893675b0ff1967426=
+c8fa9e75aed1791
 >> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/canaan,k230-rst.yaml
->> @@ -0,0 +1,39 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +++ b/drivers/reset/reset-k230.c
+>> @@ -0,0 +1,355 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2016-2017 Linaro Ltd.
+> Linaro? Are you sure?
+
+Actually, I kept this from vendor's code.
+
+link: https://github.com/kendryte/k230_sdk/blob/v1.9/src/little/linux/driver=
+s/reset/canaan/reset-k230.c#L19
+
+>> + * Copyright (C) 2022-2024 Canaan Bright Sight Co., Ltd
+>> + * Copyright (C) 2024-2025 Junhui Liu <junhui.liu@pigmoral.tech>
+>> + */
+>> +
+>> +#include <linux/cleanup.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/io.h>
+>> +#include <linux/iopoll.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/reset-controller.h>
+>> +#include <linux/spinlock.h>
+>> +
+>> +#include <dt-bindings/reset/canaan,k230-rst.h>
+>> +
+>> +/**
+>> + * enum k230_rst_type - K230 reset types
+>> + * @RST_TYPE_CPU0: Reset type for CPU0
+>> + *	Automatically clears, has write enable and done bit, active high
+>> + * @RST_TYPE_CPU1: Reset type for CPU1
+>> + *	Manually clears, has write enable and done bit, active high
+>> + * @RST_TYPE_FLUSH: Reset type for CPU L2 cache flush
+>> + *	Automatically clears, has write enable, no done bit, active high
+>> + * @RST_TYPE_HW_DONE: Reset type for hardware auto clear
+>> + *	Automatically clears, no write enable, has done bit, active high
+>> + * @RST_TYPE_SW_DONE: Reset type for software manual clear
+>> + *	Manually clears, no write enable and done bit,
+>> + *	active high if ID is RST_SPI2AXI, otherwise active low
+>> + */
+>> +enum k230_rst_type {
+>> +	RST_TYPE_CPU0,
+>> +	RST_TYPE_CPU1,
+>> +	RST_TYPE_FLUSH,
+>> +	RST_TYPE_HW_DONE,
+>> +	RST_TYPE_SW_DONE,
+>> +};
+>> +
+>> +struct k230_rst_map {
+>> +	u32			offset;
+>> +	enum k230_rst_type	type;
+>> +	u32			done;
+>> +	u32			reset;
+>> +};
+>> +
+>> +struct k230_rst {
+>> +	struct reset_controller_dev	rcdev;
+>> +	struct device			*dev;
 >=20
-> The copyright statement in yaml and header files should be consistent.
+> Why don't usercdev.dev to store the dev, so we can save a pointer.
+
+Thanks for your reminder, I will store it in rcdev.dev.
+
 >=20
-> Othres LGTM.
+>> +	void __iomem			*base;
+>> +	spinlock_t			lock;
+>> +};
 >=20
-> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> [......]
 >=20
 > Thanks,
 >=20
 > Chen
->=20
-> [......]
->> diff --git a/include/dt-bindings/reset/canaan,k230-rst.h b/include/dt-bin=
-dings/reset/canaan,k230-rst.h
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..53e3fd8177071aef8983c6317=
-06d67ac86ab645b
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/canaan,k230-rst.h
->> @@ -0,0 +1,90 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->=20
-> Here.
->=20
-
-I will update it to (GPL-2.0-only OR BSD-2-Clause) in next version.
-
-> [....]
->=20
->=20
->> +/*
->> + * Copyright (C) 2023-2024 Canaan Bright Sight Co., Ltd
->> + * Copyright (C) 2024-2025 Junhui Liu <junhui.liu@pigmoral.tech>
->> + */
->> +#ifndef _DT_BINDINGS_CANAAN_K230_RST_H_
->> +#define _DT_BINDINGS_CANAAN_K230_RST_H_
->> +
->> +#define RST_CPU0		0
->> +#define RST_CPU1		1
->> +#define RST_CPU0_FLUSH		2
->> +#define RST_CPU1_FLUSH		3
->> +#define RST_AI			4
->> +#define RST_VPU			5
->> +#define RST_HS			6
->> +#define RST_HS_AHB		7
->> +#define RST_SDIO0		8
->> +#define RST_SDIO1		9
->> +#define RST_SDIO_AXI		10
->> +#define RST_USB0		11
->> +#define RST_USB1		12
->> +#define RST_USB0_AHB		13
->> +#define RST_USB1_AHB		14
->> +#define RST_SPI0		15
->> +#define RST_SPI1		16
->> +#define RST_SPI2		17
->> +#define RST_SEC			18
->> +#define RST_PDMA		19
->> +#define RST_SDMA		20
->> +#define RST_DECOMPRESS		21
->> +#define RST_SRAM		22
->> +#define RST_SHRM_AXIM		23
->> +#define RST_SHRM_AXIS		24
->> +#define RST_NONAI2D		25
->> +#define RST_MCTL		26
->> +#define RST_ISP			27
->> +#define RST_ISP_DW		28
->> +#define RST_DPU			29
->> +#define RST_DISP		30
->> +#define RST_GPU			31
->> +#define RST_AUDIO		32
->> +#define RST_TIMER0		33
->> +#define RST_TIMER1		34
->> +#define RST_TIMER2		35
->> +#define RST_TIMER3		36
->> +#define RST_TIMER4		37
->> +#define RST_TIMER5		38
->> +#define RST_TIMER_APB		39
->> +#define RST_HDI			40
->> +#define RST_WDT0		41
->> +#define RST_WDT1		42
->> +#define RST_WDT0_APB		43
->> +#define RST_WDT1_APB		44
->> +#define RST_TS_APB		45
->> +#define RST_MAILBOX		46
->> +#define RST_STC			47
->> +#define RST_PMU			48
->> +#define RST_LS_APB		49
->> +#define RST_UART0		50
->> +#define RST_UART1		51
->> +#define RST_UART2		52
->> +#define RST_UART3		53
->> +#define RST_UART4		54
->> +#define RST_I2C0		55
->> +#define RST_I2C1		56
->> +#define RST_I2C2		57
->> +#define RST_I2C3		58
->> +#define RST_I2C4		59
->> +#define RST_JAMLINK0_APB	60
->> +#define RST_JAMLINK1_APB	61
->> +#define RST_JAMLINK2_APB	62
->> +#define RST_JAMLINK3_APB	63
->> +#define RST_CODEC_APB		64
->> +#define RST_GPIO_DB		65
->> +#define RST_GPIO_APB		66
->> +#define RST_ADC			67
->> +#define RST_ADC_APB		68
->> +#define RST_PWM_APB		69
->> +#define RST_SHRM_APB		70
->> +#define RST_CSI0		71
->> +#define RST_CSI1		72
->> +#define RST_CSI2		73
->> +#define RST_CSI_DPHY		74
->> +#define RST_ISP_AHB		75
->> +#define RST_M0			76
->> +#define RST_M1			77
->> +#define RST_M2			78
->> +#define RST_SPI2AXI		79
->> +
->> +#endif
->>
 
 --=20
 Best regards,
