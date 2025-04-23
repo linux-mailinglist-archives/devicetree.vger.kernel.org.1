@@ -1,80 +1,78 @@
-Return-Path: <devicetree+bounces-169819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD154A98512
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:13:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8047DA98520
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:16:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 185914447EF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:13:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 626A2188992E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF86A1F463B;
-	Wed, 23 Apr 2025 09:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D26722F765;
+	Wed, 23 Apr 2025 09:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="LgwuElfp"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="GN0jK8qD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB76E1FBCAE
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 09:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D982701A2
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 09:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745399623; cv=none; b=ljmlKL6UWtxKlNdNHlvutnQA/lC/PEP4HV+T18F00TdTVz4uE36ySH26sFHDdIppX6wA1F/DWBpViAsv0FUW57A4TereTInn3U2452r2EUkiLWXIIDdgNe+Nv89UTfYZ+OXUFdYPzCJGzdSS2x6OQbepMqPt+8iV0rfmwk1blGQ=
+	t=1745399777; cv=none; b=ZJjeB5AX2xlgIkq30+guxm79UCxegsreKCZc3ZgNzpGASM7thERGUWQ3MBUUy1uN7W9hSiAcyEQOMF1lDX1LvrJ8BYFxX80jl8zXBk/ARyTC4pIwBk3cn8EJlbpZo/JeRu8VheAOuCaOJTaQCKnp/3PdkYXJ+RJonuMSAgp/8NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745399623; c=relaxed/simple;
-	bh=YsunVWLJv9qgaPhrr/QKtBvOSrEpfPc1uNDsP5UJSIk=;
+	s=arc-20240116; t=1745399777; c=relaxed/simple;
+	bh=nvQGPbm7SWTHXzI6K8imF/ebjIdLx9Wk2BzCjm7fvsM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hWNmDT0jwKQLWQwl0eqnA5c8Kh+BH+iunTTNPYaccmvSRV8o5AsB0KwTlG3xDpvGxrvZ5mJwKxBJq77ZJ9W/UN7B1nlVmxFwA1wIPaSJ8j+n7tExasqPdBssDfezHGKqH00EgOVU2a0QsRpGG6vviTdkwsEZm1j1X19VPnasZ28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=LgwuElfp; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5f6222c6c4cso8583641a12.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 02:13:40 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=dqCwCZJa+xPHKtpGZAWxppOPtFIQGVMblASjv8E81z1Ed3PdK5eqAabvRYplr/yp/XqvHjkzbOOy898VLD0LQVmBe5Yt1mxdg4rF3HXiS7+iut9coGm5gcKBj60H0w6Sp20hhvErHesFft5m/S6rrwsX5noNiKBasfu98tIH9xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=GN0jK8qD; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-401c43671ecso389626b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 02:16:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1745399619; x=1746004419; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6D3Kj5y6LQM0GkGMDpCZ97hnqQlmKF4F8r2fuWuGeQs=;
-        b=LgwuElfp8wzS7W14L9O7VBv97Lsmo3ABW7szEcs2g6ppaJKVy+TAtwfzV/Qzu3T09n
-         vNJtvgmkEYFl3X7DQndb5uAGQPZnDgu92Jrf7hkVKttEmJoKjWLJX91QiW1tn55swbG3
-         80i+CDQo7HK9nF4/Ud3iFg2XOKzmkwkmoNd4JpyGKU8zEhU3zEONcZUI3GWOY+GHiK7H
-         jL+61IRB53OykLOg9KmKH6nThN2hIRSqFuWQVzgUpddaBKoa8rpUmna6AEgIqvTbqACJ
-         wI9VIZiZ3wbP9jyAngf1XdjqZ5uoEx/zYTrAFNFd4rcXiZxiK7cbxVjQDFe4lQRzlb9r
-         8A1w==
+        d=broadcom.com; s=google; t=1745399774; x=1746004574; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AAILDNKPNEKGe4car8WKpeE8gJXp2VdN72qfqPkhrdI=;
+        b=GN0jK8qDEo8pFk0+xkwOQgY1A71o0Qtypw0SYslHvQ9FNnuKU3YgcghMm03+JYJXdS
+         W1jJO1Wo0ZBXJUBQfkg5cYfFMqNwdhgdGIR0W0GyGJm0639XkUim+lT9uVSH4yfWguyi
+         82MwOm5TWkv3+Cz24nsRoD6c/xwvdlhu0miqE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745399619; x=1746004419;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6D3Kj5y6LQM0GkGMDpCZ97hnqQlmKF4F8r2fuWuGeQs=;
-        b=BKPabJAsaLLGfTNVtKV5T7pPq4S8cXzEDcLAzDsAIpslrCH7uf8k+X7nIP2SNRujBE
-         t9JsBNcNBTlTv4eqBPJFkvGksE3IW7QCD3hbc2UoK3VuOSFwFYUK/knlWGPeGdooU3CL
-         ut9Y45RfYvJuViziOpKnFftbvebek5wxzQLpzHNN4bs4+9RNb74uKvXwnKbFduPpxAOC
-         +8R6w03ZPUrHDTfddZNRzquOCEj3saOfjODIHGNxolph4evs7CSu1EJcbZqK/JRkJTNq
-         QqK9mqZo2LB4UAeOB41OHEps50kHJkU2+ntv68m6Uie0yjl58QCf1SuaC7b6Y+qAliZ3
-         OP8w==
-X-Forwarded-Encrypted: i=1; AJvYcCWROhjLcZ3SZBgfNvuaBVbnCwC5/W0tRo3vNfMH22vkK3JsE3i4/NjLskcDcWkUk074KEGrLDWPqeoa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE4+Ji7LEdX76TKkPuHLMuEPEJGNezcfW/Ds0ve1U8YiYzepMl
-	p8Y5fvUpWSJjQCvuCC3oB6fcWAuqSsgzdff0WvBZUS8e7qPD0WkLH4fP8Xduj0c=
-X-Gm-Gg: ASbGncuNv+M5T+GyLbepZzIUMbGScrGoK6Kw+GvhxxcLA8HVdc5t5T3xY6kgqhfY6OR
-	evrtL09KXz9zSBll4u4TagBkwPhNqoyrQ2Ofvyl4dV0XPbE2IWlUCVUFHpMBfAvDSvbRYI3fTYp
-	vbH5FIh8MC0R1vZxh7PqcfhqleMdBf3HUp4IozPfzxF3vt4DNcg564bYCHsJniHP5435xzv5TQR
-	XTL0zMR+tqrX1nUnfcxvZpO1ZvL6f5fQ1svIbcbgV0EZ6NjEAnQZntRM/i8gM5Y2NEIySZre40C
-	Db/Dzd8HrTEikuudx3LqnKUaKaseRPpv9LN35T71esugqHOJZVfCQeV3418I86ySQg2hi7pn2aD
-	qJzmajCS6
-X-Google-Smtp-Source: AGHT+IFzxFQiGoaAPQvdB7be6/KuqryShsyFvmGaT1Th41MerZiCt57msNGvadM1uAaSSZVi3+rZ7Q==
-X-Received: by 2002:a17:907:c807:b0:ac7:eece:17d6 with SMTP id a640c23a62f3a-acb74b2c9a7mr1856705066b.17.1745399619029;
-        Wed, 23 Apr 2025 02:13:39 -0700 (PDT)
-Received: from [192.168.1.100] (79-100-236-126.ip.btc-net.bg. [79.100.236.126])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef47763sm780902166b.141.2025.04.23.02.13.37
+        d=1e100.net; s=20230601; t=1745399774; x=1746004574;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AAILDNKPNEKGe4car8WKpeE8gJXp2VdN72qfqPkhrdI=;
+        b=YgGrkeItjUHBo0EXC0lMFsIu0LtLmjjTaePf6FGRvbeWtlzA+b5TXdS/kzubeF/Ctj
+         kD/JaEAP4/SWGyQYKfmXEtZZ+YeThtJDpGB5vcF7mzYsuO2g+x7l4sCAF5lPH3Dn09Hu
+         ejrrpxhdD5rg9gnnmhkR5wTisvQbomvmMS3F3r7ayAB4QiNNCjtlYkgyLQI4IsWxl+qP
+         ID3XbZh98+9ut3kAu0YzuS1t2NykWtTj0asqk0qU/NJQ+466Ihw5j6k+iEkJiNQPpygW
+         jSsoQs+ZM5SEvqam/sEyeS8ej/vjT+J5Bh1NXmPK8ffpNyOo2w3wbDbv6rkN8nDOQcTi
+         BFlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/g93kf3wyhsyIznsOawRCCr/RUC8cGLDuNae1tDhkyVAVCBtxWyRoC3i1R0IHPZEQVRDaWK4LuCBz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdbGQSTZXEG/Z/Ccf5S4RKEnriJxePwEXVUzEQeZbVJggOYzN9
+	a4EAszh9gUBJR7R9vCirIsvQn+DWQoGg01WRK5L+3F1oO8EY5Om/G7THTh5WMA==
+X-Gm-Gg: ASbGncvUvLnmycq9+0gV8bEcbDabs+7EIO4Yx/1jRI7kqrc/zyji5hNgGVzNHMeDy4T
+	tgrB2mBbZdJ9+jBBa+qihgCeDPco9q3/OgFVzeNum32QLYr3Jku6b9z0qPrb74oZIILOf5gH/vk
+	s8SqmWigC0iwBeKMj9Ds+hEQ+CYYm2BNqbm7s8HV4FZrx3QDbRwxz2ZDvK7BGGufTbM3e3LHLwV
+	Rov+FOClkNna4CO251vjMApdJUOkMlqeI56Kum6TOSOVDGoKQkvPhMLZo10YHsNMRjeNk9r6U3s
+	G0E6zewNSykdaRnaqbTllEHuTnKD1SkDbkpKPudapNcgeszSERvlrUveL7O84Ngw49x6pdgc15F
+	lpmg=
+X-Google-Smtp-Source: AGHT+IFXraHU6tyE5Hug/omFPjCYu6OiPQ714dJZZL7AVyIrDSRTncHCvWK1B8ECGGFlXX9pLgWcCg==
+X-Received: by 2002:a05:6808:6f93:b0:400:e771:ab80 with SMTP id 5614622812f47-401e3e73e78mr1355466b6e.0.1745399773788;
+        Wed, 23 Apr 2025 02:16:13 -0700 (PDT)
+Received: from [192.168.0.24] (home.mimichou.net. [82.67.5.108])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-401beeffe05sm2590955b6e.30.2025.04.23.02.16.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Apr 2025 02:13:38 -0700 (PDT)
-Message-ID: <24a6236b-3e4f-4174-914a-373ddcc90fb0@suse.com>
-Date: Wed, 23 Apr 2025 12:13:36 +0300
+        Wed, 23 Apr 2025 02:16:12 -0700 (PDT)
+Message-ID: <67298e07-7608-45ef-b8bd-c219419549d9@broadcom.com>
+Date: Wed, 23 Apr 2025 11:16:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +82,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v5 -next 10/11] arm64: dts: broadcom: bcm2712: Add PCIe DT
  nodes
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
+To: Stanimir Varbanov <stanimir.varbanov@suse.com>,
  bcm-kernel-feedback-list@broadcom.com, Stanimir Varbanov
  <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -103,29 +101,67 @@ Cc: Florian Fainelli <f.fainelli@gmail.com>,
 References: <20250120130119.671119-1-svarbanov@suse.de>
  <20250120130119.671119-11-svarbanov@suse.de>
  <20250128215254.1902647-1-florian.fainelli@broadcom.com>
+ <24a6236b-3e4f-4174-914a-373ddcc90fb0@suse.com>
 Content-Language: en-US
-From: Stanimir Varbanov <stanimir.varbanov@suse.com>
-In-Reply-To: <20250128215254.1902647-1-florian.fainelli@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <24a6236b-3e4f-4174-914a-373ddcc90fb0@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
 
-On 1/28/25 11:52 PM, Florian Fainelli wrote:
-> From: Florian Fainelli <f.fainelli@gmail.com>
+
+On 4/23/2025 11:13 AM, Stanimir Varbanov wrote:
+> Hi,
 > 
-> On Mon, 20 Jan 2025 15:01:18 +0200, Stanimir Varbanov <svarbanov@suse.de> wrote:
->> Add PCIe devicetree nodes, plus needed reset and mip MSI-X
->> controllers.
+> On 1/28/25 11:52 PM, Florian Fainelli wrote:
+>> From: Florian Fainelli <f.fainelli@gmail.com>
 >>
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->> ---
+>> On Mon, 20 Jan 2025 15:01:18 +0200, Stanimir Varbanov <svarbanov@suse.de> wrote:
+>>> Add PCIe devicetree nodes, plus needed reset and mip MSI-X
+>>> controllers.
+>>>
+>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>>> ---
+>>
+>> Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
 > 
-> Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+> Florian, this somehow missed v6.15?
 
-Florian, this somehow missed v6.15?
-
-> --
-> Florian
+Yes, I was busy and did not have time to send the pull requests for 
+6.15, this will be sent out for 6.16.
+-- 
+Florian
 
 
