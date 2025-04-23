@@ -1,125 +1,154 @@
-Return-Path: <devicetree+bounces-169817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105C9A98517
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F8FAA98518
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67B2F5A11D3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:12:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56F3B3A4398
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32707265609;
-	Wed, 23 Apr 2025 09:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA9C241684;
+	Wed, 23 Apr 2025 09:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pl9VrsOZ"
+	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="tgrbK3kj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-fw-9105.amazon.com (smtp-fw-9105.amazon.com [207.171.188.204])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31716242D65
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 09:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05426238C1E;
+	Wed, 23 Apr 2025 09:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.188.204
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745399399; cv=none; b=PL7R9VZ6aGEKGeJjRo+kwvH/EvpVaw5gNE9wzmXt7LtLXXE06RccsnHbRYMyS7wTGasbxnbdlkfCS2RibHh/pJlsZ/0jt/tzlfMiOn/ELXaI4jkhHQLuckDO6tE7dn9tCtKJYC3euU/JEWuBB8ZYLwcYEIjqHwCvG+meJ7rXdso=
+	t=1745399445; cv=none; b=Jlg+nRvTkBZOpD4Dnrv9g2O137gIZtYZ6ziyNXKK6YYoidXUVbBZ6QAc2V6pEwwqFJh6jALJuFx5ExPdGcA4gk2yaA3sC2HwCEVoNcvlHnl9GGpqtxaWHZ018wMC5LMPYxiEqIOkIr7QiiboEwMfQ+vaIIGRHK4qaSCj7xsc6wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745399399; c=relaxed/simple;
-	bh=D9zJsGGNBKvUtfUTrtoCvCv7NgLrgJG8N+UC8V4uJaY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lNSbIM48zP/Rk7M0qpdI70JHgMD3JJRJl/VpDuHWuFtzRVDNdOaXbEOTndJuhw4rOX8MNGK+KJuIJcAYq0lWiFpTvKx4TY2Rzr8KxSzM9xoi82l4YnVW4oWGWdLoJIT7KljZjpBZrUj3CMzdGLtMPYeJgOk9sOiF2Pb6JPBKT8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pl9VrsOZ; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54b1095625dso7146823e87.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 02:09:55 -0700 (PDT)
+	s=arc-20240116; t=1745399445; c=relaxed/simple;
+	bh=13R4HhhyYLACWE2+iL5wvrH6LRhdycd8zTDtIennd8o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kna99aqGAZOiMX/uKKko2dP1s+G+qXvko908DE94eGClsxzuoh24eMffjw8GCHXGLjedJtnpWyYp2hdY+2t65q77fSjZX/QFHf+R5dnYMpE4twQKE7CjXkWA3sKQ/QWQKim5lFNwlmua39tXtla+E8EGk9Gg6q4b8O3QGdgLFGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=tgrbK3kj; arc=none smtp.client-ip=207.171.188.204
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745399394; x=1746004194; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WARUA/SEaM7gTnI/pqNkLOZLeUBM+XHsQtQUHb5intU=;
-        b=Pl9VrsOZekY5NXHTUQ3uqtaasg2AmAMWacA56aj4pmYr1Prs/8o1NTQfEBKQSR3MTG
-         x33yusnv4hNxBJjwGUA/R8qN4X6htQTjOP6XB+ebq+rSVft1iH/An3bquuLaoLAPv2XI
-         SG7p4ZNnMGBVeTrFpsup2WZD/0nMmD+Su9D0petDlET0G7G4UvsXDyXxoasXiuYtQUDm
-         OOjs1fsCxFnkFHjbNDEs5GmMyB8QxCQKAoWlb95KDGXZ1y5xn2uqppepECzBvM4qdYgt
-         JX9JW6v6ZPbRlJNs2uj0BJN2KMyTAlvNBolSh4MbtPJx2w9WDaBPKlEAn8xjICZMLmsw
-         5HLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745399394; x=1746004194;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WARUA/SEaM7gTnI/pqNkLOZLeUBM+XHsQtQUHb5intU=;
-        b=iSEy/XAJA7s8dQ8jEQRsii40Bzayjrnnjl5DLzF07t3QLUQUx6bW2GL9Qe8LB0giec
-         8REpUavabnnK/l+eR8KGMaqK5QhDgzY5GZ6caE+Nxi/rHuo8l0HCaoRAvXQuBPNbLlqo
-         IQxjmF1ONZetF6PFe/La97HiTEYFwgK0BpP6B1epZjVJ5ZdxMoFbU62jLYboXKXCV3oi
-         ezbBnuUBqCbfvAWbFKr0qVlXYkBUWWTjJON0qgsPvyua2sUrkP21GP84IlbU7TteDejb
-         APOBy5dTX/OeXNEuV4KDZDaiwRFBiM1xDgZO1KILDvY0ezhaAINN7PpEiq5M8ZUKhCyM
-         1Jwg==
-X-Forwarded-Encrypted: i=1; AJvYcCWKPVeAC2xVh7vcQ9/N1jhArX0cBTJHxT17Wlby2sA0EgfvN93AC8V3K9aFFxd+/MLdLHHO6a3GhoKN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGQCgCKMLG8em/1WTjYCmEVJOPaDbr8DQp6PGtOSYPjpEo4vCP
-	e2nJPrjvuUBAYE/oPe/+Wq/Te55UX95/wvKZt4QsG5Gq79qiD6dIkFJUyKNfA7L7RqkEIE5wTXQ
-	u8myBhf9PkvTlZgNppyhVeFtDkmuDxZIKf37P/Q==
-X-Gm-Gg: ASbGncubpWsmsxuZOTzkmjnFxUDE9UMDw8TfeV2J3e9RKFiJyR+ZiP4rPYt6flgtQbZ
-	WIUGA6W4Rw5l4gr81OrIIqp14fh5pQ0bT+zEpgspFuUd8dbzuzHlpct/XWwa3wwsXpi/AuBx13L
-	u2bJzNcda+bjOAxIXBTkrJqvoB2rKLmb/L
-X-Google-Smtp-Source: AGHT+IGGSWx/qXe0KQyY/MREsZlIV6fNVYZhSzegs3sVGQ2Vz/xafsGBBtwjdgGYFha2pmBwx3eFZ0eFO4ELEa/acV4=
-X-Received: by 2002:a05:6512:68d:b0:549:7394:2ce5 with SMTP id
- 2adb3069b0e04-54d6e663182mr5664661e87.41.1745399393941; Wed, 23 Apr 2025
- 02:09:53 -0700 (PDT)
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
+  t=1745399444; x=1776935444;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=L4PoR1ud+jNJMhh5D7KbDC7ekzYs2jqet1AIShSE0mk=;
+  b=tgrbK3kjeLjafxFEuAaNR+XJA4LAhHcNTp6Z0dG2IOHQw6FF+bq5n2m9
+   4U95r440ctOcFKv681G9ThdyLFhtLIAvnDqNO1iboDVisRwU2xS7RmPjb
+   HdHevKskWT+INWWHNwDHkqtx4Xvzmji2qXebL8xoKfO1kMZxiGmeURlO0
+   o=;
+X-IronPort-AV: E=Sophos;i="6.15,233,1739836800"; 
+   d="scan'208";a="12842701"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.25.36.210])
+  by smtp-border-fw-9105.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 09:10:34 +0000
+Received: from EX19MTAEUB001.ant.amazon.com [10.0.10.100:26368]
+ by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.46.70:2525] with esmtp (Farcaster)
+ id fa0c195f-2dfb-4e4d-80bc-22273541f32d; Wed, 23 Apr 2025 09:10:33 +0000 (UTC)
+X-Farcaster-Flow-ID: fa0c195f-2dfb-4e4d-80bc-22273541f32d
+Received: from EX19D029EUC001.ant.amazon.com (10.252.61.252) by
+ EX19MTAEUB001.ant.amazon.com (10.252.51.26) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Wed, 23 Apr 2025 09:10:32 +0000
+Received: from dev-dsk-bsz-1b-e2c65f5d.eu-west-1.amazon.com (10.13.227.240) by
+ EX19D029EUC001.ant.amazon.com (10.252.61.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Wed, 23 Apr 2025 09:10:30 +0000
+From: Bartosz Szczepanek <bsz@amazon.de>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+CC: <nh-open-source@amazon.com>, Bartosz Szczepanek <bsz@amazon.de>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] fdt: Extend warnings on error paths
+Date: Wed, 23 Apr 2025 09:10:17 +0000
+Message-ID: <20250423091018.51831-1-bsz@amazon.de>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250422162250.436169-1-uwu@icenowy.me> <20250422162250.436169-2-uwu@icenowy.me>
-In-Reply-To: <20250422162250.436169-2-uwu@icenowy.me>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 23 Apr 2025 11:09:42 +0200
-X-Gm-Features: ATxdqUGJI5EWHbFKNL1piYfBX7w6VEjwsS65rRDUL2ZIvKqVpjd39nGuBX00R-E
-Message-ID: <CACRpkdbGwPyQgVL18iMvUTAvh4XTjo6g3mGT4e_b2aNAjr2obg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: pinctrl: jh7110-sys: add force inputs
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang <jianlong.huang@starfivetech.com>, 
-	Hal Feng <hal.feng@starfivetech.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EX19D036UWC004.ant.amazon.com (10.13.139.205) To
+ EX19D029EUC001.ant.amazon.com (10.252.61.252)
 
-Hi Icenowy,
+Print out adress and size if elfcorehdr is overlapped. Be more verbose
+about what went wrong in case early_init_dt_verify fails. Other than
+improving logging, no functional change is intended in this commit.
 
-thanks for your patch!
+Signed-off-by: Bartosz Szczepanek <bsz@amazon.de>
+---
+ drivers/of/fdt.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-On Tue, Apr 22, 2025 at 6:23=E2=80=AFPM Icenowy Zheng <uwu@icenowy.me> wrot=
-e:
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index aedd0e2dcd89..c9b5e056b713 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -469,21 +469,22 @@ static u32 of_fdt_crc32;
+  * described in the device tree. This region contains all the
+  * information about primary kernel's core image and is used by a dump
+  * capture kernel to access the system memory on primary kernel.
+  */
+ static void __init fdt_reserve_elfcorehdr(void)
+ {
+ 	if (!IS_ENABLED(CONFIG_CRASH_DUMP) || !elfcorehdr_size)
+ 		return;
+ 
+ 	if (memblock_is_region_reserved(elfcorehdr_addr, elfcorehdr_size)) {
+-		pr_warn("elfcorehdr is overlapped\n");
++		pr_warn("elfcorehdr is overlapped (addr=0x%llx, size=%llu)\n",
++			elfcorehdr_addr, elfcorehdr_size);
+ 		return;
+ 	}
+ 
+ 	memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
+ 
+ 	pr_info("Reserving %llu KiB of memory at 0x%llx for elfcorehdr\n",
+ 		elfcorehdr_size >> 10, elfcorehdr_addr);
+ }
+ 
+ /**
+@@ -1128,26 +1129,33 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+ 	memblock_add(base, size);
+ }
+ 
+ static void * __init early_init_dt_alloc_memory_arch(u64 size, u64 align)
+ {
+ 	return memblock_alloc_or_panic(size, align);
+ }
+ 
+ bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
+ {
+-	if (!dt_virt)
++	int rc;
++
++	if (!dt_virt) {
++		pr_warn("FDT wasn't correctly mapped");
+ 		return false;
++	}
+ 
+ 	/* check device tree validity */
+-	if (fdt_check_header(dt_virt))
++	rc = fdt_check_header(dt_virt);
++	if (rc) {
++		pr_warn("FDT header is invalid: status=%d", rc);
+ 		return false;
++	}
+ 
+ 	/* Setup flat device-tree pointer */
+ 	initial_boot_params = dt_virt;
+ 	initial_boot_params_pa = dt_phys;
+ 	of_fdt_crc32 = crc32_be(~0, initial_boot_params,
+ 				fdt_totalsize(initial_boot_params));
+ 
+ 	/* Initialize {size,address}-cells info */
+ 	early_init_dt_scan_root();
+ 
+-- 
+2.47.1
 
-> +  starfive,force-low-inputs:
-> +    description:
-> +      The list of input signals forced to be low inside the SoC itself.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-I don't see why you need this hack.
-
-Use the existing per-pin output-low property (see
-Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml).
-
-> +  starfive,force-high-inputs:
-> +    description:
-> +      The list of input signals forced to be high inside the SoC itself.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-Use the existing output-high property.
-
-Now I *know* these two properties are per-pin. That is more talkative
-but way easier for users to read.
-
-Then use pincontrol hogs to make sure these configs are set up
-at probe.
-
-Yours,
-Linus Walleij
 
