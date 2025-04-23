@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-169903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152B7A989D3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:32:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95B1A989D4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:33:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A17B47A125E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:31:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 339157A3D4D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38540242D66;
-	Wed, 23 Apr 2025 12:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE3820B1F4;
+	Wed, 23 Apr 2025 12:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/dsLRNA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxypDDlD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7F821770B;
-	Wed, 23 Apr 2025 12:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E997D1E485;
+	Wed, 23 Apr 2025 12:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745411565; cv=none; b=B+VUDM4aH7YNkZuE7P2G3bYyosIVW+bALxRwLqjRf5fALzKsX8IagB+IeR2g4hlERKCWDWhCqVV/JNKfVo7FQ+KVyFmD0wExsw3T0V5GtcgSFIhHvSi6heKrSrXfmBB9QaKNW8irxIu5W+0gca+3UZrl3AfDxvzINzzWKOMZmPM=
+	t=1745411622; cv=none; b=IzGU9OVwHWJY3HRUJlyWBt/qLcgO+Dc4oVtyAdVQ7XafbsIiqIeRdkUN3IOjTXttrnzmSyAtF+9YlJh6l8eGeqPMC1Gxxa6eVSuDsvhNfyyrB34OolbBV3/+gLKY/0pLYEy08dc5uTyEqVT6yRRNB6C2xcMLHXRG5iHpfGog1W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745411565; c=relaxed/simple;
-	bh=G8YtYEDZ/tPabTjfHJIqy70w3hENkhgWAWYVKIgYLrI=;
+	s=arc-20240116; t=1745411622; c=relaxed/simple;
+	bh=1OZA2BJ+ka4V8KUJAigHCTHxTTWKg7dPGzgtDNIHTbI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HN6OrNS6BQvCvI79IkiXSM4aJ5QZEFS8F3ueqxiHBlwb0PZ290lqlz169ngtHI2L5rk4Gwyk/YOX21VvMgbw9rV80Q21qiIrLsHZPdKVcRJAQG53eRdgn/q88us57FwgiqJ9nwShh861fMnz4e84aqpfc3AiBUqKsSWL3tJiWoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/dsLRNA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45A21C4CEE2;
-	Wed, 23 Apr 2025 12:32:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AYp/nfL7x/vgWTqE7k5kxhzPYYxPmgKMF1FJhrLgGUTb3mlNwhk1zQxvLQKRdWhGPM3xKJ7smB2lTI3CYK4W0QicWgdMBuFTF22AM/fbxw7WJmnAWVZAVDSnYRy1a7S8QUB5JCTaYw6SKFu1R73TbQqIUafr4xn3K103tm6SZ+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxypDDlD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 374AEC4CEE2;
+	Wed, 23 Apr 2025 12:33:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745411563;
-	bh=G8YtYEDZ/tPabTjfHJIqy70w3hENkhgWAWYVKIgYLrI=;
+	s=k20201202; t=1745411621;
+	bh=1OZA2BJ+ka4V8KUJAigHCTHxTTWKg7dPGzgtDNIHTbI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h/dsLRNAcaDyWHGhwhn9vp85Ekqe4vjzvPQYKOJANocnhEkGruVXfx/hv3zPGqgwg
-	 BGhG8hHfenTTAVNwi9+6ezz3Kq5cbbXyrLlX2XSm9WgAIqwnzWvL80IyXgttT6pFWA
-	 qpYO87fbEdkWLvAGHaRtvWiKrVKeFWMdLlCUvHhq4u6n9CsepZGLChEuES/f/tae6W
-	 PtkKFDhnXXfeev0nckPrt6esISuFRJAy+qpXQALfF+O3TiSOOFfvLqDV1OtUWt7lSG
-	 PhJSiJRg0CYo9snW0DYKRB3ESAnewwzsf4H0pDXqDTCbqiwVAxpA1VTwrKhLVS/V3C
-	 8aDCCBJ8N8pbA==
-Date: Wed, 23 Apr 2025 07:32:41 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: gregkh@linuxfoundation.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, cw00.choi@samsung.com,
-	imx@lists.linux.dev, swboyd@chromium.org, jun.li@nxp.com,
-	krzk@kernel.org, heikki.krogerus@linux.intel.com,
-	myungjoo.ham@samsung.com
-Subject: Re: [PATCH v2 2/4] dt-bindings: extcon: ptn5150: Allow "connector"
- node to present
-Message-ID: <174541156119.190674.10305656515924366680.robh@kernel.org>
-References: <20250422115055.575753-1-xu.yang_2@nxp.com>
- <20250422115055.575753-2-xu.yang_2@nxp.com>
+	b=pxypDDlDgf8d/WAnT+0dNXjXiQcZe4Trx2Jt6dlXQzkSYMhzDXzY51HP5vpTOOFkO
+	 T0b3u+xyiS7D4HuB2QjG2e9gwoItjgaPkHFffgS0scXFCuk0NUqDtf8f+ymMv6UZTS
+	 nd8FtNDyw2kzcHGVwH5D2Dyu1bWq7khN9lcIALDmth1cjWRePNHE2+pgM9GldoTJEb
+	 6Sl0Fjzy85zidXpU51tMbbQCDEdszE427KuejLgHU6+zi0z4GntP69I8fH1yTb3wsk
+	 JKECKIBaTgdm82Fk6qGs9jat7F+0LsEDIGPrbm9WIErcaoDiT+36Bto3/Fg4sUpI9l
+	 EsUwchrXV3pPw==
+Date: Wed, 23 Apr 2025 07:33:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 1/8] dt-bindings: arm: mediatek: add bpi-r4 2g5 phy
+ variant
+Message-ID: <20250423123339.GA191369-robh@kernel.org>
+References: <20250422132438.15735-1-linux@fw-web.de>
+ <20250422132438.15735-2-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +70,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250422115055.575753-2-xu.yang_2@nxp.com>
+In-Reply-To: <20250422132438.15735-2-linux@fw-web.de>
 
-
-On Tue, 22 Apr 2025 19:50:53 +0800, Xu Yang wrote:
-> PTN5150 is usually used with a Type-C connector, so allow a "connector"
-> node to be defined under it.
+On Tue, Apr 22, 2025 at 03:24:24PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Add new compatible for Bananapi R4 with 2.5G phy.
+> Base board is compatible with existing BPI-R4 only 1 SFP is replaced
+> by RJ45 port and use mt7988 internal phy.
 > 
-> ---
-> Changes in v2:
->  - improve commit message
-> ---
->  Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+You didn't add Krzysztof's acks on these patches.
 
