@@ -1,149 +1,94 @@
-Return-Path: <devicetree+bounces-169828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8689A98540
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:19:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63797A98557
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:24:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D46C41B640F6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:19:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A5833AFBB2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCC02676D1;
-	Wed, 23 Apr 2025 09:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C65822F767;
+	Wed, 23 Apr 2025 09:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nf/VvFSG"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BziGxj42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0447D266EE8;
-	Wed, 23 Apr 2025 09:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A11221544;
+	Wed, 23 Apr 2025 09:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745399910; cv=none; b=sXaLtObc3kMH8AynahTf/swX6AKw84Kde/wvgVRAZsT1EVnNf6KoM2qcwmeTMPf7pWCiHxDaDumQUAk3cuofEubAXgAzB39H1u/IrKbghzYSw9Mwe5TA1eCXhEm3YSjW9yTZK/HJxnn16x2DJX9Imw0fOE2+4Bf0ckt1qMds9jc=
+	t=1745400266; cv=none; b=dP9t8xfX/UNK56SjEVWAXxzYI6IhzvBfHid6YghiW7kLg21hZLfroiUFfiUvvcJH2w3rBQpaHplOCCqSPZTSdjzd9Ef8Qq4+REiDhkt4bLA5jYbqhy2Y2LHJGvVL9QVckDL2FZ4ebTPGQf0R1MyOIIH0GK3M8JE3aDzVKCPiid0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745399910; c=relaxed/simple;
-	bh=75PfEjxIScHC0TUs9Q3X0fjKZOWhGzAErbm4INPTqMc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=agJw8sxgu1vYAiaX2fONxef6rOZ+DslKnaT3TtuTZJEus0X2lNYeZk/e/xJCs8E3yAtxsbDNfYS1sPbVqAu9C6W3ccAFhwmod4tJNCCMkfycfLSbzAoANhagmnVDZkUksMCcHhW0uM50OTJRK2bYsY/V+zrGttW+sVYzZfg3RZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nf/VvFSG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N0iJHo003811;
-	Wed, 23 Apr 2025 09:18:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E4Ivh1GRlpo3KbZKu3GCKwgDqXGdBOa9DVDOUw96hn4=; b=Nf/VvFSGigDRMXr7
-	mmm9AbI1M1EM0nbXwyinIm8JLBi8cCCr5WByUN3u59jcfXK9SnUBUMhHILJCEbLK
-	zQoplXB0nSKVhGqQIOo3kwV48V+m7edjEahlAy0CEiNgqCaoOuRN3atogJ8xDgnz
-	xmNEX0cdGLiPzK2A5dRi52zb2q51onw78+ME0zEZhY+qxVRrDvyAwGJsa/F1oBG8
-	OwlT6b9C9KkE+nkidfOcYsNkQjCwutpIQs2SUyOSBUsNlvofmJOkdGSwWmQp+I4y
-	a7X1CXuVtx/sesdmP2iSZMcyGeUeKYjAZfDAbnNX2sYU7b4k1zNI7o/cipztAMlx
-	91LDgA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jgy1jr6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 09:18:25 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53N9IOvW025515
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 09:18:24 GMT
-Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 23 Apr 2025 02:18:18 -0700
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-Date: Wed, 23 Apr 2025 17:17:42 +0800
-Subject: [PATCH 6/6] arm64: dts: qcom: qcs615-ride: enable remoteprocs
+	s=arc-20240116; t=1745400266; c=relaxed/simple;
+	bh=/TK6dYohnxPVOCX5XOy1ctV17fkwSd4+QVYkCJob5BM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CN1JQv3/OiT3NN/DTyElpDk5MyiUc/+3iCp/o4N2Y21Sa1d9Q16pToQ3btm/mrT7i82AzlN+s9lQlLSuC+7ZHHbztaOQVxF+TJVIj2ZU1wkCe8NZRaoy8k48taC2b/CyYvZaxmSIQf5szP9CNKZY0/8rjBh4k0ZADoWOUxil+A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BziGxj42; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=mk6+yO5lZuVxi5Kmo5/UufFhj1K1prW5eaKtcGD0tz8=;
+	b=BziGxj4275mC1kdFACZMSlMJN2yTcVxUFQc0xfXdT0H/hnZWWGUbD2U8CNzghE
+	FiW8sfnjS9mslu0kK2GbQvg3vDvlkJnv20nFv5LfzomkdJd77eyZjKrt3hHlXs3p
+	zFIpKUbb0sCNZ5DCXf8Z3Vasjzps+BR9MFIBKYAtuoKUQ=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgAnNYyFsQhowhu5Aw--.10561S3;
+	Wed, 23 Apr 2025 17:23:19 +0800 (CST)
+Date: Wed, 23 Apr 2025 17:23:17 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, hongxing.zhu@nxp.com
+Subject: Re: [PATCH 0/8] arm64: dts: imx8: create common imx-pcie[0,1]-ep
+ overlay file
+Message-ID: <aAixhV/TS/eZNHKr@dragon>
+References: <20250331-imx8_pcie_ep_dts-v1-0-270ef0868ac9@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250423-add_qcs615_remoteproc_support-v1-6-a94fe8799f14@quicinc.com>
-References: <20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com>
-In-Reply-To: <20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745399877; l=855;
- i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
- bh=75PfEjxIScHC0TUs9Q3X0fjKZOWhGzAErbm4INPTqMc=;
- b=uHcc+cyxlJ4Jyo2vDYxmdBlg4KGZfhaxhZlF9sC8AGaqFbaxgnZ+4l3TaC+LiXjsN/1MaOPQa
- Ap3qWQImspWCd6PnlP4t0fPbLMk0WfnUHMFvtX/2wchD5k8NCGi0EEw
-X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
- pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA2MyBTYWx0ZWRfX153zP1+jE3um gAhyzcwNpL2XL2YvKFtReP7bcaqOUOdCnRWN7Tn+UEDJ+2j5jCE8NpSU3pqoGb7KP8p4H1SRIop +q+I2hBoSVHC2dTWChEOiZWxT/2t63GSgJ47+BMz0AC2bYtiNoyWJTjFJFu8AMXgoSOCVGcGQwu
- e3vyq4eAZEotWM00wFLzYKo48mkUwQLeOaNFPRmI/71Z3Svl/ELi9nztV+IevoVynDJsxJHw9bu y+aHR/zKdDkJ8QutRghX3urcWC4fjEoUTXIUxCE/GjDd2Uppo6Cs4XR2XbxjYGU+tLO5lq+zYmc UAaNJrUvALVwGzEy/b1PK9tEeCURgdzsl4s9Ww2ZmSF4Gl2vj4rceG7rxEEGuaBOWMfjbF6IHMr
- T6iOAeyWKTSOaLAY0QwnI5OtDPmh4/XZ4xkWAHM0dSw14I9na3dcDfLxRMBGCcmMUR4nqGab
-X-Proofpoint-GUID: boU0j5uLfmhVmml9cnAMFxina56S5qeC
-X-Proofpoint-ORIG-GUID: boU0j5uLfmhVmml9cnAMFxina56S5qeC
-X-Authority-Analysis: v=2.4 cv=M5VNKzws c=1 sm=1 tr=0 ts=6808b061 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=fTATCmRmxHxWpzn7ftMA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-23_06,2025-04-22_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=650 malwarescore=0 impostorscore=0 clxscore=1015
- suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230063
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250331-imx8_pcie_ep_dts-v1-0-270ef0868ac9@nxp.com>
+X-CM-TRANSID:M88vCgAnNYyFsQhowhu5Aw--.10561S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7JrWDJFWrZFy5KFyrKw4Durg_yoWfuFX_Cr
+	45W3W8X34UGw4fJ345Aan8uFy2g345Z3y3WryrWw4vga4xXFWavr4kJr1rWr18Cry3Grs8
+	CFn0qw1fX3WrGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8P73PUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQw4ZWgIdnnrUwAAsP
 
-Enable all remoteproc nodes on the qcs615-ride board and point to the
-appropriate firmware files to allow proper functioning of the remote
-processors.
+On Mon, Mar 31, 2025 at 03:02:38PM -0400, Frank Li wrote:
+> Frank Li (8):
+>       arm64: dts: imx8: create unified pcie0 and pcie0_ep label for all chips
+>       arm64: dts: imx8dxl-ss-hsio: correct irq number for imx8dxl
+>       arm64: dts: imx8dxl-evk: Add pcie0-ep node and use unified pcie0 label
+>       arm64: dts: imx8: use common imx-pcie0-ep.dtso to enable PCI ep function
+>       arm64: dts: imx95: add pcie1 ep overlay file and create pcie-ep dtb files
 
-Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Applying: arm64: dts: imx95: add pcie1 ep overlay file and create pcie-ep dtb files
+error: sha1 information is lacking or useless (arch/arm64/boot/dts/freescale/Makefile).
+error: could not build fake ancestor
+Patch failed at 0005 arm64: dts: imx95: add pcie1 ep overlay file and create pcie-ep dtb files
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 2b5aa3c66867..b0db2c3ad409 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -240,6 +240,16 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/qcs615/adsp.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/qcs615/cdsp.mbn";
-+	status = "okay";
-+};
-+
- &rpmhcc {
- 	clocks = <&xo_board_clk>;
- };
+Could you rebase?
 
--- 
-2.46.0
+Shawn
+
+>       arm64: dts: imx8mm-evk: add pcie0-ep node and apply pcie0-ep overlay file
+>       arm64: dts: imx8mq: add pcie0-ep node
+>       arm64: dts: imx8mq-evk: add pcie[0,1]-ep nodes
 
 
