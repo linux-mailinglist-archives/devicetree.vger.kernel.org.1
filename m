@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-169700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D85A97F17
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:25:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD80A97F2A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:28:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A5323A3417
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:25:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0ADB3BB69B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 06:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8D32266B5B;
-	Wed, 23 Apr 2025 06:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BFE266B6C;
+	Wed, 23 Apr 2025 06:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D/ggPlTa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="amOuxyhc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA179253F35;
-	Wed, 23 Apr 2025 06:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89CC5A95E;
+	Wed, 23 Apr 2025 06:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745389522; cv=none; b=W+cDpeF+GsrQahtUqdsYXKjLXyIt1k4I5Bi9KwyMwbU2m3OB59ajZrKhbFcJz2xO1atiEoQ+U5xdhdyrDGiXIvaFbcGG09fFn232Tkctdxzushy+9UPE1VznQkgOcNJ+ZTzJC7VWUQF93EtYW/rkP4Q9oF9+XMYmfhmT8dTwLYw=
+	t=1745389721; cv=none; b=i0PQbJklyEMFpSFEGYVwcX73howizlE5j19Z0mXh7CuBFuBasvnBBezsyB9U89JdQ4U57IIf6lEsPSy1/FDcGR5F6c3zoyNTiP7LShxhvfOoTYSGG6vuDBfQECn+rXAb8B+2NycecBGvCfZAS+6hoGyg+23qkGpQqcuA/yc/cyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745389522; c=relaxed/simple;
-	bh=6qnxKc0f9rvCcfHiQkorFfqk2KNxYLg7OSH1dxyGexA=;
+	s=arc-20240116; t=1745389721; c=relaxed/simple;
+	bh=WDYlnT1pVakmNI/GWTpsN6Uo55Yfh7hzS3h+/RSVzd8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iGe+hW9bAYNTdw5s7YcWQXa227DwMOg7QQqf7ZaTz+DfAZVKoi5HK4r6p31gAIPfbgYASOXvRk1oXxnj5v8x1h2dytSU2WqSJCjo6yEykeRPumeLj1UuuYdejHCtrPXom4++lKVbRHHEZEb06N8S+0BfWML0lbb5AbUgVSnEbHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D/ggPlTa; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=OMepCxvh1nwp0FJ2yzmiOX0zoWMbejHwBRVXVldjnUtncOIcRJ27qXgCxlS0eTnAM31wM6J/uDynU594a5j2VVQUJek1UpYYZSk3oz5cKdLa8GEpuVUwdjUgqE/X5+iaJlQsxBgu1xJTYPP28YFDU3WJ8eAtMn3UoKEyXd0AeEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=amOuxyhc; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N0iAbp016181;
-	Wed, 23 Apr 2025 06:24:51 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N0iA2t016256;
+	Wed, 23 Apr 2025 06:28:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c0h6gBE7xHeyNQK25TtzLbx21KR/zAHGHaZbS28nq3k=; b=D/ggPlTawwKCL/d/
-	rGp2zjTrNVlLWqhuogssAKtRWfLzUo2TcKo636nkR3vWE1K2eC/Cx90Dg4Rwmzp1
-	VD06+yb48PudFD1rh8gRLAbjeZc9+qQToO1WR675/3pcKV6IrNGzBRH9xkG7/uXR
-	B21Wi5vcKQxYqcMGVKFTFE9Ip094rnZ2zvmfUFS8lYve149bpuJB8OUYHYD7uTy5
-	+m5QjqYhNqYi9iQS186fHQCiqb4OrKBpCNsjzFWevvQhnTt+rA0kfNtzsj5leM1h
-	7byVWxGebwa1SH90FSNxbP4aL9GximqnNfoDzPFeRY/bcyLBuSR+uDiRxGmIwef2
-	C2kEZg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3h2pt-1
+	WDYlnT1pVakmNI/GWTpsN6Uo55Yfh7hzS3h+/RSVzd8=; b=amOuxyhcNMyVBEG5
+	aaCM9VqxPA7ifN/DAFV9EgBwzRozNymZX2NDfuJbZ3MZUqVCkwYbYqJ/rB8XffVe
+	3A8bOlvRjaDpxVkGSjrY4WjiXyP7MU39aMyx+Wxrc/5cM2Ua1lAMKEt+QHJxt789
+	P7gbytmoebVxowK4O2QQ8hSL5jm+ieJn2ONtgButI0pBfvUH5FYbGpvnzHLCAccL
+	BpFkTYFlaIhws2lS1Ln+GbQM1wS2iZrmzHur2jE8hEGZAgfo+RLxBdqf3N5OOL5e
+	v+KFN3f9kfzO1a2ZY3zv3jMobEdt4qiVaJH4auY2MoFstEZR1Eq/PRfZtt1AM6MO
+	NixD+Q==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3h32h-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 06:24:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53N6OoCR023755
+	Wed, 23 Apr 2025 06:28:26 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53N6SPnk011165
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Apr 2025 06:24:50 GMT
-Received: from [10.216.16.5] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 23 Apr 2025 06:28:25 GMT
+Received: from [10.216.54.177] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Apr
- 2025 23:24:45 -0700
-Message-ID: <e7717264-a975-475b-8db3-be360e0edd6f@quicinc.com>
-Date: Wed, 23 Apr 2025 11:54:42 +0530
+ 2025 23:28:18 -0700
+Message-ID: <66e30117-3944-4731-955e-62d1c78ff456@quicinc.com>
+Date: Wed, 23 Apr 2025 11:58:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,137 +65,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 3/3] scsi: ufs: qcom: Add support to disable UFS LPM
- Feature
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "beanhuo@micron.com"
-	<beanhuo@micron.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "bvanassche@acm.org" <bvanassche@acm.org>,
-        "alim.akhtar@samsung.com"
-	<alim.akhtar@samsung.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "mani@kernel.org"
-	<mani@kernel.org>,
-        "James.Bottomley@HansenPartnership.com"
-	<James.Bottomley@HansenPartnership.com>,
-        "martin.petersen@oracle.com"
-	<martin.petersen@oracle.com>
-CC: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250417124645.24456-1-quic_nitirawa@quicinc.com>
- <20250417124645.24456-4-quic_nitirawa@quicinc.com>
- <070f15425ba2535a0bb165d61243dc3e3f63d672.camel@mediatek.com>
+Subject: Re: [PATCH v2 1/9] opp: add new helper API dev_pm_opp_set_level()
+To: Viresh Kumar <viresh.kumar@linaro.org>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Viresh Kumar
+	<vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <psodagud@quicinc.com>,
+        <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>,
+        Nikunj Kela <quic_nkela@quicinc.com>
+References: <20250418151235.27787-1-quic_ptalari@quicinc.com>
+ <20250418151235.27787-2-quic_ptalari@quicinc.com>
+ <20250421074004.yttb42qq4p5xzi3o@vireshk-i7>
+ <e6e1ee6d-a12f-4e18-b2d7-65d1ccca5308@quicinc.com>
+ <20250423053605.63njjtz3s3krdeqb@vireshk-i7>
 Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <070f15425ba2535a0bb165d61243dc3e3f63d672.camel@mediatek.com>
+From: Praveen Talari <quic_ptalari@quicinc.com>
+In-Reply-To: <20250423053605.63njjtz3s3krdeqb@vireshk-i7>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Vzsk_YJ29Xg95rd4mOVhZvLW7ll_ib7K
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA0MSBTYWx0ZWRfXw+qCni5+e+1f LtdozlQo/cEe50VzU9D46YqZV5J275eGkDi6REMc7hSwwTi2AdLokQNHIwUHEpMxZP8Rb0Z13de rIgTlnF2QojfB6NbwtMRHi9xeZ6FuwvNbssy2rMKsgeuiTfRzqIz+Dyap4X3nliVrcGLO65Tpwd
- c+4cM8oBQ933onL70xv+J2yfQdQXqzMaBYIXGvZxHTjyMaBrbgTR5Sw4dbsmYydPUjoezDnsfJh updt9t2Gmhju+74kb4hhR4akvxcjjMo5LAG4g6Rjx0k4EgJbiHspCDFFKic4YGHwDzNP7IeIE57 LlfWPck0zIFbsVNmd/Z5HsYqucKOpBLTYXJFoaLcLh4kek032h4HlK3N4ClUKb2XeaM5TGLaZLl
- xaJldH1MRAGUZpGvh3fSI/XVALoZJs7Ru5qQSztyshIMIEskuJont5Hu4MaqDDezWUEzBuU4
-X-Authority-Analysis: v=2.4 cv=ELgG00ZC c=1 sm=1 tr=0 ts=680887b3 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=DBNj-jGEmPe37kIgScQA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Vzsk_YJ29Xg95rd4mOVhZvLW7ll_ib7K
+X-Proofpoint-ORIG-GUID: gX7GzNgdLmcAW09nUkWLVsUPSpZAx8If
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA0MSBTYWx0ZWRfX6GKgVV7QNeZ8 S+/VCHHKLqFmG+t6hpmAN5tKYxvQpCCoXLLeSMHM7n91rjkwki9Am8wqqVt8Jol/s8XEpGWc3lj UXF6OnDVwFFC8Kl8K4zXxW3uD/pi9CGEdz98iHyiF+DcXH5O7VJ57lkXipptUld4fsCe65GSEW2
+ m2DQh+apYruIx9qIhk/YgLefus4b0cz38zMMxmLjqaPDmx05+DAhkU4he0PFy14IfEaUhyGU+Mn oo+x7gRiPAmNq5QyGRbBJuja9KrocV4pbma+36Ij50Rlpq9LHQse8nAiAiFb8O3rmbazmZK1wPt xoep1L/UjLUV+/UdUU6B6Jr3i572d7b9dtiXY25KFsXN0z/3gd7PGyH7WNgRVjQn9WQbgmkSFsa
+ CEsZ0RSq1xcJSFi9pOaRv/mdZKvmS0H6QynTGC0iso4hrILfj6M4lBh19a+u/2p0JkYxOzML
+X-Authority-Analysis: v=2.4 cv=ELgG00ZC c=1 sm=1 tr=0 ts=6808888a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VUDmVVODwOu91iT8A_oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: gX7GzNgdLmcAW09nUkWLVsUPSpZAx8If
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-23_03,2025-04-22_01,2024-11-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
  malwarescore=0 clxscore=1015 bulkscore=0 phishscore=0 spamscore=0
  mlxscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- mlxlogscore=848 classifier=spam authscore=0 authtc=n/a authcc=
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
  definitions=main-2504230041
 
+Hi Viresh
 
+Thank you for reviewing.
 
-On 4/23/2025 10:30 AM, Peter Wang (王信友) wrote:
-> On Thu, 2025-04-17 at 18:16 +0530, Nitin Rawat wrote:
->>
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> There are emulation FPGA platforms or other platforms where UFS low
->> power mode is either unsupported or power efficiency is not a
->> critical
->> requirement.
->>
->> Disable all low power mode UFS feature based on the "disable-lpm"
->> device
->> tree property parsed in platform driver.
->>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> ---
->>   drivers/ufs/host/ufs-qcom.c | 15 ++++++++-------
->>   1 file changed, 8 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-
->> qcom.c
->> index 1b37449fbffc..1024edf36b68 100644
->> --- a/drivers/ufs/host/ufs-qcom.c
->> +++ b/drivers/ufs/host/ufs-qcom.c
->> @@ -1014,13 +1014,14 @@ static void ufs_qcom_set_host_caps(struct
->> ufs_hba *hba)
->>
->>   static void ufs_qcom_set_caps(struct ufs_hba *hba)
->>   {
->> -       hba->caps |= UFSHCD_CAP_CLK_GATING |
->> UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
->> -       hba->caps |= UFSHCD_CAP_CLK_SCALING |
->> UFSHCD_CAP_WB_WITH_CLK_SCALING;
->> -       hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
->> -       hba->caps |= UFSHCD_CAP_WB_EN;
->> -       hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
->> -       hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
->> -
->> +       if (!hba->disable_lpm) {
->> +               hba->caps |= UFSHCD_CAP_CLK_GATING |
->> UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
->> +               hba->caps |= UFSHCD_CAP_CLK_SCALING |
->> UFSHCD_CAP_WB_WITH_CLK_SCALING;
->> +               hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
->> +               hba->caps |= UFSHCD_CAP_WB_EN;
->>
-> 
-> Hi, Nitin,
-> 
-> If hba->disable_lpm is true, WB should enable?
-> Normally, you don't care about low power, so why wouldn't you enable
-> WB?
-> 
-Hi Peter,
-
-Thanks for review. Agree with you.
-I will update this in next patchset.
-
-Regards,
-Nitin
-
-
-> Thanks.
-> Peter
-> 
-> 
-> 
->> +               hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
->> +               hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
->> +       }
->>          ufs_qcom_set_host_caps(hba);
->>   }
->>
->> --
->> 2.48.1
->>
-> 
-
+On 4/23/2025 11:06 AM, Viresh Kumar wrote:
+> On 22-04-25, 22:37, Praveen Talari wrote:
+>> most of helper APIs in core.c and even i don't see any helper API in
+>> pm_opp.c.
+> This is more of a wrapper over the existing C routines which is being
+> added to reduce some boilerplate code from drivers. And so it makes
+> sense to add this as an inline helper. May be there are others which
+> can be moved too.
+i agree and move to pm_opp.h. Will update in next
+>
+>> as reference of APIs in core.c, i have used  -EINVAl instead of IS_ERR(opp).
+> That would likely be wrong, maybe we should fix those too.
+Ok i will update as per if statement check for return as well.
+>
 
