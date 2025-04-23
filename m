@@ -1,384 +1,331 @@
-Return-Path: <devicetree+bounces-169896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18063A98986
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9CB1A9898B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFF4B1B63C70
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:17:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7689F1B669B8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFC7A1E7C06;
-	Wed, 23 Apr 2025 12:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BFE215043;
+	Wed, 23 Apr 2025 12:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=htecgroup.com header.i=@htecgroup.com header.b="qIkjgXlA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Si+5gSsH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2112.outbound.protection.outlook.com [40.107.249.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D771E86E;
-	Wed, 23 Apr 2025 12:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745410662; cv=fail; b=cM9RHmkp38HYSBvwCyCNhdNsXrS/lvMH6o0uNfmt7xxli3oUR56Mm7jzLdstGP8mbTyhCLfxCu0+yy2dzG/4IGgCJelBzRYTWxXdcnGYPFGQ2qkgBnpwT1UCBfJx8pTXBdAYipSIXyA7L8K1EQLLAW2XfOAV3jK5g6pki+MqtZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745410662; c=relaxed/simple;
-	bh=1E56l9AL4cWO0EtuYR3TME/34+uYJfWBkFEh9g2MefA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=N2BdZV0NjYmRQQY0DmFbJS81GlThOVx4lUxK4RMI/S58rowd8G/KU421m+wsYTjRPegQAXA3wCLgMxLUoY2f9vEQErk7gWUukpO0ADF9mqBAu369Wy7Qdk/dK0FWZbX/KCMK6yfQsee16K1oJ6NzMf7gV1/iBoG41rP8YLXsoOE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=htecgroup.com; spf=pass smtp.mailfrom=htecgroup.com; dkim=pass (2048-bit key) header.d=htecgroup.com header.i=@htecgroup.com header.b=qIkjgXlA; arc=fail smtp.client-ip=40.107.249.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=htecgroup.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=htecgroup.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vLfmI0dm9FMhqx1TvGbKykBJzSg8+8guAmHcsX78dvoiJ2qZNyCpCnhpfxP9qlr38qudrMeAqZh5+jJ9hg3o0ZFwjUEpHWQECaRG/JKVFxEihPEH4A7DmiwlmRVtC8l4cKax18C3ON0ZVWuyEHf2FBzyHVGaP+7ntfD9+7L3BtHA/YOpHuZonsfRREb0Zp5unj6bQ2FfClz5bz+X4WA9mw1ev7VSJWXUVWmhDObjVj9Wp8QPo6KX/wGfcD7w1fk6YTFpTU5jlhKwbrdHXsszZCEzeEI0CKeqGExmoHM3C5BmSA+zn7/VbZ6H286FvTa0ey54MM/10V5qx/KQuwBMCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mp7RnnYn0PTWGK+8xJVdO/MxLO9EpRKAtpqQndg1Vac=;
- b=k1VEYgAZ0jtv0bqqyUA9S7b2F2YxW1LNpHI4LfwVUvbqPoFCqwMZQYUeKZViySwCCuZ1oGalKaJF27pYZER7afgekWUCtoEK5NzWyIzwCd44cUOmuE+AW0FQCJNKJ7sVrUtVoc1aplY00JCJkcqIvQ23LsXUmuvsjTqbBiXum1uJuLvNIUcrwd03MNbXg53271mdgrkjpwWWIOaTbhrelakE4bbcgj4RAd68ZPI1lraytKDE0IDLDIwsTjDc8LMqTS068VKCo09CphzWpmDStTttjLik1TaU8XScS5Ee+PCvS8u9neuGq94vUt6jJiZOc26Z4NvrCZIUL+f9ZsOZWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=htecgroup.com; dmarc=pass action=none
- header.from=htecgroup.com; dkim=pass header.d=htecgroup.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=htecgroup.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mp7RnnYn0PTWGK+8xJVdO/MxLO9EpRKAtpqQndg1Vac=;
- b=qIkjgXlABuFvC8NHnb+Is4T/uS8sAtEErv++PAT9ovWylvyreMlSk7w2uw5bBK6a0cJUhLn5VlxLtke/ibFTPYeS4RehIh0lqXXwJAziEdmU+m930LUVtTJou/UeCx5IpZRItqUylSMe4SyiE7thKKBzvhRUxomKQcH9G/kwAY8CPF8MD+B3GKeegMQZI3l1rbnIipcwxNj20o8Z3u8SrKx43GcSenhyAh2WGelBPQZEh48qipld2U1K/hu2ZBtI9kp9ihu078WRVq+bvGPRkLRlUD16Muw3LNEcHoAF98uvU9RN6fOYE9O6xH09E0v3XB/JR+SbJboK+himYcEDFQ==
-Received: from DU0PR09MB6196.eurprd09.prod.outlook.com (2603:10a6:10:47f::9)
- by AS8PR09MB5925.eurprd09.prod.outlook.com (2603:10a6:20b:54b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Wed, 23 Apr
- 2025 12:17:38 +0000
-Received: from DU0PR09MB6196.eurprd09.prod.outlook.com
- ([fe80::a9c6:101d:ef46:7f95]) by DU0PR09MB6196.eurprd09.prod.outlook.com
- ([fe80::a9c6:101d:ef46:7f95%6]) with mapi id 15.20.8655.033; Wed, 23 Apr 2025
- 12:17:38 +0000
-From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-To: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-CC: Djordje Todorovic <djordje.todorovic@htecgroup.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Conor Dooley <conor@kernel.org>, Aleksandar Rikalo
-	<arikalo@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas
- Gleixner <tglx@linutronix.de>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: [PATCH v3 2/2] Allow for riscv-clock to pick up mmio address.
-Thread-Topic: [PATCH v3 2/2] Allow for riscv-clock to pick up mmio address.
-Thread-Index: AQHbtEmzuV/JBZvWCk6DhGfv2JPNTA==
-Date: Wed, 23 Apr 2025 12:17:37 +0000
-Message-ID:
- <DU0PR09MB619673345C9082CB442A8DEFF6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
-References:
- <DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
-In-Reply-To:
- <DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Enabled=True;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_SiteId=9f85665b-7efd-4776-9dfe-b6bfda2565ee;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_SetDate=2025-04-23T12:17:36.938Z;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Name=HTEC
- Public;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_ContentBits=0;MSIP_Label_d2ca9b47-09e3-4fe9-a702-e3ebef7456d4_Method=Standard;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=htecgroup.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR09MB6196:EE_|AS8PR09MB5925:EE_
-x-ms-office365-filtering-correlation-id: 44def4fb-cfac-4fe8-94bf-08dd8260d642
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?q0HZdta4UWV5j+HTvojMX3EGsIs6WXdudrsUD6ya9Or+asWFzNd3oLHPgR?=
- =?iso-8859-1?Q?vpETQmV4Jq91x524t+IrARJcdjq4e2iIDEQSk8P+1s3Yxq4VsP63SmNd8D?=
- =?iso-8859-1?Q?P9V5SOBCCU46Qwj1UYn/BT9EkSgYQYxVaY299GA0+jsm3SSRPXo7EFBAUm?=
- =?iso-8859-1?Q?CwExkUrUZG9X+DbGI7E4Mn+8roUTSa594LStGCzK+rUtftlhgryYtWn7es?=
- =?iso-8859-1?Q?VTGc5O77k/W2wcwRWYVl+qTvE5U5ew0Q/m/HUg2Rc4n//oy/MaTxZx1nKP?=
- =?iso-8859-1?Q?6XSNeUfEf2orUMEn/wnQU6paoLOQiCSpCSK8v4oEYBrmS5zA2E/om8k57h?=
- =?iso-8859-1?Q?9FlhMqnAPh0PTj1vz8z8TcAcChY4CDtNltC6XFeUMeBrz6HKnAbtmB4R6A?=
- =?iso-8859-1?Q?SNRXvBH/yPOKHFE6EV167KjTKeqwloRzDJTEiI8HvoHJeMb18ZuMOmIzed?=
- =?iso-8859-1?Q?HNnqDGPO5i7agpEWcJMQMk4PkJQIHaRNj+faQdvnjfgLr7eTCdvSQ3quoD?=
- =?iso-8859-1?Q?wApSg5iAwIznR64J1yOGa0lGGL6wW09iNPQWWiMlFFQZXxo61ImydE8oe7?=
- =?iso-8859-1?Q?B8HCMT9QhfEBzPuAZtk2traV8ZE6TiTQvjoElHNwZqWooBCZYinykmhLgu?=
- =?iso-8859-1?Q?NmOS2LzjGJxCQYkU6roSeEpAj6uvAXvxfQfFm9s/u6BodNg+d0MIzmw82V?=
- =?iso-8859-1?Q?RoFVkTpg4bshqhGO1AWaUmXDUXxnlWcHdx6V/au758f59yoRK15lSCVqpx?=
- =?iso-8859-1?Q?soiC0olUHgRaWPj8BcX4CS5EV/56RdByLKEzvEnWUT+0hyScTmABmNhQdK?=
- =?iso-8859-1?Q?p+47KY7b5ItvsFkaShILrFWLWq94oRi+Hclt8swtWkXjlLR3YkVDRP9EkD?=
- =?iso-8859-1?Q?yn7pTL7SLjU+hFPuDlbMet1b1dtb7+UWSHGrMFwhfQ9AHXLuJEuyms+kbh?=
- =?iso-8859-1?Q?XVZ3KvJvrNA+8BEEfQMpoTMJg5K5ZFEAbPUkkk2ffBbug7Q+V8OegmOLBK?=
- =?iso-8859-1?Q?5gIdae1Wu3Hq6pxUGAkCdp+MXCJdZfhwlOOMxnzG4JrVoFCVuef2bDj/f6?=
- =?iso-8859-1?Q?M50LMYA+wXMVTiuyrLHU2r2yKIy2DgxIQ7uHm4eMZrfuvZEjDBJ7H7eBJT?=
- =?iso-8859-1?Q?PO++bl5qA+XNMIBO6MOY7PRmkPW5ke4Ey73o8b1IDLBSov+5YCxC00z26/?=
- =?iso-8859-1?Q?IIezuo+u04IdSaocBOD2fKGjbpTA0MgmVrJPcVwayZrSxMES370WORgZqt?=
- =?iso-8859-1?Q?yj4ZaP0Azu723Faa/z/YUnnSoTFqr5t2xi1K2mEYfyVwDGIAtT9ZuDU+YR?=
- =?iso-8859-1?Q?dgL4hMz1zvTkXNvdQVdWW+1iLlLHRav/w2bY0HQYIArtLhWGXGPBhmC8fg?=
- =?iso-8859-1?Q?EL0HNUcg9KH+R1EpPnlN/A+NkMsaHaIIHVCSHGRvMxh8UgTq48G+4ejE8i?=
- =?iso-8859-1?Q?kgx7lpXUdjrwKUPKYiJK4YqsiiSNArLsKpwS1J1Avklex1VhNNm322aVgj?=
- =?iso-8859-1?Q?RdWIAynt1//Zh3beLTBcP2CTO9Dz2Qpq39TLmBHOIkeg=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR09MB6196.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?79ECIodnPOEG4eM9PIGvUfY/VuYmanxi31n5eVfZtzfCyHF7X+GOPlvx7V?=
- =?iso-8859-1?Q?eGza/C79/nS2wC4tTEqX9TXzt4ISxN6CP99/Lcsjoh+PMsrYKOeWphoMIB?=
- =?iso-8859-1?Q?w7QdgG7fxqvR2czW1u6O7y7ISwdlHquumzm7aEeMG/WFme6v8GKuhM4lrS?=
- =?iso-8859-1?Q?IekmcYQFDeuqwLByJ0K7lYogw/QzrvRB9Q/J2JAE2fhFwN+1WIAXnWNsRB?=
- =?iso-8859-1?Q?afJo+E5Lk+Ng8g3XY99xymnJn7jtud96V3F4Ry2gCK8I3Jg0+9uyEkiwOP?=
- =?iso-8859-1?Q?2xsOsbp9C4qi38YSN0No30dlUusmiO75T4dl+FHh7fZ5xjrZZK38fy61qA?=
- =?iso-8859-1?Q?p8svXlcggs6a1gZIwfy557hRPcO6TqZOOGIx6AEYFOWyg+PlzTso37D4Pe?=
- =?iso-8859-1?Q?Ri/pGmWcxOmY4PfQVIVXUQH7aBSd6bqJvTFDnV8hIVdacDPHLPPBAGkdIg?=
- =?iso-8859-1?Q?3FZ8Npk6Q/FFAz8bnMTL4auOTpBJq//I8UQXCCFevYGyeYuzWHBsQ0+PG0?=
- =?iso-8859-1?Q?jPXg6QwYd4YTiVvLOvl3eh6m2+LCLLs3s+439QgrwIggsVcLEwGMFz0QP1?=
- =?iso-8859-1?Q?EfEGWhYxo53uQTL+4QU7Qu1XkaiXt6z/ZnWAvHZ1Pp5WIgsgrdHXCKa2o3?=
- =?iso-8859-1?Q?VULPrrm8yiKldYfQ3cqcvGPd3zgl1E4pmkqOgk2wXjssqmdz29shd+5MOT?=
- =?iso-8859-1?Q?hicsfBPFhb4srZ8SCENGRlqtZ1Rfsc1FeFeAO4DWjmOIPfKiavfK6cgxvx?=
- =?iso-8859-1?Q?1Udj59EpWPxOgA27qtRLhGgimLRx02/s2vFcrOkf6NbMtQJqIfo7Gfy+x+?=
- =?iso-8859-1?Q?n7LFT6FZ63ypJKSxHFrF6mU18WWnJxnnPEnoqn8+1Gacwq6sw85SaCPbqF?=
- =?iso-8859-1?Q?JbC4nfJw8A3gC+R/Ao8cdBQ8ZKhnqC7HSreFORgbCGxenCJOo/o2Ij45bj?=
- =?iso-8859-1?Q?JoF4iyouVYLu1j8hv6CmreaIIuLTTM5mQDWOQDneBVq6hlhw7V70LT/aJF?=
- =?iso-8859-1?Q?TMC32r33p9Dd/Erp9O2XELinhGHpPUHwmYRVmr9/eVeDAdyCQS++J3pHCM?=
- =?iso-8859-1?Q?dpUsbkH3qPWrIKuUKbvhZIkzNVMFmOxjtyrGe1FLk6jbMcTIj9v7OwhPSp?=
- =?iso-8859-1?Q?F3xbJXBbpXpdJoMu1mTWM4s7i0rfGkYz9Wkj2nBKlxihv8mTSTmZOd19A4?=
- =?iso-8859-1?Q?qkGV4Dt/oE04keUUpb3XNaQ+2eAmadGQ6WsqG7Zor2xNEG8gAE4zohhwtt?=
- =?iso-8859-1?Q?tSLgekGn1bp10rJqyXWlCtAnfM5Og06jcqZDH8q2G26NYuFcRzzSKARHJy?=
- =?iso-8859-1?Q?xUq/u547koD9XONXe/wGEp5ZdO98KG3KoAi6l2NBS/tKiRxnWDlWX2KaOb?=
- =?iso-8859-1?Q?Z362Z9keTyzfDRlEaevq9FNq2AFqxJ/bRgmMNi29KnEVEdwrY90pfN6kYu?=
- =?iso-8859-1?Q?GmvZAB96Sx2ucBV+mwN2QPjo4KEYk5/RptkTHgBpuIl6pUg813RUbwaulO?=
- =?iso-8859-1?Q?OFDiJOsHmbY3FuRlMAl2mBC3uB/icGDg3VLZ2/z9unS9/Y91qRf0KlhDgZ?=
- =?iso-8859-1?Q?LwBTIF82ixmltJRsZXZZJgo1cqXg7r4xM5p66COKs/SS4VZIeO9urZDeWl?=
- =?iso-8859-1?Q?91txZkgRLKdMZdkveQIWaajlL84G6MARxR5f/CEcjcqlfQd2XQcagOmw?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3312201032
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:18:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745410702; cv=none; b=KTH2LDMN8N2Ak1pIu1C7O/Hl7Ah5VTzTlOPCpnMtBHVnADx6ut77uaLdpSdt47LHoLc93aiSKT+80K7B789TPTY+oc6enuxLkRNo6PWPN1OQUNHLMwOBO0My833Kr7Pad4GMbzqu7MV5bHAs0iAkLPoIa2WPvc95vQx7RBnwqyo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745410702; c=relaxed/simple;
+	bh=tCHjkL1SLgoL2j2PMqkiNHKmGBzODwMfabfskxgGLgY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hc9I7L7hJ4SJA/ipHKbhgD2sfGccQMFOQtGH7LA7VvWBtRGSOIBvsNNu4w3oCiiwlMDbmPuC9xCyZPD+xloLvc5fDdTDLL4p+ZXzzIGLf3JmHs5rkQWPDtaa6bcXDceXCjJd8b4Qq9JFcB9XtOsnPjMNGU4yyljiCUmX2iy7cik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Si+5gSsH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAqBKE022024
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:18:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ioGfs5MtgxexvBjcj4mXKq9ldJm50YBOXelQWnDDA+w=; b=Si+5gSsH5Sq4CR5G
+	Zobx6D0+awRftNyIeqLD7wIQskcuztJErV9gBIQp2+U6xijczIIGrGoV3uMuvabf
+	cR2Xq8lPy7e8jzNEHDBW+Og4hF5TZymj9fK/dEZzsIqvbifYODTJbgyUohcQ64+u
+	0X4uPBqGFeeHEAdZ5+1hXskww8AEFCL86Squ1tM1exBkLb5iGs0PXfZdkADjR3M6
+	xq1FhOyRQWGM1oeaQTo0L0a/yBRvylt0hKZKgfCANbK3gwS0ayoj1gl7bPDuhqPG
+	LxAOgDlMO66Wd5eF2yvBd/PwJx6SGqzIu3vcrZc2MrGFEWvmTNoGel42tBrLw6u7
+	lJVAvQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh12244-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:18:18 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c555d4ad75so31769785a.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 05:18:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745410698; x=1746015498;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ioGfs5MtgxexvBjcj4mXKq9ldJm50YBOXelQWnDDA+w=;
+        b=kuuDePZuarzdi5663gnrksuctobTqnuoHedw/YD6tAwMsns3+WgpZHSzkEC7Bcxazm
+         EiqLF/0NJyYF8AcT7UbYER7yq43+bpeAmGTj/L7Em+JBoleGPJKOZFnvag8iV8DxSGUF
+         foxTg7CxB93OeFF+arEwuoW6Whnls4qPEGCOj9tF9zWqp23qdhnXCauSV2oPAp4D4FHK
+         zPGvwdYkEdEzxeve/ybsuoPflo3+VMgE9bYUzOJpx0uOMtCFHdXDNjXnUfHCCtOZA1Cj
+         U/JPPzCp6RgHDnUPUSvGrZUqSFaw/XjUi8MYTnlPj49JZDJUSWlIzwG+H+Di4zvjZhFs
+         tH7Q==
+X-Gm-Message-State: AOJu0YwQd7Emhe4FvrPFykZ95wsxXQFKgWF+kv5KmKYw+phNTI0W7Iws
+	GBHR0Gj2Jdn2wiMHhGTKdDsgSNoyHIK4zVBsg8QG/popF4B1L/E2N+ph4QFkaV4izVwMEEIGKbF
+	JYmOp3j0Yfu/98SOD2Pkx9TjgEjfgl4fGOvi64UZHl0Xpz2W977kdpgChlCdE
+X-Gm-Gg: ASbGncsNgRA3J6jX9Tj9sQ31LAZhABUj9fbSYQ3VPZUJuhvxqZFPdtQc8euy6JcWwXm
+	dgiNNFFyCE+T14Hcs2MaksgxARg1BDO2ZLP9U0eQL5kvDOte9SL2YPcB4orEUq4ao6gRaOxWNvj
+	w2fLS4H8NDKbuF5YAZPoPYzPfosoAQeMZufCBLHYYFYaB9ibtkkuyKij9ud2DYimdrCESMzEVLF
+	CkUwg025CJBZMTtHQAwrgbE7noy0FDfZe11dEEY5IO7hKitZyRY0c3m67+67/38YD4XE5HbhrYn
+	1J3Rc1rSmzOht9Djrx1pNEsveBgBFT7lrdL1AhMSeeoU8/VD1hVWpXHdrvqIWbfkyWA=
+X-Received: by 2002:a05:620a:2492:b0:7c0:be0e:cb09 with SMTP id af79cd13be357-7c94d266c35mr148952585a.7.1745410697596;
+        Wed, 23 Apr 2025 05:18:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEav1ZFFMWH2+h22EnPEjP1DswVCKNGIgBpCwJp2VazcB6M7t8R/W/1xgUW9/XgzClpBqzW6A==
+X-Received: by 2002:a05:620a:2492:b0:7c0:be0e:cb09 with SMTP id af79cd13be357-7c94d266c35mr148944985a.7.1745410697019;
+        Wed, 23 Apr 2025 05:18:17 -0700 (PDT)
+Received: from [192.168.65.183] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6efadd51sm817256866b.179.2025.04.23.05.18.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Apr 2025 05:18:16 -0700 (PDT)
+Message-ID: <e0a61158-6278-45bc-bc5c-fe35227bdbf1@oss.qualcomm.com>
+Date: Wed, 23 Apr 2025 14:18:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: htecgroup.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR09MB6196.eurprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44def4fb-cfac-4fe8-94bf-08dd8260d642
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2025 12:17:37.9268
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9f85665b-7efd-4776-9dfe-b6bfda2565ee
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vxipKm8rPshDJCRLCrfEnpxlbrhlMLng6/eW6h8kcG9jG14AsEIcT+91V9xmLdE4WC293/YlbaSc8U7+3z3asFqQA9bRZcxQH2/kpIYb6ms=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR09MB5925
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 30/33] arm64: dts: qcom: Add dtsi for Snapdragon
+ 730/730g/732g (SM7150) SoCs
+To: Danila Tikhonov <danila@jiaxyga.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S . Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Alex Elder <elder@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Kees Cook <kees@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        David Wronek <david@mainlining.org>,
+        Jens Reidel <adrian@mainlining.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-scsi@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        linux-remoteproc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-hardening@vger.kernel.org, linux@mainlining.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20250422213137.80366-1-danila@jiaxyga.com>
+ <20250422213137.80366-14-danila@jiaxyga.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250422213137.80366-14-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Z888knEeiWyXrGZhbrI0yB1LrsVQOKJ-
+X-Authority-Analysis: v=2.4 cv=OY6YDgTY c=1 sm=1 tr=0 ts=6808da8a cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=OuZLqq7tAAAA:8 a=7ibcVnAUAAAA:8
+ a=uu6HZSQSBnFQn7oXV_IA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22 a=AKGiAy9iJ-JzxKVHQNES:22 a=HywIFdX19-EX8Ph82vJO:22
+X-Proofpoint-ORIG-GUID: Z888knEeiWyXrGZhbrI0yB1LrsVQOKJ-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA4NSBTYWx0ZWRfX6PmWgQHG/2CD KjHuR9MFVdzgmoj75CBvhPYwJLBwkfq44TyHQuTKnd7+cs6BySnSH9MVGs8Ob9bR9yipMWKg3M3 o9YkgNDQEpk6dcsuH4BO8whtu88lw2a6p9Le3n1I01oDUuTHkcuaNsIyUNejqnbmLpJ29OCvNmV
+ YpvLZ9KnePtePjrTFdTgEONS23I1YrBi/CU9qwTibvv7+dcxY+YWjBWUpenEmY48GJbv3yDBvjM kypIfrcNltVBBVfO/ublab76nUvgzXc+mOwVfFys0gJINkvUHe+khJhVaITQANAa0eORShYlum8 OEn+G6fOLp+P6EpWvqhl2ngTXiTKWZPT9rlvI6IWPfQTTUDcWlK445Z3o7jkbavdunvx5+c55Qm
+ VUZ8bm4u3d9+yVQAFWwBomRZmSLsjq1X9QousiQQNr67TGhP+VMwS8C9++kfU5zgXRJ98994
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_07,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 suspectscore=0 mlxscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=602 phishscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230085
 
-HTEC Public
+On 4/22/25 11:31 PM, Danila Tikhonov wrote:
+> Add base dtsi for SM7150-AA/SM7150-AB/SM7150-AC SoCs
+> 
+> Co-developed-by: David Wronek <david@mainlining.org>
+> Signed-off-by: David Wronek <david@mainlining.org>
+> Co-developed-by: Jens Reidel <adrian@mainlining.org>
+> Signed-off-by: Jens Reidel <adrian@mainlining.org>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
 
-Allow faster rdtime access via GCR.U mtime shadow register on RISC-V
-devices. This feature can be enabled by setting GCRU_TIME_MMIO during confi=
-guration.
+[...]
 
-Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
----
- arch/riscv/include/asm/timex.h    | 59 ++++++++++++++++++++-----------
- drivers/clocksource/Kconfig       | 12 +++++++
- drivers/clocksource/timer-riscv.c | 32 +++++++++++++++++
- 3 files changed, 83 insertions(+), 20 deletions(-)
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo470";
 
-diff --git a/arch/riscv/include/asm/timex.h b/arch/riscv/include/asm/timex.=
-h
-index a06697846e69..47ad6285b83a 100644
---- a/arch/riscv/include/asm/timex.h
-+++ b/arch/riscv/include/asm/timex.h
-@@ -7,31 +7,24 @@
- #define _ASM_RISCV_TIMEX_H
+Please split this into Kryo 470 silver and gold, with the former being
+based on CA55 and the latter on CA76
 
- #include <asm/csr.h>
-+#include <asm/mmio.h>
-+
-+#include <linux/jump_label.h>
+[...]
 
- typedef unsigned long cycles_t;
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu-a76 {
+> +		compatible = "arm,cortex-a78-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
 
-+extern u64 __iomem *riscv_time_val;
-+DECLARE_STATIC_KEY_FALSE(riscv_time_mmio_available);
-+
-+#define riscv_time_val riscv_time_val
-+
- #ifdef CONFIG_RISCV_M_MODE
+Please update this, mimicking 
 
- #include <asm/clint.h>
+2c06e0797c32 ("arm64: dts: qcom: sm8650: add PPI interrupt partitions for the ARM PMUs")
 
--#ifdef CONFIG_64BIT
--static inline cycles_t get_cycles(void)
--{
--       return readq_relaxed(clint_time_val);
--}
--#else /* !CONFIG_64BIT */
--static inline u32 get_cycles(void)
--{
--       return readl_relaxed(((u32 *)clint_time_val));
--}
--#define get_cycles get_cycles
-+#undef riscv_time_val
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +
+> +		cpu_pd0: power-domain-cpu0 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&cluster_pd>;
+> +			domain-idle-states = <&little_cpu_sleep_0
+> +					      &little_cpu_sleep_1>;
 
--static inline u32 get_cycles_hi(void)
--{
--       return readl_relaxed(((u32 *)clint_time_val) + 1);
--}
--#define get_cycles_hi get_cycles_hi
--#endif /* CONFIG_64BIT */
-+#define riscv_time_val clint_time_val
+<&foo>,
+<&foo2>;
 
- /*
-  * Much like MIPS, we may not have a viable counter to use at an early poi=
-nt
-@@ -46,22 +39,48 @@ static inline unsigned long random_get_entropy(void)
- }
- #define random_get_entropy()   random_get_entropy()
+because they are phandles to separate things - DTC treats them equally
+though..
 
--#else /* CONFIG_RISCV_M_MODE */
-+#endif
-+
-+static inline long use_riscv_time_mmio(void)
-+{
-+       return IS_ENABLED(CONFIG_RISCV_M_MODE) ||
-+               (IS_ENABLED(CONFIG_GCRU_TIME_MMIO) &&
-+                static_branch_unlikely(&riscv_time_mmio_available));
-+}
-+
-+#ifdef CONFIG_64BIT
-+static inline cycles_t mmio_get_cycles(void)
-+{
-+       return readq_relaxed(riscv_time_val);
-+}
-+#else /* !CONFIG_64BIT */
-+static inline cycles_t mmio_get_cycles(void)
-+{
-+       return readl_relaxed(((u32 *)riscv_time_val));
-+}
-+#endif /* CONFIG_64BIT */
-+
-+static inline u32 mmio_get_cycles_hi(void)
-+{
-+       return readl_relaxed(((u32 *)riscv_time_val) + 1);
-+}
+[...]
 
- static inline cycles_t get_cycles(void)
- {
-+       if (use_riscv_time_mmio())
-+               return mmio_get_cycles();
-        return csr_read(CSR_TIME);
- }
- #define get_cycles get_cycles
+> +				interconnects = <&aggre1_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
+> +						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
+> +						<&gem_noc MASTER_AMPSS_M0 QCOM_ICC_TAG_ALWAYS
+> +						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
 
- static inline u32 get_cycles_hi(void)
- {
-+       if (use_riscv_time_mmio())
-+               return mmio_get_cycles_hi();
-        return csr_read(CSR_TIMEH);
- }
- #define get_cycles_hi get_cycles_hi
+Paths involving AMPSS_M0 (the cpu endpoint) should be ACTIVE_ONLY,
+this applies to the entire file and all paths
 
--#endif /* !CONFIG_RISCV_M_MODE */
--
- #ifdef CONFIG_64BIT
- static inline u64 get_cycles64(void)
- {
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index 487c85259967..0f2bb75564c7 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -661,6 +661,18 @@ config CLINT_TIMER
-          This option enables the CLINT timer for RISC-V systems.  The CLIN=
-T
-          driver is usually used for NoMMU RISC-V systems.
+[...]
 
-+config GCRU_TIME_MMIO
-+       bool "GCR.U timer support for RISC-V platforms"
-+       depends on !RISCV_M_MODE && RISCV
-+       default n
-+       help
-+        Access GCR.U shadow copy of the RISC-V mtime register
-+        on platforms that provide a compatible device, instead of
-+        reading the time CSR. Since reading the time CSR
-+        traps to M mode on certain platforms, this may be more efficient.
-+
-+        If you don't know what to do here, say n.
-+
- config CSKY_MP_TIMER
-        bool "SMP Timer for the C-SKY platform" if COMPILE_TEST
-        depends on CSKY
-diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-=
-riscv.c
-index 48ce50c5f5e6..4290e4b840f7 100644
---- a/drivers/clocksource/timer-riscv.c
-+++ b/drivers/clocksource/timer-riscv.c
-@@ -22,6 +22,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/interrupt.h>
- #include <linux/of_irq.h>
-+#include <linux/of_address.h>
- #include <linux/limits.h>
- #include <clocksource/timer-riscv.h>
- #include <asm/smp.h>
-@@ -32,6 +33,13 @@
- static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
- static bool riscv_timer_cannot_wake_cpu;
+> +		remoteproc_adsp: remoteproc@62400000 {
+> +			compatible = "qcom,sm7150-adsp-pas";
+> +			reg = <0x0 0x62400000 0x0 0x100>;
 
-+#if defined(CONFIG_GCRU_TIME_MMIO)
-+DEFINE_STATIC_KEY_FALSE_RO(riscv_time_mmio_available);
-+EXPORT_SYMBOL(riscv_time_mmio_available);
-+u64 __iomem *riscv_time_val __ro_after_init;
-+EXPORT_SYMBOL(riscv_time_val);
-+#endif
-+
- static void riscv_clock_event_stop(void)
- {
-        if (static_branch_likely(&riscv_sstc_available)) {
-@@ -203,6 +211,11 @@ static int __init riscv_timer_init_dt(struct device_no=
-de *n)
-        int cpuid, error;
-        unsigned long hartid;
-        struct device_node *child;
-+#if defined(CONFIG_GCRU_TIME_MMIO)
-+       u64 mmio_addr;
-+       u64 mmio_size;
-+       struct device_node *gcru;
-+#endif
+This region is 0x10_000 long
 
-        error =3D riscv_of_processor_hartid(n, &hartid);
-        if (error < 0) {
-@@ -220,6 +233,25 @@ static int __init riscv_timer_init_dt(struct device_no=
-de *n)
-        if (cpuid !=3D smp_processor_id())
-                return 0;
+[...]
 
-+#if defined(CONFIG_GCRU_TIME_MMIO)
-+       gcru =3D of_find_compatible_node(NULL, NULL, "mti,gcru");
-+       if (gcru) {
-+               if (!of_property_read_reg(gcru, 0, &mmio_addr, &mmio_size))=
- {
-+                       riscv_time_val =3D ioremap((long)mmio_addr, mmio_si=
-ze);
-+                       if (riscv_time_val) {
-+                               pr_info("Using mmio time register at 0x%llx=
-\n",
-+                                       mmio_addr);
-+                               static_branch_enable(
-+                                       &riscv_time_mmio_available);
-+                       } else {
-+                               pr_warn("Unable to use mmio time at 0x%llx\=
-n",
-+                                       mmio_addr);
-+                       }
-+                       of_node_put(gcru);
-+               }
-+       }
-+#endif
-+
-        child =3D of_find_compatible_node(NULL, NULL, "riscv,timer");
-        if (child) {
-                riscv_timer_cannot_wake_cpu =3D of_property_read_bool(child=
-,
---
-2.34.1
+> +		adreno_smmu: iommu@5040000 {
+> +			compatible = "qcom,sm7150-smmu-v2",
+> +				     "qcom,adreno-smmu",
+> +				     "qcom,smmu-v2";
+> +			reg = <0x0 0x05040000 0x0 0x10000>;
+> +
+> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 364 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 365 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 366 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 368 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 369 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 370 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 371 IRQ_TYPE_EDGE_RISING>;
+> +
+> +			clocks = <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
+> +			clock-names = "ahb",
+> +				      "bus",
+> +				      "iface";
+> +
+> +			power-domains = <&gpucc CX_GDSC>;
+> +
+> +			#iommu-cells = <1>;
+> +			#global-interrupts = <2>;
+
+Add `dma-coherent` and check whether the GPU still works
+
+[...]
+
+> +		};
+> +
+> +		gmu: gmu@506a000 {
+> +			compatible = "qcom,adreno-gmu-618.0",
+> +				     "qcom,adreno-gmu";
+> +			reg = <0x0 0x0506a000 0x0 0x31000>,
+
+Make it 0x26_000 so that it doesn't leak into GPU_CC
+
+[...]
+
+> +		tsens0: thermal-sensor@c263000 {
+> +			compatible = "qcom,sm7150-tsens",
+> +				     "qcom,tsens-v2";
+> +			reg = <0x0 0x0c263000 0x0 0x1ff>, /* TM */
+> +			      <0x0 0x0c222000 0x0 0x1ff>; /* SROT */
+
+Please remove these comments
+
+[...]
+
+> +		intc: interrupt-controller@17a00000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x17a00000 0x0 0x10000>,  /* GICD */
+> +			      <0x0 0x17a60000 0x0 0x100000>; /* GICR * 8 */
+
+And these ones too
+
+[...]
+
+> +	thermal-zones {
+
+Please adjust this against 
+
+https://lore.kernel.org/linux-arm-msm/20250219-x1e80100-thermal-fixes-v1-0-d110e44ac3f9@linaro.org/
+
+(keep only critical trips with no sw cooling for the CPU, etc.)
+
+Konrad
 
