@@ -1,92 +1,87 @@
-Return-Path: <devicetree+bounces-169850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E697A986A8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:02:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A27A986E8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4DC178F0F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:02:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7373E7A4BF9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A892566DA;
-	Wed, 23 Apr 2025 10:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B5AE270566;
+	Wed, 23 Apr 2025 10:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="G8dgid8o"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="VmjmFA6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9252420D4F6;
-	Wed, 23 Apr 2025 10:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF0026FA5E;
+	Wed, 23 Apr 2025 10:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745402553; cv=none; b=Iwy9u1Tg+E5d38I4xfbNsIdykyJFMleA5hRQPXB/L3qoHnNQrXssp+bTxDRdyDifUn/UBn+86GhiUzE7r2EFFDX6itCJGzSGzh3FV6FP0aCQse2+gqJ5FPQdlWtdVAjgGFbSd6ryeLYg/yEme3ixVS7yO8/zTEmlyCiiDiGYH3w=
+	t=1745403106; cv=none; b=sVsze+36y2AhcyATcCzzwDr4Hy9DM9CE/qTwpO3WCSM2GsNkHCcW0SKNr0O0uR6tdhsWUz3OS/mZgGTeVVXbS8bW0O4sdVFFp3XoPqZMIKOswyZhja2Y7GTyOo4iPXiGGFy7lGVQFYBgLWAbeZEQ2zB4gNK4q2mtl0mORqrbMa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745402553; c=relaxed/simple;
-	bh=ktV0WTPer3asI6aYq9UAR47uR805GI8B92zxNTsMtn0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=E/obkVKs8apa6wjgjPU7SGQLL+zfBgtXh869D4EKZ+dReNaan49r0pfR/g6HT2kaO1EA8gXSMP/QWZT+QcqyVnvL1a8ZvwKlWai1VKaM9rdqdvLfJw4nLTcHd4n41fAFeQKTZpKYwffIHoIavGBFDOVE20oYplXOn/WXvtXhIn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=G8dgid8o; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1745402549;
-	bh=ktV0WTPer3asI6aYq9UAR47uR805GI8B92zxNTsMtn0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=G8dgid8oB/Uln65s3r/q+ZfQYLOBCybERkwrw9drzKh6Lel2fcpNt0XucNtrDaEEz
-	 xWvAldiHmhVo4DvfvZB76gBu+x6JNL5DrxFYJ6dLC/b4/AmIYZy4B9xj3rV85mLhhy
-	 UapOt6TsbWw7mAxwMPGltm84Jorfhj1CV6YIsA4PChAmpCRI3c9MjrqDz4ea+W1N+K
-	 ElSLFEAPkLpsDuc1WzJKPw9S96Ogo39Ema2RZ0wNVJPRRsLGgRk8Hft+Aziyg5YGlO
-	 eQDmaWCgq6wZBILdOWnCyGCm30c/Ks2g24FRKLlQOtJ6ySwrQQGNcVtDsQrDiQkv0q
-	 RKG7ZGY0ovw6w==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D4F9817E0702;
-	Wed, 23 Apr 2025 12:02:28 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Pin-yen Lin <treapking@chromium.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Enric Balletbo i Serra <eballetbo@kernel.org>, 
- Hsin-Yi Wang <hsinyi@chromium.org>, Jitao Shi <jitao.shi@mediatek.com>, 
- Nicolas Boichat <drinkcat@chromium.org>
-In-Reply-To: <20250423040354.2847447-1-treapking@chromium.org>
-References: <20250423040354.2847447-1-treapking@chromium.org>
-Subject: Re: [PATCH v2] arm64: dts: mt8183: Add port node to mt8183.dtsi
-Message-Id: <174540254879.65934.8631292816995667484.b4-ty@collabora.com>
-Date: Wed, 23 Apr 2025 12:02:28 +0200
+	s=arc-20240116; t=1745403106; c=relaxed/simple;
+	bh=b0Y5tJW1ARr3F4YWKHFkC6Fk3ydx1M0d376iWWVuTyw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OyCWk5KbtfnPMAn3F24MHjiVQJ4Vkg5yv7T/yiTT3ajyODa/bxyi0cHfpBztTCG5dggbca7b14rFmAxcvM0j2dTOG4Uk3eCGUKIAhnUH9c6rNu6IBvcMB4TT0btFDK5c8wT7BIM6ziMjVLPMincGeQajpnq8JhlQ7gWHaUR6P4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=VmjmFA6C; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=8xPfywdOkuj394mc3umyqwbKkDiIsCkuQlStktpti4E=;
+	b=VmjmFA6Ce7I6PrfdruXOITMs/muo7+n0WI4zSAYU3OqKEvrLA0WkRFto+Ox/vg
+	ygoNn+w2v9CiuRaQirdV3GPe17+zCNSfKgeu1JGQUlsWefqXrxftynpc2jx3U+J+
+	mC/Ub2rvLu+nmuespAa7Juu4yXzpnurHuqHAfruvtH4tA=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXWdmivAhojG7BAw--.25526S3;
+	Wed, 23 Apr 2025 18:10:44 +0800 (CST)
+Date: Wed, 23 Apr 2025 18:10:42 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] arm64: dts: freescale: imx8m[mp]-verdin: Add
+ EEPROM compatible fallback
+Message-ID: <aAi8ooTCm/BSB3Qf@dragon>
+References: <20250408202939.6887-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250408202939.6887-1-francesco@dolcini.it>
+X-CM-TRANSID:Mc8vCgCXWdmivAhojG7BAw--.25526S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUI38nUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQR02WgIvKSpjAAA3B
 
-On Wed, 23 Apr 2025 12:03:39 +0800, Pin-yen Lin wrote:
-> Add the port node to fix the binding schema check. Also update
-> mt8183-kukui to reference the new port node.
+On Tue, Apr 08, 2025 at 10:29:37PM +0200, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
+> According to the AT24 EEPROM bindings the compatible string should
+> contain first the actual manufacturer, and second the corresponding
+> atmel model.
 > 
+> Add the atmel compatible fallback accordingly.
+> 
+> Francesco Dolcini (2):
+>   arm64: dts: freescale: imx8mp-verdin: Add EEPROM compatible fallback
+>   arm64: dts: freescale: imx8mm-verdin: Add EEPROM compatible fallback
 
-Applied to v6.15-next/dts64, thanks!
-
-[1/1] arm64: dts: mt8183: Add port node to mt8183.dtsi
-      commit: d15059f7be59f887c1a370037cc2337c2ff2ad56
-
-Cheers,
-Angelo
-
+Applied both, thanks!
 
 
