@@ -1,124 +1,161 @@
-Return-Path: <devicetree+bounces-169711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F41E8A9800F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:07:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD4FA98018
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E97717F4A3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:07:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E94553B2FB4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC91B25CC55;
-	Wed, 23 Apr 2025 07:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC772580D0;
+	Wed, 23 Apr 2025 07:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FWj7Zxbn"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="taM+nq0T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD4F1E1E1E;
-	Wed, 23 Apr 2025 07:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D292676FC;
+	Wed, 23 Apr 2025 07:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745392017; cv=none; b=B/V4WWWllgj9F3e7XCQ0of5JlHfFg6iFiajR/mM1r48lN5Xe4/Eh/PgeUp9ChXV1NTSwUBP7M4tFtCyv0DlypKAlYXOt0BZ0B7PLuyTUx+6nY7mBFOnrJrYUxDY1BhwkpsmIucy1xrRVkLplYWFwXi69xv1Bj1pELOR2F+OHoMY=
+	t=1745392095; cv=none; b=AJJInJ/ORKTXVnN3zhh8F9HrERwug2zmrB7Oaps5fwwcgGi3jukDwdGmCRYKVw63BsmlnX54Vl9do8cK+OTNAiTHMHW7SykQBS/liFbl0uDZRT+KFaSB5epFYAuSgQkXQ6dJ6pb7j5OUizquV2Ad6yPcNXWwz1lZjc48VzKNfoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745392017; c=relaxed/simple;
-	bh=xt0DA3GstpCfr74NeBEXDfg1bNB8goQaSwLushyxukA=;
+	s=arc-20240116; t=1745392095; c=relaxed/simple;
+	bh=7mnMqfZJXmRF7AEubXC5Quz0rD3EwGLxnuaIQrs31aw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEkDYxzYJZ+FiRqnSgxrWNt+DSEfOVwhRgKtGfgeCrlfdWrnRz3OOLemy7heTrX+VClUbSd3cAm9td+T3p4quNmmxQEQd1MGV20VBTEbU4pLOfNQHzyfhsJZ1K7TMR4Rg0AkxH4o98Gzu3oljYkya5K6BhtMpC0+z28TeRNqX+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FWj7Zxbn; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745392016; x=1776928016;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xt0DA3GstpCfr74NeBEXDfg1bNB8goQaSwLushyxukA=;
-  b=FWj7Zxbn34McFLVwvs/C2+WOfgF2bdyal3RrNyUSoThyDGIP/nR4FQ7N
-   3xEMfAk4V2knQ2o3WQ0E116g4MsBYnyEk++NMIEFj23EmNlpqFAOwyehV
-   B34lMsr13xKFX6xmLc5KfAJIDCoh+5kYBpSJE1EFUAB6N6oqRTpUEv6No
-   vKq8PTUI4evLQGhwJSHFMHmtjJ8yxoEIzbn3iwIAgsoyE3r+2gp2r4Jym
-   tmaivebivLsZey+NCOWMdWsDJRcREtobvtUf3la2eGrkKtMqBaRSorqER
-   hzVGhS06AbnBZHB1VfrEdvLEKpYbB+qwqv32VBEILJGCiLsQ3T2W/wt35
-   Q==;
-X-CSE-ConnectionGUID: TdtBT+YGRdiTatYayQu4bg==
-X-CSE-MsgGUID: vPjP3mLRRFqIW7SO68L2UQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="49637709"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
-   d="scan'208";a="49637709"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 00:06:55 -0700
-X-CSE-ConnectionGUID: xmFabzE5SVaVHbyoVfBwbw==
-X-CSE-MsgGUID: Qsq+L7PrTDui0jV3bz8b2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
-   d="scan'208";a="136302582"
-Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 23 Apr 2025 00:06:53 -0700
-Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u7UC3-0001fz-1G;
-	Wed, 23 Apr 2025 07:06:51 +0000
-Date: Wed, 23 Apr 2025 15:06:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, jic23@kernel.org,
-	robh@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, ~lkcamp/patches@lists.sr.ht,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings:iio:adc:st,spear600-adc: txt to yaml format
- conversion.
-Message-ID: <202504231421.JAMhWond-lkp@intel.com>
-References: <20250423022956.31218-1-rodrigo.gobbi.7@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lGUuY5DKZgT2tGD3vQDnyxQgxKOnFraMjbQa5kKedVgn7Ud5Rin32RHc0i0UrKgi7kGhAfMawB+IvrGh1tVNEBE1muJbVCkB3ThOtGfTualdYJHe0oAybR4ynjGX6xy5/tpYHt9t2sp0AI8wudSk1IfTElpT3ToKKN+trf+SMjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=taM+nq0T; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id DB3B91F984;
+	Wed, 23 Apr 2025 09:08:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1745392089;
+	bh=/0EQyW6sKhsHbEM0FiXvZEMPWbxrVBqoFMcw038Fo0o=; h=From:To:Subject;
+	b=taM+nq0Tp+9ii+S0WaDF9seZryAoqKrz/vlplFL9/ZBKvYNh75kCC715TxDFQa+7j
+	 C/sGGFpIK77WVU5hAsa96KvTgz0cbCtwlSeMWTZM1eSsgb80787R1TEDZ13sDDM7GW
+	 m9Z7zfRZZMUu6acYf0lAsIKp7oi/a6A+Q9yGEc/kyS63x9sEef5+xz2ESa0JVOJ5d3
+	 eOdQVUXumLYh6f12oLeAynDGKptfRtEJhUzCj7jMfFXKsVktMRWbgLkMojclU174EO
+	 /wrDlZW4ofcXxj2R+S0I3MGfFJcZRhDvsNVCxViB6AMQjgUiz1cFqeO5rPYDOfd35J
+	 /6AKlQjxqp/Kg==
+Date: Wed, 23 Apr 2025 09:08:07 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Philippe Schenker <philippe.schenker@impulsing.ch>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
+ usdhc2
+Message-ID: <20250423070807.GB4811@francesco-nb>
+References: <20250422124619.713235-1-Wojciech.Dubowik@mt.com>
+ <522decdf-faa0-433b-8b92-760f8fd04388@kontron.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250423022956.31218-1-rodrigo.gobbi.7@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <522decdf-faa0-433b-8b92-760f8fd04388@kontron.de>
 
-Hi Rodrigo,
+Hello Frieder,
 
-kernel test robot noticed the following build warnings:
+On Wed, Apr 23, 2025 at 08:50:54AM +0200, Frieder Schrempf wrote:
+> Am 22.04.25 um 14:46 schrieb Wojciech Dubowik:
+> > [Sie erhalten nicht häufig E-Mails von wojciech.dubowik@mt.com. Weitere Informationen, warum dies wichtig ist, finden Sie unter https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > Define vqmmc regulator-gpio for usdhc2 with vin-supply
+> > coming from LDO5.
+> > 
+> > Without this definition LDO5 will be powered down, disabling
+> > SD card after bootup. This has been introduced in commit
+> > f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
+> > 
+> > Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
+> > 
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+> > ---
+> > v1 -> v2: https://lore.kernel.org/all/20250417112012.785420-1-Wojciech.Dubowik@mt.com/
+> >  - define gpio regulator for LDO5 vin controlled by vselect signal
+> > ---
+> >  .../boot/dts/freescale/imx8mm-verdin.dtsi     | 23 +++++++++++++++----
+> >  1 file changed, 19 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > index 7251ad3a0017..9b56a36c5f77 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > @@ -144,6 +144,19 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+> >                 startup-delay-us = <20000>;
+> >         };
+> > 
+> > +       reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
+> > +               compatible = "regulator-gpio";
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pinctrl_usdhc2_vsel>;
+> > +               gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +               regulator-min-microvolt = <1800000>;
+> > +               states = <1800000 0x1>,
+> > +                        <3300000 0x0>;
+> > +               regulator-name = "PMIC_USDHC_VSELECT";
+> > +               vin-supply = <&reg_nvcc_sd>;
+> > +       };
+> 
+> Please do not describe the SD_VSEL of the PMIC as gpio-regulator. There
+> already is a regulator node reg_nvcc_sd for the LDO5 of the PMIC.
+> 
+> > +
+> >         reserved-memory {
+> >                 #address-cells = <2>;
+> >                 #size-cells = <2>;
+> > @@ -785,6 +798,7 @@ &usdhc2 {
+> >         pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
+> >         pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_cd_sleep>;
+> >         vmmc-supply = <&reg_usdhc2_vmmc>;
+> > +       vqmmc-supply = <&reg_usdhc2_vqmmc>;
+> 
+> You should reference the reg_nvcc_sd directly here and actually this
+> should be the only change you need to fix things, no?
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on robh/for-next linus/master v6.15-rc3 next-20250422]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+If you just do this change you end-up in the situation I described in
+the v1 version of this patch
+https://lore.kernel.org/all/20250417130342.GA18817@francesco-nb/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rodrigo-Gobbi/dt-bindings-iio-adc-st-spear600-adc-txt-to-yaml-format-conversion/20250423-103135
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250423022956.31218-1-rodrigo.gobbi.7%40gmail.com
-patch subject: [PATCH] dt-bindings:iio:adc:st,spear600-adc: txt to yaml format conversion.
-reproduce: (https://download.01.org/0day-ci/archive/20250423/202504231421.JAMhWond-lkp@intel.com/reproduce)
+With the IO being driven by the SDHCI core, while the linux driver
+changes the voltage over i2c.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504231421.JAMhWond-lkp@intel.com/
+I was not aware of this sd-vsel-gpios, that if I understand correctly
+should handle the concern I raised initially, having the PMIC driver
+aware of this GPIO, however I do not see why that solution should be
+better than this one.
 
-All warnings (new ones prefixed by >>):
+BTW, is this solution safe from any kind of race condition? You have
+this IO driven by the SDHCI IP, and the I2C communication to the PMIC
+driven by the mmc driver, with the PMIC driver just reading this GPIO
+once when changing/reading the voltage.
 
-   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/staging/iio/
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-   Can't build as 1 mandatory dependency is missing at ./scripts/sphinx-pre-install line 984.
-   make[2]: *** [Documentation/Makefile:121: htmldocs] Error 255
-   make[1]: *** [Makefile:1801: htmldocs] Error 2
-   make: *** [Makefile:248: __sub-make] Error 2
+With this solution (that I proposed), the sdcard driver just use the
+GPIO to select the right voltage and that's it, simple, no un-needed i2c
+communication with the PMIC, and the DT clearly describe the way the HW
+is designed.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Francesco
+
 
