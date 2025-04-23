@@ -1,94 +1,123 @@
-Return-Path: <devicetree+bounces-169869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16783A9872B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B424A98733
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:21:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2169F1B66287
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:19:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9530C1B655AF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314D325C806;
-	Wed, 23 Apr 2025 10:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B46A266B66;
+	Wed, 23 Apr 2025 10:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SZg4ekLb"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="bs9vJAu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8524430;
-	Wed, 23 Apr 2025 10:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3B6242D69;
+	Wed, 23 Apr 2025 10:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745403571; cv=none; b=lk+lbWilTb+5DvfbHVLaSqzmJuJmM3EN8AlnMTyHsRbNwNWBDpgA9GAdrd4kP7yYpdKxtZeil5DeYnDTtizS+EsorjLdi1goMdgwP+ME/fmUJuIDHY3/NPFg0gy1Bg6psidY2QS7yF3A1R/KnGBPvnkL1dl+KSSR0joJE2OD8Q0=
+	t=1745403713; cv=none; b=Z2UF1fn+26zpEbhfPjceyEmajfagL27Mk2QhRIsuvhmkdRQ5n2qf0nUWDuzGzjMoW2k55Z6VQzVjuSTuTE1POgK78ia7Zis8OMVPKMqbEMOen5VmfeWiBUn9ANpcUfbN0VxU2a031ncJzyJ9E1R1V95n/JFbdkOCQEhi7TOXnIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745403571; c=relaxed/simple;
-	bh=EErdEvkJZMomWj346FuTips4HSCS6BxlmBws21IXYso=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=nLsPBIjYYfREHJmqWSAcGdbe9zg+tUIr6j6v78cLMqBBUPDdccjpNxps+nfJXjFF48YA63mb1E2rftKWdPUwTPmCETAwMVXwITClkd6rC5+D0Iqi5izChFQOvVKun+6KjQ1kCBfIDaWcoDG1wls8Zp9rNY1bXo6IOYid/mspQbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SZg4ekLb; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1745403567;
-	bh=EErdEvkJZMomWj346FuTips4HSCS6BxlmBws21IXYso=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=SZg4ekLb9WzZnjsZFcLoTYV7rwAq3ALY3FMkS9R1RbijO8AqgtNq7raPnsv+bgkAN
-	 GrCSO8Aiqqu52TYlhkzF9Icz5vv98EW0ER4EdXfUiG8gJBFcZFXEXcVeYV41tfRuIV
-	 XHZ63x7jm1E5fQO4TdkjSGc1zUpdQHrQDT45Av4juFw2XZRRMMHf1CQujJKx7DQXCl
-	 g8Zj+mlB+WUKDCH6y5MtVd/bHm6+ypsczbuFxnn30o3YkYzuSEwvyeYt9DW79+GyQq
-	 zzG8SnDUR5olrdoXXf5ERp3PX7ljipA+PKlCUBvJ/GiS4T8nHyOQy9vqKDcalMMXhx
-	 Ok+IrPwSoUqFA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C8BD017E0B56;
-	Wed, 23 Apr 2025 12:19:26 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: kernel@collabora.com, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Julien Massot <julien.massot@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20250423-mt8395-audio-sof-v2-1-5e6dc7fba0fc@collabora.com>
-References: <20250423-mt8395-audio-sof-v2-1-5e6dc7fba0fc@collabora.com>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8395-nio-12l: Enable Audio
- DSP and sound card
-Message-Id: <174540356673.70458.18087445471288730073.b4-ty@collabora.com>
-Date: Wed, 23 Apr 2025 12:19:26 +0200
+	s=arc-20240116; t=1745403713; c=relaxed/simple;
+	bh=EzJ4TVYM7nZiaOGpLXPH1VDEv7n0lyNcyhQoLP0U2hM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qjf5i+3dOJigIZ3+jviKnXhdCQbqUNBZNfDEekuLbb2LfHK6qd9in7M2QtLzsJ04fy50yJIBfA+wr1TxqI4UmpJrpzj87FpU5Ba9cNLn2hfotNkOA+/rnqGSvppZViB7LY4CQ/fUxVOsPD4oL029+k2Glw8mjevZNCV7e5BI5o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=bs9vJAu8; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 39DB71F971;
+	Wed, 23 Apr 2025 12:21:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1745403709;
+	bh=UpUgGYYSAAKZGIFCG/nSCZXQYMN9IB2AgKsoywhruMI=;
+	h=Received:From:To:Subject;
+	b=bs9vJAu8mvqc64WiUDtIkUvfcUb4obpM/9YuSrhL8j7Vf7lxVPdfW71e+syvIXd1a
+	 Z5lEEGZEWw1DTQnmiQFEiVdPLzJiUThmOm5/z3mgV298aExt2W5sPjXWagKqSnLEqY
+	 KX/SLQeGzGMWzNkNp/QyLeYq+CIxgSxMSV7me4oj8/4qud415eWABSKV+rzFXm6YpU
+	 zVPFjVu4lOM2/b3UrIH/MPyyPog7ySt+d9Ob5Us1hr2WRQ8R/MgEYBur+xIBooNxWj
+	 g3ZYkcSG/fIurgTtS8TcwVQuSv2gSfthjHosrHA+uBiVcsl3gXBo94k+8HZgcg5gm7
+	 aXSusdN1PxU+A==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id E57297F820; Wed, 23 Apr 2025 12:21:48 +0200 (CEST)
+Date: Wed, 23 Apr 2025 12:21:48 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Philippe Schenker <philippe.schenker@impulsing.ch>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
+ usdhc2
+Message-ID: <aAi_PPaZRF26pv_d@gaggiata.pivistrello.it>
+References: <20250422140200.819405-1-Wojciech.Dubowik@mt.com>
+ <20250423095309.GA93156@francesco-nb>
+ <222ce25ee0bb1545583ad7a04f621bac2617893c.camel@impulsing.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <222ce25ee0bb1545583ad7a04f621bac2617893c.camel@impulsing.ch>
 
-On Wed, 23 Apr 2025 10:53:13 +0200, Julien Massot wrote:
-> Add memory regions for the Audio DSP (ADSP) and Audio Front-End (AFE),
-> and enable both components in the device tree.
+On Wed, Apr 23, 2025 at 10:16:43AM +0000, Philippe Schenker wrote:
 > 
-> Also, define the required pin configuration and add a sound card node
-> configured to use the ADSP. This enables audio output through the 3.5mm
-> headphone jack available on the board.
 > 
-> [...]
+> On Wed, 2025-04-23 at 11:53 +0200, Francesco Dolcini wrote:
+> > On Tue, Apr 22, 2025 at 04:01:57PM +0200, Wojciech Dubowik wrote:
+> > > Define vqmmc regulator-gpio for usdhc2 with vin-supply
+> > > coming from LDO5.
+> > > 
+> > > Without this definition LDO5 will be powered down, disabling
+> > > SD card after bootup. This has been introduced in commit
+> > > f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
+> > > 
+> > > Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for
+> > > LDO5")
+> > > 
+> > no empty lines in between commit message tags, not sure if Shawn can
+> > fix
+> > this up or you need to send a v4.
+> > 
+> > > Cc: stable@vger.kernel.org
+> > > Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+> > 
+> > Tested-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > I would backport this to also older kernel, so to me
+> > 
+> > Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for
+> > verdin imx8m mini")
+> 
+> NACK for the proposed Fixes, this introduces a new Kconfig which could
+> have side-effects in users of current stable kernels.
 
-Applied to v6.15-next/dts64, thanks!
+The driver for "regulator-gpio" compatible? I do not agree with your argument,
+sorry. 
 
-[1/1] arm64: dts: mediatek: mt8395-nio-12l: Enable Audio DSP and sound card
-      commit: 2521f47606eaffb2e477ea0b2985d2d8e31aa563
+The previous description was not correct. There was an unused
+regulator in the DT that was not switched off just by chance.
 
-Cheers,
-Angelo
+Francesco
 
 
 
