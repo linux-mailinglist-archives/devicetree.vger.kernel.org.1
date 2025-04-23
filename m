@@ -1,239 +1,173 @@
-Return-Path: <devicetree+bounces-170007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53DD4A9950E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 904FEA99538
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:33:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4730441057
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:28:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 053DA446538
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362B0280CF8;
-	Wed, 23 Apr 2025 16:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F952820A8;
+	Wed, 23 Apr 2025 16:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnVX1vti"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="ghMJZ6Li";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="p6f9ufhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B45725C83E;
-	Wed, 23 Apr 2025 16:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD6AEEAB;
+	Wed, 23 Apr 2025 16:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745425706; cv=none; b=ElDH8/7lPcME09ydIXEJH5qWCvxY5xvwAbVBFctG7HAaQY4ugS+xB6nMKJ850CFi+2gwwCtnqalZJzkT4dzwZEG/LBm3H+BosBwiIvSs2f2W+HxBSsVEFdZGsnYJrBwWDG/GNTcix2R3G7HXmfqYHqVq2VK3BrdUhsGWHSFKuW4=
+	t=1745426013; cv=none; b=LxmNgZQqjvT/v/ZyZTk/ieYCpOPvxDKLDB396JT5eJD2RNVH5bB6o6JQtNev3caTe6OLZ8O1Drtx9ptd1LfxSHc7ckCh8nCx4PK91pMuKFkHP9dM5aHI9COUO4Pp1QrJj/45rUOLGFHw9Eq1oCj82t4gJGTYIaJOHKhlL98Iejc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745425706; c=relaxed/simple;
-	bh=kdP94eIJZ1neGLZtHe2F3rjqBkuRH5ZXNqlX5OwGt8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UhnJU+Dc0I+mtD/f6O9z3+zBbVDo0YyerA2y9eXQ+SIXcY/GUErdem2wS3jdKV3DISbdqs5UCzZAH8RMN1jxsoMW9QoKIaw2k7neRCaOHmT6VXKH5MjQLorfaUEW+pZ5xjGicJ2Zm2MdOjAZWCwt4KkLVuv+2Ipfb4KV3bl+cWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnVX1vti; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699E4C4CEE2;
-	Wed, 23 Apr 2025 16:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745425705;
-	bh=kdP94eIJZ1neGLZtHe2F3rjqBkuRH5ZXNqlX5OwGt8U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DnVX1vtiyoDpB6r0MdPt9zD67EwvDMSfIP7Xwy/vNTTQTBZ+kpj1fc8hWd2shDsd0
-	 BkMn46PTivn0tuUvlPnSW1mRiQAsmh3/24qyw8jLvle4O+ZVXDJ3+gueTLFB6jW1rc
-	 A6jf3mss6WPSLXGt+UoXH4qxtFD+LYCkLFguJ7o4zbEwn9a+aSv5FU/ltu4EB3PX36
-	 BBFT4VacSCsSDES/EXfIENXA9jiKUMFiA6HXnPrlOQw6SWf7e3OTwa26YTQ4l9BYQk
-	 fOyrcKqlAK7w7mIPXfbt2SNCG4vD0fFFqTsAfcEl5ALAAeytMPYULGM99StB0QA8xh
-	 fF1Yte8QFVctw==
-Date: Wed, 23 Apr 2025 17:28:16 +0100
-From: Simon Horman <horms@kernel.org>
-To: Parvathi Pudi <parvathi@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-	tony@atomide.com, richardcochran@gmail.com, glaroque@baylibre.com,
-	schnelle@linux.ibm.com, m-karicheri2@ti.com, s.hauer@pengutronix.de,
-	rdunlap@infradead.org, diogo.ivo@siemens.com, basharath@couthit.com,
-	jacob.e.keller@intel.com, m-malladi@ti.com,
-	javier.carrasco.cruz@gmail.com, afd@ti.com, s-anna@ti.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	pratheesh@ti.com, prajith@ti.com, vigneshr@ti.com, praneeth@ti.com,
-	srk@ti.com, rogerq@ti.com, krishna@couthit.com, pmohan@couthit.com,
-	mohan@couthit.com
-Subject: Re: [PATCH net-next v5 05/11] net: ti: prueth: Adds ethtool support
- for ICSSM PRUETH Driver
-Message-ID: <20250423162816.GD2843373@horms.kernel.org>
-References: <20250414113458.1913823-1-parvathi@couthit.com>
- <20250414130237.1915448-6-parvathi@couthit.com>
+	s=arc-20240116; t=1745426013; c=relaxed/simple;
+	bh=k9awTTUd7ZaQ39ohjaFaJnmuQ3yBWkwe6kUBoEOhz54=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=V/V3AF0hBAkXGbGdLkQke6bvHA0Is0bumDuHn/o/m9IzZfzNihx9cUC9d6v8DsB4JQ7JQRp5BAmmF/yHOjtdSI4s/wgS8cQ5RkUqeoJhullSzwAZngu3R/ceeRVRvxSjydlioiEju3juKF7J1LIEup/OJ76WBD/WjUTjhQVMp9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=ghMJZ6Li; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=p6f9ufhE; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 3C6C8138021E;
+	Wed, 23 Apr 2025 12:33:29 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Wed, 23 Apr 2025 12:33:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1745426009; x=1745512409; bh=Z3
+	SikaDV9LXU5Luu9vlL7wDesVWT4qjhjBdRZpBP2Nk=; b=ghMJZ6Lijp5j0rH3fm
+	M0/QZS+98SHHwVDV9yAXJz9y8x32beDLhTpMm17dJwflmrLW5u/pTZvBY/8YCHUH
+	XQKU6mUF6VcTYCEesxgkSF9cRFHP+2t628na5fAzJQ+CXW+GIMLWIa1bOwVwMzuY
+	RyJDxDf+YQByOraHajsu1ZGGC+ik61vriS6YUILLqHt/IHg6B+4zvduNp/Azbxon
+	a4PK5ZVtLQdN/uLBU8rFX4jsMBQ9dOFpB+/5QUAYYimBGnUx3VeT2XKkf4JltYZD
+	lPY5zp3aPI0Nl096XKXrQPCJRXGWRzXZ82jVrII1ak3KQUmIv1qx6VAo0ornq+pZ
+	NwaA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1745426009; x=1745512409; bh=Z3SikaDV9LXU5Luu9vlL7wDesVWT
+	4qjhjBdRZpBP2Nk=; b=p6f9ufhExJZ78Qos+ry8HvySku15uj3obTcBGBBozfat
+	U1SL3ywoTH3Jews8NTZrBjeKBXq+36UC+u8TeA4Ak4WdRllvprnAQEx4CAjSNFa9
+	Qg+mC1G5sB/eXagepNHTv+OmzyBZYnr66LXct+5Oiv1NSincSvKrqNS0L7Oqs7fW
+	a1VM8PnXrFcNcSuXFzV+Ub8JJWJ0bPVC6ry4jldwMRlwQJomhQTBjAHGutnoqkGD
+	R4VNg5bSqF81to/ftNS14rmLyxn3xwTIFlXfNJVpTu4p1IiXwDd+ziZwOv2mBL1A
+	AYx+JBUpkQNIga6DQBgckvulBnmhs2wlLZhIzc39lQ==
+X-ME-Sender: <xms:WBYJaOue0Bpi4y81f7V0f8goKBnSHt6en2NIm2qdAYeNpKnyIzHdcQ>
+    <xme:WBYJaDfoNGyYjfPixab323hUudr6xD-35Kors51wonYwlB4ai8YlPi5xQgTRWF-D6
+    qTXjBBw6TZg0kUom9w>
+X-ME-Received: <xmr:WBYJaJyhPFfKJ1AuaHbQeWeCx0bAaynw4aMXWaGPw-C5Y9bTZNcMbK6FVby2iNJFUX3XfrJsoz3TFZwgYU_2qqgW>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvgeejtdelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
+    thgvrhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfe
+    etgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
+    ihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtph
+    htthhopedufedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhgthhgvhhgrsges
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprh
+    gtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhn
+    ohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvsh
+    grshesghhlihguvghrrdgsvgdprhgtphhtthhopehhvhgvrhhkuhhilhesgihsgegrlhhl
+    rdhnlhdprhgtphhtthhopehsrghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlh
+    drtghomhdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshho
+    nhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrg
+    hsohhnsghorghrugdrtghomh
+X-ME-Proxy: <xmx:WBYJaJNjtiajs0wK1Rwo1gj4FflN5ayBGIpJyJgDG_Q762NfhWR1Qg>
+    <xmx:WBYJaO875toEaQbOeyEn9qo3r136Ct4s7qSD0WtDUjgVfJp9G5mGZQ>
+    <xmx:WBYJaBXbGhH1UzZ1Sv4Iwfr1thxrOyOsVAVDDGQLvKzkF0Hsjq_SeA>
+    <xmx:WBYJaHe3PQlDtyPKN5bgs-MdFYdYcxdvojl15vEyQizxn-3v8Mic_g>
+    <xmx:WRYJaG0p5bbEo5nD5WG1PrxQvODGfAYPSkG1k0ykNUO7mH20BxLForKR>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Apr 2025 12:33:27 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v3 0/7] rcar-isp: Prepare for ISP core support
+Date: Wed, 23 Apr 2025 18:31:06 +0200
+Message-ID: <20250423163113.2961049-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250414130237.1915448-6-parvathi@couthit.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Apr 14, 2025 at 06:32:31PM +0530, Parvathi Pudi wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> Changes for enabling ethtool support for the newly added PRU Ethernet
-> interfaces. Extends the support for statistics collection from PRU internal
-> memory and displays it in the user space. Along with statistics,
-> enable/disable of features, configuring link speed etc.are now supported.
-> 
-> The firmware running on PRU maintains statistics in internal data memory.
-> When requested ethtool collects all the statistics for the specified
-> interface and displays it in the user space.
-> 
-> Makefile is updated to include ethtool support into PRUETH driver.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+Hello,
 
-...
+This series prepares for adding support for the ISP core functionality
+found on some R-Car ISP instances. No core support is however added in
+this series, the focus is to get the easy changes out of the way to
+avoid conflicts of fixes and new features being added in parallel on top
+of this.
 
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.h b/drivers/net/ethernet/ti/icssm/icssm_prueth.h
+Patch 1/7 extends the dt-bindings to allow describing both the CSISP and
+ISPCORE blocks. Patch 2/7, 3/7 and 4/7 updates the existing bindings to
+match the new style. While the change breaks the dt-bindings the driver
+is compatible with both styles.
 
-...
+Patch 5/7 prepares for the addition of the ISP core functions that will
+span multiple files by moving the driver implementation from a single C
+file to a directory where it can grow. The intent is to get this out of
+the way without bikeshedding the real ISP core work so fixes and such
+can be based on the new file structure as early as possible.
 
-> @@ -108,6 +114,119 @@ struct prueth_packet_info {
->  	bool timestamp;
->  };
->  
-> +/**
-> + * struct port_statistics - Statistics structure for capturing statistics
-> + *			    on PRUs
-> + * @tx_bcast: Number of broadcast packets sent
-> + * @tx_mcast:Number of multicast packets sent
-> + * @tx_ucast:Number of unicast packets sent
-> + *
-> + * @tx_octets:Number of undersized frames rcvd
-> + *
-> + * @rx_bcast:Number of broadcast packets rcvd
-> + * @rx_mcast:Number of multicast packets rcvd
-> + * @rx_ucast:Number of unicast packets rcvd
-> + *
-> + * @rx_octets:Number of Rx packets
-> + *
-> + * @tx64byte:Number of 64 byte packets sent
-> + * @tx65_127byte:Number of 65-127 byte packets sent
-> + * @tx128_255byte:Number of 128-255 byte packets sent
-> + * @tx256_511byte:Number of 256-511 byte packets sent
-> + * @tx512_1023byte:Number of 512-1023 byte packets sent
-> + * @tx1024byte:Number of 1024 and larger size packets sent
-> + *
-> + * @rx64byte:Number of 64 byte packets rcvd
-> + * @rx65_127byte:Number of 65-127 byte packets rcvd
-> + * @rx128_255byte:Number of 128-255 byte packets rcvd
-> + * @rx256_511byte:Number of 256-511 byte packets rcvd
-> + * @rx512_1023byte:Number of 512-1023 byte packets rcvd
-> + * @rx1024byte:Number of 1024 and larger size packets rcvd
-> + *
-> + * @late_coll:Number of late collisions(Half Duplex)
-> + * @single_coll:Number of single collisions (Half Duplex)
-> + * @multi_coll:Number of multiple collisions (Half Duplex)
-> + * @excess_coll:Number of excess collisions(Half Duplex)
-> + *
-> + * @rx_misalignment_frames:Number of non multiple of 8 byte frames rcvd
-> + * @stormprev_counter:Number of packets dropped because of Storm Prevention
+Patch 6/7 and 7/7 prepares the driver for dealing with two regions for
+when the ISP core work is integrated.
 
-nit: It looks like the documentation of @stormprev_counter should
-     be replaced by documentation of:
-     @u32 stormprev_counter_bc;
-     @u32 stormprev_counter_mc;
-     @u32 stormprev_counter_uc;
+There is no functional gain in this series apart from correctly
+describing the hardware in dt.
 
-> + * @mac_rxerror:Number of MAC receive errors
-> + * @sfd_error:Number of invalid SFD
-> + * @def_tx:Number of transmissions deferred
-> + * @mac_txerror:Number of MAC transmit errors
-> + * @rx_oversized_frames:Number of oversized frames rcvd
-> + * @rx_undersized_frames:Number of undersized frames rcvd
-> + * @rx_crc_frames:Number of CRC error frames rcvd
-> + * @dropped_packets:Number of packets dropped due to link down on opposite port
-> + *
-> + * @tx_hwq_overflow:Hardware Tx Queue (on PRU) over flow count
-> + * @tx_hwq_underflow:Hardware Tx Queue (on PRU) under flow count
-> + *
-> + * @u32 cs_error: Number of carrier sense errors
+See individual patches for changelog.
 
-nit: @cs_error
+Niklas Söderlund (7):
+  dt-bindings: media: renesas,isp: Add ISP core function block
+  arm64: dts: renesas: r8a779a0: Add ISP core function block
+  arm64: dts: renesas: r8a779g0: Add ISP core function block
+  arm64: dts: renesas: r8a779h0: Add ISP core function block
+  media: rcar-isp: Move driver to own directory
+  media: rcar-isp: Rename base register variable
+  media: rcar-isp: Parse named cs memory region
 
-     i.e. remove "u32 "
+ .../bindings/media/renesas,isp.yaml           | 63 ++++++++++++++++---
+ MAINTAINERS                                   |  2 +-
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     | 60 +++++++++++++-----
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 30 ++++++---
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 21 +++++--
+ drivers/media/platform/renesas/Kconfig        | 18 +-----
+ drivers/media/platform/renesas/Makefile       |  2 +-
+ .../media/platform/renesas/rcar-isp/Kconfig   | 18 ++++++
+ .../media/platform/renesas/rcar-isp/Makefile  |  4 ++
+ .../renesas/{rcar-isp.c => rcar-isp/csisp.c}  | 57 ++++++++++-------
+ 10 files changed, 196 insertions(+), 79 deletions(-)
+ create mode 100644 drivers/media/platform/renesas/rcar-isp/Kconfig
+ create mode 100644 drivers/media/platform/renesas/rcar-isp/Makefile
+ rename drivers/media/platform/renesas/{rcar-isp.c => rcar-isp/csisp.c} (90%)
 
-Documentation nits flagged by ./scripts/kernel-doc -none
+-- 
+2.49.0
 
-> + * @sqe_test_error: Number of MAC receive errors
-> + *
-> + * Above fields are aligned so that it's consistent
-> + * with the memory layout in PRU DRAM, this is to facilitate easy
-> + * memcpy. Don't change the order of the fields.
-> + *
-> + * @vlan_dropped: Number of VLAN tagged packets dropped
-> + * @multicast_dropped: Number of multicast packets dropped
-> + */
-> +struct port_statistics {
-> +	u32 tx_bcast;
-> +	u32 tx_mcast;
-> +	u32 tx_ucast;
-> +
-> +	u32 tx_octets;
-> +
-> +	u32 rx_bcast;
-> +	u32 rx_mcast;
-> +	u32 rx_ucast;
-> +
-> +	u32 rx_octets;
-> +
-> +	u32 tx64byte;
-> +	u32 tx65_127byte;
-> +	u32 tx128_255byte;
-> +	u32 tx256_511byte;
-> +	u32 tx512_1023byte;
-> +	u32 tx1024byte;
-> +
-> +	u32 rx64byte;
-> +	u32 rx65_127byte;
-> +	u32 rx128_255byte;
-> +	u32 rx256_511byte;
-> +	u32 rx512_1023byte;
-> +	u32 rx1024byte;
-> +
-> +	u32 late_coll;
-> +	u32 single_coll;
-> +	u32 multi_coll;
-> +	u32 excess_coll;
-> +
-> +	u32 rx_misalignment_frames;
-> +	u32 stormprev_counter_bc;
-> +	u32 stormprev_counter_mc;
-> +	u32 stormprev_counter_uc;
-> +	u32 mac_rxerror;
-> +	u32 sfd_error;
-> +	u32 def_tx;
-> +	u32 mac_txerror;
-> +	u32 rx_oversized_frames;
-> +	u32 rx_undersized_frames;
-> +	u32 rx_crc_frames;
-> +	u32 dropped_packets;
-> +
-> +	u32 tx_hwq_overflow;
-> +	u32 tx_hwq_underflow;
-> +
-> +	u32 cs_error;
-> +	u32 sqe_test_error;
-> +
-> +	u32 vlan_dropped;
-> +	u32 multicast_dropped;
-> +} __packed;
-
-...
-
-The above notwithstanding, it seems based on comment's elsewhere in this
-thread that there will be another revision of this patchset. Let patchwork
-know about that.
-
-pw-bot: changes-requested
 
