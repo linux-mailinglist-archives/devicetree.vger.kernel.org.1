@@ -1,157 +1,171 @@
-Return-Path: <devicetree+bounces-169880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58BA1A9886C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:23:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B632A98874
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C4083B178F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:23:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3C713B7098
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7B726F444;
-	Wed, 23 Apr 2025 11:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SBKh4NWS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560D126F444;
+	Wed, 23 Apr 2025 11:24:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D3226D4EF
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:23:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6191FF5E3;
+	Wed, 23 Apr 2025 11:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745407434; cv=none; b=Kswqh40eK6qBNT/H0ZhtQDbdVZDXiBNLijULZ31kYpyHvvVz1VAGB8hpgrWqn8rgEy+XnJx/l2ZK0QI0/KGybD5nEJ51m4xgB6PJLJ3VWlU9S9s6ifMdiUzQm2eh/kS0oD2rCtHl2jmOfiUIz87Xdj/V6Rrz7wXEtpFeFd2Yhg4=
+	t=1745407483; cv=none; b=qHBX7GiVCcdOLE6i37BQ/xubUq0fKmem8NqCnyG6L9pecMzczbXEPpmkjARw/DchQaSs2wCS5CLUpk56JJ8bNSk6PmxLnv6dcMP/vHw98asX+intDB1VTF6fpraqSUuLnVnckJ0V4j7nT1PYbtvGInBxf7PNg2Hq0uQSw1poyEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745407434; c=relaxed/simple;
-	bh=2z6jgr2mydmIuSZkOkN5LFizXc1g8MQjKJz15NS0Gtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AzcbDMrZCUPzPJGQ9VeohLKNHlsiUEiN1ghJpZ26Fb35xC+o8/RkaP5WaGgjGYfDE6lkbgrCay9Dm/uilbZfrfBRNVelDdq3AFw328vwfr7Vvhto+IhCvgk2Wb5TUk1ifNBpqR0lyPAE1UDvYbIPos+QE6s/a0cyFSJhQKFCDco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SBKh4NWS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAbrv2020411
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:23:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yZ4ckw9phUjE/33TkefvnOiLJnkaspW3ubnn0WXfC08=; b=SBKh4NWSJXTdsQ/x
-	R169j8ZWbp3gYKHHMSmHOzPn2rmDMTwDQWkI4cJzvCAcqAhDii1ffZXbOHQYgnMm
-	Hn7wb+GpNmwkEQPqzlT/QsbH3Ef9IjmaxjLxD8llKoQY/bishKeZftBAQ/Kos7ug
-	qMfljaq1Q2kstPjCwrg+1RRvJmQRpdP+Vd+hTUzPgwRFH5TVusZM2Ei+6D5e5ObQ
-	F73kpc4AQfOReVoW4ZTmpK8H6izxkJOjh9eeuQDrjeflKC31xIxDMSnOlwGNoZxM
-	syjhvVCQy3r3rqCRRw5WMB4e7UuqW5ocWxoz/Ok68ejDIPOzyizEKRdva2Gk2+CM
-	/Vsgmg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh21xpm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:23:52 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c76062c513so121204185a.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 04:23:51 -0700 (PDT)
+	s=arc-20240116; t=1745407483; c=relaxed/simple;
+	bh=8aEZyewUXfrnmqhvKqZ0K7+fHWQclNvbr7lhUzdXxp0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J00Gf9jUUvl+NwYOk0++ax65kCOwGkYIqVDrb7X1KrEQHZQyZy3yKPrzB/JdcIIer7XE9NqYEZ1/68jbsgYJ/QjdlegbvIvS934/MFpecKFubtaXSeZ8luD51zdUtWwBFwA5V3aozWCVPGsKOi5uHJpfYlGqB36aMjpqHu0J0vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-523f670ca99so2255677e0c.1;
+        Wed, 23 Apr 2025 04:24:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745407431; x=1746012231;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yZ4ckw9phUjE/33TkefvnOiLJnkaspW3ubnn0WXfC08=;
-        b=IswC8vt8j4FnAXpCrlpspd+MbiJbURjwlJ4e0EMnlyWoJnDRcVMuzQG+uplNOvzFl0
-         54Q+NRAT0kqYAY5lNQ44cmJAbKaVzAZh4p3jJCz5w1YpUUjjrN+Lgr7ots0ywxA/YSst
-         L6oXP8QUziL3X0xdwORtkdR3oSS9/sIKDg0utL3FAm7SB+jVt32rjDi2HNgUzd95JmmE
-         qhVZSM7qdT4A5tKMEyxyQMDyO0Jhb8k68vFHB4wkDR3ht80n/kiXQGB7JdOHIqdsCt/1
-         spJJh29GfgsCYR+PWoCbUkeO2ZYf07hnU5y/5h4fgGdw8N7EfUWZSXOwpQWNH/o18hC3
-         4TxA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2ftk5OUS+vfl1MRpwJud6RoWHzXEBbgrd4L4kIPCllSXkE/4lPrYtOHyd3xlxG7MvJZmQhqMQM+NB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxnxwb+2TN2i1tmPyLUDTP1tIlF99G4HsLFQp4kHKwmDPAs+Yvo
-	hV42Dxd6CaNFyUl7r0fyA5oWt1ZSs/Bug2AmR5wkfwdM7JrkN1GVoBxo6QFZKo5ZGb/5J7g87mt
-	fkhX91yMcm+m+rzcs391QvN41EemMQVStx2lWbInd3Gein5acSKnyS0sASlBJ
-X-Gm-Gg: ASbGncuwXl94dGVSfycnWozqKrsMOHXYe5wz8Bi2LQRuHa8Pc5TJ4yung+GxbRKiMvd
-	qqfWal9MeSjyIa9zyzQxzDJLvI3IcYkk++K+zKgIsibz0xjIVYegZdIyuaisXLcOYJ1rnQoaXtp
-	jjfgFtGn0SpyHNu14ByVyyk7rH8hzOPhirxzvde9+DKcP2zvK+Vv5RaI8XPTPff0cvuT6bUhPKd
-	qWcI+HSbLmcRUxxG1iboir1esSi2R23tJmHHFX31kZBROxfbrs2/H6h/bS8r6XoU8n9SDOBcbXK
-	U6ISYs/+vRDnLM4TF/JC6tK5/+ElcDYFZQF2Zbx+rNZ6Fp7JU+0H2Qf6fPL0g6J29SA=
-X-Received: by 2002:a05:620a:390b:b0:7c3:c814:591d with SMTP id af79cd13be357-7c94d243e9bmr190753885a.1.1745407430785;
-        Wed, 23 Apr 2025 04:23:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHdIHiXpPDkGGBJDXfBBBsFTvUdPXz6hDe/XrnRasquYh3mWBJjmxvRBRjElMM6IUIxVffCBw==
-X-Received: by 2002:a05:620a:390b:b0:7c3:c814:591d with SMTP id af79cd13be357-7c94d243e9bmr190750985a.1.1745407430388;
-        Wed, 23 Apr 2025 04:23:50 -0700 (PDT)
-Received: from [192.168.65.183] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ec0b1d3sm785726966b.4.2025.04.23.04.23.48
+        d=1e100.net; s=20230601; t=1745407479; x=1746012279;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4maj1pzgGpxC7pMxTXMAwmFvdy2FueKzcza9CY+FFpw=;
+        b=QYOUgw1RAjUaEgmMuupzwcVFHMY9j5QLApjNbG7KafH0zsvUs/sczR0Uw8ab7Myvex
+         +2RolciM3kXbpsdpo91KRDDx6aixcFhBoWkVfeF2nTZG1M9+Xz/py4O9mb3XTF8ws4H/
+         qqxcNrcORW+GeVjcEQ6+lcx2tlEbhH0i1A/vzMeNs2qEzdJ4191npf2L8lwUPI+6Ux+m
+         BXzXSh7gkQxMRcI5hLG/amqjGuWatofFw2gZJahcPsoH4HzH1V/PCDU/KX6b0rNWoWOM
+         /KU0mlZx65rhzEkJI8LVa2XkEH6W5WkH/dQSfNDhfdOTCTvkJZjE1XKeCISDlyl34tE4
+         Q6nA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEkA01MVvaZzWdEKGxtkuqbfAlkArhuj6sSsRUpDhZJbi+3I8s7ayKReN9375iXHqEqcer+XyNCkDLCUE=@vger.kernel.org, AJvYcCVnEsJwGysnKS4lxZjWbvInCfymdCpoRSn8tJF8o/+h4H0AZUQydSHDlTa41RbDzwbQAgFVOwePSw67uRJd2TgCOoQ=@vger.kernel.org, AJvYcCVtgVFvSPIgxMX+oFvJ2w1aA5GB8KoMMc55X9Xwd6TaJRYcXSx7B4tdobyhH2xeHhWfapbFIYOxQbCk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFB49q5O8I4qpgCOg3CpwKu4YfgyvWFFUzgiFHhfaEx52/e66C
+	98Auu+i6Ye6hq/6h977BK8HMzu0L5dokQLPkjgVZoKIEaQ1e+m24FMtYQIDCYSU=
+X-Gm-Gg: ASbGncvymRREE5igVr94ygnBmKgZW+S1O4jKxC11NjYuznXxY/6Ff2cQpB49n4EDyhz
+	XU+/of3yOCnA66UOnHvK58sgDtkKCLykPdZuOBrHf8WxPprIhy2afgd2N4Pd44j9WwK2wC8qVaw
+	oCyPPUnwwFM/vclomVH6NIWg/eRVBn9uvmrct3N+jd9a5k+AgTGJGjZDdoaOWCWAkI9zk6EeHam
+	0YJZBPnbDV4wX6CX5vcehowPiTrf9e7FDx+hL5lyilVoPQGfm0CcEehJIgXrI3x753ecODV5Fe+
+	1Vp2nmfzGEEHTRfZ9el8TQE7127uknvN0h7s3rDHm36n0fZAuPIjPRPDkLPRzi0k7LqnuA21LTF
+	jwdE=
+X-Google-Smtp-Source: AGHT+IHiHNcRzJKNldpJS8Xc402NVNtMnalympuOabpq6/Q+wiSGiX7CfUhkm8bCNYPL8b+M1lYmng==
+X-Received: by 2002:a05:6122:8c26:b0:520:3e1c:500f with SMTP id 71dfb90a1353d-5292549fc45mr13228909e0c.8.1745407479191;
+        Wed, 23 Apr 2025 04:24:39 -0700 (PDT)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52922bec16asm2295744e0c.2.2025.04.23.04.24.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Apr 2025 04:23:49 -0700 (PDT)
-Message-ID: <fc6b1fe6-7847-4aa8-838a-dbd0ad675412@oss.qualcomm.com>
-Date: Wed, 23 Apr 2025 13:23:47 +0200
+        Wed, 23 Apr 2025 04:24:38 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-8778151ddc5so1230608241.2;
+        Wed, 23 Apr 2025 04:24:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUKifQm0RptFhrVTtkeoJ5Xaimm6EIeZaoHNXXsNlAW1bu/Bwgm8/nT97eOVeFlyJXixPhCKHWyDTON3w4RnHYLmik=@vger.kernel.org, AJvYcCWGkleNFaDDpv7EvIMXqBdIYllWRvA15oKrIKBA6tIEL/G2m4bPKet5VeOfvrxXWWFCGZQna1YHbhaSXIE=@vger.kernel.org, AJvYcCWuN+KQpTyJnW/hso+Yu8O/42Rsn5eZ8B7nyloa58D2dB7NfsRTUtRAJkXOkz+hUexi/ikLxEUOlD9j@vger.kernel.org
+X-Received: by 2002:a05:6102:6a89:b0:4bb:c490:7d6c with SMTP id
+ ada2fe7eead31-4cb8011c06amr10950575137.9.1745407477842; Wed, 23 Apr 2025
+ 04:24:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: Set max link speed to Gen4
- for PCIe EP
-To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_nayiluri@quicinc.com, quic_ramkri@quicinc.com,
-        quic_nitegupt@quicinc.com
-References: <20250423-update_phy-v1-0-30eb51703bb8@oss.qualcomm.com>
- <20250423-update_phy-v1-2-30eb51703bb8@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250423-update_phy-v1-2-30eb51703bb8@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=6808cdc8 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=iRih2zsw3dMuVQupJ74A:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: mQ4ngorWJaS8BpE-CxLo_mFm5NYpZLiO
-X-Proofpoint-ORIG-GUID: mQ4ngorWJaS8BpE-CxLo_mFm5NYpZLiO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA3OCBTYWx0ZWRfX89jeMTXc5xad P8YdgKWpZZFGqOOpZLtSLR+JJBQERAnaWpjODdpanBoYAVrUyjzBOc0bh4RBQMsfd3w/c0G1ivJ kXGP5gSDxsCaMSbmfy6fU2k075Gu8xCxSdeJScDFCQ6IPuqlwjzw2sO/INvBcgxiZ4U9TyirK8u
- BFunJwuHo+NeKuDYfwIXsSUt4cpiEsdh7qyTLdri1AG62zboq1AxKERa1FWpeUBN1itQA3EwFVB gbtEY6eqdyZAx9zQmBmNTL5/cgEhrpwFd3Xk+YzXYRI42tFsjL7LHEUj4NN4IqfuJ75RyhSHg+O Fxl9nJBgJ7eFViVnQW1sM+2BozLjmDaVvSTW+QMk1uaKtbyHFYzmJzNoRlI+MmRkUkpwPeFL96M
- hZho/63sL0aLV1U0VOaR2AFY1EWFKw7s8CXT0QiB4vdnlcShQmsU4JR8MQNujwtKWOd1haFT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-23_07,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230078
+References: <20250421111240.789510-1-niklas.soderlund+renesas@ragnatech.se> <20250421111240.789510-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250421111240.789510-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 23 Apr 2025 13:24:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
+X-Gm-Features: ATxdqUFaZVs59k_xpDrz2f4Zekcm39G8UUdFr3Tbp2NjK3L1IVks92DIncGnbRQ
+Message-ID: <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: media: renesas,isp: Add ISP core
+ function block
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/23/25 1:15 PM, Mrinmay Sarkar wrote:
-> The maximum link speed was previously restricted to Gen3 due to
-> the absence of Gen4 equalization support in the driver.
-> 
-> Add this change to set the maximum link speed to Gen4, as Gen4
-> equalization support has now been added into the driver.
-> 
-> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+Hi Niklas,
+
+On Mon, 21 Apr 2025 at 13:12, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Some R-Car ISP instances have in addition to the channel selector (CS)
+> an ISP core (CORE )to perform operations on an image stream. The core
+> function is mapped to a different memory region and have a separate
+> interrupt then CS, extend the bindings to allow describing this.
+>
+> On the same SoC different instances of the ISP IP may have, or not have,
+> the CORE functionality. The CS function on all instances on the SoC are
+> the same and the documentation describes the full ISP (CS + CORE) as a
+> single IP block. Where instances not having the CORE function simple
+> lacking the functionality to modify the image data. There dependencies
+> on the CS functionality while operating the CORE functionality.
+>
+> In order for the ISP core to function in memory-to-memory mode it needs
+> to be feed input data from a Streaming Bridge interface. This interface
+> is provided thru the VSP-X device. Add an optional new property
+> "renesas,vspx" to provide a phandle to describe this relationship.
+>
+> While adding mandatory reg-names and interrupt-names breaks existing
+> bindings the driver itself remains backward compatible and provides CS
+> functionality if a single unnamed reg and interrupt property is present.
+> Furthermore all existing users of the bindings are updated in following
+> work to add these new mandatory properties.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 5bd0c03476b143444543c68cd1c1d475c3302555..65d9433a298f80eb782439120ad9c3c74025b441 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -6462,7 +6462,7 @@ pcie0_ep: pcie-ep@1c00000 {
->  		power-domains = <&gcc PCIE_0_GDSC>;
->  		phys = <&pcie0_phy>;
->  		phy-names = "pciephy";
-> -		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-> +		max-link-speed = <4>;
+> * Changes since v1
+> - Extend the commit message to make it explicit that different ISP
+>   instances on the same SoC (same compatible value) can have, or not
+>   have, a CORE function block attached.
+> - Update documentation for renesas,vspx property.
+> - Update example to cover all new properties.
 
-The property may now be removed, as 4 is the value read out from
-the hardware
+Thanks for the update!
 
-Konrad
+> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+
+> @@ -119,11 +159,18 @@ examples:
+>
+>      isp1: isp@fed20000 {
+>              compatible =3D "renesas,r8a779a0-isp", "renesas,rcar-gen4-is=
+p";
+> -            reg =3D <0xfed20000 0x10000>;
+> -            interrupts =3D <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> -            clocks =3D <&cpg CPG_MOD 613>;
+> +            reg =3D <0xfed20000 0x10000>, <0xfee00000 0x10000>;
+
+IThe second size should be 0x100000.
+
+> +            reg-names =3D "cs", "core";
+> +            interrupts =3D <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names =3D "cs", "core";
+> +            clocks =3D <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
+> +            clock-names =3D "cs", "core";
+>              power-domains =3D <&sysc R8A779A0_PD_A3ISP01>;
+
+With the above and the wording issues pointed out by Laurent fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
