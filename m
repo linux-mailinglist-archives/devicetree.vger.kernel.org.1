@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-170073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE75A9992D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:07:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A27A9993F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:12:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 769963B88E1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:07:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5A451891E6D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CF526A0FD;
-	Wed, 23 Apr 2025 20:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A2126D4DC;
+	Wed, 23 Apr 2025 20:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jjxqHEXk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2qFhSZl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C902690D4;
-	Wed, 23 Apr 2025 20:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4665152F88;
+	Wed, 23 Apr 2025 20:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745438852; cv=none; b=cjoqJhu4/tDKxY8Fc9zD7s25TnfNMXnrLgK2eYajTrBtT/I75kBzOj6WF+F4WAvR0yHkx/QRhrKv7AlGy1rKAQf4TTckFEmQm0Yk0/QMuWE24Qvkxpg49ELdx08E7HtaFkdbvdNWWqOiKekXIrea3w4ejJaxLl1uMO2BjVKPug8=
+	t=1745439124; cv=none; b=NxAXMV2otg0VuX02dTKH7sbKhQVVMt4Sbibzt95SokSapCM+gHMlrU1c5HdVSFNvUJC7gWBWSQ5QKrQldAtrCluckCoYHcEh99rNZsSkmDKgFIbbt/ivG0qTty2btM+W45AUViyf8HlCeQ+npqDTpuL5AdKId5KK+c3Jc6YOITQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745438852; c=relaxed/simple;
-	bh=YoVn7nDZ5+wXUEYeIen7MDDYqYkq/JetAQBw8G9pR9M=;
+	s=arc-20240116; t=1745439124; c=relaxed/simple;
+	bh=LnD+ue8gxZJNFdo/2xfgOYOBuy04/6e3cNIPxTVvdRo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BVPR5LY/zt6zN2CW5Cg7XR1vMTb2QlZs85TwSSqexYOKyqtuZ9ciPHNTsKEdd4HNgJHqaM+VRedOKhOVkNyWTg4/C+4eiCP8AaxYJuR4nEuvzhno/zs6x0Bkxq1MWjsXKize+26df7/kTxhebkuo/ZRsIPulAJFAAnmSH4M5iTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jjxqHEXk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BBFDC4CEE2;
-	Wed, 23 Apr 2025 20:07:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VBzBkw4Gbv1D+xjYYqXt0k0w4gAYkRYyCn7kgL3Q7cl+LBNnsXb+sRI1TDFK/DhfkJIRiN2a/is0mAkgY6cu5UIAU4ymRvlxd01YXYYISA+vQ5TE/ahyUyoFLSJoHFc+YF+S9U9e3oKcXtCLG3uvJWW9Sjd8zpb6wCnv/ZuMSYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2qFhSZl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95048C4CEE2;
+	Wed, 23 Apr 2025 20:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745438850;
-	bh=YoVn7nDZ5+wXUEYeIen7MDDYqYkq/JetAQBw8G9pR9M=;
+	s=k20201202; t=1745439123;
+	bh=LnD+ue8gxZJNFdo/2xfgOYOBuy04/6e3cNIPxTVvdRo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jjxqHEXk4S4owqnj1iFNY+lvsQtnw+rHojPk8ouhHChhnEka9pHh59TPree+yV5xC
-	 AOCpGlIGZJ+R+5n9qdgnB+/V8AeQ0qPne2fFn0l272spOWdCR/rs31FO/I3JB6N/H7
-	 JLf3Of0z8i3YX9ClyxUVRqNK8Msov4wAZlGlOoPv//zjEcneyTnncJ2qXD2E/tLrPw
-	 fAL6AhbGcSmLMwRay8sSTRBkipDPv7kFG8pQljGf0qUt2kwgkOtkE2ZV1fbjpdyD8I
-	 5ppss9kSTHS7PPSERgKctrMKsLq+4wuF+1wqlpcUyQIU9TKUiCyhWaOf46FHCfnHtk
-	 kyiF+wLR5eFmw==
-Date: Wed, 23 Apr 2025 15:07:28 -0500
+	b=n2qFhSZlxizUAuFSVlnuAdPaqwCQ/xa+wkw5ryFyKcgp8+Ghsdi+1UkdPICc4xw08
+	 qxeh8i8MSZ4ck7E/2MBg2NYoF53MXkj1pSlyEtrq/1mqaxvTVd73oiylCsfO4ZlkFN
+	 FLxKQ844wtaHxfFutwYkpcvGpPzSyi+Bg6Wx9PkjdHbo5RvCv+FbF0ZvH9t9aR0Krk
+	 /jxZeT6ORj8fNBaL3oewJJS+CvUnJbsd563wa3hglRLbdYgHjDbePipQfRKmab6/+u
+	 cEkfPIzKH+n9lDTMFHG6Ce2VbXdajdTUDlH+pyhBTNYbR9erJxrZU6YJdgjkI2sdqY
+	 ONHU3y6VLShtg==
+Date: Wed, 23 Apr 2025 15:12:01 -0500
 From: Rob Herring <robh@kernel.org>
-To: Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, dinguyen@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: clock: socfpga: convert to yaml
-Message-ID: <20250423200728.GA954453-robh@kernel.org>
-References: <20250423150318.27101-1-matthew.gerlach@altera.com>
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+Cc: jic23@kernel.org, ~lkcamp/patches@lists.sr.ht,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings:iio:adc:st,spear600-adc: txt to yaml format
+ conversion.
+Message-ID: <20250423201201.GA983074-robh@kernel.org>
+References: <20250423022956.31218-1-rodrigo.gobbi.7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,190 +59,143 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250423150318.27101-1-matthew.gerlach@altera.com>
+In-Reply-To: <20250423022956.31218-1-rodrigo.gobbi.7@gmail.com>
 
-On Wed, Apr 23, 2025 at 08:03:18AM -0700, Matthew Gerlach wrote:
-> Convert the clock device tree bindings to yaml for the Altera SoCFPGA
-> Cyclone5, Arria5, and Arria10 chip families. Since the clock nodes are
-> subnodes to Altera SOCFPGA Clock Manager, the yaml was added to
-> socfpga-clk-manager.yaml.
+On Tue, Apr 22, 2025 at 11:14:23PM -0300, Rodrigo Gobbi wrote:
+> Straight forward conversion from spear-adc.txt into yaml format.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
 > ---
-> v2:
->  - Fix node name regexs.
->  - Remove redundant type for clocks.
->  - Put repeated properties under '$defs'.
->  - Move reg property after compatible.
-> ---
->  .../arm/altera/socfpga-clk-manager.yaml       | 129 +++++++++++++++++-
->  .../bindings/clock/altr_socfpga.txt           |  30 ----
->  2 files changed, 128 insertions(+), 31 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/altr_socfpga.txt
+> After the conversion to yaml file, I was not sure about the
+> maintainers yaml field. It looks like the original driver author,
+> Stefan Roese, is not active contributing.
+> @Jonathan, I was not sure about it and I've added you on that field
+> as I've noticed at other yaml`s, but feel free to give any suggestions on that
+> or how to proceed in this case.
+
+That's fine I think, or you can add the spear platform maintainers.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
-> index 572381306681..6f09458f22a4 100644
-> --- a/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
-> +++ b/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
-> @@ -9,20 +9,147 @@ title: Altera SOCFPGA Clock Manager
->  maintainers:
->    - Dinh Nguyen <dinguyen@kernel.org>
->  
-> -description: test
-> +description:
-> +  This binding describes the Altera SOCFGPA Clock Manager and its associated
-> +  tree of clocks, pll's, and clock gates for the Cyclone5, Arria5 and Arria10
-> +  chip families.
->  
->  properties:
->    compatible:
->      items:
->        - const: altr,clk-mgr
+> Also noticed that the driver was moved out of staging, but the .txt was not
+> in that time. Added the yaml in the proper path (out of staging as the driver).
+> Tks and best regards.
+> ---
+>  .../bindings/iio/adc/st,spear600-adc.yaml     | 61 +++++++++++++++++++
+>  .../bindings/staging/iio/adc/spear-adc.txt    | 24 --------
+>  2 files changed, 61 insertions(+), 24 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
+> new file mode 100644
+> index 000000000000..a858b3f3c494
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/st,spear600-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->    reg:
->      maxItems: 1
->  
-> +  clocks:
-> +    type: object
-> +    additionalProperties: false
+> +title: ST SPEAr ADC device driver
 > +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
 > +
-> +      "#size-cells":
-> +        const: 0
+> +description: |
+> +  Integrated ADC inside the ST SPEAr SoC, SPEAr600, supporting
+> +  10-bit resolution. Datasheet can be found here:
+> +  https://www.st.com/resource/en/datasheet/spear600.pdf
 > +
-> +    patternProperties:
-> +      "^osc[0-9]$":
-> +        type: object
-> +
-> +      "^[a-z0-9,_]+(clk|pll|clk_gate|clk_divided)(@[a-f0-9]+)?$":
-> +        type: object
-> +        additionalProperties: false
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,spear600-adc
 
-Add another level to $defs and move the reference here:
+blank line
 
-           $ref: '#/$defs/clock-props'
-           unevaluatedProperties: false
-
-You can also move 'reg' and '#clock-cells' into $defs/clock-props.
-
+> +  reg:
+> +    maxItems: 1
 > +
-> +        properties:
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +          compatible:
-> +            enum:
-> +              - altr,socfpga-pll-clock
-> +              - altr,socfpga-perip-clk
-> +              - altr,socfpga-gate-clk
-> +              - altr,socfpga-a10-pll-clock
-> +              - altr,socfpga-a10-perip-clk
-> +              - altr,socfpga-a10-gate-clk
-> +              - fixed-clock
-> +
-> +          reg:
-> +            maxItems: 1
-> +
-> +          clocks:
-> +            description: one or more phandles to input clock
-> +            minItems: 1
-> +            maxItems: 5
-> +
-> +          "#address-cells":
-> +            const: 1
-> +
-> +          "#clock-cells":
-> +            const: 0
-> +
-> +          "#size-cells":
-> +            const: 0
-> +
-
-> +          clk-gate:
-> +            $ref: '#/$defs/clk-gate'
-> +            unevaluatedProperties: false
-> +
-> +          div-reg:
-> +            $ref: '#/$defs/div-reg'
-> +            unevaluatedProperties: false
-> +
-> +          fixed-divider:
-> +            $ref: '#/$defs/fixed-divider'
-> +            unevaluatedProperties: false
-
-And then drop all these. Same in the child node below.
-
-> +
-> +        patternProperties:
-> +          "^[a-z0-9,_]+(clk|pll)(@[a-f0-9]+)?$":
-> +            type: object
-> +            additionalProperties: false
-> +
-> +            properties:
-> +              compatible:
-> +                enum:
-> +                  - altr,socfpga-perip-clk
-> +                  - altr,socfpga-gate-clk
-> +                  - altr,socfpga-a10-perip-clk
-> +                  - altr,socfpga-a10-gate-clk
-> +
-> +              reg:
-> +                maxItems: 1
-> +
-> +              "#clock-cells":
-> +                const: 0
-> +
-> +              clocks:
-> +                description: one or more phandles to input clock
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              clk-gate:
-> +                $ref: '#/$defs/clk-gate'
-> +                unevaluatedProperties: false
-> +
-> +              div-reg:
-> +                $ref: '#/$defs/div-reg'
-> +                unevaluatedProperties: false
-> +
-> +              fixed-divider:
-> +                $ref: '#/$defs/fixed-divider'
-> +                unevaluatedProperties: false
-> +
-> +            required:
-> +              - compatible
-> +              - clocks
-> +              - "#clock-cells"
-> +
-> +        required:
-> +          - compatible
-> +          - "#clock-cells"
-> +
->  required:
->    - compatible
-> +  - reg
->  
->  additionalProperties: false
->  
-> +$defs:
-> +  clk-gate:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    items:
-> +      - description: gating register offset
-> +      - description: bit index
-> +
-> +  div-reg:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    items:
-> +      - description: divider register offset
-> +      - description: bit shift
-> +      - description: bit width
-> +
-> +  fixed-divider:
+> +  sampling-frequency:
 > +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Default sampling frequency of the ADC
+
+Constraints?
+
 > +
->  examples:
->    - |
->      clkmgr@ffd04000 {
+> +  vref-external:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      External voltage reference in milli-volts. If omitted
+> +      the internal voltage reference will be used.
+
+Constraints?
+
+> +
+> +  average-samples:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Number of samples to generate an average value. If
+> +      omitted, single data conversion will be used.
+
+Constraints?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - sampling-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    adc: adc@d8200000 {
+> +        compatible = "st,spear600-adc";
+> +        reg = <0xd8200000 0x1000>;
+> +        interrupt-parent = <&vic1>;
+> +        interrupts = <6>;
+> +        sampling-frequency = <5000000>;
+> +        vref-external = <2500>;	/* 2.5V VRef */
+> +    };
+> diff --git a/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt b/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
+> deleted file mode 100644
+> index 88bc94fe1f6d..000000000000
+> --- a/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -* ST SPEAr ADC device driver
+> -
+> -Required properties:
+> -- compatible: Should be "st,spear600-adc"
+> -- reg: Address and length of the register set for the device
+> -- interrupts: Should contain the ADC interrupt
+> -- sampling-frequency: Default sampling frequency
+> -
+> -Optional properties:
+> -- vref-external: External voltage reference in milli-volts. If omitted
+> -  the internal voltage reference will be used.
+> -- average-samples: Number of samples to generate an average value. If
+> -  omitted, single data conversion will be used.
+> -
+> -Examples:
+> -
+> -	adc: adc@d8200000 {
+> -		compatible = "st,spear600-adc";
+> -		reg = <0xd8200000 0x1000>;
+> -		interrupt-parent = <&vic1>;
+> -		interrupts = <6>;
+> -		sampling-frequency = <5000000>;
+> -		vref-external = <2500>;	/* 2.5V VRef */
+> -	};
+> -- 
+> 2.47.0
+> 
 
