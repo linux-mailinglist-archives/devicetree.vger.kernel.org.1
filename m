@@ -1,147 +1,134 @@
-Return-Path: <devicetree+bounces-170029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE813A996B7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:31:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C97A99737
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CCF21B86514
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:31:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC639464DF4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381A228A40D;
-	Wed, 23 Apr 2025 17:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F27A28CF6E;
+	Wed, 23 Apr 2025 17:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hKnQ54A5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="phSeOFmN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C5226656C
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 17:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B90254AE3;
+	Wed, 23 Apr 2025 17:55:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745429483; cv=none; b=pZUUPub8qDk2W/6Oi6Hv8F9RLghU63RNPZnBZgyRg5zJQ5S8Ns2/ZmaVuHwAWzopUxELacEL/AHr4TKMaoRYJ7wkLPTaNl7P8jtOwfPIhoeXQIlf4Fgo7CrcVOKeDiC/zX32WhsO3gqJTvWsmdOoSIjK96u/jImE9RNl0TGSZgg=
+	t=1745430930; cv=none; b=uEoX6XCFz8fHB0nuvercv24AMnVEu5o7XSUrefQWvxRl8nvR34GK9LUBjeXEFHEUqAVtgLIsJevLJy5ZqlK/f6XUZsfyQF1IZHLlQT/SS4gYCegygVyJQYQnklhhWzzPlsy4oVbkHijRLlJyy8iMgxQ4XCMIGhcdgny8WYxbAGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745429483; c=relaxed/simple;
-	bh=kgi4ELr8mCdAm9+XhEH6VRz6G3+ojfBNAMxT3w5HoSg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F+DecuQ8JwGYjhcXeArkgjH7XfPfyL6L3++GsgawYKQuA3z1fcQGUDKQTEnQtfUtoFXbfRx/MoGDA5yfdwYZ0UCp0xURBpVe80kDzyhV3yoPT+FPig2nHjdP1zYfAovgH7VAbjk9/HJVy3XsV7dzUcU8Fs2NOZ7FPraWa6ALaiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hKnQ54A5; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-227914acd20so11073505ad.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 10:31:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1745429481; x=1746034281; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GkDmVE1oQubncGA13yoyJE0TwJhGavatFFU357EXcEc=;
-        b=hKnQ54A54OH01v/NWH8UIDkJ38bvfjB2A/mwBI3uytCUu9Gxp2I7TdQ11SLHYWMJQG
-         zTl18GT6Bm3tRyxmQawp0/e4oohop1JRXMvTvJlj/962IgPlx8VzfY0xDonBwQp+Kb1z
-         +U7Q3Y87ys1QZ8+DPo7ORe7h7ccWuRHHRaijrl9IRKRiuX3Ok/l2j2caDetVylCL+t1A
-         yoieaOiQLdJg5qS0u2O5kqXmsHFXZnxRIsfNcdQsw4vtG5Pao/Xz5o/lD4AvE9we7lhi
-         D2wW8e7SUPwXbRzUmSpqNJ1sGNXPlb8dnIP6Z1rGQ+3YMINN/ZkXY6SROA5MF9jrMOfR
-         aBDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745429481; x=1746034281;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GkDmVE1oQubncGA13yoyJE0TwJhGavatFFU357EXcEc=;
-        b=X3SoNH6Q0stEjmJhKqkNwmNH706YQTkKb71kvc5pOWVN5YGXmcYAFR/5zjTviSPH58
-         +coNTLlu4Wr6we8xRs0I+rsA+dx7MFCMYIqwG0Vaq35vTc0lQB60YNG1npXciInAqwDw
-         qbxQn0UvB7V3ABm5enp3mFsphhVhTfrTbIwB5sweVNXr5wn5YrIuy+oYuegT9QlSi82T
-         Br8MHcJ+PgsPCYswLQ1+fIYtk+u3+3NHhzv9k/vYF99/S8BappTDETwSKAJ48ghm3u//
-         RMKnu7hVw/4Eu++g/7vvd6YLMWbqrDBs2MLLA+f4Xspf+YZ4lVn9m/yY6TIYn77AqqEp
-         cGnA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLyrzUuOidHCmXso3h6JRFUEhgn0iu12PWZAnkUdaeGLx5uXURUqcWVoFvJ10veEOJIxsZkXmv+jgX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyieP+BtNi/pempdofYEVzlhHgsyDSVNegAvGAvm7110GbbvrTW
-	/drRviQxK2vjZj0mR0cpQfT4mzuIyU92qoZEwsDbeU2v+aOZefeKrxTtHnetiw==
-X-Gm-Gg: ASbGncuhl7Ojp77oPHgyj06la2IynIDrDItvvgb6v6gcW9cZfnXOAugmZ7dSwx3IDbw
-	03a6n0NK3EldL9PCvRoDogxECD091x9t4YXGKP59nK4TY041aqQPxz9reA06kr5SiHFp3ceXogl
-	w9/EHuHOU6zpNZRKoQgvYAnnzrGCbVRlIuG0UnfL+54ExIWjN2m509BZjzs/NGJxq173B68kmeE
-	Z1xGhPFjCA2IyJaodgkfEfBw4UHqUX7UChljyeyO8hLVdrjknNbBMGv6CgugKOBnhkJED8d2GkG
-	w+rgvRAuyhGNPiIhZQctCHbxqyj4FlXnRVUNughz6e3usFRvJYrlnWxxwaYKmhCfsOYKuaTdjqE
-	6lTiWMg==
-X-Google-Smtp-Source: AGHT+IHJNQTbOTf5T97irPUNv+QmXLRPjJqv5JLklJLGHSWfRRkbgYAKpGomh75s0qhLStfcG3G05g==
-X-Received: by 2002:a17:903:3bce:b0:223:3394:3a2e with SMTP id d9443c01a7336-22db2189d23mr394125ad.18.1745429480637;
-        Wed, 23 Apr 2025 10:31:20 -0700 (PDT)
-Received: from google.com (7.104.168.34.bc.googleusercontent.com. [34.168.104.7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50eb4292sm107648765ad.150.2025.04.23.10.31.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 10:31:20 -0700 (PDT)
-Date: Wed, 23 Apr 2025 10:31:16 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-Message-ID: <aAkj5P1I-e9lylIU@google.com>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <aAa2Zx86yUfayPSG@google.com>
- <20250422190036.GA1213339@ziepe.ca>
- <aAgQUMbsf0ADRRNc@google.com>
- <20250422234153.GD1213339@ziepe.ca>
+	s=arc-20240116; t=1745430930; c=relaxed/simple;
+	bh=/LVwP2J7phmJo5xUbPuYBsq73NOkQB14cAElXzkBoks=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OpNZE5GaSFl1Uw6uIuDyuuP9n1jDNaH/t+emYVn8Tpgz8ReBO5OrHUk1QISrufKHhyD9mOYFca7+BDPd4l4UIZfVnP8qXwn8VVr+4SNQEU+ZehhTuKSoh9E56q+cwJahrl02CQgt0U4ptRfFiUoFH5IOWhtp5P57O1KMoJG8rU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=phSeOFmN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EA74DC4CEE2;
+	Wed, 23 Apr 2025 17:55:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745430930;
+	bh=/LVwP2J7phmJo5xUbPuYBsq73NOkQB14cAElXzkBoks=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=phSeOFmNEoUyqaK9vn5Kfla9WgE6envapLq9rZ7dT7yWpDJRt10Hip4/mrnX1eYWt
+	 omajTVlNqQIi/7tkbUbkeJ5Hqsj2WBseHU+/duUvNSVw7nwtLuxkLqfs8sA63AqHy1
+	 5r1siANzs4M33++KsgKnzYcpyskCkJml2DAxHXsLIRdQNK78RKYFFjHR7Y/Zctn0SV
+	 5VlZDIj8oKswAyD+er/HA+Fzv8IF9Cg9/K9wTXapzp1g2xKuPd+aTmEV5dAudGoVSv
+	 f0KKcRLiuzjKh6r3y5BIUNuHa/ZmqVp/3350IKMZzwZHH4kRL8mlmZX3i8tTje0axx
+	 M5Jp8TTmJ877Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D86CFC369CB;
+	Wed, 23 Apr 2025 17:55:29 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v3 0/3] Apple PMIC NVMEM cell driver (Formerly: Generic
+ SPMI NVMEM cell driver)
+Date: Wed, 23 Apr 2025 19:55:12 +0200
+Message-Id: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250422234153.GD1213339@ziepe.ca>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIApCWgC/23MQQqDMBCF4avIrJuSTIyGrnqP0oWmow40KkkJL
+ eLdG11Z6PI9+P4FIgWmCJdigUCJI09jHvpUgBuasSfBj7wBJRpZKiPi7FmMyZMXJG2ljVaVqg1
+ kMAfq+L3Hbve8B46vKXz2dlLb+zeTlJACUVZ1S2i06669b/h5dpOHLZPwSOsfipm21lqjSJdN1
+ x7puq5fOHbWGN8AAAA=
+X-Change-ID: 20250415-spmi-nvmem-e08635316175
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, Hector Martin <marcan@marcan.st>, 
+ Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745430928; l=1822;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=/LVwP2J7phmJo5xUbPuYBsq73NOkQB14cAElXzkBoks=;
+ b=DYImOHdO3m2rCslcCrmKq+Ure36xtXDMfMi0nYTg6CXkPtjKnUVyEChYMW8gOT5qVYqXuThMd
+ Ci910bPQ5VpCr/YdCgRCnRTDLNFysECw1DxHkbLO6gFHVJK4qBZ/w7M
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-On 04/22/2025, Jason Gunthorpe wrote:
-> On Tue, Apr 22, 2025 at 02:55:28PM -0700, William McVicker wrote:
-> 
-> > On this note, I was looking through `of_dma_configure_id()` and am also
-> > wondering if we may hit other race conditions if the device is still being
-> > probed and the dma properties (like the coherent dma mask) haven't been fully
-> > populated? Just checking if the driver is bound, doesn't seem like enough to
-> > start configuring the DMA when async probing can happen.
-> 
-> I think the reasoning at work here is that the plugin path for a
-> struct device should synchronously setup the iommu.
-> 
-> There is enough locking there that the iommu code won't allow the
-> device plugin to continue until the iommu is fully setup under the
-> global lock.
-> 
-> The trick of using dev->driver is only a way to tell if this function
-> is being called from the driver plugin path just before starting the
-> driver, or from the iommu code just before configuring the iommu.
-> 
-> Given that explanation can you see issues with of_dma_configure_id() ?
-> 
-> Jason
+Hi.
 
-I think the only concern is when a driver calls dma_set_mask_and_coherent() in
-it's probe function. If we can handle that case in an asynchrounous manner,
-then I think we are good.
+This patch series adds a driver for exposing a set of registers
+as NVMEM cells on a SPMI-attached PMIC on Apple ARM platforms.
+Those are used to store the RTC offset and to communicate platform
+power state between the OS and boot firmware.
 
-Thanks,
-Will
+The NVMEM cell consumer drivers will be sent in a further series.
+
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v3:
+- No longer try to make it generic, use for the 3 relevant PMICs only
+- Link to v2: https://lore.kernel.org/r/20250417-spmi-nvmem-v2-0-b88851e34afb@gmail.com
+
+Changes in v2:
+- s/pmu/pmic/
+- Sort dts in unit-order, instead of t600x-unit-order
+- Link to v1: https://lore.kernel.org/r/20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com
+
+---
+Hector Martin (2):
+      nvmem: Add apple-spmi-nvmem driver
+      arm64: dts: apple: Add PMIC NVMEM
+
+Sasha Finkelstein (1):
+      dt-bindings: spmi: Add Apple SPMI NVMEM
+
+ .../bindings/nvmem/apple,spmi-nvmem.yaml           | 54 +++++++++++++++++++
+ MAINTAINERS                                        |  2 +
+ arch/arm64/boot/dts/apple/t6001.dtsi               |  1 +
+ arch/arm64/boot/dts/apple/t6002.dtsi               |  1 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi          | 50 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi               | 50 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi               | 50 +++++++++++++++++
+ drivers/nvmem/Kconfig                              | 13 +++++
+ drivers/nvmem/Makefile                             |  2 +
+ drivers/nvmem/apple-spmi-nvmem.c                   | 62 ++++++++++++++++++++++
+ 10 files changed, 285 insertions(+)
+---
+base-commit: 2e0e70c95077172b29a5b13716c4b159d578e82c
+change-id: 20250415-spmi-nvmem-e08635316175
+
+Best regards,
+-- 
+Sasha Finkelstein <fnkl.kernel@gmail.com>
+
+
 
