@@ -1,119 +1,126 @@
-Return-Path: <devicetree+bounces-169840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E18A985D9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:41:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FFEA985FC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:42:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C17227AA8E2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:40:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2941D5A05D6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584E5266EF0;
-	Wed, 23 Apr 2025 09:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4509A26D4F1;
+	Wed, 23 Apr 2025 09:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BZ3uRgbp"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="c4PAb5qL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5F52701B1;
-	Wed, 23 Apr 2025 09:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745401280; cv=none; b=of7fBg9/h5oSN/UOSCY9GlGuUo2q86HvQN3cBn9Ls5RSWexKQKfCn1o/8ig8nb95kNk/pZpTBXeg6vcFMBPXVap9PliinYZseB+PSxx7dGTN5R5Kumxi8n9vsfkZv+rfUSi11O74RDIp8pKa3oA2cnJZxSUppeEHjC4HWI6r3bo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745401280; c=relaxed/simple;
-	bh=LVlgqXd3gvp4F7q18bWvwYeGJMUd5fToVGBXFyLMIe8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EduJ8RPFcwqEqW/V9RXpJebBNDP0YDkIqtOuF0nen1j4F95hHUhm/6WPphbjHOmoZyUe9/Y8gmfQgURivZsgDE2VmBcfYUHmeplMoD6r7qEDD8x+Sg8ANJDFmEUOBmAo9zaSXX7PKM1k+kRR8hR/C4XT72hTyRC7kqVMcu/SwVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BZ3uRgbp; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=LS2O4ijWT/954gJ7Po+mrl2ivjfcfbbmblMAVvot+M4=;
-	b=BZ3uRgbp605ujwLLQBhqu5ElSw+xVo5n2y2B6jE+oPMPqM4aKIl7RHWKVjXPe1
-	W8gQlbfD6MkOSG2Z3l6F858HMS2S/ZaPp35goiWk7G3AxjyuKpHIeJDwjVzuxKV1
-	ghKBAcKzAnQtttY9ccm6lGt2iLY7YNZsdMGaG1vYGMW9E=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDn84o_tQhofGK5Aw--.10993S3;
-	Wed, 23 Apr 2025 17:39:14 +0800 (CST)
-Date: Wed, 23 Apr 2025 17:39:11 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH 10/19] arm/arm64: dts: imx: Drop redundant CPU
- "clock-latency"
-Message-ID: <aAi0tkNWlvwqIBxM@dragon>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-10-076be7171a85@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205BD2566DF;
+	Wed, 23 Apr 2025 09:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745401290; cv=pass; b=JNgg02FoQY+HbdtAe2HrlRDI2NHAdxiE0/Rd5wopWLPinSn6TXP6YlAulZgf6QdVTu7d2WbpL1KEKlK1euvqYycpfyxdQXw5cLmbs7i+QO78WMx6xzdTdE8OrCC2KsdT2pnWH89X4HkBEooKwZ7nEZRk0g95RYKbaxn0cE0dzww=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745401290; c=relaxed/simple;
+	bh=QDHDEuyljbJolfRYa6VdWA2fhf9lKyKVCtDK3RLTvtA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=UXUkqJIOIZWsE8CbdqnukhFBfqznbRtkjkkvQPkIFAKiC/dfuxMiYCGdWbqNmZeXasQFCJ9aKhp+TNNuwOhRpww2yumb7R11vOX9RtdHOQf6uQ88gLS8gS4sU0KT0V/e7YJdWNU+WMm1j4SJoYcwjy1S4yocHcTF0RDgVzGgYzY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=c4PAb5qL; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745401270; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=C8o3k/MNKgokhJ/HASLGbQyUh60PC5Hw29hzZ6sHRk/lH7QXyZNAVNpD0SoeEzIMmTEMQuSvSns7SvYqpjM4vh+N50kM6AZ5NYRR5GqcEeP730gjqcbem1sqCfV42Tq3EjMpfDSHEMsKVIxElXzX4L4BdtqdQYqANNWEIZ1jgOA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745401270; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=wW5kFrJgTitCYAlrW6MnWYT7C3pZ0s7BzoECLOXQLSA=; 
+	b=SG3BFC0J28ZjJf7+QjDGQbeBOVQx6dwrDWsCHFj+fvZWR7lJQmE6lUaViF+aglBb44CC2FJfIuFaEF1XVh6SLOwkM1UDJbLvR9aam+wKbPh9yaWhZvabVW6i/0nwN01yGveJfqvAx6ucTUyxzapT55FzfNzjLZloH6v7Y5OjLdo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745401270;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Date:Date:From:From:To:To:CC:Subject:Subject:In-Reply-To:References:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
+	bh=wW5kFrJgTitCYAlrW6MnWYT7C3pZ0s7BzoECLOXQLSA=;
+	b=c4PAb5qLq55mEXHWomaV1Q59jzLSiqxwbV2fhuJg34/Ed/heUYX6CPJgAiIGfTt+
+	K2m4msbW83z4vlykFpteoTMQgjxeWSIfhJI8itB0TXbWxtQaAFzzteUammVeTiZKNrm
+	hx0ejHOMLndNiXDYeNNYQWw2plDKi+pJ5qYWDSLQAjbkUDFSZo2ucfo6iy6NL4v5YSp
+	yZO1o7yLAKjU8iF0NmUhEPeHSTIQsSrgvPDXs/asgroohBv2gnwZJ85FLJk8AE5CqbY
+	1bUtIWLhD14KJ6zR5xElbiK1hlMyRIAmfbemnjxJEnjtsejXuRfxNg+SPmQ9r0o+qPj
+	0oo687eECg==
+Received: by mx.zohomail.com with SMTPS id 1745401267041866.6059217283805;
+	Wed, 23 Apr 2025 02:41:07 -0700 (PDT)
+Date: Wed, 23 Apr 2025 17:40:58 +0800
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Linus Walleij <linus.walleij@linaro.org>
+CC: Emil Renner Berthing <kernel@esmil.dk>,
+ Jianlong Huang <jianlong.huang@starfivetech.com>,
+ Hal Feng <hal.feng@starfivetech.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/3=5D_dt-bindings=3A_pi?=
+ =?US-ASCII?Q?nctrl=3A_jh7110-sys=3A_add_force_inputs?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CACRpkdbGwPyQgVL18iMvUTAvh4XTjo6g3mGT4e_b2aNAjr2obg@mail.gmail.com>
+References: <20250422162250.436169-1-uwu@icenowy.me> <20250422162250.436169-2-uwu@icenowy.me> <CACRpkdbGwPyQgVL18iMvUTAvh4XTjo6g3mGT4e_b2aNAjr2obg@mail.gmail.com>
+Message-ID: <B4C8B369-E345-4133-A106-7C5E71513329@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403-dt-cpu-schema-v1-10-076be7171a85@kernel.org>
-X-CM-TRANSID:M88vCgDn84o_tQhofGK5Aw--.10993S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Wr1kXw4DWFy8WFWDCrW3KFg_yoW3Xrg_ZF
-	n7K348Ja1rCry7J3Z8trs5XwnxKryUWwn3Cr17XrWkG34aqr9rAFWDGFZ5Cr13XFWagry3
-	A3sxJFs2y3s0kjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjQeOPUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiARM4ZWgIqUAwhgAAsw
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-On Thu, Apr 03, 2025 at 09:59:31PM -0500, Rob Herring (Arm) wrote:
-> The "clock-latency" property is part of the deprecated opp-v1 binding
-> and is redundant if the opp-v2 table has equal or larger values in any
-> "clock-latency-ns". The OPP tables have values of 150000, so it can be
-> removed.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx7s.dtsi      | 1 -
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 4 ----
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 4 ----
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ----
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 4 ----
->  5 files changed, 17 deletions(-)
 
-Applied as two patches, one for imx/dt branch and the other for imx/dt64.
 
-Shawn
+=E4=BA=8E 2025=E5=B9=B44=E6=9C=8823=E6=97=A5 GMT+08:00 17:09:42=EF=BC=8CLi=
+nus Walleij <linus=2Ewalleij@linaro=2Eorg> =E5=86=99=E9=81=93=EF=BC=9A
+>Hi Icenowy,
+>
+>thanks for your patch!
+>
+>On Tue, Apr 22, 2025 at 6:23=E2=80=AFPM Icenowy Zheng <uwu@icenowy=2Eme> =
+wrote:
+>
+>> +  starfive,force-low-inputs:
+>> +    description:
+>> +      The list of input signals forced to be low inside the SoC itself=
+=2E
+>> +    $ref: /schemas/types=2Eyaml#/definitions/uint32-array
+>
+>I don't see why you need this hack=2E
 
+Unfortunately these properties are not for pins, but internal signals that=
+ isn't
+bound to external pins=2E
+
+>
+>Use the existing per-pin output-low property (see
+>Documentation/devicetree/bindings/pinctrl/pincfg-node=2Eyaml)=2E
+>
+>> +  starfive,force-high-inputs:
+>> +    description:
+>> +      The list of input signals forced to be high inside the SoC itsel=
+f=2E
+>> +    $ref: /schemas/types=2Eyaml#/definitions/uint32-array
+>
+>Use the existing output-high property=2E
+>
+>Now I *know* these two properties are per-pin=2E That is more talkative
+>but way easier for users to read=2E
+>
+>Then use pincontrol hogs to make sure these configs are set up
+>at probe=2E
+>
+>Yours,
+>Linus Walleij
 
