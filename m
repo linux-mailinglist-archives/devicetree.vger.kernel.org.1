@@ -1,161 +1,132 @@
-Return-Path: <devicetree+bounces-169712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD4FA98018
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:08:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FB5A98189
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E94553B2FB4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:08:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F08C63A6BCF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC772580D0;
-	Wed, 23 Apr 2025 07:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5696926A081;
+	Wed, 23 Apr 2025 07:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="taM+nq0T"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="mmk4QKMI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D292676FC;
-	Wed, 23 Apr 2025 07:08:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D13E26B2A1;
+	Wed, 23 Apr 2025 07:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745392095; cv=none; b=AJJInJ/ORKTXVnN3zhh8F9HrERwug2zmrB7Oaps5fwwcgGi3jukDwdGmCRYKVw63BsmlnX54Vl9do8cK+OTNAiTHMHW7SykQBS/liFbl0uDZRT+KFaSB5epFYAuSgQkXQ6dJ6pb7j5OUizquV2Ad6yPcNXWwz1lZjc48VzKNfoY=
+	t=1745394535; cv=none; b=NhMbbkpIDA6oys7eZbEEV/DklhNmFiJfbC7H9G55II72ovm7rndjbS0SJe7ttAjjvsky2fGVqRhFY85V3iTVRREc33/3J0zm+dpJQr0H/ik9/WsMwr25gL0IJCU9Z9HrXP4kEUe7us+fLVv7wm4Bu3WSnm+D6ZHanmi7PlDvUgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745392095; c=relaxed/simple;
-	bh=7mnMqfZJXmRF7AEubXC5Quz0rD3EwGLxnuaIQrs31aw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lGUuY5DKZgT2tGD3vQDnyxQgxKOnFraMjbQa5kKedVgn7Ud5Rin32RHc0i0UrKgi7kGhAfMawB+IvrGh1tVNEBE1muJbVCkB3ThOtGfTualdYJHe0oAybR4ynjGX6xy5/tpYHt9t2sp0AI8wudSk1IfTElpT3ToKKN+trf+SMjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=taM+nq0T; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id DB3B91F984;
-	Wed, 23 Apr 2025 09:08:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745392089;
-	bh=/0EQyW6sKhsHbEM0FiXvZEMPWbxrVBqoFMcw038Fo0o=; h=From:To:Subject;
-	b=taM+nq0Tp+9ii+S0WaDF9seZryAoqKrz/vlplFL9/ZBKvYNh75kCC715TxDFQa+7j
-	 C/sGGFpIK77WVU5hAsa96KvTgz0cbCtwlSeMWTZM1eSsgb80787R1TEDZ13sDDM7GW
-	 m9Z7zfRZZMUu6acYf0lAsIKp7oi/a6A+Q9yGEc/kyS63x9sEef5+xz2ESa0JVOJ5d3
-	 eOdQVUXumLYh6f12oLeAynDGKptfRtEJhUzCj7jMfFXKsVktMRWbgLkMojclU174EO
-	 /wrDlZW4ofcXxj2R+S0I3MGfFJcZRhDvsNVCxViB6AMQjgUiz1cFqeO5rPYDOfd35J
-	 /6AKlQjxqp/Kg==
-Date: Wed, 23 Apr 2025 09:08:07 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Philippe Schenker <philippe.schenker@impulsing.ch>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
- usdhc2
-Message-ID: <20250423070807.GB4811@francesco-nb>
-References: <20250422124619.713235-1-Wojciech.Dubowik@mt.com>
- <522decdf-faa0-433b-8b92-760f8fd04388@kontron.de>
+	s=arc-20240116; t=1745394535; c=relaxed/simple;
+	bh=/Wub9CFRtt0AtAxGPFB10GQcM5GZazbfFhA0jn7wydg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KGg9cXzfsU+rDTQsTBUvbzUMJS7Bjk/fuuf/TUJxuHrzoHfh3Fke2wGVnxI3omm4o+dC+4L6XbYyitYVzm3Zk7JffPd4uxuRthBGaVsNCM2q8aC1yf9GCQRHLN+RjNeKs3hg+emQQg7yBo811Bg1uqe00meVrPB37aXfcNzBMGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=mmk4QKMI; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=2nkAQ7fLyP2LfmpJZMBXSQZ/uaucc6/NS2Ynh8Ha9jc=; b=mmk4QKMIi/tOv5r14sFA2O/Bl/
+	aF6p3CEoOGGbIBKOBeiL9+HMFtS4JfU1JiWS9qNBXJw1q9HxupoLxZwNaQTe9lUc5mXwmPXTtxltu
+	fKLG0C7bRe5uoRMKnvuLyLRyDLP431foY+yE61+2bVMup2lzm6xDU9ZTFID3pxP/jcVE=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:55820 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1u7UHr-0063ZQ-2L; Wed, 23 Apr 2025 09:12:51 +0200
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v3 0/2] Support for Texas Instruments TPS6131X flash LED
+ driver
+Date: Wed, 23 Apr 2025 09:12:48 +0200
+Message-Id: <20250423-leds-tps6131x-v3-0-ca67d346a4ea@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <522decdf-faa0-433b-8b92-760f8fd04388@kontron.de>
+X-B4-Tracking: v=1; b=H4sIAPCSCGgC/2XM0QqCMBTG8VeJXbc450ybdtV7RBfTHXNQKpsMQ
+ 3z3phBFXX4f/H+zCOwdB3HazcJzdMH1XRpqvxN1a7obS2fTFgSUA5GWd7ZBjkM4osJJGp0pXRS
+ KMwCRmsFz46bNu1zTbl0Ye//c+Ijr+5aKHymiBGkRNNoSmpLNmR8Nd/ZgRrFKkT61wr+aUl3VU
+ Nba5FARf9fLsrwAZPl90ugAAAA=
+X-Change-ID: 20250227-leds-tps6131x-a7437883e400
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>, 
+ bsp-development.geo@leica-geosystems.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-Hello Frieder,
+The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
+stage is capable of supplying a maximum total current of roughly 1500mA.
+The TPS6131x provides three constant-current sinks, capable of sinking up
+to 2 Ã— 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
+each sink (LED1, LED2, LED3) supports currents up to 175m
 
-On Wed, Apr 23, 2025 at 08:50:54AM +0200, Frieder Schrempf wrote:
-> Am 22.04.25 um 14:46 schrieb Wojciech Dubowik:
-> > [Sie erhalten nicht häufig E-Mails von wojciech.dubowik@mt.com. Weitere Informationen, warum dies wichtig ist, finden Sie unter https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > Define vqmmc regulator-gpio for usdhc2 with vin-supply
-> > coming from LDO5.
-> > 
-> > Without this definition LDO5 will be powered down, disabling
-> > SD card after bootup. This has been introduced in commit
-> > f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
-> > 
-> > Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
-> > 
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-> > ---
-> > v1 -> v2: https://lore.kernel.org/all/20250417112012.785420-1-Wojciech.Dubowik@mt.com/
-> >  - define gpio regulator for LDO5 vin controlled by vselect signal
-> > ---
-> >  .../boot/dts/freescale/imx8mm-verdin.dtsi     | 23 +++++++++++++++----
-> >  1 file changed, 19 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> > index 7251ad3a0017..9b56a36c5f77 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> > @@ -144,6 +144,19 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
-> >                 startup-delay-us = <20000>;
-> >         };
-> > 
-> > +       reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
-> > +               compatible = "regulator-gpio";
-> > +               pinctrl-names = "default";
-> > +               pinctrl-0 = <&pinctrl_usdhc2_vsel>;
-> > +               gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +               regulator-min-microvolt = <1800000>;
-> > +               states = <1800000 0x1>,
-> > +                        <3300000 0x0>;
-> > +               regulator-name = "PMIC_USDHC_VSELECT";
-> > +               vin-supply = <&reg_nvcc_sd>;
-> > +       };
-> 
-> Please do not describe the SD_VSEL of the PMIC as gpio-regulator. There
-> already is a regulator node reg_nvcc_sd for the LDO5 of the PMIC.
-> 
-> > +
-> >         reserved-memory {
-> >                 #address-cells = <2>;
-> >                 #size-cells = <2>;
-> > @@ -785,6 +798,7 @@ &usdhc2 {
-> >         pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-> >         pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_cd_sleep>;
-> >         vmmc-supply = <&reg_usdhc2_vmmc>;
-> > +       vqmmc-supply = <&reg_usdhc2_vqmmc>;
-> 
-> You should reference the reg_nvcc_sd directly here and actually this
-> should be the only change you need to fix things, no?
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v3:
+- Add comment for locking
+- Drop handling based on CONFIG_V4L2_FLASH_LED_CLASS
+- Stop if getting reset GPIO fails
+- Optimize locks
+- Fix type of num_channels (u32 -> int)
+- Convert a remaining return sequence to dev_err_probe
+- Link to v2: https://lore.kernel.org/r/20250318-leds-tps6131x-v2-0-bc09c7a50b2e@emfend.at
 
-If you just do this change you end-up in the situation I described in
-the v1 version of this patch
-https://lore.kernel.org/all/20250417130342.GA18817@francesco-nb/
+Changes in v2:
+- Bindings: Extend device description
+- Bindings: Drop unused address/size cells
+- Bindings: Use fallback compatible 
+- Bindings: Corrected minimum current for 50mA steps
+- Bindings: Drop node label
+- Fix name of REGISTER4 INDC shift define
+- Save device instead i2c_client in private data
+- Add comment for mutex
+- Use macro to convert from uA to mA
+- Use defines to describe initial register values
+- Add safety delay during reset sequence
+- Use fixed value enum to set the mode
+- Renamed some local variables
+- Re-sorted local variables
+- Replaced ifdefs for V4L2_FLASH_LED_CLASS
+- Improved some error messages
+- Link to v1: https://lore.kernel.org/r/20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at
 
-With the IO being driven by the SDHCI core, while the linux driver
-changes the voltage over i2c.
+---
+Matthias Fend (2):
+      dt-bindings: leds: add Texas Instruments TPS6131x flash LED driver
+      leds: tps6131x: add support for Texas Instruments TPS6131X flash LED driver
 
-I was not aware of this sd-vsel-gpios, that if I understand correctly
-should handle the concern I raised initially, having the PMIC driver
-aware of this GPIO, however I do not see why that solution should be
-better than this one.
+ .../devicetree/bindings/leds/ti,tps61310.yaml      | 120 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/leds/flash/Kconfig                         |  11 +
+ drivers/leds/flash/Makefile                        |   1 +
+ drivers/leds/flash/leds-tps6131x.c                 | 798 +++++++++++++++++++++
+ 5 files changed, 937 insertions(+)
+---
+base-commit: bc3372351d0c8b2726b7d4229b878342e3e6b0e8
+change-id: 20250227-leds-tps6131x-a7437883e400
 
-BTW, is this solution safe from any kind of race condition? You have
-this IO driven by the SDHCI IP, and the I2C communication to the PMIC
-driven by the mmc driver, with the PMIC driver just reading this GPIO
-once when changing/reading the voltage.
-
-With this solution (that I proposed), the sdcard driver just use the
-GPIO to select the right voltage and that's it, simple, no un-needed i2c
-communication with the PMIC, and the DT clearly describe the way the HW
-is designed.
-
-Francesco
+Best regards,
+-- 
+Matthias Fend <matthias.fend@emfend.at>
 
 
