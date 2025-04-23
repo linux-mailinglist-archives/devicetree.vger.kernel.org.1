@@ -1,239 +1,150 @@
-Return-Path: <devicetree+bounces-169909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A158A98A26
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27BFA98A35
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16FC13A9C33
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F6075A1361
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A17479D2;
-	Wed, 23 Apr 2025 12:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970C4DDD2;
+	Wed, 23 Apr 2025 12:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mq1IQH3R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqQag7lU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34F263CF;
-	Wed, 23 Apr 2025 12:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D5DC133
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745412799; cv=none; b=YjF49T5dMPQzIk35qsNCX9FzYz6v0Ysk1jAdZR/xbOqtkjr0ovRN7lo6fHxvCLssN5FL/9clhmAYdGnTTIz4MuQZmLL3Q9z1lQj2exgNPSDOg7WRpy3WfRv8BkBmOl/TpEF1XvuWCcb81TISD9u/8F+26IdKrI/UpDs8eULKPog=
+	t=1745413145; cv=none; b=P3omzWPpvLxSmxnWIArGRtEeNdd7Qw+mLCno3dESOuF+c1l9vAebNiaPGqpPR0EGh+dKj7hcVvNXyGU5KKsJDbXKekzqL+PnmBFeUCrLEPIycF0geYCfnp+lBZGWHFAQ3TpXKYYX/u2S41H//rkpojdFBW76pW09cdtEFq1I2mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745412799; c=relaxed/simple;
-	bh=X1f5xphdk9RNTm+uAPMNc0AoBgzDM2AFnZZ4oYnDVHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rJc2sEV9O7XqW8mRzEM61OXb6PgJxsJLwLcsV87dfT6XTs0m1ZkPcm87N2BgL6+jiORVmkaqnuZWB0LOWnoeNaPeazpc8mvLK4B6GiVWL/mP9/XEvr3laCprQGpe3Pt9iTkK21NmSKwp6yPyvJabkjpyRTqENQGGsKFQBfP9P4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mq1IQH3R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4235CC4CEE2;
-	Wed, 23 Apr 2025 12:53:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745412798;
-	bh=X1f5xphdk9RNTm+uAPMNc0AoBgzDM2AFnZZ4oYnDVHY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mq1IQH3Rpqe7nngiFpY9E8k5ZWjPCjtqG2w3wQkVhuTLojEF9cWMwLERJwQngHTPe
-	 rvW4yQk42ag4UuN7wpJLQwHLBh5VqW/1KKrOYV9HUr0prYfM/KjTmOQd3/aNt4L8cS
-	 pxSva5q9ix9D8Hq8L6vyRQpIW+ctf/sT7t05m/IuHeGlm28yhN1bMwbPED1y8vRDUu
-	 i0fAmGdSt9finKuXcdLvoTs09tFzObJ2EgANpYvdTisDlF/oYaVj/TMuETHz99o4/h
-	 EY1+tNvSvwCnszYGKbmNxD2zx7qkPp6XAd3620QOJwuXY4cI6Qy8UTNBF+9ktvfZwk
-	 AvGo0ACUKSdfQ==
-Message-ID: <e5f47f52-807d-45ce-bd62-090f4af72b3a@kernel.org>
-Date: Wed, 23 Apr 2025 14:53:14 +0200
+	s=arc-20240116; t=1745413145; c=relaxed/simple;
+	bh=TyEJqV+iPI49wYRxxheS7AY0Oo5A/AIP7GetFD9olro=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=NP13jXVjhfyOSPQK1lWFaAO6fRfDjn6sAztB4tNCdcwo2+gZ+q+5PauAWpduMAK6WPBBzVvX6kVj+MU+rih1ISvNf5GBSqyYxxwlP7wL34OAflMkpjaLw4YVR2B4/GwYI8ggndEpwgmqgk/SZWAbIKWP9i58vfKyTpGih2qT8DY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqQag7lU; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e6f4b3ebe5so691660a12.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 05:59:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745413142; x=1746017942; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dWSgYU4Bs/P+4N0/0yj45j2zwuuB7lOSEXG+V6K+MOE=;
+        b=IqQag7lU35JYDzug7NsQHo0KBA2LA1ZA3GNWFFO4RPQ4w+KOcYBCK28u7qMaJd3PSz
+         flNb+6CtW/ZW+NXr1FkmjEX2U8YPqiCZ9Xb93lcaGwy1IIFpbtkVypny6EIPWW/C9hQv
+         b/Dhmg2ysslUUcCGKfDk2TC2KaebgezPXUNs0u7YL4dHQA/+wy2Wm7H/Hu02uZ3RkgFt
+         9VlOOJ9kan/9ORfkTaIiR7qX177EP01X5Sqtqznk056XWn4xblE+0aDDFdWjOXX6o5x/
+         yLljq2vECAYD9x8+4ZibEpmALOY9E5r8W0/zTV9UflfGl5g2MxNa5GXa92TLgGZOqm07
+         OHbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745413142; x=1746017942;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dWSgYU4Bs/P+4N0/0yj45j2zwuuB7lOSEXG+V6K+MOE=;
+        b=jcvd1v1RtfSXvjRwCvGkgN6I1rvl18p2m3cu+z24bWhAb9GfPg6D0Fo7By6CbEbKhT
+         kkS3YjThz5spCBoksZ5k3Cmb/Khb6lati74wkqp0ALBt48m+JDgz2TY7w2MUtk6He93m
+         6Cvugpjc0GUWwySzxDP4etTmAEz7K41/KRk7qLgmwKSbn02i1039kdCGZ64F0RCXUP90
+         OQYmlnwt2EpnGm+nyBnuSLk9x+GrNhh/kniyGNSWVTzujIuOTx4OoaBnb8EU5G8Ui0xA
+         qr3oWpNMI7yzWkwlNiDaD0FUHid0RCNFn6QYTmuKyJCsDduc4BVpXlvFOXYPqRNicnK8
+         UATg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrHMkyFNcUvPHK9bAiNaNR+yYGyYkE7eXJXWAsLCYtJFAiroVXp2gSkX746mxnsGroNDi3BF3k7tdp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzMC5jYMYkfkD8dDnGwK6F0H5uBp5YTN00R+w0OyHwVYHsqpjp
+	x4rcI4bP7NKcrbvRNK/d2dEPZYkDZP9hjVWgQ/WJaVXvSCu44gYhNerfSiCYsC4aO3iXm38wWlU
+	g
+X-Gm-Gg: ASbGncv47z5MDz4dPGQseDIp95ihRRgeYAnC5TUbJUUgwqWqAfOvlcyYTTHXFgarP9n
+	ahQEqfWr74FQAvI749Yd1btpmXFAgADTiIe6ZlqR7VwFApwyAzNLFPJwKdhYRGi6gPA+R9333zh
+	l5/L+CI2Xw4XhYKWxvGMW5U1HoPeVLWPzfUIJRQuKjTotegRb3OQZk3HIVhW8IPSCtrAqto0Nzb
+	zvu2Ekzj4egZAgKdjlnFyDs55ftb64fXJtRg0He60wBUeRBf6b7OsD8TK29TzbGKb3Em4JrbwFK
+	LzxYL4sDx5u0QhQictLGmvae1wyPg/+2lAjsZIQ=
+X-Google-Smtp-Source: AGHT+IHOahSmPfO3hs7sUfnCfxpEOAB/NiskqrVfwSdRbErJuG4vZlaOfuNODVHDVcw1+Mk7JEWnnw==
+X-Received: by 2002:a17:907:1c21:b0:ab7:1012:3ccb with SMTP id a640c23a62f3a-acb74b2e84cmr1485463766b.14.1745413141636;
+        Wed, 23 Apr 2025 05:59:01 -0700 (PDT)
+Received: from [127.0.1.1] ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ef426c4sm794377966b.131.2025.04.23.05.59.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 05:59:00 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Wed, 23 Apr 2025 15:58:52 +0300
+Subject: [PATCH] arm64: dts: qcom: x1e80100: Add GFX power domain to GPU
+ clock controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- herbert@gondor.apana.org.au
-Cc: Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com,
- adityak@vayavyalabs.com, Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-References: <20250423101518.1360552-1-pavitrakumarm@vayavyalabs.com>
- <20250423101518.1360552-2-pavitrakumarm@vayavyalabs.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250423101518.1360552-2-pavitrakumarm@vayavyalabs.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250423-x1e80100-add-gpucc-gfx-pd-v1-1-677d97f61963@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAAvkCGgC/x3MPQrDMAxA4asEzRVIzg+hVykdjCU7WhJj02IIu
+ XtMxm9474SqxbTCezih6N+qHXsHvwYIm9+Tokk3OHIzTW7ExroSE6EXwZR/IWCKDbOgn1nHGJ0
+ sytD7XDRae96f73XdscwmEGsAAAA=
+X-Change-ID: 20250423-x1e80100-add-gpucc-gfx-pd-a51e3ff2d6e1
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
+ stable@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1206; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=TyEJqV+iPI49wYRxxheS7AY0Oo5A/AIP7GetFD9olro=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoCOQN3ZP4llDd4xTrqoYEBqHvi08og4dAIxlKD
+ 0RC5xJ1rEGJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaAjkDQAKCRAbX0TJAJUV
+ VgTbD/0dGPsZw4skZK545sXIXLPy9uRQDXtDk2p36rtTpN1x9m/yIy//KakO+AGrY0jhZ7m82w0
+ v7KZkA+ehartHeFVBRnJp39j/OJxk0nRKe6n0E8n+8UX4VTo3Sjvkmtp1Gj15S7XXePHGTsZe/C
+ veXybYjS4DJ64K2LZiEak+bZ/2F3gYs7FiddjNFZYtoUSds6Ei7L1NOCWbJN4V1odiQLdrf6gMo
+ fhWstp0V3ah4AZgcZVNs8yv/tGcjdtbXxte+u0LLCeGFQLXMHi+lqnAh4LkVX1TqV0ris3lGz4H
+ dt1bgOuiLh8NuBUKzDEJpRdTGVzmFmC7enE/hUZHfd8hLWVMdP3ORRSvfPfA/514LPqIWFUqFYM
+ mgDLwDnuA3eSwCi+XF7c/j5keiRYBqUgDnxKAy25kUSvSfu4d15+mfvzkNZjBXKN5uU3SJg9Hht
+ A6552zu/PIwaKfAHFOL8oQS6Lq17APphEQbacmdzZ4TsTVlXNzqvZxsJqB2/Haslew6iUjwbvgx
+ FSWmlPmDJCeEed2K1F2YAb6tDD+CDPbzhdbz3rv4AdIJC5Hzjwq6HbeSMuSFVB93w6ZEXV1kaBK
+ wE86cK6Bdxy9qsVI3ur08wzx3rS13c8cmVb2B3OvrnWwTaq06hFvhnxlvLfDk+wSa5zxImn+ey7
+ lUK1qHepyy2Kg7Q==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On 23/04/2025 12:15, Pavitrakumar M wrote:
-> From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> 
-> Add DT bindings related to the SPAcc driver for Documentation.
-> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
+According to documentation, the VDD_GFX is powering up the whole GPU
+subsystem. The VDD_GFX is routed through the RPMh GFX power domain.
 
-These IP blocks are rarely usable on their own and need SoC
-customization. Where any SoC users? Where are any SoC compatibles?
+So tie the RPMh GFX power domain to the GPU clock controller.
 
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
+Cc: stable@vger.kernel.org # 6.11
+Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 46b79fce92c90d969e3de48bc88e27915d1592bb..96d5ab3c426639b0c0af2458d127e3bbbe41c556 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -3873,6 +3873,7 @@ gpucc: clock-controller@3d90000 {
+ 			clocks = <&bi_tcxo_div2>,
+ 				 <&gcc GCC_GPU_GPLL0_CPH_CLK_SRC>,
+ 				 <&gcc GCC_GPU_GPLL0_DIV_CPH_CLK_SRC>;
++			power-domains = <&rpmhpd RPMHPD_GFX>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
 
-> Engine is a crypto IP designed by Synopsys.
-> 
-> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> ---
->  .../bindings/crypto/snps,dwc-spacc.yaml       | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> new file mode 100644
-> index 000000000000..ffd4af5593a2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto Engine
-> +
-> +maintainers:
-> +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-> +
-> +description:
-> +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto Engine is
-> +  a crypto IP designed by Synopsys, that can accelerate cryptographic
-> +  operations.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: snps,dwc-spacc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  snps,vspacc-priority:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc priority
-> +      weight. Its used in priority arbitration of the Virtual SPAccs.
-
-Why would this be board configuration?
-
-> +    minimum: 0
-> +    maximum: 15
-> +    default: 0
-> +
-> +  snps,vspacc-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Virtual spacc index for validation and driver functioning.
-
-Driver? Bindings are for hardware, not driver. You described the desired
-Linux feature or behavior, not the actual hardware. The bindings are
-about the latter, so instead you need to rephrase the property and its
-description to match actual hardware capabilities/features/configuration
-etc.
-
-> +    minimum: 0
-> +    maximum: 7
-> +
-> +  snps,spacc-wdtimer:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Watchdog timer count to replace the default value in driver.
-
-If this is watchdog, then use existing watchdog schema and its property.
-If this is something else then... well, it cannot be something for
-driver, so then drop.
-
-> +    minimum: 0x19000
-> +    maximum: 0xFFFFF
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    crypto@40000000 {
-> +        compatible = "snps,dwc-spacc";
-> +        reg = <0x40000000 0x3FFFF>;
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <0 89 4>;
-
-Use proper defines for typical flags.
-
-
+---
+base-commit: 2c9c612abeb38aab0e87d48496de6fd6daafb00b
+change-id: 20250423-x1e80100-add-gpucc-gfx-pd-a51e3ff2d6e1
 
 Best regards,
-Krzysztof
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
