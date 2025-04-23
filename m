@@ -1,241 +1,219 @@
-Return-Path: <devicetree+bounces-169723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5806A9807F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:21:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B93A98094
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:23:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DC4B3BE4E1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:21:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 247EE1B60D08
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E21267B15;
-	Wed, 23 Apr 2025 07:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8717D267B9F;
+	Wed, 23 Apr 2025 07:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ABawEz/n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RWs6N5gw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB5DE267AFE
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EF0267AFA
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745392869; cv=none; b=WViQ48liYDXBwSu2YBjo+u+KJolrnrjpC45fcafz8tNXcMpd6EsHRgxk9QJUMmE0Uo5kDpn1KLE6KIGlyO5eMgy/all82RYmbwT2tN9Es11r++yZf3cWWf3IWVlwRNI4ZZfv5cQC78T07CZHRCBaNOKJ1wDhrFSo0k59+zdZIBQ=
+	t=1745392997; cv=none; b=SvyUi12BmSOJ/MNES9Y6s3pMqmJZVVbIiYQTL+Wtxfxt8EuXxHpzIiEnGoKi2Ckwl1L9weOyQWZN8erMtSDPXf3MnoxZXuKc85lfGmJPrSqTd1TLM/vmEByNgf4J8KlfxbC25btB/7KrWL0l80NIyAjsGO7joSZQ6iBweHM2yKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745392869; c=relaxed/simple;
-	bh=1Zd3cytCKlXoV3voZ/Z7Aj3t392WLrLgaxbnoqan7mI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TykqlODTU2P3d425OAS207lTXFIfYGs/uzdfeccwweZMnovOE/GmJxkfSrXc0C5CR0NYdDv7yCf8QjMbAyZQ3jeR+zT9L4glaybNLtDtkBQ8R6/L0UyGvIAe6+DDBvWlKhRcnidfocgteoRuAp1HmluOoQh48D0nEtTDYP2oBYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ABawEz/n; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N0iJBY014055
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:21:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=B683B+9/R8J
-	0Vz6Lz9+auTHlZvFsEtlwtzftkgtEyFY=; b=ABawEz/nCKXLAIFxNIlljSenwqi
-	3U1lie7TKJkhIRInpKlGM/bonhGovDR8k+QQ59V5732tQWR+oqrLqA7mwTe/zz15
-	6Axq3BlHJSdlds1kvCGbiCkRXzbfzYDvypOdyoxio0OSfnhQWk+iPKCwO0L1YeAd
-	WU72c2I2nr7IhGi10/2r36fm27y0Jw8fNdfIghkBoRzipJokYgW4jHxd+tTjQHdw
-	5vH4rJpb/CZHvvPTescZJ8cUlGUjuN0DILjF91HGK/Z2kweJHbGNMni4mTA9KZnB
-	1yiBBYy8k8YVm7ELeJB6VOaah5F4lmBJJ9oh3TWv/r9knDfKjdHn8177/Vw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3975p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:21:06 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c7c30d8986so573600485a.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 00:21:06 -0700 (PDT)
+	s=arc-20240116; t=1745392997; c=relaxed/simple;
+	bh=Tbr2Q90DvfOtSGXfzrp3mJhdDmZv07AsT8h8G2q3gw4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=E12lCOP9PzqmvdEplIhWcm30h0xqxiBLrmRJtOKnkK2uVtq6Gg4hQh3ecvgQ6akz5oY4Mxq88Jig7VfeBt+9sjg4YpMhav9FSP5fg8o43sG+fs5O9kOvBUOGYuGg6jblYeHU+p6aDamhDFtzcudUd83B+5Cbs6Ws8IIvKRejMg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RWs6N5gw; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso38098045e9.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 00:23:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745392994; x=1745997794; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WB0RCfrpm6KO0azBMBNT3gQRNEul5d5cuD4mn3Ij+n8=;
+        b=RWs6N5gwxNgu5fYaYYTWtFuLsIi5MuuXBUlM3dbKTM8z0RvoVBOX07Qj40hrZ8X7cC
+         xuwZ00pkQEDbHOXC8oIXO2/pQlkWXf8M0CPLoa72haoX2QbowU8W7tojbd9+L8tXIO6U
+         V66hybfxxizMRC3gqRAlrVOFcF1nP6lc6VI+p/GbihVik10YbjFgN1TiqcaOdrkmD1KU
+         MIjcHL+30acFyl7YuIKx9tRdEOXk/dm+M71+KIb3KrWFBnTcwMHMVmjBXi++wqXwt5sr
+         ASROJdL9LKlfJ3j783XBRLno/c7jQzL0hujM0CZqyMEQtwZ0JeMDrXz0MgeywxWcAsGv
+         k1VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745392865; x=1745997665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B683B+9/R8J0Vz6Lz9+auTHlZvFsEtlwtzftkgtEyFY=;
-        b=PoMQb31SFcFqLSrRqu467em0qI0mm1ku7dpChFNtf4+2d8y8QhcXCdEbDzr+R0QF4m
-         SQb26wLid0Crmqpli1ZTNEujllqecQaCw/ELlw9G+CVj+3asw8LkQyjQhSuCDZRezR0/
-         /dFEo2+dh371NlFg7Dz2WiunXmNwcYuqkSEFg+tF2XL+jk7/rxRyJ37rPmtf6FHhLYfq
-         3bRCBNnTqHgVEoQAg3PKil3+/tkKi4t5fygBkM1rl4Z0pILyAxG/SuVDUbdnblZeYx5k
-         Th2dBwvxApTP3ulMWbdoEVrDUB1qvVhypv24mNPZbWEv4rwYD+UOQsaRnls6NLTkWTcN
-         ruLA==
-X-Forwarded-Encrypted: i=1; AJvYcCWN2yw/CBWiuCFxcenAn2wqBbypwASmRXpiDIN176GTr8o9JPhcUiqGqsz3Ikh+BcfPF7EXMetob3RC@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy/a9MJey3xhVA7gGORfG7t0qt17j5473fUnFhB0WpDWhZaH7B
-	Wrt85wzRTDpN74M2bDpz/kZq+BLP+6/qsa+rfbCnQaLIO2AxltVePUaS26X/KJ+VqhNumJKRU1E
-	AbFvJCq+PyZn9JQtxj0+AKKO3bC2hhdmJyCxQhnmDsoWQSKhqGpjKfZ1Q6J7E
-X-Gm-Gg: ASbGncvScvs/Rw4q5t6gbRUKTFwJA0ffUmxmDVc+mfw47ty1614cAplz+2EebxHke2B
-	1wLPRaVZv78eRvFBzR7hbQ1coq3KlnrAcaPZ9qfks+m+avhN83KSMkqOXdflxo0pzDNQjkpdCXb
-	5/H7CtO6x9O+o/FGLRXHAEl3rPBG6G6fx4X0YoQ4V7zVPua1AiSX6VyGIQKJvaYaFVU1VCRjTNa
-	e725clp5hHdig1iTRK82SnPeNTEw4vyvz0bXZvk8OfJd//N/6n1864xZJbE70weZaNbVE3hZRk+
-	HsQBIPWxjjAt2gmyjGwwtuLt+4s0aDV8aE19iLjOozTc6FY=
-X-Received: by 2002:a05:620a:17a3:b0:7c5:4949:23f1 with SMTP id af79cd13be357-7c928018f4bmr3185901985a.40.1745392865609;
-        Wed, 23 Apr 2025 00:21:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IECt3GX1jujYZOuYeyCML0aAD6UdbPw9WeBOejlwFn8+sdFqhMMJoUnxJtiQzipVzSrLzOy0A==
-X-Received: by 2002:a05:620a:17a3:b0:7c5:4949:23f1 with SMTP id af79cd13be357-7c928018f4bmr3185898685a.40.1745392865332;
-        Wed, 23 Apr 2025 00:21:05 -0700 (PDT)
-Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:82c:5f0:10e3:ecaa:2fb2:d23a])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ec42af6sm757138366b.43.2025.04.23.00.21.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 00:21:04 -0700 (PDT)
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-To: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
-        andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: [PATCH v4 6/6] arm64: dts: qcom: qcm2290: Add CAMSS node
-Date: Wed, 23 Apr 2025 09:20:44 +0200
-Message-Id: <20250423072044.234024-7-loic.poulain@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250423072044.234024-1-loic.poulain@oss.qualcomm.com>
-References: <20250423072044.234024-1-loic.poulain@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1745392994; x=1745997794;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WB0RCfrpm6KO0azBMBNT3gQRNEul5d5cuD4mn3Ij+n8=;
+        b=Fg9rqegCgmwNOIOPSZiiCr0B7URPL+RFBEeG81hDDNr+KC9keUcNOgI2AqrONM9vlt
+         ko860RpCJ/mDBvk03cmI2hFrQ6uEKEAQHF6301r6NOE1R6/nWU8v1+C+4iDbN8HDgzf9
+         LE25DfqoF08HikajmQomHlHkC5Jy9pG4FrTSNr+evmR9kGQWHQKJZQAH6+1IMEenN2FK
+         c2AnEFvoVwpoVk4jZyFeaSaHp+N9nNIQ24BjT2splzJ0nYZzygabbTUvKTbyq68vYkkK
+         L3W4dwecmU9V9b3noly3E4hHqAGs6pQeF0eRz/tgWs1Or0zE8soK9H2RAQMGDiCvXb7F
+         9I6Q==
+X-Gm-Message-State: AOJu0YwrIUCF6nUkyjQKlKvA/vyzdJmAWT8wLBgZ1fRa2maO0RquTEic
+	T0zqLZ/ZI1meUoKKopjPQr4EPV3Ae+EnQJlaLcUZnarbVgRLjq/oNi1QVcsug30=
+X-Gm-Gg: ASbGnctYhRuQgWfQiHrxTZM2wVQPl0eAaP/E0KPZgvzKN7OacUwPE9KozMtyMxTLUw5
+	Q8HO+Q3eE4Cmwm+N7SHXuGSdEnq9JLwyCeSA1GShzQbHT3NP4MPLvC6xBMAO+oL9NecZUvbYJHj
+	c6ELI9t8qYR5/zIxkG4PSDiYMPIrNuYReqFbhXxOyrn42nI46aGTrI74AvCHoGUp9j/rJ82Jqwp
+	cnQ/JmSQ9bJ3w9p6A5951COg9km8M/bMV/p5evkyoiBkvpJYYsoMgF+ZFVy5uRzE00PhzbyYI9g
+	t3UlKR8n0oKjgGNo1aiJLT6jM0m/MOrUFr67pRXkxxv+AThN5JJPMX+y6ITatV/lwPyd7umaLUb
+	0YK+6KyfU4A55h1QTRg==
+X-Google-Smtp-Source: AGHT+IF7iRgKZdIR7ImIaoLwdAL0qVsjtbiBOb3c9EZ1TcpXaE3Utdm6WozDnJe6gph5La9PzewJlg==
+X-Received: by 2002:a05:600c:350a:b0:440:66c5:26f4 with SMTP id 5b1f17b1804b1-4406ab703b8mr160055435e9.1.1745392993806;
+        Wed, 23 Apr 2025 00:23:13 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:2835:c2f4:c226:77dd? ([2a01:e0a:3d9:2080:2835:c2f4:c226:77dd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-44092d1709esm15163115e9.7.2025.04.23.00.23.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Apr 2025 00:23:13 -0700 (PDT)
+Message-ID: <eb1c3442-6b86-42e9-a672-eaba7de8b375@linaro.org>
+Date: Wed, 23 Apr 2025 09:23:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 0/7] Baisc devicetree support for Amlogic S6 S7 and S7D
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
+ <a175ed1d-9e57-4150-af8f-7ca785203108@amlogic.com>
+ <e3229c42-b322-447a-ad1e-86c6f20dd54e@linaro.org>
+ <be8b7874-1251-4ba8-9243-a615517861ab@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <be8b7874-1251-4ba8-9243-a615517861ab@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA0OSBTYWx0ZWRfX6tCFTOLsg8qb ZKVg0CPcO7Dh8dDtQ0JGEj+xAJ4KSg+rPRy6Twu/lhDrv4U4On0bTnieYfz7S1iBVPrUmvnYNBO ztK/BrZDBSW2x6ltu75kRc3gkWS4mdFZD6TKyaYF7gpCHYp+GCJFG3hNKQg0FrLHj39o5aV/ZRs
- JeU9vkq5GEg37qybBlWvZhR9TIskdDmljH1UoYIcAgIr4LueaiCm5CGK4lbrpGZgyb0/5yYlQLG TYJ55sj0mFiAlPS8k/eXaC1H1hFArSFcJPTJ29nUg4wiuR2GPRLflk8rs8rFC2Da2UwzKQCTu+C tLl6eqsa0/3WeSrB39rAfx625w1PhMm1YUrUdABBclG9eTZCYbP/Pe4/c69+37KDfwz/Uca1MIR
- 6IVHsF+NLBSgb1QPbbm3gESkGRdYzLxRFK8SdukzslH+DRnplZalFtmmMgsPVfee1vqu9lik
-X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680894e2 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=XR8D0OoHHMoA:10 a=QcRrIoSkKhIA:10 a=EUspDBNiAAAA:8 a=EzCDy3pf2FPqfMyO2-oA:9 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-ORIG-GUID: Untc1ejjOihaaIR743LxrLI0_KLnrS3L
-X-Proofpoint-GUID: Untc1ejjOihaaIR743LxrLI0_KLnrS3L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-23_05,2025-04-22_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 suspectscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230049
 
-Add node for the QCM2290 camera subsystem.
+Hi,
 
-Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 103 ++++++++++++++++++++++++++
- 1 file changed, 103 insertions(+)
+On 23/04/2025 08:15, Xianwei Zhao wrote:
+> Hi Neil,
+>     Thanks for your reply.
+> 
+> On 2025/4/22 21:49, Neil Armstrong wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> Hi,
+>>
+>> On 22/04/2025 13:45, Xianwei Zhao wrote:
+>>> Hi Neil,
+>>>     A gentle ping, thanks.
+>>
+>> I'll apply them this week except patch 4,
+>>
+>> so can you send patch 4 separately since it goes via the tty tree ?
+>>
+> 
+> I will send patch 4 separately.
+> The following patches(5 6 7) can be not included for now. Without the patch 4, the command "make ARCH=arm64 dtbs_check W=1" will fail to execute.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index f0746123e594..e2fefa79b8ac 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -1579,6 +1579,109 @@ adreno_smmu: iommu@59a0000 {
- 			#iommu-cells = <2>;
- 		};
- 
-+		camss: camss@5c6e000 {
-+			compatible = "qcom,qcm2290-camss";
-+
-+			reg = <0x0 0x5c6e000 0x0 0x1000>,
-+			      <0x0 0x5c75000 0x0 0x1000>,
-+			      <0x0 0x5c52000 0x0 0x1000>,
-+			      <0x0 0x5c53000 0x0 0x1000>,
-+			      <0x0 0x5c66000 0x0 0x400>,
-+			      <0x0 0x5c68000 0x0 0x400>,
-+			      <0x0 0x5c11000 0x0 0x1000>,
-+			      <0x0 0x5c6f000 0x0 0x4000>,
-+			      <0x0 0x5c76000 0x0 0x4000>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csitpg0",
-+				    "csitpg1",
-+				    "top",
-+				    "vfe0",
-+				    "vfe1";
-+
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_AXI_CLK>,
-+				 <&gcc GCC_CAMSS_NRT_AXI_CLK>,
-+				 <&gcc GCC_CAMSS_RT_AXI_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_0_CSID_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_1_CSID_CLK>,
-+				 <&gcc GCC_CAMSS_CPHY_0_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMSS_CPHY_1_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_0_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_0_CPHY_RX_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_1_CLK>,
-+				 <&gcc GCC_CAMSS_TFE_1_CPHY_RX_CLK> ;
-+			clock-names = "ahb",
-+				      "axi",
-+				      "camnoc_nrt_axi",
-+				      "camnoc_rt_axi",
-+				      "csi0",
-+				      "csi1",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "top_ahb",
-+				      "vfe0",
-+				      "vfe0_cphy_rx",
-+				      "vfe1",
-+				      "vfe1_cphy_rx";
-+
-+			interrupts = <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 309 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 310 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csitpg0",
-+					  "csitpg1",
-+					  "vfe0",
-+					  "vfe1";
-+
-+			interconnects = <&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
-+					 &config_noc SLAVE_CAMERA_CFG RPM_ACTIVE_TAG>,
-+					<&mmrt_virt MASTER_CAMNOC_HF RPM_ALWAYS_TAG
-+					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
-+					<&mmnrt_virt MASTER_CAMNOC_SF RPM_ALWAYS_TAG
-+					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>;
-+			interconnect-names = "ahb",
-+					     "hf_mnoc",
-+					     "sf_mnoc";
-+
-+			iommus = <&apps_smmu 0x400 0x0>,
-+				 <&apps_smmu 0x800 0x0>,
-+				 <&apps_smmu 0x820 0x0>,
-+				 <&apps_smmu 0x840 0x0>;
-+
-+			power-domains = <&gcc GCC_CAMSS_TOP_GDSC>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
- 		mdss: display-subsystem@5e00000 {
- 			compatible = "qcom,qcm2290-mdss";
- 			reg = <0x0 0x05e00000 0x0 0x1000>;
--- 
-2.34.1
+I know, but since it's reviewed, Greg KH will pick it for the next release so it's fine.
+
+Neil
+
+> 
+>> Thanks,
+>> Neil
+>>
+>>>
+>>> On 2025/3/17 15:16, Xianwei Zhao via B4 Relay wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> Amlogic S6 S7 and S7D are application processors designed for
+>>>> hybrid OTT/IP Set Top Box and high-end media box applications.
+>>>>
+>>>> Add the new S6 SoC/board device tree bindings.
+>>>> Add the new S7 SoC/board device tree bindings.
+>>>> Add the new S7D SoC/board device tree bindings.
+>>>>
+>>>> Add basic support for the S6 based Amlogic BL209 board, which describes
+>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+>>>> booting up into the serial console.
+>>>>
+>>>> Add basic support for the S7 based Amlogic BP201 board, which describes
+>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+>>>> booting up into the serial console.
+>>>>
+>>>> Add basic support for the S7D based Amlogic BM202 board, which describes
+>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+>>>> booting up into the serial console.
+>>>>
+>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>> ---
+>>>> Xianwei Zhao (7):
+>>>>        dt-bindings: arm: amlogic: add S6 support
+>>>>        dt-bindings: arm: amlogic: add S7 support
+>>>>        dt-bindings: arm: amlogic: add S7D support
+>>>>        dt-bindings: serial: amlogic,meson-uart: Add compatible string for S6/S7/S7D
+>>>>        arm64: dts: add support for S6 based Amlogic BL209
+>>>>        arm64: dts: add support for S7 based Amlogic BP201
+>>>>        arm64: dts: add support for S7D based Amlogic BM202
+>>>>
+>>>>   Documentation/devicetree/bindings/arm/amlogic.yaml | 18 ++++
+>>>>   .../bindings/serial/amlogic,meson-uart.yaml        |  3 +
+>>>>   arch/arm64/boot/dts/amlogic/Makefile               |  3 +
+>>>>   .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   | 42 +++++++++
+>>>>   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 97 +++++++++++++++++++++
+>>>>   .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   | 41 +++++++++
+>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 99 ++++++++++++++++++++++
+>>>>   .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
+>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 ++++++++++++++++++++++
+>>>>   9 files changed, 443 insertions(+)
+>>>> ---
+>>>> base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+>>>> change-id: 20250221-s6-s7-basic-f300c30877e6
+>>>>
+>>>> Best regards,
+>>>> -- 
+>>>> Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>
+>>>>
+>>
 
 
