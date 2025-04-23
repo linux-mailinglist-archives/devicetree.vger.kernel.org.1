@@ -1,96 +1,102 @@
-Return-Path: <devicetree+bounces-169992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C613FA993C2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:03:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD310A993E0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EB011BC0BF5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:56:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0B2E4C0036
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70924280A2C;
-	Wed, 23 Apr 2025 15:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD21A284692;
+	Wed, 23 Apr 2025 15:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sdvy5qC0"
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="g0He3GFF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485DE1EFFB9;
-	Wed, 23 Apr 2025 15:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5479527055F
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 15:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745422935; cv=none; b=JteiBwDDUM/hy8mp6/tnDa30XnV3u4oEDAMabXs9TV+iDOsKVIoZUnlPo1DNIJNtXa0NpTh0i2MFMQMZoMkvnmrXaEZ1vYzIFaYTnaHw0w37k4Pkej4SZlsixoFy4rS6QXyyP1oEM5HuSPx3NUZDG4YimgAuzZvOuXQ7+CcrKs8=
+	t=1745423214; cv=none; b=LpSCv6YxK26X4R2JFntAF8hxW1a/lQ0E5sj6kUm2WXy7xS6IHUv0XM0xVgcmFeD0teZy9HgwNLJGo7aQmrBrNNwusBRLqfGBNoN50zav7Y4sYugeK07zpBZqh5NxFEAygc2srg+Y1kDbAHTVvlIqHzV5L1yswGoOx+Jha1imkUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745422935; c=relaxed/simple;
-	bh=DxbYADm2xMQfLgDopgflxpjsuQXoBGQFPugm760iDtQ=;
+	s=arc-20240116; t=1745423214; c=relaxed/simple;
+	bh=Dlxtg6HfRMV30lx7TpyBWf0ABYivxrUw+hEbZcVQ55I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dyTRZvtDFClb+9U8C8VJhy8DtduqbUvTsHcY2UAz0EIaaKD18mA1350GELiXS5uoViWd+emF8IPa8BWtyA3Yb3JowPGInepIp8Gw6/HnlhbkPCLm+S915GPwnnAkzO3TDZEPNTA1hZnKUkPRyBciJHEDSlSfv1aoGRoTosPWihY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sdvy5qC0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F060CC4CEE2;
-	Wed, 23 Apr 2025 15:42:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745422935;
-	bh=DxbYADm2xMQfLgDopgflxpjsuQXoBGQFPugm760iDtQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sdvy5qC0Ea3lYm2p0MXnrRsZKOENC2bpsU/9gwzNVNGRpD+7p2I6yp5E8zukS7o1T
-	 mZxemI8xDaD9LfymGvSQis4nUfMN998t6Yx/t/7K4UDE2KdAnm1Plazuptsoy0Gs95
-	 KlzQmigI9/7tdO+rdB6Ba7jwG7oBAs2z6VLPs1KzRy3sYyxCsZw7hmOVhYIx7jjD0C
-	 3LsHN+7V/n7bxiVFVOxypgrh1/OVBA9XDwxEluKmIx6JMJsKHNNEBCUEvJ5xFVy11R
-	 8Mx7A6RHgw2h3zSzI+3Td2Yio1oOqM2jPmee6rCR7wf5vUTM/nxQ9wR25Bvx8rtzpe
-	 rmJsLrn+zmnrw==
-Date: Wed, 23 Apr 2025 16:42:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Justin Chen <justin.chen@broadcom.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, rafal@milecki.pl,
-	linux@armlinux.org.uk, hkallweit1@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
-	davem@davemloft.net, andrew+netdev@lunn.ch,
-	florian.fainelli@broadcom.com
-Subject: Re: [PATCH net-next v2 2/8] dt-bindings: net: brcm,unimac-mdio:
- Remove asp-v2.0
-Message-ID: <20250423-sandblast-deem-40909212e9bb@spud>
-References: <20250422233645.1931036-1-justin.chen@broadcom.com>
- <20250422233645.1931036-3-justin.chen@broadcom.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AhPxLMzfd260907NoEfX4i/iaOaCi8LIlFPUFmSJfd/KKOpSuecGFuSev858TNNJNyU2jFWxAd7lEl4zkSYCUWCiq+C+hl529cu5YJ5oIwLHq8fYp5VbOBmjk1SAlhtM/wnP4OkJYtQpF4rnUqs0a2THHtcHtZXy2OXYQZCy1Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=g0He3GFF; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
+Date: Wed, 23 Apr 2025 11:46:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
+	s=key1; t=1745423209;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0uTQ6p+V1jTDw30/bAcPN/7+p5TBcCgK8gHCjb8Oz0Q=;
+	b=g0He3GFFtIeA0y+TZSb8ZM5l4SKbGuwYGKGOYwdpzty/lxLNEiXCOv5K3IiaArEH3gZOvC
+	OUvGYNJpg0LXfJ2XzYkLKJon6mmOe1XmPjKBaULtWsbZsRORyC2xET6NZT8ygT4vr88qAa
+	XaBvJ9NiJK5TMMpTlEEhA1szOHKYyBWBZaRHg1MxwQ4RAzncmwmaGy31MtV4ZdlRi5WqtO
+	wuz+lTHuyiOOFi0dwmcpXei6JAzKQHxAJ2Ismpak5mxi5Z1Rb7YuFCAd9LRZPEvjsyW4W1
+	Vncv3A1dF010GrnpFagFy6liYg3iWr5UB4K8ypp6HLgTRZrK51KOvKVl75q/mQ==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: Rob Herring <robh@kernel.org>
+Cc: Nick Chan <towinchenmi@gmail.com>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: spmi: Add generic SPMI NVMEM
+Message-ID: <aAkLY3TYIPG7ojwx@blossom>
+References: <20250417-spmi-nvmem-v2-0-b88851e34afb@gmail.com>
+ <20250417-spmi-nvmem-v2-1-b88851e34afb@gmail.com>
+ <20250422133619.GA1095169-robh@kernel.org>
+ <CAMT+MTTwY=z1-_94ws+Oi+wvE2PA_s57dPmpMABC26q=MPw1Mg@mail.gmail.com>
+ <e4159c2b-4081-4a4b-9a53-d6d559a3196c@gmail.com>
+ <CAL_JsqKwASbUtpO=wU-16v=y8S_wLyBxnFUmQqsE8GkzCz0hDg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ongtfeaqz9/SdaZ/"
-Content-Disposition: inline
-In-Reply-To: <20250422233645.1931036-3-justin.chen@broadcom.com>
-
-
---ongtfeaqz9/SdaZ/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_JsqKwASbUtpO=wU-16v=y8S_wLyBxnFUmQqsE8GkzCz0hDg@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Apr 22, 2025 at 04:36:39PM -0700, Justin Chen wrote:
-> Remove asp-v2.0 which was only supported on one SoC that never
-> saw the light of day.
->=20
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> > >> What makes this generic?
+> > >>
+> > >> A generic driver is great, but "generic" or "simple" bindings are
+> > >> generally a mistake.
+> > > There is nothing apple-specific in that driver, just re-exporting
+> > > several registers as cells. If you think that it is a mistake, I can
+> > > rename it to apple-pmic, or something similar.
+> 
+> Like I said, a generic *driver* is great! I'm all for them. We should
+> have more of them! Generic bindings on the other hand are generally a
+> mistake. The problem is whether a generic driver works for you or not
+> can evolve in either direction. You add more things like described
+> below and then a generic driver doesn't work.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+It sounds like the path of least resistance here is then:
 
---ongtfeaqz9/SdaZ/
-Content-Type: application/pgp-signature; name="signature.asc"
+1. rename the bindings to be apple m1+ (at least for now)
+2. keep the driver as-is (no mfd, etc - at least for now)
+3. land just that (at least for now)
 
------BEGIN PGP SIGNATURE-----
+Evolving the driver to share with not-Apple, or evolving the
+bindings+driver to share with pre-M1, can happen in future series
+if/when somebody wants to do that work.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAkKUQAKCRB4tDGHoIJi
-0lJnAP9Jjx7ehSg7eXWf0qWz7Ha1glgla+3vFM2+V0lBVta50gEAvjGWFm/2Vctk
-FuVzPKBELCAEeR1PLUMzLDVm4T8rXgE=
-=QH9V
------END PGP SIGNATURE-----
-
---ongtfeaqz9/SdaZ/--
+Is this a fair understanding of the situation?
 
