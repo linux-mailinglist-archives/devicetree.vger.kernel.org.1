@@ -1,230 +1,182 @@
-Return-Path: <devicetree+bounces-169776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BACA98259
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA30AA982CE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:19:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A923A5D1F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:08:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4491D3BEAFE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB8F2749C3;
-	Wed, 23 Apr 2025 08:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C8927CB06;
+	Wed, 23 Apr 2025 08:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=uclouvain.be header.i=@uclouvain.be header.b="TB57S5Qa"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eOmOA4kJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11021125.outbound.protection.outlook.com [52.101.65.125])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8BE274672;
-	Wed, 23 Apr 2025 08:05:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.125
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745395559; cv=fail; b=qI0NwYs+XkonQpWEUObb53e+/r99kcjHhRIYFT6t6YXbVe0z0wSTSy28RN1IeKKU8os8PxskIZhXtV8NLCOUxl84jODQun5xNxcxRzpZ8gClAHz5V6zYS06WAu1bn/kdoan/mRw/91CSrOVfnKQ0FFtNNINkHWoOYZGWcDBf0Ec=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745395559; c=relaxed/simple;
-	bh=01SkMBBL+rRV79oq2JDE405x6kgSAoNDQse+1N+iITk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=K7VjpWNuRj10rfvJdHvrgXOosjczBc1ve06n5KbOojiC6Nfe4HupGyGUCE/oyrcwBUBtPVWf56jgCTkoUt4OvRJB22e7AGK08ndLUm1ww9sZsetZwJFGzht/a1eP7U3W/hRrwLQ7sV2RJIku9NZjyuRGFVR6HGH+V33zY9Zi/sU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=uclouvain.be; spf=pass smtp.mailfrom=uclouvain.be; dkim=pass (2048-bit key) header.d=uclouvain.be header.i=@uclouvain.be header.b=TB57S5Qa; arc=fail smtp.client-ip=52.101.65.125
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=uclouvain.be
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uclouvain.be
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NLB8ev8VqSjcswJET/iNUHeXCFOZWSwwtzjzR4J5aufEzbsrVyGQkLxRQfhw5uVdW0dRgJk7sJvQ1+TynfKFPTNWZG2Tg8ujLqhyYBqoBmEwZD2gpCesmbajkl7ADyn0FOZYFWCCQ/qDKLBfIDq6NVVLjdeVPhFg35lpDir/wCxf90bu5Pbydsr8XqaFWEN67L0oe+nH8mF+5coJ+BB8bL9m97QEFLcN8BEKxgJWLtnPwBehPt7M2EMIYNRdYJO+QEJgyR+5ZsJx4A8i1DuBFKFH6M7jtZPuczXoRczpg7SlqqaOLmfB9tsSBdWE3V/Oylfq+saLx1DqKB3t3Y6xAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mxvRlbFpEkZS7rj9MNZzIUROtzjOa+qVKvyvws6YwpE=;
- b=QlT9x698/tYoznFISv6jluRpcrYPRuA6E5osgL/vUTMTVnP5/Zs67PQzWkPSX/ZtArWIwthNX3qic0UKiaO0c+DKWSqOe4yu+QVH8ztwDQSLvxWBQzUFmmsJuTqMOh2/vZkuoE+xmnKDq2/KI8cyVUnNqtK4WN9xgIVMlZRW0CmEklrW7QSyth5O49JiL5gqNWNhKjJVtYwNpWHGawLVT+cdTjwYbdflNSBZRoQRFN87+543rjcTM811XLqrV8HbefNG38NMDRYaxCnr/adp0ejiXX6ai1dirSELGnLmDyfnb8BKecZxA+w+8gu8cvVe6Kltjltl4shFos5IYCor0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=uclouvain.be; dmarc=pass action=none header.from=uclouvain.be;
- dkim=pass header.d=uclouvain.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uclouvain.be;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mxvRlbFpEkZS7rj9MNZzIUROtzjOa+qVKvyvws6YwpE=;
- b=TB57S5Qa4pTPeX6qSPUig60CKkTYDtI2AGbjhkUcefGa77QuEYMToYssjULB/IwlfpWwU6P7LjZX0pDtq8g4k1SKGF3Gs6mSI4DOoi2oGoeatln2KxtoYzlhk1UluIeYyPe6lvRC3zojkPub2+m4aAC1Q/Q4C1CwFP6dTDQuC6L94mxGLDAol+mmJs7w+u59jRCYRiZEdo2VBAfz9OUbBdyisDT1ziur5J/RGxwtRzIgg7EZyaD9hPu0+o7D51MrunRPvfAezLX7Yd4rQB6N3EQVfZ1+jeS/02BoXFtlXxBdDZ3f+otcuOaS77GdM8D6THT3Yucmlpu05PHy3VsDRA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=uclouvain.be;
-Received: from AS8PR03MB9047.eurprd03.prod.outlook.com (2603:10a6:20b:5b6::13)
- by PA4PR03MB7120.eurprd03.prod.outlook.com (2603:10a6:102:e9::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.33; Wed, 23 Apr
- 2025 08:05:54 +0000
-Received: from AS8PR03MB9047.eurprd03.prod.outlook.com
- ([fe80::c90e:deef:6dcf:538c]) by AS8PR03MB9047.eurprd03.prod.outlook.com
- ([fe80::c90e:deef:6dcf:538c%7]) with mapi id 15.20.8678.021; Wed, 23 Apr 2025
- 08:05:54 +0000
-Message-ID: <57bb1dfd-02dd-4aa4-a560-264875ded33c@uclouvain.be>
-Date: Wed, 23 Apr 2025 10:05:42 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] dt-bindings: power: supply: add max77759-fg flavor
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be>
- <20250421-b4-gs101_max77759_fg-v3-3-50cd8caf9017@uclouvain.be>
- <20250422-tireless-swine-of-fascination-6eba8b@kuoka>
-Content-Language: en-US
-From: Thomas Antoine <t.antoine@uclouvain.be>
-In-Reply-To: <20250422-tireless-swine-of-fascination-6eba8b@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR2P278CA0021.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:46::17) To AS8PR03MB9047.eurprd03.prod.outlook.com
- (2603:10a6:20b:5b6::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1025D27C15B;
+	Wed, 23 Apr 2025 08:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745396075; cv=none; b=Y45H2ULVXVwzn2TbfrhnbiLurtnIcFw5Cy2rAEFlYoQhUAyeiDgamc6frZ2se6FzpVCaHTofwDsBNk7CM/IUZvoAOfGHPdGWZMLn/lBnS4y6LL6jiGWJJuxzO/RYsh0vR+2Bt87Pipm0MkVDmtrqz1uXbhUP+lRcnzxE9wtn8oM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745396075; c=relaxed/simple;
+	bh=u5+GAHAtElv97qBlSvORRvjZ6rQ3Ednmjnp1aN+0J1A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ND/eSDd+WgM3MxaR5bRFVs12Zkx73dWFqAFjJs+ZnzOS/0GNGph+LxNbyWTcm/0ZFFapHq3fXWVLMcKNanR6B+Alp0LdNDOXnjADwZXK13pyhs4bPwr4tevk2QeZUSkjNmle4Jd+7pjBJ0R22LjieCSgBLPeMqaH3uG/xLVQqGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eOmOA4kJ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N6XXAH010685;
+	Wed, 23 Apr 2025 10:14:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=0g5P1vpX91HDoX+XwfRcnh
+	/gCOZfuoeA3kwE8ZY9iBw=; b=eOmOA4kJIqmnzHAVThgXoRWwzGDZpgGSA+wbCh
+	AF0Ua4odlTYSyMzlR1ZCU+W52Aq49XDOaUXaISStsxNlq6hGTSNCPIBN+2G2Omg2
+	8NxwXHo5JbxiMvJ5Uf8ucPsiV6ZS9ISXD1GtesTZeny/GLQEOmFCQcVGYVyWTJWr
+	xmUCt9d3D+Z9Gk6BiXKNJq+OsTvLXF6CUBdz6jLYQ9+M1AOXIWM8wj2q5H0jSCtW
+	Qtc6duyjpoPiwv/OhyiDJfUtQ0uTTLZo5qrETyYDBCNL0dhGAoa9avahR3eH2jcv
+	IrhPJ3YqmUyjGp0cj90wFEWDmUv/P2ywc0vVCIBmOxLokJwg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 466jk3a25r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 10:14:03 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BEA2540068;
+	Wed, 23 Apr 2025 10:12:23 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 560C17ED12A;
+	Wed, 23 Apr 2025 10:10:56 +0200 (CEST)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 23 Apr
+ 2025 10:10:56 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <christian.bruel@foss.st.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <thippeswamy.havalige@amd.com>,
+        <shradha.t@samsung.com>, <quic_schintav@quicinc.com>,
+        <cassel@kernel.org>, <johan+linaro@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 0/9] Add STM32MP25 PCIe drivers
+Date: Wed, 23 Apr 2025 10:10:42 +0200
+Message-ID: <20250423081051.3907930-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR03MB9047:EE_|PA4PR03MB7120:EE_
-X-MS-Office365-Filtering-Correlation-Id: c779e04b-013d-40c3-b37d-08dd823dabfa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|10070799003|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y1BqVzhWUWh1aGZmK01OeHREeVNHUkdyNzh0QmhKTGlOckpVSUJFTmlqanlr?=
- =?utf-8?B?Q0c0YU5mSkVVUU9iWnU1Vm95YlNGUnpBMUxtckJObG9va3lCaFU0WGtkcWN3?=
- =?utf-8?B?bGxxa28yRjBabUlSYUplRVJDbWhJNWgrbkNKWk9oRGdGZ3NSZUVwTTNsM0p6?=
- =?utf-8?B?MmF6NUJ2VWdpeVc3QUIzZEh1UHoxaUliQzYxeExYM1E4QUdxUERXTTN3bXI0?=
- =?utf-8?B?THhReTc3VXlrOEx1NTBpQ0pZUVFZZlVOa2p2RU9jMEpIVldwdzc4WmlBeU9X?=
- =?utf-8?B?VVd4YnFRSzdkVEtGM0VYVk00K2hodnd1dlJZdE92c05IdXMyTXZBTVZEeVlk?=
- =?utf-8?B?TFZFK3ZPQXRDMjQ0TU84aUk0KzlFRm41NEFXVzUxR0UrUGM3OVE2eGxtdGZW?=
- =?utf-8?B?L2tDc0pPTVphd05IUHhGTnVKSXhDZXdnL1ZXWmJlS3VFeWp0cWtPdGVtMjlJ?=
- =?utf-8?B?a29VRkEyTHZwc2NmVU9PeHJKOGlMaEMzR2xOSGo0bVRzUlp6bUtZZzF5MlNw?=
- =?utf-8?B?dlJ1UFVJUkV2K0ppM0xWU29LQkVNNm5pS1VPYkJHWHFSM1BqRjMzTm8wc3Fy?=
- =?utf-8?B?RDdsZk15Q1g2dHV0eXpvRGcvMEJhNGhUTjREcDAzZG16UkI2WjVuWFRqVkps?=
- =?utf-8?B?RyszcmFmajRESzVsNUR3MllXbzVBaUFIeWM2MWhlYmd4aTJGcnRyVnkvVHlQ?=
- =?utf-8?B?SzRYRldMNGxOT285cFBlUHRhR3V6NlVsbC9HWHlDZXdqMGpCQWxRcElWd2NC?=
- =?utf-8?B?bHpjQUVyV2MzMFlFMit1TC9kb3dnK3JBcG5ZU0pocm1OSjRDQzlZemZaQzhU?=
- =?utf-8?B?V0orcVVBczB6S0xOQTY2VU5ZU21xQzVDM2dBUlExK01zWCtlV1ZqQk43N3Ns?=
- =?utf-8?B?bzdXUWVodXNKL0w4ZUZVbWpPeFl4M09zMWo5WFhBK1g1dHNmRGF2UXF3amdL?=
- =?utf-8?B?aW8zOXRQMXlFZVpGci9ta3BtYzNONXpwcEgwNUYycHVpMGIxQ1pScGJORkxz?=
- =?utf-8?B?cElUUmx3dUNpZ0c4c204ZHpYNituekNWc3kvNFE4bDE1NytPZ3UwSThGMkxW?=
- =?utf-8?B?eW90cHRMVkhxZzkycEkzeWJ5MTNad0xwbCs4WGQvUFVteDdGRFUzYjdDbXZM?=
- =?utf-8?B?ZXlncThYUUF1OFArQlE5RWs4eVJtU3lUVlp0ZDdkVG1OVm4wNkc0SDNCSmda?=
- =?utf-8?B?eXBNSHRXaDQ5Y01MZmxXQkNpK1JHYi8xUnVqRU1iOGNVMmhMNUQrVlhoUkVp?=
- =?utf-8?B?anRTWlNxNnNIVk03ZWY1ZWNJaDlHc2FLVy9ndzRmZEZwUjEyY2Zva0hTN1FZ?=
- =?utf-8?B?YnR1aGxoQmJyU2hWM2RJR1Rva1FNY3R1MTNtbXJVdVpZa005bjBrTVZncUFC?=
- =?utf-8?B?d205bTB3R2RsRjgyeW92WlFZcXhyY25Rci9DVHg2eHY1WFdhakpXc1pKUjdv?=
- =?utf-8?B?VnNPVmhFNUxTMWlSYnpVYWRMemlQVFBnRUpGaXFHMFZrKzZnbFZ5TjMwWW8r?=
- =?utf-8?B?MWlCSzBFS2p1dVpxME1vTUtielNYYVI2QndYbE85NTZ4RVRFYURCSWsrWFlT?=
- =?utf-8?B?NHFSaitEdFdLVlpwNzR5c2ZndU1UbkI1SUdsa0xpUWJ4cEhDN21SUzlRR2tv?=
- =?utf-8?B?dksrNVZJM2Nlc1Y2SVQzenlvcTJac3ZjTENDaGc5NkFIODU1TnZpbVF5ZDAz?=
- =?utf-8?B?ZHFIcGhCQTZCS2N2R1RWUDVxS0tQZ2lhSkl1ZFBtRlRCekVFZnRHSUc4aWpB?=
- =?utf-8?B?T0pGZDl3NGlmK0ZLamxBQnFXUEtVUmE3Y1BRMEk2bk4ybi9HR09oWXFaSzY0?=
- =?utf-8?B?bkgvNkE5dnd3TEprRnFWMVFaTFBOR2NNaGZZeHQ2eVhrMlBLSzdQcmpQK3lx?=
- =?utf-8?B?bzZJSUJ0QWd2TkQ5MVM0UXpYNnhsZnBCOWtOeHFxOTVDNm1VWGRpTURtODZW?=
- =?utf-8?Q?4/kZyH2Zki4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR03MB9047.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dUptbU1lZXl2dkswNERRbjBqTkRJK0R0RUVEZnh4eksydXdBMFk5K1ZaMjBX?=
- =?utf-8?B?WmxKNVNSK2VKKzRHSUoxK0tIOWNLWEk2c0ZlOWloOXNyNDdBYzdFMkVOSytZ?=
- =?utf-8?B?cjdoUzBHeWUyUVBMMndSM0pvNmNBV3lJb3o2UDdXMGd0MUJFRVE0RGVndCs5?=
- =?utf-8?B?bEhBcTk1eDY4SGFlOFgwSUh1N0hDSC9jWTk4SDB4dzdOeTk0SWxuL2tWbktB?=
- =?utf-8?B?bXFTRW5yY2VoUXZaUHVNU2hzdHovRkI1dyt1V2pob1Rzd2hseWVDOW5UN3lT?=
- =?utf-8?B?THZteWppNXJVSXJNRDBOWXhoMnhkY3QvSzZoTmhZb2J6VXhVS0x6TkdHNnd2?=
- =?utf-8?B?V0Z4bTRQWmsvOFVEdnp4MFlNL2pPRnJiQmF3RnF4cmxmKzlPZFlLb1JWRE9F?=
- =?utf-8?B?ZEdKVmJrUGdzQ0kvYzJ5Zk5mSmhjTS9lQmYrV0JOQ0RTWHdPVU1RMFZvYThm?=
- =?utf-8?B?YTJtSFZWUHJiOTBMaGVTQzdMdkZMWTIxVjFLT1d5VHJYcGQxTDJ4K3dkQXdZ?=
- =?utf-8?B?cTYyRTY3cmlxZnNmeGpCZVJwQVlvb3dLT2sreHU0RlkzMjVnbXlQd1dUQ3U3?=
- =?utf-8?B?WUVBVFVMcEhHTEdSYmx6MllFbnBEeFcrVHFlT2M2VDA0Mng4Y0w1dmZ0dXlR?=
- =?utf-8?B?blJpSWhmZExhckk0WVpzSVpHMHhOSzJSRmIrcmNaVlVFdWNUREhaWXovc3dl?=
- =?utf-8?B?dmszRWNCa012Q01DVkwwa3orT2tOU05PcW95VnJHbjBLVnFOWE4zS0xxSHJF?=
- =?utf-8?B?T1JDaFd1OFE4Wm5hczRiU25aY2gwalZrQWZGWXovNG5wVk5PSmxZOEYyV0lR?=
- =?utf-8?B?R214OTNoTFp0cmt3cjIwV2dmWmNiY3RCS1ppRnNTNW5FWmtaNEtFczdMWTRH?=
- =?utf-8?B?aWdycE5wWVljMXpSZk4zR0pjMmltTnh4T05OODZabVNLdDJ2QzlWQWVwNkhm?=
- =?utf-8?B?c0pRdXFvYzZtUUFSamVBWU1GUkxFbzd3aS9SVDNQQnptYmpOWGNKbndUTUtj?=
- =?utf-8?B?N1l4VTdlczdHbDhTdlJ6eEgyUDc4aFVZaGU2ZVZiRE1YbGFkVGh1L0c4ajcy?=
- =?utf-8?B?aENPRy8vWTlDbUg2b0NEcFpaU1loYlNhcTUra0tteiswVkNiOFhZVXdwWlFM?=
- =?utf-8?B?Q3RnNk00b2hEUVBrSUJqdkpiOEIrTG95WTc1YzVrNUJGZ3RqMGE4NnhmR3Fh?=
- =?utf-8?B?a2tEOTdmUXpLSThacFcycHMya0prbGsyQXpqY2JGblQzcE5OY1V0RTYwbFgv?=
- =?utf-8?B?cElnTTdLTFV3Vmp6Y2VobUhBd201Sy8wQVhYOGJCQkl2cXozb2NpNVNPUmdu?=
- =?utf-8?B?OGhnQkR5SnpWWlZ1eDgvSXNOS25ia29jNWpaSXlBT214emRsNDVuK2MrS1U1?=
- =?utf-8?B?cERkQUxXY0pSQ2VsYm9XaGlsN1lXcWtJLytPdXJKQmI3QVBucU1Vd1h3bFJr?=
- =?utf-8?B?bzF1SEtDNlN4SEU4dktVNXZXcE4waHUxVTgxaFVFRGpCaXZGdnpkd29mZERZ?=
- =?utf-8?B?YTJqajBwcTE5QkhnNWNybmpCd09kbUpza3BGbHNPYzdITU4rZkNXMzNYWE43?=
- =?utf-8?B?akRVM08zNjVBZTJKVkZRWWZ3YTd6Nk9BanRmaHdnbDkzaGFlbEhFdkYwWVZy?=
- =?utf-8?B?S3RKQkFnZGlXT3lyWEdTQWIrcDBRVmNVL3ZTdmFqbnEzdkZBVGhBUU9jZjhs?=
- =?utf-8?B?YTd1OHdiTDVMdXlSams3OUN2MjdlTWxFa2d0c0ZiUjZQVnhJeWI4ZHZUYVRr?=
- =?utf-8?B?aWI1c1crcDFBT3pvRjlGenFocFk3QVhvQ0hQV1VlTmRGWjh4d3B0cXN4eGZz?=
- =?utf-8?B?TUsyTDZYV0tLRytCTldIY2llWGJZYzhUa1BmcEFrREVXbjJDSkYwc0k2VmEw?=
- =?utf-8?B?bTVhdEZTTXRPUWVBOEErd1FidzV5UGVXbDBBVjF1RmF4MFRJQ0JMY0NrY3FR?=
- =?utf-8?B?K3hvY0tpeEs1L2IxZVVRMUZ0WGppSnBqdlBhTitvRnRsbVhYaUxENlBiZC9v?=
- =?utf-8?B?THVHbWhhc0QrMFZvQWFTM2xZaklpZlJCMzVFUmlQaHlPQnZkeVNjcEQzSHRN?=
- =?utf-8?B?QzYwdGU3OTBnb1NSMEVuWjB2NGhxQWhoN0dDODBPbW9JdmMrdlpCdEd4VFF2?=
- =?utf-8?B?NHFNbnhQcllONUVqRm1kL2pSbEVMd1JDbXhDWFF1amUyR0x4OUllN2E5dC95?=
- =?utf-8?Q?BP2QOZm7WIZB8MmPWNsIFdxL58HD3kQgvcB6tqQAKB4d?=
-X-OriginatorOrg: uclouvain.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: c779e04b-013d-40c3-b37d-08dd823dabfa
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR03MB9047.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2025 08:05:54.8328
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7ab090d4-fa2e-4ecf-bc7c-4127b4d582ec
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3UpPRwTzfL18WC9mdYRe4VHy+ejRDflL0LnoucmcXGIgLgxwfDwd0EZQSGK2+tyCWFZWtmSlK7uNF3jOndjbHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR03MB7120
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-23_06,2025-04-22_01,2024-11-22_01
 
-On 4/22/25 12:05, Krzysztof Kozlowski wrote:
-> On Mon, Apr 21, 2025 at 08:13:34PM GMT, Thomas Antoine wrote:
->> +allOf:
->> +  - $ref: power-supply.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - maxim,max17201
->> +    then:
->> +      properties:
->> +        reg:
->> +          minItems: 2
->> +          maxItems: 2
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - maxim,max77759-fg
->> +    then:
->> +      properties:
->> +        reg:
->> +          items:
->> +            minItems: 1
-> If there is going to be resend, drop minItems.
->
-Will drop it in v4.
+this patch depends on patch 
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=953545
 
->> +            maxItems: 1
->> +        shunt-resistor-micro-ohms:
->> +          description: The value of current sense resistor in microohms.
-> Property should be defined top-level list of properties and in other
-> variant if:then: you disallow it if it is not applicable at all
-> (shunt-resistor-micro-ohms: false).
->
-Will change in v4.
-> Best regards,
-> Krzysztof
-> 
+Changes in v8:
+   - Whitespace in comment
+   
+Changes in v7:
+   - Use device_init_wakeup to enable wakeup
+   - Fix comments (Bjorn)
 
-Best regards,
-Thomas Antoine
+Changes in v6:
+   - Call device_wakeup_enable() to fix WAKE# wakeup.
+   Address comments from Manivanna:
+   - Fix/Add Comments
+   - Fix DT indents
+   - Remove dw_pcie_ep_linkup() in EP start link
+   - Add PCIE_T_PVPERL_MS delay in RC PERST# deassert
+   
+Changes in v5:
+   Address driver comments from Manivanna:
+   - Use dw_pcie_{suspend/resume}_noirq instead of private ones.
+   - Move dw_pcie_host_init() to probe
+   - Add stm32_remove_pcie_port cleanup function
+   - Use of_node_put in stm32_pcie_parse_port
+   - Remove wakeup-source property
+   - Use generic dev_pm_set_dedicated_wake_irq to support wake# irq
+   
+Changes in v4:
+   Address bindings comments Rob Herring
+   - Remove phy property form common yaml
+   - Remove phy-name property
+   - Move wake_gpio and reset_gpio to the host root port
+   
+Changes in v3:
+   Address comments from Manivanna, Rob and Bjorn:
+   - Move host wakeup helper to dwc core (Mani)
+   - Drop num-lanes=<1> from bindings (Rob)
+   - Fix PCI address of I/O region (Mani)
+   - Moved PHY to a RC rootport subsection (Bjorn, Mani)
+   - Replaced dma-limit quirk by dma-ranges property (Bjorn)
+   - Moved out perst assert/deassert from start/stop link (Mani)
+   - Drop link_up test optim (Mani)
+   - DT and comments rephrasing (Bjorn)
+   - Add dts entries now that the combophy entries has landed
+   - Drop delaying Configuration Requests
+
+Changes in v2:
+   - Fix st,stm32-pcie-common.yaml dt_binding_check	
+
+Changes in v1:
+   Address comments from Rob Herring and Bjorn Helgaas:
+   - Drop st,limit-mrrs and st,max-payload-size from this patchset
+   - Remove single reset and clocks binding names and misc yaml cleanups
+   - Split RC/EP common bindings to a separate schema file
+   - Use correct PCIE_T_PERST_CLK_US and PCIE_T_RRS_READY_MS defines
+   - Use .remove instead of .remove_new
+   - Fix bar reset sequence in EP driver
+   - Use cleanup blocks for error handling
+   - Cosmetic fixes
+
+Christian Bruel (9):
+  dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
+  PCI: stm32: Add PCIe host support for STM32MP25
+  dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
+  PCI: stm32: Add PCIe Endpoint support for STM32MP25
+  MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
+  arm64: dts: st: add PCIe pinctrl entries in stm32mp25-pinctrl.dtsi
+  arm64: dts: st: Add PCIe Rootcomplex mode on stm32mp251
+  arm64: dts: st: Add PCIe Endpoint mode on stm32mp251
+  arm64: dts: st: Enable PCIe on the stm32mp257f-ev1 board
+
+ .../bindings/pci/st,stm32-pcie-common.yaml    |  33 ++
+ .../bindings/pci/st,stm32-pcie-ep.yaml        |  67 +++
+ .../bindings/pci/st,stm32-pcie-host.yaml      | 112 +++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  20 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  57 +++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  21 +
+ drivers/pci/controller/dwc/Kconfig            |  24 +
+ drivers/pci/controller/dwc/Makefile           |   2 +
+ drivers/pci/controller/dwc/pcie-stm32-ep.c    | 417 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.c       | 370 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.h       |  16 +
+ 12 files changed, 1146 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
+
+-- 
+2.34.1
+
 
