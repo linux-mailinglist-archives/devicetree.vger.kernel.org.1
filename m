@@ -1,266 +1,399 @@
-Return-Path: <devicetree+bounces-169955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96F9A98CE0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:24:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7836BA98D23
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:31:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A6583A4CB8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:23:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D24B3A73C1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDEB27D782;
-	Wed, 23 Apr 2025 14:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946BB17A2FC;
+	Wed, 23 Apr 2025 14:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kP9i0Uk/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cojLxdhd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD87227CB3F
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 14:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1B0175BF;
+	Wed, 23 Apr 2025 14:31:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745418220; cv=none; b=TVLbeMVo4y+lFBLQAmqIhm/tdbRfAm3E0F+z0SCEeaaNWe3i1SdRaiXmwXjnVoHEtRjBX6Mm6e0HPo4/GBtvfMHJQ9XO3EkHITGCeHzTrp4t4F7/cfI9cWGckkzKXS2z64XRzZKkfJ3QKNxCsigzlYln6ILI+bKIhMZhVN02eyg=
+	t=1745418666; cv=none; b=gCbX6TYl7uefIPu6zo74tg7EsHR055m6Mq1Ht97OzgQkYmGH3mIYiZYSL/KzY9ebWv+K+/yOHHhBrth8OhfIcDxmvPSfPNvLtDxSB3RsMxdFY4lZh8ftVFyOMt6vxcVOd8KLxTcvJwDQIykLnb2t9WUVUlNBQm7Irah1MzQIyCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745418220; c=relaxed/simple;
-	bh=15yDFj579bgxhoboYMjaC3khwqKrVV8H5UjwCkBWqiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nFuLSKKmqHYUFm2IHQWu8GS2uTpv2/sCJGXofV3FG706rLZvSrFipA9SSiERmzQnDIp27n3ZHuTXFUjfkISc+t7y2r8it0Qb3OC/5p2Ix+BgPLfMjtkr+hyYG1bxwWkJ02YnldXjKBo3N4Wx97aK28/jfZW82PpI+tYO2h/L0aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kP9i0Uk/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAIN9f008439
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 14:23:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HN13lzHJhjhAHQ7DzaU3+eE3
-	OP7KRXOmcYjBHTkaM6o=; b=kP9i0Uk/AiiAAopNcloHUilfAZz8tMkN1knh3Y/Q
-	fZ5/GBH+8ruzKSyCyB6L5XaIIzCd26zcL/Y43QrzcF5pUaR3wTuCVdwQEC5Vocfk
-	BPV5l26tUD7xwuJuu8PeJ2YE2if6mIVUBzBpJw/S1SI7SrBMZPMs/rcv+OoNCWnQ
-	KI2u50KE9E2FrjAhEBmQHfRAuq59U5aRTjO5C6IPfGNkNypecf5+SZCVl3zXQWP4
-	wGYaMsLyMbhnTcOGnevgryvXO1zgJR47MOBRNZ3HRQBgrNgk3MUQY/GbRvrQBLIF
-	c8tkqCHNUBmwJt3RdDTfBElz6VvXNy623auGQgEsX7fv0A==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5adbj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 14:23:36 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5f3b8b1a1so909837685a.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:23:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745418215; x=1746023015;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HN13lzHJhjhAHQ7DzaU3+eE3OP7KRXOmcYjBHTkaM6o=;
-        b=LjLP+jUC4zOrESUUZdGY3AuXMeTuYj+Lej5BybFq3kyLp7Y5GZeokHUTevad9O334h
-         ljxkdeEZxm4GhQokRSeJv32pWhf7g4os89DYIwp/P1C0zaoe2OVYd3q2pTJtWQM+VQyL
-         GFisa7FZrwspgwzmKrCCRv+M/GGGZsWQu6zLMoF3kVCeHgAxUnGTUugk4K6hizVZ/vad
-         EPyxFzsA6DdBMt3kdj8lkunztNAf7bd3ECVkDaQWQo7iLW7EVMvYwhucwzObV3lkhl14
-         594NpSKqagyxDlGeHq+GuLolzqk6NB5NTfoM50UAz7KBaZw2U+516Kypms7bH88WgUBu
-         tPdw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwkOvrL1A2eTPzXHMIw7vblR4vkTI0glupFMHE+4QiKOXTstSD0kFxhW1HFBtTvZcAuvN2QUI+pNl6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP+2SXaQr9KyptkHBWwyKzv36oaQFqHMDG5TPaMvyQRRKMM+Kf
-	nf9HDGFF+sPCNSlOGjviF6EH/K029+x51am+8CTrsboZrgex5JCsXqrelvyBQFciU/8unZ9diKW
-	pvDP6kuLwlzWPNzEES3b+7L2c47jiJ0nVZUjnHqLxi1nprKGxm1zw6l/ZeUmv
-X-Gm-Gg: ASbGncv5dv/Xhs6R2oNT9rQjoh3VSp0pHBKmhaNpuJV+W8Qn4ht4I3tKNeMbaxO6tdc
-	AluKhzBnV6q8ijfFMoo0WYrLsKMTTOCuxBxvOd3C8ccxYWfAsih6QUC7ZsKhPbM1MmrDErPkXWl
-	dhEfBz6buDrqvNyVrX0Dj7c/z7WiWpYmLsTPXN+WSkeJcQ8Qg7Lkkn8DZR3740x0CfYUlSUrWcQ
-	zZioomc1znC8of8Xcj/JgnePkG1GoHqHJZwYvUM6S8gGsDkU1q2uc2ebmPZ7wPTfkVpYpGVGuqa
-	CWf8ug2HKWPZJThgvFpsQPp+1Sl37DkgTBPE4nsIVl9hL8Bq7siJmRPhEen5XJG7ICdxkfb9gHk
-	=
-X-Received: by 2002:a05:620a:3184:b0:7c5:65ab:5002 with SMTP id af79cd13be357-7c92805e97bmr3832036485a.49.1745418215627;
-        Wed, 23 Apr 2025 07:23:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHYCQwVaTtgeAr0Y2QsW4Y61GBBb5WaCrUzzlKbngnnQyJ88rtPHEhSHsXxrd8l2Zzdb7e3JQ==
-X-Received: by 2002:a05:620a:3184:b0:7c5:65ab:5002 with SMTP id af79cd13be357-7c92805e97bmr3832028585a.49.1745418214974;
-        Wed, 23 Apr 2025 07:23:34 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-310908639b5sm19424941fa.112.2025.04.23.07.23.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 07:23:34 -0700 (PDT)
-Date: Wed, 23 Apr 2025 17:23:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Mahadevan <quic_mahap@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: display/msm: add stream 1 pixel clock
- binding
-Message-ID: <2m5fq7whbvaq4sbbxittxhbksw6erfotlwalrfevujq4mrt3kk@ctbgwinz2o72>
-References: <20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com>
- <20241202-dp_mst_bindings-v1-3-9a9a43b0624a@quicinc.com>
- <edlw7grqy74rihy5jw5t2krcyfn24c6b2lfxht4b52wx6fvck6@pqeqrbnwtsf3>
- <0101602d-0434-47ea-8957-471c4ead100d@quicinc.com>
+	s=arc-20240116; t=1745418666; c=relaxed/simple;
+	bh=EMTcoPJ4KKHUhw77UcqSQH2voBPLlL3XUDnHizCg8zM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SNXk2nQIynHOf05zukTGgxN2rXooLh1qQCKMVYkSXqRSGLBGKOK8tRx5LGMJCsuw37bjnnQUkqbEWIlxZ++Rigvu+r3pLpKTXDQiCk5bBeA/9VApkqIEpXtlmAwcL1lLGOjoG36pljB8IO8chEMK7I3Kf2P7agHL9WpbCBXtD2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cojLxdhd; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53NEUhR82211100
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 23 Apr 2025 09:30:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745418643;
+	bh=kzvI+64xp0+YpNCHVAKkt1Zg5G/MQq9Y8KtAURYCRQc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=cojLxdhdniu8xIUpZYOYDEhywZtPOUGBUTAJwK3NlMnNU92vpFt24WNS2IRnQ87U1
+	 ljPP0pRExkYMFLtHcURMjionfSg8jMgBc7NIzDzvCKbNYzk+ftqtZPiJqkxj/TqoYO
+	 x6k/Wr4OOxvlPOToqQDF9tGe182Vfkwj9ZHeVbi8=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53NEUhSs031792
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 23 Apr 2025 09:30:43 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
+ Apr 2025 09:30:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 23 Apr 2025 09:30:42 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53NEUffe124428;
+	Wed, 23 Apr 2025 09:30:42 -0500
+Message-ID: <a96e184b-f245-4de2-b84a-a4b4380db2ce@ti.com>
+Date: Wed, 23 Apr 2025 09:30:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0101602d-0434-47ea-8957-471c4ead100d@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDEwMSBTYWx0ZWRfXwxDwCzUQWyyd uGKO5aQ8hyrZfL9w7Nq6gIbU5IFifWLVxOvb1dhZC9Tzg+GDxnu6VJl2ZIDMfXz/z999BaVFvHe LyumJe9uLmDhuFVgP9/LVIm+zaEO/zWiSFxYFdnqa1BbWveJMekj790KK6sxvQkQXa4lRo1RWw4
- n4Y0rLnTvbb1vWs+7yh9wCckrW1psikdOmmS0b8aG0eVQo6O+4NiU3jrGmL3V1NJ08Ty2GAu2kn c6uOBZf0cAju9PKjsTBQx+fLktv0aeyk4xB0bcMyGbnDuKBXkRTPXJBgHjIG7NWnDOhhzpCB+Zz TCnyhO5xkmEWpWGQ9cyF6yOWhm3GIhwL3XHPgLTWRkC1FDVT1ZG47GBJ9GTKXMZVoTFDG4/owzv
- 6CH9AYM0IcpzB08DULvt6yXxxVDdvvSi68/ZEX+akLEZhEkkXBoNCfHC8g7CCJvuE9yH8cru
-X-Proofpoint-GUID: cyqMt2sm5pyLdzQjS_x9g44D9KmlOxby
-X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=6808f7e8 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=yirWvuRTZ6qJcAQw2TYA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: cyqMt2sm5pyLdzQjS_x9g44D9KmlOxby
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-23_08,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230101
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>
+CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Siddharth
+ Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
+ <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
+ <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+ <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
+ <mocfnpebc67xegcis6tx3ekhsjcsqnvhwtipufycrtq2be4nbh@pmxhir5gmkos>
+ <639b4e3a-3f68-4fba-aa33-c46dcb6fc88f@linaro.org>
+ <d6252b73-0bcc-4724-8144-d6a98c8980f8@ti.com>
+ <74ee6d9b-fd78-4d8a-a94f-b2c4dc794b60@linaro.org>
+ <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
+ <f9a2247e-e0eb-4e22-8626-80e87afa9386@linaro.org>
+ <qjwlppsq4eorzepvjsgjjyyaddouo5w2rjguu5c2mqesd6luwp@f426xeghy2ht>
+ <2130b439-74d0-475d-8429-1a1b4d9738aa@linaro.org>
+ <b7f6570f-3b80-4fc1-8201-d44f5692867f@ti.com>
+ <07bf9f93-deb8-48a1-aae9-a8a053680cc9@linaro.org>
+ <6241ff00-27e6-45ab-808e-f04e39854753@ti.com>
+ <ac0ae8cd-451b-49dd-840e-5fc0cce1605d@linaro.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <ac0ae8cd-451b-49dd-840e-5fc0cce1605d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Apr 22, 2025 at 07:46:57PM -0700, Abhinav Kumar wrote:
+On 4/23/25 7:07 AM, Krzysztof Kozlowski wrote:
+> On 21/04/2025 19:03, Andrew Davis wrote:
+>> On 4/15/25 12:17 AM, Krzysztof Kozlowski wrote:
+>>> On 09/04/2025 19:39, Andrew Davis wrote:
+>>>> On 2/12/25 1:35 PM, Krzysztof Kozlowski wrote:
+>>>>> On 10/02/2025 11:35, Markus Schneider-Pargmann wrote:
+>>>>>> On Sun, Feb 09, 2025 at 01:21:27PM +0100, Krzysztof Kozlowski wrote:
+>>>>>>> On 07/02/2025 15:40, Markus Schneider-Pargmann wrote:
+>>>>>>>> Hi Krzysztof,
+>>>>>>>>
+>>>>>>>> On Mon, Jan 27, 2025 at 01:09:49PM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>>> On 24/01/2025 23:35, Andrew Davis wrote:
+>>>>>>>>>> On 1/24/25 10:48 AM, Krzysztof Kozlowski wrote:
+>>>>>>>>>>> On 24/01/2025 17:05, Markus Schneider-Pargmann wrote:
+>>>>>>>>>>>> Hi Krzysztof,
+>>>>>>>>>>>>
+>>>>>>>>>>>> On Fri, Jan 24, 2025 at 09:22:54AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>>> On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>>>> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
+>>>>>>>>>>>>>>> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
+>>>>>>>>>>>>>>> register in the wkup-conf register space of am62a and am62p. This
+>>>>>>>>>>>>>>> register controls DDR power management.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>>      Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>>>>>>>>>>>>>>>      1 file changed, 2 insertions(+)
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Un-acked, I missed the point that you really speak in commit msg about
+>>>>>>>>>>>>> register and you really treat one register is a device. I assumed you
+>>>>>>>>>>>>> only need that register from this device, but no. That obviously is not
+>>>>>>>>>>>>> what this device is. Device is not a single register among 10000 others.
+>>>>>>>>>>>>> IOW, You do not have 10000 devices there.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Do I understand you correctly that the whole register range of the
+>>>>>>>>>>>> wkup_conf node as seen in arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+>>>>>>>>>>>> should be considered a single syscon device?
+>>>>>>>>>>>
+>>>>>>>>>>> I don't have the datasheets (and not my task to actually check this),
+>>>>>>>>>>> but you should probably follow datasheet. I assume it describes what is
+>>>>>>>>>>> the device, more or less.
+>>>>>>>>>>>
+>>>>>>>>>>> I assume entire wkup_conf is considered a device.
+>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Unfortunately wkup_conf is modeled as a simple-bus with currently 5
+>>>>>>>>>>>> subnodes defined of which 4 of them consist of a single register. Most
+>>>>>>>>>>>> of them are syscon as well. So I think I can't change the simple-bus
+>>>>>>>>>>>> back to syscon.
+>>>>>>>>>>>
+>>>>>>>>>>> Huh... Maybe TI folks will help us understand why such design was chosen.
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Many of the devices inside the wkup_conf are already modeled as such.
+>>>>>>>>>> Clocks and muxes for instance already have drivers and bindings, this
+>>>>>>>>>> is nothing new to TI.
+>>>>>>>>>>
+>>>>>>>>>> If we just use a blank "syscon" over the entire region we would end up
+>>>>>>>>>> with drivers that use phandles to the top level wkup_conf node and
+>>>>>>>>>> poke directly the registers they need from that space.
+>>>>>>>>>>
+>>>>>>>>>> Would you rather have
+>>>>>>>>>>
+>>>>>>>>>> some-device {
+>>>>>>>>>> 	ti,epwm_tbclk = <&wkup_conf>;
+>>>>>>>>>> }
+>>>>>>>>>>
+>>>>>>>>>> or
+>>>>>>>>>>
+>>>>>>>>>> some-device {
+>>>>>>>>>> 	clocks = <&epwm_tbclk 0>;
+>>>>>>>>>> }
+>>>>>>>>>
+>>>>>>>>> How is this comparable? These are clocks. You would have clocks property
+>>>>>>>>> in both cases.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> with that epwm_tbclk being a proper clock node inside wkup_conf?
+>>>>>>>>>> I would much prefer the second, even though the clock node
+>>>>>>>>>> only uses a single register. And in the first case, we would need
+>>>>>>>>>> to have the offset into the wkup_conf space hard-coded in the
+>>>>>>>>>> driver for each new SoC. Eventually all that data would need to be
+>>>>>>>>>> put in tables and we end up back to machine board files..
+>>>>>>>>>>
+>>>>>>>>>> I'm not saying every magic number in all drivers should
+>>>>>>>>>> be offloaded into DT, but there is a line somewhere between
+>>>>>>>>>> that and having the DT simply contain the SoC's name compatible
+>>>>>>>>>
+>>>>>>>>> That's not the question here.
+>>>>>>>>>
+>>>>>>>>>> and all other data going into the kernel. That line might be a
+>>>>>>>>>> personal preference, so my question back is: what is wrong
+>>>>>>>>>> if we do want "1000 new syscons per each register" for our
+>>>>>>>>>> SoCs DT?
+>>>>>>>>>
+>>>>>>>>> Because it is false representation of hardware. You do not have 1000
+>>>>>>>>> devices. You have only one device.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> (and the number is not 1000, scanning the kernel I can see
+>>>>>>>>>> the largest wkup_conf region node we have today has a grand
+>>>>>>>>>> total number sub-nodes of 6)
+>>>>>>>>>
+>>>>>>>>> But what is being added here is device per each register, not per feature.
+>>>>>>>>
+>>>>>>>> The register layout is like this:
+>>>>>>>
+>>>>>>> The register layout of what? How is the device called? Is datasheet
+>>>>>>> available anywhere?
+>>>>>>
+>>>>>> Yes, it is available here: https://www.ti.com/de/lit/pdf/spruj16
+>>>>>>
+>>>>>> 14 Registers
+>>>>>> 14.2 Device Configuration Registers
+>>>>>> 14.2.1 CTRL_MMR Registers
+>>>>>> 14.2.1.1 General Purpose Control Registers
+>>>>>> 14.2.1.1.3 WKUP_CTRL_MMR0 Registers
+>>>>>>
+>>>>>> Each domain has their own set of general purpose control registers,
+>>>>>> CTRL_MMR for the main domain, MCU_CTRL_MMR0 for the MCU domain,
+>>>>>> WKUP_CTRL_MMR0 for the wakeup domain.
+>>>>>
+>>>>>
+>>>>> So according to the doc you have only one device - CTRL_MMR. All other
+>>>>> splits are superficial.
+>>>>>
+>>>>
+>>>> It is not one device, it is a collection of devices under one labeled
+>>>> bus range. Some items here are full normal devices, already modeled by DT
+>>>> as stand-alone devices, for instance our chipid, efuse, clock controller,
+>>>> etc. even our pinmux is part of this bus range.
+>>>>
+>>>> They are grouped as we have one set for each domain (MAIN, WKUP, MCU).
+>>>>
+>>>> All other splits are not superficial, if we go down that path then
+>>>> the whole SoC is one "device". We could simply have the whole address
+>>>> bus be one node and have Linux hard-code offsets in the drivers, we
+>>>> end up back at board files..
+>>>>
+>>>> DT should break things into logically distinct and reusable units
+>>>> so we don't have to store that in the kernel. That is what we do
+>>>> here, even if some units end up being very small.
+>>>>
+>>>>>>
+>>>>>> So I understand this to just be a collection of general purpose control
+>>>>>> registers. If you go by feature, then many of the registers can be
+>>>>>> grouped into units with a specific purpose or controlling a specific
+>>>>>> device which are also grouped by the offsets they represent. I assume
+>>>>>
+>>>>> It could work if you have distinctive groups, but here:
+>>>>> 1. You do not have this grouped, you just judge by yourself "oh, that's
+>>>>> group A, that's B".
+>>>>> 2. Group per one register is not that.
+>>>>>
+>>>>> For me this is one big block and even CLKSEL is spread all over so
+>>>>> cannot be really made distinctive.
+>>>>>
+>>>>>> this is why the other nodes in this wkup_conf node were created. Also in
+>>>>>
+>>>>> The other nodes represent some sort of fake or totally arbitrary
+>>>>> grouping. That's abuse of the syscon.
+>>>>>
+>>>>
+>>>> They are grouped by function.
+>>>
+>>> Not really - other DTS sent just few days ago created each entry per one
+>>> register.
+>>>
+>>>>
+>>>>>> my opinion this makes the relation between the original device and this
+>>>>>> general purpose control registers better understandable.
+>>>>>>
+>>>>>> For this patch the ddr-pmctrl regsiter is just a single register, but it
+>>>>>> has the purpose of controlling the DDR device power management.
+>>>>>
+>>>>> Sure, but that is NOT syscon. One register of entire block is not system
+>>>>> controller. The entire block is system controller.
+>>>>>
+>>>>
+>>>> The whole block cannot be a system controller as there are regular
+>>>> devices inside this range. If we made the whole region a syscon and
+>>>
+>>> That's still system controller. It's nothing special here.
+>>>
+>>>> also left the device nodes inside, then we would have overlapping
+>>>> register owners, one register would be controlled by two or more
+>>>
+>>> No, owner is the parent device always.
+>>
+>> Which parent device? That is my point, if the top level node for the
+>> whole CTRL_MMR region is made into one big syscon, then a big regmap
+>> is made that covers the whole region. All the child devices also make
+> 
+> Children take the parent regmap or you do not have even the children.
+
+The parent is a "simple-bus", there is no parent regmap. And before
+you say make the parent a "syscon", I've explained why we cannot do
+that.
+
+> Actually the second point is what we talk here: you created fake devices
+> per each register and these are supposed to be squashed into the parent.
+> I am repeating this 3rd time or more.
 > 
 > 
-> On 12/3/2024 5:43 AM, Dmitry Baryshkov wrote:
-> > On Mon, Dec 02, 2024 at 07:31:41PM -0800, Abhinav Kumar wrote:
-> > > On some chipsets the display port controller can support more
-> > > than one pixel stream (multi-stream transport). To support MST
-> > > on such chipsets, add the binding for stream 1 pixel clock for
-> > > display port controller. Since this mode is not supported on all
-> > > chipsets, add exception rules and min/max items to clearly mark
-> > > which chipsets support only SST mode (single stream) and which ones
-> > > support MST.
-> > > 
-> > > Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> > > ---
-> > >   .../bindings/display/msm/dp-controller.yaml        | 32 ++++++++++++++++++++++
-> > >   .../bindings/display/msm/qcom,sa8775p-mdss.yaml    |  9 ++++--
-> > >   2 files changed, 38 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> > > index 9fe2bf0484d8..650d19e58277 100644
-> > > --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> > > @@ -50,30 +50,38 @@ properties:
-> > >       maxItems: 1
-> > >     clocks:
-> > > +    minItems: 5
-> > >       items:
-> > >         - description: AHB clock to enable register access
-> > >         - description: Display Port AUX clock
-> > >         - description: Display Port Link clock
-> > >         - description: Link interface clock between DP and PHY
-> > >         - description: Display Port stream 0 Pixel clock
-> > > +      - description: Display Port stream 1 Pixel clock
-> > >     clock-names:
-> > > +    minItems: 5
-> > >       items:
-> > >         - const: core_iface
-> > >         - const: core_aux
-> > >         - const: ctrl_link
-> > >         - const: ctrl_link_iface
-> > >         - const: stream_pixel
-> > > +      - const: stream_1_pixel
-> > >     assigned-clocks:
-> > > +    minItems: 2
-> > >       items:
-> > >         - description: link clock source
-> > >         - description: stream 0 pixel clock source
-> > > +      - description: stream 1 pixel clock source
-> > >     assigned-clock-parents:
-> > > +    minItems: 2
-> > >       items:
-> > >         - description: Link clock PLL output provided by PHY block
-> > >         - description: Stream 0 pixel clock PLL output provided by PHY block
-> > > +      - description: Stream 1 pixel clock PLL output provided by PHY block
-> > >     phys:
-> > >       maxItems: 1
-> > > @@ -175,6 +183,30 @@ allOf:
-> > >         required:
-> > >           - "#sound-dai-cells"
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - qcom,sa8775p-dp
-> > 
-> > Why do you need an extra platform conditional?
-> > 
+>> regmaps covering their device range. Now these registers under the child
+>> device belong to two different regmaps. No synchronization is done as
+>> these are not the same regmap, regmap only handles this for multiple
+>> access to registers within the same regmap.
+>>
+>> Let's take a real example, here is part of AM62A CTRL_MMR node.
+>>
+>> main_conf: bus@100000 {
+>> 	compatible = "simple-bus";
+>> 	#address-cells = <1>;
+>> 	#size-cells = <1>;
+>> 	ranges = <0x00 0x00 0x00100000 0x20000>;
+>>
+>> 	phy_gmii_sel: phy@4044 {
+>> 		compatible = "ti,am654-phy-gmii-sel";
+>> 		reg = <0x4044 0x8>;
+>> 		#phy-cells = <1>;
+>> 	};
+>>
+>> 	...
+>> };
+>>
+>> If we turn "main_conf" into a syscon, then who "owns" 0x4044?
+>> Both the top level syscon and phy_gmii_sel nodes would build
+>> a different regmap instance that contains those same registers.
 > 
-> I expect this list to grow and also there can be chipsets which support 4
-> streams as well, so an extra platform conditional was needed.
-
-Ack
-
-> 
-> > > +
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          maxItems: 6
-> > > +        clock-names:
-> > > +          items:
-> > > +            - const: core_iface
-> > > +            - const: core_aux
-> > > +            - const: ctrl_link
-> > > +            - const: ctrl_link_iface
-> > > +            - const: stream_pixel
-> > > +            - const: stream_1_pixel
-
-You don't need to ducplicate the list. Just specify min/maxItems.
-
-> > > +        assigned-clocks:
-> > > +          maxItems: 3
-> > > +        assigned-clock-parents:
-> > > +          maxItems: 3
-> > > +
-> > >   additionalProperties: false
-> > >   examples:
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> > > index 58f8a01f29c7..7f10e6ad8f63 100644
-> > > --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> > > @@ -177,16 +177,19 @@ examples:
-> > >                        <&dispcc_dptx0_aux_clk>,
-> > >                        <&dispcc_dptx0_link_clk>,
-> > >                        <&dispcc_dptx0_link_intf_clk>,
-> > > -                     <&dispcc_dptx0_pixel0_clk>;
-> > > +                     <&dispcc_dptx0_pixel0_clk>,
-> > > +                     <&dispcc_dptx0_pixel1_clk>;
-> > >               clock-names = "core_iface",
-> > >                             "core_aux",
-> > >                             "ctrl_link",
-> > >                             "ctrl_link_iface",
-> > > -                          "stream_pixel";
-> > > +                          "stream_pixel",
-> > > +                          "stream_1_pixel";
-> > >               assigned-clocks = <&dispcc_mdss_dptx0_link_clk_src>,
-> > > +                              <&dispcc_mdss_dptx0_pixel1_clk_src>,
-> > >                                 <&dispcc_mdss_dptx0_pixel0_clk_src>;
-> > > -            assigned-clock-parents = <&mdss0_edp_phy 0>, <&mdss0_edp_phy 1>;
-> > > +            assigned-clock-parents = <&mdss0_edp_phy 0>, <&mdss0_edp_phy 1>, <&mdss0_edp_phy 1>;
-> > >               phys = <&mdss0_edp_phy>;
-> > >               phy-names = "dp";
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
+> Two registers is hardly a separate device.
 > 
 
--- 
-With best wishes
-Dmitry
+Sure it is, plenty of devices have only a couple registers. There
+are already examples all over from all kinds of devices, clocks,
+muxes, GPIO extenders, ADCs, DACs, etc. that are real and separate
+devices that function perfectly fine while only having one or two
+programmable registers.
+
+>>
+>> Bit of back story, this is actually how I got involved in sorting
+>> out this "syscon" stuff for our devices. I built a checker into
+>> the regmap framework core that would detect when multiple regmaps
+>> are created that contain overlapping registers.
+>>
+>> I found several bugs this way and want to push the check upstream at
+>> some point. But first I wanted to fix the biggest cause of warnings,
+>> which was from syscon being used as described above.
+>>
+>>>
+>>>> drivers. How would we synchronize mappings, access, updates, etc.
+>>>> Any one register should belong to exactly one device.
+>>>
+>>> regmap synchronizes everything. There is no problem here, at all.
+>>>
+>>>>
+>>>> Is your issue the name "system controller", as yes I agree some of
+>>>> these regions are not "system controllers".
+>>>>
+>>>> Would it work better if we didn't call this "ti,am62-ddr-pmctrl"
+>>>> node a "syscon"? That can be done, we just would add a normal
+>>>> binding doc for it, instead of trying to reuse the generic
+>>>> bindings/mfd/syscon.yaml file.
+>>>
+>>> You still do not have multiple subnodes, one per each register or even
+>>> few registers.
+>>
+>> If this ddr-pmctrl device is not modeled as a syscon device, then who
+>> says it has to be more than a few (3?) registers in size? This seems like
+>> a rather arbitrary rule, and completely unfeasible for several whole
+>> classes of devices that only have/need a few registers to work them.
+> 
+> What does the syscon description say? Collection of registers, a set of
+> miscellaneous registers. Registers in plural. Do not use syscon for
+> other purposes.
+> 
+> It is not arbitrary. It is written in binding description.
+> 
+
+Re-read the first sentence: "If this ddr-pmctrl device is *not* modeled
+as a syscon device". My comment is that ddr-pmctrl is not a syscon,
+and so if we don't include any claim it is a "syscon" in the binding,
+why do we have to follow the rules in the unrelated syscon binding
+description.
+
+Andrew
+
+> Best regards,
+> Krzysztof
 
