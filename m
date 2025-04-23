@@ -1,91 +1,124 @@
-Return-Path: <devicetree+bounces-169653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F73A97C77
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 03:50:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC97A97C96
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 04:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAB451B617F9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 01:50:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8A007AC0F2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 02:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B692641F8;
-	Wed, 23 Apr 2025 01:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF29B26389D;
+	Wed, 23 Apr 2025 02:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gw2Xi4CO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DE9OgOV2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B1D2566DF;
-	Wed, 23 Apr 2025 01:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCCA10F9;
+	Wed, 23 Apr 2025 02:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745372896; cv=none; b=Oz1nP4S7Vb63zXNMJnZqtc65saFjYtjyr+G5veRe7yM2pv6H/V3rfVb8kv55XfP0XP/+WL1z8/0UQhA6ECh7BwIPLHKaOJZRARMxXhhYzhBqlgzHtTAPTXnspuFaDdGxl0tzB+lLIRld2m/L5eyxq0jV2Z0ItqddP8brVv5bh0k=
+	t=1745374168; cv=none; b=uWdilxkEtxVrsUSfMbUOtfSCSE0Gzw5ffPeSVLyDvXdTdaal5VPqiyLRRWPh9u4btoi4n/Tle34ZzvLTrwae3IboBl1vHy+bIZ/9Til28b90EIYdDQjHEWY4QFsgExxYo3rjE7vp039Jzhf7BKPJuCW33Y57apujPJ6wVQQfNWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745372896; c=relaxed/simple;
-	bh=b2Ty2Y4IHTlG+wCuGIQJJ+LjqBQxitk5tYKjHEox70M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o+TM2wiHM2KLyb+3zmhZqX4b4GHWp2wz5Q5+VeT3CFrtlf/Zt5Eb2m35p0Kv3AWGUwj7IVkrDj2lc16IbRY3WcS2AvCityKLuJ4nmh7TOx9Im32X6LkBrC7x2Wc9VbDYINtctaoPKUIst3Bs0VdjZOOpFjh/o9tZ6YpkDY7EJrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gw2Xi4CO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6879DC4CEE9;
-	Wed, 23 Apr 2025 01:48:14 +0000 (UTC)
+	s=arc-20240116; t=1745374168; c=relaxed/simple;
+	bh=UBnQaCV//yg967A/9uE6enHkyJdNZjfOvSrMoDjBkno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ItkCA9z04Y9+ON/xgBbx2a7VQOJsnNJXuL0CQ5sT/z+zJtQWPkdZF5xbJZO45WBoSDQL9DNnOMaNm+dMQO25qFLfDSodjgPFLHGSCSp88/yartzy3ssovGufA6oaY/Zu/l4kxKGHPDphsIyMoN330Wvr+GCsmfh6zCAHpKTlrpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DE9OgOV2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C9CEC4CEE9;
+	Wed, 23 Apr 2025 02:09:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745372895;
-	bh=b2Ty2Y4IHTlG+wCuGIQJJ+LjqBQxitk5tYKjHEox70M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Gw2Xi4CODtGpUsSD2n7vzegKZNAZrX7v7cP5MoWILH/deNzm1Mc6zYYPZyjAgzEUP
-	 b5RHT7XkZw9rcxU1kAdZouBfsUPF/Ea6MAS1C68foXvQn9KlVl1IUKD/p+MG0GKTiM
-	 e7OhHfTpWbI2gj2556A0HiCdv0k1eWyDTlWcfRaeLCq1PCYJo5Qt8Npe4cXlvMXjQI
-	 VGQ2xKKQRHKx628jjrIuDHLjjb4OtLDEEonf3W43a6W0ZNI6itZhkhcbkxzEAMvFtR
-	 +xBrfrLCLoDih5+yyQ3T9OaZ0DOQcb76WYojV5Dr/7OoVmG/CXNhQCNblxrZvQCD9f
-	 syV4wS6dwAtzw==
-Date: Tue, 22 Apr 2025 18:48:13 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, "Russell
- King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>,
- netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Biju Das
- <biju.das.jz@bp.renesas.com>, Fabrizio Castro
- <fabrizio.castro.jz@renesas.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v8 4/4] MAINTAINERS: Add entry for Renesas
- RZ/V2H(P) DWMAC GBETH glue layer driver
-Message-ID: <20250422184813.02b21095@kernel.org>
-In-Reply-To: <20250417084015.74154-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250417084015.74154-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-	<20250417084015.74154-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=k20201202; t=1745374168;
+	bh=UBnQaCV//yg967A/9uE6enHkyJdNZjfOvSrMoDjBkno=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DE9OgOV2eH5NQkUpwEWGdMYVvqx9xfqi5Tr9Cto2AOon+pq7t8VfrjgaEUj5h20fN
+	 pU994/5jvQPCjlSAtcJoZGsIbKVAYuyXFCICHw/IP/5kTcGKyLU5KT+VPQxQItjldu
+	 3V6CYLu4UlnrnwipwWqa5sMXn56CkC/EJVi6l9ooKcFhfNHklhRdecAsk09NhaxvIV
+	 xHPTuocr//cyraIB41TPTiSEIzOclWdv8CP7CsfZIIObReiz2U7/4hKTvJIK1/0Lak
+	 sATF5jD5wimhvyFxuEnvovG0YFsjUwBk8UOrLft0UtPJdCWw8yoQg8uT/2OyqTchoJ
+	 PtjmR1Uqqabyg==
+Date: Tue, 22 Apr 2025 21:09:25 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: qcom: msm8974-oneplus-bacon: Add alias for
+ mmc0
+Message-ID: <uiocx75uir23fiaaun2etbafqwmstez4teoi566m35bdk4mui4@gjid3e5rbm7i>
+References: <20250419-msm8974-mmc-alias-v1-0-82aa131224b6@lucaweiss.eu>
+ <20250419-msm8974-mmc-alias-v1-1-82aa131224b6@lucaweiss.eu>
+ <k7dm2tpw3mg34fydyug3rjnkwgfu2lwwzddd4edmano6jsgoiv@6klzba5rjpdy>
+ <ea7ac010-3b9d-4915-9a19-cb5ebb77c764@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ea7ac010-3b9d-4915-9a19-cb5ebb77c764@lucaweiss.eu>
 
-On Thu, 17 Apr 2025 09:40:15 +0100 Prabhakar wrote:
-> +RENESAS RZ/V2H(P) DWMAC GBETH GLUE LAYER DRIVER
-> +M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +L:	netdev@vger.kernel.org
-> +L:	linux-renesas-soc@vger.kernel.org
-> +S:	Supported
+On Sun, Apr 20, 2025 at 07:14:12PM +0200, Luca Weiss wrote:
+> Hi Bjorn,
+> 
+> On 20-04-2025 7:05 p.m., Bjorn Andersson wrote:
+> > On Sat, Apr 19, 2025 at 11:03:57AM +0200, Luca Weiss wrote:
+> > > Add an alias for the internal storage so it always becomes mmcblk0.
+> > > 
+> > 
+> > https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+> > calls for a problem description to start your commit message. Sometimes
+> > the problem is obvious, but here &sdhc_2 is disable on this board, so
+> > when does this not become mmcblk0? What is the problem you're solving?
+> 
+> I have really seen internal storage become mmcblk1 on one of these devices
+> with no SD card. I can't recall which one anymore, but this was the main
+> idea why I wrote these patches. Maybe it's something to do with the mmc wifi
+> on some of the boards?
+> 
+> But I think it's not a bad idea to make this explicit for all, and align the
+> boards with each other.
+> 
 
-I'm going to make this Maintained when applying, please see:
-https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#supported-status-for-drivers
+Thanks for clarifying. I have no concrete objections to the patch, but
+from the commit message it's not clear if this patch solves a problem or
+not. So, please incorporate your motivation in the commit message.
 
-> +F:	Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
-> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+Thanks,
+Bjorn
+
+> Regards
+> Luca
+> 
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> > > Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> > > ---
+> > >   arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts | 1 +
+> > >   1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
+> > > index 4c8edadea0ac63db668dbd666fbb8d92e23232b7..88ff6535477bffefe475cc5fe927b3cc5d223084 100644
+> > > --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
+> > > +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
+> > > @@ -13,6 +13,7 @@ / {
+> > >   	qcom,board-id = <8 0>;
+> > >   	aliases {
+> > > +		mmc0 = &sdhc_1;
+> > >   		serial0 = &blsp1_uart2;
+> > >   	};
+> > > 
+> > > -- 
+> > > 2.49.0
+> > > 
+> 
 
