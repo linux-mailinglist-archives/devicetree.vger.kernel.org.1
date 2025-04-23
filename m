@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-169848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5004EA98681
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:53:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BF1A98695
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:55:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7DC442BB5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:53:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 798E61688A9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC08264A6D;
-	Wed, 23 Apr 2025 09:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705A92566DF;
+	Wed, 23 Apr 2025 09:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="RdqjBWFr"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="KsqFhg/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75BD224418F;
-	Wed, 23 Apr 2025 09:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5081A83E2;
+	Wed, 23 Apr 2025 09:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745402004; cv=none; b=YtMqpllobOX7I10mMMl997EB0yoMf9MDWpooRnpiGhoq0dE4PJvjFrTyPJuF6ByhoFkiTXGnIOYLZBtcbJxgrhyjFXrw0V4HinilR9QeyccfGXDYlp3Dc/eRUFxN/99bs00HE09seRCyjqIk46AZ1xUEWmM0r1VYqj28WgXUelk=
+	t=1745402152; cv=none; b=rKNkzoEH4qqBYkYr/6hFdo5yxz0HE7dK7ynSEdvTXUw2W4JuJfx25z/4GvhRiVjxXDOZTATfqUYv6x815M8HqhbML7vQivmCHcg7PO/uSpjaNRfvOobZsy3b2GvCc/RNMfzgBf6nKg1gGbxMR+FoKy6CViidZRrL1xkMMdeDf2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745402004; c=relaxed/simple;
-	bh=jgL8SjluoXcb7rpR17d/Vj7uvT2ixl1tLefLrdmLscI=;
+	s=arc-20240116; t=1745402152; c=relaxed/simple;
+	bh=IX355T5bF+gY8hYv3hsDrYQj7EXvm48oDjcOSaLE15Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SEKS+MxIOchJ0ycxQraRjDQZffHz7wAfi+yHZ4fHkPG6M0CytrbLLbxlz/yGzoxMu8OPr8A1czjQaA0pUt5YxHFKv8zmbJNsPgnI4dpJkIxFrjEP++VxVgNYr1fzu2TZGbAgL10ooymhRtwxIpEhbMuj0ypbum9OfQE8g0Qselg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=RdqjBWFr; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0D00A1FBB2;
-	Wed, 23 Apr 2025 11:53:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745401994;
-	bh=xvcoD3y8NoexvOIek6+LRfEIrItF4nd0tICSSnTeRa8=; h=From:To:Subject;
-	b=RdqjBWFrjmAuSZbTg6HbYJ+YfXO46LD0pH6r1s+tXcT4RCH0E5DT/Udc3GeUOyXy8
-	 c6hGcrzbdkDQRf9OUz9vrot+FrXvm7HWbbwASJXJAWvbfVZ20kqytS8tSUhRh8DtZi
-	 VdnypqPWvz7kRT/cbaiuGQzWsbafWnBnp68KlGU6Yo6KNvjonYHCTHk5LhMGZYLjJL
-	 g0vDcCMXfn4f//5jOXo1iG+DW8DSRmFn7HbufrogjdMPh8NnI82pCY5nbmKPqmWeSy
-	 MlscygbG3PyIXk0rgkX5HamwQX22CmeaaKsE2iwdY0w14Z5Rj1RLvy3lHOtVfuznX7
-	 /K8EcHSOJyq5w==
-Date: Wed, 23 Apr 2025 11:53:09 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=n8jozom497YxQZl5khUzep6O/Oi4Sg1FSmpX2gQZ/A2bRRZ9ChvI1gYEtqiNAKFGj5OsZClbtV9IBIwWb2qIyLhwJ97Fbco09rP8lhSCJAM18Lt5o8rzAEB+v+1UJPLKCVY9Ec7NzWtONDNX5bXrJI9Z1GUAsU+OGwxM9WHAdnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=KsqFhg/1; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=NlhH8WEkZpuN13W3VEIII6VHYDH2gaUlvN68bRqY43U=;
+	b=KsqFhg/1z+Wlpt1mkRvAVzxScxkUwbLEiLR9Mk8dymJf9frcxhtvyZt/0v4j2A
+	rxsY5FsARt9RdCppDIP17UtGdGdeP/7TBjeVhNwe9g2M0vfpFz1eUQP53x7GIA6h
+	nZ2+m9/K2vEpM7qVZMrln+BW3tAVNdJ4h8yDFfsCg3GdY=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCHItjtuAhoHeXSAw--.33364S3;
+	Wed, 23 Apr 2025 17:54:55 +0800 (CST)
+Date: Wed, 23 Apr 2025 17:54:53 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Philippe Schenker <philippe.schenker@impulsing.ch>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
- usdhc2
-Message-ID: <20250423095309.GA93156@francesco-nb>
-References: <20250422140200.819405-1-Wojciech.Dubowik@mt.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 5/7] ARM: dts: ls1021a-tqmals1021a: Add overlay for
+ CDTech FC21 RGB display
+Message-ID: <aAi47dGoKbHqEo7Q@dragon>
+References: <20250408093059.551700-1-alexander.stein@ew.tq-group.com>
+ <20250408093059.551700-6-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,31 +62,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250422140200.819405-1-Wojciech.Dubowik@mt.com>
+In-Reply-To: <20250408093059.551700-6-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:Ms8vCgCHItjtuAhoHeXSAw--.33364S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGw1DWr1rWF17Jr4fCF13XFb_yoW5Zw1xpr
+	nrAayDCr4UGF4UXr18GFs8Kr1DK3yFg3W3ZFyYyFWjqrsruw17JFZ8KFnxWry3ZrW5Gw15
+	XasY9ayFgFnxJaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jO8nOUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNA+F6mgIuO8d-AAA3C
 
-On Tue, Apr 22, 2025 at 04:01:57PM +0200, Wojciech Dubowik wrote:
-> Define vqmmc regulator-gpio for usdhc2 with vin-supply
-> coming from LDO5.
+On Tue, Apr 08, 2025 at 11:30:52AM +0200, Alexander Stein wrote:
+> This adds an overlay for the supported RGB display CDTech FC21.
+> DCU graphics chain is configured accordingly.
 > 
-> Without this definition LDO5 will be powered down, disabling
-> SD card after bootup. This has been introduced in commit
-> f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm/boot/dts/nxp/ls/Makefile             |  2 +
+>  ...-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso | 56 +++++++++++++++++++
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
 > 
-> Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
+> diff --git a/arch/arm/boot/dts/nxp/ls/Makefile b/arch/arm/boot/dts/nxp/ls/Makefile
+> index 7f96de6f80224..7b97b718ebc16 100644
+> --- a/arch/arm/boot/dts/nxp/ls/Makefile
+> +++ b/arch/arm/boot/dts/nxp/ls/Makefile
+> @@ -9,5 +9,7 @@ dtb-$(CONFIG_SOC_LS1021A) += \
+>  
+>  ls1021a-tqmls1021a-mbls1021a-hdmi-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-hdmi.dtbo
+>  ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtbo
+> +ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21-dtbs += ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtbo
+>  dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-hdmi.dtb
+>  dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtb
+> +dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtb
+> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
+> new file mode 100644
+> index 0000000000000..31494d9d09f8f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
+> @@ -0,0 +1,56 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2013-2014 Freescale Semiconductor, Inc.
+> + * Copyright 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Alexander Stein
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&backlight_dcu {
+> +	status = "okay";
+> +};
+> +
+> +&dcu {
+> +	status = "okay";
+> +
+> +	port {
+> +		dcu_out: endpoint {
+> +			remote-endpoint = <&panel_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&display {
+> +	compatible = "cdtech,s070pws19hp-fc21";
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	polytouch: touchscreen@38 {
+> +		compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
+> +		reg = <0x38>;
+> +		interrupt-parent = <&pca9554_0>;
+> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+> +		/* LCD_PWR_EN -> TSC_WAKE */
+> +		wake-gpios = <&pca9554_1 4 GPIO_ACTIVE_HIGH>;
+> +		iovcc-supply = <&reg_3p3v>;
+> +		vcc-supply = <&reg_3p3v>;
+> +		gain = <20>;
+> +		touchscreen-size-x = <800>;
+> +		touchscreen-size-y = <480>;
+> +	};
+> +};
+> +
+> +&panel_in {
+> +	remote-endpoint = <&dcu_out>;
+> +};
+> +
+
+Whitespace at EOF.  Fixed it and applied the series.
+
+Shawn
+
+> -- 
+> 2.43.0
 > 
-no empty lines in between commit message tags, not sure if Shawn can fix
-this up or you need to send a v4.
-
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-
-Tested-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-
-I would backport this to also older kernel, so to me
-
-Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-
-Francesco
 
 
