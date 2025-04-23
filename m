@@ -1,178 +1,108 @@
-Return-Path: <devicetree+bounces-169650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE41A97BF9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 03:05:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A6CA97C00
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 03:10:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DC80189F487
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 01:05:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3658717A4E6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 01:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277172571C6;
-	Wed, 23 Apr 2025 01:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57974257AFE;
+	Wed, 23 Apr 2025 01:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AioVbg1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kX28TB0l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29D51EB5DB
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 01:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2753679D0;
+	Wed, 23 Apr 2025 01:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745370319; cv=none; b=XNMmPUaSyqh43NGCjD8acFMUDYEZweoUv+0RPF/g2HifdPk2ic+JqDxA6cQOL09MHfLQ5oj4qvKNZaYujdnqVHUlOxZLedxT0hCUoc+S5jk4OKcEGp227+d2pkTUakpBKNOpMnHVh+5uw/IAAVLuJh5DSfmWs8vdwrOg0ztWzMw=
+	t=1745370596; cv=none; b=rQmXTVhR9Ph/ybjQee9EoeTEL0KSu1XtIPlZXmKloopBUA1XdQy2GzIzH+lCvPBQyAPczot83fHgBKO9FEpMLAXeaF6SRvrQaIGVqIKUsS2IVHRmG0sNcSRrvnd7Zj5P0K/62Js2OJx2lo4dcvapq/llBLr9asnIX/4mBBDBx1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745370319; c=relaxed/simple;
-	bh=S3VynQkL+J30C91IMEY8VWWuKTtlTQTO3qXoF4phIjo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=UDz3r43vkolz0XQ6np/9tzBYeO11cdBMbbjrLGzqX6L4mH2c59wBFMAj9Gd7oyF0Heevo0XrIzIdYUceMnGtj0qnAmsLHR1Hzjg5Q8tEjZXt+rm2vhvjljAVL5N489tRCcS6gGv9AN5mzMmGf9UDzJe8xEeNKvvIm7Y942r5qMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AioVbg1e; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250423010514epoutp02897a871860e6d022f4be60d832a1e7d9~4zQ3ASj8f2207622076epoutp02g
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 01:05:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250423010514epoutp02897a871860e6d022f4be60d832a1e7d9~4zQ3ASj8f2207622076epoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745370314;
-	bh=pP+IFx7ncq0fcK/ShQu839YBHEsPNXLC3iMltP1GXV4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=AioVbg1e2l/lYwDwIwuEkC1G413Ju9wZisMPf1goRUTEDXD+mjQP8X/K52eYDeUAf
-	 vPPDK8FAa3DOk5McWfIafPYyXLlpjKA21/aHZ1Hl/Lr/qtCfo7XIkcaFoJoM+owoXb
-	 xDecayfFbg9t0B0O1+aE6K0T44Kz7Ze5DamlLk0M=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250423010514epcas2p4b2e31b25ce7e072e855c025729968f57~4zQ2oiYEO0926009260epcas2p44;
-	Wed, 23 Apr 2025 01:05:14 +0000 (GMT)
-Received: from epcas2p1.samsung.com (unknown [182.195.36.88]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4Zj19j5NMjz3hhTJ; Wed, 23 Apr
-	2025 01:05:13 +0000 (GMT)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250423010513epcas2p4a58363956c1dab356dc2004471232d46~4zQ1nc1qf1202112021epcas2p4D;
-	Wed, 23 Apr 2025 01:05:13 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250423010513epsmtrp15a682a7fd5d5c8ce826e278baa2c388c~4zQ1mEXdE2717927179epsmtrp1X;
-	Wed, 23 Apr 2025 01:05:13 +0000 (GMT)
-X-AuditID: b6c32a29-55afd7000000223e-49-68083cc81705
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8A.82.08766.8CC38086; Wed, 23 Apr 2025 10:05:12 +0900 (KST)
-Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250423010512epsmtip1f394b0c85d0f7460339f546da0bb6f4c~4zQ1UwOTK1433614336epsmtip1H;
-	Wed, 23 Apr 2025 01:05:12 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
-	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
- Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
- Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
-	"'Sunyeal Hong'" <sunyeal.hong@samsung.com>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <bc7a33de-9c8c-4377-a813-562da18ab314@kernel.org>
-Subject: RE: [PATCH 3/3] arm64: dts: exynosautov920: add cpucl0 clock DT
- nodes
-Date: Wed, 23 Apr 2025 10:05:12 +0900
-Message-ID: <003801dbb3eb$c435aca0$4ca105e0$@samsung.com>
+	s=arc-20240116; t=1745370596; c=relaxed/simple;
+	bh=CsSwBwOvvSambLDsZV2UPnqCRF6/mYCB3XiishBDRmE=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Q8ES3mpF+mHbJFIs8jaSZ76kWt3vrA/eVPvf74e0HAbJ76HT9wuszutp4HfPF3MX5f2U8Zzj/drfTQNURz50NHPhWKK/HQVnS3LfmcYqebn3k9FiQZ3jyohfEZdJxj8nefaUMUtkZWi6Xkgz9UD5+5IBMFoG++y7kSg+mhaqPB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kX28TB0l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E9B9C4CEEC;
+	Wed, 23 Apr 2025 01:09:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745370595;
+	bh=CsSwBwOvvSambLDsZV2UPnqCRF6/mYCB3XiishBDRmE=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=kX28TB0lLhtY4NeiFlQrRVQsMN1dRWyC0+Qc104QdHp76YiulL7D72rrxC0Paq1Cv
+	 W/iOsicC0+e9u0/EO/hsQCMPtrDKSn15z4+D/D8NXbDkNy5l8DdQ0CxZbrBgIk7113
+	 9lQPVsobmJqnwY6/Dp/gkN5smA4E+HY2k6JjZEvNWHDW4XKYfZWuCANUVeRacm+6KE
+	 ak2Mt4i+HZVPeDoLzNdXHC4ERveiupZvAgbeuSYzOMtMGWweyRqDZzp38vyy4i9JnI
+	 wg+1uV4JHeKUEE1ppIPyNewMdytJvBDpgYONBNlJIkN2DddoLgn2p8Bkw8Iknfzqg7
+	 F4jleiEuVl+nA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33C8D380CEF4;
+	Wed, 23 Apr 2025 01:10:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQGPEGrsijGqefHqKZlvX6MGGm+h1AGVZY6SAqxO1r0BaffYMbQcWNlQ
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSnO4JG44Mg/mTzSwezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4Mg40
-	3WAsuMVfcX97D2sDYydvFyMnh4SAicSzdwvZuxi5OIQEdjNKbGjYwA6RkJA4PGMCI4QtLHG/
-	5QgrRNFzRonLT6ezgSTYBAwlVv3YzgSSEBGYyCxx6cMFFhCHWWATo8S53TfZIFreM0qs7rwP
-	NpdTwE7i2JcdzCC2sICfRE/3BxYQm0VAVeL+kXlA+zg4eAUsJX7fBgvzCghKnJz5BMxmFtCW
-	6H3Yyghhy0tsfzuHGeI8BYndn46ygtgiAm4SvR//sEHUiEjM7mxjnsAoPAvJqFlIRs1CMmoW
-	kpYFjCyrGCVTC4pz03OLDQsM81LL9YoTc4tL89L1kvNzNzGCo1JLcwfj9lUf9A4xMnEwHmKU
-	4GBWEuH95caeIcSbklhZlVqUH19UmpNafIhRmoNFSZxX/EVvipBAemJJanZqakFqEUyWiYNT
-	qoGpf765d2irwcNvHw89luU+IyzpasTkNDnceF+h2NmFVz+9M9bRTgjaPuX1RVtfxwv82/xs
-	Z8hvbnz49t9snsTf0n8kzzpfOSstvdIlI7/hr/r2ErMDBVEcve+WqG6sU6xQjpvGInfbTNRc
-	4rLDxrlnrBtiv9XOL21SsTBkvPr3p++1Egvra7+n9yXPfZLqsXPz7WXzhTYrGKjzpcb9P7o8
-	j2Gdpuv/S7mpfSK7r6XejX334wCz077Z84pFZJbOz5FrTZ0s+G/CbcHsE57uRV29lyT3sRov
-	+9H742DVyz4+59Q184t7LTQYykymxVtIlx54bTRb5I3fkqAJp5X//n55x81J6sijB0L1/nmr
-	VwYrsRRnJBpqMRcVJwIAb2U1azkDAAA=
-X-CMS-MailID: 20250423010513epcas2p4a58363956c1dab356dc2004471232d46
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250418061515epcas2p4b57102967b07d665051a6297ab451a3c
-References: <20250418061500.1629200-1-shin.son@samsung.com>
-	<CGME20250418061515epcas2p4b57102967b07d665051a6297ab451a3c@epcas2p4.samsung.com>
-	<20250418061500.1629200-4-shin.son@samsung.com>
-	<bc7a33de-9c8c-4377-a813-562da18ab314@kernel.org>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v3 0/4] net: phy: dp83822: Add support for
+ changing the MAC series termination
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174537063400.2104608.5858549846283654983.git-patchwork-notify@kernel.org>
+Date: Wed, 23 Apr 2025 01:10:34 +0000
+References: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
+In-Reply-To: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
+To: Dimitri Fedrau <Dimitri.Fedrau@liebherr.com>
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ f.fainelli@gmail.com, andrew+netdev@lunn.ch, afd@ti.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dimitri.fedrau@liebherr.com,
+ dima.fedrau@gmail.com, rmk+kernel@armlinux.org.uk
 
-Hello Krzysztof Kozlowski,
+Hello:
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
-> Sent: Tuesday, April 22, 2025 5:00 PM
-> To: Shin Son <shin.son@samsung.com>; Sylwester Nawrocki
-> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
-> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
-> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sunyeal Hong
-> <sunyeal.hong@samsung.com>
-> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org
-> Subject: Re: [PATCH 3/3] arm64: dts: exynosautov920: add cpucl0 clock DT
-> nodes
-> 
-> On 18/04/2025 08:15, Shin Son wrote:
-> > Add cmu_cpucl0 clocks for switch, cluster, and dbg domains respectively.
-> >
-> > Signed-off-by: Shin Son <shin.son@samsung.com>
-> > ---
-> >  arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > index fc6ac531d597..d1528633adfe 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > @@ -582,6 +582,21 @@ pinctrl_aud: pinctrl@1a460000 {
-> >  			compatible = "samsung,exynosautov920-pinctrl";
-> >  			reg = <0x1a460000 0x10000>;
-> >  		};
-> > +
-> > +		cmu_cpucl0: clock-controller@1ec00000 {
-> > +			compatible = "samsung,exynosautov920-cmu-cpucl0";
-> > +			reg = <0x1EC00000 0x8000>;
-> 
-> Lowercase hex.
-> > +			#clock-cells = <1>;
-> > +
-> > +			clocks = <&xtcxo>,
-> > +				<&cmu_top DOUT_CLKCMU_CPUCL0_SWITCH>,
-> 
-> This looks misaligned.
-> 
-> 
-> Best regards,
-> Krzysztof
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Thanks for the quick response.
-I'll revise everything you pointed out and send an  updated patch shortly.
+On Wed, 16 Apr 2025 19:14:46 +0200 you wrote:
+> The dp83822 provides the possibility to set the resistance value of the
+> the MAC series termination. Modifying the resistance to an appropriate
+> value can reduce signal reflections and therefore improve signal quality.
+> 
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+> Changes in v3:
+> - Add maximum to mac-termination-ohms in ethernet-phy.yaml
+> - Add allowed values for mac-termination-ohms in ti,dp83822.yaml
+> - Added mac-termination-ohms in sample in ti,dp83822.yaml
+> - Link to v2: https://lore.kernel.org/r/20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com
+> 
+> [...]
 
-Best regards,
-Shin Son
+Here is the summary with links:
+  - [net-next,v3,1/4] dt-bindings: net: ethernet-phy: add property mac-termination-ohms
+    https://git.kernel.org/netdev/net-next/c/4cb6316d33d8
+  - [net-next,v3,2/4] dt-bindings: net: dp83822: add constraints for mac-termination-ohms
+    https://git.kernel.org/netdev/net-next/c/1de1390ee014
+  - [net-next,v3,3/4] net: phy: Add helper for getting MAC termination resistance
+    https://git.kernel.org/netdev/net-next/c/145436ae0119
+  - [net-next,v3,4/4] net: phy: dp83822: Add support for changing the MAC termination
+    https://git.kernel.org/netdev/net-next/c/6c3c3c230a13
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
