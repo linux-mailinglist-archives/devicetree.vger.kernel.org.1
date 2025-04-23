@@ -1,129 +1,133 @@
-Return-Path: <devicetree+bounces-170083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27118A99B44
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 00:10:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD16A99B61
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 00:19:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AE8A4642A1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:10:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 837961B8190C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29B51F0996;
-	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE841E32D5;
+	Wed, 23 Apr 2025 22:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4qcdH3x"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R8GRu/FZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892861EA7CD;
-	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FCF32701BE;
+	Wed, 23 Apr 2025 22:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745446249; cv=none; b=OPUL6VngJzj09Qoli0pAqO/e9mSjonzxQy4Yv/0KFMWr5720bzeWX5HQZ9Hx4Az66P2sa2e6aplktOr+TLRBG26UMlFEjaFPt3ZxmTojnUFPYHrePS/3ssOqhSPoUKHbLqODDGIHE/F7PZyyN7uaZOofoE1M6l/Bq59cpk97t1w=
+	t=1745446753; cv=none; b=bs3BL9Wquxwo/OnObQ0rCMr7cFOJjhzwyUwrHeK8rh9KC7eteBGlTU1nElTxHuKBjc2WdXS3mo6LMcyp/bold9OsSt+IXgoeJToOuxkV58c/elF76JSz+RTossWFkB9tA4c1o50TE8H0MufUTvX9YokRJIN7h5rP77CGpptKsGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745446249; c=relaxed/simple;
-	bh=wPVwqfvhDxUSgXQZO2FFZ+5lq0NMHtnmq0FFq5U6Ge8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=po56YX6Uwg5/U6B4TdJQtwUrHfq56y27gmxB9TiYnZWQ0VAurZGHmloSuaKEQivSDpco7xWfoD9ADqo0G98PVHQSgEBRuZnkuj84rsU0A2TWT2chWH+W42Nm6inWL7dBSr5YaKASKjzF+2tWWH2wYC7R/QcDv0UMvhbW7I71bOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4qcdH3x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E946C4CEEA;
-	Wed, 23 Apr 2025 22:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745446249;
-	bh=wPVwqfvhDxUSgXQZO2FFZ+5lq0NMHtnmq0FFq5U6Ge8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=F4qcdH3xGnLjeEH9C3Zc/7LWDd9p0hWCghECiOuc9SXp4kgl/w2NovFQn02Xh9pXT
-	 ElELxeG1eWSikAk+zaCQBTqyZm9S8GDuMWcLZp7mt97bbPJ74k8Kkg316rCkSZZrrW
-	 JbZUXshm6NJ3HFiKwhFTOKm53RSH8qB+Da+yXO50qcJqBfnOjPZemHFnQ29GkVZCDZ
-	 iRvDqSqU+UX/xmoevMT3Ve+IZslU/xtub5ehm582XNPEwn8pvzwJNo1Iv/tj4z525e
-	 glS10aZ7JNew1aUrFzhce9yxP69whIq+Zs0BRJZWbUh9ladu/CQLaCff/Rnw2ue6QN
-	 WsKxbihOAfrzA==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5f4d28d9fd8so432892a12.3;
-        Wed, 23 Apr 2025 15:10:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU5ofvULFeHMAmxgz9lkwCwncTmAnqe3W1SX5Qj1IfItgWhKkwpGUaLAhbXHW087jSu50ObCjoBrcCIrgr3@vger.kernel.org, AJvYcCXnXHN148TrKofjgjemLwVA7wIE15qywczNxvKz+xj/JY6HD7GF0fVrzN8u0TFu3dR9zq/2j7Oj+5cX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBS/95kxurMyfNrla80ZjY0sxizgvjW/iRA2XMlwHbkoc2ulsm
-	XWKut7KvUKk976TPAodPV1ojO6yXqKCjrhnHXzftaapPtTaMagejQ9U8GgMEdemCtj/Lc3ytFHW
-	R0xNeaUsZyXjTV/tIsfXetO6/sQ==
-X-Google-Smtp-Source: AGHT+IFDXb59jsrSiQWazRzVF6MX1xHN2yOvk09fTJp6+S5+KTTfA8GHRCxZzKpcjOL1zz1Lu7BOyABsSp6K1Ir8yTI=
-X-Received: by 2002:a05:6402:42c7:b0:5e0:8c55:50d with SMTP id
- 4fb4d7f45d1cf-5f6de69507emr566857a12.14.1745446247615; Wed, 23 Apr 2025
- 15:10:47 -0700 (PDT)
+	s=arc-20240116; t=1745446753; c=relaxed/simple;
+	bh=rYr+FLMO8Xg1G+lV0iyTwUeWwT4OeaS/7qYyq1CMP6w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D4TkGW4gLKXT395pPN8GET3Xk17Gn8zFmPe/Wm32Y0jLhgZuNNSrReWjVOglS/yED0SCOK/u/PXipE5TDo7M6bv2t8URnqoP1IIJBDGfBt8id0M44SiE55ZaHHzHNhNMR/6lGO7DqzMXijIM0jC6mktRWjj36NLCuPzaTvcNKOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R8GRu/FZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NB6N7g024369;
+	Wed, 23 Apr 2025 22:18:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oeUFxMFx6nrxzSXI/SkRX4Q1OugOEfgA+K7GIguWCd4=; b=R8GRu/FZJpRG5pEu
+	DP+yW0+BmptsdIdEhA8Kz3BmbRimN/uSZTbyd0AjJPFpZtD8E0TwGE1bfTLab905
+	K3GgTC20xs5DbqfsRQ7PoETWvq9oBDoUSaNW65vw+H9UjbmU4Hf5VKaDyJczwoXj
+	oe6KtfJeO7kCIFY0xWs4NK4Zbc7VTjr9L7pf/7ZJf3bFAzm4cvsFJ0zlmGF+hrIf
+	MkFY6j6O2qJ8se+QhT6MKNQSTiDZly9v2X0tBFaj29LvtK3PNs8jskAkohPuuh1l
+	wXbdBnchR22SgD8qZmDDpY/rN7SKV0hJywainD1yOCkxONOI9bx3i2Ej0lspoQ9c
+	0shSYg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3bgud-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 22:18:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53NMIwJF010406
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 22:18:58 GMT
+Received: from [10.71.110.123] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Apr
+ 2025 15:18:57 -0700
+Message-ID: <d9ef9d85-7d38-4bfa-84dd-1ae0878aa02b@quicinc.com>
+Date: Wed, 23 Apr 2025 15:18:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <tencent_BA80A2305727877DEE7BE20655D9CA825B09@qq.com> <a4277fb4-c982-43c7-9f02-e0050eff417a@arm.com>
-In-Reply-To: <a4277fb4-c982-43c7-9f02-e0050eff417a@arm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 23 Apr 2025 17:10:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLNq6DcLkJm=vSaGKs0cyup5Y6VpQFOWs+-+KeO0qyVJw@mail.gmail.com>
-X-Gm-Features: ATxdqUHIu8UauUnkdGsx_QuCD9-EMRnwcpKGlVgg_eSdye0AL5GO0jXOz7y42po
-Message-ID: <CAL_JsqLNq6DcLkJm=vSaGKs0cyup5Y6VpQFOWs+-+KeO0qyVJw@mail.gmail.com>
-Subject: Re: [PATCH] of: Build warn for missing fn() in _OF_DECLARE
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Liya Huang <1425075683@qq.com>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] drm/msm/mdp4: drop mpd4_lvds_pll_init stub
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark
+	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+References: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
+ <20250227-fd-mdp4-lvds-v3-2-c983788987ae@linaro.org>
+Content-Language: en-US
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20250227-fd-mdp4-lvds-v3-2-c983788987ae@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6dLsYDGlO3Qdum4Szw-okUyxaD8VzboY
+X-Proofpoint-GUID: 6dLsYDGlO3Qdum4Szw-okUyxaD8VzboY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDE0NyBTYWx0ZWRfX2F41hgkfPksM gfcjU69aYf6ZywdwH4bliHUyBHahqUuBEtnYsU518CKMqUBsSLe9Qg7moeKd0AWeQCdlfflQaUa lL+zdvGbusOf5GcBOQ4ZqZyTcj64ya4pbtL3Lm65hNBVxVr2z4cYjbomVokuXb9hgxYP5MZQFEL
+ iuobVGS2cu2W3sHoxPtT7jixc/3GCnLcQjPtjjcVgVwn5vLb+cIl/GBkYLbeFF3hhkQ94alOJ5c O8J9vKyT002odTAk70Hbl3YqVSCTCaBCkKcdMgeNEtSPaobqOnAHsFpIOjAhGTwgQtxBaWaig7D 6ea/X8ptVga65oYUJaV/GOxwMzhbS2J2gkFFXSKqKcavKx797aoYTuBOX/hVCZ94SR4OvbpaR88
+ aPDZcUMaZQxsXv7SWf2sn59M+/x66WpTcjXKUVKtiAwhhzOR71zczLB6iM52pPRe2EMghNH7
+X-Authority-Analysis: v=2.4 cv=Mepsu4/f c=1 sm=1 tr=0 ts=68096752 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=44wy0eceGWqoRLgzOdEA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_12,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 impostorscore=0 clxscore=1015
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230147
 
-On Wed, Apr 23, 2025 at 7:18=E2=80=AFAM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> On 2025-04-17 2:23 pm, Liya Huang wrote:
-> > The function pointer fn() in _OF_DECLARE macro might be NULL. For examp=
-le,
-> > in __reserved_mem_init_node(), only non-NULL cases are handled, and NUL=
-L
-> > function pointers are ignored.
-> >
-> > This patch introduces a check to handle cases where fn() is NULL. If fn=
-()
-> > is found to be NULL, a warning is issued during compilation to notify
-> > developers about the missing function pointer.
-> >
-> > ---
-> > The function pointer fn() in _OF_DECLARE macro might be NULL. For examp=
-le,
-> > in __reserved_mem_init_node(), only non-NULL cases are handled, and NUL=
-L
-> > function pointers are ignored.
-> >
-> > This patch introduces a check to handle cases where fn() is NULL. If fn=
-()
-> > is found to be NULL, a warning is issued during compilation to notify
-> > developers about the missing function pointer.
->
-> This patch in -next appears to be responsible for syzbot complaining
-> about build errors for some configs:
->
-> "
-> kernel/dma/coherent.c:410:1: error: static assertion expression is not
-> an integral constant expression
-> kernel/dma/contiguous.c:497:1: error: static assertion expression is not
-> an integral constant expression
-> "
->
-> https://lore.kernel.org/linux-iommu/6808d00a.050a0220.7184a.0010.GAE@goog=
-le.com/
 
-Humm, doesn't seem to repro for me with clang-19.
 
->
-> Also on closer inspection, just outside the diff context we still seem
-> to be explicitly anticipating fn being NULL with:
->
->         .data =3D (fn =3D=3D (fn_type)NULL) ? fn : fn
+On 2/26/2025 6:25 PM, Dmitry Baryshkov wrote:
+> Drop the !COMMON_CLK stub for mpd4_lvds_pll_init(), the DRM_MSM driver
+> depends on COMMON_CLK.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h | 7 -------
+>   1 file changed, 7 deletions(-)
+> 
 
-No, that is checking that the function parameters match the defined
-type. If fn's type doesn't match fn_type, then you get a compiler
-error.
-
-Anyway, dropping it for now.
-
-Rob
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
