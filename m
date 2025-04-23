@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-169774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8448A98245
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:08:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4475A9824B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:08:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A07125A1902
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09EA118982A9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 08:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C1A1DFE8;
-	Wed, 23 Apr 2025 08:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7D826F475;
+	Wed, 23 Apr 2025 08:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="kdcABI/y"
+	dkim=pass (2048-bit key) header.d=uclouvain.be header.i=@uclouvain.be header.b="vPogSizC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2135.outbound.protection.outlook.com [40.107.247.135])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023140.outbound.protection.outlook.com [40.107.159.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620E222B585;
-	Wed, 23 Apr 2025 08:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987EF26A091;
+	Wed, 23 Apr 2025 08:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.140
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745395230; cv=fail; b=NOs8X5aONHyJXTKVtZ9mQ8+UzL1Qpn4sqN5uTQSSHb/DZndYgrvX2HNOqWQLzSl92gGvK/4lohxomBEXJIEIEUfPteA05HU0PoASvA/r4SdNaQ5HWcJPRgEjAQ0lSZnZWhgvmRje+2lZQi8dY7HoycLsAaFgUrUwSWIf+8kg08c=
+	t=1745395397; cv=fail; b=IFkXL5pdLp2zbYgtl0flgMOi1TDD2+KRTHc35L6pJmg4Z6tNRc2L2E03DrBj18NC+Cxzd7WcDNCLBnz/yvXGkcpEui5VPkpKQM033n2LacKhFG+6RFp7XYZ5tm+FLAIYzF0I+c8AMaDJGJ5DjdkQwxtWwhcUeWeJCMztHxPbcW4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745395230; c=relaxed/simple;
-	bh=HDV6B7FibzbojvODWFGP0Yw3+qFOfCVqyw9mzCkAs/8=;
+	s=arc-20240116; t=1745395397; c=relaxed/simple;
+	bh=i6LtnvFzmbfsgNlsbyyRhJpSkTRAG/SV0wBAUS79Tvo=;
 	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WcmurQobJ+wkCheop7OBpRRERgl1f7js4vSi0NKotpjie6fbfkiM2vSoYfsOe54p/Wm0H+3Sym8BpyevON9tEKwX6bNXq1Y6WaY/JevmbNddETK5m3AOCkRZKhuozLICh3XV+Rsh/B6AEvDZkqhm8z91VgYMf5YV++1pmAicOak=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=kdcABI/y; arc=fail smtp.client-ip=40.107.247.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
+	 Content-Type:MIME-Version; b=ZBvN18ncFagJrzs4mTPjXjgHLkEnPN/adQ1ohBMdRNP7XVvB3VQaxvm8HIyw3cCKfubBNZ3h3g2cJklJgz1BSBf5nsFboaCY1xirGmAi0Rcz4rvuBI31qrlUOjp+EozSctjdcd9EKZAvjIAiiinqp67GFOUT63bJmCue5hG+vJM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=uclouvain.be; spf=pass smtp.mailfrom=uclouvain.be; dkim=pass (2048-bit key) header.d=uclouvain.be header.i=@uclouvain.be header.b=vPogSizC; arc=fail smtp.client-ip=40.107.159.140
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=uclouvain.be
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uclouvain.be
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g+mz9daa2/Opgp/TDM1h0FkQWwPvsq7iyOK1BbE6hDJm66EXsZdCL64V2c64dmc59gatTV+MjB1nLWBlipHbI5RMXX2B7V2+c/CWadRUXf6qGFcvWd4y/MvURHNNydzfE3E95HEnqdpmCgReM1vQF00+RpWJnuAKp0qkUlIXmBtR3g0ItbDooa4IsRZ96h0Ma10G67ZsxBP7CkngTf76lzuEqAgi6Ghdnhsx9/aLtgcg/murFatTnBf3uJhHO23UjCjFc8i8wG+XCMd/KAq6b3kCxZHjjh1JWG7+vGHFtwCTqUHdw8v0HZvBcFmk45eHVefoY4XyFQTL2FqnOGgh3w==
+ b=WgkSwXN6TFVIF+jKJHrKHwdjUDsOJ3AcRskIwu5w82r4P2A5GLYia5t+Eiuf58qXukt1IUI4q4Zajm4UJOjbAPcxtjX9bU5B6dG8IO6W/ImC2F7kurDlhU9eL4i9jWwUt5NPro/T0TNjGIfthERg1UpSHadqkLN7vq6qSX/P+P2RB2CdOs1juR///nkeXjyjXsioo14RkEzQ/DUPPlqMJjoQACcTB6vQVe2IiX5wyRv7ke3ij7DzSYOU1LI5shYgOrFDViY7+OzrY9184dHUJ4fDmvLzHLu/ZY1V8asdYlfc3ieWvWgOzzzNnQaNQiiXOg/HJ5PPP+jV5n7zhw4XAQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=93F5jFu6TMTPDkIaG/a7mGf4rSgu0cwn4wPfWBA73xM=;
- b=Pt7ZjJJ3jTIsmg+0zF3XwtQ/SJpjEbLr1LEldzVQvAiO6+HCJ0zzxh7o246Om9c0sXCqvgaXgk1BWF3c6Ch+DAQSxf0ZifmOhcWnacN6g/mGkGxU7J9LF6emEsm8QKk/LoldaZ144HN92O7yNcJP0RWWGx4HK5wSvj+eEfH0Ky8G7gfB9eQJFT9fAOyQNs09beF5opPaJHyBUzinfw74Bbyy3AOMv8Of/xfHsL6n81wiIXFpAx7W70rjAaUTyMWumxyq+wwHDir8lDG4A1IFCm1YPZU24zynaOJhR6wqNh8Y1TT8FNWAcUVw9BXSFjH5Cj1gQIWJLjsEjFPcbg6H4g==
+ bh=si/BjLdgTECFe61XnV3RgTOIj1fXFgFcE+AI6i5Zfog=;
+ b=tK6eElH1cjN0VDO9CqUNw1en1iqXd8x48reyRixq490gL1suDOjJBly4BX/7jZ3ikCBuIf6djw+c4RAJ75Ih3UtoSEo/yhWyoQPUdvpR84mNUjBhtkFId5p8uHzolnVGNzydgF14yHuzXH400LJWbxwCavkWdChoesXkDQjCIYVGUYvd2shkcMRcoRHg4sCXclWoYKXqWmmj9gg7y6yEsQuq1JPK6iOUwuvQ0XpNdA489ghwjSPxPaMZu/HdR2d8RBaSEFvEUtcCV5bN/Jtz31Ikl6RAL5eRgXoh4Lar3IiZJnBFg7FfBA9T2xiLp5WbcTyQhfL46AWuxYHY9cbcJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
+ smtp.mailfrom=uclouvain.be; dmarc=pass action=none header.from=uclouvain.be;
+ dkim=pass header.d=uclouvain.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uclouvain.be;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=93F5jFu6TMTPDkIaG/a7mGf4rSgu0cwn4wPfWBA73xM=;
- b=kdcABI/yP+INzJhKmdOcyDd97b+YumJ37ur5CZkV6ZLew2vEgu4X0tLgd2NTQDQbmYgFzmcvKJ2iu9R3LXHEIF47bRbQRIHCN4ASomkb4ziYhBEIQAqb0f+5nSV3iWpo4jj1sgbRY7nrV2VqFve68p+5KUYhJfrm8aNvye1GmdQ=
+ bh=si/BjLdgTECFe61XnV3RgTOIj1fXFgFcE+AI6i5Zfog=;
+ b=vPogSizC3qbzWOwntnGEw6a18QBWlcOpzfEkdoKUjkX89HMxyH0dv3lzoZRqQZtnPkrngpPkV38LYLHCfzc6a6ms4/7usf8wvoglTf4Shr8PBo7mMjyzdOLm6yWm2IWqz/WglxDxDNsoCVqxDxRLT/hno2ies+hBTeHUGpurBn3pBsTZpJFywL/EC5IEqCYuO14WMewi2fMjYH4iW7Mc1SF9HzV9UlDp30sYcNQeIeEQ8fuNMT7gVIOLwlFur7iuck9zMDoEIRLewLhx+ZoAE943UwVUd+wKdV3HCtVkoBr7ClKL+m6/VzrY4HdB2vNXfDkoZh6Y7Qs7Y10EFaeGUA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by DB4PR10MB6967.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3fc::22) with
+ header.d=none;dmarc=none action=none header.from=uclouvain.be;
+Received: from AS8PR03MB9047.eurprd03.prod.outlook.com (2603:10a6:20b:5b6::13)
+ by AS8PR03MB8570.eurprd03.prod.outlook.com (2603:10a6:20b:573::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.23; Wed, 23 Apr
- 2025 08:00:23 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19%7]) with mapi id 15.20.8678.021; Wed, 23 Apr 2025
- 08:00:23 +0000
-Message-ID: <17ec22a0-b68b-4ac5-b2bc-986837639a37@kontron.de>
-Date: Wed, 23 Apr 2025 10:00:22 +0200
+ 2025 08:03:09 +0000
+Received: from AS8PR03MB9047.eurprd03.prod.outlook.com
+ ([fe80::c90e:deef:6dcf:538c]) by AS8PR03MB9047.eurprd03.prod.outlook.com
+ ([fe80::c90e:deef:6dcf:538c%7]) with mapi id 15.20.8678.021; Wed, 23 Apr 2025
+ 08:03:08 +0000
+Message-ID: <e9f11aa7-f0a6-465b-8387-668bcebf4f76@uclouvain.be>
+Date: Wed, 23 Apr 2025 10:02:56 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
- usdhc2
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Wojciech Dubowik <Wojciech.Dubowik@mt.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Philippe Schenker <philippe.schenker@impulsing.ch>, stable@vger.kernel.org
-References: <20250422124619.713235-1-Wojciech.Dubowik@mt.com>
- <522decdf-faa0-433b-8b92-760f8fd04388@kontron.de>
- <20250423070807.GB4811@francesco-nb>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20250423070807.GB4811@francesco-nb>
+Subject: Re: [PATCH v3 2/5] power: supply: add support for max77759 fuel gauge
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be>
+ <20250421-b4-gs101_max77759_fg-v3-2-50cd8caf9017@uclouvain.be>
+ <20250422184801.GA395455@legfed1>
+Content-Language: en-US
+From: Thomas Antoine <t.antoine@uclouvain.be>
+In-Reply-To: <20250422184801.GA395455@legfed1>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0035.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::22) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+X-ClientProxiedBy: ZR2P278CA0068.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:52::11) To AS8PR03MB9047.eurprd03.prod.outlook.com
+ (2603:10a6:20b:5b6::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,216 +89,358 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|DB4PR10MB6967:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf07a17a-5662-4879-618c-08dd823ce6a9
+X-MS-TrafficTypeDiagnostic: AS8PR03MB9047:EE_|AS8PR03MB8570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27f35597-e5b8-45da-f4ab-08dd823d48b9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RU14T3FTQWc0WXRKUUYvWGdKcGphUFhuT1BUZjV1VTZsR1N6WldZSFllZW5V?=
- =?utf-8?B?aHovZkVOM1pMcHoweDFscVhwWWp2dmZDRUNOSlR2NUgvdU52NlBUZGxla3Zt?=
- =?utf-8?B?ak1sWVVzOEtJZThzTktkUzZ1dnFHbUhPUmZlQUtRc1k3TStiZW9WME8wdXNY?=
- =?utf-8?B?dDM3dkhkUVIyd1VIcklLMHpUSXQ5ZGRsU2FGUHZqazJ2VmxvZGwzNkVMcXJn?=
- =?utf-8?B?TWhPb1ZwTXJMTE5neXlyMy82R090aHlRNnJnOEtETTducVlpNnNSZEtPT1Fu?=
- =?utf-8?B?d0FSa1RWNUg4K25lRmJid3c0Wk0veUQ4ZEJ2bGo2RWp1TGFmQ1pJL1lIZXp5?=
- =?utf-8?B?ajlXZ3hLWmlac3JYTnFDQjN0czRWSllHNU5QcXVON3RNcERXN0g1STAreDdO?=
- =?utf-8?B?RFpwd3QwRmo0Y3p5S2s3VjVyeUdiVkM0M24rUmYvdDBSa3l5OS9SdU03cDd5?=
- =?utf-8?B?THo2NElKZnArU0Zzc094Sk5lOHFBKzNWY1cyUXZDQnRYME5CQ3JLNzFoUEl1?=
- =?utf-8?B?a3phTnN4RjFRZjlvREw1QVpGOFJlK3pCY0pFQ3pkNGczZTNqNWoxalNEbExh?=
- =?utf-8?B?YXk5ZnJtZjE1U2RhUlFwWUZHRTFHaDZaMkNKcHhkNnBKTlE0NUZ4N0pCelFy?=
- =?utf-8?B?TCs5Z2dScW9kaGtFeHptdzZtWndyTEd0THFpa2F0elpSQ044RVFyQ0tIYytk?=
- =?utf-8?B?M09QTE80cENhek1PeG5KQVY3V2ZsZEF1Q0xLaEx2SzdwWXlTQnJJeGlTM0Zi?=
- =?utf-8?B?Q2l3aWU0UERtSDVKNWpIc0NhT0RnMVdqMmN3amt2RXRVR0J5Nk1ldmpNcGl1?=
- =?utf-8?B?UWxNR0pQY1FRQU5mVllUZ2ZYWE5zcXBHSTVrdzNyNTdQS0E2U3JWMkcxMkJ3?=
- =?utf-8?B?dHNEOFJVV2kweHhSVjhUOWNoaWJJYis3a0NpVGx3ZTZEdEYwT0s4RTQ1dng0?=
- =?utf-8?B?b1FsZ3g3MHZMSkpremJhRVFoNW83T3k5RjE4cjJJYnNnaktFUmJGd3pTejVt?=
- =?utf-8?B?UXFRbXhyQnRIMVJYNlBCYkplMFFVRmVKWUtNQldSalVyUnM5TUU3SzZ1cG1r?=
- =?utf-8?B?NC9KOEkrYWEyQldPSTd6TlEzZ1R6c0JVRWJjOThRS1dTcHk4VjNScWFvNlRS?=
- =?utf-8?B?NTFkc1lhZVRDSTJCODFtb3hXV3VuTFZPdmFvcVVURDVCNE1KUGdFUHZFd1lI?=
- =?utf-8?B?ajl2aU8ydDZzbGhnU2NxZWRPWHYrZFVRVUVHc3VWRFgzdXBEVi81SmZwTkR3?=
- =?utf-8?B?ZGVPK1F6SzVCb0ZTQjUzR0FrMlZzZzc0WEFQNjZ5Vm10Qm9DZFZNOTl5MHBm?=
- =?utf-8?B?TWVkU05JUGdqTUJCNkVkSnRkSm1lQVJoayszaGJxSlg4L0g5VXFXL1I5VTFk?=
- =?utf-8?B?S1g2Sm9lcVVPT3g4ME4zdnFlc29DTjllUnoxbGdJdjdTV05iZE5MMzJvaHBp?=
- =?utf-8?B?L2lnaHJWZWR4cVJyd2VGU0lXRHZUT2FXUzgyNzlQbEtpa1E5RFRpZmE3N2lI?=
- =?utf-8?B?ZE9pRXc0MWlkRlZGbHJYSEhieGI5bjRic2h0UHRVa1VnUHdsaFZxNFlHTXlK?=
- =?utf-8?B?ZEhiNzB4RG5GcDV1dVVKM0VaWDdzU1BZR1R3NUd1cmhhWmpJQmcvNDF0Vk5j?=
- =?utf-8?B?cysrUXJ2VUF4VVdYckVkUGJMWmo5ZUQxK0sxL3VpdGsxREFUVE9LdU1ySHM3?=
- =?utf-8?B?UENseko4U2tJaTlmeUQzYWRvWnlneklyK0JUMVp2K0dReS8xY0k1VFhxelUy?=
- =?utf-8?B?eUQ2NStkM21UTHdlY2EySEFVdmRCSFJDWnIvaHZhV2FaZ2NpK01uNTN6SmRS?=
- =?utf-8?B?TEpScUp5OExFb0lLUzEzd0JUenorNnFoV2poRlltRUUwbWhMUkxKV2grZ3ps?=
- =?utf-8?B?ajlDTnZnd2RWODdzZWt6S3duMURHNWpMZ2RGMkY4aUFhRzhpcXliU1dxN25L?=
- =?utf-8?Q?eX7n83c/ew4=3D?=
+	=?utf-8?B?R0lRK0prNDd0bVJNTU9zYTloTXVzbXd4TXU5SWhERy8rTjd4QVRzNVJ3NEZ4?=
+ =?utf-8?B?MzZGZlZLMFZVSWZJMzJUdFh6a0lOeFNWUnFxNExrNHlxMGRXLzRFWGdrd1gv?=
+ =?utf-8?B?TTQ3bG83Q3FGSmxydGFVVjlaYVo2Vm1QTDc3Lzh6blBibVlqTll6TjZhTVhr?=
+ =?utf-8?B?c01pZmdnUnY5UkFlOG1yMkl4dmdGZ29kWG1hSVNGeTVjb0tQbDk4YmNiQTJ3?=
+ =?utf-8?B?ajNOazRYYjc3RGpKZVBHakZRWFJYbXNYNkdXVkRXLzNrcEdPZjB6NUQ4cnhR?=
+ =?utf-8?B?TW5QaDBMdStsaEpQaFpEUndRVkk4ZUdVRFFsemxYbDZ3VDdNeXIxTjFoRmZq?=
+ =?utf-8?B?ZWh1Z2luVlRIQ21DcFp2M09uTTJhVEFpdUVlRC9HL0JDd2RQYVVMbEk0VGI5?=
+ =?utf-8?B?cmxvZW9YWjc4NGMza0xFd09vS3QzREh2dWNoS2Q0Zmt1SDE3b29DcGVxOE5U?=
+ =?utf-8?B?cnVLU0M4VG9uRlBSODA0djVhcG80MXN2ZlZkcmxxQTFVaXlSOVZya3R2cXJz?=
+ =?utf-8?B?MHpTS1JmMUp6Mmg5dGNzM0dUTG5wUWYwYTVPdUZDZ3Fhd1lDT25XS3dMaWlk?=
+ =?utf-8?B?SjhkZWhTdkFaYTZmTGFUVi9VOFZIRG92TTVDdTNvSUJLWHBVektncUN0aUZ4?=
+ =?utf-8?B?UzlFZHBkLy9jWStlQnVoZ2VSaG93L090dllSc1VtYjJtcnFTb2NSdXZtOTFE?=
+ =?utf-8?B?QjMvT0Qrbmlmc2NCZnZFeVlsckcyd0VQaE5hQWxiNWY0b29OeVJya3dqN1Fa?=
+ =?utf-8?B?WnFDSTU5bGpZNUFTbHNxQmd5ejMxajhJM3FneEorTUl1ZTlDMW5pRktwdXRy?=
+ =?utf-8?B?SjB0c3hCdUhHZVlmLzJtcmxtcGZOVjQxWElpa1NVMW5rN3Y0dkNBbGVKUTl5?=
+ =?utf-8?B?MnQyaWorcGhVT1IwM0pKOTJ3RjV0QkdwR2tkRVRZMVdQUkN5aU1xZlMwU3NK?=
+ =?utf-8?B?Q3grc1JWZFJLWHVLVjBOTEE0VldtTE5tWHJvUlJVVWp1cE1pY2gxVkVmcXd4?=
+ =?utf-8?B?TjRDUElZTDZVS2UrSTNnNERkdkFVcDFoY0IwRUV3dUVmUiszSVlTNE5yelhw?=
+ =?utf-8?B?alVtTWNUbFZ3R0JYWFg5bXVYZUpEYzhNNlpKdHB0NlhqM2tKY09vVENlS2FD?=
+ =?utf-8?B?WThPb3M5UCtlaWV3blFZbVVNY2l6aUx1YTJnWDVMcVgyUU9UVnhrWDNCVW5r?=
+ =?utf-8?B?RC95U05jTmVrdzdTdDVDMFJESkJOSEZoWjdCc0xKK0h2cWpJL1NyT0wvS2xn?=
+ =?utf-8?B?V1VUODZKY0JoQlhMOGZLOVo3cTl0c1NjdUpDYThZUDNxL3ZCbWpXMDlqZ05R?=
+ =?utf-8?B?NEZham5FRTdmYTRCbVJMZ01LalNQclhHdU1aVi9xbW5LQ1NJZzl4emthNWdn?=
+ =?utf-8?B?NUg1cTJpREprdGRkSWVnYkR4ZGJrZ0oyT0lDdGFSWXRxRzdZWVdsc2xwWVcw?=
+ =?utf-8?B?d2NUTjloZlA3Rm8vZjhZN0RGbnV0cG1NQnlVTnIzRDZ1aUFQeWp2MHN6bkRa?=
+ =?utf-8?B?T1A2M2s1cEx1NW9QUWx0NklaNmRralVWVUZmNjhyQ0VVOGF6MTVBSnoyWkNS?=
+ =?utf-8?B?dFZXZHlmeDJnTTJtSXFzdmIzbmw0ZWRTdlExbnV0NTlMTzdRQkZaYVJZano4?=
+ =?utf-8?B?dHB5b2thYXhpUkNiaTFBdWpLQzNqaTJsVXBtVWZjMGpJRkk3N0JicXp6SVlL?=
+ =?utf-8?B?cFVPT2JiOSszZmpDVmsra2N5M2Vtd3p5eDV6cDYwN3kzMHFJTy9iNU9ERWk4?=
+ =?utf-8?B?SGZnZEZsMU5HSHZ2VDNDblRHR09KY1EvRldaUFg0dnhLaHJzQ2lIemZrUXoz?=
+ =?utf-8?B?WS9ieVZxaU5vYjd5dnduK2xhRFA0OGpXa2w4b0xHUERUclBvZkRZRm5KRVA1?=
+ =?utf-8?B?a2xGbU51ODU0T2NNVUxXUmxGM2h2ZDhvZjdPU2drYVpjeDhDamhONFNYdVF4?=
+ =?utf-8?Q?9ivrH+IjuQ0=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR03MB9047.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UVBUai9qdy9QSzBRWXd0eW8wVjQxMllJMFpHTDhVMTdXSUpOdktOSTR3Y1lu?=
- =?utf-8?B?QnNqb3FxSnR4UHN6UmttQ0Z6VzhiWWdyU05RTklTTzlFQ0RUSjRFaENlWjQ5?=
- =?utf-8?B?SWNXbXdqTitHY0lYMnNDTnk0MTVqSjk0cFZnWjY2Q0dCVUlaY3F3WTRpcDRI?=
- =?utf-8?B?YnZ3TWIyby94cVdwc2RkdEQ3UFZybEFtT3Z0MHRnekgrYmV6R1R3azR2V2dq?=
- =?utf-8?B?NEV1UG5WRFJtcTNaMUJrbUNsU003VVJuY1ZyNG1ibHloRjZEcDVXYlI2VFk5?=
- =?utf-8?B?NzhXaUU2U3JJM1BjWUtvZjI1bmpza05aN1JOKzZwSEZZM2Q2dmgzSWhHMWpV?=
- =?utf-8?B?ZitZdUErWkpHSUUzQktkdzU1M2ZxWWdGRmpVaGZyUGtGQjN6WFgzbktCT1lQ?=
- =?utf-8?B?Tk5FNXoyNDR5eWFEeDhjcS9sNTBJbllHUWhnUy9lNjI1Z0ZnY0FLVVdBZlV2?=
- =?utf-8?B?R1h6WGdPSXlXZHo2bGJRWEI0WTREYmc4REJqbElpZ2lUWVhlaFJONGI1SkNw?=
- =?utf-8?B?bnFjVG9CdDkvN2IxYTJabU9YV0VuS0VHcHdwS01hdFUwT0pqSjVEYkN3RllZ?=
- =?utf-8?B?bjVveXBCRUtKcStjQzBZRDNPOTRMaWgxTWwrQ1gzck9uRVEyWWFaUUl6WGhh?=
- =?utf-8?B?NDVHVHE5QmxvaUplUGxNcU1TaHh4Y2MxSFZKNFF4cVY4K1dQWGdES3hRWFdF?=
- =?utf-8?B?bVlnZWgwbEhiT29ndjJMdjh5emgzQTBJcWN4REJMRVZyVFJIRE04ekZDZVZD?=
- =?utf-8?B?QmZRcWlYYndBSnVpMzQ1MmJSWmJsSUZTL3kwNHNIUUNxMzIweUI2bUpwLzgx?=
- =?utf-8?B?dGRhUkdpZFN5T1RBYXhscG93VGVCM0g4MzdxYjE5dEtkSk8vN1d4TUZpNzBv?=
- =?utf-8?B?eFdBNHRmVTRPREFjNFU1NUVmTGZXWkE4ZU1TZG1GT3pRK1lXTUw1M0phTmUx?=
- =?utf-8?B?L2lVS01mUGRwRGErOWVRZHpuenM1OG1KSlJkMitLanBxRmRIdW54dHlxVU5u?=
- =?utf-8?B?N3R4RHhUbjBkWnluMlpCZ0Z4cThYTUVUNlJzTU9YbktBc2M1NUJJRmxUZzN2?=
- =?utf-8?B?VWpUSVVvSEZENER1cE05M0M0TFNiUFNXYjZ6eXFwczl3eWR1VWphc1dOYzEz?=
- =?utf-8?B?OTg2dDBiZ1FZMkY4YzhOVzRjMm9rd2U1ZUVmZUlyVkxjbk9MNTFFdkc3M1BW?=
- =?utf-8?B?M0ZXQXExM0RiSWtQdWNQUHU2RWVEV2VmdHNhcnVaRlFoS3BTN3NrNlBjRnMz?=
- =?utf-8?B?ajNnaHF6L1BKRml3cnN4b2lxb1pBRFVEQlNwZ2NQMk5vdEdwL01kUTk5MzBO?=
- =?utf-8?B?UXNSQmNIWFlxOUgwTEFSY2dBVFFTVkZtSWEvM2duOXdqUjZWNmROSnRCY09E?=
- =?utf-8?B?ZGlIazlMU0gzQVBPSXJ5alNjM2tzSTAxSGdwTDBUYngyNEJsNDlBQ1Y2aHdo?=
- =?utf-8?B?dnllNGRnMDVmU1E1cDdubzM5YlRjYnU5aFVJaHdQeEpQclRGejhMeWhDcGdm?=
- =?utf-8?B?U3pDdEdPRXVrYlpkd3VVeTZHemNqdk1MY1V5VlRjMDdwd2xiWGNBYmlIQnBj?=
- =?utf-8?B?Z0Nxa1A1djgyVEpobzg4OEJOTFhDZ2dtL2NpNERMd3hGc1YxMFBaUFZndURs?=
- =?utf-8?B?WWxtdmNwVXZGbmJWeWVITS9JUlpFUlgyM2tPT2U3bnZqTGhoOCtEVjNiL3Qy?=
- =?utf-8?B?L0lXRnFZNUZudU9wL1JrQjRSbG15QytxWVJiaTl4OEdNTFdsQWhDc1ArNWh1?=
- =?utf-8?B?bC9NSzg3bTRTRFBGNHgwTldGQlhENkFSVGd1Q1J5clRMVCt1RTZlN1FXOU0z?=
- =?utf-8?B?RVVoL0RxK3RvTmZpQnhuTUwrRTlwdjM2cDNwZTMrVmJKRm1wZm5KWEx0bWdC?=
- =?utf-8?B?VHBLYW9NUkFhSm0zb1VVOFBCWU1qMmE5V2N6TGNzaElsR2lYeFltQ1RYZFl0?=
- =?utf-8?B?UEsrSHF0dEpGQXFvdUphanVCalpMSmp1S3BhWkxJRmdyaG9STEl5MERySTVE?=
- =?utf-8?B?Vi9keHJ1V2VtVU1xbnNDSzlKcTFBT1Q0MGFPditxQ1F3Mit0REtzN1poTXVk?=
- =?utf-8?B?djVwM05SM0tmMFFhM2lWWGVjTEo1cXo1Mm1jK2FlNXlnUlB0ZXlJVk90dFpy?=
- =?utf-8?B?bk5rTThFTWk1cEUyTEYrZHFtTGpYVXMxYTZsRTN2Uk1iUURJT1prMnc5cW1a?=
- =?utf-8?B?N1E9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf07a17a-5662-4879-618c-08dd823ce6a9
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+	=?utf-8?B?Qlh2NWpnV2p2b0FXRUNZaUZKNklORGFnOXArY3UvQzErbGpDUnJUcTVnWXFF?=
+ =?utf-8?B?OEl2SGp0NWFvWXdUYkJEMFRIMEh4ckZkT1lJYTJMVFJIaWpQU2xlZU5mMmdF?=
+ =?utf-8?B?SmRiMG9vdGo4Y0ltT1ZEQWgwV0JqZ0ZvQXlWMmFjcFhENURNTS9XczNPMU5N?=
+ =?utf-8?B?QUdYdThmb3ZHaFVRUktmUDlQS2xPamZoQ09XelMyMW50Zm9UbWJVWTJ2TEx3?=
+ =?utf-8?B?ZVZ6cmZiam9ZTDc4QS80OXdzaWtFNitONEhLWjB0ekxRZFlTeEk0Sk4ydDBU?=
+ =?utf-8?B?OUVxaUhFMFNnVGVNZ0JRc1VCdTNSYnBWcmQ5cjVzY1k2ZmtzQkFnT1F5azh4?=
+ =?utf-8?B?NGRSbzVIbWE3RHNhWkVNd21uenFKUzhCVkZCTGJwQjJBajU4bG85ZHNwUFRz?=
+ =?utf-8?B?cWhaYk9EN2dIbjVScS9mREtGdU44dmpVUU1MUlJPUHRCZlJYdlFHVzUxeFA4?=
+ =?utf-8?B?dEVCMTMyZzFNUHV5Q2cwR3R0MDUzWi9lckFvQXVTUVNaejVNZXVuZXg0V29k?=
+ =?utf-8?B?d3lKZS9JeGk2OW5HdkhrWGtYYk8va3dhR3EwaVBINm9TRWMyR3M5K1RTZzVQ?=
+ =?utf-8?B?VEJFYldZZEhZdnliOUFiYU9jR0ZmeXNLRVlWL2M0eU9NQ1JRdlFuYVQ4ZkE5?=
+ =?utf-8?B?cE5pTkdwSTdPQVY2UVBjam90OWVWQnV1MlFlR1JPTlhJRGxSR2dSaGtpa2dN?=
+ =?utf-8?B?TXVudGVNSE9vcUgwaEJrd3JQeUcxNEo2WHlnbEhjdk55c1RJS3V3NVExOEF5?=
+ =?utf-8?B?WGZYSHI0dHZaMnEwWVpqYnZBK3R5amRNdjBuWG53eC9UQzVUdDNna1NqTmx4?=
+ =?utf-8?B?N0FQRENwbGpDNm5pcmZCZ3h1NW1kQ3pkYVlBbTB2YUp1ZGlqNFhWeHhscFhC?=
+ =?utf-8?B?Z1l4MjBQTmtBQkd5c0gvNGFxTkNSMDNmQ2xXd3k2M0x5VWhpa3N6dUtzblVB?=
+ =?utf-8?B?Q2ZxZFgraU15TmJlSGxjUzU2cG5ZWmsvNWNTWjVGTnFja1RwU3VhZDA4OTIr?=
+ =?utf-8?B?ZlozUjdaRHZ2RWowaGF6bDdYanhOVE5sMzRZNXFVQlV4aituT3phWi9mWlRY?=
+ =?utf-8?B?d2FWb1BmaFltcDhlanhGTm9NSlQrYW5IbGNuSWpKS0hkdlZaSGkvVmsvUzNt?=
+ =?utf-8?B?YTNlVWx4SnVYL3JGeTUwZWQrcVV1WU1ZeVdrOE9CYlFjS3RzbzllNHMreGJx?=
+ =?utf-8?B?UFpaMXpNUE5pVGx6RTQwNVZGZ3dSVVgvRmJLZ1pBcmRrekk2NWFQc3NJTE1Q?=
+ =?utf-8?B?Qmk1bzUwUU5WWW5STHpKZ2s5Zzdha0t3T2l5UGllbk1CbjFlamJCZStVdUly?=
+ =?utf-8?B?aFR0U2VienE1SlpEVEFwQ2FEMkt4Z2MrSWZVa096YmdHekNqcWFZUnZkVTlP?=
+ =?utf-8?B?ZGdEWlZaRFpCRkwvQjJHb3ZPdW9nbDJ1Mk5FZkFTNmxBMFROQmRQL1JPRXFs?=
+ =?utf-8?B?K1ZWOXRaQU9KVTVRZW45dGFVaVk1b0RXT2R4cE15cG5JRkU5SndjSW9nZ3Zl?=
+ =?utf-8?B?dDRvTkw5NlRKejlySXQ2d0M5Sk96ejhEVEdWRTlXeTlZQ0o0RDMxTnVKT0Iz?=
+ =?utf-8?B?Um5xaXhtL0JCQkZXdWlBb3ZWdFc0U1F2NWhGdmNmZUZlbU1hbk9WSHFKSDFX?=
+ =?utf-8?B?bjdRNkJHa1JaVlRxaDR2amtaODZaYVhVQ0FBUWs3RG93eUNobTdKZFYyR2tL?=
+ =?utf-8?B?azZ3OWxFYWhMNjJ4WjE3cUtEbmRhdGVpODd5R2U1SFZBcXFNZC9IODZjMjQ4?=
+ =?utf-8?B?eElhU2lxdGxRSVp3SURmRmlXSmRRdWVRdXRUeUZOR1AzN1VNUGRqaTVLL1NC?=
+ =?utf-8?B?RHZlOHBXTEp4RXpHTVl3NUVWaFdyZDE5ZHVKeTJMdGF5cnVRVytCY1dZK0hK?=
+ =?utf-8?B?YXBueDdCdGlqR2R3WnhxMmxFcllLNmhNeHlyV0JHUzZuYVkzWm1Qa2Z6WHlB?=
+ =?utf-8?B?NVA2RDNNSHRHU295djFjRFdEQTVyOGdxbUJ3cTc0U3I5dHNxWXl6dVN4L0Y2?=
+ =?utf-8?B?N0hwZDFrRkVSOHV4OUtHVHBUdG9ROFVCNUFJblBMaHV6VzlyT2w5TGw3bnhB?=
+ =?utf-8?B?dmExNml3Njlobkc3MU1jQ1Rlbk5yc0VKaHpNcDVyL0hBMmdPbStwbSszQU5G?=
+ =?utf-8?B?V2FKU0J0TlNiZEJCZTc3Q3lxYlhIUVdQY21zbmRVc3pXeGU2TXV1QnlBaTZy?=
+ =?utf-8?Q?tUapsxzv9zOevaQdghVHhH+extk6V0JYK8N+UFxHHSYS?=
+X-OriginatorOrg: uclouvain.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27f35597-e5b8-45da-f4ab-08dd823d48b9
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR03MB9047.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2025 08:00:23.7708
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2025 08:03:08.3011
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-Id: 7ab090d4-fa2e-4ecf-bc7c-4127b4d582ec
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O53trp1u31ExbOWg2CYfZZ8mMoai/Y72/MX47a8jtcu2vop6o86m3qqi+mQSvklr+roxtd12M8SzUogoWbPKvhCsUXnPxrd8D6N91KEqxxQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR10MB6967
+X-MS-Exchange-CrossTenant-UserPrincipalName: JV1utr0q7maTM3PC5gREnM2QxhJRf3A7uc0GKje1lm7gsIgV8GDACHtB6uxqn/1xq0o5rKMmEYwAN2kXkhjBqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB8570
 
-Hi Francesco,
+Hi Dimitri,
 
-Am 23.04.25 um 09:08 schrieb Francesco Dolcini:
-> Hello Frieder,
+On 4/22/25 20:48, Dimitri Fedrau wrote:
+> Hi Thomas,
 > 
-> On Wed, Apr 23, 2025 at 08:50:54AM +0200, Frieder Schrempf wrote:
->> Am 22.04.25 um 14:46 schrieb Wojciech Dubowik:
->>>
->>> Define vqmmc regulator-gpio for usdhc2 with vin-supply
->>> coming from LDO5.
->>>
->>> Without this definition LDO5 will be powered down, disabling
->>> SD card after bootup. This has been introduced in commit
->>> f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
->>>
->>> Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
->>>
->>> Cc: stable@vger.kernel.org
->>> Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
->>> ---
->>> v1 -> v2: https://lore.kernel.org/all/20250417112012.785420-1-Wojciech.Dubowik@mt.com/
->>>  - define gpio regulator for LDO5 vin controlled by vselect signal
->>> ---
->>>  .../boot/dts/freescale/imx8mm-verdin.dtsi     | 23 +++++++++++++++----
->>>  1 file changed, 19 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
->>> index 7251ad3a0017..9b56a36c5f77 100644
->>> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
->>> @@ -144,6 +144,19 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->>>                 startup-delay-us = <20000>;
->>>         };
->>>
->>> +       reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
->>> +               compatible = "regulator-gpio";
->>> +               pinctrl-names = "default";
->>> +               pinctrl-0 = <&pinctrl_usdhc2_vsel>;
->>> +               gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
->>> +               regulator-max-microvolt = <3300000>;
->>> +               regulator-min-microvolt = <1800000>;
->>> +               states = <1800000 0x1>,
->>> +                        <3300000 0x0>;
->>> +               regulator-name = "PMIC_USDHC_VSELECT";
->>> +               vin-supply = <&reg_nvcc_sd>;
->>> +       };
+> On Mon, Apr 21, 2025 at 08:13:33PM +0200, Thomas Antoine via B4 Relay wrote:
+>> From: Thomas Antoine <t.antoine@uclouvain.be>
+
+[...]
+
+>>  #define MAX172XX_REPCAP			0x05	/* Average capacity */
+>>  #define MAX172XX_REPSOC			0x06	/* Percentage of charge */
+>>  #define MAX172XX_TEMP			0x08	/* Temperature */
+>> +#define MAX172XX_VCELL			0x09	/* Lowest cell voltage */
+>>  #define MAX172XX_CURRENT		0x0A	/* Actual current */
+>>  #define MAX172XX_AVG_CURRENT		0x0B	/* Average current */
+>>  #define MAX172XX_FULL_CAP		0x10	/* Calculated full capacity */
+>> @@ -50,19 +51,32 @@
+>>  #define MAX172XX_DEV_NAME_TYPE_MASK	GENMASK(3, 0)
+>>  #define MAX172XX_DEV_NAME_TYPE_MAX17201	BIT(0)
+>>  #define MAX172XX_DEV_NAME_TYPE_MAX17205	(BIT(0) | BIT(2))
+>> +#define MAX77759_DEV_NAME_TYPE_MASK	GENMASK(15, 9)
+>> +#define MAX77759_DEV_NAME_TYPE_MAX77759	0x31
+>>  #define MAX172XX_QR_TABLE10		0x22
+>> +#define MAX77759_TASKPERIOD		0x3C
+>> +#define MAX77759_TASKPERIOD_175MS	0x1680
+>> +#define MAX77759_TASKPERIOD_351MS	0x2D00
+> I think it would be more readable if MAX77759_ defines are separated to
+> the MAX172XX defines instead of mixing them up.
+
+Will fix in v4.
+
+>>  #define MAX172XX_BATT			0xDA	/* Battery voltage */
+>>  #define MAX172XX_ATAVCAP		0xDF
+>>  
+>>  static const char *const max1720x_manufacturer = "Maxim Integrated";
+>>  static const char *const max17201_model = "MAX17201";
+>>  static const char *const max17205_model = "MAX17205";
+>> +static const char *const max77759_model = "MAX77759";
+>> +
+>> +enum chip_id {
+>> +	MAX1720X_ID,
+>> +	MAX77759_ID,
+>> +};
+>>  
+>>  struct max1720x_device_info {
+>>  	struct regmap *regmap;
+>>  	struct regmap *regmap_nv;
+>>  	struct i2c_client *ancillary;
+>>  	int rsense;
+>> +	int charge_full_design;
+> Don't see charge_full_design is used somewhere besides reading it from
+> device-tree and it isn't part of the bindings. If not needed, remove it.
+> 
+Its a leftover of a previous experimentation, will remove in next version.
+
+>> +	enum chip_id id;
+>>  };
+>>  
 >>
->> Please do not describe the SD_VSEL of the PMIC as gpio-regulator. There
->> already is a regulator node reg_nvcc_sd for the LDO5 of the PMIC.
->>
->>> +
->>>         reserved-memory {
->>>                 #address-cells = <2>;
->>>                 #size-cells = <2>;
->>> @@ -785,6 +798,7 @@ &usdhc2 {
->>>         pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
->>>         pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_cd_sleep>;
->>>         vmmc-supply = <&reg_usdhc2_vmmc>;
->>> +       vqmmc-supply = <&reg_usdhc2_vqmmc>;
->>
->> You should reference the reg_nvcc_sd directly here and actually this
->> should be the only change you need to fix things, no?
+> [...]
 > 
-> If you just do this change you end-up in the situation I described in
-> the v1 version of this patch
-> https://lore.kernel.org/all/20250417130342.GA18817@francesco-nb/
+>> +static int max172xx_cell_voltage_to_ps(unsigned int reg)
+>> +{
+>> +	return reg * 625 / 8;	/* in uV */
+>> +}
+>> +
+>>  static int max172xx_capacity_to_ps(unsigned int reg,
+>> -				   struct max1720x_device_info *info)
+>> +				   struct max1720x_device_info *info,
+>> +				   int *intval)
+>>  {
+>> -	return reg * (500000 / info->rsense);	/* in uAh */
+>> +	int lsb = 1;
+>> +	int reg_val;
+> The naming of reg_val is somehow confusing because of reg. Better rename
+> it to something like reg_task_period or similar and reg_val should be of
+> type unsigned int. 
+>
+Will change in v4.
 
-Thanks, I missed that discussion.
+>> +	int ret;
+>> +
+>> +	if (info->id == MAX77759_ID) {
+>> +		ret = regmap_read(info->regmap, MAX77759_TASKPERIOD, &reg_val);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		switch (reg_val) {
+>> +		case MAX77759_TASKPERIOD_175MS:
+>> +			break;
+>> +		case MAX77759_TASKPERIOD_351MS:
+>> +			lsb = 2;
+>> +			break;
+>> +		default:
+>> +			return -ENODEV;
+>> +		}
+>> +	}
+>> +	*intval = reg * (500000 / info->rsense) * lsb;	/* in uAh */
+>> +	return 0;
+> nit: add newline before return.
+>
+Will fix in  v4
 
+>>  }
+>>  
+>>  /*
+>> @@ -306,6 +420,28 @@ static int max172xx_temperature_to_ps(unsigned int reg)
+>>  	return val * 10 / 256; /* in tenths of deg. C */
+>>  }
+>>  
+>> +static const char *max1720x_devname_to_model(unsigned int reg_val,
+>> +					     union power_supply_propval *val,
+>> +					     struct max1720x_device_info *info)
+>> +{
+>> +	switch (info->id) {
+>> +	case MAX1720X_ID:
+>> +		reg_val = FIELD_GET(MAX172XX_DEV_NAME_TYPE_MASK, reg_val);
+>> +		if (reg_val == MAX172XX_DEV_NAME_TYPE_MAX17201)
+>> +			return max17201_model;
+>> +		else if (reg_val == MAX172XX_DEV_NAME_TYPE_MAX17205)
+>> +			return max17205_model;
+>> +		return NULL;
+> nit: return NULL in else case.
 > 
-> With the IO being driven by the SDHCI core, while the linux driver
-> changes the voltage over i2c.
+>> +	case MAX77759_ID:
+>> +		reg_val = FIELD_GET(MAX77759_DEV_NAME_TYPE_MASK, reg_val);
+>> +		if (reg_val == MAX77759_DEV_NAME_TYPE_MAX77759)
+>> +			return max77759_model;
+>> +		return NULL;
+> nit: return NULL in else case.
+>
+Will fix both in v4.
+
+>> +	default:
+>> +		return NULL;
+>> +	}
+>> +}
+>> +
+>>  /*
+>>   * Calculating current registers resolution:
+>>   *
+>> @@ -390,19 +526,31 @@ static int max1720x_battery_get_property(struct power_supply *psy,
+>>  		val->intval = max172xx_percent_to_ps(reg_val);
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+>> -		ret = regmap_read(info->regmap, MAX172XX_BATT, &reg_val);
+>> -		val->intval = max172xx_voltage_to_ps(reg_val);
+>> +		if (info->id == MAX1720X_ID) {
+>> +			ret = regmap_read(info->regmap, MAX172XX_BATT, &reg_val);
+>> +			val->intval = max172xx_voltage_to_ps(reg_val);
+>> +		} else if (info->id == MAX77759_ID) {
+>> +			ret = regmap_read(info->regmap, MAX172XX_VCELL, &reg_val);
+>> +			val->intval = max172xx_cell_voltage_to_ps(reg_val);
+>> +		} else
+>> +			return -ENODEV;
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+>>  		ret = regmap_read(info->regmap, MAX172XX_DESIGN_CAP, &reg_val);
+>> -		val->intval = max172xx_capacity_to_ps(reg_val);
+>> +		if (ret)
+>> +			break;
+> I would keep max172xx_capacity_to_ps as it was before and add the
+> calculation for the MAX77759 after handling the MAX1720X case. Creating
+> a function max77759_capacity_to_ps that further processes the value
+> calculated by max172xx_capacity_to_ps or just inline this code.
+> Otherwise the naming of the function is somehow confusing.
+>
+Will change for v4.
+
+>> +		ret = max172xx_capacity_to_ps(reg_val, info, &val->intval);
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_CHARGE_AVG:
+>>  		ret = regmap_read(info->regmap, MAX172XX_REPCAP, &reg_val);
+>> -		val->intval = max172xx_capacity_to_ps(reg_val);
+>> +		if (ret)
+>> +			break;
+>> +
+> Same as above.
 > 
-> I was not aware of this sd-vsel-gpios, that if I understand correctly
-> should handle the concern I raised initially, having the PMIC driver
-> aware of this GPIO, however I do not see why that solution should be
-> better than this one.
+>> +		ret = max172xx_capacity_to_ps(reg_val, info, &val->intval);
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG:
+>>  		ret = regmap_read(info->regmap, MAX172XX_TTE, &reg_val);
+>> +		pr_info("RAW TTE: %d", reg_val);
+> Remove pr_info.
+>
+Once again debug I forgot, sorry for this.
 
-See below, but I'm not totally convinced either. Your solution didn't
-occur to me. I came up with this series instead that is now in mainline:
-
-https://patchwork.kernel.org/project/linux-arm-kernel/cover/20241218152842.97483-1-frieder@fris.de/
-
+>>  		val->intval = max172xx_time_to_ps(reg_val);
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_TIME_TO_FULL_AVG:
+>> @@ -423,17 +571,15 @@ static int max1720x_battery_get_property(struct power_supply *psy,
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_CHARGE_FULL:
+>>  		ret = regmap_read(info->regmap, MAX172XX_FULL_CAP, &reg_val);
+>> -		val->intval = max172xx_capacity_to_ps(reg_val);
+> ...
 > 
-> BTW, is this solution safe from any kind of race condition? You have
-> this IO driven by the SDHCI IP, and the I2C communication to the PMIC
-> driven by the mmc driver, with the PMIC driver just reading this GPIO
-> once when changing/reading the voltage.
+>> +		if (ret)
+>> +			break;
+>> +		ret = max172xx_capacity_to_ps(reg_val, info, &val->intval);
+>>  		break;
+>>  	case POWER_SUPPLY_PROP_MODEL_NAME:
+>>  		ret = regmap_read(info->regmap, MAX172XX_DEV_NAME, &reg_val);
+>> -		reg_val = FIELD_GET(MAX172XX_DEV_NAME_TYPE_MASK, reg_val);
+>> -		if (reg_val == MAX172XX_DEV_NAME_TYPE_MAX17201)
+>> -			val->strval = max17201_model;
+>> -		else if (reg_val == MAX172XX_DEV_NAME_TYPE_MAX17205)
+>> -			val->strval = max17205_model;
+>> -		else
+>> -			return -ENODEV;
+>> +		val->strval = max1720x_devname_to_model(reg_val, val, info);
+> Wouldn't it be better to just inline this function ?
+>
+I think my reason for this was that this case became quite long and indented
+compared to all the others. If you think it is better, I will inline it for v4.
 
-Actually the VSELECT is driven by the USDHC controller, but as far as I
-understand control is still in the hands of the MMC driver using
-sdhci_start_signal_voltage_switch() and ESDHC_VENDOR_SPEC_VSELECT.
-
-So we actually have control over this and therefore race conditions
-between SW and HW shouldn't be a problem.
-
+>> +		if (!val->strval)
+>> +			ret = -ENODEV;
+>>  {
+> [...]
 > 
-> With this solution (that I proposed), the sdcard driver just use the
-> GPIO to select the right voltage and that's it, simple, no un-needed i2c
-> communication with the PMIC, and the DT clearly describe the way the HW
-> is designed.
+>>  	struct power_supply_config psy_cfg = {};
+>>  	struct device *dev = &client->dev;
+>>  	struct max1720x_device_info *info;
+>>  	struct power_supply *bat;
+>> +	const struct chip_data *data;
+>> +	const struct power_supply_desc *bat_desc;
+>>  	int ret;
+>>  
+>>  	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
+>>  	if (!info)
+>>  		return -ENOMEM;
+>>  
+>> +	data = device_get_match_data(dev);
+>> +	if (!data)
+>> +		return dev_err_probe(dev, -EINVAL, "Failed to get chip data\n");
+>> +
+>>  	psy_cfg.drv_data = info;
+>>  	psy_cfg.fwnode = dev_fwnode(dev);
+>> -	psy_cfg.attr_grp = max1720x_groups;
+>> +	switch (data->id) {
+>> +	case MAX1720X_ID:
+>> +		psy_cfg.attr_grp = max1720x_groups;
+>> +		bat_desc = &max1720x_bat_desc;
+>> +		break;
+>> +	case MAX77759_ID:
+>> +		bat_desc = &max77759_bat_desc;
+>> +		break;
+>> +	default:
+>> +		return dev_err_probe(dev, -EINVAL, "Unsupported chip\n");
+>> +	}
+> nit: add empty line
+>
+Will add in v4.
 
-Yes, but your solution relies on the fact that the LDO5 registers
-actually have the correct values for 1v8 and 3v3 setup. The bootloader
-might have changed these values. I would prefer it if we could have a
-solution that puts the LDO5 in a defined state, that is independent from
-any external conditions.
+[...]
 
-Also I'm not sure if two regulator nodes is a "correct" or "good"
-description of what is actually a single regulator in hardware. Although
-I see your point of describing the control registers and the IO on two
-different stages. The problem is the dependency between them. A simple
-reference is not really enough. To fully describe it, the GPIO regulator
-would have to fetch its voltage setpoints from the LDO5 registers at
-runtime.
-
-Best regards
-Frieder
-
-
+Best regards,
+Thomas Antoine
 
