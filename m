@@ -1,61 +1,55 @@
-Return-Path: <devicetree+bounces-170072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01B4A9990B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:58:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE75A9992D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 22:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ECF07A468F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:57:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 769963B88E1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 20:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF4B268685;
-	Wed, 23 Apr 2025 19:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CF526A0FD;
+	Wed, 23 Apr 2025 20:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ucgK0ncl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jjxqHEXk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BC526657B;
-	Wed, 23 Apr 2025 19:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C902690D4;
+	Wed, 23 Apr 2025 20:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745438313; cv=none; b=YHFnoY39yXe4LIfPzV0hkWkeQ1t3in6ME2blxdUx38Wk0FoPVBKGSMEN+Jyog2BnFpJ/lbXDdh1StTry3CwlJebGGb1XmvvnsaZQ9oS2ZspFhr+2CrUzsphZJVYrXSyVu7/KdL8oJencj1pwZo6YmLKn1X1bxxcwCBHmwaqc9aE=
+	t=1745438852; cv=none; b=cjoqJhu4/tDKxY8Fc9zD7s25TnfNMXnrLgK2eYajTrBtT/I75kBzOj6WF+F4WAvR0yHkx/QRhrKv7AlGy1rKAQf4TTckFEmQm0Yk0/QMuWE24Qvkxpg49ELdx08E7HtaFkdbvdNWWqOiKekXIrea3w4ejJaxLl1uMO2BjVKPug8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745438313; c=relaxed/simple;
-	bh=ZE+EzztTUSSYHUKRMcrzjo1dZmr1lvdw/aF918XXCQA=;
+	s=arc-20240116; t=1745438852; c=relaxed/simple;
+	bh=YoVn7nDZ5+wXUEYeIen7MDDYqYkq/JetAQBw8G9pR9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZVH8mNMgfPKaeR+AWIge075KiqO4wmnmKClByIPEGXOMu2WayTrfR3TMZ9LgMKK4BzKi0WBLcbt5lBclWrSOcerBPqPhHCsB12lF6EGIajPAVsNJjn0vY3DMSmRU22IkQ5VsLYUmbM3D+MYL4M05c8kVs6WNmHef0EvYXX+j6i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ucgK0ncl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C56DEC4CEE2;
-	Wed, 23 Apr 2025 19:58:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVPR5LY/zt6zN2CW5Cg7XR1vMTb2QlZs85TwSSqexYOKyqtuZ9ciPHNTsKEdd4HNgJHqaM+VRedOKhOVkNyWTg4/C+4eiCP8AaxYJuR4nEuvzhno/zs6x0Bkxq1MWjsXKize+26df7/kTxhebkuo/ZRsIPulAJFAAnmSH4M5iTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jjxqHEXk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BBFDC4CEE2;
+	Wed, 23 Apr 2025 20:07:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745438312;
-	bh=ZE+EzztTUSSYHUKRMcrzjo1dZmr1lvdw/aF918XXCQA=;
+	s=k20201202; t=1745438850;
+	bh=YoVn7nDZ5+wXUEYeIen7MDDYqYkq/JetAQBw8G9pR9M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ucgK0nclBGDo0bkNslgVdTLV+rdbYtrOkNJyLY2Y1i/SMm+9piNoBL3GMZmxTZCQJ
-	 JJI7CuCCtFzHrVCNZwDFJTt+h1kJiNm+33jT3EpZROcEugibNsqJZGzv+gPCvZYBCn
-	 bMfZOVDSaT73H2Bgaw+jGNutE7sUBDZxp4O1y6BB+alrI/PXkMeo9a5s2wJcRK0yuA
-	 hlWGbu4dA+UfDN4VGogLaJjcUsyDKPIW0qS+kvvknTnT6lYSPJlfW/eUn/FsQl1NFO
-	 X8+27KJsEUhNwo5fq7SbI1G1AKiVF3XDhOU4p4iEmQYSkl2bcpn4+EfGn2oJo3m/3a
-	 mY6YJy96der0w==
-Date: Wed, 23 Apr 2025 14:58:30 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Sven Peter <sven@svenpeter.dev>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	asahi@lists.linux.dev, Janne Grunau <j@jannau.net>,
-	linux-arm-kernel@lists.infradead.org, Neal Gompa <neal@gompa.dev>
-Subject: Re: [PATCH v3 1/3] dt-bindings: spmi: Add Apple SPMI NVMEM
-Message-ID: <174543830880.954251.4323421300724973645.robh@kernel.org>
-References: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
- <20250423-spmi-nvmem-v3-1-2985aa722ddc@gmail.com>
+	b=jjxqHEXk4S4owqnj1iFNY+lvsQtnw+rHojPk8ouhHChhnEka9pHh59TPree+yV5xC
+	 AOCpGlIGZJ+R+5n9qdgnB+/V8AeQ0qPne2fFn0l272spOWdCR/rs31FO/I3JB6N/H7
+	 JLf3Of0z8i3YX9ClyxUVRqNK8Msov4wAZlGlOoPv//zjEcneyTnncJ2qXD2E/tLrPw
+	 fAL6AhbGcSmLMwRay8sSTRBkipDPv7kFG8pQljGf0qUt2kwgkOtkE2ZV1fbjpdyD8I
+	 5ppss9kSTHS7PPSERgKctrMKsLq+4wuF+1wqlpcUyQIU9TKUiCyhWaOf46FHCfnHtk
+	 kyiF+wLR5eFmw==
+Date: Wed, 23 Apr 2025 15:07:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, dinguyen@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: clock: socfpga: convert to yaml
+Message-ID: <20250423200728.GA954453-robh@kernel.org>
+References: <20250423150318.27101-1-matthew.gerlach@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +58,190 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250423-spmi-nvmem-v3-1-2985aa722ddc@gmail.com>
+In-Reply-To: <20250423150318.27101-1-matthew.gerlach@altera.com>
 
-
-On Wed, 23 Apr 2025 19:55:13 +0200, Sasha Finkelstein wrote:
-> Add bindings for exposing SPMI registers of Apple PMICs as NVMEM cells
+On Wed, Apr 23, 2025 at 08:03:18AM -0700, Matthew Gerlach wrote:
+> Convert the clock device tree bindings to yaml for the Altera SoCFPGA
+> Cyclone5, Arria5, and Arria10 chip families. Since the clock nodes are
+> subnodes to Altera SOCFPGA Clock Manager, the yaml was added to
+> socfpga-clk-manager.yaml.
 > 
-> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
 > ---
->  .../bindings/nvmem/apple,spmi-nvmem.yaml           | 54 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 55 insertions(+)
+> v2:
+>  - Fix node name regexs.
+>  - Remove redundant type for clocks.
+>  - Put repeated properties under '$defs'.
+>  - Move reg property after compatible.
+> ---
+>  .../arm/altera/socfpga-clk-manager.yaml       | 129 +++++++++++++++++-
+>  .../bindings/clock/altr_socfpga.txt           |  30 ----
+>  2 files changed, 128 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/altr_socfpga.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
+> index 572381306681..6f09458f22a4 100644
+> --- a/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
+> +++ b/Documentation/devicetree/bindings/arm/altera/socfpga-clk-manager.yaml
+> @@ -9,20 +9,147 @@ title: Altera SOCFPGA Clock Manager
+>  maintainers:
+>    - Dinh Nguyen <dinguyen@kernel.org>
+>  
+> -description: test
+> +description:
+> +  This binding describes the Altera SOCFGPA Clock Manager and its associated
+> +  tree of clocks, pll's, and clock gates for the Cyclone5, Arria5 and Arria10
+> +  chip families.
+>  
+>  properties:
+>    compatible:
+>      items:
+>        - const: altr,clk-mgr
+> +
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^osc[0-9]$":
+> +        type: object
+> +
+> +      "^[a-z0-9,_]+(clk|pll|clk_gate|clk_divided)(@[a-f0-9]+)?$":
+> +        type: object
+> +        additionalProperties: false
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Add another level to $defs and move the reference here:
 
+           $ref: '#/$defs/clock-props'
+           unevaluatedProperties: false
+
+You can also move 'reg' and '#clock-cells' into $defs/clock-props.
+
+> +
+> +        properties:
+> +
+> +          compatible:
+> +            enum:
+> +              - altr,socfpga-pll-clock
+> +              - altr,socfpga-perip-clk
+> +              - altr,socfpga-gate-clk
+> +              - altr,socfpga-a10-pll-clock
+> +              - altr,socfpga-a10-perip-clk
+> +              - altr,socfpga-a10-gate-clk
+> +              - fixed-clock
+> +
+> +          reg:
+> +            maxItems: 1
+> +
+> +          clocks:
+> +            description: one or more phandles to input clock
+> +            minItems: 1
+> +            maxItems: 5
+> +
+> +          "#address-cells":
+> +            const: 1
+> +
+> +          "#clock-cells":
+> +            const: 0
+> +
+> +          "#size-cells":
+> +            const: 0
+> +
+
+> +          clk-gate:
+> +            $ref: '#/$defs/clk-gate'
+> +            unevaluatedProperties: false
+> +
+> +          div-reg:
+> +            $ref: '#/$defs/div-reg'
+> +            unevaluatedProperties: false
+> +
+> +          fixed-divider:
+> +            $ref: '#/$defs/fixed-divider'
+> +            unevaluatedProperties: false
+
+And then drop all these. Same in the child node below.
+
+> +
+> +        patternProperties:
+> +          "^[a-z0-9,_]+(clk|pll)(@[a-f0-9]+)?$":
+> +            type: object
+> +            additionalProperties: false
+> +
+> +            properties:
+> +              compatible:
+> +                enum:
+> +                  - altr,socfpga-perip-clk
+> +                  - altr,socfpga-gate-clk
+> +                  - altr,socfpga-a10-perip-clk
+> +                  - altr,socfpga-a10-gate-clk
+> +
+> +              reg:
+> +                maxItems: 1
+> +
+> +              "#clock-cells":
+> +                const: 0
+> +
+> +              clocks:
+> +                description: one or more phandles to input clock
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +              clk-gate:
+> +                $ref: '#/$defs/clk-gate'
+> +                unevaluatedProperties: false
+> +
+> +              div-reg:
+> +                $ref: '#/$defs/div-reg'
+> +                unevaluatedProperties: false
+> +
+> +              fixed-divider:
+> +                $ref: '#/$defs/fixed-divider'
+> +                unevaluatedProperties: false
+> +
+> +            required:
+> +              - compatible
+> +              - clocks
+> +              - "#clock-cells"
+> +
+> +        required:
+> +          - compatible
+> +          - "#clock-cells"
+> +
+>  required:
+>    - compatible
+> +  - reg
+>  
+>  additionalProperties: false
+>  
+> +$defs:
+> +  clk-gate:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - description: gating register offset
+> +      - description: bit index
+> +
+> +  div-reg:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - description: divider register offset
+> +      - description: bit shift
+> +      - description: bit width
+> +
+> +  fixed-divider:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+>  examples:
+>    - |
+>      clkmgr@ffd04000 {
 
