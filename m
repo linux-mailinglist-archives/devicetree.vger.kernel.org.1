@@ -1,81 +1,63 @@
-Return-Path: <devicetree+bounces-170051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46357A99861
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:19:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67ED4A9988D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FF34A13F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:19:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 572971B80E38
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E84AB293460;
-	Wed, 23 Apr 2025 19:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B66293B56;
+	Wed, 23 Apr 2025 19:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cgQfYRhx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ayeByuZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C4D291170;
-	Wed, 23 Apr 2025 19:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8181229345A;
+	Wed, 23 Apr 2025 19:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745435929; cv=none; b=L1kXxkznAz4Wol6/S5u1uyx+bzUTQ/G5DZ7q4TQhS47iiMqymLNnCWh2tre9L4kHCSovTwSrygnmrc8tjZYxCxvwbeh4OtCS+nhy7F3glmhAoLCerdBNFoZZSnEslBjLZZ4QflGfB8Z0IfcxW6n333YvUYSEyUzOFQjntaRx/Lc=
+	t=1745436839; cv=none; b=J8pcpjsqwpnm/yDI6YiRa21OrWxjMNqVp9Ub1/iIw9sRgWl5jLx6DKONuZy8WAWxTrEa9COcR3nDAg/oYMdQ0as5tYobFe7gOtpxS1aziXLF+cI1Ylbr+gOLHE/k6F8uqKP+unqQ+hiYvRt2QDijkIBzVOn1pck7V94Li20xzT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745435929; c=relaxed/simple;
-	bh=6W57QYzLUsii+2lgI/rDLUsSuP1BumMw2PCPR8oLvN4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=avluERc5DJLD8xQJVGYz6RfnWsVbVoOW2SEjndi2pvGGxIe6F0bsaRhcXkFM7c6HhgoXli3WOgEtIw8VWYqx9ckIM9GS3ZHP56cqj6Zd3yH+6Uug2myqj19p+KTuVHaLt6hJdGtX688JI2euCN3jp2o/VxK1cDsWGTct62/XuoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cgQfYRhx; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22401f4d35aso2582265ad.2;
-        Wed, 23 Apr 2025 12:18:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745435928; x=1746040728; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aIYSdEWdYjNWg1JOdzl1CekCVHSxAkDwX11n6K87S48=;
-        b=cgQfYRhxsEYHzBACXR81N1+aQMSmsSJ5n2G5DNQFui3g8cG/ayd+O6JFWu3Bj7GZL8
-         rbfk6xOrnrTGsFaQAgTrpYFfyOCE7iKxneQ4f2xqfUG834jOWU+N5wldistFrayfFYBy
-         j5ahObYryYTZHz/Z6hdiDtNA+Kc3CBLvSOLWUf3NkB3wNA5MZ+Cm+ypnbXaAnTLBB60n
-         JtD6X/ZOGiK/TQ+0/JQQyxN4uc85pxC8op+d5U/w7/2m98KKE4aKVNMW9GXMlg/oLlGM
-         N+3SGL3J7ZzreHNU7kxbI9K5/IK2k1tnuU36Yl6mmT1vm3N5HfOHZ64a5fUQoeq1axvn
-         vQqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745435928; x=1746040728;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aIYSdEWdYjNWg1JOdzl1CekCVHSxAkDwX11n6K87S48=;
-        b=gFFsCz1Ii4V5w2DxZVMPmSmPCSMH4lCwCzdWKX0Xw1tG9Hu70+MsgXvI2PvFJYshzd
-         6I0Hwnw9zX390ACJNSsI4+CmKqRLQxylBcHVfGDESDQvsCsXh4t7IkJuzrWx5yWnllvm
-         kJqwPClry5zpsXyLr5d33QaqbPJxa9GI8D3PHPPaxqrPLjGFaeLjsTr8qoFRxjhiIh0a
-         S8xxbQth3uN29EqpLDMGizVfPfdjhb/FfhXhepRTGdxgUc39/sm0lvBG8uVSpxzLFJvL
-         B/ClHrOlHwD3BusfvtuVxV6+CMqBpOQ0sX2TnDPKPE6EhiR5f5xvyXYapn3oVBQrEpqm
-         3Rpw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfB8oRFzCHcabAFJhxgBl84Ui+bgIHBgtby58wxDSuU+EDCXQaAkdwEWn76z8J6QAIhWyjvORdco91Rw4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSMtDnSXMAU0sqgDKUZrdgRlYswkaFwWELrLqiSpOcmfT6jcdn
-	qt5vBDjUbXBbzdFn636uc8W7FxOE1xvKWV5TYXI4Q6DSa7OWpeqV
-X-Gm-Gg: ASbGnctUt0bEAQNxHhEoMxwBRLqS7uLRyw+iOXuVXMR9xYBEkzYzsu+FDNcNFDfXZ5g
-	xGlJta18MxxT1g+5KEmf8aTOmZn1cmf1cP2TmGU5atsbtkpdGKSKb+8XFUdtnbIu3/CbBunfe1A
-	RLdwmoyDkcH9RWIDEl4uTDmlLP1j9pDyQDJazrGHdQGxu8AQCj8NZ2MORaanAtQZ+f7mv6/q/zd
-	KW28+dhXoE3WleoZPbLJ1gcDgeGb6ywy49rWDMdRjjLaj860bL5wD/+qHEIg+8floUIDkYiQfs9
-	wM7EYPaQuP8fLelnhoRk3H92/KUrNCeP/0P4/3PEDGCpIHE4Sscb
-X-Google-Smtp-Source: AGHT+IHISSI6sxpKSal72ZsfL0ROGtb7EMezHqIHuGuTTYCadSEw2oEO51PUIm+sClTFJHFj5M10pA==
-X-Received: by 2002:a17:903:3c4e:b0:224:584:6f07 with SMTP id d9443c01a7336-22db1b31039mr6838215ad.37.1745435927558;
-        Wed, 23 Apr 2025 12:18:47 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50eb4897sm108204025ad.143.2025.04.23.12.18.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 12:18:47 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 23 Apr 2025 23:18:33 +0400
-Subject: [PATCH 3/3] ARM: dts: vt8500: add DT nodes for the system config
- ID register
+	s=arc-20240116; t=1745436839; c=relaxed/simple;
+	bh=lGsfM0YE4fOa4De+TTZOodmd878I+2yJ1yZmukK3EEY=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=EZSoR6ZMNZ1lkOGCQpVr2UnyVyDwi6POs3gUbSr7645Flo4vtFkoQZIkiKetAUoxo5qn4eVDtx5OApuySt4iGXzw87PVNkNoaK/aFXsitzMf51Xg9ulU1L1qR6xD80+rWnKHifZnSMhIPFCtxGa33Aevzx0jYkkUxh7eHEzFL/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ayeByuZW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53N9rKYT007637;
+	Wed, 23 Apr 2025 19:33:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=9O4XVfQFkJ04PlfOMtgBk5
+	5vtD1zvpUJSZ0Z5uuCr9c=; b=ayeByuZW6lMp/lSjHG+ERSfgAPPrsfV9yetiKe
+	MpjdGlckBdb0QOLWDnC5T/LKNxb7ZCYusWf0WfwywuFrz5O1R4S8AAlKR6NC9ltG
+	yLpEQJM6w0NhU+V5DFbGpqSqXVWjHIXDLnx1KM2hlAYdCl4tIboZ55EJzXbToNaI
+	ONBG2HGignGRSgZPP06BVCNPx2OPXBI9ku1dyYiZd6MvEIU9ekCRhFiIkbfPX+fB
+	x2FueIoYTHogRzRieoKopJmVGvJDdkLDwhtoH2mwtchEy6mxJvOXi1wuaZyWCKny
+	bn0sCu41Vhn5Y9FYVKH1FRmh0sFLYKNPzLRf2K0Us7N8YkNw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5b7jj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 19:33:51 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53NJXkiV021749
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Apr 2025 19:33:46 GMT
+Received: from hu-vgarodia-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 23 Apr 2025 12:33:42 -0700
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+Subject: [PATCH v4 0/5] media: qcom: iris: add support for QCS8300
+Date: Thu, 24 Apr 2025 01:03:30 +0530
+Message-ID: <20250424-qcs8300_iris-v4-0-6e66ed4f6b71@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,118 +66,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250423-wmt-soc-driver-v1-3-bd8bf32521c2@gmail.com>
-References: <20250423-wmt-soc-driver-v1-0-bd8bf32521c2@gmail.com>
-In-Reply-To: <20250423-wmt-soc-driver-v1-0-bd8bf32521c2@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAItACWgC/32Py27DIBBFf8ViXaqBAQNe5T+qqgI8bljYTsC1U
+ kX+9xJn0ae6vKM5Z+5cWaGcqLCuubJMayppnmpQDw2LRz+9Ek99zUyC1KCE5edYLAK8pJwKN94
+ RtaBQKM8qcso0pMuue3q+50znt2pd7sNPadfsSik1X+ZTiryM9qKB795VAPdSuGC9DcqYbjU3f
+ fCFeJzHMS1dI5SSOET0qm4OQWHb995qpQHRUZRhEE4EbNmtyDGVZc7v+5ur2Jv8/dEqOPDWGCc
+ DulDNh1o/pik+1ru7apX/4bLigkCg1cEBud84fsEl/sCx4r0hBy20pLT9jm/b9gFKQJXusQEAA
+ A==
+X-Change-ID: 20250418-qcs8300_iris-7a9ee604314a
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745435922; l=3343;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=6W57QYzLUsii+2lgI/rDLUsSuP1BumMw2PCPR8oLvN4=;
- b=Ll1xSdAGEInXI8OF1yoMnE81rYGd2G/d3jEJXoTAF3+ka/+yccvvibfADDjw5UNi74/48YtIO
- KkJT2+QYWfgATNn+ZaZmwM/vHU7J55mRU0bnOw4ATQz8mugEZmxwvTL
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745436821; l=2414;
+ i=quic_vgarodia@quicinc.com; s=20241104; h=from:subject:message-id;
+ bh=lGsfM0YE4fOa4De+TTZOodmd878I+2yJ1yZmukK3EEY=;
+ b=5hOT1gvXshaUidmdGCSkPzUM4IM+1adqbQAVGd+wmc6kqRUr6KeqppyKqupik8hE13EAFKojk
+ HTRBuFjH2VmBDkRD3lavBRXhVocx8X92KM9otJQHq6PGWVPfEH34PdM
+X-Developer-Key: i=quic_vgarodia@quicinc.com; a=ed25519;
+ pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDEzNSBTYWx0ZWRfX5omE4OwKoxrm Oqlg4zbZh9SBEaW9u4Yt3ZIWTv66fHTEX4rR0/CeWAklJIIeEsfUHni5i6yxgSj/pHimZoYKFWt qu12dblU8TEop+6psl/UQqAbophqnFM4OBcmj3Oe17j/ejufyqYmmOLDa4EylDiknsn2mZzQMnC
+ XA+gty3uyio9pOFMsTu9WoKxknSM++oc8OpW+no1tGzohz2nx9xqTGsGPAc8jRpxF2/MiXkpLq3 ModoRi3Oguv9AStkIjGQLYaMZqoT3I0sxrwotiH2H3BraDj1v/11dBA7vmSN0K3M/tHaK4zGqn0 1rH+w4cr8F2JOui8bbONFoDjAIgBttDzLyzl1O8msvc90dZ8fGYH9u4tL3HktNz+pHZSZcFPp4R
+ 6zsWCAaUkwAWQ0nhBriWCkUZGGlwZ532k3efUu4J38/goChLc4kzs1jXX7Wyw1lTPLSGvjdA
+X-Proofpoint-GUID: dzFrhIBmzRoPwSO7vcCR4U_Mt_BH8YIE
+X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=6809409f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=h97imd1RtcNJs7uGSNUA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: dzFrhIBmzRoPwSO7vcCR4U_Mt_BH8YIE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_11,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230135
 
-Every VIA/WonderMedia SoC has a 32-bit chip ID register at the
-MMIO address 0xd8120000. Add respective device tree nodes to let
-the system code access it at runtime for the selection of appropriate
-hardware quirks where needed.
+add support for video hardware acceleration on QCS8300 platform.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+This series depends on
+https://lore.kernel.org/all/20250417-topic-sm8x50-iris-v10-v7-1-f020cb1d0e98@linaro.org/
+
+Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
 ---
- arch/arm/boot/dts/vt8500/vt8500.dtsi | 5 +++++
- arch/arm/boot/dts/vt8500/wm8505.dtsi | 5 +++++
- arch/arm/boot/dts/vt8500/wm8650.dtsi | 5 +++++
- arch/arm/boot/dts/vt8500/wm8750.dtsi | 5 +++++
- arch/arm/boot/dts/vt8500/wm8850.dtsi | 5 +++++
- 5 files changed, 25 insertions(+)
+Changes in v4:
+- Introduce a patch to fix existing order of compat strings.
+- Fix the order of header inclusions.
+- Link to v3: https://lore.kernel.org/r/20250423-qcs8300_iris-v3-0-d7e90606e458@quicinc.com
 
-diff --git a/arch/arm/boot/dts/vt8500/vt8500.dtsi b/arch/arm/boot/dts/vt8500/vt8500.dtsi
-index f23cb5ee11ae63222276c8ac178c52a6a3872c0c..1f81f0cbdb7e2c2378b62e40afd3675303bf8cc1 100644
---- a/arch/arm/boot/dts/vt8500/vt8500.dtsi
-+++ b/arch/arm/boot/dts/vt8500/vt8500.dtsi
-@@ -55,6 +55,11 @@ pinctrl: pinctrl@d8110000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		system-configuration@d8120000 {
-+			compatible = "via,scc-id";
-+			reg = <0xd8120000 0x4>;
-+		};
-+
- 		pmc@d8130000 {
- 			compatible = "via,vt8500-pmc";
- 			reg = <0xd8130000 0x1000>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8505.dtsi b/arch/arm/boot/dts/vt8500/wm8505.dtsi
-index d9e1280372c55c5080d242014c2392eaf4335d11..adc239a9999995c077dda0e2ef3a76066264bb8c 100644
---- a/arch/arm/boot/dts/vt8500/wm8505.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8505.dtsi
-@@ -66,6 +66,11 @@ pinctrl: pinctrl@d8110000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		system-configuration@d8120000 {
-+			compatible = "via,scc-id";
-+			reg = <0xd8120000 0x4>;
-+		};
-+
- 		pmc@d8130000 {
- 			compatible = "via,vt8500-pmc";
- 			reg = <0xd8130000 0x1000>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8650.dtsi b/arch/arm/boot/dts/vt8500/wm8650.dtsi
-index 35d12d77efc0f91e3735b98b8ec1f25a62c9c22e..2139d183a92b18583884f9329ad286e9da98c066 100644
---- a/arch/arm/boot/dts/vt8500/wm8650.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8650.dtsi
-@@ -62,6 +62,11 @@ pinctrl: pinctrl@d8110000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		system-configuration@d8120000 {
-+			compatible = "via,scc-id";
-+			reg = <0xd8120000 0x4>;
-+		};
-+
- 		pmc@d8130000 {
- 			compatible = "via,vt8500-pmc";
- 			reg = <0xd8130000 0x1000>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8750.dtsi b/arch/arm/boot/dts/vt8500/wm8750.dtsi
-index b292f85d4e69b43d6eeb4525113265722a7b90af..5b2d3697418dbe668fa3b8586b0c98f2efa6bfb7 100644
---- a/arch/arm/boot/dts/vt8500/wm8750.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8750.dtsi
-@@ -68,6 +68,11 @@ pinctrl: pinctrl@d8110000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		system-configuration@d8120000 {
-+			compatible = "via,scc-id";
-+			reg = <0xd8120000 0x4>;
-+		};
-+
- 		pmc@d8130000 {
- 			compatible = "via,vt8500-pmc";
- 			reg = <0xd8130000 0x1000>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8850.dtsi b/arch/arm/boot/dts/vt8500/wm8850.dtsi
-index c61717ebb4f1f3523733241c4df11f741ad4ae14..2c4922933875c9c31ea7c979aa8cbcc3d9a934a5 100644
---- a/arch/arm/boot/dts/vt8500/wm8850.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8850.dtsi
-@@ -65,6 +65,11 @@ pinctrl: pinctrl@d8110000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		system-configuration@d8120000 {
-+			compatible = "via,scc-id";
-+			reg = <0xd8120000 0x4>;
-+		};
-+
- 		pmc@d8130000 {
- 			compatible = "via,vt8500-pmc";
- 			reg = <0xd8130000 0x1000>;
+Changes in v3:
+- Fix commit description to better describe about QCS8300.
+- Fix the order of the patch.
+- Collect the review tags.
+- Link to v2: https://lore.kernel.org/r/20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com
 
+Changes in v2:
+- Added dependent info in binding patch as well.
+- Fix a sparse error.
+- Link to v1: https://lore.kernel.org/r/20250418-qcs8300_iris-v1-0-67792b39ba21@quicinc.com
+
+---
+Vikash Garodia (5):
+      dt-bindings: media: qcom,sm8550-iris: document QCS8300 IRIS accelerator
+      media: iris: fix the order of compat strings
+      media: iris: add qcs8300 platform data
+      arm64: dts: qcom: qcs8300: add support for video node
+      arm64: dts: qcom: qcs8300-ride: enable video
+
+ .../bindings/media/qcom,sm8550-iris.yaml           |   1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |   4 +
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi              |  71 ++++++++++++
+ .../platform/qcom/iris/iris_platform_common.h      |   1 +
+ .../media/platform/qcom/iris/iris_platform_gen2.c  |  57 ++++++++++
+ .../platform/qcom/iris/iris_platform_qcs8300.h     | 124 +++++++++++++++++++++
+ drivers/media/platform/qcom/iris/iris_probe.c      |  16 ++-
+ 7 files changed, 268 insertions(+), 6 deletions(-)
+---
+base-commit: 14423fc3a4a21fb436dda85450339ec2bf191b36
+change-id: 20250418-qcs8300_iris-7a9ee604314a
+prerequisite-change-id: 20250225-topic-sm8x50-iris-v10-a219b8a8b477:v7
+prerequisite-patch-id: afffe7096c8e110a8da08c987983bc4441d39578
+prerequisite-patch-id: b93c37dc7e09d1631b75387dc1ca90e3066dce17
+prerequisite-patch-id: b7b50aa1657be59fd51c3e53d73382a1ee75a08e
+prerequisite-patch-id: 30960743105a36f20b3ec4a9ff19e7bca04d6add
+prerequisite-patch-id: 2bba98151ca103aa62a513a0fbd0df7ae64d9868
+prerequisite-patch-id: 0e43a6d758b5fa5ab921c6aa3c19859e312b47d0
+prerequisite-patch-id: 35f8dae1416977e88c2db7c767800c01822e266e
+
+Best regards,
 -- 
-2.49.0
+Vikash Garodia <quic_vgarodia@quicinc.com>
 
 
