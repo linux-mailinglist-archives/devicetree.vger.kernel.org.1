@@ -1,171 +1,161 @@
-Return-Path: <devicetree+bounces-169881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B632A98874
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:24:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B04A9887C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3C713B7098
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:24:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B79361B6370D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 11:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560D126F444;
-	Wed, 23 Apr 2025 11:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC2726FA4C;
+	Wed, 23 Apr 2025 11:25:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LIqiqGsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6191FF5E3;
-	Wed, 23 Apr 2025 11:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733AC26FA46
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745407483; cv=none; b=qHBX7GiVCcdOLE6i37BQ/xubUq0fKmem8NqCnyG6L9pecMzczbXEPpmkjARw/DchQaSs2wCS5CLUpk56JJ8bNSk6PmxLnv6dcMP/vHw98asX+intDB1VTF6fpraqSUuLnVnckJ0V4j7nT1PYbtvGInBxf7PNg2Hq0uQSw1poyEs=
+	t=1745407542; cv=none; b=RtEq90jjPxd6+JGINnEw74rmRVTuAfLXzQdgk4X4fDZoRkB0y9H5ISDOsQsEY/Gbgs/X7GoHdqrI2k5ld8ru/C/OtCDgbTqxom16xgGX4bwDyK4sjfYscwIQvhwuL30OZcD9W6xUIUd1k4kGwv+SjWPV7B1/D9Jze43vKRNVz08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745407483; c=relaxed/simple;
-	bh=8aEZyewUXfrnmqhvKqZ0K7+fHWQclNvbr7lhUzdXxp0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J00Gf9jUUvl+NwYOk0++ax65kCOwGkYIqVDrb7X1KrEQHZQyZy3yKPrzB/JdcIIer7XE9NqYEZ1/68jbsgYJ/QjdlegbvIvS934/MFpecKFubtaXSeZ8luD51zdUtWwBFwA5V3aozWCVPGsKOi5uHJpfYlGqB36aMjpqHu0J0vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-523f670ca99so2255677e0c.1;
-        Wed, 23 Apr 2025 04:24:41 -0700 (PDT)
+	s=arc-20240116; t=1745407542; c=relaxed/simple;
+	bh=wKXWbzh2ht/X2vUMhpUIeXx1GFXHSCn0jvg1bKsrJvc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UVPIy0bSwYytwD1Ep02znEoMEMmTWGF1ELUxmPujqoM+zBFpQ7yO1Ysj6myMO/GuWAaW0buk5zudwCxBsSom+8iI/TT/jNYKHI0Kpz/DyzUqITdICBCB+mkCU88wROiefpUjujXWlE84rxxZR3OUzZKW5zlfLM1a1qEGEZUQESY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LIqiqGsF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAcYjY022428
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:25:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+SJfWTk5aO0uHSIAPpOEUP1TaRsZh3xbLp7te7De5FI=; b=LIqiqGsFYbXbWF+X
+	ZWDgw+eB8a3gdcqzTD0qr2Qtf2nRxBuKzDi+/SUTMaxy8q0TZQXLWOhsrUySx+fF
+	3hc+qpuJys66S3Yv3wlo9lAKd4Mu4RfyIHYQHdcTNdGw03fP/ICzoLtkfJDtA9DQ
+	aPQkEAeIfXbPuxHkyZbql9Ya0ByPh303SFsjlaDBB7vi51qpKPKMglA053f2/Aq0
+	TDL3wUTs2P//7aRaR9gOsyPZ997GPPx+mEhZR5qRNt1RawovzsiYBihkaPSlYxMm
+	kWgtWsRjqI/Q/3C7Y7QcTwX4R/+nOivD5sQ7oG5FfiahI+d+wYKQc/xqWr52QYQb
+	9v/aKQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh29xrt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 11:25:40 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c76062c513so121236785a.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 04:25:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745407479; x=1746012279;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4maj1pzgGpxC7pMxTXMAwmFvdy2FueKzcza9CY+FFpw=;
-        b=QYOUgw1RAjUaEgmMuupzwcVFHMY9j5QLApjNbG7KafH0zsvUs/sczR0Uw8ab7Myvex
-         +2RolciM3kXbpsdpo91KRDDx6aixcFhBoWkVfeF2nTZG1M9+Xz/py4O9mb3XTF8ws4H/
-         qqxcNrcORW+GeVjcEQ6+lcx2tlEbhH0i1A/vzMeNs2qEzdJ4191npf2L8lwUPI+6Ux+m
-         BXzXSh7gkQxMRcI5hLG/amqjGuWatofFw2gZJahcPsoH4HzH1V/PCDU/KX6b0rNWoWOM
-         /KU0mlZx65rhzEkJI8LVa2XkEH6W5WkH/dQSfNDhfdOTCTvkJZjE1XKeCISDlyl34tE4
-         Q6nA==
-X-Forwarded-Encrypted: i=1; AJvYcCUEkA01MVvaZzWdEKGxtkuqbfAlkArhuj6sSsRUpDhZJbi+3I8s7ayKReN9375iXHqEqcer+XyNCkDLCUE=@vger.kernel.org, AJvYcCVnEsJwGysnKS4lxZjWbvInCfymdCpoRSn8tJF8o/+h4H0AZUQydSHDlTa41RbDzwbQAgFVOwePSw67uRJd2TgCOoQ=@vger.kernel.org, AJvYcCVtgVFvSPIgxMX+oFvJ2w1aA5GB8KoMMc55X9Xwd6TaJRYcXSx7B4tdobyhH2xeHhWfapbFIYOxQbCk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFB49q5O8I4qpgCOg3CpwKu4YfgyvWFFUzgiFHhfaEx52/e66C
-	98Auu+i6Ye6hq/6h977BK8HMzu0L5dokQLPkjgVZoKIEaQ1e+m24FMtYQIDCYSU=
-X-Gm-Gg: ASbGncvymRREE5igVr94ygnBmKgZW+S1O4jKxC11NjYuznXxY/6Ff2cQpB49n4EDyhz
-	XU+/of3yOCnA66UOnHvK58sgDtkKCLykPdZuOBrHf8WxPprIhy2afgd2N4Pd44j9WwK2wC8qVaw
-	oCyPPUnwwFM/vclomVH6NIWg/eRVBn9uvmrct3N+jd9a5k+AgTGJGjZDdoaOWCWAkI9zk6EeHam
-	0YJZBPnbDV4wX6CX5vcehowPiTrf9e7FDx+hL5lyilVoPQGfm0CcEehJIgXrI3x753ecODV5Fe+
-	1Vp2nmfzGEEHTRfZ9el8TQE7127uknvN0h7s3rDHm36n0fZAuPIjPRPDkLPRzi0k7LqnuA21LTF
-	jwdE=
-X-Google-Smtp-Source: AGHT+IHiHNcRzJKNldpJS8Xc402NVNtMnalympuOabpq6/Q+wiSGiX7CfUhkm8bCNYPL8b+M1lYmng==
-X-Received: by 2002:a05:6122:8c26:b0:520:3e1c:500f with SMTP id 71dfb90a1353d-5292549fc45mr13228909e0c.8.1745407479191;
-        Wed, 23 Apr 2025 04:24:39 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52922bec16asm2295744e0c.2.2025.04.23.04.24.38
+        d=1e100.net; s=20230601; t=1745407539; x=1746012339;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+SJfWTk5aO0uHSIAPpOEUP1TaRsZh3xbLp7te7De5FI=;
+        b=lJsuRn3q43xOf8Ju52rG9TJ1TREUwcEylab2WIKI/Nn5Uvuz1kEJwpuu8q8v1kBbBn
+         WE9STWksUoUigvrKkOxVQTTTJo+eOQP4cEDFY94fOZwo0EfscQEexwNMdQTS2EwQFCdX
+         3uh2EfXt0u2QKdi+GLtrAAzjLgnDiiUX8bSifwRIp7kvPhYJpbl6gBDrY9h0FvXQqY2M
+         VmsrVxUc9QObFwVyzJSwxRqJm8Dq4bP3q06KAAn/Cc5C9rw1VbWcxpwWub1XPFoQxMVd
+         Lmvl8GKgRfQh2bIBp85qRSQ6wg+heewsPOJA2gg6uVwl+YA2QkOaqiWXEEpXMmSMtjK4
+         2TxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9mMrtZz0SUfGC8IW2iiJ3lbtQhJxcIjpjxljsGLaI+y/ULTn+vvh0bCjdxNDLGQdJGAMA+RsRdHQ/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOslXpJiQSO/27pKYUq9odzy0Tg2VHJcOUnx26mzGcyVrWBiVO
+	buNfgYS/W8bKMFvuZ1spEsVKPRb965isX1jJ1g4obV/RvJJui2zzK5gtcOQ3LmEtnB7LMPBDCQs
+	aQ0J3/0p0qJWuYhPMlYvLrMeEoBaXqXc+MFsmowEgRiREf5tbpNai1cf09vIm
+X-Gm-Gg: ASbGnctYtjG4NcRolg4220HNH1dNE44IsXW/1Bp/oTryk+GcBtOBWbcl7MmDZHC7zpV
+	xIWAc1CBbAopnoKMNcF7LyGTSEAVs/KN4fY1yvv9a7xIsM85ezMOoSb0z1nDmgds6T9oj4zdjzY
+	WZCJBBC5IEsyc0xVE2mvJkvXyYNRE/oCs/fapPVQall3LA93zWz57K1WHOKm60/AcYNYlNBZh4m
+	gQZzAY9/PFuFaot782DFn0p3AOBPZsqgByyyHNLh6w11bboEnroGcU2k9KIAvB36rSyqQ8gDoxK
+	lnTjKI4J0VGUxAmaLFBdJxIevXWEa7DJCCuaPlw9XajqLX4EOjL8vOw3GO5TmAtz0OA=
+X-Received: by 2002:a05:620a:19a7:b0:7c7:ae26:9bb3 with SMTP id af79cd13be357-7c94d25a6b0mr185332685a.5.1745407539441;
+        Wed, 23 Apr 2025 04:25:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFAKueAMYdW8vImOAi5a60M+gwJ663bWKU2mlGWA17qqnLufSL3bclAp8Ot3R4t4SQ07ODnkw==
+X-Received: by 2002:a05:620a:19a7:b0:7c7:ae26:9bb3 with SMTP id af79cd13be357-7c94d25a6b0mr185330285a.5.1745407538941;
+        Wed, 23 Apr 2025 04:25:38 -0700 (PDT)
+Received: from [192.168.65.183] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ec0b6fbsm806483166b.19.2025.04.23.04.25.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Apr 2025 04:24:38 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-8778151ddc5so1230608241.2;
-        Wed, 23 Apr 2025 04:24:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUKifQm0RptFhrVTtkeoJ5Xaimm6EIeZaoHNXXsNlAW1bu/Bwgm8/nT97eOVeFlyJXixPhCKHWyDTON3w4RnHYLmik=@vger.kernel.org, AJvYcCWGkleNFaDDpv7EvIMXqBdIYllWRvA15oKrIKBA6tIEL/G2m4bPKet5VeOfvrxXWWFCGZQna1YHbhaSXIE=@vger.kernel.org, AJvYcCWuN+KQpTyJnW/hso+Yu8O/42Rsn5eZ8B7nyloa58D2dB7NfsRTUtRAJkXOkz+hUexi/ikLxEUOlD9j@vger.kernel.org
-X-Received: by 2002:a05:6102:6a89:b0:4bb:c490:7d6c with SMTP id
- ada2fe7eead31-4cb8011c06amr10950575137.9.1745407477842; Wed, 23 Apr 2025
- 04:24:37 -0700 (PDT)
+        Wed, 23 Apr 2025 04:25:38 -0700 (PDT)
+Message-ID: <a9a5680f-de4c-49ac-8ae6-d2e0452d8258@oss.qualcomm.com>
+Date: Wed, 23 Apr 2025 13:25:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250421111240.789510-1-niklas.soderlund+renesas@ragnatech.se> <20250421111240.789510-2-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20250421111240.789510-2-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 23 Apr 2025 13:24:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
-X-Gm-Features: ATxdqUFaZVs59k_xpDrz2f4Zekcm39G8UUdFr3Tbp2NjK3L1IVks92DIncGnbRQ
-Message-ID: <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: media: renesas,isp: Add ISP core
- function block
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] phy: qcom: qmp-pcie: Update PHY settings for SA8775P
+To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+        quic_nayiluri@quicinc.com, quic_ramkri@quicinc.com,
+        quic_nitegupt@quicinc.com
+References: <20250423-update_phy-v1-0-30eb51703bb8@oss.qualcomm.com>
+ <20250423-update_phy-v1-1-30eb51703bb8@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250423-update_phy-v1-1-30eb51703bb8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: s2s9nQWkM_NoXWNXVYnskrZChIRA637r
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA3OSBTYWx0ZWRfXwDSOvfsYP2qt /CR1GOrA90GvDIHxKeeVtWmtvdAyKz0QT33lf6I90gleeD8amDnOUqq+bhwz1c3QVXnQ+MdUAh0 Gn/pK/Fd+F1INgA3StbAYOUEEDYrDil4R7yFsQQ3+S2I8ub0ttsMZqPrEpSPIOvNfeWodO/qnkG
+ qFxgqAUpeU/PXoDOnMHqrQx+QR/gNfc0WrEjh2eRZ0vFNJ58zEUoejYaJjNSxoaTnrjvy8eDQeD jj6c7JDcoFYiPjme4mwysBuTrXqaQv7v8wvwrM+iYa5S4cuMdJa7m4M9dC/CpraI+z/D6Cu6GIn aZuS2q1XoUc9xaNvenHGe7ocO5tBKxEzsFtltJISweV4HU0w5LUg7IFSnhCkXFn2lJ79M4sOJTS
+ kF1Ym6uQcVtIcxCOxrzHdW/1mYPuBaZUUgsKAMM1JYwdlTTPjR51UFHM+P2nSvFnlOpKPIPT
+X-Authority-Analysis: v=2.4 cv=Tu/mhCXh c=1 sm=1 tr=0 ts=6808ce34 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=4ZBdfkmogR933_44ZQYA:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: s2s9nQWkM_NoXWNXVYnskrZChIRA637r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_07,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
+ impostorscore=0 adultscore=0 phishscore=0 mlxlogscore=999 bulkscore=0
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230079
 
-Hi Niklas,
-
-On Mon, 21 Apr 2025 at 13:12, Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Some R-Car ISP instances have in addition to the channel selector (CS)
-> an ISP core (CORE )to perform operations on an image stream. The core
-> function is mapped to a different memory region and have a separate
-> interrupt then CS, extend the bindings to allow describing this.
->
-> On the same SoC different instances of the ISP IP may have, or not have,
-> the CORE functionality. The CS function on all instances on the SoC are
-> the same and the documentation describes the full ISP (CS + CORE) as a
-> single IP block. Where instances not having the CORE function simple
-> lacking the functionality to modify the image data. There dependencies
-> on the CS functionality while operating the CORE functionality.
->
-> In order for the ISP core to function in memory-to-memory mode it needs
-> to be feed input data from a Streaming Bridge interface. This interface
-> is provided thru the VSP-X device. Add an optional new property
-> "renesas,vspx" to provide a phandle to describe this relationship.
->
-> While adding mandatory reg-names and interrupt-names breaks existing
-> bindings the driver itself remains backward compatible and provides CS
-> functionality if a single unnamed reg and interrupt property is present.
-> Furthermore all existing users of the bindings are updated in following
-> work to add these new mandatory properties.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+On 4/23/25 1:15 PM, Mrinmay Sarkar wrote:
+> This change updates the PHY settings to align with the latest
+> PCIe PHY Hardware Programming Guide for both PCIe controllers
+> on the SA8775P platform.
+> 
+> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
 > ---
-> * Changes since v1
-> - Extend the commit message to make it explicit that different ISP
->   instances on the same SoC (same compatible value) can have, or not
->   have, a CORE function block attached.
-> - Update documentation for renesas,vspx property.
-> - Update example to cover all new properties.
 
-Thanks for the update!
+Please also mention that these updates happen to solve the stability
+issues seen with Gen4 speeds
 
-> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+[...]
 
-> @@ -119,11 +159,18 @@ examples:
->
->      isp1: isp@fed20000 {
->              compatible =3D "renesas,r8a779a0-isp", "renesas,rcar-gen4-is=
-p";
-> -            reg =3D <0xfed20000 0x10000>;
-> -            interrupts =3D <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> -            clocks =3D <&cpg CPG_MOD 613>;
-> +            reg =3D <0xfed20000 0x10000>, <0xfee00000 0x10000>;
+>  static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_30 = {
+> @@ -3398,8 +3402,8 @@ static const struct qmp_phy_cfg qcs8300_qmp_gen4x2_pciephy_cfg = {
+>  		.tx_num		= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_tx_tbl),
+>  		.rx		= qcs8300_qmp_gen4x2_pcie_rx_alt_tbl,
+>  		.rx_num		= ARRAY_SIZE(qcs8300_qmp_gen4x2_pcie_rx_alt_tbl),
+> -		.pcs		= sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl,
+> -		.pcs_num		= ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl),
+> +		.pcs		= sa8775p_qmp_gen4_pcie_pcs_alt_tbl,
+> +		.pcs_num	= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_pcs_alt_tbl),
+>  		.pcs_misc		= sa8775p_qmp_gen4_pcie_pcs_misc_tbl,
+>  		.pcs_misc_num	= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_pcs_misc_tbl),
+>  	},
 
-IThe second size should be 0x100000.
+So QCS8300 and SA8775 are closely related - since you're making updates
+for both, please also mention this in the commit message and describe
+the impact it has (e.g. that it fixes electrical settings for both platforms
+that largely re-use an IP block)
 
-> +            reg-names =3D "cs", "core";
-> +            interrupts =3D <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names =3D "cs", "core";
-> +            clocks =3D <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
-> +            clock-names =3D "cs", "core";
->              power-domains =3D <&sysc R8A779A0_PD_A3ISP01>;
-
-With the above and the wording issues pointed out by Laurent fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
