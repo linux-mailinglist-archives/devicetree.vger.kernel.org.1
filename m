@@ -1,155 +1,158 @@
-Return-Path: <devicetree+bounces-169929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0D3A98B61
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:38:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29832A98B6E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:39:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2403B8729
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF63189BE35
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C231A5BA1;
-	Wed, 23 Apr 2025 13:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F8019F48D;
+	Wed, 23 Apr 2025 13:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ia4rNPu6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EMq2faP6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787071A5B90;
-	Wed, 23 Apr 2025 13:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326BE1A2380
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:37:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745415465; cv=none; b=r0I7CkZBrK403qFB68DIjef73PypCipFmq8FPC/pNkWEPGWyAZpc6HQdDrEWfg2vdzn7CavNPoW6yWcpcL/VTsnGxG3arWJGe4MDSRJpGcpqjDr/+VAiXkYphgqAl6j6yu2NkUO4Ro2aEyAQTXJG093Icu7+/+tN5ZTBWaHnf54=
+	t=1745415477; cv=none; b=EXI0Ld+HbhQG91QIHRzSWa+VwgTL8lS9KUEmaXEOGeyUoktvaACq70fveGy2TyQQqPyrx36aRbeU6sqX5V0PtASExke6zildjLI+eFz6lHUPCxdTZOVDh7y3CsM6E2rIB0LWA+0g1SmQ/j38TlB2dR+ZuXs2Uq3YYQ/MWctXjOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745415465; c=relaxed/simple;
-	bh=CALcr2D8P7akt7X7jSYozms1ObYqP8vxtiOzx3BpABE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=TlNPF6gvyl4qah3XaJnrq8JtdpHGpvR7u3K+IlPOzBvp/NJ8ZlOxoEc54AOadS7ET2ODRyH9JQkqPk+zgV+11hjxm2f4h7QKcBMpNrqSAGTpCGX8F8t6Ai3RB0atEKjDOfffY8CPdB01ajjek3aZ+mRWcz6w5MTMwEqWvFvBS5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ia4rNPu6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D999C4CEE2;
-	Wed, 23 Apr 2025 13:37:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745415465;
-	bh=CALcr2D8P7akt7X7jSYozms1ObYqP8vxtiOzx3BpABE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ia4rNPu6wUMCMc6HXBm8gsGCWOBlvjrbgsMr9dHWACfFmELVzORAKab/RcVyDH6l9
-	 2+DqNqkrSAw6nxdEDMteeWORNkjpkQiP1u/X8nxgRurvXjh/bfFMnA5Xr0uRRb82uW
-	 vSnODo/yilJWIPlNusYd9c12LWk4tiYspzeUWOWiuO+BYH8Z6yXNQyVyc3Axk/IaWD
-	 m3gh8pLlycWFEBGpxsBV328hK272e372fw4XKqkjtOrvpN3QURPtnSRf+LkMwTShiS
-	 mhIr10A+gOBXlDSKyzdWaD133Q6CYXSD/9a4iewjS/Eeoyq4XZisVKo9NSO8IrrAZA
-	 uHbgvmQOsl2tQ==
-Date: Wed, 23 Apr 2025 08:37:44 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1745415477; c=relaxed/simple;
+	bh=Bk1vBly7Gn9wz6+X16ugqS+ZdEVmF8hiBAf0LZPkYjI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NQOZGuTy9XEu5KbKqT5n+hdrtfYjBXmcRixGMoGVctgQ1jURplw+eAsB44RRPXDzEehJfMMTyfjODvYiHtMIC17d4L+O+DNy2zcj4gsrjo2DHU/qDKF+1F08mzB52v/uEh5XkTSqU0sScvKMR+CTpILqTLjVnvNIAae67v6Z/ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EMq2faP6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NAIN55008439
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:37:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=+2ze/rnX+AqFYjoGgrqs+s9R
+	DoXeSpWH2VHtigOpg8U=; b=EMq2faP65RSDIjkMhd4B/vQC1OAI1u2q4B8h76xD
+	bo05K3A2ocZpXMZDt7r/8iq8PtmXUjxoVVsauKPKOvCOisWrNCrKBAA1/fY0Ioo0
+	pau+Txpiq+sCHgqfJT0r5wEeLm+GmvzcjuPXAfIOjnj1eOEleAYY/K6hafyWCxfL
+	uBoxCQntWvVt689Xcxwy11Ok4ppVL8Hwm52qVNUV1EbFyNO++6dfZROQo1Wmmyd/
+	9tmjR5Uw70HUs4Akj7iaFvXMqmImXtj21goy0VVnfU1T0qdHg6VyfXXX2od8KqAT
+	VK+E63ecyTp9hUv55QmFN+4AFm2da6ryERG3fZyqV8QKVg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5a9fn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:37:54 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c793d573b2so1171833985a.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 06:37:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745415474; x=1746020274;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+2ze/rnX+AqFYjoGgrqs+s9RDoXeSpWH2VHtigOpg8U=;
+        b=Drs5E6RiabXp8hRIrZOFU9MmD1hWVxFdazJshX+Lh1HtcZHWYg8rJeyBJeU8lCz64B
+         /8LTuBzg9L7mcoiikETjOjmgzWayrT8yV+E4Ld67bKQ612Alg4bL+O3SU0hIp29gHl4o
+         GY4+n0dl9VWaHTDWDxxnS/QpoWjoNjPHkgEH54ystOBWTGOzb/2eDsSz6PC/r7WcSSKi
+         LHWbwJ2SxsfbgT2sScuOZbAxtpBKAYqTMxzdeYC7d2kCWVZRALplc1czajLpdwf/1jSI
+         XH34IaILcmh46otzm6R6CaiS/l4w8padzre2T5orSzQv3XdNHYi1SwgeY/EvC3wPU6T9
+         6ncg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/3THGuljn3gG/vS9CqCrCIkOjgnplI8QMovah3ZInmpme7QUEQ1iWQr0Q467+M5HfUtcS+z4yMHEV@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywboid7/gU45AidzqPvHG3UBriIkaxBXNRpKHh1Q0y2G8wKapwY
+	MTkjdAR+yyv8i8ydglqqpfma5NPseLMPsDbcX5OasdQMcTj46miTOGeFfrVAK6d1yS3cb2axlqP
+	ULW0mwaTtFf8CSlOpyvbc8+bX/8M+1v1W3Xqhivp4D8TnUcBiKftUdONTF88o
+X-Gm-Gg: ASbGncszw7Mrx2roa5LeIi7SI7GBBNsDNYtfWjvv2nyMV5cZbQYdF/C0J20soLG2Ess
+	r6DEpKsYCjAf0bGMdFuOQ5o7kz+OY1SFEUiAbbNlKrJspYHQaDvfbBPYB2pReqRfN7HkRnxhwoJ
+	Ynd8m4pY0v+FxlSPLtpZOmerMS/Z9PiUdw0AqKTFI7rprhXytI7Rf1Aji7RbZ45kFiSZPfxYJm/
+	TlsS9+O63NxH/enjipBSzmipwUBn69tHUcYJIMqceW7zEm5RpqRIdXSm68l/imVLs5FR9pJnf0d
+	mvAZD0b77Fb1lqaWCSkx6aIWMB+7oW6rCKRdpSWyCvh3NygizfjRgkb/uRB8lJ7cCpUJ7DxKuZM
+	=
+X-Received: by 2002:a05:620a:d95:b0:7c5:18bb:f8b8 with SMTP id af79cd13be357-7c927f63367mr2730405885a.1.1745415474049;
+        Wed, 23 Apr 2025 06:37:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHHQxjyT3iMSomg5ijBHCAHqMp5xzTzundL8sqlTqkPCKrDcBt3wVLGtMzpfLC7BB1RtedrtQ==
+X-Received: by 2002:a05:620a:d95:b0:7c5:18bb:f8b8 with SMTP id af79cd13be357-7c927f63367mr2730399985a.1.1745415473543;
+        Wed, 23 Apr 2025 06:37:53 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d6e5d010dsm1533420e87.120.2025.04.23.06.37.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 06:37:52 -0700 (PDT)
+Date: Wed, 23 Apr 2025 16:37:51 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
+        quic_vbadigan@quicinc.com, quic_nayiluri@quicinc.com,
+        quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com
+Subject: Re: [PATCH 1/2] phy: qcom: qmp-pcie: Update PHY settings for SA8775P
+Message-ID: <tqzmof6rq7t7k3jbdmay7dplz7el3c6i3ehesdiqnp7iq5f7ul@3lnf3awj7af5>
+References: <20250423-update_phy-v1-0-30eb51703bb8@oss.qualcomm.com>
+ <20250423-update_phy-v1-1-30eb51703bb8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, linux-arm-msm@vger.kernel.org, 
- Kyle Deng <quic_chunkaid@quicinc.com>, Conor Dooley <conor+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-remoteproc@vger.kernel.org, 
- kernel@quicinc.com, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>
-To: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com>
-References: <20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com>
-Message-Id: <174541475836.315268.1404586813028809700.robh@kernel.org>
-Subject: Re: [PATCH 0/6] arm64: dts: qcom: qcs615: enable remoteprocs -
- ADSP and CDSP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250423-update_phy-v1-1-30eb51703bb8@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA5NSBTYWx0ZWRfX12YTab+QfzqO B1/o331yo6sYr/urixw4m8ImCJGxSuiR3aGP5MnaKtrNgRijcWrQFHP6+Mp7ml+ex+s7Fhwyokb td9Y7YdAijpDVWlhhKJ8cuqSuurE1tKNCUilJRV/PO+HAmjgDUDk16so3lBpMr7cBE+DPx++nG4
+ +jWonZoJCOjYqO1TG85GiPnFZXYJUkD4VFVzOnCHBmFv5jubvIA/6bjV1yocu+gAzrZtXLPXU/4 BM38fqNGN0gmB8vb7AYMyuhghQCXmPU6nHc9qD+HfnpUUA3g5+8PaAJ5mDUIuJwUY2AH7OavR/3 e7aIAWg+LYiWKBZ4mIV3BdzAic+UI9GnkgHMR3WgpsBAWYMGz2T/l1HyS0uf0sdCUJz8ioP3tty
+ ha50sgRwmeDtb1BLzN0e8Qfgyn3YnJLnmac+Eb1UrVs47SEAZUhs8CuG24w8Rs8xf6ezKw4b
+X-Proofpoint-GUID: AeBFNtuQy6lW5Lghduy_nIwbqBShZvoy
+X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=6808ed32 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=Vt7sqbXHGhqwYxysgRMA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: AeBFNtuQy6lW5Lghduy_nIwbqBShZvoy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-23_08,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504230095
 
+On Wed, Apr 23, 2025 at 04:45:43PM +0530, Mrinmay Sarkar wrote:
+> This change updates the PHY settings to align with the latest
+> PCIe PHY Hardware Programming Guide for both PCIe controllers
+> on the SA8775P platform.
 
-On Wed, 23 Apr 2025 17:17:36 +0800, Lijuan Gao wrote:
-> Enable the remote processor PAS loader for QCS615 ADSP and CDSP
-> processors. This allows different platforms/architectures to control
-> (power on, load firmware, power off) those remote processors while
-> abstracting the hardware differences. Additionally, and add a PIL region
-> in IMEM so that post mortem debug tools can collect ramdumps.
+Please read Documentation/process/submitting-patches.rst, look for
+'[This patch] makes xyzzy'.
+
 > 
-> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
 > ---
-> Kyle Deng (1):
->       arm64: dts: qcom: qcs615: Add mproc node for SEMP2P
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 89 ++++++++++++----------
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |  2 +
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5_20.h      |  4 +
+>  .../phy/qualcomm/phy-qcom-qmp-qserdes-ln-shrd-v5.h | 11 +++
+>  drivers/phy/qualcomm/phy-qcom-qmp.h                |  1 +
+>  5 files changed, 66 insertions(+), 41 deletions(-)
 > 
-> Lijuan Gao (5):
->       dt-bindings: remoteproc: qcom,sm8150-pas: Document QCS615 remoteproc
->       dt-bindings: soc: qcom: add qcom,qcs615-imem compatible
->       arm64: dts: qcom: qcs615: Add IMEM and PIL info region
->       arm64: dts: qcom: qcs615: add ADSP and CDSP nodes
->       arm64: dts: qcom: qcs615-ride: enable remoteprocs
-> 
->  .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  59 ++++---
->  .../devicetree/bindings/sram/qcom,imem.yaml        |   1 +
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  10 ++
->  arch/arm64/boot/dts/qcom/qcs615.dtsi               | 179 +++++++++++++++++++++
->  4 files changed, 225 insertions(+), 24 deletions(-)
-> ---
-> base-commit: f660850bc246fef15ba78c81f686860324396628
-> change-id: 20250416-add_qcs615_remoteproc_support-61ddab556c4e
-> 
-> Best regards,
-> --
-> Lijuan Gao <quic_lijuang@quicinc.com>
-> 
-> 
-> 
+> @@ -3191,6 +3194,7 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_20 = {
+>  	.rx		= 0x0200,
+>  	.tx2		= 0x0800,
+>  	.rx2		= 0x0a00,
+> +	.ln_shrd	= 0x0e00,
+>  };
 
+This does more than just updating PHY sequences. ln_shrd-related changes
+should go into a separate commit.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+>  
+>  static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_30 = {
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit f660850bc246fef15ba78c81f686860324396628
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com:
-
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: qcom,smp2p-adsp (qcom,smp2p): 'qcom,sleepstate-in', 'qcom,smp2p-rdbg2-in', 'qcom,smp2p-rdbg2-out', 'sleepstate-out' do not match any of the regexes: '^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap|wlan-ap-to-wpss|wlan-wpss-to-ap$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: qcom,smp2p-adsp (qcom,smp2p): {'compatible': ['qcom,smp2p'], 'qcom,smem': [443, 429], 'interrupts': [[0, 172, 1]], 'mboxes': [[30, 26]], 'qcom,ipc': [[31, 0, 26]], 'qcom,local-pid': 0, 'qcom,remote-pid': 2, 'master-kernel': {'qcom,entry-name': ['master-kernel'], '#qcom,smem-state-cells': 1, 'phandle': 218}, 'slave-kernel': {'qcom,entry-name': ['slave-kernel'], 'interrupt-controller': True, '#interrupt-cells': 2, 'phandle': 216}, 'sleepstate-out': {'qcom,entry-name': ['sleepstate'], '#qcom,smem-state-cells': 1}, 'qcom,sleepstate-in': {'qcom,entry-name': ['sleepstate_see'], 'interrupt-controller': True, '#interrupt-cells': 2}, 'qcom,smp2p-rdbg2-out': {'qcom,entry-name': ['rdbg'], '#qcom,smem-state-cells': 1}, 'qcom,smp2p-rdbg2-in': {'qcom,entry-name': ['rdbg'], 'interrupt-controller': True, '#interrupt-cells': 2}, '$nodename': ['qcom,smp2p-adsp']} is valid under each of {'required': ['qcom,ipc']}, {'required': ['mboxes']}
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: qcom,smp2p-cdsp (qcom,smp2p): 'qcom,smp2p-rdbg5-in', 'qcom,smp2p-rdbg5-out' do not match any of the regexes: '^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap|wlan-ap-to-wpss|wlan-wpss-to-ap$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: qcom,smp2p-cdsp (qcom,smp2p): {'compatible': ['qcom,smp2p'], 'qcom,smem': [94, 432], 'interrupts': [[0, 576, 1]], 'mboxes': [[30, 6]], 'qcom,ipc': [[31, 0, 6]], 'qcom,local-pid': 0, 'qcom,remote-pid': 5, 'master-kernel': {'qcom,entry-name': ['master-kernel'], '#qcom,smem-state-cells': 1, 'phandle': 200}, 'slave-kernel': {'qcom,entry-name': ['slave-kernel'], 'interrupt-controller': True, '#interrupt-cells': 2, 'phandle': 198}, 'qcom,smp2p-rdbg5-out': {'qcom,entry-name': ['rdbg'], '#qcom,smem-state-cells': 1}, 'qcom,smp2p-rdbg5-in': {'qcom,entry-name': ['rdbg'], 'interrupt-controller': True, '#interrupt-cells': 2}, '$nodename': ['qcom,smp2p-cdsp']} is valid under each of {'required': ['qcom,ipc']}, {'required': ['mboxes']}
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-cdsp@8300000 (qcom,qcs615-cdsp-pas): interrupt-names:2: 'ready' was expected
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-cdsp@8300000 (qcom,qcs615-cdsp-pas): interrupt-names:3: 'handover' was expected
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-cdsp@8300000 (qcom,qcs615-cdsp-pas): Unevaluated properties are not allowed ('glink-edge', 'qcom,smem-state-names', 'qcom,smem-states' were unexpected)
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: syscon@17c0000c (syscon): compatible: ['syscon'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-adsp@62400000 (qcom,qcs615-adsp-pas): interrupt-names:2: 'ready' was expected
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-adsp@62400000 (qcom,qcs615-adsp-pas): interrupt-names:3: 'handover' was expected
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-arch/arm64/boot/dts/qcom/qcs615-ride.dtb: remoteproc-adsp@62400000 (qcom,qcs615-adsp-pas): Unevaluated properties are not allowed ('glink-edge', 'qcom,smem-state-names', 'qcom,smem-states' were unexpected)
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,sm8150-pas.yaml#
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
