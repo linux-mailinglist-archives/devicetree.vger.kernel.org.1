@@ -1,138 +1,233 @@
-Return-Path: <devicetree+bounces-169872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14954A9879E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:37:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18846A987E4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54CD6444897
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:37:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4AC17E003
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 10:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4A826A092;
-	Wed, 23 Apr 2025 10:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64061268C49;
+	Wed, 23 Apr 2025 10:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UA0zPiLy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E9V0gWAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA352701B3;
-	Wed, 23 Apr 2025 10:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CAA2701B8;
+	Wed, 23 Apr 2025 10:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745404575; cv=none; b=N2zXxbH985rqijkBJwqbUyYKwtFX/LKyo+T/yR0n2ZE2hJMtE+4qz5Ss7Kz/viJYK4O+Hiw4Mx3x7EBhOxNacd8F+dv3N4IOG/L558PcCqOsDqguPOXNwDUhNeDH1ZUfaxFciM/471X2vsicJQCUbodEuAYTeXTUGXkLYz+0UfU=
+	t=1745405607; cv=none; b=afvjON/kmP5GF5ZPgagEWyj2V4X79tS+DJyYQsmqbEOG1sVxhRTupyonMNrUk+igfkTgoP7bR8wIJRsLQ8g4ilw8JzkAvpMcsRfcFV37ZIOLVICxZgn8lJekD7YyyJDvN4FlhhpMEtRLRv95eKf5c1ZHRk0wpsAj4LyXpVNiCYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745404575; c=relaxed/simple;
-	bh=E4aNkXNAf7lPTjZel8FFf785YVcNWb1onMeMZv2npsc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u2ml7C2sefldgTq+2nwKEd0osHqtdsc7r6TRNyepvyB52yrSsrp7BF2IrKLDiNCKIDHHJ1JBtQ5RubKxQCGNnY2L+hZeRBu010JPtLHk0NU8wL0GYNprZdcQXpuSUgasGV1gC99MLdKJPV5KZRNOLyGzLADxulzz51tyK+xIaLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UA0zPiLy; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1745404570;
-	bh=E4aNkXNAf7lPTjZel8FFf785YVcNWb1onMeMZv2npsc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UA0zPiLyV7Q9K2NWcWRFhj5QjqtUC1OdI3G2Nk5JOb6hDt0WUKc4P9OZg44rkkM55
-	 XX98hdJsrEp13mLC7RKrwb7y8assf5vX2ledBdCLpfrb0U7QKfcpvEt2yduRJLm8AF
-	 wmng5ZShNEn6yZmRAYOWtx3x9RxkMILV+wNZEnYHGp1Ufs9k7OwsJ/c9QaSZzfNzn4
-	 bPsCeUbW6BEOkWbancb0iw76bt31+tsw3cqvJgnFmh6a2aW4hZM0VKlwXkloIKXqPD
-	 X+qzo+1o8mh5Ye7QJwKhCOdN4kvXSVbBGEsHmGMnWe/3REDfuCfP1Jd5SMtJ5EXmA8
-	 R0ZvL5dKN0GyA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 223AD17E014F;
-	Wed, 23 Apr 2025 12:36:10 +0200 (CEST)
-Message-ID: <8c34fd48-5bff-4089-a217-bf2d08f00fae@collabora.com>
-Date: Wed, 23 Apr 2025 12:36:09 +0200
+	s=arc-20240116; t=1745405607; c=relaxed/simple;
+	bh=fLboZBG1ZwmejPbN3M6emYXVitcHQ3ne3IlzbxCC5oo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ualGtX6W5kYFvgjvWgveZ3ZtE8rYrmVsBkuwkKa8U6T8S7QqOCprwXVtncRQBNQVVrFSfo+u6lm5snfctxyjSLMOls0wd0z0q3dnHIDKNrjPyW7tYlyiLO+Fbfyj73ZE7ejjIoznpS3Cu9VpzEP3TIWe6GnY/2T5NA+R6DCl08Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E9V0gWAi; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22928d629faso59459785ad.3;
+        Wed, 23 Apr 2025 03:53:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745405605; x=1746010405; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ZwG3s3vUvO6gQRw3LruMXdYE3GMRGs7Yo4NjUx/T7A=;
+        b=E9V0gWAiWzigsHgfZTdyo1XkhLqSpZG7ZQqqvfsMgOrKhdD3PusRPAk68Jha+l9FTw
+         6JzC1TGwzBN6HWVyEiFs3bYTJ+k7SqjF9eu146r1tQyV5lqVRsf1NBQ51uEF6g+F0TIY
+         KD+vQwsGiifFICTsR64QE4vZtYztq3LcHXz2CdQnj7GPt1x97dyPkEb00dAHYcTTyJww
+         I+q7x6C1Uhcqk4Es2xYI1ksUQQkWB8rnd7X4/Mh92p+e1hPF64QJB5o8yD18ksakYoYn
+         Vp1UO9LzM23eLluUVNn/3bKIRvw8hEOiyCHotubUTrBYkbRo/7Atpl1cl91Q/p53TD/H
+         RmZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745405605; x=1746010405;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+ZwG3s3vUvO6gQRw3LruMXdYE3GMRGs7Yo4NjUx/T7A=;
+        b=UEAciwUAtFJbahVEN5NqwoCZucwgmjzrjznnzfTL4FU7cHInGMRPi2kkV7spZ4aZIi
+         sR4gS98IN/OpNO/BD4V6Vlmn7mday/k8AnjXWqXsRMlY0YTx+gNFCMqdJ8oyaXG0sGjC
+         ClbLpTryPsjxsTBYXPP2fVZkltEUrZjv6ksVwCGs7InuuCCVPFpGPzTriyEhWQ74TIsE
+         dycm1TzbiBFB2QC8tLd6Gm73Z1JvQcozTDsdRHs48bS0YHRM1BTGsUtxRxYLnGa6/lEV
+         /oVxZeprHv+EqIN/tjQT/4VHLamgISXpgSRQ7l8V572IlC8cXXJ2R105gKhAmS+Dk6P+
+         ANUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5sTiCdGmPEqC9zezIE/aRYKxMpaFnfD+FRuHlSVu6tcrP+M6fZ6jAehl68VSvFtzaU4YeBOnNrYa9@vger.kernel.org, AJvYcCX4GN0m58zs6l24rHa/oMmXlyJolDw+OiFXHJCrhOGgX2P/X9SYwL1nR3D7MJod0PZir/Fxe5pij+3LnUg4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIx7T3Vlem/jBQpb5GIeQ5KYabreMR1I5tKngdcZ5spzz3aSGV
+	W8NRntn+IBnsxuBcf9sy3hXvQqB2ppCP25V+BU2cvblsAKY5bQ/jQNIZGNTT01k=
+X-Gm-Gg: ASbGncvbt5AcSMOKoGM/OgpJmRA+Q1ywXe/aVKsxdZW5C85w6UzcIE6CWX60MVp1hch
+	ehcLhmLFjQi0A7frmxLThwTfP9hcw2b1Bx/nHhVAHZIDqHBjrUqCd0m5iGYjbQfoiK0+ijwe4CA
+	XWPNSKp4cOFTB8SD2nW99eFTFfxDfeUo3cMCtaORbPVXTOTfpOerhO2YYHA5BZMbPjRuUYJs8Dn
+	t0wjyCu1njAmaJlqX8j9OO4FHJABQ0CEWwfSzHap02pORTVbTsDXQ7FnI+95Wi0izJcgleCTWz7
+	Q9+KqFVlPi1E6r2n/NrRcVI4DZ1L475tQ173KaBXJnj3olNY4fQk
+X-Google-Smtp-Source: AGHT+IEKISYelMwnEjg0EUxWrOBCwdpPCz/ZbLGPVTCuADz1svOatBpN//3qfhR8Bvqd7inWW4hSNw==
+X-Received: by 2002:a17:902:e5c9:b0:220:d601:a704 with SMTP id d9443c01a7336-22c5357f3a7mr234390515ad.18.1745405604690;
+        Wed, 23 Apr 2025 03:53:24 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50ece2f8sm101397665ad.189.2025.04.23.03.53.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 03:53:24 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 23 Apr 2025 14:53:29 +0400
+Subject: [PATCH v2] dt-bindings: mmc: vt8500-sdmmc: Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta
- Chromebook
-To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>,
- sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
- dianders@google.com, hsinyi@google.com, matthias.bgg@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- knoxchiou@google.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20250423093647.4074135-1-cengjianeng@huaqin.corp-partner.google.com>
- <20250423093647.4074135-2-cengjianeng@huaqin.corp-partner.google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250423093647.4074135-2-cengjianeng@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250423-vt8500-sdmmc-binding-v2-1-ea4f17fd0638@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKjGCGgC/x3MQQ5AMBBA0avIrE0yihJXEQvaac1CSSsiEXfXW
+ L7F/w8kjsIJhuKByJck2UOGKgsw6xw8o9hsUKRaalSN19m3RJjsthlcJFgJHqky2nDttO56yOk
+ R2cn9b8fpfT/ZtpmSZgAAAA==
+X-Change-ID: 20250423-vt8500-sdmmc-binding-01c6ce3f6678
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745405616; l=4063;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=fLboZBG1ZwmejPbN3M6emYXVitcHQ3ne3IlzbxCC5oo=;
+ b=eALJciSHETGo03B6WBzqQr9YG5zkuVtczcaWHe3rPolewiPGd/N/2Ls7ngM7l7ozO94xj+j2E
+ 05Ze0OOJ3ZsCrEPJB7ahvhBJNlh4uKV27kx4J1fOd+RKOT3SN2Uxso5
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-Il 23/04/25 11:36, Jianeng Ceng ha scritto:
-> Ponyta is a custom label Chromebook based on MT8186. It is a
-> self-developed project of Huaqin and has no fixed OEM.
-> 
-> Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
-> ---
-> Changes in v10:
-> - PATCH 1/2: Add enum for ponyta sku.
-> - Link to v9:https://lore.kernel.org/all/20250328094034.3400233-2-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Chage in V9:
-> - No change.
-> 
-> Changes in v8:
-> - PATCH 1/2: Remove custom label.
-> - Link to v7:https://lore.kernel.org/all/01020191ea98a643-2d0be5d1-e00b-48e0-b823-bfe2c65b0d00-000000@eu-west-1.amazonses.com/
-> 
-> Chage since V6:
-> - No change.
-> 
-> Changes in v5:
-> - PATCH 1/2: Remove sku2147483647.
-> - Link to v4:https://lore.kernel.org/all/20240906085739.1322676-2-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v4:
-> - PATCH 1/2: Add more info for Ponyta custom label in commit.
-> - Link to v3:https://lore.kernel.org/all/20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v3:
-> - PATCH 1/2: Modify lable to label.
-> - Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Chage since V2:
-> - No change.
-> 
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 108ae5e0185d..bfa38e7fd0f7 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -285,6 +285,19 @@ properties:
->             - const: google,steelix-sku393218
->             - const: google,steelix
->             - const: mediatek,mt8186
-> +      - description: Google Ponyta
-> +        items:
-> +          - enum:
-> +              - google,ponyta-sku0
-> +              - google,ponyta-sku1
-> +          - const: google,ponyta-sku0
+Rewrite the textual description for the WonderMedia SDMMC controller
+as YAML schema, and switch the filename to follow the compatible
+string.
 
-You can't have sku0 as both const and enum.
-Since there's no board declaring both, drop the enum.
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Split the series from v1 into separate bindings patches so as not to
+spam all the subsystems with unrelated changes, per Rob's suggestion
 
-Regards,
-Angelo
+Changes in v2:
+- described the sdon-inverted property in greater detail (thanks Rob)
+- dropped the hunk that updates MAINTAINERS for easier merging - will
+  be updated later in a single pass to cover all VT8500 related files
 
+Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-3-f9af689cdfc2@gmail.com/
+---
+ .../devicetree/bindings/mmc/vt8500-sdmmc.txt       | 23 --------
+ .../devicetree/bindings/mmc/wm,wm8505-sdhc.yaml    | 66 ++++++++++++++++++++++
+ 2 files changed, 66 insertions(+), 23 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt b/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
+deleted file mode 100644
+index d7fb6abb3eb8c87e698ca4f30270c949878f3cbf..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-* Wondermedia WM8505/WM8650 SD/MMC Host Controller
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the wmt-sdmmc driver.
+-
+-Required properties:
+-- compatible: Should be "wm,wm8505-sdhc".
+-- interrupts: Two interrupts are required - regular irq and dma irq.
+-
+-Optional properties:
+-- sdon-inverted: SD_ON bit is inverted on the controller
+-
+-Examples:
+-
+-sdhc@d800a000 {
+-	compatible = "wm,wm8505-sdhc";
+-	reg = <0xd800a000 0x1000>;
+-	interrupts = <20 21>;
+-	clocks = <&sdhc>;
+-	bus-width = <4>;
+-	sdon-inverted;
+-};
+-
+diff --git a/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..5b55174e908836866fbba42336db94cb03f9137b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/wm,wm8505-sdhc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: WonderMedia SoC SDHCI Controller
++
++maintainers:
++  - Alexey Charkov <alchark@gmail.com>
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: wm,wm8505-sdhc
++      - items:
++          - const: wm,wm8650-sdhc
++          - const: wm,wm8505-sdhc
++      - items:
++          - const: wm,wm8750-sdhc
++          - const: wm,wm8505-sdhc
++      - items:
++          - const: wm,wm8850-sdhc
++          - const: wm,wm8505-sdhc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: SDMMC controller interrupt
++      - description: SDMMC controller DMA interrupt
++
++  sdon-inverted:
++    type: boolean
++    description: All chips before (not including) WM8505 rev. A2 treated their
++      "clock stop" bit (register offset 0x08 a.k.a. SDMMC_BUSMODE, bit 0x10)
++      as "set 1 to disable SD clock", while all the later versions treated it
++      as "set 0 to disable SD clock". Set this property for later versions of
++      wm,wm8505-sdhc. On wm,wm8650-sdhc and later this property is implied and
++      does not need to be set explicitly
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mmc@d800a000 {
++        compatible = "wm,wm8505-sdhc";
++        reg = <0xd800a000 0x1000>;
++        interrupts = <20>, <21>;
++        clocks = <&sdhc>;
++        bus-width = <4>;
++        sdon-inverted;
++    };
+
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250423-vt8500-sdmmc-binding-01c6ce3f6678
+
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
 
 
