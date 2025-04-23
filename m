@@ -1,152 +1,147 @@
-Return-Path: <devicetree+bounces-170027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3155A99669
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:21:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE813A996B7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82B5E5A1B22
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:21:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CCF21B86514
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA7E28D84E;
-	Wed, 23 Apr 2025 17:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381A228A40D;
+	Wed, 23 Apr 2025 17:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="XX9DXs9D"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hKnQ54A5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67ED028C5B9
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 17:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C5226656C
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 17:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745428846; cv=none; b=XsH/FUVW9EnymyeEdkj0sB7v/NVPlwFqRGsUjgPDgHlmk10Wy6kjFe90rz63yf8E0bUGHtENFAdbJRTURa6Y3B3crGpfYixt5gabdQu2h1QnMgkMZHeQMpUKVx/ZOjogCxZFGeXHBVgTMDHvftE3FQkPVdRze8J9Y83RDvS8VS4=
+	t=1745429483; cv=none; b=pZUUPub8qDk2W/6Oi6Hv8F9RLghU63RNPZnBZgyRg5zJQ5S8Ns2/ZmaVuHwAWzopUxELacEL/AHr4TKMaoRYJ7wkLPTaNl7P8jtOwfPIhoeXQIlf4Fgo7CrcVOKeDiC/zX32WhsO3gqJTvWsmdOoSIjK96u/jImE9RNl0TGSZgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745428846; c=relaxed/simple;
-	bh=iHQLMzaHxLYSZFGfaOlPWm3TXsT56q46iJUyFJPFR10=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pQL1aZL+piVbwG2wqDHqfguR1Pl3244fGqze7QnIAAAoHALhriqSSBvfbQ/K+QuM8+4MA3Ba4sR5uLN6c3pGKJ1J6mOq1cu2fh8lda+AhXSSr3WvmXk1KVPn+5qhHM39QhQAoktS8UNuOv8FXvLK7R9RWRIeU2FzQCApPgEQRFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=XX9DXs9D; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso92616f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 10:20:43 -0700 (PDT)
+	s=arc-20240116; t=1745429483; c=relaxed/simple;
+	bh=kgi4ELr8mCdAm9+XhEH6VRz6G3+ojfBNAMxT3w5HoSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F+DecuQ8JwGYjhcXeArkgjH7XfPfyL6L3++GsgawYKQuA3z1fcQGUDKQTEnQtfUtoFXbfRx/MoGDA5yfdwYZ0UCp0xURBpVe80kDzyhV3yoPT+FPig2nHjdP1zYfAovgH7VAbjk9/HJVy3XsV7dzUcU8Fs2NOZ7FPraWa6ALaiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hKnQ54A5; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-227914acd20so11073505ad.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 10:31:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1745428842; x=1746033642; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jSUESSRGCpyu+rpBjRVqzqkxBgsZWzSlb7G5QVFU3YA=;
-        b=XX9DXs9DszmiX8ngWKdNrqUtnXGDU/xdXzSKN1DyxDm4b88qYNdn3xAoscwb1XTPz5
-         K4NxsEWWKDcdsvmfLeReEgVQoIJgBAhkmIjSW2Ry5omYrd59QHr4zUAJT9PSM739EKtN
-         39NTwSZ5ITeebrDCi68EAK4eZxlhA9P3Ytonr0/XhdzLDHwWMnJz1ryV68NqkArymmFT
-         r6R7Ns8Y9ctH9wnCcsfOjI1WKHuYeIP9/RSK9phTUcicKbjo7T+Fl7zsZNz1lgbkBPxx
-         I6eO6DkA3wDZ84Vkm5gJ34uMwviYDPC/mIHYpjcSvKYbOCUBTDQx58xwdKTXXcBwDCJn
-         VQNA==
+        d=google.com; s=20230601; t=1745429481; x=1746034281; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GkDmVE1oQubncGA13yoyJE0TwJhGavatFFU357EXcEc=;
+        b=hKnQ54A54OH01v/NWH8UIDkJ38bvfjB2A/mwBI3uytCUu9Gxp2I7TdQ11SLHYWMJQG
+         zTl18GT6Bm3tRyxmQawp0/e4oohop1JRXMvTvJlj/962IgPlx8VzfY0xDonBwQp+Kb1z
+         +U7Q3Y87ys1QZ8+DPo7ORe7h7ccWuRHHRaijrl9IRKRiuX3Ok/l2j2caDetVylCL+t1A
+         yoieaOiQLdJg5qS0u2O5kqXmsHFXZnxRIsfNcdQsw4vtG5Pao/Xz5o/lD4AvE9we7lhi
+         D2wW8e7SUPwXbRzUmSpqNJ1sGNXPlb8dnIP6Z1rGQ+3YMINN/ZkXY6SROA5MF9jrMOfR
+         aBDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745428842; x=1746033642;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jSUESSRGCpyu+rpBjRVqzqkxBgsZWzSlb7G5QVFU3YA=;
-        b=V0mODsiCMln3ZuIJbTqmHmykDVcPEGJ/JtUVA0L+Z76mPjcZ0gE1ozV5265saee+Kj
-         FN5CGozfjwXm7GHMahfO/E+8gOyEjq8m2DRAHkko1RCQaBRQTi/5C3xkauAFCHq/R1zS
-         6Ak9VvJ0NSJSoubEIG0LXxMGP2f2mEfZBG9IqVQVXgo9P/4R820wgF/7MJUVQPI+WBit
-         wmlOHdCvQMNBO85JSiJWQaK3Mk+ktG+iT6VwqE9iW7b0vNn1FDazO6zeOVfTuiDTQRmx
-         zU6uzQPH5A3VFMz0Iq1s45/77ZUq3Ypp+2BIFuP/FxMdYdKxPXzFaRGLk0m+zMNrhVZE
-         3vog==
-X-Forwarded-Encrypted: i=1; AJvYcCXoM31FNVziH3QFW37xdRKIkbPpIoMkWyPthTPamNW+sVYTFeszvYjoeab1u4zfgfhN+AD+3m0KDvvF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj4prS9Tsj9+91Q1QqNI6q/YSOKj5HwFN5n0t7u3/VDwBZIe/g
-	eRNtpXw3d+psSYs0Em/dtnRss257OaZASh3YUY9kOE+pa3mhPAg04OtCTIFuwLk=
-X-Gm-Gg: ASbGncu3e/qksZuu3gJ5t3MSgqQNm10rSrV6I4e/t8jZ6LRtED6Pc50hGB4dblURRSl
-	/8k77Kc57ZG3V6M0uL+DMFd2IjsmsqEmoE22YnMz+jqCw5ucdA4IlSixqYc8bSlWvgCugsTVIPA
-	AM96Xrtp0aUwHAKeHbE7wC2NsRsXZVNQpuDu4C7xdahnuVgSxJhJnKaTGyRojXn1AQU6xo8R37X
-	I+v8a1T3lMahDY60s5ZLLDSkhAsfH6zGS1lHRtYw5dpOqrIOydOO2oEle2qrmtXgZuwwc20gulO
-	a7xc4pwX9fbveduDcgc1Yexbl3NTJBmug0pC0aj0VDg=
-X-Google-Smtp-Source: AGHT+IGNrzHW1MMexsfwjLATKMrNMWSsxOAcs/cvthyNt3eB10C309nqJDj5AYKSBQ4rWCj+bv6jEg==
-X-Received: by 2002:a05:6000:250a:b0:39d:8e61:b6eb with SMTP id ffacd0b85a97d-3a06c6baee3mr18451f8f.1.1745428841842;
-        Wed, 23 Apr 2025 10:20:41 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-44092d18433sm32940945e9.1.2025.04.23.10.20.41
+        d=1e100.net; s=20230601; t=1745429481; x=1746034281;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GkDmVE1oQubncGA13yoyJE0TwJhGavatFFU357EXcEc=;
+        b=X3SoNH6Q0stEjmJhKqkNwmNH706YQTkKb71kvc5pOWVN5YGXmcYAFR/5zjTviSPH58
+         +coNTLlu4Wr6we8xRs0I+rsA+dx7MFCMYIqwG0Vaq35vTc0lQB60YNG1npXciInAqwDw
+         qbxQn0UvB7V3ABm5enp3mFsphhVhTfrTbIwB5sweVNXr5wn5YrIuy+oYuegT9QlSi82T
+         Br8MHcJ+PgsPCYswLQ1+fIYtk+u3+3NHhzv9k/vYF99/S8BappTDETwSKAJ48ghm3u//
+         RMKnu7hVw/4Eu++g/7vvd6YLMWbqrDBs2MLLA+f4Xspf+YZ4lVn9m/yY6TIYn77AqqEp
+         cGnA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLyrzUuOidHCmXso3h6JRFUEhgn0iu12PWZAnkUdaeGLx5uXURUqcWVoFvJ10veEOJIxsZkXmv+jgX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyieP+BtNi/pempdofYEVzlhHgsyDSVNegAvGAvm7110GbbvrTW
+	/drRviQxK2vjZj0mR0cpQfT4mzuIyU92qoZEwsDbeU2v+aOZefeKrxTtHnetiw==
+X-Gm-Gg: ASbGncuhl7Ojp77oPHgyj06la2IynIDrDItvvgb6v6gcW9cZfnXOAugmZ7dSwx3IDbw
+	03a6n0NK3EldL9PCvRoDogxECD091x9t4YXGKP59nK4TY041aqQPxz9reA06kr5SiHFp3ceXogl
+	w9/EHuHOU6zpNZRKoQgvYAnnzrGCbVRlIuG0UnfL+54ExIWjN2m509BZjzs/NGJxq173B68kmeE
+	Z1xGhPFjCA2IyJaodgkfEfBw4UHqUX7UChljyeyO8hLVdrjknNbBMGv6CgugKOBnhkJED8d2GkG
+	w+rgvRAuyhGNPiIhZQctCHbxqyj4FlXnRVUNughz6e3usFRvJYrlnWxxwaYKmhCfsOYKuaTdjqE
+	6lTiWMg==
+X-Google-Smtp-Source: AGHT+IHJNQTbOTf5T97irPUNv+QmXLRPjJqv5JLklJLGHSWfRRkbgYAKpGomh75s0qhLStfcG3G05g==
+X-Received: by 2002:a17:903:3bce:b0:223:3394:3a2e with SMTP id d9443c01a7336-22db2189d23mr394125ad.18.1745429480637;
+        Wed, 23 Apr 2025 10:31:20 -0700 (PDT)
+Received: from google.com (7.104.168.34.bc.googleusercontent.com. [34.168.104.7])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c50eb4292sm107648765ad.150.2025.04.23.10.31.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 10:20:41 -0700 (PDT)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 23 Apr 2025 18:20:22 +0100
-Subject: [PATCH v3 5/5] arm: dts: bcm2711-rpi: Add HEVC decoder node
+        Wed, 23 Apr 2025 10:31:20 -0700 (PDT)
+Date: Wed, 23 Apr 2025 10:31:16 -0700
+From: William McVicker <willmcvicker@google.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+Message-ID: <aAkj5P1I-e9lylIU@google.com>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+ <aAa2Zx86yUfayPSG@google.com>
+ <20250422190036.GA1213339@ziepe.ca>
+ <aAgQUMbsf0ADRRNc@google.com>
+ <20250422234153.GD1213339@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250423-media-rpi-hevc-dec-v3-5-8fd3fad1d6fb@raspberrypi.com>
-References: <20250423-media-rpi-hevc-dec-v3-0-8fd3fad1d6fb@raspberrypi.com>
-In-Reply-To: <20250423-media-rpi-hevc-dec-v3-0-8fd3fad1d6fb@raspberrypi.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>, 
- review list <kernel-list@raspberrypi.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250422234153.GD1213339@ziepe.ca>
 
-Add the configuration information for the HEVC decoder.
+On 04/22/2025, Jason Gunthorpe wrote:
+> On Tue, Apr 22, 2025 at 02:55:28PM -0700, William McVicker wrote:
+> 
+> > On this note, I was looking through `of_dma_configure_id()` and am also
+> > wondering if we may hit other race conditions if the device is still being
+> > probed and the dma properties (like the coherent dma mask) haven't been fully
+> > populated? Just checking if the driver is bound, doesn't seem like enough to
+> > start configuring the DMA when async probing can happen.
+> 
+> I think the reasoning at work here is that the plugin path for a
+> struct device should synchronously setup the iommu.
+> 
+> There is enough locking there that the iommu code won't allow the
+> device plugin to continue until the iommu is fully setup under the
+> global lock.
+> 
+> The trick of using dev->driver is only a way to tell if this function
+> is being called from the driver plugin path just before starting the
+> driver, or from the iommu code just before configuring the iommu.
+> 
+> Given that explanation can you see issues with of_dma_configure_id() ?
+> 
+> Jason
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 4 ++++
- arch/arm/boot/dts/broadcom/bcm2711.dtsi     | 9 +++++++++
- 2 files changed, 13 insertions(+)
+I think the only concern is when a driver calls dma_set_mask_and_coherent() in
+it's probe function. If we can handle that case in an asynchrounous manner,
+then I think we are good.
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-index c78ed064d166..7984caa861e6 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-@@ -68,6 +68,10 @@ &hdmi1 {
- 	wifi-2.4ghz-coexistence;
- };
- 
-+&hevc_dec {
-+	clocks = <&firmware_clocks 11>;
-+};
-+
- &hvs {
- 	clocks = <&firmware_clocks 4>;
- };
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-index c06d9f5e53c8..bdb80f3611ca 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -617,6 +617,15 @@ xhci: usb@7e9c0000 {
- 			status = "disabled";
- 		};
- 
-+		hevc_dec: codec@7eb10000 {
-+			compatible = "brcm,bcm2711-hevc-dec", "raspberrypi,hevc-dec";
-+			reg = <0x0 0x7eb00000  0x10000>, /* HEVC */
-+			      <0x0 0x7eb10000  0x1000>;  /* INTC */
-+			reg-names = "hevc",
-+				    "intc";
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		v3d: gpu@7ec00000 {
- 			compatible = "brcm,2711-v3d";
- 			reg = <0x0 0x7ec00000 0x4000>,
-
--- 
-2.34.1
-
+Thanks,
+Will
 
