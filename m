@@ -1,91 +1,109 @@
-Return-Path: <devicetree+bounces-169914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9117A98A7E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:08:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86168A98AB3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29C23188946A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:07:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6BB87A9C4C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF169433C8;
-	Wed, 23 Apr 2025 13:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E9C155C83;
+	Wed, 23 Apr 2025 13:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k00bUcuz"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Gb6LJDix"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EF143151;
-	Wed, 23 Apr 2025 13:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95051553A3
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745413639; cv=none; b=lJEkJyXf/VlI8rTF6PJGEV2aunDU1y6UeqJG3ai+sdl7LaRw9c/P6WLcu+oSxIZgmLWkFt5eeWciYsFNbm1GzhRV2Z0prkYgVMV8RH3wg4PZ1gpVGcXsELiH8WQK2eBT2hwaMVnOFAs9ZV6/sVx3wF9LsZ544m6O4p2gM3Bvo7Y=
+	t=1745414256; cv=none; b=jTCUuoUFp++EJPJKoS3KQ56poJoc0gOillIw/p4oqSa5iInHv7atjg9RPVeG6e9o6jbRcBMh0dLUm9XFU8EMOoaLuGGaBh5RyrdJOc3U7Sd+lLm+VRY9QGe/u98ZIxA9rNmWXVGnuaMGOpor3ZW3hbH4dDDdwYweUrH8FvT9EBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745413639; c=relaxed/simple;
-	bh=0Y/vxfE7FmeLJELsNe9Pzm5m1MeRdkYQA8cGN80GuXc=;
+	s=arc-20240116; t=1745414256; c=relaxed/simple;
+	bh=zdbDvq14KN2z+9iQkDs0XYDCtdtOrh/uxg2SCguqfiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o5AIUmD+x6CLcKYflTpDxn2/kxxgi94ukqU0vhLU3F2JA8zzAMdvRAFfZ0VEw6L/4eB8rVB+TCP32GBRk0uSzICzgLDb2NrtyTAc2ws5By0kE4V9yK+Pc7VUyM9kaY4h6ZZugfto7qbTYj7JaL9xpK6GvuQjuGGFBNPG0habJR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k00bUcuz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9298FC4CEE2;
-	Wed, 23 Apr 2025 13:07:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745413634;
-	bh=0Y/vxfE7FmeLJELsNe9Pzm5m1MeRdkYQA8cGN80GuXc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k00bUcuzt94H99b5OY0qhTC84pXfBi6bfR6OnrBnIHaQeMDR4+xmydUhxe8DvgBEE
-	 oEL/tkdD1xi2i9EMOrBoJTceIyU/HXQLafOI03SigmHw1ARA8AtOoAMVRwxeXjkIt9
-	 R259pVkXHd8ccmKxFquhMFpthMtPMKmOMJmRNPSqG+D1nDmHMUrLlFMSqfC3nYSDSI
-	 eVjQOkGgXtIh2akPdANVWsWViLu8jN9XWN2ev0PjDfF6reM4NRDozL/8wqeoicKp6X
-	 l7NkvRZHyW+uzqv4jxsqVv1xuVMJKdYlw2EuSjdVdmuWL/B7SQtPnGTkejCEIpeXsg
-	 tQFUQNCRmK3NA==
-Date: Wed, 23 Apr 2025 15:07:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank Wunderlich <frank-w@public-files.de>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, 
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v4 1/8] dt-bindings: arm: mediatek: add bpi-r4 2g5 phy
- variant
-Message-ID: <20250423-debonair-tasteful-barracuda-e41c7e@kuoka>
-References: <20250422132438.15735-1-linux@fw-web.de>
- <20250422132438.15735-2-linux@fw-web.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TBnDsBo2GpsecdjEOJ1yqf+Zp8fMiv/Ja7aBWW8RdtW1NZTlBffN116LJjPUq0KA9d8pv8dWeCnBrlLzur5zfXMvLAX0+smlm8/wsOg5nrUEQwUx7mBbTGrbXLSOZPmy++2KKQhqOCLHXBrGM1lHfq5JskIBfiOkePZCoEBdM8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Gb6LJDix; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=zdbD
+	vq14KN2z+9iQkDs0XYDCtdtOrh/uxg2SCguqfiM=; b=Gb6LJDixOJeWFMQ9d9J7
+	guKDxWuRc9HsReLqTaYFU3ZXiE/lJ9wQbo1Ydxeielf18vsaHpidGNcRV3FXJQtK
+	WraJm9pruG9QXVjcA9DitsG85Dg5F2KTqxz0599QEkN/Nk3N+Q6TIc+ui/Zi1nAR
+	Xkfwkez7ARngShGqDgUyxeE54fBI+qvAoyiwV5INEXOfjOzTbGZphZPQEpCpuaNT
+	r2ZSJrtbheHF5erIE3oalpHOQtJwOPOswroG806+6IoILAMXIPFp56kwm3YIHYuf
+	6mhvfXmsxvwkMxst2jOKRfE2luzJVYXC0aq8cV3+0KJvgyqL/34VfclCEaLqOMgB
+	Qg==
+Received: (qmail 3089874 invoked from network); 23 Apr 2025 15:17:28 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Apr 2025 15:17:28 +0200
+X-UD-Smtp-Session: l3s3148p1@C6VH7HEz2KUgAwDPXx6JAAunYj8Nf7DC
+Date: Wed, 23 Apr 2025 15:17:28 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: Re: [RFC PATCH 0/2] ARM: dts: renesas: r9a06g032: rework UARTs
+Message-ID: <aAjoaFnWoHy9-m1S@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20250414111218.7641-4-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUVqCfFQn5tvONWqmz-NerB7aVqj2_jythEPW51wEN3jQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="+hmr2NZA+hC2OWQQ"
 Content-Disposition: inline
-In-Reply-To: <20250422132438.15735-2-linux@fw-web.de>
+In-Reply-To: <CAMuHMdUVqCfFQn5tvONWqmz-NerB7aVqj2_jythEPW51wEN3jQ@mail.gmail.com>
 
-On Tue, Apr 22, 2025 at 03:24:24PM GMT, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add new compatible for Bananapi R4 with 2.5G phy.
-> Base board is compatible with existing BPI-R4 only 1 SFP is replaced
-> by RJ45 port and use mt7988 internal phy.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v3:
-> - new patch adding compatible for 2.5g variant
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--+hmr2NZA+hC2OWQQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
 
+> So I am in favour of not renumbering the UARTs.
+
+Fine with me, I'll resend the latter patch adding the new port as uart2.
+
+
+--+hmr2NZA+hC2OWQQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgI6GQACgkQFA3kzBSg
+KbaQhhAAksBBmSTGE4eLPHQcn3kBbCJD3M2H7nHUOIi/CCDq037W/rl6O7dqpKk6
+ePDECVqmwjci5H6kBQ1EeZeavaoXQLjm34jwM32xNWSOsWEF5SXFEIZ57vWUzbFO
+UovHTn1OSH8/uWGto9lAfDkBohl3V9YFfcixbjJCCQwIT4Dop2P+LI/ALDuDRsWK
+w0c3FpFw7o1uslTz5mdLRtJwmyKWS9TvHHiVVoWY7LlxqUXI0fg0e9/Xb8jTVDM1
+wYUFWF4f7n3vZez2u/Nu+NriOce2LGeRbCplLXZqOUpTVSVX8NT/mxYXxwdMhplC
+fORLgKKtFGuPPTbZolgmduvQRgZgXB+8dGq3WVhu581aXlH7iYNhZOz1FW+XK9sg
+VZBH7kZJIUnaipVzVsZxD0IFdVYpf358ASoCSySBe14sK4+M3jWlLMjtecGNrCH/
+LVVZfb33jtE0BPiqy+wWypQQonxf9ULqqmw/e9SjieR2KQw5EgshxrS7hDJdDWVD
+MzPDiaR5d0CQmeRVrFwdGpUW7AbNMlw1oEoRHudID6a3ZKOXkCFNYHV6PiPzAGak
+932/fLZlNuB+V1pb9NV9rLgXmRzVlw13N8kkkwUkEcvAEjq/O3xYTFXhOcEsRCp7
+QR5apDEVifp8Dd7xJW3iB8ubZhfkbC0IsIc+dRzxA7Mk5b76vx0=
+=sxhZ
+-----END PGP SIGNATURE-----
+
+--+hmr2NZA+hC2OWQQ--
 
