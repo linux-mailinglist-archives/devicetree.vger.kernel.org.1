@@ -1,61 +1,90 @@
-Return-Path: <devicetree+bounces-169950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC9CA98C6E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:09:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E55A98C98
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FF5A443A7F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:09:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E9E71B629CA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABEF255229;
-	Wed, 23 Apr 2025 14:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A5527933E;
+	Wed, 23 Apr 2025 14:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dMZmow7D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vyb38WHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CA457C9F;
-	Wed, 23 Apr 2025 14:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEDF26AD0;
+	Wed, 23 Apr 2025 14:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745417356; cv=none; b=ttN2sE8v9jq4oi5O+09zH91vjtnS2unRv8/ra70Cpi3CR5+oeT/Ng8Euyk13YfnuYNdlZ8T9edMWCQHqPVmkETgf1gAW3+tebHwIBpOLh3FlxGbEinKfTHRbv6lVBYc7pPObZt7EIcN4L7/l3UgD5SnvDI1D3psHe8XfNZud0Tw=
+	t=1745417842; cv=none; b=g9qjZms/RAGb16MUgQApgZfVvIJm+YidckogXIrKiNmrML0QT7YupvuV7uncJbZcapRukJ6Up2qVlx7RtyeEjK3JNnjt3Kxqblwi6tUjEUs/s+nM23pc7tlGYYr5KksQZ0xctgUF36qSfGnon3fAI1H9cSzXWc4/6CeWa0blSIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745417356; c=relaxed/simple;
-	bh=dWOG7RGEkSsD3bDbFE9e385tYFW5t5n87RHkOeTFJ2I=;
+	s=arc-20240116; t=1745417842; c=relaxed/simple;
+	bh=5HJt/rRhtdq8+W+OwEdacaXoOFWR/OEQdd24T8Ms78c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BI04mA5YK00NrSypY4tDLe59qzOnl7Cy3J9HDEGMI2MdQPGJndu0goJAsIc4du+11WHWeDiLFjpF4WGj5DFMDX5eFFkt4of+dbiHLPKYyaWvetphm5/3to7w2KHANZMZGkIx9SwpHAB5el/1hhjclWSULeDH2Xbh3jCbDcAXutA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dMZmow7D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F145C4CEE2;
-	Wed, 23 Apr 2025 14:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745417355;
-	bh=dWOG7RGEkSsD3bDbFE9e385tYFW5t5n87RHkOeTFJ2I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dMZmow7DCJnSh3Rs2NF7VXq/Q/gcgKjcJjEJ3lCP9ftu2LVkuFNWzCcFxmTEfLAh+
-	 O26ab7P35o5Qff+n84u/WKNoph7BvCqIyuR2JObEpv8vGg+TpOT43IINELvXtSwjBe
-	 lK3UCWP0vbGft1rdQtrEEQRLRNWD3kMsF6g+90Qg2oZvv8MDzFK4BxNBnIm8+8VF0W
-	 i/fWaBdXzGTHeJ/XqVkmMsGoDdBmhklcI6m4JKxAIEUVUrqN9Zp4Pc/vPLRZMWeSnS
-	 ToKomBeJBj4v7BvqmKJ1DqnB/wg+eSqYilLq6TXcRFvUlcHSgCXj87D9G2GaiTiRGR
-	 /zTseAq4NBK3g==
-Date: Wed, 23 Apr 2025 09:09:13 -0500
-From: Rob Herring <robh@kernel.org>
-To: Grzegorz Jaszczyk <jaszczyk@chromium.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	saravanak@google.com, dmaluka@chromium.org, bgrzesik@google.com,
-	jaszczyk@google.com, ilpo.jarvinen@linux.intel.com,
-	usamaarif642@gmail.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, tnowicki@google.com,
-	mazurekm@google.com, vineethrp@google.com
-Subject: Re: [PATCH v2 2/2] x86/of: add support for reserved memory defined
- by DT
-Message-ID: <20250423140913.GA360030-robh@kernel.org>
-References: <20250418124718.1009563-1-jaszczyk@chromium.org>
- <20250418124718.1009563-3-jaszczyk@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C7FWAKIMtYdiLMBfN8joHA0XU4qOaT87k7HYIQZ1INj9U9tBAMvXwKGOCRyOQi1sytozYwGqw1Ts1I5rXiyQqEi2ykgYbwst2tXCk0Smv81nM/TNL0QEwoq+sm2bfCnCAO6L27ukPyFR88j4SR5ggLk2LTdkDXB/nbNlhsyHdls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vyb38WHu; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-736c277331eso1030349b3a.1;
+        Wed, 23 Apr 2025 07:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745417840; x=1746022640; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FGvmKBMLY4p3w+HX3ouLWfHlEAljmwmZ7WMUcXOKXoY=;
+        b=Vyb38WHuuIbGRIzXB43AkGFz4E2xN29jCUDJc0Br+bFCPNoQaTg1em5I6MbbGRKcAn
+         eUgab/3ItNeh22MG458+FkLr/Kxm/CBHxhZiqH6Ct8hXATy5f4A4UNig9N47XRkTjDUD
+         tNCctF9mtKspmyKTDTYIKXvCZTH+6ATrlZNm5V/LRAv9qDgiGy/BErhDHWZ5FLAcE2im
+         EMprI2PnyHJBC69XxwSWPq4NT/sReuypJUbdKiIzRIVEw7PUU/pVWDVb6yYJetVW0iyn
+         2BlWSzUopGyR3/teMawdB/9YCGfzRHnn71kVkuOMRml49ZkLhb3WF0cLBmGXoUCyeFkr
+         aAUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745417840; x=1746022640;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FGvmKBMLY4p3w+HX3ouLWfHlEAljmwmZ7WMUcXOKXoY=;
+        b=SRpcii9oC0AmuKJYDuOCyhXptvnFs+dGbvoibgh6ev9AZrwxYAr0ZsdMqAGVm+CN6Y
+         DVscRE9ThIOzAYkf6rjfx7d7eCjzdLLQO23iPxU4fKN1UHzKMgRIp5OqIVLJ+QiRlQow
+         /bhjnMYysnJxWkEx6qPY/zW6WZ5HdiPVBsK+C2dQFKpygymYcDqoM2XjfAXbxEqD3WSg
+         N3YFd8skUBSqoy0VncuEt5zZKPVTtirJJjQvE6QXkUksuCg8CYK+mdWy3FrXUv96eE5z
+         8FRJWNKC2x1rGMefq4Rh79eOeA0SP575m87EYv+foVdKhtkpc2hCAPISXY0JG9c5ZDH6
+         Hd+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVXunTQ3wVOGTc1sJ2/egqoQ8iT+poTZmpEFIK62RCNX1OfR1YCNj4XTvOBkv+OkVCBF3nw0A2gZ/ft@vger.kernel.org, AJvYcCWA/d56rLI1WkSgE20ZmakvpmCzkCN5XOjVQaXRyB0mYZKW5/OKkYN6DhHHnj69RzsqwL0uAjN0HWKaGQc=@vger.kernel.org, AJvYcCWqaZXb0acDFxFN4wr6Bqybn8yDmTOXneC2Rt1mSNaV4Ox5lfF1sGXYdApitdpg1mEbc7VtuikMZmTSFima@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqT8dLZLXuio0iCtFw+vuTIhSYdTc2LidIM5UQLJ6grhz49MGY
+	+ts0bFKvcNN4fXuX0e6WTki10GK2fSnTnW01em2fIt/k4Z9Bv7RTBWN+RA==
+X-Gm-Gg: ASbGncvnEIwde1lrkgiXdSlKVkYaTqJnNnmUYGsouPSy8Dgu+lLkLu8krYX4CauFmM8
+	6KDN+XtZNCOIJmBC9mNahHJwKzcJs73UGyloe/1phaxVgtqGnUK+xbOCAzsFSqa/LNEMOPEaOtz
+	MOcQQYQCr1P/OhqZmz5ikTWtbfSLfjhdnAicFPREZX71/yfPwYMGRBtWjTIKvNkiXIv6elktfbf
+	yo5kmlF8GSe8nbejcBw5BW6cXxO+PZrltkBwdVY2w10+QSd5R0cDEx8745msw45aaBndn6SBNZX
+	dr+V/ZvzJ2EdHS4TsRTliwtrdsCmNuWymxBUlFDEn3vJmbVS+VlThw==
+X-Google-Smtp-Source: AGHT+IE1Lc+m9nMGn9/Spc959uRCM+NgGxyBWwlVYUutqCGWi0088PBRM3kSWuCeGWFHEYAPTHE/tQ==
+X-Received: by 2002:a05:6a00:a88b:b0:730:9637:b2ff with SMTP id d2e1a72fcca58-73e135c5945mr4322632b3a.7.1745417839709;
+        Wed, 23 Apr 2025 07:17:19 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbfae9885sm10622743b3a.158.2025.04.23.07.17.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 07:17:19 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 23 Apr 2025 07:17:17 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Peter Korsgaard <peter@korsgaard.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,tmp102: document optional V+
+ supply property
+Message-ID: <dda0b47b-4141-4836-832b-035851045ae3@roeck-us.net>
+References: <20250417180426.3872314-1-peter@korsgaard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,31 +93,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250418124718.1009563-3-jaszczyk@chromium.org>
+In-Reply-To: <20250417180426.3872314-1-peter@korsgaard.com>
 
-On Fri, Apr 18, 2025 at 12:47:18PM +0000, Grzegorz Jaszczyk wrote:
-> From: Grzegorz Jaszczyk <jaszczyk@google.com>
+On Thu, Apr 17, 2025 at 08:04:25PM +0200, Peter Korsgaard wrote:
+> TMP102 is powered by its V+ supply, document it. The property is called
+> "vcc-supply" since the plus sign (+) is not a valid property character.
 > 
-> The DT reserved-memory nodes can be present in DT as described in
-> Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
-> Similar to other architecture, which supports DT, there is a need to
-> create reserved memory regions for such nodes.
-> 
-> Additionally, the x86 architecture builds its memory map based on E820
-> description passed by bootloader and not on DT. Since x86 already has
-> some DT support and allows booting with both ACPI and DT at the same
-> time, let's register an arch specific hook which will validate if a
-> reserved-memory region passed by DT is valid (covered by E820 reserved
-> region entry).
-> 
-> Without this check, the reserved memory from DT could be successfully
-> registered, even though such a region could conflict with e820
-> description e.g. it could be described as E820_RAM and could be already
-> used at early x86 boot stage for memblock initialization (which happens
-> before DT parsing).
+> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Sorry, I don't get how it conflicts. Wouldn't the E820_RAM be registered 
-with memblock and memblock then handles the conflict (or should).
+Applied.
 
-Rob
+Thanks,
+Guenter
 
