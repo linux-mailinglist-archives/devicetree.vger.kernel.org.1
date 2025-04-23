@@ -1,128 +1,136 @@
-Return-Path: <devicetree+bounces-170064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC16EA998C2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:41:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 075FCA998D8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DDC24A2496
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:41:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4554D1B86621
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D169B293B7B;
-	Wed, 23 Apr 2025 19:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792922949E1;
+	Wed, 23 Apr 2025 19:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GmcbrclN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mrU11t9m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089A0293462;
-	Wed, 23 Apr 2025 19:41:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47197293B47;
+	Wed, 23 Apr 2025 19:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745437295; cv=none; b=JuRHgsRv+2z8uwfu3mkidu+Nv4w9ExmXK62kkR3cIbWQfHi8N1nbyKYQwQTmrDLel3Crd86SGZgWdlOOT2AnFDvO2TXPxvEuESqrHw/6vZMmYyTlkbG29GSVVxkcBvm8vvFqhBXOihL7GjZtGy+u1UNPGaLhTPyxMli0PC6wOZU=
+	t=1745437362; cv=none; b=maknA35t5Bu21nnjYKtocgAGm2/HdNVkRH/aLBub74rLhGUjUkkqqf+Z6WQZzMWAmt+wwacOQ2PCMl4IWNCXUgbLbAQaoBgmFlzBsTTdadq4jF8oeuUtxEcWGd2IGKtt25RtPm0oQAsFVhRUVqdNp9DmsuJrNbol/KIkdkfUp9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745437295; c=relaxed/simple;
-	bh=scxHf4Kd2AC7+X5XHMdBIrmzzHAOMUtunjlcMSeOIsQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CH4/uTDXLTwne0K3obT/d2civitZ47wbA/Gjyp4zIAfj3std/DohpvCvPEseYPildny3t1GozkyDZEJfXy5mV+nRr/nz/5nQ09oKqY/UHgzSBA2KpA6+oW6lb/JFU54dej3wxF72qtc573ChMLcH18KbF8AQs1UZ+UmPF+tL9UY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GmcbrclN; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-72d3b48d2ffso144945b3a.2;
-        Wed, 23 Apr 2025 12:41:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745437292; x=1746042092; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=GmcbrclNmqPVehGY95AG14AMa9NsWXQhXZbN/NOOETNImZMFPPmn9jgQ33PU88F03R
-         h5jlHf60H9hobrFZIj77V0MD0ihcEFU7Z1hiakpjtJsIdQMoLFPJrnYEwiFtuwXLeciU
-         o/o9vTy5RdTvVV80fduGHif1Xe5zkvTi3O/7UoV9r+9q1gTiROTbkqFll/vIgN01wf4G
-         W75WBK/DoeYSjHd8IpIBdiYZAA+O8J9x8cLiaK9UYvjH7oxV1nQTO3hn9/1SbVljVF/8
-         q7pKLkmBR8G++sEWKt4mGxKGJ8YkoGNAEn5gzdyOIl+YWv+9SksV0rkzCGIpaDjonnLT
-         ddRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745437292; x=1746042092;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xTIK98tab5rOndKkCc1l9dIPtMDYdx9Q4AKn3Dm0cyY=;
-        b=BzZhFfRviKHbObJI6JqSYUDg/8TGwRVyli4Ab5rOEpsnSaVtRTIbBjqQQDk2YI9kF5
-         8iBL7YFB3M6mKrCDFowdH1sbvjF6Z8O3TK8uK50N81zbo7EhtzZ/VFlbojHtpm9SF/aJ
-         cjMHvzDlB8oWaHe9GdxjUUko5moKh3gFOcuZu62nMlx7nt5Z0Rk/8J9hQExG05XF/8g2
-         uHrX9WQkN0xTUNpt3vKq9vMUkkpW9WOVt0x4Sia9wjJApq7CLjU2Sii1xqQVNwJwCHwl
-         UoD2PAlCeDktbH3kDAwgKICf1HfWQ1IIlFyY1U435KvQ8H+WUb1USiNgIASSp3grkANU
-         aUIA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8fFkoiinqiiuUlB7NVdzauBdhyOo5SJsvTAQidJIZtczdpqTHwIBGKsq1JhcNWOsFjfd6BPKhFLB6@vger.kernel.org, AJvYcCXBplsC8C5G+orylLU6YRckCsS+N3k1One2+FvO+rB6ImJ34kkJDkbSHmpXmjQbxcY6ZO5jPpxBqm26@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOA/Unx7N8jyKwsjcrs70irf16zuSgSk57Tss9A/lt7ejkuwUQ
-	ZAB29/vbvFV81By3M2X5d1Xz297PuQeUbtSR62tzQ5BjfhDCip0A
-X-Gm-Gg: ASbGncv7CAbAXFIWhMiqfMiPk9yGHkUTWk88IedSOcjwYDMLQqk0KOG+QMU8ZtfufM+
-	KbA00hKwgw/oP1998wzkuTxcp5PUPHTrlgQy9b8ulkb92sVnyLCZ2Ee5hXz3qjCv0fz3GbUu4jM
-	KS/jM3ocommHR8p2ouBzP1foh9Jt6o8R7PXvkJWUyw9+yVC+D3SPLyGdRTMhMPLW8aaOFxrW1xk
-	JnzU0/62x1uENSVrwaAfSMlitqSKZFURuYJgeYY75ucieCsLkIZhWLz1VAL43oKch9blGaO4NSP
-	30GuFXrKgXtS2v1SHOONZ4TJ3QSBHAt0B47M2GgGV398dDA=
-X-Google-Smtp-Source: AGHT+IHf8Oo1UVjH2/cqJJLrrsK9/zGpDgiwV3mrQZdHqaspRRBLBswKPp6yDSRiRGj7w7wfrcFnAw==
-X-Received: by 2002:a05:6a21:7108:b0:1ee:d06c:cddc with SMTP id adf61e73a8af0-203cbd207b4mr34869273637.30.1745437292349;
-        Wed, 23 Apr 2025 12:41:32 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([39.120.225.141])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73dbf6a2dbesm10938291b3a.0.2025.04.23.12.41.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 12:41:32 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: jic23@kernel.org
-Cc: Gyeyoung Baek <gye976@gmail.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: [PATCH v6 4/4] MAINTAINERS: Add WINSEN MHZ19B
-Date: Thu, 24 Apr 2025 04:41:00 +0900
-Message-Id: <20250423194100.53934-5-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250423194100.53934-1-gye976@gmail.com>
-References: <20250423194100.53934-1-gye976@gmail.com>
+	s=arc-20240116; t=1745437362; c=relaxed/simple;
+	bh=TnT5WVpQCYGJKh3P2I4Fm1o0/+22/GE4VkIuIPQ7b/4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hqnNlY11jZrMguaYGj3BN2qrjEIAKF9+HG7voDSr6w4SA0Bj1ewESk6uaQnE7I5QkXyxr1mRG42MNs9D1hoqM9Zl/Qx78oVS+obXyxCTTl0qgeVqSpPbAc2tFY59ISGSUh5ufHPzZ1ilQ/v6gnIZuLHZquuk0qaz6pdRY/VKoOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mrU11t9m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90C7BC4CEE2;
+	Wed, 23 Apr 2025 19:42:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745437361;
+	bh=TnT5WVpQCYGJKh3P2I4Fm1o0/+22/GE4VkIuIPQ7b/4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=mrU11t9mU7Qy/iG/bmQPjQWMfW+P79ei4JW5vf9T6v2w9PFz26kb4XMK+F1i8AjjS
+	 OekTGSki2lbGXRsIvoWBCAadZprzmI8TkRvJP7iEDr6xj2K1vBmbi5iKx6JBo4Ximo
+	 SWhzfvXnCkFBftDegHOUviYnUM31Ea9xJUibEzIf5NwFkZQSB4fBBQq7Qn9QLFIHsp
+	 TyILjCOmie9q2AH/VImwHdouqGW3nJNL5PN/GLLSIZFbBirJsJqLvvWbmvJXpSgb44
+	 vWBemGESoirKHJnA1GeZ1r/7IExHwiBFFN0aUQrjG7l9DbO2cFXsqehsFa3jfjUxqJ
+	 Jx6dxjUaY00Rw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH v2 0/4] of: Common "memory-region" parsing
+Date: Wed, 23 Apr 2025 14:42:12 -0500
+Message-Id: <20250423-dt-memory-region-v2-v2-0-2fbd6ebd3c88@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJRCCWgC/x2MQQ5AMBAAvyJ7tglLHXxFHKoWe2jJVoQ0/q5xn
+ GRmEkRW4Qh9kUD5kih7yEBlAW6zYWWUOTNQRaZqqcH5RM9+1weV1yzjRWhpqo2z1rmugVweyov
+ c/3UY3/cDrwxX8WUAAAA=
+X-Change-ID: 20250423-dt-memory-region-v2-a2b15caacc63
+To: Saravana Kannan <saravanak@google.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
+ Chen-Yu Tsai <wens@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ Daniel Baluta <daniel.baluta@nxp.com>
+X-Mailer: b4 0.15-dev
 
-Add undersigned as a maintainer for the WINSEN MHZ19B.
+While there's a common function to parse "memory-region" properties for
+DMA pool regions, there's not anything for driver private regions. As a
+result, drivers have resorted to parsing "memory-region" properties
+themselves repeating the same pattern over and over. To fix this, this
+series adds 2 functions to handle those cases:
+of_reserved_mem_region_to_resource() and of_reserved_mem_region_count().
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+I've converted the whole tree, but just including remoteproc here as
+it has the most cases. I intend to apply the first 3 patches for 6.16
+so the driver conversions can be applied for 6.17.
+
+A git tree with all the drivers converted is here[1].
+
+v2:
+- Fix of_dma_set_restricted_buffer() to maintain behavior on warning msg
+- Export devm_ioremap_resource_wc()
+- Rework handling of resource name to drop unit-address from name as it 
+  was before.
+- Link to v1: 
+  https://lore.kernel.org/all/20250317232426.952188-1-robh@kernel.org
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/memory-region
+
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Rob Herring (Arm) (4):
+      of: reserved_mem: Add functions to parse "memory-region"
+      of: Simplify of_dma_set_restricted_buffer() to use of_for_each_phandle()
+      devres: Export devm_ioremap_resource_wc()
+      remoteproc: Use of_reserved_mem_region_* functions for "memory-region"
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 01079a189c93..4a0089db6670 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26015,6 +26015,12 @@ M:	David Härdeman <david@hardeman.nu>
- S:	Maintained
- F:	drivers/media/rc/winbond-cir.c
+ drivers/of/device.c                       | 31 +++++-------
+ drivers/of/of_reserved_mem.c              | 80 +++++++++++++++++++++++++++++++
+ drivers/remoteproc/imx_dsp_rproc.c        | 45 +++++++----------
+ drivers/remoteproc/imx_rproc.c            | 68 +++++++++++---------------
+ drivers/remoteproc/qcom_q6v5_adsp.c       | 24 ++++------
+ drivers/remoteproc/qcom_q6v5_mss.c        | 60 ++++++++---------------
+ drivers/remoteproc/qcom_q6v5_pas.c        | 69 ++++++++++----------------
+ drivers/remoteproc/qcom_q6v5_wcss.c       | 25 ++++------
+ drivers/remoteproc/qcom_wcnss.c           | 23 ++++-----
+ drivers/remoteproc/rcar_rproc.c           | 36 ++++++--------
+ drivers/remoteproc/st_remoteproc.c        | 41 ++++++++--------
+ drivers/remoteproc/stm32_rproc.c          | 44 ++++++++---------
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c | 28 +++++------
+ drivers/remoteproc/ti_k3_m4_remoteproc.c  | 28 +++++------
+ drivers/remoteproc/ti_k3_r5_remoteproc.c  | 28 +++++------
+ drivers/remoteproc/xlnx_r5_remoteproc.c   | 51 ++++++++------------
+ include/linux/of_reserved_mem.h           | 26 ++++++++++
+ lib/devres.c                              |  1 +
+ 18 files changed, 339 insertions(+), 369 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250423-dt-memory-region-v2-a2b15caacc63
 
-+WINSEN MHZ19B
-+M:	Gyeyoung Baek <gye976@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-+F:	drivers/iio/chemical/mhz19b.c
-+
- WINSYSTEMS EBC-C384 WATCHDOG DRIVER
- L:	linux-watchdog@vger.kernel.org
- S:	Orphan
---
-2.34.1
+Best regards,
+-- 
+Rob Herring (Arm) <robh@kernel.org>
 
 
