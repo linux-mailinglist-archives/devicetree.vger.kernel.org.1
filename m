@@ -1,168 +1,118 @@
-Return-Path: <devicetree+bounces-170015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F66A99562
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1D5A99569
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 18:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39221B85261
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:34:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFD951B822BC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 16:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A610283689;
-	Wed, 23 Apr 2025 16:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C962820D8;
+	Wed, 23 Apr 2025 16:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="E7rEhmdY";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="rV1aQ3Dp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4QHybd0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7CF288C89;
-	Wed, 23 Apr 2025 16:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2F427F75E;
+	Wed, 23 Apr 2025 16:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745426026; cv=none; b=cgw4JRoATrQl13Tr5l7hKRYySv1FbFoYetyhIC8F4VL/OmfPWzwhwlDkLev5n35UY2PAFV22eY7RWBm5j/eJwiz7VF3mIJfrj+426zsNz2V096Gu7VqffItZh6zYpvnT+CNgLtPOKqDm9bsAa1u0hkddHmfbzfOu/7gjqiqJGuY=
+	t=1745426055; cv=none; b=CuTlSsg+BTX4yx/C5YneD9YLL4cVHIv6JNF+9GqZwJR4GRak40xWaTcyn+9IkWICyt0BxoOhGeXRGZpA096U6xduG0IATeduDBOufZc0zbLcXaDzdc4YeeIFpX2fAqq6IG8wLXw2MzBEfebM4tnla5P9OM1a37OctU5EaZaWVzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745426026; c=relaxed/simple;
-	bh=H3gORsEgd++DOOLijD+5++YqlB8k5rFqElExjfxfDbU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=idydPWMyAizHW0ocz12a0d9I9uKYuOmGgpkXgp7WX2o4Rqdn2KPGpEk6BGXRYtxL2S15EV4d6CbiEmBGpiJY3C0IQ7Ou7Oh+vpUEbO2FzNmP3eo7E20Hm7EiQn2XhVK0Xb/p8E30/YRaE5roC7I/jq48vGhoFduHP2F+ihSSm2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=E7rEhmdY; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=rV1aQ3Dp; arc=none smtp.client-ip=103.168.172.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 99E4E1140207;
-	Wed, 23 Apr 2025 12:33:43 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Wed, 23 Apr 2025 12:33:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1745426023;
-	 x=1745512423; bh=SX2+4t/MuotXp5o7SUKqxiNerP4aexBTVBofSMVOOCk=; b=
-	E7rEhmdYY5bmeHKHnD7LVihhxJ4WWDqIg5OK2FihqJV6YEUD0TMtYq1B1lhC7t+w
-	JFdyE4Z1I3no10M356bHgfkOy7PcV5o68+uW6IWr00BEV6cEhf+huub3kDFd4uUv
-	A59D0D6puzKXL7bA/+69a1PuAat4jIdnmcO2G4HVUVQtC6jPDbFNW8/T+dV3V+Pd
-	c7OPom5YB3Pj/VuXds8xIzsh9P84xJGsLQfxQlW/CHotFVv4dyQcIOQM28KLSxXc
-	aHVZd7fVp4fxRgAk1fkT/5B+3K1qTg/Ho/e6nB802x+g2VNJIB+JxZ3jWTnF0S8d
-	8irYK9ZiLSIF3Vf8KfuuXA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1745426023; x=
-	1745512423; bh=SX2+4t/MuotXp5o7SUKqxiNerP4aexBTVBofSMVOOCk=; b=r
-	V1aQ3Dptbo2Hso2+BJr9MTbuTQ62uShIdYizB3jsb71JaTN3qwbjRQUcLfgpONsU
-	7CgC+gi+n33KD4CDl35UDNqEEkXyRSqxDdo6YpDzri7+ALJS8UMBUTKzY6g8fopI
-	+PhW7TyEw6kxm/EhCm0+6Hk20V1WcD6F5tqIj1Y7NZ2PVMT79k2oPaho9QPRipcs
-	UcFb/fmypOd5x/9Tv9LI261mC1hU8uYHTtnNxUscDWQ9CzN7JFka7vfNcsfFwn6X
-	IgAIVVoAE2meIC1W6WWM2wlQKkbkaNQSEs4W+4XHhUr7DjvsVaKFc1cUhzGPpkod
-	hgUzskT7j1JyGWLDo8FmQ==
-X-ME-Sender: <xms:ZxYJaIoW_hz4r7V0-XEiaKkYIzlRhN4Py-KyadRu00xrv_mKcjHaxQ>
-    <xme:ZxYJaOqwnVtSHiXu17W8tcru_9T1gESAlmWQZuQ1yVooKe6SePsoUBmQDxFSqKF1g
-    lLWEGXQUoFi3PTJbpE>
-X-ME-Received: <xmr:ZxYJaNPnLqok1cVVgmiME8NiwBkkiezQpAfOmqcWKUyFMgb8OChMcF4uGNqvu2gMrCsliZG1wzxVg3paOnnzuCub>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvgeejtdelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhggtgfgsehtkeertder
-    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
-    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
-    rghtthgvrhhnpeehiefgueevuedtfefhheegkeevtdelueeukeevfeduhefhhfejfffgge
-    ffleefgeenucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmhepmhgrihhlfhhrohhm
-    pehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprh
-    gtphhtthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhgthhgvhhgr
-    sgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
-    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnh
-    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehhvhgvrhhkuhhilhesgihsgegr
-    lhhlrdhnlhdprhgtphhtthhopehsrghkrghrihdrrghilhhusheslhhinhhugidrihhnth
-    gvlhdrtghomhdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrthesihguvggr
-    shhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiug
-    gvrghsohhnsghorghrugdrtghomh
-X-ME-Proxy: <xmx:ZxYJaP6yp49zF2pIvcMBWdCh6vn5jYJVS4FQcBaVw4Say5MT4l8_eQ>
-    <xmx:ZxYJaH4uo1c07jyJh5rlP1RpmtGXPKtDs7xmEajkCmtHo3YAJwSjyg>
-    <xmx:ZxYJaPibTo3RKsqJ8vJYJ_RaQd17580Tz7gEK2H77S7RpCspRyIjRw>
-    <xmx:ZxYJaB7K1hXcOvzfpDM2rsaQE52EGSLgh4aMDqu8Cnlw_hkHBuZVZw>
-    <xmx:ZxYJaKcf3GkBvqT9rziYjFeWRz3DKG0khx75-uBbowMW0Se3Mjqkjk3D>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 23 Apr 2025 12:33:43 -0400 (EDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1745426055; c=relaxed/simple;
+	bh=4IABLfHu/yqmZlVKCfx0mHLz4kNwMyvzzMrqaMMK+yM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oPSDpAxOP//Gaeh0Rd5vMw0/doEz7Twi5hXuQt7ZCdfm1GrrbJ0L0WQP+wHBPZeq58Ny6+yZu/lGIRkYqURaWjRxkzDGoKwV8qc2xl7dwB15xUie/mXu8YneVmWJWAFb5NJdCWJIp6F5r/pOebl0HreWbqPmyEfVmbFEhvxr9/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4QHybd0; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745426054; x=1776962054;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4IABLfHu/yqmZlVKCfx0mHLz4kNwMyvzzMrqaMMK+yM=;
+  b=C4QHybd0vlTWYDDsFGK6/VRSgju95FxEJJFsaRQePzPyw7ZfDAqNdpv4
+   8+rRt77QZy0BBKBxyCjuJ1B2BxJx1UBgLw5S3XTv/5tzpxTA4LCVCvtUJ
+   ef0XDMmM43UsOwICFnvhmUZgIWpX+j0N/3JIoSuFxIHL6NvWOsNMIPc2g
+   Ea7E9jO9EwBT2gX8hYGV7wytUiNGbnbptvXDcmyBFHNSxb+pVvFhr5HaD
+   KQDmpPu5xZOiAohlomu7rO8dMvd34NLAE+XFA+BS4VRWa0pGHk56eFacZ
+   MbF/6nxozEIkSf/1rOFqOP+ocQ2Ov7x6OzDtuPKZ0MLiI3gT2keWp81MQ
+   w==;
+X-CSE-ConnectionGUID: 2WaW1sc3SpmkdzPglUYIJw==
+X-CSE-MsgGUID: pQrqnXPaRKyECEJxpKqufQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="50692769"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
+   d="scan'208";a="50692769"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 09:34:14 -0700
+X-CSE-ConnectionGUID: xprhH5xZQjG6bqcRwUBynw==
+X-CSE-MsgGUID: URoCKcguQf+EJCQQFo3lew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; 
+   d="scan'208";a="132884532"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2025 09:34:10 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u7d32-0000000F7IV-0t3M;
+	Wed, 23 Apr 2025 19:34:08 +0300
+Date: Wed, 23 Apr 2025 19:34:07 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Kent Gustavsson <kent@minoris.se>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH v3 7/7] media: rcar-isp: Parse named cs memory region
-Date: Wed, 23 Apr 2025 18:31:13 +0200
-Message-ID: <20250423163113.2961049-8-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250423163113.2961049-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20250423163113.2961049-1-niklas.soderlund+renesas@ragnatech.se>
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kent Gustavsson <nedo80@gmail.com>, devicetree@vger.kernel.org,
+	Lukas Rauber <lukas.rauber@janitza.de>
+Subject: Re: [PATCH 1/3] iio: adc: mcp3911: fix device dependent mappings for
+ conversion result registers
+Message-ID: <aAkWfw_csgBpU6w_@smile.fi.intel.com>
+References: <20250423-mcp3911-fixes-v1-0-5bd0b68ec481@gmail.com>
+ <20250423-mcp3911-fixes-v1-1-5bd0b68ec481@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250423-mcp3911-fixes-v1-1-5bd0b68ec481@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Extend the device tree parsing to optionally parse the cs memory region
-by name. The change is backward compatible with the device tree model
-where a single unnamed region describes only the ISP channel select
-function.
+On Wed, Apr 23, 2025 at 04:46:49PM +0200, Marcus Folkesson wrote:
+> The conversion result registers differs between devices. Make sure the
+> mapping is correct by using a device dependent .get_raw() callback function.
+> 
+> Fixes: 732ad34260d3 ("iio: adc: mcp3911: add support for the whole MCP39xx family")
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
----
-* Changes since v2
-- Fix spelling in commit message.
-- Fix comment style.
-- Use devm_platform_ioremap_resource().
----
- drivers/media/platform/renesas/rcar-isp/csisp.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+> 
 
-diff --git a/drivers/media/platform/renesas/rcar-isp/csisp.c b/drivers/media/platform/renesas/rcar-isp/csisp.c
-index f36d43c2e0a2..1eb29a0b774a 100644
---- a/drivers/media/platform/renesas/rcar-isp/csisp.c
-+++ b/drivers/media/platform/renesas/rcar-isp/csisp.c
-@@ -465,7 +465,18 @@ static const struct media_entity_operations risp_entity_ops = {
- static int risp_probe_resources(struct rcar_isp *isp,
- 				struct platform_device *pdev)
- {
--	isp->csbase = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	struct resource *res;
-+
-+	/*
-+	 * For backward compatibility allow cs base to be the only reg if no
-+	 * reg-names are set in DT.
-+	 */
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cs");
-+	if (!res)
-+		isp->csbase = devm_platform_ioremap_resource(pdev, 0);
-+	else
-+		isp->csbase = devm_ioremap_resource(&pdev->dev, res);
-+
- 	if (IS_ERR(isp->csbase))
- 		return PTR_ERR(isp->csbase);
- 
+Shouldn't be blank line(s) in the tag block.
+
+> Co-developed-by: Lukas Rauber <lukas.rauber@janitza.de>
+> Signed-off-by: Lukas Rauber <lukas.rauber@janitza.de>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+
+...
+
+> +	*val = sign_extend32(uval, 23);
+
+With that, replace bits.h by bitops.h at the top of the file.
+
 -- 
-2.49.0
+With Best Regards,
+Andy Shevchenko
+
 
 
