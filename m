@@ -1,133 +1,137 @@
-Return-Path: <devicetree+bounces-169736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C75CA980EC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:31:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66ACAA980F9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 09:32:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0235F189485B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:31:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A553D17A65D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 07:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45BC26E165;
-	Wed, 23 Apr 2025 07:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB3726B2D3;
+	Wed, 23 Apr 2025 07:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="fVwAVkf6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TICk2Rj1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE3226B941;
-	Wed, 23 Apr 2025 07:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57C126B0AD
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 07:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745393395; cv=none; b=BlC5QMV8nQi0vr/Y3edbyoNXyA4dniunEC3Px8QEP98Vky6La8Bm082mTs370TBTPG5pcFRDeW1n7R+t7ktw3ZnFXWnPWUZs0fOp25SSep6+2N4T/sWv3yE8bnKvgeNNKX10R3TUiHjigNAKXI9NAKaXMRpkU2vOeXIF6TalZcU=
+	t=1745393439; cv=none; b=kPNtqgtS8c6eICUW3EqQEwQvuS4rDl7eoMMfxYriZTdkvkBgmeN7STNHUnOlTj1v17jCdGMt8uIEBkkQDQOXyxdWFGMl7ZiGEJVQe/SIAi5G5msl6e9Nv4rYrsJZcm748st+uLigB3pr9clPHwXDFTqkBzeciRxYQrmqV7+jkKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745393395; c=relaxed/simple;
-	bh=/ur92+u0SOQHd6YsYjHL6mWSKNe+AOPzBnqsX6DxDts=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=CUN+MHcemOeq3MH7FkEXZmi84G9iXuLok/CGg9G+sPrqcyO/X3GLX91X/iygXjgRTZnjdkQGHAdX9Ej542hz+qvNOiLrMHBBQq5XU+CzqJjFR6qumgnq/3P+YLmzF6DUBtkmtBVjulsJkwl7QKxT27RfCsRbBFDRsFj3KLPZ0Wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=fVwAVkf6; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C7705102A4BE8;
-	Wed, 23 Apr 2025 09:29:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1745393392; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=eCojgqJD5RNVsuSKlWQXeXlsHX7xNPh0TCkFmdSQ7Cg=;
-	b=fVwAVkf6KZ9UfQzmYbTUImgLTygtLG0TWeWjCKbdonsR/ELbFCMD9kz5wZUxGZzcTneumf
-	hxbv9i/HyEsh1NcJPuDjOe9XrrNUgnIsADQlmj9bzNCDApCNW3yEjd6MesxYXUT9eBdhDN
-	Yy1kUWZLuAJlY7SEj1cRWSwROAdMmOTgzwknDeZj6mAr//VkIJQO2bMJcbo3Lz0LqgV2ff
-	s0aBsJFqHQlm9Gr/TLTT6Oa4bxblVb+TqO/1OI4N/jq4Ud3qIzgBd6ZMFCmppTnQFiNOAS
-	gv1tq5hkYWjy+xNdE8k6vhu0NseiKyE8+kPeLf1MTUHknT0mebrdIoUCC1Oq2A==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v7 7/7] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Wed, 23 Apr 2025 09:29:11 +0200
-Message-Id: <20250423072911.3513073-8-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250423072911.3513073-1-lukma@denx.de>
-References: <20250423072911.3513073-1-lukma@denx.de>
+	s=arc-20240116; t=1745393439; c=relaxed/simple;
+	bh=ugdh0Jwg8OtNDnnvSXX+JcwFs/E/9kEcCZ1PVSsw1oo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AjHoaSIORlBIGk/ASakKfrjGFIHrlX4iZYKi/+sRRrbTmXUPxGO7prG+/ZxKlrincSH0B3kep6ZYJsojmZjZZCHzTdhzzbFyY6FIiAIgWXCGM6b/V+kJN6wH2i38h2Utx9zS4UE+ykboI7zKtofZ4+aOA3sdUOPWhHcEJrfEjb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TICk2Rj1; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39ac56756f6so5985131f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 00:30:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745393436; x=1745998236; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IAVOf9WwZt5yb8GSwQ0W6u8pvseS1B6MX+loQMEGJLQ=;
+        b=TICk2Rj1l2YRJmLdqOz5FZwY43nDW2Lk32jG8grGPWZPJneWLq7G9cL+ffkwAclNsE
+         Rz/0Atm00/xafJJfGnHaNe2rSY6AuE6tjc6Hhp6UM0r+MK++tJP+rRntbBXwS1lHPtt8
+         lt8rGmFOCk2ElOs5VUEHS2Ck+7AjbUonhJ+FfhBLyIqSy/rd33MVj5M/rEMGbmfrRThA
+         KVgbXeR2QkZA4ixX3D616vpaga9OH1g9mPyV4hVBiG2tgX6+WxByuzPQ7Qp12fSl8wLF
+         RJAcoGFUTMYnfDVXD0ZCIGw4xWctHP9TbMho/W6aqwt08gDbOWBkSWuNmFab3/0hgqIX
+         fOMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745393436; x=1745998236;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IAVOf9WwZt5yb8GSwQ0W6u8pvseS1B6MX+loQMEGJLQ=;
+        b=g6LoOQBd50VKUA/PzWKlTpZOrr3uMfuK8WpHftG7Q8+UUd1vTM5QJY7gfbT6ZCNPwT
+         YM5Fpod3HuarDkhI3vZ9e397PqQdNw7YzBuPhP/oYkL+AXi4Xj8JAM1/bCknsZh2/39X
+         XTHal41sTukOt0nxYP0nlnwBc03jgwFm7A846o6FQ5BMkXIwNuJtA13UobT24GqVOssq
+         YnqHLZ73SkRBlU8uxgaMHHHkrd5QL69riCZXKSwI6LLBf+IG0ZmhCTNUpicZiLL83Y5a
+         QNpom5OqHXHIlvucjo/0cZhliYCO3ZlRtfw3JGkBGSJ2/nm69fDkgs374l5yJBysepVk
+         rU9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUQliDhxLgT/g4zXGdoBR7iaFqs2rfgBzcIoTJYSmokrONExOARBNlAYiy4hBZnR6MplkU7oniPA9Rs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6Xfqct0hY+rpQaYwsk5KC/sUIGQpFkmphqU0K1Vh0wZqepx5q
+	q2TECII23npLpifW6o6PfQof9QsxWlIxmTKkJeHrpYlV1r7hwXSStAWreCGRMWM=
+X-Gm-Gg: ASbGncs6BPoVTbsVAE5dXdNfa8MPLnOUgtAUZEx5/uNe27CEtx4WwRJmFIiZ2t9GU/p
+	SAJGTz6Z4E8jVthGUn7dVA8BEqoZ7t5A9JoZDFhPrIR+zxkqkgBZ0mAqQIfTDL0xcYQ0NCiOYov
+	ZZIIGsN4n2zG1GUKEDWwcH4wzdbJqdzLRXAOhl8wqa7dLZtTWcXhgVhFMDg6FlvizHBcTVYUzYO
+	w7mZVAw4LBfHPQgbFii19SSXndYjPffEMCR3G/qvN1/LOUidbs1l/xCm2+I7Il/Mw0li0QazZRl
+	k+Q4lJtAOfllAbWFTErDTbldOLdaloHFAIOPDezJ36RudIuh1BBvloM=
+X-Google-Smtp-Source: AGHT+IFDeOQJ84DRhqUsU2I2qejWhkxN7owbw0EAeDx/ORw4YLo17BdfeLQzG90l677GOD8n8erpdw==
+X-Received: by 2002:a05:6000:438a:b0:391:298c:d673 with SMTP id ffacd0b85a97d-39efbade41emr14796194f8f.40.1745393436055;
+        Wed, 23 Apr 2025 00:30:36 -0700 (PDT)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:67a8:3ed8:e19f:5eaa])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa493115sm17761699f8f.78.2025.04.23.00.30.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 00:30:35 -0700 (PDT)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/6] arm64: dts: qcom: x1*: Fix vreg_l2j_1p2 voltage
+Date: Wed, 23 Apr 2025 09:30:06 +0200
+Message-Id: <20250423-x1e-vreg-l2j-voltage-v1-0-24b6a2043025@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP6WCGgC/x2MQQqAIBAAvyJ7biEXw+gr0SFyqw3R0JAg+nvSc
+ WBmHsichDMM6oHERbLEUEE3CpZ9DhujuMpALXWtIcJbM5bEG3o6sER/zdUx1GvnrLFke6jpmXi
+ V+9+O0/t+/insk2YAAAA=
+X-Change-ID: 20250422-x1e-vreg-l2j-voltage-4281dd747278
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>, 
+ Xilin Wu <wuxilin123@gmail.com>, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Johan Hovold <johan@kernel.org>
+X-Mailer: b4 0.14.2
 
-This patch enables support for More Than IP L2 switch available on some
-imx28[7] devices.
+Several of the Qualcomm X1* device trees upstream specify the wrong voltage
+for the L2J regulator. In the ACPI DSDT table, PPP_RESOURCE_ID_LDO2_J is
+configured with 1256000 uV instead of the 1200000 uV. Change all affected
+device trees to use the same for consistency and correctness.
 
-Moreover, it also enables CONFIG_SWITCHDEV and CONFIG_BRIDGE required
-by this driver for correct operation.
+In the other device trees upstream, the voltage is already correct:
+ - x1e78100-lenovo-thinkpad-t14s.dtsi
+ - x1e80100-dell-xps13-9345.dts
+ - x1e80100-microsoft-romulus.dtsi
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
-Changes for v4:
-- New patch
+Stephan Gerhold (6):
+      arm64: dts: qcom: x1-crd: Fix vreg_l2j_1p2 voltage
+      arm64: dts: qcom: x1e001de-devkit: Fix vreg_l2j_1p2 voltage
+      arm64: dts: qcom: x1e80100-asus-vivobook-s15: Fix vreg_l2j_1p2 voltage
+      arm64: dts: qcom: x1e80100-hp-omnibook-x14: Fix vreg_l2j_1p2 voltage
+      arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Fix vreg_l2j_1p2 voltage
+      arm64: dts: qcom: x1e80100-qcp: Fix vreg_l2j_1p2 voltage
 
-Changes for v5:
-- Apply this patch on top of patch, which updates mxs_defconfig to
-  v6.15-rc1
-- Add more verbose commit message with explanation why SWITCHDEV and
-  BRIDGE must be enabled as well
-
-Changes for v6:
-- None
-
-Changes for v7:
-- None
+ arch/arm64/boot/dts/qcom/x1-crd.dtsi                     | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts             | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts  | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts    | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                | 4 ++--
+ 6 files changed, 12 insertions(+), 12 deletions(-)
 ---
- arch/arm/configs/mxs_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+base-commit: 39155a896925c3af2156ad61e821aa9fa5a1dbdb
+change-id: 20250422-x1e-vreg-l2j-voltage-4281dd747278
 
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index b1a31cb914c8..ef4556222274 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -34,6 +34,8 @@ CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -52,6 +54,7 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
+Best regards,
 -- 
-2.39.5
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
