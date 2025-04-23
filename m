@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-169899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB57A989A3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23F69A989B5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 14:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83BE43B7114
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:21:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AD735A26E9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 12:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C48D20C023;
-	Wed, 23 Apr 2025 12:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0BA26D4E4;
+	Wed, 23 Apr 2025 12:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iEfdqrJv"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VRwyAnWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087A41E51EA
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B323262FC6;
+	Wed, 23 Apr 2025 12:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745410908; cv=none; b=ecyGHaYHEB4REA5Ja08+9ldHMpVAcxhZ6nGtBmeqVJttQMYpK0GbZtDsdQgJa462JxXGbguUqlMV4Matrc4GsjERLA/GwCcmx8rSTIZo8594PLqOc/UZ+1+/A9BQPKAd12CqKdRh9p5KEi8EWmh3bn8yXnXJRtQnYkFKQuYOqRs=
+	t=1745411064; cv=none; b=FyOEDBqboY/RRlMmEN46Zp4OqkRgTXdrEZpIJWVyd9MAvXLEN+pL3XhukEIApE00x5CmGCwuEqurtAH8zydV79gQ8y51BCwOqyZZ5uABDzMAqQF18mVBLf+Xd2Rn0mj5DhQ0iDz5DeZSS0C0p3mlJ3AtlFnQSngNNSaqNiGS1ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745410908; c=relaxed/simple;
-	bh=yUlmQngLWM95uTbYGzUfTXaf2KiV+RckgPCq0lwW5TA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RjdRRuCyqVOZDnPb1JRWJ2y0fkNsENOV/KiWaGygm3plVfqoELXqXa0A0BYNq0q57Xh3w1hjVD5/Pl5Zqw/1oIG3uPR9bNB+qCY4kH2oCV+pWJHXOZSFyNVVtPQkFdssYw2LLHFrIKdz+mNjA2Ah9mZqWB63xh/XPdun5cRYOxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iEfdqrJv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NB3hUO013403
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:21:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yEy3BB74MydlFE5SvSBjX4VOfZhaorZTjCn7mz9RhEM=; b=iEfdqrJvitZsTSxv
-	xsGCnrcjXPQ2IcWoKVAnGGCLzDRIk4aNsh8+XceLEgtJnBHzppKtkd+PX0XgPy+a
-	/OkacEzWoTkABAA44fkCf4sbZ/umnbmaBjr7/E8pFzFzwflwenKcY3iHtwqUFxX/
-	yy0NRf1fuFuESEyfU1CJv+pyi8cY2grdbFYwBsVJFg5uFktiiZz27uPCFdI8S4YY
-	y7xfEZfaona7VSXAXKXXC85waLtsZlL8PLEC+e08Ort8NOFMbtsJFzywu0Plzmlh
-	rZnTjZled51CzoiAENbgJamTBVAMIL7HsfGVDN46I1QOA/BOXBzkQJ5GUysx/yKR
-	IFpN8w==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3a2aj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:21:46 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5af539464so141167285a.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 05:21:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745410905; x=1746015705;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yEy3BB74MydlFE5SvSBjX4VOfZhaorZTjCn7mz9RhEM=;
-        b=qCVppJjcD52xCiOuHWHevcYFe46EmjcZDv+gA6HVDfnVMjjsty4aNz9LInEJ1z9EYb
-         Z72H7qnmPY/a17rLgictg7LtGTIOmDdkWi19PWccGY2PX4N4wSj/BQSXEhyCzTOBUUWX
-         bT0LsG+G5L+gB3YdaZCEgwSaYhTQvoGqBejOk8vOp6tL6Wod+oepDEBTbLqlERmvWdKX
-         zBDXTtFxQiK33czxp8ErfGkd5DI2LjAqpEh6QkoaeV75/6K0ifoLFFPQ4qbM5ycUkEJM
-         nxnVgr8zjdaS78+ZIv5SZzSCOaPHC/8MPz2jwITvoh7fc6xaSdO6SrWRo6dKEkvhYkU4
-         njcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeWaxHMfJr+QZyvhMvG+lLf7wjzcAS8kLbMk0J+JQ9itrGk2bZIybdqHbFVP3IQXjpzCQLoAl7dtcF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8MhXtrSGLRRucExtkeBln8BMtRjC6RM3Ik9qyvxl2Ij5/yVfi
-	GRjd42fda4Caz5kbKi34YLHKs5ZmwwuuszZImi6IxE5vbsd794Hh5TKovASiWEKqp3Cqk7ZzSuJ
-	0W2apF0adt+5fkxMmEUbaSUaVasnID0TwzL9L6N310oGpQnDeGh3fWAJcKXuZ
-X-Gm-Gg: ASbGncurkLRd0nZa83ZiD8qFuxFQi2XPXx7TY4OJrU6SaTexFjhWQoz59SJlc7WnNXy
-	e0MHUbLSAXSteh6UHOKMwd9huboo4KV4XKwma6h7UphCtYZhkvBR4G+5tgJourjxhzKZqbSc51p
-	SE5y+Uih2NWiD4KmJ9dyUwwqUEj/bNYLcj21sciq9Vwxsyt+j/e1p8td88z/bxwnKO+a5qA6GS1
-	fwbk23wPI6H3VmcXRdsGUYzrFzb34ov5yOK/ffeL2joNoDrqLbnSAg2S/0vJnKIaN/Qzmx/NaOo
-	L4cN6tCt8WHLgYR4yqapM4KMCVL0DizH8AyGM+ttPQCgueMZaPyaG19LXitBcACEPZo=
-X-Received: by 2002:a05:620a:318f:b0:7c0:af16:b4a8 with SMTP id af79cd13be357-7c927f6f902mr1108010685a.3.1745410904997;
-        Wed, 23 Apr 2025 05:21:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEXBbDZMwLarl+zI6FrhIiRzh9IB3F9PW0wtQy5FUQ3y8e0F2Y8/CQ5HRXpH8vW397/Zsevcw==
-X-Received: by 2002:a05:620a:318f:b0:7c0:af16:b4a8 with SMTP id af79cd13be357-7c927f6f902mr1108007685a.3.1745410904673;
-        Wed, 23 Apr 2025 05:21:44 -0700 (PDT)
-Received: from [192.168.65.183] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb6ec4c622sm786854066b.44.2025.04.23.05.21.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Apr 2025 05:21:44 -0700 (PDT)
-Message-ID: <ec7b53a4-0321-44bb-938d-0cb955e64397@oss.qualcomm.com>
-Date: Wed, 23 Apr 2025 14:21:40 +0200
+	s=arc-20240116; t=1745411064; c=relaxed/simple;
+	bh=J5Uj4zApAgSWIs2Z1zPphWhwvi7rWKbh4gi47KrbqXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NTBawr4IUKn73xwAZOvSP8ggliCIcX03onEFaqfJIOAC2dcire9vGiyAWMnXON57Y7J6hmcRJlc5UIk5JaYuRP0PJJwYkmJfcENLJ7LPdKIUztUxyRxrIZRPudYaPKYW6tWbDG4omTDECFnWD4KptLNiE4nDcouDktyV/AsBtHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VRwyAnWG; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F7521AE2;
+	Wed, 23 Apr 2025 14:24:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1745411059;
+	bh=J5Uj4zApAgSWIs2Z1zPphWhwvi7rWKbh4gi47KrbqXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VRwyAnWGu0VJjccG89WkUoIrKRRitkyur4DbD1YuMbyS96DLV4koHQAAbDFmmSGU+
+	 vE3uGVbjl7I1heVAq3ttO5AUTH7g4ahN9wk2IejATFhYIoiToGOI4ZGjUcnUdrw9yr
+	 ANTG7l5moNCEg1wIkJVnI2v/cY92WCBIADBCxSXI=
+Date: Wed, 23 Apr 2025 15:24:18 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: media: renesas,isp: Add ISP core
+ function block
+Message-ID: <20250423122418.GF17813@pendragon.ideasonboard.com>
+References: <20250421111240.789510-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250421111240.789510-2-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] drm/msm/adreno: Add support for ACD
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Anthony Ruhier <aruhier@mailbox.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250419-gpu-acd-v5-0-8dbab23569e0@quicinc.com>
- <20250419-gpu-acd-v5-1-8dbab23569e0@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250419-gpu-acd-v5-1-8dbab23569e0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA4NiBTYWx0ZWRfX7LhBDL9JyAVj 8c4W1hKs5atG60AJCAGZmXo3UIyhU6ViXYCyXq4z9IISshpfVLBoBKi1Sw3XS5fp6Rft/EI7Jzl w0mJ8rXT0j/PhckTW2vT/apXKpTk0o3RbtbRpVx5mdBXcP1hnzCbSQlgO8605+Z5fnSPxofUSX7
- FyIblpdCqmFnt2S5PTpQBkuh2AGEQ5oy2HaxVbhEaojRnZ6JSczU8Islcq1sMiL62A1r77/TDy8 dmAsu+hzgRt+6/ahFDTmugnTE98WG8kgXpgbMom1mxLp2ZZUbZuxeDdmxcGxPfapgKDy+QVnlxo oGOOp63FJRPf1smz3FP55epmO+kBaO+DAPbG/zohC0wKvGnSZJ1rB8K/2gA0uzUYJqEvkf0vz1P
- N0yp4gxZFwR4B96sQuteQZObcoktkPVadu+bB6ApP5DOrpGFLBfCkLyIMyYkKSWkuRFBjrdt
-X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=6808db5a cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=pGLkceISAAAA:8 a=b3CbU_ItAAAA:8 a=EUspDBNiAAAA:8
- a=rNhkmTvpKUHMLWWBcFsA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22 a=Rv2g8BkzVjQTVhhssdqe:22
-X-Proofpoint-ORIG-GUID: bvQdJQHCoOiZxq6QbtMdBrqqIvxTO34F
-X-Proofpoint-GUID: bvQdJQHCoOiZxq6QbtMdBrqqIvxTO34F
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-23_07,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 suspectscore=0 mlxlogscore=934 mlxscore=0 phishscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230086
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdVJ=KaF-sJEga9kLbdFdkhKDGDPkacTOn-D-2E7dQY7dw@mail.gmail.com>
 
-On 4/19/25 4:51 PM, Akhil P Oommen wrote:
-> ACD a.k.a Adaptive Clock Distribution is a feature which helps to reduce
-> the power consumption. In some chipsets, it is also a requirement to
-> support higher GPU frequencies. This patch adds support for GPU ACD by
-> sending necessary data to GMU and AOSS. The feature support for the
-> chipset is detected based on devicetree data.
+On Wed, Apr 23, 2025 at 01:24:25PM +0200, Geert Uytterhoeven wrote:
+> On Mon, 21 Apr 2025 at 13:12, Niklas Söderlund wrote:
+> > Some R-Car ISP instances have in addition to the channel selector (CS)
+> > an ISP core (CORE )to perform operations on an image stream. The core
+> > function is mapped to a different memory region and have a separate
+> > interrupt then CS, extend the bindings to allow describing this.
+> >
+> > On the same SoC different instances of the ISP IP may have, or not have,
+> > the CORE functionality. The CS function on all instances on the SoC are
+> > the same and the documentation describes the full ISP (CS + CORE) as a
+> > single IP block. Where instances not having the CORE function simple
+> > lacking the functionality to modify the image data. There dependencies
+> > on the CS functionality while operating the CORE functionality.
+> >
+> > In order for the ISP core to function in memory-to-memory mode it needs
+> > to be feed input data from a Streaming Bridge interface. This interface
+> > is provided thru the VSP-X device. Add an optional new property
+> > "renesas,vspx" to provide a phandle to describe this relationship.
+> >
+> > While adding mandatory reg-names and interrupt-names breaks existing
+> > bindings the driver itself remains backward compatible and provides CS
+> > functionality if a single unnamed reg and interrupt property is present.
+> > Furthermore all existing users of the bindings are updated in following
+> > work to add these new mandatory properties.
+> >
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> > * Changes since v1
+> > - Extend the commit message to make it explicit that different ISP
+> >   instances on the same SoC (same compatible value) can have, or not
+> >   have, a CORE function block attached.
+> > - Update documentation for renesas,vspx property.
+> > - Update example to cover all new properties.
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> Tested-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> Tested-by: Anthony Ruhier <aruhier@mailbox.org>
-> ---
+> Thanks for the update!
+> 
+> > --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> 
+> > @@ -119,11 +159,18 @@ examples:
+> >
+> >      isp1: isp@fed20000 {
+> >              compatible = "renesas,r8a779a0-isp", "renesas,rcar-gen4-isp";
+> > -            reg = <0xfed20000 0x10000>;
+> > -            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > -            clocks = <&cpg CPG_MOD 613>;
+> > +            reg = <0xfed20000 0x10000>, <0xfee00000 0x10000>;
+> 
+> IThe second size should be 0x100000.
+> 
+> > +            reg-names = "cs", "core";
+> > +            interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "cs", "core";
+> > +            clocks = <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
+> > +            clock-names = "cs", "core";
+> >              power-domains = <&sysc R8A779A0_PD_A3ISP01>;
+> 
+> With the above and the wording issues pointed out by Laurent fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Once we get a review from the DT bindings maintainers for this patch,
+I'll take the next version addressing the small issues in my tree for
+1/7 and 5/7 to 7/7. I'll let Geert merge 2/7 to 4/7.
 
-Konrad
+-- 
+Regards,
+
+Laurent Pinchart
 
