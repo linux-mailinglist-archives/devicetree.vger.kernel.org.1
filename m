@@ -1,161 +1,88 @@
-Return-Path: <devicetree+bounces-169971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE89A991CE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:36:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E99B2A99292
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30D34925027
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:29:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBAF79A0D4F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A5F29344F;
-	Wed, 23 Apr 2025 15:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B7229AB09;
+	Wed, 23 Apr 2025 15:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JHzR0ks9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLQsHTSR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21D8281357;
-	Wed, 23 Apr 2025 15:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B67B298CB0;
+	Wed, 23 Apr 2025 15:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745421601; cv=none; b=HYnhv6ck5Nbr4ij6O5MGgMzCWl25SXPHJ2v+elZVhyaWWSlUlzTBNwnaYO4meAjHr0sWh8fqtXv/7yHXFVNpKCMOEdOsRNF/uVKGMQ3MJrxWEglGwvdXxizH7UnPWzOWlMiUT4wgEzZUnjbrDdwkog4Zw4+GmcR8psm1Lb8g24k=
+	t=1745421807; cv=none; b=fL/q7hCnKs8HTFOdg8RKXscYmXK9nuy5Oz/eaVT5/C6uP1o6Qs0Qv/S8Xt/lblqQ58vJkL/A5rlpAOx0DZEnGOUn6uxsVhi/7/X+gdOmBRfFIBucPWH/mmYKzITPfHX5As58c4gg78YjNBNCTbIhVO/o5OrYK87edsjDuuu9/lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745421601; c=relaxed/simple;
-	bh=tPOHjT1NkHow4VD7/8Appu7QUK/ZbjYVgaBPZCT9gmc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t46Pppta2+DfK8CsGMgs40H1aXXAVXMNvMOWYkbPMLrVvtcf8rp0HbWzlH8AXDEVZmEgD9Qgu9GwocvCuLSNTJTpT8U8dzbGgt+mXUfwuNkzs1xy7+HHy2zwUh+Uix94ao+zCqokHfVVUcO+dryzOYbcdly6UadJO6oH6G24gsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JHzR0ks9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C667C4CEF2;
-	Wed, 23 Apr 2025 15:20:01 +0000 (UTC)
+	s=arc-20240116; t=1745421807; c=relaxed/simple;
+	bh=ttYFtyupJCMupeSXwyqSaNxnbRiKjhqkBV9hyVnYY30=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7dLB4nmy3LkG3ZMebUsb/0cCDJkKzTqqqw9BDvxIlOFb5uOcJH7t3kvtaCZE42BMOi/mg/KS5DjLu5Rk/fQUdm5TFbnzxO8qPmMrfJ2FPKU9mJ/kfGSaJaF6gATeyh24Osabd+S16nRMUxxJzhyd93Tlnf2e/yz9KzpGCKtrMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLQsHTSR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64D98C4CEE2;
+	Wed, 23 Apr 2025 15:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745421601;
-	bh=tPOHjT1NkHow4VD7/8Appu7QUK/ZbjYVgaBPZCT9gmc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JHzR0ks9mywL/Gjel+WVjGNaUfXggO7iK4HEKa99gt2Id+opEtlpyAb8UWdlIbd6p
-	 U2Tj8WVai1ielF1aDhyeSWaQTWsM3rDfzJguAsYZPeLwkaTv9t6RDw2IEHtfOc7od1
-	 k5WdJjh5bAw6PrOqF9uQdGwZ0j0VLleW1tYLSRKvzGD/c1EL5c9cyuMfXflKyibaVU
-	 bvGMikvu5P5gagV9/JpBvAWdIRz4+TCJChp7gJiEpAs8GBySeD54viEHq2SwBqq+9Z
-	 0+iZ6r9t0+CFj1T2UVjw5jTghN4cyVgjVZfBhmelLA6RHbPMnhMyxoa0UXWSvrdURa
-	 uvIaPSzaOF6Kw==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so9910759a12.1;
-        Wed, 23 Apr 2025 08:20:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVK7M//RtBAgT4UApfKmJl/+MObA9efN9K9i4tuua/cvfPZsu0HUwYnDIUG7AfS7aiGkj1o+YfjBbjtKzcm@vger.kernel.org, AJvYcCWp1FnFEH8zchYCbM/aU/+2EonOy901DbsBvM7NZD6j3FfCCK+SRjlJvaOeYAMFkUikxpcSNzxp2/it@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1BU9jQ9auh6HY3vKOHak5PoCddlR7A3ugFrM0YH3DX8gLzkHj
-	ZfAvfN93haSeQu+ou4hnQ+TvyGYxIx/WRM7nKAoXnHMf3mcfcfyOSFzuZHOE32gCvDyrBbLTS5t
-	xMuTtUG1xloQf4JbErzW3mzeHhg==
-X-Google-Smtp-Source: AGHT+IEV1CEtPoGDqGEwEZJrzR2YkV4IU/BYo041fFmlJGhMA6AFx/r6j4OVu1OhC2Y/tApvvElXwS4Rby6hFC65/iU=
-X-Received: by 2002:a05:6402:4408:b0:5f3:4197:9538 with SMTP id
- 4fb4d7f45d1cf-5f628525695mr18336301a12.13.1745421599923; Wed, 23 Apr 2025
- 08:19:59 -0700 (PDT)
+	s=k20201202; t=1745421806;
+	bh=ttYFtyupJCMupeSXwyqSaNxnbRiKjhqkBV9hyVnYY30=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fLQsHTSROUAK6ThwkWXhF5VTQtSjbjK5MKQgPWBeAYm3OnQl3xo9vUW3c5NIrFpzg
+	 z+lp7GpBGY+WxxQMdQI0S5e9vR73KD0m+fgVfer7oIVylZ0pDaQSMvatCNmhoAYjJz
+	 WjC+opRME537JuHl44GZKOV0qEjjp92qrZ18eFetM0akxL79A+P90DDu+CKlRgaKUc
+	 +2oRVCZHEj7iQ802qNTm67K8mbY+93IrU7H5otIH+P13xmfpnzMl3ELoTX0YE+MNMi
+	 zDHktPncfG76nUvxqFwQANV/QL0RWZHJPaNKtMlkPxd2+oKXeWR5eToaz5f6GmRs6a
+	 qhWfSTuHn/N6Q==
+Date: Wed, 23 Apr 2025 10:23:25 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ze Huang <huangze@whut.edu.cn>
+Cc: linux-phy@lists.infradead.org, linux-riscv@lists.infradead.org,
+	Junzhong Pan <junzhong.pan@spacemit.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v2 2/4] dt-bindings: phy: spacemit: add K1 PCIe/USB3
+ combo PHY
+Message-ID: <174542180456.549434.17717366396864684617.robh@kernel.org>
+References: <20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn>
+ <20250418-b4-k1-usb3-phy-v2-v2-2-b69e02da84eb@whut.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417-spmi-nvmem-v2-0-b88851e34afb@gmail.com>
- <20250417-spmi-nvmem-v2-1-b88851e34afb@gmail.com> <20250422133619.GA1095169-robh@kernel.org>
- <CAMT+MTTwY=z1-_94ws+Oi+wvE2PA_s57dPmpMABC26q=MPw1Mg@mail.gmail.com> <e4159c2b-4081-4a4b-9a53-d6d559a3196c@gmail.com>
-In-Reply-To: <e4159c2b-4081-4a4b-9a53-d6d559a3196c@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 23 Apr 2025 10:19:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKwASbUtpO=wU-16v=y8S_wLyBxnFUmQqsE8GkzCz0hDg@mail.gmail.com>
-X-Gm-Features: ATxdqUFuWyHPWdbMp12KUQQV-d0rnw0lx2tasAZItdh99IKgPe_s_qddlmQl6uk
-Message-ID: <CAL_JsqKwASbUtpO=wU-16v=y8S_wLyBxnFUmQqsE8GkzCz0hDg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: spmi: Add generic SPMI NVMEM
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Sasha Finkelstein <fnkl.kernel@gmail.com>, Sven Peter <sven@svenpeter.dev>, 
-	Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250418-b4-k1-usb3-phy-v2-v2-2-b69e02da84eb@whut.edu.cn>
 
-On Tue, Apr 22, 2025 at 11:59=E2=80=AFPM Nick Chan <towinchenmi@gmail.com> =
-wrote:
->
->
-> Sasha Finkelstein =E6=96=BC 2025/4/22 =E5=A4=9C=E6=99=9A9:44 =E5=AF=AB=E9=
-=81=93:
-> > On Tue, 22 Apr 2025 at 15:36, Rob Herring <robh@kernel.org> wrote:
-> >>> +title: Generic SPMI NVMEM
-> >> What makes this generic?
-> >>
-> >> A generic driver is great, but "generic" or "simple" bindings are
-> >> generally a mistake.
-> > There is nothing apple-specific in that driver, just re-exporting
-> > several registers as cells. If you think that it is a mistake, I can
-> > rename it to apple-pmic, or something similar.
 
-Like I said, a generic *driver* is great! I'm all for them. We should
-have more of them! Generic bindings on the other hand are generally a
-mistake. The problem is whether a generic driver works for you or not
-can evolve in either direction. You add more things like described
-below and then a generic driver doesn't work.
+On Fri, 18 Apr 2025 21:19:51 +0800, Ze Huang wrote:
+> Introduce support for SpacemiT K1 PCIe/USB3 combo PHY controller.
+> 
+> PCIe portA and USB3 controller share this phy, only one of them can work
+> at any given application scenario.
+> 
+> Co-developed-by: Junzhong Pan <junzhong.pan@spacemit.com>
+> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+> ---
+>  .../bindings/phy/spacemit,k1-combphy.yaml          | 72 ++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+> 
 
-> >>> +      - const: spmi-nvmem
-> >> What happens when there's some other feature of the PMIC exposed that'=
-s
-> >> not nvmem?
-> > If you have a PMIC that needs more features exposed, then you'd have to
-> > use a different driver. Or am i not understanding the question correctl=
-y?
-> I think the problem is what happens if more functionalities needed to be =
-exposed from the M1 SoC's
-> PMIC. (right now I do not believe anything else is needed from it)
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Yes, and you can add to the binding then, but you are stuck with what
-you define now.
-
-> It would be multiple drivers. A simple-mfd-spmi driver (like drivers/mfd/=
-simple-mfd-i2c.c
-> but SPMI) that exports a regmap and a generic driver that reexports regma=
-p (any regmap,
-> not necessarily SPMI) as nvmem cells, plus extra drivers that uses the re=
-gmap exposed by
-> the mfd driver for extra functionalities.
->
-> To make this submission more generic and extensible, what would be submit=
-ted should be a
-> simple-mfd-spmi driver and a generic regmap nvmem driver. For specific ex=
-amples, see below:
-
-It is not an MFD currently, so you don't need an MFD driver. As I
-said, that can evolve.
-
-Drivers are bus specific, so you can't have a generic regmap driver.
-There's only 4 nvmem drivers using regmap anyways. qcom-spmi-sdam is
-one of them, and maybe one driver could handle that and Apple.
-
-> The PMICs from dialog semiconductor on older Apple SoCs definitely needs =
-such functionalities.
->
-> On Apple A11 SoC there is a RTC clock device on the PMIC and the SMC on t=
-here does not have
-> RTC functionalities. To make the RTC clock work there a driver would read=
- a counter that could
-> count a maximum of 194 days from the SPMI PMIC, and then access the PMIC =
-nvmem cells that
-> held the rest of the time. In this case these drivers are needed:
->
-> (1) simple-mfd-spmi (2) rtc driver (3) generic regmap nvmem driver.
->
-> On Apple A7-A10X SoC a similar PMIC also exist, but is over I2C instead o=
-f SPMI, those devices do not
-> have a SMC. To make the rtc clock work there three drivers are needed:
->
-> (1) simple-mfd-i2c (already exists) (2) rtc driver (same one as above) (3=
-) generic regmap nvmem driver
-
-It all sounds a bit different from what's there on the M series, so
-perhaps better not to mix the 2 just because it is all apple. The A
-series stuff might have more in common with existing Dialog PMICs.
-
-Rob
 
