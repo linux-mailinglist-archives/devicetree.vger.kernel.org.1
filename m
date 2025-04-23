@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-170070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50A78A998EC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:49:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D799A998EE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 21:49:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B28D27AC5AB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:48:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C9417AEA09
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 19:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1B51FC10E;
-	Wed, 23 Apr 2025 19:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4088F265609;
+	Wed, 23 Apr 2025 19:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="iDWNnVhc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aEZilbFr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD2B1F237A
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 19:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C748322D4C0;
+	Wed, 23 Apr 2025 19:49:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745437765; cv=none; b=rD1nmkr0G1l+KPagPWNb94rV5oKzK6hRCg46D4N1kHdduEkjBR8rPWaAA2zdkcdedmE96x3YG/atTQEiRPe0fLnlpDBlbeD56NG2kWBB77UW8GTkgybZQLDFMTmeptRZRnDwGCI783JjhNAWbBM8PPJ6TLM4Tjc1MtMsAebAGPU=
+	t=1745437787; cv=none; b=CsMTnTyGELwpBnew2sPqz3OO2TdLzerPR9l2lOQuJZZV+/YDgna+VqmdxXtfC0IDXWJCXZspPndGHlfbX5qLJGuOL9GNRzVdR43uqTs2Cve/oQFOfOaEZXc9zKZHsQYqFcmrIJ2VjjukHz1D1xeaQjROPVMTs1LDHzqvZACrdnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745437765; c=relaxed/simple;
-	bh=qOF7mMGqymGTwp2a6r9zKopxg9iB+v+/vWlmMp0Yhuw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=tDLe/e8xxiID3IDtoNm8qjlyLT2bkJUVNOn6nnEDlk38lse2ZaJLqXB5noi1QI2nchnsSOPGyzkCOzpaxdSfFgtF3w+MlTvk866/Ww1GgtLTMp4hrdJZdxDuYmXiwVl9TA8S2Hzdub5VvMzVAjsdCpNuoVdigpUWSXvTBR12EkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=iDWNnVhc; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1745437762;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CW5oobOQNyvvT3K29QIOTqiPjFO//Y6rbktPHRqNllQ=;
-	b=iDWNnVhcMQk70Wh9M2BVDUQl4dodxX7TaYDB315wzRjV1nFwTrDbVa4di4R48p5W3DbU54
-	oyKl8Dx0PYBCVJUfxuZ1E9I8u+6M3+R5KZ6uXpgra3wS42klsewHV1YYziUaWmWKBXdaa2
-	+OQrOGBN5OaD0WwUYf5rElZgzDZRiBc=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-81-jveDTNv1OUKyaClWWiilQg-1; Wed, 23 Apr 2025 15:49:20 -0400
-X-MC-Unique: jveDTNv1OUKyaClWWiilQg-1
-X-Mimecast-MFC-AGG-ID: jveDTNv1OUKyaClWWiilQg_1745437760
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-39ee57e254aso88141f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 12:49:20 -0700 (PDT)
+	s=arc-20240116; t=1745437787; c=relaxed/simple;
+	bh=/gqHgIWvYDoh2ay4Dt66VfQN7r7ooPdcaJZKWyVPCKs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sANUSswtoNY9ztOKpmBT0Pf0tNWh4chlUN8QZyLFDaZWofCTWA25X9tR2pICPJ48gu3J4ZMIyGp7P2iG/7cp8mROcgtCohjHbS05TAP+LSiDrfZkZiKwMQH3FsCMJGUbw/U0jbTh1S0csLIgMwQzz6P3a2c4SLnx6/b0nRd0bvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aEZilbFr; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso150508b3a.2;
+        Wed, 23 Apr 2025 12:49:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745437785; x=1746042585; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IfqjFKQjrrhlniO3DJvD09VooUIqHiiSwxn0+0MLQUI=;
+        b=aEZilbFrnExwTaVaMsmMasFlDwmW6gif8rlOmDXo4agNZFuZF0E3D3Q5YiLKZOcTJA
+         QXtmzNin0h2AKgBtLCMmJJ2xHR7yhw+KEyrfgKAyQ7GEW4dGqVAwQIEewX3vAHYm272F
+         tASuumoZZ4TKz8xDn4V9/xpFefXLzQKYf3qY/OBw5fTkUtzvhDKo2r0MbDyqDKL14MOx
+         bgi9TWpTggugFnCeqKOLNnsxp7pYsV/a19SJFZ7KXak71GL65kd0eVPqyn9eTu5MdIM9
+         GHEhs9VuMEZ9Efc2PfZW4MFWnWLT3F5AAqBAHQIVZUKrpTAXymMq2oWU7Ic8UcW0D1FT
+         HXtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745437759; x=1746042559;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CW5oobOQNyvvT3K29QIOTqiPjFO//Y6rbktPHRqNllQ=;
-        b=AUka5mFOM3hZzYWDTzTOBLeFxq+Qgg8pZF867r2DDZJCbfDiTYrQLSwO9OHt0N1dAT
-         l2u3GY83mhJInGEYaZAM+Clj+fO55G0yRI1oGHGSQ0zysJru4JcU7RN/YFYqQ04RiM8L
-         09xcSMvnFBaq65GnxeS3cOpTRcVUrsoLgPk7MgmPgOgy4t1uPqAwq5YNDOXHwUnzpmNi
-         ix/KdIcyeW9vZr/HtrvWu0+hulptaA+6KV38wxRXng3jncpGzbWYU9mGH9X1hyrKUAHV
-         sr3DmXf1qQeKg/ScIyY3ghT0GBMY/Ye4sXbhSB1RXgaXnDPLAWoa3EL1o9Z0LV9Ju4P/
-         g8mg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIyaw4e/vaIOyxc+9MbtER6ndtOz7Y+8G5uQn2GUMY3RiUwA2SBGVS3mytxAs8HU6oFpKFyiABL4aA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzGGN9QRJJcAsBTq6KFfOLtbLMmTRpA3BtbT4lTH+fjG+MIzYy
-	k/X7D9R/3MTkOOw9nQR4Or62oSdo1+qW8V/WB2pN/A4hhEMKteYE9wZa8FaL6NK8hPuOZOi1+A7
-	55jMcddXDUKK8D7F6XZJkjnmKty5pWoHXxHi47ZuQGmK/HdbuPrH/DyUjWTc=
-X-Gm-Gg: ASbGncsuMt8VEgUi8IFj3QCSBvq2QH0afqc3RLunZRIfx2LZUkY0WPDOSBk8xOTSJ4d
-	UwnQf8ZqUXFUvbmM4BqwyR48Y4B2/OAvDGSnCXBivS75z9iWqNYEWfSkCv/A4ZWHg/STHu+TmlD
-	XI2SVK+ryKeml+Nh1zIjsbgUhXWEvqoLyjNSupjUUC8PXCX/MEgblrxKfMLVwP0qDLp6xJJP1G6
-	nHpVO54cF6bYmUv4HCzCSTAckq2Yrh9E4q4YzIuL5pf3UpdPAz+GnGgkXTbsAuuCv7zBvtCMgzv
-	nNAicZil/j9ki68i/IVeKwkvgjU2FtlpKcrZij/AlpqO/F1OpDTBeNBOb0+eyzpSiSnixg==
-X-Received: by 2002:a5d:5986:0:b0:39d:724f:a8ec with SMTP id ffacd0b85a97d-3a06c43700amr713275f8f.44.1745437759701;
-        Wed, 23 Apr 2025 12:49:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG6sbVUSbQlqX73+/VhkgOLOaiskfxeP/YLRaHmiCsxzKpxWGgR7NPA0wc62DOWcmh03chLAA==
-X-Received: by 2002:a5d:5986:0:b0:39d:724f:a8ec with SMTP id ffacd0b85a97d-3a06c43700amr713251f8f.44.1745437759388;
-        Wed, 23 Apr 2025 12:49:19 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4408d8d191bsm44033205e9.1.2025.04.23.12.49.18
+        d=1e100.net; s=20230601; t=1745437785; x=1746042585;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IfqjFKQjrrhlniO3DJvD09VooUIqHiiSwxn0+0MLQUI=;
+        b=IpR0YCx5zWK+YrAeYfwE3mAfEh8M6jRhIJRNvy+ZMz+kGoaCkf3Vxdxu5Ciew/vJkz
+         7yPy2sDyyqcGXM1dzN44PCYfMy2AMbPyzp4iUnUNcjh4PYiQBoKawHooOF0llGD34wsH
+         dyVOHU2DiKPBCjO3EoZDJmw0P9+mynyjZn1tz59xEj8R8BRb/unVC05hjSj98RwBkqE4
+         gCfp3YeC58hT8QTLUWbwj0kALJGvL2V3Z4x/SIBQsiYWUJUbvHs6ma/y+s+Yn8RVndx9
+         EtMq7miI13tCX+ql+HP8sb6UcFr83X1CJmhty3ocwhejqYzgEKNxmumFY1b2PfDTXMTt
+         GHTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFrcUN6I6kqOBres9DfsF0rv05Nypt/GyaeJ1TXEyoSNpD2kqn3Y2yWm5aaq5IFgNn5YakkDeB7PmB@vger.kernel.org, AJvYcCWlJOm1bZihCroFSzAL6m6tReDH+bz9y8ARSfQCIFVqHc96pWkgyOeFC260SHf73OEvxckW6JADCvnw2yNc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjaleA4nGrrSrdXv3GY06NAqV8BFmtEPgIvQ314NHbTZPKi4EI
+	VazY1XJOzETM+WWKTFqPlLX8nhD1L2EGHpgsG/ZghsEauA344rBf
+X-Gm-Gg: ASbGncsu1l20EGk9f86EMyJlPIGy2uZHdFwjDjZKON1L7O4BLCMJs3pJRDZ+GhTTPVW
+	xEPm+1qlU29lGV+hv+461drJnQZ/BghjFFliUsA4lQP8NhaGyzorb9Q3Yj/ZoCw1Y2KV0NMlY67
+	BApSrmjY1WtZc+joaIABwHuk5r3cBpEDBOGFigbEIHJzJP3E2gABxcr/4aj7tOst3wtQ46mRyp7
+	HrFjQsCRLB+L9q7hhH7VjJpTzvLHFgVM8zKhFy+jy02hGoCZ6Wtec0P7eOOoTVSVirZIjDqSXFl
+	hi2OPh7r0abfJPGyxOCwU4M+49/dAp7zt1zcmHYR6ordVJhuMuRaZ8Tkt2ltqVg=
+X-Google-Smtp-Source: AGHT+IERPQh4Y7V/l8lpr/XRnfwQmrzpEaU9fiS3c+vk4gGTjri+1BnCKpknXP9KXB9GLNf1W7dR0A==
+X-Received: by 2002:a05:6a00:4642:b0:736:ab1d:83c4 with SMTP id d2e1a72fcca58-73e23ca12aamr97912b3a.0.1745437784854;
+        Wed, 23 Apr 2025 12:49:44 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73dbfaeb525sm11406279b3a.173.2025.04.23.12.49.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 12:49:18 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marcus Folkesson
- <marcus.folkesson@gmail.com>, Conor Dooley <conor.dooley@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Thomas Zimmermann
- <tzimmrmann@suse.de>
-Subject: Re: [PATCH v6 0/3] Add support for Sitronix ST7571 LCD controller
-In-Reply-To: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com>
-References: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com>
-Date: Wed, 23 Apr 2025 21:49:17 +0200
-Message-ID: <87v7quacaq.fsf@minerva.mail-host-address-is-not-set>
+        Wed, 23 Apr 2025 12:49:44 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 23 Apr 2025 23:49:45 +0400
+Subject: [PATCH] dt-bindings: usb: generic-ehci: Add VIA/WonderMedia
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250423-vt8500-ehci-binding-v1-1-1edcb0d330c2@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAFhECWgC/x3MTQqAIBBA4avErBuY7JeuEi1SR52NhUYE0d2Tl
+ t/ivQcyJ+EMc/VA4kuy7LGgqSswYYueUWwxKFI9darF65x6IuRgBLVEK9EjDzRqtzlrtINSHom
+ d3P91Wd/3A17/u5hlAAAA
+X-Change-ID: 20250423-vt8500-ehci-binding-e607bfafdcbf
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745437797; l=984;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=/gqHgIWvYDoh2ay4Dt66VfQN7r7ooPdcaJZKWyVPCKs=;
+ b=Uxzl8ig5PbeEHBkzgXe9Pk6zvaBfDgPpzs3GgsQwzbwNlruzYZq1HwUzXyuWm4M2cmk//lxLU
+ rY3BPSXCVidDqxFW19O+M+kIEb7K/XXKhiS/2m7MIFQXIZUhXSb7JlP
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+VIA/WonderMedia SoCs use a plain vanilla EHCI controller with a
+compatible string "via,vt8500-ehci". Add it to the binding.
 
-> This series add support for the ST7571 LCD Controller.
-> It is a 4 gray scale dot matrix LCD controller that supports several
-> interfaces such as SPI, I2C and a 8bit parallell port.
-> The controlelr supports both monochrome and grayscale displays.
->
-> This driver only supports the I2C interface, but all common parts could
-> easily be put into a common file to be used with other interfaces.
-> I only have I2C to test with.
->
-> The device is a little defiant, it tends to NAK some commands, but all
-> commands takes effect, hence the I2C_M_IGNORE_NAK flag.
->
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+ Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Pushed to drm-misc (drm-misc-next). Thanks!
+diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+index 223f2abd5e592ff8cc3ad97f9a325356ea57044a..508d958e698c2e8dad748a6fcdef65d6e883b97d 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+@@ -86,6 +86,7 @@ properties:
+           - nuvoton,npcm845-ehci
+           - ti,ehci-omap
+           - usb-ehci
++          - via,vt8500-ehci
+ 
+   reg:
+     minItems: 1
 
--- 
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250423-vt8500-ehci-binding-e607bfafdcbf
+
 Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+-- 
+Alexey Charkov <alchark@gmail.com>
 
 
