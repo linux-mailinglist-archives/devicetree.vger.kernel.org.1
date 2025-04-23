@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-169979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E07FA99333
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:54:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97A5A99358
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 17:57:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31AFC1BA7CA1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02806925EB4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21192BE7B3;
-	Wed, 23 Apr 2025 15:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2CA298CDF;
+	Wed, 23 Apr 2025 15:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnymkdvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDBB8r5o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B69C1298CB5;
-	Wed, 23 Apr 2025 15:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FB0298CCA;
+	Wed, 23 Apr 2025 15:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745422434; cv=none; b=XpUqmd4yaecgg2n/gkewpCsQ8FWgBxDBV7Z3u/lcNc/17u6xCDyEZQmeEjxlICVNnIpKt05p+4tuOtxFwHn5JgtTe5NJf+sDTcCj5XmQZv1GxCy2snKQURO+3EsoClPHFen0flhav6rsBxj92RIgVN64qsHsEaSOfu3eB97s5Qc=
+	t=1745422451; cv=none; b=k/qFugSvpKX8TKA+/QuzSwqa12wsmC1+K09NVSgNk4BVx5TuEqGJfqaXIy9i1Q/jN7Z5riuWzENtplTwOj8L2DcZ0jAOg+Rc7XuFH085NGqmW8bbeMGvkQH6UKxovOz9RTgOVZhYo8A/fKrgP+vM3zuIqKHAU3y9W8NHoBfdvdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745422434; c=relaxed/simple;
-	bh=SApOOL/Qlklw1bTIz393xONrTqlOIWtFjDQ07dFPITU=;
+	s=arc-20240116; t=1745422451; c=relaxed/simple;
+	bh=4dZGTxOMlI6lJPyNCE7bp/S/ATLVwiABeAvtgl4Aa9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=naYnctaz3C0QqgnVhnj1ALFGWAFwUFrAXistJ3eSk5XhPiNvLVg/Y93x6QK1ln/Rr8b0vVg2NJVB3DwpPkbT8I/hIlLWPbTW2EcQEONkF9jwCTFBEEsQfylTGCHPM4o+WBcADlzR7uO5SlKlHPSBvaV9juRmZKvGdKhdMUWLFjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnymkdvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C29FC4CEE3;
-	Wed, 23 Apr 2025 15:33:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qSS8wn2YB5WsZ7cInRG7FzfGUXJBEyz9gwGSVVdfhhgIumsy5U2XtZ5sqkQx1so5aFpEgqWKSm+La7N/AZ8j0ugE8COEW7lEJgF0HyUHSjA0Tg1Iw2vb7VO7bIpuVWqLXyvRhDExzhqH9XjGOfOgi2eohetiJ9roMDgMriYHBA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDBB8r5o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB4BC4CEE2;
+	Wed, 23 Apr 2025 15:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745422434;
-	bh=SApOOL/Qlklw1bTIz393xONrTqlOIWtFjDQ07dFPITU=;
+	s=k20201202; t=1745422450;
+	bh=4dZGTxOMlI6lJPyNCE7bp/S/ATLVwiABeAvtgl4Aa9U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BnymkdvU/zMxxYr9oRd0A/MC6ffI8uWMVhtvWQjLNbNU6p2mWQWn+SQk25CGD7Cl1
-	 9yZxOPVX6agY+IrIwl+L5ehk22YX9vM1dqUYuybPiG0e0bH7KGLvM1THS5JBbxYBXc
-	 03MWYDc7gz5afe/hMXMe6lSLgxu9MEXF9T2CSfgA9RSXcIfxSL/XGAZr1gvrsvAvuh
-	 RptZGXH1SIcVC+jL5xqxfjxdWBzJhag2FNY8ubIrKY8rPIKlagfW7WrioQVdlsM3Rc
-	 RPoZPkA2+Vv5wdhlEFnTpzUDij8mVyZZs6EMJtN8u3gS+9Sin0CGHfhkhjFrAjcuh/
-	 uH6pJuLWOoupg==
-Date: Wed, 23 Apr 2025 16:33:48 +0100
+	b=bDBB8r5oF+sDb2+8MYCSJCnPScYtVX77O+SgNvUs2ZnDSlyBjCSuTzkukkrSkCuZi
+	 r7NM0ChACP0fsel2Wb2Y1ouQlTxg1UZ8sKkp8zA8irROwWV1TTW4cOEo0Mdc/TxUfV
+	 oC8l89DQGR1R5wJCqzYWjP/t2PGvgLu1b/1AaYgQvH5P7NY4/WhMMOJvjrELn4dw+f
+	 f0KdxZk0olJeky8MlIeXEaESOPvRlRB32gM5dHQy7URo1Qbm7uOpok5dR+c70C+gzK
+	 N84ZbUgLf5JW7uUfoDGqQgd/C/WlbXmdKdpHFlDk0orhqu4YZN5w8GToJXLRSeiMfT
+	 EiFx6JmSeKGaw==
+Date: Wed, 23 Apr 2025 16:34:05 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Justin Chen <justin.chen@broadcom.com>
 Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, rafal@milecki.pl,
@@ -51,11 +51,11 @@ Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, rafal@milecki.pl,
 	pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
 	davem@davemloft.net, andrew+netdev@lunn.ch,
 	florian.fainelli@broadcom.com
-Subject: Re: [PATCH net-next v2 6/8] dt-bindings: net: brcm,unimac-mdio: Add
+Subject: Re: [PATCH net-next v2 5/8] dt-bindings: net: brcm,asp-v2.0: Add
  asp-v3.0
-Message-ID: <20250423-steadier-prayer-9b0a7ed87249@spud>
+Message-ID: <20250423-opt-entrust-8bee59fa7a1f@spud>
 References: <20250422233645.1931036-1-justin.chen@broadcom.com>
- <20250422233645.1931036-7-justin.chen@broadcom.com>
+ <20250422233645.1931036-6-justin.chen@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +63,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5PPP/BwB1PbFUvis"
+	protocol="application/pgp-signature"; boundary="fU6Vs7wFRNSFVO99"
 Content-Disposition: inline
-In-Reply-To: <20250422233645.1931036-7-justin.chen@broadcom.com>
+In-Reply-To: <20250422233645.1931036-6-justin.chen@broadcom.com>
 
 
---5PPP/BwB1PbFUvis
+--fU6Vs7wFRNSFVO99
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 22, 2025 at 04:36:43PM -0700, Justin Chen wrote:
-> The asp-v3.0 Ethernet controller uses a brcm unimac like its
-> predecessor.
+On Tue, Apr 22, 2025 at 04:36:42PM -0700, Justin Chen wrote:
+> Add asp-v3.0 support. v3.0 is a major revision that reduces
+> the feature set for cost savings. We have a reduced amount of
+> channels and network filters.
 >=20
 > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---5PPP/BwB1PbFUvis
+--fU6Vs7wFRNSFVO99
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAkIXAAKCRB4tDGHoIJi
-0rpUAP9RKEHgRR9qtj0mJGDPB8wNXeqHfxy5Oa4EwiHsQxmbcgEAmvBjisfxQjZZ
-aWDNjhTVlvw/OoFn4i9z+4rkCvhoUwY=
-=uEnq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAkIbQAKCRB4tDGHoIJi
+0n3DAQCsXV3h+OYNAdYj64Hv5z5YN9n3SvoK5dONNx863jk8JQD7Br0xBT9IUNfz
+NNkAp9Wxz1W6EVCNUet7lhZToExeSQE=
+=xNjz
 -----END PGP SIGNATURE-----
 
---5PPP/BwB1PbFUvis--
+--fU6Vs7wFRNSFVO99--
 
