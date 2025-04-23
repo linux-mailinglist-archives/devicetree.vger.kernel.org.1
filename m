@@ -1,167 +1,171 @@
-Return-Path: <devicetree+bounces-169931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-169932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67646A98B8A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:42:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9A9A98BA8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 15:44:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FC5C173E60
-	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:41:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 381FC1884C3D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Apr 2025 13:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2351C1BCA1C;
-	Wed, 23 Apr 2025 13:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A7F1AA795;
+	Wed, 23 Apr 2025 13:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3/qI/lp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i45NS8VH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7421B4241
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523571A23A6
+	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745415607; cv=none; b=megWBqAQIV5UN0qd5r74ujRlieF3a45o6aOeAGI2kfVvfFEogQIO14Nx8Ns/J0okoXEYOztkJHkCVJT5tf7TUJrocW/9fiPukgkrwEEyo9/HXlXsEtByfkq6wUoV6H6PDR6nKFAAV43q14NXOKh6wSoea8rgl1uKOFTpj7uTbfI=
+	t=1745415798; cv=none; b=Cd4F6/EzClZqQLzstXXt9DwSy42qyFWQXFtJmNBsgV6Rp9TesgP/+2+J4FWnNXoeXkfDtsb/GwYl/xVep4Tnv5zxHcnFII6DGg1occypYAwVmRcFHXrYVSrQ3zdWinVlcH2D8zNUPojrzuhSkkV/Xl+XfqzLZFrrgju6aqp7gWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745415607; c=relaxed/simple;
-	bh=rJwd76XakKbW6cxRp8U5C3y66nF4fzEk7nsIfRq8GqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GQQVpmoMOoP79av23XbDgEoKjP6rRapvkj2iExMq+20nL2ew0/vErDGGVx34QxlOZfRJp1gqOnuqta7TStmFUYPkwqgvQsrcqiU7ZSs6j9Afvp24dSvPwfzmeZq+mJqAQr4ou789K3guqeq/pPXXvFGGp6gdnHuSu/i0KMxpWaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3/qI/lp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53NApPtj020408
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:40:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MzGZGH78O/v7VDsO0hbF+sd8
-	L3WE1LofXSiV/zXbbD4=; b=d3/qI/lpCL5OMx0yWudKghR5Ka1Om5c0Zomxf3dU
-	V615Uvp11b6aR0VNPvCfbVGDyrzoj2VGeg6LlCg1/Tj4JWxpgjdxwxNZR2iyQPCF
-	4KWsRP1VyGNDDvU+knRPnTmDm235qSfanwbC+C89naB2pizHreeEsm1/sfecsm4/
-	JeO+cK8W7kvuplzdnDLxCRKCfwq+A0FQZV2o5sb/gqa4WqUP5Dn7HwJBYs6G2Y9C
-	9kdf9iRn59ls8JDeC1w/ilmyrOsAeW761JLPs38rd+3otMYucsAjxNNXvgrJxzss
-	B58J6sk4sm5HBsCkfyvhFG5XjaYp4I0ukHWipHXkwmHb3w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh229mt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 13:40:04 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c793d573b2so1172178485a.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 06:40:04 -0700 (PDT)
+	s=arc-20240116; t=1745415798; c=relaxed/simple;
+	bh=2oNxgFh7wQy3eSTXUuVVZ5YrZWKlKCIvbcZjJzlgFfk=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=d9vMbiGXuwPzKVw60f8Vey4ABTGuitw524djmSWCTIRDPoFLAR40Oy8wch8xXGrdutNCtd1rV1rcEwJwX98cUHBKW9iMohtV8o5afd1+9en4bWuLSseQJGkX6kjC4BgxIyi7APPPRKhsB6FYWRRetyuE2ofdQGs9DiJDV80rU1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i45NS8VH; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso69140405e9.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 06:43:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745415792; x=1746020592; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FfrnhMcNKf5rCGWHGoNIZp7mNgbnWoHESdB7RpEhfqo=;
+        b=i45NS8VH9j1Oz0y0h9MAM2BESfQeaGh+Dh+a6FJhpDkpc/b5nSBZi6eUChnC3FtqOB
+         h9RYFH9VVn2NY3O6feDekcZTqtzU81CFECv4chNYTcRWpXluuaXpyhvsUJrIwD3lvj0i
+         g541zgQKukKKx5+D2EpbjzeO6J/1nFSeAOSvvyYJxVgmqlHzBUegXZf2/O1wUR5QnTKL
+         etVuKR5KPf5z13JejwrvSqbRsCW4zFAUwncAbqrA9TIS7dVdUaGFDyNAeWQ/6swPf5U3
+         0bD/tIlq0iMfTnvTVLaD15P8xHbFsCCKpyh6UgibOswlmcmWqOM6njeJJ+ECcYGXv+aY
+         XnHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745415603; x=1746020403;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MzGZGH78O/v7VDsO0hbF+sd8L3WE1LofXSiV/zXbbD4=;
-        b=S1V6lofVg2hGtXJvQI8uirFvZeoH2H7+gwTkBbY9gZmznP4o59Y6Xw+pUCu9Tjf2QI
-         GFluwYrS7DXQTd32rZOLK0BrW60K8mlnM1XFbZPIwWYenDqssa8OTmzWtzoTeEwEStVp
-         E7jAxVt9LCyRos4/6P0dLcN2e+YVQhWl4SoDPPk8y1sGTwPn15FU0R/Nw4TWc4cmt/Ht
-         wUwhINX9I+KlmQtCjeuonO1CvF61r7qZB/dlSpZSW4c9DVhVq0OL/sJH9t4rNM5kl6Q9
-         t6Wdfy56jE6uHurhsWXFrgCRFW/07ohKZJcynVqMr3V6nn13ABDAw0CYv6iLrc20YEJR
-         DmOg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3iJgX4jF+xdeGX++x9sJWto521mEISHyJWKNR+nM+gbtdc5cpn3naX/UcS/Q1MRdrgoVwP1EzDq/y@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqk4HzjnaBw3mT7AZphrAdMx1VOugmfymTPh0rUafHU5vaE0vz
-	AxE1kAneRXH7vNfRqj5lzvw7ANJ9rtlUb1Gq9nLGqJEkuOpl4OjvW9nv0/zf/XKGOsj8zumu/qr
-	5LiUr3mK9pnok7Z6V606eJqhu1xUHEvOED016+LV+ypdDrcUak8NPwUCtar6z
-X-Gm-Gg: ASbGnct4i62LsQHBj8fMLGnCHslvC1hHYyDcNnIoLEE3mwdirwWHq6RhDL2Vu0KRUSR
-	ZtdLFsVPkfVh/OkurpE508PSllA3xPpolMqi5dYNaqdvundLZK2mF2yjNKJNm1BKtAHtkpri1tF
-	fII6gR/agXIp3nyd3ABp8pkYmUWe7PpypGwTR3F28zrFT1S7GQlr3GEg+9NfBj4wzncwDMyaAsa
-	bOqfkpLZYndx7X7NZrzN/V+3ISPQ9gwmjcBrM6/aG4Z+kTSh4/PsqWcxt6aJr8cmddU9aY1OBVi
-	XxXG4P3eJ+L/ugbP54zqW83ohcRb7Imnz3+DIPt1PudLRpQV/5jzgRxJFS1TCz3bT3hCNY+ualM
-	=
-X-Received: by 2002:a05:620a:4001:b0:7c5:3d60:7f8f with SMTP id af79cd13be357-7c927f87cc8mr3328124685a.18.1745415603150;
-        Wed, 23 Apr 2025 06:40:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGXVhG8h0EHaKSHuLFmXYtc89YmYuzioiRWb4XkNp4qE+H/B1Jd7+nH84J5Bky5hsij5Y6aHQ==
-X-Received: by 2002:a05:620a:4001:b0:7c5:3d60:7f8f with SMTP id af79cd13be357-7c927f87cc8mr3328121585a.18.1745415602827;
-        Wed, 23 Apr 2025 06:40:02 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-310908270a7sm18290281fa.66.2025.04.23.06.40.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 06:40:01 -0700 (PDT)
-Date: Wed, 23 Apr 2025 16:40:00 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Lijuan Gao <quic_lijuang@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, kernel@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: qcs615-ride: enable remoteprocs
-Message-ID: <n3o4a7jokelces4jioccoub26ikwpeyzuc4ac5uzvumqkilha6@gc7w3qpb23q4>
-References: <20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com>
- <20250423-add_qcs615_remoteproc_support-v1-6-a94fe8799f14@quicinc.com>
+        d=1e100.net; s=20230601; t=1745415792; x=1746020592;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FfrnhMcNKf5rCGWHGoNIZp7mNgbnWoHESdB7RpEhfqo=;
+        b=cxQG8eZ/GTyPZf78YbgjRiwg6q/n9rKw4+QYdTNapBX5LdtHM+ZOKXNf/l0Gd8E9J0
+         2rsJ4GzZ5TonKx74393YuObgBeZ8r0ZulJ7bxJM/OO+fcXBaTpkUxCQZXFmMmcdyPlHg
+         D60m57E52YR8mOnPHcQaRWQ+o3KX5W+0kBCO+5GhB+Ke0XgAHluAeFAadN7pERKo9q5W
+         9AAerTnjDc4zl6X+WLx24rAJNdyoVpg2S2UtqtfyDqMhIT5H+RDem5xX9zYQq0UDmyUh
+         T2QyjTP+OZFA8jnaMzX0NXPe1uop3UsTCR5Fe3Qdqy76sLgvJPK5w7tKiK59oTV/gwHY
+         TlHw==
+X-Gm-Message-State: AOJu0YxM+yVU0m+zkjPC8+CxGPZhvg7PxBwIhFfGp1MJWNrfTToNdwLd
+	d3kOJZ7bKJFcpXpeSThrQmi7N75svHP8zEKZgqgVfOJG5YEYt9Nie2jZklCfoXE=
+X-Gm-Gg: ASbGncvwqA1dY8VrBxclHT2/D/LXek8f6tTsr3VR2+47e+tjE98RYz+zDVc2+P7/XGe
+	nAMtAajsFNYinKhstAEQCdMt+NLvJ0o98ZmO38Mv8nxxakP9f6FClmBZLR/j7AUjBZ7btdzHD56
+	LOudXJB1+fdgwzd+O/+kNlXf7lepmXErxz1c1EtHh4HBWmuy858MjBCBV5ETWimAP/KUM6rTJev
+	jZ64k/cEyUO43Mmlev0m2ettsK82hm38OYxtG2Yi0et4LEkRFZIdBfod39hcpT2xg/6nHc2G4Ug
+	s6vV7jtXSw7x0kBIEGYJA+1yZ01P6+uJfxODdu+Li94Z5DHeweySLzj/hPfy/kuMwhgggkrZw2p
+	lMVGtB49JkuOKwzGR/g==
+X-Google-Smtp-Source: AGHT+IHnS/+w8vgB7Qer4VFmmeqW2fg9vqIPQjMtQu2PKuXwZePY3kDPFYEnC2G7XWePQ888jen21Q==
+X-Received: by 2002:a05:600c:5027:b0:43c:fa52:7d2d with SMTP id 5b1f17b1804b1-4406abfa6bcmr157183955e9.20.1745415792377;
+        Wed, 23 Apr 2025 06:43:12 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:2835:c2f4:c226:77dd? ([2a01:e0a:3d9:2080:2835:c2f4:c226:77dd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-44092db2ba6sm26108245e9.31.2025.04.23.06.43.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Apr 2025 06:43:11 -0700 (PDT)
+Message-ID: <1acbe9dc-02ca-4233-a79a-901e714f5c9c@linaro.org>
+Date: Wed, 23 Apr 2025 15:43:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250423-add_qcs615_remoteproc_support-v1-6-a94fe8799f14@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=6808edb4 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=2fRsUtMu-athF6_tqjIA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: R_tP3ditG-lUgl-zaq_mCJf8Bd0dKMR0
-X-Proofpoint-ORIG-GUID: R_tP3ditG-lUgl-zaq_mCJf8Bd0dKMR0
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDIzMDA5NSBTYWx0ZWRfX5+vXhOcAeg+q gBJe8cix32n+GHiVEaNJmvxya5ZmaxgsJoSryggHk4mMIgDMJjrO6P97Wu4xIccHljerdT8gedy +4c5476EkRZF2F7WXT4dVJznWz2cBp6Jaq6DUl8lr/ELmepXLiEtkK+IDX687UaOvOo3/Kh//Ti
- M36n7SBA4Vf1H8BjLrS2Gdg2zafxjnP+NXu5I+4B+7GdwfUbG1KlEA1ilj4BakqnWTeTZPmPzgS u1n9NgSc004ep9UEHP1vEkYxCXyrDEjbAb1NVo5M9IBdkmneBigvAEgKh0ZcBi2u0tD2V5SeyWu oRXoatuCo+XsjbO2uzCuJiLLadzLZIg/Ofv143EhPXc3ZwNU2oHNYPu4jlqr+n6lJg5Asn0ZXIx
- mdcDtRw9EhbbzaEJTAYGean+UpSyb95pE4QMo17j7TcseZituUdqlpkuiS3Logz9U6w7YTfG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-23_08,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0 mlxlogscore=818
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504230095
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 32/33] dt-bindings: display: panel: samsung,ams581vf01:
+ Add google,sunfish
+To: Danila Tikhonov <danila@jiaxyga.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-scsi@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ linux-remoteproc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-hardening@vger.kernel.org, linux@mainlining.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250422213137.80366-1-danila@jiaxyga.com>
+ <20250422213137.80366-16-danila@jiaxyga.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250422213137.80366-16-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 23, 2025 at 05:17:42PM +0800, Lijuan Gao wrote:
-> Enable all remoteproc nodes on the qcs615-ride board and point to the
-> appropriate firmware files to allow proper functioning of the remote
-> processors.
+On 22/04/2025 23:31, Danila Tikhonov wrote:
+> This panel is used in Google Pixel 4a (google,sunfish). Document the
+> corresponding string.
 > 
-> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>   .../bindings/display/panel/samsung,ams581vf01.yaml        | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> index 2b5aa3c66867..b0db2c3ad409 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> @@ -240,6 +240,16 @@ &qupv3_id_0 {
->  	status = "okay";
->  };
->  
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/qcs615/adsp.mbn";
-> +	status = "okay";
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ams581vf01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ams581vf01.yaml
+> index 70dff9c0ef2b..a3a1de32d8be 100644
+> --- a/Documentation/devicetree/bindings/display/panel/samsung,ams581vf01.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ams581vf01.yaml
+> @@ -17,7 +17,13 @@ allOf:
+>   
+>   properties:
+>     compatible:
+> -    const: samsung,ams581vf01
+> +    oneOf:
+> +      - enum:
+> +          - samsung,ams581vf01
+> +      - items:
+> +          - enum:
+> +              - google,ams581vf01-sunfish
+> +          - const: samsung,ams581vf01
 
-Empty line before status properties.
 
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/qcs615/cdsp.mbn";
-> +	status = "okay";
-> +};
-> +
->  &rpmhcc {
->  	clocks = <&xo_board_clk>;
->  };
-> 
-> -- 
-> 2.46.0
-> 
+Why do you introduce a new compatible ? using samsung,ams581vf01 is prefectly fine
+if it's same panel.
 
--- 
-With best wishes
-Dmitry
+Neil
+
+>   
+>     reg:
+>       maxItems: 1
+
 
