@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-170154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74A6A9A087
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:37:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED71DA9A085
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:37:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FCC93BFD09
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:36:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35F4244305E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07D91AA1D8;
-	Thu, 24 Apr 2025 05:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9BB1D9A5D;
+	Thu, 24 Apr 2025 05:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdRnFw1U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HL2/vmrB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC60E1953BB;
-	Thu, 24 Apr 2025 05:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66A91AA1D8;
+	Thu, 24 Apr 2025 05:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745473017; cv=none; b=sY5LGCcv/FToUP7dzFJjJxkwO4G/YrjwkavzZJrav72UhPElBOfpLd0bm6o5RbtAClBeNICfmozsCN2x8rmQD6DR5bxS+qPaGwOpIUZYIHbHTvtNDuHPQIUWCvFnobTRvkT2paxaMHk8Jm0/fpc5K7PjIziRe9KL5kTxNpFzzVc=
+	t=1745473023; cv=none; b=lz0O3lmZWv+tn62tNKER5je5+gkbget+OY+FtN/bzEfpPnTKeSEzWGtlSJD0an70PO3Kv+cG1nkDCfYW2GhSCVnQAL+fWY9yCPEMXAYNrq226cMxypBCAgawh0ZEgevQ7RUz7iGyPsZiz5NQRHPSb61UZzWVMoFhYlGCZVFj70w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745473017; c=relaxed/simple;
-	bh=ABXHbVwLQcuJdhcmr+KvmkNayeZgHJI6vYnH8pSInZk=;
+	s=arc-20240116; t=1745473023; c=relaxed/simple;
+	bh=Zhj03Wn3IByVJPKb+sDHS8tWFv0G8C9m6nuaATcy4Dc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=pDm94Pl9KV6Q9L/Ke3U6DpMKSW/VRzwqqG9cDmAPSlsoNZeUfaL/COIcu/bvMdqCsEI/vigwZobd3Eh6REiI+ZXv4slYmJ7vTagRo2XdoRJWilkt8ILQmHphgT37hHEA6pOh8uLjhmqAARUJfi7lGTjHRE0ZM/uSJjWrhV0Ym5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdRnFw1U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ADC2C4CEE3;
-	Thu, 24 Apr 2025 05:36:52 +0000 (UTC)
+	 MIME-Version:Content-Type; b=AMHJVvZQG4AwK69QYp9+3QMpwXvYVo2RtfWsHNi6sIep9EFSGbO8GdgakWtC0zvONms/v4ALFVsB2QlwIN/3S6Z+JNYa+dHrwyL/O1RpHihCQYEwr4rZ12HDlCrGeONplaaLYr8NhPNTvSXEB/9YOuEAVPd4RJvEo1tOVpT7+7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HL2/vmrB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2EC4C4CEE3;
+	Thu, 24 Apr 2025 05:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745473017;
-	bh=ABXHbVwLQcuJdhcmr+KvmkNayeZgHJI6vYnH8pSInZk=;
+	s=k20201202; t=1745473023;
+	bh=Zhj03Wn3IByVJPKb+sDHS8tWFv0G8C9m6nuaATcy4Dc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZdRnFw1U4X+JULTVPLk0DVyljEjUvmcT2ItgugX7qm9xS9sPYIz4gJdOBr554eALd
-	 j+4av0+YaoM7oTlrpoMegQLy9/rsJQ4U3PW39VeCkAMYOZoW5Kg1ZGMLX7msb9Q7YX
-	 8/ObCYsYaqMh5nKJTo4td1HqftSsJV8Sv5IFAKS938ZZ3y3JTMu/l0U4xUcYu2XbEF
-	 AFgucCU2c3TN+dh6brkmkxyyw/lA57iw1f9DeTHn3iC8nKJyyF5EZN+9RDJyD0Dw8L
-	 4piHM2rI4/0f9qKv7NGA4SzL7n3GCo0XEvvBj0rzBR2mXP5SGh7lccD3ilyX2rgHPS
-	 9O+OEWxGfGL+w==
+	b=HL2/vmrBvRRHlyZtjtWum1nvAq0wmELn/TrhD7WRkGVkh62nm+N2MHWzJjlsfdszB
+	 UT/IHnD5UjmoRpxrpcGPMDooAQ7MY7bUEjBFucJHe2DNJUhHgu4oAzCzGwCeA7ziUI
+	 DnFRJqBh1/pAOEf9Hg3s5DcVgZ2EQ1Y0V+4bLNbbEd9pA+C4zs7ARewKW8ApSsNrMB
+	 mcg9hvJd1z2XzZP81iEriS+KOb00ne7yXXEpAQ5M3pba46D6kp3+azdONiWT0avJqJ
+	 5bZYJ+zjEVoQ2GbTC5VMkrmf4b/A+ZTkQxi7uIqdHqMji8+GnjFOmwAupJ8v4D3NeN
+	 dO6dLVYmX9dWQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- manivannan.sadhasivam@linaro.org, miquel.raynal@bootlin.com, richard@nod.at, 
- vigneshr@ti.com, andersson@kernel.org, konradybcio@kernel.org, 
- agross@kernel.org, Kaushal Kumar <quic_kaushalk@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mtd@lists.infradead.org
-In-Reply-To: <20250423063054.28795-1-quic_kaushalk@quicinc.com>
-References: <20250423063054.28795-1-quic_kaushalk@quicinc.com>
-Subject: Re: (subset) [PATCH v3 0/5] Enable QPIC BAM and QPIC NAND support
- for SDX75
-Message-Id: <174547301233.316124.15937980058360184263.b4-ty@kernel.org>
-Date: Thu, 24 Apr 2025 11:06:52 +0530
+ linux-arm-kernel@lists.infradead.org, Joy Zou <joy.zou@nxp.com>
+In-Reply-To: <20250407-edma_err-v2-0-9d7e5b77fcc4@nxp.com>
+References: <20250407-edma_err-v2-0-9d7e5b77fcc4@nxp.com>
+Subject: Re: (subset) [PATCH v2 0/3] dmaengine: fsl-edma: add error irq to
+ help debug problem
+Message-Id: <174547301902.316124.419798258552986948.b4-ty@kernel.org>
+Date: Thu, 24 Apr 2025 11:06:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +67,19 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Wed, 23 Apr 2025 12:00:49 +0530, Kaushal Kumar wrote:
-> This series adds and enables devicetree nodes for QPIC BAM and QPIC NAND
-> for Qualcomm SDX75 platform.
+On Mon, 07 Apr 2025 12:46:34 -0400, Frank Li wrote:
+> Change binding to support optional error irq.
+> Add error irq handle for fsl-edma drivers.
+> imx93 dts add dma error irq interupt.
 > 
-> This patch series depends on the below patches:
-> https://lore.kernel.org/linux-spi/20250410100019.2872271-1-quic_mdalam@quicinc.com/
 > 
 
 Applied, thanks!
 
-[2/5] dt-bindings: dma: qcom,bam: Document dma-coherent property
-      commit: 5965fd614b18e77c56cfefbd2d747b6b1edf1497
+[1/3] dt-bindings: dma: fsl-edma: increase maxItems of interrupts and interrupt-names
+      commit: a9ea01f28408169431dd3e6464ed2e48539f4280
+[2/3] dmaegnine: fsl-edma: add edma error interrupt handler
+      commit: d175222f5e90b7e1f23713378823c338fabb3258
 
 Best regards,
 -- 
