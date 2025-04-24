@@ -1,206 +1,148 @@
-Return-Path: <devicetree+bounces-170565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DA4A9B5EB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:04:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 281F5A9B5F3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 144703AE69D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:03:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63569175DF8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3B728E607;
-	Thu, 24 Apr 2025 18:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8478928DF09;
+	Thu, 24 Apr 2025 18:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="BrzPX+ns"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hdjw8YZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06E627FD47
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 18:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C79D1FC0EA
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 18:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745517845; cv=none; b=HPl+D4EyujBBlz3G6pKnUXouWyY7SsCb7UWMdsOHqazGOZJgKe33cw37KfjXvsR8F+OKkeYN8hgI8UU2BjcNZkQoIzObVRpfn0IFLTOX+yaDburd6Xsgsw3tQ29IICTgcNIxUyBLS9gIN3NhkngoNIZOFnYPej8QIx/WXoA5iag=
+	t=1745518008; cv=none; b=fj9UFqUAm6lSi35iP8IzclxVA4dpSzmZ4gYn/h6VY1jxtiv5+vx1MWft1Inz/0da1XDzb6Pb/VKJIcSknV7YnLUZU0Zl0vc/6TZNU8F8dlVy/1+WTPT3rOF3YpuCvabzKpNwFmd33NpNLgBeeXxLxF8eTCTafBwf6O+/2nvSGQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745517845; c=relaxed/simple;
-	bh=uPn6plOz3AG5jrEfFpRZaDs6P0aP85UrPumlULvK+r8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KEZfw+HGaD6SK2ap55QVjPFqMQt5gC2q3iNb8N1olRFl1Fsl8ILz9uAydTMQnLvnJYJ39ZmmQaGhtLnCRD9v3aVGwC5GK/j7LeKWcFxzYhTKGwUFzKxgdb6wvHAoO0hQSpRgcfOIqsau2YnVQP8M8we7uiJ7Z54ouhY2FryUIyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=BrzPX+ns; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-224191d92e4so15804755ad.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 11:04:03 -0700 (PDT)
+	s=arc-20240116; t=1745518008; c=relaxed/simple;
+	bh=untB1HfxdttzA08c006z9zXZeD1RPqW0OBieNxkwux0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SVxRn96eUcGaN/KcEIxMrugixXJRqf9fGeJyXHSAgpwIDajf7P+d3dFCEoamc1k3dmzdL59kHtOYoXl3T/cS4mXB0Q7Ak6l2pBVLxip3t1QcLcQLmZQg/P5rfmwH0QO+WbPjLQc7RisdORI73NZlY5gXi4F6nhtkqKVm9VqlVrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hdjw8YZE; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-acb415dd8faso211731266b.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 11:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745517843; x=1746122643; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=R+2ifGTP7Zuk1f3PGxpKoh8D1eRLE/ZHAefBGZIpiLo=;
-        b=BrzPX+nsbBbhPpijNsceUyyDomfenzy/7GbMN64AroqKTxoylv2ovD6hn0CRWqBlxs
-         ulrrWRaiMYzHEdGqjtf/3RqjjwY6kRG5bEvpPsloj2x6unflxrvd7OZeFcolPB3CVKBE
-         eupWPZWQUEaGbsD7rKhdEueNm0qf1/qtRRW05uUzXnvTB3AKt5nuHzXOrHtTr5XnD6Ri
-         jXZraAzv+36aPvl7LB8SMNA+JU/JJaS+pw30Qwz7cznpfAC76YlfziI4Qwx4v8iXAy2a
-         O6FSsZL5LpnN3TihyjvB5S0s3dnYShOd4bWtKX7O65OT7pbg3b2/Gk0NB+qX7HIv4Jmr
-         bHKg==
+        d=chromium.org; s=google; t=1745518005; x=1746122805; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=79YUOYWksfzgC8uh0zT0ugM7BA9V6bWBg5rPe4V+dTo=;
+        b=hdjw8YZE5VlZpD+ayDat9vQw3wyI4dYvZyNiXACLwwpnNHIKJxpTSxrFh6IkxsQrVy
+         ihTAPhZDIU4k4REqzg8QRXKGV1MYYYRu0nsQiTJs7bWeu3+eu4YjMMH91/i+4GaFnxA1
+         MjOJPLxgTcyR5jDvNdzfVDW3qpkSkyd4d0kdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745517843; x=1746122643;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R+2ifGTP7Zuk1f3PGxpKoh8D1eRLE/ZHAefBGZIpiLo=;
-        b=ecQTzAhaYvYt9Fz36mHCIB8ly7ftiBkXzXihQnsQcUhQZqfdk9n09Jp36x/cOBTclM
-         0FLTv5TRgvwyzoFmtKJpfT+McSEm9KzoRoEA3pUfsaYpWlnmA/bI5VR7ctl47wwnes8V
-         ru+kpKE8o9ik+1VS/AyzpW+zYhYDsUy6vwOBO/jkyZRwKaRH0AmddCOLXtVipHu50/Dw
-         Db+JxMhN9KsQYgJNVgS4aLxDuompFfDHiTAGQIShVJoP4JsGRc44NRUtaKiHak0qmj4P
-         2SZHeArRds7jxhQkJDhnclry+JVE5T7cxSmDgeAUD0nBOvpEu3mCG7E0dzJn7X8cgT1U
-         P9/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXk4P79mUHG0FOugZcx/tUNs9NXIL9z5sfwlg9FFMmIQD0Fyzx/6Q+VAVPVxVWxIYbxF7cRS9QeS1J7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqauXu566fSnEAWTpaOzPZviN/yLcpaVAu6AuhjIpIZZj/zVRN
-	VnbV+8DOw1li6I/LgdoqBrMc9GTGILcwMzBVu+txJ+KsegAN3BQlABhst+xHq7A=
-X-Gm-Gg: ASbGncsG8QwFxHulyZAuuXXwhgU7rr7wGWxi8dOL0Xx7rQN+YIudV9r1osPhWscQnv0
-	ByU386vMMIcG231L6D6NQCoes2YuZbqAD0eT3HqK/09T0q7wtzHbDili7NbENYBGFUSIwfMR2jC
-	DEFfyuRDtpsSDb6uyBFyz3w70HYuxPfkZ6BUf2r4O6s6238isqdDNXb2QQuBzWnoEhxw9YVOxzr
-	HT+8vJF8iEz+e8ZhW/sy64Dd7eA8UUjK2WptQrw6lwzTjlqoo8tUhFuNvCen/vOh+KYTt87zCLd
-	IBAv5eHIQat12u5FCCiXFkR1RSiRYIDbyFyY7Xxtjp4WJF8L9fLWyMGifxfWDQ==
-X-Google-Smtp-Source: AGHT+IEwApZFffChVQ3IgP8GwvBv+BNm7qJFv/s7tyP4mivow/7aAesEdu2H5hIh83xgouvcI3whKA==
-X-Received: by 2002:a17:902:cec8:b0:21f:4c8b:c514 with SMTP id d9443c01a7336-22dbd46edccmr5459035ad.45.1745517843026;
-        Thu, 24 Apr 2025 11:04:03 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15f7ec0bb2sm1513897a12.18.2025.04.24.11.04.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 11:04:02 -0700 (PDT)
-Date: Thu, 24 Apr 2025 11:03:59 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>,
-	linux-riscv <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v12 05/28] riscv: usercfi state for task and save/restore
- of CSR_SSP on trap entry/exit
-Message-ID: <aAp9D7txw8y9WL5m@debug.ba.rivosinc.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
- <D92WQWAUQYY4.2ED8JAFBDHGRN@ventanamicro.com>
- <aAmEnK0vSgZZOORL@debug.ba.rivosinc.com>
- <D9EV1K8ZQQJR.20CRTYLQBN9UE@ventanamicro.com>
+        d=1e100.net; s=20230601; t=1745518005; x=1746122805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=79YUOYWksfzgC8uh0zT0ugM7BA9V6bWBg5rPe4V+dTo=;
+        b=GTdqRqmNWRG0OzUoz9yzdMowNd/N1W9MBvUC1eHBRIHtJQoGJa6hrENDVJdVdkfIgl
+         31iR6JCe75UyLAt6GoGKWlACJZwlQCDXLgD0bjxtAHYxPpGhRXN9oYmCfrIjlvnEg0y2
+         5ISOzAYKBIYqth0dNKHSUDKXxOXNlR5q2d7MpSYnFpJvYE/BNJGXyrH1GogvwksI0fQ/
+         YLKSuIXYvdMQDgOX1QZMMJgdHcj4xtRe3f+vLUqihioA7GEBjkYjezDJMqc6whT12Yxh
+         pEQFZsrkFX5Y7QQLJvv3E2RjaPl9U4avbRNovpotVbRNF1Cl3/9MntR4PXlU0quhnS34
+         B38g==
+X-Forwarded-Encrypted: i=1; AJvYcCV46QuJnGftE8VGSFBydCplSRBW7gFvQmC+zRz4qXD/rZ2i0QG4vn6/avCmjt4D2S3TiBAkaMq5KMl8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZuOiHtahvbQhyFUIwMeFSx1+o5hRppi7yOvTIunN0w9R3n9Ou
+	7wihV0vFzYlAnxPDJmgSxdEjvok7MFO123HM5zftrrUuA163U6mWyRQg1e3eiUgztZoNTi32okH
+	2zBaqyniV54mGVKdzLNLUCkRfSWbU1V+q/xqY
+X-Gm-Gg: ASbGncu+UjmA5Z+bhEMjaX/Quw5rzwBi1gRtelra0Sn9RszezzL2De0VdzSL/ghDxJn
+	8Cgewn7lPVpDHouo0GNKQMotg4ZTzboonaK4rEivmjhsoGs+TYk18jMvYJ5pmDeb5AcANIdh2BL
+	yULzM/CZiyaKraa3afhEac3moZMHNbfLK3ew==
+X-Google-Smtp-Source: AGHT+IF6FQyepWuw62uvlYv2AGGX4Zv8U5nVTUi/6CHfAtsO8E+E4yT2kriSnwOZ8ZJ6GbcVBIno2hzh0DlHbPq70sE=
+X-Received: by 2002:a17:906:58c:b0:ace:6bfb:4a11 with SMTP id
+ a640c23a62f3a-ace6bfb4a1fmr32847066b.24.1745518004896; Thu, 24 Apr 2025
+ 11:06:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D9EV1K8ZQQJR.20CRTYLQBN9UE@ventanamicro.com>
+References: <20250418124718.1009563-1-jaszczyk@chromium.org>
+ <20250418124718.1009563-3-jaszczyk@chromium.org> <20250423140913.GA360030-robh@kernel.org>
+In-Reply-To: <20250423140913.GA360030-robh@kernel.org>
+From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
+Date: Thu, 24 Apr 2025 20:06:33 +0200
+X-Gm-Features: ATxdqUHIDmJKjHZA9jZSJUkUEpsm0-XwqBkvekQ7zCBPFtIo1vYXDrTfrqj0M3Y
+Message-ID: <CAGptq8GzJh38349ZZpEOw9sV8ihtJMHqV=PH9WUbG-C7b0tJjg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] x86/of: add support for reserved memory defined by DT
+To: Rob Herring <robh@kernel.org>
+Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, 
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, 
+	saravanak@google.com, dmaluka@chromium.org, bgrzesik@google.com, 
+	jaszczyk@google.com, ilpo.jarvinen@linux.intel.com, usamaarif642@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tnowicki@google.com, 
+	mazurekm@google.com, vineethrp@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 02:16:32PM +0200, Radim Krčmář wrote:
->2025-04-23T17:23:56-07:00, Deepak Gupta <debug@rivosinc.com>:
->> On Thu, Apr 10, 2025 at 01:04:39PM +0200, Radim Krčmář wrote:
->>>2025-03-14T14:39:24-07:00, Deepak Gupta <debug@rivosinc.com>:
->>>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
->>>> @@ -147,6 +147,20 @@ SYM_CODE_START(handle_exception)
->>>>
->>>>  	REG_L s0, TASK_TI_USER_SP(tp)
->>>>  	csrrc s1, CSR_STATUS, t0
->>>> +	/*
->>>> +	 * If previous mode was U, capture shadow stack pointer and save it away
->>>> +	 * Zero CSR_SSP at the same time for sanitization.
->>>> +	 */
->>>> +	ALTERNATIVE("nop; nop; nop; nop",
->>>> +				__stringify(			\
->>>> +				andi s2, s1, SR_SPP;	\
->>>> +				bnez s2, skip_ssp_save;	\
->>>> +				csrrw s2, CSR_SSP, x0;	\
->>>> +				REG_S s2, TASK_TI_USER_SSP(tp); \
->>>> +				skip_ssp_save:),
->>>> +				0,
->>>> +				RISCV_ISA_EXT_ZICFISS,
->>>> +				CONFIG_RISCV_USER_CFI)
->>>
->>>(I'd prefer this closer to the user_sp and kernel_sp swap, it's breaking
->>> the flow here.  We also already know if we've returned from userspace
->>> or not even without SR_SPP, but reusing the information might tangle
->>> the logic.)
->>
->> If CSR_SCRATCH was 0, then we would be coming from kernel else flow goes
->> to `.Lsave_context`. If we were coming from kernel mode, then eventually
->> flow merges to `.Lsave_context`.
->>
->> So we will be saving CSR_SSP on all kernel -- > kernel trap handling. That
->> would be unnecessary. IIRC, this was one of the first review comments in
->> early RFC series of these patch series (to not touch CSR_SSP un-necessarily)
->>
->> We can avoid that by ensuring when we branch by determining if we are coming
->> from user to something like `.Lsave_ssp` which eventually merges into
->> ".Lsave_context". And if we were coming from kernel then we would branch to
->> `.Lsave_context` and thus skipping ssp save logic. But # of branches it
->> introduces in early exception handling is equivalent to what current patches
->> do. So I don't see any value in doing that.
->>
->> Let me know if I am missing something.
+On Wed, Apr 23, 2025 at 4:09=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
->Right, it's hard to avoid the extra branches.
+> On Fri, Apr 18, 2025 at 12:47:18PM +0000, Grzegorz Jaszczyk wrote:
+> > From: Grzegorz Jaszczyk <jaszczyk@google.com>
+> >
+> > The DT reserved-memory nodes can be present in DT as described in
+> > Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
+> > Similar to other architecture, which supports DT, there is a need to
+> > create reserved memory regions for such nodes.
+> >
+> > Additionally, the x86 architecture builds its memory map based on E820
+> > description passed by bootloader and not on DT. Since x86 already has
+> > some DT support and allows booting with both ACPI and DT at the same
+> > time, let's register an arch specific hook which will validate if a
+> > reserved-memory region passed by DT is valid (covered by E820 reserved
+> > region entry).
+> >
+> > Without this check, the reserved memory from DT could be successfully
+> > registered, even though such a region could conflict with e820
+> > description e.g. it could be described as E820_RAM and could be already
+> > used at early x86 boot stage for memblock initialization (which happens
+> > before DT parsing).
 >
->I think we could modify the entry point (STVEC), so we start at
->different paths based on kernel/userspace trap and only jump once to the
->common code, like:
+> Sorry, I don't get how it conflicts. Wouldn't the E820_RAM be registered
+> with memblock and memblock then handles the conflict (or should).
 >
->  SYM_CODE_START(handle_exception_kernel)
->    /* kernel setup magic */
->    j handle_exception_common
->  SYM_CODE_START(handle_exception_user)
->    /* userspace setup magic */
->  handle_exception_common:
 
-Hmm... This can be done. But then it would require to constantly modify `stvec`
-When you're going back to user mode, you would have to write `stvec` with addr
-of `handle_exception_user`. But then you can easily get a NMI. It can become
-ugly. Needs much more thought and on first glance feels error prone.
+On x86, early memblock setup is performed by e820__memblock_setup()
+and regions which are marked as E820_RAM are added to the memblock
+"memory" type and such regions can be later on used for memblock
+allocation on early x86 setup. If memblock allocation is performed
+after e820__memblock_setup and before x86_flattree_get_config,  the
+reserved region described in DT (but described as RAM in e820) could
+be silently used before we scan DT for reserved memory regions.
 
-Only if we have an extension that allows different trap address depending on
-mode you're coming from (arm does that, right?, I think x86 FRED also does
-that)
->
->This is not a suggestion for this series.  I would be perfectly happy
->with just a cleaner code.
->
->Would it be possible to hide the ALTERNATIVE ugliness behind a macro and
->move it outside the code block that saves pt_regs?
+Additionally there are more reasons why we want to make sure that e820
+reserved regions are in sync with DT reserved memory: resource tree
+building and setup pci gap based on e820.
+On the x86 resource tree is built taking into account e820 entries
+(e820__reserve_resources()) while on other arch like e.g. arm64, which
+relies on DT, the resource tree is built taking into account
+information from DT(request_standard_resources). Mixing both on x86
+seems problematic and at first glance could be achieved by e.g.
+patching e820_table via e820__range_update so other part of the early
+x86 kernel setup such as e820__setup_pci_gap() will also not use
+region which is described in DT as reserved-memory. But it is not
+straight-forward (initially I've tried to go through this path) e.g.
+it will require handling DT earlier (x86_flattree_get_config) but at
+the same time x86_flattree_get_config relies on the memblock being set
+up. Therefore it seems that making a requirement that the e820
+reserved region should be in sync with DT reserved-memory on x86 is
+reasonable.
 
-Sure, I'll do something about it.
-
->
->Thanks.
+Best regards,
+Grzegorz
 
