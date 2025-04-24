@@ -1,146 +1,106 @@
-Return-Path: <devicetree+bounces-170528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94D4A9B2FC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:51:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49346A9B305
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:53:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01C4F7B5491
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:50:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0395E9A44BD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B91927F742;
-	Thu, 24 Apr 2025 15:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F79B27F75A;
+	Thu, 24 Apr 2025 15:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvOEm7jl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+wB8mC5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063ED1B414E;
-	Thu, 24 Apr 2025 15:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F9B27C879;
+	Thu, 24 Apr 2025 15:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745509866; cv=none; b=rpslRt/lykUlr7vrXLX1NXBRS0nh3XgvuyHosbMSMQfgQtMEUkxpvT4XTZAqWG84M0CoKuKCNAM/3d6yIdoM9CXIKEh6TncpkC3lgl7WvVj0Y3J7nhUO1apXC/p2W1cccfalh9j2o63nZHF2ntk35z/iAeEVnBJF3G6GV1xr6B4=
+	t=1745509872; cv=none; b=tQXdn/hAJoCfrCBSrvaVzKc4Ix3o7EiUVKHPn3QWxJGWy7iHuSmW+G00JRoF4JnH06eH5aUDEGw3xw0oPcLfy5R1E90WB+fK+Q6d89tmo+iL86PnqiNAOHZGqSOHymtKtAy25B/L0CtpF6de0nOb0CeCqkcSgMU4P0uoqpRfvRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745509866; c=relaxed/simple;
-	bh=u6z0M0NRrZxdS4RQaKNchv2vS9ceNCupNe34bbuHBkI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nSGXXRl8F8jnsQ6Tiey0HYwFlEaYrdYIT1xLCLYBZwFoPXqoity69PIULu+QtwF60ZASYYtvY3iss8Wj2nfxjnLx+CtAQdA39Wtop5ElobMH+4NuclycpF1kkhfnKlyDy5FEn7pWOWZRNnliJOCkt3sA9zdUpeE4fbGkR9Hdkz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvOEm7jl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D39C4CEE3;
-	Thu, 24 Apr 2025 15:51:02 +0000 (UTC)
+	s=arc-20240116; t=1745509872; c=relaxed/simple;
+	bh=GPftzG91axIqiH7Y0asxvzEnLZZZ1f/DurBVYN1vCzY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OYCCzZf+mxdA0nA6vnYWY+xKmvQtbxNpRy5tUsD89QBGEWhEv0SUPITd/NRUwmL+upCSNawdh8uaDqIDMY21BCli1JNX86Oaz9ni8nebz1Q08WAYozRRHzkm2kFbXG2RoztBiVRs7w+p3OiZyAeIoB2oKVL9gLbmKi9sOW7qqzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+wB8mC5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20EDC4CEE3;
+	Thu, 24 Apr 2025 15:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745509865;
-	bh=u6z0M0NRrZxdS4RQaKNchv2vS9ceNCupNe34bbuHBkI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dvOEm7jlTSmOTUbxvEq7JfkHHkVubBtl2G5lII0wrzKg9nWi3jinOQH5rK1kYtzl6
-	 6nDxvWiZxUBTyXpLZXVw04xeHvCD8+H9dB+yMWKUXQ65eZPixsg+zT+ysGoVQOvsl8
-	 MqqJPBCE1vc8dFdQCMZMX2I2UOf+QF0YPTo3IO9I5DR5TorWHVWJGDK6RDAmsu/AjK
-	 jz8P1CVHyFI3Q96V6f8/SKXJcqFuvDUg1JS+PYPJG92I09zdF81fLMSdADNJIUrTGZ
-	 dxkfY6cOSj6S6xgvnnHxoEGi7p8ganKCGSd81xTa1JY8K+8akJ6xCzmpcd+J4Nzg1m
-	 8KHoXTJrWqrBg==
-Message-ID: <e82a8733-a3b9-43de-9142-7454bc57474c@kernel.org>
-Date: Thu, 24 Apr 2025 17:51:00 +0200
+	s=k20201202; t=1745509871;
+	bh=GPftzG91axIqiH7Y0asxvzEnLZZZ1f/DurBVYN1vCzY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m+wB8mC57lF57B9oxMg2HV9pqJyp1Ms+wJ5b1XecJxAn/qFtOFgFzJKj70UGFwctC
+	 wXyW8eF+499HCLgS/U8c6EZkVWzHD+ZvXVBlprWjlK6f24nUCe+/l9Yauz6P0U5whE
+	 txwhlTzYBchlXiPNITE8Hv2dQrcCqZB7Yn1jdm2SJJp77rnC2MIuVfnTMMX3tczEdq
+	 SQU3njhXnbCM1lFenzBG5oUFF/i090d9mkDHpzpvKQDcbB8iU8rp9n0hYoCiVhmAPS
+	 UpNkrIRQpOIvU7NYe8+enRcUk3qXZl2etIWbcgUrcq0ggLHtDwtUYXf4eD+3Fq2IFi
+	 Mbkoyl/7kYtYg==
+Date: Thu, 24 Apr 2025 16:51:06 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH net-next v4 0/8] Add Microchip ZL3073x support (part 1)
+Message-ID: <20250424155106.GI8734@google.com>
+References: <20250424154722.534284-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: Add qcom,qcm2290-camss
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
- andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
-References: <20250423072044.234024-1-loic.poulain@oss.qualcomm.com>
- <20250423072044.234024-6-loic.poulain@oss.qualcomm.com>
- <20250424-versatile-brown-chowchow-dfc4a9@kuoka>
- <CAFEp6-0iXCPn80Y0s6Hoq2MjgNa+OYJEr0oWSKuXtah_OF6cAQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAFEp6-0iXCPn80Y0s6Hoq2MjgNa+OYJEr0oWSKuXtah_OF6cAQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250424154722.534284-1-ivecera@redhat.com>
 
-On 24/04/2025 09:53, Loic Poulain wrote:
-> Hi Krzysztof,
+On Thu, 24 Apr 2025, Ivan Vecera wrote:
+
+> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> provides DPLL and PTP functionality. This series bring first part
+> that adds the common MFD driver that provides an access to the bus
+> that can be either I2C or SPI.
 > 
-> On Thu, Apr 24, 2025 at 9:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On Wed, Apr 23, 2025 at 09:20:43AM GMT, Loic Poulain wrote:
->>> +  power-domains:
->>> +    items:
->>> +      - description: GDSC CAMSS Block, Global Distributed Switch Controller.
->>> +
->>> +  vdda-csiphy-1p2-supply:
->>> +    description:
->>> +      Phandle to a 1.2V regulator supply to CSI PHYs.
->>> +
->>> +  vdda-pll-1p8-supply:
->>
->>
->> How are the pins or input supplies called?
+> The next part of the series is bringing the DPLL driver that will
+> covers DPLL functionality. Another series will bring PTP driver and
+> flashing capability via devlink in the MFD driver will follow soon.
 > 
-> Pins are called:
-> - VDD_A_CSI_0_1P2 (for csiphy 0)
-> - VDD_A_CSI_1_1P2 (for csiphy 1)
+> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+> development board with ZL30732 DPLL chip connected over I2C bus.
+> 
+> Patch breakdown
+> ===============
+> Patch 1 - Common DT schema for DPLL device and pin
+> Patch 2 - DT bindings for microchip,zl3073* devices
+> Patch 3 - Basic support for I2C, SPI and regmap configuration
+> Patch 4 - Devlink device registration and info
+> Patch 5 - Helpers for reading and writing register mailboxes
 
-OK. This however starts new questions: why aren't there separate nodes
-for the CSI PHY controllers? These are separate blocks with their own
-address space, own power rails, own interrupts and own clocks.
+Whoops!  I just this second replied to v3.
 
-> (both of the above are supplied together without individual control)
-> - VDD_A_CAMSS_PLL_1P8
-This does not need voltage name then.
+This needs moving out to somewhere more appropriate.
 
+Use MFD to allocate and split the resources, then the sub-devices can do
+the technical and heavy API stuff.
 
-Best regards,
-Krzysztof
+> Patch 6 - Fetch invariant register values used by DPLL/PTP sub-drivers
+> Patch 7 - Clock ID generation for DPLL driver
+> Patch 8 - Register/create DPLL device cells
+
+-- 
+Lee Jones [李琼斯]
 
