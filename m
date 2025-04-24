@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-170243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830BEA9A45E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:41:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5233CA9A463
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D26E16DCBE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:41:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6547816D859
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879921F4621;
-	Thu, 24 Apr 2025 07:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72641F460B;
+	Thu, 24 Apr 2025 07:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NAn5IBCa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kJHH5w0b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5304679F5;
-	Thu, 24 Apr 2025 07:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4B1207A27;
+	Thu, 24 Apr 2025 07:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745480001; cv=none; b=HS7PcaPMXkkTXzHPvPJWBgFe3ifDIGFImUl8fSPv+M27vzp3cIiUd5UuSj8CRgdgdBgfN0snkfwxEpRVa7WODBQiBTjVkImsVIRvLfujd7CTNfVln5Pilh47Koncm6RZAaXYSTgb6gdJ3K6Julag6dZTtqlbdX5ekpDzjphVPqI=
+	t=1745480064; cv=none; b=GjkuI+tEVJMHj4SkCGcP7IEaErN1DT/TMm1WxDUK6JhHBdHFjdx7egN+6vDNHBFgqZpRDOAQcM53ZynSmue+wPoeJ4KHMjzYVZJmI4fm83V86Lo4bz7qq2qfITvgIeNZj6e3v0J8IJ3VbLGz7X3X6QbluwJqgk3Krdf8mKAK9rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745480001; c=relaxed/simple;
-	bh=SuP8EraeigJb0KaR9dhLAlA0oVM0b7bWlw5kuLh8108=;
+	s=arc-20240116; t=1745480064; c=relaxed/simple;
+	bh=rGl4QjSoKK2+SbhVWRRtNC1El4VOWXYBbVc1P2EXWdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OL0EB1uwycvqQj4SCtwTYM3BjXwCTZLrSNv9wz+pPw9N2gbo9qKfyeUog3EgTG8CcqZ2cPp2nMtdh3ZJX9LTX6rsboZl3XwmfIywXbd0GxAkfc5cOZh6Xgy8P0oHIsMN1wp2OUDhoINY1b0aIFKH316Q7BN5Nxw1RlAnIQOZ5so=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NAn5IBCa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E2EC4CEE3;
-	Thu, 24 Apr 2025 07:33:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRjiy66w5FHaU2LYyZt2P9PeMcP83EqxKqxz2RX+s+gnHBfDqE+UdNt1No97JJ/c8Cm4+rM+w+835kVs7RC66rgt7AH0WUqjOP8kb8G9JE67ePLILPSGmP03xgb55qoV1Jj9hZhcgpRtBGCCN0j9EB4uMUlYCT1uVjwAUW12thE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kJHH5w0b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66F84C4CEE3;
+	Thu, 24 Apr 2025 07:34:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745480000;
-	bh=SuP8EraeigJb0KaR9dhLAlA0oVM0b7bWlw5kuLh8108=;
+	s=k20201202; t=1745480064;
+	bh=rGl4QjSoKK2+SbhVWRRtNC1El4VOWXYBbVc1P2EXWdQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NAn5IBCa1HR8cgzP/yQgp/EiVv3myBY0mp+DotdwTIpXvXyZ14/MJUwmL6OdMvjUv
-	 KI8WGC0P/EY8lc2jDgnXraGmBOZs8wUK39z3R69blFJ54MTgb5/4QLvVHna+buVBNv
-	 GrmUcxdw+gpa6jwyC87fekJTv16cFXG5mp2R97yZGECyBfgX5X/slw0jch2C+MomMs
-	 wixVvFDPCXIzoGsFaR8gYX/kzKrb9Xb4PDWYfTfKK4lX13WCzgQPvOO3N2QsBISx4h
-	 iSOsD7gZKVAFrCoa2x76r1X62CE0B50BtKjwitjKBVFf2P6yFFWLqLN50jK8cF++aW
-	 EvDM3Pn7jCG+A==
-Date: Thu, 24 Apr 2025 09:33:18 +0200
+	b=kJHH5w0bCFhjooGe42U2kOEnmwjLmprQMBr8Ek5a1J6cl8auMWUbV/SKfHaE8131E
+	 08IU14q+hwb8HU4b3Dr+JjuSOS1CnIcHp6Tv0rb3K4Q00HRoGONZ1hgt2LgvghVarM
+	 4mai/E98rBTkBKCzPmXImX9G0nIPjtk55U9jqwOccWP7IPGNN/n+OiuanIwP8O4Tsg
+	 K3iSL4DX+Algi3n2I+qW4NoJSh3wygFTYtY7Q8y3aplQqTmuxfzMRp94Vc96tMXqZC
+	 GuKRyKuEKOL7nJ+eJ2PvPGfrwqUOStWE4NE+/WK1pB3brOXqKay/dYUnyd8pt9MK74
+	 Ef9oye6LNchzw==
+Date: Thu, 24 Apr 2025 09:34:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zixian Zeng <sycamoremoon376@gmail.com>
+To: Frank Wunderlich <linux@fw-web.de>
 Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Alexandre Ghiti <alex@ghiti.fr>, Mark Brown <broonie@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, sophgo@lists.linux.dev, 
-	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, dlan@gentoo.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] spi: dt-bindings: snps,dw-apb-ssi: Merge
- duplicate compatible entry
-Message-ID: <20250424-awesome-caracara-of-priority-57f9dd@kuoka>
-References: <20250422-sfg-spi-v5-0-c7f6554a94a0@gmail.com>
- <20250422-sfg-spi-v5-1-c7f6554a94a0@gmail.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank Wunderlich <frank-w@public-files.de>, 
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>, 
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 4/8] dt-bindings: phy: mtk-xs-phy: support type switch
+ by pericfg
+Message-ID: <20250424-witty-outrageous-parakeet-7c93cc@kuoka>
+References: <20250422132438.15735-1-linux@fw-web.de>
+ <20250422132438.15735-5-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +66,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250422-sfg-spi-v5-1-c7f6554a94a0@gmail.com>
+In-Reply-To: <20250422132438.15735-5-linux@fw-web.de>
 
-On Tue, Apr 22, 2025 at 10:27:08AM GMT, Zixian Zeng wrote:
-> Microsemi Ocelot/Jaguar2, Renesas RZ/N1 and T-HEAD TH1520
-> SoC-specific compatibles, which eventually fallback to the
-> generic DW ssi compatible, it's better to combine them in single entry
+On Tue, Apr 22, 2025 at 03:24:27PM GMT, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+> Add support for type switch by pericfg register between USB3/PCIe.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml       | 18 ++++++------------
->  1 file changed, 6 insertions(+), 12 deletions(-)
+> v4:
+> - changes based on comments from Krzysztof
+> - change to phy type configuration controller/register
+> ---
+>  .../devicetree/bindings/phy/mediatek,xsphy.yaml   | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
