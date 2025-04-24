@@ -1,121 +1,146 @@
-Return-Path: <devicetree+bounces-170556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BC8A9B4D1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:58:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78DFA9B503
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 19:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 911451BA624B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:59:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29A617B586C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEA828E604;
-	Thu, 24 Apr 2025 16:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C6D28DF07;
+	Thu, 24 Apr 2025 17:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a+ZCHHLM"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="SpxHPVNO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9A928E603
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9DA28CF73
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 17:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745513889; cv=none; b=fFRRZdV3BK/Ci8BjJ+zxBpuQVpLHsIXobIaQ9AjylZmVdmaMZLYro0Fcz0J7lxfAcViqmHJHuyYs0qeG9pLUU68CinkDK4RoKt/bNe0fmFEB6R/fpHiZfiCGhtMyGt9ztXMky+l2Mj/OgzRBbiTzuASLt2jKXzZ4bhBPAjsJtE8=
+	t=1745514647; cv=none; b=nPbmlQEjVk2/oh2sO2Q4BYzj/pR9CSIHQFh1yp4jy2On4VdAZfIAogn3KE5t1/GgcWeHfpbJlxpk/iqY6i0RJ/xwFdfmm3flx/OEhUPXn+8BsFD9h2Mx+Luv7ZqswRul+vsEoSn2R30g+RROoEdJyfA2L+QVL/xRJVQKLD8Ji3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745513889; c=relaxed/simple;
-	bh=rtAVqmNrB9xPnZ5FHhbSAWb5+zNZyKeSQ6jXrEjO+Vw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ukhZahPJILYhg7g+uE8ylPrkEtmlbMjGWM71czKSraWUwfv7XQ4sfD/8QwbZQ+rC3BKZ9Ug2yr26sXhRVxCR2oVG3ToWvsMo6GyfS4lne0Ko/SsYz7tGPN0Q3y8NlWZznMGexATLNqc3ARgMG1lOViYyOJByQpsy8srIxpCrLkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a+ZCHHLM; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-70825de932bso21408677b3.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:58:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745513886; x=1746118686; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9NMqKoMnNFSWTlyWhn3Q/XhiI0OW2ljHDhbH5AG9KlM=;
-        b=a+ZCHHLMzITh7sbbShkpgZe/DlJiKlxYtvE7EyrqvclbZGLz38eZkY3+p9oRhL65Ai
-         U/cNtsf1jPvDE+RuzPuLQHve9gC4lY+sf/G6X5qxRJWOKkjUCKDugU5qm3CLrQUCR0Ax
-         CVsDBKr6y+Zekyi1Pw1V09+plKECNsmbORuy/ym2ndAF6fOGFJg3Kbp+d7h9rifm98p2
-         uQFwZ9KQVZLc8Dbic2ymIgQYdFtgE/DfPCRs53nB0X1rL9taiy1fkgmx6e4ScUgHd/lh
-         8sdA2Ci0mnZUFEtEgDFSxclx38J2qBzZ4I1lsaEGME7NO7lU3ePOxAemfpgoyZYkRHwy
-         KESg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745513886; x=1746118686;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9NMqKoMnNFSWTlyWhn3Q/XhiI0OW2ljHDhbH5AG9KlM=;
-        b=HazrBEnm9LsvMGrmR/hL/Vhj8tfgZFvXwTcpmQKXLbp46kqhpout7NWED2ZS2lxSJ1
-         Oo4AAxjsMZoBj0LA89nrPaTjlC+nUZ5Te1iBLq+7tXteAqB1ggykoSoO0eMdJOWoURRi
-         MpMhtlKLSNtNbByZSTCIWhjPl/gG01UaBr9SsJDeuEOa1m6vDfBG8eM73EAC91/5v0KN
-         9UNpiJ85RMNhsdJKZscjs88yHI37RIwDC+k8ByFuS7Z8Jf9olPlE9hyth8MMY83+4Moy
-         +HvpgP/QGUbtcZ19AUK4LbLaCmy7dgiBq4ud2mSX8xDqEYm/FPin1u1vVuQ9oSRbqotW
-         89Zw==
-X-Forwarded-Encrypted: i=1; AJvYcCW3YVZd8R/RmGiVPLIRAXweYIgpQ6/JRCe9pfH+LNuPnXLfkxn561zIuBBM06lyafyPK3fsTVocjtHw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzuqzst05axpBkAno/kie/s3L/196mFY0XOX2ZdHiAoQkjGByIC
-	PGUBsdciBydNG9FYiGl85f6iRM/rRabUmT8bu5LBv4x+bjI6MeGm730NIryjKzozGX/PgB83/YT
-	Ds0MY2YbzokAAwHQcZ+QoefBbJDqnzeuvgHsBeA==
-X-Gm-Gg: ASbGncvtpsC1ByWHvqk+1SczF/I9FPRJWNhOjLld8SbmZrDW7XxzgYS23wWdoL61d6j
-	ZmtjXJa7V1RrZWvKkgxrZaXgnY9KuR+AK2L3JU6OeheTaSaaXPxYTOVPv8lSqA/9YbIFFoUkGlY
-	WLUjq0Y+OAWRKl1LG9vAzGr9o=
-X-Google-Smtp-Source: AGHT+IGzISjUKJ+K5wuOJsTYSGvusY6lT3HrRtCkiM9BkAiKkPUr9XSSPqqT2FqaoFnPU3+9MubV6/YFgwTUN+PxwOk=
-X-Received: by 2002:a05:690c:1e:b0:705:edab:f36d with SMTP id
- 00721157ae682-708419d2878mr40115147b3.16.1745513886578; Thu, 24 Apr 2025
- 09:58:06 -0700 (PDT)
+	s=arc-20240116; t=1745514647; c=relaxed/simple;
+	bh=oF1NiTtEacTqF3RLBSswQrIwgxYtQdzMVmz599t3alQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mxci4DOmJX1ALMH5rSHmGiEGW67EnLJSd6QmBkBWgLXVCsbRcsfA2WUWTo899zeiqdcdseRTnjCI9bLOvmRiRFVH79pB6PB//NL9q77dQtKHwnxIb4feiB18LEBQ9au7e1caHkw0eg6iDXtSoPeSFm2SaS1BHZu18s5w31b04YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=SpxHPVNO; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1745514645;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=75yfjythih+wunclCO7cTJd0mONqo7R4hD/vWWRNvoY=;
+	b=SpxHPVNOUJtD8afBASatNuAJKVeNzm9qhueBr7MsEgmWItA1kBglIfvXsKvw/IWrflLOiT
+	bkVtNm+qats9NGTKvTmORiZAi78w5ex+DFaKzT7oOqMiiHNOAAlXK5jdtfJI+TI5Z9mJrh
+	w1gJlI0Cyl5DecBO51Luyi6HuOpjm8I=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-283-OyTcm1S3Nous0ajXC8OwFA-1; Thu,
+ 24 Apr 2025 13:10:39 -0400
+X-MC-Unique: OyTcm1S3Nous0ajXC8OwFA-1
+X-Mimecast-MFC-AGG-ID: OyTcm1S3Nous0ajXC8OwFA_1745514637
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 966EC1800874;
+	Thu, 24 Apr 2025 17:10:36 +0000 (UTC)
+Received: from [10.44.32.28] (unknown [10.44.32.28])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9321D1955BCB;
+	Thu, 24 Apr 2025 17:10:31 +0000 (UTC)
+Message-ID: <bd645425-b9cb-454d-8971-646501704697@redhat.com>
+Date: Thu, 24 Apr 2025 19:10:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417-sm4450_rpmhpd-v1-0-361846750d3a@quicinc.com>
-In-Reply-To: <20250417-sm4450_rpmhpd-v1-0-361846750d3a@quicinc.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 24 Apr 2025 18:57:30 +0200
-X-Gm-Features: ATxdqUFyM7393hfMEevst8AZRjE_r2_H3CHFnzETCGV2jO5dz39_5GL4UZtVF3k
-Message-ID: <CAPDyKFqD6DSad8Jfq=qhZ9GOdx76mrKJPWdS62A5O6uRSCS+qw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] pmdomain: qcom: rpmhpd: Add SM4450 power domains
-To: Ajit Pandey <quic_ajipan@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 5/8] mfd: zl3073x: Add functions to work with
+ register mailboxes
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250424154722.534284-1-ivecera@redhat.com>
+ <20250424154722.534284-6-ivecera@redhat.com>
+ <5094e051-5504-48a5-b411-ed1a0d949eeb@lunn.ch>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <5094e051-5504-48a5-b411-ed1a0d949eeb@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-On Thu, 17 Apr 2025 at 19:08, Ajit Pandey <quic_ajipan@quicinc.com> wrote:
->
-> This series add power domains exposed by RPMh in the Qualcomm SM4450 platform.
->
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> ---
-> Ajit Pandey (3):
->       dt-bindings: power: qcom,rpmpd: Add SM4450 compatible
->       pmdomain: qcom: rpmhpd: Add SM4450 power domains
->       arm64: dts: qcom: sm4450: Add RPMh power domains support
->
->  .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
->  arch/arm64/boot/dts/qcom/sm4450.dtsi               | 68 ++++++++++++++++++++++
->  drivers/pmdomain/qcom/rpmhpd.c                     | 16 +++++
->  3 files changed, 85 insertions(+)
-> ---
-> base-commit: f660850bc246fef15ba78c81f686860324396628
-> change-id: 20250417-sm4450_rpmhpd-6a74794d0cab
->
-> Best regards,
-> --
-> Ajit Pandey <quic_ajipan@quicinc.com>
->
 
-Patch 1 and 2 applied for next, thanks!
 
-Kind regards
-Uffe
+On 24. 04. 25 6:43 odp., Andrew Lunn wrote:
+>> +static int
+>> +zl3073x_write_reg(struct zl3073x_dev *zldev, unsigned int reg, const void *val)
+>> +{
+>> +	unsigned int len;
+>> +	u8 buf[6];
+>> +	int rc;
+>> +
+>> +	/* Offset of the last item in the indexed register or offset of
+>> +	 * the non-indexed register itself.
+>> +	 */
+>> +	if (ZL_REG_OFFSET(reg) > ZL_REG_MAX_OFFSET(reg)) {
+>> +		dev_err(zldev->dev, "Index of out range for reg 0x%04lx\n",
+>> +			ZL_REG_ADDR(reg));
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	len = ZL_REG_SIZE(reg);
+> 
+> I suggested you add helpers for zl3073x_write_reg_u8(),
+> zl3073x_write_reg_u16(), zl3073x_write_reg_32(), and
+> zl3073x_write_reg_48(). The compiler will then do type checking for
+> val, ensure what you pass is actually big enough.
+> 
+> Here you have a void *val. You have no idea how big a value that
+> pointer points to, and the compiler is not helping you.
+
+During taking 613cbb91e9ce ("media: Add MIPI CCI register access helper 
+functions") approach I found they are using for these functions u64
+regardless of register size... Just to accommodate the biggest
+possible value. I know about weakness of 'void *' usage but u64 is not
+also ideal as the caller is forced to pass always 8 bytes for reading
+and forced to reserve 8 bytes for each read value on stack.
+
+> I suggest you add the individual helpers. If you decided to keep the
+> register meta data, you can validate the correct helper has been
+> called.
+
+Yes, this should be easily implemented, will follow this.
+
+Anyway, still don't know what to do with mailboxes (aka multiple atomic 
+register operations). Lee seems to be against the placement of this
+code in MFD parent driver.
+
+Each sequence has to be protected by some lock and this lock needs to be
+placed in MFD. Yes the routines for MB access can be for example in DPLL
+driver but still the locks have to be inside MFD. So they have to be
+exposed to sub-devices.
+
+Thanks,
+Ivan
+
 
