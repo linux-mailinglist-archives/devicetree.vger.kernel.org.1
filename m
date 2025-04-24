@@ -1,260 +1,122 @@
-Return-Path: <devicetree+bounces-170148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13859A9A033
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:44:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63E4A9A03A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:47:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D29445DA1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:44:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A191945592
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADA31C84A6;
-	Thu, 24 Apr 2025 04:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4251624DE;
+	Thu, 24 Apr 2025 04:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ZjA4nAE5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L7dhHa4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E092C1BD9C8
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 04:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6894A23
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 04:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745469857; cv=none; b=LKsIn9uPu5GbgMwmiQ1CynLqyEOrzixZJIsezxLiq95NHNv8S/aEP2RNlFLv1mM+aZRuEdxL8+gZSGDMUqwevDvmh3z7628antI6yC1sS+h2wlrcCUyjid+BAI0ev3c138HTJD9azcH8jgi7BK9h1VRlJd1F00IOPgIwMVaol7k=
+	t=1745470051; cv=none; b=gAfbqvdO3/zUJ2GEoY9nj693yz5i11pNZG7YUE+YebR8ZVCXYVn1jzYXir6OwY0Xhql8KPLm2h8ym/gan9jKtkm1zW1+H8fj2hUxuDr7SH+Rl6K6kYhtcpsYFCyH8DuCDzWAW4d3f9dZtGbNPl00H/rspcb+Pxkmu4X5sX1CUF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745469857; c=relaxed/simple;
-	bh=scumeHQ1EWeXtDCiWxXsvS1GGnP6lxnjhn7+ttz3yqE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hImJ9thTI2uB/1ptqm5treYT4tE0pBKo1D5SiUGQb2QLRIvKpLL0x7WjUixEXt1BmYpvXK5ahMOBNO2ANAK64c9S2i0NvU25wxt3G/kEQNGoMmlaMCtTzJ3Yd+LBKIzWZQQLpTL4ZBfRl9aNnvyyrbrZ8P/n7c2vB6schttWaKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=ZjA4nAE5; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-736e52948ebso607741b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 21:44:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745469854; x=1746074654; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=d8Qiq1brGqi76YM1jZPx/K29TOoSYoqtc1NwyaTJxB8=;
-        b=ZjA4nAE5C43SKeMg2lonMk0udTssP7uWcQGLa0ByW/qtijdIvBtCJFJykP47pThHrl
-         uhmqJuWDfESGeJPodQLWjKUthkZOQQrTNvFswyRpSC+FNa2D8pbwV0i+vj1Sr3wkBFuE
-         tmgnibOExIPfmGIgP/GatTadLh+QQUvKpZ8JMfhHOi6ub8spvTqyUB36pZAq2SD1lFrS
-         a6MidcIQmCSwxDs+xz2fQ9mXiKkysadTbj1iycRBhjX+W56deBL3vIW4LM7EnWxb54RR
-         pWXRq9oudnEw4nKJCH0Gh5JgtcRaapN2llz645Waw8/wZhztoYZ2M0bXJ9vU7uMO/MfJ
-         6ZmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745469854; x=1746074654;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d8Qiq1brGqi76YM1jZPx/K29TOoSYoqtc1NwyaTJxB8=;
-        b=P7EmYwZzTKHI2YmZFaH7BJb1qtgJIZY918wjwNbaS1u4jwgyEjnggO7Ng0333Kxa9Q
-         AarSqkW6iaCdXPipYBxlsYDJFXb1LewKBRtl0yNpjry79knD+T3DveFbGUbEl5lCJk7P
-         QkfSpbE6OTWuVNcEOsRMEfJpiuhMD2Ua6+w3y0rpZmsj+DLYSLmfiQw+ulUeTo5j2AjR
-         QqslkKb7GqHF7G461gugI0FOEAK2yd5f7xcIJPhqipXOylQL1/0zPHM9r/P1+aRHUk0W
-         iGgdaCkMHptJVTEiO9KjrXrYYh3vX008bvR7k8y55urfV2OEoWekekir6mMGlMjVOKEE
-         +nBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsSo5q5CFhm1L6GhnUV3j6iA6Z0RHKWerakOxA2W95iC4HLCYPCu10gBIjRmzAKw1FpulQf0kcBi8i@vger.kernel.org
-X-Gm-Message-State: AOJu0YylvjYn2JN7eq5jKXqAZFshYOU0D1S/nJOUrmEd/bVp5wVk82n1
-	D/DKTRfeokpa2YqnEClTCDIXhUdjAJOqQPR1RNdcXwAup4DfGuoPabYYVrFnrvY=
-X-Gm-Gg: ASbGncu3Jwrw0/9KElH1FLwZqXeefdg3FIHJYqx8ONDrCaNqlS28ANv7Nv7ZAJYVJg0
-	g7V9ymGwBfWtJb0HJEpeIC+czHHP2AMyCseZ+sLV5rs0+ng+d4EVVdYWXYtFFdjA45PTQ9g7Ig6
-	rYPO2xWiHRIWhv2bYyS2J/esXc3yrtYxePTqyC/KNOA3ZDHd5iRKB88Dum5n+vpHUs4swpro5ZJ
-	Zw6l779MEuRy8iUIxf6UKae3PIC9M0Yaf18OpdsKxQp6dvzYX0CVOj0PTJPqYl2NcvX0k6mUVVU
-	bkJqeLsYi8WDgC0J86cx4ek5HqY4cMlTKawBXCIjHg8AjYuRGBw=
-X-Google-Smtp-Source: AGHT+IEitFVHRTgSCgRhWMe9hU5oQbZR2x7Kpm268qxNcn6QnDdeucUqxqlmgTha+1K/W91b8N7XWQ==
-X-Received: by 2002:a05:6a00:2182:b0:736:73ad:365b with SMTP id d2e1a72fcca58-73e246647e4mr1767338b3a.14.1745469854052;
-        Wed, 23 Apr 2025 21:44:14 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25a6aa52sm463483b3a.94.2025.04.23.21.44.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 21:44:13 -0700 (PDT)
-Date: Wed, 23 Apr 2025 21:44:09 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com,
-	linux-riscv <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack
- prctls
-Message-ID: <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
- <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
+	s=arc-20240116; t=1745470051; c=relaxed/simple;
+	bh=3VCVrEdSQ/JApthPhrmGRs4x27AyRrHEnbUvzUEQ7VQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ko7WGTLPCJLmHFd/kZ6at7lTSyFOpL6I2mEIL+bDSPcpSHn/rJyx0SjYRg3DnZGDV2KR5BW81HlFTiVJuqgmmU5F5nGQbnfGUO6qH0lqvAJlvSwZr7ka/5cdNwtQgqA13hyLwHlFPs8JJEnZ80jy7RqcYZf4wz62qECKPrNenjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L7dhHa4N; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53O4lGOP2392035
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 23 Apr 2025 23:47:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745470037;
+	bh=DrDJJJ8htZeJE59VEer7OcT8rYZqd9oQ8hHDpoiwQaA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=L7dhHa4NU6Ygz2ievXXnriN0s0NFREqiVIIFI5ZKr5Osn2y0B7ZcaSgLMK8Eohzfo
+	 uGOFCVDFU0nQK9en93w2sXRGb+GEnJ2O1cXgE+fBGhdLI8novRgMd23buBKOHdjWtV
+	 cKjBR5J3HNE3y3GSGAzgy8B95bn88vTbNg+GhuFc=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53O4lG52120139
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 23 Apr 2025 23:47:16 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
+ Apr 2025 23:47:16 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 23 Apr 2025 23:47:16 -0500
+Received: from [172.24.22.140] (lt5cd2489kgj.dhcp.ti.com [172.24.22.140])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53O4lBk7042147;
+	Wed, 23 Apr 2025 23:47:13 -0500
+Message-ID: <03bc9327-cf4e-4bd1-aa39-3f943a2d02f6@ti.com>
+Date: Thu, 24 Apr 2025 10:17:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arm64: defconfig: Enable TMP102 as module
+To: Dominik Haller <d.haller@phytec.de>, <robh@kernel.org>,
+        <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>, <m-chawdhry@ti.com>,
+        <w.egorov@phytec.de>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <upstream@lists.phytec.de>, <u-kumar1@ti.com>
+References: <20250423133635.29897-1-d.haller@phytec.de>
+ <20250423133635.29897-3-d.haller@phytec.de>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250423133635.29897-3-d.haller@phytec.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Apr 10, 2025 at 11:45:58AM +0200, Radim Krčmář wrote:
->2025-03-14T14:39:31-07:00, Deepak Gupta <debug@rivosinc.com>:
->> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
->> @@ -14,7 +15,8 @@ struct kernel_clone_args;
->>  struct cfi_status {
->>  	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
->> -	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
->> +	unsigned long ubcfi_locked : 1;
->> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
->
->The rsvd field shouldn't be necessary as the container for the bitfield
->is 'unsigned long' sized.
->
->Why don't we use bools here, though?
->It might produce a better binary and we're not hurting for struct size.
 
-If you remember one of the previous patch discussion, this goes into
-`thread_info` Don't want to bloat it. Even if we end shoving into task_struct,
-don't want to bloat that either. I can just convert it into bitmask if
-bitfields are an eyesore here.
-
+On 4/23/2025 7:06 PM, Dominik Haller wrote:
+> Enable the driver for the TI TMP102 temperature sensors used on the Phytec
+> phyCORE-AM68x/TDA4x and the phyGATE-Tauri-L-iMX8MM.
 >
->> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
->> @@ -24,6 +24,16 @@ bool is_shstk_enabled(struct task_struct *task)
->> +bool is_shstk_allocated(struct task_struct *task)
->> +{
->> +	return task->thread_info.user_cfi_state.shdw_stk_base ? true : false;
+> Signed-off-by: Dominik Haller <d.haller@phytec.de>
+> ---
 >
->I think that the following is clearer:
+> Notes:
+>      Changes in v4:
+>      - no changes
+>      
+>      Changes in v3:
+>      - no changes
+>      
+>      Changes in v2:
+>      - new patch in series
 >
->  return task->thread_info.user_cfi_state.shdw_stk_base
+>   arch/arm64/configs/defconfig | 1 +
+>   1 file changed, 1 insertion(+)
 >
->(Similar for all other implicit conversion ternaries.)
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 5bb8f09422a2..54e6705f9752 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -702,6 +702,7 @@ CONFIG_SENSORS_RASPBERRYPI_HWMON=m
+>   CONFIG_SENSORS_SL28CPLD=m
+>   CONFIG_SENSORS_INA2XX=m
+>   CONFIG_SENSORS_INA3221=m
+> +CONFIG_SENSORS_TMP102=m
 
-Hmm... noted.
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
->
->> @@ -42,6 +52,26 @@ void set_active_shstk(struct task_struct *task, unsigned long shstk_addr)
->> +void set_shstk_status(struct task_struct *task, bool enable)
->> +{
->> +	if (!cpu_supports_shadow_stack())
->> +		return;
->> +
->> +	task->thread_info.user_cfi_state.ubcfi_en = enable ? 1 : 0;
->> +
->> +	if (enable)
->> +		task->thread.envcfg |= ENVCFG_SSE;
->> +	else
->> +		task->thread.envcfg &= ~ENVCFG_SSE;
->> +
->> +	csr_write(CSR_ENVCFG, task->thread.envcfg);
->
->There is a new helper we could reuse for this:
->
->  envcfg_update_bits(task, ENVCFG_SSE, enable ? ENVCFG_SSE : 0);
 
-Yeah it's in switch_to.h header. I'll think about it.
-
->
->> +}
->> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
->> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long status)
->> +{
->> +	/* Request is to enable shadow stack and shadow stack is not enabled already */
->> +	if (enable_shstk && !is_shstk_enabled(t)) {
->> +		/* shadow stack was allocated and enable request again
->> +		 * no need to support such usecase and return EINVAL.
->> +		 */
->> +		if (is_shstk_allocated(t))
->> +			return -EINVAL;
->> +
->> +		size = calc_shstk_size(0);
->> +		addr = allocate_shadow_stack(0, size, 0, false);
->
->Why don't we use the userspace-allocated stack?
->
->I'm completely missing the design idea here...  Userspace has absolute
->over the shadow stack pointer CSR, so we don't need to do much in Linux:
->
->1. interface to set up page tables with -W- PTE and
->2. interface to control senvcfg.SSE.
->
->Userspace can do the rest.
-
-Design is like following:
-
-When a user task wants to enable shadow stack for itself, it has to issue
-a syscall to kernel (like this prctl). Now it can be done independently by
-user task by first issuing `map_shadow_stack`, then asking kernel to light
-up envcfg bit and eventually when return to usermode happens, it can write
-to CSR. It is no different from doing all of the above together in single
-`prctl` call. They are equivalent in that nature.
-
-Background is that x86 followed this because x86 had workloads/binaries/
-functions with (deep)recursive functions and thus by default were forced
-to always allocate shadow stack to be of the same size as data stack. To
-reduce burden on userspace for determining and then allocating same size
-(size of data stack) shadow stack, prctl would do the job of calculating
-default shadow stack size (and reduce programming error in usermode). arm64
-followed the suite. I don't want to find out what's the compatiblity issues
-we will see and thus just following the suite (given that both approaches
-are equivalent). Take a look at static `calc_shstk_size(unsigned long size)`.
-
-Coming back to your question of why not allowing userspace to manage its
-own shadow stack. Answer is that it can manage its own shadow stack. If it
-does, it just have to be aware of size its allocating for shadow stack.
-
-There is already a patch series going on to manage this using clone3.
-https://lore.kernel.org/all/20250408-clone3-shadow-stack-v15-4-3fa245c6e3be@kernel.org/
-
-I fully expect green thread implementations in rust/go or swapcontext
-based thread management doing this on their own.
-
-Current design is to ensure existing apps dont have to change a lot in
-userspace and by default kernel gives compatibility. Anyone else wanting
-to optimize the usage of shadow stack can do so with current design.
-
-- 
->
->> +int arch_lock_shadow_stack_status(struct task_struct *task,
->> +				  unsigned long arg)
->> +{
->> +	/* If shtstk not supported or not enabled on task, nothing to lock here */
->> +	if (!cpu_supports_shadow_stack() ||
->> +	    !is_shstk_enabled(task) || arg != 0)
->> +		return -EINVAL;
->
->The task might want to prevent shadow stack from being enabled?
-
-But Why would it want to do that? Task can simply not issue the prctl. There
-are glibc tunables as well using which it can be disabled.
-
->
->Thanks.
+>   CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
+>   CONFIG_CPU_THERMAL=y
+>   CONFIG_DEVFREQ_THERMAL=y
 
