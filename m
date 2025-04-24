@@ -1,80 +1,89 @@
-Return-Path: <devicetree+bounces-170414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B044A9AB11
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:53:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30CFDA9AB20
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:54:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8EE9461707
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AADD4A1F7D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71FD21FF57;
-	Thu, 24 Apr 2025 10:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A741225414;
+	Thu, 24 Apr 2025 10:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DPxOfT8K"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="lA3x2beT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E01218E91
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F8722424C
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745492030; cv=none; b=OfT8uh1w5w1T++RZ9PIji44yitvPpWDLLo64Z32bgvY4RjdLX2yolNrAL4EuegdR2GQ0y7ZfThnt19PVbOnIw0n4dG99XFlXoAgdyT6aW3R7Kjx231uRkvGn1Ot4Q2RJ2gktsCd3I4H8j0XLjP3efXw+O4VZkSyjo73os8BFv5o=
+	t=1745492076; cv=none; b=lWRF0WE4dYPHv2Hn5quV74Hs9NFt3IWOLYnHtyoAu76LYVyi9ziQaCOFbpNdsaY2NSG/etFMbkCGIQFoULFFke2BwZ6RQtlIlyo5wToPuVylfM6n3pExmeiOpZKWwyXeNcDFrBihfwa5U/w7a7XQRMYqdB3YzGm9YDjXFynAYD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745492030; c=relaxed/simple;
-	bh=qpsqlRT1eEQ11KTAaoQ7QXAvDoDv7WRzvWDBcBdElFc=;
+	s=arc-20240116; t=1745492076; c=relaxed/simple;
+	bh=XHWdxHD3g7xGu12ZT2bmxsDXt+ng0m1HKnXp5QOsbas=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g/UeJd6EJ1tgVgiLuBZhC8gS1NE6muWVJawT/izuaGtNWfdTRF0kdjf/btJoaP9W9AT4V3WOAZQQW+IJGMkR9VhlRR1WPUnojLFDPsRpukFTlLBiyHeR3DOu9m0j0SirEmgqgR36Og2HaTA5BJv9q8oODK8anfKY4NESnzNZUy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DPxOfT8K; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-549c70bf6caso113796e87.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:53:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745492027; x=1746096827; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iz6NUcWj6EAWyg+m0t+9RfeeZ2BF2rAdUY/5Xy4ikpc=;
-        b=DPxOfT8KO/Z4YmOqX97LpkiN4Q1KbAsu/MHmWpbIibaFbdUOCdTdvth6ofJU2Hn70E
-         OKhDcQLMjg+1vd1Ab9DJXWzHQ+WYF9qqmFBe182YQ2CK3P2pB/hzEjARxQ309g0LPmXZ
-         jfwPOiQjr/qMA6IFf4Xm+a62jN/dEI7S/lhIOXfIdHPPzcbfCbrzGdUwljXvmURkdYQb
-         QTfBvGSrWiWhu0YM8vj6P6bXy8OSGC1zJgbUT/rRTs5wSck9J/bGwAHjiZtO/0FN6QbA
-         H+eBVBeMPihPtU6h97vuq6fjrzbfYBEPe9Zs+Eal+HHwclKKd0iNkEHEw4TjMZ88b5d0
-         bjGA==
+	 In-Reply-To:Content-Type; b=Ppt7I6hxW/sRQMAUzyeef0i8KJV08bZ5S6rJR49NRTX6xhD+QtxRTOqwsQpr5rLAVGKawq5qxrn3cccexQQCbCAr1S0X80qrQtxECQmpyXbFvgXoRp9sqsk+qcm6/I9TKnWzwQSQ7lf3sTVV4RkiyMSiHkvarLRliUPnL7r62zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=lA3x2beT; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7EBCD3F86A
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:54:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1745492066;
+	bh=eqhLDRtyKX6rzGIClke4n/FgG558kgab7Vgy/UBFI1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=lA3x2beTn42Vnn+iR3L1TULXNkMsiwpYXfGmiudKzP6aDXxeRCt6wmGhYG0JCJXeS
+	 jOInwyJqhfadcWJcPy3G5L2vCp7v60EF/XJP/8sRpatVDTKXw0BuGs//NIPWuf+tMP
+	 G4YgOJq8hvvxzce492P0B2sqnhwUf4/nl6r4eUOaMk/GNc3l8SYQ5qr+RyIvDYKAgY
+	 CMn6R1WYeSHr6wDNIw3F8es/NaedWMMQaZdSIyIyU28oEY1CEYSDsNR8fedT2FtE2s
+	 2fKbdl5Eagcl5keIn2OYxYvCSxceQkWxMe5nzoxR+cRg/VatjBbYLqJO1RmwavZEZ+
+	 3RK5N9sZaOMTA==
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-43cf3168b87so4000145e9.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:54:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745492027; x=1746096827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1745492065; x=1746096865;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iz6NUcWj6EAWyg+m0t+9RfeeZ2BF2rAdUY/5Xy4ikpc=;
-        b=EBu9obuOHDJo/m3ziDiWKMFJthtlmWDceaPp5L1pLMYA5AfoJ5eQNk8PhFTEUvU8vQ
-         j6aok7pPIAN5tMWoJnOzI5wAcf83tWh4k3nr/5/Dr3g+JaTHdez7tzbEC/tgwrCYqZCV
-         +cR7unIBrh/SITzpMwwXMeZpGYP6b6RA26u8GYJhYuF8o26U8RDSYXj7tUWcQO4J1neg
-         ZRW95gr7Qy2UxV1tcuBrqGqh1WImrTSs+NeKp1rVQ3zc15EMt1p+7OGBdaO6kRbBGhmC
-         wV3kV4NOHVwwfE24+OhTWbJaM/JW5cBN3/DNyZhx1t/PLTnSKOk1OAQ2gdrYBIS/n1Vy
-         z6Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCVcDtxGl8PYwrv2LCaFylWqQ78WTGTlJgueSb6zOtfngZ6vYpeIOpBSUFuGGNCTilqIKgyr04zZjtZm@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywzqd6L/VULZTO/+TuZVqP4bKUaaflAUc7XScRhL8UIZPnE44wA
-	ezkHz/pYL6vTUHhSCGZT9ilUTHOG24nQmc2zIuf1eexoOa6+7zuWNYzPQiqhax0=
-X-Gm-Gg: ASbGncs9snfd76dJtUwdL9rWPt3ngde5k9L6bkfqM4/Sm5c8GG9Z/YDIlvNom6bCkOY
-	HqgN8ES3t1W7Y+Ix2oMR3+1l0LBzQO5Ij8+NzD/GqsWkQVDl5tpel7mpXURE6EpM1utnbjxpgmB
-	eX85SK0TRvjSakb0i+QPsLxAUo7oPYwKTPEdrTm5zEwOZBoM479Ik+ouYVxftTOFVw2jrKvxMvR
-	5Z9VpRVSAgezdmeWtVBBGss5UXNSbP9rRR+qN0GR/clF/aQw7Y3OjQIOGWZWC+wS3R+acYD54wd
-	sXQmD59Q44CFu9hM4qqeHGOlK006ziQ7582Ziv31izGc6ppq4SI0t2VDnI1tXrT6fFGd1S2uLLl
-	jc6he8HIcUF2VwUvrtJ8=
-X-Google-Smtp-Source: AGHT+IH/ebr6nf6wKlBpxfTE0DB1zuhY2mIh+1ErCgqLo4TAwLNWBhh6mziY2fi9srQ6OhxLjVcGBw==
-X-Received: by 2002:a05:6512:696:b0:545:2774:4cb0 with SMTP id 2adb3069b0e04-54e7c3ae5e0mr268067e87.0.1745492027115;
-        Thu, 24 Apr 2025 03:53:47 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cca848csm189333e87.167.2025.04.24.03.53.46
+        bh=eqhLDRtyKX6rzGIClke4n/FgG558kgab7Vgy/UBFI1M=;
+        b=uptzCLGZ/k5Nbg3qeiqI3Kx3vlwmoiMiSjxJp/5rTf/XSkNvljvEe9KAC1pqmXBwUa
+         ZHEbWmcfCtl2lCnePlRgVJIvo+opjzkM0sEUvpYctD/VazCv8K2NUKS3OtPYWcpGmzvQ
+         +dY1agt4UAZRx8CT0y5vgCTmLNRh0Obz0votWBUtr+WM70gQTRQbr3tb2woWjm8OQ1Ty
+         o9LypmUnE1wV+TwQoqtm6L4llyLfqGca+PI9cekIt1rURX3C47MVwiCC3VIgk9NCZ2OI
+         VdvUpCuBiLTfxVAN5UjkQViNKBUW+GZhw5hLNaSxo2wmkHREouJRl0Vi0s3YautidtAb
+         qWuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCBVkev5sJZPc3UoNH7jbBNP/X/IkaperIhFmkcdvhEeG8BS+LoRvEk6subNQWwcX2Oe1lbsQIAlQV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpB8TH06bpCRke04mm/pyw1ksDSpPb63Zfj4YFMiraCUIqCSn1
+	kay/VrZHu3zSA7FCYcGBdL3KPaphQHl7JaKcJi3PotMQ+v1H3K1RYzAbizg+hqBZb9AOKXAyMMf
+	EuuFQ5lqYnG01XFMBkgAvucM/THtif3l6DCYOzB9UrD6UozQ7qbI9fhpBhzDv0JPLGe6rfyq8aU
+	E=
+X-Gm-Gg: ASbGncuU1D/JmyCqY+iYBTtZj+y0E2CftdR/K3VBapCx1B2U2/qeIBBgNdlBrEHbN6T
+	UewgYaCCpiEz01wvldtuSKrtQu4P7EroOrgUoCDCBcwEsFxpQu498gE+rCom1rSJTO1mdRSnE+3
+	fSEImPCIlTRcmdh4cf+tBu47loz2RrhmBj1hHoi7Kohku/q2FMSEt9eGqNx9LNCVhKqGULRC0dQ
+	07nD9WXHpsflm/ho7ObTRShxsx615hqxVWufrfRTrHYNoLdJUAelUkw9GDne6EvVBrFzDDCaiuu
+	AVONlnz4Jt892IGpmy9ha9DnNbw8qydqQt5ONn9PNhRwJLy9bNcpc37bTDB2yKcwbf09G/EhY4d
+	1W8ild1yy
+X-Received: by 2002:a05:600c:3496:b0:43b:cc42:c54f with SMTP id 5b1f17b1804b1-4409bd18487mr19911115e9.14.1745492065495;
+        Thu, 24 Apr 2025 03:54:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHGhodf+3zok9UaV7dC/Fxdnv/pJDOhCCuu5J3ufSCE4NmAhnsJ7ezbZaDbEWPpw7N/az28sg==
+X-Received: by 2002:a05:600c:3496:b0:43b:cc42:c54f with SMTP id 5b1f17b1804b1-4409bd18487mr19910865e9.14.1745492065099;
+        Thu, 24 Apr 2025 03:54:25 -0700 (PDT)
+Received: from [192.168.103.102] (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2a152csm16418575e9.12.2025.04.24.03.54.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 03:53:46 -0700 (PDT)
-Message-ID: <a0ff4fcb-2b9d-4b9f-b5e1-586ff3900719@linaro.org>
-Date: Thu, 24 Apr 2025 13:53:31 +0300
+        Thu, 24 Apr 2025 03:54:24 -0700 (PDT)
+Message-ID: <25ac53a3-3f3c-4509-ab28-46adbf4f15e6@canonical.com>
+Date: Thu, 24 Apr 2025 12:54:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,55 +91,210 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: Add qcom,x1e80100-camss
-Content-Language: ru-RU
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org>
- <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-2-edcb2cfc3122@linaro.org>
- <3ec3fd62-bf21-47e7-873c-ce151589d743@linaro.org>
- <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
- <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
+Subject: Re: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+To: E Shattow <e@freeshell.de>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Maud Spierings <maud_spierings@hotmail.com>,
+ Hal Feng <hal.feng@linux.starfivetech.com>,
+ Hal Feng <hal.feng@starfivetech.com>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+ <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
+ <206a6ada-1ef9-47f3-b1cf-fb1a1540e95c@canonical.com>
+ <62D89163A60680E7+f0f5a4d4-42f1-454d-9dfe-cf53e2aca4ac@linux.starfivetech.com>
+ <cba21857-7eb2-4f10-a1bd-6743ce63dfa6@freeshell.de>
+ <ZQ2PR01MB1307ECDF175D20547AC69287E6F1A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+ <8b0f7b4f-e58a-45ae-931f-2b2853918ab4@freeshell.de>
+ <AM7P189MB10099481BDC2CADF476EB755E3CC2@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+ <92745e6b-7c10-4b16-836b-66a1e2ecf1c4@freeshell.de>
+Content-Language: en-US
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <92745e6b-7c10-4b16-836b-66a1e2ecf1c4@freeshell.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Krzysztof,
-
-On 4/24/25 13:07, Krzysztof Kozlowski wrote:
-> On 24/04/2025 11:34, Bryan O'Donoghue wrote:
->> On 24/04/2025 07:40, Krzysztof Kozlowski wrote:
->>>> +  vdd-csiphy-0p8-supply:
->>> Same comment as other series on the lists - this is wrong name. There
->>> are no pins named like this and all existing bindings use different name.
->>
->> The existing bindings are unfortunately not granular enough.
->>
->> I'll post s series to capture pin-names per the SoC pinout shortly.
-> How are the pins/supplies actually called?
+On 24.04.25 07:15, E Shattow wrote:
 > 
+> 
+> On 2/28/25 01:54, Maud Spierings wrote:
+>>
+>> On 2/28/25 8:53 AM, E Shattow wrote:
+>>>
+>>> On 2/6/25 19:01, Hal Feng wrote:
+>>>>> On 06.02.25 19:17, E Shattow wrote:
+>>>>> On 2/5/25 18:59, Hal Feng wrote:
+>>>>>> On 2/5/2025 6:01 PM, Heinrich Schuchardt wrote:
+>>>>>>> On 2/5/25 08:57, Hal Feng wrote:
+>>>>>>>> On 2/3/2025 9:37 AM, E Shattow wrote:
+>>>>>>>>> Add bootph-pre-ram hinting to jh7110-common.dtsi:
+>>>>>>>>>      - i2c5_pins and i2c-pins subnode for connection to eeprom
+>>>>>>>>>      - eeprom node
+>>>>>>>>>      - qspi flash configuration subnode
+>>>>>>>>>      - memory node
+>>>>>>>>>      - uart0 for serial console
+>>>>>>>>>
+>>>>>>>>>      With this the U-Boot SPL secondary program loader may drop such
+>>>>>>>>>      overrides when using dt-rebasing with JH7110 OF_UPSTREAM board
+>>>>> targets.
+>>>>>>>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>>>>>>>> ---
+>>>>>>>>>     arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ++++++
+>>>>>>>>>     1 file changed, 6 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>>>>> b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>>>>> index 30c5f3487c8b..c9e7ae59ee7c 100644
+>>>>>>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>>>>> @@ -28,6 +28,7 @@ chosen {
+>>>>>>>>>         memory@40000000 {
+>>>>>>>>>             device_type = "memory";
+>>>>>>>>>             reg = <0x0 0x40000000 0x1 0x0>;
+>>>>>>>>> +        bootph-pre-ram;
+>>>>>>>>>         };
+>>>>>>>>>           gpio-restart {
+>>>>>>>>> @@ -247,6 +248,7 @@ emmc_vdd: aldo4 {
+>>>>>>>>>         };
+>>>>>>>>>           eeprom@50 {
+>>>>>>>>> +        bootph-pre-ram;
+>>>>>>>>>             compatible = "atmel,24c04";
+>>>>>>>>>             reg = <0x50>;
+>>>>>>>>>             pagesize = <16>;
+>>>>>>>>> @@ -323,6 +325,7 @@ &qspi {
+>>>>>>>>>         nor_flash: flash@0 {
+>>>>>>>>>             compatible = "jedec,spi-nor";
+>>>>>>>>>             reg = <0>;
+>>>>>>>>> +        bootph-pre-ram;
+>>>>>>>>>             cdns,read-delay = <2>;
+>>>>>>>>>             spi-max-frequency = <100000000>;
+>>>>>>>>>             cdns,tshsl-ns = <1>;
+>>>>>>>>> @@ -405,6 +408,7 @@ GPOEN_SYS_I2C2_DATA,
+>>>>>>>>>         };
+>>>>>>>>>           i2c5_pins: i2c5-0 {
+>>>>>>>>> +        bootph-pre-ram;
+>>>>>>>>>             i2c-pins {
+>>>>>>>>>                 pinmux = <GPIOMUX(19, GPOUT_LOW,
+>>>>>>>>>                               GPOEN_SYS_I2C5_CLK, @@ -413,6
+>>>>>>>>> +417,7 @@
+>>>>>>>>> GPI_SYS_I2C5_CLK)>,
+>>>>>>>>>                               GPOEN_SYS_I2C5_DATA,
+>>>>>>>>>                               GPI_SYS_I2C5_DATA)>;
+>>>>>>>>>                 bias-disable; /* external pull-up */
+>>>>>>>>> +            bootph-pre-ram;
+>>>>>>>>>                 input-enable;
+>>>>>>>>>                 input-schmitt-enable;
+>>>>>>>>>             };
+>>>>>>>>> @@ -641,6 +646,7 @@ GPOEN_DISABLE,
+>>>>>>>>>     };
+>>>>>>>>>       &uart0 {
+>>>>>>>>> +    bootph-pre-ram;
+>>>>>>>>>         clock-frequency = <24000000>;
+>>>>>>>>>         pinctrl-names = "default";
+>>>>>>>>>         pinctrl-0 = <&uart0_pins>;
+>>>>>>>> What about &mmc0, &mmc1, &qspi, &sysgpio, &mmc0_pins,
+>>>>> &mmc1_pins, &i2c5?
+>>>>>>>> Why not add "bootph-pre-ram;" for them?
+>>>>>>> Would they be needed before relocation of U-Boot to DRAM?
+>>>>>> Yeah, they are needed by SPL and they are set in U-Boot
+>>>>>> arch/riscv/dts/jh7110-common-u-boot.dtsi.
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Hal
+>>>>>>
+>>>>> When I tested on Star64 there was none of those needed to boot. We
+>>>>> can add
+>>>>> more bootph-pre-ram as needed but I want to know how to test (because I
+>>>>> did not see any need for these).
+>>>>>
+>>>>> How do you test that these are needed?
+>>>> In my opinion, SPL need to read U-Boot from EMMC (mmc0) or SDcard
+>>>> (mmc1) or
+>>>> QSPI flash (qspi). Also it need to choose the correct DTB by reading
+>>>> EEPROM
+>>>> mounted on i2c5. To run mmc / i2c drivers, the pin configurations
+>>>> (sysgpio, mmc0/1_pins)
+>>>> are also needed.
+>>>>
+>>>> Best regards,
+>>>> Hal
+>>> EMMC or SDcard are not possible to boot (via JH7110 boot ROM, distinct
+>>> from QSPI boot of U-Boot and later EMMC or SDcard capability) in this
+>>> way on some of the boards where transistor logic pairs GPIO0 and GPIO1
+>>> both-off or both-on. SDcard boot is officially recommended against as
+>>> "not supported" by the StarFive reference documentation, and I suppose
+>>> what remains is EMMC boot as valid though I have not heard of any users
+>>> for this.
+>>
+>>
+>> I tend to use SDcard boot on my deepcomputing fml13v01 board to test
+>>
+>> before I flash the firmware to spi flash. I've not encountered issues. I
+>> have not tried eMMC but I assume it is the same.
+>>
+>>> What is the test procedure for EMMC boot, can you explain and I will try
+>>> it on the Star64?
+>>
+>>
+>> I believe this page contains enough info to use it:
+>>
+>> https://docs.u-boot.org/en/latest/board/starfive/visionfive2.html
+>>
+>>> -E
+> 
+> I followed that info to get JH7110 ZBL SD Card boot mode to load U-Boot
+> by adding only bootph-pre-ram to the &mmc1 node. However, no success for
+> U-Boot with JH7110 ZBL eMMC boot mode. I additionally tried the build of
+> U-Boot as the Star64 arrives from factory, and U-Boot release 2025.01,
+> both which are also working for JH7110 ZBL SD card boot mode and not
+> JH7110 ZBL eMMC boot mode. Obvious to me is that page does not contain
+> enough info to test for eMMC, and/or I am doing this wrong.
+> 
+> When no valid eMMC device is present:
+> 
+> dwmci_s: Response Timeout.
+> BOOT fail,Error is 0xffffffff
+> dwmci_s: Response Timeout.
+> BOOT fail,Error is 0xffffffff
+> 
+> With the prepared eMMC storage connected there is not any output.
+> 
+> What is the preparation and test procedure for JH7110 ZBL eMMC boot mode?
+> 
+> -E
 
-concerning it I would appreciate if you can review/comment the v2 of SM8650
-CAMSS dt bindings I've just sent recently [1], the equivalent property names on
-that platform were named "vdda-csiXY-0p9-supply" for VDD_A_CSI_X_Y_0P9 pin.
+Hello E,
 
-I believe both these platforms and likely the following ones should provide
-similar properties, thus it makes sense to discuss it at the same time.
+I have tested on the StarFive VisionFive 2.
 
-[1] https://lore.kernel.org/linux-arm-msm/20250423221954.1926453-2-vladimir.zapolskiy@linaro.org/
+You can write U-Boot SPL to sector 0 of the eMMC and it will be booted. 
+But with our code it will not find main U-Boot. (There seems to be a bug 
+in our SPL code as it does not fall back to Y-modem.)
 
---
-Best wishes,
-Vladimir
+To allow adding a GPT table the vendor image therefore uses the 
+fall-back to the backup SPL as follows.
+
+With u-boot-spl.bin.normal.out starting at sector 4096 (byte 0x200000) 
+add the following bytes to the GPT table:
+
+Position 0x0000: 40 02 00 00  00 00 20 00
+Position 0x0290: 40 02 00 00  00 00 20 00
+
+The value 0x00000240 is the offset to the SPL header.
+The value 0x00200000 is the position of the backup SPL.
+
+Likewise with u-boot-spl.bin.normal.out at sector 2048 (byte 0x100000) use:
+
+Position 0x0000: 40 02 00 00  00 00 10 00
+Position 0x0290: 40 02 00 00  00 00 10 00
+
+Best regards
+
+Heinrich
 
