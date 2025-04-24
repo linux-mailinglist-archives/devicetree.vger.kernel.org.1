@@ -1,110 +1,87 @@
-Return-Path: <devicetree+bounces-170153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B9CA9A064
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B74A6A9A087
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:37:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B02E23A4A2C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:19:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FCC93BFD09
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C0A1A2398;
-	Thu, 24 Apr 2025 05:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07D91AA1D8;
+	Thu, 24 Apr 2025 05:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="goR9jLCL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdRnFw1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249D435963;
-	Thu, 24 Apr 2025 05:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC60E1953BB;
+	Thu, 24 Apr 2025 05:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745471964; cv=none; b=aCCWvtMhghW4sFJ9OHFqRbeg3aOgxzG/7hM+H2CT/72KC0pAbTmw9ChlYCPv0BvSUXEx80g7a3fyn0M4hagjQSD0cO1i5QOKsMsar+hXECp/ersGlmxfNZOTgaEbHN+NtKtSP2qREO8Qa6ZfAjDAj6SYxwryIirAhLGKwGqSWUw=
+	t=1745473017; cv=none; b=sY5LGCcv/FToUP7dzFJjJxkwO4G/YrjwkavzZJrav72UhPElBOfpLd0bm6o5RbtAClBeNICfmozsCN2x8rmQD6DR5bxS+qPaGwOpIUZYIHbHTvtNDuHPQIUWCvFnobTRvkT2paxaMHk8Jm0/fpc5K7PjIziRe9KL5kTxNpFzzVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745471964; c=relaxed/simple;
-	bh=cxOAffGmSNXCmuuYRqwydrK/LyPOZoinO1fKOprSYqo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QyOVmHltnS8mzF77NSVA6MRBSn13s8wVkQO2FTw0D7JbSQ3npGt5LxzBkHiCKFXoYEflmJc1c2VqgwU54bKCP6zlvF3R+Lh1ailClBWWAcNq1qpUoeLNu9LuTyet8twMFJ+w4NWVVeaXkIVW5n/yPYySTnWyrU6pI2ASMtYvs5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=goR9jLCL; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b0b2d0b2843so431452a12.2;
-        Wed, 23 Apr 2025 22:19:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745471962; x=1746076762; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cxOAffGmSNXCmuuYRqwydrK/LyPOZoinO1fKOprSYqo=;
-        b=goR9jLCL9LjTmqhnJ2mWH9cDFI9LJX9uDM9uiguI9S52MnAr7IG/Xp/MBfmQ+NZtxc
-         WDCGLYYonO55IrB4Bma7Mn6xDp3/RNGvOfXQdqjtQ5arOmEvZIAzFL20fJc4BjMMZJNM
-         0i8b+31n+fm9Jixs5JVaOwk0x+KkqnjAdt69TMFzA0xeUlRqQM5dpAprvG9vGH1/OSMq
-         8lR36HEWVt1wIa7QwIExIge5HAY8TaWusn7me2AwlpP19kLDN7/E/Q7MbaGYlevtQCJm
-         VcHS1srtWEST9aCcL07bbDvVrstn1oBtxx34OSNxx2VgCNvrF6/SfQV2sSo08bXazsqC
-         XFvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745471962; x=1746076762;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cxOAffGmSNXCmuuYRqwydrK/LyPOZoinO1fKOprSYqo=;
-        b=d4hs05qCL448bOv8Og/eD7Aj0VpSjMhJ+Cwp0HYAqRN5vqJ0Rn6F4sG4FISGES6bPD
-         pdFz5vGww20zAvX9XurGjTN8l5a9Dkw+NRyWwIhzAvIfAPelqegkI2L1jDwqUw6ZQqiO
-         wLndGDvbowuq7VnLSrIBdmeVeIXA7J9vzizbPAcQjDbyJ2qQ+9mgz8/Ohj14czXDBZ5j
-         +EEMXReTx8hipBXW3Ipdcg8e77QOr9sb3a92NCb5o0yZlDR+8iQZuAVb6Q2A7NljnJiR
-         frOkRJU6GNni5yTogBuRsoYo7ApG7A3vb/OfgGM2AifHLRXiMHWmledolTiFIVXDPFmN
-         zW1g==
-X-Forwarded-Encrypted: i=1; AJvYcCU5uRKLh3YhQmxnXwmKDNMvBLINfi7ZtbXYrIFwUKFkP7EkINFOwenbw+DflaoK3tRkZL74xXs9XiIC@vger.kernel.org, AJvYcCXiRJZeld6reAbrXwSacpctCOYUwwsEXmZeznlZ6QaAkDQ5Zn96nU+pHwoxdzIfEqNxF42sFQoWiUR5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0lOGJXSMvqc716+0f79I8gW8TmarB571Nkf2m6RUHoVHs7zhf
-	LxQNlQM/Fw1wKWRnjmPD/iSjDHSXpvT1N3cggOI2shxqqTUvJuN5gVGRINJJ7CyL7FWtgJ+aQkn
-	sqEN6wDpo6GeSituo8N0n/vf5emEP1aZNIgY=
-X-Gm-Gg: ASbGnctWjhNuxyLTGBr0u2g9oSJdmk2WMVs9dPAXPacPBsqKVslV0s454qNsXT0NUUI
-	XIO84QwilusoXdMB0Bcn+UNeVk562yqEYuI4vdldH5Mu0cTwozJkas3Q0z9U0h1MlbXPtnkRhtI
-	MYPWo/nQLJ3kJOHneV/66iLSs=
-X-Google-Smtp-Source: AGHT+IFd3+DWbwqYLjBty7mlBg19qgtdH7s2lZfCr4eSF0v/i7R7uQX8ILDr8QxbI/+tN2syISiew3zunyK/T14w53o=
-X-Received: by 2002:a17:90b:544c:b0:305:2d27:7ba5 with SMTP id
- 98e67ed59e1d1-309ed26d23emr1873972a91.6.1745471962392; Wed, 23 Apr 2025
- 22:19:22 -0700 (PDT)
+	s=arc-20240116; t=1745473017; c=relaxed/simple;
+	bh=ABXHbVwLQcuJdhcmr+KvmkNayeZgHJI6vYnH8pSInZk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=pDm94Pl9KV6Q9L/Ke3U6DpMKSW/VRzwqqG9cDmAPSlsoNZeUfaL/COIcu/bvMdqCsEI/vigwZobd3Eh6REiI+ZXv4slYmJ7vTagRo2XdoRJWilkt8ILQmHphgT37hHEA6pOh8uLjhmqAARUJfi7lGTjHRE0ZM/uSJjWrhV0Ym5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdRnFw1U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ADC2C4CEE3;
+	Thu, 24 Apr 2025 05:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745473017;
+	bh=ABXHbVwLQcuJdhcmr+KvmkNayeZgHJI6vYnH8pSInZk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ZdRnFw1U4X+JULTVPLk0DVyljEjUvmcT2ItgugX7qm9xS9sPYIz4gJdOBr554eALd
+	 j+4av0+YaoM7oTlrpoMegQLy9/rsJQ4U3PW39VeCkAMYOZoW5Kg1ZGMLX7msb9Q7YX
+	 8/ObCYsYaqMh5nKJTo4td1HqftSsJV8Sv5IFAKS938ZZ3y3JTMu/l0U4xUcYu2XbEF
+	 AFgucCU2c3TN+dh6brkmkxyyw/lA57iw1f9DeTHn3iC8nKJyyF5EZN+9RDJyD0Dw8L
+	 4piHM2rI4/0f9qKv7NGA4SzL7n3GCo0XEvvBj0rzBR2mXP5SGh7lccD3ilyX2rgHPS
+	 9O+OEWxGfGL+w==
+From: Vinod Koul <vkoul@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ manivannan.sadhasivam@linaro.org, miquel.raynal@bootlin.com, richard@nod.at, 
+ vigneshr@ti.com, andersson@kernel.org, konradybcio@kernel.org, 
+ agross@kernel.org, Kaushal Kumar <quic_kaushalk@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-mtd@lists.infradead.org
+In-Reply-To: <20250423063054.28795-1-quic_kaushalk@quicinc.com>
+References: <20250423063054.28795-1-quic_kaushalk@quicinc.com>
+Subject: Re: (subset) [PATCH v3 0/5] Enable QPIC BAM and QPIC NAND support
+ for SDX75
+Message-Id: <174547301233.316124.15937980058360184263.b4-ty@kernel.org>
+Date: Thu, 24 Apr 2025 11:06:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250423194100.53934-1-gye976@gmail.com> <20250423194100.53934-4-gye976@gmail.com>
- <CAHp75VdHnBQyGFPLwpiZZdGcuwhyMM0Yfnv=2+nwr1Ma+1T9JQ@mail.gmail.com>
-In-Reply-To: <CAHp75VdHnBQyGFPLwpiZZdGcuwhyMM0Yfnv=2+nwr1Ma+1T9JQ@mail.gmail.com>
-From: Gyeyoung Baek <gye976@gmail.com>
-Date: Thu, 24 Apr 2025 14:19:10 +0900
-X-Gm-Features: ATxdqUFdx1OZVDfnOTpSqDMFw3x3r87O8m31VPZwanjM9VomnCMIZtFlyN4o7d8
-Message-ID: <CAKbEznvaiF3+TdTwRsh0C9WLtZAu4UObNa5aMAOjYt5KW6hLEQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] iio: chemical: Add support for Winsen MHZ19B CO2 sensor
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Hello Andy,
 
-On Thu, Apr 24, 2025 at 6:39=E2=80=AFAM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Wed, Apr 23, 2025 at 10:41=E2=80=AFPM Gyeyoung Baek <gye976@gmail.com>=
- wrote:
-> >
-> > Add support for Winsen MHZ19B CO2 sensor.
->
-> LGTM,
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+On Wed, 23 Apr 2025 12:00:49 +0530, Kaushal Kumar wrote:
+> This series adds and enables devicetree nodes for QPIC BAM and QPIC NAND
+> for Qualcomm SDX75 platform.
+> 
+> This patch series depends on the below patches:
+> https://lore.kernel.org/linux-spi/20250410100019.2872271-1-quic_mdalam@quicinc.com/
+> 
 
-Thank you for your reviews so far.
+Applied, thanks!
 
---
-Regards,
-Gyeyoung
+[2/5] dt-bindings: dma: qcom,bam: Document dma-coherent property
+      commit: 5965fd614b18e77c56cfefbd2d747b6b1edf1497
+
+Best regards,
+-- 
+~Vinod
+
+
 
