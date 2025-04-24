@@ -1,99 +1,164 @@
-Return-Path: <devicetree+bounces-170533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F180A9B368
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:07:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44508A9B39B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:14:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E6605A0AEC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:07:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 997B117227B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2D227FD7D;
-	Thu, 24 Apr 2025 16:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F529280CDC;
+	Thu, 24 Apr 2025 16:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fH7gpb3+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q+N+zlIN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E6227F741;
-	Thu, 24 Apr 2025 16:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF0527FD77
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745510832; cv=none; b=EVAaLr0Zb51eslWQVHnOWPrTwHMfmpWecI6viDdv8LyHkOIueueVhDFftFaX1NDMItalH1AJhjD0guRhIvYeQ15FJlkEWVtC29NRea0yxcsiOfeGud4AmMi+g6zCWlfyuIdQJKp71YR8D0DkjceHsBCqYhIThogE+7v51V0aATQ=
+	t=1745511234; cv=none; b=MP1mB7g/+4Fi5Cn9krNVbryZpnJoTegT0sqqZcsWM1hc6rJkd5p1A9hYP5UrNSYeqcCDKPZMXOQInSKpHTsetpyqi+XUTqjxhpBMES53gvT8XBEZb2J1FNf+7OFAoLb74PL6D8mbU0LGcOuLx3ZuUnfD+d+XqmXhrALPI7lvgfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745510832; c=relaxed/simple;
-	bh=u+V3fTgG06hwrCHEbqKSXdFzqgVK2Sp69Gv2OEFHhfs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MRn40POFEZNR+5lCkpxUL99+G6UKVvPctJhXItzDTyI2umVIBPclEoVFPHK2hdrwilv7SAMtJHOtoaK0741v/kKPVi/aDvlCEeH/x2WnzHMzn8N4A3As1iu9UOJwuKalzlsHghHZXUrc0hjGyWRnT/QkIuczAX43xOUP8NNuPms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fH7gpb3+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2455C4CEE3;
-	Thu, 24 Apr 2025 16:07:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745510831;
-	bh=u+V3fTgG06hwrCHEbqKSXdFzqgVK2Sp69Gv2OEFHhfs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fH7gpb3+Z5SM88t6XGB1A1+9ZXTzbWvlnS9R1TtIspIsg0TCa7SFzRb7pWwFwWdN2
-	 tC5AAPACa6unuubzwIHDAoGpYvGwa65ezz0pfJVIx/h9OkkSuf2L8ZU1cbM3R6Hal7
-	 sym4tKrS/ndP9hdmlflvPyWc4siQZEm5EvNnPCdOl1RwPuo6/51e7+se4s7yBrM2GZ
-	 QCAE9ynczsKs9r43DFs7hDWhwDtHaDgLiJjW/13YWamtw5g4p/r6IxCCWwRkPbpOVA
-	 lwrVUQMkomQ6P1UeT1M7XUwB8NKDAqegrYTxV7GGsO+Z7vmTU6pK5JZsRIhz9lLPI/
-	 NgAhX+HP0RdFQ==
-Date: Thu, 24 Apr 2025 17:07:06 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 10/17] mfd: adp5585: add support for key events
-Message-ID: <20250424160706.GL8734@google.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-10-3a799c3ed812@analog.com>
- <20250421093310.GH29968@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1745511234; c=relaxed/simple;
+	bh=Dw+SKeV8qbpQrNo+aH6L+cZKLIRLMEZ5C31rjsazirw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=POg2AHP38146C8V5V+vuHmBjEVohI7Ax77a56SXNS1TZr+COlnwocYDirqO6+FZCGkoYOQ/8z/pBrQrRMAweJPnpGkbqnr+axTAljC3JmQsTIM/oeMw1VICbtkcL9lZ4GRgx0TBp+zZdMFn/TeZ+58AktVw19VkIXMGu7XhtCjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q+N+zlIN; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39ee651e419so766715f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745511230; x=1746116030; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xoqGBxqToQFbUCVFUs3Rhe0Fq/kgYP3j2kJdzJbbkmM=;
+        b=q+N+zlINVknwYD7uAifplmEmpWWH0/d2c9tGpU3g3gr4T1Fm6EACpU5qED+CmUfQ3r
+         qsuHeXXjppOXvh1VVxr0Y45m8jz+vOcaJhrZgARrb/gX2/OmishnKSTAKK6PbTQqqjku
+         rFNzbfZQeOIDV2qhpjnp8E5ft55ViP+TgBpISl7ZBCNdzLyMIJ2JS4Toj8LLBqhSwWF6
+         OXRLuEldmKoXVN1RSde1VV98EmlRvxIIP/hytIIqzrwKqurVHOsKzHd7d4aiA0vNqPM8
+         IovEnTCyxIASWbpfGSHiiQocWYKrcVt+9CPWVQpEVln0HXnqKeQD5oOv5UVyjSNl6XDI
+         Rr/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745511230; x=1746116030;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xoqGBxqToQFbUCVFUs3Rhe0Fq/kgYP3j2kJdzJbbkmM=;
+        b=RpTMaEHN7cTaqjINgKV9bMNFNhiaeIGk2pgHNEusmXBXdTKvlVAzkdvf8Gi9se22R9
+         JbNaDqsB4ofiZTe9hpcQdSJ4SDMP9bEa/iAAeb5eBbocbJSGX3zihuJinHyPL9a2Jl3Z
+         8NzwKHWZZAOh3jzwx7XUxjcbHsxFXlcevmBkjJLhOwt3TGdJ9Fq/6ogaha/OkeCSn+Oq
+         3+fIGzpzrNwXw8tChFdcuuwlvNCo8GxXW50Pp+15SAYd0irwRsgvrsGGAyZAqUWYw4Gf
+         67RGx22aq7zDabTmhX+OdxZSIsz4/1OVDbJUurcYcx1FFwK/OYKyjoY1e94dzeTZa2pb
+         AmsA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRV69u8LuhStdOqDhgUq8o3cafvGi5qgtWsUTtFTww+kdlPkWdNOxP90HgQAA+ULNmK6JX8uqx5dNW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNZ1YU9werqZ/eCdMyCdvamhHsdDlhLCHpot/Xw72XezXArFDu
+	FaaE77HxIeGyCvWSczavUIE8DlS/IPzz7oVgMQjz63k4btxyhiV+q4c0LG4y4R0=
+X-Gm-Gg: ASbGncspUfzwIe/hI4yqDikm4tn8L0AOU9mZNenBZSakOx4XW+zFIh25mRB4MlD+OkG
+	FQQ1d0ub2ak+TAxPKazBmbTFI0DcaDkpZ12d7yx7/2XK9wHdxRl4rqvH0vbVVuPhZRdwoCpgloG
+	3KgPUQ+/YrQh+1OTpZxATmynv+B/+bA6wsSfFjE70iKrklSDURFqZqbTzCK3AKgFMAlNW6u+J7s
+	1HZDvQxjIYbK8THYk2uBRDczWXm0YuYTeit4XudkXZnN9iM69izxlROmkf/TXLA8KC6sc3ZyvCx
+	3W5ugszG1n/LpEhD+Hghv7G523Ft2ufcW9R62wfVgqEtfQa1aF2d3BuBoN1LrZQJR/jzWk4SywA
+	S/0gjZQ==
+X-Google-Smtp-Source: AGHT+IHjGEtl8c4nNfdv63Bu0fnAs76LEcgQP5CuedFuXi7DkoDIBaKDKjRS1tXSKCPZK7Jmlww6rg==
+X-Received: by 2002:a5d:6dac:0:b0:394:d0c3:da5e with SMTP id ffacd0b85a97d-3a06cfa827cmr2963860f8f.47.1745511230050;
+        Thu, 24 Apr 2025 09:13:50 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d54c4c5sm2512602f8f.88.2025.04.24.09.13.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Apr 2025 09:13:49 -0700 (PDT)
+Message-ID: <d97194a7-2b7d-4a76-998b-92da495e8bd2@linaro.org>
+Date: Thu, 24 Apr 2025 17:13:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250421093310.GH29968@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] dt-bindings: media: Add qcom,x1e80100-camss
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org>
+ <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-2-edcb2cfc3122@linaro.org>
+ <3ec3fd62-bf21-47e7-873c-ce151589d743@linaro.org>
+ <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
+ <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
+ <36feffed-4558-4e59-97db-2f0e916dbfc7@linaro.org>
+ <6a4ec36c-c003-4ce8-9433-8c12ed3188ee@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <6a4ec36c-c003-4ce8-9433-8c12ed3188ee@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 21 Apr 2025, Laurent Pinchart wrote:
-
-> Hi Nuno,
+On 24/04/2025 16:54, Krzysztof Kozlowski wrote:
+> On 24/04/2025 12:17, Bryan O'Donoghue wrote:
+>> On 24/04/2025 11:07, Krzysztof Kozlowski wrote:
+>>> On 24/04/2025 11:34, Bryan O'Donoghue wrote:
+>>>> On 24/04/2025 07:40, Krzysztof Kozlowski wrote:
+>>>>>> +  vdd-csiphy-0p8-supply:
+>>>>> Same comment as other series on the lists - this is wrong name. There
+>>>>> are no pins named like this and all existing bindings use different name.
+>>>>
+>>>> The existing bindings are unfortunately not granular enough.
+>>>>
+>>>> I'll post s series to capture pin-names per the SoC pinout shortly.
+>>> How are the pins/supplies actually called?
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>
+>> I don't think strictly algning to pin-names is what we want.
+>>
+>> Here are the input pins
+>>
+>> VDD_A_CSI_0_1_1P2
+>> VDD_A_CSI_2_4_1P2
+>> VDD_A_CSI_0_1_0P9
+>> VDD_A_CSI_2_4_0P9
+>>
+>> I think the right way to represent this
+>>
+>> yaml:
+>> csiphy0-1p2-supply
+>> csiphy1-1p2-supply
 > 
-> Thank you for the patch.
+> But there is no separate supply for csiphy0 and csiphy1. Such split
+> feels fine if you have separate CSI phy device nodes, which now I wonder
+> - where are they?
 > 
-> On Tue, Apr 15, 2025 at 03:49:26PM +0100, Nuno Sá via B4 Relay wrote:
-> > From: Nuno Sá <nuno.sa@analog.com>
-> > 
-> > This adds support for key events. Basically, it adds support for all the
-> > FW parsing and configuration of the keys (also making sure there's no
-> > overlaps). They can either be part of a matrix keymap (in which case
-> > events will be handled by an input device) or they can be gpi's (in which
-> > case events will be handled by the gpiochip device via gpio_keys). There's
-> > also support for unlock keys as for reset keys.
-> 
-> There's lots of code below specific to matrix keypad handling. Please
-> move it to the keypad driver, and keep this driver as lean as possible.
+> Best regards,
+> Krzysztof
 
-Exactly this.  MFD shouldn't need to contain anything that should be
-handed in the leaf drivers.  Keypad handling should be processed by
-keypad driver, etc.  If the GPIO driver needs to have visibility into
-keypad API, add some exported helpers in the Keyoad driver.
+The main hardware argument for it is probably these PHYs do live inside 
+of the TITAN_TOP_GDSC power-domain, which is the same collapsible 
+power-domain that all of the other CAMSS components live inside of.
 
--- 
-Lee Jones [李琼斯]
+As I recall we had a four way - albeit long discussion on this in 
+Dublin, you, me, Vlad and Neil and my memory was we would implement 
+multiple rails in the existing CAMSS PHY structure and then look at how 
+to model the PHYs differently in DTS.
+
+The Test Pattern Generators - TPGs would then also fit into this new 
+model for the PHYs.
+
+---
+bod
 
