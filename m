@@ -1,423 +1,154 @@
-Return-Path: <devicetree+bounces-170137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4B4A99E9C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:04:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F029A99EB9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A14C31892D43
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 02:04:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65673BF59C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 02:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB0217A303;
-	Thu, 24 Apr 2025 02:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JTk4LHfx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72985198851;
+	Thu, 24 Apr 2025 02:13:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5354A29;
-	Thu, 24 Apr 2025 02:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719843B1AB;
+	Thu, 24 Apr 2025 02:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745460278; cv=none; b=upBYM3yLkUR7jcUNVWjLgcvFr3FyabZh77fGdO8P3qQ7BF+/B/U1QoIS2h36d+bLTT/aTazxcsEovI6/8G7xbKG43Ic6fD97rEAje/6C1qO67KdhxcD5azxmG217OjXoxKdMIkXwayACOX/1QpLpYj/fiINgLV7bGPThaNPNpJQ=
+	t=1745460817; cv=none; b=lQ2WuusL6l2wou83ar2zeGeC82SI9L4DEzqqklh4M/C0gpaM/VuYlvjW2Ll+pw+TorFgyx2DL3gCZyELm/nHZcwReqoFk3XWPv9bOPGA9+96iCWsDPNpV5FOgAGiVRYONDnE13Z/S76exKJu6qThpsEN8y5lP/iJSzT7+bXOWW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745460278; c=relaxed/simple;
-	bh=2Ye6Q9tbEXXetLsYr6YRSEFUr/cH1QI6KB9fhqGrs5o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WruZfFk1Bg8lR+maALxoAkwwEhjRPzCh2yGVgKaK91YeX1rgONCu/QM5K5dmcOenKdfGr+vQUChzKl81yj2Fe7gBsBqc+cTmB6zCFjhGrYGupmjPuO/XkctP5zFueBD4MQtDKi0SgqMQuSp+2kTersaKWMvV9HOK2KP7xgwb+7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JTk4LHfx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0F95I031020;
-	Thu, 24 Apr 2025 02:04:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OmdFnkI+KYknQIpsY7fmp59A39xGyJfScTZfISfvPD8=; b=JTk4LHfxtisuuPL3
-	Uus4A8yo+Yqla084tcgRFHz/R5If+2KQdYLkT04DHJ9r+qEZk+hJoQ+sj5FYqO0V
-	cubXzn2HTrf1fAul73e8UgHhjQVosgxcZZsW6Bt2G1ORAL1G4QxIhtv0lDgpnn2I
-	ftcTn7+E0BRZY6CniW4AzeCKvhmFm2gLsvw4GdRv80MU5B22xOuDjTjGZ++VAhVU
-	Ym6HjCY+lLO8uuPi8dYks4V3Yym0VA8Fc0mgN0rC/L9cMwyFR1OUofugjEmtTKzk
-	XvEbU7wL0DB2vxtpy7MR4RKejBwWG7TeMrfSYWo4KNuRkegkW3hvM8MOZkuod7RM
-	5kuEAQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5bwe5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 02:04:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53O24HB9002129
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 02:04:17 GMT
-Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Apr
- 2025 19:04:17 -0700
-Message-ID: <63e5ddf6-151a-42aa-b2cf-003d91b34a04@quicinc.com>
-Date: Wed, 23 Apr 2025 19:04:16 -0700
+	s=arc-20240116; t=1745460817; c=relaxed/simple;
+	bh=ubU7OUBvyo7wi7WpdYTyiErLz39JsBxbMdo44Y4Gj78=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VbitqB5GhEtSlyiBfEUBTeSMsHXDCJCMmNqeJDvLLfuLBi33iNmUW9j5y6YQTZgdvZnqUyacpOmIFMRK5ccLgrKZOy8K+bJIaFIR7u8D72B5OpjD/I/5zCLJ0J11hsZuLrwKrgLYgsEF339DZ/TLbwi1VnuhHTWmqiIlo8TLa44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso2927511a12.1;
+        Wed, 23 Apr 2025 19:13:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745460813; x=1746065613;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CaiYIHovh3hj7JhREmKYSulniFNMpmE5/FQxCD5M2gA=;
+        b=mMPtXQM7SjCbC/Yt4pnQgQXkxcoxKuzSl+h/nN4CKwSQcdxybpS7iO9cRY1jFvWhCR
+         oYOGnUEsPONmNMHyQvLf+SeI8kxzpdveTADyIM7Kr0NX05uwf6iwdWE0tBRSgs2z0Abw
+         8Vfm2SKrs1XhqS9DtMiZWL8FTtd2m4MQJotQun3EO0x4RO8OQWoqg3UMhonQHL0Qbvr0
+         waxDOYBHg1O2qKrM+mu+GMCqG8Y6lmHvZPRNg+x3n/kRif+0ytUb66vJkrl0AFhqJb2k
+         SRl28rl/AMlN4iEyMMat6pKH3P62J4OiwPj2YQi3IrtEur6Ja1qUG47mahlv37rL5Xp+
+         laUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqa9Hp6jqhMjJ2+X6uvMSFsw+u6qqrPzaaSZlDwUUG84SSJVvGCOM+W1j3M/99f2lUDzr6guTNDiok@vger.kernel.org, AJvYcCWKRh7w/BYdb6+W+OIw2rurPjtet9fg7udjgkeLOlpRVv3Ol7iGtjMvivjdDnVIzPNNOPZX6B/La9oILXSP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyc/lFRzFU+JkFEeEG/DV4APXRsnDBKUlh1y8N9FC7zFttBWA9C
+	9vSdHzxUpQqZddd2loJIyRVKsvXoydq0t2qXeJVMAz6b3i+IK0mY2A4iA7UKMQ8=
+X-Gm-Gg: ASbGncswDhy9assWbccP26qgiQTqukJWPf5Zhfs/LTG1ja2JtQLs9Wsxdbh6E5XxDbM
+	r3BxWMkVfwsGAqXyoDFBvEfAo78Crr1wA274rn+1LcGJJclO3MJu7+AYZJY4gLy58ReXUk+pE00
+	WBQNs0S/2ECKZmmXKr83o8riHW4g22c/dvGIcJZoaQkmnr50cLTI1qeWH/geB2zI4RQ11pEFaQU
+	4Ul1f2dlYxOJ1yW6VlkTNpofTgxf5GTWx/DBxPpBfdQ4bYKECgZOPiaZ+JcY9PSfHx/RfNaIJNN
+	5IXf4bnUbo2K+UUZO4t2ARhWopFI79JZwEi2QJev0mMBfh6XnoBHNeDKWjA4R5biP1em2e8=
+X-Google-Smtp-Source: AGHT+IEUt+dA4lIKNGTNlbu1Si9cdKV3iSsHFbrmpYlcDkUjtQ/4sqjm8X9a2P9zxyAr2Fo4dNnp2A==
+X-Received: by 2002:a17:906:ef09:b0:aca:c67d:eac0 with SMTP id a640c23a62f3a-ace59dfdf18mr54420466b.0.1745460813054;
+        Wed, 23 Apr 2025 19:13:33 -0700 (PDT)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com. [209.85.218.49])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace59c257d5sm26704066b.127.2025.04.23.19.13.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Apr 2025 19:13:31 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac7bd86f637so326031366b.1;
+        Wed, 23 Apr 2025 19:13:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV1KGkoGpr6MrvFfRDbwEgzUvc1cBdKljqj929AaNG+9hp1WEqFrDKcaG94kTYEgrqiMkgHUkOvaGiL@vger.kernel.org, AJvYcCXYO5VhF9chLg7b+/wuRK4xa/VHBPQ3merB2XHowD5Kp85sNLBAG8BnW4yUl1aq/21I+b6tzDVhmV8QJt2p@vger.kernel.org
+X-Received: by 2002:a17:907:2d8d:b0:ac7:3441:79aa with SMTP id
+ a640c23a62f3a-ace5a2a9b58mr54104966b.13.1745460811360; Wed, 23 Apr 2025
+ 19:13:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] drm/msm/mdp4: switch LVDS to use
- drm_bridge/_connector
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
- <20250227-fd-mdp4-lvds-v3-6-c983788987ae@linaro.org>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20250227-fd-mdp4-lvds-v3-6-c983788987ae@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDAxMCBTYWx0ZWRfXw27yqXELL9ax 97+PtW0vRpFkNpEHEB1AKB6/VT/9TC6UvexB5WDYsmLbES7z2x5/0MunUYGkcpTDSH2FbO8JU08 vWxbwd887W3OKVfpW8g6lS0XP10xZnZQ3WJaRGHov00a/7xuXSZmV7v1hO2RkLBPCbI81auoSon
- K0UOyqgwXCSaPFVZ+4GuDmozrjyMdPWi26miCCtMBbRHsTQFZEsBGOMmlECNUUEEhz550ZeJTu0 drl43QKsVadZzl4JjRddX8Hj2yXBeY5EIMMlmcRXHEuThMZqesQiY5iAztz+PAgoMcCBsLKvO3+ bWCJlQfOblawQB+7Les/mEWaCss4y90yWb9O8SA/8nO3CyYFgFG3uSrgXxhditzyOsXSZtq9DiR
- XXYKOHzcp2wta5AvHRD/FAiDNia1tBk8f7HMCjn6jywJcULv8Bk+k9GW3mG/IX08vB8C9ovy
-X-Proofpoint-GUID: QNjkBK0bFuFE4f19JGGgxItYhw7neibc
-X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=68099c23 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=pGLkceISAAAA:8 a=7oS1v-cyAAAA:8
- a=dd0EAvHu3vwreEp4BEUA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=PcM2qe9_4d1tJnOwuzRa:22
-X-Proofpoint-ORIG-GUID: QNjkBK0bFuFE4f19JGGgxItYhw7neibc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_01,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240010
+References: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
+In-Reply-To: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
+From: Neal Gompa <neal@gompa.dev>
+Date: Wed, 23 Apr 2025 22:12:54 -0400
+X-Gmail-Original-Message-ID: <CAEg-Je-n+=dHzt3b5oDCk3uYm6vBpsFzy-47sDeJB_=rs7OR3A@mail.gmail.com>
+X-Gm-Features: ATxdqUHYt94bW4xL2oNxmmXaCgYQX3z4Kme1wD4CvmsQsfVBIo41Uk4tiX7FjQM
+Message-ID: <CAEg-Je-n+=dHzt3b5oDCk3uYm6vBpsFzy-47sDeJB_=rs7OR3A@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Apple PMIC NVMEM cell driver (Formerly: Generic
+ SPMI NVMEM cell driver)
+To: fnkl.kernel@gmail.com
+Cc: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Hector Martin <marcan@marcan.st>, Nick Chan <towinchenmi@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 2/26/2025 6:25 PM, Dmitry Baryshkov wrote:
-> LVDS support in MDP4 driver makes use of drm_connector directly. However
-> LCDC encoder and LVDS connector are wrappers around drm_panel. Switch
-> them to use drm_panel_bridge/drm_bridge_connector. This allows using
-> standard interface for the drm_panel and also inserting additional
-> bridges between encoder and panel.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Wed, Apr 23, 2025 at 1:55=E2=80=AFPM Sasha Finkelstein via B4 Relay
+<devnull+fnkl.kernel.gmail.com@kernel.org> wrote:
+>
+> Hi.
+>
+> This patch series adds a driver for exposing a set of registers
+> as NVMEM cells on a SPMI-attached PMIC on Apple ARM platforms.
+> Those are used to store the RTC offset and to communicate platform
+> power state between the OS and boot firmware.
+>
+> The NVMEM cell consumer drivers will be sent in a further series.
+>
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
 > ---
->   drivers/gpu/drm/msm/Makefile                       |   1 -
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c           |  34 +++++--
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h           |   6 +-
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  |  20 +----
->   .../gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c    | 100 ---------------------
->   5 files changed, 28 insertions(+), 133 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> index 5df20cbeafb8bf07c825a1fd72719d5a56c38613..7a2ada6e2d74a902879e4f12a78ed475e5209ec2 100644
-> --- a/drivers/gpu/drm/msm/Makefile
-> +++ b/drivers/gpu/drm/msm/Makefile
-> @@ -48,7 +48,6 @@ msm-display-$(CONFIG_DRM_MSM_MDP4) += \
->   	disp/mdp4/mdp4_dsi_encoder.o \
->   	disp/mdp4/mdp4_dtv_encoder.o \
->   	disp/mdp4/mdp4_lcdc_encoder.o \
-> -	disp/mdp4/mdp4_lvds_connector.o \
->   	disp/mdp4/mdp4_lvds_pll.o \
->   	disp/mdp4/mdp4_irq.o \
->   	disp/mdp4/mdp4_kms.o \
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> index 689e210660a5218ed1e2d116073723215af5a187..93c9411eb422bc67b7fedb5ffce4c330310b520f 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> @@ -6,6 +6,8 @@
->   
->   #include <linux/delay.h>
->   
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
->   #include <drm/drm_vblank.h>
->   
->   #include "msm_drv.h"
-> @@ -189,7 +191,7 @@ static int mdp4_modeset_init_intf(struct mdp4_kms *mdp4_kms,
->   	struct msm_drm_private *priv = dev->dev_private;
->   	struct drm_encoder *encoder;
->   	struct drm_connector *connector;
-> -	struct device_node *panel_node;
-> +	struct drm_bridge *next_bridge;
->   	int dsi_id;
->   	int ret;
->   
-> @@ -199,27 +201,43 @@ static int mdp4_modeset_init_intf(struct mdp4_kms *mdp4_kms,
->   		 * bail out early if there is no panel node (no need to
->   		 * initialize LCDC encoder and LVDS connector)
->   		 */
-> -		panel_node = of_graph_get_remote_node(dev->dev->of_node, 0, 0);
-> -		if (!panel_node)
-> -			return 0;
-> +		next_bridge = devm_drm_of_get_bridge(dev->dev, dev->dev->of_node, 0, 0);
-> +		if (IS_ERR(next_bridge)) {
-> +			ret = PTR_ERR(next_bridge);
-> +			if (ret == -ENODEV)
-> +				return 0;
-> +			return ret;
-> +		}
->   
-> -		encoder = mdp4_lcdc_encoder_init(dev, panel_node);
-> +		encoder = mdp4_lcdc_encoder_init(dev);
->   		if (IS_ERR(encoder)) {
->   			DRM_DEV_ERROR(dev->dev, "failed to construct LCDC encoder\n");
-> -			of_node_put(panel_node);
->   			return PTR_ERR(encoder);
->   		}
->   
->   		/* LCDC can be hooked to DMA_P (TODO: Add DMA_S later?) */
->   		encoder->possible_crtcs = 1 << DMA_P;
->   
-> -		connector = mdp4_lvds_connector_init(dev, panel_node, encoder);
-> +		ret = drm_bridge_attach(encoder, next_bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(dev->dev, "failed to attach LVDS panel/bridge: %d\n", ret);
-> +
-> +			return ret;
-> +		}
+> Changes in v3:
+> - No longer try to make it generic, use for the 3 relevant PMICs only
+> - Link to v2: https://lore.kernel.org/r/20250417-spmi-nvmem-v2-0-b88851e3=
+4afb@gmail.com
+>
+> Changes in v2:
+> - s/pmu/pmic/
+> - Sort dts in unit-order, instead of t600x-unit-order
+> - Link to v1: https://lore.kernel.org/r/20250415-spmi-nvmem-v1-0-22067be2=
+53cf@gmail.com
+>
+> ---
+> Hector Martin (2):
+>       nvmem: Add apple-spmi-nvmem driver
+>       arm64: dts: apple: Add PMIC NVMEM
+>
+> Sasha Finkelstein (1):
+>       dt-bindings: spmi: Add Apple SPMI NVMEM
+>
+>  .../bindings/nvmem/apple,spmi-nvmem.yaml           | 54 ++++++++++++++++=
++++
+>  MAINTAINERS                                        |  2 +
+>  arch/arm64/boot/dts/apple/t6001.dtsi               |  1 +
+>  arch/arm64/boot/dts/apple/t6002.dtsi               |  1 +
+>  arch/arm64/boot/dts/apple/t600x-die0.dtsi          | 50 ++++++++++++++++=
++
+>  arch/arm64/boot/dts/apple/t8103.dtsi               | 50 ++++++++++++++++=
++
+>  arch/arm64/boot/dts/apple/t8112.dtsi               | 50 ++++++++++++++++=
++
+>  drivers/nvmem/Kconfig                              | 13 +++++
+>  drivers/nvmem/Makefile                             |  2 +
+>  drivers/nvmem/apple-spmi-nvmem.c                   | 62 ++++++++++++++++=
+++++++
+>  10 files changed, 285 insertions(+)
+> ---
+> base-commit: 2e0e70c95077172b29a5b13716c4b159d578e82c
+> change-id: 20250415-spmi-nvmem-e08635316175
+>
 
-Can you pls point me to the lvds bridge used with this apq8064 board? I 
-was unable to find it. Just wanted to compare that against this while 
-reviewing.
+Series LGTM.
 
-> +
-> +		connector = drm_bridge_connector_init(dev, encoder);
->   		if (IS_ERR(connector)) {
->   			DRM_DEV_ERROR(dev->dev, "failed to initialize LVDS connector\n");
-> -			of_node_put(panel_node);
->   			return PTR_ERR(connector);
->   		}
->   
-> +		ret = drm_connector_attach_encoder(connector, encoder);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(dev->dev, "failed to attach LVDS connector: %d\n", ret);
-> +
-> +			return ret;
-> +		}
-> +
->   		break;
->   	case DRM_MODE_ENCODER_TMDS:
->   		encoder = mdp4_dtv_encoder_init(dev);
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> index e0380d3b7e0cee99c4c376bf6369887106f44ede..306f5ca8f810aaeecea56e74065933bbffcb67ec 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> @@ -191,11 +191,7 @@ struct drm_crtc *mdp4_crtc_init(struct drm_device *dev,
->   long mdp4_dtv_round_pixclk(struct drm_encoder *encoder, unsigned long rate);
->   struct drm_encoder *mdp4_dtv_encoder_init(struct drm_device *dev);
->   
-> -struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
-> -		struct device_node *panel_node);
-> -
-> -struct drm_connector *mdp4_lvds_connector_init(struct drm_device *dev,
-> -		struct device_node *panel_node, struct drm_encoder *encoder);
-> +struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev);
->   
->   #ifdef CONFIG_DRM_MSM_DSI
->   struct drm_encoder *mdp4_dsi_encoder_init(struct drm_device *dev);
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> index cfcedd8a635cf0297365e845ef415a8f0d553183..a4f3edabefbd06286bfb8fbcd7f8c0a4281e5ef1 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> @@ -14,7 +14,6 @@
->   
->   struct mdp4_lcdc_encoder {
->   	struct drm_encoder base;
-> -	struct device_node *panel_node;
->   	struct drm_panel *panel;
->   	struct clk *lcdc_clk;
->   	unsigned long int pixclock;
-> @@ -262,19 +261,12 @@ static void mdp4_lcdc_encoder_disable(struct drm_encoder *encoder)
->   	struct mdp4_lcdc_encoder *mdp4_lcdc_encoder =
->   			to_mdp4_lcdc_encoder(encoder);
->   	struct mdp4_kms *mdp4_kms = get_kms(encoder);
-> -	struct drm_panel *panel;
->   
->   	if (WARN_ON(!mdp4_lcdc_encoder->enabled))
->   		return;
->   
->   	mdp4_write(mdp4_kms, REG_MDP4_LCDC_ENABLE, 0);
->   
-> -	panel = of_drm_find_panel(mdp4_lcdc_encoder->panel_node);
-> -	if (!IS_ERR(panel)) {
-> -		drm_panel_disable(panel);
-> -		drm_panel_unprepare(panel);
-> -	}
-> -
->   	/*
->   	 * Wait for a vsync so we know the ENABLE=0 latched before
->   	 * the (connector) source of the vsync's gets disabled,
-> @@ -300,7 +292,6 @@ static void mdp4_lcdc_encoder_enable(struct drm_encoder *encoder)
->   			to_mdp4_lcdc_encoder(encoder);
->   	unsigned long pc = mdp4_lcdc_encoder->pixclock;
->   	struct mdp4_kms *mdp4_kms = get_kms(encoder);
-> -	struct drm_panel *panel;
->   	uint32_t config;
->   	int ret;
->   
-> @@ -335,12 +326,6 @@ static void mdp4_lcdc_encoder_enable(struct drm_encoder *encoder)
->   	if (ret)
->   		DRM_DEV_ERROR(dev->dev, "failed to enable lcdc_clk: %d\n", ret);
->   
-> -	panel = of_drm_find_panel(mdp4_lcdc_encoder->panel_node);
-> -	if (!IS_ERR(panel)) {
-> -		drm_panel_prepare(panel);
-> -		drm_panel_enable(panel);
-> -	}
-> -
->   	setup_phy(encoder);
->   
->   	mdp4_write(mdp4_kms, REG_MDP4_LCDC_ENABLE, 1);
-> @@ -375,8 +360,7 @@ static const struct drm_encoder_helper_funcs mdp4_lcdc_encoder_helper_funcs = {
->   };
->   
->   /* initialize encoder */
-> -struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
-> -		struct device_node *panel_node)
-> +struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev)
->   {
->   	struct drm_encoder *encoder;
->   	struct mdp4_lcdc_encoder *mdp4_lcdc_encoder;
-> @@ -387,8 +371,6 @@ struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
->   	if (IS_ERR(mdp4_lcdc_encoder))
->   		return ERR_CAST(mdp4_lcdc_encoder);
->   
-> -	mdp4_lcdc_encoder->panel_node = panel_node;
-> -
->   	encoder = &mdp4_lcdc_encoder->base;
->   
->   	drm_encoder_helper_add(encoder, &mdp4_lcdc_encoder_helper_funcs);
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c
-> deleted file mode 100644
-> index 4755eb13ef79f313d2be088145c8cd2e615226fe..0000000000000000000000000000000000000000
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c
-> +++ /dev/null
-> @@ -1,100 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * Copyright (C) 2014 Red Hat
-> - * Author: Rob Clark <robdclark@gmail.com>
-> - * Author: Vinay Simha <vinaysimha@inforcecomputing.com>
-> - */
-> -
-> -#include "mdp4_kms.h"
-> -
-> -struct mdp4_lvds_connector {
-> -	struct drm_connector base;
-> -	struct drm_encoder *encoder;
-> -	struct device_node *panel_node;
-> -	struct drm_panel *panel;
-> -};
-> -#define to_mdp4_lvds_connector(x) container_of(x, struct mdp4_lvds_connector, base)
-> -
-> -static enum drm_connector_status mdp4_lvds_connector_detect(
-> -		struct drm_connector *connector, bool force)
-> -{
-> -	struct mdp4_lvds_connector *mdp4_lvds_connector =
-> -			to_mdp4_lvds_connector(connector);
-> -
-> -	if (!mdp4_lvds_connector->panel) {
-> -		mdp4_lvds_connector->panel =
-> -			of_drm_find_panel(mdp4_lvds_connector->panel_node);
-> -		if (IS_ERR(mdp4_lvds_connector->panel))
-> -			mdp4_lvds_connector->panel = NULL;
-> -	}
-> -
-> -	return mdp4_lvds_connector->panel ?
-> -			connector_status_connected :
-> -			connector_status_disconnected;
-> -}
-> -
-> -static void mdp4_lvds_connector_destroy(struct drm_connector *connector)
-> -{
-> -	struct mdp4_lvds_connector *mdp4_lvds_connector =
-> -			to_mdp4_lvds_connector(connector);
-> -
-> -	drm_connector_cleanup(connector);
-> -
-> -	kfree(mdp4_lvds_connector);
-> -}
-> -
-> -static int mdp4_lvds_connector_get_modes(struct drm_connector *connector)
-> -{
-> -	struct mdp4_lvds_connector *mdp4_lvds_connector =
-> -			to_mdp4_lvds_connector(connector);
-> -	struct drm_panel *panel = mdp4_lvds_connector->panel;
-> -	int ret = 0;
-> -
-> -	if (panel)
-> -		ret = drm_panel_get_modes(panel, connector);
-> -
-> -	return ret;
-> -}
-> -
-> -static const struct drm_connector_funcs mdp4_lvds_connector_funcs = {
-> -	.detect = mdp4_lvds_connector_detect,
-> -	.fill_modes = drm_helper_probe_single_connector_modes,
-> -	.destroy = mdp4_lvds_connector_destroy,
-> -	.reset = drm_atomic_helper_connector_reset,
-> -	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> -	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-> -};
-> -
-> -static const struct drm_connector_helper_funcs mdp4_lvds_connector_helper_funcs = {
-> -	.get_modes = mdp4_lvds_connector_get_modes,
-> -};
-> -
-> -/* initialize connector */
-> -struct drm_connector *mdp4_lvds_connector_init(struct drm_device *dev,
-> -		struct device_node *panel_node, struct drm_encoder *encoder)
-> -{
-> -	struct drm_connector *connector = NULL;
-> -	struct mdp4_lvds_connector *mdp4_lvds_connector;
-> -
-> -	mdp4_lvds_connector = kzalloc(sizeof(*mdp4_lvds_connector), GFP_KERNEL);
-> -	if (!mdp4_lvds_connector)
-> -		return ERR_PTR(-ENOMEM);
-> -
-> -	mdp4_lvds_connector->encoder = encoder;
-> -	mdp4_lvds_connector->panel_node = panel_node;
-> -
-> -	connector = &mdp4_lvds_connector->base;
-> -
-> -	drm_connector_init(dev, connector, &mdp4_lvds_connector_funcs,
-> -			DRM_MODE_CONNECTOR_LVDS);
-> -	drm_connector_helper_add(connector, &mdp4_lvds_connector_helper_funcs);
-> -
-> -	connector->polled = 0;
-> -
-> -	connector->interlace_allowed = 0;
-> -	connector->doublescan_allowed = 0;
-> -
-> -	drm_connector_attach_encoder(connector, encoder);
-> -
-> -	return connector;
-> -}
-> 
+Reviewed-by: Neal Gompa <neal@gompa.dev>
 
+
+--=20
+=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
+=BC=81/ Always, there's only one truth!
 
