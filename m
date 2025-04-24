@@ -1,102 +1,124 @@
-Return-Path: <devicetree+bounces-170269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4788DA9A58B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:15:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB2DA9A5A3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:19:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DFE1462A8D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:15:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B2E41B83FDA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1451F4622;
-	Thu, 24 Apr 2025 08:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E16207DF4;
+	Thu, 24 Apr 2025 08:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QTBJb7/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BCD19994F;
-	Thu, 24 Apr 2025 08:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E207D529;
+	Thu, 24 Apr 2025 08:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745482527; cv=none; b=s7YDqkjJ7u/HWfmIhLwSKt6d/VV5e6qsyn1KrbQWqUDw/cFGRXLws80hJit06egSotZLv61zqplG+GTrcKoBj5sj3p9L/IdciEcZPZrdjr1yq/usPrYNNENvZvsVlVtBWkCA075W0NIHF4VaP141FJSN8vQZgyAQ26dNcbdLptw=
+	t=1745482731; cv=none; b=dooVYtbaMdwtMVxuH3M81tbIZUm4SYRujNBzsLwgmIDEW7XhfdAF4/Hd2l1vVOT42vIA39HwTzuGvNlEfCVvBeQ/ezwSPjUYex0BsG11EEE5jq8Xlk+TYe50l6OidQhm1AsLUGPed+VDXjdCCBkdjIHm9lsoiSFrqar6C6U7zAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745482527; c=relaxed/simple;
-	bh=p1rDUK8rdI5Szwyaio0ijicup4XX8ctN1sOZD2658Mw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fsIp6QZTpFpIYF5TsbsLXYC0xuqdiaXGWXOkQogVPK4Y77ERcgBzt7mo8yzKMmm/hryKDrJydzgqpSdXMgiXjvLo8eFAVgUF6v29ZX4rA3XPS7bqy/xODQuxxBnXLJJ/S/embR6YdTo0kj0sLlUD75eI3pc6qZ7aBNdoUJfipSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.35] (unknown [98.97.25.173])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 712A4B2C201A;
-	Thu, 24 Apr 2025 10:15:19 +0200 (CEST)
-Message-ID: <60891c52-eeca-4358-8f38-789533016495@freeshell.de>
-Date: Thu, 24 Apr 2025 01:15:16 -0700
+	s=arc-20240116; t=1745482731; c=relaxed/simple;
+	bh=luBO6reS1AIHdLD0ocQc2V2sYxCZNmU96oc6vvsTJUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cV+55cf7NDgcwQ5FJOC6zAaLvH4Ms50fdYpklfyrbZzuC+ZCRgNFevx6b1XtbZTyYUb5RyD67ruv2f1ufpAPuz/UMvj9+rDdiEu9eS82WpqGNk/H/2FziymfkwbckWbFzVRR6m7dKaRTJMuy+9ILqLb7s7MVpxwbut7OP6hHDG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QTBJb7/s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43241C4CEEA;
+	Thu, 24 Apr 2025 08:18:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745482730;
+	bh=luBO6reS1AIHdLD0ocQc2V2sYxCZNmU96oc6vvsTJUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QTBJb7/sOtgibfbZQZRPmB3NDzGuw8WXFuKDiYfD9jo9Tfl1ZSBHPmhHPrqPDbTsi
+	 PqHif8L8cHGYTe8i0k8oHy+9uqiBj85SewJiQ4iGUtwfYZjyZd1tNMsd4bN3MDeI7e
+	 /SLvoq1G4PZmF38YakZaiBvQ9p1SJePpeM0w30Kqbr+NCJoYj+0/E9wlUbYt37+qNU
+	 A3Q3oyisKdK3emcymdrL5r4xLHUSYwn0bOWZDKBHJi1kJVfkos9N8MlFNPNRGtv+xK
+	 HsjFxwezNty60QqB1PXzwj43UxVrbtToJYEG5xxN47QII5bt2SyzZx44/6CeXdgBQM
+	 3ZSjc2+P4yDXA==
+Date: Thu, 24 Apr 2025 10:18:47 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	dlan@gentoo.org, p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
+	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com, 
+	unicorn_wang@outlook.com, duje.mihanovic@skole.hr, elder@riscstar.com, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
+Message-ID: <kftfye2zn2ogyvuv7diuyrv5qkp43csbpkcqfcms2xp5lsuubm@z2kocdzkb7qk>
+References: <20250420070251.378950-1-guodong@riscstar.com>
+ <20250420070251.378950-4-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
- PAD_INTERNAL_* virtual pins
-To: Icenowy Zheng <uwu@icenowy.me>, Emil Renner Berthing <kernel@esmil.dk>,
- Jianlong Huang <jianlong.huang@starfivetech.com>,
- Hal Feng <hal.feng@starfivetech.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20250424062017.652969-1-uwu@icenowy.me>
- <20250424062017.652969-2-uwu@icenowy.me>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250424062017.652969-2-uwu@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rfmkfp7kn4uz32vk"
+Content-Disposition: inline
+In-Reply-To: <20250420070251.378950-4-guodong@riscstar.com>
 
-On 4/23/25 23:20, Icenowy Zheng wrote:
-> The JH7110 SoC could support internal GPI signals to be routed to not
-> external GPIO but internal low/high levels.
-> 
-> Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two virtual
-> "pads" to represent internal GPI sources with fixed low/high levels.
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
-> index 3865f01396395..3cca874b2bef7 100644
-> --- a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
-> +++ b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
-> @@ -126,6 +126,10 @@
->  #define	PAD_GMAC0_TXEN		18
->  #define	PAD_GMAC0_TXC		19
->  
-> +/* virtual pins for forcing GPI */
-> +#define PAD_INTERNAL_LOW	254
-> +#define PAD_INTERNAL_HIGH	255
+
+--rfmkfp7kn4uz32vk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
+MIME-Version: 1.0
+
+Hello,
+
+On Sun, Apr 20, 2025 at 03:02:48PM +0800, Guodong Xu wrote:
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index c0cc4b99c935..e7dba623e877 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -556,5 +556,185 @@ sec_uart1: serial@f0612000 {
+>  			reg-io-width = <4>;
+>  			status = "reserved"; /* for TEE usage */
+>  		};
 > +
->  #define GPOUT_LOW		0
->  #define GPOUT_HIGH		1
->  
+> +		pwm0: pwm@d401a000 {
+> +			compatible = "spacemit,k1-pwm", "marvell,pxa910-pwm";
+> +			reg = <0x0 0xd401a000 0x0 0x10>;
+> +			#pwm-cells = <1>;
 
-Asking about the choice of 255 and 254 values for virtual high/low pins,
-here. There's not much result when grep Linux source for 'virtual pin'
-to compare with. Are these the best values for this approach?
+I want to make all pwms use #pwm-cells = <3> in the long run. Can you
+please use that for the new binding? (Of course this needs adaption in
+the binding doc, the code should already be prepared for that.)
 
-What happens when devicetree has in it to route PAD_INTERNAL_LOW to
-PAD_INTERNAL_HIGH and other unlikely combinations?  Or a devicetree blob
-with this computed value is paired to Linux kernel that does not have
-the code to handle these virtual pins, for compatibility concern?
+> +			clocks = <&syscon_apbc CLK_PWM0>;
+> +			resets = <&syscon_apbc RESET_PWM0>;
+> +			status = "disabled";
+> +		};
 
-Do we know yet if JH8100 will share some of this design?
+The error that the build bot reports happens (I think) because CLK_PWM0
+isn't known.
 
--E
+Best regards
+Uwe
+
+--rfmkfp7kn4uz32vk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgJ8+QACgkQj4D7WH0S
+/k6SQQf9F+et5yXHz1s66Oocx6PAunCNSR5NsrxqTGCCJsG7A5Xj5ihj4O5WEUCh
+g1KnQp9haUQ+FUcC6sjHIcs3Mh2V31LduY6wsvyw9etzsVoFtQx6NwojEH+fLNOC
+15oZnNgyhsYlrRS7uY0DHuhPikTq2DezMV5I+3LwvFkcwzTcn6d7D0WOR3PP35OV
+gVJM6w9bTiftCEH7lmCm//w26e2WI1csVZINIcYDe7PY5rnEkuvOcXeqyy+5YNnO
+yjjmRrqptnX7/M5Yk3oekuPEJ/hTPAhIjKlsC8E7QIy5iTWmj6IFzC2Zy5mDAgrn
+ii3bv4Z4tHAYiVyefKztz66LwfcOWg==
+=PFuz
+-----END PGP SIGNATURE-----
+
+--rfmkfp7kn4uz32vk--
 
