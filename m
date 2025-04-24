@@ -1,155 +1,165 @@
-Return-Path: <devicetree+bounces-170351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98854A9A972
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0665A9A97B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF6CF461DEF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:06:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03E37464885
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2045A21FF35;
-	Thu, 24 Apr 2025 10:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8C42206A4;
+	Thu, 24 Apr 2025 10:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HscU/1vM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BcKhbaev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5596F1EB5D4;
-	Thu, 24 Apr 2025 10:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3E31F4617
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745489210; cv=none; b=QmgFctegt34t02xynE9DnWO/8l5Kx2zBt7JDn8jPwYeiIPUqCQNPbQEgkxfKIDpPcnlIj0HACM9qW++mrj7pebwqlUEh24u95m2x2S9lcY8CxXVmHNyE+QLj95btuVuHMBUoZASkrdfCD8pFrhxnO4G0bJAckxbUm8MfPcZ+NbU=
+	t=1745489273; cv=none; b=OeLvgPT22zCutVGcTqdpfPgCbssyuxi7a4IdA2702cqocTrCU6klRLug8Y8dkOjEvgl+7NOkuNIIncY8ypY4bKHou3B6G+qxiLROkEygIZxvDhzw0ps7sRm4K6VeP7lQLz0J3XeBTmO9FvtB0r+6+qpQGj2w5hvGAguk0uiyit8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745489210; c=relaxed/simple;
-	bh=ohWISbUI5Hdqkvh3YTzjrPdr0SXkU3j2Fcx45MwThg8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J2djdOD7RdLrJohAwY794QJ9EWB2N91V6RFafZzgJSUHiqE+p7AaoXaYMZrCmrsmyEuoXFIy5NCK8RgDVuGxAj4j+4PfHLNer32jStTaipfEHjCSvM8OUt4V1VMRPLA/xkwGaCfQdOB6uc3BPdYUKCzv11f3UEb52VUcYwi/q+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HscU/1vM; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745489209; x=1777025209;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ohWISbUI5Hdqkvh3YTzjrPdr0SXkU3j2Fcx45MwThg8=;
-  b=HscU/1vMSV66+z8117S8dr5HfKjK0+dU+JIW+5WvrXHaUSYDOgdVWDvK
-   IiGbB0fJsL+ZMw9fEmuF2CVtzXBuncIhppREMvwMRCJkgLvIVMtr9yPS/
-   kM5qqTJ8xLKIa86VlvM7a7yq4MY/x+HdZg5/gBknDzoiLEeaVOmDo2g/D
-   Jip3u3dkfe4P7qVA1KplNPcw8MwNQ+LoYoJkT7kdi8v9gXWrmQt7hNVfZ
-   bq/shjmWgYBe+51syxzSWDkZB5QgU8sVJGhwazp5vgPb8v6uFUZWb30i6
-   Fyqh7PACKM5KG1dDDVO8BfQfD/RzS9hKANDH4x9qV6Vt/d0u+Y8sUiUOk
-   w==;
-X-CSE-ConnectionGUID: Ku0crXDMRAu8c8PXxv8Idg==
-X-CSE-MsgGUID: UL13JzeWQiaGJOJHM4tI0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="46821430"
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
-   d="scan'208";a="46821430"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 03:06:44 -0700
-X-CSE-ConnectionGUID: M87gWBuhQQW769P5s2kxjA==
-X-CSE-MsgGUID: 8NT3xrSgTm60P/0pBA820Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
-   d="scan'208";a="169788122"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa001.jf.intel.com with ESMTP; 24 Apr 2025 03:06:40 -0700
-Date: Thu, 24 Apr 2025 18:02:05 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Sam Winchenbach <sam.winchenbach@framepointer.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
-	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-	trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, michal.simek@amd.com,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Sam Winchenbach <swinchenbach@arka.org>
-Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
-Message-ID: <aAoMHV4cPrMWPHNk@yilunxu-OptiPlex-7050>
-References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
- <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
- <p4bujnmgkcvsu4qipmgh2j2loedepmwgp7zlaxrurhaveb6tbc@ibqtbjnbzdzj>
- <14b12882-119d-4c24-9634-e4cc37a39212@kernel.org>
- <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
+	s=arc-20240116; t=1745489273; c=relaxed/simple;
+	bh=qceSy5hmLa/hFRUfKhQk/prU9fcYlktOzA420wPj8Uc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GC4cdY2osEqzCi3KqldD/AE2eA7eEXkFzWSmnnk7d7pPM/JWHUNUEKWF00eTepIiGfLjKorQ2iJkU6xOzKbzpJHYdVYDq5JNhh0kEKvXIyu56cj/FiMgFP4Z+HpOQ/BVAa0aLxk86akVEVRBWd+aNMBJLcp3dmz0LmlkcTY3sCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BcKhbaev; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ace33c0a26fso17017366b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:07:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745489270; x=1746094070; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zi5+9wwSGNxwIY+5Uc5lT+h4faQt9l/26HLQUV9AlUM=;
+        b=BcKhbaev5FtRcf9ugsn9VnujpHRqLooBOHdhgrOor2yPfzjSYGuTtX62A8qa/3jaF+
+         9Idc+HtYZXLDDposmv5kaXD39a0dRWIBItuj8YJo8spADB9Eqi3QFcsdg8KLcuAPqRnr
+         Jfq1xxNf+SHf/QL4tgMcQDyV6yBovRuY8X5DP1z9rpkwauto4FX+OaicJtszYTmxM8ep
+         x00tfsfDGu6HzUTyjUBpO7N1UYRE9/TLEzDcaAWxEW8UvlILc9Az0t18zrjBX8AYJMZp
+         PYxTagHp8hVMk+bRa4p1hUP1Oh8yHnsKMThtxPYRvqfDS/DZw0oXXlklLx22Z8fbCV6T
+         kevA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745489270; x=1746094070;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zi5+9wwSGNxwIY+5Uc5lT+h4faQt9l/26HLQUV9AlUM=;
+        b=cSmhcmE/61JWDoH34F3mkIqH6aPQ7adkfCxA8wRshIvN08W/JOQCAnP+IkXcjVvipI
+         qO3MIQLy6MIrTQLRE3WYXoXzLBX+wVnRZE4Zn3qpao0s9aqjzCbiZdOmDPA2xQKkao2F
+         cuZYIyn3hat198rMxYIBsQs3R3/rvCBFxPyCmXWVw0jU/ok/Xq9PweGoKjJfK/LosVmM
+         h+f/7zMn/xPdZ8oZnwx6ntNdc30Q7iWMFEGVDTwC2UIaphyfmsjTrW4XDV3H4YWv0h9u
+         VW3A1fDOqLB0jK5g9t2DJfuTiRydJKmy+0vKOBrjS9ziK8D/Bp9KAgVGbZN4HQue2keK
+         svXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWccAdyvwV4c9mM/UsTmbOqrSgO9U/5TQZa0zwvv2Njfp0SSGVzOsjRNmiUYmSR2k5vMzQYRTNxA3+Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0a4rF1UxUnyZ06+2LpUNHDXOPyVMr2UDbIITdKQdLnygILAtS
+	aXOPofba5t0NY8HqRothWyDCvsskvfDvf0pNb/p/weou6p7j3N/u4NP+jfZFw6I=
+X-Gm-Gg: ASbGncti7/yXgRcSVKLi/r0qPTfee5UYolqo4rzRgCOffzRU8yQVjeUG1/0ZRjDrgBv
+	HNgNs8DzwknmgwLSjDHGvU9MG2lG1J+XZPI4K9XFRmQm+ofW4rFKZU1Zu9Y0NkaSAhAsMlhN5Di
+	iiGWTn4FxkNY7YJ+xM+KNgPa6eeXhYiBIznwY9ZcUzwDQlHvCPY/CHWsJ5WPnaf0ABl6zfMrku0
+	TugiWbMtJWg5GVn8fNWqdLI2YowZEkXupkInDCKO+BjdZJhlEjtkGgx+2cb+GgV4LZrz/BDsHOI
+	1SKdwfu4+0+cvgLTmS7u14zOFS9MP5kzQbqUCeJBcCt5uu+HDpplOR8AkzMqxx6/9rBUbg==
+X-Google-Smtp-Source: AGHT+IEP7t1FvQx4F+O6KQ/WXWxyD6s+fSt4oVkVTE6GiGr0seR86AplpqbJ3BP0je5FP4UsutB6bw==
+X-Received: by 2002:a17:906:c110:b0:ac7:3911:250f with SMTP id a640c23a62f3a-ace57537e8dmr63626366b.14.1745489270099;
+        Thu, 24 Apr 2025 03:07:50 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace59bbe0efsm82887266b.115.2025.04.24.03.07.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Apr 2025 03:07:49 -0700 (PDT)
+Message-ID: <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
+Date: Thu, 24 Apr 2025 12:07:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] dt-bindings: media: Add qcom,x1e80100-camss
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org>
+ <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-2-edcb2cfc3122@linaro.org>
+ <3ec3fd62-bf21-47e7-873c-ce151589d743@linaro.org>
+ <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 31, 2025 at 09:07:03AM -0400, Sam Winchenbach wrote:
-> On Mon, Mar 31, 2025 at 02:43:59PM +0200, Krzysztof Kozlowski wrote:
-> > On 31/03/2025 14:30, Sam Winchenbach wrote:
-> > >>
-> > >>> +    type: boolean
-> > >>> +    description: If present, the ICAP controller will be enabled when
-> > >>> +      the driver probes. This is useful if the fabric is loaded
-> > >>> +      during the boot process and contains a core, such as the SEM,
-> > >>
-> > >> I don't get how this is suitable for DT. If you decide to load the
-> > >> fabric from driver, that's driver decision so not DT.
-> > > 
-> > > Before writing the fabric to the FPGA the driver disables the ICAP, enabling
-> > > the PCAP. Once writing is complete it unconditionally disables the PCAP,
-> > > enabling the ICAP. This patch just makes it so, depending on the use case,
-> > > the ICAP can be enabled at boot. This will not prevent the system from being
-> > > able to load a fabric through the driver. I added in this boolean so existing
-> > > behavior would be maintained.
-> > > 
-> > > Do you recommend another approach such as writing to a sysfs attribute to
-> > > switch from PCAP to ICAP?
-> > Not sure yet. Can't you check the status of ICAP before programming and
-> > then enable it only if was enabled before?
+On 24/04/2025 11:34, Bryan O'Donoghue wrote:
+> On 24/04/2025 07:40, Krzysztof Kozlowski wrote:
+>>> +  vdd-csiphy-0p8-supply:
+>> Same comment as other series on the lists - this is wrong name. There
+>> are no pins named like this and all existing bindings use different name.
 > 
-> I am having a bit of difficulty understanding this so let's talk about cases
-> where the ICAP is enabled/disabled -
+> The existing bindings are unfortunately not granular enough.
 > 
-> 1. When writing the fabric from the driver
->    In this situation it might make sense to read the state of the ICAP
->    interface when preparing the fabric, before enabling PCAP. When the write
->    completes you could re-enable the ICAP if it was previously enabled.
-> 
->    This might be outside the scope of this change - and I am not comfortable
->    enough with this use-case to understand potential side effects from doing
->    this. Logically it makes sense, but there may be a very specific reason that
->    the ICAP must be enabled after doing a fabric load or partial
->    reconfiguration.
-> 
-> 2. When the FPGA driver loads and is probed by the DTS
->    In this situation, which is covered by this patch, the FPGA is loaded by
->    BootROM/FSBL but contains functionality that requires the ICAP. Unless the
->    user has made modifications to the FSBL or 3rd stage bootloader there is no
->    clear way to enable the ICAP interface. Checking to see if it had been
+> I'll post s series to capture pin-names per the SoC pinout shortly.
+How are the pins/supplies actually called?
 
-I don't think this should be a property for fpga_mgr device. It is for
-FPGA reprogramming. You insmod the reprograming driver not for
-reprogramming, just to enable the already programmed functionality.
-
-My idea is, to load the fpga_region with an image tagged "external-fpga-config".
-
-Thanks,
-Yilun
-
->    enabled prior to loading this driver does not (in my opinion) make a lot of
->    sense here.
-> 
->    Perhaps the name of the DTS is confusing? The suffix '-on-load' was meant to
->    indicate when the driver was loaded, not the fabric. Would the suffix
->    '-on-probe' be more clear?
-> 
-> Let me know your thoughts,
-> -Sam
-> 
-> >
-> > Best regards,
-> > Krzysztof
-> 
+Best regards,
+Krzysztof
 
