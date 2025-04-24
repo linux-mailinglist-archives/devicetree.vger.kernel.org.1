@@ -1,160 +1,260 @@
-Return-Path: <devicetree+bounces-170147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24BCA9A024
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:34:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13859A9A033
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F09A3444938
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:34:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D29445DA1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13991B0F31;
-	Thu, 24 Apr 2025 04:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADA31C84A6;
+	Thu, 24 Apr 2025 04:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z33X49QZ"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ZjA4nAE5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C710F19CC3D
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 04:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E092C1BD9C8
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 04:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745469247; cv=none; b=Sel+ZUkxar6W9Cal5JGT//JJxakHUDMRphYA3+qQvdJhHGNaUqNGVLxPHhs94UNWZcO/52Hs2tKjr3AzqvKiZjAJiTscwMqa2OWP6mSH9wDZEMhJJsddoslEqzdqmQPTmbvb+7HfGnMhahTkM/aOEu7nTW/LsZiAu8xbXizzFig=
+	t=1745469857; cv=none; b=LKsIn9uPu5GbgMwmiQ1CynLqyEOrzixZJIsezxLiq95NHNv8S/aEP2RNlFLv1mM+aZRuEdxL8+gZSGDMUqwevDvmh3z7628antI6yC1sS+h2wlrcCUyjid+BAI0ev3c138HTJD9azcH8jgi7BK9h1VRlJd1F00IOPgIwMVaol7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745469247; c=relaxed/simple;
-	bh=C0PlQK2HOpqUXRPCKZWUIzYG1XjGcKgjR52D1f/cLUY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KjHIbOQCXyVedhClsK9fXPzR9KIWuLKyljWuZXLzRffV01wajEVFCUsdZSKUAXJ66aNs3h9Cn6JFwLMJ++vBTfKjYLvcT3G87DgN0WQ20OInT0zcQyX7OJfvtoIaoKPxZJzIXCJXgDB5rN7eazluAkRhvQX1sIF27eA8vXv5PgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z33X49QZ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53O4Xod72389288
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 23 Apr 2025 23:33:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745469230;
-	bh=fDGV/0Aoa/c/919LyIxFIHRXx2XoGKZSGTYaEmgasUc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Z33X49QZqCjyizqqcd44hJhM86fvGd//P+OeewiO3DcSYVLjXk6+tPB2fMlstHjZh
-	 f3276PZhXfAUG5iTze/MKIzJUI/rcd3yRb2M4tc6F30y8TmrgyEXfdtGATV8TDomNN
-	 wKOpvzWgHT9/EJ6wZ8RZWdO6o/cSI4s03k5yVzns=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53O4XoMF113833
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 23 Apr 2025 23:33:50 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
- Apr 2025 23:33:50 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 23 Apr 2025 23:33:50 -0500
-Received: from [172.24.22.140] (lt5cd2489kgj.dhcp.ti.com [172.24.22.140])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53O4XkeA029382;
-	Wed, 23 Apr 2025 23:33:47 -0500
-Message-ID: <82bc69c3-f540-4b0c-abad-678c7730b188@ti.com>
-Date: Thu, 24 Apr 2025 10:03:45 +0530
+	s=arc-20240116; t=1745469857; c=relaxed/simple;
+	bh=scumeHQ1EWeXtDCiWxXsvS1GGnP6lxnjhn7+ttz3yqE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hImJ9thTI2uB/1ptqm5treYT4tE0pBKo1D5SiUGQb2QLRIvKpLL0x7WjUixEXt1BmYpvXK5ahMOBNO2ANAK64c9S2i0NvU25wxt3G/kEQNGoMmlaMCtTzJ3Yd+LBKIzWZQQLpTL4ZBfRl9aNnvyyrbrZ8P/n7c2vB6schttWaKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=ZjA4nAE5; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-736e52948ebso607741b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 21:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745469854; x=1746074654; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=d8Qiq1brGqi76YM1jZPx/K29TOoSYoqtc1NwyaTJxB8=;
+        b=ZjA4nAE5C43SKeMg2lonMk0udTssP7uWcQGLa0ByW/qtijdIvBtCJFJykP47pThHrl
+         uhmqJuWDfESGeJPodQLWjKUthkZOQQrTNvFswyRpSC+FNa2D8pbwV0i+vj1Sr3wkBFuE
+         tmgnibOExIPfmGIgP/GatTadLh+QQUvKpZ8JMfhHOi6ub8spvTqyUB36pZAq2SD1lFrS
+         a6MidcIQmCSwxDs+xz2fQ9mXiKkysadTbj1iycRBhjX+W56deBL3vIW4LM7EnWxb54RR
+         pWXRq9oudnEw4nKJCH0Gh5JgtcRaapN2llz645Waw8/wZhztoYZ2M0bXJ9vU7uMO/MfJ
+         6ZmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745469854; x=1746074654;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d8Qiq1brGqi76YM1jZPx/K29TOoSYoqtc1NwyaTJxB8=;
+        b=P7EmYwZzTKHI2YmZFaH7BJb1qtgJIZY918wjwNbaS1u4jwgyEjnggO7Ng0333Kxa9Q
+         AarSqkW6iaCdXPipYBxlsYDJFXb1LewKBRtl0yNpjry79knD+T3DveFbGUbEl5lCJk7P
+         QkfSpbE6OTWuVNcEOsRMEfJpiuhMD2Ua6+w3y0rpZmsj+DLYSLmfiQw+ulUeTo5j2AjR
+         QqslkKb7GqHF7G461gugI0FOEAK2yd5f7xcIJPhqipXOylQL1/0zPHM9r/P1+aRHUk0W
+         iGgdaCkMHptJVTEiO9KjrXrYYh3vX008bvR7k8y55urfV2OEoWekekir6mMGlMjVOKEE
+         +nBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsSo5q5CFhm1L6GhnUV3j6iA6Z0RHKWerakOxA2W95iC4HLCYPCu10gBIjRmzAKw1FpulQf0kcBi8i@vger.kernel.org
+X-Gm-Message-State: AOJu0YylvjYn2JN7eq5jKXqAZFshYOU0D1S/nJOUrmEd/bVp5wVk82n1
+	D/DKTRfeokpa2YqnEClTCDIXhUdjAJOqQPR1RNdcXwAup4DfGuoPabYYVrFnrvY=
+X-Gm-Gg: ASbGncu3Jwrw0/9KElH1FLwZqXeefdg3FIHJYqx8ONDrCaNqlS28ANv7Nv7ZAJYVJg0
+	g7V9ymGwBfWtJb0HJEpeIC+czHHP2AMyCseZ+sLV5rs0+ng+d4EVVdYWXYtFFdjA45PTQ9g7Ig6
+	rYPO2xWiHRIWhv2bYyS2J/esXc3yrtYxePTqyC/KNOA3ZDHd5iRKB88Dum5n+vpHUs4swpro5ZJ
+	Zw6l779MEuRy8iUIxf6UKae3PIC9M0Yaf18OpdsKxQp6dvzYX0CVOj0PTJPqYl2NcvX0k6mUVVU
+	bkJqeLsYi8WDgC0J86cx4ek5HqY4cMlTKawBXCIjHg8AjYuRGBw=
+X-Google-Smtp-Source: AGHT+IEitFVHRTgSCgRhWMe9hU5oQbZR2x7Kpm268qxNcn6QnDdeucUqxqlmgTha+1K/W91b8N7XWQ==
+X-Received: by 2002:a05:6a00:2182:b0:736:73ad:365b with SMTP id d2e1a72fcca58-73e246647e4mr1767338b3a.14.1745469854052;
+        Wed, 23 Apr 2025 21:44:14 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25a6aa52sm463483b3a.94.2025.04.23.21.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 21:44:13 -0700 (PDT)
+Date: Wed, 23 Apr 2025 21:44:09 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack
+ prctls
+Message-ID: <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
+ <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: ti: Add basic support for
- phyBOARD-Izar-AM68x
-To: Dominik Haller <d.haller@phytec.de>, <robh@kernel.org>,
-        <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <m-chawdhry@ti.com>,
-        <w.egorov@phytec.de>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <upstream@lists.phytec.de>
-References: <20250423133635.29897-1-d.haller@phytec.de>
- <20250423133635.29897-2-d.haller@phytec.de>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250423133635.29897-2-d.haller@phytec.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
 
-Thanks for update Dominik
+On Thu, Apr 10, 2025 at 11:45:58AM +0200, Radim Krčmář wrote:
+>2025-03-14T14:39:31-07:00, Deepak Gupta <debug@rivosinc.com>:
+>> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
+>> @@ -14,7 +15,8 @@ struct kernel_clone_args;
+>>  struct cfi_status {
+>>  	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
+>> -	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
+>> +	unsigned long ubcfi_locked : 1;
+>> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
+>
+>The rsvd field shouldn't be necessary as the container for the bitfield
+>is 'unsigned long' sized.
+>
+>Why don't we use bools here, though?
+>It might produce a better binary and we're not hurting for struct size.
 
-On 4/23/2025 7:06 PM, Dominik Haller wrote:
-> The phyCORE-AM68x/TDA4x [1] is a SoM (System on Module) featuring TI's
-> AM68x/TDA4x SoC. It can be used in combination with different carrier
-> boards. This module can come with different sizes and models for DDR,
-> eMMC, SPI NOR Flash and various SoCs from the AM68x/TDA4x (J721S2) family.
->
-> A reference carrier board design, called phyBOARD-Izar is used for the
-> phyCORE-AM68x/TDA4x development kit [2].
->
-> Supported features:
-> * Debug UART
-> * 2x SPI NOR Flash
-> * eMMC
-> * 2x Ethernet
-> * Micro SD card
-> * I2C EEPROM
-> * I2C RTC
-> * 2x I2C GPIO Expander
-> * LEDs
-> * USB 5 Gbit/s
-> * PCIe
->
-> For more details see the product pages for the SoM and the
-> development kit:
->
-> [1] https://www.phytec.eu/en/produkte/system-on-modules/phycore-am68x-tda4x/
-> [2] https://www.phytec.eu/en/produkte/development-kits/phyboard-izar/
->
-> Signed-off-by: Dominik Haller <d.haller@phytec.de>
-> Acked-by: Moteen Shah <m-shah@ti.com>
-> Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
->
-> Notes:
->      Bootlog:
->      https://gist.github.com/dominiknh90/644e753c752b232117e12092e3691124
->      
->      Link to v3:
->      https://lore.kernel.org/linux-arm-kernel/20250417125921.100580-1-d.haller@phytec.de/
->      
->      Link to v2:
->      https://lore.kernel.org/linux-arm-kernel/20250415130458.33714-1-d.haller@phytec.de/
->      
->      Link to v1:
->      https://lore.kernel.org/linux-arm-kernel/20250411101004.13276-1-d.haller@phytec.de/
->      
->      Changes in v4:
->      - set wkup_uart0 to reserved and dropped flow control pins
->      - dropped disable-wp from eMMC node
->      - added bootph tags to pmic regulators for ESM support
->      - picked up Reviewed-by: Wadim Egorov
->      
->      Changes in v3:
->      - added phytec,am68-phycore-som compatible
->      - picked up Acked-by: Moteen Shah
->      
->      Changes in v2:
->      - aliases reordered
->      - stdout-path set to &main_uart8
->      - fixed coding style in serdes0 node
->      - dropped whitespaces in commit message
+If you remember one of the previous patch discussion, this goes into
+`thread_info` Don't want to bloat it. Even if we end shoving into task_struct,
+don't want to bloat that either. I can just convert it into bitmask if
+bitfields are an eyesore here.
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+>
+>> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
+>> @@ -24,6 +24,16 @@ bool is_shstk_enabled(struct task_struct *task)
+>> +bool is_shstk_allocated(struct task_struct *task)
+>> +{
+>> +	return task->thread_info.user_cfi_state.shdw_stk_base ? true : false;
+>
+>I think that the following is clearer:
+>
+>  return task->thread_info.user_cfi_state.shdw_stk_base
+>
+>(Similar for all other implicit conversion ternaries.)
 
+Hmm... noted.
 
->   arch/arm64/boot/dts/ti/Makefile               |   1 +
->   .../boot/dts/ti/k3-am68-phyboard-izar.dts     | 575 +++++++++++++++++
->   .../boot/dts/ti/k3-am68-phycore-som.dtsi      | 601 ++++++++++++++++++
->   3 files changed, 1177 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
-> [..]
+>
+>> @@ -42,6 +52,26 @@ void set_active_shstk(struct task_struct *task, unsigned long shstk_addr)
+>> +void set_shstk_status(struct task_struct *task, bool enable)
+>> +{
+>> +	if (!cpu_supports_shadow_stack())
+>> +		return;
+>> +
+>> +	task->thread_info.user_cfi_state.ubcfi_en = enable ? 1 : 0;
+>> +
+>> +	if (enable)
+>> +		task->thread.envcfg |= ENVCFG_SSE;
+>> +	else
+>> +		task->thread.envcfg &= ~ENVCFG_SSE;
+>> +
+>> +	csr_write(CSR_ENVCFG, task->thread.envcfg);
+>
+>There is a new helper we could reuse for this:
+>
+>  envcfg_update_bits(task, ENVCFG_SSE, enable ? ENVCFG_SSE : 0);
+
+Yeah it's in switch_to.h header. I'll think about it.
+
+>
+>> +}
+>> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
+>> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long status)
+>> +{
+>> +	/* Request is to enable shadow stack and shadow stack is not enabled already */
+>> +	if (enable_shstk && !is_shstk_enabled(t)) {
+>> +		/* shadow stack was allocated and enable request again
+>> +		 * no need to support such usecase and return EINVAL.
+>> +		 */
+>> +		if (is_shstk_allocated(t))
+>> +			return -EINVAL;
+>> +
+>> +		size = calc_shstk_size(0);
+>> +		addr = allocate_shadow_stack(0, size, 0, false);
+>
+>Why don't we use the userspace-allocated stack?
+>
+>I'm completely missing the design idea here...  Userspace has absolute
+>over the shadow stack pointer CSR, so we don't need to do much in Linux:
+>
+>1. interface to set up page tables with -W- PTE and
+>2. interface to control senvcfg.SSE.
+>
+>Userspace can do the rest.
+
+Design is like following:
+
+When a user task wants to enable shadow stack for itself, it has to issue
+a syscall to kernel (like this prctl). Now it can be done independently by
+user task by first issuing `map_shadow_stack`, then asking kernel to light
+up envcfg bit and eventually when return to usermode happens, it can write
+to CSR. It is no different from doing all of the above together in single
+`prctl` call. They are equivalent in that nature.
+
+Background is that x86 followed this because x86 had workloads/binaries/
+functions with (deep)recursive functions and thus by default were forced
+to always allocate shadow stack to be of the same size as data stack. To
+reduce burden on userspace for determining and then allocating same size
+(size of data stack) shadow stack, prctl would do the job of calculating
+default shadow stack size (and reduce programming error in usermode). arm64
+followed the suite. I don't want to find out what's the compatiblity issues
+we will see and thus just following the suite (given that both approaches
+are equivalent). Take a look at static `calc_shstk_size(unsigned long size)`.
+
+Coming back to your question of why not allowing userspace to manage its
+own shadow stack. Answer is that it can manage its own shadow stack. If it
+does, it just have to be aware of size its allocating for shadow stack.
+
+There is already a patch series going on to manage this using clone3.
+https://lore.kernel.org/all/20250408-clone3-shadow-stack-v15-4-3fa245c6e3be@kernel.org/
+
+I fully expect green thread implementations in rust/go or swapcontext
+based thread management doing this on their own.
+
+Current design is to ensure existing apps dont have to change a lot in
+userspace and by default kernel gives compatibility. Anyone else wanting
+to optimize the usage of shadow stack can do so with current design.
+
+- 
+>
+>> +int arch_lock_shadow_stack_status(struct task_struct *task,
+>> +				  unsigned long arg)
+>> +{
+>> +	/* If shtstk not supported or not enabled on task, nothing to lock here */
+>> +	if (!cpu_supports_shadow_stack() ||
+>> +	    !is_shstk_enabled(task) || arg != 0)
+>> +		return -EINVAL;
+>
+>The task might want to prevent shadow stack from being enabled?
+
+But Why would it want to do that? Task can simply not issue the prctl. There
+are glibc tunables as well using which it can be disabled.
+
+>
+>Thanks.
 
