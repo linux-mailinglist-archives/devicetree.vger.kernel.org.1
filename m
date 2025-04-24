@@ -1,114 +1,114 @@
-Return-Path: <devicetree+bounces-170437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1006AA9ACE4
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:09:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637BCA9AD09
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:16:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 957607B26F7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:08:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF7573BCE1E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A2A22B5B8;
-	Thu, 24 Apr 2025 12:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EAC122F742;
+	Thu, 24 Apr 2025 12:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="bQLeMiOT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iH/RIdmp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229D6214226;
-	Thu, 24 Apr 2025 12:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.38.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0900321FF4A;
+	Thu, 24 Apr 2025 12:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745496570; cv=none; b=MeN9LJg0J0hHjsNB/59qZW89duB1oEZj9PuEugZQZFy/ZgN24hyABtlqLq4ZAxyVAKIu96okbzj7dTe56WyZY8dVO/djfvgnh0jp5gPIy5En+f2bfvEJdxB+H3IzIKFpQuS3nn55sVGYfPNj24Tn45vqxv+1IBI5NokqMzj6eeE=
+	t=1745496996; cv=none; b=SWF1xQNurqBIN1tE5hwXc8dVbLUkJpV6woBohOiUBCqSWcb///HSs728pfk2hI2lTnoh3hib+X8YN/2J7w2doeG79xK5VrkRXnjNRiO4+cZxARFlxfVMEWC3LM/8+JtHkfB6AQU5JH9NGUKcqVXsIgAMgQg6tC7+IcB8f3tl3mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745496570; c=relaxed/simple;
-	bh=mhvQAy4PwAusFJNPxPQDFwPrFvhTyyBHabTJwdC0aUU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jamtRNGm9V6aISTpMH+Fu6ajn9nb5EZNLy53STVn/To+rq2a4bgGUgk0YfOykXmhjqnL+jGoy53XPUNXTRSYS8g40VlS9oT+4x5EyYEIlWmNFSl7jlXoEv2br1jeKK4b5t+0LwKoJWbHfucaRo8RDAh5nBpICGlvRKHg8GHNyEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net; spf=pass smtp.mailfrom=sipsolutions.net; dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b=bQLeMiOT; arc=none smtp.client-ip=168.119.38.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sipsolutions.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=mhvQAy4PwAusFJNPxPQDFwPrFvhTyyBHabTJwdC0aUU=;
-	t=1745496569; x=1746706169; b=bQLeMiOTL/CLn6kVXjUmypjR6zOeND/9JQJU+Mrlbe30Tei
-	hlO6P2tM5Em2SBXGNkFROFXie/L1SSd9hyzF2LiJ8aA0DtIf1MQ/ul5ja05UAOUiCWcG3+MMr/U2I
-	cW1gEs+swyKT2uK1uXIYYvI3aODHrARtUL1u/4XJtO1aFuKdwaDtT9v69g5ADIoh4ADgkAeVviBNP
-	2V1iv4PJexVTwRsP8bTzJr+SgONslwJpcyByKqsKQ4CSYHmXlW5Ugdoh8zy2FqDHcsXLQ8b/ksIto
-	dn6wcfkn9OZXluWbEgcQcCpmWTXLJB3sDCfkSRQSe0JjNaLpTSfiWQX+I102x67Q==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98.1)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1u7vOJ-0000000H4Oc-2vQj;
-	Thu, 24 Apr 2025 14:09:20 +0200
-Message-ID: <4b040936baa8fa8669b34e36fe9dff6e08aeede9.camel@sipsolutions.net>
-Subject: Re: [PATCH v5 3/5] dt-bindings: wireless: bcm4329-fmac: Use
- wireless-controller.yaml schema
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Krzysztof Kozlowski <krzk@kernel.org>, david@ixit.cz, Andrew Lunn	
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet	 <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni	 <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Mailing List	 <devicetree-spec-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>,
- Lorenzo Bianconi	 <lorenzo@kernel.org>, van Spriel <arend@broadcom.com>, 
- =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller	 <jerome.pouiller@silabs.com>, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Andy Gross <agross@kernel.org>, Mailing List	
- <devicetree-spec@vger.kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Janne Grunau <j@jannau.net>
-Date: Thu, 24 Apr 2025 14:09:18 +0200
-In-Reply-To: <57701e2e-0005-4a8a-a3f5-ba098c97b480@kernel.org>
-References: <20250324-dt-bindings-network-class-v5-0-f5c3fe00e8f0@ixit.cz>
-	 <20250324-dt-bindings-network-class-v5-3-f5c3fe00e8f0@ixit.cz>
-	 <d8619ab4-3a91-467f-a3d4-f23b4e0383a4@kernel.org>
-	 <57701e2e-0005-4a8a-a3f5-ba098c97b480@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	s=arc-20240116; t=1745496996; c=relaxed/simple;
+	bh=EXCQGkJVb3ikUhe5Z7xJEbZwlIarJMazIfPkb5WCNJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o2M+ns2KMJdwdLe2GkPqnZ417mQ16Lbs3LyYFozgNTeWyM/lKblhEt48XaaoHHkvQEKRoIkD48ZWW3t422HX2FPPD2UGmMrB8ZTvLIXP9AI9BhDNsOwDyq3ICSZrMa1uBhCIB+Pk7a4zauTSDxWOR2cMmJzrUses1iwzwfFpStA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iH/RIdmp; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eToxWlS7Uu55X/OpbjIrz7rNLwhtOBmHvxKOjjoFdUg=; b=iH/RIdmpljQM3Gx8gJpTMuc59Y
+	Mi9NE9Ux9q+RktIIpPcpvjjGCjVnCwSJPQjedapo+PS5uc7gZzTP+/XGBMjXwBKU5uiG7JsCNCTm6
+	EmqaA7qw2nVPkhsCgKn7c8cwSL+pcuT5yP8IzIoO6xVc8OXsmYCzMKOetEbkIokhNkWE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u7vV2-00ASTy-RL; Thu, 24 Apr 2025 14:16:16 +0200
+Date: Thu, 24 Apr 2025 14:16:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <835b58a3-82a0-489e-a80f-dcbdb70f6f8d@lunn.ch>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+ <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
+ <aa38baed-f528-4650-9e06-e7a76c25ec89@lunn.ch>
+ <20250424014120.0d66bd85@minigeek.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424014120.0d66bd85@minigeek.lan>
 
-On Thu, 2025-04-24 at 10:28 +0200, Krzysztof Kozlowski wrote:
-> On 24/04/2025 10:20, Krzysztof Kozlowski wrote:
-> > On 24/03/2025 18:41, David Heidelberg via B4 Relay wrote:
-> > > From: Janne Grunau <j@jannau.net>
-> > >=20
-> > > The wireless-controller schema specifies local-mac-address as
-> > > used in the bcm4329-fmac device nodes of Apple silicon devices
-> > > (arch/arm64/boot/dts/apple).
-> > >=20
-> > > Fixes `make dtbs_check` for those devices.
-> > >=20
-> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > Signed-off-by: Janne Grunau <j@jannau.net>
-> > > Signed-off-by: David Heidelberg <david@ixit.cz>
-> >=20
-> > This introduced several new dtbs_check warnings. Including on platforms
-> > which were warnings free. It is nice to fix these warnings when you mak=
-e
-> > such changes.
+On Thu, Apr 24, 2025 at 01:42:41AM +0100, Andre Przywara wrote:
+> On Wed, 23 Apr 2025 18:58:37 +0200
+> Andrew Lunn <andrew@lunn.ch> wrote:
+> 
+> Hi,
+> 
+> > > +&emac0 {
+> > > +	phy-mode = "rgmii";  
+> > 
+> > Does the PCB have extra long clock lines in order to provide the
+> > needed 2ns delay? I guess not, so this should be rgmii-id.
+> 
+> That's a good point, and it probably true.
+> 
+> > 
+> > > +	phy-handle = <&ext_rgmii_phy>;
+> > > +
+> > > +	allwinner,tx-delay-ps = <300>;
+> > > +	allwinner,rx-delay-ps = <400>;  
+> > 
+> > These are rather low delays, since the standard requires 2ns. Anyway,
+> > once you change phy-mode, you probably don't need these.
+> 
+> Those go on top of the main 2ns delay
 
-Heh, especially since it said it should _fix_ things there.
+Which 2ns delay? "rgmii" means don't add 2ns delay, the PCB is doing
+it. So if there is a 2ns delay, something is broken by not respecting
+"rgmii".
 
-> I will send the patches for them, except for Apple SoCs.
+> I just tried, it also works with some variations of those values, but
+> setting tx-delay to 0 stops communication.
 
-Thanks, I guess I'll hold the pull request for that. And I guess the
-Apple ones are on David then.
+Just to be clear, you tried it with "rgmii-id" and the same <300> and
+<400> values?
 
-Knew it was a mistake for me to ever do anything with DT stuff ;-)
-
-johannes
+	Andrew
 
