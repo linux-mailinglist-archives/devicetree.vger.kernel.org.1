@@ -1,67 +1,58 @@
-Return-Path: <devicetree+bounces-170502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA208A9B20A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:22:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5FDA9B231
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDCCC9A16D6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:22:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BF811899C4D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BB11C700B;
-	Thu, 24 Apr 2025 15:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4053A1DC9AF;
+	Thu, 24 Apr 2025 15:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vA6WggJ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IoerhUH1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CA61B4248;
-	Thu, 24 Apr 2025 15:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE7C1D7E4A;
+	Thu, 24 Apr 2025 15:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745508137; cv=none; b=rNdCpW3cXgcR6FyG+yxHT4Yl77C/SOxhRperkcBr5ZCUgipKoTb9qoqH7JaBM4zz0ZnvmMYfJM+/Cqb1vFMAKybDHiAqmHaWilj2yE4JeKK4tSuKk6ulM8oVi0qwmZQvGzagswsTGr6SqsSecYCOr31wfyiWKctbgz/E1edByJA=
+	t=1745508475; cv=none; b=NBgRYUfUoTFsTFLK+wREQWG9BN/zffUx+DstXZRYvSyZkScgYJqoBjP1/ZxJzMdSwYSmISwEENuLlreqXv1rkuD8rVBS35h5DhZLPuS7lFXytCLk/2jbDPWTf9qTKveeTp4iL2jQK5UzQFsMCtNsGO3YR84T4+6TMSTw+zyVDN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745508137; c=relaxed/simple;
-	bh=65dnaZeGGnRWk84fmSR5N0SHVqJzZHHb308Lo+CMzec=;
+	s=arc-20240116; t=1745508475; c=relaxed/simple;
+	bh=u/QtdMUzBzBtMDX1S0v4wSSMPI+jL4o/EmMuWHiQGew=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A5HvfP6qNSfWqLbJ16Qm+Nb8T2J4cG43Dyml4S7B+EnUj+kM0UnVyPtAH0DQVwEQtCrA4BeOh92IEg6CBs96hXyFfXfbHiqCiQtomLkAWLKCFjtJdJ4DedmUH9L84TCp28Tq4AwImrfsgf96ptE0fAvqrX9EO1gqcqZGnp7ej+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vA6WggJ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5041C4CEE3;
-	Thu, 24 Apr 2025 15:22:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bHqLHKuJKC1iq7XCVk03Jy2I6zfHiuHnIShRkhEMBdgPiWLULec0EJ3EKm4lUxE1aaQM5UJAoSgiZ1NM11VErCualVECqqx0+sLZzfI3IcGoWWHguEjLmS0PHLhpHI99faVWB5nrbBqWr0C+TE3NSvO8ZzQSCL+XGzIa+ObM6+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IoerhUH1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA4E6C4CEE3;
+	Thu, 24 Apr 2025 15:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745508136;
-	bh=65dnaZeGGnRWk84fmSR5N0SHVqJzZHHb308Lo+CMzec=;
+	s=k20201202; t=1745508474;
+	bh=u/QtdMUzBzBtMDX1S0v4wSSMPI+jL4o/EmMuWHiQGew=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vA6WggJ/29pIOanuEdqC3Tx3NwpN+tlh+hCbV93ygPzarnMY6RZ6W/bG5XDWlbLit
-	 0ccsCzpelrv5fcKG0LCi/zE/2pbnQjFN7OihYKasLLcWy9xsECFm+h75KbMoWgnmOg
-	 FS8N+M223qtqmJHQ07UeP2RIbUDInyDqWddqVO7jgQx9x+r5Zl4TrB4PxcnKT5rr+r
-	 qDEzkJ0i8K4jt09G/wC+NDq+s57Ym14Eo/o+eeMYunrrqEGsYaJDzkiWY11B5LRKCu
-	 7GOn9aQOz/JrJCuBQ8JlNMTqZdiKexiXl4t4TQnQZIySidk0FF4BvdQRPJ8axON7+g
-	 un5Fe0dXxxOTg==
-Date: Thu, 24 Apr 2025 16:22:10 +0100
+	b=IoerhUH1fRxW5aABJs8abtvAg/u8a0qria0HkXkB8rUzGG38+W3mOpesD9vLeaGF8
+	 klyOb1at3fSI2jwXvK8nA+iF6OMVmeZ7AyhPTjshM0dEkj0BYc887GThrQpEIQSAyJ
+	 saU/QUY0JJTiwxhJeBpEicQKQ4tJHZM5OPk679dh6uJjDMRLIs5n+NlX5UrbKBZwKm
+	 PNZpiCTCJG15ZW7isPDuc2/d3qvKPGZ+XrKiXmRpsO7QvZe6p96zLRhfiDLASrlxr5
+	 swdvLB5k+t4cWNb0vCwCsOPzxZ1L4DnYMTpnPEgdTmbeCAzxEYle7+SC+QstLKX1O2
+	 /SleApDzN6HQA==
+Date: Thu, 24 Apr 2025 16:27:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@riscstar.com>,
-	Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 1/3] riscv: defconfig: spacemit: enable gpio support
- for K1 SoC
-Message-ID: <20250424-untried-refueling-50c5902d63c9@spud>
-References: <20250424-03-k1-gpio-v9-0-eaece8cc5a86@gentoo.org>
- <20250424-03-k1-gpio-v9-1-eaece8cc5a86@gentoo.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: generic-ehci: Add VIA/WonderMedia
+ compatible
+Message-ID: <20250424-chaffing-mating-e512c198c0e6@spud>
+References: <20250423-vt8500-ehci-binding-v1-1-1edcb0d330c2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,57 +60,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iLvKFyQQzMUSgZV7"
+	protocol="application/pgp-signature"; boundary="AkuIQLd6f/4BOskW"
 Content-Disposition: inline
-In-Reply-To: <20250424-03-k1-gpio-v9-1-eaece8cc5a86@gentoo.org>
+In-Reply-To: <20250423-vt8500-ehci-binding-v1-1-1edcb0d330c2@gmail.com>
 
 
---iLvKFyQQzMUSgZV7
+--AkuIQLd6f/4BOskW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 05:40:49PM +0800, Yixun Lan wrote:
-> Enable GPIO support, in order to activate follow-up GPIO LED,
-> and ethernet reset pin.
+On Wed, Apr 23, 2025 at 11:49:45PM +0400, Alexey Charkov wrote:
+> VIA/WonderMedia SoCs use a plain vanilla EHCI controller with a
+> compatible string "via,vt8500-ehci". Add it to the binding.
+
+You should elaborate here that this is already in the driver and dts
+files. With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
 >=20
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-
-Do you want me to grab this patch, or do you have a defconfig branch to
-put it on?
-
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  arch/riscv/configs/defconfig | 1 +
+>  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index 3c8e16d71e175e0e4c27136c31761127ce6e1602..b8899d59dd345c50d877829c0=
-5d0330f2986895c 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -169,6 +169,7 @@ CONFIG_PINCTRL_SOPHGO_SG2002=3Dy
->  CONFIG_PINCTRL_TH1520=3Dy
->  CONFIG_GPIO_DWAPB=3Dy
->  CONFIG_GPIO_SIFIVE=3Dy
-> +CONFIG_GPIO_SPACEMIT_K1=3Dy
->  CONFIG_POWER_RESET_GPIO_RESTART=3Dy
->  CONFIG_SENSORS_SFCTEMP=3Dm
->  CONFIG_CPU_THERMAL=3Dy
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Do=
+cumentation/devicetree/bindings/usb/generic-ehci.yaml
+> index 223f2abd5e592ff8cc3ad97f9a325356ea57044a..508d958e698c2e8dad748a6fc=
+def65d6e883b97d 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> @@ -86,6 +86,7 @@ properties:
+>            - nuvoton,npcm845-ehci
+>            - ti,ehci-omap
+>            - usb-ehci
+> +          - via,vt8500-ehci
+> =20
+>    reg:
+>      minItems: 1
 >=20
+> ---
+> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+> change-id: 20250423-vt8500-ehci-binding-e607bfafdcbf
+>=20
+> Best regards,
 > --=20
-> 2.49.0
+> Alexey Charkov <alchark@gmail.com>
 >=20
 
---iLvKFyQQzMUSgZV7
+--AkuIQLd6f/4BOskW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaApXIgAKCRB4tDGHoIJi
-0hI1AP4wJfY4DSUsY0aboH5U9Y51POA1u9C+eijl9lhfdo39yAEApnknyL7FNdN+
-gHFmfl8lby3E7vdc2xuWYXdZ5WTORw8=
-=P7Hb
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaApYdgAKCRB4tDGHoIJi
+0pqXAP9UXO7DomFd+ehGdU6VYHx7BPH5waiSfQwdAxqurbIoLwEAm1wFLmWrACe4
+zDXd4Iak4cyD/GEfwFKwLIqprYjaKQQ=
+=n/2W
 -----END PGP SIGNATURE-----
 
---iLvKFyQQzMUSgZV7--
+--AkuIQLd6f/4BOskW--
 
