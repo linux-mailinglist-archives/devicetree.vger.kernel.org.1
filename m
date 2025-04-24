@@ -1,158 +1,89 @@
-Return-Path: <devicetree+bounces-170261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A2FA9A50B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:57:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2A0A9A513
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E8B188C993
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB28B3AA44D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5501F4187;
-	Thu, 24 Apr 2025 07:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFDC01F4604;
+	Thu, 24 Apr 2025 07:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iR53X055"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326C11DCB09;
-	Thu, 24 Apr 2025 07:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915F31DCB09;
+	Thu, 24 Apr 2025 07:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745481457; cv=none; b=VdvPoIBhgNMZgeRI/XAI/WqkRXWscbJvWw6lVL3yLJI0EuTeBKf1DEXxWm7AfcVrZ7d7kvqy0aJANqBpWgRkvWyUzvhCSQBCktQIrSaFJByNbaN1iShPBHPRPjtvO5MRbzxzvaVbVLtkoyNrq5yChIH1dorlSWQQTna+4xmBIWk=
+	t=1745481551; cv=none; b=Xq/mw9c679gK66s0s7mAZAg2DHzWghZMXEYBTkELHFHoXO8PN3ZoFcd1IwoNZMa3M3kbIQcOYqsKsVXctvv7NqEsrqvd/xjhGrHu1ZbNIcEhxM8OZ8pN7g2L+49DJWkOmQVYavXzEDZ6zTkhwcfcGoN3007doNhUsZ4PkLXk+H4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745481457; c=relaxed/simple;
-	bh=j7Zexj83D8yHHiDWxpa8pxiPd8J8YZHl0x0DF/vohQ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RMN5s2u6Cafa/ZgIr9J6C4eYsMbm5S5jnntAwCbBjAfQvnvOlFsWOP4O82L93nzDYLtFidz75Od4ub1IMHLOLYjjPuLxoYj/o3de8QVy1z67CciewZCBeoutYcU+gyw0PYPLO/bgyIRuNEZCap0zsTQDQqRNRu++UFJfULlXl4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.35] (unknown [98.97.25.173])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 8EB50B4C1596;
-	Thu, 24 Apr 2025 09:57:28 +0200 (CEST)
-Message-ID: <0ce7dff4-a6cf-4e5b-a5b1-3c58926ef9ab@freeshell.de>
-Date: Thu, 24 Apr 2025 00:57:26 -0700
+	s=arc-20240116; t=1745481551; c=relaxed/simple;
+	bh=EkRGMXV61mxS1Jr+5BweoZLfS5HQIMfM2iHDQZfDtgs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=U+zsSN+6uXXim6DT51IjLIU88RNr1En6izrYN1YAuw4SV7a+9vdcI5NzFnYzx8DLux2ndYiOnIRcAr6v7aNd+WiiVESp4chnkMrOlt27tI+Dp4p0m9Mbc/TPuXSpnVnanDJEhaiuBSAgfJ7biIZ/bez2Fm4TMwxu2qI7OzE8CcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iR53X055; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1745481547;
+	bh=EkRGMXV61mxS1Jr+5BweoZLfS5HQIMfM2iHDQZfDtgs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iR53X055QzTaG7CuxiPOpdr/6nFMLEZ9Um8oMTyaTdS5eibjpOq0Ol+tKricl9S1F
+	 uqncnA0BBgwBns1Dcwl61zFvyjPHwMAj3OCc/5QMFAGKoFgCmlY9G+R/n7FOdfGrO7
+	 SaMIJWYEGJdCILI7NQb/WTbQjjFA9jkvGp5Vkmo3Q9I4W0wTIR/+7sbuPwz3OrgrpV
+	 Jq++GRuR6cyfv9zfbabX2h479qabjzFxZMy78tLqqPwFoo2UpVYmvLnb+0lbnYCtXe
+	 6VFj0Kb2v8qjpDn63hzB+UMn8sPBDWdOO5sK4k6kfUc4tVPldTIg3GapwCpphg33OS
+	 4O2lGkPLCNMAA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CA15217E0C96;
+	Thu, 24 Apr 2025 09:59:06 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: sam@ravnborg.org, neil.armstrong@linaro.org, dianders@google.com, 
+ hsinyi@google.com, matthias.bgg@gmail.com, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, knoxchiou@google.com, 
+ Simona Vetter <simona.vetter@ffwll.ch>, 
+ Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20250424010850.994288-1-cengjianeng@huaqin.corp-partner.google.com>
+References: <20250424010850.994288-1-cengjianeng@huaqin.corp-partner.google.com>
+Subject: Re: [PATCH v11 0/2]
+Message-Id: <174548154674.22041.7217055615854393236.b4-ty@collabora.com>
+Date: Thu, 24 Apr 2025 09:59:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] pinctrl: starfive: jh7110: add support for
- PAD_INTERNAL_* for GPI
-To: Icenowy Zheng <uwu@icenowy.me>, Emil Renner Berthing <kernel@esmil.dk>,
- Jianlong Huang <jianlong.huang@starfivetech.com>,
- Hal Feng <hal.feng@starfivetech.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20250424062017.652969-1-uwu@icenowy.me>
- <20250424062017.652969-3-uwu@icenowy.me>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250424062017.652969-3-uwu@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 4/23/25 23:20, Icenowy Zheng wrote:
-> The JH7110 SoC's both pin controller support routing GPI signals to
-> internal fixed low/high level.
+On Thu, 24 Apr 2025 09:08:48 +0800, Jianeng Ceng wrote:
+> This is v11 of the MT8186 Chromebook device tree series.
 > 
-> As we allocated two special "pin" numbers for these situations
-> (PAD_INTERNAL_{LOW,HIGH}), add special handling code for these "pins".
-> The DOEn/DOUT/FUNCTION fields are ignored and the internal input signal
-> specified by the DIN field is routed to fixed low/high level.
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  .../starfive/pinctrl-starfive-jh7110.c        | 41 +++++++++++++++----
->  1 file changed, 34 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
-> index 1d0d6c224c104..fb18c7974ec86 100644
-> --- a/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
-> +++ b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
-> @@ -291,6 +291,24 @@ void jh7110_set_gpiomux(struct jh7110_pinctrl *sfp, unsigned int pin,
->  }
->  EXPORT_SYMBOL_GPL(jh7110_set_gpiomux);
->  
 
-> +static void jh7110_set_gpi(struct jh7110_pinctrl *sfp, u32 gpi, u32 val)
-> +{
-> +	u32 offset, shift;
-> +	u32 reg_val;
-> +	const struct jh7110_pinctrl_soc_info *info = sfp->info;
-> +
-> +	offset = 4 * (gpi / 4);
-> +	shift  = 8 * (gpi % 4);
-> +
-> +	reg_val = readl_relaxed(sfp->base +
-> +				info->gpi_reg_base + offset);
-> +	reg_val &= info->gpi_mask << shift;
-> +	reg_val |= (val & info->gpi_mask) << shift;
-> +
-> +	writel_relaxed(reg_val, sfp->base +
-> +				info->gpi_reg_base + offset);
-> +}
-> +
+Applied to v6.15-next/dts64, thanks!
 
-Are there some bit ops masking macros common to Linux that should be
-used here?
+[1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta Chromebook
+      commit: ce8ec1f8c8b363c2511332c909d06df7ae01f1b3
+[2/2] arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
+      commit: ed34944cc3bc5602c1151effdb6aced9f2f992a6
 
->  static int jh7110_set_mux(struct pinctrl_dev *pctldev,
->  			  unsigned int fsel, unsigned int gsel)
->  {
-> @@ -307,14 +325,23 @@ static int jh7110_set_mux(struct pinctrl_dev *pctldev,
->  	pinmux = group->data;
->  	for (i = 0; i < group->grp.npins; i++) {
->  		u32 v = pinmux[i];
-> +		u32 pin = jh7110_pinmux_pin(v);
->  
-> -		if (info->jh7110_set_one_pin_mux)
-> -			info->jh7110_set_one_pin_mux(sfp,
-> -					jh7110_pinmux_pin(v),
-> -					jh7110_pinmux_din(v),
-> -					jh7110_pinmux_dout(v),
-> -					jh7110_pinmux_doen(v),
-> -					jh7110_pinmux_function(v));
+Cheers,
+Angelo
 
-I cannot think of any reason why you would need to do it this way:
 
-> +		switch (pin) {
-> +		case PAD_INTERNAL_LOW:
-> +		case PAD_INTERNAL_HIGH:
-> +			jh7110_set_gpi(sfp, jh7110_pinmux_din(v),
-> +				       pin == PAD_INTERNAL_HIGH);
-> +			break;
-
-Please, just more readable and let compiler do its job to optimize:
-
-		switch (pin) {
-		case PAD_INTERNAL_LOW:
-			jh7110_set_gpi(sfp, jh7110_pinmux_din(v), 0);
-			break;
-
-		case PAD_INTERNAL_HIGH:
-			jh7110_set_gpi(sfp, jh7110_pinmux_din(v), 1);
-			break;
-
-> +		default:
-> +			if (info->jh7110_set_one_pin_mux)
-> +				info->jh7110_set_one_pin_mux(sfp,
-> +						jh7110_pinmux_pin(v),
-> +						jh7110_pinmux_din(v),
-> +						jh7110_pinmux_dout(v),
-> +						jh7110_pinmux_doen(v),
-> +						jh7110_pinmux_function(v));
-> +		}
->  	}
->  
->  	return 0;
-
-Thank you for your work on this series!  -E
 
