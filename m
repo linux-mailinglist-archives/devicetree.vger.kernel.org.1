@@ -1,209 +1,201 @@
-Return-Path: <devicetree+bounces-170410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD703A9AABD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:45:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1767A9AAC0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:46:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C395319425A9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:45:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A23FF3AFC92
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A120E230D2B;
-	Thu, 24 Apr 2025 10:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99755227581;
+	Thu, 24 Apr 2025 10:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eAnF73cH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MzWv1Xvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA67F230BC0;
-	Thu, 24 Apr 2025 10:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9C3221578;
+	Thu, 24 Apr 2025 10:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745491148; cv=none; b=fsZW4u1HgIvmh89lKNTByRyWW/O/fVHQxX4jGa/EKE6VUhtPbUHIfYC9cWteg3Rqd5VBchOfkHtVgdqJLII7dYWD0tQOpdG/Nn3X595wQI5PHA9RAhJMed4SbUCe/pfIAenA34KyemrKWYTaze+bwJ/2ZVIZvPni4jsBq0yy7Q0=
+	t=1745491189; cv=none; b=RV4x712eeZycPgfS65nam5rVZahMKFiGISbLSbUaO+O4I5dSdTyBA8M49SrqVIVHfgUNLBNMYGGyrWIK3JEt13lkUD5JVmVV3i7KCR+vu5Z8X+QWtawiKWPMhuKdXFCwpCN1xdTGr76Xx4DTq01xZS5IJ58VRZtbQijXfSC3hOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745491148; c=relaxed/simple;
-	bh=DNvaXNusjp6R/FxdT1jzd/9TXXRCp+XeHa/VzRjwn3A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rNTUlDJBrESMRyeT+q0ibXMrJmVDiOZvs0kqk17itJwOARDomljbeeYAzhzBSIvUhQu0HtT2ffywB/fBsv6RFURySNgSlCIT0B3nO9YkrbnOnhOPPV6G7uTrdEUzIvHd4tNGryiB860k+w/2AWEjTGTj9l2MDdAMv7Wa/kJBte4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eAnF73cH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53OAGNtX016950;
-	Thu, 24 Apr 2025 10:39:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/yV223ZqSxcppzUedvUqCEykHcoIR+TJDiCESH34vPE=; b=eAnF73cHoMkbSK9F
-	QLgZfdJwKWvs3vQxk0zgSE7ZstyGAhZ7M8f1HFJ+2hF1x+FjvVkJRif2Jwv1CNYp
-	VGcf4q4NvaiIm756jHW1sx8IG6MRPhpfs+6CGzZjSdi9AFIx+TbcdEDoVOMnvoiu
-	cfQsAWgIBbvh4QQe/5PPZATayORmcGzvakpyDEOo5wiSklW979FkY69I1iSr+LLx
-	TLGWJGVTGibLQkIZks5heHoXE+Z7IaChCLN+ucB9yWoMPIaPqRjoJ3cC2rZNPf1x
-	AXrmTynmVAX7QnplzUXkElWfhX34t6zLymPJd5HoMY6LzCcqBv08ccS4i8W1WKoL
-	L8rCUQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh1562j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 10:39:02 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53OAd1FK025035
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 10:39:01 GMT
-Received: from [10.218.23.250] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 24 Apr
- 2025 03:38:55 -0700
-Message-ID: <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
-Date: Thu, 24 Apr 2025 16:08:50 +0530
+	s=arc-20240116; t=1745491189; c=relaxed/simple;
+	bh=rdwz2WKjtDd7DtaGFTRBxPVQpUbJvrKlMywrM9IrdH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jtxU7JgzIyqUyVl7Cm1Ij6LC+UPU5NeqLgU+jBJdWhlWeS43tPVQl5obzH4y1HwWxXQrxQygerqS6dcLv6250kxfAkJ1U/6/bETy6PVFjRCtrAYJHjRoYu8icdmJS7YUuBLVqCbvoOtXCD7P1nHI83xzr0CViVg6xzmHK8YsifQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MzWv1Xvz; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745491188; x=1777027188;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rdwz2WKjtDd7DtaGFTRBxPVQpUbJvrKlMywrM9IrdH8=;
+  b=MzWv1XvzvsqdQfFf2XQQNOOhXSNn9df9t7WfVQTT5flYVQrHczba6YP4
+   Ls4+lDlLegRXDY5cXrTSJ9DjXS8q0feoNcIhaIRN6wHT+Y0Fm3PQJwpVY
+   pHRl9LN/cPlCd2YZE1+sM1lW5StJ6vqXMEsX4pQEg5fKT2XsGO26uEvXr
+   iG9KUvR6WuPEFP6kOOEFIXqGqPDtBmSbeqiMMuR1OOYtD2PALGiRKBT9B
+   KJLjSJTJ69xhYhnWZYrw52z23QndW3+vYRJnYdmg5+O5U2ij4SqxK8btn
+   jtuNQdxbysZXiX2iSNurCNgujz4fIIiUSwMffvy+OTfcihPkGmrqF95is
+   w==;
+X-CSE-ConnectionGUID: 7bJAJOoFRiKAZqChI90yyg==
+X-CSE-MsgGUID: kBo04iLHQXGnxcyoSmXs9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="47289739"
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
+   d="scan'208";a="47289739"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 03:39:47 -0700
+X-CSE-ConnectionGUID: DBEXrH2ESruBurCLFBO1fA==
+X-CSE-MsgGUID: rTPUAwrMTEu1Uk6IMch+vA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
+   d="scan'208";a="137374405"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 03:39:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u7tzW-0000000FWzS-1P71;
+	Thu, 24 Apr 2025 13:39:38 +0300
+Date: Thu, 24 Apr 2025 13:39:38 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	javier.carrasco.cruz@gmail.com, gstols@baylibre.com,
+	olivier.moysan@foss.st.com, alisadariana@gmail.com,
+	tgamblin@baylibre.com, antoniu.miclaus@analog.com,
+	eblanc@baylibre.com, joao.goncalves@toradex.com,
+	ramona.gradinariu@analog.com, marcelo.schmitt@analog.com,
+	matteomartelli3@gmail.com, chanh@os.amperecomputing.com,
+	KWLIU@nuvoton.com, yhyang2@nuvoton.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] iio: adc: add support for Nuvoton NCT7201
+Message-ID: <aAoU6iWGPkqjon7Z@smile.fi.intel.com>
+References: <20250424083000.908113-1-j2anfernee@gmail.com>
+ <20250424083000.908113-3-j2anfernee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Add Qualcomm SC8180X Camera clock
- controller
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh
- Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250422-sc8180x-camcc-support-v1-0-691614d13f06@quicinc.com>
- <H56Iba_grof22uzTtGCI-APhiDAGSejNod6jsSVIykm9ijaaj7PWqyszShCEGjIpM2wCLOn4a3Vfb8Hjziqklg==@protonmail.internalid>
- <20250422-sc8180x-camcc-support-v1-1-691614d13f06@quicinc.com>
- <621d8556-f95b-4cbe-809b-864417f0d48a@linaro.org>
-Content-Language: en-US
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-In-Reply-To: <621d8556-f95b-4cbe-809b-864417f0d48a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zPbsRIsarlX68VHBjDPEsnHLlsIj26HJ
-X-Authority-Analysis: v=2.4 cv=OY6YDgTY c=1 sm=1 tr=0 ts=680a14c6 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=CIINWzuxR8hvsKXtIHkA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: zPbsRIsarlX68VHBjDPEsnHLlsIj26HJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA3MCBTYWx0ZWRfX55gsXNHjuq6/ b+NikVvwT0xB3z+niVpf4PcZWUu+V+TZ5kLNR2rIESh3Fuw9bbcqTT6+xJBboQbYN1dB1hjIu3q Kcx2WO3hjSwjpHSX0vJY3fTyZEAEz+1hbypYa3UFuxllbJAOkn9YlqkWVr1ANJLOZUx91oIa9wx
- KSdoaIMwVrJySXL4dXOK3hCjGxHvKR548nvB6PWgbwfqb5JDtm2kYAO4StWmz7Nt2Utwe5rckw0 ogkbOQojs1wdO/QcjZpZuYjafzHmXoucKs6rxgfgfySe0r72jK8LUitEo+vhHqvB0F3bZyVAu1l 1OkjR4xQ/EG/SQgU7F6A2IzyL7xedq2cFKbpeNKNkAKPfZANwzCX+rIF1PL3kRFictallYpsPvP
- 29/b8QlVjqc9/nU9il38M8/lAmvCGbw+HhrXRdZuLCf/Q5nZIRFcPxhlGWNH3BwDNkaNFwQC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_05,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 clxscore=1011 malwarescore=0
- mlxlogscore=999 phishscore=0 priorityscore=1501 spamscore=0 adultscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240070
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424083000.908113-3-j2anfernee@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Thu, Apr 24, 2025 at 04:30:00PM +0800, Eason Yang wrote:
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+> 
+> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up
+> to 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins
+> for independent alarm signals, and all the threshold values could be set
+> for system protection without any timing delay. It also supports reset
+> input RSTIN# to recover system from a fault condition.
+> 
+> Currently, only single-edge mode conversion and threshold events are
+> supported.
+
+Very good, from my point of view it's almost ready, a few nit-picks below.
+
+...
+
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/delay.h>
+
+> +#include <linux/device.h>
+
+It seems this is not used, but missing
+dev_printk.h
+Am I mistaken?
+
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+
+...
+
+> +static int nct7201_write_event_value(struct iio_dev *indio_dev,
+> +				     const struct iio_chan_spec *chan,
+> +				     enum iio_event_type type,
+> +				     enum iio_event_direction dir,
+> +				     enum iio_event_info info,
+> +				     int val, int val2)
+> +{
+> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
+> +	int  err;
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (info != IIO_EV_INFO_VALUE)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (dir == IIO_EV_DIR_FALLING)
+> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
+> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
+> +	else
+> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
+> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
+
+> +	if (err)
+> +		return err;
+> +
+> +	return 0;
+
+	return err;
+
+> +}
+
+...
+
+> +	/*
+> +	 * After about 25 msecs, the device should be ready and then the power-up
+> +	 * bit will be set to 1. If not, wait for it.
+> +	 */
+> +	fsleep(25000);
+
+25 * USEC_PER_MSEC ?
+
+...
+
+> +	/* Enable Channel */
+> +	if (chip->num_vin_channels <= 8) {
+> +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
+> +				   GENMASK(chip->num_vin_channels - 1, 0));
+
+> +		if (err)
+> +			return dev_err_probe(dev, err, "Failed to enable channel\n");
+
+This...
+
+> +	} else {
+> +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
+> +					&data, sizeof(data));
+
+> +		if (err)
+> +			return dev_err_probe(dev2, err, "Failed to enable channel\n");
+
+...and this are identical, deduplicate by moving outside of if-else.
+
+> +	}
 
 
-On 4/22/2025 5:11 PM, Bryan O'Donoghue wrote:
-> On 22/04/2025 06:42, Satya Priya Kakitapalli wrote:
->> Add device tree bindings for the camera clock controller on
->> Qualcomm SC8180X platform.
->>
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
->>   .../bindings/clock/qcom,sc8180x-camcc.yaml         |  65 ++++++++
->>   include/dt-bindings/clock/qcom,sc8180x-camcc.h     | 181 
->> +++++++++++++++++++++
->>   2 files changed, 246 insertions(+)
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml 
->> b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
->> new file mode 100644
->> index 
->> 0000000000000000000000000000000000000000..b17f40ee53a3002b2942869d60773dbecd764134
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
->> @@ -0,0 +1,65 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,sc8180x-camcc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Camera Clock & Reset Controller on SC8180X
->> +
->> +maintainers:
->> +  - Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> +
->> +description: |
->
-> You can drop the "|"
->
-
-okay.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
->> +  Qualcomm camera clock control module provides the clocks, resets and
->> +  power domains on SC8180X.
->> +
->> +  See also: include/dt-bindings/clock/qcom,sc8180x-camcc.h
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sc8180x-camcc
->> +
->> +  clocks:
->> +    items:
->> +      - description: Board XO source
->> +      - description: Sleep clock source
->
-> Missing clock-names
->
-
-Since we are using DT based indexing method, clock names are not required.
-
-
-> A suspicious lack of clock depends here. No AHB clock ?> +
->> +  power-domains:
->> +    maxItems: 1
->> +    description:
->> +      A phandle and PM domain specifier for the MMCX power domain.
->> +
->> +  required-opps:
->> +    maxItems: 1
->> +    description:
->> +      A phandle to an OPP node describing required MMCX performance 
->> point.
->> +
->> +allOf:
->> +  - $ref: qcom,gcc.yaml#
->
-> A suspicious lack of clock depends here. No AHB clock ? No dependency 
-> on gcc ?
->
-> You call out the gcc above.
->
-> Could you please recheck your list of clock dependencies.
-
-The dependent GCC clocks are marked always on from gcc probe, hence did 
-not mention the dependency here.
-
-
->
-> ---
-> bod
 
