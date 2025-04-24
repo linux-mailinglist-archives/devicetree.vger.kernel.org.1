@@ -1,109 +1,175 @@
-Return-Path: <devicetree+bounces-170451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDB0A9AE2D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:01:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D44EA9AE71
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154F13B4E49
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 13:01:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E871B1941122
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 13:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0CC17578;
-	Thu, 24 Apr 2025 13:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A95227C17E;
+	Thu, 24 Apr 2025 13:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxm6+iDH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OsNyaf/p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D97A7F9;
-	Thu, 24 Apr 2025 13:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0607227C179
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 13:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745499680; cv=none; b=ivUdjKA1d3rfGTrgg4wZv4TrvuOZPzQTq5VOLghq2rEhpujLwpZ8e/fp4gBfSxGY1ZR3rQR0CZPCf2501cElbwdvki9nYHFtCkGkOOKM97ofHFwUGRt5CZxnm3nhSSmlt0GChhLQeBylBatXUfetYMdBdQU9/vVrheNbXvrxDhI=
+	t=1745499885; cv=none; b=t0nXF8AaxuPGLCzdLqWm6hfJyti6i0H60W9YrNc3o6Jmlsof4YQF0OQcgHgyUP0i+8P/flKfficE5TgzA/zuxbBDremmqT667GvrLRvtQZBbSYimXxJrwAnTMoBlReKCyMK8RA94tTwyhVJ9e2JD+krut4BieNzKxhCa3XZiIHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745499680; c=relaxed/simple;
-	bh=w4ERmlgT37R8fqbbx4uVzFLB0bFMUP+qmxc5xgde/7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EXtFgVrlsoRjST+hhnbzGHxcG1sfGhkI5uBskoCC+FPnTW0SwrYbvOYgICwUC6idfrMMA8kbWyLWqudv5GZNBV7ruo0CxKjGnZHAneYSrpkm8ZQyvjz3238S6S+B9KvuMBb6zH3pyeLiUT2yAhqAL2McW8mdrBJ9JiIk13nDrpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxm6+iDH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE734C4CEE8;
-	Thu, 24 Apr 2025 13:01:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745499679;
-	bh=w4ERmlgT37R8fqbbx4uVzFLB0bFMUP+qmxc5xgde/7k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pxm6+iDHVTleShgiF8bFeJvckCUPbkg57ANzPMtBwns7jfQzzmQz0EFJ05T112lwB
-	 WMYmpudJjzcHgAOUsrdINVZwv2/j3JmqCXznxVSHQq2h8faiVnOKb2RPegnUC/8c7p
-	 CHaM/QMNsb9S3xfYYv2Uod/Thx792cyS2aY6xTHFYMs9lM9RC3snvzyGXMCbGnsq0q
-	 S9nGIj8WSYURRlSOIHYy78OF6pj5n9fb8Tqqt9Sn/E9qC4HqxLGOVqzFxJrudWvFAS
-	 cqzpZUf5gYP+kfQp7RKfjlVq62KmV3pjTBFhnjHgok0FqDpTUNUI3do98G9jOCTAvJ
-	 KbiBb+ril+iaQ==
-Date: Thu, 24 Apr 2025 14:01:12 +0100
-From: Lee Jones <lee@kernel.org>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: ukleinek@kernel.org, alexandre.torgue@foss.st.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jic23@kernel.org, daniel.lezcano@linaro.org,
-	tglx@linutronix.de, robh@kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, devicetree@vger.kernel.org, wbg@kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	olivier.moysan@foss.st.com
-Subject: Re: [PATCH v4 2/8] mfd: stm32-lptimer: add support for stm32mp25
-Message-ID: <20250424130112.GD8734@google.com>
-References: <20250314171451.3497789-1-fabrice.gasnier@foss.st.com>
- <20250314171451.3497789-3-fabrice.gasnier@foss.st.com>
- <20250404144006.GB372032@google.com>
+	s=arc-20240116; t=1745499885; c=relaxed/simple;
+	bh=76TCznWSFbidRT2PMHe440KNy2g8u8WvHHDLLyooouU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O9HkVA5GudtL/dcawSE5L4KJMHBjGbAZDtMj/zk4v8sEpdF7z5exwmnJ1LGun7TJhobt/Wsks7hAOmvDXsOFz4T38Obj4pKBnPwcwuKY8lQtl6r9MtGIj9UUxk9qgQyIDHg1bP6Jb/lLBEgVHyVyGq4QYiGnfj/hOCYyHYQWNKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OsNyaf/p; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2c7a36802so18364266b.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 06:04:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745499881; x=1746104681; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0gzZZgyv6b1R8Em3g5zbv5okL7WdvVH3bzEhxrzuDtA=;
+        b=OsNyaf/p8i1g35SwEjMW7JZOrTleFAOLcUiZUX8QFfnjIy5TUdSkveMhZVWK4+P4pa
+         oOPUIInzJDJgF90MxSFhj7sd3pWOmRZadhfMAKC6eQxCbRk9fjcRFCKs1w+KxJqKYaCJ
+         +7rdvb1QEk/OL4yubHVhdX6JTg8PTL7JGPspkP0De5uqagXt88954CUEHa4nr9l6FEaf
+         xyxHuSDVLhFw3cd2FGLaAfHcJHmUGHPk5ci8ubuDa5sOUDLdEsMl5nP4qndx9dX1QGiq
+         6gGc19gk0S7hVXTV3XfXBKDEp68ur1jLAjyOcUrm2LovlNgNkWfwC1bByhbkURB7P9AM
+         es+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745499881; x=1746104681;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0gzZZgyv6b1R8Em3g5zbv5okL7WdvVH3bzEhxrzuDtA=;
+        b=OEuKPkel5fmGYzq3RPC/oHVXZM1UPP5pEqUc5kkssF99ouZ1Ze2i0soFydA0GU20Lg
+         ftLUd8+s/0nf8+3eG2sLaNfI+mvZhZNTaTBXOemjFgnVmS1QZOd3wkahjzQ/a2y+9ttJ
+         YBCrdCNhDzfLxHYVpoYuykBVE4HOc6Ldb/+bovLG57ylH0KTwqgvjlwhfJNV7Guqk4SG
+         P2vWMnZV5WnwdZOAUTrzQjZ3AY5MXNxfE3gGtTg+3MO+oLrd/vSAZDzD57fMxH65KPNz
+         TYAkLCaAD9126cDGQnaQsR23oN9Xt6w7OXpKWskgIbcO6lTk5PBwHDLVIeO9AIwGppcY
+         QUlA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgapy423aoCyQ0EHvmm8WsVoRJnCT8tdk00Gm69SLTMkN/EItShsLuzMTUfiMu54z5ofP9ec0uiSPY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhG+xTowGl3MAWH5BgPbPSu5bsQ/ahbQtVpZDHU/324X/PEVfY
+	HDqSiTFtJYdeYrotBYmAAIL1pqHy+mXJL2LVEPXA5ZAe1DFELbXsJN5UPgqXU0w=
+X-Gm-Gg: ASbGnct7JNdEOYO8V6iztUQUGn7ti1HlluA/E9uL7qi4+cWzGzfkWecoChm1wiVSRaF
+	Natr7g6qBd0TBQHEsjMMhM08F3sN7FUwHVoU95mz18Q/ES06Pup5ZuMn9sW0enAgQYWqZsRT8Wu
+	4lBzdLqT/8gH97YhCIjbaVEfJntjFUm/tfiVdZlnXzlBQLufU2k+EU9/4S5PaFVFmaPuCyJvvCJ
+	CzOZohNjYStdGkQKxILsw6N8HUpX7ZbalYUS2JoB/f71OtL8GxnKqQ7Y/ijcog1h3uXSSyx9j3V
+	QWS9jPpPeH4dDwE7GepPynWjYKE/V/QSvNIa3OyQjhJeSL+hfBI40azAOc4=
+X-Google-Smtp-Source: AGHT+IExJYmPYtEQkJ75HdgY7+s6zFaCxrS9nw2hbsv7Rk/IyS5RnwvzCMoKCegXckcA/0mhoO0rNQ==
+X-Received: by 2002:a17:907:3f12:b0:ac7:3910:17b8 with SMTP id a640c23a62f3a-ace57485e5emr81104466b.15.1745499880956;
+        Thu, 24 Apr 2025 06:04:40 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace59898006sm105101766b.46.2025.04.24.06.04.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 06:04:40 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH RFC/WIP 0/4] arm64: dts: qcom: sm8750: Enable display
+Date: Thu, 24 Apr 2025 15:04:24 +0200
+Message-Id: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250404144006.GB372032@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANk2CmgC/02OTUsDMRRF/8qQtdF8vDTNrARBcCduXEgpmeSlD
+ ZiZMZkZlNL/bqptdfc+OPfcAymYIxbSNgeScYklDn1d+E1D3N72O6TR150IJhQDAbSktVaM+lj
+ Gd/tF/VQogAYtrZQhBFLBMWOInz+hb+Tl8eHu9emZbH4fGT/mKpnO36ujbaoBuBDybNjOpdsmW
+ ybMNAht0euw8sDaRZH/5c5gJS/V7OzjQEebJyqoASm09mslmWgXfkITlmL/WMU4v0p3Y4ruol1
+ 4DcAAygXBVkab+9rdxd7duiGdkjpbkNY5xaltpJGeOQXOouSSa4/WGgZSinoN3oCCeuoc2RyP3
+ yXeRcd3AQAA
+X-Change-ID: 20250424-sm8750-display-dts-447473a33fff
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jessica Zhang <jesszhan@quicinc.com>, 
+ Abhinav Kumar <abhinavk@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2629;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=76TCznWSFbidRT2PMHe440KNy2g8u8WvHHDLLyooouU=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoCjbfx8p5FFKeCcy4zSoBzWVzyz6pT4QTtxphR
+ 2eLl/+kVfOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaAo23wAKCRDBN2bmhouD
+ 10O4D/4ubwxC333Hq5n0HLVxb+wGB5knSHx9+Vh0tbVSJpGcZkQgtZZmnsgO++E7GY0/ImT/0ao
+ 95BhF2em83hEGHmDAB5b2OBWE5hMzXH0lxsny5i+B/ictq0l3cmR5xWoTkW9OGMTFBmgoOV4Zrp
+ 3n5+/1q07hHD6BVqSO8orVY2TlHMXxXK12/jtbVFnA0Z6Mjyv9Svh9J+GTrh7D9jmh+Hw8cByPp
+ lE5agqhuY16k57GCNtB0dKHQtcIlR+qnZwvavRcnbaUw3VZdHauiunJdWOAcVlecdCvlJZjLt3z
+ HQ7MyecxYTBwWNr0X+6nvoRuYv//mOhDcf3WyF3kd595bjcqEPvSc1dhAqe2o0pmUN05UAt/711
+ 1yw1fS0SqGYei6bQYhRo/xyfgwde8yv9A8ORpyFZ4PHf90u7kDGxLMQ/sdoQyF5eW/1JNpsflNy
+ zh2sixK6C0b7GsEjVrX5/ehhY8xsdHLpwklPSCj4elqACW12i0fo/coGwYRvwBr1AgFFL3WjOq+
+ INlmep4RbECmiSIl4LpchN0pdLx+uPwTeoyWj0iZHHUVSXpYXHGI0RFcGXQU7wkjKKdf5vCeH/j
+ mVXGVmTObWdcg5qIJJrgxf93IWFKbOrJLZdTOexA8H25JGobkYFicNYGy+jD3ZNtgway5G0ovjS
+ /TB37R1IoRhnpFA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-On Fri, 04 Apr 2025, Lee Jones wrote:
+DTS is ready and I consider it ready for review, but still RFC because:
+1. Display has unresolved issues which might result in change in
+   bindings (clock parents),
+2. I did not test it since some time on my board...
+3. Just want to share it fast to unblock any dependent work.
 
-> On Fri, 14 Mar 2025, Fabrice Gasnier wrote:
-> 
-> > Add support for STM32MP25 SoC.
-> > A new hardware configuration register (HWCFGR2) has been added, to gather
-> > number of capture/compare channels, autonomous mode and input capture
-> > capability. The full feature set is implemented in LPTIM1/2/3/4. LPTIM5
-> > supports a smaller set of features. This can now be read from HWCFGR
-> > registers.
-> > 
-> > Add new registers to the stm32-lptimer.h: CCMR1, CCR2, HWCFGR1/2 and VERR.
-> > Update the stm32_lptimer data struct so signal the number of
-> > capture/compare channels to the child devices.
-> > Also Remove some unused bit masks (CMPOK_ARROK / CMPOKCF_ARROKCF).
-> > 
-> > Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> > ---
-> > Changes in V4:
-> > - Add DIEROK, ARROK status flags, and their clear flags.
-> > Changes in V2:
-> > - rely on fallback compatible as no specific .data is associated to the
-> >   driver. Compatibility is added by reading hardware configuration
-> >   registers.
-> > - read version register, to be used by clockevent child driver
-> > - rename register/bits definitions
-> > ---
-> >  drivers/mfd/stm32-lptimer.c       | 33 ++++++++++++++++++++++++++-
-> >  include/linux/mfd/stm32-lptimer.h | 37 ++++++++++++++++++++++++++++---
-> 
-> At least the Clocksource driver depends on this.
-> 
-> I need Acks from the other Maintainers before I can merge this.
+DTS build dependencies - as in b4 deps, so:
+https://lore.kernel.org/r/20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com/
+https://lore.kernel.org/r/20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org/
+https://lore.kernel.org/r/20250113-sm8750_gpmic_master-v1-2-ef45cf206979@quicinc.com/
 
-Suggest you resubmit the set as a [RESEND] to re-gain traction.
+Bindings:
+1. Panel: https://github.com/krzk/linux/tree/b4/sm8750-display-panel
+2. MDSS: https://lore.kernel.org/r/20250311-b4-sm8750-display-v4-0-da6b3e959c76@linaro.org/
 
+Patchset based on next-20250424.
+
+Best regards,
+Krzysztof
+
+---
+Krzysztof Kozlowski (4):
+      arm64: dts: qcom: sm8750: Add display (MDSS) with Display CC
+      arm64: dts: qcom: sm8750-mtp: Enable display
+      arm64: dts: qcom: sm8750-mtp: Enable USB headset and Type-C altmode
+      arm64: dts: qcom: sm8750-mtp: Enable DisplayPort over USB
+
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 136 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi    | 417 ++++++++++++++++++++++++++++++++
+ 2 files changed, 553 insertions(+)
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250424-sm8750-display-dts-447473a33fff
+prerequisite-change-id: 20241223-sm8750_usb_master-f27aed7f6d40:v5
+prerequisite-patch-id: 6fdfd47703ddaf8ffcea30d75c3f91767e595008
+prerequisite-patch-id: b0269b582b3685213a83fd382a67767e6bcd2213
+prerequisite-patch-id: 893493ba5d45ba4a46dfe587839e0383c5a10e63
+prerequisite-patch-id: 7c016dcb0fbab838c2b76252c6cb18443c80af3c
+prerequisite-patch-id: 33b17dd5e4b6e45f183d9ff8fded66e4caf230d6
+prerequisite-patch-id: 1d8327cb2680216cd858d90a224004856b750ebd
+prerequisite-patch-id: 0f100a5cd47aabada80060836a04c7ccac0a8859
+prerequisite-patch-id: 2d05f8df51501b5490d0c6732706f56e58e7429f
+prerequisite-patch-id: e33a6bfeecfb0ebf2c2b3790d02538562f72902f
+prerequisite-patch-id: 001d38f8ce89e3e03d2a13de71453b47212ad567
+prerequisite-change-id: 20241122-sm8750-audio-part-2-943277d85302:v1
+prerequisite-patch-id: acf4c9f30842e1389e0611694483e8acfa7fd5ef
+prerequisite-patch-id: b7dcdb6373238d8af4c5a505edf7bb3bd391a677
+prerequisite-message-id: 20250113-sm8750_gpmic_master-v1-2-ef45cf206979@quicinc.com
+prerequisite-patch-id: f2c73e0f8946071eb798d71a195a1061dad3cf9e
+prerequisite-patch-id: 7b0af9008faf4b191f69fe88fb7b404ed7d4831f
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
