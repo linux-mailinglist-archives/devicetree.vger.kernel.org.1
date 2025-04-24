@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-170366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077EAA9AA00
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:23:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1681A9AA09
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:24:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26D041B80202
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:23:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EE11446802
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C6F221FBF;
-	Thu, 24 Apr 2025 10:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA4D22171C;
+	Thu, 24 Apr 2025 10:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ljeIjiWM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EpruXzTc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3903D221D93
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9599721CC6C
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745490162; cv=none; b=T5tkyi2UrgRleMzG+1zfzx2KsWHBpFAua3t3dU5rxJpXQnDb4GR4NKv5JQZ4mZ4wGaHeV+XpBDVFYcaORQUx7uJTwj7MCf0RDO3jDutMJLMqvDuSVCFaLmwxhklyOZJvobS2cb90xl9akppPTVChqz0Dq270jy62mHQENJjoYUU=
+	t=1745490244; cv=none; b=QlF9qvPr80eQNDvAH4ehffWtLswc1gYKFjfZgT6BnnhgPCzit9tUrnmuGSecByYfs56+i1dDR3C4T6G74veHiufCGNCWvQ42I3dxa6TfCFTtlceFwjyW6RWrMU8wWRnGKuCHC27B1IVES+RZ0CmgN/ZaGX+Y+gxxfXTRVfysRh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745490162; c=relaxed/simple;
-	bh=BAtigd51U4uYQawH2leKL2DrNhD2xbURj0nU4NCxYSI=;
+	s=arc-20240116; t=1745490244; c=relaxed/simple;
+	bh=6TWXQGTUy8wIt2JEPMNkmc5GEl594rGt7tbRCILOuMA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GXZubSORe9D6DjXiKM6wZ8lsa0FDMELeVR8JMPuU7P6Xv/VqilBJJARr6t2l8rzxGN6ce7aWAOKfApe49NFBIJDQJJfqFb8VyMsButyjV+QhLVi50DBK8ES5WjWT8Rr4u19p0KdgaNHEoBQwAGFJR58ww06wqurtSuMPMmGQQHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ljeIjiWM; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kg/zAaKLIGiU2QO4WmY9ar0bvSxshwdXZNAWjLUas+HW8AynctIDKFtWBABaCGbOQDQMu80RZHjwBZbgMLx2TpWDA+VtjQiMvXsnZmaoHvBxk+l4/6leXXKJvyRndbyKmGnGfNTHjVppMN6B5ia0EvywzNxAmfhervVXFg3ijD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EpruXzTc; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O9YTJk005881
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:22:38 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53OANoPl008922
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:24:01 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=SRAxpDNuwfhW3PHrfYeTwTaf
-	uh1/vvz3kKMzJSGCp2s=; b=ljeIjiWMTqg6x1v1U/Tu9BxU0yP/PtChw5oBLEOl
-	stSVbEmAl1+g6WEzxTMaGkkBD4kyCQkoWVbgIyB90Z/MOrVj4mtYm+P8ww6EVTwZ
-	Iy6SLeNIkw3xd5dCQDUMGBUhhnCIpIl8t3/ax+ls8q0N2eCnTQl36deQRr9vR5SM
-	9RyghjNu9WyhCaDgxwSm8j9py8myvS5/MFeEplfsvzHxQoVSp5kc27e05ODhXB35
-	21lK7kpSQ/SCUgZQHa8hCA8KJpaG4fIb07TUIUDra5xWT2RDCbK4eXXKprulbInB
-	YQ9N70nQ7VKg3OJVqTEgB38qvyUb2ilkZ5uym6JzrHvhcA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh055rs-1
+	:references:subject:to; s=qcppdkim1; bh=j4BDsTwObQmRXQvxX4u8s4xU
+	g+eG5lJxHUSU9lC6EcQ=; b=EpruXzTcKEU5BmMvqpw/QQaUDBzAPkOffdIFSJEw
+	FoyxdVwsIhNa31Czq77FhSSby3J1kLf5ezY2h26exod+X8nD+TK44OvLJ1NlMP6z
+	yl8IVEbLkDv35gymNNLUqIFB+e0VbbfN/Qf0hBI6/5m2WpXf1Tk9/5e5MIRnfMOF
+	UhuCaL7QJee2rrMAqxlHi/OsI5jR3jr7+TLcZxgUWVfOWUkMGy2LMRBmFnz2ZWXA
+	kSCEh9R+HxRsWWoHKs2wfE3ECbwU1oiC0VWP095gcpEQykVfJ3KZcc6MpghdUPKU
+	eNpEMR7PgVt9V3lDYgN+YpDvFCq8ZSUVLYvMutaFUDrDSg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3d4ep-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:22:37 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6ead629f6c6so12945506d6.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:22:37 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:24:01 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4770594a277so37739011cf.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:24:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745490157; x=1746094957;
+        d=1e100.net; s=20230601; t=1745490240; x=1746095040;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SRAxpDNuwfhW3PHrfYeTwTafuh1/vvz3kKMzJSGCp2s=;
-        b=pu1qF8/EiL0qCEjRml2efeB/4G/UUkw7noq3+XqjyjuD1W4V2gIbCT3ZzbJVbcm7pe
-         PJRT/7jthXSq3K2Og9x+Z02H2on4dIcgVmK95pk5QwdZDTM7oC4hBq46h8ADMsoCS4cl
-         kfW564hLUcS/0RBWJDFXlmSh7SvWsiLKB/ibQk2xSbXJTM+TF570+VauIzYyWv6WPj9C
-         MJr7yGnGc1ZdMDmTMJxswN7PtFGLiNeU2M4A1vKTS2DIl3FfCNrZYNqbjTT6+a4nAtfA
-         NrXb370r905+u57Mwll+vukrTlKfxafww24jsvw3iXIYPhWFmyLlp6UAsD3T2Pfh3aoB
-         WV4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXvlakRfGG7kBctYFJ+BK8WIps9p0NTaPZRxX2V/IO6h1CuzAO3QNXTGMIXyv8+AlH04RwpFL+TSgxl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yza678vt+dbL3GqmY1ShrCQpOBwvbzEmRslBDOEhVZmUg9oL+vO
-	dlll/yDlTk8l0GwUaoICmrgFCAjYntBiPa4mq8gv7oiO778TT1CKyfGZl+QOF1D7nWitvj48mE5
-	jn9qdbO/zg1l9mr8DgiRGBNXLJg/ibqKyDV4AZfm5BmJbCCITcvHO3Ve4Bm6Z
-X-Gm-Gg: ASbGncs+2jpflOZ0g83O7l92Zql2gfpgsT5P2P60LIm6xk6dXUufwY4M1xIIMvLt4/5
-	4TEWRjC4S6xO/FkMBdxbtcE0z4g8HVtwjP1lITQimrZEEXCAQYTRV+KHGrqybXzjdRks4grWvmw
-	D85wrsmmvDN4bZR7qeUNOtFdc31eZjb3WhFDK24bRPQ0LBjhviHqsrs2wbhJA9FdXyqvkMMqSN5
-	vwd1XF0KAF2hRY/S1ezA3K/6T6kiCdvjXRR531T38Cond3+86H37LgOfIz8hEiLLyeMXf5vffQQ
-	QcjbIL5lLdUS5Yyp9IiLuciil2k6FI6X55SnTZ+U0LGS2R93CRUYGBkU/ZPyo0dhA6QifGq6FKg
+        bh=j4BDsTwObQmRXQvxX4u8s4xUg+eG5lJxHUSU9lC6EcQ=;
+        b=p5S4cHoTV5IszGBlEAqWerRvuY3pOs/oXgfpgtXV9Z48SyIGK9ZatGdDsUq/TpzVwf
+         NKPUBaizRPOXC/KFHgKahUt8tRiRz23PP2mIAJmAIxu4RwfoUipNbCPXYfl6vnf5pcYI
+         jmJd+oCtmmkqi+IQpzc/Bs1DgmH89P+tu5zXz9H/ozr1rKsn3jZ5tmcT5vcKQ/8aXDSV
+         kzp8kpz4IHJEzKknbX7vyyAtd9G5xqovTporPshyycY+le6W7Kq7hpqzH9vwToLBXxPC
+         kl11NZtwYxrCyiMP1XVnW3VBaMwkzJzKvFISAmN3Ik3chAg4s7Wf+FsVKPizzxInbomA
+         GqGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4vNEIzYU6HWLSVq2Z8T25N6ySd9QcBiuEzBleKrfqhW+wN8/V2qbetnulvCLMSiqlBd9/9Qomy0Vx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw63K0CY6hmdsOhcVhZ3P6GmRXPDLUsehXalHGh92/EfwU/eVIV
+	ViZLJskUcRJhjEo36dj+8ZsZzl/RPnG4efdCcQkr5cIEGXk2hMd9X8mrkBqiXHixPdIIbkE/P6s
+	qC/IoqPcUDnAxGnrJwoj4bjsLW1692SCfynHDUcxBzibWpjOrw2n18F/wqngZ
+X-Gm-Gg: ASbGncth0Z8f/E7Sd7P1v/7kk193o/JVeDEWDjbfjQu+AVr4+10pzV3OCVSwYRLfRfC
+	3bOfn5kGw6Py3CB2ec0LVJoAk0DJ/JawJe7aoo+Mo3E8O80wny/BsN6XGVU3RCLwa1oPYbCoGnp
+	iRPY7/zZvG3DhFAIKi5sgEeMz8NZDhpW8nwPcPt9mIAbLs9Fv0NzWZBIZxzSZr8A8oVpHvTYl17
+	aEYDijpdZFyVLhfjqeq9MWgE3ZQUAj3Wo0iCp6+9U6zC6pBpFUTwX4x/UlTnN5nQdwXNCXUPu7S
+	Kic4XsrVQFOcvXk+tqcXhqDrECSpwR5hcJb3l3RPkVlYg1K4RdUqztGP8b1qgaEDBzTKbAAuM/I
 	=
-X-Received: by 2002:ad4:5c48:0:b0:6e8:efd0:2dad with SMTP id 6a1803df08f44-6f4bfbea7a2mr28149446d6.12.1745490157194;
-        Thu, 24 Apr 2025 03:22:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgzsgx15Qut4NSB+bBKJh1rVxVjonV6TkGCbeCeN7hQttgUdN1oI7waEXbtgP5UUOSfMKNrA==
-X-Received: by 2002:ad4:5c48:0:b0:6e8:efd0:2dad with SMTP id 6a1803df08f44-6f4bfbea7a2mr28149076d6.12.1745490156892;
-        Thu, 24 Apr 2025 03:22:36 -0700 (PDT)
+X-Received: by 2002:a05:620a:f0b:b0:7c0:b350:820 with SMTP id af79cd13be357-7c95859b8d8mr248842685a.5.1745490239949;
+        Thu, 24 Apr 2025 03:23:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEQQEXVZzHdQnlD3zO5Vs5rn2DZ4H/JAobpVLZpVt95WPenNjUM3LZuNMO+8GOdOAF/WC9wFA==
+X-Received: by 2002:a05:620a:f0b:b0:7c0:b350:820 with SMTP id af79cd13be357-7c95859b8d8mr248839085a.5.1745490239479;
+        Thu, 24 Apr 2025 03:23:59 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-317cf659af7sm2028831fa.15.2025.04.24.03.22.35
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7ccb8055sm176606e87.234.2025.04.24.03.23.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 03:22:36 -0700 (PDT)
-Date: Thu, 24 Apr 2025 13:22:34 +0300
+        Thu, 24 Apr 2025 03:23:58 -0700 (PDT)
+Date: Thu, 24 Apr 2025 13:23:57 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>
 Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -96,14 +96,13 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 3/7] drm/msm/mdp4: register the LVDS PLL as a clock
- provider
-Message-ID: <orh3v7knajhmpv4uzmarpgdbfhkhtipjxc7agfmvlqdzggpwzz@yohc5d763ynp>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] drm/msm/mdp4: switch LVDS to use
+ drm_bridge/_connector
+Message-ID: <s63lvzn35d7xcvw3kkmtasyinxbqa35juyxosdscfk6vhty4pw@hu3dotyklo3r>
 References: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
- <20250227-fd-mdp4-lvds-v3-3-c983788987ae@linaro.org>
- <029f3bfb-a031-4dfe-a2b4-bc41a0da7772@quicinc.com>
+ <20250227-fd-mdp4-lvds-v3-6-c983788987ae@linaro.org>
+ <63e5ddf6-151a-42aa-b2cf-003d91b34a04@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,80 +111,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <029f3bfb-a031-4dfe-a2b4-bc41a0da7772@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA2OSBTYWx0ZWRfX1Yx46br8s0y3 y6Dhi9uJSYj/1vCManQJxeUZAcqkFuR4ef0qLRXPKNj2rJJOAKooi3Al2fSHAU7ctMuLx6hBhoX NcfeiIK/TQKhon83w+rCDLVFfC/U2iFkJpOS1KXKGsjlnJIvgmy1NOjU1rScuWexPO/YsgwoORc
- ogZg8JXOcOhhoMiSCBFjPdtxGdewUEN6n1eBbqcSY/sv5/JNlV34AI9jSXlsU6wTozKnySYBn1V hMFIwCayxVg7O0vM1FZWaj+95PJnUE1gxR0Br+9N8T7FYpfdvKUCV+hgmFT8FuomzSwWIh2VLQj XSFQwkZS74P6vkelUEOkbHjvJ41hr4YACTBn3quiH46jP9f+HGoe1UlVCjZFTyirqbnLdPoyOtY
- +ThxFsAQMZwl/sDIyV4qOVnFpshONqQsyyJSaodd/RzQER34IA0FdOuo+ntOt+tnOdY+QlDx
-X-Proofpoint-GUID: 3QKVTnCIFOsPYPsQWEK_FJnFhP6etp5_
-X-Authority-Analysis: v=2.4 cv=ZuTtK87G c=1 sm=1 tr=0 ts=680a10ed cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=DMSj4145jBr-G1g3eIsA:9 a=CjuIK1q_8ugA:10
- a=iYH6xdkBrDN1Jqds4HTS:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 3QKVTnCIFOsPYPsQWEK_FJnFhP6etp5_
+In-Reply-To: <63e5ddf6-151a-42aa-b2cf-003d91b34a04@quicinc.com>
+X-Proofpoint-ORIG-GUID: lM_fQieAxOugz2k5bb0y5vLGUYpAEE9C
+X-Proofpoint-GUID: lM_fQieAxOugz2k5bb0y5vLGUYpAEE9C
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA2OSBTYWx0ZWRfX0lXzMy+2Zqrl 8doKRZSpcqsocrNLIu3KnY7lfFq1DotuazbpxP4AzUd9TubGyjXraGYAfSgxpgNMr6hlu8+eYUd yMi+S9ojQ1eYYZuNPFzgtO6+G052wG0WOFzEP3XXfeGpE1Vfqngv0OnmONxGr1u6rXWZJLXPAyn
+ QyKbMnFtHtUR1h3yjSH2hvY+15Xxw9b+nOXIEtphAzWb8kf1FFFy/fPV3Gf/nfTvkOIY7F09w25 WdGXAQHzuoWwTTy2+D8Vpm9EzsGiiq3UqjeT87b0QT7g+FjkldQsfIiAgJjz8N9FSt9HRw911kY dinihSxz7yPEdw9BBsQAd/2Vp9A3UsvKopQVHuPIDMAGpV2daoh3/jGus+20jYCvsvauSXLKreS
+ CEH5t9JIfvptR3egUfZ6qz0wz0bnAODMxWn7inMOiBnmUZYuNij2uC2bCklvi2d6YvfUVf9w
+X-Authority-Analysis: v=2.4 cv=Mepsu4/f c=1 sm=1 tr=0 ts=680a1141 cx=c_pps a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=OCSEMTtbVqUzc-lEabkA:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
  definitions=2025-04-24_05,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- impostorscore=0 bulkscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 priorityscore=1501 malwarescore=0 suspectscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 impostorscore=0 clxscore=1015
+ mlxlogscore=979 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
  definitions=main-2504240069
 
-On Wed, Apr 23, 2025 at 03:54:13PM -0700, Abhinav Kumar wrote:
+On Wed, Apr 23, 2025 at 07:04:16PM -0700, Abhinav Kumar wrote:
 > 
 > 
 > On 2/26/2025 6:25 PM, Dmitry Baryshkov wrote:
-> > The LVDS/LCDC controller uses pixel clock coming from the multimedia
-> > controller (mmcc) rather than using the PLL directly. Stop using LVDS
-> > PLL directly and register it as a clock provider. Use lcdc_clk as a
-> > pixel clock for the LCDC.
+> > LVDS support in MDP4 driver makes use of drm_connector directly. However
+> > LCDC encoder and LVDS connector are wrappers around drm_panel. Switch
+> > them to use drm_panel_bridge/drm_bridge_connector. This allows using
+> > standard interface for the drm_panel and also inserting additional
+> > bridges between encoder and panel.
 > > 
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > > ---
-> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h          |  2 +-
-> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c |  8 +++++++-
-> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c     | 22 +++++++---------------
-> >   3 files changed, 15 insertions(+), 17 deletions(-)
+> >   drivers/gpu/drm/msm/Makefile                       |   1 -
+> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c           |  34 +++++--
+> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h           |   6 +-
+> >   drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  |  20 +----
+> >   .../gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c    | 100 ---------------------
+> >   5 files changed, 28 insertions(+), 133 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> > index 142ccb68b435263f91ba1ab27676e426d43e5d84..b8bdc3712c73b14f3547dce3439a895e3d10f193 100644
-> > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> > @@ -207,6 +207,6 @@ static inline struct drm_encoder *mdp4_dsi_encoder_init(struct drm_device *dev)
-> >   }
-> >   #endif
-> > -struct clk *mpd4_lvds_pll_init(struct drm_device *dev);
-> > +int mpd4_lvds_pll_init(struct drm_device *dev);
-> >   #endif /* __MDP4_KMS_H__ */
-> > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> > index 8bbc7fb881d599e7d309cc61bda83697fecd253a..db93795916cdaa87ac8e61d3b44c2dadac10fd9e 100644
-> > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> > @@ -381,7 +381,13 @@ struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
-> >   	drm_encoder_helper_add(encoder, &mdp4_lcdc_encoder_helper_funcs);
-> >   	/* TODO: do we need different pll in other cases? */
-> > -	mdp4_lcdc_encoder->lcdc_clk = mpd4_lvds_pll_init(dev);
-> > +	ret = mpd4_lvds_pll_init(dev);
-> > +	if (ret) {
-> > +		DRM_DEV_ERROR(dev->dev, "failed to register LVDS PLL\n");
-> > +		return ERR_PTR(ret);
-> > +	}
+> > @@ -199,27 +201,43 @@ static int mdp4_modeset_init_intf(struct mdp4_kms *mdp4_kms,
+> >   		 * bail out early if there is no panel node (no need to
+> >   		 * initialize LCDC encoder and LVDS connector)
+> >   		 */
+> > -		panel_node = of_graph_get_remote_node(dev->dev->of_node, 0, 0);
+> > -		if (!panel_node)
+> > -			return 0;
+> > +		next_bridge = devm_drm_of_get_bridge(dev->dev, dev->dev->of_node, 0, 0);
+> > +		if (IS_ERR(next_bridge)) {
+> > +			ret = PTR_ERR(next_bridge);
+> > +			if (ret == -ENODEV)
+> > +				return 0;
+> > +			return ret;
+> > +		}
+> > -		encoder = mdp4_lcdc_encoder_init(dev, panel_node);
+> > +		encoder = mdp4_lcdc_encoder_init(dev);
+> >   		if (IS_ERR(encoder)) {
+> >   			DRM_DEV_ERROR(dev->dev, "failed to construct LCDC encoder\n");
+> > -			of_node_put(panel_node);
+> >   			return PTR_ERR(encoder);
+> >   		}
+> >   		/* LCDC can be hooked to DMA_P (TODO: Add DMA_S later?) */
+> >   		encoder->possible_crtcs = 1 << DMA_P;
+> > -		connector = mdp4_lvds_connector_init(dev, panel_node, encoder);
+> > +		ret = drm_bridge_attach(encoder, next_bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+> > +		if (ret) {
+> > +			DRM_DEV_ERROR(dev->dev, "failed to attach LVDS panel/bridge: %d\n", ret);
 > > +
-> > +	mdp4_lcdc_encoder->lcdc_clk = devm_clk_get(dev->dev, "lcdc_clk");
-> >   	if (IS_ERR(mdp4_lcdc_encoder->lcdc_clk)) {
-> >   		DRM_DEV_ERROR(dev->dev, "failed to get lvds_clk\n");
-> >   		return ERR_CAST(mdp4_lcdc_encoder->lcdc_clk);
+> > +			return ret;
+> > +		}
 > 
-> Change seems fine to me, one question on the order of changes, DT change has
-> to be merged first otherwise it will fail here?
+> Can you pls point me to the lvds bridge used with this apq8064 board? I was
+> unable to find it. Just wanted to compare that against this while reviewing.
 
-It is already semi-broken, as just enabling the PLL is not enough. The
-branch clocks in MMSS are to be toggled / manipulated. As such, it's
-questionable if we need to coordinate or not.
+It's the panel bridge, wrapping one of the LVDS panels.
 
-> 
-> Will that be managed by co-ordinating with the DT maintainer?
-> 
+> > +
+> > +		connector = drm_bridge_connector_init(dev, encoder);
+> >   		if (IS_ERR(connector)) {
+> >   			DRM_DEV_ERROR(dev->dev, "failed to initialize LVDS connector\n");
+> > -			of_node_put(panel_node);
+> >   			return PTR_ERR(connector);
+> >   		}
+> > +		ret = drm_connector_attach_encoder(connector, encoder);
+> > +		if (ret) {
+> > +			DRM_DEV_ERROR(dev->dev, "failed to attach LVDS connector: %d\n", ret);
+> > +
+> > +			return ret;
+> > +		}
+> > +
+> >   		break;
+> >   	case DRM_MODE_ENCODER_TMDS:
+> >   		encoder = mdp4_dtv_encoder_init(dev);
 
 -- 
 With best wishes
