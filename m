@@ -1,135 +1,153 @@
-Return-Path: <devicetree+bounces-170441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3007BA9AD29
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:21:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF57A9AD3B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:23:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56C79925E12
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:20:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 346D81B66713
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29CF22F764;
-	Thu, 24 Apr 2025 12:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA3622F773;
+	Thu, 24 Apr 2025 12:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Suw1LZxz"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="mhvDkXpr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CC81FAA
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 12:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDC22F748
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 12:23:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745497237; cv=none; b=GYTYYDyfpu+S7aZo/jBpfj+iBlxg3iXTcpjyV5LKibmhiLpSOC8ZU73bWt7Vr4ylshuZO7arIyIv1gycSj/L/6kiSFk2zHPiaKKKup+QFHK11HTk/rBJA2Fbf41BUE72XiwcZVA8RNsXD87hSq6+QTP0NA3CfoDIpsfkXpz9pTY=
+	t=1745497421; cv=none; b=dIgK4kVvUqLTcBD2IvSe9i8ZB/qZ2FkICibR+4oOSYh4D+gM8um+5ECvU4e2z6AIsE4yGlKqgQMWiryQIWT0vWloExXCDIAJWGtSbwma+AiczfNaAYmS2PAh9GFCuC/inG65DFXbXg0mkbkCyy6FitHFr+AQcVijGe6yuy2STA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745497237; c=relaxed/simple;
-	bh=bL8XZJpIQ328FckjzxCTkScUdzNQtFOutrtggIAGvho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YwrZrjZk66afRqvCeWYR4384wRRP0TPEuOvoQrXKyN8+IoV5LVn1oqb+XMM0WjS8yYQzId0Wy40souXCPVKakASCe8aKpaMz9xq5x0awIuLOBm/596oxsMARRH7KQ4KSqR+gb3QsdKILjAKj8ynV3+Fb24ni5BEAm/bQD8aVHIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Suw1LZxz; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39c0dfba946so673709f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 05:20:34 -0700 (PDT)
+	s=arc-20240116; t=1745497421; c=relaxed/simple;
+	bh=mb4owV23IIKFPA0348nV5wGPHZz3gEvC8g/fsUHVCgA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=I6MVUxAtqMrsX+04yTQ7z1b1k4yl9Vb+m/+Qj1KzTC49ee7z4vxgj7TJWzDQrNGfzFbE+LbLQdxYYAb5JE4gPyy8NPQGrHvMiN2FyxPRRjUGOg9/uin9aRGGHgVRKJoiamWeg4c4r5IM98lKXQutbvF6vAhG9i0uV/9OvnzEClU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=mhvDkXpr; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-440668acbf3so1423205e9.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 05:23:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745497233; x=1746102033; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u50Yy5Vg8srr8Se1a2fDdmj5mgoY3leB+NYiaQ0tKb4=;
-        b=Suw1LZxzxoOoMZRlMgxKMu1qNBFbVt8fWs5AsneTXtfH7gNAf3SADchKKJdj2Qtkk6
-         R/tWdiYKrYdtTEANlwpYvO6rWYSP0J4uqmU7i13FIGQ5ZkmYyf9uG39MoRrnuvPXWFxa
-         Ll7Mk5yzRQgfl1W1Tq+622z0uLfPgF21YB+I2HpYEHtPs2iLLiGJwlrpJeNErtHiRTF6
-         KgUhm3gPVAdhZtOIdxM1Q6vWYrNEX8DUOGF7WpT6E+8kC+U2lpAWUsIiB6Z3vNuczVQ1
-         UweEmiHzHQ9opntm2TTGfWjBlkYIMXixUO45fVYi5fg+SuyKTgRHs9n0A3I1PUl16rjV
-         ZxXA==
+        d=ventanamicro.com; s=google; t=1745497418; x=1746102218; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:subject:from:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nffUUxHQRUxihyV+Es46LKx5IUoFWP6+nxUCQrf1fjs=;
+        b=mhvDkXprQtheM2R2TQkjwyIwHPj/Flc53DbFs1ggfPvNPOtZUwTMqHejND99lMyASB
+         fJ+W3zMl4kYtmyflhE1ioeLlZ6kaIY7kKgDir8C70ev2fNC0wK1H2EwP9socGF7QuLlg
+         q7KmZ/sZk6bFZzhY4F7EbEpDDWV55SaAgKcC4UB54UnLjqEL4KCxIBDeCMywZAVwg0f2
+         qS7wd/HTrDCoS/ZU9yL9RoJVeeH+X08FFKG2j8ErtQ69Oz2V/0+3d4QcaIJYLKQ+RXNs
+         mzePApqiRMFNVnJ28teIBT+uUUkqv7p5hMMyLkS537fu3ufE4owY0a5pG2E6a4D4UKiq
+         LL6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745497233; x=1746102033;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u50Yy5Vg8srr8Se1a2fDdmj5mgoY3leB+NYiaQ0tKb4=;
-        b=V8kBWccbi3M9bUueRcZXLfpSdf1SLBtlhNxiK4zdJqSrFvwDLkWTL8gVYCjkDfB5KK
-         pYhhGkL3ph6CaYXQRtKclVCDRypfK4UzGtXYA5o/QDRZ0uUID2mKneHyITLxwJ+CTS4n
-         0y+5a7lXyijW8ul4PfDThlb23EQhwCoXJ4bm6tsiL13Erp0sHEiwPPmr8VAPnEnyZrEa
-         95oDYX7/d5rfUop/QsxSod+6gCnY62EuduQJz5ad54h5SiIBEQmJD1/3jf+Wq1YWqoq6
-         +7f35zxrgZlmfVJ4/DtFYgx390Ld2awUvyy+JZMLL9Eu60XEpkNjfvUZHiyzQgXJ85gt
-         qbow==
-X-Forwarded-Encrypted: i=1; AJvYcCXMAyEnTNb50c5gXv3rslwy5bv1zhosL+JWxD7JToTTL5FAWi/hK/0kfFvEaHI7kc/ZtcZYNZVgaGfO@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywn/T/G1NxoTpxRt35GCrkLdkt51D+yAPUDU6gtR+bFYrjJhshR
-	9DwcmkjzvBlJR0PlBA5s7bB6hm12H/USjPm409RXBcQqmF1BT+nYs93jky0v6yo=
-X-Gm-Gg: ASbGncv8AtMrJWbmGSTvzbLPKo9c3BoQcyZcGcuexGHnIk97YDnLrVD1+6cyOCv2Kos
-	2rXYIfgLGwMnyVBRDIOO5M5Wcj3bedbpgX0Bn1FI9uNIfhJq0XnZXD1KXF8heIVvuciK5xIv7WE
-	TiTDhIpUNDkuDz0h5xlB6G8mEIYaQCZclAe/ursDrJIOh6IkSrGMIr0sA7DFebU+mXYRwkkKgAt
-	L5YQMRRQwiWQQIlQGv3fpO0/Egd/gCWbFmWeNQAqm/Y0KmEjMw7RwmUSOZIyfGzM1yleKnxMeBm
-	r1a0/9agavNPNMdubKqDkBWdPq+dxekvAOcTk+SlgoJsS6uxH7Fysk6fjnVQvKp6MF+iFYYZFVQ
-	tUBlQPQ==
-X-Google-Smtp-Source: AGHT+IErGqD7SWmT3PoP2Qcfi8RzPWJTMPf2UDlu9jVrXtYNixkU0DJW45avJrW+b31pNkThEJFAjQ==
-X-Received: by 2002:a5d:64cf:0:b0:391:20ef:62d6 with SMTP id ffacd0b85a97d-3a06cf4a80emr1986260f8f.11.1745497232880;
-        Thu, 24 Apr 2025 05:20:32 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d54c031sm1884747f8f.84.2025.04.24.05.20.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 05:20:32 -0700 (PDT)
-Message-ID: <00fb511e-80b5-494b-acce-23093932c4ad@linaro.org>
-Date: Thu, 24 Apr 2025 13:20:31 +0100
+        d=1e100.net; s=20230601; t=1745497418; x=1746102218;
+        h=in-reply-to:references:cc:subject:from:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nffUUxHQRUxihyV+Es46LKx5IUoFWP6+nxUCQrf1fjs=;
+        b=pDIPw2qqES/zKkC5g1LtCBsKu11qZuJLIU6XV0cnLe+YWJMW9edYZBtjHAZV/qMHrE
+         rcH1t9qy9zUuUwzCvJ5MJgX9RYVxrcHg8mF4eIJQqHkUhTK//w+l4amPonV1IMrQJLRz
+         CJ5qFC7VVTZHiUEHgD1b721XamW5fc+fpP1IfuKqOld3F7ngCtDSz2MxPv2kw2ygJ3B/
+         wlVv9yzlAV9zQZ9Yglf/9cBlW7aDjTKbY0TuIJ2LnQuGMXRuwa4RF9nTp7o5VfFiY8VX
+         iPUFQL4uPAjQs2JHLdOD2qHq05N8R43dGB2z6+6W6VbxWAS8ahWTlFKtzRy5C0WhY5GM
+         Tz/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW6XNB4f0aivFmE0EvLnbJVED/z/qaX4atBNu/MGaM3xGDI9lk3z+e2iv/QsSDvkF+yYe0ZxSfitjwr@vger.kernel.org
+X-Gm-Message-State: AOJu0YySOXfT55Bwwh1A/h01cUyYbI1p0F3CHy3QAbmKDBdsBoMvNCtn
+	+xlKQx8RoeB9Y38IPyuYRG6PuWiu9HjzaCl9ykVijdCEb6K/UOI4ptBe9hHOkCk=
+X-Gm-Gg: ASbGncunvpCiRkk/bCaxOcnqA/T8ZpuJB87z7NQ8XKrlxq6FnqfciPZ1MBjIn74vfCc
+	0ihqx7rgwoAZWp2MPSiLr/F6Db0mz5Ez4rAeGsazaL6DdcMg3Cy1PtNMKcbdh3Lg/VTl+abj0oY
+	UOPPY1OUL1GBJPIaTKQbI3b4M/nothqZbN3mkFhv/M71z6ZeLcZcG7YcNBf+oDPTR0WBrnNcOcz
+	rlup08CAXyzzr2q/kc+E+5h4U5eZiDA9HfVwROUC25VSZLHfelz/0vEBnLWL4+uNok9I3h9dX5D
+	pzYFrPy1tAamC0M3Xz7+CpovVV9Dt8BQIH3Cd3iL4i/cHptgBbejva6FF7w=
+X-Google-Smtp-Source: AGHT+IFvpk8fVElfDmbD5bbQ4KBSF4oRicSe9nZGd6eQAPt/95H7RizUp5Ju8acqfaiZr/JLSD9aIA==
+X-Received: by 2002:a05:600c:3516:b0:440:58d1:7ec3 with SMTP id 5b1f17b1804b1-4409bda5fadmr8020715e9.6.1745497417906;
+        Thu, 24 Apr 2025 05:23:37 -0700 (PDT)
+Received: from localhost ([2a02:8308:a00c:e200:b30c:ee4d:9e10:6a46])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d29bfc4sm20203525e9.8.2025.04.24.05.23.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 05:23:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: qcs8300: add support for video
- node
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
- <20250424-qcs8300_iris-v5-4-f118f505c300@quicinc.com>
- <47dtgkfqcpalixg36vxcurkmh5z52kdp7rbcvwl56wsyjsisdo@ylmmrvwde4nz>
- <d8db0361-b8d9-4ed5-0f92-f66f280f62e6@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <d8db0361-b8d9-4ed5-0f92-f66f280f62e6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 24 Apr 2025 14:23:37 +0200
+Message-Id: <D9EV6ZHETDM6.36DJZQTQ487O1@ventanamicro.com>
+To: "Deepak Gupta" <debug@rivosinc.com>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+Subject: Re: [PATCH v12 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
+ | VM_WRITE
+Cc: "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar"
+ <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>, "Dave Hansen"
+ <dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
+ <hpa@zytor.com>, "Andrew Morton" <akpm@linux-foundation.org>, "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>, "Vlastimil Babka" <vbabka@suse.cz>,
+ "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Conor Dooley" <conor@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Arnd Bergmann" <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>,
+ "Peter Zijlstra" <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>,
+ "Eric Biederman" <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>,
+ "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann
+ Horn" <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+ <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+ <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
+ <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
+ <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
+ <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
+ <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "Zong Li"
+ <zong.li@sifive.com>, "linux-riscv"
+ <linux-riscv-bounces@lists.infradead.org>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-6-e51202b53138@rivosinc.com>
+ <D92VG9GT3W5D.2B71FBI67EYJ6@ventanamicro.com>
+ <aAmJweehK4ntbVoO@debug.ba.rivosinc.com>
+In-Reply-To: <aAmJweehK4ntbVoO@debug.ba.rivosinc.com>
 
-On 24/04/2025 11:28, Vikash Garodia wrote:
-> 
-> On 4/24/2025 2:51 PM, Dmitry Baryshkov wrote:
->> On Thu, Apr 24, 2025 at 02:20:48PM +0530, Vikash Garodia wrote:
->>> Add the IRIS video-codec node on QCS8300.
+2025-04-23T17:45:53-07:00, Deepak Gupta <debug@rivosinc.com>:
+> On Thu, Apr 10, 2025 at 12:03:44PM +0200, Radim Kr=C4=8Dm=C3=A1=C5=99 wro=
+te:
+>>2025-03-14T14:39:25-07:00, Deepak Gupta <debug@rivosinc.com>:
+>>> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_risc=
+v.c
+>>> @@ -16,6 +17,15 @@ static long riscv_sys_mmap(unsigned long addr, unsig=
+ned long len,
+>>> +	/*
+>>> +	 * If PROT_WRITE is specified then extend that to PROT_READ
+>>> +	 * protection_map[VM_WRITE] is now going to select shadow stack encod=
+ings.
+>>> +	 * So specifying PROT_WRITE actually should select protection_map [VM=
+_WRITE | VM_READ]
+>>> +	 * If user wants to create shadow stack then they should use `map_sha=
+dow_stack` syscall.
+>>> +	 */
+>>> +	if (unlikely((prot & PROT_WRITE) && !(prot & PROT_READ)))
+>>> +		prot |=3D PROT_READ;
 >>
->> Nit: you can not "add support for the video node". You can either add
->> video node or add support for video en/decoding.
-> Makes sense. Will wait for any other comments, before resending.
-> 
-> Regards,
-> Vikash
+>>Why isn't the previous hunk be enough?  (Or why don't we do just this?)
 >>
->>>
->>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 71 +++++++++++++++++++++++++++++++++++
->>>   1 file changed, 71 insertions(+)
->>>
->>
+>>riscv_sys_mmap() eventually calls arch_calc_vm_prot_bits(), so I'd
+>>rather fix each code path just once.
+>
+> You're right. Above hunk (arch/riscv/include/asm/mman.h) alone should be =
+enough.
+> I did this change in `sys_riscv.c` out of caution. If it feels like un-ne=
+cessary,
+> I'll remove it. No hard feelings either way.
 
-Unless you get another comment, there's no need to resend.
-
-I can fix the commit log for you on the way in.
-
----
-bod
+I think it makes the code harder to reason about.  Here it is not clear
+why this caller of ksys_mmap_pgoff() has to do this, while others don't.
 
