@@ -1,159 +1,172 @@
-Return-Path: <devicetree+bounces-170298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BDE8A9A6E0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81876A9A6E4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:53:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF94E1885B01
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:51:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2856B188B25D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB5B221FA6;
-	Thu, 24 Apr 2025 08:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC7820E716;
+	Thu, 24 Apr 2025 08:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eW1kquGS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DB7L+g0E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4C1221FA8
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 08:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6EF20102D
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 08:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745484490; cv=none; b=q+5HEfJbsj2KYFQT2E4UbI89FpMmH9G+q8AfNux7CzbselLY6OBbg6zaVCTCt4Q3RHklL9qTNQsQqYnP6bIpZkr7+DHbs5CVWN4gn8hEbfpnWPQMwtWzySbq4ecR9QHiZzYwcdB3xbdiT0ZNM1uNW9d/0Mf3zVsuXy/qBYouOcI=
+	t=1745484540; cv=none; b=fI7KN0/+n9ZTFfqf1OKjIvZbK8/lmza0nAIXobOuO4LSKYSSCpTFgi69RXvd0aDJghWjWu7pynUV5WKuIxlcE1WP7maXL9IOCGs7NDwvUAhX+yjUPI8Z4qkhcu5hTt2HXLmt9fYhbyFMFy6na/m8hI4v8JX0CO7iMGfFQYaMo9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745484490; c=relaxed/simple;
-	bh=vXjz4hOLTpgU5jbVh6VigWCb9ovYngyk2paVsl+ClIE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CRMH5rr8BCe8HEK4fP1dLIjTqdvcpkCBfVjnwKsmQYdTgE4VP5d4s1g7vuZ4okXU8Dod3XXo6GibSALU1kYLJ3sNR62fQMzHKbYMxPl1PhHN1KbMLbzZXr0ThmgsiYys94N5MMJR2Jc0zTwJup4R6YhamBm93I078KQbRZR3UXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eW1kquGS; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1745484540; c=relaxed/simple;
+	bh=bN+ogKEKRzfQQuY4t0TN0TGxrm6Tw0q/1hhOwW1I+ow=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kjmHmTLNhFhd2FhjxKp53YB0OKqq6tJ17e0actlrRB4pm65oHMXyjvDjAgQXpvpgo4iuMUWde13E5Al0T51ajSx3gaAsyRTtzmhbXlux/Xy3e+ImrQa/sfdY3X0oKGNMZ4klhxYsxij/nB21uXTRlRXLngllIA8uNVCmBEp2CtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DB7L+g0E; arc=none smtp.client-ip=209.85.208.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e83e38d15dso91769a12.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 01:48:08 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-310447fe59aso9859121fa.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 01:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745484487; x=1746089287; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1745484535; x=1746089335; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XlI4MSNJQrAzEP1cSUjdjx1DigpO/B9fZ6xgtIKJgwY=;
-        b=eW1kquGSZOR54+twA4GPa7xfl1h4z4Uwri/GeAuQzvxao3OCRiApBlh51usW3W1uqq
-         5IeXqlcpBfINKVbkFbQBwWWqzhJrkf0e4DOQcDn3aNqTAsYEBJ37rkMhZf6tBiptc7jN
-         dCwGvYU1JvPUiGQve6PKH4uwLyalvIUVGNSYEpgZeHdyF31wIwg3BGahOeR7S46nY5/2
-         tJmQhaWpHkrJh6febaNxIDmlLjZDIfEm9dNLMUBAbpfv9+/cD11gvvvElqsvXfbaxbTU
-         cpiG8fgZxlotlicWuuOiS4k2MhjldB+T+kAsd5DnJfWBx5V2JivliI3tjLHZe70bro8o
-         678g==
+        bh=KQRA7d452oryDtFvJjN4gzdIi0T+CiF3zcn8EUThZUo=;
+        b=DB7L+g0E8n/ocHOXDvLaDw7VMLHqrc0CM2WTDAL4ZwfHtEpDLarD9elbKn3DsT5ukd
+         7MCado8Uanz7ectGCeyPsQYZLqeo4IOiKHX/igv6BIvu4w3L8I86EXieQfjdIyybA1bl
+         W7lK8GT63sZBO4+cZff7i3frbKidUMOAJOaHUAXTpKZRySXDPgdSuJbI4vjo2PUpcDTj
+         NGDoF9M4+2qxY4EsBWts9rjIooLdL9zZLsBXx2c8cdg9zvgF3jsNX3IHq0jQyPr+yHKW
+         iTpP4GTefbbB5A66FcwRh4iZqDm/arVSfbyeQLfjo2OyaaCh8VA4bDB6y4XQgW2Ldblg
+         mB+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745484487; x=1746089287;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1745484535; x=1746089335;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XlI4MSNJQrAzEP1cSUjdjx1DigpO/B9fZ6xgtIKJgwY=;
-        b=liRjPsi+Q78BaXyFM7wjyMBcwoiynNx1dXppgweg3wuTy07EQLqj9Vr/vG0DVG7kBa
-         X4lhYUXDR3cBWdFBclPMLeiuk6nVl99XH5RjFd/WEiLLE9G81jB/eTWzynvVDFgsMkn1
-         jxRApKJ/iB0+4t3e9AxsVoSXCODsRz5KHT/QJGHFjTUn8aa5ir9Z1ajCjOk9vhYpPcDo
-         3GecgxLtF/I5arJxXlep/IN4xwPlHDLn+aUdQSS6q20LDVd/rc9zgZTlOdWxR9SrmLYh
-         24p6yRXYFv/UmtGGCQCGmcmgdw7fA664HS0gqMKvCB/qTcY26ofXKZMfFCDmYUWVWMHe
-         l5ow==
-X-Forwarded-Encrypted: i=1; AJvYcCU/7byea29UIdLbVueuLWkFPe8wq8sz83SFMw6ykv6FlOdVeaF+Igsbt4sBs0/r7dgfxM7D6vSb/cGn@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywlva2Erg4TqsosdOVGqBre1rvQo6whTwlIk2RvvtygJjM2Dpi3
-	0/0RI7wXbIgJIkA/MS5/XiAJvgUx6XcQn1TYeU4TgFYRBLmhmIPjr+1HqTrvSqU=
-X-Gm-Gg: ASbGnctlng2EJz3Ov2hWLZgB9sdpW33IGrLfs0QP8r12EgOjkt96w6VqWCV8QfP9z2t
-	jqBV9yntKbAF+35ZhLf3wkFc3n9COdyz3IrhQwpkYt4xK4qMnVhoBdR+9gfo08ABVIUIuXlTJqQ
-	rCcQM8VoCN+REJT/IRp30hls68dhs/tE9PFMrpXxVfReDADuDZ226unjPtyeOECkwE7YHrdzRNo
-	8+dpHzu8Xpdo8rZQ6jt6fVPJ7udcScRN36DCM+LW8Kyq4GRf9nONfquIdP8EL9R1Zs6BtSEj3C6
-	Mlr3FSf/YkvhClLZdfs19fYc9g2cAkUsCYNW3US5Ly+Rm03mYQ==
-X-Google-Smtp-Source: AGHT+IG88LOYVsDqLk364RnZfDnVj+T3Ptml8aT8MgM2ZSYv7HiItMyaObLOH5qjcMxgbUE4cd3WrQ==
-X-Received: by 2002:a05:6402:1d48:b0:5f6:d491:20ca with SMTP id 4fb4d7f45d1cf-5f6ddcf7f3bmr612417a12.2.1745484487068;
-        Thu, 24 Apr 2025 01:48:07 -0700 (PDT)
-Received: from kuoka.. ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f6f45fd3c1sm118998a12.3.2025.04.24.01.48.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 01:48:06 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Marek Vasut <marex@denx.de>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@dh-electronics.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: nxp: Align wifi node name with bindings
-Date: Thu, 24 Apr 2025 10:48:00 +0200
-Message-ID: <20250424084800.105300-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250424084800.105300-1-krzysztof.kozlowski@linaro.org>
-References: <20250424084800.105300-1-krzysztof.kozlowski@linaro.org>
+        bh=KQRA7d452oryDtFvJjN4gzdIi0T+CiF3zcn8EUThZUo=;
+        b=g6L0N2YzezEdCGky362+W5OneQZz6LGy3Zp0KgScGYKX2DwQLN2adKNUQi20vbxkwt
+         CMSsGuhzYNtIBtW+FmGlOR5Q7XzLWGZW9QXO4oJ1D9N62RrHx8hzx1npYt84EU2ts4Wx
+         HC7u/+pkjA27y8E+OqUw3EiRfhuCkl62rLXfsVznfbCU6dHaqnTIgjAfchsQKRaFxnsP
+         vIGjkMYwc8UmbEu30XOSgQgIiiIQZsnN6xWTDGbIwz33/ILAl13XRvCk1g04UOdnueaQ
+         uE7ZDXwtpbjs6JU6fG+3vv7BHd1R42tdDP4Xea92AuTeAEIo+HgHVB/rb/U+FMQmuVNK
+         Pacw==
+X-Forwarded-Encrypted: i=1; AJvYcCXgWvtcRnjvOijIQggcRYPQL9iSjmA2FqCURTDV+fHGAIYu17ivGD7i7oRugS6uEknPtUaz1SDSDDLY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXMIm7ewtCU98Ulq7FxTKyqMsv1744RvE0dEpdsyxVi89qQVFZ
+	goCW+LvarlxjrxjA8vr3pMXD3tXXCKHCQKYO9zhL9cEcgn7lZO9RFUFDD4YUiAgw8r1fwvQ+wG6
+	sFUiYXGKswdXuGdUWo5KME5MR4Jh6PRHSAuL9QpN5yOzgbIgAYqU=
+X-Gm-Gg: ASbGnctZxoPCKqojziPDIgz7Jw5EUo8CW2ybazlCxdISWhY7fqV9Va2EpjAbjhcdF73
+	GR7liaJ3xbf40SwXohAsFpwLrk/XoHRpvsswvAvdEAgcc/HdNbyOv16q9c9L7sLZqJtlqoFMYx+
+	tettuc2R1NHuYenb8HLOLDaQ==
+X-Google-Smtp-Source: AGHT+IE7By8Nl0BxiZtKTH0/jnSaFSHNwDqu5lHCKflXtrMxeoGrVVWZsRliLty3NtgjSGU/XT7xVZJZbRmvKEOyiGY=
+X-Received: by 2002:a2e:bc0a:0:b0:30d:7c12:5725 with SMTP id
+ 38308e7fff4ca-3179ffb04f8mr8038931fa.33.1745484535556; Thu, 24 Apr 2025
+ 01:48:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250422162250.436169-1-uwu@icenowy.me> <20250422162250.436169-2-uwu@icenowy.me>
+ <CACRpkdbGwPyQgVL18iMvUTAvh4XTjo6g3mGT4e_b2aNAjr2obg@mail.gmail.com>
+ <B4C8B369-E345-4133-A106-7C5E71513329@icenowy.me> <CACRpkdYgkDpC1iJ-KaZj2GZ3A3_V=3-KQef_nCRhMDrUK=FHXg@mail.gmail.com>
+ <c5efd677fd2199cbf8f9d6006905acdf19da02bc.camel@icenowy.me>
+In-Reply-To: <c5efd677fd2199cbf8f9d6006905acdf19da02bc.camel@icenowy.me>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 24 Apr 2025 10:48:44 +0200
+X-Gm-Features: ATxdqUHt-uv_Jd5XJrneHwwa9WAzFXDYu1AWIehUvUHevx0I0mgG49yxhuUvhlA
+Message-ID: <CACRpkdbmF5BucsRjGZYgT709QA_Qnd3VrDoXg9dJdtAb_QLPwA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: pinctrl: jh7110-sys: add force inputs
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang <jianlong.huang@starfivetech.com>, 
+	Hal Feng <hal.feng@starfivetech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Since commit 3c3606793f7e ("dt-bindings: wireless: bcm4329-fmac: Use
-wireless-controller.yaml schema"), bindings expect 'wifi' as node name:
+On Wed, Apr 23, 2025 at 4:22=E2=80=AFPM Icenowy Zheng <uwu@icenowy.me> wrot=
+e:
 
-  imx7d-remarkable2.dtb: bcrmf@1: $nodename:0: 'bcrmf@1' does not match '^wifi(@.*)?$'
+> > So clearly the entities that you affect are in the same numberspace,
+> > and that is all we care about. They are not enumerated in any way
+> > orthogonal to any other pins AFAICT.
+>
+> They just share the field width, they're not in the same numberspace.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dts     | 2 +-
- arch/arm/boot/dts/nxp/imx/imx7d-remarkable2.dts | 2 +-
- arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi       | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+OK I trust you on this, I just had to put a bit of pressure so we try
+to stay with standard bindings.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dts
-index fbe260c9872e..cad985e341a1 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dts
-@@ -384,7 +384,7 @@ &usdhc2 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
--	brcmf: bcrmf@1 {
-+	brcmf: wifi@1 {
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 	};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-remarkable2.dts b/arch/arm/boot/dts/nxp/imx/imx7d-remarkable2.dts
-index eec526a96311..ff9d50942884 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-remarkable2.dts
-@@ -374,7 +374,7 @@ &usdhc2 {
- 	cap-power-off-card;
- 	status = "okay";
- 
--	brcmf: bcrmf@1 {
-+	brcmf: wifi@1 {
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 	};
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-index 2c52e67e5c14..a6903ef2b093 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-@@ -299,7 +299,7 @@ &ssp1 {
- 	keep-power-in-suspend;
- 	status = "okay";
- 
--	wlan@1 {
-+	wifi@1 {
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 	};
--- 
-2.45.2
+> The design of the JH7110 pin mux control is quite simple and stupid:
+>
+> - First per-GPIO map configuration to map the GPIO's DOEn pin to
+> internal tri-stating signals.
+> - Then per-GPIO map configuration to map the GPIO's DOUT pin to
+> internal output signals.
+> - Then per-input-signal configuration (note that it's no longer per-
+> GPIO) map configuration to map the signal to a GPIO's DIN (or fixed
+> low/high).
 
+I get it, I think.
+
+So if I understand correctly this set-up is necessary to use any one
+pin as a GPIO pin?
+
+In that case, consider that this must probably be deeply integrated
+with the GPIO subsystem rather than the pin control subsystem.
+
+For example GPIO usually has this:
+
+gpio-ranges =3D <&pinctrl1 0 20 10>, <&pinctrl2 10 50 20>;
+
+Indicating which pins are actually routed as GPIO and implicitly
+contains the information you need as to which pins are
+affected.
+
+There is also
+
+gpio-reserved-ranges =3D <0 4>, <12 2>;
+
+that can be used to say certain number ranges in the GPIO
+controller can *not* be used for GPIO.
+
+This type of inferred information should ideally be used to
+infer the configuration rather than hardcoded properties.
+
+And if you have pin control as a back-end to GPIO, the
+callbacks in struct pinmux_ops:
+
+        int (*gpio_request_enable) (struct pinctrl_dev *pctldev,
+                                    struct pinctrl_gpio_range *range,
+                                    unsigned int offset);
+        void (*gpio_disable_free) (struct pinctrl_dev *pctldev,
+                                   struct pinctrl_gpio_range *range,
+                                   unsigned int offset);
+        int (*gpio_set_direction) (struct pinctrl_dev *pctldev,
+                                   struct pinctrl_gpio_range *range,
+                                   unsigned int offset,
+                                   bool input);
+
+which you could implement in jh7110_pinmux_ops to get
+a tighter connection between you pinmux and GPIO controller
+portions.
+
+I have a strong feeling that the missing piece is using these
+callbacks along with the gpio-ranges to connect the GPIO and
+pin mux systems together so that you can set this stuff up
+in the above callbacks instead.
+
+That would save you the weird DT properties that will be a real
+pain to keep in sync with the actual use.
+
+Yours,
+Linus Walleij
 
