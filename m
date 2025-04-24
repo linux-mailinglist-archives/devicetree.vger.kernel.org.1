@@ -1,126 +1,136 @@
-Return-Path: <devicetree+bounces-170131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FE7A99DF2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:18:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBC8A99E12
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B9387A34B2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 01:17:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E6B95A50B0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 01:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632BD41C7F;
-	Thu, 24 Apr 2025 01:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F4C1B043F;
+	Thu, 24 Apr 2025 01:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f2H0SVZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFB0AD21;
-	Thu, 24 Apr 2025 01:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0111F41C7F;
+	Thu, 24 Apr 2025 01:24:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745457520; cv=none; b=T3DS/5eW44JPVKupZXytaHV6LGgZ9+jsiIKk2syMFY1Ztu9iYEeSqnzQvIv7Q/jPuSL4+ha7fSEDKnGf2EssiZ8/CapYECLptyLn/4dvjtuzHZ3cHjxZrIcBaBf4NZiBNB4uRMMmixj3WoM07G4YSYZq6bhBmeywn2PnJz6ylEo=
+	t=1745457892; cv=none; b=ZckJO6R/Mku80R0VYmIU8PKszfIA5/vVDYu53OtOWhquFFR2Ys1F+MZPK5oOGIQFRLljl7G2VcEPSNWEpnxpSb1CVUUMtjUI0tFEGxcntHPNe2H463kC6ITnpJp5R/shrihJy5vhIVFa298W6cbN03h2zmCUQotWX9dRJz7TYKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745457520; c=relaxed/simple;
-	bh=6QsNkW8RggGxROGxeCbIql2iwtqZ02C3h5q0Gelldzs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N8AIk2Cbo3s6fhtH9N3AWZoh2haP7x3jMvL7BrmEOtzJbVnm53Y1LUBV3v82UHLhgA85ZZaOGDayMMQmnBHGdYDKoANWimMrRza44loNAABgAfMS7me0Uooq3YzsUPdXGraPtvBopn5F0fyx/cRNIG8MN1crWhM+zwrn1eIauok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C9F141063;
-	Wed, 23 Apr 2025 18:18:31 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 57A833F5A1;
-	Wed, 23 Apr 2025 18:18:34 -0700 (PDT)
-Date: Thu, 24 Apr 2025 02:17:26 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: allwinner: t527: add EMAC0 to Avaoto-A1
- board
-Message-ID: <20250424021706.22eaab66@minigeek.lan>
-In-Reply-To: <20250423-01-sun55i-emac0-v1-5-46ee4c855e0a@gentoo.org>
-References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
-	<20250423-01-sun55i-emac0-v1-5-46ee4c855e0a@gentoo.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1745457892; c=relaxed/simple;
+	bh=NNcZO28M+TCNaUNeh2CyJoOkvA5xCbtTntq07ND+tlw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AvKI4dcSddPO1uYX8pKkHjOGqEPpiQQrCPSe78OkUsvktoosqNgMP8VNLHjjrlHIcOdnotvhqFt+HVeUx76Sjb0941/TRhJEvhMrENEQAiRyZm1G0NLJJTmjHYaWZAR4e+PpSoGA5TbkF1IkNhAxHzfZ28YNw6Pz6tZ2rXheXDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f2H0SVZj; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-736c3e7b390so387823b3a.2;
+        Wed, 23 Apr 2025 18:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745457890; x=1746062690; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DjSk/riKS3EidNdWxegqsSotH7MqM0ARsO0VOGtlQ00=;
+        b=f2H0SVZjYKCZToa7GLJ9xiMObWaaU1ygEf+sQ65vNJ8am+wxquOR4+7o1BOVuxfobD
+         LVdINbRLlnoS4dv6WonxBKRDmnElmXQw3aixxNqAyoGrfbYZNoICuakj2IxS7DATW2yP
+         ckzTQ92a7qz+y/a70t25jeTFtARHP7RjHGdIEVOlzG+9Wg1tw8/H6apcUflUAmsEJvRY
+         WHvM177zoiuitQrWHlub70vkn8CwJgIoSxzcE52quNbql+DjSVGFM7fg2CpiZ2mDeI6c
+         rQFqwhguFWyZEW1bXnp/jYCef1yLXQLBPD9fyk7NOt5hFAgrgpd5odyw0MDCr498Qs6P
+         XD4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745457890; x=1746062690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DjSk/riKS3EidNdWxegqsSotH7MqM0ARsO0VOGtlQ00=;
+        b=surDac/rZytkWe+SP9lfWX6mJNkXAlj2IOEfli+fbxd/4Xd0B117DdQwiCV3pQoiPU
+         SrOZ7V1g60kuNlMWqcjsDY4mFNwZAncxTLVkwtDL0JIe7Fm31XlXmdc7j5HT/C27P5xi
+         t+dOYZl9ZmSRQ/dBwQWsCltvixzItOyX6LO9CTOw01zB3gxf7opx03NHD6mEIWu+EKjf
+         rWq4IaNBfPmXQF5m7UXtV6f03/WrIivtt/Hr3+zi4/6cXG0pqf6FMiQPhxGNED8mfELz
+         GLNNcmPMavDPaI77RqCgDOmGCCTpKCObSoLvzwUWhlhMoXg8WOSQQrxxf7uATqeNzOlO
+         1s2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUfeQj+NyVoTq5h9Oxyd1XyCaIa+EteRGupC+py9ZS0APvF6hT+e/UgdcMS0Bc9jFbarfAROGOhFDXI@vger.kernel.org, AJvYcCUnE/b8T3wj7KwqPIiLk2/alc38RV7AuAoONP1iXwrs5zuld8ZHz7Jesgb4fie6O0m32AcyP0O8oNrN@vger.kernel.org, AJvYcCXlxdens3ECNlk8SDNmaR+BQFoo2fugsDRH77H+zlg/oKpWRNsZcuHTgkBi5OM9oMD0/msXFrMS77OL+Ado@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUxo+OOvYcPwOb15RtSPYI+otTXghGgRhMFnzeYprfafQf+rq6
+	MzX8k89To0AXyjinX2RzFg5w8EAo/XXwPYyTMKlhfC8QWCRVTvwW
+X-Gm-Gg: ASbGncsnNpHar2KQR9cvT8oVsD9GNZSJ9g/4s3l38d5XIAIutzIzu1heeS4pdooCqaQ
+	wqlFPeirCXeLXCDoTG8Og4j8k4iF0gF/YbfBoQ8eGeyvUEyEp0sDcRmao9PNTERulDNQCsTtSeM
+	QDnt7dkLrvFgwUO34Tnu8z8X/1cX894tpS/6rCP+MwN7Xryt6qX49ToHYICUs9LlOuivJY2Gavq
+	0rp47G6EtyEJMTppbm9LWg3hRw76DZclUPn0+5pKVhGWJKaxMGCudEJzin8B4sI6EPEnDKHihIh
+	gykAYRubqdnupNTFSMpSpBd9Nv2Xa70=
+X-Google-Smtp-Source: AGHT+IH+pq8RZMe2Oj6MQ/A9accMBVAbgt/Fo4AIrfNJvsNkLTtCSnyDrQrKFJLlIeZGRpNmZKTc4g==
+X-Received: by 2002:a05:6a21:39b:b0:1f5:7d57:8322 with SMTP id adf61e73a8af0-20444fb9aa9mr966608637.26.1745457890068;
+        Wed, 23 Apr 2025 18:24:50 -0700 (PDT)
+Received: from cu.. ([111.34.70.129])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25a6a8cdsm231049b3a.115.2025.04.23.18.24.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 18:24:49 -0700 (PDT)
+From: Longbin Li <looong.bin@gmail.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: Longbin Li <looong.bin@gmail.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v3 0/3] riscv: pwm: sophgo: add pwm support for SG2044
+Date: Thu, 24 Apr 2025 09:23:25 +0800
+Message-ID: <20250424012335.6246-1-looong.bin@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed, 23 Apr 2025 22:03:26 +0800
-Yixun Lan <dlan@gentoo.org> wrote:
+This patch adds PWM controller support for four independent
+PWM channel outputs.
 
-Hi,
+---
 
-> On Avaoto A1 board, the EMAC0 connect to an external RTL8211F-CG PHY,
+Changes in v3:
 
-The name would be "Avaota" A1 board.
+  - Rename macro definitions to unify naming.
+  - Modify code style.
 
-> which features a 25MHz crystal, and using PH8 pin as PHY reset.
-> 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
-> I don't own this board, only compose this patch according to the
-> schematics. Let me know if it works.
-> ---
->  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> index 85a546aecdbe149d6bad10327fca1fb7dafff6ad..23ab89c742c679fb274babbb0205f119eb2c9baa 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> @@ -64,6 +64,23 @@ &ehci1 {
->  	status = "okay";
->  };
+Changes in v2:
+  You can simply review or test the patches at the link [2].
 
-As for the Radxa board, we need an alias for ethernet0.
+  - Modify variable naming and code logic.
+  - update "MODULE_AUTHOR".
 
->  
-> +&emac0 {
-> +	phy-mode = "rgmii";
+Changes in v1:
+  You can simply review or test the patches at the link [1].
 
-As Andrew mentioned, this should probably be "rgmii-id".
+Link: https://lore.kernel.org/linux-riscv/20250407072056.8629-1-looong.bin@gmail.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/20250418022948.22853-1-looong.bin@gmail.com/ [2]
+---
 
-> +	phy-handle = <&ext_rgmii_phy>;
+Longbin Li (3):
+  pwm: sophgo: reorganize the code structure
+  pwm: sophgo: add driver for SG2044
+  dt-bindings: pwm: sophgo: add pwm controller for SG2044
 
-Can you please add the phy-supply here, it's reg_dcdc4.
+ .../bindings/pwm/sophgo,sg2042-pwm.yaml       |   4 +-
+ drivers/pwm/pwm-sophgo-sg2042.c               | 151 ++++++++++++++----
+ 2 files changed, 125 insertions(+), 30 deletions(-)
 
-Cheers,
-Andre
-
-> +
-> +	allwinner,tx-delay-ps = <100>;
-> +	allwinner,rx-delay-ps = <300>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mdio0 {
-> +	ext_rgmii_phy: ethernet-phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <1>;
-> +	};
-> +};
-> +
->  &mmc0 {
->  	vmmc-supply = <&reg_cldo3>;
->  	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF6 */
-> 
-
+--
+2.49.0
 
