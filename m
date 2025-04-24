@@ -1,114 +1,135 @@
-Return-Path: <devicetree+bounces-170537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2511AA9B406
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:31:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23847A9B40E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:32:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3D094C2DE2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:30:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9A184A0D77
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3426B28D85D;
-	Thu, 24 Apr 2025 16:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423C82820C4;
+	Thu, 24 Apr 2025 16:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u9uTxeHY"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Gr0KXPhz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072E928D83D;
-	Thu, 24 Apr 2025 16:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811DF2820A7
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745512117; cv=none; b=m0Q2PczYlJ97m0+wYNELoVSCGq7IDPUGv3pPXpLhjRL8L8nOKncxDTuaiZshiJ3QwQHMZV9h9caPJo6S1L4jfgGVab4m/uf1rt7ixR+0o1pNyr2AbvF3ImXXUB73RUQW/gLT6YE11SiXPXDd+1w57S1ib68Y+ssAW5gBZdEmTi8=
+	t=1745512159; cv=none; b=eWMZ98XYqc5eQ8hrvRBkcQOMKkSAZEZHY0Z7V3AgQ0W4rCQq2fLoiLZBZsRmSnUPJKy0C9hv7kSuo543YQ2oxtOyecIw68C3m29/I1Ghhnob1O08SrBSg85iC3QzDx9nTN+BhmSSrFvrYXUDpTuTEXIyHzx3I3+PFpA71ahQsCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745512117; c=relaxed/simple;
-	bh=/l8kCT4PyYuewfYXxdP7ynV7Oc1zF9+nJcURlSo0zOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JSmNd5TMAixkUHQ3GHtAtTfUWESga6au7Th6xdAx6MLGFfWpFNYiU39zAZN/lvASDGjVvJSj6LfGf2giQ3zFuUrJlLVd/zI0yAP1pwvsGN2RpO4gOwtpxCuK3WNL2eTiKexlgRHwOHppvW4V40BG7O1fNNY39wcz2KSTOit45oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u9uTxeHY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32CEAC4CEE3;
-	Thu, 24 Apr 2025 16:28:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745512116;
-	bh=/l8kCT4PyYuewfYXxdP7ynV7Oc1zF9+nJcURlSo0zOY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u9uTxeHYvLxLERI3BcWRoPfuI7IUjZRUbnvNJZI7s+TwU4lT8lgnANIXbe3E3PKc0
-	 4eNa3bPYcmG+0XpINt/CDFZMCJCKI3ZfINBulEzQRVO3pxql9m6bRawfBf939jrGGd
-	 prJeIqRNezMKP4qxjsD4/57rDg2Ls+bSPCggAVsTpNTGdQDjtbCfjqaiD7ujoKf9+e
-	 AwONcV5tfBQyPiYmrXqvYsp+WkC/Da6kpK0tv2Gv74H4clxz+9AH1dNxNeme2I4XMd
-	 MOG2fYgOrY+KZ3Otl73TguVYG9Drp4BXg3WO5SF71qkohrMDy9n74fLcVKNza5lYAR
-	 RF3I3dE3EpCfg==
-Date: Thu, 24 Apr 2025 17:28:31 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 10/17] mfd: adp5585: add support for key events
-Message-ID: <20250424162831.GN8734@google.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-10-3a799c3ed812@analog.com>
- <20250421093310.GH29968@pendragon.ideasonboard.com>
- <20250424160706.GL8734@google.com>
- <20250424162405.GK18085@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1745512159; c=relaxed/simple;
+	bh=VuvWR/xR3+1XIIsqP3Mnd1zii5PRZEy6rSHMV+8vxQg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CTLANu72qz4Q1iHInoNCZVrrbjf1MhP1YkQ1ccECCE00LFWDK5a/r5lbebLCqWVwTgej3HCarBY88a3zP4rWOxIdswEmDFJVImvjUdBu84khXSaJoJaOJj7OxPI4A35CCJzIo/8gaJSNDVpOIrgpjpyi63WBjAeQs/z3JxCEilM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Gr0KXPhz; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1745512156;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2uVAEopdtpgVlguQ5ktM175hscYiDLv9M0FIM/OwWmE=;
+	b=Gr0KXPhzC0fhs+w+0KYDkIvjFLuHRdK790pZCB3nFJWV1PbC80hnajScQTJMZk9Cii9oty
+	tqVNMZbMIAzxlf6Bbt+4/2hhqT1GfaWRDQgqQXsTCJYIAMTGe3Tt0NXmqLPfQhZiKCleci
+	k2C5NsAWj1FR8EZ5df0USh2dmAwLT/E=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-37-ujNod1RPMM606MOUQpAlhQ-1; Thu,
+ 24 Apr 2025 12:29:13 -0400
+X-MC-Unique: ujNod1RPMM606MOUQpAlhQ-1
+X-Mimecast-MFC-AGG-ID: ujNod1RPMM606MOUQpAlhQ_1745512151
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 5310F1955D86;
+	Thu, 24 Apr 2025 16:29:10 +0000 (UTC)
+Received: from [10.44.32.28] (unknown [10.44.32.28])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9F59919560A3;
+	Thu, 24 Apr 2025 16:29:05 +0000 (UTC)
+Message-ID: <5d035e9b-b36a-4088-89fb-b0f35d98a909@redhat.com>
+Date: Thu, 24 Apr 2025 18:29:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250424162405.GK18085@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 0/8] Add Microchip ZL3073x support (part 1)
+To: Lee Jones <lee@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250424154722.534284-1-ivecera@redhat.com>
+ <20250424155106.GI8734@google.com>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250424155106.GI8734@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-
-> Hi Lee,
+On 24. 04. 25 5:51 odp., Lee Jones wrote:
+> On Thu, 24 Apr 2025, Ivan Vecera wrote:
 > 
-> On Thu, Apr 24, 2025 at 05:07:06PM +0100, Lee Jones wrote:
-> > On Mon, 21 Apr 2025, Laurent Pinchart wrote:
-> > > On Tue, Apr 15, 2025 at 03:49:26PM +0100, Nuno Sá via B4 Relay wrote:
-> > > > From: Nuno Sá <nuno.sa@analog.com>
-> > > > 
-> > > > This adds support for key events. Basically, it adds support for all the
-> > > > FW parsing and configuration of the keys (also making sure there's no
-> > > > overlaps). They can either be part of a matrix keymap (in which case
-> > > > events will be handled by an input device) or they can be gpi's (in which
-> > > > case events will be handled by the gpiochip device via gpio_keys). There's
-> > > > also support for unlock keys as for reset keys.
-> > > 
-> > > There's lots of code below specific to matrix keypad handling. Please
-> > > move it to the keypad driver, and keep this driver as lean as possible.
-> > 
-> > Exactly this.  MFD shouldn't need to contain anything that should be
-> > handed in the leaf drivers.  Keypad handling should be processed by
-> > keypad driver, etc.  If the GPIO driver needs to have visibility into
-> > keypad API, add some exported helpers in the Keypad driver.
+>> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+>> provides DPLL and PTP functionality. This series bring first part
+>> that adds the common MFD driver that provides an access to the bus
+>> that can be either I2C or SPI.
+>>
+>> The next part of the series is bringing the DPLL driver that will
+>> covers DPLL functionality. Another series will bring PTP driver and
+>> flashing capability via devlink in the MFD driver will follow soon.
+>>
+>> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+>> development board with ZL30732 DPLL chip connected over I2C bus.
+>>
+>> Patch breakdown
+>> ===============
+>> Patch 1 - Common DT schema for DPLL device and pin
+>> Patch 2 - DT bindings for microchip,zl3073* devices
+>> Patch 3 - Basic support for I2C, SPI and regmap configuration
+>> Patch 4 - Devlink device registration and info
+>> Patch 5 - Helpers for reading and writing register mailboxes
 > 
-> To give some context, the ADP5585 is an exotic device. It has this
-> feature where different functions (keypad, GPIO, ...) can generate
-> events that are all pushed to a single hardware FIFO. The driver reads
-> events from the FIFO, and processes them accordingly to the event type.
-> Handling the FIFO and reading the events doesn't belong to any
-> particular leaf driver, I think it makes sense to keep that in the main
-> driver. Processing of the events after dispatching based on the type,
-> however, should belong to leaf drivers. I'd like to see less
-> keypad-specific code in the main driver, but some additions are likely
-> still required.
+> Whoops!  I just this second replied to v3.
+> 
+> This needs moving out to somewhere more appropriate.
+> 
+> Use MFD to allocate and split the resources, then the sub-devices can do
+> the technical and heavy API stuff.
 
-Understood.  Let's shift out what we can though.
+They cannot because the bus is shared and MFD parent device acts as bus
+arbitrator. It has to ensure that sub-devices access the registers
+safely.
 
--- 
-Lee Jones [李琼斯]
+Mailbox could be confusing for somebody but it does not have anything
+common with HW mailboxes. In this context the mailbox is just a sequence
+of register reads and writes in certain order and this sequence has
+to be done atomically (I tried to describe this in my previous replies).
+
+I have followed Andrew's recommendation to hide these special sequences
+and provide sub-devices some simple API to use them without special
+locking needs.
+
+Thanks,
+Ivan
+
 
