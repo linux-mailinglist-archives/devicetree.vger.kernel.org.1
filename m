@@ -1,166 +1,135 @@
-Return-Path: <devicetree+bounces-170161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30BD9A9A0C3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:00:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C031A9A0D6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:06:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAFEB3B5E27
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:59:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3782194477F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FBE1D79A5;
-	Thu, 24 Apr 2025 05:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F9B1C6FF3;
+	Thu, 24 Apr 2025 06:06:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YK4kYFaq"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="g76/UJ27"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6A51CEAB2;
-	Thu, 24 Apr 2025 05:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745474388; cv=none; b=U6Fd6sEFvnW1wwYH+36FaJ2m/rRHESpubzS+YyCfm+bM53JVV0aJn2ecfhyv5JwgSAGysOHKJmJm5l1YY6NUcGI1k0KGPJyAQOHFHnDXK2TbIMeHMcuve7F8J4CCHtuVakMkv/BKqUnCT0tG3H3HBdMwhARsIvixXUnsfaumM4g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745474388; c=relaxed/simple;
-	bh=UUEdb0ar5fMVdcKaE+6aK1SlHkXxvV3PK7HyvINycTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cXSpxbmw2YJxxxh9f6LgPbDFFdMREtBE4nfyo0j7oxEZ0UL9JDvQOxWkYggpZGXZ4Us1ZJGyRJHi+l2Ca3LE+i4Lo0noAPwbTNDL2GeJvOuCkRS5Lb1puAvkK7FJuWxpYCngKIZlTb0yxqiSrvsppGp90sX/5gxrnfRwOVMF6t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YK4kYFaq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0F88U030993;
-	Thu, 24 Apr 2025 05:59:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9mAQti71pCT+WDKDo6iUmcSu7YhWwHVsSJ/POdQ+63s=; b=YK4kYFaqX5BNWU3U
-	Ti0X7GLP320RQy4fTkGwrhA4U6HStU/cehhW47Xf5x9e7d2f6Kyscefx9PtU1rdJ
-	gLMuNaIDqCXj3MnBM+wRhNJNCaaXhvUiQk5v16Fqw9II+dNhlKxuV5/mU7GexwDR
-	FjWJ9rFSQXVAAwIRpbFbEpJ43dmX/77JM2Xe9eqA39axWHqmYWAN3jeIOWBR0mnD
-	RlbNq12APhRfYoa//xP6zIEYE3cokZ4ePMP6sEYUmaGF2NFTQRsAir19cSTqxbPC
-	WNGw6pJxnd4TzZcGOerJtGHvrwIPUtZcUNjS95c4pv7r5VuRs+dcoR8n750zKMC4
-	NuOEKA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5ccs1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 05:59:41 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53O5xeZJ015856
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 05:59:40 GMT
-Received: from [10.239.133.118] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Apr
- 2025 22:59:35 -0700
-Message-ID: <1fab200f-c7fd-4772-ae8b-6b8f4f1f4adb@quicinc.com>
-Date: Thu, 24 Apr 2025 13:59:04 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC96B188CCA;
+	Thu, 24 Apr 2025 06:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745474798; cv=pass; b=tLu6TvRcPHFqO1FzTbmJQC5c+Gd2nDO96HX0uPuRJqdjdO65sBHz8uJcGYWC0bvM9TYIE7xccNf0hDL0SYQO6YPFziVd2vemZUQN4UJAqZMkGxpovFGXU9lXNhiDUbh0yxIK+TvqqxbEG0W6QGLT6xUKLzGhKpmlJWu6XxnB9ng=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745474798; c=relaxed/simple;
+	bh=RDBl8Eso7VZJ5p6yF/4/C9RsSsHeGXWjIet4QinhUWc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IK4VShElyuaTLtU6J71SbdpKWkl/K4u57fHgkm6W43JDaxNdmWal9sP/4ZkQczPIkJDTsbLNHMUVLRX7LuoCCcgVZHKplUzwKoE5Awwg0MakKyHO1W5ySZ7BSRM7OXNYcmLQi3duztOLCoLI24hd7ClNZaYgze777rDxJgqFTSM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=g76/UJ27; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745474783; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=iHwLhqCIKTsbFBMHt8WQhB9xzazFvx/+zbVNfPsl08dwSzbuFFd/tljjsYebEwE9w71rBIP9Qzs3rVt/TF/uZKSbwV8L713XpMd6gnmHYf0KcmhXWSZImwCC7grDLkcL6nz7WbhcCtTTmlfhLC8+pdAesv3KoCqvXItIgyUgmj0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745474783; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Ix1Q4sGKAg9a8w65SPXpLATi5/wlpy8wAjzQzuX0MDc=; 
+	b=e111KMAzfGCF+86Qn1ywIPwyU153D7k8U25bq62JpQoUZJwqkH72P5JvUTcKtnbmLbWCxYUDN5bJQAAxE+yT6eAV9nhLAxvwgaKQ2t6TQfr1rbfAj+EBUfc1ODcMmtbZR3iOcUU9b+cOcrkryX47sekrhPPPA8DfL2Bz4GEH8fk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745474783;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=Ix1Q4sGKAg9a8w65SPXpLATi5/wlpy8wAjzQzuX0MDc=;
+	b=g76/UJ27I76sdVUUsUdwNX33SvRjtR6SzLjaG+iOL2ym7hQZyNSzbTimUIn4q1IZ
+	RzP3oKOh0RL6AA9whACWA9hI1pJPoKMI+FiT6TuO5gG8DTG8P6Z4T/fzs05+m+QIaQl
+	CByTUX57VqKqbc7bnOHOzRDPEydxzsc0E206NouPSVedl9ZntDov8X9GrlJ4fHsIOtr
+	KgnzCowrjxtsn03b1EQrDvnxgkVOP7deCAQVEg6ndQAPshQ92K8VJEo5GSLV1NQs3dr
+	TyfeXgIWCVrB0rO0GrmjIC32MtvrO/pef3NoC3ngGfl3z8SQ531MI+o3rK/EJt1mts6
+	uqdlNymSyA==
+Received: by mx.zohomail.com with SMTPS id 1745474779881209.53571103315892;
+	Wed, 23 Apr 2025 23:06:19 -0700 (PDT)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH] riscv: dts: starfive: jh7110-common: use macros for MMC0 pins
+Date: Thu, 24 Apr 2025 14:06:05 +0800
+Message-ID: <20250424060605.638678-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs615-ride: Add PSCI SYSTEM_RESET2
- types
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <kernel@quicinc.com>,
-        <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20250422-add_psci_sys_reset2_modes_for_qcs615-v1-1-7faaf877366e@quicinc.com>
- <174532908966.1111913.12713682553446003215.robh@kernel.org>
-Content-Language: en-US
-From: Song Xue <quic_songxue@quicinc.com>
-In-Reply-To: <174532908966.1111913.12713682553446003215.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDAzNyBTYWx0ZWRfX3+jYuXeeOvGI rvsvA824Y/AcjH7OsJ3GNc4rRns+lNLKLI07Pl1htd3V9yZhNlGI+stQjBnttEmzJMQNQgAOgmI oRUtGjznxWC3Q93p3hlihidCBu2MU/qR/nSVGRS6W4o39g4ToK8BZ4UqAJtlUc6/d49GbFxGVGA
- TYUAWfEQLH1b1kfdyJmdZ26LKb9V+MkMjVn+9PiyFlbLei7bNh8f2RSZ/tTKzaWbvdHBtaUqMeO RJFIU+jr2ADw716fxbEvWTbcKsNnChUdeTdSr9weR6SKHtJeZ5EZ3jD9oIeWcGD/sk8XR2mA8JN +H5isQUf5baBZ3FOkuwm19bZuzBp3ugv0QhnBHLPLj/sFUQT0riYy+y9bt1uciLT+Psx8Gf3gnV
- X9PSVNPOa+zjdl3ngDJznUjoJMvxhSV0Ev4C4+xO7E861bVZpUSubOydp8YeHpIqvOghHDN0
-X-Proofpoint-GUID: KfZt-K97T0lsWcthoO2GmCIGbzfbACX1
-X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=6809d34d cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gEfo2CItAAAA:8
- a=COk6AnOGAAAA:8 a=4CDoZJVVFqlZavh4jk8A:9 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: KfZt-K97T0lsWcthoO2GmCIGbzfbACX1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_02,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240037
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
+The pin names of MMC0 pinmux is defined in the pinctrl dt binding header
+associated with starfive,jh7110-pinctrl .
 
+Include the header file and use these names instead of raw numbers for
+defining MMC0 pinmux.
 
-On 4/22/2025 9:38 PM, Rob Herring (Arm) wrote:
-> 
-> On Tue, 22 Apr 2025 15:39:54 +0800, Song Xue wrote:
->> Add properties to support Bootloader and Edl mode for PSCI system
->> reset2 reboot modes. The cookie and magic values set will be used
->> by SYSTEM_RESET2 call.
->>
->> Signed-off-by: Song Xue <quic_songxue@quicinc.com>
->> ---
->> Dependencies:
->> Link to bindings and driver changes:
->> https://lore.kernel.org/all/20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com/
->> ---
->>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
->>   arch/arm64/boot/dts/qcom/qcs615.dtsi     | 2 +-
->>   2 files changed, 8 insertions(+), 1 deletion(-)
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->    pip3 install dtschema --upgrade
-> 
-> 
-> This patch series was applied (using b4) to base:
->   Base: using specified base-commit e21edb1638e82460f126a6e49bcdd958d452929c
-> 
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
-> 
-> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250422-add_psci_sys_reset2_modes_for_qcs615-v1-1-7faaf877366e@quicinc.com:
-> 
-> arch/arm64/boot/dts/qcom/qcs615-ride.dtb: psci (arm,psci-1.0): 'reset-types' does not match any of the regexes: '^pinctrl-[0-9]+$', '^power-domain-'
-> 	from schema $id: http://devicetree.org/schemas/arm/psci.yaml#
-> 
-My patch is depend on the 
-bindings:https://lore.kernel.org/all/20250303-arm-psci-system_reset2-vendor-reboots-v9-1-b2cf4a20feda@oss.qualcomm.com/
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+This is only a prettying commit. The resulting DTB files have the same
+content with or without this patch (verified by doing sha256sum on
+arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb).
 
-In this bindings, we can see the property definition of 'reset-types' 
-which only has "mode-" property.
+ .../boot/dts/starfive/jh7110-common.dtsi      | 21 ++++++++++---------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
 
-Best regards,
-Song Xue
-> 
-> 
-> 
-> 
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+index c2f70f5e2918f..a2c72b385a905 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+@@ -8,6 +8,7 @@
+ #include "jh7110.dtsi"
+ #include "jh7110-pinfunc.h"
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
+ 
+ / {
+ 	aliases {
+@@ -428,16 +429,16 @@ GPOEN_ENABLE,
+ 		};
+ 
+ 		mmc-pins {
+-			pinmux = <PINMUX(64, 0)>,
+-				 <PINMUX(65, 0)>,
+-				 <PINMUX(66, 0)>,
+-				 <PINMUX(67, 0)>,
+-				 <PINMUX(68, 0)>,
+-				 <PINMUX(69, 0)>,
+-				 <PINMUX(70, 0)>,
+-				 <PINMUX(71, 0)>,
+-				 <PINMUX(72, 0)>,
+-				 <PINMUX(73, 0)>;
++			pinmux = <PINMUX(PAD_SD0_CLK, 0)>,
++				 <PINMUX(PAD_SD0_CMD, 0)>,
++				 <PINMUX(PAD_SD0_DATA0, 0)>,
++				 <PINMUX(PAD_SD0_DATA1, 0)>,
++				 <PINMUX(PAD_SD0_DATA2, 0)>,
++				 <PINMUX(PAD_SD0_DATA3, 0)>,
++				 <PINMUX(PAD_SD0_DATA4, 0)>,
++				 <PINMUX(PAD_SD0_DATA5, 0)>,
++				 <PINMUX(PAD_SD0_DATA6, 0)>,
++				 <PINMUX(PAD_SD0_DATA7, 0)>;
+ 			bias-pull-up;
+ 			drive-strength = <12>;
+ 			input-enable;
+-- 
+2.49.0
 
 
