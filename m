@@ -1,371 +1,173 @@
-Return-Path: <devicetree+bounces-170499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F02A9B1C3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:09:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1693BA9B1C8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7E61B8299D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:09:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 143C7462E94
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694A422AE48;
-	Thu, 24 Apr 2025 15:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057881A5B99;
+	Thu, 24 Apr 2025 15:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fos+K6VO"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="fa6hxiJk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596FD1AA1D2;
-	Thu, 24 Apr 2025 15:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522EA1A5BAC;
+	Thu, 24 Apr 2025 15:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745507318; cv=none; b=B3LYhcx5yX9Vwhx3aIQb8hKOaqcujT9QetUT+EiacOxfMtWcUq6VlDiwzau+y3Ihw3YKVbTuo33ZZU5M2rfCa9Hx8t4lcxnlDbSeheOnONv+GrqhJOiocmZjSauLzEyKipqcYwCnspcUfC3Bo4ET6iaIXdPFRwe+7dK5HIGa3kg=
+	t=1745507414; cv=none; b=bfcK0m5OhaMDPQGGt6RYmfZ+CzedVjqfz2/T0dKVoV5jbb941qkmGfAmR7eBgt2wGCOzB6iEJXF5K/hiayOEu62YMVg9MegpgH6ow0hp8egE1BGByTpy7HvKWBTQwRPOKxtdxLXczbRoknflGDh+Qo3A1N+yjROjYMb8/V9YFUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745507318; c=relaxed/simple;
-	bh=g0S7b7sr0c4sQZaqdRE4ERehjS04ez4JJY6g4S2M0nY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T3ODzu0uC/wH3RHwua5vVOaVJI5cSNkH4k9S27RV265CksyVBVelTMHs1io3jHahgVlV71q7Lzsm9fw7a01x6uZx+WwDaAOT4LUVRAn0c6QI5NO0yu2XxQseeGog/HHaocy6zLsz+LVbjp1Mk6mAN5FhLOctEig+6VunoVXOS/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fos+K6VO; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 865FB43B38;
-	Thu, 24 Apr 2025 15:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1745507308;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=06ZO8am1Wn7Mc5FzpJU6uW2do1fHonhctzDHpgGXZaY=;
-	b=fos+K6VOrN/UPIf98kZ1KeM76cukSnd33i861CSKf3KBJOj5M0XV3/njV07hM7tE5VhwP/
-	FpmukgFYToR4yE2qY75OOYZLwExwZKhXaTjhxLeo1o1kzn2QYno7NpzHJ6Fy2cZKWaEilw
-	q7WC8YUwO/xkB5ihZ4v7LtD/2J9QekzjW1aZgZdSaASioCUXHNmAOcfXnRUTcWRqb7vqeP
-	uHrr268s90sXLOgHTYYMOckLz4u22fOGtEEfhhlON80QTBTQX4IJ4GtHM1HehY9BxRWqwG
-	2x4aBAivEP3uZL62Olc0lwrb4n0p4SKnsl1LLB69gfp6PBXNx/9cZOxCq55uqQ==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 24 Apr 2025 17:07:43 +0200
-Subject: [PATCH RFC v2 5/5] drm: panel: Add Saef SFTO340XC LCD panel
+	s=arc-20240116; t=1745507414; c=relaxed/simple;
+	bh=bK/ci+8ASAlkbVw/HpHtFd/CU0jQDuHOox/SqV2bF7M=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=QFLrD5p/gggWSZXq/5hWe3MFkwQpLYNn00MOSXzyzKaRaDBEsB3vDYL1TmpSBUp9zM0C6VBQ6CKCfTQ26QKdmshX0i5ReB+qganKB7CJ4XIRMIfDPKXmore0sJF1hi4AuJQI88PelYwTa6Zxqbac5RjgNagmLCGjjpBlZ1opON0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=fa6hxiJk; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1745507392; x=1746112192; i=frank-w@public-files.de;
+	bh=uH3ELgiPVf/JDQvg8WabETxlcSaCrtptXOhZsz2D374=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=fa6hxiJkZeCXcR0ELG30FSkT45qQKVJsCJOPd799m9IiHwnewyUu6MKtG5EXCIdx
+	 jm+z0YG887amL2hsnVI7zp85sVWJPJE3/IvKQEk2mRU4RfVadlTqpAjadnNrjjEfy
+	 juLrHkIom8vpnne4yH0bC+3N+2ivkKn2J+XdO93z3ua1Ej6wM2pQ/Kl6IAgGjjvv4
+	 L9DY7shVNlcHShzIu6bk6dU/PIhel1Zvw+RBJdKXCCYwxw288iDeD1xut07T7zIFk
+	 TiBgqB4RQHH0boc975yv5EfhvLkINi+5Y40Zyx2ocO/6RYTZtPgsKOc5AW68ocra/
+	 WwmszkbnR3qJH95Wuw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([194.15.81.133]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQ5vc-1uTso33zd2-00J2sr; Thu, 24
+ Apr 2025 17:09:52 +0200
+Date: Thu, 24 Apr 2025 17:09:47 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Frank Wunderlich <linux@fw-web.de>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+ Daniel Golle <daniel@makrotopia.org>, Sean Wang <sean.wang@mediatek.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_4/8=5D_dt-bindings=3A_phy=3A_mt?=
+ =?US-ASCII?Q?k-xs-phy=3A_support_type_switch_by_pericfg?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20250424-auspicious-boisterous-pheasant-7d1f9f@kuoka>
+References: <20250422132438.15735-1-linux@fw-web.de> <20250422132438.15735-5-linux@fw-web.de> <20250424-auspicious-boisterous-pheasant-7d1f9f@kuoka>
+Message-ID: <01CBE61B-2611-4DD6-9EB3-C2AB3BDC9D3D@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250424-feature_sfto340xc-v2-5-ff7da6192df2@bootlin.com>
-References: <20250424-feature_sfto340xc-v2-0-ff7da6192df2@bootlin.com>
-In-Reply-To: <20250424-feature_sfto340xc-v2-0-ff7da6192df2@bootlin.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvgeeljeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevgfdvgfektefgfefggeekudfggffhtdfffedtueetheejtddvledvvdelhedtveenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvr
- hdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepqhhuihgtpghjvghsshiihhgrnhesqhhuihgtihhntgdrtghomhdprhgtphhtthhopehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1PcTuTg3PzRAWB9L+BtgCx0Y4dnJKegKmx6dmykL1u64NlkyWMm
+ 0gAZwKvWxn8bYvZFLQ5uRIyP6NaXWxW9EOIQeRNBlWtw0sM01Ryzdkrfs1Gp2fPllz08VB2
+ Fu0JF4rQaKaUXwPj8PBtwyEHArO8AQ/1nQDAYr3yBgUsxo0g9Vv6nZOPy7JEYx5XitDh61R
+ Pwdk3Y9n46rn65Y/E2V3Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:kZCNP73SocQ=;jBlNtqVBgN5JsVFNqJZnidUrX+C
+ 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
+ /zAZjzzii8bTwU87G4cX6yHcy2TLUgoEuF
 
-Add support for Saef Technology Limited SFTO340XC LCD panel.
+Am 24=2E April 2025 09:35:11 MESZ schrieb Krzysztof Kozlowski <krzk@kernel=
+=2Eorg>:
+>On Tue, Apr 22, 2025 at 03:24:27PM GMT, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Add support for type switch by pericfg register between USB3/PCIe=2E
+>>=20
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>> v4:
+>> - changes based on comments from Krzysztof
+>> - change to phy type configuration controller/register
+>> ---
+>>  =2E=2E=2E/devicetree/bindings/phy/mediatek,xsphy=2Eyaml   | 15 +++++++=
+++++++++
+>>  1 file changed, 15 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy=2Eyam=
+l b/Documentation/devicetree/bindings/phy/mediatek,xsphy=2Eyaml
+>> index 3b5253659e6f=2E=2E0bed847bb4ad 100644
+>> --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy=2Eyaml
+>> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy=2Eyaml
+>> @@ -151,6 +151,21 @@ patternProperties:
+>>          minimum: 1
+>>          maximum: 31
+>> =20
+>> +      mediatek,syscon-type:
+>
+>Although this should be probably mediatek,phy-type-syscon, because now
+>it feels like you define here type of syscon=2E Anyway, keep Rb tag=2E
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 232 ++++++++++++++++++++++++++
- 1 file changed, 232 insertions(+)
+I/Daniel took same property name like for tphy=2E
+Thanks for your opinion,but i hope the series can be merged now :)
 
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-index 2e38dea28336f445cb6a074dbbec006f0659287a..574d2dad873474ffa02d554aff9d62c63e070d99 100644
---- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-@@ -44,6 +44,7 @@ struct ili9881c_desc {
- 	const struct drm_display_mode *mode;
- 	const unsigned long mode_flags;
- 	u8 default_address_mode;
-+	const unsigned int msleep_delay;
- };
- 
- struct ili9881c {
-@@ -458,6 +459,207 @@ static const struct ili9881c_instr k101_im2byl02_init[] = {
- 	ILI9881C_COMMAND_INSTR(0xD3, 0x3F), /* VN0 */
- };
- 
-+static const struct ili9881c_instr sfto340xc_init[] = {
-+	ILI9881C_SWITCH_PAGE_INSTR(3),
-+	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x02, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x03, 0x73),
-+	ILI9881C_COMMAND_INSTR(0x04, 0x03),
-+	ILI9881C_COMMAND_INSTR(0x05, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x06, 0x0A),
-+	ILI9881C_COMMAND_INSTR(0x07, 0x05),
-+	ILI9881C_COMMAND_INSTR(0x08, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x09, 0x40),
-+	ILI9881C_COMMAND_INSTR(0x0a, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0D, 0x40),
-+	ILI9881C_COMMAND_INSTR(0x0E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0f, 0x3c),
-+	ILI9881C_COMMAND_INSTR(0x10, 0x3c),
-+	ILI9881C_COMMAND_INSTR(0x11, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x12, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x13, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x14, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x15, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x16, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x17, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x18, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x19, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1E, 0xC0),
-+	ILI9881C_COMMAND_INSTR(0x1F, 0x80),
-+	ILI9881C_COMMAND_INSTR(0x20, 0x06),
-+	ILI9881C_COMMAND_INSTR(0x21, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x22, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x23, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x24, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x25, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x26, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x27, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x28, 0xB3),
-+	ILI9881C_COMMAND_INSTR(0x29, 0x03),
-+	ILI9881C_COMMAND_INSTR(0x2A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x30, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x32, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x33, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x34, 0x23),
-+	ILI9881C_COMMAND_INSTR(0x35, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x36, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x37, 0x08),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x3C),
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x40, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x41, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x42, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x43, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x44, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x50, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x51, 0x23),
-+	ILI9881C_COMMAND_INSTR(0x52, 0x44),
-+	ILI9881C_COMMAND_INSTR(0x53, 0x67),
-+	ILI9881C_COMMAND_INSTR(0x54, 0x89),
-+	ILI9881C_COMMAND_INSTR(0x55, 0xAB),
-+	ILI9881C_COMMAND_INSTR(0x56, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x57, 0x23),
-+	ILI9881C_COMMAND_INSTR(0x58, 0x45),
-+	ILI9881C_COMMAND_INSTR(0x59, 0x67),
-+	ILI9881C_COMMAND_INSTR(0x5A, 0x89),
-+	ILI9881C_COMMAND_INSTR(0x5B, 0xAB),
-+	ILI9881C_COMMAND_INSTR(0x5C, 0xCD),
-+	ILI9881C_COMMAND_INSTR(0x5D, 0xEF),
-+	ILI9881C_COMMAND_INSTR(0x5E, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x5F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x60, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x61, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x62, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x63, 0x08),
-+	ILI9881C_COMMAND_INSTR(0x64, 0x0E),
-+	ILI9881C_COMMAND_INSTR(0x65, 0x0E),
-+	ILI9881C_COMMAND_INSTR(0x66, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0x67, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0x68, 0x0C),
-+	ILI9881C_COMMAND_INSTR(0x69, 0x0C),
-+	ILI9881C_COMMAND_INSTR(0x6A, 0x0D),
-+	ILI9881C_COMMAND_INSTR(0x6B, 0x0D),
-+	ILI9881C_COMMAND_INSTR(0x6C, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x6D, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x6E, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x6F, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x70, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x71, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x72, 0x06),
-+	ILI9881C_COMMAND_INSTR(0x73, 0x07),
-+	ILI9881C_COMMAND_INSTR(0x74, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x75, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x76, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x77, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x78, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x79, 0x08),
-+	ILI9881C_COMMAND_INSTR(0x7A, 0x0D),
-+	ILI9881C_COMMAND_INSTR(0x7B, 0x0D),
-+	ILI9881C_COMMAND_INSTR(0x7C, 0x0C),
-+	ILI9881C_COMMAND_INSTR(0x7D, 0x0C),
-+	ILI9881C_COMMAND_INSTR(0x7E, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0x7F, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0x80, 0x0E),
-+	ILI9881C_COMMAND_INSTR(0x81, 0x0E),
-+	ILI9881C_COMMAND_INSTR(0x82, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x83, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x84, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x85, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x86, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x87, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x88, 0x07),
-+	ILI9881C_COMMAND_INSTR(0x89, 0x06),
-+	ILI9881C_COMMAND_INSTR(0x8A, 0x02),
-+	ILI9881C_SWITCH_PAGE_INSTR(4),
-+	ILI9881C_COMMAND_INSTR(0x6C, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x6E, 0x1a),
-+	ILI9881C_COMMAND_INSTR(0x6F, 0x35),
-+	ILI9881C_COMMAND_INSTR(0x8D, 0x1f),
-+	ILI9881C_COMMAND_INSTR(0x87, 0xBA),
-+	ILI9881C_COMMAND_INSTR(0x26, 0x76),
-+	ILI9881C_COMMAND_INSTR(0xB2, 0xD1),
-+	ILI9881C_COMMAND_INSTR(0x3B, 0x98),
-+	ILI9881C_COMMAND_INSTR(0x3A, 0x24),
-+	ILI9881C_COMMAND_INSTR(0x35, 0x1F),
-+	ILI9881C_COMMAND_INSTR(0xB5, 0x27),
-+	ILI9881C_COMMAND_INSTR(0x31, 0x75),
-+	ILI9881C_COMMAND_INSTR(0x30, 0x03),
-+	ILI9881C_COMMAND_INSTR(0x33, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+	ILI9881C_SWITCH_PAGE_INSTR(1),
-+	ILI9881C_COMMAND_INSTR(0x22, 0x0a),
-+	ILI9881C_COMMAND_INSTR(0x2E, 0x50),
-+	ILI9881C_COMMAND_INSTR(0x2F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x53, 0x4a),
-+	ILI9881C_COMMAND_INSTR(0x55, 0x65),
-+	ILI9881C_COMMAND_INSTR(0x50, 0xbf),
-+	ILI9881C_COMMAND_INSTR(0x51, 0xbf),
-+	ILI9881C_COMMAND_INSTR(0x60, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x61, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x62, 0x20),
-+	ILI9881C_COMMAND_INSTR(0x63, 0x10),
-+	ILI9881C_COMMAND_INSTR(0xA0, 0x04),
-+	ILI9881C_COMMAND_INSTR(0xA1, 0x39),
-+	ILI9881C_COMMAND_INSTR(0xA2, 0x48),
-+	ILI9881C_COMMAND_INSTR(0xA3, 0x13),
-+	ILI9881C_COMMAND_INSTR(0xA4, 0x17),
-+	ILI9881C_COMMAND_INSTR(0xA5, 0x29),
-+	ILI9881C_COMMAND_INSTR(0xA6, 0x1c),
-+	ILI9881C_COMMAND_INSTR(0xA7, 0x1d),
-+	ILI9881C_COMMAND_INSTR(0xA8, 0xbb),
-+	ILI9881C_COMMAND_INSTR(0xA9, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xAA, 0x24),
-+	ILI9881C_COMMAND_INSTR(0xAB, 0x9e),
-+	ILI9881C_COMMAND_INSTR(0xAC, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xAD, 0x14),
-+	ILI9881C_COMMAND_INSTR(0xAE, 0x48),
-+	ILI9881C_COMMAND_INSTR(0xAF, 0x1c),
-+	ILI9881C_COMMAND_INSTR(0xB0, 0x22),
-+	ILI9881C_COMMAND_INSTR(0xB1, 0x51),
-+	ILI9881C_COMMAND_INSTR(0xB2, 0x60),
-+	ILI9881C_COMMAND_INSTR(0xB3, 0x32),
-+	ILI9881C_COMMAND_INSTR(0xC0, 0x04),
-+	ILI9881C_COMMAND_INSTR(0xC1, 0x39),
-+	ILI9881C_COMMAND_INSTR(0xC2, 0x48),
-+	ILI9881C_COMMAND_INSTR(0xC3, 0x13),
-+	ILI9881C_COMMAND_INSTR(0xC4, 0x17),
-+	ILI9881C_COMMAND_INSTR(0xC5, 0x29),
-+	ILI9881C_COMMAND_INSTR(0xC6, 0x1c),
-+	ILI9881C_COMMAND_INSTR(0xC7, 0x1d),
-+	ILI9881C_COMMAND_INSTR(0xC8, 0xbb),
-+	ILI9881C_COMMAND_INSTR(0xC9, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xCA, 0x24),
-+	ILI9881C_COMMAND_INSTR(0xCB, 0x9e),
-+	ILI9881C_COMMAND_INSTR(0xCC, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xCD, 0x14),
-+	ILI9881C_COMMAND_INSTR(0xCE, 0x48),
-+	ILI9881C_COMMAND_INSTR(0xCF, 0x1c),
-+	ILI9881C_COMMAND_INSTR(0xD0, 0x22),
-+	ILI9881C_COMMAND_INSTR(0xD1, 0x51),
-+	ILI9881C_COMMAND_INSTR(0xD2, 0x60),
-+	ILI9881C_COMMAND_INSTR(0xD3, 0x32),
-+};
-+
- static const struct ili9881c_instr kd050hdfia020_init[] = {
- 	ILI9881C_SWITCH_PAGE_INSTR(3),
- 	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-@@ -1335,6 +1537,9 @@ static int ili9881c_prepare(struct drm_panel *panel)
- 	if (ret)
- 		return ret;
- 
-+	if (ctx->desc->msleep_delay)
-+		msleep(ctx->desc->msleep_delay);
-+
- 	return 0;
- }
- 
-@@ -1401,6 +1606,23 @@ static const struct drm_display_mode k101_im2byl02_default_mode = {
- 	.height_mm	= 217,
- };
- 
-+static const struct drm_display_mode sfto340xc_default_mode = {
-+	.clock		= 34000,
-+
-+	.hdisplay	= 800,
-+	.hsync_start	= 800 + 10,
-+	.hsync_end	= 800 + 10 + 5,
-+	.htotal		= 800 + 10 + 5 + 10,
-+
-+	.vdisplay	= 800,
-+	.vsync_start	= 800 + 10,
-+	.vsync_end	= 800 + 10 + 5,
-+	.vtotal		= 800 + 10 + 5 + 10,
-+
-+	.width_mm	= 87,
-+	.height_mm	= 87,
-+};
-+
- static const struct drm_display_mode kd050hdfia020_default_mode = {
- 	.clock		= 62000,
- 
-@@ -1605,6 +1827,15 @@ static const struct ili9881c_desc k101_im2byl02_desc = {
- 	.mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE,
- };
- 
-+static const struct ili9881c_desc sfto340xc_desc = {
-+	.init = sfto340xc_init,
-+	.init_length = ARRAY_SIZE(sfto340xc_init),
-+	.mode = &sfto340xc_default_mode,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+		      MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS,
-+	.msleep_delay = 100,
-+};
-+
- static const struct ili9881c_desc kd050hdfia020_desc = {
- 	.init = kd050hdfia020_init,
- 	.init_length = ARRAY_SIZE(kd050hdfia020_init),
-@@ -1641,6 +1872,7 @@ static const struct ili9881c_desc am8001280g_desc = {
- static const struct of_device_id ili9881c_of_match[] = {
- 	{ .compatible = "bananapi,lhr050h41", .data = &lhr050h41_desc },
- 	{ .compatible = "feixin,k101-im2byl02", .data = &k101_im2byl02_desc },
-+	{ .compatible = "saef,sfto340xc", .data = &sfto340xc_desc },
- 	{ .compatible = "startek,kd050hdfia020", .data = &kd050hdfia020_desc },
- 	{ .compatible = "tdo,tl050hdv35", .data = &tl050hdv35_desc },
- 	{ .compatible = "wanchanglong,w552946aba", .data = &w552946aba_desc },
+>Best regards,
+>Krzysztof
+>
 
--- 
-2.34.1
 
+regards Frank
 
