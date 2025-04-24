@@ -1,157 +1,155 @@
-Return-Path: <devicetree+bounces-170333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB947A9A8AC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:46:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49331A9A8AA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76D763AB28B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:44:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900A9462F39
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0A4238C2C;
-	Thu, 24 Apr 2025 09:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E849221FCC;
+	Thu, 24 Apr 2025 09:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hp8m0nAX"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="qfXoCEr7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAB321FF3E
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745487467; cv=none; b=kkMMTbEt8lVKnm2HQbxJFXpIiuZMH4nUDxHOJOZTsmGGFiQNOGk2z6qxI80R4VyT29siUcxivzsI30I9dS/ILdVD16jUVqWv/w5ixDcAJXR47ERIlAPDE+ZU5he1zFeSNWrcSJju7DZHO1p5h1M0t4e+FhPtETzl2jzz+AcuAbY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745487467; c=relaxed/simple;
-	bh=US2PVtNLZaFkAuVXr5SpyazmZmP4+ZVR7PKcZZegtjY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ClcQTHHDmfsl54upRFLcyD3pH9Rmej0I5l9QwhHi4wAnoUIOUN3nvyNaGj/jyWCTNQZYvRzN1vnyZ+h2ruD4dUdtiQNYiVZEhHfrr3eKus2FXOfAgtZQpCbFwqENsVtoa1dfwzdW2iZVaxaoVbOWB6PvRuUvQNSB3MSjA9oe96E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hp8m0nAX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0FHGU010443
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:37:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=DgOyK6Aj8y9bqEdW8CqXJdRw
-	Zh5pW+vbS8PbU9FROaw=; b=hp8m0nAXnk4d4G02FKP6jguqp+UJUzC/82qow50d
-	0L7MigqO8ITXrjG01Ox7yDCBSQMzPp6l8v3ZvSHeEqTiTX0L0jBwionjBfVRlCqZ
-	sUwSw8jI5DLKU5IkJI/q4VZXIKW7BaVSbVObrfeAS8ZdP6oUnaM9W02ZgE2NA5pl
-	GqOXFCdp1mmQ9J/Oziptyfj041KAOufp1hFq6dY8nshF5y/x4/efekkiqUbGLv7z
-	BNVnAYRw4+WgrXvhPsJ2pmkkEdS6g+WlgyIzOuYO9oKFtI2AuThDuFWms17ecRwx
-	1BnG3atS1yT9goBfnBj/5LnBzmk9UTOpkSk0bg8hiIRZDA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3n0j1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:37:44 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-47ae7dd6217so16627901cf.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 02:37:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745487463; x=1746092263;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DgOyK6Aj8y9bqEdW8CqXJdRwZh5pW+vbS8PbU9FROaw=;
-        b=p6weXPPbVLGiwfOBM3As5VYXqxVoY+yexdGBov34J2nMCkgs/Lc0tSbf0FWHA7G7k+
-         6iaxYawv0Y5Mx0W6jGQ+VVfqsklCewMRqazUUS8Og05e+ibrsTV+8+R6uS2BIVCaEbUG
-         XqsS3qCKp6wsFwxUxNYe0dDR6Ao37G8m9DrzQNpIEMAwh6CNRGlFMhtVA5Q8owgyWXZw
-         rW+pTc4aD84qToUbuBdR/M3YoH5IO5AW996mj+5JKrsnVK3jrtezVLvi6PSFnKkKGs8x
-         XX5iAdKljC7VCQ0ezhq/XJccTb0mTi5WdpNNgBCrwu6O2hoa/gpgrrinT8fDaEaMUiXa
-         5qaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdYj8mOgYnFYTwcUUr7fN0Rjo0VLLeSu99bYa+lM1gQZkAObERkHLnUEat5qTf48NnoO5l8fXIYExo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmBrAIqIVaGYfDAvJyYmP4OxqQyyu9RE2M5z1pZHZHWO6oCi01
-	dJxrKQ/RncqkCGHdo2QTlWhngJVHT08zaHdEAlMnAJ1XIRokbckQg5tlKAOVYTwnpszQeN0DAgz
-	7+tod82TG/b3XECzEVrS3o2ovQw+ClSwc9L16LgGVpQTRtpZ8opQ8aCz/Ltcm
-X-Gm-Gg: ASbGncs+W4bv+x0Zj0tUzQCAbX96IpHFQmKX7QPiglcZNS5FPWCTc1oj+SIebLxjbIm
-	MpbFlqNy+krW+dQ2Ym6QyUWso+FSUraerxztp1nc5jKFuWQc8o78kyFj+KZt6DHBtAREv1sUwtV
-	YRMWUgvXVPVfy0lWViOqT6U+10Q4vZmY1e3Zf8bv1tLW5QmRAiLUrL1e1HMPW4jNnwGLCmFUcgu
-	+xuCZ5J9lumrYYbNKXUaZvWn3c6Vbq16sjKG+q5sSf9nmhWvwXDI06Ytj+h4FfhbAiBiTqqXErG
-	fO9ZCLuTfPK5hR6EeQX7ZnpXONtK7iyqQAH07lZ8UkyKH/mD+pJR1XkeVg75KQNSXfpTAc5hsjE
-	=
-X-Received: by 2002:ac8:7e92:0:b0:476:850a:5b34 with SMTP id d75a77b69052e-47eb33a7730mr30466791cf.30.1745487463409;
-        Thu, 24 Apr 2025 02:37:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1eEvXAeDIBJ+oaIV6NuXCx1ty2W8MF/z7TiaW3cFjO6fXs6cgqkeV3Jv4TZtIDAyz/pl37w==
-X-Received: by 2002:ac8:7e92:0:b0:476:850a:5b34 with SMTP id d75a77b69052e-47eb33a7730mr30466451cf.30.1745487462999;
-        Thu, 24 Apr 2025 02:37:42 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cc9ea4asm166075e87.149.2025.04.24.02.37.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 02:37:41 -0700 (PDT)
-Date: Thu, 24 Apr 2025 12:37:39 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Melody Olvera <melody.olvera@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 04/10] phy: qcom: qmp-combo: Add new PHY sequences for
- SM8750
-Message-ID: <ayfgkx7ep3pglzydno3waipm4xqcbuj4v4go7tvm5j3hu7mswr@ceqbynkuidcb>
-References: <20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com>
- <20250421-sm8750_usb_master-v5-4-25c79ed01d02@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DDC221FC2;
+	Thu, 24 Apr 2025 09:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745487533; cv=pass; b=NX/BoiD75iDcxvqUltN/rXLPqG3FsRHkwbs0t5Z9v/Am6/LTG/dwgmu7SeAjKCD71ukG7JKo+YY80DwvwSD9jFvPE5z/sp7fxtcuNM15kYc9L+khqyL4e0xRJDbnTOIea7kdbzYlmE6zsujw5oSd8CKQvrnB70khAFfBJ87QhvI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745487533; c=relaxed/simple;
+	bh=enVte3lTiHlJmRqVD73bg+H5H0csB3a1mMrL205Arz8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZGOH46mWuHZYpdivGEW2tTxg+WDr4tE9aNuO5PdoO2CQi7LHhYGkp6FOHgbnDRzGfadRS/u8PAxDwvqiVeGfgJpOGTdSyBqGd1kp2TXsx/jcBw29oFAU17XrVPFJbvpgdLxtr2oLxCl/gcnvO05pHjY/f6ZFIVkGZfYVMsxJQag=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=qfXoCEr7; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745487507; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=eWHXAzgrAP0yaKWz/ozs7h3vD4xkghAbBCljuFxWvbfTHCg8bB7O20Wj5Cey7zbwD83bKeATVCQmrgXoymM6Lya2UtsQN7MVx4CMPE2jlMOq7qxFfYhlsV1o2l6RCHhvsRBHLBCJ0YL+0XggR/jwNUTdVAwcSBp5SQRIQEIOGPE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745487507; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=enVte3lTiHlJmRqVD73bg+H5H0csB3a1mMrL205Arz8=; 
+	b=DHSi6PJJSSdsBNx8Q6gcPlWkCrtC3eJ270kQ1qKiOVODN/qZtPTjqsNtaLHCu1bespcQIaemquGNuv6PKmes98e9jPAOOG1Sgb/ASy2rlDQS0Ubm47nHswRiTtaTHOkv6sUDhR4nh7WSmK9T9NmvTnPXoGtJ8y2MVKmPH9s7E7o=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745487507;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=enVte3lTiHlJmRqVD73bg+H5H0csB3a1mMrL205Arz8=;
+	b=qfXoCEr7FQ9msjMMk+80tOQFcRYAJOkVcDSabeIUZoB/V4FpBb26CTdSda4LE0yK
+	fo9HylKuV1bD8f3fcPUrREMovKRdpXoD0SZQvglA489xMwzcX53UPrSxIX0CFg6WP0R
+	InG3nz1h5fZPfi7kHS7WEdueULDPnUm1RVrr3hVHIRicF9XBKTIBdgEAEexu1nBDC27
+	aJ0P7cJfdzmwXm1ETWv9rcb/Vsd9WbLzUiT55gu9M7m7ZUzDuF9bZCPvg5oITGjvRnx
+	k2U+NrEc1kWJKSqgl+ClkD2WXgVaPMyEPvMhSNqNQaQxHZs07iRaqH3R3Wo9/4iOHTA
+	G6TModPKfA==
+Received: by mx.zohomail.com with SMTPS id 1745487504141154.190763735755;
+	Thu, 24 Apr 2025 02:38:24 -0700 (PDT)
+Message-ID: <7e62e720ccc51fb5c7d023adae3eab35aecf0bba.camel@icenowy.me>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
+ PAD_INTERNAL_* virtual pins
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang
+ <jianlong.huang@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Date: Thu, 24 Apr 2025 17:38:16 +0800
+In-Reply-To: <CACRpkdaX0hTJSsZN6YNXASY3noZw=JsOSXzFBbxKegJ6A+2usA@mail.gmail.com>
+References: <20250424062017.652969-1-uwu@icenowy.me>
+	 <20250424062017.652969-2-uwu@icenowy.me>
+	 <CACRpkdaX0hTJSsZN6YNXASY3noZw=JsOSXzFBbxKegJ6A+2usA@mail.gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250421-sm8750_usb_master-v5-4-25c79ed01d02@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: 1i1U3qgdXY7Y6r49y8pA9v6AxD8gkxuq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA2MyBTYWx0ZWRfX5bEAaMUDftMe YeUAoE8/QpSQiBQZgMI4RazZGFvi6qBqIy2Lo8OxRyvYuIJ7f0jy1tZxzDhztxyxPU79sRu0AFv TEIMRmeEA9/de+dB+4Kd1OaV1fVZkv995J3yP/mhnFzZ6972vB4YV8g01XvVby5BVYmO/Gki1yv
- /m492ItZbRmvY/kHmJZiHefi2Q2Q3n+d7QkeQxRPEUBhP0CGrWaXorYR04izh4/nozs0vcXrVXY BRchZNm4oApwjWyS1dsxjv5VXuIBFv043blIoqrU1cDD0uEgcDfUdnXYpSxcfNzFlR9XSYzKv3U IGPUgCwA8zbpMbDb89rVsMwizUFllOpe3G/X/1oJkaRbOnfT+tue4dHr/HMC7eIy5MwsmTtTiGW
- 6zzj+s+PxBYLBz+51GfB0Cm73kjhsI8NrzbHxpvijoL7U8lGKEUvoQjdOI0kRSI+r/Iro7uu
-X-Authority-Analysis: v=2.4 cv=ELgG00ZC c=1 sm=1 tr=0 ts=680a0668 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=9yGODh8E-QI5J-fucZYA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 1i1U3qgdXY7Y6r49y8pA9v6AxD8gkxuq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_04,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- malwarescore=0 clxscore=1015 bulkscore=0 phishscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- mlxlogscore=832 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240063
+X-ZohoMailClient: External
 
-On Mon, Apr 21, 2025 at 03:00:11PM -0700, Melody Olvera wrote:
-> From: Wesley Cheng <quic_wcheng@quicinc.com>
-> 
-> Add new register offsets and PHY values for SM8750. Some of the previous
-> definitions can be leveraged from older PHY versions as offsets within
-> registers have not changed. This also updates the PHY sequence that is
-> recommended after running hardware characterization.
+=E5=9C=A8 2025-04-24=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 10:51 +0200=EF=BC=
+=8CLinus Walleij=E5=86=99=E9=81=93=EF=BC=9A
+> On Thu, Apr 24, 2025 at 8:20=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me> wr=
+ote:
+>=20
+> > The JH7110 SoC could support internal GPI signals to be routed to
+> > not
+> > external GPIO but internal low/high levels.
+> >=20
+> > Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two
+> > virtual
+> > "pads" to represent internal GPI sources with fixed low/high
+> > levels.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>=20
+> As per my other reply in the previous post, I think this should be
+> handled internal in the kernel instead using a tighter integration
+> between
+> the GPIO and pin control parts of the driver and utilizing the
+> gpio-specific struct pinmux_ops callbacks.
 
-What is updated? I see only additions.
+Well I cannot understand this -- these signals are not GPIOs, totally
+not related to the GPIO subsystem (because they're only pinmux, not
+related to GPIOs). This is described in my previous mail.
 
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 221 +++++++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v8.h     |  38 ++++
->  drivers/phy/qualcomm/phy-qcom-qmp-pcs-v8.h         |  32 +++
->  drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v8.h |  64 ++++++
->  .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v8.h    |  68 +++++++
->  drivers/phy/qualcomm/phy-qcom-qmp.h                |   5 +
->  6 files changed, 428 insertions(+)
-> 
+The pin mux of JH7110 strictly route its inputs to its outputs. For
+signals from other SoC blocks (to external pins), the registers define
+how OUT/OEn of IO buffers *are driven by* the signals; however for
+signals to other SoC blocks (from external pins), the registers define
+how IN of IO buffers *drive* the signals. (This follows the generic
+signal-driving rule that one signal can drive multiple signals but
+cannot be multi-driven).
 
--- 
-With best wishes
-Dmitry
+In addition the situation I am trying to handle here is an addition to
+the latter part of the previous paragraph -- in addition to 64 inputs
+corresponding to 64 GPIOs, two extra inputs, one always 0 and another
+always 1 are available to the pin controller for driving other SoC
+blocks' input (as output of pin controller).
+
+In fact this is why there is ` + 2` when calculating ival in
+jh7110_set_gpiomux() -- the first two possible values are for always 0
+and always 1, 3 represents the IN of GPIO0, etc.
+
+>=20
+> This solution looks like software configuration disguised as hardware
+> configuration.
+
+Well this solution handles these internal wires in the same way as
+signals from external GPIOs, excepting specifying special GPIO numbers.
+If you are against the principle, maybe the current already-included
+GPIOMUX system of the StarFive pinctrl is to be blamed instead of my
+small extension to it.
+
+I must admit that the current GPIOMUX system isn't a faithful
+representation of the hardware because it's a pad-centric setup instead
+of a register-field-centric one, which isn't very natural for input
+signals. However configurating the mux in such a way is against people
+reading, and we're not able to break the system because it's already
+there.
+
+Well in the situation that one GPIO used as input drives multiple
+internal signals the pinmux looks a little confusing too, e.g. the I2S
+clock situation I mentioned in my reply in the previous revision of the
+patchset.
+
+>=20
+> Yours,
+> Linus Walleij
+
 
