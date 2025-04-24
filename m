@@ -1,259 +1,118 @@
-Return-Path: <devicetree+bounces-170567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6276A9B60F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:16:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EF3A9B657
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:26:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 637A93BB109
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:16:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D6417054D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1906728F50D;
-	Thu, 24 Apr 2025 18:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6A528F506;
+	Thu, 24 Apr 2025 18:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="NOK+8qnl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SKkJpikB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F64728F501
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 18:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2A61F09B4;
+	Thu, 24 Apr 2025 18:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745518586; cv=none; b=cyKcwVeaVI2dDvmqSY4Ch+/pY8C75QIzW9Bkwaqjqp1dpyLedTXtFjX9YC0et/Wh5SthxQluh5TY5WXfhR3aOFbpH0Q/PyMFhxLImNlbNaX5K4Wa/ggrKZPpJ5AHcBNds+wZv1nt4W6HKmGkozCyREwIKXfu62mJ03gTc8PKvd4=
+	t=1745519185; cv=none; b=IP34JmmAW2P+eEMmpgek2UGI3mxcvCFYlvvNiRWwCg+DsHaD8AYC+yxbbefqt1m+NZxmEhMKaAmFfed/L2j99m7qTiISBFroHFfdE7UhVQgnQdzwOG1soOY+kwgUglGJkJMA224DrdUgmGDeP3M1NiB3S3zP7DHOnjk3lNlARGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745518586; c=relaxed/simple;
-	bh=xwIJYlS8Mxej9Ue36QIm4SREbYsNaNZe158F8eJvF30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ttcw+hf8OrShf+SVlIQ8Z8EPYvn8patqaF2B/7AdM2zE8H7zv53jHdxg+2saQ3Sw0ai5VjPFO0iDPKkNoq7fkKUYUI7aaObSVkO0UJ4XMayceSnqAv0Ul8S14r9xlb0qSQpVz5kqQiOziosYOOQRaEWxd3G+4WKopvhxkONMnFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=NOK+8qnl; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso1398323b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745518583; x=1746123383; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T9sHYezjUq6l/x/6C81DhRiO6Hkx3zNHx6RVEna5xiI=;
-        b=NOK+8qnltocl7IjsIDqxYetNVinHbSt9qBQwhXvmJSzZm/Uj/A+EmAwPtIXsueGmIj
-         m+XPDNBpYdajzutI+CSSyCjBf7HjgMqFV5tzTuvVtSkIK3eBz59mRmxbiO0UBJytArVJ
-         JwbIsuvj2ZoNoLvKSqPlotq7uiV3tqPJhkh+4datkYvfGhyOgDt7kMovCVzgiIpfstBk
-         S4v/2M/Ds4YsAEEEQlfryl2sv4S/tt+DeE3VGGSG3emgoJpBwato5wcWUETazw8nIdLn
-         z56G++pZ3eW8WcfzbpGHR4a8Rf5DIByZE1/v3D4yk7znJHeBdY590OLcMTSOC9jC4C69
-         3d9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745518583; x=1746123383;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T9sHYezjUq6l/x/6C81DhRiO6Hkx3zNHx6RVEna5xiI=;
-        b=ipi3vFnXBdEIS/W5L9JpVxvXGGX668dp4WXDAz8JmyJaxRIIPaqdWKqWoKi9HEIXAC
-         ubfpjhHjovchuc7ftmg9KBVjPaNTzwjJUulI6Rp+9FhhT2zZnSeDEN5yqomHQRIrxRF3
-         foioNgtdvd+brwEpW/yebK8S9wskJ4oZBfOZBnKcqnmb3crMRsrTdg+5V2n6hcUfK/G6
-         V1gGA45kCNix7A4ob1Q5D7dxFHCUoX2pDkiWXlUlJ+pZDaxvz8jtzMaVv9GvlXpl/hK1
-         7SFXLyF5TAZ/uzwUbQulNV6xijalKvgxVOZhvDVHB1c1ULsfR1dOl6N/WRC2AxQs2MSP
-         a3JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvEHe+QqyfHp+noGx9yQaQCyQjj3vgT/7a2DMyLNbvcKZL+wsWzTYGbxhF6rWfB26LfS6I94bcyEIa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9E8qGroehlz4MmrSFnt8CrNPQigR6/zK13mTZD8Mp2suO/6dl
-	4RQqdVRXcRYNdlIdLIyQPyyuqAo5cGRBTT8Mmh5dw3td6QUUyLMW4XqFjWhlgZ0=
-X-Gm-Gg: ASbGncsIX8TXV0TBEe+xLFQp7Ngna05K3KWmae79TzY4OgdY7w5mmMbiQNN98ODN7Cs
-	eyOCgUcB5biWwwD8J6r+5dlPCs4AbzH/9lfS0WN2SiljKJxc0w+uQWtMwyRVnZGT3ACye26276G
-	wKYUYPJCtgfWEQuui4wyCEu/piU5KCDZba1RfB1g+B4EcTfv262lkU6gm/ba+yvrv/pWFQFhnL1
-	/rjlgHXT5VXg46QRJHLukoeqVjtzFJI90QAGnmqXquBWBZdQKBK+ya5k2EE0ARNXz5fQ0A5EGA3
-	IGlZND6hO+u6Ua0cNZLGs5a8n/sEuOATvaLmnk4y1qIJ1+GI4mc=
-X-Google-Smtp-Source: AGHT+IF0jVzUPU4VWGuVNQ17BhULhOztKBekv2BW5HkIJsQ1IRCAo1z8B5DG3h77AtgqUMysW+802Q==
-X-Received: by 2002:aa7:9315:0:b0:736:9e40:13b1 with SMTP id d2e1a72fcca58-73e24ae7b45mr5236452b3a.23.1745518583417;
-        Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e259414c7sm1783697b3a.62.2025.04.24.11.16.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
-Date: Thu, 24 Apr 2025 11:16:19 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com,
-	linux-riscv <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack
- prctls
-Message-ID: <aAp_87-Xr6gn_hD7@debug.ba.rivosinc.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
- <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
- <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
- <D9EWR3RQK0FD.3GF55KNS53YSR@ventanamicro.com>
+	s=arc-20240116; t=1745519185; c=relaxed/simple;
+	bh=CHScCNXIVyd/VGxBgYpY/XP42OaAihqot4h2Nj/OKjE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oOtSmv9lL+lAnO36eJc3IR67wbB4A63JDMxXqJebbNMIlxikrkxgpdqPL+5eLoevtz3OwJ/wloQ4YH+GxqE6j9PlCEAfpJuzRa7RZ1rg/YNbzxebJRsTGWWQwk9+QGwB3MwcZP73raUI6vNfyrx2PcHNXR31dlyVTkATDLfOW5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SKkJpikB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF8D8C4AF0B;
+	Thu, 24 Apr 2025 18:26:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745519184;
+	bh=CHScCNXIVyd/VGxBgYpY/XP42OaAihqot4h2Nj/OKjE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=SKkJpikBw8teLtSB7WRreyv1/9vmWXIkN1GViZIboErjPpSRCQSZO114Xo5eFww8k
+	 vyJdpZC+gY8mgSSvxGUDRQ82f/bV2ckkgjpkuuPyM2i4MXOaSs1CqUX3as26MjdLL4
+	 DP7CY/IZ7Fy/fPk40MxD0/l0Hhx5eZyf2tC5R91d6zLCjlgRffpWWNtIoWnqxmOEGM
+	 YcI/uVKhNYRtcXv+UryAQ1suBGv/m0NaCk4EtbiE4o/wKkhySFyTRLxeb5S3Q+X+/e
+	 60w3fozZd4TIQ99IcAtdT1d8fKItbK/SWZ4HRFLeKfkVr85nIDNbh+/H/qG2EzJS0/
+	 QXyRHmiCsMhUA==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso238083966b.1;
+        Thu, 24 Apr 2025 11:26:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUDffNfJFi8BSVlMfaMYLvxiFxFWvxoebXfDSV7qsjxMm+cGUofnaV0nAB064VAwM8ZYz0URXuK4m1yNMxkGDA=@vger.kernel.org, AJvYcCVmjGF2MqJDBdXe/YReFReCQDvggrLRHB6XORIAMVOsDcoYy47cdbcn9SRsnudR/hfAhvMen2cySZY1kQ==@vger.kernel.org, AJvYcCWJ7MDsoakZiNsecGKCZ9soPxvGSPXeCKbLinMpZ0nB6Y5Bp2B6Avgdy6THXaUuFA0SCGad3RlXRMM2EhO+@vger.kernel.org, AJvYcCWyXaSZYKalM7xsu7JzzGKjpTk+1NgdCLkF9T1Pca4OVpqAK6riqHJU8kCmN886U7gsDbvOdowH@vger.kernel.org, AJvYcCXKtuPeNkasemhWKLIY0oE1whwGX7lS95Dugtdbnu8CkAi/i8zksur3NgdDbg95pPQoWPaWyxl1ggswtiPVhg==@vger.kernel.org, AJvYcCXlDZhSYdHBElbjH8TzfyuHJ4TikG7rUiznaMfHa7HL7DjfW0x1a+5YAkwpftBlTIeQ+j5bYTuMMcKhTrxbK+g=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxqWPzyj8HAudD8NwAOLthGHHO/PSBJrOFI2LdywFeMFgHpu09
+	34Hrcx6c1XhDQgUkGbSl36w547tMvXHkJkS1oAbS1o1pAxMjkrZzUnOfXtsv50V/j7PHZZdTy2u
+	9Q80co+u/C2N4hYV53ZZNEO2pSA==
+X-Google-Smtp-Source: AGHT+IHcANHsE+bdvnqkb2UnKhC0wdjfxj1hMco6j907XGhULHiQTFKk0sGPEoDGTWQ2tPxmo7m1kava8JyVOdEeOiQ=
+X-Received: by 2002:a17:907:944e:b0:acb:5070:dd19 with SMTP id
+ a640c23a62f3a-ace6b759bd9mr49595766b.61.1745519183439; Thu, 24 Apr 2025
+ 11:26:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D9EWR3RQK0FD.3GF55KNS53YSR@ventanamicro.com>
+References: <20250324-dt-bindings-network-class-v5-0-f5c3fe00e8f0@ixit.cz>
+ <20250324-dt-bindings-network-class-v5-3-f5c3fe00e8f0@ixit.cz>
+ <d8619ab4-3a91-467f-a3d4-f23b4e0383a4@kernel.org> <57701e2e-0005-4a8a-a3f5-ba098c97b480@kernel.org>
+ <4b040936baa8fa8669b34e36fe9dff6e08aeede9.camel@sipsolutions.net>
+ <f0e56cb2-17a6-44d4-ae71-8639966d565a@kernel.org> <8d8b7c3ad6a67a683abbb4fc6049898747300a16.camel@sipsolutions.net>
+In-Reply-To: <8d8b7c3ad6a67a683abbb4fc6049898747300a16.camel@sipsolutions.net>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 24 Apr 2025 13:26:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKGmoiW=yDD7G4Qznsa7S2wQ7x4Mh0i4puAyFsvcnHz1A@mail.gmail.com>
+X-Gm-Features: ATxdqUFdarqKSYdeEAbhUblK1AO9Oheq1fLCxeCtymN54D8OfpcAV5pt8PJAs0g
+Message-ID: <CAL_JsqKGmoiW=yDD7G4Qznsa7S2wQ7x4Mh0i4puAyFsvcnHz1A@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] dt-bindings: wireless: bcm4329-fmac: Use
+ wireless-controller.yaml schema
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, david@ixit.cz, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mailing List <devicetree-spec-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, van Spriel <arend@broadcom.com>, 
+	=?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Mailing List <devicetree-spec@vger.kernel.org>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Janne Grunau <j@jannau.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 03:36:54PM +0200, Radim Krčmář wrote:
->2025-04-23T21:44:09-07:00, Deepak Gupta <debug@rivosinc.com>:
->> On Thu, Apr 10, 2025 at 11:45:58AM +0200, Radim Krčmář wrote:
->>>2025-03-14T14:39:31-07:00, Deepak Gupta <debug@rivosinc.com>:
->>>> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
->>>> @@ -14,7 +15,8 @@ struct kernel_clone_args;
->>>>  struct cfi_status {
->>>>  	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
->>>> -	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
->>>> +	unsigned long ubcfi_locked : 1;
->>>> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
->>>
->>>The rsvd field shouldn't be necessary as the container for the bitfield
->>>is 'unsigned long' sized.
->>>
->>>Why don't we use bools here, though?
->>>It might produce a better binary and we're not hurting for struct size.
->>
->> If you remember one of the previous patch discussion, this goes into
->> `thread_info` Don't want to bloat it. Even if we end shoving into task_struct,
->> don't want to bloat that either. I can just convert it into bitmask if
->> bitfields are an eyesore here.
+On Thu, Apr 24, 2025 at 10:42=E2=80=AFAM Johannes Berg
+<johannes@sipsolutions.net> wrote:
 >
->  "unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);"
+> On Thu, 2025-04-24 at 17:37 +0200, Krzysztof Kozlowski wrote:
+> > >
+> > > Thanks, I guess I'll hold the pull request for that. And I guess the
+> > > Apple ones are on David then.
+> > I think you can go ahead. I already referenced that commit from next in
+> > my patches, so I hope that SHA will not change (don't rebase your tree)=
+:
+> >
+> > https://lore.kernel.org/linux-devicetree/?q=3Df%3Akrzysztof+%22Align+wi=
+fi+node+name+with+bindings%22
+> >
 >
->is an eyesore that defines exactly the same as the two lines alone
->
->  unsigned long ubcfi_en : 1;
->  unsigned long ubcfi_locked : 1;
->
->That one should be removed.
->
->If we have only 4 bits in 4/8 bytes, then bitfields do generate worse
->code than 4 bools and a 0/4 byte hole.  The struct size stays the same.
->
->I don't care much about the switch to bools, though, because this code
->is not called often.
+> Hm. I thought this patchset broke it, and it is going through my tree.
+> Wouldn't it be much more complex for fixes on top of it to go through
+> another tree?
 
-I'll remove the bitfields, have single `unsigned long cfi_control_state`
-And do `#define RISCV_UBCFI_EN 1` and so on.
->
->>>> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
->>>> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long status)
->>>> +{
->>>> +	/* Request is to enable shadow stack and shadow stack is not enabled already */
->>>> +	if (enable_shstk && !is_shstk_enabled(t)) {
->>>> +		/* shadow stack was allocated and enable request again
->>>> +		 * no need to support such usecase and return EINVAL.
->>>> +		 */
->>>> +		if (is_shstk_allocated(t))
->>>> +			return -EINVAL;
->>>> +
->>>> +		size = calc_shstk_size(0);
->>>> +		addr = allocate_shadow_stack(0, size, 0, false);
->>>
->>>Why don't we use the userspace-allocated stack?
->>>
->>>I'm completely missing the design idea here...  Userspace has absolute
->>>over the shadow stack pointer CSR, so we don't need to do much in Linux:
->>>
->>>1. interface to set up page tables with -W- PTE and
->>>2. interface to control senvcfg.SSE.
->>>
->>>Userspace can do the rest.
->>
->> Design is like following:
->>
->> When a user task wants to enable shadow stack for itself, it has to issue
->> a syscall to kernel (like this prctl). Now it can be done independently by
->> user task by first issuing `map_shadow_stack`, then asking kernel to light
->> up envcfg bit and eventually when return to usermode happens, it can write
->> to CSR. It is no different from doing all of the above together in single
->> `prctl` call. They are equivalent in that nature.
->>
->> Background is that x86 followed this because x86 had workloads/binaries/
->> functions with (deep)recursive functions and thus by default were forced
->> to always allocate shadow stack to be of the same size as data stack. To
->> reduce burden on userspace for determining and then allocating same size
->> (size of data stack) shadow stack, prctl would do the job of calculating
->> default shadow stack size (and reduce programming error in usermode). arm64
->> followed the suite. I don't want to find out what's the compatiblity issues
->> we will see and thus just following the suite (given that both approaches
->> are equivalent). Take a look at static `calc_shstk_size(unsigned long size)`.
->>
->> Coming back to your question of why not allowing userspace to manage its
->> own shadow stack. Answer is that it can manage its own shadow stack. If it
->> does, it just have to be aware of size its allocating for shadow stack.
->
->It's just that userspace cannot prevent allocation of the default stack
->when enabling it, which is the weird part to me.
->The allocate and enable syscalls could have been nicely composable.
->
->> There is already a patch series going on to manage this using clone3.
->> https://lore.kernel.org/all/20250408-clone3-shadow-stack-v15-4-3fa245c6e3be@kernel.org/
->
->A new ioctl does seem to solve most of the practical issues, thanks.
->
->> I fully expect green thread implementations in rust/go or swapcontext
->> based thread management doing this on their own.
->>
->> Current design is to ensure existing apps dont have to change a lot in
->> userspace and by default kernel gives compatibility. Anyone else wanting
->> to optimize the usage of shadow stack can do so with current design.
->
->Right, changing rlimit_stack around shadow stack allocation is not the
->most elegant way, but it does work.
->
->>>> +int arch_lock_shadow_stack_status(struct task_struct *task,
->>>> +				  unsigned long arg)
->>>> +{
->>>> +	/* If shtstk not supported or not enabled on task, nothing to lock here */
->>>> +	if (!cpu_supports_shadow_stack() ||
->>>> +	    !is_shstk_enabled(task) || arg != 0)
->>>> +		return -EINVAL;
->>>
->>>The task might want to prevent shadow stack from being enabled?
->>
->> But Why would it want to do that? Task can simply not issue the prctl. There
->> are glibc tunables as well using which it can be disabled.
->
->The task might do it as some last resort to prevent a buggy code from
->enabling shadow stacks that would just crash.  Or whatever complicated
->reason userspace can think of.
->
->It's more the other way around.  I wonder why we're removing this option
->when we don't really care what userspace does to itself.
->I think it's complicating the kernel without an obvious gain.
+While it seems the reviews of the series caused more warnings for
+Apple, in general, schemas creating warnings is not breaking things.
+In a way, the whole point is to create warnings because if the .dts
+files were perfect already we wouldn't need schemas. The main
+requirement for schemas is only that they don't create warnings for
+the examples. There's still too many for .dts files to worry about it
+(and there's intermittent warnings from things getting merged via
+different trees).
 
-It just feels wierd. There isn't anything like this for other features lit-up
-via envcfg. Does hwprobe allow this on per-task basis? I'll look into it.
-
+Rob
 
