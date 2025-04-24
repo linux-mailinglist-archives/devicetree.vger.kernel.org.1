@@ -1,192 +1,88 @@
-Return-Path: <devicetree+bounces-170439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E61A9AD0B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:16:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3BEA9AD24
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2AF5462E5B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:16:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E0161B6338E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17FE122FDE8;
-	Thu, 24 Apr 2025 12:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C01422DF9F;
+	Thu, 24 Apr 2025 12:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Wsmpr30p"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5jV5NcUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA6122DF9F
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 12:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE1322B595;
+	Thu, 24 Apr 2025 12:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745496997; cv=none; b=QoX5nY+vt2G2cE+PGkzotBBEDc9o7v2V9ynk+iRfpk9hZOCe8uNuv48UsfxM65hahPxmdZ+IT2ckWBDDFkJJz3SHF4bXXQz0JpCdWVkvhQL9nm3MKj1rzOEADml62z6TD3AhKFbxjyDgTlZCgwivySKl5Z0uy22UvCblZKIgIN8=
+	t=1745497214; cv=none; b=iEvoDqMNiL4huU/Dq0AQFIh0XBFWG2qk89MkZTilXmAygOG7DVyVuuK+4FDBtS9i60rx0HJp+/M66ONwOzOeHPHuyH4TVRgTikPyY/fvgNQO/+A4uVlbJlQ8/pj2b4y0Wpch6h6L/LIUgV1ruzVrM/4pvGMvPSFC7Qzl5eBzvso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745496997; c=relaxed/simple;
-	bh=Uyv4cF6roX/rqkabZ8AOPchJ7yqQ3BZD7UJEcGbUnSY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=HYN82DU6o5OzkhPqSPINbBuaaRTpjZDS9srjpHbDbzSFCZnk2Tz+kx8DODFEokIMYpAi7ZsoxNlblJ6EwRFdMI8xdQdWdaA69AX+javzOr2MweEIORK0Iezok4u7a2kvihgvMcPixzrtxKC1CYEnMrawLQ97bmVe8/jfbFuJKjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Wsmpr30p; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39d94327297so122124f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 05:16:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1745496993; x=1746101793; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:from:to:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=byLZxcTmkHUnhPkEGnhkt8kzHy94FpcWiEA8cXwsuq0=;
-        b=Wsmpr30poYCAfYRyzPvB/UKdx7aMJQxZiKrY6+7Fc+wqkXq2JKC92pP40TNuGLyznO
-         J0k6TPUycyj4xKJygrOkgJk/JNY0LqKpStnlGWO/IlKB/P+X7otxfD+C0HW2Tj3FcThj
-         frwGBAfNIV9V+6ueHR8SSBmJRwFoeyxh5WmOpqNqXukH7UUrWVf3aIC6chBZnN8yuZV6
-         wLqVhy7qbDlMLeBgCohY47FBJCuCpkhev4pydU2sbHWCx+kdbE6mmKpZFtnb1feB3NaE
-         P293PgLgv1M6vw2Ik/rc0f7Ed7209rI3ZW3YyQUm3KzBOsACaPukRZ78rCU3jE20BX2B
-         /UIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745496993; x=1746101793;
-        h=in-reply-to:references:subject:from:to:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=byLZxcTmkHUnhPkEGnhkt8kzHy94FpcWiEA8cXwsuq0=;
-        b=m9OyO4eIzv6aVq2J64v4mrrd8ZFFhtj21cjS//h/5fSwARLLtXit2aYcTcKVJtpEOH
-         PCPfJikzLx5B6PTRDCwK1jofAjcaRIcB/XM+HkCeiVWXzacC6lPnkQf2cFeiqm0QGRxv
-         qUUdWKRCMFsB9dxch6vxb/bZ1whmU8a+OKkvxpTVnoJysmuNPrFJlDTQmsXIGHmnQvCB
-         /IoUzJRvbiV3rrRuJMRzPvht48zLvsFIU03xBBjIE7XWJAZC1tVa300Fkr/688yGkQZo
-         c30wHJ2Zho6Nv43jZjSs9E2mbVImDKC9E0hI3rFrU/cooGje72B/ti1Gou6JeKiNdKjM
-         ZuXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOFtLu0MzT9iejnk0q/vyhSsYmQvajOjxmc3nC2RNqL/M9Dgw5TQor8v6I/CZp8WfTy4YVc5n76CHH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiYLk0YEYJdjv+VIwpB7CVK7v+z/2pHMmOto1jmi1h0Naxab7S
-	HvZjVSq/YEI26IHMRVj8TMAZmocGZLWcG2GbxvC1hlL5gvK/3e+9Dsl2vvvTfVc=
-X-Gm-Gg: ASbGncsB13fqVaeut/kXuZEzqQtc4gjwLbmQP0tg/kTI1ueDILEyOmwNEi23dktwa5f
-	5EB8GzwHuKzDFw4uqi3qzorftYYANTjqSUgJXxB0mX6tSLiskd1aBFyy7d5sutFgzhqutfQMF2v
-	bDx2mQTCwesEXUiXzOeipziVgFwW7+rwbK8ihLg88w8yIXZKIQACvmxNbN10fLCmU3ePco/swps
-	8ahD7ZDYIEoS7jcGQH59ftd6wNGsCAJ+ZlgJHaKMkycLoxd/podtSLG+l8H5C0FEZeE3koB50Le
-	65hmXhCxSLQym4wdyC+xTTYh/k21HL96y2BpZyBeuioENxCc
-X-Google-Smtp-Source: AGHT+IERZA3DYVew3V/bn5OiODM5GwUm1JM3y/BJyY+6CSbEdsIoN7nn+jjX5wED4r1h6h8dKZG5oA==
-X-Received: by 2002:a05:6000:40da:b0:39c:12ce:697 with SMTP id ffacd0b85a97d-3a06cf5cb78mr706514f8f.7.1745496993026;
-        Thu, 24 Apr 2025 05:16:33 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200:b30c:ee4d:9e10:6a46])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d5326casm1929903f8f.64.2025.04.24.05.16.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 05:16:32 -0700 (PDT)
+	s=arc-20240116; t=1745497214; c=relaxed/simple;
+	bh=u8Mc0i/TppApevsGSFKevejDwzLPAMFwihcv9XLpm9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RJWC+zpnHbYw2lomkEeyoyK7CdCnxe/olevMSllmmyxL2DcCxU7cTQUpkQMRYAs0uHunJFGhAFO3QtwG5J/jbZ36/5Lq2n397mdpp3+DHfbwUJjdl+rEmsvAZUSweyfw405goRBxPNTKQz1AugK0gC56NzvxRHiReDyKgXRbzAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5jV5NcUw; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=mwdTuU65lhEc5zC83nLOBu+Xq+msnXdZ5WpwUOFK4oU=; b=5jV5NcUwVBjHDWX91xReA0JiQz
+	QgXwN1lbzHZhPY6zkIqoyQ3S4AkJCekuPFZ8ih/R5DMb9FIeTKBhuX/eCDLDpkbtoK+FELL/uV83z
+	nkQooUiBnNsjJbGv3uxZ9gQJdRMcyqkme5TRr0besJ78ziLPuo96K0Pe6OBQxotooiuY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u7vYd-00ASWc-LM; Thu, 24 Apr 2025 14:19:59 +0200
+Date: Thu, 24 Apr 2025 14:19:59 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <6e9c003e-2a38-43a7-8474-286bdb6306a0@lunn.ch>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+ <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
+ <aa38baed-f528-4650-9e06-e7a76c25ec89@lunn.ch>
+ <20250424014120.0d66bd85@minigeek.lan>
+ <20250424100514-GYA48784@gentoo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 24 Apr 2025 14:16:32 +0200
-Message-Id: <D9EV1K8ZQQJR.20CRTYLQBN9UE@ventanamicro.com>
-Cc: "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar"
- <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>, "Dave Hansen"
- <dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
- <hpa@zytor.com>, "Andrew Morton" <akpm@linux-foundation.org>, "Liam R.
- Howlett" <Liam.Howlett@oracle.com>, "Vlastimil Babka" <vbabka@suse.cz>,
- "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>, "Paul Walmsley"
- <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Conor Dooley" <conor@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Arnd Bergmann" <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>,
- "Peter Zijlstra" <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>,
- "Eric Biederman" <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>,
- "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann
- Horn" <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
- <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
- <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
- <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
- <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "Zong Li"
- <zong.li@sifive.com>, "linux-riscv"
- <linux-riscv-bounces@lists.infradead.org>
-To: "Deepak Gupta" <debug@rivosinc.com>
-From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
-Subject: Re: [PATCH v12 05/28] riscv: usercfi state for task and
- save/restore of CSR_SSP on trap entry/exit
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
- <D92WQWAUQYY4.2ED8JAFBDHGRN@ventanamicro.com>
- <aAmEnK0vSgZZOORL@debug.ba.rivosinc.com>
-In-Reply-To: <aAmEnK0vSgZZOORL@debug.ba.rivosinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424100514-GYA48784@gentoo>
 
-2025-04-23T17:23:56-07:00, Deepak Gupta <debug@rivosinc.com>:
-> On Thu, Apr 10, 2025 at 01:04:39PM +0200, Radim Kr=C4=8Dm=C3=A1=C5=99 wro=
-te:
->>2025-03-14T14:39:24-07:00, Deepak Gupta <debug@rivosinc.com>:
->>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
->>> @@ -147,6 +147,20 @@ SYM_CODE_START(handle_exception)
->>>
->>>  	REG_L s0, TASK_TI_USER_SP(tp)
->>>  	csrrc s1, CSR_STATUS, t0
->>> +	/*
->>> +	 * If previous mode was U, capture shadow stack pointer and save it a=
-way
->>> +	 * Zero CSR_SSP at the same time for sanitization.
->>> +	 */
->>> +	ALTERNATIVE("nop; nop; nop; nop",
->>> +				__stringify(			\
->>> +				andi s2, s1, SR_SPP;	\
->>> +				bnez s2, skip_ssp_save;	\
->>> +				csrrw s2, CSR_SSP, x0;	\
->>> +				REG_S s2, TASK_TI_USER_SSP(tp); \
->>> +				skip_ssp_save:),
->>> +				0,
->>> +				RISCV_ISA_EXT_ZICFISS,
->>> +				CONFIG_RISCV_USER_CFI)
->>
->>(I'd prefer this closer to the user_sp and kernel_sp swap, it's breaking
->> the flow here.  We also already know if we've returned from userspace
->> or not even without SR_SPP, but reusing the information might tangle
->> the logic.)
->
-> If CSR_SCRATCH was 0, then we would be coming from kernel else flow goes
-> to `.Lsave_context`. If we were coming from kernel mode, then eventually
-> flow merges to `.Lsave_context`.
->
-> So we will be saving CSR_SSP on all kernel -- > kernel trap handling. Tha=
-t
-> would be unnecessary. IIRC, this was one of the first review comments in
-> early RFC series of these patch series (to not touch CSR_SSP un-necessari=
-ly)
->
-> We can avoid that by ensuring when we branch by determining if we are com=
-ing
-> from user to something like `.Lsave_ssp` which eventually merges into
-> ".Lsave_context". And if we were coming from kernel then we would branch =
-to
-> `.Lsave_context` and thus skipping ssp save logic. But # of branches it
-> introduces in early exception handling is equivalent to what current patc=
-hes
-> do. So I don't see any value in doing that.
->
-> Let me know if I am missing something.
+> I'd not bother to try other combinations, and just stick to vendor's
+> settings
 
-Right, it's hard to avoid the extra branches.
+Vendors get stuff wrong all the time. Just because it works does not
+mean it is correct. And RGMII delays are very frequently wrong because
+there are multiple ways to get a link which works, but don't follow
+the DT binding.
 
-I think we could modify the entry point (STVEC), so we start at
-different paths based on kernel/userspace trap and only jump once to the
-common code, like:
-
-  SYM_CODE_START(handle_exception_kernel)
-    /* kernel setup magic */
-    j handle_exception_common
-  SYM_CODE_START(handle_exception_user)
-    /* userspace setup magic */
-  handle_exception_common:
-
-This is not a suggestion for this series.  I would be perfectly happy
-with just a cleaner code.
-
-Would it be possible to hide the ALTERNATIVE ugliness behind a macro and
-move it outside the code block that saves pt_regs?
-
-Thanks.
+	Andrew
 
