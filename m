@@ -1,74 +1,84 @@
-Return-Path: <devicetree+bounces-170121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8686A99D7E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 02:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8529BA99DA7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:05:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C75517A621A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 00:57:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFAD27AC138
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 01:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E67151990;
-	Thu, 24 Apr 2025 00:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WqUUdGdc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0174913AA2A;
+	Thu, 24 Apr 2025 01:04:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022139.outbound.protection.outlook.com [40.107.75.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E457C7081F;
-	Thu, 24 Apr 2025 00:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745456269; cv=none; b=oc7UImNB3lNnZCSfKGDU7ZwSiKEPbn8TRZj5ul4V0MGjHGnnezTMJTaEk5lTb/fAMYd5/ksMdZmt7fY9Nv9yzAMWv9yAeXJBu/CxK8OI2tKE25YBVP3K3eAT29dN+YFNLmWcD6cFIq/34Pku0MIBg43mOd1+h+LqMzJZ514mEBI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745456269; c=relaxed/simple;
-	bh=dC37s6TQKS9T6iuB7Tn8mVP/Yop62O4eI6mP2j3P/Z8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MMraaajgGQqina3bQeA1e389BdrukoonClIgX7Jxde8u83kN07SP56KDsKFsQGO43sQc5GW1zLNHrPeNbzvog2bYwSczoHNP4phYb09pPmsK9UH12/5QPPiB3u1BnufoIIPynXdXQWBKS0CcudDdl1Mgc4j/8OZP7Wpmr6kAU4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WqUUdGdc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0F6hK013152;
-	Thu, 24 Apr 2025 00:57:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Wp29iO7wYDz/sKhKncYba5qpme5gs7HJpcHcrRQPRyk=; b=WqUUdGdc42lm1039
-	26ESQJRl48VMfOqToABwasFhMLrj3dqG571F3ApI5A8m3bTFIdRNCLGAICbt0wtv
-	LvsMDpFEWEaaW/o9WXXkpOZqZcoQTjV0yNH07aOnLgjZAjrf+RCr/RN6EWrjoTNr
-	agrQeE1WL+adwiPWFcu9zvd02vCMZUDcKbCS8iOMSkOrf3fEmlFVgevyvZbB9ORv
-	w4AnMgfUg4B1amcM/18+IZUUEcMwh+VtEphpmcVxauJaS0Df9pPT1cqgqkPJW7Hc
-	SkdxdTGZxLPws8oQ7KwfTp2QcLigCzSb2/gwiggDBtUHnMikSt7DoIGrazVmuFHR
-	jGPiJA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh2btdf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 00:57:35 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53O0vY8f014734
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 00:57:34 GMT
-Received: from localhost.localdomain (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 23 Apr 2025 17:57:31 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <jjohnson@kernel.org>, <johannes@sipsolutions.net>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Miaoqing Pan
-	<quic_miaoqing@quicinc.com>
-Subject: [RESEND ath-next 2/2] wifi: ath12k: support usercase-specific firmware overrides
-Date: Thu, 24 Apr 2025 08:57:03 +0800
-Message-ID: <20250424005703.2479907-3-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
-References: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B962701BA;
+	Thu, 24 Apr 2025 01:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.139
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745456696; cv=fail; b=b3mAQYexiKeie4cHakimzXZV0VM77CXdIDA5+pED8PQ2mRbUVTf+Y4PTyqP5yt6uewZZjfpV1tpEUj74qrRq/geDOkBdjkWR2kVZju/+LcpMqFAVjnuPZuIdHwtCka3U4tDpH2FRQFO0HLSfQ78M7Azj2OcUOWOvpqVtSB+HPbk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745456696; c=relaxed/simple;
+	bh=JFCpliW96HV3c5JMXf7mGtGEenEHmFczUhl4kkI+Gjc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BxXj4j/dk3RTGXx5pGkGs7qwtGY+e+cuf1h8nuc+ujBaR5VaOyfplkH2H3tM2JJC3HUrpS89xQIWWCQyyDTX6jvWtwsn3CY4RhCVLjp5V08EWiSFppqiR1uULtgdHGyszPOlpS0EiaCozEm5HIKqTVVXRO4qVsSRpqggd2xXl48=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H4CJLWprYEpURMXBIYEjwgoKZm+zpZRXosNfmUW3XMSJ8Tuw6wN/bVVUkASHL1W24PT/9UERXXfdChw0L6NVau9r/jlmp92XQ+8+i9rM4+G2n7W7MsuptIIK/qndcaBS4arwct4bSfidVZw6/WRmTETbUv4lw74XqwaaTul0188piN0y5L6ehSYcxTexQHqq9BrcQQYMXh4Vx1XrolGm3zBkKCAF/KJbUE45olLb8AmraOmlxP6ZJ73NqLEavIPLLBRE83BTWBpe+l20SJx7El5hkgL8ZaXgPWYRHdHB8LZlxcTIK5HgvBxq4fdYrgBxj0tWYH5JqOvvlMU8rh1wZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h83M5q3L2zQODZaf0cw+iVLwq8X2RsB0UhZ6IW17NtE=;
+ b=htOeWWtpO2Qszj+qZZru9pykcXEwakCneSOoY34H0Z82nPF+2MNBxOYhumoGf51K9j1gbyY0oRuhPc0Zf6CV0oZ30EVyxKrvF259XF/oROp8VgmbN/ma24Sf/xS8EBFuQP4nKBUcVkbzdskCaFdei8+f32rMB6fTmNMHZYZdwBRs/FN/Y1Zuhv7FsniUTuH7j2/cIbJJO0MpyjoOenvBGdSJ3gDBlKk+U1SntTRL4XODD8RsGm6rKOP6Sdj1XBHFzpaitZQFnYRzou+2kcqAMfrgOmjYbfKv5BuaR1MzPk4vDpqRfFMwq3B2s2aVPEmOSeBOiXSqx2wen7uIZKRDzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TY2PR02CA0070.apcprd02.prod.outlook.com (2603:1096:404:e2::34)
+ by TY0PR06MB5681.apcprd06.prod.outlook.com (2603:1096:400:275::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Thu, 24 Apr
+ 2025 01:04:48 +0000
+Received: from TY2PEPF0000AB84.apcprd03.prod.outlook.com
+ (2603:1096:404:e2:cafe::8b) by TY2PR02CA0070.outlook.office365.com
+ (2603:1096:404:e2::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.38 via Frontend Transport; Thu,
+ 24 Apr 2025 01:04:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB84.mail.protection.outlook.com (10.167.253.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.12 via Frontend Transport; Thu, 24 Apr 2025 01:04:47 +0000
+Received: from localhost.localdomain (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id A79CF40A5BFE;
+	Thu, 24 Apr 2025 09:04:46 +0800 (CST)
+From: hans.zhang@cixtech.com
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: peter.chen@cixtech.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hans Zhang <hans.zhang@cixtech.com>
+Subject: [PATCH v4 0/5] Enhance the PCIe controller driver
+Date: Thu, 24 Apr 2025 09:04:39 +0800
+Message-ID: <20250424010445.2260090-1-hans.zhang@cixtech.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,89 +86,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB84:EE_|TY0PR06MB5681:EE_
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kI0on8iXxEyAT-aZ7ZfJGUab5pCYphRQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDAwMiBTYWx0ZWRfX8y1kurDzB6ty mwentqpDO4bhZBSYgHMomrzZsY6LTmyamN//MqryeT1IDtdypUKCEZJ8JjFuA8TIqe5NvqldBq1 cSf5DUnnvttkYJj2cdbK2yNabnQTAd1Xb6CuCz8qWnLGuYKCUCCbRZSKzMO0Kk/6fdghTi8iaBN
- VKvD7QkgME+ziuileCugm2CKYxd8yFAGbFgv3pRzHH3bfTcBOWYfE0Oksd1MjHFV+nE1yq9HQqO RXcQiCcSofoBdLRyx424yBVZRylxhwr1qCYE4STYxcWAZFMaDp6FrXDaH9zziDty2DV07jewDLu Nktvap5KTFIpwXISKq6zX6xt86IxNtFwlmyexwcsyDKS//WTl3hFrtAshS2b0P7yX4vr06yIoJE
- yu2Oz0wHio35JK48Jmgim3UxAUELguIbD6NUqtYptXsTI+pbQQ/jeNsiWbvijGzQuNhUbPUw
-X-Authority-Analysis: v=2.4 cv=Tu/mhCXh c=1 sm=1 tr=0 ts=68098c7f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=jX1nYg6MY8bSXAgjlsoA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: kI0on8iXxEyAT-aZ7ZfJGUab5pCYphRQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_01,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 spamscore=0 clxscore=1011 lowpriorityscore=0
- impostorscore=0 adultscore=0 phishscore=0 mlxlogscore=865 bulkscore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240002
+X-MS-Office365-Filtering-Correlation-Id: 87b94f69-0e23-42b3-cb82-08dd82cc0223
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?1Xsqqqk1STS9cqBn0npUaBbyRKpXMHAYyTXa8gdvtLoMV1v3dvDDXsT4AE7U?=
+ =?us-ascii?Q?O03Z9QUiYnYYmoA1W0r8aBP0uf+PqGI/WQsQAUlGxHxqcs4qyTuNlTPP1z5l?=
+ =?us-ascii?Q?1cK4KJd9RJ/p/O2x5BjBv3Rm+ZQ6L1rAAcsWTc6XaaBJbsiRNqweSucr32+Q?=
+ =?us-ascii?Q?K7s8ZSK/AXZYYZWJbw462BEamhN8Q/Pm2k4Gu+qSa6BDnS3ohmYTQGVaZeS5?=
+ =?us-ascii?Q?Jy5n6xjABVcsSZqcWrhlpw1bcxakdhpzoFwHAaTA5L1bCZn/tJJDI/+1PG8Y?=
+ =?us-ascii?Q?mPq0+tbuM+2ds2xZVfHpSJmQrHnhMwKqfbiNq7x1iHb+vRlFTU1fBHPvs9gT?=
+ =?us-ascii?Q?hNU976hXIm7B1sWbx00tNbdGqCtKLfXgzjQEG583eocSvXEWt2sOtqBI0NGp?=
+ =?us-ascii?Q?O3960RkYIhi9sB9VVE+IPPoVXTsPIfbpwCHDTWWXSl/RtW8TB7W+0BrCAk85?=
+ =?us-ascii?Q?d9+dAc56sOCB7W7T6I6zPb6hnJ8jeu+EnNE70tJnj5KV3ReMJDscFrYTNsyW?=
+ =?us-ascii?Q?hvv33yO5C8K1lh62CqhptmZhk7/SXo2d9B/IJy/7c0SEnwGMRmyEAfJLPLRN?=
+ =?us-ascii?Q?05Vq59e91sB14W44FSzgzKR3IOp24jUfefkjFNf/zOs9c16YZ1FUFQihSMaD?=
+ =?us-ascii?Q?BXn6aeW0ug68bDv1TDJ2BYO+8yQNQRr4XZXNvodMoX9NtLvruMqSMcoR+cL3?=
+ =?us-ascii?Q?xQTuD1F4pvKk+urVCZgA4O3H8g40dB7uKoKqIt3Td1uXDFPEYxTL89TZTPt1?=
+ =?us-ascii?Q?3VQl4WvffspLWDX8A5LNN9nrsWmxiSoRCHkQ/GOUzf6BNo89oXYHBcDJD4fb?=
+ =?us-ascii?Q?YAvHzQF+xfuWXmP0VFuE6Eyimh4+sMuXeoqVWYwb0i4u8ylSZqxU536/akq6?=
+ =?us-ascii?Q?Dyc3bf39b09Kjl9lfrUBvCV3JxP67/gUg8A91JOfttupdtNBxGgg5kPrCXBx?=
+ =?us-ascii?Q?6uy8awtSfkdtOSzuRyhKZvZMIZmZjH16A7Z1YN7tzvBGFkPIdqCZJ/G0XSa4?=
+ =?us-ascii?Q?JXJKsgKrORRa+mtS/vbW+TUP0ZLZXpi7xrVy7fVwubeuSLd08MhzUV1osqWA?=
+ =?us-ascii?Q?R9x3Leva8E6SMOcqf+tTvdC/xqEXUd2Ml6V1edYQBdbhZ/RouX1UlxEfwQNT?=
+ =?us-ascii?Q?tQy2KF2sxIm70moyomrL0XODJwC1LSaCSbJCph0FWTqDdied8CKKlxEaSIRi?=
+ =?us-ascii?Q?FRgD4eWE157aP541JkkFDLNgyuLMORPFIVQMhWYMTSsDgMq8Ie9CX0orb/bi?=
+ =?us-ascii?Q?QAzbb3n0538vOSSX5F4bYBE1tmnYvw8lYtZMFqlNEmEHCb3N96GMVhTDiEQu?=
+ =?us-ascii?Q?Td4a/URAGzwMvTgP/Ad2KPE6R4awlrygZ6rfp00Az8Qr5y+KBoDFJjRCg9k+?=
+ =?us-ascii?Q?wN68JtjCuaooZ/J3o/cvugo6xUW8iSPcXAdYOcJrR6O3u7A13I+AIKUCGkJe?=
+ =?us-ascii?Q?LWtXrSGM3mTJe7n51/DX5PHmKz/yJKbMt5xrZbsLRidxZ/CVU30hNzMcDCjI?=
+ =?us-ascii?Q?E9ffZP/N4AE9P+jgyNdCz/vhtXWJKiJRgGJu?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2025 01:04:47.5286
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87b94f69-0e23-42b3-cb82-08dd82cc0223
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB84.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5681
 
-Introduce 'firmware-name' property to allow end-users and/or integrators to
-decide which usecase-specific firmware to run on the WCN7850 platform. This
-is necessary due to resource limitations such as memory capacity and CPU
-capability, or performance and power optimization for different application
-scenarios.
+From: Hans Zhang <hans.zhang@cixtech.com>
 
-Currently, there are two firmwares, both files can be executed
-interchangeably.
-For example:
+Enhances the exiting Cadence PCIe controller drivers to support
+HPA (High Performance Architecture) Cadence PCIe controllers.
 
-- ath12k/WCN7850/hw2.0/amss.bin,
-  ath12k/WCN7850/hw2.0/m3.bin
-  ath12k/WCN7850/hw2.0/board-2.bin
+The patch set enhances the Cadence PCIe driver for HPA support.
+The "compatible" property in DTS is added with  more enum to support
+the new platform architecture and the register maps that change with
+it. The driver read register and write register functions take the
+updated offset stored from the platform driver to access the registers.
+The driver now supports the legacy and HPA architecture, with the
+legacy code changes beingminimal.
 
-- ath12k/WCN7850/hw2.0/ncm825/amss.bin,
-  ath12k/WCN7850/hw2.0/ncm825/m3.bin
-  ath12k/WCN7850/hw2.0/board-2.bin
+SoC related changes are not available in this patch set.
 
-The former is the default firmware, suitable for most WiFi 7 STA functions.
-The latter adds support for commercial-quality SAP and optimizes power
-consumption for IoT applications. And both use the same BDF/regdb data
-within the main board-2.bin.
+The TI SoC continues to be supported with the changes incorporated.
 
-Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+The changes are also in tune with how multiple platforms are supported
+in related drivers.
 
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
----
- drivers/net/wireless/ath/ath12k/core.h | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+The scripts/checkpatch.pl has been run on the patches with and without
+--strict. With the --strict option, 4 checks are generated on 1 patch
+(PATCH v3 3/6) of the series), which can be ignored. There are no code
+fixes required for these checks. The rest of the 'scripts/checkpatch.pl'
+is clean.
 
-diff --git a/drivers/net/wireless/ath/ath12k/core.h b/drivers/net/wireless/ath/ath12k/core.h
-index 4b8f434e3e9a..cfe1ef156c34 100644
---- a/drivers/net/wireless/ath/ath12k/core.h
-+++ b/drivers/net/wireless/ath/ath12k/core.h
-@@ -17,6 +17,7 @@
- #include <linux/of_reserved_mem.h>
- #include <linux/panic_notifier.h>
- #include <linux/average.h>
-+#include <linux/of.h>
- #include "qmi.h"
- #include "htc.h"
- #include "wmi.h"
-@@ -1342,8 +1343,16 @@ static inline void ath12k_core_create_firmware_path(struct ath12k_base *ab,
- 						    const char *filename,
- 						    void *buf, size_t buf_len)
- {
--	snprintf(buf, buf_len, "%s/%s/%s", ATH12K_FW_DIR,
--		 ab->hw_params->fw.dir, filename);
-+	const char *fw_name = NULL;
-+
-+	of_property_read_string(ab->dev->of_node, "firmware-name", &fw_name);
-+
-+	if (fw_name && strncmp(filename, "board", 5))
-+		snprintf(buf, buf_len, "%s/%s/%s/%s", ATH12K_FW_DIR,
-+			 ab->hw_params->fw.dir, fw_name, filename);
-+	else
-+		snprintf(buf, buf_len, "%s/%s/%s", ATH12K_FW_DIR,
-+			 ab->hw_params->fw.dir, filename);
- }
- 
- static inline const char *ath12k_bus_str(enum ath12k_bus bus)
+The ./scripts/kernel-doc --none have been run on the changed files.
+
+The changes are tested on TI platforms. The legacy controller changes are
+tested on an TI J7200 EVM and HPA changes are planned for on an FPGA
+platform available within Cadence.
+
+Changes for v4
+	- Add header file bitfield.h to pcie-cadence.h.
+	- Addressed the following review comments.
+	  Merged the TI patch as it.
+	  Removed initialization of struct variables to '0'.
+
+Changes for v3
+	- Patch version v3 added to the subject.
+	- Use HPA tag for architecture descriptions.
+	- Remove bug related changes to be submitted later as a separate patch.
+	- Two patches merged from the last series to ensure readability to address
+    the review comments.
+	- Fix several description related issues, coding style issues and some
+    misleading comments.
+	- Remove cpu_addr_fixup() functions.
+
+Manikandan K Pillai (5):
+  dt-bindings: pci: cadence: Extend compatible for new RP configuration
+  dt-bindings: pci: cadence: Extend compatible for new EP configurations
+  PCI: cadence: Add header support for PCIe HPA controller
+  PCI: cadence: Add support for PCIe Endpoint HPA controller
+  PCI: cadence: Add callback functions for RP and EP controller
+
+ .../bindings/pci/cdns,cdns-pcie-ep.yaml       |   6 +-
+ .../bindings/pci/cdns,cdns-pcie-host.yaml     |   6 +-
+ drivers/pci/controller/cadence/pci-j721e.c    |  12 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 170 +++++++--
+ .../controller/cadence/pcie-cadence-host.c    | 276 ++++++++++++--
+ .../controller/cadence/pcie-cadence-plat.c    |  73 +++-
+ drivers/pci/controller/cadence/pcie-cadence.c | 197 +++++++++-
+ drivers/pci/controller/cadence/pcie-cadence.h | 340 +++++++++++++++++-
+ 8 files changed, 1011 insertions(+), 69 deletions(-)
+
+
+base-commit: fc96b232f8e7c0a6c282f47726b2ff6a5fb341d2
 -- 
-2.25.1
+2.47.1
 
 
