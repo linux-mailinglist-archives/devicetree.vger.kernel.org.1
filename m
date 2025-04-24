@@ -1,196 +1,129 @@
-Return-Path: <devicetree+bounces-170282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC1DA9A656
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:40:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F08D4A9A698
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:45:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8DAA1B85E28
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:40:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 822C15A2D93
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B652116FA;
-	Thu, 24 Apr 2025 08:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C47B21CC6D;
+	Thu, 24 Apr 2025 08:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BqDagzhf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E8720B808;
-	Thu, 24 Apr 2025 08:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F23020E700;
+	Thu, 24 Apr 2025 08:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745483931; cv=none; b=kFA1TTXNKrIwV803bloZicOBVaFJpHjovBQDNqAnw3MBHCFwFSM+KLUSxgJjfJrJNFPtc4EuM85nKLSMk+ULV/c2kegRnkhjAKXQf8b4HYQHXtK+rOMTVWTa4rFV6009HmPjW2lMl22KX9nPaMmDpt0gecm+4o7rXFENBVQiv+s=
+	t=1745484201; cv=none; b=HKFumT+UbXPceCgIaA7ZwwCji7xjftX0v07kBwpeYW5PZdZFWnStdrOl45Tnj2NSaH4l/bPdbMA27dz9KZVcXCHtzOP/Mz5yEs3c1rER8Wt+v8zzrNqsi8shnIsQ3qO0QoOCbjGbl+2Eo78esYMW553cKg7l2R8nP3kxreB/AY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745483931; c=relaxed/simple;
-	bh=YyV98+YaQfjZFxXDCixDSke2btG2skL0Xh5MEJ/fPDM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QI48jl+xCYKjZaUkKRdnbMtlznqrsgWrjmbKypViLmwP/BZE91mVl7kURHGeIoHMjfXUo2k7EoXIanCasFaC082vWT1pqYuu3iveQkt1Jl0YkvgZhOnWUstsfYJ1H48wO6+pKA14FZKkQ3+7zRr4Q778sLgW3+8vHtii53eUzgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-86d6ac4d5a9so369991241.1;
-        Thu, 24 Apr 2025 01:38:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745483927; x=1746088727;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NXX4mFHnm6kuIK55cjNxrp5WN6Ftx90SWsXCFruZ40w=;
-        b=DU7L0oKnGPui540rhFmFTWnt2lC9/vfBlg/t/j9Y6RxDNz5zwpuSaduZgNMJnDrdah
-         McdKqOFmxNAoQztjGN53phzagnl9wG2Yl8z/CjYNrPDo3fWgFXpVHbTwigwswXls40NB
-         qloX8qFvnRZAs3XUzvpYga2XV1bNg9pGZWHgtrpbntO+JuF6r4ZW/rV1ZlG/Zm0vPRKu
-         T18nWeXReojxEcIqrADDwqcNL7zNX5PU/f7qTwtdKsIiYeJo17wRTJzjhNzPoSJrtlaO
-         8fGLulPGqykJmMRvwYyy4sUPongSCW4aEbVcve86nOvJVjT0OFC8XzIwpvoL9pFrscTF
-         UlMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXdazKI+e944hRbfn4e2GhSu5yL+6gnYge+PI0BtWBeh1pmbsZz/3ukGkRhdDK3kvZm0AqqFj7ciITy3/m@vger.kernel.org, AJvYcCWGOdGdpeG/X1P8Uih0X/KPIRNSDdtnd2JjTQ1NNOUOrJmuTSfXn0RPDAWgIxW5Lu0m6QWK4plNzyIR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzai+gISlV6ZaYGkDP+PhdRJTWD+L0/kJkCqKTQz1iEee2BQiwI
-	0L/+asyWhHH+lh6KNgQF9c823x6b/xdD3dRZAVWmSho6TaKSX8mu5ePh8i4H
-X-Gm-Gg: ASbGncuGxaNldn6K8pFXlhRXNb4YTDyADXVEZQYwME1cq0G3VhpyIekEOmgf2JjO5zA
-	m4sVKPrqTN6e1ptmKo7IRjkN3kqE2dRDlslNFhujZcaWcO4Fytisa822zVwcPAu8TOBzXuj0nWW
-	3qPgXXdee63GoY9mRHfbHWnqUk00KboWidBkWjODzbWsGSrZdLp2xtMAYODr7ao96wrS+zMerKT
-	u+enKI9DbjIb/4SuOrM7dr2SIwaYwyywANn0M3UnVmovI8fi3X7AsDejybPNYjzTOkPpFAco4Uk
-	zesrvionS13yH7Dy8I27plhSraW2/hCmsarbGAG0lt3CPitN6R8m1giug/z3VqwMawshvNx9X2+
-	+OQc=
-X-Google-Smtp-Source: AGHT+IExsTLlB8u9JhAiK1iS5nNtCNUwSoc3hXxsiQTNyRIFSlujlNMTBdv9qypfLs0zn8z99GqzHA==
-X-Received: by 2002:a05:6102:1524:b0:4c5:1c2e:79f5 with SMTP id ada2fe7eead31-4d38ebec5d7mr1345017137.16.1745483926673;
-        Thu, 24 Apr 2025 01:38:46 -0700 (PDT)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4d3d4da039esm169240137.7.2025.04.24.01.38.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 01:38:46 -0700 (PDT)
-Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-86d5e3ddb66so335326241.2;
-        Thu, 24 Apr 2025 01:38:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUExZj93gH1Ni3XJDLoNF4kyxuWEXCC4u6AquUCtiEojcjYPL+E3RAiPzJ1y3r+f8G88guhBNjX1t3v@vger.kernel.org, AJvYcCUNgK7O1t1mHzgnNjtl3nnD7u/KlNuAFTHbhXTqCjgHJ8to8kpHyX8KX3MmsShozgH70kAJPCF1e5teG0rg@vger.kernel.org
-X-Received: by 2002:a05:6102:dcf:b0:4c1:9cb2:8389 with SMTP id
- ada2fe7eead31-4d38cb318ddmr1379456137.2.1745483925657; Thu, 24 Apr 2025
- 01:38:45 -0700 (PDT)
+	s=arc-20240116; t=1745484201; c=relaxed/simple;
+	bh=qitYgmPxxCo3FYyxOlWXx5b1n6QsJzbiVsLU1I11C2I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WWikfTi3PCxHIo2hHQf+OkcrUWS7ylrsO7euds66vvmtuSZqgOkUbu4INk4s8HixUwT1IFRqkPcNt4dZwQg0/wVjSjOVEPL8pDS6GXDxVn+bA6TTHxv56t/TziX+gcLZCaY4mLrT0dMIlZoRrGZMWer6bMzkkeCtVdS1rq+iMX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BqDagzhf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 82930C4CEEE;
+	Thu, 24 Apr 2025 08:43:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745484198;
+	bh=qitYgmPxxCo3FYyxOlWXx5b1n6QsJzbiVsLU1I11C2I=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=BqDagzhfxpxhTIAPo1k+X1t7OG/Mgp9aJifaYQyIjaXpGWBbIV/gNUOBSqFht0TJt
+	 yMzDihEVZe9ldVEVit0OJcPQrAMuLrr90ODRJjXsUHjZRNt9voEsHP9eI1BArr2uQ8
+	 +wT0u1mPGewodycnOWEq9nIFGmiP2pqkmixImz1y0sqoOmip8gKvjJxS3ekDvoYVCH
+	 lPfjRXEbXf+QG7L4WT0F1aMMUjNClPwd6WyEybqCS8Xx148YG1F3oVSHykOgbGJxPt
+	 DmbUK+lIFfPyDoHyQHdJYnATFbtmNnxYv46FO7At/WXf8nPaqz0fadCt+PUlL+Qjf4
+	 qDYic5OV5cKwQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 701F5C369AB;
+	Thu, 24 Apr 2025 08:43:18 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Thu, 24 Apr 2025 16:43:17 +0800
+Subject: [PATCH] dt-bindings: serial: amlogic,meson-uart: Add compatible
+ string for S6/S7/S7D
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com> <20250423-st7571-v6-2-e9519e3c4ec4@gmail.com>
-In-Reply-To: <20250423-st7571-v6-2-e9519e3c4ec4@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 24 Apr 2025 10:38:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
-X-Gm-Features: ATxdqUF2fRyGRvlnt9SP-qLlayAWLqGWTfteEXH26oVsrKfobO2Jdb0dn21RKE0
-Message-ID: <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmrmann@suse.de>, 
-	Javier Martinez Canillas <javierm@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250424-uart-binding-v1-1-eb0f6d97a654@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAKT5CWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDEyNj3dLEohLdpMy8lMy8dF0Dc2MTY6OkZBMLAxMloJaCotS0zAqwcdG
+ xtbUAPfJZZV4AAAA=
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745484197; l=1533;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=3DWwMa+7PjWV5QLyMZHNnOjU4vTv3C9jBSh+V9Rd7Tc=;
+ b=Cb+so7K1Vu9uCfUtZiKOmxmz+Rqy5dDfuSxj7i+QuK/vA1royFFeEHl+Gmww/XaVucyPTJ1jc
+ PwTh+xUr8OZCFNmRPfd/IIlGjdZ6HaPruf8ONbvi7L6kW1aevm3Kt6+
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Marcus,
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-On Wed, 23 Apr 2025 at 21:04, Marcus Folkesson
-<marcus.folkesson@gmail.com> wrote:
-> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
-> The controller has a SPI, I2C and 8bit parallel interface, this
-> driver is for the I2C interface only.
->
-> Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+Amlogic S6/S7/7D SoCs uses the same UART controller as S4 SoCs and G12A.
+There is no need for an extra compatible line in the driver, but
+add S6/S7/S7D compatible line for documentation.
 
-Thanks for your patch, which is now commit 4b35f0f41ee29505
-("drm/st7571-i2c: add support for Sitronix ST7571 LCD controller")
-in drm-misc-next.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+This patch has been reviewed in the submission below(patch 4/7).
+https://lore.kernel.org/all/20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com/
 
-> --- /dev/null
-> +++ b/drivers/gpu/drm/tiny/st7571-i2c.c
+It is just sent again separately since it goes via the tty tree
 
-> +static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb, struct drm_rect *rect)
-> +{
-> +       struct st7571_device *st7571 = drm_to_st7571(fb->dev);
-> +       u32 format = fb->format->format;
-> +       char *row = st7571->row;
-> +       int x1;
-> +       int x2;
-> +
-> +       /* Align y to display page boundaries */
-> +       rect->y1 = round_down(rect->y1, ST7571_PAGE_HEIGHT);
-> +       rect->y2 = min_t(unsigned int, round_up(rect->y2, ST7571_PAGE_HEIGHT), st7571->nlines);
-> +
-> +       switch (format) {
-> +       case DRM_FORMAT_XRGB8888:
-> +               /* Threated as monochrome (R1) */
-> +               fallthrough;
-> +       case DRM_FORMAT_R1:
-> +               x1 = rect->x1;
-> +               x2 = rect->x2;
-> +               break;
-> +       case DRM_FORMAT_R2:
-> +               x1 = rect->x1 * 2;
-> +               x2 = rect->x2 * 2;
-> +               break;
-> +       }
-> +
-> +       for (int y = rect->y1; y < rect->y2; y += ST7571_PAGE_HEIGHT) {
-> +               for (int x = x1; x < x2; x++)
-> +                       row[x] = st7571_transform_xy(st7571->hwbuf, x, y);
-> +
-> +               st7571_set_position(st7571, rect->x1, y);
-> +
-> +               /* TODO: Investige why we can't write multiple bytes at once */
-> +               for (int x = x1; x < x2; x++) {
-> +                       regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
-> +
-> +                       /*
-> +                        * As the display supports grayscale, all pixels must be written as two bits
-> +                        * even if the format is monochrome.
-> +                        *
-> +                        * The bit values maps to the following grayscale:
-> +                        * 0 0 = White
-> +                        * 0 1 = Light gray
-> +                        * 1 0 = Dark gray
-> +                        * 1 1 = Black
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-That is not R2, but D2?
-include/uapi/drm/drm_fourcc.h:
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 0565fb7649c5..d8ad1bb6172d 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -56,6 +56,9 @@ properties:
+         items:
+           - enum:
+               - amlogic,a4-uart
++              - amlogic,s6-uart
++              - amlogic,s7-uart
++              - amlogic,s7d-uart
+               - amlogic,t7-uart
+           - const: amlogic,meson-s4-uart
+ 
 
-    /* 2 bpp Red (direct relationship between channel value and brightness) */
-    #define DRM_FORMAT_R2             fourcc_code('R', '2', ' ', ' ')
-/* [7:0] R0:R1:R2:R3 2:2:2:2 four pixels/byte */
+---
+base-commit: 8f5f9fc2ee8cd65fa0e8062885d4ffa0688fe7c6
+change-id: 20250423-uart-binding-073432bc4804
 
-    /* 2 bpp Darkness (inverse relationship between channel value and
-brightness) */
-    #define DRM_FORMAT_D2             fourcc_code('D', '2', ' ', ' ')
-/* [7:0] D0:D1:D2:D3 2:2:2:2 four pixels/byte */
-
-So the driver actually supports D1 and D2, and XRGB8888 should be
-inverted while converting to monochrome (and grayscale, which is not
-yet implemented).
-
-> +                        *
-> +                        * For monochrome formats, write the same value twice to get
-> +                        * either a black or white pixel.
-> +                        */
-> +                       if (format == DRM_FORMAT_R1 || format == DRM_FORMAT_XRGB8888)
-> +                               regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
