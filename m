@@ -1,196 +1,143 @@
-Return-Path: <devicetree+bounces-170197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54727A9A262
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:36:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD06A9A26A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:39:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47AED1887DAC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:37:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D0FE5A508B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4ED1ABED9;
-	Thu, 24 Apr 2025 06:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00EF1E5208;
+	Thu, 24 Apr 2025 06:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XEcJ6jRY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JI3utGfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA81F1A23B1;
-	Thu, 24 Apr 2025 06:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7545A8BE8;
+	Thu, 24 Apr 2025 06:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745476614; cv=none; b=DK9AWK20jlArneLx/nSOcbnUARhv35bQLILk6iOl+gpu1LpL71QVXK43TrNEXgih0IoC1Nbz7tHYzOwAPS12lTZ/FlJy+0JFyjuY1vSeY0h3n2qa9vbNUvrpPeHDi9nppSF2Y+JqRszx3N0LVUCJXUdJvUJQT3NDL+I1HwQ6n2w=
+	t=1745476739; cv=none; b=lpIZ35+SxDpN+TbwRGw73e7uIwbjMN4zo/WExcNB4X1Bvd4SULfzlgazo7tWU/uVZqmaTocDIXEQI5scmJoJZbx0MmZ1fO5Ae92hIcn0OMPjnvQPQ8EPmgRg4Qrq1KSng0DD5axtwtI6jPW5uThJZgqJIJqtwyapuXSt3tUCG5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745476614; c=relaxed/simple;
-	bh=JLj1BnMNU8WF+yUunp5YM6VjkJW4gQPN8v0ZqMXmZ1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bwfshlxyo/h7lA95Ls1bqWAmTF3kocoRTXUUBgaI9v/2jiVd75Hf0CMNg+9IHRRi4ERaj03smTXAkU2xploQvwwc99whLn9jxM/RlzLU/YYhceChzKah887lBx3WLw9RXgnkt93YvEcbH66GhG6WXLtTfF4tsjrJc0tRLkSsYMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XEcJ6jRY; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-549b116321aso756899e87.3;
-        Wed, 23 Apr 2025 23:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745476611; x=1746081411; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VgManF3W+m3EucBE52I+E2k3U4KfqO+q1493Pk/44+o=;
-        b=XEcJ6jRYmWUVnlxoMF26cwwZMZfvCXiFZy2KcoB/sy3db9HmdTsuG01kAiZGj76bXV
-         PK/Kr2iJblOHEGoMwZfM+3sO1xh2pfXMLLK5NSpEmipzioAK9oSfoic9OJJtmm5v8GKn
-         FR9vRToS0A9l3cJoPYqatrYy2+ktLTf1Kf5B6h7NtUiP8oAb5K9oa6b4vEWo/RpJ2Yeq
-         yOMMWEexCOst4n9AoCuTXVxQmbwwCS0WztzEzzk/0A48gB9MluQx6sDE9ADavS1QkKZs
-         tJsY1zO/tPSof/DF+SyTggmcYde05LMNhKBoewedvOdE3XWadWwJ7cqsIbEFaretXpLR
-         3oWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745476611; x=1746081411;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VgManF3W+m3EucBE52I+E2k3U4KfqO+q1493Pk/44+o=;
-        b=ueD35ky6ebFdKs4prQ1Vk+35dMThVrA6/eklafcWfiUm/kjZzV1AOcyA7Gh0YHlngz
-         hTAR0SSV4sbWvZvxyQcCig8vTTu/vQ4/fo1ZRI5U6KeHmBzyrUwrBqq+1l18b8oqGWwC
-         0+jjQIcxdmVrj7JQ/ewduU1dp6UjpUzG6EXFKBZoVW8IRWyIG0sDZKsixBZwjNqUs0kP
-         qP/lFoeN93R2SQULOGo3g0urSncxPt+xobFRnIR1VyoKnUUUJCOtNqzAIh24klZOocPN
-         BUa26UP7fqyDy5BQjyLavSs6/h4e3mms9trfus466aH//8J6pVfkcnVwY0TIQF+qCYfz
-         xWWg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjQAYTvGTkwr1gz3BkY6xNcudtgDzhQdOTxNuY2xk6cZkFUhFxtbIdByiNDjq4cYY0oagQYFXsAaolKMcD@vger.kernel.org, AJvYcCX0Xwxd75mPflYsLY8wvXgMNyRalccLj5rzSCTLNcEp6ciQWtIfoO6RAUoVSio81+da3dwn5T0EWo6m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaeUxEmjnqsdLauKO0TRUBOO3gXenMXEVQDlFUnGV2OiQGIo/q
-	0EZ/+rMOGdFDI7wZwNCB4gMoHKe/YD17xff/mYCWvGmLUPzXpb5i
-X-Gm-Gg: ASbGncuKcglWh/mm0gAx9zH8QYR4wzGe+cD0PI4uS8U3qU5GXQarJnW8VFINRPz26xL
-	MOdwiWr5G1Q0Sp/DJMDZWXaGCg5uiieLtCQ7AVFexO1wc8HHdm17YdcFRgBIqBrPxlG386DrHEa
-	K455kLG9TNmvnquJmvCDjvugaKYA/9EjS+rcESciZkNAgZFtnaylreMV9hP7ZnW2OTxDS24cqtH
-	oSvNpBansh3EdIb7QJ3+oDRAgeSINy2CETEYPr2Kce0QoRsMJQounMUaieO0R2HAKhYyXCncZNh
-	7GXu6W5uYzbhXrVX45rhsB+EzRCqvxN2H23mrknjK6pAWzPRFhJqrSuS4zDfvb6v0W9HUqDyISE
-	skA==
-X-Google-Smtp-Source: AGHT+IHG0jMwpWPkpVYMRvWwLynBDuuX4rGAYjKrh3BbGXlEiCCaEKt5ltz3LfLHsRaI5CSLX7agNQ==
-X-Received: by 2002:a05:6512:12ce:b0:549:8ed4:fb5c with SMTP id 2adb3069b0e04-54e7c3fcd69mr447665e87.31.1745476610341;
-        Wed, 23 Apr 2025 23:36:50 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cc9eb4bsm121756e87.137.2025.04.23.23.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 23:36:49 -0700 (PDT)
-Date: Thu, 24 Apr 2025 08:36:47 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-Message-ID: <aAnb_97kxSDvDcdd@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
- <20250408-st7571-v3-2-200693efec57@gmail.com>
- <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
+	s=arc-20240116; t=1745476739; c=relaxed/simple;
+	bh=w12aZPn4rMyCb86kAfCLyLHf4ZDx684PsnHBWNg79VI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IXs2pOzMzYz/1yriU2RnwgzXHLAaAzsZ1sQPegw1W4dRwdpSru61VYHhPYmPqclbkCyA+ccBi1eEpfYvuqcnFanzxPB1RbyHWZ8v/iE7UTdHcxLIenn5v1oQfZV8P/FEyaQdGwiA07tz5kZu2hJ+SB+rFbtRYQ9HNFjs7YhXx7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JI3utGfg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 707E2C4CEEB;
+	Thu, 24 Apr 2025 06:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745476739;
+	bh=w12aZPn4rMyCb86kAfCLyLHf4ZDx684PsnHBWNg79VI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JI3utGfgXgLxWzrWmsz/F+IbyTL3PoXTepuGE7s1haiM1nM23vGcxpNJffmp8FnvR
+	 ynMk88aG0OHmgq5Uurt0DiWYv4bK9g3lqEU0rASqY6s+Smgd0p9Rq+BAQ6l7kmheqV
+	 V9zoEN7Vo4HZEUxDHEHG9/GXsPKwbqHlMinE/N0UKL6EYZ1UvW0/DLk6rftxLfek5g
+	 GfJxvLP6XE4cUd2PtyYP0NvGnT/cEPzioSA7ubP02bUVP0WqqghHkvFHe4/RIm/cO0
+	 B61OnwsMK0g3uSEdpqgCVSq4h3sdw0urJ/JVGgBJN2f47unSEb4zhR5Q8U3ewgn+qi
+	 8KANDCE+vEqRA==
+Message-ID: <b1dc0b10-03a2-4605-8837-a1698e8e6a3d@kernel.org>
+Date: Thu, 24 Apr 2025 08:38:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S7Yr4c6CSMMUOBqv"
-Content-Disposition: inline
-In-Reply-To: <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] media: dt-bindings: media: camss: Add
+ qcom,qcm2290-camss binding
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com
+References: <20250418141147.205179-1-loic.poulain@oss.qualcomm.com>
+ <20250418141147.205179-6-loic.poulain@oss.qualcomm.com>
+ <20250422-nonchalant-bald-mink-7c2d34@kuoka>
+ <d19ce1ba-2b72-4c04-b405-f5a9d3df07e1@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <d19ce1ba-2b72-4c04-b405-f5a9d3df07e1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
---S7Yr4c6CSMMUOBqv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Javier,
-
-On Tue, Apr 08, 2025 at 12:44:46PM +0200, Javier Martinez Canillas wrote:
-> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
->=20
-> Hello Marcus,
->=20
-> > Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
-> > The controller has a SPI, I2C and 8bit parallel interface, this
-> > driver is for the I2C interface only.
-> >
->=20
-> I would structure the driver differently. For example, what was done
-> for the Solomon SSD130X display controllers, that also support these
-> three interfaces:
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/d=
-rivers/gpu/drm/solomon
->=20
-> Basically, it was split in a ssd130x.c module that's agnostic of the
-> transport interface and implements all the core logic for the driver.
->=20
-> And a set of different modules that have the interface specific bits:
-> ssd130x-i2c.c and ssd130x-spi.c.
->=20
-> That way, adding for example SPI support to your driver would be quite
-> trivial and won't require any refactoring. Specially since you already
-> are using regmap, which abstracts away the I2C interface bits.
->=20
-> > Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
-> >  drivers/gpu/drm/tiny/Kconfig      |  11 +
-> >  drivers/gpu/drm/tiny/Makefile     |   1 +
-> >  drivers/gpu/drm/tiny/st7571-i2c.c | 721 ++++++++++++++++++++++++++++++=
-++++++++
->=20
-> I personally think that the tiny sub-directory is slowly becoming a
-> dumping ground for small drivers. Instead, maybe we should create a
-> drivers/gpu/drm/sitronix/ sub-dir and put all Sitronix drivers there?
->=20
-> So far we have drivers in tiny for: ST7735R, ST7586 and ST7571 with
-> your driver. And also have a few more Sitronix drivers in the panel
-> sub-directory (although those likely should remain there).
->=20
-> I have a ST7565S and plan to write a driver for it. And I know someone
-> who is working on a ST7920 driver. That would be 5 Sitronix drivers and
-> the reason why I think that a dedicated sub-dir would be more organized.
-
-I'm looking into moving all the (tiny) Sitronix drivers into their own
-subdirectory.
-When doing that, should I replace the TINYDRM part with DRM for those drive=
-rs?
-E.g. CONFIG_TINYDRM_ST7735R -> CONFIG_DRM_ST7735R.
-
-Or do we want to keep the config name intact?
+On 22/04/2025 13:59, Bryan O'Donoghue wrote:
+> On 22/04/2025 10:15, Krzysztof Kozlowski wrote:
+>> On Fri, Apr 18, 2025 at 04:11:46PM GMT, Loic Poulain wrote:
+>>> +  vdda-csiphy-1p2-supply:
+>>
+>> Why isn't this named vdd-phy-supply like in every other binding?
+>>
+>>> +    description:
+>>> +      Phandle to a 1.2V regulator supply to CSI PHYs.
+>>> +
+>>> +  vdda-pll-1p8-supply:
+>>
+>> Similar question.
+>>
+>>> +    description:
+>>> +      Phandle to 1.8V regulator supply to CAMSS refclk pll block.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> In this series we agreed to include the voltage level in the regulator name.
+> 
+> https://lore.kernel.org/linux-arm-msm/20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org/
+So the series there might need fixes as well? The supply name should
+match (more or less) real pins and real pins do not have voltage name.
 
 Best regards,
-Marcus Folkesson
-
-
-
-
-
-
---S7Yr4c6CSMMUOBqv
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmgJ2/cACgkQiIBOb1ld
-UjIIhBAAudyN05XrXX2Whsh+pWT+inxuTM9ECu2URVQ4JqXI16xqAwInW0nSgf5c
-vN3mZR+EuIb8wYORU/FgG+1JDXtQGt1X7a0aYC7RkAJxOovF3uTfJPDP3GPp1sQW
-cIXyFoantymDoA+KXZ5gt1YYBI1Zq58nkblmlhh+z+w6X1SfyEubK52ifFCQYc0O
-91p98iGzpLzbU+fdgEA3ZIvxxl8bWcdCtBLrSXWzUjLTnZEZxMKJQqnPJBZjzYin
-3MWmyQIDRvAXFgPswHEN02JJ91zv12+V0ak+k+2OVT3N0+53gW1HPkZuRqzEpoSd
-VlI63w5rKxW5VmgH7RPryHsLvT0+tvyNGC9KR6A/wHbdIuYNGyiibmzpMMWESnbY
-5b+nYHjInQuwiEMnv6hsCM7GrewTz7O6UfLx2LQn5nSlYWPt+JnCpsTMg83DOgFP
-eVXPjCcZ9xxIdP4b3VJxdX0adS2+zfz7Xrbub7abWqbx4xmWBnI0aZM2uhc2Nf9F
-PrYqUfa7qCeLw8ZcoYtX3LnuxJURFXdtm0pJtVWb3c9ZbMixA6owFi/D0+2jqDQ4
-U30YVe0832ko1HPzMTrgCpa3C9mDCywmYNItd/+sE90K/VfBZ8qiFQRnC1jpiFbB
-1RtJEOwoLytRGK7OFS68+yRVEzsBa/vBq6AQuN57NqZFNBtkmnY=
-=7lP1
------END PGP SIGNATURE-----
-
---S7Yr4c6CSMMUOBqv--
+Krzysztof
 
