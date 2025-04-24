@@ -1,107 +1,150 @@
-Return-Path: <devicetree+bounces-170549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89981A9B465
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:44:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5EC8A9B478
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:49:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D179316A98E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:44:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB75E1BA0671
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153B028A1CE;
-	Thu, 24 Apr 2025 16:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A05D28A1CE;
+	Thu, 24 Apr 2025 16:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DHhLeZB6"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="V0POb0pE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811D4284685;
-	Thu, 24 Apr 2025 16:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FC934CF9
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745513093; cv=none; b=KvQJHZRZ47H4QWOA0s1EUQ51zsg2et1U53JqxvvXxh25W/JdUAcXNGHKjM3PSHfypqe60MXUxAEVopPi9KYgLUXUZfgB8t6ub9ESxLj0vKz5W3GdQ3+MPdrD/sqFmNVAnw/eH6+GpaeT0n0HeyeYcC3yZ5mFfhNnwM/arL+cVSQ=
+	t=1745513385; cv=none; b=nOY3GRokLxvxdsN6PRXo2VhMlNAPC6RTHorl10UJ5meVw+/3xq4wqauAI0JM25PrbY4sTO5IdAkb0uu3y5aUkwaG3wb5RCpi0pGAA48LnPT0N6YDDaQX+LNg0kIhSpByZYF/K6MwieEwZdO2RT8hs7pI0ipfL6w3KpOWCZ5yvas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745513093; c=relaxed/simple;
-	bh=7NCmOr8ivNGpObb9WZ6jd5tfqxQcsNUuuFxY9SHRXRE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=daINND96914+w0qEjfTQmxcAzfsayymXrtSMRKO42rKVl07hWqEKW4/adUlrPy2WWGGGMWzXFLcdCiVx0+6v8jYOpuFHDzKyrjFTg3ADOVnpeDcHq41fESGUd1kmRaJoxAFVjX1vX61tHx5+Dc96kafuE2dX0JIfTvs0zTpNqeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DHhLeZB6; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4775ce8a4b0so23582061cf.1;
-        Thu, 24 Apr 2025 09:44:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745513090; x=1746117890; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7NCmOr8ivNGpObb9WZ6jd5tfqxQcsNUuuFxY9SHRXRE=;
-        b=DHhLeZB6SyBzfDLaqc6yJCeLTFzzFATT/5c1kBzOu6prTSRO56Rd1lYMFzb0QD/hB2
-         73HMIGpFhUmdwWRkGSuHCU5LBfW8aJf9F0xNpRD62P3S2+w7n7kLmPXZvqjh2UxU4ev6
-         6nf4VNP39PkRtrZKF5XdIU/k1JVA2tK88f1Ef6ORMb2HkcCiFjD+fjRMAOozSJfu22C/
-         fZfr9QQj9w1vH0+rYJ3gAIKpFMdIuEOB6e3d0v/Eet8IdF8DfGjWszr1KEmDA1dOUpDW
-         pMvahxWwQXWKWRU/6ldtYK4ipSzrUakghNaok4LdzUyemPUsfBn/G51sKPKG8b4OxAWX
-         Eh0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745513090; x=1746117890;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7NCmOr8ivNGpObb9WZ6jd5tfqxQcsNUuuFxY9SHRXRE=;
-        b=NF6D7FLGn+l0Oj7OW5FRpSWN3mWo0KLRFrr6JkhXUgtQzc9YmAnvTmakWnLIK6EJPj
-         /d5Ae+7EX8NivKlThBp4b2ESjiJT+NSocpYQCu9mdePsOuV5NDZ1imHSc4Y+RW/nhgUG
-         qM/mV8jFotkJMRrWKUJos4Q/YRnwt3sKEl+vMRaGOoFzhTotBWebl3ZZdWyxwoza/JJ/
-         icE+P2Ebdrxeic7d+1P839kmNW17h2zSBv+dYfYzIgo4cOoXVYrHaBo+T99FdxUXIVun
-         9gBKvaRzQ40DIUQFbDOABoYbkglg7/qwIp3FdOzC7Fg5pi0pgiCb+IFybZynRuHA4T3m
-         PI3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU9ZHI+7hGwdWkD/JWBVXZzclUmEtBxWsNCpoL/3z0WEH1sIBqv333ZtTVHtlGt3ym3+bVLmw6QO2AY37Ii@vger.kernel.org, AJvYcCVGPgqs22MjSG2kcuKFJusEUzi9tW0LvV4d5QsnGewcPJAcwgIGMw5Acz0AFfDbXuEP90fon0QMmDKe@vger.kernel.org, AJvYcCWIa0M8B2oORYCXarKtuJUeIs2LioZdkgy0hK36eB4XRlZy39ZxgpZJs0zelfpKF2A8nugqtnsU6vZp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIBFnzVkk7dUTdu4jPuqPV/O5yYPsRpgQkvUpLLP2VGsODdawV
-	MMxbpwvAVbb+tqGkOjPurOU9NX8DFxPOi2SefJU+IDQ4KUwtCcGdGjNM4qbnD0uWQxEDh9Ul6Cj
-	xb64PtPKDe15JgxTX+sL1TMEAQFY=
-X-Gm-Gg: ASbGncvPUPsRqcylEJpI8BvX1A08987opJWBnJTPULMYftp3+EVtfTgptFSm0vDnqqB
-	md1ZfLjFZJopY78M/oOEdRzkAf0jVm8Qjls56fy6pd0Q0XUedzlvCIfshLIYCm6iVWnSMz1tMoF
-	NjkNXWGw4yT5aWX/Ruz/ysJJalR7fLkH/W2StmV6C94l6OWqo8bCKyEZE=
-X-Google-Smtp-Source: AGHT+IGwl9qg5A47WQV5p425vPqexd2FWCCDotFZYmPIcXKIAZfxaFLI9IbWZk6/iOtRT3QN34xhomcTq3HV9qCkZj4=
-X-Received: by 2002:a05:622a:15cb:b0:476:97d3:54f with SMTP id
- d75a77b69052e-47fb9bd7a15mr6813021cf.14.1745513090302; Thu, 24 Apr 2025
- 09:44:50 -0700 (PDT)
+	s=arc-20240116; t=1745513385; c=relaxed/simple;
+	bh=yaFz9KVuXbQ3WoPpBhphcE4kDzD4jDZLdKjUo00JrCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qoKxLMqaKSPOAkf3CsnKvrCQvxkSnk/W4zgbJSfVPSiemwX2w0VzMejr/x90NYS/rMSmy5SNBSwMwbjUD2JAfk70O0Wc864fnvEzXEk82rpIIWziol/T2p1rb1jvbMsY8HfNIkH1Fm26+gdj+KAdIu/6zK19wvbV7srKzc8DokU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=V0POb0pE; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1745513382;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hJKWPsrSIdki3Sut593ts9jKeKHpTjZdnwCIv+v7d1Q=;
+	b=V0POb0pEVW4ZlffV6pp7IKQaSAaEkuYfSaJJ0EapGfcEB3v4im7Um+FXrpK491IoeJiNeD
+	SdHJQ9bm1uYuU+0z6cd4YTAUpvdF0zJkHa450nIAelUbidUjufojrIAiN2wyuaHAIx85E4
+	wrFxvTjlqjlz8Zc7fH/R240sMmcfqEo=
+Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-250-3aBPdaY6NSOa_mg84J2AZw-1; Thu,
+ 24 Apr 2025 12:49:39 -0400
+X-MC-Unique: 3aBPdaY6NSOa_mg84J2AZw-1
+X-Mimecast-MFC-AGG-ID: 3aBPdaY6NSOa_mg84J2AZw_1745513376
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7A54D1955DCD;
+	Thu, 24 Apr 2025 16:49:35 +0000 (UTC)
+Received: from [10.44.32.28] (unknown [10.44.32.28])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 08B2619560A3;
+	Thu, 24 Apr 2025 16:49:29 +0000 (UTC)
+Message-ID: <c67a65c2-e0c2-438e-a71b-3325e8e2bc3f@redhat.com>
+Date: Thu, 24 Apr 2025 18:49:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250423-vt8500-ehci-binding-v1-1-1edcb0d330c2@gmail.com> <20250424-chaffing-mating-e512c198c0e6@spud>
-In-Reply-To: <20250424-chaffing-mating-e512c198c0e6@spud>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 24 Apr 2025 20:44:58 +0400
-X-Gm-Features: ATxdqUGf0ng_ZmgBzRLblE9E8xZ_d46r02HWPlW-sjruIqBiqFg4Xxg7sTs7hGw
-Message-ID: <CABjd4YzyUfE7YUGw+B5VbVzhVJevsbODnSJ14gwyydvfJxfb6Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: generic-ehci: Add VIA/WonderMedia compatible
-To: Conor Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 3/8] mfd: Add Microchip ZL3073x support
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250424154722.534284-1-ivecera@redhat.com>
+ <20250424154722.534284-4-ivecera@redhat.com>
+ <4fae1a96-ac19-46b8-8eff-2a38d28414fc@lunn.ch>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <4fae1a96-ac19-46b8-8eff-2a38d28414fc@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-On Thu, Apr 24, 2025 at 7:27=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Wed, Apr 23, 2025 at 11:49:45PM +0400, Alexey Charkov wrote:
-> > VIA/WonderMedia SoCs use a plain vanilla EHCI controller with a
-> > compatible string "via,vt8500-ehci". Add it to the binding.
->
-> You should elaborate here that this is already in the driver and dts
-> files. With that,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks a lot Conor! Will submit v2 with your tag and elaborate in the
-commit message.
 
-Best regards,
-Alexey
+On 24. 04. 25 6:34 odp., Andrew Lunn wrote:
+>> +++ b/drivers/mfd/zl3073x-regs.h
+>> @@ -0,0 +1,74 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +
+>> +#ifndef __ZL3073X_REGS_H
+>> +#define __ZL3073X_REGS_H
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/bits.h>
+>> +
+>> +/*
+>> + * Register address structure:
+>> + * ===========================
+>> + *  25        19 18   16 15     7 6           0
+>> + * +-------------------------------------------+
+>> + * | max_offset | width |  page  | page_offset |
+>> + * +-------------------------------------------+
+>> + *
+>> + * page_offset ... <0x00..0x7F>
+>> + * page .......... HW page number
+>> + * size .......... register byte size (1, 2, 4 or 6)
+>> + * max_offset .... maximal offset for indexed registers
+>> + *                 (for non-indexed regs max_offset == page_offset)
+>> + */
+> 
+> Something i missed earlier. This does not really describe
+> hardware. The upper half is meta data about the register, which you
+> encode into the register number.
+> 
+> How many other Linux drivers do you know about which does this?
+
+This was proposed by Andy S.
+
+Cite:
+V4L2 (or media subsystem) solve the problem by providing a common
+helpers for reading and writing tons of different registers in cameras.
+See the commit 613cbb91e9ce ("media: Add MIPI CCI register access helper
+functions").
+
+They encode register address and size in register value. I have just
+extend this approach to cover indexed registers. The max_offset is for
+sanity during access to such registers, potential access out of
+bounds is detected and error returned.
+
+One can use just two simple functions for both register types:
+zl3073x_read_reg(zldev, ZL_REG_NONIDX1, &value);
+zl3073x_read_reg(zldev, ZL_REG_IDX1(idx), &value);
+
+> 
+> Also width vs size.
+
+I'm sorry, just a typo during reworking.
+
+
+Ivan
+
 
