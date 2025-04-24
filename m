@@ -1,896 +1,190 @@
-Return-Path: <devicetree+bounces-170559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0E60A9B57C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 19:38:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A0FA9B583
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 19:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17CC74A572C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:38:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69AAB1BA6233
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D64128EA5E;
-	Thu, 24 Apr 2025 17:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="t4ysj2Nx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B4B290088;
+	Thu, 24 Apr 2025 17:38:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DED27BF7F
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 17:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08CE28E60A;
+	Thu, 24 Apr 2025 17:37:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745516218; cv=none; b=rsAuSM08jDPne0FyD6/BgBdsLsmpIgiQKWkuAov2fRO3Wk/ehCtu9QO/TzPN69OozNEOz8hjmtzUckskQfxfUvqbY3s2CECwDWZzPlXu8zhsPFuMU6EezXvcGW9oaiZW6qsfhvQOP/ww3APnzSLez/iFl+5D+YQcU2MbgsppVgk=
+	t=1745516282; cv=none; b=O1mNDEEiIlwcc022kCTHHbsq+2+lRjNOCOQyscUp91qv/n7+3Pb6gGKwPSHidAozu1ee2TdRdOBElVYAzEOStTqgqmYhoy/Co5YGExNm9uqYq/Ffe18SA7cmOYpr4IR4QS3lQZiyoiwlTTIb9DOlxsqS7K0w1X1ZJmylOW4wGw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745516218; c=relaxed/simple;
-	bh=SMTXyGDeO4nFInITYks/8RR/pYxErgXa1RZIXvXYVqM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=b2nlM8qbaqRAY8PiKyHHGesxlHBb1v6pmnx5u68k0HCOS0mxQuu+xiDaj1vwgc+ZFyuFU7rAwTy6GWOzn27LkKwkoTFrrnAhs5epzbi7nXQGpZXx4jr+8jicC+M1ZX9k1wxiSYTdShLcFK0gfwdAutPbI37XEgMDtF++Ku96gLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=t4ysj2Nx; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7c597760323so148236585a.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:36:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1745516213; x=1746121013; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8WdJExOPKTGfO8MVm6X3x6wEggadu/3FyjOUCCkMW44=;
-        b=t4ysj2NxybIJ6D5KFvi8x0H8s8omHlNndhXay2NEWGXIgucmoX6kaWw5JA3KgEAMPc
-         doT3TjQf97eSHoXp7zr/qfgDBmrbipNrtCaFjcUXaYVaEQmMu8hMrfpK9O5hIgHBmveg
-         qB6/7hzSoQiD+X5VwGogUQCUcMJ90jBUSEGC58wDbDMa1sA7dz2gnf2LXm1Owo25SK8Y
-         FUfKGQjjNrN2xRjMdbhng+204bKf5MHLmmvMp8JApzjMCqywb/u28hRyGoj5sA2Vo9mi
-         lrhnD4mRncrXtw44lxfnVwcLMRmSYoIZmVF3aOYELdHQn16nFtq0F0n6tb8hShWKKvWB
-         yCRA==
+	s=arc-20240116; t=1745516282; c=relaxed/simple;
+	bh=l9GwqA6moC5o44LoO/P/z4Eal0AfURGG0Z3kI4uyrIQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TSWjojDZJPgfaQx0oivfajKivAUymO+nxwWGOBHsocaTuQN1PPTLXchG29bw2ct98/U8bzg8eAdKMkQlzGaOUBXdM586JmIsUBZgI1BUiSGrPrQEn54yeUgoch0YTaxnqUc5oREKYNcdwMxgrn1FhAG6qXZhX8tTmHT48iA8Ly4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30beedb99c9so12587341fa.3;
+        Thu, 24 Apr 2025 10:37:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745516213; x=1746121013;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=1e100.net; s=20230601; t=1745516275; x=1746121075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8WdJExOPKTGfO8MVm6X3x6wEggadu/3FyjOUCCkMW44=;
-        b=d1xE3F7QTrOjX6UHQTXbkCv42SRxhw6ZlqEJdrUOaKCknqyeJvjXlGqOlF/k8Q2oUY
-         tKDnYZmApGaO+LRUDkzHR8PAhwVjR0+4S4/asoX8WuWkAxPF12C00J/NVYaA87qPEkU/
-         GF9aecNbOaepIOKUI0Iy82LQC4KyHe8+hOv4sr9u2k8p7LhChM+Z2lxaMKK9kiz/LwgK
-         +C03AouOu4aof/ow5yBIFhUlFWzHblczh91Xt1Z2GAcPvFFC//xWppyI9OQ9x3SZq3KF
-         OvENJQkHNMFamqwOg+OjnPTW3hDqfENrznl4PV2SUXCveaLGtO5p7oP2cf5jsstpJJzD
-         Whlw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHcdpSdOG0+yWiva5dngOjj2UVlMAks1DDEkc1EKk3/GnNKFihPa9Xay5HK369QblO6LS1YGrnxFE9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxM9fLBXxnf9xAVcCcnk0OZtEeeG2v8zoruj2LCKrZb6x1q+Ujf
-	hRI4mvxcSd2FlkhDaWyeYOo8g/WbsQjfZNSwixz8yG5N9rOM/S3Wdca8CM5Nwdc=
-X-Gm-Gg: ASbGncvkZPQl/A0EjnQUp33O8wDHFGJ9icpzkwhjlcAWglxfgLoBv5D4+IFT5NmKI/l
-	9WOOjiKdTZ1zJmhUaocGrA/c3GGZT6lg7/6h4WfM0aeSKYuKnLMsH3Q2TjycNe1JPr53sdnOy7c
-	b3NPxljjaQqonhd/4U/NUV2hrPmKKFz0asG1HuqvaI1bLvxBeOEvT2md5oNmuE/09+HKbwYLrYh
-	hW3Jxqn+zOxuOBBuQSW5M9i/bBJG5642Ku1xUOF8nrTeTmsHGBmtGn+QxotjyTd5LxHiYv7LTrM
-	HB1/GMLjY4Nsg4+YNo7jEjhB7Klg2ewmkFRbMb84ZgfKLQ==
-X-Google-Smtp-Source: AGHT+IHDHiJyYPwZO332hvnKTbwh2VjZVYH3h9ee9D8uHI7ykr5z5wILllHPUCM9JryYxoDEJmkwbA==
-X-Received: by 2002:a05:620a:319e:b0:7c5:5296:55ba with SMTP id af79cd13be357-7c956ee2645mr593547585a.13.1745516213438;
-        Thu, 24 Apr 2025 10:36:53 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:15:9913::5ac? ([2606:6d00:15:9913::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c958ce3cf6sm113261485a.64.2025.04.24.10.36.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 10:36:52 -0700 (PDT)
-Message-ID: <f5778b751ee5044d5e3448a77032ff020d63994b.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 3/8] media: chips-media: wave6: Add Wave6 driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org, 
-	hverkuil@xs4all.nl, sebastian.fricke@collabora.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-imx@nxp.com, marex@denx.de, 
-	jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com, Ming Qian
-	 <ming.qian@oss.nxp.com>
-Date: Thu, 24 Apr 2025 13:36:51 -0400
-In-Reply-To: <20250422093119.595-4-nas.chung@chipsnmedia.com>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
-	 <20250422093119.595-4-nas.chung@chipsnmedia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+        bh=CiowPURGN4de6Iry0e1Jc5BJ/71dYd20vAslI7Guwu8=;
+        b=EIDYuBd1VmUyvYVtK4NniGQcIm0bQCTQxM+wN0PaZZ7ng85RzIYPvjJhVlYHWxdQDN
+         9zi1TGzZGx1o9NswGycHKzFbS45rYU7f6T57dOgzsyABoDhCgvmg83KEdAM8ieqXXARL
+         mVBRKMulvyxxKtk+5SyM03MGbQ5MX/ULcnY92lbnudCbE3crzbelFvMHjcvQ76v9C/Ss
+         tKjqSlRpw9QQdWnirFmiDM3bpn3VhVJjXQXvHmqTv3PrkhK2maDsxodhF9uSmhvNbTXL
+         f+XJPjuvUIXuP0MNGamJgOa+L9u82IkYwS2ln1Tnu3swwUQa531oVsUeC4QAdzXso14k
+         cO7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUgzoQZY4fjuAdOcnHrZuWk5U5kspa0jyPdmTwJOnF3zcKW9ZXEoVdFuyQu+4xsUtUU2eJWTxxl2VyL@vger.kernel.org, AJvYcCWvy0TkWtjQj0q8uCQiTNWlBahUdfdO2dH3W1KtM6caW+ol7mw3hJWY+c2024oT1mCMb6lZNktBYiM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJvduhBNUOp30ivRKK7MY+5PeduZKkpp5xqAnCSDbQQ1NaSW2M
+	/Lhs12Q/stgdhTFCCYdc3/FES+z+Z9mZ6RHyk251scGer9y3c2C32ofjV4r5
+X-Gm-Gg: ASbGnctJQIacmf5EmvCUi1fhTIyw1huWC7tyxlJfYuR/J5A0/sKxEAPZCgCx6lA32cD
+	yfLEWXR6KMgAk6RBHhV2OaGVR9fE5mKPVpHoDDq00ivnmWyR1f36IIgIfREvzLDL8ggqPBdkndu
+	+SshwT6rwpIj8qEZxfbS3z2uGSdAIhbFj9BnHa1nQAa6TOkbAyLvc+YQ12eSxYn+b6PPXUa4Rbz
+	91YHAw6EWm1nv4HUVbwNIIcyN3YdnA8C2dn820fgdYh9I7X1h64XhCB7IK+Tdu+agVjZadG9IyU
+	ZqvjvsL5XQJJInKZdVUvaBM8kByGhwmykxOisj7Y3Pwp9Fb3FLtXaGtyr2t85z7ODSgD5O7TCA=
+	=
+X-Google-Smtp-Source: AGHT+IHkXE9oO6onuat3Bn9tTQSvD7S8M9h5v/CZgM4SipzDEkABZ9gc1bOyCR/svSwOE7uSVWzfmQ==
+X-Received: by 2002:a2e:a58b:0:b0:30b:d0d5:1fee with SMTP id 38308e7fff4ca-3179bc5a05dmr15050861fa.0.1745516274564;
+        Thu, 24 Apr 2025 10:37:54 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-317d16a831esm3535831fa.68.2025.04.24.10.37.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Apr 2025 10:37:54 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30bef9b04adso14147091fa.1;
+        Thu, 24 Apr 2025 10:37:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVJHhiYvBboLcExmsbPNQRsW2mN1AEPcWoLGLRmiTpLjUGLPP1pV/BOFM4hlwFRsl/9Cigu4banUgM=@vger.kernel.org, AJvYcCWcMq2r5M0b41K15mNx7cX80GEfSmFZN3K37ATqZUqHUst1EJ4PUAoDuucZ4ltwDmRpwt3Qg1H2mw2a@vger.kernel.org
+X-Received: by 2002:a2e:a9a0:0:b0:30d:b49d:7fb7 with SMTP id
+ 38308e7fff4ca-3179e5e518fmr13777371fa.16.1745516274006; Thu, 24 Apr 2025
+ 10:37:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250416224839.9840-1-andre.przywara@arm.com> <20250416224839.9840-2-andre.przywara@arm.com>
+ <CAPDyKFop9gAUq3kG4-hs358y=N48rLQSvJaRveXo_ebVTf8gEg@mail.gmail.com>
+In-Reply-To: <CAPDyKFop9gAUq3kG4-hs358y=N48rLQSvJaRveXo_ebVTf8gEg@mail.gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Fri, 25 Apr 2025 01:37:42 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66w-tD=--zwDBOG8qJbwBR=s9mJ32c65W88P1eazDKLhQ@mail.gmail.com>
+X-Gm-Features: ATxdqUHvL4W44GNl5WKefwtfRdBLLoloQmPwAjVhg3bD1KPveNWGmCRztikltk4
+Message-ID: <CAGb2v66w-tD=--zwDBOG8qJbwBR=s9mJ32c65W88P1eazDKLhQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: Add Allwinner H6/H616 PRCM PPU
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Philippe Simons <simons.philippe@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Le mardi 22 avril 2025 =C3=A0 18:31 +0900, Nas Chung a =C3=A9crit=C2=A0:
-> This adds the main driver for the Chips&Media Wave6 video codec IP.
->=20
-> On NXP i.MX platforms, the Wave6 consists of two functional regions:
-> a control region responsible for firmware and shared resources,
-> and a core region for encoding and decoding.
->=20
-> This driver binds the `wave6-ctrl` and `wave6-core` sub-devices,
-> and coordinates their initialization and teardown.
->=20
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
-> Tested-by: Ming Qian <ming.qian@oss.nxp.com>
-> ---
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/media/platform/chips-media/Kconfig=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 1 +
-> =C2=A0drivers/media/platform/chips-media/Makefile=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 1 +
-> =C2=A0.../media/platform/chips-media/wave6/Kconfig=C2=A0 |=C2=A0 24 +
-> =C2=A0.../media/platform/chips-media/wave6/Makefile |=C2=A0=C2=A0 4 +
-> =C2=A0.../platform/chips-media/wave6/wave6-vpu.c=C2=A0=C2=A0=C2=A0 | 469 =
-++++++++++++++++++
-> =C2=A0.../platform/chips-media/wave6/wave6-vpu.h=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 85 ++++
-> =C2=A07 files changed, 585 insertions(+)
-> =C2=A0create mode 100644 drivers/media/platform/chips-media/wave6/Kconfig
-> =C2=A0create mode 100644 drivers/media/platform/chips-media/wave6/Makefil=
-e
-> =C2=A0create mode 100644 drivers/media/platform/chips-media/wave6/wave6-v=
-pu.c
-> =C2=A0create mode 100644 drivers/media/platform/chips-media/wave6/wave6-v=
-pu.h
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6ca159e532e7..4fc54c824f65 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -25529,6 +25529,7 @@ M:	Jackson Lee <jackson.lee@chipsnmedia.com>
-> =C2=A0L:	linux-media@vger.kernel.org
-> =C2=A0S:	Maintained
-> =C2=A0F:	Documentation/devicetree/bindings/media/cnm,wave633c.yaml
-> +F:	drivers/media/platform/chips-media/wave6/
-> =C2=A0
-> =C2=A0WHISKEYCOVE PMIC GPIO DRIVER
-> =C2=A0M:	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.int=
-el.com>
-> diff --git a/drivers/media/platform/chips-media/Kconfig b/drivers/media/p=
-latform/chips-media/Kconfig
-> index ad350eb6b1fc..8ef7fc8029a4 100644
-> --- a/drivers/media/platform/chips-media/Kconfig
-> +++ b/drivers/media/platform/chips-media/Kconfig
-> @@ -4,3 +4,4 @@ comment "Chips&Media media platform drivers"
-> =C2=A0
-> =C2=A0source "drivers/media/platform/chips-media/coda/Kconfig"
-> =C2=A0source "drivers/media/platform/chips-media/wave5/Kconfig"
-> +source "drivers/media/platform/chips-media/wave6/Kconfig"
-> diff --git a/drivers/media/platform/chips-media/Makefile b/drivers/media/=
-platform/chips-media/Makefile
-> index 6b5d99de8b54..b9a07a91c9d6 100644
-> --- a/drivers/media/platform/chips-media/Makefile
-> +++ b/drivers/media/platform/chips-media/Makefile
-> @@ -2,3 +2,4 @@
-> =C2=A0
-> =C2=A0obj-y +=3D coda/
-> =C2=A0obj-y +=3D wave5/
-> +obj-y +=3D wave6/
-> diff --git a/drivers/media/platform/chips-media/wave6/Kconfig b/drivers/m=
-edia/platform/chips-media/wave6/Kconfig
-> new file mode 100644
-> index 000000000000..3d7369ca690c
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/Kconfig
-> @@ -0,0 +1,24 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +config VIDEO_WAVE6_VPU
-> +	tristate "Chips&Media Wave6 Codec Driver"
-> +	depends on V4L_MEM2MEM_DRIVERS
-> +	depends on VIDEO_DEV && OF
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_MEM2MEM_DEV
-> +	select GENERIC_ALLOCATOR
-> +	help
-> +	=C2=A0 Chips&Media Wave6 stateful codec driver.
-> +	=C2=A0 The codec driver provides encoding and decoding capabilities
-> +	=C2=A0 for H.264, HEVC, and other video formats.
-> +	=C2=A0 To compile this driver as modules, choose M here: the
-> +	=C2=A0 modules will be called wave6.
-> +
-> +config VIDEO_WAVE6_VPU_SUPPORT_FOLLOWER
-> +	bool "Support Wave6 VPU follower"
-> +	depends on VIDEO_WAVE6_VPU
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	default n
-> +	help
-> +	=C2=A0 Indicates whether the VPU domain power always on.
-                                               >is< ?
+On Fri, Apr 25, 2025 at 12:58=E2=80=AFAM Ulf Hansson <ulf.hansson@linaro.or=
+g> wrote:
+>
+> On Thu, 17 Apr 2025 at 00:49, Andre Przywara <andre.przywara@arm.com> wro=
+te:
+> >
+> > The Allwinner H6 and some later SoCs contain some bits in the PRCM (Pow=
+er
+> > Reset Clock Management) block that control some power domains.
+> > Those power domains include the one for the GPU, the PLLs and some
+> > analogue circuits.
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>
+> Applied for next by amending the example according to ChenYu's comment, t=
+hanks!
+>
+> Note this patch is also available on the immutable dt branch, for SoC
+> maintainers to pull.
 
-This configuration is pretty vague to me. Do we really need that ?
-Isn't there other ways to disable PM runtime ? If unsure, just remove
-that, and we can discuss separately.
+Thanks! I don't think there's a need if it's just the YAML files though.
+As long as everything comes together in linux-next, folks are happy.
 
-> diff --git a/drivers/media/platform/chips-media/wave6/Makefile b/drivers/=
-media/platform/chips-media/wave6/Makefile
-> new file mode 100644
-> index 000000000000..255fc90bc642
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +wave6-objs +=3D wave6-vpu.o
-> +obj-$(CONFIG_VIDEO_WAVE6_VPU) +=3D wave6.o
-> diff --git a/drivers/media/platform/chips-media/wave6/wave6-vpu.c b/drive=
-rs/media/platform/chips-media/wave6/wave6-vpu.c
-> new file mode 100644
-> index 000000000000..5d0c093a9cc5
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/wave6-vpu.c
-> @@ -0,0 +1,469 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
 
-nit: Its first time I notice, wave5 is like this too, but what the
-purpose of BDS-3-Clause here ? This driver can't possibly be used
-outside of Linux, and when loaded inside Linux, GPL is the only valid
-choice as far as I know.
+ChenYu
 
-> +/*
-> + * Wave6 series multi-standard codec IP - wave6 driver
-> + *
-> + * Copyright (C) 2025 CHIPS&MEDIA INC
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/clk.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/pm_runtime.h>
-> +#include "wave6-vpu.h"
-> +
-> +#define VPU_PLATFORM_DEVICE_NAME "wave6-vpu"
-> +#define VPU_CLK_NAME "vpu"
-> +
-> +#define WAVE6_VPU_FLAG_SLEEP	BIT(0)
-> +#define WAVE6_VPU_FLAG_WAKEUP	BIT(1)
-
-Mind aligning these ?
-
-> +
-> +/**
-> + * wave6_alloc_dma - Allocate DMA memory
-> + * @dev: device pointer
-> + * @vb: VPU buffer structure
-> + *
-> + * Allocates a contiguous DMA memory region for VPU usage.
-> + * The allocated memory information is stored in the given
-> + * @vb structure.
-> + *
-> + * Return: 0 on success, -EINVAL for invalid arguments, -ENOMEM on failu=
-re
-> + */
-> +int wave6_alloc_dma(struct device *dev, struct vpu_buf *vb)
-> +{
-> +	void *vaddr;
-> +	dma_addr_t daddr;
-> +
-> +	if (!vb || !vb->size)
-> +		return -EINVAL;
-> +
-> +	vaddr =3D dma_alloc_coherent(dev, vb->size, &daddr, GFP_KERNEL);
-> +	if (!vaddr)
-> +		return -ENOMEM;
-> +
-> +	vb->vaddr =3D vaddr;
-> +	vb->daddr =3D daddr;
-> +	vb->dev =3D dev;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(wave6_alloc_dma);
-
-Also to emphasis the clash with dual license.
-
-> +
-> +/**
-> + * wave6_free_dma - Free DMA memory
-> + * @vb: VPU buffer structure
-> + *
-> + * Frees the DMA memory previously allocated by wave6_alloc_dma().
-> + * @vb structure is also cleared to zero.
-> + */
-> +void wave6_free_dma(struct vpu_buf *vb)
-> +{
-> +	if (!vb || !vb->size || !vb->vaddr)
-> +		return;
-> +
-> +	dma_free_coherent(vb->dev, vb->size, vb->vaddr, vb->daddr);
-> +	memset(vb, 0, sizeof(*vb));
-> +}
-> +EXPORT_SYMBOL_GPL(wave6_free_dma);
-> +
-> +static int wave6_check_entity(struct wave6_vpu_device *vpu,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-
-When I read code below, I don't see what wave6_check_entity() does. You
-should rename this, perhaps it means "wave6_valid_entity()" ?
-
-Its also not obvious to me in which normal condition you will hold a
-ref to an entity that is no longer valid. I'd ask here, can this fail
-without a programming error ? And in which case, if its a programming
-error, a WARN_ON would likely be a good idea.
-
-> +{
-> +	if (!entity || !entity->vpu || !vpu || entity->vpu !=3D vpu->dev)
-> +		return -EINVAL;
-> +	if (entity->index < 0 || entity->index >=3D WAVE6_VPU_MAXIMUM_ENTITY_CN=
-T)
-> +		return -EINVAL;
-> +	if (entity !=3D vpu->entities[entity->index])
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static unsigned long wave6_vpu_get_clk_rate(struct wave6_vpu_device *vpu=
-)
-> +{
-> +	unsigned long rate =3D 0;
-> +	int i;
-> +
-> +	mutex_lock(&vpu->lock);
-> +
-> +	for (i =3D 0; i < vpu->num_clks; i++) {
-> +		if (vpu->clks[i].id && !strcmp(vpu->clks[i].id, VPU_CLK_NAME))
-> +			rate =3D clk_get_rate(vpu->clks[i].clk);
-> +	}
-> +
-> +	mutex_unlock(&vpu->lock);
-> +	return rate;
-> +}
-> +
-> +static int __wave6_vpu_get(struct wave6_vpu_device *vpu,
-> +			=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	int ret;
-
-Would be nice to add:
-
-	lockdep_assert_held(&vpu->lock);
-
-> +
-> +	if (atomic_inc_return(&vpu->ref_count) > 1)
-> +		return 0;
-> +
-> +	ret =3D pm_runtime_resume_and_get(vpu->dev);
-> +	if (ret) {
-> +		dev_err(vpu->dev, "pm runtime resume fail, ret =3D %d\n", ret);
-> +		atomic_dec(&vpu->ref_count);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (vpu->ctrl && vpu->ctrl_ops) {
-> +		ret =3D vpu->ctrl_ops->get_ctrl(vpu->ctrl, entity);
-> +		if (ret) {
-> +			dev_err(vpu->dev, "get ctrl fail, ret =3D %d\n", ret);
-> +			pm_runtime_put_sync(vpu->dev);
-> +			atomic_dec(&vpu->ref_count);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int wave6_vpu_get(struct wave6_vpu_device *vpu,
-> +			 struct wave6_vpu_entity *entity)
-> +{
-> +	int ret =3D 0;
-
-Drop.
-
-> +
-> +	mutex_lock(&vpu->lock);
-
-Replace with:
-
-	guard(mutex)(&vpu->lock);
-
-> +
-> +	if (wave6_check_entity(vpu, entity)) {
-> +		ret =3D -EINVAL;
-> +		goto unlock;
-
-Then these two lines becomes:
-
-		return -EINVAL;
-
-You won't even need a scope.
-
-> +	}
-> +
-> +	if (!entity->active)
-> +		goto unlock;
-		return 0;
-
-> +
-> +	ret =3D __wave6_vpu_get(vpu, entity);
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-
-Drop the two above lines;
-
-> +	return ret;
-	return 0;
-
-> +}
-> +
-> +static void __wave6_vpu_put(struct wave6_vpu_device *vpu,
-> +			=C2=A0=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	if (atomic_dec_return(&vpu->ref_count) > 0)
-> +		return;
-> +
-> +	if (vpu->ctrl && vpu->ctrl_ops)
-> +		vpu->ctrl_ops->put_ctrl(vpu->ctrl, entity);
-> +
-> +	pm_runtime_put_sync(vpu->dev);
-> +}
-> +
-> +static void wave6_vpu_put(struct wave6_vpu_device *vpu,
-> +			=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	mutex_lock(&vpu->lock);
-
-Same, you should use guard()().
-
-> +
-> +	if (wave6_check_entity(vpu, entity))
-> +		goto unlock;
-> +
-> +	if (!entity->active)
-> +		goto unlock;
-> +
-> +	__wave6_vpu_put(vpu, entity);
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +}
-> +
-> +static void wave6_support_follower(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0 struct wave6_vpu_entity *entity, u32 flag)
-> +{
-
-I haven't figure-out what this is about, bare in mind.
-
-> +	struct wave6_vpu_entity *target =3D NULL;
-> +	int ret;
-> +	int i;
-
-Seems like this needs to be called with lock held:
-
-	lockdep_assert_held(&vpu->lock);
-
-> +
-> +	if (!vpu->support_follower)
-> +		return;
-> +	if (!vpu->ctrl)
-> +		return;
-> +
-> +	if (entity)
-> +		target =3D entity;
-> +
-> +	ret =3D pm_runtime_resume_and_get(vpu->dev);
-> +	if (ret) {
-> +		dev_warn(vpu->dev, "pm runtime resume fail, ret =3D %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(vpu->entities); i++) {
-> +		if (!vpu->entities[i])
-> +			continue;
-> +		if (target && vpu->entities[i] !=3D target)
-> +			continue;
-> +		if (flag & WAVE6_VPU_FLAG_WAKEUP)
-> +			__wave6_vpu_get(vpu, vpu->entities[i]);
-> +		if (flag & WAVE6_VPU_FLAG_SLEEP)
-> +			__wave6_vpu_put(vpu, vpu->entities[i]);
-> +	}
-> +
-> +	pm_runtime_put_sync(vpu->dev);
-> +}
-> +
-> +static int wave6_find_unused_index(struct wave6_vpu_device *vpu)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(vpu->entities); i++) {
-> +		if (!vpu->entities[i])
-> +			return i;
-> +	}
-> +
-> +	return -1;
-> +}
-> +
-> +static int wave6_register_vpu_core(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	int ret =3D 0;
-> +	int index;
-> +
-> +	mutex_lock(&vpu->lock);
-
-Also:
-	guard(mutex)(&vpu->lock);
-
-> +
-> +	if (!entity || !entity->dev) {
-> +		ret =3D -EINVAL;
-> +		goto unlock;
-> +	}
-> +
-> +	index =3D wave6_find_unused_index(vpu);
-> +	if (index < 0 || index >=3D ARRAY_SIZE(vpu->entities)) {
-
-Drop the second condition, its defensive coding, you can trust your
-wave6_find_unused_index() helper to return a valid index or -1.
-
-> +		ret =3D -1;
-> +		goto unlock;
-> +	}
-> +
-> +	entity->vpu =3D vpu->dev;
-> +	entity->index =3D index;
-> +	vpu->entities[index] =3D entity;
-> +	wave6_support_follower(vpu, entity, WAVE6_VPU_FLAG_WAKEUP);
-
-So this support_follower() actually does wave6_vpu_get()/put(), except
-when the build config forces always on. I think if you drop that
-config, you can drop that strange function and just use get/put.
-
-I don't have the full portait of when vpu core are registered and when
-not. It does give me the strange impression that once a stream is
-active, it cannot sleep anymore. I'd like to see some text about the PM
-runtime strategies.
-
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +	return ret;
-> +}
-> +
-> +static void wave6_unregister_vpu_core(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	mutex_lock(&vpu->lock);
-Also:
-	guard(mutex)(&vpu->lock);
-
-> +
-> +	if (wave6_check_entity(vpu, entity))
-> +		goto unlock;
-> +
-> +	wave6_support_follower(vpu, entity, WAVE6_VPU_FLAG_SLEEP);
-> +	vpu->entities[entity->index] =3D NULL;
-> +	entity->vpu =3D NULL;
-> +	entity->index =3D -1;
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +}
-> +
-> +static int wave6_register_vpu_ctrl(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0 struct device *ctrl,
-> +				=C2=A0=C2=A0 const struct wave6_vpu_ctrl_ops *ops)
-> +{
-> +	int ret =3D 0;
-> +
-> +	mutex_lock(&vpu->lock);
-
-Also:
-	guard(mutex)(&vpu->lock);
-
-> +
-> +	if (!ctrl || !ops) {
-
-Seems like some WARN_ON would be preferred, you don't expect this to
-happen outside of programmer error right ?
-
-> +		ret =3D -EINVAL;
-> +		goto unlock;
-> +	}
-> +
-> +	if (vpu->ctrl) {
-> +		if (vpu->ctrl !=3D ctrl)
-> +			ret =3D -EINVAL;
-> +
-> +		goto unlock;
-> +	}
-> +
-> +	vpu->ctrl =3D ctrl;
-> +	vpu->ctrl_ops =3D ops;
-> +	wave6_support_follower(vpu, NULL, WAVE6_VPU_FLAG_WAKEUP);
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +	return ret;
-> +}
-> +
-> +static void wave6_unregister_vpu_ctrl(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device *ctrl)
-> +{
-> +	mutex_lock(&vpu->lock);
-> +
-> +	if (vpu->ctrl !=3D ctrl)
-> +		goto unlock;
-> +
-> +	wave6_support_follower(vpu, NULL, WAVE6_VPU_FLAG_SLEEP);
-> +	vpu->ctrl =3D NULL;
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +}
-> +
-> +static void wave6_require_work_buffer(struct wave6_vpu_device *vpu,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct wave6_vpu_entity *entity)
-> +{
-> +	int ret =3D 0;
-> +
-> +	mutex_lock(&vpu->lock);
-
-Also:
-	guard(mutex)(&vpu->lock);
-
-> +
-> +	if (wave6_check_entity(vpu, entity))
-> +		goto unlock;
-> +
-> +	if (!vpu->ctrl || !vpu->ctrl_ops)
-> +		goto unlock;
-> +
-> +	ret =3D vpu->ctrl_ops->require_work_buffer(vpu->ctrl, entity);
-> +	if (ret)
-> +		dev_warn(vpu->dev, "require_work_buffer fail %d\n", ret);
-> +
-> +unlock:
-> +	mutex_unlock(&vpu->lock);
-> +}
-> +
-> +static const struct wave6_vpu_ops wave6_vpu_ops =3D {
-> +	.get_vpu =3D wave6_vpu_get,
-> +	.put_vpu =3D wave6_vpu_put,
-> +	.reg_core =3D wave6_register_vpu_core,
-> +	.unreg_core =3D wave6_unregister_vpu_core,
-> +	.reg_ctrl =3D wave6_register_vpu_ctrl,
-> +	.unreg_ctrl =3D wave6_unregister_vpu_ctrl,
-> +	.req_work_buffer =3D wave6_require_work_buffer,
-> +	.get_clk_rate =3D wave6_vpu_get_clk_rate,
-> +};
-> +
-> +static int wave6_vpu_probe(struct platform_device *pdev)
-> +{
-> +	struct wave6_vpu_device *vpu;
-> +	int ret;
-> +
-> +	vpu =3D devm_kzalloc(&pdev->dev, sizeof(*vpu), GFP_KERNEL);
-> +	if (!vpu)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(&pdev->dev, vpu);
-> +	vpu->dev =3D &pdev->dev;
-> +	vpu->ops =3D &wave6_vpu_ops;
-> +
-> +	mutex_init(&vpu->lock);
-> +	atomic_set(&vpu->ref_count, 0);
-> +
-> +	ret =3D devm_clk_bulk_get_all(&pdev->dev, &vpu->clks);
-> +	if (ret < 0) {
-> +		dev_warn(&pdev->dev, "unable to get clocks: %d\n", ret);
-> +		ret =3D 0;
-> +	}
-> +	vpu->num_clks =3D ret;
-> +
-> +	pm_runtime_enable(&pdev->dev);
-> +
-> +#if IS_ENABLED(CONFIG_VIDEO_WAVE6_VPU_SUPPORT_FOLLOWER)
-> +	vpu->support_follower =3D true;
-> +#endif
-> +	if (vpu->support_follower) {
-
-This scope seems unreachable if CONFIG_VIDEO_WAVE6_VPU_SUPPORT_FOLLOWER
-is not set, move it inside the ifdef.
-
-> +		ret =3D pm_runtime_resume_and_get(&pdev->dev);
-> +		if (ret) {
-> +			dev_warn(&pdev->dev, "pm resume fail %d\n", ret);
-> +			vpu->support_follower =3D false;
-
-If you couldn't wake the HW now, its unlikely to wake later. Better
-cleanup and fail the probe ?
-
-> +		}
-> +	}
-> +
-> +	of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static void wave6_vpu_remove(struct platform_device *pdev)
-> +{
-> +	struct wave6_vpu_device *vpu =3D dev_get_drvdata(&pdev->dev);
-> +
-> +	if (vpu->support_follower) {
-> +		if (!pm_runtime_suspended(&pdev->dev))
-> +			pm_runtime_put_sync(&pdev->dev);
-> +
-> +		wave6_support_follower(vpu, NULL, WAVE6_VPU_FLAG_SLEEP);
-> +	}
-> +
-> +	pm_runtime_disable(&pdev->dev);
-> +	mutex_destroy(&vpu->lock);
-> +}
-> +
-> +static int __maybe_unused wave6_vpu_runtime_suspend(struct device *dev)
-> +{
-> +	struct wave6_vpu_device *vpu =3D dev_get_drvdata(dev);
-> +
-> +	if (!vpu->num_clks)
-> +		return 0;
-> +
-> +	clk_bulk_disable_unprepare(vpu->num_clks, vpu->clks);
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused wave6_vpu_runtime_resume(struct device *dev)
-> +{
-> +	struct wave6_vpu_device *vpu =3D dev_get_drvdata(dev);
-> +
-> +	if (!vpu->num_clks)
-> +		return 0;
-> +
-> +	return clk_bulk_prepare_enable(vpu->num_clks, vpu->clks);
-> +}
-> +
-> +static int __maybe_unused wave6_vpu_suspend(struct device *dev)
-> +{
-> +	struct wave6_vpu_device *vpu =3D dev_get_drvdata(dev);
-> +
-> +	wave6_support_follower(vpu, NULL, WAVE6_VPU_FLAG_SLEEP);
-
-Not sure I like it, its kind of move the ref-count in the air. I don't
-have a suggestion atm, but perhaps we can do better.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused wave6_vpu_resume(struct device *dev)
-> +{
-> +	struct wave6_vpu_device *vpu =3D dev_get_drvdata(dev);
-> +
-> +	wave6_support_follower(vpu, NULL, WAVE6_VPU_FLAG_WAKEUP);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops wave6_vpu_pm_ops =3D {
-> +	SET_RUNTIME_PM_OPS(wave6_vpu_runtime_suspend,
-> +			=C2=A0=C2=A0 wave6_vpu_runtime_resume, NULL)
-> +	SET_SYSTEM_SLEEP_PM_OPS(wave6_vpu_suspend,
-> +				wave6_vpu_resume)
-> +};
-> +
-> +static const struct of_device_id wave6_vpu_ids[] =3D {
-> +	{ .compatible =3D "nxp,imx95-vpu" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, wave6_vpu_ids);
-> +
-> +static struct platform_driver wave6_vpu_driver =3D {
-> +	.driver =3D {
-> +		.name =3D VPU_PLATFORM_DEVICE_NAME,
-> +		.of_match_table =3D wave6_vpu_ids,
-> +		.pm =3D &wave6_vpu_pm_ops,
-> +	},
-> +	.probe =3D wave6_vpu_probe,
-> +	.remove =3D wave6_vpu_remove,
-> +};
-> +
-> +module_platform_driver(wave6_vpu_driver);
-> +MODULE_DESCRIPTION("chips&media Wave6 VPU driver");
-> +MODULE_LICENSE("Dual BSD/GPL");
-> diff --git a/drivers/media/platform/chips-media/wave6/wave6-vpu.h b/drive=
-rs/media/platform/chips-media/wave6/wave6-vpu.h
-> new file mode 100644
-> index 000000000000..faa5f8af3191
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/wave6-vpu.h
-> @@ -0,0 +1,85 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause) */
-> +/*
-> + * Wave6 series multi-standard codec IP - wave6 driver
-> + *
-> + * Copyright (C) 2025 CHIPS&MEDIA INC
-> + */
-> +
-> +#ifndef __WAVE6_VPU_H__
-> +#define __WAVE6_VPU_H__
-> +
-> +#include <linux/device.h>
-> +
-> +#define WAVE6_VPU_MAXIMUM_ENTITY_CNT	4
-> +
-> +#define call_vop(vpu, op, args...)					\
-> +	((vpu)->ops->op ? (vpu)->ops->op(vpu, ##args) : 0)		\
-> +
-> +#define call_void_vop(vpu, op, args...)					\
-> +	do {								\
-> +		if ((vpu)->ops->op)					\
-> +			(vpu)->ops->op(vpu, ##args);			\
-> +	} while (0)
-> +
-> +struct vpu_buf {
-> +	size_t size;
-> +	dma_addr_t daddr;
-> +	void *vaddr;
-> +	struct device *dev;
-> +};
-> +
-> +struct wave6_vpu_entity {
-> +	struct list_head list;
-> +	struct device *dev;
-> +	struct device *vpu;
-> +	u32 (*read_reg)(struct device *dev, u32 addr);
-> +	void (*write_reg)(struct device *dev, u32 addr, u32 data);
-> +	void (*on_boot)(struct device *dev);
-> +	void (*pause)(struct device *dev, int resume);
-> +	bool active;
-> +	int index;
-> +};
-> +
-> +struct wave6_vpu_ctrl_ops {
-> +	int (*get_ctrl)(struct device *ctrl, struct wave6_vpu_entity *entity);
-> +	void (*put_ctrl)(struct device *ctrl, struct wave6_vpu_entity *entity);
-> +	int (*require_work_buffer)(struct device *ctrl,
-> +				=C2=A0=C2=A0 struct wave6_vpu_entity *entity);
-> +};
-> +
-> +struct wave6_vpu_device;
-> +
-> +struct wave6_vpu_ops {
-> +	int (*get_vpu)(struct wave6_vpu_device *vpu,
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct wave6_vpu_entity *entity);
-> +	void (*put_vpu)(struct wave6_vpu_device *vpu,
-> +			struct wave6_vpu_entity *entity);
-> +	int (*reg_core)(struct wave6_vpu_device *vpu,
-> +			struct wave6_vpu_entity *entity);
-> +	void (*unreg_core)(struct wave6_vpu_device *vpu,
-> +			=C2=A0=C2=A0 struct wave6_vpu_entity *entity);
-> +	int (*reg_ctrl)(struct wave6_vpu_device *vpu, struct device *ctrl,
-> +			const struct wave6_vpu_ctrl_ops *ops);
-> +	void (*unreg_ctrl)(struct wave6_vpu_device *vpu, struct device *ctrl);
-> +	void (*req_work_buffer)(struct wave6_vpu_device *vpu,
-> +				struct wave6_vpu_entity *entity);
-> +	unsigned long (*get_clk_rate)(struct wave6_vpu_device *vpu);
-> +};
-> +
-> +struct wave6_vpu_device {
-> +	struct device *dev;
-> +	const struct wave6_vpu_ops *ops;
-> +	struct clk_bulk_data *clks;
-> +	int num_clks;
-> +	struct device *ctrl;
-> +	const struct wave6_vpu_ctrl_ops *ctrl_ops;
-> +	struct wave6_vpu_entity *entities[WAVE6_VPU_MAXIMUM_ENTITY_CNT];
-> +	struct mutex lock; /* the lock for vpu device */
-> +	atomic_t ref_count;
-> +	bool support_follower;
-> +};
-
-All structs could gain having documentation.
-
-Nicolas
-
-> +
-> +int wave6_alloc_dma(struct device *dev, struct vpu_buf *vb);
-> +void wave6_free_dma(struct vpu_buf *vb);
-> +
-> +#endif /* __WAVE6_VPU_H__ */
+> Kind regards
+> Uffe
+>
+>
+>
+> > ---
+> >  .../power/allwinner,sun50i-h6-prcm-ppu.yaml   | 42 +++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/allwinner,s=
+un50i-h6-prcm-ppu.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/power/allwinner,sun50i-h=
+6-prcm-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun50i-=
+h6-prcm-ppu.yaml
+> > new file mode 100644
+> > index 0000000000000..7eaff9baf7268
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/allwinner,sun50i-h6-prcm-=
+ppu.yaml
+> > @@ -0,0 +1,42 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/allwinner,sun50i-h6-prcm-ppu.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner SoCs PRCM power domain controller
+> > +
+> > +maintainers:
+> > +  - Andre Przywara <andre.przywara@arm.com>
+> > +
+> > +description:
+> > +  The Allwinner Power Reset Clock Management (PRCM) unit contains bits=
+ to
+> > +  control a few power domains.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - allwinner,sun50i-h6-prcm-ppu
+> > +      - allwinner,sun50i-h616-prcm-ppu
+> > +      - allwinner,sun55i-a523-prcm-ppu
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#power-domain-cells':
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#power-domain-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    prcm_ppu: power-controller@7010210 {
+> > +        compatible =3D "allwinner,sun50i-h616-prcm-ppu";
+> > +        reg =3D <0x07010250 0x10>;
+> > +        #power-domain-cells =3D <1>;
+> > +    };
+> > --
+> > 2.46.3
+> >
+>
 
