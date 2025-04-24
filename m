@@ -1,164 +1,257 @@
-Return-Path: <devicetree+bounces-170473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DDA2A9AF10
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:33:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D57A9AF31
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:37:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B1259A2AC2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 13:33:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C7621940EEB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 13:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401FE14A0BC;
-	Thu, 24 Apr 2025 13:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599621624E9;
+	Thu, 24 Apr 2025 13:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cUrjE62E"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="STPhnhl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6FA182BD
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 13:33:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07A51624C5
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 13:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745501618; cv=none; b=f2+903xHXdGY97yS5QAxNTHFs4Qx0B5vPy6EWARmvgMgtL5HTvOPqGmAooMOv1ApJo81jqaybrnvfojkzBUjd+KPSXawcsha8pk1sx7cpGRA2qgWDk01KNp1wUOYKvYfaTRqQvJeGqspKExx2O0K3kjFo4rzK06j6XoxjtkBIbc=
+	t=1745501820; cv=none; b=j7IeI1IgNRQKvTvPNwoQ8L/p1WNOWS57ZoJuqZbH389vBjzHqPtY0toBzM3R+6fxwu4DjA7NaLHGMn8Pk3CGZ5s2BMi03NP/7l+1koAX2v5EGsQ8VqIkVlnjq5iAGQDQtZVvbQ/aS1w1Z9oDsKBqKDb5MKgtJCVuKqMNy3CLFyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745501618; c=relaxed/simple;
-	bh=7cJpCnWASIdVH0KZBiXA9/dE/KQ0W0rpoyCF4+AhKMY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jS+YO/kxWY8L1UowWWGuLg1MV6yP+L2kg0Vgyxn0PpgQIXV3u5KOEUdwLKPAEkkddHEjQTTjc8WMlssGexq0z39ktOwt3yJ+sCXNbqPXlK/+JUKr9Z40a/K9spevUw0uRRNVT/yAqIglKiggFMUOx6Akv3zn0SNHkKm6ZvI8nnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cUrjE62E; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39d94327297so130677f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 06:33:36 -0700 (PDT)
+	s=arc-20240116; t=1745501820; c=relaxed/simple;
+	bh=mJgp6Mchv4iv2by+fPTrmWpvDmstqIj/vVuuTYwKWrc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=SdOUKYmVsJAbV67s0IU6C5iKVuHQkkfelqBvx7hqsFYg3eHduGUstmynugHhlPEPrzvb5krrWUXT3xYM09yr4dDN4Vqw0+Epzb+cYFSdnxGQGWoN1VGXy6b04TUBVFbaJpRyCo7CyV23OT9GOhNVWOnTO6LXB+rblmP7hL9nzOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=STPhnhl3; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39ab85402c9so37079f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 06:36:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745501615; x=1746106415; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UbmLFXgx+9vZ6ijebG1uGxW4ic4rHWH1tDchx00iFW0=;
-        b=cUrjE62EC6oJMXMKYVunisJThThmtT0wVDL09SSE06ZXoMeM81iBNMWFHmx/MlyVzf
-         /WbNRbakm+0i7r9Ezc+L3vr5b4zkT/USIZ4r3QYR0hzlj8LMhTvEEkP1VCtNeGBm8aqN
-         tXS29O02rhByN1zscfwH9IZypzuz1x2Uwlw0K1hVRQGUyHDb7vcpn99YyGiD+5/I6clB
-         Z9Y5h2yAAHQVnEGnAILWdjENCVitdBDkcJb4T/00h97q+AULxCtBktLxxX72v8bTVXZr
-         heanuAZoP1Hh83QlC3U75J1RKzeW5GqFXfjRGGEZ3s9gmsVo32vtFvU5jClbvGNjybCZ
-         coYQ==
+        d=ventanamicro.com; s=google; t=1745501816; x=1746106616; darn=vger.kernel.org;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u72nfMy9zYS5aW9xBcDq6LESieHcry02Dg/8XEt7OSw=;
+        b=STPhnhl3MTSastFv/OTSfSJnvslCvjVFt8jQhYjLvJcAvNTMw2P95yoTCq7JNMH3oB
+         ZiHZePSZTKb8HQPOF2FZj7lJcheeYAM9TZI4ywWPoJDKd+qnWzhYDa3b6brXchZ2gz1A
+         iOds1IBKHaBEtEMgAZHyp7VnSGreB1libYVDSk0VW24DaFN57lhhD4mNPToS/FGOySVe
+         OBCN8JXd+nYE3DmFRwi/qQAIjBWxS9rSeLtljz+7N0EWc5IgDelmDHVKWrdW+BDfo+fC
+         NEF2idC69hqasCOrs8POBpnilmFdiY2QJvnVbXouIESH4LHz2D50/QSNyQ8cimsa/YYW
+         tMmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745501615; x=1746106415;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UbmLFXgx+9vZ6ijebG1uGxW4ic4rHWH1tDchx00iFW0=;
-        b=caVT2mpSCeOTCtteobRpvBJE6byProkICoMN/IiV0amiDsKZOmdtJPilciRUPClAGZ
-         d36gJWOKvehtm5TtrEuo9apaN6m9aKxTlL4iXXpgP7WUkH/0erfhZbn04lohAz2hY91N
-         NzybIPR61GQCCaS4wo/Z1gqKVjb7NMAsjxevYdVkzvLuLYq+4O8iVx4IOPc1QlCFedpK
-         UHAoOOxkXYUPC85vQGSi3gj1CF4Y9UpgOxYH2NRL5ZdYpUqtUFKmYIqGuGOB41b0iESm
-         Z5koSeohpF/eFCuVVzD6bC3o058NeIiH46kfcB/B1Y7aQsaPVWt5P6q0AXVL0Y9676vI
-         gFMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcWjpZYeI02JWKbWM1cjSo3DtjcJmV3R8DBgYqtbCtIZJ/yzsFzjWQfEHvCGiaI7y+/ispCgHzHb1c@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzcPJGRUbmySvK+4G+p0DujLA0RuPcsMrSMlJCS7ho41PfOMxJ
-	pIcgNUBFt/cbrXPJrgMkiEPluJRReNgI4kHeoaTRufIyyqPlo0Vp68V7MnS8+L4=
-X-Gm-Gg: ASbGncukhRUbrC/tiz+VUNY6JCClhhqclP1aWEYWYe1dPoXT74tYtPXUrGuX6rvSxJM
-	BNe8DnDgmpsO3hOBYQV1fFWvQwJrG+GmHrBDVOi/XYo+ghZ/c2FB8akgCvNDDPVECP7MIw1RvPl
-	1pTMPQomEGPbcVx/H1E7bAja39RZy+EpMVln8w26CdrF0zgMypBZEK4vIY2CJGxXJB26wl/cpzN
-	iJVfQ2ptVzJpkeDu3CZ7TLAYBXS4nyhGYVl4gSsZrvfQyL3IvzqznWMFeCIePDZ+qrN/NROsusy
-	7fqrYOMenZZHvIW+lU0BwgtLC2Ob4WA2P1pMUFU1g+IEHLVJbG2hjsNJxxs=
-X-Google-Smtp-Source: AGHT+IHobLnqEdKEX69C7OFDDwylbOq1UzHJd/uP6bHKFs0BfgK/nGV9KzadE0I2ECUqe070spU4JA==
-X-Received: by 2002:adf:ae0a:0:b0:3a0:7119:cefa with SMTP id ffacd0b85a97d-3a07119cf5bmr109427f8f.16.1745501614718;
-        Thu, 24 Apr 2025 06:33:34 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d4c0bfcsm2164111f8f.39.2025.04.24.06.33.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 06:33:34 -0700 (PDT)
-Message-ID: <2c56553d-dbd1-4eda-bc5b-3a54c1152bef@linaro.org>
-Date: Thu, 24 Apr 2025 15:33:32 +0200
+        d=1e100.net; s=20230601; t=1745501816; x=1746106616;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=u72nfMy9zYS5aW9xBcDq6LESieHcry02Dg/8XEt7OSw=;
+        b=JkASH31Q42z53l2oPGM8z2lUJ+aaevpr/Z6WKkOTRCjHIKMGPpGwTbIfRkAgwHsJlG
+         WWnnvQZSEShqKNZ9zrMIHwPo/P0Ys3gdWQ6XmatFCL5aGJuPm8d7biAVvAH6qfIKPLJH
+         rO54wdzvWtLZkVQm9aWCOXA6h9/8JJm7s9Hfya67Vpe3symQ7x8wPLD+99Lw+QCUmvyd
+         QiqRV9eslfOIZQqUPqlTLtLFhJITHen9KjCAkh69eed5drY55U652NbShK3BPf0ncMbw
+         y231MG22h/AnPYzs6VYoEQu6L1pLsYxq3AG/hj5UHXb6HX/qTy/OyjHDzS4qFD+J5VCl
+         0b4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWekATS5KlDoshsf4pBQY+N/sE0e9lUOa2DWyfnAoww/YtovOSjL7yGiIn0VlDKVv7qRiMFqUNCArUn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOj15ZoTEIZ7JukjnrSAk1jBqQl8Auj89S0jTi6Ys82QOjS/Ak
+	WLFLnyGoNXqy4eWn7nQFocu3ClAEPfPlCkc10n1GATq3cmOvj0SBpkew4M2/8Xs=
+X-Gm-Gg: ASbGncsOZ9poxVeGFnlFvsW66ELeiAFzGZEvc15EcyxE6edqMuinbvAYnHaeTthyZTT
+	6mVLmsAhDEVkQCDmm0kqRUMmcoarm+0Ur6VfvEPD9Fli2KhW4niY+m0o1S0p6eug+UbVCqB6cdv
+	uAM+eco9mw053NpHgCNQgh4K5HXfRvE5/oyhcEHiaq4dUD9jrGuB6E/NM3GGjcbgNsjQJZVUORA
+	33Acxtvhoblbmp5YjHm2FgqNk12btR/xg0O6+vO+PKb2MjRLifuFslwZ4xWmz75hcvcD8xme0Db
+	OuRvVjjWBG59Y45X082KzUZaU8+7y6XFtaPPmcGmNtPVwlAK
+X-Google-Smtp-Source: AGHT+IEvTiSK1Lb+RPBdQ/DuDmeOaJEszTrN5CFCiZtbJdEyNkpwKicv/xW9sGpiPTRfU1AmU+RxSg==
+X-Received: by 2002:a05:6000:2483:b0:3a0:65ab:89d5 with SMTP id ffacd0b85a97d-3a06cfaf02fmr812129f8f.15.1745501815962;
+        Thu, 24 Apr 2025 06:36:55 -0700 (PDT)
+Received: from localhost ([2a02:8308:a00c:e200:b30c:ee4d:9e10:6a46])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d4c30d7sm2135597f8f.44.2025.04.24.06.36.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 06:36:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Add NXP System Timer Module
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, tglx@linutronix.de
-Cc: linux-kernel@vger.kernel.org, thomas.fossati@linaro.org,
- Larisa.Grigore@nxp.com, ghennadi.procopciuc@nxp.com, S32@nxp.com,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-stm32@st-md-mailman.stormreply.com>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
-References: <20250417151623.121109-1-daniel.lezcano@linaro.org>
- <20250417151623.121109-2-daniel.lezcano@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250417151623.121109-2-daniel.lezcano@linaro.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 24 Apr 2025 15:36:54 +0200
+Message-Id: <D9EWR3RQK0FD.3GF55KNS53YSR@ventanamicro.com>
+Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack
+ prctls
+Cc: "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar"
+ <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>, "Dave Hansen"
+ <dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
+ <hpa@zytor.com>, "Andrew Morton" <akpm@linux-foundation.org>, "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>, "Vlastimil Babka" <vbabka@suse.cz>,
+ "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Conor Dooley" <conor@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Arnd Bergmann" <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>,
+ "Peter Zijlstra" <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>,
+ "Eric Biederman" <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>,
+ "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann
+ Horn" <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+ <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+ <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
+ <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
+ <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
+ <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
+ <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "linux-riscv"
+ <linux-riscv-bounces@lists.infradead.org>
+To: "Deepak Gupta" <debug@rivosinc.com>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
+ <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
+ <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
+In-Reply-To: <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
 
-On 17/04/2025 17:16, Daniel Lezcano wrote:
-> Add the System Timer Module description found on the NXP s32 platform
-> and the compatible for the s32g2 variant.
-> 
-> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-> Cc: Thomas Fossati <thomas.fossati@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+2025-04-23T21:44:09-07:00, Deepak Gupta <debug@rivosinc.com>:
+> On Thu, Apr 10, 2025 at 11:45:58AM +0200, Radim Kr=C4=8Dm=C3=A1=C5=99 wro=
+te:
+>>2025-03-14T14:39:31-07:00, Deepak Gupta <debug@rivosinc.com>:
+>>> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/=
+usercfi.h
+>>> @@ -14,7 +15,8 @@ struct kernel_clone_args;
+>>>  struct cfi_status {
+>>>  	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
+>>> -	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
+>>> +	unsigned long ubcfi_locked : 1;
+>>> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
+>>
+>>The rsvd field shouldn't be necessary as the container for the bitfield
+>>is 'unsigned long' sized.
+>>
+>>Why don't we use bools here, though?
+>>It might produce a better binary and we're not hurting for struct size.
+>
+> If you remember one of the previous patch discussion, this goes into
+> `thread_info` Don't want to bloat it. Even if we end shoving into task_st=
+ruct,
+> don't want to bloat that either. I can just convert it into bitmask if
+> bitfields are an eyesore here.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  "unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);"
 
-Best regards,
-Krzysztof
+is an eyesore that defines exactly the same as the two lines alone
+
+  unsigned long ubcfi_en : 1;
+  unsigned long ubcfi_locked : 1;
+
+That one should be removed.
+
+If we have only 4 bits in 4/8 bytes, then bitfields do generate worse
+code than 4 bools and a 0/4 byte hole.  The struct size stays the same.
+
+I don't care much about the switch to bools, though, because this code
+is not called often.
+
+>>> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
+>>> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long =
+status)
+>>> +{
+>>> +	/* Request is to enable shadow stack and shadow stack is not enabled =
+already */
+>>> +	if (enable_shstk && !is_shstk_enabled(t)) {
+>>> +		/* shadow stack was allocated and enable request again
+>>> +		 * no need to support such usecase and return EINVAL.
+>>> +		 */
+>>> +		if (is_shstk_allocated(t))
+>>> +			return -EINVAL;
+>>> +
+>>> +		size =3D calc_shstk_size(0);
+>>> +		addr =3D allocate_shadow_stack(0, size, 0, false);
+>>
+>>Why don't we use the userspace-allocated stack?
+>>
+>>I'm completely missing the design idea here...  Userspace has absolute
+>>over the shadow stack pointer CSR, so we don't need to do much in Linux:
+>>
+>>1. interface to set up page tables with -W- PTE and
+>>2. interface to control senvcfg.SSE.
+>>
+>>Userspace can do the rest.
+>
+> Design is like following:
+>
+> When a user task wants to enable shadow stack for itself, it has to issue
+> a syscall to kernel (like this prctl). Now it can be done independently b=
+y
+> user task by first issuing `map_shadow_stack`, then asking kernel to ligh=
+t
+> up envcfg bit and eventually when return to usermode happens, it can writ=
+e
+> to CSR. It is no different from doing all of the above together in single
+> `prctl` call. They are equivalent in that nature.
+>
+> Background is that x86 followed this because x86 had workloads/binaries/
+> functions with (deep)recursive functions and thus by default were forced
+> to always allocate shadow stack to be of the same size as data stack. To
+> reduce burden on userspace for determining and then allocating same size
+> (size of data stack) shadow stack, prctl would do the job of calculating
+> default shadow stack size (and reduce programming error in usermode). arm=
+64
+> followed the suite. I don't want to find out what's the compatiblity issu=
+es
+> we will see and thus just following the suite (given that both approaches
+> are equivalent). Take a look at static `calc_shstk_size(unsigned long siz=
+e)`.
+>
+> Coming back to your question of why not allowing userspace to manage its
+> own shadow stack. Answer is that it can manage its own shadow stack. If i=
+t
+> does, it just have to be aware of size its allocating for shadow stack.
+
+It's just that userspace cannot prevent allocation of the default stack
+when enabling it, which is the weird part to me.
+The allocate and enable syscalls could have been nicely composable.
+
+> There is already a patch series going on to manage this using clone3.
+> https://lore.kernel.org/all/20250408-clone3-shadow-stack-v15-4-3fa245c6e3=
+be@kernel.org/
+
+A new ioctl does seem to solve most of the practical issues, thanks.
+
+> I fully expect green thread implementations in rust/go or swapcontext
+> based thread management doing this on their own.
+>
+> Current design is to ensure existing apps dont have to change a lot in
+> userspace and by default kernel gives compatibility. Anyone else wanting
+> to optimize the usage of shadow stack can do so with current design.
+
+Right, changing rlimit_stack around shadow stack allocation is not the
+most elegant way, but it does work.
+
+>>> +int arch_lock_shadow_stack_status(struct task_struct *task,
+>>> +				  unsigned long arg)
+>>> +{
+>>> +	/* If shtstk not supported or not enabled on task, nothing to lock he=
+re */
+>>> +	if (!cpu_supports_shadow_stack() ||
+>>> +	    !is_shstk_enabled(task) || arg !=3D 0)
+>>> +		return -EINVAL;
+>>
+>>The task might want to prevent shadow stack from being enabled?
+>
+> But Why would it want to do that? Task can simply not issue the prctl. Th=
+ere
+> are glibc tunables as well using which it can be disabled.
+
+The task might do it as some last resort to prevent a buggy code from
+enabling shadow stacks that would just crash.  Or whatever complicated
+reason userspace can think of.
+
+It's more the other way around.  I wonder why we're removing this option
+when we don't really care what userspace does to itself.
+I think it's complicating the kernel without an obvious gain.
 
