@@ -1,164 +1,146 @@
-Return-Path: <devicetree+bounces-170534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44508A9B39B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:14:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1961CA9B3AE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:18:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 997B117227B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:14:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6261E166011
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F529280CDC;
-	Thu, 24 Apr 2025 16:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F310727CB2C;
+	Thu, 24 Apr 2025 16:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q+N+zlIN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MV+a8i/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF0527FD77
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3225BAF0;
+	Thu, 24 Apr 2025 16:18:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745511234; cv=none; b=MP1mB7g/+4Fi5Cn9krNVbryZpnJoTegT0sqqZcsWM1hc6rJkd5p1A9hYP5UrNSYeqcCDKPZMXOQInSKpHTsetpyqi+XUTqjxhpBMES53gvT8XBEZb2J1FNf+7OFAoLb74PL6D8mbU0LGcOuLx3ZuUnfD+d+XqmXhrALPI7lvgfg=
+	t=1745511524; cv=none; b=pOMkFYzY8Pojr1QdUY9zcSRf7AhotCkn8Bi8hg2rSqxvTT75dgX4Rj6qsM7NWDfalVeqk7IZGoRDC8qiCdcQk/D4ve1O8i0xhyeQ6mlHx+XM9lZvcuEX3jfbTVmDOKRZxOQlhDJg/pE6+4ga+ZZ+J1OFRMSHb3MKdqJT8HcmiOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745511234; c=relaxed/simple;
-	bh=Dw+SKeV8qbpQrNo+aH6L+cZKLIRLMEZ5C31rjsazirw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=POg2AHP38146C8V5V+vuHmBjEVohI7Ax77a56SXNS1TZr+COlnwocYDirqO6+FZCGkoYOQ/8z/pBrQrRMAweJPnpGkbqnr+axTAljC3JmQsTIM/oeMw1VICbtkcL9lZ4GRgx0TBp+zZdMFn/TeZ+58AktVw19VkIXMGu7XhtCjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q+N+zlIN; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39ee651e419so766715f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:13:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745511230; x=1746116030; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xoqGBxqToQFbUCVFUs3Rhe0Fq/kgYP3j2kJdzJbbkmM=;
-        b=q+N+zlINVknwYD7uAifplmEmpWWH0/d2c9tGpU3g3gr4T1Fm6EACpU5qED+CmUfQ3r
-         qsuHeXXjppOXvh1VVxr0Y45m8jz+vOcaJhrZgARrb/gX2/OmishnKSTAKK6PbTQqqjku
-         rFNzbfZQeOIDV2qhpjnp8E5ft55ViP+TgBpISl7ZBCNdzLyMIJ2JS4Toj8LLBqhSwWF6
-         OXRLuEldmKoXVN1RSde1VV98EmlRvxIIP/hytIIqzrwKqurVHOsKzHd7d4aiA0vNqPM8
-         IovEnTCyxIASWbpfGSHiiQocWYKrcVt+9CPWVQpEVln0HXnqKeQD5oOv5UVyjSNl6XDI
-         Rr/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745511230; x=1746116030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xoqGBxqToQFbUCVFUs3Rhe0Fq/kgYP3j2kJdzJbbkmM=;
-        b=RpTMaEHN7cTaqjINgKV9bMNFNhiaeIGk2pgHNEusmXBXdTKvlVAzkdvf8Gi9se22R9
-         JbNaDqsB4ofiZTe9hpcQdSJ4SDMP9bEa/iAAeb5eBbocbJSGX3zihuJinHyPL9a2Jl3Z
-         8NzwKHWZZAOh3jzwx7XUxjcbHsxFXlcevmBkjJLhOwt3TGdJ9Fq/6ogaha/OkeCSn+Oq
-         3+fIGzpzrNwXw8tChFdcuuwlvNCo8GxXW50Pp+15SAYd0irwRsgvrsGGAyZAqUWYw4Gf
-         67RGx22aq7zDabTmhX+OdxZSIsz4/1OVDbJUurcYcx1FFwK/OYKyjoY1e94dzeTZa2pb
-         AmsA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRV69u8LuhStdOqDhgUq8o3cafvGi5qgtWsUTtFTww+kdlPkWdNOxP90HgQAA+ULNmK6JX8uqx5dNW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNZ1YU9werqZ/eCdMyCdvamhHsdDlhLCHpot/Xw72XezXArFDu
-	FaaE77HxIeGyCvWSczavUIE8DlS/IPzz7oVgMQjz63k4btxyhiV+q4c0LG4y4R0=
-X-Gm-Gg: ASbGncspUfzwIe/hI4yqDikm4tn8L0AOU9mZNenBZSakOx4XW+zFIh25mRB4MlD+OkG
-	FQQ1d0ub2ak+TAxPKazBmbTFI0DcaDkpZ12d7yx7/2XK9wHdxRl4rqvH0vbVVuPhZRdwoCpgloG
-	3KgPUQ+/YrQh+1OTpZxATmynv+B/+bA6wsSfFjE70iKrklSDURFqZqbTzCK3AKgFMAlNW6u+J7s
-	1HZDvQxjIYbK8THYk2uBRDczWXm0YuYTeit4XudkXZnN9iM69izxlROmkf/TXLA8KC6sc3ZyvCx
-	3W5ugszG1n/LpEhD+Hghv7G523Ft2ufcW9R62wfVgqEtfQa1aF2d3BuBoN1LrZQJR/jzWk4SywA
-	S/0gjZQ==
-X-Google-Smtp-Source: AGHT+IHjGEtl8c4nNfdv63Bu0fnAs76LEcgQP5CuedFuXi7DkoDIBaKDKjRS1tXSKCPZK7Jmlww6rg==
-X-Received: by 2002:a5d:6dac:0:b0:394:d0c3:da5e with SMTP id ffacd0b85a97d-3a06cfa827cmr2963860f8f.47.1745511230050;
-        Thu, 24 Apr 2025 09:13:50 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a06d54c4c5sm2512602f8f.88.2025.04.24.09.13.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 09:13:49 -0700 (PDT)
-Message-ID: <d97194a7-2b7d-4a76-998b-92da495e8bd2@linaro.org>
-Date: Thu, 24 Apr 2025 17:13:48 +0100
+	s=arc-20240116; t=1745511524; c=relaxed/simple;
+	bh=3+y5pOMRspgrvZDe7B/mcBxCWuXrILPVQqYVpLztFhQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EOB4CdmeITYwaEc2UGoraQ5myoY/J0O2NgMCw36yMUTZOxsUQjmUwNsWa8x4bCAx0aMXLawe0EuGYg3OVpZh9btlD+A8Bhy639tW+TiA4623oT0P3Yh0TwHW+H/vuEkGDDgcNwD7RIOU2Z30DuSJ9RgEqn8WvN6nhwyk/kugDbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MV+a8i/e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8455EC4CEE3;
+	Thu, 24 Apr 2025 16:18:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745511524;
+	bh=3+y5pOMRspgrvZDe7B/mcBxCWuXrILPVQqYVpLztFhQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MV+a8i/egRGEW2AjsD3opoof4TGi2B+lMa7DeZkFROReaw/OKbxUaIQOul5tFKyzq
+	 4pJp1cpASF3FMZ3pindZukEnK/s6XMAsuYZ2w0gGBkql72npyO0rHepXSuZCf7JyGq
+	 OeKsBJ3GELq0fbI9YGjn9rfj70cpczFgAi+dR1s0pCOgruZDOGBgdXKlRbPzJpPgys
+	 lIVzUX/kFMdlFLqX3GyPuYZxWXyvRRgE2TX7IAPEpOP8VYLfd9EXzktutLI32XVGdd
+	 1DyXMXd0f1y0K3l6vL41aLBDAYzYlFwWmd9TRrfdDU74a73jNfKd9h8+GU2D+MD10n
+	 5xioMDw6/u6Lw==
+Date: Thu, 24 Apr 2025 17:18:38 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v2 06/17] mfd: adp5585: add support for adp5589
+Message-ID: <20250424161838.GM8734@google.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+ <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: Add qcom,x1e80100-camss
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org>
- <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-2-edcb2cfc3122@linaro.org>
- <3ec3fd62-bf21-47e7-873c-ce151589d743@linaro.org>
- <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
- <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
- <36feffed-4558-4e59-97db-2f0e916dbfc7@linaro.org>
- <6a4ec36c-c003-4ce8-9433-8c12ed3188ee@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <6a4ec36c-c003-4ce8-9433-8c12ed3188ee@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
 
-On 24/04/2025 16:54, Krzysztof Kozlowski wrote:
-> On 24/04/2025 12:17, Bryan O'Donoghue wrote:
->> On 24/04/2025 11:07, Krzysztof Kozlowski wrote:
->>> On 24/04/2025 11:34, Bryan O'Donoghue wrote:
->>>> On 24/04/2025 07:40, Krzysztof Kozlowski wrote:
->>>>>> +  vdd-csiphy-0p8-supply:
->>>>> Same comment as other series on the lists - this is wrong name. There
->>>>> are no pins named like this and all existing bindings use different name.
->>>>
->>>> The existing bindings are unfortunately not granular enough.
->>>>
->>>> I'll post s series to capture pin-names per the SoC pinout shortly.
->>> How are the pins/supplies actually called?
->>>
->>> Best regards,
->>> Krzysztof
->>
->> I don't think strictly algning to pin-names is what we want.
->>
->> Here are the input pins
->>
->> VDD_A_CSI_0_1_1P2
->> VDD_A_CSI_2_4_1P2
->> VDD_A_CSI_0_1_0P9
->> VDD_A_CSI_2_4_0P9
->>
->> I think the right way to represent this
->>
->> yaml:
->> csiphy0-1p2-supply
->> csiphy1-1p2-supply
+On Tue, 15 Apr 2025, Nuno Sá via B4 Relay wrote:
+
+> From: Nuno Sá <nuno.sa@analog.com>
 > 
-> But there is no separate supply for csiphy0 and csiphy1. Such split
-> feels fine if you have separate CSI phy device nodes, which now I wonder
-> - where are they?
+> The ADP5589 is a 19 I/O port expander with built-in keypad matrix decoder,
+> programmable logic, reset generator, and PWM generator.
 > 
-> Best regards,
-> Krzysztof
+> This patch adds the foundation to add support for the adp5589 gpio and pwm
+> drivers. Most importantly, we need to differentiate between some
+> registers addresses. It also hints to future keymap support.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c       | 223 +++++++++++++++++++++++++++++++++++++++++---
+>  include/linux/mfd/adp5585.h |  57 ++++++++++-
+>  2 files changed, 268 insertions(+), 12 deletions(-)
 
-The main hardware argument for it is probably these PHYs do live inside 
-of the TITAN_TOP_GDSC power-domain, which is the same collapsible 
-power-domain that all of the other CAMSS components live inside of.
+[...]
 
-As I recall we had a four way - albeit long discussion on this in 
-Dublin, you, me, Vlad and Neil and my memory was we would implement 
-multiple rails in the existing CAMSS PHY structure and then look at how 
-to model the PHYs differently in DTS.
+> + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 8/R7", numbered 0 to 7 by the
+> + * driver, bank 1 covers pins "GPIO 9/C0" to "GPIO 16/C7", numbered 8 to
+> + * 15 and bank 3 covers pins "GPIO 17/C8" to "GPIO 19/C10", numbered 16 to 18.
+> + */
+> +#define ADP5589_BANK(n)			((n) >> 3)
+> +#define ADP5589_BIT(n)			BIT((n) & 0x7)
+> +
+> +struct adp5585_regs {
+> +	unsigned int debounce_dis_a;
+> +	unsigned int rpull_cfg_a;
+> +	unsigned int gpo_data_a;
+> +	unsigned int gpo_out_a;
+> +	unsigned int gpio_dir_a;
+> +	unsigned int gpi_stat_a;
+> +	unsigned int pwm_cfg;
+> +	unsigned int pwm_offt_low;
+> +	unsigned int pwm_ont_low;
+> +	unsigned int gen_cfg;
+> +	unsigned int ext_cfg;
+> +};
+> +
+> +struct adp5585_info {
+> +	const struct mfd_cell *adp5585_devs;
 
-The Test Pattern Generators - TPGs would then also fit into this new 
-model for the PHYs.
+Okay, we are never doing this.  Either use OF for platform registration
+or use MFD (or ACPI or PCI), but please do not pass MFD data through OF.
 
----
-bod
+> +	const struct regmap_config *regmap_config;
+> +	const struct adp5585_regs *regs;
+> +	unsigned int n_devs;
+> +	unsigned int id;
+
+What ID is this?  We already have platform IDs and MFD cell IDs.
+
+> +	u8 max_rows;
+> +	u8 max_cols;
+> +};
+> +
+>  struct regmap;
+>  
+>  struct adp5585_dev {
+>  	struct regmap *regmap;
+> +	const struct adp5585_info *info;
+>  };
+>  
+>  #endif
+> 
+> -- 
+> 2.49.0
+> 
+> 
+
+-- 
+Lee Jones [李琼斯]
 
