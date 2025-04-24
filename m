@@ -1,187 +1,105 @@
-Return-Path: <devicetree+bounces-170547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C74A9B455
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:42:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22383A9B462
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6287C4A0ECF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:42:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1AB4A1C6A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE7728A1D0;
-	Thu, 24 Apr 2025 16:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543E028A41B;
+	Thu, 24 Apr 2025 16:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="vt7T0uzd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FnWs9dTi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7BB289345
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29D8289364;
+	Thu, 24 Apr 2025 16:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745512919; cv=none; b=pyaVBOBRz5gb40wussHewvMtDcUrT/wi9D/wabMp2uc2ARFHMjT8I7A8q+tXObVoEX0D0d85JZXPbC7+QU07Mk8KUar/nvxCefZAs8F1QQLtyPYduy0lWrnNOkXK3BxKC1MsqI2TDGZ06ukixkzKlSV/b0zP/KH7uf4ZYkXN950=
+	t=1745513024; cv=none; b=aEFTeht/4YikhZ9k+7eU16gvf4gkkYEnWWG614QmfkC5FqMIg0xSLt4BWDwlPtf6hSfzrvGRtPWCj6h5kc5c+GZ2+hbk7nZJmUSfiuCDnwvAZN6NJTKz68MWK6SxvhesRqZyk81HwagOdmNvCwaVhFZk2MuXcM0QeingVpURqmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745512919; c=relaxed/simple;
-	bh=vye0Q+xd1G2Olnf5Qkr8nib/GWDRlQm+UGeZYjZUyDA=;
+	s=arc-20240116; t=1745513024; c=relaxed/simple;
+	bh=1RBK2Q9ahQnBbtJntTBQY0ipwwDqIjPeeAtr2SSUqLE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WbPSmNtEh04Mrnc7Az/o7QMt5cPAfob1PYyz9pwE9uo3iXY2d3C6scVYF46b242FnmBzDwYgJaoVZ9kW/NFBtwvHBBYj273sEdJG7h4u+onpsRJl4dAgxwXxB72tKeoABUy0jGBc0gwAX6+EK/Navqve3I/A5Sf4AFrhrLLiowg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=vt7T0uzd; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-73bf5aa95e7so1221092b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:41:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745512916; x=1746117716; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=k6m4QSCkOjvBeG8/Kperh6wZuRGbtha7PIChY6FuIlM=;
-        b=vt7T0uzd3xCze3Zzyzjt6oEBKu5b2AaMF+bEL0x1WfJmo4ncPEEJHxQG9zfcis/Kwx
-         xahjvt8L0fz/GsUWvTYMadKC40Y3zgw5Vj/Bg/B+E9IfGRpYntx5JPA6qXHyXJywlCbw
-         biLB7vMtyYOyIxwfNlsW2xGWIxIU7Mq8SCI1F/1SnDyWqTzKzLDLl3U6wnksQ8jZfj77
-         3YYI4PhAenG/mAaDMYSsi4PkpMu/k1Hi7XbYXadK3K3CXlDrvFtQjLVaFQ/APbqalqcZ
-         uGCMIyBp0jytuhdm4FN+sbkfo2YPgMosChYFZjXIJ7F2OiHQNGi0YRlu1TUMK5rxwd2g
-         fGkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745512916; x=1746117716;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k6m4QSCkOjvBeG8/Kperh6wZuRGbtha7PIChY6FuIlM=;
-        b=ppGT50LN7b/LGMNqjwbHCiOpi7y1Fh7RiIFi8inj021oRR66MX0nNVQEwtkhl1wwxs
-         zyOcwQrf4M2sr+f/ZgAU4rBCEcvk0SCFiNhIf6kNiFlxYhEPE+LUPf5AlLbXI9iIkJEd
-         Y9hxVQafVgxfziqZebX4FnM+MViKuwBXWxMf12c1QJM9QXCQyLogwIw/haQSMqoRvlWP
-         a9QYo7H1OhDMTqWp69haknOxevYKliBOsAG/NDndUWoji+MZ7c1eMqSsyv4BT/CuB6jr
-         UX5CR6YWHAI3kvdhOLy+Evk0ODAQGBXwdee+Eme2J3RTtt2yNUw51pSETOfhjZP9TfAA
-         /ZRw==
-X-Forwarded-Encrypted: i=1; AJvYcCXG1huh9MXkdvcA3XeyMIaZorha6x1rPVaC+M9HpeSW2S12P16wLUbhv9freF6TwFKYtvVMwZV8s40w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+xKGa+CHew3aqHXAA3Nf453WKnNLZrmzQ9qflMHFwebk0RjlT
-	IMTwF35/aaTaLYUijYUQFApyANW4/hpgNb6gfgx6Tk+ZG5UUbDJKjtOi9Yy4Sgo=
-X-Gm-Gg: ASbGncuAdTKIveP646+UFxZEZbvh2u9sFhViLz2LdmTD85wYyv6lHWAXHKpEUDkp1ni
-	5ic+F5UNeFIPoEVwak4J3sVMecU1lcj5qGiL02ys67P/m+ddN+PtnuhCXy/wy4Qr902s1ZpG1I8
-	xsn/+lT0IFS1sMWfdPW5Kalj02Gx+f30USQGZ1jKoqryplLTXtzR8jenYyWMpUJTmURxPe1hjpd
-	UlX4DqVodYlt/2yI3+k5Dht5zOqHjmeKdwQ8gpQqbIJZzBEwTgdEM8j+V4PM6DAzLjpNQ5x3LQK
-	ViK2A2ran9tn4thhzJmvz5kG6If83kWgo5Bpk/QFkuGC+LSeaek=
-X-Google-Smtp-Source: AGHT+IGxyp+KENwVEkLGrt7S8pn2vlKD8bBJVWEd1Iv8ULUIPojD/9R2kqNR1Mge6+txkrxVbJHCXA==
-X-Received: by 2002:a05:6a21:6d8e:b0:1f5:8072:d7f3 with SMTP id adf61e73a8af0-20444fc0e44mr4794400637.30.1745512916109;
-        Thu, 24 Apr 2025 09:41:56 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15f76f48b2sm1462741a12.8.2025.04.24.09.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 09:41:55 -0700 (PDT)
-Date: Thu, 24 Apr 2025 09:41:51 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Miquel =?iso-8859-1?Q?Sabat=E9_Sol=E0?= <mikisabate@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=uw/gM2gBAkw6ezks544bA7Gg1IXPa+cTkFRjH1ruN++sqkfje/9FsgELqo5dDH5Ngzk5C+5T5dovggtozLmekN07ICgZNVl8PabZg3BNHdXGosjmDG7TvXIU/mbz0lVZW//VCgrsAdPgCU/UPDeMppOcM9DbF76nCldFUUWhO9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FnWs9dTi; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=W+/9EqQuci/NV2Gog2+DdNgVaNDmWVcoA608wVF69qQ=; b=FnWs9dTiWm5SFw+TgxoQ2BJgNC
+	mJVB5L/5aMJXm38UOdGlDkOvk6h0G9arIm3fTnkBqMVibTCFeQuZR+bephsOecZb4zpvrZE0fwbbr
+	89a7fUIRkbU2MCy9jRFZlZpJvmSZNZ0GYxFqGiK9x0tcSF2ypr+KdhERg9igTdiqOIbU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u7zfg-00AUV9-Vk; Thu, 24 Apr 2025 18:43:32 +0200
+Date: Thu, 24 Apr 2025 18:43:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
-	Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v13 20/28] riscv/hwprobe: zicfilp / zicfiss enumeration
- in hwprobe
-Message-ID: <aAppz5o2i4SQKU2z@debug.ba.rivosinc.com>
-References: <20250424-v5_user_cfi_series-v13-0-971437de586a@rivosinc.com>
- <20250424-v5_user_cfi_series-v13-20-971437de586a@rivosinc.com>
- <680a0cd4.050a0220.296475.3867@mx.google.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH net-next v4 5/8] mfd: zl3073x: Add functions to work with
+ register mailboxes
+Message-ID: <5094e051-5504-48a5-b411-ed1a0d949eeb@lunn.ch>
+References: <20250424154722.534284-1-ivecera@redhat.com>
+ <20250424154722.534284-6-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <680a0cd4.050a0220.296475.3867@mx.google.com>
+In-Reply-To: <20250424154722.534284-6-ivecera@redhat.com>
 
-On Thu, Apr 24, 2025 at 12:05:04PM +0200, Miquel Sabaté Solà wrote:
->On dj., d’abr. 24 2025, Deepak Gupta wrote:
->
->Hello,
->
->> Adding enumeration of zicfilp and zicfiss extensions in hwprobe syscall.
->>
->> Reviewed-by: Zong Li <zong.li@sifive.com>
->> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->> ---
->>  arch/riscv/include/uapi/asm/hwprobe.h | 2 ++
->>  arch/riscv/kernel/sys_hwprobe.c       | 2 ++
->>  2 files changed, 4 insertions(+)
->>
->> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
->> index c3c1cc951cb9..c1b537b50158 100644
->> --- a/arch/riscv/include/uapi/asm/hwprobe.h
->> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
->> @@ -73,6 +73,8 @@ struct riscv_hwprobe {
->>  #define		RISCV_HWPROBE_EXT_ZCMOP		(1ULL << 47)
->>  #define		RISCV_HWPROBE_EXT_ZAWRS		(1ULL << 48)
->>  #define		RISCV_HWPROBE_EXT_SUPM		(1ULL << 49)
->> +#define		RISCV_HWPROBE_EXT_ZICFILP	(1ULL << 50)
->> +#define		RISCV_HWPROBE_EXT_ZICFISS	(1ULL << 51)
->
->Notice that, as it stands in Linux v6.15-rc, this will conflict with the
->values for Zicntr and Zihpm. See 4458b8f68dc7 ("riscv: hwprobe: export
->Zicntr and Zihpm extensions"). I'd say that you should update these
->values.
+> +static int
+> +zl3073x_write_reg(struct zl3073x_dev *zldev, unsigned int reg, const void *val)
+> +{
+> +	unsigned int len;
+> +	u8 buf[6];
+> +	int rc;
+> +
+> +	/* Offset of the last item in the indexed register or offset of
+> +	 * the non-indexed register itself.
+> +	 */
+> +	if (ZL_REG_OFFSET(reg) > ZL_REG_MAX_OFFSET(reg)) {
+> +		dev_err(zldev->dev, "Index of out range for reg 0x%04lx\n",
+> +			ZL_REG_ADDR(reg));
+> +		return -EINVAL;
+> +	}
+> +
+> +	len = ZL_REG_SIZE(reg);
 
-Got it. Noted for next version.
+I suggested you add helpers for zl3073x_write_reg_u8(),
+zl3073x_write_reg_u16(), zl3073x_write_reg_32(), and
+zl3073x_write_reg_48(). The compiler will then do type checking for
+val, ensure what you pass is actually big enough.
 
->
->>  #define RISCV_HWPROBE_KEY_CPUPERF_0	5
->>  #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
->>  #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
->> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
->> index bcd3b816306c..d802ff707913 100644
->> --- a/arch/riscv/kernel/sys_hwprobe.c
->> +++ b/arch/riscv/kernel/sys_hwprobe.c
->> @@ -108,6 +108,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
->>  		EXT_KEY(ZCB);
->>  		EXT_KEY(ZCMOP);
->>  		EXT_KEY(ZICBOZ);
->> +		EXT_KEY(ZICFILP);
->> +		EXT_KEY(ZICFISS);
->>  		EXT_KEY(ZICOND);
->>  		EXT_KEY(ZIHINTNTL);
->>  		EXT_KEY(ZIHINTPAUSE);
->
->Greetings,
->Miquel
+Here you have a void *val. You have no idea how big a value that
+pointer points to, and the compiler is not helping you.
 
+I suggest you add the individual helpers. If you decided to keep the
+register meta data, you can validate the correct helper has been
+called.
 
+	Andrew
 
