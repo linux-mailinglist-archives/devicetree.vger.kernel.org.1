@@ -1,147 +1,146 @@
-Return-Path: <devicetree+bounces-170257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EF8A9A4EA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:53:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41DB9A9A504
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:56:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA010442D7A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CDE03A85DC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1E41FFC50;
-	Thu, 24 Apr 2025 07:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E209F1F4169;
+	Thu, 24 Apr 2025 07:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BgZC3Uiu"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="i3YNG1ie";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pERHcMbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFEC1F5830
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 07:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A5F1DCB09;
+	Thu, 24 Apr 2025 07:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745481200; cv=none; b=QJYV79/RXfo15MP3HxbbOaTkqW5afaQygihXRl7Wzay/Z6BrnM+vcp+Zm4wl/PcAdECsEd5eb4YeSInsXZh8YKjphn9q5lOIbNBtXjqEjKn1/FmkonZvjQ38SFhEFBebWDJ6YxdZptPJjdWVp4qZd66n0D1WGIqzuiij5p5J+K4=
+	t=1745481346; cv=none; b=GTAHWPwUZv6yYS7wqI0PGcrxiW4yw8IzSm1b2qAPN+VQtW47GjnHQMCCQfZkPm9Y39Bk3xjhhBzVMh1gGJBAp+vip+QXXf+ow3gDjev15njbtzPMrZq75bTLbYMc5aEfMLBsP5v8prfIRD5laJFr3OgSz3CIj3dzDO9XqJrM43s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745481200; c=relaxed/simple;
-	bh=/XauFfBfDLiuFsXcUDVKCdVXifDbO2H0iihUA0ON0xM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RhZijD/j0G5nQwPVItKthteR0c0n1J/EH9vPCt/IH6PmRMmcw75eN4WjrfWB+2p93ap5NEwsRSSf74AhMUpEat+j4EOKYxs1nZwLeg7izwtjxhoW5WNYs4X1NIGMuKJ9Uavku/uiXUPJrxp0UrKyD5In9npqJ87ZnZpt/zfnz84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BgZC3Uiu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0FekP008544
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 07:53:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	x1Sl6rUgs8Bwln/XzJSCqXN1ov/Qw4BQ0VOs4DMYdN4=; b=BgZC3Uiu+epvYpOq
-	0u6XTNrzcGKrwwMnJUZvZ2eO4sCDpupe3kGn1Cj37W1Xd3sw+ovSPgxek7gY0jbj
-	ee3InnyjDpA343vSH4ke3B3FxJM8L1DtrYMFsMWwtFtEK+w+fBlySCAFzs3Kw5qf
-	1k3jXNrj+mOGL7UNdgtvJoiuJZSD0FxgBp0633GxRVExNPPq0yYda7C6G/M2aKu0
-	//xVUS8XwP2BLe/AuX77ZCZjCBoukGTegaLjLlo5oDdgcgxFKzm7OF08MAqPjFmS
-	MCU33MkIttI4+7mwt0OzsqENFuwHB0hx0WcVDZOGS8fVz4/EENHIkAFe+2i967Ly
-	cbQCbA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh1mp16-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 07:53:16 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c53e316734so125390585a.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 00:53:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745481195; x=1746085995;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x1Sl6rUgs8Bwln/XzJSCqXN1ov/Qw4BQ0VOs4DMYdN4=;
-        b=hSlALfxtoiCYExEz0nbEbAjzTxqT/M44gWlS63rH98Utfd4O/7M+Uo0LTw+pbEdiN+
-         E4xCERiutPHLlLZQlH5ULLZ9G4mIUI1ZQXFNcjxIcL8qALgFMXKopX02axk5bwlhq54u
-         E9g8wvCN2sSTPgFLalTlrOZ/Pmh5FUPKTYHPTW5zBqzBTRaa5nhtRPfQ+PTculV1qLjm
-         nZ5LV8hhdUV3AEaSBNL1HUL+MkbjtW0b/u0DkTgztJNmVHbPCMXMgCI6Mj2zMLo7acbM
-         doKregmwpNiGB7F8rootFbEsWUKUrlCpabW18sSXMDjT44qX1eDREEAhDv0KR3h6EW1Q
-         vL9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV23wJvxZx/kvc1ugJsE+lOXO5/GnEvfJv+qTR6p00zJ8/56HtNEKzEyaUfzfAXKeLqQyaBAnM60p3h@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFoJXs2PWcWfsuDKNttEQQjXT6Au2lBf6ML1s9ArmGi9sp+ruJ
-	kqXmYrGDfDVygt2bEiQfI26sGuQRAH486BKYYqcFrOIJQqII9Yn5xqgqNEhYWOBpTpl53KXJNkT
-	BqHgApMa/iahRF0AeW7T1WBloXMmrqoKaH6DidW9dL5ygkgBBaFoxf5MAwPPwk5/MK3IiHSl2GY
-	ehgtRm48BzV4EJ23Q+P34vvdCWjBDY1ozHWA8=
-X-Gm-Gg: ASbGncvUtAMfc/jphym32+qwtZ/kgALwSab9bOx0LK/lDMqp1z7XNcaU0wovbV17OgB
-	mSzKcAD6iuc9NzAUMFdqBTc0S/VxXUcs9o4IWRYxIK3NhK7ImY5dtFYu6yrx5OXjc02VGdU8=
-X-Received: by 2002:a05:620a:f0f:b0:7c5:588a:5c1e with SMTP id af79cd13be357-7c956ed7552mr245832385a.30.1745481195665;
-        Thu, 24 Apr 2025 00:53:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGxoRtm0YXELpnaS7DAkv7clW4amhFZAIjp6C2urZXmOOqgWsE9GVj9esW9Y9VtDt9hsu5lK2/UP7/fAa/yT4w=
-X-Received: by 2002:a05:620a:f0f:b0:7c5:588a:5c1e with SMTP id
- af79cd13be357-7c956ed7552mr245830185a.30.1745481195397; Thu, 24 Apr 2025
- 00:53:15 -0700 (PDT)
+	s=arc-20240116; t=1745481346; c=relaxed/simple;
+	bh=aAvQCc0R298w7RYGrKPrriQWJO7VY/0/BcobWu2OJn8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HGdrKkY/jzmZSxSUYE4gsWMpw8W1MuByElw2NOxEeBmuosAoJAQDDQ2YddKc93pFlNn7zAKDbnLrFmlFAPJ95dJxAFHejUbplXbvEpF1H1/Eho+KrguZ0dqArC1mJ6aU9jTAls3aOuiF/qAFbFbLphqvLreceK8wJ5yv8kbHyiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=i3YNG1ie; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pERHcMbu reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1745481344; x=1777017344;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ziXtyaZN5bmoBDmr/R61NXBEs5KsMcbVvQqVoZIm3Nk=;
+  b=i3YNG1iezNdsMmjhSqBi854HeRBcLSTcn3VA2NmcCAGBRCEgtej0QB5m
+   22N9xiVwIHrdPPPabiqWTPEl/KMKJEUJcAIqA5x/r3jkJOT6LegO6PMr+
+   q7VAWDAIViPkAsfOBv/YZ2MfVZT0YoxkGCWDYxUNs+opprPegUI+51Qju
+   Baj6SmvSyC7uDE0V0wrVajz2gZEYEej4BgCMOqpUH56ckGLEyNXAxSZW4
+   Se/8L0t4m9rS800S5vju8Ae3vjCwWnt1HbH0OSmv2UAwEWbDe1WBSJ1ju
+   yeAUTW9bP120xEc6ksHZXxPi2kZxLzP+vUwiUi5XO54dBOmmk1lEsZagj
+   A==;
+X-CSE-ConnectionGUID: 8Fe9Dkv8QgOz+fFRgcfRoA==
+X-CSE-MsgGUID: U06klpP9SjavAFBgeWvsbg==
+X-IronPort-AV: E=Sophos;i="6.15,235,1739833200"; 
+   d="scan'208";a="43691655"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Apr 2025 09:55:41 +0200
+X-CheckPoint: {6809EE7D-6-2417938-F0170C2B}
+X-MAIL-CPID: 70C2A69BD9BA4968A346425B2DD05DE9_2
+X-Control-Analysis: str=0001.0A006371.6809EE7E.0070,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11AAC16117A;
+	Thu, 24 Apr 2025 09:55:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1745481336;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ziXtyaZN5bmoBDmr/R61NXBEs5KsMcbVvQqVoZIm3Nk=;
+	b=pERHcMbugIBYZirMjTG3JOmUw/cYZ9K7rko1CiSmwZZn6eaJQ3RDNXmAvs3gpj7YiR74ws
+	SPxXvUkuO7Dg/fcow7b8q1FrnlUzpWvQcsLFVNU3iFoT0eKoAKxX6B7F1+2ZCEQTNm5Jtu
+	ECGS0S+MMOZUxdVLmmFxSO29VZWPLlN3iNx6yREJyrqOSAR5ecBO8oWUKOx38wnMa0vNQX
+	SFRVpZwtOJA8OTyubF/LugRhcirZpkxPRCz2Xxrq3eOKEN4z7C4OuumsBROvBVs1mH4j1M
+	gvUavv4eXCMTrMoyf0wkA9DLeBj5+H/bB6XFdiH37rdl2yQQT1O2exn5klgQYQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Markus Niebel <Markus.Niebel@tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-renesas-soc@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: add TQMa8XxS boards
+Date: Thu, 24 Apr 2025 09:55:29 +0200
+Message-ID: <20250424075533.1266435-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250423072044.234024-1-loic.poulain@oss.qualcomm.com>
- <20250423072044.234024-6-loic.poulain@oss.qualcomm.com> <20250424-versatile-brown-chowchow-dfc4a9@kuoka>
-In-Reply-To: <20250424-versatile-brown-chowchow-dfc4a9@kuoka>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Thu, 24 Apr 2025 09:53:04 +0200
-X-Gm-Features: ATxdqUGyaIbv3BPE1bbXrVWCYTG3g7Zn6QX_hCaA5PKGIcKkNwFl3oWcX61s4f4
-Message-ID: <CAFEp6-0iXCPn80Y0s6Hoq2MjgNa+OYJEr0oWSKuXtah_OF6cAQ@mail.gmail.com>
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: Add qcom,qcm2290-camss
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
-        andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-GUID: DjoPMTtNkb9xzkpA4ACNh1t-oNmrHLSH
-X-Proofpoint-ORIG-GUID: DjoPMTtNkb9xzkpA4ACNh1t-oNmrHLSH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA1MSBTYWx0ZWRfX1DqxNT4xDzf9 WYIyqUtRyBzov3cVtQRAiOxszI4n9W/lWgVUSnukILNvTDvO7Q/3CLxCHJEV1rLBjiErd56MMYU trgX3zF0BnZ5Y2cff8tA9iYBC9c+hB4EfhNAn873VDlrBrBy/oqTK+nh7EYSVpM6XYG7JLg4G3R
- ISMftJfaTM1SMXzyWYE7WnVTkUgIeY65gPkRfMjExmWv8RrVDjOvqDvYbAcAnqkqBD3D72xedPV /9CGCrtLq02BV1PV313Kud+ZT7ex99giHK9PiLcdvekwIXxl9pKXByRqZaM8QMzAU60XrXe1X8Z FrL8guRgXB3Dvx1Jbmg6T95RiBnFIjHqqnDjHNMddys0E2DKujljKXezk40M0GhHgocMnGEspLD
- A8ONaXn3vaOke5e2CBSMxdLVO5j3Gkld1qsOJ0RhPE1aiOOCBzVH/d+bY8+uYngzkXmKiJZR
-X-Authority-Analysis: v=2.4 cv=ZpjtK87G c=1 sm=1 tr=0 ts=6809eded cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=-OVsPAhMXzR0e6mcShsA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_04,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 clxscore=1015
- bulkscore=0 suspectscore=0 mlxlogscore=996 spamscore=0 impostorscore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240051
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof,
+From: Markus Niebel <Markus.Niebel@tq-group.com>
 
-On Thu, Apr 24, 2025 at 9:37=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Wed, Apr 23, 2025 at 09:20:43AM GMT, Loic Poulain wrote:
-> > +  power-domains:
-> > +    items:
-> > +      - description: GDSC CAMSS Block, Global Distributed Switch Contr=
-oller.
-> > +
-> > +  vdda-csiphy-1p2-supply:
-> > +    description:
-> > +      Phandle to a 1.2V regulator supply to CSI PHYs.
-> > +
-> > +  vdda-pll-1p8-supply:
->
->
-> How are the pins or input supplies called?
+TQMa8XxS is a SOM series featuring NXP i.MX8X SoC.
+They are called TQMa8XQPS and TQMa8XDPS respectively.
+MB-SMARC-2 is a carrier reference design.
 
-Pins are called:
-- VDD_A_CSI_0_1P2 (for csiphy 0)
-- VDD_A_CSI_1_1P2 (for csiphy 1)
-(both of the above are supplied together without individual control)
-- VDD_A_CAMSS_PLL_1P8
+Signed-off-by: Markus Niebel <Markus.Niebel@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes in v2:
+* Collected Rob's A-b
 
->
-> Before sending new version, allow people to actually finish ongoing
-> discussion.
->
-> Best regards,
-> Krzysztof
+ Documentation/devicetree/bindings/arm/fsl.yaml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index a6fd347de03fe..1c5fcd69e93e6 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1333,6 +1333,22 @@ properties:
+               - const: tq,imx8qxp-tqma8xqp     # TQ-Systems GmbH TQMa8XQP SOM (with i.MX8QXP)
+               - const: fsl,imx8qxp
+ 
++      - description:
++          TQMa8XxS is a series of SOM featuring NXP i.MX8X system-on-chip
++          variants. It has the SMARC-2.0 form factor and is designed to be placed on
++          different carrier boards. MB-SMARC-2 is a carrier reference design.
++        oneOf:
++          - items:
++              - enum:
++                  - tq,imx8qxp-tqma8xqps-mb-smarc-2 # TQ-Systems GmbH TQMa8QXPS SOM on MB-SMARC-2
++              - const: tq,imx8qxp-tqma8xqps         # TQ-Systems GmbH TQMa8QXPS SOM
++              - const: fsl,imx8qxp
++          - items:
++              - enum:
++                  - tq,imx8dxp-tqma8xdps-mb-smarc-2 # TQ-Systems GmbH TQMa8XDPS SOM on MB-SMARC-2
++              - const: tq,imx8dxp-tqma8xdps         # TQ-Systems GmbH TQMa8XDPS SOM
++              - const: fsl,imx8dxp
++
+       - description: i.MX8ULP based Boards
+         items:
+           - enum:
+-- 
+2.43.0
+
 
