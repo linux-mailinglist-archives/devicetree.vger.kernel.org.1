@@ -1,148 +1,259 @@
-Return-Path: <devicetree+bounces-170566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281F5A9B5F3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:06:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6276A9B60F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63569175DF8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:06:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 637A93BB109
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8478928DF09;
-	Thu, 24 Apr 2025 18:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1906728F50D;
+	Thu, 24 Apr 2025 18:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hdjw8YZE"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="NOK+8qnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C79D1FC0EA
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 18:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F64728F501
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 18:16:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745518008; cv=none; b=fj9UFqUAm6lSi35iP8IzclxVA4dpSzmZ4gYn/h6VY1jxtiv5+vx1MWft1Inz/0da1XDzb6Pb/VKJIcSknV7YnLUZU0Zl0vc/6TZNU8F8dlVy/1+WTPT3rOF3YpuCvabzKpNwFmd33NpNLgBeeXxLxF8eTCTafBwf6O+/2nvSGQE=
+	t=1745518586; cv=none; b=cyKcwVeaVI2dDvmqSY4Ch+/pY8C75QIzW9Bkwaqjqp1dpyLedTXtFjX9YC0et/Wh5SthxQluh5TY5WXfhR3aOFbpH0Q/PyMFhxLImNlbNaX5K4Wa/ggrKZPpJ5AHcBNds+wZv1nt4W6HKmGkozCyREwIKXfu62mJ03gTc8PKvd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745518008; c=relaxed/simple;
-	bh=untB1HfxdttzA08c006z9zXZeD1RPqW0OBieNxkwux0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SVxRn96eUcGaN/KcEIxMrugixXJRqf9fGeJyXHSAgpwIDajf7P+d3dFCEoamc1k3dmzdL59kHtOYoXl3T/cS4mXB0Q7Ak6l2pBVLxip3t1QcLcQLmZQg/P5rfmwH0QO+WbPjLQc7RisdORI73NZlY5gXi4F6nhtkqKVm9VqlVrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hdjw8YZE; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-acb415dd8faso211731266b.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 11:06:46 -0700 (PDT)
+	s=arc-20240116; t=1745518586; c=relaxed/simple;
+	bh=xwIJYlS8Mxej9Ue36QIm4SREbYsNaNZe158F8eJvF30=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ttcw+hf8OrShf+SVlIQ8Z8EPYvn8patqaF2B/7AdM2zE8H7zv53jHdxg+2saQ3Sw0ai5VjPFO0iDPKkNoq7fkKUYUI7aaObSVkO0UJ4XMayceSnqAv0Ul8S14r9xlb0qSQpVz5kqQiOziosYOOQRaEWxd3G+4WKopvhxkONMnFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=NOK+8qnl; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso1398323b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745518005; x=1746122805; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=79YUOYWksfzgC8uh0zT0ugM7BA9V6bWBg5rPe4V+dTo=;
-        b=hdjw8YZE5VlZpD+ayDat9vQw3wyI4dYvZyNiXACLwwpnNHIKJxpTSxrFh6IkxsQrVy
-         ihTAPhZDIU4k4REqzg8QRXKGV1MYYYRu0nsQiTJs7bWeu3+eu4YjMMH91/i+4GaFnxA1
-         MjOJPLxgTcyR5jDvNdzfVDW3qpkSkyd4d0kdE=
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745518583; x=1746123383; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=T9sHYezjUq6l/x/6C81DhRiO6Hkx3zNHx6RVEna5xiI=;
+        b=NOK+8qnltocl7IjsIDqxYetNVinHbSt9qBQwhXvmJSzZm/Uj/A+EmAwPtIXsueGmIj
+         m+XPDNBpYdajzutI+CSSyCjBf7HjgMqFV5tzTuvVtSkIK3eBz59mRmxbiO0UBJytArVJ
+         JwbIsuvj2ZoNoLvKSqPlotq7uiV3tqPJhkh+4datkYvfGhyOgDt7kMovCVzgiIpfstBk
+         S4v/2M/Ds4YsAEEEQlfryl2sv4S/tt+DeE3VGGSG3emgoJpBwato5wcWUETazw8nIdLn
+         z56G++pZ3eW8WcfzbpGHR4a8Rf5DIByZE1/v3D4yk7znJHeBdY590OLcMTSOC9jC4C69
+         3d9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745518005; x=1746122805;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=79YUOYWksfzgC8uh0zT0ugM7BA9V6bWBg5rPe4V+dTo=;
-        b=GTdqRqmNWRG0OzUoz9yzdMowNd/N1W9MBvUC1eHBRIHtJQoGJa6hrENDVJdVdkfIgl
-         31iR6JCe75UyLAt6GoGKWlACJZwlQCDXLgD0bjxtAHYxPpGhRXN9oYmCfrIjlvnEg0y2
-         5ISOzAYKBIYqth0dNKHSUDKXxOXNlR5q2d7MpSYnFpJvYE/BNJGXyrH1GogvwksI0fQ/
-         YLKSuIXYvdMQDgOX1QZMMJgdHcj4xtRe3f+vLUqihioA7GEBjkYjezDJMqc6whT12Yxh
-         pEQFZsrkFX5Y7QQLJvv3E2RjaPl9U4avbRNovpotVbRNF1Cl3/9MntR4PXlU0quhnS34
-         B38g==
-X-Forwarded-Encrypted: i=1; AJvYcCV46QuJnGftE8VGSFBydCplSRBW7gFvQmC+zRz4qXD/rZ2i0QG4vn6/avCmjt4D2S3TiBAkaMq5KMl8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZuOiHtahvbQhyFUIwMeFSx1+o5hRppi7yOvTIunN0w9R3n9Ou
-	7wihV0vFzYlAnxPDJmgSxdEjvok7MFO123HM5zftrrUuA163U6mWyRQg1e3eiUgztZoNTi32okH
-	2zBaqyniV54mGVKdzLNLUCkRfSWbU1V+q/xqY
-X-Gm-Gg: ASbGncu+UjmA5Z+bhEMjaX/Quw5rzwBi1gRtelra0Sn9RszezzL2De0VdzSL/ghDxJn
-	8Cgewn7lPVpDHouo0GNKQMotg4ZTzboonaK4rEivmjhsoGs+TYk18jMvYJ5pmDeb5AcANIdh2BL
-	yULzM/CZiyaKraa3afhEac3moZMHNbfLK3ew==
-X-Google-Smtp-Source: AGHT+IF6FQyepWuw62uvlYv2AGGX4Zv8U5nVTUi/6CHfAtsO8E+E4yT2kriSnwOZ8ZJ6GbcVBIno2hzh0DlHbPq70sE=
-X-Received: by 2002:a17:906:58c:b0:ace:6bfb:4a11 with SMTP id
- a640c23a62f3a-ace6bfb4a1fmr32847066b.24.1745518004896; Thu, 24 Apr 2025
- 11:06:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1745518583; x=1746123383;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T9sHYezjUq6l/x/6C81DhRiO6Hkx3zNHx6RVEna5xiI=;
+        b=ipi3vFnXBdEIS/W5L9JpVxvXGGX668dp4WXDAz8JmyJaxRIIPaqdWKqWoKi9HEIXAC
+         ubfpjhHjovchuc7ftmg9KBVjPaNTzwjJUulI6Rp+9FhhT2zZnSeDEN5yqomHQRIrxRF3
+         foioNgtdvd+brwEpW/yebK8S9wskJ4oZBfOZBnKcqnmb3crMRsrTdg+5V2n6hcUfK/G6
+         V1gGA45kCNix7A4ob1Q5D7dxFHCUoX2pDkiWXlUlJ+pZDaxvz8jtzMaVv9GvlXpl/hK1
+         7SFXLyF5TAZ/uzwUbQulNV6xijalKvgxVOZhvDVHB1c1ULsfR1dOl6N/WRC2AxQs2MSP
+         a3JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWvEHe+QqyfHp+noGx9yQaQCyQjj3vgT/7a2DMyLNbvcKZL+wsWzTYGbxhF6rWfB26LfS6I94bcyEIa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9E8qGroehlz4MmrSFnt8CrNPQigR6/zK13mTZD8Mp2suO/6dl
+	4RQqdVRXcRYNdlIdLIyQPyyuqAo5cGRBTT8Mmh5dw3td6QUUyLMW4XqFjWhlgZ0=
+X-Gm-Gg: ASbGncsIX8TXV0TBEe+xLFQp7Ngna05K3KWmae79TzY4OgdY7w5mmMbiQNN98ODN7Cs
+	eyOCgUcB5biWwwD8J6r+5dlPCs4AbzH/9lfS0WN2SiljKJxc0w+uQWtMwyRVnZGT3ACye26276G
+	wKYUYPJCtgfWEQuui4wyCEu/piU5KCDZba1RfB1g+B4EcTfv262lkU6gm/ba+yvrv/pWFQFhnL1
+	/rjlgHXT5VXg46QRJHLukoeqVjtzFJI90QAGnmqXquBWBZdQKBK+ya5k2EE0ARNXz5fQ0A5EGA3
+	IGlZND6hO+u6Ua0cNZLGs5a8n/sEuOATvaLmnk4y1qIJ1+GI4mc=
+X-Google-Smtp-Source: AGHT+IF0jVzUPU4VWGuVNQ17BhULhOztKBekv2BW5HkIJsQ1IRCAo1z8B5DG3h77AtgqUMysW+802Q==
+X-Received: by 2002:aa7:9315:0:b0:736:9e40:13b1 with SMTP id d2e1a72fcca58-73e24ae7b45mr5236452b3a.23.1745518583417;
+        Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e259414c7sm1783697b3a.62.2025.04.24.11.16.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 11:16:23 -0700 (PDT)
+Date: Thu, 24 Apr 2025 11:16:19 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack
+ prctls
+Message-ID: <aAp_87-Xr6gn_hD7@debug.ba.rivosinc.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
+ <D92V2NPNZYV0.136MJ2HOK48HE@ventanamicro.com>
+ <aAnBmexbL4XmVxQk@debug.ba.rivosinc.com>
+ <D9EWR3RQK0FD.3GF55KNS53YSR@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250418124718.1009563-1-jaszczyk@chromium.org>
- <20250418124718.1009563-3-jaszczyk@chromium.org> <20250423140913.GA360030-robh@kernel.org>
-In-Reply-To: <20250423140913.GA360030-robh@kernel.org>
-From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
-Date: Thu, 24 Apr 2025 20:06:33 +0200
-X-Gm-Features: ATxdqUHIDmJKjHZA9jZSJUkUEpsm0-XwqBkvekQ7zCBPFtIo1vYXDrTfrqj0M3Y
-Message-ID: <CAGptq8GzJh38349ZZpEOw9sV8ihtJMHqV=PH9WUbG-C7b0tJjg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] x86/of: add support for reserved memory defined by DT
-To: Rob Herring <robh@kernel.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, 
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, 
-	saravanak@google.com, dmaluka@chromium.org, bgrzesik@google.com, 
-	jaszczyk@google.com, ilpo.jarvinen@linux.intel.com, usamaarif642@gmail.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tnowicki@google.com, 
-	mazurekm@google.com, vineethrp@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D9EWR3RQK0FD.3GF55KNS53YSR@ventanamicro.com>
 
-On Wed, Apr 23, 2025 at 4:09=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Thu, Apr 24, 2025 at 03:36:54PM +0200, Radim Krčmář wrote:
+>2025-04-23T21:44:09-07:00, Deepak Gupta <debug@rivosinc.com>:
+>> On Thu, Apr 10, 2025 at 11:45:58AM +0200, Radim Krčmář wrote:
+>>>2025-03-14T14:39:31-07:00, Deepak Gupta <debug@rivosinc.com>:
+>>>> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
+>>>> @@ -14,7 +15,8 @@ struct kernel_clone_args;
+>>>>  struct cfi_status {
+>>>>  	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
+>>>> -	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
+>>>> +	unsigned long ubcfi_locked : 1;
+>>>> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
+>>>
+>>>The rsvd field shouldn't be necessary as the container for the bitfield
+>>>is 'unsigned long' sized.
+>>>
+>>>Why don't we use bools here, though?
+>>>It might produce a better binary and we're not hurting for struct size.
+>>
+>> If you remember one of the previous patch discussion, this goes into
+>> `thread_info` Don't want to bloat it. Even if we end shoving into task_struct,
+>> don't want to bloat that either. I can just convert it into bitmask if
+>> bitfields are an eyesore here.
 >
-> On Fri, Apr 18, 2025 at 12:47:18PM +0000, Grzegorz Jaszczyk wrote:
-> > From: Grzegorz Jaszczyk <jaszczyk@google.com>
-> >
-> > The DT reserved-memory nodes can be present in DT as described in
-> > Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
-> > Similar to other architecture, which supports DT, there is a need to
-> > create reserved memory regions for such nodes.
-> >
-> > Additionally, the x86 architecture builds its memory map based on E820
-> > description passed by bootloader and not on DT. Since x86 already has
-> > some DT support and allows booting with both ACPI and DT at the same
-> > time, let's register an arch specific hook which will validate if a
-> > reserved-memory region passed by DT is valid (covered by E820 reserved
-> > region entry).
-> >
-> > Without this check, the reserved memory from DT could be successfully
-> > registered, even though such a region could conflict with e820
-> > description e.g. it could be described as E820_RAM and could be already
-> > used at early x86 boot stage for memblock initialization (which happens
-> > before DT parsing).
+>  "unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);"
 >
-> Sorry, I don't get how it conflicts. Wouldn't the E820_RAM be registered
-> with memblock and memblock then handles the conflict (or should).
+>is an eyesore that defines exactly the same as the two lines alone
 >
+>  unsigned long ubcfi_en : 1;
+>  unsigned long ubcfi_locked : 1;
+>
+>That one should be removed.
+>
+>If we have only 4 bits in 4/8 bytes, then bitfields do generate worse
+>code than 4 bools and a 0/4 byte hole.  The struct size stays the same.
+>
+>I don't care much about the switch to bools, though, because this code
+>is not called often.
 
-On x86, early memblock setup is performed by e820__memblock_setup()
-and regions which are marked as E820_RAM are added to the memblock
-"memory" type and such regions can be later on used for memblock
-allocation on early x86 setup. If memblock allocation is performed
-after e820__memblock_setup and before x86_flattree_get_config,  the
-reserved region described in DT (but described as RAM in e820) could
-be silently used before we scan DT for reserved memory regions.
+I'll remove the bitfields, have single `unsigned long cfi_control_state`
+And do `#define RISCV_UBCFI_EN 1` and so on.
+>
+>>>> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
+>>>> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long status)
+>>>> +{
+>>>> +	/* Request is to enable shadow stack and shadow stack is not enabled already */
+>>>> +	if (enable_shstk && !is_shstk_enabled(t)) {
+>>>> +		/* shadow stack was allocated and enable request again
+>>>> +		 * no need to support such usecase and return EINVAL.
+>>>> +		 */
+>>>> +		if (is_shstk_allocated(t))
+>>>> +			return -EINVAL;
+>>>> +
+>>>> +		size = calc_shstk_size(0);
+>>>> +		addr = allocate_shadow_stack(0, size, 0, false);
+>>>
+>>>Why don't we use the userspace-allocated stack?
+>>>
+>>>I'm completely missing the design idea here...  Userspace has absolute
+>>>over the shadow stack pointer CSR, so we don't need to do much in Linux:
+>>>
+>>>1. interface to set up page tables with -W- PTE and
+>>>2. interface to control senvcfg.SSE.
+>>>
+>>>Userspace can do the rest.
+>>
+>> Design is like following:
+>>
+>> When a user task wants to enable shadow stack for itself, it has to issue
+>> a syscall to kernel (like this prctl). Now it can be done independently by
+>> user task by first issuing `map_shadow_stack`, then asking kernel to light
+>> up envcfg bit and eventually when return to usermode happens, it can write
+>> to CSR. It is no different from doing all of the above together in single
+>> `prctl` call. They are equivalent in that nature.
+>>
+>> Background is that x86 followed this because x86 had workloads/binaries/
+>> functions with (deep)recursive functions and thus by default were forced
+>> to always allocate shadow stack to be of the same size as data stack. To
+>> reduce burden on userspace for determining and then allocating same size
+>> (size of data stack) shadow stack, prctl would do the job of calculating
+>> default shadow stack size (and reduce programming error in usermode). arm64
+>> followed the suite. I don't want to find out what's the compatiblity issues
+>> we will see and thus just following the suite (given that both approaches
+>> are equivalent). Take a look at static `calc_shstk_size(unsigned long size)`.
+>>
+>> Coming back to your question of why not allowing userspace to manage its
+>> own shadow stack. Answer is that it can manage its own shadow stack. If it
+>> does, it just have to be aware of size its allocating for shadow stack.
+>
+>It's just that userspace cannot prevent allocation of the default stack
+>when enabling it, which is the weird part to me.
+>The allocate and enable syscalls could have been nicely composable.
+>
+>> There is already a patch series going on to manage this using clone3.
+>> https://lore.kernel.org/all/20250408-clone3-shadow-stack-v15-4-3fa245c6e3be@kernel.org/
+>
+>A new ioctl does seem to solve most of the practical issues, thanks.
+>
+>> I fully expect green thread implementations in rust/go or swapcontext
+>> based thread management doing this on their own.
+>>
+>> Current design is to ensure existing apps dont have to change a lot in
+>> userspace and by default kernel gives compatibility. Anyone else wanting
+>> to optimize the usage of shadow stack can do so with current design.
+>
+>Right, changing rlimit_stack around shadow stack allocation is not the
+>most elegant way, but it does work.
+>
+>>>> +int arch_lock_shadow_stack_status(struct task_struct *task,
+>>>> +				  unsigned long arg)
+>>>> +{
+>>>> +	/* If shtstk not supported or not enabled on task, nothing to lock here */
+>>>> +	if (!cpu_supports_shadow_stack() ||
+>>>> +	    !is_shstk_enabled(task) || arg != 0)
+>>>> +		return -EINVAL;
+>>>
+>>>The task might want to prevent shadow stack from being enabled?
+>>
+>> But Why would it want to do that? Task can simply not issue the prctl. There
+>> are glibc tunables as well using which it can be disabled.
+>
+>The task might do it as some last resort to prevent a buggy code from
+>enabling shadow stacks that would just crash.  Or whatever complicated
+>reason userspace can think of.
+>
+>It's more the other way around.  I wonder why we're removing this option
+>when we don't really care what userspace does to itself.
+>I think it's complicating the kernel without an obvious gain.
 
-Additionally there are more reasons why we want to make sure that e820
-reserved regions are in sync with DT reserved memory: resource tree
-building and setup pci gap based on e820.
-On the x86 resource tree is built taking into account e820 entries
-(e820__reserve_resources()) while on other arch like e.g. arm64, which
-relies on DT, the resource tree is built taking into account
-information from DT(request_standard_resources). Mixing both on x86
-seems problematic and at first glance could be achieved by e.g.
-patching e820_table via e820__range_update so other part of the early
-x86 kernel setup such as e820__setup_pci_gap() will also not use
-region which is described in DT as reserved-memory. But it is not
-straight-forward (initially I've tried to go through this path) e.g.
-it will require handling DT earlier (x86_flattree_get_config) but at
-the same time x86_flattree_get_config relies on the memblock being set
-up. Therefore it seems that making a requirement that the e820
-reserved region should be in sync with DT reserved-memory on x86 is
-reasonable.
+It just feels wierd. There isn't anything like this for other features lit-up
+via envcfg. Does hwprobe allow this on per-task basis? I'll look into it.
 
-Best regards,
-Grzegorz
 
