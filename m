@@ -1,84 +1,108 @@
-Return-Path: <devicetree+bounces-170411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1767A9AAC0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:46:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3043AA9AAE4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:49:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A23FF3AFC92
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:46:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42C321943615
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99755227581;
-	Thu, 24 Apr 2025 10:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D2C225776;
+	Thu, 24 Apr 2025 10:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MzWv1Xvz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pmIPMZhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9C3221578;
-	Thu, 24 Apr 2025 10:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36672288CC
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745491189; cv=none; b=RV4x712eeZycPgfS65nam5rVZahMKFiGISbLSbUaO+O4I5dSdTyBA8M49SrqVIVHfgUNLBNMYGGyrWIK3JEt13lkUD5JVmVV3i7KCR+vu5Z8X+QWtawiKWPMhuKdXFCwpCN1xdTGr76Xx4DTq01xZS5IJ58VRZtbQijXfSC3hOE=
+	t=1745491556; cv=none; b=cVeAspxjB+0tqDsMtpcdoVD9EEcIMTIB71FFFUkGWZ3kS5sqjsveiOyNXXF4GxWJpMsPYClog0mr2KP2hExWr81essrgUk1hBHTv4kzqh6Pki0p+GRtq5tvyhP7RizOjly0QWSTyxPSUtRDGLPbOqh372vsFY/XQ32pv5jEExjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745491189; c=relaxed/simple;
-	bh=rdwz2WKjtDd7DtaGFTRBxPVQpUbJvrKlMywrM9IrdH8=;
+	s=arc-20240116; t=1745491556; c=relaxed/simple;
+	bh=PGXPJri6Cw6siaeSinOaARRSx2I/HYewhIvfzmeUnSI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jtxU7JgzIyqUyVl7Cm1Ij6LC+UPU5NeqLgU+jBJdWhlWeS43tPVQl5obzH4y1HwWxXQrxQygerqS6dcLv6250kxfAkJ1U/6/bETy6PVFjRCtrAYJHjRoYu8icdmJS7YUuBLVqCbvoOtXCD7P1nHI83xzr0CViVg6xzmHK8YsifQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MzWv1Xvz; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745491188; x=1777027188;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rdwz2WKjtDd7DtaGFTRBxPVQpUbJvrKlMywrM9IrdH8=;
-  b=MzWv1XvzvsqdQfFf2XQQNOOhXSNn9df9t7WfVQTT5flYVQrHczba6YP4
-   Ls4+lDlLegRXDY5cXrTSJ9DjXS8q0feoNcIhaIRN6wHT+Y0Fm3PQJwpVY
-   pHRl9LN/cPlCd2YZE1+sM1lW5StJ6vqXMEsX4pQEg5fKT2XsGO26uEvXr
-   iG9KUvR6WuPEFP6kOOEFIXqGqPDtBmSbeqiMMuR1OOYtD2PALGiRKBT9B
-   KJLjSJTJ69xhYhnWZYrw52z23QndW3+vYRJnYdmg5+O5U2ij4SqxK8btn
-   jtuNQdxbysZXiX2iSNurCNgujz4fIIiUSwMffvy+OTfcihPkGmrqF95is
-   w==;
-X-CSE-ConnectionGUID: 7bJAJOoFRiKAZqChI90yyg==
-X-CSE-MsgGUID: kBo04iLHQXGnxcyoSmXs9g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="47289739"
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
-   d="scan'208";a="47289739"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 03:39:47 -0700
-X-CSE-ConnectionGUID: DBEXrH2ESruBurCLFBO1fA==
-X-CSE-MsgGUID: rTPUAwrMTEu1Uk6IMch+vA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; 
-   d="scan'208";a="137374405"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 03:39:41 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u7tzW-0000000FWzS-1P71;
-	Thu, 24 Apr 2025 13:39:38 +0300
-Date: Thu, 24 Apr 2025 13:39:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Eason Yang <j2anfernee@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	javier.carrasco.cruz@gmail.com, gstols@baylibre.com,
-	olivier.moysan@foss.st.com, alisadariana@gmail.com,
-	tgamblin@baylibre.com, antoniu.miclaus@analog.com,
-	eblanc@baylibre.com, joao.goncalves@toradex.com,
-	ramona.gradinariu@analog.com, marcelo.schmitt@analog.com,
-	matteomartelli3@gmail.com, chanh@os.amperecomputing.com,
-	KWLIU@nuvoton.com, yhyang2@nuvoton.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] iio: adc: add support for Nuvoton NCT7201
-Message-ID: <aAoU6iWGPkqjon7Z@smile.fi.intel.com>
-References: <20250424083000.908113-1-j2anfernee@gmail.com>
- <20250424083000.908113-3-j2anfernee@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHfT84gdX5bVDkJwqzuMKhQfbNKCiOyr3EVomDPlVQCEPw06d9QMUUtI9G1IXtKSpmaJGVTFRL4Lru87DKflXZjGvgvrQ/pBBXvuYgqWFYcs9VLZ7q615CfAznoarZbTc25/3Sss1XY5jwyk7fsB8PlggPJPuyTLYyXzJt5FcBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pmIPMZhB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53OAUgNJ002960
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:45:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=YTvMgSnUIIGLk/Fpg/tiBLoR
+	7OymWdRd8yJc8ktCLRg=; b=pmIPMZhBX/VI7UiQN2DS72PS85z5qkr8rP6iNalN
+	HPEncBXMwLR9N86aNrbsSrZr2OHdWNhWQk/JDFcATDtqSKn28URKTfVM9KhpcfhR
+	rWJNwa5C3/WG2IC8UOHxomfZD8TlW3DZjbfaFp4R8exsTRJHHAhNh9Ol9KVL1wJR
+	ZDzf2ib8ztXLTB1Fn7IJHYeomWd9vVPXGask/yhk14+Q9i1yH/Q1T8igdSAxVU7H
+	GD/8+ktSIUQPM71Vs70tmx0jifeuaLLW06GUGuwOnTlm8DdvKGr8gtRAPkqleWfz
+	OHMBI39GNYqtgjfuj37+wlcpj9hzbdKtVVzAT4GOkmNO7Q==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3d82h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 10:45:52 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e8f9057432so17210286d6.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:45:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745491537; x=1746096337;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YTvMgSnUIIGLk/Fpg/tiBLoR7OymWdRd8yJc8ktCLRg=;
+        b=tA1dJKI+uCXo/4WUX3H3oLJytfBUzvsz6282LeK57+Z9nQ4PLjCNno5sSF2m1hQCUZ
+         n0CS+4Dq4fpSd4ppSSmkunH3MGhrkCbfkeP4Q/HPrIUVLCnk24qTpipK0aHlIdGHBASZ
+         UxD7rdh2jxY7EtBiXSrXcQcD2tWKWwSkUtRIhbM6gnRLr7aeaAuES3VgKtdeGwfEO0Xu
+         tasB5khZjjI/jpMcVTHH6lIhxludobdFlK3OnlGwZMRjeey3yDSv39oR0vYb5Uu2Cp7Q
+         gp4n/ghTD17DVhdtv4eH3uM6E7ZG2T4mYVbpoPe9DSALmel7lkDZmiWp3aW75aL2u97V
+         cJ7A==
+X-Forwarded-Encrypted: i=1; AJvYcCX7Fo9CyxSTxQse8hM3+pN+FsQHWkYhLIYP0mV75UEvb/TVAmzIfp9NERkQOY97lwhZ07OCQ4D0do0q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwefRzs52TL1F9G68uy1IC1rSTeytrbpKgE74cjZzBGYJCuxbI
+	EpQNvjVutFgRgVICNoAaH5Qpmqzm0SmaT3U8VUGhWcrOCeO2UCF8qUzO8aUOBO3HDkKZrOd/Lcb
+	3LZUjk2TbN421CH8IpFaE+AyjFES2h6wzpEpjnZAkkpKnimlCPclXSbDRokVB
+X-Gm-Gg: ASbGncvMILjW7DelGkK0yfCNac22nxYtqQ2SkY6XB692JDMwgVoFDwXV7x9G9Ac0s5c
+	G4SlzS7yvjV13PyKty3fvh/mv/9gaxreM+5V0cuJRBYeThKZ1VhpnQ85MSGQpyPu4lI2JNrUq6f
+	DK1Fw5dV1v2bRoKse5Dur0gZrFKHE8oWG1HK+KnMDRGppokheAHUGx+bpJuta/nw1y11XCjfVpi
+	ftt6Dbiua41Y7MtoJMQzjWVlCJIuc+r2o0+cQnLtnsS3YCruH1T2Qcjd6rNGoy6a0R4vFQjTSIx
+	vtTjnTJeeJYaxzo2qGK6rMNHV/kjqNf7OkgYeXRU9YIC873mH2Uo/qq9V9nOozXjZWmpQEL3jII
+	=
+X-Received: by 2002:a05:6214:4103:b0:6d8:99cf:d2e3 with SMTP id 6a1803df08f44-6f4bfbf09c4mr34154246d6.22.1745491537223;
+        Thu, 24 Apr 2025 03:45:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEW9ALRiFj0PWw6i0JiIe2IjPxWzjJGDX1PP0wKX7qV2MJPeYhrJs/Xxya61v7OTQE/lz454g==
+X-Received: by 2002:a05:6214:4103:b0:6d8:99cf:d2e3 with SMTP id 6a1803df08f44-6f4bfbf09c4mr34153766d6.22.1745491536843;
+        Thu, 24 Apr 2025 03:45:36 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cb3bc48sm189292e87.88.2025.04.24.03.45.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 03:45:36 -0700 (PDT)
+Date: Thu, 24 Apr 2025 13:45:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v6 2/5] dt-bindings: media: Add qcom,x1e80100-camss
+Message-ID: <krofzevprczeuptn6yfj4n656qsw52s52c7cgiwotidxmi2xo6@d3q5bb5zbccc>
+References: <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-0-edcb2cfc3122@linaro.org>
+ <20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-2-edcb2cfc3122@linaro.org>
+ <3ec3fd62-bf21-47e7-873c-ce151589d743@linaro.org>
+ <54eeb470-cd90-4bc2-b415-6dea1ce2321d@linaro.org>
+ <0ab31397-580f-4e5a-b9ad-d9bf79d29106@linaro.org>
+ <36feffed-4558-4e59-97db-2f0e916dbfc7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,115 +111,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250424083000.908113-3-j2anfernee@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <36feffed-4558-4e59-97db-2f0e916dbfc7@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA3MiBTYWx0ZWRfXwsU8ZY5kcYs1 wIzY/9AFvjt1vEKu5oJDcF3ewq44Ji4jD3Mcwhap3HYOvtBo9/CxS/R974/d2YvJVLKtyTOTn6D eGis1J+hpOSgvR14ZAWJD5ohgdGLy6KO6KLDPrEsdgXKPdE5gF7hYqHf0DPmjrvCvAeeGqUI09l
+ OWprxUt1xInCkzIdqaN+wCdTSb5DyXa/UMKSFqLAYUeKdCgAf8+6L6EW1u13Fnpb1nvhNEs1eRD S4mo/ugaxptszKv6MbjJYzldgEpnuEgto7fyqfnKHdOgvdKzZoo8adXRzXVt8fnPyZBVSyCJtzo 3lpNhuZgF4xKe/zJaoc9h4b7Xyhe8kw0VBihAe1uwDzVohFw+jwm7lmfW/jlcqyb9dLDmo7HdsE
+ ksvpQVUNpCZkenUWtP5xivDHZkfgvic/dAZPuU6szUXhxA4vTY6Yb8XTq+ejXVV5RKjhaqc0
+X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680a1661 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=w3QZEHyxT3hpLgro1OoA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 4zTdHDc7pHt11iDZ5nAtbE0dYJtOjWbI
+X-Proofpoint-GUID: 4zTdHDc7pHt11iDZ5nAtbE0dYJtOjWbI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-24_05,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=993 mlxscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504240072
 
-On Thu, Apr 24, 2025 at 04:30:00PM +0800, Eason Yang wrote:
-> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+On Thu, Apr 24, 2025 at 11:17:13AM +0100, Bryan O'Donoghue wrote:
+> On 24/04/2025 11:07, Krzysztof Kozlowski wrote:
+> > On 24/04/2025 11:34, Bryan O'Donoghue wrote:
+> > > On 24/04/2025 07:40, Krzysztof Kozlowski wrote:
+> > > > > +  vdd-csiphy-0p8-supply:
+> > > > Same comment as other series on the lists - this is wrong name. There
+> > > > are no pins named like this and all existing bindings use different name.
+> > > 
+> > > The existing bindings are unfortunately not granular enough.
+> > > 
+> > > I'll post s series to capture pin-names per the SoC pinout shortly.
+> > How are the pins/supplies actually called?
+> > 
+> > Best regards,
+> > Krzysztof
 > 
-> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up
-> to 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins
-> for independent alarm signals, and all the threshold values could be set
-> for system protection without any timing delay. It also supports reset
-> input RSTIN# to recover system from a fault condition.
+> I don't think strictly algning to pin-names is what we want.
 > 
-> Currently, only single-edge mode conversion and threshold events are
-> supported.
-
-Very good, from my point of view it's almost ready, a few nit-picks below.
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-
-> +#include <linux/device.h>
-
-It seems this is not used, but missing
-dev_printk.h
-Am I mistaken?
-
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-
-...
-
-> +static int nct7201_write_event_value(struct iio_dev *indio_dev,
-> +				     const struct iio_chan_spec *chan,
-> +				     enum iio_event_type type,
-> +				     enum iio_event_direction dir,
-> +				     enum iio_event_info info,
-> +				     int val, int val2)
-> +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +	int  err;
+> Here are the input pins
+> 
+> VDD_A_CSI_0_1_1P2
+> VDD_A_CSI_2_4_1P2
+> VDD_A_CSI_0_1_0P9
+> VDD_A_CSI_2_4_0P9
+> 
+> I think the right way to represent this
+> 
+> yaml:
+> csiphy0-1p2-supply
+> csiphy1-1p2-supply
+> csiphy2-1p2-supply
+> csiphy3-1p2-supply
+> 
+> dts:
+> 
+> vdd-csiphy0-0p9-supply = <&vreg_l2c_0p8>;
+> vdd-csiphy1-0p9-supply = <&vreg_l2c_0p8>;
+> 
+> etc
+> 
+> vdda-csiphy0-1p2-supply = <&vreg_l1c_1p2>;
+> 
+> because that captures the fact we could have separate lines for each phy,
+> names it generically and then leaves it up to the dts implementation to
+> represent what actually happened on the PCB.
+> 
+> That would also work for qcm2290 and sm8650.
+> 
+> https://lore.kernel.org/linux-arm-msm/20250423221954.1926453-2-vladimir.zapolskiy@linaro.org/
+> 
+> So for sm8650 instead of
+> 
+> +  vdda-csi01-0p9-supply:
 > +
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
+> +  vdda-csi24-0p9-supply:
 > +
-> +	if (info != IIO_EV_INFO_VALUE)
-> +		return -EOPNOTSUPP;
+> +  vdda-csi35-0p9-supply:
 > +
-> +	if (dir == IIO_EV_DIR_FALLING)
-> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-> +	else
-> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-
-> +	if (err)
-> +		return err;
+> +  vdda-csi01-1p2-supply:
 > +
-> +	return 0;
+> +  vdda-csi24-1p2-supply:
+> +
+> +  vdda-csi35-1p2-supply:
+> 
+> you would have
+> 
+> +  vdda-csiphy0-0p9-supply:
+> +
+> +  vdda-csiphy1-0p9-supply:
+> 
+> +  vdda-csiphy0-1p2-supply:
+> +
+> +  vdda-csiphy1-1p2-supply:
+> 
+> Which would then be consistent across SoCs for as long as 0p9 and 1p2 are
+> the power-domains used by these PHYs.
 
-	return err;
-
-> +}
-
-...
-
-> +	/*
-> +	 * After about 25 msecs, the device should be ready and then the power-up
-> +	 * bit will be set to 1. If not, wait for it.
-> +	 */
-> +	fsleep(25000);
-
-25 * USEC_PER_MSEC ?
-
-...
-
-> +	/* Enable Channel */
-> +	if (chip->num_vin_channels <= 8) {
-> +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> +				   GENMASK(chip->num_vin_channels - 1, 0));
-
-> +		if (err)
-> +			return dev_err_probe(dev, err, "Failed to enable channel\n");
-
-This...
-
-> +	} else {
-> +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> +					&data, sizeof(data));
-
-> +		if (err)
-> +			return dev_err_probe(dev2, err, "Failed to enable channel\n");
-
-...and this are identical, deduplicate by moving outside of if-else.
-
-> +	}
-
+This won't be consistent with other cases where we have a shared power
+pin. For example, for PMICs we provide supply names which match pin
+names rather than one-supply-per-LDO.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+With best wishes
+Dmitry
 
