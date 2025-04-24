@@ -1,271 +1,112 @@
-Return-Path: <devicetree+bounces-170141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97398A99F76
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:17:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494EAA99F85
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:24:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4449445F39
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:17:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E27633B0603
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D14819D884;
-	Thu, 24 Apr 2025 03:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kL521BJ1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903E51A8401;
+	Thu, 24 Apr 2025 03:24:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409E2198E63
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:17:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B34319ADA2;
+	Thu, 24 Apr 2025 03:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745464625; cv=none; b=qLd1d6NBHx92iPgEkUNzikkBwzFc72Wg0Kr1QhaPEKW6Km96kV6JmAXPz6m1dOwao/87GA/XXyRdlhP9lGGfvy6lO+IGixtd2zbihNyGJ1qDOuE/heFeoE7yKN9nkQO/Kg0mVszp9TRN9UbvzzGmfFPFACvSHkBR9JD+liwjYjU=
+	t=1745465064; cv=none; b=KR6lag/+mhvkJzjiWPCvM+sQbI7QbaGpboEJxiEvUXIc9YmKv+cGsMIE2IPybQjPdFnuJOjVpT5Sdsr1RxhvP+8wE5NCfWhtgf3Ri59y5CYIV8uu9qjW0oN4xTaw2kUuGx0LVyTfIdFUKaMxK4HxBm4v6NLGvvV2KSHNVxteU38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745464625; c=relaxed/simple;
-	bh=UVCFOg19+s13dmCTwGHiyBdefPnTw16zPmpkfRlg8hA=;
+	s=arc-20240116; t=1745465064; c=relaxed/simple;
+	bh=itub4aTQPUiiZAXFKiJAcDWZ7EfwN5bRQbzE2Xx+7yQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NlBVQiHaNDPlZiLiASKtmk3hRp34ETtgCNOQo8NuHmYBuadV03O4TTfsjwU2JSw+8v0zXxRmW06LAwOEzn3WwZ+YrQVQdBlwD/eyM9zneKUiuI+jhDDYgXwmpYmrM9GZaHRC/GZjHh6jXeeVgh+XeBcYz9jTWIEsVsNGofesDfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kL521BJ1; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-73bb647eb23so414838b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 20:17:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745464622; x=1746069422; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XUAwJhWsStgPPiYel2m5dmuZ8PujmZM+CaGE2sUsiqI=;
-        b=kL521BJ1GCIh/6lApmzBn9i2whQlemVa9/Exj/8nk2M90qz/RlpVMtbsyxMmxh9SdM
-         6a6KF+tHiHMn/sJYVfJbI0F8h+a1kK0il/Zyv2/aBl/ffi8WFvVJlAojLzyCNrYSCITG
-         zigNEJySmaSRFJ41TwLE+wYQSn+VAadnGYF3z8tp/Nk49W5XF4fzRjucmpipPvzQBeKQ
-         WJcIRQAuMeLDZKSqthk3gWD2wNrA2+r4VOfvLrGI/WSDwFY4jb5gh+A5KatKo7LKlep1
-         uqK/9UhmbOi10zO5fB+kLWqRq5bSO6d6G/kSSbaAwtKOdUgICn6KdthBXCkKEcT86d2i
-         XR7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745464622; x=1746069422;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XUAwJhWsStgPPiYel2m5dmuZ8PujmZM+CaGE2sUsiqI=;
-        b=WV/1nMoPqrGjOcXUhSx7JFb8esfeWc9vswdLIfq+givgL2RZRqjbGX2epauiKNh7Wq
-         MBQLadL/gZY9z+27cKzg3iGAkRRNzZ3Uk4Pzq7FMPmvGJYpq+zmS6S8YsSrBWxpHLUyY
-         WbTE0SwD8PPUQ6nzi5Hjptq3tvQMgV3xKTqZzMDe/EE9IbIsOe/eBBfX/ogosyWjrvSP
-         YJ0/Q691MsMTK3/b6LNpfUWyqR4dSf15l9p6BxrZ7Ua6ctodN83fsCg7n0aCPg7uhL60
-         xG+Gd4BCToYBH+CNhSNdWRVIiwPcLdKG6UvRmFIvDZpuLqdzjfKLbFZ+gH2Ick9Yp9Zl
-         gl8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVqzFDV5ZyKKjrBdKJOGJPQ8pUgL1uj+AC0olORDkjoCu//7oHbDUryp+p2PMY21zkTyH+OJ1lWVRu7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC2lslJMMugajf8rfhS97O1QSlW2dLr8XV0tlzcwrVpZv6qBh/
-	MXOLdFnLE5+ZGLIHjavLDyAP7R/pnWB3UK3Jxp90uU+ZfhOrnTryCfn2KKnV82Ac1XkTXzkSG05
-	u
-X-Gm-Gg: ASbGncsfjZ/MYqEp136YZHljpQzl6CuEEIxIA+ty0M1qRaORMIOfj637Hjr0VaCAVvH
-	rjPicUEjawnGkLrI54zdZhft8DPUA4XendAY+SaqGAG0c1pdwebPve8QC3qmhS7XktZ2fqpTo5Q
-	IhSNdIFm/kvQ7brKdQURcLl/rSot9mLzdewoxJGBrUcn8aHbFR3s6mQUdJcT4mGtyBOdGPXiO0o
-	Z+y7ARXmY7ul9xy4CZpyR351lzM61BZtWn3Bon0mvB3FBUipJ7//wd0RNefRnLycb/3CCk5Ja/Y
-	1G9guUlCc9vM5fHgfXhYxYbbACBRv+82voYgaVt4qTFvst/SpCA=
-X-Google-Smtp-Source: AGHT+IHFdvA0DlIcVCkE1m7fhwPnPK/+qUF0hzp1UIxp5PRqy2sOJJ28/GW1knmKmyzytkf5QLtSrA==
-X-Received: by 2002:a05:6a20:9f4f:b0:1f5:9208:3ad6 with SMTP id adf61e73a8af0-20444f9f316mr1339520637.41.1745464622463;
-        Wed, 23 Apr 2025 20:17:02 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25941fd9sm354190b3a.53.2025.04.23.20.16.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 20:17:02 -0700 (PDT)
-Date: Wed, 23 Apr 2025 20:16:58 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>,
-	linux-riscv <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v12 10/28] riscv/mm: Implement map_shadow_stack() syscall
-Message-ID: <aAmtKhlwKV7oz7RF@debug.ba.rivosinc.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-10-e51202b53138@rivosinc.com>
- <D92VAWLM8AGD.3CF1VH6NYHCYV@ventanamicro.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MMceNSrRV154e+jvUI7fYrIMD0GppCJXKnhcOOQheyRh+au4Bn6gl+7TH9DhMc9HnSdoVFaXDEUX5ChfXeqOTqeSAarKo4Ej4BVZ8kFdSr3K9gDF4oFBaCXkb4x+QeX6b/l7tU7fVAxfCpHLMXGOAvAO/13Hpl7sLnb4WzVTFmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C8D4D342FAE;
+	Thu, 24 Apr 2025 03:24:21 +0000 (UTC)
+Date: Thu, 24 Apr 2025 03:24:17 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <20250424032417-GYA47799@gentoo>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+ <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
+ <20250424014341.7006ea65@minigeek.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D92VAWLM8AGD.3CF1VH6NYHCYV@ventanamicro.com>
+In-Reply-To: <20250424014341.7006ea65@minigeek.lan>
 
-On Thu, Apr 10, 2025 at 11:56:44AM +0200, Radim Krčmář wrote:
->2025-03-14T14:39:29-07:00, Deepak Gupta <debug@rivosinc.com>:
->> As discussed extensively in the changelog for the addition of this
->> syscall on x86 ("x86/shstk: Introduce map_shadow_stack syscall") the
->> existing mmap() and madvise() syscalls do not map entirely well onto the
->> security requirements for shadow stack memory since they lead to windows
->> where memory is allocated but not yet protected or stacks which are not
->> properly and safely initialised. Instead a new syscall map_shadow_stack()
->> has been defined which allocates and initialises a shadow stack page.
->>
->> This patch implements this syscall for riscv. riscv doesn't require token
->> to be setup by kernel because user mode can do that by itself. However to
->> provide compatibility and portability with other architectues, user mode
->> can specify token set flag.
->
->RISC-V shadow stack could use mmap() and madvise() perfectly well.
+Hi Andre,
 
-Deviating from what other arches are doing will create more thrash. I expect
-there will be merging of common logic between x86, arm64 and riscv. Infact I
-did post one such RFC patch set last year (didn't follow up on it). Using
-`mmap/madvise` defeats that purpose of creating common logic between arches.
+On 01:43 Thu 24 Apr     , Andre Przywara wrote:
+> On Wed, 23 Apr 2025 22:03:25 +0800
+> Yixun Lan <dlan@gentoo.org> wrote:
+> 
+> Hi Yixun,
+> 
+> > On Radxa A5E board, the EMAC0 connect to an external YT8531C PHY,
+> > which features a 25MHz crystal, and using PH8 pin as PHY reset.
+> > 
+> > Tested on A5E board with schematic V1.20.
+> 
+> Can you please add a name to the /aliases node, to make U-Boot add a
+> MAC address?
+> 	ethernet0 = &emac0;
+> 
+> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
+> > index 912e1bda974ce5f64c425e371357b1a78b7c13dd..b3399a28badb5172801e47b8a45d5b753fc56ef1 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
+> > @@ -54,6 +54,23 @@ &ehci1 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&emac0 {
+> > +	phy-mode = "rgmii";
+> > +	phy-handle = <&ext_rgmii_phy>;
+> 
+> Can you please add the phy-supply here, which should be CLDO3? It's
+> referenced by other nodes, so would be enabled already,but each node
+> should be self-contained.
+right, I was about to check and then forgot.. will add it back next version
 
-There are pitfalls as mentioned with respect to mmap/madivse because of
-unique nature of shadow stack. And thus it was accepted to create a new syscall
-to create such mappings. RISC-V will stick to that.
-
->Userspace can always initialize the shadow stack properly and the shadow
->stack memory is never protected from other malicious threads.
-
-Shadow stack memory is protected from inadvertent stores (be it same thread
-or a different thread in same address space). Malicious code which can do
-`sspush/ssamoswap` already assumes that code integrity policies are broken.
-
->
->I think that the compatibility argument is reasonable.  We'd need to
->modify the other syscalls to allow a write-only mapping anyway.
-
-
->
->> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
->> +static noinline unsigned long amo_user_shstk(unsigned long *addr, unsigned long val)
->> +{
->> +	/*
->> +	 * Never expect -1 on shadow stack. Expect return addresses and zero
->> +	 */
->> +	unsigned long swap = -1;
->> +	__enable_user_access();
->> +	asm goto(
->> +		".option push\n"
->> +		".option arch, +zicfiss\n"
->
->Shouldn't compiler accept ssamoswap.d opcode even without zicfiss arch?
-
-Its illegal instruction if shadow stack aren't available. Current toolchain
-emits it only if zicfiss is specified in march.
-
->
->> +		"1: ssamoswap.d %[swap], %[val], %[addr]\n"
->> +		_ASM_EXTABLE(1b, %l[fault])
->> +		RISCV_ACQUIRE_BARRIER
->
->Why is the barrier here?
-
-IIRC, I was following `arch_cmpxchg_acquire`.
-But I think that's not needed. 
-What we are doing is `arch_xchg_relaxed` and barrier is not needed.
-
-I did consider adding it to arch/riscv/include/asm/cmpxchg.h but there is
-limited usage of this primitive and thus kept it limited to usercfi.c
-
-Anyways I'll re-spin removing the barrier.
-
->
->> +		".option pop\n"
->> +		: [swap] "=r" (swap), [addr] "+A" (*addr)
->> +		: [val] "r" (val)
->> +		: "memory"
->> +		: fault
->> +		);
->> +	__disable_user_access();
->> +	return swap;
->> +fault:
->> +	__disable_user_access();
->> +	return -1;
->
->I think we should return 0 and -EFAULT.
->We can ignore the swapped value, or return it through a pointer.
-
-Consumer of this detects -1 and then return -EFAULT.
-We would eventually need this when creating shadow stack tokens for
-kernel shadow stack. I believe `-1` is safe return value which can't
-be construed as negative kernel address (-EFAULT will be)
-
-
->
->> +}
->> +
->> +static unsigned long allocate_shadow_stack(unsigned long addr, unsigned long size,
->> +					   unsigned long token_offset, bool set_tok)
->> +{
->> +	int flags = MAP_ANONYMOUS | MAP_PRIVATE;
->
->Is MAP_GROWSDOWN pointless?
-
-Not sure. Didn't see that in x86 or arm64 shadow stack creation.
-Let me know if its useful.
-
->
->> +	struct mm_struct *mm = current->mm;
->> +	unsigned long populate, tok_loc = 0;
->> +
->> +	if (addr)
->> +		flags |= MAP_FIXED_NOREPLACE;
->> +
->> +	mmap_write_lock(mm);
->> +	addr = do_mmap(NULL, addr, size, PROT_READ, flags,
->
->PROT_READ implies VM_READ, so won't this select PAGE_COPY in the
->protection_map instead of PAGE_SHADOWSTACK?
-
-PROT_READ is pointless here and redundant. I haven't checked if I remove it
-what happens.
-
-`VM_SHADOW_STACK` takes precedence (take a look at pte_mkwrite and pmd_mkwrite.
-Only way `VM_SHADOW_STACK` is possible in vmflags is via `map_shadow_stack` or
-`fork/clone` on existing task with shadow stack enabled.
-
-In a nutshell user can't specify `VM_SHADOW_STACK` directly (indirectly via
-map_shadow_stack syscall or fork/clone) . But if set in vmaflags then it'll
-take precedence.
-
->
->Wouldn't avoiding VM_READ also allow us to get rid of the ugly hack in
->pte_mkwrite?  (VM_WRITE would naturally select the right XWR flags.)
-
->
->> +		       VM_SHADOW_STACK | VM_WRITE, 0, &populate, NULL);
->> +	mmap_write_unlock(mm);
->> +
->> +SYSCALL_DEFINE3(map_shadow_stack, unsigned long, addr, unsigned long, size, unsigned int, flags)
->> +{
->> [...]
->> +	if (addr && (addr & (PAGE_SIZE - 1)))
->
->if (!PAGE_ALIGNED(addr))
+-- 
+Yixun Lan (dlan)
 
