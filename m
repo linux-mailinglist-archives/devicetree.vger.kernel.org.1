@@ -1,140 +1,131 @@
-Return-Path: <devicetree+bounces-170491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248F0A9B1A8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:07:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505C6A9B1AD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F301705FE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:07:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B14225A1C2E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B6A19ABD4;
-	Thu, 24 Apr 2025 15:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6713C1A0B08;
+	Thu, 24 Apr 2025 15:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="g4mppRT6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSuoc2CC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278DB2701C1
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 15:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C872701C1;
+	Thu, 24 Apr 2025 15:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745507224; cv=none; b=D6ejbc4yeEH+nF2EdmbNddLwEKohyqnlqbr38QNPmwmtjT6pXGV9Ln/bvVe8bPdnKtYOegBs9GEoVObmThcmXJuRuRk0OShyIe1Qz97UYSK/GWU6AaEIwWMdFRdWRj2rA3lyQLOWeCqooVX0PRtveC8NLcW1xb6GiIoaW9Q0rfg=
+	t=1745507272; cv=none; b=Kew2/rDFnE0u7GAZYhaU1n8VKnyysAsB1ZM88z9Z0qxxxOLP7JWTf/Vqc1UBapjZVcHTVv7GkKj9L7CDAxEIvoF0ot7fJiXCXeHrM59EHz4Jks6neLLbOHgOzvHRaVLz0SL5Wvj4hsDELOMh0eU3S1wDbZszbIjTwg9DaRBYAsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745507224; c=relaxed/simple;
-	bh=tekmdgu4SmGOyXOMrvYH8AEv488OvXUmZd+ZMk/jzkg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MTklSC5fa/GcNtXEQW/n3rc7QYbiNi6Xy9OIGjwRU031DF8IAST2yA4keIIwVflrX7ldyCVHy5Kt1qu+l34Fr0RuUUpPBWYRWt5YT/caQ+90ZIREJbLe2LHPkJh14iCF0v1Cn37X07Z4ueGU43KfsNr7LBZM28KbMq1ANxpFmcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=g4mppRT6; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so8220505e9.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 08:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745507220; x=1746112020; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tekmdgu4SmGOyXOMrvYH8AEv488OvXUmZd+ZMk/jzkg=;
-        b=g4mppRT6Ezdi9xpFVB8wtBou2WGtbZs/94VOF6/Ghjtfxu3SJhRoPpLuFxqohH2Xhh
-         tA2dknoYmHEWJmxZtIYvMqifC90lXB/eQvsz9lrY4CFWnhx2L+zK+gK2G3PbNjFwTXs7
-         G3SAhadAFHy6U6+aY7kOKgL8q5OrepxtGjaj6PJcsBfoQvVkwd181wx/t/WqfEhlOwQC
-         puYSwvoNSIKtMHmQgN//c8uaDvcBRRLYFXLR0BQLfQMXEtzUURJ7QbtmGeKb6xwMeyRY
-         4rfuaCylcxUR6dI796eV3m2emBuNBMKUWJLhiHJDVd+NvxXnLToscN3eFzgCdMWQK4ua
-         HCwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745507220; x=1746112020;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tekmdgu4SmGOyXOMrvYH8AEv488OvXUmZd+ZMk/jzkg=;
-        b=K9895rx1Zd3DPEAbMuYLURK1lHPwxTknyZ155fAK0kvKpw9Jkx0VyyHa8QWKyJHkZn
-         XHyAckO7VAORfHB4Qe/jgvKjCjyhRKOKPHkzp0hnv7S8J99EkQZmwMOuiBuyrWl8cDJY
-         oOZfmx0ZJZv5sJXPhB0x7KbQtqWM8yrzxmbd8eBrIzMzq/iaIAioNggA/I17IR5LSPhn
-         kESK18ZxuyXGdsBX/mvFk8zZpFE/kDCMP3D2X74bI7V64k4dNxMq7cel3RiTy/zvlTGk
-         mj45/IkFXFWHCgiLBs+YpMgDkx6gVl/hnbQbbgTwwx5cRR/RuNpkQ0ci6FX9BgHM8nwN
-         Qb9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVmVRTJrMiy+CFSNFGltpCNmKkdJTIi6qqNrQq1WTW/tZwx8TrwZz+PBkXkC2v4DFd3jIfQ64hQTYdp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/BSSXvS3FrJ7Sc2XzRCElseXSvjOl6SQM/iLvpUaCXytLDfMh
-	aoz3mJFZlZRvUtlExTdUc6KZftOuyUxalrlVvvOBTVWzMudfC8LFrEticLblDaU4mLV8LWbFqTn
-	+
-X-Gm-Gg: ASbGncvSAO0QolZ5c6SPdyH5tny8hYymeR/2ClZlR/esySstew9tGzo3Jnb/NETW4/T
-	oVdqJwAFcmmO8ZFfsaOz1HzJxyopj5BVh/q4B0OL/SNvf+x2ZiJSNRsS6z1GS0aT34pYGprICFN
-	fk55zvMcyrzwq/Z1S+Z2i+XuyYQggBUeokJwmnczB4JPGxgGF1jGv+rb+aU5O4WoywZEJiolhd/
-	nF0r5+RZhnSjfWRzPqSEj3XvF/1NapRJaKtFpEBkcxeRumrsxr1KluuBwqq9Rs5hN7JQiXhLQQl
-	rD8FYQtw1MlMcXElvn3DB7nTP+T7BG5SXppCkH7pSiQhHHVoDf569X4ArISg+7KW3AF9TamuoEM
-	wnpJZ8rA=
-X-Google-Smtp-Source: AGHT+IFyIihiWZtzqCaT0+c5gR5qS0i6N2HGB8bIr4D+Ljl1JMZ+cLPlHv9drJDs1OWf2iLRUT3wng==
-X-Received: by 2002:a05:600c:4e48:b0:43c:fceb:91a with SMTP id 5b1f17b1804b1-4409bd21f8fmr30871065e9.11.1745507220162;
-        Thu, 24 Apr 2025 08:07:00 -0700 (PDT)
-Received: from localhost (p200300f65f00780800000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f00:7808::1b9])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4409d2bfaf4sm24338135e9.36.2025.04.24.08.06.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 08:06:59 -0700 (PDT)
-Date: Thu, 24 Apr 2025 17:06:58 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: stm32: Add nvmem-cells to ethernet nodes for
- constant mac-addresses
-Message-ID: <xvhstvgs5bpfebeolozdbxh2empviijqq6hg2k2kuav5xykpqw@a3jgkrqzj4xm>
-References: <20250328171406.3307778-2-u.kleine-koenig@baylibre.com>
+	s=arc-20240116; t=1745507272; c=relaxed/simple;
+	bh=C2EZ1apAndk3/v0vmgQAhEZ5P5qimA9TdHfeO5X9suY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l2tyh0kU2Ig09IqZ/wffaXO5U35OKHhPdqYHVdoPhRLsGO4igldtuZpwx1ZLESQz7BM9MM9iCO+s1sCwd08VuWc9Y+80LZvIOJcdKmqDsHQLBmGPSuhGsk34OHHwRGPh5v6h01aK1O5HMTVMrHAe7sGuQzN/4GLaxVLhgpSqTQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSuoc2CC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9072C4CEEE;
+	Thu, 24 Apr 2025 15:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745507271;
+	bh=C2EZ1apAndk3/v0vmgQAhEZ5P5qimA9TdHfeO5X9suY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sSuoc2CCIv7YZ24pPXJFesLUJibGNO4r4KltBKGt4WicyIsIytf0Y29fvXDcEV1Ur
+	 XrBICWdnMEPKqZiKHoWEOl2aWpbg3OsUrn76JIRXdAKrbuhImEzxL7O+S471CDtszy
+	 /7kU4efIJN46IOk7M4SDaMwL8+YXOs/tdmb6yjOP6b1rOmXvsX7qJdiMWcFcu1EX4/
+	 uUXR1tWRWr/0mf8emQhFYU7EIHlxbDoZhl/v1zRYBMM02vW+wkXWa0HKQcg6c4YoHe
+	 vR/LyQO78DiGEPHMP9z40cMJ6CvsxUS9/Uq/P8fYiCe9bsbD8qNCW2yz4ARPwzH6II
+	 5wnb/TGVgbU5g==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso4155382a12.1;
+        Thu, 24 Apr 2025 08:07:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWSxh4VKVRJIQWYiMhcrzczOzI4c6cz9WVkX9EDhp4XKBU8v8jQveplpTbeAQ1wtrLEyBHKGOKKhZoqtXbP@vger.kernel.org, AJvYcCWqbzeHAPXM2l+tRCnqdplHXCFtTh9eVjfGKHBkbsspfzX/FFNlmL/IIQEfdIbrDfjjMza+W90WDStl@vger.kernel.org, AJvYcCWyAXCU/ZztuPlkoUqm1Kiatzq62VOWLo07BAz+ZJbWrC6mAy18HJ/iXAwscpozb4d7HDor+ZszvnjQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9jsLDMOmpnbL9GFO9Hx17bffDcRPIllxfj76zec+uc7X8COPI
+	KAqBEpy9ssWYQri1IERxk2In3KBbqyJbfJZkFoNzvdUPONHd2UM94j/XcwoPd1SN2BsPVYy+JNC
+	OxHEgHZCC9fLAWP3zlK9I+PrbHw==
+X-Google-Smtp-Source: AGHT+IFhdMzyhzAig9c3GEzCIGFQQOuVXL3nlcgWG+8YQAheYOsb+jucq+ZoRkeYL8tN2ih3I3/l6YbuF0ROow8cHbw=
+X-Received: by 2002:a05:6402:210d:b0:5e0:6332:9af0 with SMTP id
+ 4fb4d7f45d1cf-5f6ef1f8249mr2720700a12.14.1745507270130; Thu, 24 Apr 2025
+ 08:07:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jf4746uwztvxbhk3"
-Content-Disposition: inline
-In-Reply-To: <20250328171406.3307778-2-u.kleine-koenig@baylibre.com>
-
-
---jf4746uwztvxbhk3
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+References: <20250411103656.2740517-1-hans.zhang@cixtech.com>
+ <20250411103656.2740517-6-hans.zhang@cixtech.com> <20250411202420.GA3793660-robh@kernel.org>
+ <CH2PPF4D26F8E1C8ABE8B2902E5775F594FA2B32@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <CAL_JsqLNteS0m_32HuCjY8Mk9Wf+z6=HBpM7Wv=zLVqNs-7Y1Q@mail.gmail.com> <CH2PPF4D26F8E1C6C03FA2110C5AF9045F7A2852@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+In-Reply-To: <CH2PPF4D26F8E1C6C03FA2110C5AF9045F7A2852@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 24 Apr 2025 10:07:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJgaeOcnUzw+rUF2yO4hQYCdZYssjxHzrDvvHGJimrASA@mail.gmail.com>
+X-Gm-Features: ATxdqUG31eOi_waVP5NwjBplcNZWHhFFniBtiZHxRDCwGY3iPVWCvE4bH0E69wc
+Message-ID: <CAL_JsqJgaeOcnUzw+rUF2yO4hQYCdZYssjxHzrDvvHGJimrASA@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP controller
+To: Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "hans.zhang@cixtech.com" <hans.zhang@cixtech.com>, "bhelgaas@google.com" <bhelgaas@google.com>, 
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] ARM: dts: stm32: Add nvmem-cells to ethernet nodes for
- constant mac-addresses
-MIME-Version: 1.0
 
-Hello,
+On Wed, Apr 23, 2025 at 10:54=E2=80=AFPM Manikandan Karunakaran Pillai
+<mpillai@cadence.com> wrote:
+>
+> >> >What exactly is shared between these 2 implementations. Link handling=
+,
+> >> >config space accesses, address translation, and host init are all
+> >> >different. What's left to share? MSIs (if not passed thru) and
+> >> >interrupts? I think it's questionable that this be the same driver.
+> >> >
+> >> The address of both these have changed as the controller architecture =
+has
+> >> changed. In the event these driver have to be same driver, there will =
+lot of
+> >> sprinkled "if(is_hpa)" and that was already rejected in earlier versio=
+n of
+> >code.
+> >
+> >I'm saying they should *not* be the same driver because you don't
+> >share hardly anything. Again, what is really common here?
+>
+> The architecture of the PCie controller is next generation but the softwa=
+re flow
+> and functions are almost same. The addresses of the registers accessed fo=
+r the
+> newly added functions have changed and to ensure that we reduce "if(is_hp=
+a)"
+> checks, the ops method was adopted as in other existing drivers.
 
-On Fri, Mar 28, 2025 at 06:14:05PM +0100, Uwe Kleine-K=F6nig wrote:
-> The efuse device tree description already has the two labels pointing to
-> the efuse nodes that specify the mac-addresses to be used. Wire them up
-> to the ethernet nodes. This is enough to make barebox pick the right
-> mac-addresses and pass them to Linux.
->=20
-> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+Please listen when I say we do not want the ops method used in other
+drivers. That's called a midlayer and is an anti-pattern. Here's some
+background reading for you:
 
-I wonder if this patch is on someone's radar?!
+https://lwn.net/Articles/708891/
+https://blog.ffwll.ch/2016/12/midlayers-once-more-with-feeling.html
 
-Best regards
-Uwe
+So what are you supposed to do with the common parts? Make them a
+library that each driver can call into as I already suggested. If you
+want an example, see SDHCI drivers and library (sdhci.c). Actually,
+the current Cadence support is also an example of this. It's 2
+different drivers (pcie-cadence-plat.c and pci-j721e.c) with a library
+of functions (pcie-cadence.c). We probably had this same discussion
+when all that was upstreamed. Sigh.
 
---jf4746uwztvxbhk3
-Content-Type: application/pgp-signature; name="signature.asc"
+Now, where there should be more ops is in struct pci_host_bridge for
+things like link state and PERST# control. Then the PCI core could
+manage the link state and drivers only have to provide
+start/stop/status.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgKU48ACgkQj4D7WH0S
-/k4KqQgAh+AwCxuJsOtZS4t76OvBR42DI7PxQQ1v6/IsFyAA8afEf+7e9zgLaGZu
-DJlNzT2e74nbDdcbaCDOLOM6VKrJ082DI+Sk5TfSuz8/KQeC5ljjKfoS4Srem16C
-QDRhMNzYgTUC1GCxXE8CY46syIHB07mA6uuNndjxI2MFUG8jA0tO//dGkfWzzxUi
-17RqErahedYndDxyopbtce05CvZHvNoZ+zcmxJItvijX1JWpUW5utouFgFsO40Xj
-6H/hmScaWYagqW9CMyoUcgmnvDoWDx+aq2XRmWXIG5USJzc48wUynpZAHd/rvpRS
-dYA59U3ESpZ/3M+zMWEjDvaKnGw27A==
-=DXp2
------END PGP SIGNATURE-----
-
---jf4746uwztvxbhk3--
+Rob
 
