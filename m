@@ -1,154 +1,197 @@
-Return-Path: <devicetree+bounces-170540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EC5A9B419
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:33:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 467EBA9B433
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:36:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFE8D1B607FE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:32:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFA2D9A03A4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 16:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77F632820B2;
-	Thu, 24 Apr 2025 16:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0462928936E;
+	Thu, 24 Apr 2025 16:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NiPU5j9J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uw995cOL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948D82820C4;
-	Thu, 24 Apr 2025 16:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BD828934D
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 16:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745512233; cv=none; b=j3lPtxLfFrbvhI428IL3no44prBj3+OFfdUyeTEKYkouI9TDOVVmICm44ytFMeSgdH7sttMIqs96k864wHQqtU/H1JKZakMYJLIG4kUL5EmTBW/pGMILfWWR1ksfn6eyJwbWodxHMnBTHwd63nx4y8l+zR/TMf5XSlfrLLs3BzM=
+	t=1745512279; cv=none; b=sAL9xECCD5pTemKuf8+CRuTAK+F3VNoxi0/vxuVWy/9dG2qzy49r4FCFZHqZPKKwehJwnUy0bAr0fCtVBBIR/YNoMDSldWX5dNL9mfPMOWUUKC2CsWQhw+1D2uGn7ld6zSC1rJ6CT6mbW6D2lEBfsQOriqQE+J7AIeGxpwwG5I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745512233; c=relaxed/simple;
-	bh=KSHwPe58JnFpQBGQE3MUIPuMQFsEhQ/o6djxMtto2AE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lECXne67HLo1YU36eIaFNYsdHBC/llZcQY2Y89nBS3cksiMc27XIeC1IKjIWHNzLI5pMcz8+gBpE2nuAYUqh6ihX9qdk4Fo1kziwzz1US0f0P3DJ20CTJIjSDiWRkT2B5p+rc3X6nkbuq8A0GQuiTr1TPfpCYYYMLuRRDPp66LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NiPU5j9J; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ACD8E1230;
-	Thu, 24 Apr 2025 18:30:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745512226;
-	bh=KSHwPe58JnFpQBGQE3MUIPuMQFsEhQ/o6djxMtto2AE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NiPU5j9JrmxDLg4tUHYFa2yM+pVBLxjmcXxWZR0z/PS0XURL9Xk9/ADCYkh9j8gWb
-	 v6wMYJ0K9hmXXH/reNiyxp05SjcIWHYkHaTXEibRzAK7kbLC0RnCvYr4L6Xtt16MYm
-	 nAfSA24bHoAhHKzzE/94Rg+FNJkRKmcpP2vCggWI=
-Date: Thu, 24 Apr 2025 19:30:24 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 06/17] mfd: adp5585: add support for adp5589
-Message-ID: <20250424163024.GL18085@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
- <20250424161838.GM8734@google.com>
+	s=arc-20240116; t=1745512279; c=relaxed/simple;
+	bh=UAun3YEtTgPgMwE+w7DEgN0LbIsouqCKO6JRGb863do=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=okd5RyN92vaVnpEv/x0ZYX5Y8HZ4dTDB7rL6RxuCovMosEoAN1x9fbcRGuTDDi/yZAAGSrzNvS+Soqt1Q6dRYifO5S3mYOPF1ZSvB2zYadlfDUlYn6QMKMv/+OrGW5skf6XWDYt5CjlaSFJNNMD5a2xirjOxvrv9AuKfn7wB59o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uw995cOL; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf58eea0fso5934885e9.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:31:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745512276; x=1746117076; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=avxTnMgGL9T40vr6mJrf1WvZTctYjb1/k2GZpu6aG4I=;
+        b=uw995cOLjZwzeGqWzsIvKSkgFjkoSI46eX9fcI/spIiTFqa2rxWeEAbnaJAebdXaUT
+         QU/mqGPbovsBUkaucszIaHJ6/i+tdfK9MT61AcBkNF4RCx2EINbdL/5+c1q0oumHFdy+
+         2I0WuLeR3Ap5mBH6/HcKFsoV6AKYoYTIeeURG6WKphDTQ5kDtItWnk1XGPdxqOD3xRPn
+         TFwiSnll6qgm4LxHKKmsRJBFlXESMlV2Qq46Zdu0Bvj07abU8ZvUA0nCQFfDxblNOIwo
+         5lB7Ds5Tppqv/uwNz1nwAuBCqmnBoayvMzpPE4LmB7YgiFUqgr1gF4AB+9lPsdGXDJ+s
+         GLUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745512276; x=1746117076;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=avxTnMgGL9T40vr6mJrf1WvZTctYjb1/k2GZpu6aG4I=;
+        b=IrrBhVSHorhv408nxIvmZZShbKsqvR/PnnUyiXurLCpVdk9U4dMzeekXJO7KCZNlTb
+         Bz6yE5et5MwZ9MP3dfyNIQYFTfm4sdYqdiilbUCyS5cPlF4dNzIHKY6rElSVdGYn2hqN
+         r2ccSRBtZC6++LO0KnFunzznyt2rQwIKa1RjUIcbT+bBnz54Yw1m9mQu3S3Etmrt2I3H
+         MfKDDMvhJZB6TUPmkMQhCMEqQ5vQV126AlEAv73rDvFYA/HAPIF1HAZifUrJRtvnIPPD
+         uPMH2ski++83c2v3ECQ0Vt4DMGSa9hO9FrX2Cw5FlIpyi34O94al74Jxr3uMpI2OAD0z
+         QheA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfL6netXnaCzrvOF9J9C5mdsSBxy/w8Cpkt4uUdvBzo+jRVCt3DDdZUdYRN9begvv/YUvBKkqWRejp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymd0bFPR93/oDg1L9K/9Ag/ohAWggypmTuFSZ369t+T0GeFswa
+	Wlwhl5xdhn/0oSDNCoF/kI4pRnbJZdboVds7D97vNnEiRqDhHN2mQSBE4td/+AU=
+X-Gm-Gg: ASbGncui8Q85+mt2OP2iukpoDZwJGqyk401nYI4Ua6fA+CkhxWjxvTA8YREnf7ndGAD
+	ixgcu7dJBioNL33kz9TApw8YA+ZmWJBJERVlSbkCvLsvxTiIDfnqFsPfrw5xR4BFt3xbyCN0i9z
+	6klhqnbF8BwXB7QXh0evgQPdeFa0QrtsH0j2yyQ6rndlnyTzvoe4vClE3k0CpNk+/XNQk4gagol
+	vnMo5pi/Pcgs28DArSlVC2LvS7BXXQX2jWX6WChZi1GuUvXB3eMuAPpIcoRPLq4C9kuVzG4DcFp
+	cbwZ6HErRiFuvOtFu8Y/rjy2h7737a7mF9g04iEgujN9xR2A6b3iDR08oNp4/Od5i9uKCB3I
+X-Google-Smtp-Source: AGHT+IE0EMp5xPhisna7tNIjNRMs+HpoVRzi9CmGQqlk2xMkSDZBQf/blm/OBKXxO2IKyVALcYS/Ig==
+X-Received: by 2002:a05:600c:4fc8:b0:43d:7413:cb3e with SMTP id 5b1f17b1804b1-4409bd0a445mr30673535e9.1.1745512276069;
+        Thu, 24 Apr 2025 09:31:16 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d29c02fsm28874265e9.7.2025.04.24.09.31.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 09:31:15 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Thu, 24 Apr 2025 18:31:14 +0200
+Subject: [PATCH] arm64: dts: qcom: sc7280: add UFS operating points
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250424161838.GM8734@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250424-topic-sc7280-upstream-ufs-opps-v1-1-e63494d65f45@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAFFnCmgC/x3NwQqDMAyA4VeRnBeopc6yVxk7uCadOWhDo2Mgv
+ vuKx+/y/wcYV2GDR3dA5a+YlLWhv3WQ5mn9MAo1g3d+cMEH3IpKQkujjw53ta3ytOCeDYuq4Ts
+ SZRrjvacALaKVs/yuwfN1nn/tfuytcAAAAA==
+X-Change-ID: 20250424-topic-sc7280-upstream-ufs-opps-b8ddfd7861d4
+To: cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2221;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=UAun3YEtTgPgMwE+w7DEgN0LbIsouqCKO6JRGb863do=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoCmdTePAyUcm4zpv0Vdc2bXZ9PUTPnmGhoawgp2rr
+ Z5ugRmKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaApnUwAKCRB33NvayMhJ0YMkD/
+ 0bAmmHq07b9C+W3kvOFug0WOYe/CizNs+Pjau803x5yYHKPJ5zaASxaETPrFsYtxaiAX0AwVcT63rk
+ Uy20KCpHgfugg3Z6EElpypsir/MU+o2F6K2pihJF7bTF2fnGxFDD5oY/h2N97E5qgEj0mJceC60GfS
+ PtCBSEUyiQgJL9WKGeXN1uQ+XYe7/KX746GOU55NEkKoTzCIT2+nzuqdWiLetxGCEeUmFbDB2RAOMH
+ luDx1uF1fQ7nqM2hW8fAXUQGgmqbA0sY0OwsFklGeMSRPa6MUcgwXiQxZID6R7jBKt0PjadJy8ytzl
+ 4ID9WgYhWxOsaDDv05B64KYOsxkCxpx+X884VXQNtHLH45hLHsjJrfE6v1r+Tu1Ia/63qf6aUB7I1v
+ wgvphgwxw2bGPiRib4r5hxoz6Uu5c+fc9xJEYkDJqM5Zh7IjbsEHCY5ISi+sSLG3Pk0oU7sI8vshum
+ PMSlfFUEX1VsUqKh0tGunytRQE7hJL98reXKfnEC+RdeelDRxs8nM5q3iWp1yALrgFkekLifeR2dKk
+ k/+Z3xW3u1A17mLG03+8EIoeBK02PiOov8uClBjkBn/IhRfReplqEhK09LHpcuo7SdbE7E0C6v3jf0
+ NBhgJFhfmY0kIK8b0wH88FX0Ax/EJlDwLDWTglinPJ/lWJF4rkRtN1onnEaA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Thu, Apr 24, 2025 at 05:18:38PM +0100, Lee Jones wrote:
-> On Tue, 15 Apr 2025, Nuno Sá via B4 Relay wrote:
-> 
-> > From: Nuno Sá <nuno.sa@analog.com>
-> > 
-> > The ADP5589 is a 19 I/O port expander with built-in keypad matrix decoder,
-> > programmable logic, reset generator, and PWM generator.
-> > 
-> > This patch adds the foundation to add support for the adp5589 gpio and pwm
-> > drivers. Most importantly, we need to differentiate between some
-> > registers addresses. It also hints to future keymap support.
-> > 
-> > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > ---
-> >  drivers/mfd/adp5585.c       | 223 +++++++++++++++++++++++++++++++++++++++++---
-> >  include/linux/mfd/adp5585.h |  57 ++++++++++-
-> >  2 files changed, 268 insertions(+), 12 deletions(-)
-> 
-> [...]
-> 
-> > + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 8/R7", numbered 0 to 7 by the
-> > + * driver, bank 1 covers pins "GPIO 9/C0" to "GPIO 16/C7", numbered 8 to
-> > + * 15 and bank 3 covers pins "GPIO 17/C8" to "GPIO 19/C10", numbered 16 to 18.
-> > + */
-> > +#define ADP5589_BANK(n)			((n) >> 3)
-> > +#define ADP5589_BIT(n)			BIT((n) & 0x7)
-> > +
-> > +struct adp5585_regs {
-> > +	unsigned int debounce_dis_a;
-> > +	unsigned int rpull_cfg_a;
-> > +	unsigned int gpo_data_a;
-> > +	unsigned int gpo_out_a;
-> > +	unsigned int gpio_dir_a;
-> > +	unsigned int gpi_stat_a;
-> > +	unsigned int pwm_cfg;
-> > +	unsigned int pwm_offt_low;
-> > +	unsigned int pwm_ont_low;
-> > +	unsigned int gen_cfg;
-> > +	unsigned int ext_cfg;
-> > +};
-> > +
-> > +struct adp5585_info {
-> > +	const struct mfd_cell *adp5585_devs;
-> 
-> Okay, we are never doing this.  Either use OF for platform registration
-> or use MFD (or ACPI or PCI), but please do not pass MFD data through OF.
+Replace the deprecated freq-table-hz property with an operating
+points table with all supported frequencies and power levels.
 
-When I upstreamed the initial driver, I modelled the different functions
-through child nodes in DT, with a compatible string for each child. I
-was told very strongly to remove that. We have therefore no other choice
-than constructing the name of the cells based on the model of the main
-device.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 52 +++++++++++++++++++++++++++++-------
+ 1 file changed, 43 insertions(+), 9 deletions(-)
 
-> > +	const struct regmap_config *regmap_config;
-> > +	const struct adp5585_regs *regs;
-> > +	unsigned int n_devs;
-> > +	unsigned int id;
-> 
-> What ID is this?  We already have platform IDs and MFD cell IDs.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 8e86d75cc6b4929f6cf9592a3f1ae591a19e6d78..911e104a219d2ce8cd5adaf34c6731bb2d3769c3 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2364,18 +2364,52 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+ 				      "tx_lane0_sync_clk",
+ 				      "rx_lane0_sync_clk",
+ 				      "rx_lane1_sync_clk";
+-			freq-table-hz =
+-				<75000000 300000000>,
+-				<0 0>,
+-				<0 0>,
+-				<75000000 300000000>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>;
++
++			operating-points-v2 = <&ufs_opp_table>;
++
+ 			qcom,ice = <&ice>;
+ 
+ 			status = "disabled";
++
++			ufs_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-75000000 {
++					opp-hz = /bits/ 64 <75000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <75000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-150000000 {
++					opp-hz = /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_svs>;
++				};
++
++				opp-300000000 {
++					opp-hz = /bits/ 64 <300000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <300000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
+ 		};
+ 
+ 		ufs_mem_phy: phy@1d87000 {
 
-That's the value of the hardware model ID read-only register, it is used
-as a safety check to verify that the connected device corresponds to the
-compatible string.
+---
+base-commit: 6ac908f24cd7ddae52c496bbc888e97ee7b033ac
+change-id: 20250424-topic-sc7280-upstream-ufs-opps-b8ddfd7861d4
 
-> > +	u8 max_rows;
-> > +	u8 max_cols;
-> > +};
-> > +
-> >  struct regmap;
-> >  
-> >  struct adp5585_dev {
-> >  	struct regmap *regmap;
-> > +	const struct adp5585_info *info;
-> >  };
-> >  
-> >  #endif
-
+Best regards,
 -- 
-Regards,
+Neil Armstrong <neil.armstrong@linaro.org>
 
-Laurent Pinchart
 
