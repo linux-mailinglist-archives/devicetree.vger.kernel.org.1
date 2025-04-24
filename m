@@ -1,153 +1,207 @@
-Return-Path: <devicetree+bounces-170442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF57A9AD3B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:23:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F440A9AD61
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 346D81B66713
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:24:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04FF89A0088
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA3622F773;
-	Thu, 24 Apr 2025 12:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1BB25B665;
+	Thu, 24 Apr 2025 12:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="mhvDkXpr"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="mXhODf+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDC22F748
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 12:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745497421; cv=none; b=dIgK4kVvUqLTcBD2IvSe9i8ZB/qZ2FkICibR+4oOSYh4D+gM8um+5ECvU4e2z6AIsE4yGlKqgQMWiryQIWT0vWloExXCDIAJWGtSbwma+AiczfNaAYmS2PAh9GFCuC/inG65DFXbXg0mkbkCyy6FitHFr+AQcVijGe6yuy2STA0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745497421; c=relaxed/simple;
-	bh=mb4owV23IIKFPA0348nV5wGPHZz3gEvC8g/fsUHVCgA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=I6MVUxAtqMrsX+04yTQ7z1b1k4yl9Vb+m/+Qj1KzTC49ee7z4vxgj7TJWzDQrNGfzFbE+LbLQdxYYAb5JE4gPyy8NPQGrHvMiN2FyxPRRjUGOg9/uin9aRGGHgVRKJoiamWeg4c4r5IM98lKXQutbvF6vAhG9i0uV/9OvnzEClU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=mhvDkXpr; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-440668acbf3so1423205e9.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 05:23:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1745497418; x=1746102218; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:subject:from:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nffUUxHQRUxihyV+Es46LKx5IUoFWP6+nxUCQrf1fjs=;
-        b=mhvDkXprQtheM2R2TQkjwyIwHPj/Flc53DbFs1ggfPvNPOtZUwTMqHejND99lMyASB
-         fJ+W3zMl4kYtmyflhE1ioeLlZ6kaIY7kKgDir8C70ev2fNC0wK1H2EwP9socGF7QuLlg
-         q7KmZ/sZk6bFZzhY4F7EbEpDDWV55SaAgKcC4UB54UnLjqEL4KCxIBDeCMywZAVwg0f2
-         qS7wd/HTrDCoS/ZU9yL9RoJVeeH+X08FFKG2j8ErtQ69Oz2V/0+3d4QcaIJYLKQ+RXNs
-         mzePApqiRMFNVnJ28teIBT+uUUkqv7p5hMMyLkS537fu3ufE4owY0a5pG2E6a4D4UKiq
-         LL6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745497418; x=1746102218;
-        h=in-reply-to:references:cc:subject:from:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=nffUUxHQRUxihyV+Es46LKx5IUoFWP6+nxUCQrf1fjs=;
-        b=pDIPw2qqES/zKkC5g1LtCBsKu11qZuJLIU6XV0cnLe+YWJMW9edYZBtjHAZV/qMHrE
-         rcH1t9qy9zUuUwzCvJ5MJgX9RYVxrcHg8mF4eIJQqHkUhTK//w+l4amPonV1IMrQJLRz
-         CJ5qFC7VVTZHiUEHgD1b721XamW5fc+fpP1IfuKqOld3F7ngCtDSz2MxPv2kw2ygJ3B/
-         wlVv9yzlAV9zQZ9Yglf/9cBlW7aDjTKbY0TuIJ2LnQuGMXRuwa4RF9nTp7o5VfFiY8VX
-         iPUFQL4uPAjQs2JHLdOD2qHq05N8R43dGB2z6+6W6VbxWAS8ahWTlFKtzRy5C0WhY5GM
-         Tz/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW6XNB4f0aivFmE0EvLnbJVED/z/qaX4atBNu/MGaM3xGDI9lk3z+e2iv/QsSDvkF+yYe0ZxSfitjwr@vger.kernel.org
-X-Gm-Message-State: AOJu0YySOXfT55Bwwh1A/h01cUyYbI1p0F3CHy3QAbmKDBdsBoMvNCtn
-	+xlKQx8RoeB9Y38IPyuYRG6PuWiu9HjzaCl9ykVijdCEb6K/UOI4ptBe9hHOkCk=
-X-Gm-Gg: ASbGncunvpCiRkk/bCaxOcnqA/T8ZpuJB87z7NQ8XKrlxq6FnqfciPZ1MBjIn74vfCc
-	0ihqx7rgwoAZWp2MPSiLr/F6Db0mz5Ez4rAeGsazaL6DdcMg3Cy1PtNMKcbdh3Lg/VTl+abj0oY
-	UOPPY1OUL1GBJPIaTKQbI3b4M/nothqZbN3mkFhv/M71z6ZeLcZcG7YcNBf+oDPTR0WBrnNcOcz
-	rlup08CAXyzzr2q/kc+E+5h4U5eZiDA9HfVwROUC25VSZLHfelz/0vEBnLWL4+uNok9I3h9dX5D
-	pzYFrPy1tAamC0M3Xz7+CpovVV9Dt8BQIH3Cd3iL4i/cHptgBbejva6FF7w=
-X-Google-Smtp-Source: AGHT+IFvpk8fVElfDmbD5bbQ4KBSF4oRicSe9nZGd6eQAPt/95H7RizUp5Ju8acqfaiZr/JLSD9aIA==
-X-Received: by 2002:a05:600c:3516:b0:440:58d1:7ec3 with SMTP id 5b1f17b1804b1-4409bda5fadmr8020715e9.6.1745497417906;
-        Thu, 24 Apr 2025 05:23:37 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200:b30c:ee4d:9e10:6a46])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d29bfc4sm20203525e9.8.2025.04.24.05.23.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 05:23:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408BD25A334;
+	Thu, 24 Apr 2025 12:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745497573; cv=pass; b=YXcrGy0QlgKY5t6lMk8GvV/G/OPpCrUGj6sD8PE+27atPdonVzDALUG8VU3zOwG8L+kNLftTF+/r9SEOsH3NWcQO+lPUW76ieFYMN3RikGcvZSlSfExL4ZxfT6mwuoJWELpJ0t81IteeIPVzwj8kkSWpB65FZNCUasXxXnkqw0A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745497573; c=relaxed/simple;
+	bh=Sbs1+npj6WAlGfBRhvWrInsT1B/Gk04REktMxgJiGtU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qurxc7IyaZqBjfV3R2jIa2fla2AyfIQKujlLPjvCWLoa3VSga1lBwJmzYyHkKO1j/H3KpV2KCjvAAZU+fzCRg47XjLe9T9v6V9hNybKM1nSLPCQr7meAXqI4WJNwmETQT5yPfqdvUsOXjS3By9qrsQoK1dXPSaRtMLE0XTjnUZI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=mXhODf+u; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745497551; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=H8BlMqnIHjw4CtLH/Yn0TapHjcjGiO1ZCjZbGA7DHDc5kXkiVgRN85TRuiASG8O26w67Wiffvf9Y0X6WFhJHEc0Mx929foyfqBMwa26g/mhXOy2fFcAxGI8mXzpa5Guf2iG+/Hjjk95YJlrXGZZtxIStEvWYRpGHA0zEuyQX+9U=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745497551; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Sbs1+npj6WAlGfBRhvWrInsT1B/Gk04REktMxgJiGtU=; 
+	b=PHTFa9PXZFTd4ld+pYXc02qHV3/BfobtI0PxJlLOFW7yvUBdOBZ4NKlvGBw+Rne8DzQG8rA6gAe8S9+Jl5jfVTJiS5n+xo86zyyyJVxcwrNRct064dRRP1EgD/v1IrVaaWV9e+AcQFnG89D1bsLL6Z6E0hTV8e9pBVTZkLeNc/8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745497551;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=Sbs1+npj6WAlGfBRhvWrInsT1B/Gk04REktMxgJiGtU=;
+	b=mXhODf+uc65g+sni/MC1Kpan87oFKEGupVO5z5YJnuEpzrnEjRied3ILx9FCBewQ
+	FIkNm/WKYbvLpLiwtKqNQer4y5EEIQ8sq+dSxAGOIQIKTcS9NIwr2H1YPp0yDLL58nx
+	y3VPQ/hCnmXXS0KUxWnmf5wTyD5Y02gBpF2PDxDRjLew8ro/LtFG0RFVWWFgUraJDNp
+	UlhAvoIiODexWA/3YF0UsdbD7duRpXsLxl4y+6oWbwbXYuxl4q06jZuxaVYagtne6gr
+	RW3d0NA64yDkbV511walU0Gu0sV4SMqjrI0OAt/cqkjiDH2GSlZf+iSoqx/D/ZEZNDH
+	pqgb9wS7OA==
+Received: by mx.zohomail.com with SMTPS id 174549754871497.68482437052171;
+	Thu, 24 Apr 2025 05:25:48 -0700 (PDT)
+Message-ID: <0606c146d97ff98ff1412b98f49e6da0071801d1.camel@icenowy.me>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
+ PAD_INTERNAL_* virtual pins
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang
+ <jianlong.huang@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Date: Thu, 24 Apr 2025 20:25:35 +0800
+In-Reply-To: <CACRpkdY0DXxDixZVhnRuKvSVbKQ6pSfLMiT2hf9818sbNG-4hg@mail.gmail.com>
+References: <20250424062017.652969-1-uwu@icenowy.me>
+	 <20250424062017.652969-2-uwu@icenowy.me>
+	 <CACRpkdaX0hTJSsZN6YNXASY3noZw=JsOSXzFBbxKegJ6A+2usA@mail.gmail.com>
+	 <7e62e720ccc51fb5c7d023adae3eab35aecf0bba.camel@icenowy.me>
+	 <CACRpkdY0DXxDixZVhnRuKvSVbKQ6pSfLMiT2hf9818sbNG-4hg@mail.gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 24 Apr 2025 14:23:37 +0200
-Message-Id: <D9EV6ZHETDM6.36DJZQTQ487O1@ventanamicro.com>
-To: "Deepak Gupta" <debug@rivosinc.com>
-From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
-Subject: Re: [PATCH v12 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
- | VM_WRITE
-Cc: "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar"
- <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>, "Dave Hansen"
- <dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
- <hpa@zytor.com>, "Andrew Morton" <akpm@linux-foundation.org>, "Liam R.
- Howlett" <Liam.Howlett@oracle.com>, "Vlastimil Babka" <vbabka@suse.cz>,
- "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>, "Paul Walmsley"
- <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Conor Dooley" <conor@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Arnd Bergmann" <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>,
- "Peter Zijlstra" <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>,
- "Eric Biederman" <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>,
- "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann
- Horn" <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
- <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
- <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
- <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
- <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "Zong Li"
- <zong.li@sifive.com>, "linux-riscv"
- <linux-riscv-bounces@lists.infradead.org>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-6-e51202b53138@rivosinc.com>
- <D92VG9GT3W5D.2B71FBI67EYJ6@ventanamicro.com>
- <aAmJweehK4ntbVoO@debug.ba.rivosinc.com>
-In-Reply-To: <aAmJweehK4ntbVoO@debug.ba.rivosinc.com>
+MIME-Version: 1.0
+X-ZohoMailClient: External
 
-2025-04-23T17:45:53-07:00, Deepak Gupta <debug@rivosinc.com>:
-> On Thu, Apr 10, 2025 at 12:03:44PM +0200, Radim Kr=C4=8Dm=C3=A1=C5=99 wro=
-te:
->>2025-03-14T14:39:25-07:00, Deepak Gupta <debug@rivosinc.com>:
->>> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_risc=
-v.c
->>> @@ -16,6 +17,15 @@ static long riscv_sys_mmap(unsigned long addr, unsig=
-ned long len,
->>> +	/*
->>> +	 * If PROT_WRITE is specified then extend that to PROT_READ
->>> +	 * protection_map[VM_WRITE] is now going to select shadow stack encod=
-ings.
->>> +	 * So specifying PROT_WRITE actually should select protection_map [VM=
-_WRITE | VM_READ]
->>> +	 * If user wants to create shadow stack then they should use `map_sha=
-dow_stack` syscall.
->>> +	 */
->>> +	if (unlikely((prot & PROT_WRITE) && !(prot & PROT_READ)))
->>> +		prot |=3D PROT_READ;
->>
->>Why isn't the previous hunk be enough?  (Or why don't we do just this?)
->>
->>riscv_sys_mmap() eventually calls arch_calc_vm_prot_bits(), so I'd
->>rather fix each code path just once.
+=E5=9C=A8 2025-04-24=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 12:30 +0200=EF=BC=
+=8CLinus Walleij=E5=86=99=E9=81=93=EF=BC=9A
+> On Thu, Apr 24, 2025 at 11:38=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me>
+> wrote:
+> > =E5=9C=A8 2025-04-24=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 10:51 +0200=EF=
+=BC=8CLinus Walleij=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Thu, Apr 24, 2025 at 8:20=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me=
 >
-> You're right. Above hunk (arch/riscv/include/asm/mman.h) alone should be =
-enough.
-> I did this change in `sys_riscv.c` out of caution. If it feels like un-ne=
-cessary,
-> I'll remove it. No hard feelings either way.
+> > > wrote:
+> > >=20
+> > > > The JH7110 SoC could support internal GPI signals to be routed
+> > > > to
+> > > > not
+> > > > external GPIO but internal low/high levels.
+> > > >=20
+> > > > Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two
+> > > > virtual
+> > > > "pads" to represent internal GPI sources with fixed low/high
+> > > > levels.
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > >=20
+> > > As per my other reply in the previous post, I think this should
+> > > be
+> > > handled internal in the kernel instead using a tighter
+> > > integration
+> > > between
+> > > the GPIO and pin control parts of the driver and utilizing the
+> > > gpio-specific struct pinmux_ops callbacks.
+> >=20
+> > Well I cannot understand this -- these signals are not GPIOs,
+> > totally
+> > not related to the GPIO subsystem (because they're only pinmux, not
+> > related to GPIOs). This is described in my previous mail.
+>=20
+> OK sorry if I'm a bit dumb at times :(
+>=20
+> I guess I was falling into the common confusion of "something named
+> general purpose" such as your GPI and GPO registers, is also
+> related to GPIO which it is not, at least not always.
 
-I think it makes the code harder to reason about.  Here it is not clear
-why this caller of ksys_mmap_pgoff() has to do this, while others don't.
+Ah, sorry, these GPI/GPO names are directly taken from the StarFive TRM
+from the register field names. They CAN be routed to the external
+GPIOs, but is not required so.
+
+>=20
+> > The pin mux of JH7110 strictly route its inputs to its outputs. For
+> > signals from other SoC blocks (to external pins), the registers
+> > define
+> > how OUT/OEn of IO buffers *are driven by* the signals; however for
+> > signals to other SoC blocks (from external pins), the registers
+> > define
+> > how IN of IO buffers *drive* the signals. (This follows the generic
+> > signal-driving rule that one signal can drive multiple signals but
+> > cannot be multi-driven).
+> >=20
+> > In addition the situation I am trying to handle here is an addition
+> > to
+> > the latter part of the previous paragraph -- in addition to 64
+> > inputs
+> > corresponding to 64 GPIOs, two extra inputs, one always 0 and
+> > another
+> > always 1 are available to the pin controller for driving other SoC
+> > blocks' input (as output of pin controller).
+>=20
+> OK ... maybe I get it now.
+>=20
+> > > This solution looks like software configuration disguised as
+> > > hardware
+> > > configuration.
+> >=20
+> > Well this solution handles these internal wires in the same way as
+> > signals from external GPIOs, excepting specifying special GPIO
+> > numbers.
+> > If you are against the principle, maybe the current already-
+> > included
+> > GPIOMUX system of the StarFive pinctrl is to be blamed instead of
+> > my
+> > small extension to it.
+> >=20
+> > I must admit that the current GPIOMUX system isn't a faithful
+> > representation of the hardware because it's a pad-centric setup
+> > instead
+> > of a register-field-centric one, which isn't very natural for input
+> > signals. However configurating the mux in such a way is against
+> > people
+> > reading, and we're not able to break the system because it's
+> > already
+> > there.
+> >=20
+> > Well in the situation that one GPIO used as input drives multiple
+> > internal signals the pinmux looks a little confusing too, e.g. the
+> > I2S
+> > clock situation I mentioned in my reply in the previous revision of
+> > the
+> > patchset.
+>=20
+> I guess what rubs me the wrong way is why the external users
+> (devices, device drivers or even pin hogs) cannot trigger the chain
+> of
+> events leading to this configuration, instead of different "magic"
+> configurations that are just set up in the pin controller itself.
+
+Well I am just extending what's already in use...
+
+Currently it's already supported to route GPIOs to GPI signals, I added
+the support to route fixed level sources to them, in a similar way.
+
+If any external users ever have the need of banging the internal
+signals instead of tying it fixedly, maybe switching between different
+pinctrl configuration sets is enough? (Because this kind of operation
+could never be as high speed enough as real hardware pins)
+
+>=20
+> But if you are positively convinced that there is no other way,
+> I guess I have to live with it.
+>=20
+> Yours,
+> Linus Walleij
+
 
