@@ -1,168 +1,146 @@
-Return-Path: <devicetree+bounces-170527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBFCA9B2F4
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:51:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E94D4A9B2FC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:51:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 033881BA0E6B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:51:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01C4F7B5491
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7583D27F759;
-	Thu, 24 Apr 2025 15:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B91927F742;
+	Thu, 24 Apr 2025 15:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ijf9mIFv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvOEm7jl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421AD1A9B23;
-	Thu, 24 Apr 2025 15:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063ED1B414E;
+	Thu, 24 Apr 2025 15:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745509751; cv=none; b=Z/0IhGHq8jr7yBgU0XICEp2UnZCBvBlq/HFCrnt7SeiuyasH2Qn+8WTzkHD99EycYmu9HQr+rTnwMZep3Tixvg0szifYbbExlgYJzo/pczf/4bOcc++svq/+bt2H8diNRic3amIN9ZBPxyX2x86whp3E9eavYZGlr3jOYDMbgDc=
+	t=1745509866; cv=none; b=rpslRt/lykUlr7vrXLX1NXBRS0nh3XgvuyHosbMSMQfgQtMEUkxpvT4XTZAqWG84M0CoKuKCNAM/3d6yIdoM9CXIKEh6TncpkC3lgl7WvVj0Y3J7nhUO1apXC/p2W1cccfalh9j2o63nZHF2ntk35z/iAeEVnBJF3G6GV1xr6B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745509751; c=relaxed/simple;
-	bh=9J4ljg0PoyINPlG0nykYrLKd6YvJ9x8LBdfeedJ/dU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FcpNeTZAI9Azx+QxKXGVRTYaqAQx42NSBBiRXMY8GOt6HhM9DAWQgNlBNZgRwT7LhsJBW8O5AxfpbhTSmJhVd8bgrJ8MtHh6Tf4FCPrfq2sYDhgXxEdmv7Q3qPWrwkCfFJMh20pgdkmSsG7nTn3QXkZHcR/LSNMXLxvpLO1pFdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ijf9mIFv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62681C4CEE3;
-	Thu, 24 Apr 2025 15:49:07 +0000 (UTC)
+	s=arc-20240116; t=1745509866; c=relaxed/simple;
+	bh=u6z0M0NRrZxdS4RQaKNchv2vS9ceNCupNe34bbuHBkI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nSGXXRl8F8jnsQ6Tiey0HYwFlEaYrdYIT1xLCLYBZwFoPXqoity69PIULu+QtwF60ZASYYtvY3iss8Wj2nfxjnLx+CtAQdA39Wtop5ElobMH+4NuclycpF1kkhfnKlyDy5FEn7pWOWZRNnliJOCkt3sA9zdUpeE4fbGkR9Hdkz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvOEm7jl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D39C4CEE3;
+	Thu, 24 Apr 2025 15:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745509750;
-	bh=9J4ljg0PoyINPlG0nykYrLKd6YvJ9x8LBdfeedJ/dU8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ijf9mIFvQ/uDHnWR4+Bh6m3nyW9cUIhi7sfqRUWooHzhdaUwos+2jgFvQdn9OR5Ky
-	 tHdIVCLG0lUjfUaUijUM31mDN/uBUX2GQkI1oabpaycjXN6YQG7EzR8vNnJVdaiJmH
-	 f9GqM9EvzphT5qCzEHQGiJvOImJPktHsbebE6Yq8lZST19b/48WR1d6Uzw0qX04zxZ
-	 36JAoTyTj7kr8XBnauAFz4vtGqM91GG+oUTCEvkkZ76ahsmkcGPLSIk/ly3keA2AQq
-	 WY1J33ERcnmorrgQdgny1ibutsql6Xligzaq5fUheM3H24kPOSzO7WcgvsYboTCjyC
-	 LOT0YoaFYWKfA==
-Date: Thu, 24 Apr 2025 16:49:04 +0100
-From: Lee Jones <lee@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 5/8] mfd: zl3073x: Add functions to work with
- register mailboxes
-Message-ID: <20250424154904.GH8734@google.com>
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-6-ivecera@redhat.com>
- <d286dec9-a544-409d-bf62-d2b84ef6ecd4@lunn.ch>
- <CAAVpwAvVO7RGLGMXCBxCD35kKCLmZEkeXuERG0C2GHP54kCGJw@mail.gmail.com>
- <e22193d6-8d00-4dbc-99be-55a9d6429730@redhat.com>
- <09c3730a-f6f1-4226-ae29-fe02b1663fe7@lunn.ch>
- <f9149df7-262e-4420-87b4-79c8a176c203@redhat.com>
+	s=k20201202; t=1745509865;
+	bh=u6z0M0NRrZxdS4RQaKNchv2vS9ceNCupNe34bbuHBkI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dvOEm7jlTSmOTUbxvEq7JfkHHkVubBtl2G5lII0wrzKg9nWi3jinOQH5rK1kYtzl6
+	 6nDxvWiZxUBTyXpLZXVw04xeHvCD8+H9dB+yMWKUXQ65eZPixsg+zT+ysGoVQOvsl8
+	 MqqJPBCE1vc8dFdQCMZMX2I2UOf+QF0YPTo3IO9I5DR5TorWHVWJGDK6RDAmsu/AjK
+	 jz8P1CVHyFI3Q96V6f8/SKXJcqFuvDUg1JS+PYPJG92I09zdF81fLMSdADNJIUrTGZ
+	 dxkfY6cOSj6S6xgvnnHxoEGi7p8ganKCGSd81xTa1JY8K+8akJ6xCzmpcd+J4Nzg1m
+	 8KHoXTJrWqrBg==
+Message-ID: <e82a8733-a3b9-43de-9142-7454bc57474c@kernel.org>
+Date: Thu, 24 Apr 2025 17:51:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] media: dt-bindings: Add qcom,qcm2290-camss
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: bryan.odonoghue@linaro.org, rfoss@kernel.org, konradybcio@kernel.org,
+ andersson@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
+References: <20250423072044.234024-1-loic.poulain@oss.qualcomm.com>
+ <20250423072044.234024-6-loic.poulain@oss.qualcomm.com>
+ <20250424-versatile-brown-chowchow-dfc4a9@kuoka>
+ <CAFEp6-0iXCPn80Y0s6Hoq2MjgNa+OYJEr0oWSKuXtah_OF6cAQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <CAFEp6-0iXCPn80Y0s6Hoq2MjgNa+OYJEr0oWSKuXtah_OF6cAQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f9149df7-262e-4420-87b4-79c8a176c203@redhat.com>
 
-On Thu, 17 Apr 2025, Ivan Vecera wrote:
+On 24/04/2025 09:53, Loic Poulain wrote:
+> Hi Krzysztof,
+> 
+> On Thu, Apr 24, 2025 at 9:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Wed, Apr 23, 2025 at 09:20:43AM GMT, Loic Poulain wrote:
+>>> +  power-domains:
+>>> +    items:
+>>> +      - description: GDSC CAMSS Block, Global Distributed Switch Controller.
+>>> +
+>>> +  vdda-csiphy-1p2-supply:
+>>> +    description:
+>>> +      Phandle to a 1.2V regulator supply to CSI PHYs.
+>>> +
+>>> +  vdda-pll-1p8-supply:
+>>
+>>
+>> How are the pins or input supplies called?
+> 
+> Pins are called:
+> - VDD_A_CSI_0_1P2 (for csiphy 0)
+> - VDD_A_CSI_1_1P2 (for csiphy 1)
 
-> 
-> 
-> On 17. 04. 25 3:27 odp., Andrew Lunn wrote:
-> > > Anyway, I have a different idea... completely abstract mailboxes from the
-> > > caller. The mailbox content can be large and the caller is barely interested
-> > > in all registers from the mailbox but this could be resolved this way:
-> > > 
-> > > The proposed API e.g for Ref mailbox:
-> > > 
-> > > int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index,
-> > >                          struct zl3073x_mb_ref *mb);
-> > > int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index,
-> > >                           struct zl3073x_mb_ref *mb);
-> > > 
-> > > struct zl3073x_mb_ref {
-> > > 	u32	flags;
-> > > 	u16	freq_base;
-> > > 	u16	freq_mult;
-> > > 	u16	ratio_m;
-> > > 	u16	ratio_n;
-> > > 	u8	config;
-> > > 	u64	phase_offset_compensation;
-> > > 	u8	sync_ctrl;
-> > > 	u32	esync_div;
-> > > }
-> > > 
-> > > #define ZL3073X_MB_REF_FREQ_BASE			BIT(0)
-> > > #define ZL3073X_MB_REF_FREQ_MULT			BIT(1)
-> > > #define ZL3073X_MB_REF_RATIO_M				BIT(2)
-> > > #define ZL3073X_MB_REF_RATIO_N			 	BIT(3)
-> > > #define ZL3073X_MB_REF_CONFIG			 	BIT(4)
-> > > #define ZL3073X_MB_REF_PHASE_OFFSET_COMPENSATION 	BIT(5)
-> > > #define ZL3073X_MB_REF_SYNC_CTRL			BIT(6)
-> > > #define ZL3073X_MB_REF_ESYNC_DIV			BIT(7)
-> > > 
-> > > Then a reader can read this way (read freq and ratio of 3rd ref):
-> > > {
-> > > 	struct zl3073x_mb_ref mb;
-> > > 	...
-> > > 	mb.flags = ZL3073X_MB_REF_FREQ_BASE |
-> > > 		   ZL3073X_MB_REF_FREQ_MULT |
-> > > 		   ZL3073X_MB_REF_RATIO_M |
-> > > 		   ZL3073X_MB_REF_RATIO_N;
-> > > 	rc = zl3073x_mb_ref_read(zldev, 3, &mb);
-> > > 	if (rc)
-> > > 		return rc;
-> > > 	/* at this point mb fields requested via flags are filled */
-> > > }
-> > > A writer similarly (write config of 5th ref):
-> > > {
-> > > 	struct zl3073x_mb_ref mb;
-> > > 	...
-> > > 	mb.flags = ZL3073X_MB_REF_CONFIG;
-> > > 	mb.config = FIELD_PREP(SOME_MASK, SOME_VALUE);
-> > > 	rc = zl3073x_mb_ref_write(zldev, 5, &mb);
-> > > 	...
-> > > 	/* config of 5th ref was commited */
-> > > }
-> > > 
-> > > The advantages:
-> > > * no explicit locking required from the callers
-> > > * locking is done inside mailbox API
-> > > * each mailbox type can have different mutex so multiple calls for
-> > >    different mailbox types (e.g ref & output) can be done in parallel
-> > > 
-> > > WDYT about this approach?
-> > 
-> > I would say this is actually your next layer on top of the basic
-> > mailbox API. This makes it more friendly to your sub driver and puts
-> > all the locking in one place where it can easily be reviewed.
-> > 
-> > One question would be, where does this code belong. Is it in the MFD,
-> > or in the subdrivers? I guess it is in the subdrivers.
-> 
-> No, it should be part of MFD because it does not make sense to implement API
-> above in each sub-driver separately.
-> 
-> Sub-driver would use this MB ABI for MB access and
-> zl3073x_{read,write}_u{8,16,32,48} for non-MB registers.
+OK. This however starts new questions: why aren't there separate nodes
+for the CSI PHY controllers? These are separate blocks with their own
+address space, own power rails, own interrupts and own clocks.
 
-Regardless of whether you decide to place the API in the sub-drivers or
-not, it doesn't belong in MFD.  600 lines of any API is too heavyweight
-to live here.  If you can't justify placing it in Mailbox, my next
-suggestion would be drivers/platform.
+> (both of the above are supplied together without individual control)
+> - VDD_A_CAMSS_PLL_1P8
+This does not need voltage name then.
 
--- 
-Lee Jones [李琼斯]
+
+Best regards,
+Krzysztof
 
