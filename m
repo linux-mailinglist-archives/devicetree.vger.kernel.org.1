@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-170516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7EB9A9B2B5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:44:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69074A9B2C7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5994F5A68D2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:43:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C73C1B8831C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF1427CB21;
-	Thu, 24 Apr 2025 15:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAEA27F74F;
+	Thu, 24 Apr 2025 15:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="t+p7faQV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V3HqOTgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00273226D11
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 15:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECAE27F729
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 15:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745509441; cv=none; b=d3so83HifGmwvd0nClnGE2fRPUKacBRIKS4YkOyGEtqXju9LeenvzfZbmjwHHa3VpG+3oFyQiQipjuIB+eiVlxsVOw/I6JzHtThVLIZL6pc5OBPjmbR6v95pzwwsXU69YNKFzTYznqSjEbjU0O4G8gk1pbLFMdUvAHon0A4gnjo=
+	t=1745509548; cv=none; b=SDABkNow583peg0PEoennJPo5WVLGUdk+2yxg9sdgdb9wncGgwrq45HewYRKP7UBlXXwjNNmOxqw42M0Jl+IUaJWNfojoBfvmuqxKgkTIGNI/O4Mr/ij21EZC1178/MTrT4gY6g2qBpDDWnxhWhuOKYnNMqDz0RVAa7wnqwC4yY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745509441; c=relaxed/simple;
-	bh=PrIt9cti1YTt57yyhwhu+yoL+H0Pauq0wEpWZElruNg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LSdTvXMVzw+0D/cOztThaoLAvUh0iZgBN5zHsloNE6YovKSRL2RBDbQvS8tp/9AlxOl/0cqJ4P0/3TA9Ab9rZZwRpM2TjXv2bspeuEpDYbTzuAHAYvP9BZadXrQ4PNP/rxE7I1PBM6y4W5565yg0DC0adPCl739qa/6eLO7zBzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=t+p7faQV; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-476ab588f32so19238571cf.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 08:43:58 -0700 (PDT)
+	s=arc-20240116; t=1745509548; c=relaxed/simple;
+	bh=m4WbnWF7hOg6KRt7LappWX+88S14yt6lsIPXp9lyGP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GFbLEKSnlFYsnVZe1+Y08JY8VEVS/o3G6IgCGXzm43szdXkkhU07baVYYktMMowQEx965SGcAbPrge52sCTsovJJCE2d+5su8aq0bjfvT8Ozy68O1n0zPEw2AbU+CcwivBN3d+/wlEse/DEuxSfnS2GKpl70OOOda7Acb7SrF0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V3HqOTgh; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso8499625e9.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 08:45:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1745509438; x=1746114238; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PxG91MvO3mEZmIhtAaDJXqnva49Kcev69TBhblsIWrY=;
-        b=t+p7faQVjB+XtCOkcmZXBFDP3t3+pPIiPbFUCVPjTnTU8FQA8gTcLxKVD0nrwQGSp4
-         oVgM865DLG7XB4fV0U3+82gwY9p5fHIw6si6KftvrZyH2psdwC3u1a0veYN8PjobmaH1
-         BCDuJmaYrG2g8XoQ2WzyUErbJQ0aefE/Mr5xrfuKs4Kx3zcemNlYHJUglxmqrO0ZfKWY
-         lsLyyzopjF6esf5XfXLJBcwSHemXrLlXqCnciNpBivIWO770U+0sL9+9mkudfs9MdIYV
-         SQtmci8SZwjUf9rBHWPpt8voxqbhrT6//UIa5FGc4Y+i0dkGNXQZ5rfIMEaLvz0lbAgZ
-         sBCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745509438; x=1746114238;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1745509544; x=1746114344; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PxG91MvO3mEZmIhtAaDJXqnva49Kcev69TBhblsIWrY=;
-        b=mLjpvry916AX+Q0Z5J3gPI4z+q3grXyP062BJEMe6fwfvoo4z9+EEVZ4+afCktcQwF
-         BiYh1JfHFwHHf9a1NHTAnfOBiC25Ii/uSnrAXdySpKmtCCyXRVSDVWKCnVOiqGKlZJdW
-         dpaEX5BmhtCHlDZHNdJXQWdSeSk0CmWo7sH3vmJzuia0sahOIWd/0yFsmk+BiCL9Ol8E
-         lGiPATU6t9QGh/u5+haTwHi83Ix80jdcP4asrNoAzXVytghagXzTMoSCmMZRXg7bteXa
-         5o07KyMHmcHiRYLb2b6qCmw+GLUzN1bV006IJqfD5vC9ufgwgGhpF8mJFee+jaJ5EUxq
-         giKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUvNbXQs75uoNaaV8Ohuhy8U0h0jeuRhVLOFp+zcsqMDprfNQe1sgNNnqviMgtfgOAvsuqP2mgcl0xH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2U/aHsNfY/iSmzO1KKIwhBgDNwY6aA33YqcHohAe2ZUf3NvnT
-	12TZ7kEHgSDlyiz10PyfTMnbaS4R05n8MgJ5bb804aRMrOcM1xMDD3eGoJrDvPY=
-X-Gm-Gg: ASbGnct05IWbHRqZboL0x7OIvphpsuqcUqfjf67GuPsp4nyxhSHliP4tnD8kWEA6mPV
-	6k1bbwuq4fMgZTC1m49A+39sqganMW5gGRrOyyUTF9/G0nz4lFAEDFNt+DQMqJTNVewAwUFu2XZ
-	p6z1WSrDwxp7vcWOTKUL83eFeCTLroFJZKYREvXe4amXwKe9cvW1r5HxU9qVmcaK6fMrhgjJHnQ
-	Vlc/NpGMm19wF4/dW/J2M8mnjvp2E/5IVag4sVXL+L1c5nXKcyct3on0EnC5akROJfvP/GIqgjF
-	bfNJFx4cqN6yVUwjZatdfnGpVUypN412Bi0eERDV8T28+w==
-X-Google-Smtp-Source: AGHT+IGA+IIOug/obYsp2byfQYiQAcdnJn27C+FPUJJIN+Z+DBmj+uagyzwdTCFBqechz7yf+kP/FA==
-X-Received: by 2002:a05:622a:153:b0:476:b7cf:4d42 with SMTP id d75a77b69052e-47fba39b562mr2788641cf.27.1745509437827;
-        Thu, 24 Apr 2025 08:43:57 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:15:9913::5ac? ([2606:6d00:15:9913::5ac])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47e9eaf2086sm12964521cf.8.2025.04.24.08.43.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Apr 2025 08:43:57 -0700 (PDT)
-Message-ID: <6148110c513d2177d886469c2276c6810eb93c34.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 1/8] media: v4l2-common: Add YUV24 format info
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org, 
-	hverkuil@xs4all.nl, sebastian.fricke@collabora.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-imx@nxp.com, marex@denx.de, 
-	jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com
-Date: Thu, 24 Apr 2025 11:43:56 -0400
-In-Reply-To: <20250422093119.595-2-nas.chung@chipsnmedia.com>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
-	 <20250422093119.595-2-nas.chung@chipsnmedia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+        bh=CYKmLWCuVbbnS6eIg6jW3CASv6d/Gi88yqzFbMCKwu0=;
+        b=V3HqOTghesXjI28RkthhqQQRY43uzseyK/+bT9ZASfgV8mNPmgHjJYv759F+uJeti4
+         RyXx1Ysebgl0Mpx5b+xgYBMVUcEaY5GZytod7Gu7REVygHKQiaXTLdjDutPPfWzIY1RD
+         4VsqYDSfiPig0vq924xREfgbBOAGjSYfGUP3jBPn6eXwmojVpy/1po9WDeDi4bNiGURp
+         WvE9/AZyhhpp+hJaBuRkY0hmg+/1E0d/r+zskMpgfOzqZ6kjAXKj8XdoDMEueBRrQsbC
+         qRB5W86h0QVY6RZ/7X+L9x7+2UZLxk5T0Oop1INDceToyNk59+p4FMnxDJvwa2T7916w
+         VjCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745509544; x=1746114344;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CYKmLWCuVbbnS6eIg6jW3CASv6d/Gi88yqzFbMCKwu0=;
+        b=GzFJnNw+wzx5+CnbFGzNdKNhEKiiI6KGxg5EdafqdzxUVx8RI8zH4dl9Qj2tEpN50s
+         OMnEjw379PGft//04I8yWiFR3fY44bE2F2NPCnW4S/j14E36Bs2fQvuAmYa2au9hojle
+         DIipBzs6bbh+QGjPRrMomXM7uYGEqSztY/CE5gAas/kR3EwQgMphG9GU4TcazgIKo33m
+         OUcwNjbsBqfnPVM6MYjTef17Auw3aAQBh1UMKY5IbPuMIRZ74f3inDH3RwkaJf6sPdYZ
+         OdmkIfcGUyZGj0VSzlPm6CPGxuiMuj8TUIuWVq6MLHMSZESqvOOkVlxtyixKP4S7mQmm
+         GAkA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1bhlL3M/LaJCsCTOZem4vGn5L914AUZO3LTKTYDQd3W0YvZoGfmRuuXqlYplCUAz0lD9lzagG/oBw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1WngPCLY7QjwqD7TYHl3Ug8iO1ci1pY9cX3IhXmCwDvlPskIm
+	ODVMBcjWPAcWIevm3ZB5tb+cTuDv9YPHy1yDbKcIZTlxeERnIjuOf3QIs/R0rTs=
+X-Gm-Gg: ASbGncvHQ/XAL17WsVIC3xUp0VQuVdfZqLA730Yochg6ygIwkUWChAesgtA6OtydU4X
+	tjX4t3KhF4ZLewIxAkmm7mlP8Mp+IUmUC6fvu2Lw0JfaTfFe1b0/nIGO31OMLrnDWt0Eagh9Nqu
+	oBAoFWbLT7gIYv2BIbp/M21RUCS1ts6+rqiU3bFPqvx2gkaIOleFK0n4fvHXbeyNJ6GFEyjPK0x
+	J9oTRkYy32Bhbm23sP1Ch3LlGKoadTVVx6Wf2qNbytkLRANVy91TNenIdFyVRpyagV9fljboEbq
+	GhHEFnfL00HKKtt/NxH95fXqjyjRqx4BzXpGqLY/uhNVLFruJk8vh+C9kc34l0fx46nKepa31Cd
+	f1m2h2Q==
+X-Google-Smtp-Source: AGHT+IHqzSozUZBGJRu1+oc+heY9EUUpamdaoOpxogVzGWw2jOs4uYMoj3kczTLG+0fz4WAByZJEXw==
+X-Received: by 2002:a05:600c:1d86:b0:43d:9d5:474d with SMTP id 5b1f17b1804b1-440a3055814mr329155e9.0.1745509544048;
+        Thu, 24 Apr 2025 08:45:44 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2d88cdsm25225555e9.25.2025.04.24.08.45.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Apr 2025 08:45:43 -0700 (PDT)
+Message-ID: <b356cbb9-0a7b-49a8-8c2d-8dd3de3f7c2b@linaro.org>
+Date: Thu, 24 Apr 2025 16:45:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Add x1e Dell Inpsiron 14p
+To: Rob Clark <robdclark@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Clark <robdclark@chromium.org>
+References: <20250424-qcom-linux-arm64-for-6-16-dell-inspiron14p-v1-0-ace76b31d024@linaro.org>
+ <CAF6AEGtiMLQ6xWrmbkmdkpb7gsdbkXaFw7V84nXDDWtLA=4f9A@mail.gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAF6AEGtiMLQ6xWrmbkmdkpb7gsdbkXaFw7V84nXDDWtLA=4f9A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 24/04/2025 16:42, Rob Clark wrote:
+>> - Bugs
+>>    Occasionally when resuming I get a fencing error with hyperlock and
+>>    freedreno, TBH it looks like something in the GPU or SMMU according to
+>>    Rob Clark:https://pastebin.com/AWjCyaap
+> Did you have the same issues on v6.14 or earlier?
+> 
+> The smmu pm usage count underflow is concerning, the smmu pm should be
+> tied to the GPU device via device_link_add().  I've never seen
+> something similar, but I'm still on v6.14.
+> 
+> Could you try reverting commit 0a679336dc17 ("iommu/arm-smmu: Set rpm
+> auto_suspend once during probe")
+> 
+> BR,
+> -R
 
-Le mardi 22 avril 2025 =C3=A0 18:31 +0900, Nas Chung a =C3=A9crit=C2=A0:
-> The YUV24 format is missing an entry in the v4l2_format_info().
-> The YUV24 format is the packed YUV 4:4:4 formats with 8 bits
-> per component.
->=20
-> Fixes: 0376a51fbe5e ("media: v4l: Add packed YUV444 24bpp pixel format")
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+6.15-rc1
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+I've seen this bug exactly twice. NP to revert but not so sure with only 
+a sample set of two, I could say the change fixes.
 
-> ---
-> =C2=A0drivers/media/v4l2-core/v4l2-common.c | 1 +
-> =C2=A01 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
-ore/v4l2-common.c
-> index 0a2f4f0d0a07..de3636f1cdf1 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -269,6 +269,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 f=
-ormat)
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_Y212,=C2=A0=C2=A0=C2=A0 .pixel_enc =3D=
- V4L2_PIXEL_ENC_YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0=
-, 0, 0 }, .bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_Y216,=C2=A0=C2=A0=C2=A0 .pixel_enc =3D=
- V4L2_PIXEL_ENC_YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0=
-, 0, 0 }, .bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_YUV48_12, .pixel_enc =3D V4L2_PIXEL_EN=
-C_YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp=
-_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_YUV24,=C2=A0=C2=A0 .pixel_enc =3D V4L2_PIXE=
-L_ENC_YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 3, 0, 0, 0 }, =
-.bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_MT2110T, .pixel_enc =3D V4L2_PIXEL_ENC=
-_YUV, .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp=
-_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
-> =C2=A0		=C2=A0 .block_w =3D { 16, 8, 0, 0 }, .block_h =3D { 32, 16, 0, 0 =
-}},
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_MT2110R, .pixel_enc =3D V4L2_PIXEL_ENC=
-_YUV, .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp=
-_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
+Anyway, I'll revert and if I see the bug again, we know its not that.
+
+---
+bod
 
