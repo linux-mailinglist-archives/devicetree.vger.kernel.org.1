@@ -1,185 +1,144 @@
-Return-Path: <devicetree+bounces-170310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DA7A9A730
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:59:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1675EA9A73A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:00:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA8B4170C52
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:59:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A60D93A46F4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB3020A5DD;
-	Thu, 24 Apr 2025 08:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="PVQCVxDx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BEC214A7F;
+	Thu, 24 Apr 2025 09:00:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093F8204F83;
-	Thu, 24 Apr 2025 08:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745485149; cv=pass; b=PJ5o9LQMLb9/ynXx3/ElZg9BE7wudXapdYoOth8yz23/ICxNb2ZQ8c3MPcJYICHzhKHJ7Gxdyn4hImQiAq+7grPuMODo7LufoMsv2F+FNSQ2QWWHHDd4m1LChgVTJR7WaYiwdHTlpmnS/IiU03WcYsm743ksPgjImvWTiCU0TfA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745485149; c=relaxed/simple;
-	bh=zDWc6nxv/h21OoGkVTdcFrzjcHE7JIncVZ3LhKXbeB4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CUbLM3Eazhf77kLhjky96Bm9IPon2OWchqHFNT+eJutUSwVsn3szuIxiTkn/R3avj6G2TCmsJMsTpnEzY2h+4+wmrLfjHR0POB/ap7s7dV5jEenGgWlW82g+0nT6RByOmiLSkRZW7K8/kPS+kllSo4vMYlNaWQ9l+NVROV2LRo8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=PVQCVxDx; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1745485127; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jaV0x3qj/eqBLIwubtgE8KUAQn2b86GxCDmo0XTJPYmIQTCRZbHHx0dxGpQTlkucxhzTG8QN0tqyWNwbybF2orNap/vE+IniaHZmVhYTKUglVdEtAjxrRAN0Wl+Bo3LED2AF7NTBBIMkwPo5qwWvSn9acvulMqHIjcwXx+oew/Q=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745485127; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=J3UW6p735sL0uDpuTdjeAlDlTVS5KOHJnqXmFJV22mw=; 
-	b=PmhFNP+E145dBDrIHOeTs0XSN9iyyy8OMNz0BuUQwX46Mkf5FxF5MGKd1dBTFthSHwJf8+8aQ1joZbq8rqJyIebtkFxVGo+yWMl41irPEGix+JVYVESlFrASouINYXD3iWsUFA59uxtpFr0t6XJGkr9ib8FZLt/yza5kr2Hk5C8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745485127;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=J3UW6p735sL0uDpuTdjeAlDlTVS5KOHJnqXmFJV22mw=;
-	b=PVQCVxDx9e3a/r7iDgv31fTD2bXDL/+qSkeZBxJWbJ8zNwiBRVfcuBefy6RXabAe
-	Sc2ek7+pOwcCZIEVeI1Yum4rlDFRBOahhVZqOXaRDYlQ0yK0R+/u04vJf80yQSppVeh
-	WMk3rWdafvd4LohpsEpBvGwUy/zpt8OxbD86yNf4=
-Received: by mx.zohomail.com with SMTPS id 1745485124022311.75237554150374;
-	Thu, 24 Apr 2025 01:58:44 -0700 (PDT)
-Message-ID: <fd4f9f760c4860216aeb58a91a75c24dda64919c.camel@collabora.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Force ssusb2
- dual role mode to host
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado"
-	 <nfraprado@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, kernel@collabora.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Thu, 24 Apr 2025 10:58:39 +0200
-In-Reply-To: <eb350c96-379a-46db-8a54-e1b9c71be431@collabora.com>
-References: 
-	<20250331-mtk-genio-510-700-fix-bt-detection-v1-1-34ea2cf137f3@collabora.com>
-	 <2da6560b-8444-48ae-bb01-397756cecbc0@notapiano>
-	 <eb350c96-379a-46db-8a54-e1b9c71be431@collabora.com>
-Organization: Collabora Ltd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73FB27081C;
+	Thu, 24 Apr 2025 09:00:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745485211; cv=none; b=YNNrEONOriaRa8ypcD3HgBSZC1ziwH8LdNJwIb49Dhw1pShY72Vi9ajeJ79ta0A4kc3n1YyrEwcqNpyOK5b+/x0aVQMPBq3zjI9UZSRyc2ukdyqLjRBVCS1/ae/+wPbOkFnbYbu3JkP89VIncy/CXT/Hut2MwlPGhvfUuHHqXw4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745485211; c=relaxed/simple;
+	bh=I36nmJxzkmh56uVLncjH6JZL3Kh7/MhbMXvJV4tBJ3E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NhhwYPg6YXyvcfOTbBsBdM5QmIBvEOG2LZNK24FX+/JaPUe3fmaQe6rvCMmOY0ZiOjt5S44tIsNVyaVth2E259NbX6EFAnQ8ExVAEr9MYg8dkkrOe7Fjo+MI3i34ZtoO+g6LAANiF0puWXshXVp/P5yBSoxLsJR4nPKl6dUWT+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: QcnZHJBAT8CmY61VDi2bHA==
+X-CSE-MsgGUID: o3QVQmcvTDqI4kRkZvdNtA==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 24 Apr 2025 18:00:06 +0900
+Received: from localhost.localdomain (unknown [10.226.92.69])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 56084401109C;
+	Thu, 24 Apr 2025 18:00:03 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v5 0/7] Add RZ/G3E xSPI support
+Date: Thu, 24 Apr 2025 09:59:48 +0100
+Message-ID: <20250424090000.136804-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-Hi Angelo,
+The xSPI IP found on RZ/G3E SoC similar to RPC-IF interface, but it
+can support writes on memory-mapped area. Even though the registers are
+different, the rpcif driver code can be reused for xSPI by adding wrapper
+functions.
 
-On Thu, 2025-04-24 at 09:24 +0200, AngeloGioacchino Del Regno wrote:
-> Il 23/04/25 22:48, N=C3=ADcolas F. R. A. Prado ha scritto:
-> > On Mon, Mar 31, 2025 at 11:25:52AM +0200, Louis-Alexis Eyraud
-> > wrote:
-> > > On the Mediatek Genio 510-EVK and 700-EVK boards, ssusb2
-> > > controller is
-> > > one but has two ports: one is routed to the M.2 slot, the other
-> > > is on
-> > > the RPi header who does support full OTG.
-> > > Since Mediatek Genio 700-EVK USB support was added, dual role
-> > > mode
-> > > property is set to otg for ssusb2. This config prevents the M.2
-> > > Wifi/Bluetooth module, present on those boards and exposing
-> > > Bluetooth
-> > > as an USB device to be properly detected at startup, so configure
-> > > for
-> > > the ssusb2 dr_mode property as host instead.
-> > >=20
-> > > Fixes: 1afaeca17238 ("arm64: dts: mediatek: mt8390-genio-700: Add
-> > > USB, TypeC Controller, MUX")
-> > > Signed-off-by: Louis-Alexis Eyraud
-> > > <louisalexis.eyraud@collabora.com>
-> > > ---
-> > > I've tested this patch on Mediatek Genio 510-EVK board with a
-> > > kernel
-> > > based on linux-next (tag: next-20250331).
-> > > ---
-> > > =C2=A0 arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 8
-> > > +++++++-
-> > > =C2=A0 1 file changed, 7 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-
-> > > common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-
-> > > common.dtsi
-> > > index
-> > > 60139e6dffd8e0e326690d922f3360d829ed026b..3a9d429f0f14b501ae41551
-> > > dfe7272f242345138 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> > > @@ -1199,7 +1199,13 @@ xhci_ss_ep: endpoint {
-> > > =C2=A0 };
-> > > =C2=A0=20
-> > > =C2=A0 &ssusb2 {
-> > > -	dr_mode =3D "otg";
-> > > +	/*
-> > > +	 * the ssusb2 controller is one but we got two ports :
-> > > one is routed
-> > > +	 * to the M.2 slot, the other is on the RPi header who
-> > > does support
-> > > +	 * full OTG but we keep it disabled otherwise the BT on
-> > > the M.2 slot
-> > > +	 * USB line goes obviously dead if switching to gadget
-> > > mode.
-> > > +	 */
-> > > +	dr_mode =3D "host";
-> >=20
-> > Hi,
-> >=20
-> > while I agree with this change, now that this controller is fixed
-> > to host mode,
-> > the connector child node here which is supposed to probe with
-> > driver
-> > usb-conn-gpio, which would monitor the ID and VBUS lines and change
-> > the USB role
-> > as needed, will fail to probe with:
-> >=20
-> > =C2=A0=C2=A0 platform 112a1000.usb:connector: deferred probe pending: u=
-sb-
-> > conn-gpio: failed to get role switch
-> >=20
-> > as indeed there no longer is a role switch registered.
-> >=20
-> > For that reason, I believe as part of this commit you should also
-> > disable the
-> > connector. Since role switching is no longer supported by this
-> > controller,
-> > there's no sense in even trying to probe this driver.
-> >=20
-> > Thanks,
-> > N=C3=ADcolas
->=20
-> Can we instead go for role-switch-default-mode =3D "host", with a big
-> comment
-> in the devicetree saying that the controller is shared between BT and
-> the other
-> port? :-)
->=20
-> Cheers,
-> Angelo
-Using role-switch-default-mode property (set to host) does work as an
-alternative fix in order to keep the dr_mode set to otg and also not
-having a error about the connector too.
-But I also needed to change the associated GPIO polarity, otherwise the
-role mode would remain device and the BT module would not still be
-detected.
-I'll make those changes in the v2 patch.=20
+Merge strategy:
+ Patch#7 in this series is spi related patch and has build dependency on
+ patch#6. Maybe an Ack from SPI maintainer is required so that it can go
+ through memory subsystem.
 
-Regards,
-Louis-Alexis
+This patch series tested on RZ/G2L and RZ/G3E by overwriting boot
+partitions.
+
+v4->v5:
+ * Added merge strategy in covering letter.
+ * Dropped patch#2 and #5 as it is accepted
+ * Removed CPG bindings header file changes from this series and posted
+   with [1].
+ * Updated example replacing R9A09G047_SPI_CLK_SPI->9 in bindings, so
+   that there is no dependency with clk.
+ * Replaced EXPORT_SYMBOL->EXPORT_SYMBOL_GPL and added kerneldoc for
+   newly added export function xspi_dirmap_write().
+ * Moved *_write() after *_read().
+
+[1]https://lore.kernel.org/all/20250424081400.135028-2-biju.das.jz@bp.renesas.com/
+v3->v4:
+ * Added a definition for the spi core clock in the R9A09G047 CPG bindings
+   header file.
+ * Updated the example with spi core clock
+ * Retained Rb tag from Rob as these changes are trivial.
+ * Fixed the duplicate most outer set of parentheses in patch#2.
+ * Updated commit description for patch{#4,#7,#8}.
+ * Renamed the functions *_helper()->*_impl().
+ * Replaced ssize_t->size_t as the return data type for
+   rpcif_dirmap_read_impl().
+ * Renamed the local variable length->read and it's data type
+   ssize_t->size_t.
+ * Added comment for addr_nbytes in struct rpcif_priv.
+ * Added struct rpcif_impl for holding the function pointers and data to
+   handle the differences between xspi and rpc-if interface and added
+   suffix _impl() for functions.
+ * The enabling/disabling of spi/spix2 clocks at runtime leading to
+   flash write failure. So, enable these clocks during probe() and
+   disable it in remove().
+ * Collected tags.
+v2->v3:
+ * Fixed RPCIF_DRENR_CDB macro error.
+v1->v2:
+ * As rz-xspi is too generic, replaced file name rz-xspi->rzg3e-xspi
+   and dropped generic compatible rz-xspi.
+ * Dropped prefix spi from interrupt names.
+ * Updated the example with above changes.
+ * Retained Rb tag from Rob as these changes are trivial.
+ * Fixed the build error reported by bot by dropping 
+   EXPORT_SYMBOL(xspi_dirmap_read) and restoring
+   EXPORT_SYMBOL(rpcif_dirmap_read).
+ * Replaced enum XSPI_RZ->XSPI_RZ_G3E.
+ * Replaced compatible rz-xspi->r9a09g047-xspi and device data
+   xspi_info_rz->xspi_info_r9a09g047.
+
+Biju Das (7):
+  dt-bindings: memory: Document RZ/G3E support
+  memory: renesas-rpc-if: Move rpc-if reg definitions
+  memory: renesas-rpc-if: Use devm_reset_control_array_get_exclusive()
+  memory: renesas-rpc-if: Add regmap to struct rpcif_info
+  memory: renesas-rpc-if: Add wrapper functions
+  memory: renesas-rpc-if: Add RZ/G3E xSPI support
+  spi: rpc-if: Add write support for memory-mapped area
+
+ .../renesas,rzg3e-xspi.yaml                   | 135 ++++
+ drivers/memory/renesas-rpc-if-regs.h          | 147 ++++
+ drivers/memory/renesas-rpc-if.c               | 674 +++++++++++++-----
+ drivers/memory/renesas-xspi-if-regs.h         | 105 +++
+ drivers/spi/spi-rpc-if.c                      |  16 +-
+ include/memory/renesas-rpc-if.h               |   4 +
+ 6 files changed, 909 insertions(+), 172 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
+ create mode 100644 drivers/memory/renesas-rpc-if-regs.h
+ create mode 100644 drivers/memory/renesas-xspi-if-regs.h
+
+-- 
+2.43.0
+
 
