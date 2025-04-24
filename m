@@ -1,129 +1,109 @@
-Return-Path: <devicetree+bounces-170450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B89BA9AE1A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:57:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDB0A9AE2D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 643691B65A9C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154F13B4E49
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 13:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A2127BF9A;
-	Thu, 24 Apr 2025 12:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0CC17578;
+	Thu, 24 Apr 2025 13:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pquxH5Tc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxm6+iDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2877027BF6F;
-	Thu, 24 Apr 2025 12:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D97A7F9;
+	Thu, 24 Apr 2025 13:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745499465; cv=none; b=DzRVcIt+5X2W9PdJjwBhBqMIBGQB0V7H3Mt359d4yhYS7zxBqoXqd7TSetrZr5J/hb7Ka1njcJDeGpY89TVR018gk4FpdI67/3ZNm2LyX72eh70H6fenzRGJoNceH8Ajgq28H4ttqLoI8Ey5MlsOmkjWp4UX4qKlF4mpgJcOjPs=
+	t=1745499680; cv=none; b=ivUdjKA1d3rfGTrgg4wZv4TrvuOZPzQTq5VOLghq2rEhpujLwpZ8e/fp4gBfSxGY1ZR3rQR0CZPCf2501cElbwdvki9nYHFtCkGkOOKM97ofHFwUGRt5CZxnm3nhSSmlt0GChhLQeBylBatXUfetYMdBdQU9/vVrheNbXvrxDhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745499465; c=relaxed/simple;
-	bh=J0lIE4vzLnRiJOxdYUmeZR6BncyTaoVNVM9VyFhACGQ=;
+	s=arc-20240116; t=1745499680; c=relaxed/simple;
+	bh=w4ERmlgT37R8fqbbx4uVzFLB0bFMUP+qmxc5xgde/7k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WxB2etga0oLbhqXPQsPq+Mi793bkIV2vFoJYDm2ixnq5/Mqs8WsdfTVrrGb2ww3PH8+VvmZJnxbybTupWNMjgO4KgaSpggvJVJKwp1JF//0M2HHPWXCPmhmeN85+L1N+HdOFRIm1wHhZ932zQeyO2cUUqigE0L8DNY5/7bAowzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pquxH5Tc; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Ei9FNw6IjtxDnJGtZ0ljQWti041QWdVAFekLHXRFiv8=; b=pquxH5TcA9L1wdWXApkcJYJYcv
-	UuJ3wPBl6Qmnm2H3WE6PKIU8sdYhYUPw9ic8jzEr/CfC4/gHksuQ73zK1kAnNeZiQSY6Ul2QErFw2
-	D9Fq3/+6GVrOYvNUnytuZRe1jtUZXE60Apy3/Yd/3HF3SongBjPChdvdNGR9KEAHSfBM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u7w8t-00ASoP-Lw; Thu, 24 Apr 2025 14:57:27 +0200
-Date: Thu, 24 Apr 2025 14:57:27 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
- board
-Message-ID: <4ba3e7b8-e680-40fa-b159-5146a16a9415@lunn.ch>
-References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
- <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
- <aa38baed-f528-4650-9e06-e7a76c25ec89@lunn.ch>
- <20250424014120.0d66bd85@minigeek.lan>
- <835b58a3-82a0-489e-a80f-dcbdb70f6f8d@lunn.ch>
- <20250424134104.18031a70@donnerap.manchester.arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EXtFgVrlsoRjST+hhnbzGHxcG1sfGhkI5uBskoCC+FPnTW0SwrYbvOYgICwUC6idfrMMA8kbWyLWqudv5GZNBV7ruo0CxKjGnZHAneYSrpkm8ZQyvjz3238S6S+B9KvuMBb6zH3pyeLiUT2yAhqAL2McW8mdrBJ9JiIk13nDrpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxm6+iDH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE734C4CEE8;
+	Thu, 24 Apr 2025 13:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745499679;
+	bh=w4ERmlgT37R8fqbbx4uVzFLB0bFMUP+qmxc5xgde/7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pxm6+iDHVTleShgiF8bFeJvckCUPbkg57ANzPMtBwns7jfQzzmQz0EFJ05T112lwB
+	 WMYmpudJjzcHgAOUsrdINVZwv2/j3JmqCXznxVSHQq2h8faiVnOKb2RPegnUC/8c7p
+	 CHaM/QMNsb9S3xfYYv2Uod/Thx792cyS2aY6xTHFYMs9lM9RC3snvzyGXMCbGnsq0q
+	 S9nGIj8WSYURRlSOIHYy78OF6pj5n9fb8Tqqt9Sn/E9qC4HqxLGOVqzFxJrudWvFAS
+	 cqzpZUf5gYP+kfQp7RKfjlVq62KmV3pjTBFhnjHgok0FqDpTUNUI3do98G9jOCTAvJ
+	 KbiBb+ril+iaQ==
+Date: Thu, 24 Apr 2025 14:01:12 +0100
+From: Lee Jones <lee@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: ukleinek@kernel.org, alexandre.torgue@foss.st.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jic23@kernel.org, daniel.lezcano@linaro.org,
+	tglx@linutronix.de, robh@kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, devicetree@vger.kernel.org, wbg@kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH v4 2/8] mfd: stm32-lptimer: add support for stm32mp25
+Message-ID: <20250424130112.GD8734@google.com>
+References: <20250314171451.3497789-1-fabrice.gasnier@foss.st.com>
+ <20250314171451.3497789-3-fabrice.gasnier@foss.st.com>
+ <20250404144006.GB372032@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250424134104.18031a70@donnerap.manchester.arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250404144006.GB372032@google.com>
 
-> > Just to be clear, you tried it with "rgmii-id" and the same <300> and
-> > <400> values?
+On Fri, 04 Apr 2025, Lee Jones wrote:
+
+> On Fri, 14 Mar 2025, Fabrice Gasnier wrote:
 > 
-> Yes, sorry, I wasn't clear: I used rgmii-id, then experimented with those
-> values.
-
-O.K, great.
-
-I do suspect the delays are not actually in pico seconds. But without
-a data sheet, it is hard to know.
-
-       if (!of_property_read_u32(node, "allwinner,rx-delay-ps", &val)) {
-                if (val % 100) {
-                        dev_err(dev, "rx-delay must be a multiple of 100\n");
-                        return -EINVAL;
-                }
-                val /= 100;
-                dev_dbg(dev, "set rx-delay to %x\n", val);
-                if (val <= gmac->variant->rx_delay_max) {
-                        reg &= ~(gmac->variant->rx_delay_max <<
-                                 SYSCON_ERXDC_SHIFT);
-                        reg |= (val << SYSCON_ERXDC_SHIFT);
-
-So the code divides by 100 and writes it to a register. But:
-
-static const struct emac_variant emac_variant_h3 = {
-        .rx_delay_max = 31,
-
-
-static const struct emac_variant emac_variant_r40 = {
-        .rx_delay_max = 7,
-};
-
-With the change from 7 to 31, did the range get extended by a factor
-of 4, or did the step go down by a factor of 4, and the / 100 should
-be / 25? I suppose the git history might have the answer in the commit
-message, but i'm too lazy to go look.
-
-	Andrew
-
-
-
-I briefly tried "rgmii", and I couldn't get a lease, so I quite
-> confident it's rgmii-id, as you said. The vendor DTs just use "rgmii", but
-> they might hack the delay up another way (and I cannot be asked to look at
-> that awful code).
+> > Add support for STM32MP25 SoC.
+> > A new hardware configuration register (HWCFGR2) has been added, to gather
+> > number of capture/compare channels, autonomous mode and input capture
+> > capability. The full feature set is implemented in LPTIM1/2/3/4. LPTIM5
+> > supports a smaller set of features. This can now be read from HWCFGR
+> > registers.
+> > 
+> > Add new registers to the stm32-lptimer.h: CCMR1, CCR2, HWCFGR1/2 and VERR.
+> > Update the stm32_lptimer data struct so signal the number of
+> > capture/compare channels to the child devices.
+> > Also Remove some unused bit masks (CMPOK_ARROK / CMPOKCF_ARROKCF).
+> > 
+> > Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> > ---
+> > Changes in V4:
+> > - Add DIEROK, ARROK status flags, and their clear flags.
+> > Changes in V2:
+> > - rely on fallback compatible as no specific .data is associated to the
+> >   driver. Compatibility is added by reading hardware configuration
+> >   registers.
+> > - read version register, to be used by clockevent child driver
+> > - rename register/bits definitions
+> > ---
+> >  drivers/mfd/stm32-lptimer.c       | 33 ++++++++++++++++++++++++++-
+> >  include/linux/mfd/stm32-lptimer.h | 37 ++++++++++++++++++++++++++++---
 > 
-> Cheers,
-> Andre
+> At least the Clocksource driver depends on this.
+> 
+> I need Acks from the other Maintainers before I can merge this.
+
+Suggest you resubmit the set as a [RESEND] to re-gain traction.
+
+-- 
+Lee Jones [李琼斯]
 
