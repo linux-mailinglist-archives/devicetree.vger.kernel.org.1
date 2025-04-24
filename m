@@ -1,95 +1,102 @@
-Return-Path: <devicetree+bounces-170268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE84A9A579
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:14:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4788DA9A58B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 10:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B5A23A5BB0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:14:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DFE1462A8D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1AB71FECAA;
-	Thu, 24 Apr 2025 08:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1451F4622;
+	Thu, 24 Apr 2025 08:15:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311758BE8;
-	Thu, 24 Apr 2025 08:14:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BCD19994F;
+	Thu, 24 Apr 2025 08:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745482453; cv=none; b=KSC7HW72F8rG+Jc46ub8lAjpujlbN0v1tMXA6e1qi2xbpY9x+2Qz6y/1GhJqKc7qt3+n7w+HjBR5egurOwiNBhm65M9qb4ciZlsQ5SR104Xq38ZiF9THSil1Jf6fr+slNBoRmlFJEPfpC0DJnbbeYFJujF9ARC0zg4AVYWyWBCc=
+	t=1745482527; cv=none; b=s7YDqkjJ7u/HWfmIhLwSKt6d/VV5e6qsyn1KrbQWqUDw/cFGRXLws80hJit06egSotZLv61zqplG+GTrcKoBj5sj3p9L/IdciEcZPZrdjr1yq/usPrYNNENvZvsVlVtBWkCA075W0NIHF4VaP141FJSN8vQZgyAQ26dNcbdLptw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745482453; c=relaxed/simple;
-	bh=UMJDFPjm4b6wjBJ/hsRbKXKTVpDXywdiGpW53yYwsfk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aG5LerSZpC2WEByS0aiWOXA4dg/wYT8ShR5Rm3Eu0OEji2INy4zNcOZ2bgor6RHtpTt4cWLURu1vfjibGEfiUZqMjj8jTZKW1XUebstXC4MrQk5C2zmxzNXMk0SgogAIkrtxiR0iahjosO5HHQivqJFcISM3maXj1ZqQp2WWwN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: hB8iq1vKTFKgeXJbw+xFJw==
-X-CSE-MsgGUID: ySEMcMB7TfiJM69FuKfPSQ==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 24 Apr 2025 17:14:10 +0900
-Received: from localhost.localdomain (unknown [10.226.92.69])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A4F2741BF1F3;
-	Thu, 24 Apr 2025 17:14:06 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 1/3] dt-bindings: clock: renesas,r9a09g047-cpg: Add XSPI and GBETH PTP core clocks
-Date: Thu, 24 Apr 2025 09:13:54 +0100
-Message-ID: <20250424081400.135028-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250424081400.135028-1-biju.das.jz@bp.renesas.com>
-References: <20250424081400.135028-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1745482527; c=relaxed/simple;
+	bh=p1rDUK8rdI5Szwyaio0ijicup4XX8ctN1sOZD2658Mw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fsIp6QZTpFpIYF5TsbsLXYC0xuqdiaXGWXOkQogVPK4Y77ERcgBzt7mo8yzKMmm/hryKDrJydzgqpSdXMgiXjvLo8eFAVgUF6v29ZX4rA3XPS7bqy/xODQuxxBnXLJJ/S/embR6YdTo0kj0sLlUD75eI3pc6qZ7aBNdoUJfipSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.35] (unknown [98.97.25.173])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 712A4B2C201A;
+	Thu, 24 Apr 2025 10:15:19 +0200 (CEST)
+Message-ID: <60891c52-eeca-4358-8f38-789533016495@freeshell.de>
+Date: Thu, 24 Apr 2025 01:15:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
+ PAD_INTERNAL_* virtual pins
+To: Icenowy Zheng <uwu@icenowy.me>, Emil Renner Berthing <kernel@esmil.dk>,
+ Jianlong Huang <jianlong.huang@starfivetech.com>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250424062017.652969-1-uwu@icenowy.me>
+ <20250424062017.652969-2-uwu@icenowy.me>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250424062017.652969-2-uwu@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add definitions for XSPI core clock and Gigabit Ethernet PTP reference
-core clocks in the R9A09G047 CPG DT bindings header file.
+On 4/23/25 23:20, Icenowy Zheng wrote:
+> The JH7110 SoC could support internal GPI signals to be routed to not
+> external GPIO but internal low/high levels.
+> 
+> Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two virtual
+> "pads" to represent internal GPI sources with fixed low/high levels.
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> ---
+>  include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> index 3865f01396395..3cca874b2bef7 100644
+> --- a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> +++ b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> @@ -126,6 +126,10 @@
+>  #define	PAD_GMAC0_TXEN		18
+>  #define	PAD_GMAC0_TXC		19
+>  
+> +/* virtual pins for forcing GPI */
+> +#define PAD_INTERNAL_LOW	254
+> +#define PAD_INTERNAL_HIGH	255
+> +
+>  #define GPOUT_LOW		0
+>  #define GPOUT_HIGH		1
+>  
 
-The clk_spi is modelled as a fixed divider clock with parent clk_spix2 and
-factor two as both parent and child share same gating bit.
+Asking about the choice of 255 and 254 values for virtual high/low pins,
+here. There's not much result when grep Linux source for 'virtual pin'
+to compare with. Are these the best values for this approach?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3:
- * New patch
----
- include/dt-bindings/clock/renesas,r9a09g047-cpg.h | 3 +++
- 1 file changed, 3 insertions(+)
+What happens when devicetree has in it to route PAD_INTERNAL_LOW to
+PAD_INTERNAL_HIGH and other unlikely combinations?  Or a devicetree blob
+with this computed value is paired to Linux kernel that does not have
+the code to handle these virtual pins, for compatibility concern?
 
-diff --git a/include/dt-bindings/clock/renesas,r9a09g047-cpg.h b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-index 1d031bf6bf03..a27132f9a6c8 100644
---- a/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-+++ b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-@@ -17,5 +17,8 @@
- #define R9A09G047_CM33_CLK0			6
- #define R9A09G047_CST_0_SWCLKTCK		7
- #define R9A09G047_IOTOP_0_SHCLK			8
-+#define R9A09G047_SPI_CLK_SPI			9
-+#define R9A09G047_GBETH_0_CLK_PTP_REF_I		10
-+#define R9A09G047_GBETH_1_CLK_PTP_REF_I		11
- 
- #endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__ */
--- 
-2.43.0
+Do we know yet if JH8100 will share some of this design?
 
+-E
 
