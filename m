@@ -1,82 +1,130 @@
-Return-Path: <devicetree+bounces-170510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F9BA9B272
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:34:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5714A9B27B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 17:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACCE9A2871
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:33:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AA871B8326D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 15:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8578627CCD7;
-	Thu, 24 Apr 2025 15:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CFE27F734;
+	Thu, 24 Apr 2025 15:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MSUPMNRp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kaVQycdF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF2B1A841C;
-	Thu, 24 Apr 2025 15:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D30223DFF;
+	Thu, 24 Apr 2025 15:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745508821; cv=none; b=V3yI2MWr0yQsPjWWL6rczGXKdiiq9pfpIJ9KJZiaruGMk/G+BLKFamb0NpZWhCTCRlsGzz0pWxub9gpunf29HY5d22RLFd8HvF6VNhtI4jpqoBr/oVWiP6dZa97HpDqc6MVQvcj7djkvyf5GCmHngBTHqxAdlDz9K09N/EtobPI=
+	t=1745508880; cv=none; b=saaaJ5Ju8XUibaXhd5zqzPr2aFjJnNaw7pkm6zHf+BDSKeQOOpl4ChU7FbZOLYvYIC09pnl8ODGzpneU+sQpqs/BHtWZQMmf6ey5l8xBM1DF4HKTLMzpQ+ZLE0OwHWIowl6KIqieigzI8+OXwWQV+0OlR2v/w+N1i2oI5te6iDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745508821; c=relaxed/simple;
-	bh=wU9jfyce70/Gvv2ki/06OL17ud+SeMYiIauhmhd6z1g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=apZWf0/77yxTaJd6EXoXadG8KwWyvKnQjTXKQ3/VTqHuWB01lNw4zo7QR0S4Yw6EC74yiIGM4XEI5OHhb/8iViDIWlQsB0V8vYk8XxwkiXAgDXfyq8cAHbc5u5C/rDGiLrX2y6Tni87KUVQqOf+mJ8TcnHpYIZTRIsQ7QxzQ62M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MSUPMNRp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83DE8C4CEE3;
-	Thu, 24 Apr 2025 15:33:38 +0000 (UTC)
+	s=arc-20240116; t=1745508880; c=relaxed/simple;
+	bh=bxClbLQLTNjuI9XodLLxLGe6sAL6f77wxXbHj6qSftg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hoz0myVcp5q05RfzYHTl1Hfecl5i+705rKsu4TsUNv+RmWBNry6eINuOYtcs+RkxGvDXVdLfnYADi9Knt1nXOluYAFI0KLMY42DaF8Yn5Gp+lJR1k+klZ830i1hjTuTiDKD8l4CFDDjFGe7Khtil8Ryi4HaRdZdGfkae5qccnOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kaVQycdF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D45CFC4CEE3;
+	Thu, 24 Apr 2025 15:34:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745508820;
-	bh=wU9jfyce70/Gvv2ki/06OL17ud+SeMYiIauhmhd6z1g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MSUPMNRpw+9NAbENzEu/+kpPuwRDFbBT5B3WQ6jEWpnVUdLMhWgHBwMRVnbg6HvLp
-	 2QhU+fICktAQ8iVtXMB9jSnerbcSQJrM0LikVBpAS6i/kT81Hm5fx7kXKbGXGQcuPu
-	 f3DOiCgZuEbUidiRV3U0vNZYphBr9t4toROxbXNtmF7DgcTRh70Og3B22oP/6FWmcj
-	 ljppaKAvTLvJJYLm4vZ9KnwnDEYiwGLfuNU460dcn7SD87T9B2pnqKpGYJJhLn+ckE
-	 P5uQwsWXmzJkvCDL7IEvaJsjX2D61B/tGTLMrY9+f0MFiT9Im3csqvbG47k4G+Cykt
-	 eR9+sf18dq+/A==
+	s=k20201202; t=1745508880;
+	bh=bxClbLQLTNjuI9XodLLxLGe6sAL6f77wxXbHj6qSftg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kaVQycdFEh57ptKQMkU3phV47PdSHrqw0ImT/A/ChbtZXARReZjSQcAo0qAg9ou/4
+	 8ytM9dvOcEt/+ZXzgqtGyWM1G+lAn+A2bnYWcAOnz98SDiCWZpj6kpUJTjv7SxdOu+
+	 JJ33e60tOTDzmKdxSksrmc6lm2BEOmqrqX8NfAqQieXqN5sDmAcbrjpT7OsnHg+Vqx
+	 lMx5PukWerWoacnvxQ01VK75QM3Pc46vCRuKUvwN15DcjnRqbja8OfeYXUWQNNoyw6
+	 I5DHIajSgutzhGjRzJoJcwZ7gpdn5JkSB6I54A0t5cZJkgniFPohYoi6rDYw71NDcU
+	 uiU+3EV9YqqkA==
+Date: Thu, 24 Apr 2025 16:34:34 +0100
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, mandyjh.liu@mediatek.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- kernel@collabora.com
-In-Reply-To: <20250416120225.147826-1-angelogioacchino.delregno@collabora.com>
-References: <20250416120225.147826-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: mediatek,mt8195-scpsys: Add
- support for MT6893
-Message-Id: <174550881826.1465250.14293935570790727278.b4-ty@kernel.org>
-Date: Thu, 24 Apr 2025 16:33:38 +0100
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+Message-ID: <20250424153434.GF8734@google.com>
+References: <20250416162144.670760-1-ivecera@redhat.com>
+ <20250416162144.670760-9-ivecera@redhat.com>
+ <20250417162044.GG372032@google.com>
+ <335003db-49e5-4501-94e5-4e9c6994be7d@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-510f9
+In-Reply-To: <335003db-49e5-4501-94e5-4e9c6994be7d@redhat.com>
 
-On Wed, 16 Apr 2025 14:02:25 +0200, AngeloGioacchino Del Regno wrote:
-> Add a compatible string for the scpsys block found in the MediaTek
-> Dimensity 1200 (MT6893) SoC.
+On Thu, 17 Apr 2025, Ivan Vecera wrote:
+
 > 
 > 
+> On 17. 04. 25 6:20 odp., Lee Jones wrote:
+> > On Wed, 16 Apr 2025, Ivan Vecera wrote:
+> > 
+> > > Register DPLL sub-devices to expose this functionality provided
+> > > by ZL3073x chip family. Each sub-device represents one of the provided
+> > > DPLL channels.
+> > > 
+> > > Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> > > ---
+> > >   drivers/mfd/zl3073x-core.c | 15 +++++++++++++++
+> > >   1 file changed, 15 insertions(+)
+> > > 
+> > > diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
+> > > index 0bd31591245a2..fda77724a8452 100644
+> > > --- a/drivers/mfd/zl3073x-core.c
+> > > +++ b/drivers/mfd/zl3073x-core.c
+> > > @@ -6,6 +6,7 @@
+> > >   #include <linux/device.h>
+> > >   #include <linux/export.h>
+> > >   #include <linux/math64.h>
+> > > +#include <linux/mfd/core.h>
+> > >   #include <linux/mfd/zl3073x.h>
+> > >   #include <linux/mfd/zl3073x_regs.h>
+> > >   #include <linux/module.h>
+> > > @@ -774,6 +775,20 @@ int zl3073x_dev_probe(struct zl3073x_dev *zldev,
+> > >   	if (rc)
+> > >   		return rc;
+> > > +	/* Add DPLL sub-device cell for each DPLL channel */
+> > > +	for (i = 0; i < chip_info->num_channels; i++) {
+> > > +		struct mfd_cell dpll_dev = MFD_CELL_BASIC("zl3073x-dpll", NULL,
+> > > +							  NULL, 0, i);
+> > 
+> > Create a static one of these with the maximum amount of channels.
+> 
+> Like this?
+> 
+> static const struct mfd_cell dpll_cells[] = {
+> 	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 1),
+> 	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 2),
+> 	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 3),
+> 	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 4),
+> 	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 5),
+> };
+> 
+> rc = devm_mfd_add_devices(zldev->dev, PLATFORM_DEVID_AUTO, dpll_cells,
+>                           chip_info->num_channels, NULL, 0, NULL);
 
-Applied, thanks!
+Yes, looks better, thank you.
 
-[1/1] dt-bindings: mfd: mediatek,mt8195-scpsys: Add support for MT6893
-      commit: ce37cf8b8520aa292d2eb975b009e15e38347351
-
---
+-- 
 Lee Jones [李琼斯]
-
 
