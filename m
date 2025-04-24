@@ -1,198 +1,198 @@
-Return-Path: <devicetree+bounces-170337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAA47A9A8C6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:48:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E02FBA9A8E7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEB507B15D8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:46:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 598557B55E2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF8419F40B;
-	Thu, 24 Apr 2025 09:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t7WLsYj3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF94422A1D4;
+	Thu, 24 Apr 2025 09:41:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3880221F14
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 09:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B9322170B;
+	Thu, 24 Apr 2025 09:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745487614; cv=none; b=eWrzdOmgpxhrVSLvzuw8KsABSzz5N3nQcqWb4s4Qxy+daPFXjXnaQyGeTM4o3dOM86qZ0ouU+BN7tG59MjycvFXaCqmAkLZ95VjxUZcjvH3lLzc5APKlvKWerjRnqAJ2n29XvIi0N8U+ZbgZgBfdillOjBP/B/OREqWn9E7+Dls=
+	t=1745487691; cv=none; b=BTOcE3Su6IqkE5z+z2qUfxOW2E9lL/CLOhE1TqtENPR8NZefNr1PZdSVePNwwNDxq6pxX4toeePdjRKBNQmlkoghsOxxdZ9Vi6/vsUtmp/2+49wAkxiAkQb0TzS1z7+ADfDh0Pym3R0PvMJQ/Sst3Bxq20vFKIp2t9LXETRfEmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745487614; c=relaxed/simple;
-	bh=nGD9BVz8j2OotRq+XBALzjc133ysWi7LIJQYFknwE3A=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BOtlGBGY40jK8/CQ++o2Y8NnsIxBHmDggJhe/u5UxGKykKRIREULxr3bD26gKi+ou4qehwIXjMm+Rr+u+8pE+ew4Loq5loxTFmQVbbSg9jrPLqKmWNLoDu7Jo0vk27SCFDZERfEOF9uiYtZxl7RujFSTOI9+UiGfpcEOUxS58yM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t7WLsYj3; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43edb40f357so4847985e9.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 02:40:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745487611; x=1746092411; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GsdYiir2/QPJiZE91FucRo493WTjvg2844/jPSOuFnc=;
-        b=t7WLsYj3U0SF8Fk5dgfUfFRWc4OzO2Vc5Vn5qCFXrHLzFOLjqi/q8jvnbT0CWAB0bA
-         QZ2moCV/3lkl13eT6XjDb4Yjn3fUd1HnCJO/Ekbd+gGJHahxdyChhnH4n7BQGXJLC/Do
-         Nzmb6jChSR5nAgb3DCI6P6fbyW1ShbfyiIkNx/V2PeCcFrcpZdIdvJpa20EuCFpY8cIT
-         GiUlrxuJKBq6eVcJ3yLzjIHjCkObTcGHwjK0+qMppKyjzqzHu7pOnM3nhCDIT2KBu4dC
-         Bri5fKBs6qlEAnBdLhuJrF/CLuzC5l/c/y39+zhobNuFElWtftN/NjkjSXNyRLcEaslM
-         8Xvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745487611; x=1746092411;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GsdYiir2/QPJiZE91FucRo493WTjvg2844/jPSOuFnc=;
-        b=qimRpaN5zcx0h9NZAZXETrYlhWVp4kmLEEf3pkMYjdD5biDM+PAbtWjxxoLe9C1Ci2
-         c1qqBfayXr/NshUNET8K/ivPksxmrsxmo9hOuEgtEVtIkhf9LVKesOEgLLgsSYU3mKEs
-         9NTl6SMtIbILVCgU3uUq7Q0uTKvn+XWetKDI3nxdrVsGhMzdPnaVQuos9jDK42BkPluy
-         o7UiXaYMgamHYE7hyUVQfhRrSBFttap9wA7BkqofQXFIBEsT9NmVEnyQfTZDma/Urgdg
-         1MqnOa/6QopaGkgm5ROWp1VGzxJukH83CUjmQkP415/VuW3gCaTRO0g6Nq0kJSGazqUt
-         DxZw==
-X-Gm-Message-State: AOJu0YynXxSfUV43FWeSJNsF2gKQz7e5E9ChrweM/2JBOb+hWEQOfW2k
-	J1bnoe64XBR4Ff1Lvan22opv79y9pM/VIv5uxaZu6n1o/RwwOqJ+1phIiHKNjOo=
-X-Gm-Gg: ASbGncvs2XLoM3+4xcNJ1YByeBpA93RxB8omeN9v3FuJCURLjOgQNL9LMbvwUwsU5oT
-	KLKdZzumjA7S5RtkfQyfMsDrg+E9IBLQGVPL8a0UP1M9UayPYdIAhcSteAj5rJFBr/Q/On4UKba
-	Fc/5BVAAzI0iLIdtlRVMxC+3k9ihdviT/Lqo0iP+Iz4jCTeVTEQInHcnwMrwN4/Z1N/GsVjwlhn
-	HjoVCX7PIrluByljarb9aIVy7MfsXq4mR4MvlQHavfE+7u41tjPX+R99w33dxFT62rVP4bJDpMh
-	8NRGybQvdQWXHbR68M+nkLsDJ/L8diLarQHu4bvPjNslxOFf+uJadILqjLGywHwr4gBgffsk9v1
-	UKuMOrUU50/ZN6FrQ5g==
-X-Google-Smtp-Source: AGHT+IGbKzH+UdHoa8Vh4y2Ra8BSslqvY1MacnDBCVBoNcCm+y48fIa9KnJUakAXtxUbplXif8s16w==
-X-Received: by 2002:a05:600c:3482:b0:43d:94:2d1e with SMTP id 5b1f17b1804b1-4409bd23196mr21055935e9.13.1745487611286;
-        Thu, 24 Apr 2025 02:40:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:a24a:bfda:f031:720d? ([2a01:e0a:3d9:2080:a24a:bfda:f031:720d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2b77f9sm13631535e9.25.2025.04.24.02.40.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 02:40:10 -0700 (PDT)
-Message-ID: <094c0d7e-7b24-405d-8e44-c981100383f1@linaro.org>
-Date: Thu, 24 Apr 2025 11:40:10 +0200
+	s=arc-20240116; t=1745487691; c=relaxed/simple;
+	bh=19tL4jN41z9FQI4XEWC1T0aTF7LcGwsN47y3eQ/Ipt8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ws+2NG61olaAzCuQQjZCQ2eLYiNVuBrYXkEUGg1Fg4RL1uzEvYL6rwc7L5LsMN6ueGj9Hd+pF81SmFaUPDKMH6ZWc8X/9R+eZ8Vh2L2bpjemYYQlW4GMNRn5oA3YXFhu4Up/0jrT6MgqPDm1neYO7jLK3MR2vrMYDSGTx9rE2J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.18.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id B7F49341C25;
+	Thu, 24 Apr 2025 09:41:23 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v9 0/3] riscv: spacemit: add gpio support for K1 SoC
+Date: Thu, 24 Apr 2025 17:40:48 +0800
+Message-Id: <20250424-03-k1-gpio-v9-0-eaece8cc5a86@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v6 0/3] Add support for Amlogic A4/A5 Reset
-To: Kelvin Zhang <kelvin.zhang@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
- <ef1ac07a-09c5-4f8a-89d5-44d232f8ae41@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <ef1ac07a-09c5-4f8a-89d5-44d232f8ae41@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACEHCmgC/2XSy27DIBAF0F+JWJeKGePBZNX/qLrgMSSoapzar
+ tUqyr+XOGpj5OUgncvlcREjD5lHsd9dxMBzHnN/KoN92olwdKcDyxzLLFChVh12UjXyHeThnHt
+ J4JPFZFWDQRRwHjjl7yXs9e0+D/z5VTKn+6LwbmQZ+o+PPO13aGxswUWbKAYViEyiBBockfUYL
+ AIaE8GJW9Yxj1M//Cw9Z1jClkpW6XWlGaSSpAyyZw6O1cuBT1PfP/fDYcmZ8d8Cgq0sFoud1jp
+ FRAhxY5uVxbayzc0a743XGiLhxuo/26qycWXLCaQmDcG2QYHVG9s+LIKpbLt0poZDw8aT2VhaW
+ WwqS8VGj6xdZE4QNtasLVW2tJCedWeDdqSs39juYcttVbZ8IgmBOsKI5aXqfa/X6y+C/TkdlQI
+ AAA==
+X-Change-ID: 20240828-03-k1-gpio-61bf92f9032c
+To: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>, 
+ Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ spacemit@lists.linux.dev, devicetree@vger.kernel.org, 
+ Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4903; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=19tL4jN41z9FQI4XEWC1T0aTF7LcGwsN47y3eQ/Ipt8=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoCgc2ipfCvflkv7IgzKm2TGKqrcIQE852JrMGz
+ XONCyCYo6+JApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaAoHNl8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277VsID/9oBNZQAUHgvMsCPG
+ Cx92IzG1YBqV3eqH307VhjshCnq2QZELYTeEHZEq2vdmuPYaCfaBobhFSyathnO8oY/UlNyFW3f
+ ilBcqOpNHU/O+jlb7sjyh8sDs6q2nBhJWa7xlj04QDWf/4tdWiaHyDDqN3kvf5UuoBw2mU/fFRu
+ uMqMG6vf46eUhClRxjHXt5CT/2mrsEDgjhJk2R8nULeUHLK8ItTDtO8XeLsgZ1Mrjv2a9Jj+IWC
+ 426c2oDIGEn+jHlb835Y4HOKYKQS9ICWe5OwQAj5BKFuajFQ3Reb7es2SS/QI+E8AIZ9wLKTqA1
+ Mc/7dj9Y4BjZH2Vq3uPY6y2Q0j9/QQqE3Wgz8e6eLuOB4xVR49/zV27T4eY/5cWJVPeSkydsCgs
+ sbPRP4Q+b1dlg5HWXJ2PorIO3Pe4JOrjTztb75iLE1UsnJRQaPRmz4CR6B25PbxU5RhkmqC3/r5
+ L1DZG4JYAYNDh6pQ86abV2q/5176Pb3Gn+kl80zP3hHq9rj1oKSPuS0nFhwOcqVUmg8Td0au6ir
+ eTEcz53prLxG9gkeMHwnMLSgdSe5pyA2rMV+zP/GXsSX7UxOUBDKlAv1K2RoUJUtILphUC7Fmtk
+ 0aYgUz/sg2I/C3vqF+Ji6VjoZFfejPLAtrA0D4Qs+pFCYrjTqiQ1ucVUuVN5dSvNY5wQ==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-Hi,
+The gpio controller of K1 support basic GPIO functions,
+which capable of enabling as input, output. It can also be used
+as GPIO interrupt which able to detect rising edge, falling edge,
+or both. There are four GPIO ports, each consisting of 32 pins and
+has indepedent register sets, while still sharing IRQ line and clocks.
+The GPIO controller request the two clock sources from APBC block.
 
-On 24/04/2025 10:32, Kelvin Zhang wrote:
-> Hi Neil,
-> 
-> Are there any improvements needed for this patchset?
-> Thank you for your review!
+Due to first three GPIO ports has interleave register settings, some
+resources (IRQ, clock) are shared by all pins.
 
-No, waiting for Philipp to pick patch 1.
+The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
 
-Thanks,
-Neil
+This patch series has been tested on Bananapi-F3 board,
+with following GPIO cases passed:
+ 1) gpio input
+ 2) gpio output - set to high, low
+ 3) gpio interrupt - rising trigger, falling trigger, both edge trigger
 
-> 
-> On 2025/4/11 19:38, Kelvin Zhang via B4 Relay wrote:
->>
->> Add dt-binding compatibles and device nodes for Amlogic A4/A5 reset.
->>
->> Imported from f20240918074211.8067-1-zelong.dong@amlogic.com
->>
->> Changes in v6:
->> - Rebased onto the latest v6.16/arm64-dt.
->> - Link to v5: https://lore.kernel.org/r/20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com
->>
->> Changes in v5:
->> - Rebasing on top of the latest upstream changes.
->> - Link to v4: https://lore.kernel.org/r/20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com
->>
->> Changes in v4:
->> - Remove the superfluous 'items' in the dt-binding.
->> - Rebasing due to recent upstream changes.
->> - Link to v3: https://lore.kernel.org/all/20240918074211.8067-1-zelong.dong@amlogic.com/
->>
->> Changes in v3:
->> - rebase on 'amlogic,t7-reset' patchset
->> - Link to v2: https://lore.kernel.org/all/20240715051217.5286-1-zelong.dong@amlogic.com/
->>
->> Changes in v2:
->> - remove 'amlogic,t7-reset'
->> - move 'amlogic,c3-reset' to the other enum list
->> - move reset node from amlogic-a4-common.dtsi to
->>    amlogic-a4.dtsi/amlogic-a5.dtsi
->> - Link to v1: https://lore.kernel.org/all/20240703061610.37217-1-zelong.dong@amlogic.com/
->>
->> ---
->> Zelong Dong (3):
->>        dt-bindings: reset: Add compatible for Amlogic A4/A5 Reset Controller
->>        arm64: dts: amlogic: Add A4 Reset Controller
->>        arm64: dts: amlogic: Add A5 Reset Controller
->>
->>   .../bindings/reset/amlogic,meson-reset.yaml        | 22 +++--
->>   arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h     | 93 +++++++++++++++++++++
->>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  8 ++
->>   arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h     | 95 ++++++++++++++++++++++
->>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  8 ++
->>   5 files changed, 218 insertions(+), 8 deletions(-)
->> ---
->> base-commit: 4bc28af2da876531e5183d25ae807e608c816d18
->> change-id: 20250313-a4-a5-reset-6696e5b18e10
->>
->> Best regards,
->> -- 
->> Kelvin Zhang <kelvin.zhang@amlogic.com>
->>
->>
-> 
+This version should resolve DT related concern in V4, and register each bank as
+indepedent gpio chip in driver, no more sub children gpio DT node needed.
+
+Please notice in this version, the reset property is added, but optional.
+as I see no need to activate it in driver, instead I suspect it may
+break cases if bootloader did some prerequisite settings, so I'm leaving
+it for future implementation if really necessary.
+
+Add clock property and rebase patch on top of SpacemiT's k1/dt-for-next branch
+
+Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
+Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
+Link: https://lore.kernel.org/all/20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org/ [3]
+Link: https://lore.kernel.org/all/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org [4]
+Link: https://lore.kernel.org/all/20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org [5]
+Link: https://lore.kernel.org/all/2174489329731.7849.17910336598453828998.b4-ty@bgdev.pl [6]
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Changes in v9:
+- drop patch 1,2 from v8 which already merged by gpio tree [6]
+- add clock property to gpio node
+- Link to v8: https://lore.kernel.org/r/20250412-03-k1-gpio-v8-0-1c6862d272ec@gentoo.org
+
+Changes in v8:
+- rebased to v6.15-rc1
+- adjust dt-binding/code to request clocks
+- add reset property
+- call irq_domain_update_bus_token() to support threecells interrupt mode
+- use devm_platform_ioremap_resource(), so drop "struct resource"
+- fix Kconfig
+  - select GPIO_GENERIC as calling bgpio_init()
+  - change to tristate, make it possible to build as module
+- adjust defconfig to enable gpio 
+- Link to v7: https://lore.kernel.org/r/20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org
+
+Changes in v7:
+- dt-binding: fix 80 column, drop unneeded dependencies
+- tested with patch v3 of "gpiolib: of: Handle threecell gpios" [5]
+- collect review tags
+- Link to v6: https://lore.kernel.org/r/20250223-03-k1-gpio-v6-0-db2e4adeef1c@gentoo.org
+
+Changes in v6:
+- rebase to threecell gpio patch which proposed by LinusW at [4], 
+  drop unneeded *xlate(), *add_pin_range() function
+- add SPACEMIT prefix to macro
+- adjust register comments
+- drop 'index' member, instead calculate from offset
+- add IRQCHIP_SKIP_SET_WAKE as gpio doesn't support irq wake up
+- drop #ifdef CONFIG_OF_GPIO
+- move interrupt mask disabling/enabling into irq_*mask()
+- Link to v5: https://lore.kernel.org/r/20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org
+
+Changes in v5:
+- export add_pin_range() from gpio core, support to add custom version
+- change to 3 gpio cells, model to <bank number>, <bank offset>, <gpio flag>
+- fold children DT nodes into parent
+- Link to v4: https://lore.kernel.org/r/20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org
+
+Changes in v4:
+- gpio: re-construct gpio as four independent ports, also leverage gpio mmio API
+- gpio interrupt: convert to generic gpio irqchip
+- Link to v3: https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
+
+Changes in v3:
+- dt: drop ranges, interrupt-names property
+- Link to v2: https://lore.kernel.org/r/20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org
+
+Changes in v2:
+- address dt-bindings comments, simplify example
+- rebase to 6.13-rc3 
+- Link to v1: https://lore.kernel.org/r/20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org
+
+---
+Yixun Lan (3):
+      riscv: defconfig: spacemit: enable gpio support for K1 SoC
+      riscv: dts: spacemit: add gpio support for K1 SoC
+      riscv: dts: spacemit: add gpio LED for system heartbeat
+
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 11 +++++++++++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi    |  3 +++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            | 18 ++++++++++++++++++
+ arch/riscv/configs/defconfig                    |  1 +
+ 4 files changed, 33 insertions(+)
+---
+base-commit: 279d51ad9f6dc0c667f6f141a669b2c921277d1a
+change-id: 20240828-03-k1-gpio-61bf92f9032c
+
+Best regards,
+-- 
+Yixun Lan
 
 
