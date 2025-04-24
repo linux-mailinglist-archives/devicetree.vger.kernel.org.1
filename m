@@ -1,116 +1,98 @@
-Return-Path: <devicetree+bounces-170203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243B9A9A294
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:49:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF90A9A2B5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 08:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4B6A3B3083
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:49:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5EB91944955
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 06:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4195B1E8332;
-	Thu, 24 Apr 2025 06:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF47B1E7C07;
+	Thu, 24 Apr 2025 06:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ohRDjLKo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kSnIxFI1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC5D1CEE90
-	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 06:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8752518E1F;
+	Thu, 24 Apr 2025 06:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745477372; cv=none; b=M/x20GPoN8BpdKsW0CxR17TdXN6xTL0mlzyylkarBKnHrMlu4K1dmdYoJTSRcAQ0DAebW6YpKmLx/K2hRcWDnU582f5FBrpcDmyd8Icw1T2goDKQK69FFl7KQtKcQUPotORayeDIe/COIUFmx/CELqOqNaHFYyACadYc5YAyZ+0=
+	t=1745477824; cv=none; b=quHtxiGN9CxqiYMrBAHjyERyROoKcO6MYTelDRjNlT1H1+v1vpjkYmId8fXBsksn2ufeq07DBX8RrN6YEulktdEuE3zCGLCdc4HX7esMqIY1OWWTPTgi5ZBGc8Mtwc7dv+SOmqzYHVBF3cZNvULB2ETwS90qCfiYrEBooTDfxfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745477372; c=relaxed/simple;
-	bh=YY05EULblqpqOJ20Ca2qJAkFfKoRl4Lnom2DVdns5cI=;
+	s=arc-20240116; t=1745477824; c=relaxed/simple;
+	bh=zPnLokL9Enz6v0drdyRj8ySVfYvqIPvXAh+2WZuW1zc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HRlIniNpYPWdys3mpfEshUWtZx1kCRUtvWGIjJZLF4/BhQlDEJe3/1v/hVII7FeWiw4oQ1dr4qsM8D8Mza5OrOn0ysaY8HIkNb/sQL7+ERrVmAdKes1ru7n4aDmemaJm3vMf4zQI3ISkQsxLsqQFcWq0MUUTsB6G1/2+oDHt99c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ohRDjLKo; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac6ed4ab410so105727066b.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 23:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745477367; x=1746082167; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FO96JtbCvJe3mUseWa0OQALrV8LUqckkiAryhK/dOSI=;
-        b=ohRDjLKoZHrt860xcyNcRM6ef7aY/SfxsNBLLKF08fD8KNCh8idbIfQvUHp3wO8gwQ
-         S98QC6TTnRRvc3o4JzKbpAwKdux4Go5riFQxnKm3mry9CeGkdHqbtJmUdTXzFJdS9CxZ
-         eGZPRYD+6rLhnYkSHx9+/07//pIViq2NszbbDxrlHwNTl5CeEwgZuQC/9uld1voGxxJj
-         9Kar10lAE6M9j5mVkjqOFVum48tP400eacu2ixJSENA+lDK4Um07RYR3WmFWkAT5waDo
-         /HJ8H7CQhWZ/V7kG4EPT/ib1mRgNzfd4wX6jKFxa5VXJtViAeAJQG/zCCoHzaxP+YNVK
-         TwNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745477367; x=1746082167;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FO96JtbCvJe3mUseWa0OQALrV8LUqckkiAryhK/dOSI=;
-        b=Q0eY6VD7jiahtijrxctkuABql84XhtmAwswBnsrulDzkCmuNif/EQWf4saKqdK5o+r
-         rImR2+LjiuBd0jcYZbk5t5rMNB1KEw6Xd46pQ3qcHrjhqz0SnIe+HDynp4tZLtOyI3jp
-         Njk8RA6sexg/uLsp90xFtsSYK2cPjdEd127zLK59pElqmJTbHuS1VbYCkplwma82a6Pr
-         jY/lB/nO52oR2JTr7+8Z5x8HcE6VsqYYd63SleZgWQQqGgaqzKa+8FZ+3nfEm9mi+hG+
-         GYoXfe87vjYmXfAX/lbCwa888dgVcZnOPKWnvNJRpyt7AG5Fhhqo8qdjMXMJwCpZEcWR
-         pvbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHpZUsK6oR4/i3yq6j9c4nYMOYBbtA9MYn2FwPb6g4xd72fWMQ2SPvFOSB+Ayb2oiXN8LCbW5Aztta@vger.kernel.org
-X-Gm-Message-State: AOJu0YyT5wDCdtM+EPCxgmRYp7ycy0fJGI7ygzonPogjVfC62xTx00c8
-	cxeWoxLKUG+WN5mb2QM98qLgfKDNi5nktB3rqlFJubTVWFq8Y8bT7tn+MowWJps=
-X-Gm-Gg: ASbGncuz5eu+MHplb8PwoBwTN031tyOUeJywrzF2O8OiIUxFx/7SXO67E++QaqlCLZ1
-	CtBlOeB04PsL9RxdplcqGvHICL655LDJRrFvBeF65/CyeHqQi37Q28NXYpAHElp5i7uBI8O16Vn
-	DIwcInYa72+GN5tfEO0OxKwVVnouowc9B53yTZrkkLOZDpLu+i4dl+K77v1ZRMKDduw34y2TB5E
-	5PJ+L1Rnxgz+WpXaKDKbU2lvfvv3uTTwcTelEuk+YWJ5Q1exjuVDGPPfDJfs+YGYnrMdMznm3eK
-	NfAmtLe7TeXKl/qPb0ta4rL8lHHFvKPRSKZvLA==
-X-Google-Smtp-Source: AGHT+IEfj/5HzaH2h358gMY8v05hd2yzGKyunuo5psGHsXusc1uw2LNAuC+EPj7nse1eDky0duEC/Q==
-X-Received: by 2002:a17:907:1b08:b0:aca:c7c6:b218 with SMTP id a640c23a62f3a-ace570e0d55mr131378866b.1.1745477367496;
-        Wed, 23 Apr 2025 23:49:27 -0700 (PDT)
-Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace59c261f4sm56013866b.146.2025.04.23.23.49.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Apr 2025 23:49:26 -0700 (PDT)
-Date: Thu, 24 Apr 2025 09:49:24 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>,
-	Xilin Wu <wuxilin123@gmail.com>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 0/6] arm64: dts: qcom: x1*: Fix vreg_l2j_1p2 voltage
-Message-ID: <aAne9K79PNfdQc8h@linaro.org>
-References: <20250423-x1e-vreg-l2j-voltage-v1-0-24b6a2043025@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZY7H61mwBALnpZKIqBZNV0NLqGkRHYy02LvzFvD07LNNZib8G8h55OpgQNZ3TTLezTHxMfnUF2lB3+9WQQosR314H0Y8ogIsFt9XhpEBa09idvvh3MYpr04qPqi6ljVNKXHOGJ6S0t+NFgQC+fdV9aa2CyE+ZEh4cnXqabpWGxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kSnIxFI1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BC9CC4CEE3;
+	Thu, 24 Apr 2025 06:57:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745477824;
+	bh=zPnLokL9Enz6v0drdyRj8ySVfYvqIPvXAh+2WZuW1zc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kSnIxFI1GokV4V+fVsJxeGyERS251Gwh6yUmDRa5Ougu/R0xkaB0lMiwcyIAGt0OA
+	 /s5RDb5WGAcsouwzDoe5hdBVb2xf5O2NlM6HF9xEHKeJs1Wei2IH2bgr8qvgwVXQ0L
+	 pkkUgy0EH/FZbqo1VlO4uPWXsGaHxvqJEzD5qWEAHFnFygMcxsA0SKBosSwZOZOoUu
+	 IqbMlBOa9aqIslVymBzcqpzevDepPN8QQk+0s/cmEXi0v8sPcbAsxBZnoIm+cA9A9l
+	 8Kxzk5N9/ZenwLSN4Q1sWSeN1W23eiVrVVEh5NaO4zzyr7F7IrRJJVGEGt/7w/ezzW
+	 eedfsGbE8EQOA==
+Date: Thu, 24 Apr 2025 08:57:01 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	dianders@google.com, hsinyi@google.com, angelogioacchino.delregno@collabora.com, 
+	matthias.bgg@gmail.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	knoxchiou@google.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v11 1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta
+ Chromebook
+Message-ID: <20250424-echidna-of-unreal-youth-9ac5b1@kuoka>
+References: <20250424010850.994288-1-cengjianeng@huaqin.corp-partner.google.com>
+ <20250424010850.994288-2-cengjianeng@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250423-x1e-vreg-l2j-voltage-v1-0-24b6a2043025@linaro.org>
+In-Reply-To: <20250424010850.994288-2-cengjianeng@huaqin.corp-partner.google.com>
 
-On 25-04-23 09:30:06, Stephan Gerhold wrote:
-> Several of the Qualcomm X1* device trees upstream specify the wrong voltage
-> for the L2J regulator. In the ACPI DSDT table, PPP_RESOURCE_ID_LDO2_J is
-> configured with 1256000 uV instead of the 1200000 uV. Change all affected
-> device trees to use the same for consistency and correctness.
+On Thu, Apr 24, 2025 at 09:08:49AM GMT, Jianeng Ceng wrote:
+> Ponyta is a custom label Chromebook based on MT8186. It is a
+> self-developed project of Huaqin and has no fixed OEM.
 > 
-> In the other device trees upstream, the voltage is already correct:
->  - x1e78100-lenovo-thinkpad-t14s.dtsi
->  - x1e80100-dell-xps13-9345.dts
->  - x1e80100-microsoft-romulus.dtsi
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+> ---
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
+Best regards,
+Krzysztof
+
 
