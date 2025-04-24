@@ -1,280 +1,271 @@
-Return-Path: <devicetree+bounces-170140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACAABA99F2C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:03:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97398A99F76
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C5AE5A6207
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:03:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4449445F39
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CF81A0BFD;
-	Thu, 24 Apr 2025 03:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D14819D884;
+	Thu, 24 Apr 2025 03:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MdHHX4Nt"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kL521BJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2070.outbound.protection.outlook.com [40.107.249.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED7F79D0;
-	Thu, 24 Apr 2025 03:03:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745463810; cv=fail; b=jeUKIk5jyFsFchkt376fR+Y4T1JKMGjQwcbI9GPly7tLZI+eEPS5l1UbinGHCYach4AswJj2jCdvTA6ZbdC0PLNQHYpxcO4qm5sBVkoEvn6ehMm4VPTOCPez/hJ1Az+a/m640q4qBR9PmcCwU6rAK4ViveNyeZNTEFl/4LPGoPg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745463810; c=relaxed/simple;
-	bh=TSdztaB+hLg6rQ0ykEjzUnd6nHXaQyEGL9noh7Z7V2Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Rwu9jwMQTRKqhPPgXeUBFYzJa4BgySH3fwMdfm9BaduOSLU3jmH0fg6XAUXJWl5kSao61jlm/bF//87B550d5RaiuNltMgnLjXBKWJwbFPtXSnCYxehUtfJzKPD7umViZBCFFgx2lMxkxtYh5pxRkOxJjrlCbzwFOSLHDIpHqHI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MdHHX4Nt; arc=fail smtp.client-ip=40.107.249.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kU2XomcnRJeo0jhG+XB0Yjyqjdn6yvWdSqCYcT9YLSCE08Bxbjw77nvTZLaLFoWhteE5e5qGMn1XqLsSi3YYBNEXXVvKTvhehDFLSJ6nevayUj+apn2C7n8UXWxUKigqeLdD8JTpPUMSi6RGeupwHgHIjOQyw3UkqKD8b8ZrsE0Gk/k2AWGd6wAFGkMST4UeSNuz/Vofe5DfmAiciZVvJRthtLFVEAqPXw6YJoi43+bC4jAJxZRQ9ivrMa5nramJeKwtidZv18rNJ5kEmcgmVBaT+j2nGgnvazvVQu81MCtaIfrP/ceI6oqHh5eBtPXMqKRLDJoTJyx/fXz3xXR9Gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vcSyoYTMfm5iE0gu4fs6DVDWBqgS311y4hiKgOZyu+E=;
- b=LI+daq3sRjvgRJN+bLkSXj/gld19EQfbRqwna3xUFTjoJ06dZ4NtdLLzLdKS+jxMhmhZk/3ezg6ssOGF571WdIeMN7XkpEsxAc77nzqaJ+/4tU173Ixx4YfnuEAMS17RrV3OjYV/J7IlzdDTMv4OjnjYj95eUxEFbcnUJjtAb2dNjhjaiNweGIDW7Aq1eij3ZZeMJMWzakl6uo3OrKU2jEzDWu3scVAigDZHwj8h/PAxSpa49jTTIygaDGiJLturcDNQrLd+DoCsVUcKIYfVO4/wAAOlMmV/j0IFobj4ltPgDnM0g/CR7mGcLysuQvCt5bFR04CO6l8f8BdibuN++w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vcSyoYTMfm5iE0gu4fs6DVDWBqgS311y4hiKgOZyu+E=;
- b=MdHHX4NtkpDfmvF9jIxVPebJl3DYxSiyXI75Iay+TfH8DIC9ajpxqKZKa+WHiSJS7fSazhjik3ek7jiOP5RyCt18lT1DczFJF0X74mtvL6rKbccn/23bFAe/o36RENyAXeAOlMGdRXKpLg602DWHfj6UwOqcfy4xnJZPmavMUgxENeMJgzRmj084q0aeCnPC0Fz/ii3Obb77WUT1AoF3pTgWmjs+ojpLtHu4t4Zz55PXvxZtCS9Gjqe5PkJh6GjBiR19UfPLJduh8hbRZ4egjO/aS6nUXaMbfLMNfV9iYcfTAPYFF/AwUF0XCFk1ySMJ0aUlOWQvfozoL0Dq0qu0KQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB10378.eurprd04.prod.outlook.com (2603:10a6:150:1d4::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.23; Thu, 24 Apr
- 2025 03:03:25 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8678.021; Thu, 24 Apr 2025
- 03:03:25 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409E2198E63
+	for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 03:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745464625; cv=none; b=qLd1d6NBHx92iPgEkUNzikkBwzFc72Wg0Kr1QhaPEKW6Km96kV6JmAXPz6m1dOwao/87GA/XXyRdlhP9lGGfvy6lO+IGixtd2zbihNyGJ1qDOuE/heFeoE7yKN9nkQO/Kg0mVszp9TRN9UbvzzGmfFPFACvSHkBR9JD+liwjYjU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745464625; c=relaxed/simple;
+	bh=UVCFOg19+s13dmCTwGHiyBdefPnTw16zPmpkfRlg8hA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NlBVQiHaNDPlZiLiASKtmk3hRp34ETtgCNOQo8NuHmYBuadV03O4TTfsjwU2JSw+8v0zXxRmW06LAwOEzn3WwZ+YrQVQdBlwD/eyM9zneKUiuI+jhDDYgXwmpYmrM9GZaHRC/GZjHh6jXeeVgh+XeBcYz9jTWIEsVsNGofesDfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kL521BJ1; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-73bb647eb23so414838b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Apr 2025 20:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1745464622; x=1746069422; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XUAwJhWsStgPPiYel2m5dmuZ8PujmZM+CaGE2sUsiqI=;
+        b=kL521BJ1GCIh/6lApmzBn9i2whQlemVa9/Exj/8nk2M90qz/RlpVMtbsyxMmxh9SdM
+         6a6KF+tHiHMn/sJYVfJbI0F8h+a1kK0il/Zyv2/aBl/ffi8WFvVJlAojLzyCNrYSCITG
+         zigNEJySmaSRFJ41TwLE+wYQSn+VAadnGYF3z8tp/Nk49W5XF4fzRjucmpipPvzQBeKQ
+         WJcIRQAuMeLDZKSqthk3gWD2wNrA2+r4VOfvLrGI/WSDwFY4jb5gh+A5KatKo7LKlep1
+         uqK/9UhmbOi10zO5fB+kLWqRq5bSO6d6G/kSSbaAwtKOdUgICn6KdthBXCkKEcT86d2i
+         XR7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745464622; x=1746069422;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XUAwJhWsStgPPiYel2m5dmuZ8PujmZM+CaGE2sUsiqI=;
+        b=WV/1nMoPqrGjOcXUhSx7JFb8esfeWc9vswdLIfq+givgL2RZRqjbGX2epauiKNh7Wq
+         MBQLadL/gZY9z+27cKzg3iGAkRRNzZ3Uk4Pzq7FMPmvGJYpq+zmS6S8YsSrBWxpHLUyY
+         WbTE0SwD8PPUQ6nzi5Hjptq3tvQMgV3xKTqZzMDe/EE9IbIsOe/eBBfX/ogosyWjrvSP
+         YJ0/Q691MsMTK3/b6LNpfUWyqR4dSf15l9p6BxrZ7Ua6ctodN83fsCg7n0aCPg7uhL60
+         xG+Gd4BCToYBH+CNhSNdWRVIiwPcLdKG6UvRmFIvDZpuLqdzjfKLbFZ+gH2Ick9Yp9Zl
+         gl8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVqzFDV5ZyKKjrBdKJOGJPQ8pUgL1uj+AC0olORDkjoCu//7oHbDUryp+p2PMY21zkTyH+OJ1lWVRu7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC2lslJMMugajf8rfhS97O1QSlW2dLr8XV0tlzcwrVpZv6qBh/
+	MXOLdFnLE5+ZGLIHjavLDyAP7R/pnWB3UK3Jxp90uU+ZfhOrnTryCfn2KKnV82Ac1XkTXzkSG05
+	u
+X-Gm-Gg: ASbGncsfjZ/MYqEp136YZHljpQzl6CuEEIxIA+ty0M1qRaORMIOfj637Hjr0VaCAVvH
+	rjPicUEjawnGkLrI54zdZhft8DPUA4XendAY+SaqGAG0c1pdwebPve8QC3qmhS7XktZ2fqpTo5Q
+	IhSNdIFm/kvQ7brKdQURcLl/rSot9mLzdewoxJGBrUcn8aHbFR3s6mQUdJcT4mGtyBOdGPXiO0o
+	Z+y7ARXmY7ul9xy4CZpyR351lzM61BZtWn3Bon0mvB3FBUipJ7//wd0RNefRnLycb/3CCk5Ja/Y
+	1G9guUlCc9vM5fHgfXhYxYbbACBRv+82voYgaVt4qTFvst/SpCA=
+X-Google-Smtp-Source: AGHT+IHFdvA0DlIcVCkE1m7fhwPnPK/+qUF0hzp1UIxp5PRqy2sOJJ28/GW1knmKmyzytkf5QLtSrA==
+X-Received: by 2002:a05:6a20:9f4f:b0:1f5:9208:3ad6 with SMTP id adf61e73a8af0-20444f9f316mr1339520637.41.1745464622463;
+        Wed, 23 Apr 2025 20:17:02 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25941fd9sm354190b3a.53.2025.04.23.20.16.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Apr 2025 20:17:02 -0700 (PDT)
+Date: Wed, 23 Apr 2025 20:16:58 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: fsl: convert fsl,vf610-mscm-ir.txt to yaml format
-Date: Wed, 23 Apr 2025 23:03:03 -0400
-Message-Id: <20250424030305.3868637-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR01CA0027.prod.exchangelabs.com (2603:10b6:a02:80::40)
- To PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v12 10/28] riscv/mm: Implement map_shadow_stack() syscall
+Message-ID: <aAmtKhlwKV7oz7RF@debug.ba.rivosinc.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-10-e51202b53138@rivosinc.com>
+ <D92VAWLM8AGD.3CF1VH6NYHCYV@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10378:EE_
-X-MS-Office365-Filtering-Correlation-Id: 63491835-6d0a-4716-0ca2-08dd82dc9484
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?10upM5ARvHIMwOs00s1FAoZuUQx/616D9rSs8lOXKGA8EHFUFtOpfb2IaOcJ?=
- =?us-ascii?Q?D87XhL37IppFQUApfz31ZOGDnOHIBwdMSE0ZXOayUleVeBzg9SuQ91SpObz5?=
- =?us-ascii?Q?LtArfTLq4nDuW1KbpYg4XEKTE4/DcwNzpGaA4lFuan++qx5SCle2EtJtYCse?=
- =?us-ascii?Q?0elHRuh1aL7d8163O2+3g0IfdvHfxDE56CKvgGiXhCQEYiByq6+7+Mjlnqzr?=
- =?us-ascii?Q?8sIYmB7eIQ1gwmM+HvGDXiDBHorQugqL+szys/R7dzUiu7K29G+/3SLOvxwr?=
- =?us-ascii?Q?HxiinruWLtD4WtxD4anlua1qpo1InA050deT5JaUkBY8FyeS79uh1fGXkH73?=
- =?us-ascii?Q?9Mq5e3JGwY5MpettzdESy2vU7gOXvSzPEq5y8gwzTJYvWN1G6q9GDEzwiW4B?=
- =?us-ascii?Q?I4sKyHynakTItb46V5D6CN5tj8rvbevOByTSk3Q/E6sT3urAj08Pgd2bDzyr?=
- =?us-ascii?Q?s1X26odfxQ7S2AEE9mu7aRNEa0id51UvA8LiJwWOgpHF0yR/StLP6YEhlnZd?=
- =?us-ascii?Q?/xbQM0HfR/Pt6sDVTvBvpMx4JHx2uwpK23rmE3Nc0sKx5O8bIoyp++73bz1C?=
- =?us-ascii?Q?m9Nxu1NZ8xKtHk2+/Kk8/XI+ANqZ/b818jM4RWwfO9Tj0cCOlian2oBrerse?=
- =?us-ascii?Q?zIcBugs0USMh+1kYI9b2ly9rXvjjc47zAv6r5OT7J1JUlx4nJy8DjtThjZ6y?=
- =?us-ascii?Q?/y2j2hhNBBjd7y7PdiJqRe5U+3O5H9z8B6768/s294EdzVXum3/ls09KF+di?=
- =?us-ascii?Q?6N32Js2uDrqRIpwbmKpJMAZOkY8QlZeqbUFM7DdZCknebggT1GFbi0/0LVRK?=
- =?us-ascii?Q?gsA3qxShSuRPHXChUe216FGDU9KIce/s7K3DrvAn0MRLynLCmh8Zw3t3Mnfm?=
- =?us-ascii?Q?ycic5/5jsjSL98wIhoLekk6/rM8Hc3IlGieZN9QEKoIkhxaGj24s5n9DicJl?=
- =?us-ascii?Q?hQ+vfQW+sw7RD+k/lffTosCPgqgGmZrEM4AoNDrILc+mziL1nufbiNLcwm67?=
- =?us-ascii?Q?SUCVzEJktyMmEVXMCW4nak4sofwdTHDZ+NGZZ3ZUCHjPKQgmlFrTjewuVp8T?=
- =?us-ascii?Q?lyquOd1WCMyQf+FrWeLRK56he4ZHd3VbvLeL7Tr2Z3Mhse+kVgBf8uC+SL13?=
- =?us-ascii?Q?KezmDBElmvdx/0kymmQFEG6oiMGDPLGu7fcSqO0oTGFD2AuKVXMJ7HZljah4?=
- =?us-ascii?Q?4Ini924V7klkjrSIwHbkK2LjrKIwtqwGmgfIgdsEe8lOh1VtVLJvXJGcoVj+?=
- =?us-ascii?Q?jBWJoieeiTgml0YD4qrD6aESYkLolc7XnBkhOWeWlyO+38D1aZzorKs3MMg9?=
- =?us-ascii?Q?Y+wGKW7w+YpHFGVElzEi/Wdkl6wgVApv4jsG2gPaR1pErl6YhTgzgckPNpG1?=
- =?us-ascii?Q?W0I15p7umGbE8gFcBZBzznUzV37BmPJFyPeys009u8Hda9GSZyKa4jiGBo/x?=
- =?us-ascii?Q?0iAkDP3QXTk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?LvsbCdCPDFTxcWhCfUANInM4E6dyD3DqG5IjU62yDfZgsc7NTIOt2qXo/MFJ?=
- =?us-ascii?Q?miFQhFlOHsl1P07bCai92TONhfYdTTAxmz8WfiXqnFywjpFcPCKAN09uqRLd?=
- =?us-ascii?Q?AQuIbRmy9qqD3WC47f7UMnlmKZlIh3DODAAeIMtb+VTYBLs5zmVHvcfSLSCd?=
- =?us-ascii?Q?NQ63i81BZVC3u4hOB9krViruxwcnFc0d7vMRtDabDf4Ojj6Eoc/CdfAlH/c6?=
- =?us-ascii?Q?WjDKCCAw4OBQn/zSV9khiPLCh8XgJ3ZJK/2f0awjZeAjToh5N1z5d+o2X2K3?=
- =?us-ascii?Q?MYoxzaeoWpa8iRIhoehlncwt4l1sKeQJz9V5Jacv5e6tmTMsRkNw4PuAcRwh?=
- =?us-ascii?Q?E9v4EteIK4D2ueQG78TkTXoWo69xgvTGGQDSOc1Spln5TVwSijvCYmIrvNYR?=
- =?us-ascii?Q?AuanFouEGKB5ufJldzS5m+IQTBp9GiUyhxd2jUelGJdfgXXerhc9lauzvCHN?=
- =?us-ascii?Q?73p7/v02YcQQAagT9D0uxP8XYvDKR20ANKyae/OjmNWg1rbLCL4F5ul/4bVa?=
- =?us-ascii?Q?dh1jHG4imMM8y3GW3NB2FL6mdXUJyk/6ABpzJmao7EBokpBE6Bw1JmRQUZY/?=
- =?us-ascii?Q?2mTTa0zkLlM42rbBPFwDwomC1mwZT1C2rjLRI1NclV+Z6eQQk6GWInahi+ra?=
- =?us-ascii?Q?jHj0wN1lZZDjOogvaZNZdqXtTJuaK4VNOir/Vw+musFGA1DqbqcMX2Q135hi?=
- =?us-ascii?Q?Nx7cEOqJd8oCrvKi7dZ2y9WxLQabNa+VXjXeWPYvGq5muIKaCRUeqPlFc3Z7?=
- =?us-ascii?Q?mLYIwBRGdpmPKhTJWT4gQoUpYmYdNcVNNH38ZnXtgtSXOrn7BFQFpCGkbX9R?=
- =?us-ascii?Q?fbYYuu+Ie+80eoPTlRLLizja0dYZyYiUi+jboKA/ByXnjK4EnUmDMDE9TO5d?=
- =?us-ascii?Q?meAp+cX5LbXQEQwnSjh0UA4FMG1/zh4PZMoWuV+qFUfPMMBlMDwrTG3hNe5x?=
- =?us-ascii?Q?jR8UZRsRmpNSKrnDBEcPGZKR5fJeVQMXZxSplHfyDnkBE8ZlTpK4BNbo/a/H?=
- =?us-ascii?Q?63dK42vztwPis7lqSDwy6a+BkqzHL1qPPoOB0ZICK8Zw9dxiNEOEhJO1zjDP?=
- =?us-ascii?Q?pQOHeOpQN7VMbZwVsziDf5WmL86Rj3Cwy7LEepYleG4L+YhMrxznj2u+AWl7?=
- =?us-ascii?Q?FmZQw9MMcDu89ElB+WdytNBs9P5XzEVoM+58wuiwI68b22Q3SAWQIe7fTQgS?=
- =?us-ascii?Q?5qAmL9sUpUNoKEeqVmH07ibk5eNP+hUadE6vN2vqVvFHApoDgO62GlqwMkVa?=
- =?us-ascii?Q?5kHvwhe9x+AUl78Nh5RMJ+wMLDbrnDq/t80xL1XV6bSCVLl2N49m3p/obbWx?=
- =?us-ascii?Q?r7+ai+7rGxB1WkQJAqOLp3NkW0LygnFVg9kquKj6H9hU92BBOmKpiphpUjUZ?=
- =?us-ascii?Q?/AO9JD9V/jW98HAD0RUWCHU3OFmb/JJ0QntjyvfA4g97oBFF5tcKTUGDkIM5?=
- =?us-ascii?Q?JoPLlJ/nE76W4oGiPnWhKEsbHcBR/BzJ8D8BTJvASq+MZUpK1sE8kj13GW3i?=
- =?us-ascii?Q?6Yd4NLnI1/a3qvFUEFPtsfcNnV5onjy1xRuw5yK2ipP23Nm7nq6szT8Umqlp?=
- =?us-ascii?Q?JSqa1afVafAgPQxM9rY=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63491835-6d0a-4716-0ca2-08dd82dc9484
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2025 03:03:25.4816
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dZ35deyp/XNMrals9PLCaXORP4yAlCy8LL2oqGGyvIv5PLpJTfCVEblGlT8dRHRhwM2RJb7dBuegGaWzu1GtsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10378
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D92VAWLM8AGD.3CF1VH6NYHCYV@ventanamicro.com>
 
-Convert fsl,vf610-mscm-ir.txt to yaml format.
+On Thu, Apr 10, 2025 at 11:56:44AM +0200, Radim Krčmář wrote:
+>2025-03-14T14:39:29-07:00, Deepak Gupta <debug@rivosinc.com>:
+>> As discussed extensively in the changelog for the addition of this
+>> syscall on x86 ("x86/shstk: Introduce map_shadow_stack syscall") the
+>> existing mmap() and madvise() syscalls do not map entirely well onto the
+>> security requirements for shadow stack memory since they lead to windows
+>> where memory is allocated but not yet protected or stacks which are not
+>> properly and safely initialised. Instead a new syscall map_shadow_stack()
+>> has been defined which allocates and initialises a shadow stack page.
+>>
+>> This patch implements this syscall for riscv. riscv doesn't require token
+>> to be setup by kernel because user mode can do that by itself. However to
+>> provide compatibility and portability with other architectues, user mode
+>> can specify token set flag.
+>
+>RISC-V shadow stack could use mmap() and madvise() perfectly well.
 
-Additional changes:
-- remove label at example dts.
+Deviating from what other arches are doing will create more thrash. I expect
+there will be merging of common logic between x86, arm64 and riscv. Infact I
+did post one such RFC patch set last year (didn't follow up on it). Using
+`mmap/madvise` defeats that purpose of creating common logic between arches.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- move under interrupt-controller
----
- .../arm/freescale/fsl,vf610-mscm-ir.txt       | 30 ---------
- .../fsl,vf610-mscm-ir.yaml                    | 63 +++++++++++++++++++
- 2 files changed, 63 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
+There are pitfalls as mentioned with respect to mmap/madivse because of
+unique nature of shadow stack. And thus it was accepted to create a new syscall
+to create such mappings. RISC-V will stick to that.
 
-diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
-deleted file mode 100644
-index 6dd6f399236d5..0000000000000
---- a/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Freescale Vybrid Miscellaneous System Control - Interrupt Router
--
--The MSCM IP contains multiple sub modules, this binding describes the second
--block of registers which control the interrupt router. The interrupt router
--allows to configure the recipient of each peripheral interrupt. Furthermore
--it controls the directed processor interrupts. The module is available in all
--Vybrid SoC's but is only really useful in dual core configurations (VF6xx
--which comes with a Cortex-A5/Cortex-M4 combination).
--
--Required properties:
--- compatible:		"fsl,vf610-mscm-ir"
--- reg:			the register range of the MSCM Interrupt Router
--- fsl,cpucfg:		The handle to the MSCM CPU configuration node, required
--			to get the current CPU ID
--- interrupt-controller:	Identifies the node as an interrupt controller
--- #interrupt-cells:	Two cells, interrupt number and cells.
--			The hardware interrupt number according to interrupt
--			assignment of the interrupt router is required.
--			Flags get passed only when using GIC as parent. Flags
--			encoding as documented by the GIC bindings.
--
--Example:
--	mscm_ir: interrupt-controller@40001800 {
--		compatible = "fsl,vf610-mscm-ir";
--		reg = <0x40001800 0x400>;
--		fsl,cpucfg = <&mscm_cpucfg>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		interrupt-parent = <&intc>;
--	}
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
-new file mode 100644
-index 0000000000000..fdc254f8d013c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/fsl,vf610-mscm-ir.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Vybrid Miscellaneous System Control - Interrupt Router
-+
-+description:
-+  The MSCM IP contains multiple sub modules, this binding describes the second
-+  block of registers which control the interrupt router. The interrupt router
-+  allows to configure the recipient of each peripheral interrupt. Furthermore
-+  it controls the directed processor interrupts. The module is available in all
-+  Vybrid SoC's but is only really useful in dual core configurations (VF6xx
-+  which comes with a Cortex-A5/Cortex-M4 combination).
-+
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    const: fsl,vf610-mscm-ir
-+
-+  reg:
-+    maxItems: 1
-+
-+  fsl,cpucfg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The handle to the MSCM CPU configuration node, required
-+      to get the current CPU ID
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+    description:
-+      Two cells, interrupt number and cells.
-+      The hardware interrupt number according to interrupt
-+      assignment of the interrupt router is required.
-+      Flags get passed only when using GIC as parent. Flags
-+      encoding as documented by the GIC bindings.
-+
-+required:
-+  - compatible
-+  - reg
-+  - fsl,cpucfg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@40001800 {
-+        compatible = "fsl,vf610-mscm-ir";
-+        reg = <0x40001800 0x400>;
-+        fsl,cpucfg = <&mscm_cpucfg>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        interrupt-parent = <&intc>;
-+    };
--- 
-2.34.1
+>Userspace can always initialize the shadow stack properly and the shadow
+>stack memory is never protected from other malicious threads.
 
+Shadow stack memory is protected from inadvertent stores (be it same thread
+or a different thread in same address space). Malicious code which can do
+`sspush/ssamoswap` already assumes that code integrity policies are broken.
+
+>
+>I think that the compatibility argument is reasonable.  We'd need to
+>modify the other syscalls to allow a write-only mapping anyway.
+
+
+>
+>> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
+>> +static noinline unsigned long amo_user_shstk(unsigned long *addr, unsigned long val)
+>> +{
+>> +	/*
+>> +	 * Never expect -1 on shadow stack. Expect return addresses and zero
+>> +	 */
+>> +	unsigned long swap = -1;
+>> +	__enable_user_access();
+>> +	asm goto(
+>> +		".option push\n"
+>> +		".option arch, +zicfiss\n"
+>
+>Shouldn't compiler accept ssamoswap.d opcode even without zicfiss arch?
+
+Its illegal instruction if shadow stack aren't available. Current toolchain
+emits it only if zicfiss is specified in march.
+
+>
+>> +		"1: ssamoswap.d %[swap], %[val], %[addr]\n"
+>> +		_ASM_EXTABLE(1b, %l[fault])
+>> +		RISCV_ACQUIRE_BARRIER
+>
+>Why is the barrier here?
+
+IIRC, I was following `arch_cmpxchg_acquire`.
+But I think that's not needed. 
+What we are doing is `arch_xchg_relaxed` and barrier is not needed.
+
+I did consider adding it to arch/riscv/include/asm/cmpxchg.h but there is
+limited usage of this primitive and thus kept it limited to usercfi.c
+
+Anyways I'll re-spin removing the barrier.
+
+>
+>> +		".option pop\n"
+>> +		: [swap] "=r" (swap), [addr] "+A" (*addr)
+>> +		: [val] "r" (val)
+>> +		: "memory"
+>> +		: fault
+>> +		);
+>> +	__disable_user_access();
+>> +	return swap;
+>> +fault:
+>> +	__disable_user_access();
+>> +	return -1;
+>
+>I think we should return 0 and -EFAULT.
+>We can ignore the swapped value, or return it through a pointer.
+
+Consumer of this detects -1 and then return -EFAULT.
+We would eventually need this when creating shadow stack tokens for
+kernel shadow stack. I believe `-1` is safe return value which can't
+be construed as negative kernel address (-EFAULT will be)
+
+
+>
+>> +}
+>> +
+>> +static unsigned long allocate_shadow_stack(unsigned long addr, unsigned long size,
+>> +					   unsigned long token_offset, bool set_tok)
+>> +{
+>> +	int flags = MAP_ANONYMOUS | MAP_PRIVATE;
+>
+>Is MAP_GROWSDOWN pointless?
+
+Not sure. Didn't see that in x86 or arm64 shadow stack creation.
+Let me know if its useful.
+
+>
+>> +	struct mm_struct *mm = current->mm;
+>> +	unsigned long populate, tok_loc = 0;
+>> +
+>> +	if (addr)
+>> +		flags |= MAP_FIXED_NOREPLACE;
+>> +
+>> +	mmap_write_lock(mm);
+>> +	addr = do_mmap(NULL, addr, size, PROT_READ, flags,
+>
+>PROT_READ implies VM_READ, so won't this select PAGE_COPY in the
+>protection_map instead of PAGE_SHADOWSTACK?
+
+PROT_READ is pointless here and redundant. I haven't checked if I remove it
+what happens.
+
+`VM_SHADOW_STACK` takes precedence (take a look at pte_mkwrite and pmd_mkwrite.
+Only way `VM_SHADOW_STACK` is possible in vmflags is via `map_shadow_stack` or
+`fork/clone` on existing task with shadow stack enabled.
+
+In a nutshell user can't specify `VM_SHADOW_STACK` directly (indirectly via
+map_shadow_stack syscall or fork/clone) . But if set in vmaflags then it'll
+take precedence.
+
+>
+>Wouldn't avoiding VM_READ also allow us to get rid of the ugly hack in
+>pte_mkwrite?  (VM_WRITE would naturally select the right XWR flags.)
+
+>
+>> +		       VM_SHADOW_STACK | VM_WRITE, 0, &populate, NULL);
+>> +	mmap_write_unlock(mm);
+>> +
+>> +SYSCALL_DEFINE3(map_shadow_stack, unsigned long, addr, unsigned long, size, unsigned int, flags)
+>> +{
+>> [...]
+>> +	if (addr && (addr & (PAGE_SIZE - 1)))
+>
+>if (!PAGE_ALIGNED(addr))
 
