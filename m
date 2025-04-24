@@ -1,209 +1,129 @@
-Return-Path: <devicetree+bounces-170254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AF1A9A4B7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:49:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C45F9A9A4C7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 09:51:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 024C8442908
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:49:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 413D63A82BB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 07:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C251EB1B7;
-	Thu, 24 Apr 2025 07:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C5A1F1518;
+	Thu, 24 Apr 2025 07:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="k6Fg/i/k";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="JBCvKpJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5104319CCEA;
-	Thu, 24 Apr 2025 07:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE13B1E5219;
+	Thu, 24 Apr 2025 07:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745480936; cv=none; b=pLq86sgxxI8dWDaXbw25ewr1temRgfpR7vzEGR85bALasOVidsUxxjPT1pZeh3afriOPpxJ1n2uKVyyHSndb0g+TYJ4EBDU6phxymRB4S+Omw1Xik8Vb6tY+SNdqb2sHfJWMNGVSee1ulmbQsjHTUQ5n1f3qWXhY/5Mljn+KkpY=
+	t=1745481020; cv=none; b=ecPOAJSDLAqJt671dyGV3wt/NomiOKeNsyWYbvqzgZxTQph1ghTNC0KvsLO/EwdWCMk4gAugCG7os2sf/HPQdSGLBKzTzBlxmGLXE9KHW1wZl7bBFqPWvvziGqPLj2bV3FMD0ri1o+kkvTLklLtKBXkJa5e3mYcF9qR9tZ5BKWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745480936; c=relaxed/simple;
-	bh=PSBL89fZtJaG8KAAaHC8dhsJ5ZC/9UnwuHL7NKRrOGc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HGhfbfu7u7F6uFgG0UKYLqquK7oBu54xQN2+6M6w4AgpkSC+ctqTXVZ3IgjKEwvK6+IoLPIOCW/oVxImeQHCS31MzawyoPsLlmb3e0MmfkVqmmWYpNYJEaINUXzn4lyLCdTZ2nYX0wt/lFb5eAgjD8S8tqho6HdX8feo9TaNAUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from [127.0.0.1] (unknown [116.232.18.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 99EBF342F8C;
-	Thu, 24 Apr 2025 07:48:49 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-Date: Thu, 24 Apr 2025 15:48:09 +0800
-Subject: [PATCH v2 2/2] riscv: dts: spacemit: Acquire clocks for UART
+	s=arc-20240116; t=1745481020; c=relaxed/simple;
+	bh=GnZknFA3mM/LbErvisFejtd/AZKs+Dvax3C1Mp1vNjQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cWiCnog3PqIp7rvDaCAChntNwM2JyXEGo05sxmQV3EAJJlLda4c0v5nHs9jqVDpShOdH3DardR/weB55Rqp/KtM+0OvIH3jH7ZafmXwYU0BVET9KCLp+fBE5a1aHoK4WOMLwoextTUeUVmVpbgc1qYSUq8dAuNttcFnzKE4CRTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=k6Fg/i/k; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=JBCvKpJv reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1745481017; x=1777017017;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Rcwqw7rvpMYh9IpE8HSGeLIOn0eztB1Pd8t0+4Nts04=;
+  b=k6Fg/i/kL6omkIQg7VxdkJG3u6cIGbq6C2C4sfcj7CdrXsopuQYFeXSi
+   qTKH9ANQUNLlN34eNZEpcyq2+Jmgof57Nc/xVqJJWk1Gk3DWvIRPpqmgD
+   C558jVi6giiRPR52WrKcCZ+jkmqeMA2jnIDvgsfGOl4KAGRy2OtgPFfgr
+   N58mRLE/el6+6rgrF/7fp0mFudbL0P/PPItdv6Sd0/YBX+VIgM3MI0yhG
+   ei6qkbZ18w1v0gnE51crcC6yTM8D8vZuwVKdaTH1Z4vGlm4hrGz7j5dQC
+   zdB0V34/F5WXyHcUw0kNccSdCfqmAam3PEAFkhBwsdnF9qN95+7yA2qIB
+   w==;
+X-CSE-ConnectionGUID: 45SGrGlIT+WzhyFrR6hCtQ==
+X-CSE-MsgGUID: rPw/yKINRCGYTpmwzm1fxA==
+X-IronPort-AV: E=Sophos;i="6.15,235,1739833200"; 
+   d="scan'208";a="43691469"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Apr 2025 09:50:08 +0200
+X-CheckPoint: {6809ED30-13-2417938-F0170C2B}
+X-MAIL-CPID: 3625BD89FC92ED8F66117B423DE68433_2
+X-Control-Analysis: str=0001.0A006376.6809ED3B.000D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3ABEC164B42;
+	Thu, 24 Apr 2025 09:50:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1745481003;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Rcwqw7rvpMYh9IpE8HSGeLIOn0eztB1Pd8t0+4Nts04=;
+	b=JBCvKpJvgHcY+NT4xxynklYDT+QD5vXN/29a3PCXzb5KRcisaspKVwJmxuK6gNe3iTj1o6
+	UCmPVbzhC7dEZcMcnclWLhwlzUusylddyHsfZetmBjlfcT4QC991QLXV0T3F2ZACkUr36i
+	t2+2JutJ0RE9uPsY5XhM7lb0iG57D3KZ0snDS7yoSPe+VqFfP28D22/ISny0kPh2p3USc+
+	QsEbUY6MV8HHQhDOFSpFxV71KKA37MrfEa22jUHgX38DNc4OcCPy2pGksnxYN1aYXSjIP8
+	tKDG79ithp7mOklPelRrJHmTYBGzs60eRIMbVS5T6nDprUdyrP3SRr0Q/tMf7w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Martin Schmiedel <Martin.Schmiedel@tq-group.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 1/2] arm64: dts: imx8mp-tqma8mpql-mba8mp-ras314: Add LVDS device tree overlay
+Date: Thu, 24 Apr 2025 09:49:58 +0200
+Message-ID: <20250424075000.1263138-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250424-05-dts-clock-v2-2-17d83a705c4c@gentoo.org>
-References: <20250424-05-dts-clock-v2-0-17d83a705c4c@gentoo.org>
-In-Reply-To: <20250424-05-dts-clock-v2-0-17d83a705c4c@gentoo.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4601; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=PSBL89fZtJaG8KAAaHC8dhsJ5ZC/9UnwuHL7NKRrOGc=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoCezSX9kHDfqtvgPgbGFXPIJ1D/Dd6MYrv6tUm
- 8lqUdp4LQOJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaAns0l8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277Y0pEACZPoqbaVSl/henUi
- G5cEshGVXKcH2bViUKZbg/rKrVRSRpMCUn9/C5x04sfCCi3SnIQJm/sGv4dA9ZJc61/vG1YTNsx
- Fsfgj4JK50/j28AAvt3qYVVscbctzjoqrvfhKv1MTz3zhxt6Rch9bC8X4jOg8oPlClQutwRC5qt
- L+2OrylGmoT6azAdIisZ6hZ2mOQvFifFO8iw5lDXccYK5ftC5pjUosc5x9uEwM5TM8Ova7nSUjd
- ry7d+X3aRq6SvDmzWeJpys6p9M0xmIRh+B3vrLRBkRmvAyGEwSLplcoTNc6zjchWTWj3ycrS2dB
- chyVfSJMl92a7pRZix1WIEH+XStT1+yeklCcNbW4OlgxPV7vrfseZWKtHgn0qZo4KazDTH9iOex
- 4eJl5/uDgpB7gVqFhbc1LDhu5MheP+uFxEEPWnOVGTrarPw6tzBdt9onB8BkHvDPa9mLNS4KS+v
- P/gpNSxXzQKTekhrhnU3nYLtSsTYjLgAoL1WKg/oMh/+dzYn4DtDjYC524tGVPbkQpgM+UHpGjh
- y2WY0BzQJyu3uI+bynyfR6+daVkb36v+Be6+J8AH+OkNd5sc12lZVye6uJCSKEJwLguJqjhulUE
- MF5oYkyL2de401Slz2DpEvDf/Pq+NgtSEfxp5Wi5qEwOJxqsW0ijI+6Is1y04eUAA0Sw==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-The K1 SoC features two clocks for UART controller, Acquire them
-explicitly in the driver. Also it is required to remove the
-clock-frequency properties from the uart node, otherwise the new
-clock properties are ignored by of_platform_serial_setup() in "8250_of.c".
+From: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
-Reviewed-by: Haylen Chu <heylenay@4d2.org>
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
+This adds an overlay for the supported LVDS display tianma tm070jvhg33.
+The LVDS interface is the same as for MBa8MPxL so the already existing
+overlay can be reused on this platform.
+
+Signed-off-by: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/riscv/boot/dts/spacemit/k1.dtsi | 36 +++++++++++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 9 deletions(-)
+Changes in v2: None
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 153fd1160182b42fe1a2f7f042c9c1da90f63b0c..7793fd37841ab432c66629b95b94c195b379ecd9 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -360,8 +360,10 @@ syscon_apbc: system-control@d4015000 {
- 		uart0: serial@d4017000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017000 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART0>,
-+				 <&syscon_apbc CLK_UART0_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <42>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -370,8 +372,10 @@ uart0: serial@d4017000 {
- 		uart2: serial@d4017100 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017100 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART2>,
-+				 <&syscon_apbc CLK_UART2_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <44>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -380,8 +384,10 @@ uart2: serial@d4017100 {
- 		uart3: serial@d4017200 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017200 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART3>,
-+				 <&syscon_apbc CLK_UART3_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <45>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -390,8 +396,10 @@ uart3: serial@d4017200 {
- 		uart4: serial@d4017300 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017300 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART4>,
-+				 <&syscon_apbc CLK_UART4_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <46>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -400,8 +408,10 @@ uart4: serial@d4017300 {
- 		uart5: serial@d4017400 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017400 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART5>,
-+				 <&syscon_apbc CLK_UART5_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <47>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -410,8 +420,10 @@ uart5: serial@d4017400 {
- 		uart6: serial@d4017500 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017500 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART6>,
-+				 <&syscon_apbc CLK_UART6_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <48>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -420,8 +432,10 @@ uart6: serial@d4017500 {
- 		uart7: serial@d4017600 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017600 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART7>,
-+				 <&syscon_apbc CLK_UART7_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <49>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -430,8 +444,10 @@ uart7: serial@d4017600 {
- 		uart8: serial@d4017700 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017700 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART8>,
-+				 <&syscon_apbc CLK_UART8_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <50>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -440,8 +456,10 @@ uart8: serial@d4017700 {
- 		uart9: serial@d4017800 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017800 0x0 0x100>;
-+			clocks = <&syscon_apbc CLK_UART9>,
-+				 <&syscon_apbc CLK_UART9_BUS>;
-+			clock-names = "core", "bus";
- 			interrupts = <51>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
+ arch/arm64/boot/dts/freescale/Makefile | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index eb77eda881e0c..6f87f28f4583e 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -247,8 +247,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-pcie-ep.dtb
+ 
+ imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+ imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtbo
++imx8mp-tqma8mpql-mba8mp-ras314-lvds-dtbs += imx8mp-tqma8mpql-mba8mp-ras314.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mp-ras314-lvds.dtb
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
 -- 
-2.49.0
+2.43.0
 
 
