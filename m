@@ -1,571 +1,280 @@
-Return-Path: <devicetree+bounces-170139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1721BA99F14
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 04:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACAABA99F2C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 05:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD905A54E3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 02:59:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C5AE5A6207
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 03:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330081A83F2;
-	Thu, 24 Apr 2025 02:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CF81A0BFD;
+	Thu, 24 Apr 2025 03:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WeE1RD9C"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MdHHX4Nt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2070.outbound.protection.outlook.com [40.107.249.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A591A5BB1;
-	Thu, 24 Apr 2025 02:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745463553; cv=none; b=kKfg0BlJ7d/7OAObFIMVUijaCjdi9grz+1ad6K9jNP5uoiURyEqHZ5uzKtGik0zho+GSIhU5/5kW4iRj79lzP/zcv23BpOvWvenWJZr/5PzqO7tnhd2Jux4xOLYvrsYPfh0Xaq8UsqqVYnGyJVA45OSXk5r07FQudyaucM5Oaa8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745463553; c=relaxed/simple;
-	bh=fxMOSTeWF4gTTvTARekkkBNlyM3mNYmCqO9haMVO4TU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d5zWq3VO3oBIB2AUBBIARzr2FSGFctdlxNCWKNNxzlRXWDoFN5bOwnITH55+pfrwdFCUbHt/Cu8qmVyz8DMYv6+wts8TQLzjWRdGCpgfJOFbBqMYFeYh2+oomGITF/gqdhYFf+nZ0HuLZe0r+NzgVA0aC2ryB0eh6uRNo6F4pGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WeE1RD9C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56B65C4CEE2;
-	Thu, 24 Apr 2025 02:59:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745463552;
-	bh=fxMOSTeWF4gTTvTARekkkBNlyM3mNYmCqO9haMVO4TU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WeE1RD9CkVv3hjxChKHjUI52b7t2/VjNao2QczXAHYtqNPyz0y41jqdj/2hRJxs9i
-	 G+Dv7y7rIHXQnzZMy3IJcaCsfaWTSd6K2MC6ZtmBfNdb+Q+CVDGyE0lh72NXbZxJjt
-	 5T/JQpowLTcFkpHF1/F7QVFBNilx+hkHh3u7E90frtiQtmrt/d/Nh+AZyO1mR1QOWO
-	 6ak/pjtLVTuzTP8WU8InXPHJyVdE1S1vkp7FDNTbZavxxlzA7sCglIFJGDu4KOENCh
-	 sbm4xU62M687iKrzPUi+kNqEqclXaptRls2nOLBeUmZYQfhl8wMiWNO/ImQSAI3GDC
-	 h+hhG27kTiGZA==
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e677f59438so686677a12.2;
-        Wed, 23 Apr 2025 19:59:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUcFzRI5eVj4VkBNKvQjU5zYbTApRufnfY3Bbs7X2HzxKKSGIBHECj5xt6C8l+keZkTYDpGcLTQwdnd@vger.kernel.org, AJvYcCUx6bz+VGFRZS5noc7iO0p0N6gR9yisfsB7hNiHUq1G4L4mLd900ao+g5ems3qWZcYZiqKvOqRRjFGsKmAe@vger.kernel.org, AJvYcCXFSRcN2r41VKu1pxcNglgOS7NhJtY5/dS7iJyZwnE1RDQ9dDemFB82BsF9jGGLybs9m4/tbAS0RF35@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAStMgAvnoj7YzMdYauSwXfaMyPYD+D8ktjTyfPHiHS1ZYjQ9x
-	MG+KSupguN8yPf6hSRNlnYrklhL1qCd4SrNBgIPBvvDbmsaIG9EL2okM8F9M0TPEeoKcMJm0uMt
-	P55hwZJcraqT1vZDfjqDNaugJiQ==
-X-Google-Smtp-Source: AGHT+IFv4KhcMp5wwuGxhIkPJA2U3LF3Shm+u2l+eIKkq6EP5MBdSy6E4xX6A6kwzo0gpdONN/LaKrKAcZalBTwkD4k=
-X-Received: by 2002:a05:6402:4407:b0:5ee:497:67d6 with SMTP id
- 4fb4d7f45d1cf-5f6df53e6dfmr1066009a12.33.1745463550895; Wed, 23 Apr 2025
- 19:59:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED7F79D0;
+	Thu, 24 Apr 2025 03:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745463810; cv=fail; b=jeUKIk5jyFsFchkt376fR+Y4T1JKMGjQwcbI9GPly7tLZI+eEPS5l1UbinGHCYach4AswJj2jCdvTA6ZbdC0PLNQHYpxcO4qm5sBVkoEvn6ehMm4VPTOCPez/hJ1Az+a/m640q4qBR9PmcCwU6rAK4ViveNyeZNTEFl/4LPGoPg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745463810; c=relaxed/simple;
+	bh=TSdztaB+hLg6rQ0ykEjzUnd6nHXaQyEGL9noh7Z7V2Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Rwu9jwMQTRKqhPPgXeUBFYzJa4BgySH3fwMdfm9BaduOSLU3jmH0fg6XAUXJWl5kSao61jlm/bF//87B550d5RaiuNltMgnLjXBKWJwbFPtXSnCYxehUtfJzKPD7umViZBCFFgx2lMxkxtYh5pxRkOxJjrlCbzwFOSLHDIpHqHI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MdHHX4Nt; arc=fail smtp.client-ip=40.107.249.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kU2XomcnRJeo0jhG+XB0Yjyqjdn6yvWdSqCYcT9YLSCE08Bxbjw77nvTZLaLFoWhteE5e5qGMn1XqLsSi3YYBNEXXVvKTvhehDFLSJ6nevayUj+apn2C7n8UXWxUKigqeLdD8JTpPUMSi6RGeupwHgHIjOQyw3UkqKD8b8ZrsE0Gk/k2AWGd6wAFGkMST4UeSNuz/Vofe5DfmAiciZVvJRthtLFVEAqPXw6YJoi43+bC4jAJxZRQ9ivrMa5nramJeKwtidZv18rNJ5kEmcgmVBaT+j2nGgnvazvVQu81MCtaIfrP/ceI6oqHh5eBtPXMqKRLDJoTJyx/fXz3xXR9Gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vcSyoYTMfm5iE0gu4fs6DVDWBqgS311y4hiKgOZyu+E=;
+ b=LI+daq3sRjvgRJN+bLkSXj/gld19EQfbRqwna3xUFTjoJ06dZ4NtdLLzLdKS+jxMhmhZk/3ezg6ssOGF571WdIeMN7XkpEsxAc77nzqaJ+/4tU173Ixx4YfnuEAMS17RrV3OjYV/J7IlzdDTMv4OjnjYj95eUxEFbcnUJjtAb2dNjhjaiNweGIDW7Aq1eij3ZZeMJMWzakl6uo3OrKU2jEzDWu3scVAigDZHwj8h/PAxSpa49jTTIygaDGiJLturcDNQrLd+DoCsVUcKIYfVO4/wAAOlMmV/j0IFobj4ltPgDnM0g/CR7mGcLysuQvCt5bFR04CO6l8f8BdibuN++w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vcSyoYTMfm5iE0gu4fs6DVDWBqgS311y4hiKgOZyu+E=;
+ b=MdHHX4NtkpDfmvF9jIxVPebJl3DYxSiyXI75Iay+TfH8DIC9ajpxqKZKa+WHiSJS7fSazhjik3ek7jiOP5RyCt18lT1DczFJF0X74mtvL6rKbccn/23bFAe/o36RENyAXeAOlMGdRXKpLg602DWHfj6UwOqcfy4xnJZPmavMUgxENeMJgzRmj084q0aeCnPC0Fz/ii3Obb77WUT1AoF3pTgWmjs+ojpLtHu4t4Zz55PXvxZtCS9Gjqe5PkJh6GjBiR19UfPLJduh8hbRZ4egjO/aS6nUXaMbfLMNfV9iYcfTAPYFF/AwUF0XCFk1ySMJ0aUlOWQvfozoL0Dq0qu0KQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GV1PR04MB10378.eurprd04.prod.outlook.com (2603:10a6:150:1d4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.23; Thu, 24 Apr
+ 2025 03:03:25 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8678.021; Thu, 24 Apr 2025
+ 03:03:25 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: fsl: convert fsl,vf610-mscm-ir.txt to yaml format
+Date: Wed, 23 Apr 2025 23:03:03 -0400
+Message-Id: <20250424030305.3868637-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR01CA0027.prod.exchangelabs.com (2603:10b6:a02:80::40)
+ To PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250411103656.2740517-1-hans.zhang@cixtech.com>
- <20250411103656.2740517-6-hans.zhang@cixtech.com> <20250411202420.GA3793660-robh@kernel.org>
- <CH2PPF4D26F8E1C8ABE8B2902E5775F594FA2B32@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
-In-Reply-To: <CH2PPF4D26F8E1C8ABE8B2902E5775F594FA2B32@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 23 Apr 2025 21:58:58 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLNteS0m_32HuCjY8Mk9Wf+z6=HBpM7Wv=zLVqNs-7Y1Q@mail.gmail.com>
-X-Gm-Features: ATxdqUFu9CpzyR3MpZWb8PUFUdjFEzWRxSIpaUljVIXKyFhbcTtKtiOOHQCd9vg
-Message-ID: <CAL_JsqLNteS0m_32HuCjY8Mk9Wf+z6=HBpM7Wv=zLVqNs-7Y1Q@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP controller
-To: Manikandan Karunakaran Pillai <mpillai@cadence.com>
-Cc: "hans.zhang@cixtech.com" <hans.zhang@cixtech.com>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10378:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63491835-6d0a-4716-0ca2-08dd82dc9484
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?10upM5ARvHIMwOs00s1FAoZuUQx/616D9rSs8lOXKGA8EHFUFtOpfb2IaOcJ?=
+ =?us-ascii?Q?D87XhL37IppFQUApfz31ZOGDnOHIBwdMSE0ZXOayUleVeBzg9SuQ91SpObz5?=
+ =?us-ascii?Q?LtArfTLq4nDuW1KbpYg4XEKTE4/DcwNzpGaA4lFuan++qx5SCle2EtJtYCse?=
+ =?us-ascii?Q?0elHRuh1aL7d8163O2+3g0IfdvHfxDE56CKvgGiXhCQEYiByq6+7+Mjlnqzr?=
+ =?us-ascii?Q?8sIYmB7eIQ1gwmM+HvGDXiDBHorQugqL+szys/R7dzUiu7K29G+/3SLOvxwr?=
+ =?us-ascii?Q?HxiinruWLtD4WtxD4anlua1qpo1InA050deT5JaUkBY8FyeS79uh1fGXkH73?=
+ =?us-ascii?Q?9Mq5e3JGwY5MpettzdESy2vU7gOXvSzPEq5y8gwzTJYvWN1G6q9GDEzwiW4B?=
+ =?us-ascii?Q?I4sKyHynakTItb46V5D6CN5tj8rvbevOByTSk3Q/E6sT3urAj08Pgd2bDzyr?=
+ =?us-ascii?Q?s1X26odfxQ7S2AEE9mu7aRNEa0id51UvA8LiJwWOgpHF0yR/StLP6YEhlnZd?=
+ =?us-ascii?Q?/xbQM0HfR/Pt6sDVTvBvpMx4JHx2uwpK23rmE3Nc0sKx5O8bIoyp++73bz1C?=
+ =?us-ascii?Q?m9Nxu1NZ8xKtHk2+/Kk8/XI+ANqZ/b818jM4RWwfO9Tj0cCOlian2oBrerse?=
+ =?us-ascii?Q?zIcBugs0USMh+1kYI9b2ly9rXvjjc47zAv6r5OT7J1JUlx4nJy8DjtThjZ6y?=
+ =?us-ascii?Q?/y2j2hhNBBjd7y7PdiJqRe5U+3O5H9z8B6768/s294EdzVXum3/ls09KF+di?=
+ =?us-ascii?Q?6N32Js2uDrqRIpwbmKpJMAZOkY8QlZeqbUFM7DdZCknebggT1GFbi0/0LVRK?=
+ =?us-ascii?Q?gsA3qxShSuRPHXChUe216FGDU9KIce/s7K3DrvAn0MRLynLCmh8Zw3t3Mnfm?=
+ =?us-ascii?Q?ycic5/5jsjSL98wIhoLekk6/rM8Hc3IlGieZN9QEKoIkhxaGj24s5n9DicJl?=
+ =?us-ascii?Q?hQ+vfQW+sw7RD+k/lffTosCPgqgGmZrEM4AoNDrILc+mziL1nufbiNLcwm67?=
+ =?us-ascii?Q?SUCVzEJktyMmEVXMCW4nak4sofwdTHDZ+NGZZ3ZUCHjPKQgmlFrTjewuVp8T?=
+ =?us-ascii?Q?lyquOd1WCMyQf+FrWeLRK56he4ZHd3VbvLeL7Tr2Z3Mhse+kVgBf8uC+SL13?=
+ =?us-ascii?Q?KezmDBElmvdx/0kymmQFEG6oiMGDPLGu7fcSqO0oTGFD2AuKVXMJ7HZljah4?=
+ =?us-ascii?Q?4Ini924V7klkjrSIwHbkK2LjrKIwtqwGmgfIgdsEe8lOh1VtVLJvXJGcoVj+?=
+ =?us-ascii?Q?jBWJoieeiTgml0YD4qrD6aESYkLolc7XnBkhOWeWlyO+38D1aZzorKs3MMg9?=
+ =?us-ascii?Q?Y+wGKW7w+YpHFGVElzEi/Wdkl6wgVApv4jsG2gPaR1pErl6YhTgzgckPNpG1?=
+ =?us-ascii?Q?W0I15p7umGbE8gFcBZBzznUzV37BmPJFyPeys009u8Hda9GSZyKa4jiGBo/x?=
+ =?us-ascii?Q?0iAkDP3QXTk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?LvsbCdCPDFTxcWhCfUANInM4E6dyD3DqG5IjU62yDfZgsc7NTIOt2qXo/MFJ?=
+ =?us-ascii?Q?miFQhFlOHsl1P07bCai92TONhfYdTTAxmz8WfiXqnFywjpFcPCKAN09uqRLd?=
+ =?us-ascii?Q?AQuIbRmy9qqD3WC47f7UMnlmKZlIh3DODAAeIMtb+VTYBLs5zmVHvcfSLSCd?=
+ =?us-ascii?Q?NQ63i81BZVC3u4hOB9krViruxwcnFc0d7vMRtDabDf4Ojj6Eoc/CdfAlH/c6?=
+ =?us-ascii?Q?WjDKCCAw4OBQn/zSV9khiPLCh8XgJ3ZJK/2f0awjZeAjToh5N1z5d+o2X2K3?=
+ =?us-ascii?Q?MYoxzaeoWpa8iRIhoehlncwt4l1sKeQJz9V5Jacv5e6tmTMsRkNw4PuAcRwh?=
+ =?us-ascii?Q?E9v4EteIK4D2ueQG78TkTXoWo69xgvTGGQDSOc1Spln5TVwSijvCYmIrvNYR?=
+ =?us-ascii?Q?AuanFouEGKB5ufJldzS5m+IQTBp9GiUyhxd2jUelGJdfgXXerhc9lauzvCHN?=
+ =?us-ascii?Q?73p7/v02YcQQAagT9D0uxP8XYvDKR20ANKyae/OjmNWg1rbLCL4F5ul/4bVa?=
+ =?us-ascii?Q?dh1jHG4imMM8y3GW3NB2FL6mdXUJyk/6ABpzJmao7EBokpBE6Bw1JmRQUZY/?=
+ =?us-ascii?Q?2mTTa0zkLlM42rbBPFwDwomC1mwZT1C2rjLRI1NclV+Z6eQQk6GWInahi+ra?=
+ =?us-ascii?Q?jHj0wN1lZZDjOogvaZNZdqXtTJuaK4VNOir/Vw+musFGA1DqbqcMX2Q135hi?=
+ =?us-ascii?Q?Nx7cEOqJd8oCrvKi7dZ2y9WxLQabNa+VXjXeWPYvGq5muIKaCRUeqPlFc3Z7?=
+ =?us-ascii?Q?mLYIwBRGdpmPKhTJWT4gQoUpYmYdNcVNNH38ZnXtgtSXOrn7BFQFpCGkbX9R?=
+ =?us-ascii?Q?fbYYuu+Ie+80eoPTlRLLizja0dYZyYiUi+jboKA/ByXnjK4EnUmDMDE9TO5d?=
+ =?us-ascii?Q?meAp+cX5LbXQEQwnSjh0UA4FMG1/zh4PZMoWuV+qFUfPMMBlMDwrTG3hNe5x?=
+ =?us-ascii?Q?jR8UZRsRmpNSKrnDBEcPGZKR5fJeVQMXZxSplHfyDnkBE8ZlTpK4BNbo/a/H?=
+ =?us-ascii?Q?63dK42vztwPis7lqSDwy6a+BkqzHL1qPPoOB0ZICK8Zw9dxiNEOEhJO1zjDP?=
+ =?us-ascii?Q?pQOHeOpQN7VMbZwVsziDf5WmL86Rj3Cwy7LEepYleG4L+YhMrxznj2u+AWl7?=
+ =?us-ascii?Q?FmZQw9MMcDu89ElB+WdytNBs9P5XzEVoM+58wuiwI68b22Q3SAWQIe7fTQgS?=
+ =?us-ascii?Q?5qAmL9sUpUNoKEeqVmH07ibk5eNP+hUadE6vN2vqVvFHApoDgO62GlqwMkVa?=
+ =?us-ascii?Q?5kHvwhe9x+AUl78Nh5RMJ+wMLDbrnDq/t80xL1XV6bSCVLl2N49m3p/obbWx?=
+ =?us-ascii?Q?r7+ai+7rGxB1WkQJAqOLp3NkW0LygnFVg9kquKj6H9hU92BBOmKpiphpUjUZ?=
+ =?us-ascii?Q?/AO9JD9V/jW98HAD0RUWCHU3OFmb/JJ0QntjyvfA4g97oBFF5tcKTUGDkIM5?=
+ =?us-ascii?Q?JoPLlJ/nE76W4oGiPnWhKEsbHcBR/BzJ8D8BTJvASq+MZUpK1sE8kj13GW3i?=
+ =?us-ascii?Q?6Yd4NLnI1/a3qvFUEFPtsfcNnV5onjy1xRuw5yK2ipP23Nm7nq6szT8Umqlp?=
+ =?us-ascii?Q?JSqa1afVafAgPQxM9rY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63491835-6d0a-4716-0ca2-08dd82dc9484
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2025 03:03:25.4816
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dZ35deyp/XNMrals9PLCaXORP4yAlCy8LL2oqGGyvIv5PLpJTfCVEblGlT8dRHRhwM2RJb7dBuegGaWzu1GtsQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10378
 
-On Sun, Apr 13, 2025 at 10:52=E2=80=AFPM Manikandan Karunakaran Pillai
-<mpillai@cadence.com> wrote:
->
-> >> +void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int
-> >devfn,
-> >> +                               int where)
-> >> +{
-> >> +    struct pci_host_bridge *bridge =3D pci_find_host_bridge(bus);
-> >> +    struct cdns_pcie_rc *rc =3D pci_host_bridge_priv(bridge);
-> >> +    struct cdns_pcie *pcie =3D &rc->pcie;
-> >> +    unsigned int busn =3D bus->number;
-> >> +    u32 addr0, desc0, desc1, ctrl0;
-> >> +    u32 regval;
-> >> +
-> >> +    if (pci_is_root_bus(bus)) {
-> >> +            /*
-> >> +             * Only the root port (devfn =3D=3D 0) is connected to th=
-is bus.
-> >> +             * All other PCI devices are behind some bridge hence on
-> >another
-> >> +             * bus.
-> >> +             */
-> >> +            if (devfn)
-> >> +                    return NULL;
-> >> +
-> >> +            return pcie->reg_base + (where & 0xfff);
-> >> +    }
-> >> +
-> >> +    /*
-> >> +     * Clear AXI link-down status
-> >> +     */
-> >
-> >That is an odd thing to do in map_bus. Also, it is completely racy
-> >because...
-> >
-> >> +    regval =3D cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE,
-> >CDNS_PCIE_HPA_AT_LINKDOWN);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >CDNS_PCIE_HPA_AT_LINKDOWN,
-> >> +                         (regval & GENMASK(0, 0)));
-> >> +
-> >
-> >What if the link goes down again here.
-> >
-> >> +    desc1 =3D 0;
-> >> +    ctrl0 =3D 0;
-> >> +
-> >> +    /*
-> >> +     * Update Output registers for AXI region 0.
-> >> +     */
-> >> +    addr0 =3D CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(12) |
-> >> +            CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) |
-> >> +            CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(busn);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(0),
-> >addr0);
-> >> +
-> >> +    desc1 =3D cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE,
-> >> +
-> >CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0));
-> >> +    desc1 &=3D ~CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK;
-> >> +    desc1 |=3D CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(0);
-> >> +    ctrl0 =3D CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS |
-> >> +            CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN;
-> >> +
-> >> +    if (busn =3D=3D bridge->busnr + 1)
-> >> +            desc0 |=3D
-> >CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0;
-> >> +    else
-> >> +            desc0 |=3D
-> >CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE1;
-> >> +
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_DESC0(0), desc0);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0), desc1);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(0), ctrl0);
-> >
-> >This is also racy with the read and write functions. Don't worry, lots
-> >of other broken h/w like this...
-> >
-> >Surely this new h/w supports ECAM style config accesses? If so, use
-> >and support that mode instead.
-> >
->
-> As an IP related driver, the  ECAM address in the SoC is not available. F=
-or SoC, the
-> Vendor can override this function in their code with the ECAM address.
+Convert fsl,vf610-mscm-ir.txt to yaml format.
 
+Additional changes:
+- remove label at example dts.
 
->
-> >> +
-> >> +    return rc->cfg_base + (where & 0xfff);
-> >> +}
-> >> +
-> >>  static struct pci_ops cdns_pcie_host_ops =3D {
-> >>      .map_bus        =3D cdns_pci_map_bus,
-> >>      .read           =3D pci_generic_config_read,
-> >>      .write          =3D pci_generic_config_write,
-> >>  };
-> >>
-> >> +static struct pci_ops cdns_pcie_hpa_host_ops =3D {
-> >> +    .map_bus        =3D cdns_pci_hpa_map_bus,
-> >> +    .read           =3D pci_generic_config_read,
-> >> +    .write          =3D pci_generic_config_write,
-> >> +};
-> >> +
-> >>  static int cdns_pcie_host_training_complete(struct cdns_pcie *pcie)
-> >>  {
-> >>      u32 pcie_cap_off =3D CDNS_PCIE_RP_CAP_OFFSET;
-> >> @@ -154,8 +220,14 @@ static void
-> >cdns_pcie_host_enable_ptm_response(struct cdns_pcie *pcie)
-> >>  {
-> >>      u32 val;
-> >>
-> >> -    val =3D cdns_pcie_readl(pcie, CDNS_PCIE_LM_PTM_CTRL);
-> >> -    cdns_pcie_writel(pcie, CDNS_PCIE_LM_PTM_CTRL, val |
-> >CDNS_PCIE_LM_TPM_CTRL_PTMRSEN);
-> >> +    if (!pcie->is_hpa) {
-> >> +            val =3D cdns_pcie_readl(pcie, CDNS_PCIE_LM_PTM_CTRL);
-> >> +            cdns_pcie_writel(pcie, CDNS_PCIE_LM_PTM_CTRL, val |
-> >CDNS_PCIE_LM_TPM_CTRL_PTMRSEN);
-> >> +    } else {
-> >> +            val =3D cdns_pcie_hpa_readl(pcie, REG_BANK_IP_REG,
-> >CDNS_PCIE_HPA_LM_PTM_CTRL);
-> >> +            cdns_pcie_hpa_writel(pcie, REG_BANK_IP_REG,
-> >CDNS_PCIE_HPA_LM_PTM_CTRL,
-> >> +                                 val |
-> >CDNS_PCIE_HPA_LM_TPM_CTRL_PTMRSEN);
-> >> +    }
-> >>  }
-> >>
-> >>  static int cdns_pcie_host_start_link(struct cdns_pcie_rc *rc)
-> >> @@ -340,8 +412,8 @@ static int cdns_pcie_host_bar_config(struct
-> >cdns_pcie_rc *rc,
-> >>               */
-> >>              bar =3D cdns_pcie_host_find_min_bar(rc, size);
-> >>              if (bar !=3D RP_BAR_UNDEFINED) {
-> >> -                    ret =3D cdns_pcie_host_bar_ib_config(rc, bar, cpu=
-_addr,
-> >> -                                                       size, flags);
-> >> +                    ret =3D pcie->ops->host_bar_ib_config(rc, bar, cp=
-u_addr,
-> >> +                                                        size, flags);
-> >>                      if (ret)
-> >>                              dev_err(dev, "IB BAR: %d config failed\n"=
-, bar);
-> >>                      return ret;
-> >> @@ -366,8 +438,7 @@ static int cdns_pcie_host_bar_config(struct
-> >cdns_pcie_rc *rc,
-> >>              }
-> >>
-> >>              winsize =3D bar_max_size[bar];
-> >> -            ret =3D cdns_pcie_host_bar_ib_config(rc, bar, cpu_addr, w=
-insize,
-> >> -                                               flags);
-> >> +            ret =3D pcie->ops->host_bar_ib_config(rc, bar, cpu_addr, =
-winsize,
-> >flags);
-> >>              if (ret) {
-> >>                      dev_err(dev, "IB BAR: %d config failed\n", bar);
-> >>                      return ret;
-> >> @@ -408,8 +479,8 @@ static int cdns_pcie_host_map_dma_ranges(struct
-> >cdns_pcie_rc *rc)
-> >>      if (list_empty(&bridge->dma_ranges)) {
-> >>              of_property_read_u32(np, "cdns,no-bar-match-nbits",
-> >>                                   &no_bar_nbits);
-> >> -            err =3D cdns_pcie_host_bar_ib_config(rc, RP_NO_BAR, 0x0,
-> >> -                                               (u64)1 << no_bar_nbits=
-, 0);
-> >> +            err =3D pcie->ops->host_bar_ib_config(rc, RP_NO_BAR, 0x0,
-> >> +                                                (u64)1 << no_bar_nbit=
-s, 0);
-> >>              if (err)
-> >>                      dev_err(dev, "IB BAR: %d config failed\n",
-> >RP_NO_BAR);
-> >>              return err;
-> >> @@ -467,17 +538,159 @@ int
-> >cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
-> >>              u64 pci_addr =3D res->start - entry->offset;
-> >>
-> >>              if (resource_type(res) =3D=3D IORESOURCE_IO)
-> >> -                    cdns_pcie_set_outbound_region(pcie, busnr, 0, r,
-> >> -                                                  true,
-> >> -                                                  pci_pio_to_address(=
-res-
-> >>start),
-> >> -                                                  pci_addr,
-> >> -                                                  resource_size(res))=
-;
-> >> +                    pcie->ops->set_outbound_region(pcie, busnr, 0, r,
-> >> +                                                   true,
-> >> +                                                   pci_pio_to_address=
-(res-
-> >>start),
-> >> +                                                   pci_addr,
-> >> +                                                   resource_size(res)=
-);
-> >> +            else
-> >> +                    pcie->ops->set_outbound_region(pcie, busnr, 0, r,
-> >> +                                                   false,
-> >> +                                                   res->start,
-> >> +                                                   pci_addr,
-> >> +                                                   resource_size(res)=
-);
-> >> +
-> >> +            r++;
-> >> +    }
-> >> +
-> >> +    return cdns_pcie_host_map_dma_ranges(rc);
-> >> +}
-> >> +
-> >> +int cdns_pcie_hpa_host_init_root_port(struct cdns_pcie_rc *rc)
-> >> +{
-> >> +    struct cdns_pcie *pcie =3D &rc->pcie;
-> >> +    u32 value, ctrl;
-> >> +
-> >> +    /*
-> >> +     * Set the root complex BAR configuration register:
-> >> +     * - disable both BAR0 and BAR1.
-> >> +     * - enable Prefetchable Memory Base and Limit registers in type =
-1
-> >> +     *   config space (64 bits).
-> >> +     * - enable IO Base and Limit registers in type 1 config
-> >> +     *   space (32 bits).
-> >> +     */
-> >> +
-> >> +    ctrl =3D CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_DISABLED;
-> >> +    value =3D CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL(ctrl) |
-> >> +            CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL(ctrl) |
-> >> +            CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_ENABLE
-> >|
-> >> +            CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_64BITS |
-> >> +            CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_ENABLE |
-> >> +            CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_32BITS;
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_IP_CFG_CTRL_REG,
-> >> +                         CDNS_PCIE_HPA_LM_RC_BAR_CFG, value);
-> >> +
-> >> +    if (rc->vendor_id !=3D 0xffff)
-> >> +            cdns_pcie_rp_writew(pcie, PCI_VENDOR_ID, rc->vendor_id);
-> >> +
-> >> +    if (rc->device_id !=3D 0xffff)
-> >> +            cdns_pcie_rp_writew(pcie, PCI_DEVICE_ID, rc->device_id);
-> >> +
-> >> +    cdns_pcie_rp_writeb(pcie, PCI_CLASS_REVISION, 0);
-> >> +    cdns_pcie_rp_writeb(pcie, PCI_CLASS_PROG, 0);
-> >> +    cdns_pcie_rp_writew(pcie, PCI_CLASS_DEVICE,
-> >PCI_CLASS_BRIDGE_PCI);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +int cdns_pcie_hpa_host_bar_ib_config(struct cdns_pcie_rc *rc,
-> >> +                                 enum cdns_pcie_rp_bar bar,
-> >> +                                 u64 cpu_addr, u64 size,
-> >> +                                 unsigned long flags)
-> >> +{
-> >> +    struct cdns_pcie *pcie =3D &rc->pcie;
-> >> +    u32 addr0, addr1, aperture, value;
-> >> +
-> >> +    if (!rc->avail_ib_bar[bar])
-> >> +            return -EBUSY;
-> >> +
-> >> +    rc->avail_ib_bar[bar] =3D false;
-> >> +
-> >> +    aperture =3D ilog2(size);
-> >> +    addr0 =3D CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS(aperture) |
-> >> +            (lower_32_bits(cpu_addr) & GENMASK(31, 8));
-> >> +    addr1 =3D upper_32_bits(cpu_addr);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_MASTER,
-> >> +                         CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0(bar),
-> >addr0);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_MASTER,
-> >> +                         CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR1(bar),
-> >addr1);
-> >> +
-> >> +    if (bar =3D=3D RP_NO_BAR)
-> >> +            return 0;
-> >> +
-> >> +    value =3D cdns_pcie_hpa_readl(pcie, REG_BANK_IP_CFG_CTRL_REG,
-> >CDNS_PCIE_HPA_LM_RC_BAR_CFG);
-> >> +    value &=3D ~(HPA_LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar) |
-> >> +               HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar) |
-> >> +               HPA_LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar) |
-> >> +               HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar) |
-> >> +               HPA_LM_RC_BAR_CFG_APERTURE(bar,
-> >bar_aperture_mask[bar] + 2));
-> >> +    if (size + cpu_addr >=3D SZ_4G) {
-> >> +            if (!(flags & IORESOURCE_PREFETCH))
-> >> +                    value |=3D
-> >HPA_LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar);
-> >> +            value |=3D
-> >HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar);
-> >> +    } else {
-> >> +            if (!(flags & IORESOURCE_PREFETCH))
-> >> +                    value |=3D
-> >HPA_LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar);
-> >> +            value |=3D
-> >HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar);
-> >> +    }
-> >> +
-> >> +    value |=3D HPA_LM_RC_BAR_CFG_APERTURE(bar, aperture);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_IP_CFG_CTRL_REG,
-> >CDNS_PCIE_HPA_LM_RC_BAR_CFG, value);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +int cdns_pcie_hpa_host_init_address_translation(struct cdns_pcie_rc *=
-rc)
-> >> +{
-> >> +    struct cdns_pcie *pcie =3D &rc->pcie;
-> >> +    struct pci_host_bridge *bridge =3D pci_host_bridge_from_priv(rc);
-> >> +    struct resource *cfg_res =3D rc->cfg_res;
-> >> +    struct resource_entry *entry;
-> >> +    u64 cpu_addr =3D cfg_res->start;
-> >> +    u32 addr0, addr1, desc1;
-> >> +    int r, busnr =3D 0;
-> >> +
-> >> +    entry =3D resource_list_first_type(&bridge->windows,
-> >IORESOURCE_BUS);
-> >> +    if (entry)
-> >> +            busnr =3D entry->res->start;
-> >> +
-> >> +    /*
-> >> +     * Reserve region 0 for PCI configure space accesses:
-> >> +     * OB_REGION_PCI_ADDR0 and OB_REGION_DESC0 are updated
-> >dynamically by
-> >> +     * cdns_pci_map_bus(), other region registers are set here once f=
-or all.
-> >> +     */
-> >> +    addr1 =3D 0;
-> >> +    desc1 =3D CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS(busnr);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR1(0),
-> >addr1);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0), desc1);
-> >> +
-> >> +    addr0 =3D CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS(12) |
-> >> +            (lower_32_bits(cpu_addr) & GENMASK(31, 8));
-> >> +    addr1 =3D upper_32_bits(cpu_addr);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0(0),
-> >addr0);
-> >> +    cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-> >> +                         CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR1(0),
-> >addr1);
-> >> +
-> >> +    r =3D 1;
-> >> +    resource_list_for_each_entry(entry, &bridge->windows) {
-> >> +            struct resource *res =3D entry->res;
-> >> +            u64 pci_addr =3D res->start - entry->offset;
-> >> +
-> >> +            if (resource_type(res) =3D=3D IORESOURCE_IO)
-> >> +                    pcie->ops->set_outbound_region(pcie, busnr, 0, r,
-> >> +                                                   true,
-> >> +                                                   pci_pio_to_address=
-(res-
-> >>start),
-> >> +                                                   pci_addr,
-> >> +                                                   resource_size(res)=
-);
-> >>              else
-> >> -                    cdns_pcie_set_outbound_region(pcie, busnr, 0, r,
-> >> -                                                  false,
-> >> -                                                  res->start,
-> >> -                                                  pci_addr,
-> >> -                                                  resource_size(res))=
-;
-> >> +                    pcie->ops->set_outbound_region(pcie, busnr, 0, r,
-> >> +                                                   false,
-> >> +                                                   res->start,
-> >> +                                                   pci_addr,
-> >> +                                                   resource_size(res)=
-);
-> >>
-> >>              r++;
-> >>      }
-> >> @@ -489,11 +702,11 @@ int cdns_pcie_host_init(struct cdns_pcie_rc *rc)
-> >>  {
-> >>      int err;
-> >>
-> >> -    err =3D cdns_pcie_host_init_root_port(rc);
-> >> +    err =3D rc->pcie.ops->host_init_root_port(rc);
-> >>      if (err)
-> >>              return err;
-> >>
-> >> -    return cdns_pcie_host_init_address_translation(rc);
-> >> +    return rc->pcie.ops->host_init_address_translation(rc);
-> >>  }
-> >>
-> >>  int cdns_pcie_host_link_setup(struct cdns_pcie_rc *rc)
-> >> @@ -503,7 +716,7 @@ int cdns_pcie_host_link_setup(struct cdns_pcie_rc
-> >*rc)
-> >>      int ret;
-> >>
-> >>      if (rc->quirk_detect_quiet_flag)
-> >> -            cdns_pcie_detect_quiet_min_delay_set(&rc->pcie);
-> >> +            pcie->ops->detect_quiet_min_delay_set(&rc->pcie);
-> >>
-> >>      cdns_pcie_host_enable_ptm_response(pcie);
-> >>
-> >> @@ -566,8 +779,12 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
-> >>      if (ret)
-> >>              return ret;
-> >>
-> >> -    if (!bridge->ops)
-> >> -            bridge->ops =3D &cdns_pcie_host_ops;
-> >> +    if (!bridge->ops) {
-> >> +            if (pcie->is_hpa)
-> >> +                    bridge->ops =3D &cdns_pcie_hpa_host_ops;
-> >> +            else
-> >> +                    bridge->ops =3D &cdns_pcie_host_ops;
-> >> +    }
-> >>
-> >>      ret =3D pci_host_probe(bridge);
-> >>      if (ret < 0)
-> >> diff --git a/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> >b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> >> index b24176d4df1f..8d5fbaef0a3c 100644
-> >> --- a/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> >> +++ b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> >> @@ -43,7 +43,30 @@ static u64 cdns_plat_cpu_addr_fixup(struct cdns_pci=
-e
-> >*pcie, u64 cpu_addr)
-> >>  }
-> >>
-> >>  static const struct cdns_pcie_ops cdns_plat_ops =3D {
-> >> +    .link_up =3D cdns_pcie_linkup,
-> >>      .cpu_addr_fixup =3D cdns_plat_cpu_addr_fixup,
-> >> +    .host_init_root_port =3D cdns_pcie_host_init_root_port,
-> >> +    .host_bar_ib_config =3D cdns_pcie_host_bar_ib_config,
-> >> +    .host_init_address_translation =3D
-> >cdns_pcie_host_init_address_translation,
-> >> +    .detect_quiet_min_delay_set =3D
-> >cdns_pcie_detect_quiet_min_delay_set,
-> >> +    .set_outbound_region =3D cdns_pcie_set_outbound_region,
-> >> +    .set_outbound_region_for_normal_msg =3D
-> >> +
-> >cdns_pcie_set_outbound_region_for_normal_msg,
-> >> +    .reset_outbound_region =3D cdns_pcie_reset_outbound_region,
-> >> +};
-> >> +
-> >> +static const struct cdns_pcie_ops cdns_hpa_plat_ops =3D {
-> >> +    .start_link =3D cdns_pcie_hpa_startlink,
-> >> +    .stop_link =3D cdns_pcie_hpa_stop_link,
-> >> +    .link_up =3D cdns_pcie_hpa_linkup,
-> >> +    .host_init_root_port =3D cdns_pcie_hpa_host_init_root_port,
-> >> +    .host_bar_ib_config =3D cdns_pcie_hpa_host_bar_ib_config,
-> >> +    .host_init_address_translation =3D
-> >cdns_pcie_hpa_host_init_address_translation,
-> >> +    .detect_quiet_min_delay_set =3D
-> >cdns_pcie_hpa_detect_quiet_min_delay_set,
-> >> +    .set_outbound_region =3D cdns_pcie_hpa_set_outbound_region,
-> >> +    .set_outbound_region_for_normal_msg =3D
-> >> +
-> >cdns_pcie_hpa_set_outbound_region_for_normal_msg,
-> >> +    .reset_outbound_region =3D cdns_pcie_hpa_reset_outbound_region,
-> >
-> >What exactly is shared between these 2 implementations. Link handling,
-> >config space accesses, address translation, and host init are all
-> >different. What's left to share? MSIs (if not passed thru) and
-> >interrupts? I think it's questionable that this be the same driver.
-> >
-> The address of both these have changed as the controller architecture has
-> changed. In the event these driver have to be same driver, there will lot=
- of
-> sprinkled "if(is_hpa)" and that was already rejected in earlier version o=
-f code.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v1 to v2
+- move under interrupt-controller
+---
+ .../arm/freescale/fsl,vf610-mscm-ir.txt       | 30 ---------
+ .../fsl,vf610-mscm-ir.yaml                    | 63 +++++++++++++++++++
+ 2 files changed, 63 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
 
-I'm saying they should *not* be the same driver because you don't
-share hardly anything. Again, what is really common here?
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
+deleted file mode 100644
+index 6dd6f399236d5..0000000000000
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Freescale Vybrid Miscellaneous System Control - Interrupt Router
+-
+-The MSCM IP contains multiple sub modules, this binding describes the second
+-block of registers which control the interrupt router. The interrupt router
+-allows to configure the recipient of each peripheral interrupt. Furthermore
+-it controls the directed processor interrupts. The module is available in all
+-Vybrid SoC's but is only really useful in dual core configurations (VF6xx
+-which comes with a Cortex-A5/Cortex-M4 combination).
+-
+-Required properties:
+-- compatible:		"fsl,vf610-mscm-ir"
+-- reg:			the register range of the MSCM Interrupt Router
+-- fsl,cpucfg:		The handle to the MSCM CPU configuration node, required
+-			to get the current CPU ID
+-- interrupt-controller:	Identifies the node as an interrupt controller
+-- #interrupt-cells:	Two cells, interrupt number and cells.
+-			The hardware interrupt number according to interrupt
+-			assignment of the interrupt router is required.
+-			Flags get passed only when using GIC as parent. Flags
+-			encoding as documented by the GIC bindings.
+-
+-Example:
+-	mscm_ir: interrupt-controller@40001800 {
+-		compatible = "fsl,vf610-mscm-ir";
+-		reg = <0x40001800 0x400>;
+-		fsl,cpucfg = <&mscm_cpucfg>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		interrupt-parent = <&intc>;
+-	}
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
+new file mode 100644
+index 0000000000000..fdc254f8d013c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/fsl,vf610-mscm-ir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale Vybrid Miscellaneous System Control - Interrupt Router
++
++description:
++  The MSCM IP contains multiple sub modules, this binding describes the second
++  block of registers which control the interrupt router. The interrupt router
++  allows to configure the recipient of each peripheral interrupt. Furthermore
++  it controls the directed processor interrupts. The module is available in all
++  Vybrid SoC's but is only really useful in dual core configurations (VF6xx
++  which comes with a Cortex-A5/Cortex-M4 combination).
++
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    const: fsl,vf610-mscm-ir
++
++  reg:
++    maxItems: 1
++
++  fsl,cpucfg:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The handle to the MSCM CPU configuration node, required
++      to get the current CPU ID
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++    description:
++      Two cells, interrupt number and cells.
++      The hardware interrupt number according to interrupt
++      assignment of the interrupt router is required.
++      Flags get passed only when using GIC as parent. Flags
++      encoding as documented by the GIC bindings.
++
++required:
++  - compatible
++  - reg
++  - fsl,cpucfg
++  - interrupt-controller
++  - '#interrupt-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@40001800 {
++        compatible = "fsl,vf610-mscm-ir";
++        reg = <0x40001800 0x400>;
++        fsl,cpucfg = <&mscm_cpucfg>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++        interrupt-parent = <&intc>;
++    };
+-- 
+2.34.1
 
-> Hence it was done similar to other drivers by architecture specific "ops"=
-.
-
-Yes, and IMO driver private/custom ops is the wrong direction to go.
-Read my prior reply below again.
-
-> The "if(is_hpa)" is now very limited where a specific ops functions does =
-not make
-> any sense.
-
-But you still have them. In a separate driver, you would have 0.
-
-> >A bunch of driver specific 'ops' is not the right direction despite
-> >other drivers (DWC) having that. If there are common parts, then make
-> >them library functions multiple drivers can call.
 
