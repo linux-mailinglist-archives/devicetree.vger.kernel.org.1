@@ -1,152 +1,122 @@
-Return-Path: <devicetree+bounces-170435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89145A9ACAC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:00:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12269A9ACCF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 14:05:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6B8E7AF246
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 11:59:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3218B1888C0F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 12:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70034230BE1;
-	Thu, 24 Apr 2025 11:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XG9gFkdc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006AF228CB5;
+	Thu, 24 Apr 2025 12:05:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A7C22DF84;
-	Thu, 24 Apr 2025 11:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382C91FAC46;
+	Thu, 24 Apr 2025 12:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745495966; cv=none; b=VRwwwJAu3zkdOA+di86cpruOpklKyxDsAHfgKVQvexQ3hh4dRzN983e39nwAbtrvlus1O/Dkt0nALsQhAE9UNOryIdCmvu1O7CWNKRREV26fwxs27fA9mrbe0JhLsgfRG9N4ZgX6fctr4w34spYx91UbvNOCfano8FHAxcb6ghA=
+	t=1745496331; cv=none; b=q5Y7zK2VN8TPE+3wqH+cGcejgebjJO6c6TfvInSLdzw1fq2NGzbR4GfFdMMyEwPK1YVvku719lftTJVagZPutL9g2W02ge3V/zYSDpe5ZzaEdnVrT8N8Gs6rxLv+XJ1//G/C2BmTJDcVlB7QDaKBH+fY9pjKBPhLAT5OVNblc/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745495966; c=relaxed/simple;
-	bh=O5weyZMUoTyRg5SadcZ69bTRgiBYwIOPSS9n423+MYg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a2S7RadAO1nX1H7r9tTcDYnwbnIGsfeTR9qbnc3SZOCe2s2kZnd5sFXNcBwzVnbMxW4dFds8XSJxjbBQXTDL2VISgKLyg5TVlKLIFZMozelulJjIRvw7t8RE0yvGfg/Ythvm72q4tRqabRw3MTyczZjeTCOHkrjTKKftFAFNdRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XG9gFkdc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53OBofDx024007;
-	Thu, 24 Apr 2025 11:59:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rfOJ8F5WCfAl4G//Z9uP1v61ZS1IETkb5bfIARMIDaQ=; b=XG9gFkdc6qqHGcbh
-	1h1bvADAXNbqcHskPfvnHsbg8IhfOT/Chli2cQzR11MFOuJlJJP1i+FslExzDCNi
-	yEk9lxAg7ltMFsqx0EwpfytICRJg07ybNE2xl0pry++LkAt2+ytopRS58dLFpQOI
-	koMpZLVqPPMEnAki2cplWj+Gbk84E+gB4F6PYSe0uIkUk/k3i3QAMh5vZT/W7mnT
-	QUTmgmFNomCuGUhRTStMoLB3sTnk52LP4U1yj8rtqGjyuclHPTvQFw8T7tn00fu8
-	VYd8hiTwxGP1aHMWx+enfoP6RYLpXOzrfcj1tfU0tvl3iWpfDDdNVKADD46vracn
-	qUjk9g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh15dq0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 11:59:11 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53OBxATk016738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Apr 2025 11:59:10 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 24 Apr 2025 04:59:09 -0700
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 5/5] arm64: dts: qcom: msm8996: Add coresight qmi node
-Date: Thu, 24 Apr 2025 04:58:54 -0700
-Message-ID: <20250424115854.2328190-6-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250424115854.2328190-1-quic_jinlmao@quicinc.com>
-References: <20250424115854.2328190-1-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1745496331; c=relaxed/simple;
+	bh=s1lwQ6KQJegruKsJwhoAbmV6Zxh4FSZt6yJYj9j9ISg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bp9d3nZFwZSInPIcU6SV51/famccQoFlIkfTcXCenAkT7OeXRcF9AGpnrmT056pLbms5DNBWWA1niRgaHXYUYjpkR/1Xb4u8mdJ2otjzedTfUTy/1cyOtZPIXy3Hmkpa7s47wPviZVmcQoie/clOGOzrbSkboRNq5jDFw1LaTqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83B231063;
+	Thu, 24 Apr 2025 05:05:24 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B57FC3F59E;
+	Thu, 24 Apr 2025 05:05:26 -0700 (PDT)
+Date: Thu, 24 Apr 2025 13:05:23 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Andrew
+ Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+ <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <20250424130523.6ceecca3@donnerap.manchester.arm.com>
+In-Reply-To: <20250424100514-GYA48784@gentoo>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+	<20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
+	<aa38baed-f528-4650-9e06-e7a76c25ec89@lunn.ch>
+	<20250424014120.0d66bd85@minigeek.lan>
+	<20250424100514-GYA48784@gentoo>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Klk8bjJZeWaNpKCsHmJppDHlvHPopqbl
-X-Authority-Analysis: v=2.4 cv=OY6YDgTY c=1 sm=1 tr=0 ts=680a278f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=3H110R4YSZwA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=_vcsFIMFqyRQzRopD1IA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Klk8bjJZeWaNpKCsHmJppDHlvHPopqbl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDA4MCBTYWx0ZWRfX5umFyhSrWKfy fQx1Fa8d+ZIfAn5h04cip7D71EFf8h8oxGyzzncMnt5NXlP02EdIBpoxXzUdyjrZIBCxzHGHXPM U4e0fFyfu3gaSgoi8a2eYDfO4PXECR4i6ekxgFA5ovuIsDBzlHnv08a8sEt6NTcqiUp8WZ8nC68
- PwksXM/jp3/grXa0Kloti+HeigFZXQKX5z/hQb8YSfkux51M0qlXg/1zehcMYbG1wI7NQYoJE4T rCJKbble455JX2Pj+7kGuqAhVVgyOxNGT8tdhI7L6bPx9uc3dwV3xSfajlHZK6Um0VvExEDtDP9 McNaPMCX1v7d/iXExCT/S1JSGStnxEWujk3SFxoJ2/Nt3TyivzdapUFqpPTDQq7KBtDEzkDqxzE
- N0I9NnJ6+Yhu1YvNGxqXgGzRf6b5l1j0UXQwVXHfS3IZsr5sR4h21rSJb+o0QcSYSRdZ2pr2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
- definitions=2025-04-24_05,2025-04-22_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=999 phishscore=0 priorityscore=1501 spamscore=0 adultscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240080
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-coresight qmi nodes is to init the qmi connection to remote subsystem.
-qcom,qmi-id is used by remote etm driver to get the remote subsystem
-connection and send the request.
+On Thu, 24 Apr 2025 10:05:14 +0000
+Yixun Lan <dlan@gentoo.org> wrote:
 
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 4719e1fc70d2..d3bd8caccc0f 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -39,6 +39,15 @@ sleep_clk: sleep-clk {
- 		};
- 	};
- 
-+	coresight-qmi {
-+		compatible = "qcom,coresight-qmi";
-+
-+		conns-0 {
-+			qmi-id = <0x2>;
-+			service-id = <0x33>;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <2>;
- 		#size-cells = <0>;
-@@ -447,6 +456,8 @@ memory@80000000 {
- 	etm {
- 		compatible = "qcom,coresight-remote-etm";
- 
-+		qcom,qmi-id = <0x2>;
-+
- 		out-ports {
- 			port {
- 				modem_etm_out_funnel_in2: endpoint {
--- 
-2.25.1
+> Hi Andrew, Andre,
+> 
+> On 01:42 Thu 24 Apr     , Andre Przywara wrote:
+> > On Wed, 23 Apr 2025 18:58:37 +0200
+> > Andrew Lunn <andrew@lunn.ch> wrote:
+> > 
+> > Hi,
+> >   
+> > > > +&emac0 {
+> > > > +	phy-mode = "rgmii";    
+> > > 
+> > > Does the PCB have extra long clock lines in order to provide the
+> > > needed 2ns delay? I guess not, so this should be rgmii-id.  
+> > 
+> > That's a good point, and it probably true.
+> >   
+> > >   
+> > > > +	phy-handle = <&ext_rgmii_phy>;
+> > > > +
+> > > > +	allwinner,tx-delay-ps = <300>;
+> > > > +	allwinner,rx-delay-ps = <400>;    
+> > > 
+> > > These are rather low delays, since the standard requires 2ns. Anyway,
+> > > once you change phy-mode, you probably don't need these.  
+> >   
+> As I tested, drop these two properties making ethernet unable to work,
+> there might be some space to improve, but currently I'd leave it for now
 
+Yes, I think we need those delays to be programmed into the syscon clock
+register, and have been doing so for years.
+
+> > Those go on top of the main 2ns delay, I guess to accommodate some skew
+> > between the RX and TX lines, or to account for extra some PCB delay
+> > between clock and data? The vendor BSP kernels/DTs program those board
+> > specific values, so we have been following suit for a while, for the
+> > previous SoCs as well.
+> > I just tried, it also works with some variations of those values, but
+> > setting tx-delay to 0 stops communication.
+> >   
+> I'd not bother to try other combinations, and just stick to vendor's settings
+
+I learned to not rely too much on Allwinner BSP settings ;-)
+
+And it's quite easy to experiment, actually: you can write directly to
+0x3000030, for instance using devmem or peekpoke, at Linux runtime. Run
+some tests or benchmarks, then try a new setting, without rebooting.
+
+Cheers,
+Andre.
 
