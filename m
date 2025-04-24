@@ -1,139 +1,98 @@
-Return-Path: <devicetree+bounces-170575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD2FA9B6CC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 20:53:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 090CDA9B7F9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 21:08:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48B5A4A7D30
-	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 18:53:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 810EA189B93F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Apr 2025 19:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EB628DEE8;
-	Thu, 24 Apr 2025 18:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17BE1E5B95;
+	Thu, 24 Apr 2025 19:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="GLoPQ0qk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2RCrh/zN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE66B290BCF;
-	Thu, 24 Apr 2025 18:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745520779; cv=pass; b=BMNNGnYR3d6bRd2twRNXSoHFkjcbOlTgOP4aBPrUw1aixggONnWeKXktKUtg/BEJ7h7eelHL3R7ZuYLvnSDKPZTioFJZtTwEjSaRijPbXXmxhn/R3fOATN2E0Pu9GCo962dRoJg+CMqGoZmulZx3/9IqHdnZZ4tsrW4foRkh4ZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745520779; c=relaxed/simple;
-	bh=Sg+eDpGcEpQdkzE7TxWgzlH0ZwatzsoX6GOqGOsS+1Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AvfUAfBgdgeWsZCo54jU19HkV0PVZYhgmZHp2FiKkpigfxRq7xcFngAYhXm6XlaweV2cL+tdcXo3/26Ges9w8KYomvnbj1CgTnBub4XoHLcNQ307UceKVB9jyWIXQuOq7cOu0kdEJeqDbFbhZcYpmaKq645vr9S9vd5u5ThRV8A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=GLoPQ0qk; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1745520759; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=f67g/KglThRw5wVky3xH3nsJxM3eoPm5hIn3wIWY4iOPe5HwXKP1RHzKfGVh0C3M/XQkben49bhPSSOTFNw/G8IzA55lJXiyiVE7iZXchD9/+vuFo/GP2HRzN4I0H0pSS3SF5IaOaVB6E4PD5mQ3ILEs+5AxTQX9yIKYnNVxQ2k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745520759; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/9frCnYTMVTpm5V5w18G/k5cDEAONcnNNbo6wTNm04s=; 
-	b=hP8WLG6fOselEXBQxz0BWOU/y2Ut31m2VmH5SkMA6r6STNkJ1qDrpwOYruqna2dFLvluRyG4zGJ1yFMhKzZRJnkEda0uptTmrnV7ltB2okFT0wbY8JVOXxMRBVQMWMWGhwWWw65LGEZeJABa/7SteN5WwN4lZC0TQPv/v1G5ims=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745520759;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=/9frCnYTMVTpm5V5w18G/k5cDEAONcnNNbo6wTNm04s=;
-	b=GLoPQ0qk1WjR+1lIkWWUByBXveFgWAkJUxbLRBc+5cA6tt8Jf6BHMFNWLzrpuvd4
-	dPTcaH2V+S5yJUjlogYeDPuiATLZJKZK292R9CZtoN4Vrvkk8jRRANml9FBBmXbiqwP
-	yqU4qcC/IMeL4aOoQNteksUTtZT0ugMpYZjCMUMA=
-Received: by mx.zohomail.com with SMTPS id 1745520756849524.09816512909;
-	Thu, 24 Apr 2025 11:52:36 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 24 Apr 2025 20:52:23 +0200
-Subject: [PATCH 2/2] arm64: dts: rockchip: add SATA nodes to RK3576
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA0C1E231E;
+	Thu, 24 Apr 2025 19:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745521394; cv=none; b=jgvy6whBGZGXuDnmWdiXfGXK8LrOO+TFXb1v26WRY8d+j6iw+oX68aPFaoWpzysBE/Ws4ziisCah9mRA4fLyIbAT45VgcK1coZOu997h5VvPEnzgCbwnZo127jrBcJ2QA1xndwQZ9HojfObUYg7+G4/oihKFaWijrw0SNsLfYrY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745521394; c=relaxed/simple;
+	bh=HKz2v/Dk24xsj/fbF/BXdQp5dBDuDBSlFnA/gFKOpRU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mTKonnuQEeNPwuJUAa8m4s0vvoAlj8eiii6plAS40H1lAnCtrjXHyOP4wxuuC0Ek5JZ2RrT+Idb2PxInKxrDVcvxdEgzbRbkj8yyoXp8tP67JP/upjObP4FPcZtRXtaf8IEnI/6eZc0A3by5wUxbunI4/VkWJiYFy/GTMG8TjVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2RCrh/zN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=bgHAVRSAtGS2mucHqdulufmpGRpZTS9/L7tc07qePPc=; b=2RCrh/zN/3ZFHAA0cZnrwsSn/r
+	7jiQ2NoKx+p2nXFoiPH81MDw/eOCr9IxIj/VbzE6U//36F+XhAZo2M3AA3n8txwu2IjAKfNnFXAo5
+	XFmmzS08oyl2Uq7rB9EUQ807RpD/QVRoh5HoTIqNZQfycVkGUke3QQAhjqS/vWYgHA0M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u81qF-00AVAd-F9; Thu, 24 Apr 2025 21:02:35 +0200
+Date: Thu, 24 Apr 2025 21:02:35 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: Andre Przywara <andre.przywara@arm.com>, Yixun Lan <dlan@gentoo.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, clabbe.montjoie@gmail.com
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <7fcedce7-5cfe-48a4-9769-e6e7e82dc786@lunn.ch>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+ <4ba3e7b8-e680-40fa-b159-5146a16a9415@lunn.ch>
+ <20250424150037.0f09a867@donnerap.manchester.arm.com>
+ <4643958.LvFx2qVVIh@jernej-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250424-rk3576-sata-v1-2-23ee89c939fe@collabora.com>
-References: <20250424-rk3576-sata-v1-0-23ee89c939fe@collabora.com>
-In-Reply-To: <20250424-rk3576-sata-v1-0-23ee89c939fe@collabora.com>
-To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Serge Semin <fancer.lancer@gmail.com>
-Cc: kernel@collabora.com, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4643958.LvFx2qVVIh@jernej-laptop>
 
-The Rockchip RK3576 features two SATA nodes. The first, sata0, is behind
-combphy0, which muxes between pcie0 and sata0.
+> In my experience, vendor DT has proper delays specified, just 7 instead of
+> 700, for example. What they get wrong, or better said, don't care, is phy
+> mode. It's always set to rgmii because phy driver most of the time ignores
+> this value and phy IC just uses mode set using resistors. Proper way here
+> would be to check schematic and set phy mode according to that. This method
+> always works, except for one board, which had resistors set wrong and
+> phy mode configured over phy driver was actually fix for it.
 
-The second, sata1, is behind combphy1, which muxes between pcie1, sata1
-and usb_drd1_dwc3.
+What PHY driver is this? If it is ignoring the mode, it is broken.
 
-I've only been able to test sata0 on my board, but it appears to work
-just fine.
+We have had problems in the past in this respect. A PHY driver which
+ignored the RGMII modes, and strapping was used. That 'worked' until
+somebody built a board with broken strapping and added code to respect
+the RGMII mode, overriding the strapping. It made that board work, but
+broke lots of others which had the wrong RGMII mode....
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+If we have this again, i would like to know so we can try to get in
+front of the problem, before we have lots of broken boards...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index ebb5fc8bb8b1363127b9d3782801c4a79b678a92..6e27d744acad2111616eaf4807aea1eac4f00c7f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1334,6 +1334,36 @@ gmac1_mtl_tx_setup: tx-queues-config {
- 			};
- 		};
- 
-+		sata0: sata@2a240000 {
-+			compatible = "rockchip,rk3576-dwc-ahci", "snps,dwc-ahci";
-+			reg = <0x0 0x2a240000 0x0 0x1000>;
-+			clocks = <&cru ACLK_SATA0>, <&cru CLK_PMALIVE0>,
-+				 <&cru CLK_RXOOB0>;
-+			clock-names = "sata", "pmalive", "rxoob";
-+			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&power RK3576_PD_SUBPHP>;
-+			phys = <&combphy0_ps PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			ports-implemented = <0x1>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
-+		sata1: sata@2a250000 {
-+			compatible = "rockchip,rk3576-dwc-ahci", "snps,dwc-ahci";
-+			reg = <0x0 0x2a250000 0x0 0x1000>;
-+			clocks = <&cru ACLK_SATA1>, <&cru CLK_PMALIVE1>,
-+				 <&cru CLK_RXOOB1>;
-+			clock-names = "sata", "pmalive", "rxoob";
-+			interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&power RK3576_PD_SUBPHP>;
-+			phys = <&combphy1_psu PHY_TYPE_SATA>;
-+			phy-names = "sata-phy";
-+			ports-implemented = <0x1>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		ufshc: ufshc@2a2d0000 {
- 			compatible = "rockchip,rk3576-ufshc";
- 			reg = <0x0 0x2a2d0000 0x0 0x10000>,
-
--- 
-2.49.0
-
+	Andrew
 
