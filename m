@@ -1,54 +1,90 @@
-Return-Path: <devicetree+bounces-170899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D66A9CA88
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:37:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B739CA9CABD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E5569C4E05
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:34:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D440F1886EDC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0B842A9B;
-	Fri, 25 Apr 2025 13:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7736071747;
+	Fri, 25 Apr 2025 13:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="X2nI6jkK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DSIz1yXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC74FCA6B;
-	Fri, 25 Apr 2025 13:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35DE3D3B3;
+	Fri, 25 Apr 2025 13:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745588076; cv=none; b=AYIzoFYoQZamZ1ytxIKOOqrosJCO5Ql4UPfIJpnWcwHtWdWMKu3RknZcyP1qWwJgBDRIE2ZM4kCdPJbWVvkbu1I8BjVJT1nPpExpaSAKUBmx/Dr4vt3Q7RSF+rNXM2b626+hlsP2kA2Y26FgX72os1KOHHPeJ3ZQCLKtAv4NiFI=
+	t=1745588722; cv=none; b=Aqw6heKmY9DO2K5byaGSLybBvVj9Tt8lxwhNL4tPqj4RjQ8bLMqICfTAB9Xc6wLDHXIL9CNyMgxNZVA0td958fsY4fmtYSMJf7w7lerTIpeNcUVtVSWzalwrEtLWGNgAESZkrB4JcF9JNvrITG/ClaxlX034VYPe/jmiFq2+rx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745588076; c=relaxed/simple;
-	bh=31rrBzJKtVXaPXzqnhnf8uanX8HXIkqblOzZfu8Tf2Q=;
+	s=arc-20240116; t=1745588722; c=relaxed/simple;
+	bh=s+wGkxQdQOZAumMeKgpW5m+jjq14RmoCE/zy+aB2ZDw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efROcANfbzv6cJsG2+vxcCvh5ysd4U6V0bZ/I2+uoWKEqdUVH35VVt1zjYXSbTjXkwqYjYMpSrcAO0fozhah+adeVFeRE8z2kO3SOBVm3jYeJU/M2ddECfIcAgRU7LlLCMEyZvZcwZXfnNSfCrEKSp3Jrp4yTItdgN8m7sdRWYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=X2nI6jkK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1679C4CEE4;
-	Fri, 25 Apr 2025 13:34:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1745588074;
-	bh=31rrBzJKtVXaPXzqnhnf8uanX8HXIkqblOzZfu8Tf2Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X2nI6jkKd39XBM/pgDRNBBfMhHSLk14fL7Axemf/2umhDr40foDmDOIbuGIkNYQBY
-	 PW7DyBLyzGnda5S2D3CWJQp5P64DWb0ezWkNkHXJA0dBtx72hLdujxyrdos1PUhRCE
-	 afceqYOdwMTCF/eKcsBrO4sKdC4OYa1RT/85aD/I=
-Date: Fri, 25 Apr 2025 15:34:31 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-	robh@kernel.org, conor+dt@kernel.org, swboyd@chromium.org,
-	heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH v2 1/4] usb: typec: Stub out typec_switch APIs when
- CONFIG_TYPEC=n
-Message-ID: <2025042521-curtain-salon-7db9@gregkh>
-References: <20250422115055.575753-1-xu.yang_2@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pqyd3P7zo3h+Cppmj6A78KRZYqQRer/Oc35+I8UofZ5w+tbr6rFAIwxdFKrVFORcXK1zlZwL0aJEGG8kpF0KP42PSFZUpwYMGATo2e74DiBcVwnh1150u5HXYhz/5TRBOXtAZ8IL1CcJbH0eiVd6oThh99eidM9hR7F+rWd3bKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DSIz1yXv; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac2ab99e16eso495865866b.0;
+        Fri, 25 Apr 2025 06:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745588719; x=1746193519; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ElIjdAp6Y4lmYtJ6XWCfaS1fwcVpaJWdZTEkWJEeiVM=;
+        b=DSIz1yXvDrL+FtMDhXl0D5/cslCieb4QdAdY3AguRhNHWNhsBsHziBMuatMjpIeAkv
+         AMgOv+eA04IQUokHTxIR/EusQRSrw++DYYJ6/d1GrZSlw68G333469sYDABDeU58GlIW
+         Bn5bldsZG2VDnKaPSAbzxgIW7XeobXfDeUdETp7aljgJUq6ZWPi18ktDUmRRoYN6+50d
+         82q+oaL1dAd6+mvNAX8T02WXHkD6O5MwXhNXGF1yIHsZL91AVAvJi76mPvq1pctvPJfq
+         5QL3/ZItF7mPi42k/jx1LShgrU4XT7FUb0r65H8AxVnRc8mbArMeVCVSHTWnqQmuIrzg
+         /Z6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745588719; x=1746193519;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ElIjdAp6Y4lmYtJ6XWCfaS1fwcVpaJWdZTEkWJEeiVM=;
+        b=aqT4gIXU3qrLhJgrWADmiynCPiMeUq2cFwutL5u6/FliyAtKYdHkrB9cu5lOdY5206
+         dGGwq3Gu0vayH2ZXxI6NjoYF2KVqnGvqG6BwfkbiMXAoz0N7FCfH0rLDK3cBJffu5rY0
+         EdUWDEkIlLSOmXtsLAZxs9tAWJLmKxN4MSSNYM4zNPl8+c8ZSB5IsnHnYi38Z1ZRCgVL
+         st18jZ9hlvSwGwJkrhIaf0bhImfX1on3cATiUebbYNuB+tqpdjmdyYShol5Ef3mGWSjb
+         DzBxCudQyBwRNyDOUWRV1CDMa8iLrHoCv+/hJiHxH1LNhcUE1vbN3bRHuVtM0Cugs5dM
+         uFtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUULwJxKEs55EMfLrT6Kmy9YUox/2HNc30Dyze9eS3UeU4fTAT5a0l3Bb/nE0iomQ0fqjdGUDwTUnij@vger.kernel.org, AJvYcCWYbQOqBR3laXbovY1ZgP/jD6gQqF0042bPpoCZtV1EzVzDFXSzUQJ8PewWVjUDuSOn9PVcbhjaCcZ8QR/T@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCrXTvIFGcjiVn9ZoDQYYJu6zlL+2qLTFK0eYV+fgEYDswEJKa
+	apYaiGzLZjK4BUr053A0NNXx8xXYvR/cAckO5MbczFTKYcKpPRj3
+X-Gm-Gg: ASbGncsopJHuKSdsEyiMEbRLPl5Kd9lJ2FZyOEc/aepLx1NMl72qutQ0I69B2CD1W4D
+	ls1cmAMcT6JGtUKjcIEzx6AeCq1u6I0jx3nPjZziDZ15pTIFBhQN8dm9xusXhOhmcSq4xz96W8T
+	e3sivCGi598pgp4dkn7FChoDgPHXAvB7Bb8U1kR2UJunRcRSBH5qr0blwcBG/nkCPGmMG2HdnE2
+	qM9FRlwq/zzHGwjWej9Z3IW35Kh5IsVn4U6y4gqFnrEgKo7hGvpf2Qtmk6PnpnY5ns3AirIFeNu
+	P9VzGb4R8HSKV4ZE7jSbBOzhWQVkjMm5lGXjbBQeb5UfgYljGXMVURI=
+X-Google-Smtp-Source: AGHT+IGNWxosw6tYKct4NcUyBZgI0Q/yEcMUb40Dma2Svsw8igWh4KZ3iIt+8W119rSVYItTMA9Veg==
+X-Received: by 2002:a17:906:4795:b0:acb:6746:8754 with SMTP id a640c23a62f3a-ace7111ef01mr227275466b.27.1745588719048;
+        Fri, 25 Apr 2025 06:45:19 -0700 (PDT)
+Received: from localhost ([217.151.144.138])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-ace6e41cb08sm143849366b.19.2025.04.25.06.45.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 06:45:18 -0700 (PDT)
+Date: Fri, 25 Apr 2025 15:44:25 +0200
+From: Oliver Graute <oliver.graute@gmail.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: imx8qm: add ethernet aliases
+Message-ID: <aAuRuVq92b1G0T7H@graute-macos>
+References: <20250422100239.58799-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,22 +93,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250422115055.575753-1-xu.yang_2@nxp.com>
+In-Reply-To: <20250422100239.58799-1-francesco@dolcini.it>
 
-On Tue, Apr 22, 2025 at 07:50:52PM +0800, Xu Yang wrote:
-> From: Stephen Boyd <swboyd@chromium.org>
+On 22/04/25, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Ease driver development by adding stubs for the typec_switch APIs when
-> CONFIG_TYPEC=n. Copy the same method used for the typec_mux APIs to be
-> consistent.
+> Add ethernet aliases, they are used by the firmware to set the MAC
+> address and by systemd to rename network interfaces to predictable
+> interface names, e.g. end0 and end1.
 > 
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> 
-> ---
-> Changes in v2:
->  - pick up this patch to fix build error in v1
->  - refer to https://lore.kernel.org/linux-usb/Ztb1sI2W7t5k2yT7@kuha.fi.intel.com/
-
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Acked-by: Oliver Graute <oliver.graute@kococonnector.com>
 
