@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-170663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9290EA9BE88
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:22:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D944FA9BEA0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:28:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18806924A84
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:22:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 237494A0459
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C37E22C355;
-	Fri, 25 Apr 2025 06:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B5422D4C9;
+	Fri, 25 Apr 2025 06:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVMtItia"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eq8LIAlr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C67822B8C6;
-	Fri, 25 Apr 2025 06:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D2B22B8C3;
+	Fri, 25 Apr 2025 06:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745562176; cv=none; b=MNsrZv48fMMp8hfUYg1QPgttNWK4vLyb+cr3EhOs2VLw4zFl2bRwop958TYeQ8ZIeq16xC7XEtpTWun+gt6KAGbUZPwKwnm8Soo1uVAJh1F7vljfUC4vxtUl6vMw+hxKRBobNJ2vkNPwcqu9YrxzwhW+a/+d/pRk/0pTj2yLX1k=
+	t=1745562491; cv=none; b=UgfUBl633viwYq6xumX3s+ngD2Dinl6IxcoCbPxMUjS8eGapQV3OgpMDMta5g2F69L4rTHFbtGivwwSfMWbuoTGLZCdM2tCrwlCGBv0q6lWsprVpu+PhgNS7J5EN3e8h2jgaEdbyZSHcjqN2RXkK1jheToQ1tzPMuDypeIo3eJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745562176; c=relaxed/simple;
-	bh=YigdO8GocE/WWn8miDjmUpp2Br2/KiCiEE83ZWQWoNs=;
+	s=arc-20240116; t=1745562491; c=relaxed/simple;
+	bh=sWRY0eQe+18OqRtXDGq2jdVq+juVtMJaC2QdBwkmn6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=olTitk0p377+tcsrFsjHnEwbbtDW50OLn4iLVeSccFuOvgPMeevoD4WlPYo8h6UR9KxUBidREnsAZ/gteHl8EpyMrR6o+zrTTtmHXNlMKO/CvsrmXt9XMeqgQrWo610oBz7hNMHzpOVxo6jvoIuFgSlyPxqowRLSU7ZVgyoiT/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVMtItia; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BFACC4CEE4;
-	Fri, 25 Apr 2025 06:22:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dvOQWgfbz/sa3wer/0VPJJjoRN+fd0duODPsqCZQyx87nEbEH5Mt48xevH+/0DcAJUSGdMs2kZwR04tymPpDgpiqu5zbHMXqoWZ3Ojo7vvfEbVzlam4q9OM8JpihFt22HiZMdoulQzY463GgwAd77498fBzGwTRo6Nf8M2pPXeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eq8LIAlr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B7A0C4CEE4;
+	Fri, 25 Apr 2025 06:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745562175;
-	bh=YigdO8GocE/WWn8miDjmUpp2Br2/KiCiEE83ZWQWoNs=;
+	s=k20201202; t=1745562491;
+	bh=sWRY0eQe+18OqRtXDGq2jdVq+juVtMJaC2QdBwkmn6U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RVMtItiaNd5ieuQTHxFUJvENRcjPvyLz83L+Cwfu387fZV/ylOy2cEE0cmzxTsUZ1
-	 45DD5UJfGX0E+fzgoiBEt8SiDSOAHAPHmJb4GGuMpI043fR8ZH04lHxEJbTr6u1epo
-	 Hc77BLfEargAsXnUyd4rQ9Xk7PBpnUFnpwXG1htqU0Vw6+jakYCk0zWXda6evkbUfB
-	 dvvlOVqRedGXQSHATW+G0IdYyyBl4t71cYvWv87WEoPLatKFOcsj4b5BF/WoSqfCVC
-	 PLTBYwH/P5Nv/9tQotNXj7IxnH6oLUyLqMLrSDG/5Kh1WeSCviBooqNPozzZAuc8l4
-	 evCK0Vs60URGg==
-Message-ID: <23f0efae-9d37-45cd-85df-7122843fece0@kernel.org>
-Date: Fri, 25 Apr 2025 08:22:50 +0200
+	b=eq8LIAlrG+5LPy5mNRGrmLJAnPdKrizGCZYWS9cpp16jb/yqKx7Ci9j5oVORdW6/D
+	 Q07ClE6Qj5rFvqGm/7Qj/a9RRAwbtbW3rQD0MnhVvLA14xVmbL8LnVjnQvMB4QrjeO
+	 CfUploE8g13uL9Hyj9k+wAYPApnVoH/Mu1ahaqVcLnYzPHCyd2qBn9KIU/sH5cKa+Y
+	 WKeju8Wo6PITL623i0Qql6Rv9Mw6O5xC4E1aln16MMcOiBYhNg8KWxgy7mndRDNWlA
+	 X0k+gV9RZXjVkwTOarG5ag4qvi1ERDuF6iPfmWBW0p/BnKXx6AmSLThmZDpw8zZ/tG
+	 6OkGlp/zvmcsQ==
+Message-ID: <8b8ff49e-c72e-4cb4-a412-a6b9f15d2ec6@kernel.org>
+Date: Fri, 25 Apr 2025 08:28:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 2/6] dt-bindings: remoteproc: qcom: document hexagon
- based WCSS secure PIL
-To: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>,
- andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- quic_mmanikan@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com
-References: <20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com>
- <20250417061245.497803-3-gokul.sriram.p@oss.qualcomm.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add support for bcm74110
+To: Justin Chen <justin.chen@broadcom.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: florian.fainelli@broadcom.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, jassisinghbrar@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20250404222058.396134-1-justin.chen@broadcom.com>
+ <20250404222058.396134-2-justin.chen@broadcom.com>
+ <b32aa644-6984-476b-abc0-a5416f551bba@kernel.org>
+ <9088acd0-4650-4b10-88f9-6b6c0b1f9978@broadcom.com>
+ <8abcf2bf-77cb-4380-bdc4-95c3796a96f0@kernel.org>
+ <e0e7952b-a308-4fb7-8af6-d4802e7a5080@broadcom.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,48 +107,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250417061245.497803-3-gokul.sriram.p@oss.qualcomm.com>
+In-Reply-To: <e0e7952b-a308-4fb7-8af6-d4802e7a5080@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/04/2025 08:12, Gokul Sriram Palanisamy wrote:
-> +  interrupts:
-> +    items:
-> +      - description: Watchdog interrupt
-> +      - description: Fatal interrupt
-> +      - description: Ready interrupt
-> +      - description: Handover interrupt
-> +      - description: Stop acknowledge interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: wdog
-> +      - const: fatal
-> +      - const: ready
-> +      - const: handover
-> +      - const: stop-ack
-> +
-> +  clocks:
-> +    items:
-> +      - description: sleep clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sleep
-> +
-> +  mboxes:
-> +    maxItems: 1
-> +    description: A phandle for the TMECom mailbox driver
+On 10/04/2025 20:44, Justin Chen wrote:
+> 
+> 
+> On 4/7/25 11:05 PM, Krzysztof Kozlowski wrote:
+>> On 07/04/2025 22:57, Justin Chen wrote:
+>>
+>>
+>>> from v2 of my patch was copied from said generated DTS.
+>>>
+>>> Apologies as I navigate through the different yaml keywords here. The HW
+>>> isn't changing, I am just struggling with representing the HW using the
+>>> different keywords. And the different implications of using said keywords.
+>>>
+>>> Here is what I have for v4.
+>>>        items:
+>>>          - description: RX doorbell and watermark interrupts
+>>>          - description: TX doorbell and watermark interrupts
+>>> +    description:
+>>> +      RX interrupts are required to notify the host of pending messages. TX
+>>> +      interrupts are optional. The TX doorbell interrupt is not used by the
+>>> +      host, but watermark interrupts may be used to notify a host
+>>> waiting on
+>>> +      a full out queue.
+>> What does it mean optional? Board decides on SoC connections? Given SoC
+>> is fixed isn't it?
+>>
+> 
+> Maybe I misunderstand optional here. We have optional from the SoC 
+> perspective and optional from a driver perspective. I was thinking if we 
+> have a HW feature that the software may choose to use, it is considered 
+> optional. If that is not the correct understanding, I can make 
 
-This is also a new property.
+Both meanings are considered. Optional for driver means hardware has it
+but also has default values and driver implementations can work without
+it on these defaults, e.g. some property configuring registers like
+min/max regulator voltages.
+Optional for hardware means it can really be "not connected" on some
+hardwares/boards, e.g. some pins are grounded. The "interrupts" do not
+really fit into the first category, so they could be optional only if
+your hardware really allows this interrupt to be missing (or such
+hardware exists).
 
-Phandles cannot point to drivers. It is just impossible. It is a phandle
-to some device (as in "device node", but we describe here hardware)
-
-Anyway, either drop description if obvious or use simpler form:
-  items:
-    - description
-
+> adjustments. I will remove minItems, which from understanding, means 
+> both IRQs are required.
 
 Best regards,
 Krzysztof
