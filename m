@@ -1,86 +1,96 @@
-Return-Path: <devicetree+bounces-170640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF8A1A9BD29
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:14:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BF2A9BD39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 090A14C0909
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 03:14:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 101209A2076
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 03:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2E61714B2;
-	Fri, 25 Apr 2025 03:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="SKRlq7iI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2875318132A;
+	Fri, 25 Apr 2025 03:30:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967B62701AE;
-	Fri, 25 Apr 2025 03:14:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF22D183CA6;
+	Fri, 25 Apr 2025 03:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745550876; cv=none; b=lvVP+JYI3amio6phTEvviG9yIKBMrat8nC08WHry17jv4Ibj9vt6DCoBTShIu95gk6m0T+EvXcmMRKJ4x8ZLAaFWpkZWWXbGayyUKfnkwyupPHHLuuVix0rDnncoD4Df3eKKVs/8JiIkQqTKaCQMVg9I4DoATUBrKaYNCfbJqOg=
+	t=1745551812; cv=none; b=S7lS+hPokgvtg/R5xijSnBa8of4wKvZRTUBinyZDPxGM0qqoxRk/IhrM6sEWdh9pSQxGx/Xgf45r4k2GgnicDDCHv/CDzN35o3XDqGqUlwUUq7YdRvgMw3NxY1AwMudewvTA5vNF9tmme7ilC1ANcSRY824knNQ3dEa1kZeM4j4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745550876; c=relaxed/simple;
-	bh=9xzEWc7rbuzjVsxgwE/wIoKdmmySG3tWSDW4PCBvxPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UGyEeMlGhFgB3uMatylux0oXdvhWzg/Wke7tAYuAKfd/RmAU/HomtZAnEYscYd4mUBFP5fjinDuqCK6MehQht8sEYSI82rRWnuyIYhsR1vfCSy+a7WUvzspg8JIwtp2rOMMaLKlD8xeM6MgK8SNpEKv4xuFO4NGNODiGhFrgF5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=SKRlq7iI; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Ns+L0aOm8q4XI8tdY0zbGpGXoWoyJjIZ1B6rDiXbX30=;
-	b=SKRlq7iImJSm8WSOqSFewc3xuRNOOHQvEfFqd5/qWhssemJdgOYpsRvR8vgppJ
-	Lcod9RJv/UYLydErZV9zePUAfDLqC37XxNuhpNq8mMC1IIQ4U5jLTplbf1PDkd2v
-	D0azbviE8xSXZxe75QPU3OA1y5Qsf4FrBWyaUSVbx8tvI=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3zEXr_QpoCyPbAw--.5525S3;
-	Fri, 25 Apr 2025 11:13:48 +0800 (CST)
-Date: Fri, 25 Apr 2025 11:13:46 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, hongxing.zhu@nxp.com
-Subject: Re: [PATCH v2 0/8] arm64: dts: imx8: create common imx-pcie[0,1]-ep
- overlay file
-Message-ID: <aAr96tBdflbAyKSb@dragon>
-References: <20250423-imx8_pcie_ep_dts-v2-0-43c982d83a8f@nxp.com>
+	s=arc-20240116; t=1745551812; c=relaxed/simple;
+	bh=gOf56mihxMyOdd5gu5wMRopNR9Mnpk5+9hN62Q4a5uA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=tifWOYuYVWfUH9DktOMwxKHu2Rx800yFw/KcrOg5lciTZpPMrtC0q8ngqUdoNrlEvQetb2/qTz3qsnbXaVfp/RNoptGbtsBJrXS+i/nfiedImXQ9t9ptuMSsPeOckC9hG3Cbgst4ouWNYzoiRwhaD1hdYuTsF2KvlfCR4wBDsro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.214.249])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 131231831;
+	Fri, 25 Apr 2025 11:30:05 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: dlan@gentoo.org
+Cc: andre.przywara@arm.com,
+	andrew+netdev@lunn.ch,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	jernej.skrabec@gmail.com,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	mripard@kernel.org,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	samuel@sholland.org,
+	wens@csie.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E board
+Date: Fri, 25 Apr 2025 11:30:01 +0800
+Message-Id: <20250425033001.50236-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
+References: <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250423-imx8_pcie_ep_dts-v2-0-43c982d83a8f@nxp.com>
-X-CM-TRANSID:Mc8vCgD3zEXr_QpoCyPbAw--.5525S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW5Kr4fuF1rXFy7Xry7try3twb_yoWxGFg_Cr
-	45Wa1kJ347Jw4fJ345A3ZxuFy2g345Z3y5Wry8Xwsa93WfZFWYvr4kJr1rW3WUCF13Xw4D
-	CFn8Xw1xXw4rGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU08cTPUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiARs6ZWgK0Y3JqQAAsb
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZH09DVk9JQkxJSU1NSE5IS1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VJT0JZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVU
+	pCS0tZBg++
+X-HM-Tid: 0a966afecd6603a2kunm131231831
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OhA6TQw5ITJWTj9KAUwvEEgt
+	CAkwCStVSlVKTE9OTk5KQ0tMSkpIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpPVUlPQllXWQgBWUFKT0xONwY+
 
-On Wed, Apr 23, 2025 at 08:41:22PM -0400, Frank Li wrote:
-> Frank Li (8):
->       arm64: dts: imx8: create unified pcie0 and pcie0_ep label for all chips
->       arm64: dts: imx8dxl-ss-hsio: correct irq number for imx8dxl
->       arm64: dts: imx8dxl-evk: Add pcie0-ep node and use unified pcie0 label
->       arm64: dts: imx8: use common imx-pcie0-ep.dtso to enable PCI ep function
->       arm64: dts: imx95: add pcie1 ep overlay file and create pcie-ep dtb files
->       arm64: dts: imx8mm-evk: add pcie0-ep node and apply pcie0-ep overlay file
->       arm64: dts: imx8mq: add pcie0-ep node
->       arm64: dts: imx8mq-evk: add pcie[0,1]-ep nodes
+Hi,
 
-Applied all, thanks!
+> On Radxa A5E board, the EMAC0 connect to an external YT8531C PHY,
+> which features a 25MHz crystal, and using PH8 pin as PHY reset.
+> 
+> Tested on A5E board with schematic V1.20.
+
+Although the schematic says it is YT8531C, the PHY on the V1.20 board
+is Maxio MAE0621A. The article of cnx-software also mentioned this:
+https://www.cnx-software.com/2025/01/04/radxa-cubie-a5e-allwinner-a527-t527-sbc-with-hdmi-2-0-dual-gbe-wifi-6-bluetooth-5-4/
+
+Thanks,
+Chukun
+
+--
+2.25.1
 
 
