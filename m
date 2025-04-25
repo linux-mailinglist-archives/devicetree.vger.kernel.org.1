@@ -1,187 +1,150 @@
-Return-Path: <devicetree+bounces-170955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A6B7A9CC6C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:09:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D11A9CC6D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EF7AA03AD5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:04:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 630961C041D6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53ED2749E4;
-	Fri, 25 Apr 2025 15:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHPUBc3H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E9925E446;
+	Fri, 25 Apr 2025 15:05:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31185274678;
-	Fri, 25 Apr 2025 15:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B993025D20D;
+	Fri, 25 Apr 2025 15:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745593360; cv=none; b=f97SPOhoVGfJe5lH5UJxjQf6yjdNNQ9b3xu/WXcJQlgalmqXl5eezB4RB0RJ9Oo2DO4XervvJr+nQfLfHydhxknizF3u3rJ3PfpR3TbgD+kaWEh8uQV0aP+nHUK+cIHr/IwTgw8CabTKXXlROVyCH/rhJ2G2yXzsg54qDBfkGlE=
+	t=1745593545; cv=none; b=gZgWKjrbB5PuAXgxhBhtrAfa2XxPTd9Me/TVvbaWyWjzR5ThdCMA1c01/01Tp/s2GZ78gJgwowfmASPLhJLTbOvbT3Xm9uiWnpjIYyBjrtYQczk6Rzu/DyewNu3h8Ua+e4xMNQQ+4hj91EZviEBxQ22fp4XLhJ6Ra4bKzzWEDXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745593360; c=relaxed/simple;
-	bh=dxmjWywiK0Xyl1oGWV/pydlU53vhd1+AcfgyENDB0jE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FCBkDItrZmcBYd93/T3TPA955kpaAZ0Bl/QahMDL6Xd2Lcrn291cmNprERtW6n3wrO1NAcpPLzuTkQZZtlt2jKYXxbWONUpol/zu4wcDRd0vwy3KW5FCzRbeMnwmwgCQXbqMlUM3A1VUngk2XLnfofx7xiRpz8Cex7SZszBNIqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mHPUBc3H; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-736aa9d0f2aso3038039b3a.0;
-        Fri, 25 Apr 2025 08:02:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745593358; x=1746198158; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+tWJq6XlOyiQDY9fEz34q6TpB8T/RU7UR54sdkDEpSg=;
-        b=mHPUBc3HheRqxa4cOdkuJ+w28l8WXsERgvOuse52ZSKDezhrFMjm27g69KpesosJsM
-         OefFGspn7LcQ84Oa8tvdvEZf9NstIQqcEPTxT/EJR6yRV4AWPfs89097IJf+J1UCTAmG
-         jt2XxgXRD6iVBHzNFdQi3OgFw5tIiIFF80qSYI9jTKP1TUF8C7UESJm9lA7oQLxtJ1hm
-         0AsaH8/4lmXcS1us34Sl2Q+meO8qjqxWSUynkFDtkcRWf1UUJu0MzlBUvP/pZFaghaSQ
-         B2HmZHc5MXF1+ShfmQGQBIYV+AUU+L/Yw70s80XVFDCZ8ebbw3SMiBolZTvuQDKVh2rT
-         huIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745593358; x=1746198158;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+tWJq6XlOyiQDY9fEz34q6TpB8T/RU7UR54sdkDEpSg=;
-        b=kggy5b4Vhw33ZjiSkSVVn+rZkz7Iz80vOKJqv/h05CNQ/aysLVsw/7LmuS/2CPcepH
-         L4n06FVHAwsSClF1v0+Q8/FY6pAECI80wLHP/RcGSml36tqsTtMLiwNmfpfjOCK2ZJJv
-         uVPVbXl3W4r1mniz9AN0tonu+wxU9Rq+civMob2TRc5uVGEseEX504t8IX2ukI/BaOZt
-         fErERSS8TBzGVmdjvL+ZLbNfG4xMm9+E+SCF8eh3OOSBzncklTPQeyabnyvGyAKcy/se
-         r3vKHRXpitB1541BK++MtpnUN+0v6OI3zG8GviAwYHUlbKfdIGyaW+KGiANYszoUums5
-         35UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTUsvnn24+q9wq47YdKlDrJv7IQjfQDcROuMHH07byGUyhiFIQcxC2LsmwwCVLoxc2w4dnZerdU6OZTNU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTdvM8PDdL9Pl7TOKLFj9qIHzpfZPMlic/83j5+Fl/1T3FhU2U
-	Bux7noTI87GDsn5owctO36Xgb02UhrNFirx+xb5Slq4hOqvEK1kq
-X-Gm-Gg: ASbGncszJ3pA2L9MiFHbiYUGFCxTt4WgSBBsyFusCHaPICbMWW+33wJ8RNCOM7srZnU
-	HRFjbuhsInAeBXsqlFq6yepjPwjOYI5OlB1IZczlZmccZHuZ6q8lrBLzIfyy4WebF+jQ3TcKv0B
-	EGNkZoB0LNtoppLNNzi49+Q6k5f19yV55D7mWZd7MNhJtRwinA3vO2Q1Oh7iWeHNaogkPXxC0pw
-	eV7X64gc9ltWZtKqiCASsGjChgtwbtPEjg78vKTJWSpji0SrjM0Z+5cOYgYLetPgp+uV2VupG1e
-	+RNVdvQkAnv0ojW1wiQiAkya27Rw2h6SYCfeCdJyY3xgZKB+hAdR
-X-Google-Smtp-Source: AGHT+IHTtYhjS2JIBkQcm0mKs0zc9Y3HQI5vNbYB2tTsjnKaosMTzLOoX8dqIc5SryHq4WGWl8GeJg==
-X-Received: by 2002:a05:6a20:394f:b0:1f5:7007:9ea5 with SMTP id adf61e73a8af0-2045b6981dfmr3922340637.2.1745593358409;
-        Fri, 25 Apr 2025 08:02:38 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15f76f45bcsm2996984a12.13.2025.04.25.08.02.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 08:02:38 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 25 Apr 2025 19:02:23 +0400
-Subject: [PATCH v5 2/2] ARM: dts: vt8500: Add VIA APC Rock/Paper board
+	s=arc-20240116; t=1745593545; c=relaxed/simple;
+	bh=p0doezY0qRJoQyRKWjT90kO1zQ1vjFowzJ8Ke6uItuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eD6W8makHJGTca7fVuXhRUXALBX/r6Vc9Po84f+AAGs7nxk7RbiElVKwqeOBm0ktU8Scg3gckvRow6pvMue0EyyVdvgJo7jq4b6hlsCgd8FOxaw80MjKtBnUUNlK3J2/CWA52GogysHRUecyQRHCx9h6iwthCBtBKqGFOtSoJ9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9847D106F;
+	Fri, 25 Apr 2025 08:05:36 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1867B3F59E;
+	Fri, 25 Apr 2025 08:05:38 -0700 (PDT)
+Date: Fri, 25 Apr 2025 16:05:35 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>, Linus Walleij <linus.walleij@linaro.org>
+Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Corentin Labbe <clabbe.montjoie@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+ <netdev@vger.kernel.org>
+Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet
+ MAC
+Message-ID: <20250425160535.5a18adbb@donnerap.manchester.arm.com>
+In-Reply-To: <CAGb2v65QUrCjgHXWAb72Sdppqg1AUxXyD_ZcXShtkRSHCQBbOg@mail.gmail.com>
+References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
+	<20250424-01-sun55i-emac0-v2-3-833f04d23e1d@gentoo.org>
+	<CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
+	<20250425104128.14f953f3@donnerap.manchester.arm.com>
+	<CAGb2v65QUrCjgHXWAb72Sdppqg1AUxXyD_ZcXShtkRSHCQBbOg@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250425-apc_paper_binding-v5-2-3aef49e97332@gmail.com>
-References: <20250425-apc_paper_binding-v5-0-3aef49e97332@gmail.com>
-In-Reply-To: <20250425-apc_paper_binding-v5-0-3aef49e97332@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745593359; l=2603;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=dxmjWywiK0Xyl1oGWV/pydlU53vhd1+AcfgyENDB0jE=;
- b=PxBRFd+DlojZ4UuFSxtTkoHa3ihmZ8vGszUhdjVd8fvssBYzBTNSzR87aR80bopVOFFfEd9Me
- g5o2t+bOzVOBu8dOaCXjoXuj0ASUJKLmYVJYYyCBF7GaH7t5CJ6KtX7
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-APC Rock is a development board based on WonderMedia WM8590 released
-around 2013. Paper is the same board, but with the VGA port left
-unpopulated, and shipped with a recycled cardboard case
+On Fri, 25 Apr 2025 22:35:59 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-Its hardware includes:
-* Single-core Cortex-A9 CPU at 800 MHz
-* 512MB DDR3 RAM
-* 4GB NAND flash
-* 8MB SPI NOR flash
-* ARM Mali-400 GPU
-* HDMI output (type A) capable of 1080p
-* VGA output (on Rock, but not on Paper)
-* 2x USB 2.0 type A
-* 1x USB 2.0 OTG (microUSB connector)
-* microSD slot
-* 10/100M Ethernet
-* 3.5mm minijack connector with combined headphones/mic
-* Half-height miniPCIe slot (with only USB 2.0 signals)
+adding LinusW for a more generic pinctrl question ...
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm/boot/dts/vt8500/Makefile            |  3 ++-
- arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts | 21 +++++++++++++++++++++
- arch/arm/boot/dts/vt8500/wm8950.dtsi         | 11 +++++++++++
- 3 files changed, 34 insertions(+), 1 deletion(-)
+> On Fri, Apr 25, 2025 at 5:41=E2=80=AFPM Andre Przywara <andre.przywara@ar=
+m.com> wrote:
+> >
+> > On Fri, 25 Apr 2025 13:26:25 +0800
+> > Chen-Yu Tsai <wens@csie.org> wrote:
+> >
+> > Hi Chen-Yu,
+> > =20
+> > > On Thu, Apr 24, 2025 at 6:09=E2=80=AFPM Yixun Lan <dlan@gentoo.org> w=
+rote: =20
+> > > >
+> > > > Add EMAC0 ethernet MAC support which found on A523 variant SoCs,
+> > > > including the A527/T527 chips. MAC0 is compatible to the A64 chip w=
+hich
+> > > > requires an external PHY. This patch only add RGMII pins for now.
+> > > >
+> > > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > > > ---
+> > > >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 40 ++++++++++++++=
+++++++++++++
+> > > >  1 file changed, 40 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/=
+arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> > > > index ee485899ba0af69f32727a53de20051a2e31be1d..c9a9b9dd479af05ba22=
+fe9d783e32f6d61a74ef7 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> > > > @@ -126,6 +126,15 @@ pio: pinctrl@2000000 {
+> > > >                         interrupt-controller;
+> > > >                         #interrupt-cells =3D <3>;
+> > > >
+> > > > +                       rgmii0_pins: rgmii0-pins {
+> > > > +                               pins =3D "PH0", "PH1", "PH2", "PH3"=
+, "PH4",
+> > > > +                                      "PH5", "PH6", "PH7", "PH9", =
+"PH10",
+> > > > +                                      "PH14", "PH15", "PH16", "PH1=
+7", "PH18";
+> > > > +                               allwinner,pinmux =3D <5>;
+> > > > +                               function =3D "emac0";
+> > > > +                               drive-strength =3D <40>; =20
+> > >
+> > > We should probably add
+> > >
+> > >                                   bias-disable;
+> > >
+> > > to explicitly turn off pull-up and pull-down. =20
+> >
+> > Should we? I don't see this anywhere else for sunxi, probably because i=
+t is
+> > the (reset) default (0b00).
+> > I wonder if we have a hidden assumption about this? As in: if no bias is
+> > specified, we assume bias-disable? Then we should maybe enforce this is=
+ in
+> > the driver? =20
+>=20
+> There isn't any assumption, as in we were fine with either the reset
+> default or whatever the bootloader left it in. However in projects at
+> work I learned that it's better to have explicit settings despite
+> working defaults.
 
-diff --git a/arch/arm/boot/dts/vt8500/Makefile b/arch/arm/boot/dts/vt8500/Makefile
-index 255f4403af91c1d6a22416ab694b8eab44bf98a2..6fd29c41f3660d29d0368e4f8772d46b0a3c414c 100644
---- a/arch/arm/boot/dts/vt8500/Makefile
-+++ b/arch/arm/boot/dts/vt8500/Makefile
-@@ -4,4 +4,5 @@ dtb-$(CONFIG_ARCH_VT8500) += \
- 	wm8505-ref.dtb \
- 	wm8650-mid.dtb \
- 	wm8750-apc8750.dtb \
--	wm8850-w70v2.dtb
-+	wm8850-w70v2.dtb \
-+	wm8950-apc-rock.dtb
-diff --git a/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts b/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..58b3c8deb4f20ae072bf1381f1dfa5e5adeb414a
---- /dev/null
-+++ b/arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2025 Alexey Charkov <alchark@gmail.com>
-+ */
-+
-+/dts-v1/;
-+/include/ "wm8950.dtsi"
-+
-+/ {
-+	model = "VIA APC Rock";
-+	compatible = "via,apc-rock", "wm,wm8950";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/vt8500/wm8950.dtsi b/arch/arm/boot/dts/vt8500/wm8950.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..31fba05d3c3e70b21a64d08b5cdf645102a1faf3
---- /dev/null
-+++ b/arch/arm/boot/dts/vt8500/wm8950.dtsi
-@@ -0,0 +1,11 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2025 Alexey Charkov <alchark@gmail.com>
-+ */
-+
-+/* No differences have been discovered vs. WM8850, but chip markings differ */
-+/include/ "wm8850.dtsi"
-+
-+/ {
-+	compatible = "wm,wm8950";
-+};
+I totally agree, but my point was that this applies basically to every
+pinctrl user. I usually think of the bias settings as "do we need
+pull-ups or pull-downs", and if nothing is specified, I somewhat assume
+bias-disable.
 
--- 
-2.49.0
+So I am fine with this being added here, but was wondering if we should
+look at a more generic solution.
 
+Linus: is bias-disable assumed to be the default, that pinctrl drivers
+should set in absence of explicit properties? Or is this "whatever is in
+the registers at boot" the default we have to live with?
+
+Cheers,
+Andre
 
