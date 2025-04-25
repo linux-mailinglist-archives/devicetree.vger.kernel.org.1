@@ -1,177 +1,160 @@
-Return-Path: <devicetree+bounces-171113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52630A9D41C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:24:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBA1A9D43C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:40:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19C4C7B376A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:23:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2A469A62B6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48852224AF9;
-	Fri, 25 Apr 2025 21:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C8C224B15;
+	Fri, 25 Apr 2025 21:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yULMhK4d"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T5AfWPwj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AE419342F;
-	Fri, 25 Apr 2025 21:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D89224AF9;
+	Fri, 25 Apr 2025 21:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745616276; cv=none; b=TToiOWYcCLts33nR56IJOl375FIGw95N/3PPlXQSlCKs2iXCy64NCLPHmZXHUQA9ybMM9hMfTaEY75N/wZXwP/vI9QqCjky0Q+0G++fPnF70MuXsBBKtYavh3lhJuIg0wPQjGL6ODi4L6pC06Aztxb4AUe5czYv6wY7+EIFeMIw=
+	t=1745617198; cv=none; b=cZztBIJSX/ai3wkWaAJlYHmbwy4ey2Hgdnm4JNz5OKc2nIzlyHW7omoULzKWawTobaTZX28laiNuLxVq7ix7BqgPNEwWOFn8i3MZK3ki8RDZMsEgRDdlUwBS1ozbIob+c91/wpysolHpCK7DIqXX7Kym3Am0MEd2nuZ8aOsgVmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745616276; c=relaxed/simple;
-	bh=6vJJZX4Rsl51am1//N+LT4UR2RhECKJINjls860OcXo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eQtJO2oE8o+3L+BgpXFpW89K4ZGXAVHqWVv+wWTIOetwYYt45FnGE+qXCvKRr6ayS8HPVHoie06qFNcPkZnu9lHZscHI9a+VBTiPNSMIemnohuNvEmHoDp6Waf85HSGPP8oaY+3q+eCBQun3WnjUZXeKXZQg6PQUUoRCrsJfIJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yULMhK4d; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PLOS9F2260395
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 16:24:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745616268;
-	bh=7ZFpKX74QzSf8VwJzMeMYNzZlpQCIYkfWvyMSBUV5s8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=yULMhK4dtdTYcFwHCKm9wCcRfaT3nzN1SuxrCShWIdL6Hd07clLQngbTqYCI/fOCN
-	 JmqYybR3DT5vrlxnLLuzeR6gMuh0NB07+BcwXTwAajkaBTSi5s+UOTPvdLfPqpSFof
-	 JCb6Ufr9eWPDfT1ndOzhgq6e0DYf4AOFiUOrKPmE=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PLOSRd130571
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 16:24:28 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 16:24:27 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 16:24:27 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PLOR9v118465;
-	Fri, 25 Apr 2025 16:24:27 -0500
-Date: Fri, 25 Apr 2025 16:24:27 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Chintan Vankar <c-vankar@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <srk@ti.com>,
-        <s-vadapalli@ti.com>, <danishanwar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am68-sk/k3-j721s2-mcu: Add
- bootph-all property to enable Ethernet boot
-Message-ID: <20250425212427.vvyocc4mmne5g3vq@vividly>
-References: <20250425051055.2393301-1-c-vankar@ti.com>
- <20250425051055.2393301-2-c-vankar@ti.com>
+	s=arc-20240116; t=1745617198; c=relaxed/simple;
+	bh=K2+ZLXt+NUXHfrLO5kMO+0fyQsf5+a9+qiQ7z4zUz6I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CG4FL/Ly8e0y89yEaXl6KIhH8I4aqFmTLVtSESWdk1452SZwOrMmHjcf5d4kAovPyBCsI0p++b9uygsQxj7B1y55bWjS7AIQoZ+EB6u61rF90+E1XeUBkdPMFXr+8X4ISebXlUH2xOvjeSUmt3nqBp8fOMctbJ58i8nnDftkDmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T5AfWPwj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGJqtY003979;
+	Fri, 25 Apr 2025 21:39:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	l7HoHHwRm7qx6newPoYAeZn2J8TxwbXKaGF2NpVjD1Q=; b=T5AfWPwjbBpZKTT0
+	AzxQ9x2dmrOEutnvOFEskBbn5t9B9d+DcrRF4u0cBdY9eq+2Cx2sMcam446Pq/zz
+	7j0x++wrTs152r110D6OyPaqtQ1d7OxASDA1+zhKWDNGX3JbSbJhQ9j6fsu6e3bv
+	7mXzp4pNLarIMnVP8zgGnEWjL68BE7E5cRrURVyQbE35PGxh+MhLodVrhdE63hwr
+	PMFRaIb3x8SaNeToGIukZCWTElO8/f02H4cEUOLnBhenhzpga4FsdgvPSuty/RjT
+	XTKkyxDBc+blgrngeb4IpOlXUf1RVXvOzA/+AN/VWSwxZ7rrIbHan6HwDxQ3CFHP
+	N+osOA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh2ae4f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 21:39:39 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53PLddv2005220
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 21:39:39 GMT
+Received: from [10.110.41.60] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
+ 2025 14:39:38 -0700
+Message-ID: <bcca2d97-2092-42f0-951d-f09f144e515d@quicinc.com>
+Date: Fri, 25 Apr 2025 14:39:31 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250425051055.2393301-2-c-vankar@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Document usb-soc-be property
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Felipe
+ Balbi <balbi@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Jaroslav
+ Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Stephan
+ Gerhold <stephan.gerhold@linaro.org>
+CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>
+References: <20250425-fp4-usb-audio-offload-v1-0-f90f571636e4@fairphone.com>
+ <20250425-fp4-usb-audio-offload-v1-1-f90f571636e4@fairphone.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <20250425-fp4-usb-audio-offload-v1-1-f90f571636e4@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=680c011b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=6H0WHjuAAAAA:8 a=xMRfEcGXebkPZtLSRzYA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: rnmO_5Z7f4dqOqmQ0-ctg3OmqaWcXIcm
+X-Proofpoint-ORIG-GUID: rnmO_5Z7f4dqOqmQ0-ctg3OmqaWcXIcm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDE1NiBTYWx0ZWRfX/BQM2Nf4UBlF jitJCnS6Qy7Ze70LDRTBK550dv/xbxVRZnrDpeLJkGuE6ZWiQw9EhaJFLlSeYVvzHArPDLUH96g GUcx5SnAUUhoULle4UjRdQSRJyGhN0JH/I0mMDtFRgvQ7IywoHZ2lxBatdIas/kWOsFdumB38Iq
+ Uss6BoYR/kkIcDjyX/jJEtBmuX7oTxnCqOd16QWaKLQe+273a8zf0QiPwl1qsH456Iw3/ZdgiB5 yjYC+KSuAiE0O9x4OyVqhXt/41lC0oI5rGDqfcun639PZ37TwcKd2f7q3rHTxzQ7q6Fj7Kv1L3/ fEz5Eu5GR0LT6A3LafWl/Elcs9zCroLXzwlrbsWvZUG03Xl43xgtm0rCFmu7CnI2vJrTJ3+M12t
+ BwhJ72XmGDVYHa184aX0u2+tv5RGexTgvhqKb5tXsCTArhCFNMgT+YSldrwXYq48MafWWiwM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_07,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 clxscore=1011 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250156
 
-On 10:40-20250425, Chintan Vankar wrote:
-> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
-> stage. Add bootph-all property to required nodes to enable Ethernet boot
-> on AM68-SK and J721S2-EVM.
+
+
+On 4/25/2025 3:44 AM, Luca Weiss wrote:
+> The property usb-soc-be is used by the new SoC USB layer which is used
+> for USB audio offloading on Qualcomm SoCs.
+
+Hi Luca,
+
+This property can be dropped now, as in the latest revision I added
+utilizing the auxiliary device/bus now between the Q6USB backend DAI and
+the vendor USB offload driver.  Reduces the need to add more properties.
+
+Thanks
+Wesley Cheng
+
 > 
-> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> Cc: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Link to v2:
-> https://lore.kernel.org/r/20250302153502.181832-2-c-vankar@ti.com/
-> 
-> Changes from v2 to v3:
-> - Removed "bootph-all" property from "mcu_cpsw" node as suggested by
->   Vignesh since child node already has that.
-> 
->  arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 3 +++
->  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 3 +++
-
-Why does every board that uses j721s2 need to have bootph-all for
-cpsw? Is network boot mandatory boot mode for all boards? That does
-not sound right. Just do them in the board file please.
-
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 5fa70a874d7b..c402d5e288b0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -344,6 +344,7 @@ J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
->  			J721S2_WKUP_IOPAD(0x018, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
->  			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
->  		>;
-> +		bootph-all;
->  	};
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
+> index 6c0b8b6538246adf746fe7ccd6df936131c61444..07549dec0f74234465fa9b6ab21871762a2f5127 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
+> @@ -38,6 +38,10 @@ properties:
+>        - description: USB2/HS PHY
+>        - description: USB3/SS PHY
 >  
->  	mcu_mdio_pins_default: mcu-mdio-default-pins {
-> @@ -351,6 +352,7 @@ mcu_mdio_pins_default: mcu-mdio-default-pins {
->  			J721S2_WKUP_IOPAD(0x034, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
->  			J721S2_WKUP_IOPAD(0x030, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-> @@ -626,6 +628,7 @@ &mcu_cpsw {
->  &davinci_mdio {
->  	phy0: ethernet-phy@0 {
->  		reg = <0>;
-> +		bootph-all;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->  		ti,min-output-impedance;
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index bc31266126d0..218290b1840a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -154,12 +154,14 @@ mcu_conf: bus@40f00000 {
->  		cpsw_mac_syscon: ethernet-mac-syscon@200 {
->  			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->  			reg = <0x200 0x8>;
-> +			bootph-all;
->  		};
->  
->  		phy_gmii_sel: phy@4040 {
->  			compatible = "ti,am654-phy-gmii-sel";
->  			reg = <0x4040 0x4>;
->  			#phy-cells = <1>;
-> +			bootph-all;
->  		};
->  
->  	};
-> @@ -562,6 +564,7 @@ cpsw_port1: port@1 {
->  				label = "port1";
->  				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
->  				phys = <&phy_gmii_sel 1>;
-> +				bootph-all;
->  			};
->  		};
->  
-> -- 
-> 2.34.1
-> 
+> +  usb-soc-be:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Link to the USB SoC sound backend
+> +
+>    phys:
+>      minItems: 1
+>      maxItems: 19
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
