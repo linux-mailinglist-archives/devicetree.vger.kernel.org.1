@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-170612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530B8A9BB97
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:10:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1121A9BBE4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 630D1466E87
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 00:10:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A0093A58F2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 00:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 917F110E9;
-	Fri, 25 Apr 2025 00:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EIRkfh3O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2C3A50;
+	Fri, 25 Apr 2025 00:35:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6775F382;
-	Fri, 25 Apr 2025 00:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664B817E4
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 00:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745539800; cv=none; b=RXEKLT7MXnPugZRNEI8cBM/WiEGpzXBjO8Ev1LudEpKLEbe36jPQmsQzL3EsxR+nLhC0F0qlcGF9oqG4cwo0Nkj70bKvn3nTAVEB5ketXp7/D3PQMZS4qfZbLy6IaqYk3VWTlg6IpzkmXcMvAE9ReDw66v7UpwOP+CnDolcycr4=
+	t=1745541330; cv=none; b=Tcl1YTu0JE41hE9MOE7GP8l7rRgIA+5hF67Ozvk9UR66X2sB4wsFu3bmkMrko2iCSJmMkkAi21rsHQ4DXpXOZan/9vDAWTAo00WoDPQjYlsar9Zl4NZ8WZotqQzWHNwCGu3uzAuIFFSl52RJ9NpxWw3i8h9KFHE53GXccXRA2cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745539800; c=relaxed/simple;
-	bh=nQICgtHxwmv7XZd+j3FJlSP5VbeYVx9lWdXfjR+/H5c=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=sw8WU/f3CtIe0wl0/vgevmlVOenKWn3p5zoLI0EGzGF5ixlDUjIhOAlIDPrZl7XkuWevKSM4oKkXimNOqdCL4KWuAA7BWVuhXw57256VifmFpf45QfB/bty6a7oI/Hwb6UwO/8oYRcFlZP7IKhvmlr/xnK4JibLSLrvzkZujtzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIRkfh3O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB285C4CEEB;
-	Fri, 25 Apr 2025 00:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745539799;
-	bh=nQICgtHxwmv7XZd+j3FJlSP5VbeYVx9lWdXfjR+/H5c=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=EIRkfh3OFpC7mVrFgkrMq17Vz0PJIAYgvI/CWYpu311U75poZn+GO2NNfq9WGmsno
-	 DT2F4BIoi/rJC8INnqcj2XC+vZA4ILZEGvj/Q3HCa9Lukbg47uXeaeVWPyhh6xD3j6
-	 SemXCbf0pyt4IS9ddlPN/ZjpnLDC8HweS/41FcWVdSkKRBsdk4VqH4bGyOQ5fuSz4T
-	 lLnK6G29MDdda6yTJO6WA5mb96kw270sPD49ydTWb6h2MvSU4sBy1wiFLHqsmMLbqT
-	 Z2yvdAN+kY3z00g6GQAYA08q1sjAHA4RJ8vOCLECjl37kthA0c5mzqUWKXphdIG9m1
-	 hfh0FWo+HfPag==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADCCF380CFD9;
-	Fri, 25 Apr 2025 00:10:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1745541330; c=relaxed/simple;
+	bh=AJkKi/LNWACRtZMEGqi0g3GzmMN6Bcomq9TUZ6Cj0n4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BgpEukdD020zw0m4vGyQuXkGzmb5wBcODVFB3gw1AHWvL4EPrGB6LhrrBd0XneQBE+pU4vIoDit0TIsTDPc7/p/z08YSFjfwSW+F+6mixWt+Wycme7iRGeWkVglwCcuaxdw+cWhV8zFRR9l130KtMem2PcZrZg+WDGdJFRTx+MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83D8B1007;
+	Thu, 24 Apr 2025 17:35:22 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 484183F5A1;
+	Thu, 24 Apr 2025 17:35:26 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH] arm64: dts: allwinner: a523: fix SD card detect pull resistor
+Date: Fri, 25 Apr 2025 01:34:22 +0100
+Message-ID: <20250425003422.3465-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.46.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,61 +53,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/8] net: bcmasp: Add v3.0 and remove v2.0
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <174553983824.3526942.6555892578388860662.git-patchwork-notify@kernel.org>
-Date: Fri, 25 Apr 2025 00:10:38 +0000
-References: <20250422233645.1931036-1-justin.chen@broadcom.com>
-In-Reply-To: <20250422233645.1931036-1-justin.chen@broadcom.com>
-To: Justin Chen <justin.chen@broadcom.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, rafal@milecki.pl,
- linux@armlinux.org.uk, hkallweit1@gmail.com,
- bcm-kernel-feedback-list@broadcom.com, opendmb@gmail.com,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, pabeni@redhat.com,
- kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
- andrew+netdev@lunn.ch, florian.fainelli@broadcom.com
 
-Hello:
+Trying to use the SD card on the Radxa board revealed that the card
+detect wouldn't work as expected (insert not detected). Looking at the
+schematic shows that the pull-up resistor is actually not populated
+("NC"), and the transistor just pulls the GPIO pin to GND, but it's
+floating otherwise.
+So using the pull-down flag is definitely wrong, we need the internal
+pull up to get a reliable signal. The same is true for the Avaota board
+(there is no transistor there, but it's floating in the same way). There
+is no schematic for the X96QPro+ board, but experiments show it's the
+same behaviour.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+So change the GPIO flag for the card detect GPIO property to activate
+the pull-up resistor for that pin.
 
-On Tue, 22 Apr 2025 16:36:37 -0700 you wrote:
-> asp-v2.0 had one supported SoC that never saw the light of day.
-> Given that it was the first iteration of the HW, it ended up with
-> some one off HW design decisions that were changed in futher iterations
-> of the HW. We remove support to simplify the code and make it easier to
-> add future revisions.
-> 
-> Add support for asp-v3.0. asp-v3.0 reduces the feature set for cost
-> savings. We reduce the number of channel/network filters. And also
-> remove some features and statistics.
-> 
-> [...]
+Fixes: 80e0fb4e491b ("arm64: dts: allwinner: a523: add Radxa A5E support")
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+Hi,
 
-Here is the summary with links:
-  - [net-next,v2,1/8] dt-bindings: net: brcm,asp-v2.0: Remove asp-v2.0
-    https://git.kernel.org/netdev/net-next/c/ef7c993ae247
-  - [net-next,v2,2/8] dt-bindings: net: brcm,unimac-mdio: Remove asp-v2.0
-    https://git.kernel.org/netdev/net-next/c/62c8c4656ef1
-  - [net-next,v2,3/8] net: bcmasp: Remove support for asp-v2.0
-    https://git.kernel.org/netdev/net-next/c/4ad8cb76bd0d
-  - [net-next,v2,4/8] net: phy: mdio-bcm-unimac: Remove asp-v2.0
-    https://git.kernel.org/netdev/net-next/c/8c28aace8864
-  - [net-next,v2,5/8] dt-bindings: net: brcm,asp-v2.0: Add asp-v3.0
-    https://git.kernel.org/netdev/net-next/c/e4bf8f8a22d8
-  - [net-next,v2,6/8] dt-bindings: net: brcm,unimac-mdio: Add asp-v3.0
-    https://git.kernel.org/netdev/net-next/c/9a8a73766b34
-  - [net-next,v2,7/8] net: bcmasp: Add support for asp-v3.0
-    https://git.kernel.org/netdev/net-next/c/e9f31435ee7d
-  - [net-next,v2,8/8] net: phy: mdio-bcm-unimac: Add asp-v3.0
-    https://git.kernel.org/netdev/net-next/c/538cb5573ae7
+please let me know if I should split this up into 3 patches, with proper
+Fixes: tags, or if you can maybe squash this into the original commits
+still?
 
-You are awesome, thank you!
+Cheers,
+Andre
+
+ arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts | 2 +-
+ arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts  | 2 +-
+ arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
+index 03c9a9ef5adc2..2d2f3af91d05e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
++++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
+@@ -56,7 +56,7 @@ &ehci1 {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo3>;
+-	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF6 */
++	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
+index c0bce3f4fa925..59db103546f65 100644
+--- a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
++++ b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
+@@ -56,7 +56,7 @@ &ehci1 {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
+-	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF6 */
++	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
+ 	bus-width = <4>;
+ 	disable-wp;
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
+index 85a546aecdbe1..dea2acc1849bb 100644
+--- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
+@@ -66,7 +66,7 @@ &ehci1 {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo3>;
+-	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF6 */
++	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+
+base-commit: 1e5a69d67d1b3c55c9b0cd3933af1436b5d52aa1
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.46.3
 
 
