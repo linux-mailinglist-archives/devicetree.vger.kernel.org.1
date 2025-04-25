@@ -1,119 +1,115 @@
-Return-Path: <devicetree+bounces-170768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E3DA9C401
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:42:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93709A9C405
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E2A67B82B0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:40:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0D5917AD9C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5804F22E3E3;
-	Fri, 25 Apr 2025 09:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4285C23814C;
+	Fri, 25 Apr 2025 09:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pLwfznpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134F6221540;
-	Fri, 25 Apr 2025 09:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D7E22E3E3
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745574099; cv=none; b=nU0O0cPJxkQ+tj8+Bwq+LwhcS93FSgAsetL0ydX2bxO8w+lYoVNDewxOgaoNVsiv0ir36V7Gkz0sSD+GK42HgVNnpWsxWxaH4BatcF+ALQlwZd32Q9d4u/hc3XtEVUEQiJfQ0Sw+p6KAguvW+kqqgbiyNYFswmUtlLJQ9cfDS/w=
+	t=1745574188; cv=none; b=m4s3Ih7Fpw8QIaxCpZlKci+csfykn052a9jvA27E9XDKrYSzUotTyYlGFufjU3abe4ne0zquGA7KBLsvHZ/YUp7r9JGGH+p9SyxQG/OfsKdF5RkWYMvA1iwjYGJwhSEa4VgvOXh+V0rrj8GMu7YWjbAOBEA2/5Mw3VHPJcSTaOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745574099; c=relaxed/simple;
-	bh=nmlAACPdyi1o/ejLELZQWZEK1WfkrRpmg/mY+BUQcfs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AF3fPpulRF39of7lEaDDbcJ9Ek7U3QegvMmRPbGz4QtC+ITpNvqquwwoeloBNoxd7/lk5jBAKgO6aHWdn5gHp+UoJuQ4O7hJnWGT2PzXR59KTcMT4SeaXERddK8bfKF2Z3tpS0bR34JRyypH+ZYKUcouYW8U1NlC7+BPIe1lDvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C4A941BCA;
-	Fri, 25 Apr 2025 02:41:29 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4511E3F59E;
-	Fri, 25 Apr 2025 02:41:32 -0700 (PDT)
-Date: Fri, 25 Apr 2025 10:41:28 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Corentin Labbe <clabbe.montjoie@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <netdev@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet
- MAC
-Message-ID: <20250425104128.14f953f3@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
-References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
-	<20250424-01-sun55i-emac0-v2-3-833f04d23e1d@gentoo.org>
-	<CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1745574188; c=relaxed/simple;
+	bh=N+kCgI7u3QRQyEc36DEg7P9HhLeM6WQ1Qz/8t42K2fs=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=L05IGypB/J9GTWhHuX26J/lT7U0LU7zkrEQ06xmI/fg+a+QgnyIB0mRC2NRWBjcigP0Q9NZAQuBWRLnCPCgodFQCjV0B3gcMEO5F7JaPZcKek0fo5ecv9b6C2qpufItA7EWXVZ8cuE4Eh8I2HwzCdPEi2TfsCVtFE00hp6IJbtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pLwfznpJ; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43ceeb85ab2so1254285e9.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:43:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745574185; x=1746178985; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9JNZR4HYw3LEusKe1YuO93jYjF39HJIbe/sxTu0RO9o=;
+        b=pLwfznpJgeUBXPM7FYv/2FNpPNTyNSQ19k03y+JbaiooF29m9Il2yNht86vOJNVCfK
+         l/T29xuUZ4esGZoGOoYWEsskqSuHWikXZ9zvs0kqPno6C1t1TSOnTYVhnx40emGEBOVd
+         KvONf8a+cuTF8YVUbe4FpQ6VjIu2XbbALDVKr5ZgdnCGqKvONlM/sL/ZE2Vzq0my0oeA
+         z3RV8frmRA5qIfZNKeKqCGH3mb4oO6ftcL5VcVB8a75nWF5erFPDQLZ0Fe6Qvx1HUzdT
+         aB4bnHBQuTkIKp4JXAq9nEdR5GwkIC4DPMnqmj2SAQ/4zTzdQDy6GJqSd7VBV8Ucprmq
+         s0ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745574185; x=1746178985;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9JNZR4HYw3LEusKe1YuO93jYjF39HJIbe/sxTu0RO9o=;
+        b=kukhY2ixe35SWTplonMrwzVNdT5XggjzQQksRW4Z1R7PS862ACxnOsOdgwaFNGLRDZ
+         vQhd3yW1x96K6Bt+RonVDRbmJsGIHV4/AXCP5lkLdP9uYr3lUgs0wORO5WnfEx7p9g7t
+         RI594+uInqi8gLpjtoXP7Kh12hg0PNQvjS/3DB3qbi+UHZ2yh2M8IlCLu1l308K4DCL6
+         WI7Qkow5pHk9iF9IkFjCip35P2u54Fe5H3r2Odbnw20kmqiApGsHtaBt4MXwl0bOFS+1
+         XvWw9NHfhEWF4m2KbvOwL1dwvbcLIuaK6McX9EN9gZSIQFcmXAb2euURH1oFc+b/jE7c
+         fzFg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTqIDIhIm6h+5XL6lV8SETIk/C5/t+3bc8qdnJDBLqzkoT2Qr7jQhid5tWGjzcHSYNQvwM0wsxqvmI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlgsmQ3h7nvPZlUIFuR2y26ZqJuXEJdfvnyhQ6LC1Vzy0AHmr6
+	741m7GNGtJKcbKmSzwjSJsSsaVf0AHJiwcsp0/4waJMfOIgWgee1Ctnx1ESclwg=
+X-Gm-Gg: ASbGncscoJAnuT6Z693PJovRY45RrjKEZLFRoYn3GaizJaH2klPH1yL1tNidJA5GjQw
+	s8kMAJAIyHer4pkGiR1Wfdjr4QnJNSuqCDwiQvpnSeaWX9dMAEGOPkOby4g4JZkZ2ScPfrYk/Od
+	O7hfreowu8ozc0MHDTAAojiIoeRKNJnEBlYwQpluVarUqeBagxlvRu2JWrthQFKffKpHb24YuJu
+	4fDMa0dNENTcfntqpLY/EvbDEKV4uwo8xv4SpyeejG3Ji5gy+Hy4XqT1nHIUkB27i7WGpjqPYKd
+	oevB/Q8wFDC49sXO/jzhWGd3iO69c/AnAJYbljDJwsjYsnf4NqwyG8Z6pj7KHbxxGRs9aQ==
+X-Google-Smtp-Source: AGHT+IHwjCg2l2T8eQ2xx7s1I6SBtEwT1v0ZPwhP4gH8i9QmjjIyMGHi0pgA/ILdNqanVVT9KFG0TA==
+X-Received: by 2002:a05:600c:a016:b0:43d:77c5:9c0e with SMTP id 5b1f17b1804b1-440a65b9f31mr5514995e9.1.1745574184616;
+        Fri, 25 Apr 2025 02:43:04 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a52f8909sm19441395e9.2.2025.04.25.02.43.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 02:43:04 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250424084655.105011-1-krzysztof.kozlowski@linaro.org>
+References: <20250424084655.105011-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: samsung: sp5v210-aries: Align wifi node name
+ with bindings
+Message-Id: <174557418347.69534.14818406256257839510.b4-ty@linaro.org>
+Date: Fri, 25 Apr 2025 11:43:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Fri, 25 Apr 2025 13:26:25 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
 
-Hi Chen-Yu,
+On Thu, 24 Apr 2025 10:46:55 +0200, Krzysztof Kozlowski wrote:
+> Since commit 3c3606793f7e ("dt-bindings: wireless: bcm4329-fmac: Use
+> wireless-controller.yaml schema"), bindings expect 'wifi' as node name:
+> 
+>   s5pv210-fascinate4g.dtb: wlan@1: $nodename:0: 'wlan@1' does not match '^wifi(@.*)?$'
+> 
+> 
 
-> On Thu, Apr 24, 2025 at 6:09=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Add EMAC0 ethernet MAC support which found on A523 variant SoCs,
-> > including the A527/T527 chips. MAC0 is compatible to the A64 chip which
-> > requires an external PHY. This patch only add RGMII pins for now.
-> >
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 40 ++++++++++++++++++=
-++++++++
-> >  1 file changed, 40 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm6=
-4/boot/dts/allwinner/sun55i-a523.dtsi
-> > index ee485899ba0af69f32727a53de20051a2e31be1d..c9a9b9dd479af05ba22fe9d=
-783e32f6d61a74ef7 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > @@ -126,6 +126,15 @@ pio: pinctrl@2000000 {
-> >                         interrupt-controller;
-> >                         #interrupt-cells =3D <3>;
-> >
-> > +                       rgmii0_pins: rgmii0-pins {
-> > +                               pins =3D "PH0", "PH1", "PH2", "PH3", "P=
-H4",
-> > +                                      "PH5", "PH6", "PH7", "PH9", "PH1=
-0",
-> > +                                      "PH14", "PH15", "PH16", "PH17", =
-"PH18";
-> > +                               allwinner,pinmux =3D <5>;
-> > +                               function =3D "emac0";
-> > +                               drive-strength =3D <40>; =20
->=20
-> We should probably add
->=20
->                                   bias-disable;
->=20
-> to explicitly turn off pull-up and pull-down.
+Applied, thanks!
 
-Should we? I don't see this anywhere else for sunxi, probably because it is
-the (reset) default (0b00).
-I wonder if we have a hidden assumption about this? As in: if no bias is
-specified, we assume bias-disable? Then we should maybe enforce this is in
-the driver?
+[1/1] ARM: dts: samsung: sp5v210-aries: Align wifi node name with bindings
+      https://git.kernel.org/krzk/linux/c/e0d7c81b15e8694ebf9f1976084435728b8936ab
 
-Cheers,
-Andre
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
