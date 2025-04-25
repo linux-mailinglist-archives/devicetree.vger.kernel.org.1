@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-170803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F389A9C550
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:23:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A36A9C557
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:25:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F5323AC348
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:23:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C725C17EC81
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55752417E4;
-	Fri, 25 Apr 2025 10:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA062367A1;
+	Fri, 25 Apr 2025 10:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YWsmV+Qu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4u32XIw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E282405F8
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 10:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7069B220689;
+	Fri, 25 Apr 2025 10:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745576588; cv=none; b=IgxIq9X9lcs0kWe6f7xeXUkreUYUxZGkg/fsuZ32wZX98dUEVeh/zMRI/khY4d8f3KA+mYpvkWALuslK1RypS5g3ZdQeB3G/anHZn747st2ImS6naaxED8Q6o/Qo03gPTKJ12m+5gbSiSYAsqqgn3+sf4ydVSy5fdvor9RgQ394=
+	t=1745576668; cv=none; b=UAFqLVNCRsxZWuklnRnrTbnndHcCXdFitxYEpYsbmwDmyWFU1aWr+PnU1UPS14cZyDxu0ckd2mQcbGvZCw8L267Nh3WnZ/0cnJcrOuJjQsJnc9k5yq68J4DdxXaSR9Dk0cJiuN/+pqQKKvgptsBemUqa9XnTl17mxDZaZOD1lMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745576588; c=relaxed/simple;
-	bh=snacv77pZfe5A1XSPfj1ume0murIRa0n+2+ekqhAw5o=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=QLlZfdmjIJsfEfBaXj3L0OcNPiUZRO3r529OI21NQ2BbbUXr1ixBTbKeCBT91a6EEt7t6T+j6Q+kmCfzfN3qt0xbeUGWBN/lY9YTjMWgpq1yxFagXdA4u/qRHrTAeP4Q9sH0tCxVuYORg0N5A8RYHE3Z9DjEoXeGBafbHPhlvX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YWsmV+Qu; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39141ffa9fcso2337324f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 03:23:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745576585; x=1746181385; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yiqcPsUnb+5szPwlE5nf6K7tTtVvGKeKUMKRvRKeadE=;
-        b=YWsmV+QurCgBDS5F3DYp/ETmAgQNsYHYdPS3/yBg4GRl2ZX/i/GJN5ohRnrUMfVO8z
-         LCVmgtpXlxdc90uMhs3dZ1FxOvRxc3pEOyJNskcrkS2K+sIf8E/GpjQf7/k1Xl1GLr/o
-         hi+BxXJ+5GqRH+2BCzK6iYKP1spzfoWgLaAh/MlNj8FICuXvdIguTyfkWxOLhI/12Csu
-         Qc+U68Vc3XXK3WsnX1zKqeud8XBgFGkXbrNDsfanC/57O+LMjrJeh9QxNohqiJ6A5u25
-         /7P0PQ1NdmYgIv4BZjzEJKEE1Wv9IfbbPqsP7B+jgpU+QNN8GsWCdN1rO3aWmIPPV+a/
-         MDIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745576585; x=1746181385;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yiqcPsUnb+5szPwlE5nf6K7tTtVvGKeKUMKRvRKeadE=;
-        b=Mh491CPVItYlevkPUZRj0WbiwjfsjO167pysw91Bt6KVfwbJs3YEcxzFECVLkhTheh
-         64Ns3BX296p71Nx8RjvKcgvaaiRU4pdO/2k31rAxpdfq1Dd9UXLmFo3jzRdmgqn5BdrO
-         as/k3Ikeld7lbtgOSPGIU/Of8jYxkE+ybMnUdN9ZSXGTFvY5e3BCafqsLWeFF7hPfz4w
-         XyWttMAbWrw+LjMrjvnfOcVRJQSEpIO3pWNh6Ca4CQa2agtG1oMYsYZw7+C5pqx4/2NP
-         qCi6Q38hIQ4x+31jYhyt037lbLSj2fKLz5/cC5oY+0snm3ky6X0yJA9VW8z8sZTuySag
-         1IdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4a+ySbzAv/bW0IPLna1AfbJkriv4qxxOjnTe4NEWq4SMRIYMVFniwN62AdWWTgbmxG49hynCWQ1aw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPexIZDWEjdpl6/hdkdOauOQd91LEgOGNYnZFgPVvb2CVncUeb
-	SdIjnhITnTLXexndkVaOU5z0++0a1Oep+1eihEVNcYacCMcxw401rAsx/kvrHa4=
-X-Gm-Gg: ASbGncvtEAUoEfPqs+vlAs9dR6/5nqjZ4l6UzXDEWFALqyCA6y762IWjaNvlIX/vVYG
-	xTWnblBFsf+v+OddCHOCZ/jd1At4wyOAmoOdNwEdVWtQp4sPgehWzRGgUwiKd4U2LmBtXQVTsqH
-	KJGLNxIECKPCrepQuQf6SBDMmRZLFBcPT9nm3NfklYRa4pRxk1dYeYd0p8yraFrbppecIsIjZCe
-	pAgbMzJqIqvx6iPMyGzc50QZxHMfXKOXEgkZoiIi0SgmvO/OwCerT7K9i+qihnJOmADETigRAyQ
-	i0MJkr4MQsP8hMjcrVRn5vNwZ9wGeu+Yg0gbpQ2yQKc8G7fecYLAw6vI/ADJrYO6RcuWoaXuVBB
-	X971nUw==
-X-Google-Smtp-Source: AGHT+IFy63dQ2XRXcyQqYQm7otc6uGHPPriKeUkLkoP5aXyqN85KOXE6hcyqC7mH/ytf/6kCDWZKiQ==
-X-Received: by 2002:a05:6000:2481:b0:39f:6d3b:f136 with SMTP id ffacd0b85a97d-3a074f10c98mr1298955f8f.41.1745576584983;
-        Fri, 25 Apr 2025 03:23:04 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46a49sm1909638f8f.61.2025.04.25.03.23.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 03:23:04 -0700 (PDT)
-Message-ID: <4345b6c1-f0d6-4f77-a635-9d8c1cdaacb5@linaro.org>
-Date: Fri, 25 Apr 2025 11:23:03 +0100
+	s=arc-20240116; t=1745576668; c=relaxed/simple;
+	bh=aghLaj8CJNDyjLELUOs0PnmheziqEUj2Lr889K4xl+U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aB1Z5sN6quLuUb1kOOFHYoiQnLUKwJGYWFnPlKWk+QJwvtc25bqeoemr1/OkMGh2fbE2lEwVpXdzH6IU8apqPxtVBohjrPZ/j86RLDWQZkjGSagzKuIdlkzJuDpbD4K4c2f8/ERYlEWHdVPY0kuQlxRidJMrBdhbjZvZO+WisEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4u32XIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B4B4C4CEE4;
+	Fri, 25 Apr 2025 10:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745576667;
+	bh=aghLaj8CJNDyjLELUOs0PnmheziqEUj2Lr889K4xl+U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=h4u32XIw+nlD1FUJcoWeK7tKOX3/JT+fePuRhE+sszuKTHrIBUctdGUAFxb4veZxr
+	 SlKIni7k0SPFR6neo+eHH9sGO8qotqIN8/rlcuIQhPfBEfdfemlpgnwWcwUFT4vSkI
+	 lUS2Ry9Ze40zah66Ei78O6aE/7uYNUpAdk9gLpKZ8trvKnekEvVyfN/0AscqkFWYgh
+	 ew2b2Ras/HakRlzyBJot9EGWylU1zAKQwue/QCoxM4eXUwA1RslHtQFtokLg+ip0jY
+	 F+h5WovYxvRrLxaaarWSfrSnXlmupY8rYnS1/RFag3xW8TkB7lspp2Iq5A4ikZQG/Z
+	 QtcEcl3n5a5DA==
+Message-ID: <c38b3dde-f4ea-4812-a673-137d4727aefc@kernel.org>
+Date: Fri, 25 Apr 2025 12:24:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,55 +50,202 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Add Qualcomm SC8180X Camera clock
- controller
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250422-sc8180x-camcc-support-v1-0-691614d13f06@quicinc.com>
- <H56Iba_grof22uzTtGCI-APhiDAGSejNod6jsSVIykm9ijaaj7PWqyszShCEGjIpM2wCLOn4a3Vfb8Hjziqklg==@protonmail.internalid>
- <20250422-sc8180x-camcc-support-v1-1-691614d13f06@quicinc.com>
- <621d8556-f95b-4cbe-809b-864417f0d48a@linaro.org>
- <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
- <f74d8b50-35a1-4ce8-bfdd-4c90782b8db5@oss.qualcomm.com>
- <b74d90d3-2a85-4853-9843-6a6f22720587@linaro.org>
+Subject: Re: [PATCH 2/3] soc: Add VIA/WonderMedia SoC identification driver
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250423-wmt-soc-driver-v1-0-bd8bf32521c2@gmail.com>
+ <20250423-wmt-soc-driver-v1-2-bd8bf32521c2@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <b74d90d3-2a85-4853-9843-6a6f22720587@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250423-wmt-soc-driver-v1-2-bd8bf32521c2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/04/2025 11:06, Bryan O'Donoghue wrote:
-> On 25/04/2025 10:35, Konrad Dybcio wrote:
->>> The dependent GCC clocks are marked always on from gcc probe, hence 
->>> did not mention the dependency here.
->> Let's do what was done on x1e80100 - describe the AHB clock in CAMCC
->> bindings regardless of how we handle it.
->>
->> This way the DT represents the real hw dependency, but the OS takes steps
->> to get them out of the way (and then ignores the GCC_CAMERA_AHB_CLK entry
->> because the clock is never registered with GCC)
-> 
-> Ah yes, this is an always-on clock isn't it ?
-> 
-> But in principle I agree, the DTS should just describe the hw as-is.
-> 
-> ---
-> bod
+On 23/04/2025 21:18, Alexey Charkov wrote:
+> Add a small SOC bus driver to parse the chip ID and revision made
+> available on VIA/WonderMedia SoCs via their system configuration
+> controller's SCC_ID register.
 
-Pleasantly surprised to find that's what we've done for x1e camcc
 
-20250314-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v6-3-edcb2cfc3122@linaro.org
+...
 
----
-bod
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/sys_soc.h>
+> +
+> +static struct {
+
+I think const by convention is placed here - right after static. It
+should be equivalent, just convention.
+
+> +	const char *name;
+> +	const unsigned long id;
+> +} const chip_id_table[] = {
+> +	/* VIA */
+> +	{ "VT8420", 0x3300 },
+> +	{ "VT8430", 0x3357 },
+> +	{ "VT8500", 0x3400 },
+> +
+> +	/* WonderMedia */
+> +	{ "WM8425", 0x3429 },
+> +	{ "WM8435", 0x3437 },
+> +	{ "WM8440", 0x3451 },
+> +	{ "WM8505", 0x3426 },
+> +	{ "WM8650", 0x3465 },
+> +	{ "WM8750", 0x3445 },
+> +	{ "WM8850", 0x3481 },
+> +	{ "WM8880", 0x3498 },
+> +};
+> +
+> +static const char *sccid_to_name(unsigned long sccid)
+> +{
+> +	unsigned long id = sccid >> 16;
+> +	unsigned int i;
+> +
+> +	for (i = 0 ; i < ARRAY_SIZE(chip_id_table) ; ++i) {
+> +		if (chip_id_table[i].id == id)
+> +			return chip_id_table[i].name;
+> +	}
+> +
+> +	return "Unknown";
+> +}
+> +
+> +static const char *sccid_to_rev(unsigned long sccid)
+> +{
+> +	char letter, digit;
+> +
+> +	letter = (sccid >> 8) & 0xf;
+> +	letter = (letter - 1) + 'A';
+> +
+> +	digit = sccid & 0xff;
+> +	digit = (digit - 1) + '0';
+> +
+> +	return kasprintf(GFP_KERNEL, "%c%c", letter, digit);
+> +}
+> +
+> +static int __init wmt_socinfo_init(void)
+> +{
+> +	struct soc_device_attribute *attrs;
+> +	struct soc_device *soc_dev;
+> +	struct device_node *np;
+> +	void __iomem *reg;
+> +	unsigned long sccid;
+> +	const char *machine = NULL;
+> +
+> +	np = of_find_compatible_node(NULL, NULL, "via,scc-id");
+> +	if (!of_device_is_available(np)) {
+> +		of_node_put(np);
+> +		return -ENODEV;
+> +	}
+> +
+> +	reg = of_iomap(np, 0);
+
+of_node_put(np) here... although this will be dropped (see below)
+
+
+> +	if (!reg) {
+> +		of_node_put(np);
+> +		return -ENODEV;
+> +	}
+> +	sccid = readl(reg);
+> +	iounmap(reg);
+> +
+> +	attrs = kzalloc(sizeof(*attrs), GFP_KERNEL);
+> +	if (!attrs)
+> +		return -ENODEV;
+> +
+> +	/*
+> +	 * Machine: VIA APC Rock
+> +	 * Family: WM8850
+> +	 * Revision: A2
+> +	 * SoC ID: raw silicon revision id (0x34810103)
+> +	 */
+> +
+> +	np = of_find_node_by_path("/");
+> +	of_property_read_string(np, "model", &machine);
+> +	if (machine)
+> +		attrs->machine = kstrdup(machine, GFP_KERNEL);
+> +	of_node_put(np);
+> +
+> +	attrs->family = sccid_to_name(sccid);
+> +	attrs->revision = sccid_to_rev(sccid);
+> +	attrs->soc_id = kasprintf(GFP_KERNEL, "%08lx", sccid);
+> +
+> +	soc_dev = soc_device_register(attrs);
+> +	if (IS_ERR(soc_dev)) {
+> +		kfree(attrs->machine);
+> +		kfree(attrs->soc_id);
+> +		kfree(attrs->revision);
+> +		kfree(attrs);
+> +		return PTR_ERR(soc_dev);
+> +	}
+> +
+> +	pr_info("VIA/WonderMedia %s rev %s (%s)\n",
+> +			attrs->family,
+> +			attrs->revision,
+> +			attrs->soc_id);
+> +
+> +	return 0;
+> +}
+> +early_initcall(wmt_socinfo_init);
+
+No, this does not scale. This is supposed to be module_platform_driver
+instead of manually re-ordering code. Then all your memory allocations
+become devm, printks become dev_xxx and you can simplify it.
+
+
+> 
+
+
+Best regards,
+Krzysztof
 
