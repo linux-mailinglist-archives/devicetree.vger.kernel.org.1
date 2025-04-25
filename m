@@ -1,256 +1,148 @@
-Return-Path: <devicetree+bounces-170725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A307A9C30B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:14:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A495A9C31A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97E521BA0715
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:14:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5864316D0B7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DBA621D5A6;
-	Fri, 25 Apr 2025 09:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D7BB233716;
+	Fri, 25 Apr 2025 09:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wevCCglA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="muQgx57P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100AE2153C7;
-	Fri, 25 Apr 2025 09:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C242D22E3E1
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745572438; cv=none; b=WDxI2UAaMmydp6CTT0zsnx0LwL52c5BPWo3D8pO0hAtVzyD+gPrRfnH0+rjjbFz3TUCr+7waUYabLMgdUwaGrMopa0izt6/VdlsJvIZBp6DW0FUQpoKrpolzFaiT1IfnjIOqLCKfY611f8+9O8q6WEG6h+W09C3VEKdRUBP6fvA=
+	t=1745572668; cv=none; b=LLrE+BOeGdew/daUOxmScKWINuoxLqsVj/GgzTbHkIxLG9ilgbtA309wbW5eClR4no4lGsGMSUPdwXVkDtBNdpD/jwEt1GcektDGDsvBvOK8BKue4Q4X4McejLFws0GLwTkFlTRiJDgtHFH2zSktd+WHuVBEcf0PHfE3dscgEcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745572438; c=relaxed/simple;
-	bh=IgeJAqgcuSThMaHuwjtA6Dk/yX8c+T7sRRiWPhVcyyY=;
+	s=arc-20240116; t=1745572668; c=relaxed/simple;
+	bh=Cgy/ew99CTAyh8TT8GWMGcHdWQLx7SIMZeGyXxuUhzo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eliDSkkF/bcTfARnx2S1pHH3VoQSbSjC9LyorrBQ4U7G89LWQql4n2/yhOJnrCmpNc1qf0qfBRVW92FZ+4ZP2/iGi1vk3nPX1HNU/piiPoYS3bsQ0QIK/ulQkUnJcNZi3g7u7cfI8Sj5EB2bppmffNani6G8NRlKr28nZ8QeYZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wevCCglA; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89B8A605;
-	Fri, 25 Apr 2025 11:13:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745572431;
-	bh=IgeJAqgcuSThMaHuwjtA6Dk/yX8c+T7sRRiWPhVcyyY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wevCCglAXOWamnksvZss+XzkcbTkx5gmYogDNssAasbtJ06q1Y8FMT3wfyDmWX7Ru
-	 R9zJqW+o7ZMR+F0kAC5KKyllweI4B0Dbji4MdvS5Wr/DGhQ0MHj8OpCH1sVyg+UT+E
-	 0fUcFPcSeOP/rSOc0BmERy65ERM8Fc2P7ajI5BF8=
-Date: Fri, 25 Apr 2025 12:13:51 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 06/17] mfd: adp5585: add support for adp5589
-Message-ID: <20250425091351.GO18085@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
- <20250424161838.GM8734@google.com>
- <20250424163024.GL18085@pendragon.ideasonboard.com>
- <20250424163830.GO8734@google.com>
- <20250424193931.GM18085@pendragon.ideasonboard.com>
- <20250425075859.GQ8734@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=g+9Baok5phpIm1FtrevmhwausRENuppWcoujKuQYJ9ucDHeyM7w1OIvtGDdfZ3igJArY9KC2DaKEu4p/8Le+5nHSolt9Jq+OWB0cZoobr1xRZehT84O4VwDXfdf7Rq9DnAneVTrDlRuqVD36dULajRpT2Vp8nibryLQCiAB9hjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=muQgx57P; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8TF6r015542
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=WXe0NlKxDZrPju6112EiKpqV
+	yTfdsUulvcoDoYo4cFQ=; b=muQgx57P4ZWorYmED8WgvUdhFZUiUPW3sy+uF3p3
+	OGxNlsoyze28sRkhibP53thoMwaQZQaQCERfHqLKYWPdBxy5/M7lXAHBmvChA3II
+	mZMQuFQhIBWMsSDWRhs7lwAPUfy/9rwZtp7ImX1bLt+JQsZ9etmMoVsDHPuaJCdu
+	7vczfLWkRXhRPc303ABefG7k0w8mj7TMxDhumG+JmQDkOtbZpHVZIVYczdNfe8J9
+	xN6+cOkvpKOfHBv3v+Noo1QC8mKihj7XCpMu/rpEzERng9IqyBJFyqmEBHnPApYs
+	PZ8ZvpRuFKZDjGFeQvwpKt7HeAhRPWvdSCC9IKTEmWXMng==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3gcuy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c760637fe5so365516185a.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:17:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745572664; x=1746177464;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WXe0NlKxDZrPju6112EiKpqVyTfdsUulvcoDoYo4cFQ=;
+        b=fw++H4n8EpJkf9H2DRwHpHEc+8QYoydTFA93gZxvfXZeGDxLWe48WT2bWZ9iP7loeW
+         86niuwaDnAEzpvZYU1k2HUNaovg9EnnJaxu8NUfCFa8nhxgHPcUCE2kcMDr+wdoVN2rm
+         svbQ/L5U0cFJPTZ0zMY+nEO8LRuUEPPvEV9x3L+5B7Jy0uhg0kczbpkVd8przK80KcCg
+         gq31H1E8QiVGMNVsnvIZt5/xt0cACHmhdW/TgOv6LEwgotEa7jcmlhf1mmcvQcrod4Sn
+         /5XZQq2dsDyD1gbPvPEVtRn7ygiaNsP83JaOgnGXHwcxbAmcPgbZio5RrAupwdttVPDR
+         l7uA==
+X-Forwarded-Encrypted: i=1; AJvYcCX3o3s/nR7teyyYc6QR1GB63EFJULLq9UGL4CtG3IZGc2uLVOn1sxB3Jib9zxwYqZ5nv41KavN4uxQj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7SRFC2FWEYvs62rOU3GLlJskqr58Vq9NGO75DZq0SlDpY57Le
+	JvR7fiX26QGAv0PNKaBxBal2t8ehoAyw/yVf5mrcoWGquKpfVEM5QUQQdSdpP22norhhPw0T3Za
+	Cf+/d6ZI5gD1mItQNIW0ZsVTLbSrzbRrJ5Vde872Lwdtc3QkvLpaVrNzNEy9OKjBCm5Sk
+X-Gm-Gg: ASbGncuU6VXdSqHbShblHvp0H6t3MxLZwwDMsRy37Z/S+maTy13AsvmoM/mu7NRdIol
+	WFtnaNzyKIGgpoyerdHZypWfsMnuqNv0JsOH7n75+ZjSIkNacayQVVv7tpaCqFiobvckPyGLYVb
+	1qnkRyOwughGAKzuydJVNuvBncBtn+9DJo3yU1d4wUJEraOh0JRQVHPp/DUdfct7xzw+IO31DO9
+	TVlF5QmyytOTEhQRlTNZCxaQBLB6O6YHB1IsSK+Yx/+e3tvoaJboOaz+ZBKJDUy/uEqebBDxz+4
+	J4WPhTv8mzw65r6OkoyhhGiLUaoKNoi4h+zaRkkfOcu688YiX5wflOngJUSyvmf1qXiVcxEd2Uc
+	=
+X-Received: by 2002:a05:620a:1b99:b0:7c5:4b91:6a41 with SMTP id af79cd13be357-7c9607880c8mr280227085a.42.1745572664419;
+        Fri, 25 Apr 2025 02:17:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGZA3Q0DX1qcrcU6Q5IKBtyc3e5N50tRXbXJz2+iHVhL5w7s0njAeQLwBISLkAKAlk5TRfUGA==
+X-Received: by 2002:a05:620a:1b99:b0:7c5:4b91:6a41 with SMTP id af79cd13be357-7c9607880c8mr280223985a.42.1745572664115;
+        Fri, 25 Apr 2025 02:17:44 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-317d1b96d45sm6437751fa.94.2025.04.25.02.17.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 02:17:43 -0700 (PDT)
+Date: Fri, 25 Apr 2025 12:17:41 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: qcm6490-fairphone-fp5: Hook up
+ DisplayPort over USB-C
+Message-ID: <dfjrssqxny7wwcrhybbgx7fqvibvwxvkuba4sj7ufkadpfoqme@nwvcjyjrn4ze>
+References: <20250425-fp5-pmic-glink-dp-v3-0-cc9c2aeb42fb@fairphone.com>
+ <20250425-fp5-pmic-glink-dp-v3-4-cc9c2aeb42fb@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250425075859.GQ8734@google.com>
+In-Reply-To: <20250425-fp5-pmic-glink-dp-v3-4-cc9c2aeb42fb@fairphone.com>
+X-Proofpoint-ORIG-GUID: XaaBXYDiUj5fBlGSUCIBPXLVGrUsIp9m
+X-Proofpoint-GUID: XaaBXYDiUj5fBlGSUCIBPXLVGrUsIp9m
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA2NyBTYWx0ZWRfX3BgSoS7ECcm3 iOIEbKANHZzoauDQxaN3C2e+EIumoFTeivzNpZByUooxVbqQkDN95+QaA2PO4qnClP8tldzaVXT KJ3lAdm55pju9afUNxYPt73AvDWjJk1ykuy0diLx0k3oAjp2z97XaFLbKyYBeemxa9pFTDkOYCX
+ iUzA7EruSdJTjNz8OfxGxqLyFJzDTsMYIW+aCI6L6bJG8nIox3kdpbLB7u02kkZwf4ExnV5uPOI wInNEOvLa60ynShWXX01SRDCV+Z7bvmOTYUyN8J9eeumqXCtHy8qCxQWqck9ZnsC9WLB2RwNKWM HMdTZDghPzRcRs2XUe8/mx8okOalA9gejmSuXQOctMRpHEq/K9KPWmGDmk8X1RZ607Qr7upNYN7
+ sLSpbCW4PSi1t8/L6BoB/WRdI89ZkM8wz3DMxpQNBal6w+7eFujFrT20eOrMZRcoxOFRyJKh
+X-Authority-Analysis: v=2.4 cv=Mepsu4/f c=1 sm=1 tr=0 ts=680b533a cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=Df21-P5Y2jz7HsL4rSgA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 impostorscore=0 clxscore=1015
+ mlxlogscore=469 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250067
 
-Hi Lee,
-
-On Fri, Apr 25, 2025 at 08:58:59AM +0100, Lee Jones wrote:
-> On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > On Thu, Apr 24, 2025 at 05:38:30PM +0100, Lee Jones wrote:
-> > > On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > > > On Thu, Apr 24, 2025 at 05:18:38PM +0100, Lee Jones wrote:
-> > > > > On Tue, 15 Apr 2025, Nuno Sá via B4 Relay wrote:
-> > > > > 
-> > > > > > From: Nuno Sá <nuno.sa@analog.com>
-> > > > > > 
-> > > > > > The ADP5589 is a 19 I/O port expander with built-in keypad matrix decoder,
-> > > > > > programmable logic, reset generator, and PWM generator.
-> > > > > > 
-> > > > > > This patch adds the foundation to add support for the adp5589 gpio and pwm
-> > > > > > drivers. Most importantly, we need to differentiate between some
-> > > > > > registers addresses. It also hints to future keymap support.
-> > > > > > 
-> > > > > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > > > > ---
-> > > > > >  drivers/mfd/adp5585.c       | 223 +++++++++++++++++++++++++++++++++++++++++---
-> > > > > >  include/linux/mfd/adp5585.h |  57 ++++++++++-
-> > > > > >  2 files changed, 268 insertions(+), 12 deletions(-)
-> > > > > 
-> > > > > [...]
-> > > > > 
-> > > > > > + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 8/R7", numbered 0 to 7 by the
-> > > > > > + * driver, bank 1 covers pins "GPIO 9/C0" to "GPIO 16/C7", numbered 8 to
-> > > > > > + * 15 and bank 3 covers pins "GPIO 17/C8" to "GPIO 19/C10", numbered 16 to 18.
-> > > > > > + */
-> > > > > > +#define ADP5589_BANK(n)			((n) >> 3)
-> > > > > > +#define ADP5589_BIT(n)			BIT((n) & 0x7)
-> > > > > > +
-> > > > > > +struct adp5585_regs {
-> > > > > > +	unsigned int debounce_dis_a;
-> > > > > > +	unsigned int rpull_cfg_a;
-> > > > > > +	unsigned int gpo_data_a;
-> > > > > > +	unsigned int gpo_out_a;
-> > > > > > +	unsigned int gpio_dir_a;
-> > > > > > +	unsigned int gpi_stat_a;
-> > > > > > +	unsigned int pwm_cfg;
-> > > > > > +	unsigned int pwm_offt_low;
-> > > > > > +	unsigned int pwm_ont_low;
-> > > > > > +	unsigned int gen_cfg;
-> > > > > > +	unsigned int ext_cfg;
-> > > > > > +};
-> > > > > > +
-> > > > > > +struct adp5585_info {
-> > > > > > +	const struct mfd_cell *adp5585_devs;
-> > > > > 
-> > > > > Okay, we are never doing this.  Either use OF for platform registration
-> > > > > or use MFD (or ACPI or PCI), but please do not pass MFD data through OF.
-> > > > 
-> > > > When I upstreamed the initial driver, I modelled the different functions
-> > > > through child nodes in DT, with a compatible string for each child. I
-> > > > was told very strongly to remove that. We have therefore no other choice
-> > > > than constructing the name of the cells based on the model of the main
-> > > > device.
-> > > 
-> > > It's okay to add this information statically in this driver.  It's not
-> > > okay to then pass it through the OF API.  You can pass an identifier
-> > > through the .data attribute to match on, but we are not passing MFD cell
-> > > data through like this.
-> > 
-> > Sorry, I'm not following you. What's the issue with the .data field
-> > pointing to an instance of a structure that lists properties related to
-> > the device model ?
+On Fri, Apr 25, 2025 at 09:08:15AM +0200, Luca Weiss wrote:
+> Extend the USB graph to connect the OCP96011 switch, the PTN36502
+> redriver, the USB controllers and the MDSS, so that DisplayPort over
+> USB-C is working.
 > 
-> There isn't one.  By all means place any type of platform data you want
-> in there.  Similar to the information you'd find in Device Tree or the
-> old board-files type pdata.  You can even extract the platform data you
-> pass through the OF API and place it into MFD platform data.  The line
-> is being drawn on passing through one type of initialisation API with
-> another, MFD through OF in this case.  MFD cells containing device
-> registration data (including platform data!) is not itself platform
-> data.
-
-I'm still not following you. The issue will likely go away in the next
-version anyway, as the MFD cells registration code needs to be rewritten
-to be more dynamic.
-
-> > > > > > +	const struct regmap_config *regmap_config;
-> > > > > > +	const struct adp5585_regs *regs;
-> > > > > > +	unsigned int n_devs;
-> > > > > > +	unsigned int id;
-> > > > > 
-> > > > > What ID is this?  We already have platform IDs and MFD cell IDs.
-> > > > 
-> > > > That's the value of the hardware model ID read-only register, it is used
-> > > > as a safety check to verify that the connected device corresponds to the
-> > > > compatible string.
-> > > 
-> > > I suggest changing the nomenclature to be more forthcoming.
-> > > 
-> > > 'model', 'version', 'hwid', 'chipid', etc.
-> > > 
-> > > Why is it being stored?  Is it used to match on at a later date?
-> > 
-> > The adp5585_info structure contains static information the describe each
-> > device model. There's one global static const instance per device model,
-> > and they are referenced from device id structures (e.g. of_device_id).
-> > The driver gets an info pointer corresponding to the model reported by
-> > the platform firmware (e.g. DT). It reads the device ID from the device
-> > at probe time, and compares it with the value stored in the structure as
-> > a safety check to ensure there's no mismatch.
+> Connect some parts of the graph directly in the SoC dtsi since those
+> parts are wired up like this in the SoC directly.
 > 
-> I think the current implementation (as a whole, not just the IDs) needs
-> a rethink.  Very few attributes are changing here, both between the 2
-> platforms and the several variants you're trying to support, leading to
-> masses of repetition.
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 54 ++++++++++++++++++++--
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               |  9 +++-
+>  2 files changed, 57 insertions(+), 6 deletions(-)
 > 
-> Looking at the static configuration here, this is starting to look like
-> 2 pieces of hardware with the only variation within each being the
-> default register values.  Is that a correct assumption?
 
-The variants of the ADP5585 differ mainly by how they handle the default
-configuration of pull-up and pull-down resistors. The consequence on the
-driver side is limited to default register values, yes.
-
-ADP5589 differs more significantly from the ADP5585. Differences between
-the ADP5589 variants are small as far as I understand (datasheets are
-public, should you want to have a look).
-
-> If so, does
-> mean all of this added complexity is just to configure a few register
-> values such that the two platforms can be used for different things?  Or
-> are these really 6 true hardware variants of one another?
-
-They are different physical chips with different product numbers.
-
-> Either way, this approach doesn't scale.  Instead of multiplying the
-> amount of platforms / variants together and creating that number of
-> static structs, I'd suggest using templating and only adapting what
-> actually changes.
-> 
-> For instance, the following attributes in 'struct regmap_config' never
-> change; reg_bits, val_bits, and cache_type.  And max_register only
-> changes between the 2 hardware platforms.  The reg_defaults_raw values
-> can be changed in a switch statement.
-
-All the fields of the adp5585_info structure that you would like to
-dynamically set would then need to be stored in the adp5585 structure.
-The would essentially trade static const data for dynamic data and more
-code. Is that a personal coding style preference, or are there clear
-advantages ?
-
-> Same goes for 'struct adp5585_info'.  Only regmap_config changes between
-> variants.  Everything else is exactly the same.
-
-I assume this comment relates only to the different variants of the info
-structure for the same model (e.g. ADP5585 or ADP5589). There are more
-differences between the ADP5585 and ADP5589 entries.
-
-> So, with the use of a
-> few of templates and a couple of succinct switch cases, you can control
-> all of the differentiation you need.  And for every variant you wish to
-> add, it's a couple of extra lines rather than many, leading to a
-> much more scaleable implementation.
-
-That also seems like a personal coding style preference :-) Adding a new
-compatible variant with the existing approach only requires adding an
-instance of the info structure, while your proposal would require
-changes in multiple places. It seems more work to me (from a personal
-preference point of view).
-
-Of course, if the new variant requires developing abstractions that
-don't exist (such as supporting large differences in the registers
-layout as needed for the ADP5589), refactoring of the code will always
-be required. This seems a bit of a theoretical concern though, as I'm
-not aware of any other chip that would require such development.
-
-In any case, let's see how the next version will look like, after
-reworking the MFD cells registration code. Maybe it will make everybody
-happy :-)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 -- 
-Regards,
-
-Laurent Pinchart
+With best wishes
+Dmitry
 
