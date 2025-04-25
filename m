@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-170626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC63A9BCA5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 04:14:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4836CA9BCB0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 04:16:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E8E07A8AC7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:12:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA8A3B360E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55111145B27;
-	Fri, 25 Apr 2025 02:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1E433991;
+	Fri, 25 Apr 2025 02:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8xHJ3QH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCTKT5NF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AF51AAC4;
-	Fri, 25 Apr 2025 02:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B40179A3;
+	Fri, 25 Apr 2025 02:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745547235; cv=none; b=oZ92Ae/VcLIMaP9KW+R+VvdXV8rwpz3OttF8zVuCgm40tJ5MMD9M/t65rOvHs3EniASQ6X9cKgEp2UAIbtBtiDR8p0ZXi/LdJjNtJrHSJe9ytpmgRsLt5VSrVar0dvnIRa49c408+VRi4IqiyORc1G18RwhN82/UZaKThOiehqY=
+	t=1745547364; cv=none; b=CAPag/mVOU+A3cNoPoLaJcfBVOCmE7z24e3qICmF5XHxvfGnJD8yQJqHUrlf274aZz9wazat1sI5nXIE3Nhz87OQCKVjEajIL9XjffBBDYqILl4zwSlhGPz8phe0R0Qk1BnLztirAtVWOgJDseVrGs/0tuGOzBcRQi+n0pbyB9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745547235; c=relaxed/simple;
-	bh=zhKRqLVd26FfGbO14mufcGFlylQAXcG1racRs/okgag=;
+	s=arc-20240116; t=1745547364; c=relaxed/simple;
+	bh=7dhh4pgXnpoNNmP1zUba/AqVU9c6ggKMDn5X/JSgHWg=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Fo9ojmJLNaRaTvObYttOa3wU6NbQbCMMulPVRyO3lXq/1bmqQxsm58JWBoiZkfwhG5LYCBeg/TOlOEahwjBWk2fo0EPkIy3RipoXAJNFe98TH03H5co+MpksRrgy+OF0zaddwnhScx2K6WtCRWW8rCLm4tjOvpWHsVhorf3bICI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8xHJ3QH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDCE4C4CEE3;
-	Fri, 25 Apr 2025 02:13:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=O2MWNx836dvk4GQTpUo35C3CLApz5qjVVzfmA+N1MKj1eYtcZHsGTSqwcabRHulkg+CprDskCM3t3yppuwg7/1jRIbv+gFTmLn3lFZ5ew9+Kgr5A7czCaDieFUDqIpN2vjaYyDiyEtBDkCc7w//cBD3rLqvMM5B/FXQxTwjg4Iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCTKT5NF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B978FC4CEE3;
+	Fri, 25 Apr 2025 02:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745547233;
-	bh=zhKRqLVd26FfGbO14mufcGFlylQAXcG1racRs/okgag=;
+	s=k20201202; t=1745547363;
+	bh=7dhh4pgXnpoNNmP1zUba/AqVU9c6ggKMDn5X/JSgHWg=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=H8xHJ3QHyW32cpizyk44/SZZ7fLssnULuTJhyh73dm6ah7nOv+8lQkBFycU3KCBQb
-	 gjtKPXLpOLt2qIOu5gy+XDnYUYQpXo3IPhkXuCPr5JhYb2E/zRHT5iPtEiCrTbA8vk
-	 0AtJeKfurLux9WVFiolGd6zSbmHF8wlHaDhwftUxAHifydoa4sIC1MSNia9uuKtfNs
-	 x0zkRhpUpZDzLXR0ubHxp+qINQrvRLFOKckCEjDzbJVQ1guaZSlY9kZFDQdW3DAvCX
-	 /DYOYrQans7jn++GyA6TCj3zsMcytNJQCpANb+tW9D/Q1gAObp27PuYKF1u3xeM+VM
-	 R9ahJvStFzGDA==
-Date: Thu, 24 Apr 2025 19:13:50 -0700
+	b=eCTKT5NF+ko/D0Ymvh908TbpHTfRFVlED2cyhNGLU54cjd/AwWZ8yotm3Z/263eWs
+	 pMeEO14BV+RXs8rVQp/98Vjp13CIZBmHBlOfriCyXfvD2SYKi6JaRPgFtLBQYnlM4n
+	 hJhIb2CCqZ7YmFRRvzVU0pC1Phd2GDVzYCsYunve6o/ez8srbW26sGEy+TaqKfBxjB
+	 2pVE+PfKOQmNxPOzzT8xBI+FQK6/fAFf44ruvvutnj4BUs0I+kSw32yEebaJ/us4Xz
+	 PlulC9+cw9oEk/nAuD9f8yOo/4IzDd1HYX9WbF5vSDgoqI4jDqINpD5gydqScjlJLR
+	 E7ZyAk8ZVjglA==
+Date: Thu, 24 Apr 2025 19:16:00 -0700
 From: Jakub Kicinski <kuba@kernel.org>
 To: Parvathi Pudi <parvathi@couthit.com>
 Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
@@ -57,12 +57,12 @@ Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
  linux-kernel@vger.kernel.org, pratheesh@ti.com, prajith@ti.com,
  vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
  krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [PATCH net-next v6 04/11] net: ti: prueth: Adds link detection,
- RX and TX support.
-Message-ID: <20250424191350.7bf69fdb@kernel.org>
-In-Reply-To: <20250423072356.146726-5-parvathi@couthit.com>
+Subject: Re: [PATCH net-next v6 06/11] net: ti: prueth: Adds HW timestamping
+ support for PTP using PRU-ICSS IEP module
+Message-ID: <20250424191600.50d7974c@kernel.org>
+In-Reply-To: <20250423072356.146726-7-parvathi@couthit.com>
 References: <20250423060707.145166-1-parvathi@couthit.com>
-	<20250423072356.146726-5-parvathi@couthit.com>
+	<20250423072356.146726-7-parvathi@couthit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,14 +72,10 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 23 Apr 2025 12:53:49 +0530 Parvathi Pudi wrote:
-> +static inline void icssm_prueth_write_reg(struct prueth *prueth,
-> +					  enum prueth_mem region,
-> +					  unsigned int reg, u32 val)
-> +{
-> +	writel_relaxed(val, prueth->mem[region].va + reg);
-> +}
+On Wed, 23 Apr 2025 12:53:51 +0530 Parvathi Pudi wrote:
+> +static inline void icssm_prueth_ptp_ts_enable(struct prueth_emac *emac)
 
-Please don't use "inline" unnecessarily.
-The compiler will inline a single-line static function.
+Also do not use "inline" for functions which are not called from 
+the fast path. Basically no "inline" unless you can measure real
+perf impact.
 
