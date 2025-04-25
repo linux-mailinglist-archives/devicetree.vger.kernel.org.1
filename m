@@ -1,127 +1,164 @@
-Return-Path: <devicetree+bounces-171108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C34A9D404
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:15:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4FF3A9D409
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:17:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C47A1BC238E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:15:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EB6F3B82E7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5CE22425B;
-	Fri, 25 Apr 2025 21:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF19224888;
+	Fri, 25 Apr 2025 21:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OCcO73Qg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AwwVQTCP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4344652F88
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9564221DBC
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745615729; cv=none; b=pgdyxnV6utyVSEVJuVPOCJrBEsviq+DPVtGhIoh6R7rUUCFIv7KtUg3qh51gemeKHRCmO6U4cgXV/BXS5ZjWz5hx1SOTgkivTPvY7SOroL5N6KpQ0w6F2DpEfV6Lt3SL7C4ZtTLimXc+ckR/kXVyYWiWUKVcpxXFfYihgLlQvXc=
+	t=1745615786; cv=none; b=WwaLprJMpx1IljaK5NNeKBy9dnjcp5S0tnjHZ3H2HWoaI5p/d6PUzTPcopExtu0CTHdtHiJh8KipZutpAoGxScjW9iLZjAq08t187xypYIe1dAHTQRTKK89VGEfOHE6eMb0ldedomjTaiLk26oFYnkSTcmVVfLBMCD0LBPRoLLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745615729; c=relaxed/simple;
-	bh=nMRU3NMhexbywC809uhOu5XEBtEclRqI8s+qPrEWirM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KXbRxl0MmyBVFtOyZMBJlR5xAyF9OUaL1dMGnX5yP2yS80xKFuElqoDGZCdBt23CCNH5S2CBt3T/8R7r7Zj8OWElvhJVOePwoZXcALjBJYj971IYxCd23mbtkoPl/mW3OyWO0diBG5C0v8KWA7VJNMoZt8a1ytacQfxFff+i0ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OCcO73Qg; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PLFEjA3027724
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 16:15:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745615714;
-	bh=J7Jea/NPwNCfUkt14yxUySOLJ2V2rzjzSUiEsd0fgVY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=OCcO73QgmP1zHLdyuIrwqoojpigohgd7C3otpc1c2KubgMyCDVkY2/H4j5045z3Mx
-	 I0V1MNW4Iqemc62PM1WkF2jEq8GgQW2gnVoVczxPKbf/wLey3oetCNqX6S4H7RsnG6
-	 s4WrraITkmQ0WXsZIbXeDtmLjRqB6FfQwPsq44Y0=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PLFENK081533
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 16:15:14 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 16:15:14 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 16:15:14 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PLFDFY099231;
-	Fri, 25 Apr 2025 16:15:13 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <robh@kernel.org>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vigneshr@ti.com>, <m-chawdhry@ti.com>,
-        <w.egorov@phytec.de>, <u-kumar1@ti.com>,
-        Dominik Haller <d.haller@phytec.de>
-CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
-Subject: Re: [PATCH v4 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC AM68x based hardware
-Date: Fri, 25 Apr 2025 16:15:12 -0500
-Message-ID: <174561565253.212307.7484148175271541122.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250423133635.29897-1-d.haller@phytec.de>
-References: <20250423133635.29897-1-d.haller@phytec.de>
+	s=arc-20240116; t=1745615786; c=relaxed/simple;
+	bh=gfFhdTGxHbl/LD37YDzvdKH+lTSppcTv0j9nC41MXw8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t2k51vgxf1rASiWXFOyU5Vmb87fvgm8BBWGoSZnETOZTt71cRSnTFhUxNk7J/U8MtSiRQxpxKxMqhd8xPQQk0OhG2h3k92PxDSVQHE7M2ABLeZmDL/HNvtg9ptqY128AsNP3lq8Qsk77zc23fNAO+R4GE0U/AdyQsTdncemZ8s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AwwVQTCP; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-2d4f8c42f49so2172131fac.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 14:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745615782; x=1746220582; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dTz9I5enTaJxLVBqLDZUEqU3il7OBimu59UQoHiVNMA=;
+        b=AwwVQTCP2K9CKA4fyIHrFrdBnoSQuw+MGhcGYT6karBo24u81I/NgHboYE4KWjBdQZ
+         2jQ355Uf85ipswqalfYQOcnB16PMRY6/0n7RE6yggkwGwkWUYKylHYzst8PqwPW7gYLa
+         LuCp1pVUCBENWqDqqZli/UnyZCr9rgILrG8I70DDHpcgV6uawgL5yOTmD9eOvdN6+LUC
+         x6v7v/W1/OTZ5h5Op2bhbChw+s938Q4jp6xsXc4xotwC0QZ0FETfq/4faR2AkUYg8GrO
+         iIraHhbsryGCdQU9NCNKo635EYhf7DzZ4ruUihysiBC2+a/89G2X+9D7yPNc2E3UkAFo
+         e/Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745615782; x=1746220582;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dTz9I5enTaJxLVBqLDZUEqU3il7OBimu59UQoHiVNMA=;
+        b=dvAkmlkkyGjFLHnOpCB28g9yWthSuUAXJ8VtW8/sRPP8Yl7aepdF1cPPQ2wjnNgMpB
+         BPdXaA5+VNiaYOgp9JqFzFtkKP9qIdoTHryE6MyhXjzSdB6+8clxem/A9XFu6l7dVWxi
+         wG6bilK+UqzgnK7c2nuJoPlwTc99pAQVqZbtqAeRldiElY2gPuw0lBSVeZ7fMRKxhI4k
+         20EB7GxbYzlfrTC0YAikNwuBnG2L2M5lTFDSeCcFfvEMrMQbB/uSfsBhS8RCxBRFcbXY
+         zjN1W34SaP8c18E7cn0rSI4wznpwuCvGhX/C2Ky4kIIVHYrlTfGkCHO+8tGi01/M/YW/
+         JH0w==
+X-Forwarded-Encrypted: i=1; AJvYcCVj7A5zU56ILAJ3QzC9f1qbL0nDS++9PPeNHddtFXS/p6K42yo61dEYB6hzruyWsK0yDfQXVnJA53nP@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywp25/EDaEm3cpoa/PitNwvJONSF/9skpf6mGTCD8iR0m5++gFQ
+	VSXFk/4AelsvPsixsH5M7RreNLHOBGPlW6ZMM4PLAS4Zbg/KNxyNGrOrQaIzFjIUiXwpxXv9oJN
+	q
+X-Gm-Gg: ASbGncumbBCRhwmLUTnJJpTF3Jz8xyKK7+C5sKnt/CnlNhMkSZq+lI+J+159ufdEDWk
+	4YjGgOiEEVv8zX/esnSEAYu11L0Qx/xAgprzPi2XriKzbKHAs8KPg8w6CWm1LIUgBqgaUxDYeGW
+	n+a/Q5sgB/prBdQxxQH4WXWIcstuIwEgxiJDCvQl/Cw4SPbYYVc8PIEDsqUq84J/XxUs7sBhKae
+	j78CU4QpHGpYCyL/jIry3N54qbQTVAITY+Tcyp0vXwUAy2N75Zo8gdrpqLEI45u2FUOeJeZaAwu
+	0D5aakEvZPysY57Ah6xfBoZbcoVrZA7BFL2iLq/cj9zgzJ4XgOWq4R+jubpoCX1D2FewKr5kiFw
+	pgr8+Z0F+RTZ7
+X-Google-Smtp-Source: AGHT+IFP6Q8OseGcSbnqWqVTrZCG0R7+HN99jIze+0SssGMO+saUY5k74kZJ24hu1RttCmiKMZvjBQ==
+X-Received: by 2002:a05:6870:611e:b0:2d4:e8ce:7bcc with SMTP id 586e51a60fabf-2d97317915cmr4604390fac.8.1745615781776;
+        Fri, 25 Apr 2025 14:16:21 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:96a3:e28:3f6:dbac? ([2600:8803:e7e4:1d00:96a3:e28:3f6:dbac])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7304f37b12fsm848940a34.43.2025.04.25.14.16.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 14:16:21 -0700 (PDT)
+Message-ID: <143ffe9b-b32e-41ea-b5c7-855c680b48d4@baylibre.com>
+Date: Fri, 25 Apr 2025 16:16:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] Documentation: ABI: add oversampling frequency in
+ sysfs-bus-iio
+To: Jorge Marques <jorge.marques@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
+ <20250422-iio-driver-ad4052-v2-1-638af47e9eb3@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <20250422-iio-driver-ad4052-v2-1-638af47e9eb3@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Dominik Haller,
+On 4/22/25 6:34 AM, Jorge Marques wrote:
 
-On Wed, 23 Apr 2025 15:36:33 +0200, Dominik Haller wrote:
-> Add devicetree bindings for the AM68x based phyCORE-AM68x/TDA4x SoM
-> and the phyBOARD-Izar carrier board.
+...
+
+> Devices with this feature are max1363, ad7606, ad799x, and ad4052.
+> The max1363 driver included the events/sampling_frequency in
+> commit 168c9d95a940 ("iio:adc:max1363 move from staging.")
+> and ad799x in
+> commit ba1d79613df3 ("staging:iio:ad799x: Use event spec for threshold
+> hysteresis")
+> but went undocumented so far.
+
+It looks like this part was copied from a different commit and isn't related
+to this one.
+
 > 
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-iio | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 33c09c4ac60a4feec82308461643134f5ba84b66..129061befb21b82a51142a01a94d96fcf1b60072 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -139,6 +139,23 @@ Contact:	linux-iio@vger.kernel.org
+>  Description:
+>  		Hardware dependent values supported by the oversampling filter.
+>  
+> +What:		/sys/bus/iio/devices/iio:deviceX/oversampling_frequency
+> +KernelVersion:	6.15
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Some devices have internal clocks for oversampling.
+> +		Sets the resulting frequency in Hz to trigger a conversion used by
+> +		the oversampling filter.
+> +		If the device has a fixed internal clock or is computed based on
+> +		the sampling frequency parameter, the parameter is read only.
 
-I have applied the following to branch ti-k3-dts-next on [1].
+Don't need a newline after every period.
 
-[1/3] dt-bindings: arm: ti: Add bindings for PHYTEC AM68x based hardware
-      commit: 5d15c4395fd360ab894a28c6a7c8ca44593cdc61
-[2/3] arm64: dts: ti: Add basic support for phyBOARD-Izar-AM68x
-      commit: 8bc3b1c8645213ffc22f48238e2f325cc4fa29d0
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/oversampling_frequency_available
+> +KernelVersion:	6.15
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Hardware dependent values supported by the oversampling
+> +		frequency.
 
-I have applied the following to branch ti-k3-config-next on [1].
+		oversampling_frequency attribute.
 
-[3/3] arm64: defconfig: Enable TMP102 as module
-      commit: 8d8f28da8f9055acf3bd8fa4c6cb05140c505baf
-
-Thank you!
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_supply_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_i_raw
+> 
 
 
