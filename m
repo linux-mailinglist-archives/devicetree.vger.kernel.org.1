@@ -1,191 +1,233 @@
-Return-Path: <devicetree+bounces-171117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A7FA9D498
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:54:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19549A9D4A1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 266679C2870
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:54:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95C213BF778
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B514224B0B;
-	Fri, 25 Apr 2025 21:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF339227581;
+	Fri, 25 Apr 2025 21:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d2g/Q1T7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RPgt07gf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6CD208997;
-	Fri, 25 Apr 2025 21:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC50E2248A4
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745618062; cv=none; b=MRVRpjLNl+TNdEvHX12CxxEuAvuBwYOK28yhWIL6wyup8wKIKBaOS6km15kWt4gSeg9oAqxiTSUShmCdxgOMlCWeDzxfyH2TrXySSTgX3euVx3d3Go2LWdMG8aXVGcyN1vwZTvLTYSjQP0e1uoeqO6dV0ZoI5dcZCszmcykCZok=
+	t=1745618180; cv=none; b=G5cJwSZBv6xVweO5x2+DTsvnm+qEBQ3f5LJOLyqJFp+zSp5ihgWCzI8CaNuVdCQ+ruwUx5J4VVoIQx9Jq2bxaXs2CzsMj0qrwim52++e/z6Uu2Ll+37wpRmSiXCf5mB3VURGDGR9i46YD9/xz/mtZBzfWNp0CJ+HjN54JX90Q78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745618062; c=relaxed/simple;
-	bh=/Qg+jrzz7ohQYOyGyC0DRfDJYxTT87vaFSUzkC7isnY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=udeblBQq04/R2OUo3MaSiBKqGc2Df/ik0eLBHocGPdpZDPUJ2oXgkscXpUDcPCZcGdJSXPeUkqXYWvzwWg2mu4ikX222G11UXltwJ/l5CXnjwHOZ5ARqLlQpDqGxytVFiznDpAyX0/p5f52yVJ0lu7Etbjip9RIocIPPsircJEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d2g/Q1T7; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-22423adf751so31535825ad.2;
-        Fri, 25 Apr 2025 14:54:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745618059; x=1746222859; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XCobKniwenRsZRQXHN93hhOkNZYsytudx8yyvFZoPso=;
-        b=d2g/Q1T79dgYBiYRTA04dDbvWn9pCspC9OGzX06qmOjCDFRXb5xBodSBXbt3SOH1eC
-         paro7FkDpSs/oWMRN/VsMtxiEaiXAx5fVhlefpnpSNf6szA2HM18rpHXgsGuclFEJVnP
-         ivSvc84YrHz4/Qv0NNVehRmSDcDGZSs6++/wpRTjx+31JGq5DU6qvmMNdVHhIu1N25ai
-         VYAWCChKFTWJBifB5DxNWJcz3sTfhh/O4ynrhSiU547inNwVN9AtzJEa8x53SWZfkRCQ
-         OVrZXaXCWFhziYa3pA/GWvNMXoz5WdqWtONNK/2QJO+LIUG9vQP6QRuE+4+tRKtwIdie
-         FC+Q==
+	s=arc-20240116; t=1745618180; c=relaxed/simple;
+	bh=thtHjD4hP98SncIQnFXA/3E8xNkWqZkjB5OsSovkSkU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gVPGoLJwKUWx0TQ12vI5UT7DQBZQhnCu4+om4cyGyfFPmy81IhSeAK2r8R+vFWD/BeUztKWFhX5ZwXDP0C0bWAcRUUTFl260gjYcinkBnkIHOnHU9GTLok3hOR1vMLN1SNpqncOnSccKf8/UyfNw9aUcCjuhU2rC3gH1qeODwJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RPgt07gf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGK1wL032096
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:56:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bvqtkiiAnjXCi6DrBZ4bpGwhPBq2CBWyd3yKZ++IwSw=; b=RPgt07gf9WaFXQaq
+	/qM48HiVyxYvfghl2MdxBkTDZUgv5KQoD715X9ai+/apeSZKxtwyFiPibSsmVeWS
+	a7Y6mEypzxcvlxFd+13gzF2lc1Ab+Wf7FwDwtjE/xzUycHs4mrynMwKNwE53XaFf
+	37tZFitv26wKTzPgElr0d6loK1R5FGdjFfZ+LYCHvm2tHX3ADZZv+RbrGmKXDD4b
+	7D56dx3aEnsGPEVBDVSbZA4nENFtDguPip/9ffAsP2W5wpu1cc0DPsm7vQt6swK7
+	Fk4fSa8wAudDkNfpB//0KMhocORHhQAu2AxJQPoH5HMW2uS7sb28FuSXNwcLNGci
+	b5inZw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jgyabgb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:56:15 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-47b1b282797so4398251cf.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 14:56:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745618059; x=1746222859;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XCobKniwenRsZRQXHN93hhOkNZYsytudx8yyvFZoPso=;
-        b=p46CZIvrDFTnxWY/F8sc6JaNSz4ysPtIKaeB298eQF5mUIlMyBDdL4d4qi3Xzh/Jqr
-         lQ6HKMMuemlVnmFSfECHPNlLMy2lnw7czPPISRgOr9MkGevXS59dBaF1YyQgIkSLR+Sv
-         HxqUAur27moHMEzPhshiRWI9j1RGN/alr1CPYXJyFAZ4cV1tpedfjFbxDZhIrAJNUgCu
-         4Uuz6ciy14I+tu/P7C3f2qCfzpvZ7MWLRoFi6lskYFeyDZj7Zh3U6ZJR3zYf40PcvibA
-         3Tzy92Or4ZPsxoDMmCerb2m40R+QqvUwO7yoiSBilhxQKE/aJ36EOgDmqIh3M/OHg/mk
-         gFyg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2PS6xK9akhyUEjTUUGTkPvMPrc0qe7CG1QVXTotbVqpcs5elYW5nsdVLbs2bkg9T4n+s4w/B6vL+N@vger.kernel.org, AJvYcCUklnHfbY3V5tIg1CyOb67e8rxXegKbbvplf0c1E27kdfW6LE/z21P78rp+CcDeZgqj3A/9wY5UUbnWcvr9@vger.kernel.org, AJvYcCWwKVgYs1RzZJNBSloqM3JBkg66pLyLULiSzX8y0yNFA24JiG8a69aW5KfGm/kKD9AblnrXZI32zahl@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywmz6ZNM1CxQGUXhVi1BKPxBnsf1Dc83scWoYn6bXYlddvpEKp0
-	P8uzabcs3cYUe3okcR66W8pbDK/gCkXOGN80QIK2v1KhfKXHPUE9EQIXESiQnck=
-X-Gm-Gg: ASbGnctS+KK48BsuT8SQfWS32jbAToOzFnce04gdgLP0+WcwyaF116x2seWH0NUgWkT
-	+F4XCm/LkB4PFKQj2K7EXNkjOw/ZBPO5IShu7TDxtOv4W0K/1UZqtgTJ4+DqPibuYjsgnASF0d9
-	Wk+bF6ruu20sAqLAJWXFLkLfcrNPZQIkPg2QyZCQmVflDKGxRv5dRdJdpAFv4jDBW0mTKV1D8uf
-	oQQMnd18dlj+me5nmHHslsOWM+I5vkDot+ZfoyobZiv3+i0uySPiyUVuBlhTVSCT+IEtc8fNTwF
-	FB6plhUPQtgc4xKxVj8fzOogxZ2acFVbK/nHroTqBXw/scG6cf4sP9EPKKYBWfQ=
-X-Google-Smtp-Source: AGHT+IEhyiPUvx6/TQLgHrek4gH35yub8pGeGVD8zCIOvwyadYampCv51ThIk0Qc/PvSpWTxrFLFWA==
-X-Received: by 2002:a17:902:d4ca:b0:220:fce7:d3a6 with SMTP id d9443c01a7336-22dbf5fb486mr54033065ad.23.1745618058561;
-        Fri, 25 Apr 2025 14:54:18 -0700 (PDT)
-Received: from localhost ([2409:40c0:2025:2c31:c6a3:5653:2e03:8d7a])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-309f7749938sm2211580a91.11.2025.04.25.14.54.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 14:54:18 -0700 (PDT)
-From: surajsonawane0215@gmail.com
-To: jic23@kernel.org
-Cc: surajsonawane0215@gmail.com,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: iio: chemical: Add sharp,gp2y1010au0f
-Date: Sat, 26 Apr 2025 03:21:49 +0530
-Message-Id: <20250425215149.49068-1-surajsonawane0215@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1745618174; x=1746222974;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bvqtkiiAnjXCi6DrBZ4bpGwhPBq2CBWyd3yKZ++IwSw=;
+        b=rq3gp7G6WkzOSu4hU7NUhqVFW4gt5vMEuQeLVEc4CuVOesOQ7XFGd9bV2QEYDA5zRX
+         FrO/faA2cGPHOojVFnfS0D1WzVkIymQqoB5499AE781ocdq+Jg8A1+WdFXRgskEWPpzh
+         lGbCGJN+uEYDPGt4crQ4vEbkKyIz541djEg5H8X9U1RFYn/ldUaC2KMcX8NC+zaTKAfD
+         wo5zYYF1I8HXzaIuUvjPY91Cl/Jbb39QAUudmXMd+GRDtvkvvldAo8ZLaxA2BNONpiKE
+         xJ1ajEgiwjrSkQBJ48TsfOHdlvJ+/kv4aunSn+riXh9R9tNJMuleaNijlhHZBSnC5cha
+         pXyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXnXWPAaIjG6WlPJMVTm1h73i5EW9XJSyTFNQXvqei2L2QPZwhflW0mKTzFpAiqPcpv5DhQN80CjaoK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7beXLXw+yYjNDJ5pST5x1dvnb8ahqgxt6NR/QxUQjiYr8dA9T
+	tHwA7dYJ+9+XYa7ygVScsPL82x6Ojx3nAcZEgNn3yHCVi+bmAxyn+fuwzxf/HUCoCZ7GmyZLtjG
+	2A6xyJlqzoF/ZNfLYSJnBo8r2if9tP23ie5eNR0V+TGh1gSqecvurQxZJxayT
+X-Gm-Gg: ASbGnct5iNX/qfCh+wsIf6QLZmvRWaZ11jBlURYbXmEuv0g7kbiTKMd6mTle3Ju+BAt
+	p9+AC7jp11eOrfUp5qyF0aAN0DeNtUybQwm0PxorMkzKxxBp/4sSCeaEVbJ3EEMU9o9CATXIvKA
+	Kly8guGF8rE1VZZG6XH/qrJ5FWAcQKfy8+qx02gz+t/JT05hD90/lAwGUh9axTo3kb/BvKSa1yq
+	HK6TPG2AMv/SZr0rbB5606r31U7jHNfyMSf95rpjj9R8Wh/M7XhwAUI84oc88gYu//ylSuZd9hq
+	0YcejD7xsprVqLQSutUqXqyaJZkOZqA7nToW+owhgsUfiFXy1y1j43x5/2yzE6fax6w=
+X-Received: by 2002:ac8:5dca:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-4801e4ef692mr23919681cf.12.1745618174660;
+        Fri, 25 Apr 2025 14:56:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGEPH6ZC4mMXPwc+8kPXQipc+SljnFWRTW4WTZQ1kaqXT62AUsCek4O0DPWZW8AkH1lmpId5w==
+X-Received: by 2002:ac8:5dca:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-4801e4ef692mr23919511cf.12.1745618174356;
+        Fri, 25 Apr 2025 14:56:14 -0700 (PDT)
+Received: from [192.168.65.156] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6ed71ff2sm196207266b.144.2025.04.25.14.56.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 14:56:13 -0700 (PDT)
+Message-ID: <b05fd08d-b08b-4398-8d0d-acbb11d66300@oss.qualcomm.com>
+Date: Fri, 25 Apr 2025 23:56:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: qcom: sm8550: add iris DT node
+To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>
+References: <20250424-topic-sm8x50-upstream-iris-8550-dt-v3-1-92f6b692bd52@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250424-topic-sm8x50-upstream-iris-8550-dt-v3-1-92f6b692bd52@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDE1NyBTYWx0ZWRfXwnEIGk8wN8kc bFhhsKY4Xulw1A8zQrjppwhFmOQ00MEgn9zPH4Q1rKhPtZyNIH12Ato0yi6p3ziiB3TfI/zylsa i0lZQhuOhi+XRS9BsHny/YlY2/vZUTbZkp7TGRt/EFg5ljdljqjxJtMpJ/tSb6pRiSrdwtWauZT
+ InCHFfXCBqVLZrAUNOmCZeLojVtefmoJLQ16hG3XwX8v+LpwDIdjt1QjFwm+WP2bOltYYyHCB4U 3WAxFBHcDbQBiExM4OFRcn+DdHeimY2bZPXkbWIKe6JRUUJQc9qAkviQJ9sqehOGdBU9Lky8Z9m FBh1NHNHiGaWmStm3QBkQqNt90+D452GCpZAwJJCsdgBtcTbphSVf7elgUgFuyAlpgk+EHII2ez
+ XafMYpdr04YY1od7c6Dcc+UfBGlV+OOdHkYdqp3UlfE1MZqO2xPuDeW9ay4x2wJKMljwe9Q6
+X-Proofpoint-GUID: J1xgQNHuF7_0ptIaoHvh-we1ToERO4ag
+X-Proofpoint-ORIG-GUID: J1xgQNHuF7_0ptIaoHvh-we1ToERO4ag
+X-Authority-Analysis: v=2.4 cv=M5VNKzws c=1 sm=1 tr=0 ts=680c04ff cx=c_pps a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=wn_BznkOyV8vFZdaYPEA:9 a=pfqro4Q_cSz128hX:21
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_07,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 malwarescore=0 impostorscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250157
 
-From: Suraj Sonawane <surajsonawane0215@gmail.com>
+On 4/24/25 6:34 PM, neil.armstrong@linaro.org wrote:
+> From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> 
+> Add DT entries for the sm8550 iris decoder.
+> 
+> Since the firmware is required to be signed, only enable
+> on Qualcomm development boards where the firmware is
+> publicly distributed.
+> 
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Add Device Tree bindings for Sharp GP2Y1010AU0F optical dust sensor.
-The sensor measures particulate matter concentration via infrared
-scattering and requires:
+[...]
 
-1. GPIO for LED pulse control (280μs pulses with 40μs delay)
-2. ADC channel for analog output measurement
-3. Power regulator (vdd-supply)
+> +		iris: video-codec@aa00000 {
+> +			compatible = "qcom,sm8550-iris";
+> +
+> +			reg = <0 0x0aa00000 0 0xf0000>;
+> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+> +					<&videocc VIDEO_CC_MVS0_GDSC>,
+> +					<&rpmhpd RPMHPD_MXC>,
+> +					<&rpmhpd RPMHPD_MMCX>;
+> +			power-domain-names = "venus", "vcodec0", "mxc", "mmcx";
+ 
+Please turn this and clock-names intro vertical lists
 
-Datasheet:
-https://global.sharp/products/device/lineup/data/pdf/datasheet/gp2y1010au_appl_e.pdf
 
-Signed-off-by: Suraj Sonawane <surajsonawane0215@gmail.com>
----
- .../iio/chemical/sharp,gp2y1010au0f.yaml      | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/chemical/sharp,gp2y1010au0f.yaml
+> +			operating-points-v2 = <&iris_opp_table>;
+> +
+> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_CLK>;
+> +			clock-names = "iface", "core", "vcodec0_core";
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +					<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "cpu-cfg", "video-mem";
+> +
+> +			/* FW load region */
 
-diff --git a/Documentation/devicetree/bindings/iio/chemical/sharp,gp2y1010au0f.yaml b/Documentation/devicetree/bindings/iio/chemical/sharp,gp2y1010au0f.yaml
-new file mode 100644
-index 000000000..358c2b2f7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/chemical/sharp,gp2y1010au0f.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/chemical/sharp,gp2y1010au0f.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sharp GP2Y1010AU0F Optical Dust Sensor
-+
-+maintainers:
-+  - Suraj Sonawane <surajsonawane0215@gmail.com>
-+
-+description: |
-+  Optical dust sensor measuring particulate matter concentration via infrared scattering.
-+  Requires ADC for analog output and GPIO for pulsed LED control with strict timing.
-+  Datasheet: https://global.sharp/products/device/lineup/data/pdf/datasheet/gp2y1010au_appl_e.pdf
-+
-+properties:
-+  compatible:
-+    const: sharp,gp2y1010au0f
-+
-+  vdd-supply:
-+    description: Phandle to the regulator that provides power to the sensor
-+
-+  led-gpios:
-+    description: GPIO connected to the sensor's LED control pin (V-LED)
-+    maxItems: 1
-+
-+  io-channels:
-+    description: ADC channel connected to the sensor's analog output (Vo)
-+    maxItems: 1
-+
-+  io-channel-names:
-+    const: dust
-+
-+  sharp,led-on-delay-us:
-+    description: Time in microseconds to wait after turning LED on before ADC read
-+    default: 40
-+    minimum: 0
-+    maximum: 100
-+
-+  sharp,measurement-window-us:
-+    description: Measurement window in microseconds after LED turn-on
-+    default: 200
-+    minimum: 0
-+    maximum: 280
-+
-+required:
-+  - compatible
-+  - led-gpios
-+  - io-channels
-+  - io-channel-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dust_sensor {
-+        compatible = "sharp,gp2y1010au0f";
-+        vdd-supply = <&vcc>;
-+        led-gpios = <&gpio 44 GPIO_ACTIVE_HIGH>;
-+        io-channels = <&adc 0>;
-+        io-channel-names = "dust";
-+        sharp,led-on-delay-us = <40>;
-+        sharp,measurement-window-us = <200>;
-+    };
--- 
-2.34.1
+Not very useful
 
+> +			memory-region = <&video_mem>;
+> +
+> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+> +			reset-names = "bus";
+> +
+> +			iommus = <&apps_smmu 0x1940 0x0000>,
+
+One zero does the job
+
+> +				 <&apps_smmu 0x1947 0x0000>;
+
+similarly, 0x1942 0x0 may come in useful too
+
+> +			dma-coherent;
+> +
+> +			/*
+> +			 * IRIS firmware is signed by vendors, only
+> +			 * enable in boards where the proper signed firmware
+> +			 * is available.
+> +			 */
+
+See 8650 patch  comment
+
+> +			status = "disabled";
+> +
+> +			iris_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-240000000 {
+> +					opp-hz = /bits/ 64 <240000000>;
+> +					required-opps = <&rpmhpd_opp_svs>,
+> +							<&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-338000000 {
+> +					opp-hz = /bits/ 64 <338000000>;
+> +					required-opps = <&rpmhpd_opp_svs>,
+> +							<&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-366000000 {
+> +					opp-hz = /bits/ 64 <366000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>,
+> +							<&rpmhpd_opp_svs_l1>;
+> +				};
+> +
+> +				opp-444000000 {
+> +					opp-hz = /bits/ 64 <444000000>;
+> +					required-opps = <&rpmhpd_opp_turbo>,
+> +							<&rpmhpd_opp_turbo>;
+
+nom (nom nom nom)
+
+> +				};
+> +
+> +				opp-533333334 {
+> +					opp-hz = /bits/ 64 <533333334>;
+> +					required-opps = <&rpmhpd_opp_turbo_l1>,
+> +							<&rpmhpd_opp_turbo_l1>;
+
+turbo
+
+Konrad
 
