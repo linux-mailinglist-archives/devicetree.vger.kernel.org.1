@@ -1,73 +1,56 @@
-Return-Path: <devicetree+bounces-170799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E2AFA9C50D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B3DA9C51A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:19:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CCB216B439
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:17:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA094A3362
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83525239585;
-	Fri, 25 Apr 2025 10:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D462367A1;
+	Fri, 25 Apr 2025 10:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMNqFTbn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XEAmy/BS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507A522156E;
-	Fri, 25 Apr 2025 10:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF4821D3DB;
+	Fri, 25 Apr 2025 10:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745576248; cv=none; b=EBWTBSGNvt5sqZTGz82TuMjPNNyfR3r9XXItBxHqNM645vuT12zdd1qgaV/oOEEt2+6R//tQzt4CHvGo5bRDjrWF82hTC9HUMJmfp9McB9ufV/+T6wxjkpL5gTW+HLoi4yBQYZvIKwRD+dQ4IiYJkpCSykQMY7ImeNNbYKuTHpA=
+	t=1745576357; cv=none; b=HFgGemQr387Hlszt8+q0+oqreJw7T6SOs7oYoL1ucrGY3hFP0efT1FXhx5BLn8Dt3bSLK1rWHrhp9ucuudFFiQdx0wwZBC2RCQJ2vadl4CDEAGeQQTHTb+UWb3+xyQWJDOq6Rp1fYI9vvVcc74lofHERR5Ptv9GVluyLOzm/OyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745576248; c=relaxed/simple;
-	bh=yxEWwgS6mqTatarLhuSCwRAm7Heme/ytzkkDRHWbBsU=;
+	s=arc-20240116; t=1745576357; c=relaxed/simple;
+	bh=8hdBrASEox056qzws93ce/KXrePY3rfEbDz0T95lkl4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L0z6ymR+g//HyrprsGzbODkQYSzs3VgMTNl+eFX0X+KJh0ZBxeIXPEpwBp0xwtrWjdh8q5ZOWQ8H5OPlH7fmMef2XKgje2jp7Y2Yx01lPrSbiWJPzJbPPG1Ec60J6kf48nAjXSPvc46Bd5Lcg0aR+UDziwzj+OOHhlIZ7MJVUek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMNqFTbn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FF8C4CEEB;
-	Fri, 25 Apr 2025 10:17:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PHDzwWpmMbAj6rAXk6nY34dvCFruuPHZ4ttq0Q9wPsjrklT3QT5935sy2QNRizfOR60bXYDczz6eFNuFlGChaIbdAcFnYl6jCA4T5oQHpty9UDRYhpcsA2D/tKu3cm16KN7hkYs9IRuYT6XRUogRxBRV1RznXW2xjdjod006Wmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XEAmy/BS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7DF9C4CEE4;
+	Fri, 25 Apr 2025 10:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745576247;
-	bh=yxEWwgS6mqTatarLhuSCwRAm7Heme/ytzkkDRHWbBsU=;
+	s=k20201202; t=1745576356;
+	bh=8hdBrASEox056qzws93ce/KXrePY3rfEbDz0T95lkl4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bMNqFTbn0pcwzwTpG//tMyarxkDSrafqDkGHNAFK41OMKRv35a0g2j3f4dJSkzxsz
-	 Zgg+BQzy0JSvKrRZQL+DEoPFGbdxROvAQlk6r/4SmYigjqQczzTj+k62kSJBc+cNtm
-	 85av9+415uloWQTSw9ElNLlXot1pxaEukH7OX3tsTg/ynDIQhhwSQY5VvQOrsc/IMh
-	 7IxgTT0ac4ypeYwpGPrsb3Ou6agvJK++zLes+iFEWSy/si2uSwOHVcAqFj30C8r0Xw
-	 wUpkLD3+7c2R/mHnDkAb8KJTRFizuSuTZ0/4Y02uJZx+8s7X90TTkFlNCHrcCI0T3l
-	 syCyxX2QiweXg==
-Date: Fri, 25 Apr 2025 11:17:21 +0100
-From: Lee Jones <lee@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH net-next v4 5/8] mfd: zl3073x: Add functions to work with
- register mailboxes
-Message-ID: <20250425101721.GC1567507@google.com>
-References: <20250424154722.534284-1-ivecera@redhat.com>
- <20250424154722.534284-6-ivecera@redhat.com>
- <5094e051-5504-48a5-b411-ed1a0d949eeb@lunn.ch>
- <bd645425-b9cb-454d-8971-646501704697@redhat.com>
- <d36c34f8-f67a-40ac-a317-3b4e717724ce@lunn.ch>
- <458254c7-da05-4b27-870d-08458eb89ba6@redhat.com>
- <98ae9365-423c-4c7e-8b76-dcea3762ce79@lunn.ch>
- <7d96b3a4-9098-4ffa-be51-4ce5dd64a112@redhat.com>
- <20250425065558.GP8734@google.com>
- <98e471cc-ec66-4c89-af9a-57625c0c2873@redhat.com>
+	b=XEAmy/BSDYyR+NH/5tniQVVLXaO44MfQIGSLZuty8bEPYJEO4+48Bpg+jqJJwPU55
+	 MjiHbscPCKiL5orQpKws711FhnyFnZt6qVPsgrxhHDeRcIR1H9WcyLwqnt5wmmwzTT
+	 U00brDEJIubTJBY5IlCWZXH4lsmm9N6ml9y/MjQBe0Jx6qNT3khEcvM3SFdJfRvvqa
+	 NwFEkkuJfav2PDXfi6eA8VN74pWmsoebsi/lkQRrAtwM0sR8qE7eLtfgrQ7iSUigWg
+	 +gUiRkFqE8kNEOpZT203FogCE1irHXylMtynHtL2D5WPnQeXcYlTwrqspQvUCM1Fsk
+	 UOG+pJ9+nOhbg==
+Date: Fri, 25 Apr 2025 12:19:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper
+ boards
+Message-ID: <20250425-polar-tamarin-of-reward-c57e01@kuoka>
+References: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,67 +59,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <98e471cc-ec66-4c89-af9a-57625c0c2873@redhat.com>
+In-Reply-To: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
 
-On Fri, 25 Apr 2025, Ivan Vecera wrote:
+On Fri, Apr 18, 2025 at 07:24:25PM GMT, Alexey Charkov wrote:
+> APC Rock is a development board based on WonderMedia WM8950 SoC
+> released around 2013. Paper is the same as Rock but lacking a
+> VGA port and shipped with a recycled cardboard case.
+> 
+> While at that, put myself as the maintainer, given that Tony is
+> unavailable as of lately.
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+> Split the series from v1 into separate bindings patches so as not to
 
-> 
-> 
-> On 25. 04. 25 8:55 dop., Lee Jones wrote:
-> > On Thu, 24 Apr 2025, Ivan Vecera wrote:
-> > 
-> > > 
-> > > 
-> > > On 24. 04. 25 9:29 odp., Andrew Lunn wrote:
-> > > > > Yes, PHC (PTP) sub-driver is using mailboxes as well. Gpio as well for some
-> > > > > initial configuration.
-> > > > 
-> > > > O.K, so the mailbox code needs sharing. The question is, where do you
-> > > > put it.
-> > > 
-> > > This is crucial question... If I put the MB API into DPLL sub-driver
-> > > then PTP sub-driver will depend on it. Potential GPIO sub-driver as
-> > > well.
-> > > 
-> > > There could be some special library module to provide this for
-> > > sub-drivers but is this what we want? And if so where to put it?
-> > 
-> > MFD is designed to take potentially large, monolithic devices and split
-> > them up into smaller, more organised chunks, then Linusify them.  This
-> > way, area experts (subsystem maintainers) get to concern themselves only
-> > with the remit to which they are most specialised / knowledgable.  MFD
-> > will handle how each of these areas are divided up and create all of the
-> > shared resources for them.  On the odd occasion it will also provide a
-> > _small_ API that the children can use to talk to the parent device.
-> > 
-> > However .... some devices, like yours, demand an API which is too
-> > complex to reside in the MFD subsystem itself.  This is not the first
-> > time this has happened and I doubt it will be the last.  My first
-> > recommendation is usually to place all of the comms in drivers/platform,
-> > since, at least in my own mind, if a complex API is required, then the
-> > device has become almost platform-like.  There are lots of examples of
-> > H/W comm APIs in there already for you to peruse.
-> 
-> OK, I will do it differently... Will drop MB API at all from MFD and
-> just expose the additional mutex from MFD for multi-op access.
-> Mailboxes will be handled directly by sub-devices.
-> 
-> Short description:
-> MFD exposes:
-> zl3073x_{read,write}_u{8,16,32,48}() & zl3073x_poll_u8()
-> - to read/write/poll registers
-> - they checks that multiop_lock is taken when caller is accessing
->   registers from Page 10 and above
-> 
-> zl3073x_multiop_{lock,unlock}()
-> - to protect operation where multiple reads, writes and poll is required
->   to be done atomically
+Hm? That's odd.
 
-Looks sensible.  If this is aligned with the discussions that have been
-taking place between you and Andrew.  Let's see the code before we make
-any binding agreements.  =:)
+> spam all the subsystems with unrelated changes, per Rob's suggestion
+> 
+> Changes in v2:
+> - kept single-valued compatibles in a single enum (thanks Rob)
+> - dropped the empty overall description node
 
--- 
-Lee Jones [李琼斯]
+...
+
+> +
+> +      - description: VIA APC Rock and Paper boards
+> +        items:
+> +          - const: via,apc-rock
+
+Where is any user of this? Bindings always come with the user. Board
+compatible comes with its user - board - both to SoC subsystem (in this
+case me).
+
+See also SoC maintainer profile describing this or my guides how to
+properly target SoC subsystems:
+https://lore.kernel.org/linux-samsung-soc/CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com/T/#m2d9130a1342ab201ab49670fa6c858ee3724c83c
+
+and great example:
+https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
+
+
+Best regards,
+Krzysztof
+
 
