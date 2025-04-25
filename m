@@ -1,148 +1,140 @@
-Return-Path: <devicetree+bounces-170726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A495A9C31A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:17:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33153A9C327
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5864316D0B7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C11219A5FBF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D7BB233716;
-	Fri, 25 Apr 2025 09:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4EF23497B;
+	Fri, 25 Apr 2025 09:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="muQgx57P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FL9dJgwT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C242D22E3E1
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2C2230BC2
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745572668; cv=none; b=LLrE+BOeGdew/daUOxmScKWINuoxLqsVj/GgzTbHkIxLG9ilgbtA309wbW5eClR4no4lGsGMSUPdwXVkDtBNdpD/jwEt1GcektDGDsvBvOK8BKue4Q4X4McejLFws0GLwTkFlTRiJDgtHFH2zSktd+WHuVBEcf0PHfE3dscgEcU=
+	t=1745572779; cv=none; b=jolw3RNI1Vi1XVvKORjMxXL5UubbWsAyCzTnS3F56EhcGk4oAo21MQj5w7A5LYJ1wk+++rzt0UZNnUBUAbyb3K7IEsgzq788QPFy9ygjoZqPFXMeXjVHomVg7FBzwpt+QSMjXrXggz5dMfdiDt6JKH+flOi/FcYamAMLyLCqJb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745572668; c=relaxed/simple;
-	bh=Cgy/ew99CTAyh8TT8GWMGcHdWQLx7SIMZeGyXxuUhzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+9Baok5phpIm1FtrevmhwausRENuppWcoujKuQYJ9ucDHeyM7w1OIvtGDdfZ3igJArY9KC2DaKEu4p/8Le+5nHSolt9Jq+OWB0cZoobr1xRZehT84O4VwDXfdf7Rq9DnAneVTrDlRuqVD36dULajRpT2Vp8nibryLQCiAB9hjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=muQgx57P; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8TF6r015542
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=WXe0NlKxDZrPju6112EiKpqV
-	yTfdsUulvcoDoYo4cFQ=; b=muQgx57P4ZWorYmED8WgvUdhFZUiUPW3sy+uF3p3
-	OGxNlsoyze28sRkhibP53thoMwaQZQaQCERfHqLKYWPdBxy5/M7lXAHBmvChA3II
-	mZMQuFQhIBWMsSDWRhs7lwAPUfy/9rwZtp7ImX1bLt+JQsZ9etmMoVsDHPuaJCdu
-	7vczfLWkRXhRPc303ABefG7k0w8mj7TMxDhumG+JmQDkOtbZpHVZIVYczdNfe8J9
-	xN6+cOkvpKOfHBv3v+Noo1QC8mKihj7XCpMu/rpEzERng9IqyBJFyqmEBHnPApYs
-	PZ8ZvpRuFKZDjGFeQvwpKt7HeAhRPWvdSCC9IKTEmWXMng==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3gcuy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:17:46 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c760637fe5so365516185a.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:17:45 -0700 (PDT)
+	s=arc-20240116; t=1745572779; c=relaxed/simple;
+	bh=V26+KD33m0aJZN0gGO/Xy5/bV6re183KaQZL3zie4PQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FrDEmNPbJKtuEaVXgunbQ60YfzCt2LlZpjZZa1pgiugmh9tKom3cn4XswpD1VEf+/ERWfSOH9e8G6bKzho4wreezWQwau+4oJ8xUzNuPXOu0zIzTExTfehpwiRz5b/iHFsLQgDImPi0zirZb7Kp/Zn/64kR3YFuXPk3VsiEuBG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FL9dJgwT; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54addb5a139so2164999e87.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:19:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745572776; x=1746177576; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bCu4gnKGLji0Lj1TJspCZ0JNdQdRUdGQa5Ujm73xOi4=;
+        b=FL9dJgwTreuwWnA6eGLbSiQgVbQtHN0o31Tg/f3vlbXeDV72Dp3eNAgzwfsK5+RDEs
+         +CB8GA1i+3uj4Mfl0zm1vmxNIvJTVQ+ODCnhfaang3NySGFmhQP2DFBxW3nl35otZuNN
+         vRUJrY6qiOHktOMCnT3ouNCobecJK0s43veD04u2rn7OchrY5VWKbjtEyjnK22H5+OGv
+         rKNzrzW6HtzncfMVjKINSsnZqZP11nvQuiTqAyF7ksTBJiqZ9xJ1bk6AZiQjKSpMOhny
+         Rf2nLwvfX9cObmbP8xwPKbuy9NzXpij7xoa1SpCKOARb/RM2P6+yleluIsQ7YYBlBLgH
+         kC5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745572664; x=1746177464;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WXe0NlKxDZrPju6112EiKpqVyTfdsUulvcoDoYo4cFQ=;
-        b=fw++H4n8EpJkf9H2DRwHpHEc+8QYoydTFA93gZxvfXZeGDxLWe48WT2bWZ9iP7loeW
-         86niuwaDnAEzpvZYU1k2HUNaovg9EnnJaxu8NUfCFa8nhxgHPcUCE2kcMDr+wdoVN2rm
-         svbQ/L5U0cFJPTZ0zMY+nEO8LRuUEPPvEV9x3L+5B7Jy0uhg0kczbpkVd8przK80KcCg
-         gq31H1E8QiVGMNVsnvIZt5/xt0cACHmhdW/TgOv6LEwgotEa7jcmlhf1mmcvQcrod4Sn
-         /5XZQq2dsDyD1gbPvPEVtRn7ygiaNsP83JaOgnGXHwcxbAmcPgbZio5RrAupwdttVPDR
-         l7uA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3o3s/nR7teyyYc6QR1GB63EFJULLq9UGL4CtG3IZGc2uLVOn1sxB3Jib9zxwYqZ5nv41KavN4uxQj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7SRFC2FWEYvs62rOU3GLlJskqr58Vq9NGO75DZq0SlDpY57Le
-	JvR7fiX26QGAv0PNKaBxBal2t8ehoAyw/yVf5mrcoWGquKpfVEM5QUQQdSdpP22norhhPw0T3Za
-	Cf+/d6ZI5gD1mItQNIW0ZsVTLbSrzbRrJ5Vde872Lwdtc3QkvLpaVrNzNEy9OKjBCm5Sk
-X-Gm-Gg: ASbGncuU6VXdSqHbShblHvp0H6t3MxLZwwDMsRy37Z/S+maTy13AsvmoM/mu7NRdIol
-	WFtnaNzyKIGgpoyerdHZypWfsMnuqNv0JsOH7n75+ZjSIkNacayQVVv7tpaCqFiobvckPyGLYVb
-	1qnkRyOwughGAKzuydJVNuvBncBtn+9DJo3yU1d4wUJEraOh0JRQVHPp/DUdfct7xzw+IO31DO9
-	TVlF5QmyytOTEhQRlTNZCxaQBLB6O6YHB1IsSK+Yx/+e3tvoaJboOaz+ZBKJDUy/uEqebBDxz+4
-	J4WPhTv8mzw65r6OkoyhhGiLUaoKNoi4h+zaRkkfOcu688YiX5wflOngJUSyvmf1qXiVcxEd2Uc
-	=
-X-Received: by 2002:a05:620a:1b99:b0:7c5:4b91:6a41 with SMTP id af79cd13be357-7c9607880c8mr280227085a.42.1745572664419;
-        Fri, 25 Apr 2025 02:17:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGZA3Q0DX1qcrcU6Q5IKBtyc3e5N50tRXbXJz2+iHVhL5w7s0njAeQLwBISLkAKAlk5TRfUGA==
-X-Received: by 2002:a05:620a:1b99:b0:7c5:4b91:6a41 with SMTP id af79cd13be357-7c9607880c8mr280223985a.42.1745572664115;
-        Fri, 25 Apr 2025 02:17:44 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-317d1b96d45sm6437751fa.94.2025.04.25.02.17.42
+        d=1e100.net; s=20230601; t=1745572776; x=1746177576;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bCu4gnKGLji0Lj1TJspCZ0JNdQdRUdGQa5Ujm73xOi4=;
+        b=pn4dAlSL/b3dZDOzP2l2mNPIYriFxsXowyWJSVAeIX3CubN7HXZm5/564Bi+w6dS6V
+         r1nUH/lDegiu/3eZHw2tPzjaCtPlWVQFFO2RIcfkCQFVnqgQfEkU7Sb1MWFA8J3SVab1
+         TVNiy/gI404M6KgmjGetgAFteXEJDJka7jiivUPyZyNZsjHae0RLrb1TkE/l9zK9dgF3
+         OlI2eUmNNuG5X0V+AbtO0WPTRZwzANXMfOWFfekVSWEGgZLynwQiAWTG4jMVk1kPBEJn
+         iLl4t1PUnwsetUeuwyXhIjhMLB6cwxploGdT0RUtaEkXz8MVa9f1asCJAGyJBBzuDAqd
+         GIyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVf9hjrCSrGXWd4mTew/uXznFsu/TdiAJ1uJZojblv3pK5kUfmPCGK57zAeKofXey1O+rnu+xA5uLY9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw35ygNmg2P5f5cODNjF9m8E4lLkklBZGjxnplr+Goa65iOLw3X
+	CE+2mOMJhK2Qg3SbGL+NG6RFLNb2lay6l9O3+WraipLIKN8cXjXy
+X-Gm-Gg: ASbGncvrOHQFtkLrybVD74UBR2vF0WyHn3+5E7nZHQU9kNgY3TakiOmMYmD5Jzh9OSp
+	0Ttmpe4YlcU6QpVchnFW3fRVz5PFIV3doSWUWwLUcBI9631Dmp4tt8XFRmJd5GWMOp33DtvVrzd
+	knHafMBr1rguamRqxQ5Tcd0b9D1h/XZnXrj2gJQyrorf3CkKpwLmAfghZUf/QIyIPYrS2Fj5Rfl
+	n2qtBqVxNW36mB9O4ZdPZgT9oRHERCOzGF+PcesKZSvyEH0sa2c3u72KtP8Soie9czyn+JZZ3uG
+	17eqjSlOmhS6h3hCz7LjSzMME4rSQv/ULtvB/XlqpFVAMi3/kH9+O30ZQkCIh6xX2YpeUxrWXuD
+	Q4Cx9l/E/ah7JPt77EykCorBVzGWGg2BH7vTOZeM=
+X-Google-Smtp-Source: AGHT+IFQdGmsvgDmR6TVPSbh/xxX9pxHi/YRxyBrg1Y1rk5Z58OPuXPUin/wfhblrZ2GuZjz8ygL5w==
+X-Received: by 2002:a05:6512:b05:b0:545:381:71e with SMTP id 2adb3069b0e04-54e8cc07e43mr451893e87.40.1745572775998;
+        Fri, 25 Apr 2025 02:19:35 -0700 (PDT)
+Received: from IRS-520670-Linux.atlascopco.group (84-217-94-150.customers.ownit.se. [84.217.94.150])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-54e8c7f02d9sm214299e87.78.2025.04.25.02.19.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 02:17:43 -0700 (PDT)
-Date: Fri, 25 Apr 2025 12:17:41 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: qcm6490-fairphone-fp5: Hook up
- DisplayPort over USB-C
-Message-ID: <dfjrssqxny7wwcrhybbgx7fqvibvwxvkuba4sj7ufkadpfoqme@nwvcjyjrn4ze>
-References: <20250425-fp5-pmic-glink-dp-v3-0-cc9c2aeb42fb@fairphone.com>
- <20250425-fp5-pmic-glink-dp-v3-4-cc9c2aeb42fb@fairphone.com>
+        Fri, 25 Apr 2025 02:19:35 -0700 (PDT)
+From: =?UTF-8?q?Efe=20Can=20=C4=B0=C3=A7=C3=B6z?= <efecanicoz@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Efe=20Can=20=C4=B0=C3=A7=C3=B6z?= <efecanicoz@gmail.com>
+Subject: [PATCH] ARM: dts: imx7d: update opp-table voltages
+Date: Fri, 25 Apr 2025 11:18:40 +0200
+Message-ID: <20250425091853.54437-1-efecanicoz@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250425-fp5-pmic-glink-dp-v3-4-cc9c2aeb42fb@fairphone.com>
-X-Proofpoint-ORIG-GUID: XaaBXYDiUj5fBlGSUCIBPXLVGrUsIp9m
-X-Proofpoint-GUID: XaaBXYDiUj5fBlGSUCIBPXLVGrUsIp9m
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA2NyBTYWx0ZWRfX3BgSoS7ECcm3 iOIEbKANHZzoauDQxaN3C2e+EIumoFTeivzNpZByUooxVbqQkDN95+QaA2PO4qnClP8tldzaVXT KJ3lAdm55pju9afUNxYPt73AvDWjJk1ykuy0diLx0k3oAjp2z97XaFLbKyYBeemxa9pFTDkOYCX
- iUzA7EruSdJTjNz8OfxGxqLyFJzDTsMYIW+aCI6L6bJG8nIox3kdpbLB7u02kkZwf4ExnV5uPOI wInNEOvLa60ynShWXX01SRDCV+Z7bvmOTYUyN8J9eeumqXCtHy8qCxQWqck9ZnsC9WLB2RwNKWM HMdTZDghPzRcRs2XUe8/mx8okOalA9gejmSuXQOctMRpHEq/K9KPWmGDmk8X1RZ607Qr7upNYN7
- sLSpbCW4PSi1t8/L6BoB/WRdI89ZkM8wz3DMxpQNBal6w+7eFujFrT20eOrMZRcoxOFRyJKh
-X-Authority-Analysis: v=2.4 cv=Mepsu4/f c=1 sm=1 tr=0 ts=680b533a cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=Df21-P5Y2jz7HsL4rSgA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-25_02,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 mlxscore=0 impostorscore=0 clxscore=1015
- mlxlogscore=469 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504250067
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 25, 2025 at 09:08:15AM +0200, Luca Weiss wrote:
-> Extend the USB graph to connect the OCP96011 switch, the PTN36502
-> redriver, the USB controllers and the MDSS, so that DisplayPort over
-> USB-C is working.
-> 
-> Connect some parts of the graph directly in the SoC dtsi since those
-> parts are wired up like this in the SoC directly.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 54 ++++++++++++++++++++--
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |  9 +++-
->  2 files changed, 57 insertions(+), 6 deletions(-)
-> 
+Update accepted voltage levels according to IMX7DCEC Table 9 Operating ranges
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Efe Can İçöz <efecanicoz@gmail.com>
+---
+ arch/arm/boot/dts/nxp/imx/imx7d.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7d.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
+index 0484e349e064..d961c61a93af 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
+@@ -48,7 +48,7 @@ cpu0_opp_table: opp-table {
+ 
+ 		opp-792000000 {
+ 			opp-hz = /bits/ 64 <792000000>;
+-			opp-microvolt = <1000000>;
++			opp-microvolt = <1000000 950000 1250000>;
+ 			clock-latency-ns = <150000>;
+ 			opp-supported-hw = <0xd>, <0x7>;
+ 			opp-suspend;
+@@ -56,7 +56,7 @@ opp-792000000 {
+ 
+ 		opp-996000000 {
+ 			opp-hz = /bits/ 64 <996000000>;
+-			opp-microvolt = <1100000>;
++			opp-microvolt = <1100000 1045000 1250000>;
+ 			clock-latency-ns = <150000>;
+ 			opp-supported-hw = <0xc>, <0x7>;
+ 			opp-suspend;
+@@ -64,7 +64,7 @@ opp-996000000 {
+ 
+ 		opp-1200000000 {
+ 			opp-hz = /bits/ 64 <1200000000>;
+-			opp-microvolt = <1225000>;
++			opp-microvolt = <1225000 1200000 1250000>;
+ 			clock-latency-ns = <150000>;
+ 			opp-supported-hw = <0x8>, <0x3>;
+ 			opp-suspend;
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
