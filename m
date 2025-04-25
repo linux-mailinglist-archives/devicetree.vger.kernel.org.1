@@ -1,159 +1,130 @@
-Return-Path: <devicetree+bounces-171093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CFCA9D304
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 22:31:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC237A9D33F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 22:48:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 727F47A6A00
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:30:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37C371C01F52
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C248221D90;
-	Fri, 25 Apr 2025 20:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636CE224233;
+	Fri, 25 Apr 2025 20:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Zf6mqFb/"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="iobspATP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61E81A9B58;
-	Fri, 25 Apr 2025 20:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4895221704
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 20:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745613103; cv=none; b=ghrCHpumtuP3ABAwaP9NS/AkzAyY4NSAe3fkz5OLy8FVmsN2X8Bp3OvWQd0aCFyFE45jLTd7XmgOsJ20YUWKXOMoHXNMRyhItg+9dJbyhwJ9QYvArsE97XbbrxHwLQIYFwmhpui+gMi/hs5rPiTPwHN1ea0Ttajuugltp2dZBqo=
+	t=1745614068; cv=none; b=J55SUo++ill6PriPfIhyZd04p5Lk5cGY4ccCCHkr5aNcXEzcWEbnzRsXcnwsbMXHYK19HPv4xxyTbZi/Sd3dJS3/1szQfSfnCHWzya1SS1TSzxG5XCQpW5/1/TlaoGcaoNZSRPGVQHj73f5g2e035LKtLEyG4NGHw3VuBZpb/Us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745613103; c=relaxed/simple;
-	bh=J/CfV7ABYcMpi+VmLI4vt/x9fR05FiOmIWNOgEfDFnM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+CEuH7WhnjVhj0DtmI2Rbh9KeRJMNpmmPFY5iT2BJqgl5NwmfIy+z1p9GuuTKmNIMZj8x7AVNwKF1tD28k+jwOorKJKDMwLV3ZkAuy4XE3MFF97lP++4+TmzrTus+TFdo7Q1fq13UGqGo+hOUNttyvV29UO03xu+xxkJ4PM6bQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Zf6mqFb/; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PKVVpp2267729
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 15:31:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745613092;
-	bh=IR4JDRdfHYKvdpk6HtZwrxcJOGiIo5P5StChQCWf82w=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Zf6mqFb/fq0fZ7nw1aYYVoCqbYVnFsQSwK8dAtk9Sei68sx8cvNybn+Vf0N9W8twf
-	 dfr4IIlzhd/MUYc8mGbnChsFrHutbygUtgboOyGd665b8DRq4hFCuCFdnUIQGNfEXY
-	 p5OGoelufueHvwuyPtPaNwx2QXe5Lvw6tO1o3sj0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PKVVKJ019061
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 15:31:31 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 15:31:31 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 15:31:31 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PKVVJD064112;
-	Fri, 25 Apr 2025 15:31:31 -0500
-Date: Fri, 25 Apr 2025 15:31:31 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Matt Coster <matt.coster@imgtec.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns
-	<frank.binns@imgtec.com>,
-        Alessio Belle <alessio.belle@imgtec.com>,
-        Alexandru
- Dadu <alexandru.dadu@imgtec.com>,
-        Luigi Santivetti
-	<luigi.santivetti@imgtec.com>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge
-	<detheridge@ti.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
-Message-ID: <20250425203131.ueswwq2kifozt7m2@footwear>
-References: <20250422-bxs-4-64-dts-v3-0-ec6657bde135@imgtec.com>
- <20250422-bxs-4-64-dts-v3-2-ec6657bde135@imgtec.com>
+	s=arc-20240116; t=1745614068; c=relaxed/simple;
+	bh=Ons6fbZ/ZBBSkZ0lCnRlE60mRw4vXN50ao9l15AnCic=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=FjjdihN1i60XU18E9V/+HHqAsvDp2dA57Tt7ZVEfSW2EGk7mC/sX0//GP1UwF5G6S0v0eve3DjVGO6QTyAwrj4kUHC9ESShAevigvsqo5sCbBd8bmpH6SSiTWAQR7Xd9/so+F76YQ1Hup04BRhFCmbTe4zOZ1Py6XD6ArT3dBlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=iobspATP; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so25505815e9.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 13:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1745614064; x=1746218864; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ons6fbZ/ZBBSkZ0lCnRlE60mRw4vXN50ao9l15AnCic=;
+        b=iobspATPfwGqIsLM0hRdkX27+Vqee4L0hK2wogylTQQQC9L+KpXhkA5f+ufUH071k7
+         qgJ+/c36AdNxZ+cdMkrDE9ooQA33mTTGNqt5WcH+Wc0yI1bLLLdPvR+8RR6eE1ja1h5I
+         W+H7D/iIG+hff2pOE3PUh+2sGH4wo8EgNreZyL7jTb0xgL8hP3WvmQtCOV+5Cr7fqU3u
+         //Ki43jNqsfiXc/67oMwWU2xrQT6OPXwdPjTt8pMf80P5yrLIVscYTBJuGsgYEuvpEai
+         JKUXTf30k4vhbfxVbdV4in6mRewfa6G5fUDWy6ptcbwej9NsfGrL2C6+unNLWv4pTE9M
+         HrPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745614064; x=1746218864;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ons6fbZ/ZBBSkZ0lCnRlE60mRw4vXN50ao9l15AnCic=;
+        b=KjZk/hVqmvPEAuAHjdNMf38XC9wS9y9bJOUFqARdkC+THLjxQS5dXdwpGQFMMc9Uo7
+         jt6+WKlHdsI7FE+guotaiHoTembt80T5Cn8uIINKXEjfiMgQ32oykynGqGJ9lp0x1HAK
+         2SCH/be2PsyfAjHDtLbGxSlwzb6WbibyTtdZnceHgWpEI7YndK73mDfeCYX39FOUBaKa
+         KvbxhLHSvREOevObd6RkBWW8ZHqqlEMU2P+UXC1E64/ny6aMCp2OYHi2CwQeT3F3nQa8
+         gHgtcndFkMeDUh+dwdUmt8wYFt+jYs+QgAQsY8jhzx1iEIvSnRLcTztx1j6VEvauxBKv
+         wIEg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgt/7YPHKLmc1n4uWk/aWjJcd9T981WFLXELkiDp8ypZMll2qzU9iuzLUc2nluk5KRptXN2pibG0yF@vger.kernel.org
+X-Gm-Message-State: AOJu0YydZddzE24ved6q7cIm0y1segz5cXq6MoTYAG9EA9VzoHE+yuCQ
+	wSrYFI6ZZggXSAf+a/VzT4g6MFE40DdtUmDoB3pWyv2GsluUxGqftGyw109e87U=
+X-Gm-Gg: ASbGncs2heFOuCiyAQ2GijEm2xj6U93orZXgLRm/eSNMG3HCsgpIayNhzlF3qI5Qdti
+	PKu71eRap0azv6ZHYWoLj5u8xS1n4HTMAu8wthpTJJ1PPIbefunH0FSI+nvXHQhNTiS81peCJ7V
+	ktzJ/gXKD4f5LUWUp8RY3BJAvhFfRmZ9WfhoRhYsvOcpcXU8PLrZWz/9dlJ1RQljfYHshMWbj/0
+	G/lvHAU5HhXCr4MpY3KG3lU0711Tg4uS2o1TMW+kstDIbY9/Ncy5hajfUmFYiAROTt5jlFJhFhV
+	2HOa+BI9JLcEReo5k/7IizajPkbot3G70EzJuvbKdr12bbqA7zQMmQjmkZ7wt/fxRqdtfpBUepm
+	1OJVQEt58fi9rI/V4TB88TC/8Yx6e74rDMOLZJVW8Rw1g40mL9qhO
+X-Google-Smtp-Source: AGHT+IHc2IGV1cabuJnO+f6tRyRq8tFSNKSMn/0EAuS9gCgWsxP2W699M+Xi8my9zfWANmox2FyRWg==
+X-Received: by 2002:a05:6000:18a8:b0:39f:a553:3d98 with SMTP id ffacd0b85a97d-3a074f89292mr3119425f8f.56.1745614064100;
+        Fri, 25 Apr 2025 13:47:44 -0700 (PDT)
+Received: from localhost (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e5da0dsm3245891f8f.88.2025.04.25.13.47.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 13:47:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250422-bxs-4-64-dts-v3-2-ec6657bde135@imgtec.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 25 Apr 2025 22:47:42 +0200
+Message-Id: <D9G0JHKZ0RXB.3LI5UGS7QTVQN@fairphone.com>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Banajit Goswami"
+ <bgoswami@quicinc.com>, "Liam Girdwood" <lgirdwood@gmail.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
+ "Takashi Iwai" <tiwai@suse.com>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 2/5] ASoC: qcom: sm8250: set card driver name from
+ match data
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Mark Brown" <broonie@kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com>
+ <20250425-fp5-dp-sound-v3-2-7cb45180091b@fairphone.com>
+ <36904d64-68e1-43b2-baed-50b5fddc2bcb@sirena.org.uk>
+ <D9FXE4TJ23QB.1CS3D6PU2FGMR@fairphone.com>
+ <ccca5e19-5a4e-423b-923e-ea0de6682752@sirena.org.uk>
+In-Reply-To: <ccca5e19-5a4e-423b-923e-ea0de6682752@sirena.org.uk>
 
-On 16:26-20250422, Matt Coster wrote:
-> The J721S2 binding is based on the TI downstream binding in commit
-> 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-> but with updated compatible strings.
-> 
-> The clock[2] and power[3] indices were verified from HTML docs, while
-> the intterupt index comes from the TRM[4] (appendix
-       ^^ spell check interrupt (please use checkpatch.pl --strict --codespell
-to catch these minor nuisance bugs)
+On Fri Apr 25, 2025 at 9:03 PM CEST, Mark Brown wrote:
+> On Fri, Apr 25, 2025 at 08:19:39PM +0200, Luca Weiss wrote:
+>
+>> I've based this series on next-20250417 tag, so this is probably due to
+>> the changes from the USB sound offloading series that Greg has picked
+>> up.
+>
+>> So either Greg also picks up these changes when they're ready, or we
+>> wait until 6.17?
+>
+> Or base it on my tree and let things get sorted in the merge, I don't
+> know what the conflicts might be?
 
-> "J721S2_Appendix_20241106_Public.xlsx", "Interrupts (inputs)",
-> "GPU_BXS464_WRAP0_GPU_SS_0_OS_IRQ_OUT_0").
-> 
-> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-> [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-> [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-> [4]: https://www.ti.com/lit/zip/spruj28 (revision E)
-> 
-> Reviewed-by: Randolph Sapp <rs@ti.com>
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
-> Changes in v3:
-> - Use assigned-clocks to pre-load the frequency of the core clock
-> - Link to v2: https://lore.kernel.org/r/20250417-bxs-4-64-dts-v2-2-9f8c09233114@imgtec.com
-> Changes in v2:
-> - Add interrupt reference details
-> - Add Randolph's Rb
-> - Link to v1: https://lore.kernel.org/r/20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com
-> 
-> This patch was previously sent as [DO NOT MERGE]:
-> https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
-> ---
->  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..9e36cbbe0ea2fefceedcc95b78068ded7ef395f0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -2048,4 +2048,18 @@ watchdog8: watchdog@23f0000 {
->  		/* reserved for MAIN_R5F1_1 */
->  		status = "reserved";
->  	};
-> +
-> +	gpu: gpu@4e20000000 {
-> +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-> +		reg = <0x4e 0x20000000 0x00 0x80000>;
-> +		clocks = <&k3_clks 130 1>;
-> +		clock-names = "core";
-> +		assigned-clocks = <&k3_clks 130 1>;
-> +		assigned-clock-rates = <800000000>;
-> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-> +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-> +		power-domain-names = "a", "b";
-> +		dma-coherent;
-> +	};
->  };
-> 
-> -- 
-> 2.49.0
-> 
+For this patch here it might be okay but patch 3/5 from this series very
+much depends on the patch in Greg's tree, given it refactors/expands on
+the USB_RX if there. Resolving this through merge wouldn't be very
+pretty.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Regards
+Luca
 
