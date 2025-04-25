@@ -1,263 +1,137 @@
-Return-Path: <devicetree+bounces-170895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A65A9CA57
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:31:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DCFA9CA70
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:33:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 432DC3B1883
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:30:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41D31172916
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB11259C8D;
-	Fri, 25 Apr 2025 13:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0B1248867;
+	Fri, 25 Apr 2025 13:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EPACdGtM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L918uHz3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A9C253946;
-	Fri, 25 Apr 2025 13:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD8D8F5E;
+	Fri, 25 Apr 2025 13:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745587755; cv=none; b=u8dU9MirE6qXF3X/jNX/OjgUAT5Q1PxEwHrpG8CbAuT3M42oatCFw58V29dqnp6HPhl9y1T50DAOna4aG5B6MtzCCahOzVw9L4U9dGRdfeNLtjCqm+nTj4XXNY1wrk3F0mO49xbyMjrC/qS51vjzlXM8AOf6j7tkPcbFZyaSVfI=
+	t=1745587986; cv=none; b=GnFQmZT67026b75v8O7Ke2K6nfO67uF+NUquXEs3WAXi7heKQ6LFCOl95sHRWbPGprG31fb/jDmp3Ip5akrCPYk9peZNHyH8UEv3Y5da7EVqkQX8dkortqvKCnFWHk1fYNugpyoj9fJDPtPxzG2icufOagD6SiUCw9EabrFBi9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745587755; c=relaxed/simple;
-	bh=VoPEM5zp/x/iGTtvO2oRd3oUlSTK3tPj5NXXrOA2pNk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ODTAk+wA2JPtcF8Hr0ueqgbVUvqNus7/4KsGG862F5h2NnQxL/pz1SB2LFm4oCX1hIOXwXA1yOuqicXENJeCkzonUPQp1eyYwnkT6lYQh9wRPUIz5MVwbgkuQ/GoiaRCZcIRnDuz8PzBkT+3+iZ1a5HwDdaQxrDUwp+s0yYrY00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EPACdGtM; arc=none smtp.client-ip=209.85.216.50
+	s=arc-20240116; t=1745587986; c=relaxed/simple;
+	bh=l6zMCpp5giwHkMbUogA1VIJYL3vWli82v31S9OuDKOw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pVhO0AUW5C4Lhy0dWdf6HopXIMPKI082l6oypXvBnODouL/efpV9vvXxRIQGa/e40+2yzqesjCZFcNM5KNMbGPnWpGDe3K/Uk/1Rno3X5aAgLu/ggRddypoy7HA5T63qouI/VlLq15MbYts8nZlcjqa7TIJpBF4v4DJUvqk1+DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L918uHz3; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-30828fc17adso2172053a91.1;
-        Fri, 25 Apr 2025 06:29:13 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22c3407a87aso34931475ad.3;
+        Fri, 25 Apr 2025 06:33:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745587753; x=1746192553; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=01k0FR3gadfOW7bYhsG0pi30JzxZ7YHZvTgo3ghbW0I=;
-        b=EPACdGtMmZzZzB6Mn7ZF++vymSvIdCnby/98s7Go9a8j9n9nnAVqEBHpwRpCAYLw8y
-         nR0P6RJLPNQxWC6FxE+5JxYSNEnAspCn2zrBlT3uZ5xuK4EdXV4lAZ4PkU/Ws7NEmdU1
-         Dy2Xzaky2yz3nCZ3s/3o73ABVAajdFAcmmZvmAZPbpPrS2swF3OxzOdPnbZoeFCJH0l8
-         e5nrzN5+Mr/sf6xdUc0i086cDwj1GJlabl6ljHW/ssEpWF6Lzy/vdllIS8sRIKHx601l
-         umt+zVPAU9frznvguK2ryM18klSUI/rfqnJlCE/LX27wrnxOEg/rP8VN2NOIkJM8J4ED
-         EbdQ==
+        d=gmail.com; s=20230601; t=1745587984; x=1746192784; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lmkpxLdSDmguPpgr39UQg1XxREgVIbUhK4JdlMT/H/I=;
+        b=L918uHz3/YsYpsWQPTOrhIW5Ac/RrRom4mffxCKvPmbuB3tjfpV7U3rssTfDzfPkFb
+         HJ+pfr/osGaJv6s/qP5vHcgaWnFADKzndO9qfYwPJfnECdZVz+nVtOCy3+GLqv6pN0Q7
+         0tVd4dosy/8CuPix/TloHJN3qKVIbKq2vbDn7neTedtObU4GLYbvosD7llU6i0ZPK5yH
+         oDFEm+rHD12gkzm1tZFnsh+96lvmHaHhY4GZmI51tTkEbRwwk1LT68bwF3rjRJQPVCZ1
+         ojx3m/D0GuRDs7W6jpAVle7D84FdUp0gB03YdLT755zisy5g5+DQvi4qAszOLs3cpHij
+         rJ0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745587753; x=1746192553;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=01k0FR3gadfOW7bYhsG0pi30JzxZ7YHZvTgo3ghbW0I=;
-        b=qHcM6nfYVhq9TEWhoSrQdxidp5boKL8Vk9GCNlTfiY61liLQRddGqsONXwkU60lfIp
-         gN7qYv9TM/GIaw2K3fjN26q6jWHPoj/lzJA282R6GwT1Qfb6i1kCzAjnZVymHrALQSpQ
-         k7x0kq3x16c9zfdlufRrjzSsD5WRZ25VXenYJfVpZyrUl/rAD1UcgD6FX+VfPv226kRw
-         CMXyzKgOQqwByoNrhJNUrUiiTdtm1mG1Nr2YxGFnGpRd8o6RaL9OOIr6UK+IOtWcEBOR
-         Af19k6Omlkt843G6hq4Z4Fgv8Mno3zHAGlEj5vnd45o6Dogfzr1bh7o2eIiwXxbJytsX
-         lxSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUywsNFR0Pf696REWM1npWOUluhsLRJXHyye0lbogbwAsr5hsaPXSvK8f73JoqBCzcQ1DuorS4tzcZZHSohYrRQkck=@vger.kernel.org, AJvYcCXRlJofyfv7BQu1mmcrvI50dIiZPd8lar0R0eXW3pyyJ7N9PgfP9yN1mQ1Vk4DxhY56Jwd63PkQv1V4wCNT@vger.kernel.org, AJvYcCXVpvZnw0Txa21P+dEg9tEHbZe+RlbNWK7uF8gWY89XarDzB+aIyPEc1qeLF6NNRxJ2+IjbuhFw+SM0@vger.kernel.org, AJvYcCXgzozVhnGdRhxorsUC0Y6dsjP6G9Xf7DPLwKRDsrqMJWw5kJTEVUhYj61NEtUHXYPXNQ9OB9QClRb4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUYm40A0wm5At8/5/6yuhNxQ50SMCpBm8cpauLvk7Zlz1merUf
-	mPTdnnUxgrtqzpXDJBPb0QVBasz+ecsbRMBgNzxB/fHnz6b/whuI
-X-Gm-Gg: ASbGncsKCBWQ39vfhGQdCjPO4++4RTVJzuo7o6aT+IyhF4J0GkkCuYmdIlLn8Krp/nB
-	4Fhz4ucIVlSCFTamikksCkQzQy/S7tYNwhly+3P5XHcu4q6ar9H6t2ReT3SXscryvOIdEI1xTXw
-	KippDzxmLQIKXOHmV3ksV/mY3IWpSUlsFHjlaKLSuuqkujtQkTJ42v300SPkeAEacS5jX40/yGE
-	rvy4PHWszbjcnrTQ0OVD4Ro/bDB/JeDDUjTUElNJvbFDrRyHdgrB2vpmzfXGFjuPX01HO24Du1y
-	BmiFdloRh7nsR/zNDP6saEjYM4qh0wnz4Y+YWXbHiLU6vcAGVd9SKg==
-X-Google-Smtp-Source: AGHT+IGg9or9/EVXKbPbko2FEzf8DUz4YrsrKKDLHYz0xNXlwlVAF65DQ3EkGDa+iSIFAG3GfpeaFg==
-X-Received: by 2002:a17:90b:5148:b0:2ee:f440:53ed with SMTP id 98e67ed59e1d1-309f7eb4b0amr3246854a91.31.1745587752974;
-        Fri, 25 Apr 2025 06:29:12 -0700 (PDT)
-Received: from localhost.localdomain ([110.44.101.8])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-309f7752a03sm1564313a91.18.2025.04.25.06.29.08
+        d=1e100.net; s=20230601; t=1745587984; x=1746192784;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lmkpxLdSDmguPpgr39UQg1XxREgVIbUhK4JdlMT/H/I=;
+        b=THRr19uIA4VWoniXdRjHHQTtQT1RtLH6R68+rBr0mcZcWp6B3Zng4FDJUUtaCEmWxS
+         OAFKb85bWNAjshfQNS/xO3iZY8bDqJ5GM8J67Ky4+9XDVL72VDXbQbZ9ga/lcq8820kX
+         6g7SYviBXIUzxJLEPBbDF6m1PLJMoo8OE6BYqTHFrj0P53a+MyuV+SDu4Hk9Zadeylu3
+         Abao6v/EQsAFMgeM7Pkcuel59jassXsELVuA6QjzOS3BrrIO4PwF98ESsAKLBAX2I5XN
+         dFQSjm+ihdhGpF0vm/qlwtI8XDmiRLzAxsYs7Xo/qSIcHUgq/ZTaS6pdvIZyFiL8MJdT
+         XIbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUju4hWWq75NovA3yxz1XB89Jt3DBT/UO5zYAEST8ESoMtuCZNbVUmXUxzy+m7b8RPgSYAqNAhhddms6dk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOCvcL70WTUWB8TegOidQcRpjxLblCqmHwUF0b+4k5cvrnGotK
+	3rQrmGFZMTpZQ8X1ScLfs0wbGFE+Q9JFZUIjbh99h0nJtP/8tlcZ
+X-Gm-Gg: ASbGncuPhb9O/6eBZChG6rbwwWn8rV/tvh3jFDA7ZPxyS8XtptbwJ12hWRPFzD5S836
+	/ZJQD4FChAOkXdUd/uz1SjWn9/uTad8WpKgnWxLZe7yMdAR2gnTWymTU++8kCxGty+hUXFaJH2c
+	jX/cRRa5x9XptdnAxFsvE8KhxLGcffuJC0hLF7oGrHWp4qpvKYa3YRxaPu3L+1KcSG5wI3ZmOuZ
+	xs5N30PBJkJ9SKd4jZRw/v60e3jK1LB7gM9XnlysU1jADtfCdN5vaa2REPmwNt1DzN98c6myTQh
+	YxgHcd+xeZWFzHv/quunKFkfhvcRZ8pu5NZf9QbG8dUje06dnLnf
+X-Google-Smtp-Source: AGHT+IFH0+eanNgJQjmBZVObp5br1Oh/XJsL2tYmBOvekRvX/qXK61fom1pOmxFDl+NTfGiRbzGbgA==
+X-Received: by 2002:a17:903:2987:b0:220:c813:dfcc with SMTP id d9443c01a7336-22dbf73671amr38327055ad.40.1745587983942;
+        Fri, 25 Apr 2025 06:33:03 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db50e766bsm31834165ad.149.2025.04.25.06.32.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 06:29:12 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-kernel@vger.kernel.org (open list:MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BO...),
-	linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES),
-	linux-samsung-soc@vger.kernel.org (open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES)
-Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v1 10/10] ARM: dts: exynos: Add proper regulator states for suspend-to-mem for Exynos5250 snow
-Date: Fri, 25 Apr 2025 18:56:30 +0530
-Message-ID: <20250425132727.5160-11-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250425132727.5160-1-linux.amoon@gmail.com>
-References: <20250425132727.5160-1-linux.amoon@gmail.com>
+        Fri, 25 Apr 2025 06:33:03 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH v3 0/2] ARM: vt8500: Add VIA APC Rock/Paper board
+Date: Fri, 25 Apr 2025 17:32:55 +0400
+Message-Id: <20250425-apc_paper_binding-v3-0-846b0855420e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAePC2gC/32NQQ7CIBREr9L8tRigatGV9zBNA/SX/sQCAUM0T
+ e8u9gCuJm+SebNCxkSY4daskLBQpuArtIcG7Ky9Q0ZjZZBcnvlJKKajHaKOmAZDfiTvmJpQo1S
+ XTnCEuosJJ3rvzkdfeab8CumzXxT5a//ZimSCic5euWxNDXN3i6bn0YYF+m3bvnJDTfKyAAAA
+X-Change-ID: 20250418-apc_paper_binding-8feae286710e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745587999; l=1417;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=l6zMCpp5giwHkMbUogA1VIJYL3vWli82v31S9OuDKOw=;
+ b=Bkdw23JrX9vLXcy/AKC7soIdSaCj3F//7wBwkWnI2aQC0+HV5YUnu0Snzi2RfFPOwmmGYb9HH
+ 2Ml1xoezjsZBA+8HmuoqRRdtBrcHo55v/jOfamqxtvknnO2Fo4anC3v
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-The MAX77686 PMCI is able to power down and up key core supplies and other
-voltage rails via PWRREQ signal to enter / exit (deep) sleep mode.
-PWRREQ status is ignored during initial power up and down processes.
-All programming must be done before the AP enterns the sleep mode by
-pulling PWRREQ low since the AP does not have programming capability
-in (deep) sleep mode.
+Add binding and DTS for the WM8950 based VIA APC Rock board. Paper
+is the same board for all intents and purposes, so reflect it only
+in the binding description.
 
-Add suspend-to-mem node to regulator core to be enabled or disabled
-during system suspend and also support changing the regulator operating
-mode during runtime and when the system enter sleep mode (stand by mode).
+Split the series from v1 into several chunks by topic so as not to
+spam all the subsystems with unrelated changes, per Rob's suggestion
 
-Regulators which can be turned off during system suspend:
-        -LDOn   :       2, 6-8, 10-12, 14-16,
-        -BUCKn  :       1-4.
-Use standard regulator bindings for it ('regulator-off-in-suspend').
+Changes in v2:
+- kept single-valued compatibles in a single enum (thanks Rob)
+- dropped the empty overall description node
+- Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-7-f9af689cdfc2@gmail.com/
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+Changes in v3:
+- submit DTS changes together with the respective binding change
+- Link to v2: https://lore.kernel.org/r/20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com
+
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- .../dts/samsung/exynos5250-snow-common.dtsi   | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Alexey Charkov (2):
+      dt-bindings: arm: vt8500: Add VIA APC Rock/Paper boards
+      ARM: dts: vt8500: Add VIA APC Rock/Paper board
 
-diff --git a/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi b/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-index ca6ebd8a9d62..70c3e6da55b7 100644
---- a/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-@@ -318,6 +318,10 @@ ldo2_reg: LDO2 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo3_reg: LDO3 {
-@@ -332,6 +336,10 @@ ldo7_reg: LDO7 {
- 				regulator-min-microvolt = <1100000>;
- 				regulator-max-microvolt = <1100000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo8_reg: LDO8 {
-@@ -339,6 +347,10 @@ ldo8_reg: LDO8 {
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo10_reg: LDO10 {
-@@ -346,6 +358,10 @@ ldo10_reg: LDO10 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo12_reg: LDO12 {
-@@ -353,6 +369,10 @@ ldo12_reg: LDO12 {
- 				regulator-min-microvolt = <3000000>;
- 				regulator-max-microvolt = <3000000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo14_reg: LDO14 {
-@@ -360,6 +380,10 @@ ldo14_reg: LDO14 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo15_reg: LDO15 {
-@@ -367,6 +391,10 @@ ldo15_reg: LDO15 {
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			ldo16_reg: LDO16 {
-@@ -374,6 +402,10 @@ ldo16_reg: LDO16 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			buck1_reg: BUCK1 {
-@@ -382,6 +414,10 @@ buck1_reg: BUCK1 {
- 				regulator-max-microvolt = <1300000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			buck2_reg: BUCK2 {
-@@ -390,6 +426,10 @@ buck2_reg: BUCK2 {
- 				regulator-max-microvolt = <1350000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			buck3_reg: BUCK3 {
-@@ -398,6 +438,10 @@ buck3_reg: BUCK3 {
- 				regulator-max-microvolt = <1200000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			buck4_reg: BUCK4 {
-@@ -406,6 +450,10 @@ buck4_reg: BUCK4 {
- 				regulator-max-microvolt = <1300000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			buck5_reg: BUCK5 {
+ Documentation/devicetree/bindings/arm/vt8500.yaml | 23 ++++++++++++++---------
+ arch/arm/boot/dts/vt8500/Makefile                 |  3 ++-
+ arch/arm/boot/dts/vt8500/wm8950-apc-rock.dts      | 21 +++++++++++++++++++++
+ arch/arm/boot/dts/vt8500/wm8950.dtsi              | 11 +++++++++++
+ 4 files changed, 48 insertions(+), 10 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250418-apc_paper_binding-8feae286710e
+
+Best regards,
 -- 
-2.49.0
+Alexey Charkov <alchark@gmail.com>
 
 
