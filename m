@@ -1,86 +1,106 @@
-Return-Path: <devicetree+bounces-170685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09D0DA9BFFB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:46:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1C2A9C00B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:48:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 566B4171C93
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:46:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFB601B8602D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A182701B7;
-	Fri, 25 Apr 2025 07:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48FE02309B9;
+	Fri, 25 Apr 2025 07:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1Z9LDOL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7651B5A79B;
-	Fri, 25 Apr 2025 07:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B4F22D7A7;
+	Fri, 25 Apr 2025 07:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745567188; cv=none; b=mhVMH65DCXSbdh7W9kUy/vS/a68QRYP9vELM2p0Re1+yKPy76xbEwjOZ2vYFApJnncRUFWRBHbLSzG7tYisffwVCZCbEZbtvcDm9Ej34CEwwdUSla6ldjfWJ8cR8pUd6B9O42uuNRrmXhax7KCdgciQf2lKRLVLGfcrXhojKL5Y=
+	t=1745567303; cv=none; b=GvLgh+B78PVgV5BPexddGZ6t6K7PeFviZenJnHsZNCH0WZpbPFfr6m+ueZZRfp4K/LiJh4jETUXH9ahtbIC8bebVft4KXgPf9Sov5wHjr+tGRoUhPM6dvorAvGs/H3IxT6Ud8KdS4vCaJkWFeot/eHrCE+qOc2cQycTVbl8KIDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745567188; c=relaxed/simple;
-	bh=DKcS6revqYQuBrgnWEdHy5BJ2gFLK5tD8d5+E6CyPs8=;
+	s=arc-20240116; t=1745567303; c=relaxed/simple;
+	bh=jpBGvqF1vhLelKCM+qa40XIBkSN7Xd7BZS/mEIX6rmg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TUBW/mk3W5HxdGcnac5tgnBsYkC7EoB7E6GKzkUVwjAEQ5CqfWxSqoF4ShBHo51Rcjn55Q7YDuj+eSP60wjcxz4SKVPeKZXvEMDxANAp1GUeq5uR7XK1m2PEERKe6xXiR+uKR4ErKet/w89r29cXqAJWYfB2t6fYdOISjRq8cd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 581A6341540;
-	Fri, 25 Apr 2025 07:46:25 +0000 (UTC)
-Date: Fri, 25 Apr 2025 07:46:21 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: andre.przywara@arm.com, andrew+netdev@lunn.ch, conor+dt@kernel.org,
-	davem@davemloft.net, devicetree@vger.kernel.org,
-	edumazet@google.com, jernej.skrabec@gmail.com, krzk+dt@kernel.org,
-	kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	mripard@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
-	robh@kernel.org, samuel@sholland.org, wens@csie.org
-Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
- board
-Message-ID: <20250425074621-GYC50408@gentoo>
-References: <20250423-01-sun55i-emac0-v1-4-46ee4c855e0a@gentoo.org>
- <20250425033001.50236-1-amadeus@jmu.edu.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kEms8tvoouxBRvjMkNZAg7h61pLiMKdMJL5VElUsRDGBT6XOl4qHPMxIVBhtEPJmmOf+jKCghEkcHP091nxatyqNEtesiWh2fr+4veaoRWOvyPwhT49FA4mar/DpnPbbtFfd2gmzgcotk27xfgZJUq8hezp2+3y4A4E+5zvtpgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1Z9LDOL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3F0AC4CEE4;
+	Fri, 25 Apr 2025 07:48:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745567302;
+	bh=jpBGvqF1vhLelKCM+qa40XIBkSN7Xd7BZS/mEIX6rmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q1Z9LDOLe8KEKfAKnMyLYXFqw1Ao+8PnjVcu3u87fGhcykICD0LzaBHMw792sdjnQ
+	 9CkZFsnFkTUWmFtbtrvpqHuo7CSVX5YXJBASK5avvKhaZTUHLxW3KEkMwDOf/mQI9Y
+	 RtLwSlTKnd/jtQ4xPsby2lOx47vi1I2BYPsrZj6dKAuzQ8apes2/Zlp1BAEkWlAEs/
+	 tA/mexzcFSn8NDWQ7+GeysL9OAyqOfGYRY+UVBZZV1Lpctq+zeNQ6PQcYsj33FUDvC
+	 OYwdFfPpnWWSghVEkpekzvxikVSWK1KRaAQ6pxXEEYrEVV3vXPsmNhoXw5sCgZ8d5v
+	 5mPZKjd7ucYkA==
+Date: Fri, 25 Apr 2025 09:48:19 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Judith Mendez <jm@ti.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Nishanth Menon <nm@ti.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Josua Mayer <josua@solid-run.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Francesco Dolcini <francesco@dolcini.it>, Hiago De Franco <hiagofranco@gmail.com>, 
+	Moteen Shah <m-shah@ti.com>, stable@vger.kernel.org
+Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: mmc: sdhci-am654: Add
+ ti,suppress-v1p8-ena
+Message-ID: <20250425-agile-imported-inchworm-6ae257@kuoka>
+References: <20250422220512.297396-1-jm@ti.com>
+ <20250422220512.297396-2-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250425033001.50236-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250422220512.297396-2-jm@ti.com>
 
-Hi Chukun,
+On Tue, Apr 22, 2025 at 05:05:10PM GMT, Judith Mendez wrote:
+> Some Microcenter/Patriot SD cards and Kingston eMMC are failing init
+> across Sitara K3 boards. Init failure is due to the sequence when
+> V1P8_SIGNAL_ENA is set. The V1P8_SIGNAL_ENA has a timing component tied
+> to it where if set, switch to full-cycle timing happens. The failing
+> cards do not like change to full-cycle timing before changing bus
+> width, so add flag to sdhci-am654 binding to suppress V1P8_SIGNAL_ENA
+> before changing bus width. The switch to full-cycle timing should happen
+> with HIGH_SPEED_ENA after change of bus width.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-am654.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> index 676a74695389..0f92bbf8e13b 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> @@ -201,6 +201,11 @@ properties:
+>        and the controller is required to be forced into Test mode
+>        to set the TESTCD bit.
+>  
+> +  ti,suppress-v1p8-ena:
 
-On 11:30 Fri 25 Apr     , Chukun Pan wrote:
-> Hi,
-> 
-> > On Radxa A5E board, the EMAC0 connect to an external YT8531C PHY,
-> > which features a 25MHz crystal, and using PH8 pin as PHY reset.
-> > 
-> > Tested on A5E board with schematic V1.20.
-> 
-> Although the schematic says it is YT8531C, the PHY on the V1.20 board
-> is Maxio MAE0621A. The article of cnx-software also mentioned this:
-> https://www.cnx-software.com/2025/01/04/radxa-cubie-a5e-allwinner-a527-t527-sbc-with-hdmi-2-0-dual-gbe-wifi-6-bluetooth-5-4/
-> 
-IMO, then the schematic should be updated, I could definitely adjust
-the commit message to reflect this change, but don't know if further
-action need to take, like writing a new phy driver, I guess a fallback
-to generic phy just works?
-(google says, the MAE0621A is a pin-to-pin chip to RTL8211F..)
+Do not tell what the drivers should do, but tell what is the issue with
+the hardware, e.g. some cards do not like full-cycle.... and this will
+also hint you that it should be most likely generic, not specific to
+this device.
 
--- 
-Yixun Lan (dlan)
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+
+Best regards,
+Krzysztof
+
 
