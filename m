@@ -1,94 +1,183 @@
-Return-Path: <devicetree+bounces-171025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1CCA9D0AE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:45:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF4FA9D0B0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 708D27B4DCC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:44:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A12A3172701
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD4F217716;
-	Fri, 25 Apr 2025 18:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58331218592;
+	Fri, 25 Apr 2025 18:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkdYx3Op"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DC8hQOTO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B269192D87;
-	Fri, 25 Apr 2025 18:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC0D21767A
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745606722; cv=none; b=f/OyMHsw/qYEBY6fJDWtanX8E+Hlv876qu2v+p0tgM9AxxOD+u4ihJbLTAOcVuLC5jHJwbEJ5dvbkazka9+4kMdFiBXnuCMjl5i4IQjrUtMf3LyMM9mFbFUIzMclnS/A+mtoEzgAJW68miSAYKTVgFcdkT7M2CkxfSplqPGoxOI=
+	t=1745606730; cv=none; b=ZRcxHR/eJwu9iNrfIJzrB1xOAKAZJvtp3YrPujDCuI+ykRmSzTUiTquxeO4cPCtR+Od6s0YX94eS9861a42IRJwMkO4+d+L2do3cdJdK/fwI8JmpbwP42xAS3KUs3Chfo8PyaTqPUelHb/oH/T58CJa8Dmfo9r8RfXQwLA0eask=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745606722; c=relaxed/simple;
-	bh=9Np55gyRaNzYiMR1dClIa2knfogC4NSAlr88zKx5tzk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MYy3sSZ3KiJP4W9hwZQoF+BkJpmVsane/EUtnv68lVFC57zVqPy3KYyfe1jprUc32KRF7DYciAX7IFgyn6uSP2EegkkJ2+ylqBBLQ5ejBYmAA1zOB+TIVhtZ3JCBl6WtoF1Llr89H2yi//S04EjBpXMhlZTz9DP/0oF4/CfpVMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XkdYx3Op; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B2EC4CEE9;
-	Fri, 25 Apr 2025 18:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745606721;
-	bh=9Np55gyRaNzYiMR1dClIa2knfogC4NSAlr88zKx5tzk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XkdYx3OpgizUSDTrAFbRe2/HBJ1opXhBLCZrlCKWZc1TAivTj2qsJUn0xIOjnPXNs
-	 m6JvPq5PvxvMPClt4acLlbtsFvXIU5SMVxZD3InBk1xom9pMY6DafG89+A0W333BOQ
-	 Dqg8Z3OHr91kEJdkjQMstVaHF70k3H6Nrafbfl0eX8w5eJSlROAwIyU6D2gcuZPWy4
-	 qLXCqQ2wBBBV+Eg5/tRz0glOQuaa6Sny2CiBPRm9ybvSXr3sBtQksYfUELZP/yzjfs
-	 wxBswDuC8QvYn30zQf1FSEzfDpOAQi6VtC+hDjYPaxxxs4hcjCaX9E0FAaEiwfNspn
-	 wFBBDgFOVOY4Q==
-Date: Fri, 25 Apr 2025 13:45:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v4 1/9] dt-bindings: renesas,sh-msiof: Add MSIOF I2S
- Sound support
-Message-ID: <20250425184519.GA2678830-robh@kernel.org>
-References: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
- <87zfge2x0u.wl-kuninori.morimoto.gx@renesas.com>
+	s=arc-20240116; t=1745606730; c=relaxed/simple;
+	bh=BNpdicJXoLGWkWg4ZeGn9Ii+XhEcaBNojBK1EIAnv0Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UsFqTQ9qgruWL5Fs2r9/r69Xuf/n70qnFTzf6tTs2DV8a+w4YSxjbeLXCi1QGX4nIbsjYAC7Dk7xeVrLhMw6oTQgfZcs5S9tSVEaX4ZqcMDjZkAqih6grUHfwUkOT6QWkMmjfN9WSF51vL+D/cgqlbv6c9KUlC+AbMq4gHLmKpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DC8hQOTO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGK26i004236
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:45:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=fi9sboloBMqbSP3EVVpuP2
+	G1c7dk9xKFMIdYMIuaGQI=; b=DC8hQOTOKv1E75taRgPLP0NXSuy1/OZcM6G2zI
+	58is3urAZkP5OTimkMy/PnOzBVEeoro41Ts1lWhGXqhDuuUrJU1V4o1S8MCDpIFW
+	X2h5jr/RTKN8aEOnsYr78OCiuq6VcCjjxuqhhBs/CkPyBan/CNqK+Gq1SCDkDkVz
+	wk/VHxoVlNx//HDrBRDaH2PUxDoMk4quEeP/BrFoMNxO7qPd37cNHma6XZTVmra3
+	dFhg1MsT5vVxmAz09FhtX1AdQp4KrAeuIpk0Z8+ra5KI9oSbYEti9QcdO6B7C8PX
+	iFxLRHbZf47VUf3BB212qpPqzkhWm7NKZOJf7Wp8oQ167uew==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh2a34h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:45:27 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c54e9f6e00so585271385a.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 11:45:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745606726; x=1746211526;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fi9sboloBMqbSP3EVVpuP2G1c7dk9xKFMIdYMIuaGQI=;
+        b=ZlwJE4JkOrn9CCLXHfeq9Mo4FvCFL33uDf/D/3l1N8RIjSpd1Ise7n18JiU21ijj5e
+         oJyrIuKVMOz50e3U5YyQh8OVgWJ2Jfd/kFtYyNUbxOF4jTbRNVjxq6p/6Nya0+mpAHN+
+         yWEVvIZ9jwhBcYf+7sGejkn7mAssspBmLjWAkMkTxEyV127zd/k7XbPr+uvjou4LWtCH
+         H0USEZsqRleH4BpzL/bZvMWyyHTPvbCMDh5PvmCm7zc++ePQbZrAejcImReTg3qk71M3
+         /LyAU+p2g+gnF5GfFtbQzFm6USDnSgjcyIz21NVtdBo5kn14pNWDQTdcieecMXKzZaxN
+         GIYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVofdwTtjey+DblkiOW44hFEQ0fbz+ndRlXdA/G4UB8RJPPeOeDcXhTAiSxHV/OOvvg3ENQ3EGynUe+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSHalqSdNs6sTKD4OEt3jkpPD/OGfsKV0+KiUqnQ1fuGXEWA6G
+	aq0Rcq8ohJtbzVZf//0zuB05xiBkJx4gjGUrrdLhQLMIArf5Y0a/NgGn05CfZenqP7WnHytQwbS
+	7f3B2R77oYJG5IKGF412fRIKtaVOc0QAPebvdgkzso9hPB4gcVp9W1xMEQP6T+dAOzANV
+X-Gm-Gg: ASbGncvHvYyzOadmK/T1aN4xlD6rWbHZNUFBP0+ys3dyJosyPfM5sZ+JPTnC41E5+A9
+	+trLhUwQEfHNr7J/eWwd0PHUqiOeqoHqnQt1Et2mRmUCH/3MWVN6B/yxR5VLqk6hISK0gZWDxnQ
+	FVR0rdkFwT2O/lPBbLiYS1enICQtvItkVVVxOt/0JvPesyXKpiIkeoCmEaUGJm9TyeMDt26CXAR
+	Ks4cL+CjbfWOEmpftydpgwEQTXUu6rl5emmz2JoQS4Jtd2ldr7JvY3mkOGIUQ7svEeslTBYQjgM
+	VqrzeiF1VDN6OkTT++fZhJNreo4bQIWPtdIsO9pa3bv6DxB1gBhBb0g/MVopIdRgsMs9NorRCb6
+	gHKoZ8opjI87huG551bXx4lGS
+X-Received: by 2002:a05:620a:2805:b0:7c5:a20f:a091 with SMTP id af79cd13be357-7c95859ad12mr1195495585a.2.1745606726216;
+        Fri, 25 Apr 2025 11:45:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFXm1vmoiTdWeuAnhhj3urgNVnN0twLPssYE6XSpmYFJdZ0adsQi97fPa5JHVZwSSNcVjQcmA==
+X-Received: by 2002:a05:620a:2805:b0:7c5:a20f:a091 with SMTP id af79cd13be357-7c95859ad12mr1195491485a.2.1745606725857;
+        Fri, 25 Apr 2025 11:45:25 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7ccb8979sm688984e87.257.2025.04.25.11.45.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 11:45:24 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v5 0/2] Bluetooth: qca: add Qualcomm WCN3950 BT/WiFi chip
+ support
+Date: Fri, 25 Apr 2025 21:45:21 +0300
+Message-Id: <20250425-rb1-bt-v5-0-154b35435b4d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87zfge2x0u.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEHYC2gC/23MTQ6CMBCG4auYrq3plIG2rryHcdE/oIkB0xKiI
+ dzdwoJgcPlN5nknknwMPpHraSLRjyGFvsujPJ+IbXXXeBpc3oQzXjLOgEYD1AzUeit0AagUOJK
+ fX9HX4b2G7o+825CGPn7W7gjL9ZAYgTKqvVSVRcULJ2/P0OnYX/rYkKUx8v+OZ1c7RAYgUBlzc
+ MXe8c0V2VVCCY1YCevdweHeic1hdk4Cq620CrX6cfM8fwHZFY6pRQEAAA==
+X-Change-ID: 20250201-rb1-bt-cec7a314991d
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1639;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=BNpdicJXoLGWkWg4ZeGn9Ii+XhEcaBNojBK1EIAnv0Y=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoC9hEry2y1Ev170WQH7/km4wS0ikUFkOMMx0Q+
+ 9w2dIomY3+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaAvYRAAKCRCLPIo+Aiko
+ 1V22B/4kNUWwXx7Dp4N9DP4cXRd2PdCtSJIU1T3SaM6f+8rlx84DXdhmQX26TS4tdHl+wWxVg0C
+ jQs+HmHg+2N4I2MSEkgMwvnuhbg+eJ66NAavDPgclLF6xR0ECVBg84++hiijCxkGoGpfsJJWqfW
+ zwqbrMkQyAXJpHz55VB+erQPNx0zzA6kqqUBsXdP/7pulq9A6d43Ln8Mn/OqAvkUMLm+QkJl+Wt
+ +5ZtGbl0PmhVn5S1wRAvvBPz0q6rZvS56XPX0LWM84R7Bi+URdViSzbtCY7ZUvRsNLaJszTcomk
+ yBf7s76new8y/mCHZVBvwS3X8b28lOeLAYo1L46N/RxkDVRM
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=680bd847 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=QHDpyB9KspxQiDUAPI4A:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: ptMgq_JMK_roFtUtLBc0o573Zvs3WoyB
+X-Proofpoint-ORIG-GUID: ptMgq_JMK_roFtUtLBc0o573Zvs3WoyB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDEzMyBTYWx0ZWRfX8MtBzKcccbHV /XPRC02TYfNfGLP0fEEUtIHWkmUMiyBMlcv3NHGvPr32Uc1Ymt61Y6UOHLHvr2OIysus5qmLgig cu84GNr50KQ9q4cQgqDT4Tfl/KHNss4iWQCrnBAZfQ3W0Z8FZQPfm1CFqXgp9yPgOe+xGoUu8yZ
+ r/RImjR56bHi2EVVv5hILPQX5b4b1yiSLk6i8UzWx3yz8euafB2dKa5fyjr0mk5+bOlBTvUHxVq Mdp6gu24kd5o26J0H7WMGNigixImS/MI0pMSBl4FMKSgOKd8/IweKHjvxnnUI+CzxtHc9icp0F+ iT/7rb4TwcFd+RqHQPgjSU0+bsgLDFVpq+JnNV2FUEs6xqIo9pmiph6fbh8EnusIK+iIK77Ghp8
+ ZbcmebLaH48kkt657lcEdkm7yR1+dWcfGFYUEogiQfEagla7nikXlIZLt/zebnzGUkMcii8o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_05,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250133
 
-On Thu, Apr 17, 2025 at 11:22:58PM +0000, Kuninori Morimoto wrote:
-> Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
-> both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
-> uses Of-Graph in DT.
-> 
-> MSIOF-SPI/I2S are using same DT compatible properties.
-> MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
-> MSIOF-SPI doesn't use  Of-Graph.
+Qualcomm Robotics RB1 platform uses a new member of the WCN39xx family
+of BT/WiFi chips. Add support for this member of the family and enable
+it to be used on the RB1 board.
 
-That's some odd spacing...
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v5:
+- Rebased on top of linux-next.
+- Dropped applied patches.
+- Link to v4: https://lore.kernel.org/r/20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org
 
-> 
-> Adds schema for MSIOF-I2S (= Sound).
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  .../bindings/spi/renesas,sh-msiof.yaml        | 43 ++++++++++++-------
->  1 file changed, 27 insertions(+), 16 deletions(-)
+Changes in v4:
+- Added empty line before status property (Konrad)
+- Reword Bluetooth commit message to follow linux-firmware changes
+  (cmnv13t.bin and cmnv13s.bin were merged).
+- Link to v3: https://lore.kernel.org/r/20250202-rb1-bt-v3-0-6797a4467ced@linaro.org
 
-Otherwise,
+Changes in v3:
+- Mention new firmware files.
+- Link to v2: https://lore.kernel.org/r/20250201-rb1-bt-v2-0-fd44011749bb@linaro.org
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Changes in v2:
+- Corrected QUP interconnects (Konrad)
+- Added /delete-property/ interrupts and an empty line before status
+  (Konrad)
+- Enabled downloading of different NVMs as required for v1.3 of the chip.
+- Link to v1: https://lore.kernel.org/r/20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org
+
+---
+Dmitry Baryshkov (2):
+      arm64: dts: qcom: qcm2290: fix (some) of QUP interconnects
+      arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
+
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi    | 16 +++---
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 83 ++++++++++++++++++++++++++++++++
+ 2 files changed, 91 insertions(+), 8 deletions(-)
+---
+base-commit: 948bc2b5c6fec70fb8c5b63c78aaa27611d7eea4
+change-id: 20250201-rb1-bt-cec7a314991d
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
 
