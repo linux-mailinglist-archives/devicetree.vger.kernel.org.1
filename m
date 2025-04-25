@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-170734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610F1A9C362
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:27:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B1EA9C363
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:27:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E22D21B80283
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:27:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 980CD7AF6AF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304F623817E;
-	Fri, 25 Apr 2025 09:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64F72367BB;
+	Fri, 25 Apr 2025 09:26:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="0NcJ0k0M"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="XkbbbFs7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2B023770A
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165982367A3
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745573198; cv=none; b=fe9SQ3NnaSB6osEC9mON8Ab+njMV87gX41pBddGuP9QGfAIzidSUdG/jF4Ink/lMykHXCSnjeOh0gmv3NJ3Sfk+fh3bGBxiuAX6JisKjJoaRapUrRVdfOG6r7Z+ccLpkzYWy3KkRqTStOi9OpDqvIh2oqljP+PLndIOAppUfX6s=
+	t=1745573202; cv=none; b=Vnhal1yzgoP6rGWypgoNq6OOQse9GnJCFhvb7A14m5OAolKugv4mVHGKASokDBV4JR16aqBaGElLIhbNReDzcWdpTgqwjHgaY4ZorJJB/lHPRIdBbTdjjTRcGuUKYYM/cnXVOGVWqkHSXDLAAC5YNvfaaQCULaZlxt8Fqvl8A2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745573198; c=relaxed/simple;
-	bh=XKumTukus7XBIwSIqv/n8AjPJx4f9l5t/P/WymvvbT4=;
+	s=arc-20240116; t=1745573202; c=relaxed/simple;
+	bh=+c7+i5TLsDNfV5qaGCB+uKaCshTHPcCbuIR/iOf2QRk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K4uN2AzkEANJVWy9h0IjNS4mppRDMmZrWoTlLVNTY+UPjJss5VU7dm22vAn2YFQ/XOFwC5UnNV6Tek5kYSdJe/c6nact+bz6c9zU+HRnsxk/3cYKxA3OVK1wwhoL1zjrRFOt3QuWr7GKEBa/+HKDMIxOVUZwBsDLOCuZmuVNrFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=0NcJ0k0M; arc=none smtp.client-ip=91.218.175.172
+	 MIME-Version; b=uHFJsRjzFkMYgI3hoFxYdaSS3ZmdCCV9GYnopuHoxi81J1ly3cms1CvyMr31GsAB2valc/2Lt0l7WCuas4i1y1n7fXH4fiqMmwYYU7VRjvULqPtZuiXCCEi/Ajy/HBWPwh1BT1mcaUM1PHbESQnvLgVt11z7kCNSC4u3vt4+nHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=XkbbbFs7; arc=none smtp.client-ip=91.218.175.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1745573194;
+	t=1745573199;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/bSXucn13BuTbBFI2rxgwmfC5tI9ba6wouD2E8Unato=;
-	b=0NcJ0k0MuwVSuC80hcQxfFpuLYW+0jrN04RSTRyFnETMXVDyBMHLBGM2rqkt+OmKUhoy6N
-	ucIj6hbyVQhBQ6H4mrEbYyNI4H5HmEhpH5sImlQSLm7NQKsx1yIafmIi7Y6JQIL8T1bFvA
-	DQsmfue+gHlGgraoUWpkQPY5riPSvTmjcIE2NyWKfWo0oqZC908qpm+Qkr5QtcaQlgGR3t
-	on91vONMg6Lls8pNbmCHZy4yrj/7tFPZsrJCNPnfM/R4HD0npO7CWU3qRt/ptFpT9FHYlB
-	CBg/B+bf04egCEntz++wxanaVegNzjOoLl2p8iiy9KkCoJkjaRs5OjL/ulH78Q==
+	bh=Ahh+yK53sLvW3MEUdC7MxK8tfSXmwwVwKVWlt8YQ5zc=;
+	b=XkbbbFs7uTmSV9FAemeiLpf9+0tATe4g7bK4bWySVhkNoXV9RvWhjk9Ja8/2ClWJGP3hdB
+	YJJnO2D7/llOFrPIepAqYe1XNsuM0Pcr0QuBaZiNRsIHKDpTOW90BBm5tPdmHEUgRjwC5x
+	RTAlRExplX457PkviW5AvORooTo9tAwNS87X98MITNvxbt+unT5ApsLHs3h9m6xs0cysM8
+	rx2fMewJ1jw2vSVsFdfG9f+XmDtNhALmdWeAxtPLIaKjgOLxKCatMK1kDpzh+fXEJysYO4
+	uZCUAkwKbjcaSy6ezlDZcrV7DQmK+9+DLTLhyZ+QO9NAQ6kddQDgLilI6ayruQ==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -60,9 +60,9 @@ Cc: Dragan Simic <dsimic@manjaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH 2/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3399-rockpro64
-Date: Fri, 25 Apr 2025 10:44:42 +0200
-Message-ID: <20250425092601.56549-3-didi.debian@cknow.org>
+Subject: [PATCH 3/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-pinetab2
+Date: Fri, 25 Apr 2025 10:44:43 +0200
+Message-ID: <20250425092601.56549-4-didi.debian@cknow.org>
 In-Reply-To: <20250425092601.56549-1-didi.debian@cknow.org>
 References: <20250425092601.56549-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -74,29 +74,29 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-As described on page 16 of the RockPro64 schematics for both v2.0 and
-v2.1, the SPI Flash's VCC connector is connected to the VCC_3V0 power
-source.
+As described on page 37 of PineTab2 Schematic-20230417, the SPI Flash's
+VCC connector is connected to VCCIO_FLASH and according to page 6 of
+that same schematic, that belongs to the VCC_1V8 power source.
 
 This fixes the following warning:
 
-  spi-nor spi1.0: supply vcc not found, using dummy regulator
+  spi-nor spi4.0: supply vcc not found, using dummy regulator
 
 Fixes: e7f4e924f46d ("dt-bindings: mtd: jedec,spi-nor: add optional vcc-supply")
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 1 +
+ arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 51c6aa26d828..a7e4adf87e7a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -850,6 +850,7 @@ flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <10000000>;
-+		vcc-supply = <&vcc_3v0>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
+index 26cf765a7297..3473b1eef5cd 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
+@@ -867,6 +867,7 @@ flash@0 {
+ 		spi-max-frequency = <100000000>;
+ 		spi-rx-bus-width = <2>;
+ 		spi-tx-bus-width = <1>;
++		vcc-supply = <&vcc_1v8>;
  	};
  };
  
