@@ -1,110 +1,153 @@
-Return-Path: <devicetree+bounces-171048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0DAEA9D194
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:31:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92138A9D19C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 259733B3545
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 19:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F11F51BC15E6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 19:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59310218AAA;
-	Fri, 25 Apr 2025 19:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EC521CC48;
+	Fri, 25 Apr 2025 19:32:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="dNjFCy6x"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eaPxL6V7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-28.smtpout.orange.fr [80.12.242.28])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE11017C21C;
-	Fri, 25 Apr 2025 19:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C042A21C19B
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 19:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745609503; cv=none; b=p+OjvdRg6oyap4ygrFIU5l5cal5ZaPu+D2vH+S7cPq7jEPM7t8ZTqg59urCMU/2Zih1wPdt2sNZy9eRxifGqbN0cMXJQ2nlmZP+NiXSBtX7sibgk5A2LInsNSOvKxk3jSyDn3sjHRv8sRieY2w9v2brShifKZ9OfFnKqG/BSUhg=
+	t=1745609526; cv=none; b=CNZvsUbP9bhZxgl+sMdOsDRrxeO0hEk5OiDCn6JahY1YGMV994qz9O38xr2HUfLV0by2Y+lz9WIQjDNHEAqMoWZcPBqhUFOUtoTJsxacMELrtsevnFA0PaxYuyG17Vf/Lxsdbb3XvdKxQ3wtowK64rSzfPafsdYyi60BMha8e2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745609503; c=relaxed/simple;
-	bh=8PieXv6mj0nc1z3cu6Sb94XkBuu/I3wwKOQ/R0xhdRw=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
-	 In-Reply-To:Content-Type; b=pxyq6BAXzE4OZRPY0Ifc/ht+SjgN3q00mVRojYKGKevOiGDfKbrXaAEn+KN/BgxGCRw01v53iEZDYCoXnweqzHUCooX7eq6X3yIPpcCeKEqdmChOS1+0+RhZr/yi3aEWP87vohziTjs1VnfXHYHnvQv14rVj/Sb26grQHrd3kC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=dNjFCy6x; arc=none smtp.client-ip=80.12.242.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 8OljuoZghQxp68Olmuvwz2; Fri, 25 Apr 2025 21:31:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1745609491;
-	bh=JIqrozcWOsOgrfWz/Flt09tv8c/B8HQaA5udh4Yf2FQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=dNjFCy6x6w6fM7gGn/+CfgPLBFdQ5mTn0ML317iEvwlLVdz5O3scxkRbtSPGIgKQZ
-	 iR+FVmsPIBcfQuhpYzeZ61RpB8iT4urP5ZEA1/Dze3sqmfuKPp49tN1mQ+emTSK9Dl
-	 KwlO5AOf9qRl7uKT9o5Wt2e8dAs1gFdOYN9qAzUWRpbfzTBIWqU/nLzxbCl8yBkfOy
-	 etD7xYvQEvbXl4S8fxTOaGfUBodgnzzJ/WfN94KcKiH3V1E56PgjYIvsWA+BTSVvw9
-	 JxFMEqhiPYNW3wd419UeCBZDHdm5qdFils2cN8aOQue/IYDJ1dRL6txzXKu45ETCkZ
-	 DRai1BYlZnx5Q==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 25 Apr 2025 21:31:31 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <3cfd718f-e96a-44d0-b42f-d759ae698810@wanadoo.fr>
-Date: Fri, 25 Apr 2025 21:31:26 +0200
+	s=arc-20240116; t=1745609526; c=relaxed/simple;
+	bh=cZYLFWcK+AS89wAOfGjXpAYwM+Shr97crXMQH84vsEI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EhgSMqowVeQu7Jqfx5/Xrh4hMim3SMLQeoCSZedsJjDP957j1x1J/ePNQStqvM7DaAwTIAef01ynP+vvXe4PNVjTySRan2B3g0Z+SGYPXQCLYG5C5Z1HKaBF9PW3hdyYOlzY6NsODyHiK0gesFaUKrc1t+q3334ty00bCOTzBYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eaPxL6V7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGKFsf002047
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 19:32:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=KGuUzdqtIhx93PP1UIylBLxl
+	AAkaFyJuQQ5Zgzaz5MM=; b=eaPxL6V7mSSc0vuu4BknBscaogTBxNnAb3CNmZI6
+	Z+8MzdnD8UWOPaNeq7Bvic1r6/iBxd1MVHkkVWAp9/7MLqAdolLB085qSZSE4lOo
+	rdlmcwg/TCFpkv88F2ABGBWLV6eF6aoINK1GATwzyEkX4HO69gtR2WDLPOKAwvap
+	Fxz6ZCGrwSV7q4yx6GP2L8e2p5Uhp5XMw3WpBfIxlNIPrdqYBNyefrlHp03Z0Ypj
+	0SLRpMS4x9MiE+zv6Hm6+5E0IPiP2HV+jruZ8NeOkfJfju4nppQU/EHL/MWviWlZ
+	yU7+7xKFDcWbrvd9aVIgo9gLwwSeVWaW1rG6wxdSAi46rw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3j4ny-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 19:32:03 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c791987cf6so528949085a.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 12:32:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745609522; x=1746214322;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KGuUzdqtIhx93PP1UIylBLxlAAkaFyJuQQ5Zgzaz5MM=;
+        b=Y4kRl5jmSVW6q3C2d/meSU/lYqa30EDmJ3+yTuO2bv2NCIBU9Z9qPqpfx355XDOiIW
+         SZKh6txHgaiLuVmSUVh0hpJ3jSjQX9APwHMARf+Ik6caCamszqs0Kc9OfzogP/35D6uW
+         Pv4aNMNLoWhgzAmcn27Nf1LDO1IsIVlj6oYvdikCuQG89npk9sv52lpIN2StvhAVJjC6
+         I0LKRW8/leNMxNCuop0aOpX7MKflOay1e7/hF+N+2YAtFzsekQcjcYxfsPyvgr3LgzSG
+         vnVj+XCsotS/4QxxZ5FFA8J5lrf7cmnc/XfSiEdbYdV8dDu4gJSSvo9AtHoGxALt9UE9
+         mXzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnDCSddQudW5Vs7dD+z1IyfRqsAgZI+177QhqJYq6LQ7pIbx+wocQdFYKc37XHcRPFS887lMyDzJX9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUNi9i2FSIposSOPsr1fWXhW+cs2fx2CqAsswtMy6BsVq6070M
+	sh4Q6VZ6fMROQWtrN0z7R0AIbaibS5pKk5OajtCqT2CllMSVofhE60JGLSUof1EjchbSPUPEH4r
+	dao+Mu/f0jv41E+4lpYdxjonNwz9jbVXass0ho8zm4SlexBsV4OLPxZ9me1f/
+X-Gm-Gg: ASbGncuJaVU/+zQHXxj+hJ6U/CJUtc5i9C4o5MXCyfjYZDpklXEu30WHlrvIJ7qOtPN
+	I+jD3JhkzY4qD0oLudzYw4ReqQvp6QphzFR5IcMbmErsVbO0qOaBRqyorTqA+p6zc3HU40CGEbM
+	ImLh7wcCsnVToBeUoZg/EIdmo6S5CGm52s8I3/HaPu4RpCb8mVrpjcK9DniWLB6SpPunw3n8mp3
+	ERIy185iMvaIDD3RVbefeSpsTlWlnB0OkONV3/D4yk6+DJdofdxrb1mNILvLWnYWDpFs5gEM3GZ
+	d1tzZeuJQrmQBjvIj4KqbNiER1iR3uOQz/XoEetq5Ue9WQj9zSM1SskuAqMWt1icebVnwcHblCY
+	=
+X-Received: by 2002:a05:620a:4113:b0:7c5:48bc:8c77 with SMTP id af79cd13be357-7c9606b0aefmr440891785a.12.1745609522376;
+        Fri, 25 Apr 2025 12:32:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGzn/o6ObQ/xxhr7InTaJwrYRheiEdWShDWyF+W4eomGBtYByJsXx/Wd9e7WmCER8UrfAZSLQ==
+X-Received: by 2002:a05:620a:4113:b0:7c5:48bc:8c77 with SMTP id af79cd13be357-7c9606b0aefmr440890285a.12.1745609522096;
+        Fri, 25 Apr 2025 12:32:02 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-317d16a834bsm8773091fa.73.2025.04.25.12.32.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 12:32:01 -0700 (PDT)
+Date: Fri, 25 Apr 2025 22:31:59 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: neil.armstrong@linaro.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sm8550: add iris DT node
+Message-ID: <hqltmh3pixqnimr4zp4brcy2hn3qpqkz4q6bhb3cga4w4ndtux@gft5cjqj47oy>
+References: <20250424-topic-sm8x50-upstream-iris-8550-dt-v3-1-92f6b692bd52@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 2/2] wifi: Add Nordic nRF70 series Wi-Fi driver
-References: <20250422175918.585022-1-artur@conclusive.pl>
- <20250422175918.585022-3-artur@conclusive.pl>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: artur@conclusive.pl
-Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- jakub@conclusive.pl, johannes@sipsolutions.net, krzk+dt@kernel.org,
- lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
- ulf.axelsson@nordicsemi.no, wojciech@conclusive.pl
-In-Reply-To: <20250422175918.585022-3-artur@conclusive.pl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424-topic-sm8x50-upstream-iris-8550-dt-v3-1-92f6b692bd52@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDEzOSBTYWx0ZWRfX7wUuCHr+Nj0v oA8UvJJtdVseSo+DuB9RqQqK6cY66j1iqKVV5L7bORKGu765LOz9TR7Ph19YwzMUaCwBa8v1BMy mUsz2FWSJIKet0TtA19kfHFiLIR03gnsZDYVx6qNLA/lVIvEsNI9fNFdBRXWTKiSXtjWnbt/BY0
+ l4aBAMebeHsJ8VSrtwCg5A1dB++mOyMD0eKUsvmL15TuPu9h2sRrQaJpVAcgbP0F2EaHQuvHBj6 OFjvi5mz0Hnwh2NbWx7u7VeN3bgFBYZ9Eyg3WQ/gX8S1FULEN/S+iaITahDStBmMtKpSDV8BTp0 wxADyPHRv4qJ4jERG+ziSpH3P7261I5AV70Px3ss3h5A+YG9eXSzW64I9bYX0aTbE8i2Gbv4Mc6
+ uhgAjP2udoFuy/GzyZKb4OUTrcm8uIKL/mrtUNU2NSZqW0pbCmuP5JLGNB/IuynKnO4eTmHo
+X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680be333 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=gEkYAqE2pGcBd09D3BMA:9
+ a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 1b66z7Bzeo7rUSfQT_k9i1jhEIcAy0r2
+X-Proofpoint-GUID: 1b66z7Bzeo7rUSfQT_k9i1jhEIcAy0r2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_06,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250139
 
-Le 22/04/2025 à 19:59, Artur Rojek a écrit :
-> Introduce support for Nordic Semiconductor nRF70 series wireless
-> companion IC.
+On Thu, Apr 24, 2025 at 06:34:28PM +0200, neil.armstrong@linaro.org wrote:
+> From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> 
+> Add DT entries for the sm8550 iris decoder.
+> 
+> Since the firmware is required to be signed, only enable
+> on Qualcomm development boards where the firmware is
+> publicly distributed.
+> 
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Changes in v3:
+> - remove useless firmware-name
+> - Link to v2: https://lore.kernel.org/r/20250418-topic-sm8x50-upstream-iris-8550-dt-v2-1-9218636acbdd@linaro.org
+> 
+> Changes in v2:
+> - Only enable on qcom dev boards
+> - Link to v1: https://lore.kernel.org/r/20250407-topic-sm8x50-upstream-iris-8550-dt-v1-1-1f7ab3083f49@linaro.org
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550-hdk.dts |  4 ++
+>  arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  4 ++
+>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts |  4 ++
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi    | 76 +++++++++++++++++++++++++++++++++
+>  4 files changed, 88 insertions(+)
 > 
 
-Hi,
-...
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-> +	/* vpwr is mandatory, but we want to catch the -ENODEV error. */
-> +	priv->vpwr = devm_regulator_get_optional(dev, "vpwr");
-> +	if (IS_ERR(priv->vpwr))
-> +		return dev_err_probe(dev, PTR_ERR(priv->vpwr),
-> +				     "Unable to find vpwr-supply property");
-> +
-> +	priv->vio = devm_regulator_get_optional(dev, "vio");
-> +	if (IS_ERR(priv->vio) && PTR_ERR(priv->vio) != -ENODEV) {
-> +		return dev_err_probe(dev, PTR_ERR(priv->vio),
-> +				     "Invalid vio-supply property");
-> +	}
-
-Unneeded extra { }
-
-> +
-> +	irq = of_irq_get_byname(dev->of_node, "host-irq");
-> +	if (irq <= 0)
-> +		return dev_err_probe(dev, irq, "Unable to find host-irq\n");
-
-If irq is 0, is it expected to return sucess here?
-
-> +
-> +	mutex_init(&priv->write_lock);
-> +	mutex_init(&priv->read_lock);
-...
-
-CJ
+-- 
+With best wishes
+Dmitry
 
