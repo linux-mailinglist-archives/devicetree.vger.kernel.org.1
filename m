@@ -1,187 +1,153 @@
-Return-Path: <devicetree+bounces-170649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5859A9BDBE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:11:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 633DEA9BDC6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC9E75A2ED5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:11:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 526731B82F68
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EBB1FECA1;
-	Fri, 25 Apr 2025 05:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6090517A316;
+	Fri, 25 Apr 2025 05:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Fh750DE1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z9ov/byH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8236119BBC;
-	Fri, 25 Apr 2025 05:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1102701C1;
+	Fri, 25 Apr 2025 05:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745557875; cv=none; b=T3DyUkjLVijcj0dVIkPKGnuWRDMnXSbZBU9KD6HO8mhnPErIG0m1YlSI3+iAcgsHNmX3SC2N3+5FWPIK7pRmLgAStsTbMictEl8e5LJ4A6a9XG9eAiDjS4s4GxFOblOq6gL1m+aGqmIn/J784VKn/bBFoIaHm+48U3Ta6Ln5jfw=
+	t=1745558376; cv=none; b=EmsqcxeGmxsecycOD/Kz2emojY4Tnb499J9XGJNYCCwejBgXhAMHKgdW7EQ1NWPRr0u4LysrWhFFOdkSKFLz8c1I8iE9GA+SWNSLQ+GT/iI8p9KjD6VoLFWT6WZGBNbmwkCiJc9yd+M8DS/TBGuyhvGPkUFBipj0OaSR+qbf6s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745557875; c=relaxed/simple;
-	bh=6WN9cyjlvfOr39m4fAWpRRHRs8xivuebzEa12pwf6e8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uHmNUHnRkFnFhjzUHWaL8KnFd3a39OJV0dAVm+0mJGrr3/AisMAeqJV6SrBRzgWQD9xkFiu9J0RFwhOQSA9wkwSbWkSadYoqZVEbkXywmYgYNOjPHjFIDqu7FKJlak5l30xSeJQY9gRhsTyVTuoyR4UM1Ewe/ANYgH0lD4yXtC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Fh750DE1; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53P5B14E2044806
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 00:11:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745557861;
-	bh=wfpXcxJojNNTMz4jhhaqXspq8LKU95JPsOwHtHrtKQI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Fh750DE1sof4gHHoaS1Kp1SyHXNctevl5M3pjft7MnCFWWxCJnDut0clUNUayclgZ
-	 TyGi6ZD2wNPNmtp8QrAmozFZJJuRzbUN2yvHsuvbh+MGPJM/PU85rV40huZzAr9NYC
-	 b2CbDN3HuOC8+tReJK88TYThyma+dTwTbFwSANdQ=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53P5B1jL024896
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 00:11:01 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 00:11:01 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 00:11:01 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53P5B0tN011224;
-	Fri, 25 Apr 2025 00:11:00 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>
-CC: <srk@ti.com>, <s-vadapalli@ti.com>, <danishanwar@ti.com>,
-        <c-vankar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Roger
- Quadros <rogerq@kernel.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-am62p*/k3-j722s: Add bootph-all property to enable Ethernet boot
-Date: Fri, 25 Apr 2025 10:40:55 +0530
-Message-ID: <20250425051055.2393301-3-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250425051055.2393301-1-c-vankar@ti.com>
-References: <20250425051055.2393301-1-c-vankar@ti.com>
+	s=arc-20240116; t=1745558376; c=relaxed/simple;
+	bh=ZVZUTmeDPFRt/Z9pBTeeqz0A/odGMRaginCfACgAKS0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tVGw0FTmJsYXZWUBbvcDULqkuA43hNW6+jo6jeFpfYyoKeGYe35HNnxbU7lx8DgkUiyZ8MkdmqmqQ9dLGNoUObvS3Rd0kJaV9Fv+cIDFTXbOOpUgZDt9K1k8EpgWTB5TOFYatIEeLiVUxhpHUFcEJMwISEykNnN+kHDuZ7jsmTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z9ov/byH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P17XDi012173;
+	Fri, 25 Apr 2025 05:19:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cm4FYBGXuq9m+9Y9ZGCga0QZWrYzh/pJOSVPbS0jfS8=; b=Z9ov/byHgnQOet05
+	C/tZ4W8xoXTPAT2gCMSgsxcRr8O/olPY8onJPE5d1mtE/DAyQOnAfcLyPXq9Hfql
+	OfzthCbQpKwXwqlKz8VpbcTFRRm7vakHMhDJs++PCKOixCRQtSs7mJGAXil0a/Ux
+	gfGk6hGMBWI/xZDiZik9HFbFamNPWFsTcDQh4nOiL6TwoNV7AIVsAcqxYRpNKYQC
+	0koEBWlL0qvaM3KAHBmy4WuoblV5SYRFhGFRjZ/ZHP3N61uW7wQpDZeP9Hs+huWf
+	9g56NrO107bGD2qYml+wtJP52ozSTqyT4SlarWhGeHf3f2v0KFlKCI5zBHpwJr/o
+	80gsYw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3ft4d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 05:19:31 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53P5JUcp025931
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 05:19:30 GMT
+Received: from [10.47.235.76] (10.49.16.6) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 24 Apr
+ 2025 22:19:29 -0700
+Message-ID: <e98d181a-f7d1-45b7-afa2-fa31563e8db7@quicinc.com>
+Date: Thu, 24 Apr 2025 22:19:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: arm: qcom: add SA8255p Ride board
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ptalari@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20250423003845.3980330-1-quic_djaggi@quicinc.com>
+ <1d75a955-409a-409e-8708-754e89d6f046@linaro.org>
+ <21a13826-0ee3-486a-956c-153f42477160@quicinc.com>
+ <121d4e01-00cd-4be5-acbb-b140188048c3@linaro.org>
+Content-Language: en-US
+From: Deepti Jaggi <quic_djaggi@quicinc.com>
+In-Reply-To: <121d4e01-00cd-4be5-acbb-b140188048c3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDAzNiBTYWx0ZWRfXzHgpZCNqB322 /b5/Q6mgse5rXqhveOx78VhN7s7D7ab2VH1DiXw8m0Z7h2i/ReumY226hYnxs3oS6387vFytp3u mgk9StcH21SrsTn9fKKaoyW43W+mrdH+CD2RQN7VSHfjx2qWD7izc3v3EHeWK5dqCcQEXjdiPJw
+ 841PXUa1fYOVlMoqA1Rt45hivb/PN5/b2w0BP/6e0GfBMRp19mTNp1AMO8TRFYci3COPFrWK7zE p+j+ZbUW++EunIIRmaVygQQ0f8mLJ3F+NteYRj6QYgz64MizYFBqBLhgQQRXMqtd2UmYYCZ1xSv xzKKFcEdpxv7yrcdvbOhdB5FPIgSzHSN5tRrlqHDCYL08YY9y3tY8yEk5SjBXXdoJoKY+SUe1Co
+ H+Ck0yHdv0hTtvMDFmXUy/PfDoBZHHd6r6VQub8Ln0tUWLeC5gGY2ICK8auItuArMSZ4VJsZ
+X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680b1b63 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=3H110R4YSZwA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
+ a=8Nqr4VOqxz35mBUtWYIA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: HZtQSeEjlGAqBmrSp0nPRT-55wjWOnER
+X-Proofpoint-GUID: HZtQSeEjlGAqBmrSp0nPRT-55wjWOnER
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_01,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250036
 
-Ethernet boot requires CPSW nodes to be present starting from R5 SPL
-stage. Add bootph-all property to required nodes to enable Ethernet boot
-for AM62P5-SK and J722S-EVM.
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
 
-Link to v2:
-https://lore.kernel.org/r/20250302153502.181832-3-c-vankar@ti.com/
+On 4/23/25 23:17, Krzysztof Kozlowski wrote:
+> On 24/04/2025 01:54, Deepti Jaggi wrote:
+>>
+>> On 4/23/25 05:00, Krzysztof Kozlowski wrote:
+>>> On 23/04/2025 02:38, Deepti Jaggi wrote:
+>>>> From: Nikunj Kela <quic_nkela@quicinc.com>
+>>>>
+>>>> Document the SA8255p SoC and its reference board: sa8255p-ride.
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>>> Signed-off-by: Deepti Jaggi <quic_djaggi@quicinc.com>
+>>>> ---
+>>>> Changes in v3:
+>>>> 	Removed the patches from original series[1]
+>>>
+>>> Why? This makes no sense on its own. Binding goes with the user. No
+>>> user? No binding.
+>>
+>> Thanks for taking the time to review the patch.
+>> All the bindings that were initially included in the original series [1]
+>> were removed and posted as individual patches.
+>> devicetree has been posted as a separate patch :
+>> Link: https://lore.kernel.org/all/20250422231249.871995-1-quic_djaggi@quicinc.com
+>> If necessary, I can consolidate the bindings and dt into a single series
+>> for the next version.
+> I asked why and that's not the answer to why. That's description of what
+> you did, but we see it here. Anyway, I explained you the process.
 
-Changes from v2 to v3:
-- No changes.
+By examining other patches that were split from the series by the author, 
+it appears that it was advised to split the patches based on subsystem.
+However, I do not have any further details.
 
- arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 +++
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                | 2 ++
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts                | 3 +++
- 3 files changed, 8 insertions(+)
+I followed the approach used for other bindings [1] [2] [3], which were part
+of the original series and were sent as separate patches and accepted.
+I misjudged that the SoC binding could also be sent as a 
+separate patch. I will combine the remaining bindings along with 
+the device tree (DT) into a single series in the next revision.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-index 7b65538110e8..11f484f88603 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-@@ -50,6 +50,7 @@ phy_gmii_sel: phy@4044 {
- 			compatible = "ti,am654-phy-gmii-sel";
- 			reg = <0x4044 0x8>;
- 			#phy-cells = <1>;
-+			bootph-all;
- 		};
- 
- 		epwm_tbclk: clock-controller@4130 {
-@@ -730,6 +731,7 @@ cpsw_port1: port@1 {
- 				mac-address = [00 00 00 00 00 00];
- 				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
- 				status = "disabled";
-+				bootph-all;
- 			};
- 
- 			cpsw_port2: port@2 {
-@@ -751,6 +753,7 @@ cpsw3g_mdio: mdio@f00 {
- 			clock-names = "fck";
- 			bus_freq = <1000000>;
- 			status = "disabled";
-+			bootph-all;
- 		};
- 
- 		cpts@3d000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index d29f524600af..5b2f0945a9eb 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -227,6 +227,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
- 			AM62PX_IOPAD(0x0160, PIN_OUTPUT, 0) /* (F17) MDIO0_MDC */
- 			AM62PX_IOPAD(0x015c, PIN_INPUT, 0) /* (F16) MDIO0_MDIO */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_mmc1_pins_default: main-mmc1-default-pins {
-@@ -496,6 +497,7 @@ &cpsw3g_mdio {
- 
- 	cpsw3g_phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		bootph-all;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		ti,min-output-impedance;
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 34b9d190800e..93d770c5792e 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -310,6 +310,7 @@ mdio_pins_default: mdio-default-pins {
- 			J722S_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AC24) MDIO0_MDC */
- 			J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
- 		>;
-+		bootph-all;
- 	};
- 
- 	ospi0_pins_default: ospi0-default-pins {
-@@ -344,6 +345,7 @@ J722S_IOPAD(0x0140, PIN_OUTPUT, 0) /* (AF24) RGMII1_TD3 */
- 			J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
- 			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_usb1_pins_default: main-usb1-default-pins {
-@@ -388,6 +390,7 @@ &cpsw3g_mdio {
- 
- 	cpsw3g_phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		bootph-all;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		ti,min-output-impedance;
--- 
-2.34.1
+[1]: https://lore.kernel.org/all/20240910165926.2408630-1-quic_nkela@quicinc.com/ 
+[2]: https://lore.kernel.org/all/20240910171534.2412263-1-quic_nkela@quicinc.com/ 
+[3]: https://lore.kernel.org/all/20240905194741.3803345-1-quic_nkela@quicinc.com/ 
 
+> 
+> Best regards,
+> Krzysztof
 
