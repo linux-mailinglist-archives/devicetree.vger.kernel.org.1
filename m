@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-170671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6DB7A9BF06
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:57:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F853A9BF1E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 378A03A7246
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1E291B652D9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D39B22D781;
-	Fri, 25 Apr 2025 06:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E3521E5B70;
+	Fri, 25 Apr 2025 07:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQzgQXHZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVjFmQ3R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D89199931;
-	Fri, 25 Apr 2025 06:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC2B18D;
+	Fri, 25 Apr 2025 07:03:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745564269; cv=none; b=cJPVF5JU1lEQKzcUjGCj16FJoQjbXDUpQxdAddou9Vr8sXek1WeU/157emVCtbVYfuwAId7L88VGJ8635o9fjxH3AEB/18S+Vp3zdi0T3AdZSpAUlcY3vLzOQo/waeAdlB/qi8K7DhNRmTVloLpLJaQ93mefC2IPuK2dR5W1nDo=
+	t=1745564624; cv=none; b=pp4QaNcxwkGP0IVB7dOput/pHLcTwdo3y/Eq+1elo4MiMG71ZUsdu2JWhLx9zyG2ISTtiunZKEWH7dnQ0a7VG0EWzbNvEUMdNWcfS5PCm6Yd0x0JyDD2uo3LH1HILbBSDFmclKZtMAsBbc7Qfyus/G3u1KZoSIlQkDeSQzVhkcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745564269; c=relaxed/simple;
-	bh=8sSgmRxiv+G/N1fs7B4Sw8hD584Kp0YWF9P/443Nkbw=;
+	s=arc-20240116; t=1745564624; c=relaxed/simple;
+	bh=TLBugTIgN7wDj7dyXhHbV9/N8AkEym5KkLQsjxNk0lc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cN1UfW55ncdDpVz2OnCN72nDbVkk6gsjaAFvfNtWRJw2yPyLCI3cXSarYeg7qS24+G9p7d5tW57OpezFOXRySooz1s8Svx9pCejPCnCE85MddeyN8uzL7tv8BCrlxvXFRhOhreUEg2cr1AbFh31oAOSqDn4S6SZvHxdgMNFJsac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQzgQXHZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A083C4CEE4;
-	Fri, 25 Apr 2025 06:57:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G8XETkn6A+cxSgtoGmnoooWCzrDmQJOmR9pOAoAftrfQAy4RTA0U2C3VK99xpRw385pv3rUOxz6zcGuGRew+W7f8zXWqRfGrMuHI1HTj7rqw6e1QOEk8ClGE6sikuAeeeAfLKLmKUlHEPkUj49alBprm7xQ1ocQhu914WrfDKgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVjFmQ3R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31955C4CEE4;
+	Fri, 25 Apr 2025 07:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745564268;
-	bh=8sSgmRxiv+G/N1fs7B4Sw8hD584Kp0YWF9P/443Nkbw=;
+	s=k20201202; t=1745564622;
+	bh=TLBugTIgN7wDj7dyXhHbV9/N8AkEym5KkLQsjxNk0lc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQzgQXHZD6po0DjMItq+ZKAVR6QygkxKeBXhEhoe73QyOHjw8ctBgCt6spfcbyUE2
-	 WqySlVG+JqrDmtS4V6LisY0rkGA9h7hb8z2T/ilRCovjHkI9tne43xUCetRHUiFTqA
-	 AQbSxAG6qEJ+anQDdFDfi49prFwH2c4V9CXThxhUm7W8T0MKga0rxzScgSdEa0Srfj
-	 vKF/kxeq5Pb8TxIslR/GW3Q0grUhgjBRbRwF7OWrBUBaPXG9K5IUzHmVVsiLfgDM3M
-	 cQto9p383bYXTn65aF0zHNQASM+U7i4eW/BOgOse0Cx+2jjcw2YqArK6V1IJnIWyJl
-	 h8dri5ipEIiaQ==
-Date: Fri, 25 Apr 2025 08:57:46 +0200
+	b=dVjFmQ3Rx3JVx4mAf3KNUgkQKu/WAU0LwFqu8h1Rh/9/C0GNek6Hl9kJuqmeqkQuL
+	 3HxADlUeFLbwm/QmvYUlq0VfMdZAHenGTJ9pTS1Tzk49nnZpLtB+5TCHZBDMfvgXoV
+	 kcYLukObdLsvnaopPzX9V1R670PGp/Fa1EuWt7xB2wrB7epWuP45BVMAtxDBWul3s7
+	 YgNvH+8GOAGPaVcTxQ5+L9qkBU1Z++DU4lFyeWdlnIsHpF0qP1ZjWLiKdPpEvZnLDQ
+	 tpKF+TzUuN/CqFMgidTzJhzM6Y1vdTiobsugUO6TLG5WCjwzb7v6En/7mwLjZXipNa
+	 x+mhjiGCoanYw==
+Date: Fri, 25 Apr 2025 09:03:40 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
@@ -50,11 +50,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>, Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, 
 	James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
 	Robert Richter <rric@kernel.org>
-Subject: Re: [PATCH v6 3/6] cdx: Export Symbols for MCDI RPC and
- Initialization
-Message-ID: <20250425-terrestrial-resourceful-mouse-baa637@kuoka>
+Subject: Re: [PATCH v6 5/6] dt-bindings: memory-controllers: Add support for
+ Versal NET EDAC
+Message-ID: <20250425-smiling-groundhog-from-ganymede-dbd626@kuoka>
 References: <20250424132118.17074-1-shubhrajyoti.datta@amd.com>
- <20250424132118.17074-4-shubhrajyoti.datta@amd.com>
+ <20250424132118.17074-6-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +63,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250424132118.17074-4-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20250424132118.17074-6-shubhrajyoti.datta@amd.com>
 
-On Thu, Apr 24, 2025 at 06:51:15PM GMT, Shubhrajyoti Datta wrote:
-> The cdx_mcdi_init, cdx_mcdi_process_cmd, and cdx_mcdi_rpc functions are
-> needed by VersalNET EDAC modules that interact with the MCDI (Management
-> Controller Direct Interface) framework. These functions facilitate
-> communication between different hardware components by enabling command
-> execution and status management.
+On Thu, Apr 24, 2025 at 06:51:17PM GMT, Shubhrajyoti Datta wrote:
+> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
 
-Missing header update - these functions now need kerneldoc and be in
-globally accessible header. If your earlier patch did it, then I think
-patches are not split correctly. Logically these are the same, one
-change: export entire interface (symbol and declaration).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+(As DT and memory-controllers, so this can go via EDAC with the driver)
 
 Best regards,
 Krzysztof
