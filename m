@@ -1,153 +1,130 @@
-Return-Path: <devicetree+bounces-170968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1EF4A9CCDC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:28:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC86A9CCFF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:30:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A38047A9708
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:26:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED964E0C58
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73C427A909;
-	Fri, 25 Apr 2025 15:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3440328A1D8;
+	Fri, 25 Apr 2025 15:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vIY7oGRd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D263825DCF3;
-	Fri, 25 Apr 2025 15:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F29D289346
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745594879; cv=none; b=AwpdHwpjHPRJTiEgjGwxSkAPk6gp5+GdkcdGchdYD8y2yRQ74iB0zlFDbEM8fQRWzYp8R+mCyAKhJWMEvUdPoOVVApGPh2hag/BQvYmWE98nD2/DJWQDmQzC/OLYvaIoR9fVavRUiyzcme/eGgIYQ46Jht8P/HHL2JMfXOg3098=
+	t=1745595018; cv=none; b=DZJQDKkFF9WORr2HcuCsjZX+3NghKzEAod26NYWCO2yu7LkozUjDBQSbStTEtwQ/Ab+whpvxv2Dd/hFdxUnVZ6BlKjSZlNPleKoQdzKP0uBTPnvPFIDPqwnFM58+sw76kcQf6gcuiRb8MGwPIV4sN74ex/O9T4jA7Un1klqr6HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745594879; c=relaxed/simple;
-	bh=Mrk3RA2eQQoTudoCKFs8L5iamijk95XDayQrPOOfxBQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X2nTnPPVlivBAdCeXYl3f4RtJ28OmAfwr5dV6l19PF/p/BKNmxR0loA+wegyWsyAmvlUQslZm5xcijoQWd441LIFe66ndAtfqr59SxM/IicfPm+/hxAX6YgF0L9MSnmT0oTdCKIMvxw8/1DdSi2fffqIYk0NP9pi39XiMeyZ64Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54c090fc7adso2401010e87.2;
-        Fri, 25 Apr 2025 08:27:57 -0700 (PDT)
+	s=arc-20240116; t=1745595018; c=relaxed/simple;
+	bh=ahFIwcIRMsxGsYw7Ro1znBHhQb9IRWhbo25rb6BKN1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EE/eoP3u9XhjSoIr4BzFHQadMO+XS4R+WzRFbdr7FScB7blKqXXIt90EJEDOHLHSgwDDI59ivFJo5g9/Ac9jiflb50lj9vDlsFe/rWiv0cdx8INGkXiKfVn8SfqaW0yNV43D5tDvc8XWx53ja6uo/tw7qYgNRW1IUw97EYgJ1iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vIY7oGRd; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-39ee5a5bb66so1444643f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745595014; x=1746199814; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XYX9LNywUVjZ5MKIhmplUJhVT60qSNh9kSQfKfBdFKY=;
+        b=vIY7oGRd8jYvnGLP4tQWZxxx6C8AFthUwW6eEVVbdrkJLWUf1be9CY84oNfaJ1Ynwt
+         OUoth6j+G8ubGm8ByBCLEEfbsyXOA6cbPDZn0DAnRtXkPENRnVTcEfrl7+Fps/gdzad7
+         xwZQnnLEbhGFn03LsCYZNpEkZPynC8+30FV4Kw6oOyrAa+h62XHI2+UKncKY21yZeZj3
+         JEaF8XG6RKy0hAnrNhi6chSpxfBlx8uB+UGJoAGcVad4AS+53VlNDGjFfv/07B0zmBkj
+         vlBTOW4vs5zETlF/4dDAqXMRACkfjMtD3af4nrzBZH/m1fUcCn8bpATx7RXfysVecQFf
+         KM5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745594873; x=1746199673;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=feUYG+ADKxy5u46DUzbwJ3yPnREVGzj+yGdWXxrHRlo=;
-        b=LBy85nMHHkMZij6yvph/3oZTaJXktdzBpjCaSQYxZ2cLW05FX9wd7JLrhcq6CN10km
-         kN+pOYMPgcTIhIhZ1FUIVznDWHkQFaHbC5EcOS3gmg1aFUQwux59WdJvIrHXmSRGV2dQ
-         WlZul973OU3uYYIyWwAZ93blyoOBTBQSQr6uJgwqntK6kyhD24KQolhBO4mlbm2EoWh0
-         FForfS+3NllXRzuMTzkntU5SYGz96AiWnnpjejf7wj0kBFtEIFN0Lg5AkH5RwTzLuGcp
-         qggot/co6zMaPMtNiVauz6iQ9B+VXTPVSKiRHEnm09QKlav/PXuUrQOyFDaCdE9fy3QD
-         iwlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuTW+97tAgvg7jOdk1KzBeSqcEouUaJj5GlQCZOR61AGAPQ3pA0yEnfkU6FQsdkLIy/jLWuuIq4xVrmdIr@vger.kernel.org, AJvYcCXUZeG2GOnJURthemkC/5JfnL4EGyp/Ify0Rb1p16XtxRXgxigky0GcQY8Kg6awR8aqGKECdqMH9+Rl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2D1KGHZWlM6PxvmQBbUCTif7bW85srnZ3a5xaMpRyNzHq+v0u
-	D+MKdKPM9qCT0kjG0paxjPurXFaaVrbD3XFfErEv1TQFzDQ6eM1iMkW2U6aXVb8=
-X-Gm-Gg: ASbGncsE6whmLVFjJ8SQXFZjy4G8KKjE6yEo6lA2Sb7uMFA/YBcTKVCGCHoMtdI4WZC
-	rfdGbFoZW7tK1vhTKEQG0dGnMhH21JAqQcFYQZbbvHxknnmZ9ivrm0dVLsn/SLVT2OvWq+GydWJ
-	PsYKvVJbubyscsw9eSzO3i0FiB8HfPLXiJt+p9NRFH5Y1jzQr6gPBBZZikBWOxBC5thfrtJkwkP
-	PGi8+LWrCoQjHhffD6GGaUGe1ES1rzR2bQAqnMw7HdkZLrqTfWMjbz0GwAXPV8qJgV5fZF9O8B3
-	0XJXiluDZy6V8OW+YxDEPjpLbhWj9VNey3OtEKOZLpCcMw1TKf3+VnHSJp4jBc35ShRYTksuIA=
-	=
-X-Google-Smtp-Source: AGHT+IHBfteQaylSiuYSamiPpU3Z80e8jJru7N1wkThdV/I0ZHX0I4g0UZ+sahUiiCcHCcOOtwRBrQ==
-X-Received: by 2002:a05:6512:3090:b0:545:652:109 with SMTP id 2adb3069b0e04-54e8cc0cb3cmr967904e87.51.1745594873407;
-        Fri, 25 Apr 2025 08:27:53 -0700 (PDT)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e8cd4c51fsm275885e87.122.2025.04.25.08.27.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 08:27:52 -0700 (PDT)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-310447fe59aso27686631fa.0;
-        Fri, 25 Apr 2025 08:27:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWX2SAt6YO0eyS9+yaB2DctZwPJQ1foWYus8hsURZCFB9lxectXQCozn3M1JSR34qlGZogFPon9h5QuYiPA@vger.kernel.org, AJvYcCX+GPaq4pI0OxSW9bHGFrk/Yl6KGnXe3ZRmZ8+gDRYngggzG2KfIwnfgbQAc1CHVtYpwcfn7Usb/F9y@vger.kernel.org
-X-Received: by 2002:a05:651c:154c:b0:30b:efa5:69a8 with SMTP id
- 38308e7fff4ca-319080e4888mr10622571fa.36.1745594872478; Fri, 25 Apr 2025
- 08:27:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1745595014; x=1746199814;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XYX9LNywUVjZ5MKIhmplUJhVT60qSNh9kSQfKfBdFKY=;
+        b=uDoX8VSSvOQKI7LUKdb2c3LLP+HJgGn6RnUh8DCGqSCduSicKfIQ8sjfl3HrpTmcxY
+         s0Y7Nz3VkEZqx3w17Q9f2Z4FYxvLjlXL7XMlNdc74H1vqXrEy5qBe9GUDuz1X6zBSOzd
+         mgi1TYV9mp4mKz30IKxD/RdFxFE/DB2wCtREJgAirbG/mL748VadrzW55bDWOfEnnJwz
+         DlhozG11kIYEnJOEeUmvzSp1pgDinLGoOWayNvset0D0W2FVF78n2tD2oLlK1/IGYybp
+         sSX9OMwNJKnZcETkAiF8R41eSW6HAvntqQVqW2s7Z+zngZAYeH52xArGafrCHRouKWkp
+         YSVg==
+X-Forwarded-Encrypted: i=1; AJvYcCWXvrKOU53fBashQtPrMld0b4gDS30yz7pN79SyYcn15G5T8YzR27rJwZ4jFelodPBG4b1frIhxM181@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYRKn22QSm9lA1IiixzXt30A4reDad3voGqwT/pk8lKuHRq6PA
+	Uo3Cl3mYJNwQLZaNLkyMqBoXd449lLI8MTWZqR8H460rQVzX+O4H1RLis0nF0Vc=
+X-Gm-Gg: ASbGncvVmjaYyu8cpGPRs2tE4TV9I/6gsZ8xGKokajIaie7Re1bxf7ZUQL+/cn0hsKB
+	zWtWZ3m4gNEkobxIu1Sz9a7r36X7woUiZemkWzSvn7KgiyhVzuczvmeIF1ENuBM2B/ynWRMZFq/
+	OPdapv8M77T0DuoD0WzgJjG9oW+mVvWHfBOPcbcBhUFh2z4z4a+EJ1y9wy3qDxcLeTx7BIg0Axz
+	e++0rYfbxBNCaNN8lMEySQG+eW9lytegt/tJ6XHcdFoTVZsvv0C2CFNcc+MIbJ/lhS8UNJG7kH5
+	mr7P1LthYn2SWDBeytiqWe0dvhUPKWCQIS/8tR9jelIPA9F7BQ7hoEaO
+X-Google-Smtp-Source: AGHT+IGyQoffBkkjn9GdlBOynB35D8e4ETPc01tgM75yAlc1oqBxq4rXGz8GsC/XanHp8nvcBgQZNw==
+X-Received: by 2002:a5d:6489:0:b0:39c:1f02:449f with SMTP id ffacd0b85a97d-3a074e0e059mr2152557f8f.2.1745595014541;
+        Fri, 25 Apr 2025 08:30:14 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a073e6daa0sm2592945f8f.101.2025.04.25.08.30.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 08:30:14 -0700 (PDT)
+Date: Fri, 25 Apr 2025 18:30:10 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: "zhangzekun (A)" <zhangzekun11@huawei.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>, robh@kernel.org,
+	saravanak@google.com, justin.chen@broadcom.com,
+	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
+	kuba@kernel.org, kory.maincent@bootlin.com,
+	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
+	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	chenjun102@huawei.com, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/9] of: Add warpper function
+ of_find_node_by_name_balanced()
+Message-ID: <aAuqgiSxrh24-L-D@stanley.mountain>
+References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+ <20250207013117.104205-2-zhangzekun11@huawei.com>
+ <Z6XDKi_V0BZSdCeL@pengutronix.de>
+ <80b1c21c-096b-4a11-b9d7-069c972b146a@huawei.com>
+ <20250207153722.GA24886@pendragon.ideasonboard.com>
+ <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250425023527-GYA50272@gentoo> <20250425030006.45169-1-amadeus@jmu.edu.cn>
- <CAGb2v649ntfAEUdV5S1wM8nUGhvaOP-RBw07XcxwdbafbC2PYQ@mail.gmail.com> <20250425044747-GYA50408@gentoo>
-In-Reply-To: <20250425044747-GYA50408@gentoo>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Fri, 25 Apr 2025 23:27:39 +0800
-X-Gmail-Original-Message-ID: <CAGb2v650hzgWGC6H4gL-YkaWCw7RJjBYkdcXGwXaRCa7T6G71Q@mail.gmail.com>
-X-Gm-Features: ATxdqUHtlXlW5ElJgIFQbcm5VC72kEfcPm_-jaGId3qhnAcscv0DyPelGJ1i-0I
-Message-ID: <CAGb2v650hzgWGC6H4gL-YkaWCw7RJjBYkdcXGwXaRCa7T6G71Q@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: allwinner: correct the model name for
- Radxa Cubie A5E
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, andre.przywara@arm.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, jernej.skrabec@gmail.com, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, robh@kernel.org, samuel@sholland.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
 
-On Fri, Apr 25, 2025 at 12:47=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
->
-> Hi Chukun, Chen-Yu,
->
-> On 11:52 Fri 25 Apr     , Chen-Yu Tsai wrote:
-> > On Fri, Apr 25, 2025 at 11:00=E2=80=AFAM Chukun Pan <amadeus@jmu.edu.cn=
-> wrote:
-> > >
-> > > Hi,
-> > >
-> > > > It seems I'm a little bit late for this, but while we are here,
-> > > > Can we also append 'cubie' to dts file name?
-> > > > e.g. - sun55i-a527-radxa-cubie-a5e.dts
-> > >
-> > > Usually we use the device name (without the vendor name),
-> > > maybe sun55i-a527-cubie-a5e.dts would be better?
-> >
-> > I agree with this one.
-> >
-> I personally would prefer to keep vendor name, it's more explicit
-> and easy for poeple to distinguish/find the board dts
+Whatever happened with this thread from Feb.
+https://lore.kernel.org/all/20250207013117.104205-1-zhangzekun11@huawei.com/
 
-We really only have the board name, which sometimes combines a brand
-name, but not the vendor name.
+The issue was that people weren't expecting of_find_node_by_name() to
+drop the reference on the of_node.  The patchset introduced a wrapper
+which basically worked as expected except no liked the naming.  Krzysztof
+suggested that maybe the callers should be using of_get_child_by_name()
+instead.
 
-Same goes for all of Radxa's other Rockchip boards. The file names
-are all rk3xxx-rock?????.dts. And all the LibreELEC boards are
-????-nanopi-???.dts.
+I created a Smatch warning for this and here are the four issues it
+found.  The line numbers are from linux-next.
 
-ChenYu
+drivers/net/ethernet/broadcom/asp2/bcmasp.c:1370 bcmasp_probe() warn: 'dev->of_node' was not incremented
+drivers/net/pse-pd/tps23881.c:505 tps23881_get_of_channels() warn: 'priv->np' was not incremented
+drivers/media/platform/qcom/venus/core.c:301 venus_add_video_core() warn: 'dev->of_node' was not incremented
+drivers/regulator/tps6594-regulator.c:618 tps6594_regulator_probe() warn: 'tps->dev->of_node' was not incremented
 
-> but, this isn't something I really care, so I won't insist on this,
-> please proceed either way, thanks
->
-> > I can probably squash in a name change (since I'll be squashing in the
-> > SD card slot fix anyway). Andre?
-> >
-> I think it is better
->
-> >
-> > In that case would you prefer to keep your current patch separate, or
-> > squashed in so that everything is clean from the first commit?
-> >
-> > It's up to you since you lose out on commit stats.
-> >
-> >
-> > Thanks
-> > ChenYu
-> >
-> > > Thanks,
-> > > Chukun
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> > >
->
-> --
-> Yixun Lan (dlan)
->
+regards,
+dan carpenter
+
 
