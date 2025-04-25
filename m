@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-170959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7F2A9CC9A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:17:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD68DA9CCA0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:18:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DCD11B87ACB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:17:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF0081BC13A8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6A9281370;
-	Fri, 25 Apr 2025 15:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24F7288C8A;
+	Fri, 25 Apr 2025 15:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JiLx/ck1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C0cJk+u6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A928F27B4E7
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC21127C17F
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745594260; cv=none; b=eG1yzYq7uy6oJi+VePZpIt7FDrkTewVwfM9/k/Dr+6xVIZVgH4K0uCh7XKm+MIlNIPgu6Q8ESGkEolvl0bEbFhe80Ar8iCIxsMEPiR/jg/h7qmH4uWAitYavhV6cyJ53aSyiYgAZbSWlUagvFbmdYxdCt1KLWeTqpGPuVAHXe8Y=
+	t=1745594261; cv=none; b=MikmLK5uYyuveIC8jcRSZsUua+GG8meViUHxFgwe5ovQVVr+YnKMETvaDSrXL5um+0EShut/fohLE/kRdsljPvBAaH3lTPMmbrdtrszpWSYv0rU8Z5Jot3KKFvn5VbaLT1NeP1jV145r/tI5RVsGvsQIt1K08EU2GwkXXVMKGPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745594260; c=relaxed/simple;
-	bh=wcxEeIG/nILR9pbCjMso9yZS3cwzR9yIu9oGH3Xl5mg=;
+	s=arc-20240116; t=1745594261; c=relaxed/simple;
+	bh=RCuNB1mWMaNtm6vRmUVv+04+d3pPrJBXIRhX6cDQxkA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cEvYUhZ1df8wcxBshGSax7cGsUDWrhNbqv86AunjEInhW4UtsTSIMKdQNjnzvTUwyYcLhtSxm9S+pCEK2cimXUwOOmYqc4l0GTSIC+1KTvNKlPKxbg50qkAjJtf9nzyOGXxn2HtkWNmDlqKoJLn6wdM036ywjHJohWr0nj2lXTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JiLx/ck1; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:To:Cc; b=Y1suCJMAeGPMpHSgBJ7u9pP/JsiKPXYI1ZKR4CqcUG3Ua4Yksi36kRSLg4ZkQeArKAY2sColr7kxLBWRa4st0Lm1M8aFu+OwOkxqFiTuEpYH4HtqIurqEZfRgZ/KVXSixfP93k8BjBE3ylHFGNyQlO1mNIs0Q80iJ8K3t/gdEl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C0cJk+u6; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3912d2c89ecso1941869f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:17:38 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c14016868so2249112f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:17:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745594257; x=1746199057; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745594258; x=1746199058; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HAQCWAaBVBZ9L8/5seSjJb98H17XEO01YnL9fUDtsAc=;
-        b=JiLx/ck1tzAEVxJoK4ZtSFAfYXBk0AyE0gKqyyJvTf76OIlJEFql8wbd5+KG5qlgpd
-         Zr6BBgsfTvzfwfg50feK2EsxWNxKORoNbPhoTW37yIhn5zxsIUQTZQDo5okQxmf/MSLg
-         RRssJ0lVbKYofiWTjJxSdjQF1inY2MNk9ybFRl5DE/XVMaBgkHMkpcreD+hBb+6IWH+4
-         jAnwNqRkd6hIZsxbCnOYPlplq6f4aSfXOUFBY6wL0tQCW5aHpp2m81hhptdKV8eH38gj
-         NLqV/Ce1Yaf1NWDpCJMJ0V94bB0a4G/uPpC9zPK/qb4CPcZROK40r+V5HFIv9LyJIpPZ
-         0T5w==
+        bh=6kN1pqjjlFC9p10HbXmb8Vy14EP3/K2zpEgAzkFrOXk=;
+        b=C0cJk+u6wKgZlij7qW2k+jqesGAdJtTGKxvwSiqbDhvY93GL8JNmV6pdlEPX6EX6mo
+         C/bsI6+kuASnlE4yHnqmT+MhOeWRvBiuxTMY3uJydLoLYYOt1vNxd4Ehc5gYHD6dug1+
+         S6gTsb2YCPANbeNqDWPUt3dSVQqEJTMkZQ9mXU6PQXA+Xl0VYtOgyA5d6vy8B0P7YJvM
+         YMsgDomY5rDybilnF1hXi0WyQSJ48kmS2+ryMtZC7jK8FYpbdlsdJzugB7YCunZ+xwxl
+         oxcKGnWLFEWlibiTf2gWCDYIRQyzbEujglgKCCy9v0pkvsM4iMUcLy4hmnZSwp5TjIbs
+         y6CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745594257; x=1746199057;
+        d=1e100.net; s=20230601; t=1745594258; x=1746199058;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HAQCWAaBVBZ9L8/5seSjJb98H17XEO01YnL9fUDtsAc=;
-        b=FIqbGb7y79c4mpL5pU6z7zWJaA+R7NrQNeei6AHPpEI/FtehyY/nKQLk3++TjD2E4h
-         Y5UR/NKk46ZwqrEQFanp2lKBSd3IYa/3rr+0aKFiYFHAC1OJXu3WYA4OoP6vULJmuaIE
-         9i236M8KKeVCmSPfch9yt3Gy4QsNzrfj5Z8XHtLJPhMOBYMsaaKDKtUnuL7rDX7G/H5z
-         qVqlU8Eo+9kIDtTAVaW8ZrTC4UvfyQSnX0G+r5Bi8r9jqmTqfr8x3FYnoknN8jKHg3+D
-         M+7wHQbQj/pnOsQ8NxEomOwXydefU+OoV8lnH4D5ILzpoVTgpdvKHEuSNjSH7W6KMHC0
-         f8GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW2LgyWxauq+CDllExAtDFaY3IZvrTGsVhRFsDQJrOfY8li07Dm8HexdPV6M/p68zqgpubIf7xG9zlc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz9XfFVMgK9cgKRq76A0HLkc6CFK89fmWV6FLoIpidHShIYFQC
-	v7LnIuLeaBff5MIVH1Sfn55Nd6nsUNLtBLKr7ntcrPXdUPOVUxlT6u01+PhQv+8=
-X-Gm-Gg: ASbGncvgLxxn700XSyCd/UZ3cVsO3iFjJNxQZ2f5JUPL0zNtRMgfKpNtsmy7T9k1/eS
-	DU6yDRvFRZBa8Uczwg9QCF7yriQ9PFMTG0IRMFGEqBthEjuN6gI5/5E/Sp4csx6RXbaXbxn9e5H
-	roff8VpHo4L4pfu0fhQS8elE/sVLSFd0XjwUeJhySieUQhvMQxlY8nrsGBKtZtJoV0rIzGvp8HJ
-	ePZ3myU0bL1DjlvNEuoYE8gSmWHcdm2pAeTs51JKl4j1L9DB7uiHURtQ7qJ6dwUMfjIjIRAJxg0
-	h+t91JBkVXad9QTVUzCejcofy9vTUlibXbdr2HhACeoBIlmHJKD0XvPtVxr8aDHVgQhK6LYLmK1
-	Fp5cH/Q==
-X-Google-Smtp-Source: AGHT+IHPnUJZKu1uWSc7Yc7UKfpd8ifRHajKhLkpvor4eEcE4Bfo34C+hxP3Ocv6ugZpsKzWHcoOtQ==
-X-Received: by 2002:a05:6000:1ac5:b0:390:f0ff:2c11 with SMTP id ffacd0b85a97d-3a074e146c6mr2005656f8f.2.1745594256896;
-        Fri, 25 Apr 2025 08:17:36 -0700 (PDT)
+        bh=6kN1pqjjlFC9p10HbXmb8Vy14EP3/K2zpEgAzkFrOXk=;
+        b=PxjwEBI6F0Ps8EF2z+vl8hG//n8BPfl9gW1msOLtyunwoZrpNquAeVC8XhSJhBdr4s
+         ghmZFlBQYZY34kvKi0iisaihszTG6bjzK0n+9NmZm88rmoHUPP9ejvBMa+y2N6ds7oyS
+         RCRvbtNfRocyPOqliMKYUBvLdWJX+FohfBYMgwyLtDiPg1YxRg99qoCsSsYFSdYU1nRI
+         pk+yiFuauZ7j3PY3rz6cMMsq9N36DFVyiKEa33acUm8w80DRCATSA2YF0/HTIMfOSsdL
+         fkiN63j481pnKH1E1PVM3bEYTBYusEpEe5XHQHQ8ZAjqfdakh/3ztoNYbZBkTJ/E/5y+
+         4YAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGtBy2L834KnH6S9gRUwMXIFUu7o5WnVG/LTPN/fZhuSzb3CdMvTde4fYkxtibI5cUT9e+9q+V4PoS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+xwT9UbPLAPzrt5fhlvNH4VqVoc2cEOtkxkJAJdeetn5sjDDm
+	QUBuXv00x8CRrPRa29/HFLukCnXb8KBRwLygAMP5hkj717Toksv+U4epkFq/BBhT8zPqdXtgs77
+	VUO4=
+X-Gm-Gg: ASbGnct9uOrVwYj+9DjfKK7TTo6mm045YhkJlOBEiYSxntrBMkqL6dJn1jRe3QoNobR
+	h5uD1BmzpUb5GmvydLlrjGFZ0NMVfREYxDdULRyPzjNd2D4IoghwHCc6PtoO+EgeFxuRKDxuLh8
+	zh84DQeQ4T7bl2arNYExkBtXqq+vM8yRRKepoxgoq4BWgFUnpTv7TQZCyx889+tVY3TsNg3ayUy
+	bWysRPOHLd0Xz55DxaGNRnr68m5Zx4WF5ZCQj4eEVBszWpImpgSPMjmcNfWGjEV9kcLSL4WvnEY
+	vZV5o131T+DLllFGEdHBZip6sbJH40cEMZ+l0gERr9zdM04DYwQfGw1K9NsYSa+04v8XlvmhF6D
+	DCtkwGkdTTFw8Zsgv
+X-Google-Smtp-Source: AGHT+IGN+RHDl7/BuFfdgLAHL0b7Am5qHQ0n0MgkovWjVE1OQ+agiU9w6gC8KIXtJWW6FmzpaJuGpA==
+X-Received: by 2002:a05:6000:2512:b0:39c:12ce:6a0 with SMTP id ffacd0b85a97d-3a074e2f343mr2335229f8f.21.1745594258028;
+        Fri, 25 Apr 2025 08:17:38 -0700 (PDT)
 Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ccf44csm2684738f8f.60.2025.04.25.08.17.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ccf44csm2684738f8f.60.2025.04.25.08.17.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 08:17:36 -0700 (PDT)
+        Fri, 25 Apr 2025 08:17:37 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 25 Apr 2025 16:17:33 +0100
-Subject: [PATCH v2 1/2] dt-bindings: media: qcom,x1e80100-camss: Fixup
- csiphy supply names
+Date: Fri, 25 Apr 2025 16:17:34 +0100
+Subject: [PATCH v2 2/2] media: qcom: camss: x1e80100: Fixup x1e csiphy
+ supply names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250425-b4-media-committers-25-04-25-camss-supplies-v2-1-8c12450b2934@linaro.org>
+Message-Id: <20250425-b4-media-committers-25-04-25-camss-supplies-v2-2-8c12450b2934@linaro.org>
 References: <20250425-b4-media-committers-25-04-25-camss-supplies-v2-0-8c12450b2934@linaro.org>
 In-Reply-To: <20250425-b4-media-committers-25-04-25-camss-supplies-v2-0-8c12450b2934@linaro.org>
 To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
@@ -98,123 +99,80 @@ Cc: dmitry.baryshkov@oss.qualcomm.com, loic.poulain@oss.qualcomm.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3102;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2290;
  i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=wcxEeIG/nILR9pbCjMso9yZS3cwzR9yIu9oGH3Xl5mg=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBoC6eOVgILuVdiW/rdoXVAPa8Hid0qCNNOb4rf+
- 1EI7p1ll32JAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaAunjgAKCRAicTuzoY3I
- OinCEAC22rg67uCiMIQHrV8hUxpc7DcmXiQNrFo637kHhmvfllAYEYnf6g+OuEWiSOWMOUB/PQs
- SvJQKuzX950QQPkQOPOOCiA1QZvUnSz94suaiV5ZvSK7vI2/1GV54Zm+7fjDo6f2vnnCUrutuD2
- Fnhj+/aDuV8k8cZ26YTzOgziLzt9FuS848s5mGJbO+rG0LsMHtJIYg+ylY8eVeplVSBetUiVNC0
- y/ywjwMZSvGTRci2S9FqXpP7WlRJX92Agbun0OsEsQ+y3gJmIdK2QaLXcG1S/4hGRiyuUhOgMtj
- aEsBWtHqY61PN6BXlBM3aNgZcRvYs3kjcvefNj6YOaV58u6MUdRZIyXR9VgY+sK6UzIv5r4qACc
- SKAVcUEP2pA2TsT7pi/cj2tZ8iyyyZmtbKP8cMCQ4Nm8+ve6fgRgrMO20rRLdrYDmR9HC0L2VTF
- Hy20I9ahNKbD5UysFuRkfOWju6VwJwPzgxe28tVuZyGVOzCMOd5tFbQHiR94no1paJT4vqWX8fE
- XCmGrrpNhudwRWtLtTrhCRm2Qomc9zu0Ndmx6adeamn8UDisPE0hTerHhTxeSx2S5PyCnmcNdVe
- bLt87HwR5yYDYpclg/yZOXAE/rky4Ff+DYbxLcMacOQkAJeLEv8UHlXvU2DwmikwLKC4g4xd0Nm
- Oe1u2wN9R8wy+/Q==
+ bh=RCuNB1mWMaNtm6vRmUVv+04+d3pPrJBXIRhX6cDQxkA=;
+ b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBoC6eOwOXeH0lYKHhF+lTvDG4t6nhCl0QYy0oAV
+ bCggMDBR7uJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaAunjgAKCRAicTuzoY3I
+ Ou6vD/41SGFd4ePXcaWOmJgrpYHmL7CV7qsQ7IfQ+COvqTsQebM5Tm+69Ap+HXB10W9MN+yaRGm
+ 1dy7DhXLNgTdtB2/+fPSBoTsAjz9wSjOrAu1DnU72xd2JguWgChlZrJ4Z16A+HEccH2u1XDCWKx
+ L/E3mXiB0g/1P8QaIZhaMPDwmanNeE7QFc0BK+dLqgVrYj5HTugxVe7Un/3r4i4fsDyVrSdh2VH
+ +my/nfECy2zpMu4re9/RSdm9KrShlx3qxUyywJ+vuFWkNyBuxLnqW5r3ixkA55aifYhGHwtjhs1
+ xBNvLK0F0OGFoiq/XyM5bCLBR5bHY6sGmr2t500AgYTGWC33x5CiY1FALzeaf20BbKULoM0oDu7
+ 6yQknBXDZmE4HrM2YYbJ+e9NMRi/Qx5TfKyxGRT23pxi7QsbFb88aXLRNnfrrCTbBrVhvwXLDRE
+ /4elajNQTirYrnKzq6G1SLLRjc7zP9UF/pAuyeJoaWit/36F6Pr/oISYkaTbNFGz1V/0S0kLl2d
+ 0unOPHUA/SPwjNzH38bdTuQ/vImBF61Y3t4SUUw/dAU6KGBepTXclneovlPcZ4NGpGIkApnZvRE
+ dnyB6oa85SQnAqg4jO33CVk4lUc4h8WC9FVIpiIQ0/VtnhKfHsE8SGVhB2dHJVXYmiH/8sMzIVY
+ /iaBLFjLPMxZ7MQ==
 X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
  fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
-Declare a CSIPHY regulator pair 0p8 and 1p2 for each CSIPHY.
-
-Name the inputs based on the voltage so as to have a consistent naming of
-these rails across SoCs and PCBs.
-
-There are no upstream users of this yaml definition yet so this change is
-safe to make.
+Amend the names of the csiphy supplies to be specific to each CSIPHY thus
+allowing for the case where PHYs have individual or shared rails.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../bindings/media/qcom,x1e80100-camss.yaml        | 52 +++++++++++++++++-----
- 1 file changed, 40 insertions(+), 12 deletions(-)
+ drivers/media/platform/qcom/camss/camss.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-index 113565cf2a991a8dcbc20889090e177e8bcadaac..dc7c1a9394c3b547f5e0885bf501ed42dfbeba88 100644
---- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-@@ -118,14 +118,6 @@ properties:
-       - const: ife1
-       - const: top
- 
--  vdd-csiphy-0p8-supply:
--    description:
--      Phandle to a 0.8V regulator supply to a PHY.
--
--  vdd-csiphy-1p2-supply:
--    description:
--      Phandle to 1.8V regulator supply to a PHY.
--
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -157,6 +149,30 @@ properties:
-               - clock-lanes
-               - data-lanes
- 
-+  vdd-csiphy0-0p8-supply:
-+    description: Phandle to a 0.8V regulator supply to csiphy0.
-+
-+  vdd-csiphy0-1p2-supply:
-+    description: Phandle to a 1.2V regulator supply to csiphy0.
-+
-+  vdd-csiphy1-0p8-supply:
-+    description: Phandle to a 0.8V regulator supply to csiphy1.
-+
-+  vdd-csiphy1-1p2-supply:
-+    description: Phandle to a 1.2V regulator supply to csiphy1.
-+
-+  vdd-csiphy2-0p8-supply:
-+    description: Phandle to a 0.8V regulator supply to csiphy2.
-+
-+  vdd-csiphy2-1p2-supply:
-+    description: Phandle to a 1.2V regulator supply to csiphy2.
-+
-+  vdd-csiphy4-0p8-supply:
-+    description: Phandle to a 0.8V regulator supply to csiphy4.
-+
-+  vdd-csiphy4-1p2-supply:
-+    description: Phandle to a 1.2V regulator supply to csiphy4.
-+
- required:
-   - compatible
-   - reg
-@@ -170,10 +186,22 @@ required:
-   - iommus
-   - power-domains
-   - power-domain-names
--  - vdd-csiphy-0p8-supply
--  - vdd-csiphy-1p2-supply
-   - ports
- 
-+anyOf:
-+  - required:
-+      - vdd-csiphy0-0p8-supply
-+      - vdd-csiphy0-1p2-supply
-+  - required:
-+      - vdd-csiphy1-0p8-supply
-+      - vdd-csiphy1-1p2-supply
-+  - required:
-+      - vdd-csiphy2-0p8-supply
-+      - vdd-csiphy2-1p2-supply
-+  - required:
-+      - vdd-csiphy4-0p8-supply
-+      - vdd-csiphy4-1p2-supply
-+
- additionalProperties: false
- 
- examples:
-@@ -347,8 +375,8 @@ examples:
-                                  "ife1",
-                                  "top";
- 
--            vdd-csiphy-0p8-supply = <&csiphy_0p8_supply>;
--            vdd-csiphy-1p2-supply = <&csiphy_1p2_supply>;
-+            vdd-csiphy0-0p8-supply = <&csiphy_0p8_supply>;
-+            vdd-csiphy0-1p2-supply = <&csiphy_1p2_supply>;
- 
-             ports {
-                 #address-cells = <1>;
+diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+index 06f42875702f02f9d8d83d06ddaa972eacb593f8..d63bc7dc951690132e07ee0fb8df7cef9b66927d 100644
+--- a/drivers/media/platform/qcom/camss/camss.c
++++ b/drivers/media/platform/qcom/camss/camss.c
+@@ -2486,8 +2486,8 @@ static const struct resources_icc icc_res_sm8550[] = {
+ static const struct camss_subdev_resources csiphy_res_x1e80100[] = {
+ 	/* CSIPHY0 */
+ 	{
+-		.regulators = { "vdd-csiphy-0p8-supply",
+-				"vdd-csiphy-1p2-supply" },
++		.regulators = { "vdd-csiphy0-0p8",
++				"vdd-csiphy0-1p2" },
+ 		.clock = { "csiphy0", "csiphy0_timer" },
+ 		.clock_rate = { { 300000000, 400000000, 480000000 },
+ 				{ 266666667, 400000000 } },
+@@ -2501,8 +2501,8 @@ static const struct camss_subdev_resources csiphy_res_x1e80100[] = {
+ 	},
+ 	/* CSIPHY1 */
+ 	{
+-		.regulators = { "vdd-csiphy-0p8-supply",
+-				"vdd-csiphy-1p2-supply" },
++		.regulators = { "vdd-csiphy1-0p8",
++				"vdd-csiphy1-1p2" },
+ 		.clock = { "csiphy1", "csiphy1_timer" },
+ 		.clock_rate = { { 300000000, 400000000, 480000000 },
+ 				{ 266666667, 400000000 } },
+@@ -2516,8 +2516,8 @@ static const struct camss_subdev_resources csiphy_res_x1e80100[] = {
+ 	},
+ 	/* CSIPHY2 */
+ 	{
+-		.regulators = { "vdd-csiphy-0p8-supply",
+-				"vdd-csiphy-1p2-supply" },
++		.regulators = { "vdd-csiphy2-0p8",
++				"vdd-csiphy2-1p2" },
+ 		.clock = { "csiphy2", "csiphy2_timer" },
+ 		.clock_rate = { { 300000000, 400000000, 480000000 },
+ 				{ 266666667, 400000000 } },
+@@ -2531,8 +2531,8 @@ static const struct camss_subdev_resources csiphy_res_x1e80100[] = {
+ 	},
+ 	/* CSIPHY4 */
+ 	{
+-		.regulators = { "vdd-csiphy-0p8-supply",
+-				"vdd-csiphy-1p2-supply" },
++		.regulators = { "vdd-csiphy4-0p8",
++				"vdd-csiphy4-1p2" },
+ 		.clock = { "csiphy4", "csiphy4_timer" },
+ 		.clock_rate = { { 300000000, 400000000, 480000000 },
+ 				{ 266666667, 400000000 } },
 
 -- 
 2.49.0
