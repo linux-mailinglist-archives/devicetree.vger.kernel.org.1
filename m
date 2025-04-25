@@ -1,134 +1,105 @@
-Return-Path: <devicetree+bounces-171044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744C5A9D155
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:18:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E2CA9D163
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:22:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDBDA3BCBC2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 19:17:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E178466C9B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 19:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FE81D5CC4;
-	Fri, 25 Apr 2025 19:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0674E217703;
+	Fri, 25 Apr 2025 19:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ7RKpD7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCe/XvGX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF11E2D78A;
-	Fri, 25 Apr 2025 19:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFB4188596;
+	Fri, 25 Apr 2025 19:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745608691; cv=none; b=VKUXPfGprA32ERc1JURW96vSrjnM0H9I2ARjaqyfj7gjXaV41snt2wvWAhhHLslNKnEo24ksaR1qvRzHuqtzcM+0RmOjcK6mr525f55O7pMHsFAwU04NIFU3yWEU91GPgW1EHk6riOs82oyuRyVltIfERDbPqYnRwp3vf9x7p+o=
+	t=1745608931; cv=none; b=a2WWynNI7cIDS5SdDXCWrKyG8K0Qc1jvoxSODVJbYXyrs6c/m3RpujJIoJtAr8x3zyshI6MOOv2jVfpZR1+9pZ3l1qIhNoqmM7AggYBzLxDRUbR8ku2N2tD8rqzQMVDZ2KNwvhb606ch8z7BpQ3xQwCLcCbAl9tNzDRnJ2gU5uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745608691; c=relaxed/simple;
-	bh=VURIFLvJMlHbwvKBM2tzEUd1MXIR+jjLfjKCMpwkC6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dD6Ga0EGMB1Ivp/ramO1YSk4j5iPd5Dk8IZvTmFvUMxMnhrJXbLfnpf2RKP+U+U5F9v4trKzjV0Wf6ZAVxFTA2u+/ly6HGT3Fr14/WpjPLiSYmvOCTjO1hSPWM5dzuHsUKgLKg1rXD+i4YZVpOxNNYF4SuILIYrlZWVKGxSuP1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQ7RKpD7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3D28C4CEE4;
-	Fri, 25 Apr 2025 19:18:09 +0000 (UTC)
+	s=arc-20240116; t=1745608931; c=relaxed/simple;
+	bh=Usf2G1h8hpF9rzR/da+RSah9tvDonSHdGdQC9xKTH/A=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=gq3ufKSrhPU3b5YvHAhoFUtG6e+DG2JD/I4gRBX0Wh2ZIodjIgN2d5LHeLWUQZZQbzDD9Mme98mPl4pqL54nb/f9pPURtXazB3efMHadXmHY/61x94owgExxf6zwou3oI2/t7wgtz8l21O7nRSnB1Rtra1pWZbESnCPvWg2LXD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCe/XvGX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D60FC4CEE4;
+	Fri, 25 Apr 2025 19:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745608690;
-	bh=VURIFLvJMlHbwvKBM2tzEUd1MXIR+jjLfjKCMpwkC6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eQ7RKpD7wXQ49G4nETSjVLgHEj0gxbIND+XhiDJjUGu8MfjwLfN+48n66/23Dl8Eg
-	 nZT3d5aNT+OOa3OHiH9uhNZYjbvzH3ciojIXYi+ZaN/Z+CnIAPltifPJO8Qql//1U5
-	 YwfoqtVQuArwlo0C6SlYSziovjXTO5svNCBbUNqRzLVCXI9rDIm7gbFJjOzrjoPIab
-	 bbomkZdzbRlK3kqHL3vgqG5CE81Fo14gIRHtKSS/qBqKP2ynuH5Etq+StaT92QKoI9
-	 KD5upa33m4OM7+MjBt3fQJ28bd71yYRe8FShUFvppLPygdbJxLD9QgPbKcPbhLJWvg
-	 +mzwmyo2T/ObA==
-Date: Fri, 25 Apr 2025 14:18:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Grzegorz Jaszczyk <jaszczyk@chromium.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	saravanak@google.com, dmaluka@chromium.org, bgrzesik@google.com,
-	jaszczyk@google.com, ilpo.jarvinen@linux.intel.com,
-	usamaarif642@gmail.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, tnowicki@google.com,
-	mazurekm@google.com, vineethrp@google.com
-Subject: Re: [PATCH v2 2/2] x86/of: add support for reserved memory defined
- by DT
-Message-ID: <20250425191808.GA2681888-robh@kernel.org>
-References: <20250418124718.1009563-1-jaszczyk@chromium.org>
- <20250418124718.1009563-3-jaszczyk@chromium.org>
- <20250423140913.GA360030-robh@kernel.org>
- <CAGptq8GzJh38349ZZpEOw9sV8ihtJMHqV=PH9WUbG-C7b0tJjg@mail.gmail.com>
+	s=k20201202; t=1745608931;
+	bh=Usf2G1h8hpF9rzR/da+RSah9tvDonSHdGdQC9xKTH/A=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ZCe/XvGXWMUZHkWQevSYxQop9cUEEguMOyhDx5sTtqL5P0GT4CetGe8EHdbpMUHTF
+	 eqs453T6V4TBEQCrnsl+5FPGN2Vo0taSg0du+iAh5BR3sZsmipv0Aqx2z0eF65VAsu
+	 C5HTST2Bjc1fEPuinUdHDR/wiPZEei3D6Z765WRmwuVOJ95dH0P6xkQ7n7RhguHRQ9
+	 90PeTlSOGSIrQ9VbpFQSym2oRDLSR2eR+UQ0LSXw4tzdzL2xIk+fdrGFLdlNKpJRH/
+	 pNTGGDkV/i1u6tlM34Mb/En0nSR6z41hlMXfUo0nMy/FlOoPGAv6YXddd3moU1EaM7
+	 TuIFngV2JCjgw==
+Date: Fri, 25 Apr 2025 14:22:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGptq8GzJh38349ZZpEOw9sV8ihtJMHqV=PH9WUbG-C7b0tJjg@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: willmcvicker@google.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, kernel-team@android.com, 
+ linux-samsung-soc@vger.kernel.org, andre.draszik@linaro.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ tudor.ambarus@linaro.org
+To: Peter Griffin <peter.griffin@linaro.org>
+In-Reply-To: <20250425-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v2-1-f1530de9da42@linaro.org>
+References: <20250425-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v2-0-f1530de9da42@linaro.org>
+ <20250425-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v2-1-f1530de9da42@linaro.org>
+Message-Id: <174560892936.2854543.3393907207242393219.robh@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: soc: google: Add
+ gs101-pmu-intr-gen binding documentation
 
-On Thu, Apr 24, 2025 at 08:06:33PM +0200, Grzegorz Jaszczyk wrote:
-> On Wed, Apr 23, 2025 at 4:09 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Apr 18, 2025 at 12:47:18PM +0000, Grzegorz Jaszczyk wrote:
-> > > From: Grzegorz Jaszczyk <jaszczyk@google.com>
-> > >
-> > > The DT reserved-memory nodes can be present in DT as described in
-> > > Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
-> > > Similar to other architecture, which supports DT, there is a need to
-> > > create reserved memory regions for such nodes.
-> > >
-> > > Additionally, the x86 architecture builds its memory map based on E820
-> > > description passed by bootloader and not on DT. Since x86 already has
-> > > some DT support and allows booting with both ACPI and DT at the same
-> > > time, let's register an arch specific hook which will validate if a
-> > > reserved-memory region passed by DT is valid (covered by E820 reserved
-> > > region entry).
-> > >
-> > > Without this check, the reserved memory from DT could be successfully
-> > > registered, even though such a region could conflict with e820
-> > > description e.g. it could be described as E820_RAM and could be already
-> > > used at early x86 boot stage for memblock initialization (which happens
-> > > before DT parsing).
-> >
-> > Sorry, I don't get how it conflicts. Wouldn't the E820_RAM be registered
-> > with memblock and memblock then handles the conflict (or should).
-> >
+
+On Fri, 25 Apr 2025 17:25:05 +0100, Peter Griffin wrote:
+> Add bindings documentation for the Power Management Unit (PMU) interrupt
+> generator.
 > 
-> On x86, early memblock setup is performed by e820__memblock_setup()
-> and regions which are marked as E820_RAM are added to the memblock
-> "memory" type and such regions can be later on used for memblock
-> allocation on early x86 setup. If memblock allocation is performed
-> after e820__memblock_setup and before x86_flattree_get_config,  the
-> reserved region described in DT (but described as RAM in e820) could
-> be silently used before we scan DT for reserved memory regions.
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  .../soc/google/google,gs101-pmu-intr-gen.yaml      | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 > 
-> Additionally there are more reasons why we want to make sure that e820
-> reserved regions are in sync with DT reserved memory: resource tree
-> building and setup pci gap based on e820.
-> On the x86 resource tree is built taking into account e820 entries
-> (e820__reserve_resources()) while on other arch like e.g. arm64, which
-> relies on DT, the resource tree is built taking into account
-> information from DT(request_standard_resources). Mixing both on x86
-> seems problematic and at first glance could be achieved by e.g.
-> patching e820_table via e820__range_update so other part of the early
-> x86 kernel setup such as e820__setup_pci_gap() will also not use
-> region which is described in DT as reserved-memory. But it is not
-> straight-forward (initially I've tried to go through this path) e.g.
-> it will require handling DT earlier (x86_flattree_get_config) but at
-> the same time x86_flattree_get_config relies on the memblock being set
-> up. Therefore it seems that making a requirement that the e820
-> reserved region should be in sync with DT reserved-memory on x86 is
-> reasonable.
 
-x86_flattree_get_config() is a bit odd in that the DT is mapped and 
-unflattened in one shot. Usually the flat DT is mapped and scanned 
-early, and then only unflattened once memblock is up. You will be better 
-off moving the early mapping and scanning earlier. Then the next thing 
-you want from the DT early will be there. For example, the console or 
-handling for kexec (which is its own reserved regions).
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/soc/samsung/google,gs101-pmu-intr-gen.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250425-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v2-1-f1530de9da42@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
