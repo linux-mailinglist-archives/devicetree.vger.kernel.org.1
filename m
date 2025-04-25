@@ -1,129 +1,105 @@
-Return-Path: <devicetree+bounces-170657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 100D4A9BE27
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:49:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6EFA9BE31
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:53:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 346071BA4AAF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:49:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFFBA1B68329
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233A522A4E1;
-	Fri, 25 Apr 2025 05:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79C522A80E;
+	Fri, 25 Apr 2025 05:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EZY8ElH5"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="yuheSb8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54E210957;
-	Fri, 25 Apr 2025 05:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D7E22A4F3;
+	Fri, 25 Apr 2025 05:53:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745560153; cv=none; b=QeZTB5vDJN9QG8Ob46OKNHMP82YQifCpUoSSGnGr0Xjp1Wpa+islLPMjAo5q7hCye5gngBnV37tkgVNoeX1p3AsyH4rVu30kAbpQ1JM7jMzol5NNAV3ZCWkFbjaJHbcyAROo6rw3rT17XSHMf0D5sghN9LGrEP0kk19i70wpg6w=
+	t=1745560385; cv=none; b=VlAjthhqzQi9joWmXJBk9vUZdE98uzCWO6fr5/xKWXwQROLagm9Oy/KOcGadV6SeJqnj0WHelkL0M+mXcvEjEMPZmES9pY8z62MSuouqJs2SYuaRWtJCWJLRR7/6pliZHABOMbxvyt1cbqEKH4VXJb68IcKRhSFfFVN3JFa0pxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745560153; c=relaxed/simple;
-	bh=b8ldFslkgQ7KCKFFikNVZpOV3nvLSwoB5PkaORjEsEY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b5uICguzunk32n7PB26S1MEQKDNsT66f1W0O1xLLe+8QcZuEb5dB1ul9a9KydBS7zotlUk8c6VYMCkwT9AYrXvBWGa8dOxGwaCmMbz/jx2ncEOyj4wzutsQtgckvJSl10OOWEgghagn74sqfhwmeX3aMmskhpfm6a3kfVvdhvHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EZY8ElH5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A54EC4CEE4;
-	Fri, 25 Apr 2025 05:49:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745560152;
-	bh=b8ldFslkgQ7KCKFFikNVZpOV3nvLSwoB5PkaORjEsEY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EZY8ElH5qOKrr4bclUijdXf1iIJr+2cmEz4fV3vKBIsQ+mmNEqwi3LUhSNjqTFXn2
-	 RJKNG4Kt/DFq5Fj3nEbcaygH6YKKXkg4rSpfcf7AuneRYBqQC6hXMV8lreBHr1e/iH
-	 nKfZdFJ1v7roPcV1wHawrTNOKQ8NmspeFIE9VmwgaqvvRELBrEt4+reIAi5Xe8s2we
-	 RTDDvy1OMQ1NshhBfi3B4fnUqTIHG9qQszWsYViJJL74p5rikCTzbTS+C+2xoOYL+u
-	 9DPRFGI1lolF4VNrIwS3oOqJ3AEWuttwiZH4gwhKZA2G9hBBn8sUVsENItJHndYPzD
-	 oo8ObvIICIvPw==
-Message-ID: <7415150b-e455-48ef-8c06-6abfdab22f08@kernel.org>
-Date: Fri, 25 Apr 2025 07:49:06 +0200
+	s=arc-20240116; t=1745560385; c=relaxed/simple;
+	bh=7ZvFXhNY8gnq82v3dNyEoFqX8xDYnTNWAxehS3YFPz4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PNpss5LTO8y8Rffo8MX0WjoLpK2IZSU8B5ZF+JGuWY1roW5PMt3xIwSNlIL2E78brpa2XAILUk2btXK0pNuk2ccfonkKtZ1TPGz8cTJEP/f04Qnmzej4xQ30W2srv+qsDD7vwGCL3RmrigrW7DWWndzCfIOyG8AzQtOkzEvar64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=yuheSb8h; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 083881F944;
+	Fri, 25 Apr 2025 07:52:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1745560373;
+	bh=UyQprxTrTzeJEuddDXNiYr4ctzPhYLZ6Cp5WEsAgS9s=;
+	h=Received:From:To:Subject;
+	b=yuheSb8htIWbOcxaC4uxXuHyj0CX6UJYao3KmcRicGjt3irM9wHqvMVjc4T3ol8NN
+	 rK8IkJo+Hm6qk+L8FoHUQyue8CZ6yn/iWFiuJpYoulREypk49UYHf+O89rHlwEq5yg
+	 XRM1O0COTqgzcgB2kIwV76mGvhoZzqLZgcb8sZ5G7LnHokIOPXrIiyng+16M8qZlDr
+	 kiFJENmxo9Y2jfp9BZB9mbgU9j0XWjyNvpSENR+D9OfPCrw1tHKGAEcE89y/IPahTh
+	 Mgigt1E8PCarR6soLXSVo4hGNQh+DKfeUwv6Kszss1GDw6xhYpIOtsqVI4/CzGhpHG
+	 mxWZJ9MBSeyVw==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 9BD827F94C; Fri, 25 Apr 2025 07:52:52 +0200 (CEST)
+Date: Fri, 25 Apr 2025 07:52:52 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Philippe Schenker <philippe.schenker@impulsing.ch>,
+	Manuel Traut <manuel.traut@mt.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v4] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
+ usdhc2
+Message-ID: <aAsjNP_2jo-zDeEk@gaggiata.pivistrello.it>
+References: <20250424095916.1389731-1-Wojciech.Dubowik@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/10] dt-bindings: clock: Add Qualcomm QCS615 Camera
- clock controller
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250424-qcs615-mm-v7-clock-controllers-v8-0-bacad5b3659a@quicinc.com>
- <20250424-qcs615-mm-v7-clock-controllers-v8-2-bacad5b3659a@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250424-qcs615-mm-v7-clock-controllers-v8-2-bacad5b3659a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424095916.1389731-1-Wojciech.Dubowik@mt.com>
 
-On 24/04/2025 11:32, Taniya Das wrote:
-> Add DT bindings for the Camera clock on QCS615 platforms. Add the
-> relevant DT include definitions as well.
+On Thu, Apr 24, 2025 at 11:59:14AM +0200, Wojciech Dubowik wrote:
+> Define vqmmc regulator-gpio for usdhc2 with vin-supply
+> coming from LDO5.
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Without this definition LDO5 will be powered down, disabling
+> SD card after bootup. This has been introduced in commit
+> f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
+> 
+> Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
+> Tested-by: Manuel Traut <manuel.traut@mt.com>
+> Reviewed-by: Philippe Schenker <philippe.schenker@impulsing.ch>
+> Tested-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
 
-Again:
+Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+FYI, you can have multiple fixes tag, and to be safe to not introduce regression
+on some stable backport because the 2 patches are not back-ported at the same
+time, better to have both the Fixes tags here.
 
-Best regards,
-Krzysztof
+No need to send a v5, the tag should be picked up from this email.
+
+Francesco
+
+
 
