@@ -1,408 +1,318 @@
-Return-Path: <devicetree+bounces-171130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A467CA9D60F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 01:13:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9E5A9D645
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 01:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DE11BC8308
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:14:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E0124C6A41
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87FC296D3B;
-	Fri, 25 Apr 2025 23:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D726F297A6E;
+	Fri, 25 Apr 2025 23:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PUk2Anzp"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gwSsehUM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2072.outbound.protection.outlook.com [40.107.22.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A9A296D2D
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 23:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745622833; cv=none; b=kLWocE1M9C1iGkwcKpxYEdKVY7N2Opbbjnsgrqr8nKWbkgqphFaCV86hngbge30Z5lmTmRRR5twyNjG9iqJ0swZT4E3JIGHg6pNztJAVfXarYGbS9ohvK4jm2/6lzm0r3Sxy1QPGsOsf9NFtC28N1A7QoYst5QshtMQ5p/7NXi4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745622833; c=relaxed/simple;
-	bh=PngBN4fnbURLzAySAY30tx1qdDko/K5iW4qjRDdHsFk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Adem3hri5DjCttOq/aD1UGrDX0JqI8wshbYuAgOID9MabNOQN+FH2qjIfbKXeVfhBRuamN+sH0KgbaPXjKt8EUkcLtEuzdjDAXN1vTmtY+DiGWLNB+Owz5bdMwGieIQpvMsAsOoPbnWYEpzXgmVkluRwUQXBoTiGyXAVAQGIyl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PUk2Anzp; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-72c16e658f4so1913526a34.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 16:13:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745622830; x=1746227630; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B+3rb/tLAGnvLIt9IgNGUN65XhsnftVTZknFpZtsVlw=;
-        b=PUk2AnzpMmsL9x4bI3BiNLMqjY+ETaT1qygv3AzghvWuoHExRhHuqUhxgiN59teVcV
-         g5P5CeARl53jAfoWr53r6LAoxFnGChMXWPVAPUGunXfhWMtJlTQdvGHwqIn+qPzs/nYi
-         VK444HhDkFMs56CqvyUnFHs6fzNODG2Z3Kfu/Xje/i7CVHi6NZoO5IOuf6ishTP2BYVJ
-         8xTG9Q3UIn01GKDmRswJbbGce/e4kHL2ttPjVpN4klPJ0G7wOZ10dCiiqG65VluD4Wce
-         bTHiFDfAR5U0XNRK914l0npeBo8reM4kIbj25PMyFOxGIkqs5hhLYuYu74BvaEXs/h7i
-         bc3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745622830; x=1746227630;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B+3rb/tLAGnvLIt9IgNGUN65XhsnftVTZknFpZtsVlw=;
-        b=rUxFUC95RB75yXzeNGU0Z/iZpI6w2RuDJzsPKp0B7eSMj5Q6jipMBOM7n8KAaOnoqJ
-         sfaJMaOuZaW9MEgHov0C1yaqtsov9XmQh/rKRTKa1ocweEjb2nW5VsyB1RA0UM59pfCI
-         A01PatpmVu66sVsKg+rMDarF49oKFvKPELpWEDBS+GvNKF04Ed50cUaS4yg5P/xzUnfD
-         oAA7j9uwioSiph58NQmGq4b72vrZlLfsdvY5/nr4vAFoOE60bhsxq17Ogi1LsH5GeiOS
-         xa5Ivn8c8HrsNBAHQ0w1NOeUd7kKHNCiW67POELTDaEkI0txG0VZrzYCIDpGp82Sloaf
-         x6rA==
-X-Forwarded-Encrypted: i=1; AJvYcCUYNi1b4yV0nlpxGJYYHS3+WJTONhZNr0Hp9ckuncD3VoX4ldtYijHgk3EFOWAUK8pEHcADGc1Uo1uM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD/ZTpPX+miliQtaMVhKsKcyHft7UV8AE/uJEDi+X2jVKuMFZs
-	JWyHEbqXW2Y7ZEoR+Tn1rCXcUXiJZ2eCycwk6YzSUNOdQkSinud5gmRqW8OoNlU=
-X-Gm-Gg: ASbGncvSG2gJUl72/61RfjmY2HvFMB0EKxUNabAUwYdJ/5JsyxAmpXzP/fb19yiRS+S
-	CtPyh6pvNgtbznEX7gZAldW58VRNlLyrox8oOoAxzs0ONB63t9uPG7sCV7z+FuFVTri98SoSRyV
-	VrE6hqRnsEyqsLgsvox+mPmgaZXH64+9yNNu3srWR0JtTZqXri1Z+MfuOIPS81dwtH9xeNWfVCr
-	33NejDAtLWDEkUxeDxFAotLwJ6Herf0lepxcs3wv6HWXz22a0ApUjrOWFLYb9ZEJ5pzVr97zN97
-	VHjHWAII/f8CLDIeGNLPQcwSRHVtoklkVRuOHS6lPlYknPE4AWUlr3ziddFMyizuglNV+SuuzjH
-	WCRvUL4hRSy4H
-X-Google-Smtp-Source: AGHT+IFMv0vnj0gyPnnBDlAAtjQ4qLxNurqnITAkClibY+ZJfAW3Guzqu2qpn/vLBJV0bNHfsRHU4w==
-X-Received: by 2002:a05:6830:3816:b0:72b:9f83:1155 with SMTP id 46e09a7af769-7305c9f62bamr2552310a34.17.1745622830303;
-        Fri, 25 Apr 2025 16:13:50 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:96a3:e28:3f6:dbac? ([2600:8803:e7e4:1d00:96a3:e28:3f6:dbac])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7304f19fb76sm873571a34.16.2025.04.25.16.13.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 16:13:49 -0700 (PDT)
-Message-ID: <c82b8c53-e653-4cd3-80ef-37c5daf9314c@baylibre.com>
-Date: Fri, 25 Apr 2025 18:13:48 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BC129009A;
+	Fri, 25 Apr 2025 23:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745624097; cv=fail; b=TXcd3V1kDJUlvnwEor7+AlV7hNd0OLjUVnxRtnM5px5568UViyDz+9iTBa7zvcSRxvdQdxPsHv1oqVcVMOFNaYP6ToDDoYP+zxir1mtJE2ZnL8Ufy8HrDfSc+oRsDrLziIYN9iavnB5s7fIdlvI6HWGYsHr1pbh4bw//VCP2QNQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745624097; c=relaxed/simple;
+	bh=jp5A+Lq0dxNQ470AANcNdgN28pUjVWj/6m9w45yEC+Q=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=jsUsFRrTR/WthHYgAWK0oJKU2eDtvONZPZNkDvkv/m7srkINbth9u2W+EoYwdPvg3FWOEiPCE8YtAcRU2ly4o9qYAebXnw1T1nU8gyrvJQKeKCMuwGcEU6VywSI6abNRvyfFmA7q2AOaG6jK5LPJMxr/kNcASVRldpXzR22FYHM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gwSsehUM; arc=fail smtp.client-ip=40.107.22.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XuwHNV1uUmwVXQF5dd35QnJUXxefUAn6971/5y86aufgfDCIHRremjJD2lBQ4+PshkAmqaEFqD7NytcehX2fXx5FvXN8FYSKCgCSUP7AsAgXqKVLsX3HcIoyhdnVvkS+CiPIq/4iF7ywjDKSy6DsZO82Fo88XcmEGjmtBKxjFKK8xD3ieZPBhtSxQMVtNLlSacjNP1Ge4MUmJ7fEh7avHI6kuooOAQC7PNvOOk0ZOdDxrzwW5dEK9foSrHF1JqKhd8wJP2Qh0JIcDGdVE4PniKX9aQqhjCTgFBsMYq8sXILyUk+7DfB18T4sL6P+2+TrUCmV8UErdDkr2Qy1qPkk6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MruZsTjdJWCRbMLmMTwHHX2eHcUKLOU3RmfWqq6dggY=;
+ b=CEDgITo/1XRxJM0nYqY+WhVVOw5JY9vb14mA9Ey5cCzjpiBdHVt+uLDDz6I3C+dSu776zXSbkr+qCboaCRkGYJhdAR0vFVdwtNqIHo969GJfK16vHxd5rEDAKv6553OhN52ZXW4COjdV5UWMJhcKP8ogaLpdyBcB6hvSMlz6T5lpS9YY6zZLrD941+ih506u2eys4Qf4OGh8rKV2PzAhRduq+EMenXfvKYEhR7dwuJch7jvD3Kyu3PQ3r/fLZ8sWspeM9/HfZFYrKogWYeRWKSxq8I+eJBKf2oR75tMkuK03eHjM4Un8spiOSvIi0EiQPgLw/RXYpQfgg1ddbUUZJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MruZsTjdJWCRbMLmMTwHHX2eHcUKLOU3RmfWqq6dggY=;
+ b=gwSsehUMVygSkPFrcu9vmtES/sWh/nd9o07r8+7DmimZ8x9OWyZMZrVtqF2ma1w4SN34ObZNnQuMFBE9DNGBRBRNQ01IwTOWPW1bpyDi19u4dC+vHIaTxXNQRzsUNPvixRm4AcIVAe2H5WA9LtAdLNG6tISZTb2bXQbk4iCbzNKt4zDyXBz7Zo8Bek7V61TDaDEX1TZHXqOuac02TA/gCiVQ+sSxz5MoLxCC5+/+VdFbFfloWCdLkC31fC0CrIQu6NYNkNR8dTeILevqHGgLfQ4bGpGv2a65aiIwAp3jKesiMCh3PuTJrSmLVdU5bfjgU63c/+N7b2phYAP8xC7uEQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
+ by PA4PR04MB7984.eurprd04.prod.outlook.com (2603:10a6:102:ce::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Fri, 25 Apr
+ 2025 23:34:52 +0000
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::88b8:8584:24dc:e2a1]) by DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::88b8:8584:24dc:e2a1%7]) with mapi id 15.20.8678.025; Fri, 25 Apr 2025
+ 23:34:52 +0000
+Message-ID: <322d366c-1564-4b06-9362-28fe451a35e7@nxp.com>
+Date: Sat, 26 Apr 2025 02:34:49 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] of: Common "memory-region" parsing
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, "Andrew F. Davis" <afd@ti.com>,
+ "Shah, Tanmay" <tanmay.shah@amd.com>, Saravana Kannan
+ <saravanak@google.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Bjorn Andersson <andersson@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20250423-dt-memory-region-v2-v2-0-2fbd6ebd3c88@kernel.org>
+ <CANLsYkxKHhCHYrbAGzQ48QGpL_DbuLnX3=ppmpyu0vjuuvvODg@mail.gmail.com>
+Content-Language: en-US
+From: Iuliana Prodan <iuliana.prodan@nxp.com>
+In-Reply-To: <CANLsYkxKHhCHYrbAGzQ48QGpL_DbuLnX3=ppmpyu0vjuuvvODg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS4P189CA0065.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:659::8) To DU2PR04MB8774.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] iio: adc: add support for ad4052
-To: Jorge Marques <jorge.marques@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-pwm@vger.kernel.org
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8774:EE_|PA4PR04MB7984:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90595e85-58d1-491a-5967-08dd8451c6b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S3VDSXVKM0l1cURXcEFqSFF3UzVhdE1WYzUyTWZhb1pnajc2RXkxQThuamhj?=
+ =?utf-8?B?VDJ0ZXZUbnIyWEZWNld0WExqeGVUcEk1K2NNalRYYnhuUmNrcU9sM2tSYW1I?=
+ =?utf-8?B?OXB3NlRrSW9pRjFoeGQrcG9WZTd1WUxaRHBUVzA3NkNLd1NOZUwrZE0xTVlX?=
+ =?utf-8?B?cmlWZlVwZ3lNYzF5RENzc2tEdnRFWFBpVDVYU0o5MUYraVJLdWtsYk9EWG5n?=
+ =?utf-8?B?V2VhU2s5ZElLb2FmZTlYd3ZrRkN1VCtXczUyN2ZIUHl6bTA4YTBCTk4vQmhI?=
+ =?utf-8?B?Z2xTdVZvQ0c0bVZybzFYTFZYejVwK2hNVm9MdFpyUVF5TDZQeVI0TTk1cHNT?=
+ =?utf-8?B?OHJyWU5mb2g2NFRlRjkzNFdYMmVuTnB6VDFzRzBOdTYxSDBmbEUvWXljdldC?=
+ =?utf-8?B?RWpCL3VlelRSU3RhNGVPTjFqcUtEMEhBc1h6aU5RL2oyRUQ0ZkI2dC9pQjQz?=
+ =?utf-8?B?c2JacGpSeUczZkhIMk9lZVVxVWt6d0ZpbjBySWdPbUpnTURlSjRHTlFabXBs?=
+ =?utf-8?B?YXk2M21CTkRveU1HNzNWdE5nUko4V1M0YTZMenRzV0FhaFp1cWZGUDRqdDdF?=
+ =?utf-8?B?em8ydGFtbDJkMXZGUUdOZHZKc3FQanlacjRVRXdPU0xWbGs0TGdsdHg0c2JM?=
+ =?utf-8?B?NUJzUm91NUNaOWVZOVhGeCtWMUZzK2NLOTl4L21vY3RwOFNGSkF4bGdJT0FV?=
+ =?utf-8?B?bEk4Y0IrUXJ1eEVQbER1NERzS0RsVjBwODdwcExFR2twM0lCdDRQSFZNZWp0?=
+ =?utf-8?B?bGFCbUZPRzMvVzRqbk43RUhVZVFFSG9TRkNUdFRNZkIzREpnbmRWMjI2Y0VY?=
+ =?utf-8?B?S0svVDE2SXAvdTJqWklNOWJTdnc0Z0gvQVdsTmlxeXpIZzQrblBvUDlOS2k5?=
+ =?utf-8?B?N3MyM25WVHJwTjR2UkcwdFkwTS9HbFhJMHpQRThUK0s2Q2UvcXlWWkZSeUdx?=
+ =?utf-8?B?eGltMlAzSGYvdzY0eHc0amluVnhMMjdMK1o1TE1mN1FQL05qZjFSVjF5SzhU?=
+ =?utf-8?B?QTdSeDJWbS9UWFRxRUsxdjlYSkxPYmQ1K0FXMVRXYTN0ajFRZEZlYU5iNEtU?=
+ =?utf-8?B?UlBlWHhlNHJucHJqVjBTM01QTXFzTmdieDlxWWlzWkI2MnVGTWowZW5pZGdY?=
+ =?utf-8?B?eEZUNjl0WTVOUnZLalE1UURqcGZnZkdOcm9DOW1CTHBXTU5KZjhUY3hSNDho?=
+ =?utf-8?B?NS92YXJLTVNOVlhBTElGNjVrYUI1YzVrUld1Z1VYZzJWa2xzZlRrVCs4Q0tY?=
+ =?utf-8?B?VG9IYm5idm5jZ2I0YjhoUzFvZXVBeGF1WFlXQStaTDVnZC9xOWN4WVNraTNl?=
+ =?utf-8?B?NUhXY0JHaHIyRjJyQTM0encyS1lrbnFlWTFzMWJ2bEJrb3BUS2tvRnhTNlVm?=
+ =?utf-8?B?UVN2N3NCaHBROHhFZzdTSjd4eU9WU1F4NmV4dnJqRlMxRVdmb0I1dDFtVjNK?=
+ =?utf-8?B?OFhjZ3F4d0Ixb09aeHcrVlpTY1UzQ0VPNzF2cjgvdlZUR1BobDQwcXRzUHpa?=
+ =?utf-8?B?UUg3Nno5SlkzeVorU0RpVVNpeXBLZXZrRlh4OGxIVnJpbmFlc1QxbEE2bmdN?=
+ =?utf-8?B?WHBEUjN0Y3E5dndxa1Q1MlEvN3U0MUVBMnhZb2x1d2phaHVudjJ4aGdiUjRa?=
+ =?utf-8?B?MFVJVEQzNVJ1R0JVV0FjcUtZb0FSdlJqWUJSYkowZ3hzdVZBc1Fqb2t3Q2hy?=
+ =?utf-8?B?aW9JZS9iZHZDRkpFQWpvU0FSZGUzVkEwSDRqWVFXcDZuM3VWVFdrYXd3cjA1?=
+ =?utf-8?B?ekpDSXBJL2dXci9GalRiVGordCtmTlFIV3NhZ0xIcHJ3STFqUjlDdkU1eVpt?=
+ =?utf-8?Q?oadHW9T8ReTySsMbRYn0siRoHx2/OKlEheebI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?blhyVC9iV1c0Ulk3NUx3STRrVktzV2xsZ3ZrYTRuOEw3MjU0cWxOUG5td3d4?=
+ =?utf-8?B?dHZ5TTBUVnkrTWUzUGdQc2NRbmtEd3J1OExhRFRHVlM3Q0RnN3JVSlRUMGZX?=
+ =?utf-8?B?Y25OWXRaZXJkWTYxMGh2WEdMQmhmVENHQzhBRDBVOWRjelNObUJFbHpIUENZ?=
+ =?utf-8?B?T0lyVW9tdEgrUnFGR0NmYzVwT0daQzh4TUthWXdNem1YZUVXMzk1SUZqUVdj?=
+ =?utf-8?B?RCtGdldqMDlTd3pydnl2SU04b1R1RTRvaS91SkNzbGFxa2EwamptZ1Erdlla?=
+ =?utf-8?B?cE5XM3dnN0JOWnVoYjMrNXdORUFYWEk3WUI3V0U3ekQ1WDZjVWxYZDRZRDZq?=
+ =?utf-8?B?ODJjRHYzbmp1MEt0K2JEWVZIdlNtSkZzYTFRd3UwTXh5eVJvQnhYclE4VWxs?=
+ =?utf-8?B?YUZ4TCtxU2Vnd0p2ZHRLcXBMb0ZZamIxdmg5ZjdkZ1lRckVuVEFjRXo2Y2JU?=
+ =?utf-8?B?T3ZVVDkrUnVydXlFUXNseUV3VEhTSDNRQnROZ2FZQVBjSUEyMThJQlBzeXgy?=
+ =?utf-8?B?Z2FSOVNoa1ZpaFFkTGNzZzI2YjhlWGtRQUc2cUN5MEdWdUU5aSs4eUZhMmF0?=
+ =?utf-8?B?L3dURVAycFdQQjdCTks0TWJKWURxYkNLd3RyVVZyTHFqYnBLTXd3OGhuYmx3?=
+ =?utf-8?B?ZXM1TFlLYUFPV1hTcU5ScVdlNHF5eEVjZUNJVkFmbTVnOTBvczRpOU0xVDFw?=
+ =?utf-8?B?czd5Nk5hUThkSFAvT1U4QUxZdzBQQjZiZVZyOVFaQXNWQndFNkErWm5GajA3?=
+ =?utf-8?B?YkwrLy9ZRXdIVW4zVXozbDdvUWt5cVhVUmkzMGF2ejgxSXBkaEtvcnFTTmV2?=
+ =?utf-8?B?QjYwWXZ3ZGJzVXZaTW04VWlsbnRhYngwVG8wVTcrd2Q3Uy9sM2tLaWFGWmIv?=
+ =?utf-8?B?TzVFcUxsVTVkT1FvMEhpc3BoV0pxQnJpZ1VPemV2dG9zM0lKY0o5WHpNTUE0?=
+ =?utf-8?B?V3NVZnl4NDNXQVdnSm91L2pjaDJ1cjFYRXF3ZENtTW5BZkpuRU1xbE9FL2pP?=
+ =?utf-8?B?d1NhU0lkM0g3WjVGYkN3d09RVUxwNnh0aitmY1ltMFN1SVAvcXJvZ1d2QXJU?=
+ =?utf-8?B?L3JveFg5UFZXalB0aEhMcmhwUVQ3aUVlTk5kSTVreGxvWnpSTHh3YkxudFV3?=
+ =?utf-8?B?eHZPeHBGU1BWang3RHJJOGRGQVFXUUdpVnFrVkl6RnVTMm5oVnNjNjhyazJy?=
+ =?utf-8?B?STlEZlVlVjdVM2Nud3I0bFNQY1NsZFl2ekZ6bGV1alNud1RwZjh6OGViN2hN?=
+ =?utf-8?B?WTRCUFBOWWlhWTVVeEJJbTlKaG1KT0NWWjk2cHdVcGlHUDRmS2tCMzYwNGhD?=
+ =?utf-8?B?N3hsamlFaHJFSnZkUDVOWHgwc20reERMMU9HbWVLSCszL1BwTGMvUSt5dlNn?=
+ =?utf-8?B?Ny9NS0ROc2QwL2VCQm9PUlpQSENCWTVHZEVlNzI0Yjl5RklSSjNMYnJqYjM3?=
+ =?utf-8?B?MEhlYmJReG1kL29JUlhDQlRxUzhDZ2RzLzBaS0VOcGgxby9zQzhTTHRybEhP?=
+ =?utf-8?B?SDE0YjJ0MTlMK3lRN3ZaMTFkaXJQMzlNQVA3U3dSWDExNEZHMGZCTUxJMWV6?=
+ =?utf-8?B?ZzZWTDhXak9iaGtHbUFVRHAxdEsrL0dRelVjRlA5SExiamNVNVdtTjcwd08x?=
+ =?utf-8?B?Q00rdlBUL0FhUnN2L1V5WWtvK25ER0dzdmpNektIOEp0NTdtYzByU243NDZX?=
+ =?utf-8?B?ODFmU3NtelNTNXpCUnBPb3RxR2REMUF0VWxxYjM0cHMyTDljY242YmxNOE5M?=
+ =?utf-8?B?QzdERkEwN244R2V1YU5VR0ZtTkxRUkpiU1UyUE0wZjU2QndTZGV4QUVtdFBF?=
+ =?utf-8?B?MFpPYTgzeHd3MmJQUlZDK3BJRTJjU01lblF3Z0o0N01YVGVzWjRSOTBCR2VX?=
+ =?utf-8?B?b1dDZkE4RzJ6TWpMSGh3NHVQK3JJNUtwdk5YTXc4dnVVWVZOYTlYR251UGhz?=
+ =?utf-8?B?Wms0WVJKN3J5ZTBpV3JJNjR1bXltbzZmYkpWWFNPREJzVlZENzc1VmVVWlQ4?=
+ =?utf-8?B?NEJ6ZFFvVW5qbFkyK3lpTkJvZGxVbEhmSUFCa0ZFL0lzTWlFNUs3ckxyN2NO?=
+ =?utf-8?B?Y3BObEtFbDZxQnZ6Qm9sWi9CREswYzczMjRPK0Q2K1F6TWtOZ25vbFI0RDBy?=
+ =?utf-8?Q?jKkld3rtN98hmPRFGhMb+W9Bf?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90595e85-58d1-491a-5967-08dd8451c6b7
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2025 23:34:51.9729
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xtF/z/AQ1cpIjtTozMHR+rM0NxbBHZHphaRZ70OEmoNeglf4eLid7zUyDMFQ5iTpeql7N7ix8lok8Xgym1bAvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7984
 
-On 4/22/25 6:34 AM, Jorge Marques wrote:
-> The AD4052/AD4058/AD4050/AD4056 are versatile, 16-bit/12-bit,
-> successive approximation register (SAR) analog-to-digital converter (ADC)
-> that enables low-power, high-density data acquisition solutions without
-> sacrificing precision.
-> This ADC offers a unique balance of performance and power efficiency,
-> plus innovative features for seamlessly switching between high-resolution
-> and low-power modes tailored to the immediate needs of the system.
-> The AD4052/AD4058/AD4050/AD4056 are ideal for battery-powered,
-> compact data acquisition and edge sensing applications.
-> 
-> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> ---
->  MAINTAINERS              |    1 +
->  drivers/iio/adc/Kconfig  |   14 +
->  drivers/iio/adc/Makefile |    1 +
->  drivers/iio/adc/ad4052.c | 1425 ++++++++++++++++++++++++++++++++++++++++++++++
+Hello Mathieu, Rob,
 
-This patch is way too big, so I didn't review most of it yet. But time to call
-it quits for today. In the future, it would be a lot easier for reviewers if
-you can split things into multiple patches instead of implementing all of the
-features at once. E.g. start with just a basic driver, then a patch to add
-oversampling support, then another patch to add SPI offload support. 500 lines
-is a more manageable size for review.
+I've tested imx_dsp_rproc and it fails with:
 
+[   39.743770] Unable to handle kernel paging request at virtual address 
+ffffffffffffffea
 ...
+[   39.805078] Hardware name: NXP i.MX8MPlus EVK board (DT)
+[   39.810390] pstate: 00000005 (nzcv daif -PAN -UAO -TCO -DIT -SSBS 
+BTYPE=--)
+[   39.817353] pc : __pi_memset_generic+0x50/0x188
+[   39.821892] lr : imx_dsp_rproc_prepare+0x3a4/0xea4 [imx_dsp_rproc]
+[   39.828079] sp : ffff8000853dbb10
+[   39.831396] x29: ffff8000853dbb90 x28: 0000000092400000 x27: 
+ffff80007a36d3d8
+[   39.838540] x26: ffff0000d0a5e410 x25: ffff80007a36d3f0 x24: 
+0000000000000004
+[   39.845685] x23: ffff0000d5414880 x22: ffff0000d5e1dce8 x21: 
+0000000000000000
+[   39.852827] x20: ffff0000d5e1db98 x19: ffff0000d5414b80 x18: 
+00000000ffffffff
+[   39.859970] x17: 202c656c69687720 x16: 3e2074756f657672 x15: 
+ffff800081f8d050
+[   39.867114] x14: ffff0000db584680 x13: 0000000000000003 x12: 
+00007fffa3330000
+[   39.874257] x11: 0000000000000004 x10: 0000000000000ab0 x9 : 
+0000000000000000
+[   39.881400] x8 : ffffffffffffffea x7 : 0000000000000000 x6 : 
+000000000000003f
+[   39.888546] x5 : 0000000000000040 x4 : 0000000000000006 x3 : 
+0000000000000004
+[   39.895689] x2 : 0000000000008000 x1 : 0000000000000000 x0 : 
+ffffffffffffffea
+[   39.902837] Call trace:
+[   39.905284]  __pi_memset_generic+0x50/0x188 (P)
+[   39.909821]  rproc_boot+0x2c0/0x524
+[   39.913317]  state_store+0x40/0x100
+[   39.916812]  dev_attr_store+0x18/0x2c
+[   39.920478]  sysfs_kf_write+0x7c/0x94
+[   39.924146]  kernfs_fop_write_iter+0x120/0x1e8
+[   39.928598]  vfs_write+0x244/0x37c
+[   39.932008]  ksys_write+0x70/0x110
+[   39.935413]  __arm64_sys_write+0x1c/0x28
+[   39.939342]  invoke_syscall+0x48/0x104
+[   39.943094]  el0_svc_common.constprop.0+0xc0/0xe0
+[   39.947805]  do_el0_svc+0x1c/0x28
+[   39.951123]  el0_svc+0x30/0xcc
+[   39.954188]  el0t_64_sync_handler+0x10c/0x138
+[   39.958549]  el0t_64_sync+0x198/0x19c
+[   39.962222] Code: d65f03c0 cb0803e4 f2400c84 54000080 (a9001d07)
+[   39.968317] ---[ end trace 0000000000000000 ]---
 
-> +static int ad4052_update_xfer_offload(struct iio_dev *indio_dev,
-> +				      struct iio_chan_spec const *chan)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	const struct iio_scan_type *scan_type;
-> +	struct spi_transfer *xfer = &st->xfer;
-> +
-> +	scan_type = iio_get_current_scan_type(indio_dev, chan);
-> +
-> +	if (IS_ERR(scan_type))
-> +		return PTR_ERR(scan_type);
-> +
-> +	xfer = &st->offload_xfer;
-> +	xfer->bits_per_word = scan_type->realbits;
-> +	xfer->len = BITS_TO_BYTES(scan_type->storagebits);
+The problem seems to be when computing `cpu_addr = 
+devm_ioremap_resource_wc(dev, &res);`, in patch 4.
+In `__devm_ioremap_resource` (see [1]), it's expecting the resource type 
+to be `IORESOURCE_MEM`, which is not the case here (at least the flags 
+are nowhere set for this).
 
-This doesn't work for oversampling. realbits may be 16 while storagebits is 32.
-But the SPI controller needs to know how many realbits-sized words to read.
+A quick fix would be to let the `cpu_addr` be calculated as before: 
+`cpu_addr = devm_ioremap_wc(dev, res.start, resource_size(&res));`.
 
-So this should be 
+Thanks,
+Iulia
 
-	xfer->len = BITS_TO_BYTES(scan_type->realbits);
+[1] https://elixir.bootlin.com/linux/v6.14.3/source/lib/devres.c#L134
 
-
-
-> +
-> +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-> +	st->offload_msg.offload = st->offload;
-> +
-> +	return spi_optimize_message(st->spi, &st->offload_msg);
-
-I know it is like this in a few other drivers already, but I don't like having
-spi_optimize_message() in this funtion because it makes it really easy to
-forget to do have balanced calls to spi_unoptimize_message().
-
-> +}
-> +
-
-...
-
-> +static const struct iio_buffer_setup_ops ad4052_buffer_setup_ops = {
-> +	.postenable = &ad4052_buffer_postenable,
-> +	.predisable = &ad4052_buffer_predisable,
-> +};
-
-Would be nice to add "offload" to the name of this struct and the callbacks
-to make it clear that these are only for the SPI offload use case.
-
-...
-
-> +
-> +static bool ad4052_offload_trigger_match(struct spi_offload_trigger *trigger,
-> +					 enum spi_offload_trigger_type type,
-> +					 u64 *args, u32 nargs)
-> +{
-
-We should be checking the args here according to what I suggested in my reply
-to the devicetree bindings patch. Right now it is assuming that we are only
-using this for SPI offload and that the pin used is GP1 and the event is data
-read. We should at least verify that the args match those assumptions.
-
-For bonus points, we could implement allowing GPO as well.
-
-> +	return type == SPI_OFFLOAD_TRIGGER_DATA_READY;
-> +}
-> +
-> +static const struct spi_offload_trigger_ops ad4052_offload_trigger_ops = {
-> +	.match = ad4052_offload_trigger_match,
-> +};
-> +
-> +static int ad4052_request_offload(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->spi->dev;
-> +	struct dma_chan *rx_dma;
-> +	struct spi_offload_trigger_info trigger_info = {
-> +		.fwnode = dev_fwnode(dev),
-> +		.ops = &ad4052_offload_trigger_ops,
-> +		.priv = st,
-> +	};
-> +	struct pwm_state pwm_st;
-> +	int ret;
-> +
-> +	indio_dev->setup_ops = &ad4052_buffer_setup_ops;
-> +
-> +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to register offload trigger\n");
-
-Strictly speaking, the trigger-source provider is indendant of using it for
-SPI offload. I guess this is fine here for now though.
-
-> +
-> +	st->offload_trigger = devm_spi_offload_trigger_get(dev, st->offload,
-> +							   SPI_OFFLOAD_TRIGGER_DATA_READY);
-> +	if (IS_ERR(st->offload_trigger))
-> +		return PTR_ERR(st->offload_trigger);
-> +
-> +	st->cnv_pwm = devm_pwm_get(dev, NULL);
-> +	if (IS_ERR(st->cnv_pwm))
-> +		return dev_err_probe(dev, PTR_ERR(st->cnv_pwm),
-> +				     "failed to get CNV PWM\n");
-> +
-> +	pwm_init_state(st->cnv_pwm, &pwm_st);
-> +
-> +	pwm_st.enabled = false;
-> +	pwm_st.duty_cycle = AD4052_T_CNVH_NS * 2;
-> +	pwm_st.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC,
-> +					 AD4052_MAX_RATE(st->grade));
-> +
-> +	ret = pwm_apply_might_sleep(st->cnv_pwm, &pwm_st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to apply CNV PWM\n");
-> +
-> +	ret = devm_add_action_or_reset(dev, ad4052_pwm_disable, st->cnv_pwm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev, st->offload);
-> +	if (IS_ERR(rx_dma))
-> +		return PTR_ERR(rx_dma);
-> +
-> +	return devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev, rx_dma,
-> +							   IIO_BUFFER_DIRECTION_IN);
-> +}
-> +
-> +static int ad4052_probe(struct spi_device *spi)
-> +{
-> +	const struct ad4052_chip_info *chip;
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad4052_state *st;
-> +	int ret = 0;
-> +
-> +	chip = spi_get_device_match_data(spi);
-> +	if (!chip)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Could not find chip info data\n");
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +	spi_set_drvdata(spi, st);
-> +	init_completion(&st->completion);
-> +
-> +	st->regmap = devm_regmap_init_spi(spi, &ad4052_regmap_config);
-> +	if (IS_ERR(st->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
-> +				     "Failed to initialize regmap\n");
-> +
-> +	st->mode = AD4052_SAMPLE_MODE;
-> +	st->wait_event = false;
-> +	st->chip = chip;
-> +	st->grade = chip->prod_id <= 0x75 ? AD4052_2MSPS : AD4052_500KSPS;
-> +	st->oversampling_frequency = AD4052_FS_OFFSET(st->grade);
-> +	st->events_frequency = AD4052_FS_OFFSET(st->grade);
-
-Somewhere around here, we should be turning on the power supplies. Also, it
-looks like we need some special handling to get the reference volage. If there
-is a supply connected to REF, use that, if not, use VDD which requires writing
-to a register to let the chip know.
-
-> +
-> +	st->cnv_gp = devm_gpiod_get_optional(dev, "cnv", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->cnv_gp))
-> +		return dev_err_probe(dev, PTR_ERR(st->cnv_gp),
-> +				     "Failed to get cnv gpio\n");
-> +
-> +	indio_dev->modes = INDIO_BUFFER_HARDWARE | INDIO_DIRECT_MODE;
-
-INDIO_BUFFER_HARDWARE should not be set here. If using SPI offload,
-devm_iio_dmaengine_buffer_setup_with_handle() will add it automatically.
-For non-SPI-offload operation, it should not be set.
-
-> +	indio_dev->num_channels = 1;
-> +	indio_dev->info = &ad4052_info;
-> +	indio_dev->name = chip->name;
-> +
-> +	st->offload = devm_spi_offload_get(dev, spi, &ad4052_offload_config);
-
-This
-
-> +	if (IS_ERR(st->offload))
-> +		return PTR_ERR(st->offload);
-
-should be
-
-	ret = PTR_ERR_OR_ZERO(st->offload);
-
-> +
-> +	if (ret && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "Failed to get offload\n");
-> +
-> +	if (ret == -ENODEV) {
-> +		st->offload_trigger = NULL;
-> +		indio_dev->channels = chip->channels;
-> +	} else {
-> +		indio_dev->channels = chip->offload_channels;
-> +		ret = ad4052_request_offload(indio_dev);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to configure offload\n");
-> +	}
-> +
-> +	st->xfer.rx_buf = &st->d32;
-
-I don't think we want this set globally. I.e. it doesn't make sense for SPI
-offload xfers.
-
-> +
-> +	ret = ad4052_soft_reset(st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "AD4052 failed to soft reset\n");
-> +
-> +	ret = ad4052_check_ids(st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "AD4052 fields assertions failed\n");
-> +
-> +	ret = ad4052_setup(indio_dev, indio_dev->channels);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
-> +			   AD4052_DEVICE_STATUS_DEVICE_RESET);
-
-Why not include this in ad4052_setup() or even ad4052_soft_reset()?
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4052_request_irq(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ad4052_update_xfer_raw(indio_dev, indio_dev->channels);
-> +
-> +	pm_runtime_set_active(dev);
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable pm_runtime\n");
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, 1000);
-> +	pm_runtime_use_autosuspend(dev);
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static int ad4052_runtime_suspend(struct device *dev)
-> +{
-> +	struct ad4052_state *st = dev_get_drvdata(dev);
-> +
-> +	return regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
-> +			    FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK,
-> +				       AD4052_DEVICE_CONFIG_LOW_POWER_MODE));
-> +}
-> +
-> +static int ad4052_runtime_resume(struct device *dev)
-> +{
-> +	struct ad4052_state *st = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
-> +			   FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK, 0));
-
-regmap_clear_bits() would be shorter if there isn't going to be a macro to
-explain the meaning of 0.
-
-> +	return ret;
-> +}
-> +
+On 4/24/2025 5:14 PM, Mathieu Poirier wrote:
+> Arnaud, Daniel, Iuliana, Andrew and Tanmay - please test this patchset
+> on the platforms you are working on.
+>
+> Thanks,
+> Mathieu
+>
+> On Wed, 23 Apr 2025 at 13:42, Rob Herring (Arm) <robh@kernel.org> wrote:
+>> While there's a common function to parse "memory-region" properties for
+>> DMA pool regions, there's not anything for driver private regions. As a
+>> result, drivers have resorted to parsing "memory-region" properties
+>> themselves repeating the same pattern over and over. To fix this, this
+>> series adds 2 functions to handle those cases:
+>> of_reserved_mem_region_to_resource() and of_reserved_mem_region_count().
+>>
+>> I've converted the whole tree, but just including remoteproc here as
+>> it has the most cases. I intend to apply the first 3 patches for 6.16
+>> so the driver conversions can be applied for 6.17.
+>>
+>> A git tree with all the drivers converted is here[1].
+>>
+>> v2:
+>> - Fix of_dma_set_restricted_buffer() to maintain behavior on warning msg
+>> - Export devm_ioremap_resource_wc()
+>> - Rework handling of resource name to drop unit-address from name as it
+>>    was before.
+>> - Link to v1:
+>>    https://lore.kernel.org/all/20250317232426.952188-1-robh@kernel.org
+>>
+>> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/memory-region
+>>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> ---
+>> Rob Herring (Arm) (4):
+>>        of: reserved_mem: Add functions to parse "memory-region"
+>>        of: Simplify of_dma_set_restricted_buffer() to use of_for_each_phandle()
+>>        devres: Export devm_ioremap_resource_wc()
+>>        remoteproc: Use of_reserved_mem_region_* functions for "memory-region"
+>>
+>>   drivers/of/device.c                       | 31 +++++-------
+>>   drivers/of/of_reserved_mem.c              | 80 +++++++++++++++++++++++++++++++
+>>   drivers/remoteproc/imx_dsp_rproc.c        | 45 +++++++----------
+>>   drivers/remoteproc/imx_rproc.c            | 68 +++++++++++---------------
+>>   drivers/remoteproc/qcom_q6v5_adsp.c       | 24 ++++------
+>>   drivers/remoteproc/qcom_q6v5_mss.c        | 60 ++++++++---------------
+>>   drivers/remoteproc/qcom_q6v5_pas.c        | 69 ++++++++++----------------
+>>   drivers/remoteproc/qcom_q6v5_wcss.c       | 25 ++++------
+>>   drivers/remoteproc/qcom_wcnss.c           | 23 ++++-----
+>>   drivers/remoteproc/rcar_rproc.c           | 36 ++++++--------
+>>   drivers/remoteproc/st_remoteproc.c        | 41 ++++++++--------
+>>   drivers/remoteproc/stm32_rproc.c          | 44 ++++++++---------
+>>   drivers/remoteproc/ti_k3_dsp_remoteproc.c | 28 +++++------
+>>   drivers/remoteproc/ti_k3_m4_remoteproc.c  | 28 +++++------
+>>   drivers/remoteproc/ti_k3_r5_remoteproc.c  | 28 +++++------
+>>   drivers/remoteproc/xlnx_r5_remoteproc.c   | 51 ++++++++------------
+>>   include/linux/of_reserved_mem.h           | 26 ++++++++++
+>>   lib/devres.c                              |  1 +
+>>   18 files changed, 339 insertions(+), 369 deletions(-)
+>> ---
+>> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+>> change-id: 20250423-dt-memory-region-v2-a2b15caacc63
+>>
+>> Best regards,
+>> --
+>> Rob Herring (Arm) <robh@kernel.org>
+>>
 
