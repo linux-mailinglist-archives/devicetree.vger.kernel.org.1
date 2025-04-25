@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-170962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C3EA9CCBF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:21:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E80EBA9CCAC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD0893B8179
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:18:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F75A1BC2377
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040D8289363;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E135288C92;
 	Fri, 25 Apr 2025 15:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="mND5F44k"
+	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="ZHwq+GeP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E845C268FEB
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F2027A90F
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:18:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745594330; cv=none; b=b26/tH7q/N/ZC7TJ2a+xToIfpFjydOF4kqqLQCtdIJ8Tr2/KgYsqemn4Dxm7NhWcB2ete3VDL1xGw/Znt29UJyo/fSQNznenfWhpvJkPApcDgcat7dzFoNSZTqWUnoVTZtpgmEncYEOp9bvwkpjm+FuUzMc8YKnSVyEkuLXlWJg=
+	t=1745594330; cv=none; b=DGYrJ9H3gdI/WEUl9Jw/2OIBAWW2IJYv14KRvnKPCsU4vYXGtx5vgkKVz67elGVATjZ21pSMy2/Wdipgokw02w2ekveEQwrX2ZamqB+WznfETYyACvhOIJ59jlW6eK30DRYHhmqjX5LFVWNXHBB8izC1rPSXmxbxIKS5YLOJCIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1745594330; c=relaxed/simple;
-	bh=GvHZb4LgvZavNrWnrHHNVHTVupagN/UULTDDQRYT6M0=;
+	bh=wDYHCLa5R2Lm8PFv1HaWiPbvSjf5XzEvOyMvWi1H6CY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VrzYazovcd/JieRhUBrHWFuUzfVNuOjNAKW5KUj6NFzz4wU1XdBp0jPvtICkThExT39FefqWT+HPbCZ5w/psdv+4QlM61NJ4AIbaVyvj5T8pW0ptVBfvyBKOFRHTLR8Jt9e6991GFCiTUd93acDShZ0xsMKVxIOOItpndqSSMQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=mND5F44k; arc=none smtp.client-ip=209.85.208.50
+	 In-Reply-To:To:Cc; b=cNSH4CpTKMfJCUumMErUv5weEYgo7lBikzGi5gPYPK8Cka6xUS2yc40OCG+wvISDxKEbymV+hPdW+JcOZKfISt7rdhbQyhjCUuCl8pBNtXjCPurOtqoHjn8Z8d8uX7qRVB5Dtuda8qJhe9fMmyGVubc8d5IqQGdRMu0G/lk4+fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=ZHwq+GeP; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5f6214f189bso4521890a12.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:18:47 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acb615228a4so595313066b.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:18:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1745594326; x=1746199126; darn=vger.kernel.org;
+        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1745594327; x=1746199127; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+M5rdkwGZu/VDL8llLe2S9tCSCM0PahPEImRhTBfwfY=;
-        b=mND5F44k0QwjtBBmXX5EcdauDd8m0T9azY1HnqsaCbDhWTQEaaWXzMH1j9Uhdr9M9b
-         pl2/Z2QCgDdJVPkVsBQfy4PulI8tkqnYDQQS0WCKpoF8uYx9luHpqRYpdAUAsbLFRXiw
-         WyGsqQYAKyR2JDgWzWQK61rDJCDUKgwgMFF/giJLmVhI7gb67juI5Z6d3txSq0vAb78g
-         L/Ddq8SkQz5NwQxIXCVnVRcSiJE67HWwda4wGtywAmqtVTEm/nSmUthbCXj/8ETT0mX+
-         8vyyce3DVasTIlJrgG5SAlnh9id6rggo+LciH3MkDkRKT8+swkYtw8oFi1ALjLfmosAT
-         xhsA==
+        bh=PGhABSDncyCkqMF1m9WG+uwjNnjeaT93SjRTLfv5Zno=;
+        b=ZHwq+GePs+RKCQobQ9swTjG3tVZNiCPZNr0zGEbFHlxgRETxYR4W62+5S9Qsjuj1xg
+         KNY1+TXArniXt/OBtRxLicDD2HoiXwbDS/lZHycrwnCpsa1YLnd3TQ8z4nBLFUvXk1mB
+         K59QofHgU9nipZfx5dAY4eqcdoLepMk5Dkze2em4PnmpjAPyiqRB1UTMKgvFcEl9/zeK
+         hEwqBb1SnpN3dFcQ1gRUZMQ3rrStUu9hrXjoSn7mq4++GE8gIHuCNTHEJnf0thS5gsk4
+         oYbDFRx9Vs0a51dES32e1sVlTII1Z/DrpRmoxOO0wsnRVVwhNhCgvOBRW5LJKejjVLU0
+         4K/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745594326; x=1746199126;
+        d=1e100.net; s=20230601; t=1745594327; x=1746199127;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+M5rdkwGZu/VDL8llLe2S9tCSCM0PahPEImRhTBfwfY=;
-        b=LQEwsCyw9LwUH5bFtOQwMWnOavFaVCEE2kWJBDtOOC7lXze4UJdzFsvxqHWi7ALMgo
-         yNWgvIby41nUcZx0ScHkQjfSr0VuOZV345G08XW1Tui8XkuaRzTN0zLFELdzFDgoaQsS
-         MQ1rXKeK7u124+l3/3Lo1b+el4QgTQc+NeHFgTJiNLeE/6x+iXavJ+g1khi0Pr5jIY97
-         LSuBcNmEKMQzRoAjxHn0ODHp2SFmqm09Po4nw0ZjpXgAGDr8otqA+hxWY/EGw+TNslXw
-         AQxvuhDa+iucxtvGfahIqfwRJvV3wk73ARKW7usGe/GluYRDyHsRRNZlVsTfP5EMK0FV
-         wPgw==
-X-Forwarded-Encrypted: i=1; AJvYcCUDwKau4pwHHUY5oISKmVKiUrjlxN0xInyhfNIb+2RJG4YIifK0eqGPWCR5XTwIBvQEcBLRQy9Xk97M@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEDV/mJHnQ5W+UtqqmTgXqZLREUQSGbFJOo29jF9uBts/uw0Hp
-	h9doODismcH3MOE94KpcqM/2xIaKaADOc1VrXtr1xfveC2EAqjs16tcS1Z9Bva8=
-X-Gm-Gg: ASbGnct8pq3gYRDFimpS7KNufTrebcSRbDIbmOnwWRapbRwtQsy/uhw3r5sEHHSwt/1
-	3dvtwuWXIJgfzBiGVOkRd19pQe+Xk7BA8m2LyoxOhHqjHj4fYLa4LfAZ7DOy7x5a3g6oJQrP4ay
-	8+YmjiryPM58fUtCC+uBV+etHG+LfdPlN3n4m1s1EWywPmYVmPS/Ntmej2ASzB0a7sGT+arEcFN
-	8qbFR0SIjFHD5h9+3MgjEPYNtRgP8FTcUrXcDbG3RkORtg/ZoOnYXuYweBYva8sDRqcqe9mEmPd
-	lhVrlUPt5PRG0BbqV+XLpmMQQfEkx0l6JmOBpSe8HcIhkdeZpOK6DKmYBgjT8nRsFO0R
-X-Google-Smtp-Source: AGHT+IHaoG8RjUwrvQSyvJG6aKSZajj5vFrhmm1pCthBlIn1lk/zpPP3YRLIRhFmyc6BfcY/0PDTEA==
-X-Received: by 2002:a17:907:1c08:b0:ac2:9ac:a062 with SMTP id a640c23a62f3a-ace73a45d0dmr248025266b.23.1745594326097;
-        Fri, 25 Apr 2025 08:18:46 -0700 (PDT)
+        bh=PGhABSDncyCkqMF1m9WG+uwjNnjeaT93SjRTLfv5Zno=;
+        b=aqLlzLG/D0zAAPG7RsF88ZPzGvDDUGP5kGCvCr8vVuV+Yj7KlfNyOZ9XBU7yxBImkL
+         WbBUbIF3LEoOmsNMXzWph/hNrmwPl3yGLlBQ6QbtE2WbaUlpquH/vXOpZadKhyzvp+T2
+         yiW2uvkYIxdRdk65M5Ro30mQZKYRWjqtiP8TbEelOwwW3QUFbrQ9uad+ORsVi49guNfW
+         hJ1ltUUGzEfdDrYpktNkKXC8C69Epi9//xeIAm5yzy0cgGIYV2Zl6ITHqP3alFXjlsNA
+         EuHh2qrrCG1m8TZPZ8gg8wyxDjb3OFSDIjscAKsVB+edLzUiDRRCyAP42YSAIQVJut5v
+         ymqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTwcmq4XhGbpYCSepUPr1PFB5W7aqeNat+9es474HoNFT4U+HYMnd+PiehGbIPoAE/ohjnm2ecrGfA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWDpRlTwgFfxs3UyIOfUpwYkLvqoOOQs3/pkjGjYQZLDsUsrml
+	ZWhp8hbOIEBbPD0EXFIChvdaLt3QvkrsifTActHDswjgQnF+4YzrK9em1odcLl0=
+X-Gm-Gg: ASbGncvfpf9RieVRg7ILCjEaucytHcegCv+Sq5UgjPCQkBVBjZGtePyvwkMOdvPhVlL
+	2DU/+wrgW884bU9Fh1T2RUGRMvHZQdgExTOSmB/fg654qNYucbM+1/77OkoHRuzIAl4R9euFojl
+	YS4q7OUVuCNdg9Db6xXKUhAUeWAgsb6F3ABTxXMspoeqbMZc3rUSOoGtpyGWQuz8XepmexB7vKG
+	mm+1mjMczdiwc6ABI/Uz3kAGNoqiCZTt3Qi8HEygzn7Kha5wC4tFwSIVmWR4wX6eqpeP2dJF3z9
+	4Df/DgX/N1Tv2XD9tGd4yRAWSGN5Of74vDoKe+dI5RbC9ho+jd4Nf+xPusWrXYVD/B3v
+X-Google-Smtp-Source: AGHT+IHtzafs1U3OlDFbdl1EHKhqDpSLv5FVfv0SchkozUHNmBnUPWs9GEdrQlZ8/5oMkLAgq6/HDw==
+X-Received: by 2002:a17:907:72d0:b0:ac7:e4b5:4827 with SMTP id a640c23a62f3a-ace5a484e6dmr564732266b.28.1745594327250;
+        Fri, 25 Apr 2025 08:18:47 -0700 (PDT)
 Received: from [127.0.1.1] ([185.164.142.188])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e59649fsm151099766b.85.2025.04.25.08.18.45
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e59649fsm151099766b.85.2025.04.25.08.18.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 08:18:45 -0700 (PDT)
+        Fri, 25 Apr 2025 08:18:46 -0700 (PDT)
 From: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
-Date: Fri, 25 Apr 2025 17:18:06 +0200
-Subject: [PATCH v2 1/5] usb: misc: onboard_usb_dev: fix support for Cypress
- HX3 hubs
+Date: Fri, 25 Apr 2025 17:18:07 +0200
+Subject: [PATCH v2 2/5] dt-bindings: usb: cypress,hx3: Add support for all
+ variants
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250425-onboard_usb_dev-v2-1-4a76a474a010@thaumatec.com>
+Message-Id: <20250425-onboard_usb_dev-v2-2-4a76a474a010@thaumatec.com>
 References: <20250425-onboard_usb_dev-v2-0-4a76a474a010@thaumatec.com>
 In-Reply-To: <20250425-onboard_usb_dev-v2-0-4a76a474a010@thaumatec.com>
 To: Matthias Kaehlcke <mka@chromium.org>, 
@@ -99,52 +99,51 @@ Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
  Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, stable@vger.kernel.org
 X-Mailer: b4 0.14.2
 
-The Cypress HX3 USB3.0 hubs use different PID values depending
-on the product variant. The comment in compatibles table is
-misleading, as the currently used PIDs (0x6504 and 0x6506 for
-USB 3.0 and USB 2.0, respectively) are defaults for the CYUSB331x,
-while CYUSB330x and CYUSB332x variants use different values.
-Based on the datasheet [1], update the compatible usb devices table
-to handle different types of the hub.
-The change also includes vendor mode PIDs, which are used by the
-hub in I2C Master boot mode, if connected EEPROM contains invalid
-signature or is blank. This allows to correctly boot the hub even
-if the EEPROM will have broken content.
-Number of vcc supplies and timing requirements are the same for all
-HX variants, so the platform driver's match table does not have to
-be extended.
+The Cypress HX3 hubs use different default PID value depending
+on the variant. Update compatibles list.
+Becasuse all hub variants use the same driver data, allow the
+dt node to have two compatibles: leftmost which matches the HW
+exactly, and the second one as fallback.
 
-[1] https://www.infineon.com/dgdl/Infineon-HX3_USB_3_0_Hub_Consumer_Industrial-DataSheet-v22_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0ecb53f644b8
-    Table 9. PID Values
-
-Fixes: b43cd82a1a40 ("usb: misc: onboard-hub: add support for Cypress HX3 USB 3.0 family")
-Cc: stable@vger.kernel.org
+Fixes: 1eca51f58a10 ("dt-bindings: usb: Add binding for Cypress HX3 USB 3.0 family")
+Cc: stable@vger.kernel.org # 6.6
+Cc: stable@vger.kernel.org # Backport of the patch ("dt-bindings: usb: usb-device: relax compatible pattern to a contains") from list: https://lore.kernel.org/linux-usb/20250418-dt-binding-usb-device-compatibles-v2-1-b3029f14e800@cherry.de/
+Cc: stable@vger.kernel.org # Backport of the patch in this series fixing product ID in onboard_dev_id_table in drivers/usb/misc/onboard_usb_dev.c driver
 Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
 ---
- drivers/usb/misc/onboard_usb_dev.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/usb/cypress,hx3.yaml          | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index 75ac3c6aa92d0d925bb9488d1e6295548446bf98..f5372dfa241a9cee09fea95fd14b72727a149b2e 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -569,8 +569,14 @@ static void onboard_dev_usbdev_disconnect(struct usb_device *udev)
- }
+diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+index 1033b7a4b8f953424cc3d31d561992c17f3594b2..d6eac1213228d2acb50ebc959d1ff15134c5a91c 100644
+--- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
++++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+@@ -14,9 +14,22 @@ allOf:
  
- static const struct usb_device_id onboard_dev_id_table[] = {
--	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB33{0,1,2}x/CYUSB230x 3.0 HUB */
--	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB33{0,1,2}x/CYUSB230x 2.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6500) }, /* CYUSB330x 3.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6502) }, /* CYUSB330x 2.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6503) }, /* CYUSB33{0,1}x 2.0 HUB, Vendor Mode */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB331x 3.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB331x 2.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6507) }, /* CYUSB332x 2.0 HUB, Vendor Mode */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6508) }, /* CYUSB332x 3.0 HUB */
-+	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x650a) }, /* CYUSB332x 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6570) }, /* CY7C6563x 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0610) }, /* Genesys Logic GL852G USB 2.0 HUB */
+ properties:
+   compatible:
+-    enum:
+-      - usb4b4,6504
+-      - usb4b4,6506
++    oneOf:
++      - enum:
++          - usb4b4,6504
++          - usb4b4,6506
++      - items:
++          - enum:
++              - usb4b4,6500
++              - usb4b4,6508
++          - const: usb4b4,6504
++      - items:
++          - enum:
++              - usb4b4,6502
++              - usb4b4,6503
++              - usb4b4,6507
++              - usb4b4,650a
++          - const: usb4b4,6506
+ 
+   reg: true
+ 
 
 -- 
 2.43.0
