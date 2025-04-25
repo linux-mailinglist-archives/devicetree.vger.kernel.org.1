@@ -1,48 +1,70 @@
-Return-Path: <devicetree+bounces-170985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29607A9CE64
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:40:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D55FA9CEBD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9CCA4E269A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:39:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F3CE9C34A4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076051A3145;
-	Fri, 25 Apr 2025 16:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIMYx6s8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABFA1DEFE4;
+	Fri, 25 Apr 2025 16:47:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021117.outbound.protection.outlook.com [52.101.129.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5DF169AE6;
-	Fri, 25 Apr 2025 16:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745599172; cv=none; b=V2fgTTDMTdJMyHbEi6YGWzLlv3P4bsZX7rz/HZZ9kkXEUdnVSt//QSPT6Avv0optpUYqdnyDMODrnUnSpP5J+GVSFiAXeKAlw0aE6taNa9Mu9MNpUA2zynlsobKOFeKj/t0Ih5sS3Z/Le1fZNbGnq0/GpzIpyE8cGBCEKI3gXSo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745599172; c=relaxed/simple;
-	bh=kJppPNHkNpoSTVJHZawRj5UdBz23b9vR67EeA8OJ1XI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jk/kk8+d2v1t51tIC5C7+ikudJ2Wc99GOES/HQbILsio2rq9KJcVQgZUUtei3TQDJ0J7b/W7qlPD16LdnondMSU+np08T0pYWk8AOIutVtu/Gsj1MadoPqVUf4AYaWdVXXZ5tXYyH/v0zaIbG9+5GbuHvvQRA7rKShV2u+bHYoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIMYx6s8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45907C4CEE4;
-	Fri, 25 Apr 2025 16:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745599172;
-	bh=kJppPNHkNpoSTVJHZawRj5UdBz23b9vR67EeA8OJ1XI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=KIMYx6s8btvFCZq8uw9Ft9JRZz99wpDLx7MLzfvP7E5EjOxzrM4WRGtiVR7o+h1YP
-	 Ti5co0T2KWTC0MYg4QZg2JyP0ul0NiyWvaTbAI+yYko4h7QNw3eJ+gbmKXMzgXVC0K
-	 1b/OoVUCSjmwmlxJK8yWvURxD8CyCEN0S9W75/DzgG3qYT6vG5zGQ9ivI1UwrHyZ/q
-	 1j4aswVE6/T6LjUewESS8xVplMNXR9lzIPBqiY/0NKdnLPmi23dn9KjBserc/2YjtH
-	 1WiiE5LJt2+NUe+09AgH9a+coFHVSO4YwW+9WCsBhGy6ByA9u7WeWBizJxsHys/4md
-	 e6SsgkOwy9hDA==
-Message-ID: <bca0cf4a-421c-404e-8161-4eab64cdbc57@kernel.org>
-Date: Fri, 25 Apr 2025 18:39:27 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E7F1DDA31;
+	Fri, 25 Apr 2025 16:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745599664; cv=fail; b=qjGpcV9hBSLTr+kZnN+nEJRLRO7ONYZOfpsSDtsSXfndG2VHW9P2/hlU1WhGkeAMXOafk7mrUbLlfL/POeNejfLrGx0CcXqe/QxWVnd5ygxo4D1DINUaegS2jBD3GWdcZi5S7Z99wdSSKtJmnFnbC/pXCqo8c6Y0rWjy45sQgHQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745599664; c=relaxed/simple;
+	bh=MQN6u8xjaNd3vllZQxrA0NbNi0CLgkKP9SRlNJYJ9bo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ObPEdqYjSyEZ4ogEmnnmPdpepLaS8hk8PJPOKTVKc0j6r8WzgmQFFqRPQWEcZJr7Xjgq3O9u+VAA00vAo0btyGPqUSdskkuMxw2XMjqpo1/VnctMbruupSVLhelNYP+WjNpQRKnA+r+oNww333u6fiWZOIKaKxQANf5EhONy2dA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.129.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KQ+s+kAaRQnmOPxFeHhV+8pBWAuKlqW9qLlNHWjz3vnyryilbVyf7psNFG0d/PqtD7ml3X2tZH6q9ysCOejX/veHMyqOPpspO/a7ZJc2MTRk/tF5JmoeGHSSzBtit6oWOaRPWxp/vTuxU2xnnFg6iIHRZAZkl7ZGDV8LfwzQMuOE8V/QTLR7UBrLAdC2rCD3Cyf4I1UtD+eI7WWJmZUWwqHBqkcluVCKrqafYwZWbJ1dufT6sTuvPPsbfmNaAWdDIRutZK0rCTHNEcsnxtqMcl8D251zrouLJU/EvQLVJatZ0WccW1AisLemBnaSKQ2OXIdf5O25BEU66T/TVJ08Rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wSJCRRP6Pn6iWRiZvLOOXbaI7O4Cx9EoU1qStjwXR+4=;
+ b=dxcdEhcP3CmF8ZCMV3nC0Q5Wyyqd2WenKkpQp+wHcGDgejahuYBmocUaonjLCdKlm9Ar1uLFRPYVpOVZGg4ikm9j45tNHumUVQAgSgOMXrFAatFm26fbGSYx80/kLhWKd6RdlyR6sep9J0KgsWUlLWl5Rb9n+pnHNXkTgmgeQS8EeGw4qei5psazjudQZ6ble9yG1A7rQZcQU+Yq4AoLYGe77m7EqUUkWrGhzyPnsI/c7riiiUP/ksN0haTdtPtEaOMHXCwhR/puGj2rqvbCr/Mbh3TrsZoLhfQako8t9P2es2FbbcGd3OJyQKvI4zJbZZz15ktqrCVOdHUzGEhOLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0338.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:38e::17)
+ by JH0PR06MB6851.apcprd06.prod.outlook.com (2603:1096:990:42::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Fri, 25 Apr
+ 2025 16:47:34 +0000
+Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
+ (2603:1096:400:38e:cafe::e) by TYCP286CA0338.outlook.office365.com
+ (2603:1096:400:38e::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.37 via Frontend Transport; Fri,
+ 25 Apr 2025 16:47:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.12 via Frontend Transport; Fri, 25 Apr 2025 16:47:32 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id F202F41604EB;
+	Sat, 26 Apr 2025 00:47:31 +0800 (CST)
+Message-ID: <20d64403-d778-4601-80a4-b782225f70ff@cixtech.com>
+Date: Sat, 26 Apr 2025 00:47:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,100 +72,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: imx8qm: add ethernet aliases
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250422100239.58799-1-francesco@dolcini.it>
- <16a98816-f43c-4f4d-940e-9da30cb1f73f@kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: pci: cadence: Extend compatible for
+ new EP configurations
+To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "peter.chen@cixtech.com" <peter.chen@cixtech.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250424010445.2260090-1-hans.zhang@cixtech.com>
+ <20250424010445.2260090-3-hans.zhang@cixtech.com>
+ <20250424-elm-magma-b791798477ab@spud>
+ <20250424-proposal-decrease-ba384a37efa6@spud>
+ <CH2PPF4D26F8E1CB9CA518EE12AFDA8B047A2842@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250425-drained-flyover-4275720a1f5a@spud>
+ <5334e87c-edf3-4dd9-a6d5-265cd279dbdc@cixtech.com>
+ <b25406dc-affd-48f2-bccb-48ee01bdfcf1@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <16a98816-f43c-4f4d-940e-9da30cb1f73f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <b25406dc-affd-48f2-bccb-48ee01bdfcf1@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|JH0PR06MB6851:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90cb3ba4-cb55-43a1-155e-08dd8418e034
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|7416014|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eTFuNWRrcFpJdW5hY29jMm1QN0d3REJQZFZSdkJ0YmdGZTQ3RFZqV1gySHF2?=
+ =?utf-8?B?RHBqVmxGVXhNVnBibVMyMUMzYi9jSTF2aFJCSHNWRHZHV0t6cHVuSEs1cVd0?=
+ =?utf-8?B?eVZTRy9CZ3VmSXppeGZ3cHJWOEhBYlVJUElad3ljV3VXNFRhMmg0S0lueDZo?=
+ =?utf-8?B?RTBqcmVhL0VFbTg4aGhrWXhXSk5SM1ZCT2pNTHZsREFNQitmY3FoRnUzWmZC?=
+ =?utf-8?B?alFCWjhEckJWaG8yUmtkNDlyaHRMT1A4NEovaHZRblZmeURMckplRzJFSlRB?=
+ =?utf-8?B?cVlxQjRQQksvRVZEdk43U1BqcGRGdUhEWkM1dW1hQWdvRDdZQms0Ui9OZFh5?=
+ =?utf-8?B?K2NkS2REM2VOOXhtMkhtYUZTYm9uQlRVblZscFdsRGhURld5WGlJWUJlODFq?=
+ =?utf-8?B?OUJ2b3lRUWlEQ0lnQzB5R1JnbXc2aWpISUc1NEY4allveHc0T1krdzF6bzVB?=
+ =?utf-8?B?U2lTRDlBUzdLYXF0czRseDBicm9NM3BEL05tRmJwblR5ZExhbUt0clFCRG4r?=
+ =?utf-8?B?QnlKLzhWZVlZelEzWGJwa2xqd3ViaGFpSmNhR0tIZmcxU05HMzRKNEgyVURk?=
+ =?utf-8?B?a3k1aWFoNCtMWTJzWGtQRUo2WURlVWsxWEIwVXlFYy9rZzlKckFjb2lCSnhE?=
+ =?utf-8?B?eDhxZnhOL2dOTXI0TjBnSWhKZzFGSjVNQWt3bUdtbHdCTGVGS2dFYTg0Vi94?=
+ =?utf-8?B?ZFFNcWVwNUZQcjc1aDFTeXVDVVJpV3VnLzZTUDBCVGpRSW9zRUMweUY1THZV?=
+ =?utf-8?B?UG9WeVVTZ0NqUFgreFAyUjFRaGtpL1RSZ0V3UXJRN0VNcWZTMWM3ZklZRFZo?=
+ =?utf-8?B?WEkxMGxjZEgzQythQzVPbXUzR3VnSFlqNFBSd21LdmQ0M3VuZ0RETmc0OHVh?=
+ =?utf-8?B?bytsMzNpRzR6OUZUWUhBa2dJVDZ4eEM0aGhEd1llTmErcy9JS215aytKU3lk?=
+ =?utf-8?B?ckxLSXBKRWw3bEpRTmE1MHhWeTVoSTVlUFZ6UytIS2FLNkFMbFF6a0xqVG5n?=
+ =?utf-8?B?MXA5cDF2UDBQNzBXTktDS2Y5aTZKTk9DK2dDK1FlWGJIVUxUcnBYVG1ZL2dL?=
+ =?utf-8?B?dVRzS2hXbU1iQnFFY2dYK0RhbUMvNXVaNTJseFMzRDRydnRwb1l5dFowWUt1?=
+ =?utf-8?B?dWFTVC93VGRZL2dIbUYrVU1NQ1ZTVkJnMDJKSkwvWjkvbUtTbW1CTmlBL251?=
+ =?utf-8?B?UFJJL0xHU0wzeldIQ05ZWDR5NnI2bjZhQjB6RXlwblEwazF5KzJhMGVMd2xk?=
+ =?utf-8?B?VmVoQVExS0FnYngyNHNrVDQxZzFsT2dRSWdGd2svcHdkMEE0dmVsOXRvNEI3?=
+ =?utf-8?B?UkZQMkRHSXpXdTFTMUx2eUthaG1MWERIRjExTFREVmUrRHJhNUw2VzJJT3E2?=
+ =?utf-8?B?S2xydjFiTjNzWElnNCtqOWVqSjdqVjFBRGJzNE9DVEJPZ3ZtQVdxN2pkU29t?=
+ =?utf-8?B?UmZLdzY5SUdOTEg5NGhsNDBOZ20vN1NCVjZVSm9aU29EL0l6S3Q3bmYrWSt0?=
+ =?utf-8?B?b1VKZnFmZlVtOEtydnR3b0ljaFFRbzFIUFJQV3hod0hJOXpDeThUV3JrL2ZK?=
+ =?utf-8?B?K2NvcE1lUVAxb1RyNko2YzcxSWhmQkY0dnRvUG15bUFDbFpUaE9SRE5Yc3RF?=
+ =?utf-8?B?OEI5c2RucTYxTFRNYmt1QnJrQ296NEErVVRJWmV2Q2lEOWdnZ0FBYnJ1MVlh?=
+ =?utf-8?B?REhtWmhaR1A5OC9SaklEZGdnRDNhZzc2WnBISXJmbzdSb0FpQThIVzRUR0Vv?=
+ =?utf-8?B?NWNMeDJabERtajYzNWZwOU84L01QMU53and2Zm05TFVybjRROGpoTXZNOFF5?=
+ =?utf-8?B?TG1ocjJSbmRqeGNpdzJzMStDZWpuUERiVVdXdXR3MHZYV2FicWtmTm15TDIw?=
+ =?utf-8?B?N1QvTStHY1dnbHZKOGdGaE5MbGNQc1lyMVhRUkU4cVp2QkhIMGVPZG1WQjNG?=
+ =?utf-8?B?bWtSYSttOEIrdjdYMjRoVEVRclcrSUZmZkkvL1d1TXQxZ2VFa05mcWkwR3k4?=
+ =?utf-8?B?aHBWUS92RHZXdjl6b2tPNTVRbk9aMEtRcjlubmlDOWc2RWlyakxTbFQ3ZDJI?=
+ =?utf-8?Q?ZacmoJ?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(82310400026)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2025 16:47:32.9568
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90cb3ba4-cb55-43a1-155e-08dd8418e034
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C8.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6851
 
-On 25/04/2025 18:36, Krzysztof Kozlowski wrote:
-> On 22/04/2025 12:02, Francesco Dolcini wrote:
->> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>
->> Add ethernet aliases, they are used by the firmware to set the MAC
->> address and by systemd to rename network interfaces to predictable
->> interface names, e.g. end0 and end1.
->>
->> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8qm.dtsi | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
->> index 6fa31bc9ece8..eccd0087efa7 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
->> @@ -17,6 +17,8 @@ / {
->>  	#size-cells = <2>;
->>  
->>  	aliases {
->> +		ethernet0 = &fec1;
->> +		ethernet1 = &fec2;
-> Can't they be disabled (e.g. because MAC is external?) on actual board?
-> IOW, aliases for exposed interfaces are properties of boards, not SoC.
+
+
+On 2025/4/26 00:21, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
 > 
-> What's more, I cannot find these in this DTSI, so how can you add alias
-> to non-existing node?
+> On 25/04/2025 17:33, Hans Zhang wrote:
+>>
+>>
+>> On 2025/4/25 22:48, Conor Dooley wrote:
+>>> On Fri, Apr 25, 2025 at 02:19:11AM +0000, Manikandan Karunakaran Pillai wrote:
+>>>>>
+>>>>> On Thu, Apr 24, 2025 at 04:29:35PM +0100, Conor Dooley wrote:
+>>>>>> On Thu, Apr 24, 2025 at 09:04:41AM +0800,hans.zhang@cixtech.com  wrote:
+>>>>>>> From: Manikandan K Pillai<mpillai@cadence.com>
+>>>>>>>
+>>>>>>> Document the compatible property for HPA (High Performance
+>>>>> Architecture)
+>>>>>>> PCIe controller EP configuration.
+>>>>>> Please explain what makes the new architecture sufficiently different
+>>>>>> from the existing one such that a fallback compatible does not work.
+>>>>>>
+>>>>>> Same applies to the other binding patch.
+>>>>> Additionally, since this IP is likely in use on your sky1 SoC, why is a
+>>>>> soc-specific compatible for your integration not needed?
+>>>>>
+>>>> The sky1 SoC support patches will be developed and submitted by the Sky1
+>>>> team separately.
+>>> Why? Cixtech sent this patchset, they should send it with their user.
+>>
+>> Hi Conor,
+>>
+>> Please look at the communication history of this website.
+>>
+>> https://patchwork.kernel.org/project/linux-pci/patch/CH2PPF4D26F8E1C1CBD2A866C59AA55CD7AA2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com/
+> 
+> And in that thread I asked for Soc specific compatible. More than once.
+> Conor asks again.
+> 
+> I don't understand your answers at all.
 
-I found them (terrible design by NXP) but they are disabled so that's
-the point - adding aliases to disabled nodes is clear sign you are doing
-it wrong.
+Dear Krzysztof,
+
+I'm very sorry. Due to the environmental issue of Manikandan sending 
+patches, I just want to express that I'm forwarding the patches for 
+Manikandan. Some parts were developed together by us and verified by me.
+
+Please also ask Manikandan to reply to Conor and Krzysztof's questions.
 
 Best regards,
-Krzysztof
+Hans
 
