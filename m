@@ -1,106 +1,159 @@
-Return-Path: <devicetree+bounces-170800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B3DA9C51A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:19:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A109A9C541
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA094A3362
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:19:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8B103B9E94
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D462367A1;
-	Fri, 25 Apr 2025 10:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD2C239585;
+	Fri, 25 Apr 2025 10:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XEAmy/BS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XOjlYB7+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF4821D3DB;
-	Fri, 25 Apr 2025 10:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34C32367A1;
+	Fri, 25 Apr 2025 10:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745576357; cv=none; b=HFgGemQr387Hlszt8+q0+oqreJw7T6SOs7oYoL1ucrGY3hFP0efT1FXhx5BLn8Dt3bSLK1rWHrhp9ucuudFFiQdx0wwZBC2RCQJ2vadl4CDEAGeQQTHTb+UWb3+xyQWJDOq6Rp1fYI9vvVcc74lofHERR5Ptv9GVluyLOzm/OyA=
+	t=1745576463; cv=none; b=oVC80LsYjK5YCttGBpqAKRU72ZRjzs7JKIjTkymtQbA8gLFXkxJGxkC3MBrRqGyIRvUTNvbWFHftp6WSPiNcFjRhIcvCveydvtuWi2JjZHFelDatkzSN7tiLvK3p2UMXyxe75b7LRFCaiiEKRvFJshyLVlXzkci2sCfV7DUPX54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745576357; c=relaxed/simple;
-	bh=8hdBrASEox056qzws93ce/KXrePY3rfEbDz0T95lkl4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PHDzwWpmMbAj6rAXk6nY34dvCFruuPHZ4ttq0Q9wPsjrklT3QT5935sy2QNRizfOR60bXYDczz6eFNuFlGChaIbdAcFnYl6jCA4T5oQHpty9UDRYhpcsA2D/tKu3cm16KN7hkYs9IRuYT6XRUogRxBRV1RznXW2xjdjod006Wmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XEAmy/BS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7DF9C4CEE4;
-	Fri, 25 Apr 2025 10:19:15 +0000 (UTC)
+	s=arc-20240116; t=1745576463; c=relaxed/simple;
+	bh=Mdpk2ZsvpBn5ks3syBMCHsZS+/pOlHM9FFEXGwjhKiY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f+smRBcojO8a2RyB/2cNj9iIQb88+EzzZNEevPHwGL6YWbKEGKFnXSvwtX6N1+Cy4UDMgIxu/wiJVlKCPXRLmFC/ZOQZnDcn0vJvmYih+mD4vnicadqe4F3GW9JtrSAUJWRVyo/UMt6KNu8aFeJkrgN/Q3FxoM5ORWkEEVpSf7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XOjlYB7+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58E59C4CEE4;
+	Fri, 25 Apr 2025 10:21:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745576356;
-	bh=8hdBrASEox056qzws93ce/KXrePY3rfEbDz0T95lkl4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XEAmy/BSDYyR+NH/5tniQVVLXaO44MfQIGSLZuty8bEPYJEO4+48Bpg+jqJJwPU55
-	 MjiHbscPCKiL5orQpKws711FhnyFnZt6qVPsgrxhHDeRcIR1H9WcyLwqnt5wmmwzTT
-	 U00brDEJIubTJBY5IlCWZXH4lsmm9N6ml9y/MjQBe0Jx6qNT3khEcvM3SFdJfRvvqa
-	 NwFEkkuJfav2PDXfi6eA8VN74pWmsoebsi/lkQRrAtwM0sR8qE7eLtfgrQ7iSUigWg
-	 +gUiRkFqE8kNEOpZT203FogCE1irHXylMtynHtL2D5WPnQeXcYlTwrqspQvUCM1Fsk
-	 UOG+pJ9+nOhbg==
-Date: Fri, 25 Apr 2025 12:19:13 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper
- boards
-Message-ID: <20250425-polar-tamarin-of-reward-c57e01@kuoka>
-References: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
+	s=k20201202; t=1745576463;
+	bh=Mdpk2ZsvpBn5ks3syBMCHsZS+/pOlHM9FFEXGwjhKiY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XOjlYB7+i08z+GoERDeUNeRnW0A9Bvm08AqKS36Q2N6vuB7y1GvX2opDGHquz/pOK
+	 Dc5FfrjUnbbW12hfBw6BGW1FVlIjBNOGQ6/qIvfPkhf3g9mTeTxU/lmxi2ZPZmMoPc
+	 rSHxh+arrbfFu1t6EXDrrg464dJuBWDcqUD6Vl/auZc97KILBf04NHknHFG+3JOmf1
+	 BGyn0SlTu4qVzQlHULHbFQSGMQq9caCrao9cxea/gRO+WL4cEiouX81O1fb//WPI4O
+	 +lfByFXD8CFNeuvhurZby9acl8kw3ENTWmyBlH3wa8CEgeV2XSvNq7kKP3pJw/8pRQ
+	 C/rQxIjFnNtXw==
+Message-ID: <b32ac98d-6db7-493e-a780-5c4943111184@kernel.org>
+Date: Fri, 25 Apr 2025 12:20:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: soc: Add VIA/WonderMedia SoC
+ identification
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250423-wmt-soc-driver-v1-0-bd8bf32521c2@gmail.com>
+ <20250423-wmt-soc-driver-v1-1-bd8bf32521c2@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250423-wmt-soc-driver-v1-1-bd8bf32521c2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 18, 2025 at 07:24:25PM GMT, Alexey Charkov wrote:
-> APC Rock is a development board based on WonderMedia WM8950 SoC
-> released around 2013. Paper is the same as Rock but lacking a
-> VGA port and shipped with a recycled cardboard case.
-> 
-> While at that, put myself as the maintainer, given that Tony is
-> unavailable as of lately.
+On 23/04/2025 21:18, Alexey Charkov wrote:
+> VIA/WonderMedia SoC's have a chip ID register inside their system
+> configuration controller space, which can be used to identify
+> appropriate hardware quirks at runtime. Add binding for it.
 > 
 > Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
-> Split the series from v1 into separate bindings patches so as not to
+>  .../devicetree/bindings/soc/vt8500/via,scc-id.yaml | 37 ++++++++++++++++++++++
 
-Hm? That's odd.
+chipid should probably go to hwinfo directory in bindings.
 
-> spam all the subsystems with unrelated changes, per Rob's suggestion
+>  1 file changed, 37 insertions(+)
 > 
-> Changes in v2:
-> - kept single-valued compatibles in a single enum (thanks Rob)
-> - dropped the empty overall description node
+> diff --git a/Documentation/devicetree/bindings/soc/vt8500/via,scc-id.yaml b/Documentation/devicetree/bindings/soc/vt8500/via,scc-id.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..eac72bd66fd6331c8d9316288bc1acc3e337efaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/vt8500/via,scc-id.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/vt8500/via,scc-id.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: VIA/WonderMedia SoC system configuration information
+> +
+> +maintainers:
+> +  - Alexey Charkov <alchark@gmail.com>
+> +
+> +description:
+> +  The system configuration controller on VIA/WonderMedia SoC's contains a chip
+> +  identifier and revision used to differentiate between different hardware
+> +  versions of on-chip IP blocks having their own peculiarities which may or
+> +  may not be captured by their respective DT compatible strings
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: via,scc-id
 
-...
+Compatible based on SoC (and then also keep filename matching it).
 
 > +
-> +      - description: VIA APC Rock and Paper boards
-> +        items:
-> +          - const: via,apc-rock
-
-Where is any user of this? Bindings always come with the user. Board
-compatible comes with its user - board - both to SoC subsystem (in this
-case me).
-
-See also SoC maintainer profile describing this or my guides how to
-properly target SoC subsystems:
-https://lore.kernel.org/linux-samsung-soc/CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com/T/#m2d9130a1342ab201ab49670fa6c858ee3724c83c
-
-and great example:
-https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
-
-
+> +  reg:
+> +    maxItems: 1
+> +
 Best regards,
 Krzysztof
-
 
