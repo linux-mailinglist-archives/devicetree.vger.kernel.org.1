@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-170797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1901A9C502
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:16:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD5BA9C50B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6FA51887A37
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:16:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADA0C5A28A3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F13623A990;
-	Fri, 25 Apr 2025 10:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB20220689;
+	Fri, 25 Apr 2025 10:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iij5v1k3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VY1QGkiE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9D7221540;
-	Fri, 25 Apr 2025 10:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52620218821;
+	Fri, 25 Apr 2025 10:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745576165; cv=none; b=hTX3xl8bIjYhpXIdR3cipAqBYuROAihuh8BVqrGkdBZML9wgojUy6WM/mVA5InNfqRWOQrIJwaMzQYr7ovfDz5xUKDkb4GoapT9CKbxPNa/JS1p2Ioa48VHBkiU6/BHUJuGZdX+fwkRsSz+vHa4uJ7hDn227YFAbZKSWGNdmNtA=
+	t=1745576235; cv=none; b=sHcU1yX7OYXNEX8UUi/lehWfZW3ezBf/30wOZD2xqdyB/SO9R/v8V7UDqdwWMoDrVGpFCEISOu/9g+l5+MFKBYPpmTFsiK0N0BOBoim+xnCzLvfxVwAj+avj2EA8+wBl31zcqwGVi0BlVUCjKsost7NhYk5xilrYQwxnDseJu7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745576165; c=relaxed/simple;
-	bh=SIrtiLIaeQGQ3nKXsSkidzhM/Umt2ybR0YFHiB429cg=;
+	s=arc-20240116; t=1745576235; c=relaxed/simple;
+	bh=3kJN2rZrLpH/1OSaAa1JAYLgfBIGx+glguG8HC4QIZ8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l36eiY+5FQDPkK2y5IpBsIhFpaIV62zLjngM1r156Yqu1XYepmdtFETcuMoCfa54C/2vMt4XoKQlDHdxJlNNNHO/wZFULpCC0+4reUDqIqdgShIQTyYJCCdiUZQCe3GAoqBG6rvMl4HS/CxxAkK/rahwLjidJuTMDxgUeEr55lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iij5v1k3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F26C4CEE4;
-	Fri, 25 Apr 2025 10:16:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=J53Xr3GWbxAKYr+Yd9rld3Kk4UckAK1ZU3w4RxDPBSnSKnOgEPuhKsPIMzqboOd6nMJ8mvFApeQvQUOY0fgYDONX/S9J1IHy00EPE7xXqfu4xo2snYTgZF4X9ppG5WUl50Pp0mp9dw/6XQVKyqtJ+R03o4YHJDm7774fmyemnvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VY1QGkiE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57250C4CEE4;
+	Fri, 25 Apr 2025 10:17:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745576164;
-	bh=SIrtiLIaeQGQ3nKXsSkidzhM/Umt2ybR0YFHiB429cg=;
+	s=k20201202; t=1745576234;
+	bh=3kJN2rZrLpH/1OSaAa1JAYLgfBIGx+glguG8HC4QIZ8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iij5v1k3+0LXiksOf1Rzl14G1724AnOcitFOjpSnu94e/Txg5VPqUFD20bbz8yfAq
-	 HZEsehSnHhG2aXi0Jf4KE+4ltM7g/T/yWdBWh+ixsSQJIooTP1wWz0jZUfgZhjGpa2
-	 VRyvoOzDuapvHc//HYAsMOSksGUx25y36vHB5w51VdNJMn0QtMB9R3cGLmgYI9yOM6
-	 LUTGzh96Z4DKlDoQADZI92GqPpg4dMhysvfTv8Y7D8VJM8sSBMtXarIVYqIJJoforD
-	 G9iGc3OmRI3drnJC+Al6/x7HQZNF5Mb9kTZVorMWe8dNx+WRv9gXtgLKYZg7NPOypG
-	 66LwyalH3lsDQ==
-Date: Fri, 25 Apr 2025 12:16:02 +0200
+	b=VY1QGkiE8B6UTrCIYuNDEwRgVG/lBFa4MszcrDsXOAKSXDSqIFa6HCz4vQPvkPKFJ
+	 bJtuMAKu3LBtonqb/W/aFyyP6HxhVBGrVkc+SIzL3NHZ+qFZ65sW1eaBunTIrIjS1C
+	 tsCg2OwM6XW1DrjwpvQI7nr3IWcpE+t4Xf5DO5psJlbc6Q1xMi13LhfqIq2kQ+EhmJ
+	 5v24zS2FSonoRSBaqVCRhO+zN9x6OPyI2EXecSXnvpKJXKTlrWIta37cs6/OZkmICs
+	 4cTfzanp9zbZLyD4gBNVu49fzM8joA5QuT5RuJH/phCio49lX4mrtU1V2yzwTBRuZ6
+	 pBSloqXLA+Arg==
+Date: Fri, 25 Apr 2025 12:17:12 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com, 
-	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com, quic_mnaresh@quicinc.com, 
-	quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
-Subject: Re: [PATCH v2 3/9] dt-bindings: qcom: geni-se: describe SA8255p
-Message-ID: <20250425-grumpy-dainty-pillbug-be2145@kuoka>
-References: <20250418151235.27787-1-quic_ptalari@quicinc.com>
- <20250418151235.27787-4-quic_ptalari@quicinc.com>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper
+ boards
+Message-ID: <20250425-mighty-elastic-peccary-bcbe5c@kuoka>
+References: <20250418-apc_paper_binding-v2-1-17c9023b7c9b@gmail.com>
+ <20250423153505.GA561193-robh@kernel.org>
+ <CABjd4Yyiz0A4cSDmS7Tn1B03Hcoi+wTLXZqMTo1qRy-vWG0rvw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,35 +61,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250418151235.27787-4-quic_ptalari@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABjd4Yyiz0A4cSDmS7Tn1B03Hcoi+wTLXZqMTo1qRy-vWG0rvw@mail.gmail.com>
 
-On Fri, Apr 18, 2025 at 08:42:29PM GMT, Praveen Talari wrote:
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  dma-coherent: true
-> +
-> +required:
+On Wed, Apr 23, 2025 at 07:43:34PM GMT, Alexey Charkov wrote:
+> On Wed, Apr 23, 2025 at 7:35=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> >
+> > On Fri, Apr 18, 2025 at 07:24:25PM +0400, Alexey Charkov wrote:
+> > > APC Rock is a development board based on WonderMedia WM8950 SoC
+> > > released around 2013. Paper is the same as Rock but lacking a
+> > > VGA port and shipped with a recycled cardboard case.
+> > >
+> > > While at that, put myself as the maintainer, given that Tony is
+> > > unavailable as of lately.
+> > >
+> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > > ---
+> > > Split the series from v1 into separate bindings patches so as not to
+> > > spam all the subsystems with unrelated changes, per Rob's suggestion
+> > >
+> > > Changes in v2:
+> > > - kept single-valued compatibles in a single enum (thanks Rob)
+> > > - dropped the empty overall description node
+> > >
+> > > Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-7-f9a=
+f689cdfc2@gmail.com/
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/vt8500.yaml | 23 +++++++++++++=
++---------
+> > >  1 file changed, 14 insertions(+), 9 deletions(-)
+> >
+> > Do you want me to apply or you will take via vt8500 tree?
+>=20
+> We don't have a dedicated public vt8500 tree right now, so if you
+> could apply it would be much appreciated!
 
-required: block goes after properties and patternproperties. I guess you
-copied it from the existing geni binding, but new bindings can improve.
+We have.
 
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +patternProperties:
-
-Rest looks good so with this reordering:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'll take it.
 
 Best regards,
 Krzysztof
