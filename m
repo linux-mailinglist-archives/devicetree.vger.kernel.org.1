@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-171129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E990A9D5FD
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 01:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A467CA9D60F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 01:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C37FC1BC18ED
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:02:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DE11BC8308
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355BD296D04;
-	Fri, 25 Apr 2025 23:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87FC296D3B;
+	Fri, 25 Apr 2025 23:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y1iDMeAk"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PUk2Anzp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826CB149C51;
-	Fri, 25 Apr 2025 23:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A9A296D2D
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 23:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745622139; cv=none; b=SdRKf52Ou7cKpzQqpVdevj+1DiFpCQH6ghNILTJZPmGDKZu6Cbxx10SaY3gxVleEPeUmMV93s6X+2Zo0Za9YBgBUx6Ruz4Q8Ax62/X+7eeXPKv5f6lEkHCGsqBf5jEDnkwu9tAkvA+uxYvN2LrZSlwlWYXwS8H0hI+XyvqD3G4I=
+	t=1745622833; cv=none; b=kLWocE1M9C1iGkwcKpxYEdKVY7N2Opbbjnsgrqr8nKWbkgqphFaCV86hngbge30Z5lmTmRRR5twyNjG9iqJ0swZT4E3JIGHg6pNztJAVfXarYGbS9ohvK4jm2/6lzm0r3Sxy1QPGsOsf9NFtC28N1A7QoYst5QshtMQ5p/7NXi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745622139; c=relaxed/simple;
-	bh=AKl5B7sJ39Bf4hve2uTH2rAHe2W0wLVTw4+iXPRcnt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bYr63fKVQqhDyziadDP2ca89agPONyS8ZIt87lr6rt5f7X6anhnBDpBcXSrY4AliYhmprUpHwZXMw6OywYzh0l6D5WjOJTqKf7bUZXu3YYKTEF0r418i7r+SjD5Qe0r78XpfX0Y94a2ydJv2e1w7jRukAa0YIQjotYAw2puO4j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y1iDMeAk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGJuRS001348;
-	Fri, 25 Apr 2025 23:01:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PVCoVGhbhHaQpzrYc6zL+NmjQ0+ewuCnFrIJjis5X1I=; b=Y1iDMeAkjL79nxRK
-	ZXi39MsyhYJBJp++z5y0kwRUg4KlZn6jRp+rzTLGJc6Cf29gWnTd51/Nl58K0OF4
-	hbGV+e2BN6h4n8QwcJyK65ARupvUmUFMa8kN/V/z0p8rKZiZrOWj5p83dbykv6dh
-	NqkY0VHmYL371SMfBv2dgNntrYrxzPMq9SVCO75lN41Kl+iet995yxYRkPkNmo49
-	5nrx1JWF1l4JezKTT4k9uZcz4d1PpXXqz9CmhywBAou+sJ4mMtHVTYE88Pm/YWMz
-	KGA83yueRQk+e3Ypoxq18dBnlyfTRzsPDfWCgl3BSLeMUvBNhAXk6jncIdV5W1hR
-	TDbu/Q==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3jg1m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Apr 2025 23:01:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53PN1qVE000653
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Apr 2025 23:01:52 GMT
-Received: from [10.110.43.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
- 2025 16:01:50 -0700
-Message-ID: <beb866cb-0510-4e8c-84a0-ae66f864303e@quicinc.com>
-Date: Fri, 25 Apr 2025 16:01:49 -0700
+	s=arc-20240116; t=1745622833; c=relaxed/simple;
+	bh=PngBN4fnbURLzAySAY30tx1qdDko/K5iW4qjRDdHsFk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Adem3hri5DjCttOq/aD1UGrDX0JqI8wshbYuAgOID9MabNOQN+FH2qjIfbKXeVfhBRuamN+sH0KgbaPXjKt8EUkcLtEuzdjDAXN1vTmtY+DiGWLNB+Owz5bdMwGieIQpvMsAsOoPbnWYEpzXgmVkluRwUQXBoTiGyXAVAQGIyl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PUk2Anzp; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-72c16e658f4so1913526a34.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 16:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745622830; x=1746227630; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B+3rb/tLAGnvLIt9IgNGUN65XhsnftVTZknFpZtsVlw=;
+        b=PUk2AnzpMmsL9x4bI3BiNLMqjY+ETaT1qygv3AzghvWuoHExRhHuqUhxgiN59teVcV
+         g5P5CeARl53jAfoWr53r6LAoxFnGChMXWPVAPUGunXfhWMtJlTQdvGHwqIn+qPzs/nYi
+         VK444HhDkFMs56CqvyUnFHs6fzNODG2Z3Kfu/Xje/i7CVHi6NZoO5IOuf6ishTP2BYVJ
+         8xTG9Q3UIn01GKDmRswJbbGce/e4kHL2ttPjVpN4klPJ0G7wOZ10dCiiqG65VluD4Wce
+         bTHiFDfAR5U0XNRK914l0npeBo8reM4kIbj25PMyFOxGIkqs5hhLYuYu74BvaEXs/h7i
+         bc3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745622830; x=1746227630;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B+3rb/tLAGnvLIt9IgNGUN65XhsnftVTZknFpZtsVlw=;
+        b=rUxFUC95RB75yXzeNGU0Z/iZpI6w2RuDJzsPKp0B7eSMj5Q6jipMBOM7n8KAaOnoqJ
+         sfaJMaOuZaW9MEgHov0C1yaqtsov9XmQh/rKRTKa1ocweEjb2nW5VsyB1RA0UM59pfCI
+         A01PatpmVu66sVsKg+rMDarF49oKFvKPELpWEDBS+GvNKF04Ed50cUaS4yg5P/xzUnfD
+         oAA7j9uwioSiph58NQmGq4b72vrZlLfsdvY5/nr4vAFoOE60bhsxq17Ogi1LsH5GeiOS
+         xa5Ivn8c8HrsNBAHQ0w1NOeUd7kKHNCiW67POELTDaEkI0txG0VZrzYCIDpGp82Sloaf
+         x6rA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYNi1b4yV0nlpxGJYYHS3+WJTONhZNr0Hp9ckuncD3VoX4ldtYijHgk3EFOWAUK8pEHcADGc1Uo1uM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzD/ZTpPX+miliQtaMVhKsKcyHft7UV8AE/uJEDi+X2jVKuMFZs
+	JWyHEbqXW2Y7ZEoR+Tn1rCXcUXiJZ2eCycwk6YzSUNOdQkSinud5gmRqW8OoNlU=
+X-Gm-Gg: ASbGncvSG2gJUl72/61RfjmY2HvFMB0EKxUNabAUwYdJ/5JsyxAmpXzP/fb19yiRS+S
+	CtPyh6pvNgtbznEX7gZAldW58VRNlLyrox8oOoAxzs0ONB63t9uPG7sCV7z+FuFVTri98SoSRyV
+	VrE6hqRnsEyqsLgsvox+mPmgaZXH64+9yNNu3srWR0JtTZqXri1Z+MfuOIPS81dwtH9xeNWfVCr
+	33NejDAtLWDEkUxeDxFAotLwJ6Herf0lepxcs3wv6HWXz22a0ApUjrOWFLYb9ZEJ5pzVr97zN97
+	VHjHWAII/f8CLDIeGNLPQcwSRHVtoklkVRuOHS6lPlYknPE4AWUlr3ziddFMyizuglNV+SuuzjH
+	WCRvUL4hRSy4H
+X-Google-Smtp-Source: AGHT+IFMv0vnj0gyPnnBDlAAtjQ4qLxNurqnITAkClibY+ZJfAW3Guzqu2qpn/vLBJV0bNHfsRHU4w==
+X-Received: by 2002:a05:6830:3816:b0:72b:9f83:1155 with SMTP id 46e09a7af769-7305c9f62bamr2552310a34.17.1745622830303;
+        Fri, 25 Apr 2025 16:13:50 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:96a3:e28:3f6:dbac? ([2600:8803:e7e4:1d00:96a3:e28:3f6:dbac])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7304f19fb76sm873571a34.16.2025.04.25.16.13.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 16:13:49 -0700 (PDT)
+Message-ID: <c82b8c53-e653-4cd3-80ef-37c5daf9314c@baylibre.com>
+Date: Fri, 25 Apr 2025 18:13:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,132 +82,327 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/7] drm/msm/mdp4: switch LVDS to use
- drm_bridge/_connector
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Rob Clark
-	<robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Sean
- Paul" <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250425-fd-mdp4-lvds-v4-0-6b212160b44c@oss.qualcomm.com>
- <20250425-fd-mdp4-lvds-v4-6-6b212160b44c@oss.qualcomm.com>
+Subject: Re: [PATCH v2 5/5] iio: adc: add support for ad4052
+To: Jorge Marques <jorge.marques@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
+ <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20250425-fd-mdp4-lvds-v4-6-6b212160b44c@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDE2NSBTYWx0ZWRfX0BTU8LZ/tPk3 du2Ri2Maj/ZAkOx5kAZhXnhX2xTOU7iM9773HOfcEstyyVM6nAMMi9WLQhPgxyXaNpRxjW9ybVi 2KhHtREZC94X3W7zN8vyNI5HShqawG+cFiax797jMEGQx7DDiAf1a8YVRIf2S7ew+9j5gUteEEV
- S8y9IVG3Ir9gIyPeYfu7oeF1zFZP4ZnBL1BrSTd+avME44jMGZl1g46IL/WZaauE2N2cjaZ5VVA tVBY/13s1OCxkDKPQ/NMXZ+oIlm0Q9MznNJuTUE1v4khUBcwjTsVjHqHeMSyhWAqbUl/Nf4772e rFBnTBG1JH3oVxVejYxDIxGAokrPsZz86t93VxZwKoghJb5F3CNCNbCmnBI4um6YTpR0WrmUavw
- KeSdqEhu1M5uVcC6V6LX+JlFfPZVoXneUXfrq/yVyRCPFFmV3aiN4hmRZah6PsNA7MnhCod+
-X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680c1460 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=mBQssbH8hIC3Lvm7LJMA:9
- a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 9Cy1EhYJFLfHWBx0aUHbhKwvB1YM9lZh
-X-Proofpoint-GUID: 9Cy1EhYJFLfHWBx0aUHbhKwvB1YM9lZh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-25_07,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 suspectscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504250165
 
-
-
-On 4/25/2025 2:51 AM, Dmitry Baryshkov wrote:
-> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 4/22/25 6:34 AM, Jorge Marques wrote:
+> The AD4052/AD4058/AD4050/AD4056 are versatile, 16-bit/12-bit,
+> successive approximation register (SAR) analog-to-digital converter (ADC)
+> that enables low-power, high-density data acquisition solutions without
+> sacrificing precision.
+> This ADC offers a unique balance of performance and power efficiency,
+> plus innovative features for seamlessly switching between high-resolution
+> and low-power modes tailored to the immediate needs of the system.
+> The AD4052/AD4058/AD4050/AD4056 are ideal for battery-powered,
+> compact data acquisition and edge sensing applications.
 > 
-> LVDS support in MDP4 driver makes use of drm_connector directly. However
-> LCDC encoder and LVDS connector are wrappers around drm_panel. Switch
-> them to use drm_panel_bridge/drm_bridge_connector. This allows using
-> standard interface for the drm_panel and also inserting additional
-> bridges between encoder and panel.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 > ---
->   drivers/gpu/drm/msm/Makefile                       |   1 -
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c           |  34 +++++--
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h           |   6 +-
->   drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  |  20 +----
->   .../gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c    | 100 ---------------------
->   5 files changed, 28 insertions(+), 133 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> index 5df20cbeafb8bf07c825a1fd72719d5a56c38613..7a2ada6e2d74a902879e4f12a78ed475e5209ec2 100644
-> --- a/drivers/gpu/drm/msm/Makefile
-> +++ b/drivers/gpu/drm/msm/Makefile
-> @@ -48,7 +48,6 @@ msm-display-$(CONFIG_DRM_MSM_MDP4) += \
->   	disp/mdp4/mdp4_dsi_encoder.o \
->   	disp/mdp4/mdp4_dtv_encoder.o \
->   	disp/mdp4/mdp4_lcdc_encoder.o \
-> -	disp/mdp4/mdp4_lvds_connector.o \
->   	disp/mdp4/mdp4_lvds_pll.o \
->   	disp/mdp4/mdp4_irq.o \
->   	disp/mdp4/mdp4_kms.o \
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> index 689e210660a5218ed1e2d116073723215af5a187..93c9411eb422bc67b7fedb5ffce4c330310b520f 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-> @@ -6,6 +6,8 @@
->   
->   #include <linux/delay.h>
->   
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
->   #include <drm/drm_vblank.h>
->   
->   #include "msm_drv.h"
-> @@ -189,7 +191,7 @@ static int mdp4_modeset_init_intf(struct mdp4_kms *mdp4_kms,
->   	struct msm_drm_private *priv = dev->dev_private;
->   	struct drm_encoder *encoder;
->   	struct drm_connector *connector;
-> -	struct device_node *panel_node;
-> +	struct drm_bridge *next_bridge;
->   	int dsi_id;
->   	int ret;
->   
-> @@ -199,27 +201,43 @@ static int mdp4_modeset_init_intf(struct mdp4_kms *mdp4_kms,
->   		 * bail out early if there is no panel node (no need to
->   		 * initialize LCDC encoder and LVDS connector)
->   		 */
-> -		panel_node = of_graph_get_remote_node(dev->dev->of_node, 0, 0);
-> -		if (!panel_node)
-> -			return 0;
-> +		next_bridge = devm_drm_of_get_bridge(dev->dev, dev->dev->of_node, 0, 0);
-> +		if (IS_ERR(next_bridge)) {
-> +			ret = PTR_ERR(next_bridge);
-> +			if (ret == -ENODEV)
-> +				return 0;
-> +			return ret;
-> +		}
+>  MAINTAINERS              |    1 +
+>  drivers/iio/adc/Kconfig  |   14 +
+>  drivers/iio/adc/Makefile |    1 +
+>  drivers/iio/adc/ad4052.c | 1425 ++++++++++++++++++++++++++++++++++++++++++++++
 
-Alright, I think this will protect us against the fact that there is no 
-panel in the DT currently like before, hence
+This patch is way too big, so I didn't review most of it yet. But time to call
+it quits for today. In the future, it would be a lot easier for reviewers if
+you can split things into multiple patches instead of implementing all of the
+features at once. E.g. start with just a basic driver, then a patch to add
+oversampling support, then another patch to add SPI offload support. 500 lines
+is a more manageable size for review.
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+...
 
+> +static int ad4052_update_xfer_offload(struct iio_dev *indio_dev,
+> +				      struct iio_chan_spec const *chan)
+> +{
+> +	struct ad4052_state *st = iio_priv(indio_dev);
+> +	const struct iio_scan_type *scan_type;
+> +	struct spi_transfer *xfer = &st->xfer;
+> +
+> +	scan_type = iio_get_current_scan_type(indio_dev, chan);
+> +
+> +	if (IS_ERR(scan_type))
+> +		return PTR_ERR(scan_type);
+> +
+> +	xfer = &st->offload_xfer;
+> +	xfer->bits_per_word = scan_type->realbits;
+> +	xfer->len = BITS_TO_BYTES(scan_type->storagebits);
+
+This doesn't work for oversampling. realbits may be 16 while storagebits is 32.
+But the SPI controller needs to know how many realbits-sized words to read.
+
+So this should be 
+
+	xfer->len = BITS_TO_BYTES(scan_type->realbits);
+
+
+
+> +
+> +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
+> +	st->offload_msg.offload = st->offload;
+> +
+> +	return spi_optimize_message(st->spi, &st->offload_msg);
+
+I know it is like this in a few other drivers already, but I don't like having
+spi_optimize_message() in this funtion because it makes it really easy to
+forget to do have balanced calls to spi_unoptimize_message().
+
+> +}
+> +
+
+...
+
+> +static const struct iio_buffer_setup_ops ad4052_buffer_setup_ops = {
+> +	.postenable = &ad4052_buffer_postenable,
+> +	.predisable = &ad4052_buffer_predisable,
+> +};
+
+Would be nice to add "offload" to the name of this struct and the callbacks
+to make it clear that these are only for the SPI offload use case.
+
+...
+
+> +
+> +static bool ad4052_offload_trigger_match(struct spi_offload_trigger *trigger,
+> +					 enum spi_offload_trigger_type type,
+> +					 u64 *args, u32 nargs)
+> +{
+
+We should be checking the args here according to what I suggested in my reply
+to the devicetree bindings patch. Right now it is assuming that we are only
+using this for SPI offload and that the pin used is GP1 and the event is data
+read. We should at least verify that the args match those assumptions.
+
+For bonus points, we could implement allowing GPO as well.
+
+> +	return type == SPI_OFFLOAD_TRIGGER_DATA_READY;
+> +}
+> +
+> +static const struct spi_offload_trigger_ops ad4052_offload_trigger_ops = {
+> +	.match = ad4052_offload_trigger_match,
+> +};
+> +
+> +static int ad4052_request_offload(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4052_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->spi->dev;
+> +	struct dma_chan *rx_dma;
+> +	struct spi_offload_trigger_info trigger_info = {
+> +		.fwnode = dev_fwnode(dev),
+> +		.ops = &ad4052_offload_trigger_ops,
+> +		.priv = st,
+> +	};
+> +	struct pwm_state pwm_st;
+> +	int ret;
+> +
+> +	indio_dev->setup_ops = &ad4052_buffer_setup_ops;
+> +
+> +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to register offload trigger\n");
+
+Strictly speaking, the trigger-source provider is indendant of using it for
+SPI offload. I guess this is fine here for now though.
+
+> +
+> +	st->offload_trigger = devm_spi_offload_trigger_get(dev, st->offload,
+> +							   SPI_OFFLOAD_TRIGGER_DATA_READY);
+> +	if (IS_ERR(st->offload_trigger))
+> +		return PTR_ERR(st->offload_trigger);
+> +
+> +	st->cnv_pwm = devm_pwm_get(dev, NULL);
+> +	if (IS_ERR(st->cnv_pwm))
+> +		return dev_err_probe(dev, PTR_ERR(st->cnv_pwm),
+> +				     "failed to get CNV PWM\n");
+> +
+> +	pwm_init_state(st->cnv_pwm, &pwm_st);
+> +
+> +	pwm_st.enabled = false;
+> +	pwm_st.duty_cycle = AD4052_T_CNVH_NS * 2;
+> +	pwm_st.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+> +					 AD4052_MAX_RATE(st->grade));
+> +
+> +	ret = pwm_apply_might_sleep(st->cnv_pwm, &pwm_st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to apply CNV PWM\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, ad4052_pwm_disable, st->cnv_pwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev, st->offload);
+> +	if (IS_ERR(rx_dma))
+> +		return PTR_ERR(rx_dma);
+> +
+> +	return devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev, rx_dma,
+> +							   IIO_BUFFER_DIRECTION_IN);
+> +}
+> +
+> +static int ad4052_probe(struct spi_device *spi)
+> +{
+> +	const struct ad4052_chip_info *chip;
+> +	struct device *dev = &spi->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct ad4052_state *st;
+> +	int ret = 0;
+> +
+> +	chip = spi_get_device_match_data(spi);
+> +	if (!chip)
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "Could not find chip info data\n");
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +	spi_set_drvdata(spi, st);
+> +	init_completion(&st->completion);
+> +
+> +	st->regmap = devm_regmap_init_spi(spi, &ad4052_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
+> +				     "Failed to initialize regmap\n");
+> +
+> +	st->mode = AD4052_SAMPLE_MODE;
+> +	st->wait_event = false;
+> +	st->chip = chip;
+> +	st->grade = chip->prod_id <= 0x75 ? AD4052_2MSPS : AD4052_500KSPS;
+> +	st->oversampling_frequency = AD4052_FS_OFFSET(st->grade);
+> +	st->events_frequency = AD4052_FS_OFFSET(st->grade);
+
+Somewhere around here, we should be turning on the power supplies. Also, it
+looks like we need some special handling to get the reference volage. If there
+is a supply connected to REF, use that, if not, use VDD which requires writing
+to a register to let the chip know.
+
+> +
+> +	st->cnv_gp = devm_gpiod_get_optional(dev, "cnv", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->cnv_gp))
+> +		return dev_err_probe(dev, PTR_ERR(st->cnv_gp),
+> +				     "Failed to get cnv gpio\n");
+> +
+> +	indio_dev->modes = INDIO_BUFFER_HARDWARE | INDIO_DIRECT_MODE;
+
+INDIO_BUFFER_HARDWARE should not be set here. If using SPI offload,
+devm_iio_dmaengine_buffer_setup_with_handle() will add it automatically.
+For non-SPI-offload operation, it should not be set.
+
+> +	indio_dev->num_channels = 1;
+> +	indio_dev->info = &ad4052_info;
+> +	indio_dev->name = chip->name;
+> +
+> +	st->offload = devm_spi_offload_get(dev, spi, &ad4052_offload_config);
+
+This
+
+> +	if (IS_ERR(st->offload))
+> +		return PTR_ERR(st->offload);
+
+should be
+
+	ret = PTR_ERR_OR_ZERO(st->offload);
+
+> +
+> +	if (ret && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "Failed to get offload\n");
+> +
+> +	if (ret == -ENODEV) {
+> +		st->offload_trigger = NULL;
+> +		indio_dev->channels = chip->channels;
+> +	} else {
+> +		indio_dev->channels = chip->offload_channels;
+> +		ret = ad4052_request_offload(indio_dev);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to configure offload\n");
+> +	}
+> +
+> +	st->xfer.rx_buf = &st->d32;
+
+I don't think we want this set globally. I.e. it doesn't make sense for SPI
+offload xfers.
+
+> +
+> +	ret = ad4052_soft_reset(st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "AD4052 failed to soft reset\n");
+> +
+> +	ret = ad4052_check_ids(st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "AD4052 fields assertions failed\n");
+> +
+> +	ret = ad4052_setup(indio_dev, indio_dev->channels);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
+> +			   AD4052_DEVICE_STATUS_DEVICE_RESET);
+
+Why not include this in ad4052_setup() or even ad4052_soft_reset()?
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad4052_request_irq(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ad4052_update_xfer_raw(indio_dev, indio_dev->channels);
+> +
+> +	pm_runtime_set_active(dev);
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable pm_runtime\n");
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, 1000);
+> +	pm_runtime_use_autosuspend(dev);
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static int ad4052_runtime_suspend(struct device *dev)
+> +{
+> +	struct ad4052_state *st = dev_get_drvdata(dev);
+> +
+> +	return regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
+> +			    FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK,
+> +				       AD4052_DEVICE_CONFIG_LOW_POWER_MODE));
+> +}
+> +
+> +static int ad4052_runtime_resume(struct device *dev)
+> +{
+> +	struct ad4052_state *st = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
+> +			   FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK, 0));
+
+regmap_clear_bits() would be shorter if there isn't going to be a macro to
+explain the meaning of 0.
+
+> +	return ret;
+> +}
+> +
 
