@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-170653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48897A9BDE3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:33:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D923AA9BDF4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:43:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C22EF3BB2F8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:33:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46718928523
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A11A229B21;
-	Fri, 25 Apr 2025 05:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC0022A4CD;
+	Fri, 25 Apr 2025 05:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mRXDkC/e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbGHV2dm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C1D227E93;
-	Fri, 25 Apr 2025 05:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C08215F49;
+	Fri, 25 Apr 2025 05:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745559205; cv=none; b=of5eg0Cb3Y+Wpsf1CU15f32v2RauwBCyADf8cO5rloMcUJEemeSyLzEaLj6ip6vkhXNKSaQ5P35wDLyCpLAdyI19aZ0c6kkvG/kyhbO6GsSNgDsxE5f6Lx3m4jcrytjpdO2qVVk+lpB9Y5hT7uVuSillRGM9GUMdDjawTpJ6MY8=
+	t=1745559833; cv=none; b=p7G6qPwyj3WV9BcCXxD1F9lbhypJZbXYRXpT5QaUVZfY4eK11s8od9O87aXO4wARxjd8O/OSteWH3kBIDjShCeNMXW0ACf/DRG5W+KmHURMLpbFaEUz+9yhVLi5NBpk4lqEpnXpJlGedbzVtYjzKhy3t840mfi82rpnm2QAQiO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745559205; c=relaxed/simple;
-	bh=yaZ/xOw+yV7pDnZ4omfyKfpAGH6Pr1XtYBYLDUHsxpU=;
+	s=arc-20240116; t=1745559833; c=relaxed/simple;
+	bh=seOqirivfphfTRGlIdn4Wi3To7EpJ8SMOXWFWZdjiwI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IglWlAi6kwD0pWxSBNLcit86t85mLsnMeiatVsFYKLpBrd8Ll/Kvk65n5m9rF74N1LyTOPW8nbB2zfhumRDweRvLwJS7uHP+89s51gsWIMD61L/dLJoNrY1x/1epsiWkjSCsJFAxxMVhkMELjdtuXhgIXGm6IbVc+pcDU8N3OpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mRXDkC/e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B92ECC4CEE4;
-	Fri, 25 Apr 2025 05:33:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ODe2PhDtI24oudGSTILAnjJteI9DNgfAL4b5mehCwd2cokW09F0VhlPPwYFYmwcndyVw2l4PZ1IbCjYIbhqZieCZsF84pjLqiQsziKLW1Z0d01qJ09OFyyC0ySY4kHo50Knr6WRVEuaI81WIObZIycC/cRzjat8HdaEpAgRodtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cbGHV2dm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64EC4C4CEEB;
+	Fri, 25 Apr 2025 05:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745559204;
-	bh=yaZ/xOw+yV7pDnZ4omfyKfpAGH6Pr1XtYBYLDUHsxpU=;
+	s=k20201202; t=1745559833;
+	bh=seOqirivfphfTRGlIdn4Wi3To7EpJ8SMOXWFWZdjiwI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mRXDkC/eFQrFfTAR3fbh0KpZCOeTtnv4cACQ2xNdDBa+FqnFssheLF5Vkep1apZjz
-	 o0bKS8Ainq6orEc5feo5R1vAa0ATuGGdGTYCMqiB+8oiNNzL14LGzOr3RPFoG9nkrE
-	 M1jcPbckn/v2S4JoPiVJ/aAS3ySZDbG4A4rs0Cq6y+kwONplUlh2GG6QKvSUhkLIMQ
-	 9a3SJjaa6+uPBMQRXICVI7IkWntN3CWPXDQ6q//fU2/l7wCbm4LMn80A/p4Y+nEEWw
-	 q6CzbpMwslcBm2d1/iJgIXf+Ti9cxhB3jFI5rAOzTo3ux6XO4YFi1fjD5Gk43e5TQ1
-	 EGk1l72F4x/PQ==
-Message-ID: <0bf77ef6-d884-44d2-8ecc-a530fee215d1@kernel.org>
-Date: Fri, 25 Apr 2025 07:33:17 +0200
+	b=cbGHV2dmiVj+jMrSAR4S1lDS31mIiZo2Jy5bGBzs2OZY6oRMmvZ+e6f/QPCRNBbMz
+	 Jf0q45gFsawMjMPFxCT7ph0dFAXNOJW+hDFPwA+pFUjgVsmY4Yovmw6u64CoAXUu5a
+	 Pzqd3o40/RDxQ4zNYFra5h5li8OWMVFU/Iep7CpIYz5xxE0T5sboICGF4vRKSxvgAG
+	 K56SGr1/9+eCKItic2UWmSMf9XhegLgPMG8OLOsGMgvCL7nqMfwKgBuNEFQoTTJXxW
+	 XlA9E4XBlnjT8FZg08A7O7zjiRxph3lkyQ0jcahudHIaFGAcyk6xPWj6NQgUc6Vdze
+	 fv02R6XaKthxA==
+Message-ID: <7cf4302f-a4ba-41fb-bcef-0830013c5698@kernel.org>
+Date: Fri, 25 Apr 2025 07:43:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v7 4/7] net: mtip: The L2 switch driver for imx287
-To: Jakub Kicinski <kuba@kernel.org>, Lukasz Majewski <lukma@denx.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+Subject: Re: [PATCH v3] arm64: dts: qcom: add initial support for qcom
+ sa8255p-ride
+To: Deepti Jaggi <quic_djaggi@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quic_psodagud@quicinc.com
+Cc: quic_ptalari@quicinc.com, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>
-References: <20250423072911.3513073-1-lukma@denx.de>
- <20250423072911.3513073-5-lukma@denx.de> <20250424181110.2734cd0b@kernel.org>
+ Shazad Hussain <quic_shazhuss@quicinc.com>
+References: <20250422231249.871995-1-quic_djaggi@quicinc.com>
+ <f385c9eb-31ef-47c3-84a5-9f4dc86ce6f0@kernel.org>
+ <95c66338-87c0-4fce-866b-6c43c1d31cd1@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,34 +106,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250424181110.2734cd0b@kernel.org>
+In-Reply-To: <95c66338-87c0-4fce-866b-6c43c1d31cd1@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/04/2025 03:11, Jakub Kicinski wrote:
-> On Wed, 23 Apr 2025 09:29:08 +0200 Lukasz Majewski wrote:
->> This patch series provides support for More Than IP L2 switch embedded
->> in the imx287 SoC.
->>
->> This is a two port switch (placed between uDMA[01] and MAC-NET[01]),
->> which can be used for offloading the network traffic.
->>
->> It can be used interchangeably with current FEC driver - to be more
->> specific: one can use either of it, depending on the requirements.
->>
->> The biggest difference is the usage of DMA - when FEC is used, separate
->> DMAs are available for each ENET-MAC block.
->> However, with switch enabled - only the DMA0 is used to send/receive data
->> to/form switch (and then switch sends them to respecitive ports).
+On 25/04/2025 06:53, Deepti Jaggi wrote:
 > 
-> Lots of sparse warnings and build issues here, at least on x86.
 > 
-> Could you make sure it's clean with an allmodconfig config, 
-> something like:
+> On 4/23/25 23:19, Krzysztof Kozlowski wrote:
+>> On 23/04/2025 01:12, Deepti Jaggi wrote:
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8255p-ride.dts b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
+>>> new file mode 100644
+>>> index 000000000000..cb866f897d0a
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
+>>> @@ -0,0 +1,94 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +#include "sa8255p.dtsi"
+>>> +#include "sa8255p-pmics.dtsi"
+>>> +#include "sa8255p-scmi.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Qualcomm Technologies, Inc. SA8255P Ride";
+>>> +	compatible = "qcom,sa8255p-ride", "qcom,sa8255p";
+>>
+>> NAK
+>>
+>> Missing bindings. This is some weird process you have there. Reach to
+>> your internal guideline before you start posting. It explains this.
+>>
 > 
-> make C=1 W=1 drivers/net/ethernet/freescale/mtipsw/ 
+> I followed the approach used for other bindings [1] [2] [3], 
+> which were part of the original series and were sent as separate patches 
+> and accepted. I misjudged that the SoC binding could also be sent as a 
+> separate patch. I will combine the remaining bindings along with 
+> the device tree into a single series.
+>  
+> The UART/QUP driver changes have been posted as a separate series [4] 
+> along with the UART bindings. Please advise if the UART/QUP bindings should
+> also be included as part of next series with dt changes.
 
-... and W=1 with clang as well.
+I think existing docs have it well covered and explained. I advise to
+read all submitting patches documents.
+
 
 Best regards,
 Krzysztof
