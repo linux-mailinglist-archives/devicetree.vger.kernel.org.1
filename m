@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-170764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4209A9C3E8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:39:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD20A9C3F1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:40:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9894D4C0EAF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:39:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95E9A9C165A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76ECB241682;
-	Fri, 25 Apr 2025 09:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2801D24293B;
+	Fri, 25 Apr 2025 09:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C5hl9uK4"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="NkLwhNKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D874C241CB0
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7708F2367A1
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:36:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745573756; cv=none; b=teKl8u18t9pWt8J7HbTItBgBkqRDqQ6RCW4oKUcbNSRbOTM2gbxTkwnnsrz33THP1kEzDpEHxwUX9vegIYavYWm0dH6aSGdXsEje7nfdLxeJxl783SfD2myPD2I2+G4iHRflarTR3Q3KKKWb4krOQDg9uoV23hYyj/pF4tHrqrk=
+	t=1745573793; cv=none; b=PzArH5K4h1GlMozYUCsYtv+U7Ypqd8QDoRbXMmCs/1JXSTRZeMXQP3TMoKPnOTwqQGLyOu+94QoCQ/h8yEtIf8CWlzI40GKo99oadthvNrZtsGnTkO5P4mOpwSBw9fVmtSdnvPwgc6EfTEpi2FEGAdGXbENSmO0ujWP4AQuliX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745573756; c=relaxed/simple;
-	bh=sToWdQKy4Ilj8vtZl1fJZYV45WUmXfqIRGKxYDJBgAM=;
+	s=arc-20240116; t=1745573793; c=relaxed/simple;
+	bh=ioigkbjdcAhl3Sy/dq3GwJMrCQmcZVCmohh2bSLTNL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBK3saEVNE3+8PPnPvxW8YK4UdEzC34feqAzdighjo403zwRV22Dq4eImDhsTcMTNDOflHS6SR40ieiMkm+A+VRSEyaIbsUcxs/tjcfZgCPLnRjIcpTPkmQXrJsgOCYXn+Pz6S1eUwepxbntS9xnPHjNQ6LMeESdxHA4NCtU4ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C5hl9uK4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8T7Hb030826
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:35:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AJDl4omv7ndvFsud7bHAzIbFbElPaQdLGmav6WIPsh4=; b=C5hl9uK4YRXvDPx6
-	U9Eaw4kphDAc62d/9ms3w+qqqJojv0NqT5rUazrhs4eo7M0bM4dLANit7ovWPzrG
-	QNcZpuciVA6kgtv9STJZwENx1b16lMINP5UQiVO6pGrIHF6xDo8sQczChxxLV3l2
-	ws/fZmbuq1ucBjV72OG0hrOnV3j4fqL7XjNkeJECTRudgZU0E5qjJ1iTMA9PyVgB
-	Jv2qRJSrPORvsStQHksdH6rs0QAn2CHAYTEtwztzaSH51QwJUP4kf9g4bbXnqqqs
-	uMr8tpHuIaTI8UCrAlVTHkqp88eM40HD1gRyTeL9VAPO2m/TYIMSuVEGMFOH0o8W
-	4fs6/Q==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh5gh98-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:35:48 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c552802e9fso38779385a.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:35:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745573748; x=1746178548;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AJDl4omv7ndvFsud7bHAzIbFbElPaQdLGmav6WIPsh4=;
-        b=ikWFQxsG5ADvxQAnKxsRCR32atT3N6Tv7MFH3bi4GaZGzRTw7vYB4ncQlsLtKx7Ylw
-         PWqfZ1XlVq/qEB8cccVb9t5TjOOFbDz97uimsS9WpZVyIv3MG49Tzaii01pUOo8tdzH4
-         zxvjnNhiprSCVBGAVJamR2SYXOXoumDy5cRb9XhFppI66IGHRIdb+6YUJGWxbfiHSnJZ
-         qVkQYYi09KXh0qL8mTSFSNCFObanNEzMFZ88YrHSfE2y97E7U/NM2h+N3+8IWaxOyFvz
-         qO+m+2/qltkNZ5wTPfqe5FtPICiiN3/+CSlq91iNQH5DA59L7JP5XqOIqkitqUEh8bJQ
-         ijPA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7fkX1c41KbtDwGPdThtD+2A9hdSjnJoDUftcHTYzGzhbL5EvKxqsQmI+PR//K/NwMU66Ixm+3iFoR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxckw2FbixiAp0LtjeyvqqwUZeODzrOvxdNZ74PFyb3Mvz/8RaZ
-	VO/6srUngZah7i5VDpYruUMADdNcoBmiMuVv5zCdpIvwkAbnZy0iFEfZULTVPZ8t/NKz3LbTTkS
-	whxmK0qWyudRGuxPL0/OIjJNN3KAr3GtitSe8801MMczbwBslrtDiDUxfp7Dw
-X-Gm-Gg: ASbGnctKYAPih8hufCmEdTJDPVRm57Rie0eRMeVV0bW9BA6G754azHeDwr1R3OdJkHp
-	jkoGYKqlJ9KTwb/muwaZGcGRVqXLm3f/EvadJSvxDsLSBfOtgkrYr/YcN9Qluybo61o3TmyL1Ag
-	9uT1x1iAWOuaThLmNnotbLnE6sFq0urXGQk4RoUbQ54/PXF98hbo7BmLaRzYsAp1u55brpKpxMo
-	N6T5lXO/+JKINUhVvbTRsVQW1Qusgviiqwhqx8acfkvuNbPGTBLXuYE3dhjfo0XTEe+I+xh6Xhy
-	wx+C4AivXZNtfpQvVlljJW6JIRQzziUE4uxdF6+0o+QrUx4QFoMoLQPQBPj1hSk2
-X-Received: by 2002:a05:6214:1c49:b0:6e8:fef8:8b06 with SMTP id 6a1803df08f44-6f4cb9a3465mr12148976d6.2.1745573747736;
-        Fri, 25 Apr 2025 02:35:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEoiv4MlBzWT6NZGwE45WPs9WN6M0wjAeYYYXs2TXJ84tsBTXEo8eVE4CzqSua4OQ5eBomYJA==
-X-Received: by 2002:a05:6214:1c49:b0:6e8:fef8:8b06 with SMTP id 6a1803df08f44-6f4cb9a3465mr12148856d6.2.1745573747358;
-        Fri, 25 Apr 2025 02:35:47 -0700 (PDT)
-Received: from [192.168.65.5] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7038340b7sm982484a12.79.2025.04.25.02.35.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 02:35:46 -0700 (PDT)
-Message-ID: <f74d8b50-35a1-4ce8-bfdd-4c90782b8db5@oss.qualcomm.com>
-Date: Fri, 25 Apr 2025 11:35:40 +0200
+	 In-Reply-To:Content-Type; b=iKBsQK3ssOKcL43xqKkhCkYCo8JGXpYGihX8VTsS/1ckIZtP473ZLgfwKWlEX6xWW2dsWp9QLj8bzrEokR97xG86V/amIn1RS+y6UP0Jds5YJYPAc//iAoxJ8v6xH++pg6I+9wUiqkTZZ88SaE8W1rr3hiUjCYrfihcjUjtY914=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=NkLwhNKw; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1745573790;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0lD/LvDHoI9QqH/8Vxi3D6OYMYIKwTaooepYa8dn5Hs=;
+	b=NkLwhNKw/tvw4dq4PNdHdR0SkHEjk0U/zaQzwu1ijUF1kLu7GgrloodnAXr1H5jQm6uhZ8
+	Yna9/Gy0OpbzuM57AEu1WLsN4DSZ0fJ7fuoEU2/LHEAVeY7Cvdpv2bPnTYZOhjSsLTL7ml
+	xgolR98cAZzzfn/I19X0TwXnNiAeK5k=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-67-akjxUarnOKu0tpay3pBj0A-1; Fri,
+ 25 Apr 2025 05:36:27 -0400
+X-MC-Unique: akjxUarnOKu0tpay3pBj0A-1
+X-Mimecast-MFC-AGG-ID: akjxUarnOKu0tpay3pBj0A_1745573785
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 971FD1956088;
+	Fri, 25 Apr 2025 09:36:24 +0000 (UTC)
+Received: from [10.44.33.33] (unknown [10.44.33.33])
+	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 3A67B19560AB;
+	Fri, 25 Apr 2025 09:36:18 +0000 (UTC)
+Message-ID: <bc28ca3e-6ccd-4d43-8a51-eb4563a6ed06@redhat.com>
+Date: Fri, 25 Apr 2025 11:36:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,85 +66,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Add Qualcomm SC8180X Camera clock
- controller
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250422-sc8180x-camcc-support-v1-0-691614d13f06@quicinc.com>
- <H56Iba_grof22uzTtGCI-APhiDAGSejNod6jsSVIykm9ijaaj7PWqyszShCEGjIpM2wCLOn4a3Vfb8Hjziqklg==@protonmail.internalid>
- <20250422-sc8180x-camcc-support-v1-1-691614d13f06@quicinc.com>
- <621d8556-f95b-4cbe-809b-864417f0d48a@linaro.org>
- <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
+Subject: Re: [PATCH net-next v4 1/8] dt-bindings: dpll: Add DPLL device and
+ pin
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250424154722.534284-1-ivecera@redhat.com>
+ <20250424154722.534284-2-ivecera@redhat.com>
+ <20250425-manul-of-undeniable-refinement-dc6cdc@kuoka>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA2OSBTYWx0ZWRfX4BCIx0YE18QK AOodeuCau4z2nb6Lp0y4JzUels8xk0CdO2Guznz9UFAqXoODR7mGXACvjDFfv91l5lnMB6uSjTE 5JyottQ8x0a5BYfITePaocdu/PyiVIGPklB/uJki24HbXWlrTGkDDvcjeeqqJRdqOmFgAm4o96N
- UAL4n18l6YuRCZKHy2ECc19YnZ/FpfTaXx1YJe+yttJAd8dGImyKGzlL6Afpr5sSQZk08ZfpY86 2Mi4yqHYgQ+l+GYxdiq0t54ToIFvFrppsnI8dJEwRCQzef4NFDSU25eV//AOWx2XjD9tnqIHJrA Hh3Vuuddn4WvixeM+Y32IQgQjf6Ec3yQ8hA5pfiGs4iZCnn+2UD0T9E6OmZfUMi1GNVqlcZ1t5I
- 9PxTUrBh5t760BdKkPeb9ZX37p87ZIRccQlnp4CUeJuI+DUnXWZGvwB4keGNy50C+l++4Qsh
-X-Proofpoint-GUID: tdNBuPdaKpS7jvTDiNIGseCmqureVblG
-X-Authority-Analysis: v=2.4 cv=B/S50PtM c=1 sm=1 tr=0 ts=680b5774 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=4NoTk0SwpzZkwhluMIYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: tdNBuPdaKpS7jvTDiNIGseCmqureVblG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-25_02,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504250069
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250425-manul-of-undeniable-refinement-dc6cdc@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 
-On 4/24/25 12:38 PM, Satya Priya Kakitapalli wrote:
+
+
+On 25. 04. 25 9:39 dop., Krzysztof Kozlowski wrote:
+> On Thu, Apr 24, 2025 at 05:47:15PM GMT, Ivan Vecera wrote:
+>> Add a common DT schema for DPLL device and its associated pins.
+>> The DPLL (device phase-locked loop) is a device used for precise clock
+>> synchronization in networking and telecom hardware.
+>>
+>> The device includes one or more DPLLs (channels) and one or more
+>> physical input/output pins.
+>>
+>> Each DPLL channel is used either to provide a pulse-per-clock signal or
+>> to drive an Ethernet equipment clock.
+>>
+>> The input and output pins have the following properties:
+>> * label: specifies board label
+>> * connection type: specifies its usage depending on wiring
+>> * list of supported or allowed frequencies: depending on how the pin
+>>    is connected and where)
+>> * embedded sync capability: indicates whether the pin supports this
+>>
+>> Check:
 > 
-> On 4/22/2025 5:11 PM, Bryan O'Donoghue wrote:
->> On 22/04/2025 06:42, Satya Priya Kakitapalli wrote:
->>> Add device tree bindings for the camera clock controller on
->>> Qualcomm SC8180X platform.
->>>
->>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->>> ---
-
-[...]
-
->>> +  required-opps:
->>> +    maxItems: 1
->>> +    description:
->>> +      A phandle to an OPP node describing required MMCX performance point.
->>> +
->>> +allOf:
->>> +  - $ref: qcom,gcc.yaml#
->>
->> A suspicious lack of clock depends here. No AHB clock ? No dependency on gcc ?
->>
->> You call out the gcc above.
->>
->> Could you please recheck your list of clock dependencies.
+> This does not belong to commit msg. You do not add compile commands of C
+> files, do you?
 > 
-> The dependent GCC clocks are marked always on from gcc probe, hence did not mention the dependency here.
+> Whatever you want to inform and is not relevant in the Git history
+> should be in changelog part.
 
-Let's do what was done on x1e80100 - describe the AHB clock in CAMCC
-bindings regardless of how we handle it.
+OK
 
-This way the DT represents the real hw dependency, but the OS takes steps
-to get them out of the way (and then ignores the GCC_CAMERA_AHB_CLK entry
-because the clock is never registered with GCC)
+>> $ make dt_binding_check DT_SCHEMA_FILES=/dpll/
+>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>> /home/cera/devel/kernel/linux-2.6/Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+>>    CHKDT   ./Documentation/devicetree/bindings
+>>    LINT    ./Documentation/devicetree/bindings
+>>    DTEX    Documentation/devicetree/bindings/dpll/dpll-pin.example.dts
+>>    DTC [C] Documentation/devicetree/bindings/dpll/dpll-pin.example.dtb
+>>    DTEX    Documentation/devicetree/bindings/dpll/dpll-device.example.dts
+>>    DTC [C] Documentation/devicetree/bindings/dpll/dpll-device.example.dtb
+>>
+>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>> ---
+>> v3->v4:
+>> * dropped $Ref from dpll-pin reg property
+>> * added maxItems to dpll-pin reg property
+>> * fixed paragraph in dpll-pin desc
+> 
+> ...
+> 
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^dpll(@.*)?$"
+>> +
+>> +  "#address-cells":
+>> +    const: 0
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +  dpll-types:
+>> +    description: List of DPLL channel types, one per DPLL instance.
+>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> +    items:
+>> +      enum: [pps, eec]
+> 
+> Do channels have other properties as well in general?
 
-Konrad
+No, other characteristics should be deducible either from compatible or
+in runtime.
+
+>> +
+>> +  input-pins:
+>> +    type: object
+>> +    description: DPLL input pins
+>> +    unevaluatedProperties: false
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
