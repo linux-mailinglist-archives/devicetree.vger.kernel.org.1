@@ -1,105 +1,89 @@
-Return-Path: <devicetree+bounces-170658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6EFA9BE31
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:53:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5997A9BE3C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFFBA1B68329
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:53:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B5253B919B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79C522A80E;
-	Fri, 25 Apr 2025 05:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4297522A7F9;
+	Fri, 25 Apr 2025 05:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="yuheSb8h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XEB75zzO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D7E22A4F3;
-	Fri, 25 Apr 2025 05:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099C8CA6B;
+	Fri, 25 Apr 2025 05:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745560385; cv=none; b=VlAjthhqzQi9joWmXJBk9vUZdE98uzCWO6fr5/xKWXwQROLagm9Oy/KOcGadV6SeJqnj0WHelkL0M+mXcvEjEMPZmES9pY8z62MSuouqJs2SYuaRWtJCWJLRR7/6pliZHABOMbxvyt1cbqEKH4VXJb68IcKRhSFfFVN3JFa0pxo=
+	t=1745560764; cv=none; b=s81tr1GdsyrISrKmB4z0eHea/vyq1p24MLUcE4uwTcgTIF7WRGHvn8FkvsjkyZFQ7Tj/X/9654bTiMc39jcW2Yxlfi1yQ6OQX5jiJRSzXrGwS1QcrKnyEGYfgIvcQNaMIDz/TstmH2UcLPN7Ig909eG+bF9LGOR+HL32qFvXNgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745560385; c=relaxed/simple;
-	bh=7ZvFXhNY8gnq82v3dNyEoFqX8xDYnTNWAxehS3YFPz4=;
+	s=arc-20240116; t=1745560764; c=relaxed/simple;
+	bh=GLp1ktjFa7K3wjwfc/rJPiarptC1W+shUho7laLH4QA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PNpss5LTO8y8Rffo8MX0WjoLpK2IZSU8B5ZF+JGuWY1roW5PMt3xIwSNlIL2E78brpa2XAILUk2btXK0pNuk2ccfonkKtZ1TPGz8cTJEP/f04Qnmzej4xQ30W2srv+qsDD7vwGCL3RmrigrW7DWWndzCfIOyG8AzQtOkzEvar64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=yuheSb8h; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 083881F944;
-	Fri, 25 Apr 2025 07:52:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745560373;
-	bh=UyQprxTrTzeJEuddDXNiYr4ctzPhYLZ6Cp5WEsAgS9s=;
-	h=Received:From:To:Subject;
-	b=yuheSb8htIWbOcxaC4uxXuHyj0CX6UJYao3KmcRicGjt3irM9wHqvMVjc4T3ol8NN
-	 rK8IkJo+Hm6qk+L8FoHUQyue8CZ6yn/iWFiuJpYoulREypk49UYHf+O89rHlwEq5yg
-	 XRM1O0COTqgzcgB2kIwV76mGvhoZzqLZgcb8sZ5G7LnHokIOPXrIiyng+16M8qZlDr
-	 kiFJENmxo9Y2jfp9BZB9mbgU9j0XWjyNvpSENR+D9OfPCrw1tHKGAEcE89y/IPahTh
-	 Mgigt1E8PCarR6soLXSVo4hGNQh+DKfeUwv6Kszss1GDw6xhYpIOtsqVI4/CzGhpHG
-	 mxWZJ9MBSeyVw==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id 9BD827F94C; Fri, 25 Apr 2025 07:52:52 +0200 (CEST)
-Date: Fri, 25 Apr 2025 07:52:52 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Philippe Schenker <philippe.schenker@impulsing.ch>,
-	Manuel Traut <manuel.traut@mt.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v4] arm64: dts: imx8mm-verdin: Link reg_usdhc2_vqmmc to
- usdhc2
-Message-ID: <aAsjNP_2jo-zDeEk@gaggiata.pivistrello.it>
-References: <20250424095916.1389731-1-Wojciech.Dubowik@mt.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pah7bOPkZ1I34F1FQ9vnL5yvrAhe2VmZPSBdx6K7zqG9k5QLxtY4TaciCw/FnuTQNa06tEAnzXe1EJpnTsObXlYeTC3W/2Sv+MyAXCWbx5FY6g81/HuL9zh/5p+mifG5xw+W3BTlPpk5fkvdLqJM03MwP/W+a46HUYiz7KkM8GI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XEB75zzO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2388C4CEE4;
+	Fri, 25 Apr 2025 05:59:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745560763;
+	bh=GLp1ktjFa7K3wjwfc/rJPiarptC1W+shUho7laLH4QA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XEB75zzOCleMN1u4qU3hI0/g19GzAUy2M4ejlMLMuvN3pDW3JLiLvdbOFayRSHEKq
+	 VQLk2z04wzXPeZGTEt+Bf56fI1AC9cmfAeSmNkOOc/zoP1/QykCMMNSF6XcjXOAcCJ
+	 yxTUAnYy1w4lEx0KA7CS0uRYVFRetp5ytT3t/hpZ6W6ddjFQ5XwPNxVUphz5eBlWR8
+	 iTAubyJLavL2lK132zU0OUS8KhXcl04eCWwtKnKK31lAvEZk90id4BvI7xjDIFYWz4
+	 z367m6L8C0kf6TeQAuhh5OU/RWrzRJKk7c7TwomYxT00sdb3YhwYau/arEN+TgFbzp
+	 /HFETG4ueoMGQ==
+Date: Fri, 25 Apr 2025 07:59:20 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Ghiti <alex@ghiti.fr>, Mark Brown <broonie@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, sophgo@lists.linux.dev, 
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, dlan@gentoo.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] spi: dt-bindings: snps,dw-apb-ssi: Add compatible
+ for SOPHGO SG2042 SoC
+Message-ID: <20250425-prudent-ara-of-chivalry-bfffb5@kuoka>
+References: <20250425-sfg-spi-v6-0-2dbe7bb46013@gmail.com>
+ <20250425-sfg-spi-v6-2-2dbe7bb46013@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250424095916.1389731-1-Wojciech.Dubowik@mt.com>
+In-Reply-To: <20250425-sfg-spi-v6-2-2dbe7bb46013@gmail.com>
 
-On Thu, Apr 24, 2025 at 11:59:14AM +0200, Wojciech Dubowik wrote:
-> Define vqmmc regulator-gpio for usdhc2 with vin-supply
-> coming from LDO5.
+On Fri, Apr 25, 2025 at 10:28:13AM GMT, Zixian Zeng wrote:
+> Sophgo SG2042 ships an SPI controller [1] compatible with the Synopsys
+> DW-SPI IP. Add SoC-specific compatible string and use the generic one
+> as fallback.
 > 
-> Without this definition LDO5 will be powered down, disabling
-> SD card after bootup. This has been introduced in commit
-> f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5").
+> Link: https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/SPI.rst [1]
 > 
-> Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-> Tested-by: Manuel Traut <manuel.traut@mt.com>
-> Reviewed-by: Philippe Schenker <philippe.schenker@impulsing.ch>
-> Tested-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-FYI, you can have multiple fixes tag, and to be safe to not introduce regression
-on some stable backport because the 2 patches are not back-ported at the same
-time, better to have both the Fixes tags here.
-
-No need to send a v5, the tag should be picked up from this email.
-
-Francesco
-
+Best regards,
+Krzysztof
 
 
