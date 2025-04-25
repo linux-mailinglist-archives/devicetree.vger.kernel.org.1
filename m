@@ -1,105 +1,104 @@
-Return-Path: <devicetree+bounces-170770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC59A9C417
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:46:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CDA4A9C41C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:47:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08AB81886D6E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:46:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 831C83BBAB9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D43233707;
-	Fri, 25 Apr 2025 09:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF712367BB;
+	Fri, 25 Apr 2025 09:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hd+sQnwz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BEA21CC62;
-	Fri, 25 Apr 2025 09:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB3A233707;
+	Fri, 25 Apr 2025 09:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745574380; cv=none; b=KWXSaB0ggIgIDOKMYVDRYdKoXIj5gA9QQT/+II3+ZhpMnCmmpOLzWVRRls7AnLJc8TlslTlGA+qDcA1zeDyc3G60i1pQGiM766B8Eg2P17txf2hDr47y4vg7MO4a7lSVZ/F+i/ZN8YM+S7jpU68oL9QUZfcxgWLGzoQhtl/FfvY=
+	t=1745574446; cv=none; b=sxDMzGwmjsXHxh/oe8Lmupk4fShZDpKr08GdI+ASwi0b+VZO7R1xf23LgXS1s/mf7h+6NR/dAeHXPngyjToDRuKofx0q5/F4KtwcCN0xDbZf1ylJEXYRGONwn2H0M1RAAehCNFAkD5QdgvhevqTh/xz/1hB10YLb1wAzxJ1ayFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745574380; c=relaxed/simple;
-	bh=lbHCAUcJiqFBb9oSVZO3x35jBLSGHVixZR3edNDteGg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tLAokAJR+1nkckkulgx1AGeLR+iosXwWTGTskWA422pz3E11sYl7EozztKOcEZ4VYF4WYduSEOxKwFgK5aVsuZeCwxN/79X+ilod0aGxn0JVTBO79vMYC1YFyejwoidsxpVvlzMleDWCbYqXVRnb90EHh3YcqiHL8D3wx/ApjNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 20689106F;
-	Fri, 25 Apr 2025 02:46:13 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC9D43F59E;
-	Fri, 25 Apr 2025 02:46:16 -0700 (PDT)
-Date: Fri, 25 Apr 2025 10:46:14 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, <dlan@gentoo.org>,
- <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
- <jernej.skrabec@gmail.com>, <krzk+dt@kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <linux-sunxi@lists.linux.dev>, <robh@kernel.org>, <samuel@sholland.org>
-Subject: Re: [PATCH 1/1] arm64: dts: allwinner: correct the model name for
- Radxa Cubie A5E
-Message-ID: <20250425104614.7efdd6c1@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v649ntfAEUdV5S1wM8nUGhvaOP-RBw07XcxwdbafbC2PYQ@mail.gmail.com>
-References: <20250425023527-GYA50272@gentoo>
-	<20250425030006.45169-1-amadeus@jmu.edu.cn>
-	<CAGb2v649ntfAEUdV5S1wM8nUGhvaOP-RBw07XcxwdbafbC2PYQ@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1745574446; c=relaxed/simple;
+	bh=hwJ0UFkl9vhPKzbNWc1Xi5cv3PU5yR6pZ52y0oNJg78=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=isdfpotXvA4q9JKaMUtHIf22c6pVUkCZkXg1cP9XITNf6KtQInLlC2HdMcPMEMyVFpaKdNxZrt67gbKS1HonvuQ/+J1OpNzvTQ9MPoVb8OUM0jIsF83fjivkKE3dvkRhTN2X5uBfiNsgAlAfzMzWm/AqLO4lyYo+R3FCgfsPiSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hd+sQnwz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C343C4CEE4;
+	Fri, 25 Apr 2025 09:47:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745574445;
+	bh=hwJ0UFkl9vhPKzbNWc1Xi5cv3PU5yR6pZ52y0oNJg78=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hd+sQnwzEGfn4d5AnNfPaRDuzzQi4Cyu8Q7fz7oaU3zLXUrK7swqNXkfSAsDskk90
+	 Ef5QPXoRtMp0DZI9lMCtMP/XnBTJvQt+51cCMz7h1HaX5QSFpSYOZp1nGf6Ti/0kD5
+	 PvTjNzvmguHd4GdEeJFmK/LPwwCdxk7CX3Sf5d1wUpdXkZR0/oMC+noNPAENwRl7By
+	 jgz31BduQXpbrQzUnyVg5ifyiKjlxFRazACxcZZ2KbN7RXbjSGyRBvHfQOcdqjbPo3
+	 fXvht/Mf5thEx5KPVgpkeb7Uf/1TJAJEI3hHcJYvxLo6F151Kba+D0DfAE/ULnJw1x
+	 NCNpC1iRCrGGg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u8FeY-000000000Ej-1xWm;
+	Fri, 25 Apr 2025 11:47:26 +0200
+Date: Fri, 25 Apr 2025 11:47:26 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Wenbin Yao <quic_wenbyao@quicinc.com>
+Cc: catalin.marinas@arm.com, will@kernel.org,
+	linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_cang@quicinc.com,
+	quic_qianyu@quicinc.com
+Subject: Re: [PATCH v2 1/4] arm64: Kconfig: enable PCI Power Control Slot
+ driver for QCOM
+Message-ID: <aAtaLm253EtlXwan@hovoldconsulting.com>
+References: <20250425092955.4099677-1-quic_wenbyao@quicinc.com>
+ <20250425092955.4099677-2-quic_wenbyao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250425092955.4099677-2-quic_wenbyao@quicinc.com>
 
-On Fri, 25 Apr 2025 11:52:42 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+On Fri, Apr 25, 2025 at 05:29:52PM +0800, Wenbin Yao wrote:
+> From: Qiang Yu <quic_qianyu@quicinc.com>
+> 
+> Enable the pwrctrl driver, which is utilized to manage the power supplies
+> of the devices connected to the PCI slots. This ensures that the voltage
+> rails of the standard PCI slots on some platforms eg. X1E80100-QCP can be
+> correctly turned on/off if they are described under PCIe port device tree
+> node.
+> 
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+> ---
+>  arch/arm64/Kconfig.platforms | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index 8b76821f1..14d2742c8 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -270,6 +270,7 @@ config ARCH_QCOM
+>  	select GPIOLIB
+>  	select PINCTRL
+>  	select HAVE_PWRCTL if PCI
+> +	select PCI_PWRCTL_SLOT if PCI
 
-> On Fri, Apr 25, 2025 at 11:00=E2=80=AFAM Chukun Pan <amadeus@jmu.edu.cn> =
-wrote:
-> >
-> > Hi,
-> > =20
-> > > It seems I'm a little bit late for this, but while we are here,
-> > > Can we also append 'cubie' to dts file name?
-> > > e.g. - sun55i-a527-radxa-cubie-a5e.dts =20
-> >
-> > Usually we use the device name (without the vendor name),
-> > maybe sun55i-a527-cubie-a5e.dts would be better? =20
->=20
-> I agree with this one.
->=20
-> I can probably squash in a name change (since I'll be squashing in the
-> SD card slot fix anyway). Andre?
+Note that this symbol is getting renamed for 6.16:
 
-Yes, I noticed that yesterday as well. So that's fine with me: both the
-name change and the squash.
+	 https://lore.kernel.org/lkml/20250402132634.18065-2-johan+linaro@kernel.org/
 
-Cheers,
-Andre
-
-> In that case would you prefer to keep your current patch separate, or
-> squashed in so that everything is clean from the first commit?
->=20
-> It's up to you since you lose out on commit stats.
->=20
->=20
-> Thanks
-> ChenYu
->=20
-> > Thanks,
-> > Chukun
-> >
-> > --
-> > 2.25.1
-> >
-> > =20
-
+Johan
 
