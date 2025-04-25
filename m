@@ -1,259 +1,172 @@
-Return-Path: <devicetree+bounces-170730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2452A9C34D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:24:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2886DA9C34F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7FC16519E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:23:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4243A1BA361B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229602356D9;
-	Fri, 25 Apr 2025 09:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403132356CD;
+	Fri, 25 Apr 2025 09:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEPZ2Vei"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fb0THmZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76DE13DDAA;
-	Fri, 25 Apr 2025 09:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F8F17AE1D
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:24:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745573026; cv=none; b=ry5FUgXqEpajXg4yjeAXRa9Uq7mTs2DnU/rsUlan5tLiROwIzz9wy7SQMccFy6ylE12Dlzw5R0IgQhL0Z19InoJGm3skDrFXAgxA6UeIa4FIIJNt/0XUelhNEAx5/VWxXWmZzLCGMBDWGeqxTb3XN0GwmIpRIphz+hnyvyB1a4s=
+	t=1745573092; cv=none; b=r3MajVju5z2fJQ0t12aDCY8g2nfP+ClZmKWNFz9rxp9/T6R6+eSbVnV9jal4jMyuurDm0YwctAASCJR/HxYkPFZlchO3WolGxXsSaYFa9otedrZz9/xX/dvmi3gBctX6cpKnzdpSkCTXtvYfCJIqrxYYplAs1FBdKXbEt579FJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745573026; c=relaxed/simple;
-	bh=KAlzrjGhOn7tfcFsz0aTVbPsP1+AQtEz5TjIIxT3KXE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qQZ533bKKA0hVv9oUixrKDWRW8k6o2B/j4LoV+RprcYux8Xzjw21enOzGwzCrcxpBSCgx7nUGXhrLk0MU6lYfyzoZpUoiDi6/SXAcKxzARkdQWJPNf05EU25X5KM6vujAnOX2F0kdAEnI5spiFoQgsb3RmnMe/0wc62XTunmFR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IEPZ2Vei; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0CCEC4CEE4;
-	Fri, 25 Apr 2025 09:23:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745573024;
-	bh=KAlzrjGhOn7tfcFsz0aTVbPsP1+AQtEz5TjIIxT3KXE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IEPZ2VeiXsyJZzzKY2ma1w3HbfvpvrT6HI1acvxN+Uap+a1rd0evyPo3NSpZVUpYU
-	 wAaNEy0lU1WO2si/JbPPFe3ZDilV4kObLwXYq7rSsfHw8u4P/Gdoci5wMQKoc0srr/
-	 LtVeO2/OsSPhvMsfW/tvcQaTW/BHjOipYY1fuLnWfSm4uQDjEfIt8OA3XH8w2sz1yb
-	 L72v24AXhw7yts/5fccxfF667DA7qAQGZiz+XmVEQ+VDInO+JI3LDMjJsc5Ak2M6KE
-	 3+C/x55Loej61qBaTRKKRTZztXVTTYbcgibX/uQwyisZq1aQygzmAs5waTLTinob53
-	 X5IWR71Ic820A==
-Date: Fri, 25 Apr 2025 10:23:38 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v2 06/17] mfd: adp5585: add support for adp5589
-Message-ID: <20250425092338.GA1567507@google.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
- <20250424161838.GM8734@google.com>
- <20250424163024.GL18085@pendragon.ideasonboard.com>
- <20250424163830.GO8734@google.com>
- <20250424193931.GM18085@pendragon.ideasonboard.com>
- <20250425075859.GQ8734@google.com>
- <20250425091351.GO18085@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1745573092; c=relaxed/simple;
+	bh=Yc4BwXcDlBm1F9/eAPkhhmBz3Iwfa2QIOUzglIaGc98=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sWz3obmNLUiyf7MOF2ahIWDbxxwjnOsSOwTEFmH9Syj4HXtblXPxq7yj5aiBbF+m9rZOulE4CMkDk3FGbqoJzJeGmckJOOAmV7sy5u93sXGzJguG/DbinUtsPIgoo9AmNqR6WFGKRZGbEWVVpiL2ooRh9MZryZET7u1K4yYxKOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fb0THmZo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8TAtZ025097
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:24:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6TOVSLiHysmlmuAA0RHIHbn82IoarWugi9dE7AH6+e8=; b=fb0THmZotVS5nHV8
+	0N130J808EBa/0W5Gm8f/hAMIKSxI3bAFiZRZf1zTqz4bmTqelFz8wJU6IfKsbhY
+	o9W68ieDv/RsIWpNZ3rbMbjrPlpx87bUbKFMgicGJ4qWnO/9c0EwtyrLJZ8mM7uQ
+	7czMfxp8TYtvAS346utC/03lQkvESDO7ytrbF9Qcp5VmBAsWawLAIhb1SpQDmpDt
+	WMOae9a6xYXqjWHVMGCZsrloG5kbhOAcMfMQGzjGJaqPQ5CyqbEeih9qObRyiPYK
+	DNUfDtC2VAkSuNq/t+LCIT2moIv37QCB/2yvR7xd7JAWlDe5ytyPedxsp0a/M+Z1
+	7TfnZg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3rdkt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:24:49 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-47ae9ed8511so3637311cf.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 02:24:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745573088; x=1746177888;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6TOVSLiHysmlmuAA0RHIHbn82IoarWugi9dE7AH6+e8=;
+        b=ja99HE9fExZ1EwweTc69K/1AbpkuSM9H1L1xdateqtLUW734b5nCuBqxKyx7jA7yBq
+         HnL4XgraOLPpSPJy7bcG7L6wJv+F4QNcYCtPH2mHEfDfrP+pksmIpQe+iQGw9HShhidH
+         WgSbTh8kYtGCF7JKZza0umJLciG8wdYAoONKFQpq0TC3k3Iai6kCCA1qAV6qoiU+ZEPa
+         jlKOmS9/BmeCoJylvyw3jj8zHYKMiRKtJkbwDdFcXdJR1yMCYZhCI/OlG4Clx3ESBEyk
+         naMAaDW8zJEc/n3ZYyb+dsE3TOPl1D/TCtOD7j33FUvSyvTMfZ4q4v2rfOBMYjbrYU8B
+         HWFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUeSOzmjviuEtLk6FpY9fO6hKsl1eE1/V+VkY61mi1O688TIXwjG5C25eYcKG/Pj42imNdKnJmqFS5D@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTBz6EYzM05gwzS9XtdfpbDOFsIn1hhRIqiMG4C4/IYDw4c8aH
+	+plGk/FeuvP6KFQLVXpuv3/KB2fvaEavhNRflnTFwdFSCvfAi+2TcqRf7NS8cLPCu14qbyDVeT2
+	6UA9Pu0bHK7oiSAJ9o5UHBJPF0k7lagkkvEb+7Q5Tbmx6UVlSeqEGg/QvU3Ha
+X-Gm-Gg: ASbGncs4L7b+K5KZEC4FKF9Qg4ighziaLJEYyXd2SWBzGkijyAdBk/RaxzI6e9kHOC8
+	ZiycBEw4/YtUCNe4pNWBSnlFiCpeIFXQcTR/obIdE5BbMtCZNJOOELtcuUeJH6tC9Vx9WiXbDmM
+	Xdw04JYzI1QvK3F0zFDbvmkVRmH3kvR0U6RYnNlyUwwVCgMrVAoxx33/6v0z/eTi8bI/KgGU35W
+	JbEChfTQtqlSOqjJe0FZBNn+kh7FOr2MRI+ecGOA/YqphIkfYju2mTAOchw9DQ1sIdFyHL3Yhgg
+	ZxL9QfKSH6Km2Dy368uEnUw5LZM=
+X-Received: by 2002:a05:622a:1a28:b0:472:1de1:bc59 with SMTP id d75a77b69052e-4801c796973mr7967921cf.6.1745573088533;
+        Fri, 25 Apr 2025 02:24:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IECDV4NjfiCTRpDdBppQk7mkiFY9COAykAendzS1IIWlk9k/YXc3xDR978i701ANPjxYOXj4Q==
+X-Received: by 2002:a05:622a:1a28:b0:472:1de1:bc59 with SMTP id d75a77b69052e-4801c796973mr7967881cf.6.1745573088207;
+        Fri, 25 Apr 2025 02:24:48 -0700 (PDT)
+Received: from [192.168.65.5] ([78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6edb0becsm102529766b.167.2025.04.25.02.24.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 02:24:47 -0700 (PDT)
+Message-ID: <e83b58ea-0124-4619-82a5-35134dc0a935@oss.qualcomm.com>
+Date: Fri, 25 Apr 2025 11:24:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250425091351.GO18085@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8750: Add Soundwire nodes
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org>
+ <20250424-sm8750-audio-part-2-v1-1-50133a0ec35f@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250424-sm8750-audio-part-2-v1-1-50133a0ec35f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 7esGoHLhHJ2lhkdQzvQEPZQnEA-g7xDv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA2NyBTYWx0ZWRfX6zywYebKa04x 8EghchWEnq4L2VrueFPfCNOgCNssEM21B2n9FOEw0dzRFGew1dQmqsOc73uMwtCuuH3zrQYm416 YLloHQpoyEI+eH1+chHQhvKXc0KOT4YH7M0tWr0yUtiIxAMnL6zkr8G59x4J97SGeytpu6PcxmF
+ e4x88JGILhJ4VkKRdi3/CcsCQ5aAJqlb2phzLtN/5T71m5PvTFBR0usgBTMy9jX1iHumPHwn5BI PCW/mFZd7IUZYLA3nncNMNN7egM/xjEfkeRhFMdyv/bIvJrSuEuafuyuv3BAN3hFh/ZitCmScd4 DDZ2cny7SVYDuWIKExzj/n0OSCOpjwxSlq+pz7jJnN3P6HMmzVqelMGsUjvDjdeSBMI5NukUWP0
+ Vs0tlg1csh6G8sjP57OAN8XdPs/IlbeCgRZLNhxIoRfVZj8hjFlWt454BIBtICGltFcuZ+Sl
+X-Authority-Analysis: v=2.4 cv=ELgG00ZC c=1 sm=1 tr=0 ts=680b54e1 cx=c_pps a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=qkmjNN0peoRQDp3El6UA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: 7esGoHLhHJ2lhkdQzvQEPZQnEA-g7xDv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ malwarescore=0 clxscore=1015 bulkscore=0 phishscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
+ mlxlogscore=762 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250067
 
-On Fri, 25 Apr 2025, Laurent Pinchart wrote:
+On 4/24/25 11:40 AM, Krzysztof Kozlowski wrote:
+> Add Soundwire controllers on SM8750, fully compatible with earlier
+> SM8650 generation.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 122 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index 149d2ed17641a085d510f3a8eab5a96304787f0c..1e7aa25c675e76ce6aa571e04d7117b8c2ab25f8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -2257,6 +2257,36 @@ lpass_wsa2macro: codec@6aa0000 {
+>  			#sound-dai-cells = <1>;
+>  		};
+>  
+> +		swr3: soundwire@6ab0000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
 
-> Hi Lee,
-> 
-> On Fri, Apr 25, 2025 at 08:58:59AM +0100, Lee Jones wrote:
-> > On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > > On Thu, Apr 24, 2025 at 05:38:30PM +0100, Lee Jones wrote:
-> > > > On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > > > > On Thu, Apr 24, 2025 at 05:18:38PM +0100, Lee Jones wrote:
-> > > > > > On Tue, 15 Apr 2025, Nuno Sá via B4 Relay wrote:
-> > > > > > 
-> > > > > > > From: Nuno Sá <nuno.sa@analog.com>
-> > > > > > > 
-> > > > > > > The ADP5589 is a 19 I/O port expander with built-in keypad matrix decoder,
-> > > > > > > programmable logic, reset generator, and PWM generator.
-> > > > > > > 
-> > > > > > > This patch adds the foundation to add support for the adp5589 gpio and pwm
-> > > > > > > drivers. Most importantly, we need to differentiate between some
-> > > > > > > registers addresses. It also hints to future keymap support.
-> > > > > > > 
-> > > > > > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > > > > > ---
-> > > > > > >  drivers/mfd/adp5585.c       | 223 +++++++++++++++++++++++++++++++++++++++++---
-> > > > > > >  include/linux/mfd/adp5585.h |  57 ++++++++++-
-> > > > > > >  2 files changed, 268 insertions(+), 12 deletions(-)
-> > > > > > 
-> > > > > > [...]
-> > > > > > 
-> > > > > > > + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 8/R7", numbered 0 to 7 by the
-> > > > > > > + * driver, bank 1 covers pins "GPIO 9/C0" to "GPIO 16/C7", numbered 8 to
-> > > > > > > + * 15 and bank 3 covers pins "GPIO 17/C8" to "GPIO 19/C10", numbered 16 to 18.
-> > > > > > > + */
-> > > > > > > +#define ADP5589_BANK(n)			((n) >> 3)
-> > > > > > > +#define ADP5589_BIT(n)			BIT((n) & 0x7)
-> > > > > > > +
-> > > > > > > +struct adp5585_regs {
-> > > > > > > +	unsigned int debounce_dis_a;
-> > > > > > > +	unsigned int rpull_cfg_a;
-> > > > > > > +	unsigned int gpo_data_a;
-> > > > > > > +	unsigned int gpo_out_a;
-> > > > > > > +	unsigned int gpio_dir_a;
-> > > > > > > +	unsigned int gpi_stat_a;
-> > > > > > > +	unsigned int pwm_cfg;
-> > > > > > > +	unsigned int pwm_offt_low;
-> > > > > > > +	unsigned int pwm_ont_low;
-> > > > > > > +	unsigned int gen_cfg;
-> > > > > > > +	unsigned int ext_cfg;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > > +struct adp5585_info {
-> > > > > > > +	const struct mfd_cell *adp5585_devs;
-> > > > > > 
-> > > > > > Okay, we are never doing this.  Either use OF for platform registration
-> > > > > > or use MFD (or ACPI or PCI), but please do not pass MFD data through OF.
-> > > > > 
-> > > > > When I upstreamed the initial driver, I modelled the different functions
-> > > > > through child nodes in DT, with a compatible string for each child. I
-> > > > > was told very strongly to remove that. We have therefore no other choice
-> > > > > than constructing the name of the cells based on the model of the main
-> > > > > device.
-> > > > 
-> > > > It's okay to add this information statically in this driver.  It's not
-> > > > okay to then pass it through the OF API.  You can pass an identifier
-> > > > through the .data attribute to match on, but we are not passing MFD cell
-> > > > data through like this.
-> > > 
-> > > Sorry, I'm not following you. What's the issue with the .data field
-> > > pointing to an instance of a structure that lists properties related to
-> > > the device model ?
-> > 
-> > There isn't one.  By all means place any type of platform data you want
-> > in there.  Similar to the information you'd find in Device Tree or the
-> > old board-files type pdata.  You can even extract the platform data you
-> > pass through the OF API and place it into MFD platform data.  The line
-> > is being drawn on passing through one type of initialisation API with
-> > another, MFD through OF in this case.  MFD cells containing device
-> > registration data (including platform data!) is not itself platform
-> > data.
-> 
-> I'm still not following you. The issue will likely go away in the next
-> version anyway, as the MFD cells registration code needs to be rewritten
-> to be more dynamic.
-> 
-> > > > > > > +	const struct regmap_config *regmap_config;
-> > > > > > > +	const struct adp5585_regs *regs;
-> > > > > > > +	unsigned int n_devs;
-> > > > > > > +	unsigned int id;
-> > > > > > 
-> > > > > > What ID is this?  We already have platform IDs and MFD cell IDs.
-> > > > > 
-> > > > > That's the value of the hardware model ID read-only register, it is used
-> > > > > as a safety check to verify that the connected device corresponds to the
-> > > > > compatible string.
-> > > > 
-> > > > I suggest changing the nomenclature to be more forthcoming.
-> > > > 
-> > > > 'model', 'version', 'hwid', 'chipid', etc.
-> > > > 
-> > > > Why is it being stored?  Is it used to match on at a later date?
-> > > 
-> > > The adp5585_info structure contains static information the describe each
-> > > device model. There's one global static const instance per device model,
-> > > and they are referenced from device id structures (e.g. of_device_id).
-> > > The driver gets an info pointer corresponding to the model reported by
-> > > the platform firmware (e.g. DT). It reads the device ID from the device
-> > > at probe time, and compares it with the value stored in the structure as
-> > > a safety check to ensure there's no mismatch.
-> > 
-> > I think the current implementation (as a whole, not just the IDs) needs
-> > a rethink.  Very few attributes are changing here, both between the 2
-> > platforms and the several variants you're trying to support, leading to
-> > masses of repetition.
-> > 
-> > Looking at the static configuration here, this is starting to look like
-> > 2 pieces of hardware with the only variation within each being the
-> > default register values.  Is that a correct assumption?
-> 
-> The variants of the ADP5585 differ mainly by how they handle the default
-> configuration of pull-up and pull-down resistors. The consequence on the
-> driver side is limited to default register values, yes.
-> 
-> ADP5589 differs more significantly from the ADP5585. Differences between
-> the ADP5589 variants are small as far as I understand (datasheets are
-> public, should you want to have a look).
-> 
-> > If so, does
-> > mean all of this added complexity is just to configure a few register
-> > values such that the two platforms can be used for different things?  Or
-> > are these really 6 true hardware variants of one another?
-> 
-> They are different physical chips with different product numbers.
-> 
-> > Either way, this approach doesn't scale.  Instead of multiplying the
-> > amount of platforms / variants together and creating that number of
-> > static structs, I'd suggest using templating and only adapting what
-> > actually changes.
-> > 
-> > For instance, the following attributes in 'struct regmap_config' never
-> > change; reg_bits, val_bits, and cache_type.  And max_register only
-> > changes between the 2 hardware platforms.  The reg_defaults_raw values
-> > can be changed in a switch statement.
-> 
-> All the fields of the adp5585_info structure that you would like to
-> dynamically set would then need to be stored in the adp5585 structure.
-> The would essentially trade static const data for dynamic data and more
-> code. Is that a personal coding style preference, or are there clear
-> advantages ?
-> 
-> > Same goes for 'struct adp5585_info'.  Only regmap_config changes between
-> > variants.  Everything else is exactly the same.
-> 
-> I assume this comment relates only to the different variants of the info
-> structure for the same model (e.g. ADP5585 or ADP5589). There are more
-> differences between the ADP5585 and ADP5589 entries.
-> 
-> > So, with the use of a
-> > few of templates and a couple of succinct switch cases, you can control
-> > all of the differentiation you need.  And for every variant you wish to
-> > add, it's a couple of extra lines rather than many, leading to a
-> > much more scaleable implementation.
-> 
-> That also seems like a personal coding style preference :-) Adding a new
-> compatible variant with the existing approach only requires adding an
-> instance of the info structure, while your proposal would require
-> changes in multiple places. It seems more work to me (from a personal
-> preference point of view).
-> 
-> Of course, if the new variant requires developing abstractions that
-> don't exist (such as supporting large differences in the registers
-> layout as needed for the ADP5589), refactoring of the code will always
-> be required. This seems a bit of a theoretical concern though, as I'm
-> not aware of any other chip that would require such development.
-> 
-> In any case, let's see how the next version will look like, after
-> reworking the MFD cells registration code. Maybe it will make everybody
-> happy :-)
+They're v2.1.0, same on 8650, there's a number of new registers
 
-Let's hope. =:)
+[...]
 
--- 
-Lee Jones [李琼斯]
+
+> +		swr2: soundwire@7630000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
+> +			reg = <0 0x07630000 0 0x10000>;
+> +			interrupts = <GIC_SPI 761 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 785 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "core", "wakeup";
+> +			clocks = <&lpass_txmacro>;
+> +			clock-names = "iface";
+> +			label = "TX";
+> +
+> +			pinctrl-0 = <&tx_swr_active>;
+> +			pinctrl-names = "default";
+> +
+> +			qcom,din-ports = <4>;
+> +			qcom,dout-ports = <0>;
+
+There's 1 OUT port on this instance
+
+otherwise (modulo the settings I don't have a reference for)
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
