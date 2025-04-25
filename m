@@ -1,130 +1,189 @@
-Return-Path: <devicetree+bounces-170969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC86A9CCFF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9BAA9CD24
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED964E0C58
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:30:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CBEF4A680B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3440328A1D8;
-	Fri, 25 Apr 2025 15:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vIY7oGRd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA5A27A90F;
+	Fri, 25 Apr 2025 15:33:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022113.outbound.protection.outlook.com [40.107.75.113])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F29D289346
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:30:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745595018; cv=none; b=DZJQDKkFF9WORr2HcuCsjZX+3NghKzEAod26NYWCO2yu7LkozUjDBQSbStTEtwQ/Ab+whpvxv2Dd/hFdxUnVZ6BlKjSZlNPleKoQdzKP0uBTPnvPFIDPqwnFM58+sw76kcQf6gcuiRb8MGwPIV4sN74ex/O9T4jA7Un1klqr6HE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745595018; c=relaxed/simple;
-	bh=ahFIwcIRMsxGsYw7Ro1znBHhQb9IRWhbo25rb6BKN1s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EE/eoP3u9XhjSoIr4BzFHQadMO+XS4R+WzRFbdr7FScB7blKqXXIt90EJEDOHLHSgwDDI59ivFJo5g9/Ac9jiflb50lj9vDlsFe/rWiv0cdx8INGkXiKfVn8SfqaW0yNV43D5tDvc8XWx53ja6uo/tw7qYgNRW1IUw97EYgJ1iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vIY7oGRd; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-39ee5a5bb66so1444643f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 08:30:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745595014; x=1746199814; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XYX9LNywUVjZ5MKIhmplUJhVT60qSNh9kSQfKfBdFKY=;
-        b=vIY7oGRd8jYvnGLP4tQWZxxx6C8AFthUwW6eEVVbdrkJLWUf1be9CY84oNfaJ1Ynwt
-         OUoth6j+G8ubGm8ByBCLEEfbsyXOA6cbPDZn0DAnRtXkPENRnVTcEfrl7+Fps/gdzad7
-         xwZQnnLEbhGFn03LsCYZNpEkZPynC8+30FV4Kw6oOyrAa+h62XHI2+UKncKY21yZeZj3
-         JEaF8XG6RKy0hAnrNhi6chSpxfBlx8uB+UGJoAGcVad4AS+53VlNDGjFfv/07B0zmBkj
-         vlBTOW4vs5zETlF/4dDAqXMRACkfjMtD3af4nrzBZH/m1fUcCn8bpATx7RXfysVecQFf
-         KM5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745595014; x=1746199814;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XYX9LNywUVjZ5MKIhmplUJhVT60qSNh9kSQfKfBdFKY=;
-        b=uDoX8VSSvOQKI7LUKdb2c3LLP+HJgGn6RnUh8DCGqSCduSicKfIQ8sjfl3HrpTmcxY
-         s0Y7Nz3VkEZqx3w17Q9f2Z4FYxvLjlXL7XMlNdc74H1vqXrEy5qBe9GUDuz1X6zBSOzd
-         mgi1TYV9mp4mKz30IKxD/RdFxFE/DB2wCtREJgAirbG/mL748VadrzW55bDWOfEnnJwz
-         DlhozG11kIYEnJOEeUmvzSp1pgDinLGoOWayNvset0D0W2FVF78n2tD2oLlK1/IGYybp
-         sSX9OMwNJKnZcETkAiF8R41eSW6HAvntqQVqW2s7Z+zngZAYeH52xArGafrCHRouKWkp
-         YSVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXvrKOU53fBashQtPrMld0b4gDS30yz7pN79SyYcn15G5T8YzR27rJwZ4jFelodPBG4b1frIhxM181@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYRKn22QSm9lA1IiixzXt30A4reDad3voGqwT/pk8lKuHRq6PA
-	Uo3Cl3mYJNwQLZaNLkyMqBoXd449lLI8MTWZqR8H460rQVzX+O4H1RLis0nF0Vc=
-X-Gm-Gg: ASbGncvVmjaYyu8cpGPRs2tE4TV9I/6gsZ8xGKokajIaie7Re1bxf7ZUQL+/cn0hsKB
-	zWtWZ3m4gNEkobxIu1Sz9a7r36X7woUiZemkWzSvn7KgiyhVzuczvmeIF1ENuBM2B/ynWRMZFq/
-	OPdapv8M77T0DuoD0WzgJjG9oW+mVvWHfBOPcbcBhUFh2z4z4a+EJ1y9wy3qDxcLeTx7BIg0Axz
-	e++0rYfbxBNCaNN8lMEySQG+eW9lytegt/tJ6XHcdFoTVZsvv0C2CFNcc+MIbJ/lhS8UNJG7kH5
-	mr7P1LthYn2SWDBeytiqWe0dvhUPKWCQIS/8tR9jelIPA9F7BQ7hoEaO
-X-Google-Smtp-Source: AGHT+IGyQoffBkkjn9GdlBOynB35D8e4ETPc01tgM75yAlc1oqBxq4rXGz8GsC/XanHp8nvcBgQZNw==
-X-Received: by 2002:a5d:6489:0:b0:39c:1f02:449f with SMTP id ffacd0b85a97d-3a074e0e059mr2152557f8f.2.1745595014541;
-        Fri, 25 Apr 2025 08:30:14 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a073e6daa0sm2592945f8f.101.2025.04.25.08.30.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 08:30:14 -0700 (PDT)
-Date: Fri, 25 Apr 2025 18:30:10 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: "zhangzekun (A)" <zhangzekun11@huawei.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>, robh@kernel.org,
-	saravanak@google.com, justin.chen@broadcom.com,
-	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
-	kuba@kernel.org, kory.maincent@bootlin.com,
-	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
-	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
-	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	chenjun102@huawei.com, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 1/9] of: Add warpper function
- of_find_node_by_name_balanced()
-Message-ID: <aAuqgiSxrh24-L-D@stanley.mountain>
-References: <20250207013117.104205-1-zhangzekun11@huawei.com>
- <20250207013117.104205-2-zhangzekun11@huawei.com>
- <Z6XDKi_V0BZSdCeL@pengutronix.de>
- <80b1c21c-096b-4a11-b9d7-069c972b146a@huawei.com>
- <20250207153722.GA24886@pendragon.ideasonboard.com>
- <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB9F25DD17;
+	Fri, 25 Apr 2025 15:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.113
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745595198; cv=fail; b=lAXWg7o674ZNm54sDvfd/tc61SAN5D5Ym9UlLT/uWF9MTdIB7WWNvylUqg1aJ9N3f7RUO5Aa0ftU6+DVShi764Hx//RUU0inC7BCBbCnlG+jPiEM1x1trASKgnnVRkr722yjGmcrEnrk5z1TTtVK/7yps4auNhu+BpD2H60GPZ4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745595198; c=relaxed/simple;
+	bh=QGYbkcGqsKONHSy9/yVc5p1c/uc6S/EqyW5RdGOO/8s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DWXG+WJZKWutoulxVMfdIeOh0ALzLEsmy6e/F5cIjUU2RSQvjES4Y3yUXrtqlK6obLiqZGFnNZ2ZRCX8vlrUBoWRSyDVCYSampRduv0512aeeQ21s9mAswCXwixNXnjuTLLkb+p8+u6vSPqPL9mba98o/qgOyGWdIaJ+rgjrLnY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CPhOGipnQoFWxiKr+dJtqeXwsM3Oqj6kP0OeGSO2sksXGXdMR3bz0YM6KwzZJiiDcH5wS7gZwTXTPrrkIdq+Wbk38QMtsy0AcGOpGPo4vRacnKnDXWTh2XTkWaThGAOFMr2f0RaNP6gz97sweODAgUqhpvjb0jqUnz4AaCiHoTucWn1CnT7B0+/slJGvvY9+Ku0/P0W5qIF6cqkinL/N3yV41wIOR+Q4lwUGlrZMQW43vpK4auzNb2DXc+iZWzpixE/vGIBmimRKlu4jZ86V4FZ92yfF0osAcfdJOg/F4l/l6FbKRsMIYrHv38Dc06GyVm1ya1yQBuLjmprUnZL4Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nJNrcF0FIHXEYZsntD5pbLhkeUZCY2pTGoUPqBRsYCs=;
+ b=u9tF0SobfPSoNcULH2DZWKksiIzFTiTU14pdeVmLphv4QtzR+SlKLvjdC3W1tuDEt2NEcx5lShXuNJ/r3Y/5EU2izFEZK1lmMJCi9vMtGWH4T4ejkTQ5NtD0PuPKyk80MM5J9HGJkjayFS21vqeIZuViXDn2/P6e3XYx1k1TFszMlDkoJJHZNcQRKKjk1NEEDLl3tFTSnPbv4CqGS5nZ2Fg08qq2w0mHm+HP323YsWrIkX+ykNLvcX2HsTaXun6C+a2ZP4EaOyNhiYS8C5ZGh4xg7NXQkyjkWNmbs3NgcI9New5YgftnA/HkFoeQG9Af5912n4H9BycgSjlnJSsW3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0056.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2b5::17)
+ by TY1PPFDEC2C26D0.apcprd06.prod.outlook.com (2603:1096:408::92c) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.25; Fri, 25 Apr
+ 2025 15:33:08 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:400:2b5:cafe::78) by TYCP286CA0056.outlook.office365.com
+ (2603:1096:400:2b5::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.39 via Frontend Transport; Fri,
+ 25 Apr 2025 15:33:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.12 via Frontend Transport; Fri, 25 Apr 2025 15:33:07 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E645441604E7;
+	Fri, 25 Apr 2025 23:33:05 +0800 (CST)
+Message-ID: <5334e87c-edf3-4dd9-a6d5-265cd279dbdc@cixtech.com>
+Date: Fri, 25 Apr 2025 23:33:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] dt-bindings: pci: cadence: Extend compatible for
+ new EP configurations
+To: Conor Dooley <conor@kernel.org>,
+ Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "peter.chen@cixtech.com" <peter.chen@cixtech.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250424010445.2260090-1-hans.zhang@cixtech.com>
+ <20250424010445.2260090-3-hans.zhang@cixtech.com>
+ <20250424-elm-magma-b791798477ab@spud>
+ <20250424-proposal-decrease-ba384a37efa6@spud>
+ <CH2PPF4D26F8E1CB9CA518EE12AFDA8B047A2842@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250425-drained-flyover-4275720a1f5a@spud>
+Content-Language: en-US
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <20250425-drained-flyover-4275720a1f5a@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|TY1PPFDEC2C26D0:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6ece377-799c-41e3-88d7-08dd840e7a69
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QkRETHhkdUlneFQyQ0NFWEtlVXEwckNheEFnWEpiZFlpbVlBS2VWYm5oSW9w?=
+ =?utf-8?B?TUVRQm8vT0FQMS8yNWpFZi9HWHFOd055b284ek44SmJsZlN1dVpLVVhDVXhp?=
+ =?utf-8?B?M3ZsVVQzVEdjNkhVU0MvOFFiSy9tWmpSSHM4b2dmc0JuVXg5TFJYRldPb3Na?=
+ =?utf-8?B?SmJxT3drb3JoY25zdU1ZNDZwTDduZUtEcG16blBsT1NKb2VqczZOMUNwSm9F?=
+ =?utf-8?B?MHJ3ZGk4cFhxcEwvRjQ4UC9PU003NEpsYTB1bEpET3h6Y25ZaFRKNnUxTUpl?=
+ =?utf-8?B?QW9DUGVLRitRZHZRbVB6aXcwYU1tclp6MXVhRHNMK09mNm13SFJRcmJoOHRI?=
+ =?utf-8?B?WlRXVm1VNVZQU0V6NUQwNFRMWFJBTndiTHhQSFVOQ0dxaHhjTHZyR3U5Q2Ji?=
+ =?utf-8?B?c29qamk4S2tWSXNPRjlabXZUanU0ZnBsMVBHbEFFbGd6b0hWK21vU1NSb1hN?=
+ =?utf-8?B?RGxSbEsrMkZnbWM1elVGWVR4cFZkcVg2aXdEa2JObElxVEUrcnFpbE5BemUz?=
+ =?utf-8?B?L1JSZXRMWnBibm03OXFtVEpSTXM5elVLSEljY0hiQ0tzQVdvRnV0U3NyK0dH?=
+ =?utf-8?B?UEswWFZGM3hjQzNOOXJYcXN3Z1JHSzBuSk40Q1RpdW15OWFHN3Q0MmtjNWxQ?=
+ =?utf-8?B?ekV3ZGVMTXNrckFvQlJ4NkRTZ2NRNVg4emdPRE8vSlM0WmpQZmpmanRNYm9Y?=
+ =?utf-8?B?N0IxeU1kdnVwZUlPaGlsR0Z6YzdScUpYNWZPSjhEZjFZN0lCYXZBOVFaZDBp?=
+ =?utf-8?B?aGI2WDRwTmRVcmhRUzc5ZTlrcjMvY3pYV2U3eWFXRSs4aVdWMUFQK3R5TkQy?=
+ =?utf-8?B?aWlxUWt2bzRLRmtwYXFIcWRNa1VTT1FLeUtqSUFpWmNIUGZ1Q3Q5VWNrQzZL?=
+ =?utf-8?B?eG5FSmFqM2x6UXZucUhLRTJtZWpCeWprQmVIcmQyQjU0NTByZXRqcVFGSytE?=
+ =?utf-8?B?aVM1b0h6YmNyR2svOWc0QnJFa1B0RUlEUmNsZ0dDc3JoYmJiWXMwREpMWjA4?=
+ =?utf-8?B?OHpVVFdjZVF3VzVDeXJyTVVFOG1pSld0aVcweFNwYjU2WUVJSlpDTFAxQnBB?=
+ =?utf-8?B?cnVSaE0xZk9BOXJYZEMvSEMybncveXJvS2JINVhRSTV4eld4U1hvV2VZTDJ5?=
+ =?utf-8?B?enQ0cDUzczQ0dHVEelMrSlhXT0FpL3gwRWZCQWFTbDdJSHAwNjRkOXB6ZGRr?=
+ =?utf-8?B?THV5aVlnNWxsKzhkck9FcmlPMnRJWFM2dGM5dUd3VGZsNzdsNHdNc0w0bThC?=
+ =?utf-8?B?SXN6MVVWdkcxNmxrVGZwYnNZU2lOblFLUGZUNnRLaktSUWVhRlFGa011am1r?=
+ =?utf-8?B?UmwybTdncXJVQjVMUHdNeXk2QVg1ZHhvMU05ckI1cHY4T3dGZ2dheVMzSlBi?=
+ =?utf-8?B?ZHE0T3pmR3QwOWdwOTVqeHJDYmt5dVBpQ1VaK1VmczBiSVh2MkZCYWhqaW1M?=
+ =?utf-8?B?bzFaZXZBeEVuN21aUGxiVjF5QmhjeHJhZzEzOUFFMkFuRm1rdWgrZkhpMlBL?=
+ =?utf-8?B?M3RybnJIYW1aZHAySTN4ajJJem44djNscW52aE5kWTJ2bFI0VDRwYnp1RWxH?=
+ =?utf-8?B?QTlKR3ExN0FJc2ZVRUJuWG4wSlZyUURiZEpmWld6dDV6NlhuZ29mL2xFNFlC?=
+ =?utf-8?B?NFpLOHJNRENoZ0VPOUF1bWU2MTloZ1FqRVp0Z2Z4SGpzcWErcVVkNDFTVldt?=
+ =?utf-8?B?L0FrMHBPL3NjcldOc3k5b0NsUHFpOGoxUUZocG8xOXBjbzlhRVltNTM5ZEFh?=
+ =?utf-8?B?by91VnVtWjBrRTYrL2hBMXRZZWRpcExhRFVpN2d6Y25oNmFCMU5VaUl2T0lS?=
+ =?utf-8?B?M1IwOENCbDJ4OTJXVmZFQ0svR3hSWklUTFV2WTVPUGJBajlRQU1NdnllaWlo?=
+ =?utf-8?B?Ym4wMExoTytPSFdpdEhPdjVCQVRtRk5tZ1k4Sml2WVZlN3lVelo0cXJrQnRH?=
+ =?utf-8?B?UDQ0R0Qwdko3ZE9MR3VYYTJXbGpyLzFybFlFVEUxRFJlSzZOMEZGaXRKZU1H?=
+ =?utf-8?B?b2QyMkNOcFdIT2JVVVo3Skt5KzE5TWM3TC9DNGplOUtpR1NKYjlqa1pPRGpP?=
+ =?utf-8?B?cUFDWXpMdGdtTTZQZTgrZjZTcjkrUlQ2bVpkdz09?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2025 15:33:07.0715
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6ece377-799c-41e3-88d7-08dd840e7a69
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB87.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFDEC2C26D0
 
-Whatever happened with this thread from Feb.
-https://lore.kernel.org/all/20250207013117.104205-1-zhangzekun11@huawei.com/
 
-The issue was that people weren't expecting of_find_node_by_name() to
-drop the reference on the of_node.  The patchset introduced a wrapper
-which basically worked as expected except no liked the naming.  Krzysztof
-suggested that maybe the callers should be using of_get_child_by_name()
-instead.
 
-I created a Smatch warning for this and here are the four issues it
-found.  The line numbers are from linux-next.
+On 2025/4/25 22:48, Conor Dooley wrote:
+> On Fri, Apr 25, 2025 at 02:19:11AM +0000, Manikandan Karunakaran Pillai wrote:
+>>>
+>>> On Thu, Apr 24, 2025 at 04:29:35PM +0100, Conor Dooley wrote:
+>>>> On Thu, Apr 24, 2025 at 09:04:41AM +0800,hans.zhang@cixtech.com  wrote:
+>>>>> From: Manikandan K Pillai<mpillai@cadence.com>
+>>>>>
+>>>>> Document the compatible property for HPA (High Performance
+>>> Architecture)
+>>>>> PCIe controller EP configuration.
+>>>> Please explain what makes the new architecture sufficiently different
+>>>> from the existing one such that a fallback compatible does not work.
+>>>>
+>>>> Same applies to the other binding patch.
+>>> Additionally, since this IP is likely in use on your sky1 SoC, why is a
+>>> soc-specific compatible for your integration not needed?
+>>>
+>> The sky1 SoC support patches will be developed and submitted by the Sky1
+>> team separately.
+> Why? Cixtech sent this patchset, they should send it with their user.
 
-drivers/net/ethernet/broadcom/asp2/bcmasp.c:1370 bcmasp_probe() warn: 'dev->of_node' was not incremented
-drivers/net/pse-pd/tps23881.c:505 tps23881_get_of_channels() warn: 'priv->np' was not incremented
-drivers/media/platform/qcom/venus/core.c:301 venus_add_video_core() warn: 'dev->of_node' was not incremented
-drivers/regulator/tps6594-regulator.c:618 tps6594_regulator_probe() warn: 'tps->dev->of_node' was not incremented
+Hi Conor,
 
-regards,
-dan carpenter
+Please look at the communication history of this website.
 
+https://patchwork.kernel.org/project/linux-pci/patch/CH2PPF4D26F8E1C1CBD2A866C59AA55CD7AA2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com/
+
+
+Best regards,
+Hans
 
