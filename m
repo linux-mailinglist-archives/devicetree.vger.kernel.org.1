@@ -1,184 +1,187 @@
-Return-Path: <devicetree+bounces-170644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F820A9BD5F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:53:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D758A9BD7A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:19:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A82171BA265A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 03:53:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3746E1BA1715
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 04:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795761FBEA4;
-	Fri, 25 Apr 2025 03:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA94215F52;
+	Fri, 25 Apr 2025 04:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dj3xELOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDD21FC0E3
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 03:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E984A1B0F11;
+	Fri, 25 Apr 2025 04:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745553222; cv=none; b=k8azAc6DlCvtNoa+nr0/1yxstT5ZT5xePjGsQwdA6wQrHykU56xcO0oT84ufFCZBAcPpPAxyldrzoNj6uM1eQM/drPH+Q0Po22JwRBKPYvTrAWbhzI2sf++T77lVqQnqUDYtV/jEeNgcCnJ7bHwFfiVhz0T7MWmF+upfQZteV/E=
+	t=1745554777; cv=none; b=rqZpjtbE5eYGVRZ9V3qCYRb0hDlJU/7Nt872pD8EwMM1b9xOOwmmbs18AvEkVlfETrRwQcx3gGJBLC5w1JDN5ODmW2Pgw2ItfFvU7YWnPBA3V5fyIH57n2nBlWznnr5vBGfzpEWd+JztzDmlzte08L46Fv7NRjFFlSum6T/qLCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745553222; c=relaxed/simple;
-	bh=VztMRKzeOesNfHq7g9+wiowKS/oWGEpXbSGKWsDLxuM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Haq0EaBO7g5X6kb0B13Rif8EOcH0x2yJVAP27ouWoAugkd0II9L8IOEoSMTPQW+h0WKqJtRK3XCMFVo085fuQK7YNJuafz6a7MgyRb7Vp4LpdVVVTL5JXL15he0cQBxkfF9ptTZRzu0Jk/1FD0VieAJKIniIWda5Ss6XgvU4f3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-3d92585938aso3946195ab.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 20:53:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745553216; x=1746158016;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W4gLbG2Dv99fli5CpF3p4x5McAYSv7OcSMqvlFvR3oA=;
-        b=hkj6dpUo3g4DtNWXPehY294vA19SpY92f+0vxpmbYbWPEnycUe4Gfdoh23nENyiNPw
-         c2MgIXUAS80PNSlL5beh8e/B1FEPs4jVPWFmvcY6fLZF2OySvdolvl2QOQBOoUgOnXZP
-         ISU5o2Gf6dNSiQmYCHjg6yHoDF+SJn0jp/uQyWf9WDwfzOM5smUrtGEsvHGksBRS6jbX
-         w9hNIHfzZ2wcX6Bquq3MWtn1dXEatQhUPgCqMqclSURZ30JrL/V0gnyt84VusRciRUmN
-         Vp9wsl/x4FRYxS84fvZzXfgTwSHKZUkiSGDMXvS+tTRCgDhrz/IdzMRPzJn9nr6tO/Ja
-         q3Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCVl5OkgRyyHJHp39aB8wVV1dXr/Xu6BPGdvaEWYrYKj2jMkm5fcFKQUJ0p+WCssSOEFLu2TwBOalJkq@vger.kernel.org
-X-Gm-Message-State: AOJu0YytwO+748hoUe3NEmxcp6PTHVQE+ebMzhpWUjCCiopsn49uoLrd
-	PJCLrsNnfkTvNgJepCeYK/RjtqU1ZLRK1fSS5KN5ujDa8xr7Nhdy/7DbqZNU2c0=
-X-Gm-Gg: ASbGncs51C9DHeCbcz799PvOnQo/37XSB4Gk7NAaBTSnxQdSXfwL7lzPIu2ZrZcy/4r
-	S2tWNumsWYCcqG+CWHRa9y2Fba4bQrPXDGce0LSa7ZW/1H4cIU7+OaeWX16+1vaqLsm4BPRuCui
-	OSSMG3yItQhng4WOVRbZSoKznX7EAWQ1WJ9UnFYxnVDqeYfcZed/AsldvW2z2flhtOuPgyzgUBU
-	LrEyXBKwPnCd0g7jWV5Ut7rFRhOhis+yEs2PmpyMRGS8cw7AtFHw3l26D1QezkdyrEWBj6oBUC7
-	pWnttCx8FxWGPLAlOAg2X4xW6JjTgXMeU7o8aA9gtrg2hiOkV56zo3L/xhtAJmvKIjO4OQrD3g=
-	=
-X-Google-Smtp-Source: AGHT+IGYPJFOLRPsuXr+j3sLZt1jnyS80LVRe9DixpeKl1Z+wTP+VPmgLoQPIx1lpR4BI1ndTsrk5A==
-X-Received: by 2002:a05:6e02:1605:b0:3d5:8937:f419 with SMTP id e9e14a558f8ab-3d93b46d73dmr5571835ab.13.1745553216347;
-        Thu, 24 Apr 2025 20:53:36 -0700 (PDT)
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f8249f8b70sm592147173.12.2025.04.24.20.53.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 20:53:36 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3d81ea55725so5646005ab.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 20:53:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXiCO0K5yuQanw1HmAWeVe8BzUCibeyK3qPtBKKKLARFpFK5yQRX6LEQsOWSCVf16N9WFhvvkeao3Oj@vger.kernel.org
-X-Received: by 2002:a92:cd8a:0:b0:3d4:3ab3:5574 with SMTP id
- e9e14a558f8ab-3d93b3ae9fdmr8037145ab.3.1745553215789; Thu, 24 Apr 2025
- 20:53:35 -0700 (PDT)
+	s=arc-20240116; t=1745554777; c=relaxed/simple;
+	bh=HvUQ2jlkbOcoo0ZLx18H2YZfkCaqCX2iH2Clv+lgH08=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uJCFSA1MfSpNRA5EAciC5d7K7RKxtBQ1jg4WC0UHvtH9QZ/9+vySyq+o2Q+CTTiReGDt3ye1+XNjpMt7VJqkECg+z+keKABvK1SF9gue+VTCFfBdyGWs8AVzgHvLEo37oHhnry1EQPmOwAOQ/Jcf0lrxzadw1OcySEYRIl3GXjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dj3xELOr; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745554776; x=1777090776;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HvUQ2jlkbOcoo0ZLx18H2YZfkCaqCX2iH2Clv+lgH08=;
+  b=dj3xELOraIB7aik0g0Oa+q8TG7lsShKJ9P5AsSAEqG8mdyTb6xBAmqmG
+   qVPH75qNAP6W9SRgO1wARjqk5L0O7m+IoneYf/wWGUoUVMcCK0E32Qtnl
+   9mcrog8MllCLsIa9gD9fjfefrjC32EyuafY1o3Et0k5Vn/s9xMBNLabFD
+   +l1sp+Brmmszt0wOYdKcvIKRbP3ugVEV1XqjXFdf9v/QCoNK8ejhZvpGF
+   P21RVEKAauvSTCehaqSJxIeWq5UMkEEj2F9MEbuhn1rvXU2O49Wn99+rc
+   uHd1Qs9XNtflbgkQdwZ5+qboy5QJOLl2hMJZCBzz8JhWPXr9mREVr9lv1
+   A==;
+X-CSE-ConnectionGUID: XwfJqSOqQxG0t2Pv5Q3jmw==
+X-CSE-MsgGUID: rkH/NgniRlmTsWsMvQ02nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="47225238"
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; 
+   d="scan'208";a="47225238"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2025 21:19:35 -0700
+X-CSE-ConnectionGUID: mud3aOYySRScxADNvob0ig==
+X-CSE-MsgGUID: Uh0zV26bTnKghmeikkJV/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; 
+   d="scan'208";a="170016448"
+Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 24 Apr 2025 21:19:31 -0700
+Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u8AXB-0004pV-0L;
+	Fri, 25 Apr 2025 04:19:29 +0000
+Date: Fri, 25 Apr 2025 12:18:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	peter.chen@cixtech.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Manikandan K Pillai <mpillai@cadence.com>,
+	Hans Zhang <hans.zhang@cixtech.com>
+Subject: Re: [PATCH v4 3/5] PCI: cadence: Add header support for PCIe HPA
+ controller
+Message-ID: <202504251214.ngJwGxvn-lkp@intel.com>
+References: <20250424010445.2260090-4-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250425003422.3465-1-andre.przywara@arm.com>
-In-Reply-To: <20250425003422.3465-1-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Fri, 25 Apr 2025 11:53:19 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66vr_X3cB1g-On9opGQ7a4j1ASQyi4G=fqY07safrjfFw@mail.gmail.com>
-X-Gm-Features: ATxdqUGK_blFRIEkriAwI7w8rQlOD9oM5XGsLLIwKX1qwqnzLE3yxYAXQjZKka8
-Message-ID: <CAGb2v66vr_X3cB1g-On9opGQ7a4j1ASQyi4G=fqY07safrjfFw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: a523: fix SD card detect pull resistor
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424010445.2260090-4-hans.zhang@cixtech.com>
 
-On Fri, Apr 25, 2025 at 8:35=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> Trying to use the SD card on the Radxa board revealed that the card
-> detect wouldn't work as expected (insert not detected). Looking at the
-> schematic shows that the pull-up resistor is actually not populated
-> ("NC"), and the transistor just pulls the GPIO pin to GND, but it's
-> floating otherwise.
-> So using the pull-down flag is definitely wrong, we need the internal
-> pull up to get a reliable signal. The same is true for the Avaota board
-> (there is no transistor there, but it's floating in the same way). There
-> is no schematic for the X96QPro+ board, but experiments show it's the
-> same behaviour.
->
-> So change the GPIO flag for the card detect GPIO property to activate
-> the pull-up resistor for that pin.
->
-> Fixes: 80e0fb4e491b ("arm64: dts: allwinner: a523: add Radxa A5E support"=
-)
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
-> Hi,
->
-> please let me know if I should split this up into 3 patches, with proper
-> Fixes: tags, or if you can maybe squash this into the original commits
-> still?
+Hi,
 
-I can squash them in if you prefer.
+kernel test robot noticed the following build errors:
 
-ChenYu
+[auto build test ERROR on fc96b232f8e7c0a6c282f47726b2ff6a5fb341d2]
 
-> Cheers,
-> Andre
->
->  arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts | 2 +-
->  arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts  | 2 +-
->  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
-> index 03c9a9ef5adc2..2d2f3af91d05e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-radxa-a5e.dts
-> @@ -56,7 +56,7 @@ &ehci1 {
->
->  &mmc0 {
->         vmmc-supply =3D <&reg_cldo3>;
-> -       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF=
-6 */
-> +       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 =
-*/
->         bus-width =3D <4>;
->         status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts b/arc=
-h/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> index c0bce3f4fa925..59db103546f65 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> @@ -56,7 +56,7 @@ &ehci1 {
->
->  &mmc0 {
->         vmmc-supply =3D <&reg_vcc3v3>;
-> -       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF=
-6 */
-> +       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 =
-*/
->         bus-width =3D <4>;
->         disable-wp;
->         status =3D "okay";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> index 85a546aecdbe1..dea2acc1849bb 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> @@ -66,7 +66,7 @@ &ehci1 {
->
->  &mmc0 {
->         vmmc-supply =3D <&reg_cldo3>;
-> -       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_DOWN)>; /* PF=
-6 */
-> +       cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 =
-*/
->         bus-width =3D <4>;
->         status =3D "okay";
->  };
->
-> base-commit: 1e5a69d67d1b3c55c9b0cd3933af1436b5d52aa1
-> --
-> 2.46.3
->
+url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/dt-bindings-pci-cadence-Extend-compatible-for-new-RP-configuration/20250424-090651
+base:   fc96b232f8e7c0a6c282f47726b2ff6a5fb341d2
+patch link:    https://lore.kernel.org/r/20250424010445.2260090-4-hans.zhang%40cixtech.com
+patch subject: [PATCH v4 3/5] PCI: cadence: Add header support for PCIe HPA controller
+config: i386-buildonly-randconfig-003-20250425 (https://download.01.org/0day-ci/archive/20250425/202504251214.ngJwGxvn-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250425/202504251214.ngJwGxvn-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504251214.ngJwGxvn-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/pci/controller/cadence/pcie-cadence.c:9:
+>> drivers/pci/controller/cadence/pcie-cadence.h:851:8: error: expected ')'
+     851 |                                                  int where)
+         |                                                  ^
+   drivers/pci/controller/cadence/pcie-cadence.h:850:49: note: to match this '('
+     850 | static inline void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn
+         |                                                 ^
+   1 error generated.
+
+
+vim +851 drivers/pci/controller/cadence/pcie-cadence.h
+
+   811	
+   812	#ifdef CONFIG_PCIE_CADENCE_HOST
+   813	int cdns_pcie_host_link_setup(struct cdns_pcie_rc *rc);
+   814	int cdns_pcie_host_init(struct cdns_pcie_rc *rc);
+   815	int cdns_pcie_host_setup(struct cdns_pcie_rc *rc);
+   816	void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
+   817				       int where);
+   818	int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc);
+   819	int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+   820					 enum cdns_pcie_rp_bar bar,
+   821					 u64 cpu_addr, u64 size,
+   822					 unsigned long flags);
+   823	int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc);
+   824	void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn, int where);
+   825	int cdns_pcie_hpa_host_init_root_port(struct cdns_pcie_rc *rc);
+   826	int cdns_pcie_hpa_host_bar_ib_config(struct cdns_pcie_rc *rc,
+   827					     enum cdns_pcie_rp_bar bar,
+   828					     u64 cpu_addr, u64 size,
+   829					     unsigned long flags);
+   830	int cdns_pcie_hpa_host_init_address_translation(struct cdns_pcie_rc *rc);
+   831	int cdns_pcie_hpa_host_init(struct cdns_pcie_rc *rc);
+   832	#else
+   833	static inline int cdns_pcie_host_link_setup(struct cdns_pcie_rc *rc)
+   834	{
+   835		return 0;
+   836	}
+   837	static inline int cdns_pcie_host_init(struct cdns_pcie_rc *rc)
+   838	{
+   839		return 0;
+   840	}
+   841	static inline int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+   842	{
+   843		return 0;
+   844	}
+   845	static inline void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
+   846						     int where)
+   847	{
+   848		return NULL;
+   849	}
+   850	static inline void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn
+ > 851							 int where)
+   852	{
+   853		return NULL;
+   854	}
+   855	static inline int cdns_pcie_hpa_host_init_root_port(struct cdns_pcie_rc *rc)
+   856	{
+   857		return 0;
+   858	}
+   859	static inline int cdns_pcie_hpa_host_bar_ib_config(struct cdns_pcie_rc *rc,
+   860							   enum cdns_pcie_rp_bar bar,
+   861							   u64 cpu_addr, u64 size,
+   862							   unsigned long flags)
+   863	{
+   864		return 0;
+   865	}
+   866	static inline int cdns_pcie_hpa_host_init_address_translation(struct cdns_pcie_rc *rc)
+   867	{
+   868		return 0;
+   869	}
+   870	#endif
+   871	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
