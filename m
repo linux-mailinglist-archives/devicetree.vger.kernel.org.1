@@ -1,56 +1,63 @@
-Return-Path: <devicetree+bounces-170793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D440A9C4D8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:12:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5B6A9C4E7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:13:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 856081635D2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:11:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 917871BC1EC8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CC223236D;
-	Fri, 25 Apr 2025 10:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C9523E336;
+	Fri, 25 Apr 2025 10:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mS24obDf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sYnmDWWR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085AB22F75A;
-	Fri, 25 Apr 2025 10:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2130523D28D;
+	Fri, 25 Apr 2025 10:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745575881; cv=none; b=glTbWnVqbC3iBnCjbry6Bndg51C3Bv8mr4vmGtSE7kUzgaLsAK1+uoqiVkzGlqUGERSZ34lUKa/R3BEzfpz5pm4dOssdZ8xIfA0LvGZDso5A6sS9pcNYFyIU+h676HGlL+ZMyyPLDsMwjzZ9YS1fvGFhJzM7Ien76iEv/5Maptw=
+	t=1745575966; cv=none; b=m0YUsFS4o+WywAXs9nXJxEO0pvPRNMiI2I+jvpLa36tMmbWPGOefsOzgodJH0SKKqN90tk0yH/kJzLvSUt4Rj20WkPRnQM13iZ8BUIuOSuKnUq2mPvesAcVgbjOzG1e4U//EXFDSoghvSLfW6n7lUQqkXrTsvG1BQgghTMKwd/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745575881; c=relaxed/simple;
-	bh=kvvnHvigW0VQbIe0ZGV9v0oum5k9cSu8YzHMjbx3H6k=;
+	s=arc-20240116; t=1745575966; c=relaxed/simple;
+	bh=w/YbtN447aSdBmfIlYkAFSSQSAj3xU7PmAeeakRoArs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h9VB5X6tkpt/ixWCVtUm8JFUSHKiXRbldEa604JxaMe/vbPd2WEJfvBMu3njxiRYOI4LPEP0EZYRvfMKSZSyHnwgVWSFX34vZz99vC8RqndOdV41RMtUDUjunrSy/skx1A3Uijg7+ZChlf56f9P/KbfFrX91Z4VuV6GEEky6SMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mS24obDf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7230BC4CEEB;
-	Fri, 25 Apr 2025 10:11:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tSp14drbP4fo7x7BwzNDWZez68UVcpwJt/ll5BQ3knL/waG4OBRTE0jTgKz1Lu6+YOAR9sWey4QyRRaBoBh+f3a1mSP7jOnauO2OHfcXMEP3K40iAZXdYqxiMPhFLWFEXoO5YFdjWjxbKKHjMHjGHlTGUpKsxN9o08smlDPhB1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sYnmDWWR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3724C4CEE4;
+	Fri, 25 Apr 2025 10:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745575877;
-	bh=kvvnHvigW0VQbIe0ZGV9v0oum5k9cSu8YzHMjbx3H6k=;
+	s=k20201202; t=1745575965;
+	bh=w/YbtN447aSdBmfIlYkAFSSQSAj3xU7PmAeeakRoArs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mS24obDflvZCOBToupjgcFflGEET7oy3pnjXDwArZ3/F0z5+giauG00F+eIlB9Hfq
-	 j0Ihhc5pWkdBTlgEz009tUXKAlE001tYI6aockGWu8b0Taf4mD4ge60FW6WhBukP8m
-	 S73o1gCe2hC2pWdvT56nNCsaF0Id5DEy3lU6U9vAT9gLwDFOWGYHVllGDUevXjwoPI
-	 OmLkfmx0nIr74pNxQuzAOTwiks8+7PLbScWIgoZuR2Y9qMEFznpXcFwIxc8ljCSnmM
-	 a+NY0FoQ/IRgWNVK+TE4dJGGo+hg6F4HwyoOYEuey2AJ5CiF+mVCunpxt0KdFFwteg
-	 W6GtTyChAUEbw==
-Date: Fri, 25 Apr 2025 11:11:12 +0100
-From: Lee Jones <lee@kernel.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: pavel@kernel.org, christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
-	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/5] leds: add new LED driver for TI LP5812
-Message-ID: <20250425101112.GB1567507@google.com>
-References: <20250422190121.46839-1-trannamatk@gmail.com>
+	b=sYnmDWWRLrPoavB8wphVdQEsj7fYyH8NujFRmjLDA0Kyiu06rOKGg5D0UGDdznkhd
+	 gaVtlNt0UwB9pd0TbOWN433kG6dBIEl3mEPlL7G9GBocMKEoJzmby1ZwKyjTk6drP9
+	 EMyNVYFQ/NGo3rKBbuVHnXOFG/1mXREcczvoBl6Ak18ZdMziZfgsUKeXNEeUHyRDay
+	 NlQ6z8lO8XAKwoM/yhHosad3MVreqoWIgMPgN44oTGWMI7+EvGz3d2ap5PIk+IWk0T
+	 /EOvR1EO5dhB9jOtUNE3U1AxnCSkxjdWgoD0nRKO1ur5P6qaVbqU0igHIpZGkEujJH
+	 jn2DoPP3feELA==
+Date: Fri, 25 Apr 2025 12:12:43 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
+	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com, 
+	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com, quic_mnaresh@quicinc.com, 
+	quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: serial: describe SA8255p
+Message-ID: <20250425-graceful-psychedelic-leopard-0da7fe@kuoka>
+References: <20250418151235.27787-1-quic_ptalari@quicinc.com>
+ <20250418151235.27787-3-quic_ptalari@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,66 +66,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250422190121.46839-1-trannamatk@gmail.com>
+In-Reply-To: <20250418151235.27787-3-quic_ptalari@quicinc.com>
 
-On Wed, 23 Apr 2025, Nam Tran wrote:
+On Fri, Apr 18, 2025 at 08:42:28PM GMT, Praveen Talari wrote:
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: UART core irq
+> +      - description: Wakeup irq (RX GPIO)
+> +
+> +  interrupt-names:
+> +    description:
+> +      The UART interrupt and optionally the RX in-band wakeup interrupt.
 
-> This patch series adds support for the TI/National Semiconductor LP5812
-> 4x3 matrix RGB LED driver. The driver supports features such as autonomous
-> animation and time-cross-multiplexing (TCM) for dynamic LED effects.
-> 
-> Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> ---
-> Changes in v7:
-> - Mark `chip_leds_map` as const.
-> - Use consistent `ret` initialization.
-> - Simplify the function `set_mix_sel_led()`.
-> - Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
-> - Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
-> - Remove `total_leds` and `total_aeu`.
-> - Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
-> 
-> Changes in v6:
-> - Add `vcc-supply` property to describe the LP5812 power supply.
-> - Remove `chan-name` property and entire LED subnodes, as they are not needed.
-> - Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
-> - Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
-> 
-> Changes in v5:
-> - Rebase on v6.15-rc2
-> - Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
-> - Address Krzysztof's review comments
-> - Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
-> ---
-> 
-> Nam Tran (5):
->   dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
->   leds: add TI/National Semiconductor LP5812 LED Driver
->   docs: ABI: Document LP5812 LED sysfs interfaces
->   docs: leds: Document TI LP5812 LED driver
->   arm64: dts: Add LP5812 LED node for Raspberry Pi 4 Model B
-> 
->  .../ABI/testing/sysfs-bus-i2c-devices-lp5812  |  144 +
->  .../devicetree/bindings/leds/ti,lp5812.yaml   |   46 +
->  Documentation/leds/leds-lp5812.rst            |   79 +
->  MAINTAINERS                                   |   12 +
->  .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |   10 +
->  drivers/leds/Kconfig                          |   16 +
->  drivers/leds/Makefile                         |    1 +
->  drivers/leds/leds-lp5812.c                    | 2736 +++++++++++++++++
->  drivers/leds/leds-lp5812.h                    |  348 +++
->  9 files changed, 3392 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-lp5812
->  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
->  create mode 100644 Documentation/leds/leds-lp5812.rst
->  create mode 100644 drivers/leds/leds-lp5812.c
->  create mode 100644 drivers/leds/leds-lp5812.h
+Drop description. It is not even accurate because you do not allow
+wakeup to be optional.
 
-Nothing about this driver has anything to do with the LEDs subsystem.
+> +    items:
+> +      - const: uart
+> +      - const: wakeup
 
-Suggest moving it to drivers/auxdisplay instead.
+> +
+> +  power-domains:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: power
+> +      - const: perf
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reg
 
--- 
-Lee Jones [李琼斯]
+Keep the same order as in properties. You already got comment about
+placement of 'reg'.
+
+Best regards,
+Krzysztof
+
 
