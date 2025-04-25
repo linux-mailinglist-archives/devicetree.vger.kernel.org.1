@@ -1,127 +1,181 @@
-Return-Path: <devicetree+bounces-171022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0241CA9D062
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:20:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7722CA9D06F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:23:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17E5F1BA700D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:20:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B92B64C421F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F468217663;
-	Fri, 25 Apr 2025 18:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3C3217647;
+	Fri, 25 Apr 2025 18:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="L2zE90Bl"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="FQXA+UJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com [136.143.184.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98713215F7D
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745605196; cv=none; b=HHbtMvdrUbwOnEcryjPkfJuLLbbaR7aEP4BenFkwXNrXlIRSvuRJaE2YU7AZAmbbn1C7w66sC0z2ibo4S7lsMUX9MrMknzgJDQDIJS2juizz069xq52Xlf/acHGfJSZFQhD091C3kpSC8Mc+FhG3q1vXRKEFL/dYrZqEmzx0b+s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745605196; c=relaxed/simple;
-	bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=Mhk3SwsDWAUz00sOn9XuyouhDxBIU3n2fBZOT0kQtf7bwhE/Y2G413glIw3PRC3Z0ne31CX3rLlyYtshUNE5UJllLhLLE9ladMN6Ix3RMfqDoIOWRamC8sHcxRQhqUjCuS9K0j/SDkcXhop+ZK0T/PghO0MXsEcLpMkdzvM4Ja8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=L2zE90Bl; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43edb40f357so18096975e9.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 11:19:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1745605193; x=1746209993; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
-        b=L2zE90BlQkCwN8RxPhglh5+YQzR3YQ8NPSekKiGRb4u2Zs2dfJ/tItuWZaFHeDES1f
-         V5W+e3hYuUJdWUFXpzD7ozesoIyZ9euiDfsvy5aF6BGN67VAUFi9u1T/Xqlmtt+Fm/Bt
-         nHZXHjAjQo2Cs5df9yeqE4vu60ATz6pMTKTRV5vW0GNzbI7KPI0GHiCRj9gzGiIGCZCK
-         lPssUdlz3UXbcZ8ByT0YXjeDgGXVjsGq7iA5LoWzdHacW4tRqD74ODrKglFJLEoJ+wMB
-         FAut6WbA3gE5MJI45Oz4oTFNG/tBUup5rFhdDT9xhpxiWbqB1dmIF9CtoynWk1jJkd9X
-         Kpcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745605193; x=1746209993;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
-        b=Vg4ppw68JbTatGM2CT42pTXfN8fF6B66HDkJAXQle/+5wK1o/nlz9oUw9IdXtTe++3
-         vcvhEzuR6xQHCZ7J0Lhg159T2ozJvM13Q+MX6PHCLgks2WQXA9ybKfRB165C2M8JLIjb
-         LQsFX60tYry9cMRnFekRIBg5tM2KyWQtwOwpGfbuF8WOUhB0temsgxUBj1crwEytuC39
-         tS4e/ltVqS/tRmDhewyEp6dWU8JWhqHoiKqnVH7hW1W6p+Ov/qiPoLNfB5Q2W1Q8lJE5
-         cm+WNOaYlWG+CAzgx27XK3Ir2UI2ngsUDitHxpiLckQE9y/gLJngMuM3awdsVZRG4T4/
-         w+cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2OJYTuCME7zVsNrnJCsr+DII8hY5HLD872OfxuVEYbkDk6QBak4UDvRlo65PJMV4YI/jxIOt3jFL2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw1q15YmsbMagOU504EQg1sxuMWlLnGCvnfazdq6oD5sTeb1qX
-	8W4ulFelLtUuIBrah6ZLFFbsim4traTk6+bPEUZoNxss0cwRBenVtEAMQVLaqxM=
-X-Gm-Gg: ASbGncuvFA0R1UObl8fYOTvdN0oXhVjfGrVbZYbfZUIcEx7REJV77FGqxiC+qhiFeWS
-	Bt8oMz/XXK0gmynGrz9rgUU0DLQj/D6V1PbOAHPd4Fvo9zMe4uGdx+8sDmXfQ7UnR2LMgQvMdmG
-	DnovFQJRIAWcJjYQ2RVFu/sqaWm5JyQLSfSOZbYLEvdUzNQoHOIypC6TzsFjMJxKFDh7KATRirI
-	cqWab4dyev9WAdN4RBby8T3S24a3xUgxQxiMZsqrwEk2KUKKZYilZFzCCsv1ge7+YH1AJsY74Gd
-	hW2DANpRXFCG5aYHn1pGDZTgSCsLEK4KPTsZanhLOGQA5Z+av/xJ5HI2XjNGFcmT4wC5xgmt5iw
-	1HdbprxZ48qgNytSC1oO5J7zuJT19qlbG6gFru0wA3/An5VUHArKq
-X-Google-Smtp-Source: AGHT+IFJByfdmWek2xSwsLT86f5MrKiJHwIbsxI4YxA+BfoGu8K395c02Fr79u8UPzgvjnNg9CP1eQ==
-X-Received: by 2002:a05:600c:1e03:b0:43d:24d:bbe2 with SMTP id 5b1f17b1804b1-440a66b7b14mr25609255e9.28.1745605192764;
-        Fri, 25 Apr 2025 11:19:52 -0700 (PDT)
-Received: from localhost (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a536a02csm32734525e9.27.2025.04.25.11.19.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 11:19:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD4A188733;
+	Fri, 25 Apr 2025 18:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745605423; cv=pass; b=Qiuv55P5m9X/4p3eGJuyynmoq3lHLz0eqBiOygePdzzEBp4tYAjAHEjzD6sO+gO85gZJf7PqwIetsYMnyRUTVj1tJnzDOj0EMBcR9qRzGapjxmY2jSxnJdI3kuuBRFMw2S6NheZ4xeVzCiH+OFT5H4UF+x4NktH4nPGjrXMwCtE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745605423; c=relaxed/simple;
+	bh=cTAlc/+Wf4vVMxPoxY1qiiaZu7vV+g+7hcErx0GI2WM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a6mze749H7Rulpwvdk0JECzvBcpesYQ4cVnxXek1vt6PubPqdk8SbXLvvoi9dO/MwJDGyNs8eST/iB72Fn4NR5cPWivW3ff5+oFgwMYT1h2Nnf2sf/OfLchs83vSY1CzHVBcnjd9OpzzJy2auccajkBGgU3CM2doMyx8CUygIEU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=FQXA+UJm; arc=pass smtp.client-ip=136.143.184.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1745605385; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=XR4vgjGGKgdTAQTS2rACu8DaNC0+4UT/y6l9t417lb2cEStrUiXb49602fgwtccUsuX6Y7kHT14MvO7LiXz/8vP2d9vyBMllb1yfwmw+lyFAzcy6j11bYeX9roXbD72We6/FhhaGdz4R22SLlAc7fOCP1UFTbutm9Mb8ATzOW+w=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745605385; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=0RChf9eM3DaEmdKL7oMWpMmY3Kl6bXdjA82ZsWOcius=; 
+	b=HeWEfNg05JGno+gblt9+NGBaOAc8R0q0ykioi6LxZ/YCrqqzWMn92WJP7wUnuLEU13sUQx4iPR0F5Y8oudQIORyGqJl3AQ9iSL4f4awb9YYVdgX3oO0WCm07xBMCeaAvUIncNk9u6U6px46oXvLSeXZ9mNfpdGv7lcXldvx9ml4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745605385;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=0RChf9eM3DaEmdKL7oMWpMmY3Kl6bXdjA82ZsWOcius=;
+	b=FQXA+UJmtg+IY7UgzEQ+P9azZOu+hNcePPWPRlkIrfJ+s8uJDDZI/ISowa6uJow9
+	FRLma6kBaxPxT8zOpGE3SAbplMgma1cSyjpRidXiVhN8Llw9AXWiT7APRkqa5RxjwLk
+	uqkyIB9cMsYFPNm1mNRFQkNmUZ1p3tlYCA5RYoVA=
+Received: by mx.zohomail.com with SMTPS id 1745605383428608.9673402692126;
+	Fri, 25 Apr 2025 11:23:03 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-rockchip@lists.infradead.org,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v2 4/7] accel/rocket: Add a new driver for Rockchip's NPU
+Date: Fri, 25 Apr 2025 20:22:55 +0200
+Message-ID: <2950819.ElGaqSPkdT@workhorse>
+In-Reply-To: <20250225-6-10-rocket-v2-4-d4dbcfafc141@tomeuvizoso.net>
+References:
+ <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <20250225-6-10-rocket-v2-4-d4dbcfafc141@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 25 Apr 2025 20:19:39 +0200
-Message-Id: <D9FXE4TJ23QB.1CS3D6PU2FGMR@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Mark Brown" <broonie@kernel.org>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Banajit Goswami"
- <bgoswami@quicinc.com>, "Liam Girdwood" <lgirdwood@gmail.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
- "Takashi Iwai" <tiwai@suse.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 2/5] ASoC: qcom: sm8250: set card driver name from
- match data
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com>
- <20250425-fp5-dp-sound-v3-2-7cb45180091b@fairphone.com>
- <36904d64-68e1-43b2-baed-50b5fddc2bcb@sirena.org.uk>
-In-Reply-To: <36904d64-68e1-43b2-baed-50b5fddc2bcb@sirena.org.uk>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Hi Mark,
+On Tuesday, 25 February 2025 08:55:50 Central European Summer Time Tomeu Vizoso wrote:
+> This initial version supports the NPU as shipped in the RK3588 SoC and
+> described in the first part of its TRM, in Chapter 36.
+> 
+> This NPU contains 3 independent cores that the driver can submit jobs
+> to.
+> 
+> This commit adds just hardware initialization and power management.
+> 
+> v2:
+> - Split cores and IOMMUs as independent devices (Sebastian Reichel)
+> - Add some documentation (Jeffrey Hugo)
+> - Be more explicit in the Kconfig documentation (Jeffrey Hugo)
+> - Remove resets, as these haven't been found useful so far (Zenghui Yu)
+> - Repack structs (Jeffrey Hugo)
+> - Use DEFINE_DRM_ACCEL_FOPS (Jeffrey Hugo)
+> - Use devm_drm_dev_alloc (Jeffrey Hugo)
+> - Use probe log helper (Jeffrey Hugo)
+> - Introduce UABI header in a later patch (Jeffrey Hugo)
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> ---
+>  Documentation/accel/index.rst           |    1 +
+>  Documentation/accel/rocket/index.rst    |   19 +
+>  MAINTAINERS                             |    8 +
+>  drivers/accel/Kconfig                   |    1 +
+>  drivers/accel/Makefile                  |    1 +
+>  drivers/accel/rocket/Kconfig            |   25 +
+>  drivers/accel/rocket/Makefile           |    8 +
+>  drivers/accel/rocket/rocket_core.c      |   71 +
+>  drivers/accel/rocket/rocket_core.h      |   29 +
+>  drivers/accel/rocket/rocket_device.c    |   29 +
+>  drivers/accel/rocket/rocket_device.h    |   29 +
+>  drivers/accel/rocket/rocket_drv.c       |  273 ++
+>  drivers/accel/rocket/rocket_drv.h       |   13 +
+>  drivers/accel/rocket/rocket_registers.h | 4425 +++++++++++++++++++++++++++++++
+>  14 files changed, 4932 insertions(+)
+> 
+> [...]
+> diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c22d965f20f1239a36b1d823d5fe5f372713555d
+> --- /dev/null
+> +++ b/drivers/accel/rocket/rocket_drv.c
+> @@ -0,0 +1,273 @@
+> [...]
+> +static int rocket_probe(struct platform_device *pdev)
+> +{
+> +	struct component_match *match = NULL;
+> +	struct device_node *core_node;
+> +
+> +	if (fwnode_device_is_compatible(pdev->dev.fwnode, "rockchip,rk3588-rknn-core"))
+> +		return component_add(&pdev->dev, &rocket_core_ops);
+> +
+> +	for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-core") {
+> +		if (!of_device_is_available(core_node))
+> +			continue;
+> +
+> +		drm_of_component_match_add(&pdev->dev, &match,
+> +					   component_compare_of, core_node);
+> +	}
+> +
+> +	return component_master_add_with_match(&pdev->dev, &rocket_drm_ops, match);
+> +}
 
-On Fri Apr 25, 2025 at 2:12 PM CEST, Mark Brown wrote:
-> On Fri, Apr 25, 2025 at 10:07:26AM +0200, Luca Weiss wrote:
->> Sound machine drivers for Qualcomm SoCs can be reused across multiple
->> SoCs. But user space ALSA UCM files depend on the card driver name which
->> should be set per board/SoC.
->
-> This doesn't apply against current code, please check and resend.
+Hi Tomeu,
 
-I've based this series on next-20250417 tag, so this is probably due to
-the changes from the USB sound offloading series that Greg has picked
-up.
+something I've noticed while playing with this: currently, it doesn't seem like
+it's possible to support 1-core NPUs. rknn-core-top is a real core, but if no
+rknn-core is enabled beside it, it'll call component_master_add_with_match with
+match being NULL. This causes a kernel Oops.
 
-So either Greg also picks up these changes when they're ready, or we
-wait until 6.17?
+I'm not sure what the proper fix is, since the component API doesn't seem to
+really have a consideration for a master with no other components.
 
-Regards
-Luca
+I ran into this when I was trying to debug why I get job timeouts followed by
+a full SoC lock-up on RK3576 by running with only one of the two cores enabled.
+
+As an aside note, my throwaway rocket-on-RK3576-hacking-branch is at [1] and
+contains some changes you may want to consider for v3, e.g. [2] and [3]+[4]. In
+[4], specifically the `domain-supply` part which means the NPU regulators don't
+have to be always-on. Though feel free to pull in my entire ROCK 5B enablement
+patch.
+
+Kind regards,
+Nicolas Frattaroli, who discovered that his cat is apparently 5% space heater
+according to mobilenet while playing with this patch series.
+
+[1]: https://gitlab.collabora.com/fratti/linux/-/commits/tomeu-npu?ref_type=heads
+[2]: https://gitlab.collabora.com/fratti/linux/-/commit/73aba31a00b34c254be575b524da568e115d985d
+[3]: https://gitlab.collabora.com/fratti/linux/-/commit/bd3a7bf5054c54c2915a9dc0396730d0f24b3b7c
+[4]: https://gitlab.collabora.com/fratti/linux/-/commit/5da44d61b09c345309f76159574d447d071c295d
+
+
+
 
