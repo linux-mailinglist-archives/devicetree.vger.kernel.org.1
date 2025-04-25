@@ -1,161 +1,160 @@
-Return-Path: <devicetree+bounces-170973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FA6A9CD90
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:48:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E298A9CDF2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FD0A4C52F8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:48:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B64EF9C559F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E99288CA1;
-	Fri, 25 Apr 2025 15:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFB119924E;
+	Fri, 25 Apr 2025 16:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ccOKCHgS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XQ2Ozn56"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CEF327A10E;
-	Fri, 25 Apr 2025 15:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503204A24;
+	Fri, 25 Apr 2025 16:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745596118; cv=none; b=iiEHw6w/GWs8Q3S5STkBr2MPWEbAQAdbA3oDyeqpenLn7WUpG9mulWFvipCu53S8qmK9fDOHJM6Wwl8V9LUf0GqnEkAmng84z8ynpkORbdBNfjinspRHs0qA35Uwc0sDyoB6khsXFOxjGfZGRIwjQZSlznWQBgMRJ9VEwZ2hmhs=
+	t=1745598116; cv=none; b=IIrAWvV3WnobCoDg1p6zKlE5+u6LtkH4QaAe1vVSz7TFyBOO8n53doQSwmq8NPD01KQFuGAb6c+v4B05CSLqul3EcVxlQNzl5/wRqv5Uoh46z8F0Apm0JdwVLV7gIUF13zxPG37MzG63t9JSfyp6jhtDjAjF5qe2+Gj+63AC4Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745596118; c=relaxed/simple;
-	bh=gbP/LTJ4bOaqyh9iK33lI3eC1HyFQnqEr9G9WVBueew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gpx41sezLDWUxUDomzCk5N3JiTR/+xcAuewse5aNOP2bBzAiAx1CMsgFAE+xouVnLaZw0Qj80iEvsP1Oq9f8Dxniv5QSTBzj62hVLA6Fxm3UXfs5NF+5SqWNRblVO5DiASeBcGf2miERdy3Ro20HSy2yAcyrrxah2tXoCaU0A6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ccOKCHgS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32522C4CEE4;
-	Fri, 25 Apr 2025 15:48:34 +0000 (UTC)
+	s=arc-20240116; t=1745598116; c=relaxed/simple;
+	bh=Pp16t66j9BUD//eaUqtZsRjkT1g9gyY129We4+Jq8uY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d/olZ2hXTkr6c1bNqcPGqRKKTbX0artdsSTkHFMnNhvlB3Scc8jVdXKdelpnPru7qWUcN+ieEsnKktxzfaxNL6SwDcrB3Q3+IuHZ7X9JrZXi+eY6wtk8FDwGekhu/RYYRcWI/oAWD7BBhd87b8PHKYTCYyCGgzRT3gkLKZU9xUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XQ2Ozn56; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B51C4CEE4;
+	Fri, 25 Apr 2025 16:21:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745596117;
-	bh=gbP/LTJ4bOaqyh9iK33lI3eC1HyFQnqEr9G9WVBueew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ccOKCHgStsMm/dwByxT8FVp1XCET4mKAtX35WQ+CVQv1LA0HVQ67um2ecEMtd+Nxg
-	 c6jighDrmifLWcB11WhELXLSBcL8CGMf54GVmQCTDKwa3Ysuuj38z6rSUok8jINF/t
-	 YjIZCDBilL1dNBu/WEin8MmJhNqLKHn+ujcXvKMuvXtmTm3VexxDOkiPWe1XZbcJUA
-	 0c4QLBeSfb/poMKMUfaEWMmcJLp/DsAQ75Qilr5Mi8eoEH6BOpxvfFXq+PGTGCmiq9
-	 dh9+IU+vosIbN8xK17vxzgQkpIjvsytz7qo7cMk6iQQ2cYiWfg5JA68GLhXZIL0kAu
-	 BeNRDGiRW0+0Q==
-Date: Fri, 25 Apr 2025 17:48:31 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] rust: property: Enable printing fwnode name and
- path
-Message-ID: <aAuuz8BfATawK5oL@pollux>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-3-remo@buenzli.dev>
+	s=k20201202; t=1745598115;
+	bh=Pp16t66j9BUD//eaUqtZsRjkT1g9gyY129We4+Jq8uY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XQ2Ozn56t6c+UjaG1t4ey2DSK551MgyG4HFkZ/Ew45G65wPgF+NdyFNMrtG5KmoM0
+	 OHJFaFePEInFrNtLK/0vEJ5U2e2BqT+Bj/j96TFFX0OY29ZI5/2RzL1nNiEqRNFHYE
+	 szUktDf2F3VkEPn/YS6dgKP86ORvyNWsKzNtCWlsUXcrTTv8VqqDG5o8geP0zMpRV7
+	 r7s7+alqadplye5QdpyEdeBxQTUMchJUbE+dT1lyDU2kIZw+Cjy0dY8fz4cjwzyNaB
+	 /hVKsXPTIJc0LgIlABYVWzPWO0l3dhnIccjinEHERjb1VgUM7QhrSRqXXbvQa9jqvz
+	 aAjU0uD2G2WuA==
+Message-ID: <b25406dc-affd-48f2-bccb-48ee01bdfcf1@kernel.org>
+Date: Fri, 25 Apr 2025 18:21:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250425150130.13917-3-remo@buenzli.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] dt-bindings: pci: cadence: Extend compatible for
+ new EP configurations
+To: Hans Zhang <hans.zhang@cixtech.com>, Conor Dooley <conor@kernel.org>,
+ Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "peter.chen@cixtech.com" <peter.chen@cixtech.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250424010445.2260090-1-hans.zhang@cixtech.com>
+ <20250424010445.2260090-3-hans.zhang@cixtech.com>
+ <20250424-elm-magma-b791798477ab@spud>
+ <20250424-proposal-decrease-ba384a37efa6@spud>
+ <CH2PPF4D26F8E1CB9CA518EE12AFDA8B047A2842@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250425-drained-flyover-4275720a1f5a@spud>
+ <5334e87c-edf3-4dd9-a6d5-265cd279dbdc@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5334e87c-edf3-4dd9-a6d5-265cd279dbdc@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 25, 2025 at 05:01:25PM +0200, Remo Senekowitsch wrote:
-> Add two new public methods `display_name` and `display_path` to
-> `FwNode`. They can be used by driver authors for logging purposes. In
-> addition, they will be used by core property abstractions for automatic
-> logging, for example when a driver attempts to read a required but
-> missing property.
+On 25/04/2025 17:33, Hans Zhang wrote:
 > 
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> ---
->  rust/kernel/device/property.rs | 78 ++++++++++++++++++++++++++++++++++
->  1 file changed, 78 insertions(+)
 > 
-> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> index d89715f7d..28850aa3b 100644
-> --- a/rust/kernel/device/property.rs
-> +++ b/rust/kernel/device/property.rs
-> @@ -49,6 +49,84 @@ pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
->          self.0.get()
->      }
->  
-> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
-> +    /// printing the name of a node.
-> +    pub fn display_name(&self) -> impl core::fmt::Display + '_ {
-> +        struct FwNodeDisplayName<'a>(&'a FwNode);
-> +
-> +        impl core::fmt::Display for FwNodeDisplayName<'_> {
-> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-> +                // SAFETY: self is valid by its type invariant
-> +                let name = unsafe { bindings::fwnode_get_name(self.0.as_raw()) };
-> +                if name.is_null() {
-> +                    return Ok(());
-> +                }
-> +                // SAFETY: fwnode_get_name returns null or a valid C string and
-> +                // name is not null
-> +                let name = unsafe { CStr::from_char_ptr(name) };
-> +                write!(f, "{name}")
-> +            }
-> +        }
-> +
-> +        FwNodeDisplayName(self)
-> +    }
-> +
-> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
-> +    /// printing the full path of a node.
-> +    pub fn display_path(&self) -> impl core::fmt::Display + '_ {
-> +        struct FwNodeDisplayPath<'a>(&'a FwNode);
-> +
-> +        impl core::fmt::Display for FwNodeDisplayPath<'_> {
-> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-> +                // The logic here is the same as the one in lib/vsprintf.c
-> +                // (fwnode_full_name_string).
-> +
-> +                let num_parents = unsafe { bindings::fwnode_count_parents(self.0.as_raw()) };
-> +
-> +                for depth in (0..=num_parents).rev() {
-> +                    let fwnode = if depth == 0 {
-> +                        self.0.as_raw()
-> +                    } else {
-> +                        // SAFETY: `self.0.as_raw()` is valid
-> +                        unsafe { bindings::fwnode_get_nth_parent(self.0.as_raw(), depth) }
-> +                    };
-> +
-> +                    // SAFETY: fwnode is valid, it is either `self.0.as_raw()` or
-> +                    // the return value of `bindings::fwnode_get_nth_parent` which
-> +                    // returns a valid pointer to a fwnode_handle if the provided
-> +                    // depth is within the valid range, which we know to be true.
-> +                    let prefix = unsafe { bindings::fwnode_get_name_prefix(fwnode) };
-> +                    if !prefix.is_null() {
-> +                        // SAFETY: fwnode_get_name_prefix returns null or a
-> +                        // valid C string
-> +                        let prefix = unsafe { CStr::from_char_ptr(prefix) };
-> +                        write!(f, "{prefix}")?;
-> +                    }
-> +                    // SAFETY: fwnode is valid for the reasons stated above
-> +                    let name = unsafe { bindings::fwnode_get_name(fwnode) };
-> +                    if !name.is_null() {
-> +                        // SAFETY: fwnode_get_name returns null or a valid
-> +                        // C string
-> +                        let name = unsafe { CStr::from_char_ptr(name) };
-> +                        write!(f, "{name}")?;
-> +                    }
+> On 2025/4/25 22:48, Conor Dooley wrote:
+>> On Fri, Apr 25, 2025 at 02:19:11AM +0000, Manikandan Karunakaran Pillai wrote:
+>>>>
+>>>> On Thu, Apr 24, 2025 at 04:29:35PM +0100, Conor Dooley wrote:
+>>>>> On Thu, Apr 24, 2025 at 09:04:41AM +0800,hans.zhang@cixtech.com  wrote:
+>>>>>> From: Manikandan K Pillai<mpillai@cadence.com>
+>>>>>>
+>>>>>> Document the compatible property for HPA (High Performance
+>>>> Architecture)
+>>>>>> PCIe controller EP configuration.
+>>>>> Please explain what makes the new architecture sufficiently different
+>>>>> from the existing one such that a fallback compatible does not work.
+>>>>>
+>>>>> Same applies to the other binding patch.
+>>>> Additionally, since this IP is likely in use on your sky1 SoC, why is a
+>>>> soc-specific compatible for your integration not needed?
+>>>>
+>>> The sky1 SoC support patches will be developed and submitted by the Sky1
+>>> team separately.
+>> Why? Cixtech sent this patchset, they should send it with their user.
+> 
+> Hi Conor,
+> 
+> Please look at the communication history of this website.
+> 
+> https://patchwork.kernel.org/project/linux-pci/patch/CH2PPF4D26F8E1C1CBD2A866C59AA55CD7AA2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com/
 
-I think you should be able to just call
+And in that thread I asked for Soc specific compatible. More than once.
+Conor asks again.
 
-	FwNodeDisplayName(self).fmt(f)?
+I don't understand your answers at all.
 
-for this part, which saves you the duplicated code.
+Best regards,
+Krzysztof
 
