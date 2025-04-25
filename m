@@ -1,98 +1,127 @@
-Return-Path: <devicetree+bounces-171021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E41EA9D043
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0241CA9D062
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE911188E5AF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:11:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17E5F1BA700D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208D5215F46;
-	Fri, 25 Apr 2025 18:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F468217663;
+	Fri, 25 Apr 2025 18:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="yRQ3/tSM"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="L2zE90Bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729EC215766;
-	Fri, 25 Apr 2025 18:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.38.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98713215F7D
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745604689; cv=none; b=BqV4NziIjitIc8ZnpRjckGzN+UdRPReh04oSffI2WzclQ/uBOHpbUaAuZGnfNlmwR3SCCl2G5GilG7yH4XP6OUToabFxIhmpGoNfN30bD9PhSACTd9gsaNd3tOS1FqLe1Yu+9M2aIZDgBXfiCdebPOifvvBwmMzrqC8mz2sP5bM=
+	t=1745605196; cv=none; b=HHbtMvdrUbwOnEcryjPkfJuLLbbaR7aEP4BenFkwXNrXlIRSvuRJaE2YU7AZAmbbn1C7w66sC0z2ibo4S7lsMUX9MrMknzgJDQDIJS2juizz069xq52Xlf/acHGfJSZFQhD091C3kpSC8Mc+FhG3q1vXRKEFL/dYrZqEmzx0b+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745604689; c=relaxed/simple;
-	bh=AcQ06o3liKLfIzDuJGETHa8EaWX8bopIoU8BfIQJTIM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tVcJHm8Y38T62HY5t8niSyrJ7nIXX0uYkTpbsYAN93jrAT//kIPPEvaeBDfFTVSrEwkCW4bUqgjLyGZ3EgLjTC9CAqxSoiRxZ1abJ1s9rxsnwZOHx+2+09tt4dzAvlMF4FcRQKloyjUZMTZ18M30eYF14iitwWw7OF1s7jvPnPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net; spf=pass smtp.mailfrom=sipsolutions.net; dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b=yRQ3/tSM; arc=none smtp.client-ip=168.119.38.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sipsolutions.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=aY55hDS7Z/BNIFuppzqO/uQ5XIZa82l2hzhC8Y0TibY=;
-	t=1745604687; x=1746814287; b=yRQ3/tSMqWpEbmhYwhRCAIRioStPW2rKKBMW7fKi7+ZcSOs
-	vBG6WzcFqut4KdA1Js6X9N/oGw8b/qEXWswG+94pNl3DeOdYMrM2id+VV4HLY4gGFSso3EFYAn7UR
-	dMESjxqBRJjmQI45jE2O9qeDimhvUVE4220SdEqwKh3jH2SQbcu/Bl4TvfEC2KGDNf30NvtxX/TeS
-	xLnnEMgp3r6v3mI5qEWgTYTmo37jUULOhtonQv11G7X1/mpIRu/N7M6lfDlDPZkzSHgPu5eCr2TfP
-	Xqo7veQvgr1VtdnzSnDHj0mmccqb9FYwz0Z2QY/NHvaq3KJACr9fmHLhIsrm133Q==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98.1)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1u8NWF-00000002FhA-3yCP;
-	Fri, 25 Apr 2025 20:11:24 +0200
-Message-ID: <4854f6a248fdc501d4157339fdb21f9a3ca3097d.camel@sipsolutions.net>
-Subject: Re: [RFC PATCH v2 0/2] wifi: Nordic nRF70 series
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Artur Rojek <artur@conclusive.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood
-	 <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Sascha Hauer
-	 <s.hauer@pengutronix.de>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Jakub Klama <jakub@conclusive.pl>, Wojciech
- Kloska	 <wojciech@conclusive.pl>, Ulf Axelsson <ulf.axelsson@nordicsemi.no>
-Date: Fri, 25 Apr 2025 20:11:22 +0200
-In-Reply-To: <20250422175918.585022-1-artur@conclusive.pl>
-References: <20250422175918.585022-1-artur@conclusive.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	s=arc-20240116; t=1745605196; c=relaxed/simple;
+	bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=Mhk3SwsDWAUz00sOn9XuyouhDxBIU3n2fBZOT0kQtf7bwhE/Y2G413glIw3PRC3Z0ne31CX3rLlyYtshUNE5UJllLhLLE9ladMN6Ix3RMfqDoIOWRamC8sHcxRQhqUjCuS9K0j/SDkcXhop+ZK0T/PghO0MXsEcLpMkdzvM4Ja8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=L2zE90Bl; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43edb40f357so18096975e9.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 11:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1745605193; x=1746209993; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
+        b=L2zE90BlQkCwN8RxPhglh5+YQzR3YQ8NPSekKiGRb4u2Zs2dfJ/tItuWZaFHeDES1f
+         V5W+e3hYuUJdWUFXpzD7ozesoIyZ9euiDfsvy5aF6BGN67VAUFi9u1T/Xqlmtt+Fm/Bt
+         nHZXHjAjQo2Cs5df9yeqE4vu60ATz6pMTKTRV5vW0GNzbI7KPI0GHiCRj9gzGiIGCZCK
+         lPssUdlz3UXbcZ8ByT0YXjeDgGXVjsGq7iA5LoWzdHacW4tRqD74ODrKglFJLEoJ+wMB
+         FAut6WbA3gE5MJI45Oz4oTFNG/tBUup5rFhdDT9xhpxiWbqB1dmIF9CtoynWk1jJkd9X
+         Kpcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745605193; x=1746209993;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IpSFoh4pYOY/HGqg1pleHeuH9QFifSvgR7QoQN+jals=;
+        b=Vg4ppw68JbTatGM2CT42pTXfN8fF6B66HDkJAXQle/+5wK1o/nlz9oUw9IdXtTe++3
+         vcvhEzuR6xQHCZ7J0Lhg159T2ozJvM13Q+MX6PHCLgks2WQXA9ybKfRB165C2M8JLIjb
+         LQsFX60tYry9cMRnFekRIBg5tM2KyWQtwOwpGfbuF8WOUhB0temsgxUBj1crwEytuC39
+         tS4e/ltVqS/tRmDhewyEp6dWU8JWhqHoiKqnVH7hW1W6p+Ov/qiPoLNfB5Q2W1Q8lJE5
+         cm+WNOaYlWG+CAzgx27XK3Ir2UI2ngsUDitHxpiLckQE9y/gLJngMuM3awdsVZRG4T4/
+         w+cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2OJYTuCME7zVsNrnJCsr+DII8hY5HLD872OfxuVEYbkDk6QBak4UDvRlo65PJMV4YI/jxIOt3jFL2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxw1q15YmsbMagOU504EQg1sxuMWlLnGCvnfazdq6oD5sTeb1qX
+	8W4ulFelLtUuIBrah6ZLFFbsim4traTk6+bPEUZoNxss0cwRBenVtEAMQVLaqxM=
+X-Gm-Gg: ASbGncuvFA0R1UObl8fYOTvdN0oXhVjfGrVbZYbfZUIcEx7REJV77FGqxiC+qhiFeWS
+	Bt8oMz/XXK0gmynGrz9rgUU0DLQj/D6V1PbOAHPd4Fvo9zMe4uGdx+8sDmXfQ7UnR2LMgQvMdmG
+	DnovFQJRIAWcJjYQ2RVFu/sqaWm5JyQLSfSOZbYLEvdUzNQoHOIypC6TzsFjMJxKFDh7KATRirI
+	cqWab4dyev9WAdN4RBby8T3S24a3xUgxQxiMZsqrwEk2KUKKZYilZFzCCsv1ge7+YH1AJsY74Gd
+	hW2DANpRXFCG5aYHn1pGDZTgSCsLEK4KPTsZanhLOGQA5Z+av/xJ5HI2XjNGFcmT4wC5xgmt5iw
+	1HdbprxZ48qgNytSC1oO5J7zuJT19qlbG6gFru0wA3/An5VUHArKq
+X-Google-Smtp-Source: AGHT+IFJByfdmWek2xSwsLT86f5MrKiJHwIbsxI4YxA+BfoGu8K395c02Fr79u8UPzgvjnNg9CP1eQ==
+X-Received: by 2002:a05:600c:1e03:b0:43d:24d:bbe2 with SMTP id 5b1f17b1804b1-440a66b7b14mr25609255e9.28.1745605192764;
+        Fri, 25 Apr 2025 11:19:52 -0700 (PDT)
+Received: from localhost (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a536a02csm32734525e9.27.2025.04.25.11.19.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 11:19:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 25 Apr 2025 20:19:39 +0200
+Message-Id: <D9FXE4TJ23QB.1CS3D6PU2FGMR@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Mark Brown" <broonie@kernel.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Banajit Goswami"
+ <bgoswami@quicinc.com>, "Liam Girdwood" <lgirdwood@gmail.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
+ "Takashi Iwai" <tiwai@suse.com>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 2/5] ASoC: qcom: sm8250: set card driver name from
+ match data
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com>
+ <20250425-fp5-dp-sound-v3-2-7cb45180091b@fairphone.com>
+ <36904d64-68e1-43b2-baed-50b5fddc2bcb@sirena.org.uk>
+In-Reply-To: <36904d64-68e1-43b2-baed-50b5fddc2bcb@sirena.org.uk>
 
-On Tue, 2025-04-22 at 19:59 +0200, Artur Rojek wrote:
-> 1) Nordic gave us permission to upstream the firmware blob [1] required
->    to use this driver. As that needs to go through separate
->    linux-firmware repository and is subject to different licensing,
->    should I try to upstream it in parallel with this series, or does it
->    need to wait until the kernel driver gets in?
+Hi Mark,
 
-I have no idea. Chicken and egg, I guess.
+On Fri Apr 25, 2025 at 2:12 PM CEST, Mark Brown wrote:
+> On Fri, Apr 25, 2025 at 10:07:26AM +0200, Luca Weiss wrote:
+>> Sound machine drivers for Qualcomm SoCs can be reused across multiple
+>> SoCs. But user space ALSA UCM files depend on the card driver name which
+>> should be set per board/SoC.
+>
+> This doesn't apply against current code, please check and resend.
 
-> 2) In AP mode, for each connected peer I maintain a pending queue for TX
->    skbs that can't be transmitted while the peer is in power save mode.
->    I then use a wiphy_work (nrf70_pending_worker) to move the collected
->    skbs into a single hw queue once the peer is able to receive again.
->    This means there can be multiple workers putting skbs onto the hw
->    queue at any given time. As this scheme relies on the wiphy_work
->    workqueue, can I assume that multiple workers will be able to run in
->    parallel, even on a system with a single CPU? If not, what would be
->    a better solution to the above problem?
+I've based this series on next-20250417 tag, so this is probably due to
+the changes from the USB sound offloading series that Greg has picked
+up.
 
-wiphy_work() is fully serialized regardless of the number of CPUs, it's
-guaranteed that the wiphy mutex is held for the work execution, after
-all.
+So either Greg also picks up these changes when they're ready, or we
+wait until 6.17?
 
-johannes
+Regards
+Luca
 
