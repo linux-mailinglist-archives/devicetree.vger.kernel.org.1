@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-170625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51718A9BC9C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 04:08:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD318A9BCAC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 04:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC1F65A7F9A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 169A1467848
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 02:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 477E37DA7F;
-	Fri, 25 Apr 2025 02:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E46114A4E7;
+	Fri, 25 Apr 2025 02:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="cOjiR3hp"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="QeppXBwc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5F77483;
-	Fri, 25 Apr 2025 02:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF8014831F;
+	Fri, 25 Apr 2025 02:14:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745546890; cv=none; b=knOBZQa+8KYc3mlY70+41fbUvP7EjOZu5thKx1lZ7qLJKSX1X2dXf3jiVryh5AF77Aib+8GVGCmW83L9XmHdZegfuIArooGUCFJc9MAsK92xccKu5YIMHs4y8pJkD0zEZqI5yhe4VGMV7+xD38PGiotDlxW+Zu+OaTkj7dq+es8=
+	t=1745547273; cv=none; b=glKrTY1+4NmFZyGEiNkcsiMEs6xGhQbVBnVLL621UB+lbRArs9J9x+GCOL1WtlV9d8wamOsDlHOhAv21APfUadTmL4C+0u1tByIPOItL2f9RbKj2eAuHD0YtqHQ6DTyEGCU7pHlgs+tLCtmxJ3lcT5z0nf42KtzGJTw5XepS7A0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745546890; c=relaxed/simple;
-	bh=C0Onkw7Z6WQzYCDMpWTTwUoVEoCIysD7bDzMBGbjA+g=;
+	s=arc-20240116; t=1745547273; c=relaxed/simple;
+	bh=22mLpVSZ+7h35wRUeBnuNiexnafvBA8zB/TsZyPssX4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEuRS/XXXocTZC/TqdK3AXJRzq4uLuHWJW5bnvAPzjY+hZoKsd16Lg2mchXI6c5RLDn0l26B+1HlIgRld5PHSvWtVHOwVPlpiPGLHbr+ZLKoqrWVb+TN1XFP+k+V60Ly7sxTW65UDSt+CoYwXi/h9LdwwAs09F/53zOyQSqWINw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=cOjiR3hp; arc=none smtp.client-ip=220.197.32.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=rsKJDwXA+IsduuVY0zEKboBVdzFjzd21VQMmOmLNI63Ymjz4T0tt4INJ0RZkhEpvqUasAb3no4WFE8BgS45B58IcNSQo2bsMfLKtuntKDRl0BpmZ2ot078iEDxVNvRNj+sWu7lutjXt+nN8hlEIfuFLIV+9pK4ZfJkEFACvD768=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=QeppXBwc; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=eHzuw+bc0eV8DSy5e54/eajHTpo5TtF3m3H+/km2+yw=;
-	b=cOjiR3hpGSq5JZGnS9/s2OQIiPq+SRuNJ5amBAFBfyGNvxgSvcUAuOcCBxk9vn
-	t/8q5N3mwg9ZWGocNMeM/sfyAtdcbW/JeUpFJAux9YqMcpdc3JPLGNGld12Vmgk5
-	hg58WmynrXNlqV9Qm4nDOzTckLTpfNZEcMT8mM1by4Kjg=
+	Content-Type; bh=sB2QjJ66j3kraGlrqjw6SCUngpcSvfBQPp40F1HnYIo=;
+	b=QeppXBwcJBb4ePAeuS1oYCzcV9k1vTQQ7gJQWzlgx855MAHLtommaeAZ8Sx/1g
+	aB6pz4zjvbPG5fQUw1qqRCdhpiT/tc5oB84mxjPOrsD6HMIIFpn+XOcsfi3UcfPe
+	M2yCOCQJGQIfxJbWxMudbLd5LogR6YFrRxVy1IoI+VjaI=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgB3KU1Z7gpoJI3SAw--.37105S3;
-	Fri, 25 Apr 2025 10:07:23 +0800 (CST)
-Date: Fri, 25 Apr 2025 10:07:21 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCnXrzc7wpoPm_aAw--.52709S3;
+	Fri, 25 Apr 2025 10:13:49 +0800 (CST)
+Date: Fri, 25 Apr 2025 10:13:47 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-	Frank.li@nxp.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 01/10] arm64: dts: imx8mm-beacon: Fix RTC capacitive
- load
-Message-ID: <aAruWUaXtM1O5Js3@dragon>
-References: <20250416010141.1785841-1-aford173@gmail.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	linux@ew.tq-group.com, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] Revert "arm64: dts: imx93-tqma9352-mba93xxca: enable
+ Open Drain for MDIO"
+Message-ID: <aArv2yur3ox+RCDT@dragon>
+References: <20250417081522.1145586-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +64,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416010141.1785841-1-aford173@gmail.com>
-X-CM-TRANSID:M88vCgB3KU1Z7gpoJI3SAw--.37105S3
+In-Reply-To: <20250417081522.1145586-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:Mc8vCgCnXrzc7wpoPm_aAw--.52709S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
 	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsmFCUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBAo6ZWgK1S9vFAAAsy
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiARY6ZWgK0Y2F8AAAsD
 
-On Tue, Apr 15, 2025 at 08:01:27PM -0500, Adam Ford wrote:
-> Although not noticeable when used every day, the RTC appears to drift when
-> left to sit over time.  This is due to the capacitive load not being
-> properly set. Fix RTC drift by correcting the capacitive load setting
-> from 7000 to 12500, which matches the actual hardware configuration.
+On Thu, Apr 17, 2025 at 10:15:19AM +0200, Alexander Stein wrote:
+> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 > 
-> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Using the MDIO pins with Open Drain causes spec violations of the
+> signals. Revert the changes.
+> 
+> This reverts commit 9015397c2f2d9d327c0cf88d74e39c4858cb4912.
+> 
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied all, thanks!
+Applied both, thanks!
 
 
