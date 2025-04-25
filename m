@@ -1,149 +1,131 @@
-Return-Path: <devicetree+bounces-170944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88281A9CC0E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:51:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB4EA9CC54
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CB6A1BA0B4F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 14:51:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 865C39C0DB0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1942505CB;
-	Fri, 25 Apr 2025 14:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aQopFPBf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2338A25F7A7;
+	Fri, 25 Apr 2025 15:02:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9E384E1C;
-	Fri, 25 Apr 2025 14:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7CC25E44D;
+	Fri, 25 Apr 2025 15:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745592693; cv=none; b=CD8J8QbB1cT8R1rE/chfJwEsvz2ZeDUm6uwQRJ0e2lMhkqn/wjtnpOdPCLZxlameLAKL5UlqxrC5BwpaqlrKkkeaakch4aHgo89xpOX7lDbsidG/yruYLyaG8IpmlUnSWabThG+biQ5fBNAzIlrxOQf8vH70uVibgeSasK478vs=
+	t=1745593322; cv=none; b=po5v0AMSWgZwNmam/szuH0dHRJK4pGL/ZcrETRu3bE268vSWmZf/d0UXXI5aAw2usZg63JnEs8qdXoU0Dkz3ugc4PMPwvu2Qf6YE1O/vNveQDEJ/BiRP7E8YEDvXd/B2SrYrmBwpW8MwsC6eXNltsOB+8qHDSroe7nqgoYaoqj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745592693; c=relaxed/simple;
-	bh=ORYV3pufFLavCcfuKAouL0/gfIikxzXt+cww9KaOuvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bt5EX2tWTcFx/WYMNMUqmVHg07QISEgafypsO/4DDmBHgEC7XI2T51v9J/mn0UvSQaomnw1zHrsDyia1RRRRZuKOI8cqQ1B/n+MVacBHqUFG8zwnpQm1kmW4il3SMU4l83C2vJJJcnDV2ictLrT/GVdL+xNtjHCO1Uf6siatcFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aQopFPBf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1461C4CEE4;
-	Fri, 25 Apr 2025 14:51:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745592692;
-	bh=ORYV3pufFLavCcfuKAouL0/gfIikxzXt+cww9KaOuvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aQopFPBfz4eaeHmTPdrBo20CUmVLaXX17oeKkMx5wNWr07sYNxRl95/penpfh4I0D
-	 S20g7mvMty4Rz1xhCU7Ou0NEfGuMKntJ4asSGf6jRm9v+lvo6mzIO3AtyZv9taNdgb
-	 c55scPrq8fogOVJ0Vmg7hF7OPoq4qNMqNaGFEh+F2sZaRNvABI29FAb3kAFimI0Uzh
-	 65E0LXc17gk1J39kjClZZqgYv/Xe3XusbWY9Ei883mHuM//cB3wN7Clp67qAurYBUk
-	 Hrq52ZmAGCoQP1oA3p4FKmyd7IMXLEg00L2NOPmp+fw3VpdZm2lPl2eB3Ztozl0VWs
-	 K5VYfGaqfl5Ww==
-Date: Fri, 25 Apr 2025 15:51:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper
- boards
-Message-ID: <20250425-prewar-ranging-161ccd2b2468@spud>
-References: <20250425-apc_paper_binding-v4-0-0ec2d0febe21@gmail.com>
- <20250425-apc_paper_binding-v4-1-0ec2d0febe21@gmail.com>
+	s=arc-20240116; t=1745593322; c=relaxed/simple;
+	bh=TATDdWHubxkqnktZL0woFYkT0+jsr8JhaVnmyrpNueQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gaAFOqT/THsowV8LiIxMuqAZkrEiK8bPIuBE1BZkZ8nuqBKXPJUPZeTBFD+rEF56Yq7uOMa2Kxuc4dQP9YFYIGWP3w8N58sCJaXD3tRNEDSVV26l/azVAxU1EI8fF+8O4h2cjSZ4omFhFbf5REAE+8QEIWoUIruPSi1VWQJpmuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZkbfB0qCVz9svM;
+	Fri, 25 Apr 2025 17:01:54 +0200 (CEST)
+From: Remo Senekowitsch <remo@buenzli.dev>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Remo Senekowitsch <remo@buenzli.dev>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH v3 0/7] More Rust bindings for device property reads
+Date: Fri, 25 Apr 2025 17:01:23 +0200
+Message-ID: <20250425150130.13917-1-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GjP52dV+jImYt1qm"
-Content-Disposition: inline
-In-Reply-To: <20250425-apc_paper_binding-v4-1-0ec2d0febe21@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4ZkbfB0qCVz9svM
 
+This adds more Rust bindings for reading device properties, based on
+Rob Herring's work. I'm working on a driver[1] that uses these, but the
+driver has more dependencies than this.
 
---GjP52dV+jImYt1qm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best regards,
+Remo
 
-On Fri, Apr 25, 2025 at 06:34:13PM +0400, Alexey Charkov wrote:
-> APC Rock is a development board based on WonderMedia WM8950 SoC
-> released around 2013. Paper is the same as Rock but lacking a
-> VGA port and shipped with a recycled cardboard case.
->=20
-> While at that, put myself as the maintainer, given that Tony is
-> unavailable as of lately.
->=20
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/vt8500.yaml | 23 ++++++++++++++---=
-------
->  1 file changed, 14 insertions(+), 9 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/vt8500.yaml b/Document=
-ation/devicetree/bindings/arm/vt8500.yaml
-> index 5d5ad5a60451f569e6ef30c924a1964d02e1aa82..f2164144a7af29ca77761bc58=
-fe7f4558e7d101c 100644
-> --- a/Documentation/devicetree/bindings/arm/vt8500.yaml
-> +++ b/Documentation/devicetree/bindings/arm/vt8500.yaml
-> @@ -7,19 +7,24 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: VIA/Wondermedia VT8500 Platforms
-> =20
->  maintainers:
-> -  - Tony Prisk <linux@prisktech.co.nz>
-> -description: test
-> +  - Alexey Charkov <alchark@gmail.com>
-> =20
->  properties:
->    $nodename:
->      const: '/'
->    compatible:
-> -    items:
-> -      - enum:
-> -          - via,vt8500
-> -          - wm,wm8505
-> -          - wm,wm8650
-> -          - wm,wm8750
-> -          - wm,wm8850
-> +    oneOf:
-> +      - items:
-> +          - enum:
+changes in v3:
+* (started testing myself with Rust 1.78 and doctests enabled)
+* Fix doctest and platform driver sample.
+* Move property.rs to device/property.rs (a submodule of device).
+* Make `Device::fwnode` fallible, avoiding a panic.
+* Remove the duplicated property reading methods on Device. Now that
+  `Device::fwnode` is fallible, these methods would have confusingly
+  different signatures than the ones on `FwNode`. It will be clearer for
+  users to explicitly convert from `&Device` to `&FwNode` first,
+  handling that error case separately, and then reading properties on
+  `FwNode`.
+* Split off separate commits for:
+  - printing fwnode name and path
+  - adding PropertyGuard
+* Do not access `fwnode_handle.dev` in PropertyGuard for
+  device-associated logging, fwnode_handle doesn't own a reference to
+  the device.
+* Rename some extension trait methods to be more descriptive:
+  - Property::read => read_from_fwnode_property
+  - PropertyInt::read_array => read_array_from_fwnode_property
+  These methods are not meant to be used directly and won't be
+  accessible unless their traits are in scope. (And there is no reason
+  for API users to pull them into scope.) Nevertheless, this reduces the
+  risk of confusion caused by non-descriptive methods like "read" being
+  attached to primitive types.
+* Implement fwnode printing logic in Rust directly instead of calling
+  scnprintf.
+* Improve some safety comments.
 
-This should just simplify from "items: - enum:" to "enum:".
-With that,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/DS90UB954.20driver.20done.2C.20ready.20to.20upstream.3F/with/507874342 [1]
 
-> +              - via,vt8500
-> +              - wm,wm8505
-> +              - wm,wm8650
-> +              - wm,wm8750
-> +              - wm,wm8850
-> +
-> +      - description: VIA APC Rock and Paper boards
-> +        items:
-> +          - const: via,apc-rock
-> +          - const: wm,wm8950
-> =20
->  additionalProperties: true
->=20
-> --=20
-> 2.49.0
->=20
+Remo Senekowitsch (7):
+  rust: property: Move property_present to separate file
+  rust: property: Enable printing fwnode name and path
+  rust: property: Introduce PropertyGuard
+  rust: property: Add bindings for reading device properties
+  rust: property: Add child accessor and iterator
+  rust: property: Add property_get_reference_args
+  samples: rust: platform: Add property read examples
 
---GjP52dV+jImYt1qm
-Content-Type: application/pgp-signature; name="signature.asc"
+ MAINTAINERS                                  |   3 +-
+ drivers/of/unittest-data/tests-platform.dtsi |   3 +
+ rust/helpers/helpers.c                       |   1 +
+ rust/helpers/property.c                      |   8 +
+ rust/kernel/{device.rs => device/mod.rs}     |   9 +-
+ rust/kernel/device/property.rs               | 578 +++++++++++++++++++
+ samples/rust/rust_driver_platform.rs         |  72 ++-
+ 7 files changed, 663 insertions(+), 11 deletions(-)
+ create mode 100644 rust/helpers/property.c
+ rename rust/kernel/{device.rs => device/mod.rs} (97%)
+ create mode 100644 rust/kernel/device/property.rs
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.49.0
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaAuhcAAKCRB4tDGHoIJi
-0r+sAP9JVeKQ/4V3BSOMKHnQtJFsApmrTtpl1BBIw/1jAgjY8QEAymv8fvG7Ih53
-kJEnD+pUrAVAeGtEOj3WVga4MaXX/QY=
-=0wOS
------END PGP SIGNATURE-----
-
---GjP52dV+jImYt1qm--
 
