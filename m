@@ -1,223 +1,117 @@
-Return-Path: <devicetree+bounces-170702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0B5A9C073
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:09:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3060DA9C0D8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96AA51BA417C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:09:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F3FA189DFC5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4EE7233707;
-	Fri, 25 Apr 2025 08:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062DC22D4F9;
+	Fri, 25 Apr 2025 08:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bny011mn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXV9W0y0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D08232395;
-	Fri, 25 Apr 2025 08:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D021417A2EE;
+	Fri, 25 Apr 2025 08:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745568539; cv=none; b=F92CnwbR+y5DgwV6DQtcOyIAF9Dq/YTGcJUAebQc2F2wfmBiYWCZtdjW68LFz/G4yr1JaAuV/ZN2F3vksvzAkaNC+HWd9U2Bf9nxeG4ZNzRallStZu1G8DVwu+6DdWhdSLPBsbyEClKTI0GiDlz1gDmqtK16Q64xrEf4UT0I/kA=
+	t=1745569346; cv=none; b=qo8vDzbZZXxZRD2hp6MXw7N3CR5/y4QXty9Lp35gtbowzam8bu0HzPUMAeeNNkltQ+//ASQdUwTgjg+T50agoFaS7ZZoSpIUTznrODYzMxv0VXLRN4MoKWRSpNfnJZdCIEl4jPBiij6CsJnq7UvJhNESaj5GovVjstkMVkQH5uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745568539; c=relaxed/simple;
-	bh=gtRsuvmEISKz28EyTTx8EH0Xr4h+sH+AR8WuiCfVNRw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kqI1HcoGVW0gpZbdO4S9uadeaQ7X9HMUkUL9SH0gWLZeZscCsPsA/MTdSCTQ/BKwFEOnxmmYEQT62BLtTtmoAxIVtPx+gF0ZnAtuLEeTLxTVOaRoBDb4rjNp9MKuSUdht3bG7eO7gOj2aRNjanvEgWSAHavIqz94X85FR/OwwMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bny011mn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC61C4CEE4;
-	Fri, 25 Apr 2025 08:08:54 +0000 (UTC)
+	s=arc-20240116; t=1745569346; c=relaxed/simple;
+	bh=+CE+X15AAaCeDTUxmGCqYcAhzi2wknEruYG/dvqSPRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iH/vI+YomZ3hpysnjieAIWuMzf9Q7teEOmGFSf5qSAbviOzLSvbVAdHdnZfnYvWUQ/YQLgB96Uu6p28POR7QwmLbm582nwA4Av2sMzAR2qpP1PkSayht7lZJYQmw5I3vpbalr02YJCHAiLMv4rxv221E4Xeh9Ls40nCsw9UdbyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXV9W0y0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA9AC4CEE4;
+	Fri, 25 Apr 2025 08:22:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745568539;
-	bh=gtRsuvmEISKz28EyTTx8EH0Xr4h+sH+AR8WuiCfVNRw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bny011mnmcqkpjlJhSmVb7MhrUlgc7SqH/Yxq41eN/4DXdB8yNKni+99jmij1Rxdt
-	 KEZ2u2JrCIxxlv6qgs2cm0r5q5oNB0JKhXDwCfDBIZzljR5pXI5qncvipZ2OqU8jAX
-	 tequWuknHqsnGhuedOR1fC21GdhSaGACDN6lhEfXn+0laIy5dWv7wZCVgOlFYEPLhk
-	 8dXkMhCoFtngJ9EDLKpuNB9J8ZBnTNsW/Jo66256OnT6QwytmO/ehTa63vbGWUXnZf
-	 6VlMQ96C757YYziDKe66jimlrDB48ri8cBFlKUURYQafSoBv8KiR7F1sqC+kaqp0uD
-	 Q3Hx6tMBs7ahg==
-Message-ID: <fc450dca-a1ba-4b9f-befa-f9643d9b1b82@kernel.org>
-Date: Fri, 25 Apr 2025 10:08:52 +0200
+	s=k20201202; t=1745569346;
+	bh=+CE+X15AAaCeDTUxmGCqYcAhzi2wknEruYG/dvqSPRs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=TXV9W0y0dpOfYs7DR7HZkh78YkG6Mzg7Zd+saejig0kqo/BVPBN2wG9WkS3n5ZQOl
+	 4Nfdwj2uwdYJ+RCDcdwk9/56DUuo3V60taysMbXiOCyYi5nEpi+dKCzG7ktY6kQ+Ld
+	 1ut18lt7b7QG46eOzOdWVdDw5bPy4oSIHgE1pb8qae5OVFBt72cr/8dL2ON+PBp3fJ
+	 QijKayN6PGXxf7eK6HAGqyk/8fGXwo6PwI5VnxVO1Awi5rX1Bo7CwIa9VPpWtt03Ti
+	 rPoCCRQHmlqEoLWb7mhIKITpV/E73kcQU+IsKIda6fnXOiZkolHSo6gy+RFgZaRN9z
+	 A4WodpL7my0wg==
+Date: Fri, 25 Apr 2025 09:22:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Gyeyoung Baek <gye976@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v4 3/4] iio: chemical: add support for winsen MHZ19B CO2
+ sensor
+Message-ID: <20250425092217.1ed00827@jic23-huawei>
+In-Reply-To: <aAfSUjFh_eB8Dtl2@smile.fi.intel.com>
+References: <20250420181015.492671-1-gye976@gmail.com>
+	<20250420181015.492671-4-gye976@gmail.com>
+	<CAHp75VdAeJ0HhExE=OAeFdYz2MYFKgMffbD_Gidf86w=zhKccg@mail.gmail.com>
+	<CAHp75VcaGqR-c23GCOKo3RLO-omtt9YgPuHmCUteAqYt6yon7Q@mail.gmail.com>
+	<CAKbEzns_cve+=8wQu2poVx5ZFr8zfUyMajmEz_YpSCDxffQXyg@mail.gmail.com>
+	<aAfSUjFh_eB8Dtl2@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v7 4/7] net: mtip: The L2 switch driver for imx287
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>
-References: <20250423072911.3513073-1-lukma@denx.de>
- <20250423072911.3513073-5-lukma@denx.de> <20250424181110.2734cd0b@kernel.org>
- <0bf77ef6-d884-44d2-8ecc-a530fee215d1@kernel.org>
- <20250425080556.138922a8@wsk>
- <a5f54d46-6829-4d60-b453-9ee92e6b568c@kernel.org>
- <20250425094907.27740d07@wsk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250425094907.27740d07@wsk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 25/04/2025 09:49, Lukasz Majewski wrote:
-> Hi Krzysztof, Jakub
-> 
->> On 25/04/2025 08:05, Lukasz Majewski wrote:
->>> Hi Krzysztof, Jakub,
->>>   
->>>> On 25/04/2025 03:11, Jakub Kicinski wrote:  
->>>>> On Wed, 23 Apr 2025 09:29:08 +0200 Lukasz Majewski wrote:    
->>>>>> This patch series provides support for More Than IP L2 switch
->>>>>> embedded in the imx287 SoC.
->>>>>>
->>>>>> This is a two port switch (placed between uDMA[01] and
->>>>>> MAC-NET[01]), which can be used for offloading the network
->>>>>> traffic.
->>>>>>
->>>>>> It can be used interchangeably with current FEC driver - to be
->>>>>> more specific: one can use either of it, depending on the
->>>>>> requirements.
->>>>>>
->>>>>> The biggest difference is the usage of DMA - when FEC is used,
->>>>>> separate DMAs are available for each ENET-MAC block.
->>>>>> However, with switch enabled - only the DMA0 is used to
->>>>>> send/receive data to/form switch (and then switch sends them to
->>>>>> respecitive ports).    
->>>>>
->>>>> Lots of sparse warnings and build issues here, at least on x86.
->>>>>
->>>>> Could you make sure it's clean with an allmodconfig config, 
->>>>> something like:
->>>>>
->>>>> make C=1 W=1 drivers/net/ethernet/freescale/mtipsw/     
->>>>
->>>> ... and W=1 with clang as well.
->>>>  
->>>
->>> The sparse warnings are because of struct switch_t casting and
->>> register  
->>
->> clang W=1 fails on errors, so it is not only sparse:
->>
->> error: cast to smaller integer type 'uint' (aka 'unsigned int') from
->> 'struct cbd_t *' [-Werror,-Wpointer-to-int-cast]
->>
->> You probably wanted there kenel_ulong_t.
-> 
-> This I did not catch earlier (probably because of my testing on
-> imx287). Thanks for spotting it.
-> 
->>
->>> access with this paradigm (as it is done with other drivers).  
->>
->> I don't understand. I see code like:
->>
->> 	struct switch_t *fecp = fep->hwp;
->>
->> But this is not a cast - the same types.
-> 
-> For example:
-> 
-> The warning:
-> 
-> mtipl2sw.c:208:30: warning: incorrect type in argument 1 (different
-> address spaces) mtipl2sw.c:208:30:    expected void const volatile
-> [noderef] __iomem *addr mtipl2sw.c:208:30:    got unsigned int *
-> 
-> corresponds to:
->  info->maclo = readl(&fecp->ESW_LREC0);   [*]
-> 
-> where:
-> 
-> struct switch_t {
->         u32 ESW_REVISION;
->         u32 ESW_SCRATCH;
-> 	...
->         /*from 0x420-0x4FC*/
->         u32 esw_reserved9[57];
->         /*0xFC0DC500---0xFC0DC508*/
->         u32 ESW_LREC0;
->         u32 ESW_LREC1;
->         u32 ESW_LSR;
-> };
-> 
-> 
-> The 'u32' type seems to be valid here as this register is 32 bit wide.
+On Tue, 22 Apr 2025 20:30:58 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-It is not about size, but IOMEM annotation and pointer/non-pointer.
+> On Tue, Apr 22, 2025 at 05:38:56PM +0900, Gyeyoung Baek wrote:
+> > On Mon, Apr 21, 2025 at 4:24=E2=80=AFAM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote: =20
+> > > On Sun, Apr 20, 2025 at 10:21=E2=80=AFPM Andy Shevchenko
+> > > <andy.shevchenko@gmail.com> wrote: =20
+> > > > On Sun, Apr 20, 2025 at 9:10=E2=80=AFPM Gyeyoung Baek <gye976@gmail=
+.com> wrote: =20
+>=20
+> ...
+>=20
+> > > > > --- a/drivers/iio/chemical/Makefile
+> > > > > +++ b/drivers/iio/chemical/Makefile =20
+> > > =20
+> > > > >  obj-$(CONFIG_SPS30_I2C) +=3D sps30_i2c.o
+> > > > >  obj-$(CONFIG_SPS30_SERIAL) +=3D sps30_serial.o
+> > > > >  obj-$(CONFIG_VZ89X)            +=3D vz89x.o
+> > > > > +obj-$(CONFIG_WINSEN_MHZ19B) +=3D mhz19b.o =20
+> > > >
+> > > > Preserve order. =20
+> > >
+> > > Ah, I see it's ordered but by Kconfig, Why do you have WINSEN in the
+> > > option and no such thing in the filename? I would drop that from the
+> > > config option. =20
+> >=20
+> > I followed the 'vendor_device' naming pattern seen in examples like
+> > 'CONFIG_SENSEAIR_SUNRISE_CO2' =20
+>=20
+> Interesting... Now I understand why the above was pulled without any comm=
+ent,
+> because the vendor and device names start with the same letter 'S'!
 
+These vendor + driver things originally (IIRC) snuck in with driver
+moves from misc etc a long time ago and I've never really enforced having
+them or not properly since then :(
 
-> 
-> To fix the sparse warnings - I think that I will replace [*] with:
-> 
-> info->maclo = readl((u32 __iomem *)&fecp->ESW_LREC0);
+I prefer not having the company in these but it is a fairly random
+choice with little real justification either way.
 
-I don't understand why are you reading address of ESW_LREC0. This is
-MMIO, right? So you are supposes to read base + offset (where base is a
-proper iomem pointer).
+Jonathan
 
+>=20
+> > But I'll drop the vendor prefix in the next patch, thanks. =20
+>=20
 
-Best regards,
-Krzysztof
 
