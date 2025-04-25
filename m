@@ -1,118 +1,122 @@
-Return-Path: <devicetree+bounces-170728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 956F7A9C336
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:21:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D7AA9C33F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 11:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE99B17F150
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:20:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E2F09A6B6C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:22:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCC12356A0;
-	Fri, 25 Apr 2025 09:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59CA2356BA;
+	Fri, 25 Apr 2025 09:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t1H6nIsi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Loduba4f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5403314A4DF;
-	Fri, 25 Apr 2025 09:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C7C235355;
+	Fri, 25 Apr 2025 09:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745572834; cv=none; b=b9bGUyRgQaR4A/JqYfxB1eFsYoQo0WWoq35COvkj4Bl8n8+YH0WBuxcEev8v+44aVBfrg4K86n3GvjiETO6ZGzCohicm104I8Z0yOX0pPAbldErnvZYpKVe7pYBI48ntwdyQVB8C2b99d0n6PeN7V26H/sBjCpCr1PE4Un9mdl4=
+	t=1745572986; cv=none; b=Zz2g74fr5Rpr4dMLL7YS9Fdp+4KgjmJ8ui9jYuYGb4kJqBBDdEN+YAuxRvbAz+5BYollza3moSTohsjw1mQr9XHpYqjZ5uAfOsdrS1glH3rp0sg2JTrF6t+XXnwGm+0T2iXvZWTBwkjWs91NfGHHXuWU8tlQAhv0zVBq94bvfaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745572834; c=relaxed/simple;
-	bh=UCh7hkxvuQd37GFSK2LhlE4EldkR+D9x5Yj7n5pmJ6s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XVjjKiHbZfBpW5Py+n4KVCuhu6Eay8HlyyJXuF2QnszMRNeCCzlz6lxoQP00fhFYW20kFDbaWrxIjty2hUnrGRMa9U9PumTTPLqPOHfHh1BrnApBvREomknZc/mcbRlw6l5ia2AdCBYBvORULuF9w9VYpYGepuTdeooWrZe2ED4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t1H6nIsi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 860A8C4CEE4;
-	Fri, 25 Apr 2025 09:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745572834;
-	bh=UCh7hkxvuQd37GFSK2LhlE4EldkR+D9x5Yj7n5pmJ6s=;
-	h=From:To:Cc:Subject:Date:From;
-	b=t1H6nIsiaqSmUOGlPHvl8EqHJpRWdC19g1Lgu2W1muVLRSCJ2AU0+BGmne7XtM0pU
-	 h2fdkixyxQENxvFR5olTtcGA9unhBM5wluexnOvNqCYr5jcRtsoSucxNYiNoF1Fv//
-	 0qNdIrTLCsU7A6HOKiy8G5gA87qjoqjWQUe8jqpCBUR0/YLjZQ4V4sr4Pl0bzVcKGE
-	 KHFteIlCGitz0Xv5HVx2sWC0RNzZILFG9tCfH9ZeKPinBJw7r1VoxEZyka24XhDeEV
-	 9uV3gBPEKiu8f2FhUVT26dtjlhsuJYDtW4hIOPMg0AD2eY9PRZZhCfDHJ7b0PHMRJU
-	 hXlFjSm0pD21g==
-From: Niklas Cassel <cassel@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	s=arc-20240116; t=1745572986; c=relaxed/simple;
+	bh=gMprlHkVxi6gnMvmMb4cMRUtpyme/sohQ1ulPVQ8zCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aC4XLHPimyjbK2d0lOWpa6g2VmSia61f+7h1k4nCwlUlRvGdj/8ao126OgffUBx4KpqtPUSb3mCduH7T6RQYQDHb513eeSs44GRyuDozL5yGpQdtpw2GLj07tFJGXI4i7Z0JY+CIGVLMLIlO8+VFT2ZZknNwlN0koBwLJ6LJYaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Loduba4f; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745572985; x=1777108985;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gMprlHkVxi6gnMvmMb4cMRUtpyme/sohQ1ulPVQ8zCM=;
+  b=Loduba4fO1Kdh6vLs9aVzxdST+Zdm65VH7SrjUaZvnoS2AqmshDM3Ad2
+   qpnQCmJZFIPaNzW9vcdAkAYIXbLYFoLa4pjNSx8GAwo/L7flafLSH2T36
+   OWzRfU/vzHsLSNzd9l+oZIoY/prO1mk+vxbQhvYl4OokEl5/3R8t5G3Be
+   Vbarq45gFo4U5Y1d5m21X1buHKMrAriUDHSLvCnWQama6rodxV5rALjTD
+   2ML5xx00N2xA/N5SxT5TEdS+zjtFfMZUttVYQz70YDOC6/zXDRrWTiMEK
+   dXm6ErNjvZfyCXByHgVTJoNEnc5aexL+OYop8ORhG/sqc9Q5k81D7AZmi
+   Q==;
+X-CSE-ConnectionGUID: 9t6LmmlLQmWf/69gLFrZmQ==
+X-CSE-MsgGUID: OVTe40i1ScGLMWTGT0Tw+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="47103843"
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; 
+   d="scan'208";a="47103843"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2025 02:23:04 -0700
+X-CSE-ConnectionGUID: fGyaWEyHRD2/osn7rGCrNw==
+X-CSE-MsgGUID: 0hbx2HneSVGKZl80TOtVVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; 
+   d="scan'208";a="156090082"
+Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 25 Apr 2025 02:22:55 -0700
+Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u8FGm-00051J-2c;
+	Fri, 25 Apr 2025 09:22:52 +0000
+Date: Fri, 25 Apr 2025 17:22:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Icenowy Zheng <uwu@icenowy.me>, Emil Renner Berthing <kernel@esmil.dk>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abraham I <kishon@kernel.org>
-Cc: dlemoal@kernel.org,
-	Niklas Cassel <cassel@kernel.org>,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
-Date: Fri, 25 Apr 2025 11:20:12 +0200
-Message-ID: <20250425092012.95418-2-cassel@kernel.org>
-X-Mailer: git-send-email 2.49.0
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: jh7110-pine64-star64: force
+ no USB overcurrent
+Message-ID: <202504251758.YghAqPPR-lkp@intel.com>
+References: <20250424062154.655128-1-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2252; i=cassel@kernel.org; h=from:subject; bh=UCh7hkxvuQd37GFSK2LhlE4EldkR+D9x5Yj7n5pmJ6s=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGDK4g8/cWVGQ+TvQdfdsp6o/xzndVUs5a7IlOSMbvznFq pp1u8zuKGVhEONikBVTZPH94bK/uNt9ynHFOzYwc1iZQIYwcHEKwETWxzH8T6w+pXpG+7z4P8OD kavfzny9+ECoWrrZTpbJWi2XD/UHvmD4X/jO6vWPbud1G1aUt2TWS991ZFub8aw98XeX9ooNpiZ r+QA=
-X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424062154.655128-1-uwu@icenowy.me>
 
-While some boards designs support multiple reference clocking schemes
-(e.g. Common Clock and SRNS), and can choose the clocking scheme using
-e.g. a DIP switch, most boards designs only support a single clocking
-scheme (even if the SoC might support multiple clocking schemes).
+Hi Icenowy,
 
-This property is needed such that the PCI controller driver, in endpoint
-mode, can set the proper bits, e.g. the Common Clock Configuration bit and
-the SRIS Clocking bit, in the PCIe Link Control Register (Offset 10h).
-(Sometimes, there are also specific bits that needs to be set in the PHY.)
+kernel test robot noticed the following build errors:
 
-Some device tree bindings have already implemented vendor specific
-properties to handle this, e.g. "nvidia,enable-ext-refclk" (Common Clock)
-and "nvidia,enable-srns" (SRNS). However, since this property is common
-for all PCI controllers running in endpoint mode, this really ought to be
-a property in the common pcie-ep.yaml device tree binding.
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next robh/for-next linus/master v6.15-rc3 next-20250424]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Add a new ref-clk-mode property that describes the reference clocking
-scheme used by the endpoint. (We do not add a common-clk-ssc option, since
-we cannot know/control if the common clock provided by the host uses SSC.)
+url:    https://github.com/intel-lab-lkp/linux/commits/Icenowy-Zheng/dt-bindings-pinctrl-starfive-jh7110-add-PAD_INTERNAL_-virtual-pins/20250424-142640
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20250424062154.655128-1-uwu%40icenowy.me
+patch subject: [PATCH v2 3/3] riscv: dts: starfive: jh7110-pine64-star64: force no USB overcurrent
+config: riscv-randconfig-001-20250425 (https://download.01.org/0day-ci/archive/20250425/202504251758.YghAqPPR-lkp@intel.com/config)
+compiler: riscv32-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250425/202504251758.YghAqPPR-lkp@intel.com/reproduce)
 
-Signed-off-by: Niklas Cassel <cassel@kernel.org>
----
- Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504251758.YghAqPPR-lkp@intel.com/
 
-diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
-index f75000e3093d..206c1dc2ab82 100644
---- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
-@@ -42,6 +42,15 @@ properties:
-     default: 1
-     maximum: 16
- 
-+  ref-clk-mode:
-+    description: Reference clocking architechture
-+    enum:
-+      - common-clk        # Common Reference Clock (provided by RC side)
-+      - common-clk-ep     # Common Reference Clock (provided by EP side)
-+      - common-clk-ep-ssc # Common Reference Clock With Spread (provided by EP side)
-+      - srns              # Separate Reference Clocks No Spread
-+      - sris              # Separate Reference Clocks Independent Spread
-+
-   linux,pci-domain:
-     description:
-       If present this property assigns a fixed PCI domain number to a PCI
+All errors (new ones prefixed by >>):
+
+>> Error: arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts:96.87-88 syntax error
+   FATAL ERROR: Unable to parse input tree
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
