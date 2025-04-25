@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-170939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB74A9CBDF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:39:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A77A9CBE9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A9054C5003
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 14:39:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D3621BA623C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 14:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F352B2580EC;
-	Fri, 25 Apr 2025 14:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB092580F4;
+	Fri, 25 Apr 2025 14:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6LX2SW/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8vBpr6l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C02B72580C7;
-	Fri, 25 Apr 2025 14:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2527E7A13A;
+	Fri, 25 Apr 2025 14:44:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745591968; cv=none; b=lvfWT2dHJNSN89bjhpOHRaADNIE3fXjfT/DgKq1FULBmMDyx3RhtM+cLiHTzwJtbzw8q5d7lpAislVavmPRJySl4pgI1Mhjd48i10ZbHfpxDRCAEV418ai27YE1ontbj3E2pJ+lpCjMrBrl2EXZ0+OvCc3nq+sPG2J1xQ0aV1is=
+	t=1745592288; cv=none; b=KV3lENWSzkzw7/GqHIqwGzv+M5qX145rHPcyvW31C+87oq5qCDwC/GKZhzf+xp2+ukdG1WMdScSyJY5TjVNvlLhVAfb/niQKhqnLu16XWnw5pNgmBNpwrhh73ORvzaR0mhSOg0qcWX/b/DYwoezwUQ2WyLJpvRSd5UovkdVJRiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745591968; c=relaxed/simple;
-	bh=cjtjsjbpssW6UAfWKgY83pMAqTjtOCyKN6e98BJ7T7o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nFoMgBOPHfrBg/3D8Cprt2utTEXfTzwbi+hk5BsP504QQmvRN/07Bg7B1x78Mqk1VhEPwdScwaREe0PEm1MwOtKmMb8Pr84RFcQDmxxX+RJ6J7jTzyRPOQx1qYOL2/NKQy5+4REGLOei29jsccrFV64cL43znSJmM8FVBLEb6PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6LX2SW/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BF59C4CEE4;
-	Fri, 25 Apr 2025 14:39:25 +0000 (UTC)
+	s=arc-20240116; t=1745592288; c=relaxed/simple;
+	bh=5LLcQJbguAUXf7fhzBaS9EfxrD1vFe2/1D4vo2jOGDI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=cbBwgwOrzyXgZcK/vzrxGskU79CsTJXFzCGR4UjM7TQ5mZElLqg680+gQpJi+udexzNeAJJWtI4/SKODa/rs6yxTV2alEgm3D4zhFPm+nAzdHTLcbgGLFfPgeajQW6sI+SA/P/BHH6ucPR4tP3o2PNC2U/lqy8HV3YD1wWKthZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8vBpr6l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F382C4CEE4;
+	Fri, 25 Apr 2025 14:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745591968;
-	bh=cjtjsjbpssW6UAfWKgY83pMAqTjtOCyKN6e98BJ7T7o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S6LX2SW/NWs7snB8spmKeqwjMHoodW/mZA9EkQcujUed7Thp4uVrrPXvnNsXqtQ6V
-	 brk70ABY+f6X5I/1V58VwqUTpE+ZZifFSeVC//9B3psb4IzQJEbZlT3tGP6aDmdU/Z
-	 a4POccIe1oGrxma2t4dSqc3Dc2rUKwSihWKPdgutocnkuu9PvFLPXqIRzGtPjnryQK
-	 5/QequEo/O6tQLx6wB0CrdJreyoFbRAD02DUlcCqEhOQvsYbRWD62RUkUn1ghNG1ah
-	 wychPCrDfv20BUQo2uX8ckr73Zd3YB60guM358n4fbjD/5kaT3H0gjLWtEA67rQj0y
-	 IDQnC2SlxTnhQ==
-Message-ID: <7c647ca4-6874-4f41-91fa-828f0eafcb51@kernel.org>
-Date: Fri, 25 Apr 2025 16:39:24 +0200
+	s=k20201202; t=1745592287;
+	bh=5LLcQJbguAUXf7fhzBaS9EfxrD1vFe2/1D4vo2jOGDI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=h8vBpr6lYTmBEzdUa1l4Aub/YNwD2YVTsBjm8j/XHJPsUhJN11FZp8MTVKSVYXUcW
+	 hpUlzyOx03xOGxj3jOLeFClenps1W5ZWoWoJ1bPe4HfZMbVx7+4Al5AQZWTvjbc/31
+	 wuPcBq0aQsApZ2tfed/NM3jXQQ3NoAH0dw28lsZDbhaCh1AJ9PZ0dqjSP1C4wsTXlC
+	 Z/I0f57JIMS6VYww6rtzW0mkUlvnbhoxg3aE7JA6EADIi68arzFUbQQxH6yNSdCi4b
+	 CCQs+U31hCCHOril5snNlvRWxVqU9bFuWC06SveLX6e0/1oOsPx3T57+1lQGHe76m0
+	 W7WsYr1vHdQvg==
+Message-ID: <34087c68-442f-41ec-a6c0-dd063f6d44d1@kernel.org>
+Date: Fri, 25 Apr 2025 16:44:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: arm: qcom,ids: add SoC ID for SM8750
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250425140346.1087527-1-mukesh.ojha@oss.qualcomm.com>
- <20250425140346.1087527-2-mukesh.ojha@oss.qualcomm.com>
+Subject: Re: [PATCH v1 01/10] dt-bindings: clock: Add RTC clock binding for
+ Maxim MAX77686
+To: Anand Moon <linux.amoon@gmail.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ "open list:MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BO..."
+ <linux-kernel@vger.kernel.org>,
+ "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES"
+ <linux-samsung-soc@vger.kernel.org>
+References: <20250425132727.5160-1-linux.amoon@gmail.com>
+ <20250425132727.5160-2-linux.amoon@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,19 +112,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250425140346.1087527-2-mukesh.ojha@oss.qualcomm.com>
+In-Reply-To: <20250425132727.5160-2-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/04/2025 16:03, Mukesh Ojha wrote:
-> Add the unique ID for Qualcomm SM8750 SoC.
-> This value is used to differentiate the SoC across qcom targets.
-> 
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+On 25/04/2025 15:26, Anand Moon wrote:
+> +
+> +  The MAX77686 contains three 32.768khz crystal clock outputs that can
+> +  be controlled (gated/ungated) over I2C. Clocks are defined as
+> +  preprocessor macros in dt-bindings/clock/maxim,max77686.h.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - max77686-rtc
 
-Huh, surprised to see this patch so late...
+So you claim RTC is a clock, right? Did not even think that RTC has a
+bit different meaning?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+But regardless, this code make no sense and was never tested. It cannot
+work.
+
+It reminds me previous approaches with whatever patches you found in the
+downstream...
 
 Best regards,
 Krzysztof
