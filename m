@@ -1,120 +1,105 @@
-Return-Path: <devicetree+bounces-170883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3DFA9CA0E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:20:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B66A9CA1D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:23:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7335C1BC3E9F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:20:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFE014A71C3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 13:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369EB24C097;
-	Fri, 25 Apr 2025 13:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDg2Q+t0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF992512D2;
+	Fri, 25 Apr 2025 13:22:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C8624A074;
-	Fri, 25 Apr 2025 13:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9357C24A074;
+	Fri, 25 Apr 2025 13:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745587231; cv=none; b=Vrj3oTvxx+sRkL9RXSBEwWHaEjaHKoUYOK1Xr7AYRDPvOL8z5E75VD0Rl3pr1oFJCav5QPekQe9JhI4oWebs5yPETyyoFjvMsrAAnvqYNg/xcHztRwd/DPFVvLFUWqhVuS4KXdOXekOkAq57mW8LX10QexKJcNFrpRC/EyX1mIc=
+	t=1745587377; cv=none; b=UlZL25hRWVWp/YAgvXNVR3bQ3TK0f6crlmZ7KWBpX0gSfV0U6+0RzkfAGc8wCpT4QCws4hqUxOHMcWCN6/g+DW5mGfUzUdocAF2W/BTRimljNwGBCBC9cbRjJ+fwskOCWCVRG/0K2fQBxFPSYvpp16r2YRkCxYAFuTJ3Laqrg6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745587231; c=relaxed/simple;
-	bh=hb6E8C1ttpx3cKoDNmpMY75ubZTHmF1p12ffwEeLTm4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=GxyulAg1WI5VPDU8T85IVpoOu1DPLFfF2JLGNr4i6e8xMxdk8W9ue6vxmkvAjer79ytBvbe2dAotkOq1NcIcROWf7Vx3jwmaMKEQX7AYV+l+CG9brB4WlCwLzgRQ+Ljq0Y6YshzM9IwX2sT4LRdEEZ/1A1qTyKmXvqmDLkQpezg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDg2Q+t0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 479E1C4CEE4;
-	Fri, 25 Apr 2025 13:20:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745587230;
-	bh=hb6E8C1ttpx3cKoDNmpMY75ubZTHmF1p12ffwEeLTm4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=SDg2Q+t0mad6LPRi26dhMlsrG3nTVxOf8qeOB00TKXuuzL7WPZBwLnJ8ngh+DRd/Z
-	 CEr3rMMcLJBYEpe6D6jPDVU6I7p157/FX/WKAF5f0pifdrzehNHevbaMj6anfrvRNX
-	 UzOo5hWK8z3PHxFUnIVGIK0jv+sj//mppCe5suZew09q9wqXxxVTI0XNGAcm3V5PXV
-	 9INM11yOGF6K1PoZRAfjOfeb3evPQwbbddu7GgVAk3KVdR1IS8YHap9ArcJQegKphQ
-	 vBDyn5QH0diMXzYsKixjP3Sw316s0dDOCYM2ol2dqJxqVgQRnCoz8Ol2EStkCE9H7l
-	 HqVui0MMeO8PA==
-Date: Fri, 25 Apr 2025 08:20:28 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1745587377; c=relaxed/simple;
+	bh=+UEqAdABQcBUW46BHo9XWuA/Hw8eE1ZJ7U7m5IB8G9A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bAivs6qLWlREBVngCA2t3sZHpeZmvB/w4ofSoe/Xc6SwqWJLLU2vCqpTUyPxFPaVp9R94TdJbOe52uoi+3aCxKtsP9UC8rte5Y+A5TobJ5t9t5L/UKeSkWDIINRVjISvAQz7Yar/RABlPhvUAibacj/QhiYmHWd2BFS4Itzogx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 82A88106F;
+	Fri, 25 Apr 2025 06:22:49 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 67B103F59E;
+	Fri, 25 Apr 2025 06:22:52 -0700 (PDT)
+Date: Fri, 25 Apr 2025 14:22:50 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>, Yixun Lan
+ <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Maxime Ripard
+ <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, clabbe.montjoie@gmail.com
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E
+ board
+Message-ID: <20250425142250.006a029d@donnerap.manchester.arm.com>
+In-Reply-To: <3681181a-0fbb-4979-9a7e-b8fe5c1b7c3c@lunn.ch>
+References: <20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org>
+	<4ba3e7b8-e680-40fa-b159-5146a16a9415@lunn.ch>
+	<20250424150037.0f09a867@donnerap.manchester.arm.com>
+	<4643958.LvFx2qVVIh@jernej-laptop>
+	<20250424235658.0c662e67@minigeek.lan>
+	<3681181a-0fbb-4979-9a7e-b8fe5c1b7c3c@lunn.ch>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, krzk@kernel.org, 
- devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, vladimir.zapolskiy@linaro.org, 
- linux-arm-msm@vger.kernel.org, Robert Foss <rfoss@kernel.org>, 
- linux-media@vger.kernel.org, loic.poulain@oss.qualcomm.com
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250425-b4-media-committers-25-04-25-camss-supplies-v1-1-2a3dd3a47a6a@linaro.org>
-References: <20250425-b4-media-committers-25-04-25-camss-supplies-v1-0-2a3dd3a47a6a@linaro.org>
- <20250425-b4-media-committers-25-04-25-camss-supplies-v1-1-2a3dd3a47a6a@linaro.org>
-Message-Id: <174558722845.2020003.4626992465358101962.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: qcom,x1e80100-camss: Fixup
- csiphy supply names
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 25 Apr 2025 04:01:30 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-On Fri, 25 Apr 2025 13:01:51 +0100, Bryan O'Donoghue wrote:
-> Declare a CSIPHY regulator pair 0p8 and 1p2 for each CSIPHY.
+> > Ah, right, I dimly remembered there was some hardware setting, but your
+> > mentioning of those strap resistors now tickled my memory!
+> > 
+> > So according to the Radxa board schematic, RGMII0-RXD0/RXDLY is pulled
+> > up to VCCIO via 4.7K, while RGMII0-RXD1/TXDLY is pulled to GND (also via
+> > 4K7). According to the Motorcom YT8531 datasheet this means that RX
+> > delay is enabled, but TX delay is not.
+> > The Avaota board uses the same setup, albeit with an RTL8211F-CG PHY,
+> > but its datasheet confirms it uses the same logic.
+> > 
+> > So does this mean we should say rgmii-rxid, so that the MAC adds the TX
+> > delay? Does the stmmac driver actually support this? I couldn't find
+> > this part by quickly checking the code.  
 > 
-> Name the inputs based on the voltage so as to have a consistent naming of
-> these rails across SoCs and PCBs.
+> No. It is what the PCB provides which matters. A very small number of
+> PCB have extra long clock lines to add the 2ns delay. Those boards
+> should use 'rgmii'. All other boards should use rgmii-id, meaning the
+> delays need to be provided somewhere else. Typically it is the PHY
+> which adds the delays.
 > 
-> There are no upstream users of this yaml definition yet so this change is
-> safe to make.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,x1e80100-camss.yaml        | 52 +++++++++++++++++-----
->  1 file changed, 40 insertions(+), 12 deletions(-)
-> 
+> The strapping should not matter, the PHY driver will override that. So
+> 'rgmii-id' should result in the PHY doing the basis 2ns in both
+> directions. The MAC DT properties then add additional delays, which i
+> consider fine tuning. Most systems don't actually need fine tuning,
+> but the YT8531 is funky, it often does need it for some reason.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Ah, many thanks for the explanation, that clears that up! I read something
+about the MAC adding delays, which confused me, but what you say now makes
+sense.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:153:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:156:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:159:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:162:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:165:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:168:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:171:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:174:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:193:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:196:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:199:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml:202:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250425-b4-media-committers-25-04-25-camss-supplies-v1-1-2a3dd3a47a6a@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks!
+Andre.
 
