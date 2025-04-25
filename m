@@ -1,110 +1,151 @@
-Return-Path: <devicetree+bounces-170862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC1DA9C8E0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 14:23:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19608A9C932
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 14:48:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DA381BC584C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:23:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 660274C17D0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0BC2475C3;
-	Fri, 25 Apr 2025 12:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D36924A06E;
+	Fri, 25 Apr 2025 12:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LTX0wYqB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xbgUOApZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1C6235C14;
-	Fri, 25 Apr 2025 12:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA4B12CD8B;
+	Fri, 25 Apr 2025 12:48:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745583800; cv=none; b=Q0omUd3obdyC6JG0LN/d3AQof7SlFCwHPsCY2ZKKy8puX+JdjBZt842/wksQ4sU1BAgGvUuripxsVcFXAuIkeHJAYDEL3Bp6V0RM05oIUsTCgrAHsLHQKcTY7Qu7FzaI1InTsq98p9+Au6fp+pD7P1XpLANBDEcj+5RIRPOmaFo=
+	t=1745585303; cv=none; b=J9hjAOT4Yg4NNCx18W1/tMC1ROlYPQ9cJl7AwmTDhqGXdJTApr9dyBv5Sg/IBkrvWeXU2LZ/0M6rY+tr6jbizZUWzE59IqxkRHvNkXL/dTsPE2h0Zs2Em7bS9nvj9K4WiqPzQxWaLRuln5iLy+W5KHBxnjfyY6C5WuRuRmDcyZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745583800; c=relaxed/simple;
-	bh=Ab61uosn7VGc1mYzTTvPpiQv4En8lI+mouNLvFVx3hU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RYV4jlBXbjEh6/z8GEo+S6QwcenUNhEe+izZOThUFtb9Wn2wn1yXVCFEOP6NkmCh7ho8Q4g9wPqskMW9mT5QVqBnXBt7ktIdWc+9bzksH/2KiSaCL5gr/Xjfq1z0rVkNpvv/4FDzWc2liFISCJi7ua4SGG7veFt6w63iiFONtQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LTX0wYqB; arc=none smtp.client-ip=198.47.23.234
+	s=arc-20240116; t=1745585303; c=relaxed/simple;
+	bh=xzBjYAL+Cmoi5JamH+7OnbMsijJECpaV2Fpa2Q7B9rE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FvuNjWSTpv2YJvfCi5onETHwCgQFZhL28hHNvnIpUHj9dGVd1U49omYJH8uN2xzrz2S2gfDId9RN9XoeM0mOeTVQj1ISaipdt/I3Ir0Y5Q1TAZKzdARLSxq7S+4ZF5HQP67tXxxs+jx1pgCfA+sRO0bLmVNTEDP/lTV8oN4Uxak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xbgUOApZ; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PCN8SK2140246
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PClq6t2936010
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 07:23:08 -0500
+	Fri, 25 Apr 2025 07:47:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745583788;
-	bh=qd3ans2EkaBFSKx6PD7a98Rs0x5sNPpf7cnb9HK+FLY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=LTX0wYqBk2O2QL+9ub+Nx4C8e9rQ+tTj1vmNvrDt/Mjg4srwkoXVoaI/iCOxbB9dW
-	 i18HMg57N8kc30AJ5bYk6Z0rnTY6FX2apUMBJMtn+ZWusO6nCwnaMSSW3XnQHmCrEm
-	 KP51QYUBeQU30x83PNAf5vxmBZZZQMgYMwdHnwWU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PCN8fE012517
+	s=ti-com-17Q1; t=1745585272;
+	bh=j/Hj3c7jY39j+fuwEWeM6PzZhE4vdZHJduAlcVZNHWc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xbgUOApZeNS+Twt91FD+Q0Si9gTyC2kHi3t3nUoIAz3B9AHn6CXcy420dXm3ShO7C
+	 7F5l6UkiZg+46msZ4y7J16BuqM1W/iYat2TId52JQ2OL8FsAlIhLa7U3sPLXN/bgSs
+	 1WFAse/xkjOgSKjHm+jXtDb1z5u/WpAJ6e+FHIMc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PClqKx069718
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 07:23:08 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 25 Apr 2025 07:47:52 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 07:23:07 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 07:47:52 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 07:23:08 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PCN7QR014264;
-	Fri, 25 Apr 2025 07:23:07 -0500
-Date: Fri, 25 Apr 2025 07:23:07 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Judith Mendez <jm@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/3] Enable PWMs
-Message-ID: <20250425122307.4o257gnwq52ctctv@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250422000851.4118545-1-jm@ti.com>
+ Frontend Transport; Fri, 25 Apr 2025 07:47:52 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PClmD4042038;
+	Fri, 25 Apr 2025 07:47:49 -0500
+Message-ID: <865e0c92-296f-4fe4-971b-38ebfa90b8b5@ti.com>
+Date: Fri, 25 Apr 2025 18:17:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20250422000851.4118545-1-jm@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-common-proc-board-infotainment:
+ Fix nodes for dtbs warnings
+To: Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <devarsht@ti.com>, <linux-kernel@vger.kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20250424080328.57671-1-j-choudhary@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250424080328.57671-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On April 21, 2025 thus sayeth Judith Mendez:
-> This patch series enables PWM signal outputs on am625 SK,
-> am62 lp SK, am62a7 SK, and am62p5 SK boards.
-> 
-> For am625 SK and am62 lp SK, add pinmux, eCAP, and eHRPWM
-> nodes in the k3-am62x-sk-common.dtsi so as to not duplicate
-> nodes in the board files.
-> 
-> Judith Mendez (3):
->   arm64: dts: ti: k3-am62p5-sk: Enable PWM
->   arm64: dts: ti: k3-am62a7-sk: Enable PWM
->   arm64: dts: ti: k3-am625-sk: Enable PWM
-> 
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 40 ++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 54 +++++++++++++++++++
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 40 ++++++++++++++
->  3 files changed, 134 insertions(+)
-> 
 
-Looks Good! Thanks Judith
+On 4/24/2025 1:33 PM, Jayesh Choudhary wrote:
+> Fix hdmi-connector and tfp bridge node as per the bindings,
+> - remove 'digital' property which is required for DVI connector not HDMI
+> - Add 'ti,deskew' property which is a required property
+> - Fix ports property for tfp410 bridge
+> - Change node names appropriately
+>
+> Redefine the ports for dss and for k3-j721e-common-proc-board.dts,
+> add reg property for the port (@0) to get rid of dtbs_warnings in
+> infotainment overlay when ports for dss are re-defined.
+>
+> Fixes: 9c0fa304fa56 ("arm64: dts: ti: k3-j721e: Add overlay for J721E Infotainment Expansion Board")
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>   ...-j721e-common-proc-board-infotainment.dtso | 57 +++++++++++--------
+>   .../dts/ti/k3-j721e-common-proc-board.dts     |  6 +-
+>   2 files changed, 38 insertions(+), 25 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board-infotainment.dtso b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board-infotainment.dtso
+> index 65a7e54f0884..e4e5f941f20b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board-infotainment.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board-infotainment.dtso
+> @@ -15,12 +15,11 @@
+>   #include "k3-pinctrl.h"
+>   
+>   &{/} {
+> -	hdmi-connector {
+> +	connector-hdmi {
+>   		compatible = "hdmi-connector";
+>   		label = "hdmi";
+>   		type = "a";
+>   		ddc-i2c-bus = <&main_i2c1>;
+> -		digital;
+>   		/* P12 - HDMI_HPD */
+>   		hpd-gpios = <&exp6 10 GPIO_ACTIVE_HIGH>;
+>   
+> @@ -31,28 +30,32 @@ hdmi_connector_in: endpoint {
+>   		};
+>   	};
+>   
+> -	dvi-bridge {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> +	bridge-dvi {
+>   		compatible = "ti,tfp410";
+>   		/* P10 - HDMI_PDn */
+>   		powerdown-gpios = <&exp6 8 GPIO_ACTIVE_LOW>;
+> +		ti,deskew = <0>;
+>   
+> -		port@0 {
+> -			reg = <0>;
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-~Bryan
+
+>   
+> -			tfp410_in: endpoint {
+> -				remote-endpoint = <&dpi_out0>;
+> -				pclk-sample = <1>;
+> [..]
 
