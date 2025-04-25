@@ -1,456 +1,497 @@
-Return-Path: <devicetree+bounces-170666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 826E6A9BEC2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB5FA9BED6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 08:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9927C1B86AFF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:41:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 294E21B87F30
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 06:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9E322D4D9;
-	Fri, 25 Apr 2025 06:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378AF22D4DF;
+	Fri, 25 Apr 2025 06:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="D3s55mFj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fubbd8CF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17181DFDAB;
-	Fri, 25 Apr 2025 06:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FC51E5B70
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 06:49:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745563277; cv=none; b=tnS0vUAeY1iOt7sNOjkYMXruuWtr5vXbqE2vozWAlLMXQGjQt91VfPN8kye6vOUvh/zTOL2J7Mf/0aY0oyXCTDOr9Lip+Wbsl0jUnmYTG8xkx712F1Nc7r3nhJve3dAhYQkuXqqWUi30v4B31T+Ns3+jUzP/MFeeCqnAmHmXXQs=
+	t=1745563757; cv=none; b=ebRl18jVsJxUco7kdXtSOPshf98yenXN3tlOf6UWUHBJh3CNZn+0sHeczMUVE3iHXP0JBUmLw9nZeVHI0K+oDCq0vT/SnQPvL0qLmGDD02ItWcQpK2QYzW/9cQDMs+Qgkdsnf90kWgNkMLDBFFvxVFNHVjvazuQppXh/jaxQ4Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745563277; c=relaxed/simple;
-	bh=Jj8JwEyjePL1mk2H0nmL8frWagBIPWufEv94NRtprEY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KdNVgaHm45MUXw1Pht2FJldWwIoFghQ4kgC3X+4wbWoMMS6VHR3T29GiiIx/0m4WJDE9HcZJduXKVQ0NM24gpVHwAj6W/96/M4a/6cVa8FQeflrJExlJ6ID6Q/Nnng82ugZYiCZGiBtKGdvA6/LCAMCpYUXGZGxcEK35IHIrufc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=D3s55mFj; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=qhO7gfPY8N+u8fqstYKFCu7lX1y6q1PoxvBNdW7nO2E=; b=D3s55mFjlE3TSdhakHBNFQ3AF0
-	LV9elRCcbUUlo9vk8WknrqIkgdUC/hwkifSXLDBw36Y89ihS5S/RX4fgO16EiRPpV6eZdvoxupNg8
-	PLKhRc1GAkQIxSM58mkWcLp3YIUgg+/7olti+tmGQj4PJJZgLpX7DgmyradZPsG+Iw9le6+q6et8t
-	oDwt7EpmMgnAUnqJpvpd5Bb1NkyynaQ6bAfstPZuM5jyeagtSqpjdy7kgtZQ+jJIOrRZ9rONq/peH
-	XYi/9KF4db3DPaQftNWFzVfajWuK8FhJGftR89jXekX80i8Mb4WGXqogf7vi5lpXFO0sR3kagAEVZ
-	4ex12wtw==;
-Received: from [89.212.21.243] (port=50196 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1u8CkH-003PCA-1h;
-	Fri, 25 Apr 2025 08:41:08 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1745563757; c=relaxed/simple;
+	bh=RJUhC8jZPdmkCw96m1ynjxu2oOxzfwvaiJxcWhWxiPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EPOg0PvDYo6PTawydc3FqUmtg1y4Ayf5SvLhJtPQX2ufXtQLTtj+9noqQWW943HYhrBT1RWtFfuCZMK0EmUIdRhivzK4wED7BpuUXDPVQ/YIUun2aNpXS/f95qnVTpXzGXISpWqxgAAKZ90JCjiKDgVKibhwVH+BsMCGBJotEt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fubbd8CF; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-acb5ec407b1so313759266b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Apr 2025 23:49:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745563753; x=1746168553; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ivd78KmDTpQQYR3V4iqZRpcBAqYRLEDV/deWqE8MYC8=;
+        b=Fubbd8CFiyic73w174KnBWcWx3qfKuLDbQz1DKXsj60+cqio2YR1a8+qWpovNZUJ5r
+         zEcbmMyWVf0Xql2Z9NUBE5F5CEH2OLtLJUHIlRrePiQIC7NtRDdWEvvl5GT0wMhN61ST
+         ZF/JaV+LvB2f7cJNgU+kpA8QvI/nreP3DlA0euVEZ3K0ArRsGDU0xjjCB0mrpDbMENp4
+         8mNb/rZM6+UZJ4Tugcn3Dw8yoN5ef0MXs/dcE0u3Ng0hqwrxi+lzVb7QNwQqxHfQ4npc
+         +E5zEpopzFKjzTX/xCUWEH6QyWHv3wjDlmucn6ShJWLr5Av6ueb2CC8yWgi8ac1C7UP+
+         tVzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745563753; x=1746168553;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ivd78KmDTpQQYR3V4iqZRpcBAqYRLEDV/deWqE8MYC8=;
+        b=XQCYAAHPvBv6FX/SX6QjTtqvrbVQKPJhC7F91cIcSUWNxVF4x5ZTbmy3OqRxPEi0Ow
+         EL9yZCcpION2HNEv4XWcE1zYuegnRZJheENNUf5vwlocT3177RhQvqtFMPDVeVujjYv9
+         6XrhnbiXhKPuj+KBUuiZZi8OsXHrERoki0d85G5w3+Gu1YFTl9LiMvfQMCT+UY2oxjLw
+         me5VzG0jsVQsMu5varp710WOmhoyao2u/Or3/tSzYXRF5T+ZLG7BMS0+BCrKOLdevOOn
+         rupf/F3w8QHt2gsIDQnTdLb8eOaIO+eNFos5h5xvqiFj9GGJGDnKT0nOj+v13JiSu0cM
+         ABkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCpjlG/P+CULHw5z9Dbc8sBYpwKGv+t0camiBBhDUFY2XNPBTICtngIpAJKz8LNuyQMWpEKZEgCsVM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAX4ba0R4p/9tkTkolh1Sj7wx8YLmWXRO5wepWQ9/oYNjAS3Lq
+	AZno1UaieYwpsTfwf10u/vrjkFDhWvuIEAbIpUn7hyaEQQ3cQUbzRxgrywI8d8A=
+X-Gm-Gg: ASbGncsCeOb3kH1jz5ZtZjr87RXWdsBrWk5A3EJV+01rEXZixZbU4X4PEZ73Y+KW7a0
+	KB9sXBsWR7WGPd21wGyy81lSZzFRQbfIlbqOhyzIF8qC4B2v2Nrh/W7WlZJYF8GlJCMHQDRpQsb
+	JNWRQ3/q5HVQbLCzJHzXcYestKfxktKdZ9BOz1SZGrCDsheCWkGKF7LQY5M4rTy8H7IkStXS8PZ
+	V33U09esKPo4Gnov0KC6QpBMWXB95nslyHB0bSssT1Y9eA52YOesbLf3ErYhCTZn1sGJ/NLmirN
+	pJexs9HkEphq9kh+YYGcdt/rw34+wjApa08GxQ==
+X-Google-Smtp-Source: AGHT+IGQNb36uoK9bF0qPR/AsAvXCwScqxDy/6siJaen64B0+GB2PNVnR8JlA8SrrEexTfvIVgUYKQ==
+X-Received: by 2002:a17:907:7283:b0:ac4:169:3664 with SMTP id a640c23a62f3a-ace71177806mr107959666b.33.1745563752925;
+        Thu, 24 Apr 2025 23:49:12 -0700 (PDT)
+Received: from linaro.org ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6edafbf0sm81776366b.168.2025.04.24.23.49.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 23:49:12 -0700 (PDT)
+Date: Fri, 25 Apr 2025 09:49:10 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Melody Olvera <melody.olvera@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 2/2] arm64: dts: freescale: Add PHYTEC phyBOARD-Nash-i.MX93 support
-Date: Fri, 25 Apr 2025 08:41:07 +0200
-Message-Id: <20250425064107.174548-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250425064107.174548-1-primoz.fiser@norik.com>
-References: <20250425064107.174548-1-primoz.fiser@norik.com>
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v5 06/10] phy: qcom: Add M31 based eUSB2 PHY driver
+Message-ID: <aAswZg9s41s/m/se@linaro.org>
+References: <20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com>
+ <20250421-sm8750_usb_master-v5-6-25c79ed01d02@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250421-sm8750_usb_master-v5-6-25c79ed01d02@oss.qualcomm.com>
 
-Add initial support for PHYTEC phyBOARD-Nash-i.MX93 board [1] based on
-the PHYTEC phyCORE-i.MX93 SoM (System-on-Module) [2].
+On 25-04-21 15:00:13, Melody Olvera wrote:
+> From: Wesley Cheng <quic_wcheng@quicinc.com>
+> 
+> SM8750 utilizes an eUSB2 PHY from M31.  Add the initialization
 
-Supported board features:
- * ADC
- * CAN
- * Ethernet 2x
- * EEPROM
- * eMMC
- * Heartbeat LED
- * RTC
- * RS-232/RS-485
- * SD-card
- * TPM 2.0
- * USB
+Nitpick: Drop the double space from the beginning of each phrase.
 
-For more details see the product pages for the development kit and the
-SoM:
-
-[1] https://www.phytec.eu/en/produkte/development-kits/phyboard-nash/
-[2] https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
-
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx93-phyboard-nash.dts     | 317 ++++++++++++++++++
- 2 files changed, 318 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index b6d3fe26d621..58f5e7146ccc 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -297,6 +297,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-new file mode 100644
-index 000000000000..7e9d031a2f0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -0,0 +1,317 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Primoz Fiser <primoz.fiser@norik.com>
-+ *
-+ * Product homepage:
-+ * https://www.phytec.eu/en/produkte/development-kits/phyboard-nash/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "imx93-phycore-som.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyBOARD-Nash-i.MX93";
-+	compatible = "phytec,imx93-phyboard-nash", "phytec,imx93-phycore-som",
-+		     "fsl,imx93";
-+
-+	aliases {
-+		ethernet0 = &fec;
-+		ethernet1 = &eqos;
-+		rtc0 = &i2c_rtc;
-+		rtc1 = &bbnsm_rtc;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	flexcan1_tc: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <8000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan1_tc>;
-+		standby-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VCC_SD";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+	};
-+
-+	reg_vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC1V8";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+	};
-+
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREF_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+};
-+
-+/* ADC */
-+&adc1 {
-+	vref-supply = <&reg_vref_1v8>;
-+	status = "okay";
-+};
-+
-+/* Ethernet */
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy2>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	ethphy2: ethernet-phy@2 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <2>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_1_75_NS>;
-+		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+	};
-+};
-+
-+/* CAN */
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	phys = <&flexcan1_tc>;
-+	status = "okay";
-+};
-+
-+/* I2C2 */
-+&lpi2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpi2c2>;
-+	status = "okay";
-+
-+	/* RTC */
-+	i2c_rtc: rtc@52 {
-+		compatible = "microcrystal,rv3028";
-+		reg = <0x52>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		trickle-resistor-ohms = <3000>;
-+		wakeup-source;
-+	};
-+
-+	/* EEPROM */
-+	eeprom@54 {
-+		compatible = "atmel,24c32";
-+		reg = <0x54>;
-+		pagesize = <32>;
-+		vcc-supply = <&reg_vcc_1v8>;
-+	};
-+};
-+
-+/* SPI6 */
-+&lpspi6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi6>;
-+	cs-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	/* TPM */
-+	tpm@0 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tpm>;
-+		spi-max-frequency = <10000000>;
-+	};
-+};
-+
-+/* Console */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* RS-232/RS-485 */
-+&lpuart7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart7>;
-+	status = "okay";
-+};
-+
-+/* USB */
-+&usbotg1 {
-+	disable-over-current;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* SD-Card */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2_default>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	disable-wp;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0	0x57e
-+			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1	0x57e
-+			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2	0x57e
-+			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3	0x57e
-+			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
-+			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL	0x57e
-+			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0	0x51e
-+			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1	0x51e
-+			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2	0x50e
-+			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3	0x50e
-+			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e
-+			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL	0x50e
-+			MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x1002
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
-+			MX93_PAD_PDM_CLK__CAN1_TX		0x1382
-+		>;
-+	};
-+
-+	pinctrl_flexcan1_tc: flexcan1tcgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_TD3__GPIO4_IO16		0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c2: lpi2c2grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C2_SCL__LPI2C2_SCL		0x40000b9e
-+			MX93_PAD_I2C2_SDA__LPI2C2_SDA		0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpspi6: lpspi6grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__GPIO2_IO00		0x386
-+			MX93_PAD_GPIO_IO01__LPSPI6_SIN		0x3fe
-+			MX93_PAD_GPIO_IO02__LPSPI6_SOUT		0x386
-+			MX93_PAD_GPIO_IO03__LPSPI6_SCK		0x386
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_RD2__GPIO4_IO26		0x31e
-+		>;
-+	};
-+
-+	pinctrl_tpm: tpmgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO17__GPIO2_IO17		0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX		0x30e
-+		>;
-+	};
-+
-+	pinctrl_uart7: uart7grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO08__LPUART7_TX		0x30e
-+			MX93_PAD_GPIO_IO09__LPUART7_RX		0x31e
-+			MX93_PAD_GPIO_IO10__LPUART7_CTS_B	0x31e
-+			MX93_PAD_GPIO_IO11__LPUART7_RTS_B	0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_cd: usdhc2cdgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_default: usdhc2grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000178e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001386
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001386
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001386
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000138e
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000139e
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x400013be
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000139e
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000139e
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+};
--- 
-2.34.1
-
+> sequences to bring it out of reset and into an operational state.  This
+> differs to the M31 USB driver, in that the M31 eUSB2 driver will
+> require a connection to an eUSB2 repeater.  This PHY driver will handle
+> the initialization of the associated eUSB2 repeater when required.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/Kconfig              |  10 +
+>  drivers/phy/qualcomm/Makefile             |   1 +
+>  drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 325 ++++++++++++++++++++++++++++++
+>  3 files changed, 336 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
+> index 3cfb4c9d3d10dce49bb93b241f9b56c75b934601..5d55ed0bd198d786d31d5dbee8f32e6fbed875a9 100644
+> --- a/drivers/phy/qualcomm/Kconfig
+> +++ b/drivers/phy/qualcomm/Kconfig
+> @@ -167,6 +167,16 @@ config PHY_QCOM_UNIPHY_PCIE_28LP
+>  	  handles PHY initialization, clock management required after
+>  	  resetting the hardware and power management.
+>  
+> +config PHY_QCOM_M31_EUSB
+> +	tristate "Qualcomm M31 eUSB2 PHY driver support"
+> +	depends on USB && (ARCH_QCOM || COMPILE_TEST)
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support M31 EUSB2 PHY transceivers on Qualcomm
+> +	  chips with DWC3 USB core. It supports initializing and cleaning
+> +	  up of the associated USB repeater that is paired with the eUSB2
+> +	  PHY.
+> +
+>  config PHY_QCOM_USB_HS
+>  	tristate "Qualcomm USB HS PHY module"
+>  	depends on USB_ULPI_BUS
+> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
+> index 42038bc30974a376bb2e3749d57d0518a82c35fe..4a5907816c65ec15b85e1fa5d22003ee8e2a3e97 100644
+> --- a/drivers/phy/qualcomm/Makefile
+> +++ b/drivers/phy/qualcomm/Makefile
+> @@ -5,6 +5,7 @@ obj-$(CONFIG_PHY_QCOM_EDP)		+= phy-qcom-edp.o
+>  obj-$(CONFIG_PHY_QCOM_IPQ4019_USB)	+= phy-qcom-ipq4019-usb.o
+>  obj-$(CONFIG_PHY_QCOM_IPQ806X_SATA)	+= phy-qcom-ipq806x-sata.o
+>  obj-$(CONFIG_PHY_QCOM_M31_USB)		+= phy-qcom-m31.o
+> +obj-$(CONFIG_PHY_QCOM_M31_EUSB)		+= phy-qcom-m31-eusb2.o
+>  obj-$(CONFIG_PHY_QCOM_PCIE2)		+= phy-qcom-pcie2.o
+>  
+>  obj-$(CONFIG_PHY_QCOM_QMP_COMBO)	+= phy-qcom-qmp-combo.o phy-qcom-qmp-usbc.o
+> diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..8746218914afbd814ca90639edd8e2cf47ff99f1
+> --- /dev/null
+> +++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
+> @@ -0,0 +1,325 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+> +
+> +#include <linux/regulator/consumer.h>
+> +
+> +#define USB_PHY_UTMI_CTRL0		(0x3c)
+> +#define SLEEPM				BIT(0)
+> +
+> +#define USB_PHY_UTMI_CTRL5		(0x50)
+> +#define POR				BIT(1)
+> +
+> +#define USB_PHY_HS_PHY_CTRL_COMMON0	(0x54)
+> +#define SIDDQ_SEL			BIT(1)
+> +#define SIDDQ				BIT(2)
+> +#define FSEL				GENMASK(6, 4)
+> +#define FSEL_38_4_MHZ_VAL		(0x6)
+> +
+> +#define USB_PHY_HS_PHY_CTRL2		(0x64)
+> +#define USB2_SUSPEND_N			BIT(2)
+> +#define USB2_SUSPEND_N_SEL		BIT(3)
+> +
+> +#define USB_PHY_CFG0			(0x94)
+> +#define UTMI_PHY_CMN_CTRL_OVERRIDE_EN	BIT(1)
+> +
+> +#define USB_PHY_CFG1			(0x154)
+> +#define PLL_EN				BIT(0)
+> +
+> +#define USB_PHY_FSEL_SEL		(0xb8)
+> +#define FSEL_SEL			BIT(0)
+> +
+> +#define USB_PHY_XCFGI_39_32		(0x16c)
+> +#define HSTX_PE				GENMASK(3, 2)
+> +
+> +#define USB_PHY_XCFGI_71_64		(0x17c)
+> +#define HSTX_SWING			GENMASK(3, 0)
+> +
+> +#define USB_PHY_XCFGI_31_24		(0x168)
+> +#define HSTX_SLEW			GENMASK(2, 0)
+> +
+> +#define USB_PHY_XCFGI_7_0		(0x15c)
+> +#define PLL_LOCK_TIME			GENMASK(1, 0)
+> +
+> +#define M31_EUSB_PHY_INIT_CFG(o, b, v)	\
+> +{				\
+> +	.off = o,		\
+> +	.mask = b,		\
+> +	.val = v,		\
+> +}
+> +
+> +struct m31_phy_tbl_entry {
+> +	u32 off;
+> +	u32 mask;
+> +	u32 val;
+> +};
+> +
+> +struct m31_eusb2_priv_data {
+> +	const struct m31_phy_tbl_entry	*setup_seq;
+> +	unsigned int			setup_seq_nregs;
+> +	const struct m31_phy_tbl_entry	*override_seq;
+> +	unsigned int			override_seq_nregs;
+> +	const struct m31_phy_tbl_entry	*reset_seq;
+> +	unsigned int			reset_seq_nregs;
+> +	unsigned int			fsel;
+> +};
+> +
+> +static const struct m31_phy_tbl_entry m31_eusb2_setup_tbl[] = {
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG0, UTMI_PHY_CMN_CTRL_OVERRIDE_EN, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL5, POR, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG1, PLL_EN, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_FSEL_SEL, FSEL_SEL, 1),
+> +};
+> +
+> +static const struct m31_phy_tbl_entry m31_eusb_phy_override_tbl[] = {
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_39_32, HSTX_PE, 0),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_71_64, HSTX_SWING, 7),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_31_24, HSTX_SLEW, 0),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_7_0, PLL_LOCK_TIME, 0),
+> +};
+> +
+> +static const struct m31_phy_tbl_entry m31_eusb_phy_reset_tbl[] = {
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N_SEL, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL0, SLEEPM, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL_COMMON0, SIDDQ_SEL, 1),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL_COMMON0, SIDDQ, 0),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL5, POR, 0),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N_SEL, 0),
+> +	M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG0, UTMI_PHY_CMN_CTRL_OVERRIDE_EN, 0),
+> +};
+> +
+> +static const struct regulator_bulk_data m31_eusb_phy_vregs[] = {
+> +	{ .supply = "vdd" },
+> +	{ .supply = "vdda12" },
+> +};
+> +
+> +#define M31_EUSB_NUM_VREGS		ARRAY_SIZE(m31_eusb_phy_vregs)
+> +
+> +struct m31eusb2_phy {
+> +	struct phy			 *phy;
+> +	void __iomem			 *base;
+> +	const struct m31_eusb2_priv_data *data;
+> +	enum phy_mode			 mode;
+> +
+> +	struct regulator_bulk_data	 *vregs;
+> +	struct clk			 *clk;
+> +	struct reset_control		 *reset;
+> +
+> +	struct phy			 *repeater;
+> +};
+> +
+> +static int m31eusb2_phy_write_readback(void __iomem *base, u32 offset,
+> +					const u32 mask, u32 val)
+> +{
+> +	u32 write_val;
+> +	u32 tmp;
+> +
+> +	tmp = readl_relaxed(base + offset);
+> +	tmp &= ~mask;
+> +	write_val = tmp | val;
+> +
+> +	writel_relaxed(write_val, base + offset);
+> +
+> +	tmp = readl_relaxed(base + offset);
+> +	tmp &= mask;
+> +
+> +	if (tmp != val) {
+> +		pr_err("write: %x to offset: %x FAILED\n", val, offset);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int m31eusb2_phy_write_sequence(struct m31eusb2_phy *phy,
+> +				       const struct m31_phy_tbl_entry *tbl,
+> +				       int num)
+> +{
+> +	int i;
+> +	int ret;
+> +
+> +	for (i = 0 ; i < num; i++, tbl++) {
+> +		dev_dbg(&phy->phy->dev, "Offset:%x BitMask:%x Value:%x",
+> +			tbl->off, tbl->mask, tbl->val);
+> +
+> +		ret = m31eusb2_phy_write_readback(phy->base,
+> +						   tbl->off, tbl->mask,
+> +						   tbl->val << __ffs(tbl->mask));
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int m31eusb2_phy_set_mode(struct phy *uphy, enum phy_mode mode, int submode)
+> +{
+> +	struct m31eusb2_phy *phy = phy_get_drvdata(uphy);
+> +
+> +	phy->mode = mode;
+> +
+> +	return phy_set_mode_ext(phy->repeater, mode, submode);
+> +}
+> +
+> +static int m31eusb2_phy_init(struct phy *uphy)
+> +{
+> +	struct m31eusb2_phy *phy = phy_get_drvdata(uphy);
+> +	const struct m31_eusb2_priv_data *data = phy->data;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(M31_EUSB_NUM_VREGS, phy->vregs);
+> +	if (ret) {
+> +		dev_err(&uphy->dev, "failed to enable regulator, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = phy_init(phy->repeater);
+> +	if (ret) {
+> +		dev_err(&uphy->dev, "repeater init failed. %d\n", ret);
+> +		goto disable_vreg;
+> +	}
+> +
+> +	ret = clk_prepare_enable(phy->clk);
+> +	if (ret) {
+> +		dev_err(&uphy->dev, "failed to enable cfg ahb clock, %d\n", ret);
+> +		goto disable_repeater;
+> +	}
+> +
+> +	/* Perform phy reset */
+> +	reset_control_assert(phy->reset);
+> +	udelay(5);
+> +	reset_control_deassert(phy->reset);
+> +
+> +	m31eusb2_phy_write_sequence(phy, data->setup_seq, data->setup_seq_nregs);
+> +	m31eusb2_phy_write_readback(phy->base,
+> +				     USB_PHY_HS_PHY_CTRL_COMMON0, FSEL,
+> +				     FIELD_PREP(FSEL, data->fsel));
+> +	m31eusb2_phy_write_sequence(phy, data->override_seq, data->override_seq_nregs);
+> +	m31eusb2_phy_write_sequence(phy, data->reset_seq, data->reset_seq_nregs);
+> +
+> +	return 0;
+> +
+> +disable_repeater:
+> +	phy_exit(phy->repeater);
+> +disable_vreg:
+> +	regulator_bulk_disable(M31_EUSB_NUM_VREGS, phy->vregs);
+> +
+> +	return 0;
+> +}
+> +
+> +static int m31eusb2_phy_exit(struct phy *uphy)
+> +{
+> +	struct m31eusb2_phy *phy = phy_get_drvdata(uphy);
+> +
+> +	clk_disable_unprepare(phy->clk);
+> +	regulator_bulk_disable(M31_EUSB_NUM_VREGS, phy->vregs);
+> +	phy_exit(phy->repeater);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops m31eusb2_phy_gen_ops = {
+> +	.init		= m31eusb2_phy_init,
+> +	.exit		= m31eusb2_phy_exit,
+> +	.set_mode	= m31eusb2_phy_set_mode,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +static int m31eusb2_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	const struct m31_eusb2_priv_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	struct m31eusb2_phy *phy;
+> +	int ret;
+> +
+> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	data = device_get_match_data(dev);
+> +	if (IS_ERR(data))
+> +		return -EINVAL;
+> +	phy->data = data;
+> +
+> +	phy->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(phy->base))
+> +		return PTR_ERR(phy->base);
+> +
+> +	phy->reset = devm_reset_control_get_exclusive(dev, NULL);
+> +	if (IS_ERR(phy->reset))
+> +		return PTR_ERR(phy->reset);
+> +
+> +	phy->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(phy->clk))
+> +		return dev_err_probe(dev, PTR_ERR(phy->clk),
+> +				     "failed to get clk\n");
+> +
+> +	phy->phy = devm_phy_create(dev, NULL, &m31eusb2_phy_gen_ops);
+> +	if (IS_ERR(phy->phy))
+> +		return dev_err_probe(dev, PTR_ERR(phy->phy),
+> +				     "failed to create phy\n");
+> +
+> +	ret = devm_regulator_bulk_get_const(dev, M31_EUSB_NUM_VREGS,
+> +					    m31_eusb_phy_vregs, &phy->vregs);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				"failed to get regulator supplies\n");
+> +
+> +	phy_set_drvdata(phy->phy, phy);
+> +
+> +	phy->repeater = devm_of_phy_get_by_index(dev, dev->of_node, 0);
+> +	if (IS_ERR(phy->repeater))
+> +		return dev_err_probe(dev, PTR_ERR(phy->repeater),
+> +				     "failed to get repeater\n");
+> +
+> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	if (!IS_ERR(phy_provider))
+> +		dev_info(dev, "Registered M31 USB phy\n");
+> +
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct m31_eusb2_priv_data m31_eusb_v1_data = {
+> +	.setup_seq = m31_eusb2_setup_tbl,
+> +	.setup_seq_nregs = ARRAY_SIZE(m31_eusb2_setup_tbl),
+> +	.override_seq = m31_eusb_phy_override_tbl,
+> +	.override_seq_nregs = ARRAY_SIZE(m31_eusb_phy_override_tbl),
+> +	.reset_seq = m31_eusb_phy_reset_tbl,
+> +	.reset_seq_nregs = ARRAY_SIZE(m31_eusb_phy_reset_tbl),
+> +	.fsel = FSEL_38_4_MHZ_VAL,
+> +};
+> +
+> +static const struct of_device_id m31eusb2_phy_id_table[] = {
+> +	{ .compatible = "qcom,sm8750-m31-eusb2-phy", .data = &m31_eusb_v1_data },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, m31eusb2_phy_id_table);
+> +
+> +static struct platform_driver m31eusb2_phy_driver = {
+> +	.probe = m31eusb2_phy_probe,
+> +	.driver = {
+> +		.name = "qcom-m31eusb2-phy",
+> +		.of_match_table = m31eusb2_phy_id_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(m31eusb2_phy_driver);
+> +
+> +MODULE_AUTHOR("Wesley Cheng <quic_wcheng@quicinc.com>");
+> +MODULE_DESCRIPTION("eUSB2 Qualcomm M31 HSPHY driver");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.48.1
+> 
+> 
 
