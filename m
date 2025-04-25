@@ -1,107 +1,171 @@
-Return-Path: <devicetree+bounces-171122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6621CA9D52A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 00:09:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58BA1A9D542
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 00:14:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA03D4C5306
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 22:09:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9B869C7A0D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 22:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FCA231CB0;
-	Fri, 25 Apr 2025 22:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A41233735;
+	Fri, 25 Apr 2025 22:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="R2A0oH31"
+	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="foYOjgqR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1202218592;
-	Fri, 25 Apr 2025 22:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6D418C03F
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 22:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745618973; cv=none; b=ai2s4t4xn6GMrggoVzI3uU4en3Krlwf7caLMefbVhEXN9q+5xX2LiuXzuHIVeQb1x4IqjhhIvyB8PHuzeX7IQHK0IYXz1txRiforSd9n+6tsjHnMFtCi5FapU51fCnQMap+s5bje18HVodLOasot8atPi7zX8iKB4CyipMFQhF0=
+	t=1745619254; cv=none; b=gm8MdBL6VcLsslNgPly2s9bD4y4uzJ5L8C9W4D8O2dRD9gbQTbQe2KgAM+0pmC9eeVOyHc8FlP4w8bx7hZYVQUIGNAQG9Eh4sewfOcNyUmVf5QivAJhSExnQUz8ORrmCCRMtXBAvMBwPkYH6kB70ZyI6xpQWSuMpzJ/V9C798GE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745618973; c=relaxed/simple;
-	bh=xlnD3QHWa+7MUgoy3f5aIfPeC6qtSBgmxlA3LctdjjE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ec+6kD/2o6ZgGO+Wua9PsWeTFNqfui/KkZkdbaPZNeknpEbRoOYzRTcVeGt/e74VAWafDd0MWLUMEHP8LXTHrINeYHgSE25ogsiJ4X2vWiczryzwXN7Sfq0mzd3dEycTwzTgaBAiZwM/EdPAM+SmZS2X24OOcyGdxpwX8UesQeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=R2A0oH31; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=U33urWJ0nbHUSj4/Ei55DnraHJ93Xd3t00xN2jKFwUw=; b=R2A0oH31L8HOyJJ3pZ3Q+UUzRc
-	o8mEE4btAzk82MmSOlVcj24R+jgnLh+OsOAczxgLLgS7G3hElozLwNVypRWDYOepIbpoVJYYpl+LF
-	afGJodDUn06LsKLeAysAE0DoQVb269hnPe18BDB6CbXe1pT0+m5eOJ81KEBdzwIb6gFoOffAhiPeu
-	KUnwTRFJuKDYHk42LkkmxZsEWzULaSispPBUoLgj9Szq1ggFQvwQamvith2pRqh8E0cfSxpxyfVmu
-	evz/qWNUPvxPBnP/IKu7+r7HYvCLQ7LVaFIi7Nz0dAkZj5B97TD25ozt98qv8jDXvXg0BjQ/+Pu2p
-	xi4wANtQ==;
-Received: from i53875aba.versanet.de ([83.135.90.186] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1u8REO-0008Uk-72; Sat, 26 Apr 2025 00:09:12 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: srinivas.kandagatla@linaro.org,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	detlev.casanova@collabora.com,
-	sebastian.reichel@collabora.com
-Subject: Re: (subset) [PATCH RESEND v2 0/6] RK3576 OTP support
-Date: Sat, 26 Apr 2025 00:09:02 +0200
-Message-ID: <174561877790.431677.17884049982561107688.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250210224510.1194963-1-heiko@sntech.de>
-References: <20250210224510.1194963-1-heiko@sntech.de>
+	s=arc-20240116; t=1745619254; c=relaxed/simple;
+	bh=blm43ygUXqMRKFxLrd+VNrcueEbWd4jm8fGqgZgMydM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V9gRqhTc0Sr2GIM9fhaOmg/6Us+bw83s5+q9KhksF3lFBjm2jrUYCABTbSSWV26suClr4UGohxH/5Agg1Q+g1eqjMjzNX4Rm7Yt0Wd1dN8tUKS9eGIHrmAncPS65Bb9SKvPWloHPbBm8JOh2LgcGVJQgzlmfA3XbQQ/mZBaLgME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=foYOjgqR; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-736b350a22cso2494968b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 15:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1745619252; x=1746224052; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P9rkq+P8mjayzisoLVUkDsT/oFVSZ8gJxLOEbIMf1ko=;
+        b=foYOjgqRkSLnh1cGLywYaokivqpt2NNPx7zvUHtG97kSByeIfNAoEJqkfbIXvH3KRi
+         TGyiZCS4Vh5oyAy4X8CchWeiJd34r9QJXriXpPaVqoNreQJ7Kam7z+YisOOKtD3t0fjA
+         6ZpjQXNOJnezI2rHGSxrzbTrYWcxM996bCyvGvxXwEdSDUMapTJyCOp4vLYufv7Flm8i
+         /Og8K/HCHRvUUR9gXbKYxPSAz/G4S8la9k/SGSJQ8NCZg0wvdYoLyCNgg1j6XesLm13W
+         H5Qg52LguppekUSAlKHLo0MToRaeMhQEyfSMukT/mI/H0x7m/UJbRBPbZY/Cd/tZl/w7
+         3zRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745619252; x=1746224052;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P9rkq+P8mjayzisoLVUkDsT/oFVSZ8gJxLOEbIMf1ko=;
+        b=g++M4SzBcvEZs8WxFp7+F3Ay/ayUDUQK9tANQ4Z6OvEoaCwS2H0NiARp0joyEt9NIr
+         wr0aThzslv3UqboCR6u4j6Yd2yBqh4vZnDCeX6vd1YD9hxUcVuhktTk7qC9q0BnqYvIC
+         iseZxKG4GNvIibuJp24pXUHADpaM1TGI10jpwCNZyLhkNWAQEUQMf5YbAdupawZJPsX0
+         UwA6K/dJKvCHhCXvQ0JVAKmc5LJMJln727j1L9hRGKPq5p5cyd16RFVIaGM2G/JoEU1s
+         s4+pnmU/YBLoxnJQFpJoYC0Z/mEAkkV+FZ2n8IzwIcBR4MDOiCyQpVgK8VHNKNSqpeIZ
+         Docg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/BoKJn43LRYftPfM87lecwc2olvfcmenn+Dm6JLgL3GZDbwWy18NI911+0drF81WICwUMNnlh2pB1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm/dlO5TN067AT/mswVKECMw/KHEUV+vEFGyom3/3H2/wKfml6
+	vrDHUd2/Q/m0yyXBiEB32rghWAInP6h2GSa6Ir5g2FR8Hdo3pz2Dg9aRCMf2L6LUKMDHawj+rfp
+	pczM+gIh2VwKK82ORBa7OsAyOAlTuYfkm7rnomA==
+X-Gm-Gg: ASbGncu8Y6u8mgejKmRkePqS2gh1aisprA6xP+FiySK3OkPSGp7CaC08WuQ6OFA9XGN
+	7UGjhaic4pDqcXtsZd/nG7Z8LwzZavxelS9MBn4PoTFK1JtR5uFxo4moz68pRoM3Kx3BBvWNeo+
+	A7au49mWSUJI/06amCwZ50I0zvHFMSJvd3ju2x8anR0hCbDyZe7KtID8yQ
+X-Google-Smtp-Source: AGHT+IFZTpWnme11BLsiPrcwXvSidsxjw3T39w0pBWnpaOhvadBjE/0Txqz4t2IWUG9KzyHeFaqSA44grQcYa9JFaXI=
+X-Received: by 2002:a05:6a00:2443:b0:736:65c9:9187 with SMTP id
+ d2e1a72fcca58-73fd72cdc0dmr4750282b3a.9.1745619252491; Fri, 25 Apr 2025
+ 15:14:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20250415232521.2049906-1-william@wkennington.com>
+ <79400920-22b4-4bce-b204-c58087495c22@kernel.org> <CAP6Zq1hURTrDgScx=eN_GO5FV8vZNsaGVQLOxbZPCXSqc0Kxwg@mail.gmail.com>
+In-Reply-To: <CAP6Zq1hURTrDgScx=eN_GO5FV8vZNsaGVQLOxbZPCXSqc0Kxwg@mail.gmail.com>
+From: William Kennington <william@wkennington.com>
+Date: Fri, 25 Apr 2025 15:14:01 -0700
+X-Gm-Features: ATxdqUH-kgNXVnWhZKo-pz8xJdgdBSJB7vJqIou_QQp0LlJRjkJ91-cRCOwfLeY
+Message-ID: <CAD_4BXifgETo1z1awWQbAA-BA9U=8Tdo9JHo7SM1+6J5G_s2Pg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: Fix nuvoton 8xx clock properties
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Avi Fishman <avifishman70@gmail.com>, 
+	Tali Perry <tali.perry1@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Apr 16, 2025 at 11:44=E2=80=AFAM Tomer Maimon <tmaimon77@gmail.com>=
+ wrote:
+>
+> William, thanks for the patch.
+>
+>
+> On Wed, 16 Apr 2025 at 09:55, Krzysztof Kozlowski <krzk@kernel.org> wrote=
+:
+> >
+> > On 16/04/2025 01:25, William A. Kennington III wrote:
+> > > The latest iteration of the clock driver got rid of the separate cloc=
+k
+> >
+> > I don't see the binding deprecated.
+> >
+> > > compatible node, merging clock and reset devices.
+> > >
+> > > Signed-off-by: William A. Kennington III <william@wkennington.com>
+> > > ---
+> > >  .../boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 16 ++++++--------=
+--
+> > >  .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts     |  8 ++++++++
+> > >  2 files changed, 14 insertions(+), 10 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi =
+b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > > index ecd171b2feba..4da62308b274 100644
+> > > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > > @@ -47,17 +47,13 @@ ahb {
+> > >               interrupt-parent =3D <&gic>;
+> > >               ranges;
+> > >
+> > > -             rstc: reset-controller@f0801000 {
+> > > +             clk: rstc: reset-controller@f0801000 {
+> > >                       compatible =3D "nuvoton,npcm845-reset";
+> > >                       reg =3D <0x0 0xf0801000 0x0 0x78>;
+> The size of the registers offset is 0xC4 (last register is at offset 0xC0=
+)
+> Therefore, the reg property should be modified as well to reg =3D <0x0
+> 0xf0801000 0x0 0xC4>;
 
-On Mon, 10 Feb 2025 23:45:04 +0100, Heiko Stuebner wrote:
-> This enables OTP support in the nvmem driver for rk3576.
-> 
-> I expect to pick the clock patch (patch1) and the arm64-dts patch (patch6)
-> myself, after the nvmem-driver and -binding patches have been applied
-> (patches 2-5).
-> 
-> But kept them together for people wanting to try this series.
-> 
-> [...]
+Yeah, I just looked at the DS to verify this value for the last clock regis=
+ter.
 
-Applied, thanks!
-
-[1/6] clk: rockchip: rk3576: define clk_otp_phy_g
-      commit: d934a93bbcccd551c142206b8129903d18126261
-
-While the original nvmem applied message [0] listed the clock patch,
-it was in fact not applied there - probable for being a clock patch.
-
-So I've done that now, hopefully as fix for 6.15 to make the
-nvmem work in this timeframe.
-
-
-[0] https://lore.kernel.org/linux-arm-kernel/173978599692.25901.15315285566342669137.b4-ty@linaro.org/
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> >
+> > So now it lacks quite a bit of address space. This must be explained in
+> > commit msg.
+> >
+> > >                       #reset-cells =3D <2>;
+> > >                       nuvoton,sysgcr =3D <&gcr>;
+> > > -             };
+> > > -
+> > > -             clk: clock-controller@f0801000 {
+> > > -                     compatible =3D "nuvoton,npcm845-clk";
+> > > +                     clocks =3D <&refclk>;
+> > >                       #clock-cells =3D <1>;
+> > > -                     reg =3D <0x0 0xf0801000 0x0 0x1000>;
+> > >               };
+> > >
+> > >               apb {
+> > > @@ -81,7 +77,7 @@ timer0: timer@8000 {
+> > >                               compatible =3D "nuvoton,npcm845-timer";
+> > >                               interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEV=
+EL_HIGH>;
+> > >                               reg =3D <0x8000 0x1C>;
+> > > -                             clocks =3D <&clk NPCM8XX_CLK_REFCLK>;
+> > > +                             clocks =3D <&refclk>;
+> >
+> > Not explained in commit msg.
+> >
+> >
+> > Best regards,
+> > Krzysztof
+>
+> Best regards,
+>
+> Tomer
 
