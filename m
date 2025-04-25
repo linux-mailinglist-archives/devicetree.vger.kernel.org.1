@@ -1,150 +1,127 @@
-Return-Path: <devicetree+bounces-170956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D11A9CC6D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:09:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D309A9CC89
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 17:14:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 630961C041D6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:06:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64DC1173B3A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 15:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E9925E446;
-	Fri, 25 Apr 2025 15:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8941B2750EA;
+	Fri, 25 Apr 2025 15:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="MiecbeKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B993025D20D;
-	Fri, 25 Apr 2025 15:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C4326FDBB;
+	Fri, 25 Apr 2025 15:13:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745593545; cv=none; b=gZgWKjrbB5PuAXgxhBhtrAfa2XxPTd9Me/TVvbaWyWjzR5ThdCMA1c01/01Tp/s2GZ78gJgwowfmASPLhJLTbOvbT3Xm9uiWnpjIYyBjrtYQczk6Rzu/DyewNu3h8Ua+e4xMNQQ+4hj91EZviEBxQ22fp4XLhJ6Ra4bKzzWEDXY=
+	t=1745594035; cv=none; b=QC7bwwLl9wH4OJFjNXHuMhFr7XulQbuEP3f4GSXcR4I69pwKCEnu0qkTPKQT9vhiYNCFO5Qq0FmhnLzTulf6bdHmZXspwUoALKmOlgAf9silU+68cK+pIUKDhBX+FWyBh4pTa3kDNRCxBwwhG/srqLMJTVkeE7Ymhzam1r+uZVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745593545; c=relaxed/simple;
-	bh=p0doezY0qRJoQyRKWjT90kO1zQ1vjFowzJ8Ke6uItuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eD6W8makHJGTca7fVuXhRUXALBX/r6Vc9Po84f+AAGs7nxk7RbiElVKwqeOBm0ktU8Scg3gckvRow6pvMue0EyyVdvgJo7jq4b6hlsCgd8FOxaw80MjKtBnUUNlK3J2/CWA52GogysHRUecyQRHCx9h6iwthCBtBKqGFOtSoJ9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9847D106F;
-	Fri, 25 Apr 2025 08:05:36 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1867B3F59E;
-	Fri, 25 Apr 2025 08:05:38 -0700 (PDT)
-Date: Fri, 25 Apr 2025 16:05:35 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Corentin Labbe <clabbe.montjoie@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <netdev@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet
- MAC
-Message-ID: <20250425160535.5a18adbb@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v65QUrCjgHXWAb72Sdppqg1AUxXyD_ZcXShtkRSHCQBbOg@mail.gmail.com>
-References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
-	<20250424-01-sun55i-emac0-v2-3-833f04d23e1d@gentoo.org>
-	<CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
-	<20250425104128.14f953f3@donnerap.manchester.arm.com>
-	<CAGb2v65QUrCjgHXWAb72Sdppqg1AUxXyD_ZcXShtkRSHCQBbOg@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1745594035; c=relaxed/simple;
+	bh=2Fr79h5WpW0sk+9jfuwv/EfIloErPvJaRV1TKBMbIms=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=utsOTm86+lxhmQ0E5dryYvTPeBQ343VJdA2z2ZRGlIgqzxyMCXQ7SAvUkzWJm3PSE3tn0j5dfpfz47BFlsrW89AGYIH5W+YJAwdUGFlsoPyl5nzrbm/fjF5RZlA88FR6sETabFqxuUJLg/Dq5189p4xQYecFzt+6MHgnWkV/ffs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=MiecbeKS; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (web.docker-mailserver_default [172.18.0.2])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 4E4B2BBAC4;
+	Fri, 25 Apr 2025 15:13:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1745594025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ECsaLysjp6B31lix5ePZqbR776k53fktpSr8Jb8kvHE=;
+	b=MiecbeKSC9qPTxgyzouBu54qd4VjFtmkfHV/2qTsOefPU2eAaK5cBCTcImhw+T75qlqO2+
+	xsNGxQQjX0OdP68jb2HZKFeV8do4HMOWxaZhIfySqXsdEKz5Op//pZWwxEqwnctK8A8rVg
+	P2WjEybiUv3PnKk+10v9R9AGnDIaowzlxTfxSncUT2oXgzv8YLcXGPbJ5rn9brvr+KfYzt
+	y9ZSgyOeTe1KRw4YfSE60ZQrWAbmyN8y261B96MCfrdyWbqrTrbHB4hEewS6ZzpxeAxnO5
+	sW1MJRWbpDrguja+qwxdVjlEkU+50iOBR8LfCx5VBQuphi1fOseWw4tM2FcHfg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Date: Fri, 25 Apr 2025 17:13:45 +0200
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, Linus Walleij
+ <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, Joerg Roedel
+ <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Dmitry
+ Baryshkov <lumag@kernel.org>, Adam Skladowski <a_skl39@protonmail.com>,
+ Sireesh Kodali <sireeshkodali@protonmail.com>, Srinivas Kandagatla
+ <srini@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, Dang Huynh
+ <danct12@riseup.net>
+Subject: Re: [PATCH v5 3/5] arm64: dts: qcom: Add initial support for MSM8937
+In-Reply-To: <70635d75-03f9-49ea-8098-57cb144fda94@oss.qualcomm.com>
+References: <20250421-msm8937-v5-0-bf9879ef14d9@mainlining.org>
+ <20250421-msm8937-v5-3-bf9879ef14d9@mainlining.org>
+ <2e3d94a4-d9e1-429e-9f65-d004c80180e5@oss.qualcomm.com>
+ <790a0b7537e0b82b70bc4b32612ecee6@mainlining.org>
+ <70635d75-03f9-49ea-8098-57cb144fda94@oss.qualcomm.com>
+Message-ID: <5ccb39f9393b44761127717096a38a46@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, 25 Apr 2025 22:35:59 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
-
-adding LinusW for a more generic pinctrl question ...
-
-> On Fri, Apr 25, 2025 at 5:41=E2=80=AFPM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > On Fri, 25 Apr 2025 13:26:25 +0800
-> > Chen-Yu Tsai <wens@csie.org> wrote:
-> >
-> > Hi Chen-Yu,
-> > =20
-> > > On Thu, Apr 24, 2025 at 6:09=E2=80=AFPM Yixun Lan <dlan@gentoo.org> w=
-rote: =20
-> > > >
-> > > > Add EMAC0 ethernet MAC support which found on A523 variant SoCs,
-> > > > including the A527/T527 chips. MAC0 is compatible to the A64 chip w=
-hich
-> > > > requires an external PHY. This patch only add RGMII pins for now.
-> > > >
-> > > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > > ---
-> > > >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 40 ++++++++++++++=
-++++++++++++
-> > > >  1 file changed, 40 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/=
-arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > > > index ee485899ba0af69f32727a53de20051a2e31be1d..c9a9b9dd479af05ba22=
-fe9d783e32f6d61a74ef7 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > > > @@ -126,6 +126,15 @@ pio: pinctrl@2000000 {
-> > > >                         interrupt-controller;
-> > > >                         #interrupt-cells =3D <3>;
-> > > >
-> > > > +                       rgmii0_pins: rgmii0-pins {
-> > > > +                               pins =3D "PH0", "PH1", "PH2", "PH3"=
-, "PH4",
-> > > > +                                      "PH5", "PH6", "PH7", "PH9", =
-"PH10",
-> > > > +                                      "PH14", "PH15", "PH16", "PH1=
-7", "PH18";
-> > > > +                               allwinner,pinmux =3D <5>;
-> > > > +                               function =3D "emac0";
-> > > > +                               drive-strength =3D <40>; =20
-> > >
-> > > We should probably add
-> > >
-> > >                                   bias-disable;
-> > >
-> > > to explicitly turn off pull-up and pull-down. =20
-> >
-> > Should we? I don't see this anywhere else for sunxi, probably because i=
-t is
-> > the (reset) default (0b00).
-> > I wonder if we have a hidden assumption about this? As in: if no bias is
-> > specified, we assume bias-disable? Then we should maybe enforce this is=
- in
-> > the driver? =20
->=20
-> There isn't any assumption, as in we were fine with either the reset
-> default or whatever the bootloader left it in. However in projects at
-> work I learned that it's better to have explicit settings despite
-> working defaults.
-
-I totally agree, but my point was that this applies basically to every
-pinctrl user. I usually think of the bias settings as "do we need
-pull-ups or pull-downs", and if nothing is specified, I somewhat assume
-bias-disable.
-
-So I am fine with this being added here, but was wondering if we should
-look at a more generic solution.
-
-Linus: is bias-disable assumed to be the default, that pinctrl drivers
-should set in absence of explicit properties? Or is this "whatever is in
-the registers at boot" the default we have to live with?
-
-Cheers,
-Andre
+On 2025-04-25 11:57, Konrad Dybcio wrote:
+> On 4/23/25 4:46 PM, barnabas.czeman@mainlining.org wrote:
+>> On 2025-04-23 16:03, Konrad Dybcio wrote:
+>>> On 4/21/25 10:18 PM, Barnabás Czémán wrote:
+>>>> From: Dang Huynh <danct12@riseup.net>
+>>>> 
+>>>> Add initial support for MSM8937 SoC.
+>>>> 
+>>>> Signed-off-by: Dang Huynh <danct12@riseup.net>
+>>>> Co-developed-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>>>> ---
+> 
+> [...]
+> 
+>>>> +            gpu_opp_table: opp-table {
+>>>> +                compatible = "operating-points-v2";
+>>>> +
+>>>> +                opp-19200000 {
+>>>> +                    opp-hz = /bits/ 64 <19200000>;
+>>>> +                    opp-supported-hw = <0xff>;
+>>> 
+>>> The comment from the previous revision still stands
+>> If i remove opp-supported-hw i will got -22 EINVAL messages and the 
+>> opp will be not fine.
+> 
+> Right, I have a series pending to improve this situation a bit..
+> 
+> In the meantime, you should be able to define the nvmem cell and
+> fill in meaningful values for this platform
+As I wrote in the previous revision there is no nvmem for GPU on msm8937 
+only on msm8940.
+> 
+> Konrad
 
