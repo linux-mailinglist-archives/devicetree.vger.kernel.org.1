@@ -1,141 +1,183 @@
-Return-Path: <devicetree+bounces-171033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22FD5A9D0D2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A9CA9D0D3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 20:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A43D09A1B6B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:50:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C5AB9A4DA8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574B821ABD2;
-	Fri, 25 Apr 2025 18:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1AE218AC4;
+	Fri, 25 Apr 2025 18:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Uq9WDn60"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="al6VijCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52FF1AA1C4
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745607037; cv=none; b=GgwW9DGLA7vjCyDU7msZNJMldj4VNfEOBOAaTe/imsZPCdUMBrvwuSxjK1ZdrBRRKJoWqjC3xKxkyOs5K4ui8eK3BA3n/3+j/bLqdOFZvJWtNSjjpjQIqqXMAhsFfVnFkU3aiFjjnGE/yekskqeHOx5gJHJW4QCs2+JgLtjCfog=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745607037; c=relaxed/simple;
-	bh=3OkEVS8dQnFFnUr+eA5TheSMiK17eLIXgacYWk/jb5g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gyaJDjoPuB0DSUSUEfY1W4XTyELsEe5wcCN2WthcxG3Eb7mev6II9hL8HYfzQdldAZ0TuSNSwZrXyn/3+bzw0ZxxBca97pC0CKLygSNzVoCMUPtgCfQ2s7gK/BYN7jqW5XLx8HyOnk64LWmS2pZLHrepAWLPkFFUx7chQcp+/TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Uq9WDn60; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGJqRT004013
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:50:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=OVs8UbElJTYQ1nFLiPUapXZz
-	eHRhnrnlXO1oTNnLdFQ=; b=Uq9WDn60D8vC2re+Jz3OWodm5VpCrxaAoqsjmniP
-	QmDfk4L5PXItrf+1Kw88H0R7CzrVrrd+Ou7W0HNmvLs8+867R4YRg0q59o6n2md3
-	pmGBMMW/SMNtGmzOUBZwcgSCmPzVBByTJLssyCSVSZVu+gY8qg26PeO0fz/wLx4D
-	5oWsDPm5L+VO86//bsnxuJnT4hSjRViL9cjKxjlDLc5Do4kRBbjgBuRpZaB58cpf
-	F/kF5qDtw0L2/RTDdOHMaJyS/stkMoLP90iPDlP/sLBQpJOFkYEunZQWMm4Su0OL
-	YuU8uBAt/0d9dafb0ZuXtXKcQfS2tVqmrY+ivtJZJt/oQA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh2a3ev-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 18:50:35 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c579d37eeeso383221485a.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 11:50:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745607023; x=1746211823;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OVs8UbElJTYQ1nFLiPUapXZzeHRhnrnlXO1oTNnLdFQ=;
-        b=T8OiTFeXY/AD3MKf0tuG1lT/n2202KeVaijXwWYFoeqsr1qOY5xj640Jlikwte5GG2
-         IpGDljXuKP/k/SgG1pF5Te74l3cb1S6eMD90BO97Ywc7n/dSDt4vFa/yz5nQhyP0tPJG
-         V741Hl0an2lzocoGBbNzJFRBQXZX5LPNfqvUP4Kb7yDpO3EZJ6pGPMQeHyGoONlaBA4k
-         3XU9hwW4ghQ4Fv0CBBPc4CG6IjgJsp27rGWYKAB2PW18Xu5VAcgvjYqw8odeAJMRPj1O
-         8acxc4Ddt8OCONDq9H8abGj6OobgLTpGprJxZTa0iehTctth8Dlmli6PqaqVRmhTSt7E
-         awug==
-X-Forwarded-Encrypted: i=1; AJvYcCXCRmsY8DASttT+JKB+U/7dHB4V/Vw3Cnv71027j+DkOD3Oq9M2c8PjOZC7vIN1qZwBJQzcndY/eWQd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyyajyt7vBDeHV+dVs7ujJXyr38Rgm48IdKm5Ej5PlcIgtrHOQc
-	qExpRYYT3hZ77NLtq8t752MOJV6Uxf91Aemwd6zjHD/5/5McU/zN1fIAFlRTkUxfhCnpqfGgoh6
-	GFpo1snHOprq2furcYZW5LuKOlbuqOzbm1CrlWkgLrFU9tDQxhHtKBmyvWxcg
-X-Gm-Gg: ASbGncuJjVWIOlKRVR2/MvroAV/IKVUwYYAsrK6f0w74kMfsySsk1JD9HjjvWDqUHIW
-	noGhwki99pP95Tmmdl6WRZoHaVT6q2QjdIXqDA4W52c4CQXsRMq9JAVPTWyTM9+s+39zNuDCsaB
-	nmgshcpQIa4qgbynOPju+OY2w5WvY+9Ajm3RpC9StU0PIHQ6J4KPT7x7m3SVDkNGH9SS6raHbS6
-	9IpEbKN9n1wxbMs2fBb4RAN8t7/Wj/vceTqA9H2YdHd6NIwbC1I3oDgbdQNlABV6wHbDJHeP1SU
-	9ML0acbDVrwNYMQjeCvvceil+3hv7BZUO0XIFALe+zUK8hnTecihYOUoY/aqJGCVY4ulHzxEzek
-	=
-X-Received: by 2002:a05:620a:3907:b0:7c9:256d:f6b6 with SMTP id af79cd13be357-7c966863a9emr93990085a.2.1745607023584;
-        Fri, 25 Apr 2025 11:50:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHT03n8z7SHkwDaulevemaec2yJrdYdctRXzxhbdw9an2R0OP0F6xKCFqghpdGVE/met9dTSA==
-X-Received: by 2002:a05:620a:3907:b0:7c9:256d:f6b6 with SMTP id af79cd13be357-7c966863a9emr93987585a.2.1745607023267;
-        Fri, 25 Apr 2025 11:50:23 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cca842esm688372e87.164.2025.04.25.11.50.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 11:50:22 -0700 (PDT)
-Date: Fri, 25 Apr 2025 21:50:20 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/11] arm64: dts: qcom: sdm850*: Use q6asm defines for
- reg
-Message-ID: <yyeijwvwva7hwehpcyvy7empyfxmzfqei7i27eow2rx73mh5n7@kzwkymdlou6p>
-References: <20250425-q6asmdai-defines-v1-0-28308e2ce7d4@fairphone.com>
- <20250425-q6asmdai-defines-v1-9-28308e2ce7d4@fairphone.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAC72040A8;
+	Fri, 25 Apr 2025 18:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745607064; cv=pass; b=fko4ZRLr5QADY26vEv0AUtD/5fzTIooGSwa+V+pCzhAf0F54bkRA5TGM54KDHUAv0Xwoxb+Qh70I7MwcV/Km/0nh9G0yFIum6fg+DXpqy4JWhEKukXlNXWxl7qZvckHKErUTje9o/T7i8BQLC+YPWP7i5RfJ5a6KuS4cNehmQyk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745607064; c=relaxed/simple;
+	bh=WISNaajJfoVG+eHnKEldxVO6N2dbvZvArXO+fOqnRBU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZJfUS++sg259xieildaGPIEeQWKpz2PFBM7z69AFvUyP0pPl2UWvQ0sy5DHJIcNfOv6Ym6MQepFm4H658AzTRamVBGc6SUoSOJa4AzOOgE7r3imx/000ASmp7gHWTTxUFPjzr4szdL6WRWVwAyL5skEPTHDESmTcBPYxLOTtU8Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=al6VijCa; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1745607031; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=PZblNby2kNMGIbAGzDVzwLiumkkQhhxjcsBYLiOL8UD+2K2d0EtoWEFqnCouiiLqtOAvfl/Qhw+7qvmEi04zwvH3gzT7v2gRv8VmjCogvFNeLMBJA9qMiqWZ9iqG2AjXYrq96nDGb82ZUdbU5sz40HOAQBSt1rzPmRp5mVRpgZA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745607031; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=87movGfsgkKvCCO2hsLlnVrga1A0glMJM4uj70IwRA4=; 
+	b=PuySUUok4jjuwpyxKWK3hE0vMWd5hkFuzO4+h/W2NcDzZDa06IfMxzwR2msIDlSuqn5ozjBaeib3XBCLDGrI3Q44MRamBuvWlDqojZmyhpCBsZ8eOgHSq7w8c0qi2wq25CojDG9oak+IcTNcav/f1CUFKHQ6lMLyuFdeFAIe7kI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745607031;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=87movGfsgkKvCCO2hsLlnVrga1A0glMJM4uj70IwRA4=;
+	b=al6VijCaLZB9Ojg/CKlBpPpTiL4L3l7bnLYNsd3XxABO+a0i9ArBlgH6/pNQgvmw
+	i2wxG3w96SF06YXzw9QwprVhD2lASN8UGy+OqLVEwhlQAKGpgTbA2Q31tFVZDA2UHlZ
+	53mE1YO5TJSM/79t3EN/Inuxk3Vm6KA0OhJHhhKQ=
+Received: by mx.zohomail.com with SMTPS id 1745607028843569.4630920933195;
+	Fri, 25 Apr 2025 11:50:28 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-rockchip@lists.infradead.org,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: Re: [PATCH v2 1/7] dt-bindings: npu: rockchip,rknn: Add bindings
+Date: Fri, 25 Apr 2025 20:50:21 +0200
+Message-ID: <14333638.uLZWGnKmhe@workhorse>
+In-Reply-To: <20250225-6-10-rocket-v2-1-d4dbcfafc141@tomeuvizoso.net>
+References:
+ <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <20250225-6-10-rocket-v2-1-d4dbcfafc141@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250425-q6asmdai-defines-v1-9-28308e2ce7d4@fairphone.com>
-X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=680bd97b cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=0uHdMyS-I8ESt-gxu3MA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: o2v8orXGaAgGK4iU_maJNuPvpbZbzX-l
-X-Proofpoint-ORIG-GUID: o2v8orXGaAgGK4iU_maJNuPvpbZbzX-l
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDEzNCBTYWx0ZWRfXx+Qg5gX0eLeq VBasq7eEsYPTIL+vLe4Cswoz7IZbFYrYdSo1e5iHfg1ZKHNirN3KlsrPLZhNL8tf7ZDG3Wx5fVC M7IjlvZwWoVSCKc9aTYPBeMlU0mthXV4RiyokuiXnsNSPll7EN2VNsGiImHX85wiX9yJLgfeXkv
- hODWaO/yiEPmh6FShV5dPKaSWjLlMlWP+dBA9erJIzEhXaFGjdCH5w1ptRi6gU8jm/k/0b6kpE5 snBdaXducMT9cQ6cSoRD44xf71BFSLNDIeI1+pzEdtY1NEa9WblwOOcjXpxyq18Z+amSGmNGGUS 1n6cl+ADzdGf9SR5Bk8MMPbhEe69p0nrap5WGZ5wRi5Umc7dhBlr3zaCMftU3Tw5oZageC02wIL
- 3+sPKvczBFIC2PxU+UMk+bKX1gqmguoxyGy9+pJvGJ8X6b996X4k40O7y3sOz6p8E/498ITh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-25_05,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0 mlxlogscore=503
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504250134
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, Apr 25, 2025 at 01:53:48PM +0200, Luca Weiss wrote:
-> Use the MSM_FRONTEND_DAI_MULTIMEDIA* defines to make the code more
-> readable. No functional change intended.
+On Tuesday, 25 February 2025 08:55:47 Central European Summer Time Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
+>  .../bindings/npu/rockchip,rknn-core.yaml           | 152 +++++++++++++++++++++
+>  1 file changed, 152 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e8d0afe4a7d1c4f166cf13a9f4aa7c1901362a3f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml
+> @@ -0,0 +1,152 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Neural Processing Unit IP from Rockchip
+> +
+> +maintainers:
+> +  - Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> +
+> +description:
+> +  Rockchip IP for accelerating inference of neural networks, based on NVIDIA's
+> +  open source NVDLA IP.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^npu-core@[a-f0-9]+$'
+> +
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-rknn-core-top
+> +          - const: rockchip,rknn-core-top
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-rknn-core
+> +          - const: rockchip,rknn-core
+> +
+> +  reg:
+> +    maxItems: 1
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Hi Tomeu,
 
--- 
-With best wishes
-Dmitry
+as you probably know, RK3576 has quite a similar NPU. This is why I'm currently
+poking at this patch series. One of the differences I ran into was that the
+IOMMU of each NPU core now sits within the reg address space range of the core
+as described by the single reg item binding and assumed by the driver.
+
+This seemed weird to me at first, since I would've guessed the cores would be
+exactly the same, but I noticed that they kind of still are; the RK3588's NPU
+also has a "hole" between 0x2000 and 0x2fff on each core, which is where RK3576
+put its IOMMU.
+
+This is some information I gleaned from the RK3588 TRM, specifically section
+36.4.1 "Internal Address Mapping", which shows where each "part" of the NPU core
+has its address space.
+
+Right now we just represent this as a single reg item per core. I've played
+with the idea of splitting this up into the distinct ranges the TRM lists and
+giving each a reg-names entry, but this would require a major rework of the
+driver from what I can tell, including to the auto-generated register header.
+
+For now, my hack on RK3576 is to just ioremap the range defined by resource 
+start to resource end inside rocket manually if I get -EBUSY trying to ioremap 
+the resource proper. This is quite an ugly hack though, it means the IOMMU node 
+still has its address overlapping with another node in the DT, and it also means 
+we have an unavoidable error message printed into the kernel log. This is also
+what the vendor driver seems to do.
+
+What do you reckon is a reg setup in the binding that is both reasonable to
+implement in the driver while accurately describing the hardware?
+
+The RK3568, which uses a similar NPU design has the IOMMU at an offset of 0xb000 
+from the core's start of PC, so probably after any core specifics but before the 
+global registers if I hazard a guess.
+
+For those without access to the TRM: splitting this up into multiple reg items
+per core precisely the way the TRM does it would result in no less than 10 reg
+items on RK3588, if I count correctly.
+
+Kind regards,
+Nicolas Frattaroli
+
+
 
