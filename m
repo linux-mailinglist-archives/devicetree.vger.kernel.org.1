@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-170639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973E4A9BD1D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:04:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8A1A9BD29
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 05:14:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7F441B886AB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 03:04:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 090A14C0909
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 03:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD931684A4;
-	Fri, 25 Apr 2025 03:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2E61714B2;
+	Fri, 25 Apr 2025 03:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="VvxJ+dhM"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="SKRlq7iI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA331C28E;
-	Fri, 25 Apr 2025 03:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967B62701AE;
+	Fri, 25 Apr 2025 03:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745550256; cv=none; b=hee7Q2j2hGH+LveFgk1D+n7umlF4535aNtu86uz4jsMHZS+u/ABTnKUrEFPNW1OEOnleXUUyx1ZuBStbB10q/kAOwlwZQRLm/RNcpQdLWCbTH1N+2BHxxc2FKzc3Tvr3WRgmPKI3ni3Fwrr9rR2+pqburoEjRyWS9i8EzdIRoUI=
+	t=1745550876; cv=none; b=lvVP+JYI3amio6phTEvviG9yIKBMrat8nC08WHry17jv4Ibj9vt6DCoBTShIu95gk6m0T+EvXcmMRKJ4x8ZLAaFWpkZWWXbGayyUKfnkwyupPHHLuuVix0rDnncoD4Df3eKKVs/8JiIkQqTKaCQMVg9I4DoATUBrKaYNCfbJqOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745550256; c=relaxed/simple;
-	bh=YUh/cuAE81XqoCZ65QZiyr1IrGQd8iZowQB2p0pWx2M=;
+	s=arc-20240116; t=1745550876; c=relaxed/simple;
+	bh=9xzEWc7rbuzjVsxgwE/wIoKdmmySG3tWSDW4PCBvxPE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7eR3r6zDZnY8rWryu40YsZCwytKWIcmSuN67iPdtkGW06t6Yrpm6a5iKmZ2qJbw1683TEX6PP4XcMLMWhk5dAjpWI3/V34Uy9tzkqaiGxRvCrUBkmK4vodjrvMRo7wGHC3XvDJUrBFHSHLjQRG3svBfUAWgu1Fixj4VORfthOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=VvxJ+dhM; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=UGyEeMlGhFgB3uMatylux0oXdvhWzg/Wke7tAYuAKfd/RmAU/HomtZAnEYscYd4mUBFP5fjinDuqCK6MehQht8sEYSI82rRWnuyIYhsR1vfCSy+a7WUvzspg8JIwtp2rOMMaLKlD8xeM6MgK8SNpEKv4xuFO4NGNODiGhFrgF5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=SKRlq7iI; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=qxiKMycuA/S/b4aduDKHTJVt95lznX3mP7Vus3psjjw=;
-	b=VvxJ+dhMu6cRjtBkTzfZ+9gf0j6+3tBsuLq/z85fsYxjPQtBrikxTqdRjlaAri
-	E27qhrS9dWDA2Fy36ElNxP+fB3I/aLI0C96hOTSwR29LWDMxkd8j0lnDjyTR51fd
-	GylpjBrEnGjkmhVbR8POr+R5wE1dY0PYyP2FRHHqW3UrI=
+	Content-Type; bh=Ns+L0aOm8q4XI8tdY0zbGpGXoWoyJjIZ1B6rDiXbX30=;
+	b=SKRlq7iImJSm8WSOqSFewc3xuRNOOHQvEfFqd5/qWhssemJdgOYpsRvR8vgppJ
+	Lcod9RJv/UYLydErZV9zePUAfDLqC37XxNuhpNq8mMC1IIQ4U5jLTplbf1PDkd2v
+	D0azbviE8xSXZxe75QPU3OA1y5Qsf4FrBWyaUSVbx8tvI=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAna+J2+wpoIiTtAw--.35636S3;
-	Fri, 25 Apr 2025 11:03:19 +0800 (CST)
-Date: Fri, 25 Apr 2025 11:03:17 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3zEXr_QpoCyPbAw--.5525S3;
+	Fri, 25 Apr 2025 11:13:48 +0800 (CST)
+Date: Fri, 25 Apr 2025 11:13:46 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: max.oss.09@gmail.com
-Cc: max.krummenacher@toradex.com, Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: Add PCIe and SATA support
-Message-ID: <aAr7dQH5O3VY7+N3@dragon>
-References: <20250416151353.1692373-1-max.oss.09@gmail.com>
+	linux-kernel@vger.kernel.org, hongxing.zhu@nxp.com
+Subject: Re: [PATCH v2 0/8] arm64: dts: imx8: create common imx-pcie[0,1]-ep
+ overlay file
+Message-ID: <aAr96tBdflbAyKSb@dragon>
+References: <20250423-imx8_pcie_ep_dts-v2-0-43c982d83a8f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,26 +62,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416151353.1692373-1-max.oss.09@gmail.com>
-X-CM-TRANSID:Ms8vCgAna+J2+wpoIiTtAw--.35636S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUx7PEUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBQ6ZWgK1S+unQAAsk
+In-Reply-To: <20250423-imx8_pcie_ep_dts-v2-0-43c982d83a8f@nxp.com>
+X-CM-TRANSID:Mc8vCgD3zEXr_QpoCyPbAw--.5525S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW5Kr4fuF1rXFy7Xry7try3twb_yoWxGFg_Cr
+	45Wa1kJ347Jw4fJ345A3ZxuFy2g345Z3y5Wry8Xwsa93WfZFWYvr4kJr1rW3WUCF13Xw4D
+	CFn8Xw1xXw4rGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU08cTPUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiARs6ZWgK0Y3JqQAAsb
 
-On Wed, Apr 16, 2025 at 05:13:41PM +0200, max.oss.09@gmail.com wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
-> 
-> The needed drivers to support PCIe and SATA for i.MX 8QM have been
-> added.
-> Configure them for the Apalis iMX8 SoM.
-> 
-> The pciea and pcieb blocks each get a single PCIe lane, pciea is
-> available on the carrier boards while pcieb is connected to the
-> on module Wi-Fi/BT module.
-> The SATA lane is available on the carrier boards.
-> 
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+On Wed, Apr 23, 2025 at 08:41:22PM -0400, Frank Li wrote:
+> Frank Li (8):
+>       arm64: dts: imx8: create unified pcie0 and pcie0_ep label for all chips
+>       arm64: dts: imx8dxl-ss-hsio: correct irq number for imx8dxl
+>       arm64: dts: imx8dxl-evk: Add pcie0-ep node and use unified pcie0 label
+>       arm64: dts: imx8: use common imx-pcie0-ep.dtso to enable PCI ep function
+>       arm64: dts: imx95: add pcie1 ep overlay file and create pcie-ep dtb files
+>       arm64: dts: imx8mm-evk: add pcie0-ep node and apply pcie0-ep overlay file
+>       arm64: dts: imx8mq: add pcie0-ep node
+>       arm64: dts: imx8mq-evk: add pcie[0,1]-ep nodes
 
-Applied, thanks!
+Applied all, thanks!
 
 
