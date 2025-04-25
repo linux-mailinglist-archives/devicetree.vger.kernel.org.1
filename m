@@ -1,552 +1,168 @@
-Return-Path: <devicetree+bounces-170681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029E2A9BFCF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:33:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94384A9BFD4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF61B7A71F9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:32:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D22834A029C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51F822E415;
-	Fri, 25 Apr 2025 07:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596D51F4CAC;
+	Fri, 25 Apr 2025 07:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQoH2HDj"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="OuVgSLTU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86EC422B8A4;
-	Fri, 25 Apr 2025 07:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D80FA29;
+	Fri, 25 Apr 2025 07:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745566394; cv=none; b=mKbJ+ViEgSj7n0m4SvkLqvWympmqjfobm7rU+mDcjB9lSLGUPuDDGTp8NHB1YS5cAmq1tsIAxKjgsnbsFxfZ8ImoLGNsBTokoVmO3qDXl07jxK5LqxpGPOFWq8Y4L170xBal8ZM23w1cHYOYQSMnmqlZK3yOrrwUAnc6/8I4kiA=
+	t=1745566511; cv=none; b=s2R9ka18XU5rlUKfXO91KL9llEbTSi9A+zP1r5isgvHp37oyQfYw5v2gqw5RrvLk2XGqjRhxJzZWfO8bOdByPP8HklI+ptIiwnSUFcXMnCVNb54n5aKR2x1KKg2XNImvLcSU8TN36S1n6ok3+4OnyHUx0XD8tptFPywWtFR/3J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745566394; c=relaxed/simple;
-	bh=VG3dD6HYfg9kvm50BlT/1V2fksSaChUR++ZH98BkUiw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rKLRiR0GjbT99fxWH6RsqXIPp8pgr3dZwVSwdb6EA2vKlL3lt8ko7y5+6brC4nC29t3MF1HScU507s0pcMnFjeGLMH0beSTBC4nMAc8MlyB8lkG6txjcFvEh7lTkHk3ydfci2K1+7G4TtDeg5ttOsZJx1iZFmmUrZg0fVNmSEGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQoH2HDj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A33D5C4CEE4;
-	Fri, 25 Apr 2025 07:33:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745566394;
-	bh=VG3dD6HYfg9kvm50BlT/1V2fksSaChUR++ZH98BkUiw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QQoH2HDj1AUqGtYSBDYP4DZnA+TTZlg9EOykRg2GiUtifFZ3lWXnNRDVqqnRdBLQm
-	 wDQPl4HhW/Xqu+OZXJjiCMAqgPcvlpcSU52A0WlpjbRCTlj7yj8xL3XVLWXBtmkN9z
-	 4rxblxDGYa/32Pgd1gAUHq/s4eCSYrU4h2+eFji2TMJdwRjiMEttMHHwrjYiJ2qp4a
-	 ZXmseJDQefldIHA6VWeOhaULmCDrY/SFkKjP7l/Mgc8fHiCR1wB3LcgRLpBxSHml2X
-	 qSPMIraqT1P59LfLvFCizcmRqypkeMYC4cUK+AOALFxulhE/Gqoj74i47OSQlKQXSA
-	 1WNhblQKA39/Q==
-Date: Fri, 25 Apr 2025 09:33:10 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: "T.J. Mercier" <tjmercier@google.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Mattijs Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
-Message-ID: <20250425-colossal-nocturnal-ladybug-8f5cf7@houat>
-References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
- <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
- <CABdmKX0=Er-y41roEuZjGZ95YzMxt-mPd9K5982fm_eWhtX5vw@mail.gmail.com>
- <b3391234-ea53-4a18-a1e3-b8a92d9dff5d@ti.com>
+	s=arc-20240116; t=1745566511; c=relaxed/simple;
+	bh=NXDMzhuqaItzHEjDVf+ZgFR1PH/wdyRxk4SgLXzkHDQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ErmJEn7AShV9rJJ2pYAUmolSYU/AiS8Cz1YZEqJ5g4L11WBkkteivQHEUUXj12PwSNkRlvDnCZqNPWR/tTmsiuv1gorb87CYu84eZqp9s0Ih+xBSiipEFwYx+wqa2dpwJxfSFfNfmvW7U2DINQATbueItxzb4z8XSZLex2lnZqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=OuVgSLTU; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1745566506; x=1746171306; i=wahrenst@gmx.net;
+	bh=NXDMzhuqaItzHEjDVf+ZgFR1PH/wdyRxk4SgLXzkHDQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=OuVgSLTUEYhGuQsmoTURxhXjQmjpj8p7y+FH62KYAiHahqT4/ZEa0N2ZySWEyAQq
+	 v50nr/2py9CEApi6LaqYSK3Dlkm+5jTCT0oV4Ds2n4JvSgJ7aU4D5wVo8qe28CtUj
+	 Spt+U2UCRNHbNdTM2OY8PxoZjZHuGeUsdvar0kTEbvs0vhIna886HZCoXyD62tEQS
+	 geMUjlKcFNcQypnelcnIp3svBB/vF0O66uXaK+4JcibC24LLN3iFvoSbPKb/LCr/g
+	 n/o/HCyNv+vLcVnDRAeCVxMMHos0w4kY5BKVJ8sQJJ4b+3OMtbXGyeAc+ahJoNJKn
+	 5unCSfB31DaOCoAwaw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M4s0j-1u8Uhh2Cal-00HZ7x; Fri, 25
+ Apr 2025 09:35:06 +0200
+Message-ID: <7e261db8-7b3a-4425-93ce-b7bac3746da1@gmx.net>
+Date: Fri, 25 Apr 2025 09:35:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="hje4x6mpt4dm7yve"
-Content-Disposition: inline
-In-Reply-To: <b3391234-ea53-4a18-a1e3-b8a92d9dff5d@ti.com>
-
-
---hje4x6mpt4dm7yve
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net 1/5] net: vertexcom: mse102x: Fix possible stuck of
+ SPI interrupt
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250423074553.8585-1-wahrenst@gmx.net>
+ <20250423074553.8585-2-wahrenst@gmx.net> <20250424181828.5d38001f@kernel.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250424181828.5d38001f@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
-MIME-Version: 1.0
+X-Provags-ID: V03:K1:tVlU/3meqyPYXQAO8i99zAJp+CxOy0p6mpe5wHTqo3xrs3/0C2T
+ v0MucHglZ5KjI0Je2v5mWlIX+j1vtESN7ODdSe5YDGYC4a3ZW5dOXvqk/B4MfD2Ba4NuPTo
+ OcSi6OrH0j0IP4PUbhacngV9bzMglFBFpoRGQbeKz8X/Ol42sKjvaRmC7MQsTm3WSHl3sft
+ UR1sDbpsK/JQIoKz9TyCQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ON+3jz9YBOo=;6QORVE+LuOKnt0CtxO5Wor0tc8j
+ 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
 
-On Mon, Apr 14, 2025 at 12:43:44PM -0500, Andrew Davis wrote:
-> On 4/11/25 3:26 PM, T.J. Mercier wrote:
-> > On Mon, Apr 7, 2025 at 9:29=E2=80=AFAM Maxime Ripard <mripard@kernel.or=
-g> wrote:
-> > >=20
-> > > Some reserved memory regions might have particular memory setup or
-> > > attributes that make them good candidates for heaps.
-> > >=20
-> > > Let's provide a heap type that will create a new heap for each reserv=
-ed
-> > > memory region flagged as such.
-> > >=20
-> > > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> >=20
-> > This patch looks good to me, but I think it'd be good to add more
-> > justification like you did at
-> > https://lore.kernel.org/all/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511=
-@kernel.org
-> >=20
-> > > ---
-> > >   drivers/dma-buf/heaps/Kconfig         |   8 +
-> > >   drivers/dma-buf/heaps/Makefile        |   1 +
-> > >   drivers/dma-buf/heaps/carveout_heap.c | 360 +++++++++++++++++++++++=
-+++++++++++
-> > >   3 files changed, 369 insertions(+)
-> > >=20
-> > > diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kc=
-onfig
-> > > index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..c6981d696733b4d8d0c3f=
-6f5a37d967fd6a1a4a2 100644
-> > > --- a/drivers/dma-buf/heaps/Kconfig
-> > > +++ b/drivers/dma-buf/heaps/Kconfig
-> > > @@ -1,5 +1,13 @@
-> > > +config DMABUF_HEAPS_CARVEOUT
-> > > +       bool "Carveout Heaps"
-> > > +       depends on DMABUF_HEAPS
-> > > +       help
-> > > +         Choose this option to enable the carveout dmabuf heap. The =
-carveout
-> > > +         heap is backed by pages from reserved memory regions flagge=
-d as
-> > > +         exportable. If in doubt, say Y.
-> > > +
-> > >   config DMABUF_HEAPS_SYSTEM
-> > >          bool "DMA-BUF System Heap"
-> > >          depends on DMABUF_HEAPS
-> > >          help
-> > >            Choose this option to enable the system dmabuf heap. The s=
-ystem heap
-> > > diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/M=
-akefile
-> > > index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f4491067=
-48160258e372f153df2 100644
-> > > --- a/drivers/dma-buf/heaps/Makefile
-> > > +++ b/drivers/dma-buf/heaps/Makefile
-> > > @@ -1,3 +1,4 @@
-> > >   # SPDX-License-Identifier: GPL-2.0
-> > > +obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)    +=3D carveout_heap.o
-> > >   obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)      +=3D system_heap.o
-> > >   obj-$(CONFIG_DMABUF_HEAPS_CMA)         +=3D cma_heap.o
-> > > diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/=
-heaps/carveout_heap.c
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..f7198b781ea57f4f60e55=
-4d917c9277e9a716b16
-> > > --- /dev/null
-> > > +++ b/drivers/dma-buf/heaps/carveout_heap.c
-> > > @@ -0,0 +1,360 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +
-> > > +#include <linux/dma-buf.h>
-> > > +#include <linux/dma-heap.h>
-> > > +#include <linux/genalloc.h>
-> > > +#include <linux/highmem.h>
-> > > +#include <linux/of_reserved_mem.h>
-> > > +
-> > > +struct carveout_heap_priv {
-> > > +       struct dma_heap *heap;
-> > > +       struct gen_pool *pool;
-> > > +};
-> > > +
-> > > +struct carveout_heap_buffer_priv {
-> > > +       struct mutex lock;
-> > > +       struct list_head attachments;
-> > > +
-> > > +       unsigned long num_pages;
-> > > +       struct carveout_heap_priv *heap;
-> > > +       dma_addr_t daddr;
-> > > +       void *vaddr;
-> > > +       unsigned int vmap_cnt;
-> > > +};
-> > > +
-> > > +struct carveout_heap_attachment {
-> > > +       struct list_head head;
-> > > +       struct sg_table table;
-> > > +
-> > > +       struct device *dev;
-> > > +       bool mapped;
-> > > +};
-> > > +
-> > > +static int carveout_heap_attach(struct dma_buf *buf,
-> > > +                               struct dma_buf_attachment *attachment)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D buf->priv;
-> > > +       struct carveout_heap_attachment *a;
-> > > +       struct sg_table *sgt;
-> > > +       unsigned long len =3D priv->num_pages * PAGE_SIZE;
-> > > +       int ret;
-> > > +
-> > > +       a =3D kzalloc(sizeof(*a), GFP_KERNEL);
-> > > +       if (!a)
-> > > +               return -ENOMEM;
-> > > +       INIT_LIST_HEAD(&a->head);
-> > > +       a->dev =3D attachment->dev;
-> > > +       attachment->priv =3D a;
-> > > +
-> > > +       sgt =3D &a->table;
-> > > +       ret =3D sg_alloc_table(sgt, 1, GFP_KERNEL);
-> > > +       if (ret)
-> > > +               goto err_cleanup_attach;
-> > > +
-> > > +       sg_dma_address(sgt->sgl) =3D priv->daddr;
-> > > +       sg_dma_len(sgt->sgl) =3D len;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +       list_add(&a->head, &priv->attachments);
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return 0;
-> > > +
-> > > +err_cleanup_attach:
-> > > +       kfree(a);
-> > > +       return ret;
-> > > +}
-> > > +
-> > > +static void carveout_heap_detach(struct dma_buf *dmabuf,
-> > > +                                struct dma_buf_attachment *attachmen=
-t)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +       struct carveout_heap_attachment *a =3D attachment->priv;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +       list_del(&a->head);
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       sg_free_table(&a->table);
-> > > +       kfree(a);
-> > > +}
-> > > +
-> > > +static struct sg_table *
-> > > +carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
-> > > +                         enum dma_data_direction direction)
-> > > +{
-> > > +       struct carveout_heap_attachment *a =3D attachment->priv;
-> > > +       struct sg_table *table =3D &a->table;
-> > > +       int ret;
-> > > +
-> > > +       ret =3D dma_map_sgtable(a->dev, table, direction, 0);
-> > > +       if (ret)
-> > > +               return ERR_PTR(-ENOMEM);
-> >=20
-> > Not ERR_PTR(ret)? This is already converted to ENOMEM by
-> > dma_buf_map_attachment before leaving the dmabuf code, but it might be
-> > nice to retain the error type internally. The two existing heaps
-> > aren't consistent about this, and I have a slight preference to
-> > propagate the error here.
-> >=20
-> > > +
-> > > +       a->mapped =3D true;
-> > > +
-> > > +       return table;
-> > > +}
-> > > +
-> > > +static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *a=
-ttachment,
-> > > +                                       struct sg_table *table,
-> > > +                                       enum dma_data_direction direc=
-tion)
-> > > +{
-> > > +       struct carveout_heap_attachment *a =3D attachment->priv;
-> > > +
-> > > +       a->mapped =3D false;
-> > > +       dma_unmap_sgtable(a->dev, table, direction, 0);
-> > > +}
-> > > +
-> > > +static int
-> > > +carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
-> > > +                                      enum dma_data_direction direct=
-ion)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +       struct carveout_heap_attachment *a;
-> > > +       unsigned long len =3D priv->num_pages * PAGE_SIZE;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +
-> > > +       if (priv->vmap_cnt > 0)
-> > > +               invalidate_kernel_vmap_range(priv->vaddr, len);
-> > > +
-> > > +       list_for_each_entry(a, &priv->attachments, head) {
-> > > +               if (!a->mapped)
-> > > +                       continue;
-> > > +
-> > > +               dma_sync_sgtable_for_cpu(a->dev, &a->table, direction=
-);
-> > > +       }
-> > > +
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static int
-> > > +carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
-> > > +                                    enum dma_data_direction directio=
-n)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +       struct carveout_heap_attachment *a;
-> > > +       unsigned long len =3D priv->num_pages * PAGE_SIZE;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +
-> > > +       if (priv->vmap_cnt > 0)
-> > > +               flush_kernel_vmap_range(priv->vaddr, len);
-> > > +
-> > > +       list_for_each_entry(a, &priv->attachments, head) {
-> > > +               if (!a->mapped)
-> > > +                       continue;
-> > > +
-> > > +               dma_sync_sgtable_for_device(a->dev, &a->table, direct=
-ion);
-> > > +       }
-> > > +
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static int carveout_heap_mmap(struct dma_buf *dmabuf,
-> > > +                             struct vm_area_struct *vma)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +       unsigned long len =3D priv->num_pages * PAGE_SIZE;
-> > > +       struct page *page =3D virt_to_page(priv->vaddr);
-> > > +
-> > > +       return remap_pfn_range(vma, vma->vm_start, page_to_pfn(page),
-> > > +                              len, vma->vm_page_prot);
-> > > +}
-> > > +
-> > > +static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_m=
-ap *map)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +
-> > > +       iosys_map_set_vaddr(map, priv->vaddr);
-> > > +       priv->vmap_cnt++;
-> > > +
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosy=
-s_map *map)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *priv =3D dmabuf->priv;
-> > > +
-> > > +       mutex_lock(&priv->lock);
-> > > +
-> > > +       priv->vmap_cnt--;
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       iosys_map_clear(map);
-> > > +}
-> > > +
-> > > +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
-> > > +{
-> > > +       struct carveout_heap_buffer_priv *buffer_priv =3D buf->priv;
-> > > +       struct carveout_heap_priv *heap_priv =3D buffer_priv->heap;
-> > > +       unsigned long len =3D buffer_priv->num_pages * PAGE_SIZE;
-> > > +
-> > > +       gen_pool_free(heap_priv->pool, (unsigned long)buffer_priv->va=
-ddr, len);
-> > > +       kfree(buffer_priv);
-> > > +}
-> > > +
-> > > +static const struct dma_buf_ops carveout_heap_buf_ops =3D {
-> > > +       .attach         =3D carveout_heap_attach,
-> > > +       .detach         =3D carveout_heap_detach,
-> > > +       .map_dma_buf    =3D carveout_heap_map_dma_buf,
-> > > +       .unmap_dma_buf  =3D carveout_heap_unmap_dma_buf,
-> > > +       .begin_cpu_access       =3D carveout_heap_dma_buf_begin_cpu_a=
-ccess,
-> > > +       .end_cpu_access =3D carveout_heap_dma_buf_end_cpu_access,
-> > > +       .mmap           =3D carveout_heap_mmap,
-> > > +       .vmap           =3D carveout_heap_vmap,
-> > > +       .vunmap         =3D carveout_heap_vunmap,
-> > > +       .release        =3D carveout_heap_dma_buf_release,
-> > > +};
-> > > +
-> > > +static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
-> > > +                                             unsigned long len,
-> > > +                                             u32 fd_flags,
-> > > +                                             u64 heap_flags)
-> > > +{
-> > > +       struct carveout_heap_priv *heap_priv =3D dma_heap_get_drvdata=
-(heap);
-> > > +       struct carveout_heap_buffer_priv *buffer_priv;
-> > > +       DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
-> > > +       struct dma_buf *buf;
-> > > +       dma_addr_t daddr;
-> > > +       size_t size =3D PAGE_ALIGN(len);
-> >=20
-> > This PAGE_ALIGN is not needed since dma_heap_buffer_alloc requires all
-> > heap allocations to be page aligned before this function is called.
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> > > +       void *vaddr;
-> > > +       int ret;
-> > > +
-> > > +       buffer_priv =3D kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
-> > > +       if (!buffer_priv)
-> > > +               return ERR_PTR(-ENOMEM);
-> > > +
-> > > +       INIT_LIST_HEAD(&buffer_priv->attachments);
-> > > +       mutex_init(&buffer_priv->lock);
-> > > +
-> > > +       vaddr =3D gen_pool_dma_zalloc(heap_priv->pool, size, &daddr);
-> > > +       if (!vaddr) {
-> > > +               ret =3D -ENOMEM;
-> > > +               goto err_free_buffer_priv;
-> > > +       }
-> > > +
-> > > +       buffer_priv->vaddr =3D vaddr;
-> > > +       buffer_priv->daddr =3D daddr;
-> > > +       buffer_priv->heap =3D heap_priv;
-> > > +       buffer_priv->num_pages =3D size >> PAGE_SHIFT;
-> > > +
-> > > +       /* create the dmabuf */
-> > > +       exp_info.exp_name =3D dma_heap_get_name(heap);
-> > > +       exp_info.ops =3D &carveout_heap_buf_ops;
-> > > +       exp_info.size =3D size;
-> > > +       exp_info.flags =3D fd_flags;
-> > > +       exp_info.priv =3D buffer_priv;
-> > > +
-> > > +       buf =3D dma_buf_export(&exp_info);
-> > > +       if (IS_ERR(buf)) {
-> > > +               ret =3D PTR_ERR(buf);
-> > > +               goto err_free_buffer;
-> > > +       }
-> > > +
-> > > +       return buf;
-> > > +
-> > > +err_free_buffer:
-> > > +       gen_pool_free(heap_priv->pool, (unsigned long)vaddr, len);
-> > > +err_free_buffer_priv:
-> > > +       kfree(buffer_priv);
-> > > +
-> > > +       return ERR_PTR(ret);
-> > > +}
-> > > +
-> > > +static const struct dma_heap_ops carveout_heap_ops =3D {
-> > > +       .allocate =3D carveout_heap_allocate,
-> > > +};
-> > > +
-> > > +static int __init carveout_heap_setup(struct device_node *node)
-> > > +{
-> > > +       struct dma_heap_export_info exp_info =3D {};
-> > > +       const struct reserved_mem *rmem;
-> > > +       struct carveout_heap_priv *priv;
-> > > +       struct dma_heap *heap;
-> > > +       struct gen_pool *pool;
-> > > +       void *base;
-> > > +       int ret;
-> > > +
-> > > +       rmem =3D of_reserved_mem_lookup(node);
-> > > +       if (!rmem)
-> > > +               return -EINVAL;
-> > > +
-> > > +       priv =3D kzalloc(sizeof(*priv), GFP_KERNEL);
-> > > +       if (!priv)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       pool =3D gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
-> > > +       if (!pool) {
-> > > +               ret =3D -ENOMEM;
-> > > +               goto err_cleanup_heap;
-> > > +       }
-> > > +       priv->pool =3D pool;
-> > > +
-> > > +       base =3D memremap(rmem->base, rmem->size, MEMREMAP_WB);
->=20
-> Why add a mapping here? What if the carveout is never mapped by the CPU
-> (or maybe it shouldn't be mapped for some reason). Instead you could
-> make the map at map time. I do it that way in our evil vendor tree
-> version of this driver for reference[0].
+Hi Jakub,
 
-Yeah, it's a good idea indeed.
+Am 25.04.25 um 03:18 schrieb Jakub Kicinski:
+> On Wed, 23 Apr 2025 09:45:49 +0200 Stefan Wahren wrote:
+>> The MSE102x doesn't provide any SPI commands for interrupt handling.
+>> So in case the interrupt fired before the driver requests the IRQ,
+>> the interrupt will never fire again. In order to fix this always poll
+>> for pending packets after opening the interface.
+> Wouldn't this cause invalid_rts or some other error counter
+> to increment every time the user opens the device?
+you are right, this would increase the invalid_cmd counter.
 
-> > > +       if (!base) {
-> > > +               ret =3D -ENOMEM;
-> > > +               goto err_release_mem_region;
-> > > +       }
-> > > +
-> > > +       ret =3D gen_pool_add_virt(pool, (unsigned long)base, rmem->ba=
-se,
-> > > +                               rmem->size, NUMA_NO_NODE);
-> > > +       if (ret)
-> > > +               goto err_unmap;
-> > > +
-> > > +       exp_info.name =3D node->full_name;
->=20
-> So this is the only part that concerns me. We really got the user exposed
-> naming wrong with the CMA Heap IMHO (probably should have been always cal=
-led
-> "default_cma" or somthing, instead it changes based on how the default CMA
-> area was defined).
+I'm missed to mention in the cover letter, that this series is only the=20
+first part of two patch series. The first one only contains fixes, which=
+=20
+should be backported. The second one contains improvement, which can go=20
+to net-next.
 
-Hopefully that one will be fixed soon :)
+Regarding the invalid_cmd there is already a patch in my backlog, but I=20
+didn't consider this as a real fix:
 
-> If the name of the heap is how users select the heap, it needs to be cons=
-istent.
-> And naming it after the node makes the DT name into ABI. It also means it=
- will
-> change based on device, or even based on how it is created. What if this =
-same
-> reserved region is defined by ACPI instead of DT in some cases, or from k=
-ernel
-> command-line, etc.. Makes for bad ABI :(
->=20
-> Maybe in addition to the "export" property, in the DT node we have a "hea=
-p-name"
-> that can be set which then defines what name is presented to userspace. At
-> very least that allows us to kick the can down the road till we can figur=
-e out
-> what good portable Heap names should look like.
+net: vertexcom: mse102x: drop invalid cmd stats
 
-I agree that CMA not having a consistent naming was bad. However, it's
-not really clear to me what would make a good name: do we want to
-describe the region, allocator, attributes, all of them? I think we
-should clear that up, and document it. Otherwise, even if we have stable
-names, we'll never have good, consistent, ones. Let alone downstream.
+Since the SPI implementation on the MSE102x MCU is in software, it=20
+cannot reply to SPI commands in busy state. So drop the scaring=20
+statistics about "invalid" command replies.
 
-My assumption so far was that we were describing the region. If that
-assumption holds then the full DT name (so name@address) might just be
-enough? It will be stable, describe the region in a way a platform would
-understand, and we probably wouldn't have collisions.
+https://github.com/chargebyte/linux/commit/9f8a69e5c0d6c4482e89d7b86f72069=
+b89a94547
 
-What do you think?
+Should I add it as a fix?
 
-Maxime
-
---hje4x6mpt4dm7yve
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaAs6tQAKCRAnX84Zoj2+
-dhR+AYDOJEAMNPBTRyo/C1UUnh28ofV1G3chxRL+5FD0gckN8qqeuXA3S29x0/kK
-AEnNaIQBgPvJm4H4Dl240m3POLANIAocPvbsSEwHNxnZsHaSpjTnmeTXx1ANtCF6
-XT4Vc/2n/w==
-=uIRz
------END PGP SIGNATURE-----
-
---hje4x6mpt4dm7yve--
+Regards
 
