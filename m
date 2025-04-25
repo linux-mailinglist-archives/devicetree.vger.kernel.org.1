@@ -1,114 +1,142 @@
-Return-Path: <devicetree+bounces-170673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEECAA9BF2C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:06:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14F4A9BF3D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 09:09:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26A505A5E73
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:06:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 189649A0770
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 07:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9529D22DFB6;
-	Fri, 25 Apr 2025 07:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3214230277;
+	Fri, 25 Apr 2025 07:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="htd3/tO3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DFDB22A801;
-	Fri, 25 Apr 2025 07:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E7F22FE0A
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 07:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745564787; cv=none; b=izAwf7wKAtLXjPDuP6ohpkm3CscccsbArmfndaenxLvNJXUlpbkaiZQp6Rrdvia6mx2HQInR3KJOZmnIrj+f92enVHe0ahkeBplC36bcTMUW0GSBmDZfQgCocpUA+Cxt/a7eDf7LpruhcsPML9HQQzvw93bNcYMtnbMhBrKZZAA=
+	t=1745564935; cv=none; b=DePLliKhPZIuj6ZCoHMB7+SAWTsN7cGSun9mFUBH3je0lTTyu8hGBYsiJy2dRB1Wj5LAlKwwF3i4tmAChvZd8GTOYj/VUKApfIPHh4RSZRG8ykhPIokFXSWR32uHZL25q7W8haUDgB/vzB0elt9QvlQwvs/5DozTvsq0akdd2cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745564787; c=relaxed/simple;
-	bh=ctvHIsXYgGV/juygw8FG9JQyVXTMWfgzu1EuIdKbLnE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hHoTLrKHX555rxAN6v9uNEBp5mLgwtreQd8W0WoBPW/qE+wcyTBkzbo7vPjh7tqRoJYMtIfmL/GVQo+nggH97wskNl+gPmy5CLCTvWvPtVnW331o/Dwmz+93VUAR/IT+7mDIOa3K2c+PzYQU+er5WA10W/wPBt59DAJ5wMAPwWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id CE285340BEA;
-	Fri, 25 Apr 2025 07:06:24 +0000 (UTC)
-Date: Fri, 25 Apr 2025 07:06:20 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Corentin Labbe <clabbe.montjoie@gmail.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet
- MAC
-Message-ID: <20250425070120-GYB50408@gentoo>
-References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
- <20250424-01-sun55i-emac0-v2-3-833f04d23e1d@gentoo.org>
- <CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
+	s=arc-20240116; t=1745564935; c=relaxed/simple;
+	bh=QtPrcGpMh3mVwXvK9TpUt+VlyNAQdkk2FKBhOhf2Zcw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FtfzZnmaKytbT/kDRTeUHfKU6ZDRHRxXSfZlllBGwrzHfQ45yP5PvSx205OH7rcAw9ybzpo0x09QOssKoaupjhU6A6tbg9vIWrXu8MrPrSOmVioNn+enZloXn2/6wUH91mRxKJgd3neOY5aMeA3R4Ss56bM/uxVf4xcNCRKbz8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=htd3/tO3; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so12309215e9.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 00:08:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1745564931; x=1746169731; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l/pFaQ+mrPPFB1oid9YI7FCJXak/BuW7x5kjtSlS5Ek=;
+        b=htd3/tO342rbCgFnOX/z+kZObT1w3Kwhe7I0aeU0u/bAm/PSS14uDrLUN5NPoaSI7r
+         iHrweZApcbC1r5JkyLkk7lbIiqBZ/Zis/0+WwfdhPeJKgpTHOi4MMkXNjZFGvBPIoB3i
+         UIgpLC+UAy48HNDnseN0Xp5j9Azcd5Y4vvHG6/zqKIhDFyEulfYiNkBpOcyWPqwOJy3T
+         uVPiXFxToJG2vUGmtMxGUyXGwZbJSHLD2+tIuACBWGRvw1EQonXqU4uHPBwOZLNFqCQd
+         nV3dLTP0tBHdVZX6y9lpVgRGZRn9zEdAop4qwBx+u6WJfTzm8+8iXUKZyQ2WcQKv3vHd
+         T7rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745564931; x=1746169731;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l/pFaQ+mrPPFB1oid9YI7FCJXak/BuW7x5kjtSlS5Ek=;
+        b=ZhO3rceI5ogN50AdsmEwjueLb/yzjYlTKDduG4BaDzY6IeTotvFQiCF6fGrIi/pSzG
+         Zht7zkuMzXFgL4ngohU4aLvWXyWZbbvYUg+3jvGT0yzBO0rbFpa9BkhYqddZ2tL4tAo4
+         Vy0wJ/EmZ8wXA0UODFcDIuSr16QhdpNyB9seMAcnkJy4hWp0B970eZsiBrAoGx9xZSVw
+         WW/IdyfVZYRnRnSvvGideW2vgVlbJqwdv+0cc3tnqHm54jFLURpL5kR6XW3bwPlF4Keo
+         mCt7Biar799UM1pRE9WXewKMywf4sNc2pfy9SeORKv8+AmPxAvuwEt4KPjwDhMeUqi66
+         gPAA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1HeX5IXbhK3OFYeJSVosN4ae8ADvLAJpbmDbZSMQY36gf4Lymn60GCbhzjFcqayiz0ogeVxx3IOdq@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywpirp4GZk+CUAukknN1S/f0gmEMbluDFtTplkIlK6cFyMY8XW+
+	PFtt3UfINqAf2aX0kbxMjC+HP1rPYgOyytVSKEhAjoWW+gCxnUEh64TSiCp6OCzU0hRJgfQfoPF
+	s
+X-Gm-Gg: ASbGncv2JE0N8Ytl9YseDOe+eLa3Bx2c8cNBAvnzEV2DRka7P9+fDwkJtxYkM6KosDl
+	ZHmURpqzfWpe/T8Mt0MHoPPuM6P3At58W8WJk6qOLBL8vbUEBZ8GAfzRVnHoDtN4Emav3zpToUo
+	U2Ypc2PkdqSJvE/8MPZ8eeTJAd3rco8HnznnjgOTkNT5z/xe1IN1DWqOLc9MGXcUZLO0pyMANSz
+	G/4Fgn2L+5C72kXNTiRp0JVkMLHo5jvmAcD9xDqQrGYH9rs815z1d0CWwiU9VecAUHv827DOWhM
+	+cwSNlBGRD8sy89JSkFJtsLoVk02S3Zrlk+7Iq8NF61by/HYBA0vL5uEMTUiCe05Ckoy3Fvg3P0
+	oReh61IYISWvE6woFn7NKgq28SfIvwsYY80AMN0tJpfuFGryYlj46GvIt
+X-Google-Smtp-Source: AGHT+IFzhPfcdeLBF728LvxKH2NQytv2+lwn8cMdeqMenQFWngddQx+8HhHl2rf3w1TkCbe6pFjxfg==
+X-Received: by 2002:a7b:c305:0:b0:440:67d4:ec70 with SMTP id 5b1f17b1804b1-4409c48b0e9mr40766735e9.8.1745564931526;
+        Fri, 25 Apr 2025 00:08:51 -0700 (PDT)
+Received: from [100.64.0.4] (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2ad112sm46202735e9.24.2025.04.25.00.08.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 00:08:50 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v3 0/4] Fairphone 5 DisplayPort over USB-C support
+Date: Fri, 25 Apr 2025 09:08:11 +0200
+Message-Id: <20250425-fp5-pmic-glink-dp-v3-0-cc9c2aeb42fb@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANs0C2gC/23OwQ6CMAyA4VchOzuzFbaBJ9/DeABWoFG2ZRiiI
+ by7g4uJ4fg36dcubMJIOLFLtrCIM03kXYr8lLF2qF2PnGxqBgJyCaLkXVA8jNTy/knuwW3gIHV
+ jtCiLBpGlvRCxo/du3u6pB5pePn72E7PcppumBIA+0GbJBUettbR5qRW0166mGAbv8Nz6kW3iD
+ D8lfXWkQFJqpSowpqisMf/Kuq5fxSyNlvwAAAA=
+X-Change-ID: 20231208-fp5-pmic-glink-dp-216b76084bee
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-usb@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
-Hi Chen-Yu,
+This series adds all the necessary bits to enable DisplayPort-out over
+USB-C on Fairphone 5.
 
-On 13:26 Fri 25 Apr     , Chen-Yu Tsai wrote:
-> On Thu, Apr 24, 2025 at 6:09 PM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Add EMAC0 ethernet MAC support which found on A523 variant SoCs,
-> > including the A527/T527 chips. MAC0 is compatible to the A64 chip which
-> > requires an external PHY. This patch only add RGMII pins for now.
-> >
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 40 ++++++++++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > index ee485899ba0af69f32727a53de20051a2e31be1d..c9a9b9dd479af05ba22fe9d783e32f6d61a74ef7 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> > @@ -126,6 +126,15 @@ pio: pinctrl@2000000 {
-> >                         interrupt-controller;
-> >                         #interrupt-cells = <3>;
-> >
-> > +                       rgmii0_pins: rgmii0-pins {
-> > +                               pins = "PH0", "PH1", "PH2", "PH3", "PH4",
-> > +                                      "PH5", "PH6", "PH7", "PH9", "PH10",
-> > +                                      "PH14", "PH15", "PH16", "PH17", "PH18";
-> > +                               allwinner,pinmux = <5>;
-> > +                               function = "emac0";
-> > +                               drive-strength = <40>;
-> 
-> We should probably add
-> 
->                                   bias-disable;
-> 
-> to explicitly turn off pull-up and pull-down.
-> 
-I will test this and address in v3
-(saw your comment in v1, but I sent v2 too quickly)
+Devicetree (patch 2-4) patches go via qcom tree
 
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v3:
+- Add patch to fix dt-schema validation with fsa4480 extra properties
+- Link to v2: https://lore.kernel.org/r/20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com
+
+Changes in v2:
+- Move adding "*-switch;" properties already in earlier patches
+- Move wiring up SS USB & DP to SoC instead of being done in device
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250226-fp5-pmic-glink-dp-v1-0-e6661d38652c@fairphone.com
+
+---
+Luca Weiss (4):
+      dt-bindings: usb: usb-switch: Allow data-lanes property in port
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add PTN36502 redriver
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add OCP96011 audio switch
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Hook up DisplayPort over USB-C
+
+ .../devicetree/bindings/usb/usb-switch.yaml        |  15 ++-
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 103 +++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |   9 +-
+ 3 files changed, 118 insertions(+), 9 deletions(-)
+---
+base-commit: 4157b0a73f61cbcb3593d2fc86eaceeb5c06e1ac
+change-id: 20231208-fp5-pmic-glink-dp-216b76084bee
+
+Best regards,
 -- 
-Yixun Lan (dlan)
+Luca Weiss <luca.weiss@fairphone.com>
+
 
