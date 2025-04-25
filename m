@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-170806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EDAA9C5A3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:36:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92E25A9C5B0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 12:38:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8297B16B402
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:34:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C89CD188BBD7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 10:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65FE23D2A0;
-	Fri, 25 Apr 2025 10:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F0723236D;
+	Fri, 25 Apr 2025 10:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ipegAZ2x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+rJyAKJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9563F22DFF3;
-	Fri, 25 Apr 2025 10:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD8119D8A7;
+	Fri, 25 Apr 2025 10:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745577252; cv=none; b=fK6Wx2R0RYF6ru3mOJ0v21/aHMBrXf5aGeIUQbnCBlObYnrXBCLoPz/hY1094LIR5ZUjbs0cU5xDI4q+mJgKVMdZ9uihoaDgBexUvMRIwrHJb/HBs3tk2rNMHL18U+Wue4nSqF2kQKNIup1Z2nf9jql4zAYmrfvJsBOvEOACN/g=
+	t=1745577513; cv=none; b=M3KlUz1Drd31tEtr1GulRhrHE7A8zItrg17ylzoSYDouV4xcBJ0GjObWV2vmnra7zm9iWj+anrKaXpMt4CWHavcNfMSqJIc7/0uCC46CgUyh3ZvV1GSZp+fhqMZmM6gMNfEkk7AOrifMVx2yp+Lf4aa/7LvERFm9TBGr3q/7UzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745577252; c=relaxed/simple;
-	bh=uyFgX1thZtZy0gZITfym58nsNt2FbqK17baf70eu8Ug=;
+	s=arc-20240116; t=1745577513; c=relaxed/simple;
+	bh=5BmKuaaK+bDkUvD9xGKp7macz+ok6g4gCHws+01z3U0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gZ9M5rD5GI3C0XnsbmV3F8wk7pHtC7ie+90z6bRFXOa7EH6z8LHmCehEltyEk8G1Cg/Y9ztNuyK5TpMfjk2z8todmJTZS92+X8tyfvGhfxBKcgJYctcLBpuyk1rTtZBjyOWjbcYJhhtion+tRyB+XS6VjQJKu0In8RA4JDkmmt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ipegAZ2x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA21C4CEE4;
-	Fri, 25 Apr 2025 10:34:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jH4vhEZgVsDDzZruTkq9pYdivtJaxFvrexIyqDXz2vXFSZgZr4BSmgNYo5ulBlERIqYvXjJLNtsB+ULACPoGi/vLWQj1kbPi3DSkosi+HJqbC2A2grux+sGJ8Erwm4iCbxS6yWZ1NryDhY2RXGV3DY3qU6T7yJGQQuOn5uMcmPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+rJyAKJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D17E2C4CEE4;
+	Fri, 25 Apr 2025 10:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745577252;
-	bh=uyFgX1thZtZy0gZITfym58nsNt2FbqK17baf70eu8Ug=;
+	s=k20201202; t=1745577512;
+	bh=5BmKuaaK+bDkUvD9xGKp7macz+ok6g4gCHws+01z3U0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ipegAZ2xqG1iA1qTJfNblSXX6AhY/KFbgfxHsV9TPWjtBZRDv5wEn+a9ypBQSHSWC
-	 EXmlGjQh8mfl+U16pbdyzwsSoIxxZ9YoC7cnf6gxFfrOT8gREkW6XSKpXjk1HMJnDj
-	 ehHFeRhLdSIHQ3RoF0T8Z7vs9DP+0op/KfGjrjwHwW2l4q310Gs3AYw8PMT+iBxbKG
-	 SVv9lIVS7beNvMKN93pJotL+gkYNhqNQ91OX1rWNBolHlPJULRXyuMPbRTDt2pd4xO
-	 rg6K5zBaYDrnyZs5o5cArdrVZ/Z337BUopXWXYJCFDwIzui78ZQtyIVSH9FAF0OIdw
-	 JyikCxIaW9Tqg==
-Date: Fri, 25 Apr 2025 12:34:09 +0200
+	b=o+rJyAKJXkOpPpNhZ+W3PYmkDKmOW9bevakn75pjPnLLTV6jvq0U1j2yZJ5VZ7hb7
+	 tlZFTGNFv9q9esE7jEvWCvkxSIiRlkPM4BRdRBWxva7yjlaIFm+6CsS9n/n9kIR5ER
+	 UDHJxMsfMAErm6sGOyXf8pcBRJkscwmTXcNPKcWYOOjbnfIWQWFAvoeO+Ds1IUP5UX
+	 LVXFR2ViZxtU9wl7OMkVlA30CvYggAuL6fQAZlbnYHv8ziDrbcbv4hTfCYBHwH/FsF
+	 H/I6CFG0j4fWjY/MuUQjCVb2AvB8aoBgiw0uv36Jo2L5Cwh/alrlsZG2KYZC5f1qSX
+	 iY4OpuhTn4U/Q==
+Date: Fri, 25 Apr 2025 12:38:29 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: mchehab@kernel.org, hverkuil@xs4all.nl, sebastian.fricke@collabora.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-imx@nxp.com, marex@denx.de, jackson.lee@chipsnmedia.com, 
-	lafley.kim@chipsnmedia.com
-Subject: Re: [PATCH v2 2/8] dt-bindings: media: nxp: Add Wave6 video codec
- device
-Message-ID: <20250425-romantic-truthful-dove-3ef949@kuoka>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
- <20250422093119.595-3-nas.chung@chipsnmedia.com>
+To: Artur Rojek <artur@conclusive.pl>
+Cc: Johannes Berg <johannes@sipsolutions.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jakub Klama <jakub@conclusive.pl>, Wojciech Kloska <wojciech@conclusive.pl>, 
+	Ulf Axelsson <ulf.axelsson@nordicsemi.no>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: wifi: Add support for Nordic
+ nRF70
+Message-ID: <20250425-capable-tapir-of-energy-a9e03f@kuoka>
+References: <20250422175918.585022-1-artur@conclusive.pl>
+ <20250422175918.585022-2-artur@conclusive.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,187 +64,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250422093119.595-3-nas.chung@chipsnmedia.com>
+In-Reply-To: <20250422175918.585022-2-artur@conclusive.pl>
 
-On Tue, Apr 22, 2025 at 06:31:13PM GMT, Nas Chung wrote:
-> Add documents for the Wave6 video codec on NXP i.MX SoCs.
+On Tue, Apr 22, 2025 at 07:59:17PM GMT, Artur Rojek wrote:
+> Add a documentation file to describe the Device Tree bindings for the
+> Nordic Semiconductor nRF70 series wireless companion IC.
 > 
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> Signed-off-by: Artur Rojek <artur@conclusive.pl>
 > ---
->  .../bindings/media/cnm,wave633c.yaml          | 165 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/cnm,wave633c.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/cnm,wave633c.yaml b/Documentation/devicetree/bindings/media/cnm,wave633c.yaml
+> v2: - rename the patch subject to comply with DT submission rules 
+>     - fix a typo in reg property name and correct its indentation
+>     - replace all gpio based properties as follows:
+>       - irq-gpios with interrupts/interrupt-names
+>       - bucken-gpios/iovdd-gpios with vpwr-supply/vio-supply
+>     - clarify usage of said properties in their descriptions
+>     - add a reference to spi-peripheral-props.yaml#
+>     - specify unevaluatedProperties
+>     - drop unused voltage-ranges property
+>     - update bindings example accordingly w/ above changes
+> 
+>  .../bindings/net/wireless/nordic,nrf70.yaml   | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml b/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
 > new file mode 100644
-> index 000000000000..5bb572e8ca18
+> index 000000000000..c9a41b61c624
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/cnm,wave633c.yaml
-> @@ -0,0 +1,165 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/net/wireless/nordic,nrf70.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/cnm,wave633c.yaml#
+> +$id: http://devicetree.org/schemas/net/wireless/nordic,nrf70.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Chips&Media Wave6 Series multi-standard codec IP.
+> +title: Nordic Semiconductor nRF70 series wireless companion IC
 
-Drop full stop
+What is a wireless companion? You miss description - see example-schema.
 
 > +
 > +maintainers:
-> +  - Nas Chung <nas.chung@chipsnmedia.com>
-> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
-> +
-> +description:
-> +  The Chips&Media Wave6 codec IP is a multi-standard video encoder/decoder.
-> +  On NXP i.MX SoCs, Wave6 codec IP functionality is split between
-
-... this and ...
-
-> +  the VPU control region and the VPU core region.
-> +  The VPU control region manages shared resources such as firmware memory,
-> +  while the VPU core region provides encoding and decoding
-> +  capabilities. The VPU core cannot operate independently without
-> +  the VPU control region.
+> +  - Artur Rojek <artur@conclusive.tech>
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - nxp,imx95-vpu
-> +      - const: cnm,wave633c
-
-... your drivers seem to use soc specific compatible, so I do not see
-value in generic compatible. It would have to be good enough alone for
-drivers, but it is not.
-
+> +    const: nordic,nrf70
 > +
-> +  clocks:
-> +    items:
-> +      - description: VPU clock
-> +      - description: VPU associated block clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vpu
-> +      - const: vpublk_wave
-> +
-> +  power-domains:
+> +  reg:
 > +    maxItems: 1
-> +    description: Main VPU power domain
-
-Drop description
-
 > +
-> +  "#address-cells": true
+> +  interrupts:
+> +    maxItems: 1
+> +    description: HOST_IRQ line, used for host processor interrupt requests.
 
-instead const
+Drop description, obvious.
 
 > +
-> +  "#size-cells": true
+> +  interrupt-names:
+> +    description: Name for the HOST_IRQ line. This must be set to "host-irq".
+> +    const: host-irq
 
-const
-
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^video-core@[0-9a-f]+$":
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-
-Drop items and keep just enum
-
-> +          - enum:
-> +              - nxp,imx95-vpu-core
-
-So this is another proof that cnm,wave633c is wrong. How cnm,wave633c
-can come with nxp,imx95-vpu-core child?
+Drop interrupt-names, not really useful for one entry.
 
 > +
-> +      reg:
-> +        maxItems: 1
+> +  vpwr-supply:
+> +    description: BUCKEN line, used for PWR IP state control.
 > +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +
-> +    additionalProperties: false
+> +  vio-supply:
+> +    description: IOVDD line, used for I/O pins voltage control. Optional.
 
-Put this immediately after type:object
+Drop "Optional". Don't repeat constraints in free form text.
 
-> +
-> +  "^video-controller@[0-9a-f]+$":
-> +    type: object
-
-Same here goes additionalProps.
-
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - nxp,imx95-vpu-ctrl
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      memory-region:
-> +        maxItems: 1
-> +
-> +      power-domains:
-> +        maxItems: 1
-> +        description: Performance power domain
-> +
-> +      '#cooling-cells':
-
-Keep consistent quotes, either ' or "
-
-> +        const: 2
-> +
-> +      sram:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle of the SRAM memory region node.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - memory-region
-> +      - power-domains
-> +
-> +    additionalProperties: false
 > +
 > +required:
 > +  - compatible
-> +  - clocks
-> +  - power-domains
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - vpwr-supply
 > +
-> +additionalProperties: false
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+
+Missing ref to ieee802/wireless devices schema (wireless recently
+merged), assuming this is WiFi.
+
+Neither commit msg nor description explains me what this is. Both
+or at least one should.
+
+> +
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
+> +    reg_nrf70_buck: regulator-nrf70-buck {
+
+Drop this node, not relevant.
+
+> +        compatible = "regulator-fixed";
+> +        regulator-name = "nrf70_buck";
+> +        gpio = <&gpio2 24 GPIO_ACTIVE_HIGH>;
+> +        enable-active-high;
+> +    };
 > +
-> +      vpu: video-codec {
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        nrf7002@0 {
 
-Why this device does not have MMIO? Sorry, but makes little sense and if
-you posted and tested your entire DTS you would see why.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Can we see the entire DTS?
+WiFi is usually "wifi".
 
 Best regards,
 Krzysztof
