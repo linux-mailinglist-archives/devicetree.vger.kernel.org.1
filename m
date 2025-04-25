@@ -1,288 +1,360 @@
-Return-Path: <devicetree+bounces-170988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-170989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605E0A9CEF7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:55:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4300CA9CF01
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 18:56:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 361601C02BF6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:53:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48A3D189E4DE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 16:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E991D90A5;
-	Fri, 25 Apr 2025 16:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF02D1B415F;
+	Fri, 25 Apr 2025 16:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="piAoeaTg"
+	dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b="SOq/Gh4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B742919CC02;
-	Fri, 25 Apr 2025 16:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0563D1B3939
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 16:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745599756; cv=none; b=clpQVyQrRKe5dzLsrMBRsrlI/vWOE4oAJyN3RpDyTl/t8DSOHMtLT7m4j34QVxnKUtZzzCUt8uC7ev8cngvt4gfEXEqXN9sWHpcfeVy6P5hsRPo3gq3VWBitAYOBtzpOWCQ46MIgaW617rcNdCoYehyH+RZIoEMNfLfkQIpMuQU=
+	t=1745599777; cv=none; b=UeyYxO06qvWu6yHKRWzCkaC+pSFrx/++6T4ryX8XLLYazhCRLRVTy6TxTt+TmCpJ/3zJfUlif0SqKtAK0n6J09GgI50n+7Vjpu7u3Ic8Xr8dOapyuWPPgBckY27x/j+TZvR1oAt6DQqBpWKqNEzJWAA6a+LYz+3X2pzuW+sGMSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745599756; c=relaxed/simple;
-	bh=wQE9WdJzXZBOo/GroJnHU/0E12e9y0x2yxl6f7fVlvQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ctg53EM+LmxuFEqRECK/oeRjvKtkF3cQRBfSaErbh0z8H2zGf0yYMJJG+a/1ep+UbSCawaYPWup6iMQlxRSURI4WkTl04bXA2kAQfkoaBqZZj6vLjSTPQpXhK6VTXg5NBMdDrzl+kMzD13DsphYNcNpVgcI2jZ9r7LUjiKD1d1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=piAoeaTg; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53PGn0I22208205
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Apr 2025 11:49:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745599740;
-	bh=CcJG284w2m3gCfLTb2MZORhpn/XGXidDI0i7Eg4Ksyg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=piAoeaTgI7HOnONAxBmoi5OVBpkp/Oiavxt1KG6XljgCojsxHxBygpCgvqpxu7tN2
-	 Eq2IiPunm6t4JwXoxgc/0kYDYhKdVh1ao/vwXW1NX6XhwzRTZSObgoDickFAksvNjp
-	 0FxAIYzxnl9kZa3uiiMmglzbg45qGhqyv8FvtiSI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53PGn0bY047956
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Apr 2025 11:49:00 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Apr 2025 11:48:59 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Apr 2025 11:48:59 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53PGmw2G069879;
-	Fri, 25 Apr 2025 11:48:59 -0500
-Date: Fri, 25 Apr 2025 22:18:58 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <helgaas@kernel.org>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <diogo.ivo@siemens.com>, <jan.kiszka@siemens.com>, <kristo@kernel.org>,
-        <krzk+dt@kernel.org>, <kw@linux.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>, <nm@ti.com>,
-        <robh@kernel.org>, <s-vadapalli@ti.com>, <ssantosh@kernel.org>,
-        <vigneshr@ti.com>
-Subject: Re: [PATCH v8 4/7] PCI: keystone: Add support for PVU-based DMA
- isolation on AM654
-Message-ID: <7c8c29ee-2600-4eea-866f-8fe2d533418e@ti.com>
-References: <aa3c8d033480801250b3fb0be29adda4a2c31f9e.camel@siemens.com>
- <20250422061406.112539-1-huaqian.li@siemens.com>
- <20250422061406.112539-5-huaqian.li@siemens.com>
+	s=arc-20240116; t=1745599777; c=relaxed/simple;
+	bh=Lsf0S+vUVkTKSmrTusoRK1riqmlMVBxIhTwbVEI953E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jw+vVHyrOarIB7IrwH4WoP7/M9D8eh8BjqhGYlIpdZWdNiiO2vou5vVOUpE7MjGYvL0fhlI9MG+k/kRZsOWkkPmaX9b7Z7xYaPRuA4Qg4FZU5TUZo4cUxyfgU7ROJO5iCNOng6T1qzKzXPKfsppPHx4CNmSovlnjfOhRvM07Vns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=conclusive.pl; spf=pass smtp.mailfrom=conclusive.pl; dkim=pass (2048-bit key) header.d=conclusive.pl header.i=@conclusive.pl header.b=SOq/Gh4v; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=conclusive.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=conclusive.pl
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9ebdfso3037256a12.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 09:49:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conclusive.pl; s=google; t=1745599773; x=1746204573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kbKgincIXwNS069akmSCof3QJASoEBvfuiSMsRimGso=;
+        b=SOq/Gh4v9+SBkMqNTQ3MZvLfzlCkarb8njY4USLEg+/yp/qswlLn5PrGfydLtIYcss
+         cuqgCc/AWZ6SnG6W7V65wrv5T0Udcu9xpUvST3AZJtuE1XdL5vdj6+jYtMIW71hqpBqL
+         c1PwqdRmW6uKaRQqckQJHaRkwrGrf83RcSbBCnT2D76Vv2jzzrk9C/U4ymYdhGegXSyn
+         eaFKH84mlh98TSG/ho95UKprZtjUElBEMtOvYz40Djis7l74934/BTia6j36/xytmV4c
+         BofYYpvqSlmVUfutcat92IX9QwNcGyAlE2inwwmbap3Ol4AE55JslPvNkaky7hsRcHEM
+         aMdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745599773; x=1746204573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kbKgincIXwNS069akmSCof3QJASoEBvfuiSMsRimGso=;
+        b=kVvc2x2KtNZOy8xHXOAWVr7qECuw1krBILfvkqg5JTNmYUF7t4w6PA5GkKCAcuF4yJ
+         2t/0bv2gC1QLeW34g6uyptEJek/2qY/bezZx0cwK/8XIzeT9T/7ssTpbSZ0r1ufm6ihu
+         PtxgUovJYs1QjkRhcjjf0/Y4NM64hycfWXF2cke4Kw++kv/AmvD/LeFYGnX7IFYwDeP5
+         5yZOuS0qMoNxEbdJXd3EZavamwRaBqJFEY4qDWaCE4w4Z9t6ofqnLaCaNg5Nva+BWqdr
+         1XJkffMndqEFjXKZkNXRn3WWuJ3T3stWRz8gahSxwpPqUjynJiLCRUpesi8lsOBxZDwR
+         cuEA==
+X-Forwarded-Encrypted: i=1; AJvYcCXb5Y1VcYGuKTRsTF0Zu1uMmFWFxpSJzEh5M0lgLn/0jcJ2YIeuI6mbsGc8nH7KvjjrFO3cVUbI+OT0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzIfsm/UXWTuQQdUotTGFbsQe0qTmL9KQwk2ed6OKdnW/PxZ8k
+	tStc4awyMoQN3WJdwI6Zn1A9L7YnffN1QTseb/3nSKrRwHj2xCC3bbL+Ic84/8ATqF+Wnc55YZq
+	q4CFcn+cdKgX/6FmOD3bSvEDejim3BnRErbTpMsME5n4FojFXeJbHZQ==
+X-Gm-Gg: ASbGncuuC4YHrX69SlUUD9knm0p4x8X/JoLrPLHkZIoSU+DXEfTMIX902mhfiy0LR3t
+	isRm+vjMhilA8lKZBwKw3PKIjpEwD2IOV3Kyf41yq/wrZgd3mnozaApVhHG4XTpOs92/Kf3uzEW
+	gTRlh4khxLdo0pBtgXIM5QsWgP7nm0qO0PHQ==
+X-Google-Smtp-Source: AGHT+IF+K/Y/hteHUL1Z1Houp7sxak6tVG3ZmtYLQ81YFGs/nLav2zw2Js385WaP/0YCdeVMq4A3IVLkIyFbhxRyO8U=
+X-Received: by 2002:a05:6402:254c:b0:5f6:59e5:5c6e with SMTP id
+ 4fb4d7f45d1cf-5f73982bd97mr62863a12.26.1745599773147; Fri, 25 Apr 2025
+ 09:49:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250422061406.112539-5-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250422175918.585022-1-artur@conclusive.pl> <20250422175918.585022-3-artur@conclusive.pl>
+ <45b74f9f0831294e783a019cd6a1437fdad4eb6a.camel@sipsolutions.net>
+In-Reply-To: <45b74f9f0831294e783a019cd6a1437fdad4eb6a.camel@sipsolutions.net>
+From: Artur Rojek <artur@conclusive.pl>
+Date: Fri, 25 Apr 2025 18:49:22 +0200
+X-Gm-Features: ATxdqUGbZqRqLun2t5seqE0xBbyhBwhTsJOfC8_PKvG7-cB8xXWfuYtVPvY4uP0
+Message-ID: <CAGhaMFO_f_bvFB+39-z6xVF+y446ONwm1ROHQ=rXj=s4MnL54w@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/2] wifi: Add Nordic nRF70 series Wi-Fi driver
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jakub Klama <jakub@conclusive.pl>, 
+	Wojciech Kloska <wojciech@conclusive.pl>, Ulf Axelsson <ulf.axelsson@nordicsemi.no>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 22, 2025 at 02:14:03PM +0800, huaqian.li@siemens.com wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
-> from untrusted PCI devices to selected memory regions this way. Use
-> static PVU-based protection instead. The PVU, when enabled, will only
-> accept DMA requests that address previously configured regions.
-> 
-> Use the availability of a restricted-dma-pool memory region as trigger
-> and register it as valid DMA target with the PVU. In addition, enable
-> the mapping of requester IDs to VirtIDs in the PCI RC. Use only a single
-> VirtID so far, catching all devices. This may be extended later on.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
->  drivers/pci/controller/dwc/pci-keystone.c | 106 ++++++++++++++++++++++
->  1 file changed, 106 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-> index 76a37368ae4f..ea2d8768e333 100644
-> --- a/drivers/pci/controller/dwc/pci-keystone.c
-> +++ b/drivers/pci/controller/dwc/pci-keystone.c
-> @@ -19,6 +19,7 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/msi.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/of_irq.h>
->  #include <linux/of_pci.h>
->  #include <linux/phy/phy.h>
-> @@ -26,6 +27,7 @@
->  #include <linux/regmap.h>
->  #include <linux/resource.h>
->  #include <linux/signal.h>
-> +#include <linux/ti-pvu.h>
->  
->  #include "../../pci.h"
->  #include "pcie-designware.h"
-> @@ -111,6 +113,16 @@
->  
->  #define PCI_DEVICE_ID_TI_AM654X		0xb00c
->  
-> +#define KS_PCI_VIRTID			0
-> +
-> +#define PCIE_VMAP_xP_CTRL		0x0
-> +#define PCIE_VMAP_xP_REQID		0x4
-> +#define PCIE_VMAP_xP_VIRTID		0x8
-> +
-> +#define PCIE_VMAP_xP_CTRL_EN		BIT(0)
-> +
-> +#define PCIE_VMAP_xP_VIRTID_VID_MASK	0xfff
-> +
->  struct ks_pcie_of_data {
->  	enum dw_pcie_device_mode mode;
->  	const struct dw_pcie_host_ops *host_ops;
-> @@ -1137,6 +1149,94 @@ static const struct of_device_id ks_pcie_of_match[] = {
->  	{ },
->  };
->  
-> +static int ks_init_vmap(struct platform_device *pdev, const char *vmap_name)
-> +{
-> +	struct resource *res;
-> +	void __iomem *base;
-> +	u32 val;
-> +
-> +	if (!IS_ENABLED(CONFIG_TI_PVU))
-> +		return 0;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, vmap_name);
-> +	base = devm_pci_remap_cfg_resource(&pdev->dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	writel(0, base + PCIE_VMAP_xP_REQID);
-> +
-> +	val = readl(base + PCIE_VMAP_xP_VIRTID);
-> +	val &= ~PCIE_VMAP_xP_VIRTID_VID_MASK;
-> +	val |= KS_PCI_VIRTID;
+Hi Johannes,
+thanks for the review thus far!
 
-While it has been stated that we are going to start off with a single
-VirtID for now and extend it later on, is there an example for how it may
-be extended? The only option I see is that of associating one VirtID for
-Low-Priority (LP) traffic and another for High-Priority (HP) traffic, in
-which case, it might be better to define them upfront and use them like:
-#define KS_PCI_LP_VIRTID	0
-#define KS_PCI_HP_VIRTID	1
+Replies inline.
 
-> +	writel(val, base + PCIE_VMAP_xP_VIRTID);
-> +
-> +	val = readl(base + PCIE_VMAP_xP_CTRL);
-> +	val |= PCIE_VMAP_xP_CTRL_EN;
-> +	writel(val, base + PCIE_VMAP_xP_CTRL);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ks_init_restricted_dma(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct of_phandle_iterator it;
-> +	struct resource phys;
-> +	int err;
-> +
-> +	if (!IS_ENABLED(CONFIG_TI_PVU))
-> +		return 0;
-> +
-> +	/* Only process the first restricted DMA pool, more are not allowed */
-> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region",
-> +			    NULL, 0) {
-> +		if (of_device_is_compatible(it.node, "restricted-dma-pool"))
-> +			break;
-> +	}
-> +	if (err)
-> +		return err == -ENOENT ? 0 : err;
-> +
-> +	err = of_address_to_resource(it.node, 0, &phys);
-> +	if (err < 0) {
-> +		dev_err(dev, "failed to parse memory region %pOF: %d\n",
-> +			it.node, err);
-> +		return 0;
-> +	}
-> +
-> +	/* Map all incoming requests on low and high prio port to virtID 0 */
+On Thu, Apr 24, 2025 at 5:07=E2=80=AFPM Johannes Berg <johannes@sipsolution=
+s.net> wrote:
+>
+> On Tue, 2025-04-22 at 19:59 +0200, Artur Rojek wrote:
+> > Introduce support for Nordic Semiconductor nRF70 series wireless
+> > companion IC.
+>
+> Seems simple enough ... but I notice you're not even adding a
+> MAINTAINERS file entry. Does that mean you're not going to stick around
+> to maintain it at all? I'm definitely _not_ going to. Please don't
+> expect the community to.
+>
+> Are you doing this for your customers? Or are you just doing this a
+> contract for someone who needs it? I don't really care all that much but
+> contracts have a tendency to go away and then we're left with nothing
+> upstream ...
 
-The question I asked above applies here too. How is it planned to extend
-support for multiple VirtIDs, if not on the basis of assigining one
-VirtID to LP traffic and another to HP traffic? Since we have an option
-of using different VirtIDs for LP and HP traffic, why not use it? Is
-there going to be an issue with using VirtID 0 for LP traffic and VirtID 1
-for HP traffic?
+This is commercial work. I am employed by Conclusive Engineering, and
+was tasked with writing this driver. It was done for our internal needs
+(we sell hardware [1] with nRF70 on-board), however I was also asked to
+send the series upstream.
+Nordic showed interest in this work, hence why their representative is
+CCd to this conversation. They agreed to use our hardware as a reference
+board for nRF70 used in Linux context.
 
-> +	err = ks_init_vmap(pdev, "vmap_lp");
-> +	if (err)
-> +		return err;
-> +	err = ks_init_vmap(pdev, "vmap_hp");
-> +	if (err)
-> +		return err;
-> +
-> +	/*
-> +	 * Enforce DMA pool usage with the help of the PVU.
-> +	 * Any request outside will be dropped and raise an error at the PVU.
-> +	 */
-> +	return ti_pvu_create_region(KS_PCI_VIRTID, &phys);
+I fully understand your concerns with maintenance (I am privately
+a kernel contributor as well), and discussed this topic internally with
+appropriate decision making people. They understand the responsibilities
+involved and agreed to allocate time for me to support this driver long
+term. As such, I will add myself to MAINTAINERS in v3.
 
-Same as above, we are passing a single VIRTID and not an array, so it
-isn't clear to me as to how it will be extended in the future.
+>
+> Also, related, what are your plans to help out with wireless in general,
+> particularly reviews? You're building on the shoulders of everyone who
+> did work before ... I'll do a _very_ cursory review, but if you want to
+> get this merged I would expect you to also become a part of the
+> community and help review other people's code:
+>
+> https://lore.kernel.org/linux-wireless/21896d2788b8bc6c7fcb534cd43e75671a=
+57f494.camel@sipsolutions.net/
 
-> +}
-> +
-> +static void ks_release_restricted_dma(struct platform_device *pdev)
-> +{
-> +	struct of_phandle_iterator it;
-> +	struct resource phys;
-> +	int err;
-> +
-> +	if (!IS_ENABLED(CONFIG_TI_PVU))
-> +		return;
-> +
-> +	of_for_each_phandle(&it, err, pdev->dev.of_node, "memory-region",
-> +			    NULL, 0) {
-> +		if (of_device_is_compatible(it.node, "restricted-dma-pool") &&
-> +		    of_address_to_resource(it.node, 0, &phys) == 0) {
-> +			ti_pvu_remove_region(KS_PCI_VIRTID, &phys);
-> +			break;
-> +		}
-> +	}
-> +}
-> +
->  static int ks_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct dw_pcie_host_ops *host_ops;
-> @@ -1285,6 +1385,10 @@ static int ks_pcie_probe(struct platform_device *pdev)
->  	if (ret < 0)
->  		goto err_get_sync;
->  
-> +	ret = ks_init_restricted_dma(pdev);
-> +	if (ret < 0)
-> +		goto err_get_sync;
-> +
+Bearing in mind above time constraints, I have no objections to helping
+out. That said, this is my first Wi-Fi driver, and as such I am not that
+familiar with the cfg80211 subsystem (hence why this series is RFC), so
+my expertise will be limited at best.
+What sort of help would you expect from me with the reviews?
 
-Shouldn't the above be moved into the case for "DW_PCIE_RC_TYPE" below? Or
-is this valid even when the SoC is configured to act as an Endpoint?
+>
+> > +config NRF70
+> > +     tristate "Nordic Semiconductor nRF70 series wireless companion IC=
+"
+> > +     depends on CFG80211 && INET && SPI_MEM && CPU_LITTLE_ENDIAN
+>
+> That CPU_LITTLE_ENDIAN seems like a cop-out. Do we really want that?
+> Asking not specifically you I guess...
 
->  	switch (mode) {
->  	case DW_PCIE_RC_TYPE:
->  		if (!IS_ENABLED(CONFIG_PCI_KEYSTONE_HOST)) {
-> @@ -1366,6 +1470,8 @@ static void ks_pcie_remove(struct platform_device *pdev)
->  	int num_lanes = ks_pcie->num_lanes;
->  	struct device *dev = &pdev->dev;
->  
-> +	ks_release_restricted_dma(pdev);
-> +
->  	pm_runtime_put(dev);
->  	pm_runtime_disable(dev);
->  	ks_pcie_disable_phy(ks_pcie);
+I addressed this in the cover letter (Patch 0/2), but nRF70 communicates
+using little-endian, byte packed messages, where each message type has
+a unique set of fields. This makes it a challenge to prepare said
+messages on a big-endian system. I am aware of the packing API [2],
+however a cursory look at it indicates that I would need to provide
+custom code for each and every message (there's almost 150 of those in
+total, even if the driver doesn't support all of them at the moment -
+take a look at nrf70_cmds.h).
+So I decided that until someone actually needs to use nRF70 on
+a big-endian machine, implementation of big-endian support can be
+postponed.
+Unless the __packed attribute is guaranteed to align the bytes the same
+way regardless of the endianness, and so calling cpu_to_le* for every
+field of a message is good enough (these messages are byte packed, not
+bit packed)?
 
-Regards,
-Siddharth.
+>
+>
+> > +#define      NRF70_RADIOTAP_PRESENT_FIELDS                           \
+> > +     cpu_to_le32((1 << IEEE80211_RADIOTAP_RATE) |            \
+> > +                 (1 << IEEE80211_RADIOTAP_CHANNEL) |         \
+> > +                 (1 << IEEE80211_RADIOTAP_DBM_ANTSIGNAL))
+>
+> You did some work on making it little endian properly ..
+>
+>
+> > +
+> > +#define      NRF70_FW_FEATURE_RAW_MODE       BIT(3)
+> > +struct __packed nrf70_fw_header {
+> > +     u32 signature;
+> > +     u32 num_images;
+> > +     u32 version;
+> > +     u32 feature_flags;
+> > +     u32 length;
+> > +     u8 hash[NRF70_FW_HASH_LEN];
+> > +     u8 data[];
+> > +};
+> > +
+> > +struct __packed nrf70_fw_img {
+> > +     u32 type;
+> > +     u32 length;
+> > +     u8 data[];
+> > +};
+>
+> making the u32's here __le32's (and fixing sparse) would probably go a
+> long way of making it endian clean. The __packed is also placed oddly.
+
+When declaring structure members for the messages (in nrf70_cmds.h),
+I noticed that this attribute has to go before the braces:
+> struct __packed { ... } name;
+rather than after braces:
+> struct { ... } __packed name;
+
+I then went and applied the same style elsewhere in the driver. I guess
+I can restore the latter syntax where it makes sense.
+
+>
+> > +static int nrf70_verify_firmware(struct device *dev,
+> > +                              const struct nrf70_fw_header *fw)
+>
+>
+> What's the point in doing this? The hash is trivially adjusted if
+> someone wants to play with the file, if hw doesn't check anything, and
+> ... not sure we really need such a thing for "file is corrupt by
+> accident"? *shrug*
+
+No idea if the hw does any verification of the hash, but sure, I can
+drop this.
+
+>
+> > +     ret =3D request_firmware(&firmware, "nrf70.bin", dev);
+>
+>
+> You might want to make that async so that the driver can be built-in
+> without requiring the firmware to also be built-in.
+>
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to request firmware: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     header =3D (const struct nrf70_fw_header *)firmware->data;
+>
+> (const void *) cast would probably be sufficient
+>
+>
+> > +     return ret ? ret : (wait_for_completion_timeout(&priv->init_done,=
+ HZ) ?
+> > +                         0 : -ETIMEDOUT);
+>
+> that construct seems a bit questionable :)
+>
+>
+> > +static void nrf70_handle_rx_mgmt(struct spi_mem *mem,
+> > +                              struct nrf70_event_mlme *ev)
+> > +{
+> > +     struct nrf70_priv *priv =3D spi_mem_get_drvdata(mem);
+> > +     struct nrf70_vif *vif =3D nrf70_get_vif(priv, ev->header.idx.wdev=
+_id);
+> > +
+> > +     if (IS_ERR(vif))
+> > +             return;
+> > +
+> > +     (void)cfg80211_rx_mgmt(&vif->wdev, ev->frequency, ev->rx_signal_d=
+bm,
+> > +                            ev->frame.data, ev->frame.len, ev->wifi_fl=
+ags);
+>
+>
+> shouldn't need the (void) cast?
+>
+>
+> > +static int nrf70_change_bss(struct wiphy *wiphy, struct net_device *nd=
+ev,
+> > +                         struct bss_parameters *params)
+>
+>
+> See also this discussion:
+> https://lore.kernel.org/linux-wireless/29fa5ea7f4cc177bed823ec3489d610e1d=
+69a08f.camel@sipsolutions.net/
+>
+> > +static int nrf70_dequeue_umac_event(struct spi_mem *mem, void *data)
+> > +{
+> > +     struct nrf70_priv *priv =3D spi_mem_get_drvdata(mem);
+> > +     struct device *dev =3D &mem->spi->dev;
+> > +     struct nrf70_umac_header *header =3D data;
+> > +     struct nrf70_vif *vif =3D nrf70_get_vif(priv, header->idx.wdev_id=
+);
+> > +     struct cfg80211_scan_info scan_info =3D { .aborted =3D true };
+> > +
+> > +     if (IS_ERR(vif))
+> > +             return PTR_ERR(vif);
+> > +
+> > +     switch (header->id) {
+> > +     case NRF70_UMAC_EVENT_TRIGGER_SCAN_START:
+> > +             break;
+>
+>
+> This sounds like you pretty much built the firmware for cfg80211 ;-)
+
+That's because the firmware *is* cfg80211. Perhaps I am opening a can of
+worms here, but it has to be opened at some point during firmware
+upstream. From what I've seen, part of the nRF70 firmware (called UMAC)
+is derived from the cfg80211 project. Nordic makes the source code
+publicly available at this location [3]. I have also asked Nordic to
+provide a matching version of the source code for the fw blob they will
+be upstreaming to the linux-firmware project (I believe I will be
+assisting in that process as well). I hope everything there is dandy
+license-wise, as I am not a lawyer :)
+
+>
+>
+> > +#define      NRF70_MSG_SYSTEM                0
+> > +#define      NRF70_MSG_DATA                  2
+> > +#define      NRF70_MSG_UMAC                  3
+> > +
+> > +struct __packed nrf70_msg {
+> > +     u32 len;
+> > +     u32 resubmit;
+> > +     u32 type;
+> > +     u8 data[];
+>
+>
+> similar comments here throughout this entire file wrt __packed and
+> __le32, obviously
+
+Addressed above wrt __packed.
+
+>
+> > +/* Undocumented PHY configuration parameters. */
+> >
+>
+> haha :)
+
+Yep :)
+To be clear on the development process of this driver, no proprietary
+documentation has been used. I've written it entirely based on the
+publicly available Nordic's SDK [4], their Zephyr driver [5], the
+aforementioned UMAC source code, and a fair amount of guess work. This
+means there is some undocumented stuff available only as magic numbers.
+
+>
+>
+> Oh and before I forget, how about firmware availability?
+
+Nordic gave us permission to upstream it, see the cover letter.
+
+PS. I was oblivious to the specific patch submission rules for
+linux-wireless until after I've sent v2 series. Sorry for any
+inconvenience! The v3 will be formatted appropriately.
+
+Cheers,
+Artur
+
+[1] https://conclusive.tech/products/kstr-imx93-sbc/
+[2] https://www.kernel.org/doc/html/latest/core-api/packing.html
+[3] https://files.nordicsemi.com/ui/native/developerDoc/external/oss/nRF700=
+x/
+[4] https://github.com/nrfconnect/sdk-nrfxlib/tree/v2.7-branch/nrf_wifi
+[5] https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/nrf=
+_wifi
+
+>
+> johannes
 
