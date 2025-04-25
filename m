@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-171114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBA1A9D43C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:40:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6870BA9D461
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:44:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2A469A62B6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:39:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37CD77B23EC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 21:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C8C224B15;
-	Fri, 25 Apr 2025 21:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AAE225407;
+	Fri, 25 Apr 2025 21:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T5AfWPwj"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ecdIgtzW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D89224AF9;
-	Fri, 25 Apr 2025 21:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1BE156228
+	for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 21:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745617198; cv=none; b=cZztBIJSX/ai3wkWaAJlYHmbwy4ey2Hgdnm4JNz5OKc2nIzlyHW7omoULzKWawTobaTZX28laiNuLxVq7ix7BqgPNEwWOFn8i3MZK3ki8RDZMsEgRDdlUwBS1ozbIob+c91/wpysolHpCK7DIqXX7Kym3Am0MEd2nuZ8aOsgVmo=
+	t=1745617466; cv=none; b=css+yTAQWJANm97h+gofcEsvdln9l6bEkrNPfI2WA1bXyut/TB+YKrz0EM2kP3OcZL2P6hM8W0ZmpfDCtpxH2Y4c8eNarHy2JEpe+rX8SddZXkFE3tv/50skDDBs3A+QJ0njMeJaev/wBwtqxWcfSZ/KimoPrOGZjqghiLTje1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745617198; c=relaxed/simple;
-	bh=K2+ZLXt+NUXHfrLO5kMO+0fyQsf5+a9+qiQ7z4zUz6I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CG4FL/Ly8e0y89yEaXl6KIhH8I4aqFmTLVtSESWdk1452SZwOrMmHjcf5d4kAovPyBCsI0p++b9uygsQxj7B1y55bWjS7AIQoZ+EB6u61rF90+E1XeUBkdPMFXr+8X4ISebXlUH2xOvjeSUmt3nqBp8fOMctbJ58i8nnDftkDmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T5AfWPwj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53PGJqtY003979;
-	Fri, 25 Apr 2025 21:39:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l7HoHHwRm7qx6newPoYAeZn2J8TxwbXKaGF2NpVjD1Q=; b=T5AfWPwjbBpZKTT0
-	AzxQ9x2dmrOEutnvOFEskBbn5t9B9d+DcrRF4u0cBdY9eq+2Cx2sMcam446Pq/zz
-	7j0x++wrTs152r110D6OyPaqtQ1d7OxASDA1+zhKWDNGX3JbSbJhQ9j6fsu6e3bv
-	7mXzp4pNLarIMnVP8zgGnEWjL68BE7E5cRrURVyQbE35PGxh+MhLodVrhdE63hwr
-	PMFRaIb3x8SaNeToGIukZCWTElO8/f02H4cEUOLnBhenhzpga4FsdgvPSuty/RjT
-	XTKkyxDBc+blgrngeb4IpOlXUf1RVXvOzA/+AN/VWSwxZ7rrIbHan6HwDxQ3CFHP
-	N+osOA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh2ae4f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Apr 2025 21:39:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53PLddv2005220
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Apr 2025 21:39:39 GMT
-Received: from [10.110.41.60] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
- 2025 14:39:38 -0700
-Message-ID: <bcca2d97-2092-42f0-951d-f09f144e515d@quicinc.com>
-Date: Fri, 25 Apr 2025 14:39:31 -0700
+	s=arc-20240116; t=1745617466; c=relaxed/simple;
+	bh=0PGOU404WR3ZZT5UO5ZutPGEui+7NlIYTJrsKba4mAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kTVB574/J4irsTBLGrFER12N1fK9ZhH0DDYNGcciPAxvvHr/3B830QdX3L6yw9dChNCfD3etcdU8JBRnEXU39AzcsM4iO5N0RlfJDNPUSmwRsUHtQd1cU6ntSUSng+WafgGgeDMswM3kf7OJIsS+lT+TS2D7c+M8Gl490h6yj5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ecdIgtzW; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-401c43671ecso1494376b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Apr 2025 14:44:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745617463; x=1746222263; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vetl9XpldH8JvL8GlwOYXmdLs3vxDNII55h0sSj3lYc=;
+        b=ecdIgtzWNSzsQn2U0k23mm0eBPvHL1C1TcUx5drufKdFJWPjIQ7GsvtCZNtt5PLkrQ
+         WnTYAnIngoJxMKPjvGQiafQHc11uLmi+6WacfOsAoF51wtpj5OD1KLHbuqOxW9MJ+gqu
+         5dnK7M15p2Ba7STyIzHw8yQ2C07rw8o15cRsmQMj8XCNaYuV4Xz4PUCW26zxhpCC1VG5
+         46kunNXqj5N6793pab6hLib2fv9d4od8dWNR/iV2yFkzw4n8YTPKs+UFmFcwE9gaYloe
+         CVGYnFNqsC2iAGruFEhIv3ZuPkZEJxVIArXn+geM9L4Mb+yzI1VWxaB1nUXsqcfJTKI3
+         kjVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745617463; x=1746222263;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vetl9XpldH8JvL8GlwOYXmdLs3vxDNII55h0sSj3lYc=;
+        b=gXrhgAUiLDGFAt4Pnf+i6Ae0Nur6ww1llRQUIfhQRFegpFTCcrEh+bwDLO74KvuJiF
+         xCMERX0YBAkapGKpeH1YT0W+BF1+I+G96ffO7l1chVOBSeq+Y2heJ0OoyCEBpmeITVsO
+         RH/Rugvfvza3kYc/aHni9B/mWYv0msPygdv8mvhudXZd9JDajAt+ra45ppnBVeuJ0hSu
+         wr1r3sSeG5Tq/eDbWOT9fzqLBKiXv4nlEFowUdMan4BYRyVH0TRgp8AS3bvru29T5/Pz
+         e+OFkJc4bUuc9Wo+k30hV34Vt166tAOXxQjTFsdLybCe76QsiEKjUF8gmJeaNm+n1KMe
+         iIwg==
+X-Forwarded-Encrypted: i=1; AJvYcCV53KTGhwYM41bu8Ti8Xu/Ep3oMjEJzkJTxq1iXLJpPnFKpp5OkNygLGFvrn3IebLgKDsXKPvGGId9x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf6Gz1s0IUMm3zHWHqQeAub8QEf/2JlctuzuYQTpBU0Ps97qnv
+	eKdjFMv+zY4oH1NleN71w/SVj+RIKKDqvSZ0cWQXcYIcf67gtKztTXfW2LEuaNc=
+X-Gm-Gg: ASbGnct/mvJtEVtvXSxWDuO4eSUThRFNHyaJHe0OquE4aCO8ffltd9VQ2ny1okbVgfJ
+	yvfIEPWDajXFx59xnZbgCeQRX8qQiHcDma765+w52+py9vyynxm3Qtoo+cHilz7sa4hnmQ5avmI
+	LfhfR8YeVAnvMsLoALjawt4XyMxybc9yOvl/cecNbKu3E0Z4UNW3brzfwTnFxEXlmH9PNt3nnWW
+	A3ATiF0cczQlfSTiP41VIDBU9e1lj7rxJ4KbuIcWhQmFH7yUZY0uhooEfu9HKhHLg6M+Ytjtofm
+	jFbBcunFbO8irsLCfJqmbWl315xU+Q6h5/oh9weZkPUOlSKGMuXERH5DfTQv+YGsvVIaBTtI/5U
+	7AhNUYM1W9q6/
+X-Google-Smtp-Source: AGHT+IGYSYK/NgbfRtntiLX0fyD882sY0Y9kI7JKZ0e9QJqEQnnrOLa7rFd/SxmE01a29TeJbZfoUg==
+X-Received: by 2002:a05:6808:178e:b0:400:fa6b:94bf with SMTP id 5614622812f47-401ec44c715mr4767354b6e.4.1745617462686;
+        Fri, 25 Apr 2025 14:44:22 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:96a3:e28:3f6:dbac? ([2600:8803:e7e4:1d00:96a3:e28:3f6:dbac])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-401ec8afb1esm939069b6e.10.2025.04.25.14.44.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 14:44:21 -0700 (PDT)
+Message-ID: <9f5b0709-f795-44c5-aa64-aaed81a459bf@baylibre.com>
+Date: Fri, 25 Apr 2025 16:44:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,96 +82,182 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Document usb-soc-be property
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Felipe
- Balbi <balbi@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Stephan
- Gerhold <stephan.gerhold@linaro.org>
-CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>
-References: <20250425-fp4-usb-audio-offload-v1-0-f90f571636e4@fairphone.com>
- <20250425-fp4-usb-audio-offload-v1-1-f90f571636e4@fairphone.com>
+Subject: Re: [PATCH v2 4/5] docs: iio: new docs for ad4052 driver
+To: Jorge Marques <jorge.marques@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
+ <20250422-iio-driver-ad4052-v2-4-638af47e9eb3@analog.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <20250425-fp4-usb-audio-offload-v1-1-f90f571636e4@fairphone.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20250422-iio-driver-ad4052-v2-4-638af47e9eb3@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=680c011b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=6H0WHjuAAAAA:8 a=xMRfEcGXebkPZtLSRzYA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: rnmO_5Z7f4dqOqmQ0-ctg3OmqaWcXIcm
-X-Proofpoint-ORIG-GUID: rnmO_5Z7f4dqOqmQ0-ctg3OmqaWcXIcm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDE1NiBTYWx0ZWRfX/BQM2Nf4UBlF jitJCnS6Qy7Ze70LDRTBK550dv/xbxVRZnrDpeLJkGuE6ZWiQw9EhaJFLlSeYVvzHArPDLUH96g GUcx5SnAUUhoULle4UjRdQSRJyGhN0JH/I0mMDtFRgvQ7IywoHZ2lxBatdIas/kWOsFdumB38Iq
- Uss6BoYR/kkIcDjyX/jJEtBmuX7oTxnCqOd16QWaKLQe+273a8zf0QiPwl1qsH456Iw3/ZdgiB5 yjYC+KSuAiE0O9x4OyVqhXt/41lC0oI5rGDqfcun639PZ37TwcKd2f7q3rHTxzQ7q6Fj7Kv1L3/ fEz5Eu5GR0LT6A3LafWl/Elcs9zCroLXzwlrbsWvZUG03Xl43xgtm0rCFmu7CnI2vJrTJ3+M12t
- BwhJ72XmGDVYHa184aX0u2+tv5RGexTgvhqKb5tXsCTArhCFNMgT+YSldrwXYq48MafWWiwM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-25_07,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- suspectscore=0 mlxscore=0 clxscore=1011 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504250156
 
-
-
-On 4/25/2025 3:44 AM, Luca Weiss wrote:
-> The property usb-soc-be is used by the new SoC USB layer which is used
-> for USB audio offloading on Qualcomm SoCs.
-
-Hi Luca,
-
-This property can be dropped now, as in the latest revision I added
-utilizing the auxiliary device/bus now between the Q6USB backend DAI and
-the vendor USB offload driver.  Reduces the need to add more properties.
-
-Thanks
-Wesley Cheng
-
+On 4/22/25 6:34 AM, Jorge Marques wrote:
+> This adds a new page to document how to use the ad4052 ADC driver.
 > 
-> Cc: Wesley Cheng <quic_wcheng@quicinc.com>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 > ---
->  Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/iio/ad4052.rst | 95 ++++++++++++++++++++++++++++++++++++++++++++
+
+Also need to update the table of contents in Documentation/iio/index.rst,
+otherwise this page won't be build (and will cause a build error).
+
+You can run `make htmldocs SPHINXDIRS=iio` to speed things up and only build
+the iio directory to make sure you have it right.
+
+More info: https://www.kernel.org/doc/html/latest/doc-guide/sphinx.html
+
+>  MAINTAINERS                  |  1 +
+>  2 files changed, 96 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
-> index 6c0b8b6538246adf746fe7ccd6df936131c61444..07549dec0f74234465fa9b6ab21871762a2f5127 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
-> @@ -38,6 +38,10 @@ properties:
->        - description: USB2/HS PHY
->        - description: USB3/SS PHY
->  
-> +  usb-soc-be:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Link to the USB SoC sound backend
+> diff --git a/Documentation/iio/ad4052.rst b/Documentation/iio/ad4052.rst
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..410aaa437ed5fea6a2924d374fa5f816f5754e22
+> --- /dev/null
+> +++ b/Documentation/iio/ad4052.rst
+> @@ -0,0 +1,95 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
 > +
->    phys:
->      minItems: 1
->      maxItems: 19
+> +=============
+> +AD4052 driver
+> +=============
+> +
+> +ADC driver for Analog Devices Inc. AD4052 and similar devices.
+
+Please don't put newline after every period. Here and throughout the document.
+It makes it harder to read.
+
+> +The module name is ``ad4052``.
+> +
+> +Supported devices
+> +=================
+> +
+> +The following chips are supported by this driver:
+> +
+> +* `AD4050 <https://www.analog.com/AD4050>`_
+> +* `AD4052 <https://www.analog.com/AD4052>`_
+> +* `AD4056 <https://www.analog.com/AD4056>`_
+> +* `AD4058 <https://www.analog.com/AD4058>`_
+> +
+> +Wiring modes
+> +============
+> +
+> +The ADC uses SPI 4-wire mode, and contain two programmable GPIOs and
+> +a CNV pin.
+> +
+> +The CNV pin is exposed as the ``cnv-gpios`` and triggers a ADC conversion.
+> +GP1 is ADC conversion ready signal and GP0 Threshold event interrupt, both
+> +exposed as interrupts.
+> +
+> +Omit ``cnv-gpios`` and tie CNV and CS together to use the rising edge
+> +of the CS as the CNV signal.
+> +
+> +Device attributes
+> +=================
+> +
+> +The ADC contain only one channels, and the following attributes:
+> +
+> +.. list-table:: Driver attributes
+> +   :header-rows: 1
+> +
+> +   * - Attribute
+> +     - Description
+> +   * - ``in_voltage0_raw``
+> +     - Raw ADC voltage value
+
+No scale attribute? How do we convert raw to millivolts?
+
+> +   * - ``in_voltage0_oversampling_ratio``
+> +     - Enable the device's burst averaging mode to over sample using
+> +       the internal sample rate.
+> +   * - ``in_voltage0_oversampling_ratio_available``
+> +     - List of available oversampling values. Value 0 disable the burst
+> +       averaging mode.
+
+Typically 1 means no oversampling, not zero. (It is a ratio, divide by 1 is the
+same as doing nothing, but divide by 0 is undefined.)
+
+> +   * - ``conversion_frequency``
+
+Needs to be updated to ``oversampling_frequency``.
+
+> +     - Device internal sample rate used in the burst averaging mode.
+> +   * - ``conversion_frequency_available``
+> +     - List of available sample rates.
+> +
+> +Threshold events
+> +================
+> +
+> +The ADC supports a monitoring mode to raise threshold events.
+> +The driver supports a single interrupt for both rising and falling
+> +readings.
+> +
+> +The feature is enabled/disabled by setting ``thresh_either_en``.
+> +During monitor mode, the device continuously operates in autonomous mode until
+> +put back in configuration mode, due to this, the device returns busy until the
+> +feature is disabled.
+
+Probably worth mentioning the ``events/sampling_frequency`` and
+``sampling_frequency_available`` attributes since we've mentioned all of the
+other attributes.
+
+> +
+> +Low-power mode
+> +==============
+> +
+> +The device enters low-power mode on idle to save power.
+> +Enabling an event puts the device out of the low-power since the ADC
+> +autonomously samples to assert the event condition.
+> +
+> +SPI offload support
+> +===================
+> +
+> +To be able to achieve the maximum sample rate, the driver can be used with the
+> +`AXI SPI Engine`_ to provide SPI offload support.
+> +
+> +.. _AXI SPI Engine: http://analogdevicesinc.github.io/hdl/projects/ad4052_ardz/index.html
+> +
+> +When SPI offload is being used, additional attributes are present:
+> +
+> +.. list-table:: Additional attributes
+> +   :header-rows: 1
+> +
+> +   * - Attribute
+> +     - Description
+> +   * - ``in_voltage0_sampling_frequency``
+> +     - Set the sampling frequency.
+> +   * - ``in_voltage0_sampling_frequency_available``
+> +     - Get the sampling frequency range.
+
+In the driver, this is currently info_mask_shared_by_type, so would be
+``in_voltage_sampling_frequency``. And there currently isn't 
+``in_voltage_sampling_frequency_available`` in the driver, so it needs to be
+added in the driver (or removed here).
+
+> +
+> +The scan type is different when the buffer with offload support is enabled.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 81fbe7176475c48eae03ab04115d4ef5b6299fac..04aa8db44bee418382a2e74cb6b1d03a810bd781 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1334,6 +1334,7 @@ M:	Jorge Marques <jorge.marques@analog.com>
+>  S:	Supported
+>  W:	https://ez.analog.com/linux-software-drivers
+>  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
+> +F:	Documentation/iio/ad4052.rst
+>  
+>  ANALOG DEVICES INC AD4130 DRIVER
+>  M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
 > 
 
 
