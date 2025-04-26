@@ -1,154 +1,194 @@
-Return-Path: <devicetree+bounces-171170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC87A9DA08
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 12:15:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8BBA9DA0E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 12:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2172B1B62DEB
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 10:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F26F464BFC
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 10:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8238E21ABA7;
-	Sat, 26 Apr 2025 10:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D04226CF3;
+	Sat, 26 Apr 2025 10:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FUhQtHjy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XmCnTwAU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FFC1B4F0F;
-	Sat, 26 Apr 2025 10:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50323502BE
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745662542; cv=none; b=TihR8Zngmbbg5wVzYMS2Bxn267HYHYwfOHfMXuISueq0DlG+oGh8Zk3Fus3+3ds+6u13l/9BjT/xD2RBaIohQWEUoxMBLI+gPP27Jk4Y68XxtkcVoLeY3he4ndiXMlCeL4yN/klTxvLH09y/2Rg5v+XepsMvn4LxXknHKwrbrAA=
+	t=1745662767; cv=none; b=Ut7nJpLTcjGPh/8MB9hEukTiHhPWTeanVDXvOBYFnpoUgGF7cn3PvvC+vTDY02Sbib3ztO5+94N1C2BIbhnoJ/lfRG4OYvMa4JkUbMwT0KttU8IzcCOeli6ZXKDIy/Ha9j+hH6X7nDqPnszZhhaW/ilOMYKzXjRVk7bc5gMCoYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745662542; c=relaxed/simple;
-	bh=hry7/PUHiav3tgWqoqsQqrRYhZ9+bBE+V2R9v/Y/I14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=taUxgcJP2xVKHx3In2BTVVIxvA+4F/aRPt8gOdJbESXBhWKPe6M6t9xsuI1g3gE/R6gmQQCeBnZXe1g0XDUlbVdkRYIXTHWc+z20lL+gMMQgUmRIHYyBFPLLQH+dIrtGpNJRqdrA9MNhw59R/aY7HkvBmilmKXcPtje3R5RgIZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FUhQtHjy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E224C4CEE2;
-	Sat, 26 Apr 2025 10:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745662542;
-	bh=hry7/PUHiav3tgWqoqsQqrRYhZ9+bBE+V2R9v/Y/I14=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FUhQtHjyxIUc2biG2aheOhyo3/N/rd5wvpNcK8N3vj80Yo0+S1b4dklyKAGGe90W0
-	 PE1SZpuT79hZbd/xuFEI/8ZvEmPAKCkJOcmT/xIvon89nHso4PASyabQ1w/+DDb8u4
-	 UfwcNZyReTcfm6CZo1Hb/VFaTFTwin7b6JGq79q2xX3dZI2BE7dLuHXGfU5SnDAMMR
-	 fyAw1s+y4uZsSxJVydTRoRwK6yVkzHYpQmT7blO67m/Y3VkuTg8baAL1Aw3VfW4IAA
-	 g43G5ytHuAyPawDhCwSxbveQsiwqPtE7eyZWp+1xNc4hnNmHU965ajEaJIKLIDFfyN
-	 yH/98CwxFOdRA==
-Date: Sat, 26 Apr 2025 12:15:35 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dirk Behme <dirk.behme@gmail.com>
-Cc: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
-Message-ID: <aAyyR5LyhmGVNQpm@pollux>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-4-remo@buenzli.dev>
- <aAuryiI0lY4qYyIt@pollux>
- <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+	s=arc-20240116; t=1745662767; c=relaxed/simple;
+	bh=INKOF5iwpURN7Wy6Ds0XbNG4prjxtjbP1QEt2sqa2hQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bxfN4vdoklRIuKDhKu5U0pmR9w2AN9Gr+FDGjf9xMDp90lQ8FArUlV+P/1lEQt2dUAl4pNDlvx4NHnIXKrzZpFZaSnqPiiX8K8xtsA0HCAS9a5pE5Z2P2jDV+GNXEvE8lAq6tP81uhIorH45k3/wsVDsNNdu5YNCSiObyp3UC+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XmCnTwAU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53Q3YsHt002334
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:19:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QyAht0J6O/7/KVaYupGEkLulwUB5tO0FkOWN11lWFP8=; b=XmCnTwAUHkHcIktl
+	MeTmYS6cicju3UPXiP06LO7tDuxCWlizWVPzmS43OKGjhPfvjhi+K8LcW/7RmET2
+	VR4wfLvvlOCP2CpXMM5AkRfCHMY8Altnf/+2JB7omrXhuYfKRXbyzI7gu4S0QrF5
+	77q3zE2ncICDUjhmsuDoebqScoDATqK4obnPU6JpECY7JQ0fwd2OL/t4Pq38F+ze
+	WvyxQJ1eel8vg+rTXnJ9FmJWQI9iggrOoXS3eHUbscNF+y7KAvsGs3DzGWXOf9bE
+	cxhNAHPkS8kRfQoHwv3tQy7DjCaISBa25ymTqb1UgWZGx6So/ufqA9K1MzzbNyfd
+	0n38gQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq58umh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:19:25 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6eeeaf707b0so4102876d6.0
+        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 03:19:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745662764; x=1746267564;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QyAht0J6O/7/KVaYupGEkLulwUB5tO0FkOWN11lWFP8=;
+        b=VsvFLeMlUngmeN5ajU2mQ61xtmtjLZQjnpjr72Q/CvMqpJFebrSIoUj0gZi4IlLHxs
+         tqz06v84PaSfG/7Hl1eD3ORbQzLrLwKRsR/nVwUESWD4qJ47Sael+HLRbA1IOz9ri0pV
+         DR/GAxIQKmH6N6sSNFSFQGSa9tiERhNfX/xhaLlZO8THkKfhb/XkjY7dvvwEFC6N12cb
+         f/63+VEuRfaA7yHKMkp+B39zN2k/EoH+AR6deEGrzhRrbNB/MKQfp24nlA9I4SqnqGTg
+         F/0aul1LF7E9Tv5GEwWGoo2K01GcXHGVGmK7+roZf3e51fM4hkmOvO6T7oPNrdqxas8G
+         88Zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUOsyfuqeRacmo/W2atB4AWL6+p+8PsyXKXeHWYCYgWerveSpE+SnXSRh7IXEMClaMjzvnnQByT4Iiq@vger.kernel.org
+X-Gm-Message-State: AOJu0YywaKxb9RPBcPnFGKDHK9fXKJ5ZbFr00NU2uPeLNjIeeUDiPxXL
+	+HMP0eFs803Qv2jb+gwgQtaIgRksspSn/U7WTm5hR9o8mwoVxJFV0By+GjlCsyMLrgaFxyEf0eP
+	BjfE+JoWZtU5Gu9o7uSv8IicWF8947G7FSxniIeugBE28XuLLBPRtIRyynNSK
+X-Gm-Gg: ASbGncsiopXGGcjvaWRBNW7d2qDovTsziO6vDwuy2gYMdqvwwFQYb+iALwmjGedC5QW
+	+8TedR+Ntx/G3xzUz89vVUeuBvqvOde7bFVl6a7gdEO9h6UiKCC4PiMLEtO+Y6jP55LeK8Kypwo
+	pPx8hF9wE8IWs6q5c0qoIoVINRJNoU8dF4l9m99i5MDBtGRg5qTf0umPI0RmNW6LBj/40Fgy0ee
+	YAqdIC3NQvlsEe9VzRBDEVzRyDKbUjpTfS5nKzkWbS9XxZDuvQ3/mC0aFmLXJZqFcUyp2nzNDtm
+	I4SG4IdG5xNlCvgR9EPsaUpShF/ps1Ldr/Sx15SywHcP+LfpEy6EEpKCrNgdYxxKDao=
+X-Received: by 2002:a05:6214:21cb:b0:6f2:d51e:9d0e with SMTP id 6a1803df08f44-6f4cba5da66mr32572816d6.8.1745662764049;
+        Sat, 26 Apr 2025 03:19:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHe/6uGcT/gAWdQXJ0VdRORPe01PlSUisfr3nJhiprMSvRRB6X8CYs4G3ezfI/LfIkCU68DDA==
+X-Received: by 2002:a05:6214:21cb:b0:6f2:d51e:9d0e with SMTP id 6a1803df08f44-6f4cba5da66mr32572666d6.8.1745662763729;
+        Sat, 26 Apr 2025 03:19:23 -0700 (PDT)
+Received: from [192.168.65.154] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4e6498sm267627766b.42.2025.04.26.03.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Apr 2025 03:19:22 -0700 (PDT)
+Message-ID: <fb21ba17-88ae-4cad-b7ca-57b5e8082b5e@oss.qualcomm.com>
+Date: Sat, 26 Apr 2025 12:19:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: Add support for X1-based Asus
+ Zenbook A14
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        maud_spierings@hotmail.com, dmitry.baryshkov@oss.qualcomm.com
+References: <20250416232345.5240-1-alex.vinarskis@gmail.com>
+ <20250416232345.5240-5-alex.vinarskis@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250416232345.5240-5-alex.vinarskis@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 8nwH9BHVw8HccmA08Fsc1t7nQhENAIwl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI2MDA2OSBTYWx0ZWRfX8xQnaa8miMVs gdvMg0Wbx2xqedJDX4I4NDoTPTjVWwqR2hBfAoNvuuEpaKJwVhgNcb34OSz8dSIJ7S4R/BWRy07 8q6HW6wHrMOclYE12AYHojr3qjxNJHZDAiK3YTnWC0ry79weJs4bCTcdvsvh9Jly+ZgJM/qiw8m
+ 0TQgMp0k4QMStT95WgTLexpfAp6rZmMhQxfRpvtFE7TX0b5EJW84W2Q1we2bhz6WloDLsOOjETS a+HzkwZEOu5fJ7n7QBAcjSxXXbhckmVaQQlyS+oWaaTIVCRnUl+PC85aOWW/4T97T8SQXzw/TFA DuBSiKqv+ERVQfwa/zD8UZUKUV8X99DTQhe24qWF55WXmkSMoF+XYAmwqVfTyDERg4UMeA7OyWj
+ K/gii/hUFfdRwbIIgx+dX49zVWG/9P9PEI2pReld5gClIVM4br3YCu6ycEeKwr6uXvzonYn7
+X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=680cb32d cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=04dXdBH-sfCwm-JsXqsA:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-GUID: 8nwH9BHVw8HccmA08Fsc1t7nQhENAIwl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-26_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ clxscore=1015 mlxlogscore=999 lowpriorityscore=0 adultscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504260069
 
-On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
-> On 25.04.25 17:35, Danilo Krummrich wrote:
-> > On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
-> >> This abstraction is a way to force users to specify whether a property
-> >> is supposed to be required or not. This allows us to move error
-> >> logging of missing required properties into core, preventing a lot of
-> >> boilerplate in drivers.
-> >>
-> >> It will be used by upcoming methods for reading device properties.
-> >>
-> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> >> ---
-> >>  rust/kernel/device/property.rs | 57 ++++++++++++++++++++++++++++++++++
-> >>  1 file changed, 57 insertions(+)
-> >>
-> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> >> index 28850aa3b..de31a1f56 100644
-> >> --- a/rust/kernel/device/property.rs
-> >> +++ b/rust/kernel/device/property.rs
-> >> @@ -146,3 +146,60 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
-> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
-> >>      }
-> >>  }
-> >> +
-> >> +/// A helper for reading device properties.
-> >> +///
-> >> +/// Use [`Self::required`] if a missing property is considered a bug and
-> >> +/// [`Self::optional`] otherwise.
-> >> +///
-> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
-> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
-> >> +    /// The result of reading the property.
-> >> +    inner: Result<T>,
-> >> +    /// The fwnode of the property, used for logging in the "required" case.
-> >> +    fwnode: &'fwnode FwNode,
-> >> +    /// The name of the property, used for logging in the "required" case.
-> >> +    name: &'name CStr,
-> >> +}
-> >> +
-> >> +impl<T> PropertyGuard<'_, '_, T> {
-> >> +    /// Access the property, indicating it is required.
-> >> +    ///
-> >> +    /// If the property is not present, the error is automatically logged. If a
-> >> +    /// missing property is not an error, use [`Self::optional`] instead.
-> >> +    pub fn required(self) -> Result<T> {
-> >> +        if self.inner.is_err() {
-> >> +            pr_err!(
-> >> +                "{}: property '{}' is missing\n",
-> >> +                self.fwnode.display_path(),
-> >> +                self.name
-> >> +            );
-> > 
-> > Hm, we can't use the device pointer of the fwnode_handle, since it is not
-> > guaranteed to be valid, hence the pr_*() print...
-> > 
-> > Anyways, I'm not sure we need to print here at all. If a driver wants to print
-> > that it is unhappy about a missing required property it can do so by itself, I
-> > think.
+On 4/17/25 1:20 AM, Aleksandrs Vinarskis wrote:
+> Initial support for Asus Zenbook A14. Particular moddel exists
+> in X1-26-100, X1P-42-100 (UX3407QA) and X1E-78-100 (UX3407RA).
 > 
-> Hmm, the driver said by using 'required' that it *is* required. So a
-> missing property is definitely an error here. Else it would have used
-> 'optional'. Which doesn't print in case the property is missing.
+> Mostly similar to other X1-based laptops. Notable differences are:
+> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
+>   and Qualcomm FastConnect 7800 on UX3407RA
+> * USB Type-C retimers are Parade PS8833, appear to behave identical
+>   to Parade PS8830
+> * gpio90 is TZ protected
 > 
-> If I remember correctly having 'required' and 'optional' is the result
-> of some discussion on Zulip. And one conclusion of that discussion was
-> to move checking & printing the error out of the individual drivers
-> into a central place to avoid this error checking & printing in each
-> and every driver. I think the idea is that the drivers just have to do
-> ...required()?; and that's it, then.
+> Working:
+> * Keyboard
+> * Touchpad
+> * NVME
+> * Lid switch
+> * Camera LED
+> * eDP (FHD OLED, SDC420D) with brightness control
+> * Bluetooth, WiFi (WCN6855)
+> * USB Type-A port
+> * USB Type-C ports in USB2/USB3/DP (both orientations)
+> * aDSP/cDPS firmware loading, battery info
+> * Sleep/suspend, nothing visibly broken on resume
+> 
+> Out of scope of this series:
+> * Audio (Speakers/microphones/headphone jack)
+> * Camera (OmniVision OV02C10)
+> * HDMI (Parade PS185HDM)
+> * EC
+> 
+> Add dtsi and create two configurations for UX3407QA, UX3407RA.
+> Tested on UX3407QA with X1-26-100.
+> 
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> ---
 
-Yes, I get the idea.
+[...]
 
-If it'd be possible to use dev_err!() instead I wouldn't object in this specific
-case. But this code is used by drivers from probe(), hence printing the error
-without saying for which device it did occur is a bit pointless.
+> +	/* Left-side display-adjacent port, PS8833 */
 
-Drivers can still decide to properly print the error if the returned Result
-indicates one.
+nit: The mention of PS8833 in the comment is rather uneventful given it
+says so right below it as well
+
+> +	typec-mux@8 {
+> +		compatible = "parade,ps8833", "parade,ps8830";
+
+[...]
+
+> +&uart14 {
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		/* TODO: add pwrseq once validated */
+> +		compatible = "qcom,wcn7850-bt";
+> +
+> +		max-speed = <3000000>;
+> +	};
+> +};
+
+Drop it for now, the dt checker is angry about partial definitions
+
+I think it looks ok otherwise
+
+Konrad
 
