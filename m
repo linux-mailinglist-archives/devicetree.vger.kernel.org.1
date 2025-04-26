@@ -1,120 +1,171 @@
-Return-Path: <devicetree+bounces-171195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517E6A9DB6F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:18:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697DAA9DB72
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D35B1886808
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:18:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC08466219
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F53322172E;
-	Sat, 26 Apr 2025 14:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD0925C6E3;
+	Sat, 26 Apr 2025 14:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uN65lNPv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1LNy2a6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF83A926;
-	Sat, 26 Apr 2025 14:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A7E1B6CE9;
+	Sat, 26 Apr 2025 14:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745677118; cv=none; b=H8y5danmWrFrwchXYjVYo99770oL7Dp66oDLzebwF0P5c16Y32OTfqSQvDxQ2Db2UVkGtE5TJqrEN3jYT5nSPg5Hl1/zx9FazhKG1DNO4k97KqmIDfsVfZgt/bpFU1xvCRRqDbYDmv7nOVfTZBzy6KVEsSWoj1EGLFM4Tlj/VOo=
+	t=1745677194; cv=none; b=M8nl7NzRisN0MUubZ/CVEaCar0ZtgbGwooQ9UHZFL3KjJqeMCJWGwNMDCxCYhVS5y0A8a/Y5xaInLvYjimzsSjqxuwuN/19Yw1sXsqNH/7ayDiXBMmO0c5wXn5V3HfJYzp+Z5gTeXz0s12cmkpZ2S6UZpixiKay5tj7AOcOPHxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745677118; c=relaxed/simple;
-	bh=QWynorMuxdxaqDDSFd0z/0rAPKadgWVwPtyQnTtZsqk=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Cp8yxdlgTT+Kv8dQlMUC+GbWn4BmIPpo4QdPg8MksjC/BU44aUK3ZnzCbfoJSNi65hlZoz287vszo750UShB53i1a8cHBcg/WSolakpfhUlH7IAHAsiLuFAc6nR420306yNyX2yhBcSxx94lBGcJ2YGNXNkiffIjSmj1wxGY2lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uN65lNPv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53D4C4CEE2;
-	Sat, 26 Apr 2025 14:18:34 +0000 (UTC)
+	s=arc-20240116; t=1745677194; c=relaxed/simple;
+	bh=zvjiuLsrY0grFT63hFRfh2MOqT5Pm8LhV/lN+C77p1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TwzLm+YzpAfgjDQKTuj1jOC/NndVwbMA+tX+msUgkRgowrGnuOReF5JXs8EDUUahgw4Mn4Tf6zk6YVVAoe9NTq+ywPco8l0XLRNKA6Shv4ZHuBmS6Hx4MQeWBHM2jgl8zl5M8y4iIlUoCJK3wJ7NIAT5vhNF7nQvjJudVg6yrf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1LNy2a6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 651CDC4CEE2;
+	Sat, 26 Apr 2025 14:19:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745677117;
-	bh=QWynorMuxdxaqDDSFd0z/0rAPKadgWVwPtyQnTtZsqk=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=uN65lNPv0Cr6jJKum+zRiWKGjzBojavY+MHfq+oe0fqgWos6dFikTlyVhxusCiX14
-	 Phu/gCRZVx7P54OLMtpzGRWRWaLMiE/ngj8iPp7xqYaMhXbQ22fsjU6X/8agJZ/9lj
-	 GQpB9wBL71cs2qK7E93mQDQHszmvTkMUXofe4hTQ0sYOjqjUGa2fPGVInjJoi4HLXQ
-	 OveXgxTJ/gE+KNC0wcGGlbhESxNIygsNFU7KAoweKXjiYrVBAIm9dAj5eiXYog7k72
-	 g3qdIofWV9fuQ8jUlUR9RNxY0YtwBumJbU3qKUr3MNbOyNcC799N+Ln6BaJefj6Xpf
-	 J2IC8u+g52SxA==
-From: Mark Brown <broonie@kernel.org>
-To: Catalin Marinas <catalin.marinas@arm.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Takashi Iwai <tiwai@suse.com>, Will Deacon <will@kernel.org>, 
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
-References: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
-Subject: Re: (subset) [PATCH v4 0/9] ASoC: add Renesas MSIOF sound driver
-Message-Id: <174567711430.3942275.11314439022546984930.b4-ty@kernel.org>
-Date: Sat, 26 Apr 2025 15:18:34 +0100
+	s=k20201202; t=1745677194;
+	bh=zvjiuLsrY0grFT63hFRfh2MOqT5Pm8LhV/lN+C77p1s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p1LNy2a6qCLSl3OD9CFK+g4now/LWDkSE//6zT+6oHGc2fjacRMb9da8qAvRYz2tu
+	 NxprnHpp78nxX2xbE668fgrgfLK/aNxtI/vOS5nV30j0XqUstHH9wKhhaBzPyodSQL
+	 QHmo5z/b0BygUBI4s+FPjMolNFUJ544hm94SNyrJGyzx59Q2pTTZm+8ZHVBXFx2x7P
+	 Ck2LvzyAa290/kbbKA6ocG64TheAzedxmVn5ocUgEpRElqjXXED6SEaIunEhMB0ub/
+	 HUBjZyYK12HyVViHYmSlfWqMJ+mzMtKpMpxzObSzGl7hHjpzin4HJRPtOtdnJ6muOI
+	 zBWh8C1KEZkMA==
+Date: Sat, 26 Apr 2025 16:19:47 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Dirk Behme <dirk.behme@gmail.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
+Message-ID: <aAzrg31NB2g0X4qL@cassiopeiae>
+References: <20250425150130.13917-1-remo@buenzli.dev>
+ <20250425150130.13917-4-remo@buenzli.dev>
+ <aAuryiI0lY4qYyIt@pollux>
+ <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+ <aAyyR5LyhmGVNQpm@pollux>
+ <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
 
-On Thu, 17 Apr 2025 23:22:40 +0000, Kuninori Morimoto wrote:
-> Cc Geert
+On Sat, Apr 26, 2025 at 01:08:39PM +0200, Remo Senekowitsch wrote:
+> On Sat Apr 26, 2025 at 12:15 PM CEST, Danilo Krummrich wrote:
+> > On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
+> >> On 25.04.25 17:35, Danilo Krummrich wrote:
+> >> > On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
+> >> >> This abstraction is a way to force users to specify whether a property
+> >> >> is supposed to be required or not. This allows us to move error
+> >> >> logging of missing required properties into core, preventing a lot of
+> >> >> boilerplate in drivers.
+> >> >>
+> >> >> It will be used by upcoming methods for reading device properties.
+> >> >>
+> >> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> >> >> ---
+> >> >>  rust/kernel/device/property.rs | 57 ++++++++++++++++++++++++++++++++++
+> >> >>  1 file changed, 57 insertions(+)
+> >> >>
+> >> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+> >> >> index 28850aa3b..de31a1f56 100644
+> >> >> --- a/rust/kernel/device/property.rs
+> >> >> +++ b/rust/kernel/device/property.rs
+> >> >> @@ -146,3 +146,60 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+> >> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+> >> >>      }
+> >> >>  }
+> >> >> +
+> >> >> +/// A helper for reading device properties.
+> >> >> +///
+> >> >> +/// Use [`Self::required`] if a missing property is considered a bug and
+> >> >> +/// [`Self::optional`] otherwise.
+> >> >> +///
+> >> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
+> >> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
+> >> >> +    /// The result of reading the property.
+> >> >> +    inner: Result<T>,
+> >> >> +    /// The fwnode of the property, used for logging in the "required" case.
+> >> >> +    fwnode: &'fwnode FwNode,
+> >> >> +    /// The name of the property, used for logging in the "required" case.
+> >> >> +    name: &'name CStr,
+> >> >> +}
+> >> >> +
+> >> >> +impl<T> PropertyGuard<'_, '_, T> {
+> >> >> +    /// Access the property, indicating it is required.
+> >> >> +    ///
+> >> >> +    /// If the property is not present, the error is automatically logged. If a
+> >> >> +    /// missing property is not an error, use [`Self::optional`] instead.
+> >> >> +    pub fn required(self) -> Result<T> {
+> >> >> +        if self.inner.is_err() {
+> >> >> +            pr_err!(
+> >> >> +                "{}: property '{}' is missing\n",
+> >> >> +                self.fwnode.display_path(),
+> >> >> +                self.name
+> >> >> +            );
+> >> > 
+> >> > Hm, we can't use the device pointer of the fwnode_handle, since it is not
+> >> > guaranteed to be valid, hence the pr_*() print...
+> >> > 
+> >> > Anyways, I'm not sure we need to print here at all. If a driver wants to print
+> >> > that it is unhappy about a missing required property it can do so by itself, I
+> >> > think.
+> >> 
+> >> Hmm, the driver said by using 'required' that it *is* required. So a
+> >> missing property is definitely an error here. Else it would have used
+> >> 'optional'. Which doesn't print in case the property is missing.
+> >> 
+> >> If I remember correctly having 'required' and 'optional' is the result
+> >> of some discussion on Zulip. And one conclusion of that discussion was
+> >> to move checking & printing the error out of the individual drivers
+> >> into a central place to avoid this error checking & printing in each
+> >> and every driver. I think the idea is that the drivers just have to do
+> >> ...required()?; and that's it, then.
+> >
+> > Yes, I get the idea.
+> >
+> > If it'd be possible to use dev_err!() instead I wouldn't object in this specific
+> > case. But this code is used by drivers from probe(), hence printing the error
+> > without saying for which device it did occur is a bit pointless.
+> >
+> > Drivers can still decide to properly print the error if the returned Result
+> > indicates one.
 > 
-> Renesas MSIOF can work as both SPI and I2S.
-> Current Linux supports MSIOF-SPI. This patch-set adds new MSIOF-I2S.
-> 
-> Because it is using same HW-IP, we want to share same compatible for both
-> MSIOF-SPI/I2S case. MSIOF-I2S (Sound) will use Audio-Graph-Card/Card2 which
-> uses Of-Graph, but  MSIOF-SPI is not use Of-Graph.
-> So, this patch-set assumes it was used as MSIOF-I2S if DT is using Of-Graph,
-> otherwise, it is MSIOF-SPI (This assumption will works if SPI *never*
-> use Of-Graph in the future).
-> 
-> [...]
+> One alternative would be to store a reference count to the device in
+> `FwNode`. At that point we'd be guaranteed to have a valid reference
+> whenever we want to log something.
 
-Applied to
+Yes, that would work. However, I'm not convinced that it's worth to store an
+ARef<Device> (i.e. take a device reference) in each FwNode structure *only* to
+be able to force an error print if a required device property isn't available.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/9] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
-      commit: 749027309025a3bb4785ab8f20e18bc641fae848
-[4/9] ASoC: renesas: rsnd: allow to use ADG as standalone
-      commit: ce6949be36997f65d70bb6496bdfa4befff5bbab
-[5/9] ASoC: renesas: rsnd: care BRGA/BRGB select in rsnd_adg_clk_enable()
-      commit: a714b31225bce9ce2732f6193f28f371093492f0
-[6/9] ASoC: renesas: rsnd: enable to use "adg" clock
-      commit: 0cc88846cbfb3018c036a20390acb1e35de03e1d
-[7/9] ASoC: renesas: add MSIOF sound support
-      commit: c61caec22820f24bb155929f5cee8c1ccfe92f77
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Why do you think it is important to force this error print by having it in
+PropertyGuard::required() and even take an additional device reference for this
+purpose, rather than leaving it to the driver when to print a message for an
+error condition that makes it fail to probe()?
 
