@@ -1,169 +1,90 @@
-Return-Path: <devicetree+bounces-171212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F216A9DD3B
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC1CA9DD4A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D056172096
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:25:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84720464647
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29BB41FDA8E;
-	Sat, 26 Apr 2025 21:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5451FFC41;
+	Sat, 26 Apr 2025 21:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fgjrAf1v"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eLMEsN4I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B081FBE8A
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 21:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC911C549F;
+	Sat, 26 Apr 2025 21:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745702692; cv=none; b=ihtYLYhgrtKLNsTRif0RUSyvYJv/QPjiS87+oFRWc9DfsZNoAhQtPhnyMOehlBhruYdwEbZWo5tntqwMMU8q01hErIlbozjkIqPAjJb9WLiK3qg0+B8w1/qrT0U1MSi4mOqkc/1YhLDf+HS9ZMq3h8wuoJpOsuGEL7cPj7bb0V4=
+	t=1745703989; cv=none; b=nyx3kgeTzbdzkD1Yema1+kUhmo6V3m/EGhNf6gBkDlNsWb/CfU1nTyKnLmNkx7JxqxSw6j0chlZ5A5zzUSagNZD9F25TKLs4FPJuX71yRupahEEPKcebapEEovYop+7P946I5vOGlxUhyfDwRysxcQj3oTinO4PwVyCRMHIpKa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745702692; c=relaxed/simple;
-	bh=+e2jnoEU0KW0QXVKjWeyp4SP2tcdhAZ7keq7BZMyPA4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AEFsEsLioMpAaZftkbXWtDAIaihY5xREMCK0MwvLZqWdLnroAun9O4wSWA6zTN2PrrZqksfo4LUD+g1u5cqEIoS5WXIJFiVWOZN3ZzgTT6EFim2S0m9UYtGgvMmbGkcJFQIJrTpUk0qmKfmeczUmXRl/5IpVzkjlyilibDHRB3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fgjrAf1v; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53QGN5GL013049
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 21:24:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WR+R0rhCOjYqlZUhhYUXJ0Rz5/y0uM5IX/cfP7qDHJ4=; b=fgjrAf1vO8jRmSJz
-	tWe1iBFd3RV+TWEznsjja5vdAx2BbLr45XiDh37J0Ccq9eJJNjoqgwidMInDyk5n
-	iWF6d5NgwymuNCuu3oMjEDDV6DV4Up5pMfI4qFU2lFsXTM6NPOgL8c+E8RgQ33O9
-	I1FRyApyHBfU1U368E/0NMZXHNFW70cqho7CUe9MrpWT/7RSvoQm9y0Y21qRGEfq
-	GKxqOKuMXwloz43augz0oGF5lUKjOtRvdqsEMPxiIrT2UZUpvNhnzF8hvNAY7Qej
-	Kx06axuzKbf3o135CE4mf6cMtzHdiDHaOz+zkWjCnY9WrlCxYXjx+blG5IkEQvYG
-	S6Iuow==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq5a4ag-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 21:24:49 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e8f3c21043so8773546d6.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 14:24:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745702688; x=1746307488;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WR+R0rhCOjYqlZUhhYUXJ0Rz5/y0uM5IX/cfP7qDHJ4=;
-        b=Bpa1wIfoSUQX8R4YwxDZbLywdXoCb1CTP/99kYZQDSrhBuB0Mjnm2FdrVaGlaNTF39
-         yaHWfcUBVSTSU1pBQ8oTDfreTjUZ/YqDXp+ss8v6fug/BW1z3BC5nubGmeHwbMCh9EcL
-         kUQ5Ch1laajZcmbAwJ8OjApWeLxxfdeGPLhEpPOU/pe8y0FCeVN7LLEo8cGudwD3SmGn
-         4o2tQfuy/s9am8Kpj0dSzbGxsFppM4r1DkjBug3IWrckb2fvxa1qiTqcR4oXjcu51jS/
-         98Fcvp7en0Dw27FFioGRp3wUrtZPecZmcI9xlMxKvPhIQHVYN+jWywVkBL5YiYNkra24
-         ie9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVeyblU8q2WZNOii9AzBKQ2OsGbnzxxCew0TH+tTN6D5Qt2M366VC8UD4FEsRmIAgn6xxkLhu25kRuk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfsWbPofOYpEK3hYYiO433gjPqniovd0PnpqH8lT4fLY6M0OUa
-	ZGOicLWB4MlykQhBNcJ8TQgNMwM/VIq9UUVVcgGatbslmxw6IrpaMs3goT97DFpRzl2h5WU1BIO
-	a8nMiQe9jEmv9C+kd5eYf8CNF+vFFQGW9B8Jy671qw65JBC1+/b2j8oIC2Ey0
-X-Gm-Gg: ASbGncsEN791Of6SHdqmsmJGQ28R4poy+OZEuDG/0NDU1TsQiIBIXwV6wFETf2YXmJs
-	R6g8LgP/1/kpJI1dZ2F+kvvtXGOUMHVZ9J0sI0d3c3pX3fFb576h/XF7eNc+GqxxguaVUB722Ep
-	hqcjZzd2hpMIZFSBWVcHNqG+4zWNtVA6tQbHHqYXbBnL+dy2xe81jP4DKl5sh5AsUsho24DVJKp
-	z5edWuHTgobNUfCuL7Dm5v75xv9BCJJwjBFLKdN3rGh9mF0Z6OJEtm7qJPd3vcn99PEBgVyYETU
-	S2euvmT7I8t8O7FOXhgc38wUvpoNMFbrWIkKt/d16AkTHSndhdFw39pnzQbPMRr6mA0=
-X-Received: by 2002:a05:620a:4723:b0:7c5:687f:d79d with SMTP id af79cd13be357-7c96071e76cmr432500085a.8.1745702687799;
-        Sat, 26 Apr 2025 14:24:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE91mB/OTCAHM6ZPMMnYcSN+AYgw89fz7uJMpE+BIsfhFRJH7wciNvcBCPhWb0E3BpFD0EuKA==
-X-Received: by 2002:a05:620a:4723:b0:7c5:687f:d79d with SMTP id af79cd13be357-7c96071e76cmr432499085a.8.1745702687493;
-        Sat, 26 Apr 2025 14:24:47 -0700 (PDT)
-Received: from [192.168.65.152] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e587f1csm343657866b.79.2025.04.26.14.24.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Apr 2025 14:24:47 -0700 (PDT)
-Message-ID: <dafd9a80-9aec-404a-88bb-dfc91c8ac224@oss.qualcomm.com>
-Date: Sat, 26 Apr 2025 23:24:44 +0200
+	s=arc-20240116; t=1745703989; c=relaxed/simple;
+	bh=Ucqzgki7rXVaFgmOS9fr/vsC6l1Nmm46Df6AfU9HuCs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OXohjbjrfv6OB67DL1Qm/L9UQWzPot5C1U/9OzBctnaAvRr6noBKi5Qftjxre01lUb9/wZkyHM51iPHFXIRwiqqN9A9Jg4IU43DdPDKUCu53LbHY3hSxczOEYdxW3ZDyekK1v7l+Ux9Tb+N30CQ2FRmX2DnJS0M/7Wgk8N01OpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eLMEsN4I; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=GEghm9KEzi4KEAVXKXRCeAyZ2hXh9Vd2xugtHnvbzp0=; b=eLMEsN4IxoTROZ4eRKiSlhdbEM
+	U8OW5wX3coXicFzzeQE3UIJ3nE+ArgFtZyr5n6nIw993Ls0tapsHTuhc52xnFvk04E1jRXKaUKOlo
+	c8LeNfEzLoTnUIWp4R0d2szx9/fLTnMX9W5NazIA7J8Hsf5KfhgqNOKnlSl99Y4w9ttzBNED5acnT
+	UbSnV8x3c+lXxoyhszE8s/viNhlKpx9HyGledDNObqLFUTrgaIpYR/ydNSV6gnrt3LGWGck+sZBfn
+	eUBuKuKaj9kLIaenSWPA7G0nY2LfDl6702gsCq5a1FLxlf0ylGbWQvwiHnONVFHmVAWkrUJnyJDZs
+	/vO9S+sQ==;
+Received: from i53875aba.versanet.de ([83.135.90.186] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u8nLp-0001OR-I3; Sat, 26 Apr 2025 23:46:21 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	inux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add eDP1 dt node for rk3588
+Date: Sat, 26 Apr 2025 23:46:06 +0200
+Message-ID: <174570370112.31943.2977804072806541531.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250426071554.1305042-1-andyshrk@163.com>
+References: <20250426071554.1305042-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add support for X1-based Asus
- Zenbook A14
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        maud_spierings@hotmail.com, dmitry.baryshkov@oss.qualcomm.com
-References: <20250426130203.37659-1-alex.vinarskis@gmail.com>
- <20250426130203.37659-5-alex.vinarskis@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250426130203.37659-5-alex.vinarskis@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: _F8ccT6DYz3sRGjfKKKLc3-8jlV_xoEW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI2MDE0NyBTYWx0ZWRfXxhZkLY7GM5/0 mpclwL6QaXlrBMtz1Ss9B+wH2XxZXkh4I0HYIdXa+GWW6n2ta4zGC67mvqDwfhH7QKxGtgC4i+H g+EFkqOrUYYYdrjUpmGPDX7DIsq382cPq3FnViTKK3RKDgEVEvvvDrubwmKNY6SXjvXeBMxoJw2
- D9z2JPhk6qgRy+b4YzJs90FE1lU7AEoT4uW6RW2VrWY7nRU4J2ykMymteze78Guk8CwK6dfExIo wo/fRpJlKuJzkYAt8s2wOQNB+v0I3SVLyq/ottgCJg5OyvH8mn2OhekyuLd452QURvmAenU2BOI 5Ji/oeNOuUc6U0aFiiLEawvvf58zedwiQkICeZEcenCQnn6Wj1f9ab9mI2u+2kWcFy3Vb2MJtGm
- B7fE8ce3LhhUnHrFt4nHuKKBtC5KslUEtcGvmf5ryNO/eGKbZu17W5g0eL6G8KSHk6tWImNI
-X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=680d4f21 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=04dXdBH-sfCwm-JsXqsA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: _F8ccT6DYz3sRGjfKKKLc3-8jlV_xoEW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-26_04,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- clxscore=1015 mlxlogscore=999 lowpriorityscore=0 adultscore=0 mlxscore=0
- bulkscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504260147
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 4/26/25 2:58 PM, Aleksandrs Vinarskis wrote:
-> Initial support for Asus Zenbook A14. Particular moddel exists
-> in X1-26-100, X1P-42-100 (UX3407QA) and X1E-78-100 (UX3407RA).
-> 
-> Mostly similar to other X1-based laptops. Notable differences are:
-> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
->   and Qualcomm FastConnect 7800 on UX3407RA
-> * USB Type-C retimers are Parade PS8833, appear to behave identical
->   to Parade PS8830
-> * gpio90 is TZ protected
-> 
-> Working:
-> * Keyboard
-> * Touchpad
-> * NVME
-> * Lid switch
-> * Camera LED
-> * eDP (FHD OLED, SDC420D) with brightness control
-> * Bluetooth, WiFi (WCN6855)
-> * USB Type-A port
-> * USB Type-C ports in USB2/USB3/DP (both orientations)
-> * aDSP/cDPS firmware loading, battery info
-> * Sleep/suspend, nothing visibly broken on resume
-> 
-> Out of scope of this series:
-> * Audio (Speakers/microphones/headphone jack)
-> * Camera (OmniVision OV02C10)
-> * HDMI (Parade PS185HDM)
-> * EC
-> 
-> Add dtsi and create two configurations for UX3407QA, UX3407RA.
-> Tested on UX3407QA with X1-26-100.
-> 
-> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Sat, 26 Apr 2025 15:15:40 +0800, Andy Yan wrote:
+> Add eDP1 dt node for RK3588 SoC
+> 
+> 
 
-Konrad
+Applied, thanks!
+
+[1/2] arm64: dts: rockchip: Add eDP1 dt node for rk3588
+      commit: abef2de3db010c79c584b8bffdb40f779fb7cb6b
+[2/2] arm64: dts: rockchip: Enable eDP display for Cool Pi GenBook
+      commit: 26cdcf6898894e0c27049841b924dab7c5bfe055
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
