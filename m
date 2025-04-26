@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-171219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FABA9DD53
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:48:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DE4A9DD45
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:46:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76BF0189C26C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:48:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85E43464627
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01221FDA8E;
-	Sat, 26 Apr 2025 21:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4101FBCB2;
+	Sat, 26 Apr 2025 21:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Olke1UOA"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hxesiz8i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DF71FCD1F;
-	Sat, 26 Apr 2025 21:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEAA1DE883;
+	Sat, 26 Apr 2025 21:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745704005; cv=none; b=mCyjABfoWKiEKWhQpoywewZ/hFyN4SXP6mL1oznMh+817TUwAsUsXDENsOYnYA3DIyFLoJ/N6hMt5olxlSakIyLgXZCwjd2oR6uxXsyoP1MRIkghJWenqc1udqlDO7lwYzxDMSq5o/rZoOVt2ahje2LrucOlOaARqS+iig7nvu4=
+	t=1745703987; cv=none; b=JTt2IqfQRfdVc9nmWxFUbzCkRHVrjKyrR1yeDtMfVXMRKa5lArV0iLwueHcXyF5B7K9CBCOsqG/0g68a3ABiok0kEAdZChw/a3FhFdnYkPxUojf/mEeWrPjYH6eXGPYM12ea2SQNuiMMKoCsLnrrPXT6/C+c58YfQPgc8Nenh8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745704005; c=relaxed/simple;
-	bh=7Avte2fFuyXnFNqeprlnVBijJalm4sh3MIpgJAePcbk=;
+	s=arc-20240116; t=1745703987; c=relaxed/simple;
+	bh=sx7/u1KcQADCXMAjhAUeqbk5JA1nBsSGLMVTKCxwmow=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qwOngKGx0HYsiGZlOUo8Inx85/lZJlICvNeTi5YCypY1c3sLcHumGx4o2LujdlNOgsHMoMfFsKHGufeFzZsN2ns6XhKoAiu9hPneQns+jGZ1myr111mARzuALxXs10Wbw/agQLbD4gshwCj7SVIKgGThTSr8t/oHTitbmAu2G0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Olke1UOA; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=XZfXK1UZyahgOKQGKHis6Et+NqrSArs+jfUxah3oeHiB0jaWGHWhGjS6Nahtic3qRdXlGCahH2wUiiBaXNjqDz9zBzFLL2heJtC0kRdNyWdiFQvvFCI20xlDwX6zctPCVcMqK/tmRQd0qMZUaRjv3d54ADPxPaQNp1dgpzKExf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hxesiz8i; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -36,39 +36,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=dJODNHkVNzSlZjFD+IpMJkmTkkNIUPx/SKc2mpT8lXc=; b=Olke1UOAx4j9BXfRb/lB3z7DVe
-	jRanRcKezAxfhM4Tl5EFSTmdSDSAeFPeO7FjAbzpfIQJB8/UMJCaMrMlDqOcPaXD6EOPGyv561XJ5
-	YPccqN212uYZMl4B9w78Y+ASsRjvPMOboNG1vZqh3kPt8XQRekExUvU0mhOZYNu445YfxqyGfDbZt
-	h0hvcY6lI+/z8r8oLYHEp6sAkrCAfz6FBB3xYIXqUvd8N0Kic5sQnWAIw3/HjRhwmQ5oid0vo8EWz
-	AAuS/9sxM27mYt+iOwQ8GL3Z5pYN2YA4CS3khfl4+IQb6Nikf/DIBZbaP1BiENLhmAjGjUITXMGAM
-	+KGTALkA==;
+	bh=Cer4wksqyIzXNmo0vxNsCzf3aimDFe38DROHviMKDT4=; b=hxesiz8iu0hYpmdBpjdA4tQlOF
+	t0G50gBd6vwRQiUlQjjs/H5jxJmmUYU7dECITCv+C6fkEUI68BUzaje+1lznBUHTe/ssV4WrnATUa
+	Xhn5jXW3npOvu/twM9ZWVN5fhNVMx0mRNoWAobNcrBshQ84Rv81JITPLxQvKkAuJoF/A7tS+rmLEI
+	/0i5ZFaDLVXqrXWWdrVRugX2vzbG8ArI2iDeUiBJSnWcdQg0mrMS0+RoqpMAH0H/HxcS/1cWYLCfm
+	ktLKeeUE3AOylBWqjEqRyKPhZ9NnCRVHBHGlhmUU8euNBOogYqa8wvYAzP5HuvM+1xhtfhZMm8E9o
+	frSTOW5A==;
 Received: from i53875aba.versanet.de ([83.135.90.186] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1u8nLq-0001OR-5D; Sat, 26 Apr 2025 23:46:22 +0200
+	id 1u8nLq-0001OR-Oh; Sat, 26 Apr 2025 23:46:22 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Diederik de Haas <didi.debian@cknow.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Dang Huynh <danct12@riseup.net>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: quentin.schulz@cherry.de,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] Add vcc-supply to SPI flash on Pine64 devices + Rock 5B
-Date: Sat, 26 Apr 2025 23:46:07 +0200
-Message-ID: <174570395444.32969.7984320646555928039.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com
+Subject: Re: [PATCH v3 0/3] arm64: dts: rockchip: add and enable DSI2 on rk3588
+Date: Sat, 26 Apr 2025 23:46:09 +0200
+Message-ID: <174570370108.31943.14492430799638906763.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250425092601.56549-1-didi.debian@cknow.org>
-References: <20250425092601.56549-1-didi.debian@cknow.org>
+In-Reply-To: <20250226140942.3825223-1-heiko@sntech.de>
+References: <20250226140942.3825223-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,27 +71,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 25 Apr 2025 10:44:40 +0200, Diederik de Haas wrote:
-> The vcc-supply property was added to "jedec,spi-nor" binding in commit:
-> e7f4e924f46d ("dt-bindings: mtd: jedec,spi-nor: add optional vcc-supply")
+On Wed, 26 Feb 2025 15:09:39 +0100, Heiko Stuebner wrote:
+> This adds the dcphy and dsi2 controller nodes and adds an overlay
+> for the Tiger-Haikou Video-Demo adapter that provides a DSI display.
 > 
-> which resulted in the following warning:
->   spi-nor spiN.0: supply vcc not found, using dummy regulator
-> 
-> Fix that by specifying the vcc-supply property.
+> changes in v3:
+> - rebase on newly added overlay-test-infrastructure
+> - add reset-gpio to gpio expander
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3328-rock64
-      commit: 4ed658ebd7b506d468c0e28b724390b31abe1875
-[2/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3399-rockpro64
-      commit: b630cf92dd49f6a4df06508969a2eeeba6fd946f
-[3/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-pinetab2
-      commit: 4754eea38f5df6ad03cd93a4fa800d017cc5be82
-[4/4] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3588-rock-5b
-      commit: 67beb6b123187eaddb954fa9b070932452246d29
+[1/3] arm64: dts: rockchip: add mipi dcphy nodes to rk3588
+      commit: 2e177b85541d1a5c28a4d64dabec8bdce0461a79
+[2/3] arm64: dts: rockchip: add dsi controller nodes on rk3588
+      commit: 0d0947766d877b63729dbef502e75827bf4ebca9
+[3/3] arm64: dts: rockchip: add overlay for tiger-haikou video-demo adapter
+      commit: 14e506dcf3b0a311ef3df5a86b810fd9ede0f30f
 
 Best regards,
 -- 
