@@ -1,189 +1,171 @@
-Return-Path: <devicetree+bounces-171156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75036A9D92C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 09:45:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A67A9D933
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 10:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7784C5A4CCD
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 07:45:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79D617B2537
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 08:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF6D21B9D6;
-	Sat, 26 Apr 2025 07:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3153F1DC98B;
+	Sat, 26 Apr 2025 08:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="luyXVycX"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="DnT/rlz5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2085.outbound.protection.outlook.com [40.107.220.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2551A9B24
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 07:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745653528; cv=none; b=u8AsdG2tGYZgsg1BG2o25hXByyCiKooo07DlpqgdX1837JNNtWAxHZUICbw2m3jEvP7cLsBWQcshgQi1hvz22Xyi4XInvpowqLyFQxgEIjRiaQZdmsUF8d0Nz2L7JUSBs7EFT6orer+DlCxhoqHRZhNYfOt0KvLOuSUYIp2szTI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745653528; c=relaxed/simple;
-	bh=w8RacVv7kD3lnn+AVvnyUBxmiCMUu8RBJaFo4l2EVyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iupQp1ft4OtjnANtpGM0ZzchCeQnY608FsereojFRDfafFhJJ4EHj4s+b0p/66qvjJGrVPl1obApEsRvT7MFehoL8uRILR7oDv5Uj1UQR1lmlXna8YoleNEMD2SFbKVNCQSc6fA3f3qx11qMrbo/dkOgehzbN5ArX5XG5wrYT3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=luyXVycX; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 515033FE57
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 07:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1745653523;
-	bh=xQG8aR91QUiXJqe0zGBSMh1PwbLabEkgq2LJTt+r2Gg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type;
-	b=luyXVycXjIa2SO5y5jEa/CR1zX3NptRZrTjaACkyul+CJYlD0A9+6wjec1ZkUZ0Jp
-	 iq0K6St3V54oJC5SdAVMO3oF7P2vZFOb9M2rC6SkNclDUK3TKkFEZ8gkozOQKcKzwH
-	 V5V4JicU2ccRdYp0mgwgfau4hlm8OAkGcZJxBW6+BaRxBT3bdDjHAslcwKmOPiKu5g
-	 3hsIfy329X2euI1nAllquTfUOS9ODt030zwBNLapZmSD8GIJebiXA7tfEGAkBHk62o
-	 atMC+kOw1TLhEDErQEPTK8uF/h5DSFYCjsmUn/BFVC5EggmiGpZqveVgUXTvdco++N
-	 QCzRUQ2cgo2Jw==
-Received: by mail-ej1-f72.google.com with SMTP id a640c23a62f3a-ace942ab877so4796266b.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 00:45:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745653522; x=1746258322;
-        h=mime-version:organization:references:in-reply-to:message-id:subject
-         :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xQG8aR91QUiXJqe0zGBSMh1PwbLabEkgq2LJTt+r2Gg=;
-        b=C8fH4Z1xyJIaTE+qAHyuYWpn59CUhzVu7qUoshta8MsY+FTXG+4AomhjihLAlKLxM5
-         XhL2G249CSWZMIaoIpRnH5Dw37JFw19z0xgr6dmhQeR6kZIMDhoit7Zy6SP9YFSGMsSc
-         ZPRO8mo/Dj1neSPjk0IrRD/s5Gin8USveb/QQanCFLAjJJd3BQFSsZ3Yuu+xK+kHwltO
-         O4VZ42e6qbW3KspRLWIJny2YbG79mIsQmmfHEGAP0EfBm0MF+DKeCaqkzdeostjStlXw
-         jyAYdtELeH4Wv1rouDXJsTOvHmnVr6Vo+7KRrrc7leHkh2OltxrVGPqV+9zz/gxjnSzx
-         67uA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiIiRoicHuKXwLNzqsO0ukXhpj+/q+bIkLW7DxaIlnObVZnHT5Wsil0rkJXak4mr900CF5PUoSGyia@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUevYypGe6cDIW4f7AW2FYFSyA2Sowx0/Q6T0e74RqLMgjDoDa
-	X1faGDw1vJh32VT3fgS2ugY1i02kECRsY5f8uSOfKFYLdQhPx1VIHn1CI4LDLzlqO5n3v3DpUI2
-	tQw2VjPxnwlrSMPJ7IyAkB2xPapPR+spLk1C33vOCuzLr2Fo6eCAymu8LPZlkR2kKUYFFrne9dH
-	c=
-X-Gm-Gg: ASbGnct/jic9x20BRLCqEYriUI/b5OnSu/oVoIVnKTOdOJIiIjGEAXyZsoyNOlZNhke
-	wnZm0+iucyBn3n3hsyBtTbOR9q0ONDMOjiU8MSOrsI0W0YhF6ZzDgn53u2lakrhvLDm98F+Ecqh
-	muku/2yTtDwscs8tO3OncVvLfV2BZXrKrMKY1CO7VtuRhG5nqLQ+2E0C2dvUH94G63whLkERHFK
-	OnQWSxBhC5Y+LNA4wCXMPLOa7N9ELiHmYPtdEM+i6H1DfUy8P/xMsdZxNydOaKtMFdtK8Z4ZoLb
-	SabfcEPOuwiUrrg+vOBgB0ibr3lmsSDQIuO2uNCIIA8ohd4OwmySRw==
-X-Received: by 2002:a17:907:7f92:b0:ac7:4f1:65c5 with SMTP id a640c23a62f3a-ace84b4c6f6mr175862666b.54.1745653522571;
-        Sat, 26 Apr 2025 00:45:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHFac88syXkSEHa373nY7+k8VjAiVo/ZD5gaPuEp01MgkPmzBDXRMO1qk5C5k/b8KxWKQSeAw==
-X-Received: by 2002:a17:907:7f92:b0:ac7:4f1:65c5 with SMTP id a640c23a62f3a-ace84b4c6f6mr175860966b.54.1745653522112;
-        Sat, 26 Apr 2025 00:45:22 -0700 (PDT)
-Received: from smeagol (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6edb1a48sm256429866b.179.2025.04.26.00.45.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Apr 2025 00:45:21 -0700 (PDT)
-Date: Sat, 26 Apr 2025 09:45:15 +0200
-From: Juerg Haefliger <juerg.haefliger@canonical.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: x1e80100-hp-omnibook-x14: add
- sound label and pull out the model
-Message-ID: <20250426094515.193e5f59@smeagol>
-In-Reply-To: <mit327e4qp3hch4xy6qmqmks35tq5w35rw4ybvs5s3q7osxbkv@bzvon2u3jsmn>
-References: <20250408145252.581060-1-juerg.haefliger@canonical.com>
-	<20250416094236.312079-1-juerg.haefliger@canonical.com>
-	<20250416094236.312079-2-juerg.haefliger@canonical.com>
-	<mit327e4qp3hch4xy6qmqmks35tq5w35rw4ybvs5s3q7osxbkv@bzvon2u3jsmn>
-Organization: Canonical Ltd
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B6C86348;
+	Sat, 26 Apr 2025 08:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745654548; cv=fail; b=HwWiCCVKPky3FinEfhvYknc2vDsecUiQ/lEZtKGyUrK4JHc/+O/BkYblwVEHLgj91U+bTExpJ4EJvPEyfWPha04sWLaWQJy0xOPJKf7q/CbhYP4lTwNjmTCLDiO6s9gHfe6XCdUmVkCgytvkmrgivRWdnjWy+oiwEwojdsQGAE8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745654548; c=relaxed/simple;
+	bh=U+8FP/x9LZle2iCgbYh1dEAD3pb/exuq8lkYcBj1G4g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T/987j0milhU6KTJmFH5X86iV4R7uVyQu1c4HdcZg6j5AH0CbDBI97IRsJDw5S3jn7giTiZXr2OwHS9043P1lbwDqhxMDZTXnZVBHvCRMcn/Q/1fpTHzocXShF6rYrmFZGq/UYZFKASWJG1YOiSiPOvumrD/hXRLDyCzCAdfODw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=DnT/rlz5; arc=fail smtp.client-ip=40.107.220.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MAyHeJVsxD2h5TJ9fRF2FFgTYIfNW9KeD0uZgY5dy1iHAN544FETYN99/GOZPJuk86D7ZcR48IxxKbmUnIN8ciM676uGQsBiq7LFnU8zMvTAKKyXSZkBvAn9ETCpykJGVCJy6vFihsT5CITlBtq0UR7lHhCXtG9mCaVuqyxpUX3rsXZtCrfzvAjY+YbqtKviwPzeQT+/dRZEKraZjr9WOKFHf12zKm3CC/ECyLv+CHvNs7NRpt/dbeXIZdyoCVVYkidSjRoHIqNfriVs9kJIdD0S+lAEiy0hb9407iYW9lKpbhAwL67ovyfe47BsmHWCJyRRakKO+p7qkS3coKvQaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l9iKqXQnkMA6z5k7QiSf/jiqjOgw71113zOXIOODwtE=;
+ b=NSF+3x9isyeiWK8GcCu3Fg1A/4qAFlxn7IJsO/EXqYWuxFhOIjWXjK54ZaCez1FRQactUhs6SidP2egDekDbTk3VYaTK7lsWKiCMqwwFnmAGST3su4QvF3BKWv8acCwe1CCMf0d6ZgKLjw8YIPPIvndSiRP0UBgfCFfzb42lzuxmkx2xvy+35HpqJkDpAPHT6BJhVmviIFAKCAl2pNmfuaWExLJEDWt/H9toeHdiIJ5456xhFGjJcWThbWjhWkkE1MZ+MYlQMo4GraULv84YqkDLqB2VM+Sf5QQBZX7GMJTdONb6SL1sJyePuuvkja8PmjnpqhFz/x6ZIhZaqs7Jmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l9iKqXQnkMA6z5k7QiSf/jiqjOgw71113zOXIOODwtE=;
+ b=DnT/rlz51BDfYf8pF24YA97t+FVPriFbQB0JM80AlW5s41xzuHiaVYD9jkZqiV2SkucqoLSrT51SpX36w6aPBbXhVUmQ1uXbMAd6h5fWPPMWSFvEmMDCjwA/3iSPKhlreHxNzQ1i/1Fn6H7sT6zMNqXIEjVi8W+do/IIYyNAMK7noprL9sfRTgO8O2HoXZy1RWcCQfuGeJmFf9lQKbrj/4E8b9mckjHDX0bMT+hcLH+FfoMs2aRcKVmFjRJO+GTjp+MpYh4ZeG5S2WX642ZEiqevR0ju6QplJPMh8Azg7msSCACo87ynVc/mm8qy14dyu8oq1g1PBSEyxZokfNGa1w==
+Received: from DM6PR02CA0058.namprd02.prod.outlook.com (2603:10b6:5:177::35)
+ by EA2PR22MB5357.namprd22.prod.outlook.com (2603:10b6:303:250::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Sat, 26 Apr
+ 2025 08:02:23 +0000
+Received: from DS2PEPF0000343F.namprd02.prod.outlook.com
+ (2603:10b6:5:177:cafe::1b) by DM6PR02CA0058.outlook.office365.com
+ (2603:10b6:5:177::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.37 via Frontend Transport; Sat,
+ 26 Apr 2025 08:02:23 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=mkerelay2.compute.ge-healthcare.net;
+Received: from mkerelay2.compute.ge-healthcare.net (165.85.157.49) by
+ DS2PEPF0000343F.mail.protection.outlook.com (10.167.18.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.12 via Frontend Transport; Sat, 26 Apr 2025 08:02:23 +0000
+Received: from adaf8b6b5b83 (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with SMTP id B98B3CFB47;
+	Sat, 26 Apr 2025 11:02:20 +0300 (EEST)
+Date: Sat, 26 Apr 2025 11:02:20 +0300
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Input: snvs_pwrkey - add configurable force
+ shutdown time
+Message-ID: <aAyTDCEW47LzAxHR@adaf8b6b5b83>
+References: <20250315093455.1100-1-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/bs8.Q+hsXAsnuniQCI/K9Ru";
- protocol="application/pgp-signature"; micalg=pgp-sha512
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250315093455.1100-1-ian.ray@gehealthcare.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343F:EE_|EA2PR22MB5357:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99594bad-9c64-4d94-038a-08dd8498ad42
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9Iu10ODDjkbNfZ/0pJ7700vOK/wyMIUHN7Q9pkE3vDPKKYGJZEQYh8Tz2kUF?=
+ =?us-ascii?Q?O5Y+ATfqbvFZKSwqkldp1G74W7Ql3euXhVmUq+kOV1CqYFscQOBaSY4SmPJZ?=
+ =?us-ascii?Q?OVku4OJLBobFvfvAqKXmAlbcT2POrBDD76ksgsWdrcfa5EMRc08QLy0H5SeM?=
+ =?us-ascii?Q?azAuOWLTkwcQ8VTLKrVyp+eIpd7J9wpVwEP+rWWPQCkD28IwPsgGCbdRoSO9?=
+ =?us-ascii?Q?uMOinWXSeoTuUwG+whcV4ZUZV4XY8HiWmFHHOg7cZz4fyzo8WVagrIKp4esy?=
+ =?us-ascii?Q?sXl8zoz4+B9lBlcIyupDjEgaU6+60p0rU4G5uRgk7k0ykwUUACJr/12PQM5F?=
+ =?us-ascii?Q?CypONAJVMFLziUHQqhcEfcFPKj6mCjfZgdnnp8J78aM0+oo9QmDJFYiDY7W8?=
+ =?us-ascii?Q?Wh3qQ33fOpiTFucYTXGFWgcgZi1X5i3rt87L9awh0vb67YyB7ctVxX/v/9YO?=
+ =?us-ascii?Q?LL16hLzFf57N7HlSH39hcX/SJknTO0Bpb0ZZBVPnrLvgLL8requlWP3RnxRM?=
+ =?us-ascii?Q?Itf4XKryOUCvfHgrGJe0qC3bLN2JrszbNasYngUPasGwR6wJ5thRYdEckhfa?=
+ =?us-ascii?Q?zqzhJKHqrMam+CyGFmbMf3p1ZcgKrMjws/cqGXiecLFonJSoOpz5LzLItvqR?=
+ =?us-ascii?Q?0MTdH2SezUMsMqRDW9tLGzGSXzd8EshB629C5G6tedbvhtuV51QK/0rCl/gg?=
+ =?us-ascii?Q?8SXtDkFijAT3ZekUxm93qeyRhhbQy3qYAP8nq4p0SjzK1I8hIoenTNLHT+3y?=
+ =?us-ascii?Q?zel89ykjW2wCAp3zt8u92gegwuWmh3j4rtFVRd69PsJfaxxsTfy/cy2uy5n3?=
+ =?us-ascii?Q?hSgWpH09+0GE3cV23e+GsiblFrTWn4KwC4w+CYkl6U4Sj5FkR49BVGYkodlp?=
+ =?us-ascii?Q?cll/YsPbxnla+0klE3xPXNxjRx/Y7OfXjEseTj+T+L2UCxG2dkxlS5mUpdoF?=
+ =?us-ascii?Q?w7sT3gVl58B3cu38AHcOr4mkBAEDmf3Ir9VKTygvHL7FkPg+kjIXr/X7Fb/B?=
+ =?us-ascii?Q?aiURKQrKIRXHCWl9aqH2LA4fOmrARwpOquAQr0IdpkYJMXJxuyezGxLmTk+9?=
+ =?us-ascii?Q?NHdYiQj3FksAKQv+fHrri74rIsYWppsaBbA82K/7cTq8m671F4YJx/kTS41O?=
+ =?us-ascii?Q?jQNmoZBCzfe3hr92A4l0xj58x5ls+VKYPMJXnhuRaNFqY5CaRnlUcE3AGMXN?=
+ =?us-ascii?Q?Ypxa9TWEtVUihfThFWP6O7jMuz541TVpp8QDGRWKqnFtPNPIa9/yDtlu+pfb?=
+ =?us-ascii?Q?XkA1iRbZ0m4oFqe8T/7c6Hh487tFGvw/nOZdQ6LUK6Mx5TOYfkExZfZ9ritc?=
+ =?us-ascii?Q?Et0NobcqSYZKvFWDWmi7p0onv4PMVWnUXerSzXQzTFi8Fnu3/U49LespPLil?=
+ =?us-ascii?Q?R3Qfr1mDSazGar5bjDHtJupIVazi5awFCh/uCyjiiKmNcKJBilT41A6CbEww?=
+ =?us-ascii?Q?SMUFsNFycfnwd0LHwf7XMknKiKKi2xjrlu5VsjtqAhz7mLut4U/UYFUFj4Hh?=
+ =?us-ascii?Q?VWuqW7Ca51/rLq1JTUDK1Pz5l9NNq0nyiPXW?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2025 08:02:23.0679
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99594bad-9c64-4d94-038a-08dd8498ad42
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay2.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-DS2PEPF0000343F.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: EA2PR22MB5357
 
---Sig_/bs8.Q+hsXAsnuniQCI/K9Ru
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Sat, Mar 15, 2025 at 11:34:53AM +0200, Ian Ray wrote:
+> PATCH 1 - update binding
+> PATCH 2 - add support to driver
 
-On Fri, 25 Apr 2025 22:44:42 +0300
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
+Hello there,
 
-> On Wed, Apr 16, 2025 at 11:42:34AM +0200, Juerg Haefliger wrote:
-> > Add a label to the sound node and pull out the model name to make it
-> > explicit and easier to override it from other nodes.
-> >=20
-> > Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/ar=
-ch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-> > index cd860a246c45..9595ced8b2cc 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-> > @@ -174,9 +174,8 @@ linux,cma {
-> >  		};
-> >  	};
-> > =20
-> > -	sound {
-> > +	sound: sound {
-> >  		compatible =3D "qcom,x1e80100-sndcard";
-> > -		model =3D "X1E80100-HP-OMNIBOOK-X14";
-> >  		audio-routing =3D "SpkrLeft IN", "WSA WSA_SPK1 OUT",
-> >  				"SpkrRight IN", "WSA WSA_SPK2 OUT",
-> >  				"IN1_HPHL", "HPHL_OUT",
-> > @@ -1691,3 +1690,7 @@ &usb_mp_qmpphy0 {
-> > =20
-> >  	status =3D "okay";
-> >  };
-> > +
-> > +&sound {
-> > +	model =3D "X1E80100-HP-OMNIBOOK-X14";
-> > +}; =20
->=20
-> Usually the DT don't use this idea. Could you please bring the model
-> back to the node? The label is fine.
+Would there be any more comments?
 
-Hm. Maybe I misunderstood but isn't that what Krzysztof requested here?
-https://lore.kernel.org/linux-arm-msm/bb95af7c-5e88-4c6a-87db-2ddd1fe211a5@=
-kernel.org/
-
-...Juerg
+Thanks,
+Ian
 
 
->=20
-> > --=20
-> > 2.43.0
-> >  =20
->=20
-
-
---Sig_/bs8.Q+hsXAsnuniQCI/K9Ru
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIyBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmgMjwsACgkQD9OLCQum
-Qrd7LQ/4+q4xmthISwE892TSn8RgxS/c7Ti1v75eDFMPcuMXBPnbzt7ZLrRKksFf
-jILKVaqj/wxNrGx9xcZPy4KLMY3IQL2mSdgsEYtEKE5F0HxasMpFCo3caHZHR4+Z
-q5zuBLw0nOpOrDKSatHjlLefxWQdYOWhZlkzullTZrouh2IJ8jrIAVRGk/EJDyym
-6dSXwczKPhX3VLyuEdTNnwSpkSS68avDHHxhwc9Hm/ORbY6N91BR+OABZsJ9mGKR
-m7jDQUQkWeiqzNJWpyvE/0LmRUBOvHXA9xSEPX1NP5lyieCP6zjLmEfLYp7/wNN7
-4JAye09lIYZPKxf+ZiFPIQkzH00+eFC7k+1Gg80PXMJShHU+JzMXbfMp15e3VSVy
-hWhso40J6qAaLAuaMwEMR7Gs7Ozxgjzph2E0/oKyft78Sbx5eyHIRDlPoEkCyPP6
-8D5dOBXQprpB1YViCsjBekcfye0PqKRqZnZu1d/dQSDbOYk7Uevw2EmGfzSWZ1cc
-alfzejgVtLrnzAinWdr0A2YzzV5gqt2l0D/WZ4Ac2zaQC82oXeCCS0Ia8W9nTpIY
-WdmwZkJMyf+Pg1aCy9YZ307vltIPDkKitY2NPyoHlS/184AEQuMp9P7dYcUi1Wdw
-eKv4spD6t6WZtwJKU0b7xu8bQznbVXt8wXxjP3SFuZtR0GOLvw==
-=nqY8
------END PGP SIGNATURE-----
-
---Sig_/bs8.Q+hsXAsnuniQCI/K9Ru--
+> 
+> Changes since v2:
+> * Fix dtbs_check (thank you, Krzysztof, for pointing this out)
+> 
+> Changes since v1:
+> * Drop binding
+> 
+> Ian Ray (2):
+>   dt-bindings: crypto: fsl,sec-v4.0-mon: Add "power-off-time-sec"
+>   Input: snvs_pwrkey - support power-off-time-sec
+> 
+>  .../bindings/crypto/fsl,sec-v4.0-mon.yaml     |  5 +++++
+>  drivers/input/keyboard/snvs_pwrkey.c          | 22 +++++++++++++++++++
+>  2 files changed, 27 insertions(+)
+> 
+> -- 
+> 2.39.5
 
