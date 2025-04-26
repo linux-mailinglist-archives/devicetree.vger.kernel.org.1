@@ -1,126 +1,135 @@
-Return-Path: <devicetree+bounces-171146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E0BA9D7A7
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 07:19:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718A9A9D829
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 08:12:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D1BB5A5C47
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 05:19:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 683F37A8800
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 06:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E1319CC02;
-	Sat, 26 Apr 2025 05:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558871A3163;
+	Sat, 26 Apr 2025 06:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="br8Sn5oJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ckK6Tm3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1CF029B0;
-	Sat, 26 Apr 2025 05:19:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B57B19C54E;
+	Sat, 26 Apr 2025 06:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745644779; cv=none; b=e4dzdnQiBQlM9/l4L77qU0ifjgOQ3T9rX3l0kdF10siWEHlHn7/JYzUK5/5XJd2ZL0ZWquJLJx88QkR2LN3aF/r7Ej97sp0r8Sxb3pIJVhTtp6pliSU1g2RdEFKIaxFCXxMN8s6RCrjn7HF6sWYiru+IjmEZcEvF78gMDlFy6L8=
+	t=1745647920; cv=none; b=K5ADmV8cvM7x8VafsmlqEfho8ObRN1iBgob5ZyDmDD24hm68qlvm7ubSdy8GzpIt+R21Ueoxlaak5jExbt3O/Ys7/I7PuZKoQBzLhbuf0WMDcH9FPLvIHweQxN8jSz4wdkQPwQwiadCN6cj0D+Plb7R0I65jqWVBea2r2cIxWoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745644779; c=relaxed/simple;
-	bh=9Tk4kop98w2lSr6Z5mOouvA3XaaXVtHJfJpOm6sjYs4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QZYUc5VU+Sp9tdfc6reLpIvIQ2j421Hej3+T/SjiVnwGYip76/QtMccA66Pf4P2hcqoDrGkrwnTKo3BrLYsxnPB3nrQkKYbcYWLIWUuKC+UV6KlOxorKWVWg8rrzipPwV3Ad0oOKFy8/PEwaSYDruJTo6Iq3+wSZvb1OzHaTu2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=br8Sn5oJ; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745644778; x=1777180778;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9Tk4kop98w2lSr6Z5mOouvA3XaaXVtHJfJpOm6sjYs4=;
-  b=br8Sn5oJjDmNcdL6DOPMjTop+9b6FUL/vXjwnp/8JWsCGCZkNoki4va0
-   EpAxEe3V0Mlm3YUnn8RYlaamqIum31dSTwLk2Nsxd9wcn8/mTCAIkGO0h
-   Oe9J9mERpnMgMkFOStTCsjGHaRf0cSCAnuT1gwE8Lqx3w2Fn5tvWu/APl
-   ILICAlE3q7/vJIGQtZXYbCY8hKLDd1SuYMQnd7YFSRitGZUD1P39YdcHz
-   FLIitr5nnalSCoBkatkGmyNvbZZ6NoXtNPAZB8OcvWm4BOz8DCfYvScl+
-   0W88+Y1M7eQ0KNt9or6AEtfhD1+WwEh/4V52G7t5rPQS7NT17Q1VXuKK8
-   Q==;
-X-CSE-ConnectionGUID: qZLJEgnpQUiOitFpZdi1pA==
-X-CSE-MsgGUID: RsJ7DSh8Q8KR6CtDAU8ayQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="64725237"
-X-IronPort-AV: E=Sophos;i="6.15,241,1739865600"; 
-   d="scan'208";a="64725237"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2025 22:19:37 -0700
-X-CSE-ConnectionGUID: 0Frs03buSWG25IAdY7GLsA==
-X-CSE-MsgGUID: /FaLD0w3R86Tlt1ZOcgp1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,241,1739865600"; 
-   d="scan'208";a="137884504"
-Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 25 Apr 2025 22:19:33 -0700
-Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u8Xwp-0005i5-0u;
-	Sat, 26 Apr 2025 05:19:31 +0000
-Date: Sat, 26 Apr 2025 13:18:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] coresight: Add coresight QMI driver
-Message-ID: <202504261305.WCDIwfd5-lkp@intel.com>
-References: <20250424115854.2328190-3-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1745647920; c=relaxed/simple;
+	bh=aT+xGUchroXRoD/b0GsZJMVUJdUJhkoUaF5UPPNynWY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jqpGVUWOuutQz8QVowq2u8AjYfhFLXqv/GRX/1YYbyCjDNOCNTWl4xO04WEut2GudptVhfLd5CWvsWQGy0vQHwbCzpQ6frHAzZ6eTCUozyuM8rWKQ2ztAGqcqqwcyT+XlS4NmdxMlNBz/S1RXbvZKFjebRoyQwZPuM8PCw2tdPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ckK6Tm3E; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5f4d28d9fd8so3683126a12.3;
+        Fri, 25 Apr 2025 23:11:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745647917; x=1746252717; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=P38FO6+njKGYbNLvlE2BiPsC4uR35LU84o17Ihkf2Ts=;
+        b=ckK6Tm3EYnZhsVi23zIgs0il6x3pZNa8oEF22+4SDf65dKzBWlPWY3Di21mGKgWVdN
+         BHjFKoRUAL/usqNNAYb7HPveym7e69lXhUi8gPvb1IQRSQEcCFeSm9t8NvrtA76jwZ2L
+         0T76G01AWn81m1ycoi2/zNQJ2lm0fSlEmkNUnqR0Hd4WwQOcYcp88Iduj+J5AGI8+KFp
+         05tKmMppdC+DuKM8wsIqpZUdDMiszmeauldCZ+akgR3jUJpag1x4ganmCYLAgbySQ+6s
+         vxiv9qCIrvLLMX0bTPcwkT4hJlzTr6/b76ENVhDLeoVK3dp+WSauRdOtvj15vUvkHVeM
+         O3Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745647917; x=1746252717;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P38FO6+njKGYbNLvlE2BiPsC4uR35LU84o17Ihkf2Ts=;
+        b=wKmZF+DN/2FktAeA5x5lZn8BBzcFNbGWW/p9tWGlTHkKMiPSGHi6hQrBCkEk9YWzi6
+         WnTAMKT+VDzIjPgPvG8KvdWbCO3gLoIFTiXyWHFtq84qtd4iIQMaciTkyqAtmQIVuScA
+         gIy9oMi24JyUq7KyJapWU5xRIjblB8Fzh8yVwcI8b5mG1e0CJzEc0FndTaJFIXBz38Da
+         4RO06KyOfwRyXE6AVi2Tmkq1SShlNv9YvtXztIh6DLytKREMgSJJQGxNkuSRyg9FZMNn
+         ya2CgtbwKlRVxPkGePTyKDmiYvV4JS/5xknJ2X36DTNk7QdKL1a6y2XWGtcAsQtH0AmV
+         i5Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQjmbWiQwwgw8dTtlgdMjBppH+YkP7rrCh9zdM8DA79ADWzeRiSWR1t8wGbzTPaoGgFAgHbYoYz6DR@vger.kernel.org, AJvYcCUtTVXAfO3iUuODU9KDBtyJD2VyJ45o+Mlwru9YeUACE1QrcwxfT58QgOkVwPLXetJaZr7oQ+G82tt91/5GtiFnIRU=@vger.kernel.org, AJvYcCXSfM7rx1eG1cw2HkQHA2UzpaTQryH4sDtNVxsDQCq68seUzX9sdgV8S8PhutDn1LHc4C9OLH6GyJEOQwfm@vger.kernel.org, AJvYcCXcfntMSjMFb7KuXNKyvLYJrAio1Cvo+2ZJdXL1SXrTrOV82WxTpCAUQVkRlgWYFrM+PZdPe3vWuGnS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2x48zI88s+VpWxytDzSPMK8JqQLb/dHHxHeL4Wl82zHVPHpO6
+	Ds0M+5k4VVTQufLeNWq8JIxn8jvj+PVIYmn06dP4TEpuYWCA3ERsbgXcdY1D4/fAUYh/yz1umXF
+	4MyvA1sCzr3D7UuDS6a/brPBqTC0=
+X-Gm-Gg: ASbGncvZ9Yf2yw5weGg5YeuDP2Sh0aP9jiXlSJFXeWx33TnM547ES1fA+MpbfhnTU12
+	K6trnBBMKdsKGRwnH8hD5yiY7BX+9GBxU6/UseqcaB2GlKtKhe/qA2+Z3eRDfF9irHLB9Ah7Kj4
+	JImPRn9qXhfMgs7oUeCdBl
+X-Google-Smtp-Source: AGHT+IHU2LAHVM0ylRli8MpkgrQDDetTqppf6CoDV9/WpYVkZ1mZ4e/r3+sZhdqb/QIeFysUMK1woTg4zHQWOMLWRkI=
+X-Received: by 2002:a17:907:9483:b0:acb:b5a4:ba35 with SMTP id
+ a640c23a62f3a-ace848c047bmr165437266b.2.1745647916581; Fri, 25 Apr 2025
+ 23:11:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250424115854.2328190-3-quic_jinlmao@quicinc.com>
+References: <20250425132727.5160-1-linux.amoon@gmail.com> <20250425132727.5160-2-linux.amoon@gmail.com>
+ <34087c68-442f-41ec-a6c0-dd063f6d44d1@kernel.org>
+In-Reply-To: <34087c68-442f-41ec-a6c0-dd063f6d44d1@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sat, 26 Apr 2025 11:41:39 +0530
+X-Gm-Features: ATxdqUGVUzKx6XU_cLPV7j0MBc0wnh_fXqMndtXtKNtM0VKtPEyXHniD99OhSmo
+Message-ID: <CANAwSgT+ZXacTZJzVbu0DQfYQYUUjMc41jKnn7E_E1wnhY1L6w@mail.gmail.com>
+Subject: Re: [PATCH v1 01/10] dt-bindings: clock: Add RTC clock binding for
+ Maxim MAX77686
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chanwoo Choi <cw00.choi@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, 
+	"open list:MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BO..." <linux-kernel@vger.kernel.org>, 
+	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Mao,
+Hi Krzysztof,
 
-kernel test robot noticed the following build warnings:
+On Fri, 25 Apr 2025 at 20:14, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 25/04/2025 15:26, Anand Moon wrote:
+> > +
+> > +  The MAX77686 contains three 32.768khz crystal clock outputs that can
+> > +  be controlled (gated/ungated) over I2C. Clocks are defined as
+> > +  preprocessor macros in dt-bindings/clock/maxim,max77686.h.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - max77686-rtc
+>
+> So you claim RTC is a clock, right? Did not even think that RTC has a
+> bit different meaning?
+>
+> But regardless, this code make no sense and was never tested. It cannot
+> work.
+>
+> It reminds me previous approaches with whatever patches you found in the
+> downstream...
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.15-rc3 next-20250424]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Okay, I found the MAX77686A datasheet that Hardkernel shared long
+ago and tried to interpret the information in it.
+I will remove this repo once this is done.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/dt-bindings-arm-Add-CoreSight-QMI-component-description/20250424-200202
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250424115854.2328190-3-quic_jinlmao%40quicinc.com
-patch subject: [PATCH v5 2/5] coresight: Add coresight QMI driver
-config: arm64-kismet-CONFIG_QCOM_QMI_HELPERS-CONFIG_CORESIGHT_QMI-0-0 (https://download.01.org/0day-ci/archive/20250426/202504261305.WCDIwfd5-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250426/202504261305.WCDIwfd5-lkp@intel.com/reproduce)
+[0] https://github.com/moonlinux/Samsung_user_manuals/blob/master/MAX77686A%20Datasheet%20REV00.pdf
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504261305.WCDIwfd5-lkp@intel.com/
+I have gone through MAX77686A the regulator and the datasheet
+If you have some improvements to the code plz suggest so,
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for QCOM_QMI_HELPERS when selected by CORESIGHT_QMI
-   WARNING: unmet direct dependencies detected for QCOM_QMI_HELPERS
-     Depends on [n]: NET [=n]
-     Selected by [y]:
-     - CORESIGHT_QMI [=y] && CORESIGHT [=y]
+>
+> Best regards,
+> Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks
+-Anand
 
