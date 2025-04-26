@@ -1,171 +1,161 @@
-Return-Path: <devicetree+bounces-171196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697DAA9DB72
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:20:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF2EA9DB87
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:50:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC08466219
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:20:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C8207B4EB2
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD0925C6E3;
-	Sat, 26 Apr 2025 14:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4944D25D21B;
+	Sat, 26 Apr 2025 14:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1LNy2a6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LIkd5rnR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A7E1B6CE9;
-	Sat, 26 Apr 2025 14:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CABA25D212;
+	Sat, 26 Apr 2025 14:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745677194; cv=none; b=M8nl7NzRisN0MUubZ/CVEaCar0ZtgbGwooQ9UHZFL3KjJqeMCJWGwNMDCxCYhVS5y0A8a/Y5xaInLvYjimzsSjqxuwuN/19Yw1sXsqNH/7ayDiXBMmO0c5wXn5V3HfJYzp+Z5gTeXz0s12cmkpZ2S6UZpixiKay5tj7AOcOPHxg=
+	t=1745678965; cv=none; b=GPLK75zNH63nPrDg8V/YCxtDQvGueXQatxTZblGczuAPoWlyHV/qgD7ISjP84UFQugU/NF3d/+U+qkhflNhCFy+3NP3C28tkS0il3Kn6VO0sxgKPucPTGC257OXNH4ulWtynxZpt6FbRVvYbtF0CLrB4fPK9ADg4l0WojOww8qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745677194; c=relaxed/simple;
-	bh=zvjiuLsrY0grFT63hFRfh2MOqT5Pm8LhV/lN+C77p1s=;
+	s=arc-20240116; t=1745678965; c=relaxed/simple;
+	bh=TCjIUMQhUHnSLDDQBZcImrdXzq+N5thjBf/twGBfmig=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TwzLm+YzpAfgjDQKTuj1jOC/NndVwbMA+tX+msUgkRgowrGnuOReF5JXs8EDUUahgw4Mn4Tf6zk6YVVAoe9NTq+ywPco8l0XLRNKA6Shv4ZHuBmS6Hx4MQeWBHM2jgl8zl5M8y4iIlUoCJK3wJ7NIAT5vhNF7nQvjJudVg6yrf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1LNy2a6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 651CDC4CEE2;
-	Sat, 26 Apr 2025 14:19:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bGkDjUrB6x/nlv0VI2EtY/znBpjxV7tzMzV+gU153f8olnts6/Yww8EaKUKuLVz3FBt636fldKmAWcAx7AWU3zfVrUKWFVGijMB//TjpRve/LBtNpI+Ng42haSHianyXm5AiF5Q+dK0rW5GFhnoTaP5JVKmnVcMgG2zxRqaHyL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LIkd5rnR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489C6C4CEE2;
+	Sat, 26 Apr 2025 14:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745677194;
-	bh=zvjiuLsrY0grFT63hFRfh2MOqT5Pm8LhV/lN+C77p1s=;
+	s=k20201202; t=1745678964;
+	bh=TCjIUMQhUHnSLDDQBZcImrdXzq+N5thjBf/twGBfmig=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p1LNy2a6qCLSl3OD9CFK+g4now/LWDkSE//6zT+6oHGc2fjacRMb9da8qAvRYz2tu
-	 NxprnHpp78nxX2xbE668fgrgfLK/aNxtI/vOS5nV30j0XqUstHH9wKhhaBzPyodSQL
-	 QHmo5z/b0BygUBI4s+FPjMolNFUJ544hm94SNyrJGyzx59Q2pTTZm+8ZHVBXFx2x7P
-	 Ck2LvzyAa290/kbbKA6ocG64TheAzedxmVn5ocUgEpRElqjXXED6SEaIunEhMB0ub/
-	 HUBjZyYK12HyVViHYmSlfWqMJ+mzMtKpMpxzObSzGl7hHjpzin4HJRPtOtdnJ6muOI
-	 zBWh8C1KEZkMA==
-Date: Sat, 26 Apr 2025 16:19:47 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Dirk Behme <dirk.behme@gmail.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
-Message-ID: <aAzrg31NB2g0X4qL@cassiopeiae>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-4-remo@buenzli.dev>
- <aAuryiI0lY4qYyIt@pollux>
- <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
- <aAyyR5LyhmGVNQpm@pollux>
- <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
+	b=LIkd5rnR5sgsAT9xGm2RZ29iCkLdlLhhuRACunIz02F+phiTirenEhGm3Yqn6/rdD
+	 GEgEkPwpj94RxXahsaU15YY4ycebNo0dojDZ8YujYFz8Or51Oxjli/y679Sm9Ou9WW
+	 MA2b7djDd4fnQHlVgp8QT1ZwoOMPDE4FuUKc9O98QDTlFGArLdWgXOYTSo7DUazvTC
+	 yj+RnGbpuAUStGUikBd2MdfNz4rM/y6cDwm9YJYYwA0iXRNJpF29/c2sS4LznXFgYY
+	 1I0xFVsyA1tI57F0/k2Fy/SwsJ/XSVHGa2WVkWz8DdDcx3Iz/pxxZvxsH6cvxhpc2U
+	 Nx3lWkUSO1X1w==
+Date: Sat, 26 Apr 2025 22:32:34 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Min Lin <linmin@eswincomputing.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+	rafal@milecki.pl, Anup Patel <anup@brainfault.org>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/10] Basic device tree support for ESWIN EIC7700
+ RISC-V SoC
+Message-ID: <aAzugucziBi4Nr-y@xhacker>
+References: <20250410152519.1358964-1-pinkesh.vaghela@einfochips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
+In-Reply-To: <20250410152519.1358964-1-pinkesh.vaghela@einfochips.com>
 
-On Sat, Apr 26, 2025 at 01:08:39PM +0200, Remo Senekowitsch wrote:
-> On Sat Apr 26, 2025 at 12:15 PM CEST, Danilo Krummrich wrote:
-> > On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
-> >> On 25.04.25 17:35, Danilo Krummrich wrote:
-> >> > On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
-> >> >> This abstraction is a way to force users to specify whether a property
-> >> >> is supposed to be required or not. This allows us to move error
-> >> >> logging of missing required properties into core, preventing a lot of
-> >> >> boilerplate in drivers.
-> >> >>
-> >> >> It will be used by upcoming methods for reading device properties.
-> >> >>
-> >> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> >> >> ---
-> >> >>  rust/kernel/device/property.rs | 57 ++++++++++++++++++++++++++++++++++
-> >> >>  1 file changed, 57 insertions(+)
-> >> >>
-> >> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> >> >> index 28850aa3b..de31a1f56 100644
-> >> >> --- a/rust/kernel/device/property.rs
-> >> >> +++ b/rust/kernel/device/property.rs
-> >> >> @@ -146,3 +146,60 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
-> >> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
-> >> >>      }
-> >> >>  }
-> >> >> +
-> >> >> +/// A helper for reading device properties.
-> >> >> +///
-> >> >> +/// Use [`Self::required`] if a missing property is considered a bug and
-> >> >> +/// [`Self::optional`] otherwise.
-> >> >> +///
-> >> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
-> >> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
-> >> >> +    /// The result of reading the property.
-> >> >> +    inner: Result<T>,
-> >> >> +    /// The fwnode of the property, used for logging in the "required" case.
-> >> >> +    fwnode: &'fwnode FwNode,
-> >> >> +    /// The name of the property, used for logging in the "required" case.
-> >> >> +    name: &'name CStr,
-> >> >> +}
-> >> >> +
-> >> >> +impl<T> PropertyGuard<'_, '_, T> {
-> >> >> +    /// Access the property, indicating it is required.
-> >> >> +    ///
-> >> >> +    /// If the property is not present, the error is automatically logged. If a
-> >> >> +    /// missing property is not an error, use [`Self::optional`] instead.
-> >> >> +    pub fn required(self) -> Result<T> {
-> >> >> +        if self.inner.is_err() {
-> >> >> +            pr_err!(
-> >> >> +                "{}: property '{}' is missing\n",
-> >> >> +                self.fwnode.display_path(),
-> >> >> +                self.name
-> >> >> +            );
-> >> > 
-> >> > Hm, we can't use the device pointer of the fwnode_handle, since it is not
-> >> > guaranteed to be valid, hence the pr_*() print...
-> >> > 
-> >> > Anyways, I'm not sure we need to print here at all. If a driver wants to print
-> >> > that it is unhappy about a missing required property it can do so by itself, I
-> >> > think.
-> >> 
-> >> Hmm, the driver said by using 'required' that it *is* required. So a
-> >> missing property is definitely an error here. Else it would have used
-> >> 'optional'. Which doesn't print in case the property is missing.
-> >> 
-> >> If I remember correctly having 'required' and 'optional' is the result
-> >> of some discussion on Zulip. And one conclusion of that discussion was
-> >> to move checking & printing the error out of the individual drivers
-> >> into a central place to avoid this error checking & printing in each
-> >> and every driver. I think the idea is that the drivers just have to do
-> >> ...required()?; and that's it, then.
-> >
-> > Yes, I get the idea.
-> >
-> > If it'd be possible to use dev_err!() instead I wouldn't object in this specific
-> > case. But this code is used by drivers from probe(), hence printing the error
-> > without saying for which device it did occur is a bit pointless.
-> >
-> > Drivers can still decide to properly print the error if the returned Result
-> > indicates one.
+On Thu, Apr 10, 2025 at 08:55:09PM +0530, Pinkesh Vaghela wrote:
+> Add support for ESWIN EIC7700 SoC consisting of SiFive Quad-Core
+> P550 CPU cluster and the first development board that uses it, the
+> SiFive HiFive Premier P550.
 > 
-> One alternative would be to store a reference count to the device in
-> `FwNode`. At that point we'd be guaranteed to have a valid reference
-> whenever we want to log something.
+> This patch series adds initial device tree and also adds ESWIN
+> architecture support.
 
-Yes, that would work. However, I'm not convinced that it's worth to store an
-ARef<Device> (i.e. take a device reference) in each FwNode structure *only* to
-be able to force an error print if a required device property isn't available.
-
-Why do you think it is important to force this error print by having it in
-PropertyGuard::required() and even take an additional device reference for this
-purpose, rather than leaving it to the driver when to print a message for an
-error condition that makes it fail to probe()?
+Per past experience, new SoC needs at least pinctrl and clk tree ready.
+> 
+> Boot-tested using intiramfs with Linux 6.15.0-rc1 on HiFive Premier
+> P550 board using U-Boot 2024.01 and OpenSBI 1.4.
+> 
+> Changes in v3:
+> - Rebased the patches to kernel 6.15.0-rc1
+> - Added "Reviewed-by" tag of "Rob Herring" for Patch 4
+> - Updated MAINTAINERS file
+>   - Add GIT tree URL
+> - Updated DTSI file
+>   - Added "dma-noncoherent" property to soc node
+>   - Updated GPIO node labels in DTSI file
+> - Link to v2: https://lore.kernel.org/lkml/20250320105449.2094192-1-pinkesh.vaghela@einfochips.com/
+> 
+> Changes in v2:
+> - Added "Acked-by" tag of "Conor Dooley" for Patches 1, 2, 3, 7 and 8
+> - Added "Reviewed-by" tag of "Matthias Brugger" for Patch 4
+> - Updated MAINTAINERS file
+>   - Add the path for the eswin binding file
+> - Updated sifive,ccache0.yaml
+>   - Add restrictions for "cache-size" property based on the
+>     compatible string
+> - Link to v1: https://lore.kernel.org/lkml/20250311073432.4068512-1-pinkesh.vaghela@einfochips.com/
+> 
+> Darshan Prajapati (3):
+>   dt-bindings: riscv: Add SiFive P550 CPU compatible
+>   dt-bindings: interrupt-controller: Add ESWIN EIC7700 PLIC
+>   dt-bindings: timer: Add ESWIN EIC7700 CLINT
+> 
+> Min Lin (2):
+>   riscv: dts: add initial support for EIC7700 SoC
+>   riscv: dts: eswin: add HiFive Premier P550 board device tree
+> 
+> Pinkesh Vaghela (2):
+>   riscv: Add Kconfig option for ESWIN platforms
+>   cache: sifive_ccache: Add ESWIN EIC7700 support
+> 
+> Pritesh Patel (3):
+>   dt-bindings: vendor-prefixes: add eswin
+>   dt-bindings: riscv: Add SiFive HiFive Premier P550 board
+>   dt-bindings: cache: sifive,ccache0: Add ESWIN EIC7700 SoC
+>     compatibility
+> 
+>  .../bindings/cache/sifive,ccache0.yaml        |  44 ++-
+>  .../sifive,plic-1.0.0.yaml                    |   1 +
+>  .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+>  .../devicetree/bindings/riscv/eswin.yaml      |  29 ++
+>  .../bindings/timer/sifive,clint.yaml          |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   9 +
+>  arch/riscv/Kconfig.socs                       |   6 +
+>  arch/riscv/boot/dts/Makefile                  |   1 +
+>  arch/riscv/boot/dts/eswin/Makefile            |   2 +
+>  .../dts/eswin/eic7700-hifive-premier-p550.dts |  29 ++
+>  arch/riscv/boot/dts/eswin/eic7700.dtsi        | 345 ++++++++++++++++++
+>  drivers/cache/sifive_ccache.c                 |   2 +
+>  13 files changed, 469 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/eswin.yaml
+>  create mode 100644 arch/riscv/boot/dts/eswin/Makefile
+>  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+>  create mode 100644 arch/riscv/boot/dts/eswin/eic7700.dtsi
+> 
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
