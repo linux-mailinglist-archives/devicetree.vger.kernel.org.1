@@ -1,101 +1,120 @@
-Return-Path: <devicetree+bounces-171194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0871AA9DB6C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:17:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 517E6A9DB6F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 534661BC26D7
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:18:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D35B1886808
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 14:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD831F3D54;
-	Sat, 26 Apr 2025 14:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F53322172E;
+	Sat, 26 Apr 2025 14:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RwPtB/qk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uN65lNPv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B93A926;
-	Sat, 26 Apr 2025 14:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF83A926;
+	Sat, 26 Apr 2025 14:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745677073; cv=none; b=u8I2HBjg63jwb8C2xpt4Uxu7xeKgn9wWznG22Fx27mgjPJb2jqH3sCCfhF44QSHh7hEWl6i91ZA3ThMLeh86E/VjsMPPlvGcLq+G5MZ3wszqWskPwrWxov9/0nNCNoLogNF6MUTkDr2Xn56YLaJ/rvgiNffMr+ROG5p4+kn1Rls=
+	t=1745677118; cv=none; b=H8y5danmWrFrwchXYjVYo99770oL7Dp66oDLzebwF0P5c16Y32OTfqSQvDxQ2Db2UVkGtE5TJqrEN3jYT5nSPg5Hl1/zx9FazhKG1DNO4k97KqmIDfsVfZgt/bpFU1xvCRRqDbYDmv7nOVfTZBzy6KVEsSWoj1EGLFM4Tlj/VOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745677073; c=relaxed/simple;
-	bh=cuEInkRwNerk6OIj59R3c5CceD+2y0SbZ4SaWSSSy+8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Jw3NM+J86tkJYd3fL3SvaRR06YDkGkq9IAxaD9djq1J1uRW9cb4sK5WbWG5F1Lfza5CeJ863GDlXjIn7w7vdm+znvYvYEsvOoW1IzVpK8n4N4Zs3z/iAChyKndMFB0xI+zKUBq5Y2lZiScmpZ/NJKLjPDczJU+MKHBNTAHZCVY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RwPtB/qk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16886C4CEE2;
-	Sat, 26 Apr 2025 14:17:42 +0000 (UTC)
+	s=arc-20240116; t=1745677118; c=relaxed/simple;
+	bh=QWynorMuxdxaqDDSFd0z/0rAPKadgWVwPtyQnTtZsqk=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Cp8yxdlgTT+Kv8dQlMUC+GbWn4BmIPpo4QdPg8MksjC/BU44aUK3ZnzCbfoJSNi65hlZoz287vszo750UShB53i1a8cHBcg/WSolakpfhUlH7IAHAsiLuFAc6nR420306yNyX2yhBcSxx94lBGcJ2YGNXNkiffIjSmj1wxGY2lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uN65lNPv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53D4C4CEE2;
+	Sat, 26 Apr 2025 14:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745677072;
-	bh=cuEInkRwNerk6OIj59R3c5CceD+2y0SbZ4SaWSSSy+8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RwPtB/qkxig3paTp7m1RpRlCAA5RCyqTq6FFtfQ1baIQuvGHBKJrFlIPHYIxg8aKn
-	 L7lPlhIMYWXER4bVjYgpPY0u+6LCAxfBAKEL/MamSkR27UwtjR3JUb6GxbNv4RO2/Y
-	 OEiKkWoqH5T/nhzmTPuFaog/hYM6LAF6rP7I9/vXfs71+3uVg9nygNYl1B3gYn5vaX
-	 2NiqWpm9w0qUA1vq06NiZZfOlS6XMSoFKScTiGBncYTpCgvL6ytnk9xTDO1mg3uIWW
-	 t58zlr1EC06lR9l5SapjKiz/Bn1PthT2rdzcGwqfppxkxKFT3+15QJx2oKNDJjwkR1
-	 eV+a2Ksxujw6A==
-Date: Sat, 26 Apr 2025 15:17:38 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Eason Yang <j2anfernee@gmail.com>, lars@metafoo.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, javier.carrasco.cruz@gmail.com, gstols@baylibre.com,
- olivier.moysan@foss.st.com, alisadariana@gmail.com, tgamblin@baylibre.com,
- antoniu.miclaus@analog.com, eblanc@baylibre.com,
- joao.goncalves@toradex.com, ramona.gradinariu@analog.com,
- marcelo.schmitt@analog.com, matteomartelli3@gmail.com,
- chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] iio: adc: add support for Nuvoton NCT7201
-Message-ID: <20250426151738.43f0d25a@jic23-huawei>
-In-Reply-To: <aAoU6iWGPkqjon7Z@smile.fi.intel.com>
-References: <20250424083000.908113-1-j2anfernee@gmail.com>
-	<20250424083000.908113-3-j2anfernee@gmail.com>
-	<aAoU6iWGPkqjon7Z@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1745677117;
+	bh=QWynorMuxdxaqDDSFd0z/0rAPKadgWVwPtyQnTtZsqk=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=uN65lNPv0Cr6jJKum+zRiWKGjzBojavY+MHfq+oe0fqgWos6dFikTlyVhxusCiX14
+	 Phu/gCRZVx7P54OLMtpzGRWRWaLMiE/ngj8iPp7xqYaMhXbQ22fsjU6X/8agJZ/9lj
+	 GQpB9wBL71cs2qK7E93mQDQHszmvTkMUXofe4hTQ0sYOjqjUGa2fPGVInjJoi4HLXQ
+	 OveXgxTJ/gE+KNC0wcGGlbhESxNIygsNFU7KAoweKXjiYrVBAIm9dAj5eiXYog7k72
+	 g3qdIofWV9fuQ8jUlUR9RNxY0YtwBumJbU3qKUr3MNbOyNcC799N+Ln6BaJefj6Xpf
+	 J2IC8u+g52SxA==
+From: Mark Brown <broonie@kernel.org>
+To: Catalin Marinas <catalin.marinas@arm.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Takashi Iwai <tiwai@suse.com>, Will Deacon <will@kernel.org>, 
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
+References: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: (subset) [PATCH v4 0/9] ASoC: add Renesas MSIOF sound driver
+Message-Id: <174567711430.3942275.11314439022546984930.b4-ty@kernel.org>
+Date: Sat, 26 Apr 2025 15:18:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
+On Thu, 17 Apr 2025 23:22:40 +0000, Kuninori Morimoto wrote:
+> Cc Geert
+> 
+> Renesas MSIOF can work as both SPI and I2S.
+> Current Linux supports MSIOF-SPI. This patch-set adds new MSIOF-I2S.
+> 
+> Because it is using same HW-IP, we want to share same compatible for both
+> MSIOF-SPI/I2S case. MSIOF-I2S (Sound) will use Audio-Graph-Card/Card2 which
+> uses Of-Graph, but  MSIOF-SPI is not use Of-Graph.
+> So, this patch-set assumes it was used as MSIOF-I2S if DT is using Of-Graph,
+> otherwise, it is MSIOF-SPI (This assumption will works if SPI *never*
+> use Of-Graph in the future).
+> 
+> [...]
 
-> 
-> > +	/* Enable Channel */
-> > +	if (chip->num_vin_channels <= 8) {
-> > +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> > +				   GENMASK(chip->num_vin_channels - 1, 0));  
-> 
-> > +		if (err)
-> > +			return dev_err_probe(dev, err, "Failed to enable channel\n");  
-> 
-> This...
-> 
-> > +	} else {
-> > +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> > +					&data, sizeof(data));  
-> 
-> > +		if (err)
-> > +			return dev_err_probe(dev2, err, "Failed to enable channel\n");  
-> 
-> ...and this are identical, deduplicate by moving outside of if-else.
-> 
-Not worth the dev vs dev2 distinction.  They are ultimately the same device so
-just use dev for both.
+Applied to
 
-> > +	}  
-> 
-> 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/9] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
+      commit: 749027309025a3bb4785ab8f20e18bc641fae848
+[4/9] ASoC: renesas: rsnd: allow to use ADG as standalone
+      commit: ce6949be36997f65d70bb6496bdfa4befff5bbab
+[5/9] ASoC: renesas: rsnd: care BRGA/BRGB select in rsnd_adg_clk_enable()
+      commit: a714b31225bce9ce2732f6193f28f371093492f0
+[6/9] ASoC: renesas: rsnd: enable to use "adg" clock
+      commit: 0cc88846cbfb3018c036a20390acb1e35de03e1d
+[7/9] ASoC: renesas: add MSIOF sound support
+      commit: c61caec22820f24bb155929f5cee8c1ccfe92f77
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
