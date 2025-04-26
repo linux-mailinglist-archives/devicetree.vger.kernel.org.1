@@ -1,166 +1,171 @@
-Return-Path: <devicetree+bounces-171172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AD50A9DA16
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 12:20:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23712A9DA26
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 12:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE3BC4C0125
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 10:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA4CD7B3D32
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 10:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2525922A7E6;
-	Sat, 26 Apr 2025 10:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4250227E8C;
+	Sat, 26 Apr 2025 10:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SDlSVt/3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ak7Bg+we"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5011A9B2B;
-	Sat, 26 Apr 2025 10:20:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB2E226CE0
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745662810; cv=none; b=KTMQSm6cOwqDXzV3Do89jhaRy+Lpc3oCtveHfjFAYDXtAjqbhQCTRLrme275zbqJ39/HTo9pzRzMchXROvR/CWeSzFI7hWVV11IDiAHJYRAKIE6pLfDxEKvmJnqj5ipj5R+AZA1lKYNC/p+/tk8pnsKcsld6gDvrVrgjS5va1lk=
+	t=1745664305; cv=none; b=tx7maau/TJ1vXdEkNyxM83cqLx7UcYkl+lJlaYnwldtam6qfi5cW0Y+8T8tp+pCWubJsneid1JXiEuH/FtOITalDXG4OO+TUZTRS4HxP1J9K+nFLXELPfu1QtvasUPYp9q0O436p0Y0s9jE62Vj3GVm3Wp++X4BMVgI5pz1La4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745662810; c=relaxed/simple;
-	bh=r6qhSCVHepSMhKb3TBUCUMvg1+07WGxAhrn4zgsPQuQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VCQLzvu0LE8neH560/Wfl3xOrEXcTZAShmglKCgLk7tHFcH/S8j5LpV2JAs7Q52UoIahcgbqm1peFiik63pVj4tXLYsabXyyx8mz2A03J9giNaljjgWc29iUSn/u2fMofOt5RAQtuYMEjN3D0Ypy4K22UACb6DWY6CnJJ4+XEwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SDlSVt/3; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-736b98acaadso3112427b3a.1;
-        Sat, 26 Apr 2025 03:20:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745662808; x=1746267608; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3Y/aVElFSf6SbTcMarcKVaSoPWzqKiwn3umcgmTvsik=;
-        b=SDlSVt/3IUGICWA+dBZqsReiBQJCCB+0DYzVE7BxLwFuXUxbSZeSZrCmqqju65CUG5
-         1oDfSigmwUR7br4b0SiLKEo7HQnV4n/gFNPNclhGlGRxeHqImOSDLf7CFOtRGjRpwn6O
-         EvANZmTb7q7gih9zQ2ESlj4xblW8MNcw9YNz65OCzXaWYf379JtX1wDSOOj6saqm07pW
-         oadLJkeUQuA750fdYrMvVnmG5QbB7ds7jSdyoZJGBha/qqyleP7Mj9kQ3k9mcBrYdrmp
-         yXqRlDQfBkQse3m/9MoR2ROI0S+EEX726GHLs53SnNsjf/wVJV7pO93ZXtPsZZyzQSVI
-         IbkQ==
+	s=arc-20240116; t=1745664305; c=relaxed/simple;
+	bh=W2cjkRemjCUenJHUNPy6mF05A9vEztYbyP+NpqiS4ns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SZwbYBbaNS+C8mwg3aYvTR9heQKN0wN3YmhOX77u5ruJvEd9tGEEqnKgW6h9G81dcHqnzK0vC+nVCMl0eGK6MzZPU+IJ3gVd94QXxkcev+2fYekwlfJpfo9N13zXRV/wUMJeiBpzO3eOB4pANryL+oRhotnyYSziUHfpUYXTvX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ak7Bg+we; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53Q0h63g023624
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:45:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Cti0cls6RpmnwuEVrPBosDHrl0E/TWcIksexIlUz1V4=; b=Ak7Bg+weLiLtmPbP
+	mt+dNjk8S9Gx2LEOfa1s2nCl+j+2sfhFaLdLzBEEGQngO1cZADpIMgoOTlSRH/fw
+	E6BzuUhRBfS5PHLSSl+egKF+GoZlBKBmcXLZYsdMbpc2fLcutXolg+H+5ZEJZBaH
+	R8U7jG0OQFIBayCER7RTOoXTDCP1vfn8Jek/obaDj8o3VUoW1MMI1wmvNzwHEAZH
+	i5P1Qniv9PrcxRchbcKKCHXijPr7M7BcUNcb6YCxeE2z12Rrn0z+rfA3bYPPMIPg
+	Xtob+VoaLSi/30Tu2ydzjb0ZZe/eWu6qdZQRDV6okn704V/E65/ftmrb7LiTLMLu
+	EBa89g==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468n6j9518-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 10:45:03 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-47ae9ed8511so6034841cf.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 03:45:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745662808; x=1746267608;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3Y/aVElFSf6SbTcMarcKVaSoPWzqKiwn3umcgmTvsik=;
-        b=bpjoHk5PyXD2LEyUvXflggNEwsCVAONcu28fi4dy8+Af2WvNUoEm/4W1TA78Ahvg6Z
-         D8DLu21VHXLmmRH5lug0rEJJzgjbhiuEtqE5r0qjlLvMqRy5mQ51koCqvOPJOrPIUJyi
-         /R+p/Uzr2MKgvF2bzPc7H6F7kspOCjp/ZQEq1IqMhJeJMssFQ1fuEIluQKhgHRFoY31t
-         dIq1z9TmdQLX3GT9cfdtznShEDojWfI3xDkKL8jDkkAGJF1upVcr5l8bk6QS/G0CFH6T
-         iTlb+yJg33IGKK2gXmvkjZnPmMI7r2Tqwg9iHArBcPxVrp4gyIKzn3HBO28FAfW62mqq
-         XYjg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPOgA5bAwPHSvbrlx8yueq6udvvfn1z73JH5Yx6AP5yFwBlw8kw1ZO2SvcZdqoRFFCekV3In7w4NA3@vger.kernel.org, AJvYcCVdZZKNtgYVqnDeEFD02P+vtfHy+vbKd8xohTCESCsZAgn5hERgrybULnMk+rYSEQj93i7FiUOnci2vCC/T@vger.kernel.org, AJvYcCVpq+ncQXK/i0e4yXPUySy9LqfM9V37p/Jn2MNU6IWwxjwR07s79LD103Gj1MvloNjgzelqcqBqTJK92A==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxM64yzczDfioiOx+Sh4qF9KLXklzsmvPXJXGY84XZAe7DDhdpu
-	FfnM+qf7Ev094QLDcr/zq+9mjnI6Ps22PH86kmdooGUUaUadYCOI
-X-Gm-Gg: ASbGnctWi1oTdnhpCZvF+Zc9FQFVFrCJGBvisTOvHwr2kMjJL7Ek1qBvSIhONJVYAZ+
-	i4vmu/6F27w2KeHTzjCmToF1ShRFFq2Rc0q6vYzho4C47U48zM2WOFUbf+cogjDYi6ZYhh9Vwp+
-	qTqKlFxuyDlwUBO/5LNNZA7jNE0L0CVLB81KCUjdCdN5aGk3NPtf88roRa5ncercmMRWSFPs1jt
-	Vl3Cj9bok4XgLa9uyxbGzM4+ru7pN1HPQ8aMyNk+ZTuVBgXwGHTcbNQuYQ2PfCOKzznyGCzENwW
-	dtexCMjxRO6FXS0Gt3lppNrO5ZS+cRsBk0B1ayDkntJfZzD6MsG+AA==
-X-Google-Smtp-Source: AGHT+IFAy5fk6L0wEqm376PHaHq7uRapAMRNFA7bfD3XZYSA+UlQ7D+4WYIC7ZczN3SNLIULqg/blA==
-X-Received: by 2002:a05:6a20:c6ca:b0:1f5:8a1d:38f3 with SMTP id adf61e73a8af0-2045b6c1ce9mr8606619637.2.1745662807510;
-        Sat, 26 Apr 2025 03:20:07 -0700 (PDT)
-Received: from localhost.localdomain ([14.171.43.210])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e2593f62esm4565607b3a.40.2025.04.26.03.20.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Apr 2025 03:20:07 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: christophe.jaillet@wanadoo.fr,
-	pavel@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/5] leds: add new LED driver for TI LP5812
-Date: Sat, 26 Apr 2025 17:19:42 +0700
-Message-Id: <20250426101942.10233-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250425101112.GB1567507@google.com>
-References: <20250425101112.GB1567507@google.com>
+        d=1e100.net; s=20230601; t=1745664302; x=1746269102;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cti0cls6RpmnwuEVrPBosDHrl0E/TWcIksexIlUz1V4=;
+        b=nX95ivC7VIaqrPBhOvonpUplmUKmV+oeynSfFS1wStK5x5LNpc3gswpAPqVNT/7U1H
+         PjhJoWkU396/k96s9jSv5wxS9fP8GgPKeJAlS3Ob+KLC6s62MMbLjf2z4NMN0Pq7xHwm
+         JYBPWKprZhIsS94NQmwq0eT/t3VYSSO7+BEXov4pJRjEzjw/FeHCilXntxWsmjW9HFiO
+         uYD5fyu274q76uMmJt0gBeLWui1up9gVJFtwOpJW/hPtupmvUGsXJTXcbHDYbLh7ftll
+         h7jBJbOsMkpwvQnEx+pP/0WFW8DvLrVrFW7PDppd7USYfWaf60/riXYvWxoNl6pIAbQ4
+         LPFw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+4hcuT4kr2WbjU173GiLdb3W6aACOgSXkLW2Jwe+QqUWrelbyLLhR2ClH/NWzb71ZosFCwi8N4wri@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpgoLUbJaf7a9v7Nn7fixs972lbXQGJgNjL8geDelNSMRhi310
+	dnOS1EiDtNKQXRm8dmqj/ZCMdbJ5kfKQZAigB1VGqX0ORX4DrloKay4a80Ga6HllmoZusDsrPWh
+	wjujhVX5PAc+w/F8U0e8AuPAKgkc1gmqgZDHwfSnxiipBye6wpZZJasjnLZ8/
+X-Gm-Gg: ASbGncvwMilyZz4gYyfhHY45FEaubx0DlMIYF8AOV/Mdw9RAX+L7dzb2GUCVUcJF3jd
+	g+50lZCSkjwXsG8fwt3JiJMNDYth1zGvQ3VrjSqT949hrrFl0sFPKu3LSKr9XvMiZbIIzUB31I9
+	oRY2WTwB6vpR2Ni2rb0E8aaxLc9YOBAVtOf6v8j82+dcjXZTKB9PJXkvbeFlj4dCm0uvHOcp9Xu
+	MI/U54f3ocW0pLuT+vybXb498dZD5aTcMhaedawp+HRV3vBzIKHL/0FuMXLfxR2njTY++CBvalU
+	FZlypbkNljkNh9qhAymx6Gd4tsL5+SpwmKEHvfqMpz1YDGgtV60R4k3POSodhyVtMzI=
+X-Received: by 2002:ac8:7e8d:0:b0:47a:eb49:273c with SMTP id d75a77b69052e-4801cd5eb1cmr33064891cf.8.1745664301983;
+        Sat, 26 Apr 2025 03:45:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG5ahbGaThCrsLU5YdXHhOSo0roeSKraRYtG07uhVbFeJV6F+w1ZPA4VBcrJMdVncIiFqK5Uw==
+X-Received: by 2002:ac8:7e8d:0:b0:47a:eb49:273c with SMTP id d75a77b69052e-4801cd5eb1cmr33064711cf.8.1745664301568;
+        Sat, 26 Apr 2025 03:45:01 -0700 (PDT)
+Received: from [192.168.65.154] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e41ad27sm268969666b.5.2025.04.26.03.44.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Apr 2025 03:45:01 -0700 (PDT)
+Message-ID: <306ce1fa-be83-4f13-bedd-97a20448d162@oss.qualcomm.com>
+Date: Sat, 26 Apr 2025 12:44:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: x1e80100: add bus topology for
+ PCIe domain 3
+To: Johan Hovold <johan@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+        quic_mrana@quicinc.com, quic_cang@quicinc.com, quic_qianyu@quicinc.com
+References: <20250425092955.4099677-1-quic_wenbyao@quicinc.com>
+ <20250425092955.4099677-3-quic_wenbyao@quicinc.com>
+ <4bb58766-a080-4351-87f5-79a98219171c@oss.qualcomm.com>
+ <aAt4TBrekUqyTjfi@hovoldconsulting.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aAt4TBrekUqyTjfi@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI2MDA3MiBTYWx0ZWRfX5DUzxAPpnYBW tkObZoN4LvqQqsElC5PqcRbv7kZ9NJNmBsfSdX2ECDm4a2WGi9GgRUL1JpnMLcZK8Y+O2sMQx+A 6QMg6ld/7m44Gd1AYsDgrM/bZWH08ERAEo/r/DQbGIMzEL0n+yEEn2/NnjIFv10h/j+1WX2bR7c
+ JViUG18/m0qWBMWisncw8l6T/VMsAN2y1ZhUAsKMRXuoVt3H+7FAOJBs/63AUd9BAzYfgf0rejY eQev3IIWnxncEMV/1s+39Gs87cNzheE1LB2ZcCYwicxfXihXG99ko8moCaSGJHa2TBEALAhAUGz Fqs76u38HaTAy/NqvLeF7Nj+iVxD3KLOtj5vgdEof1bXaEln5yIAYpN17BeK5tY2UzIbd95xSOb
+ o7fW59B5//vFE6RgePTR/9IvkrO1v0ACVFbQdlRNMNFoZ0L6qEXq6emPMzmbOn7QCsAl5kUm
+X-Proofpoint-GUID: Ox32QI_L5r7lhNVZur9tSpKAEmLkqnOo
+X-Proofpoint-ORIG-GUID: Ox32QI_L5r7lhNVZur9tSpKAEmLkqnOo
+X-Authority-Analysis: v=2.4 cv=C8fpyRP+ c=1 sm=1 tr=0 ts=680cb92f cx=c_pps a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=FwFjppTGKuqVC4zksNsA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-26_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ mlxlogscore=999 priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504260072
 
-On Fri, 25 Apr 2025, Lee Jones wrote:
-
-> On Wed, 23 Apr 2025, Nam Tran wrote:
+On 4/25/25 1:55 PM, Johan Hovold wrote:
+> On Fri, Apr 25, 2025 at 12:22:56PM +0200, Konrad Dybcio wrote:
+>> On 4/25/25 11:29 AM, Wenbin Yao wrote:
+>>> From: Qiang Yu <quic_qianyu@quicinc.com>
+>>>
+>>> Add pcie3port node to represent the PCIe bridge of PCIe3 so that PCI slot
+>>> voltage rails can be described under this node in the board's dts.
+>>>
+>>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>>> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 11 +++++++++++
+>>>  1 file changed, 11 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>> index 46b79fce9..430f9d567 100644
+>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>> @@ -3287,6 +3287,17 @@ opp-128000000 {
+>>>  					opp-peak-kBps = <15753000 1>;
+>>>  				};
+>>>  			};
+>>> +
+>>> +			pcie3port: pcie@0 {
+>>
+>> @0,0 for PCIe adressing (bus,device)
 > 
-> > This patch series adds support for the TI/National Semiconductor LP5812
-> > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
-> > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
-> > 
-> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> > ---
-> > Changes in v7:
-> > - Mark `chip_leds_map` as const.
-> > - Use consistent `ret` initialization.
-> > - Simplify the function `set_mix_sel_led()`.
-> > - Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
-> > - Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
-> > - Remove `total_leds` and `total_aeu`.
-> > - Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
-> > 
-> > Changes in v6:
-> > - Add `vcc-supply` property to describe the LP5812 power supply.
-> > - Remove `chan-name` property and entire LED subnodes, as they are not needed.
-> > - Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
-> > - Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
-> > 
-> > Changes in v5:
-> > - Rebase on v6.15-rc2
-> > - Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
-> > - Address Krzysztof's review comments
-> > - Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
-> > ---
-> > 
-> > Nam Tran (5):
-> >   dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
-> >   leds: add TI/National Semiconductor LP5812 LED Driver
-> >   docs: ABI: Document LP5812 LED sysfs interfaces
-> >   docs: leds: Document TI LP5812 LED driver
-> >   arm64: dts: Add LP5812 LED node for Raspberry Pi 4 Model B
-> > 
-> >  .../ABI/testing/sysfs-bus-i2c-devices-lp5812  |  144 +
-> >  .../devicetree/bindings/leds/ti,lp5812.yaml   |   46 +
-> >  Documentation/leds/leds-lp5812.rst            |   79 +
-> >  MAINTAINERS                                   |   12 +
-> >  .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |   10 +
-> >  drivers/leds/Kconfig                          |   16 +
-> >  drivers/leds/Makefile                         |    1 +
-> >  drivers/leds/leds-lp5812.c                    | 2736 +++++++++++++++++
-> >  drivers/leds/leds-lp5812.h                    |  348 +++
-> >  9 files changed, 3392 insertions(+)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-lp5812
-> >  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-> >  create mode 100644 Documentation/leds/leds-lp5812.rst
-> >  create mode 100644 drivers/leds/leds-lp5812.c
-> >  create mode 100644 drivers/leds/leds-lp5812.h
-> 
-> Nothing about this driver has anything to do with the LEDs subsystem.
-> 
-> Suggest moving it to drivers/auxdisplay instead.
+> No, the bus number is not included in the unit address, so just the
+> device number (0) is correct here (when the function is 0) IIUC.
 
-Thank you for the feedback.
+Some DTs definitely have that, but I couldn't find any documentation to
+back the syntax up or explain it properly
 
-I'll move the driver to drivers/auxdisplay as you suggested
-and will prepare a new version accordingly.
+e.g.
 
-Best regards,
-Nam Tran
+Apple T8103
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/apple/t8103.dtsi?h=next-20250424#n930
+
+RK3399 GRU
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi?h=next-20250424#n486
+
+Konrad
 
