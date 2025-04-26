@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-171224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CC6A9DD60
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:51:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C185A9DD5E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 23:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BBDD1B60DE4
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:51:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1F78465141
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 21:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46EDC1FBEA8;
-	Sat, 26 Apr 2025 21:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08811FF5EA;
+	Sat, 26 Apr 2025 21:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Sye5YV7N"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="GY3VK8rB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740B51DE883;
-	Sat, 26 Apr 2025 21:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DEF139E
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 21:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745704273; cv=none; b=tP1su37K6+Defp5GcLBcYo8zRLLJCnJH00HnG4LN0TJMtzFa7e7O/EoqJRZ2kMtSZhQeIBLibSqRw1oeXrVyQLg+91B/MYqVKzy+FQhUedUBFC/uNZlxXbkYmI6tG/PnBZfHd7GOzOuzbVBwyOocBsUTmsSG9cM3MVBBRfg9zaA=
+	t=1745704248; cv=none; b=LHUkeipRFzp577PbX26qMHVMAEjjYKL4mzZ36yK9ybUmkXe2EOM0Ar6p9/+yTwpqEVoM1ZQnuXWXHYntaP9T5i8Lhala7Wot9JpGjfjjBXYEqDcUNsA7b4F5PLGREi1EeOwe7/UvwH+XlGP3dWznsOACiDRm1PJwK+I0iEzSq2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745704273; c=relaxed/simple;
-	bh=vU7rQ3ql5ZcEjD49ZOsILjzztWdn9rLW5kD/8m1EG64=;
+	s=arc-20240116; t=1745704248; c=relaxed/simple;
+	bh=bn4GP2/sHWAunme42wwZm8R3a5CLQ6HXXL8ZMY6gPmU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QHPCIZWGk/7ic8vV/WSsc7JPf6QZdvmG2igVGKVUt5BX3YDJxP4WHSD3AfHzQ+JY1ZxZreWNmayP3KMzw/61GAjPNUZvarEOVgYNSVPWyNWPbczgesp2xkDZkQStrUXMhvkWIrSBODhe9a4DsEEngdpRPcJIXAshoG2hwqXmIzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Sye5YV7N; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=b08YwiSTV3ECbI8h3ZVxeOThc4O2Ss1AT5pDT2MgO5unPnTNxmj8yLr0nyPt1w7Yy+4+txec9jhM4s9lQfQy3RtmSxWCRrQ/HuqRxz+vHiWspGu/Jqax0R6nKXWwcmyTB0f3h22ffNWTB9R7HKRYMNJGVdOxf3Bnh1a7xIj9awI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=GY3VK8rB; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -36,79 +36,28 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=gsIFs9lsBStWNO+SAUv4QwVqUpvjBQFP3/IMyXHCh3E=; b=Sye5YV7NL9CEcB/oGe1RyoXudx
-	aQYeOWLye+efnOo9sycbe8k309HBPzOVgvdQeo7HNweqWmNTst6ZB+Irt2iOpJ8H/1NEffnDdZR7y
-	TgLUNbnl1tGVC9edgLpJsjdDVz9KATV22vbIJusuOkzh1BWrOv7meFHgBVd8ujMMJ+0j7j8QOsMFT
-	EaVNMgrPlDgJ5350yiF+vMLKUHddKZe2QwTRTqSExdrfjcOz00BjshTrcn2E3x+2zTVtu8CGZOGJ8
-	IWKhx20FVgecrDUhL9+p2gnRdZPAeOCOKgn7rscJFg5hpC/ZUW15rDktJhz+soODfF7KqtIQUePdJ
-	PSy0q48w==;
+	bh=XA/wGLhhTW1BEfPqzujVBmnmfC2XvWGsoDDNqEoe3yE=; b=GY3VK8rBwdPybz6McDLui63KJd
+	bVMULZMvV09jFS8waMEDGWBCd8y+fWVfdTBTiBmCxDFbn356fh3+P4FGuLq46OGiLelXeXRYF3qhS
+	Dycl5cuTssVH0VqEXjeu3q2H5lk4TQfn+z37SWM7MkaCyF83qyj1GooRSxlDaj3qL6cO8J0gFPo1c
+	DRpAMKTHP2YM3AN/y1H2RWdEIZqX0MRyfKSRT8D3ZekDnx5nIQnPvzSWod92MTrYbcEHr9mVFQAwD
+	TK+jvZ/irw1jayWXAuVahWLUbdUtqWoINtwh9IsX7xpLufY1HTa1usK7t0yA544tqsjlXsgHb62ZU
+	OoRCXzAw==;
 Received: from i53875aba.versanet.de ([83.135.90.186] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1u8nLv-0001OR-UY; Sat, 26 Apr 2025 23:46:28 +0200
+	id 1u8nLw-0001OR-69; Sat, 26 Apr 2025 23:46:28 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	zhouyanjie@wanyeetech.com,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>
+To: Shawn Lin <shawn.lin@rock-chips.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev,
 	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
-Date: Sat, 26 Apr 2025 23:46:17 +0200
-Message-ID: <174570370139.31943.759075106630349490.b4-ty@sntech.de>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add pcie1 slot for rk3576 evb1 board
+Date: Sat, 26 Apr 2025 23:46:18 +0200
+Message-ID: <174570370116.31943.13804229850326974495.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+In-Reply-To: <1745371359-30443-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1745371359-30443-1-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -119,21 +68,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
-> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
-> nodes. The result, not surprisely, is a number of additional properties
-> and errors in .dts files. This series resolves those issues.
+On Wed, 23 Apr 2025 09:22:39 +0800, Shawn Lin wrote:
+> PCIe1 and usb_drd1_dwc3 is sharing the same PHY on RK3576 platform.
+> For pcie1 slot and USB interface, there is a swich IC labelled as
+> Dial_Switch_1 on evb1 board. If we need to make pcie1 slot work for this
+> board, we should first disable usb_drd1_dwc3 and then set Dial_Switch_1
+> to low state.
 > 
-> There's still more properties in arm32 DTS files which I have not
-> documented. Mostly yet more supply names and "fsl,soc-operating-points".
-> What's a few more warnings on the 10000s of warnings...
 > 
 > [...]
 
 Applied, thanks!
 
-[10/17] arm: dts: rockchip: Drop redundant CPU "clock-latency"
-        commit: 709a25f7a433d53dc9f0daf7cf5657f0671c5026
+[1/1] arm64: dts: rockchip: Add pcie1 slot for rk3576 evb1 board
+      commit: be4ff56f7cd637dd5276444c42aebf295739ae27
 
 Best regards,
 -- 
