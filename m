@@ -1,96 +1,80 @@
-Return-Path: <devicetree+bounces-171133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099C7A9D64F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 01:36:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C0FA9D6A0
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 02:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C0C57B04E9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Apr 2025 23:35:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 697109A3D97
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 00:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C19C2973D3;
-	Fri, 25 Apr 2025 23:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9691DE894;
+	Sat, 26 Apr 2025 00:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PHn63+og"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4142C21C184;
-	Fri, 25 Apr 2025 23:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF0F195FE8;
+	Sat, 26 Apr 2025 00:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745624197; cv=none; b=R+pEQPBr9MMQave0rY5/RPAYfXe5uv3EWr6N8QZlqdtSOhesXsYXgJ7/hdv8PtmBETQc0mqCD2p81Ih7f9ktzYBmEhj/CgQmcbI9uDvXlvjCZ2lg8+lstCrVH8WD3EqkTjbA6QzEH4qBI/ZmznE00jdrpglc5dsvWPttaY3LK9M=
+	t=1745626625; cv=none; b=MfU1ATuLS5JND0Y0by1EIcV22RAlJEL86EW9rg3ZsPwDzUzMtEzGZZukadEEfivQcPp5lgXRXhJWDXRrQ8MMI+pRFQ3OFZ1t8Y1/IS9NVqTXS4rrvyOw54Ac+hjlEVh3q0pDviB0aFqO5011oF6HhnC1y8HJ32fuUQac6G+WvS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745624197; c=relaxed/simple;
-	bh=cqlwv2vPIA0AJYCC9J8uX3oIMqf20tDiQvD0X0XAzbo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bt7+cqtS1Cv1gu1Dbnsad6tn7tQo7XixJp3Rbgi6hIFcdySVZyU6Gpq4KIOuXgvzLHdwyvZJgHlnXMxdKEfC2OC7zrEEDrIlDRlRIzKMuCYXPJre5gtt86WRc7G96aDzlW+Uzczydna6gKd9RvUcwKF8zWFF/feZ39+rCjvnMTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost.localdomain (unknown [116.232.18.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 4556C340BDE;
-	Fri, 25 Apr 2025 23:36:30 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>
-Cc: Alex Elder <elder@riscstar.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v9 0/3] riscv: spacemit: add gpio support for K1 SoC
-Date: Sat, 26 Apr 2025 07:35:40 +0800
-Message-ID: <174562390823.16593.8457766773146505593.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250424-03-k1-gpio-v9-0-eaece8cc5a86@gentoo.org>
-References: <20250424-03-k1-gpio-v9-0-eaece8cc5a86@gentoo.org>
+	s=arc-20240116; t=1745626625; c=relaxed/simple;
+	bh=ywtyLVK4fpyc0Fmz0tjn1IWrxthLv2B52UL33CmcaCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EqdCg0ZKNFVe74CByymgsKkYPHADN7urv9wMoeU7zM3B4RMW7Jx1EdqE3DiimdYSKBZeDJcalEWYkBRHOzh3i/tdcxnRTAiIMNNT5QlpH5Aqj4Ih+9Clcide/jdFZirEmo2KbQdttaxf/XoRcKJlWugXRTtKctv+4rX4QRr/kX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PHn63+og; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6822C4CEE4;
+	Sat, 26 Apr 2025 00:17:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745626625;
+	bh=ywtyLVK4fpyc0Fmz0tjn1IWrxthLv2B52UL33CmcaCM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PHn63+ogcHZfcraFQIRVto/+wWjhMe0y0XvbNCWzQtyyhWrg3dYFkw5R/ybX0vIqC
+	 Jx+cGVPBnKs1Q6ry3f4qtnvqcPDxgfRZdoVoPHeC4ALP4MNy7qDzKqk/Kz/RGnZQ9D
+	 WmKd/YrNK8o5o2aQMQim2fM1Qnq6aPPjLWTeYVZ3c42wuFnt8N7bojXpHlhFPONAzU
+	 It/SNFYXd1qn5qbwL+Lk/ZJZwUc+ZWGaIEpkmiFrXV39xl+D6oh0PW8W0gPfaW2FFK
+	 9AP6aG/Nf/3/DhmR2VFhlg2FKulEk6FXVuXAWhX+hak0wO8AdmfCtIs6O18Bw9/CaP
+	 u/DA38i50cW1A==
+Date: Fri, 25 Apr 2025 17:17:03 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net 1/5] net: vertexcom: mse102x: Fix possible stuck of
+ SPI interrupt
+Message-ID: <20250425171703.0a6be54e@kernel.org>
+In-Reply-To: <7e261db8-7b3a-4425-93ce-b7bac3746da1@gmx.net>
+References: <20250423074553.8585-1-wahrenst@gmx.net>
+	<20250423074553.8585-2-wahrenst@gmx.net>
+	<20250424181828.5d38001f@kernel.org>
+	<7e261db8-7b3a-4425-93ce-b7bac3746da1@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 24 Apr 2025 17:40:48 +0800, Yixun Lan wrote:
-> The gpio controller of K1 support basic GPIO functions,
-> which capable of enabling as input, output. It can also be used
-> as GPIO interrupt which able to detect rising edge, falling edge,
-> or both. There are four GPIO ports, each consisting of 32 pins and
-> has indepedent register sets, while still sharing IRQ line and clocks.
-> The GPIO controller request the two clock sources from APBC block.
+On Fri, 25 Apr 2025 09:35:04 +0200 Stefan Wahren wrote:
+> Since the SPI implementation on the MSE102x MCU is in software, it 
+> cannot reply to SPI commands in busy state. So drop the scaring 
+> statistics about "invalid" command replies.
 > 
-> [...]
+> https://github.com/chargebyte/linux/commit/9f8a69e5c0d6c4482e89d7b86f72069b89a94547
+> 
+> Should I add it as a fix?
 
-Applied, thanks!
-
-[2/3] riscv: dts: spacemit: add gpio support for K1 SoC
-      https://github.com/spacemit-com/linux/commit/39efc98da7c60cad066a18049a98d41b8542f44a
-[3/3] riscv: dts: spacemit: add gpio LED for system heartbeat
-      https://github.com/spacemit-com/linux/commit/cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7
-
-Best regards,
--- 
-Yixun Lan
-
+I see. I don't think we have to add that to the fixes series.
+Worst case if people complain we can request a backport later.
 
