@@ -1,123 +1,125 @@
-Return-Path: <devicetree+bounces-171208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D2CA9DC4D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 18:49:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DF3A9DCB4
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 20:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 860BC189D838
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 16:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D61B8466FC0
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 18:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF75C25D8F4;
-	Sat, 26 Apr 2025 16:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C325D8E1;
+	Sat, 26 Apr 2025 18:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FEuP5p44"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wpc2njmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FDE25D218;
-	Sat, 26 Apr 2025 16:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B19925C708;
+	Sat, 26 Apr 2025 18:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745686165; cv=none; b=W+jhjnHHhJXrsWEJUjj0lKjmM/4GZWz0Z2yKFyeIv0EXXaD8e5am8Kb956M2r5LIx+iTsAmMRw7vIwJDi0Wb+OZ2zvYp0Ajdj3R9APJq1FnCER/S337Ifi6pRKR/iWWK3Rp0dXHAIdSDZVszw6Zdn28Dr/JqkTByqFkuW2JybBA=
+	t=1745690454; cv=none; b=k/9yp1mJRR9zW4hfJXX6/aoohSyNQ/JwYUehQM8LGZYmKlprdKeXiCZCAGFoF+lQIH4HsQr0EcE4SLVCiIvnhm0bo6oHFVWUDUfekmOkvhGJJyfcPi9xmC3Sk5qgRrSU29ows0q6kFWlq2xFVUDIhveXih23U9kWaxv4Ht45RSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745686165; c=relaxed/simple;
-	bh=iS+9leWgXXOZ1k/iOhF8RACB9451MBev3uHFiptRUpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qTcygh9SNGOEZhVjEkb2t+GccEEG3YS99PGlDeRzOI97k9U0me2z4qwJ8B12hyZ50GY+Kh7jE7zKfAmSGnKQQTBcmrUfg4kWVrFAAsd0827Np56UeQbjGXzQGLG/uHx2H7Gxu26qbNSYSY+lvTv5xMXcnV4lSkuUz1roC98qxWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FEuP5p44; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745686164; x=1777222164;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iS+9leWgXXOZ1k/iOhF8RACB9451MBev3uHFiptRUpE=;
-  b=FEuP5p44B/VPMgLr02oGMKTiK0lq4RcsshI+EHBKzRYByg3m6OyFD8KF
-   +mFAiEs7iUAKW68egxc0lhqDj37TbHKk77AzB+Xg3I7U8RgahW+698Hdk
-   4wb+NmvPoIfv7M+O6sF9xRgCIwlva/+q0vnSlKG9HpkuIPwz7/YeNB/u4
-   MboIcSfn+gZWt6MYd+FYUcHxpdVQ5nT2wGg5w6ZgV8rVt/4iDEB6zbgTh
-   2NlwtzpFnR0ICcqIDg2x3qVKCJ17XBlVrG4v+ejOmaqwBNVcPCNHvUoRR
-   jHFlhYrJbk/qZdbSKcOQxQaKMgKfhPQuVBBUQOfOo+nBrGv5kt6MuctR2
-   Q==;
-X-CSE-ConnectionGUID: Vwl4EoFXQAGw6x+UQwQTaQ==
-X-CSE-MsgGUID: qKk4dhPORdWrmjq2UBGIdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11415"; a="64854293"
-X-IronPort-AV: E=Sophos;i="6.15,241,1739865600"; 
-   d="scan'208";a="64854293"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2025 09:49:22 -0700
-X-CSE-ConnectionGUID: Vhk6u4BwTMOfmzbihRx3sw==
-X-CSE-MsgGUID: rL7HaxZAT3aThZa2zsdIUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,241,1739865600"; 
-   d="scan'208";a="164212011"
-Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 26 Apr 2025 09:49:20 -0700
-Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u8iiL-0005vN-36;
-	Sat, 26 Apr 2025 16:49:17 +0000
-Date: Sun, 27 Apr 2025 00:48:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: Re: [PATCH v3 11/11] iio: adc: ad4080: add driver support
-Message-ID: <202504270010.w3ZsLDZR-lkp@intel.com>
-References: <20250425112538.59792-12-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1745690454; c=relaxed/simple;
+	bh=PEMMQuRLMmuObss6aZpzBeo6DJxl3rhuVaA5bJo36nU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KdWL1om9QqQVmp8aUCdEVxTyIx1QMFHsgzSGEiI6c1bsTlUQGxPPSpfiDvk0lvtDFNvBu0IluN5rSX/dJkZVXU5nUNK/XSZM64rbhAMjCIJ7q1x2A0fuph5yNasb9d9bX5mN4bgGvy5HhlfRBxCjiC/srlF1K/X5gThq1Liv0W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wpc2njmf; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5f6fb95f431so3768850a12.0;
+        Sat, 26 Apr 2025 11:00:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745690451; x=1746295251; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AMLBbAwF6tPlQxRVDk5Jnfst5lz7qyDDTn8jiS12DUs=;
+        b=Wpc2njmfuwL8knCfIi+8Tt6h1LuO7HCF60xx5DywrEfOPG3k+9djZ3vyPoMB0Ik5jR
+         aYOtCC9Ywn5qeG7jEkI84X+WEsQaiALB/xdKteVo0xr9ROKpd+j9AcSjmgBM0wUwCqV3
+         bnktjxLfeg0x8ZCq4S5fOeRL6jKJvUvGUV6bSvGDCks+mEZF+8E9f9gJQJljlnwJrvLq
+         dQcu559ZNEcwsQX0/R54oXT6fy5iYHnGxjAbxqK2T5f8oohi9Gs3LPU1vGfNXxQvn4lQ
+         DgJUl1SQNPtsujqC+NXZUVUQjTMPeE1blAbBrSMDsYoiL0EgLwWEIlLuxDue22rfQmmU
+         2V+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745690451; x=1746295251;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AMLBbAwF6tPlQxRVDk5Jnfst5lz7qyDDTn8jiS12DUs=;
+        b=EhAvfNOlTezlXmEFapl3x76u+8IH66FYpy12jKWTT0qcEz8VeTF7zElbQqTVFwW41f
+         tKyTqzTcEv24LiidyDN1sp1Fd+PRPjE3IgemovZ133kvOSCxq5k19Rv+D7SDG8V1ESUI
+         sgxccWgMfTvE1mNs/6lFHafphLl8fX6C1uoLHhcNf7CtzTuQ8WaCTnmhK4H+SVNJwY5I
+         7y+ofSu6li9pz3j2YzT2rU0FDhYd2XCXZ/0+HB3+Nb/OBY5RCPXE2A1NwcCix0Y6/h7h
+         4Tqi0M0Zc/syzXYT2TVlu/zBFqVhS09PCtaNAQvQJpU2drBIYFsbeKf7t71debu0jZ9O
+         Nu7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUELoY11C/8wHt+RMSVWon5y43ylzgmYUokrVErVkgp7kKFi2opqf8T4HiweHiXwA9B/IidwZc+MZcA@vger.kernel.org, AJvYcCV0euluO8QvRTrj2Bv64VukyYVok/jW4xQX7f4ZekhpDYJeymkOjoYR8ZH7BBfTxmuAErLdZ4kLGJjuadFF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgFeC5Qs/3FiSKIyS2AkaV/a11jDwNscE+/yR0QOh+NqB09FRC
+	Z7KBMauFPp9WL6aopGK3+rfsJyXk6t7JxZZUKVbFzyvxWhfWONVs
+X-Gm-Gg: ASbGncv/PleNTmJcFEZu4OhIN95VcICy+lKHyQoasKnfCI50Ws/sCqoZ202pHvi+4xb
+	uiPcD73vczwlbGCV5LfzFMzDJ59GfvxJ98b0iiVWPq6pVKWu7CLY41zbs/74sPoZd2oYa9+8ONO
+	meit7rmZwaEQxAGs6Q4toEiQt0UwvLiQhE6So2JAl0zjyqce95GyNqIOU7RPW3q7rkhcQHjxV6m
+	hsKPtdzMkYtUcvK2MTqymNel41Tnq2wS5Gx1imSK5ak/OJWlSgOqtb/5U3QRY1eMYafzHDVjfqk
+	kieiss0zTJAsEj5amZH8CVZcBqjaPk+FtuynBEYQ50qMHyIjGYCpu6X2RIYRfg==
+X-Google-Smtp-Source: AGHT+IGcpmUd6V//Dy8oAGqBTp+EMOuxREYwc/MqDM/gwlxvfz17SlAjfX0874oELfIxArWQUWoL6w==
+X-Received: by 2002:a17:907:94d2:b0:ac1:ecb0:ca98 with SMTP id a640c23a62f3a-ace5a48320dmr822844966b.26.1745690450982;
+        Sat, 26 Apr 2025 11:00:50 -0700 (PDT)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4f7c3csm325590366b.68.2025.04.26.11.00.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Apr 2025 11:00:50 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
+ samuel@sholland.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
+Date: Sat, 26 Apr 2025 20:00:49 +0200
+Message-ID: <2219754.irdbgypaU6@jernej-laptop>
+In-Reply-To: <cd7fd026-2f82-43d1-abdb-482bfe600bb5@lunn.ch>
+References:
+ <20250413134318.66681-1-jernej.skrabec@gmail.com>
+ <20250425135429.174a1871@donnerap.manchester.arm.com>
+ <cd7fd026-2f82-43d1-abdb-482bfe600bb5@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250425112538.59792-12-antoniu.miclaus@analog.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi Antoniu,
+Dne petek, 25. april 2025 ob 17:34:14 Srednjeevropski poletni =C4=8Das je A=
+ndrew Lunn napisal(a):
+> > > +&emac {
+> > > +	pinctrl-names =3D "default";
+> > > +	pinctrl-0 =3D <&ext_rgmii_pins>;
+> > > +	phy-mode =3D "rgmii-rxid";
+> >=20
+> > So relating to what Andrew said earlier today, should this read rgmii-id
+> > instead? Since the strap resistors just set some boot-up value, but we
+> > want the PHY driver to enable both RX and TX delay programmatically?
+>=20
+> Yes.
+>=20
+> There is a checkpatch.pl patch working its way through the system
+> which will add warning about any rgmii value other than rgmii-id. Such
+> values need a comment that the PCB has extra long clock
+> lines. Hopefully that will make people actually stop and think about
+> this, rather than just copy broken vendor code.
 
-kernel test robot noticed the following build warnings:
+I spent quite some time working on ethernet support for this board. Once
+I've found PHY datasheet, I confirmed that there is added delay. So this
+particular board needs "rgmii-rxid" mode.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.15-rc3 next-20250424]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Jernej
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/iio-backend-add-support-for-filter-config/20250425-192951
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250425112538.59792-12-antoniu.miclaus%40analog.com
-patch subject: [PATCH v3 11/11] iio: adc: ad4080: add driver support
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250427/202504270010.w3ZsLDZR-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250427/202504270010.w3ZsLDZR-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504270010.w3ZsLDZR-lkp@intel.com/
-
-All warnings (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/tests/slub_kunit.o
->> WARNING: modpost: module ad4080 uses symbol iio_backend_filter_type_set from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol iio_backend_data_alignment_enable from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol iio_backend_sync_status_get from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol iio_backend_num_lanes_set from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol devm_iio_backend_get from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol devm_iio_backend_request_buffer from namespace IIO_BACKEND, but does not import it.
->> WARNING: modpost: module ad4080 uses symbol devm_iio_backend_enable from namespace IIO_BACKEND, but does not import it.
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
