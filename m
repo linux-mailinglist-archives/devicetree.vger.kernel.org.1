@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-171134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C0FA9D6A0
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 02:17:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C7BA9D6AF
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 02:30:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 697109A3D97
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 00:16:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AA1D1BC7EDB
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 00:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9691DE894;
-	Sat, 26 Apr 2025 00:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3350192D8F;
+	Sat, 26 Apr 2025 00:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PHn63+og"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPRqPDDW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF0F195FE8;
-	Sat, 26 Apr 2025 00:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98BE15A79B;
+	Sat, 26 Apr 2025 00:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745626625; cv=none; b=MfU1ATuLS5JND0Y0by1EIcV22RAlJEL86EW9rg3ZsPwDzUzMtEzGZZukadEEfivQcPp5lgXRXhJWDXRrQ8MMI+pRFQ3OFZ1t8Y1/IS9NVqTXS4rrvyOw54Ac+hjlEVh3q0pDviB0aFqO5011oF6HhnC1y8HJ32fuUQac6G+WvS4=
+	t=1745627450; cv=none; b=r1pz+2JHJpDFlj7G8SM5YYvMWorFxuxvSXd4nxO6zhQ7cMKWEcDsCY+KFiE0XuNFdWNwGbK53fjXwbPtlS7WbSDL9a1bJCTD7aQ+P8mbZr/IUL7uJ7YYfUc8IF40XpjLuOByeDHlD0MKRyzGaIY1yam4Wh9ymhJ2HdPXPqm58Ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745626625; c=relaxed/simple;
-	bh=ywtyLVK4fpyc0Fmz0tjn1IWrxthLv2B52UL33CmcaCM=;
+	s=arc-20240116; t=1745627450; c=relaxed/simple;
+	bh=SryPCpR4EGSjB4aF38Gv+X+JmpIOrr7QDRaMCvge2A8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EqdCg0ZKNFVe74CByymgsKkYPHADN7urv9wMoeU7zM3B4RMW7Jx1EdqE3DiimdYSKBZeDJcalEWYkBRHOzh3i/tdcxnRTAiIMNNT5QlpH5Aqj4Ih+9Clcide/jdFZirEmo2KbQdttaxf/XoRcKJlWugXRTtKctv+4rX4QRr/kX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PHn63+og; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6822C4CEE4;
-	Sat, 26 Apr 2025 00:17:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=sdvsf20Inf0h83Jc1mUKB6ANAxkQITwztcNalIg7NJk9+wSSeJX2hnI84Wes1rQajJ9BNw+ynjkJBF79MyyAfxNW7Z0QFVo/eaf1z4g4ycDADqeMP2gdEDCYc4S413/wcpF4e21YLhZxRkdxIjgq6og8yzVduqhseMH0MyCf2YU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPRqPDDW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DBDC4CEE4;
+	Sat, 26 Apr 2025 00:30:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745626625;
-	bh=ywtyLVK4fpyc0Fmz0tjn1IWrxthLv2B52UL33CmcaCM=;
+	s=k20201202; t=1745627450;
+	bh=SryPCpR4EGSjB4aF38Gv+X+JmpIOrr7QDRaMCvge2A8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PHn63+ogcHZfcraFQIRVto/+wWjhMe0y0XvbNCWzQtyyhWrg3dYFkw5R/ybX0vIqC
-	 Jx+cGVPBnKs1Q6ry3f4qtnvqcPDxgfRZdoVoPHeC4ALP4MNy7qDzKqk/Kz/RGnZQ9D
-	 WmKd/YrNK8o5o2aQMQim2fM1Qnq6aPPjLWTeYVZ3c42wuFnt8N7bojXpHlhFPONAzU
-	 It/SNFYXd1qn5qbwL+Lk/ZJZwUc+ZWGaIEpkmiFrXV39xl+D6oh0PW8W0gPfaW2FFK
-	 9AP6aG/Nf/3/DhmR2VFhlg2FKulEk6FXVuXAWhX+hak0wO8AdmfCtIs6O18Bw9/CaP
-	 u/DA38i50cW1A==
-Date: Fri, 25 Apr 2025 17:17:03 -0700
+	b=LPRqPDDWCj0amvSCM6UmxgZd6W7L2JSNdZgzQOsFzvoSZbHC+G6KN9eHFE9iShY/o
+	 mDjZO3JetIshyq8ZlCNvn/oFaeKl4ru0vtY1x9p6RpCJiDWxTk7AIIINNGI4hlB8MC
+	 zWcuvkMmDQ5cVJBoXH49YbCGlgVdqCJhiiPhxXT3gcOnl/hvOJ1Hc1Gcv3IY9yoXx7
+	 52Eru26pTSgjp4eMrHil3cRQNEl0FGOPg8roP2OjxrBX2pXOxH3bWm/MFhpCMDYl58
+	 VOZuEjtQGYjxd+Y19oBO6/itASm6EqYhm5/1bocqmT/VvUC/ZHoN+y0kyIGyFkPInw
+	 IPLpCH6a6PizQ==
+Date: Fri, 25 Apr 2025 17:30:48 -0700
 From: Jakub Kicinski <kuba@kernel.org>
 To: Stefan Wahren <wahrenst@gmx.net>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
@@ -49,14 +49,12 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
  <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
  <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net 1/5] net: vertexcom: mse102x: Fix possible stuck of
- SPI interrupt
-Message-ID: <20250425171703.0a6be54e@kernel.org>
-In-Reply-To: <7e261db8-7b3a-4425-93ce-b7bac3746da1@gmx.net>
+Subject: Re: [PATCH net 2/5] dt-bindings: vertexcom-mse102x: Fix IRQ type in
+ example
+Message-ID: <20250425173048.36dfa282@kernel.org>
+In-Reply-To: <20250423074553.8585-3-wahrenst@gmx.net>
 References: <20250423074553.8585-1-wahrenst@gmx.net>
-	<20250423074553.8585-2-wahrenst@gmx.net>
-	<20250424181828.5d38001f@kernel.org>
-	<7e261db8-7b3a-4425-93ce-b7bac3746da1@gmx.net>
+	<20250423074553.8585-3-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,15 +64,16 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 25 Apr 2025 09:35:04 +0200 Stefan Wahren wrote:
-> Since the SPI implementation on the MSE102x MCU is in software, it 
-> cannot reply to SPI commands in busy state. So drop the scaring 
-> statistics about "invalid" command replies.
+On Wed, 23 Apr 2025 09:45:50 +0200 Stefan Wahren wrote:
+> According to the MSE102x documentation the trigger type is a
+> high level.
 > 
-> https://github.com/chargebyte/linux/commit/9f8a69e5c0d6c4482e89d7b86f72069b89a94547
-> 
-> Should I add it as a fix?
+> Fixes: 2717566f6661 ("dt-bindings: net: add Vertexcom MSE102x support")
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 
-I see. I don't think we have to add that to the fixes series.
-Worst case if people complain we can request a backport later.
+I noticed after sending previous reply that the patchset already 
+got marked as changes requested. Let me use that as an excuse to
+ask to drop this patch (and resend to net-next). Happy to oblige
+if DT maintainers disagree but I'm not sure we should be treating
+changes to an example as a fix.
 
