@@ -1,166 +1,93 @@
-Return-Path: <devicetree+bounces-171176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2665BA9DA58
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 13:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6565A9DA5D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 13:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7497D92038C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 11:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AD2A928351
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 11:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C42227581;
-	Sat, 26 Apr 2025 11:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BAB229B21;
+	Sat, 26 Apr 2025 11:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eiUuYBqZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E0521C9EF;
-	Sat, 26 Apr 2025 11:08:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9972224B08;
+	Sat, 26 Apr 2025 11:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745665735; cv=none; b=s2C8k8xZjVW6mQWw5+DvnwlXBS9fnXdB5bf4fE+VKM2LU6nmU2o/khAXQEEaonsjl2NI0/BmJx61k8Q40EezvPJyzZU4ggaadpKzTVjpAaPKUFWD9Pp2Fa2d8ia1ETgWHVrReO/RpPRKoXEwXe5KEyKAVnekAw+h8nXVHJdd3pw=
+	t=1745665833; cv=none; b=YbyMo89nfkGkp33UQruwAbN53wgvP2qcuVGh25BTmsGqUDtXvRMaaiZgG3M+AMTgo6yxrNeQGvu6TsqZ7mmpGXcToMUu4ZC8vgGXlml4woW+XQZ/AeLTAzjF8+cQgRFek5ssOOc/noL3NRU8MSD1hilRoJjJe6gTdYgCkIOqV6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745665735; c=relaxed/simple;
-	bh=kaNWFF+h4vOOtS7f2lNS3Ec3pgTH9YNyoefDXVBW78w=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=kA+iEjrNPGyYzn69F5dn791zoZmkJxMgWire90y8PmRaOxwY2MbUzQ7/40Ale+uC8zPvJLpWEcE1qbiBWUTLh8D2rT3EylhQzZ9EF+a41dvAc43Z88uV0fLrq3lq8VBL9fP9X37QOI5JVVpcqTZVHvJ/QBicR3UoU3BkFM7MaQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4Zl6Qh3qWsz9sx4;
-	Sat, 26 Apr 2025 13:08:44 +0200 (CEST)
+	s=arc-20240116; t=1745665833; c=relaxed/simple;
+	bh=zkUhhV2V3LwDUCcvnbTX0131Q47zFhSElgLFaUOth0U=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CD5TgWfttuM9XxOcikPdRUUaqxvQ4+ZJ2u1d1iuVfNTQSx1UosGlLA/jsC3wpIr8iF2Qla3TbIsylb7+hS5Cgdg9tO1HcUebii9aUccsULqjrJSvGu0475NgmYT+e1yoE1GL6fCjAFkRUX46wdv0/uRVeXbsZAQW/Cl3Uk8rIlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eiUuYBqZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C443C4CEE2;
+	Sat, 26 Apr 2025 11:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745665833;
+	bh=zkUhhV2V3LwDUCcvnbTX0131Q47zFhSElgLFaUOth0U=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=eiUuYBqZS8YVb1rlnlWQv/ZjcuH27pLtIjpPDWC0wyklIksMe5g2rNWRjRqZtogfX
+	 oeM4XVphZ5P1X5+FqgMiW771q3s5Xb+NVfQl3Qr8yANDhYjtxQguZwGmnP79TCR0B0
+	 pUy72FuPZK+ydO46njSxQN/NV0G6CRbQiqA5ipxyvxOjp9hKUKBDlhBBgGkTC0LzYz
+	 1IhA+moo1GC0WSd8gmWHFEpRcfdG28ivNig8XDhbeE7TRQotByQ38y6y3eA9KYIx2q
+	 hJxy5y8zLTo4axVi2qMjxxSjaeXaUQlyjng4LwpSqlmns7q72KpjhOrU9UBpF5nCcw
+	 OZDREywwEajMA==
+Date: Sat, 26 Apr 2025 12:10:24 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: surajsonawane0215@gmail.com
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: Add sharp,gp2y1010au0f
+Message-ID: <20250426121024.3384f49b@jic23-huawei>
+In-Reply-To: <20250425215149.49068-1-surajsonawane0215@gmail.com>
+References: <20250425215149.49068-1-surajsonawane0215@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Sat, 26 Apr 2025 13:08:39 +0200
-Message-Id: <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
-To: "Danilo Krummrich" <dakr@kernel.org>, "Dirk Behme"
- <dirk.behme@gmail.com>
-Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Dirk Behme" <dirk.behme@de.bosch.com>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-4-remo@buenzli.dev> <aAuryiI0lY4qYyIt@pollux>
- <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com> <aAyyR5LyhmGVNQpm@pollux>
-In-Reply-To: <aAyyR5LyhmGVNQpm@pollux>
+Content-Transfer-Encoding: quoted-printable
 
-On Sat Apr 26, 2025 at 12:15 PM CEST, Danilo Krummrich wrote:
-> On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
->> On 25.04.25 17:35, Danilo Krummrich wrote:
->> > On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
->> >> This abstraction is a way to force users to specify whether a propert=
-y
->> >> is supposed to be required or not. This allows us to move error
->> >> logging of missing required properties into core, preventing a lot of
->> >> boilerplate in drivers.
->> >>
->> >> It will be used by upcoming methods for reading device properties.
->> >>
->> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
->> >> ---
->> >>  rust/kernel/device/property.rs | 57 ++++++++++++++++++++++++++++++++=
-++
->> >>  1 file changed, 57 insertions(+)
->> >>
->> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/prop=
-erty.rs
->> >> index 28850aa3b..de31a1f56 100644
->> >> --- a/rust/kernel/device/property.rs
->> >> +++ b/rust/kernel/device/property.rs
->> >> @@ -146,3 +146,60 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
->> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
->> >>      }
->> >>  }
->> >> +
->> >> +/// A helper for reading device properties.
->> >> +///
->> >> +/// Use [`Self::required`] if a missing property is considered a bug=
- and
->> >> +/// [`Self::optional`] otherwise.
->> >> +///
->> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provi=
-ded.
->> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
->> >> +    /// The result of reading the property.
->> >> +    inner: Result<T>,
->> >> +    /// The fwnode of the property, used for logging in the "require=
-d" case.
->> >> +    fwnode: &'fwnode FwNode,
->> >> +    /// The name of the property, used for logging in the "required"=
- case.
->> >> +    name: &'name CStr,
->> >> +}
->> >> +
->> >> +impl<T> PropertyGuard<'_, '_, T> {
->> >> +    /// Access the property, indicating it is required.
->> >> +    ///
->> >> +    /// If the property is not present, the error is automatically l=
-ogged. If a
->> >> +    /// missing property is not an error, use [`Self::optional`] ins=
-tead.
->> >> +    pub fn required(self) -> Result<T> {
->> >> +        if self.inner.is_err() {
->> >> +            pr_err!(
->> >> +                "{}: property '{}' is missing\n",
->> >> +                self.fwnode.display_path(),
->> >> +                self.name
->> >> +            );
->> >=20
->> > Hm, we can't use the device pointer of the fwnode_handle, since it is =
-not
->> > guaranteed to be valid, hence the pr_*() print...
->> >=20
->> > Anyways, I'm not sure we need to print here at all. If a driver wants =
-to print
->> > that it is unhappy about a missing required property it can do so by i=
-tself, I
->> > think.
->>=20
->> Hmm, the driver said by using 'required' that it *is* required. So a
->> missing property is definitely an error here. Else it would have used
->> 'optional'. Which doesn't print in case the property is missing.
->>=20
->> If I remember correctly having 'required' and 'optional' is the result
->> of some discussion on Zulip. And one conclusion of that discussion was
->> to move checking & printing the error out of the individual drivers
->> into a central place to avoid this error checking & printing in each
->> and every driver. I think the idea is that the drivers just have to do
->> ...required()?; and that's it, then.
->
-> Yes, I get the idea.
->
-> If it'd be possible to use dev_err!() instead I wouldn't object in this s=
-pecific
-> case. But this code is used by drivers from probe(), hence printing the e=
-rror
-> without saying for which device it did occur is a bit pointless.
->
-> Drivers can still decide to properly print the error if the returned Resu=
-lt
-> indicates one.
+On Sat, 26 Apr 2025 03:21:49 +0530
+surajsonawane0215@gmail.com wrote:
 
-One alternative would be to store a reference count to the device in
-`FwNode`. At that point we'd be guaranteed to have a valid reference
-whenever we want to log something.
+> From: Suraj Sonawane <surajsonawane0215@gmail.com>
+>=20
+> Add Device Tree bindings for Sharp GP2Y1010AU0F optical dust sensor.
+> The sensor measures particulate matter concentration via infrared
+> scattering and requires:
+>=20
+> 1. GPIO for LED pulse control (280=CE=BCs pulses with 40=CE=BCs delay)
+> 2. ADC channel for analog output measurement
+> 3. Power regulator (vdd-supply)
+>=20
+> Datasheet:
+> https://global.sharp/products/device/lineup/data/pdf/datasheet/gp2y1010au=
+_appl_e.pdf
+>=20
+> Signed-off-by: Suraj Sonawane <surajsonawane0215@gmail.com>
+Hi.  Quick process thing.
+
+Even for a small series, please use a cover letter to provide:
+- a short intro to the patch set=20
+- A nice name for patchwork and threading email clients!
+- Somewhere for people to give patch set wide comments / review tags.
+
+With git that just means passing --cover-letter to git format-patch
++ filling in the resulting file.
+
+Jonathan
 
