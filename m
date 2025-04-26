@@ -1,153 +1,179 @@
-Return-Path: <devicetree+bounces-171148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AA2A9D82F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 08:12:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9598EA9D848
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 08:19:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0A277ADEED
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 06:11:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD3259E0C9F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 06:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38AC1AA782;
-	Sat, 26 Apr 2025 06:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E5B1ACEC8;
+	Sat, 26 Apr 2025 06:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gG8pKYDb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CR0fMQA1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0422917A2F0;
-	Sat, 26 Apr 2025 06:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DCD6FC3;
+	Sat, 26 Apr 2025 06:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745647947; cv=none; b=nfVBEQbkSQQaMs62SXsj27ARtlYUnOUr+ipjm7jy4Hpl6rqMGNgMA+TfIhgJ81QTZeSrKzAbgD/SIgaZNgNDzGvTUVxs1FODNZLltvFqOkptcYNk8ILNfJbvKZVYh8kGcVd1pEcCEWusvPfgCl02k43gbplQg9JUtgDKUWql29U=
+	t=1745648354; cv=none; b=Rxwu2VmR4Cd61m5MUI3/GjrlfXrVUwfv/Sce04lZ1ADjIOipX0BEG+lHc45bjhDfCQTA1CTg8l+JSY45Q6Y3JsoGuwwGsLjYCDMis6OWX+IphcwQ1nj9DVN/w1VG6eLJEHLxXYj3VB3j8gBpTm2qyyas3Jb/7N/5vHnurzk42tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745647947; c=relaxed/simple;
-	bh=ts30wuJotCKDAn6BcjJG1rAqDNg2V4mpYNEPUKSJRyE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cQx3F1Zj3NP525Gcn8hW8sYl/b00nzf6pp3eIO05hmz3CB/dCwd1Vaz5bS0EtNHZ/nZIeO92uMMLoe0PHwm/vl8lo882WoP0c5RC63B9djNjJLlv6ZKqOVxPG/kXTMnjukyWQuWuscypfyJy26QeEzPHZCORutTk5fZNDRDSL9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gG8pKYDb; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1745648354; c=relaxed/simple;
+	bh=47y55eULUUMXzsCPW/k4dtSXTrQ0Nu5elYVfvbFIG9g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AxE43clceU17H0p7xEH8IY8yLoDSpM2GZpsz1DDH2c0Z9iiUlY4+2ttZYWE/lKzZSSVj8x81vjDA/PIGaMykCGPzKfpL1fv4ZPkWhW95Jq+8FzSTsy67oiEjyC9UtjnRnyVO46KdxJkVQDhoIAIsBLAW29v0HZ+F5QF7BRg1l6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CR0fMQA1; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaecf50578eso455127066b.2;
-        Fri, 25 Apr 2025 23:12:25 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so4696760a12.1;
+        Fri, 25 Apr 2025 23:19:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745647944; x=1746252744; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q7AoqGRPCyCnlnI8KOQDam44EVXCyf/N7POplk+Weq8=;
-        b=gG8pKYDbyBSeewT/KB2sxg+hZXlSefcaxceQAG3onXsBdWe8hmOSOnzels47+ElYmw
-         8Lg8BP3/t09H+KCnORV5xJB5+RH1e+ATb6AyNc0LG5o8rhItG+tCJRSwgA4Ifo2unyE4
-         OX9FVg2sGDqt88vhKoCW/38Sb1oivSgfw4rHH47EqyIDeBQ96rUGltlmwogUFbRsLp5J
-         dMRT9eHHfFKz/9uNoUers4zlDgieAMlZ6Vcr8NRzdhyTSBNnBztZjJOgYOpDpkgzSfkX
-         foXm/aVhwtINwTX8rVrXkNHVKHWaf3JlkBWFcQbW3FayoFDFsDioS29fTHD4MEJ//IvV
-         mDfA==
+        d=gmail.com; s=20230601; t=1745648351; x=1746253151; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+Br3YH6cLdLN1sKiBpDMu8RvQJZYLmO1CX2BswDBUQg=;
+        b=CR0fMQA1zHflqdCaQp5Dr2KDYlpVH/3T/s9MbkB/sHYYmV7D4/N18u5LxC2TBm9IhZ
+         1BHAe6F7tVZ42Fd5aknVRjcgNu522LYyv0tV/+Ju4Dahd/D6wgZCfKf2K1M0yF9XaYQ2
+         OQ98MC43s0la/Czg+gV0ZlWPkmZFYkEsIpMRVqrG7nLe7Kbw1dDA5Yjz2ZdxtHa4oKaA
+         3tfJrcNFPdr1IyomsZQKpIRIOodvo1foTv3ObF3sdcuVd4v7j5CgXbmNxr6AXVl0wQYa
+         TXY4F9Jnr6MpH32ak9bxZZ3UaWciF7qsBXfgQkBqTCBQDLCjRXVJbJf3ciGZIRUTTSYQ
+         OZVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745647944; x=1746252744;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q7AoqGRPCyCnlnI8KOQDam44EVXCyf/N7POplk+Weq8=;
-        b=kCiFPjcm4jsIq7vd4N2mXDSGX0N0FzDbUzzWuExz/t/FvdLPUpKkK9Fe8EJHZZxcv9
-         zQSRXhe7GFwPUEz2Dv4uDua9HRyoHGIW50q5DAvdjlzOl1g28kDRJR6/BicH2LeDLpF4
-         JWwtjv6ef5PvDzPYH410g/6L8ovckpOnMJG09/ZW3WKnQGUyD4ircz4jSuYpEJHhW4xR
-         VQTzYU1eCXI1mWb2MXeJvV5s3ck+asJ855/iQAZ8lfR25RVZpvQkXrMOMKNwbYxOtThw
-         sv69WlcD5Su/bWTx+vFA4i6FGojX6xlCO2axdt7fqWXPmAOWhjUMmzqiXh9DUDJCYcvX
-         qCqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBE+p/rrLCU8xzVCEWO2LcvwjRNRR8/KXZU10WFdLwQSJDDRg3gE7roa6+nPwXHzXrrnTvU5v0O3J6nxUkG3ODu/s=@vger.kernel.org, AJvYcCUlRCsBwKF4ZOW8DjarT60tIErrM04M5n9wFuQeuFmt+hDqhChq78e2Vek9MxhrI4XdKIZyEI2uDyBrmmIC@vger.kernel.org, AJvYcCWxE47RDsXVApvjQh29oyPdOppZXVtAx/CZfpzydcZw/nxf5DS/Nw4crM2hmCCCGGOKsrKx5ddg9Olh@vger.kernel.org, AJvYcCWxuRFvxhgaQoR8RWWm14zz4Kc97VBDNdGC4rBMh2yZlUO9mJVg2Yq9Nh+WZqFPpAYvJAmdgp67wDXf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz03sIQoE/ft4Qak1jgpvZC09Evv8WoK4fP4kYWTA4Xj7JfFP3t
-	z5lq+QCLFCaxjrLCUp+emMbcdFbzkyhUgGJEEMQI+lF8pBaUNoRn8tV0rntCy2a4EwEGZyLNLvs
-	CCXm7qLqoswFqDrqtdrID7rG75+oXNA==
-X-Gm-Gg: ASbGncvoG6KEzNrb3E9q7LbN6YLHC0KjVgud5PyXqkLq/gPB8TJZ15iMTa6mVum73yf
-	bvbqdurOCu/R+mf84eRjrGJ44fNpjTe4ExsB51HmlHbOjX602TH9eS0abSWb3qaJ9TO3rbbYIYN
-	N8FIz7pXbr0BZDT6RthYI0
-X-Google-Smtp-Source: AGHT+IHhIwe8rU9PLpYBn4D0l6l1OxCmDLFLe9Bgm3lFBWXmThOd0XpQJqAtk/OcOVWwsd3kI1THgvNLEgb0DKDyTec=
-X-Received: by 2002:a17:906:9f88:b0:acb:b08c:76ae with SMTP id
- a640c23a62f3a-ace710951d1mr418780966b.16.1745647943830; Fri, 25 Apr 2025
- 23:12:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1745648351; x=1746253151;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Br3YH6cLdLN1sKiBpDMu8RvQJZYLmO1CX2BswDBUQg=;
+        b=qpeYg3deQn5em0pXMNPyeqbmfCazjk5K/RHc3YjDFoPlAvCDXH4b6UPoLDGTU2Wtn4
+         GH8U5RtvkUdUmtd7GG0JIfR9tC1b5pFCJhzbnRIsea44yShpYc3ZAME58KHuL4DL6ALg
+         W5LnQmrSYnHtYqIZDAIB5eLa1THtSoQgUkhp+f5OKLirfQNryCUy7zOdmmMqlwsuqygK
+         evd7klUIXOFMKv2D82TGHppRKYZ53ttllW7BuQdQ1X7i9znQ2i6aaNtLhMH0ifc50Z+T
+         qjvH5sy6GTHkLa2FL9yd5A0r+kr52JMddo+SKlTjIgDNJFTZu5u7rYZBw0ebD3wdK8IQ
+         A7Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCWDM5S3O4RAA1XSvGV83u8KdorsZYKDAfEICa/XCzCOXj40SKnMrQN35NEwcvvxVWD1jFEBPtEw7iU5HNuiWzo=@vger.kernel.org, AJvYcCWSvAbKjSOEnNl0TmUrbP7W31dpBcu/7NFBLTKDDzAGfLxIVUsZXz3IqhTV5E0PtHq1gv0rafYGi0B0o6fq@vger.kernel.org, AJvYcCXnVMp/Kek1l9Z2ARM7aqet9O/4qdJ6GGaDAiU0/+ErUL2iyfifza12+QFd98pAM/BXDZcRxcDhLk+a@vger.kernel.org
+X-Gm-Message-State: AOJu0YywvWxSuaBPIOv8zWFo42iVDuWDCpQPWuwbN0YnLoxwNMlU9XBV
+	aEqshhOP8SqDwwyO9OcLKd4o8Bjn4CtATAcEhXhQe9aF5GOSXAv6
+X-Gm-Gg: ASbGncvD9fotRp0ED6wXpChRrVYJJV+WKwB3aWk222VpyNAolcGCfkmYXuJOOjWN8Jw
+	6JD03CkII4YP0PqJ+Ojy1PgwCPaKoFtvwUew8wTfHt/eLX2xdBGf8PCtlYsagmVCMYkdPht8Rfr
+	OFqqqPSrW0v/XV5Wvz4sSpD3LQJajdm6gsMYiLlnWlfWLuJt+r0aSmpBoeKBdzZpHC3w6uyr+62
+	Tngbqgv3p/j8T8XqkBVN8bvjLvodGoBpCpo1/qHEgBzKaroVHQij4KlK47hvgd6yAem1FX7m2Nh
+	yW3rCcBPqC9riszvns7RggxRBanq2OT9n0tAmxHt/6rrLUuyGkaTIi2Tmi0vOMj0OJphr40b8jT
+	WFPzeERpRd9RYnN/Y47gmiu17avm9GR0XgjgP/bi4HAOvDBOVnDLwUVqw9MF6eW8qO8ceKiDL
+X-Google-Smtp-Source: AGHT+IEMJnBe+oBa8ODaJOrgUUbGTyHLCFX+TTHI3yr4AHxu1Fua49wfN4YGTvCEMBnwFnabJ06vOw==
+X-Received: by 2002:a17:907:1b13:b0:aca:e1ea:c5fc with SMTP id a640c23a62f3a-ace84938b9emr128372166b.26.1745648350924;
+        Fri, 25 Apr 2025 23:19:10 -0700 (PDT)
+Received: from ?IPV6:2003:df:bf1b:2a00:97c2:84bd:aab8:d0be? (p200300dfbf1b2a0097c284bdaab8d0be.dip0.t-ipconnect.de. [2003:df:bf1b:2a00:97c2:84bd:aab8:d0be])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f701400570sm2274951a12.29.2025.04.25.23.19.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 23:19:10 -0700 (PDT)
+Message-ID: <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+Date: Sat, 26 Apr 2025 08:19:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250425132727.5160-1-linux.amoon@gmail.com> <20250425132727.5160-9-linux.amoon@gmail.com>
- <7a1e2432-46e2-40f6-84af-bff45ab79899@kernel.org>
-In-Reply-To: <7a1e2432-46e2-40f6-84af-bff45ab79899@kernel.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 26 Apr 2025 11:42:07 +0530
-X-Gm-Features: ATxdqUE-aSBuAto3DWag_735XNh8AilQRfbJbLa3ov7b-DirWkNhYUiBgQia2w4
-Message-ID: <CANAwSgSQrW8CCg7=rdN98EsoDZ0KsWv84DKOh3K4Jgmgz66XFQ@mail.gmail.com>
-Subject: Re: [PATCH v1 08/10] ARM: dts: exynos: Add proper regulator states
- for suspend-to-mem for Exyno5250 smdk5250
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Chanwoo Choi <cw00.choi@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, 
-	"open list:MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BO..." <linux-kernel@vger.kernel.org>, 
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
+To: Danilo Krummrich <dakr@kernel.org>, Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Dirk Behme
+ <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+References: <20250425150130.13917-1-remo@buenzli.dev>
+ <20250425150130.13917-4-remo@buenzli.dev> <aAuryiI0lY4qYyIt@pollux>
+Content-Language: de-AT-frami, en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <aAuryiI0lY4qYyIt@pollux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+On 25.04.25 17:35, Danilo Krummrich wrote:
+> On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
+>> This abstraction is a way to force users to specify whether a property
+>> is supposed to be required or not. This allows us to move error
+>> logging of missing required properties into core, preventing a lot of
+>> boilerplate in drivers.
+>>
+>> It will be used by upcoming methods for reading device properties.
+>>
+>> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+>> ---
+>>  rust/kernel/device/property.rs | 57 ++++++++++++++++++++++++++++++++++
+>>  1 file changed, 57 insertions(+)
+>>
+>> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+>> index 28850aa3b..de31a1f56 100644
+>> --- a/rust/kernel/device/property.rs
+>> +++ b/rust/kernel/device/property.rs
+>> @@ -146,3 +146,60 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+>>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+>>      }
+>>  }
+>> +
+>> +/// A helper for reading device properties.
+>> +///
+>> +/// Use [`Self::required`] if a missing property is considered a bug and
+>> +/// [`Self::optional`] otherwise.
+>> +///
+>> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
+>> +pub struct PropertyGuard<'fwnode, 'name, T> {
+>> +    /// The result of reading the property.
+>> +    inner: Result<T>,
+>> +    /// The fwnode of the property, used for logging in the "required" case.
+>> +    fwnode: &'fwnode FwNode,
+>> +    /// The name of the property, used for logging in the "required" case.
+>> +    name: &'name CStr,
+>> +}
+>> +
+>> +impl<T> PropertyGuard<'_, '_, T> {
+>> +    /// Access the property, indicating it is required.
+>> +    ///
+>> +    /// If the property is not present, the error is automatically logged. If a
+>> +    /// missing property is not an error, use [`Self::optional`] instead.
+>> +    pub fn required(self) -> Result<T> {
+>> +        if self.inner.is_err() {
+>> +            pr_err!(
+>> +                "{}: property '{}' is missing\n",
+>> +                self.fwnode.display_path(),
+>> +                self.name
+>> +            );
+> 
+> Hm, we can't use the device pointer of the fwnode_handle, since it is not
+> guaranteed to be valid, hence the pr_*() print...
+> 
+> Anyways, I'm not sure we need to print here at all. If a driver wants to print
+> that it is unhappy about a missing required property it can do so by itself, I
+> think.
 
-On Fri, 25 Apr 2025 at 20:18, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 25/04/2025 15:26, Anand Moon wrote:
-> > The MAX77686 PMCI is able to power down and up key core supplies and other
-> > voltage rails via PWRREQ signal to enter / exit (deep) sleep mode.
-> > PWRREQ status is ignored during initial power up and down processes.
-> > All programming must be done before the AP enterns the sleep mode by
-> > pulling PWRREQ low since the AP does not have programming capability
-> > in (deep) sleep mode.
-> >
-> > Add suspend-to-mem node to regulator core to be enabled or disabled
-> > during system suspend and also support changing the regulator operating
-> > mode during runtime and when the system enter sleep mode (stand by mode).
-> >
-> > Regulators which can be turned off during system suspend:
-> >       -LDOn   :       2, 6-8, 10-12, 14-16,
-> >         -BUCKn  :       1-4.
-> > Use standard regulator bindings for it ('regulator-off-in-suspend').
->
-> I do not believe you tested this but instead send whatever you found
-> somewhere without actually understanding the code. In the past you were
-> sending such patches - without knowing what they do and without actually
-> testing.
->
-> NAK
->
-Thanks for your review comments,
+Hmm, the driver said by using 'required' that it *is* required. So a
+missing property is definitely an error here. Else it would have used
+'optional'. Which doesn't print in case the property is missing.
 
-All the MAX77686 control register supports On/Off Control by PWRREQ signal.
+If I remember correctly having 'required' and 'optional' is the result
+of some discussion on Zulip. And one conclusion of that discussion was
+to move checking & printing the error out of the individual drivers
+into a central place to avoid this error checking & printing in each
+and every driver. I think the idea is that the drivers just have to do
+...required()?; and that's it, then.
 
-Once the Application Processor (AP) boots up, the AP is able to power
-down and up key
-core supplies and other voltage rails via PWRREQ signal to enter /
-exit (deep) sleep mode.
-PWRREQ status is ignored during initial power up and down processes.
-All programming must be done before the AP enterns the sleep mode by
-pulling PWRREQ l
-ow since the AP does not have programming capability in (deep) sleep mode.
+Best regards
 
-So PWRREQ has the following states for control registers
+Dirk
 
-00: OFF (regardless of PWRREQ)
-01: Output ON/OFF controlled by PWRREQ PWRREQ=H (1) : Output ON
-PWRREQ=L (0) : Output OFF
-10: unused
-11: ON (Regardless of PWRREQ)
-
-I have dome code mapping through the driver to understand this feature.
-If there is some code improvement plz suggest so.
-
-> Best regards,
-> Krzysztof
-
-Thanks
--Anand
 
