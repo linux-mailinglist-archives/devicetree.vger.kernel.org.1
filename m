@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-171191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4793FA9DB31
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 15:36:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC3DA9DB33
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 15:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929A91BC33D8
-	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 13:36:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F24A171667
+	for <lists+devicetree@lfdr.de>; Sat, 26 Apr 2025 13:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8491B87D7;
-	Sat, 26 Apr 2025 13:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740031C3BEA;
+	Sat, 26 Apr 2025 13:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="KlQN0NUe"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="kyJ8K64r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D20022098
-	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 13:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AA11BC09A
+	for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 13:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745674556; cv=none; b=OiVB549MLZ7MCAKmugYG9i8EbAWjMO8EsrzylwbrPAoGLlg4+ge9WN+PZL9wnWYGljH7tGAoAXAJ9cN7dRDfXp8ByB4VRRtzcVJNBzCmY/t20tbUhjfET113K8NmB4j7P89W/J1QmD+XfCNCpvxH1ER+eoTu/pxkKWsQ0fyZSxk=
+	t=1745674591; cv=none; b=XXXUQ6MayujdqUt6RwKEJ7QalCTzII5qOi7oYAl5PrgD5BW55MjUSHepQ0x/fVo/5OVozY0x2Gw7wHSG6XuNUhD7KDGSGY4SwSmykGSpoEDZvARyQh3MHXux6Ne/qCcSeWlJvBHtASOjKIIweUPcooIK/CeyFma8nw54icUuQuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745674556; c=relaxed/simple;
-	bh=yYCXS8YQZQjB4/1VmgQsilzMSLtC1TAavLUrwufzZm0=;
+	s=arc-20240116; t=1745674591; c=relaxed/simple;
+	bh=W9iznr1mkJfQh5QDIFaWYRkEJQiC9aqfiDhtSDkTtkY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sXLtEGl7k1VcpVse+P3lUOAfRGbtFALh1Kn5qSOuG+McA0ZVxIosSPxG4qnE+lmCnVEcLV5jXMFrCQwo818Vrwvpf+LkSu3vVNnlpTavGE49hAUw49T7dMD7afwcwtrZ8YlMBVb9gGJizfa3qJp+pTpyEWvwIC1lwMBM5GveVgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=KlQN0NUe; arc=none smtp.client-ip=209.85.208.50
+	 In-Reply-To:Content-Type; b=CcC/tVMKPMA6QLNr8eDMNZHIENEg1WsuF6RYKIuxFzvA2meh9hnjdn4WyOhF6J1b8s79TyIYYyW35H5QJK4hZIDcWGOl94YzoBePjdqyPfRXbQbqWjf0vkNYAo5/gOjewmTeYXE+bb1VxOaLEJhO3XaIBynpNP4jhGna7+BZ5es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=kyJ8K64r; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e5bc066283so5562082a12.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 06:35:53 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5f62d3ed994so5841107a12.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Apr 2025 06:36:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1745674552; x=1746279352; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1745674588; x=1746279388; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tpKqYnXH25f3lqGlUZbd0EpV+dGbWQ4Gs839plYWRIY=;
-        b=KlQN0NUemRBsu832EMeh6yyEqeGgVZ4fwQLH3wQT1m5B2scWGir3G1iqQyse3TX7js
-         e2R8ckaJP+M8S3eMmUIfMAhobiL/ZuVFDdIRecn5b3xCcKk49y90yY8LTUR/sZWPmnca
-         M7BXUNS+t05m0KqfL5NLbrauF1kkHfqIrHGU0YHgUg7DZN8Vjy0DCIehRmntQ8hgYKTu
-         MCouS45uVX7FLkB4Yf4g1m8XdB0HSFwBSJMl8km7+D+KhsfnViaHmPSsWSEZR/Q61b9I
-         eaDvqSwjSWbkhhOALpXsGn2dED9zPLwLJzGRm+lbChG+kJKHmnwDreb0F9PTYI8ja1vS
-         19Wg==
+        bh=1DSi4zR0uq28zmQAXB8VDFfiTdJQqtBQO4bDZ1Ewn84=;
+        b=kyJ8K64rKVAA1Zrb30B5ekQ5vTKBC8/9JFM+puXkN75LeJc+6bM21QqdIxYd1HVynt
+         9dZs0piVCI0m2IoTiLUGWVhvBCOLeky+pULHRCMpL6EQ7fR/GNooEIfo9B0Rr6AzfwqY
+         zr5wq6u5uUxwIvxW11wLC9Jw0u23yI0tZp125VHeePMu3BnNet17EDfH2FrnGOqiM0l7
+         H37MoAUjf/gzoleezLfx0XdaufQK/IaWfE/ftTOqBdctKgz7g9c0a98Y+P5vUXImD8L+
+         9CMGDyRIomOb4wEw6g3ykKQwaGbkqwX7n5NMVOpSChrkhG70EOvMf0GpKN9U2xFONrkS
+         7a5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745674552; x=1746279352;
+        d=1e100.net; s=20230601; t=1745674588; x=1746279388;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tpKqYnXH25f3lqGlUZbd0EpV+dGbWQ4Gs839plYWRIY=;
-        b=YrI+YsFdJILgKH2ubrPqGEkxdDwOgIinj8XnjqouAZlqxAk5LG1v/mGSEry/YKx+q4
-         sPFQ6MkVUrAp6EABEJx9Qxjfm7HBWGXQFNfaSR6/+PwiEoOKsZP1Y08hIGlstVT0nlwF
-         sHNWxmykjffKjRAPB7c9vKFuywDXRTO4ZdLI/LqWIgoGdSNaZ5qLaJUt0zF5JPjOusRw
-         HrvLBslMFNcFE4m/pmJmZ1910GHRuUFVsHU7LrXv1d3Q8u+VbVy7viv7GZKR3Rlep7CN
-         WnsutNd3GZYqRe38hVbQkpCVNcegA2wFkPHgoSu5qSSNa9te5dZJgjgdZSrbWg8uVHlO
-         WTKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/YHDTa/lnE9N4QXhZHMHeW4vbvDV7TyMM9jn2MoOlhPY+/BGwoZYOVCT1fh+qKl+IOksOJ2JE5O4o@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrfPAokdT13iT1ylLNbQ3n2B4D9VHPxCECnBJhfPyHiY2X0R+m
-	vF7yTUNP5/85oHUYWAEpMU43q3/4AcLjTRlIWqnZM4fBpS0AoOEvBck4KMIZlx0=
-X-Gm-Gg: ASbGncuCoGsgxzD8rhX40dpvNsQwX1IolAUtGBmFJkqMA2Hp6gE7xTVTPETzTttjEYq
-	R2Ge9PwVxB54fb6b0KXTUHsn9gk7Z5il5sOVu5VBAEivc5OO3ONqUKuXrz4z3xq36uMlzSv/hrM
-	mqdGhqXVFR6cunZaQyLouM+jzb1W9dREnz8zCKK1prCCQguGpHHC65CiEgqgzvrM2aQQh6JZ6vI
-	87r9zyJwg+dP+RmNg+OAW1+e8kNJecP/hZGIRwHRI6C3NIbUYBilPGp9V/ecBonPiXjBHNz1JJg
-	7O3nozCNOdfeXn5wKfPcvJQ8KrvCrw+jmOoI2S1xpNFdqHtFyDvVhcl74jXn
-X-Google-Smtp-Source: AGHT+IEqy1Bjndt2pvxsKMV5+EcxiW6j9NOhnrynY2cN18NYigRKOQiOJgaMqvmfCZqpsJ/rAvLIew==
-X-Received: by 2002:a05:6402:4286:b0:5f6:23d2:e6f7 with SMTP id 4fb4d7f45d1cf-5f723a1346fmr5017034a12.32.1745674552326;
-        Sat, 26 Apr 2025 06:35:52 -0700 (PDT)
+        bh=1DSi4zR0uq28zmQAXB8VDFfiTdJQqtBQO4bDZ1Ewn84=;
+        b=F6n3oigeURa2d1Y+pEIsfEyxcTMsbfBId07h3hVB+AIZnm8Fd7s/x2yBwND2ME82ft
+         sWIgmm/psM+N992RZnolq2EG73asqyDO05ejGnRSbmjZjmdXtI5T9ZFbAvEFf0lxdh5I
+         aOspASvjW1/BlWKQkqiftP+3OpOXWepjUzPeveWnRe4FnkKnAbMI7Iclls/Y23mv2F0e
+         LE3UypugGDAZ36w55WHAblPNeyKCDsvqJBaqVSpfGDj2SU/htqMjbsImI84l5jTQtgM9
+         l1j1jhNV3ZgmX7BE4DRqc4LQWZAS5girDRC8wDBcWtjgzv2vvbLqH5+/Y1MRihvfdCza
+         r8GA==
+X-Forwarded-Encrypted: i=1; AJvYcCXc+NCx8f6c7W366Pj7plyf2wX1AuV3lEMb4mTb9knVeSOhbksZTCyLfw2J+ESSNlyXEnnYkVNsR5Hl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNtFuOqptnifek5zqTdpPdDqGu5bX1BtqCf6LearPH+YQBBIR7
+	m0tbkgUl/QnqokYp0FRJjop+5F/AAQDQzzprG86Hqy7V3NXLdbqs86owBaW0EHA=
+X-Gm-Gg: ASbGncsbFJyzeazTG/aPyKzDbQN25j3YXHPCgyHSHS9O9n7QDRNIU3X2MM2LG/7xlFt
+	shs85RaKdlu+9phurgAVAAAlsoe01fpCB+1PC4YbQ/wMGhGnbVfb9ZaNsOgroAG4VxTQpKauiUy
+	XP6pESwTLpQLWmPXv6a4oiP1sLEYEmMu6rQmtizGFlwx636nzpOVf7TUhA1oUi8VL2eWaPeJXpn
+	WG2nn+IjSMfcxzZ1zh09r+eHC66YVFXP48ByBKBve8DDj+0Qs9sStR3Op+e3YJNIsqJiEZrfbQS
+	7WPrXQvtYtGLPUoFMNRcF1X6kUuBHE33EkXnepV4MsQUrcroYw==
+X-Google-Smtp-Source: AGHT+IGFY/we5oPj5BLcTsNv8SWpZqerfwxabzo7n0VvzgXfX7TOdes2xHvpN6ZPYUBny09V6ObQIQ==
+X-Received: by 2002:a17:907:3f8f:b0:ace:4df8:b0c6 with SMTP id a640c23a62f3a-ace7136df26mr511805366b.38.1745674587960;
+        Sat, 26 Apr 2025 06:36:27 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.145])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7035464e6sm2639700a12.64.2025.04.26.06.35.51
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4e6498sm290045566b.42.2025.04.26.06.36.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Apr 2025 06:35:51 -0700 (PDT)
-Message-ID: <47b54406-42d8-41cd-a561-9073db09666e@tuxon.dev>
-Date: Sat, 26 Apr 2025 16:35:50 +0300
+        Sat, 26 Apr 2025 06:36:27 -0700 (PDT)
+Message-ID: <22b722eb-5ef1-4542-a5b2-10222b4eb6c4@tuxon.dev>
+Date: Sat, 26 Apr 2025 16:36:26 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,8 +81,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] clk: at91: sama7d65: Add missing clk_hw to
- parent_data
+Subject: Re: [PATCH v2 1/4] clk: at91: sckc: Fix parent_data struct for slow
+ osc
 To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, nicolas.ferre@microchip.com,
  alexandre.belloni@bootlin.com, mturquette@baylibre.com
@@ -90,56 +90,94 @@ Cc: sboyd@kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-clk@vger.kernel.org
 References: <cover.1742916867.git.Ryan.Wanner@microchip.com>
- <d634ae4f72bca022e205b03c01415e90fda0bc01.1742916867.git.Ryan.Wanner@microchip.com>
+ <d470bb761530827889beaa2c2815e127fc8b412e.1742916867.git.Ryan.Wanner@microchip.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <d634ae4f72bca022e205b03c01415e90fda0bc01.1742916867.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <d470bb761530827889beaa2c2815e127fc8b412e.1742916867.git.Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Ryan,
+
 
 On 25.03.2025 17:55, Ryan.Wanner@microchip.com wrote:
 > From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> The main_xtal clk_hw struct is not passed into parent_data.hw causing an
-> issue with main_osc parent. 
-
-Can you please describe the issue?
-
-> Passing the main_xtal struct into the
-> parent_data struct will ensure the correct parent structure.
+> The slow xtal is not described correctly as a parent, the driver looks for a
+> "slow_xtal" string which is incorrect and will not work with the new
+> formating of xtals.
 > 
+> To avoid this and keep this driver backwards compatible the
+> parent_data.fw_name is replaced with parent_data.name and the original
+> parent_data.name is replaced with parent_data.index. Using the index is
+> safe due to the driver requiring only 1 xtal.
+> 
+> Fixes: 8aa1db9ccee0e ("clk: at91: sckc: switch to parent_data/parent_hw")
+> 
+
+No need for this empty line.
+
 > Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
->  drivers/clk/at91/sama7d65.c | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/clk/at91/sckc.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/clk/at91/sama7d65.c b/drivers/clk/at91/sama7d65.c
-> index a5d40df8b2f2..08306261c9c7 100644
-> --- a/drivers/clk/at91/sama7d65.c
-> +++ b/drivers/clk/at91/sama7d65.c
-> @@ -1138,6 +1138,7 @@ static void __init sama7d65_pmc_setup(struct device_node *np)
+> diff --git a/drivers/clk/at91/sckc.c b/drivers/clk/at91/sckc.c
+> index 021d1b412af4..952a805b6f7e 100644
+> --- a/drivers/clk/at91/sckc.c
+> +++ b/drivers/clk/at91/sckc.c
+> @@ -374,7 +374,7 @@ static void __init at91sam9x5_sckc_register(struct device_node *np,
+>  	const char *xtal_name;
+>  	struct clk_hw *slow_rc, *slow_osc, *slowck;
+>  	static struct clk_parent_data parent_data = {
+> -		.name = "slow_xtal",
+> +		.index = 0,
+>  	};
+>  	const struct clk_hw *parent_hws[2];
+>  	bool bypass;
+> @@ -407,7 +407,7 @@ static void __init at91sam9x5_sckc_register(struct device_node *np,
+>  	if (!xtal_name)
+>  		goto unregister_slow_rc;
 >  
->  	parent_data.name = main_xtal_name;
->  	parent_data.fw_name = main_xtal_name;
-> +	parent_data.hw = main_xtal_hw;
-
-I think, from time to time, you can still hit some random failure as the
-parent_data.index is still not initialized. I think the problem may be
-solved by doing something like:
-
--	static struct clk_parent_data parent_data;
-+	static struct clk_parent_data parent_data = {0};
-
-Can you please check with this?
-
-Thank you,
-Claudiu
-
-
->  	main_osc_hw = at91_clk_register_main_osc(regmap, "main_osc", NULL,
->  						 &parent_data, bypass);
->  	if (IS_ERR(main_osc_hw))
+> -	parent_data.fw_name = xtal_name;
+> +	parent_data.name = xtal_name;
+>  
+>  	slow_osc = at91_clk_register_slow_osc(regbase, "slow_osc",
+>  					      &parent_data, 1200000, bypass, bits);
+> @@ -476,7 +476,7 @@ static void __init of_sam9x60_sckc_setup(struct device_node *np)
+>  	const char *xtal_name;
+>  	const struct clk_hw *parent_hws[2];
+>  	static struct clk_parent_data parent_data = {
+> -		.name = "slow_xtal",
+> +		.index = 0,
+>  	};
+>  	bool bypass;
+>  	int ret;
+> @@ -494,7 +494,7 @@ static void __init of_sam9x60_sckc_setup(struct device_node *np)
+>  	if (!xtal_name)
+>  		goto unregister_slow_rc;
+>  
+> -	parent_data.fw_name = xtal_name;
+> +	parent_data.name = xtal_name;
+>  	bypass = of_property_read_bool(np, "atmel,osc-bypass");
+>  	slow_osc = at91_clk_register_slow_osc(regbase, "slow_osc",
+>  					      &parent_data, 5000000, bypass,
+> @@ -592,7 +592,7 @@ static void __init of_sama5d4_sckc_setup(struct device_node *np)
+>  	const char *xtal_name;
+>  	const struct clk_hw *parent_hws[2];
+>  	static struct clk_parent_data parent_data = {
+> -		.name = "slow_xtal",
+> +		.index = 0,
+>  	};
+>  	int ret;
+>  
+> @@ -609,7 +609,7 @@ static void __init of_sama5d4_sckc_setup(struct device_node *np)
+>  	xtal_name = of_clk_get_parent_name(np, 0);
+>  	if (!xtal_name)
+>  		goto unregister_slow_rc;
+> -	parent_data.fw_name = xtal_name;
+> +	parent_data.name = xtal_name;
+>  
+>  	osc = kzalloc(sizeof(*osc), GFP_KERNEL);
+>  	if (!osc)
 
 
