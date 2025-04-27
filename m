@@ -1,144 +1,107 @@
-Return-Path: <devicetree+bounces-171295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C06A9E2F5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 14:23:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EE6A9E356
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 15:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625803B6527
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 12:23:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75AA2189AAD5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 13:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E20248866;
-	Sun, 27 Apr 2025 12:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B75B18FDAB;
+	Sun, 27 Apr 2025 13:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZDzgRD2A"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FU5NM75h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7497AF9D9;
-	Sun, 27 Apr 2025 12:23:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54A99153BED
+	for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 13:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745756606; cv=none; b=VY3mrvKO4Fcncj7gbobQxOlgiYn29FCFCSIbhFCSVbPNIB7X+RF7JmLi5I4D6/WWCxfsP+ZGUSBWf+1oNBJSz8bQ8lJBCVx+FyuUJd1DQiOeHYQfta1X5mc+JbNVrgFAJXWAjjF6V1KyRj390DM502c+srts191jAnhsq8bTqTQ=
+	t=1745761281; cv=none; b=t787XUkiniKsi5zqLB5p7vNKwDoPhZH/I/zyCJP+VqhWCrCwzLtaDRHE07a4N4/20hT9qXGHN2Ftskzb4JLzWQhUCMKFow93WgNU6JliCar690aelNxmOkxgORN1uthz1vBFXilarQuNwfd1giAiVLBrn54r5hpXDn8P+qtVm9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745756606; c=relaxed/simple;
-	bh=5lF9R3W3tII2MDLw+0o9ahkg2UFpuIiu8LfXbM8rc3w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tbg9WVthhfE7f0YSMSbmU88inI2utZQ25XF8LSgAwXX/M909FAzDMZ/I0qfzSndLHHvlmjkUSLOWhwmQi+TFjSJd6sEPYG8Iju80MU98aun71+OTnscYvsL99Vagva5MGFJOyhD0TZ2yG8YCAaG3jdxZU2VBnuVw6gJ47nLgGUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDzgRD2A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52354C4CEE3;
-	Sun, 27 Apr 2025 12:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745756605;
-	bh=5lF9R3W3tII2MDLw+0o9ahkg2UFpuIiu8LfXbM8rc3w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZDzgRD2Aas89Hajq0s1tPy4PsfnN9yU9O9kTsUFjifH2QcFhw+8m7GEbvwEDCNP9P
-	 8KLWoWVcwAJRpPbn0kvlNhjdcu2FkWjMwbC/OUQnYRoPPcRFYsuOMV5FFYz9WP339p
-	 FcljDkh5eBTNf+8mLX6LodBvmWSuSuw5PjFVUspf80YzBDmpYMzN1AUpFYQpf67D/p
-	 FGBFOOc7x+lmp0NpWG3r308g2rARe3uRscXB1OIEC/wxdVni0RLR4+m0ElrGgtdnic
-	 RsIxMY+wD1hFFOXg01o28kAFWjRUes6MXrfg9ntoDRc5DIR5pEakMgrY90t1u7Eyi4
-	 p8hscvFKnP2qQ==
-Date: Sun, 27 Apr 2025 14:23:19 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dirk Behme <dirk.behme@gmail.com>
-Cc: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
-Message-ID: <aA4ht5sUic39mnHj@pollux>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-4-remo@buenzli.dev>
- <aAuryiI0lY4qYyIt@pollux>
- <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
- <aAyyR5LyhmGVNQpm@pollux>
- <0756503c-02e7-477a-9e89-e7d4881c8ce6@gmail.com>
+	s=arc-20240116; t=1745761281; c=relaxed/simple;
+	bh=VnALKFAe0qO+P//pjggZT55wiJFa5E0L8cO8PSW+xlk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qTtmzS4GSSXT/erCApAtQtY04BSpGvURyNAPKuBEZn/zdiyJM1KC9IbUgy1kpjbQXcD79XRuwpiSRUiZti/3SNPU4UDlFSm3+FfQjEoXx4fETrHyy9M3DWH+sXCeonNyhyx3jeloujyH4t0HRT/UPuUcamKRfla/lthWryWPbjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FU5NM75h; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5f5bef591d6so7402695a12.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 06:41:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1745761277; x=1746366077; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lgLsTHFUHPVY+MlDYOlPHI/6Yw7FnfxYmbCzXZmnW0Y=;
+        b=FU5NM75hacbjTf/WjGAOYbr9cn1stb2HOpic2Du6PWnwncKLp4aPXdkPF5KjMGhbrX
+         Gvr8s5MvTxKirq5OrANmVJVHWfPJF3pppY011xlYp8aaePN09xwPUpWERsnzZguHh/AE
+         QISf2GAd4yJheDVooxIwgFB9NEW5Qx+4zweppybxiqpLfVyVcHJzDHoR2RZ6x6nlTORK
+         sTXDO7JYfxh9j74YH/QOisoVzdfJtITcdcmRx4EzdSvVVWjJP3i4ZOP7R/ef8TMzIF/P
+         tfQmsFETVTgFd9T15EHe6wPw30596qui0O+H9Uyc3BBeV/TWzZh1e6xz6SM+iauBG2Ie
+         UXTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745761277; x=1746366077;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgLsTHFUHPVY+MlDYOlPHI/6Yw7FnfxYmbCzXZmnW0Y=;
+        b=o8bPTCQaIAgITIAq6zzlGNpkdKc0Vj5/WBkS+/Nta1TcIcH6vIvM8k4YfdQy5ibrrg
+         a0vLZPr9xzLIhUytbOkWFz3vvrTBFhgJD1BTCL/utOgEjeCopXb5u/bJQItpegDcBImj
+         O3yUXOUHZD7HHlpCiSf5ySxRvxD+Cu9sG+jSFRscthvHKU2dKtIdFFfGCh2Dl0WE3KSi
+         1fhSq5LnP7rohVd5SPYtvC7gFsj3ISRAW0EvMipm5r92YJNdLXToEUBu2jAD/oZ2Hs2W
+         onvU/PW4idl0K+6JnVWTFheGEZAwypNLHQRQjfq/YTp0uRwtUeKr7NOt5hOXGcoUwiHx
+         OjiA==
+X-Gm-Message-State: AOJu0YwVYgziJAD1jWdmhdy4oEz2xfoTCeqlcsLoEUM/g9bDuWMFwZmE
+	B8UbbFBr2UTlanfWXxgBSkBZN2/r9TLVojCCniY0AMUYle9Lffy9HyE9fqZn18E=
+X-Gm-Gg: ASbGnct+qbYIL+aPEk+2qy87qZ0uHht09tHlyaW9YkR6DcCwLSqc1ZswUyIKBc4cvJN
+	gb2pIU6f5EMK0nfev8DzQsJ8O3vcsBcJJgSAws5mVy5pm31Xd9/cLRVWjKg5Ye8H691bY/8Hb+3
+	UZYxJOjCfVfEw/FaJh/BzzaZSzDG1FsmfLwMk3l4tIEbEzWglJdTqLgE0wHEeV5+NO1w0V5t541
+	keQpAUo65+WqV5zOoii+3Y1uaGP6RMU0Xyvtg5bNYzKM3at5hwqyDTGT2fqIQJHT7ZL5NdYTHyk
+	bPYuJhLZ6AEFhu9FYuSVC7raKQExoNUq0qxNTGnjw6b0hr7xZVh+FETP5/g0
+X-Google-Smtp-Source: AGHT+IFjvYNUHCZ3dPrDRyEa/OPDZMNfSszUTn/p2tnOnx4im+io+5tXp8qpQenDsLlwqL9uw5wHmg==
+X-Received: by 2002:a05:6402:2691:b0:5e7:c773:ae35 with SMTP id 4fb4d7f45d1cf-5f722672b22mr7593685a12.5.1745761277306;
+        Sun, 27 Apr 2025 06:41:17 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.145])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7013ff570sm4139225a12.23.2025.04.27.06.41.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Apr 2025 06:41:15 -0700 (PDT)
+Message-ID: <86068277-5443-435d-b1cb-0d1a5731b331@tuxon.dev>
+Date: Sun, 27 Apr 2025 16:41:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0756503c-02e7-477a-9e89-e7d4881c8ce6@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 00/11] Enable Power Modes Support for SAMA7D65 SoC
+To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, lee@kernel.org, sre@kernel.org,
+ p.zabel@pengutronix.de
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rtc@vger.kernel.org
+References: <cover.1744666011.git.Ryan.Wanner@microchip.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <cover.1744666011.git.Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Apr 27, 2025 at 08:11:58AM +0200, Dirk Behme wrote:
-> On 26.04.25 12:15, Danilo Krummrich wrote:
-> > On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
-> >> On 25.04.25 17:35, Danilo Krummrich wrote:
-> >>> On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
-> >>>> +impl<T> PropertyGuard<'_, '_, T> {
-> >>>> +    /// Access the property, indicating it is required.
-> >>>> +    ///
-> >>>> +    /// If the property is not present, the error is automatically logged. If a
-> >>>> +    /// missing property is not an error, use [`Self::optional`] instead.
-> >>>> +    pub fn required(self) -> Result<T> {
-> >>>> +        if self.inner.is_err() {
-> >>>> +            pr_err!(
-> >>>> +                "{}: property '{}' is missing\n",
-> >>>> +                self.fwnode.display_path(),
-> >>>> +                self.name
-> >>>> +            );
-> >>>
-> >>> Hm, we can't use the device pointer of the fwnode_handle, since it is not
-> >>> guaranteed to be valid, hence the pr_*() print...
-> >>>
-> >>> Anyways, I'm not sure we need to print here at all. If a driver wants to print
-> >>> that it is unhappy about a missing required property it can do so by itself, I
-> >>> think.
-> >>
-> >> Hmm, the driver said by using 'required' that it *is* required. So a
-> >> missing property is definitely an error here. Else it would have used
-> >> 'optional'. Which doesn't print in case the property is missing.
-> >>
-> >> If I remember correctly having 'required' and 'optional' is the result
-> >> of some discussion on Zulip. And one conclusion of that discussion was
-> >> to move checking & printing the error out of the individual drivers
-> >> into a central place to avoid this error checking & printing in each
-> >> and every driver. I think the idea is that the drivers just have to do
-> >> ...required()?; and that's it, then.
-> > 
-> > Yes, I get the idea.
-> > 
-> > If it'd be possible to use dev_err!() instead I wouldn't object in this specific
-> > case. But this code is used by drivers from probe(), hence printing the error
-> > without saying for which device it did occur is a bit pointless.
-> 
-> Thinking a little about this, yes, we don't know the device here. But:
-> Does the device matter here?
 
-If the above fails it means that for a (specific) device a driver expects that
-a specific property of some firmware node is present. So, yes, I think it does
-matter.
 
-> There is nothing wrong with the (unknown)
-> device, no? What is wrong here is the firmware (node). It misses
-> something.
+On 15.04.2025 00:41, Ryan.Wanner@microchip.com wrote:
+>   ARM: dts: microchip: sama7d65: Add SRAM and DRAM components support
+>   ARM: dts: microchip: sama7d65: Add RTT and GPBR Support for sama7d65
+>     SoC
+>   ARM: dts: microchip: sama7d65: Add RTT timer to curiosity board
 
-How do we know the firmware node is wrong? Maybe the driver has wrong
-expectations for this device?
-
-> And this is exactly what the message tells: "There is an
-> error due to the missing node 'name' in 'path', please fix it". That
-> should be sufficient to identify the firmware/device tree description
-> and fix it.
-
-I think we can't always fix them, even if they're wrong. How do we fix ACPI
-firmware nodes for instance?
-
-(Software nodes provide a solution for that, see also commit 59abd83672f7
-("drivers: base: Introducing software nodes to the firmware node framework").)
+Applied to at91-dt, thanks!
 
