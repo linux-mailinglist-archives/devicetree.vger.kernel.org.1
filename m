@@ -1,91 +1,112 @@
-Return-Path: <devicetree+bounces-171319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC6F8A9E497
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 22:43:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9EC2A9E4A8
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 23:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DA64189BEE2
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 20:43:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20D823B72D3
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 21:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E010A1FBC8B;
-	Sun, 27 Apr 2025 20:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2CA1E834C;
+	Sun, 27 Apr 2025 21:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yKerti9/"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="CpM1N37n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7788F5A;
-	Sun, 27 Apr 2025 20:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA50B6AD3;
+	Sun, 27 Apr 2025 21:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745786598; cv=none; b=ZFLEzT8r/Z0UZeFs/6dLqFkNrhCsqHMAOdaRyQMUtDbO6Xjlg0MDKey57AcCEA0x6Ed9bGDK/3ZLdV/a7FojDZoQJEKsKc0qwN/JXp1uENOqalMFB7LmHF9DrjTHMw9j5lkkGFCXjkp7/P/Fv096XriSkJ6mKUbl13WmPnJ+Mrs=
+	t=1745788129; cv=none; b=CkZbVwiEEfYTIEqdpB4Qfbtc6JVa/k4heptDSTHbSOgBG4QE/7TST6vVie664VTOdMeQ24DMN4xPanqBx/rccr5KA+bEe5vlEWY/QgEGpM1/h9HnmIVLr79F6xkiaA1lyrQ4Bsbx57y9txA0HWPyzi+iDAkYudYEdiPYSEvwP0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745786598; c=relaxed/simple;
-	bh=Dqkhm7rHKIwu1jHPI9TWUF5c8KPxVS0sl5eK16zQf5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6k7+FR4vj0BxJpX2f0OwtDiy3S4rxW9ND7rwSr0D/nrnibKexhd7SVYYCfgak82pSf2ObnxtHru0vzc10S0t+SIfFQzcTeLX2ISS3FkBp4JCzB5mkIT71BCJdfBNHXsGOZickbTnDLHhFU9NOnKN0QupCNkX05b8R3G+AfpQMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yKerti9/; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Tl7OXQaIr8vYn2l9EMuLZFrZfGWU84ju/nbYhGZC7Uc=; b=yKerti9/SoymfMpSROO6drskcG
-	C/sLpxGNxhLd6RyafH0eaGQGF8O6BuKDTasNE0Kf2PJz/VXeaHYkhqUHf3pmh9NUNXQNdvHYTrkUD
-	e68kxmsk9D/W0n+gNaYaPETvSWBD4YvjVOO+D0KeDlyIQfX4tL9YDjPv+Jd5uTc24Nzw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u98pi-00AlfG-42; Sun, 27 Apr 2025 22:42:38 +0200
-Date: Sun, 27 Apr 2025 22:42:38 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
-Message-ID: <6291f6b8-75d3-4243-9935-9b64450e2b7f@lunn.ch>
-References: <20250427094211.246-1-kernel@airkyi.com>
- <20250427094211.246-3-kernel@airkyi.com>
+	s=arc-20240116; t=1745788129; c=relaxed/simple;
+	bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q9xeyVwAHJFc8vzF5XqHi1HAUvfdnJ/jXXxkbBSVldRK+G8hCZbge2YWMTF/xxcYpmfSH367tbIa6uafKrZ4YkDNReCE5ZDOzrgYWmR3nTOxfiuMqfu4op88A8GTVEPbkCczH2qt39dvenO8FMHxsohCX9a0D1qPrU9gIto+WC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=CpM1N37n; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2243803b776so68573525ad.0;
+        Sun, 27 Apr 2025 14:08:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1745788127; x=1746392927; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
+        b=CpM1N37nb72G7EWEAUm7qOvPLdaaykIGpdWlgeDNxb6IMs/3WTw52uLGoXot50QRl/
+         zVOV4ECpLyvSMyRuDhhK3hb6nYDM4zyEV6hzMflpfj++pCLY86zsdDEzDHuBWt4/eWqK
+         4YHA2tJIK5iYUcV1MdlGr6UZ381XVWB2IYXChn6rgC7S1l3wzHTqOp6HbP6MKpHpxzUq
+         WI9acW8I4AFRMRW7cnLqegmRg1P+zfwhr7EIkfKIEmTwjYGQI7Mj49bTqHHdOVr2B5Qx
+         r64RIoduKauMA66Ose8XYotoqdIx52C8DVBGGUA9Br1U9J46cwt66ek6UU9HwPPRpExJ
+         4J6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745788127; x=1746392927;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
+        b=jw9lJk/4XkAvjEBleM+nn93yWL/nZmtkniDFbAKV4C/FS6G/bKs1JsDrP6Se0ec2fv
+         yoZgneMuEV2S4PRhSPCSNWjNM2YUz0vtbjnAxwC8R6UqveBSHRiATDQw2pw7tGGMzrLf
+         flSQ63vfNsExmddICP1iLmU8045p6yYw8sdHyZuL4aO5/QVz6TPOmOri2YtLSCMq44if
+         381035ryIignb9FfbeifUPyIIXmrJZjoyHhYUtlRdn3zRLjDbn+3NhrVaf8kXPdqNN0J
+         WA8uEA3JS1ZrQRdyYu56xhvuM96wJiqDR0s9Tl7FilgrgtFqVaBtYhkbqb+2RmEeALmb
+         IMjg==
+X-Forwarded-Encrypted: i=1; AJvYcCWeZvtksC/ZKypYiir2ybEAYdTuYNql/3j1azsqnfPQtrPp3EcJHuUWQNMmvS/vHuHJ/bYDzYwdcjn54Qvz@vger.kernel.org, AJvYcCXDTg5ynkkYfDi6Gkbk9ZFrIznEIin+F9zOSclPD/dtavf21g0lJJsokaed0EbF65dBB/gqGjTslzlH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC1NsnPykj7FlfdzINt2RNKu6iN/CgfGg0sPtXT4C1Hdl5kj2N
+	f/DH79YTM/Z8PdvAg6mitpUbSlJrtws5vhNMGvNdBkxF+TWIHMHgwP3zeYz05Yezb5kjxrSfGli
+	I4075smobTdp8TOB37CCAGiCSCRM=
+X-Gm-Gg: ASbGncvmr+jy2PtyiJT8XTivNbixAe2PgDR64tRQViEftMMZbTW9FjDVB3nh0huqnoH
+	KXTcaVki0eR9dcKudVzMw3SLXPCg0PRBkmiOTWqG3LOb5UMinXT5Ae6CoEWnZbqzK6+kV2JPBPS
+	HJxQUC2/gDNZrlGBH6kr0FG330bDZPxadu2zfX
+X-Google-Smtp-Source: AGHT+IGocl2yWOvr1gre0imG54JUGmymGatHDiDz76Em4CMmar3dxa70AKrZPaM7gcVEnNhp2xdwjHK7XXGAPUa+e2E=
+X-Received: by 2002:a17:903:1986:b0:224:1074:63a0 with SMTP id
+ d9443c01a7336-22dbf6218c2mr150456335ad.34.1745788126873; Sun, 27 Apr 2025
+ 14:08:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250427094211.246-3-kernel@airkyi.com>
+References: <20250425203118.1444481-1-da@libre.computer>
+In-Reply-To: <20250425203118.1444481-1-da@libre.computer>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 27 Apr 2025 23:08:36 +0200
+X-Gm-Features: ATxdqUH4ngC-BX3cBpEPOaM7UIKT2zGBTpdyLjm5NqfvqkKNl138-a_D7ZyE064
+Message-ID: <CAFBinCCUQizs=XWq7knm-4=3=hzPDNee9RZj9LDD2Mi6DHYBrQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxl: set i2c bias to pull-up
+To: Da Xue <da@libre.computer>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +&gmac {
-> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
-> +	assigned-clock-parents = <&clkin_gmac>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rgmii_pins>;
-> +	clock_in_out = "input";
-> +	phy-supply = <&vcc_phy>;
-> +	phy-mode = "rgmii";
+On Fri, Apr 25, 2025 at 10:31=E2=80=AFPM Da Xue <da@libre.computer> wrote:
+>
+> GXL I2C pins need internal pull-up enabled to operate if there
+> is no external resistor. The pull-up is 60kohms per the datasheet.
+>
+> We should set the bias when i2c pinmux is enabled.
+>
+> Signed-off-by: Da Xue <da@libre.computer>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Does the PCB have extra long clock lines to implement the RGMII 2ns
-delay?
++Xianwei Zhao (who has recently upstreamed Amlogic A4 pinctrl support).
+I suspect we need a similar change for all other (Meson8, Meson8b,
+GXBB, G12A, ...) SoCs as well.
+Can you confirm this? And if not, why does only GXL need this special treat=
+ment?
 
-	Andrew
+
+Best regards,
+Martin
 
