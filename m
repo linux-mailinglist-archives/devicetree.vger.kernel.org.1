@@ -1,156 +1,144 @@
-Return-Path: <devicetree+bounces-171294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34F0A9E29C
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 13:15:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C06A9E2F5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 14:23:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C92617E6E2
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 11:15:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625803B6527
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 12:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332C71FF5F9;
-	Sun, 27 Apr 2025 11:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E20248866;
+	Sun, 27 Apr 2025 12:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="UI6khAWq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZDzgRD2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B03A1474CC;
-	Sun, 27 Apr 2025 11:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7497AF9D9;
+	Sun, 27 Apr 2025 12:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745752520; cv=none; b=UYMuUoCphWGR8ZHhRxGjmge969ecAHglB3w+O9c5b6Br8GUYBKJQAVXO7n8J+NCslx5n7LLk3lbqaBVPVhpMa2X5VNNUvJZ6io28iwpWRLU8z61PDrBzvwukeDE/O0iGtr4q5mH3CJxkzkFw/tSSNh05xBN/Z0EFi33wCLr8qXI=
+	t=1745756606; cv=none; b=VY3mrvKO4Fcncj7gbobQxOlgiYn29FCFCSIbhFCSVbPNIB7X+RF7JmLi5I4D6/WWCxfsP+ZGUSBWf+1oNBJSz8bQ8lJBCVx+FyuUJd1DQiOeHYQfta1X5mc+JbNVrgFAJXWAjjF6V1KyRj390DM502c+srts191jAnhsq8bTqTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745752520; c=relaxed/simple;
-	bh=i4vulNmaxI46QD5NEW8baIS4md2fyWWDhpv/LKHgO0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QVIcqAWwN9wMYjbYGqdRpVpZO6NPCJAw7GJo9PlSMJ3/ghTU1b8ZYHzdYfyGKTee10nBq/k+85bjTfMMSDNWfQzro7BL9hfv+KGHHiwpyo+ZP1zdSPa7T9sdm3Hez3fc+P0jpvsR4BnAiyU7eHy3jLwlx1NIR/X/mkGVRtzk2OE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=UI6khAWq; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=QkVkz6dk4cOLjXYYtXS5CCd0YLGWAVsLoyMR7Wnuhxc=; b=UI6khAWq+pM6v4WdeLYhnQsgp/
-	lHTRCJ/dOLzPTbwx4z/4b9eMdtZKySKYeya+7mepfDy/Zvhpc7sbvJISaK0QEzpf0kly057pSuec+
-	gsnhNjtGd/7LxC+lY4l49HoLN2vUriKIb/SSXh3pvQKm/ulbt+NO24DEmA7aM4Nx9A0Yvds14+AaY
-	vMXyIMgmeWPKLPXCBnYl9BV8o7ykMuVYndjJwBVcIKiLBDIWgoO/+stCCcafW6tsCHe2ckvlCtIHb
-	wjdeLvIiJKbXWRSgrn7aV0/9XBLLYjc12FXtcGtyYa0dApxjkF9C55819jao9BUU++s4HoXTBI5zx
-	3jG2cdqg==;
-Received: from i53875aba.versanet.de ([83.135.90.186] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1u8zyN-0003VC-98; Sun, 27 Apr 2025 13:14:59 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, Hao Zhang <hao.zhang@coolkit.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- linux-kernel@vger.kernel.org, "hao.zhang" <hao.zhang@coolkit.cn>
-Subject:
- Re: [PATCH 1/1] ARM: dts: rockchip: Wifi improvements for Sonoff iHost
-Date: Sun, 27 Apr 2025 13:14:58 +0200
-Message-ID: <1929240.tdWV9SEqCh@diego>
-In-Reply-To: <20250427065013.99871-2-hao.zhang@coolkit.cn>
-References:
- <20250427065013.99871-1-hao.zhang@coolkit.cn>
- <20250427065013.99871-2-hao.zhang@coolkit.cn>
+	s=arc-20240116; t=1745756606; c=relaxed/simple;
+	bh=5lF9R3W3tII2MDLw+0o9ahkg2UFpuIiu8LfXbM8rc3w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tbg9WVthhfE7f0YSMSbmU88inI2utZQ25XF8LSgAwXX/M909FAzDMZ/I0qfzSndLHHvlmjkUSLOWhwmQi+TFjSJd6sEPYG8Iju80MU98aun71+OTnscYvsL99Vagva5MGFJOyhD0TZ2yG8YCAaG3jdxZU2VBnuVw6gJ47nLgGUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDzgRD2A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52354C4CEE3;
+	Sun, 27 Apr 2025 12:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745756605;
+	bh=5lF9R3W3tII2MDLw+0o9ahkg2UFpuIiu8LfXbM8rc3w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZDzgRD2Aas89Hajq0s1tPy4PsfnN9yU9O9kTsUFjifH2QcFhw+8m7GEbvwEDCNP9P
+	 8KLWoWVcwAJRpPbn0kvlNhjdcu2FkWjMwbC/OUQnYRoPPcRFYsuOMV5FFYz9WP339p
+	 FcljDkh5eBTNf+8mLX6LodBvmWSuSuw5PjFVUspf80YzBDmpYMzN1AUpFYQpf67D/p
+	 FGBFOOc7x+lmp0NpWG3r308g2rARe3uRscXB1OIEC/wxdVni0RLR4+m0ElrGgtdnic
+	 RsIxMY+wD1hFFOXg01o28kAFWjRUes6MXrfg9ntoDRc5DIR5pEakMgrY90t1u7Eyi4
+	 p8hscvFKnP2qQ==
+Date: Sun, 27 Apr 2025 14:23:19 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Dirk Behme <dirk.behme@gmail.com>
+Cc: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
+Message-ID: <aA4ht5sUic39mnHj@pollux>
+References: <20250425150130.13917-1-remo@buenzli.dev>
+ <20250425150130.13917-4-remo@buenzli.dev>
+ <aAuryiI0lY4qYyIt@pollux>
+ <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+ <aAyyR5LyhmGVNQpm@pollux>
+ <0756503c-02e7-477a-9e89-e7d4881c8ce6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0756503c-02e7-477a-9e89-e7d4881c8ce6@gmail.com>
 
-Hi,
+On Sun, Apr 27, 2025 at 08:11:58AM +0200, Dirk Behme wrote:
+> On 26.04.25 12:15, Danilo Krummrich wrote:
+> > On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
+> >> On 25.04.25 17:35, Danilo Krummrich wrote:
+> >>> On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
+> >>>> +impl<T> PropertyGuard<'_, '_, T> {
+> >>>> +    /// Access the property, indicating it is required.
+> >>>> +    ///
+> >>>> +    /// If the property is not present, the error is automatically logged. If a
+> >>>> +    /// missing property is not an error, use [`Self::optional`] instead.
+> >>>> +    pub fn required(self) -> Result<T> {
+> >>>> +        if self.inner.is_err() {
+> >>>> +            pr_err!(
+> >>>> +                "{}: property '{}' is missing\n",
+> >>>> +                self.fwnode.display_path(),
+> >>>> +                self.name
+> >>>> +            );
+> >>>
+> >>> Hm, we can't use the device pointer of the fwnode_handle, since it is not
+> >>> guaranteed to be valid, hence the pr_*() print...
+> >>>
+> >>> Anyways, I'm not sure we need to print here at all. If a driver wants to print
+> >>> that it is unhappy about a missing required property it can do so by itself, I
+> >>> think.
+> >>
+> >> Hmm, the driver said by using 'required' that it *is* required. So a
+> >> missing property is definitely an error here. Else it would have used
+> >> 'optional'. Which doesn't print in case the property is missing.
+> >>
+> >> If I remember correctly having 'required' and 'optional' is the result
+> >> of some discussion on Zulip. And one conclusion of that discussion was
+> >> to move checking & printing the error out of the individual drivers
+> >> into a central place to avoid this error checking & printing in each
+> >> and every driver. I think the idea is that the drivers just have to do
+> >> ...required()?; and that's it, then.
+> > 
+> > Yes, I get the idea.
+> > 
+> > If it'd be possible to use dev_err!() instead I wouldn't object in this specific
+> > case. But this code is used by drivers from probe(), hence printing the error
+> > without saying for which device it did occur is a bit pointless.
+> 
+> Thinking a little about this, yes, we don't know the device here. But:
+> Does the device matter here?
 
-Am Sonntag, 27. April 2025, 08:50:13 Mitteleurop=C3=A4ische Sommerzeit schr=
-ieb Hao Zhang:
-> From: "hao.zhang" <hao.zhang@coolkit.cn>
->=20
-> After some Sonoff-iHosts have been running for a long time,=20
-> the WiFi module will run abnormally.
->=20
-> Adjust the pmu_io_domains and sdio properties=20
-> to solve the WiFi module operation abnormality.
+If the above fails it means that for a (specific) device a driver expects that
+a specific property of some firmware node is present. So, yes, I think it does
+matter.
 
-"adjust the ... properties", really sounds like hacking around some issue.
+> There is nothing wrong with the (unknown)
+> device, no? What is wrong here is the firmware (node). It misses
+> something.
 
-> diff --git a/arch/arm/boot/dts/rockchip/rv1126-sonoff-ihost.dtsi b/arch/a=
-rm/boot/dts/rockchip/rv1126-sonoff-ihost.dtsi
-> index 9a87dc0d5f66..3c0371103015 100644
-> --- a/arch/arm/boot/dts/rockchip/rv1126-sonoff-ihost.dtsi
-> +++ b/arch/arm/boot/dts/rockchip/rv1126-sonoff-ihost.dtsi
-> @@ -323,15 +323,15 @@ wifi_enable_h: wifi-enable-h {
->  };
-> =20
->  &pmu_io_domains {
-> -	pmuio0-supply =3D <&vcc1v8_pmu>;
-> +	pmuio0-supply =3D <&vcc3v3_sys>;
->  	pmuio1-supply =3D <&vcc3v3_sys>;
->  	vccio1-supply =3D <&vcc_1v8>;
->  	vccio2-supply =3D <&vccio_sd>;
-> -	vccio3-supply =3D <&vcc3v3_sd>;
-> -	vccio4-supply =3D <&vcc_dovdd>;
-> -	vccio5-supply =3D <&vcc_1v8>;
-> -	vccio6-supply =3D <&vcc_1v8>;
-> -	vccio7-supply =3D <&vcc_dovdd>;
-> +	vccio3-supply =3D <&vcc_3v3>;
-> +	vccio4-supply =3D <&vcc_3v3>;
-> +	vccio5-supply =3D <&vcc_3v3>;
-> +	vccio6-supply =3D <&vcc_3v3>;
-> +	vccio7-supply =3D <&vcc_1v8>;
->  	status =3D "okay";
->  };
+How do we know the firmware node is wrong? Maybe the driver has wrong
+expectations for this device?
 
-=46irst of all, this would be two patches.  If the io-domains do not follow
-the schematics, fixing this is one patch, but for such a big change
-I do expect actual references to the devices' schematics for that.
+> And this is exactly what the message tells: "There is an
+> error due to the missing node 'name' in 'path', please fix it". That
+> should be sufficient to identify the firmware/device tree description
+> and fix it.
 
-This is even more important, as you're switching some supplies
-between sources of different voltages
+I think we can't always fix them, even if they're wrong. How do we fix ACPI
+firmware nodes for instance?
 
-
-> @@ -342,18 +342,15 @@ &saradc {
-> =20
->  &sdio {
->  	bus-width =3D <4>;
-> -	cap-sd-highspeed;
->  	cap-sdio-irq;
->  	keep-power-in-suspend;
-> -	max-frequency =3D <50000000>;
-> +	max-frequency =3D <25000000>;
->  	mmc-pwrseq =3D <&sdio_pwrseq>;
-> +	supports-sdio;
->  	non-removable;
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
->  	rockchip,default-sample-phase =3D <90>;
-> -	sd-uhs-sdr50;
-> -	vmmc-supply =3D <&vcc3v3_sd>;
-> -	vqmmc-supply =3D <&vcc_1v8>;
->  	status =3D "okay";
->  };
-
-and here it looks like you're more or less randomly adding and removing
-properties until it worked "for you".
-
-Especially removing the supply-regulators does not really make sense.
-If you see instabilities, the main contenders would be max-frequency and
-sd-uhs-sdr50 as culprits.
-
-Similarly, supports-sdio is not even a valid property, so neither the
-devicetree spec does allow it, nor does the kernel handle it at all.
-
-
-Heiko
-
-
+(Software nodes provide a solution for that, see also commit 59abd83672f7
+("drivers: base: Introducing software nodes to the firmware node framework").)
 
