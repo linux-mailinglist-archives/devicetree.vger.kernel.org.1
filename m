@@ -1,125 +1,129 @@
-Return-Path: <devicetree+bounces-171290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8017A9E22C
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 11:36:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC58BA9E235
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 11:43:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 907447AE452
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:35:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE30F3ACD5A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBEE204090;
-	Sun, 27 Apr 2025 09:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023C724C08D;
+	Sun, 27 Apr 2025 09:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IpSA12oI"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="b88ElFoZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42931C1AAA;
-	Sun, 27 Apr 2025 09:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7528624167D;
+	Sun, 27 Apr 2025 09:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745746578; cv=none; b=mZLEcYXsBjxLK+CIhVFNGJbgLC+l2LjpfzzpI0VXPc8D9nF0FHw/aPSAM7qh3gm1D6OmttsC/enYXzA4fFeGhhC6ySP6xQD1DHZ1lwM1D8gVO7ppHj2bCwU+qjsZfiBCvdh1IEC2qFlkTSk59rN10LxtI/tJRZ1Q/XSpYNMYb9w=
+	t=1745747026; cv=none; b=kioyQOAkqess04LGjKTFGFXRKNA8zPnchrQZGMTdm24smKhC2jEMFxUfMWDfbI+n0ZOzx0ft26glVOMqAt/dDodPcxEl1u9OLf+LgX/HLz5hVCTz/pd/a/40UMdwjZ+apvkUNSI36KLwpaPmHAtO6THE7dkLu404TpRr8Fykljc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745746578; c=relaxed/simple;
-	bh=MdAzOBzJ96CVTG/k+zrYOIKxEWgopRH+Nsp2O2nItI4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QjqnbqTbkOSVL2o2Tj0sJnwQWT97DHyjMZ7nvJyex/wzlgvnNad4s+5A8wUzNgR9fuEu3KBhBKDY/xcjck5o3MW3NmkYmXX3Q3FClW7Lpo3R+TKJ7PDPqJH1EYYfukTIMX8THAHTt8igTxaXtSBaEYASrSNvlN/CxrZMGLatpAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IpSA12oI; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac6e8cf9132so720184066b.2;
-        Sun, 27 Apr 2025 02:36:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745746573; x=1746351373; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VGzuohvyvvCrwS5zOnEccgXhaNKdly9XzL/s3vD+/6M=;
-        b=IpSA12oIbKaIbfvlgQesrzjvqb6HCbgmEMc4n2ef7WR5sajeYLEdInwuiHpjrg6dF3
-         ++a19gEHMhyaSuCln/rY59lUBPGibnyw/8epCXmRn4hBRl5SYM7Cjs7mcqTeQt+Ke8CB
-         LaJW1FwIYT6JZulq+DZHEGkQC3C+ikaYqaW/d8lnTO2Amoqoptfcbbf9bR1Yw819W2mq
-         Vwb3xX0cWEL6pKB1U1ilXaF3bZGUKY634vNisU1oN9U+ZJnKnXOuJiDk1dBHGs+Z0QTH
-         LVF9O0gUPDgiitA+Bpp+wOaCUnVFSpF3Q1bUdbC4bMgKxxASXh7+kpg/BEhoqSPmVqYj
-         JXNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745746573; x=1746351373;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VGzuohvyvvCrwS5zOnEccgXhaNKdly9XzL/s3vD+/6M=;
-        b=Y7n6/UDTcbLUQN7+tqiG1OUJOaXMwm//OsrmOzMhdADqmlocA3ghHGhjGajVj2+ATz
-         Xn1ImQDKPKm7nmdKDHq+YSKLgiQ7xfrTq1HzF2J5tMr6rGP6Cl4SFvMDSD7RAsSIob6F
-         r5WCOXr1UBvYH9Rw+en/5CDpxtqr+5MyQtTPlAOi6T8co56XpaCb3jtNxMFnjbEjsrC1
-         Q7TaUFHat2NQtFNHgEGlX4GA/2YnLHQJKu6OSMiChrFZRx3QOFrZw3mXunq6nAZZIH0E
-         ahXgAAIW6GUmRZ7TvcAS5Fs71A6WPK/Ee+ADQmCyJ4LyJU73XG+pJpy4TbvCDfFkFXPg
-         XdqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVT0tk+wbKhVrwWjqUSa4z1+lQYGUYjK5/jhK/G+nQvqtMvJo5ybXuFYdsGbUeXS1p/oLJbv5LoyHBnvzkd@vger.kernel.org, AJvYcCW5rBOGBHQxSJPSc1f2Qwnhfv0+Yg0J8IovhOAg2wK8jr0X6+o1+ypqKl8Bbx1tkxs/6GC88WXsZb3N@vger.kernel.org, AJvYcCWA7Es0fNeiAAjJdkvpCWG/SkinCwb8gwaxddEfsqNZr+xcKL/ONepT1bsbhw/aWYvWaqzB4oSrDfLr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkOkAu1JM2cScW2bvIhwFgL/i//O1JJvoSB6PFF8d5jmyKR09H
-	DPbwrzzHCS4qXhcBKcioCsHafBm8rQ1IyZN8sjyEECpZDF38KV3nOUrm2V/BmDoXq3R01+Nw/5g
-	I9tImmr9yBz6cZyYsyEc5jGsBvZM=
-X-Gm-Gg: ASbGncsFnELAmOQ+9ek5XRBjcV7GXa1L3F/vgJNzIozpZArXePEHEh+RONH/WZU2ZBa
-	QFBouEsw2foJ7VM7o5/DTNVbvHGqLTfYpwbBItZefxvg4Mq5HlRbkHg9tz3+MJndv2CbagP6PVr
-	/bg3LSSD0jjKnh1bfaGM/IUw==
-X-Google-Smtp-Source: AGHT+IGoMZeNr5qp9wE08uyFjEL0FL5TyWGe8HMPsjjHQFeYThqcDC1gvwy6V+CCzAKFcw66C1iNantjGyqQ4J9Y5fw=
-X-Received: by 2002:a17:906:478b:b0:acb:aea9:5ab0 with SMTP id
- a640c23a62f3a-ace73b1cd63mr635799166b.39.1745746572690; Sun, 27 Apr 2025
- 02:36:12 -0700 (PDT)
+	s=arc-20240116; t=1745747026; c=relaxed/simple;
+	bh=DbMD6eplEEJV51whg5oFNXFVeTOfDligYqxPbznRFx8=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Ghh5slfuoAv00hPZDno24ReTPEsoDxul7wd1xLh8UCXPLKfoB2aoZjx0gtCK7ukMHEkkJN20giNfUHPjrB5QU+VvP1EcW/ti1boQpcMX+g9dbM74K7EyL1VRKryHh+43m3TOheKCMc8xmozvSF2KwTCN4FOFQLZes4IdHrEZAfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=b88ElFoZ; arc=none smtp.client-ip=54.206.34.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1745746952;
+	bh=4+SDHkGQub2M803DuAn/oXEZ4KRv6c1CjhqwzQNrquo=;
+	h=From:To:Subject:Date:Message-Id;
+	b=b88ElFoZiRbVWjWFbhMGfqILv7kpqO7hA4MdTDLovooj5jrwWidKLYU+Zh2MB8vBh
+	 5nsUso1gBTMzY5/fHVkVM0clNoX58/YuKypvZHm+cU4gIEKY8blNQsnMFt8z3oUbzh
+	 CWx9lwCZcYeBBSsKhQIQROeJ/xvTUI2Mhvfnx3Qk=
+X-QQ-mid: esmtpgz13t1745746944t8989c152
+X-QQ-Originating-IP: y6iJRkIkSVZWqfIl5qBr3OIRxyRvJ6n5dpIC3CBmOXE=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sun, 27 Apr 2025 17:42:21 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12595977349983944088
+EX-QQ-RecipientCnt: 20
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add support for rk3399 industry evaluation board
+Date: Sun, 27 Apr 2025 17:42:09 +0800
+Message-Id: <20250427094211.246-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: N5QhsOwzP0INIoqwFLSoVCKGR9LUgb7tLt/sIpJEhY7xmx1T5J9akfn0
+	BoNPeZH4/hJE5f6x0AjWXNq+ZoiPVm8fA3ERVgtsO+hcOHHx91MrAe598d4sQJgB8q487f6
+	fXPm2vRGCvpJPd+oSuUojQv3//2jvAocRQ9JIT23aRTJqII0H4o9YbomCnoSNlrzlPDaJl1
+	R4fw1pZzQ/G2j01G5mqyfPG6IwyOl6nn3+/zzSL29GQgR5IwpagrKs36FO/Jq4opdqF27eK
+	MPUEKg73fca0ZDUj2oPIn+iCpv8PdRZaBxG03yQVjVOeNZyG0XYLcw64G2dnnHFDCpATNpu
+	X/k0olJy5sIvTeHkUfhne3INgUoLg+5XFKBdvNX+6RXYZgFtVwNwvg8VklTryrwU+kw2ITs
+	QXyYQOup7dxq/zQSOPhQB+sV8/nbrsIBfBrS7cia+a8gWN+C41agxcwSHF/llgFlAfo70HK
+	JSBtg0RKizpaZSJ4Wn6wDilsCn29cEW4b4schzBmor/9H6ROcI2x8rvnql4i/JsanuN331H
+	cqjPBYTk+ezEPtgLj3x7qw79ASW98QqP+JjIpfZC7c1WTXieBBreg1DBu9xxkpjEALox5GG
+	tcoFWh2uJYScu7QW6UzDxhjqIviu9catWcgV3FqzGV1ixhoXK9wcrgSDoCYj0jhJ8LzVyPU
+	aK5gblnfWJQ1zukfxO+j/QdLjPBhWDhOD2WxyTucLxwDXctFH1CNwyOlv1v98fmw5vg7VMw
+	xsCdK/1QCsiEdjG3BX8x6iKItQc6KuqACBNsmQ0NSFISbTsmCAn2KJ3wjCaa0w5oH3m6KEK
+	ubO5qJuQjEsXbqGchSdPwHOgCLQKtj8IJ6kJ1zMau3CBAYfAe319Ff/gX6B5CKUFvVa2hz+
+	QPBaT/y/tY+QI8ZvgkUEZ0Tyjpb8S7J1hy1teoikyAA3ItiJOidozCcSa+9T7Rd+CFCgLzN
+	o381d5A6VmGXz+GEdu3C4WyjbPJpvHMtjz8YfWiSpcGg5a0DhY3VHUu9ys8JEoSDv7P2WlP
+	lCrx4mAe8kR0mrf5k6mrkGV3QbCjY1uuHZnEQo2w==
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250427082447.138359-1-trannamatk@gmail.com>
-In-Reply-To: <20250427082447.138359-1-trannamatk@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sun, 27 Apr 2025 12:35:36 +0300
-X-Gm-Features: ATxdqUHZ_-HZyhqiJ9dWL2SAXfBdPhoDJFCF5q7xMB2DoNABvHtVkjCzw97WyVA
-Message-ID: <CAHp75Vch8i50stVO6nH0Tnn=g4xSMji_iPj6q-CE1tLnvesqcQ@mail.gmail.com>
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-To: Nam Tran <trannamatk@gmail.com>
-Cc: andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, corbet@lwn.net, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com, 
-	bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Apr 27, 2025 at 11:25=E2=80=AFAM Nam Tran <trannamatk@gmail.com> wr=
-ote:
->
-> This patch series adds support for the TI/National Semiconductor LP5812
-> 4x3 matrix RGB LED driver. The driver supports features such as autonomou=
-s
-> animation and time-cross-multiplexing (TCM) for dynamic LED effects.
->
-> Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> ---
-> Changes in v8:
-> - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
-> - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-> - Move ti,lp5812.yaml binding to auxdisplay/ directory,
->   and update the title and $id to match new path.
-> - No functional changes to the binding itself (keep Reviewed-by).
-> - Update commit messages and patch titles to reflect the move.
-> - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-t=
-rannamatk@gmail.com/
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Out of sudden without discussing with auxdisplay maintainers/reviewers?
-Thanks, no.
-Please, put into the cover letter the meaningful summary of what's
-going on and why this becomes an auxdisplay issue. Brief review of the
-bindings sounds more likely like LEDS or PWM subsystems.
+General feature for rk3399 industry evaluation board:
+- Rockchip RK3399
+- 4GB LPDDR4
+- emmc5.1
+- SDIO3.0 compatible TF card
+- 1x HDMI2.0a TX
+- 1x HDMI1.4b RX with TC358749XBG HDMI to MIPI CSI2 bridge chip
+- 1x type-c DisplayPort
+- 3x USB3.0 Host
+- 1x USB2.0 Host
+- 1x Ethernet / USB3.0 to Ethernet
 
+Tested with HDMI/GPU/USB2.0/USB3.0/Ethernet/TF card/emmc.
 
---=20
-With Best Regards,
-Andy Shevchenko
+Chaoyi Chen (2):
+  dt-bindings: arm: rockchip: Add rk3399 industry evaluation board
+  arm64: dts: rockchip: Add rk3399-evb-ind board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3399-evb-ind.dts      | 222 ++++++++++++++++++
+ 3 files changed, 228 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
+
+--
+2.49.0
+
 
