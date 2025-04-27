@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44082A9E451
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 21:10:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F10A9E463
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 21:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A113A1897B0A
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 19:10:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE0F178EA7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 19:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1986A1DE8B2;
-	Sun, 27 Apr 2025 19:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5F31FA178;
+	Sun, 27 Apr 2025 19:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O78lEHOh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NbPfeDJm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42EB1F941;
-	Sun, 27 Apr 2025 19:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BBB8460;
+	Sun, 27 Apr 2025 19:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745781014; cv=none; b=HfCyvPx8UakAlmCnXbX9Wfo1Xm6MVHPFJdpMzS3QT8lOjHBO1bvaeH1HuYLK3DPvYtxg79g2nyQnAJgDjaQn/QaBANyGjTi3Dv1VZNyf2eTFY6pfFX0S8PLyyA3iMlqskK5an/sLgmqcpu04udJpEjqGyzKhlqV1DS9VbaOfgZU=
+	t=1745781797; cv=none; b=PVMI5xOOskYuGlARef3cUobFID84sdcFSsGZ1qUT2nOdQALPDf1cnjN3CKgaKKcBMIVD36H25TDVWOdW0Fy43wSFBfmBJOPnQtStqbjch8faSCS6+xfc52fhkEG5CsXD7jlmCMhAEzoXMeIVm5jne6hDm5oeE36RuT9aI4XtXC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745781014; c=relaxed/simple;
-	bh=jJ9qtpmfCTiYPgY6V9D9D/6hWa8Cv4qj/8xEwO9l7rg=;
+	s=arc-20240116; t=1745781797; c=relaxed/simple;
+	bh=vd0A1lkez6rmCz9lcNg9s/2Ka06jnSs3kCgMBIPKomg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lDZCFptzECVyPR7roFaMbxEP2jjGy9LcujC18I30s0x2ZLb8zuSN5kH4zispuGcsVQlntVnlHarK1kf36qNM+gLeGFB+vtbmgOnPqNz20f+jGjSP7PMp646Z/RDISgcllgMzHaxRWLRmvZgpXRLa1eMTk/HstOeyjtFE3Ti8VVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O78lEHOh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2631C4CEE3;
-	Sun, 27 Apr 2025 19:10:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PeuDio13UT0di/mPYRH+LWc+Y4xaWrih0xEIsMw0QjlelcowvxfBe5bZxbZNmUL99TX7in+0Fa5Tf+Fo0vN9oL01A3n/DG5JhxjC6Ytv9wmTpHggwcXvPAODBVrTwh8logMQxO9SI9WubpAAD9mDQ/vHQvdZN+5MtxY2o+B3Y18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NbPfeDJm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA11DC4CEE3;
+	Sun, 27 Apr 2025 19:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745781013;
-	bh=jJ9qtpmfCTiYPgY6V9D9D/6hWa8Cv4qj/8xEwO9l7rg=;
+	s=k20201202; t=1745781793;
+	bh=vd0A1lkez6rmCz9lcNg9s/2Ka06jnSs3kCgMBIPKomg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O78lEHOhcLjTZ/HBTomTeQqYzczq5+0t9AEyWjj64x9YwsBeScr/VgBgtWYsj0ch2
-	 /sNHsRPAocOfHRVoedwkC16nZp7pjLV+THLIkdzKdGB7OmTyDhjeGxEQR3kdNeOqKP
-	 Nc+xfukkAExW8NujN6lbxPMx3cLxWfyKOfT1AQ/70cv4imJjQfSenwBvhfKPPy+pCc
-	 YXKHKQA5fsL7kwsv/l7H50XJ3kiVtsTduVc5w5zvHcIOTKxmlKdTvmzaCKT2fTkgV/
-	 3ky8o85iDHSKMp+D6jZkllkwJmoouDMaDg7WFykPIPk4oKEYbgqBvY1RWUgMMLBBoE
-	 smXwZZc4hXgUg==
-Message-ID: <d11e00b3-45ea-4eb5-8ac5-54c051b32a81@kernel.org>
-Date: Sun, 27 Apr 2025 21:10:09 +0200
+	b=NbPfeDJmGprnI0lryf8ZQOKtL/TkczAegItTlhWoTtp/PO6yQhlGKC8dWzEy0Wp5+
+	 S5sOdMhCnfAi9kPvjLvCWY5Pxqf0UPi2J5bVY+B00iZa9nbxidSuQmtAnl6lpSeytI
+	 Zm/Ns1zKRTdDkQQP0I8FmDm9zagd2vnQPsGXG0MR/AAcKY9FmAFVVpQBRVoF3P2w5n
+	 apOD+SOo0n4jnri0WEN+JNe4SN76aG95gr+SOpDEgs0x/NBxAbj8TXYiDZntzyQ/FC
+	 AfK2x9by6OWeqdGrVUzwlluOPnmdhKaDb3ixpKuoX5CzSBFAFBbJyPTlpC/EE18MEM
+	 s9IAkWjbSN8Ew==
+Message-ID: <cdbc8c9b-ecfb-4969-997c-52e873a3abf0@kernel.org>
+Date: Sun, 27 Apr 2025 21:23:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: nuvoton: Add USB Hosts
-To: William Kennington <william@wkennington.com>
-Cc: Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v2 2/3] clk: samsung: exynosautov920: add cpucl0 clock
+ support
+To: Shin Son <shin.son@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250416001818.2067486-1-william@wkennington.com>
- <2d3d4240-65ab-4fd1-a86a-503bb40f34a6@kernel.org>
- <CAD_4BXgO3F0JVKQTAZxLXjPXHv4Rgf2Cz+Cm0PMzLDTx5C56tg@mail.gmail.com>
+References: <20250423044153.1288077-1-shin.son@samsung.com>
+ <CGME20250423044159epcas2p3476aede31ffc8de8a9169584ec8a3d78@epcas2p3.samsung.com>
+ <20250423044153.1288077-3-shin.son@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,34 +109,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAD_4BXgO3F0JVKQTAZxLXjPXHv4Rgf2Cz+Cm0PMzLDTx5C56tg@mail.gmail.com>
+In-Reply-To: <20250423044153.1288077-3-shin.son@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 25/04/2025 23:18, William Kennington wrote:
-> On Tue, Apr 15, 2025 at 11:52 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 16/04/2025 02:18, William A. Kennington III wrote:
->>> The npcm 8xx chip has 2 EHCI and 2 OHCI hosts with driver support
->>> already existing in the kernel.
->>>
->>> Signed-off-by: William A. Kennington III <william@wkennington.com>
->>> ---
->>>  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 28 +++++++++++++++++++
->>
->> Please do not send 10 separate patches, but one patchset for given
->> subsystem.
+On 23/04/2025 06:41, Shin Son wrote:
+> Register compatible and cmu_info data to support clock CPUCL0(CPU Cluster 0),
+> this provides clock for CPUCL0_SWTICH/DBG/CLUSTER.
+> These clocks are required early during boot for the CPUs, so they are declared
+> using CLK_OF_DECLARE instead of being registered through a platform driver.
 > 
-> When I send a patchset should I add the reply-to tags for all of these
-> previous reviews? Or just resend as a new review?
+> Signed-off-by: Shin Son <shin.son@samsung.com>
 
-I don't understand what you are asking me. You NEVER add manually
-in-reply to. You should use either git send-email or b4 or patman.
-Nothing else, no manual edits, no weird headers.
+Applied, but remember to use proper wrapping and run checkpatch.
 
-If you ask about review, that's entirely different topic - see
-submitting patches. BTW, kernel docs also explain how to actually send
-these emails...
+[Checkpatch]
+WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit
+description?)
+
 
 Best regards,
 Krzysztof
