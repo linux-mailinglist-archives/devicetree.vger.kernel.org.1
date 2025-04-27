@@ -1,77 +1,100 @@
-Return-Path: <devicetree+bounces-171264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7B6A9E03D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:05:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 407EFA9E082
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:44:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 306901897889
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 07:05:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E79717AE02A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 07:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DB7248879;
-	Sun, 27 Apr 2025 07:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B786246335;
+	Sun, 27 Apr 2025 07:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OJDQ1DDX"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="asB6wenO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B77F2472A4;
-	Sun, 27 Apr 2025 07:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D3410E0
+	for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 07:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745737400; cv=none; b=soM0h89IKWQxJaPZGhRRNeZcy7eQwefoEf5zxj0k6LSj52T7f0EA8J5d9gfaOIC40c8UuuvhYuAsxbZTB9tI6EqiWXmG2YA3dO1FHQwkldB5HserkxxFcejjNTJOJ6CAxXgM49sTmraKWITqix9rjeNMX+yELp3vEiZrYeDEElQ=
+	t=1745739852; cv=none; b=biTistz133QrGAX4KNGBMtL20AMnHtNNLCjDdtJe95+KdOYDGtXXRHveYYFp7iCaMZ+oIJABU11r919h5guvT5IuxKVGOLKXvwaLLbogG+yQX0k+iAJ2g0LkYjMLMlE1ANAFTsJRTINVw3ok5kbZBDsI1wjUiAstMzzKdmAhvjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745737400; c=relaxed/simple;
-	bh=IOCMd2d69Kedkh8/lIsbtZOWFs/1jvc5ASkjuV1U69Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WHulEt0ELS87PABGbwHOhqoTvATLrSRJkxAU2oZ4rrq+ba7QMBi3YVAXGP+rtCnm7NIqFP1IEhybodoFMwQ/7qlHcXX5Unaz6GAtikfcXFSlOdKeCWQJ/YTxn1yiCSh5x+/3JnJbE5icewzkSR9nq63pb1rxDWn8TJatwcJdYCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OJDQ1DDX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53QNl39Y002639;
-	Sun, 27 Apr 2025 07:03:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FYlqfxt+ExHh443vWlcPdW0QNqe/uT0OiLOQ0iqOfG4=; b=OJDQ1DDXqD/qF4u5
-	XbvLZj1LB+cBclP72DeKJwEC8L9VfIqxmDwLDBjfFsusHfw6lSgQ5zyuXB5dUElp
-	EHg/VNhc/RBIPp+Vve6WyjtxE0aVBk69luKCUaRgrK21JKP8LjCUjey6Y3pwTYxn
-	o0owTE0hWUcYuJ33bB49PCX3Z1xjuAr5Jk5fRcNszwpuEDM+dqjNTz1DgzZ1cxdH
-	bhYXu0U99AGktwnsYo2mM7wbAo7lIoU9XtUXLTDYHnlA5qeOo2iRb89LPSUYh3Qk
-	XhHgdgjipLKDxjCasVv9SmsW2z9J4ZO8qofLPMR7yvOli9eibA76H0jUIq6cx8Ht
-	xyXOWw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468rnmu20m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 27 Apr 2025 07:03:01 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53R731x0017087
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 27 Apr 2025 07:03:01 GMT
-Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 27 Apr 2025 00:02:55 -0700
-From: Vikram Sharma <quic_vikramsa@quicinc.com>
-To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH RFC/WIP v2 9/9] media: qcom: camss: Enumerate resources for SA8775P
-Date: Sun, 27 Apr 2025 12:31:35 +0530
-Message-ID: <20250427070135.884623-10-quic_vikramsa@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250427070135.884623-1-quic_vikramsa@quicinc.com>
-References: <20250427070135.884623-1-quic_vikramsa@quicinc.com>
+	s=arc-20240116; t=1745739852; c=relaxed/simple;
+	bh=+55CHDPhy7ugVr8afIZtwPoA5z6AhwOB1hiT1fHQRa4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JbZK4xiaVj2aHuYmxTaQENG2oSWZgC56TzByuAYKGc7IZ4NapkFJukmmSBjTTRs9ZGsCWsKKEZwLMr2pkS93RpHMmlRaq6hQdqi7tGk9eQCayDafFV/Mp8luu5EdescuqhU7TtVkEfrtM25vQ7J+3CQVLF4Y6Rf7zlwMd6kwcEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=asB6wenO; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43d0c18e84eso17154725e9.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 00:44:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1745739848; x=1746344648; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oinzcqCiVbGgyb0iiuzscDKJeJyyI76yLcJfoJ0sjS8=;
+        b=asB6wenOLclOyq7FHXYw1YG2fz2XoC/uueIFoZ8vp99pHKebvqvPfuKdD5JlSRqnos
+         P9Hc9OPYmiXfZIPdGUIocm1CYwLpUMoP/OPKSu2bMg30GUs9LThh1263tITDbzP2E55A
+         H1RKIoTfbPO8//DtgPMNyZW4/8E0QWjUnmXuY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745739848; x=1746344648;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oinzcqCiVbGgyb0iiuzscDKJeJyyI76yLcJfoJ0sjS8=;
+        b=H7zDJe1myALFYEFmIc8KHpbK6xrafkPC28J4Viu/HFF3kEwYysVIz38VRUkX+beUGS
+         RHvZZpAST4La33FXIym+oIkHA0QZE0JDZoh3ITa/K/ABnbq7dPN6UliF4aHabLW5zYqW
+         eLOhdz85VMpGtSJW7p9W9DwJMxb2gdfinZ/PYr9zR4hJLb4/d9skU57cet/9/Kp6nPEy
+         GDcYSewlvmkiEU31E22eKpelBdqLM0QcQTMWsF7CWEdU3G6wLtQ6GbcisrAI3Zh6E6EY
+         HHYr40SQ8D5jM4R7NkCROoA65GSiaVbQP9FHfvZeO+KRJ0brYfQ92A14ONcaltgGkE85
+         wMxA==
+X-Forwarded-Encrypted: i=1; AJvYcCV2ji4tTdhYEfpuwa4LC8iRhT7PvNNgNRVDYy69YRhy+gw0uYs2b9VSmd0ui0LjkGCO/nen9SIkGs4q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvrjJeyqMliUiTUK6J1rZZG6gbwQbBkFrrjokxVsMKnB/GNKgQ
+	k4QsrbzRDqUGpvdJEzxAtgQCktq+NS+x4MSba2afHTtmE8IS+LKDRKn5LOMpWsc=
+X-Gm-Gg: ASbGncuaaZxW5/4GxFZlwqTM146lYC5DWbncKydCg9E+2KBWY5ySOskgeDbvR/8FC+G
+	xQhIOR0JSEq7ZLzA9iNbjLxIa1+2GOXdXJkdFZCrgum2+KAkxSeyLRl5/PQJqCdaM8oEoQWKmWK
+	Oi7hQQ72mHEm+q+rQsRyyzsi8nxqtaBw1AFNrFKtcjJxDttyJjky+67SvxkB/PoEVGwHbbd6dHF
+	Yif3JDVHc9iygpB9BCgExRraa7J+LuHBUID/NAezqr/8fdTgscGetAvhc3/tjqTq6BVsNj4jIqO
+	MtKmFlyYRBi2NRfJjn8sgGOOa8XF7Sr61OrGp/nJEaHM11B79c4ylgw01U0ooNXnrtS2Z8ICj++
+	9fnKSEA==
+X-Google-Smtp-Source: AGHT+IG55beBCMeEpoU+v9sBHrbcIgFnVINAwcpqdyMq90VQ1/y+K+5G8xBe1CVGW38gxB0HOPdp+A==
+X-Received: by 2002:a05:600c:3148:b0:43c:f44c:72b7 with SMTP id 5b1f17b1804b1-440a65dd132mr80678905e9.14.1745739848202;
+        Sun, 27 Apr 2025 00:44:08 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.40.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a52f8915sm87682015e9.7.2025.04.27.00.44.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Apr 2025 00:44:07 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Jander <david@protonic.nl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Marek Vasut <marex@denx.de>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Roan van Dijk <roan@protonic.nl>,
+	Rob Herring <robh@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH 0/8] Support STM32h747i-disco board
+Date: Sun, 27 Apr 2025 09:43:19 +0200
+Message-ID: <20250427074404.3278732-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,54 +102,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Lhnlg-nqN5ES_sZ-pLF90AVcugIoWwRf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI3MDA1NSBTYWx0ZWRfX/oekE8ZMS500 nHEOoBz5jb3sPfvDYlxaRtYzCx31Q2DIw4pNpqTQeji22WiUBC5i8x57ED0jd6Dh3lCQRDVI6RN cQ4NuSv2iT9HiJpACqm32Tbb/lFs2RpdvtdnsOrOoXo1bDtDKNOhmRZftNn6e45t5cT/9djYiYj
- zc4Owt1tEbGwARR+hreWxRZFZWK22JahhsI+jh9MtUBS4gfgnyVM8WZHFSLQxNXLVIktYYI/vaT fX00mloQGG/uTFWTycr/J0YvwxHTLWxmOsVBB/MauWq1Ym8bhYMpDXWdBKIR9bZUlLkdaCWLBNG y9Q9AqaXnFCGKB4h+BCQQvEvSjrGL+IvRrVn1vqM92N2s2rOiTO8eMwo4pJwby6De8mEKyhECR0
- FtS4LgDDOXCA+CQerGVK7jvP1W7YhJhJaqDl7aAuwSZrH+M9Yzqb5RCxNCzbx9fgYUgZNJiv
-X-Proofpoint-GUID: Lhnlg-nqN5ES_sZ-pLF90AVcugIoWwRf
-X-Authority-Analysis: v=2.4 cv=V9990fni c=1 sm=1 tr=0 ts=680dd6a5 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=SWFg1dtF3-VgytXPzhIA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-27_02,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- adultscore=0 mlxlogscore=999 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 phishscore=0 mlxscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504270055
 
-Enumerate csiphy, csid and vfe resources for SA8775P.
+The series adds support for STM32h747i-disco board
 
-Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
----
- drivers/media/platform/qcom/camss/camss.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+The board includes an STM32H747XI SoC with the following resources:
+ - 2 Mbytes Flash
+ - 1 Mbyte SRAM
+ - LCD-TFT controller
+ - MIPI-DSI interface
+ - FD-CAN
+ - USB 2.0 high-speed/full-speed
+ - Ethernet MAC
+ - camera interface
 
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 763159ac39b6..edfb9952ed53 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -4181,7 +4181,14 @@ static const struct camss_resources msm8996_resources = {
- static const struct camss_resources sa8775p_resources = {
- 	.version = CAMSS_8775P,
- 	.pd_name = "top",
-+	.csiphy_res = csiphy_res_8775p,
-+	.csid_res = csid_res_8775p,
-+	.csid_wrapper_res = &csid_wrapper_res_sa8775p,
-+	.vfe_res = vfe_res_8775p,
- 	.icc_res = icc_res_sa8775p,
-+	.csiphy_num = ARRAY_SIZE(csiphy_res_8775p),
-+	.csid_num = ARRAY_SIZE(csid_res_8775p),
-+	.vfe_num = ARRAY_SIZE(vfe_res_8775p),
- 	.icc_path_num = ARRAY_SIZE(icc_res_sa8775p),
- 	.link_entities = camss_link_entities
- };
+Detailed information can be found at:
+https://www.st.com/en/evaluation-tools/stm32h747i-disco.html
+
+
+Dario Binacchi (8):
+  ARM: dts: stm32h7-pinctrl: add _a suffix to u[s]art_pins phandles
+  dt-bindings: arm: stm32: add compatible for stm32h747i-disco board
+  ARM: stm32: add a new SoC - STM32H747
+  clk: stm32h7: rename USART{7,8}_CK to UART{7,8}_CK
+  ARM: dts: stm32: add uart8 node for stm32h743 MCU
+  ARM: dts: stm32: add pin map for UART8 controller on stm32h743
+  ARM: dts: stm32: add an extra pin map for USART1 on stm32h743
+  ARM: dts: stm32: support STM32h747i-disco board
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   4 +
+ arch/arm/boot/dts/st/Makefile                 |   1 +
+ arch/arm/boot/dts/st/stm32h7-pinctrl.dtsi     |  34 ++++-
+ arch/arm/boot/dts/st/stm32h743.dtsi           |   8 ++
+ arch/arm/boot/dts/st/stm32h743i-disco.dts     |   2 +-
+ arch/arm/boot/dts/st/stm32h743i-eval.dts      |   2 +-
+ arch/arm/boot/dts/st/stm32h747i-disco.dts     | 136 ++++++++++++++++++
+ arch/arm/boot/dts/st/stm32h750i-art-pi.dts    |   6 +-
+ arch/arm/mach-stm32/board-dt.c                |   1 +
+ include/dt-bindings/clock/stm32h7-clks.h      |   4 +-
+ 10 files changed, 187 insertions(+), 11 deletions(-)
+ create mode 100644 arch/arm/boot/dts/st/stm32h747i-disco.dts
+
 -- 
-2.25.1
+2.43.0
 
 
