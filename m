@@ -1,51 +1,50 @@
-Return-Path: <devicetree+bounces-171323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71B1A9E50D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 00:50:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 310E2A9E51E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 01:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA9A03B5AC6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 22:50:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89586177E3B
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 23:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7971A204C0D;
-	Sun, 27 Apr 2025 22:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395A920CCDF;
+	Sun, 27 Apr 2025 23:27:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59ECA2010E6;
-	Sun, 27 Apr 2025 22:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146AD1E7C38;
+	Sun, 27 Apr 2025 23:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745794219; cv=none; b=RTRiwmQxENT1Ioho2EyrxR6+YGYJRYRtyCIzoLE9usPZeTe+2IDmsxvBGlsjhafDFWUPCU+JM7MBPbzx2naqezT9mcUMYrEdGtXTPH5MmFxait3PimBEVA9pJFjROsXeVgXt+7vMEnHIBa4GfpJO+8BImwKxkVg2BiS2Rcq4gA8=
+	t=1745796448; cv=none; b=TxB4QGuOId4mDQrqGc0BjOItpqTPoFwOgKQhqptnjX0aa49qiiDC69pefaAddMVyoSZwei28jQfnCc/J65iku18itLpeUCjHXUcc9CzPWJka9h/dtX0MHH9LHXyctJRbeHCXePdS0fA3wEhjaIxU1K+hopdwU/nNFSibmz6yDBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745794219; c=relaxed/simple;
-	bh=xjqAkUOb/EeiOEeAKJ9ZZ897oHHUSN9p4svCjPItI4g=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IEkulyAgak5x2PPmAjQwClZxdmdf90fQqntO7c5vNT1165kYFBGH2bzmf2sqmwa7rdIZ56byFs+g9m72iRuPtNqCtP6/+jJq4CTWzU4wsbtppkS+w/01W0FlCegjZ8/w/Hgxlz+/wi+lEU2WIRlaMPckbnP2ASGhVH+TJWKTnYM=
+	s=arc-20240116; t=1745796448; c=relaxed/simple;
+	bh=OdDaRC6CcwfVjGwgLyYP5EYBYBgoc7OFQF+K6ZUqAjw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sEanPXL+B/JQtxYw3LZMC1UzlUox1DkdUxZYPnxUlAz6PVvTaGNCZo2xWhm7JXqskVYu4eEAFQicM2I7qS6AYD7XDnAKTBHrQF9IlPTUEjeI02kqo9iS1E+tacINYUnoDXSvhk6jd8P6pLEXCVAsOLCg6FkVT1jcQocfZMCKzNs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B02B5C4CEEC;
-	Sun, 27 Apr 2025 22:50:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DDD9C4CEE3;
+	Sun, 27 Apr 2025 23:27:27 +0000 (UTC)
 Received: by venus (Postfix, from userid 1000)
-	id C36C3180F9C; Mon, 28 Apr 2025 00:50:16 +0200 (CEST)
+	id 81A111808BE; Mon, 28 Apr 2025 01:27:25 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
- Artur Rojek <contact@artur-rojek.eu>, 
- Mike Looijmans <mike.looijmans@topic.nl>, 
- Dzmitry Sankouski <dsankouski@gmail.com>, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250318081428.33979-1-krzysztof.kozlowski@linaro.org>
-References: <20250318081428.33979-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: power: supply: Correct indentation and
- style in DTS example
-Message-Id: <174579421679.295785.3901100556922007748.b4-ty@collabora.com>
-Date: Mon, 28 Apr 2025 00:50:16 +0200
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+ claudiu.beznea@tuxon.dev, lee@kernel.org, sre@kernel.org, 
+ p.zabel@pengutronix.de, Ryan.Wanner@microchip.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-rtc@vger.kernel.org
+In-Reply-To: <cover.1744666011.git.Ryan.Wanner@microchip.com>
+References: <cover.1744666011.git.Ryan.Wanner@microchip.com>
+Subject: Re: (subset) [PATCH v5 00/11] Enable Power Modes Support for
+ SAMA7D65 SoC
+Message-Id: <174579644550.306236.7065063387311339385.b4-ty@collabora.com>
+Date: Mon, 28 Apr 2025 01:27:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,20 +56,21 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Tue, 18 Mar 2025 09:14:28 +0100, Krzysztof Kozlowski wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |'. Correct mixtures of the style or any other
-> indentations to use preferred 4-spaces.
+On Mon, 14 Apr 2025 14:41:17 -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> No functional changes here, but saves some comments during reviews
-> of new patches built on the existing code.
+> This patch set adds support for low power modes for the SAMA7D65 SoC and
+> the required components and changes for low power modes.
+> 
+> The series includes changes in the asm code to account for the addtional
+> clocks that are in this SoC.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: power: supply: Correct indentation and style in DTS example
-      commit: 1e3e2cf2df60521eee257b2c77a8f0d8594242ff
+[03/11] dt-bindings: reset: atmel,at91sam9260-reset: add microchip,sama7d65-rstc
+        commit: 4e55fb7d60e128fb5a57921cbd59f9ff29cd4297
 
 Best regards,
 -- 
