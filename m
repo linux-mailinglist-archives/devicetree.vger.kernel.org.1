@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-171286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2966A9E144
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 11:11:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A54A9E148
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 11:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9287F1741F1
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:11:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13FB81A81218
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 09:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E89E24EF6B;
-	Sun, 27 Apr 2025 09:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1A51EFF88;
+	Sun, 27 Apr 2025 09:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="tBkQSwdW"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="X8p3q0j+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D301124EA90;
-	Sun, 27 Apr 2025 09:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A135C24A07B;
+	Sun, 27 Apr 2025 09:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745745058; cv=none; b=KFU8I+HB4AsKToXsdMbl0/P8vt+ljIXh9jEq59Sm1UzHU87Hc1s5hf7qCg/2/sU0D/HcBVxLfTEHRGv6XeIi3RIYiQ8hKrgqV2rv46/i3UVjhZaO57AEt4250JOM5rk3rChOkfbANqXX3ujPxEksCAxcyqHO5ygYY9HwmbtJvgc=
+	t=1745745085; cv=none; b=Htm37DFWxyxkCWlFh7pgsTtRwUBH/J7G7KlzFxn6gNONCuDl3jQexEBBH2yc+xbpuKLy/BFYuEdQTdGMcwZSqxFaDy9I79eD5QgHglzSywiMSgfzUYZz65ZDu1lXDFyltOWbUY2VGXQYiAieUikYCOxWRNPEJEZEvkHx09fMnGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745745058; c=relaxed/simple;
-	bh=C/B9zvlUukkqWLCi/Mt+JSdJvR1LQZhE0nDum+0XmpU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ciWrPOWPA0x5h8K6CiwCCrCtEBduCDn0oU6hmvgge3drYBJKzyzcPboHAmwtIJmV2+o7EF1Qx/g5MA2bciwCoU5Fux2z68sECmjG4/tuTMRuEQn+Ifkcf/uxVf8FbzA3mCO4sGqQ9F4ykmCLwGvv4uZXxW/Uhb4T9BPJ/n4MdiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=tBkQSwdW; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=2ICBWG1q18eKbndo/iLBsuuc9jxO0kDKHXQDDK0Bw3A=; b=tBkQSwdWN6MFVIuHRuXKqpsj9x
-	teGGVmC82MU3F9Lwu3j9RuuGtkc668I+xehtM06sp8qIFnYEUBW8bPM4MiLrNH7qIkjsAKwfgSVWK
-	OZnnTxK3sTa1Mq7efFkBss64fcU86Q0tmOqlgjcY+Ey8VEUMZtmmXYGBGZewd1JBbBMMOn2RHuNZm
-	bkLwSnbBu3xHyvvJFMgZJSYI5R8K0HckTPMZSi7/i/9POLSmfoDg9nZqUOJuqf03W9RgtEO4GfV4K
-	z5srWxp17Z+tj1XsULSnvry/zwAsweqZjEalI6+DFW6GtU11ZPKT9tmXqS/lJzJhSWwuSYEBidk4I
-	sfV8NMFg==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1u8y2D-001MqL-31;
-	Sun, 27 Apr 2025 17:10:50 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sun, 27 Apr 2025 17:10:49 +0800
-Date: Sun, 27 Apr 2025 17:10:49 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com, pavitrakumarm@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com
-Subject: Re: [PATCH v1 4/6] Add SPAcc ahash support
-Message-ID: <aA30mVmjAahKb1P-@gondor.apana.org.au>
+	s=arc-20240116; t=1745745085; c=relaxed/simple;
+	bh=QdLkz9HIQwG0Lztr/8GKFq4ltt3zfOwpXgoolgkFwhw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LaCJZKlEXq9pBnWnFGi/NU1x6BtTx7XvtaXlJ7KvKo6OTgbsgn+K7YSNUEdWfaIDcBnGVIXgiyI5xb+6Z/mJ8Yj7niEHkPhEqQMMXG7n50Q9g35nqcNBp4ajorJEG3AKo/OOMU7sMOzcHO9H3Goy1NUMXf6/U8+VQ4Z+3lYGyPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=X8p3q0j+; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.80.162] (254C2712.nat.pool.telekom.hu [37.76.39.18])
+	by mail.mainlining.org (Postfix) with ESMTPSA id DFCBBBBAC4;
+	Sun, 27 Apr 2025 09:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1745745075;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fhWq+YLEhSYtuiJd7ME2LnrPPOIcmR8L3Aqjf8KIYI8=;
+	b=X8p3q0j+10RjfxkQH6cnTW076eux+Gjy0ds5Roe/C4y2nh63gEbwk8TdtqC1lXQWmslEC7
+	7Bybg5h0O1zHsyIgFyV2vGlPUozIQWq9wsZPxIi0WSax+nwYX3lJ8tZZkEBOaMZUIkNXwo
+	dJFx8MF8HfJe+8psN0luNU6ZLPx2xuk89Q/pC2XkqUE+PK/SygZPSDrpYm5sj0M5xDQaUh
+	QBUoGs63N0jHp/WcZkrLScLYRyjpQD9mqXMzIjqUF+PFfLZVQQgSEoUCUvwg3QL5LUgNfW
+	JL42eOgvwMxpEJMmcA4Ck7EyANNLTGdN2wCcquXQtNpeE4n60sFIpUnC8tjwog==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH 0/2] BOE TD4320 panel
+Date: Sun, 27 Apr 2025 11:11:10 +0200
+Message-Id: <20250427-lavender-panel-v1-0-b2611674166c@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250423101518.1360552-5-pavitrakumarm@vayavyalabs.com>
-X-Newsgroups: apana.lists.os.linux.cryptoapi
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAK70DWgC/x3MQQqAIBBA0avIrBN0sKCuEi1MxxoICwUJxLsnL
+ d/i/wqZElOGRVRIVDjzHTv0IMCdNh4k2XcDKhyVwUletlD0lORjI10SgzbG4Oyc3qFHT6LA7z9
+ ct9Y+HiDDzWAAAAA=
+X-Change-ID: 20250426-lavender-panel-2f144429cc1b
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745745074; l=770;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=QdLkz9HIQwG0Lztr/8GKFq4ltt3zfOwpXgoolgkFwhw=;
+ b=XTt+GUT7Xba1BsNgCZvGcr6f4GQDyvbIuUdFu8DvFjlqfiFJ/T3mcQv8pzSekP1GdyP2d/lSv
+ fAg5U+LElu7B43PY2NoQ482JK5F3SArdI+Xqr2oluUrqho+qHo0BlqW
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-Pavitrakumar M <pavitrakumarm@vayavyalabs.com> wrote:
->
-> +static void spacc_digest_cb(void *spacc, void *tfm)
-> +{
-> +       int dig_sz;
-> +       int err = -1;
-> +       struct ahash_cb_data *cb = tfm;
-> +       struct spacc_device *device = (struct spacc_device *)spacc;
-> +
-> +       dig_sz = crypto_ahash_digestsize(crypto_ahash_reqtfm(cb->req));
-> +
-> +       if (cb->ctx->single_shot)
-> +               memcpy(cb->req->result, cb->ctx->digest_buf, dig_sz);
-> +       else
-> +               memcpy(cb->tctx->digest_ctx_buf, cb->ctx->digest_buf, dig_sz);
-> +
-> +       err = cb->spacc->job[cb->new_handle].job_err;
-> +
-> +       dma_pool_free(spacc_hash_pool, cb->ctx->digest_buf,
-> +                     cb->ctx->digest_dma);
-> +       spacc_free_mems(cb->ctx, cb->tctx, cb->req);
-> +       spacc_close(cb->spacc, cb->new_handle);
-> +
-> +       if (cb->req->base.complete)
-> +               ahash_request_complete(cb->req, err);
+Add driver for BOE TD4320 DSI panel, used in Xiaomi Redmi Note 7
+smartphones.
 
-This can only execute in softirq context, or you must disable BH.
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Barnabás Czémán (2):
+      dt-bindings: display: panel: Add BOE TD4320
+      drivers: gpu: drm: panel: Add BOE TD4320
 
-> +       if (atomic_read(&device->wait_counter) > 0) {
-> +               struct spacc_completion *cur_pos, *next_pos;
-> +
-> +               /* wake up waitQ to obtain a context */
-> +               atomic_dec(&device->wait_counter);
-> +               if (atomic_read(&device->wait_counter) > 0) {
-> +                       mutex_lock(&device->spacc_waitq_mutex);
-> +                       list_for_each_entry_safe(cur_pos, next_pos,
-> +                                                &device->spacc_wait_list,
-> +                                                list) {
-> +                               if (cur_pos && cur_pos->wait_done == 1) {
-> +                                       cur_pos->wait_done = 0;
-> +                                       complete(&cur_pos->spacc_wait_complete);
-> +                                       list_del(&cur_pos->list);
-> +                                       break;
-> +                               }
-> +                       }
-> +                       mutex_unlock(&device->spacc_waitq_mutex);
+ .../bindings/display/panel/boe,td4320.yaml         |  55 +++++
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-boe-td4320.c           | 224 +++++++++++++++++++++
+ 4 files changed, 289 insertions(+)
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250426-lavender-panel-2f144429cc1b
 
-While mutex_lock obviously cannot be taken with softirqs disabled.
-So what context is this function called in?
-
-Cheers,
+Best regards,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
