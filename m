@@ -1,118 +1,113 @@
-Return-Path: <devicetree+bounces-171230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF013A9DE11
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 02:45:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC30BA9DE3D
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 03:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01C0E5A76B7
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 00:45:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FD5F3B1CEF
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 01:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6CD18DB35;
-	Sun, 27 Apr 2025 00:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E602222594;
+	Sun, 27 Apr 2025 01:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QrPxreGA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SEbK4uQe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4674A47;
-	Sun, 27 Apr 2025 00:45:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D351E7C3B;
+	Sun, 27 Apr 2025 01:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745714737; cv=none; b=P9cQKJm0vjDVa9M6oKzoY569QmGh2HxIz3CYnk1sQBrEjbWv5ta1i46rjQs5bGAecFdoGfsoNW+aFwjrRO4ZUYccktcsteQ5h0RuP9Vx/XGqdz0XQUQ/rZU2aT6x9uudsUq0O2uNI84YqPvds6nJXhSBqZKbeLMMTxAJ76z1vI8=
+	t=1745716080; cv=none; b=tgttTkfrqe0ZoPfzlMQns/7Kd7tc2HQ2mGjoZWP6PLyPIcG4k0xsibSq9D+BNgY8BaG+D7iY2jwQ1vMtrOM8ywI+6QmqZjeQWA2RtJ8LeD5g4uydj+P9e3dAe8P7U68q43TR0EnQWkxoSQLZSP+ywJHSmcTmw1h3xvZNVeyvQ34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745714737; c=relaxed/simple;
-	bh=26Qjma/8UuPLK7Tg65G2MQ/UyfPdHlfAwlbBsBDewHo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pYOX0pv57i0ELHRMFusVrc2uGCKmsTHQg8EBhOuFUYMq4qh4XwScAmO47MSxMqAB0holYX2mlstLQVHGTlNe3ZgiiMLHPQ7xpx54bJPtEdL18R85csY+cQsp+PsVgymCOSvCXlJBApEWJxu4iPB/gFE6WXyPsDX8emerkzixG1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QrPxreGA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3E9D0C4CEE2;
-	Sun, 27 Apr 2025 00:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745714736;
-	bh=26Qjma/8UuPLK7Tg65G2MQ/UyfPdHlfAwlbBsBDewHo=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=QrPxreGAJeXfe7C375mGS/OvlfL4x+6hDBnV42y4Dp5+ktDIHCR8K4kgkoSbfY264
-	 0uoA/52fG/TWQED2XySueg1WKg2snJuE3/3vbsfGdAxFAHy6wQFDgGOBhbmMoaaDzc
-	 1N5v6c1EObn4Hvv2J1gYcF1J5PS+bFg89e/CvJ9bVLIyOaXuvcHduT5V9NKCGsGelH
-	 t0yOQn8LLv2+kikfm4APBcoq9mgGAT41+o2m2k2NINDcmkT1/aBYXj32S49caE0nPg
-	 WFw2aWhX6JXHDZ/VtV12mm9vOY8dlqlng0lkXeYIp9UjZ77SoZZr4Akbm0ad3RRyEF
-	 ZI/PZUoUVWHLw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CDC5C369CB;
-	Sun, 27 Apr 2025 00:45:36 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Sat, 26 Apr 2025 19:45:32 -0500
-Subject: [PATCH] arm64: tegra: p3310: Explicitly enable GPU
+	s=arc-20240116; t=1745716080; c=relaxed/simple;
+	bh=Qz3H5UonH+F0Ejh4eB3KlmRFyRFKO6k4cPWFEyvmaN4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AGhXwFwuvRmgRTGjcCKbQf5GTip2LBamUtoKdG2fGcvok7J7B37bgMhaAxCv/SeKRacdv1Ws7qxZ2Qd8X9BplmmRCqAvTueeaYH4fxDNqAtdMwhhGxO8H5npYwL8qHQtp5yQrROEN3eX/f1GRbqp/qpvvOUp0SwVOYFNOwrLuAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SEbK4uQe; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-309d2e8c20cso4359344a91.0;
+        Sat, 26 Apr 2025 18:07:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745716078; x=1746320878; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Qi/DM2NVeWE17m30+tFBeykLvgqkmQd+TLzeOQAEaxA=;
+        b=SEbK4uQerDat63CCQToLjN/BKwcCrBlyZhKkntZHAEsw91RLfx9WQ61yrelaZ5flIH
+         q2uAKRKnN1mB9Ud5z7qUfyXjv1sUl+sU+XzF+dM8VFLf00vG41kqwxeh8DrnFW88gMyS
+         1CFr1Vz1IOOq6IR5tPOm0wsZlD3ksCfgeXNoO1fsfyeMHKC2l4719zykGYNLMraKudSW
+         zQLWIj1+jiqEiHtO2iw6vMHuD8csitncS+AW9lcPJkx5m9cPhY/vID88OrufacJHgncB
+         nL6jpwFXZHK/D11SWXfoXEJ/Qp1/e67NeRYjLjx5Ue6Pdj7ZbHd9xUu+i/8NhG7ZwMyj
+         YnNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745716078; x=1746320878;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qi/DM2NVeWE17m30+tFBeykLvgqkmQd+TLzeOQAEaxA=;
+        b=lOMzl5hHDgTz67wJviSPBM9cDqvF42PkHk/pfpe1Ecs0j2A+67zdGa4Yy4ATbpkVRx
+         xnezuGEgk3pfoSgi1Z8qkWm01BSrG52A2M2tFY8OdXLxrdmmer5FS78k5s2mxzLILK/6
+         N/cyNR1IuO6AayPDL/VCZaEwUnLb/NqPJAeLoFRxtxNN1O4foUQDtqJCEDMkfERYX7pB
+         9kFyeHDqgwATg5XejE/RnJDv8puW0k8r+tVkbSjLeaYmFFIjdG1cQPnL6B8s0P+hSoZ+
+         LH2ptxN5RzK5G73DFoYhtR+2uImjMVfIsdbaInmHXor/0tf0nfNl3jLrTveLmVTmwFg5
+         uEUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUe0LQcDqCO49NS69vpyFdOxSzaz6aEYMyY2t71W3j2j4pqHdNS3c4yTmfD84hp2TadZnwp32v9YdHEAA1/@vger.kernel.org, AJvYcCX2Gz+qbIdolAznByPD770IJHz+iP5odn3lggvV/FwAgZX/sOQ36jUNlEY/geH1hj+04rajOpzQFcR/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXZgvcbzlfeX7ujn6r6zGlY0HdlLliW2MXXCcstVYwlwIxXo6F
+	j+ncuguch6rhXms4bawgzPAX+YygBInB4htqcqlt4hIgcHUqNef2
+X-Gm-Gg: ASbGnctcvFRAZEkvmerquJV27VDU1Gd01+WVBjvEQ6F1XJHAmHTR/u5XGqBk1lD1iTq
+	7f0bo6/c65fCGlPlscZtd8nAAvpyw3ZNwY0Arc1JY47DcAnFuO3lmLX3qjnUTi8gVhFRZhQnufZ
+	AEWWgKRiMXAXOxDBE8UtpLCn3DDrUMbFV4oFLaWFyCB3LNWMs2b4Yg3tQkdDxFyWqZzhsIER200
+	rwSlkzJt39MQrrz2gfnkYVjULuPKrSsa/XmRX8vgu+oUl4IizI2Nr+oiAkMoiFzIVuji4wKWwqE
+	OdpkKbuSnwxYOKWtcXHhao4fCl90H/5jakNntLi5Aw==
+X-Google-Smtp-Source: AGHT+IEOE2HNR8Z62iAJd3A4G+i2avNNhNGvpebOOqlr1I5tJlN3/vtrc9yI9fUiyGEU1soypp/xSg==
+X-Received: by 2002:a17:90b:57c8:b0:2fe:8c22:48b0 with SMTP id 98e67ed59e1d1-309f7dfddc6mr11264812a91.15.1745716078381;
+        Sat, 26 Apr 2025 18:07:58 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-309ef1475ccsm6041086a91.44.2025.04.26.18.07.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Apr 2025 18:07:57 -0700 (PDT)
+Date: Sun, 27 Apr 2025 09:07:55 +0800
+From: Longbin Li <looong.bin@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>
+Subject: Re: [PATCH v3 0/3] riscv: pwm: sophgo: add pwm support for SG2044
+Message-ID: <efpbhawsfg7nlp4waxtp366bemzzoznpoikob4ndzzoibs6n3d@6y3jdfw6zrhi>
+References: <20250424012335.6246-1-looong.bin@gmail.com>
+ <MA0P287MB2262EA042510853498EDD60CFE872@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250426-tx2-gpu-v1-1-fa1c78dcdbdc@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACt+DWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDEyMz3ZIKI930glJdw5S0lBQLE0OLJENDJaDqgqLUtMwKsEnRsbW1AHc
- nTzZZAAAA
-X-Change-ID: 20250426-tx2-gpu-1dfdd8418b11
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1745714735; l=1085;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=1qwq1cir+VfwVl8dxdzM8N5/93zGvcNjh8ZMxb/dTUA=;
- b=/3z+hRDAhqVhbJV7GtS0ycYT8SD07OitzJS9dZ0VpCAlSDVL13n+LmOziCze6bnicQ5Io0DDN
- he4ClbHSx2YA1sOUozlsS8qjeR/rhh6ql13r1nOWL3VI+WjQuigWeyd
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MA0P287MB2262EA042510853498EDD60CFE872@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 
-From: Aaron Kling <webgeek1234@gmail.com>
+On Sat, Apr 26, 2025 at 03:25:18PM +0800, Chen Wang wrote:
+> Hi，Longbin
+> 
+> Seems you missed my "Tested-by" tag for v2.
+> 
+> Others LGTM,
+> 
+> Thanks,
+> 
+> Chen
+> 
 
-The gpu node originally was explicitly left disabled as it was expected
-for the bootloader to enable it. However, this is only done in u-boot.
-If u-boot is not in the boot chain, this will never be enabled. Other
-Tegra186 devices already explicitly enable the gpu, so make p3310 match.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-index e2d6857a37097c5acc38dcbfd12800d59510f1c6..8aec6999603059107ba05cdbbe8bb497e3824a06 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-@@ -191,6 +191,10 @@ pmc@c360000 {
- 		nvidia,invert-interrupt;
- 	};
- 
-+	gpu@17000000 {
-+		status = "okay";
-+	};
-+
- 	bpmp {
- 		i2c {
- 			status = "okay";
-
----
-base-commit: 5bc1018675ec28a8a60d83b378d8c3991faa5a27
-change-id: 20250426-tx2-gpu-1dfdd8418b11
-
-Best regards,
--- 
-Aaron Kling <webgeek1234@gmail.com>
-
-
+Sorry! I will add that, thanks.
 
