@@ -1,112 +1,143 @@
-Return-Path: <devicetree+bounces-171320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9EC2A9E4A8
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 23:08:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81AD3A9E4BB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 23:52:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20D823B72D3
-	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 21:08:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5AE07A8292
+	for <lists+devicetree@lfdr.de>; Sun, 27 Apr 2025 21:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2CA1E834C;
-	Sun, 27 Apr 2025 21:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284D11F4736;
+	Sun, 27 Apr 2025 21:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="CpM1N37n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TzxNj1Po"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA50B6AD3;
-	Sun, 27 Apr 2025 21:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4B71DED5B
+	for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 21:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745788129; cv=none; b=CkZbVwiEEfYTIEqdpB4Qfbtc6JVa/k4heptDSTHbSOgBG4QE/7TST6vVie664VTOdMeQ24DMN4xPanqBx/rccr5KA+bEe5vlEWY/QgEGpM1/h9HnmIVLr79F6xkiaA1lyrQ4Bsbx57y9txA0HWPyzi+iDAkYudYEdiPYSEvwP0s=
+	t=1745790755; cv=none; b=myklzf8gr143TcBO7Kpvua8O+xzfxlfYjH59MRwjsJXgHLwV0IyXU5QsZX8P8FY7SR3/6s6lUIwJlcYO8DIEJjfnBAnJWGRBTSCm+N2uQSkN4buWpfF0Em/FO1VOecM6syD6vBhc47YPLjikRW/mb2aDcEcPnSckYlIampgp2TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745788129; c=relaxed/simple;
-	bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q9xeyVwAHJFc8vzF5XqHi1HAUvfdnJ/jXXxkbBSVldRK+G8hCZbge2YWMTF/xxcYpmfSH367tbIa6uafKrZ4YkDNReCE5ZDOzrgYWmR3nTOxfiuMqfu4op88A8GTVEPbkCczH2qt39dvenO8FMHxsohCX9a0D1qPrU9gIto+WC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=CpM1N37n; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2243803b776so68573525ad.0;
-        Sun, 27 Apr 2025 14:08:47 -0700 (PDT)
+	s=arc-20240116; t=1745790755; c=relaxed/simple;
+	bh=NLCEKxqfnuKPb5qhY6v1wHEJ3q7ORDM42IQIZbtYrhM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=MSlaGV+aM4XTXnvUgvK9wb0HJW5j/6dDyLJbAJtw3SGrt0/t7823VTOOqN9lIcRBF/TESxCcbxtTt7g73NbHUAs7yp4y8b9k5Y80fpABBwCpM/Wln/vHsffzpHbqET6KbS7K/Educrok5hyRRNITohYZHQ4eKNHIRV11Bkj5zng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TzxNj1Po; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so26610015e9.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 14:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1745788127; x=1746392927; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
-        b=CpM1N37nb72G7EWEAUm7qOvPLdaaykIGpdWlgeDNxb6IMs/3WTw52uLGoXot50QRl/
-         zVOV4ECpLyvSMyRuDhhK3hb6nYDM4zyEV6hzMflpfj++pCLY86zsdDEzDHuBWt4/eWqK
-         4YHA2tJIK5iYUcV1MdlGr6UZ381XVWB2IYXChn6rgC7S1l3wzHTqOp6HbP6MKpHpxzUq
-         WI9acW8I4AFRMRW7cnLqegmRg1P+zfwhr7EIkfKIEmTwjYGQI7Mj49bTqHHdOVr2B5Qx
-         r64RIoduKauMA66Ose8XYotoqdIx52C8DVBGGUA9Br1U9J46cwt66ek6UU9HwPPRpExJ
-         4J6w==
+        d=linaro.org; s=google; t=1745790751; x=1746395551; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zP6Vr5wl96BWIJPHe0GcdZz6u57VK+LDg/4JZWIexRo=;
+        b=TzxNj1Pojr7RTolJ10dsd6eT9YAdZyQxrutENJJtTaFcL6dnXfl2VfA4flUmLn9Y6O
+         IA2VCJesCJZ0o+FNl+wc9PuCLi34SD9SM9htndynSGPDlZ1Y3HT/euRXNKqpBpRBtb2T
+         vwvRk/PjAin6KorHfoc7H/nqoCt8FNBe4kkusgjQzSXLTftuBp5i+Ovj9oJwkKGKExl/
+         GZ7B8CSBSSKzmf/0iRmqlodqsmBl2yjn+kpE98m5NsQr/93xFj2je091lhtW7kPQJAHO
+         V1gpn5Udyuij0schJhvNotXZCFyUcr2MLZHg5T+upNOtdCd1MnrkQebwgFNRKF2RH/tC
+         TEYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745788127; x=1746392927;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=irNnhpUPyAbG1p4UJfyash5hUpMHlzekZFDQuw5FsnE=;
-        b=jw9lJk/4XkAvjEBleM+nn93yWL/nZmtkniDFbAKV4C/FS6G/bKs1JsDrP6Se0ec2fv
-         yoZgneMuEV2S4PRhSPCSNWjNM2YUz0vtbjnAxwC8R6UqveBSHRiATDQw2pw7tGGMzrLf
-         flSQ63vfNsExmddICP1iLmU8045p6yYw8sdHyZuL4aO5/QVz6TPOmOri2YtLSCMq44if
-         381035ryIignb9FfbeifUPyIIXmrJZjoyHhYUtlRdn3zRLjDbn+3NhrVaf8kXPdqNN0J
-         WA8uEA3JS1ZrQRdyYu56xhvuM96wJiqDR0s9Tl7FilgrgtFqVaBtYhkbqb+2RmEeALmb
-         IMjg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeZvtksC/ZKypYiir2ybEAYdTuYNql/3j1azsqnfPQtrPp3EcJHuUWQNMmvS/vHuHJ/bYDzYwdcjn54Qvz@vger.kernel.org, AJvYcCXDTg5ynkkYfDi6Gkbk9ZFrIznEIin+F9zOSclPD/dtavf21g0lJJsokaed0EbF65dBB/gqGjTslzlH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwC1NsnPykj7FlfdzINt2RNKu6iN/CgfGg0sPtXT4C1Hdl5kj2N
-	f/DH79YTM/Z8PdvAg6mitpUbSlJrtws5vhNMGvNdBkxF+TWIHMHgwP3zeYz05Yezb5kjxrSfGli
-	I4075smobTdp8TOB37CCAGiCSCRM=
-X-Gm-Gg: ASbGncvmr+jy2PtyiJT8XTivNbixAe2PgDR64tRQViEftMMZbTW9FjDVB3nh0huqnoH
-	KXTcaVki0eR9dcKudVzMw3SLXPCg0PRBkmiOTWqG3LOb5UMinXT5Ae6CoEWnZbqzK6+kV2JPBPS
-	HJxQUC2/gDNZrlGBH6kr0FG330bDZPxadu2zfX
-X-Google-Smtp-Source: AGHT+IGocl2yWOvr1gre0imG54JUGmymGatHDiDz76Em4CMmar3dxa70AKrZPaM7gcVEnNhp2xdwjHK7XXGAPUa+e2E=
-X-Received: by 2002:a17:903:1986:b0:224:1074:63a0 with SMTP id
- d9443c01a7336-22dbf6218c2mr150456335ad.34.1745788126873; Sun, 27 Apr 2025
- 14:08:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1745790751; x=1746395551;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zP6Vr5wl96BWIJPHe0GcdZz6u57VK+LDg/4JZWIexRo=;
+        b=pRi5EerZMJLfvkuQWOHKvoRHT9zf22ufa7w1Aic9mw9WA89qFLaTq4hAT/Lp4E3JBy
+         QdKUkkazZLjL2K3LkrPLqBTmcgtVQEMEpXgPWpWjU5ApzkS5pxJppMrTGIx8vz4eQGLp
+         /jLJfe1AVl0nTLY/RnFG3qY8jEvfoVV7rmUu6uq2cNtBgDaWyWX+aawwrJZlE583pvHQ
+         NuNe3inaGj7q82133YjaQ7Z8jcHBjZBLMTjnP8GcRjmaIBsH+X7rMwEXGD6XC9mlzMTQ
+         chFdTfGCkUe9i/LLXAUalnmnFsD6Ol7Vnt4P64+S91hNBw6vol6NXVMfteIw3iXmsNOy
+         M4FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJpEGBDrQjLH4xUNM9Ll5/TaPCt1EYKam/Kq2vtLw8a/+R5IyVNnsfVToHX5TB0IaVaesDCTxAEi8b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9O9IxLm3P4VickfWcxcKxZ8/gaaKJ5sdNkc7ejdgxRAWrWb2X
+	+88xII45WoAnCO8K5LpmPpr1OFIAgOmclRYZO5/vvDUTB/mRWrQzQt5UNuVfUhI=
+X-Gm-Gg: ASbGncuoBtBNs1EEKXdlka0LYuFcl3irAYpmQ6IVqLsLT+xqle9D8Dhx1+0ly/0d+m2
+	Xn88zHSRgc/bfjaC/mzIn3YFiG7HYx099hbATXrLSW0uwGSBJdN9vL2HpH5kdF0r/WGB6IIQDQz
+	lEK1fYmlmylpTphxkgK89yRrlaCi1Vimc00MWwxG05NO2IHPZGUJE0eJObYAm9XTmGfZWOlW6UK
+	ZXVBVLPezrwuW6rox59iysbWgtDswQF3MWKfjBTn5fF9dwvdn9XUToKWzxrnMx0lfsZQkj4yrAl
+	JmQUgZ7oz06Xk5QqZFK6hsTGf0+3ptYGgwKTKTsN/DFe/WDKJg4GJXlGbti7o/RaQicAfBKREJN
+	JpDS3dHhdH59xRsvk
+X-Google-Smtp-Source: AGHT+IF9NtTwXVCry4ECIh7ifDI7xSXFecW32O3JGgQylC/n1HXWQ9lefOctYA70jHd9LbL7GdOPxg==
+X-Received: by 2002:a05:600c:1d8d:b0:440:59eb:bfc with SMTP id 5b1f17b1804b1-440ab848458mr54631495e9.23.1745790751367;
+        Sun, 27 Apr 2025 14:52:31 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2a1544sm138759515e9.11.2025.04.27.14.52.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Apr 2025 14:52:30 -0700 (PDT)
+Message-ID: <fcf5eb3c-a2c4-41ec-8c6b-d8aee5a9f906@linaro.org>
+Date: Sun, 27 Apr 2025 22:52:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250425203118.1444481-1-da@libre.computer>
-In-Reply-To: <20250425203118.1444481-1-da@libre.computer>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 27 Apr 2025 23:08:36 +0200
-X-Gm-Features: ATxdqUH4ngC-BX3cBpEPOaM7UIKT2zGBTpdyLjm5NqfvqkKNl138-a_D7ZyE064
-Message-ID: <CAFBinCCUQizs=XWq7knm-4=3=hzPDNee9RZj9LDD2Mi6DHYBrQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: gxl: set i2c bias to pull-up
-To: Da Xue <da@libre.computer>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: qcs8300: add support for video
+ node
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
+ <20250424-qcs8300_iris-v5-4-f118f505c300@quicinc.com>
+ <47dtgkfqcpalixg36vxcurkmh5z52kdp7rbcvwl56wsyjsisdo@ylmmrvwde4nz>
+ <d8db0361-b8d9-4ed5-0f92-f66f280f62e6@quicinc.com>
+ <00fb511e-80b5-494b-acce-23093932c4ad@linaro.org>
+Content-Language: en-US
+In-Reply-To: <00fb511e-80b5-494b-acce-23093932c4ad@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 25, 2025 at 10:31=E2=80=AFPM Da Xue <da@libre.computer> wrote:
->
-> GXL I2C pins need internal pull-up enabled to operate if there
-> is no external resistor. The pull-up is 60kohms per the datasheet.
->
-> We should set the bias when i2c pinmux is enabled.
->
-> Signed-off-by: Da Xue <da@libre.computer>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 24/04/2025 13:20, Bryan O'Donoghue wrote:
+> On 24/04/2025 11:28, Vikash Garodia wrote:
+>>
+>> On 4/24/2025 2:51 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Apr 24, 2025 at 02:20:48PM +0530, Vikash Garodia wrote:
+>>>> Add the IRIS video-codec node on QCS8300.
+>>>
+>>> Nit: you can not "add support for the video node". You can either add
+>>> video node or add support for video en/decoding.
+>> Makes sense. Will wait for any other comments, before resending.
+>>
+>> Regards,
+>> Vikash
+>>>
+>>>>
+>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 71 +++++++++++++++++++++++ 
+>>>> ++++++++++++
+>>>>   1 file changed, 71 insertions(+)
+>>>>
+>>>
+> 
+> Unless you get another comment, there's no need to resend.
+> 
+> I can fix the commit log for you on the way in.
+> 
+> ---
+> bod
 
-+Xianwei Zhao (who has recently upstreamed Amlogic A4 pinctrl support).
-I suspect we need a similar change for all other (Meson8, Meson8b,
-GXBB, G12A, ...) SoCs as well.
-Can you confirm this? And if not, why does only GXL need this special treat=
-ment?
+Oops this is isn't one I can fix for you - dtsi.
 
-
-Best regards,
-Martin
+---
+bod
 
