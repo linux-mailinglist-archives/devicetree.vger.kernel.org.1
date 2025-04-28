@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-171444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B50FA9EAE7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:38:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E777A9EAED
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:39:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C0673B72DC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:38:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1DF71891231
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F0825E47E;
-	Mon, 28 Apr 2025 08:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E8A25E471;
+	Mon, 28 Apr 2025 08:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRUXQzyT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sFuy/fKu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D64E253F02;
-	Mon, 28 Apr 2025 08:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18E9200138;
+	Mon, 28 Apr 2025 08:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745829496; cv=none; b=so5PdeMaQ6F88qcbUxZ2wPF4aW4SCihhl688ACBHp7yshwCb12gQKsHYVrii6qw82qqpF/BFYhCV0FY/apNFWw2sfJyxy0z72guSyQZWb2yicE2rX8dm6GwVxMoy5dfpTwfrXoRe/iUF7YeN1rLJdwGru6bLzmoickE0t3v+c0k=
+	t=1745829536; cv=none; b=lSr/CNVD6uGpdmxOFAOjb40++tzAQ5r9s/gHC1DY1EIqsa5NLCKO8c3dKNIGUIFGjrKk0Oa8c3pTqAkfQjbpRKr9eZYiMyLLg1ua2WTfL2Jynz0aGRqqCtYoxxrewUPPpDDa/lCfmWifu/id++Dxbt3UWim4TbRcqTIZRei3nDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745829496; c=relaxed/simple;
-	bh=IX7uaMoyrktq0xBAn6VHTtGaVdJeibN2qLU0Auh6A40=;
+	s=arc-20240116; t=1745829536; c=relaxed/simple;
+	bh=LZ8ENyCzktoqNokGHZMzWBrPs0WotFekQ7wV/XYpdUg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dFgiaF7dFIL6D91xet3+9HOQAx/puIW/sEfcfnhH6SqAcbKxCwyXf7osqSkgb3TUERsQn9aTtqxt+uydUMhkVssWGL3W5WE4PK650LUKXSLayvMZ1qG35wALbTDeE64/6PQQ8VhE6gW0rXOQmbPRSyzL+c/W8Ce2KDTfCG+2QVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRUXQzyT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFF8FC4CEE4;
-	Mon, 28 Apr 2025 08:38:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oliJUzJ+RhD5nB3nUHU0lZrlo2wEtbu0rQgci/h645qlrUsWXCzEdrfqD6UV5zWtMI2ZilDJpnt1c2dH5AJ68q5lP7I4NJjLdR6Htpv3b6cirbpNbRYxLOOTlb8fhwDrzuWuCUxlT2/CP5FiROi0KAXFK4DJKn6rRTZDSkzqXE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sFuy/fKu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA5BEC4CEE4;
+	Mon, 28 Apr 2025 08:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745829495;
-	bh=IX7uaMoyrktq0xBAn6VHTtGaVdJeibN2qLU0Auh6A40=;
+	s=k20201202; t=1745829536;
+	bh=LZ8ENyCzktoqNokGHZMzWBrPs0WotFekQ7wV/XYpdUg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FRUXQzyTnc5p1UtaD090us0IGEgkFTWdz2PYUoExUp3EEGGLxopgJ5TeQIFOtzgkZ
-	 JeaTxIdyMNRV/KBMA9bR+3kQVXHOMdnsWB2b3sM5Hdn4kNjVbPVf9+jRfmdPFNyJZZ
-	 6bOiFaCHKXwdqaGPVHB8OqHkxGqtHFaK6/2p0mpw+SWbCEgSJr6/8LCmGJPhIW2VOq
-	 bhQRbSL+lj4SMf5aVAJ6qfYDH5gFLUHRUR+q4KeT5ejcoKXbuhPwASvD+8p4gf7Hvr
-	 DtZ+0m8N7OoD1jX9Dr6i5VQwEzuzSFOjT3fQSMvoedHFhJrt742n4V/D4yvDi17nL4
-	 D/wT1SUYwuZ/g==
-Date: Mon, 28 Apr 2025 10:38:12 +0200
+	b=sFuy/fKuEuGT7+ypxv3qVz8CGh1a4EzkBT5DBwlnDKzPN+YXcTaZnZ5hpz7ZjKAlt
+	 NygqnKH1qtRVdzGeEUGoMYaLfzGef73WwHTIzKqXs1aYwuGHpH8ezzSHUGEpaSvSIu
+	 vSqKsPgCoYPREfAbwvOctLy9IE5QEmWqTnnjBdWm56QYpWB3w8cy/2awRe1PyhjYBV
+	 jZ3jiK1ccK9QbzHzJQLG4jToOz9OeBYQxuS4Q4GVkLhuo32vZaQqRtG7155gQ1/Tgx
+	 P0TNBvnl+lj5KM2GDzatRIGrJuh59OmgIOCvh20gBBwzKZ2ySxEE8JxB4b5+eC8IvK
+	 Ya9Dn4SsNBPdg==
+Date: Mon, 28 Apr 2025 10:38:53 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Bryan O'Donoghue <bod@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: Add OminiVision 0V02C10
-Message-ID: <20250428-spry-mustard-flamingo-78ef4d@kuoka>
-References: <20250426-b4-sailusfor-6-16-1-5-signed-ov02c10-yaml-v1-1-9a46124fae7b@linaro.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-amarula@amarulasolutions.com, 
+	Amelie Delaunay <amelie.delaunay@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, 
+	Marc Kleine-Budde <mkl@pengutronix.de>, Marek Vasut <marex@denx.de>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/8] dt-bindings: arm: stm32: add compatible for
+ stm32h747i-disco board
+Message-ID: <20250428-hasty-fanatic-quokka-546887@kuoka>
+References: <20250427074404.3278732-1-dario.binacchi@amarulasolutions.com>
+ <20250427074404.3278732-3-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,46 +65,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250426-b4-sailusfor-6-16-1-5-signed-ov02c10-yaml-v1-1-9a46124fae7b@linaro.org>
+In-Reply-To: <20250427074404.3278732-3-dario.binacchi@amarulasolutions.com>
 
-On Sat, Apr 26, 2025 at 11:35:21PM GMT, Bryan O'Donoghue wrote:
-> Extend the ov02e10 bindings yaml to describe the ov02c10 sensor which has
-> the same bindings with a different compat string and different i2c
-> address only.
+On Sun, Apr 27, 2025 at 09:43:21AM GMT, Dario Binacchi wrote:
+> The board includes an STM32H747XI SoC with the following resources:
+>  - 2 Mbytes Flash
+>  - 1 MByte SRAM
+>  - LCD-TFT controller
+>  - MIPI-DSI interface
+>  - FD-CAN
+>  - USB 2.0 high-speed/full-speed
+>  - Ethernet MAC
+>  - camera interface
 > 
-> Other differences in sensor capabilities exist but are not expressed in
-> devicetree.
+> Detailed information can be found at:
+> https://www.st.com/en/evaluation-tools/stm32h747i-disco.html
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > ---
-> I previously submitted a standalone ov02c10 yaml file but, it was pointed
-> out to me by Krzysztof that the ov02e10 yaml has exactly the same bindings
-> and we should therefore extend the ov02e10 yaml.
 > 
-> Link: https://lore.kernel.org/linux-media/da93bf6c-b4bc-4c4f-9373-583fbd0c031c@kernel.org/
-> 
-> The accompanying patch:
-> 
-> - Updates the overall description to differentiate between the two sensors
-> - Adds ovti,ov02c10 compat string
-> - Adds an example for the ov02c10
-> 
-> Once merged we can also merge the ov02c10 driver, which contains a compat
-> string requiring yaml description as precursor to merge.
-> ---
->  .../bindings/media/i2c/ovti,ov02e10.yaml           | 47 ++++++++++++++++++++--
->  1 file changed, 43 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02e10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02e10.yaml
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-There is no such file in recent next (0424) and no dependencies
-mentioned, so I cannot verify and I just assume that below:
-
-> +        ov02c10: camera@36 {
-
-makes sense and you are not duplicating I2C address on the same bus.
-
-You should document the dependencies.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
