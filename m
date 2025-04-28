@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-171636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77137A9F756
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:29:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA2FA9F797
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:40:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 405AE1702CD
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:29:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E4EC5A1E26
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CE3292919;
-	Mon, 28 Apr 2025 17:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A422951CF;
+	Mon, 28 Apr 2025 17:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Egt6ZBxn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AI6I6CV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC972918D7;
-	Mon, 28 Apr 2025 17:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9668B2951CD;
+	Mon, 28 Apr 2025 17:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745861386; cv=none; b=UHwHsugT26mj91pwVsb0FyPx9wfy4hW3Gi36k/6YDQ8z7cBI4mjr7V8ybY4jAJ5LOE301NPOXM0JBvYeB6dDGJ5ROo5FaYrvxjQCHUMQRUsfaYaUF/VCb8k4noTlvoYxidIg7ETkSkXOvvSgDujyLIwEyOaeIwPeP1vgmVn94oM=
+	t=1745862002; cv=none; b=S2L704dVvIbjAe8U2q+5YtgnFg7FNfxBQJrjoKieFC2OCiGhezMDQdEb5uq+fD/mc8TwW6j5XyT5oPk+8rjGNa0Obhapcah6KavY6UPxGDkd09aFlMl1+nu5SY3RHYqrMsqX6SQ2LDlRVwHCRdL+k/H7jkx1oX4anfqG3EiVfRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745861386; c=relaxed/simple;
-	bh=pIm6kJdZoRUEPoboQ1RwEpmH/j7yX7p5pO6UwJadN1M=;
+	s=arc-20240116; t=1745862002; c=relaxed/simple;
+	bh=u3kRpxX+dwguY5cKTFBSVH3h/qEQNbBinsO3CqrE6Hk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cDSp+tu/pgejt63J/f8sqWK4WGtt+bzGw+V+KSTNCFE05ag0M7q8plDy8R7PWQrx/7OrC4l8XpBnEcG1mRpCZQzKfrtrb2uIL5OJdptB1c2h0OlSaechJYGv3ykYWAjUH+2nwgizCEpth9wQVV0qiABybkVQxwpAI8G7VJpRlhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Egt6ZBxn; arc=none smtp.client-ip=209.85.214.170
+	 MIME-Version:Content-Type; b=mUJzEmZIvZ1erw4j3jzs61QiBHN5R1uPgLne6ErR+ceVBer/TGeXDzEzjwedHBi12kBI7aNL3jhti6lH/BRAAoo5q0dilsk1igIzpvGwKHXwV6NQ9dxl/4ALgjcHKTdx8PzT5muR4OQ9nRA1oD+2FIcNYM/u4pMP2PJri2Gvn0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AI6I6CV6; arc=none smtp.client-ip=209.85.216.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-22c336fcdaaso60752345ad.3;
-        Mon, 28 Apr 2025 10:29:44 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-30863b48553so5697121a91.0;
+        Mon, 28 Apr 2025 10:40:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745861384; x=1746466184; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1745862000; x=1746466800; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2YX0WSHvzrOwt9O37YLeUrRaw5O7eLXzaelHUbdXzcQ=;
-        b=Egt6ZBxn8zgYMdLtLAv6Cs9ISZvVPVFZdpNoWkKiPoYpa5AwUMNq+/IjgnLH/++/Ga
-         RGkwd8U5eUZZoQJjuBCyn4ZoG7HBealO4eSRnbP9cYN9eLlZwt4CWeYp2e+0YSnZz2/M
-         NMcbioLb23ZTGFZ1agDLfnrRyYstx3SY/eFqEHwWuAAM9NXIRfqHbYgqwLxEep7dG0fo
-         y16/Iuu/SU+X180KLJaAYRI9EP9igqVb8LRY73On+50dxdwE8FlWJAIi7SeqYsftjBpz
-         A/TUvO54PSbGwgDqzu2udTPZO0u9LxBHGuYtCyfGMCTpQThktOo+C11r6uzuqHTJpQ0Z
-         OO2A==
+        bh=QkZM0DTdnAiuvM8+UD5o6XjxAdhuknzBZ7aUuv5ED0s=;
+        b=AI6I6CV66/1Nqr2enuQaj4/pjDPvE/GdCulCfHgjXJBEZDKM9iBqMQxffYaCUxAI5N
+         fEKI8gpXvUz80e94kuA+dt6eky3Dqjdkvuam+gj0nx2qQMwv3uuQ7gg2W7Ryr9Ojwpe0
+         ri2Qy+RhnLa3W/iimKxsgWxk49eRp0ZZ9l5Z0aGGRkR3/1nvlFY4LlJyGUKrqsywe1F5
+         NuZ9fqEbZXqCqz38WUKOGz+boL0bpi6HQw7cf3SM494uFDFj48TDCr/YW4vCtDgHAG+n
+         FVFX4oydlviajlK7ET1FqtszH+zJ5hpxlrlwLUFjLkKUHr8SKjDLJo4wWq3QkzWyXYls
+         I0ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745861384; x=1746466184;
+        d=1e100.net; s=20230601; t=1745862000; x=1746466800;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2YX0WSHvzrOwt9O37YLeUrRaw5O7eLXzaelHUbdXzcQ=;
-        b=DC1LdaWgtk/VdFV/WEGSTrY/P3wO2QFIYiK+uxuUqyuBGSaE0WFBkD7P43mw5VsXeq
-         oopspTCBvv8mn9Om1nSP3WNYQ1d8P71z1onuKMLgxfW/LL/boWs/xIJtfycjeEtK68EV
-         4Ugh+qXsX2yT3cFmbA7ly5x260rMDq5UJCgeqhqiYEdKQQFCiSkk0ARmEVad1UuR73Gf
-         1HpjceXtV5lx2s25KFDggcpkK7WDapPOrh16dWToe9dCDYsjV3y31J+JQFnBokyFqIv/
-         moAYjpiXckDQ378GaDYetlPLSABAZUIPO5puxB5+8ZvZ1h3qSeGI0l8a9p8x9x1BQW5K
-         VZTA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUszv8DW/xxj5Zkg/8NZ7EMc8DHE3+rFED4vZQl468kjDlWrJkebUhinXZTBBwE5o2qgnk/xXsqEpgYmDl@vger.kernel.org, AJvYcCX8XKCXyO1hZc8vbw+WT/S1yXgW360ZWlxnSKRL8GRYiofSohgthEvDx+3Lpr84A3hSNjz5AJSj8bdd@vger.kernel.org, AJvYcCXoIjFmuy7p20a7tXhGMLJwiFByQlVs4tY4SkZuGmThcuSPwMReXr5wmtFtxqQsBoUNaPQYBF8xueum@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXWr1MOynCnuFuOCzbe4wst7UxjItmYqK21HdPT26Q4s+VWm98
-	6PPXuD5wAXuEWQtzdXFA2M1qMXQ2OUeCGFjW8n4aDskMGUGuK5G6
-X-Gm-Gg: ASbGncu+fWC5gDoenxmcQKg6QKAuZlQzrg+Da510CVc7R0PRCl6A9Ren9fWelopATxh
-	HbJ8JkzijI9g5Flib/PcBS+fvGTnGgkFcpNAvWA2F69fXzUrqTjgU0rCLcJL9s67+4o+Jz+jskM
-	a+DpgcLM1YbXBkYAVYrxcH8ig2TmjmEOWoXPiFqx5mpvlkTgwv31AMbEKCi8neVxuXNKGbzfgyg
-	3bLMHi3UMnvjysN54qY72EIl4zPtVycGDY5Wd5JQbPr84PfF2O+bJmqBya47EYSGQtbsF8+QNkL
-	n1KD8D4kE9HEPfIzNPNU5ncmQWq0ndDvGW+GA7sq8vJ7NQRTge4iMw==
-X-Google-Smtp-Source: AGHT+IFIeV3LreDmlj9YDmjvqpTCXGoAp/5oVXl6et0gDWWLPyCJ4uu6m+P13yW+BLwBFtXy/ZO9bg==
-X-Received: by 2002:a17:902:fc50:b0:223:54aa:6d15 with SMTP id d9443c01a7336-22de5fd0c7dmr7901825ad.12.1745861383836;
-        Mon, 28 Apr 2025 10:29:43 -0700 (PDT)
+        bh=QkZM0DTdnAiuvM8+UD5o6XjxAdhuknzBZ7aUuv5ED0s=;
+        b=bNHs4xPQOHUd6fQ3nqOcNhaby3yRjxBxOrP7EcOfDAKnK9OA798MN8zTwc/q2ccagA
+         WsAnUmaQ7TuvAOn09/50EtSULmcw16Qq8Exjp8I6Ujg8OmTPFke1hTwzxxMpqRXY3hxg
+         NQO4g8yDQ8L1xzINZ+wQhnR2HhhXRyIdVLNGNwUZnj57SGq0gVCPl6vs7/gpd9g5jVDd
+         E1vCNOp+F5RwDY8T2+OemDumZQS/c1wdqvEQ/S19QJz7oxVC+86FvunoPdqjGMFoETns
+         iV25Sr3F5lN53IjcC3IaSr4MO105q9ZMdaF5DCKRXTNjxK8U1fezT7dlblDtCyzGSMLw
+         ljvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU289YU2twL8tEIRj6hd6pNaHFJ0tP2C5DAlXSPf19hRmeOuw70dC8YLRJ65hJdOCGAvQ1LtI3FpnAf@vger.kernel.org, AJvYcCV6Mwe+nkFAyjb/xFhaCJ+OW28ijo4i251hTt+v1YZhVpGxFXvGCwXhkWXIksLAhiJb/WViG0l39mei2pDD@vger.kernel.org, AJvYcCWt/a4N+m3Hy2Is+pEti02IRATmRfRhPFU0kcBxxV1FuxWtQdcEHZw5Ha1YlwQWl+h2cjJWpIisTNNj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuVQqZJipHYOvpGLXRl8m+GUDptwgsOCtbzNt/Gfwu2TPCNLQV
+	XZeCmXID3ISBr8ZcdXpZr9af7/xmAYVKZqvBu0KLIw1OzkP3cRh8
+X-Gm-Gg: ASbGncuGCgNzBVcqC88pz05xc/icYjlDc1sUAzPy0jERTkW+yu1U/640yg+/BeYYI5L
+	kutParNNfa4vJb9EMesQI0agocECAC6RC3b3dnifeDsRW6jPLieDBf+xHOXjq3n2XW7VTAarFwB
+	VZ8N/VXoGgRW9C/epRz8GickA04urLwaycStIuGtYBe9UewWHEV9m1jqLmAlCnQPsuNKxCT25jQ
+	IMZ18/ZpsRxpSC8LgwARw6fz5z3PqPFA4hPNfPHx8VdaOWkajj9bE8BcgXFG3IWFbxcw/Zylkw4
+	5mG8zoxk7EtB/TDD2XdQznFTTkli/A/t8zbpw71cwlYYGR7S7KixUg==
+X-Google-Smtp-Source: AGHT+IGAnl22XWZ3hE6CVJurtKTWJl4h3CjdFp9y6JsvA3H9KfOapXTXAl5+O93sKWKawvjCUksDgw==
+X-Received: by 2002:a17:90b:380f:b0:2ff:6e58:89f5 with SMTP id 98e67ed59e1d1-30a2245d8d6mr110710a91.6.1745861999664;
+        Mon, 28 Apr 2025 10:39:59 -0700 (PDT)
 Received: from localhost.localdomain ([123.16.133.44])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db4d76bc3sm85850065ad.28.2025.04.28.10.29.39
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-309f77652ebsm7519746a91.27.2025.04.28.10.39.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 10:29:43 -0700 (PDT)
+        Mon, 28 Apr 2025 10:39:59 -0700 (PDT)
 From: Nam Tran <trannamatk@gmail.com>
-To: geert@linux-m68k.org,
-	pavel@ucw.cz
+To: rdunlap@infradead.org
 Cc: andy@kernel.org,
+	geert@linux-m68k.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
@@ -88,12 +88,12 @@ Cc: andy@kernel.org,
 	bcm-kernel-feedback-list@broadcom.com,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
-Date: Tue, 29 Apr 2025 00:29:17 +0700
-Message-Id: <20250428172917.25405-1-trannamatk@gmail.com>
+Subject: =?UTF-8?q?Re=3A=20=5BPATCH=20v8=202/5=5D=20auxdisplay=3A=20add=20TI=20LP5812=204=C3=973=20Matrix=20RGB=20LED=20Driver?=
+Date: Tue, 29 Apr 2025 00:39:33 +0700
+Message-Id: <20250428173933.27454-1-trannamatk@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAMuHMdVJNPRd3GMRV3=W0vsNW+fm4up-mWPOZ_W1-wQigQj8vw@mail.gmail.com>
-References: <CAMuHMdVJNPRd3GMRV3=W0vsNW+fm4up-mWPOZ_W1-wQigQj8vw@mail.gmail.com>
+In-Reply-To: <4c17ae51-475e-4bd2-8bbf-c5e3233ef319@infradead.org>
+References: <4c17ae51-475e-4bd2-8bbf-c5e3233ef319@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,53 +103,43 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi Geert, Pavel,
+On Sun, 27 Apr 2025 Randy Dunlap wrote:
 
-Thank you, Pavel, for the confirmation.
-Thank you, Geert, for the review and the question.
-
-I would like to make it clearer.
-
-On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
-
-> Hi Pavel,
+> Hi--
 > 
-> On Mon, 28 Apr 2025 at 12:37, Pavel Machek <pavel@ucw.cz> wrote:
-> > > > This patch series adds support for the TI/National Semiconductor LP5812
-> > > > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
-> > > > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
-> > > >
-> > > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> > > > ---
-> > > > Changes in v8:
-> > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
-> > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-> > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
-> > > >   and update the title and $id to match new path.
-> > > > - No functional changes to the binding itself (keep Reviewed-by).
-> > > > - Update commit messages and patch titles to reflect the move.
-> > > > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
-> > >
-> > > Out of sudden without discussing with auxdisplay maintainers/reviewers?
-> > > Thanks, no.
-> > > Please, put into the cover letter the meaningful summary of what's
-> > > going on and why this becomes an auxdisplay issue. Brief review of the
-> > > bindings sounds more likely like LEDS or PWM subsystems.
-> >
-> > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
-> > believe it is suitable for PWM, either -- yes, it is 36 PWM outputs,
-> > but...
+> On 4/27/25 1:24 AM, Nam Tran wrote:
+> > diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
+> > index bedc6133f970..896f02b9a06b 100644
+> > --- a/drivers/auxdisplay/Kconfig
+> > +++ b/drivers/auxdisplay/Kconfig
+> > @@ -539,6 +539,23 @@ config ARM_CHARLCD
+> >  	  line and the Linux version on the second line, but that's
+> >  	  still useful.
+> >  
+> > +#
+> > +# TI LP5812 matrix RGB LED driver section
+> > +#
+> > +config LP5812
 > 
-> Is it intended to be used as a 4x3 matrix, or is this just an internal
-> wiring detail, and should it be exposed as 12 individual LEDs instead?
+> Missing one tab of indentation on all lines below here:
+> 
+> > +tristate "Enable LP5812 support LED matrix 4x3"
+> > +depends on I2C
+> > +help
+> > +  If you say Y here you get support for TI LP5812 LED driver.
+> > +
+> > +  The LP5812 is a 4 × 3 matrix RGB LED driver with autonomous
+> > +  animation engine control.
+> > +
+> > +  To compile this driver as a module, choose M here: the
+> > +  module will be called lp5812.
+> > +
+> > +  If unsure, say N.
+> > +
+> >  endif # AUXDISPLAY
 
-The 4×3 matrix is a real and fundamental aspect of the LP5812’s operation.
-It is not just an internal wiring detail.
-The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 output
-pins control 12 LED dots individually through scanning. Each pin includes
-both high-side and low-side drive circuits, meaning matrix multiplexing is
-required for proper operation — it cannot be treated as 12 completely
-independent LEDs.
+Thank you for pointing that out.
+It was my mistake, and I’ll correct it.
 
 Best regards,
 Nam Tran
