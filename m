@@ -1,108 +1,156 @@
-Return-Path: <devicetree+bounces-171635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD73A9F6EA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:11:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77137A9F756
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:29:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C3863ADECE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:10:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 405AE1702CD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50649268C7F;
-	Mon, 28 Apr 2025 17:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CE3292919;
+	Mon, 28 Apr 2025 17:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcLaacM9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Egt6ZBxn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B9218F2FC;
-	Mon, 28 Apr 2025 17:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC972918D7;
+	Mon, 28 Apr 2025 17:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745860224; cv=none; b=dTN6kcdAmt0GJsXHIQ/6KjKBfGsD+i38NMCja7hWkpE+1sV4vHQYVv8uLGu3R7/WlFKInT84C/mhkHqZ/TyqNf88MBmGEAqJ38j7IvD/jUFVvYEDlWf3oCq+u2hOyCogPOponVxeCYXUiof3ltcy6pXg2HYa+DGLcodKMvT3iKc=
+	t=1745861386; cv=none; b=UHwHsugT26mj91pwVsb0FyPx9wfy4hW3Gi36k/6YDQ8z7cBI4mjr7V8ybY4jAJ5LOE301NPOXM0JBvYeB6dDGJ5ROo5FaYrvxjQCHUMQRUsfaYaUF/VCb8k4noTlvoYxidIg7ETkSkXOvvSgDujyLIwEyOaeIwPeP1vgmVn94oM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745860224; c=relaxed/simple;
-	bh=vEsR4ZoZHVFT1r5XJ/2XpS3u/EiMbzkKg8Uk1QA3N88=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o7ZTkXt+k+7+4RmH7pGS9/WEpd/btA8lL6na9KOQAhcVduRFJQCByJ9sTg8QG19w4MgYPIZv0t+7GgPt/lO3LPjSoOonVzF66qvkUf53YwZKP2s5endWntRYyqY8JGzQ/xx6SGfKaSNBBeZIPwuof5k/6cVmugAdollw5fENCaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcLaacM9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9596DC4CEEF;
-	Mon, 28 Apr 2025 17:10:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745860223;
-	bh=vEsR4ZoZHVFT1r5XJ/2XpS3u/EiMbzkKg8Uk1QA3N88=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kcLaacM9dSPst3MiSqP7Zm8O+JfMHZjeRGZ39rlcN7LBHq0GLMJ+EEUyQFuEtSvtm
-	 bcY9cbZ3Hg9S6nfROUh3IjTDLsIUYHiD5w1KjnpdM1b5JiuxdsUGqD/efTJGEKReeB
-	 rcyFVIaC/JXRlvck7+893uvSqhaPNoT+FvbooRlQw45tJ4cR7D14PoNqwNDLzMxh54
-	 x7nmNsNp1OG1byl3jEVbi6BI+n53SgLojOhbRy6cww91XNB9kpI7TaOu5jIGlFshQ3
-	 0i9Tun+q2sO5IYIa8ko0aJrMFZViov7BADgr21gx2zGYNG4VizlpJU2bWElAy6Tm1i
-	 skQ1jyXWiy+Qw==
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-702599fa7c5so47538427b3.1;
-        Mon, 28 Apr 2025 10:10:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCULtAaDU7Id5kBs72I+ZxpsnRm/PFWYVPdgKV1G72ys9tzL4KT4iGn3YXAPbeQYMz63qWvNlspeJXIm@vger.kernel.org, AJvYcCXBS4NVevTnGfrvSskKJlPsHi8pCTRPxpfcuER1t7V6cyZpjMnpgo5ZouAsZaz4PfTt6EcJWeq18LUuWG/R@vger.kernel.org, AJvYcCXKdxglZZ2S4KcA3nBFlCnH90mVA5P+xdovBPKi0AFhnYDh9tke4aWTLtv5n901C4Xbmaw1NPD0cuZ9OINDhn8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7gICgBkxTjB6tDIpQiV+9sD9J8aca0tPLnHFGUzXVI+y26svx
-	pM3NJudBbDtnbjFVdScYIM26y/hnXSsArza3xanTb74wQS1trKlF6ByCU4u7mq2tyfJ0Om5CNjH
-	gSruPBwoLWyJZ3XhbyrUb3nVuD/8=
-X-Google-Smtp-Source: AGHT+IEKXHx9WNrCJ8KbJwQVZLUmzNLo67P14iS+1D+DGqi2anctCFi1gSHert1yRUEn+tb5hg3VJLd15RlOg72/DNw=
-X-Received: by 2002:a05:690c:95:b0:6fe:5dba:b190 with SMTP id
- 00721157ae682-708418f3551mr216219627b3.11.1745860222795; Mon, 28 Apr 2025
- 10:10:22 -0700 (PDT)
+	s=arc-20240116; t=1745861386; c=relaxed/simple;
+	bh=pIm6kJdZoRUEPoboQ1RwEpmH/j7yX7p5pO6UwJadN1M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cDSp+tu/pgejt63J/f8sqWK4WGtt+bzGw+V+KSTNCFE05ag0M7q8plDy8R7PWQrx/7OrC4l8XpBnEcG1mRpCZQzKfrtrb2uIL5OJdptB1c2h0OlSaechJYGv3ykYWAjUH+2nwgizCEpth9wQVV0qiABybkVQxwpAI8G7VJpRlhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Egt6ZBxn; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-22c336fcdaaso60752345ad.3;
+        Mon, 28 Apr 2025 10:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745861384; x=1746466184; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2YX0WSHvzrOwt9O37YLeUrRaw5O7eLXzaelHUbdXzcQ=;
+        b=Egt6ZBxn8zgYMdLtLAv6Cs9ISZvVPVFZdpNoWkKiPoYpa5AwUMNq+/IjgnLH/++/Ga
+         RGkwd8U5eUZZoQJjuBCyn4ZoG7HBealO4eSRnbP9cYN9eLlZwt4CWeYp2e+0YSnZz2/M
+         NMcbioLb23ZTGFZ1agDLfnrRyYstx3SY/eFqEHwWuAAM9NXIRfqHbYgqwLxEep7dG0fo
+         y16/Iuu/SU+X180KLJaAYRI9EP9igqVb8LRY73On+50dxdwE8FlWJAIi7SeqYsftjBpz
+         A/TUvO54PSbGwgDqzu2udTPZO0u9LxBHGuYtCyfGMCTpQThktOo+C11r6uzuqHTJpQ0Z
+         OO2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745861384; x=1746466184;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2YX0WSHvzrOwt9O37YLeUrRaw5O7eLXzaelHUbdXzcQ=;
+        b=DC1LdaWgtk/VdFV/WEGSTrY/P3wO2QFIYiK+uxuUqyuBGSaE0WFBkD7P43mw5VsXeq
+         oopspTCBvv8mn9Om1nSP3WNYQ1d8P71z1onuKMLgxfW/LL/boWs/xIJtfycjeEtK68EV
+         4Ugh+qXsX2yT3cFmbA7ly5x260rMDq5UJCgeqhqiYEdKQQFCiSkk0ARmEVad1UuR73Gf
+         1HpjceXtV5lx2s25KFDggcpkK7WDapPOrh16dWToe9dCDYsjV3y31J+JQFnBokyFqIv/
+         moAYjpiXckDQ378GaDYetlPLSABAZUIPO5puxB5+8ZvZ1h3qSeGI0l8a9p8x9x1BQW5K
+         VZTA==
+X-Forwarded-Encrypted: i=1; AJvYcCWUszv8DW/xxj5Zkg/8NZ7EMc8DHE3+rFED4vZQl468kjDlWrJkebUhinXZTBBwE5o2qgnk/xXsqEpgYmDl@vger.kernel.org, AJvYcCX8XKCXyO1hZc8vbw+WT/S1yXgW360ZWlxnSKRL8GRYiofSohgthEvDx+3Lpr84A3hSNjz5AJSj8bdd@vger.kernel.org, AJvYcCXoIjFmuy7p20a7tXhGMLJwiFByQlVs4tY4SkZuGmThcuSPwMReXr5wmtFtxqQsBoUNaPQYBF8xueum@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXWr1MOynCnuFuOCzbe4wst7UxjItmYqK21HdPT26Q4s+VWm98
+	6PPXuD5wAXuEWQtzdXFA2M1qMXQ2OUeCGFjW8n4aDskMGUGuK5G6
+X-Gm-Gg: ASbGncu+fWC5gDoenxmcQKg6QKAuZlQzrg+Da510CVc7R0PRCl6A9Ren9fWelopATxh
+	HbJ8JkzijI9g5Flib/PcBS+fvGTnGgkFcpNAvWA2F69fXzUrqTjgU0rCLcJL9s67+4o+Jz+jskM
+	a+DpgcLM1YbXBkYAVYrxcH8ig2TmjmEOWoXPiFqx5mpvlkTgwv31AMbEKCi8neVxuXNKGbzfgyg
+	3bLMHi3UMnvjysN54qY72EIl4zPtVycGDY5Wd5JQbPr84PfF2O+bJmqBya47EYSGQtbsF8+QNkL
+	n1KD8D4kE9HEPfIzNPNU5ncmQWq0ndDvGW+GA7sq8vJ7NQRTge4iMw==
+X-Google-Smtp-Source: AGHT+IFIeV3LreDmlj9YDmjvqpTCXGoAp/5oVXl6et0gDWWLPyCJ4uu6m+P13yW+BLwBFtXy/ZO9bg==
+X-Received: by 2002:a17:902:fc50:b0:223:54aa:6d15 with SMTP id d9443c01a7336-22de5fd0c7dmr7901825ad.12.1745861383836;
+        Mon, 28 Apr 2025 10:29:43 -0700 (PDT)
+Received: from localhost.localdomain ([123.16.133.44])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db4d76bc3sm85850065ad.28.2025.04.28.10.29.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 10:29:43 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: geert@linux-m68k.org,
+	pavel@ucw.cz
+Cc: andy@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
+Date: Tue, 29 Apr 2025 00:29:17 +0700
+Message-Id: <20250428172917.25405-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAMuHMdVJNPRd3GMRV3=W0vsNW+fm4up-mWPOZ_W1-wQigQj8vw@mail.gmail.com>
+References: <CAMuHMdVJNPRd3GMRV3=W0vsNW+fm4up-mWPOZ_W1-wQigQj8vw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250422175918.585022-1-artur@conclusive.pl> <4854f6a248fdc501d4157339fdb21f9a3ca3097d.camel@sipsolutions.net>
- <9a657c02-b688-4f2f-bb0b-fd25d19a54be@broadcom.com>
-In-Reply-To: <9a657c02-b688-4f2f-bb0b-fd25d19a54be@broadcom.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Mon, 28 Apr 2025 13:10:11 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA76ZT_NEe_xeoc55V0p7M4W8KneAPjUR78ja0q3aBUZ8A@mail.gmail.com>
-X-Gm-Features: ATxdqUG6CPojcKu3jjyuLJcZ_srrjoBPqUF0xD-D_e-j-2vGQSSJSpQ2NkABa2Y
-Message-ID: <CA+5PVA76ZT_NEe_xeoc55V0p7M4W8KneAPjUR78ja0q3aBUZ8A@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/2] wifi: Nordic nRF70 series
-To: Arend van Spriel <arend.vanspriel@broadcom.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>, Artur Rojek <artur@conclusive.pl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-wireless@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jakub Klama <jakub@conclusive.pl>, Wojciech Kloska <wojciech@conclusive.pl>, 
-	Ulf Axelsson <ulf.axelsson@nordicsemi.no>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Apr 28, 2025 at 4:46=E2=80=AFAM Arend van Spriel
-<arend.vanspriel@broadcom.com> wrote:
->
-> + Josh
->
-> On 4/25/2025 8:11 PM, Johannes Berg wrote:
-> > On Tue, 2025-04-22 at 19:59 +0200, Artur Rojek wrote:
-> >> 1) Nordic gave us permission to upstream the firmware blob [1] require=
-d
-> >>     to use this driver. As that needs to go through separate
-> >>     linux-firmware repository and is subject to different licensing,
-> >>     should I try to upstream it in parallel with this series, or does =
-it
-> >>     need to wait until the kernel driver gets in?
+Hi Geert, Pavel,
+
+Thank you, Pavel, for the confirmation.
+Thank you, Geert, for the review and the question.
+
+I would like to make it clearer.
+
+On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
+
+> Hi Pavel,
+> 
+> On Mon, 28 Apr 2025 at 12:37, Pavel Machek <pavel@ucw.cz> wrote:
+> > > > This patch series adds support for the TI/National Semiconductor LP5812
+> > > > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
+> > > > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
+> > > >
+> > > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > > > ---
+> > > > Changes in v8:
+> > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+> > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+> > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
+> > > >   and update the title and $id to match new path.
+> > > > - No functional changes to the binding itself (keep Reviewed-by).
+> > > > - Update commit messages and patch titles to reflect the move.
+> > > > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+> > >
+> > > Out of sudden without discussing with auxdisplay maintainers/reviewers?
+> > > Thanks, no.
+> > > Please, put into the cover letter the meaningful summary of what's
+> > > going on and why this becomes an auxdisplay issue. Brief review of the
+> > > bindings sounds more likely like LEDS or PWM subsystems.
 > >
-> > I have no idea. Chicken and egg, I guess.
+> > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
+> > believe it is suitable for PWM, either -- yes, it is 36 PWM outputs,
+> > but...
+> 
+> Is it intended to be used as a 4x3 matrix, or is this just an internal
+> wiring detail, and should it be exposed as 12 individual LEDs instead?
 
-Parallel is fine.
+The 4×3 matrix is a real and fundamental aspect of the LP5812’s operation.
+It is not just an internal wiring detail.
+The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 output
+pins control 12 LED dots individually through scanning. Each pin includes
+both high-side and low-side drive circuits, meaning matrix multiplexing is
+required for proper operation — it cannot be treated as 12 completely
+independent LEDs.
 
-> It used to be a check by the linux-firmware maintainer if the firmware
-> blob is referenced in kernel module info. I assume the main linux tree
-> is checked and not linux-next.
-
-Eh.  We check for net-new firmware just to make sure we aren't growing
-the repo for something that will never be used by an in-tree driver,
-but if the driver is in linux-next that's good enough.
-
-josh
+Best regards,
+Nam Tran
 
