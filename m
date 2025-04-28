@@ -1,151 +1,153 @@
-Return-Path: <devicetree+bounces-171594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9602AA9F367
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:29:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB713A9F370
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A3AA189E385
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:29:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4F4D5A26B7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76C0267B6F;
-	Mon, 28 Apr 2025 14:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B8A26FA67;
+	Mon, 28 Apr 2025 14:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GuTa/GwU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DPVDyV26"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777EA26B962;
-	Mon, 28 Apr 2025 14:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7542A26FA62;
+	Mon, 28 Apr 2025 14:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745850560; cv=none; b=K9g79Fv0kcye7b2HmZsh5gE2eixUxtKCd5DZ+1a+66B33g3XCt76fv+ZoCL2P9a6BoaCxhViYtLUY8tayNTHi03ZJuKJQRNFLEKFqBgHQQyGZ5wKPs/KBxv11XmfcyevFCfN4jSeeSKS5CxDBb1ebLaFl6FspCizkDMtlKjwsV8=
+	t=1745850621; cv=none; b=S9D/JkLqgP7i0Uyj3IFJmwZ50uFx1Vc5u/+lTkAx5UT5xJZZs3ods+90g7/hEcYFPc5VHPk0tsr9eBc7t5woT9+FM8kT0bSPpClO5eqKOikMzvQccCo9vnhSba4pKq9Wqq9xg8cR2I9vFr9QPl30SJcSLea/CFtF0FKb3CRJXrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745850560; c=relaxed/simple;
-	bh=rJLdBVQbvCv+TluCWMpZ9vIsstIJLp+u2Vh5mAtrQnQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZiRyNJiId7z+sr3EIppydHh+GXgSfaMGIzZfycpYon07OeODiKudKtqgfUGz+TnCkbaRhNsZWjoE96oawbSigjD6gcw1JHFaqhpKQXM/RueS1nIdaVyPcb4t3wOvzEyl0j7zvSW/Qw029w+GiViRVSzaStBYOt7FICnO5Qp3mwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GuTa/GwU; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SESiWF2797224
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 28 Apr 2025 09:28:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745850524;
-	bh=RBnt6oCOdXftASOE020D1oKxhactwZNgt5XQP4zEG/g=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GuTa/GwUemjpMPB21SqSYZEWi8J73Q9cSTDCHdOGiWTFgWJZx3Jmjo8ep6SYaL4mT
-	 Sem9HbvtdPMacM3XxfBBejYAxRVA4XBuZ5HlbmNuysJDAgvoSPgF85+JXJcbOJjq0U
-	 jpzx7fhACyOWooFH+E1/3X3luNknWIBdRuTJfFBA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SESivY077126
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 28 Apr 2025 09:28:44 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Apr 2025 09:28:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Apr 2025 09:28:44 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SESgc4076217;
-	Mon, 28 Apr 2025 09:28:43 -0500
-Date: Mon, 28 Apr 2025 19:58:42 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        "Russell King
- (Oracle)" <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Whitcroft
-	<apw@canonical.com>,
-        Dwaipayan Ray <dwaipayanray1@gmail.com>,
-        Lukas Bulwahn
-	<lukas.bulwahn@gmail.com>,
-        Joe Perches <joe@perches.com>, Jonathan Corbet
-	<corbet@lwn.net>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux@ew.tq-group.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
- update descriptions of RGMII modes
-Message-ID: <8b166e41-8d21-4519-bd59-01b5ae877655@ti.com>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <aAaafd8LZ3Ks-AoT@shell.armlinux.org.uk>
- <a53b5f22-d603-4b7d-9765-a1fc8571614d@lunn.ch>
- <aAe2NFFrcXDice2Z@shell.armlinux.org.uk>
- <fdc02e46e4906ba92b562f8d2516901adc85659b.camel@ew.tq-group.com>
- <9b9fc5d0-e973-4f4f-8dd5-d3896bf29093@lunn.ch>
+	s=arc-20240116; t=1745850621; c=relaxed/simple;
+	bh=pdkiB/5QfzJxhVIzvoJiil+KsQVT8r4iWGwRltuAm70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hZR++yEtnrDPxXPVfpgel2RgF2OMbmgSsNfcSxxPQ9WudiyhyCQmZzmtgjSrPB6QqV4lAXJOYt7yvZgu+tYrgmqIKX2jLPjxm5NBZ4UIW/dLtrzbl0nA2oPys5Sma6k2deUkAJNVANoAGI8MybZdYA5P+rsohbmQnF9GZXJYAQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DPVDyV26; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9E66C4CEE4;
+	Mon, 28 Apr 2025 14:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745850619;
+	bh=pdkiB/5QfzJxhVIzvoJiil+KsQVT8r4iWGwRltuAm70=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DPVDyV26yf6fwVOiARF+887TxNkdYLQe8qdG3Vbb3Pu+PColLPaeKRRs9GlSvsy/a
+	 C1olcKKWRfsY+H6Hxr0ivzODgW+TFeSS0HHpwQzAQ3JiplFCIGMn24BLSbYKCv0GrD
+	 dUgeNAjHwnNuLdneNpKLssXaPbxSG7bcZxmkTAjR9PnTeBkjf94h+I+gdWOE5O3jMi
+	 yZZmdn++ZqjIj/s2lu6i8Luocd4QcXH9ZYPjQ+iypJ3sFnxr9iYK/bqOLRvAvm0/FC
+	 ifNsBQcEV0dmCfYuHO3jCfhZfiENbaoC9daqrsxoHud6CV6p/14UZ9kr9zMKRLwcDr
+	 J4mZKeAjynZsQ==
+Message-ID: <9463c3b0-ce67-4c67-a8e9-91b4ffd09a58@kernel.org>
+Date: Mon, 28 Apr 2025 16:30:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9b9fc5d0-e973-4f4f-8dd5-d3896bf29093@lunn.ch>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: Document SEN0322
+To: gomba007@gmail.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250428-iio-chemical-sen0322-v1-0-9b18363ffe42@gmail.com>
+ <20250428-iio-chemical-sen0322-v1-1-9b18363ffe42@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250428-iio-chemical-sen0322-v1-1-9b18363ffe42@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Apr 28, 2025 at 04:08:10PM +0200, Andrew Lunn wrote:
-> > > However, with the yaml stuff, if that is basically becoming "DT
-> > > specification" then it needs to be clearly defined what each value
-> > > actually means for the system, and not this vague airy-fairy thing
-> > > we have now.
-> 
->  
-> > I agree with Russell that it seems preferable to make it unambiguous whether
-> > delays are added on the MAC or PHY side, in particular for fine-tuning. If
-> > anything is left to the implementation, we should make the range of acceptable
-> > driver behavior very clear in the documentation.
-> 
-> I think we should try the "Informative" route first, see what the DT
-> Maintainers think when we describe in detail how Linux interprets
-> these values.
-> 
-> I don't think a whole new set of properties will solve anything. I
-> would say the core of the problem is that there are multiple ways of
-> getting a working system, many of which don't fit the DT binding. But
-> DT developers don't care about that, they are just happy when it
-> works. Adding a different set of properties won't change that.
+On 28/04/2025 12:50, Tóth János via B4 Relay wrote:
+> +
+> +description: >
+> +  DFRobot SEN0322 is an oxygen sensor. It supports I2C for communication.
+> +
+> +  Datasheet:
+> +    https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
+> +
+> +properties:
+> +  compatible:
+> +    const: dfrobot,sen0322
+> +
+> +  reg:
+> +    maxItems: 1
 
-Isn't the ambiguity arising due to an incomplete description wherein we
-are not having an accurate description for the PCB Traces?
+No other properties like supplies or configuration? If so, this could go
+to trivial-devices.
 
-A complete description might be something like:
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      sen0322@73 {
 
-mac {
-	pcb-traces {
-		mac-to-phy-trace-delay = <X>; // Nanoseconds
-		phy-to-mac-trace-delay = <Y>; // Nanoseconds
-	};
-	phy-mode = "rgmii-*";
-	phy-handle = <&phy>;
-};
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-In some designs, the "mac-to-phy-trace" and the "phy-to-mac-trace" are
-treated as a part of the MAC block for example. Depending on which block
-contains the trace, the delay is added accordingly.
+Choose something from above or similar devices.
 
-Regards,
-Siddharth.
+
+
+Best regards,
+Krzysztof
 
