@@ -1,260 +1,163 @@
-Return-Path: <devicetree+bounces-171435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CBBAA9EAB9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:27:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D2CA9EAB4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B729D3B6DBC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:26:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A8E41895E80
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5F625E462;
-	Mon, 28 Apr 2025 08:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 470791DE8BB;
+	Mon, 28 Apr 2025 08:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="IUrYIwQU"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Pv7DxwpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD63F25E46B
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584084A00
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745828817; cv=none; b=EeqAa+rQhDjUEbzEKgQ3s0jtQiuXNPizlA0xB19GLGNepFqi+4JfQNXA8IHcJOpTADh+HVwQzpm35HOLML36KUL+YLCDvMfzmCKOlLf7g2F65uUwwXPRHsH9sHcg9hXv2ISdlf5W/4RTTpEiKhFzWs0v3xHQJGUB3StdeUoiGJw=
+	t=1745828813; cv=none; b=R6ojRfOyFbpguNI908D4QMerNk4hXwNTmy+PD2ObQ80IKzQ5Qa9f8LxGDCEweMcd+y+RMl4VdLIq2Mn1tgGvZYLR783J6QpW/mWXY+AIPdo8s1xKr91VoOFc2cdPVa8xiV7tafQfVkx1IG7iu4ZMe9BlCZvPZw0e3MtB4ebhRQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745828817; c=relaxed/simple;
-	bh=T8SZ8DX9DHzGXS1oxkAHhDLvJLkNaoXfwhhJ1PwP9/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fdq0TLkT0PdO8vFo6kmQvbJgrM9W0R6n5UY/2tvgZWZG/Fe0fqWm/+Dv3RZKVzs2diVBbGjn9QrDdEsYoS77/kvLAn5o+XaftH6bfzvbOixRcSZ2n+LjK7n9oCXCOd2pl40JJGfP9xIRuiAXMSatctv7cLsk88nJNNqn03qRBSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=IUrYIwQU; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e72bb146baeso3545277276.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 01:26:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1745828813; x=1746433613; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ghcmrgUgSbDm4wcZcCaNT1wwBWxdZ/sWHCjglVCfqe4=;
-        b=IUrYIwQUukq4nyZO5RzjXewKZUEbUCD90ztNaG39Y/7gOE+r2ezY5l9z5eJL2ctosU
-         oY7tMOtdZBQ2Z58zEpkoclaRlqRByxDa5nhOBDM5fG0ZeFigWsveQI2ycKZ8Yhy8v3cb
-         LfTx/LCmTAvePwUmn/q6lZv5OLWGACJlSy2PA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745828813; x=1746433613;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ghcmrgUgSbDm4wcZcCaNT1wwBWxdZ/sWHCjglVCfqe4=;
-        b=WALeHtuS16tQeCHic66jtJNZwF9eaOxsSDEnyITduPPMHM/+n3oENv+j+yZLVOrkiW
-         nutqNSDHT37uK7xr1wV24CQI2PVZUf7KaugkNfGx4GYTVWtjKqHQ8yBFzRmdlvqdp7wg
-         GAj+nVNgBjL5VcYvizud4Gjk5MwO3JI2w6ql3R6QxOkt9jL4LPRVAb/aPU0xQab8Oqc0
-         pEdkjYe3J6oRbpfnNFQIOSxhDYxQSjcLtpX+oxQW/SmUJz3f+pzRDFSmiVJTF5++FxPf
-         IACDd0EwTU82kdooARPNQvATz/jkrUWIfAWv4EX2RSgzd1+oCNrtERsLTiERWNbEzkTm
-         67Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCXlvIXS/DZmcBzRywMiYMuQ+says+TdkPlYmkoUXeqMA3oesEoYaG7oqDRJ1HP9nKz1jJnAJ/1tMRx6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeRNqqyrtbf/+cJEP8PQUw0Gpruobp8gMmcoSSm+VYnwA7GvLz
-	byLNBtin16fjEhiEqZ/Zby1uVtc7AGPofbPOdwsj59Y53BWWtbKbpyGHX4/zmP2PXAUgiy7TaWC
-	TTZpREP6U0KSYbOugEeEzxYcSCethw3O+L0KGEw==
-X-Gm-Gg: ASbGncuPbEpcbBIMxFrtXHh7dGKJVm/I1IBzsfFjipF9zJrrSRFy27V9tiJtbV+rcSN
-	CHy3rmphel6Z6KwFA/I2UVCuFVyWH88JPmT/LzsyEbML/FQEdjYPBcbgFP2gsdg0hFIVQYBVUXm
-	pK/L9McF33NeVh74NIuUwZtqncCnMixrX01I+o5xtvQA+UOkuya6K0rso=
-X-Google-Smtp-Source: AGHT+IGTTOWD4mqDocBPkLm6H5LR08W1IDUGz6syBbpKa0wuDFnm8koHpJ/z7Hcj77PexwAyVbb4syjzYQ/2lsza3UA=
-X-Received: by 2002:a05:6902:e92:b0:e6e:4d8:81cf with SMTP id
- 3f1490d57ef6-e73165df443mr14045801276.23.1745828813532; Mon, 28 Apr 2025
- 01:26:53 -0700 (PDT)
+	s=arc-20240116; t=1745828813; c=relaxed/simple;
+	bh=uOU0q/hWbR9mniHBU9QFIydsxxhiGhDlJIe5azyuIIk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=dHZnnuelwt3k63f+h7UHHhwZxXhc4pGpT8883rlGg/61txAXAQptwN9w/AfTt4ZS2h8G3gqqa4O0DvGgLCfC/He97Ek9zUdtWHJ4o7MdpmDlUGrK1pTCItCbceOyfRX4tu/4EzJlVPSF9u4YtpPYIdVebDShrOGfVMnEfUihvmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Pv7DxwpX; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250428082648epoutp0452df8b8b81e3f364e22c81859c82da0e~6bg0yCCWm0507705077epoutp04d
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:26:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250428082648epoutp0452df8b8b81e3f364e22c81859c82da0e~6bg0yCCWm0507705077epoutp04d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745828808;
+	bh=C3ekUdVyc5lKna1B3ODGvGE5qt1aBk/h9qBhnTOllb4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Pv7DxwpXM38xwIgOGr3ofXWmYLHIQJJmHK9SJYLLinNxtziegPvuuWtDV7diB44/9
+	 mZzr8qWXaO+Pp3BLt9e+LCtHI3gQp7umnr/hLEnAjC85c3PfW3a1dq7EoowXkHKARy
+	 xZBBRTGqEfbrnpSQs9DZ8QFGGC42wVWSYbQ8Xcys=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250428082647epcas2p2dfc36e3cf5aa0bf32155279b15f89c6b~6bg0RZBUp0907509075epcas2p2C;
+	Mon, 28 Apr 2025 08:26:47 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4ZmGkv4Sssz6B9mB; Mon, 28 Apr
+	2025 08:26:47 +0000 (GMT)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250428082646epcas2p4460f473df235e8546df6a71e05240119~6bgzSPIU_0314903149epcas2p4o;
+	Mon, 28 Apr 2025 08:26:46 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250428082646epsmtrp143bee6ba981f6e33c5cf36ee9e09b6c7~6bgzRdC8X1746317463epsmtrp1Q;
+	Mon, 28 Apr 2025 08:26:46 +0000 (GMT)
+X-AuditID: b6c32a29-55afd7000000223e-12-680f3bc6c77b
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	23.20.08766.6CB3F086; Mon, 28 Apr 2025 17:26:46 +0900 (KST)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250428082646epsmtip1d3bbcbdee9a21ba30bf0891de9710294~6bgzCkV6Y0683206832epsmtip1I;
+	Mon, 28 Apr 2025 08:26:46 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
+	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
+ Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
+ Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Sunyeal Hong'" <sunyeal.hong@samsung.com>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <cdbc8c9b-ecfb-4969-997c-52e873a3abf0@kernel.org>
+Subject: RE: [PATCH v2 2/3] clk: samsung: exynosautov920: add cpucl0 clock
+ support
+Date: Mon, 28 Apr 2025 17:26:46 +0900
+Message-ID: <02b401dbb817$47c67a70$d7536f50$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250423101518.1360552-1-pavitrakumarm@vayavyalabs.com>
- <20250423101518.1360552-2-pavitrakumarm@vayavyalabs.com> <e5f47f52-807d-45ce-bd62-090f4af72b3a@kernel.org>
-In-Reply-To: <e5f47f52-807d-45ce-bd62-090f4af72b3a@kernel.org>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Mon, 28 Apr 2025 13:56:42 +0530
-X-Gm-Features: ATxdqUFzsFfzOiZTTfcSFEA0yKYwV1MYLNlGc_twQTlRFGhIWQAsmjFO7nR7c1I
-Message-ID: <CALxtO0k4RkopERap_ykrMTZ4Qtdzm8hEPJGLCQ2pknQGjfQ4Eg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	herbert@gondor.apana.org.au, Ruud.Derwig@synopsys.com, 
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com, 
-	Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQGOlsMvr1R6l3BJizf5uOhEVh8iDwK47iPiAr6d9CQCUOddC7QUvGjg
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsWy7bCSnO4xa/4Mgw9P9C0ezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
+	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4MqY3
+	qhX85q5YfPYxUwNjI1cXIweHhICJxJyNpl2MXBxCArsZJb6cusXWxcgJFJeQODxjAiOELSxx
+	v+UIK4gtJPCcUeLhr3QQm03AUGLVj+1MIM0iAhOZJS59uMAC4jALbGKUOLf7JhvE2PeMEh3N
+	F9hBWjgF7CQ+n/kFNkpYIEhi8tPlzCA2i4CqxPKed2BxXgFLidutN9kgbEGJkzOfsIDYzALa
+	Er0PWxkhbHmJ7W/nMEOcpyCx+9NRsF4RATeJ9sv32CFqRCRmd7YxT2AUnoVk1Cwko2YhGTUL
+	ScsCRpZVjJKpBcW56bnFhgWGeanlesWJucWleel6yfm5mxjBEamluYNx+6oPeocYmTgYDzFK
+	cDArifBWGfBnCPGmJFZWpRblxxeV5qQWH2KU5mBREucVf9GbIiSQnliSmp2aWpBaBJNl4uCU
+	amAyaC/3uOd2Ip4tcUf7x75HT2rP8vLceeO+4Ovb/zodskoaJxRPC7589/HQq7y0rm3bmrM7
+	FncpqTF/Ztpzy+hG+UW77OUc8t1r1XMYbvu36id2eb9tEN/EXLbuiMtpq7lz1ZZJx222eOgU
+	t3d54tvPr3vNRe9t+Kc6IzyrbevOZ6prJh9Uvy7j0X0kI9hk5+4ui0+/1r3KOxW2P23GnO0v
+	O7h/C8/nm6v725JLsraRw/nK9cWfdbOsOpPmyZ6bd0X62ZGAzy3HZK5K+MYp87C4v7I51FOV
+	uNZ5f+Zk0/WX7df8U7WbrrFH5fLczOPHr+s8OSDQVuD+cxuPfWDbzdsdCSXPvrR4Ndv4KT5+
+	otusxFKckWioxVxUnAgAJcX7djcDAAA=
+X-CMS-MailID: 20250428082646epcas2p4460f473df235e8546df6a71e05240119
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250423044159epcas2p3476aede31ffc8de8a9169584ec8a3d78
+References: <20250423044153.1288077-1-shin.son@samsung.com>
+	<CGME20250423044159epcas2p3476aede31ffc8de8a9169584ec8a3d78@epcas2p3.samsung.com>
+	<20250423044153.1288077-3-shin.son@samsung.com>
+	<cdbc8c9b-ecfb-4969-997c-52e873a3abf0@kernel.org>
 
-Hi Krzysztof,
-   My comments are embedded below.
-
-Warm regards,
-PK
-
-
-On Wed, Apr 23, 2025 at 6:23=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 23/04/2025 12:15, Pavitrakumar M wrote:
-> > From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+> Sent: Monday, April 28, 2025 4:23 AM
+> To: Shin Son <shin.son@samsung.com>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
+> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
+> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sunyeal Hong
+> <sunyeal.hong@samsung.com>
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org
+> Subject: Re: [PATCH v2 2/3] clk: samsung: exynosautov920: add cpucl0 clock
+> support
+> 
+> On 23/04/2025 06:41, Shin Son wrote:
+> > Register compatible and cmu_info data to support clock CPUCL0(CPU
+> > Cluster 0), this provides clock for CPUCL0_SWTICH/DBG/CLUSTER.
+> > These clocks are required early during boot for the CPUs, so they are
+> > declared using CLK_OF_DECLARE instead of being registered through a
+> platform driver.
 > >
-> > Add DT bindings related to the SPAcc driver for Documentation.
-> > DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
->
-> These IP blocks are rarely usable on their own and need SoC
-> customization. Where any SoC users? Where are any SoC compatibles?
-
-PK: This is a new IP designed by Synopsys, tested on the Xilinx Zynqmp
-FPGA (ZCU104 board).
-       This is NOT a part of any SoC yet, but it might be in future.
-       Could you offer suggestions on how to handle such a case?
-
->
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
->
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
->
-> > Engine is a crypto IP designed by Synopsys.
-> >
-> > Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> > Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> > Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> > Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> > ---
-> >  .../bindings/crypto/snps,dwc-spacc.yaml       | 70 +++++++++++++++++++
-> >  1 file changed, 70 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-s=
-pacc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.ya=
-ml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> > new file mode 100644
-> > index 000000000000..ffd4af5593a2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> > @@ -0,0 +1,70 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto=
- Engine
-> > +
-> > +maintainers:
-> > +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-> > +
-> > +description:
-> > +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto En=
-gine is
-> > +  a crypto IP designed by Synopsys, that can accelerate cryptographic
-> > +  operations.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: snps,dwc-spacc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  snps,vspacc-priority:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc pr=
-iority
-> > +      weight. Its used in priority arbitration of the Virtual SPAccs.
->
-> Why would this be board configuration?
-
-PK: Got it, its Policy vs Mechanism. I will remove this property.
-
->
-> > +    minimum: 0
-> > +    maximum: 15
-> > +    default: 0
-> > +
-> > +  snps,vspacc-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Virtual spacc index for validation and driver functio=
-ning.
->
-> Driver? Bindings are for hardware, not driver. You described the desired
-> Linux feature or behavior, not the actual hardware. The bindings are
-> about the latter, so instead you need to rephrase the property and its
-> description to match actual hardware capabilities/features/configuration
-> etc.
-
-PK: Will rephrase and fix that to convey the proper meaning.
-
->
-> > +    minimum: 0
-> > +    maximum: 7
-> > +
-> > +  snps,spacc-wdtimer:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Watchdog timer count to replace the default value in =
-driver.
->
-> If this is watchdog, then use existing watchdog schema and its property.
-> If this is something else then... well, it cannot be something for
-> driver, so then drop.
-
-PK: I will rename this since its NOT a traditional watchdog, but its an
-      internal device counter that generates an interrupt based on a
-count value.
-      This counter starts ticking when there is a completed job sitting on
-      the status FIFO, to be serviced. This makes sure that there are no jo=
-bs
-      that get starved of processing.
-
->
-> > +    minimum: 0x19000
-> > +    maximum: 0xFFFFF
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    crypto@40000000 {
-> > +        compatible =3D "snps,dwc-spacc";
-> > +        reg =3D <0x40000000 0x3FFFF>;
-> > +        interrupt-parent =3D <&gic>;
-> > +        interrupts =3D <0 89 4>;
->
-> Use proper defines for typical flags.
-
-PK: Will fix it.
-
->
->
->
+> > Signed-off-by: Shin Son <shin.son@samsung.com>
+> 
+> Applied, but remember to use proper wrapping and run checkpatch.
+> 
+> [Checkpatch]
+> WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit
+> description?)
+> 
+> 
 > Best regards,
 > Krzysztof
+
+Hello, Krzysztof Kozlowski.
+
+Ack, thanks for your feedback. 
+I will make sure to thoroughly review my patches next time.
+
+Best regards,
+Shin Son
+
 
