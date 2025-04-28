@@ -1,283 +1,150 @@
-Return-Path: <devicetree+bounces-171498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6BCA9ED48
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:52:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1A4A9ED55
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 488F57AE242
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:51:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85FF018893BD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3EE25F968;
-	Mon, 28 Apr 2025 09:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1997725E800;
+	Mon, 28 Apr 2025 09:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IIkj46+K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFfNwySD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3B325F7A9;
-	Mon, 28 Apr 2025 09:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB954206B;
+	Mon, 28 Apr 2025 09:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745833941; cv=none; b=T3honlgvZWI7rfh7BUtTArzddZjwN2QGMcsIv7/nAqzZ/8jY+Rq9KeCfUkZtfjIhgD6IRm42LuRQp9GNpqKhJf96JTpZJEqHD6MKjxVXmiHIdBE3Tb6f07bu1b2GA5sSmEzGyQ8wnxTVAgCIYDHxBtOZUiD7Qn/CPZ6PnyRrRb8=
+	t=1745834127; cv=none; b=MzrplM+lkYDOFHR6nXZiohrnUlHis7guq5OX22F73eQIQgndbd1749J9VEOuBxjN97Drjz3J8XW2SZb4tYWE/Ow1F717LZkErH8B6jynjFZscewEoDSiOqnw9pIak2bvscOieyOIsv1yBBXuLGAl4bn5EuafbV7JtViVd/jCrtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745833941; c=relaxed/simple;
-	bh=dWpRQX+CGHl+qDOq8dzcQkHH9x2Cri+xTU+SEnQBc8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JsaHTYooReM6bY1oG92bFGyBHaldDR3xCk2ZF53Swl8jfsXGfBv8gaH/rOPIWPFqkX2vM9B9maU8B3hoxZymimMyUyRSI+SwTu4HORCXvOtoncNEaXVOs1PU3n67BN4Gvr4CWEFZZ9opheZMAoecn5bSMLTnu7RnCfCcruBwoS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IIkj46+K; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C734489A;
-	Mon, 28 Apr 2025 11:52:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1745833930;
-	bh=dWpRQX+CGHl+qDOq8dzcQkHH9x2Cri+xTU+SEnQBc8U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IIkj46+KmFFSzp9NZncTswS+3fy+umEfUdCLs8tj4tuCeqQFbT6SSr8PlUtpmAxWK
-	 BH3eQKDZ5HUOiWi3u6aU+gRcN3mzH6u6pBk+4coU/VI/YslPk3yKVCBZLhP5SmRBU1
-	 74fwAlDNqUS5l1I8QRGVe9OPe9jvao2/QpiKg+V8=
-Date: Mon, 28 Apr 2025 12:52:08 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 03/11] media: dt-bindings: media: add bindings for
- rockchip rk3568 vicap
-Message-ID: <20250428095208.GD3371@pendragon.ideasonboard.com>
-References: <20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net>
- <20250306-v6-8-topic-rk3568-vicap-v5-3-f02152534f3c@wolfvision.net>
- <20250307-pink-dalmatian-of-kindness-f87ad2@krzk-bin>
- <Z8rBGHK9Tjx7D1D2@kekkonen.localdomain>
- <4a1e5834-df52-43d2-ab19-e3117840a001@collabora.com>
- <20250428092232.GC3371@pendragon.ideasonboard.com>
- <1b3245c1-2a4b-4854-ac2f-e89a52a454ec@collabora.com>
+	s=arc-20240116; t=1745834127; c=relaxed/simple;
+	bh=5gJA+Muqll+Py6HxdXCmp70DGvso8EIkCA2rMU7/Xzk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CAfwn+P3tvXqG9SCpff6FvQXBzOmOfen8JWHbv+dwjvvUYnjzi2AM8QTRxNdnHwozo81pXpLpdDSwjbfurjUU/4Fv4F9DEDq4/hnK6UHgs37wAwf4wUSglkbyZcqoMZsI9yEWvCClKGZl+eC9EcpV+0cA7xoHEe56yJb8Xkyq4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFfNwySD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F40FC4CEE4;
+	Mon, 28 Apr 2025 09:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745834126;
+	bh=5gJA+Muqll+Py6HxdXCmp70DGvso8EIkCA2rMU7/Xzk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rFfNwySDl4TQQ0LCzt1/Po19Kl+L3qYQdIcPV/Ug8CF36BZlj9bIWugG7SsPfEQOO
+	 n9aLOUws1fn4ibSUxfUNNHHM/dGtWkZuNqgN8tT7qQgAgnsSOmLFxNnWecSnOVCYA9
+	 89oEEHwFyOvNsA4UoUjHu4Zcz/jHXWnhQ+nobQG4s5wf75Do5SqBcoFILkMxfBQTLg
+	 RtBK/gIS36pNQgjwcJ0EeVZpRUXa5h2UnvKwg47ysLPz8bUyRrDlaWYnRQ92zTGVIF
+	 2+nNe8AMC6kpNmt0um6rCYGQvUVF1F3b3Angf8/7TKOJS1yTtGK1DUzBxSBHnEFui/
+	 uWfJE4towXILA==
+Message-ID: <26981b75-16d6-4b1f-83de-c642ac0e342f@kernel.org>
+Date: Mon, 28 Apr 2025 11:55:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1b3245c1-2a4b-4854-ac2f-e89a52a454ec@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND ath-next 1/2] dt-bindings: net: wireless: ath12k:
+ describe firmware-name property
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, ath12k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
+ <20250424005703.2479907-2-quic_miaoqing@quicinc.com>
+ <20250428-ruddy-bold-macaw-9ffd28@kuoka>
+ <bfd1be89-cb03-4426-ad7e-93b6774a68a7@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <bfd1be89-cb03-4426-ad7e-93b6774a68a7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 28, 2025 at 11:48:57AM +0200, Michael Riesch wrote:
-> On 4/28/25 11:22, Laurent Pinchart wrote:
-> > On Mon, Apr 28, 2025 at 10:11:51AM +0200, Michael Riesch wrote:
-> >> Hi Krzysztof, Sakari,
-> >>
-> >> Thanks for your feedback! Also, sorry for the delayed response, but as
-> >> the e-mail address indicates, there has been a job change in between
-> >> that kept me busy :-)
-> >>
-> >> On 3/7/25 10:49, Sakari Ailus wrote:
-> >>> Hi Krzysztof, Michael,
-> >>>
-> >>> On Fri, Mar 07, 2025 at 08:51:54AM +0100, Krzysztof Kozlowski wrote:
-> >>>> On Thu, Mar 06, 2025 at 05:56:04PM +0100, Michael Riesch wrote:
-> >>>>> Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
-> >>>>>
-> >>>>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> >>>>
-> >>>> subject: only one media prefix, the first
-> >>>>
-> >>>> A nit, subject: drop second/last, redundant "bindings". The
-> >>>> "dt-bindings" prefix is already stating that these are bindings.
-> >>>> See also:
-> >>>> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> >>
-> >> Ack. Plain "media: dt-bindings: add rockchip rk3568 vicap" it is, then.
-> >>
-> >>>>
-> >>>>> ---
-> >>>>>  .../bindings/media/rockchip,rk3568-vicap.yaml      | 169 +++++++++++++++++++++
-> >>>>>  MAINTAINERS                                        |   1 +
-> >>>>>  2 files changed, 170 insertions(+)
-> >>>>>
-> >>>>
-> >>>> ...
-> >>>>
-> >>>>> +  clocks:
-> >>>>> +    items:
-> >>>>> +      - description: ACLK
-> >>>>> +      - description: HCLK
-> >>>>> +      - description: DCLK
-> >>>>> +      - description: ICLK
-> >>>>> +
-> >>>>> +  clock-names:
-> >>>>> +    items:
-> >>>>> +      - const: aclk
-> >>>>> +      - const: hclk
-> >>>>> +      - const: dclk
-> >>>>> +      - const: iclk
-> >>>>> +
-> >>>>> +  rockchip,cif-clk-delaynum:
-> >>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>>>> +    minimum: 0
-> >>>>> +    maximum: 127
-> >>>>> +    description:
-> >>>>> +      Delay the DVP path clock input to align the sampling phase, only valid
-> >>>>> +      in dual edge sampling mode. Delay is zero by default and can be adjusted
-> >>>>> +      optionally.
-> >>>>
-> >>>> default: 0
-> >>
-> >> Ack.
-> >>
-> >>>
-> >>> And this is technically specific to the DVP port (0). Should (or could?) it
-> >>> be located there?
-> >>
-> >> "Should"? Yes, makes sense to me.
-> >> "Could"? I guess, as we are referencing port-base here it should be
-> >> feasible. Not an expert opinion, mind you.
-> >>
-> >>>
-> >>>>
-> >>>>> +
-> >>>>> +  iommus:
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  resets:
-> >>>>> +    items:
-> >>>>> +      - description: ARST
-> >>>>> +      - description: HRST
-> >>>>> +      - description: DRST
-> >>>>> +      - description: PRST
-> >>>>> +      - description: IRST
-> >>>>> +
-> >>>>> +  reset-names:
-> >>>>> +    items:
-> >>>>> +      - const: arst
-> >>>>> +      - const: hrst
-> >>>>> +      - const: drst
-> >>>>> +      - const: prst
-> >>>>> +      - const: irst
-> >>>>> +
-> >>>>> +  rockchip,grf:
-> >>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>>>> +    description: Phandle to general register file used for video input block control.
-> >>>>> +
-> >>>>> +  power-domains:
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  ports:
-> >>>>> +    $ref: /schemas/graph.yaml#/properties/ports
-> >>>>> +
-> >>>>> +    properties:
-> >>>>> +      port@0:
-> >>>>> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> >>>>> +        unevaluatedProperties: false
-> >>>>> +        description: The digital video port (DVP, a parallel video interface).
-> >>>>> +
-> >>>>> +        properties:
-> >>>>> +          endpoint:
-> >>>>> +            $ref: video-interfaces.yaml#
-> >>>>> +            unevaluatedProperties: false
-> >>>>> +
-> >>>>> +            properties:
-> >>>>> +              bus-type:
-> >>>>> +                enum: [5, 6]
-> >>>>> +
-> >>>>> +            required:
-> >>>>> +              - bus-type
-> >>>>> +
-> >>>>> +      port@1:
-> >>>>> +        $ref: /schemas/graph.yaml#/properties/port
-> >>>>> +        description: Internal port connected to a MIPI CSI-2 host.
-> >>>>> +
-> >>>>> +        properties:
-> >>>>> +          endpoint:
-> >>>>> +            $ref: video-interfaces.yaml#
-> >>>>> +            unevaluatedProperties: false
-> >>>>
-> >>>> Hm, does it actually work? graph/port does not allow any other
-> >>>> properties. You should use graph/port-base and probably still narrow
-> >>>> lanes for both of port@0 and port@1.
-> >>>
-> >>> I'd list the relevant properties for both DVP and CSI-2, either as
-> >>> mandatory or with defaults (could be reasonable for DVP signal polarities
-> >>> but not e.g. on number of CSI-2 lanes).
-> >>
-> >> Not sure whether we are on the same page here. As pointed out in the
-> >> last round of feedback
-> >> (https://lore.kernel.org/all/0b19c544-f773-435e-9829-aaaa1c6daf7a@wolfvision.net/),
-> >> port@1 is not MIPI CSI, but some internal interface.
-> >>
-> >> I tried to clarify this by changing the description of this port to
-> >> "Internal port connected to a MIPI CSI-2 host." The host (see
-> >> rockchip,rk3568-mipi-csi.yaml) has a port that is actually MIPI CSI and
-> >> one port that is the other end of port@1 here.
-> > 
-> > I'd write "Port connected to the MIPI CSI-2 receiver output". We use
-> > "receiver" instead of "host".
+On 28/04/2025 11:48, Miaoqing Pan wrote:
 > 
-> Ack. I'll adjust the "host" -> "receiver" wording change in all the
-> other places as well.
+> 
+> On 4/28/2025 4:25 PM, Krzysztof Kozlowski wrote:
+>> On Thu, Apr 24, 2025 at 08:57:02AM GMT, Miaoqing Pan wrote:
+>>> Introduce 'firmware-name' property to allow end-users and/or integrators
+>>> to decide which usecase-specific firmware to run on the WCN7850 platform.
+>>> This is necessary due to resource limitations such as memory capacity and
+>>> CPU capability, or performance and power optimization for different
+>>> application scenarios.
+>>>
+>>> Two firmwares are supported: 'WCN7850/hw2.0' and 'WCN7850/hw2.0/ncm825'.
+>>> The former is the default firmware, suitable for most WiFi 7 STA
+>>> functions. The latter adds support for commercial-quality SAP and
+>>> optimizes power consumption for IoT applications.
+>>>
+>>> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+>>> ---
+>>>   .../devicetree/bindings/net/wireless/qcom,ath12k.yaml       | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+> 
+> I don't find any tags on previous version: 
+> https://patchwork.kernel.org/project/linux-wireless/patch/20250423054152.2471568-2-quic_miaoqing@quicinc.com/.
+> 
+> Do you mean I should add 'Reviewed-by: Krzysztof Kozlowski 
+> <krzk@kernel.org>' ?
 
-You can keep "host" when you quote documentation if it uses that
-vocabulary, but for generic usage, "receiver" is better.
+No, probably I mixed up the patches.
 
-> >> As to port@1 here, I am not aware of any properties that can be set. Not
-> >> even very peculiar ones similar to rockchip,cif-clk-delaynum. Should I
-> >> have overlooked something, I think we can relax the constraints, but we
-> >> should start strict, right?
-> >>
-> >>>>> +
-> >>>>> +required:
-> >>>>> +  - compatible
-> >>>>> +  - reg
-> >>>>> +  - interrupts
-> >>>>> +  - clocks
-> >>>>> +  - ports
-> >>>>> +
-> >>>>> +additionalProperties: false
-> >>>>> +
-> >>>>> +examples:
-> >>>>> +  - |
-> >>>>> +    #include <dt-bindings/clock/rk3568-cru.h>
-> >>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
-> >>>>> +    #include <dt-bindings/power/rk3568-power.h>
-> >>>>> +    #include <dt-bindings/media/video-interfaces.h>
-> >>>>> +
-> >>>>> +    parent {
-> >>>>
-> >>>> soc {
-> >>
-> >> Ack.
-> >>
-> >>>>> +        #address-cells = <2>;
-> >>>>> +        #size-cells = <2>;
-
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
 
