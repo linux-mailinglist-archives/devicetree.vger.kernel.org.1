@@ -1,194 +1,119 @@
-Return-Path: <devicetree+bounces-171613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DCC2A9F536
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:09:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2EE2A9F547
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F6E23BC0E0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:09:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49D6D7A4A2F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34AB27A112;
-	Mon, 28 Apr 2025 16:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C4F27B501;
+	Mon, 28 Apr 2025 16:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3weBaoa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uaIJgJt+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55692797B3;
-	Mon, 28 Apr 2025 16:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFDE627B4F9;
+	Mon, 28 Apr 2025 16:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745856584; cv=none; b=s6IziCGMLRthl+nqwXwIHM9tBt6l2aV1jGt42csHbA74otxdStiNpKEqLNeF60d6KjnXiU7zOJFy1CUJ8rragHx/m9PFtqtJlNNTWdBsa+bm0yis30/Eg/RkJ/oXJGPBXA6su3qIClyBG+gGabrhRbW8C/HRsaPgPaoJP9/8E7Y=
+	t=1745856761; cv=none; b=SS+Nk5dMAY7CtdZIRoa/uo4U3rj1oCCpR/ifPBfFNdev9CGFNVk+mZ8Gg7JISSqi3al/YF5wqCjDrw8PRn0EApiQ/nHciFRIu3svKO3rtNu77yIot8lKnkz8bn1Erq6xn4unNCUnjihToOWnUcpLLiTGAJ+qGI2URu4X+47kTIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745856584; c=relaxed/simple;
-	bh=hNqslVR56TkvXlExRTcejZeXm/ru+xojW4YnA2ZCYI4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEvku2Q203a1n/lfq8nUUV0w0U3FqK5TY8DV38En22tevR9lXa8nI2ESWsH+y0PUmDopRK9hibwuWAkg4fQfeXdPZYrZA667u+ljW/zzUP2j2EZ4DnIUMggYxdljSHSEIiT8TA8105hKOpbuzic3K0INGztBZQGFpsqSkF56EjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3weBaoa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82AF8C4CEE4;
-	Mon, 28 Apr 2025 16:09:39 +0000 (UTC)
+	s=arc-20240116; t=1745856761; c=relaxed/simple;
+	bh=Ucpgunkpy6U/IjEb5XHK0SIzreigneomegn1oB6Tnow=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=XSulZiC3Nxr6uLZL+nGToTDTsN5EdRnfdk6VOaVFwWEEw2KlXX3TtXSv9TSxTqIFnKOxfGrkZp8hRha4mch9A9nRtclT49uD3ANpig1J819Obudc4vQskaZDpIXpSoSdIWU3IvXMvQ3TdQRTUjJ0C26QStM4vCQXWaTIp5YCpGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uaIJgJt+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BC3EC4CEED;
+	Mon, 28 Apr 2025 16:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745856583;
-	bh=hNqslVR56TkvXlExRTcejZeXm/ru+xojW4YnA2ZCYI4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z3weBaoaY6w0u7fnw/ke3GIImsbGRVldWRgwrzQtFk0ei07j2l1y1yhjvQipKZ/bT
-	 2cD2o9cpF47G5LNMoruUVRLUPWrqaPuQ0SbcMQRB0b3Z5SnMejEV1mpf+MIebuyycA
-	 2gFLIWmAGmKrudDuM6g50tROEEdbt/JgtUiqLkmQuLZLKQdQMrdLWjks9PINhT337f
-	 P1xTWTf7+iImPUiKsxtaFo/0umVuTfN1sQh/qDo5MF6RQrtGjtJuTju7nJ/qrQ7VJg
-	 +VC1ywvV7YvcjgI7zRPpx01RmCUEEQB9kriP2OgylCkrcutZuLQNFPjMaOyg57IKGK
-	 MFtNxOAVPPVag==
-Date: Mon, 28 Apr 2025 18:09:36 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dirk Behme <dirk.behme@de.bosch.com>
-Cc: Dirk Behme <dirk.behme@gmail.com>, Remo Senekowitsch <remo@buenzli.dev>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
-Message-ID: <aA-oQAol8rAU7vzg@cassiopeiae>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-4-remo@buenzli.dev>
- <aAuryiI0lY4qYyIt@pollux>
- <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
- <aAyyR5LyhmGVNQpm@pollux>
- <0756503c-02e7-477a-9e89-e7d4881c8ce6@gmail.com>
- <aA4ht5sUic39mnHj@pollux>
- <ee888c8f-4802-48a1-bd08-b454b782fff4@de.bosch.com>
+	s=k20201202; t=1745856760;
+	bh=Ucpgunkpy6U/IjEb5XHK0SIzreigneomegn1oB6Tnow=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=uaIJgJt+DJaMG67WjKi3sdigCzl/72lz3imb2odO9xWNkJzqi4qzGKb+O/bB4Qa6f
+	 PU2S2K7obAU4IxU8ve2cW5qfyAn0drFc+2pQXdak6nzpN+jm5IlHzN5N3ggyHKOjIF
+	 GdKPcU3AI6AMXnLHwvEkbijjecDmcaVICihnkVMXPdmV68TBA5XiYZkLX9DizAX4Tb
+	 fS80ZZbUBkyAJmw07JN5rtrMxrF9kaifLyw57CqrC4zLRHFsck6VB7u2MXwWVn2gTD
+	 1sb1wA5XutyZDS7KIyUVH9k4NwnvD0mwr98QzHA6zTvfJnC0kiDxV6C+kGTURWjQ0n
+	 /WhagvG3Zg2SQ==
+Date: Mon, 28 Apr 2025 11:12:38 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ee888c8f-4802-48a1-bd08-b454b782fff4@de.bosch.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-hardening@vger.kernel.org, 
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ linux-gpio@vger.kernel.org, Peter Griffin <peter.griffin@linaro.org>, 
+ Kees Cook <kees@kernel.org>, linux-kernel@vger.kernel.org, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Lee Jones <lee@kernel.org>
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+In-Reply-To: <20250428-max77759-mfd-v7-1-edfe40c16fe8@linaro.org>
+References: <20250428-max77759-mfd-v7-0-edfe40c16fe8@linaro.org>
+ <20250428-max77759-mfd-v7-1-edfe40c16fe8@linaro.org>
+Message-Id: <174585675718.1413056.7895723185749789189.robh@kernel.org>
+Subject: Re: [PATCH v7 1/6] dt-bindings: gpio: add max77759 binding
 
-On Mon, Apr 28, 2025 at 07:03:07AM +0200, Dirk Behme wrote:
-> On 27/04/2025 14:23, Danilo Krummrich wrote:
-> > On Sun, Apr 27, 2025 at 08:11:58AM +0200, Dirk Behme wrote:
-> >> On 26.04.25 12:15, Danilo Krummrich wrote:
-> >>> On Sat, Apr 26, 2025 at 08:19:09AM +0200, Dirk Behme wrote:
-> >>>> On 25.04.25 17:35, Danilo Krummrich wrote:
-> >>>>> On Fri, Apr 25, 2025 at 05:01:26PM +0200, Remo Senekowitsch wrote:
-> >>>>>> +impl<T> PropertyGuard<'_, '_, T> {
-> >>>>>> +    /// Access the property, indicating it is required.
-> >>>>>> +    ///
-> >>>>>> +    /// If the property is not present, the error is automatically logged. If a
-> >>>>>> +    /// missing property is not an error, use [`Self::optional`] instead.
-> >>>>>> +    pub fn required(self) -> Result<T> {
-> >>>>>> +        if self.inner.is_err() {
-> >>>>>> +            pr_err!(
-> >>>>>> +                "{}: property '{}' is missing\n",
-> >>>>>> +                self.fwnode.display_path(),
-> >>>>>> +                self.name
-> >>>>>> +            );
-> >>>>>
-> >>>>> Hm, we can't use the device pointer of the fwnode_handle, since it is not
-> >>>>> guaranteed to be valid, hence the pr_*() print...
-> >>>>>
-> >>>>> Anyways, I'm not sure we need to print here at all. If a driver wants to print
-> >>>>> that it is unhappy about a missing required property it can do so by itself, I
-> >>>>> think.
-> >>>>
-> >>>> Hmm, the driver said by using 'required' that it *is* required. So a
-> >>>> missing property is definitely an error here. Else it would have used
-> >>>> 'optional'. Which doesn't print in case the property is missing.
-> >>>>
-> >>>> If I remember correctly having 'required' and 'optional' is the result
-> >>>> of some discussion on Zulip. And one conclusion of that discussion was
-> >>>> to move checking & printing the error out of the individual drivers
-> >>>> into a central place to avoid this error checking & printing in each
-> >>>> and every driver. I think the idea is that the drivers just have to do
-> >>>> ...required()?; and that's it, then.
-> >>>
-> >>> Yes, I get the idea.
-> >>>
-> >>> If it'd be possible to use dev_err!() instead I wouldn't object in this specific
-> >>> case. But this code is used by drivers from probe(), hence printing the error
-> >>> without saying for which device it did occur is a bit pointless.
-> >>
-> >> Thinking a little about this, yes, we don't know the device here. But:
-> >> Does the device matter here?
-> > 
-> > If the above fails it means that for a (specific) device a driver expects that
-> > a specific property of some firmware node is present. So, yes, I think it does
-> > matter.
-> > 
-> >> There is nothing wrong with the (unknown)
-> >> device, no? What is wrong here is the firmware (node). It misses
-> >> something.
-> > 
-> > How do we know the firmware node is wrong? Maybe the driver has wrong
-> > expectations for this device?
-> > 
-> >> And this is exactly what the message tells: "There is an
-> >> error due to the missing node 'name' in 'path', please fix it". That
-> >> should be sufficient to identify the firmware/device tree description
-> >> and fix it.
-> > 
-> > I think we can't always fix them, even if they're wrong. How do we fix ACPI
-> > firmware nodes for instance?
+
+On Mon, 28 Apr 2025 12:36:04 +0100, André Draszik wrote:
+> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> Port Controller (TCPC), NVMEM, and a GPIO expander.
 > 
-> So the argument here is that the device (driver) is expecting something
-> to be "required" is wrong and might need to be fixed. Not the firmware.
-> Yes, ok, that is a valid argument. I have a device tree background and
-> there in 99% of the cases the device tree needs a fix ;)
+> This describes its GPIO module.
 > 
-> But let me ask the other way around, then: What will it hurt or break if
-> we keep the pr_err() like Remo did? Even knowing that its not perfect?
-> But knowing that it will give at least a note that something is wrong
-> with at least a starting point for searching what needs to be fixed. I
-> mean even if we don't get the device, we will get the affected node we
-> can search for which device uses it as "required".
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
+> v2:
+> * drop 'interrupts' property and sort properties alphabetically
+> ---
+>  .../bindings/gpio/maxim,max77759-gpio.yaml         | 44 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 +++
+>  2 files changed, 50 insertions(+)
 > 
-> Could we somehow agree that in 90% of the cases this should be catched
-> at device (driver) development time, already?
 
-I don't see why *catching* such errors needs pr_err() in core code; without it
-you still get a Result as return value that you need to handle in some way.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> And therefore it should be
-> beneficial if we don't require each and every driver to be "bloated"
-> with checking this individually?
+yamllint warnings/errors:
 
-I guess you mean "bloated with *printing* this individually", rather than
-"checking".
+dtschema/dtc warnings/errors:
 
-This is where we disagree: I think it is "bloating" the core kernel instead if
-we start adding error prints to core code, where a proper error code is
-propagated up to the driver.
 
-I did say that I would agree to a certain extend with this specific one if we
-could print it properly, since it is designed to leave no doubt that returning
-an error code from required() is fatal for the driver. But I'm not even sure
-about this anymore.
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/gpio/maxim,max77759-gpio.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+Documentation/devicetree/bindings/gpio/maxim,max77759-gpio.yaml: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
 
-I still haven't read a reason why this one is so crucial to print from core
-code, while for other things that are always fatal (e.g. request_irq()) we
-don't.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250428-max77759-mfd-v7-1-edfe40c16fe8@linaro.org
 
-However, if you really think we need a common helper that prints something in
-the error case, maybe we can add an *additional* helper
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-	pub fn required_by(self, dev: &Device) -> Result<T>
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-and document that it is the same as required(), with an additional error print
-in case of failure for the given device.
+pip3 install dtschema --upgrade
 
-- Danilo
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
