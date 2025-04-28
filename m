@@ -1,129 +1,104 @@
-Return-Path: <devicetree+bounces-171600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC85BA9F3A6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:43:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03563A9F3B6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D61333BDB15
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:42:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3379E16EF3E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6518926F47F;
-	Mon, 28 Apr 2025 14:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BADB26FD9B;
+	Mon, 28 Apr 2025 14:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ScNhtt87"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HxF2K4Tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB3726B946;
-	Mon, 28 Apr 2025 14:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02FDA211C;
+	Mon, 28 Apr 2025 14:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745851389; cv=none; b=V+66V/7hd2lDALKC/yPjSeoh7n3HXq+8/hciAr1iNetdeaKyj4BJowiogPW0Rk4ew3a44FloSWdov8CWyU7Lzcs3TLNfknAGu+058uhvq8xYH8I2VwUqsW32ZLBmw7NDhMHEOXJJQjttnCLcqXZJKDGLJNqfW7PELkpPzs8UfOQ=
+	t=1745851536; cv=none; b=STzoMnmDP0O9ZivNR2T+76dp2E3ofwXPpGne5FDo18R0ehR+N0pUnQ+uS9hhZdP1m74VA8YeEVUnlQe7sJ/Zwja1kqh6kJenUUb1elOqdqBxPuo1lNAPKIgJM0+XVebox3QvhyAWS2BtySXIGStACTW9wWr/KzNWTjTZfrZldFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745851389; c=relaxed/simple;
-	bh=z9OkavGLRiwKUAlbS1aUYpP9QJo0K0Ls/01PvvTxOpg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SWIvQJ1mxRrNY8LfIA39m0caAD4aKDTplO5Vq6IW2/um0CCGJyDbXvaLXrnMC67I+f8DNCN+AvnpvOMriQRE+UEzV5e/mTHNojS25/1NDs0QmQQEOosFdvlUVcSbuzmj4NTkikPwMjavkBeH5xYHliywJbYysCcDDScYWHEK+Fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ScNhtt87; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEh0JD2801171
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 28 Apr 2025 09:43:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745851380;
-	bh=J7+h/LgZtBmvJt8JuJ5cbWqsFbL9/uU/TCLyYAqk33s=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ScNhtt87S6L5/RXRu3uQs1c2gOVUzCCvnUBkonVZaNmPICtYHcpHAfY7+7XyskCRM
-	 bb8VMEQ097iak0CDJ+tm5sSireTi89IjNm7E3/E1yMyIkm0NoUqtD99eRjUmtUsr33
-	 W+VycRRJLzO4mSMcSczdh4NWTHFyZJZ8KIZ+p3xA=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEh0LH010797
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 28 Apr 2025 09:43:00 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Apr 2025 09:42:59 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Apr 2025 09:42:59 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SEgxWO102875;
-	Mon, 28 Apr 2025 09:42:59 -0500
-Message-ID: <09979b2a-73b0-4a74-978c-b082764e777e@ti.com>
-Date: Mon, 28 Apr 2025 09:42:59 -0500
+	s=arc-20240116; t=1745851536; c=relaxed/simple;
+	bh=0qaxyed43SixLZaczHjhBLWkwQQOVtcs72WgDQpM0uI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IYRIBjjfLorcBLJ738uja8E2Gu7l5+VlsdAy3sS+AZcq5Y4uh/E3VkV79w8r8zIqCXO70f4wwBmzWSo7Hg4BDY+yCXxnwrmmKoXdZBKFOeYimf90GIgjYsecwuzIR6QaCYsonyQd25UCeTN0Yvkg106Cf0muEYJcINuGiEGS8Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HxF2K4Tu; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=XWuVVEEzCO6CTK/zeEtGw6vKXtOS128jKZE/G/8MKJ0=; b=HxF2K4TuhzmH1NjzQixF1OySKO
+	6MKUqFdnxdCWEKsJdo/LQnQxKBW241ZeAuPOLZ57ZLBLUd/Be4x7yxuNKTOpt3Kjrah/W39Ja9icC
+	q6pyoJ12YKinvnVisGPYKJqe1oQDgDObnQz2WSjrqlXLFcpLszegSM8gg16lbr9btloM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u9PjR-00AqaV-0z; Mon, 28 Apr 2025 16:45:17 +0200
+Date: Mon, 28 Apr 2025 16:45:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <e5f75ff1-a4ed-40f7-9919-aecd2f9a0ae8@lunn.ch>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <aAaafd8LZ3Ks-AoT@shell.armlinux.org.uk>
+ <a53b5f22-d603-4b7d-9765-a1fc8571614d@lunn.ch>
+ <aAe2NFFrcXDice2Z@shell.armlinux.org.uk>
+ <fdc02e46e4906ba92b562f8d2516901adc85659b.camel@ew.tq-group.com>
+ <9b9fc5d0-e973-4f4f-8dd5-d3896bf29093@lunn.ch>
+ <8b166e41-8d21-4519-bd59-01b5ae877655@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add global CMA areas for few TI SoCs
-To: Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <u-kumar1@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devarsht@ti.com>
-References: <20250424084415.66457-1-j-choudhary@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250424084415.66457-1-j-choudhary@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8b166e41-8d21-4519-bd59-01b5ae877655@ti.com>
 
-On 4/24/25 3:44 AM, Jayesh Choudhary wrote:
-> Hello All,
+> A complete description might be something like:
 > 
-> Following AM62* platforms[0], this patches add global CMA reserve area for:
-> - J721S2-EVM (1056 MiB)
-> - J784S4-EVM (1920 MiB)
-> - AM68-SK (1008 MiB)
-> - AM69-SK (1904 MiB)
-> 
-> These SoCs does not have MMU and hence they require contiguous memory
-> pool to support various multimedia usecase.
-> 
-> The calculation was done considering H264 codec requirements, dual-display
-> supported in each platforms and multicamera use-cases.
-> Additional buffer was kept for other peripheral s and to account for
-> fragmentation.
+> mac {
+> 	pcb-traces {
+> 		mac-to-phy-trace-delay = <X>; // Nanoseconds
+> 		phy-to-mac-trace-delay = <Y>; // Nanoseconds
+> 	};
 
-What if I'm not going to use 8 cameras, 2 displays, and decode 16 H264
-streams all at the same time? Why should I always lose 2GB of DRAM
-unconditionally, just in-case someone someday runs this imagined
-worst-case situation?
+> In some designs, the "mac-to-phy-trace" and the "phy-to-mac-trace" are
+> treated as a part of the MAC block for example.
 
-If I *do* intend to have my device perform some nightmare use-case like
-the above, I can pass the needed CMA size in on the kernel command line.
-That is a configuration for my specific use-case after all, and DT is
-*not* for configuration, especially not insane configurations like this.
+PCB traces cannot be part of the MAC block, since they are copper on
+the PCB. In fact, such a consideration just adds to the confusion,
+because how do you know which designs do and which don't include the
+MAC block?
 
-Andrew
+	Andrew
 
-> The breakdown is mentioned in each commit message.
-> 
-> [0]: https://lore.kernel.org/all/20240613150902.2173582-1-devarsht@ti.com/
-> 
-> Jayesh Choudhary (4):
->    arm64: dts: ti: k3-j721s2-som-p0: Reserve 1056MiB of global CMA
->    arm64: dts: ti: k3-j784s4-j742s2-evm-common: Reserve 1920MiB of global
->      CMA
->    arm64: dts: ti: k3-am68-sk-som: Reserve 1008MiB of global CMA
->    arm64: dts: ti: k3-am69-sk: Reserve 1904MiB of global CMA
-> 
->   arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi              | 8 ++++++++
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 8 ++++++++
->   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi            | 8 ++++++++
->   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 8 ++++++++
->   4 files changed, 32 insertions(+)
-> 
 
