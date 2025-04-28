@@ -1,176 +1,177 @@
-Return-Path: <devicetree+bounces-171585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5279BA9F1D3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 15:12:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5F3A9F214
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 15:22:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 599CC465087
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 13:10:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0C4316D303
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 13:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B683327057C;
-	Mon, 28 Apr 2025 13:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DABF1F460B;
+	Mon, 28 Apr 2025 13:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i9eioiFL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eAO0C17A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9685927057A
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 13:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429A370810;
+	Mon, 28 Apr 2025 13:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745845689; cv=none; b=b+d/JUXqpq345Orung82KNGv362phXmEc4d33T95r2f4e673LvZMLigBOWV6uz6aB8lGyhozDsjj6Ordq6rRWRisrLODMOwnUHj3eC6b97FB9hE0eG/fCoUcKte+ukMHq5wDMP9pwO0lMsJ5e6Ar8fiX3f9WuxMM1FGbUN+XI/4=
+	t=1745846572; cv=none; b=A2FltpBpTzIUnfPG+Fw9Dvsrr2nHQsEZCN4/d+zj5BAv/9zP3e38eYaSkw1vsfdjdKflNbRaM14hw4rRQRmbdBqViowtRNXcLIrGsJgD3sgEqLurrjI0n/EeWcMBJ+C6hxoyeGuvPfKxAqsH2Xp639Uf505SQJ5IGD3wL1NRvaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745845689; c=relaxed/simple;
-	bh=mnAJ52ar/AYv9v6+Df6x52ikTOPL9XyTF25FkLX5Wyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T5L7eb9MLIhAfQYT1z8pKVh+nm2nwUQc6+CXO8i1ikvF+1kcQQOdYV4s+Gix/JnmrU18HOv9VdiCGPpe1JSg3AiX6sZ2wRzFcosop2MMmD8TmZXzGQlIkLCr5ru2/wp4jLNgNOTWKadGwSB+AoYJqjuVp0I5otaIJafhXDUHfI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i9eioiFL; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54b0da81302so378095e87.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 06:08:07 -0700 (PDT)
+	s=arc-20240116; t=1745846572; c=relaxed/simple;
+	bh=b/sI8ny/1+dJG7v18IC78jCyibWHPy6Xs6Lki9wiTLg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qV8p23RWJ1Gxi7LsYfOyeY3vcIbpxShPk2nJ51AvBxq6nAIPT0p71EBaHxaJlmrUOzcvdnDeou/QVumgWlTEuRoEAinq5D2iq8mHE+UfrvVpvg01MR/pKik53a/lqxzZwcwxkcAYMk9qqhC+sf9FlzhvyXwtMXSFt8gwnFsjItg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eAO0C17A; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c266c2dd5so5418505f8f.3;
+        Mon, 28 Apr 2025 06:22:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745845686; x=1746450486; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/rKI293OkNtSCRW2GiaUvxvB6LASuRfbVCog4wPqflw=;
-        b=i9eioiFLmw5h43VogwenzwqeF/bl+PBt86aVZUAqn0Brir991RxjbXDmKTgOA/p1Dj
-         r+b1igx2XOwhE3qDjgCNro5NTgwvkchw9Ayuc5qnqWWiBmYkkg4+qQ4XRZ0x+2MCU1cd
-         bUv6Nbn8IGpKNFQReZ1NanNU2553S+Y42B/lIVm1CLgw1/mDcQEoYoQN1Xynq6nzBfui
-         uKZM91ZpRTAJ6gkZhFSxKH6eKgvet8KtJnQXtUmV7nkst415gpUE05skRcOE9VwlN/h7
-         8w390sWh3TeXzch1gSvCnhP6sXtOmapsNH+oPld5pQfDN2hh3tePQdTYXDRTNLUACJmp
-         h9Gw==
+        d=gmail.com; s=20230601; t=1745846569; x=1746451369; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6uQD3Z3ld0wBx1gp1tlW/rooQP2uSiyFFIJlOXb+tkI=;
+        b=eAO0C17AlOTuj3IewN6Bu6oJZW1neN+wmgzpP5eP77u4bi0l7aKf4K//WfoLqkAAYW
+         40JKgUui97pVjBDbbRPR6XZhQqwZGhksXbgI+cVWTakexuFRwraB5zJsXM0h4jlKSsl9
+         sh/XzKygv1yuffcVE1k/4q9iuI0pgUUY/p3htJ7RY4eXtB8L1VGiHGqFBBbqiK2g1wh8
+         6RFacPoOdTEd9N7hadC2H9tveYcumXbkMypCcr4x3SkKEejjW3g3/aae4s5ijeyVGvZB
+         /SWnV3XyN6JolcVwnkGzDI7DxenYuiAX6BfKD5cQngUD/taCCmssJSz2Y1tkM1LU1dro
+         hwbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745845686; x=1746450486;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/rKI293OkNtSCRW2GiaUvxvB6LASuRfbVCog4wPqflw=;
-        b=AJrTZKMS5H/B/nJZMGDhkX5YGkqXLLLmhBB9rw4HA6b5XYoQd3i3C0Vpnh/lDon9Ek
-         EA1WNR+Zk6j5EUAnkMcoi76BTvhOJBSZzOj1AYCrNSroWmUMQpK2x0CNEmAuJDgX/XhK
-         3MGDHxXxoUpl7IW5m9nospOefq5XNfVk1bWBq5LKTMvoWC4pPiXOoJB3TCB6cBE4NoYi
-         0g4YARxZpnAfrj9Q+exHY0MyC6VL8hBu3UCkZKkHrY2I51711voNIsNJOiy5ndgsmz+N
-         ZwiHkr4j+3KOp5+1aHS2eL9dBJvXz+PSqNUIANPe9R6B5/Hluc9TTlGXpzFQAhQ26ysd
-         Ldkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdCzGNf8rNiQSYoK3gytQp5+ubJJWShUaEonhV3tCK0ctDokR1f6+MYuBNJ9YH4Rt58lI0/Go9xQYn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmqO6iGqt6ASIIUxA4wuSLuejDT37R8qFIs5EM0ZewZy0JBl9q
-	XOetZQZ04woga5ndRBWPdxxDRPNDz96Qsk1oKKaD+EUgmG6of46V8+9agW+wooQ=
-X-Gm-Gg: ASbGncu2D4II9biOp28RWm9MBW19qNrB7nsMmcvoCdosNdlwai9U9UzoX+n9cnbEffL
-	jMLJWEC32YORF9QN/cJJUMslzjmaCxYMnDBwAIbcChjRPYP9unR/3JAB7/Ho42dtWBw0mTv0P78
-	bMY27X3fAZdgaSVLasoLvZh+QGRGuLHUbSJD55tyg355OFVn2XUbreBhA0ZWc293/HjdIBPSuiE
-	4DQ8aagDOm4IjVIT+liCKSgtP9QzwWF+dh2+uNAdjMlOq9oy25lF5xa1iGhCnZ82VQ4vfDYug6z
-	6Pk1tnHu1lxVMXts7OB3jp0KZ2BtF583l7JCDD8AuBWzJOjqRcaItT6iLvyHzH68EqZEmdCHjTH
-	xxJ4V//rJdlBNVCZA/Wg=
-X-Google-Smtp-Source: AGHT+IHigrHmgJYNc7nLQZKoFasjeKXtn3RhBxEwzQXSKbVJgPgq1Au5kKKLuo2iHhmAFvJw3wh3Ig==
-X-Received: by 2002:a05:6512:6c4:b0:549:8932:a1be with SMTP id 2adb3069b0e04-54e8cc111edmr1038151e87.13.1745845685451;
-        Mon, 28 Apr 2025 06:08:05 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cb39f1esm1632907e87.58.2025.04.28.06.08.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Apr 2025 06:08:05 -0700 (PDT)
-Message-ID: <b80d500b-6203-4d83-8396-3ba579abd980@linaro.org>
-Date: Mon, 28 Apr 2025 16:08:03 +0300
+        d=1e100.net; s=20230601; t=1745846569; x=1746451369;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6uQD3Z3ld0wBx1gp1tlW/rooQP2uSiyFFIJlOXb+tkI=;
+        b=hm3tOAuUP003IsbMYAuyeGCpIaRApaJQHkgb7sgLobVwshRhV3nMX5ZclCJ8fIqSGr
+         E2stXYNprIbFxwjILxaaj7WYulIrura5EC/TRVobnopGrwg+Fq6dixzkGCb5LG9hV9UI
+         xBQAfDcTRWdfzh+mXd//kdJ336BzWf8xFskC90zWNpqp3f2iFApnmEx6Kx0ookloBh96
+         gBi7N2Ytuv+9CkvKnAYMLJSw1ctgCVUU8Ue5pFrxcspz0r/EmG5Fn5CoQMhzAnMeYBiq
+         RWf6TLofis02oqH5+yzeHFVd9UWb3uThMeuOI77CkrV4qpCwd4BE5Bcjp3NGmVL+vQRQ
+         VqJw==
+X-Forwarded-Encrypted: i=1; AJvYcCUSQInbRbOtxtjDbMOlAzJ06BgYVkiV7rsw6roKQtcprg8rQGPbmnTve1Ue4U7AR5LtHSpp9ZF2b1HxvFtY@vger.kernel.org, AJvYcCUTK6HPH7uS09bPDDvJQpAapY/LC5xb8T9S9IYKjyGXOGI8fLgmeJx7zuECLoESBKJ1W9u/lWLfriM/SGwdUp2rLaw=@vger.kernel.org, AJvYcCVFAgu72bmKyLKG6uFlkzV8enV3SzBQOWe3hlj6Ya+z/tkbdOJDL5R1TsHAwRKCWcmF6a32HoPh6vRB@vger.kernel.org, AJvYcCX6cInAkaVtzIDCzOAarOeltgjIe1/11Ich3Q+YgW1FdOcUkhn6Ow857fLiOi4A866ANzfltGSKRNxM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTxZ8mf7d0D2p6QeuOwO+m0fGzrBHEkLsyJ7e1c75Z8Z8zxaFT
+	Mc9Ij/GZQyQHQCqEzukh3CL6KfYfbfpyldvWv1Np/VRsaoptT8CFOfUSJ5B/InQd+0MimtoZU49
+	R6KynI39+da8MB24whhqAxpriXTanGJEn91Y=
+X-Gm-Gg: ASbGncsp/z/O/4oAOQLX+C4H0KmfNdc/nRf+h/bvwTgNrqsWyL6MAl/73tO6vduxgnJ
+	WhjVxpsigo/p+oR3UULkhOwfgJY/yfZH4yRnmfotBZj6Sdf2VRHKHLoHB8XAKSYpzUoKD/LyFLN
+	evNs1hQ+1ajC2LGlv1xCFFs1k=
+X-Google-Smtp-Source: AGHT+IECsoGJlitMQgTg9Yd74BH9tfW/LZtEL6LR1B1ajgMHjvjVmPHyMUY+AE/jae62SSGy6KDQJyw9PXs89FygP94=
+X-Received: by 2002:a05:6000:1889:b0:390:f358:85db with SMTP id
+ ffacd0b85a97d-3a074e4200dmr8006896f8f.30.1745846569222; Mon, 28 Apr 2025
+ 06:22:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/10] dt-bindings: clock: Add Qualcomm QCS615 Camera
- clock controller
-Content-Language: ru-RU
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250424-qcs615-mm-v7-clock-controllers-v8-0-bacad5b3659a@quicinc.com>
- <20250424-qcs615-mm-v7-clock-controllers-v8-2-bacad5b3659a@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250424-qcs615-mm-v7-clock-controllers-v8-2-bacad5b3659a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250407165202.197570-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250407165202.197570-10-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXtfzp81V4uAk-oULoBz2BtipyPvc9V8oV=kDXmX90GxA@mail.gmail.com>
+In-Reply-To: <CAMuHMdXtfzp81V4uAk-oULoBz2BtipyPvc9V8oV=kDXmX90GxA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 28 Apr 2025 14:22:21 +0100
+X-Gm-Features: ATxdqUG_Timr8RqYhtsM__Ht9BrCGNqwUpwPEzWj7Hw7UUsVhS2mmze8RoP9oUU
+Message-ID: <CA+V-a8sMOnKZjNGW2=Y+TcF9itvC4a1LeEQ+eAKvjhWvEL_K+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] clk: renesas: r9a09g057: Add clock and reset
+ entries for GBETH0/1
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Taniya.
+Hi Geert,
 
-On 4/24/25 12:32, Taniya Das wrote:
-> Add DT bindings for the Camera clock on QCS615 platforms. Add the
-> relevant DT include definitions as well.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->   .../bindings/clock/qcom,qcs615-camcc.yaml          |  43 ++++++++
->   include/dt-bindings/clock/qcom,qcs615-camcc.h      | 110 +++++++++++++++++++++
->   2 files changed, 153 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2b811e66d406c16c70004bb3a9fce294422a5914
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,qcs615-camcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Camera Clock & Reset Controller on QCS615
-> +
-> +maintainers:
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm camera clock control module provides the clocks, resets and power
-> +  domains on QCS615.
-> +
-> +  See also: include/dt-bindings/clock/qcom,qcs615-camcc.h
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,qcs615-camcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +
-> +allOf:
-> +  - $ref: qcom,gcc.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    clock-controller@ad00000 {
-> +      compatible = "qcom,qcs615-camcc";
-> +      reg = <0xad00000 0x10000>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +    };
-> +...
+On Tue, Apr 15, 2025 at 3:55=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, 7 Apr 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add clock and reset entries for GBETH instances. Include core clocks fo=
+r
+> > PTP, sourced from PLLETH, and add PLLs, dividers, and static mux clocks
+> > used as clock sources for the GBETH IP.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/clk/renesas/r9a09g057-cpg.c | 72 +++++++++++++++++++++++++++++
+> >  drivers/clk/renesas/rzv2h-cpg.h     | 11 +++++
+> >  2 files changed, 83 insertions(+)
+> >
+> > diff --git a/drivers/clk/renesas/r9a09g057-cpg.c b/drivers/clk/renesas/=
+r9a09g057-cpg.c
+> > index 3c40e36259fe..057bfa0e2a57 100644
+> > --- a/drivers/clk/renesas/r9a09g057-cpg.c
+> > +++ b/drivers/clk/renesas/r9a09g057-cpg.c
+>
+> > @@ -115,6 +138,17 @@ static const struct cpg_core_clk r9a09g057_core_cl=
+ks[] __initconst =3D {
+> >         DEF_DDIV(".pllvdo_cru2", CLK_PLLVDO_CRU2, CLK_PLLVDO, CDDIV4_DI=
+VCTL1, dtable_2_4),
+> >         DEF_DDIV(".pllvdo_cru3", CLK_PLLVDO_CRU3, CLK_PLLVDO, CDDIV4_DI=
+VCTL2, dtable_2_4),
+> >
+> > +       DEF_FIXED(".plleth_250_fix", CLK_PLLETH_DIV_250_FIX, CLK_PLLETH=
+, 1, 4),
+> > +       DEF_FIXED(".plleth_125_fix", CLK_PLLETH_DIV_125_FIX, CLK_PLLETH=
+_DIV_250_FIX, 1, 2),
+> > +       DEF_CSDIV(".plleth_gbe0", CLK_CSDIV_PLLETH_GBE0,
+> > +                 CLK_PLLETH_DIV_250_FIX, CSDIV0_DIVCTL0, dtable_2_100)=
+,
+> > +       DEF_CSDIV(".plleth_gbe1", CLK_CSDIV_PLLETH_GBE1,
+> > +                 CLK_PLLETH_DIV_250_FIX, CSDIV0_DIVCTL1, dtable_2_100)=
+,
+> > +       DEF_SMUX(".smux2_gbe0_txclk", CLK_SMUX2_GBE0_TXCLK, SSEL0_SELCT=
+L2, smux2_gbe0_txclk),
+> > +       DEF_SMUX(".smux2_gbe0_rxclk", CLK_SMUX2_GBE0_RXCLK, SSEL0_SELCT=
+L3, smux2_gbe0_rxclk),
+> > +       DEF_SMUX(".smux2_gbe1_txclk", CLK_SMUX2_GBE1_TXCLK, SSEL1_SELCT=
+L0, smux2_gbe1_txclk),
+> > +       DEF_SMUX(".smux2_gbe1_rxclk", CLK_SMUX2_GBE1_RXCLK, SSEL1_SELCT=
+L1, smux2_gbe1_rxclk),
+> > +
+> >         DEF_DDIV(".pllgpu_gear", CLK_PLLGPU_GEAR, CLK_PLLGPU, CDDIV3_DI=
+VCTL1, dtable_2_64),
+> >
+> >         /* Core Clocks */
+>
+> > @@ -233,6 +271,38 @@ static const struct rzv2h_mod_clk r9a09g057_mod_cl=
+ks[] __initconst =3D {
+> >                                                 BUS_MSTOP(7, BIT(10))),
+> >         DEF_MOD("usb2_0_pclk_usbtst1",          CLK_PLLDTY_ACPU_DIV4, 1=
+1, 7, 5, 23,
+> >                                                 BUS_MSTOP(7, BIT(11))),
+> > +       DEF_MOD_EXTERNAL("gbeth_0_clk_tx_i",    CLK_SMUX2_GBE0_TXCLK, 1=
+1, 8, 5, 24,
+> > +                                               BUS_MSTOP(8, BIT(5)),
+> > +                                               0x300, 8, 1),
+>
+> CPG_SSEL0
+>
+> I'm wondering if you really have to store and duplicate this info here.
+> Can't you infer it from the parent's smux description?
+>
+To clarify, you mean to get the parent of the mod clock and then get
+the clk_mux to get the base?
 
-Is there anything what prevents to add this clock controller dt bindings
-description into qcom,sm6350-camcc.yaml ?
-
-Apart of compatible values I barely see any difference between two of them.
-
---
-Best wishes,
-Vladimir
+Cheers,
+Prabhakar
 
