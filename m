@@ -1,162 +1,129 @@
-Return-Path: <devicetree+bounces-171452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB395A9EB13
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:46:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E592FA9EB1F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA4653A6B2F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:45:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BAFD17B02A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFA925C82F;
-	Mon, 28 Apr 2025 08:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1090725F789;
+	Mon, 28 Apr 2025 08:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="alXNXs2e"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="TSBuK5Dr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933FFA55
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7F325EF8D
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745829969; cv=none; b=qgxWR6zLX87n6wZZ0gZmIglQqkapnpTZkAyGbwmMWcS+/CJX/RIhWbD00ybuGG8kFlP3BRLBM1O3YDdiBw+ULsvOrQocsZh4ROp+KU/smnleFXVUk+k36/BNuOW5FeON3bvjhgEzdOdt/ZrsZoMA4Z+5cHSUBodHjEEgqlyFvRU=
+	t=1745830058; cv=none; b=MuTp0Bz3ojcl5jbWh5aGgjlpYJXhBAWVh+iqAGvHidctp67vnhu04EzOQxyrnYq2oNRwVr3BNN7TaDf0NeyfrMgFejXOSRAaZi95xnUe26VbRrDMljm/UI9jSvYQJJPc0KjMUPfQ5laNq7DkrZ2LdhXY2Cj3R6UBr6oFffF4+mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745829969; c=relaxed/simple;
-	bh=GDNlrGSMfRwR/Pa6AgyFzByMPl2JLXERdBWkLM14RLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dbyDlnQq9DRc/58wM8xdd90+lkXhXSt0WA3Y1P9RprACk5TMWEVJIxE1WB6oJjOLS0AHDvuSudzL8PYvkrlyIJe4hmSkrPsC483QRoisiePoX6+M72aT6CDTPuogqd5cdB9LUJXuJEcCuETh6x+4cLIjVagiMHnO7YxRqghodbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=alXNXs2e; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-73bf5aa95e7so3616063b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 01:46:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1745829967; x=1746434767; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GWEGEENv/8I5RyLa5MjLNFG/IqS1JTCh/sY5K8DeZ9g=;
-        b=alXNXs2eNKn4FJR7eTBlSFGRG29tbGh/fgamJiR2c9Eq3ff1YoG8G60i2Ke4rq/qAY
-         NDOHLnB4zbq3ZO2rc9jw5B9A4q+QznB9vvPfJR+XL2CwJut5Nm4dRPgWDQkNXm0WvAVO
-         sDQP0FB9v6UfbM+V1Qdyf+04vyXe1m/pGIaes=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745829967; x=1746434767;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GWEGEENv/8I5RyLa5MjLNFG/IqS1JTCh/sY5K8DeZ9g=;
-        b=oZRVNrKWGELGdfb9teGCwGGHNbHeHvDOQ6kgzACLgkGakQ3TKU4n9kt4mxJwRuKrr3
-         fgLD0BKwWmFm9g3qjdYchS2jwlvjo5I9uQgL2WZolg2ClRrWa7g3snO3ioFEjsQBYXkH
-         o0ft4bt+558a4k1PU4JRXevW2vGRDhjnlmK3AIst+OJRnGlg/uB7CtOENk5MM1/FF35F
-         ndn2QI69KX1kDE+pnINsSU8/QJUxmr3Rs7J93MLKfiB8QcdJ2xG3FiMX50t4KKGZY0Kw
-         rccZab03HERESI71uX0Aj6bkW4usHBFi0t7w0DHTvDnqLSOnN3qCieNohqqpYKXCDG+G
-         /qIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVlxd/SB8c/E5i1WGzNbbSRqVm02xE1Ve4FfUr7GZNtqJVhXygWnFh8pfSmPOB8qSyr8h1ypUa3462r@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdkkzF8QjpwwDAjuy3cg6/AVfUHYNdiL/UmYIVrvsHvYB+vPyA
-	kPu8qW/0Aeg+Ea4N2QK2TMa/b6j+4obt393TRNhcoia6DrFd4j06UfMtiYtU0w==
-X-Gm-Gg: ASbGncvDjI2zD7JUZK6rKqIaNbSglkA2RPoybeNvNys7N9UM6PtaRUwi5E9ZYO46UJ3
-	fxlIv1fY4a8zJ9J+cml819by8F49BT13PtM6owDYitrXS9kPQ5Kdjgwvg2znIlMPkh0bwGKOHBI
-	6BSzcoPe69sxyUcsMvyNwBCHBxbPMV359hexxeuIOQ+F7g9HToYnu5xd+KAnIiREfHPoaDVGYOe
-	qkQODGqc/S/oJUA4UFnRPNafg3od/5z6NFynsoaXO0Clld7bNxZv2vtRSKHzUHfmKvySOnqgj4o
-	Ijhvh2fpNCvQWVLBE9aL6v0PGflaKbpRN2PMFP1Ul1VNCem7ES+WzNC1XRpiU76arLvz9sVDg/k
-	F2g==
-X-Google-Smtp-Source: AGHT+IFN2oRW/y7113X1pKUfuLjvwMBoJvDuLDloG5A+8Dyb0us6vO2iiQIrDcrAQBFxYGUOYIfgsg==
-X-Received: by 2002:a05:6a00:1412:b0:736:4110:5579 with SMTP id d2e1a72fcca58-73fd6712e49mr14568443b3a.2.1745829966850;
-        Mon, 28 Apr 2025 01:46:06 -0700 (PDT)
-Received: from [10.176.3.251] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25acc944sm7730319b3a.170.2025.04.28.01.46.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Apr 2025 01:46:06 -0700 (PDT)
-Message-ID: <9a657c02-b688-4f2f-bb0b-fd25d19a54be@broadcom.com>
-Date: Mon, 28 Apr 2025 10:45:59 +0200
+	s=arc-20240116; t=1745830058; c=relaxed/simple;
+	bh=ALaiR88qvXFJIUmu58oY0ESBsL6U0JAP269AMEHKkqw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=Cg94opzJRjN9V4eDLnTtENDfA1bderS5Am/Ga1yW4pYpL2MGVzLutWQosc1niOg5F+V9gxW8YZwBxycVIHZKZbKOcLBgTl9DWYuVOqGr4rIZ8Zs+++jULx68eG9FNl4zD3e2voaxZTrGxJUNg9ao/aJYIFFTC9++0vHKWmHewPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=TSBuK5Dr; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250428084730epoutp02d1aba3989b53503692544fd5f7e6a05f~6by5S_2R-0475904759epoutp02n
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:47:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250428084730epoutp02d1aba3989b53503692544fd5f7e6a05f~6by5S_2R-0475904759epoutp02n
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745830050;
+	bh=p1+Lemg+qbGP6JCQYk04uUjgz5ILrVlgfWOlXzA9lNA=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=TSBuK5DrZ531nBgpBoo7V2HYlUy3Ub4EUVoWTY1fWOP901k5jvcy4Yn0zvNm5Sgw0
+	 tiDcRVLL7eACFy1sOCg8oD5gbHVD/E9q4YcGsCJi+2AyVejDWH6eV1J6BWC6SpI5uh
+	 SoxEHs9yF3qP3NOOuDw1QzJHd/dxk07X4G6/kXIw=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250428084729epcas2p296c44e87443066ec54d24bbfa8a82374~6by4qJB9u2928529285epcas2p2Q;
+	Mon, 28 Apr 2025 08:47:29 +0000 (GMT)
+Received: from epcas2p3.samsung.com (unknown [182.195.36.88]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4ZmHBn2BQMz2SSKb; Mon, 28 Apr
+	2025 08:47:29 +0000 (GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250428084728epcas2p486ddfccc41bfba9830bde544b6c292e3~6by3m4Zwk0662806628epcas2p4u;
+	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250428084728epsmtrp25df5462bc512891301f9dab2ce97bbad~6by3lzUKR1061810618epsmtrp2F;
+	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
+X-AuditID: b6c32a2a-d63ff70000002265-12-680f40a06ee7
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	F4.92.08805.0A04F086; Mon, 28 Apr 2025 17:47:28 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250428084728epsmtip1f94ab56908a3859038aa68d6f3061eb1~6by3TJUDy1894718947epsmtip11;
+	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
+From: Shin Son <shin.son@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
+	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: Shin Son <shin.son@samsung.com>, linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] add CPUCL1/2 clock support for exynosauto v920 SoC
+Date: Mon, 28 Apr 2025 17:47:18 +0900
+Message-ID: <20250428084721.3832664-1-shin.son@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 0/2] wifi: Nordic nRF70 series
-To: Johannes Berg <johannes@sipsolutions.net>,
- Artur Rojek <artur@conclusive.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jakub Klama <jakub@conclusive.pl>,
- Wojciech Kloska <wojciech@conclusive.pl>,
- Ulf Axelsson <ulf.axelsson@nordicsemi.no>, Josh Boyer <jwboyer@kernel.org>
-References: <20250422175918.585022-1-artur@conclusive.pl>
- <4854f6a248fdc501d4157339fdb21f9a3ca3097d.camel@sipsolutions.net>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <4854f6a248fdc501d4157339fdb21f9a3ca3097d.camel@sipsolutions.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCLMWRmVeSWpSXmKPExsWy7bCSnO4CB/4MgxlzRS0ezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
+	u7aRxWLy8bWsFk3L1jM58Hu8v9HK7rFpVSebx+Yl9R59W1YxenzeJBfAGsVlk5Kak1mWWqRv
+	l8CV0f1kP2PBM5aKFWfvMjYwfmTuYuTkkBAwkZg/aQp7FyMXh5DAbkaJrlXX2CASEhKHZ0xg
+	hLCFJe63HGGFKHrPKHFi60OmLkYODjYBVYlNv+VB4iICb5kklv8/wATSwCxwmlFi5xkZEFtY
+	wF1i3tt7LCA2C1D96teHwTbzClhLdPyeyA4yR0JAXqK/QwIiLChxcuYTFogx8hLNW2czT2Dk
+	m4UkNQtJagEj0ypGydSC4tz03GLDAqO81HK94sTc4tK8dL3k/NxNjOCA19Lawbhn1Qe9Q4xM
+	HIyHGCU4mJVEeKsM+DOEeFMSK6tSi/Lji0pzUosPMUpzsCiJ83573ZsiJJCeWJKanZpakFoE
+	k2Xi4JRqYKpL/FHsuN93xbWZiywyuJM9u+/FJnx9q7AvkOG23W3B7ZP+JvMqCGSXhckeu60W
+	9vvSv/h4YZEph27z7Ph0ML737Zd7QnM+W3VyzTnO+m9Cmv6LR/v+PI/6FS5199DBxEOzonc9
+	uqQrxmD1WGyf1JdXpzd+O7v8wY0Hj5JEPJQEIu2m60q5M/iuX/o6cv8etlQL+XzFLfaa02T+
+	8icePLIlJd5NWuMc5x++xDNCy+eeXHPnhLmE2aOzfPeXTr59cMKj6gUdDpODT6zh/8uQdVJl
+	w6/n8i275dSOzK+c7drxijntxOmsr1PtbO+0MB72VEti2xU8Idlyd7+M2OqdPYozZnSVWvzM
+	YvO5uyD9xjwtJZbijERDLeai4kQAlxOQ0OcCAAA=
+X-CMS-MailID: 20250428084728epcas2p486ddfccc41bfba9830bde544b6c292e3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250428084728epcas2p486ddfccc41bfba9830bde544b6c292e3
+References: <CGME20250428084728epcas2p486ddfccc41bfba9830bde544b6c292e3@epcas2p4.samsung.com>
 
-+ Josh
+This patchset adds the CMU_CPUCL1 and CMU_CPUCL2 block
+to support exynosauto v920 SoC.
 
-On 4/25/2025 8:11 PM, Johannes Berg wrote:
-> On Tue, 2025-04-22 at 19:59 +0200, Artur Rojek wrote:
->> 1) Nordic gave us permission to upstream the firmware blob [1] required
->>     to use this driver. As that needs to go through separate
->>     linux-firmware repository and is subject to different licensing,
->>     should I try to upstream it in parallel with this series, or does it
->>     need to wait until the kernel driver gets in?
-> 
-> I have no idea. Chicken and egg, I guess.
+Shin Son (3):
+  dt-bindings: clock: exynosautov920: add cpucl1/2 clock definitions
+  clk: samsung: exynosautov920: add cpucl1/2 clock support
+  arm64: dts: exynosautov920: add cpucl1/2 clock DT nodes
 
-It used to be a check by the linux-firmware maintainer if the firmware 
-blob is referenced in kernel module info. I assume the main linux tree 
-is checked and not linux-next.
+ .../clock/samsung,exynosautov920-clock.yaml   |  45 ++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  26 +++
+ drivers/clk/samsung/clk-exynosautov920.c      | 208 +++++++++++++++++-
+ .../clock/samsung,exynosautov920.h            |  32 +++
+ 4 files changed, 310 insertions(+), 1 deletion(-)
 
-Regards,
-Arend
+-- 
+2.49.0
+
 
