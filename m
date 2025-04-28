@@ -1,148 +1,149 @@
-Return-Path: <devicetree+bounces-171693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA8D8A9FCFA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 00:19:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D15CA9FD12
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 00:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F91E3A6E50
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:19:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 596325A3FF2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:35:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37060211491;
-	Mon, 28 Apr 2025 22:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A5D20FAA4;
+	Mon, 28 Apr 2025 22:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LyaiQCKS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dbIA5FGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630653208;
-	Mon, 28 Apr 2025 22:19:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9603515687D;
+	Mon, 28 Apr 2025 22:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745878791; cv=none; b=P4wdgNCZ0FbNq1FuC7OXYYoy+46r/sbrdlnILz0jfoaox2hQyP0zivrGC3jSEFAogcjXHvk4IdEu3DTbc3MlnTEZQj1fKbMtl2nH5qmoM80M5jeJ0mcUKex1Oct20xgQZ49tQgguTUpqIzTI0j9gYo07P5fTCWJvohn61dMmfCY=
+	t=1745879755; cv=none; b=NCvFpxw2n8akpKUi+qdJt1gW1jJIuDS+CT1npe228QZfjlJXSQDn+ahuL+LVRJuBqdsSOpt6Xe8oY0STpmjTE8jvLb8GQsa1IyyuMsa8hnYamYI53lGY4pWnNPvZVolnBeTHC148OeHL4BSEx1DQ3YXRj7Bq/o1ZtY4zBAYPQKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745878791; c=relaxed/simple;
-	bh=B+OAahSSvipgS9YGKI73K8Z4suU+4xf8hOo1D79WhHI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LYJbdgwkRWW+8ODmy4ArLkESrxvc77pSOAMoo0lfBr5sjv3nvXG8HaAndix5kD+BsIMDB4JUowaCr+5PcERlR6YF1NFrTgwfkaJpkNFujmoT4UPJmCJWEEvOzE0pA+JRt06lRpmeYL3gMIuMULjes62nqlAPfFXG5ZKfmnlPBas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LyaiQCKS; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745878789; x=1777414789;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=B+OAahSSvipgS9YGKI73K8Z4suU+4xf8hOo1D79WhHI=;
-  b=LyaiQCKSutGalSJSKRWvV3/V+8oW0+w97sk5xe2/Qkq4xASj8+GgdC4B
-   QSTXg2CrqAoZQ5tyPFxV2iWZfIIABcxnLEa/Z+dUaHP0T0EZuAJx2ITtN
-   oAPbmj+ZRwh/wshTM7U6Tab7u3p27p3c6A6R4bXZ11torokj2JEZBkCv5
-   WvkEqX7LDpMJGTAMxOqP+6uhDjzOMoP4EU4r3s68Veul7y428t0GWKTD5
-   gFmoVTMtrFRKqcxkbIdCwjwmymEWKoOJkRJvyGXFG3MwBYfKGISgzu8TZ
-   06sbSIQArwmBvcjH6wGDRTQdkGuUMmhT/LYwYPdRfqUemkOkrMYqpo3By
-   w==;
-X-CSE-ConnectionGUID: aNL5mkDZRZKHm2MChIVwIg==
-X-CSE-MsgGUID: Jcnc4CEuSDuZEPjytg5dHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="47579121"
-X-IronPort-AV: E=Sophos;i="6.15,247,1739865600"; 
-   d="scan'208";a="47579121"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 15:19:48 -0700
-X-CSE-ConnectionGUID: 6Z9gUdOPStqreZv11VO1qA==
-X-CSE-MsgGUID: ENdl0VpvQLumY0kFhj6Q4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,247,1739865600"; 
-   d="scan'208";a="138440705"
-Received: from mdroper-mobl2.amr.corp.intel.com (HELO [10.124.222.199]) ([10.124.222.199])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 15:19:45 -0700
-Message-ID: <8a57310a-dc4c-4ba2-9bc3-a16bc88ee4c5@intel.com>
-Date: Mon, 28 Apr 2025 15:19:43 -0700
+	s=arc-20240116; t=1745879755; c=relaxed/simple;
+	bh=dsHMaLy+Slj0qyE+mOUjzDl6VBT8UBQJQxWjTqxbQxA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VB7C6S8tZ7sb/5EGahopXi+P8pU2oC0TWCHzXNa9zWVu6oBA/1Um4W3TN4D9BXmiIfXtyVXYcfBAxHHuxCn2FuvA9ACulEM9zB4poUWIExvxFva+X8+TEBy9N4/cNlvrXYAVEGvtXav2t5MGCPydRugOVpa6dp/aorhsAt6BMkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dbIA5FGZ; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-47663aeff1bso54707921cf.0;
+        Mon, 28 Apr 2025 15:35:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745879751; x=1746484551; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=X/kdZu5lZfOsUl8WyU/NEfAG1LYXxMtniBa4sTIJjM8=;
+        b=dbIA5FGZ3vPvb9TFy6eTKwh352MKjaUR6QlNh27qSeVtjzfkjw004h6T6NNsdvUgXq
+         e7vhajplE/FKSjr5neNZQS9JaoCxRJrZpWOsCcavgAt26xCcThlAN4htJ1+c4sWzG7FP
+         oTI+ngO8D0cpgKRv7ByLKeTQKZknYIUVtSz+U34jt+TSqnDb0NfcaLGGtrSc2OtsEH7l
+         x8iixfnLhLE4oedup1IslAms2bwvqAOa8exFQrJW8hwQ+rw5BgAxvsCyyGgr14m5sov+
+         ml1V5oDTLVqCYdhLjETPZEWQTsAoSfTAjN2bgocUNAZFoGO1NjzuzbulI6FW5mWkkHN1
+         h+6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745879751; x=1746484551;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X/kdZu5lZfOsUl8WyU/NEfAG1LYXxMtniBa4sTIJjM8=;
+        b=hVHWC/SB3/vfb+0Toq/+8xV5qRaGxpr2opPs3fX7alM5UQmJKwb/SrFULShmPQKEsN
+         lS3IlrBEKCN7ACTNS6Jbps+csyzpkTVMns8N2X211XOT5mnP93FLrGdc+duoUqjL6rld
+         VB6kZQDBlZ+h7stAp+vgu+be0Y4Fjt9lKw+VCzfb/JsRTMVMP4nBokTyUOcTEwLsUiwq
+         hFoReSygQq17ZYvRsA+rZFPYz8jzOjfLff9aWys+4ZWbBOaNyT3l5GKbBOaH/FiwGJ8J
+         F0fJUPhYPTxBvtcsnTqeKkHnbpV+oybLLnPxMbRWVbvJdQqKlWr3GNQrlixR+54fM0SR
+         qoRg==
+X-Forwarded-Encrypted: i=1; AJvYcCUAwAeJY5ejGnGuwt08Qh5fDO0+VcjFKlONxcTOiexg4GkvQd/RYP2EQSucDDEFoFQ2AL2Oy7AN7Jsv0rZQ@vger.kernel.org, AJvYcCUK3XY4wpX9clJb5xECdU2KXmBq+xeMY01cy+PCJTvG+upKiE9p/IyskNya/jaTLOaQym6p36Y1Vzfb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVZum/hcEtT0k5FmPF3BFDH2CbbPaOMXPuCRXP8FnEyNOT+bMe
+	Q44oPhF594ELBseE7a0WD6Ag+0hfijPU+hyPjyhCede/h+svchjL
+X-Gm-Gg: ASbGncvPvMtWxaGHiYWt4QHGkCOo5MQoyh3UEcM+d83Dy9omZDhishipKzLleFkF0YH
+	HMYc1niWcrhHiYRgmn24V8vqag+O9pcD8+fi8zp/A5OvPDSxtFM7wYKppruhL4AjbMN9uMo4WzY
+	cUXILHwJMsUNbxoZrL+Z0agXVhdZZ4YOJsmZ0/RuEeP/npIOPEJHYNBAjUqir5JweMgQkugHUP5
+	K9YuJbxAwR9iKALG2RVqhKZEtRkGt4WEUM7yJ29mKbdEX4p2J5kkImBTiqI+3qv8zzOuFu9INuc
+	/0oCOhZ0u64GLMGS
+X-Google-Smtp-Source: AGHT+IES8nRDFDh7fd98mGNj9hoSaWm8gTLVtNkYmiW/3xaJ8gUBVINczQj4gDLHG/EkZEFrUlpH2w==
+X-Received: by 2002:a05:622a:1f17:b0:477:6e8e:138e with SMTP id d75a77b69052e-4886ff51bafmr17662271cf.2.1745879751334;
+        Mon, 28 Apr 2025 15:35:51 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-47e9efda2c0sm73859921cf.20.2025.04.28.15.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 15:35:50 -0700 (PDT)
+Date: Tue, 29 Apr 2025 06:35:36 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	sophgo@lists.linux.dev, soc@lists.linux.dev
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Jisheng Zhang <jszhang@kernel.org>, Haylen Chu <heylenay@outlook.com>, 
+	Chao Wei <chao.wei@sophgo.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/7] riscv: dts: sophgo: cv18xx: Move RiscV-specific
+ part into SoCs' .dtsi files
+Message-ID: <6wlgfvc3rkhv4s3ou67fjl6j4a26vocqck5727cg6muxlz2erj@kivndcjcqc7m>
+References: <20250316185640.3750873-1-alexander.sverdlin@gmail.com>
+ <20250316185640.3750873-2-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/14] kexec: introduce Kexec HandOver (KHO)
-To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
-Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
- ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
- catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com,
- devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
- graf@amazon.com, hpa@zytor.com, jgowans@amazon.com,
- kexec@lists.infradead.org, krzk@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
- pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
- ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org,
- saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de,
- thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
-References: <20250411053745.1817356-1-changyuanl@google.com>
-From: Dave Hansen <dave.hansen@intel.com>
-Content-Language: en-US
-Autocrypt: addr=dave.hansen@intel.com; keydata=
- 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
-In-Reply-To: <20250411053745.1817356-1-changyuanl@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250316185640.3750873-2-alexander.sverdlin@gmail.com>
 
-On 4/10/25 22:37, Changyuan Lyu wrote:
-> When the actual kexec happens, the fdt is part of the image
-> set that we boot into. In addition, we keep "scratch regions" available
-> for kexec: physically contiguous memory regions that are guaranteed to
-> not have any memory that KHO would preserve.  The new kernel bootstraps
-> itself using the scratch regions and sets all handed over memory as in use.
-> When drivers initialize that support KHO, they introspect the fdt, restore
-> preserved memory regions, and retrieve their states stored in the preserved
-> memory.
+On Sun, Mar 16, 2025 at 07:56:31PM +0100, Alexander Sverdlin wrote:
+> Make the peripheral device tree re-usable on ARM64 platform by moving CPU
+> core and interrupt controllers' parts into new cv18xx-cpu.dtsi and
+> cv18xx-intc.dtsi.
+> 
+> Add SOC_PERIPHERAL_IRQ() macro which explicitly maps peripheral nubering
+> into "plic" interrupt-controller numbering.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> ---
+> Changelog:
+> v5:
+> v4:
+> - cleanups dropped
+> - cv18xx-cpu-intc.dtsi instead of cv18xx-cpu.dtsi+cv18xx-intc.dtsi
+> v3:
+> - &cpus node has been moved into cv18xx-cpu.dtsi, &plic and &clint nodes
+> were moved into cv18xx-intc.dtsi to reduce code duplication;
+> v2:
+> - instead of carving out peripherals' part, carve out ARCH-specifics (CPU
+> core, interrupt controllers) and spread them among 3 SoC .dtsi files which
+> included cv18xx.dtsi;
+> - define a label for the "soc" node and use it in the newly introduced DTs;
+> 
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |  5 +
+>  arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |  5 +
+>  arch/riscv/boot/dts/sophgo/cv181x.dtsi        |  2 +-
+>  .../boot/dts/sophgo/cv18xx-cpu-intc.dtsi      | 54 +++++++++++
+>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi        | 91 +++++--------------
+>  arch/riscv/boot/dts/sophgo/sg2002.dtsi        |  5 +
+>  6 files changed, 93 insertions(+), 69 deletions(-)
+>  create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-cpu-intc.dtsi
+> 
 
-It would be nice to have some bit of this blurb in the per-arch
-changelogs. It's not clear what the scratch regions are and how they are
-being used in the early boot code. Even a pointer over to the
-Documentation/ would be appreciated.
+It is a hard time for now to do some change across the cv18xx 
+series, and it has become a mess. Due to the fact, I think it
+is time to do some work like split some device (clk, pinctrl,
+plic, intc) from cv18xx.dtsi to avoid override, and make room
+for arm64 device.
+
+Since this change contains some change similar to this patch. 
+Would you mind me to take content of this patch, and add you
+as the a co-author?
+
+Regards,
+Inochi
+
 
