@@ -1,98 +1,134 @@
-Return-Path: <devicetree+bounces-171619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C07FA9F5A0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:23:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B94A9F5A4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:23:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68CDF3B82CC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166513BFDE5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F42C27A91A;
-	Mon, 28 Apr 2025 16:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E367C27F730;
+	Mon, 28 Apr 2025 16:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NibRXpgW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VstnMOO9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1AD27BF6D
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 16:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D18927CB2E
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 16:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745857326; cv=none; b=k5xFhzUCX5Bnu3KZNTfvmBwsB+xC/xJuHEQ6w5TljB351BKejvto42gkBWDa2Qi8pmxQw57T0Uwi+sjIUNlOLFN8YmGcAnNdod4nawURLWy3WkIKH9dFQrFxaMDcb75Vdc0qgS2qewS3G3AQbGtlE7hM/ezfiX8suiYhXOiQDvE=
+	t=1745857329; cv=none; b=fmek2oTm5YAYMz7mVG1XIc4US+/71rpZFVUX9VP9UmfG7PKmEXPUalku3MDmt2VT6hq7PCoqPvQFJZHBHLfdF32D89UBDKOi4IVr196HojUDpc3B/izLP62vE9kcCXyl29EhNwaWeff7cS2EzLP+NZbNaHghdTbFJ2tcdFCrLyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745857326; c=relaxed/simple;
-	bh=bpFyqVnuV1089Ku+5ux8rJ2ecmqFhHkgxj5EiEeZRv8=;
+	s=arc-20240116; t=1745857329; c=relaxed/simple;
+	bh=Vw4DlImvgesrbSAsVdwb6vTeImKi0Z4LGtqXAOAB+Nk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xv9n5UVhfNSzVuClmj3xke1Wv2lAI0PWajn2N+UKolg8I10brzSwy4EHUnWblxIqfPebirD718UE2TJuzj+Xh2Lm9plxcPqmmP8Ah2/hDRH/79lTpxfWzL96ncdVgWR9z5dIoumqZsqPvjgHhhLyxtKlH8/OTSYSeEP/PS3KGb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NibRXpgW; arc=none smtp.client-ip=209.85.128.169
+	 To:Cc:Content-Type; b=CLEDEKEaGY/2fmHKdNWS2WOag1IPZLiKAtB9WLpxg2jj37VPRPvnA7yedpRCO/zUrqDT9lMWSYgNPYXuIs/C8H3KJJrIlIoFRW53zEqaT8CUgWTe+UMvihgsLef3Rdpzal5pF5ytugNhwUif9sN8+u9uYWa0OBJz1HfgUEZ/dAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VstnMOO9; arc=none smtp.client-ip=209.85.128.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6ff1e375a47so51996437b3.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 09:22:04 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6ff37565232so39190387b3.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 09:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745857324; x=1746462124; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745857326; x=1746462126; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jYJtlwUK9gE9rMaYOlbOBvLsJs+lLIqjK+LtZtlE7Pg=;
-        b=NibRXpgWAWIKe5UMYOjZwFdat/f/I+EKWRm4WbRkQssJjXtQsl6YiIiMbHZ1qH74Of
-         MlKo8+yt0mxBlg0KLHVgJDxuohwL0SCz24AlRuaMxgpgF9/YC/oLK40moVsqqMqevn8Y
-         rQVFoyCF7CAMkeLlmUToFc2Z2F3IH2Nh+hQtZPHWLoZmPfIRCrJOBp7bWc1xpN1iA3qq
-         fLGxERY1f2GGPm+mguKAWuf5P0dDgNZmynZp6RYhAGnjO2XiUqucFcy7rTetzOGUwpQA
-         I1MWLY2isG86wcMrZAPYHiII0LIhW2NSBoBnFEcJKlUBRfFxspqxJO6jsklIJvKRld+j
-         H2aQ==
+        bh=kjtfgNYAyQgaIv+6+gwAi/DXzlNfZQv9vmE2wR+LnUU=;
+        b=VstnMOO9OIpDzRVxGmD9lmKOmGsdXuocbVU9WCF4GNr0cPoaTl+FvxFER6+gxTX01g
+         l0lPgxqzmL4GI0JX2UiIFXcAiIS68xq+DKCjIKxCbmShJ71tf7eFQmLqy1OOwC5ZqDYz
+         zsKcS742SGFGoG5pLeeNUgEUQ28vlxoWIQa7wjfNDKi/ALdT3FLf6nIpQcw1FnW5H55G
+         6L/vMsGOdDkcpUMzmI3uLgqcHkhrY2S8ZeRgkF+AJZBbdJqT77kL0zGKpLFWCm3PHB+a
+         E1qqVEe0tr6wcHtDoZAR8pMkiR4kpbeZqwXtzijE3XqLWKv99PcQujVmOdxowxweiEl2
+         H5XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745857324; x=1746462124;
+        d=1e100.net; s=20230601; t=1745857326; x=1746462126;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jYJtlwUK9gE9rMaYOlbOBvLsJs+lLIqjK+LtZtlE7Pg=;
-        b=PcqJJ21ooEPwYEYnSznnQEuar6g6yA8pwOB/QMxjVDMV+YaNhB2bOOn0AFHkyAg6f8
-         ANKeccyuYwVXjVokno2oj/Ud2kLtnZghcPMnxnkvjYcdc3pkY8M5QssVKU/zz5cW1Km2
-         BTw6zziam20jg4UdDtd5gQ4YysCXNhMLzG8zjfJtRXFhwenTVpXOt0j8xudbzrBpD4uC
-         gdKgLqhwYLGJptS7TaQRtLLKKcSsgEorSlasGV5Qbw7a8cWJs2QK0i9kujE37yOQaI9p
-         U6UmL90HdBUAgN3Xc6i3uE4STLPWJmv4eR45Nd2le+Ke1zg/GYLnsn0hVHRC5kS0dP75
-         2UAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUDJm7J2JISszCgUEM41iNxvRdZmV3uMR8V7NNZorp5WBop/pNVINgFxuO/8ODJpu0JE9uJ27iG9l1g@vger.kernel.org
-X-Gm-Message-State: AOJu0YymjGdfnhhYLo5jtfQy2kF4B+/UJScuPKUqSb6wK+oXZ89lVQSQ
-	6tmqes0z8pJzJIGbLJwBYLHDo8lX6j32W1nGUYuB0xGNmdXJ45Abslkw82g8GlJLv91PWiVaU16
-	y0/gZJIUz5YJ6mo2hE5z1SGvRxcmLxFE4IcbolQ==
-X-Gm-Gg: ASbGnctRtEQhZjWJ1gU1OMSj9RKGDt3WC5pnHGphaz8Zcyu97QMcr1nmLZFbWJtYi1P
-	4aAPBbogb4mOL+m0vGnzGGmh/UuI/GKk45IyqbOVo/MhizEBw6GhUyu7bHDjJijrkzxSdypSVTf
-	4zKkgzC45bK3AkLWJCJ3RClgQ=
-X-Google-Smtp-Source: AGHT+IEnuPZVaSvesgsXBNiFjLoJWiZy53DGC9o8Sp1zW11942XKrl2X+yuR17blEKZkX8LjsFHcDXXyS5d8LGqn8s4=
-X-Received: by 2002:a05:690c:4905:b0:6ee:8363:96d3 with SMTP id
- 00721157ae682-7085f23733bmr133253447b3.27.1745857323624; Mon, 28 Apr 2025
- 09:22:03 -0700 (PDT)
+        bh=kjtfgNYAyQgaIv+6+gwAi/DXzlNfZQv9vmE2wR+LnUU=;
+        b=aeuJsmgzzlFSUoCQ46gtbH1RsfGynbepOmhQ9YqRFiwepLGvt97Ihvq3hOVnKLRWBf
+         GXQ2DXOPSSg8BbZiiUNgiYHU4D2isGJfWmKBNdWY4rQct2Ap7mPv6Rwa2rw+RP8WpFEY
+         L/fcr7S6DMtiIf9eWNN0t5Imdz7dnY694UxQ6WcHzD6MPGrbxPzbwFAwVjsc+kF5FZJb
+         JjWDjS1OkE6hBfUFSGJGDmkpXq38WUeMABPizGJFwaNVPTCNbfGX/xERY4eZQXCprheH
+         hSr/NZW9PGMetDnmykabEZMPBoqg8hPlo/EE4yzzj4FwpqrnhkbQ/Hk37/Rx5uo9eLiR
+         8hyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVVqiu2790cWzrEFZzATfNhi0wG/5hL/bjMe3q3eimPpxrAnimkjfvBBfZdgxpq8qYSp8P4/t6qbIUR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCdRi5pu+jDGcFLwuKU+AF8lJ4qyx5jKuYqsUVI37RpfCSdJY6
+	6JiP0UlgLxd2dBfULdQ1QQ4UyKWQRJA2RdAe8IwUj6+jMkoOXlz5QW3hRur5JOqArDNOOW1ifva
+	TX9oeyD0i+wRHHp8W/c22ksoZTF6/5NTogo7Rug==
+X-Gm-Gg: ASbGnctYYKN+G1UlUCOwkmX3al3vcnQtYC3xWOalMkhVLuIy3AQGkuMVA0eiAK1S8mQ
+	u+t6Png/6dQCupWmYzTgbpowEoFo6zioKih9MrH0qJjBL09ZxGwcj7mmFtNTUxrfOP9wiruFTYU
+	jUrwQyeaTZTpl2OPuEZqVaRFhvHylvV4uuxQ==
+X-Google-Smtp-Source: AGHT+IHJ8fzCsar22nWRrLuqubA/nW5PD6Isexezh6U72gKuIl5N70HEwT9JTNXKPWmpqHrpu7bpAGC2DT3kmga/dpo=
+X-Received: by 2002:a05:690c:67c6:b0:708:3532:ec94 with SMTP id
+ 00721157ae682-70853f752e9mr174343137b3.0.1745857326167; Mon, 28 Apr 2025
+ 09:22:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250417151300.3570021-1-Frank.Li@nxp.com>
-In-Reply-To: <20250417151300.3570021-1-Frank.Li@nxp.com>
+References: <20250422-sm7150-upstream-v1-0-bf9a9081631d@jiaxyga.com> <20250422-sm7150-upstream-v1-11-bf9a9081631d@jiaxyga.com>
+In-Reply-To: <20250422-sm7150-upstream-v1-11-bf9a9081631d@jiaxyga.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 28 Apr 2025 18:21:27 +0200
-X-Gm-Features: ATxdqUFvglZC6L-IAvGpqWBDcRfYWiynLM-kZ_f4pW7hBaIPW-FcbcKpWQ_mW_g
-Message-ID: <CAPDyKFpEGn=xcaG=QF4KkvLxwN3Ak41dJ=1mgY5oDn2pRYJktQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: mmc: fsl,esdhc: add compatible string fsl,ls1021a-esdhc
-To: Frank Li <Frank.Li@nxp.com>
+Date: Mon, 28 Apr 2025 18:21:30 +0200
+X-Gm-Features: ATxdqUFknbhFgOKvNVOI3-s43pP4YH55pKLNf_KwLrUaeaEizalUr2MLUM3sfs8
+Message-ID: <CAPDyKFqPpqDj+DKT=nJrTS8iDUx_8scnLreUQ99byDHEdBeiww@mail.gmail.com>
+Subject: Re: [PATCH 11/33] dt-bindings: mmc: sdhci-msm: Add the SM7150 compatible
+To: Danila Tikhonov <danila@jiaxyga.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	"open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." <linux-mmc@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Souradeep Chowdhury <quic_schowdhu@quicinc.com>, Lee Jones <lee@kernel.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Alex Elder <elder@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
+	Srinivas Kandagatla <srini@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Georgi Djakov <djakov@kernel.org>, 
+	Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Kees Cook <kees@kernel.org>, 
+	Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+	David Wronek <david@mainlining.org>, Jens Reidel <adrian@mainlining.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+	linux-remoteproc@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-hardening@vger.kernel.org, linux@mainlining.org, 
+	~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 17 Apr 2025 at 17:13, Frank Li <Frank.Li@nxp.com> wrote:
+On Tue, 22 Apr 2025 at 22:24, Danila Tikhonov <danila@jiaxyga.com> wrote:
 >
-> Add compatible string fsl,ls1021a-esdhc for LS1021a SoC.
+> Add compatible for the SDHCI block found in SM7150.
 >
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
 Applied for next, thanks!
 
@@ -101,22 +137,23 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml | 1 +
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
-> index b86ffb53b18b5..62087cf920df8 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
-> @@ -24,6 +24,7 @@ properties:
->            - fsl,t1040-esdhc
->            - fsl,t4240-esdhc
->            - fsl,ls1012a-esdhc
-> +          - fsl,ls1021a-esdhc
->            - fsl,ls1028a-esdhc
->            - fsl,ls1088a-esdhc
->            - fsl,ls1043a-esdhc
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index eed9063e9bb352b5c8dac10ae2d289c5ca17f81b..2b2cbce2458b70b96b98c042109b10ead26e2291 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -60,6 +60,7 @@ properties:
+>                - qcom,sm6125-sdhci
+>                - qcom,sm6350-sdhci
+>                - qcom,sm6375-sdhci
+> +              - qcom,sm7150-sdhci
+>                - qcom,sm8150-sdhci
+>                - qcom,sm8250-sdhci
+>                - qcom,sm8350-sdhci
+>
 > --
-> 2.34.1
+> 2.49.0
 >
 
