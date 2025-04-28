@@ -1,39 +1,63 @@
-Return-Path: <devicetree+bounces-171496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B3AA9ED34
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:50:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94690A9ED36
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:50:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3530188428E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:50:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E26F6166525
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BDA1FF603;
-	Mon, 28 Apr 2025 09:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 877E921CFEC;
+	Mon, 28 Apr 2025 09:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lwvspUo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507A519048A;
-	Mon, 28 Apr 2025 09:50:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848091F5827;
+	Mon, 28 Apr 2025 09:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745833806; cv=none; b=dx2Z2Fb1Vqe8uVyObolSYUg/Kb2kiYlWTnDyihBp63/Eoxj5bxa99stmMOkDajYVTOn8U3tC5AXdNSMWAiMYHvOdaO1vM5xCXpCTgAcTZ5cp5vJFX9z6jKFoG+6iEyzRHvoO/JbEqoZ+1BR+Rh7s7ap7RrGbmKkS35dctMAf7Fc=
+	t=1745833853; cv=none; b=L8TQj6oBDiqpYjhibCwCoxopR0hpG17Qu+OwHRxNml/ePUBobEQQXk0f6zl/Mxqx8kHESf8cs0C9TDWHYkZlneTLpbI8EIUDgxPO1Ob3b/sQV7/RXFFW1VvAz365R89lrPUQQcZH0GE3O/Cj0pFoljffRIFBU8zOuJuzJwxZ4c4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745833806; c=relaxed/simple;
-	bh=ARn8mONPmTlVesWVEfl9zh27G6Ld5tHGETk93xsn4Ww=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o/d9rMXzHosI3WRYwTaA5pxVZ9KLSOPw5DNz4pgRUvDz+RaliI3IF3Lpu/LCjFJ4uf0M1e7bhvA2xEBqBtMIh70FT2wZpYYmh9z1qQOrljiCAUwfud9qd3G9o850ZaWR8VKSjUIrDeqBJCD87yCIZZxbFBXnalvKLEJ9nVekuIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [27.18.99.221])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1364b8143;
-	Mon, 28 Apr 2025 17:44:46 +0800 (GMT+08:00)
-Message-ID: <c94409d9-3bd1-42c3-b5f6-785e994baa77@whut.edu.cn>
-Date: Mon, 28 Apr 2025 17:44:46 +0800
+	s=arc-20240116; t=1745833853; c=relaxed/simple;
+	bh=roN7fJE8EwQX63dAnBJZIVtnYEUulGz6dJ0RcWadLkQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=S3HPmwlfTbMgrTCDW5PdgUgOIzzwgk1YotBEiFnLg+WD81TbBSOx2IurEFnDOiVma0rs6OLB0gRfjFI/1ZteT90GwipIp2gP1ZvUGupG2sb2MLN5g3LvXHm65pFaAtBisRc53xj7SQqOYX5eJWe63F+MJr9EalSiqtVp9c/w9Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lwvspUo6; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S9bfKP032165;
+	Mon, 28 Apr 2025 09:48:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	d67onAX9c4awf1/a8IEW61luHpsAi1oNRIptFcc2HEI=; b=lwvspUo6Ep1lU3ph
+	aVTByYKL+pUAUS0k4nmpglK7xsV0SVAhroJbk0aJmnLPBX7nyJM3yrPoc8nmsGL6
+	rtTF2MjJ47SQmOnvlcXUmnLf9k5SGX0xVDdozKy4tgZi4aDF1Zd+MLHXHa1xfypj
+	Ni8aGUEm8YgqFJeRnu0I3kgoR1bADuC1jWmKHVyLXXQoNx4zgnqSn5bGJ4M2pXcd
+	oQCI3UeOiomcandphtmq3xR70YYEFDEPJ0tzeXwrMkUeDLVTbwnygGv7mSSFSYtM
+	vtuF7BuQojRYKBXJy3UncoosRGka5PJdvAWpbBgqK+qvJo5yW8wFSTD4xhh/iOYv
+	EyZ6vA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468pevfr2b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 09:48:35 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53S9mSjv000349
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 09:48:28 GMT
+Received: from [10.231.217.95] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Apr
+ 2025 02:48:25 -0700
+Message-ID: <bfd1be89-cb03-4426-ad7e-93b6774a68a7@quicinc.com>
+Date: Mon, 28 Apr 2025 17:48:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,236 +65,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] riscv: dts: spacemit: add usb3.0 support for K1
-To: Yao Zi <ziyao@disroot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250428-b4-k1-dwc3-v2-v1-0-7cb061abd619@whut.edu.cn>
- <20250428-b4-k1-dwc3-v2-v1-2-7cb061abd619@whut.edu.cn>
- <aA87PjTsbHxxFOdl@pie.lan>
+Subject: Re: [RESEND ath-next 1/2] dt-bindings: net: wireless: ath12k:
+ describe firmware-name property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <jjohnson@kernel.org>, <johannes@sipsolutions.net>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
+ <20250424005703.2479907-2-quic_miaoqing@quicinc.com>
+ <20250428-ruddy-bold-macaw-9ffd28@kuoka>
 Content-Language: en-US
-From: Ze Huang <huangze@whut.edu.cn>
-In-Reply-To: <aA87PjTsbHxxFOdl@pie.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+In-Reply-To: <20250428-ruddy-bold-macaw-9ffd28@kuoka>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGBhLVkxLQ0oYSEMYTU1DQlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVJSUpZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
-	tZBg++
-X-HM-Tid: 0a967bc8e9ca03a1kunm1364b8143
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K1E6OQw5ITIBCTQWIQI9Ng41
-	EEwwChxVSlVKTE9OQ0hIT0JJT0hNVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVJSUpZV1kIAVlBTE5NSTcG
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iizN8q7klUWm_jnELEQp3vutnC4_buQ1
+X-Authority-Analysis: v=2.4 cv=aeBhnQot c=1 sm=1 tr=0 ts=680f4ef4 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=P-IC7800AAAA:8
+ a=RzOMtiUZCBSADgEBmXIA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=d3PnA9EDa4IxuAV0gXij:22
+X-Proofpoint-GUID: iizN8q7klUWm_jnELEQp3vutnC4_buQ1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI4MDA4MSBTYWx0ZWRfXxYZCwZgmcNWW w9qhOnnYK5jj3YwHiTYUPRTnfc6jIDxG4b/kKVBHh5TpVicj3tF0L91v+frhxDVdTT/uHf71O30 5/nlIybwesgA7fRXySFEcnK2B4YlG8WV9Un3Y222yLuGNxQGXZud2yLByjv/7T/KQuFVf/DF8RJ
+ PuTRwqkLxkRpuoGK2ce7Sm9GmNFKF17GYj2PLA7fucLJD4QY6tcsdb3ZZ+SNji5MVMnDUdASxs1 pA/7Z5Qoj6c/U1glal73cceGh7sy2CMLUivA/waTIjamG0Atm+rpQLTUo23aLYx4MF/2eectEyf Wase5GBiuyk8gLpul12A77ORqXealFQ0XeMRkQVcS5SAPzzwftuCOPlNecdLFdUYl9pqSSp1l9n
+ kS2GfCV89KkoQEG3XvgCnZJbDMV2EyIVVdrReG/+IV18Gb+v7gGs86dUW75lveKqu4jswFZ2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-28_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 spamscore=0
+ mlxlogscore=999 phishscore=0 suspectscore=0 lowpriorityscore=0 mlxscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504280081
 
-On 4/28/25 4:24 PM, Yao Zi wrote:
-> On Mon, Apr 28, 2025 at 03:38:12PM +0800, Ze Huang wrote:
->> Add USB 3.0 support for the SpacemiT K1 SoC, including the
->> following components:
+
+
+On 4/28/2025 4:25 PM, Krzysztof Kozlowski wrote:
+> On Thu, Apr 24, 2025 at 08:57:02AM GMT, Miaoqing Pan wrote:
+>> Introduce 'firmware-name' property to allow end-users and/or integrators
+>> to decide which usecase-specific firmware to run on the WCN7850 platform.
+>> This is necessary due to resource limitations such as memory capacity and
+>> CPU capability, or performance and power optimization for different
+>> application scenarios.
 >>
->> - USB 2.0 PHY nodes
->> - USB 3.0 combo PHY node
->> - USB 3.0 host controller
->> - USB 3.0 hub and vbus regulator (usb3_vhub, usb3_vbus)
->> - DRAM interconnect node for USB DMA ("dma-mem")
+>> Two firmwares are supported: 'WCN7850/hw2.0' and 'WCN7850/hw2.0/ncm825'.
+>> The former is the default firmware, suitable for most WiFi 7 STA
+>> functions. The latter adds support for commercial-quality SAP and
+>> optimizes power consumption for IoT applications.
 >>
->> The `usb3_vbus` and `usb3_vhub` regulator node provides a fixed 5V
->> supply to power the onboard USB 3.0 hub and usb vbus.
->>
->> On K1, some DMA transfers from devices to memory use separate buses with
->> different DMA address translation rules from the parent node. We express
->> this relationship through the interconnects node("dma-mem").
->>
->> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+>> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 >> ---
->>   arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 52 +++++++++++++++++++++++
->>   arch/riscv/boot/dts/spacemit/k1.dtsi            | 56 +++++++++++++++++++++++++
->>   2 files changed, 108 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> index 816ef1bc358ec490aff184d5915d680dbd9f00cb..0c0bf572d31e056955eb2ff377c3262271dcc156 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> @@ -28,6 +28,25 @@ led1 {
->>   			default-state = "on";
->>   		};
->>   	};
->> +
->> +	usb3_vhub: regulator-vhub-5v {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "USB30_VHUB";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +
->> +	usb3_vbus: regulator-vbus-5v {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "USB30_VBUS";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-always-on;
->> +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->>   };
->>   
->>   &uart0 {
->> @@ -35,3 +54,36 @@ &uart0 {
->>   	pinctrl-0 = <&uart0_2_cfg>;
->>   	status = "okay";
->>   };
->> +
->> +&usbphy2 {
->> +	status = "okay";
->> +};
->> +
->> +&combphy {
->> +	status = "okay";
->> +};
->> +
->> +&usb_dwc3 {
->> +	dr_mode = "host";
->> +	phy_type = "utmi";
->> +	snps,hsphy_interface = "utmi";
->> +	snps,dis_enblslpm_quirk;
->> +	snps,dis-u1u2-quirk;
->> +	snps,dis-u2-freeclk-exists-quirk;
->> +	snps,dis-del-phy-power-chg-quirk;
->> +	snps,dis_u2_susphy_quirk;
->> +	snps,dis_u3_susphy_quirk;
->> +	snps,dis_rxdet_inp3_quirk;
->> +	snps,xhci-trb-ent-quirk;
-> I suspect whether it's the correct place to put these quirks: they look
-> like IP quirks which are present in every K1 SoC regardless of the
-> board model, if my understanding is correct they should go into SoC
-> devicetree.
+>>   .../devicetree/bindings/net/wireless/qcom,ath12k.yaml       | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
 
-I checked these quirks in differenct board dts in vendor repo, they are 
-actually the same.
-Will follow.
+I don't find any tags on previous version: 
+https://patchwork.kernel.org/project/linux-wireless/patch/20250423054152.2471568-2-quic_miaoqing@quicinc.com/.
 
->
->> +	vbus-supply = <&usb3_vbus>;
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	status = "okay";
->> +
->> +	hub@1 {
->> +		compatible = "usb2109,817";
->> +		reg = <0x1>;
->> +		vdd-supply = <&usb3_vhub>;
->> +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
->> +	};
->> +};
->> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
->> index c0cc4b99c9356d550a470291dba9f2625b10f8df..c7b86c850da969e5412ad42c63995cd20b4d0484 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
->> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
->> @@ -4,6 +4,8 @@
->>    */
->>   
->>   #include <dt-bindings/clock/spacemit,k1-syscon.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/phy/phy.h>
->>   
->>   /dts-v1/;
->>   / {
->> @@ -346,6 +348,13 @@ soc {
->>   		dma-noncoherent;
->>   		ranges;
->>   
->> +		dram_range0: dram-range@0 {
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
->> +			#interconnect-cells = <0>;
->> +		};
->> +
->>   		syscon_rcpu: system-controller@c0880000 {
->>   			compatible = "spacemit,k1-syscon-rcpu";
->>   			reg = <0x0 0xc0880000 0x0 0x2048>;
->> @@ -358,6 +367,53 @@ syscon_rcpu2: system-controller@c0888000 {
->>   			#reset-cells = <1>;
->>   		};
->>   
->> +		usb_dwc3: usb@c0a00000 {
->> +			compatible = "spacemit,k1-dwc3", "snps,dwc3";
->> +			reg = <0x0 0xc0a00000 0x0 0x10000>;
->> +			clocks = <&syscon_apmu CLK_USB30>;
->> +			clock-names = "bus_early";
->> +			resets = <&syscon_apmu RESET_USB3_0>;
->> +			interrupt-parent = <&plic>;
->> +			interrupts = <125>;
->> +			interconnects = <&dram_range0>;
->> +			interconnect-names = "dma-mem";
->> +			phys = <&usbphy2>, <&combphy PHY_TYPE_USB3>;
->> +			phy-names = "usb2-phy", "usb3-phy";
->> +			status = "disabled";
->> +		};
->> +
->> +		usbphy0: phy@c0940000 {
->> +			compatible = "spacemit,usb2-phy";
->> +			reg = <0x0 0xc0940000 0x0 0x200>;
->> +			clocks = <&syscon_apmu CLK_USB_AXI>;
->> +			status = "disabled";
->> +		};
->> +
->> +		usbphy1: phy@c09c0000 {
->> +			compatible = "spacemit,usb2-phy";
->> +			reg = <0x0 0xc09c0000 0x0 0x200>;
->> +			clocks = <&syscon_apmu CLK_USB_P1>;
->> +			status = "disabled";
->> +		};
-> Why don't add #phy-cells properties to usbphy{0,1} just like usbphy2?
-> You've claimed #phy-cells as an essential property of
-> spacemit,k1-usb2-phy nodes in the PHY series and I suspect whether this
-> passes dtbs_check.
+Do you mean I should add 'Reviewed-by: Krzysztof Kozlowski 
+<krzk@kernel.org>' ?
 
-The DT bindings for the USB PHY were submitted in an earlier patchset,
-some dts checks about PHY were missed.
 
-I will add #phy-cells in next version. thanks!
-
->
->> +		usbphy2: phy@0xc0a30000 {
->> +			compatible = "spacemit,k1-usb2-phy";
->> +			reg = <0x0 0xc0a30000 0x0 0x200>;
->> +			clocks = <&syscon_apmu CLK_USB30>;
->> +			#phy-cells = <0>;
->> +			status = "disabled";
->> +		};
->> +
->> +		combphy: phy@c0b10000 {
->> +			compatible = "spacemit,k1-combphy";
->> +			reg = <0x0 0xc0b10000 0x0 0x800>,
->> +			      <0x0 0xd4282910 0x0 0x400>;
->> +			reg-names = "ctrl", "sel";
->> +			resets = <&syscon_apmu RESET_PCIE0>;
->> +			#phy-cells = <1>;
->> +			status = "disabled";
->> +		};
->> +
->>   		syscon_apbc: system-control@d4015000 {
->>   			compatible = "spacemit,k1-syscon-apbc";
->>   			reg = <0x0 0xd4015000 0x0 0x1000>;
->>
->> -- 
->> 2.49.0
->>
->>
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here. However, there's no
+> need to repost patches *only* to add the tags. The upstream maintainer
+> will do that for tags received on the version they apply.
+> 
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
 > Best regards,
-> Yao Zi
->
->
->
+> Krzysztof
+> 
+
+
 
 
