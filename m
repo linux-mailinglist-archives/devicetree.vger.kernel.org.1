@@ -1,132 +1,151 @@
-Return-Path: <devicetree+bounces-171626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAC0A9F5DE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6804DA9F5FB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:38:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57433189C3BA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:32:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7B1D1A8431F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EF9279789;
-	Mon, 28 Apr 2025 16:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D0F27A122;
+	Mon, 28 Apr 2025 16:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jJ4sApbP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIOOaaUu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB26B199E9A;
-	Mon, 28 Apr 2025 16:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD8084A3E;
+	Mon, 28 Apr 2025 16:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745857961; cv=none; b=S3Kzs5Seu7AMAoCKxAx3qz+UquyM1qgyK/AnYgte79V62woUW2wgQE8WlAUx7N9xL9Jahb9BLDQHPrZ4gH0MV+3scdAG58Wc6LrIvhkCDXuYsNHDZoNeZmKdxietCAZuZG/znNYXDgxiZetx2MDovkGZaS6xeCQ/j+SSsick1FE=
+	t=1745858267; cv=none; b=mp+XNt7FGNvGeLsxWgzPrbfckmVvu5Kol8bLqREyFBWUAZTWInYcZnW1YIdDMmVk1grBgqN7zarGyFWl0O+AtYF07TvYQStMEVFZ5dxT2+WSYuadiAAjCwlGnFo/J1rh3HUSizA43onVZp101kj5ZB5Xlob7XOpqxTT5LW3w3xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745857961; c=relaxed/simple;
-	bh=rF0xSYpUAFZ4WX0DlNZ8bwKocybp6SgvR0ow4RtJX8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nv16jouz6JAn7QqsU2liNdP32YveJ0RIpiRA0SvG0lXw1dATHEB4Og2pBW0aWoutSuNCDjluSmT5R8heu+8iNr7gFXytibFYbHSV9nJKVLpaiPnH3+/NgGu5laaoKBRrkexmUPMmtyoaIkeJhQSK8+idDdPvU6sOO+70qy9YHpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jJ4sApbP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2425C4CEEC;
-	Mon, 28 Apr 2025 16:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745857960;
-	bh=rF0xSYpUAFZ4WX0DlNZ8bwKocybp6SgvR0ow4RtJX8E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jJ4sApbPs8cZAPRs6riv1ljCbcQ7CiZzy28hxBSkKktiy9U+LpvzS9AREKfMyb9yD
-	 p6QeLWon7wtV6m9KS93qC9mlhAbJUX2ZA0DqCQn/I84FQAogyi2jkOoEwsJyONzuEs
-	 QrNIQFNkLO4RpCFe1g8To5VoTRdMaDp1NqisJz4Dn74nEwsjvdtAtkV7Cze3IexatV
-	 IdL9aCQYFIrViVXwpkNFusEeupVAIpQoHToWqI04iEEKj374MALpPEcWJUzueqOFA1
-	 o1ZIHPUV1IsZKV/B+HQQb27iQP5dgA2LPQU3IYmAffGsCs4OjvTCF/N4RcjrqK+zN8
-	 ERVr7qwiBhMlg==
-Date: Mon, 28 Apr 2025 18:32:37 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	dlan@gentoo.org, p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
-	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com, 
-	unicorn_wang@outlook.com, duje.mihanovic@skole.hr, elder@riscstar.com, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
-Message-ID: <t4tnrsyl7t7hwfm752eapz3ajxkkl23nrfemw4jy6a7khi7a7u@gow3c2ba56ib>
-References: <20250420070251.378950-1-guodong@riscstar.com>
- <20250420070251.378950-4-guodong@riscstar.com>
- <kftfye2zn2ogyvuv7diuyrv5qkp43csbpkcqfcms2xp5lsuubm@z2kocdzkb7qk>
- <CAH1PCMZC5xrX07rd5bo+06zJoJDiAH3UNHqH5catwEALNJL2dQ@mail.gmail.com>
+	s=arc-20240116; t=1745858267; c=relaxed/simple;
+	bh=zyEHT53+4ffCvmFo8gh208mOKYSL0INBKJpE5tJuqSM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ooi4UzS0tvniwOWRiQz1J5Oz1SQPnjSNPRL0Ju57ScnKcvtQv+SzDtCqaNtygY250u88tiLCrIjIxbrIlYJUaIRv9PGGStyN16qi4KcNtGa4D88zxmRvl6Ww3OZWizoho5TVwYvncXy12Eyz6u2zv6ts90A+pWjKXbQAflCk+/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIOOaaUu; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-736b0c68092so4409454b3a.0;
+        Mon, 28 Apr 2025 09:37:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745858265; x=1746463065; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=15l+Ck2zVP5gQKV2uGWTazJsT4fiAOxVQx+2NTaLaec=;
+        b=HIOOaaUuG5885J8fP+omv6HaVjkhN14xW3GSllcNaChwfU8GP6ms51zTPNLo6GFThD
+         pLUCEvSpEy9s1XB33g3dUWZtZk+MjV0C8IwBU8e6gZixap74hPGK0PxEMKvpt+fP2z39
+         wpRorvKEhyp4uMK+PTgFAEdt8zi2e0BAerDxv+JBLNmxh9AYF2KUvBNKvGZJOKgQImnZ
+         XAsjqVZJ+EiE4TgB2Wa1dcd5p+jQ9nqCHY8r8u29Lz77qst9V6Rl77FJzxPPt/wyC51/
+         QPKyGxaG1DAh7Cnf+qnawJfeoblKGre9iB4fz4NtI894ZcULBTT+wbvKFKg67MQM9LOr
+         j/dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745858265; x=1746463065;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=15l+Ck2zVP5gQKV2uGWTazJsT4fiAOxVQx+2NTaLaec=;
+        b=he8MY2Vrgzy2+a0NIM54zXlT9/EF8LOiogtjibjHdO+ZAzA7WTzlTY6xryaI6hPw6F
+         cgZgVUtiy3sM8GIHJWJLYqntph75el5bzF92/1Tr8hn3fNYpM3mjmIGT88JxTUHTuFd5
+         MsGlzBRj42DG76qkzHualOVRM6NIPSq90/x5/BIHqyWkfPfC7XsGz9g662+iFrRB8bnH
+         vo96CgKO0YU+XZnv+5zB0LH2DPViDEdaQcakvwgQo+0Z8xZMyPRv+2jf6g+Jt2w9tZJB
+         ne0ZASWAv+uTaMQ7OTpQm8O1cRUf0o50SzzrYcJstccB5PXlxodlQx3Rss1jLBtk7BWo
+         l2bg==
+X-Forwarded-Encrypted: i=1; AJvYcCUB2FxFhn1fK3ttxjkiIBmvF4Do/WHP58nnyz3rZb0G66P7MBQTQNtnlaMSplsgZxS3hDoKLGXPqNfB@vger.kernel.org, AJvYcCWGU9coW0MBukiNEX5PGFqyhmUOLfTA9Kg/1gLs9Ez8vUjUgHUF4+tOT9q5mgcPfxmjeGUJy4Bmkluw@vger.kernel.org, AJvYcCXBalz45jlXTX3Jg3VfZ5FAi2d2boQrwwOu7l2aRvKzIbTnC8oC+Q+pFSiO6nLMtGh+F1yqcb6pzSJDpTVm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLen/tnZcTaw43fEpFaVhAWd/Be5sGcRgk5gSABTanBXy0duvd
+	2MqW7hxVBey4FSVg5p0GJp+vlF1AaYXtnPtQOv9/SFasBc20vDo6
+X-Gm-Gg: ASbGnctLrj6q+SLo1NKiFFoLidoUDgMb8GoL9GhbKdI0Z8zMJBjGhYSb1WB3TGy+7vm
+	sFrRa6v9zv4WmWaAlQJUXiacmLeO4Ppyq4E2ix0WWfYbapmM+3F0eBpKKa4vcDtph8hd0IITv0k
+	qYRdsiJuPF75Q2PZkxX+UH/H5o/r2b8Re284WM1HAlIGmCPST/MiW4MxFkysFVjLxS1+aOaRUqz
+	uK4bgKaXVLg2j2IZGQv6EET8bKVBi6VrH2Bv12YAyaSF7iYO8oUKEOOLetn6x98p+/BhBm8iu1l
+	7r4hH+FAcO6SYRRBYy6QNjGUbanGUVSCVNinSJacPUf2Gu3iIJMDj8/SG2rXEQgi
+X-Google-Smtp-Source: AGHT+IGlOIxAliEh5JOjeMShPlEUUb+H4S5Pr3AtTiv9tWNQlP2KLvR8VlBIrHywr0e7xdeNjjCwnw==
+X-Received: by 2002:a05:6a00:2e88:b0:736:b101:aed3 with SMTP id d2e1a72fcca58-73fd6beb19emr14959366b3a.1.1745858264818;
+        Mon, 28 Apr 2025 09:37:44 -0700 (PDT)
+Received: from localhost.localdomain ([123.16.133.44])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25ac87d5sm8213532b3a.157.2025.04.28.09.37.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 09:37:44 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: andy@kernel.org
+Cc: geert@linux-m68k.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
+Date: Mon, 28 Apr 2025 23:37:18 +0700
+Message-Id: <20250428163718.15918-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAHp75Vch8i50stVO6nH0Tnn=g4xSMji_iPj6q-CE1tLnvesqcQ@mail.gmail.com>
+References: <CAHp75Vch8i50stVO6nH0Tnn=g4xSMji_iPj6q-CE1tLnvesqcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7d2sgdyj5xap5wjq"
-Content-Disposition: inline
-In-Reply-To: <CAH1PCMZC5xrX07rd5bo+06zJoJDiAH3UNHqH5catwEALNJL2dQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On Sun, 27 Apr 2025 Andy Shevchenko wrote:
 
---7d2sgdyj5xap5wjq
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
-MIME-Version: 1.0
-
-Hello,
-
-On Mon, Apr 28, 2025 at 08:46:50PM +0800, Guodong Xu wrote:
-> On Thu, Apr 24, 2025 at 4:18=E2=80=AFPM Uwe Kleine-K=C3=B6nig <ukleinek@k=
-ernel.org> wrote:
-> > I want to make all pwms use #pwm-cells =3D <3> in the long run. Can you
->=20
-> Sure. I can do this.
->=20
-> > please use that for the new binding? (Of course this needs adaption in
-> > the binding doc, the code should already be prepared for that.)
+> On Sun, Apr 27, 2025 at 11:25 AM Nam Tran <trannamatk@gmail.com> wrote:
 > >
->=20
-> I got what you mean. The code change for that is already integrated into
-> v6.15-rc1.
-> Commit 895fe4537cc8 ("pwm: Add upgrade path to #pwm-cells =3D <3> for use=
-rs of
-> of_pwm_single_xlate()")
->=20
-> Now, if I change this #pwm-cells from <1> to <3>, without the dt-binding =
-doc
-> changes, I would expect to see warnings (" #pwm-cells: 1 was expected") d=
-uring
->   make dtbs_check W=3D3
->=20
-> Any suggestions when the dt-binding changes will be merged?
-> or I can add your patch as a dependency.
-> https://lore.kernel.org/all/cb799d8a5bb284cd861785a691b8d5e329300d99.1738=
-842938.git.u.kleine-koenig@baylibre.com/
+> > This patch series adds support for the TI/National Semiconductor LP5812
+> > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
+> > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
+> >
+> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > ---
+> > Changes in v8:
+> > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+> > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+> > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
+> >   and update the title and $id to match new path.
+> > - No functional changes to the binding itself (keep Reviewed-by).
+> > - Update commit messages and patch titles to reflect the move.
+> > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+> 
+> Out of sudden without discussing with auxdisplay maintainers/reviewers?
+> Thanks, no.
+> Please, put into the cover letter the meaningful summary of what's
+> going on and why this becomes an auxdisplay issue. Brief review of the
+> bindings sounds more likely like LEDS or PWM subsystems.
 
-I don't want to merge this very soon given that 895fe4537cc8 isn't that
-old yet. But I suggest you adapt patch #1 to require #pwm-cells =3D <3>
-for the newly added compatible.
+Apologies for moving the driver to auxdisplay without prior discussion with you
+and the other auxdisplay maintainers.
 
-Best regards
-Uwe
+The decision to move it was based on advice from Lee Jones (LED subsystem co-maintainer).
+He reviewed the v7 series while it was still under drivers/leds/, and explicitly recommended
+that I move it to drivers/auxdisplay/.
+Reference: https://lore.kernel.org/linux-leds/20250425101112.GB1567507@google.com/
 
---7d2sgdyj5xap5wjq
-Content-Type: application/pgp-signature; name="signature.asc"
+Here’s a brief summary of why LP5812 fits better in auxdisplay than in LEDS or PWM subsystems:
+- 4 outputs drive 12 LEDs (4 RGB) using time-cross-multiplexing (TCM).
+- An autonomous animation engine creates complex visual effects without CPU intervention.
+- Supports analog current control, PWM dimming up to 24kHz, de-ghosting, and phase shifting,
+  all targeting dynamic visual outputs rather than static LED states.
 
------BEGIN PGP SIGNATURE-----
+I will prepare a v9 with an updated cover letter summarizing this background.
+I am also happy to make further adjustments based on your and other auxdisplay maintainers’ guidance.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgPraMACgkQj4D7WH0S
-/k4dZgf/b8mf9YA0V9HfCWmvx/ccVO/gZNXUxBOUpcUeheEOR03RQ7Ha/Iixpel2
-Jn1AqkzVcS60PqfpZvSgsUPaJrkRJuWnL6nFV1Pi0U8Kal89jC1sxcUTE84I5yon
-hzWokjzGoXi6BPxWGVdKpNkrDF4qn3HXEDDyOX7hAb0kuSsdxFC6owK+MMNoKAGm
-ptA44qdpUR9A7Qko2TB97gaMIqtPGE9qxHvsaCTyi3lMtkoKIGbue3mWqM86nBeQ
-uScZ5heYBT8ix1p1z3nQpKG9XuhPltKPEsMEvUMIMN/F1M0rC1COcD5jl2wwvbBm
-B7MeqakfcpoT/I5Vv5a8ttdORNz/TQ==
-=x5Qe
------END PGP SIGNATURE-----
+Thanks for reviewing and helping me through the submission process.
 
---7d2sgdyj5xap5wjq--
+Best regards,
+Nam Tran
 
