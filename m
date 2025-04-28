@@ -1,138 +1,105 @@
-Return-Path: <devicetree+bounces-171582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C22A9F13F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:45:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 631B2A9F141
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5000517E44B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CD7F1649CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D5C226A0A6;
-	Mon, 28 Apr 2025 12:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CBF199EAD;
+	Mon, 28 Apr 2025 12:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rVu+aJxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76ADF266B67;
-	Mon, 28 Apr 2025 12:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837D1F9D9;
+	Mon, 28 Apr 2025 12:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745844291; cv=none; b=svVmoj4izGUr+sQ0CxUz0yIhx0qFXGOn/ktpzOM9WxQwaIb6VMEgUEbCqw/klfKcbXrUMDS4msrOjENlWSqNHpQvllZzbLTGHz1zb8YfRAMxuMKZq0i0q2Ve4vnwKnZR6t2OtS8gYEttoIdLZpN1uWHHlxz5ZS/qKmMaVZBzTqw=
+	t=1745844373; cv=none; b=nUdevUBT4Qi0hrZqOk2oCvd6PB1aZ6CKtmEHYWu1yorxKLk37Be+nHg4t3/HlicpI+GbU25sLVEqYVT3iDPMiMHsX7/NC8zTd5JUj5gqAeXkApy/A2KU6Y1V78TqRdZQKOn2t0zHwPrdqzBkafxiAovg9khTPKzUI46eJMDQmpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745844291; c=relaxed/simple;
-	bh=69u4x2iVX3CML3z65mNSFOpfvvJMY1UtVIYXajlF58c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BSinGpThjptCgUMGjc9VGvf2q3u/HgMHfY6kkTXIQbnX7GtN7qwcxCQpeh71bT2rGqsIDnJRMFnqAGFw9C/h8Ce8PHkIr4MxpZhzGMWKVyFfiynVWkMP5Pe35pvtWTfBo3jrUM1OB5KWsK7ugbogz9dB6btQmdp1ISFYAFzXQaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4285E1516;
-	Mon, 28 Apr 2025 05:44:41 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B9463F66E;
-	Mon, 28 Apr 2025 05:44:45 -0700 (PDT)
-Date: Mon, 28 Apr 2025 13:44:35 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Yixun Lan <dlan@gentoo.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Corentin Labbe <clabbe.montjoie@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <netdev@vger.kernel.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: sram: sunxi-sram: Add A523
- compatible
-Message-ID: <20250428134435.76e19d29@donnerap.manchester.arm.com>
-In-Reply-To: <20250428122156-GYA56330@gentoo>
-References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
-	<20250424-01-sun55i-emac0-v2-1-833f04d23e1d@gentoo.org>
-	<20250428-vegan-stoic-flamingo-1d1a2a@kuoka>
-	<20250428122156-GYA56330@gentoo>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1745844373; c=relaxed/simple;
+	bh=yWj3z5sDeIA3NI9OQ0I6m+gxkb7W090nH26iof3ThUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvEjs0bYXMuZGzrCaJ2ym/ei6ADr560SdIyge37X4LWMt6dheEefAjC/Ki/LjsE5iX/U5xLPxKEEXUCTs8LzriarATB1sz0dDPDBjbyNV00T0YdkCM0yWs/ZYya2N5ySv4ZCupPkEsSE4Mrf52LUbsqes9t+AvzhXyFQfv83E1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=rVu+aJxM; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=M8HFfAjikHg///ljRi+LTR+AKhrdVRjDdpitnpTBu/M=; b=rVu+aJxMy3TeYosH2Nev8ql1Ry
+	76SzVzr+BlV+154A+GFXvAu87sxcC3PZ0IaLykHvK5rXFdMNP57p3yYBJhFtpa/55HmxKeVolCjwt
+	wNc2ZGRYLV5UZRjqzIKAZjf4EOzyXDFV+U4S5TQCb5kCLuOkcqMXt6lpnjfbiQWzAB2g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u9Nrn-00ApwX-Uy; Mon, 28 Apr 2025 14:45:47 +0200
+Date: Mon, 28 Apr 2025 14:45:47 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
+Message-ID: <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
+References: <20250427094211.246-1-kernel@airkyi.com>
+ <20250427094211.246-3-kernel@airkyi.com>
+ <6291f6b8-75d3-4243-9935-9b64450e2b7f@lunn.ch>
+ <c583c59a-d5b7-4e20-9a1f-96f51bd7b4f3@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c583c59a-d5b7-4e20-9a1f-96f51bd7b4f3@rock-chips.com>
 
-On Mon, 28 Apr 2025 12:21:56 +0000
-Yixun Lan <dlan@gentoo.org> wrote:
+On Mon, Apr 28, 2025 at 09:47:34AM +0800, Chaoyi Chen wrote:
+> Hi Andrew,
+> 
+> On 2025/4/28 4:42, Andrew Lunn wrote:
+> > > +&gmac {
+> > > +	assigned-clocks = <&cru SCLK_RMII_SRC>;
+> > > +	assigned-clock-parents = <&clkin_gmac>;
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&rgmii_pins>;
+> > > +	clock_in_out = "input";
+> > > +	phy-supply = <&vcc_phy>;
+> > > +	phy-mode = "rgmii";
+> > Does the PCB have extra long clock lines to implement the RGMII 2ns
+> > delay?
+> The 2ns delay of RGMII is implemented inside the RK3399 chip instead of PCB
+> lines, and there are also additional delayline configurations.
 
-> Hi Krzysztof,
->=20
-> On 09:21 Mon 28 Apr     , Krzysztof Kozlowski wrote:
-> > On Thu, Apr 24, 2025 at 06:08:39PM GMT, Yixun Lan wrote: =20
-> > > The Allwinner A523 family of SoCs have their "system control" registe=
-rs
-> > > compatible to the A64 SoC, so add the new SoC specific compatible str=
-ing.
-> > >=20
-> > > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > ---
-> > >  .../devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml=
-     | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a=
-10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,s=
-un4i-a10-system-control.yaml
-> > > index a7236f7db4ec34d44c4e2268f76281ef8ed83189..e7f7cf72719ea884d48ff=
-f69620467ff2834913b 100644
-> > > --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-syst=
-em-control.yaml
-> > > +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-syst=
-em-control.yaml
-> > > @@ -50,6 +50,7 @@ properties:
-> > >            - enum:
-> > >                - allwinner,sun50i-a100-system-control
-> > >                - allwinner,sun50i-h6-system-control
-> > > +              - allwinner,sun55i-a523-system-control
-> > >            - const: allwinner,sun50i-a64-system-control =20
-> >=20
-> > No update for the children (sram)?
-> >  =20
-> No, I don't think there is sub node for sram
-> From address map of A527, there is total 4KB size space of
-> this section which unlikely has sram available.
+If the PCB does not implement the delay, rgmii is wrong.
 
-That's something else, though. This system controller here *also* contains
-a register to switch access to SRAM blocks between the CPU and the devices.
-The actual SRAM blocks are somewhere else (hence the empty ranges;
-property), check the H616 for instance:
-	syscon: syscon@3000000 {
-		compatible =3D "allwinner,sun50i-h616-system-control";
-		reg =3D <0x03000000 0x1000>;
-		#address-cells =3D <1>;
-		#size-cells =3D <1>;
-		ranges;
+If the MAC/PHY pair is implementing the delay, you need to use
+rgmii-id. You can then use additional properties to fine tune the
+delay the MAC/PHY is adding. And the Linux preference is that the PHY
+adds the delay.
 
-		sram_c: sram@28000 {
-			compatible =3D "mmio-sram";
-			reg =3D <0x00028000 0x30000>;
-
-Krzysztof, we haven't worked out the SRAM regions yet, we typically add
-them only when we need them. I think the display engine is a prominent
-user, and support for that is quite a bit out at the moment.
-
-=46rom a compatibility standpoint it should be fine to leave this empty for
-now, if I am not mistaken?
-
-Cheers,
-Andre
-
-> but I do see some BROM/SRAM space from 0x0000 0000 - 0x0006 3FFF ..
-> (which should not be relavant to this patch series..)
->=20
-
+	Andrew
 
