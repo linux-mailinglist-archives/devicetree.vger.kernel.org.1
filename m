@@ -1,88 +1,109 @@
-Return-Path: <devicetree+bounces-171611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE71FA9F517
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:02:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF4FA9F51E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35EDC1892291
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:02:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 717753AB474
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E05B27934D;
-	Mon, 28 Apr 2025 16:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A671C2797A3;
+	Mon, 28 Apr 2025 16:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lak2ghek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AM9L7fZu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D3D2309A3;
-	Mon, 28 Apr 2025 16:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A36427A10D;
+	Mon, 28 Apr 2025 16:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745856150; cv=none; b=JOkdu0bxDIL1AXQ4ZoWjKAiKdQ4RC5H/eNY61R6n6h68PIsPQZPfvLIcS58i7yRTLnetUZGnUZpd8S/OJLuzGfqhgocNmjz8fN70AE0otcU1KH55x3QZZFApddkAj9t9kK+AJr9R2uaolHbpotiIenGlXf7aYyEj1gpnCcEsPsc=
+	t=1745856298; cv=none; b=pbJWuU6DsLdqJOh4BTVtj+Ujwv/MP8xIbAjzD+5xEyq0jxhRnaLwlWCGzUJeOX2Cpr4pSamcrqHoDs+w+5JWpSC/Jd2pJ5vSjYqvRDWqO8pd+ebVOeAz0YJ0MUHydz21rP987q5RwlbaPgHOwwUFCLf78Pg4SNAt5KZOfF1tbSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745856150; c=relaxed/simple;
-	bh=+F0aVRE/fg2cXsJEag0GSt3k1+oaEiHh7xyT0ADeQLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoMYuUKx5CWarWz9kh2SU5oLHwK6ZBmE9rdfvvfpc+CMl8uy+cjeCgonivA2SqnSXVNs6Ohtq3e8cyfy0xSlmQGnQwWd9QqikggJ3LR3iOSwBnhorS8Ih2P5aqbpIZcF9p+RPpYWuWyKl+LYR8/w3paxdqJoTld62A6lsLoMtLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lak2ghek; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DE4BC4CEE4;
-	Mon, 28 Apr 2025 16:02:29 +0000 (UTC)
+	s=arc-20240116; t=1745856298; c=relaxed/simple;
+	bh=7XLdbWmNFskoiToXzoYEkGfsOw/zohiTcP2XkykS74o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F/XluMpxL8UfHcKmc6z7pAbxrFX2wUbDhfS1nb8rH11yTCPLjZmrYZthO4rEhR7OGe7MN9+1PBDknVpyI1ihCrCYfsJJoKeoBBA6GxpNHEKDWPyCEeL8A4KZJcM+w5MNOwQtJAZf/hOu1xdQCy94iqtUpWIp+qPhQhs4appZvkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AM9L7fZu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9735C4CEF0;
+	Mon, 28 Apr 2025 16:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745856149;
-	bh=+F0aVRE/fg2cXsJEag0GSt3k1+oaEiHh7xyT0ADeQLk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lak2ghekf9IwpvNw+4iqdf4xfsEY5Nf4Us9kuj/97WrdrGRHp0J3qTNy3euMa9p+y
-	 LJV5omJuB8I35eAT0FHrnfyhcFsn7xk+qoZg1b4ccWIErsCZVbN7B8A8iGPM5llymD
-	 RH9GzhZgZAA8fG1hHedgK37evt0yOKKD3GlK/44uU13bPO019zjAEgxwYbKc4Qr5pO
-	 4Gbx4cP9YQEKq352qKATJjERjf58sW7HSCCGzQ8E9wYxeCfiLrkTNGsule4ZJva9qS
-	 +hXyDH79pbBgjP6nFRrEHsA7mXYwEABGEu2HofPHuSifXHKUnRvB1/vIKytbr6Yp0C
-	 FAtQlXV61XXsQ==
-Date: Mon, 28 Apr 2025 11:02:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Joerg Roedel <joro@8bytes.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	yong.wu@mediatek.com, will@kernel.org, robin.murphy@arm.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 0/2] MediaTek Dimensity 1200 - Add IOMMU support
-Message-ID: <20250428160227.GA1322286-robh@kernel.org>
-References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
- <aAETI0hrOiQZDKh2@8bytes.org>
+	s=k20201202; t=1745856297;
+	bh=7XLdbWmNFskoiToXzoYEkGfsOw/zohiTcP2XkykS74o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AM9L7fZuEJv8GJopbMAaCLzul2dtTfFJkqqJ7BqfmbmCyAf10FdcxcWA/Ng3eUspe
+	 UKicT9AHwF0xcV/7M0JEceXTD6wy5YgRoC81Xvjy79aPqtv7WHhmosG1kwNnZj+PLQ
+	 2VPm3GAdNQ/sMv5301JJTyBVGb6HJCDTMgEfBTGBNwTEG1novG/AMwvccQDP+V02UL
+	 6M2s58ruhrpoQeJ4Es/bu5G7f3ZtgwS+SGoA+tcjE4DAcR3OLIp/2evQhbeM4E5aT3
+	 EWlDsmGGqb/fAJ8ea7L7+HLZKI31nwe0JS5bb6+xZWMHe17K24pRXJPO1j7sRq1rPL
+	 i00uL7SUG/KTQ==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e5bc066283so8983691a12.0;
+        Mon, 28 Apr 2025 09:04:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUsnP7slHNVTFKvJy5gz5KZcmtKqRLJh0CmR5sQG3KuIY2hOmjlmKoUooHaX7TRqNUhJGUX0Ktg6rCu@vger.kernel.org, AJvYcCXmh/IPLedbrGoHogkt6TJcHT2Wa8fKIMKjbgBazhzQ7zKsYJJFnabqgAxKmgLGjTs8hPPOLGwiYebieGNy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWfw195bVtsThb/7LTgCPDmJc5+e6A+viwf/9Y0DB2LnfDrE3A
+	3izWbB9ihTCm5AWoGvMOYjmJLkFuhD64gPCrOzcoIIFV1rwWsgbSpE8BMJEUfQ3IQCZPyu61AXQ
+	cgWpuNXFaRKUhvHblaZjWOGv42A==
+X-Google-Smtp-Source: AGHT+IHqyjiiOUZc7O0PTXr4PU21+O3T0XNzhaZ1i8yWNd5TokGg/Wq4TNREu/IzrAIDEiBQ7J/8fcTB66uLEb2Z3jg=
+X-Received: by 2002:a05:6402:40c6:b0:5dc:7643:4f3d with SMTP id
+ 4fb4d7f45d1cf-5f83809e106mr113428a12.1.1745856296286; Mon, 28 Apr 2025
+ 09:04:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aAETI0hrOiQZDKh2@8bytes.org>
+References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
+ <aAETI0hrOiQZDKh2@8bytes.org> <20250428160227.GA1322286-robh@kernel.org>
+In-Reply-To: <20250428160227.GA1322286-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 28 Apr 2025 11:04:44 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+pE2c3GzdrgRO97Ee=ajOVAMzNtqyujD3PXyNE6Ad9vA@mail.gmail.com>
+X-Gm-Features: ATxdqUHw7IfXnRL7JJPy7HyVs4hLK90IaG__j7ETIyndbfex7BJvjd7AGV1APf0
+Message-ID: <CAL_Jsq+pE2c3GzdrgRO97Ee=ajOVAMzNtqyujD3PXyNE6Ad9vA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] MediaTek Dimensity 1200 - Add IOMMU support
+To: Joerg Roedel <joro@8bytes.org>, yong.wu@mediatek.com
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, will@kernel.org, 
+	robin.murphy@arm.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, iommu@lists.linux.dev, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 17, 2025 at 04:41:39PM +0200, Joerg Roedel wrote:
-> On Thu, Apr 10, 2025 at 04:40:06PM +0200, AngeloGioacchino Del Regno wrote:
-> > In preparation for adding basic support for the OnePlus Nord 2 5G
-> > DN2103 smartphone, this series adds support for the IOMMU found in
-> > the MediaTek Dimensity 1200 (MT6893) SoC.
-> > 
-> > AngeloGioacchino Del Regno (2):
-> >   dt-bindings: iommu: mediatek: Add binding for MT6893 MM IOMMU
-> >   iommu/mediatek: Add support for Dimensity 1200 MT6893 MM IOMMU
-> > 
-> >  .../bindings/iommu/mediatek,iommu.yaml        |   4 +
-> >  drivers/iommu/mtk_iommu.c                     |  37 ++-
-> >  .../memory/mediatek,mt6893-memory-port.h      | 288 ++++++++++++++++++
-> >  3 files changed, 318 insertions(+), 11 deletions(-)
-> >  create mode 100644 include/dt-bindings/memory/mediatek,mt6893-memory-port.h
-> 
-> Applied, thanks.
+On Mon, Apr 28, 2025 at 11:02=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Thu, Apr 17, 2025 at 04:41:39PM +0200, Joerg Roedel wrote:
+> > On Thu, Apr 10, 2025 at 04:40:06PM +0200, AngeloGioacchino Del Regno wr=
+ote:
+> > > In preparation for adding basic support for the OnePlus Nord 2 5G
+> > > DN2103 smartphone, this series adds support for the IOMMU found in
+> > > the MediaTek Dimensity 1200 (MT6893) SoC.
+> > >
+> > > AngeloGioacchino Del Regno (2):
+> > >   dt-bindings: iommu: mediatek: Add binding for MT6893 MM IOMMU
+> > >   iommu/mediatek: Add support for Dimensity 1200 MT6893 MM IOMMU
+> > >
+> > >  .../bindings/iommu/mediatek,iommu.yaml        |   4 +
+> > >  drivers/iommu/mtk_iommu.c                     |  37 ++-
+> > >  .../memory/mediatek,mt6893-memory-port.h      | 288 ++++++++++++++++=
+++
+> > >  3 files changed, 318 insertions(+), 11 deletions(-)
+> > >  create mode 100644 include/dt-bindings/memory/mediatek,mt6893-memory=
+-port.h
+> >
+> > Applied, thanks.
+>
+> It looks like you missed the binding change for this.
 
-It looks like you missed the binding change for this.
+Actually, upon closer look, the driver's compatible string has a typo.
+The period should be a comma.
 
 Rob
 
