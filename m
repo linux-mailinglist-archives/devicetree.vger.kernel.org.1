@@ -1,560 +1,226 @@
-Return-Path: <devicetree+bounces-171354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACFD9A9E883
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:47:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 741A2A9E88E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 100E31895DFE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:47:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08A3D3B1378
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99D91B3937;
-	Mon, 28 Apr 2025 06:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6453A1D432D;
+	Mon, 28 Apr 2025 06:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iBbqvPC2";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="JC046UbU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nkz8lfxH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F01155393;
-	Mon, 28 Apr 2025 06:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C7E1CAA7B;
+	Mon, 28 Apr 2025 06:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745822849; cv=none; b=B5uJ9ZeqzyIUeQ1Pg8Wp2d8tFpwcTXjLouRu3+VuGYJWfNn0GKPyHnhEGDE/VLPs0gsn100pG5FS/MhQQrL9xvl1ARHRgMmP3YKlrwSZtAqxo4DGFrc6KkR2ANK3tKtcto8bbWUAzIC+oh213Jtg2BUlMJX8ky7586Bg0YaKDtk=
+	t=1745823084; cv=none; b=sagyGtXYR3hSRgJoILoqo7BhuCo1AE9ldI9oAiTJcrc9NCGjCPj8ZvH4VciYeKyvKhtHtn5mKi8T7JlifLoduxcjtkZjetCNMyida+CGAJndwQk6SdUTHqlrWss2fC0Nc12aaszLa595iTB3S7/o3WZflcTawQk55coTtxKyouA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745822849; c=relaxed/simple;
-	bh=0vr5UdvwTOTZ2qO3du3ovx0jK05QZ/mcpt4XGuFmKho=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kY8gD0b/StViaAGTklVc2WxoOzdz7kVJhCVZQW5Yj6b76/l/bQDI+tJFLkU/rU39lW/pSC1oK+WynBbQf8/nbQ70qRXVDPAa40cnTdCLMljrzp8/Blv5/yVgEnmMyYtHLSNXpfgJY6jolc6Uqw98uEzC1BCWiLBhk6veOfDWZAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iBbqvPC2; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=JC046UbU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1745823084; c=relaxed/simple;
+	bh=0Pld1a2MzJofAsOTCHr+Q+IIwwPYL7BMWNwta9Ubkk0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=W5dpHuZ5t2jg6frhYfipthbDuOKRfAAvVtR5EtXnptAwRP8Ttpa+DuPQOKpQq1SoYNA+u5KMbUQfydAoyofimfDDB7KyAYvgJHgKuewTgaz3ELZLj4NpWSRZFfl+PTzX9rC6TznCjcoiZ2J0qOi2XSC+XHOpKzWiNQ9RTBYlx54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkz8lfxH; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e6c18e2c7dso8358760a12.3;
+        Sun, 27 Apr 2025 23:51:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1745822846; x=1777358846;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ZBqDGBVBCVpYBwr8tietgtO1LqWCCwzvJbm38qxhowI=;
-  b=iBbqvPC2AxrsqkDfi3saa7vNxHkMlrwqa2lBwuIBhnrr+Dt/vjBNSM6e
-   dGPXZSFtvYvkChViruCLnyZxKws0lt+Ch+TCzXNWizB+sdTI7dqgVz5wf
-   SSsz4k5/PBMXroHGpAP1nV26saW34ugkoKA24z4OOKmWMo6gZHVnyT6q3
-   o58qW3XxsqO+g7yVMKyP7zPXDbrR89dluMZOcA1zJ7W8+1YIFBWwdL+2H
-   G8vcXig/PmgKalmsSlBUwPq9ayo/cfoTWpho3NE2ed6v0Gx3TEPi2Ka/C
-   uE6Z8+EoDDfu2GUGLXkWfpLuBgO8x/ES86FPjV38N0j/DbYgdNseeFHFF
-   g==;
-X-CSE-ConnectionGUID: WZV5xmnNQGadjtch4F1GWQ==
-X-CSE-MsgGUID: EWyDwkvrRUWwOAHjK73GNQ==
-X-IronPort-AV: E=Sophos;i="6.15,245,1739833200"; 
-   d="scan'208";a="43745407"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 28 Apr 2025 08:47:22 +0200
-X-CheckPoint: {680F247A-5C-B1D34AC3-DEA5B19F}
-X-MAIL-CPID: 98C439B8310E7532A3EDBD785AE80060_4
-X-Control-Analysis: str=0001.0A006368.680F248A.0051,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3DBB0165489;
-	Mon, 28 Apr 2025 08:47:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1745822838;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZBqDGBVBCVpYBwr8tietgtO1LqWCCwzvJbm38qxhowI=;
-	b=JC046UbUKuj61k1XOnaBegDZuEbYJ+Kj1uws3Kf7YV6sh6Mss5xS+GqTLxDTI4paUPBQyA
-	GZo8GQQ3XhkA0u7UsNKgI2NIc/sHY5zmUOUT60m7llOx2KobpfEdDeAWUA2ryZDBRSez0V
-	N6yRm5SYl2U1uhR+Ka0T4ra7ukAbDdiSc+iV9PAzk+Rh5a7F+lZxGm+QKesdm5vRoEgk7o
-	OCyRMviM/RbjxpsIEjLJtMNF4nNIrA9UP4XG9UzFsmbCR1Ie1KrJiCSOVrvSBkpJ+WVZNa
-	fRfLm8WnVpM5EpA6I0ih9qB2OF2LagziCukImrMlL7dGwYp9D4i0ptUAnXhJgA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH 3/6] arm64: dts: imx8mm: Move Ethernet aliases out of SoC DTSI
-Date: Mon, 28 Apr 2025 08:47:17 +0200
-Message-ID: <5951912.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250425-dts-imx-aliases-ethernet-v1-3-15b9d5cca611@linaro.org>
-References:
- <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
- <20250425-dts-imx-aliases-ethernet-v1-3-15b9d5cca611@linaro.org>
+        d=gmail.com; s=20230601; t=1745823081; x=1746427881; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hi43n4IcBdhVLvOaOx+3iA/0eX/Szd+TDDCfcl8t5Wg=;
+        b=nkz8lfxHJ6Ye+bWRMx87WwCsglQh0muZzSXnTQ6fS+ID5tiK+b/anRxurYkzLwr43d
+         YoV291U/brDQQ4rZZTJb26t+JCL8is1nVo6AxKyGoq74CddxyCaP4SPh/138j///Ax19
+         44ybWR6FIQmLqLbRj3b55H2ipOW8oB1ESvifjgVyRsqyiwz6qUxPVwZYa7FhkKiGEvFL
+         iWkbJpN8yqWDplga+K5xHaMgMSRV2ctmD6vso03OI0OG1HFInM/GMlpA/g5RfRKB5/xx
+         tKW1It7/OZdsvRra02f4cw6XvZUQilm8Jsi7WIrd0/Itsb7YruVaaLBN8FvqVkJQGbd7
+         c07w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745823081; x=1746427881;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hi43n4IcBdhVLvOaOx+3iA/0eX/Szd+TDDCfcl8t5Wg=;
+        b=S8foysDNOdegJXUEmDOtllQHfcYGbtyK2HKrvtf9aDA2vcG3MsItL/k/Kj81joDEUM
+         idBKmodalGMT2954vLMQDssC7Mx//9h2JhXoVCOb0kjBCnNGuuPwxJptL2D6HLqrMfSS
+         WBiRY1mvdrCr5nO6q3imYMf3pBdplupbXVtr4CTyHOYBuFkX1OIn7w2O+pvlrsGfk+0f
+         pYMQKGF6PtaEFpyK2mbaB7JJDbuj7V6UTVzN6FDnybXeiFBXfmqeZ3t7/D48qczKk4Cy
+         Wt3k5uMR8/dc0TSHzjD/y+jNv7Eb+xFJRtqzL/ca9RVPJ5Ll42r1euqjGzWDFAiC2Pks
+         7/zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhJWwJg4qqDSmKC462cK2jTW/5Tm9m4z8uk0mUMLNJBQ0afcbstFG115WqVd15RvGPOOLLIqGG8Ctd@vger.kernel.org, AJvYcCV2soyz6M5BJbZ9u6I9P4R8763S8kO0nD87QQ/1zT9cwGMHBbTk6iLS+5B8FdNrGkk06V9H8fPBSeOIuQ==@vger.kernel.org, AJvYcCXEXZQNNl1L+hbW4n/NX1Pkcr+jijliYU7QCKB8JQ5CwSdtBIEuw/ZdSIoHka6ze9m4tuW/LxcFUF4tLrF7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQoLMJCJCBtRBfMkglT0tvyZiSkvdtcGx3SLmnmnnUogx3L7MU
+	APP+wxWuEywQacJmIlq/NyJHY/Px43yFvrJBCAG781ZvnrqW7yC08CJdz/47I+IkuBJP8LH/1Qx
+	lYyiKPEOA5eMxxqBPj3goqV82U7A=
+X-Gm-Gg: ASbGncvh8J6RXSRiqJKQduqcgHfdY0jKrGivPbhGAvmroxv34WdGDSdsDEnDbTJsKjG
+	jdb77vrUtam44QGra8eMtJz1IYvanef4+c2jLPo6KjaqyunOIKcAjBLWvJcfhEtuSuqNKT1u3J0
+	PYXsEaTsC5yoPoAxEc1aJztujy
+X-Google-Smtp-Source: AGHT+IEkASV0hxNvYb5ls5XU6N8PiOuOxkodobZeYhl/S2nbHHdlz3AJ68sH/k9QmanKndXp09dW/wEfCx6omY9vxHE=
+X-Received: by 2002:a17:907:f509:b0:aca:c532:cf07 with SMTP id
+ a640c23a62f3a-ace711655e5mr928400766b.35.1745823080557; Sun, 27 Apr 2025
+ 23:51:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <cover.1745605382.git.Jonathan.Santos@analog.com> <2a8a327e589703ee53dbfb5190d20680ac3b350f.1745605382.git.Jonathan.Santos@analog.com>
+In-Reply-To: <2a8a327e589703ee53dbfb5190d20680ac3b350f.1745605382.git.Jonathan.Santos@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 28 Apr 2025 09:50:43 +0300
+X-Gm-Features: ATxdqUEBba2M8zExxClBxVqYkvVQ1NpU-dNtSsRR8YiWUveJwNaf_wH1l9SpSQA
+Message-ID: <CAHp75VdbD4HTonEZT8O-3bsqQ70_XRnZd7vS7gdyrG2gKYBHPA@mail.gmail.com>
+Subject: Re: [PATCH v6 06/11] iio: adc: ad7768-1: Add GPIO controller support
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, andy@kernel.org, nuno.sa@analog.com, 
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
+	lgirdwood@gmail.com, broonie@kernel.org, jonath4nns@gmail.com, 
+	dlechner@baylibre.com, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Am Freitag, 25. April 2025, 21:48:26 CEST schrieb Krzysztof Kozlowski:
-> Ethernet interface, like other exposed interfaces, aliases depend on
-> actual board configuration, e.g. its labeling, thus aliases should be
-> defined per each board or each SoM.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Apr 28, 2025 at 3:13=E2=80=AFAM Jonathan Santos
+<Jonathan.Santos@analog.com> wrote:
+>
+> The AD7768-1 has the ability to control other local hardware (such as gai=
+n
+> stages),to power down other blocks in the signal chain, or read local
+> status signals over the SPI interface.
+>
+> Add direct mode conditional locks in the gpio callbacks to prevent regist=
+er
+> access when the device is in buffered mode.
+>
+> This change exports the AD7768-1's four gpios and makes them accessible
+> at an upper layer.
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com> #MBa8Mx
+...
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi          | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts   | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi               | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts      | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                 | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts  | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts    | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts     | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts           | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts             | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts          | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-phg.dts                  | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi         | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-ucm-som.dtsi             | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi             | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi       | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts        | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts        | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi       | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi          | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi          | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi       | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi        | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi                     | 1 -
->  arch/arm64/boot/dts/freescale/mba8mx.dtsi                     | 4 ++++
->  26 files changed, 70 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/=
-arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> index 62ed64663f49521a9c14927886018058e489c914..ffe1d18c5b626253323e45aa1=
-ba2c27e3742ef1e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> @@ -7,6 +7,7 @@
-> =20
->  / {
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &rtc;
->  		rtc1 =3D &snvs_rtc;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts =
-b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts
-> index 472c584fb3bd294dce18341ce1afc277be1c3825..5dd685ffc9825329f739cda32=
-274cb223e88bf15 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts
-> @@ -14,6 +14,7 @@ / {
->  	compatible =3D "dmo,imx8mm-data-modul-edm-sbc", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &rtc;
->  		rtc1 =3D &snvs_rtc;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi b/arch/arm64=
-/boot/dts/freescale/imx8mm-emcon.dtsi
-> index af7dc8d1f5f10d5e2eac677af60c7926e95fdac6..ffee784539ffd0e8cdcdfeb97=
-bac817e4c128fba 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-> @@ -9,6 +9,10 @@
->  #include "imx8mm.dtsi"
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart1;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts b/a=
-rch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> index 90e638b8e92a95214d8c3c719dd2a6db2630ebac..a98316b7dc443cf9bbf7c45ec=
-8d1d8b3847ddd70 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> @@ -15,6 +15,10 @@ / {
->  	compatible =3D "ees,imx8mm-emtop-baseboard", "ees,imx8mm-emtop-som",
->  		"fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	connector {
->  		compatible =3D "usb-c-connector";
->  		label =3D "USB-C";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/b=
-oot/dts/freescale/imx8mm-evk.dtsi
-> index 5f8336217bb88b1d0501e6208c936c51ce23b312..48a76f656fd4302218a430beb=
-c08afb0bc3d09b7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -10,6 +10,10 @@
->  #include "imx8mm.dtsi"
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart2;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts=
- b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts
-> index 502745402847ea16ea0e53415a9063c6ba9dbffa..5c340bb01a7afc342650f7ea6=
-52e281cf0906a2e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts
-> @@ -14,6 +14,10 @@ / {
->  	compatible =3D "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
->  		     "fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart2;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dt=
-s b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-> index ddac8bc7ae65159314c2f8a9d41eafb51ae4f863..9f70bafcaa4bedcb71d8c4671=
-46c92535b23c149 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-> @@ -14,6 +14,10 @@ / {
->  	compatible =3D "engicam,icore-mx8mm-edimm2.2", "engicam,icore-mx8mm",
->  		     "fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart2;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts b=
-/arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
-> index 055faae79930cbdc347f849cfae7ef3b24746b12..e7af6ea80ebc886df82281ae3=
-912b17dbbcb5dbc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
-> @@ -12,6 +12,10 @@ / {
->  	model =3D "InnoComm WB15-EVK";
->  	compatible =3D "innocomm,wb15-evk", "fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart2;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts b/=
-arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> index 33f8d7d1970e0b165c159a788fa0a96cbefb0d82..23fc653a3a45474b2fa1df620=
-fe0f568a8a6fca1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> @@ -12,6 +12,7 @@ / {
->  	compatible =3D "kontron,imx8mm-bl-osm-s", "kontron,imx8mm-osm-s", "fsl,=
-imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		ethernet1 =3D &usbnet;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts b/arch/a=
-rm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> index d16490d876874b7bfc9066efdd724bbb52f518b7..5d6a09322f2750b8b1c6dc93b=
-995dac7cabe35a2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> @@ -12,6 +12,7 @@ / {
->  	compatible =3D "kontron,imx8mm-bl", "kontron,imx8mm-sl", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		ethernet1 =3D &usbnet;
->  		rtc0 =3D &rx8900;
->  		rtc1 =3D &snvs_rtc;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts b/arch/arm=
-64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> index 0b123a84018b2978291ccff845332d55022c7c75..ba5f85454d1c78c635363f13f=
-508f363a4aa53aa 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> @@ -14,6 +14,10 @@ / {
->  		     "toradex,verdin-imx8mm",
->  		     "fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	/delete-node/ gpio-keys;
-> =20
->  	leds {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts b/arch/=
-arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> index 12fb79d20b29e21c1984a7077c61803875523c7e..21649620aac4cd32eeae08758=
-cd80eb8be1db2f8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> @@ -10,6 +10,10 @@ / {
->  	model =3D "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
->  	compatible =3D "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	reg_vref_1v8: regulator-vref-1v8 {
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vref-1v8";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phg.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8mm-phg.dts
-> index a134b183364961afdaca057655dff6a7e248e51f..c3a7435201d9c0f8c5469c133=
-9e3a39ac81e4ffe 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-phg.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phg.dts
-> @@ -12,6 +12,7 @@ / {
->  	compatible =3D "cloos,imx8mm-phg", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		mmc0 =3D &usdhc3;
->  		mmc1 =3D &usdhc2;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi b/arch=
-/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-> index 672baba4c8d0527f2de002d49aa96d30a6ae2373..db8a8022e86d0671296b202b1=
-25446e7856581bc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-> @@ -12,6 +12,7 @@ / {
->  	compatible =3D "phytec,imx8mm-phycore-som", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &rv3028;
->  		rtc1 =3D &snvs_rtc;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-ucm-som.dtsi b/arch/arm=
-64/boot/dts/freescale/imx8mm-ucm-som.dtsi
-> index d3b21203c5f49e9bb697c602d49e3f8ac9c9f603..18f4b30d7e41e8e7ecabc4c0b=
-9fede0ec6376d7a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-ucm-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-ucm-som.dtsi
-> @@ -9,6 +9,7 @@
-> =20
->  / {
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &rtc_i2c;
->  		rtc1 =3D &snvs_rtc;
->  		mmc0 =3D &usdhc3;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm=
-64/boot/dts/freescale/imx8mm-var-som.dtsi
-> index cdfacbc35db57b654f7b965a513cf04cb4a697b9..9d207dc75cf9322c68e5c7032=
-fe5cab58f0f2ad9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-> @@ -9,6 +9,10 @@
->  / {
->  	model =3D "Variscite VAR-SOM-MX8MM module";
-> =20
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D &uart4;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> index 5a3b1142ddf4b7d31db2e6e2723e86cc089a96db..1d03e9a32da2d5ec40a751d10=
-cfefae4eefd71e7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> @@ -10,6 +10,7 @@
-> =20
->  / {
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &gsc_rtc;
->  		rtc1 =3D &snvs_rtc;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> index 46d1ee0a4ee86b025d94453460770e08b5dd8d32..1f7cc6310d61c98523f0fda92=
-dc1cd060a26c2a2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> @@ -18,6 +18,7 @@ / {
->  	compatible =3D "gw,imx8mm-gw7902", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		ethernet1 =3D &eth1;
->  		rtc0 =3D &gsc_rtc;
->  		rtc1 =3D &snvs_rtc;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-> index 86a610de84fe2348554354f838e1d824a24a4322..b1f83f84e7e11446fcfefdc1c=
-7f20a5fdf3e3338 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-> @@ -17,6 +17,7 @@ / {
->  	compatible =3D "gateworks,imx8mm-gw7904", "fsl,imx8mm";
-> =20
->  	aliases {
-> +		ethernet0 =3D &fec1;
->  		rtc0 =3D &gsc_rtc;
->  		rtc1 =3D &snvs_rtc;
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-> index 3d0b14968131049b15fea3f52d10f60c006f341b..440678d8e933bf60325fea1ca=
-340441451e8e93e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-> @@ -4,6 +4,10 @@
->   */
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	sound_card: sound-card {
->  		compatible =3D "simple-audio-card";
->  		simple-audio-card,bitclock-master =3D <&dailink_master>;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi b/arch/=
-arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-> index 1d8d146d9eebad32de81c0f7860be52a4b6d7ef2..570091dded8446cf14fcc1869=
-105f513abef6651 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-> @@ -4,6 +4,10 @@
->   */
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	sound_card: sound-card {
->  		compatible =3D "simple-audio-card";
->  		simple-audio-card,bitclock-master =3D <&dailink_master>;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi b/arch/=
-arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi
-> index 29075ff5eda63b50bc008ad501e96333c6d07325..9c27dab2668defe2bcab46686=
-d2e83433e846665 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi
-> @@ -12,6 +12,10 @@
->  #include <dt-bindings/leds/common.h>
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	/* AIN1 Voltage w/o AIN1_MODE gpio control */
->  	ain1_voltage_unmanaged: voltage-divider-ain1 {
->  		compatible =3D "voltage-divider";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
-> index 4a0799d63446cdaa0a404091386ce8a4164d5aca..285eb0ba87e53f9adf9e102aa=
-c9329146b047a27 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
-> @@ -11,6 +11,10 @@
->  #include <dt-bindings/leds/common.h>
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	leds {
->  		compatible =3D "gpio-leds";
->  		pinctrl-names =3D "default";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi b/arc=
-h/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi
-> index 763f069e8405442f2af7491ff810b8b2375248f2..7df5f44c5f5f438ac28376d1d=
-fb3caa04a077f0d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi
-> @@ -6,6 +6,10 @@
->  #include <dt-bindings/leds/common.h>
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	leds {
->  		compatible =3D "gpio-leds";
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mm.dtsi
-> index cfebaa01217eb02b9514c51ae7dabc6cd7b7245a..67c57c071c8ab8d55ef1c93ae=
-155ed08c7c6af30 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -19,7 +19,6 @@ / {
->  	#size-cells =3D <2>;
-> =20
->  	aliases {
-> -		ethernet0 =3D &fec1;
->  		gpio0 =3D &gpio1;
->  		gpio1 =3D &gpio2;
->  		gpio2 =3D &gpio3;
-> diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/=
-dts/freescale/mba8mx.dtsi
-> index 7ee1228a50f4f9bfa46edc62d956b47b906326f5..1b24dfc36c8340b8f5852c2dc=
-37278c8386294d8 100644
-> --- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-> @@ -8,6 +8,10 @@
->  /* TQ-Systems GmbH MBa8Mx baseboard */
-> =20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &fec1;
-> +	};
-> +
->  	backlight_lvds: backlight {
->  		compatible =3D "pwm-backlight";
->  		pwms =3D <&pwm3 0 5000000 0>;
->=20
->=20
+> +#include <linux/gpio.h>
 
+No way. This header must not be in any of the code. (Yes, there are
+leftovers in the kernel, but work is ongoing to clean that up)
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+> +#include <linux/gpio/driver.h>
+>  #include <linux/gpio/consumer.h>
 
+>  #include <linux/kernel.h>
 
+And since you are doing the big series for the driver, please drop
+this header and replace it (if required) with what is used. No driver
+code should use kernel.h.
+
+>  #include <linux/module.h>
+
+...
+
+> struct ad7768_state {
+
+>         struct regulator_dev *vcm_rdev;
+>         unsigned int vcm_output_sel;
+>         struct clk *mclk;
+> +       struct gpio_chip gpiochip;
+>         unsigned int mclk_freq;
+>         unsigned int samp_freq;
+>         struct completion completion;
+
+Btw, have you run `pahole`? Is this the best place for a new field in
+accordance with its output?
+
+...
+
+> +static int ad7768_gpio_set(struct gpio_chip *chip, unsigned int offset, =
+int value)
+> +{
+> +       struct iio_dev *indio_dev =3D gpiochip_get_data(chip);
+> +       struct ad7768_state *st =3D iio_priv(indio_dev);
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       if (!iio_device_claim_direct(indio_dev))
+> +               return -EBUSY;
+> +
+> +       ret =3D regmap_read(st->regmap, AD7768_REG_GPIO_CONTROL, &val);
+> +       if (ret)
+> +               goto err_release;
+> +
+> +       if (val & BIT(offset))
+> +               ret =3D regmap_update_bits(st->regmap, AD7768_REG_GPIO_WR=
+ITE,
+> +                                        BIT(offset), value << offset);
+
+And if value happens to be > 1?
+Also consider the use of regmap_assign_bits().
+
+> +err_release:
+> +       iio_device_release_direct(indio_dev);
+> +
+> +       return ret;
+> +}
+
+...
+
+> +static int ad7768_gpio_init(struct iio_dev *indio_dev)
+> +{
+> +       struct ad7768_state *st =3D iio_priv(indio_dev);
+> +       int ret;
+> +
+> +       ret =3D regmap_write(st->regmap, AD7768_REG_GPIO_CONTROL,
+> +                          AD7768_GPIO_UNIVERSAL_EN);
+> +       if (ret)
+> +               return ret;
+> +
+> +       st->gpiochip =3D (struct gpio_chip) {
+
+> +               .label =3D "ad7768_1_gpios",
+
+What is '_1' for?
+Also, what will happen if the device has two or more such ADCs
+installed? Will they all provide _the same_ label?!
+
+> +               .base =3D -1,
+> +               .ngpio =3D 4,
+> +               .parent =3D &st->spi->dev,
+> +               .can_sleep =3D true,
+> +               .direction_input =3D ad7768_gpio_direction_input,
+> +               .direction_output =3D ad7768_gpio_direction_output,
+> +               .get =3D ad7768_gpio_get,
+> +               .set_rv =3D ad7768_gpio_set,
+> +               .owner =3D THIS_MODULE,
+> +       };
+> +
+> +       return devm_gpiochip_add_data(&st->spi->dev, &st->gpiochip, indio=
+_dev);
+> +}
+
+...
+
+> +       /* Only create a Chip GPIO if flagged for it */
+> +       if (device_property_read_bool(&st->spi->dev, "gpio-controller")) =
+{
+> +               ret =3D ad7768_gpio_init(indio_dev);
+> +               if (ret < 0)
+
+Why ' < 0'?
+
+> +                       return ret;
+> +       }
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
