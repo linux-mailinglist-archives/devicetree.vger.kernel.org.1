@@ -1,149 +1,105 @@
-Return-Path: <devicetree+bounces-171517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B4BA9EE4F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:49:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F345FA9EE56
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15EAE189EB3C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:49:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 545EB17CC91
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C45925F780;
-	Mon, 28 Apr 2025 10:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC21426280C;
+	Mon, 28 Apr 2025 10:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MXUnkl4r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RvwPhd8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91B41DF24F
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED2E25F780;
+	Mon, 28 Apr 2025 10:50:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745837365; cv=none; b=g+sXCSpsVA3NQFbwSuJr+sY7HyRVER4PMyFmMJpOdq/uaJtTcGwmswg8nNbyUR/YFTa3xWL3ViN6QG/UPTmt7WfMzsTZjzICrBvwCSPdictwLlUqM/ysIqhGtRqTEiqQASMAPCve88MiLS488neg3mbDWKdCwJfg13AMao5VXuk=
+	t=1745837434; cv=none; b=RKq+9qBTbTLh1x/bkho5Y5XZapBxQhrdNDhEFXwkZcHq4eMwhnSYCoQ58FgCvqOHwq+C9SHiro589D3YMPPhbnE0OBE0ZD8S8Ta0Tv8Rj4HIQqF6Z0LAtUXFCUTp/kf+xVN/3872vMN0NGnZwhmij4mgBdi1fbaBwUOLwzetifU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745837365; c=relaxed/simple;
-	bh=c/A33H4yAtHrE0wZjDTWLJC7wnY8YFeoDowDA5ju/DU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PEHBkwwP5I+fx+HbezIlWUCnrEXvQRWKbqiDV+WsHbY3hJnupSY4iLGsfAUJcJXM8payD4Ko7aEBw2mGhy9NCM5VnxKt8ZJBqYYn94em+qUI1mfmPp40ValTP0GCJ31ysDubeBL+tvQUH9NtRDWt1LIEIFzS6StO4V8crJ1pOgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MXUnkl4r; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S9Wm2P009160
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:49:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=lDmhszglaNT9fzli8c56cXMb
-	J0ClF3aeFP5Tl0qaDz0=; b=MXUnkl4rNXnQo2UMaeZmkMd1wyl9argAL9z+RKBg
-	wk3gtZh5prQDnQzLt7zeDeLZL/8glSo+lDd/hcySiSMU//AFOBhKII+cj1bXMFAh
-	szmhvWVoo/azNO6jR4Y3LL6H/WAJgcUoGZbHnhUKKq97qkZIkms/KghLtPA//7W3
-	IDKxtMiSYfS1/qBgMyC5RjvnWxjwefvm/O8nk/YTK2VFi8430zpvt+0ea361kuew
-	8Yetj8tosiB1BJzAWIyX/hNazmSICzZPJUi4la8GmDxCKqDEVuQaYYtde2OvxI9Z
-	QJQhpJRRSdQpDoCSKRoRfj5FLzo92hUr7O0N7JfCfypOpA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468rsb7tfp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:49:22 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3055f2e1486so6478497a91.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 03:49:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745837362; x=1746442162;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lDmhszglaNT9fzli8c56cXMbJ0ClF3aeFP5Tl0qaDz0=;
-        b=QsdbSSggVPI/3AySbLYMMt3SVWirxx1zTRsweZ8kArrK8in9G+eNippBpQxqQPLasC
-         4wlyrKHopjmbGDlLU3pb1spFpxFY8qZ+rFR3QCb3Gd9SXiRJstdZ1NcWDpFyEga62Ajp
-         tO6ByHGkY995OvqSx4+fxcAxQKainKj9jFvQ6r/PRF6d/KdQIp6eghqeGPZ3d+tT6fw+
-         j8ormlCDwLd//XgUdSaqYmwEaDLPg+tmzP38Y8SkuFgLTdfLeU/gH85wC8JRg9ggaJHY
-         So+1ubwadIH1UGKYqZDWxtLP3MkVCS6Oi9cIugf+l1m6mLjtn8wVXyCWbJEFhrYM91dD
-         VbIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXgue2xqDLmR11FIjxLiN/kNcoKMMSrpAHMR9v+6LNsOn/qrNKUXJ59BdSA/umnsrdevGCmA+SMo0X5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEfcW+WOHnkhO1RcQ1rqCvujGh4wAyd9hibEJLBqc24zlMzpFU
-	oY0OjqkOYMC5r++qalTT3Ij5Gg0zAVzm3FtEFuEDD712FECDYr8eX1kQhoeyc+N4gktYpFm7FW5
-	4r+BN0oSet/aj4Kdfl6/B95nT6HTW62mkFTgVUDe1PLYzSb2Li639nMmIbGS4SCx6d9B5vVig/q
-	5zAR3w/zIu+xbhaZqcPem/mVULYYEZ1VmJ9IM=
-X-Gm-Gg: ASbGncvCBKi5Ea4rhZdathwYoeaj3R9PUeCFU5B8+M4ppFJjzbzq1K2lYuZriHszHwq
-	xGohL7i+S7wI3i/JMtjavnq0XTVSaVgaskdRLua1lc3+81dVWEP3hzBKTiIJ+OpKSohN8Gl1Oq8
-	Z+DMRrNDS8tVmjuEX70nq354W4
-X-Received: by 2002:a17:90a:e70b:b0:2f8:49ad:4079 with SMTP id 98e67ed59e1d1-30a012fe1b5mr12489594a91.6.1745837362147;
-        Mon, 28 Apr 2025 03:49:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEz+/aYe6LvOR+KmeDd0jMeJ2lt5sUppcByWexbXLICBrt9fYXv9DequtQGO3Qn8Puh7URm/6CRCB6zgv3HI9w=
-X-Received: by 2002:a17:90a:e70b:b0:2f8:49ad:4079 with SMTP id
- 98e67ed59e1d1-30a012fe1b5mr12489560a91.6.1745837361738; Mon, 28 Apr 2025
- 03:49:21 -0700 (PDT)
+	s=arc-20240116; t=1745837434; c=relaxed/simple;
+	bh=bYzWEyx7wF1a4iH6jkzQs6rTKgOzlRhswyhO+IHRbag=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nD/Qisxhjs1kJvCdBR9l6ot5sFov8VQhIJ53qedvmUdjl2q2WULZ+Zgvym8h/551vc5GZl0Ut69K79hoDzk7CHpuARCKv1jw7kvgY0GG7fi4BAeCxTmFDKHcMYRJYmE8Ujiz9YeHS/4gjTXgPJeISY9/efPibXKaQ/KSAElw5PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RvwPhd8h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1F4BAC4CEE4;
+	Mon, 28 Apr 2025 10:50:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745837434;
+	bh=bYzWEyx7wF1a4iH6jkzQs6rTKgOzlRhswyhO+IHRbag=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RvwPhd8hJjp1sWfflu6gENQP4CYuMhK4ip59pK1MC03JIZyMVOUxL5nC2kkhzlOOZ
+	 DkZzYNsaChWD9CsnElKoFuPLDjZEiTZ2JsyC8r3pMZAh69kLys3UPyT2u0ZVMVIhJ/
+	 SMH5l/1Gt7eeckpAM6GnELrdc/8UCn64Rj8jvlUzT1lldUxjcAlMr0wzbdTqVTSFj7
+	 JAlPx3rjHGgKVL3/rvql+Roq+hNSZDVxr5cXyCmyoCmc4c+oKRxdDLNScKNCDfhHu6
+	 Q73ABg5SJmloa3cQa+gtlEwWngYcoyfADZYhlThSRDRJir/n9Gd/rMiRf6Tnbgce39
+	 EtIyz4rQMtKiQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15212C369D9;
+	Mon, 28 Apr 2025 10:50:34 +0000 (UTC)
+From: =?utf-8?q?T=C3=B3th_J=C3=A1nos_via_B4_Relay?= <devnull+gomba007.gmail.com@kernel.org>
+Subject: [PATCH 0/2] Add support for the DFRobot SEN0322 oxygen sensor
+Date: Mon, 28 Apr 2025 12:50:12 +0200
+Message-Id: <20250428-iio-chemical-sen0322-v1-0-9b18363ffe42@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250425-fix-nexus-4-v3-0-da4e39e86d41@oss.qualcomm.com>
- <20250425-fix-nexus-4-v3-1-da4e39e86d41@oss.qualcomm.com> <20250428-prudent-hasty-pheasant-aecec4@kuoka>
- <29d15e93-8f5e-4cec-97b8-8592beb01d6a@kernel.org>
-In-Reply-To: <29d15e93-8f5e-4cec-97b8-8592beb01d6a@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 28 Apr 2025 13:49:10 +0300
-X-Gm-Features: ATxdqUESaAcsAnz3fLSqCu2cYjvTXl2dF4AhQuMy8hC7LO1Y3nzIdjCZakO_n24
-Message-ID: <CAO9ioeUo_vO+-wuC4JGi4JfSMZx+JZkvLvsi=ppBD_LvuV2ZLA@mail.gmail.com>
-Subject: Re: [PATCH v3 01/11] Revert "dt-bindings: mfd: syscon: Add qcom,apq8064-mmss-sfpb"
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Georgi Djakov <djakov@kernel.org>,
-        Lee Jones <lee@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Leo Yan <leo.yan@linux.dev>, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI4MDA4OSBTYWx0ZWRfX/Z81IQ/ecR27 CJjEk259bL2JU//0f7/7hSiTWUJbac/qC1kF3yqmIKoJ1kNrkrMClv6MbQEYE3zgRFGYXvlL28z DkOZZS2n/3fSVHyeC/FZDx4iqlbJQXsZXisN1EDRqRsk7751WEUqA3DfUp9xpodIs6wCcr2p0FF
- yzXTwBvNNKURQGy4+VKlDM+gaIcRWt96sZD1vfoAQiQuZNE1knih2cUGVs1LB8vqi6YVa1QEJAI PkE2aHX4oDx4NuoQqZZ/A5Jt46lvC6XXdes45IZidJLYvn8nbxmvzUrp34nsfGz16y6M0b2cWKU YNCqSIf7lVTRFaHKFZZ8kEuu7VKG3JiLspiZU5RuNddHjK7SG8V0h6isnckS+gSeNR6io4yryA1
- 4KCPBe0exqUVZbkgezrdJ1wjlRvy0Z1j1A0ElNLn1Q/OletlVGFxalPnX8keZg5qzU+qsTPc
-X-Proofpoint-GUID: 1S_il8YhvM6wjuijT2R-WrNEyQge5_l0
-X-Proofpoint-ORIG-GUID: 1S_il8YhvM6wjuijT2R-WrNEyQge5_l0
-X-Authority-Analysis: v=2.4 cv=I8ZlRMgg c=1 sm=1 tr=0 ts=680f5d33 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=L9MUveKbg8kMJ_lLYs4A:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-28_04,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 impostorscore=0 mlxscore=0 adultscore=0 spamscore=0
- mlxlogscore=999 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504280089
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAGRdD2gC/x3MQQqAIBBA0avErBuwSSu6SrRIG2ugLBQiiO6et
+ HyL/x9IHIUT9MUDkS9JcoSMqizArVNYGGXOBlJklKYORQ50K+/ipg0TB1UTofOdt9Zya3QDOT0
+ je7n/7TC+7wfFS4LRZgAAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745837432; l=803;
+ i=gomba007@gmail.com; s=20230706; h=from:subject:message-id;
+ bh=bYzWEyx7wF1a4iH6jkzQs6rTKgOzlRhswyhO+IHRbag=;
+ b=FX53BKRvsPXfLu9zX6oIbWxnJrO3cEa7YLggqBsOhEtfUwHaoMjdIw5SrfKzq3Iyj6hfpsfeF
+ KpvfqlNujtWAihX3N9vNXNLBKI8rxrhFNNIPCIfJTOxZIw3LZ1C9F4N
+X-Developer-Key: i=gomba007@gmail.com; a=ed25519;
+ pk=iY9MjPCbud82ULS2PQJIq3QwjKyP/Sg730I6T2M8Y5U=
+X-Endpoint-Received: by B4 Relay for gomba007@gmail.com/20230706 with
+ auth_id=60
+X-Original-From: =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+Reply-To: gomba007@gmail.com
 
-On Mon, 28 Apr 2025 at 10:09, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 28/04/2025 09:07, Krzysztof Kozlowski wrote:
-> > On Fri, Apr 25, 2025 at 08:47:01PM GMT, Dmitry Baryshkov wrote:
-> >> For some reason Lee has mis-squashed two commits, picking up one chunk
-> >> from the first patch and one chunk from the second one. Rather than
-> >> trying to fix it, revert commit 2c8de7df7418 ("dt-bindings: mfd: syscon:
-> >> Add qcom,apq8064-mmss-sfpb").
-> >
-> > I don't understand: that commit looks like direct, proper result for
-> > https://lore.kernel.org/all/20250318-fix-nexus-4-v2-5-bcedd1406790@oss.qualcomm.com/
-> > so where is squashing two commits? The diff markers have offset by few
-> > lines, but it's still just few lines and they do not matter - there is
-> > no diff/patch mismatch from that point of view.
->
-> Ah, difference in compatibles. I see the error. Anyway, I don't think
-> revert is correct. Just add missing compatibles.
+This patchset adds a driver and the documentation for the
+DFRobot SEN0322 oxygen sensor.
 
-Why? The commit that went in is invalid, didn't come from my patches
-and was produced in some weird way.
+Signed-off-by: Tóth János <gomba007@gmail.com>
+---
+Tóth János (2):
+      dt-bindings: iio: chemical: Document SEN0322
+      iio: chemical: Add driver for SEN0322
 
+ .../bindings/iio/chemical/dfrobot,sen0322.yaml     |  41 ++++
+ MAINTAINERS                                        |   6 +
+ drivers/iio/chemical/Kconfig                       |  10 +
+ drivers/iio/chemical/Makefile                      |   1 +
+ drivers/iio/chemical/sen0322.c                     | 238 +++++++++++++++++++++
+ 5 files changed, 296 insertions(+)
+---
+base-commit: b4432656b36e5cc1d50a1f2dc15357543add530e
+change-id: 20250428-iio-chemical-sen0322-cf8fbbbe7546
 
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Tóth János <gomba007@gmail.com>
+
+
 
