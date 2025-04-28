@@ -1,153 +1,238 @@
-Return-Path: <devicetree+bounces-171352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A71A9E86D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D31A9E87F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:47:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C503BA151
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:42:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4F1F3A611E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6041C1AAA;
-	Mon, 28 Apr 2025 06:42:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B2F1A5BA9;
+	Mon, 28 Apr 2025 06:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NbRNNlTP"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iTdhBYLZ";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="RgcF2MEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435F318EAB;
-	Mon, 28 Apr 2025 06:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16644374EA;
+	Mon, 28 Apr 2025 06:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745822577; cv=none; b=t/j2Kb/ABVubOeNRVWKLaK/cZZg9UTvSk+YdsLliHbj3V074YCc2GA3a/XlCXRL+tgQyM8jezD3vwWPe+YbyOZQKbyxCDZwt8k6jpKQsxY73Dv26ZpV/Qt+tXxwuPL6ye88YevjD/RlcDfJROrvKmQk8AHQoioW3FcM7tc5dDIo=
+	t=1745822819; cv=none; b=VniwzQyrS0fdFbx/laQUYGhCtMHIu+F0pdPPVyK41bNsGMU63XYs752RbWxwqpmu4Nazzy3bEwlXtN9Zch4lZ9dMEGaLWWioOA3aX4VfpzKCFQrKe7uQdAXa1NOExgdsi3/0C4IJVwh1aJDYhpzHpIfRE+yDGPYu9scWoDPVJmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745822577; c=relaxed/simple;
-	bh=ZqZzcK4ZiQKN3TxBucAS5gbR0geGoW9MhIU8xDyaGYU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A+eD05mksRik9NuEwJ+/nJz9lAFGunxSG1BrtZ2c4Y5vw7/m6wCWzHag4821gscpy0bQxwAXUylz+kB9GDdzEForiIdXrzZHTIlQUWzh4dTixHSuTNzBIo/vUhhtHUTVuLKdl+nKmHyZukQygNMswAuUaCi+izuvZ88s3dP5BV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NbRNNlTP; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aca99fc253bso647992566b.0;
-        Sun, 27 Apr 2025 23:42:55 -0700 (PDT)
+	s=arc-20240116; t=1745822819; c=relaxed/simple;
+	bh=RSrxkyaX9/8vKxjAvg5Op68zkrUI3xcDkjLdcziaXDs=;
+	h=Subject:From:To:Cc:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T0UnqwpFOn2QTgLdbk1KtojeTBbxCTqXCmZ1riD3d/y43zeGmJqezP80lKDEJMpRzbUavp8kfGS5AfLQ2adSvJIRjsLn64naZH6kEjvhaCU2O55Wyf4vp0ovDVd/I2dQlwgX/ZBFSmJhr+KiOGbBRmaOsXYVsjtShidALGBuPQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iTdhBYLZ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=RgcF2MEx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745822574; x=1746427374; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mVeoxsrZ4tC2juWsFPI6k6Xd61VJ0s6yaeeo0JTTl0c=;
-        b=NbRNNlTPUEUf8X7pNnRpxd+Rpz0wDeak9vrIOnUWglbl5XtN+zVKA1iYES0vTiZqMi
-         9JD6J1tCWkPXLaJqMigcyxjNK3OOBSglfNJmSdA4w+IYWSNbnJDcvsH7KiBRMsZNM0ge
-         +SWdd2+pX/Vr8ykci9VN53YVn8XyWuF1Z5OlrWNAdrBWnatzCTHLGCCkkfVu7OAKBlKn
-         A4BdoWdJVD0z+uGhdI63ZfPyhArEMj7tFK8fr1TNp04S6LqMLFz9B+efbBuG/nqN1O8Q
-         Ny+63CMg1cElrVrR4cmRIWCS7ekOgrkCx1ylNYIlkTssclf8+YnpZrHRdaQjO/uWXVHb
-         OSQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745822574; x=1746427374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mVeoxsrZ4tC2juWsFPI6k6Xd61VJ0s6yaeeo0JTTl0c=;
-        b=Wb7DrTQL4m9Bv7g84403GlsFI2GABtM20USUg3GjU4G/nZ7+RBhLWs3xJI9RJM4zDO
-         +VJeSBfYulEp8BKtV/TQVqC/1kD6EGk0KutA7k0MfptK1P8JbZP46xW1ZpOSTCV604PR
-         OGaMWks3aTT5u/CjoNrXlwFCV/b1rP2ZqR2mVwPnKEaQDdEs9GaiWCrgsx9QHY3uWdx5
-         MOSAmq84GbtRtQCqTbPHixWLwnez63fLW+Pbz3TWUUufoXTWvxxk9rTdjAyC10Q6BNSP
-         JZ+1E0O+kKDhQ+/gUFxIn6HZbCY/Tg3v97MxKJdKd1KTMdtkxTd6sKx/QOUiAx8xxyxp
-         0jAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUa3Si3SuR43P5Km4BmJtfZZndMJ3nxel0t4pdYbd8GMkTcRgwyGRs9Nykiqe3+IepvzKufZZ3fWakOFA==@vger.kernel.org, AJvYcCUlhFOy5Tgf8ppDGXUycnSeG8h6iAgyjykh2CciBKHSP/5BroS51sMLAjbNjsLziLSVmZle0GMxv8Vnr29i@vger.kernel.org, AJvYcCVNH3LODluiUjo1Rm5FV8vX3431wOxHrVNMo0tPwFoNyp1l0xTX0/DN+wDu/9D+XBdY8VrbErYjQBca@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+ovHp6FOgIdros1tS8U2CkJtEkzOiBWYVDM7r38Tm59Bnj7Sj
-	ZFnd1orD4DYqmlbGya3l9bzUUaa1Q0D9nTYMyw2lXEIwaab728627IDKmKKqNHQTyalAjn4SXbe
-	qI2GBvKItPykcTRKQpGlBlgdghHfRo7dU
-X-Gm-Gg: ASbGncvL0PYP90EcrYe6JGoSb8zrvJa+X/vLLap0gT7jaAsvT2tnE/E5G4yHiv2sPhQ
-	RrB7qzg6dRzgjdpHXNxU7YXFksw8Ct9vmOIc84n4Xzyjh1KvJIhhCFuJXKfolf4Lr6pKfgPxYhD
-	xV9BZx4Rlt0bIEbklUuwvdIk92
-X-Google-Smtp-Source: AGHT+IGCayb7OFCeBVQAaEXALm4GeBcZZQcEMMx+8n4frmJFVPip/NVbyIlTD/nMPAAub1h0ZHmAsGYZeDJgjRk/2bg=
-X-Received: by 2002:a17:907:9803:b0:acb:7104:353a with SMTP id
- a640c23a62f3a-ace8493c612mr593840566b.34.1745822574299; Sun, 27 Apr 2025
- 23:42:54 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1745822814; x=1777358814;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=DYnfPVaHALkZ4zVEL1fPaXQONejkm4gzI7Jo6W1CZ78=;
+  b=iTdhBYLZEV860hC50dPm3jVcKINbnTVGt6sjDHKSGevRuVPHB+3Q9hYj
+   L0oaIXKbgh1kMf94zH6kp0bZzFMR56MMV94/CAqELjak5z5VM1lUB8a74
+   RnOy2tU92zNaooYVQ2G/VV5nl/YxTvaZ/7pms3fyEj+ealJ7I+2kZ71d6
+   9BTkpZq0FzQ+3X32NpJAvcDAhjBCWjK8UjUE1lmcTpc4KkbtalVla8BCH
+   yBQyuhGHfii2t2o4AdAN/zCWsxWew6lypdEngg+inFxR2I0g0ZJpWFZeF
+   8CzE9nNG8KJnJJ39QUr9XsWg4wKBq8fptSi66boglltQ1umYCYLHtAZ4o
+   g==;
+X-CSE-ConnectionGUID: FhqaYLvmQS2fD5a1/I5smw==
+X-CSE-MsgGUID: Q0op95EWQOqH1TY1KwSpYw==
+X-IronPort-AV: E=Sophos;i="6.15,245,1739833200"; 
+   d="scan'208";a="43745391"
+Subject: Re: [PATCH 1/6] arm64: dts: imx8qxp: Move Ethernet aliases out of SoC DTSI
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Apr 2025 08:46:44 +0200
+X-CheckPoint: {680F2454-6-DC4DC9A0-F4F29281}
+X-MAIL-CPID: 4C08CE85893DC81446E935E5F3697A3F_0
+X-Control-Analysis: str=0001.0A006371.680F2457.0083,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF062162003;
+	Mon, 28 Apr 2025 08:46:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1745822799;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DYnfPVaHALkZ4zVEL1fPaXQONejkm4gzI7Jo6W1CZ78=;
+	b=RgcF2MExF2guXWv9b2n7+g7QPphLq0nculBMqFBJdYIOJ3cfyinKpHSj6V3sLtnupkka1c
+	5CnCRCRHAgmbOPLZJ/9W04omT8R+kQ9YxCrl9p6BXSpMaBgRaPMyk4e8JQK5PEV7dNZD5+
+	taI9Owy5SISI6MFw3SlO2dglOHHHNycuZUAG/0OLjPmjBxO6Ie8h3e9KIsw9ZxhbTvtv00
+	fWhZM5JqZNJ8ZcK/5QPTNXa9quj93iZGBqbVxAebzJC7i+cgo6+7jl21za04cXjbJBLVUv
+	99j5DdWlRAeNofcLp+/BLy2xh/oysiepNw24DopJzsJzcXyz7YWdDNEZJlGFkQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Mon, 28 Apr 2025 08:46:38 +0200
+Message-ID: <2849273.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250425-dts-imx-aliases-ethernet-v1-1-15b9d5cca611@linaro.org>
+References:
+ <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
+ <20250425-dts-imx-aliases-ethernet-v1-1-15b9d5cca611@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1745605382.git.Jonathan.Santos@analog.com> <8a04f8f1e9c14d57b1db2f38a8433a0367c0c9dd.1745605382.git.Jonathan.Santos@analog.com>
-In-Reply-To: <8a04f8f1e9c14d57b1db2f38a8433a0367c0c9dd.1745605382.git.Jonathan.Santos@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 28 Apr 2025 09:42:18 +0300
-X-Gm-Features: ATxdqUH27S-RbreDqWEJoxLFvP3nZaXCbK2hRvS8GpnytOwtgktp0cPwv3XnNq8
-Message-ID: <CAHp75Vciw_ivdKFsqo=FML64zUL_cDCzjuhmdVC3V_Whnatqwg@mail.gmail.com>
-Subject: Re: [PATCH v6 05/11] iio: adc: ad7768-1: add regulator to control VCM output
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, andy@kernel.org, 
-	nuno.sa@analog.com, Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, 
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
-	lgirdwood@gmail.com, broonie@kernel.org, jonath4nns@gmail.com, 
-	dlechner@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Apr 28, 2025 at 3:13=E2=80=AFAM Jonathan Santos
-<Jonathan.Santos@analog.com> wrote:
->
-> The VCM output voltage can be used as a common-mode voltage within the
-> amplifier preconditioning circuits external to the AD7768-1.
->
-> This change allows the user to configure VCM output using the regulator
-> framework.
+Am Freitag, 25. April 2025, 21:48:24 CEST schrieb Krzysztof Kozlowski:
+> Ethernet interface, like other exposed interfaces, aliases depend on
+> actual board configuration, e.g. its labeling, thus aliases should be
+> defined per each board or each SoM.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-...
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com> #MBa8Xx
 
->  #include <linux/gpio/consumer.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
-
-Why?
-
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/regulator/driver.h>
-
-...
-
-> +static int ad7768_vcm_enable(struct regulator_dev *rdev)
-> +{
-> +       struct iio_dev *indio_dev =3D rdev_get_drvdata(rdev);
-> +       struct ad7768_state *st =3D iio_priv(indio_dev);
-> +       int ret, regval;
-
-> +       if (!indio_dev)
-> +               return -EINVAL;
-
-Isn't it a dead code? Or i.o.w. under which circumstances can this be true?
-Ditto for other functions with the same check.
-
-> +       if (!iio_device_claim_direct(indio_dev))
-> +               return -EBUSY;
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts          | 1 +
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts            | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi               | 2 --
+>  arch/arm64/boot/dts/freescale/imx8x-colibri-aster.dtsi   | 6 ++++++
+>  arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi | 1 +
+>  arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi    | 1 +
+>  arch/arm64/boot/dts/freescale/mba8xx.dtsi                | 2 ++
+>  7 files changed, 15 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts b/arch/arm64=
+/boot/dts/freescale/imx8qxp-ai_ml.dts
+> index 50bf7919c86305403dc9fe2d75ee312dead03b40..2586cabad31ef61594fbe7424=
+7d3868639095320 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
+> @@ -13,6 +13,7 @@ / {
+>  	compatible =3D "einfochips,imx8qxp-ai_ml", "fsl,imx8qxp";
+> =20
+>  	aliases {
+> +		ethernet0 =3D &fec1;
+>  		serial1 =3D &lpuart1;
+>  		serial2 =3D &lpuart2;
+>  		serial3 =3D &lpuart3;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/b=
+oot/dts/freescale/imx8qxp-mek.dts
+> index 4ba8ddd472234704d05db51fb5fb0929e6b15567..b5b14cb20cbef9a67a7661531=
+031fafc702dcbcd 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -12,6 +12,10 @@ / {
+>  	model =3D "Freescale i.MX8QXP MEK";
+>  	compatible =3D "fsl,imx8qxp-mek", "fsl,imx8qxp";
+> =20
+> +	aliases {
+> +		ethernet0 =3D &fec1;
+> +	};
 > +
-> +       /* To enable, set the last selected output */
-> +       regval =3D AD7768_REG_ANALOG2_VCM(st->vcm_output_sel + 1);
-> +       ret =3D regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
-> +                                AD7768_REG_ANALOG2_VCM_MSK, regval);
-> +       iio_device_release_direct(indio_dev);
+>  	bt_sco_codec: audio-codec-bt {
+>  		compatible =3D "linux,bt-sco";
+>  		#sound-dai-cells =3D <1>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot=
+/dts/freescale/imx8qxp.dtsi
+> index 05138326f0a572f45122f5ee425089f945fdc656..6d8386bdac00d150d272b62ad=
+68c136c0da6ba2d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> @@ -20,8 +20,6 @@ / {
+>  	#size-cells =3D <2>;
+> =20
+>  	aliases {
+> -		ethernet0 =3D &fec1;
+> -		ethernet1 =3D &fec2;
+>  		gpio0 =3D &lsio_gpio0;
+>  		gpio1 =3D &lsio_gpio1;
+>  		gpio2 =3D &lsio_gpio2;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-aster.dtsi b/arc=
+h/arm64/boot/dts/freescale/imx8x-colibri-aster.dtsi
+> index f7bbb2153ae01a2e97f1e28be0c23f9de4172102..7be0b9ecc8aab1f271c1b658b=
+abdb316bae41cc6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri-aster.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-aster.dtsi
+> @@ -3,6 +3,12 @@
+>   * Copyright 2018-2021 Toradex
+>   */
+> =20
+> +/ {
+> +	aliases {
+> +		ethernet0 =3D &fec1;
+> +	};
+> +};
 > +
-> +       return ret;
-> +}
+>  /* Colibri Analogue Inputs */
+>  &adc0 {
+>  	status =3D "okay";
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi b/a=
+rch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
+> index f75499765d85dc78808af9ddadc92e133b0c3499..a7159a842d74306f372db7939=
+59cdc8e2555eb3e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
+> @@ -7,6 +7,7 @@
+> =20
+>  / {
+>  	aliases {
+> +		ethernet0 =3D &fec1;
+>  		rtc0 =3D &rtc_i2c;
+>  		rtc1 =3D &rtc;
+>  	};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi b/arch=
+/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
+> index 54393a0c5cbfcd55dae080a9f07879748bbd4486..1e588d76a6ddb1bd7f94f444d=
+72e2819f267c490 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
+> @@ -5,6 +5,7 @@
+> =20
+>  / {
+>  	aliases {
+> +		ethernet0 =3D &fec1;
+>  		rtc0 =3D &rtc_i2c;
+>  		rtc1 =3D &rtc;
+>  	};
+> diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/=
+dts/freescale/mba8xx.dtsi
+> index c4b5663949ade617fe9b7be20a3aebf0b322623a..a64ae67ef70cc6a624b06f4ab=
+1f3a8ab03ffd1f6 100644
+> --- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+> @@ -16,6 +16,8 @@ adc {
+>  	};
+> =20
+>  	aliases {
+> +		ethernet0 =3D &fec1;
+> +		ethernet1 =3D &fec2;
+>  		rtc0 =3D &pcf85063;
+>  		rtc1 =3D &rtc;
+>  	};
+>=20
+>=20
 
-...
 
-> +       return clamp(val, 1, (int)rdev->desc->n_voltages) - 1;
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-No explicit castings in min/max/clamp, please. This may lead to subtle
-mistakes. Also, don't forget to include minmax.h.
 
---=20
-With Best Regards,
-Andy Shevchenko
 
