@@ -1,181 +1,130 @@
-Return-Path: <devicetree+bounces-171653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD1CA9F9DF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 21:46:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FA5AA9FA57
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62A484652AF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:46:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C36D31A85990
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 20:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C6C297A68;
-	Mon, 28 Apr 2025 19:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29579139CE3;
+	Mon, 28 Apr 2025 20:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="dymBWsXw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZFg7DSuL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BD4126AAAE
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 19:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD4078F20;
+	Mon, 28 Apr 2025 20:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745869545; cv=none; b=tutGpIn8gkXaKESIgmhVI3QjrXA6ftXlGxE96rQX+qlo5kOBjSAOZCmbi7vxaTltzQtsiYJA3Q4QJ/HfTMg6GszDI8NmaahJxYfz68WMgaALxgZtBftAXXUOTUJaTyHLRtKmT6z4/ryV3sZqUZg9x9+hrHg92o8Ac1RUFAwSlqs=
+	t=1745871505; cv=none; b=as5TviY0QB2xW2kPSXhVhxHFxwUV3T0OKiI3Y1SnbSp4LfVl4yCf743moTyToCPtuYknDhsvHn5sXhXUpbC8wiqY2vFGPZOSWtPvgs2V1RdH/84K6Jqucj9DW0YesWZw/2oFUdW05tAcR4VBXTy40NVAetmPLkf9XrfHLZ9Cuxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745869545; c=relaxed/simple;
-	bh=YggQZ1TyVDh4eowW2USUjCGtu+akNt8AE6k6QX1iIxw=;
+	s=arc-20240116; t=1745871505; c=relaxed/simple;
+	bh=YYUrwN/uqkmPsiM0BaU9Qwb0CpV6JgN5ms1zlzfdRgw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lhIgMXuK35fHWAG5fiVoFXYSfsfC9NkRyXn5F+mbtVlw6DFD22lru9wMFZO85R0NlJkeau9bwmjxHSZChCgHV18yIilrbbZtnR/nAiOcd8zsLYAtHU4VGVVMKTFVEH+z5g8De+V03drrIiwKi1sazKcqnBOtiL5EV8TCbJyDs0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=dymBWsXw; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-73bb647eb23so4359376b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 12:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1745869543; x=1746474343; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XGHxp6lqAYRQInWBjVpHf7WApOQAlT577yEtZ4eKCyA=;
-        b=dymBWsXwqBIy1keTzhg/91DiYUnQ6jpsEXNDd/G+AL+VjL+jFaiDZ5QJ8dDaqH7HFN
-         7Q4x874LFFgGg+XrF9PpmHOMHZS14SqoBv2mOh/u7y63xYlm/kFlsRkVA0OSSHQ5rciy
-         mYpSJKyvBmkZ425DOScbinCVll82fjqarqMgbBZAsZOPLaNppSDt2lGC7l4BREU85c6M
-         R4i39yBzerbRPPl0WrVbokEsimxAsDrtvxj+cftuM0zBjzl+nh2eWOIDdO1UD+XOfQdF
-         De3dg35p6yTBNxAoQDoh5EYrRt5qj1q6P66c/1RoEuNNRLamhF2kQUAcFXUSFPE1eIzj
-         oGoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745869543; x=1746474343;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XGHxp6lqAYRQInWBjVpHf7WApOQAlT577yEtZ4eKCyA=;
-        b=Lrc5l+ZNVvHGwTiW0RQCcyObwq1TXyLShaSf3J1/xWXmKkpexv9X6YIQWFtTGPnHo8
-         gIHzDqoo6DOGQjuY+NTdfHewfjEDjxW3HHVUJCMjLcj6vqHOFFKb9ph4nT6pJ72A8pj1
-         LsgIIisSzHjh4bK4UkbsRszqGkb5ENx85HcPhX0xnHiyj3YtbEIQ3jTUPC2rJvqzoDEz
-         vV+zOIVbIn6/rYHnjDxsqm3dMejoBMgwFPZpdSfdn1bvg1YwCy8uoJ+ZsIlTC/uX42V2
-         gEuAQNHwRGUNJ8oVH2loE1UnRh9wzEO5q3JBbhkT69rAP6OgQVti4ljXaghM49EZf3z+
-         cjeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWe205pkHygICm+6IrCC14hwqnkCXTKWQ8JwLFg2xRks9qRqc05dx0oQzWRupQlMYBOX/fUL+BRWJsL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYRBdS+nQjTgkq0c+g0E6HvuGQb4qKqy3g2PR3kIstxR/YE+cQ
-	Uc7LpqjgrVirEJAbEuyGG7gbriu4oto87+sT5qr/MFVrXsUlxUdj+Ug5dDWOiQ==
-X-Gm-Gg: ASbGncsvRIUnqqyiAL5ERXLan3ITHfNJUFVjXaAyPL2qKA+wy9/0JOBVVr0oGtKLQYG
-	QvbyZ4CxbA8z0WLd7g1suaP+WgXMstxnK1LKwP/vgVFzmcUGwoyU+VM6qY1OqOetU0VxBCirVrF
-	pNxrHqqnO9DQ0sq62XAIhXSzPKR8ZCbfvj+jV5W7DOxDhCCvnB5MLXmTSND6NKPo5F6j/Q33NAa
-	GsmjvuhbMRu9lJpXq/ny7gr3iMXJhHGHl8KSt1foxUdW5d+Ehjw8EU+TnH9EOVOMMCuDCcy7QB2
-	9MISHs/v375t3GTibG02kPsL5+gqwWMvRX4YzDwNW2InUOntEaWbz7DnK1ApiK+SJzDvCZsV6Mo
-	i/E/vdyAi
-X-Google-Smtp-Source: AGHT+IFYlvYhne57m4K5klZLGQL12xu5rF8UHasgAgtYn7L+ZI+rW0iA6PRZDAtjG6kMT4NaEVhDYg==
-X-Received: by 2002:a05:6a00:4644:b0:736:4d05:2e2e with SMTP id d2e1a72fcca58-73ff7280114mr12876072b3a.6.1745869543146;
-        Mon, 28 Apr 2025 12:45:43 -0700 (PDT)
-Received: from google.com (28.67.125.34.bc.googleusercontent.com. [34.125.67.28])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e2593f621sm8429207b3a.39.2025.04.28.12.45.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 12:45:41 -0700 (PDT)
-Date: Mon, 28 Apr 2025 19:45:37 +0000
-From: Benson Leung <bleung@google.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, chrome-platform@lists.linux.dev,
-	linux-input@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 7/8] platform/chrome: of_hw_prober: Support trackpad
- probing on Corsola family
-Message-ID: <aA_a4Whqm35-pdKk@google.com>
-References: <20250421101248.426929-1-wenst@chromium.org>
- <20250421101248.426929-8-wenst@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BW7zKR4tG1thnI8Lct/ao4gV91MOWDplvKzUgymKjnVK/ovsVlAU/mJygog/3ZlRtalbAIsyPmB2U+wiMlbwJRfXHi6Zk62UJN+0CX8J1S47bLhc9tyPC7aiw9qmuS6dN4eqZq5JBAf9+ihopP7lmfSBZh4MiF5HPQye/GJGuMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZFg7DSuL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E730C4CEE4;
+	Mon, 28 Apr 2025 20:18:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745871503;
+	bh=YYUrwN/uqkmPsiM0BaU9Qwb0CpV6JgN5ms1zlzfdRgw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZFg7DSuLPN9fdSkC3Xg8X3ox+E6eP96g2gB9ao96dm5I7op20czVYMhiVlS2d5QLO
+	 qLuVPSUj344gcZuHjGRTRRFzbyAW0AORb5LgCSn66c2c3pLHi/eM3p36TyTGpzdSJs
+	 8zgPGh9Ce2COUsMnaWYeHs9nZAmo9bYxXWWjYHe9c5+Fhi6LwF/U7VRBLKsQGqm/qj
+	 qZC2Av0LAUFb+XaFVwdaildbK54BrG+Piln+J73nupl0G9LczREIt2rndQCBMjKVub
+	 KTi+qPqOT1TZzSpN7CaXNgKoQV+VapomTd7+Hau5GxFg/yBh3cQV88j3L5O0ek9Eza
+	 pQOX7o1KVVV4g==
+Date: Mon, 28 Apr 2025 15:18:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: Remo Senekowitsch <remo@buenzli.dev>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Dirk Behme <dirk.behme@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] rust: property: Introduce PropertyGuard
+Message-ID: <20250428201821.GA1572343-robh@kernel.org>
+References: <20250425150130.13917-4-remo@buenzli.dev>
+ <aAuryiI0lY4qYyIt@pollux>
+ <81a65d89-b3e1-4a52-b385-6c8544c76dd2@gmail.com>
+ <aAyyR5LyhmGVNQpm@pollux>
+ <D9GIUOH0CKE4.3R01AYKCCG54O@buenzli.dev>
+ <aAzrg31NB2g0X4qL@cassiopeiae>
+ <39798ebd-35a8-4a67-9df4-f12a6f20ef11@gmail.com>
+ <aAz1f2jhdwjXmHex@cassiopeiae>
+ <D9GWI4GT3ZK4.25N3DYX5MSX0P@buenzli.dev>
+ <c922d67c-ab20-4e46-9359-01fb32223d17@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8X7Hm8zNZQujXZIe"
-Content-Disposition: inline
-In-Reply-To: <20250421101248.426929-8-wenst@chromium.org>
-
-
---8X7Hm8zNZQujXZIe
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c922d67c-ab20-4e46-9359-01fb32223d17@nvidia.com>
 
-On Mon, Apr 21, 2025 at 06:12:45PM +0800, Chen-Yu Tsai wrote:
-> Various MT8186 Corsola Chromebooks (squirtle, steelix and voltorb
-> families) have second source trackpads that need to be probed.
-> The power supply for these are always on and their reset/enable
-> lines are not exposed.
->=20
-> Add them to the probing list.
->=20
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+On Sun, Apr 27, 2025 at 03:12:18PM -0700, John Hubbard wrote:
+> On 4/26/25 2:50 PM, Remo Senekowitsch wrote:
+> > On Sat Apr 26, 2025 at 5:02 PM CEST, Danilo Krummrich wrote:
+> > > On Sat, Apr 26, 2025 at 04:35:07PM +0200, Dirk Behme wrote:
+> > > > On 26.04.25 16:19, Danilo Krummrich wrote:
+> > > > > On Sat, Apr 26, 2025 at 01:08:39PM +0200, Remo Senekowitsch wrote:
+> > > > > > On Sat Apr 26, 2025 at 12:15 PM CEST, Danilo Krummrich wrote:
+> ...
+> > > > > Why do you think it is important to force this error print by having it in
+> > > > > PropertyGuard::required() and even take an additional device reference for this
+> > > > > purpose, rather than leaving it to the driver when to print a message for an
+> > > > > error condition that makes it fail to probe()?
+> > > > 
+> > > > To my understanding doing the error print in "core" was proposed by
+> > > > Rob [1]:
+> > > 
+> > > That is fine, though it doesn't answer my question above. :)
+> > 
+> > If the question is addressed to me, I don't think it is important.
+> > I don't have a particular preference either way. I'm just trying to
+> 
+> Generally, printing in libraries an lower level routines (in this case,
+> "core") is undesirable. We'll do it anyway, sometimes:
+> 
+>     a) Behind a *_DEBUG configuration, to debug the core itself, or
+> 
+>     b) Desperation: hard to recover from errors, that the upper layers
+>        for some reason lack context to provide an adequate error
+>        message for.
+> 
+> The idea is that the lower level you are in the software stack, the
+> more rare printing should be.
 
-Reviewed-by: Benson Leung <bleung@chromium.org>
+If that's a kernel style/requirement, I've never heard that. About the 
+only coding style in this area I'm aware of don't print messages on 
+kmalloc failure because the core does. It's the same concept here.
 
-> ---
-> Changes since v1:
-> - Rebased and resolved conflicts with "spherion" trackpad prober
-> ---
->  drivers/platform/chrome/chromeos_of_hw_prober.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->=20
-> diff --git a/drivers/platform/chrome/chromeos_of_hw_prober.c b/drivers/pl=
-atform/chrome/chromeos_of_hw_prober.c
-> index 019578bc7ad0..10dbaede0541 100644
-> --- a/drivers/platform/chrome/chromeos_of_hw_prober.c
-> +++ b/drivers/platform/chrome/chromeos_of_hw_prober.c
-> @@ -57,6 +57,7 @@ static int chromeos_i2c_component_prober(struct device =
-*dev, const void *_data)
->  	}
-> =20
->  DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB_BY_TYPE(touchscreen);
-> +DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB_BY_TYPE(trackpad);
-> =20
->  DEFINE_CHROMEOS_I2C_PROBE_CFG_SIMPLE_BY_TYPE(trackpad);
-> =20
-> @@ -88,6 +89,18 @@ static const struct hw_prober_entry hw_prober_platform=
-s[] =3D {
->  		.compatible =3D "google,spherion",
->  		.prober =3D chromeos_i2c_component_prober,
->  		.data =3D &chromeos_i2c_probe_hana_trackpad,
-> +	}, {
-> +		.compatible =3D "google,squirtle",
-> +		.prober =3D chromeos_i2c_component_prober,
-> +		.data =3D &chromeos_i2c_probe_dumb_trackpad,
-> +	}, {
-> +		.compatible =3D "google,steelix",
-> +		.prober =3D chromeos_i2c_component_prober,
-> +		.data =3D &chromeos_i2c_probe_dumb_trackpad,
-> +	}, {
-> +		.compatible =3D "google,voltorb",
-> +		.prober =3D chromeos_i2c_component_prober,
-> +		.data =3D &chromeos_i2c_probe_dumb_trackpad,
->  	},
->  };
-> =20
-> --=20
-> 2.49.0.805.g082f7c87e0-goog
->=20
+When practically every caller is printing a message, it should go in the 
+called function. It's not really different than anything else we do. If 
+we have 2 functions commonly called in sequence, we combine them into a 
+single helper function. 
 
---8X7Hm8zNZQujXZIe
-Content-Type: application/pgp-signature; name="signature.asc"
+It's a pattern we have in the C API that I'd rather not repeat with 
+Rust.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCaA/a4QAKCRBzbaomhzOw
-wjG2AP4ijnSVnwRAZNpFtMiKPIOjyp13MuNiw9PMzfMbCr+MRwEA9hFqvOc+hmFl
-cJV85xxmxWaYDZTsW2Gw5ByJNl+JBAo=
-=LvH0
------END PGP SIGNATURE-----
-
---8X7Hm8zNZQujXZIe--
+Rob
 
