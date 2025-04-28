@@ -1,128 +1,153 @@
-Return-Path: <devicetree+bounces-171351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24A22A9E814
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:18:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A71A9E86D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B01618931A6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:19:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C503BA151
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9305E19CD07;
-	Mon, 28 Apr 2025 06:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6041C1AAA;
+	Mon, 28 Apr 2025 06:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WyKlyGJv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NbRNNlTP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611F7154BF5;
-	Mon, 28 Apr 2025 06:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435F318EAB;
+	Mon, 28 Apr 2025 06:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745821127; cv=none; b=HiyU3sIAvKKPpxVmZ7AkqbxUr3eY8mr19MlpMfGH7ce0+q7HjV4+vA+kKRsPa52iJMA0UJ9rU26NqFL9/84twZvGlsVJJTelrI+whAIS3Mc08fP6xlY15T40HKRnsCSFqcLChu+RqIvtlAAPDNFdCimmvr6Nfh44ey+jjcANRG4=
+	t=1745822577; cv=none; b=t/j2Kb/ABVubOeNRVWKLaK/cZZg9UTvSk+YdsLliHbj3V074YCc2GA3a/XlCXRL+tgQyM8jezD3vwWPe+YbyOZQKbyxCDZwt8k6jpKQsxY73Dv26ZpV/Qt+tXxwuPL6ye88YevjD/RlcDfJROrvKmQk8AHQoioW3FcM7tc5dDIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745821127; c=relaxed/simple;
-	bh=KulOy69QqyWLWtblZJ/FwSt5eW5A9Zb9CMMbpjMFvkU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y/bLl1dR8frxF716Y/Y4Fod9BOX41dsq4xLvqYN6SLFKHKSnb02i0qVLvVNG6fnwoE4ZTBPvHcaUldz8fzML4/KIdYO5Bk3+QJOBGB2MSxk1AuiRZIs3Oo1T5QB5IbeL6EJSYurFBo5sS/fjgAILNwXhgq5ng0r8SAGjZBTCvrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WyKlyGJv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73DFBC4CEE4;
-	Mon, 28 Apr 2025 06:18:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745821122;
-	bh=KulOy69QqyWLWtblZJ/FwSt5eW5A9Zb9CMMbpjMFvkU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WyKlyGJvU4VHjUl22faneoHWmxur8Sq5Smy67eeGStMaQdIrWYWQc3njywQuf/Wei
-	 QUZXxLNRpH0gp7G5ilAC17CShyXckMF19PX8c2V6StrANL1SDZkIBlnACMhaBc1vkw
-	 h3TVQb8r03rwwTSHSSa9xKdTtW0MmHe75KtZq08sYC2NSILM0QUW89ae52C6mZAuJD
-	 aeAtN5LgZ7G7A/7U1BEqdMd8uRSYIqVZF+n7c5sfuB8R5iWkBdPPYsz0qbnGhAEVXA
-	 5n6drj8SQQLw2oyjw7PNQyTR7waKJPHZqVW/fud3nG4JrprYQovbbw9kOhVUdy+ZvP
-	 dzkQoNWqykNvw==
-Message-ID: <90b34641-40e0-43d4-938f-d05dba852d03@kernel.org>
-Date: Mon, 28 Apr 2025 08:18:38 +0200
+	s=arc-20240116; t=1745822577; c=relaxed/simple;
+	bh=ZqZzcK4ZiQKN3TxBucAS5gbR0geGoW9MhIU8xDyaGYU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A+eD05mksRik9NuEwJ+/nJz9lAFGunxSG1BrtZ2c4Y5vw7/m6wCWzHag4821gscpy0bQxwAXUylz+kB9GDdzEForiIdXrzZHTIlQUWzh4dTixHSuTNzBIo/vUhhtHUTVuLKdl+nKmHyZukQygNMswAuUaCi+izuvZ88s3dP5BV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NbRNNlTP; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aca99fc253bso647992566b.0;
+        Sun, 27 Apr 2025 23:42:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745822574; x=1746427374; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mVeoxsrZ4tC2juWsFPI6k6Xd61VJ0s6yaeeo0JTTl0c=;
+        b=NbRNNlTPUEUf8X7pNnRpxd+Rpz0wDeak9vrIOnUWglbl5XtN+zVKA1iYES0vTiZqMi
+         9JD6J1tCWkPXLaJqMigcyxjNK3OOBSglfNJmSdA4w+IYWSNbnJDcvsH7KiBRMsZNM0ge
+         +SWdd2+pX/Vr8ykci9VN53YVn8XyWuF1Z5OlrWNAdrBWnatzCTHLGCCkkfVu7OAKBlKn
+         A4BdoWdJVD0z+uGhdI63ZfPyhArEMj7tFK8fr1TNp04S6LqMLFz9B+efbBuG/nqN1O8Q
+         Ny+63CMg1cElrVrR4cmRIWCS7ekOgrkCx1ylNYIlkTssclf8+YnpZrHRdaQjO/uWXVHb
+         OSQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745822574; x=1746427374;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mVeoxsrZ4tC2juWsFPI6k6Xd61VJ0s6yaeeo0JTTl0c=;
+        b=Wb7DrTQL4m9Bv7g84403GlsFI2GABtM20USUg3GjU4G/nZ7+RBhLWs3xJI9RJM4zDO
+         +VJeSBfYulEp8BKtV/TQVqC/1kD6EGk0KutA7k0MfptK1P8JbZP46xW1ZpOSTCV604PR
+         OGaMWks3aTT5u/CjoNrXlwFCV/b1rP2ZqR2mVwPnKEaQDdEs9GaiWCrgsx9QHY3uWdx5
+         MOSAmq84GbtRtQCqTbPHixWLwnez63fLW+Pbz3TWUUufoXTWvxxk9rTdjAyC10Q6BNSP
+         JZ+1E0O+kKDhQ+/gUFxIn6HZbCY/Tg3v97MxKJdKd1KTMdtkxTd6sKx/QOUiAx8xxyxp
+         0jAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUa3Si3SuR43P5Km4BmJtfZZndMJ3nxel0t4pdYbd8GMkTcRgwyGRs9Nykiqe3+IepvzKufZZ3fWakOFA==@vger.kernel.org, AJvYcCUlhFOy5Tgf8ppDGXUycnSeG8h6iAgyjykh2CciBKHSP/5BroS51sMLAjbNjsLziLSVmZle0GMxv8Vnr29i@vger.kernel.org, AJvYcCVNH3LODluiUjo1Rm5FV8vX3431wOxHrVNMo0tPwFoNyp1l0xTX0/DN+wDu/9D+XBdY8VrbErYjQBca@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+ovHp6FOgIdros1tS8U2CkJtEkzOiBWYVDM7r38Tm59Bnj7Sj
+	ZFnd1orD4DYqmlbGya3l9bzUUaa1Q0D9nTYMyw2lXEIwaab728627IDKmKKqNHQTyalAjn4SXbe
+	qI2GBvKItPykcTRKQpGlBlgdghHfRo7dU
+X-Gm-Gg: ASbGncvL0PYP90EcrYe6JGoSb8zrvJa+X/vLLap0gT7jaAsvT2tnE/E5G4yHiv2sPhQ
+	RrB7qzg6dRzgjdpHXNxU7YXFksw8Ct9vmOIc84n4Xzyjh1KvJIhhCFuJXKfolf4Lr6pKfgPxYhD
+	xV9BZx4Rlt0bIEbklUuwvdIk92
+X-Google-Smtp-Source: AGHT+IGCayb7OFCeBVQAaEXALm4GeBcZZQcEMMx+8n4frmJFVPip/NVbyIlTD/nMPAAub1h0ZHmAsGYZeDJgjRk/2bg=
+X-Received: by 2002:a17:907:9803:b0:acb:7104:353a with SMTP id
+ a640c23a62f3a-ace8493c612mr593840566b.34.1745822574299; Sun, 27 Apr 2025
+ 23:42:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: arm: qcom,ids: add SoC ID for SM8750
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250425140346.1087527-1-mukesh.ojha@oss.qualcomm.com>
- <20250425140346.1087527-2-mukesh.ojha@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250425140346.1087527-2-mukesh.ojha@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1745605382.git.Jonathan.Santos@analog.com> <8a04f8f1e9c14d57b1db2f38a8433a0367c0c9dd.1745605382.git.Jonathan.Santos@analog.com>
+In-Reply-To: <8a04f8f1e9c14d57b1db2f38a8433a0367c0c9dd.1745605382.git.Jonathan.Santos@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 28 Apr 2025 09:42:18 +0300
+X-Gm-Features: ATxdqUH27S-RbreDqWEJoxLFvP3nZaXCbK2hRvS8GpnytOwtgktp0cPwv3XnNq8
+Message-ID: <CAHp75Vciw_ivdKFsqo=FML64zUL_cDCzjuhmdVC3V_Whnatqwg@mail.gmail.com>
+Subject: Re: [PATCH v6 05/11] iio: adc: ad7768-1: add regulator to control VCM output
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, 
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
+	lgirdwood@gmail.com, broonie@kernel.org, jonath4nns@gmail.com, 
+	dlechner@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25/04/2025 16:03, Mukesh Ojha wrote:
-> Add the unique ID for Qualcomm SM8750 SoC.
-> This value is used to differentiate the SoC across qcom targets.
-> 
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> ---
->  include/dt-bindings/arm/qcom,ids.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Mon, Apr 28, 2025 at 3:13=E2=80=AFAM Jonathan Santos
+<Jonathan.Santos@analog.com> wrote:
+>
+> The VCM output voltage can be used as a common-mode voltage within the
+> amplifier preconditioning circuits external to the AD7768-1.
+>
+> This change allows the user to configure VCM output using the regulator
+> framework.
 
+...
 
-Although you have a checkpatch warning there... Run checkpatch BEFORE
-EVERY patch.
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/of.h>
 
+Why?
 
-Best regards,
-Krzysztof
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/regulator/driver.h>
+
+...
+
+> +static int ad7768_vcm_enable(struct regulator_dev *rdev)
+> +{
+> +       struct iio_dev *indio_dev =3D rdev_get_drvdata(rdev);
+> +       struct ad7768_state *st =3D iio_priv(indio_dev);
+> +       int ret, regval;
+
+> +       if (!indio_dev)
+> +               return -EINVAL;
+
+Isn't it a dead code? Or i.o.w. under which circumstances can this be true?
+Ditto for other functions with the same check.
+
+> +       if (!iio_device_claim_direct(indio_dev))
+> +               return -EBUSY;
+> +
+> +       /* To enable, set the last selected output */
+> +       regval =3D AD7768_REG_ANALOG2_VCM(st->vcm_output_sel + 1);
+> +       ret =3D regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
+> +                                AD7768_REG_ANALOG2_VCM_MSK, regval);
+> +       iio_device_release_direct(indio_dev);
+> +
+> +       return ret;
+> +}
+
+...
+
+> +       return clamp(val, 1, (int)rdev->desc->n_voltages) - 1;
+
+No explicit castings in min/max/clamp, please. This may lead to subtle
+mistakes. Also, don't forget to include minmax.h.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
