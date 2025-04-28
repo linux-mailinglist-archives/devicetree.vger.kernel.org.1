@@ -1,144 +1,107 @@
-Return-Path: <devicetree+bounces-171628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FE7A9F5FF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:40:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F6AA9F607
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BA9517D367
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:40:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41F203BA29B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB30227A135;
-	Mon, 28 Apr 2025 16:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19B327A938;
+	Mon, 28 Apr 2025 16:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGrqc2lG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H/Du8+ER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADF184A3E;
-	Mon, 28 Apr 2025 16:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C8027A122;
+	Mon, 28 Apr 2025 16:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745858444; cv=none; b=LXhYQvUzUJh20nwasEhua6VibBY0+0a25ln1cd5uQm6DN5yplMJPM8x2CmRSmKKbjRWnwfh4UQcPP7DpzNpBeuMGKkpK0txp7n+eLlXbk90kqBEjLGba3iwPxSn5+ZbTcq7fPH/joNsgjh0PUuldl2Uwnxqagq6CNZqXyEg6WTE=
+	t=1745858487; cv=none; b=R8s+IYg88BPu+Fbv86DAlQ7eMAihbaJbOzE0PK9Mnlc0FkNGeq7uRV7DMHpGE3lduWiti1tAyIpQx7jsmpxLehsQG1e6mvkl7i+dBV0hv2YsepcFPfNjIeATnHx3ivQPDgOMkCIdokG0w0zWYrNMr8zpjvK9gECj4mTuk3IBWSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745858444; c=relaxed/simple;
-	bh=IZiT22bu67/WDnQhbAi5nobg5mEMnbDK1ZfXPFMOlss=;
+	s=arc-20240116; t=1745858487; c=relaxed/simple;
+	bh=QzeqsQmPl7q+5IzShp/s7Qigk9UcbxT5FKZM6T8FKwA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dEmLgTF8Dti2dhBSwzzbGDMYBiUn67pDdSpm0y3oplwegOe9OSWM/rhur40cx+HkjR5/V+TPpEc5k8CTeHWiq8QTuotv05ZWdGbOFUEskEVeFL+8CZVBy5tI7SWc3fQ+nH0VRB616OD3xBuOdfWV55jQso8Zb2P5i2OobB7K0OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGrqc2lG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8593DC4CEE4;
-	Mon, 28 Apr 2025 16:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745858443;
-	bh=IZiT22bu67/WDnQhbAi5nobg5mEMnbDK1ZfXPFMOlss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JGrqc2lGErJA3V6Zd1CIaUlBDCi39+Mge9FbnINp+UvoRn8zCUhbg0BMqXzL5u7A0
-	 QSFiARL6jUFizdi2psQxokxFifS2EGKi2j6aWa04xUodixQx6C8Gi5jCbEZf4O/rOT
-	 per0yQDruEMBPCyyoIwPMx8JQhQeEg/QkIAt3dPeDfB7o1WrW1lpdpXNq5JRGL6tYh
-	 okBAp1pbDHtqWxQvpWwLJKtzc7ny8p8SRoEM6k6I/mYAwhxOQQoWmshE/iJI2iIcrn
-	 8fPjTGDjTGZJvsBYgZMQTEeOGqv0pE9g+01hNJpYh8NCE6Z7n6eUeP8erMJtaY3PKf
-	 kS4DCNNg64PSg==
-Date: Mon, 28 Apr 2025 17:40:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Kent Gustavsson <kent@minoris.se>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kent Gustavsson <nedo80@gmail.com>, devicetree@vger.kernel.org,
-	Lukas Rauber <lukas.rauber@janitza.de>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: mcp3911: add reset-gpios
-Message-ID: <20250428-alfalfa-caring-ee2eb658b8da@spud>
-References: <20250428-mcp3911-fixes-v2-0-406e39330c3d@gmail.com>
- <20250428-mcp3911-fixes-v2-2-406e39330c3d@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=X9K59P9AeeBTblc0Weqn1KvPi9obsSon8WCYdU/wMbV4fWEWo+tS91Fejm8/NwbwDGxaY/hYOX8rzpqvqiyoaP6SzKsD6F3up87ZQVsOQSjkOHmYwBxFkdiF1WhbtPAxLBd86laZ8HUwYVzGzfsdiYEIuehVi9nASgqRJ+hMNd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H/Du8+ER; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-72d3b48d2ffso4635302b3a.2;
+        Mon, 28 Apr 2025 09:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745858485; x=1746463285; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8bKnxtUI6nx93CIB0imngqo7gf66G5/z4JIMwCRKMZE=;
+        b=H/Du8+ER9StKa+/GTrmYUEZ6P55sZs0ejTsY96VSuKxMs3fnCnToWJyKozP/HMndZx
+         2buLUfwGNRR6siJssYa+duBH56GCihDdR+WRWVCWtARX9FfVBmfUJIa7jvegq56X8emu
+         y+1XypiyX+wQSnTwE6IUCx2Aawc14SVjLvZa8PlsEYTXV85UNISbBGHhKS9bfsg3wplg
+         HczHfkfVQXKD/HCIX6g/fEL7leCsWGtd/qa/7DsEYul2fji49rsfJsHDOwBMMpaKyqdr
+         21pW+tzQzOpBd/wNmJlPQMPWdj4UvDPvinRymi8llRqytn6braavglYaOyaJDjhsZxEz
+         fSSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745858485; x=1746463285;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8bKnxtUI6nx93CIB0imngqo7gf66G5/z4JIMwCRKMZE=;
+        b=Whs7EtoqrD5+e0tERj1PJQ+kySKrsMo0tISkf00sK7qF3KxRlKOdglf+yk6HdsnmSh
+         K0IWtwEKpP/dAW2UCso9EEEB+Z09x3uo3tyr+GJ4CdrmlP9KvcMOR7Z9uXr1ED+7RC4f
+         1Dkg3fZ1a+y5ShYuRTeevMY/cmdGiGMAkhedAOMWdgRLMmZOTIVUnuJcshp4S2yal124
+         HvvFwrE3kszElgRcwoTY1krMqAtaN5DYwSCyft/k9yT1UAc0+3H0UNBKeZAXgKAe1xtG
+         bI6Mo1v2K82NgWOZpNhoVOjxNhrVlGlmYk56g+GXTEXKQvMhJwRmbfRTOlRLLUR1XCGV
+         DZNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU9sW0FWF3L26Jue6i5dad6i66TfjQEFTYJgWJiYSsUBw8ovi701LF1ebmvuevJSTXHOuCyJNwpHw1/@vger.kernel.org, AJvYcCXFpIrwRgXfWaLRGvjXNm8aJ/xkQhM6CpzWHtnd6qks90COS8qACNgMqY2gyLTK6s5NqKLKS25OP/MWoyA=@vger.kernel.org, AJvYcCXtBFLLk9pHsY1aYZGW+1SKrPo8yzDaL+I3HxlmSSt9YRD0abetQWIclddYo8T2Eg6GreLn1GRiMT1S/FWg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMjNvtAu23NG/OEMNjHQKVQRhkHJPKF64USsbmS5DhbOSrcmmo
+	dC2Lgc1Xu3zS+LZPhAYS485RLdRaQhLaX7w61qEwU4tqptYahJWj
+X-Gm-Gg: ASbGnctr/TEFsxEC1C3AYIypO350h/mwtjnw4Vfl8rrewCNy0Bp1eUfllkyUCeYmRVv
+	dhT1RziJGYrZ70lxrAt27DtF5cuUEFhsCC37rqDpc6UrjtJLceBLrq7vSaBY2bwqmtPBlIpp/oh
+	4WRTqnuzm9rWtjyZtDOm+z/QvJP83vXZC4fe6IhpsE342O/ZxC6AL/0nbPhoP4Bbffua6f49lK6
+	ZDPTXcfA1SKnQHKM89rbMd9WgbNvFvASuuXHJiJQGgKO/7D2atLBRrD6DhNuzPkN1eHASA/+36A
+	BrLsh5F0tMSA9FYXRHAFXfrV/UYTBRz6swhGYWeX
+X-Google-Smtp-Source: AGHT+IHL69QrxwjhYu4/55O9zDlBA1SvHCz6iujXxZbkeN59cSS1ILYQAkqVjkEEReBaabOBFmdJjQ==
+X-Received: by 2002:a05:6a00:2e08:b0:73e:1e24:5a4e with SMTP id d2e1a72fcca58-73ff73a63bamr14787124b3a.24.1745858485343;
+        Mon, 28 Apr 2025 09:41:25 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:67d:4372:d1e6:def0])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25912c4fsm8163918b3a.4.2025.04.28.09.41.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 09:41:24 -0700 (PDT)
+Date: Mon, 28 Apr 2025 09:41:21 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Mattijs Korpershoek <mkorpershoek@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH RESEND] dt-bindings: mediatek,mt6779-keypad: Update
+ Mattijs' email address
+Message-ID: <kapqp5k5mlannxgk5hkohd7q5xz755kfkdy2tqgkovp3xj5smz@6djbotrywt5z>
+References: <20250428-keypad-email-v1-1-dde6ac76725b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9ZB/lk+tppHCUr2R"
-Content-Disposition: inline
-In-Reply-To: <20250428-mcp3911-fixes-v2-2-406e39330c3d@gmail.com>
-
-
---9ZB/lk+tppHCUr2R
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250428-keypad-email-v1-1-dde6ac76725b@kernel.org>
 
-On Mon, Apr 28, 2025 at 08:54:12AM +0200, Marcus Folkesson wrote:
-> The MCP391X family provides an active low reset signal that is still not
-> described in the bindings.
->=20
-> Add reset-gpios to the bindings and the example.
->=20
-> Co-developed-by: Lukas Rauber <lukas.rauber@janitza.de>
-> Signed-off-by: Lukas Rauber <lukas.rauber@janitza.de>
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+On Mon, Apr 28, 2025 at 10:35:13AM +0200, Mattijs Korpershoek wrote:
+> Update Mattijs Korpershoek's email address to @kernel.org.
+> 
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Applied, thank you.
 
-> ---
->  Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml | 5 +++=
-++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.=
-yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
-> index 06951ec5f5da381a9bb942d0ac7416128eebd3bc..3a69ec60edb915ae16312b94f=
-ddd32f5c87f37a7 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
-> @@ -32,6 +32,9 @@ properties:
->    spi-max-frequency:
->      maximum: 20000000
-> =20
-> +  reset-gpios:
-> +    maxItems: 1
-> +
->    clocks:
->      description: |
->        Phandle and clock identifier for external sampling clock.
-> @@ -71,6 +74,7 @@ unevaluatedProperties: false
-> =20
->  examples:
->    - |
-> +    #include <dt-bindings/gpio/gpio.h>
->      spi {
->        #address-cells =3D <1>;
->        #size-cells =3D <0>;
-> @@ -80,6 +84,7 @@ examples:
->          reg =3D <0>;
->          interrupt-parent =3D <&gpio5>;
->          interrupts =3D <15 2>;
-> +        reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
->          spi-max-frequency =3D <20000000>;
->          microchip,device-addr =3D <0>;
->          vref-supply =3D <&vref_reg>;
->=20
-> --=20
-> 2.49.0
->=20
-
---9ZB/lk+tppHCUr2R
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaA+vhgAKCRB4tDGHoIJi
-0kKjAP0SGoVbLKEoRIXDEoNsKzwTwRP6mi2cOiNg2ZTliu+/WQEAz3qlZTGXYpew
-2L9C5uyNseNr9Dh05ZgsLkjQVSP9bw4=
-=HZts
------END PGP SIGNATURE-----
-
---9ZB/lk+tppHCUr2R--
+-- 
+Dmitry
 
