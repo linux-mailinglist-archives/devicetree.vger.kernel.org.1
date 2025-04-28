@@ -1,119 +1,135 @@
-Return-Path: <devicetree+bounces-171528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B91EA9EED7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 13:19:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95DCA9EF19
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 13:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 192B75A0E2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:17:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43C7917DE2A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:30:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86866267B9A;
-	Mon, 28 Apr 2025 11:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17A4263F4E;
+	Mon, 28 Apr 2025 11:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r9ojCpq2"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="OFdW8aC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592F6267B67;
-	Mon, 28 Apr 2025 11:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2F825E816
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 11:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745838993; cv=none; b=GuntIc3x2bHRHg3rLXLDcRLaWs5ytTRX8HcBmE7S58F+RZ6iC2xIbOyNP/I9KKXvIMVr1S8WRds+mDPCLmFbblX96n7OFQmzcz9GoePLGJwlBzDTfWPOIJEt8Gx3n7Q4qS82igQIcivrsM9IXFragc13Lkhdv/DPfy6GmJSXKhk=
+	t=1745839814; cv=none; b=FWFFAbSdygW9bAh9pxhLKo1MvUpHpGGjeB3a7kzZYZaJxPdvqUQFXdNo7SxO+I+Er7b9jf6gG23XnxuU0ZOemSVt/R8QwVd2rzbGykAhXuB0EQmWYUkL+XtGY2xNO1j32iMywbVjqm7UuxC10/FJfvISC8KZQhCsoHiTtQmwm1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745838993; c=relaxed/simple;
-	bh=ZHlHP1G+yKLerL6A3JQMfI+d7AtCg+sYXv3msXk4+Uw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OKt7W7LttTcPEWIYqvI6S5RGeVeuDC6x8gQv9eh6n9Zxkzp0cOwnq5IyRL0RcyUA6JdaSp2KQNQRRZxc4nBZ/8+aqbc1xXwBSYsw7wEBo/+g0zBwTlAu7PLeS31c7usWj+B1nQHLb0olgcq8MY4JEEBr00ezWfJe1cfVYSEFMWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r9ojCpq2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE14C4CEE4;
-	Mon, 28 Apr 2025 11:16:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745838990;
-	bh=ZHlHP1G+yKLerL6A3JQMfI+d7AtCg+sYXv3msXk4+Uw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r9ojCpq2Ycbah3dnNCGr/ENC8EAMQvNr7f1MbLb/7XVh4MvrZcaUCJGriFFkbOzRY
-	 yhxKDx7v5wQNhYiSaWRfpy4FHJJsyjodIC44J/+jfe5cTcPi+pMqZXQPrJgl/SR+UX
-	 H/i3ynfhzP4JOxDVvE1xG3/3Lmq6fUrXNtIkeHNOb1Sw3q5KTNZv6IvmnYI0bGQ/SP
-	 q2rmj19Q6+hnAlPGLmoEaaEX7X8Wgk4SUMqbJl6ToJr59gWHgGj3rwRhS4Ij3yqIJE
-	 eJ/g3z7ceN8yajGbUc9DhjJMwkOKyvezN8t5fjLMWj8dz6RdZAdxZ84mx3tywbYKzH
-	 eHAqjBpWVa9hw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u9MTP-000000002X9-11Rt;
-	Mon, 28 Apr 2025 13:16:31 +0200
-Date: Mon, 28 Apr 2025 13:16:31 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
-	will@kernel.org, linux-arm-kernel@lists.infradead.org,
-	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
-	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-	quic_cang@quicinc.com, quic_qianyu@quicinc.com
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: x1e80100: add bus topology for
- PCIe domain 3
-Message-ID: <aA9jjyBR5DZcSbyQ@hovoldconsulting.com>
-References: <20250425092955.4099677-1-quic_wenbyao@quicinc.com>
- <20250425092955.4099677-3-quic_wenbyao@quicinc.com>
- <4bb58766-a080-4351-87f5-79a98219171c@oss.qualcomm.com>
- <aAt4TBrekUqyTjfi@hovoldconsulting.com>
- <306ce1fa-be83-4f13-bedd-97a20448d162@oss.qualcomm.com>
+	s=arc-20240116; t=1745839814; c=relaxed/simple;
+	bh=fwld4zkOzPn17td9PUrYMQ1ZtsLZ+Qvv0Fddj7pLU+I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=WPg6YyqfrtcmBJ4PlSiXjZMiiX5jnmy+RB0ZBfgbn7zJPR2U83oI/2ueg/SuyRt3rG7R4N3fgMjS79Un8odDv2BuSLmfgDMIj1UKuPWz7a9L5uIV6GPdChx5Oxti1xCW6wIyLQDdahlea7T+9lMmgzF7dTmjNIGxtRvgelhVXeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=OFdW8aC1; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250428113010epoutp0424a82cd2822ee114372907b17ba3aa7b~6eA62xNJj1721317213epoutp04q
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 11:30:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250428113010epoutp0424a82cd2822ee114372907b17ba3aa7b~6eA62xNJj1721317213epoutp04q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745839810;
+	bh=ZQy/46a1r4WAvJCApFWSuqNU0UpVfcMsny2biIWuzIE=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=OFdW8aC1+zv0YZ0OsW6E0VMV3Yl7wSORCpL/RC+6+jYEVPAWwHdurf5XYBfSmEGSN
+	 l1b4qH0jRPa1p8wIysBhd1XiYtwvLFfCmGUX+al6fEXs53sX4eJFBzr3id8ACFs+dS
+	 YLa6BpaWr/qBAl5vavOiXO76sAlkvCZuvM+LLbSs=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250428113009epcas2p2f7a8cb332fc766d0a47a30fa93c12268~6eA6Ntvek0100801008epcas2p2N;
+	Mon, 28 Apr 2025 11:30:09 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.92]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZmLpT0y8pz3hhT7; Mon, 28 Apr
+	2025 11:30:09 +0000 (GMT)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250428113008epcas2p327275651c8869ee5a113eda2f2ec1d30~6eA5Q6Qmo2967129671epcas2p3F;
+	Mon, 28 Apr 2025 11:30:08 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250428113008epsmtrp125683d16bb59170d7f0ca1f815620940~6eA5PPu1n2934329343epsmtrp1S;
+	Mon, 28 Apr 2025 11:30:08 +0000 (GMT)
+X-AuditID: b6c32a29-566fe7000000223e-4c-680f66c05646
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6D.81.08766.0C66F086; Mon, 28 Apr 2025 20:30:08 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250428113008epsmtip2cb6934ace77da911c6152dedc507572a~6eA4-N9DR1092810928epsmtip2R;
+	Mon, 28 Apr 2025 11:30:08 +0000 (GMT)
+From: Shin Son <shin.son@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
+	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: Shin Son <shin.son@samsung.com>, linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Fix CPUCL0 add CPUCL1/2 clock support for exynosauto
+ v920 SoC
+Date: Mon, 28 Apr 2025 20:28:54 +0900
+Message-ID: <20250428112858.82434-1-shin.son@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <306ce1fa-be83-4f13-bedd-97a20448d162@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMLMWRmVeSWpSXmKPExsWy7bCSvO6BNP4Mg1nThC0ezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
+	u7aRxWLy8bWsFk3L1jM58Hu8v9HK7rFpVSebx+Yl9R59W1YxenzeJBfAGsVlk5Kak1mWWqRv
+	l8CVsXrRBcaCnWwVr34/Y25gnMfaxcjJISFgIvHj93PGLkYuDiGB3YwS626vYIdISEgcnjGB
+	EcIWlrjfcgSsQUjgPaPEifllXYwcHGwCqhKbfsuD9IoIvGWSWP7/ABNIDbPAaUaJnWdkQGxh
+	gVCJf7vesIHYLED1rbv/gs3hFbCUOLDgECPIHAkBeYn+DgmIsKDEyZlPWCDGyEs0b53NPIGR
+	bxaS1CwkqQWMTKsYJVMLinPTc4sNCwzzUsv1ihNzi0vz0vWS83M3MYLDXUtzB+P2VR/0DjEy
+	cTAeYpTgYFYS4a0y4M8Q4k1JrKxKLcqPLyrNSS0+xCjNwaIkziv+ojdFSCA9sSQ1OzW1ILUI
+	JsvEwSnVwBQ1c9eN5POvXd8vOtfXrLpCqnAp14mv9uockzzn7FefupYxW2zO6gs2m84942vM
+	+jqjveP1sQW1nu2T/sgtElu2fdKmusI5/UV+a6I+2fXMm7XEYBvLLfFfwYJNfZO5Fk94r5om
+	nrSdZbf9lG2TftVeuCujMuWtsAt3wm+JKxxRjA+8qnednz8pOFDR9kTOBsULST4tH21DfSZP
+	fFLg5topfpfbK1PbI7CJgeW+wO+JchFTp8nY/3haInf23EST1Xd143m4WpTPPWS/WlbPI3Pp
+	e/xrBXve2N13315rbp23b75tYJfdO7aI+exfvma4xYlI8b18qlCvYLr4V0FR/nNN9SMnQ9nU
+	pct/rLLJdVBiKc5INNRiLipOBACoSUGg5gIAAA==
+X-CMS-MailID: 20250428113008epcas2p327275651c8869ee5a113eda2f2ec1d30
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250428113008epcas2p327275651c8869ee5a113eda2f2ec1d30
+References: <CGME20250428113008epcas2p327275651c8869ee5a113eda2f2ec1d30@epcas2p3.samsung.com>
 
-On Sat, Apr 26, 2025 at 12:44:57PM +0200, Konrad Dybcio wrote:
-> On 4/25/25 1:55 PM, Johan Hovold wrote:
-> > On Fri, Apr 25, 2025 at 12:22:56PM +0200, Konrad Dybcio wrote:
-> >> On 4/25/25 11:29 AM, Wenbin Yao wrote:
-> >>> From: Qiang Yu <quic_qianyu@quicinc.com>
-> >>>
-> >>> Add pcie3port node to represent the PCIe bridge of PCIe3 so that PCI slot
-> >>> voltage rails can be described under this node in the board's dts.
-> >>>
-> >>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> >>> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 11 +++++++++++
-> >>>  1 file changed, 11 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>> index 46b79fce9..430f9d567 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>> @@ -3287,6 +3287,17 @@ opp-128000000 {
-> >>>  					opp-peak-kBps = <15753000 1>;
-> >>>  				};
-> >>>  			};
-> >>> +
-> >>> +			pcie3port: pcie@0 {
-> >>
-> >> @0,0 for PCIe adressing (bus,device)
-> > 
-> > No, the bus number is not included in the unit address, so just the
-> > device number (0) is correct here (when the function is 0) IIUC.
-> 
-> Some DTs definitely have that, but I couldn't find any documentation to
-> back the syntax up or explain it properly
+This patchset fixes the incorrect CLKS_NR_CPUCL0 definition and
+adds the CMU_CPUCL1 and CMU_CPUCL2 block to support exynosauto v920 SoC.
 
-It's part of the spec:
+Changes in v2:
+- Separate the fix into its own patch
+- Remove the extra blank line
 
-	http://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
+Shin Son (4):
+  dt-bindings: clock: exynosautov920: add cpucl1/2 clock definitions
+  clk: samsung: exynosautov920: add cpucl1/2 clock support
+  clk: samsung: exynosautov920: Fix incorrect CLKS_NR_CPUCL0 definition
+  arm64: dts: exynosautov920: add cpucl1/2 clock DT nodes
 
-The first number is the device number and the second is the function
-which can be left out if zero.
+ .../clock/samsung,exynosautov920-clock.yaml   |  44 ++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  26 +++
+ drivers/clk/samsung/clk-exynosautov920.c      | 208 +++++++++++++++++-
+ .../clock/samsung,exynosautov920.h            |  32 +++
+ 4 files changed, 309 insertions(+), 1 deletion(-)
 
-Johan
+-- 
+2.49.0
+
 
