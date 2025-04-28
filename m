@@ -1,143 +1,297 @@
-Return-Path: <devicetree+bounces-171415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8C7A9EA0D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:53:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC80EA9EA1F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:58:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC48D18901D6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0462B3AD897
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4EF22D7BD;
-	Mon, 28 Apr 2025 07:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61F3212B3F;
+	Mon, 28 Apr 2025 07:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J0/7aSPx"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="WQUe9VIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021082.outbound.protection.outlook.com [52.101.129.82])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7E222A81D
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 07:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745826772; cv=none; b=OMi2XcoHgrrWTOKlErw0MQ+MzkB4imKChisPEaUu8I+KKTZ0WGGukQeYhFJx9y7Y6LkDMZ71m4TyG+hBSzAalg/2mRIqISgAPqRIdDRXOlgVy1cJLOgZT6fhxcrBS9hqntRJIKWXLaMINxu9NCjOgZOvhlHyL7qlNI1OuY3+nGw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745826772; c=relaxed/simple;
-	bh=a2q8227S7IVaFeHAdaSJ94I6tLSiVXiu9D8/iCz3E2Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LW0YFQGa3UMIyzJILVwhyt4FdwhYjz9ZGTDgMxuP8ErJ3C1lT90ps6NfIGBEw3BsgsEWSXiOaU8aHldiuvFIGLsHg3eHPnjsZKL0OT3Kb7Z+LAQ2VPhb+Y5XDeJxv8KDlRxU0Haw4EyMPrQ8xYgBXX1+NacGQYQPoW+ypSxV+qE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J0/7aSPx; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e8484bb895so1213353a12.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 00:52:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745826769; x=1746431569; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=++CyndwUisWgWH/S4dHSTfV3pOj95NuarysuXxNeUys=;
-        b=J0/7aSPx9Fzar86FtLC5mfXMq41kzabU7D+MbU0K6zdsOJ8knuYQYwBDfWbhG7ayOV
-         POUhBJ6YLuF9rXm2wlsPbTn0Stn+jje0LMnMqVzOJLTcAZjbNkgDyQ113/4Crr18sGBJ
-         hqy9fy7OPLMRU2UQuT+5yXnclw4zK88YvRpKsTWQZUuLnmkKnuFbJ92d/Uoj6ZbBkYXe
-         VROnnxFYWDztkmoEYsmqkeuva8VJIXa8OTPeWdJa2TDp+Z/Hku4i8CFtcKiCSgsfSjTH
-         Fl2C5ltxDiKn7p9wjq8EJIGwtvwmcf6+Tt8fT3w7vfq39Sug73cAWfXiaSVft+kcOeBU
-         GV1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745826769; x=1746431569;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=++CyndwUisWgWH/S4dHSTfV3pOj95NuarysuXxNeUys=;
-        b=kT06BB02je+sbx0UAxaWtsEYzON1fWE9Q8SYh6IOAc9qQ5sVEp5B2y2eP2eto9xJab
-         6W+BtvzS/UEGFY8EVR3TBlK5IIouQJ7TeiTx31/La2hFfzXNl4gNWjLxAHKYnxQoqF6Z
-         IkZWb7/3pLO1M1rkv+p9rSqEQ0UB6RwanVSo7f6yzOK+NdgqpMpt86+EIElgBAHe79Kj
-         TQ79IN3/bglt3YZ3TlJtQIeB07+Spwf8ixPs0tFL4w+2Wor9atGrgFMlFRh3/znObGoy
-         cqOZndA5FLar/WpMWb8b6DJNJalXU8ZoE2n4dcONz8OyAuKzaQLSHzfNmmSqsSCAy45K
-         YgTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFkTpi8qkR1VaMG/oUWd5pSFnetNbgv3NicaxkSbXc0KiuSNOd2qDkhJm4t30t2RD4v/Y9noGTWNLk@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywrn39bvvVw4LpOIzOFXLhpCPA6Wsv/icNtVVwYltn1RmPocFF/
-	PQeLytE8Sd6T6w7YKAzh7sAdKQDajIMtpTAvssTtTePRGKxifO0/p5NjWq5EiNM=
-X-Gm-Gg: ASbGncsg/4GdTu8iRDexYpS6k/GnfXYVC7XzPr+IKUxVIqA949u5uiyYtyCXhQ8rxFR
-	wX7eAzMm/wtZL2yDKflHNz+jFEWO/F1k/00TNrO3gbxt5OhCSNiDDWFmFA369xOWa6Xu7Y7K5zL
-	xL4luR2uAR/a3tJa3ZJ0MwXLVkAPSmZ8wJl+5sn6DGqzEIpcIcYjN/+08jlEd740xsNCMnfUK8Q
-	jd660dKEwP/+NppCoUIWPRD9JSvn8+hEmKkZ08flGzUPY6QB+GgEm/3INvEHAqS7ZHOejvsGnmb
-	CuhXOXMP7prCMqedIn17prL8yLBI4G7EgcPG2z9vnNEG7IoLoQ==
-X-Google-Smtp-Source: AGHT+IEGTZVZiJqfJ5HX9QPHWnLpx/E8XElCGd6Od8tueakLMxHqw2Flou9h+m1FaZ7wEavBKyTctw==
-X-Received: by 2002:a17:907:1b10:b0:ac0:b71e:44e0 with SMTP id a640c23a62f3a-ace7110745fmr364254166b.9.1745826768533;
-        Mon, 28 Apr 2025 00:52:48 -0700 (PDT)
-Received: from kuoka.. ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6ecf73a2sm574036866b.114.2025.04.28.00.52.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 00:52:47 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	stable@vger.kernel.org
-Subject: [PATCH] dt-bindings: remoteproc: qcom,sm8150-pas: Add missing SC8180X compatible
-Date: Mon, 28 Apr 2025 09:52:44 +0200
-Message-ID: <20250428075243.44256-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63681DEFDC;
+	Mon, 28 Apr 2025 07:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745827077; cv=fail; b=ijJisdd5ym9cxOa45xf+UuEy9cfpXgP2fcJb9DZZcp5i9Y2MovGVedrsRb4lUKW05KAiF1ZRrY6Sa0ZmzEKYncfBHSpRjAZUoZZAl2++V/0Z4mP48nXzEaijzYLhZQ7Zoy5Ap9aEy1+8sLVTslFz0+1bInasENJReOAJLmTSNvo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745827077; c=relaxed/simple;
+	bh=tFuEjRiBuq5F4b3OZQxAqdmEqdxGCOrKxNP+YkfvgJ8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KAAJzzdLLe/0hdy1ZNxqxv7yjWIqNLByuUmcdVgnv/TEwovr4OVRNxTsWAeJq0X+8WJ0XiaUKPx7m7kjNyCpwrf48F7SBuvV4/RP4eE4FplPmgN1lRahWgV82ZrQuN3OjNnlE3fUY9UjB2easAioqFuluLMuGMuBeFW6S+MMmxo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=WQUe9VIz; arc=fail smtp.client-ip=52.101.129.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QDZqhfw72Idlw5wf4Lz3rOSJsXlNBEry9l45z2MUz0fihbHTvoSkoWbfhke/M0z9C/SfZGUOC7AoVLeXXZiokDr1EEWPTNPvBUMjFOZqsiK0SmLdPoiCHKcATJ2sj1yWNI589AsVlrtC6gpqm0Psd9jfHbAC9XR4sg6N67FH7F0oGzgYJkzPfhoODLK/zH15pvmM66DUdjr7lx9d8igCFcFyNSMy0w0p3bHOQpcwMtE6QfD44C+Elo0hiS/45qfdGo98/X0ao2uZE1DEebAit1vPMt83OSzxMtphYpjFlRVRXbA2svef9+k8qUhcUuhELIV1JcK1MlO1uIvLA+gqbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=db4HFvC+5/fBpx94pvGNZj2ebrFcPRcQXVnIVayqJkc=;
+ b=BN2P61rqONXB5tG6moyeMdr8vF5cpBW4Fe5Eo2JCG/S/acF/bT67WQp43BvG56As3xSEhoUcGyud1qZj0bxBOtOYZjIDnsZyWjzQPkn8eZIV5wZR4Y7Gzr+AsBXHsdDcHTMVjA/z+SBTLsaNGEIWFZ67OVAsLamU1mgB1aQnWKNT9/aUgUqCrP514roI8Nn/QCjLfzsOqqc7atl5nN2VYUBX9BLxKzEptmKSATfmNXKhhY2r3u3x5WzxBlvea07xysOk1FbYD5ELniCBAMeio3LHBBlhwywa+G/KSZxzSRsVpm05eqKQl+znEy7ddeBo8xS/kP+K0xRJiyZuKSgvQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=db4HFvC+5/fBpx94pvGNZj2ebrFcPRcQXVnIVayqJkc=;
+ b=WQUe9VIz8FkOhy6wxQtF1WpEbKA7TczElxkQhLkfhCHIPoQhbXhl4N/1yNXNrXiHes1f75tEOgV+sdrWHJkVel8UBTqzfOl8p/W4be55sbOaKRYk8YRhW5hVQ7lsy3ElhgnnShGD1XX6r/a0bmrYi/C68Q4+B8e7hKFC9ZNdYg4+UlSnYNSUu9IVR0qk/D1yWck3DW8WYr20wvzTExv046VU9CeBcxYZTx0EzCOf1GVsL4cpfzawrJUFF3Su9ybB2UVEA5aGGVSfWTIMC2Csbbjcf6dqx4QO9hbh5NxWj7tGCqI3HNLSUki8Tju0WnZv5KFyU+Xx858djnOXeyaMHA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEYPR03MB7889.apcprd03.prod.outlook.com (2603:1096:101:165::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Mon, 28 Apr
+ 2025 07:57:52 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.8678.028; Mon, 28 Apr 2025
+ 07:57:49 +0000
+Message-ID: <32473413-b2fb-471b-b2d5-b4fd7914b57f@amlogic.com>
+Date: Mon, 28 Apr 2025 15:57:44 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/7] Baisc devicetree support for Amlogic S6 S7 and S7D
+Content-Language: en-US
+To: neil.armstrong@linaro.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
+ <a175ed1d-9e57-4150-af8f-7ca785203108@amlogic.com>
+ <e3229c42-b322-447a-ad1e-86c6f20dd54e@linaro.org>
+ <be8b7874-1251-4ba8-9243-a615517861ab@amlogic.com>
+ <eb1c3442-6b86-42e9-a672-eaba7de8b375@linaro.org>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <eb1c3442-6b86-42e9-a672-eaba7de8b375@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2P153CA0026.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::13)
+ To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1205; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=a2q8227S7IVaFeHAdaSJ94I6tLSiVXiu9D8/iCz3E2Q=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoDzPLrwtfBdFg7DRuVbMa3eXN3qGCKlYj2Hb2v
- 5JF0WZv9B+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaA8zywAKCRDBN2bmhouD
- 1xNdEACCfDg4cenrjMEuYZSPid+RtrHlHDfmvB3y6qJw3UkferBfwYrKfsuY/YEXdZLiQpBiH6z
- n+NZ9RmBze3OXQvX/XbAFMzDTWiEfIIafzpBsn9iChkXxCFz+6fPi5fY7Znf7vg4Iz72gHU4VIb
- d7McqqNy52zQSpQyH9Za4zRM9BN9BSpRRQ8uCk1oPj0bHZp3EsIa2zUohIrgdoUiwxVUgS/l+I5
- VXAcNLbe4YQVb5gxn0D9Bm6I6bJ5DTGuRuyaxod2Ek+NS/wZT+marX012rGtF9gVsckzRYC7NqI
- cUepxVvh2Q6umX3hTmbWGlIXRQbqGlk+kqUdTJ5F5xl1UyxfThzCoLX3NthXg3/M+xmN2oAlIdF
- BjC6Zsg/Ik6hRVNNs163S5ikj5muJgxbdmsD6M8wJ0t3IBycjOAVcMl8dqrZWj5spc9+NGiHH9z
- i8Xo6jCSs8c/t78EO1pI8YZLh9KaWvlcc9l95YHNZhxjK8pvx8edVSsyOP7KfbDqw88BnhVu5H3
- yOD5FkDzSeTiHc9eK5keu5d4+ryTML0wpx4OJzwkIKxwX66ZyHI8EYfpS0WgeYmIHOY3pz2IP2M
- b45vbG8Q4hFCdHKmXOXyREDDOXIaIpZDVo5a95TNDTp76bI3Yro7Uvs3CasHWuDJNW1o+Cr8MAq 78ytQgYEaiOOFiQ==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7889:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ec6b3e1-00fb-4ee0-d59e-08dd862a5e8f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Rlc2ODByNHMvdlNEMEV6UFZpWWJScCtKMnVUelV5Nm13NWVqNm5EdFY3b2tw?=
+ =?utf-8?B?eSsvWHlEb0pEUnJXZ0VlVzlzR1R4REFaaVU3YmxuTEpNZ1dkbXZtTUhhTnNE?=
+ =?utf-8?B?T1lUbG52L3ljSUlPNy9VcUpxN3JJcUpPbmd5UTN6alp5VUZtcy9TZXMzTmdw?=
+ =?utf-8?B?OWdMUG5kK2pMQTU0UHgrWGJjekMzbHVMcVNyT29RWFFxK1oyZGwxb2cySnc3?=
+ =?utf-8?B?enFNWU1pZnVsWllpelRTZ2VzMmJJSUVPSmE4eDZQTGZ3RG9pMWUydW1mL0FC?=
+ =?utf-8?B?YXFtYmJMWi9WQmYxK2Q2TUhDTDFkaEY2L1gvRjBEUDFWZGZhUnlMUTRDeEZE?=
+ =?utf-8?B?bmZUV0tPY0hjd1lpQStGTSt3MmZFeTBxTmdxSGNDVDl4VHFyR2VqN0x3cXg0?=
+ =?utf-8?B?TUtNNzZtRW1UNUxaaThqcjJ0a00xTXJISlIxSFVhRUp0MTRrYlB6bDJVa1ox?=
+ =?utf-8?B?RjVQZTFWTUlnRkFEVjc3UjF5Tk9MZ09BNmprNklTWmZsNUxJQnhyanlsYjRC?=
+ =?utf-8?B?VUlqYXpWRzJETGpxTHJNdTU4QU1ZZWJ2TFlCOVFNRWlvRXZqbWZIYnNsWk5I?=
+ =?utf-8?B?WmRxd1RCTkpRRkFjbC9uYTNoNGg1UjIrRUxRczYxVVB6NXBZQTFSWlVnYjZK?=
+ =?utf-8?B?aHlYTGdPa3NBYzJLYml6U1A3WVFvMnU0UnZZbVF3bTZvaTlVWnN6VXRjV3RL?=
+ =?utf-8?B?cThtL3NIaXdrQzNWU09iVkV4SFdXMDNrWUI5VUIxV0tmaHlreU4ybWFtTDQv?=
+ =?utf-8?B?NGRqbHhEVEl2dDQ3d3BTVXVIN250M1U5WWliQnZ4VHlnZnpSbXJycjg4T0xj?=
+ =?utf-8?B?QU1rSCtXbVIyRXd0bW5VMnJPY1gwdDNmNTBMYVpiWGY4L1BZR3ZtTjM4RUZj?=
+ =?utf-8?B?UXFuWDEwZ3Frb21NT1hFRUNLQ2FmdlBZcW1FTGFxY2dnaThvVjQzZ2RzajdL?=
+ =?utf-8?B?QU5ZL2NTRVBwWTk4eWpEaDR6MDcySzN1dFdKMzA3dmNVR2xGNzkrMitTMVFi?=
+ =?utf-8?B?cXBIRkwvQ1FWbG4vVGdjUnVwbGZYeGZMakRER1NST1REbEpMSlo3d2JnMjln?=
+ =?utf-8?B?Y3lQTjErYU5GTGUrdzYrdmhBbHo4cXlkenhkNzdDZ3N0VVlMU2hqeXRHVTQ1?=
+ =?utf-8?B?NkRLSUxwazJVUEF3WFJKOGhvc1NyOC9iT2p3cFpWdTZlbnkwaHB1cEpOdFVR?=
+ =?utf-8?B?QkRBVjYwdzhSaVVURk1GcG5CZzRKR2JncUJUemxsSFlkdkl0aFF1aDZzejd1?=
+ =?utf-8?B?ZStyL3B0dHpxekNIdDFEOE1nUmlJc1lONTFZcWpxTHkvcWNnRXpvMnlXQnhr?=
+ =?utf-8?B?dnhnWGZsOUYrM3djUEJ2bmE4bTlpb2dIYndKbDZWV0xldjhobU1EelRhbCtI?=
+ =?utf-8?B?eis1SUFFNmNTUTR1bk9wSWc5NlFnYWxuWXFlb0drMnRyZ0ZoQnA4bHVBYVBO?=
+ =?utf-8?B?ZXNEdUthMTdyMjljNXJlWWJ0MzZYSWhmdmJXcnN1R05XSWNURzZaRmxkR1RZ?=
+ =?utf-8?B?L3AzbElqSDdFQTFlNjVkZmxnQVdBT1c1UjRSTGJXS1pPcit5WXplY3laOWRE?=
+ =?utf-8?B?MlNYYWM0MnNyOUhkdWpPUHArWmxPZ0lYTFFPcmg1anlyMGwrelFiT1ZwMVhO?=
+ =?utf-8?B?dVBBZDY3cmhVRHh4TmNOUW4xU1kraDJuOXhPOUYwRUJab0tyMjJKUzVjOERh?=
+ =?utf-8?B?TStwTzVNRHRRcHBqQ1o0VHFGN0pQdG84VnpFL2NndHBaNVp0WnQxVzJSRUNE?=
+ =?utf-8?B?ck81VDJCY3h5QW1EM1NHSWpIdUV6Qk1nKzZhbHlzNWlCdi9ybVFYdExPTzMr?=
+ =?utf-8?B?MzhIUDZEeVFnazd6UmtLeU81dzAvSnhYZGZtbjVTRFhVNFBXR0Njc290VU9I?=
+ =?utf-8?B?L1FVMDNGdnRxRURQWTJ0dDJhM2Q3M1Y2VG16bUJxTFBNQVFJL1gxQmJ1cXRL?=
+ =?utf-8?Q?3K01A55mh6o=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V0l5N3g1NVMySWJRM2hNM3NDV0dJaCtEZDZMUE52ZEswYkk3OFJsN0lNZTIv?=
+ =?utf-8?B?RXh5R0cxSkQzQWswUWtJT3hjTWZOR3V0ZlhoRThGVHNZZFc2WWxCam10VWZC?=
+ =?utf-8?B?S0xkNmlicXlSUmd6VExEbTRObHErcFpxSHlqMG5wZFFJVnNrRXlwMUlrTmR2?=
+ =?utf-8?B?VFlWMDNDa3UxMGcxeFEvVExsOVRGcEd4VWJxYVpkcmIxL3Rab1RPYnZhbTVi?=
+ =?utf-8?B?T1lHV0RuQzJod1lhNFVQZ2JOVUQ3dlpsSHIycjF6aGZEdDdkVnlSZ3BTck5u?=
+ =?utf-8?B?Sk55Zkl1b0ptYWl6SVJHM2Naa3FiKzl3cFB2TGlYVGJ1alVlTDZTSHV1Nnhw?=
+ =?utf-8?B?cTNjTVplalFyQngzNDRocCtwYWtMWGVjS1czUVIvK0xxdlg5L0xmNGtuZnJn?=
+ =?utf-8?B?TjhUY3BWTm5mdlJHS01BeHZ6NWFDZ09QanQ4WXA1Y1Z5S1lQZVF0TTZtbkxR?=
+ =?utf-8?B?UHFoWlBmcndxMXd2dFlkYnJrM1Rkc3kzWUdNTThiYXg3SWFUaXRCOHNyN0x4?=
+ =?utf-8?B?bXdjazdOTmw2VHVuNEZ5SUhLaVpKY0lZb3BNUlkwZ1MrdTB6S3hWcnhzK2Yw?=
+ =?utf-8?B?Mmp1NzV4RUN6ckM5VDVzYmRaUlQ2RThqTWozOTgwbTFNbjVNR2R3eHo4cnJh?=
+ =?utf-8?B?V3l5WjNJU1owVFVyL3czKzZnb3kyNzJ5YkhIMmkrdndQQWxkQnFDdnlUNDRn?=
+ =?utf-8?B?MFk1YSs4QUo4RFhSWkJSTk95Z2NSajJOOTZuN0xlZzMyWXl1NStWZHNZakor?=
+ =?utf-8?B?c0VzQVZkaTIxQmFDdUQ1TWtQNUx3SnJydTJGeCsyT25KMXFRWXFId2FySldC?=
+ =?utf-8?B?LzhUd0pZc3Jmd2IwWmhSZXpkMFVMbGxRWmlKOGhYMUhJeWUzcmlJZVpKRUp3?=
+ =?utf-8?B?eGxkb3NDQVNtaWd3R2pScFJsem1KNHBsRER0d1ZBbWplQkNySWdJSm84ZnpV?=
+ =?utf-8?B?TEt5MnY3cTFVa3JSSGQrdUd3ZTljY3pMY2VoR3ZWU2tuUmpWdTkveVR3alhU?=
+ =?utf-8?B?RzIxZUpyd0NlTzc2dm5nS2pnSFhKeWMraTRTWmtJOUhJb25tbGxZRGVpeUQ5?=
+ =?utf-8?B?WkVSUHd6Sm5PZklJMElQT0w3RXhFRXJSd0xidWFNemlqK1pGR2xtL09tdExv?=
+ =?utf-8?B?dGYzS2syTkpSWlA0YmIzSXVNMk5CT3MwNHNLb2VWRGxrNkNzRUpmUy91LzJR?=
+ =?utf-8?B?VE01UjY5a3pqalRiOENrMk0rNytLZjE0dFZJODRwV1E1a2VMcWNuS1BtN2xN?=
+ =?utf-8?B?MXBnZmpIVXkrekR0M1l1aDJTd1VROEZaeHV2SUd5L3ErK3VHOXU4Yll2bWVL?=
+ =?utf-8?B?L1YvWTVSWmtRWFlkREFmenF3dkUxbE1zN05hODlSV04xNXpXVU5PV3pKQUJj?=
+ =?utf-8?B?Q1hmb0pKVzNza2U2WnVnYUFsUFlrUXhwTmpWaHIwMWtlbWd2ellud0NZWXNC?=
+ =?utf-8?B?YkZ6OTVoL2VLWVcvVjRhR05QaHZjV3BzRE5YZzJZQ0cybnJnQkF4TExQc0Z3?=
+ =?utf-8?B?YkxKNS9wVzJXVXFiQnZibUtncGl3VlU4NTBKRDZQcFp4djBETEg2Und2dGh5?=
+ =?utf-8?B?U2dKa3l0b0MzTXR4em5kdHhyZDRkYUlGRHcvSGpWZ2g0ZW9sR1RicFpIODNt?=
+ =?utf-8?B?ZUhzMHREVmIrNHBDZk9lRjJsVit6aFJ5a1VlWCtza0p2MHpmRXVHRnBsOVZT?=
+ =?utf-8?B?bmlOVlR5aUpJcGQwSG5ZQzRSNFBOeDRGOWNhRUNvZThaWGlKUW1DS0FqV0Vp?=
+ =?utf-8?B?MXgyenYwUlFLbnVUTC9oOFdsNkpxdjJPVDZuTFNFR1VRVTBmOEtHVlhrNjJq?=
+ =?utf-8?B?ZGloU3l3SmhkUUxFS3dJaDhZVTIyUEZsbTZya3cxdndYL0JzeW9ST2l3Slg2?=
+ =?utf-8?B?a3czVzRKRXErZnJZWkdKYWJjdGJBRVlkSUNSS0tpZGlOaHJCUlhTNlVLZ2w1?=
+ =?utf-8?B?VWJmUHRtKy9UdVpzRW5kTytjYnM0bldwbml2RGtZSDdSUnMzaEJadDhWclZx?=
+ =?utf-8?B?cHBMWjVQL2lGY1pZazNnV3I5VTBzYm84d2pmaEhoV2R2VTU4aWlMMWl0UDRn?=
+ =?utf-8?B?NzQvb2hGMEFXaWcyZHFnbkk3UnVEWFZQaFhESGV4Y1U1dzVVYUFaK3JyN2tl?=
+ =?utf-8?B?SmFRUVVaaVZzT2dDbEFPdlp1SXZQSTA3UUFtQWwyVENGWTMyUlY4a0tQMlFI?=
+ =?utf-8?B?L2c9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ec6b3e1-00fb-4ee0-d59e-08dd862a5e8f
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2025 07:57:49.1307
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: An8t/DnRxm25MjWFWe6w9wwrdtNDKwjd6oluYYlQjZFPNFbAgDTfyDO0PGhebP/IDR0I7XDLJbIOEqLYC8q7A7+EdSsUUfPAZrA4ncLh69Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7889
 
-Commit 4b4ab93ddc5f ("dt-bindings: remoteproc: Consolidate SC8180X and
-SM8150 PAS files") moved SC8180X bindings from separate file into this
-one, but it forgot to add actual compatibles in top-level properties
-section making the entire binding un-selectable (no-op) for SC8180X PAS.
+Hi Neil,
+    Thanks for your reply.
 
-Fixes: 4b4ab93ddc5f ("dt-bindings: remoteproc: Consolidate SC8180X and SM8150 PAS files")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml        | 3 +++
- 1 file changed, 3 insertions(+)
+On 2025/4/23 15:23, neil.armstrong@linaro.org wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> Hi,
+> 
+> On 23/04/2025 08:15, Xianwei Zhao wrote:
+>> Hi Neil,
+>>     Thanks for your reply.
+>>
+>> On 2025/4/22 21:49, Neil Armstrong wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> Hi,
+>>>
+>>> On 22/04/2025 13:45, Xianwei Zhao wrote:
+>>>> Hi Neil,
+>>>>     A gentle ping, thanks.
+>>>
+>>> I'll apply them this week except patch 4,
+>>>
+>>> so can you send patch 4 separately since it goes via the tty tree ?
+>>>
+>>
+>> I will send patch 4 separately.
+>> The following patches(5 6 7) can be not included for now. Without the 
+>> patch 4, the command "make ARCH=arm64 dtbs_check W=1" will fail to 
+>> execute.
+> 
+> I know, but since it's reviewed, Greg KH will pick it for the next 
+> release so it's fine.
+> 
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-index 56ff6386534d..5dcc2a32c080 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-@@ -16,6 +16,9 @@ description:
- properties:
-   compatible:
-     enum:
-+      - qcom,sc8180x-adsp-pas
-+      - qcom,sc8180x-cdsp-pas
-+      - qcom,sc8180x-slpi-pas
-       - qcom,sm8150-adsp-pas
-       - qcom,sm8150-cdsp-pas
-       - qcom,sm8150-mpss-pas
--- 
-2.45.2
+I have already sent patch 4 separately. From Rob's reply, do you think 
+it can be picked up together?
 
+https://lore.kernel.org/all/CAL_JsqKD=yespd0WM90VBr_XWdppimzDzecmwNfGMV+hNSHuRA@mail.gmail.com/
+
+> Neil
+> 
+>>
+>>> Thanks,
+>>> Neil
+>>>
+>>>>
+>>>> On 2025/3/17 15:16, Xianwei Zhao via B4 Relay wrote:
+>>>>> [ EXTERNAL EMAIL ]
+>>>>>
+>>>>> Amlogic S6 S7 and S7D are application processors designed for
+>>>>> hybrid OTT/IP Set Top Box and high-end media box applications.
+>>>>>
+>>>>> Add the new S6 SoC/board device tree bindings.
+>>>>> Add the new S7 SoC/board device tree bindings.
+>>>>> Add the new S7D SoC/board device tree bindings.
+>>>>>
+>>>>> Add basic support for the S6 based Amlogic BL209 board, which 
+>>>>> describes
+>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are 
+>>>>> capable of
+>>>>> booting up into the serial console.
+>>>>>
+>>>>> Add basic support for the S7 based Amlogic BP201 board, which 
+>>>>> describes
+>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are 
+>>>>> capable of
+>>>>> booting up into the serial console.
+>>>>>
+>>>>> Add basic support for the S7D based Amlogic BM202 board, which 
+>>>>> describes
+>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are 
+>>>>> capable of
+>>>>> booting up into the serial console.
+>>>>>
+>>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>> ---
+>>>>> Xianwei Zhao (7):
+>>>>>        dt-bindings: arm: amlogic: add S6 support
+>>>>>        dt-bindings: arm: amlogic: add S7 support
+>>>>>        dt-bindings: arm: amlogic: add S7D support
+>>>>>        dt-bindings: serial: amlogic,meson-uart: Add compatible 
+>>>>> string for S6/S7/S7D
+>>>>>        arm64: dts: add support for S6 based Amlogic BL209
+>>>>>        arm64: dts: add support for S7 based Amlogic BP201
+>>>>>        arm64: dts: add support for S7D based Amlogic BM202
+>>>>>
+>>>>>   Documentation/devicetree/bindings/arm/amlogic.yaml | 18 ++++
+>>>>>   .../bindings/serial/amlogic,meson-uart.yaml        |  3 +
+>>>>>   arch/arm64/boot/dts/amlogic/Makefile               |  3 +
+>>>>>   .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   | 42 +++++++++
+>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 97 
+>>>>> +++++++++++++++++++++
+>>>>>   .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   | 41 +++++++++
+>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 99 
+>>>>> ++++++++++++++++++++++
+>>>>>   .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
+>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 
+>>>>> ++++++++++++++++++++++
+>>>>>   9 files changed, 443 insertions(+)
+>>>>> ---
+>>>>> base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+>>>>> change-id: 20250221-s6-s7-basic-f300c30877e6
+>>>>>
+>>>>> Best regards,
+>>>>> -- 
+>>>>> Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>>
+>>>>>
+>>>
+> 
 
