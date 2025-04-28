@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-171631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 823CBA9F635
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:51:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1488A9F644
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE8867AD70A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:49:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7EE75A3B03
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A57127FD55;
-	Mon, 28 Apr 2025 16:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE1B289341;
+	Mon, 28 Apr 2025 16:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zl1YQ7se"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jngz/xE3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED76027A121;
-	Mon, 28 Apr 2025 16:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D2A2820CE;
+	Mon, 28 Apr 2025 16:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745859055; cv=none; b=cBXI5RG0ElL8gx6s9k64Ij7jMvHE0LBwlEjyV4Gw3jH8NiZv0ISG5pUahj3vDm7a9hTPmKGP7VthevX/+FJeVA63zUcZ+cYb5jBIXm6fEnQG6sUoxKU/KUUnEImFF7cEe1uvaKMvurVeqlVg3o/dT/OJxVmTisUx0oOrdi48tGY=
+	t=1745859178; cv=none; b=SuPbuMxVAOCQQHUObi3opcqvsmcMpWfHMruyWUeqr5ZLhOHd4/tBG8ojqJdHQZHcubsJiBWeR1J34CuO/ZJ25k8l2lNw+f2gUSS7lr93Q/oz4lDvQnpL6Bg1tbKcbYcOhtHapA9bi8VRUfSbrOAF7gykzsx1gUlase7JHpkEQ70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745859055; c=relaxed/simple;
-	bh=w8GeZnfKH54B+v/IYdcqkdWVdQCakOpqtic13lGX4Zw=;
+	s=arc-20240116; t=1745859178; c=relaxed/simple;
+	bh=pI6hRChqlANd3TecWcb41Oh8OAvvjaVSWeKsY3yEuzs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N0/ulx63MpS1VXG2KDAtRFi4k7cHttKCFFLbiAOFaXKyX+u1jesN/p92yxlVsJ9myE6bpK69wHUcWNshFm/YP4PgiCiU8i7Uv5V2mMuYITZyT8gK9jD/UCpqHgSOcTHy9mgPwnF5HeWcmwm+2scelj7ZA9mbwQaIb97IWRxRx14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zl1YQ7se; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D10C4CEE4;
-	Mon, 28 Apr 2025 16:50:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xoql57HwaddbIowSVfspn2aMDj0on07gKKOwUIIvz8AuIlq3kR/h3cSM6nHoPxwrPkEO/byZzHZhOqL/HCSqgv58jjkGdQQklQGuzgMQ70BxmgCa2fhQbXZs+EPBHCgmWZA8+h64Crxt4yg5SbN62oBPUxDZZnhJiAl4GRdbiA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jngz/xE3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D93C4CEEC;
+	Mon, 28 Apr 2025 16:52:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745859054;
-	bh=w8GeZnfKH54B+v/IYdcqkdWVdQCakOpqtic13lGX4Zw=;
+	s=k20201202; t=1745859178;
+	bh=pI6hRChqlANd3TecWcb41Oh8OAvvjaVSWeKsY3yEuzs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zl1YQ7seWqYm7DELGZwOo1oAwoe1+S11syjyi5Ia9aq4xVSUQhxNm6VSwt05ST0Hb
-	 Xu1Qr2lGagi56zAKiit6UXOL1+VoEQ8Md5ExCthQ7PEbMqCpb4+i9KsLEIqE/LjlKr
-	 CYEbuwa72PAOsdXw0LbeRvQHfD9tAAkJTtJVsl9nQOfdNpoAJ7dS75FBEhW82ZcZ8E
-	 MBWjpGfg1obcuiL4/UHesWK/cCREy9znXg9jY2bXKgLDXT3Iqugyo8I7yKpauAXuxF
-	 ACcXKVDEV4KbSJzxapAUF8uQdvGPWWz0IbVXa5GWVTn3roiYIMNCIyGP4PJ/7EM4pC
-	 pjJQmgLqz06AA==
-Date: Mon, 28 Apr 2025 17:50:49 +0100
+	b=Jngz/xE3VRgYdOP5FFPjdrAXuTFs/nLzMIEAHSlf322k0q7gncsf/GGojuYzDsp5S
+	 BNJDlrsOhHxhjProwexPa5h0Pt+usdtysKtHnR8UPoSQWEkIyQAAHIXG0F/26NVrz1
+	 J0fC6ZZGSLMFYY5hdBiLr8FkGQGr22UeZWnUcU1vk0Uykg7edAzLCZGaYicG0+j3v/
+	 z9HO3ILHQsCYwEQ4afHLJZJMSGU/ZBX0J7PGlBScxow/RpaVxaKL067VApRfw6WsAV
+	 s3T0Cja8HL88ix+611GRh3TcSwFngRWelycA2BEURj4xdgMZnDsfaOD/AahJJqR/FP
+	 ZzSSOG6bchqBQ==
+Date: Mon, 28 Apr 2025 17:52:52 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt: bindings: arm: add bindings for TQMa95xxSA
-Message-ID: <20250428-scalding-coffee-70507d952247@spud>
-References: <20250428135915.520432-1-alexander.stein@ew.tq-group.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Yuntao Dai <d1581209858@live.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: add Sophgo CV18XX series SoC
+Message-ID: <20250428-glade-unripe-4cdb4913ede4@spud>
+References: <20250428-cv18xx-mbox-v3-0-ed18dfd836d1@pigmoral.tech>
+ <20250428-cv18xx-mbox-v3-1-ed18dfd836d1@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,74 +66,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Nhw6v3yNy4dTm1za"
+	protocol="application/pgp-signature"; boundary="808Y5OGEYRt8756B"
 Content-Disposition: inline
-In-Reply-To: <20250428135915.520432-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20250428-cv18xx-mbox-v3-1-ed18dfd836d1@pigmoral.tech>
 
 
---Nhw6v3yNy4dTm1za
+--808Y5OGEYRt8756B
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 28, 2025 at 03:59:08PM +0200, Alexander Stein wrote:
-> TQMa95xxSA is a SOM using NXP i.MX95 CPU. MB-SMARC-2 is a carrier
-> reference design.
+On Mon, Apr 28, 2025 at 08:39:44PM +0800, Junhui Liu wrote:
+> From: Yuntao Dai <d1581209858@live.com>
 >=20
-> [1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqm=
-a95xxsa/
+> Introduce the mailbox module for CV18XX series SoC, which is responsible
+> for interchanging messages between asymmetric processors.
 >=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
+> Signed-off-by: Yuntao Dai <d1581209858@live.com>
+> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 > ---
-> Changes in v2:
-> * None
+>  .../bindings/mailbox/sophgo,cv1800b-mailbox.yaml   | 57 ++++++++++++++++=
+++++++
+>  1 file changed, 57 insertions(+)
 >=20
->  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
-on/devicetree/bindings/arm/fsl.yaml
-> index 447054b52ea39..a6cf65e10d43f 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1419,6 +1419,16 @@ properties:
->            - const: kontron,imx93-osm-s    # Kontron OSM-S i.MX93 SoM
->            - const: fsl,imx93
-> =20
-> +      - description:
-> +          TQMa95xxSA is a series of SOM featuring NXP i.MX95 SoC variant=
-s.
-> +          It has the SMARC form factor and is designed to be placed on
-> +          different carrier boards. MB-SMARC-2 is a carrier reference de=
-sign.
-> +        items:
-> +          - enum:
-> +              - tq,imx95-tqma9596sa-mb-smarc-2 # TQ-Systems GmbH i.MX95 =
-TQMa95xxSA SOM on MB-SMARC-2
-> +          - const: tq,imx95-tqma9596sa         # TQ-Systems GmbH i.MX95 =
-TQMa95xxSA SOM
-> +          - const: fsl,imx95
+> diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mai=
+lbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbo=
+x.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..5815dc02189c973d681f5b4ff=
+22a9fb7536802b9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.ya=
+ml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800b-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->        - description:
->            Freescale Vybrid Platform Device Tree Bindings
-> =20
+> +title: Sophgo CV1800/SG2000 mailbox controller
+> +
+> +maintainers:
+> +  - Yuntao Dai <d1581209858@live.com>
+> +  - Junhui Liu <junhui.liu@pigmoral.tech>
+> +
+> +description: |
+> +  Mailboxes integrated in Sophgo CV1800/SG2000 SoCs have 8 channels, each
+> +  shipping an 8-byte FIFO. Any processor can write to an arbitrary chann=
+el
+> +  and raise interrupts to receivers. Sending messages to itself is also
+> +  supported.
+
+> +  Sophgo CV1800/SG2000 SoCs include the following processors, numbered a=
+s:
+> +  <0> Cortex-A53 (Only available on CV181X/SG200X)
+> +  <1> C906B
+> +  <2> C906L
+> +  <3> 8051
+
+I think this section should be moved to the mbox-cells property, since it
+is describing how to use the mboxes property.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: sophgo,cv1800b-mailbox
+
+Remind me, why only a cv1800b compatible when you also mention sg2000?
+Rebranding of the same SoC, or something like that?
+
+Cheers,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#mbox-cells":
+> +    const: 2
+> +    description:
+> +      The first cell indicates the channel index (0-7), the second cell
+> +      indicates the target processor ID (0-3) to which messages are sent.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    mailbox@1900000 {
+> +        compatible =3D "sophgo,cv1800b-mailbox";
+> +        reg =3D <0x01900000 0x1000>;
+> +        interrupts =3D <101 IRQ_TYPE_LEVEL_HIGH>;
+> +        #mbox-cells =3D <2>;
+> +    };
+>=20
 > --=20
-> 2.43.0
+> 2.49.0
 >=20
 
---Nhw6v3yNy4dTm1za
+--808Y5OGEYRt8756B
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaA+x6QAKCRB4tDGHoIJi
-0gVvAP0YmLaFnU0LzkqbM1C1p2Iq6QSPxnYt3l/wmcpd2kus0wEAiAs1v+vcr16G
-FoAD7cwjXSKih7VMnauIiYZDgL4bigw=
-=RYkS
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaA+yZAAKCRB4tDGHoIJi
+0t1lAP9V2g2LIIJRAKEvyHiOiSZqBssxSKYR38pDHKDgwVNB8QD/WW5d+UskSt4X
+aQBF7jtO3m4hOntZ5PTi7OrEe6twXwc=
+=XbeY
 -----END PGP SIGNATURE-----
 
---Nhw6v3yNy4dTm1za--
+--808Y5OGEYRt8756B--
 
