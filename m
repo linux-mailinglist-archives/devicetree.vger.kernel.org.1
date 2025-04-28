@@ -1,448 +1,135 @@
-Return-Path: <devicetree+bounces-171685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B2BA9FCBD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 00:06:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C01A9FCD9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 00:14:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E60D3A8B97
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:05:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 029A31636C6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81EF20A5D6;
-	Mon, 28 Apr 2025 22:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A66C21128A;
+	Mon, 28 Apr 2025 22:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IsubwQgN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NkKVeh/t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42C9155C82;
-	Mon, 28 Apr 2025 22:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BA9F2AE96;
+	Mon, 28 Apr 2025 22:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745877966; cv=none; b=P4hVEspfi8VxY1YNW2YufoQujAtwz98aVS5uAQ/IzgDickGFa5OeRv9sB48yISYAnusJEh05qBXtQ/9cPEW6gDZJMuOa99I8c1h2eY92LNDK1doD4UrEZHb/unPbsKJA7x0ShSZO8F17hZvGUa3jYG1VyrLytKGoE+TnKD7kSjg=
+	t=1745878488; cv=none; b=MO/e71n3eKmb17zVixFEJ/dbxMrd25fKtOLb14F2VNLAuhNuvijEDVM/fBX2H5PMssMEdXREIliewtzhZ37Orpgo5tJpiUAZCT40G4wJjAci18HO9/sZb72gSNahXPgpgdAoDb5vBUR6B7rXBBtlXjGi8pl06dKk2AE5YFtAfa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745877966; c=relaxed/simple;
-	bh=rh0mXKcXTapzeEarbYwt4U6w174nT0PhAR8s8IiTQAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g88zwPnWhLFk6d+1rtlBRShKIjntgE4hwRBKrw3eT2CXNzt9RJeUesIxDq7t147djKhWCLb1AVdwXZpiEfHczHoZR/wUY85vmMatw0ZITh4h8u4Sn35cOLT6dLwTait2f1AqEgy/m8mib4TyV7h73CbZh9I+AVDE3aUIFgK4I9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IsubwQgN; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745877962; x=1777413962;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=rh0mXKcXTapzeEarbYwt4U6w174nT0PhAR8s8IiTQAk=;
-  b=IsubwQgNB3nYlXVLiuE8L6QTRHC6G4cOOHOHuzvbKBWY4nXuYOBhCXgV
-   xEYDEqqiT4p4QtYTGg33eDZpiGh3R1KQdHLKE+QMkrjJUFGcxBUrSwusC
-   YEpmHtMwKlQW/3Kkb6qFkcvoSR1SeN13FehmJxZYannM+vi8PdOzLeG5f
-   RHBCwl8iGjKFC8MqNSeN+qzSWaEXWKE4TIOZ4UJwpPGS8zCfSkngO3CfN
-   SwDuB+0goJiSfdJpCoaPeuH92qeBc4RLMLX6JlPmTDym9KYE6zmPwslI6
-   V1mWEdWMmxgfcAfWDDEhysDrlLHvB+eQPow5bs3i0+QNcnXP1w8+CUszG
-   g==;
-X-CSE-ConnectionGUID: vZI0JErXS06IaHupvS2PfQ==
-X-CSE-MsgGUID: 2Nav/lQyTqq0OYbqcebP9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="64905738"
-X-IronPort-AV: E=Sophos;i="6.15,247,1739865600"; 
-   d="scan'208";a="64905738"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 15:06:01 -0700
-X-CSE-ConnectionGUID: gJCBoSoISICnp5j5zJezcw==
-X-CSE-MsgGUID: p8G+22QSS0SpqII0tBJYkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,247,1739865600"; 
-   d="scan'208";a="133366791"
-Received: from mdroper-mobl2.amr.corp.intel.com (HELO [10.124.222.199]) ([10.124.222.199])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 15:05:58 -0700
-Message-ID: <35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com>
-Date: Mon, 28 Apr 2025 15:05:55 -0700
+	s=arc-20240116; t=1745878488; c=relaxed/simple;
+	bh=AVy40o64QFt6x/ouh/PiCtN2yt0Kf/b+NL8kxoIotQI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ACve0MFzuo+TpTHfXtu4Yiac7qxxe/oGmgKoopcC3gSYukCxk5kMQLeIyCJuESEozQ/ssaM03DYwwUbcgI0HGi/IiMjj104UsZlEIlJJDXTftGS77AqwPYAN3Ffbl2+J4wguVQjUTAcm3bVPOjIZWq/3dVVrpfMIuUZ96Mo0S5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NkKVeh/t; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cfba466b2so50732855e9.3;
+        Mon, 28 Apr 2025 15:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745878485; x=1746483285; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AGx5n+9atRrB2QZYeDRA4sEdUwwps5ruTDWN1T8K+3s=;
+        b=NkKVeh/twSOoYJSlie9e2y/dpbmfoXjY2csibhqQN7mPfPCSo9itXp1pFW1i/ClVKl
+         tsrtpcACy3a70MypoqhENVolNUhL8OT8kC2yNL6OEV7c6D/LtWNaUyiVCgaT+r1K0QoK
+         cpd10juGntr6RD0ZIR+Gol/YY9TCsOSaUrFiRzob5GDPcAyBJ+uUoLoEQAHFNRigL+X9
+         H72tXO2lLScQLOapJESB8t254GQLafnbwP3dxC9jFAA8vDrYCqiF9EMy3jzg6wMZ3m6T
+         xshQM5tKGgwsX56Dh4amMc6QzxB7YHTVkueUkvPPapwJ1tV8t14Bfg1MmkzE4vDIn9Gv
+         Uedg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745878485; x=1746483285;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AGx5n+9atRrB2QZYeDRA4sEdUwwps5ruTDWN1T8K+3s=;
+        b=KLdFoJG9sylM4NGOzg5qQ5TMXW6YXIUwKH9GdOHTpOAR5cbDs8o/06UawWmdeggTbR
+         UVA+8D0q4RiPEO62Ev4ZOH4w6QrsT/8gQpZ5kmsHo/Qx67z1oIRQrZT1W5qD4dTgCoWv
+         kcoi9eTynXNM50pcEZuM1PSXCPtdE9Zct7F/8aXxbVSifcw+xFvm9loHs32BMy2y8tx9
+         ihyjUNg6myJT0i87I9eCEwJ4lq1Ou5y22FTKVIkvOBqGYBGWt04MoG2Bd4D6qLFXRyTl
+         SuKs8WhBNJTbk7Ct8FxFhxhrevtvfQPjat37vjOycJ8XnopAGr2r7yJZaMYshXz1Y8Z+
+         p8vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1kSLwNpBxyN7wVcSvWomAq/Y2/waiSHAWwpdaIDNn6ABpih7/z/5MWXCPS4iV/tPzuMhnWAoW7KXO@vger.kernel.org, AJvYcCXb7g6I6v49ylJ06ka23DRm0H92l+JXbVufE/ixpmQvycKKame5Z9tKD70Zrh8DYSy4/Q3TnNS43Ort@vger.kernel.org, AJvYcCXcBt+mt3u53Ux6RKS5F+sFcGT67fV9i2D074XesPlDBnnr6AkFVsUBNx+44QySDksvf/56Tmho0uJQJITe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMQyGLSwcE5stXkM/3En1NLQ5FycEN9bmaqtQsr2nh5GpngBwm
+	NhsigpAhbLlXRgK2TCtPLKrhm2FWia/u7tEtxt2FHrCQ+r9nHfh6JGv2Kxix
+X-Gm-Gg: ASbGncvTRYNYZbWlwZ8S2RS4I7p77zp32SWBT0Sb7uFG5uF7UcVWinftgtmjNeie/uJ
+	smeiasFGVrO21GgaXTl6pVb3FMExnJyKVMS4Om4elbtNndwXahb79orRMvGsnzvQQdaoOJn85NU
+	Nqv0wsrN/HdG9Z4MjNaw/7hhAfqbHNuThxVWQcavmuB8nitnFDKs0QENCWSLo+CIARzCy2AZFLu
+	wLeFaEzldUncB9YaI6DjxNCbhrDPKR7QPUBienbDN9eFbQ9vM298QbNiSqYaY2kcUZz1GXAmlqk
+	pRFYw92n4ArrEIWbbR4HndZxP0ZaINOMsOknHjJ3gOuyoxOm6nr2P26eqlVj2pg5+npvVZLLpUq
+	T
+X-Google-Smtp-Source: AGHT+IEqYc+FEDLDoI7dgmiKWdJiq0uJntkjgS9miQ30Gtow0iIdMKbM+xnjFdR0ZXG/wLCWw3JEow==
+X-Received: by 2002:a05:600c:a181:b0:43d:fa59:be38 with SMTP id 5b1f17b1804b1-440abe464eamr56784525e9.32.1745878485038;
+        Mon, 28 Apr 2025 15:14:45 -0700 (PDT)
+Received: from tempest2.110.lan (xt27dd.stansat.pl. [83.243.39.221])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a53870f9sm135901085e9.33.2025.04.28.15.14.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 15:14:44 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: linux-hwmon@vger.kernel.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Shen Lichuan <shenlichuan@vivo.com>,
+	Charles Hsu <ythsu0511@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH 0/5] hwmon: pmbus: Add support for MPM82504 and MPM3695-10
+Date: Tue, 29 Apr 2025 00:13:30 +0200
+Message-ID: <20250428221420.2077697-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 11/14] x86: add KHO support
-To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
-Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
- ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
- catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com,
- devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
- graf@amazon.com, hpa@zytor.com, jgowans@amazon.com,
- kexec@lists.infradead.org, krzk@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
- pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
- ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org,
- saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de,
- thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
-References: <20250411053745.1817356-1-changyuanl@google.com>
- <20250411053745.1817356-12-changyuanl@google.com>
-From: Dave Hansen <dave.hansen@intel.com>
-Content-Language: en-US
-Autocrypt: addr=dave.hansen@intel.com; keydata=
- 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
-In-Reply-To: <20250411053745.1817356-12-changyuanl@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 4/10/25 22:37, Changyuan Lyu wrote:
-> From: Alexander Graf <graf@amazon.com>
-> 
-> We now have all bits in place to support KHO kexecs. This patch adds
+This series extends the hwmon PMBus driver for the MPS MPQ8785 to support
+two additional Monolithic Power Systems devices: the MPM82504 and
+MPM3695-10.
 
-Please use imperative voice and also avoid the "this patch" stuff.
+The driver is restructured to support multiple devices using device tree
+matching. It also introduces an optional "voltage-scale-loop"
+property to configure the VOUT_SCALE_LOOP PMBus register, which adjusts
+reported output voltages depending on the external feedback divider.
 
-...
-> +/*
-> + * If KHO is active, only process its scratch areas to ensure we are not
-> + * stepping onto preserved memory.
-> + */
+Device tree bindings are updated accordingly.
 
-Same thing on the imperative voice here.
+Changes have been tested on hardware with device-tree based matching
+using both the MPM82504 and MPM3695-10.
 
-I'm also not fully understanding the comment. Do these "scratch" regions
-basically represent all the memory that's not being handed over? It's
-not obvious.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-> +#ifdef CONFIG_KEXEC_HANDOVER
-> +static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
-> +{
-> +	struct kho_scratch *kho_scratch;
-> +	struct setup_data *ptr;
-> +	int i, nr_areas = 0;
+Pawel Dembicki (5):
+  hwmon: pmbus: mpq8785: Prepare driver for multiple device support
+  hwmon: pmbus: mpq8785: Add support for MPM82504
+  hwmon: pmbus: mpq8785: Add support for MPM3695
+  hwmon: pmbus: mpq8785: Implement voltage scale loop configuration
+  dt-bindings: hwmon: Add bindings for mpq8785 driver
 
-Do these really need actual #ifdefs or will a nice IS_ENABLED() check
-work instead?
+ .../bindings/hwmon/pmbus/mps,mpq8785.yaml     | 54 ++++++++++++++++
+ Documentation/hwmon/mpq8785.rst               | 29 +++++++--
+ drivers/hwmon/pmbus/mpq8785.c                 | 61 ++++++++++++++++---
+ 3 files changed, 131 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml
 
-> +	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
+-- 
+2.43.0
 
-What's with the double cast?
-
-> +	while (ptr) {
-> +		if (ptr->type == SETUP_KEXEC_KHO) {
-> +			struct kho_data *kho = (struct kho_data *)ptr->data;
-> +
-> +			kho_scratch = (void *)kho->scratch_addr;
-> +			nr_areas = kho->scratch_size / sizeof(*kho_scratch);
-> +
-> +			break;
-> +		}
-> +
-> +		ptr = (struct setup_data *)(unsigned long)ptr->next;
-> +	}
-
-Wow, there are a solid number of these loops, each with similarly fun
-casting.
-
-> +	if (!nr_areas)
-> +		return false;
-> +
-> +	for (i = 0; i < nr_areas; i++) {
-> +		struct kho_scratch *area = &kho_scratch[i];
-> +		struct mem_vector region = {
-> +			.start = area->addr,
-> +			.size = area->size,
-> +		};
-> +
-> +		if (process_mem_region(&region, minimum, image_size))
-> +			break;
-> +	}
-> +
-> +	return true;
-> +}
-> +#else
-> +static inline bool process_kho_entries(unsigned long minimum,
-> +				       unsigned long image_size)
-> +{
-> +	return false;
-> +}
-> +#endif
-> +
->  static unsigned long find_random_phys_addr(unsigned long minimum,
->  					   unsigned long image_size)
->  {
-> @@ -775,7 +824,8 @@ static unsigned long find_random_phys_addr(unsigned long minimum,
->  		return 0;
->  	}
->  
-> -	if (!process_efi_entries(minimum, image_size))
-> +	if (!process_kho_entries(minimum, image_size) &&
-> +	    !process_efi_entries(minimum, image_size))
->  		process_e820_entries(minimum, image_size);
-
-Oh, so KHO really does replace the other memory maps here. That seems
-important to call out.
-
->  	phys_addr = slots_fetch_random();
-> diff --git a/arch/x86/include/asm/setup.h b/arch/x86/include/asm/setup.h
-> index ad9212df0ec0c..906ab5e6d25fe 100644
-> --- a/arch/x86/include/asm/setup.h
-> +++ b/arch/x86/include/asm/setup.h
-> @@ -67,6 +67,10 @@ extern void x86_ce4100_early_setup(void);
->  static inline void x86_ce4100_early_setup(void) { }
->  #endif
->  
-> +#ifdef CONFIG_KEXEC_HANDOVER
-> +#include <linux/kexec_handover.h>
-> +#endif
-
-Please do this #ifdef'ing inside the kexec_handover.h header if at all
-possible.
-
-> diff --git a/arch/x86/include/uapi/asm/setup_data.h b/arch/x86/include/uapi/asm/setup_data.h
-> index 50c45ead4e7c9..2671c4e1b3a0b 100644
-> --- a/arch/x86/include/uapi/asm/setup_data.h
-> +++ b/arch/x86/include/uapi/asm/setup_data.h
-> @@ -13,7 +13,8 @@
->  #define SETUP_CC_BLOB			7
->  #define SETUP_IMA			8
->  #define SETUP_RNG_SEED			9
-> -#define SETUP_ENUM_MAX			SETUP_RNG_SEED
-> +#define SETUP_KEXEC_KHO			10
-> +#define SETUP_ENUM_MAX			SETUP_KEXEC_KHO
->  
->  #define SETUP_INDIRECT			(1<<31)
->  #define SETUP_TYPE_MAX			(SETUP_ENUM_MAX | SETUP_INDIRECT)
-> @@ -78,6 +79,16 @@ struct ima_setup_data {
->  	__u64 size;
->  } __attribute__((packed));
->  
-> +/*
-> + * Locations of kexec handover metadata
-> + */
-> +struct kho_data {
-> +	__u64 fdt_addr;
-> +	__u64 fdt_size;
-> +	__u64 scratch_addr;
-> +	__u64 scratch_size;
-> +} __attribute__((packed));
-> +
->  #endif /* __ASSEMBLER__ */
->  
->  #endif /* _UAPI_ASM_X86_SETUP_DATA_H */
-> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
-> index 57120f0749cc3..c314212a5ecd5 100644
-> --- a/arch/x86/kernel/e820.c
-> +++ b/arch/x86/kernel/e820.c
-> @@ -1300,6 +1300,24 @@ void __init e820__memblock_setup(void)
->  		memblock_add(entry->addr, entry->size);
->  	}
->  
-> +	/*
-> +	 * At this point with KHO we only allocate from scratch memory.
-> +	 * At the same time, we configure memblock to only allow
-> +	 * allocations from memory below ISA_END_ADDRESS which is not
-> +	 * a natural scratch region, because Linux ignores memory below
-> +	 * ISA_END_ADDRESS at runtime. Beside very few (if any) early
-> +	 * allocations, we must allocate real-mode trapoline below
-
-						trampoline ^
-
-> +	 * ISA_END_ADDRESS.
-> +	 *
-> +	 * To make sure that we can actually perform allocations during
-> +	 * this phase, let's mark memory below ISA_END_ADDRESS as scratch
-> +	 * so we can allocate from there in a scratch-only world.
-> +	 *
-> +	 * After real mode trampoline is allocated, we clear scratch
-> +	 * marking from the memory below ISA_END_ADDRESS
-> +	 */
-> +	memblock_mark_kho_scratch(0, ISA_END_ADDRESS);
-
-This isn't making a whole ton of sense to me.
-
-Is this *only* to facilitate possible users that need <ISA_END_ADDRESS
-allocations? If so, please say that.
-
-I _think_ this is trying to say that KHO kernels are special and are
-trying to only allocate from scratch areas. But <ISA_END_ADDRESS
-allocations are both necessary and not marked by KHO _as_ a scratch area
-which causes a problem.
-
-Also, it's a bit goofy that this code does the "mark" with
-ISA_END_ADDRESS and the clear with SZ_1M:
-
-	memblock_clear_kho_scratch(0, SZ_1M);
-
-That seems unnecessarily oblique.
-
->  	/* Throw away partial pages: */
->  	memblock_trim_memory(PAGE_SIZE);
->  
-> diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
-> index 68530fad05f74..518635cc0876c 100644
-> --- a/arch/x86/kernel/kexec-bzimage64.c
-> +++ b/arch/x86/kernel/kexec-bzimage64.c
-> @@ -233,6 +233,31 @@ setup_ima_state(const struct kimage *image, struct boot_params *params,
->  #endif /* CONFIG_IMA_KEXEC */
->  }
->  
-> +static void setup_kho(const struct kimage *image, struct boot_params *params,
-> +		      unsigned long params_load_addr,
-> +		      unsigned int setup_data_offset)
-> +{
-> +#ifdef CONFIG_KEXEC_HANDOVER
-
-Can this #ifdef be replaced with IS_ENABLED()?
-
-> +	struct setup_data *sd = (void *)params + setup_data_offset;
-> +	struct kho_data *kho = (void *)sd + sizeof(*sd);
-> +
-> +	sd->type = SETUP_KEXEC_KHO;
-> +	sd->len = sizeof(struct kho_data);
-> +
-> +	/* Only add if we have all KHO images in place */
-> +	if (!image->kho.fdt || !image->kho.scratch)
-> +		return;
-> +
-> +	/* Add setup data */
-> +	kho->fdt_addr = image->kho.fdt;
-> +	kho->fdt_size = PAGE_SIZE;
-> +	kho->scratch_addr = image->kho.scratch->mem;
-> +	kho->scratch_size = image->kho.scratch->bufsz;
-> +	sd->next = params->hdr.setup_data;
-> +	params->hdr.setup_data = params_load_addr + setup_data_offset;
-> +#endif /* CONFIG_KEXEC_HANDOVER */
-> +}
-> +
->  static int
->  setup_boot_parameters(struct kimage *image, struct boot_params *params,
->  		      unsigned long params_load_addr,
-> @@ -312,6 +337,13 @@ setup_boot_parameters(struct kimage *image, struct boot_params *params,
->  				     sizeof(struct ima_setup_data);
->  	}
->  
-> +	if (IS_ENABLED(CONFIG_KEXEC_HANDOVER)) {
-> +		/* Setup space to store preservation metadata */
-> +		setup_kho(image, params, params_load_addr, setup_data_offset);
-> +		setup_data_offset += sizeof(struct setup_data) +
-> +				     sizeof(struct kho_data);
-> +	}
-
-This is a bit weird that it needs this IS_ENABLED() check and the
-earlier #ifdef. But I guess  it's following the IMA_KEXEC code's pattern
-at least.
-
->  	/* Setup RNG seed */
->  	setup_rng_seed(params, params_load_addr, setup_data_offset);
->  
-> @@ -479,6 +511,10 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
->  		kbuf.bufsz += sizeof(struct setup_data) +
->  			      sizeof(struct ima_setup_data);
->  
-> +	if (IS_ENABLED(CONFIG_KEXEC_HANDOVER))
-> +		kbuf.bufsz += sizeof(struct setup_data) +
-> +			      sizeof(struct kho_data);
-> +
->  	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
->  	if (!params)
->  		return ERR_PTR(-ENOMEM);
-> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-> index 766176c4f5ee8..496dae89cf95d 100644
-> --- a/arch/x86/kernel/setup.c
-> +++ b/arch/x86/kernel/setup.c
-> @@ -451,6 +451,28 @@ int __init ima_get_kexec_buffer(void **addr, size_t *size)
->  }
->  #endif
->  
-> +static void __init add_kho(u64 phys_addr, u32 data_len)
-> +{
-> +#ifdef CONFIG_KEXEC_HANDOVER
-> +	struct kho_data *kho;
-> +	u64 addr = phys_addr + sizeof(struct setup_data);
-> +	u64 size = data_len - sizeof(struct setup_data);
-> +
-> +	kho = early_memremap(addr, size);
-> +	if (!kho) {
-> +		pr_warn("setup: failed to memremap kho data (0x%llx, 0x%llx)\n",
-> +			addr, size);
-> +		return;
-> +	}
-> +
-> +	kho_populate(kho->fdt_addr, kho->fdt_size, kho->scratch_addr, kho->scratch_size);
-> +
-> +	early_memunmap(kho, size);
-> +#else
-> +	pr_warn("Passed KHO data, but CONFIG_KEXEC_HANDOVER not set. Ignoring.\n");
-> +#endif
-> +}
-
-Please axe the #ifdef in the .c file if at all possible, just like the
-others.
-
->  static void __init parse_setup_data(void)
->  {
->  	struct setup_data *data;
-> @@ -479,6 +501,9 @@ static void __init parse_setup_data(void)
->  		case SETUP_IMA:
->  			add_early_ima_buffer(pa_data);
->  			break;
-> +		case SETUP_KEXEC_KHO:
-> +			add_kho(pa_data, data_len);
-> +			break;
->  		case SETUP_RNG_SEED:
->  			data = early_memremap(pa_data, data_len);
->  			add_bootloader_randomness(data->data, data->len);
-> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-> index f9bc444a3064d..9b9f4534086d2 100644
-> --- a/arch/x86/realmode/init.c
-> +++ b/arch/x86/realmode/init.c
-> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
->  	 * setup_arch().
->  	 */
->  	memblock_reserve(0, SZ_1M);
-> +
-> +	memblock_clear_kho_scratch(0, SZ_1M);
-
-Eek. Needs a comment, badly.
-
-Overall this doesn't look bad. It might be useful to break it up into a
-couple of patches, but it's not horrific as-is.
 
