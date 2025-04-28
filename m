@@ -1,95 +1,130 @@
-Return-Path: <devicetree+bounces-171445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E777A9EAED
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:39:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 048BBA9EB06
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1DF71891231
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:39:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67B8A17A296
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:43:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E8A25E471;
-	Mon, 28 Apr 2025 08:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA411DF252;
+	Mon, 28 Apr 2025 08:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sFuy/fKu"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qMY1A8KC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18E9200138;
-	Mon, 28 Apr 2025 08:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47325EAF1;
+	Mon, 28 Apr 2025 08:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745829536; cv=none; b=lSr/CNVD6uGpdmxOFAOjb40++tzAQ5r9s/gHC1DY1EIqsa5NLCKO8c3dKNIGUIFGjrKk0Oa8c3pTqAkfQjbpRKr9eZYiMyLLg1ua2WTfL2Jynz0aGRqqCtYoxxrewUPPpDDa/lCfmWifu/id++Dxbt3UWim4TbRcqTIZRei3nDo=
+	t=1745829789; cv=none; b=KqD1RaGy/m96ag1oPkbr6e3KWMGT6gbjuB9lt81I9Wf7j1tbq72Xb0sO9lW5j6NBVqEPX1v7ZM/Y90CLGVRK0mTUtgZHtwifj4G0a8D4ahlpo5HYzVEpkEYcTM6htJ4fvtZ3WeLonxtomIf66MGra104YwnQNtwvZ0XxN1fOpRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745829536; c=relaxed/simple;
-	bh=LZ8ENyCzktoqNokGHZMzWBrPs0WotFekQ7wV/XYpdUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oliJUzJ+RhD5nB3nUHU0lZrlo2wEtbu0rQgci/h645qlrUsWXCzEdrfqD6UV5zWtMI2ZilDJpnt1c2dH5AJ68q5lP7I4NJjLdR6Htpv3b6cirbpNbRYxLOOTlb8fhwDrzuWuCUxlT2/CP5FiROi0KAXFK4DJKn6rRTZDSkzqXE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sFuy/fKu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA5BEC4CEE4;
-	Mon, 28 Apr 2025 08:38:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745829536;
-	bh=LZ8ENyCzktoqNokGHZMzWBrPs0WotFekQ7wV/XYpdUg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sFuy/fKuEuGT7+ypxv3qVz8CGh1a4EzkBT5DBwlnDKzPN+YXcTaZnZ5hpz7ZjKAlt
-	 NygqnKH1qtRVdzGeEUGoMYaLfzGef73WwHTIzKqXs1aYwuGHpH8ezzSHUGEpaSvSIu
-	 vSqKsPgCoYPREfAbwvOctLy9IE5QEmWqTnnjBdWm56QYpWB3w8cy/2awRe1PyhjYBV
-	 jZ3jiK1ccK9QbzHzJQLG4jToOz9OeBYQxuS4Q4GVkLhuo32vZaQqRtG7155gQ1/Tgx
-	 P0TNBvnl+lj5KM2GDzatRIGrJuh59OmgIOCvh20gBBwzKZ2ySxEE8JxB4b5+eC8IvK
-	 Ya9Dn4SsNBPdg==
-Date: Mon, 28 Apr 2025 10:38:53 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-amarula@amarulasolutions.com, 
-	Amelie Delaunay <amelie.delaunay@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>, Marek Vasut <marex@denx.de>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Oleksij Rempel <o.rempel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/8] dt-bindings: arm: stm32: add compatible for
- stm32h747i-disco board
-Message-ID: <20250428-hasty-fanatic-quokka-546887@kuoka>
-References: <20250427074404.3278732-1-dario.binacchi@amarulasolutions.com>
- <20250427074404.3278732-3-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1745829789; c=relaxed/simple;
+	bh=aIK5WIn1cHUmGwfzLSoWcVJviNh58gLPqG3rPR0J1Gk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ICL6RNTtl0YoD0xL8N5zDZ0hNteqkqtrPlT0eyJwzOMl7EhX8VX8RD+YCe8H4BhxgDaZJlt5koOfsiJVxHIrbB5GMdM92cJUm3He2KqAwEztLcocTKfEAX3EwE7YerA4RZMDXrV6onDAQxd5i5LqanECNfefQH3SssvAXg6LIBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qMY1A8KC; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S11AlL010275;
+	Mon, 28 Apr 2025 10:42:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=ToFVU9D0kJNOUVuQ9UJi9B
+	xt0XxkB1xPx18ssjBYmrE=; b=qMY1A8KCvC06tdGpOMDtLnwr5pI1X1/Q1B1q+w
+	0bPw5LMf9CbVxtCBOrtFXJWu9nVRVYndDfGgqh8BtU2r4nSS+gttrGRIrYGVQpuV
+	p6gxg3mexbGS0iWdV1RPCmurva3KUy8mR5ydMsmvp6EXxDdM+RJLXnBPKXzc586T
+	iEGJ7QBFO4XEe+sUfZOOyWsbzircPMmjcoslXREiurtXdJDEzW1OEqTJtkjb9Unn
+	Q2DBujChnsAWADXd9Ip3DmLjBobcpwj4PNG8LnEoBxFhBdOIG6C1tqlUWNJYZfFQ
+	vJMghCgvlEtOzX0E1ISRyq1/9zlgxRbriEk+my6rEF3KFKbw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 468pcg5njj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 10:42:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1F79640055;
+	Mon, 28 Apr 2025 10:41:59 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E9456A3D589;
+	Mon, 28 Apr 2025 10:40:44 +0200 (CEST)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Apr
+ 2025 10:40:44 +0200
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v9 0/3] arm64: dts: st: Add SPI NOR support for
+ stm32mp257f-ev1
+Date: Mon, 28 Apr 2025 10:40:20 +0200
+Message-ID: <20250428-upstream_omm_ospi_dts-v9-0-62522b1b0922@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250427074404.3278732-3-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPQ+D2gC/x2MMQqAMAwAvyKZLcSiSP2KiNQaNUNraVQE8e8Wh
+ xtuuHtAKDEJdMUDiS4W3kMWUxbgNhtWUjxnB426wbpCdUY5Elk/7j4jkcf5EIX1ZFrnUFOjIbc
+ x0cL3/+2H9/0AznUuTWcAAAA=
+X-Change-ID: 20250410-upstream_omm_ospi_dts-04b97cc02e52
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-28_03,2025-04-24_02,2025-02-21_01
 
-On Sun, Apr 27, 2025 at 09:43:21AM GMT, Dario Binacchi wrote:
-> The board includes an STM32H747XI SoC with the following resources:
->  - 2 Mbytes Flash
->  - 1 MByte SRAM
->  - LCD-TFT controller
->  - MIPI-DSI interface
->  - FD-CAN
->  - USB 2.0 high-speed/full-speed
->  - Ethernet MAC
->  - camera interface
-> 
-> Detailed information can be found at:
-> https://www.st.com/en/evaluation-tools/stm32h747i-disco.html
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
-> 
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+Add SPI NOR support for stm32mp257f-ev1 board by adding:
+  _ Octo memory Manager node in stm32mp251.dtsi
+  _ OSPI port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+  _ Add SPI NOR support for stm32mp257f-ev1.dts
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+
+Changes in v9:
+  - split patchset by susbsystem, current one include only DTS related
+    patches.
+  - Link to v8: https://lore.kernel.org/r/20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com
+
+---
+Patrice Chotard (3):
+      arm64: dts: st: Add OMM node on stm32mp251
+      arm64: dts: st: Add ospi port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+      arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 51 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 54 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 32 ++++++++++++++++
+ 3 files changed, 137 insertions(+)
+---
+base-commit: 65954899a157832f68536b488194cf698248a26e
+change-id: 20250410-upstream_omm_ospi_dts-04b97cc02e52
 
 Best regards,
-Krzysztof
+-- 
+Patrice Chotard <patrice.chotard@foss.st.com>
 
 
