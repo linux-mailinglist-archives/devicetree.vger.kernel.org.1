@@ -1,81 +1,69 @@
-Return-Path: <devicetree+bounces-171425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDE4A9EA67
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:13:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12932A9EA9E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:20:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C95B1898DE3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:13:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F37D83BCFCA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805CB25DAE2;
-	Mon, 28 Apr 2025 08:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7862B25EF93;
+	Mon, 28 Apr 2025 08:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CqGfqF2f"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hdMwjSOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DEB211476
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8207725E818;
+	Mon, 28 Apr 2025 08:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745827988; cv=none; b=HAznDIahYscNNTYDPwVc9gnZQpI9E0mzkIC68m/0LfxOe9foEY/9mERwIXeYD50UFAexE69J0EmxOsKnMhofHRWckoHGjoBTMu9kWbRUcymDUNjzZ0rOyPmOqYdG6pHfiQ4DFqM6yTbm94N+ViKRxEhBtJMVT1/BoVP/UPU2js4=
+	t=1745828388; cv=none; b=gd2ozXF0WfUkYuTnf3EWw+aqdYJVlRmL8am3hZolYQwoCNSuDH/xjR2SXlN1PL0t4rQHLvhq4UzBiQPcwYuyAFj7l08r67tYGvQvFivMHZ5T6uTSbLdpZQSlwrKW7uiJs0IdN0RkoQbuuD7RG0Wl2mmfIsa4dX3lPZzfsez13Ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745827988; c=relaxed/simple;
-	bh=bVaq8ds7GrlFWe7h9Sp7Cj+/V1lazxrirLTIbwjo2I8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YU4uSBSygJhGjcsOf5KpbexGLz09TKwxpWCe+qlrZPhWKMoYVLFFHchpS/9bdhTKDtg7jNZxVS4vABC7TIgXa9DfKPyVsALWd5bYzzPhPNCZtJsK5fK925GKEKnQYsjafPew/DL+CPJFt9DP73rHTWs/w5fx5+fXvz7D5ILhcws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CqGfqF2f; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39ee57c0b8cso5232050f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 01:13:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745827983; x=1746432783; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A2BE4IFNraf2nwb+gMN6BrLPdvxjK4GMRcC/zeJ//7Y=;
-        b=CqGfqF2fiSwH5xKoGgXv7jHxLbeeubslDlEJgIvEZ0DcPQ+AjMQGWdL58NpuENYaDC
-         NfUkLb9Vi6iF6vI1jVJ/pDtPlVGY5bvf8qGmuNwecbsaylmzwz0XNNELAiCCLwLiHq/i
-         HklXVGRdRCEHD2CgEB88RIvknbnzr6ODhaUzFmumxNxF7o1DNSup5SzmtHNyrMeXF0G2
-         dx/Mnvz52LHRJGEAKR8m3Ko7St2nic3G0LoERy8Q1+LLmAWUMGz+bAkUZKs2wkVa2HeP
-         NByOIfLw7xDbPxD1y2zeefs9tHet0MPKysk9gexzWk2O+dvkXucDjSYIGXE99DU54iaI
-         KVEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745827983; x=1746432783;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=A2BE4IFNraf2nwb+gMN6BrLPdvxjK4GMRcC/zeJ//7Y=;
-        b=T8I9SG626bNCSMAB0EYMKjmXnTpgtw/aGkoSjcOzbzTTwvViG7pJ6iJy2xwzLz29pt
-         jaVARF8m8F9d6F7xbCVdJsVigwu2E8p1qtfE+l3hH5VTrS0cBh074tX2iQlCutK04Ba8
-         L3LeVJxTiPOgNbCO75yH4DnKLesGnCDL2VO98jt4qECRdq6vxxSDlMGz4duVEe6Glg/G
-         DtI25vmfXs6D2t4OPR6u4WKqdhIu9cvSe7RJRxTxMqufcVAD0XCn+x3GBfNDnMAjPRTj
-         qfHgK2ALZL9NLn74sQ/HbPgVxiZQzky66XkW/yR0YRTAbOz48qT8Q7PiPBvgzTiNEffp
-         XJGQ==
-X-Gm-Message-State: AOJu0YyKjPB/5KkI0EkjU2EdgCIxsfLhfdzOB4HVbxvxqbPbbvv03j0v
-	0F56+IjOUz7HZLyc4LyzXtN0RVHvv8CfGcQMB+0tfEG6/u/aAWy5zYzAbcwo1rQ=
-X-Gm-Gg: ASbGncvbWBxXt9LIylOsoYiYGM1YKBECeOiWrGi/ZhX9VcWh91cKpbmtXNIkkZhvPOw
-	jBmRsCmlWKJAhz/to7vHnqMLVA17Msh5aS27NpLCT6CRO5h6kFDtY4sXoNwJyC2RSSwaIyN2dpd
-	3ORC1EgIuenhkGnPD2mMCkgTEPb4Kxv5oABwTXUGUZJmcR9DLVF/IO5GADddtbPw8pqx4UQt7TE
-	CoQBRLiZvNTWFK7+Cy/A9Z397/oQw1L4RSyI8Xxku4mXHxwaekIh8TP13sd+eYJ0WfXkAYEGvT+
-	8nIoaccaANT1AQpk8Xl5EI0S0appWMDJPtrh1e97nDTKVKDQCyrEziJYGXM1B8gVGJl3uzwxL59
-	JWxYI22bt1m5WgPSmYQ==
-X-Google-Smtp-Source: AGHT+IFirYO+R6cxa4E/PxDKxv2Eoalg7DNOh3n5z36BXYljdt+Ef5dXthwTwXbfPkkn6KEjfC0prQ==
-X-Received: by 2002:a05:6000:1ac5:b0:390:f0ff:2c11 with SMTP id ffacd0b85a97d-3a074e146c6mr6922171f8f.2.1745827983497;
-        Mon, 28 Apr 2025 01:13:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:e2bb:d0cc:c4c9:4442? ([2a01:e0a:3d9:2080:e2bb:d0cc:c4c9:4442])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e5d264sm10609868f8f.95.2025.04.28.01.13.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Apr 2025 01:13:03 -0700 (PDT)
-Message-ID: <449cc46e-fab8-401a-b887-51d621695a1c@linaro.org>
-Date: Mon, 28 Apr 2025 10:13:02 +0200
+	s=arc-20240116; t=1745828388; c=relaxed/simple;
+	bh=VK0BrH3ZZDN9Jgn9dD1/pWlMvI7r00jAXZwatq9vcEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JXhkGvI6IwU/ZqUPszi8tAUAiZ0DX8ff/mjfKAYvIJhZVuJxyEx6Ke8UkVXifhoXsenSgqsNRFjwQc1/JWRNdrCkMlSZQJT0oQFtgHQxZFQ1djtTA6+nnw0s9DZpSnz45tdXpb61WhQt9TfEqe0gOh1iG+SxNkh0iO4r8F5Fqag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hdMwjSOR; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S10w7P021339;
+	Mon, 28 Apr 2025 10:19:25 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	yr7t1olrwsxTtck0/lM3DwdKRKb3Z1gEKVydU7fX9vg=; b=hdMwjSORmCF7wlLm
+	irCx7AnOE8qIJNbjPKSlLflA4pJaS5QX9+kDvKlOKc0Bryt1Z6wnrJJqERnf9NKD
+	c/3SU4ACwMwXZCt1byR8rs0K0MBb6CyEdDssM991Jrcw+OBgUW99LeD0Kml0SgsG
+	MqPhHzQYIEDEYR29tSwc4qAPBZQeG3+IFqbFliIB4E2AfL8rabyB5VxYeySrfx2M
+	6YEP1gmhXIxuN6EedCVN/QmI7Sg+leAeo3WruQudKtDMscZ/wXtdN4TMj0KCzzrt
+	cpWe80Mr2F2LtoOr0yOos5ZaBOWhByW6LWlANsoXQ0AwdHY6scYRQbTpxJMf5l+n
+	MGHDTg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 468mm9drpq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 10:19:25 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2352040048;
+	Mon, 28 Apr 2025 10:17:43 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 81ED0A2D14A;
+	Mon, 28 Apr 2025 10:16:05 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Apr
+ 2025 10:16:05 +0200
+Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Apr
+ 2025 10:16:04 +0200
+Message-ID: <698066cd-6fee-4fd8-9caf-0f5fbd19fda6@foss.st.com>
+Date: Mon, 28 Apr 2025 10:16:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,158 +71,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/7] Baisc devicetree support for Amlogic S6 S7 and S7D
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
- <a175ed1d-9e57-4150-af8f-7ca785203108@amlogic.com>
- <e3229c42-b322-447a-ad1e-86c6f20dd54e@linaro.org>
- <be8b7874-1251-4ba8-9243-a615517861ab@amlogic.com>
- <eb1c3442-6b86-42e9-a672-eaba7de8b375@linaro.org>
- <32473413-b2fb-471b-b2d5-b4fd7914b57f@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <32473413-b2fb-471b-b2d5-b4fd7914b57f@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/4] of: Common "memory-region" parsing
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Saravana Kannan
+	<saravanak@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer
+	<s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Patrice Chotard
+	<patrice.chotard@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai
+	<wens@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <imx@lists.linux.dev>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Daniel Baluta
+	<daniel.baluta@nxp.com>
+References: <20250423-dt-memory-region-v2-v2-0-2fbd6ebd3c88@kernel.org>
+Content-Language: en-US
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <20250423-dt-memory-region-v2-v2-0-2fbd6ebd3c88@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-28_03,2025-04-24_02,2025-02-21_01
 
-On 28/04/2025 09:57, Xianwei Zhao wrote:
-> Hi Neil,
->     Thanks for your reply.
+
+
+On 4/23/25 21:42, Rob Herring (Arm) wrote:
+> While there's a common function to parse "memory-region" properties for
+> DMA pool regions, there's not anything for driver private regions. As a
+> result, drivers have resorted to parsing "memory-region" properties
+> themselves repeating the same pattern over and over. To fix this, this
+> series adds 2 functions to handle those cases:
+> of_reserved_mem_region_to_resource() and of_reserved_mem_region_count().
 > 
-> On 2025/4/23 15:23, neil.armstrong@linaro.org wrote:
->> [ EXTERNAL EMAIL ]
->>
->> Hi,
->>
->> On 23/04/2025 08:15, Xianwei Zhao wrote:
->>> Hi Neil,
->>>     Thanks for your reply.
->>>
->>> On 2025/4/22 21:49, Neil Armstrong wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> Hi,
->>>>
->>>> On 22/04/2025 13:45, Xianwei Zhao wrote:
->>>>> Hi Neil,
->>>>>     A gentle ping, thanks.
->>>>
->>>> I'll apply them this week except patch 4,
->>>>
->>>> so can you send patch 4 separately since it goes via the tty tree ?
->>>>
->>>
->>> I will send patch 4 separately.
->>> The following patches(5 6 7) can be not included for now. Without the patch 4, the command "make ARCH=arm64 dtbs_check W=1" will fail to execute.
->>
->> I know, but since it's reviewed, Greg KH will pick it for the next release so it's fine.
->>
+> I've converted the whole tree, but just including remoteproc here as
+> it has the most cases. I intend to apply the first 3 patches for 6.16
+> so the driver conversions can be applied for 6.17.
 > 
-> I have already sent patch 4 separately. From Rob's reply, do you think it can be picked up together?
+> A git tree with all the drivers converted is here[1].
 > 
-> https://lore.kernel.org/all/CAL_JsqKD=yespd0WM90VBr_XWdppimzDzecmwNfGMV+hNSHuRA@mail.gmail.com/
-
-
-Greg KH picked it already.
-
-Neil
-
+> v2:
+> - Fix of_dma_set_restricted_buffer() to maintain behavior on warning msg
+> - Export devm_ioremap_resource_wc()
+> - Rework handling of resource name to drop unit-address from name as it 
+>   was before.
+> - Link to v1: 
+>   https://lore.kernel.org/all/20250317232426.952188-1-robh@kernel.org
 > 
->> Neil
->>
->>>
->>>> Thanks,
->>>> Neil
->>>>
->>>>>
->>>>> On 2025/3/17 15:16, Xianwei Zhao via B4 Relay wrote:
->>>>>> [ EXTERNAL EMAIL ]
->>>>>>
->>>>>> Amlogic S6 S7 and S7D are application processors designed for
->>>>>> hybrid OTT/IP Set Top Box and high-end media box applications.
->>>>>>
->>>>>> Add the new S6 SoC/board device tree bindings.
->>>>>> Add the new S7 SoC/board device tree bindings.
->>>>>> Add the new S7D SoC/board device tree bindings.
->>>>>>
->>>>>> Add basic support for the S6 based Amlogic BL209 board, which describes
->>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
->>>>>> booting up into the serial console.
->>>>>>
->>>>>> Add basic support for the S7 based Amlogic BP201 board, which describes
->>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
->>>>>> booting up into the serial console.
->>>>>>
->>>>>> Add basic support for the S7D based Amlogic BM202 board, which describes
->>>>>> the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
->>>>>> booting up into the serial console.
->>>>>>
->>>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>> ---
->>>>>> Xianwei Zhao (7):
->>>>>>        dt-bindings: arm: amlogic: add S6 support
->>>>>>        dt-bindings: arm: amlogic: add S7 support
->>>>>>        dt-bindings: arm: amlogic: add S7D support
->>>>>>        dt-bindings: serial: amlogic,meson-uart: Add compatible string for S6/S7/S7D
->>>>>>        arm64: dts: add support for S6 based Amlogic BL209
->>>>>>        arm64: dts: add support for S7 based Amlogic BP201
->>>>>>        arm64: dts: add support for S7D based Amlogic BM202
->>>>>>
->>>>>>   Documentation/devicetree/bindings/arm/amlogic.yaml | 18 ++++
->>>>>>   .../bindings/serial/amlogic,meson-uart.yaml        |  3 +
->>>>>>   arch/arm64/boot/dts/amlogic/Makefile               |  3 +
->>>>>>   .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   | 42 +++++++++
->>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 97 +++++++++++++++++++++
->>>>>>   .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   | 41 +++++++++
->>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 99 ++++++++++++++++++++++
->>>>>>   .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
->>>>>>   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 ++++++++++++++++++++++
->>>>>>   9 files changed, 443 insertions(+)
->>>>>> ---
->>>>>> base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
->>>>>> change-id: 20250221-s6-s7-basic-f300c30877e6
->>>>>>
->>>>>> Best regards,
->>>>>> -- 
->>>>>> Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>>
->>>>>>
->>>>
->>
+> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/memory-region
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> Rob Herring (Arm) (4):
+>       of: reserved_mem: Add functions to parse "memory-region"
+>       of: Simplify of_dma_set_restricted_buffer() to use of_for_each_phandle()
+>       devres: Export devm_ioremap_resource_wc()
+>       remoteproc: Use of_reserved_mem_region_* functions for "memory-region"
+> 
+>  drivers/of/device.c                       | 31 +++++-------
+>  drivers/of/of_reserved_mem.c              | 80 +++++++++++++++++++++++++++++++
+>  drivers/remoteproc/imx_dsp_rproc.c        | 45 +++++++----------
+>  drivers/remoteproc/imx_rproc.c            | 68 +++++++++++---------------
+>  drivers/remoteproc/qcom_q6v5_adsp.c       | 24 ++++------
+>  drivers/remoteproc/qcom_q6v5_mss.c        | 60 ++++++++---------------
+>  drivers/remoteproc/qcom_q6v5_pas.c        | 69 ++++++++++----------------
+>  drivers/remoteproc/qcom_q6v5_wcss.c       | 25 ++++------
+>  drivers/remoteproc/qcom_wcnss.c           | 23 ++++-----
+>  drivers/remoteproc/rcar_rproc.c           | 36 ++++++--------
+>  drivers/remoteproc/st_remoteproc.c        | 41 ++++++++--------
+>  drivers/remoteproc/stm32_rproc.c          | 44 ++++++++---------
+>  drivers/remoteproc/ti_k3_dsp_remoteproc.c | 28 +++++------
+>  drivers/remoteproc/ti_k3_m4_remoteproc.c  | 28 +++++------
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c  | 28 +++++------
+>  drivers/remoteproc/xlnx_r5_remoteproc.c   | 51 ++++++++------------
+>  include/linux/of_reserved_mem.h           | 26 ++++++++++
+>  lib/devres.c                              |  1 +
+>  18 files changed, 339 insertions(+), 369 deletions(-)
+> ---
+> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+> change-id: 20250423-dt-memory-region-v2-a2b15caacc63
+> 
 
+Testing of the series on the STM32MP15 platform has passed.
+
+just one minor comment in patch 1/4.
+
+Acked-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+
+Thanks,
+Arnaud
+
+
+
+
+> Best regards,
 
