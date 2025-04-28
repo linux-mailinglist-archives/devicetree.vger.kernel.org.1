@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA80A9EB85
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:11:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C42AA9EB89
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:13:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D00A73B3CF1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:11:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84EA0189D5A1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641CA25EF9B;
-	Mon, 28 Apr 2025 09:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A5625EFB2;
+	Mon, 28 Apr 2025 09:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRg3Nghy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Un1KF/nu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9D51CAA6C;
-	Mon, 28 Apr 2025 09:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F36A55;
+	Mon, 28 Apr 2025 09:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745831501; cv=none; b=OpX4ACb6GVbd2U+E8JSZjglkGN+zmVPLcElfOJqSCf7N3Bf2fOhIWtUmVj524qTZERg9misCOmXpR/79XB/p2kEAhsR/GixBzGEb/QTVP5L7PTzy2KsVCZu59QfkZO/SJsWJ+vZmMlvE2MZFwATpwLgzJgrI2e31ot6OJEszzgs=
+	t=1745831585; cv=none; b=S1ofJZtUhEk/4r99mHwxijAXR2KWb2Rl/YDcXGeiRwubuCQKnDavq8T18TFXyEbrmKs/ch+fT+yU1WT53xzxjAySqS7DKEPePtoAisxzlPzL2Hh8l1NkuiHFk6dPyhevPtbBK+ZWF3l1vfMBujk0L3AwuNNVXO6LZTmKOEZhwAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745831501; c=relaxed/simple;
-	bh=7m0tP+q4T5mcm3kYzYk7AvWbv0g1gUih3/SFHpcXZHU=;
+	s=arc-20240116; t=1745831585; c=relaxed/simple;
+	bh=8/Q6dFD+zrTw12D8hBm+NBdKWBBVcv2MlmfVZOsi7j8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S/tZ2y6WgbpopsYpFM6SliNCk13QapXTYCKXUdAXdF5AVQZXNLYccaIozQhE9gPspCrv+jUJ4a3DHBWbMYNGQ24ScR9x5Djod89aXMH0LiaVquAz9kjqvAvZlTW2aVoCR2Oqqf9aUpbI7YQomzU5t7HufQDKvk7+adnG1TK1huc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRg3Nghy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 115A2C4CEE4;
-	Mon, 28 Apr 2025 09:11:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ny7lhXABxzBS6Ri4O483ATfeMFWzKcaxXx4Jxnm7GQCAZPs5PzUHhHOKrupXP/CNNL5G6y0FSAWSMKbYI0IKkCS+zZhk8BA+32sdCc1Eu7PDtWAZMU76zVGDFQ98SZWnmjhe0EtwTTfIUJq0wbfO6JUyjc+crY5xdtRzZ1KH7YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Un1KF/nu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75A4AC4CEE4;
+	Mon, 28 Apr 2025 09:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745831501;
-	bh=7m0tP+q4T5mcm3kYzYk7AvWbv0g1gUih3/SFHpcXZHU=;
+	s=k20201202; t=1745831584;
+	bh=8/Q6dFD+zrTw12D8hBm+NBdKWBBVcv2MlmfVZOsi7j8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YRg3NghyMqn8irHaDhFHiyYABHnLpFnoCpsABEGAMKZ/8HEGybgmAJBEvfVb/zjPY
-	 9fjMi0IAS1c7ZSgJkYEMBAN4AdDScDz++w5lbt3hZjuJae7wE/fwRdi88r6tz+BVDB
-	 V0hzj7xumBfGQ6LPn46wN8yeJ4Zy3xBFr0LVGDYe/Z6OIcvBAXhQ1E/fpQUOuCupg1
-	 cynOMhdvmOxLLJ22vUp2pkdvGsGh94jyjZ0ndbSwQFX/BmZWBVsUCcME+OdOrvyJ1H
-	 7zxYBbLfPwFtx0gS7L5x3Yf/dD2UcpykUfxotWrokpzsP8xKHJLEnJN9EQmT/yvfjN
-	 eT4OghP0/l52g==
-Message-ID: <628faa57-f135-4f62-9827-5c98d9265391@kernel.org>
-Date: Mon, 28 Apr 2025 11:11:36 +0200
+	b=Un1KF/nuaV9SmLPVWpPiCJYK3v/qOfiRJ3+xG9zjXKzANZMACtnfyxwPHCI0lIuL5
+	 iPANtUVhCWvMlbXHLStMEf1lIHhckKlsfchhPWr8zE8kEYrekeRnGkStS+hJaQjuKK
+	 XZr6zEVsLcatG3acLH16zQOrV7Qa+F9RXDAlk/H952SFWp6EyLz7D2HnOVhf30h2Zf
+	 rJdFWScj7WVnytbTb7nr682+/AjbIEXdh8PP2CW4IBIAzCYBKQ+2xhKyGoz2bzQBK7
+	 wL61nBv3V6Il6XyrotS2pAO5rFbJ5WRKsRt2e2lW9KP8wLCuoZ/hiB8sfhdgqDFXQF
+	 u7TalDhKZsPUw==
+Message-ID: <cc76fdc3-761f-4171-aec4-02f5e6013cb8@kernel.org>
+Date: Mon, 28 Apr 2025 11:13:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- herbert@gondor.apana.org.au, Ruud.Derwig@synopsys.com,
- manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
- Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-References: <20250423101518.1360552-1-pavitrakumarm@vayavyalabs.com>
- <20250423101518.1360552-2-pavitrakumarm@vayavyalabs.com>
- <e5f47f52-807d-45ce-bd62-090f4af72b3a@kernel.org>
- <CALxtO0k0jeZF=Y5Ut_yhX8DxC3hVHWpnrcdJeBXP_GpA=O5T4w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov920: add cpucl1/2
+ clock definitions
+To: Shin Son <shin.son@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250428084721.3832664-1-shin.son@samsung.com>
+ <CGME20250428084728epcas2p34ffa0051a16c10ff1c358a98cc2c2fa4@epcas2p3.samsung.com>
+ <20250428084721.3832664-2-shin.son@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,36 +109,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CALxtO0k0jeZF=Y5Ut_yhX8DxC3hVHWpnrcdJeBXP_GpA=O5T4w@mail.gmail.com>
+In-Reply-To: <20250428084721.3832664-2-shin.son@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/04/2025 10:13, Pavitrakumar Managutte wrote:
-> Hi Krzysztof,
->    My comments are embedded below.
+On 28/04/2025 10:47, Shin Son wrote:
+> Add cpucl1 and cpucl2 clock definitions.
 > 
-> Warm regards,
-> PK
-> 
-> 
-> On Wed, Apr 23, 2025 at 6:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 23/04/2025 12:15, Pavitrakumar M wrote:
->>> From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
->>>
->>> Add DT bindings related to the SPAcc driver for Documentation.
->>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
->>
->> These IP blocks are rarely usable on their own and need SoC
->> customization. Where any SoC users? Where are any SoC compatibles?
->>
-> 
-> PK: This is a new IP designed by Synopsys, which we tested on the Xilinx
-> Zynqmp FPGA (ZCU104 board).
->        This is NOT a part of any SoC yet, but it might be in future.
->        Could you offer suggestions on how to handle such a case?
+> CPUCL1/2 refer to CPU Cluster 1 and CPU Cluster 2,
+> which provide clock support for the CPUs on Exynosauto V920 SoC.
 
-Hm? How is it possible to use it outside of a SoC?
+You should have sent all cpcl0-2 together, so we see complete picture.
+
+> 
+> Signed-off-by: Shin Son <shin.son@samsung.com>
+> ---
+>  .../clock/samsung,exynosautov920-clock.yaml   | 45 +++++++++++++++++++
+>  .../clock/samsung,exynosautov920.h            | 32 +++++++++++++
+>  2 files changed, 77 insertions(+)
+> 
+
+
+...
+
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +            - description: CMU_CPUCL2 SWITCH clock (from CMU_TOP)
+> +            - description: CMU_CPUCL2 CLUSTER clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: switch
+> +            - const: cluster
+> +
+> +
+Just one blank line.
 
 Best regards,
 Krzysztof
