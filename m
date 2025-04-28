@@ -1,2996 +1,2700 @@
-Return-Path: <devicetree+bounces-171608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFFE4A9F4C0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C19A9F4EC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 17:50:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3123F5A39FD
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 15:41:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1547D5A2B52
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 15:49:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C469F279785;
-	Mon, 28 Apr 2025 15:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1C9266B67;
+	Mon, 28 Apr 2025 15:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mi8nMlYx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8Ye1H50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1723427991C;
-	Mon, 28 Apr 2025 15:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004A01FDE3D;
+	Mon, 28 Apr 2025 15:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745854912; cv=none; b=HecaOa+vV7jU5g/mytJAUf+Oa4EU/uA76vtND/s7fjQ4/3ZeGc41kCugmyTF+2HITciFpnD/u8VZvfWocLd6jVtu3y+rI/abYu05H0UGy2Hn/VAYUHjWJbBRVuR9+tXhXQ1IArhsoCn+2+qsdtGhaoBOH5fodWwSgi/e5gIFM+g=
+	t=1745855362; cv=none; b=mO211Ac7VGqwl+6suDzln5ig1G0JY9VY9LNFho338gnGD+pCxQ7dbmgXAbCwXt838WLud6QT0rIExazWuqRqSnPPvtNvlMOtROSU7M3uApCITZtuknu+v6Q39TfH4YKe4in2twogYO911fZ3X8rvtksHj1dGLJupS+K8NfefWos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745854912; c=relaxed/simple;
-	bh=HRfIqiplS6bB5fuHFq9m1zABNtd1C4pUM66EtHMlBr4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I7kVDpWcX98hqkKYRg8Plz81/3xFL+i52w+5MEwXwXF4HL+EFWwfQfOWLqJjRLjKqKPyXRDFaZ/ozfCTJwsJx7uADKBQQsNrecyLOPCjAX+g3l1Ykiw4N+rHmACZ58GoyOro/XPFVSi7IRMYoUF7PDs1Cl6P03NKgAjr58gVuQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mi8nMlYx; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745854908; x=1777390908;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HRfIqiplS6bB5fuHFq9m1zABNtd1C4pUM66EtHMlBr4=;
-  b=mi8nMlYxFrsLgaLKFCMz5H/4glTNyqsXtd40RWWitJwQVg+i+nbcuNbJ
-   EZndzMbx9BfuWyHMGCPC7s+guruFKKsJgPXzkv9Rhw9OF8c1+GWUpF5Aw
-   YGoHEeJ6LFyVNuHDvjjkd24CrMJggDiyug87623yZrNUr/4l3Q02wwp9Q
-   RZhDdNhnbWbxQVmkqRLN0xjCCJ5ONabXc7ZiFulg+R+uAZ99J/10355St
-   EF6JjwJYIR5hI2L+EgHRR+xtSrmsV04yl4QURLc+i0MqGQer2g2RvwBah
-   ePmPXNUm7SqkBeNKIUBu1E/WdXShrjFBJmvvQQngub4i5tojBZAKFOpIp
-   A==;
-X-CSE-ConnectionGUID: dpdaNR6QSWGVCG5zSgyu5Q==
-X-CSE-MsgGUID: 1Fz0y3YFRS6thcrmfF4NNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="58814548"
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; 
-   d="scan'208";a="58814548"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 08:41:46 -0700
-X-CSE-ConnectionGUID: DTFtMesBRaWWHRPDAzH6SA==
-X-CSE-MsgGUID: Cllliz2FSKu3bfaN3ejbgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; 
-   d="scan'208";a="133522715"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 08:41:40 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 97E1A1208E5;
-	Mon, 28 Apr 2025 18:41:38 +0300 (EEST)
-Date: Mon, 28 Apr 2025 15:41:38 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1745855362; c=relaxed/simple;
+	bh=J/a3uZrOjwenhtMmiQ6EPZU9NcAMnpTecUSel+2GXbs=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eRrqxPiYpx6N4ZpIDqeop2xScnOp7BXhVDYBUVJJ9Hi3XXr8GkAHkr5bP7EBmcMjJlvSZ1feFWtXj6g+PQEBO4WDlgBgmQ/K1VAoIEqov6/69TmiiQU63KfQ6g61qgR3aW0apZffgiJRIfQJrY3Etp/mhmdSYuMJd1uAZSuLhro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8Ye1H50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0702CC4CEE4;
+	Mon, 28 Apr 2025 15:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745855361;
+	bh=J/a3uZrOjwenhtMmiQ6EPZU9NcAMnpTecUSel+2GXbs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=F8Ye1H505Kh3s9ucx3sAxnG94A1Tujgj0amSnTmWsR+zV4Maitrjeyo5oB/+Gnqvd
+	 EguRcYha/Hf7LDP8C3xhRd8wa0ZapR+EkwgtsYP3r2AQJgm+cL9y1e5hJOxup1Wdwd
+	 ejUxw38iGuTxiBDngRNWIGEciflRBCimhSfvHRFR6qqeDbA0RFFBIa4iUSyi9GQja3
+	 z7VyAh1e4cW0dM4IlpPRuwKpRmdSMGtgfTosXGMZxISlEuHcW8/COATUTwESzrUiFB
+	 NAWG9o6L3PEz64sJYXm6iZeg6vgJf+vBFRK5LHN7s/5o46SiMs1Iaj71zdiIeuA6cx
+	 V5iPU5ThbOoSA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1u9QjO-009a4V-Jc;
+	Mon, 28 Apr 2025 16:49:18 +0100
+Date: Mon, 28 Apr 2025 16:49:17 +0100
+Message-ID: <868qnkjngi.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Mehdi Djait <mehdi.djait@bootlin.com>
-Subject: Re: [PATCH v5 05/11] media: rockchip: add a driver for the rockchip
- camera interface
-Message-ID: <aA-hsrXa_bwiDVKS@kekkonen.localdomain>
-References: <20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net>
- <20250306-v6-8-topic-rk3568-vicap-v5-5-f02152534f3c@wolfvision.net>
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 19/22] irqchip/gic-v5: Add GICv5 CPU interface/IRS support
+In-Reply-To: <20250424-gicv5-host-v2-19-545edcaf012b@kernel.org>
+References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
+	<20250424-gicv5-host-v2-19-545edcaf012b@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306-v6-8-topic-rk3568-vicap-v5-5-f02152534f3c@wolfvision.net>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hi Michael,
-
-On Thu, Mar 06, 2025 at 05:56:06PM +0100, Michael Riesch wrote:
-> The Rockchip Camera Interface (CIF) is featured in many Rockchip SoCs
-> in different variations. For example, the PX30 Video Input Processor (VIP)
-> is able to receive video data via the Digital Video Port (DVP, a parallel
-> data interface) and transfer it into system memory using a
-> double-buffering mechanism called ping-pong mode.
-> The RK3568 Video Capture (VICAP) unit, on the other hand, features a DVP
-> and a MIPI CSI-2 receiver that can receive video data independently
-> (both using the ping-pong scheme).
-> The different variants may have additional features, such as scaling
-> and/or cropping.
-> Finally, the RK3588 VICAP unit constitutes an essential piece of the
-> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
-> units, and a data path multiplexer (to scaler units, to ISP, ...).
+On Thu, 24 Apr 2025 11:25:30 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
 > 
-> Add a basic media controller centric V4L2 driver for the Rockchip CIF with
->  - support for the PX30 VIP
->  - support for the RK3568 VICAP DVP
->  - abstraction for the ping-pong scheme to allow for future extensions
->  - abstraction for the INTERFACE and CROP parts to allow for future
->    extensions
+> Implement GICv5 CPU interface and IRS support, to manage interrupt
+> state, priority and routing for all GICv5 interrupt types.
 > 
-> [PX30 VIP support v1-v5]
-> Co-developed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> [PX30 VIP support v6-v13]
-> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> [added RK3568 VICAP DVP support]
-> [refactored to media controller centric driver, added mplane support]
-> Co-developed-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> The GICv5 CPU interface implements support for PE-Private Peripheral
+> Interrupts (PPI), that are handled (enabled/prioritized/delivered)
+> entirely within the CPU interface hardware.
+> 
+> To enable PPI interrupts, implement the baseline GICv5 host kernel
+> driver infrastructure required to handle interrupts on a GICv5 system.
+> 
+> Add the exception handling code path and definitions for GICv5
+> instructions.
+> 
+> Add GICv5 PPI handling code as a specific IRQ domain to:
+> 
+> - Set-up PPI priority
+> - Manage PPI configuration and state
+> - Manage IRQ flow handler
+> - IRQs allocation/free
+> - Hook-up a PPI specific IRQchip to provide the relevant methods
+> 
+> PPI IRQ priority is chosen as the minimum allowed priority by the
+> system design (after probing the number of priority bits implemented
+> by the CPU interface).
+> 
+> The GICv5 Interrupt Routing Service (IRS) component implements
+> interrupt management and routing in the GICv5 architecture.
+> 
+> A GICv5 system comprises one or more IRSes, that together
+> handle the interrupt routing and state for the system.
+> 
+> An IRS supports Shared Peripheral Interrupts (SPIs), that are
+> interrupt sources directly connected to the IRS; they do not
+> rely on memory for storage. The number of supported SPIs is
+> fixed for a given implementation and can be probed through IRS
+> IDR registers.
+> 
+> SPI interrupt state and routing are managed through GICv5
+> instructions.
+> 
+> Each core (PE in GICv5 terms) in a GICv5 system is identified with
+> an Interrupt AFFinity ID (IAFFID).
+> 
+> An IRS manages a set of cores that are connected to it.
+> 
+> Firmware provides a topology description that the driver uses
+> to detect to which IRS a CPU (ie an IAFFID) is associated with.
+> 
+> Use probeable information and firmware description to initialize
+> the IRSes and implement GICv5 IRS SPIs support through an
+> SPI-specific IRQ domain.
+> 
+> The GICv5 IRS driver:
+> 
+> - Probes IRSes in the system to detect SPI ranges
+> - Associates an IRS with a set of cores connected to it
+> - Adds an IRQchip structure for SPI handling
+> 
+> SPIs priority is set to a value corresponding to the lowest
+> permissible priority in the system (taking into account the
+> implemented priority bits of the IRS and CPU interface).
+> 
+> Since all IRQs are set to the same priority value, the value
+> itself does not matter as long as it is a valid one.
+> 
+> An IRS supports Logical Peripheral Interrupts (LPIs) and implement
+> Linux IPIs on top of it.
+> 
+> LPIs are used for interrupt signals that are translated by a
+> GICv5 ITS (Interrupt Translation Service) but also for software
+> generated IRQs - namely interrupts that are not driven by a HW
+> signal, ie IPIs.
+> 
+> LPIs rely on memory storage for interrupt routing and state.
+> 
+> Memory storage is handled by the IRS - that is configured
+> at probe time by the driver with the required memory.
+> 
+> LPIs state and routing information is kept in the Interrupt
+> State Table (IST).
+> 
+> IRSes provide support for 1- or 2-level IST tables configured
+> to support a maximum number of interrupts that depend on the
+> OS configuration and the HW capabilities.
+> 
+> On systems that provide 2-level IST support, always allow
+> the maximum number of LPIs; On systems with only 1-level
+> support, limit the number of LPIs to 2^12 to prevent
+> wasting memory (presumably a system that supports a 1-level
+> only IST is not expecting a large number of interrupts).
+> 
+> On a 2-level IST system, L2 entries are allocated on
+> demand.
+> 
+> The IST table memory is allocated using the kmalloc() interface;
+> the allocation required may be smaller than a page and must be
+> made up of contiguous physical pages if larger than a page.
+> 
+> On systems where the IRS is not cache-coherent with the CPUs,
+> cache mainteinance operations are executed to clean and
+> invalidate the allocated memory to the point of coherency
+> making it visible to the IRS components.
+> 
+> Add an LPI IRQ domain to:
+> 
+> - Manage LPI state and routing
+> - Add LPI IRQchip structure and callbacks
+> - LPI domain allocation/de-allocation
+> 
+> On GICv5 systems, IPIs are implemented using LPIs.
+> 
+> Implement an IPI-specific IRQ domain created as a child/subdomain
+> of the LPI domain to allocate the required number of LPIs needed
+> to implement the IPIs.
+> 
+> Move the arm64 IPI enum declaration to a header file so that the
+> GICv5 driver code can detect how many IPIs are required by arch code.
+> 
+> IPIs are backed by LPIs, add LPIs allocation/de-allocation
+> functions.
+> 
+> The LPI INTID namespace is managed using an IDA to alloc/free LPI
+> INTIDs.
+> 
+> Associate an IPI irqchip with IPI IRQ descriptors to provide
+> core code with the irqchip.ipi_send_single() method required
+> to raise an IPI.
+> 
+> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Marc Zyngier <maz@kernel.org>
 > ---
->  MAINTAINERS                                        |   1 +
->  drivers/media/platform/rockchip/Kconfig            |   1 +
->  drivers/media/platform/rockchip/Makefile           |   1 +
->  drivers/media/platform/rockchip/rkcif/Kconfig      |  15 +
->  drivers/media/platform/rockchip/rkcif/Makefile     |   7 +
->  .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 858 +++++++++++++++++++++
->  .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  24 +
->  .../platform/rockchip/rkcif/rkcif-capture-mipi.c   |  27 +
->  .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  20 +
->  .../media/platform/rockchip/rkcif/rkcif-common.h   | 220 ++++++
->  drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 307 ++++++++
->  .../platform/rockchip/rkcif/rkcif-interface.c      | 418 ++++++++++
->  .../platform/rockchip/rkcif/rkcif-interface.h      |  30 +
->  drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 132 ++++
->  .../media/platform/rockchip/rkcif/rkcif-stream.c   | 622 +++++++++++++++
->  .../media/platform/rockchip/rkcif/rkcif-stream.h   |  31 +
->  16 files changed, 2714 insertions(+)
+>  MAINTAINERS                         |    2 +
+>  arch/arm64/include/asm/arch_gicv5.h |   91 +++
+>  arch/arm64/include/asm/smp.h        |   17 +
+>  arch/arm64/kernel/smp.c             |   17 -
+>  drivers/irqchip/Kconfig             |    5 +
+>  drivers/irqchip/Makefile            |    1 +
+>  drivers/irqchip/irq-gic-v5-irs.c    |  841 ++++++++++++++++++++++++++++
+>  drivers/irqchip/irq-gic-v5.c        | 1058 +++++++++++++++++++++++++++++++++++
+>  drivers/irqchip/irq-gic-v5.h        |  184 ++++++
+
+Nit: the split between include/asm/arch_gicv5.h and
+drivers/irqchip/irq-gic-v5.h is pretty pointless (this is obviously
+inherited from the GICv3 on 32bit setup). Given that GICv5 is strictly
+arm64, this split is no longer necessary.
+
+>  9 files changed, 2199 insertions(+), 17 deletions(-)
 > 
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index d83a7762dbe3..e9a648d4fcb4 100644
+> index f3ed84466da19906953b5396a5f4b50e878c376e..cdeceb6782355a4a18609135bf7f03249d8b0bb5 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -20409,6 +20409,7 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
->  F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->  F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> +F:	drivers/media/platform/rockchip/rkcif/
+> @@ -1907,6 +1907,8 @@ M:	Marc Zyngier <maz@kernel.org>
+>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.yaml
+> +F:	arch/arm64/include/asm/arch_gicv5.h
+> +F:	drivers/irqchip/irq-gic-v5*.[ch]
 >  
->  ROCKCHIP CRYPTO DRIVERS
->  M:	Corentin Labbe <clabbe@baylibre.com>
-> diff --git a/drivers/media/platform/rockchip/Kconfig b/drivers/media/platform/rockchip/Kconfig
-> index b41d3960c1b4..549f4e9f443e 100644
-> --- a/drivers/media/platform/rockchip/Kconfig
-> +++ b/drivers/media/platform/rockchip/Kconfig
-> @@ -3,4 +3,5 @@
->  comment "Rockchip media platform drivers"
+>  ARM HDLCD DRM DRIVER
+>  M:	Liviu Dudau <liviu.dudau@arm.com>
+> diff --git a/arch/arm64/include/asm/arch_gicv5.h b/arch/arm64/include/asm/arch_gicv5.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..75557fdad611fa51d7136126eb80cb861be98a8d
+> --- /dev/null
+> +++ b/arch/arm64/include/asm/arch_gicv5.h
+> @@ -0,0 +1,91 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2025 ARM Ltd.
+> + */
+> +#ifndef __ASM_ARCH_GICV5_H
+> +#define __ASM_ARCH_GICV5_H
+> +
+> +#include <asm/cacheflush.h>
+> +#include <asm/sysreg.h>
+> +
+> +#ifndef __ASSEMBLY__
+> +
+> +#define GICV5_OP_GIC_CDAFF		sys_insn(1, 0, 12, 1, 3)
+> +#define GICV5_OP_GIC_CDDI		sys_insn(1, 0, 12, 2, 0)
+> +#define GICV5_OP_GIC_CDDIS		sys_insn(1, 0, 12, 1, 0)
+> +#define GICV5_OP_GIC_CDEN		sys_insn(1, 0, 12, 1, 1)
+> +#define GICV5_OP_GIC_CDEOI		sys_insn(1, 0, 12, 1, 7)
+> +#define GICV5_OP_GIC_CDPEND		sys_insn(1, 0, 12, 1, 4)
+> +#define GICV5_OP_GIC_CDPRI		sys_insn(1, 0, 12, 1, 2)
+> +#define GICV5_OP_GIC_CDRCFG		sys_insn(1, 0, 12, 1, 5)
+> +#define GICV5_OP_GICR_CDIA		sys_insn(1, 0, 12, 3, 0)
+> +
+> +#define gicr_insn(insn)			read_sysreg_s(insn)
+> +#define gic_insn(v, insn)		write_sysreg_s(v, insn)
+
+If you are providing this sort of helpers, use them to shorten the
+amount of boilerplate stuff that you need to read or write.
+
+For example:
+
+#define	gicr_insn(insn)		read_sysreg_s(GICV5_OP_GICR_ ## insn)
+
+allows you to write:
+
+	ia = gicr_insn(CDIA);
+
+> +
+> +#define GSB_ACK				__emit_inst(0xd5000000 | sys_insn(1, 0, 12, 0, 1) | 31)
+> +#define GSB_SYS				__emit_inst(0xd5000000 | sys_insn(1, 0, 12, 0, 0) | 31)
+
+Can you please express this in terms of __SYS_BARRIER_INSN(), with a
+slight rework of the SB definition? It would limit the propagation of
+the 0xd5 constant and make it clear what 31 stands for.
+
+> +
+> +#define gsb_ack()			asm volatile(GSB_ACK : : : "memory")
+> +#define gsb_sys()			asm volatile(GSB_SYS : : : "memory")
+> +
+> +/* Shift and mask definitions for GIC CDAFF */
+> +#define GICV5_GIC_CDAFF_IAFFID_MASK	GENMASK_ULL(47, 32)
+> +#define GICV5_GIC_CDAFF_IAFFID(r)	FIELD_GET(GICV5_GIC_CDAFF_IAFFID_MASK, r)
+> +#define GICV5_GIC_CDAFF_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDAFF_TYPE(r)		FIELD_GET(GICV5_GIC_CDAFF_TYPE_MASK, r)
+> +#define GICV5_GIC_CDAFF_IRM_MASK	BIT_ULL(28)
+> +#define GICV5_GIC_CDAFF_IRM(r)		FIELD_GET(GICV5_GIC_CDAFF_IRM_MASK, r)
+> +#define GICV5_GIC_CDAFF_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDAFF_ID(r)		FIELD_GET(GICV5_GIC_CDAFF_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDDI */
+> +#define GICV5_GIC_CDDI_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDDI_TYPE(r)		FIELD_GET(GICV5_GIC_CDDI_TYPE_MASK, r)
+> +#define GICV5_GIC_CDDI_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDDI_ID(r)		FIELD_GET(GICV5_GIC_CDDI_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDDIS */
+> +#define GICV5_GIC_CDDIS_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDDIS_TYPE(r)		FIELD_GET(GICV5_GIC_CDDIS_TYPE_MASK, r)
+> +#define GICV5_GIC_CDDIS_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDDIS_ID(r)		FIELD_GET(GICV5_GIC_CDDIS_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDEN */
+> +#define GICV5_GIC_CDEN_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDEN_TYPE(r)		FIELD_GET(GICV5_GIC_CDEN_TYPE_MASK, r)
+> +#define GICV5_GIC_CDEN_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDEN_ID(r)		FIELD_GET(GICV5_GIC_CDEN_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDPEND */
+> +#define GICV5_GIC_CDPEND_PENDING_MASK	BIT_ULL(32)
+> +#define GICV5_GIC_CDPEND_PENDING(r)	FIELD_GET(GICV5_GIC_CDPEND_PENDING_MASK, r)
+> +#define GICV5_GIC_CDPEND_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDPEND_TYPE(r)	FIELD_GET(GICV5_GIC_CDPEND_TYPE_MASK, r)
+> +#define GICV5_GIC_CDPEND_ID_MASK	GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDPEND_ID(r)		FIELD_GET(GICV5_GIC_CDPEND_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDPRI */
+> +#define GICV5_GIC_CDPRI_PRIORITY_MASK	GENMASK_ULL(39, 35)
+> +#define GICV5_GIC_CDPRI_PRIORITY(r)	FIELD_GET(GICV5_GIC_CDPRI_PRIORITY_MASK, r)
+> +#define GICV5_GIC_CDPRI_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDPRI_TYPE(r)		FIELD_GET(GICV5_GIC_CDPRI_TYPE_MASK, r)
+> +#define GICV5_GIC_CDPRI_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDPRI_ID(r)		FIELD_GET(GICV5_GIC_CDPRI_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GIC CDRCFG */
+> +#define GICV5_GIC_CDRCFG_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDRCFG_TYPE(r)	FIELD_GET(GICV5_GIC_CDRCFG_TYPE_MASK, r)
+> +#define GICV5_GIC_CDRCFG_ID_MASK	GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDRCFG_ID(r)		FIELD_GET(GICV5_GIC_CDRCFG_ID_MASK, r)
+> +
+> +/* Shift and mask definitions for GICR CDIA */
+> +#define GICV5_GIC_CDIA_VALID_MASK	BIT_ULL(32)
+> +#define GICV5_GIC_CDIA_VALID(r)		FIELD_GET(GICV5_GIC_CDIA_VALID_MASK, r)
+> +#define GICV5_GIC_CDIA_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDIA_TYPE(r)		FIELD_GET(GICV5_GIC_CDIA_TYPE_MASK, r)
+> +#define GICV5_GIC_CDIA_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDIA_ID(r)		FIELD_GET(GICV5_GIC_CDIA_ID_MASK, r)
+> +
+> +#endif /* __ASSEMBLY__ */
+> +#endif /* __ASM_ARCH_GICV5_H */
+> diff --git a/arch/arm64/include/asm/smp.h b/arch/arm64/include/asm/smp.h
+> index d6fd6efb66a673ae33825971e4aa07e791c02ee5..d48ef6d5abcc77d1c06ad8e91e72006acf662078 100644
+> --- a/arch/arm64/include/asm/smp.h
+> +++ b/arch/arm64/include/asm/smp.h
+> @@ -50,6 +50,23 @@ struct seq_file;
+>   */
+>  extern void smp_init_cpus(void);
 >  
->  source "drivers/media/platform/rockchip/rga/Kconfig"
-> +source "drivers/media/platform/rockchip/rkcif/Kconfig"
->  source "drivers/media/platform/rockchip/rkisp1/Kconfig"
-> diff --git a/drivers/media/platform/rockchip/Makefile b/drivers/media/platform/rockchip/Makefile
-> index 4f782b876ac9..6aba32c8830c 100644
-> --- a/drivers/media/platform/rockchip/Makefile
-> +++ b/drivers/media/platform/rockchip/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  obj-y += rga/
-> +obj-y += rkcif/
->  obj-y += rkisp1/
-> diff --git a/drivers/media/platform/rockchip/rkcif/Kconfig b/drivers/media/platform/rockchip/rkcif/Kconfig
+> +enum ipi_msg_type {
+> +	IPI_RESCHEDULE,
+> +	IPI_CALL_FUNC,
+> +	IPI_CPU_STOP,
+> +	IPI_CPU_STOP_NMI,
+> +	IPI_TIMER,
+> +	IPI_IRQ_WORK,
+> +	NR_IPI,
+> +	/*
+> +	 * Any enum >= NR_IPI and < MAX_IPI is special and not tracable
+> +	 * with trace_ipi_*
+> +	 */
+> +	IPI_CPU_BACKTRACE = NR_IPI,
+> +	IPI_KGDB_ROUNDUP,
+> +	MAX_IPI
+> +};
+> +
+>  /*
+>   * Register IPI interrupts with the arch SMP code
+>   */
+> diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+> index 3f3712e47c94c62836fb89cd4bfb3595fbb41557..148145979d83f67469075df1c8b5e366ffe9d907 100644
+> --- a/arch/arm64/kernel/smp.c
+> +++ b/arch/arm64/kernel/smp.c
+> @@ -64,23 +64,6 @@ struct secondary_data secondary_data;
+>  /* Number of CPUs which aren't online, but looping in kernel text. */
+>  static int cpus_stuck_in_kernel;
+>  
+> -enum ipi_msg_type {
+> -	IPI_RESCHEDULE,
+> -	IPI_CALL_FUNC,
+> -	IPI_CPU_STOP,
+> -	IPI_CPU_STOP_NMI,
+> -	IPI_TIMER,
+> -	IPI_IRQ_WORK,
+> -	NR_IPI,
+> -	/*
+> -	 * Any enum >= NR_IPI and < MAX_IPI is special and not tracable
+> -	 * with trace_ipi_*
+> -	 */
+> -	IPI_CPU_BACKTRACE = NR_IPI,
+> -	IPI_KGDB_ROUNDUP,
+> -	MAX_IPI
+> -};
+> -
+>  static int ipi_irq_base __ro_after_init;
+>  static int nr_ipi __ro_after_init = NR_IPI;
+>  
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index cec05e443083b8982b3e72f4212d808a22883914..160a4761d5d85f6dbf36f3142fd619c114733e36 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -54,6 +54,11 @@ config ARM_GIC_V3_ITS_FSL_MC
+>  	depends on FSL_MC_BUS
+>  	default ARM_GIC_V3_ITS
+>  
+> +config ARM_GIC_V5
+> +	bool
+> +	select IRQ_DOMAIN_HIERARCHY
+> +	select GENERIC_IRQ_EFFECTIVE_AFF_MASK if SMP
+> +
+
+Drop the 'if SMP', as arm64 is always SMP.
+
+>  config ARM_NVIC
+>  	bool
+>  	select IRQ_DOMAIN_HIERARCHY
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 365bcea9a61ff89e2cb41034125b3fc8cd494d81..3d9c47fa3fdf40b7452c059d84fe8ac24c91bc0f 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -35,6 +35,7 @@ obj-$(CONFIG_ARM_GIC_V3)		+= irq-gic-v3.o irq-gic-v3-mbi.o irq-gic-common.o
+>  obj-$(CONFIG_ARM_GIC_V3_ITS)		+= irq-gic-v3-its.o irq-gic-v4.o irq-gic-v3-its-msi-parent.o
+>  obj-$(CONFIG_ARM_GIC_V3_ITS_FSL_MC)	+= irq-gic-v3-its-fsl-mc-msi.o
+>  obj-$(CONFIG_PARTITION_PERCPU)		+= irq-partition-percpu.o
+> +obj-$(CONFIG_ARM_GIC_V5)		+= irq-gic-v5.o irq-gic-v5-irs.o
+>  obj-$(CONFIG_HISILICON_IRQ_MBIGEN)	+= irq-mbigen.o
+>  obj-$(CONFIG_ARM_NVIC)			+= irq-nvic.o
+>  obj-$(CONFIG_ARM_VIC)			+= irq-vic.o
+> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
 > new file mode 100644
-> index 000000000000..f53e79a4b42d
+> index 0000000000000000000000000000000000000000..7bd60e6d56b77c0c19a1bd9bee9685d9b6ffc959
 > --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/Kconfig
-> @@ -0,0 +1,15 @@
-> +config VIDEO_ROCKCHIP_CIF
-> +	tristate "Rockchip Camera Interface (CIF)"
-> +	depends on VIDEO_DEV
-> +	depends on ARCH_ROCKCHIP || COMPILE_TEST
-> +	depends on V4L_PLATFORM_DRIVERS
-> +	depends on PM && COMMON_CLK
-> +	select MEDIA_CONTROLLER
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_FWNODE
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	help
-> +	  This is a driver for Rockchip Camera Interface (CIF). It is featured
-> +	  in many Rockchips SoCs in different variations, such as the PX30
-> +	  Video Input Processor (VIP, one Digital Video Port (DVP)) or the
-> +	  RK3568 Video Capture (VICAP, one DVP, one MIPI CSI-2 receiver) unit.
-> diff --git a/drivers/media/platform/rockchip/rkcif/Makefile b/drivers/media/platform/rockchip/rkcif/Makefile
-> new file mode 100644
-> index 000000000000..818424972c7b
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_VIDEO_ROCKCHIP_CIF) += rockchip-cif.o
-> +rockchip-cif-objs += rkcif-dev.o \
-> +	rkcif-capture-dvp.o \
-> +	rkcif-capture-mipi.o \
-> +	rkcif-interface.o \
-> +	rkcif-stream.o
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.c b/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.c
-> new file mode 100644
-> index 000000000000..e0a9ae6ba77f
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.c
-> @@ -0,0 +1,858 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/irqchip/irq-gic-v5-irs.c
+> @@ -0,0 +1,841 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
-> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
+> + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
 > + */
 > +
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +#include "rkcif-capture-dvp.h"
-> +#include "rkcif-common.h"
-> +#include "rkcif-interface.h"
-> +#include "rkcif-regs.h"
-> +#include "rkcif-stream.h"
-> +
-> +static const struct rkcif_output_fmt dvp_out_fmts[] = {
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_422 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_UVUV,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV16M,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_422 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_UVUV,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV61,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_422 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_VUVU,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV61M,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_422 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_VUVU,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_420 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_UVUV,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV12M,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_420 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_UVUV,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV21,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_420 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_VUVU,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV21M,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_OUTPUT_420 |
-> +			       RKCIF_FORMAT_UV_STORAGE_ORDER_VUVU,
-> +		.cplanes = 2,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_RGB24,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_RGB565,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_BGR666,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB8,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGRBG8,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGBRG8,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SBGGR8,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB10,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGRBG10,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGBRG10,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SBGGR10,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB12,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGRBG12,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SGBRG12,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SBGGR12,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SBGGR16,
-> +		.cplanes = 1,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_Y16,
-> +		.cplanes = 1,
-> +	},
-> +};
-> +
-> +static const struct rkcif_input_fmt px30_dvp_in_fmts[] = {
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_UYVY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_UYVY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_VYUY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_VYUY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_RGB888_1X24,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	}
-> +};
-> +
-> +const struct rkcif_dvp_match_data px30_vip_dvp_match_data = {
-
-Can you prefix this with e.g. "rk_"? It's not static...
-
-> +	.in_fmts = px30_dvp_in_fmts,
-> +	.in_fmts_num = ARRAY_SIZE(px30_dvp_in_fmts),
-> +	.out_fmts = dvp_out_fmts,
-> +	.out_fmts_num = ARRAY_SIZE(dvp_out_fmts),
-> +	.has_scaler = true,
-> +	.regs = {
-> +		[RKCIF_DVP_CTRL] = 0x00,
-> +		[RKCIF_DVP_INTEN] = 0x04,
-> +		[RKCIF_DVP_INTSTAT] = 0x08,
-> +		[RKCIF_DVP_FOR] = 0x0c,
-> +		[RKCIF_DVP_LINE_NUM_ADDR] = 0x10,
-> +		[RKCIF_DVP_FRM0_ADDR_Y] = 0x14,
-> +		[RKCIF_DVP_FRM0_ADDR_UV] = 0x18,
-> +		[RKCIF_DVP_FRM1_ADDR_Y] = 0x1c,
-> +		[RKCIF_DVP_FRM1_ADDR_UV] = 0x20,
-> +		[RKCIF_DVP_VIR_LINE_WIDTH] = 0x24,
-> +		[RKCIF_DVP_SET_SIZE] = 0x28,
-> +		[RKCIF_DVP_SCL_CTRL] = 0x48,
-> +		[RKCIF_DVP_FRAME_STATUS] = 0x60,
-> +		[RKCIF_DVP_LAST_LINE] = 0x68,
-> +		[RKCIF_DVP_LAST_PIX] = 0x6c,
-> +	},
-> +};
-> +
-> +static const struct rkcif_input_fmt rk3568_dvp_in_fmts[] = {
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_UYVY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_UYVY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_VYUY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_2X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_VYUY,
-> +		.fmt_type = RKCIF_FMT_TYPE_YUV,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120 |
-> +			       RKCIF_FORMAT_BT1120_TRANSMIT_PROGRESS,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YUYV8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120 |
-> +			       RKCIF_FORMAT_BT1120_TRANSMIT_PROGRESS,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_YVYU8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120 |
-> +			       RKCIF_FORMAT_BT1120_YC_SWAP |
-> +			       RKCIF_FORMAT_BT1120_TRANSMIT_PROGRESS,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_UYVY8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV |
-> +			       RKCIF_FORMAT_BT1120_YC_SWAP |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120 |
-> +			       RKCIF_FORMAT_BT1120_YC_SWAP |
-> +			       RKCIF_FORMAT_BT1120_TRANSMIT_PROGRESS,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_VYUY8_1X16,
-> +		.dvp_fmt_val = RKCIF_FORMAT_YUV_INPUT_422 |
-> +			       RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU |
-> +			       RKCIF_FORMAT_BT1120_YC_SWAP |
-> +			       RKCIF_FORMAT_INPUT_MODE_BT1120,
-> +		.field = V4L2_FIELD_INTERLACED,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SBGGR12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGBRG12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SGRBG12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_RGB888_1X24,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y8_1X8,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_8,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y10_1X10,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_10,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +	{
-> +		.mbus_code = MEDIA_BUS_FMT_Y12_1X12,
-> +		.dvp_fmt_val = RKCIF_FORMAT_INPUT_MODE_RAW |
-> +			       RKCIF_FORMAT_RAW_DATA_WIDTH_12,
-> +		.fmt_type = RKCIF_FMT_TYPE_RAW,
-> +		.field = V4L2_FIELD_NONE,
-> +	},
-> +};
-> +
-> +static void rk3568_dvp_grf_setup(struct rkcif_device *rkcif)
-> +{
-> +	u32 con1 = RK3568_GRF_WRITE_ENABLE(RK3568_GRF_VI_CON1_CIF_DATAPATH |
-> +					   RK3568_GRF_VI_CON1_CIF_CLK_DELAYNUM);
-> +
-> +	if (!rkcif->grf)
-> +		return;
-> +
-> +	con1 |= rkcif->interfaces[0].dvp.cif_clk_delaynum &
-> +		RK3568_GRF_VI_CON1_CIF_CLK_DELAYNUM;
-> +
-> +	if (rkcif->interfaces[0].vep.bus.parallel.flags &
-> +	    V4L2_MBUS_PCLK_SAMPLE_DUALEDGE)
-> +		con1 |= RK3568_GRF_VI_CON1_CIF_DATAPATH;
-> +
-> +	regmap_write(rkcif->grf, RK3568_GRF_VI_CON1, con1);
-> +}
-> +
-> +const struct rkcif_dvp_match_data rk3568_vicap_dvp_match_data = {
-> +	.in_fmts = rk3568_dvp_in_fmts,
-> +	.in_fmts_num = ARRAY_SIZE(rk3568_dvp_in_fmts),
-> +	.out_fmts = dvp_out_fmts,
-> +	.out_fmts_num = ARRAY_SIZE(dvp_out_fmts),
-> +	.setup = rk3568_dvp_grf_setup,
-> +	.has_scaler = false,
-> +	.regs = {
-> +		[RKCIF_DVP_CTRL] = 0x00,
-> +		[RKCIF_DVP_INTEN] = 0x04,
-> +		[RKCIF_DVP_INTSTAT] = 0x08,
-> +		[RKCIF_DVP_FOR] = 0x0c,
-> +		[RKCIF_DVP_LINE_NUM_ADDR] = 0x2c,
-> +		[RKCIF_DVP_FRM0_ADDR_Y] = 0x14,
-> +		[RKCIF_DVP_FRM0_ADDR_UV] = 0x18,
-> +		[RKCIF_DVP_FRM1_ADDR_Y] = 0x1c,
-> +		[RKCIF_DVP_FRM1_ADDR_UV] = 0x20,
-> +		[RKCIF_DVP_VIR_LINE_WIDTH] = 0x24,
-> +		[RKCIF_DVP_SET_SIZE] = 0x28,
-> +		[RKCIF_DVP_CROP] = 0x34,
-> +		[RKCIF_DVP_FRAME_STATUS] = 0x3c,
-> +		[RKCIF_DVP_LAST_LINE] = 0x44,
-> +		[RKCIF_DVP_LAST_PIX] = 0x48,
-> +	},
-> +};
-
-Does this belong here? Or on the user's side?
-
-> +
-> +static inline unsigned int cif_dvp_get_addr(struct rkcif_device *rkcif,
-> +					    unsigned int index)
-> +{
-> +	if (WARN_ON(index >= RKCIF_DVP_REGISTER_MAX))
-> +		return RKCIF_REGISTER_NOTSUPPORTED;
-> +
-> +	return rkcif->match_data->dvp->regs[index];
-> +}
-> +
-> +static inline __maybe_unused void cif_dvp_write(struct rkcif_device *rkcif,
-> +						unsigned int index, u32 val)
-> +{
-> +	unsigned int addr = cif_dvp_get_addr(rkcif, index);
-> +
-> +	if (addr == RKCIF_REGISTER_NOTSUPPORTED)
-> +		return;
-> +
-> +	writel(val, rkcif->base_addr + addr);
-> +}
-> +
-> +static inline __maybe_unused u32 cif_dvp_read(struct rkcif_device *rkcif,
-> +					      unsigned int index)
-> +{
-> +	unsigned int addr = cif_dvp_get_addr(rkcif, index);
-> +
-> +	if (addr == RKCIF_REGISTER_NOTSUPPORTED)
-> +		return 0;
-> +
-> +	return readl(rkcif->base_addr + addr);
-> +}
-> +
-> +static void cif_dvp_queue_buffer(struct rkcif_stream *stream,
-> +				 unsigned int index)
-> +{
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	struct rkcif_buffer *buffer = stream->buffers[index];
-> +	u32 frm_addr_y, frm_addr_uv;
-> +
-> +	frm_addr_y = index ? RKCIF_DVP_FRM1_ADDR_Y : RKCIF_DVP_FRM0_ADDR_Y;
-> +	frm_addr_uv = index ? RKCIF_DVP_FRM1_ADDR_UV : RKCIF_DVP_FRM0_ADDR_UV;
-> +
-> +	cif_dvp_write(rkcif, frm_addr_y, buffer->buff_addr[RKCIF_PLANE_Y]);
-> +	cif_dvp_write(rkcif, frm_addr_uv, buffer->buff_addr[RKCIF_PLANE_UV]);
-> +}
-> +
-> +static int cif_dvp_start_streaming(struct rkcif_stream *stream)
-> +{
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	struct rkcif_interface *interface = stream->interface;
-> +	struct v4l2_mbus_config_parallel *parallel;
-> +	struct v4l2_mbus_framefmt *source_fmt;
-> +	struct v4l2_subdev_state *state;
-> +	const struct rkcif_input_fmt *active_in_fmt;
-> +	const struct rkcif_output_fmt *active_out_fmt;
-> +	u32 val = 0;
-> +	int ret = -EINVAL;
-> +
-> +	state = v4l2_subdev_lock_and_get_active_state(&interface->sd);
-> +	source_fmt = v4l2_subdev_state_get_format(state, RKCIF_IF_PAD_SRC,
-> +						  stream->id);
-> +	if (!source_fmt)
-> +		goto out;
-> +
-> +	active_in_fmt = rkcif_interface_find_input_fmt(interface, false,
-> +						       source_fmt->code);
-> +	active_out_fmt = rkcif_stream_find_output_fmt(stream, false,
-> +						      stream->pix.pixelformat);
-> +	if (!active_in_fmt || !active_out_fmt)
-> +		goto out;
-> +
-> +	parallel = &interface->vep.bus.parallel;
-> +	if (parallel->bus_width == 16 &&
-> +	    (parallel->flags & V4L2_MBUS_PCLK_SAMPLE_DUALEDGE))
-> +		val |= RKCIF_FORMAT_BT1120_CLOCK_DOUBLE_EDGES;
-> +	val |= active_in_fmt->dvp_fmt_val;
-> +	val |= active_out_fmt->dvp_fmt_val;
-> +	cif_dvp_write(rkcif, RKCIF_DVP_FOR, val);
-> +
-> +	val = stream->pix.width;
-> +	if (active_in_fmt->fmt_type == RKCIF_FMT_TYPE_RAW)
-> +		val = stream->pix.width * 2;
-> +	cif_dvp_write(rkcif, RKCIF_DVP_VIR_LINE_WIDTH, val);
-> +
-> +	val = RKCIF_XY_COORD(stream->pix.width, stream->pix.height);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_SET_SIZE, val);
-> +
-> +	cif_dvp_write(rkcif, RKCIF_DVP_FRAME_STATUS, RKCIF_FRAME_STAT_CLS);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_INTSTAT, RKCIF_INTSTAT_CLS);
-> +	if (rkcif->match_data->dvp->has_scaler) {
-> +		val = active_in_fmt->fmt_type == RKCIF_FMT_TYPE_YUV ?
-> +			      RKCIF_SCL_CTRL_ENABLE_YUV_16BIT_BYPASS :
-> +			      RKCIF_SCL_CTRL_ENABLE_RAW_16BIT_BYPASS;
-> +		cif_dvp_write(rkcif, RKCIF_DVP_SCL_CTRL, val);
-> +	}
-> +
-> +	cif_dvp_write(rkcif, RKCIF_DVP_INTEN,
-> +		      RKCIF_INTEN_FRAME_END_EN |
-> +			      RKCIF_INTEN_PST_INF_FRAME_END_EN);
-> +
-> +	cif_dvp_write(rkcif, RKCIF_DVP_CTRL,
-> +		      RKCIF_CTRL_AXI_BURST_16 | RKCIF_CTRL_MODE_PINGPONG |
-> +			      RKCIF_CTRL_ENABLE_CAPTURE);
-> +
-> +	ret = 0;
-> +
-> +out:
-> +	v4l2_subdev_unlock_state(state);
-> +	return ret;
-> +}
-> +
-> +static void cif_dvp_stop_streaming(struct rkcif_stream *stream)
-> +{
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	u32 val;
-> +
-> +	val = cif_dvp_read(rkcif, RKCIF_DVP_CTRL);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_CTRL,
-> +		      val & (~RKCIF_CTRL_ENABLE_CAPTURE));
-> +	cif_dvp_write(rkcif, RKCIF_DVP_INTEN, 0x0);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_INTSTAT, 0x3ff);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_FRAME_STATUS, 0x0);
-> +
-> +	stream->stopping = false;
-> +}
-> +
-> +static void cif_dvp_reset_stream(struct rkcif_device *rkcif)
-> +{
-> +	u32 ctl = cif_dvp_read(rkcif, RKCIF_DVP_CTRL);
-> +
-> +	cif_dvp_write(rkcif, RKCIF_DVP_CTRL,
-> +		      ctl & (~RKCIF_CTRL_ENABLE_CAPTURE));
-> +	cif_dvp_write(rkcif, RKCIF_DVP_CTRL, ctl | RKCIF_CTRL_ENABLE_CAPTURE);
-> +}
-> +
-> +static void rkcif_dvp_set_crop(struct rkcif_stream *stream, u16 left, u16 top)
-> +{
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	u32 val;
-> +
-> +	val = RKCIF_XY_COORD(left, top);
-> +	cif_dvp_write(rkcif, RKCIF_DVP_CROP, val);
-> +}
-> +
-> +irqreturn_t rkcif_dvp_isr(int irq, void *ctx)
-> +{
-> +	struct device *dev = ctx;
-> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
-> +	struct rkcif_stream *stream;
-> +	u32 intstat, lastline, lastpix, cif_frmst;
-> +	irqreturn_t ret = IRQ_NONE;
-> +
-> +	if (!rkcif->match_data->dvp)
-> +		return ret;
-> +
-> +	intstat = cif_dvp_read(rkcif, RKCIF_DVP_INTSTAT);
-> +	cif_frmst = cif_dvp_read(rkcif, RKCIF_DVP_FRAME_STATUS);
-> +	lastline = RKCIF_FETCH_Y(cif_dvp_read(rkcif, RKCIF_DVP_LAST_LINE));
-> +	lastpix = RKCIF_FETCH_Y(cif_dvp_read(rkcif, RKCIF_DVP_LAST_PIX));
-> +
-> +	if (intstat & RKCIF_INTSTAT_FRAME_END) {
-> +		cif_dvp_write(rkcif, RKCIF_DVP_INTSTAT,
-> +			      RKCIF_INTSTAT_FRAME_END_CLR |
-> +				      RKCIF_INTSTAT_LINE_END_CLR);
-> +
-> +		stream = &rkcif->interfaces[RKCIF_DVP].streams[RKCIF_ID0];
-> +
-> +		if (stream->stopping) {
-> +			cif_dvp_stop_streaming(stream);
-> +			wake_up(&stream->wq_stopped);
-> +			return IRQ_HANDLED;
-> +		}
-> +
-> +		if (lastline != stream->pix.height) {
-> +			v4l2_err(&rkcif->v4l2_dev,
-> +				 "bad frame, irq:%#x frmst:%#x size:%dx%d\n",
-> +				 intstat, cif_frmst, lastpix, lastline);
-> +
-> +			cif_dvp_reset_stream(rkcif);
-> +		}
-> +
-> +		rkcif_stream_pingpong(stream);
-> +
-> +		ret = IRQ_HANDLED;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +int rkcif_dvp_register(struct rkcif_device *rkcif)
-> +{
-> +	struct rkcif_interface *interface;
-> +	int ret, i;
-> +
-> +	if (!rkcif->match_data->dvp)
-> +		return 0;
-> +
-> +	interface = &rkcif->interfaces[RKCIF_DVP];
-> +	interface->index = RKCIF_DVP;
-> +	interface->type = RKCIF_IF_DVP;
-> +	interface->in_fmts = rkcif->match_data->dvp->in_fmts;
-> +	interface->in_fmts_num = rkcif->match_data->dvp->in_fmts_num;
-> +	interface->set_crop = rkcif_dvp_set_crop;
-> +	ret = rkcif_interface_register(rkcif, interface);
-> +	if (ret)
-> +		return 0;
-> +
-> +	if (rkcif->match_data->dvp->setup)
-> +		rkcif->match_data->dvp->setup(rkcif);
-> +
-> +	interface->streams_num = rkcif->match_data->dvp->has_ids ? 4 : 1;
-> +	for (i = 0; i < interface->streams_num; i++) {
-> +		struct rkcif_stream *stream = &interface->streams[i];
-> +
-> +		stream->id = i;
-> +		stream->interface = interface;
-> +		stream->out_fmts = rkcif->match_data->dvp->out_fmts;
-> +		stream->out_fmts_num = rkcif->match_data->dvp->out_fmts_num;
-> +		stream->queue_buffer = cif_dvp_queue_buffer;
-> +		stream->start_streaming = cif_dvp_start_streaming;
-> +		stream->stop_streaming = cif_dvp_stop_streaming;
-> +
-> +		ret = rkcif_stream_register(rkcif, stream);
-> +		if (ret)
-> +			goto err_streams_unregister;
-> +	}
-> +	return 0;
-> +
-> +err_streams_unregister:
-> +	for (; i >= 0; i--)
-
-You can
-
-> +		rkcif_stream_unregister(&interface->streams[i]);
-> +	rkcif_interface_unregister(interface);
-> +
-> +	return ret;
-> +}
-> +
-> +void rkcif_dvp_unregister(struct rkcif_device *rkcif)
-> +{
-> +	struct rkcif_interface *interface;
-> +	int i;
-> +
-> +	if (!rkcif->match_data->dvp)
-> +		return;
-> +
-> +	interface = &rkcif->interfaces[RKCIF_DVP];
-> +
-> +	for (i = 0; i < interface->streams_num; i++)
-> +		rkcif_stream_unregister(&interface->streams[i]);
-> +	rkcif_interface_unregister(interface);
-> +}
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.h b/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.h
-> new file mode 100644
-> index 000000000000..be4decfd80bc
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-capture-dvp.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#ifndef _RKCIF_CAPTURE_DVP_H
-> +#define _RKCIF_CAPTURE_DVP_H
-> +
-> +#include "rkcif-common.h"
-> +
-> +extern const struct rkcif_dvp_match_data px30_vip_dvp_match_data;
-> +extern const struct rkcif_dvp_match_data rk3568_vicap_dvp_match_data;
-> +
-> +int rkcif_dvp_register(struct rkcif_device *rkcif);
-> +
-> +void rkcif_dvp_unregister(struct rkcif_device *rkcif);
-> +
-> +irqreturn_t rkcif_dvp_isr(int irq, void *ctx);
-> +
-> +#endif
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.c b/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.c
-> new file mode 100644
-> index 000000000000..0c3f7b8cfa18
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.c
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#include "rkcif-capture-mipi.h"
-> +#include "rkcif-common.h"
-> +#include "rkcif-stream.h"
-> +
-> +irqreturn_t rkcif_mipi_isr(int irq, void *ctx)
-> +{
-> +	irqreturn_t ret = IRQ_NONE;
-> +
-> +	return ret;
-> +}
-> +
-> +int rkcif_mipi_register(struct rkcif_device *rkcif)
-> +{
-> +	return 0;
-> +}
-> +
-> +void rkcif_mipi_unregister(struct rkcif_device *rkcif)
-> +{
-> +}
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.h b/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.h
-> new file mode 100644
-> index 000000000000..ee1a50a59505
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-capture-mipi.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#ifndef _RKCIF_CAPTURE_MIPI_H
-> +#define _RKCIF_CAPTURE_MIPI_H
-> +
-> +#include "rkcif-common.h"
-> +
-> +int rkcif_mipi_register(struct rkcif_device *rkcif);
-> +
-> +void rkcif_mipi_unregister(struct rkcif_device *rkcif);
-> +
-> +irqreturn_t rkcif_mipi_isr(int irq, void *ctx);
-> +
-> +#endif
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-common.h b/drivers/media/platform/rockchip/rkcif/rkcif-common.h
-> new file mode 100644
-> index 000000000000..32f6f0238656
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-common.h
-> @@ -0,0 +1,220 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#ifndef _RKCIF_COMMON_H
-> +#define _RKCIF_COMMON_H
-> +
-> +#include <linux/clk.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <media/media-device.h>
-> +#include <media/media-entity.h>
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +#include <media/videobuf2-v4l2.h>
-> +
-> +#include "rkcif-regs.h"
-> +
-> +#define RKCIF_DRIVER_NAME "rockchip-cif"
-> +#define RKCIF_CLK_MAX	  4
-> +
-> +enum rkcif_format_type {
-> +	RKCIF_FMT_TYPE_INVALID,
-> +	RKCIF_FMT_TYPE_YUV,
-> +	RKCIF_FMT_TYPE_RAW,
-> +};
-> +
-> +enum rkcif_id_index {
-> +	RKCIF_ID0,
-> +	RKCIF_ID1,
-> +	RKCIF_ID2,
-> +	RKCIF_ID3,
-> +	RKCIF_ID_MAX
-> +};
-> +
-> +enum rkcif_interface_index {
-> +	RKCIF_DVP,
-> +	RKCIF_MIPI_BASE,
-> +	RKCIF_MIPI1 = RKCIF_MIPI_BASE,
-> +	RKCIF_MIPI2,
-> +	RKCIF_MIPI3,
-> +	RKCIF_MIPI4,
-> +	RKCIF_MIPI5,
-> +	RKCIF_MIPI6,
-> +	RKCIF_MIPI_MAX = RKCIF_MIPI6,
-> +	RKCIF_IF_MAX = RKCIF_MIPI_MAX
-> +};
-> +
-> +enum rkcif_interface_pad_index {
-> +	RKCIF_IF_PAD_SINK,
-> +	RKCIF_IF_PAD_SRC,
-> +	RKCIF_IF_PAD_MAX
-> +};
-> +
-> +enum rkcif_interface_status {
-> +	RKCIF_IF_INACTIVE,
-> +	RKCIF_IF_ACTIVE,
-> +};
-> +
-> +enum rkcif_interface_type {
-> +	RKCIF_IF_INVALID,
-> +	RKCIF_IF_DVP,
-> +	RKCIF_IF_MIPI,
-> +};
-> +
-> +enum rkcif_plane_index {
-> +	RKCIF_PLANE_Y,
-> +	RKCIF_PLANE_UV,
-> +	RKCIF_PLANE_MAX
-> +};
-> +
-> +struct rkcif_input_fmt {
-> +	u32 mbus_code;
-> +
-> +	enum rkcif_format_type fmt_type;
-> +	enum v4l2_field field;
-> +
-> +	union {
-> +		u32 dvp_fmt_val;
-> +	};
-> +};
-> +
-> +struct rkcif_output_fmt {
-> +	u32 fourcc;
-> +	u32 mbus_code;
-> +	u8 cplanes;
-> +
-> +	union {
-> +		u32 dvp_fmt_val;
-> +	};
-> +};
-> +
-> +struct rkcif_buffer {
-> +	struct vb2_v4l2_buffer vb;
-> +	struct list_head queue;
-> +	dma_addr_t buff_addr[VIDEO_MAX_PLANES];
-> +	bool is_dummy;
-> +};
-> +
-> +struct rkcif_dummy_buffer {
-> +	struct rkcif_buffer buffer;
-> +	void *vaddr;
-> +	u32 size;
-> +};
-> +
-> +struct rkcif_interface;
-> +
-> +struct rkcif_remote {
-> +	struct v4l2_async_connection async_conn;
-> +	struct v4l2_subdev *sd;
-> +
-> +	struct rkcif_interface *interface;
-> +};
-> +
-> +struct rkcif_stream {
-> +	enum rkcif_id_index id;
-> +	struct rkcif_device *rkcif;
-> +	struct rkcif_interface *interface;
-> +	const struct rkcif_output_fmt *out_fmts;
-> +	unsigned int out_fmts_num;
-> +
-> +	/* in ping-pong mode, two buffers can be provided to the HW */
-> +	struct rkcif_buffer *buffers[2];
-> +	int frame_idx;
-> +	int frame_phase;
-> +
-> +	/* in case of no available buffer, HW can write to the dummy buffer */
-> +	struct rkcif_dummy_buffer dummy;
-> +
-> +	bool stopping;
-> +	wait_queue_head_t wq_stopped;
-> +
-> +	/* queue of available buffers plus spinlock that protects it */
-> +	spinlock_t driver_queue_lock;
-> +	struct list_head driver_queue;
-> +
-> +	/* lock used by the V4L2 core */
-> +	struct mutex vlock;
-> +
-> +	struct media_pad pad;
-> +	struct media_pipeline pipeline;
-> +	struct v4l2_pix_format_mplane pix;
-> +	struct vb2_queue buf_queue;
-> +	struct video_device vdev;
-> +
-> +	void (*queue_buffer)(struct rkcif_stream *stream, unsigned int index);
-> +	int (*start_streaming)(struct rkcif_stream *stream);
-> +	void (*stop_streaming)(struct rkcif_stream *stream);
-> +};
-> +
-> +struct rkcif_dvp {
-> +	u32 cif_clk_delaynum;
-> +};
-> +
-> +struct rkcif_interface {
-> +	enum rkcif_interface_type type;
-> +	enum rkcif_interface_status status;
-> +	enum rkcif_interface_index index;
-> +	struct rkcif_device *rkcif;
-> +	struct rkcif_remote *remote;
-> +	struct rkcif_stream streams[RKCIF_ID_MAX];
-> +	unsigned int streams_num;
-> +	const struct rkcif_input_fmt *in_fmts;
-> +	unsigned int in_fmts_num;
-> +
-> +	struct media_pad pads[RKCIF_IF_PAD_MAX];
-> +	struct v4l2_fwnode_endpoint vep;
-> +	struct v4l2_subdev sd;
-> +
-> +	union {
-> +		struct rkcif_dvp dvp;
-> +	};
-> +
-> +	void (*set_crop)(struct rkcif_stream *stream, u16 left, u16 top);
-> +};
-> +
-> +struct rkcif_dvp_match_data {
-> +	const struct rkcif_input_fmt *in_fmts;
-> +	unsigned int in_fmts_num;
-> +	const struct rkcif_output_fmt *out_fmts;
-> +	unsigned int out_fmts_num;
-> +	void (*setup)(struct rkcif_device *rkcif);
-> +	bool has_scaler;
-> +	bool has_ids;
-> +	unsigned int regs[RKCIF_DVP_REGISTER_MAX];
-> +};
-> +
-> +struct rkcif_match_data {
-> +	const char *const *clks;
-> +	unsigned int clks_num;
-> +	const struct rkcif_dvp_match_data *dvp;
-> +};
-> +
-> +struct rkcif_device {
-> +	struct device *dev;
-> +
-> +	const struct rkcif_match_data *match_data;
-> +	struct clk_bulk_data clks[RKCIF_CLK_MAX];
-> +	unsigned int clks_num;
-> +	struct regmap *grf;
-> +	struct reset_control *reset;
-> +	void __iomem *base_addr;
-> +
-> +	struct rkcif_interface interfaces[RKCIF_IF_MAX];
-> +
-> +	struct media_device media_dev;
-> +	struct v4l2_device v4l2_dev;
-> +	struct v4l2_async_notifier notifier;
-> +};
-> +
-> +#endif
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-dev.c b/drivers/media/platform/rockchip/rkcif/rkcif-dev.c
-> new file mode 100644
-> index 000000000000..2f45229183f6
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-dev.c
-> @@ -0,0 +1,307 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
-> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
+> +#define pr_fmt(fmt)	"GICv5 IRS: " fmt
+> +
+> +#include <linux/iopoll.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/log2.h>
 > +#include <linux/of.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
+> +#include <linux/of_address.h>
 > +
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
+> +#include "irq-gic-v5.h"
+
+Why the ""? The normal include path (linux/irqchip) should work.
+
 > +
-> +#include "rkcif-capture-dvp.h"
-> +#include "rkcif-capture-mipi.h"
-> +#include "rkcif-common.h"
+> +#define LPI_ID_BITS_LINEAR		12
 > +
-> +const char *const px30_vip_clks[] = {
-> +	"aclk",
-> +	"hclk",
-> +	"pclk",
-> +};
+> +#define IRS_FLAGS_NON_COHERENT		BIT(0)
 > +
-> +static const struct rkcif_match_data px30_vip_match_data = {
-> +	.clks = px30_vip_clks,
-> +	.clks_num = ARRAY_SIZE(px30_vip_clks),
-> +	.dvp = &px30_vip_dvp_match_data,
-> +};
+> +static DEFINE_PER_CPU(struct gicv5_irs_chip_data *, per_cpu_irs_data);
+> +static LIST_HEAD(irs_nodes);
 > +
-> +const char *const rk3568_vicap_clks[] = {
-> +	"aclk",
-> +	"hclk",
-> +	"dclk",
-> +	"iclk",
-> +};
-> +
-> +static const struct rkcif_match_data rk3568_vicap_match_data = {
-> +	.clks = rk3568_vicap_clks,
-> +	.clks_num = ARRAY_SIZE(rk3568_vicap_clks),
-> +	.dvp = &rk3568_vicap_dvp_match_data,
-> +};
-> +
-> +static const struct of_device_id rkcif_plat_of_match[] = {
-> +	{
-> +		.compatible = "rockchip,px30-vip",
-> +		.data = &px30_vip_match_data,
-> +	},
-> +	{
-> +		.compatible = "rockchip,rk3568-vicap",
-> +		.data = &rk3568_vicap_match_data,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, rkcif_plat_of_match);
-> +
-> +static int rkcif_notifier_bound(struct v4l2_async_notifier *notifier,
-> +				struct v4l2_subdev *sd,
-> +				struct v4l2_async_connection *asd)
+> +static u32 irs_readl_relaxed(struct gicv5_irs_chip_data *irs_data,
+> +			     const u64 reg_offset)
 > +{
-> +	struct rkcif_device *rkcif =
-> +		container_of(notifier, struct rkcif_device, notifier);
-> +	struct rkcif_remote *remote =
-> +		container_of(asd, struct rkcif_remote, async_conn);
-> +	struct media_pad *sink_pad =
-> +		&remote->interface->pads[RKCIF_IF_PAD_SINK];
+> +	return readl_relaxed(irs_data->irs_base + reg_offset);
+> +}
+> +
+> +static void irs_writel_relaxed(struct gicv5_irs_chip_data *irs_data,
+> +			       const u32 val, const u64 reg_offset)
+> +{
+> +	writel_relaxed(val, irs_data->irs_base + reg_offset);
+> +}
+> +
+> +static u64 irs_readq_relaxed(struct gicv5_irs_chip_data *irs_data,
+> +			     const u64 reg_offset)
+> +{
+> +	return readq_relaxed(irs_data->irs_base + reg_offset);
+> +}
+> +
+> +static void irs_writeq_relaxed(struct gicv5_irs_chip_data *irs_data,
+> +			       const u64 val, const u64 reg_offset)
+> +{
+> +	writeq_relaxed(val, irs_data->irs_base + reg_offset);
+> +}
+> +
+> +static int gicv5_wait_for_op(void __iomem *addr, u32 offset, u32 mask, u32 *val)
+> +{
+> +	void __iomem *reg = addr + offset;
+> +	u32 tmp;
 > +	int ret;
 > +
-> +	ret = v4l2_create_fwnode_links_to_pad(sd, sink_pad,
-> +					      MEDIA_LNK_FL_ENABLED);
-> +	if (ret) {
-> +		dev_err(rkcif->dev, "failed to link source pad of %s\n",
-> +			sd->name);
-> +		return ret;
+> +	ret = readl_poll_timeout_atomic(reg, tmp, tmp & mask, 1, 10 * USEC_PER_MSEC);
+> +
+> +	if (val)
+> +		*val = tmp;
+
+Updating the result value on error is rather odd. Do you rely on this
+anywhere? If not, consider avoiding the write-back on timeout.
+
+> +
+> +	return ret;
+> +}
+> +
+> +#define gicv5_irs_wait_for_op(base, reg, mask)				\
+> +	({								\
+> +		int ret;						\
+> +									\
+> +		ret = gicv5_wait_for_op(base, reg, mask, NULL);		\
+> +		if (unlikely(ret == -ETIMEDOUT))			\
+> +			pr_err_ratelimited(#reg" timeout...\n");	\
+> +		ret;							\
+> +	 })
+> +
+> +/* Wait for completion of an IST change */
+> +static int gicv5_irs_ist_wait_for_idle(struct gicv5_irs_chip_data *irs_data)
+> +{
+> +	return gicv5_irs_wait_for_op(irs_data->irs_base, GICV5_IRS_IST_STATUSR,
+> +				     GICV5_IRS_IST_STATUSR_IDLE);
+> +}
+> +
+> +static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data,
+> +					    unsigned int lpi_id_bits,
+> +					    unsigned int istsz)
+> +{
+> +	size_t l2istsz;
+> +	u32 n, cfgr;
+> +	void *ist;
+> +	u64 baser;
+> +	int ret;
+> +
+> +	/* Taken from GICv5 specifications 10.2.1.13 IRS_IST_BASER */
+> +	n = max(5, lpi_id_bits + 1 + istsz);
+> +
+> +	l2istsz = BIT(n + 1);
+> +	/*
+> +	 * Check memory requirements. For a linear IST we cap the
+> +	 * number of ID bits to a value that should never exceed
+> +	 * kmalloc interface memory allocation limits, so this
+> +	 * check is really belt and braces.
+> +	 */
+> +	if (l2istsz > KMALLOC_MAX_SIZE) {
+> +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
+> +
+> +		pr_warn("Limiting LPI ID bits from %u to %u\n",
+> +			lpi_id_bits, lpi_id_cap);
+> +		lpi_id_bits = lpi_id_cap;
+> +		l2istsz = KMALLOC_MAX_SIZE;
 > +	}
 > +
-> +	remote->sd = sd;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_notifier_complete(struct v4l2_async_notifier *notifier)
-> +{
-> +	struct rkcif_device *rkcif =
-> +		container_of(notifier, struct rkcif_device, notifier);
-> +
-> +	return v4l2_device_register_subdev_nodes(&rkcif->v4l2_dev);
-> +}
-> +
-> +static const struct v4l2_async_notifier_operations rkcif_notifier_ops = {
-> +	.bound = rkcif_notifier_bound,
-> +	.complete = rkcif_notifier_complete,
-> +};
-> +
-> +static int rkcif_register(struct rkcif_device *rkcif)
-> +{
-> +	struct v4l2_async_notifier *ntf = &rkcif->notifier;
-> +	int ret;
-> +
-> +	v4l2_async_nf_init(ntf, &rkcif->v4l2_dev);
-> +	ntf->ops = &rkcif_notifier_ops;
-> +
-> +	ret = rkcif_dvp_register(rkcif);
-> +	if (ret && ret != -ENODEV)
-> +		goto err_notifier_cleanup;
-> +
-> +	ret = rkcif_mipi_register(rkcif);
-> +	if (ret && ret != -ENODEV)
-> +		goto err_dvp_unregister;
-> +
-> +	ret = v4l2_async_nf_register(ntf);
-> +	if (ret)
-> +		goto err_mipi_unregister;
-> +
-> +	return 0;
-> +
-> +err_mipi_unregister:
-> +	rkcif_mipi_unregister(rkcif);
-> +err_dvp_unregister:
-> +	rkcif_dvp_unregister(rkcif);
-> +err_notifier_cleanup:
-> +	v4l2_async_nf_cleanup(&rkcif->notifier);
-> +	return ret;
-> +}
-> +
-> +static void rkcif_unregister(struct rkcif_device *rkcif)
-> +{
-> +	v4l2_async_nf_unregister(&rkcif->notifier);
-> +	rkcif_mipi_unregister(rkcif);
-> +	rkcif_dvp_unregister(rkcif);
-> +	v4l2_async_nf_cleanup(&rkcif->notifier);
-> +}
-> +
-> +static irqreturn_t rkcif_isr(int irq, void *ctx)
-> +{
-> +	irqreturn_t ret = IRQ_NONE;
-> +
-> +	if (rkcif_dvp_isr(irq, ctx) == IRQ_HANDLED)
-> +		ret = IRQ_HANDLED;
-> +
-> +	if (rkcif_mipi_isr(irq, ctx) == IRQ_HANDLED)
-> +		ret = IRQ_HANDLED;
-> +
-> +	return ret;
-> +}
-> +
-> +static int rkcif_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rkcif_device *rkcif;
-> +	u32 cif_clk_delaynum = 0;
-> +	int ret, irq, i;
-> +
-> +	rkcif = devm_kzalloc(dev, sizeof(*rkcif), GFP_KERNEL);
-> +	if (!rkcif)
+> +	ist = kzalloc(l2istsz, GFP_KERNEL);
+> +	if (!ist)
 > +		return -ENOMEM;
 > +
-> +	rkcif->match_data = of_device_get_match_data(dev);
-> +	if (!rkcif->match_data)
-> +		return -ENODEV;
+> +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT)
+> +		dcache_clean_inval_poc((unsigned long)ist,
+> +				       (unsigned long)ist + l2istsz);
+> +	else
+> +		dsb(ishst);
 > +
-> +	dev_set_drvdata(dev, rkcif);
-> +	rkcif->dev = dev;
+> +	cfgr = FIELD_PREP(GICV5_IRS_IST_CFGR_STRUCTURE,
+> +			  GICV5_IRS_IST_CFGR_STRUCTURE_LINEAR)	|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_ISTSZ, istsz)	|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_L2SZ,
+> +			  GICV5_IRS_IST_CFGR_L2SZ_4K)		|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_LPI_ID_BITS, lpi_id_bits);
+> +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_IST_CFGR);
 > +
-> +	rkcif->base_addr = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(rkcif->base_addr))
-> +		return PTR_ERR(rkcif->base_addr);
+> +	gicv5_global_data.ist.l2 = false;
 > +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	ret = devm_request_irq(dev, irq, rkcif_isr, IRQF_SHARED,
-> +			       dev_driver_string(dev), dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to request irq\n");
-> +
-> +	rkcif->clks_num = rkcif->match_data->clks_num;
-> +	for (i = 0; (i < rkcif->clks_num) && (i < RKCIF_CLK_MAX); i++)
-> +		rkcif->clks[i].id = rkcif->match_data->clks[i];
-> +	ret = devm_clk_bulk_get(dev, rkcif->clks_num, rkcif->clks);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get clocks\n");
-> +
-> +	rkcif->reset = devm_reset_control_array_get_exclusive(dev);
-> +	if (IS_ERR(rkcif->reset))
-> +		return PTR_ERR(rkcif->reset);
-> +
-> +	rkcif->grf =
-> +		syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,grf");
-> +	if (IS_ERR(rkcif->grf))
-> +		rkcif->grf = NULL;
-> +
-> +	if (rkcif->match_data->dvp) {
-> +		of_property_read_u32(dev->of_node, "rockchip,cif-clk-delaynum",
-> +				     &cif_clk_delaynum);
-> +		rkcif->interfaces[RKCIF_DVP].dvp.cif_clk_delaynum =
-> +			cif_clk_delaynum;
-> +	}
-> +
-> +	pm_runtime_enable(&pdev->dev);
-> +
-> +	rkcif->media_dev.dev = dev;
-> +	strscpy(rkcif->media_dev.model, RKCIF_DRIVER_NAME,
-> +		sizeof(rkcif->media_dev.model));
-> +	media_device_init(&rkcif->media_dev);
-> +
-> +	rkcif->v4l2_dev.mdev = &rkcif->media_dev;
-> +	ret = v4l2_device_register(dev, &rkcif->v4l2_dev);
-> +	if (ret)
-> +		goto err_media_dev_cleanup;
-> +
-> +	ret = media_device_register(&rkcif->media_dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register media device: %d\n", ret);
-> +		goto err_v4l2_dev_unregister;
-> +	}
-> +
-> +	ret = rkcif_register(rkcif);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register media entities: %d\n", ret);
-> +		goto err_media_dev_unregister;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_media_dev_unregister:
-> +	media_device_unregister(&rkcif->media_dev);
-> +err_v4l2_dev_unregister:
-> +	v4l2_device_unregister(&rkcif->v4l2_dev);
-> +err_media_dev_cleanup:
-> +	media_device_cleanup(&rkcif->media_dev);
-> +	pm_runtime_disable(&pdev->dev);
-> +	return ret;
-> +}
-> +
-> +static void rkcif_remove(struct platform_device *pdev)
-> +{
-> +	struct rkcif_device *rkcif = platform_get_drvdata(pdev);
-> +
-> +	rkcif_unregister(rkcif);
-> +	media_device_unregister(&rkcif->media_dev);
-> +	v4l2_device_unregister(&rkcif->v4l2_dev);
-> +	media_device_cleanup(&rkcif->media_dev);
-> +	pm_runtime_disable(&pdev->dev);
-> +}
-> +
-> +static int rkcif_runtime_suspend(struct device *dev)
-> +{
-> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
+> +	baser = (virt_to_phys(ist) & GICV5_IRS_IST_BASER_ADDR_MASK) |
+> +		FIELD_PREP(GICV5_IRS_IST_BASER_VALID, 0x1);
+> +	irs_writeq_relaxed(irs_data, baser, GICV5_IRS_IST_BASER);
 > +
 > +	/*
-> +	 * Reset CIF (CRU, DMA, FIFOs) to allow a clean resume.
-> +	 * Since this resets the IOMMU too, we cannot issue this reset when
-> +	 * resuming.
+> +	 * The polling wait (in gicv5_wait_for_op()) on a GIC register
+> +	 * provides the memory barriers (through MMIO accessors)
+> +	 * required to synchronize CPU and GIC access to IST memory.
 > +	 */
-> +	reset_control_assert(rkcif->reset);
-> +	udelay(5);
-> +	reset_control_deassert(rkcif->reset);
-> +
-> +	clk_bulk_disable_unprepare(rkcif->clks_num, rkcif->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_runtime_resume(struct device *dev)
-> +{
-> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_bulk_prepare_enable(rkcif->clks_num, rkcif->clks);
+
+This comment would be better placed with the helper itself, and avoid
+the repeats that I can see in the rest of the code.
+
+> +	ret = gicv5_irs_ist_wait_for_idle(irs_data);
 > +	if (ret) {
-> +		dev_err(dev, "failed to enable clocks\n");
+> +		kfree(ist);
 > +		return ret;
 > +	}
 > +
 > +	return 0;
 > +}
 > +
-> +static const struct dev_pm_ops rkcif_plat_pm_ops = {
-> +	.runtime_suspend = rkcif_runtime_suspend,
-> +	.runtime_resume = rkcif_runtime_resume,
-> +};
-> +
-> +static struct platform_driver rkcif_plat_drv = {
-> +	.driver = {
-> +		   .name = RKCIF_DRIVER_NAME,
-> +		   .of_match_table = rkcif_plat_of_match,
-> +		   .pm = &rkcif_plat_pm_ops,
-> +	},
-> +	.probe = rkcif_probe,
-> +	.remove = rkcif_remove,
-> +};
-> +module_platform_driver(rkcif_plat_drv);
-> +
-> +MODULE_DESCRIPTION("Rockchip Camera Interface (CIF) platform driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-interface.c b/drivers/media/platform/rockchip/rkcif/rkcif-interface.c
-> new file mode 100644
-> index 000000000000..7131de68de2c
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-interface.c
-> @@ -0,0 +1,418 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +#include "rkcif-common.h"
-> +#include "rkcif-interface.h"
-> +
-> +static inline struct rkcif_interface *to_rkcif_interface(struct v4l2_subdev *sd)
+> +static int __init gicv5_irs_init_ist_two_level(struct gicv5_irs_chip_data *irs_data,
+> +					       unsigned int lpi_id_bits,
+> +					       unsigned int istsz,
+> +					       unsigned int l2sz)
 > +{
-> +	return container_of(sd, struct rkcif_interface, sd);
-> +}
+> +	__le64 *l1ist;
+> +	u32 cfgr, n;
+> +	size_t l1sz;
+> +	u64 baser;
+> +	int ret;
 > +
-> +static const struct media_entity_operations rkcif_interface_media_ops = {
-> +	.link_validate = v4l2_subdev_link_validate,
-> +	.has_pad_interdep = v4l2_subdev_has_pad_interdep,
-> +};
+> +	/* Taken from GICv5 specifications 10.2.1.13 IRS_IST_BASER */
+> +	n = max(5, lpi_id_bits - ((10 - istsz) + (2 * l2sz)) + 2);
 > +
-> +static int rkcif_interface_set_fmt(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   struct v4l2_subdev_format *format)
-> +{
-> +	struct rkcif_interface *interface = to_rkcif_interface(sd);
-> +	const struct rkcif_input_fmt *input;
-> +	struct v4l2_mbus_framefmt *sink, *src;
+> +	l1sz = BIT(n + 1);
 > +
-> +	/* the format on the source pad always matches the sink pad */
-> +	if (format->pad == RKCIF_IF_PAD_SRC)
-> +		return v4l2_subdev_get_fmt(sd, state, format);
+> +	l1ist = kzalloc(l1sz, GFP_KERNEL);
+> +	if (!l1ist)
+> +		return -ENOMEM;
 > +
-> +	input = rkcif_interface_find_input_fmt(interface, true,
-> +					       format->format.code);
-> +	format->format.code = input->mbus_code;
+> +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT)
+> +		dcache_clean_inval_poc((unsigned long)l1ist,
+> +				       (unsigned long)l1ist + l1sz);
+> +	else
+> +		dsb(ishst);
 > +
-> +	sink = v4l2_subdev_state_get_format(state, format->pad, format->stream);
-> +	if (!sink)
-> +		return -EINVAL;
+> +	cfgr = FIELD_PREP(GICV5_IRS_IST_CFGR_STRUCTURE,
+> +			  GICV5_IRS_IST_CFGR_STRUCTURE_TWO_LEVEL)	|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_ISTSZ, istsz)		|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_L2SZ, l2sz)		|
+> +	       FIELD_PREP(GICV5_IRS_IST_CFGR_LPI_ID_BITS, lpi_id_bits);
+> +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_IST_CFGR);
 > +
-> +	*sink = format->format;
+> +	/*
+> +	 * The L2SZ determine bits required at L2 level. Number of bytes
+> +	 * required by metadata is reported through istsz - the number of bits
+> +	 * covered by L2 entries scales accordingly.
+> +	 */
+> +	gicv5_global_data.ist.l2_size = BIT(11 + (2 * l2sz) + 1);
+> +	gicv5_global_data.ist.l2_bits = (10 - istsz) + (2 * l2sz);
+> +	gicv5_global_data.ist.l1ist_addr = l1ist;
+> +	gicv5_global_data.ist.l2 = true;
 > +
-> +	/* propagate the format to the source pad */
-> +	src = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
-> +							   format->stream);
-> +	if (!src)
-> +		return -EINVAL;
+> +	baser = (virt_to_phys(l1ist) & GICV5_IRS_IST_BASER_ADDR_MASK) |
+> +		FIELD_PREP(GICV5_IRS_IST_BASER_VALID, 0x1);
+> +	irs_writeq_relaxed(irs_data, baser, GICV5_IRS_IST_BASER);
 > +
-> +	*src = *sink;
+> +	/*
+> +	 * The polling wait (in gicv5_wait_for_op()) on a GIC register
+> +	 * provides the memory barriers (through MMIO accessors)
+> +	 * required to synchronize CPU and GIC access to IST memory.
+> +	 */
+> +	ret = gicv5_irs_ist_wait_for_idle(irs_data);
+> +	if (ret) {
+> +		kfree(l1ist);
+> +		return ret;
+> +	}
 > +
 > +	return 0;
 > +}
 > +
-> +static int rkcif_interface_get_sel(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   struct v4l2_subdev_selection *sel)
+> +/*
+> + * Alloc L2 IST entries on demand.
+> + *
+> + * Locking/serialization is guaranteed by irqdomain core code by
+> + * taking the hierarchical domain struct irq_domain.root->mutex.
+> + */
+> +int gicv5_irs_iste_alloc(const u32 lpi)
 > +{
-> +	struct v4l2_mbus_framefmt *sink;
-> +	struct v4l2_rect *crop;
-> +	int ret = 0;
+> +	struct gicv5_irs_chip_data *irs_data;
+> +	unsigned int index;
+> +	u32 l2istr, l2bits;
+> +	__le64 *l1ist;
+> +	size_t l2size;
+> +	void *l2ist;
+> +	int ret;
 > +
-> +	if (sel->pad != RKCIF_IF_PAD_SRC)
-> +		return -EINVAL;
+> +	if (!gicv5_global_data.ist.l2)
+> +		return 0;
 > +
-> +	sink = v4l2_subdev_state_get_opposite_stream_format(state, sel->pad,
-> +							    sel->stream);
-> +	if (!sink)
-> +		return -EINVAL;
+> +	irs_data = per_cpu(per_cpu_irs_data, smp_processor_id());
+> +	if (!irs_data)
+> +		return -ENOENT;
 > +
-> +	crop = v4l2_subdev_state_get_crop(state, sel->pad, sel->stream);
-> +	if (!crop)
-> +		return -EINVAL;
+> +	l2size = gicv5_global_data.ist.l2_size;
+> +	l2bits = gicv5_global_data.ist.l2_bits;
 > +
-> +	switch (sel->target) {
-> +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> +		sel->r.left = 0;
-> +		sel->r.top = 0;
-> +		sel->r.width = sink->width;
-> +		sel->r.height = sink->height;
+> +	l1ist = gicv5_global_data.ist.l1ist_addr;
+> +
+> +	index = lpi >> l2bits;
+> +
+> +	if (FIELD_GET(GICV5_ISTL1E_VALID, le64_to_cpu(l1ist[index])))
+> +		return 0;
+> +
+> +	l2ist = kzalloc(l2size, GFP_KERNEL);
+> +	if (!l2ist)
+> +		return -ENOMEM;
+> +
+> +	l1ist[index] = cpu_to_le64(virt_to_phys(l2ist) & GICV5_ISTL1E_L2_ADDR_MASK);
+> +
+> +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT) {
+> +		dcache_clean_inval_poc((unsigned long)l2ist,
+> +				       (unsigned long)l2ist + l2size);
+> +		dcache_clean_poc((unsigned long)(l1ist + index),
+> +				 (unsigned long)(l1ist + index) + sizeof(*l1ist));
+> +	} else {
+> +		dsb(ishst);
+> +	}
+> +
+> +	l2istr = FIELD_PREP(GICV5_IRS_MAP_L2_ISTR_ID, lpi);
+> +	irs_writel_relaxed(irs_data, l2istr, GICV5_IRS_MAP_L2_ISTR);
+> +
+> +	/*
+> +	 * The polling wait (in gicv5_wait_for_op()) on a GIC register
+> +	 * provides the memory barriers (through MMIO accessors)
+> +	 * required to synchronize CPU and GIC access to IST memory.
+> +	 */
+> +	ret = gicv5_irs_ist_wait_for_idle(irs_data);
+> +	if (ret) {
+> +		l1ist[index] = 0;
+> +		kfree(l2ist);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Make sure we invalidate the cache line pulled before the IRS
+> +	 * had a chance to update the L1 entry and mark it valid.
+> +	 */
+> +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT) {
+> +		/*
+> +		 * gicv5_irs_ist_wait_for_idle() includes memory
+> +		 * barriers (MMIO accessors) required to guarantee that the
+> +		 * following dcache invalidation is not executed before the
+> +		 * IST mapping operation has completed.
+> +		 */
+> +		dcache_inval_poc((unsigned long)(l1ist + index),
+> +				 (unsigned long)(l1ist + index) + sizeof(*l1ist));
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Try to match the L2 IST size to the pagesize, and if this is not possible
+> + * pick the smallest supported L2 size in order to minimise the requirement for
+> + * physically contiguous blocks of memory as page-sized allocations are
+> + * guaranteed to be physically contiguous, and are by definition the easiest to
+> + * find.
+> + *
+> + * Fall back to the smallest supported size (in the event that the pagesize
+> + * itself is not supported) again serves to make it easier to find physically
+> + * contiguous blocks of memory.
+> + */
+> +static int gicv5_irs_l2_sz(u32 idr2)
+> +{
+> +	switch (PAGE_SIZE) {
+> +	case SZ_64K:
+> +		if (GICV5_IRS_IST_L2SZ_SUPPORT_64KB(idr2))
+> +			return GICV5_IRS_IST_CFGR_L2SZ_64K;
+> +		fallthrough;
+> +	case SZ_16K:
+> +		if (GICV5_IRS_IST_L2SZ_SUPPORT_16KB(idr2))
+> +			return GICV5_IRS_IST_CFGR_L2SZ_16K;
+> +		fallthrough;
+> +	case SZ_4K:
+> +		if (GICV5_IRS_IST_L2SZ_SUPPORT_4KB(idr2))
+> +			return GICV5_IRS_IST_CFGR_L2SZ_4K;
+> +		if (GICV5_IRS_IST_L2SZ_SUPPORT_16KB(idr2))
+> +			return GICV5_IRS_IST_CFGR_L2SZ_16K;
+> +		if (GICV5_IRS_IST_L2SZ_SUPPORT_64KB(idr2))
+> +			return GICV5_IRS_IST_CFGR_L2SZ_64K;
 > +		break;
-> +	case V4L2_SEL_TGT_CROP:
-> +		sel->r = *crop;
+> +	}
+> +
+> +	return -ENODEV;
+> +}
+
+Really, it shouldn't be possible to return an error here. I think this
+should be rewritten as:
+
+static unsigned int gicv5_irs_l2_sz(u32 idr2)
+{
+	switch (PAGE_SIZE) {
+	case SZ_64K:
+		if (GICV5_IRS_IST_L2SZ_SUPPORT_64KB(idr2))
+			return GICV5_IRS_IST_CFGR_L2SZ_64K;
+		fallthrough;
+	case SZ_16K:
+		if (GICV5_IRS_IST_L2SZ_SUPPORT_16KB(idr2))
+			return GICV5_IRS_IST_CFGR_L2SZ_16K;
+		fallthrough;
+	case SZ_4K:
+		if (GICV5_IRS_IST_L2SZ_SUPPORT_4KB(idr2))
+			return GICV5_IRS_IST_CFGR_L2SZ_4K;
+		break;
+	}
+
+	if (GICV5_IRS_IST_L2SZ_SUPPORT_16KB(idr2))
+		return GICV5_IRS_IST_CFGR_L2SZ_16K;
+
+	return GICV5_IRS_IST_CFGR_L2SZ_64K;
+}
+
+and fix the sole call site accordingly.
+
+> +
+> +static int __init gicv5_irs_init_ist(struct gicv5_irs_chip_data *irs_data)
+> +{
+> +	u32 lpi_id_bits, idr2_id_bits, idr2_min_lpi_id_bits,
+> +	    l2_iste_sz, l2sz, l2_iste_sz_split, idr2;
+> +	bool two_levels, istmd;
+> +	u64 baser;
+> +	int ret;
+> +
+> +	baser = irs_readq_relaxed(irs_data, GICV5_IRS_IST_BASER);
+> +	if (FIELD_GET(GICV5_IRS_IST_BASER_VALID, baser)) {
+> +		pr_err("IST is marked as valid already; cannot allocate\n");
+> +		return -EPERM;
+> +	}
+> +
+> +	idr2 = irs_readl_relaxed(irs_data, GICV5_IRS_IDR2);
+> +
+> +	two_levels = !!FIELD_GET(GICV5_IRS_IDR2_IST_LEVELS, idr2);
+> +
+> +	idr2_id_bits = FIELD_GET(GICV5_IRS_IDR2_ID_BITS, idr2);
+> +	idr2_min_lpi_id_bits = FIELD_GET(GICV5_IRS_IDR2_MIN_LPI_ID_BITS, idr2);
+> +
+> +	/*
+> +	 * For two level tables we are always allocating the maximum allowed
+> +	 * number of IDs.
+
+nit: isn't it the maximum number of L1 entries, rather than the
+maximum number if IDs?
+
+> +	 *
+> +	 * For 1-level tables, we should allocate a number of bits that
+> +	 * is >= min_lpi_id_bits but cap it to LPI_ID_BITS_LINEAR lest
+> +	 * the level 1-table gets too large and its memory allocation
+> +	 * may fail.
+> +	 */
+> +	if (two_levels) {
+> +		lpi_id_bits = idr2_id_bits;
+> +	} else {
+> +		lpi_id_bits = max(LPI_ID_BITS_LINEAR, idr2_min_lpi_id_bits);
+> +		lpi_id_bits = min(lpi_id_bits, idr2_id_bits);
+> +	}
+> +
+> +	/*
+> +	 * Cap the ID bits according to the CPUIF supported ID bits
+> +	 */
+> +	lpi_id_bits = min(lpi_id_bits, gicv5_global_data.cpuif_id_bits);
+> +
+> +	if (two_levels) {
+> +		l2sz = gicv5_irs_l2_sz(idr2);
+> +		if (l2sz < 0)
+> +			return l2sz;
+> +	}
+> +
+> +	istmd = !!FIELD_GET(GICV5_IRS_IDR2_ISTMD, idr2);
+> +
+> +	l2_iste_sz = GICV5_IRS_IST_CFGR_ISTSZ_4;
+> +
+> +	// Only supported if IRS_IDR2.ISTMD is 1
+> +	if (istmd) {
+> +		l2_iste_sz_split = FIELD_GET(GICV5_IRS_IDR2_ISTMD_SZ, idr2);
+> +
+> +		if (lpi_id_bits < l2_iste_sz_split)
+> +			l2_iste_sz = GICV5_IRS_IST_CFGR_ISTSZ_8;
+> +		else
+> +			l2_iste_sz = GICV5_IRS_IST_CFGR_ISTSZ_16;
+> +	}
+> +
+> +	/*
+> +	 * Follow GICv5 specification recommendation to opt in for two
+> +	 * level tables
+> +	 */
+> +	two_levels = two_levels && (lpi_id_bits > ((10 - l2_iste_sz) + (2 * l2sz)));
+> +
+> +	if (two_levels)
+
+This is slightly confusing, as you are reusing the two_levels variable
+to mean something rather different (you go from "is 2 level supported"
+to "is 2 level a good idea").
+
+Consider simply expanding the condition in the if () statement.
+
+> +		ret = gicv5_irs_init_ist_two_level(irs_data, lpi_id_bits,
+> +						   l2_iste_sz, l2sz);
+> +	else
+> +		ret = gicv5_irs_init_ist_linear(irs_data, lpi_id_bits,
+> +						l2_iste_sz);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gicv5_init_lpis(BIT(lpi_id_bits));
+> +
+> +	return 0;
+> +}
+> +
+> +struct iaffid_entry {
+> +	u16	iaffid;
+> +	bool	valid;
+> +};
+> +
+> +static DEFINE_PER_CPU(struct iaffid_entry, cpu_iaffid);
+> +
+> +int gicv5_irs_cpu_to_iaffid(int cpuid, u16 *iaffid)
+> +{
+> +	if (!per_cpu(cpu_iaffid, cpuid).valid) {
+> +		pr_err("IAFFID for CPU %d has not been initialised\n", cpuid);
+> +		return -ENODEV;
+> +	}
+> +
+> +	*iaffid = per_cpu(cpu_iaffid, cpuid).iaffid;
+> +
+> +	return 0;
+> +}
+> +
+> +struct gicv5_irs_chip_data *gicv5_irs_lookup_by_spi_id(u32 spi_id)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data;
+> +	u32 min, max;
+> +
+> +	list_for_each_entry(irs_data, &irs_nodes, entry) {
+> +		if (!irs_data->spi_range)
+> +			continue;
+> +
+> +		min = irs_data->spi_min;
+> +		max = irs_data->spi_min + irs_data->spi_range - 1;
+> +		if (spi_id >= min && spi_id <= max)
+> +			return irs_data;
+> +	}
+
+Funnily enough, this is exactly the sort of iterative searches the
+maple tree could have avoided, by storing INTID (and range) specific
+data. Never mind.
+
+> +
+> +	return NULL;
+> +}
+> +
+> +static int gicv5_irs_wait_for_spi_op(struct gicv5_irs_chip_data *irs_data)
+> +{
+> +	u32 statusr;
+> +	int ret;
+> +
+> +	ret = gicv5_wait_for_op(irs_data->irs_base, GICV5_IRS_SPI_STATUSR,
+> +				GICV5_IRS_SPI_STATUSR_IDLE, &statusr);
+> +	if (unlikely(ret == -ETIMEDOUT)) {
+> +		pr_err_ratelimited("IRS_SPI_STATUSR timeout\n");
+
+You could simply have a helper similar to gicv5_irs_wait_for_op() that
+deals with the printing stuff. This would result in more homogeneous
+messages and less boilerplate code.
+
+> +		return ret;
+> +	}
+> +
+> +	return !!FIELD_GET(GICV5_IRS_SPI_STATUSR_V, statusr) ? 0 : -ENXIO;
+> +}
+> +
+> +static int gicv5_irs_wait_for_irs_pe(struct gicv5_irs_chip_data *irs_data,
+> +				     bool selr)
+> +{
+> +	u32 statusr;
+> +	bool valid;
+> +	int ret;
+> +
+> +	ret = gicv5_wait_for_op(irs_data->irs_base, GICV5_IRS_PE_STATUSR,
+> +				GICV5_IRS_PE_STATUSR_IDLE, &statusr);
+> +
+> +	if (unlikely(ret == -ETIMEDOUT)) {
+> +		pr_err_ratelimited("IRS_PE_STATUSR timeout after %s\n",
+> +				   selr ? "IRS_PE_SELR" : "IRS_PE_CR0");
+> +		return ret;
+
+Is there a real value in specialising this based on the point we're
+coming from?
+
+> +	}
+> +
+> +	if (selr) {
+> +		valid = !!FIELD_GET(GICV5_IRS_PE_STATUSR_V, statusr);
+> +		return valid ? 0 : -ENXIO;
+> +	}
+> +
+> +	return 0;
+
+nit: maybe simplify as:
+
+	bool valid == true;
+	[...]
+	if (selr)
+		valid = !!FIELD_GET(GICV5_IRS_PE_STATUSR_V, statusr);
+
+	return valid ? 0 : -ENXIO;
+
+> +}
+> +
+> +static int gicv5_irs_wait_for_pe_selr(struct gicv5_irs_chip_data *irs_data)
+> +{
+> +	return gicv5_irs_wait_for_irs_pe(irs_data, true);
+> +}
+> +
+> +static int gicv5_irs_wait_for_pe_cr0(struct gicv5_irs_chip_data *irs_data)
+> +{
+> +	return gicv5_irs_wait_for_irs_pe(irs_data, false);
+> +}
+> +
+> +int gicv5_spi_irq_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data = d->chip_data;
+> +	u32 selr, cfgr;
+> +	bool level;
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		level = false;
+> +		break;
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		level = true;
 > +		break;
 > +	default:
-> +		ret = -EINVAL;
+> +		return -EINVAL;
 > +	}
 > +
-> +	return ret;
-> +}
+> +	guard(raw_spinlock)(&irs_data->spi_config_lock);
 > +
-> +static int rkcif_interface_set_sel(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   struct v4l2_subdev_selection *sel)
-> +{
-> +	struct v4l2_mbus_framefmt *sink, *src;
-> +	struct v4l2_rect *crop;
+> +	selr = FIELD_PREP(GICV5_IRS_SPI_SELR_ID, d->hwirq);
+> +	irs_writel_relaxed(irs_data, selr, GICV5_IRS_SPI_SELR);
+> +	if (gicv5_irs_wait_for_spi_op(irs_data))
+> +		return -EIO;
 > +
-> +	if (sel->pad != RKCIF_IF_PAD_SRC || sel->target != V4L2_SEL_TGT_CROP)
-> +		return -EINVAL;
+> +	cfgr = FIELD_PREP(GICV5_IRS_SPI_CFGR_TM, level);
 > +
-> +	sink = v4l2_subdev_state_get_opposite_stream_format(state, sel->pad,
-> +							    sel->stream);
-> +	if (!sink)
-> +		return -EINVAL;
-> +
-> +	src = v4l2_subdev_state_get_format(state, sel->pad, sel->stream);
-> +	if (!src)
-> +		return -EINVAL;
-> +
-> +	crop = v4l2_subdev_state_get_crop(state, sel->pad, sel->stream);
-> +	if (!crop)
-> +		return -EINVAL;
-> +
-> +	/* only starting point of crop can be specified */
-> +	sel->r.height = sink->height - sel->r.top;
-> +	sel->r.width = sink->width - sel->r.left;
-> +	*crop = sel->r;
-> +
-> +	src->height = sel->r.height;
-> +	src->width = sel->r.width;
+> +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_SPI_CFGR);
+> +	if (gicv5_irs_wait_for_spi_op(irs_data))
+> +		return -EPERM;
+
+-EPERM is an odd return code. Is the expectation that the update
+operation can fail for another reason than "the HW has deadlocked"?
+If that's not the case, then something similar to the write to
+SPI_SELR is probably best.
+
+If there is a genuine "permission check" aspect, then we should be
+able to distinguish between the two.
+
 > +
 > +	return 0;
 > +}
 > +
-> +static int rkcif_interface_set_routing(struct v4l2_subdev *sd,
-> +				       struct v4l2_subdev_state *state,
-> +				       enum v4l2_subdev_format_whence which,
-> +				       struct v4l2_subdev_krouting *routing)
+> +static int gicv5_irs_wait_for_idle(struct gicv5_irs_chip_data *irs_data)
 > +{
+> +	return gicv5_irs_wait_for_op(irs_data->irs_base, GICV5_IRS_CR0,
+> +				     GICV5_IRS_CR0_IDLE);
+> +}
+> +
+> +int gicv5_irs_register_cpu(int cpuid)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data;
+> +	u32 selr, cr0;
+> +	u16 iaffid;
 > +	int ret;
 > +
-> +	ret = v4l2_subdev_routing_validate(sd, routing,
-> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
+> +	ret = gicv5_irs_cpu_to_iaffid(cpuid, &iaffid);
+> +	if (ret) {
+> +		pr_err("IAFFID for CPU %d has not been initialised\n", cpuid);
+> +		return ret;
+> +	}
+> +
+> +	irs_data = per_cpu(per_cpu_irs_data, cpuid);
+> +	if (!irs_data) {
+> +		pr_err("No IRS associated with CPU %u\n", cpuid);
+> +		return -ENXIO;
+> +	}
+> +
+> +	selr = FIELD_PREP(GICV5_IRS_PE_SELR_IAFFID, iaffid);
+> +	irs_writel_relaxed(irs_data, selr, GICV5_IRS_PE_SELR);
+> +
+> +	ret = gicv5_irs_wait_for_pe_selr(irs_data);
+> +	if (ret) {
+> +		pr_err("IAFFID 0x%x used in IRS_PE_SELR is invalid\n", iaffid);
+> +		return -ENXIO;
+> +	}
+> +
+> +	cr0 = FIELD_PREP(GICV5_IRS_PE_CR0_DPS, 0x1);
+> +	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_PE_CR0);
+> +
+> +	ret = gicv5_irs_wait_for_pe_cr0(irs_data);
 > +	if (ret)
 > +		return ret;
 > +
-> +	for (unsigned int i = 0; i < routing->num_routes; i++) {
-> +		const struct v4l2_subdev_route *route = &routing->routes[i];
+> +	pr_debug("CPU%d enabled PE IAFFID 0x%x\n", cpuid, iaffid);
 > +
-> +		if (route->source_stream >= RKCIF_ID_MAX)
-> +			return -EINVAL;
-> +	}
-> +
-> +	ret = v4l2_subdev_set_routing(sd, state, routing);
-> +
-> +	return ret;
+> +	return 0;
 > +}
 > +
-> +static int rkcif_interface_apply_crop(struct rkcif_stream *stream,
-> +				      struct v4l2_subdev_state *state)
+> +static int __init gicv5_irs_init_bases(struct gicv5_irs_chip_data *irs_data,
+> +				       void __iomem *irs_base,
+> +				       struct fwnode_handle *handle)
 > +{
-> +	struct rkcif_interface *interface = stream->interface;
-> +	struct v4l2_rect *crop;
+> +	struct device_node *np = to_of_node(handle);
+> +	u32 cr0, cr1;
 > +
-> +	crop = v4l2_subdev_state_get_crop(state, RKCIF_IF_PAD_SRC, stream->id);
-> +	if (!crop)
+> +	irs_data->fwnode = handle;
+> +	irs_data->irs_base = irs_base;
+> +
+> +	if (of_property_read_bool(np, "dma-noncoherent")) {
+> +		/*
+> +		 * A non-coherent IRS implies that some cache levels cannot be
+> +		 * used coherently by the cores and GIC. Our only option is to mark
+> +		 * memory attributes for the GIC as non-cacheable; by default,
+> +		 * non-cacheable memory attributes imply outer-shareable
+> +		 * shareability, the value written into IRS_CR1_SH is ignored.
+> +		 */
+> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_NO_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_NO_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_NO_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_NON_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_NON_CACHE);
+> +			irs_data->flags |= IRS_FLAGS_NON_COHERENT;
+> +	} else {
+> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_WB_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_WB_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_SH, GICV5_INNER_SHARE);
+> +	}
+> +
+> +	irs_writel_relaxed(irs_data, cr1, GICV5_IRS_CR1);
+> +
+> +	cr0 = FIELD_PREP(GICV5_IRS_CR0_IRSEN, 0x1);
+> +	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_CR0);
+> +	gicv5_irs_wait_for_idle(irs_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init gicv5_irs_of_init_affinity(struct device_node *node,
+> +					     struct gicv5_irs_chip_data *irs_data,
+> +					     u8 iaffid_bits)
+> +{
+> +	/*
+> +	 * Detect IAFFID<->CPU mappings from the device tree and
+> +	 * record IRS<->CPU topology information.
+> +	 */
+> +	u16 iaffid_mask = GENMASK(iaffid_bits - 1, 0);
+> +	u16 *iaffids __free(kfree) = NULL;
+> +	int ret, i, ncpus, niaffids;
+> +
+> +	ncpus = of_property_count_elems_of_size(node, "cpus", sizeof(u32));
+> +	if (ncpus < 0)
 > +		return -EINVAL;
 > +
-> +	if (interface->set_crop)
-> +		interface->set_crop(stream, crop->left, crop->top);
+> +	niaffids = of_property_count_elems_of_size(node, "arm,iaffids",
+> +						   sizeof(u16));
+> +	if (niaffids != ncpus)
+> +		return -EINVAL;
 > +
-> +	return 0;
-> +}
+> +	iaffids = kcalloc(niaffids, sizeof(*iaffids), GFP_KERNEL);
+> +	if (!iaffids)
+> +		return -ENOMEM;
 > +
-> +static int rkcif_interface_enable_streams(struct v4l2_subdev *sd,
-> +					  struct v4l2_subdev_state *state,
-> +					  u32 pad, u64 streams_mask)
-> +{
-> +	struct rkcif_interface *interface = to_rkcif_interface(sd);
-> +	struct rkcif_stream *stream;
-> +	struct v4l2_subdev_route *route;
-> +	struct v4l2_subdev *remote_sd;
-> +	struct media_pad *remote_pad;
-> +	u64 mask;
+> +	ret = of_property_read_u16_array(node, "arm,iaffids", iaffids, niaffids);
+> +	if (ret)
+> +		return ret;
 > +
-> +	remote_pad =
-> +		media_pad_remote_pad_first(&sd->entity.pads[RKCIF_IF_PAD_SINK]);
-> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
+> +	for (i = 0; i < ncpus; i++) {
+> +		struct device_node *cpu_node;
+> +		u32 cpu_phandle;
+> +		int cpu;
 > +
-> +	/* DVP has one crop setting for all IDs */
-> +	if (interface->type == RKCIF_IF_DVP) {
-> +		stream = &interface->streams[RKCIF_ID0];
-> +		rkcif_interface_apply_crop(stream, state);
-> +	} else {
-> +		/* TODO implement for MIPI */
+> +		if (of_property_read_u32_index(node, "cpus", i, &cpu_phandle))
+> +			continue;
+> +
+> +		cpu_node = of_find_node_by_phandle(cpu_phandle);
+> +		if (WARN_ON(!cpu_node))
+> +			continue;
+> +
+> +		cpu = of_cpu_node_to_id(cpu_node);
+> +		of_node_put(cpu_node);
+> +		if (WARN_ON(cpu < 0))
+> +			continue;
+> +
+> +		if (iaffids[i] & ~iaffid_mask) {
+> +			pr_warn("CPU %d iaffid 0x%x exceeds IRS iaffid bits\n",
+> +				cpu, iaffids[i]);
+> +			continue;
+> +		}
+> +
+> +		per_cpu(cpu_iaffid, cpu).iaffid = iaffids[i];
+> +		per_cpu(cpu_iaffid, cpu).valid = true;
+> +
+> +		// We also know that the CPU is connected to this IRS
+> +		per_cpu(per_cpu_irs_data, cpu) = irs_data;
 > +	}
-> +
-> +	mask = v4l2_subdev_state_xlate_streams(state, RKCIF_IF_PAD_SINK,
-> +					       RKCIF_IF_PAD_SRC, &streams_mask);
-> +
-> +	return v4l2_subdev_enable_streams(remote_sd, remote_pad->index, mask);
-> +}
-> +
-> +static int rkcif_interface_disable_streams(struct v4l2_subdev *sd,
-> +					   struct v4l2_subdev_state *state,
-> +					   u32 pad, u64 streams_mask)
-> +{
-> +	struct v4l2_subdev *remote_sd;
-> +	struct media_pad *remote_pad;
-> +	u64 mask;
-> +
-> +	remote_pad =
-> +		media_pad_remote_pad_first(&sd->entity.pads[RKCIF_IF_PAD_SINK]);
-> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
-> +
-> +	mask = v4l2_subdev_state_xlate_streams(state, RKCIF_IF_PAD_SINK,
-> +					       RKCIF_IF_PAD_SRC, &streams_mask);
-> +
-> +	return v4l2_subdev_disable_streams(remote_sd, remote_pad->index, mask);
-> +}
-> +
-> +static const struct v4l2_subdev_pad_ops rkcif_interface_pad_ops = {
-> +	.get_fmt = v4l2_subdev_get_fmt,
-> +	.set_fmt = rkcif_interface_set_fmt,
-> +	.get_selection = rkcif_interface_get_sel,
-> +	.set_selection = rkcif_interface_set_sel,
-> +	.set_routing = rkcif_interface_set_routing,
-> +	.enable_streams = rkcif_interface_enable_streams,
-> +	.disable_streams = rkcif_interface_disable_streams,
-> +};
-> +
-> +static const struct v4l2_subdev_ops rkcif_interface_ops = {
-> +	.pad = &rkcif_interface_pad_ops,
-> +};
-> +
-> +static int rkcif_interface_init_state(struct v4l2_subdev *sd,
-> +				      struct v4l2_subdev_state *state)
-> +{
-> +	struct rkcif_interface *interface = to_rkcif_interface(sd);
-> +	struct v4l2_subdev_route routes[] = {
-> +		{
-> +			.sink_pad = RKCIF_IF_PAD_SINK,
-> +			.sink_stream = 0,
-> +			.source_pad = RKCIF_IF_PAD_SRC,
-> +			.source_stream = 0,
-> +			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
-> +		},
-> +	};
-> +	struct v4l2_subdev_krouting routing = {
-> +		.len_routes = ARRAY_SIZE(routes),
-> +		.num_routes = ARRAY_SIZE(routes),
-> +		.routes = routes,
-> +	};
-> +	const struct v4l2_mbus_framefmt dvp_default_format = {
-> +		.width = 3840,
-> +		.height = 2160,
-> +		.code = MEDIA_BUS_FMT_YUYV8_1X16,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_REC709,
-> +		.ycbcr_enc = V4L2_YCBCR_ENC_709,
-> +		.quantization = V4L2_QUANTIZATION_LIM_RANGE,
-> +		.xfer_func = V4L2_XFER_FUNC_NONE,
-> +	};
-> +	const struct v4l2_mbus_framefmt mipi_default_format = {
-> +		.width = 3840,
-> +		.height = 2160,
-> +		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_RAW,
-> +		.ycbcr_enc = V4L2_YCBCR_ENC_601,
-> +		.quantization = V4L2_QUANTIZATION_FULL_RANGE,
-> +		.xfer_func = V4L2_XFER_FUNC_NONE,
-> +	};
-> +	const struct v4l2_mbus_framefmt *default_format;
-> +	int ret;
-> +
-> +	default_format = (interface->type == RKCIF_IF_DVP) ?
-> +				 &dvp_default_format :
-> +				 &mipi_default_format;
-> +
-> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, &routing,
-> +					       default_format);
 > +
 > +	return ret;
 > +}
 > +
-> +static const struct v4l2_subdev_internal_ops rkcif_interface_internal_ops = {
-> +	.init_state = rkcif_interface_init_state,
-> +};
-> +
-> +static int rkcif_interface_add(struct rkcif_interface *interface)
+> +static void irs_setup_pri_bits(u32 idr1)
 > +{
-> +	struct rkcif_device *rkcif = interface->rkcif;
-> +	struct rkcif_remote *remote;
-> +	struct v4l2_async_notifier *ntf = &rkcif->notifier;
-> +	struct v4l2_fwnode_endpoint *vep = &interface->vep;
-> +	struct device *dev = rkcif->dev;
-> +	struct fwnode_handle *ep;
+> +	switch (FIELD_GET(GICV5_IRS_IDR1_PRIORITY_BITS, idr1)) {
+> +	case GICV5_IRS_IDR1_PRIORITY_BITS_1BITS:
+> +		gicv5_global_data.irs_pri_bits = 1;
+> +		break;
+> +	case GICV5_IRS_IDR1_PRIORITY_BITS_2BITS:
+> +		gicv5_global_data.irs_pri_bits = 2;
+> +		break;
+> +	case GICV5_IRS_IDR1_PRIORITY_BITS_3BITS:
+> +		gicv5_global_data.irs_pri_bits = 3;
+> +		break;
+> +	case GICV5_IRS_IDR1_PRIORITY_BITS_4BITS:
+> +		gicv5_global_data.irs_pri_bits = 4;
+> +		break;
+> +	case GICV5_IRS_IDR1_PRIORITY_BITS_5BITS:
+> +		gicv5_global_data.irs_pri_bits = 5;
+> +		break;
+> +	default:
+> +		pr_warn("Detected wrong IDR priority bits value 0x%lx\n",
+> +			FIELD_GET(GICV5_IRS_IDR1_PRIORITY_BITS, idr1));
+
+Please assign a default value. I don't feel confident leaving this
+uninitialised.
+
+> +		break;
+> +	}
+> +}
+> +
+> +static int __init gicv5_irs_init(struct device_node *node)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data;
+> +	void __iomem *irs_base;
+> +	u8 iaffid_bits;
+> +	int ret;
+> +	u32 idr;
+> +
+> +	irs_data = kzalloc(sizeof(*irs_data), GFP_KERNEL);
+> +	if (!irs_data)
+> +		return -ENOMEM;
+> +
+> +	raw_spin_lock_init(&irs_data->spi_config_lock);
+> +
+> +	irs_base = of_io_request_and_map(node, 0, "IRS");
+> +	if (IS_ERR(irs_base)) {
+> +		pr_err("%pOF: unable to map GICv5 IRS registers\n", node);
+> +		ret = PTR_ERR(irs_base);
+> +		goto out_err;
+> +	}
+> +
+> +	gicv5_irs_init_bases(irs_data, irs_base, &node->fwnode);
+
+Make this function return void, since it never fails and its return
+value is never checked either.
+
+> +
+> +	idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR1);
+> +	iaffid_bits = FIELD_GET(GICV5_IRS_IDR1_IAFFID_BITS, idr) + 1;
+> +
+> +	ret = gicv5_irs_of_init_affinity(node, irs_data, iaffid_bits);
+> +	if (ret) {
+> +		pr_err("Failed to parse CPU IAFFIDs from the device tree!\n");
+> +		goto out_iomem;
+> +	}
+> +
+> +	idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR2);
+> +	if (WARN(!FIELD_GET(GICV5_IRS_IDR2_LPI, idr),
+> +		 "LPI support not available - no IPIs, can't proceed\n")) {
+> +		ret = -ENODEV;
+> +		goto out_iomem;
+> +	}
+> +
+> +	idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR7);
+> +	irs_data->spi_min = FIELD_GET(GICV5_IRS_IDR7_SPI_BASE, idr);
+> +
+> +	idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR6);
+> +	irs_data->spi_range = FIELD_GET(GICV5_IRS_IDR6_SPI_IRS_RANGE, idr);
+> +
+> +	if (irs_data->spi_range) {
+> +		pr_info("%s detected SPI range [%u-%u]\n",
+> +						of_node_full_name(node),
+> +						irs_data->spi_min,
+> +						irs_data->spi_min +
+> +						irs_data->spi_range - 1);
+> +	}
+> +
+> +	/*
+> +	 * Do the global setting only on the first IRS.
+> +	 * Global properties (iaffid_bits, global spi count) are guaranteed to
+> +	 * be consistent across IRSes by the architecture.
+> +	 */
+> +	if (list_empty(&irs_nodes)) {
+> +
+> +		idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR1);
+> +		irs_setup_pri_bits(idr);
+> +
+> +		idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR5);
+> +		gicv5_global_data.global_spi_count =
+> +			FIELD_GET(GICV5_IRS_IDR5_SPI_RANGE, idr);
+> +
+> +		gicv5_init_lpi_domain();
+> +
+> +		pr_debug("Detected %u SPIs globally\n",
+> +			 gicv5_global_data.global_spi_count);
+> +	}
+> +
+> +	list_add_tail(&irs_data->entry, &irs_nodes);
+> +
+> +	return 0;
+> +out_iomem:
+> +	iounmap(irs_base);
+> +out_err:
+> +	kfree(irs_data);
+> +	return ret;
+> +}
+> +
+> +void __init gicv5_irs_remove(void)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data, *tmp_data;
+> +
+> +	gicv5_free_lpi_domain();
+> +	gicv5_deinit_lpis();
+> +
+> +	list_for_each_entry_safe(irs_data, tmp_data, &irs_nodes, entry) {
+> +		iounmap(irs_data->irs_base);
+> +		list_del(&irs_data->entry);
+> +		kfree(irs_data);
+> +	}
+> +}
+> +
+> +int __init gicv5_irs_enable(void)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data;
 > +	int ret;
 > +
-> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), interface->index,
-> +					     0, 0);
-> +	if (!ep)
+> +	irs_data = list_first_entry_or_null(&irs_nodes,
+> +					    struct gicv5_irs_chip_data, entry);
+> +	if (!irs_data)
 > +		return -ENODEV;
 > +
-> +	vep->bus_type = V4L2_MBUS_UNKNOWN;
-> +	ret = v4l2_fwnode_endpoint_parse(ep, vep);
-> +	if (ret)
-> +		goto complete;
-> +
-> +	if (interface->type == RKCIF_IF_DVP) {
-> +		if (vep->bus_type != V4L2_MBUS_BT656 &&
-> +		    vep->bus_type != V4L2_MBUS_PARALLEL) {
-> +			ret = dev_err_probe(dev, -EINVAL,
-> +					    "unsupported bus type\n");
-> +			goto complete;
-> +		}
+> +	ret = gicv5_irs_init_ist(irs_data);
+> +	if (ret) {
+> +		pr_err("Failed to init IST\n");
+> +		return ret;
 > +	}
 > +
-> +	remote = v4l2_async_nf_add_fwnode_remote(ntf, ep, struct rkcif_remote);
-> +	if (IS_ERR(remote)) {
-> +		ret = PTR_ERR(remote);
-> +		goto complete;
-> +	}
-> +
-> +	remote->interface = interface;
-> +	interface->remote = remote;
-> +	interface->status = RKCIF_IF_ACTIVE;
-> +	ret = 0;
-> +
-> +complete:
-> +	fwnode_handle_put(ep);
-> +
-> +	return ret;
+> +	return 0;
 > +}
 > +
-> +int rkcif_interface_register(struct rkcif_device *rkcif,
-> +			     struct rkcif_interface *interface)
+> +int __init gicv5_irs_of_probe(struct device_node *parent)
 > +{
-> +	struct media_pad *pads = interface->pads;
-> +	struct v4l2_subdev *sd = &interface->sd;
+> +	struct device_node *np;
 > +	int ret;
 > +
-> +	interface->rkcif = rkcif;
+> +	for_each_available_child_of_node(parent, np) {
+> +		if (!of_device_is_compatible(np, "arm,gic-v5-irs"))
+> +			continue;
 > +
-> +	v4l2_subdev_init(sd, &rkcif_interface_ops);
-> +	sd->dev = rkcif->dev;
-> +	sd->entity.ops = &rkcif_interface_media_ops;
-> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
-> +	sd->internal_ops = &rkcif_interface_internal_ops;
-> +	sd->owner = THIS_MODULE;
-> +
-> +	if (interface->type == RKCIF_IF_DVP)
-> +		snprintf(sd->name, sizeof(sd->name), "rkcif-dvp0");
-> +	else if (interface->type == RKCIF_IF_MIPI)
-> +		snprintf(sd->name, sizeof(sd->name), "rkcif-mipi%d",
-> +			 interface->index - RKCIF_MIPI_BASE);
-> +
-> +	pads[RKCIF_IF_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
-> +	pads[RKCIF_IF_PAD_SRC].flags = MEDIA_PAD_FL_SOURCE;
-> +	ret = media_entity_pads_init(&sd->entity, RKCIF_IF_PAD_MAX, pads);
-> +	if (ret)
-> +		goto err;
-> +
-> +	ret = v4l2_subdev_init_finalize(sd);
-> +	if (ret)
-> +		goto err_entity_cleanup;
-> +
-> +	ret = v4l2_device_register_subdev(&rkcif->v4l2_dev, sd);
-> +	if (ret) {
-> +		dev_err(sd->dev, "failed to register subdev\n");
-> +		goto err_subdev_cleanup;
+> +		ret = gicv5_irs_init(np);
+> +		if (ret)
+> +			pr_err("Failed to init IRS %s\n", np->full_name);
 > +	}
 > +
-> +	ret = rkcif_interface_add(interface);
-> +	if (ret)
-> +		goto err_subdev_unregister;
+> +	return list_empty(&irs_nodes) ? -ENODEV : 0;
+> +}
+
+Just a passing comment: consider splitting this patch in two (IRS on
+one side, CPUif on the other). I'm only half-way through, and it's
+quite tiring... :-/
+
+> diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c4d4e85382f672fa4ae334db1a4e4c7c4f46b9fe
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-gic-v5.c
+> @@ -0,0 +1,1058 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
+> + */
 > +
-> +	return 0;
+> +#define pr_fmt(fmt)	"GICv5: " fmt
 > +
-> +err_subdev_unregister:
-> +	v4l2_device_unregister_subdev(sd);
-> +err_subdev_cleanup:
-> +	v4l2_subdev_cleanup(sd);
-> +err_entity_cleanup:
-> +	media_entity_cleanup(&sd->entity);
-> +err:
-> +	return ret;
+> +#include <linux/cpuhotplug.h>
+> +#include <linux/idr.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/slab.h>
+> +#include <linux/wordpart.h>
+> +
+> +#include <asm/cpufeature.h>
+> +#include <asm/exception.h>
+> +
+> +#include "irq-gic-v5.h"
+> +
+> +static u8 pri_bits = 5;
+> +#define GICV5_IRQ_PRI_MASK 0x1f
+> +#define GICV5_IRQ_PRI_MI \
+> +		(GICV5_IRQ_PRI_MASK & GENMASK(4, 5 - pri_bits))
+> +
+> +static bool gicv5_cpuif_has_gcie(void)
+> +{
+> +	return this_cpu_has_cap(ARM64_HAS_GICV5_CPUIF);
 > +}
 > +
-> +void rkcif_interface_unregister(struct rkcif_interface *interface)
+> +struct gicv5_chip_data gicv5_global_data __read_mostly;
+> +
+> +static DEFINE_IDA(lpi_ida);
+> +static u32 num_lpis;
+> +
+> +void __init gicv5_init_lpis(u32 lpis)
 > +{
-> +	struct v4l2_subdev *sd = &interface->sd;
-> +
-> +	if (interface->status != RKCIF_IF_ACTIVE)
-> +		return;
-> +
-> +	v4l2_device_unregister_subdev(sd);
-> +	v4l2_subdev_cleanup(sd);
-> +	media_entity_cleanup(&sd->entity);
+> +	num_lpis = lpis;
 > +}
 > +
-> +const struct rkcif_input_fmt *
-> +rkcif_interface_find_input_fmt(struct rkcif_interface *interface, bool ret_def,
-> +			       u32 mbus_code)
+> +void __init gicv5_deinit_lpis(void)
 > +{
-> +	const struct rkcif_input_fmt *fmt;
-> +	unsigned int i;
+> +	num_lpis = 0;
+> +}
 > +
-> +	WARN_ON(interface->in_fmts_num == 0);
+> +static int alloc_lpi(void)
+> +{
+> +	if (!num_lpis)
+> +		return -ENOSPC;
 > +
-> +	for (i = 0; i < interface->in_fmts_num; i++) {
-> +		fmt = &interface->in_fmts[i];
-> +		if (fmt->mbus_code == mbus_code)
-> +			return fmt;
+> +	return ida_alloc_max(&lpi_ida, num_lpis - 1, GFP_KERNEL);
+> +}
+> +
+> +static void release_lpi(u32 lpi)
+> +{
+> +	ida_free(&lpi_ida, lpi);
+> +}
+> +
+> +static int gicv5_alloc_lpi(void)
+> +{
+> +	return alloc_lpi();
+> +}
+> +
+> +static void gicv5_free_lpi(u32 lpi)
+> +{
+> +	release_lpi(lpi);
+> +}
+> +
+> +static void gicv5_ppi_priority_init(void)
+> +{
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR0_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR1_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR2_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR3_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR4_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR5_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR6_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR7_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR8_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR9_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR10_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR11_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR12_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR13_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR14_EL1);
+> +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRI_MI), SYS_ICC_PPI_PRIORITYR15_EL1);
+> +
+> +	/*
+> +	 * Context syncronization required to mare system
+> +	 * register writes effects are synchronized
+
+synchroni[sz]ation?  Not sure what "mare" is supposed to be here, but
+I can't see any horse.
+
+But I don't think there is much point in saying that sysreg accesses
+need synchronisation, if that's what this is meant to say.
+> +	 */
+> +	isb();
+> +}
+> +
+> +static void gicv5_hwirq_init(irq_hw_number_t hwirq, u8 priority, u8 hwirq_type)
+> +{
+> +	u64 cdpri, cdaff;
+> +	u16 iaffid;
+> +	int ret;
+> +
+> +	if (hwirq_type == GICV5_HWIRQ_TYPE_LPI || hwirq_type == GICV5_HWIRQ_TYPE_SPI) {
+> +		cdpri = FIELD_PREP(GICV5_GIC_CDPRI_PRIORITY_MASK, priority)	|
+> +			FIELD_PREP(GICV5_GIC_CDPRI_TYPE_MASK, hwirq_type)	|
+> +			FIELD_PREP(GICV5_GIC_CDPRI_ID_MASK, hwirq);
+> +		gic_insn(cdpri, GICV5_OP_GIC_CDPRI);
+> +
+> +		ret = gicv5_irs_cpu_to_iaffid(smp_processor_id(), &iaffid);
+> +
+> +		if (WARN_ON_ONCE(ret))
+> +			return;
+> +
+> +		cdaff = FIELD_PREP(GICV5_GIC_CDAFF_IAFFID_MASK, iaffid)		|
+> +			FIELD_PREP(GICV5_GIC_CDAFF_TYPE_MASK, hwirq_type)	|
+> +			FIELD_PREP(GICV5_GIC_CDAFF_ID_MASK, hwirq);
+> +		gic_insn(cdaff, GICV5_OP_GIC_CDAFF);
 > +	}
-> +	if (ret_def)
-> +		return &interface->in_fmts[0];
+> +}
+> +
+> +static void gicv5_ppi_irq_mask(struct irq_data *d)
+> +{
+> +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
+> +
+> +	if (d->hwirq < 64)
+> +		sysreg_clear_set_s(SYS_ICC_PPI_ENABLER0_EL1, hwirq_id_bit, 0);
 > +	else
-> +		return NULL;
-> +}
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-interface.h b/drivers/media/platform/rockchip/rkcif/rkcif-interface.h
-> new file mode 100644
-> index 000000000000..5df6cf6e480d
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-interface.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Abstraction for the INTERFACE and CROP parts of the different CIF variants.
-> + * They shall be represented as V4L2 subdevice with one sink pad and one
-> + * source pad. The sink pad is connected to a subdevice: either the subdevice
-> + * provided by the driver of the companion chip connected to the DVP, or the
-> + * subdevice provided by the MIPI CSI Host driver in rkcif-mipi-csi-host.c.
-> + * The source pad is connected to an instance of the DMA abstraction in
-> + * rkcif-stream.c.
-> + *
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
+> +		sysreg_clear_set_s(SYS_ICC_PPI_ENABLER1_EL1, hwirq_id_bit, 0);
 > +
-> +#ifndef _RKCIF_INTERFACE_H
-> +#define _RKCIF_INTERFACE_H
-> +
-> +#include "rkcif-common.h"
-> +
-> +int rkcif_interface_register(struct rkcif_device *rkcif,
-> +			     struct rkcif_interface *interface);
-> +
-> +void rkcif_interface_unregister(struct rkcif_interface *interface);
-> +
-> +const struct rkcif_input_fmt *
-> +rkcif_interface_find_input_fmt(struct rkcif_interface *interface, bool ret_def,
-> +			       u32 mbus_code);
-> +
-> +#endif
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-regs.h b/drivers/media/platform/rockchip/rkcif/rkcif-regs.h
-> new file mode 100644
-> index 000000000000..07fd64174e80
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-regs.h
-> @@ -0,0 +1,132 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#ifndef _RKCIF_REGS_H
-> +#define _RKCIF_REGS_H
-> +
-> +enum rkcif_dvp_register_index {
-> +	RKCIF_DVP_CTRL,
-> +	RKCIF_DVP_INTEN,
-> +	RKCIF_DVP_INTSTAT,
-> +	RKCIF_DVP_FOR,
-> +	RKCIF_DVP_LINE_NUM_ADDR,
-> +	RKCIF_DVP_FRM0_ADDR_Y,
-> +	RKCIF_DVP_FRM0_ADDR_UV,
-> +	RKCIF_DVP_FRM1_ADDR_Y,
-> +	RKCIF_DVP_FRM1_ADDR_UV,
-> +	RKCIF_DVP_VIR_LINE_WIDTH,
-> +	RKCIF_DVP_SET_SIZE,
-> +	RKCIF_DVP_SCL_CTRL,
-> +	RKCIF_DVP_CROP,
-> +	RKCIF_DVP_FRAME_STATUS,
-> +	RKCIF_DVP_LAST_LINE,
-> +	RKCIF_DVP_LAST_PIX,
-> +	RKCIF_DVP_REGISTER_MAX
-> +};
-> +
-> +#define RKCIF_REGISTER_NOTSUPPORTED           0x420000
-> +
-> +#define RKCIF_FETCH_Y(VAL)		       ((VAL) & 0x1fff)
-> +
-> +#define RKCIF_CTRL_ENABLE_CAPTURE	       BIT(0)
-> +#define RKCIF_CTRL_MODE_PINGPONG	       BIT(1)
-> +#define RKCIF_CTRL_MODE_LINELOOP	       BIT(2)
-> +#define RKCIF_CTRL_AXI_BURST_16		       (0xf << 12)
-> +
-> +#define RKCIF_INTEN_FRAME_END_EN	       BIT(0)
-> +#define RKCIF_INTEN_LINE_ERR_EN		       BIT(2)
-> +#define RKCIF_INTEN_BUS_ERR_EN		       BIT(6)
-> +#define RKCIF_INTEN_SCL_ERR_EN		       BIT(7)
-> +#define RKCIF_INTEN_PST_INF_FRAME_END_EN       BIT(9)
-> +
-> +#define RKCIF_INTSTAT_CLS		       0x3ff
-> +#define RKCIF_INTSTAT_FRAME_END		       BIT(0)
-> +#define RKCIF_INTSTAT_LINE_END		       BIT(1)
-> +#define RKCIF_INTSTAT_LINE_ERR		       BIT(2)
-> +#define RKCIF_INTSTAT_PIX_ERR		       BIT(3)
-> +#define RKCIF_INTSTAT_DFIFO_OF		       BIT(5)
-> +#define RKCIF_INTSTAT_BUS_ERR		       BIT(6)
-> +#define RKCIF_INTSTAT_PRE_INF_FRAME_END	       BIT(8)
-> +#define RKCIF_INTSTAT_PST_INF_FRAME_END	       BIT(9)
-> +#define RKCIF_INTSTAT_FRAME_END_CLR	       BIT(0)
-> +#define RKCIF_INTSTAT_LINE_END_CLR	       BIT(1)
-> +#define RKCIF_INTSTAT_LINE_ERR_CLR	       BIT(2)
-> +#define RKCIF_INTSTAT_PST_INF_FRAME_END_CLR    BIT(9)
-> +#define RKCIF_INTSTAT_ERR		       0xfc
-> +
-> +#define RKCIF_FRAME_STAT_CLS		       0x00
-> +#define RKCIF_FRAME_FRM0_STAT_CLS	       0x20
-> +
-> +#define RKCIF_FORMAT_VSY_HIGH_ACTIVE	       BIT(0)
-> +#define RKCIF_FORMAT_HSY_LOW_ACTIVE	       BIT(1)
-> +
-> +#define RKCIF_FORMAT_INPUT_MODE_YUV	       (0x00 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_PAL	       (0x02 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_NTSC	       (0x03 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_BT1120	       (0x07 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_RAW	       (0x04 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_JPEG	       (0x05 << 2)
-> +#define RKCIF_FORMAT_INPUT_MODE_MIPI	       (0x06 << 2)
-> +
-> +#define RKCIF_FORMAT_YUV_INPUT_ORDER_UYVY      (0x00 << 5)
-> +#define RKCIF_FORMAT_YUV_INPUT_ORDER_YVYU      (0x01 << 5)
-> +#define RKCIF_FORMAT_YUV_INPUT_ORDER_VYUY      (0x02 << 5)
-> +#define RKCIF_FORMAT_YUV_INPUT_ORDER_YUYV      (0x03 << 5)
-> +#define RKCIF_FORMAT_YUV_INPUT_422	       (0x00 << 7)
-> +#define RKCIF_FORMAT_YUV_INPUT_420	       BIT(7)
-> +
-> +#define RKCIF_FORMAT_INPUT_420_ORDER_ODD       BIT(8)
-> +
-> +#define RKCIF_FORMAT_CCIR_INPUT_ORDER_EVEN     BIT(9)
-> +
-> +#define RKCIF_FORMAT_RAW_DATA_WIDTH_8	       (0x00 << 11)
-> +#define RKCIF_FORMAT_RAW_DATA_WIDTH_10	       (0x01 << 11)
-> +#define RKCIF_FORMAT_RAW_DATA_WIDTH_12	       (0x02 << 11)
-> +
-> +#define RKCIF_FORMAT_YUV_OUTPUT_422	       (0x00 << 16)
-> +#define RKCIF_FORMAT_YUV_OUTPUT_420	       BIT(16)
-> +
-> +#define RKCIF_FORMAT_OUTPUT_420_ORDER_EVEN     (0x00 << 17)
-> +#define RKCIF_FORMAT_OUTPUT_420_ORDER_ODD      BIT(17)
-> +
-> +#define RKCIF_FORMAT_RAWD_DATA_LITTLE_ENDIAN   (0x00 << 18)
-> +#define RKCIF_FORMAT_RAWD_DATA_BIG_ENDIAN      BIT(18)
-> +
-> +#define RKCIF_FORMAT_UV_STORAGE_ORDER_UVUV     (0x00 << 19)
-> +#define RKCIF_FORMAT_UV_STORAGE_ORDER_VUVU     BIT(19)
-> +
-> +#define RKCIF_FORMAT_BT1120_CLOCK_SINGLE_EDGES (0x00 << 24)
-> +#define RKCIF_FORMAT_BT1120_CLOCK_DOUBLE_EDGES BIT(24)
-> +#define RKCIF_FORMAT_BT1120_TRANSMIT_INTERFACE (0x00 << 25)
-> +#define RKCIF_FORMAT_BT1120_TRANSMIT_PROGRESS  BIT(25)
-> +#define RKCIF_FORMAT_BT1120_YC_SWAP	       BIT(26)
-> +
-> +#define RKCIF_SCL_CTRL_ENABLE_SCL_DOWN	       BIT(0)
-> +#define RKCIF_SCL_CTRL_ENABLE_SCL_UP	       BIT(1)
-> +#define RKCIF_SCL_CTRL_ENABLE_YUV_16BIT_BYPASS BIT(4)
-> +#define RKCIF_SCL_CTRL_ENABLE_RAW_16BIT_BYPASS BIT(5)
-> +#define RKCIF_SCL_CTRL_ENABLE_32BIT_BYPASS     BIT(6)
-> +#define RKCIF_SCL_CTRL_DISABLE_32BIT_BYPASS    (0x00 << 6)
-> +
-> +#define RKCIF_INTSTAT_F0_READY		       BIT(0)
-> +#define RKCIF_INTSTAT_F1_READY		       BIT(1)
-> +
-> +#define RKCIF_XY_COORD(x, y)		       (((y) << 16) | (x))
-> +
-> +/* GRF register offsets */
-> +#define RK3568_GRF_VI_CON0		       0x340
-> +#define RK3568_GRF_VI_CON1		       0x344
-> +#define RK3568_GRF_VI_STATUS0		       0x348
-> +
-> +#define RK3568_GRF_VI_CON1_CIF_DATAPATH	       BIT(9)
-> +#define RK3568_GRF_VI_CON1_CIF_CLK_DELAYNUM    GENMASK(6, 0)
-> +
-> +#define RK3568_GRF_WRITE_ENABLE(x)	       ((x) << 16)
-> +
-> +#endif
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-stream.c b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> new file mode 100644
-> index 000000000000..bfafd76f4494
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> @@ -0,0 +1,622 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
-> + */
-> +
-> +#include <linux/pm_runtime.h>
-> +
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-ioctl.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +#include <media/videobuf2-dma-contig.h>
-> +
-> +#include "rkcif-common.h"
-> +#include "rkcif-stream.h"
-> +
-> +#define CIF_REQ_BUFS_MIN 8
-> +#define CIF_MIN_WIDTH	 64
-> +#define CIF_MIN_HEIGHT	 64
-> +#define CIF_MAX_WIDTH	 8192
-> +#define CIF_MAX_HEIGHT	 8192
-> +
-> +static inline struct rkcif_buffer *to_rkcif_buffer(struct vb2_v4l2_buffer *vb)
-> +{
-> +	return container_of(vb, struct rkcif_buffer, vb);
+> +	/*
+> +	 * Ensure that the disable takes effect
+> +	 */
+
+It would be more interesting if you indicated *why* we want immediate
+effect on mask, while we don't have the same requirement on unmask.
+
+> +	isb();
 > +}
 > +
-> +static inline struct rkcif_stream *to_rkcif_stream(struct video_device *vdev)
+> +static void gicv5_iri_irq_mask(struct irq_data *d, u8 hwirq_type)
 > +{
-> +	return container_of(vdev, struct rkcif_stream, vdev);
+> +	u64 cddis = d->hwirq | FIELD_PREP(GICV5_GIC_CDDIS_TYPE_MASK, hwirq_type);
+> +
+> +	gic_insn(cddis, GICV5_OP_GIC_CDDIS);
+> +	/*
+> +	 * We must make sure that GIC CDDIS write effects are propagated
+> +	 */
+> +	gsb_sys();
 > +}
 > +
-> +static struct rkcif_buffer *rkcif_stream_pop_buffer(struct rkcif_stream *stream)
+> +static void gicv5_spi_irq_mask(struct irq_data *d)
 > +{
-> +	struct rkcif_buffer *buffer = NULL;
-> +	unsigned long lock_flags;
-> +
-> +	spin_lock_irqsave(&stream->driver_queue_lock, lock_flags);
-> +
-> +	if (list_empty(&stream->driver_queue))
-> +		goto err_empty;
-> +
-> +	buffer = list_first_entry(&stream->driver_queue, struct rkcif_buffer,
-> +				  queue);
-> +	list_del(&buffer->queue);
-> +
-> +err_empty:
-> +	spin_unlock_irqrestore(&stream->driver_queue_lock, lock_flags);
-> +	return buffer;
+> +	gicv5_iri_irq_mask(d, GICV5_HWIRQ_TYPE_SPI);
 > +}
 > +
-> +static void rkcif_stream_push_buffer(struct rkcif_stream *stream,
-> +				     struct rkcif_buffer *buffer)
+> +static void gicv5_lpi_irq_mask(struct irq_data *d)
 > +{
-> +	unsigned long lock_flags;
-> +
-> +	spin_lock_irqsave(&stream->driver_queue_lock, lock_flags);
-> +	list_add_tail(&buffer->queue, &stream->driver_queue);
-> +	spin_unlock_irqrestore(&stream->driver_queue_lock, lock_flags);
+> +	gicv5_iri_irq_mask(d, GICV5_HWIRQ_TYPE_LPI);
 > +}
 > +
-> +static inline void rkcif_stream_return_buffer(struct rkcif_buffer *buffer,
-> +					      enum vb2_buffer_state state)
+> +static void gicv5_ppi_irq_unmask(struct irq_data *d)
 > +{
-> +	struct vb2_v4l2_buffer *vb = &buffer->vb;
+> +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
 > +
-> +	vb2_buffer_done(&vb->vb2_buf, state);
+> +	if (d->hwirq < 64)
+> +		sysreg_clear_set_s(SYS_ICC_PPI_ENABLER0_EL1, 0, hwirq_id_bit);
+> +	else
+> +		sysreg_clear_set_s(SYS_ICC_PPI_ENABLER1_EL1, 0, hwirq_id_bit);
 > +}
 > +
-> +static void rkcif_stream_complete_buffer(struct rkcif_stream *stream,
-> +					 struct rkcif_buffer *buffer)
+> +static void gicv5_iri_irq_unmask(struct irq_data *d, u8 hwirq_type)
 > +{
-> +	struct vb2_v4l2_buffer *vb = &buffer->vb;
+> +	u64 cden = d->hwirq | FIELD_PREP(GICV5_GIC_CDEN_TYPE_MASK, hwirq_type);
 > +
-> +	vb->vb2_buf.timestamp = ktime_get_ns();
-> +	vb->sequence = stream->frame_idx;
-> +	vb2_buffer_done(&vb->vb2_buf, VB2_BUF_STATE_DONE);
-> +	stream->frame_idx++;
+> +	gic_insn(cden, GICV5_OP_GIC_CDEN);
 > +}
 > +
-> +void rkcif_stream_pingpong(struct rkcif_stream *stream)
+> +static void gicv5_spi_irq_unmask(struct irq_data *d)
 > +{
-> +	struct rkcif_buffer *buffer;
+> +	gicv5_iri_irq_unmask(d, GICV5_HWIRQ_TYPE_SPI);
+> +}
 > +
-> +	buffer = stream->buffers[stream->frame_phase];
-> +	if (!buffer->is_dummy)
-> +		rkcif_stream_complete_buffer(stream, buffer);
+> +static void gicv5_lpi_irq_unmask(struct irq_data *d)
+> +{
+> +	gicv5_iri_irq_unmask(d, GICV5_HWIRQ_TYPE_LPI);
+> +}
 > +
-> +	buffer = rkcif_stream_pop_buffer(stream);
-> +	if (buffer) {
-> +		stream->buffers[stream->frame_phase] = buffer;
-> +		stream->buffers[stream->frame_phase]->is_dummy = false;
-> +	} else {
-> +		stream->buffers[stream->frame_phase] = &stream->dummy.buffer;
-> +		stream->buffers[stream->frame_phase]->is_dummy = true;
-> +		dev_warn(stream->rkcif->dev,
-> +			 "no buffer available, frame will be dropped\n");
+> +static void gicv5_hwirq_eoi(u32 hwirq_id, u8 hwirq_type)
+> +{
+> +	u64 cddi = hwirq_id | FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
+> +
+> +	gic_insn(cddi, GICV5_OP_GIC_CDDI);
+> +
+> +	gic_insn(0, GICV5_OP_GIC_CDEOI);
+> +}
+> +
+> +static void gicv5_ppi_irq_eoi(struct irq_data *d)
+> +{
+> +	gicv5_hwirq_eoi(d->hwirq, GICV5_HWIRQ_TYPE_PPI);
+> +}
+> +
+> +static void gicv5_spi_irq_eoi(struct irq_data *d)
+> +{
+> +	gicv5_hwirq_eoi(d->hwirq, GICV5_HWIRQ_TYPE_SPI);
+> +}
+> +
+> +static void gicv5_lpi_irq_eoi(struct irq_data *d)
+> +{
+> +	gicv5_hwirq_eoi(d->hwirq, GICV5_HWIRQ_TYPE_LPI);
+> +}
+> +
+> +static int gicv5_iri_irq_set_affinity(struct irq_data *d,
+> +				      const struct cpumask *mask_val,
+> +				      bool force, u8 hwirq_type)
+> +{
+> +	int ret, cpuid;
+> +	u16 iaffid;
+> +	u64 cdaff;
+> +
+> +	if (force)
+> +		cpuid = cpumask_first(mask_val);
+> +	else
+> +		cpuid = cpumask_any_and(mask_val, cpu_online_mask);
+> +
+> +	ret = gicv5_irs_cpu_to_iaffid(cpuid, &iaffid);
+> +	if (ret)
+> +		return ret;
+> +
+> +	cdaff = FIELD_PREP(GICV5_GIC_CDAFF_IAFFID_MASK, iaffid)		|
+> +		FIELD_PREP(GICV5_GIC_CDAFF_TYPE_MASK, hwirq_type)	|
+> +		FIELD_PREP(GICV5_GIC_CDAFF_ID_MASK, d->hwirq);
+> +	gic_insn(cdaff, GICV5_OP_GIC_CDAFF);
+> +
+> +	irq_data_update_effective_affinity(d, cpumask_of(cpuid));
+> +
+> +	return IRQ_SET_MASK_OK_DONE;
+> +}
+> +
+> +static int gicv5_spi_irq_set_affinity(struct irq_data *d,
+> +				      const struct cpumask *mask_val,
+> +				      bool force)
+> +{
+> +	return gicv5_iri_irq_set_affinity(d, mask_val, force,
+> +					  GICV5_HWIRQ_TYPE_SPI);
+> +}
+> +
+> +static int gicv5_lpi_irq_set_affinity(struct irq_data *d,
+> +				      const struct cpumask *mask_val,
+> +				      bool force)
+> +{
+> +	return gicv5_iri_irq_set_affinity(d, mask_val, force,
+> +					  GICV5_HWIRQ_TYPE_LPI);
+> +}
+> +
+> +#define READ_PPI_REG(irq, reg)						\
+> +	({								\
+> +		u64 val;						\
+> +									\
+> +		if (irq < 64)						\
+> +			val = read_sysreg_s(SYS_ICC_PPI_##reg##R0_EL1);	\
+> +		else							\
+> +			val = read_sysreg_s(SYS_ICC_PPI_##reg##R1_EL1);	\
+> +		val;							\
+> +	})
+> +
+> +#define WRITE_PPI_REG(set, irq, bit, reg)					\
+> +	do {									\
+> +		if (set) {							\
+> +			if (irq < 64)						\
+> +				write_sysreg_s(bit, SYS_ICC_PPI_S##reg##R0_EL1);\
+> +			else							\
+> +				write_sysreg_s(bit, SYS_ICC_PPI_S##reg##R1_EL1);\
+> +		} else {							\
+> +			if (irq < 64)						\
+> +				write_sysreg_s(bit, SYS_ICC_PPI_C##reg##R0_EL1);\
+> +			else							\
+> +				write_sysreg_s(bit, SYS_ICC_PPI_C##reg##R1_EL1);\
+> +		}								\
+> +	} while (0)
+> +
+> +static int gicv5_ppi_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	/*
+> +	 * The PPI trigger mode is not configurable at runtime,
+> +	 * therefore this function simply confirms that the `type`
+> +	 * parameter matches what is present.
+> +	 */
+> +	u64 hmr = READ_PPI_REG(d->hwirq, HM);
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		if (((hmr >> (d->hwirq % 64)) & 0x1) != GICV5_PPI_HM_LEVEL)
+> +			return -EINVAL;
+> +		break;
+> +	case IRQ_TYPE_EDGE_RISING:
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		if (((hmr >> (d->hwirq % 64)) & 0x1) != GICV5_PPI_HM_EDGE)
+> +			return -EINVAL;
+> +		break;
+> +	default:
+> +		pr_debug("Unexpected PPI trigger mode");
+> +		return -EINVAL;
 > +	}
-> +
-> +	if (stream->queue_buffer)
-> +		stream->queue_buffer(stream, stream->frame_phase);
-> +
-> +	stream->frame_phase = 1 - stream->frame_phase;
-> +}
-> +
-> +static int rkcif_stream_init_buffers(struct rkcif_stream *stream)
-> +{
-> +	struct v4l2_pix_format_mplane *pix = &stream->pix;
-> +	int i;
-> +
-> +	stream->buffers[0] = rkcif_stream_pop_buffer(stream);
-> +	if (!stream->buffers[0])
-> +		goto err_buff_0;
-> +
-> +	stream->buffers[1] = rkcif_stream_pop_buffer(stream);
-> +	if (!stream->buffers[1])
-> +		goto err_buff_1;
-> +
-> +	if (stream->queue_buffer) {
-> +		stream->queue_buffer(stream, 0);
-> +		stream->queue_buffer(stream, 1);
-> +	}
-> +
-> +	stream->dummy.size = pix->num_planes * pix->plane_fmt[0].sizeimage;
-> +	stream->dummy.vaddr =
-> +		dma_alloc_attrs(stream->rkcif->dev, stream->dummy.size,
-> +				&stream->dummy.buffer.buff_addr[0], GFP_KERNEL,
-> +				DMA_ATTR_NO_KERNEL_MAPPING);
-> +	if (!stream->dummy.vaddr)
-> +		goto err_dummy;
-> +
-> +	for (i = 1; i < pix->num_planes; i++)
-> +		stream->dummy.buffer.buff_addr[i] =
-> +			stream->dummy.buffer.buff_addr[i - 1] +
-> +			pix->plane_fmt[i - 1].bytesperline * pix->height;
 > +
 > +	return 0;
+> +}
 > +
-> +err_dummy:
-> +	rkcif_stream_return_buffer(stream->buffers[1], VB2_BUF_STATE_QUEUED);
-> +	stream->buffers[1] = NULL;
+> +static int gicv5_ppi_irq_get_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool *val)
+> +{
+> +	u64 pendr, activer, enabler, hwirq_id_bit = BIT_ULL(d->hwirq % 64);
 > +
-> +err_buff_1:
-> +	rkcif_stream_return_buffer(stream->buffers[0], VB2_BUF_STATE_QUEUED);
-> +	stream->buffers[0] = NULL;
-> +err_buff_0:
+> +	switch (which) {
+> +	case IRQCHIP_STATE_PENDING:
+> +		pendr = READ_PPI_REG(d->hwirq, SPEND);
+> +
+> +		*val = !!(pendr & hwirq_id_bit);
+> +
+> +		return 0;
+> +	case IRQCHIP_STATE_ACTIVE:
+> +		activer = READ_PPI_REG(d->hwirq, SACTIVE);
+> +
+> +		*val = !!(activer & hwirq_id_bit);
+> +
+> +		return 0;
+> +	case IRQCHIP_STATE_MASKED:
+> +		enabler = READ_PPI_REG(d->hwirq, ENABLE);
+> +
+> +		*val = !(enabler & hwirq_id_bit);
+> +
+> +		return 0;
+
+Please drop this IRQCHIP_STATE_MASKED. It was solely introduced to
+paper over a terrible suspend/resume bug in some other interrupt
+controller, and I'd rather not let this stupidity propagate any
+further. This also applies to the set_irqchip_state() callbacks.
+
+> +	default:
+> +		pr_debug("Unexpected PPI irqchip state\n");
+> +		return -EINVAL;
+
+Useless return.
+
+> +	}
+> +
 > +	return -EINVAL;
 > +}
 > +
-> +static void rkcif_stream_return_all_buffers(struct rkcif_stream *stream,
-> +					    enum vb2_buffer_state state)
+> +static int gicv5_iri_irq_get_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool *val, u8 hwirq_type)
 > +{
-> +	struct rkcif_buffer *buffer;
+> +	u64 icsr, cdrcfg;
 > +
-> +	if (stream->buffers[0] && !stream->buffers[0]->is_dummy) {
-> +		rkcif_stream_return_buffer(stream->buffers[0], state);
-> +		stream->buffers[0] = NULL;
+> +	cdrcfg = d->hwirq | FIELD_PREP(GICV5_GIC_CDRCFG_TYPE_MASK, hwirq_type);
+> +
+> +	gic_insn(cdrcfg, GICV5_OP_GIC_CDRCFG);
+> +	isb();
+> +	icsr = read_sysreg_s(SYS_ICC_ICSR_EL1);
+> +
+> +	if (FIELD_GET(ICC_ICSR_EL1_F, icsr)) {
+> +		pr_err("ICSR_EL1 is invalid\n");
+> +		return -EINVAL;
 > +	}
 > +
-> +	if (stream->buffers[1] && !stream->buffers[1]->is_dummy) {
-> +		rkcif_stream_return_buffer(stream->buffers[1], state);
-> +		stream->buffers[1] = NULL;
+> +	switch (which) {
+> +	case IRQCHIP_STATE_PENDING:
+> +		*val = !!(FIELD_GET(ICC_ICSR_EL1_Pending, icsr));
+> +		return 0;
+> +
+> +	case IRQCHIP_STATE_ACTIVE:
+> +		*val = !!(FIELD_GET(ICC_ICSR_EL1_Active, icsr));
+> +		return 0;
+> +
+> +	case IRQCHIP_STATE_MASKED:
+> +		*val = !(FIELD_GET(ICC_ICSR_EL1_Enabled, icsr));
+> +		return 0;
+> +
+> +	default:
+> +		pr_debug("Unexpected irqchip_irq_state\n");
+> +		return -EINVAL;
 > +	}
 > +
-> +	while ((buffer = rkcif_stream_pop_buffer(stream)))
-> +		rkcif_stream_return_buffer(buffer, state);
-> +
-> +	if (stream->dummy.vaddr) {
-> +		dma_free_attrs(stream->rkcif->dev, stream->dummy.size,
-> +			       stream->dummy.vaddr,
-> +			       stream->dummy.buffer.buff_addr[0],
-> +			       DMA_ATTR_NO_KERNEL_MAPPING);
-> +		stream->dummy.vaddr = NULL;
-> +	}
+> +	return -EINVAL;
 > +}
 > +
-> +static int rkcif_stream_setup_queue(struct vb2_queue *queue,
-> +				    unsigned int *num_buffers,
-> +				    unsigned int *num_planes,
-> +				    unsigned int sizes[],
-> +				    struct device *alloc_devs[])
+> +static int gicv5_spi_irq_get_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool *val)
 > +{
-> +	struct rkcif_stream *stream = queue->drv_priv;
-> +	struct v4l2_pix_format_mplane *pix = &stream->pix;
-> +	unsigned int i;
+> +	return gicv5_iri_irq_get_irqchip_state(d, which, val,
+> +					       GICV5_HWIRQ_TYPE_SPI);
+> +}
 > +
-> +	if (*num_planes) {
-> +		if (*num_planes != pix->num_planes)
-> +			return -EINVAL;
+> +static int gicv5_lpi_irq_get_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool *val)
+> +{
+> +	return gicv5_iri_irq_get_irqchip_state(d, which, val,
+> +					       GICV5_HWIRQ_TYPE_LPI);
+> +}
 > +
-> +		for (i = 0; i < pix->num_planes; i++)
-> +			if (sizes[i] < pix->plane_fmt[i].sizeimage)
-> +				return -EINVAL;
-> +	} else {
-> +		*num_planes = pix->num_planes;
-> +		for (i = 0; i < pix->num_planes; i++)
-> +			sizes[i] = pix->plane_fmt[i].sizeimage;
+> +static int gicv5_ppi_irq_set_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool val)
+> +{
+> +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
+> +
+> +	switch (which) {
+> +	case IRQCHIP_STATE_PENDING:
+> +		WRITE_PPI_REG(val, d->hwirq, hwirq_id_bit, PEND);
+> +		return 0;
+> +	case IRQCHIP_STATE_ACTIVE:
+> +		WRITE_PPI_REG(val, d->hwirq, hwirq_id_bit, ACTIVE);
+> +		return 0;
+> +	case IRQCHIP_STATE_MASKED:
+> +		if (val)
+> +			gicv5_ppi_irq_mask(d);
+> +		else
+> +			gicv5_ppi_irq_unmask(d);
+> +		return 0;
+
+Same thing.
+
+> +	default:
+> +		pr_debug("Unexpected PPI irqchip state\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static void gicv5_iri_irq_write_pending_state(struct irq_data *d, bool val,
+> +					      u8 hwirq_type)
+> +{
+> +	u64 cdpend;
+> +
+> +	cdpend = FIELD_PREP(GICV5_GIC_CDPEND_TYPE_MASK, hwirq_type)	|
+> +		 FIELD_PREP(GICV5_GIC_CDPEND_ID_MASK, d->hwirq)		|
+> +		 FIELD_PREP(GICV5_GIC_CDPEND_PENDING_MASK, val);
+> +
+> +	gic_insn(cdpend, GICV5_OP_GIC_CDPEND);
+> +}
+> +
+> +static void gicv5_spi_irq_write_pending_state(struct irq_data *d, bool val)
+> +{
+> +	gicv5_iri_irq_write_pending_state(d, val, GICV5_HWIRQ_TYPE_SPI);
+> +}
+> +
+> +static void gicv5_lpi_irq_write_pending_state(struct irq_data *d, bool val)
+> +{
+> +	gicv5_iri_irq_write_pending_state(d, val, GICV5_HWIRQ_TYPE_LPI);
+> +}
+> +
+> +static int gicv5_spi_irq_set_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool val)
+> +{
+> +	switch (which) {
+> +	case IRQCHIP_STATE_PENDING:
+> +		gicv5_spi_irq_write_pending_state(d, val);
+> +		break;
+> +	case IRQCHIP_STATE_MASKED:
+> +		if (val)
+> +			gicv5_spi_irq_mask(d);
+> +		else
+> +			gicv5_spi_irq_unmask(d);
+> +		break;
+> +	default:
+> +		pr_debug("Unexpected irqchip_irq_state\n");
+> +		return -EINVAL;
 > +	}
 > +
 > +	return 0;
 > +}
 > +
-> +static int rkcif_stream_prepare_buffer(struct vb2_buffer *vb)
+> +static int gicv5_lpi_irq_set_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool val)
 > +{
-> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
-> +	struct rkcif_buffer *buffer = to_rkcif_buffer(vbuf);
-> +	struct rkcif_stream *stream = vb->vb2_queue->drv_priv;
-> +	const struct rkcif_output_fmt *fmt;
-> +	struct v4l2_pix_format_mplane *pix = &stream->pix;
-> +	unsigned int i;
+> +	switch (which) {
+> +	case IRQCHIP_STATE_PENDING:
+> +		gicv5_lpi_irq_write_pending_state(d, val);
+> +		break;
+> +	case IRQCHIP_STATE_MASKED:
+> +		if (val)
+> +			gicv5_lpi_irq_mask(d);
+> +		else
+> +			gicv5_lpi_irq_unmask(d);
+> +		break;
 > +
-> +	memset(buffer->buff_addr, 0, sizeof(buffer->buff_addr));
-> +	for (i = 0; i < pix->num_planes; i++)
-> +		buffer->buff_addr[i] = vb2_dma_contig_plane_dma_addr(vb, i);
-> +
-> +	/* apply fallback for non-mplane formats, if required */
-> +	if (pix->num_planes == 1) {
-> +		fmt = rkcif_stream_find_output_fmt(stream, true,
-> +						   pix->pixelformat);
-> +		for (i = 1; i < fmt->cplanes; i++)
-> +			buffer->buff_addr[i] =
-> +				buffer->buff_addr[i - 1] +
-> +				pix->plane_fmt[i - 1].bytesperline *
-> +					pix->height;
+> +	default:
+> +		pr_debug("Unexpected irqchip_irq_state\n");
+> +		return -EINVAL;
 > +	}
 > +
-> +	for (i = 0; i < pix->num_planes; i++) {
-> +		unsigned long size = pix->plane_fmt[i].sizeimage;
+> +	return 0;
+> +}
 > +
-> +		if (vb2_plane_size(vb, i) < size) {
-> +			dev_err(stream->rkcif->dev,
-> +				"user buffer too small (%ld < %ld)\n",
-> +				vb2_plane_size(vb, i), size);
-> +			return -EINVAL;
+> +static int gicv5_spi_irq_retrigger(struct irq_data *data)
+> +{
+> +	return !gicv5_spi_irq_set_irqchip_state(data, IRQCHIP_STATE_PENDING,
+> +						true);
+> +}
+> +
+> +static int gicv5_lpi_irq_retrigger(struct irq_data *data)
+> +{
+> +	return !gicv5_lpi_irq_set_irqchip_state(data, IRQCHIP_STATE_PENDING,
+> +						true);
+> +}
+> +
+> +static void gicv5_ipi_send_single(struct irq_data *d, unsigned int cpu)
+> +{
+> +	/* Mark the LPI pending */
+> +	irq_chip_retrigger_hierarchy(d);
+> +}
+> +
+> +static const struct irq_chip gicv5_ppi_irq_chip = {
+> +	.name			= "GICv5-PPI",
+> +	.irq_mask		= gicv5_ppi_irq_mask,
+> +	.irq_unmask		= gicv5_ppi_irq_unmask,
+> +	.irq_eoi		= gicv5_ppi_irq_eoi,
+> +	.irq_set_type		= gicv5_ppi_set_type,
+> +	.irq_get_irqchip_state	= gicv5_ppi_irq_get_irqchip_state,
+> +	.irq_set_irqchip_state	= gicv5_ppi_irq_set_irqchip_state,
+> +	.flags			= IRQCHIP_SET_TYPE_MASKED |
+> +				  IRQCHIP_SKIP_SET_WAKE	  |
+> +				  IRQCHIP_MASK_ON_SUSPEND
+> +};
+> +
+> +static const struct irq_chip gicv5_spi_irq_chip = {
+> +	.name			= "GICv5-SPI",
+> +	.irq_mask		= gicv5_spi_irq_mask,
+> +	.irq_unmask		= gicv5_spi_irq_unmask,
+> +	.irq_eoi		= gicv5_spi_irq_eoi,
+> +	.irq_set_type		= gicv5_spi_irq_set_type,
+> +	.irq_set_affinity	= gicv5_spi_irq_set_affinity,
+> +	.irq_retrigger		= gicv5_spi_irq_retrigger,
+> +	.irq_get_irqchip_state	= gicv5_spi_irq_get_irqchip_state,
+> +	.irq_set_irqchip_state	= gicv5_spi_irq_set_irqchip_state,
+> +	.flags			= IRQCHIP_SET_TYPE_MASKED |
+> +				  IRQCHIP_SKIP_SET_WAKE	  |
+> +				  IRQCHIP_MASK_ON_SUSPEND
+> +};
+> +
+> +static int gicv5_irq_domain_translate(struct irq_domain *d,
+> +				      struct irq_fwspec *fwspec,
+> +				      irq_hw_number_t *hwirq,
+> +				      unsigned int *type,
+> +				      u8 hwirq_type)
+> +{
+> +	if (!is_of_node(fwspec->fwnode))
+> +		return -EINVAL;
+> +
+> +	if (fwspec->param_count < 3)
+> +		return -EINVAL;
+> +
+> +	if (fwspec->param[0] != hwirq_type)
+> +		return -EINVAL;
+> +
+> +	*hwirq = fwspec->param[1];
+> +	*type = fwspec->param[2] & IRQ_TYPE_SENSE_MASK;
+> +
+> +	return 0;
+> +}
+> +
+> +static int gicv5_irq_ppi_domain_translate(struct irq_domain *d,
+> +					  struct irq_fwspec *fwspec,
+> +					  irq_hw_number_t *hwirq,
+> +					  unsigned int *type)
+> +{
+> +	return gicv5_irq_domain_translate(d, fwspec, hwirq, type,
+> +					  GICV5_HWIRQ_TYPE_PPI);
+> +}
+> +
+> +static int gicv5_irq_ppi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				      unsigned int nr_irqs, void *arg)
+> +{
+> +	unsigned int type = IRQ_TYPE_NONE;
+> +	struct irq_fwspec *fwspec = arg;
+> +	irq_hw_number_t hwirq;
+> +	int ret;
+> +
+> +	if (WARN_ON_ONCE(nr_irqs != 1))
+> +		return -EINVAL;
+> +
+> +	ret = gicv5_irq_ppi_domain_translate(domain, fwspec, &hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	irq_set_percpu_devid(virq);
+> +	irq_domain_set_info(domain, virq, hwirq, &gicv5_ppi_irq_chip, NULL,
+> +			    handle_percpu_devid_irq, NULL, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void gicv5_irq_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				  unsigned int nr_irqs)
+> +{
+> +	struct irq_data *d;
+> +
+> +	if (WARN_ON_ONCE(nr_irqs != 1))
+> +		return;
+> +
+> +	d = irq_domain_get_irq_data(domain, virq);
+> +
+> +	irq_set_handler(virq, NULL);
+> +	irq_domain_reset_irq_data(d);
+> +}
+> +
+> +static int gicv5_irq_ppi_domain_select(struct irq_domain *d, struct irq_fwspec *fwspec,
+> +				       enum irq_domain_bus_token bus_token)
+> +{
+> +	if (fwspec->fwnode != d->fwnode)
+> +		return 0;
+> +
+> +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI)
+> +		return 0;
+> +
+> +	return (d == gicv5_global_data.ppi_domain);
+> +}
+> +
+> +static const struct irq_domain_ops gicv5_irq_ppi_domain_ops = {
+> +	.translate	= gicv5_irq_ppi_domain_translate,
+> +	.alloc		= gicv5_irq_ppi_domain_alloc,
+> +	.free		= gicv5_irq_domain_free,
+> +	.select		= gicv5_irq_ppi_domain_select
+> +};
+> +
+> +static int gicv5_irq_spi_domain_translate(struct irq_domain *d,
+> +					  struct irq_fwspec *fwspec,
+> +					  irq_hw_number_t *hwirq,
+> +					  unsigned int *type)
+> +{
+> +	return gicv5_irq_domain_translate(d, fwspec, hwirq, type,
+> +					  GICV5_HWIRQ_TYPE_SPI);
+> +}
+> +
+> +static int gicv5_irq_spi_domain_alloc(struct irq_domain *domain,
+> +				      unsigned int virq, unsigned int nr_irqs,
+> +				      void *arg)
+> +{
+> +	struct gicv5_irs_chip_data *chip_data;
+> +	unsigned int type = IRQ_TYPE_NONE;
+> +	struct irq_fwspec *fwspec = arg;
+> +	struct irq_data *irqd;
+> +	irq_hw_number_t hwirq;
+> +	int ret;
+> +
+> +	if (WARN_ON_ONCE(nr_irqs != 1))
+> +		return -EINVAL;
+> +
+> +	ret = gicv5_irq_spi_domain_translate(domain, fwspec, &hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	irqd = irq_desc_get_irq_data(irq_to_desc(virq));
+> +	chip_data = gicv5_irs_lookup_by_spi_id(hwirq);
+> +
+> +	irq_domain_set_info(domain, virq, hwirq, &gicv5_spi_irq_chip, chip_data,
+> +			    handle_fasteoi_irq, NULL, NULL);
+> +	irq_set_probe(virq);
+> +	irqd_set_single_target(irqd);
+> +
+> +	gicv5_hwirq_init(hwirq, GICV5_IRQ_PRI_MI, GICV5_HWIRQ_TYPE_SPI);
+> +
+> +	return 0;
+> +}
+> +
+> +static int gicv5_irq_spi_domain_select(struct irq_domain *d,
+> +				       struct irq_fwspec *fwspec,
+> +				       enum irq_domain_bus_token bus_token)
+> +{
+> +	if (fwspec->fwnode != d->fwnode)
+> +		return 0;
+> +
+> +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_SPI)
+> +		return 0;
+> +
+> +	return (d == gicv5_global_data.spi_domain);
+> +}
+> +
+> +static const struct irq_domain_ops gicv5_irq_spi_domain_ops = {
+> +	.translate	= gicv5_irq_spi_domain_translate,
+> +	.alloc		= gicv5_irq_spi_domain_alloc,
+> +	.free		= gicv5_irq_domain_free,
+> +	.select		= gicv5_irq_spi_domain_select
+> +};
+> +
+> +static const struct irq_chip gicv5_lpi_irq_chip = {
+> +	.name			= "GICv5-LPI",
+> +	.irq_mask		= gicv5_lpi_irq_mask,
+> +	.irq_unmask		= gicv5_lpi_irq_unmask,
+> +	.irq_eoi		= gicv5_lpi_irq_eoi,
+> +	.irq_set_affinity	= gicv5_lpi_irq_set_affinity,
+> +	.irq_retrigger		= gicv5_lpi_irq_retrigger,
+> +	.irq_get_irqchip_state	= gicv5_lpi_irq_get_irqchip_state,
+> +	.irq_set_irqchip_state	= gicv5_lpi_irq_set_irqchip_state,
+> +	.flags			= IRQCHIP_SET_TYPE_MASKED |
+> +				  IRQCHIP_SKIP_SET_WAKE	  |
+> +				  IRQCHIP_MASK_ON_SUSPEND
+> +};
+> +
+> +static const struct irq_chip gicv5_ipi_irq_chip = {
+> +	.name			= "GICv5-IPI",
+> +	.irq_mask		= irq_chip_mask_parent,
+> +	.irq_unmask		= irq_chip_unmask_parent,
+> +	.irq_eoi		= irq_chip_eoi_parent,
+> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
+> +	.irq_get_irqchip_state	= irq_chip_get_parent_state,
+> +	.irq_set_irqchip_state	= irq_chip_set_parent_state,
+> +	// We only handle this one in the IPI domain - the rest go to parent
+> +	.ipi_send_single	= gicv5_ipi_send_single,
+> +	.flags			= IRQCHIP_SET_TYPE_MASKED |
+> +				  IRQCHIP_SKIP_SET_WAKE	  |
+> +				  IRQCHIP_MASK_ON_SUSPEND
+> +};
+> +
+> +static int gicv5_irq_lpi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				      unsigned int nr_irqs, void *arg)
+> +{
+> +	irq_hw_number_t hwirq;
+> +	struct irq_data *irqd;
+> +	u32 *lpi = arg;
+> +	int ret;
+> +
+> +	if (WARN_ON_ONCE(nr_irqs != 1))
+> +		return -EINVAL;
+> +
+> +	hwirq = *lpi;
+> +
+> +	irqd = irq_domain_get_irq_data(domain, virq);
+> +
+> +	irq_domain_set_info(domain, virq, hwirq, &gicv5_lpi_irq_chip, NULL,
+> +			    handle_fasteoi_irq, NULL, NULL);
+> +	irqd_set_single_target(irqd);
+> +
+> +	ret = gicv5_irs_iste_alloc(hwirq);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	gicv5_hwirq_init(hwirq, GICV5_IRQ_PRI_MI, GICV5_HWIRQ_TYPE_LPI);
+> +
+> +	return 0;
+> +}
+> +
+> +static void gicv5_irq_lpi_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				      unsigned int nr_irqs)
+> +{
+> +	struct irq_data *d;
+> +	int i;
+> +
+> +	WARN_ON_ONCE(nr_irqs != 1);
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		d = irq_domain_get_irq_data(domain, virq + i);
+> +
+> +		irq_set_handler(virq + i, NULL);
+> +		irq_domain_reset_irq_data(d);
+> +	}
+> +}
+> +
+> +static const struct irq_domain_ops gicv5_irq_lpi_domain_ops = {
+> +	.alloc	= gicv5_irq_lpi_domain_alloc,
+> +	.free	= gicv5_irq_lpi_domain_free,
+> +};
+> +
+> +void __init gicv5_init_lpi_domain(void)
+> +{
+> +	struct irq_domain *d;
+> +
+> +	d = irq_domain_create_tree(NULL, &gicv5_irq_lpi_domain_ops, NULL);
+> +	gicv5_global_data.lpi_domain = d;
+> +}
+> +
+> +void __init gicv5_free_lpi_domain(void)
+> +{
+> +	irq_domain_remove(gicv5_global_data.lpi_domain);
+> +}
+> +
+> +static int gicv5_irq_ipi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				      unsigned int nr_irqs, void *arg)
+> +{
+> +	struct irq_data *irqd;
+> +	int ret, i;
+> +	u32 lpi;
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		ret = gicv5_alloc_lpi();
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		lpi = ret;
+> +
+> +		ret = irq_domain_alloc_irqs_parent(domain, virq + i, 1, &lpi);
+> +		if (ret) {
+> +			gicv5_free_lpi(lpi);
+> +			return ret;
 > +		}
 > +
-> +		vb2_set_plane_payload(vb, i, size);
+> +		irqd = irq_domain_get_irq_data(domain, virq + i);
+> +
+> +		irq_domain_set_hwirq_and_chip(domain, virq + i, i,
+> +				&gicv5_ipi_irq_chip, NULL);
+> +
+> +		irqd_set_single_target(irqd);
+> +
+> +		irq_set_handler(virq + i, handle_percpu_irq);
 > +	}
 > +
 > +	return 0;
 > +}
 > +
-> +static void rkcif_stream_queue_buffer(struct vb2_buffer *vb)
+> +static void gicv5_irq_ipi_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				      unsigned int nr_irqs)
 > +{
-> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
-> +	struct rkcif_buffer *buffer = to_rkcif_buffer(vbuf);
-> +	struct rkcif_stream *stream = vb->vb2_queue->drv_priv;
-> +
-> +	rkcif_stream_push_buffer(stream, buffer);
-> +}
-> +
-> +static int rkcif_stream_start_streaming(struct vb2_queue *queue,
-> +					unsigned int count)
-> +{
-> +	struct rkcif_stream *stream = queue->drv_priv;
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	u64 mask;
-> +	int ret;
-> +
-> +	stream->frame_idx = 0;
-> +	stream->frame_phase = 0;
-> +
-> +	ret = video_device_pipeline_start(&stream->vdev, &stream->pipeline);
-> +	if (ret) {
-> +		dev_err(rkcif->dev, "failed to start pipeline %d\n", ret);
-> +		goto err_out;
-> +	}
-> +
-> +	ret = pm_runtime_resume_and_get(rkcif->dev);
-> +	if (ret < 0) {
-> +		dev_err(rkcif->dev, "failed to get runtime pm, %d\n", ret);
-> +		goto err_pipeline_stop;
-> +	}
-> +
-> +	ret = rkcif_stream_init_buffers(stream);
-> +	if (ret)
-> +		goto err_runtime_put;
-> +
-> +	if (stream->start_streaming) {
-> +		ret = stream->start_streaming(stream);
-> +		if (ret < 0)
-> +			goto err_runtime_put;
-> +	}
-> +
-> +	mask = BIT_ULL(stream->id);
-> +	ret = v4l2_subdev_enable_streams(&stream->interface->sd,
-> +					 RKCIF_IF_PAD_SRC, mask);
-> +	if (ret < 0)
-> +		goto err_stop_stream;
-> +
-> +	return 0;
-> +
-> +err_stop_stream:
-> +	if (stream->stop_streaming)
-> +		stream->stop_streaming(stream);
-> +err_runtime_put:
-> +	pm_runtime_put(rkcif->dev);
-> +err_pipeline_stop:
-> +	video_device_pipeline_stop(&stream->vdev);
-> +err_out:
-> +	rkcif_stream_return_all_buffers(stream, VB2_BUF_STATE_QUEUED);
-> +	return ret;
-> +}
-> +
-> +static void rkcif_stream_stop_streaming(struct vb2_queue *queue)
-> +{
-> +	struct rkcif_stream *stream = queue->drv_priv;
-> +	struct rkcif_device *rkcif = stream->rkcif;
-> +	u64 mask;
-> +	int ret;
-> +
-> +	mask = BIT_ULL(stream->id);
-> +	v4l2_subdev_disable_streams(&stream->interface->sd, RKCIF_IF_PAD_SRC,
-> +				    mask);
-> +
-> +	stream->stopping = true;
-> +	ret = wait_event_timeout(stream->wq_stopped, !stream->stopping,
-> +				 msecs_to_jiffies(1000));
-> +
-> +	if (!ret && stream->stop_streaming)
-> +		stream->stop_streaming(stream);
-> +
-> +	pm_runtime_put(rkcif->dev);
-> +
-> +	rkcif_stream_return_all_buffers(stream, VB2_BUF_STATE_ERROR);
-> +
-> +	video_device_pipeline_stop(&stream->vdev);
-> +}
-> +
-> +static const struct vb2_ops rkcif_stream_vb2_ops = {
-> +	.queue_setup = rkcif_stream_setup_queue,
-> +	.buf_prepare = rkcif_stream_prepare_buffer,
-> +	.buf_queue = rkcif_stream_queue_buffer,
-> +	.wait_prepare = vb2_ops_wait_prepare,
-> +	.wait_finish = vb2_ops_wait_finish,
-> +	.start_streaming = rkcif_stream_start_streaming,
-> +	.stop_streaming = rkcif_stream_stop_streaming,
-> +};
-> +
-> +static int rkcif_stream_try_format(struct file *file, void *fh,
-> +				   struct v4l2_format *f)
-> +{
-> +	struct rkcif_stream *stream = video_drvdata(file);
-> +	struct v4l2_pix_format_mplane *pix = &f->fmt.pix_mp;
-> +	const struct rkcif_output_fmt *fmt;
-> +	u32 height, width;
-> +
-> +	fmt = rkcif_stream_find_output_fmt(stream, true, pix->pixelformat);
-> +	height = clamp_t(u32, pix->height, CIF_MIN_HEIGHT, CIF_MAX_HEIGHT);
-> +	width = clamp_t(u32, pix->width, CIF_MIN_WIDTH, CIF_MAX_WIDTH);
-> +	v4l2_fill_pixfmt_mp(pix, fmt->fourcc, width, height);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_stream_set_format(struct file *file, void *priv,
-> +				   struct v4l2_format *f)
-> +{
-> +	struct rkcif_stream *stream = video_drvdata(file);
-> +	struct v4l2_pix_format_mplane *pix = &f->fmt.pix_mp;
-> +	int ret;
-> +
-> +	if (vb2_is_busy(&stream->buf_queue))
-> +		return -EBUSY;
-> +
-> +	ret = rkcif_stream_try_format(file, priv, f);
-> +	if (ret)
-> +		return ret;
-> +
-> +	stream->pix = *pix;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_stream_get_format(struct file *file, void *fh,
-> +				   struct v4l2_format *f)
-> +{
-> +	struct rkcif_stream *stream = video_drvdata(file);
-> +
-> +	f->fmt.pix_mp = stream->pix;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_stream_enum_formats(struct file *file, void *priv,
-> +				     struct v4l2_fmtdesc *f)
-> +{
-> +	struct rkcif_stream *stream = video_drvdata(file);
-> +
-> +	if (f->index >= stream->out_fmts_num)
-> +		return -EINVAL;
-> +
-> +	f->pixelformat = stream->out_fmts[f->index].fourcc;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_stream_enum_framesizes(struct file *file, void *fh,
-> +					struct v4l2_frmsizeenum *fsize)
-> +{
-> +	if (fsize->index > 0)
-> +		return -EINVAL;
-> +
-> +	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
-> +	fsize->stepwise.min_width = CIF_MIN_WIDTH;
-> +	fsize->stepwise.max_width = CIF_MAX_WIDTH;
-> +	fsize->stepwise.step_width = 8;
-> +	fsize->stepwise.min_height = CIF_MIN_HEIGHT;
-> +	fsize->stepwise.max_height = CIF_MAX_HEIGHT;
-> +	fsize->stepwise.step_height = 8;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rkcif_stream_querycap(struct file *file, void *priv,
-> +				 struct v4l2_capability *cap)
-> +{
-> +	struct rkcif_stream *stream = video_drvdata(file);
-> +	struct device *dev = stream->rkcif->dev;
-> +
-> +	strscpy(cap->driver, dev->driver->name, sizeof(cap->driver));
-> +	strscpy(cap->card, dev->driver->name, sizeof(cap->card));
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_ioctl_ops rkcif_stream_ioctl_ops = {
-> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
-> +	.vidioc_querybuf = vb2_ioctl_querybuf,
-> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
-> +	.vidioc_qbuf = vb2_ioctl_qbuf,
-> +	.vidioc_expbuf = vb2_ioctl_expbuf,
-> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
-> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
-> +	.vidioc_streamon = vb2_ioctl_streamon,
-> +	.vidioc_streamoff = vb2_ioctl_streamoff,
-> +	.vidioc_try_fmt_vid_cap_mplane = rkcif_stream_try_format,
-> +	.vidioc_s_fmt_vid_cap_mplane = rkcif_stream_set_format,
-> +	.vidioc_g_fmt_vid_cap_mplane = rkcif_stream_get_format,
-> +	.vidioc_enum_fmt_vid_cap = rkcif_stream_enum_formats,
-> +	.vidioc_enum_framesizes = rkcif_stream_enum_framesizes,
-> +	.vidioc_querycap = rkcif_stream_querycap,
-> +};
-> +
-> +static int rkcif_stream_link_validate(struct media_link *link)
-> +{
-> +	struct video_device *vdev =
-> +		media_entity_to_video_device(link->sink->entity);
-> +	struct v4l2_mbus_framefmt *source_fmt;
-> +	struct v4l2_subdev *sd;
-> +	struct v4l2_subdev_state *state;
-> +	struct rkcif_stream *stream = to_rkcif_stream(vdev);
-> +	int ret = -EINVAL;
-> +
-> +	if (!media_entity_remote_source_pad_unique(link->sink->entity))
-> +		return -ENOTCONN;
-> +
-> +	sd = media_entity_to_v4l2_subdev(link->source->entity);
-> +
-> +	state = v4l2_subdev_lock_and_get_active_state(sd);
-> +
-> +	source_fmt = v4l2_subdev_state_get_format(state, link->source->index,
-> +						  stream->id);
-> +	if (!source_fmt)
-> +		goto out;
-> +
-> +	if (source_fmt->height != stream->pix.height ||
-> +	    source_fmt->width != stream->pix.width) {
-> +		dev_dbg(stream->rkcif->dev,
-> +			"link '%s':%u -> '%s':%u not valid: %ux%u != %ux%u\n",
-> +			link->source->entity->name, link->source->index,
-> +			link->sink->entity->name, link->sink->index,
-> +			source_fmt->width, source_fmt->height,
-> +			stream->pix.width, stream->pix.height);
-> +		goto out;
-> +	}
-> +
-> +	ret = 0;
-> +
-> +out:
-> +	v4l2_subdev_unlock_state(state);
-> +	return ret;
-> +}
-> +
-> +static const struct media_entity_operations rkcif_stream_media_ops = {
-> +	.link_validate = rkcif_stream_link_validate,
-> +};
-> +
-> +static const struct v4l2_file_operations rkcif_stream_file_ops = {
-> +	.open = v4l2_fh_open,
-> +	.release = vb2_fop_release,
-> +	.unlocked_ioctl = video_ioctl2,
-> +	.poll = vb2_fop_poll,
-> +	.mmap = vb2_fop_mmap,
-> +};
-> +
-> +static int rkcif_stream_init_vb2_queue(struct vb2_queue *q,
-> +				       struct rkcif_stream *stream)
-> +{
-> +	q->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
-> +	q->io_modes = VB2_MMAP | VB2_DMABUF;
-> +	q->drv_priv = stream;
-> +	q->ops = &rkcif_stream_vb2_ops;
-> +	q->mem_ops = &vb2_dma_contig_memops;
-> +	q->buf_struct_size = sizeof(struct rkcif_buffer);
-> +	q->min_queued_buffers = CIF_REQ_BUFS_MIN;
-> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
-> +	q->lock = &stream->vlock;
-> +	q->dev = stream->rkcif->dev;
-> +
-> +	return vb2_queue_init(q);
-> +}
-> +
-> +int rkcif_stream_register(struct rkcif_device *rkcif,
-> +			  struct rkcif_stream *stream)
-> +{
-> +	struct rkcif_interface *interface = stream->interface;
-> +	struct v4l2_device *v4l2_dev = &rkcif->v4l2_dev;
-> +	struct video_device *vdev = &stream->vdev;
-> +	u32 link_flags = 0;
-> +	int ret;
-> +
-> +	stream->rkcif = rkcif;
-> +
-> +	INIT_LIST_HEAD(&stream->driver_queue);
-> +	spin_lock_init(&stream->driver_queue_lock);
-> +
-> +	init_waitqueue_head(&stream->wq_stopped);
-> +
-> +	mutex_init(&stream->vlock);
-> +
-> +	vdev->device_caps = V4L2_CAP_VIDEO_CAPTURE_MPLANE | V4L2_CAP_STREAMING |
-> +			    V4L2_CAP_IO_MC;
-> +	vdev->entity.ops = &rkcif_stream_media_ops;
-> +	vdev->fops = &rkcif_stream_file_ops;
-> +	vdev->ioctl_ops = &rkcif_stream_ioctl_ops;
-> +	vdev->lock = &stream->vlock;
-> +	vdev->minor = -1;
-> +	vdev->release = video_device_release_empty;
-> +	vdev->v4l2_dev = v4l2_dev;
-> +	vdev->vfl_dir = VFL_DIR_RX;
-> +	video_set_drvdata(vdev, stream);
-> +
-> +	stream->pad.flags = MEDIA_PAD_FL_SINK;
-> +
-> +	rkcif_stream_init_vb2_queue(&stream->buf_queue, stream);
-> +
-> +	vdev->queue = &stream->buf_queue;
-> +	if (interface->type == RKCIF_IF_DVP)
-> +		snprintf(vdev->name, sizeof(vdev->name), "rkcif-dvp0-id%d",
-> +			 stream->id);
-> +	else if (interface->type == RKCIF_IF_MIPI)
-> +		snprintf(vdev->name, sizeof(vdev->name), "rkcif-mipi%d-id%d",
-> +			 interface->index - RKCIF_MIPI_BASE, stream->id);
-> +
-> +	ret = media_entity_pads_init(&vdev->entity, 1, &stream->pad);
-> +	if (ret < 0) {
-> +		dev_err(rkcif->dev,
-> +			"failed to initialize stream media pad: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
-> +	if (ret < 0) {
-> +		dev_err(rkcif->dev, "failed to register video device: %d\n",
-> +			ret);
-> +		goto err_media_entity_cleanup;
-> +	}
-> +
-> +	/* enable only stream ID0 by default */
-> +	if (stream->id == RKCIF_ID0)
-> +		link_flags |= MEDIA_LNK_FL_ENABLED;
-> +
-> +	ret = media_create_pad_link(&interface->sd.entity, RKCIF_IF_PAD_SRC,
-> +				    &stream->vdev.entity, 0, link_flags);
-> +	if (ret) {
-> +		dev_err(rkcif->dev, "failed to link stream media pad: %d\n",
-> +			ret);
-> +		goto err_video_unregister;
-> +	}
-> +
-> +	v4l2_info(v4l2_dev, "registered %s as /dev/video%d\n", vdev->name,
-> +		  vdev->num);
-> +
-> +	return 0;
-> +
-> +err_video_unregister:
-> +	video_unregister_device(&stream->vdev);
-> +err_media_entity_cleanup:
-> +	media_entity_cleanup(&stream->vdev.entity);
-> +	return ret;
-> +}
-> +
-> +void rkcif_stream_unregister(struct rkcif_stream *stream)
-> +{
-> +	video_unregister_device(&stream->vdev);
-> +	media_entity_cleanup(&stream->vdev.entity);
-> +}
-> +
-> +const struct rkcif_output_fmt *
-> +rkcif_stream_find_output_fmt(struct rkcif_stream *stream, bool ret_def,
-> +			     u32 pixelfmt)
-> +{
-> +	const struct rkcif_output_fmt *fmt;
+> +	struct irq_data *d;
 > +	unsigned int i;
 > +
-> +	WARN_ON(stream->out_fmts_num == 0);
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		d = irq_domain_get_irq_data(domain, virq + i);
 > +
-> +	for (i = 0; i < stream->out_fmts_num; i++) {
-> +		fmt = &stream->out_fmts[i];
-> +		if (fmt->fourcc == pixelfmt)
-> +			return fmt;
+> +		if (!d)
+> +			return;
+> +
+> +		gicv5_free_lpi(d->parent_data->hwirq);
+> +
+> +		irq_set_handler(virq + i, NULL);
+> +		irq_domain_reset_irq_data(d);
+> +		irq_domain_free_irqs_parent(domain, virq + i, 1);
+> +	}
+> +}
+> +
+> +static const struct irq_domain_ops gicv5_irq_ipi_domain_ops = {
+> +	.alloc	= gicv5_irq_ipi_domain_alloc,
+> +	.free	= gicv5_irq_ipi_domain_free,
+> +};
+> +
+> +static inline void handle_irq_per_domain(u32 hwirq)
+
+Drop the inline.
+
+> +{
+> +	u8 hwirq_type = FIELD_GET(GICV5_HWIRQ_TYPE, hwirq);
+> +	u32 hwirq_id = FIELD_GET(GICV5_HWIRQ_ID, hwirq);
+> +	struct irq_domain *domain = NULL;
+> +
+> +	if (hwirq_type == GICV5_HWIRQ_TYPE_PPI)
+> +		domain = gicv5_global_data.ppi_domain;
+> +	else if (hwirq_type == GICV5_HWIRQ_TYPE_SPI)
+> +		domain = gicv5_global_data.spi_domain;
+> +	else if (hwirq_type == GICV5_HWIRQ_TYPE_LPI)
+> +		domain = gicv5_global_data.lpi_domain;
+
+This could be more clearly written as a switch/case statement, and
+avoid calling into generic_handle_domain_irq() with a NULL pointer,
+should this ever happen.
+
+> +
+> +	if (generic_handle_domain_irq(domain, hwirq_id)) {
+> +		pr_err_once("Could not handle, hwirq = 0x%x", hwirq_id);
+> +		gicv5_hwirq_eoi(hwirq_id, hwirq_type);
+> +	}
+> +}
+> +
+> +static void __exception_irq_entry gicv5_handle_irq(struct pt_regs *regs)
+> +{
+> +	bool valid;
+> +	u32 hwirq;
+> +	u64 ia;
+> +
+> +	ia = gicr_insn(GICV5_OP_GICR_CDIA);
+> +	valid = GICV5_GIC_CDIA_VALID(ia);
+> +
+> +	if (!valid)
+> +		return;
+> +
+> +	/*
+> +	 * Ensure that the CDIA instruction effects (ie IRQ activation) are
+> +	 * completed before handling the interrupt.
+> +	 */
+> +	gsb_ack();
+> +
+> +	/*
+> +	 * Ensure instruction ordering between an acknowledgment and subsequent
+> +	 * instructions in the IRQ handler using an ISB.
+> +	 */
+> +	isb();
+> +
+> +	hwirq = FIELD_GET(GICV5_HWIRQ_INTID, ia);
+> +
+> +	handle_irq_per_domain(hwirq);
+> +}
+> +
+> +static void gicv5_cpu_disable_interrupts(void)
+> +{
+> +	u64 cr0;
+> +
+> +	cr0 = FIELD_PREP(ICC_CR0_EL1_EN, 0);
+> +	write_sysreg_s(cr0, SYS_ICC_CR0_EL1);
+> +}
+> +
+> +static void gicv5_cpu_enable_interrupts(void)
+> +{
+> +	u64 cr0, pcr;
+> +
+> +	write_sysreg_s(0, SYS_ICC_PPI_ENABLER0_EL1);
+> +	write_sysreg_s(0, SYS_ICC_PPI_ENABLER1_EL1);
+> +
+> +	gicv5_ppi_priority_init();
+> +
+> +	pcr = FIELD_PREP(ICC_PCR_EL1_PRIORITY, GICV5_IRQ_PRI_MI);
+> +	write_sysreg_s(pcr, SYS_ICC_PCR_EL1);
+> +
+> +	cr0 = FIELD_PREP(ICC_CR0_EL1_EN, 1);
+> +	write_sysreg_s(cr0, SYS_ICC_CR0_EL1);
+> +}
+> +
+> +static int base_ipi_virq;
+> +
+> +static int gicv5_starting_cpu(unsigned int cpu)
+> +{
+> +	if (WARN(!gicv5_cpuif_has_gcie(),
+> +	    "GICv5 system components present but CPU does not have FEAT_GCIE"))
+> +		return -ENODEV;
+> +
+> +	gicv5_cpu_enable_interrupts();
+> +
+> +	return gicv5_irs_register_cpu(cpu);
+> +}
+> +
+> +static void __init gicv5_smp_init(void)
+> +{
+> +	unsigned int num_ipis = GICV5_IPIS_PER_CPU * nr_cpu_ids;
+> +
+> +	cpuhp_setup_state_nocalls(CPUHP_AP_IRQ_GIC_STARTING,
+> +				  "irqchip/arm/gicv5:starting",
+> +				  gicv5_starting_cpu, NULL);
+> +
+> +	base_ipi_virq = irq_domain_alloc_irqs(gicv5_global_data.ipi_domain,
+> +					      num_ipis, NUMA_NO_NODE, NULL);
+> +	if (WARN(base_ipi_virq <= 0, "IPI IRQ allocation was not successful"))
+> +		return;
+> +
+> +	set_smp_ipi_range_percpu(base_ipi_virq, GICV5_IPIS_PER_CPU, nr_cpu_ids);
+> +}
+> +
+> +static void __init gicv5_free_domains(void)
+> +{
+> +	if (gicv5_global_data.ppi_domain)
+> +		irq_domain_remove(gicv5_global_data.ppi_domain);
+> +	if (gicv5_global_data.spi_domain)
+> +		irq_domain_remove(gicv5_global_data.spi_domain);
+> +	if (gicv5_global_data.ipi_domain)
+> +		irq_domain_remove(gicv5_global_data.ipi_domain);
+
+Make these pointers NULL once you have dropped the irqdomains.
+
+> +}
+> +
+> +static int __init gicv5_init_domains(struct fwnode_handle *handle)
+> +{
+> +	u32 spi_count = gicv5_global_data.global_spi_count;
+> +	struct irq_domain *d;
+> +
+> +	d = irq_domain_create_linear(handle, 128, &gicv5_irq_ppi_domain_ops,
+> +				     NULL);
+
+Consider having a named constant for the number of PPIs.
+
+> +	if (!d)
+> +		return -ENOMEM;
+> +
+> +	irq_domain_update_bus_token(d, DOMAIN_BUS_WIRED);
+> +	gicv5_global_data.ppi_domain = d;
+> +
+> +	if (spi_count) {
+> +		d = irq_domain_create_linear(handle, spi_count,
+> +					     &gicv5_irq_spi_domain_ops, NULL);
+> +
+> +		if (!d) {
+> +			gicv5_free_domains();
+> +			return -ENOMEM;
+> +		}
+> +
+> +		gicv5_global_data.spi_domain = d;
+> +		irq_domain_update_bus_token(d, DOMAIN_BUS_WIRED);
 > +	}
 > +
-> +	if (ret_def)
-> +		return &stream->out_fmts[0];
-> +	else
-> +		return NULL;
+> +	if (!WARN(!gicv5_global_data.lpi_domain,
+> +		  "LPI domain uninitialized, can't set up IPIs")) {
+> +		d = irq_domain_create_hierarchy(gicv5_global_data.lpi_domain,
+> +						0, GICV5_IPIS_PER_CPU * nr_cpu_ids,
+> +						NULL, &gicv5_irq_ipi_domain_ops,
+> +						NULL);
+> +
+> +		if (!d) {
+> +			gicv5_free_domains();
+> +			return -ENOMEM;
+> +		}
+> +		gicv5_global_data.ipi_domain = d;
+> +	}
+> +	gicv5_global_data.fwnode = handle;
+> +
+> +	return 0;
 > +}
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-stream.h b/drivers/media/platform/rockchip/rkcif/rkcif-stream.h
+> +
+> +static void gicv5_set_cpuif_pribits(void)
+> +{
+> +	u64 icc_idr0 = read_sysreg_s(SYS_ICC_IDR0_EL1);
+> +
+> +	switch (FIELD_GET(ICC_IDR0_EL1_PRI_BITS, icc_idr0)) {
+> +	case ICC_IDR0_EL1_PRI_BITS_4BITS:
+> +		gicv5_global_data.cpuif_pri_bits = 4;
+> +		break;
+> +	case ICC_IDR0_EL1_PRI_BITS_5BITS:
+> +		gicv5_global_data.cpuif_pri_bits = 5;
+> +		break;
+> +	default:
+> +		pr_err("Unexpected ICC_IDR0_EL1_PRI_BITS value, default to 4");
+> +		gicv5_global_data.cpuif_pri_bits = 4;
+> +		break;
+> +	}
+> +}
+> +
+> +static void gicv5_set_cpuif_idbits(void)
+> +{
+> +	u32 icc_idr0 = read_sysreg_s(SYS_ICC_IDR0_EL1);
+> +
+> +	switch (FIELD_GET(ICC_IDR0_EL1_ID_BITS, icc_idr0)) {
+> +	case ICC_IDR0_EL1_ID_BITS_16BITS:
+> +		gicv5_global_data.cpuif_id_bits = 16;
+> +		break;
+> +	case ICC_IDR0_EL1_ID_BITS_24BITS:
+> +		gicv5_global_data.cpuif_id_bits = 24;
+> +		break;
+> +	default:
+> +		pr_err("Unexpected ICC_IDR0_EL1_ID_BITS value, default to 16");
+> +		gicv5_global_data.cpuif_id_bits = 16;
+> +		break;
+> +	}
+> +}
+> +
+> +
+> +static int __init gicv5_of_init(struct device_node *node,
+> +				struct device_node *parent)
+> +{
+> +	int ret;
+> +
+> +	ret = gicv5_irs_of_probe(node);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = gicv5_init_domains(&node->fwnode);
+> +	if (ret)
+> +		goto out_irs;
+> +
+> +	gicv5_set_cpuif_pribits();
+> +	gicv5_set_cpuif_idbits();
+> +
+> +	pri_bits = min_not_zero(gicv5_global_data.cpuif_pri_bits,
+> +		       gicv5_global_data.irs_pri_bits);
+> +
+> +	ret = gicv5_starting_cpu(smp_processor_id());
+> +	if (ret)
+> +		goto out_dom;
+> +
+> +	ret = set_handle_irq(gicv5_handle_irq);
+> +	if (ret)
+> +		goto out_int;
+> +
+> +	ret = gicv5_irs_enable();
+> +	if (ret)
+> +		goto out_int;
+> +
+> +	gicv5_smp_init();
+> +
+> +	return 0;
+> +out_int:
+> +	gicv5_cpu_disable_interrupts();
+> +out_dom:
+> +	gicv5_free_domains();
+> +out_irs:
+> +	gicv5_irs_remove();
+> +
+> +	return ret;
+> +}
+> +IRQCHIP_DECLARE(gic_v5, "arm,gic-v5", gicv5_of_init);
+> diff --git a/drivers/irqchip/irq-gic-v5.h b/drivers/irqchip/irq-gic-v5.h
 > new file mode 100644
-> index 000000000000..e50c9771f1b0
+> index 0000000000000000000000000000000000000000..19569639153a084760c3b5b7f0fa84791ba0195c
 > --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-stream.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/drivers/irqchip/irq-gic-v5.h
+> @@ -0,0 +1,184 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 > +/*
-> + * Rockchip Camera Interface (CIF) Driver
-> + *
-> + * Abstraction for the DMA part and the ping-pong scheme (a double-buffering
-> + * mechanism) of the different CIF variants.
-> + * Each stream is represented as V4L2 device whose corresponding media entity
-> + * has one sink pad.
-> + * The sink pad is connected to an instance of the INTERFACE/CROP abstraction
-> + * in rkcif-interface.c.
-> + *
-> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
+> + * Copyright (C) 2025 ARM Limited, All Rights Reserved.
 > + */
+> +#ifndef __LINUX_IRQCHIP_GIC_V5_H
+> +#define __LINUX_IRQCHIP_GIC_V5_H
 > +
-> +#ifndef _RKCIF_STREAM_H
-> +#define _RKCIF_STREAM_H
+> +#include <asm/arch_gicv5.h>
+> +#include <asm/smp.h>
 > +
-> +#include "rkcif-common.h"
+> +#define GICV5_IPIS_PER_CPU		MAX_IPI
 > +
-> +void rkcif_stream_pingpong(struct rkcif_stream *stream);
+> +#define GICV5_HWIRQ_ID			GENMASK(23, 0)
+> +#define GICV5_HWIRQ_TYPE		GENMASK(31, 29)
+> +#define GICV5_HWIRQ_INTID		GENMASK_ULL(31, 0)
 > +
-> +int rkcif_stream_register(struct rkcif_device *rkcif,
-> +			  struct rkcif_stream *stream);
+> +#define GICV5_HWIRQ_TYPE_PPI		UL(0x1)
+> +#define GICV5_HWIRQ_TYPE_LPI		UL(0x2)
+> +#define GICV5_HWIRQ_TYPE_SPI		UL(0x3)
 > +
-> +void rkcif_stream_unregister(struct rkcif_stream *stream);
+> +#define GICV5_PPI_HM_EDGE		UL(0x0)
+> +#define GICV5_PPI_HM_LEVEL		UL(0x1)
 > +
-> +const struct rkcif_output_fmt *
-> +rkcif_stream_find_output_fmt(struct rkcif_stream *stream, bool ret_def,
-> +			     u32 pixelfmt);
+> +#define GICV5_NO_READ_ALLOC		0b0
+> +#define GICV5_READ_ALLOC		0b1
+> +#define GICV5_NO_WRITE_ALLOC		0b0
+> +#define GICV5_WRITE_ALLOC		0b1
 > +
+> +#define GICV5_NON_CACHE			0b00
+> +#define GICV5_WB_CACHE			0b01
+> +#define GICV5_WT_CACHE			0b10
+> +
+> +#define GICV5_NON_SHARE			0b00
+> +#define GICV5_OUTER_SHARE		0b10
+> +#define GICV5_INNER_SHARE		0b11
+> +
+> +#define GICV5_IRS_IDR1			0x0004
+> +#define GICV5_IRS_IDR2			0x0008
+> +#define GICV5_IRS_IDR5			0x0014
+> +#define GICV5_IRS_IDR6			0x0018
+> +#define GICV5_IRS_IDR7			0x001c
+> +#define GICV5_IRS_CR0			0x0080
+> +#define GICV5_IRS_CR1			0x0084
+> +#define GICV5_IRS_SPI_SELR		0x0108
+> +#define GICV5_IRS_SPI_CFGR		0x0114
+> +#define GICV5_IRS_SPI_STATUSR		0x0118
+> +#define GICV5_IRS_PE_SELR		0x0140
+> +#define GICV5_IRS_PE_STATUSR		0x0144
+> +#define GICV5_IRS_PE_CR0		0x0148
+> +#define GICV5_IRS_IST_BASER		0x0180
+> +#define GICV5_IRS_IST_CFGR		0x0190
+> +#define GICV5_IRS_IST_STATUSR		0x0194
+> +#define GICV5_IRS_MAP_L2_ISTR		0x01c0
+> +
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS	GENMASK(22, 20)
+> +#define GICV5_IRS_IDR1_IAFFID_BITS	GENMASK(19, 16)
+> +
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS_1BITS	0b000
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS_2BITS	0b001
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS_3BITS	0b010
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS_4BITS	0b011
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS_5BITS	0b100
+> +
+> +#define GICV5_IRS_IDR2_ISTMD_SZ		GENMASK(19, 15)
+> +#define GICV5_IRS_IDR2_ISTMD		BIT(14)
+> +#define GICV5_IRS_IDR2_IST_L2SZ		GENMASK(13, 11)
+> +#define GICV5_IRS_IDR2_IST_LEVELS	BIT(10)
+> +#define GICV5_IRS_IDR2_MIN_LPI_ID_BITS	GENMASK(9, 6)
+> +#define GICV5_IRS_IDR2_LPI		BIT(5)
+> +#define GICV5_IRS_IDR2_ID_BITS		GENMASK(4, 0)
+> +
+> +#define GICV5_IRS_IDR5_SPI_RANGE	GENMASK(24, 0)
+> +#define GICV5_IRS_IDR6_SPI_IRS_RANGE	GENMASK(24, 0)
+> +#define GICV5_IRS_IDR7_SPI_BASE		GENMASK(23, 0)
+> +
+> +#define GICV5_IRS_IST_L2SZ_SUPPORT_4KB(r)	FIELD_GET(BIT(11), (r))
+> +#define GICV5_IRS_IST_L2SZ_SUPPORT_16KB(r)	FIELD_GET(BIT(12), (r))
+> +#define GICV5_IRS_IST_L2SZ_SUPPORT_64KB(r)	FIELD_GET(BIT(13), (r))
+> +
+> +#define GICV5_IRS_CR0_IDLE		BIT(1)
+> +#define GICV5_IRS_CR0_IRSEN		BIT(0)
+> +
+> +#define GICV5_IRS_CR1_VPED_WA		BIT(15)
+> +#define GICV5_IRS_CR1_VPED_RA		BIT(14)
+> +#define GICV5_IRS_CR1_VMD_WA		BIT(13)
+> +#define GICV5_IRS_CR1_VMD_RA		BIT(12)
+> +#define GICV5_IRS_CR1_VPET_WA		BIT(11)
+> +#define GICV5_IRS_CR1_VPET_RA		BIT(10)
+> +#define GICV5_IRS_CR1_VMT_WA		BIT(9)
+> +#define GICV5_IRS_CR1_VMT_RA		BIT(8)
+> +#define GICV5_IRS_CR1_IST_WA		BIT(7)
+> +#define GICV5_IRS_CR1_IST_RA		BIT(6)
+> +#define GICV5_IRS_CR1_IC		GENMASK(5, 4)
+> +#define GICV5_IRS_CR1_OC		GENMASK(3, 2)
+> +#define GICV5_IRS_CR1_SH		GENMASK(1, 0)
+> +
+> +#define GICV5_IRS_SPI_STATUSR_V		BIT(1)
+> +#define GICV5_IRS_SPI_STATUSR_IDLE	BIT(0)
+> +
+> +#define GICV5_IRS_SPI_SELR_ID		GENMASK(23, 0)
+> +
+> +#define GICV5_IRS_SPI_CFGR_TM		BIT(0)
+> +
+> +#define GICV5_IRS_PE_SELR_IAFFID	GENMASK(15, 0)
+> +
+> +#define GICV5_IRS_PE_STATUSR_V		BIT(1)
+> +#define GICV5_IRS_PE_STATUSR_IDLE	BIT(0)
+> +
+> +#define GICV5_IRS_PE_CR0_DPS		BIT(0)
+> +
+> +#define GICV5_IRS_IST_STATUSR_IDLE	BIT(0)
+> +
+> +#define GICV5_IRS_IST_CFGR_STRUCTURE	BIT(16)
+> +#define GICV5_IRS_IST_CFGR_ISTSZ	GENMASK(8, 7)
+> +#define GICV5_IRS_IST_CFGR_L2SZ		GENMASK(6, 5)
+> +#define GICV5_IRS_IST_CFGR_LPI_ID_BITS	GENMASK(4, 0)
+> +
+> +#define GICV5_IRS_IST_CFGR_STRUCTURE_LINEAR	0b0
+> +#define GICV5_IRS_IST_CFGR_STRUCTURE_TWO_LEVEL	0b1
+> +
+> +#define GICV5_IRS_IST_CFGR_ISTSZ_4	0b00
+> +#define GICV5_IRS_IST_CFGR_ISTSZ_8	0b01
+> +#define GICV5_IRS_IST_CFGR_ISTSZ_16	0b10
+> +
+> +#define GICV5_IRS_IST_CFGR_L2SZ_4K	0b00
+> +#define GICV5_IRS_IST_CFGR_L2SZ_16K	0b01
+> +#define GICV5_IRS_IST_CFGR_L2SZ_64K	0b10
+> +
+> +#define GICV5_IRS_IST_BASER_ADDR_MASK	GENMASK_ULL(55, 6)
+> +#define GICV5_IRS_IST_BASER_VALID	BIT_ULL(0)
+> +
+> +#define GICV5_IRS_MAP_L2_ISTR_ID	GENMASK(23, 0)
+> +
+> +#define GICV5_ISTL1E_VALID		BIT_ULL(0)
+> +
+> +#define GICV5_ISTL1E_L2_ADDR_MASK	GENMASK_ULL(55, 12)
+> +
+> +struct gicv5_chip_data {
+> +	struct fwnode_handle	*fwnode;
+> +	struct irq_domain	*ppi_domain;
+> +	struct irq_domain	*spi_domain;
+> +	struct irq_domain	*lpi_domain;
+> +	struct irq_domain	*ipi_domain;
+> +	u32			global_spi_count;
+> +	u8			cpuif_pri_bits;
+> +	u8			cpuif_id_bits;
+> +	u8			irs_pri_bits;
+> +	u8			irs_iaffid_bits;
+> +	struct {
+> +		__le64 *l1ist_addr;
+> +		u32 l2_size;
+> +		u8 l2_bits;
+> +		bool l2;
+> +	} ist;
+> +};
+> +
+> +extern struct gicv5_chip_data gicv5_global_data __read_mostly;
+> +
+> +struct gicv5_irs_chip_data {
+> +	struct list_head	entry;
+> +	struct fwnode_handle	*fwnode;
+> +	void __iomem		*irs_base;
+> +	u32			flags;
+> +	u32			spi_min;
+> +	u32			spi_range;
+> +	raw_spinlock_t		spi_config_lock;
+> +};
+> +
+> +void __init gicv5_init_lpi_domain(void);
+> +void __init gicv5_free_lpi_domain(void);
+> +
+> +int gicv5_irs_of_probe(struct device_node *parent);
+> +void gicv5_irs_remove(void);
+> +int gicv5_irs_enable(void);
+> +int gicv5_irs_register_cpu(int cpuid);
+> +int gicv5_irs_cpu_to_iaffid(int cpu_id, u16 *iaffid);
+> +struct gicv5_irs_chip_data *gicv5_irs_lookup_by_spi_id(u32 spi_id);
+> +int gicv5_spi_irq_set_type(struct irq_data *d, unsigned int type);
+> +int gicv5_spi_set_type(struct irq_data *d, unsigned int type);
+> +int gicv5_irs_iste_alloc(u32 lpi);
+> +
+> +void gicv5_init_lpis(u32 max);
+> +void gicv5_deinit_lpis(void);
 > +#endif
-> 
-> -- 
-> 2.34.1
-> 
+
+Thanks,
+
+	M.
 
 -- 
-Sakari Ailus
+Without deviation from the norm, progress is not possible.
 
