@@ -1,162 +1,237 @@
-Return-Path: <devicetree+bounces-171454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0ACA9EB1D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:47:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94125A9EB50
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:00:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E842917AEE8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:47:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACF843AA74C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D152625EF93;
-	Mon, 28 Apr 2025 08:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265D91FF603;
+	Mon, 28 Apr 2025 09:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="FtWP69PJ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dbASW07G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C82125E83C
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C4717BA6;
+	Mon, 28 Apr 2025 09:00:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745830055; cv=none; b=sUQeFHQAmyuRuIgqLVTm2ddzsWNIMsGrWPKhK8qKh2HefGXkMuQIJ/XqTiR/hoG3DB0Exy0BXToH63ABtdPVqQmz6HI0hpaCMoBrdZNXeodALZ7gI8FqE4foQNz0I6LaknTBAUBV8wZEYVSc0AIXOQYlpEG89aNIQOgUR2qt+uk=
+	t=1745830841; cv=none; b=S/Q5Y3gapi9WbmB0R7Gl7EHXFiFhDr7LhdZc59q7tVPws4hTuOjTdgZo6EskboCLIRZb+n2LPE4UzXROx8FNJ8aJcseescyvGioM9L0mubKXy2r0urG8B5hQP6+kS/Q1lKzJd6gBQ3KNhnAEvfrDQGuN0tkGvztGMVvXJs3ThpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745830055; c=relaxed/simple;
-	bh=iFzGuACWvPdMTtprDZH7JP48uol6IThkiaU/81eK7TE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=u92U4Ie5blnYiot0hMVsv7DFLjEEwgkcbiphKmqX1ZCpMxfZoOU/0n/MSHqSXTt9M3F3UgVrUJ6n5fjIISOhUFyqOGWwqpZIBDN1luxHFqUt80oYNfFSuxKghiKkz+4hIAPq1WefaiZPkMm/LRcSXR7HTGXlYxL8plLjRs+plIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=FtWP69PJ; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250428084730epoutp01bbc653b11095f0fcfddb866256b65791~6by5aF2ex1617916179epoutp01a
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 08:47:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250428084730epoutp01bbc653b11095f0fcfddb866256b65791~6by5aF2ex1617916179epoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745830050;
-	bh=kwb6sfk/OTplMs5Q5TACguVNBchZ6pfP8g0wZXekkjI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FtWP69PJmEYKxMEkxF1kxz7LVhM9oGKF/8DK7HZxgvOkQQn+FgQlnsEqCW+06W4j+
-	 QncPE5D44wKiI14CIwxC2fcj1V1yCgejGmAnGsDExLnZEuKODA9U7oyubL0yXCQA7Z
-	 jewE/aGHVv50mBWmEAq6RSSXS1kD8znWW6QTX86o=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250428084729epcas2p47daf637f98853b875a65d0910ebc72e6~6by427dZC0662806628epcas2p4z;
-	Mon, 28 Apr 2025 08:47:29 +0000 (GMT)
-Received: from epcas2p1.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4ZmHBn2n6Mz6B9m7; Mon, 28 Apr
-	2025 08:47:29 +0000 (GMT)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250428084728epcas2p1d293e6a40eae00465c6b2f5f037dbfef~6by32lK6f0605306053epcas2p1q;
-	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250428084728epsmtrp2bfe7deabe0f8a74a1e52e70d4ff5330a~6by3zmG6z1061810618epsmtrp2G;
-	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
-X-AuditID: b6c32a52-41dfa70000004c16-cd-680f40a0f99b
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	E3.CF.19478.0A04F086; Mon, 28 Apr 2025 17:47:28 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.60]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250428084728epsmtip1e211e99deb8a28118667e82b210a4aa5~6by3m-rTj1942219422epsmtip1H;
-	Mon, 28 Apr 2025 08:47:28 +0000 (GMT)
-From: Shin Son <shin.son@samsung.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
-	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
-Cc: Shin Son <shin.son@samsung.com>, linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: exynosautov920: add cpucl1/2 clock DT nodes
-Date: Mon, 28 Apr 2025 17:47:21 +0900
-Message-ID: <20250428084721.3832664-4-shin.son@samsung.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250428084721.3832664-1-shin.son@samsung.com>
+	s=arc-20240116; t=1745830841; c=relaxed/simple;
+	bh=Zs203QeTDzagVcMqG9QnN8e4AgxzfnJBc0cf5D0lj0w=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=IBgPE/59PhK+el7E2DzBJfaTx2l+mOt1Vsd2i6DMPDAbl2L/0Hym3jkVRqPc8F4i4o2ciK3Q/Rih2ixvw0iNxunP/fMSxyjTqeAGin7sfJlapnaOHVd2eb9t+OY3BAJQQOccopv+TIJM8cLxjwCOMoMyxQi/IynoHwememHW6dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dbASW07G; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S110Bq021410;
+	Mon, 28 Apr 2025 11:00:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=94GaAp5IT+0nfZI1KhpMoi
+	6ddXqkPRsHTzLkhfBtKK0=; b=dbASW07GxQztoLy9FsEcZXQWu1OSefGLLrOKd8
+	motbCQlyWiWT0HoYG3UEeGShSIZt94n+/KHTDwVABav8Kr8N72+VXl+IpyVodkag
+	wtX0uBTggyZv/B1jll17sPTCo72vmUqjDIUQ19nhO9625TNu0hZyh9zjnTPfOQW5
+	ZbfGSOldL20QUnKdE74CJSv8G1N1w9q/7gw7WRuvoZrC1RtNHZPBYC93jr/R+3Rs
+	nUj46RdRuDRLF2PyVx1uJxg0INRVZB32fts7OC6/jFLDmBlqRdcRl8Q9a+/EJRhW
+	8xi/tvOOKD0jHHqVpStzEHQZ4DmtqGceerBCJDqv2tzJqqYA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 468mm9dxde-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 11:00:25 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8A6E84002D;
+	Mon, 28 Apr 2025 10:59:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 78F1EA4130C;
+	Mon, 28 Apr 2025 10:58:33 +0200 (CEST)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Apr
+ 2025 10:58:33 +0200
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v11 0/3] Add STM32MP25 SPI NOR support
+Date: Mon, 28 Apr 2025 10:58:29 +0200
+Message-ID: <20250428-upstream_ospi_v6-v11-0-1548736fd9d2@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMLMWRmVeSWpSXmKPExsWy7bCSnO4CB/4Mg857ahYP5m1js1iz9xyT
-	xfUvz1kt5h85x2px/vwGdotNj6+xWnzsucdqcXnXHDaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
-	XdvIYjH5+FpWi6Zl65kc+D3e32hl99i0qpPNY/OSeo++LasYPT5vkgtgjeKySUnNySxLLdK3
-	S+DKeHFKqOAtV8XOxslsDYwnOLoYOTkkBEwktl15wQRiCwlsZ5SYcNcVIi4hcXjGBEYIW1ji
-	fssRVoia94wSb59kdjFycLAJqEps+i3fxcjFISLwlkli+f8DYHOYBU4zSuw8IwNiCwv4SPyc
-	f4UZxGYBqn85dxIjSC+vgLVE+95yEFNCQF6iv0MCpIJTwEbi/MVONpCwEFBFXw83SJhXQFDi
-	5MwnLBDD5SWat85mnsAoMAtJahaS1AJGplWMoqkFxbnpuckFhnrFibnFpXnpesn5uZsYwfGg
-	FbSDcdn6v3qHGJk4GA8xSnAwK4nwVhnwZwjxpiRWVqUW5ccXleakFh9ilOZgURLnVc7pTBES
-	SE8sSc1OTS1ILYLJMnFwSjUwccwMbN6nXyM22b21bF/slWcJqkIfWn6LXFGtk431+ZlxxTgq
-	SeGu3LqzDWkvVvQd2GG7dt8LX8VC3l1fQ6R+MDetelJ70M3W4dLaZ8fOMbCebPCJW/fLICq9
-	abV8UF60gMg9p5UT7NytV657mya18LhK4p7pNRX7nPXTjv/0qe9+/XjGWa4Nsc48fzqinkdt
-	Zrc4IvS8zO2NZl50yIyvb/3eJPjoNjgoXlmQZsp07t7sVSbLVk1ZvHH2mQJtRalJ7nsv3eDQ
-	PDIzQEJ2tglvvvKyrme/9bfEGZecvrfhlskW4XAD+bTGNtmiAJEnnhtqTSzcVLzEeg5ba1yT
-	fNlSvzdGxs/J9Vxo3oW0Je+UWIozEg21mIuKEwHpfgtO9gIAAA==
-X-CMS-MailID: 20250428084728epcas2p1d293e6a40eae00465c6b2f5f037dbfef
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250428084728epcas2p1d293e6a40eae00465c6b2f5f037dbfef
-References: <20250428084721.3832664-1-shin.son@samsung.com>
-	<CGME20250428084728epcas2p1d293e6a40eae00465c6b2f5f037dbfef@epcas2p1.samsung.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADVDD2gC/23Q3YrDIBAF4FcpXtcyo8afXvU9lqUYo60XrUFT2
+ aXk3dcWls2SwNycA/MNzJMUn6Mv5Lh7kuxrLDHdW0Dc74i72vvF0zi0gjBgHXAG9DGWKXt7O6c
+ yxnOVdBCcWY2KIXSkrY3Zh/j1Nj8+W77GMqX8/T5R5av9xXCNtQHKVd872wsuuDmFVMqhTAeXb
+ uTFVfVHCNgiVCPAB6Y75H7QuCb0klAbhG6E6pVC6dBhkGvCLAjc+Eo1jXAB0XSgtdB2TSAsDMY
+ 2jAYDlUEYwSwIj/Afmef5B1L4OKLBAQAA
+X-Change-ID: 20250320-upstream_ospi_v6-d432a8172105
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: <christophe.kerello@foss.st.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Patrice Chotard
+	<patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-28_03,2025-04-24_02,2025-02-21_01
 
-Add cmu_cpucl1/2(CPU Cluster 1 and CPU Cluster 2) clocks
-for switch, cluster domains respectively.
+This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics.
 
-Signed-off-by: Shin Son <shin.son@samsung.com>
+On STM32MP25 SoCs family, an Octo Memory Manager block manages the muxing,
+the memory area split, the chip select override and the time constraint
+between its 2 Octo SPI children.
+
+Due to these depedencies, this series adds support for:
+  - Octo Memory Manager driver.
+  - Octo SPI driver.
+  - yaml schema for Octo Memory Manager and Octo SPI drivers.
+
+The device tree files adds Octo Memory Manager and its 2 associated Octo
+SPI chidren in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1
+board.
+    
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+
+Changes in v11:
+  - Add stm32_omm_toggle_child_clock(dev, false) in stm32_omm_disable_child() in case of error.
+  - Check MUXEN bit in stm32_omm_probe() to check if child clock must be disabled.
+  - Add dev_err_probe() in stm32_omm_probe().
+  - Link to v10: https://lore.kernel.org/r/20250422-upstream_ospi_v6-v10-0-6f4942a04e10@foss.st.com
+
+Changes in v10:
+  - Add of_node_put() in stm32_omm_set_amcr().
+  - Link to v9: https://lore.kernel.org/r/20250410-upstream_ospi_v6-v9-0-cf119508848a@foss.st.com
+
+Changes in v9:
+  - split patchset by susbsystem, current one include only OMM related
+    patches.
+  - Update SPDX Identifiers to "GPL-2.0-only".
+  - Add of_node_put)() instm32_omm_set_amcr().
+  - Rework error path in stm32_omm_toggle_child_clock().
+  - Make usage of reset_control_acquire/release() in stm32_omm_disable_child()
+    and move reset_control_get in probe().
+  - Rename error label in stm32_omm_configure().
+  - Remove child compatible check in stm32_omm_probe().
+  - Make usage of devm_of_platform_populate().
+  - Link to v8: https://lore.kernel.org/r/20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com
+
+Changes in v8:
+  - update OMM's dt-bindings:
+    - Remove minItems for clocks and resets properties.
+    - Fix st,syscfg-amcr items declaration.
+    - move power-domains property before vendor specific properties.
+  - Update compatible check wrongly introduced during internal tests in
+    stm32_omm.c.
+  - Move ommanager's node outside bus@42080000's node in stm32mp251.dtsi.
+  - Link to v7: https://lore.kernel.org/r/20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com
+
+Changes in v7:
+  - update OMM's dt-bindings by updating :
+    - clock-names and reset-names properties.
+    - spi unit-address node.
+    - example.
+  - update stm32mp251.dtsi to match with OMM's bindings update.
+  - update stm32mp257f-ev1.dts to match with OMM's bindings update.
+  - Link to v6: https://lore.kernel.org/r/20250321-upstream_ospi_v6-v6-0-37bbcab43439@foss.st.com
+
+Changes in v6:
+  - Update MAINTAINERS file.
+  - Remove previous patch 1/8 and 2/8, merged by Mark Brown in spi git tree.
+  - Fix Signed-off-by order for patch 3.
+  - OMM driver:
+    - Add dev_err_probe() in error path.
+    - Rename stm32_omm_enable_child_clock() to stm32_omm_toggle_child_clock().
+    - Reorder initialised/non-initialized variable in stm32_omm_configure()
+          and stm32_omm_probe().
+    - Move pm_runtime_disable() calls from stm32_omm_configure() to
+      stm32_omm_probe().
+    - Update children's clocks and reset management.
+    - Use of_platform_populate() to probe children.
+    - Add missing pm_runtime_disable().
+    - Remove useless stm32_omm_check_access's first parameter.
+  - Update OMM's dt-bindings by adding OSPI's clocks and resets.
+  - Update stm32mp251.dtsi by adding OSPI's clock and reset in OMM's node.
+
+Changes in v5:
+  - Add Reviewed-by Krzysztof Kozlowski for patch 1 and 3.
+
+Changes in v4:
+  - Add default value requested by Krzysztof for st,omm-req2ack-ns,
+    st,omm-cssel-ovr and st,omm-mux properties in st,stm32mp25-omm.yaml
+  - Remove constraint in free form test for st,omm-mux property.
+  - Fix drivers/memory/Kconfig by replacing TEST_COMPILE_ by COMPILE_TEST.
+  - Fix SPDX-License-Identifier for stm32-omm.c.
+  - Fix Kernel test robot by fixing dev_err() format in stm32-omm.c.
+  - Add missing pm_runtime_disable() in the error handling path in
+    stm32-omm.c.
+  - Replace an int by an unsigned int in stm32-omm.c
+  - Remove uneeded "," after terminator in stm32-omm.c.
+  - Update cover letter description to explain dependecies between
+Octo Memory Manager and its 2 Octo SPI children.
+
+Changes in v3:
+  - Squash defconfig patches 8 and 9.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Rename st,stm32-omm.yaml to st,stm32mp25-omm.yaml.
+  - Update STM32 OSPI controller bindings.
+  - Reorder DT properties in .dtsi and .dts files.
+  - Replace devm_reset_control_get_optional() by
+    devm_reset_control_get_optional_exclusive() in stm32_omm.c.
+  - Reintroduce region-memory-names management in stm32_omm.c.
+  - Rename stm32_ospi_tx_poll() and stm32_ospi_tx() to respectively to
+    stm32_ospi_poll() and stm32_ospi_xfer() in spi-stm32-ospi.c.
+  - Set SPI_CONTROLLER_HALF_DUPLEX in controller flags in spi-stm32-ospi.c.
+
+Changes in v2:
+  - Move STM32 Octo Memory Manager controller driver and bindings from
+    misc to memory-controllers.
+  - Update STM32 OSPI controller bindings.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Update STM32 Octo Memory Manager driver to match bindings update.
+  - Update DT to match bindings update.
+
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 ---
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Patrice Chotard (3):
+      dt-bindings: memory-controllers: Add STM32 Octo Memory Manager controller
+      memory: Add STM32 Octo Memory Manager driver
+      MAINTAINERS: add entry for STM32 OCTO MEMORY MANAGER driver
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 9350c53f935e..2cb8041c8a9f 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1090,6 +1090,32 @@ cmu_cpucl0: clock-controller@1ec00000 {
- 				      "cluster",
- 				      "dbg";
- 		};
-+
-+		cmu_cpucl1: clock-controller@1ed00000 {
-+			compatible = "samsung,exynosautov920-cmu-cpucl1";
-+			reg = <0x1ed00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL1_SWITCH>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL1_CLUSTER>;
-+			clock-names = "oscclk",
-+				      "switch",
-+				      "cluster";
-+		};
-+
-+		cmu_cpucl2: clock-controller@1ee00000 {
-+			compatible = "samsung,exynosautov920-cmu-cpucl2";
-+			reg = <0x1ee00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL2_SWITCH>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL2_CLUSTER>;
-+			clock-names = "oscclk",
-+				      "switch",
-+				      "cluster";
-+		};
- 	};
- 
- 	timer {
+ .../memory-controllers/st,stm32mp25-omm.yaml       | 226 ++++++++++
+ MAINTAINERS                                        |   6 +
+ drivers/memory/Kconfig                             |  17 +
+ drivers/memory/Makefile                            |   1 +
+ drivers/memory/stm32_omm.c                         | 476 +++++++++++++++++++++
+ 5 files changed, 726 insertions(+)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250320-upstream_ospi_v6-d432a8172105
+
+Best regards,
 -- 
-2.49.0
+Patrice Chotard <patrice.chotard@foss.st.com>
 
 
