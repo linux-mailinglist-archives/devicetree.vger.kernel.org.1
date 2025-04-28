@@ -1,48 +1,41 @@
-Return-Path: <devicetree+bounces-171500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F4DA9ED5B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:57:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFD8A9ED71
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:02:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D8627A4267
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:55:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C16B177293
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E65225EFB6;
-	Mon, 28 Apr 2025 09:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE30D2036E2;
+	Mon, 28 Apr 2025 10:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cK1UbvJb"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Mr1+vSMz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m19731119.qiye.163.com (mail-m19731119.qiye.163.com [220.197.31.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F32925E828;
-	Mon, 28 Apr 2025 09:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0999BEEAA;
+	Mon, 28 Apr 2025 10:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.119
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745834219; cv=none; b=cLVALvfwFC8SFfNOGtKNM1jK34LL++ueS78VojwZSLYBtCiLDxy17LN4eZ/nNTTTaforP1GZJshOR3JNKqy332GyrCSOFQ+ylc3Rr7XZAU2FDOyTRIaI90YlOO6kIKrVfoqQ8AVK7y0mSKHlLrLPA5+DIHSzi/LYvjuzIJJ7ljA=
+	t=1745834531; cv=none; b=qqa6OC2qo2VZOXL3gR7yy2keXthtCaDIyLBfNnIh0P51mCaVNyOC9URZtjAwQYKRjDWMA65HSeJflYv8wtWEsU5oYPpPNcINFphYSsmI1BJRyrVIoSNnT1ezzZsPstmNIcf6WCd1L4Cke/aea6uQRna18ypr+ffiXOvWLLfXyms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745834219; c=relaxed/simple;
-	bh=r2T2f4YcnuwLgVGxrEmJBYwVZbguYteccSC03jsU86s=;
+	s=arc-20240116; t=1745834531; c=relaxed/simple;
+	bh=/XtTCFABOxSDPYqB/TpLDCSy5GtdVGuDeJGuqGtBvUQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=garySOVjhAhBFp7wGqlXTxS56anwCTI4N9ssQ0L6qx+q6SRmbTDUoG/lqDx2BNrNL+M3yYijnY9QcoTz1DaR3xxCeMOYCyhfmZscZbYtfDapwvJL36tArFISVJiRqx4GMG2JBSaJvrNouKIxaUVRYqohiV3QZGtD/b+GADxg2cE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cK1UbvJb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D59EC4CEE4;
-	Mon, 28 Apr 2025 09:56:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745834218;
-	bh=r2T2f4YcnuwLgVGxrEmJBYwVZbguYteccSC03jsU86s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cK1UbvJbkilMt2yZt38NGkGCaJCmgK07UMQ89sklVxoweOrxzMvT9pv5iXmg85iEI
-	 8CzItlR4AcCS5GUyRfiFUSvY6bGTwvftMQN0Rp2z/IE6kRD2yTM7nL/Ynf0UngDvh6
-	 obALheQRIt4FGZbfAUF8bJ1XZCTlZypEQgYd12pyNUpctlTbBRKr0UUShXStNEFB2E
-	 1E/tmeAdpUi78iopZZblP/Av4IYbkzMxKM+jyWkPaBtQ5kuHRn9ug5E6GPj8rIudU4
-	 6WJJpDGE8DTd9L6RTVR0W1VPcAh+Xg/q9gWSbr5qDINykA53wTKQfYiyQe40GKRiVC
-	 46YT+CTCTVXpg==
-Message-ID: <2248694b-32ea-4af9-99e1-45ced4f4b641@kernel.org>
-Date: Mon, 28 Apr 2025 11:56:54 +0200
+	 In-Reply-To:Content-Type; b=A2/47Xqq/M8agJrpgXJEUjgVNrN9+tT1EX6ugNLPLrGGQzggShOlQMVUpMdP9oNUC86OtmMa4VIyw9c173NMpLp5Pzwgv3kHCQLhvTE8m8cDknFZw2xSTNKbh88J3zniujztI2HdWpzkIyr14BiO4zIYzTiABKIYhdN1n9oxoPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Mr1+vSMz; arc=none smtp.client-ip=220.197.31.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1365c5568;
+	Mon, 28 Apr 2025 18:01:56 +0800 (GMT+08:00)
+Message-ID: <cc0dd83c-a9f6-4c3d-b45f-29ce5480ae2c@rock-chips.com>
+Date: Mon, 28 Apr 2025 18:01:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,79 +43,352 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND ath-next 1/2] dt-bindings: net: wireless: ath12k:
- describe firmware-name property
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, jjohnson@kernel.org,
- johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
- <20250424005703.2479907-2-quic_miaoqing@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250424005703.2479907-2-quic_miaoqing@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
+To: Quentin Schulz <quentin.schulz@cherry.de>, Chaoyi Chen
+ <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Jimmy Hon <honyuenkwun@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Alexey Charkov <alchark@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250427094211.246-1-kernel@airkyi.com>
+ <20250427094211.246-3-kernel@airkyi.com>
+ <561d13ec-c487-4695-b50f-af8f2a65c61c@cherry.de>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <561d13ec-c487-4695-b50f-af8f2a65c61c@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh9ITlZCGklKTR1PHk9IHkpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a967bd8a0e003abkunm1365c5568
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBQ6Pww6TjJOETRNDxE#KTMw
+	LDMwFBNVSlVKTE9OQ0hPTklPS05DVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
+	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBQk1PQjcG
+DKIM-Signature:a=rsa-sha256;
+	b=Mr1+vSMz1G1xqTNpa9kwj4mUF55N7iHA8PK+o9pSC/I2WBm/FAYsSodLTYiHFRwCBB1okowcpMitz98rSEThsGXOaa+RuO8AumPy3m6kGAmsC3+BBkFCDXBpfNCMu4wyOfZ9bnTvuWThnZqxLVUJqZELTNjHjU4YfN8bscfoBik=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=NL7rXic5Deq/XuNvQqdkSaO2B07wh3fSCUtIWJkyaKo=;
+	h=date:mime-version:subject:message-id:from;
 
-On 24/04/2025 02:57, Miaoqing Pan wrote:
-> Introduce 'firmware-name' property to allow end-users and/or integrators
-> to decide which usecase-specific firmware to run on the WCN7850 platform.
-> This is necessary due to resource limitations such as memory capacity and
-> CPU capability, or performance and power optimization for different
-> application scenarios.
-> 
-> Two firmwares are supported: 'WCN7850/hw2.0' and 'WCN7850/hw2.0/ncm825'.
-> The former is the default firmware, suitable for most WiFi 7 STA
-> functions. The latter adds support for commercial-quality SAP and
-> optimizes power consumption for IoT applications.
-> 
+Hi Quentin,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 2025/4/28 16:19, Quentin Schulz wrote:
+> Hi Chaoyi,
+>
+> On 4/27/25 11:42 AM, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> General feature for rk3399 industry evaluation board:
+>> - Rockchip RK3399
+>> - 4GB LPDDR4
+>> - emmc5.1
+>> - SDIO3.0 compatible TF card
+>> - 1x HDMI2.0a TX
+>> - 1x HDMI1.4b RX with TC358749XBG HDMI to MIPI CSI2 bridge chip
+>> - 1x type-c DisplayPort
+>> - 3x USB3.0 Host
+>> - 1x USB2.0 Host
+>> - 1x Ethernet / USB3.0 to Ethernet
+>>
+>
+> Are there publicly available schematics by any chance?
 
-Best regards,
-Krzysztof
+Sorry, there is no publicly available information at present.
+
+
+>
+>> Tested with HDMI/GPU/USB2.0/USB3.0/Ethernet/TF card/emmc.
+>>
+>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>   .../boot/dts/rockchip/rk3399-evb-ind.dts      | 222 ++++++++++++++++++
+>>   2 files changed, 223 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile 
+>> b/arch/arm64/boot/dts/rockchip/Makefile
+>> index 3e8771ef69ba..8a3adb7482ca 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -40,6 +40,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-px5-evb.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-r88.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-eaidk-610.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-evb.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-evb-ind.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-ficus.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-firefly.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-gru-bob.dtb
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts 
+>> b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
+>> new file mode 100644
+>> index 000000000000..a995d4ff202d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
+>> @@ -0,0 +1,222 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2025 Rockchip Electronics Co., Ltd.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "rk3399-base.dtsi"
+>> +
+>> +/ {
+>> +    model = "Rockchip RK3399 EVB IND LPDDR4 Board";
+>> +    compatible = "rockchip,rk3399-evb-ind", "rockchip,rk3399";
+>> +
+>> +    aliases {
+>> +        ethernet0 = &gmac;
+>> +        mmc0 = &sdhci;
+>> +        mmc1 = &sdmmc;
+>> +    };
+>> +
+>> +    chosen {
+>> +        stdout-path = "serial2:1500000n8";
+>> +    };
+>> +
+>> +    clkin_gmac: external-gmac-clock {
+>> +        compatible = "fixed-clock";
+>> +        clock-frequency = <125000000>;
+>> +        clock-output-names = "clkin_gmac";
+>> +        #clock-cells = <0>;
+>> +    };
+>> +
+>> +    vcc5v0_sys: regulator-vcc5v0-sys {
+>> +        compatible = "regulator-fixed";
+>> +        enable-active-high;
+>> +        gpio = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
+>> +        regulator-name = "vcc5v0_sys";
+>> +        regulator-always-on;
+>> +        regulator-boot-on;
+>> +        regulator-max-microvolt = <5000000>;
+>> +        regulator-min-microvolt = <5000000>;
+>> +    };
+>> +
+>> +    vcc_phy: regulator-vcc-phy {
+>> +        compatible = "regulator-fixed";
+>> +        regulator-always-on;
+>> +        regulator-boot-on;
+>> +        regulator-name = "vcc_phy";
+>> +    };
+>> +};
+>> +
+>> +&emmc_phy {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&gmac {
+>> +    assigned-clocks = <&cru SCLK_RMII_SRC>;
+>> +    assigned-clock-parents = <&clkin_gmac>;
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&rgmii_pins>;
+>> +    clock_in_out = "input";
+>> +    phy-supply = <&vcc_phy>;
+>> +    phy-mode = "rgmii";
+>> +    snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+>> +    snps,reset-active-low;
+>> +    snps,reset-delays-us = <0 10000 150000>;
+>> +    tx_delay = <0x22>;
+>> +    rx_delay = <0x23>;
+>> +    status = "okay";
+>> +};
+>> +
+>> +&gpu {
+>> +    mali-supply = <&vdd_gpu>;
+>> +    status = "okay";
+>> +};
+>> +
+>> +&hdmi {
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&hdmi_i2c_xfer>, <&hdmi_cec>;
+>> +    status = "okay";
+>> +};
+>> +
+>> +&hdmi_in_vopl {
+>> +    status = "disabled";
+>> +};
+>> +
+>
+> Why disabled?
+Will fix this on v2.
+>
+>> +&hdmi_sound {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&i2c0 {
+>> +    clock-frequency = <400000>;
+>> +    i2c-scl-falling-time-ns = <4>;
+>> +    i2c-scl-rising-time-ns = <168>;
+>> +    status = "okay";
+>> +
+>> +    vdd_gpu: tcs4526@10 {
+>> +        compatible = "tcs,tcs4525";
+>> +        reg = <0x10>;
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&vsel2_gpio>;
+>> +        fcs,suspend-voltage-selector = <1>;
+>> +        vin-supply = <&vcc5v0_sys>;
+>> +        vsel-gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
+>> +        regulator-compatible = "fan53555-reg";
+>> +        regulator-always-on;
+>> +        regulator-boot-on;
+>> +        regulator-initial-state = <3>;
+>> +        regulator-max-microvolt = <1500000>;
+>> +        regulator-min-microvolt = <712500>;
+>> +        regulator-name = "vdd_gpu";
+>> +        regulator-ramp-delay = <1000>;
+>> +        regulator-state-mem {
+>> +            regulator-off-in-suspend;
+>> +        };
+>
+> No RK80x PMIC on this board?
+
+It has a RK809 PMIC on this board.  I will add this on v2.
+
+
+>
+>> +    };
+>> +};
+>> +
+>
+> Missing io_domains here no? I guess it'll rely on the addition of the 
+> RK80x PMIC for this to work?
+
+Yes, I will add this on v2.
+
+
+>
+>> +&sdmmc {
+>> +    bus-width = <4>;
+>> +    cap-mmc-highspeed;
+>> +    cap-sd-highspeed;
+>> +    cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
+>> +    disable-wp;
+>> +    max-frequency = <150000000>;
+>
+> It's already defaulting to that frequency in rk3399-base.dtsi so no 
+> need to duplicate the info here.
+Will fix this on v2.
+>
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
+>> +    status = "okay";
+>> +};
+>> +
+>> +&sdhci {
+>> +    bus-width = <8>;
+>> +    keep-power-in-suspend;
+>> +    mmc-hs400-1_8v;
+>> +    mmc-hs400-enhanced-strobe;
+>> +    no-sdio;
+>> +    no-sd;
+>> +    non-removable;
+>> +    status = "okay";
+>> +};
+>> +
+>> +&tcphy0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&tcphy1 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy0_host {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy0_otg {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy1 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy1_host {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&u2phy1_otg {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&uart2 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usbdrd_dwc3_0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usbdrd3_0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usbdrd3_1 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usbdrd_dwc3_1 {
+>> +    dr_mode = "host";
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usb_host0_ehci {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usb_host0_ohci {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usb_host1_ehci {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&usb_host1_ohci {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&pinctrl {
+>> +    pmic {
+>> +        vsel2_gpio: vsel2-gpio {
+>> +            rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&vopb {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&vopb_mmu {
+>> +    status = "okay";
+>> +};
+>
+> Why no vopl?
+Will enable vopl in v2.
+>
+> Cheers,
+> Quentin
+>
+>
+
+
+
 
