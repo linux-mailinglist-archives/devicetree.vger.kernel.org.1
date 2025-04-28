@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-171372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F85CA9E8F4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:14:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDED8A9E904
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6441317775E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:14:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B1EC3B4FE1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403F11D5174;
-	Mon, 28 Apr 2025 07:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3094918C937;
+	Mon, 28 Apr 2025 07:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qD/IzE5B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rwTJQr9y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1196D1D63EF;
-	Mon, 28 Apr 2025 07:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053DDBE67;
+	Mon, 28 Apr 2025 07:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745824453; cv=none; b=NecM4ccn9y1SQcomQKj5SK9YWa906X736jQU+RMZHybBoRn+7khZPWKPCsyJ7ReYxAkYgCn/FgEg6CyxiwKag4C3R1zTIil97+RtTPtyVk03mjHshKKS5dVhT4Ms6fZU4lB5vKAAPbLEIlqkCIu8VYDw/86R/5ekU+INrvTTn0A=
+	t=1745824692; cv=none; b=YBrpTY4j1kr9UlgAS/oCUNdpGbrFbzfcF0Mrd888bmpLTwh4zg9nfknJ8wRtrSWba6/UPPWdt184UqoolhxO4RD4LYUJKLzrY1o/FV7quh5Q9t5UcyJvo03tDDd5ItS0+ge592q/pc99JqT8+U7DLHZ1s24kxqz8oST7RjMOx4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745824453; c=relaxed/simple;
-	bh=mCUt9fkBf8zZ7IpdC7td2+clNz0tsoKFKyFgL2XiRuw=;
+	s=arc-20240116; t=1745824692; c=relaxed/simple;
+	bh=/0xPqEi4eGB7ZunkNZvmwTimsz0kANTHGgLoKeMuoqQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L1wHm6RtfjGh+vh2j61b3EIuC9szgwF9B8XjS5Mhv1fnl6LIDEs8KIeO6QxC+AlGmdHZpSmUjqNHcniR4MrECVoLxOPsHAvcIAFz5IEliR4c/CQrIQWoh0oQPC4hs8YdWkEjnGv0wCXZnp2fti8h4eiPhQ5oKFNsIQ5cljbeu4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qD/IzE5B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7645C4CEE4;
-	Mon, 28 Apr 2025 07:14:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=q8vawX6OHU0DmUNw5rqnebyuJxmJjbvtS1ZyNAwzbjeCXcUwph2TV9uEvjNMV0VHWgfspCuWBg3zZm8Zhf07n5vT7FFCv8gx6z3JtorS4Tt9nk9biAL0R7ljX/fqEMV3YKdXR/yV5bK5kB96UuZrzPnNoHMR7KyqnTFet/SkPDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rwTJQr9y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8874C4CEE4;
+	Mon, 28 Apr 2025 07:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745824452;
-	bh=mCUt9fkBf8zZ7IpdC7td2+clNz0tsoKFKyFgL2XiRuw=;
+	s=k20201202; t=1745824691;
+	bh=/0xPqEi4eGB7ZunkNZvmwTimsz0kANTHGgLoKeMuoqQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qD/IzE5BBaoMQ6h+9XjVfhvokauEWt3uYy76zSnc5zoJ9ACzirtmdKXAkSF4KqseK
-	 HLdXwfXFg4Q3Y2gfuVYM5bVIlFXHdhyPOocJl4MsnNPnPvexV6MpFdtKsw6lC6qEDg
-	 TLPkmU8R9tGnYk9l0q1C3/um9hXS0XO6IDkqwa+w/SevVuG04XtctWb4BOO3RmYCAV
-	 qckaiyOG+hKbVGLbPAlLRkDZeI+7nbPDjbh5xzQN+q5zQSllKC1OXSG30FKIFEix2Z
-	 I0GFYnuHxYuJcmL4sef0FFDFT31r5JMGUJD8svlpkZ0P0grwI6MW9FRdMu/l2MswwD
-	 wsdFN7saeJVnA==
-Date: Mon, 28 Apr 2025 09:14:09 +0200
+	b=rwTJQr9y96C4JJI8SsaD3r2Oo+hM+AZaPvjhjKbfHV6aiFs+V7TSR/10eiXqUHDKI
+	 ycX5ZC8uWeCbSf2VlQ3jOb/9UfGPSNjB3j9S2ukYb3jtGTo6mjogkvXQ0vLzWq4aYU
+	 Vhg8PnkG9Fb4GEjyzq812JAfZKWGZeDojY8RdPaJ2s3dhwmHSSU4EVHIA+eZrgGN9x
+	 FRxLZcAV8wXlecHWk4wRxPLQmiZQRyeaOhl0hbxWa4TvWKd8k4fHMEd+q5kSl3Xmnn
+	 W3+umR7NY0uYJN8Hjjf8R36L0cPcWqjLY7Fd8Y5FPHRqF16nNFqifCsXox5MoDCkuJ
+	 7B3GrmOnBesKQ==
+Date: Mon, 28 Apr 2025 09:18:08 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dmitry.baryshkov@oss.qualcomm.com, loic.poulain@oss.qualcomm.com, vladimir.zapolskiy@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: qcom,x1e80100-camss: Fixup
- csiphy supply names
-Message-ID: <20250428-lovely-flawless-grasshopper-bacbfa@kuoka>
-References: <20250426-b4-media-committers-25-04-25-camss-supplies-v3-0-19e5e72ffc3e@linaro.org>
- <20250426-b4-media-committers-25-04-25-camss-supplies-v3-1-19e5e72ffc3e@linaro.org>
+	Thomas Gleixner <tglx@linutronix.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: fsl: convert fsl,vf610-mscm-ir.txt
+ to yaml format
+Message-ID: <20250428-sticky-thistle-booby-fab337@kuoka>
+References: <20250424030305.3868637-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,58 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250426-b4-media-committers-25-04-25-camss-supplies-v3-1-19e5e72ffc3e@linaro.org>
+In-Reply-To: <20250424030305.3868637-1-Frank.Li@nxp.com>
 
-On Sat, Apr 26, 2025 at 11:52:48PM GMT, Bryan O'Donoghue wrote:
-> Declare a CSIPHY regulator pair 0p8 and 1p2 for each CSIPHY.
+On Wed, Apr 23, 2025 at 11:03:03PM GMT, Frank Li wrote:
+> Convert fsl,vf610-mscm-ir.txt to yaml format.
 > 
-> Name the inputs based on the voltage so as to have a consistent naming of
-> these rails across SoCs and PCBs.
+> Additional changes:
+> - remove label at example dts.
 > 
-> There are no upstream users of this yaml definition yet so this change is
-> safe to make.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,x1e80100-camss.yaml        | 52 +++++++++++++++++-----
->  1 file changed, 40 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> index 113565cf2a991a8dcbc20889090e177e8bcadaac..dc7c1a9394c3b547f5e0885bf501ed42dfbeba88 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> @@ -118,14 +118,6 @@ properties:
->        - const: ife1
->        - const: top
->  
-> -  vdd-csiphy-0p8-supply:
-> -    description:
-> -      Phandle to a 0.8V regulator supply to a PHY.
-> -
-> -  vdd-csiphy-1p2-supply:
-> -    description:
-> -      Phandle to 1.8V regulator supply to a PHY.
-> -
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->  
-> @@ -157,6 +149,30 @@ properties:
->                - clock-lanes
->                - data-lanes
->  
-> +  vdd-csiphy0-0p8-supply:
-> +    description: Phandle to a 0.8V regulator supply to csiphy0.
-> +
-> +  vdd-csiphy0-1p2-supply:
-> +    description: Phandle to a 1.2V regulator supply to csiphy0.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Block has VDD_A_CSI_0_1_1P2 input, not separate one for CSI0 and CS1.
-I don't get what is the benefit of this and commit msg does not help me
-to understand such choice.
-
-On IRC I clarified you could have less supplies in the binding than
-number of actual pins, to make things simpler and more consistent, but
-you did here reverse: more supplies which do not exist.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
