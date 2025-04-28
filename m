@@ -1,136 +1,103 @@
-Return-Path: <devicetree+bounces-171409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791A5A9E9DE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:46:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7EEA9E9F1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6059172EFE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:46:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF1933BCE7E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE99211497;
-	Mon, 28 Apr 2025 07:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7D41E9B21;
+	Mon, 28 Apr 2025 07:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="G8WL59Q8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UxXxFQUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F6D207A0C;
-	Mon, 28 Apr 2025 07:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A890B1DF25C;
+	Mon, 28 Apr 2025 07:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745826308; cv=none; b=ZL2fzXuxDD9AattgZZYDobt3zgPhvIavi+E5ACUrHL+nM7C+H44Q/jEZf3Ikfvem0WVnMSA/rsS7LTI/OpzrmNFGm2vzdFQvdPWtvy8Q4dEEw2xGA0jVHR6VSBm+yaaT1y9zmkkJers+RfrgM6wqQtWTph660O6+IaPrgk4cQGc=
+	t=1745826349; cv=none; b=mNAkwNxdpf8jJXUJXOwcF0dRKSW11/u4mPpmi5uw47l/8vv5SBbSi0P4yeSWEFBRiIBAvwQSQ0FQslZOizpOSLawZKPLHLOm9wLVYDUc7b9yy8RZrxBJ6isnJzW9jE/+ok3YvgQS2HzHC17BPFURIGG4OXiVfVSqzefLkw6XgfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745826308; c=relaxed/simple;
-	bh=sYQ6B7NzsfvqX0//BLuWeqyxFo/2GSTdIjJU9ka+AVo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QGprM3GCEx9juCgp1vS7wMIqhgYE1k/AK2K05i+xoIs+zYyihVLC701J3ZEeU/CH5DKWgv9rZ3Z2KtSKdT2twA+jiMTAbRAbVl9e8LFNABrchbyevXbybYQoJXGR0Aq6i8IUqH8j9k80wk0dKPN0am8jOVEmJMDhI/lqBbAmP0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=G8WL59Q8; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D536A1026E031;
-	Mon, 28 Apr 2025 09:45:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1745826304; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=VN3o0wFrWc57zwxhcG8RbbscKVODx7qIHApQnCHyMCM=;
-	b=G8WL59Q8+75X4Y2yXfprCsSM5C1bmMhplw49Cm/ImjpWNHUxrA542VF6TNkvqaRQmaEbql
-	Hw+nuguCj/kq3wP0XOchR9mb1OaxgHmMeqDLoC79zFOkfdgokA/4AZct/emv/lV3FlAJUZ
-	iWf1Y0ajdfdWjvDC6nCCwo0LZiI8Tcn9KSAJWd6IZpNEE1EBWLkfoCFOgwBdTBlXGDfOm4
-	He7Lp8uiDKu3uhQkKYvxJcQoihLUjFA6a3DcWcb01j5kCfvK0bh960YY5sATa0ZGadSgzs
-	ZxKKmNVglMRBhjHGjOiFmX2K51zWGIQt6N8DPj9BH1Xi+gWXNwRsRBIDbvC1LA==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1745826349; c=relaxed/simple;
+	bh=kppXuiS+8xqPRG5sBttxhO/jv23p9dH1yPP/0KlrHC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p29fammrfEQhE2Hqd3gSQzHrBKIDPq63KKRfw544XOBwj0reM2gyD+WaNtn4U5Ahh7JFPS8vDU05YIlau1CJ36PuP5cfkGX/UdsnULbD7X6vUaaWxTiLc85sh0LEGkssJm5AkL6c04Guq9qmZIUx6gj96zJXpB1YkYBG1L+fSA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UxXxFQUw; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745826348; x=1777362348;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kppXuiS+8xqPRG5sBttxhO/jv23p9dH1yPP/0KlrHC8=;
+  b=UxXxFQUwIiNKBpG2M8qbfRf+/HV4GM97dene2lBAnPAv1BXxEi21kUMP
+   J3NKAEOCr9ZqgtUBFUC/JXCSCCkDokvv0I5s5ZCqjr4lGJv4C7Qx5DyT9
+   5TrKcf/znAiPcN7gimaMUcrD/VR/Og2LDsV2bsxd0jDTSYa2m8IR6txp1
+   Vv5kVCfNcKALPux4D5QQxGBSYAQBwRZOLsVzMMMgursifOzpHeG1SqNuA
+   BzEWTIxLa2T4jr8gW42UDGwaWkqjL0N0XFvIlgIPO/dfI6RnZkxEbEjAA
+   URhpWocEm0h6N52KrT0UlgIzvte74vIwABNeyEEbZVECWAJow8VQLpBjf
+   w==;
+X-CSE-ConnectionGUID: Nlp1091aRYaX2SKqepIHnw==
+X-CSE-MsgGUID: r1acmouuSRCA6QKLoAXH+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="47545062"
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; 
+   d="scan'208";a="47545062"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 00:45:47 -0700
+X-CSE-ConnectionGUID: gXt0AyZDRHGPDxmAVgVnuA==
+X-CSE-MsgGUID: IA9EteJAShyegnxW+Wef0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; 
+   d="scan'208";a="138617872"
+Received: from smile.fi.intel.com ([10.237.72.55])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 00:45:43 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u9JBM-000000011Kl-09HN;
+	Mon, 28 Apr 2025 10:45:40 +0300
+Date: Mon, 28 Apr 2025 10:45:39 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Kent Gustavsson <kent@minoris.se>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v8 7/7] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Mon, 28 Apr 2025 09:44:24 +0200
-Message-Id: <20250428074424.3311978-8-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250428074424.3311978-1-lukma@denx.de>
-References: <20250428074424.3311978-1-lukma@denx.de>
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kent Gustavsson <nedo80@gmail.com>, devicetree@vger.kernel.org,
+	Lukas Rauber <lukas.rauber@janitza.de>
+Subject: Re: [PATCH v2 1/3] iio: adc: mcp3911: fix device dependent mappings
+ for conversion result registers
+Message-ID: <aA8yI27J4d_bFaGe@smile.fi.intel.com>
+References: <20250428-mcp3911-fixes-v2-0-406e39330c3d@gmail.com>
+ <20250428-mcp3911-fixes-v2-1-406e39330c3d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250428-mcp3911-fixes-v2-1-406e39330c3d@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-This patch enables support for More Than IP L2 switch available on some
-imx28[7] devices.
+On Mon, Apr 28, 2025 at 08:54:11AM +0200, Marcus Folkesson wrote:
+> The conversion result registers differs between devices. Make sure the
+> mapping is correct by using a device dependent .get_raw() callback function.
 
-Moreover, it also enables CONFIG_SWITCHDEV and CONFIG_BRIDGE required
-by this driver for correct operation.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
----
-Changes for v4:
-- New patch
-
-Changes for v5:
-- Apply this patch on top of patch, which updates mxs_defconfig to
-  v6.15-rc1
-- Add more verbose commit message with explanation why SWITCHDEV and
-  BRIDGE must be enabled as well
-
-Changes for v6:
-- None
-
-Changes for v7:
-- None
-
-Changes for v8:
-- None
----
- arch/arm/configs/mxs_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index b1a31cb914c8..ef4556222274 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -34,6 +34,8 @@ CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -52,6 +54,7 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
 -- 
-2.39.5
+With Best Regards,
+Andy Shevchenko
+
 
 
