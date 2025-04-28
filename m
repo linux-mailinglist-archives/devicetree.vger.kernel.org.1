@@ -1,40 +1,48 @@
-Return-Path: <devicetree+bounces-171461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC36A9EB71
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:06:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA80A9EB85
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:11:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB28C1895538
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:06:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D00A73B3CF1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DD325D53E;
-	Mon, 28 Apr 2025 09:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641CA25EF9B;
+	Mon, 28 Apr 2025 09:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRg3Nghy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB739B672;
-	Mon, 28 Apr 2025 09:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9D51CAA6C;
+	Mon, 28 Apr 2025 09:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745831201; cv=none; b=fn0Nn200woebtMBM4Y3ObcJqNHMfg3eIxfv4yJz1dAh+JyhCrmSbS01cGbqPqrb1BuDWbo2SiCJUTZkILIgxbhJOpELVDDNHMWditF2BgkangbmrSeWGwQtWYLG8Q2Kxi1cVKfpI51fRPo9s2V2x/4lBNGPB+itNvmce/kZBBvs=
+	t=1745831501; cv=none; b=OpX4ACb6GVbd2U+E8JSZjglkGN+zmVPLcElfOJqSCf7N3Bf2fOhIWtUmVj524qTZERg9misCOmXpR/79XB/p2kEAhsR/GixBzGEb/QTVP5L7PTzy2KsVCZu59QfkZO/SJsWJ+vZmMlvE2MZFwATpwLgzJgrI2e31ot6OJEszzgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745831201; c=relaxed/simple;
-	bh=LNo/xdsUolHxYQUv52HGSaorVZ7jl2MegopSWIyC/JI=;
+	s=arc-20240116; t=1745831501; c=relaxed/simple;
+	bh=7m0tP+q4T5mcm3kYzYk7AvWbv0g1gUih3/SFHpcXZHU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a/DKmK2pKXq0sbw8r85POIuamM/usUIP4plPbD6axmIl0aeIWsARAaOp4kdW54Upe8GnXD6guaqeeCuFQnhWWiXs4heALS4xh5sw5xf3chSWpf6Q+ap/ZB7fI9EowZ1A7fwdcS9MhjUdoNKW7t27gu1StiHN/z73aSI8eEVQRUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5EDDB1595;
-	Mon, 28 Apr 2025 02:06:32 -0700 (PDT)
-Received: from [10.1.37.44] (Suzukis-MBP.cambridge.arm.com [10.1.37.44])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 00B283F673;
-	Mon, 28 Apr 2025 02:06:35 -0700 (PDT)
-Message-ID: <3094b6e7-0de9-43a3-9678-4b1844aa600c@arm.com>
-Date: Mon, 28 Apr 2025 10:06:35 +0100
+	 In-Reply-To:Content-Type; b=S/tZ2y6WgbpopsYpFM6SliNCk13QapXTYCKXUdAXdF5AVQZXNLYccaIozQhE9gPspCrv+jUJ4a3DHBWbMYNGQ24ScR9x5Djod89aXMH0LiaVquAz9kjqvAvZlTW2aVoCR2Oqqf9aUpbI7YQomzU5t7HufQDKvk7+adnG1TK1huc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRg3Nghy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 115A2C4CEE4;
+	Mon, 28 Apr 2025 09:11:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745831501;
+	bh=7m0tP+q4T5mcm3kYzYk7AvWbv0g1gUih3/SFHpcXZHU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YRg3NghyMqn8irHaDhFHiyYABHnLpFnoCpsABEGAMKZ/8HEGybgmAJBEvfVb/zjPY
+	 9fjMi0IAS1c7ZSgJkYEMBAN4AdDScDz++w5lbt3hZjuJae7wE/fwRdi88r6tz+BVDB
+	 V0hzj7xumBfGQ6LPn46wN8yeJ4Zy3xBFr0LVGDYe/Z6OIcvBAXhQ1E/fpQUOuCupg1
+	 cynOMhdvmOxLLJ22vUp2pkdvGsGh94jyjZ0ndbSwQFX/BmZWBVsUCcME+OdOrvyJ1H
+	 7zxYBbLfPwFtx0gS7L5x3Yf/dD2UcpykUfxotWrokpzsP8xKHJLEnJN9EQmT/yvfjN
+	 eT4OghP0/l52g==
+Message-ID: <628faa57-f135-4f62-9827-5c98d9265391@kernel.org>
+Date: Mon, 28 Apr 2025 11:11:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,81 +50,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/11] dt-bindings: arm:
- arm,coresight-static-replicator: add optional clocks
-Content-Language: en-GB
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Georgi Djakov <djakov@kernel.org>,
- Lee Jones <lee@kernel.org>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- David Heidelberg <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250425-fix-nexus-4-v3-0-da4e39e86d41@oss.qualcomm.com>
- <20250425-fix-nexus-4-v3-6-da4e39e86d41@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250425-fix-nexus-4-v3-6-da4e39e86d41@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v1 1/6] dt-bindings: crypto: Document support for SPAcc
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ herbert@gondor.apana.org.au, Ruud.Derwig@synopsys.com,
+ manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
+ Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+References: <20250423101518.1360552-1-pavitrakumarm@vayavyalabs.com>
+ <20250423101518.1360552-2-pavitrakumarm@vayavyalabs.com>
+ <e5f47f52-807d-45ce-bd62-090f4af72b3a@kernel.org>
+ <CALxtO0k0jeZF=Y5Ut_yhX8DxC3hVHWpnrcdJeBXP_GpA=O5T4w@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CALxtO0k0jeZF=Y5Ut_yhX8DxC3hVHWpnrcdJeBXP_GpA=O5T4w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Dmitry
-
-On 25/04/2025 18:47, Dmitry Baryshkov wrote:
-> As most other CoreSight devices the replicator can use either of the
-> optional clocks. Document those optional clocks in the schema.
-> Additionally document the one-off case of Zynq-7000 platforms which uses
-> apb_pclk and two additional debug clocks.
-
-What is the plan for merging this series ? I am happy to pick this patch
-via coresight tree.
-
+On 28/04/2025 10:13, Pavitrakumar Managutte wrote:
+> Hi Krzysztof,
+>    My comments are embedded below.
 > 
-> Fixes: 3c15fddf3121 ("dt-bindings: arm: Convert CoreSight bindings to DT schema")
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-Otherwise,
-
-
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-
-Suzuki
-
-
-
-> ---
->   .../bindings/arm/arm,coresight-static-replicator.yaml       | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
+> Warm regards,
+> PK
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> index a6f793ea03b6c193fc0ff72a45e0249a63a2ba3c..0c1017affbad2f03892b250ad864d9a5dc8d02f1 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> @@ -30,6 +30,19 @@ properties:
->     power-domains:
->       maxItems: 1
->   
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - enum: [apb_pclk, atclk]
-> +      - items: # Zynq-700
-> +          - const: apb_pclk
-> +          - const: dbg_trc
-> +          - const: dbg_apb
-> +
->     in-ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->       additionalProperties: false
 > 
+> On Wed, Apr 23, 2025 at 6:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 23/04/2025 12:15, Pavitrakumar M wrote:
+>>> From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+>>>
+>>> Add DT bindings related to the SPAcc driver for Documentation.
+>>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
+>>
+>> These IP blocks are rarely usable on their own and need SoC
+>> customization. Where any SoC users? Where are any SoC compatibles?
+>>
+> 
+> PK: This is a new IP designed by Synopsys, which we tested on the Xilinx
+> Zynqmp FPGA (ZCU104 board).
+>        This is NOT a part of any SoC yet, but it might be in future.
+>        Could you offer suggestions on how to handle such a case?
 
+Hm? How is it possible to use it outside of a SoC?
+
+Best regards,
+Krzysztof
 
