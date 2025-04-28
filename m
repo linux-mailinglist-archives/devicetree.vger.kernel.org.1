@@ -1,103 +1,92 @@
-Return-Path: <devicetree+bounces-171410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7EEA9E9F1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:49:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CABFA9E9FC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF1933BCE7E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:47:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 812D63BEE09
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 07:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7D41E9B21;
-	Mon, 28 Apr 2025 07:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D857207A18;
+	Mon, 28 Apr 2025 07:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UxXxFQUw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZCqHxsO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A890B1DF25C;
-	Mon, 28 Apr 2025 07:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF91202C38;
+	Mon, 28 Apr 2025 07:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745826349; cv=none; b=mNAkwNxdpf8jJXUJXOwcF0dRKSW11/u4mPpmi5uw47l/8vv5SBbSi0P4yeSWEFBRiIBAvwQSQ0FQslZOizpOSLawZKPLHLOm9wLVYDUc7b9yy8RZrxBJ6isnJzW9jE/+ok3YvgQS2HzHC17BPFURIGG4OXiVfVSqzefLkw6XgfI=
+	t=1745826362; cv=none; b=Hv0O9VMtqQVRw4ThLWLWwV3GjBAUiB9iLqyFxRbmh/UR40oh3cQ3PYRZkNd6z4/n2QfRwc6wkRYVBdXbjKAQynm6ZBMQEhA/edYhM5WeKNoibKUjs8B9m//EVz4D0MMHoNzpeVgz53cFWNojoxVhexTthanqs/S4Io4OfJZ1clI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745826349; c=relaxed/simple;
-	bh=kppXuiS+8xqPRG5sBttxhO/jv23p9dH1yPP/0KlrHC8=;
+	s=arc-20240116; t=1745826362; c=relaxed/simple;
+	bh=EJbGodDqIP+tS3Kofqbo9nkkax/3cglXQM+EtLKvhdg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p29fammrfEQhE2Hqd3gSQzHrBKIDPq63KKRfw544XOBwj0reM2gyD+WaNtn4U5Ahh7JFPS8vDU05YIlau1CJ36PuP5cfkGX/UdsnULbD7X6vUaaWxTiLc85sh0LEGkssJm5AkL6c04Guq9qmZIUx6gj96zJXpB1YkYBG1L+fSA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UxXxFQUw; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745826348; x=1777362348;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kppXuiS+8xqPRG5sBttxhO/jv23p9dH1yPP/0KlrHC8=;
-  b=UxXxFQUwIiNKBpG2M8qbfRf+/HV4GM97dene2lBAnPAv1BXxEi21kUMP
-   J3NKAEOCr9ZqgtUBFUC/JXCSCCkDokvv0I5s5ZCqjr4lGJv4C7Qx5DyT9
-   5TrKcf/znAiPcN7gimaMUcrD/VR/Og2LDsV2bsxd0jDTSYa2m8IR6txp1
-   Vv5kVCfNcKALPux4D5QQxGBSYAQBwRZOLsVzMMMgursifOzpHeG1SqNuA
-   BzEWTIxLa2T4jr8gW42UDGwaWkqjL0N0XFvIlgIPO/dfI6RnZkxEbEjAA
-   URhpWocEm0h6N52KrT0UlgIzvte74vIwABNeyEEbZVECWAJow8VQLpBjf
-   w==;
-X-CSE-ConnectionGUID: Nlp1091aRYaX2SKqepIHnw==
-X-CSE-MsgGUID: r1acmouuSRCA6QKLoAXH+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="47545062"
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; 
-   d="scan'208";a="47545062"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 00:45:47 -0700
-X-CSE-ConnectionGUID: gXt0AyZDRHGPDxmAVgVnuA==
-X-CSE-MsgGUID: IA9EteJAShyegnxW+Wef0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; 
-   d="scan'208";a="138617872"
-Received: from smile.fi.intel.com ([10.237.72.55])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2025 00:45:43 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u9JBM-000000011Kl-09HN;
-	Mon, 28 Apr 2025 10:45:40 +0300
-Date: Mon, 28 Apr 2025 10:45:39 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Kent Gustavsson <kent@minoris.se>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kent Gustavsson <nedo80@gmail.com>, devicetree@vger.kernel.org,
-	Lukas Rauber <lukas.rauber@janitza.de>
-Subject: Re: [PATCH v2 1/3] iio: adc: mcp3911: fix device dependent mappings
- for conversion result registers
-Message-ID: <aA8yI27J4d_bFaGe@smile.fi.intel.com>
-References: <20250428-mcp3911-fixes-v2-0-406e39330c3d@gmail.com>
- <20250428-mcp3911-fixes-v2-1-406e39330c3d@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3WAx7yQAkShRRjGaRasoxT0y/5anCRXtznXLfodrwzalHrx6ldyAvaBjOGmqpO2WjzYfKOta1l0yEKnf90HBMHKI5E2pXXkEd4dYyNtmo4TsPnMapQXUWYviBWhoPPivsm8C2xojlrZxcZAAWGG1GnLPT0H66JVrpSR9hjeK3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZCqHxsO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41701C4CEE4;
+	Mon, 28 Apr 2025 07:46:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745826361;
+	bh=EJbGodDqIP+tS3Kofqbo9nkkax/3cglXQM+EtLKvhdg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QZCqHxsOpKLL7LqfIX1oQLe535edU2oSuet77hgRK0mAo7KbyrmicShQRMFdErpoe
+	 0naOp796dVkdc8FIUEWY67KyJg+rP5U6+FqfME3yqBYu8LCJyL1Hw5RvcS2xQbRGC0
+	 QEF++kH5YoADzdWEsiS4Gy7DFFFHuGy8F5YmA82I7jqTcUmGL5QRN6kpNhwOZIpY9z
+	 Yt2X92zB8JYkrbdjWS1GxTJTjumut69toiWOXTm6rBJvai0Q+6PYfHwScgvmUun+4W
+	 uzyLkjMu9HoxanFkGv8EvCphGMXceqYuGWCbXzkba5OKPsmgC+nDm2toyh0vegI00t
+	 reZLECR7HTgdA==
+Date: Mon, 28 Apr 2025 09:45:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Esben Haabendal <esben@geanix.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hdegoede@redhat.com>, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: goodix: Add
+ no-reset-pull-up property
+Message-ID: <20250428-logical-successful-spoonbill-cd1c6b@kuoka>
+References: <20250422-goodix-no-reset-pull-up-v1-0-3983bb65a1bf@geanix.com>
+ <20250422-goodix-no-reset-pull-up-v1-1-3983bb65a1bf@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250428-mcp3911-fixes-v2-1-406e39330c3d@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250422-goodix-no-reset-pull-up-v1-1-3983bb65a1bf@geanix.com>
 
-On Mon, Apr 28, 2025 at 08:54:11AM +0200, Marcus Folkesson wrote:
-> The conversion result registers differs between devices. Make sure the
-> mapping is correct by using a device dependent .get_raw() callback function.
+On Tue, Apr 22, 2025 at 05:15:02PM GMT, Esben Haabendal wrote:
+> This should be added for boards where there is no pull-up on the reset pin,
+> as the driver will otherwise switch the reset signal to high-impedance to
+> save power, which obviously not safe without pull-up.
+> 
+> Signed-off-by: Esben Haabendal <esben@geanix.com>
+> ---
+>  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> index eb4992f708b70fef93bd4b59b9565123f7c6ad5d..7e5c4b98f2cb1ef61798252ea5c573068a46d4aa 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> @@ -45,6 +45,10 @@ properties:
+>    reset-gpios:
+>      maxItems: 1
+>  
+> +  no-reset-pull-up:
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Is this common property? Where is it defined? Otherwise missing vendor
+prefix.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
