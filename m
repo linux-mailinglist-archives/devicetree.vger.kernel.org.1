@@ -1,146 +1,276 @@
-Return-Path: <devicetree+bounces-171494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B00AA9ED0C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:47:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B3AA9ED34
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61E137AA196
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:45:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3530188428E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA7325FA13;
-	Mon, 28 Apr 2025 09:40:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KfL2A6KF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BDA1FF603;
+	Mon, 28 Apr 2025 09:50:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6901DA4E
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 09:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507A519048A;
+	Mon, 28 Apr 2025 09:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745833220; cv=none; b=SU4/F9Nrb9wJLD51zvQn6WCsNmq26K7bN0HlUgjn+xb7h72ONHe0f8u9bDpFcmVabraTw5RoVz2an1X/uGuRWBV0WDKCyjjwPpoRfwacKXBaVaLiGAgt+uT/Ht7t13Gn/5VD8mFWibn2VZu8GSfdlDyGoY6/OV9bdiwBDn+2Qkc=
+	t=1745833806; cv=none; b=dx2Z2Fb1Vqe8uVyObolSYUg/Kb2kiYlWTnDyihBp63/Eoxj5bxa99stmMOkDajYVTOn8U3tC5AXdNSMWAiMYHvOdaO1vM5xCXpCTgAcTZ5cp5vJFX9z6jKFoG+6iEyzRHvoO/JbEqoZ+1BR+Rh7s7ap7RrGbmKkS35dctMAf7Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745833220; c=relaxed/simple;
-	bh=p4kNQdwzmDnZta4PbgZFZq/U7oDnPl8MzQlY6H2Scpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T1aW2dhgI8j+tHuvJhzPv+Sn7zcOXhSQOgdvjML7QjnX423H3Az8mJSelWLmkeaApVAouPN/SLkcMUedNbT0efKX46hqbIOYHfyYAxCKsc2EavbGC3LvmMfhkdI7rLRjnPezVQ7ujh2wz5TVYmgkJqU4BB7hhRJIHCjiAMY7ftc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KfL2A6KF; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39c0dfba946so3288088f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 02:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745833216; x=1746438016; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/tZd4Ypk5BJk00OTo7JvTXUhxLykKpGhTfHWhdUsfHI=;
-        b=KfL2A6KFL3AMx8D59wiXmSEln9e363SZI7GhY2v0eq0EjdfZk2Ru6wFuUIFTmv6yFV
-         B3NXKlGnXjtPBtp/kaFtMVovlJ1xbqOY9V28wpsZh/+YSMgScR+4GkGkDtqSt29dqrSX
-         MK4eXdXV7s86RvywP+QLar1+/rOHHe52egXH/hcJZFl/E7mmoowGtBDmMe5imkx8shl6
-         rmN3kr8hLVJTSbMi1ajwQl1cPkjkRzE3T6ljayNsdJA0nwkGHjYhbV+pcPJqFazMB2Qa
-         BbzSZOnGcn8OFmDMQHvOHW6JCeA8dRXc5V9V/UMrXh0xxHq5XzsgngPJLXoTDXgTAqdp
-         pUZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745833216; x=1746438016;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/tZd4Ypk5BJk00OTo7JvTXUhxLykKpGhTfHWhdUsfHI=;
-        b=qqByP0DQ4lXmmxKf3DVANSZCq4Hp/eQcOLN3um8gAoa8WY9aPwKsr/Tg09gLRrGNwY
-         flMeSmDwKk9ZBG+JYxGVCsbuiN0V4J51+gi9WCDQzh4OoTnFBej+P5ZDv/72Mfg1gj+H
-         E73VlmNwCH+04OOg4UldJ5g6Cf3/uSWui7CwUfO3kCwv/IkFsMs2V0udzqA8EhIJYnC5
-         p0QhWCnUiQrLLwIMLPejSRrhxSvne90HvPMk6juRQAaJc5tzgG0DzyN3Z58XMqrA70Pp
-         ufnneOkc6597UFHBqTkrvDWN5mwUI5k4ZgUqK0SubZ8NVKSTFwpSM+ee2476nEd+Sq3g
-         ujBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWs2YAw4SpbJmTxrqDSNw7dw6NcYnebupehCioOaVFxd+1qZN/Pg9KRb5pQvWherKqWeIJKbmwHFzyk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZ6Juh8C8CXbSyY6cHJ7UHnxXg0yGRjSFzwyHPBWeNJMFwy2YD
-	Ez3sbUUj/5F1M7WUyv3AusYC/FEEtCURBf6gjbLqGkkCe+QP/kaI8qB1vQCjt2c=
-X-Gm-Gg: ASbGncvcmaH7Ym9BGBUdNTBu/cDJT8jweX5tmdMRM+3HopAsuBVPYRUwLAMpxeXiEcX
-	2g1lxwqDin8HDawLlRRiapTIA46GZQj6nlKQGHB0ZF1BEN/822rD1gWKQLqV+31kGIDfi1YyMan
-	g572eNhsvIDs5DMU12CKEG4mlowrqaMJDiSg53wzZVlh0cOq6tzS11dRiQnWxLCa84uZ5xnOlD8
-	8V4v1ec2LMnQrSv5TSQ/br0O/3OA2drPnlm5KOrJp+rbOCDj2QfM/MqZnoNAvJ5n3pRUqRs27bv
-	vfRTbUNo8Y/b+bcTNQkl7Mvdi4YpdYNQehmQ4mhkh/w9sA==
-X-Google-Smtp-Source: AGHT+IEmllBzyXjLLf+kiGyB+WclUcZwpuBSk7Lzu0+1JVWeTqkNy2mJ6U8hjuYfUNsLgR1qBxihEA==
-X-Received: by 2002:adf:ec87:0:b0:39c:1257:c96f with SMTP id ffacd0b85a97d-3a07adb1766mr4500559f8f.59.1745833216549;
-        Mon, 28 Apr 2025 02:40:16 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a073ca543bsm10716844f8f.34.2025.04.28.02.40.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 02:40:16 -0700 (PDT)
-Date: Mon, 28 Apr 2025 12:40:12 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org,
-	20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 14/23] media: iris: Fix NULL pointer dereference
-Message-ID: <7f37ec27-0221-4bb2-91f9-182244014b5a@stanley.mountain>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
- <20250428-qcom-iris-hevc-vp9-v2-14-3a6013ecb8a5@quicinc.com>
+	s=arc-20240116; t=1745833806; c=relaxed/simple;
+	bh=ARn8mONPmTlVesWVEfl9zh27G6Ld5tHGETk93xsn4Ww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o/d9rMXzHosI3WRYwTaA5pxVZ9KLSOPw5DNz4pgRUvDz+RaliI3IF3Lpu/LCjFJ4uf0M1e7bhvA2xEBqBtMIh70FT2wZpYYmh9z1qQOrljiCAUwfud9qd3G9o850ZaWR8VKSjUIrDeqBJCD87yCIZZxbFBXnalvKLEJ9nVekuIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [27.18.99.221])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1364b8143;
+	Mon, 28 Apr 2025 17:44:46 +0800 (GMT+08:00)
+Message-ID: <c94409d9-3bd1-42c3-b5f6-785e994baa77@whut.edu.cn>
+Date: Mon, 28 Apr 2025 17:44:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-14-3a6013ecb8a5@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] riscv: dts: spacemit: add usb3.0 support for K1
+To: Yao Zi <ziyao@disroot.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250428-b4-k1-dwc3-v2-v1-0-7cb061abd619@whut.edu.cn>
+ <20250428-b4-k1-dwc3-v2-v1-2-7cb061abd619@whut.edu.cn>
+ <aA87PjTsbHxxFOdl@pie.lan>
+Content-Language: en-US
+From: Ze Huang <huangze@whut.edu.cn>
+In-Reply-To: <aA87PjTsbHxxFOdl@pie.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGBhLVkxLQ0oYSEMYTU1DQlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVJSUpZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
+	tZBg++
+X-HM-Tid: 0a967bc8e9ca03a1kunm1364b8143
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K1E6OQw5ITIBCTQWIQI9Ng41
+	EEwwChxVSlVKTE9OQ0hIT0JJT0hNVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
+	TFVKQ1VCQlVJSUpZV1kIAVlBTE5NSTcG
 
-On Mon, Apr 28, 2025 at 02:59:02PM +0530, Dikshita Agarwal wrote:
-> A warning reported by smatch indicated a possible null pointer
-> dereference where one of the arguments to API
-> "iris_hfi_gen2_handle_system_error" could sometimes be null.
-> 
-> To fix this, add a check to validate that the argument passed is not
-> null before accessing its members.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: fb583a214337 ("media: iris: introduce host firmware interface with necessary hooks")
-> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Closes: https://lore.kernel.org/linux-media/634cc9b8-f099-4b54-8556-d879fb2b5169@stanley.mountain/
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index 1ed798d31a3f..cba71b5db943 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -267,7 +267,8 @@ static int iris_hfi_gen2_handle_system_error(struct iris_core *core,
->  {
->  	struct iris_inst *instance;
->  
-> -	dev_err(core->dev, "received system error of type %#x\n", pkt->type);
-> +	if (pkt)
-> +		dev_err(core->dev, "received system error of type %#x\n", pkt->type);
+On 4/28/25 4:24 PM, Yao Zi wrote:
+> On Mon, Apr 28, 2025 at 03:38:12PM +0800, Ze Huang wrote:
+>> Add USB 3.0 support for the SpacemiT K1 SoC, including the
+>> following components:
+>>
+>> - USB 2.0 PHY nodes
+>> - USB 3.0 combo PHY node
+>> - USB 3.0 host controller
+>> - USB 3.0 hub and vbus regulator (usb3_vhub, usb3_vbus)
+>> - DRAM interconnect node for USB DMA ("dma-mem")
+>>
+>> The `usb3_vbus` and `usb3_vhub` regulator node provides a fixed 5V
+>> supply to power the onboard USB 3.0 hub and usb vbus.
+>>
+>> On K1, some DMA transfers from devices to memory use separate buses with
+>> different DMA address translation rules from the parent node. We express
+>> this relationship through the interconnects node("dma-mem").
+>>
+>> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+>> ---
+>>   arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 52 +++++++++++++++++++++++
+>>   arch/riscv/boot/dts/spacemit/k1.dtsi            | 56 +++++++++++++++++++++++++
+>>   2 files changed, 108 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>> index 816ef1bc358ec490aff184d5915d680dbd9f00cb..0c0bf572d31e056955eb2ff377c3262271dcc156 100644
+>> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>> @@ -28,6 +28,25 @@ led1 {
+>>   			default-state = "on";
+>>   		};
+>>   	};
+>> +
+>> +	usb3_vhub: regulator-vhub-5v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "USB30_VHUB";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +	};
+>> +
+>> +	usb3_vbus: regulator-vbus-5v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "USB30_VBUS";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		regulator-always-on;
+>> +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +	};
+>>   };
+>>   
+>>   &uart0 {
+>> @@ -35,3 +54,36 @@ &uart0 {
+>>   	pinctrl-0 = <&uart0_2_cfg>;
+>>   	status = "okay";
+>>   };
+>> +
+>> +&usbphy2 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&combphy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_dwc3 {
+>> +	dr_mode = "host";
+>> +	phy_type = "utmi";
+>> +	snps,hsphy_interface = "utmi";
+>> +	snps,dis_enblslpm_quirk;
+>> +	snps,dis-u1u2-quirk;
+>> +	snps,dis-u2-freeclk-exists-quirk;
+>> +	snps,dis-del-phy-power-chg-quirk;
+>> +	snps,dis_u2_susphy_quirk;
+>> +	snps,dis_u3_susphy_quirk;
+>> +	snps,dis_rxdet_inp3_quirk;
+>> +	snps,xhci-trb-ent-quirk;
+> I suspect whether it's the correct place to put these quirks: they look
+> like IP quirks which are present in every K1 SoC regardless of the
+> board model, if my understanding is correct they should go into SoC
+> devicetree.
 
-I feel like it would be better to do:
+I checked these quirks in differenct board dts in vendor repo, they are 
+actually the same.
+Will follow.
 
-	dev_err(core->dev, "received system error of type %#x\n", pkt ? pkt->type: -1);
+>
+>> +	vbus-supply = <&usb3_vbus>;
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	status = "okay";
+>> +
+>> +	hub@1 {
+>> +		compatible = "usb2109,817";
+>> +		reg = <0x1>;
+>> +		vdd-supply = <&usb3_vhub>;
+>> +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+>> +	};
+>> +};
+>> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+>> index c0cc4b99c9356d550a470291dba9f2625b10f8df..c7b86c850da969e5412ad42c63995cd20b4d0484 100644
+>> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+>> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+>> @@ -4,6 +4,8 @@
+>>    */
+>>   
+>>   #include <dt-bindings/clock/spacemit,k1-syscon.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/phy/phy.h>
+>>   
+>>   /dts-v1/;
+>>   / {
+>> @@ -346,6 +348,13 @@ soc {
+>>   		dma-noncoherent;
+>>   		ranges;
+>>   
+>> +		dram_range0: dram-range@0 {
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
+>> +			#interconnect-cells = <0>;
+>> +		};
+>> +
+>>   		syscon_rcpu: system-controller@c0880000 {
+>>   			compatible = "spacemit,k1-syscon-rcpu";
+>>   			reg = <0x0 0xc0880000 0x0 0x2048>;
+>> @@ -358,6 +367,53 @@ syscon_rcpu2: system-controller@c0888000 {
+>>   			#reset-cells = <1>;
+>>   		};
+>>   
+>> +		usb_dwc3: usb@c0a00000 {
+>> +			compatible = "spacemit,k1-dwc3", "snps,dwc3";
+>> +			reg = <0x0 0xc0a00000 0x0 0x10000>;
+>> +			clocks = <&syscon_apmu CLK_USB30>;
+>> +			clock-names = "bus_early";
+>> +			resets = <&syscon_apmu RESET_USB3_0>;
+>> +			interrupt-parent = <&plic>;
+>> +			interrupts = <125>;
+>> +			interconnects = <&dram_range0>;
+>> +			interconnect-names = "dma-mem";
+>> +			phys = <&usbphy2>, <&combphy PHY_TYPE_USB3>;
+>> +			phy-names = "usb2-phy", "usb3-phy";
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		usbphy0: phy@c0940000 {
+>> +			compatible = "spacemit,usb2-phy";
+>> +			reg = <0x0 0xc0940000 0x0 0x200>;
+>> +			clocks = <&syscon_apmu CLK_USB_AXI>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		usbphy1: phy@c09c0000 {
+>> +			compatible = "spacemit,usb2-phy";
+>> +			reg = <0x0 0xc09c0000 0x0 0x200>;
+>> +			clocks = <&syscon_apmu CLK_USB_P1>;
+>> +			status = "disabled";
+>> +		};
+> Why don't add #phy-cells properties to usbphy{0,1} just like usbphy2?
+> You've claimed #phy-cells as an essential property of
+> spacemit,k1-usb2-phy nodes in the PHY series and I suspect whether this
+> passes dtbs_check.
 
-regards,
-dan carpenter
+The DT bindings for the USB PHY were submitted in an earlier patchset,
+some dts checks about PHY were missed.
+
+I will add #phy-cells in next version. thanks!
+
+>
+>> +		usbphy2: phy@0xc0a30000 {
+>> +			compatible = "spacemit,k1-usb2-phy";
+>> +			reg = <0x0 0xc0a30000 0x0 0x200>;
+>> +			clocks = <&syscon_apmu CLK_USB30>;
+>> +			#phy-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		combphy: phy@c0b10000 {
+>> +			compatible = "spacemit,k1-combphy";
+>> +			reg = <0x0 0xc0b10000 0x0 0x800>,
+>> +			      <0x0 0xd4282910 0x0 0x400>;
+>> +			reg-names = "ctrl", "sel";
+>> +			resets = <&syscon_apmu RESET_PCIE0>;
+>> +			#phy-cells = <1>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>>   		syscon_apbc: system-control@d4015000 {
+>>   			compatible = "spacemit,k1-syscon-apbc";
+>>   			reg = <0x0 0xd4015000 0x0 0x1000>;
+>>
+>> -- 
+>> 2.49.0
+>>
+>>
+> Best regards,
+> Yao Zi
+>
+>
+>
 
 
