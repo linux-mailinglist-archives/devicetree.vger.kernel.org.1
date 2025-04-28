@@ -1,172 +1,132 @@
-Return-Path: <devicetree+bounces-171625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B1BA9F5D2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:29:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEAC0A9F5DE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 18:32:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C5FA3AA2B6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57433189C3BA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A0827A10D;
-	Mon, 28 Apr 2025 16:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EF9279789;
+	Mon, 28 Apr 2025 16:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TTrhAMw7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jJ4sApbP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97DEC2798E6;
-	Mon, 28 Apr 2025 16:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB26B199E9A;
+	Mon, 28 Apr 2025 16:32:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745857790; cv=none; b=tqyqZmYQW7UcpwJGq3Wy1TCyZk+6Lj7UgMp4caOMa/JfVkaMc/Qx24/VA0I9bK+5nSj25g1eCvYFXAq0AeHilTJktwcy5FPQcxDm//X9GhhraO0MFFjlu2BMOW8U59kFcnW3RduDEeQaH7oEJpvA/lbnqnwe0JhBKTVEHdts2as=
+	t=1745857961; cv=none; b=S3Kzs5Seu7AMAoCKxAx3qz+UquyM1qgyK/AnYgte79V62woUW2wgQE8WlAUx7N9xL9Jahb9BLDQHPrZ4gH0MV+3scdAG58Wc6LrIvhkCDXuYsNHDZoNeZmKdxietCAZuZG/znNYXDgxiZetx2MDovkGZaS6xeCQ/j+SSsick1FE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745857790; c=relaxed/simple;
-	bh=ga6YRTY6WCh1L3PSDfGaxU4liPTWXf5+phBc3jEYBdw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fmsoeWUfzVwx4B729xZV9/SiUUO9wAebRtOkYKGdvmk+SUTAeMlRrVsQHvhFk765IYM2FAZTIeELuNKx+VD0p7gbeUrtwbdYtEVLAdn7XpFNX78Jak62Trp7jxAdCUU96WAK75tTS1Gd1T44Rat8E7acF0lXEpVVLbO2OsAwFG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TTrhAMw7; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SGTh9h2821787
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 28 Apr 2025 11:29:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745857783;
-	bh=NR/28dcL7nI8hDkC2wwHs3MBlvJxD46kc5grX9UascQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=TTrhAMw7/g1RHLGOcrk7iKNETSZPA/PPgo9nReedoXOC61UWUZSWF1ZDXREsK7lp3
-	 jr5exOZ0pW7pUpczKqqzJ4RPs4jyQj7kKKyeRm5g46aQK15B90s7OpI5FMZ5/Ty8G2
-	 rWB4eg5Jb1iwczdHh51Nhth33DFIpB6RPpAobLzk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SGTgJ8111210
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 28 Apr 2025 11:29:43 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Apr 2025 11:29:42 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Apr 2025 11:29:42 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SGTgit003059;
-	Mon, 28 Apr 2025 11:29:42 -0500
-Message-ID: <795d9fb3-a9d7-41b2-84e5-a3a6f25754a1@ti.com>
-Date: Mon, 28 Apr 2025 11:29:42 -0500
+	s=arc-20240116; t=1745857961; c=relaxed/simple;
+	bh=rF0xSYpUAFZ4WX0DlNZ8bwKocybp6SgvR0ow4RtJX8E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nv16jouz6JAn7QqsU2liNdP32YveJ0RIpiRA0SvG0lXw1dATHEB4Og2pBW0aWoutSuNCDjluSmT5R8heu+8iNr7gFXytibFYbHSV9nJKVLpaiPnH3+/NgGu5laaoKBRrkexmUPMmtyoaIkeJhQSK8+idDdPvU6sOO+70qy9YHpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jJ4sApbP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2425C4CEEC;
+	Mon, 28 Apr 2025 16:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745857960;
+	bh=rF0xSYpUAFZ4WX0DlNZ8bwKocybp6SgvR0ow4RtJX8E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jJ4sApbPs8cZAPRs6riv1ljCbcQ7CiZzy28hxBSkKktiy9U+LpvzS9AREKfMyb9yD
+	 p6QeLWon7wtV6m9KS93qC9mlhAbJUX2ZA0DqCQn/I84FQAogyi2jkOoEwsJyONzuEs
+	 QrNIQFNkLO4RpCFe1g8To5VoTRdMaDp1NqisJz4Dn74nEwsjvdtAtkV7Cze3IexatV
+	 IdL9aCQYFIrViVXwpkNFusEeupVAIpQoHToWqI04iEEKj374MALpPEcWJUzueqOFA1
+	 o1ZIHPUV1IsZKV/B+HQQb27iQP5dgA2LPQU3IYmAffGsCs4OjvTCF/N4RcjrqK+zN8
+	 ERVr7qwiBhMlg==
+Date: Mon, 28 Apr 2025 18:32:37 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	dlan@gentoo.org, p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
+	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com, 
+	unicorn_wang@outlook.com, duje.mihanovic@skole.hr, elder@riscstar.com, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
+Message-ID: <t4tnrsyl7t7hwfm752eapz3ajxkkl23nrfemw4jy6a7khi7a7u@gow3c2ba56ib>
+References: <20250420070251.378950-1-guodong@riscstar.com>
+ <20250420070251.378950-4-guodong@riscstar.com>
+ <kftfye2zn2ogyvuv7diuyrv5qkp43csbpkcqfcms2xp5lsuubm@z2kocdzkb7qk>
+ <CAH1PCMZC5xrX07rd5bo+06zJoJDiAH3UNHqH5catwEALNJL2dQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 11/11] arm64: dts: ti: k3-am64: Reserve timers used by
- MCU FW
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Prasad <b-padhi@ti.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Devarsh Thakkar <devarsht@ti.com>
-References: <20250415153147.1844076-1-jm@ti.com>
- <20250415153147.1844076-12-jm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250415153147.1844076-12-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7d2sgdyj5xap5wjq"
+Content-Disposition: inline
+In-Reply-To: <CAH1PCMZC5xrX07rd5bo+06zJoJDiAH3UNHqH5catwEALNJL2dQ@mail.gmail.com>
 
-On 4/15/25 10:31 AM, Judith Mendez wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
-> main domain timers as tick timers in these firmwares. Hence keep them
-> as reserved in the Linux device tree.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+--7d2sgdyj5xap5wjq
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/6] riscv: dts: spacemit: add PWM support for K1 SoC
+MIME-Version: 1.0
 
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 20 ++++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 20 ++++++++++++++++++++
->   2 files changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> index f8ec40523254b..5623ab354a1d5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> @@ -796,6 +796,26 @@ &mcu_m4fss {
->   	status = "okay";
->   };
->   
-> +/* main_timer8 is used by r5f0-0 */
-> +&main_timer8 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer9 is used by r5f0-1 */
-> +&main_timer9 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer10 is used by r5f1-0 */
-> +&main_timer10 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer11 is used by r5f1-1 */
-> +&main_timer11 {
-> +	status = "reserved";
-> +};
-> +
->   &serdes_ln_ctrl {
->   	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
->   };
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> index 33e421ec18abb..1deaa0be0085c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> @@ -710,6 +710,26 @@ &mcu_m4fss {
->   	status = "okay";
->   };
->   
-> +/* main_timer8 is used by r5f0-0 */
-> +&main_timer8 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer9 is used by r5f0-1 */
-> +&main_timer9 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer10 is used by r5f1-0 */
-> +&main_timer10 {
-> +	status = "reserved";
-> +};
-> +
-> +/* main_timer11 is used by r5f1-1 */
-> +&main_timer11 {
-> +	status = "reserved";
-> +};
-> +
->   &ecap0 {
->   	status = "okay";
->   	/* PWM is available on Pin 1 of header J3 */
+Hello,
+
+On Mon, Apr 28, 2025 at 08:46:50PM +0800, Guodong Xu wrote:
+> On Thu, Apr 24, 2025 at 4:18=E2=80=AFPM Uwe Kleine-K=C3=B6nig <ukleinek@k=
+ernel.org> wrote:
+> > I want to make all pwms use #pwm-cells =3D <3> in the long run. Can you
+>=20
+> Sure. I can do this.
+>=20
+> > please use that for the new binding? (Of course this needs adaption in
+> > the binding doc, the code should already be prepared for that.)
+> >
+>=20
+> I got what you mean. The code change for that is already integrated into
+> v6.15-rc1.
+> Commit 895fe4537cc8 ("pwm: Add upgrade path to #pwm-cells =3D <3> for use=
+rs of
+> of_pwm_single_xlate()")
+>=20
+> Now, if I change this #pwm-cells from <1> to <3>, without the dt-binding =
+doc
+> changes, I would expect to see warnings (" #pwm-cells: 1 was expected") d=
+uring
+>   make dtbs_check W=3D3
+>=20
+> Any suggestions when the dt-binding changes will be merged?
+> or I can add your patch as a dependency.
+> https://lore.kernel.org/all/cb799d8a5bb284cd861785a691b8d5e329300d99.1738=
+842938.git.u.kleine-koenig@baylibre.com/
+
+I don't want to merge this very soon given that 895fe4537cc8 isn't that
+old yet. But I suggest you adapt patch #1 to require #pwm-cells =3D <3>
+for the newly added compatible.
+
+Best regards
+Uwe
+
+--7d2sgdyj5xap5wjq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgPraMACgkQj4D7WH0S
+/k4dZgf/b8mf9YA0V9HfCWmvx/ccVO/gZNXUxBOUpcUeheEOR03RQ7Ha/Iixpel2
+Jn1AqkzVcS60PqfpZvSgsUPaJrkRJuWnL6nFV1Pi0U8Kal89jC1sxcUTE84I5yon
+hzWokjzGoXi6BPxWGVdKpNkrDF4qn3HXEDDyOX7hAb0kuSsdxFC6owK+MMNoKAGm
+ptA44qdpUR9A7Qko2TB97gaMIqtPGE9qxHvsaCTyi3lMtkoKIGbue3mWqM86nBeQ
+uScZ5heYBT8ix1p1z3nQpKG9XuhPltKPEsMEvUMIMN/F1M0rC1COcD5jl2wwvbBm
+B7MeqakfcpoT/I5Vv5a8ttdORNz/TQ==
+=x5Qe
+-----END PGP SIGNATURE-----
+
+--7d2sgdyj5xap5wjq--
 
