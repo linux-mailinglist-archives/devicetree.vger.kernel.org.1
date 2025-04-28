@@ -1,188 +1,178 @@
-Return-Path: <devicetree+bounces-171514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B33BA9EE40
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E96A7A9EE48
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:47:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA2A717D439
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 443DA17D2D5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D736425F78D;
-	Mon, 28 Apr 2025 10:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950BC25DD1F;
+	Mon, 28 Apr 2025 10:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bNS/ZROp"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IkmTug4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D22D26280C;
-	Mon, 28 Apr 2025 10:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8979C1DF99C
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:47:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745837108; cv=none; b=DGKWHAsjHIY8JuraE++3054i4tPF3nWT53HP1NKyXvOrmmz0KgoT5oZIZoyyEhLGoPf95s6qexB3y/azERtLfBZpwb5rhCvkGFXMYr6iGcdR8LqFnY4ykFhyUE1K6KjPjgIUq/GMsbNLKG4dqk7sEGeoVtQPCCi/N4mmZyAQUkQ=
+	t=1745837275; cv=none; b=WTrraWGfDhSX74YxugDH/S5KILCRzfsvrjnK/Vf5zKWM/Eq0U3Az1AH0c0iZYXiJjKScThyPuMycfquCv6B/PgXbFH6RSb9+TckTc+qyX8yqSCYKo5fXe8lPzH2/Lt7qR3IBqzTGF42rdbX7Y9sEHu8s8Vx7EW4kE0Nss44J1/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745837108; c=relaxed/simple;
-	bh=BS9C6qoxcbZ0618oLeOGhF4ysXJUAV+mphi3z3/zUbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=puaoVXYSNdFljGBo53Scp92cvz3I362cvVSMdAtZwPOcsN8cblfj6W3E5eQSuZrAob2QiJe829Elh7JDSQh9MWB98Un5z1i2ZLzpYeNTxI4RsH0mMYeqbvuCKYJwxmdRn4rFULtdmA2BxPjT/T3ax/TCDa6Tuny3xZc/rTHN2vY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bNS/ZROp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SACRke025798;
-	Mon, 28 Apr 2025 10:44:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rilsCXWAK9vi7OM2nXU4iJx4djTQbOQyhyG3UdhMzd0=; b=bNS/ZROpElA+PTY1
-	rKr0lddW+wXsA6IPw96KCvTH5aTNzlAU0WwJzigIHF+0yFcHjKwjbUqY+GOq2yr3
-	vRhhna2U7lrWk+LceacvD5mX4EFFMpUNLWc+h1RURdfNCOEd358LrN+F5QjBdL47
-	7Mhw5gWlXQMCEPj6wlYBRhBux9NnGtW6+0WUSKZ1U+Pg8NFGJsKJQxSuHhuCYcBJ
-	/VtAT1t9gklUonJ37t7u8GTxPiF3MKE2QLc2MIzpFakNgzaaq9sp/IS+KeolTvZK
-	Z/Ii0cIN9RpgRIv4dB/wqCN/U+28UwXQeF1/ZP7pBOFdUm1F5+0q210tZUM4KpTD
-	yKstKg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468q320ufm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Apr 2025 10:44:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53SAijlp014497
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Apr 2025 10:44:45 GMT
-Received: from [10.216.32.231] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Apr
- 2025 03:44:37 -0700
-Message-ID: <aa8ebd50-683b-4043-9494-5675a2d9a01e@quicinc.com>
-Date: Mon, 28 Apr 2025 16:14:33 +0530
+	s=arc-20240116; t=1745837275; c=relaxed/simple;
+	bh=QVj572gl1UZs0yo7wu2GkDp7uDGfaDZCRXtBr1Ehiho=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=Q70oFMQpOIw2b1Ibb/1qNKdi2CwS5rhbqy9wS2rOCmaHSY6nvrd+GLhMz2q9o50bBkSWa07bz+n52lptxfbSDs6rJM9PGtqL74aFotG3Xpwsbdp4rTtILrcNaodNE4gKm3gw/svQjOG3aoNATIWraSRMwAbJSOydQJN+3ZzQC0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IkmTug4G; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250428104750epoutp023070e5b9973ebd5ae5baa6a4bb898ac9~6db9ir-H32088220882epoutp02p
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:47:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250428104750epoutp023070e5b9973ebd5ae5baa6a4bb898ac9~6db9ir-H32088220882epoutp02p
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745837270;
+	bh=8/hDEvTARkekh8PU2IM8Bbc0ycSsnAaU7M9v86mcb9g=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=IkmTug4GWjDS0jquDtpySwCDmHQU9T77BLnYrn5D8s4arZiqsQY3Y6BEJHQiLrBh0
+	 V6oqQxBlmvgqNtEdjw6P0UkvkdnpeK0yTARAcWjOzR41z2mCC+24jXjnIU0qkj1aYw
+	 am1co3wuqJk9zeTnmfzyPCcQYK9ErVqo0N8+SR+o=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250428104749epcas2p33b751cc01acf6536b552f3033408d2f2~6db9Dodrm1471414714epcas2p3L;
+	Mon, 28 Apr 2025 10:47:49 +0000 (GMT)
+Received: from epcas2p4.samsung.com (unknown [182.195.36.70]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4ZmKsd43pZz6B9m4; Mon, 28 Apr
+	2025 10:47:49 +0000 (GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250428104748epcas2p30878b575c575cf1643e18c5a3262bdf2~6db8BcP2V1471414714epcas2p3J;
+	Mon, 28 Apr 2025 10:47:48 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250428104748epsmtrp25e9dc72661f9d5c0aa2e9aa4a42d17a0~6db8AhQj_1596115961epsmtrp2U;
+	Mon, 28 Apr 2025 10:47:48 +0000 (GMT)
+X-AuditID: b6c32a29-55afd7000000223e-6f-680f5cd49a7b
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2C.2E.08766.4DC5F086; Mon, 28 Apr 2025 19:47:48 +0900 (KST)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250428104748epsmtip266684e1bd6f04a2318d1a81135e35c24~6db7zResW1682516825epsmtip2B;
+	Mon, 28 Apr 2025 10:47:48 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
+	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
+ Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
+ Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Sunyeal Hong'" <sunyeal.hong@samsung.com>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <a3438b8b-0fd2-454f-a539-39aa7cfcd57b@kernel.org>
+Subject: RE: [PATCH 2/3] clk: samsung: exynosautov920: add cpucl1/2 clock
+ support
+Date: Mon, 28 Apr 2025 19:47:48 +0900
+Message-ID: <02d901dbb82a$fb7493a0$f25dbae0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Jie Zhang <quic_jiezh@quicinc.com>
-References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
- <20250228-a623-gpu-support-v2-5-aea654ecc1d3@quicinc.com>
- <e22daaae-57fc-4523-b594-87d202d255f3@oss.qualcomm.com>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <e22daaae-57fc-4523-b594-87d202d255f3@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=M7xNKzws c=1 sm=1 tr=0 ts=680f5c1e cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=ICJeL3kfza5QV274o94A:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: WRz8n5WYy_YEjm6Lor_fkkGCisA8WlSe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI4MDA4OCBTYWx0ZWRfXzX04qvK3h2ns XrxsGaiaLUPn2KaF2xIhrqLJu3sOK9Ccv6aP8RzulL9JY5Indny16q34xu2pQzCB98eZBW9E2Kv JiAuBiyekyi0LK6YztG3Vxr7cMsyDKuS2uEEkzZBXrbQekTBdTteKMAkvEBaYO79HE0LzMP9pH8
- LOGFo0LlUOJ8S1/UnG3iIyWg6kohGLjE8h/w7AAXdJv2fEwSwcVMxRNgpQwi1PCZxvL05JxWjBn l4k6HPOmgcUAaMQkRL2Os6CwEKG4EUq1gXbg9QcAf4pz6cstDfI+r5gQNy8vQjQRcxKowsbgnp3 beRADFu304b4ff+6CuK9PfhUHyZ1oSxHvtGXS2WqMMKTcRdzsqOWQdf8aKtjD+dfa70gBuJe9Up
- nIdX/XKbg8Ooq2fOcb1eD+ub81CHWNjyaGweZ1VpEjVQ+3ZJcsQMK8zQD+xHLLHs3oonNtUj
-X-Proofpoint-ORIG-GUID: WRz8n5WYy_YEjm6Lor_fkkGCisA8WlSe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-28_04,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 clxscore=1015 mlxlogscore=701 spamscore=0 phishscore=0
- bulkscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504280088
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJbASRnoWq0F4GjHT9tcwPYQHtTxAJlNrzkAk/ocBIDccya67J5G+NQ
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWy7bCSvO6VGP4Mg9cPNC0ezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
+	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4Mt40
+	TGEtaBasWL/nGmsD42S+LkZODgkBE4kJJzaydTFycQgJ7GaUaPuynAUiISFxeMYERghbWOJ+
+	yxFWiKLnjBILf95kA0mwCRhKrPqxnQkkISIwkVni0ocLLCAOs8AmRolzu29CzX3PKHHpxn6w
+	uZwCdhKL5qwEs4UFAiVadx9jBbFZBFQl7v85CmbzClhKPFnbxAZhC0qcnPkErJ5ZQFui92Er
+	I4QtL7H97RxmiPsUJHZ/gugVEXCTeL1sJVS9iMTszjbmCYzCs5CMmoVk1Cwko2YhaVnAyLKK
+	UTK1oDg3PbfYsMAwL7Vcrzgxt7g0L10vOT93EyM4LrU0dzBuX/VB7xAjEwfjIUYJDmYlEd4q
+	A/4MId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rziL3pThATSE0tSs1NTC1KLYLJMHJxSDUzRS2Uf
+	Xkvny2mt6b25QHLRLvN9MUET3Y07hE4q53C94fsa1fX4v7fqQcfa6SunO+Tnx9+0Kbx7WC7R
+	WWXdiaUJmY+Su1af9Ph/+mO9t+FCxxZ+z/kOXzzO7dR02lKzvTGzuunOl/vh4gcuzjqgWu60
+	VCpI7FWFcO4u60fXEtP776hx81r/OPNYnWPj+q3KRxfFnBc22FgTcqHB5GZ1jcDK2M9Kj+KZ
+	Z65LqLo4QcB6o/wB7+0tLocOl4Qf9S77UxnqzcylvCJ4xdnTP67tjvhqI2qfdf6leAyzn4rh
+	yfUuS9Z9nN3Nezxi+o00/swrXgK6RzYFM3w6+btefzZLE091Qf2MSKFnRSos0+tLFymxFGck
+	GmoxFxUnAgB3Cq3qOgMAAA==
+X-CMS-MailID: 20250428104748epcas2p30878b575c575cf1643e18c5a3262bdf2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250428084728epcas2p17a0253f04de15c23ab6362113a0d47bb
+References: <20250428084721.3832664-1-shin.son@samsung.com>
+	<CGME20250428084728epcas2p17a0253f04de15c23ab6362113a0d47bb@epcas2p1.samsung.com>
+	<20250428084721.3832664-3-shin.son@samsung.com>
+	<a3438b8b-0fd2-454f-a539-39aa7cfcd57b@kernel.org>
 
-On 4/14/2025 4:31 PM, Konrad Dybcio wrote:
-> On 2/27/25 9:07 PM, Akhil P Oommen wrote:
->> From: Jie Zhang <quic_jiezh@quicinc.com>
->>
->> Add gpu and gmu nodes for qcs8300 chipset.
->>
->> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
-> 
-> [...]
-> 
->> +		gmu: gmu@3d6a000 {
->> +			compatible = "qcom,adreno-gmu-623.0", "qcom,adreno-gmu";
->> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
-> 
-> size = 0x26000 so that it doesn't leak into GPU_CC
+Hello, Krzysztof Kozlowski.
 
-We dump GPUCC regs into snapshot!
-
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+> Sent: Monday, April 28, 2025 6:15 PM
+> To: Shin Son <shin.son@samsung.com>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
+> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
+> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sunyeal Hong
+> <sunyeal.hong@samsung.com>
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org
+> Subject: Re: [PATCH 2/3] clk: samsung: exynosautov920: add cpucl1/2 clock
+> support
 > 
->> +			      <0x0 0x03de0000 0x0 0x10000>,
->> +			      <0x0 0x0b290000 0x0 0x10000>;
->> +			reg-names = "gmu", "rscc", "gmu_pdc";
->> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "hfi", "gmu";
->> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
->> +				 <&gpucc GPU_CC_CXO_CLK>,
->> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
->> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->> +				 <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+> On 28/04/2025 10:47, Shin Son wrote:
+> > Register compatible and cmu_info data to support clock CPUCL1/2 (CPU
+> > Cluster 1 and CPU Cluster 2), these provide clock for
+> > CPUCL1/2_SWTICH/CLUSTER.
+> >
+> > These clocks are required early during boot for the CPUs, so they are
+> > declared using CLK_OF_DECLARE instead of being registered through a
+> > platform driver.
+> >
+> > Signed-off-by: Shin Son <shin.son@samsung.com>
+> > ---
+> >  drivers/clk/samsung/clk-exynosautov920.c | 208
+> > ++++++++++++++++++++++-
+> >  1 file changed, 207 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/samsung/clk-exynosautov920.c
+> > b/drivers/clk/samsung/clk-exynosautov920.c
+> > index 8021e0912e50..f8168eed4a66 100644
+> > --- a/drivers/clk/samsung/clk-exynosautov920.c
+> > +++ b/drivers/clk/samsung/clk-exynosautov920.c
+> > @@ -18,7 +18,9 @@
+> >
+> >  /* NOTE: Must be equal to the last clock ID increased by one */
+> >  #define CLKS_NR_TOP			(DOUT_CLKCMU_TAA_NOC + 1)
+> > -#define CLKS_NR_CPUCL0			(CLK_DOUT_CLUSTER0_PERIPHCLK + 1)
+> > +#define CLKS_NR_CPUCL0			(CLK_DOUT_CPUCL0_NOCP + 1)
 > 
-> This should only be bound to the SMMU
-
-Not sure how this sneaked in. Will remove this.
-
 > 
->> +			clock-names = "gmu",
->> +				      "cxo",
->> +				      "axi",
->> +				      "memnoc",
->> +				      "ahb",
->> +				      "hub",
->> +				      "smmu_vote";
->> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
->> +					<&gpucc GPU_CC_GX_GDSC>;
->> +			power-domain-names = "cx",
->> +					     "gx";
->> +			iommus = <&adreno_smmu 5 0xc00>;
->> +			operating-points-v2 = <&gmu_opp_table>;
->> +
->> +			gmu_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				opp-200000000 {
->> +					opp-hz = /bits/ 64 <200000000>;
+> You just added that line a week ago and it is already incorrect? Then it
+> needs patch on its own explaining what are you fixing.
 > 
-> It looks like this clock only has a 500 Mhz rate 
-
-Ack.
-
--Akhil.
 > 
-> Konrad
+> Best regards,
+> Krzysztof
+
+Understood. I will separate the fix into its own patch and resend it.
+
+Best regards,
+Shin Son
 
 
