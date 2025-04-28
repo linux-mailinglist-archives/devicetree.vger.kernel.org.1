@@ -1,174 +1,140 @@
-Return-Path: <devicetree+bounces-171647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FAA1A9F964
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 21:24:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D33CCA9F984
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 21:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DE5017AC7F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:24:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A41D189DFE9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 19:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B8C296D27;
-	Mon, 28 Apr 2025 19:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFE515ECD7;
+	Mon, 28 Apr 2025 19:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="c5/deyEm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ha6hfHDr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594282951B5;
-	Mon, 28 Apr 2025 19:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AED42AA6;
+	Mon, 28 Apr 2025 19:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745868273; cv=none; b=UPLO3T/0PtNivbcbPZ+aG15AOabmoSAUSa/PSJptLPgDWUNC2BQ1hmA3pF2bav5H352vQoFrwZCFSO8i19jYE45MfpF5lNHK3XLBs1yhaUEDtV09ik6AuFuxcA2VpOOXWI8ymiCTWNLFJUU5Bt1/AGBsZwYMOMVZ3aZhZGCaxe0=
+	t=1745868653; cv=none; b=H8xZqarW7IhRN3CytiqdZo7LJRUdeUv2QEnzhjNMBaeD4gJpgP9keo5c4qAefB0FOdxMLnh6DbHtp4GQBbDn5P0f7JLU3mc8HP+pByAwzumUbh4dmWufXLybn2wyQnGuIuqDBXmlnDrqLY+pIsVmXEEd7YazyzekNbA/IAG35BA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745868273; c=relaxed/simple;
-	bh=0R0wWZcT22Gz5EwOhZRf10HdVpYb17+fZ1v8MSKm+aA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WAD0PIhZk9fX1fd9beJWNcyjbvHb29Ez1tOW8iYTSTa80xP+EptaBwrEESwWdE2av5r1NTomuZxTq1tjG5c2esv1w5sq6PclS02X0wYJS9WwwuMlZKK+tksFhD1yijoELLE4QGByJLdjaFujiCw0SgH3yAUp9jDeoyZbEDI+ctk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=c5/deyEm; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.1.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 864AA211AD01;
-	Mon, 28 Apr 2025 12:24:31 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 864AA211AD01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1745868271;
-	bh=fak+f+kHYzS1+ypKlrkk0dMyzj3faU9pGBD9R0QixDc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c5/deyEmjVX/7FlQ0FNHaDjnA6mqRGNSfHEiYzB4HTuBiubadDnAWmtlp7N1NP4g7
-	 1sWbdlpdDh385PrncF6gy/1MtXwt6smPEIrtWgLe0NiGQpkJ4v6/b0eX9stfd9pZpe
-	 TQe5YY7qT1JqkwkgPMaRBOVGpYcxkV5u5GyXdMNo=
-Message-ID: <cea3a58f-a251-4100-a614-1576876e5eca@linux.microsoft.com>
-Date: Mon, 28 Apr 2025 12:24:31 -0700
+	s=arc-20240116; t=1745868653; c=relaxed/simple;
+	bh=TwYt1P/LJlat0M9t+rVzFLvzyCeNVLRnTX5hC5Wb38o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iKfw07fzKXI6t6ePLF5b1HVtw1O/5Uj3SSZvHs5WD3uxuOsPHnwFiTSdPwMl+G0B4GeUUVGWXVY1DA//2P4LlEHwn6JY1/h6SdVuRSuUAd4gcA+qlo1FsffDn68reuPpYf/7nLb+I31gPMvzLsDoecnz6EYYDklkOPNBW3bU3k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ha6hfHDr; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b07d607dc83so4586417a12.1;
+        Mon, 28 Apr 2025 12:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745868651; x=1746473451; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tpk6VzszwWxTTij49TZSclL6cNM9y9IHMjKw/7hWAFc=;
+        b=Ha6hfHDr/ATdAOCxZmtvBQ6nptL1mJpAt2idHpRda4XyXyr3JHXN2ARabj3mHyUYAu
+         DQ/bmzfrfcHXKrG10J864a8k2BIacQ+p+qHaHjRrv4nh3neFygRLNwoKzdAkdoQ3Ki2Q
+         qFqw2dBiIQTv6PRy82Atz0dfgYg7wraqBD0MUThWRHBOkkcuiHNrMlJb5l+ZJc1WesPi
+         evIYd8ent20RfQp14u+WR4Y4Y1gqWjiNmEZZsrlr1pl9VTmgcYhPa9XqKz1+qJ68zA2o
+         /C0S7kkhDNEe+W47/2Ljz1ygcIkGsw9MWahNkj5DpnnPQu+ulrp4EbfsB17umDAh9171
+         DnTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745868651; x=1746473451;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Tpk6VzszwWxTTij49TZSclL6cNM9y9IHMjKw/7hWAFc=;
+        b=Qlq5vNQgguCZtlFMMwaJhllLCJwVn57gHohYvluaB5OPMBYvJ574s5Buc7AZPtcQ5J
+         8ThRFEWrtdiJ1gjy99Zx0F0oqM9ccBTBGWvR8M0eKX3Pm2fMsnYWD05kua2DhnLxsLsB
+         EzsYnKxO4/6a/pYYZK/qRXyFvEByz7uvUuQqLqro+Ez6TspIiIBOH3lWtdDoq5Es/0Pg
+         YhKP90uJBCrp7SMl7K1bnpEMteEFwjaYZmXh4Qaimd2ouAlpEx0GBdZ8ibD5eqFW7acD
+         UZD0Kmz03ahcJmfVb1vvhZoUKWPZV0nkDikn4sw52rfHRXNq1r7O6EzL/qvARgGNu9af
+         QcOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+RpPstFvpIvSbyPW/Vyw1EA04AlWPYPIIUcJW+uzGLj9Dy9duoyh8hhavicVjgTyG4fd+Wa73u6WT@vger.kernel.org, AJvYcCVGhFADZFA9ehv/IxK0/yZ2JjA7DR2RdvrkkODkfvlxNWPgFEBaOorpSlYMZX4gWx0UbEMT9ThJJSH34fU=@vger.kernel.org, AJvYcCVdR1dWhpkNDIPGqoboVWvSFge6gMQbxqngR5fPxK9TrpXv1yGsTJI8zk4EgMZSC8B9UwF7ORe8l0U2dQg0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0SUbG3WqTHe4bz72El9Nqytjw37KQ9yHSil4sGvcaApaMlx9e
+	PNosou26UhqrxYTLEsH6UsgUcbLUPx6s6cMX5HRRr4UUHxOHHOVU
+X-Gm-Gg: ASbGncvKvF8aMgtSx4Mi1nLKVx5N6BFeI4fAdCx1QvaAKk48XqXN8r1JKLY6K2w6EID
+	tFgCQ7rEULy7yB0APYSzkHal1/lPWFymxZwOIIyXQxwbAZ1Ur1moRtPFbqr6UE/HteWSCYJIUBY
+	dSLLD/IMr+hgAXxtEMFzUC/lHXYcmJmwQ+tjJOdgTqTv2v6zaxtwlhJ9rqChfrn/LocF5Bo7JsO
+	jkGHF22fFv6P64+CGE44rQzV/vA5RCoNn8rVNkTlmKFrkgHjKn9O/p0/rFjeufjp/qYUhkfBMfM
+	rDuVA7C5KDuD8LhCw0IXsOfTHyil1KInFdssZCHe
+X-Google-Smtp-Source: AGHT+IEbca48Y0EHHhxNixOZyjB2dSXXAABzJVN1lWbW/1bawIUzxMMkYSur8t5IQFCnd7qluqebnA==
+X-Received: by 2002:a17:90b:53cc:b0:2f8:b2c:5ef3 with SMTP id 98e67ed59e1d1-30a21550733mr1642662a91.14.1745868650995;
+        Mon, 28 Apr 2025 12:30:50 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:67d:4372:d1e6:def0])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db50e7636sm87291995ad.117.2025.04.28.12.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 12:30:50 -0700 (PDT)
+Date: Mon, 28 Apr 2025 12:30:47 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Esben Haabendal <esben@geanix.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: goodix: Add
+ no-reset-pull-up property
+Message-ID: <23onpttl3w2wo3625c7flbljahojipsb4xznrx6xynr7rrzofr@2bcvjji7dpu6>
+References: <20250422-goodix-no-reset-pull-up-v1-0-3983bb65a1bf@geanix.com>
+ <20250422-goodix-no-reset-pull-up-v1-1-3983bb65a1bf@geanix.com>
+ <20250428-logical-successful-spoonbill-cd1c6b@kuoka>
+ <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v8 11/11] PCI: hv: Get vPCI MSI IRQ domain
- from DeviceTree
-To: Michael Kelley <mhklinux@outlook.com>
-Cc: "apais@microsoft.com" <apais@microsoft.com>,
- "benhill@microsoft.com" <benhill@microsoft.com>,
- "bperkins@microsoft.com" <bperkins@microsoft.com>,
- "sunilmut@microsoft.com" <sunilmut@microsoft.com>,
- "arnd@arndb.de" <arnd@arndb.de>, "bhelgaas@google.com"
- <bhelgaas@google.com>, "bp@alien8.de" <bp@alien8.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
- "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "hpa@zytor.com" <hpa@zytor.com>, "joey.gouly@arm.com" <joey.gouly@arm.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
- "kys@microsoft.com" <kys@microsoft.com>, "lenb@kernel.org"
- <lenb@kernel.org>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "maz@kernel.org" <maz@kernel.org>, "mingo@redhat.com" <mingo@redhat.com>,
- "oliver.upton@linux.dev" <oliver.upton@linux.dev>,
- "rafael@kernel.org" <rafael@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "rafael.j.wysocki@intel.com"
- <rafael.j.wysocki@intel.com>,
- "ssengar@linux.microsoft.com" <ssengar@linux.microsoft.com>,
- "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
- "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "will@kernel.org"
- <will@kernel.org>, "yuzenghui@huawei.com" <yuzenghui@huawei.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "x86@kernel.org" <x86@kernel.org>
-References: <20250414224713.1866095-1-romank@linux.microsoft.com>
- <20250414224713.1866095-12-romank@linux.microsoft.com>
- <SN6PR02MB41572F24DCB9247E74876E41D4BC2@SN6PR02MB4157.namprd02.prod.outlook.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <SN6PR02MB41572F24DCB9247E74876E41D4BC2@SN6PR02MB4157.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
 
-
-
-On 4/17/2025 8:28 AM, Michael Kelley wrote:
-> From: Roman Kisel <romank@linux.microsoft.com> Sent: Monday, April 14, 2025 3:47 PM
-[...]
-
->> +	if (acpi_irq_model != ACPI_IRQ_MODEL_GIC)
->> +		return NULL;
+On Mon, Apr 28, 2025 at 07:58:55AM +0000, Esben Haabendal wrote:
+> On Monday, April 28th, 2025 at 09:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > On Tue, Apr 22, 2025 at 05:15:02PM GMT, Esben Haabendal wrote:
+> > 
+> > > This should be added for boards where there is no pull-up on the reset pin,
+> > > as the driver will otherwise switch the reset signal to high-impedance to
+> > > save power, which obviously not safe without pull-up.
+> > > 
+> > > Signed-off-by: Esben Haabendal esben@geanix.com
+> > > ---
+> > > Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 4 ++++
+> > > 1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> > > index eb4992f708b70fef93bd4b59b9565123f7c6ad5d..7e5c4b98f2cb1ef61798252ea5c573068a46d4aa 100644
+> > > --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> > > @@ -45,6 +45,10 @@ properties:
+> > > reset-gpios:
+> > > maxItems: 1
+> > > 
+> > > + no-reset-pull-up:
+> > 
+> > Is this common property? Where is it defined? Otherwise missing vendor
+> > prefix.
 > 
-> This causes a build error on arm64 if pci-hyperv.c is built as a
-> module because acpi_irq_model is not exported.
+> Good question. When is something a common property?
+> 
+> The idea of marking something as not having a pull-up on the reset pin could be considered a common thing I guess.
+> But for now, I am defining it for the goodix driver only, as I am only aware of these devices needing to handle it in a special way.
+> 
+> Should I rename it to goodix,no-reset-pull-up?
 
-Will fix that! Appreciate your reviews very much!
+We already have GPIO_PULL_UP/GPIO_PULL_DOWN flags available in GPIO
+bindings. So maybe the correct way is to have the driver rely on them
+and only leave the reset line in high-impedance mode if GPIO tells it
+that there is a pull-up?
 
-> 
-> Michael
-> 
->> +	gsi_domain_disp_fn = acpi_get_gsi_dispatcher();
->> +	if (!gsi_domain_disp_fn)
->> +		return NULL;
->> +	return irq_find_matching_fwnode(gsi_domain_disp_fn(0),
->> +				     DOMAIN_BUS_ANY);
->> +}
->> +
->> +#endif
->> +
->>   static int hv_pci_irqchip_init(void)
->>   {
->>   	static struct hv_pci_chip_data *chip_data;
->>   	struct fwnode_handle *fn = NULL;
->> +	struct irq_domain *irq_domain_parent = NULL;
->>   	int ret = -ENOMEM;
->>
->>   	chip_data = kzalloc(sizeof(*chip_data), GFP_KERNEL);
->> @@ -907,9 +952,24 @@ static int hv_pci_irqchip_init(void)
->>   	 * way to ensure that all the corresponding devices are also gone and
->>   	 * no interrupts will be generated.
->>   	 */
->> -	hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
->> -							  fn, &hv_pci_domain_ops,
->> -							  chip_data);
->> +#ifdef CONFIG_ACPI
->> +	if (!acpi_disabled)
->> +		irq_domain_parent = hv_pci_acpi_irq_domain_parent();
->> +#endif
->> +#ifdef CONFIG_OF
->> +	if (!irq_domain_parent)
->> +		irq_domain_parent = hv_pci_of_irq_domain_parent();
->> +#endif
->> +	if (!irq_domain_parent) {
->> +		WARN_ONCE(1, "Invalid firmware configuration for VMBus interrupts\n");
->> +		ret = -EINVAL;
->> +		goto free_chip;
->> +	}
->> +
->> +	hv_msi_gic_irq_domain = irq_domain_create_hierarchy(irq_domain_parent, 0,
->> +		HV_PCI_MSI_SPI_NR,
->> +		fn, &hv_pci_domain_ops,
->> +		chip_data);
->>
->>   	if (!hv_msi_gic_irq_domain) {
->>   		pr_err("Failed to create Hyper-V arm64 vPCI MSI IRQ domain\n");
->> --
->> 2.43.0
->>
-> 
+Thanks.
 
 -- 
-Thank you,
-Roman
-
+Dmitry
 
