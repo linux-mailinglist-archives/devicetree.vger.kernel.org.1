@@ -1,215 +1,342 @@
-Return-Path: <devicetree+bounces-171662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A8DDA9FADF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 22:55:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64EB8A9FBBA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 23:09:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA42F172B24
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 20:55:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF46921042
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 21:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF709207A18;
-	Mon, 28 Apr 2025 20:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089EA20D509;
+	Mon, 28 Apr 2025 21:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LRK3bIk7"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="M3xCB6nI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F366C1FE468;
-	Mon, 28 Apr 2025 20:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEC41EE7BE;
+	Mon, 28 Apr 2025 21:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745873726; cv=none; b=MPMIT1gOXxNLrfEx2dnsJkGgMsZk8MqRjtqx7ZtF6sDL7aVDTqhBV5dRGgctCutXwbZ9ml70ueX2rDjYPf9rozQyptYRJ5VfZlcUXnJRFRzKYGup4pXJ7095pGvZeox5C+R3Dv/LsIoK0aiWt8beHYO7HeySYhJ2QGQgRNaXRrU=
+	t=1745874466; cv=none; b=dJhf1s8vp318S037a/jxgpdWmy0CXiDTXVAIYshRi16VFvbrNNF6gxkq+z2ztE4b7je83jRB3dowewaUwI9RwR6JgL0ymCwNgGkk0a16ks1KafUS2RrZavjU/XBx+4adLGkESc3N6uEKblJBoSeFi+UZCucDzmDQbAieiAm/Z4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745873726; c=relaxed/simple;
-	bh=MMiTyfObOi0mhGJoCJpbicgGLh8idqkuf/Xt+cPSuMk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KBkqleEAmTZUvZR/3YQOCJQW7ItOB8TR7ASmcDWdZURdCuyf5ALPcvGzefNz9PzQ8Qb3GkRCm8GmzrvZou48RpATv9vzJINrAn1DANPSGo+va5GQvYpS/WsRmDhouEx/nF4fvlLNr3W+cJ3r1mZy5IHSmrOnkaadEN9tvOW3fNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LRK3bIk7; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43d0359b1fcso33371245e9.0;
-        Mon, 28 Apr 2025 13:55:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745873723; x=1746478523; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NmTH9g2hjp7t5U5CbL7v12p+NH5hcl+Sene4OMZYSQs=;
-        b=LRK3bIk722FQcq27oc7j9K8ZaNn3IglaDnqJResl/Rg2zdHXqwqxkkw+Phdpkinvlc
-         5BSY7Ppm2cqwFh6naWhquJcnFqtXRgXDa3OkAf/IsRQxUv322LA5JPYBsXTLoKMyItqA
-         KzCCj6/WN3hsOO6YPjromWJvK7wABLQeC3cZUZXwLIifzFQOuVsE0i07sG4NlKuMa1q/
-         FPl5uzuoq8a9OuUyj81+JbgLED6Y8UM53/VNZwFOZ15MewsDnHLBnRn+sg8iTyOxeb2N
-         a4Y1M4FO+l2g+mnhCeYXy+somEgqJjRb9gOmMxipsCUX6PgQl0qo18c1B58LtW96oiMw
-         KsFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745873723; x=1746478523;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NmTH9g2hjp7t5U5CbL7v12p+NH5hcl+Sene4OMZYSQs=;
-        b=e+KgLoXalwH1t8CgVXbPtPi8mkadZeHnnRgqYOnkQAQMjhsLELtOvdPH7CQv9i4Ofo
-         zvZLRqqjOhA/DajfWanz/JrMVrttK3vjeQ/fYwe5EdfKR6M7guVarwFHm87gqh+Synr7
-         kuV4jkW55uSDTzryGGsWJyG9UBo74ZK7HkDBb12+78mJ9mXqP+9DqrMMzKuRx/A8+81z
-         dmhZvcv3dhuFvTYXD9O2R74QYvh8IELxSDaLVAE6rA/f+u3lSo0v24170iIQMj6s/RIo
-         K/7dN+6wmXmV3/lIK4QHpflIeHYdN4nyL39mVuX8toZbsOdO/nYFcOHZlowmFa5wX8XZ
-         n1Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCV7kz4O3lx2t9VKk5ghsIFXTqiRucXi5ZOnfoTliwPnGNV8bMmn+cAeOhdZkI7/IDrr2/nRrF8qS7Yl@vger.kernel.org, AJvYcCVZBbm1R2LVvi0WczO8rw5TaE5tDAIZnQNfV6a3I2p6scF6r4SXWVwZXroENQUOMfdsosAckAYvs7sdpmIu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkWwN2Q2oOXjyPTy3mAAmv5ugmPPsXVmIYYizJSWbjlQKhfi0L
-	PgFHVyBgTu01tDAL2cyG3JvRbQDc9nqjHYSbOCzZLqZ7HspHchNPgtFfOjdh
-X-Gm-Gg: ASbGncvqytmzGveBbMvur0l7DsLzvPrMnKokoXaa/3o10OLdnvKuoCLcPGfsMNRD7jm
-	zNx9xsRzkBOWzrniph797p9YjTD6Z4F08zo5m3v1b9281Lj0O3pL2SSNNzksiPb0g7QijlhQMLO
-	NcQCQIpUrP5NboFe+rNcbMoOEAfcinYmFG2pRHaCeVEnCVXNjtWMsu1PUVul+ykPQocCL2ufCor
-	PWHun1Td8CVnkynTOESNHkppgshJebmrVI/KKHlylk++IvSnRBdNFAU0Bj4CB7qXa79JgB5hfIB
-	Da2PieW1hQDkhfijZ5Umz0sPon3XRN8O3RjdMu93iQXEvIhoD7u8zjkCJA/uQWVRIfGJZ6StSA=
-	=
-X-Google-Smtp-Source: AGHT+IEr8YmC+G5tsSYX4vcQSKxRDWcFzJK+Xld+DzAo2nfPMmX4hDElOWzxC1FA153cd2pOeVzq2w==
-X-Received: by 2002:a05:600c:b8c:b0:440:6a68:826a with SMTP id 5b1f17b1804b1-441acb54c61mr4317625e9.13.1745873723167;
-        Mon, 28 Apr 2025 13:55:23 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:593b:8313:b361:2f0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2a2ac0sm167845705e9.15.2025.04.28.13.55.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 13:55:22 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
+	s=arc-20240116; t=1745874466; c=relaxed/simple;
+	bh=mAuZnXpIZXza2yqaFmmckcE6EI9/mgIYuU1UPpg+56Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UXmYSsyjpZg3ruJVawPnndopQ/Ouncja+9N+T1leK5iwrGdzAGpS7OTaVTQBywe25wY3DUmFplTnGYBjyQCZy0cjQN54PCm4LNuWLWgiC/CXhkU/T8Hq90ISB7LofJgtnJr8YvO66tH6H7VuhnMNGV2j9GQkMu0nCBYZmE4O8Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=M3xCB6nI; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from romank-3650.corp.microsoft.com (unknown [131.107.1.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id DB61E20BCAD1;
+	Mon, 28 Apr 2025 14:07:43 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com DB61E20BCAD1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1745874464;
+	bh=QSRzi2tZPIvIrsfPgn9XnDgdRLZDtKC6Y9CQpDRifwU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=M3xCB6nI4T4edZdfuN4uLmiKdfs9Tkgkm2Xw1x/aOJOEqATA7M2R5w4ioXAc27Mjp
+	 lnQgmvPptLQOrU9ARFnraU78ZUBqWG4x0EhOdU96Gwac5vlCWPPK7igMKoyKXZCqUy
+	 80ZydzlLKDrOVkva2nuq25JUhTimm6FNSgxcOKns=
+From: Roman Kisel <romank@linux.microsoft.com>
+To: arnd@arndb.de,
+	bhelgaas@google.com,
+	bp@alien8.de,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	dave.hansen@linux.intel.com,
+	decui@microsoft.com,
+	haiyangz@microsoft.com,
+	hpa@zytor.com,
+	joey.gouly@arm.com,
+	krzk+dt@kernel.org,
+	kw@linux.com,
+	kys@microsoft.com,
+	lenb@kernel.org,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	mark.rutland@arm.com,
+	maz@kernel.org,
+	mingo@redhat.com,
+	oliver.upton@linux.dev,
+	rafael@kernel.org,
+	robh@kernel.org,
+	ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com,
+	suzuki.poulose@arm.com,
+	tglx@linutronix.de,
+	wei.liu@kernel.org,
+	will@kernel.org,
+	yuzenghui@huawei.com,
+	linux-hyperv@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable GBETH
-Date: Mon, 28 Apr 2025 21:55:18 +0100
-Message-ID: <20250428205518.454960-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250428205518.454960-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250428205518.454960-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-acpi@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-arch@vger.kernel.org,
+	x86@kernel.org
+Cc: apais@microsoft.com,
+	benhill@microsoft.com,
+	bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: [PATCH hyperv-next v9 00/11] arm64: hyperv: Support Virtual Trust Level Boot
+Date: Mon, 28 Apr 2025 14:07:31 -0700
+Message-ID: <20250428210742.435282-1-romank@linux.microsoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This patch set allows the Hyper-V code to boot on ARM64 inside a Virtual Trust
+Level. These levels are a part of the Virtual Secure Mode documented in the
+Top-Level Functional Specification available at
+https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/vsm.
 
-Enable the GBETH nodes on the RZ/V2H Evaluation Kit.
+The OpenHCL paravisor https://github.com/microsoft/openvmm/tree/main/openhcl
+can serve as a practical application of these patches on ARM64.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 74 +++++++++++++++++++
- 1 file changed, 74 insertions(+)
+For validation, I built kernels for the {x86_64, ARM64} x {VTL0, VTL2} set with
+a small initrd embedded into the kernel and booted VMs managed by Hyper-V and
+OpenVMM off of that.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 063eca0ba3e2..6b12bdc3eff9 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -16,6 +16,8 @@ / {
- 	compatible = "renesas,rzv2h-evk", "renesas,r9a09g057h44", "renesas,r9a09g057";
- 
- 	aliases {
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
- 		i2c0 = &i2c0;
- 		i2c1 = &i2c1;
- 		i2c2 = &i2c2;
-@@ -78,6 +80,68 @@ &audio_extal_clk {
- 	clock-frequency = <22579200>;
- };
- 
-+&eth0 {
-+	pinctrl-0 = <&eth0_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-id0022.1640", "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			rxc-skew-psec = <0>;
-+			txc-skew-psec = <0>;
-+			rxdv-skew-psec = <0>;
-+			txdv-skew-psec = <0>;
-+			rxd0-skew-psec = <0>;
-+			rxd1-skew-psec = <0>;
-+			rxd2-skew-psec = <0>;
-+			rxd3-skew-psec = <0>;
-+			txd0-skew-psec = <0>;
-+			txd1-skew-psec = <0>;
-+			txd2-skew-psec = <0>;
-+			txd3-skew-psec = <0>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	pinctrl-0 = <&eth1_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&phy1>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy1: ethernet-phy@1 {
-+			compatible = "ethernet-phy-id0022.1640", "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			rxc-skew-psec = <0>;
-+			txc-skew-psec = <0>;
-+			rxdv-skew-psec = <0>;
-+			txdv-skew-psec = <0>;
-+			rxd0-skew-psec = <0>;
-+			rxd1-skew-psec = <0>;
-+			rxd2-skew-psec = <0>;
-+			rxd3-skew-psec = <0>;
-+			txd0-skew-psec = <0>;
-+			txd1-skew-psec = <0>;
-+			txd2-skew-psec = <0>;
-+			txd3-skew-psec = <0>;
-+		};
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- 	mali-supply = <&reg_0p8v>;
-@@ -172,6 +236,16 @@ &ostm7 {
- };
- 
- &pinctrl {
-+	eth0_pins: eth0 {
-+		pins = "ET0_TXC_TXCLK";
-+		output-enable;
-+	};
-+
-+	eth1_pins: eth0 {
-+		pins = "ET1_TXC_TXCLK";
-+		output-enable;
-+	};
-+
- 	i2c0_pins: i2c0 {
- 		pinmux = <RZV2H_PORT_PINMUX(3, 0, 1)>, /* I2C0_SDA */
- 			 <RZV2H_PORT_PINMUX(3, 1, 1)>; /* I2C0_SCL */
+Starting from V5, the patch series includes a non-functional change to KVM on
+arm64 which I tested as well.
+
+I've kept the Acked-by tags given by Arnd and Bjorn. These patches (1 and 11)
+have changed very slightly since then (V5 and V6), no functional changes:
+in patch 1, removed macro's in favour of functions as Marc suggested to get rid
+of "sparse" warnings, and in patch 11, fixed building as a module. Please let me
+know if I should have not kept the tags.
+
+[V9]
+    - Fix building the pci-hyperv driver as a module.
+      ** Thank you, Micheal! **
+  
+    - Removed an overzealous check for the ACPI IRQ model on arm64 running with
+      Hyper-V -- only GIC is supported. That check belongs to the lower layer
+      code, and I took it from the ACPI driver while open-coding getting the
+      parent IRQ domain.
+
+[V8]
+    https://lore.kernel.org/linux-hyperv/20250414224713.1866095-1-romank@linux.microsoft.com/
+    - Use the Linux derfined macro __ASSEMBLY__ instead of the gcc's pre-defined
+      macro __ASSEMBLER__ to follow the kernel coding style.
+      ** Thank you, Marc! **
+
+[V7]
+    https://lore.kernel.org/linux-hyperv/20250407201336.66913-1-romank@linux.microsoft.com/
+    - Used another approach not to increase the number of warnings produced when
+      building with CHECK_ENDIAN.
+      ** Thank you, Arnd! **
+
+     - Adjusted the function parameter formatting to match the rest of the code.
+      ** Thank you, Bjorn! **
+
+    - Removed the now unused local variable.
+      ** Thank you, kernel robot! **
+
+    - Fixed the description in the VMBus DT binding patch.
+      ** Thank you, Krzysztof! **
+
+    - Adjusted the function names and comments to better reflect what they do,
+      used the suggested approach to handling UUIDs to make code more readable
+      and maintainable on big-endian.
+    - Replaced ifdeffery with a stub function to make the code more readable.
+      ** Thank you, Mark! **
+
+    - Fixed the Kconfig not to build the VTL mode code on 32-bit kernels.
+      ** Thank you, Michael! **
+
+    - Fixed the indentation and the comment style.
+      ** Thank you, Rafael! **
+
+[V6]
+    https://lore.kernel.org/linux-hyperv/20250315001931.631210-1-romank@linux.microsoft.com/
+    - Use more intuitive Kconfig update.
+    - Remove ifdef for getting IRQ number
+    ** Thank you, Arnd! **
+
+    - Simplify code for finding the parent IRQ domain.
+    ** Thank you, Bjorn! **
+
+    - Remove a superfluous check.
+    ** Thank you, Dan! **
+
+    - Make the commit title and descrtiption legible.
+    - Don't set additionalProperties to true.
+    ** Thank you, Krzysztof! **
+
+    - Fix spelling in the commit title and description.
+    - Trade-offs for options in Kconfig.
+    - Export the new symbol as hyperv-pci can be built as a module.
+    ** Thank you, Michael! **
+
+    - Simplify code for getting IRQ number.
+    ** Thank you, Rob! **
+
+    - Add comment to clarify when running in VTL mode is reported.
+    ** Thank you, Wei! **
+
+[V5]
+  https://lore.kernel.org/linux-hyperv/20250307220304.247725-1-romank@linux.microsoft.com/
+    - Provide and use a common SMCCC-based infra for the arm64 hypervisor guests
+      to detect hypervisor presence.
+    ** Thank you, Arnd! **
+
+    - Fix line wraps to follow the rest of the code.
+    - Open-code getting IRQ domain parent in the ACPI case to make the code
+      better.
+    ** Thank you, Bjorn! **
+
+    - Test the binding with the latest dtschema.
+    - Clean up the commit title and description.
+    - Use proper defines for known constants.
+    ** Thank you, Krzysztof! **
+
+    - Extend comment on why ACPI v6 is checked for.
+    - Reorder patches to make sure that even with partial series application
+      the compilation succeeds.
+    - Report VTL the kernel runs in.
+    - Use "X86_64" in Kconfig rather than "X86".
+    - Extract a non-functional change for hv_get_vmbus_root_device() into
+      a separate patch.
+    ** Thank you, Michael! **
+
+[V4]
+    https://lore.kernel.org/linux-hyperv/20250212014321.1108840-1-romank@linux.microsoft.com/
+    - Fixed wording to match acronyms defined in the "Terms and Abbreviations"
+      section of the SMCCC specification throughout the patch series.
+      **Thank you, Michael!**
+
+    - Replaced the hypervisor ID containing ASCII with an UUID as
+      required by the specification.
+      **Thank you, Michael!**
+
+    - Added an explicit check for `SMCCC_RET_NOT_SUPPORTED` when discovering the
+      hypervisor presence to make the backward compatibility obvious.
+      **Thank you, Saurabh!**
+
+    - Split the fix for `get_vtl(void)` out to make it easier to backport.
+    - Refactored the configuration options as requested to eliminate the risk
+      of building non-functional kernels with randomly selected options.
+      **Thank you, Michael!**
+
+    - Refactored the changes not to introduce an additional file with
+      a one-line function.
+      **Thank you, Wei!**
+
+    - Fixed change description for the VMBus DeviceTree changes, used
+      `scripts/get_maintainers.pl` on the latest kernel to get the up-to-date list
+      of maintainers as requested.
+      **Thank you, Krzysztof!**
+
+    - Removed the added (paranoidal+superfluous) checks for DMA coherence in the
+      VMBus driver and instead relied on the DMA and the OF subsystem code.
+      **Thank you, Arnd, Krzysztof, Michael!**
+
+    - Used another set of APIs for discovering the hardware interrupt number
+      in the VMBus driver to be able to build the driver as a module.
+      **Thank you, Michael, Saurabh!**
+
+    - Renamed the newly introduced `get_vmbus_root_device(void)` function to
+      `hv_get_vmbus_root_device(void)` as requested.
+      **Thank you, Wei!**
+
+    - Applied the suggested small-scale refactoring to simplify changes to the Hyper-V
+      PCI driver. Taking the offered liberty of doing the large scale refactoring
+      in another patch series.
+      **Thank you, Michael!**
+
+    - Added a fix for the issue discovered internally where the CPU would not
+      get the interrupt from a PCI device attached to VTL2 as the shared peripheral
+      interrupt number (SPI) was not offset by 32 (the first valid SPI number).
+      **Thank you, Brian!**
+
+[V3]
+    https://lore.kernel.org/lkml/20240726225910.1912537-1-romank@linux.microsoft.com/
+    - Employed the SMCCC function recently implemented in the Microsoft Hyper-V
+      hypervisor to detect running on Hyper-V/arm64. No dependence on ACPI/DT is
+      needed anymore although the source code still falls back to ACPI as the new
+      hypervisor might be available only in the Windows Insiders channel just
+      yet.
+    - As a part of the above, refactored detecting the hypervisor via ACPI FADT.
+    - There was a suggestion to explore whether it is feasible or not to express
+      that ACPI must be absent for the VTL mode and present for the regular guests
+      in the Hyper-V Kconfig file.
+      My current conclusion is that this will require refactoring in many places.
+      That becomes especially convoluted on x86_64 due to the MSI and APIC
+      dependencies. I'd ask to let us tackle that in another patch series (or chalk
+      up to nice-have's rather than fires to put out) to separate concerns and
+      decrease chances of breakage.
+    - While refactoring `get_vtl(void)` and the related code, fixed the hypercall
+      output address not to overlap with the input as the Hyper-V TLFS mandates:
+      "The input and output parameter lists cannot overlap or cross page boundaries."
+      See https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/hypercall-interface
+      for more.
+      Some might argue that should've been a topic for a separate patch series;
+      I'd counter that the change is well-contained (one line), has no dependencies,
+      and makes the code legal.
+    - Made the VTL boot code (c)leaner as was suggested.
+    - Set DMA cache coherency for the VMBus.
+    - Updated DT bindings in the VMBus documentation (separated out into a new patch).
+    - Fixed `vmbus_set_irq` to use the API that works both for the ACPI and OF.
+    - Reworked setting up the vPCI MSI IRQ domain in the non-ACPI case. The logic
+      looks a bit fiddly/ad-hoc as I couldn't find the API that would fit the bill.
+      Added comments to explain myself.
+
+[V2]
+    https://lore.kernel.org/all/20240514224508.212318-1-romank@linux.microsoft.com/
+    - Decreased number of #ifdef's
+    - Updated the wording in the commit messages to adhere to the guidlines
+    - Sending to the correct set of maintainers and mail lists
+
+[V1]
+    https://lore.kernel.org/all/20240510160602.1311352-1-romank@linux.microsoft.com/
+
+Roman Kisel (11):
+  arm64: kvm, smccc: Introduce and use API for getting hypervisor UUID
+  arm64: hyperv: Use SMCCC to detect hypervisor presence
+  Drivers: hv: Enable VTL mode for arm64
+  Drivers: hv: Provide arch-neutral implementation of get_vtl()
+  arm64: hyperv: Initialize the Virtual Trust Level field
+  arm64, x86: hyperv: Report the VTL the system boots in
+  dt-bindings: microsoft,vmbus: Add interrupt and DMA coherence
+    properties
+  Drivers: hv: vmbus: Get the IRQ number from DeviceTree
+  Drivers: hv: vmbus: Introduce hv_get_vmbus_root_device()
+  ACPI: irq: Introduce acpi_get_gsi_dispatcher()
+  PCI: hv: Get vPCI MSI IRQ domain from DeviceTree
+
+ .../bindings/bus/microsoft,vmbus.yaml         | 16 ++++-
+ arch/arm64/hyperv/mshyperv.c                  | 53 ++++++++++++--
+ arch/arm64/kvm/hypercalls.c                   | 10 +--
+ arch/x86/hyperv/hv_init.c                     | 34 ---------
+ arch/x86/hyperv/hv_vtl.c                      |  7 +-
+ drivers/acpi/irq.c                            | 16 ++++-
+ drivers/firmware/smccc/kvm_guest.c            | 10 +--
+ drivers/firmware/smccc/smccc.c                | 17 +++++
+ drivers/hv/Kconfig                            |  6 +-
+ drivers/hv/hv_common.c                        | 31 ++++++++
+ drivers/hv/vmbus_drv.c                        | 53 +++++++++++---
+ drivers/pci/controller/pci-hyperv.c           | 70 +++++++++++++++++--
+ include/asm-generic/mshyperv.h                |  6 ++
+ include/hyperv/hvgdk_mini.h                   |  2 +-
+ include/linux/acpi.h                          |  5 +-
+ include/linux/arm-smccc.h                     | 64 +++++++++++++++--
+ include/linux/hyperv.h                        |  2 +
+ 17 files changed, 323 insertions(+), 79 deletions(-)
+
+
+base-commit: 628cc040b3a2980df6032766e8ef0688e981ab95
 -- 
-2.49.0
+2.43.0
 
 
