@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-171597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE8DA9F37C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:32:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0940A9F381
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD6E0172463
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:32:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04CE65A3E93
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB7E26FA67;
-	Mon, 28 Apr 2025 14:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA76267B6F;
+	Mon, 28 Apr 2025 14:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xFkUJxoG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sJPJraCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A3826FD80;
-	Mon, 28 Apr 2025 14:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319322AD04;
+	Mon, 28 Apr 2025 14:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745850750; cv=none; b=MsBVfKxufQv744ZW/DDjvcyUhOP86lEz9ROGbDt0cYCTtjLV8e6yjJ2scIyv9El2mD/EG2VsgdOfhTxj/8tJogq6Y5WNlHm/TOVJIwHcDya/h+izI5ZOMeUfJ75hubie+0wiCAVdF3GO/QzzfNPhHuj+t5QrgZFj1ZqSiiVYqhw=
+	t=1745850859; cv=none; b=be0cqrd48eYwmb4GDX6wQDwnfttRU1Q/XM/g1pubbF/yeYVUf2qCnENTqtLxytzvFE0ite4qSQwvek64htMyz+8iCaXbQ7E4Rm/RmgoNSTC7FcEau/DRD0h+Opi/GalAVpiV+q6OgqYT/s+LB3MfJmd0UVRhkOQi5rBncCS+kLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745850750; c=relaxed/simple;
-	bh=a+ifTSZm+cWaHoFZFQ71U9ui3HBILvzDujK+XPKqusU=;
+	s=arc-20240116; t=1745850859; c=relaxed/simple;
+	bh=YcDNryWhc6VcXftfwMsLAhE+X5MJo0OLW2P1BHqcGlU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=joair5O6zkIq7H25ddWPkangdxBwCg60XuFxCDLY8qUuHK9JmerUdyoPMa7ZtxLZ/hoV3Jx/fLM+OTdU635ozfwsBUme5+94A7KwrONI17PrZjrkw/fJh4BROMjd6vhetAL4I+P0Sgo98jAxUwr3seuvySvTG050PKCEejcFmTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xFkUJxoG; arc=none smtp.client-ip=198.47.23.234
+	 In-Reply-To:Content-Type; b=umfeedR7UQxXZK4/++JFmGExcfEBMzvoN0iIR4IiEMUck4tjh6yGcILupV8JmH9RmwGgavWqmqrR6TycBpirBABQO2qGBHYOSaK9Fd4FOIsqDmimzwENd8D60YIoKRmSrwgm727khGkqot4qg14OaOv9s7pFinazEtFaxjOVwAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sJPJraCH; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEWLTE2797771
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEY5lE3573445
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 28 Apr 2025 09:32:21 -0500
+	Mon, 28 Apr 2025 09:34:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745850741;
-	bh=h/2bBsmNgshpx+fVZzGiZUVbGDRvaT0rx5juzitARMQ=;
+	s=ti-com-17Q1; t=1745850845;
+	bh=M9fpsf78Paf5UKQYjLwaXjw5Gbg+DBdSCuZWocGOz1c=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=xFkUJxoGm9XO51g5jRFTmGUvg7QMqNi7cTL5RW+D7tVOCXzjgGfMzVwTTtglBxE5l
-	 R+N3JdSmWftEGudzB6IbyTiEAzl9euBfwRXJtLfY0H509qoxAgwLT8+8vaWwdti9Y7
-	 Jp+2lN+Z9aAgskninJLu7DhFFlzepM1nZXp6hWV4=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEWL8H130550
+	b=sJPJraCHbeaVGqjYkUiiMPpzHnnFG8SQopfpgOzkvwzdyi+athULzc9Z85/Xdmh0p
+	 Jw2rdrcfbsEiuyqqr0RQE36tlz2kOb7cXH/sVCMaESkPP1kYNjHnWGaHl+cmNm/y3J
+	 ijojrKrDNmId3wSTVy1gdlaNXLJRNkRFRfFhqwsM=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SEY5uL003914
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 28 Apr 2025 09:32:21 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 28 Apr 2025 09:34:05 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Apr 2025 09:32:21 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 09:34:03 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Apr 2025 09:32:21 -0500
+ Frontend Transport; Mon, 28 Apr 2025 09:34:03 -0500
 Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SEWDF0103895;
-	Mon, 28 Apr 2025 09:32:13 -0500
-Message-ID: <22475489-3142-44dc-8020-e9fd8cf8709e@ti.com>
-Date: Mon, 28 Apr 2025 20:02:12 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SEXxMp108147;
+	Mon, 28 Apr 2025 09:33:59 -0500
+Message-ID: <5619384e-28d4-48b9-99cc-dbf2e2375090@ti.com>
+Date: Mon, 28 Apr 2025 20:03:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,110 +66,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] AM64 and J7X DT: Enable PCIe 64-bit Address Space
+Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-j784s4-j742s2-main-common: add
+ ACSPCIE0 node
 To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
         <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
+        <conor+dt@kernel.org>, <parth105105@gmail.com>,
+        <parth.pancholi@toradex.com>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
         <u-kumar1@ti.com>
-References: <20250422120042.3746004-1-s-vadapalli@ti.com>
+References: <20250422123218.3788223-1-s-vadapalli@ti.com>
+ <20250422123218.3788223-2-s-vadapalli@ti.com>
 Content-Language: en-US
 From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250422120042.3746004-1-s-vadapalli@ti.com>
+In-Reply-To: <20250422123218.3788223-2-s-vadapalli@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-On 4/22/2025 5:30 PM, Siddharth Vadapalli wrote:
-> Hello,
+On 4/22/2025 6:02 PM, Siddharth Vadapalli wrote:
+> The ACSPCIE0 module on TI's J784S4 SoC is capable of driving the
+> reference clock required by the PCIe Endpoint device. It is an
+> alternative to on-board and external reference clock generators.
+> Add the device-tree node for the same.
 >
-> The Cadence PCIe Controllers in TI's K3 SoCs namely:
-> AM64, J7200, J721E, J721S2 (AM68), J722S, J742S2 and J784S4 (AM69)
-> support two address regions:
-> 1. 128 MB address region in the 32-bit address space
-> 2. 4 GB address region in the 64-bit address space
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
 >
-> Currently, the 128 MB region in the 32-bit address space is enabled in
-> the device-tree. This might be suitable for most of the use-cases, but
-> for those use-cases requiring larger address regions than 128 MB it is
-> necessary to switch to the 64-bit address space with the 4 GB address
-> region. This series implements the corresponding device-tree changes to
-> support the 4 GB address region as the default configuration. Existing
-> use-cases should continue to work without any regression.
+> The previous versions of this series were a single patch. Based on the
+> feedback received on previous versions, the SoC and Board support has
+> been split in order to allow reuse for other Boards based on the same
+> SoC.
 >
-> Series is based on linux-next tagged next-20250417.
-
-
-For series
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
->
-> Link to v1 series:
-> https://lore.kernel.org/r/20250417120407.2646929-1-s-vadapalli@ti.com/
->
-> Changes since v1 series:
-> - Fixed the 'ranges' in k3-j721e.dtsi which is the third patch of the
->    series to set the size as 4 GB instead of the incorrect value of 128 MB.
-> - Based on Udit's feedback and offline discussion as described at:
->    https://lore.kernel.org/r/7f6ea98c-df6d-4c94-8f42-76cc8306b6c4@ti.com/
->    the address region of 4 GB is split as:
->    0. 4 KB ECAM
->    1. 1 MB IO
->    2. (4 GB - 1 MB - 4 KB) 32-bit Non-Prefetchable MEM
->    instead of the previous split of:
->    0. 4 KB ECAM
->    1. 1 MB IO
->    2. 128 MB 32-bit Non-Prefetchable MEM
->    3. (4 GB - 129 MB - 4 KB) 64-bit Prefetchable MEM
->
-> Series has been tested on AM642-EVM, J7200-EVM, J721E-EVM, J721S2-EVM,
-> J722S-EVM and J784S4-EVM using an NVMe SSD connected to the PCIe
-> Connector on the EVMs.
->
-> Test Logs:
-> 1. AM642-EVM PCIe0
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/5d1814ee2e0857dac0ac08a6cf8759da
-> 2. J7200-EVM PCIe1
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/9927faab7615b9c1c101854a213f30f5
-> 3. J721E-EVM PCIe0
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/e6545e31f45077fe59c896f8875bf1b9
-> 4. J721E-EVM PCIe1
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/5c0b64f339f89139797d8346c40b1ee9
-> 5. J721S2-EVM PCIe1
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/67b03c441d53ef0d27837e615371efbd
-> 6. J722S-EVM PCIe0
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/7625f47b57d45aada4c125ac4f60ebd6
-> 7. J784S4-EVM PCIe0
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/edf2af424fc7d5905832d536a1171a1a
+> v2 patch:
+> https://lore.kernel.org/r/20250411121307.793646-1-s-vadapalli@ti.com/
+> Changes since v2 patch:
+> - The SoC and board changes have been split across:
+>    k3-j784s4-j742s2-main-common.dtsi and k3-j784s4-j742s2-evm-common.dtsi
+>    respectively.
 >
 > Regards,
 > Siddharth.
 >
-> Siddharth Vadapalli (7):
->    arm64: dts: ti: k3-am64-main: switch to 64-bit address space for PCIe0
->    arm64: dts: ti: k3-j7200-main: switch to 64-bit address space for
->      PCIe1
->    arm64: dts: ti: k3-j721e: add ranges for PCIe0 DAT1 and PCIe1 DAT1
->    arm64: dts: ti: k3-j721e-main: switch to 64-bit address space for
->      PCIe0 and PCIe1
->    arm64: dts: ti: k3-j721s2-main: switch to 64-bit address space for
->      PCIe1
->    arm64: dts: ti: k3-j722s-main: switch to 64-bit address space for
->      PCIe0
->    arm64: dts: ti: k3-j784s4-j742s2-main-common: switch to 64-bit address
->      space for PCIe0 and PCIe1
+>   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
 >
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi             |  6 +++---
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi            |  6 +++---
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi            | 12 ++++++------
->   arch/arm64/boot/dts/ti/k3-j721e.dtsi                 |  2 ++
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi           |  6 +++---
->   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi            |  6 +++---
->   .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi    | 12 ++++++------
->   7 files changed, 26 insertions(+), 24 deletions(-)
->
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> index 1944616ab357..f03b2b6d5d03 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -126,6 +126,11 @@ audio_refclk1: clock@82e4 {
+>   			assigned-clock-parents = <&k3_clks 157 63>;
+>   			#clock-cells = <0>;
+>   		};
+> +
+> +		acspcie0_proxy_ctrl: clock-controller@1a090 {
+> +			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
+> +			reg = <0x1a090 0x4>;
+
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+
+> +		};
+>   	};
+>   
+>   	main_ehrpwm0: pwm@3000000 {
 
