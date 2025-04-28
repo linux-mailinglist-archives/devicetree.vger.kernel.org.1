@@ -1,123 +1,118 @@
-Return-Path: <devicetree+bounces-171361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C779A9E8A0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DA86A9E8A4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 08:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97D3F18969DF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:56:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD5651897CF1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 06:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3671D5146;
-	Mon, 28 Apr 2025 06:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5F81D5146;
+	Mon, 28 Apr 2025 06:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gMZyaN9F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BTMUUgkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178FF757F3;
-	Mon, 28 Apr 2025 06:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D121757F3
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 06:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745823384; cv=none; b=ZuFysKK1rXIXlzXa4P4O5tvmvMyPpx/4cZTWedImoIYj3H6TZ1KdfPAfmVO0VRu6sYLMOdBfQnkKoTFV6PGkpmKEeSiagHwhW6rJFKu3EOAy1QiH0Eq2gtQlwLh0K12Rukp0O/MLt0CDD5pHztjIQrJ87Xg8wnGP3MPjNadLDUw=
+	t=1745823459; cv=none; b=eq66Vv53YegHEfsWAVs2nQbPXPdThyHwQrZ80wJwOKDpxuYnF8fhGRvtcNvDA4MPWRyRdtSGysUdpkKh2ACMadxHCXE3tCulsYEoiGlkg8dOrJLErwj/L+putu2jX8wNmvhWrDqFiJ6ODdiUSooA/6KHZ68D+Ta7fzlO3E6iq2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745823384; c=relaxed/simple;
-	bh=+acStz/Dse4jpv4MBbLpD5tJGTHSXq7vbjuO+00Xyao=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OgAZhwHcs4xP1Qf3jqUzgNHrkN5XZ3UME8RYwv/t8UFBeJjqbQ6/Pt1LMh7F1W7VFvO2bWqBY99exq88QMdwXWsm59/uF4JizK8lR802Se/0DksP1OHf0j7UWm+OoHuemuSrImQcrLwbBNqr9ie8f3p45fC7Wr+a+vxBUGpLAlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gMZyaN9F; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2af2f15d1so534760266b.1;
-        Sun, 27 Apr 2025 23:56:22 -0700 (PDT)
+	s=arc-20240116; t=1745823459; c=relaxed/simple;
+	bh=d4XFv9AM2KzoklohKn4qQQWEUfY2HK2Ojc07GQWCCU0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ipWvbbeAyzDNsiF+TbowhCMHThyvA79MAQt0S1i77E6yzQwyGFAoi2Lj/Q6fXFAz6QR4lCt5yVeWPPmBpwncYto3V3xkZY5fwOG1UmVfSsO6cf+4SRK2+UEA4lKvEDDfoq8L08nUqSGO7MqSABK/hVqOWU+Fnhovyxl0fk04Jog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BTMUUgkd; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5f819da7eadso10610a12.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Apr 2025 23:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745823381; x=1746428181; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1745823456; x=1746428256; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MMAxDXlv1aopPBGRhq36xfaXhilkSkGB8/oDJ5bRsUs=;
-        b=gMZyaN9FBEiJ+BgHzaxJ1UFYD2mJy8cKJyGM/QHjYWQtSekbDuE6fObEue2b+jCNp0
-         jBhCgArAIp6sgAFLdFVDqp5ZceqfX9hqVDjjmdy3NOLLfnHMj/g7MU7YPmaNY0bQgqVs
-         d5spWHPx1TmQhZcMgOmlWBvPzKk/J7LPLYaB8cADIcpxrc0TRbwc32q4Ew4YiG13p/Fg
-         S5HDDskaMYoJT2hLtE2HXl8kA5N9+8rajCoPamcJi//p/QDlnBD/EKYXWbOhQ9Vw16Qh
-         G5Dpz3pyL5gswndkWSWlUOzW1BVAXe9wq6oOSxX6lf0imOLURPKCL3xJiIzR0kPtq8Or
-         bRpw==
+        bh=5+ortHNrfOvVi3JtuuibxSl/bmwTJ5xWjzQLpGiIwY0=;
+        b=BTMUUgkd+v8IIPzvt+5P5kyH2sC5Igo2jIQ64GKuejDk7mQjFMKzsZbGHUlTLLTMNn
+         rqtb4zkYLhASdIiNvINmjR4kRCAmrSSTM19m39Zjkx2BkU2zIWYO3Ji5fsGm6ujWOfjZ
+         5+JpEIMpF780H0bapcyC5NJlnM0t5h6jm4iAhYH2RCmFz1kADG4r24Ig2GObHkmPdWAr
+         pB7VoPdfwXZBDNm3gOTmS+q+Ik/7FmpIehiOXiHOL1SzanL5NkwXNX3y8ceolyHSbHQw
+         vtFjGkdgIpSVytA7f9O2F9yB0OkKDSGTV6NtBTm+jUSanjSfbHfzbH48frpyn83wCFgb
+         QiVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745823381; x=1746428181;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1745823456; x=1746428256;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MMAxDXlv1aopPBGRhq36xfaXhilkSkGB8/oDJ5bRsUs=;
-        b=tQSGMgZAFGdi/iUpiZ9kiZ/a2sWbj/D7PmU9zea5lZDC2RV94qd5/Ul0u9NUcWYAEb
-         Dz8uLRWbND1UUQTe2rBjINGWyGvUxNMT8rcCNmMKxofhf64TCFZe/SffBbPnPeofRdy5
-         Sm7pRW8G1riDX+qmKoXbX5An2cnMY6DEk0z2pPUSG01qVlW3Sv57VsWlluov8Sx32FIN
-         PA9jB4yc73wu7swr19YRURqBszF9Si6Z0r5rrDH/GY7XiQs1JFb59bejWxplBr6PAbdU
-         eAiwXpWrt2IIuwvS/Lv6s5yyP9ko4l2jppNf9+Z7ovb7DbIcAvtpQktj12xMILV4YKMN
-         iUdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUccse+HOrcwdPzlAyMCDsKvAUt8WEcNjYelPJBzB6hiTAAbE1akAD/49FN3SwCdy3YNtzNREuVXVHapg==@vger.kernel.org, AJvYcCX0rlWW19QHqYqYVaxymBpwkRIZcsfok1+rCvZF9rZbQ4xg4UMkitqGdhCsosp8up9du2co+raqsMH4@vger.kernel.org, AJvYcCXXUncK1CkeW8kooCF3GB4+CoMDuaalMelc/8rdgakXj5YHjqJLJmBvz9xtrBuCoMBz8apsDx0ozWA9o5rB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0jr9gbxXITEaC2wAtGn/hVe6uar+MgpArLVkG0fm6zMJZUOsL
-	f6cz/Uxby+BbyndxXJdaQw2TkKQFUYF/XIiM5rlSzh8hVC+hAS2JprPuVW4Qc3jeVzM1XP66rlV
-	rdOH42H+3qM1Uy0AQCBiufZl4BI8=
-X-Gm-Gg: ASbGncty/A8qPAvOIduB766wQLn1cdx4R0joJCs9nHjuiNGgygX83lu+7q6Cy1efMoM
-	n/j9QhUEvH2ITeoy2WKTMl1bQO0PxxL+9+QlJhF6laDZbDcTZyXV23bduAdEjdcRRSaYWZoDTRu
-	YpxL30NWtZP3EXl7Os9VvXmDYY
-X-Google-Smtp-Source: AGHT+IFV2itzLpoFraDMPTaa8NOOgj1dLte+8y2kr9YYgzCqprEUo8QvUPqITZS5O9fBMncBBx/ddJ4TIEj+dBZNAGE=
-X-Received: by 2002:a17:907:1b13:b0:ace:4197:9ac5 with SMTP id
- a640c23a62f3a-ace71124427mr952233266b.27.1745823380413; Sun, 27 Apr 2025
- 23:56:20 -0700 (PDT)
+        bh=5+ortHNrfOvVi3JtuuibxSl/bmwTJ5xWjzQLpGiIwY0=;
+        b=TvOWtuM+plsYIJOPZpg65jjnv6iC1SxdRqyjotJkdObOnlYzIzJ1xgO6Xo7cHyMGV4
+         OIGtEBV7OaDcFo9IqTaJuu26bWbrxlJeV2sDw9DH92OMjNbeofLeJ8SPSXeu0415mSvM
+         wrQpw73IImA5migMKD4u/f4PPo9eoancruNiv1m7xDuprDMLYR2W8XMIY0K+uNOJY9cc
+         JoW4Ent4buQSx8xr2Cg4Vmsfo1gbsCF6uLZ+hDlUUCu3aWNmwZC6mi4zGunlQTG2bu7k
+         Mr+uR7e9xQNuDTbgmyIpfJEaGmh+Kh41Nsu9eiXoVCZznKqfqjWJIkqGV15ErN6MkCT4
+         sVgw==
+X-Gm-Message-State: AOJu0Yxlwzr7EegusEsFHzw5sjiLW4UUDpvluxUowm0DxvJOP2iF+i4a
+	6k8iE+gMiAT7+yFgPdWttPfE8O8v1szAd3EZHJ54OdeQay1uz8qBrpM9BZCjkLg=
+X-Gm-Gg: ASbGncs3AvOfW3v7uSMbjbNpeGRHuXtZqAoUkyyAr3DcZjWCsPfoQjZ7jy7bcwBpRhs
+	MFPs6NxFDwynMCaZv2kNovQaOm2c8qjATKywY3eqBJ9LzMVMtTw4vjBf7pN9N94nEFUd9p7Fn0H
+	aGmNViwjFCFyhx9fxVNAcvCikNE1DWQADifcUUVWj6B9TPObhXPYPulmFHSpF//+08udLzSLdVD
+	BRH4rjicXlItP8cC7k81bUTyEpSua2KNrwGIBRSjNGVSuIL30sJGkmw4mlnjCLZGW+UXcZYkT9T
+	i6F8p+TZHfMW5ZivpL0j4irdUb+ln2W/JKU4UyJM9Cgd073Kbj5FMfzW6kI=
+X-Google-Smtp-Source: AGHT+IGPXwdKcilrH0EaY87ltjYS5IfxJmMxGOJymVoJWkuZjfIeQ+m0X5W+e8qJFuxvTNyVzNvW2g==
+X-Received: by 2002:a17:907:2d94:b0:ac7:2aa0:309b with SMTP id a640c23a62f3a-ace7102a77emr346405166b.1.1745823456326;
+        Sun, 27 Apr 2025 23:57:36 -0700 (PDT)
+Received: from [192.168.1.28] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e41b2fcsm569109166b.26.2025.04.27.23.57.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Apr 2025 23:57:35 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alexey Charkov <alchark@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20250425-apc_paper_binding-v5-0-3aef49e97332@gmail.com>
+References: <20250425-apc_paper_binding-v5-0-3aef49e97332@gmail.com>
+Subject: Re: [PATCH v5 0/2] ARM: vt8500: Add VIA APC Rock/Paper board
+Message-Id: <174582345507.19754.6996971204397782519.b4-ty@linaro.org>
+Date: Mon, 28 Apr 2025 08:57:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1745605382.git.Jonathan.Santos@analog.com> <0a214d5dfacc3976db71af8a80f9dcf2887fe6cc.1745605382.git.Jonathan.Santos@analog.com>
-In-Reply-To: <0a214d5dfacc3976db71af8a80f9dcf2887fe6cc.1745605382.git.Jonathan.Santos@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 28 Apr 2025 09:55:44 +0300
-X-Gm-Features: ATxdqUG_LU6TdUnzlvAgq3Jvw--wjKNazD1RkT6rJZoXywM9R8GEIBZyAyEkhfE
-Message-ID: <CAHp75VcUgwZWgaAX8XNrVLc8Rnn-xMAqFSKvh=+bQWNM50pyPA@mail.gmail.com>
-Subject: Re: [PATCH v6 07/11] iio: adc: ad7768-1: add multiple scan types to
- support 16-bits mode
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, andy@kernel.org, 
-	nuno.sa@analog.com, Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, 
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
-	lgirdwood@gmail.com, broonie@kernel.org, jonath4nns@gmail.com, 
-	dlechner@baylibre.com, David Lechner <dlechner@baylire.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Mon, Apr 28, 2025 at 3:13=E2=80=AFAM Jonathan Santos
-<Jonathan.Santos@analog.com> wrote:
->
-> When the device is configured to decimation x8, only possible in the
-> sinc5 filter, output data is reduced to 16-bits in order to support
-> 1 MHz of sampling frequency due to clock limitation.
->
-> Use multiple scan types feature to enable the driver to switch
-> scan type in runtime, making possible to support both 24-bit and
 
-at runtime
-making it possible
+On Fri, 25 Apr 2025 19:02:21 +0400, Alexey Charkov wrote:
+> Add binding and DTS for the WM8950 based VIA APC Rock board. Paper
+> is the same board for all intents and purposes, so reflect it only
+> in the binding description.
+> 
+> Split the series from v1 into several chunks by topic so as not to
+> spam all the subsystems with unrelated changes, per Rob's suggestion
+> 
+> [...]
 
-> 16-bit resolution.
+Applied, thanks!
 
-...
+[1/2] dt-bindings: arm: vt8500: Add VIA APC Rock/Paper boards
+      https://git.kernel.org/krzk/linux-dt/c/5ff150fc3755516937e7b1747722687ad4f75eae
+[2/2] ARM: dts: vt8500: Add VIA APC Rock/Paper board
+      https://git.kernel.org/krzk/linux-dt/c/927e1b7ac361fa1a76fb29caa21853c9d8ba315a
 
-> +       ret =3D spi_read(st->spi, &st->data.scan.chan,
-> +                      BITS_TO_BYTES(scan_type->realbits));
->         if (ret < 0)
->                 goto out;
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Add a TODO to convert this to use a new helper from 163ddf1fea59.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
