@@ -1,124 +1,184 @@
-Return-Path: <devicetree+bounces-171507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3248A9EE16
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:37:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E45EA9EE26
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:41:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5832217BB94
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 883A9189D5BE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D5425DCF5;
-	Mon, 28 Apr 2025 10:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7640262FC7;
+	Mon, 28 Apr 2025 10:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="NovZaOQr"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Y/c59yuT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37F759B71;
-	Mon, 28 Apr 2025 10:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EAB261398
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745836628; cv=none; b=A3ku3Wt3MRHLPghPdMncDxzUtJMSZkMeSQJmxdHz3HwPWHk21i2MA5UDaTNldNC0Y9UfoxmgcFMLohTWW7CC9la9uCIX06MNqywyFnsVI8mf2uZg0BZlG+bsV35ziG8+E/MoowTga0yw2d8TgMmVuMP1R1ux69GelJ+4Kp3r/jo=
+	t=1745836887; cv=none; b=j8DhHJMY91DK9pMMvUnkWtCKFoSij2IqASEcFw9VQ/XStppyDnlFwAnUUASxhMGail3dHAqXRZix8bnvzwDVGagexaKKkPZWl9MvLBLJ5Gj9DaEX6SsAwxSj9ctsVKUWo3IJ6K1ARKUNLohmhS230GjVLDLGO3tYrOydeHNZ7f8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745836628; c=relaxed/simple;
-	bh=B1dGRmjcRNXpAFe31TZaoEINK1Ne+EtdvjeT/ksZONI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ok7ybup9DdSIZIV9IbiF+/UikwDbdmFhCFvMftdT7NK2VdO3LEMDmKZXq9WJ43iaSc/WoyMxZmwYhJ7raOJXtnDWoPScn1k3f2E6hhDuwrF+yBBcXGA74HQ6tY1LdUZ0BQKzwp9uTDmrlYktwP0sxwU7rxHfD3EhkKmlUfW94mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=NovZaOQr; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 803651C00B2; Mon, 28 Apr 2025 12:37:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1745836622;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sK1vyzZ1/+Jz3BVDrNB5HsQaiId/G9OE1+QZi7+pUo4=;
-	b=NovZaOQrOnYyuz4h8MTpMapCl+bGF0gUM27+yMWiDTxs4K56P/UTaF4wfkDUFWS+kjPZil
-	7fPVRr+WvxX++Xxt/1j0WMsCDMdJcvb6Za5AiE6qz4VPlng+0vsZFR2nWCw8ljivMhaGKO
-	1RYtOP22T4/eItT4cLkXKQJw1grdt+0=
-Date: Mon, 28 Apr 2025 12:37:02 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Nam Tran <trannamatk@gmail.com>, andy@kernel.org, geert@linux-m68k.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	christophe.jaillet@wanadoo.fr, corbet@lwn.net,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-Message-ID: <aA9aTjhXHb3gddd9@duo.ucw.cz>
-References: <20250427082447.138359-1-trannamatk@gmail.com>
- <CAHp75Vch8i50stVO6nH0Tnn=g4xSMji_iPj6q-CE1tLnvesqcQ@mail.gmail.com>
+	s=arc-20240116; t=1745836887; c=relaxed/simple;
+	bh=Vm7qliEL+U0f1iQBYUqrrTlLguK2QMufO3UPrOVlLcM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=POrWSNAKGisK2M+aViJMgZ3XlwfUWh+om/He3ZccM9xXmCZAQWBoda2YiK7p2SnuXQYkjVS4tk7zPzuCKNkZJFu117lP0V5TNIUlTbPqgs3Fkh/vp3iYHmYcC9KbXYj/xIJ5sQLIB0yqVdsMSUzO1j5PWusHs7g2vjthfz0fLbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Y/c59yuT; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250428104122epoutp01aab223bb2da1e3224e5b695cfc1523a2~6dWUXFAby2821828218epoutp01c
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:41:22 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250428104122epoutp01aab223bb2da1e3224e5b695cfc1523a2~6dWUXFAby2821828218epoutp01c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745836882;
+	bh=Per/s3GLdQBrXVmnb/0ApsgYI11Thl7c7vR99d1KZKM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Y/c59yuTJakOag9K+40eNUz9PH9sRJFBfm1xoAnH5Ls30XiqEkSF4MvAAGXm+2lQJ
+	 ocAabOUQHDPLuUC+6gDNw67JksZX1Z56wHNjn+R0yAhQp4+z1Ft4A4VrdiLtfWRe/u
+	 ScTpn5K7laGU1e56j7poE5ljdEr8Hx0Xi0e9/ztE=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250428104121epcas2p2664c11c25322a64c834805e7b64726d4~6dWTzEM-40152201522epcas2p24;
+	Mon, 28 Apr 2025 10:41:21 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.99]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4ZmKk94plkz2SSKd; Mon, 28 Apr
+	2025 10:41:21 +0000 (GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250428104120epcas2p2678b32dcf4967de037b092d61a98b78b~6dWSyFRJd0152201522epcas2p23;
+	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250428104120epsmtrp2387a91d294cc6c3c812a787510e16d16~6dWSxKUGB1266612666epsmtrp2c;
+	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
+X-AuditID: b6c32a29-55afd7000000223e-3a-680f5b50f7f8
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BA.9D.08766.05B5F086; Mon, 28 Apr 2025 19:41:20 +0900 (KST)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250428104120epsmtip2a4b3dd0caed8045c506ad944f0e99973~6dWSkeRA_1158811588epsmtip28;
+	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
+	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
+ Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
+ Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Sunyeal Hong'" <sunyeal.hong@samsung.com>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <cc76fdc3-761f-4171-aec4-02f5e6013cb8@kernel.org>
+Subject: RE: [PATCH 1/3] dt-bindings: clock: exynosautov920: add cpucl1/2
+ clock definitions
+Date: Mon, 28 Apr 2025 19:41:20 +0900
+Message-ID: <02d401dbb82a$14449de0$3ccdd9a0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="Ag0ctD1RJcTfntuY"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vch8i50stVO6nH0Tnn=g4xSMji_iPj6q-CE1tLnvesqcQ@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJbASRnoWq0F4GjHT9tcwPYQHtTxAF8kF2mAeFCTbUCVbay3LKMpwCw
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWy7bCSvG5ANH+GwYJ2I4sH87axWazZe47J
+	4vqX56wW84+cY7U4f34Du8Wmx9dYLT723GO1uLxrDpvFjPP7mCwunnK1+L9nB7vF4TftrBb/
+	rm1ksWhatp7Jgc/j/Y1Wdo9NqzrZPDYvqffo27KK0ePzJrkA1igum5TUnMyy1CJ9uwSujOZ7
+	85kL1ghUnDm3mqmB8QBPFyMnh4SAicS21U+Zuxi5OIQEdjNKbF//hgkiISFxeMYERghbWOJ+
+	yxFWiKLnjBILFv4HK2ITMJRY9WM7E0hCRGAis8SlDxdYQBxmgU2MEud232SDaHnPKPF1HUiG
+	k4NTwE5iw9KPYO3CAtESU77fAIuzCKhKfDsxmxXE5hWwlPh9aBILhC0ocXLmEzCbWUBbovdh
+	KyOELS+x/e0cZoj7FCR2fzoK1isi4CYx6+V9JogaEYnZnW3MExiFZyEZNQvJqFlIRs1C0rKA
+	kWUVo2RqQXFuem6xYYFhXmq5XnFibnFpXrpecn7uJkZwXGpp7mDcvuqD3iFGJg7GQ4wSHMxK
+	IrxVBvwZQrwpiZVVqUX58UWlOanFhxilOViUxHnFX/SmCAmkJ5akZqemFqQWwWSZODilGpgS
+	um90xa2a5twz31bQ5ZiSysIZVvtswo+eDV1rqn2jcAafwJZGnRrVy+8O2vetnvpdKO/LnutZ
+	CV55h/t+lc8RXFReNb8r4pmKVPaElyb6mzgPMJYZFpu1ie9+kv+jd7P8xhs3b93ftWjxVIHy
+	v8mdzwouZz6Z8Nnlbe9XI9FrxYvT4p56ragN+X6xT/FI+72clac/WVWIVYatTsx42Rm0/9qH
+	b0uK16/eY71jvQ6T9/z5Nqv9Xs3+UXC8sKfwcEK30HFlX1EHrlmr5O0+rlO55/Hhztwbet8u
+	W6WW13LE9gZOVq3fOOtz+8GQlxscnypd+uirdKkxbyGbu4BE9OvAuLU3u85NmnnP/FHg6u8T
+	lFiKMxINtZiLihMBlBwKVzoDAAA=
+X-CMS-MailID: 20250428104120epcas2p2678b32dcf4967de037b092d61a98b78b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250428084728epcas2p34ffa0051a16c10ff1c358a98cc2c2fa4
+References: <20250428084721.3832664-1-shin.son@samsung.com>
+	<CGME20250428084728epcas2p34ffa0051a16c10ff1c358a98cc2c2fa4@epcas2p3.samsung.com>
+	<20250428084721.3832664-2-shin.son@samsung.com>
+	<cc76fdc3-761f-4171-aec4-02f5e6013cb8@kernel.org>
 
+Hello Krzysztof Kozlowski,
 
---Ag0ctD1RJcTfntuY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> > This patch series adds support for the TI/National Semiconductor LP5812
-> > 4x3 matrix RGB LED driver. The driver supports features such as autonom=
-ous
-> > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+> Sent: Monday, April 28, 2025 6:13 PM
+> To: Shin Son <shin.son@samsung.com>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
+> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
+> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sunyeal Hong
+> <sunyeal.hong@samsung.com>
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org
+> Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov920: add cpucl1/2
+> clock definitions
+> 
+> On 28/04/2025 10:47, Shin Son wrote:
+> > Add cpucl1 and cpucl2 clock definitions.
 > >
-> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > CPUCL1/2 refer to CPU Cluster 1 and CPU Cluster 2, which provide clock
+> > support for the CPUs on Exynosauto V920 SoC.
+> 
+> You should have sent all cpcl0-2 together, so we see complete picture.
+> 
+> >
+> > Signed-off-by: Shin Son <shin.son@samsung.com>
 > > ---
-> > Changes in v8:
-> > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
-> > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-> > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
-> >   and update the title and $id to match new path.
-> > - No functional changes to the binding itself (keep Reviewed-by).
-> > - Update commit messages and patch titles to reflect the move.
-> > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1=
--trannamatk@gmail.com/
->=20
-> Out of sudden without discussing with auxdisplay maintainers/reviewers?
-> Thanks, no.
-> Please, put into the cover letter the meaningful summary of what's
-> going on and why this becomes an auxdisplay issue. Brief review of the
-> bindings sounds more likely like LEDS or PWM subsystems.
+> >  .../clock/samsung,exynosautov920-clock.yaml   | 45 +++++++++++++++++++
+> >  .../clock/samsung,exynosautov920.h            | 32 +++++++++++++
+> >  2 files changed, 77 insertions(+)
+> >
+> 
+> 
+> ...
+> 
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: External reference clock (38.4 MHz)
+> > +            - description: CMU_CPUCL2 SWITCH clock (from CMU_TOP)
+> > +            - description: CMU_CPUCL2 CLUSTER clock (from CMU_TOP)
+> > +
+> > +        clock-names:
+> > +          items:
+> > +            - const: oscclk
+> > +            - const: switch
+> > +            - const: cluster
+> > +
+> > +
+> Just one blank line.
+> 
+> Best regards,
+> Krzysztof
 
-It is 4x3 matrix. That means it is not suitable for LEDs. I don't
-believe it is suitable for PWM, either -- yes, it is 36 PWM outputs,
-but...
+Thanks for the feedback.
+I will group related patches together next time for a more complete view.
+I will also remove the extra blank line and resend the patch.
 
 Best regards,
-								Pavel
---=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, and Musk!
+Shin Son
 
---Ag0ctD1RJcTfntuY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaA9aTgAKCRAw5/Bqldv6
-8u5oAKCw7eoZkIX/nBIa7XNYs4+P55FOvwCfaRsaqwJ7S1BjMxnZd5ElzqJ4liY=
-=6Zmi
------END PGP SIGNATURE-----
-
---Ag0ctD1RJcTfntuY--
 
