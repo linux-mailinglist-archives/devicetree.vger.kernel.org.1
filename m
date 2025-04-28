@@ -1,163 +1,233 @@
-Return-Path: <devicetree+bounces-171536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9BCA9EF40
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EC2A9EF3F
 	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 13:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62C9E18805D2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8900E3B90BE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6922676F4;
-	Mon, 28 Apr 2025 11:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B833A267B0A;
+	Mon, 28 Apr 2025 11:36:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lPpCZLDI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oP+2P46G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC972673B0
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 11:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44876267705
+	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 11:36:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745840168; cv=none; b=oQ9TVaaLPAlIcdJA1ua4WPEUDxZnXpLVSL/p6b40hekiIOFS0l1HCUqjykwOhaagsGNyO0qv9H9V/Zd33BK2ZXA5r3/7bbTVrpxT/xCiVuMuSVWPsZcvXj2bp+RlkjYiDMdrdYVc/q4MvqBq1B9Id4i4/PXV1fMFA0fwe0qVjiI=
+	t=1745840171; cv=none; b=AavS2g7X+hYRBViK0HpdaF98ZIeVNXia3ct1RBLdwjdcg0bvUBuPhkBR4u9h+g9YRiskxjm1xs5ROzGiiffmd5W9jtvFCdcgrHf/N5IxlpssE/MaVh4w2SiAiXNIuH9Y66CSJ94Y+rTLKt4v9PkWavrvXIWuR/mWbISm+rlQr0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745840168; c=relaxed/simple;
-	bh=iFzGuACWvPdMTtprDZH7JP48uol6IThkiaU/81eK7TE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=XDGIU97DJsDhR2fwdaxvkqrKZuHSnC3019Ha+eLjVSfd4dQ55a2CLDTw/qljWWYxc77b8mSMJT76xrWB4k9sgpKbKu3nivYnIVQXBd3n/l+wtMGCzyCyS712JHle2QwQ2Lzx8/fNcAPqA+p9JwRz/axi4ZoK4N4QzSvykRUwiTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lPpCZLDI; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250428113604epoutp015cc8de4ff016149f31bce784038ba91f~6eGEuiG3h1472314723epoutp01C
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 11:36:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250428113604epoutp015cc8de4ff016149f31bce784038ba91f~6eGEuiG3h1472314723epoutp01C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745840164;
-	bh=kwb6sfk/OTplMs5Q5TACguVNBchZ6pfP8g0wZXekkjI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lPpCZLDIff1q2oKnuSmDHtO8V42DTn+TP/uzSfVE/kKhA16aixdcpat8OFXEh1Fsn
-	 72TvxUnRi54A7WjoVMAliNFPpKIDYyABzfZl/bl32hg8AUtEKink8qfsVt8MW+neJ4
-	 ontBljpLB7D4nDpCZGsyQROo0RpTmL4nOlvWtF0o=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250428113603epcas2p13937f174d10c6c05cc45520937c39e4b~6eGD75Q4j2806628066epcas2p1Q;
-	Mon, 28 Apr 2025 11:36:03 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZmLxH15qcz3hhT4; Mon, 28 Apr
-	2025 11:36:03 +0000 (GMT)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250428113601epcas2p11d09d84944957018da75aa548d3ecb2c~6eGCaGrX92806628066epcas2p1I;
-	Mon, 28 Apr 2025 11:36:01 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250428113601epsmtrp1483b9611127238a5c9ac08eb6fb2dbf0~6eGCYm6R13238632386epsmtrp1G;
-	Mon, 28 Apr 2025 11:36:01 +0000 (GMT)
-X-AuditID: b6c32a52-f0cb424000004c16-e5-680f6821b457
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	69.BF.19478.1286F086; Mon, 28 Apr 2025 20:36:01 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.60]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250428113601epsmtip1f20bfdd6b40288a13924357ae4dc7945~6eGCLAJIa2519925199epsmtip14;
-	Mon, 28 Apr 2025 11:36:01 +0000 (GMT)
-From: Shin Son <shin.son@samsung.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
-	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
-Cc: Shin Son <shin.son@samsung.com>, linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: exynosautov920: add cpucl1/2 clock DT
- nodes
-Date: Mon, 28 Apr 2025 20:35:17 +0900
-Message-ID: <20250428113517.426987-5-shin.son@samsung.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250428113517.426987-1-shin.son@samsung.com>
+	s=arc-20240116; t=1745840171; c=relaxed/simple;
+	bh=eidpo+RHarAjPhf4Wn+n/8wPoKZOIs5bIp3f754wNAc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WQFw509uLbRC4Ib1C8+5Vu2tDlq7wMhWw8vfwjtEr6sh0P4pDN1sJSbCEmPTyuC5UGEzZtQbiCmSOXynk/coaPuqykFTVOHyt/k7VmDE86+hOc8e5eI5OiUB8Fopq12DcZTPz//Shkx37aDoWn5gvlBu5UfDMfYKbfACt47UTKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oP+2P46G; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e6f4b3ebe5so8495051a12.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 04:36:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745840167; x=1746444967; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=igDDxeHaTBC8idF8WoV6aqXk3OpWnaEdmdH1olhNzQg=;
+        b=oP+2P46GbEznBQSxU3KfQC6BrpAc865hjLpVkXgW9OowoSrRVIXMnza5AxYz6UJshg
+         ksd5t5U3fzCdTUDEBssw9wA68tjV22vwjrxKhimsooJAqrVU6QY5uuE+jnSaEwvCwdhV
+         y0IpAaoKvNsHGrNWrXRFc+A/A/hFreHPPrBqAE3qEtsMnQDkH+TPeuXiQPI9KYRfs2QI
+         3gdAJ06oHyLggaOut0WH3YBJG8KtxIBKkBn5K3vqW9ch5M0AROL8metBG8c+WLsKg+WB
+         LUn7NTqPGq6Jsx5+phyLdVACaS/B6bOznOskhUX9A49EzoELosVMQLhu1kdqsGemPQIk
+         Er3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745840167; x=1746444967;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=igDDxeHaTBC8idF8WoV6aqXk3OpWnaEdmdH1olhNzQg=;
+        b=TzW3b0Zesuo8mBwu/uVZiiSeJVi6yJjnG1tqpioBADFFGoPBbeYf7VxFOwwIeMdoyg
+         BQvBZQEMuKkCQaH3Y8wK5nHNRIjUGK5EA8+4yIH9H+tigipz9tx4/oWJip67jPM26/0m
+         ax9ew7/5277YQ/0OfjldUACwlk6JxLiYH/s5pCr9awqx1KakREVVtGMx7tplEWGbrjqb
+         J4a5lq91lBLdnvkzjhCjqOK0gRAcokcOB86OEX/GqiOeVKU8sDChU3zKBkwvPG2TVRai
+         3yffiDlxGqpC/wYLAAUHKTCzkS3Ca6fQbrZ4ZOHjuiR39wIfC7aZNCipnhy3HqG7+wXP
+         KeUg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/8nHFv3EWAaexPjsaTxR2sqjoiVC8iS+7OAZbjIEdeu0BU3O9M6X9snXmEYg+uF5ET+mF8/TOZJ5N@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfLes7OOJrNFrSUS3zHBQSq4who1VaD9gnlTp9jndI95+sdPRF
+	AzvTe1d4dbHVtVqOTgB36z8k01nE0c/vVaah8GKZERtJMFMJB3X0CvdN8jMpSBI=
+X-Gm-Gg: ASbGncuoeDgwftKJZNsy7Jt0JaE0e0ufozVD8GIK47A7bTzPRlFLWLzD3OHF2oZ4o6z
+	a56oIyLeUgyx8ohSglRMj/TJbi+OA9nh+aLmVVeliKGdqkCEoczJtTL3MuI6YjjPKSmOBuvkWdA
+	GSrHKyqufEE9xSX48p+hH5ipfBOivisQDOOR8weUo4CKkJjadB5n3UrPe9763U5h6OqWR1RMZll
+	Pnfy/hvuyUL+WdDvKVSUlJZbLJsQ9+xB9CoLnP6dyitLSFkULym1QyuB/M9Lb+tOO2wRAbq1aTv
+	rpJGReocBVfQUsz7NJTllLHcmOiNsjX+T5D7NQrxNrmlDRks0GS5zXTGDvK8G7WFFS1/SbkxQ9m
+	OBLToPaPQhoqHjdLtwh+LE3iD
+X-Google-Smtp-Source: AGHT+IFWWhs8yiQOOm4i2sK1ZBH1fWgKhQaGZ0sZr7TEtC9VAGG3tk2XO9DCdq0s/WKIDaV1FA3//g==
+X-Received: by 2002:a17:906:730d:b0:ace:6f8e:e857 with SMTP id a640c23a62f3a-ace846073f4mr750465866b.0.1745840167501;
+        Mon, 28 Apr 2025 04:36:07 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6edb1580sm619937766b.175.2025.04.28.04.36.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 04:36:07 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v7 0/6] Maxim Integrated MAX77759 PMIC MFD-based drivers
+Date: Mon, 28 Apr 2025 12:36:03 +0100
+Message-Id: <20250428-max77759-mfd-v7-0-edfe40c16fe8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrOLMWRmVeSWpSXmKPExsWy7bCSnK5iBn+GwYRLOhYP5m1js1iz9xyT
-	xfUvz1kt5h85x2px/vwGdotNj6+xWnzsucdqcXnXHDaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
-	XdvIYjH5+FpWi6Zl65kc+D3e32hl99i0qpPNY/OSeo++LasYPT5vkgtgjeKySUnNySxLLdK3
-	S+DKeHFKqOAtV8XOxslsDYwnOLoYOTkkBEwkJu6exdrFyMUhJLCdUeLH5p9sEAkJicMzJjBC
-	2MIS91uOQBW9Z5RYMv0ZSxcjBwebgKrEpt/yIHERgbdMEsv/H2ACaWAWOM0osfOMDIgtLOAv
-	8fn5RlYQmwWo/tbOG8wgNq+AlcTr18fYQOZICMhL9HdIgIQ5BawlPl1cB1YiBFQy4fEZNohy
-	QYmTM5+wQIyXl2jeOpt5AqPALCSpWUhSCxiZVjGKphYU56bnJhcY6hUn5haX5qXrJefnbmIE
-	x4VW0A7GZev/6h1iZOJgPMQowcGsJMJbZcCfIcSbklhZlVqUH19UmpNafIhRmoNFSZxXOacz
-	RUggPbEkNTs1tSC1CCbLxMEp1cBkeOLauWO6Z2yq+ma0sYRtsOo1/HnWS8zWcoHAOfUZ+RxX
-	Quos2wQ37V359oyt4OSzi0T5wjc90Ft40YinNWpS0L2i8mj2FkHNP3an7sXmb3i7yvJJxdz1
-	S2Z4RaafuLMhu7t/huq+nWkrOGZ9eHZIs0ytL4+bJV19b/WRWu64bCn+Utn+d/a3b9XsquQ4
-	vfDo7IC5Iezt25yS5nf4vGYOl9g2a89+g6eaz5zrlZeedM6buLjGtkeTIUXH7tteKc6Pya8j
-	gucf63929sYThlldxezz3spJlguJdstwT5l48qeb14aVFzieL/Q8vZtnhcu0sypBhyTYg9sl
-	dabJxB9em3dyuqfQO59ZN79v3btPiaU4I9FQi7moOBEA1wK8afoCAAA=
-X-CMS-MailID: 20250428113601epcas2p11d09d84944957018da75aa548d3ecb2c
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250428113601epcas2p11d09d84944957018da75aa548d3ecb2c
-References: <20250428113517.426987-1-shin.son@samsung.com>
-	<CGME20250428113601epcas2p11d09d84944957018da75aa548d3ecb2c@epcas2p1.samsung.com>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACNoD2gC/33PTWrDMBCG4asErasyHlkzdle9R+li9JcIGjvIx
+ aQE371KNnVt2uU38LwwNzXFkuOkXg43VeKcpzwOdfDTQfmTDMeoc6hbIaAFxFaf5crMttfnFLS
+ IsJgGG0eoKrmUmPL1kXt7r/uUp8+xfD3qc3O//hGaGw0aXUqGUh/A2tePPEgZn8dyVPfSjGtNG
+ 41VC9noIjoP0u+0Wetuo03V4A0hhxYt0k63P7o+u9Ft1a6HLhCQ77zbabvSaDfaVk29C5SAhXm
+ v6T9NVXvoGLwQoZNfelmWb6c/SY/fAQAA
+X-Change-ID: 20250224-max77759-mfd-aaa7a3121b62
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.14.2
 
-Add cmu_cpucl1/2(CPU Cluster 1 and CPU Cluster 2) clocks
-for switch, cluster domains respectively.
+Hi,
 
-Signed-off-by: Shin Son <shin.son@samsung.com>
+This series improves support for the Maxim Integrated MAX77759
+companion PMIC for USB Type-C applications using the MFD framework.
+
+This series must be applied in-order, due to interdependencies of some
+of the patches:
+* to avoid use of undocumented compatibles by the newly added drivers,
+  the bindings are added first in this series
+* patch 1 ("dt-bindings: gpio: add max77759 binding") also creates a
+  new MAINTAINERS entry, including a wildcard match for the other
+  bindings in this series
+* patch 3 ("dt-bindings: mfd: add max77759 binding") references the
+  bindings added in patch 1 and 2 and can not work if those aren't
+  available
+* patch 4 ("mfd: max77759: add Maxim MAX77759 core mfd driver") adds
+  the core MFD driver, which also exposes an API to its leaf drivers
+  and is used by patches 5 and 6
+* patches 5 and 6 won't compile without patch 4
+
+The MAX77759 PMIC includes Battery Charger, Fuel Gauge, temperature
+sensors, USB Type-C Port Controller (TCPC), NVMEM, and a GPIO expander.
+
+This PMIC is used on the Google Pixel 6 and 6 Pro (oriole / raven).
+
+This series adds support for the top-level MFD device, the gpio, and
+nvmem cells. Other components are excluded for the following reasons:
+
+    While in the same package, Fuel Gauge and TCPC have separate and
+    independent I2C addresses, register maps, interrupt lines, and
+    aren't part of the top-level package interrupt hierarchy.
+    Furthermore, a driver for the TCPC part exists already (in
+    drivers/usb/typec/tcpm/tcpci_maxim_core.c).
+
+    I'm leaving out temperature sensors and charger in this submission,
+    because the former are not in use on Pixel 6 and I therefore can
+    not test them, and the latter can be added later, once we look at
+    the whole charging topic in more detail.
+
+To make maintainers' work easier, I am planning to send the relevant
+DTS and defconfig changes via a different series, unless everything
+is expected to go via Lee's MFD tree in one series?
+
+Cheers,
+Andre'
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Changes in v7:
+- rebased against next-20250424
+- Link to v6: https://lore.kernel.org/r/20250325-max77759-mfd-v6-0-c0870ca662ba@linaro.org
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 9350c53f935e..2cb8041c8a9f 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1090,6 +1090,32 @@ cmu_cpucl0: clock-controller@1ec00000 {
- 				      "cluster",
- 				      "dbg";
- 		};
-+
-+		cmu_cpucl1: clock-controller@1ed00000 {
-+			compatible = "samsung,exynosautov920-cmu-cpucl1";
-+			reg = <0x1ed00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL1_SWITCH>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL1_CLUSTER>;
-+			clock-names = "oscclk",
-+				      "switch",
-+				      "cluster";
-+		};
-+
-+		cmu_cpucl2: clock-controller@1ee00000 {
-+			compatible = "samsung,exynosautov920-cmu-cpucl2";
-+			reg = <0x1ee00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL2_SWITCH>,
-+				 <&cmu_top DOUT_CLKCMU_CPUCL2_CLUSTER>;
-+			clock-names = "oscclk",
-+				      "switch",
-+				      "cluster";
-+		};
- 	};
- 
- 	timer {
+Changes in v6:
+- add one missing change in core driver
+- Link to v5: https://lore.kernel.org/r/20250325-max77759-mfd-v5-0-69bd6f07a77b@linaro.org
+
+Changes in v5:
+- core: incorporate Lee's comments (hoping I didn't miss any :-)
+- Link to v4: https://lore.kernel.org/r/20250312-max77759-mfd-v4-0-b908d606c8cb@linaro.org
+
+Changes in v4:
+- collect tags
+- mfd: add missing build_bug.h include
+- mfd: update an irq chip comment
+- mfd: fix a whitespace in register definitions
+- Link to v3: https://lore.kernel.org/r/20250228-max77759-mfd-v3-0-0c3627d42526@linaro.org
+
+Changes in v3:
+- collect tags
+- mfd: drop gpio-controller and gpio-cells, GPIO is provided by the
+  child (Rob)
+- gpio: drop duplicate init of 'handled' variable in irq handler
+- gpio: use boolean with IRQ_RETVAL() (Linus)
+- gpio: drop 'virq' variable inside irq handler to avoid confusion
+  (Linus)
+- gpio: drop assignment of struct gpio_chip::owner (Linus)
+- Link to v2: https://lore.kernel.org/r/20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org
+
+Changes in v2:
+- reorder bindings patches to avoid validation failures
+- add dependency information to cover letter (Krzysztof)
+- fix max77759_gpio_direction_from_control() in gpio driver
+- gpio: drop 'interrupts' property from binding and sort properties
+  alphabetically (Rob)
+- nvmem: drop example from nvmem binding as the MFD binding has a
+  complete one (Rob)
+- nvmem: rename expected nvmem subdev nodename to 'nvmem-0' (Rob)
+- mfd: add kernel doc
+- mfd: fix an msec / usec typo
+- mfd: error handling of devm_mutex_init (Christophe)
+- whitespace fixes & tidy-ups (Christophe)
+- Link to v1: https://lore.kernel.org/r/20250224-max77759-mfd-v1-0-2bff36f9d055@linaro.org
+
+---
+André Draszik (6):
+      dt-bindings: gpio: add max77759 binding
+      dt-bindings: nvmem: add max77759 binding
+      dt-bindings: mfd: add max77759 binding
+      mfd: max77759: add Maxim MAX77759 core mfd driver
+      gpio: max77759: add Maxim MAX77759 gpio driver
+      nvmem: max77759: add Maxim MAX77759 NVMEM driver
+
+ .../bindings/gpio/maxim,max77759-gpio.yaml         |  44 ++
+ .../devicetree/bindings/mfd/maxim,max77759.yaml    |  99 +++
+ .../bindings/nvmem/maxim,max77759-nvmem.yaml       |  32 +
+ MAINTAINERS                                        |  10 +
+ drivers/gpio/Kconfig                               |  13 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-max77759.c                       | 524 ++++++++++++++++
+ drivers/mfd/Kconfig                                |  20 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/max77759.c                             | 690 +++++++++++++++++++++
+ drivers/nvmem/Kconfig                              |  12 +
+ drivers/nvmem/Makefile                             |   2 +
+ drivers/nvmem/max77759-nvmem.c                     | 156 +++++
+ include/linux/mfd/max77759.h                       | 165 +++++
+ 14 files changed, 1769 insertions(+)
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250224-max77759-mfd-aaa7a3121b62
+
+Best regards,
 -- 
-2.49.0
+André Draszik <andre.draszik@linaro.org>
 
 
