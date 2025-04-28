@@ -1,184 +1,119 @@
-Return-Path: <devicetree+bounces-171508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E45EA9EE26
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E82A9EE34
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 12:44:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 883A9189D5BE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:41:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE57189E3FC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 10:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7640262FC7;
-	Mon, 28 Apr 2025 10:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B84E2620C1;
+	Mon, 28 Apr 2025 10:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Y/c59yuT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="heTRi+Kn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EAB261398
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531CF25F79B;
+	Mon, 28 Apr 2025 10:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745836887; cv=none; b=j8DhHJMY91DK9pMMvUnkWtCKFoSij2IqASEcFw9VQ/XStppyDnlFwAnUUASxhMGail3dHAqXRZix8bnvzwDVGagexaKKkPZWl9MvLBLJ5Gj9DaEX6SsAwxSj9ctsVKUWo3IJ6K1ARKUNLohmhS230GjVLDLGO3tYrOydeHNZ7f8=
+	t=1745837071; cv=none; b=XM6FGaIhMW9EyOBNSsb5bExwCjNYvU0c8eQjMStKopoFeSyw8MZKydGwPWHZFwaVG9mF2xXdaoy9fHoMd59rHoiiQ7p+6hawq5a7KACe/7lZBIYnN+1yZEOziRgGDj2CWpiu2iHxXFlTYo6LCrCMergCInvhAKbqm2E7hJ/O5bI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745836887; c=relaxed/simple;
-	bh=Vm7qliEL+U0f1iQBYUqrrTlLguK2QMufO3UPrOVlLcM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=POrWSNAKGisK2M+aViJMgZ3XlwfUWh+om/He3ZccM9xXmCZAQWBoda2YiK7p2SnuXQYkjVS4tk7zPzuCKNkZJFu117lP0V5TNIUlTbPqgs3Fkh/vp3iYHmYcC9KbXYj/xIJ5sQLIB0yqVdsMSUzO1j5PWusHs7g2vjthfz0fLbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Y/c59yuT; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250428104122epoutp01aab223bb2da1e3224e5b695cfc1523a2~6dWUXFAby2821828218epoutp01c
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 10:41:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250428104122epoutp01aab223bb2da1e3224e5b695cfc1523a2~6dWUXFAby2821828218epoutp01c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745836882;
-	bh=Per/s3GLdQBrXVmnb/0ApsgYI11Thl7c7vR99d1KZKM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Y/c59yuTJakOag9K+40eNUz9PH9sRJFBfm1xoAnH5Ls30XiqEkSF4MvAAGXm+2lQJ
-	 ocAabOUQHDPLuUC+6gDNw67JksZX1Z56wHNjn+R0yAhQp4+z1Ft4A4VrdiLtfWRe/u
-	 ScTpn5K7laGU1e56j7poE5ljdEr8Hx0Xi0e9/ztE=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250428104121epcas2p2664c11c25322a64c834805e7b64726d4~6dWTzEM-40152201522epcas2p24;
-	Mon, 28 Apr 2025 10:41:21 +0000 (GMT)
-Received: from epcas2p2.samsung.com (unknown [182.195.36.99]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4ZmKk94plkz2SSKd; Mon, 28 Apr
-	2025 10:41:21 +0000 (GMT)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250428104120epcas2p2678b32dcf4967de037b092d61a98b78b~6dWSyFRJd0152201522epcas2p23;
-	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250428104120epsmtrp2387a91d294cc6c3c812a787510e16d16~6dWSxKUGB1266612666epsmtrp2c;
-	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
-X-AuditID: b6c32a29-55afd7000000223e-3a-680f5b50f7f8
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	BA.9D.08766.05B5F086; Mon, 28 Apr 2025 19:41:20 +0900 (KST)
-Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250428104120epsmtip2a4b3dd0caed8045c506ad944f0e99973~6dWSkeRA_1158811588epsmtip28;
-	Mon, 28 Apr 2025 10:41:20 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
-	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
- Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
- Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
-	"'Sunyeal Hong'" <sunyeal.hong@samsung.com>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <cc76fdc3-761f-4171-aec4-02f5e6013cb8@kernel.org>
-Subject: RE: [PATCH 1/3] dt-bindings: clock: exynosautov920: add cpucl1/2
- clock definitions
-Date: Mon, 28 Apr 2025 19:41:20 +0900
-Message-ID: <02d401dbb82a$14449de0$3ccdd9a0$@samsung.com>
+	s=arc-20240116; t=1745837071; c=relaxed/simple;
+	bh=zoNoOQu9Fld7LEIioJ+wlApw7JJtAWg9ZZxxQWQdkQ0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hKocOWnCmDGR/FRAh4tGm+INaaQX0So4GkKZPHItT+rp4NwGVL0BdjzB/G+JJXwQ3KWeVFYylRNAMQM3tVg/9GE8QqhC8Wh1FLEmUk7jKuOFFXgZU09dqLIzQFNnfDn0pJlW+yW9AmYSWPr1UFVsjghjFsSXJOH+YRr4E1fZ9vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=heTRi+Kn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CA6E7C4CEE4;
+	Mon, 28 Apr 2025 10:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745837070;
+	bh=zoNoOQu9Fld7LEIioJ+wlApw7JJtAWg9ZZxxQWQdkQ0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=heTRi+KnPNW2vy0rLctBRjFgRRBAennRpA8uIGdIiQhBNfvdzvqU6DnSTx1Zp4aFv
+	 TbYJag4bmzfvMg7TCShf9Wda8Mqd1/ZKQOFIVyCS5F0GsnBNvBI9goB7dYul1tltN/
+	 61rvK4ioEBvMCl7VN3aGW9PAojxwK0QT7YJfzWiPdFIfxNlTPhK9z6TlfKkZYDU+7T
+	 5Jg+d2eKCk7EJ+jE5dmO3E2LGhNGSZd5AJpnHmgk9d8ltqXuaAjkBP2P06cCgaPm6/
+	 JElbMQvL7w9txpTdN/eRb/CzMV6mKDCZLPsHaG6kccIIY8BGk5ejXsderrw7gHU8/9
+	 wkQhQsNZoVspw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9F57C369D3;
+	Mon, 28 Apr 2025 10:44:30 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v2 0/4] Board support for Fernsehfee 3.0
+Date: Mon, 28 Apr 2025 12:44:27 +0200
+Message-Id: <20250428-fernsehfee-v2-0-293b98a43a91@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJbASRnoWq0F4GjHT9tcwPYQHtTxAF8kF2mAeFCTbUCVbay3LKMpwCw
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWy7bCSvG5ANH+GwYJ2I4sH87axWazZe47J
-	4vqX56wW84+cY7U4f34Du8Wmx9dYLT723GO1uLxrDpvFjPP7mCwunnK1+L9nB7vF4TftrBb/
-	rm1ksWhatp7Jgc/j/Y1Wdo9NqzrZPDYvqffo27KK0ePzJrkA1igum5TUnMyy1CJ9uwSujOZ7
-	85kL1ghUnDm3mqmB8QBPFyMnh4SAicS21U+Zuxi5OIQEdjNKbF//hgkiISFxeMYERghbWOJ+
-	yxFWiKLnjBILFv4HK2ITMJRY9WM7E0hCRGAis8SlDxdYQBxmgU2MEud232SDaHnPKPF1HUiG
-	k4NTwE5iw9KPYO3CAtESU77fAIuzCKhKfDsxmxXE5hWwlPh9aBILhC0ocXLmEzCbWUBbovdh
-	KyOELS+x/e0cZoj7FCR2fzoK1isi4CYx6+V9JogaEYnZnW3MExiFZyEZNQvJqFlIRs1C0rKA
-	kWUVo2RqQXFuem6xYYFhXmq5XnFibnFpXrpecn7uJkZwXGpp7mDcvuqD3iFGJg7GQ4wSHMxK
-	IrxVBvwZQrwpiZVVqUX58UWlOanFhxilOViUxHnFX/SmCAmkJ5akZqemFqQWwWSZODilGpgS
-	um90xa2a5twz31bQ5ZiSysIZVvtswo+eDV1rqn2jcAafwJZGnRrVy+8O2vetnvpdKO/LnutZ
-	CV55h/t+lc8RXFReNb8r4pmKVPaElyb6mzgPMJYZFpu1ie9+kv+jd7P8xhs3b93ftWjxVIHy
-	v8mdzwouZz6Z8Nnlbe9XI9FrxYvT4p56ragN+X6xT/FI+72clac/WVWIVYatTsx42Rm0/9qH
-	b0uK16/eY71jvQ6T9/z5Nqv9Xs3+UXC8sKfwcEK30HFlX1EHrlmr5O0+rlO55/Hhztwbet8u
-	W6WW13LE9gZOVq3fOOtz+8GQlxscnypd+uirdKkxbyGbu4BE9OvAuLU3u85NmnnP/FHg6u8T
-	lFiKMxINtZiLihMBlBwKVzoDAAA=
-X-CMS-MailID: 20250428104120epcas2p2678b32dcf4967de037b092d61a98b78b
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250428084728epcas2p34ffa0051a16c10ff1c358a98cc2c2fa4
-References: <20250428084721.3832664-1-shin.son@samsung.com>
-	<CGME20250428084728epcas2p34ffa0051a16c10ff1c358a98cc2c2fa4@epcas2p3.samsung.com>
-	<20250428084721.3832664-2-shin.son@samsung.com>
-	<cc76fdc3-761f-4171-aec4-02f5e6013cb8@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAtcD2gC/03MTQ7CIBiE4as031oMP2KjK+9husB2EDbQACGah
+ ruLjQuX7yTzbJSRPDJdh40Sqs8+hh7yMNDsTHiC+aU3SS41V0IzixQynAXYQxvYi+KzGUH9sCZ
+ Y/9qx+9Tb+Vxieu92Fd/1x0j1z1TBOJNnKdRJzIsazW2NuSAeAwpNrbUPE2O1saUAAAA=
+X-Change-ID: 20250315-fernsehfee-b5aef930ca7e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745837069; l=1421;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=zoNoOQu9Fld7LEIioJ+wlApw7JJtAWg9ZZxxQWQdkQ0=;
+ b=sloiws7PjerztavFOh+WRSwUGtcJ8z57ukYOGobwKBpWoMWMkPQdnhNLJFGvr24RatYRu5di8
+ GLTh5fOlEknAphpjgeeMJ/wjmSSrkPR/7ufDGiz/ou72uuoN0GwH3MD
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Hello Krzysztof Kozlowski,
+Fernsehfee[1] ("TV fairy") is a family of set-top boxes marketed as
+ad-blocking appliances. This patchset adds board support in the form of
+a device tree for the third generation, Fernsehfee 3.0.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
-> Sent: Monday, April 28, 2025 6:13 PM
-> To: Shin Son <shin.son@samsung.com>; Sylwester Nawrocki
-> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
-> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
-> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sunyeal Hong
-> <sunyeal.hong@samsung.com>
-> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org
-> Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov920: add cpucl1/2
-> clock definitions
-> 
-> On 28/04/2025 10:47, Shin Son wrote:
-> > Add cpucl1 and cpucl2 clock definitions.
-> >
-> > CPUCL1/2 refer to CPU Cluster 1 and CPU Cluster 2, which provide clock
-> > support for the CPUs on Exynosauto V920 SoC.
-> 
-> You should have sent all cpcl0-2 together, so we see complete picture.
-> 
-> >
-> > Signed-off-by: Shin Son <shin.son@samsung.com>
-> > ---
-> >  .../clock/samsung,exynosautov920-clock.yaml   | 45 +++++++++++++++++++
-> >  .../clock/samsung,exynosautov920.h            | 32 +++++++++++++
-> >  2 files changed, 77 insertions(+)
-> >
-> 
-> 
-> ...
-> 
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: External reference clock (38.4 MHz)
-> > +            - description: CMU_CPUCL2 SWITCH clock (from CMU_TOP)
-> > +            - description: CMU_CPUCL2 CLUSTER clock (from CMU_TOP)
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: oscclk
-> > +            - const: switch
-> > +            - const: cluster
-> > +
-> > +
-> Just one blank line.
-> 
-> Best regards,
-> Krzysztof
+[1]: https://fernsehfee.de/ (German), https://www.telefairy.com/ (English)
 
-Thanks for the feedback.
-I will group related patches together next time for a more complete view.
-I will also remove the extra blank line and resend the patch.
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v2:
+- Apply ACKs from Krzysztof Kozlowski and R-b from Neil Armstrong and Martin Blumenstingl
+- New patch 4/4 to describe PMIC regulators, after discussion with Martin Blumenstingl
+- Link to v1: https://lore.kernel.org/r/20250323-fernsehfee-v1-0-2621341cd37a@posteo.net
+
+---
+J. Neuschäfer (4):
+      dt-bindings: vendor-prefixes: Add TC Unterhaltungselektronik AG
+      dt-bindings: arm: amlogic: Add TCU Fernsehfee 3.0 board
+      ARM: dts: amlogic: Add TCU Fernsehfee 3.0
+      ARM: dts: amlogic: meson8-fernsehfee3: Describe regulators
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/amlogic/Makefile                 |   1 +
+ arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts   | 306 +++++++++++++++++++++
+ arch/arm/boot/dts/amlogic/meson8.dtsi              |  18 ++
+ 5 files changed, 328 insertions(+)
+---
+base-commit: 9c8bd75378d70cd6087d503eb8317d1eea67164a
+change-id: 20250315-fernsehfee-b5aef930ca7e
 
 Best regards,
-Shin Son
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
