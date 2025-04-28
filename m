@@ -1,345 +1,473 @@
-Return-Path: <devicetree+bounces-171468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED31A9EC8F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:37:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BD8A9ECB1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 11:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FFFB1897F8C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:36:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A13A3B5628
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 09:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2555A264FAF;
-	Mon, 28 Apr 2025 09:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEFB72627F9;
+	Mon, 28 Apr 2025 09:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ASuTi8rC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IdJnQfvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED35525F7AC;
-	Mon, 28 Apr 2025 09:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FEE525F7A4;
+	Mon, 28 Apr 2025 09:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745832295; cv=none; b=rpRAjaaALoYPL6z+mv7IgK0hrRD8I0VmAOv87U3HLowi/EQTQFkss1H//D3YXFAmthHMQHz0wUN4oqLP4AHQuGxI4bspM/WIYtgyAWFgjZM9d/nZqkbepJwJvk0TtDKJNy+SrpuSH3twfyd10IlwhxTEUISoC9T370FLAskXtLc=
+	t=1745832586; cv=none; b=AeYAK3eO4c9f/G2ex7pGfdofORRQAW3Sli88EA1sF55bKEvN8jM/tc6nQuKjAQPJvWz3oszzjF+VSUsxOjcT+EjXGYb5FnHTuBJJDsplXLlBetHl8vVfrznZ6vErHhbGIq48YYfSSfb76Y1l0cPhAFB3mPbIgTy1h0rwYR++sQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745832295; c=relaxed/simple;
-	bh=qmgsWZ1GzK/GW9iAVIPST1c4WvqsdQXVgtOkR4qxxcs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AAso8f9esJFYn5c48i714+FpSMA4UCLNa8WIlV87e4hCqi0J0+j6tlxREc0tSo1BuvEUKExD3I87SIft3hNEIiti5wVpY1d0HMhg4zBUvR1/CpuDQkq6viLDauteXy+Lh7WqAEf43v0i0yONnIUtusxYc7G6BxJPArpiVAb6QCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ASuTi8rC; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c14016868so4415405f8f.1;
-        Mon, 28 Apr 2025 02:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745832291; x=1746437091; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uCYc+AFuWp5xglFO7B+MSyNGiFwZsXhhnb8DnA3v3t8=;
-        b=ASuTi8rC/chaLfcdxuFGa2DyfWZW/R4kA34cmsnoVw2MSrEFWuHkNNMe05f8kqOzPk
-         kX5JrSS2Ts46vjx7Wt43zoj9+T7k8S464zKkBwaFkPd/Twi8x7eAIm+RwwPSlaIxf+CI
-         K92Ln1geOGP1ibO/NQRG3u/Em+RAUy5bshRyf3K9qzCbqD6MMc/UL2yBoBMTwNq2Z6dE
-         SyAHPiLdX8iJEscehLMkLYt+pBzTMOtmczkRTrZOrWiX5oGdHyQ8bj2UKMLuHuvvTdLD
-         /GPjiyOEizKWqvDy8p3nlc38OiclhdqzYpctflLKaIHXE7CSC1mbTqlw/ugyQXfR0gj1
-         Ud3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745832291; x=1746437091;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uCYc+AFuWp5xglFO7B+MSyNGiFwZsXhhnb8DnA3v3t8=;
-        b=WdEa4BgdkAaFHT+mkTDMG5hap1LFAMPmaePLC1x7LUVLb6Hv1jCUxe01dTIp7yb6xX
-         P+h0yUP1q328gFjFnEuaoZRc7xRO1mqYHbDk25H5l9eXTsgV9sNtcxfS2HnEet0M4XbL
-         Po0+M5/j1upBAiPoBJXaO9hG8HKo9t1EhgFm1bv5wZDiY/Gej0Qa8j8P2wlkQgVrdCcQ
-         E7UiAp3eM3tbRhOMlMmHy+9fKi/noQ6GDwkSvJUwGGsMCFFuWEq13apMFLNacnaNxZfx
-         6xOsswk8+w6IFh2I6CtYNPcooHPRw79CagHfA3s0B/rNydVZ/ew7O65oJh+yWzgIAzZL
-         oMvA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/77ndEMP2U0BkneVGnF751G9sbsOESzuo2nGJm6RW6sh5jHt5GOHDfIF9bMseYqTSjOxL9bolZ3HkjQ==@vger.kernel.org, AJvYcCVyBIMQginCHpN8HncauH1BRJNgGXPkJrSYFCx1X7V2m9mjgeWvza7HGPJwc13g3hSkh/cyGGuDNsBdtK0=@vger.kernel.org, AJvYcCWBspZpX5GS7y4qEFmmyYigy6eenxfJr/YTZFVbyr06BBq812m28vHFACFh+vxOt/Uhfa9WC77RGXkt@vger.kernel.org, AJvYcCXtojbbr/yuzEjYT2+aaOeSE3pPKCORp9pmpsC/ut+K73dbD+XVzvAWUIb2XzFiupFsVqmyetivspO0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxj6orj/0aM34lGyz1J0BmgU590F+6HP8uKT7J1e6rOJMYEFFs+
-	loQIfy46SeUz3WPyvJRJvz4KujE/mTrYy5jiVyKTnsUefVYY3q7D
-X-Gm-Gg: ASbGncv4mZ3Mpd5+jVFc5ejUmbjp8t3cOE3j66jSmliPdPy7QH13ChP6AjpgmMBqJVu
-	8deSZkiOZF7ujnpmKxBGJ8ZE1RuwzhuXN0FgLMQ9bAgmRuulchMOc3uNP2BdCeljFb+UlV+cAXN
-	UhDCpAc7C92qmQgW95VyeOlTIQJFAcaAqIMlTv4voaNfm9aMkM8VMfWWJjDaJWMK8imzTTrrrkN
-	x5hi8xYHY4B2gaEAkJC4CRIfSXb00+QQhU5SX76I+n22NSsPARYOQyYpbrYxphJBTBAGLFvPLeJ
-	gSFWb6ETN35fD0EdRqOvduTom2mbwvn8Chct9XqJhNCbyJut7/cLLnIY4J+g4Z4PeOlJyH1jNXn
-	Gb0vdDGYKGQ07Kf3a3qAcS9M=
-X-Google-Smtp-Source: AGHT+IEoTYCAJIY+3XTCbuisVDxV3hvzciDnkil7hDlAUARbsa4fyppYgVPeH8gl+Zni90n0OKlQ9g==
-X-Received: by 2002:a5d:4535:0:b0:39e:cbc7:ad45 with SMTP id ffacd0b85a97d-3a074fa65dbmr6603690f8f.52.1745832290970;
-        Mon, 28 Apr 2025 02:24:50 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2abdf7sm149247655e9.19.2025.04.28.02.24.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 02:24:50 -0700 (PDT)
-Message-ID: <4803aa6736c031a437517e2572cd8475e7ed18ee.camel@gmail.com>
-Subject: Re: [PATCH v2 06/17] mfd: adp5585: add support for adp5589
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Lee Jones
-	 <lee@kernel.org>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
- linux-pwm@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,  Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry
- Torokhov	 <dmitry.torokhov@gmail.com>, Liu Ying <victor.liu@nxp.com>
-Date: Mon, 28 Apr 2025 10:24:55 +0100
-In-Reply-To: <20250425091351.GO18085@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-	 <20250415-dev-adp5589-fw-v2-6-3a799c3ed812@analog.com>
-	 <20250424161838.GM8734@google.com>
-	 <20250424163024.GL18085@pendragon.ideasonboard.com>
-	 <20250424163830.GO8734@google.com>
-	 <20250424193931.GM18085@pendragon.ideasonboard.com>
-	 <20250425075859.GQ8734@google.com>
-	 <20250425091351.GO18085@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1745832586; c=relaxed/simple;
+	bh=4ro920v1aAqEvS6v4QONEIT9SmE9WBFvuHC8MXH2IiA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=vB8xl1FBz90k+OdS2e/4bGym1fK9wlvgR5+4xIqRVRAYeP+vuLqLAclMf7FBRQoXZy4AO0Ur9GirsGvfNi2C5EqlGNn/bXZ915nBeIdQMv+UqLAGv1TLgtTieW/ryy8CJkk2smSErHY/yepQSufq2rnQR8lDSngFj89mtLETHJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IdJnQfvk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53S6a73f022474;
+	Mon, 28 Apr 2025 09:29:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=bx3Q4WFp8LOXo/tGyprnYc
+	g3bKCz9Ob2WclvM87Dpyo=; b=IdJnQfvkokzNvgRUyiiMSoy4Mi9X8zOVez498Z
+	1j7Vycwe2oIJqp2jxaBQFtCgYv9S2Hm910wWObVu+953UfKbUFngfdgkU8OhrMm0
+	aUxYuH/ehf/LR37a1Ne7TwsgwLai64xdM5DiLru6/qvqp4rrRtLfFtDzheCnNSD3
+	I3+zl7eCiIY5CZgK5PxGwVLjzENkR9UpiHj1AoCaL34wtL3drX4ZUk2HJEzcnleU
+	Glsm8VuzqLfK4SPEfAU+1pLpSmCHG6rlvkba85bg3Sr+cX2nXTToNH+sUKdKVgaB
+	kIUvTryLTvaW6L566RjW1oTe2k48bOtvmbGLRDNDi/9axJpA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468rnmyfc1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 09:29:38 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53S9TbGM019470
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Apr 2025 09:29:37 GMT
+Received: from hu-dikshita-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 28 Apr 2025 02:29:31 -0700
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: [PATCH v2 00/23] Add support for HEVC and VP9 codecs in decoder
+Date: Mon, 28 Apr 2025 14:58:48 +0530
+Message-ID: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFBKD2gC/22Py2rDMBBFf8Vo3QkjyaolU0r+I4Qgj0eJoH5Ec
+ k0g5N+r2Nsuz4U5985TZE6Rs2irp0i8xhynsYD6qATd/HhliH1hoVAZrJWFO00DxBQz3HglWGc
+ H3GkZNJLWDkU5nBOH+Nikp/POie+/xb3soRg4Z7+52+prV8sGlmmOBHmwD4N7xSoR1gYQAiqkT
+ vbIzh5/4ujTdJjS9ftd949M1WVnthrxsnvM2yGlDQYNlfhY5lAc6VC+2SSdzwwFhri0lXbWy07
+ rIOvG+aANeScNGQ7kOsT+U2EdbPDi/Hr9Af7538xCAQAA
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil
+	<hverkuil@xs4all.nl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Nicolas Dufresne
+	<nicolas.dufresne@collabora.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
+        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>,
+        <stable@vger.kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1745832570; l=14316;
+ i=quic_dikshita@quicinc.com; s=20240917; h=from:subject:message-id;
+ bh=4ro920v1aAqEvS6v4QONEIT9SmE9WBFvuHC8MXH2IiA=;
+ b=JO1HR2WxWsOl9lLSNRbHHBctrocEnoqx0MB+tstrbyCFbqVnzh/mnpc46PwmMKHTiGVBKs2Z8
+ 4XyH5xUvcGTAMWjkBxYImsY7YSP5rc2shAVogoUi2w5z5pF5qdG713w
+X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
+ pk=EEvKY6Ar1OI5SWf44FJ1Ebo1KuQEVbbf5UNPO+UHVhM=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GSPIvmGvAHN7YbjQSKxl4yuHcb_nNla0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI4MDA3OCBTYWx0ZWRfX5JGY1izBAqYI 5wXjsictjHDfwzrTlDC0MJGa9y22ImxxfsTmfsGdpVD2PoD5GGqxAdKPvDirVEOJhvbEK4049OU 5sYriJvqKdIpdGUtK7PrCNmlpmjSNWH1fZBFH9/anc6+JM/kwjBTV9a+IOZjbW8WBC0vURXlD8k
+ 7cvNNrd03MGWBnmGZGf5S++tkuVWrpkR8AnMfwDHRJQL6c8oX7LtXUzzlcGS/x1drddbNmYgZtk zQXN/fwRz6hF3W/TghfG7noHS23hbeAxzf3MlnM4tPjIJY6CBwTfZmA6zu2+S5sic9CYUeCqys4 skyp08vm6HupPSQcd4CpryS55vj4mDfKB5rKetB1mjXW8JnRBWtQfBPyn00dR+7wW6u9ZyR+fcx
+ I1vHRkhgNJiQqS2LYdHrf0DFm6O8As12D6IlomrcSw4xbBcfXi3Bn8DAxn396R8LMY4qFvsD
+X-Proofpoint-GUID: GSPIvmGvAHN7YbjQSKxl4yuHcb_nNla0
+X-Authority-Analysis: v=2.4 cv=V9990fni c=1 sm=1 tr=0 ts=680f4a82 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
+ a=e5mUnYsNAAAA:8 a=x1_dW0rikMPTmAfqnIoA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-28_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ adultscore=0 mlxlogscore=999 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1011 phishscore=0 mlxscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504280078
 
-On Fri, 2025-04-25 at 12:13 +0300, Laurent Pinchart wrote:
-> Hi Lee,
->=20
-> On Fri, Apr 25, 2025 at 08:58:59AM +0100, Lee Jones wrote:
-> > On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > > On Thu, Apr 24, 2025 at 05:38:30PM +0100, Lee Jones wrote:
-> > > > On Thu, 24 Apr 2025, Laurent Pinchart wrote:
-> > > > > On Thu, Apr 24, 2025 at 05:18:38PM +0100, Lee Jones wrote:
-> > > > > > On Tue, 15 Apr 2025, Nuno S=C3=A1 via B4 Relay wrote:
-> > > > > >=20
-> > > > > > > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > > > >=20
-> > > > > > > The ADP5589 is a 19 I/O port expander with built-in keypad ma=
-trix
-> > > > > > > decoder,
-> > > > > > > programmable logic, reset generator, and PWM generator.
-> > > > > > >=20
-> > > > > > > This patch adds the foundation to add support for the adp5589=
- gpio
-> > > > > > > and pwm
-> > > > > > > drivers. Most importantly, we need to differentiate between s=
-ome
-> > > > > > > registers addresses. It also hints to future keymap support.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > > > > ---
-> > > > > > > =C2=A0drivers/mfd/adp5585.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 223
-> > > > > > > +++++++++++++++++++++++++++++++++++++++++---
-> > > > > > > =C2=A0include/linux/mfd/adp5585.h |=C2=A0 57 ++++++++++-
-> > > > > > > =C2=A02 files changed, 268 insertions(+), 12 deletions(-)
-> > > > > >=20
-> > > > > > [...]
-> > > > > >=20
-> > > > > > > + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 8/R7", numbered 0=
- to 7
-> > > > > > > by the
-> > > > > > > + * driver, bank 1 covers pins "GPIO 9/C0" to "GPIO 16/C7",
-> > > > > > > numbered 8 to
-> > > > > > > + * 15 and bank 3 covers pins "GPIO 17/C8" to "GPIO 19/C10",
-> > > > > > > numbered 16 to 18.
-> > > > > > > + */
-> > > > > > > +#define ADP5589_BANK(n)			((n) >> 3)
-> > > > > > > +#define ADP5589_BIT(n)			BIT((n) & 0x7)
-> > > > > > > +
-> > > > > > > +struct adp5585_regs {
-> > > > > > > +	unsigned int debounce_dis_a;
-> > > > > > > +	unsigned int rpull_cfg_a;
-> > > > > > > +	unsigned int gpo_data_a;
-> > > > > > > +	unsigned int gpo_out_a;
-> > > > > > > +	unsigned int gpio_dir_a;
-> > > > > > > +	unsigned int gpi_stat_a;
-> > > > > > > +	unsigned int pwm_cfg;
-> > > > > > > +	unsigned int pwm_offt_low;
-> > > > > > > +	unsigned int pwm_ont_low;
-> > > > > > > +	unsigned int gen_cfg;
-> > > > > > > +	unsigned int ext_cfg;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > > +struct adp5585_info {
-> > > > > > > +	const struct mfd_cell *adp5585_devs;
-> > > > > >=20
-> > > > > > Okay, we are never doing this.=C2=A0 Either use OF for platform
-> > > > > > registration
-> > > > > > or use MFD (or ACPI or PCI), but please do not pass MFD data th=
-rough
-> > > > > > OF.
-> > > > >=20
-> > > > > When I upstreamed the initial driver, I modelled the different
-> > > > > functions
-> > > > > through child nodes in DT, with a compatible string for each chil=
-d. I
-> > > > > was told very strongly to remove that. We have therefore no other
-> > > > > choice
-> > > > > than constructing the name of the cells based on the model of the=
- main
-> > > > > device.
-> > > >=20
-> > > > It's okay to add this information statically in this driver.=C2=A0 =
-It's not
-> > > > okay to then pass it through the OF API.=C2=A0 You can pass an iden=
-tifier
-> > > > through the .data attribute to match on, but we are not passing MFD=
- cell
-> > > > data through like this.
-> > >=20
-> > > Sorry, I'm not following you. What's the issue with the .data field
-> > > pointing to an instance of a structure that lists properties related =
-to
-> > > the device model ?
-> >=20
-> > There isn't one.=C2=A0 By all means place any type of platform data you=
- want
-> > in there.=C2=A0 Similar to the information you'd find in Device Tree or=
- the
-> > old board-files type pdata.=C2=A0 You can even extract the platform dat=
-a you
-> > pass through the OF API and place it into MFD platform data.=C2=A0 The =
-line
-> > is being drawn on passing through one type of initialisation API with
-> > another, MFD through OF in this case.=C2=A0 MFD cells containing device
-> > registration data (including platform data!) is not itself platform
-> > data.
->=20
-> I'm still not following you. The issue will likely go away in the next
-> version anyway, as the MFD cells registration code needs to be rewritten
-> to be more dynamic.
+Hi All,
 
-Not sure if there's any real issue but I think Lee's main concern is passin=
-g MFD
-related data (struct mfd_cell) though OF (via the of table). Not sure if th=
-is is
-one of the things Lee does not like but in theory, like this, you can get t=
-his
-data from child platform devices for example.
+This patch series adds initial support for the HEVC(H.265) and VP9
+codecs in iris decoder. The objective of this work is to extend the 
+decoder's capabilities to handle HEVC and VP9 codec streams,
+including necessary format handling and buffer management.
+In addition, the series also includes a set of fixes to address issues
+identified during testing of these additional codecs.
 
->=20
-> > > > > > > +	const struct regmap_config *regmap_config;
-> > > > > > > +	const struct adp5585_regs *regs;
-> > > > > > > +	unsigned int n_devs;
-> > > > > > > +	unsigned int id;
-> > > > > >=20
-> > > > > > What ID is this?=C2=A0 We already have platform IDs and MFD cel=
-l IDs.
-> > > > >=20
-> > > > > That's the value of the hardware model ID read-only register, it =
-is
-> > > > > used
-> > > > > as a safety check to verify that the connected device corresponds=
- to
-> > > > > the
-> > > > > compatible string.
-> > > >=20
-> > > > I suggest changing the nomenclature to be more forthcoming.
-> > > >=20
-> > > > 'model', 'version', 'hwid', 'chipid', etc.
-> > > >=20
-> > > > Why is it being stored?=C2=A0 Is it used to match on at a later dat=
-e?
-> > >=20
-> > > The adp5585_info structure contains static information the describe e=
-ach
-> > > device model. There's one global static const instance per device mod=
-el,
-> > > and they are referenced from device id structures (e.g. of_device_id)=
-.
-> > > The driver gets an info pointer corresponding to the model reported b=
-y
-> > > the platform firmware (e.g. DT). It reads the device ID from the devi=
-ce
-> > > at probe time, and compares it with the value stored in the structure=
- as
-> > > a safety check to ensure there's no mismatch.
-> >=20
-> > I think the current implementation (as a whole, not just the IDs) needs
-> > a rethink.=C2=A0 Very few attributes are changing here, both between th=
-e 2
-> > platforms and the several variants you're trying to support, leading to
-> > masses of repetition.
-> >=20
-> > Looking at the static configuration here, this is starting to look like
-> > 2 pieces of hardware with the only variation within each being the
-> > default register values.=C2=A0 Is that a correct assumption?
->=20
-> The variants of the ADP5585 differ mainly by how they handle the default
-> configuration of pull-up and pull-down resistors. The consequence on the
-> driver side is limited to default register values, yes.
->=20
-> ADP5589 differs more significantly from the ADP5585. Differences between
-> the ADP5589 variants are small as far as I understand (datasheets are
-> public, should you want to have a look).
->=20
-> > If so, does
-> > mean all of this added complexity is just to configure a few register
-> > values such that the two platforms can be used for different things?=C2=
-=A0 Or
-> > are these really 6 true hardware variants of one another?
->=20
-> They are different physical chips with different product numbers.
->=20
-> > Either way, this approach doesn't scale.=C2=A0 Instead of multiplying t=
-he
-> > amount of platforms / variants together and creating that number of
-> > static structs, I'd suggest using templating and only adapting what
-> > actually changes.
-> >=20
-> > For instance, the following attributes in 'struct regmap_config' never
-> > change; reg_bits, val_bits, and cache_type.=C2=A0 And max_register only
-> > changes between the 2 hardware platforms.=C2=A0 The reg_defaults_raw va=
-lues
-> > can be changed in a switch statement.
->=20
-> All the fields of the adp5585_info structure that you would like to
-> dynamically set would then need to be stored in the adp5585 structure.
-> The would essentially trade static const data for dynamic data and more
-> code. Is that a personal coding style preference, or are there clear
-> advantages ?
->=20
-> > Same goes for 'struct adp5585_info'.=C2=A0 Only regmap_config changes b=
-etween
-> > variants.=C2=A0 Everything else is exactly the same.
->=20
-> I assume this comment relates only to the different variants of the info
-> structure for the same model (e.g. ADP5585 or ADP5589). There are more
-> differences between the ADP5585 and ADP5589 entries.
->=20
-> > So, with the use of a
-> > few of templates and a couple of succinct switch cases, you can control
-> > all of the differentiation you need.=C2=A0 And for every variant you wi=
-sh to
-> > add, it's a couple of extra lines rather than many, leading to a
-> > much more scaleable implementation.
->=20
-> That also seems like a personal coding style preference :-) Adding a new
-> compatible variant with the existing approach only requires adding an
-> instance of the info structure, while your proposal would require
-> changes in multiple places. It seems more work to me (from a personal
-> preference point of view).
->=20
-> Of course, if the new variant requires developing abstractions that
-> don't exist (such as supporting large differences in the registers
-> layout as needed for the ADP5589), refactoring of the code will always
-> be required. This seems a bit of a theoretical concern though, as I'm
-> not aware of any other chip that would require such development.
->=20
-> In any case, let's see how the next version will look like, after
-> reworking the MFD cells registration code. Maybe it will make everybody
-> happy :-)
+These patches also address the comments and feedback received from the 
+RFC patches previously sent. I have made the necessary improvements 
+based on the community's suggestions.
 
-Let's see! There's a lot to cover for v3 :sweat_smile:.I think I got the ge=
-neral
-idea that Lee proposed. I'll probably try it so we can have a taste of it i=
-n v3.
-If needed we can then rollback (not ideal, but that's life).
+Changes in v2:
+- Added Changes to make sure all buffers are released in session close 
+(bryna)
+- Added tracking for flush responses to fix a timing issue.
+- Added a handling to fix timing issue in reconfig
+- Splitted patch 06/20 in two patches (Bryan)
+- Added missing fixes tag (bryan)
+- Updated fluster report (Nicolas)
+- Link to v1: 
+https://lore.kernel.org/r/20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com
 
-- Nuno S=C3=A1
+Changes sinces RFC:
+- Added additional fixes to address issues identified during further 
+testing.
+- Moved typo fix to a seperate patch [Neil]
+- Reordered the patches for better logical flow and clarity [Neil, 
+Dmitry]
+- Added fixes tag wherever applicable [Neil, Dmitry]
+- Removed the default case in the switch statement for codecs [Bryan]
+- Replaced if-else statements with switch-case [Bryan]
+- Added comments for mbpf [Bryan]
+- RFC: 
+https://lore.kernel.org/linux-media/20250305104335.3629945-1-quic_dikshita@quicinc.com/
+
+This patch series depends on [1] & [2]
+[1] https://lore.kernel.org/linux-media/20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org/
+[2] https://lore.kernel.org/linux-media/20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com/
+
+These patches are tested on SM8250 and SM8550 with v4l2-ctl and 
+Gstreamer for HEVC and VP9 decoders, at the same time ensured that 
+the existing H264 decoder functionality remains uneffected.
+
+Note: 1 of the fluster compliance test is fixed with firmware [3]
+[3]: 
+https://lore.kernel.org/linux-firmware/1a511921-446d-cdc4-0203-084c88a5dc1e@quicinc.com/T/#u 
+
+The result of fluster test on SM8550:
+ 131/147 testcases passed while testing JCT-VC-HEVC_V1 with 
+ GStreamer-H.265-V4L2-Gst1.0.
+ The failing test case:
+ - 10 testcases failed due to unsupported 10 bit format.
+   - DBLK_A_MAIN10_VIXS_4
+   - INITQP_B_Main10_Sony_1
+   - TSUNEQBD_A_MAIN10_Technicolor_2
+   - WP_A_MAIN10_Toshiba_3
+   - WP_MAIN10_B_Toshiba_3
+   - WPP_A_ericsson_MAIN10_2
+   - WPP_B_ericsson_MAIN10_2
+   - WPP_C_ericsson_MAIN10_2
+   - WPP_E_ericsson_MAIN10_2
+   - WPP_F_ericsson_MAIN10_2
+ - 4 testcase failed due to unsupported resolution
+   - PICSIZE_A_Bossen_1
+   - PICSIZE_B_Bossen_1
+   - WPP_D_ericsson_MAIN10_2
+   - WPP_D_ericsson_MAIN_2 
+ - 2 testcase failed due to CRC mismatch
+   - RAP_A_docomo_6
+   - RAP_B_Bossen_2
+   - BUG reported: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4392
+     Analysis - First few frames in this discarded by firmware and are 
+     sent to driver with 0 filled length. Driver send such buffers to 
+     client with timestamp 0 and payload set to 0 and 
+     make buf state to VB2_BUF_STATE_ERROR. Such buffers should be 
+     dropped by GST. But instead, the first frame displayed as green 
+     frame and when a valid buffer is sent to client later with same 0 
+     timestamp, its dropped, leading to CRC mismatch for first frame.
+
+ 235/305 testcases passed while testing VP9-TEST-VECTORS with 
+ GStreamer-VP9-V4L2-Gst1.0.
+ The failing test case:
+ - 64 testcases failed due to unsupported resolution
+   - vp90-2-02-size-08x08.webm
+   - vp90-2-02-size-08x10.webm
+   - vp90-2-02-size-08x16.webm
+   - vp90-2-02-size-08x18.webm
+   - vp90-2-02-size-08x32.webm
+   - vp90-2-02-size-08x34.webm
+   - vp90-2-02-size-08x64.webm
+   - vp90-2-02-size-08x66.webm
+   - vp90-2-02-size-10x08.webm
+   - vp90-2-02-size-10x10.webm
+   - vp90-2-02-size-10x16.webm
+   - vp90-2-02-size-10x18.webm
+   - vp90-2-02-size-10x32.webm
+   - vp90-2-02-size-10x34.webm
+   - vp90-2-02-size-10x64.webm
+   - vp90-2-02-size-10x66.webm
+   - vp90-2-02-size-16x08.webm
+   - vp90-2-02-size-16x10.webm
+   - vp90-2-02-size-16x16.webm
+   - vp90-2-02-size-16x18.webm
+   - vp90-2-02-size-16x32.webm
+   - vp90-2-02-size-16x34.webm
+   - vp90-2-02-size-16x64.webm
+   - vp90-2-02-size-16x66.webm
+   - vp90-2-02-size-18x08.webm
+   - vp90-2-02-size-18x10.webm
+   - vp90-2-02-size-18x16.webm
+   - vp90-2-02-size-18x18.webm
+   - vp90-2-02-size-18x32.webm
+   - vp90-2-02-size-18x34.webm
+   - vp90-2-02-size-18x64.webm
+   - vp90-2-02-size-18x66.webm
+   - vp90-2-02-size-32x08.webm
+   - vp90-2-02-size-32x10.webm
+   - vp90-2-02-size-32x16.webm
+   - vp90-2-02-size-32x18.webm
+   - vp90-2-02-size-32x32.webm
+   - vp90-2-02-size-32x34.webm
+   - vp90-2-02-size-32x64.webm
+   - vp90-2-02-size-32x66.webm
+   - vp90-2-02-size-34x08.webm
+   - vp90-2-02-size-34x10.webm
+   - vp90-2-02-size-34x16.webm
+   - vp90-2-02-size-34x18.webm
+   - vp90-2-02-size-34x32.webm
+   - vp90-2-02-size-34x34.webm
+   - vp90-2-02-size-34x64.webm
+   - vp90-2-02-size-34x66.webm
+   - vp90-2-02-size-64x08.webm
+   - vp90-2-02-size-64x10.webm
+   - vp90-2-02-size-64x16.webm
+   - vp90-2-02-size-64x18.webm
+   - vp90-2-02-size-64x32.webm
+   - vp90-2-02-size-64x34.webm
+   - vp90-2-02-size-64x64.webm
+   - vp90-2-02-size-64x66.webm
+   - vp90-2-02-size-66x08.webm
+   - vp90-2-02-size-66x10.webm
+   - vp90-2-02-size-66x16.webm
+   - vp90-2-02-size-66x18.webm
+   - vp90-2-02-size-66x32.webm
+   - vp90-2-02-size-66x34.webm
+   - vp90-2-02-size-66x64.webm
+   - vp90-2-02-size-66x66.webm
+ - 2 testcases failed due to unsupported format
+   - vp91-2-04-yuv422.webm
+   - vp91-2-04-yuv444.webm
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-22-svc_1280x720_3.ivf
+   - Bug reported: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4371
+ - 2 testcase failed due to unsupported resolution after sequence change
+   - vp90-2-21-resize_inter_320x180_5_1-2.webm
+   - vp90-2-21-resize_inter_320x180_7_1-2.webm
+ - 1 testcase failed due to unsupported stream
+   - vp90-2-16-intra-only.webm
+
+The result of fluster test on SM8250:
+ 133/147 testcases passed while testing JCT-VC-HEVC_V1 with
+ GStreamer-H.265-V4L2-Gst1.0.
+ The failing test case:
+ - 10 testcases failed due to unsupported 10 bit format.
+   - DBLK_A_MAIN10_VIXS_4
+   - INITQP_B_Main10_Sony_1
+   - TSUNEQBD_A_MAIN10_Technicolor_2
+   - WP_A_MAIN10_Toshiba_3
+   - WP_MAIN10_B_Toshiba_3
+   - WPP_A_ericsson_MAIN10_2
+   - WPP_B_ericsson_MAIN10_2
+   - WPP_C_ericsson_MAIN10_2
+   - WPP_E_ericsson_MAIN10_2
+   - WPP_F_ericsson_MAIN10_2
+ - 4 testcase failed due to unsupported resolution
+   - PICSIZE_A_Bossen_1
+   - PICSIZE_B_Bossen_1
+   - WPP_D_ericsson_MAIN10_2
+   - WPP_D_ericsson_MAIN_2
+
+ 232/305 testcases passed while testing VP9-TEST-VECTORS with
+ GStreamer-VP9-V4L2-Gst1.0.
+ The failing test case:
+ - 64 testcases failed due to unsupported resolution
+   - vp90-2-02-size-08x08.webm
+   - vp90-2-02-size-08x10.webm
+   - vp90-2-02-size-08x16.webm
+   - vp90-2-02-size-08x18.webm
+   - vp90-2-02-size-08x32.webm
+   - vp90-2-02-size-08x34.webm
+   - vp90-2-02-size-08x64.webm
+   - vp90-2-02-size-08x66.webm
+   - vp90-2-02-size-10x08.webm
+   - vp90-2-02-size-10x10.webm
+   - vp90-2-02-size-10x16.webm
+   - vp90-2-02-size-10x18.webm
+   - vp90-2-02-size-10x32.webm
+   - vp90-2-02-size-10x34.webm
+   - vp90-2-02-size-10x64.webm
+   - vp90-2-02-size-10x66.webm
+   - vp90-2-02-size-16x08.webm
+   - vp90-2-02-size-16x10.webm
+   - vp90-2-02-size-16x16.webm
+   - vp90-2-02-size-16x18.webm
+   - vp90-2-02-size-16x32.webm
+   - vp90-2-02-size-16x34.webm
+   - vp90-2-02-size-16x64.webm
+   - vp90-2-02-size-16x66.webm
+   - vp90-2-02-size-18x08.webm
+   - vp90-2-02-size-18x10.webm
+   - vp90-2-02-size-18x16.webm
+   - vp90-2-02-size-18x18.webm
+   - vp90-2-02-size-18x32.webm
+   - vp90-2-02-size-18x34.webm
+   - vp90-2-02-size-18x64.webm
+   - vp90-2-02-size-18x66.webm
+   - vp90-2-02-size-32x08.webm
+   - vp90-2-02-size-32x10.webm
+   - vp90-2-02-size-32x16.webm
+   - vp90-2-02-size-32x18.webm
+   - vp90-2-02-size-32x32.webm
+   - vp90-2-02-size-32x34.webm
+   - vp90-2-02-size-32x64.webm
+   - vp90-2-02-size-32x66.webm
+   - vp90-2-02-size-34x08.webm
+   - vp90-2-02-size-34x10.webm
+   - vp90-2-02-size-34x16.webm
+   - vp90-2-02-size-34x18.webm
+   - vp90-2-02-size-34x32.webm
+   - vp90-2-02-size-34x34.webm
+   - vp90-2-02-size-34x64.webm
+   - vp90-2-02-size-34x66.webm
+   - vp90-2-02-size-64x08.webm
+   - vp90-2-02-size-64x10.webm
+   - vp90-2-02-size-64x16.webm
+   - vp90-2-02-size-64x18.webm
+   - vp90-2-02-size-64x32.webm
+   - vp90-2-02-size-64x34.webm
+   - vp90-2-02-size-64x64.webm
+   - vp90-2-02-size-64x66.webm
+   - vp90-2-02-size-66x08.webm
+   - vp90-2-02-size-66x10.webm
+   - vp90-2-02-size-66x16.webm
+   - vp90-2-02-size-66x18.webm
+   - vp90-2-02-size-66x32.webm
+   - vp90-2-02-size-66x34.webm
+   - vp90-2-02-size-66x64.webm
+   - vp90-2-02-size-66x66.webm
+ - 2 testcases failed due to unsupported format
+   - vp91-2-04-yuv422.webm
+   - vp91-2-04-yuv444.webm
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-22-svc_1280x720_3.ivf
+   - Bug raised: 
+https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4371
+ - 5 testcase failed due to unsupported resolution after sequence change
+   - vp90-2-21-resize_inter_320x180_5_1-2.webm
+   - vp90-2-21-resize_inter_320x180_7_1-2.webm
+   - vp90-2-21-resize_inter_320x240_5_1-2.webm
+   - vp90-2-21-resize_inter_320x240_7_1-2.webm
+   - vp90-2-18-resize.ivf
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-16-intra-only.webm
+   Analysis: First few frames are marked by firmware as NO_SHOW frame.
+   Driver make buf state to VB2_BUF_STATE_ERROR for such frames.
+   Such buffers should be dropped by GST. But instead, the first frame 
+   is being displayed and when a valid buffer is sent to client later
+   with same timestamp, its dropped, leading to CRC mismatch for first 
+   frame.
+
+Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+---
+Dikshita Agarwal (23):
+      media: iris: Skip destroying internal buffer if not dequeued
+      media: iris: Update CAPTURE format info based on OUTPUT format
+      media: iris: Add handling for corrupt and drop frames
+      media: iris: Avoid updating frame size to firmware during reconfig
+      media: iris: Send V4L2_BUF_FLAG_ERROR for buffers with 0 filled length
+      media: iris: Drop port check for session property response
+      media: iris: Add handling for no show frames
+      media: iris: Improve last flag handling
+      media: iris: Skip flush on first sequence change
+      media: iris: Prevent HFI queue writes when core is in deinit state
+      media: iris: Remove redundant buffer count check in stream off
+      media: iris: Remove deprecated property setting to firmware
+      media: iris: Fix missing function pointer initialization
+      media: iris: Fix NULL pointer dereference
+      media: iris: Fix typo in depth variable
+      media: iris: Add a comment to explain usage of MBPS
+      media: iris: Track flush responses to prevent premature completion
+      media: iris: Fix buffer preparation failure during resolution change
+      media: iris: Add HEVC and VP9 formats for decoder
+      media: iris: Add platform capabilities for HEVC and VP9 decoders
+      media: iris: Set mandatory properties for HEVC and VP9 decoders.
+      media: iris: Add internal buffer calculation for HEVC and VP9 decoders
+      media: iris: Add codec specific check for VP9 decoder drain handling
+
+ drivers/media/platform/qcom/iris/iris_buffer.c     |  52 ++-
+ drivers/media/platform/qcom/iris/iris_buffer.h     |   3 +-
+ drivers/media/platform/qcom/iris/iris_ctrls.c      |  35 +-
+ drivers/media/platform/qcom/iris/iris_hfi_common.h |   1 +
+ .../platform/qcom/iris/iris_hfi_gen1_command.c     |  48 ++-
+ .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   5 +-
+ .../platform/qcom/iris/iris_hfi_gen1_response.c    |  39 +-
+ .../platform/qcom/iris/iris_hfi_gen2_command.c     | 143 +++++++-
+ .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   5 +
+ .../platform/qcom/iris/iris_hfi_gen2_response.c    |  58 ++-
+ drivers/media/platform/qcom/iris/iris_hfi_queue.c  |   2 +-
+ drivers/media/platform/qcom/iris/iris_instance.h   |   8 +
+ .../platform/qcom/iris/iris_platform_common.h      |  28 +-
+ .../media/platform/qcom/iris/iris_platform_gen2.c  | 198 ++++++++--
+ .../platform/qcom/iris/iris_platform_qcs8300.h     | 126 +++++--
+ .../platform/qcom/iris/iris_platform_sm8250.c      |  15 +-
+ drivers/media/platform/qcom/iris/iris_vb2.c        |  18 +-
+ drivers/media/platform/qcom/iris/iris_vdec.c       | 117 +++---
+ drivers/media/platform/qcom/iris/iris_vdec.h       |  11 +
+ drivers/media/platform/qcom/iris/iris_vidc.c       |   9 +-
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 397 ++++++++++++++++++++-
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  46 ++-
+ 22 files changed, 1154 insertions(+), 210 deletions(-)
+---
+base-commit: 398a1b33f1479af35ca915c5efc9b00d6204f8fa
+change-id: 20250428-qcom-iris-hevc-vp9-eb31f30c3390
+prerequisite-message-id: <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>
+prerequisite-patch-id: 35f8dae1416977e88c2db7c767800c01822e266e
+prerequisite-patch-id: 2bba98151ca103aa62a513a0fbd0df7ae64d9868
+prerequisite-patch-id: 0e43a6d758b5fa5ab921c6aa3c19859e312b47d0
+prerequisite-patch-id: b7b50aa1657be59fd51c3e53d73382a1ee75a08e
+prerequisite-patch-id: 30960743105a36f20b3ec4a9ff19e7bca04d6add
+prerequisite-patch-id: b93c37dc7e09d1631b75387dc1ca90e3066dce17
+prerequisite-patch-id: afffe7096c8e110a8da08c987983bc4441d39578
+prerequisite-message-id: <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
+prerequisite-patch-id: 2e72fe4d11d264db3d42fa450427d30171303c6f
+prerequisite-patch-id: 3398937a7fabb45934bb98a530eef73252231132
+prerequisite-patch-id: feda620f147ca14a958c92afdc85a1dc507701ac
+prerequisite-patch-id: 07ba0745c7d72796567e0a57f5c8e5355a8d2046
+prerequisite-patch-id: e35b05c527217206ae871aef0d7b0261af0319ea
+
+Best regards,
+-- 
+Dikshita Agarwal <quic_dikshita@quicinc.com>
 
 
