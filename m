@@ -1,130 +1,151 @@
-Return-Path: <devicetree+bounces-171593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD978A9F34B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9602AA9F367
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 16:29:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D7CF189E862
-	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A3AA189E385
+	for <lists+devicetree@lfdr.de>; Mon, 28 Apr 2025 14:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5E025E829;
-	Mon, 28 Apr 2025 14:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76C0267B6F;
+	Mon, 28 Apr 2025 14:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jDr2VHzL"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GuTa/GwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9451E884
-	for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 14:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777EA26B962;
+	Mon, 28 Apr 2025 14:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745849905; cv=none; b=QjO+SmelLerS4zfJqKfGmgnQAD//dmcbHizbA0bVadDS+lOMCDZ5uZdSNiyzPCuLU1NNhAB4Oa1Z+rIC8Ei2zQDvehuJyqGjA149bMJRVzXu69WQbAb7Y1eIMph6HJ3sBNqGq3zoxjSbRwY0s2dsXFUDFVdpLAOo355ZJY8qb1I=
+	t=1745850560; cv=none; b=K9g79Fv0kcye7b2HmZsh5gE2eixUxtKCd5DZ+1a+66B33g3XCt76fv+ZoCL2P9a6BoaCxhViYtLUY8tayNTHi03ZJuKJQRNFLEKFqBgHQQyGZ5wKPs/KBxv11XmfcyevFCfN4jSeeSKS5CxDBb1ebLaFl6FspCizkDMtlKjwsV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745849905; c=relaxed/simple;
-	bh=PjRdXlsmJUpPvlWjlRcduIR1Eq5Vgg2u25y7fkkDmyw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YmJ4gXaVVG89qP1bP4g+x1e1Xx/LGXQVWteV8Fp1HhdPS7jAuRj9ut7fjzq71u+XOkT19faEaF17QH01pqX3UpPbcRu9VO/ygeuCiO7c5guzfFWoqBHip+mg0P4fhb7bioyQdfwUpzqnm6XqzMmjdn93Ug6rBBaZdZKWajgiA6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jDr2VHzL; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54298ec925bso6342205e87.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 07:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745849902; x=1746454702; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nXVvurz23J2+L5kt96WXTroBQ39jU0y6cCqiWeSQLFk=;
-        b=jDr2VHzLbJ50BiFc8j1G0V7lsRiKW0Se2ri1Et6wLxdaTxeg0lkudTAWLFGqdvz0AF
-         lD+teb4cYJzIBQ7buAdqQV78SOo7R6uod5Gh92hVNbqhSAOxQpqiu1kpyPXyZAjoGgSz
-         gmWDu67pV/X9SBZfns7cFhc+0Fip+luuTNVntv5/y61h7C6CclqkedG0nUlrYmAAYezP
-         UU2GrIxHri4vbhyGsNhoWp2UjyfANNbzCaN/JK16ZRU8JFPgZnCO1+7eDmVkQJyuHGh8
-         x9nPpSfMpXCPLHa6AbXE8KY7YhSYLyb4pUPdskyJOJvXiBis/yyZBkw21SuRGnOnKKM0
-         3GHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745849902; x=1746454702;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nXVvurz23J2+L5kt96WXTroBQ39jU0y6cCqiWeSQLFk=;
-        b=POPI5YZRchiZnY/MThaRo627ifYCO8KsHmjKvHIoSxNjYw5nPjRSCDCTz3iVxEeJHu
-         3OUl212fYI0lL2m22ikOHV/9kOjPFI01VifyZpyLGPcgKFlyySMi/r1fe/2z8ecmT1dT
-         3ykJH5NbBMMT+eaCe2wL/qn+dkocIqfHRD+jv3TJM2z6c7toTJ/2BHzkrOEVqqf/exLa
-         7V2YE10AMZWBgFdfU0EwdyUuhVVNFPqvxFtoI3rM50VKWrThRHvitNqkKFgZfZ/P7a32
-         IibdLmrJ6yT0jfux1t07iv/AA9w9UD5krYokfukPs3tBpH8x38GLuNBD659kuIkodjDG
-         N8YQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUAGRWra1t+y0oYUETNDr9zBpa4XbFakQlWmXIKuMCvUNL8hN5DraNKzm964oHqQ1CaJx9LtUJ4TL0u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxle7uEEEBGvMH0tGgn2AhsQeUlOUIesggPDVAL7P+nA2mISTqO
-	LhHBv8QpJycxg0BhFoZjGcUSdXckKbBtjRz0LCQ/OKNAIE1O186XUrgsMSSHduZnCigripMDwa/
-	HPx/NBrotUdayliXcbDcR+ujG22HT9YYhWYuCdg==
-X-Gm-Gg: ASbGncucNyGjD1NpxubVDHM9dZ365cfI1NgxdPc8eJCBqN2u98n4u+4chDKbyWhy94y
-	3bSTU2liqeq4x9UKgxXWT/zMJBB80+vKVteBQ28h8OLYeB9U0A7YNYkTpeXPmZnwlVjNi9wftZW
-	5Uyb9L73zZVfN9txQBfszDYQ==
-X-Google-Smtp-Source: AGHT+IGvhJeqWQVl7wUSjEu9Tai7VZXnkdRdnljHuHSmsEW0zEOC9vXIPg78pJyadRV6QxI6VqKiX008Vk2HwfUHtNE=
-X-Received: by 2002:a05:6512:108f:b0:549:6cac:6717 with SMTP id
- 2adb3069b0e04-54e8cc0cb31mr3406763e87.53.1745849901807; Mon, 28 Apr 2025
- 07:18:21 -0700 (PDT)
+	s=arc-20240116; t=1745850560; c=relaxed/simple;
+	bh=rJLdBVQbvCv+TluCWMpZ9vIsstIJLp+u2Vh5mAtrQnQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZiRyNJiId7z+sr3EIppydHh+GXgSfaMGIzZfycpYon07OeODiKudKtqgfUGz+TnCkbaRhNsZWjoE96oawbSigjD6gcw1JHFaqhpKQXM/RueS1nIdaVyPcb4t3wOvzEyl0j7zvSW/Qw029w+GiViRVSzaStBYOt7FICnO5Qp3mwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GuTa/GwU; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53SESiWF2797224
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 28 Apr 2025 09:28:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745850524;
+	bh=RBnt6oCOdXftASOE020D1oKxhactwZNgt5XQP4zEG/g=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=GuTa/GwUemjpMPB21SqSYZEWi8J73Q9cSTDCHdOGiWTFgWJZx3Jmjo8ep6SYaL4mT
+	 Sem9HbvtdPMacM3XxfBBejYAxRVA4XBuZ5HlbmNuysJDAgvoSPgF85+JXJcbOJjq0U
+	 jpzx7fhACyOWooFH+E1/3X3luNknWIBdRuTJfFBA=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53SESivY077126
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 28 Apr 2025 09:28:44 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
+ Apr 2025 09:28:44 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 28 Apr 2025 09:28:44 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53SESgc4076217;
+	Mon, 28 Apr 2025 09:28:43 -0500
+Date: Mon, 28 Apr 2025 19:58:42 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        "Russell King
+ (Oracle)" <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Whitcroft
+	<apw@canonical.com>,
+        Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Lukas Bulwahn
+	<lukas.bulwahn@gmail.com>,
+        Joe Perches <joe@perches.com>, Jonathan Corbet
+	<corbet@lwn.net>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux@ew.tq-group.com>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <8b166e41-8d21-4519-bd59-01b5ae877655@ti.com>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <aAaafd8LZ3Ks-AoT@shell.armlinux.org.uk>
+ <a53b5f22-d603-4b7d-9765-a1fc8571614d@lunn.ch>
+ <aAe2NFFrcXDice2Z@shell.armlinux.org.uk>
+ <fdc02e46e4906ba92b562f8d2516901adc85659b.camel@ew.tq-group.com>
+ <9b9fc5d0-e973-4f4f-8dd5-d3896bf29093@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250424062017.652969-1-uwu@icenowy.me> <20250424062017.652969-2-uwu@icenowy.me>
- <CACRpkdaX0hTJSsZN6YNXASY3noZw=JsOSXzFBbxKegJ6A+2usA@mail.gmail.com>
- <7e62e720ccc51fb5c7d023adae3eab35aecf0bba.camel@icenowy.me>
- <CACRpkdY0DXxDixZVhnRuKvSVbKQ6pSfLMiT2hf9818sbNG-4hg@mail.gmail.com> <0606c146d97ff98ff1412b98f49e6da0071801d1.camel@icenowy.me>
-In-Reply-To: <0606c146d97ff98ff1412b98f49e6da0071801d1.camel@icenowy.me>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 28 Apr 2025 16:18:10 +0200
-X-Gm-Features: ATxdqUFE5Aj3lBDc4lYvvht68VXq-83pWEXQcwlO7tgbNAkueD3gpN4Y7TmGwKM
-Message-ID: <CACRpkdbPhKwjb0dkOom6HyzTrhPWvMPhX5M=nyxw1HBHNJa0fQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
- PAD_INTERNAL_* virtual pins
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang <jianlong.huang@starfivetech.com>, 
-	Hal Feng <hal.feng@starfivetech.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9b9fc5d0-e973-4f4f-8dd5-d3896bf29093@lunn.ch>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Apr 24, 2025 at 2:26=E2=80=AFPM Icenowy Zheng <uwu@icenowy.me> wrot=
-e:
-[Me]
-> > I guess what rubs me the wrong way is why the external users
-> > (devices, device drivers or even pin hogs) cannot trigger the chain
-> > of
-> > events leading to this configuration, instead of different "magic"
-> > configurations that are just set up in the pin controller itself.
->
-> Well I am just extending what's already in use...
->
-> Currently it's already supported to route GPIOs to GPI signals, I added
-> the support to route fixed level sources to them, in a similar way.
->
-> If any external users ever have the need of banging the internal
-> signals instead of tying it fixedly, maybe switching between different
-> pinctrl configuration sets is enough? (Because this kind of operation
-> could never be as high speed enough as real hardware pins)
+On Mon, Apr 28, 2025 at 04:08:10PM +0200, Andrew Lunn wrote:
+> > > However, with the yaml stuff, if that is basically becoming "DT
+> > > specification" then it needs to be clearly defined what each value
+> > > actually means for the system, and not this vague airy-fairy thing
+> > > we have now.
+> 
+>  
+> > I agree with Russell that it seems preferable to make it unambiguous whether
+> > delays are added on the MAC or PHY side, in particular for fine-tuning. If
+> > anything is left to the implementation, we should make the range of acceptable
+> > driver behavior very clear in the documentation.
+> 
+> I think we should try the "Informative" route first, see what the DT
+> Maintainers think when we describe in detail how Linux interprets
+> these values.
+> 
+> I don't think a whole new set of properties will solve anything. I
+> would say the core of the problem is that there are multiple ways of
+> getting a working system, many of which don't fit the DT binding. But
+> DT developers don't care about that, they are just happy when it
+> works. Adding a different set of properties won't change that.
 
-What I am thinking is that one of the following must be true:
+Isn't the ambiguity arising due to an incomplete description wherein we
+are not having an accurate description for the PCB Traces?
 
-1. The internal pads are always set up the same way for this SoC
-  in which case they should be just hardcoded instead, or at
-  least just implied from the compatible string of the pin controller.
+A complete description might be something like:
 
-2. The internal pads are routed differently depending on different
-  use cases, in which case they need to be set up or implied
-  from configuration in other DT nodes describing this use.
+mac {
+	pcb-traces {
+		mac-to-phy-trace-delay = <X>; // Nanoseconds
+		phy-to-mac-trace-delay = <Y>; // Nanoseconds
+	};
+	phy-mode = "rgmii-*";
+	phy-handle = <&phy>;
+};
 
-I guess this binding if for (2)?
+In some designs, the "mac-to-phy-trace" and the "phy-to-mac-trace" are
+treated as a part of the MAC block for example. Depending on which block
+contains the trace, the delay is added accordingly.
 
-Yours,
-Linus Walleij
+Regards,
+Siddharth.
 
