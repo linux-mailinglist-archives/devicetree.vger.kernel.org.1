@@ -1,141 +1,185 @@
-Return-Path: <devicetree+bounces-171718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D230EAA0010
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 04:44:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4E4AA0019
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 04:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D789C9230FE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 02:44:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 541363BBF7E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 02:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D37329CB44;
-	Tue, 29 Apr 2025 02:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A04F29B78F;
+	Tue, 29 Apr 2025 02:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="rxu3yHkM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hsHy5PQQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198D520D4E2;
-	Tue, 29 Apr 2025 02:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745894694; cv=pass; b=p22AEQz+9VsIIvUOaLFUcf8JvdikN6QscMZ9l5+XIqRIj4tZyF5toksOPlTOiXGr8RpZhthWdK2HcfUule6SVDD2uMRsAOzVFQ6cf4s5PhRy6Y3cyMc9yTml0ni786Nay5TUi0DaCo0mqIjS69r9xk9/M9rCBDfJZSFZM0GpsVY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745894694; c=relaxed/simple;
-	bh=80hSbyKne/0EugL7CapBvsxNWe+IjuzVuUn1HpWWPrc=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=W8oo9ovWK8WK6qPYg/GJ3TFpcOH+Xipb4/tZMMx8R9SBEFKUKiTv1VYj4xo9mO7VNN47ui+vJ2nAvaPcpEGFvGo693ImyYPy/026/JzbaUAi0WcyRlE0VKxd/z+JFxWcS1ZHdtIS0GCNlY4gE7NuU6vn0akA7q7aepmjclP9Ak8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=rxu3yHkM; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1745894658; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=W7Yqbl3KpTat/YCL5zO60BQism51l0PaZskt2Vj3NMRX7/ATEeDYjoIbfFXiqp9Redyr6QPoajgVisPtElobNqgguNSYYBvcWvTa1ZcmBE+geEWfZJUHcf8URe2450CtFeuXEcA52oRitOHYJ+gkZ1fHPEjNHw+FIGzqoA3gL+o=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745894658; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Y8qohLpxxXxjlKsGCMSvmJyXGDphODOZWso+yF8m3A0=; 
-	b=YeU8SaNId4zOrIMVHLz8bFrSr9UiTlEtuGhiOiak6R54fg53lmOnTdh4NN+X3TSyItXEZTVlPtjNOxQoG1U7KQuEa5IhgUHJu8luYh/6585S3LnbomIVE8azzmUU41iK+1AcpxWFt0rkFIHw+fnIJ8KnmfD3Snfi2KN+Co4qD/M=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745894658;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=Y8qohLpxxXxjlKsGCMSvmJyXGDphODOZWso+yF8m3A0=;
-	b=rxu3yHkMtXenqyShakil1PCUh7UQ7F9cG2qo8QLzJXOwSBpHvYGMOCDE4HwX2Gg3
-	1qHPo9fVI3cYtJ8l5W0dPJ68jFneYBTM8DjWZ7e9Q8U1PHpRIW1/jx9bImqvok5Niyn
-	ZPKBoZd3avLaZz+kdP/h12Z0oZ00DKDUiKpldNqw=
-Received: by mx.zohomail.com with SMTPS id 1745894656786665.8936609850081;
-	Mon, 28 Apr 2025 19:44:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E7CC148;
+	Tue, 29 Apr 2025 02:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745895316; cv=none; b=uWg05ShPKZXtLO8ajrjyYYDu4I28+sSGEgRSyBBKCFYSn/bAoGYw9ln4kiYrFzvTqn7vonf18lXITamlPDIrjp3IVyiYysuipnh/rnlr/lMXYQIH9anTpkZ6QxTup/ygZnyRLdLoyY4EGVnu2sDqqAMRHcLDEOqxWJstSUzo0lk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745895316; c=relaxed/simple;
+	bh=4nzf+tieOu9e4G/3UrPKYMyCkGKYuCIODdEfrxhWjIA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BRIGgRyaxGNgCfTQpRb7yp8ne5x2lLFNR3SfuxgIQ/WJOa8DLUUchXIuvG2MihASqSwUmITguxUo1LACNlVEKnmmpdT2d8PWBjF5aQkBVx7L3jIXgfxEP0GWYttYCs41ulk2eb8Hj9NEUADveAQFBRV+4j9M0STxRDxjMc0EBcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hsHy5PQQ; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7376e311086so7409249b3a.3;
+        Mon, 28 Apr 2025 19:55:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745895314; x=1746500114; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7JckEDRHtba6/m8QpSb/VSM1gjvc14dWKrAI4nTnis=;
+        b=hsHy5PQQfiVtGAO7Ql3AQaNoEB3qO2QS1vKwWRdsZlKU8O7wm2dzn13AIFQ7C9iaRE
+         HQbkZyJH/1NNztPk6m+aAb8TLMeRz/qJYPprHhJZftXvLu7JRZTdoNOLJE1u8jt23oX+
+         UHyEQGPMUriak1XgawN9IpQzGEiiSQk3P60FpDKra+aPqofpy90BQXwulFVJm3iaik/9
+         LOb9CZtTOzM61rtre4JxQgMwBb16VEo9zJ7pgwIQcbIwsr14lUrmISw19Yw3ftvDX0GI
+         Y7EP/O2lq/tXFKbGZ8QawDoxl4gGC4AhhDrm9bqsDndaWcBsh1r/I+W44/Hm1iqrbkyl
+         5FWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745895314; x=1746500114;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b7JckEDRHtba6/m8QpSb/VSM1gjvc14dWKrAI4nTnis=;
+        b=hRMwuAAPCsaIhfKqGIrziDQEEBsTrEJAFMZUVf+kLUBL/vUEOEmubmyuRiRtCiSn29
+         2TgwnK36+jD4eRj3X/E63mcF3hCUq4MX3preojXCF3rEQ3uM7TMSZgoIkxTmsTsmXXNq
+         TXVR0qB9jU77zVjY7vWRtEzqeNjmqR6i8L+5Nwu71Z33dK20sjJyTjTKEcYwfkOXaJ0q
+         uSS+PHo9+QB7qjSKqEDNyrBvHN7/io/PCuiOrU2VXoYZSsmH5n2iI3fPW5SBuSluW9bQ
+         /M01FkKyYHNjAGQ5NzL+wW0Xw1zjK1BQam1k8ALLuelotlPsixedf2FxFg2wDpxDtALq
+         PW8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU8ojWPzS/Qd7rLmTQNjxRo6u2EjhgH4wRQu3Cby1RLH7AzGsejGjDuFy4z9MyTJP2V/++EK849bmJTSeYd@vger.kernel.org, AJvYcCVsRjMlhGw4JZjb5Pb6W/z6qrzawR5zDyv6ObfthsBnJ1GsAMxCV2hDnLNA5Jw+SiFfD1aKTIexKA5W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6PHxk/IP0CsJKuyB/s7HdsJEwOc/98xoMNrDHxyyUV1I323l0
+	0YuwMtakMms7En9A0wrL2fwt4A/mcAMx7PkkxSUqbB3B6wlYdJSM
+X-Gm-Gg: ASbGncvOTTQAD/HuaYHkHIX1zGSVuDrzQi96AxOxkA6vdk/lAGmJaOAG+BMpco4tQ6b
+	4kfuvhULrx0FhHc+bssp2allIP0IzXmW80PAduc6vvpcC9/B4+mUDzPY5dQpdBz3X/4kX0WPttj
+	ty2eJFq858jTBjdy/E6UCVuSce5OElt8pzkykBH7d5WEH5K9gwZnOXXl6TMLv0I9Yxc4rH1wgnl
+	XWKMDuGqRmn+IxgbdRsowa1wTZvaQpTOqvjfyH7SPHq2RIVMg8895Es7UUcoaLFhPsloPC3fsn9
+	pZwr5MTxFuO6UvwqTQzuwWLc2X1pXyb74LAPb/y7R32xHaCIoqXMOaB1lVUtAJFPLObI8od5
+X-Google-Smtp-Source: AGHT+IGXW2QME1gcQs7Gpd8hsHAnUUsTB6wiKU7yAlG2uli0eosOA2OGDmhhXKqFgSAMmp6V+UI7vw==
+X-Received: by 2002:a05:6a00:a07:b0:736:4704:d5da with SMTP id d2e1a72fcca58-7402722f82amr2564821b3a.22.1745895314127;
+        Mon, 28 Apr 2025 19:55:14 -0700 (PDT)
+Received: from openbmc.. (211-23-34-211.hinet-ip.hinet.net. [211.23.34.211])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25a6abcdsm8797905b3a.116.2025.04.28.19.55.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 19:55:13 -0700 (PDT)
+From: Eason Yang <j2anfernee@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	javier.carrasco.cruz@gmail.com,
+	tgamblin@baylibre.com,
+	olivier.moysan@foss.st.com,
+	alisadariana@gmail.com,
+	gstols@baylibre.com,
+	antoniu.miclaus@analog.com,
+	eblanc@baylibre.com,
+	andriy.shevchenko@linux.intel.com,
+	matteomartelli3@gmail.com,
+	marcelo.schmitt@analog.com,
+	chanh@os.amperecomputing.com,
+	KWLIU@nuvoton.com,
+	yhyang2@nuvoton.com
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Eason Yang <j2anfernee@gmail.com>
+Subject: [PATCH v8 0/2] iio: adc: add Nuvoton NCT7201 ADC driver
+Date: Tue, 29 Apr 2025 10:55:03 +0800
+Message-Id: <20250429025505.3278016-1-j2anfernee@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Conor Dooley" <conor@kernel.org>
-In-Reply-To: <20250428-water-sermon-eefdfa511f8d@spud>
-Cc: "Jassi Brar" <jassisinghbrar@gmail.com>, 
-	"Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Chen Wang" <unicorn_wang@outlook.com>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, "Yuntao Dai" <d1581209858@live.com>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>, <linux-kernel@vger.kernel.org>, 
-	<devicetree@vger.kernel.org>, <sophgo@lists.linux.dev>, 
-	<linux-riscv@lists.infradead.org>, "Junhui Liu" <junhui.liu@pigmoral.tech>
-Subject: Re: [PATCH v3 2/3] riscv: dts: add mailbox for Sophgo CV18XX series
-	 SoC
-Message-ID: <183aa9ef25290278.6bcb31a17e34dfae.e6a8b825df767676@Jude-Air.local>
-Date: Tue, 29 Apr 2025 02:44:10 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-Hi Conor,
-Thanks for you review.
+Change since version 8:
+ - dev_err_probe(), move the definition from device.h to dev_printk.h
+ - Use USEC_PER_MSEC rather than the hard coded value of 1000
+ - Use one dev for both regmap and regmap16
 
-The previous email accidentally lost some Cc lists :(, I'm sorry to
-harass you.
+Change since version 7:
+ - Fix comments
+ - Derive dev from the respective regmap
+ - Generate the mask from the number of voltage input channels 
 
-On 28/04/2025 17:55, Conor Dooley wrote:
-> On Mon, Apr 28, 2025 at 08:39:45PM +0800, Junhui Liu wrote:
->> From: Yuntao Dai <d1581209858@live.com>
->>=20
->> Add mailbox node for Sophgo CV18XX series SoC.
->>=20
->> Signed-off-by: Yuntao Dai <d1581209858@live.com>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>=20
->> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts=
-/sophgo/cv18xx.dtsi
->> index c18822ec849f353bc296965d2d600a3df314cff6..f7277288f03c024039054bdc4=
-176fc95c2c8be52 100644
->> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->> @@ -55,6 +55,13 @@ soc {
->>  		dma-noncoherent;
->>  		ranges;
->> =20
->> +		mailbox: mailbox@1900000 {
->> +			compatible =3D "sophgo,cv1800b-mailbox";
->> +			reg =3D <0x01900000 0x1000>;
->> +			interrupts =3D <101 IRQ_TYPE_LEVEL_HIGH>;
->> +			#mbox-cells =3D <2>;
->> +		};
->=20
-> No user added here, is there another series in the works that adds a
-> user of the mailbox?
->=20
+Change since version 6:
+ - Fix comments
+ - Add use_single_read in regmap_config
+ - Remove unused definitions
+ - Do not shadow the return code by -EIO and let regmap API caller to decide
+ - Use simple English in all error messages
+ - Use a local variable for the struct device pointers. This increases 
+   code readability with shortened lines.
+ - Use `fsleep` instead of `mdelay`
+ - Use 16 bits type __le16 instead of u8 data[2]
 
-There isn't an actual user node in this specific patch. I used a
-`mailbox-test` node to verify the functionality in this patch series.
+Change since version 5:
+ - Fix comments
+ - Add NUVOTON NCT7201 IIO DRIVER section in MAINTAINERS
+ - Add vdd-supply and vref-supply to the DT example
+ - Remove mutex since the regmap should already have an internal lock
+ - Remove redundant assigning values
+ - Check errors on regmap_write
 
-The intended user for this mailbox is the `remoteproc` node. I plan to
-submit the `remoteproc` driver patches once the corresponding reset
-driver [1] is ready and merged.
+Change since version 4:
+ - Fix comments
+ - Add interrupts and reset-gpios to the DT example
+ - Use the FIELD_PREP and FIELD_GET
+ - Add use_single_write in regmap_config
+ - Use regmap_access_table
 
-link: https://lore.kernel.org/linux-riscv/20250209122936.2338821-1-inochiama=
-@gmail.com/ [1]
+Change since version 3:
+ - Fix comments
+ - Don't put nct720"x" in the name, just call it nct7201
+ - Remove differential inputs until conversions are finished
+ - Add NCT7201_ prefix in all macros and avoid the tables
+ - Correct event threshold values in raw units
+ - Add with and without interrupt callback function to have the event
+   config part and one that doesn't
+ - Remove print an error message if regmap_wirte failed case
 
->> +
->>  		clk: clock-controller@3002000 {
->>  			reg =3D <0x03002000 0x1000>;
->>  			clocks =3D <&osc>;
->>=20
->>
+Change since version 2:
+ - Remvoe read-vin-data-size property, default use read word vin data
+ - Use regmap instead of i2c smbus API
+ - IIO should be IIO_CHAN_INFO_RAW and _SCALE not _PROCESSED
+ - Use dev_xxx_probe in probe function and dev_xxx in other functions
+ - Use devm_iio_device_register replace of iio_device_register
+ - Use guard(mutex) replace of mutex_lock
+ - Use get_unaligned_le16 conversion API
 
---=20
-Best regards,
-Junhui Liu
+Changes since version 1:
+ - Add new property in iio:adc binding document
+ - Add new driver for Nuvoton NCT720x driver
+
+Eason Yang (2):
+  dt-bindings: iio: adc: add NCT7201 ADCs
+  iio: adc: add support for Nuvoton NCT7201
+
+ .../bindings/iio/adc/nuvoton,nct7201.yaml     |  70 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/nct7201.c                     | 462 ++++++++++++++++++
+ 5 files changed, 551 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+ create mode 100644 drivers/iio/adc/nct7201.c
+
+-- 
+2.34.1
+
 
