@@ -1,110 +1,148 @@
-Return-Path: <devicetree+bounces-171864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D12BAA0665
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:58:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DCEAA0675
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:01:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B1C0481C85
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:58:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 886228416EC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F07729E05A;
-	Tue, 29 Apr 2025 08:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FE52BCF59;
+	Tue, 29 Apr 2025 09:00:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7XTGz+o"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="SFVzEJFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E42929E04A;
-	Tue, 29 Apr 2025 08:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745917064; cv=none; b=bG47WioqxUn7+Ou+NNt7+v9Ya+uKBPL2ZROKayXDwM4t9LBIV7O4yXvR0f0sYxt6grnSmePfSb8kKkfjN48ZMobDL/0Ogmm9aLOIpW4khbdMEKdu3U8LwQwSCfz2N6ALtbACBq3MwCXV1wRlai8JBcTVK/WibuCoDgeYPn+txas=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745917064; c=relaxed/simple;
-	bh=axarDXzssA2Bd+rC2EB5nm1vjnnM3xMlH6D/28yh/XI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JAo288+2NGuSwqZtt0UJeXI+3tqDBa8h/+PLHlwJGzyI6fxymAlTii1tyoiV1M5WTJdk2386d0Pm1VgC/nIpbVsvfMAat+KnJwvk6CndENCzOe0F0gozOHyAXsCgZDDTNxVJOulcgMZm2C3teELTlcskhpzaG1Ki0DQsR2Yqj24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7XTGz+o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84362C4CEEA;
-	Tue, 29 Apr 2025 08:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745917062;
-	bh=axarDXzssA2Bd+rC2EB5nm1vjnnM3xMlH6D/28yh/XI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L7XTGz+oWjLkIdTAZOrar6k05AHFuwkZnOU0BeVr0Wo4fhWmTmWtgkzRWDfMpcxsG
-	 cGvT/CY2G8VQV1321ZXUfBdTHrma/0/T1aOklwgARzcUyzskEpF6HK20DeSBdy+Ja9
-	 dtXf5NH9uUbDUSPeOe8R+oEta2w15gSRJBG4C5x46l+CVwCjE4tA9i99nHyZua3zTB
-	 nIsh+3Ul8Pm3chDELttp0lp0CB9eB1PrvxFVY+wvKGBN/KpE3svCA/AYaX0lyxfryZ
-	 X9DLO0kgR5OQUOwBa8Vo44O9mAa2dDHrCE1Jl5iO1V6BtABz/7kgZTMivWPofcnvdB
-	 dKx9KarmAaakg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u9gme-000000000ub-1OUg;
-	Tue, 29 Apr 2025 10:57:44 +0200
-Date: Tue, 29 Apr 2025 10:57:44 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Xilin Wu <wuxilin123@gmail.com>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Konrad Dybcio <quic_kdybcio@quicinc.com>
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100-*: Drop useless DP3
- compatible override
-Message-ID: <aBCUiIrg3oehMVjx@hovoldconsulting.com>
-References: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEFA2BCF54;
+	Tue, 29 Apr 2025 09:00:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745917234; cv=pass; b=gzdCpCZ2Txe5SRgHvz91pdOQGl+KLoa5TzN1Fky9N39Y2FIyCyOcS4HYILEU58gxg+1UT8oqvTk80k7R75r1+b5Haljo7unK4qS9Dp2PWdPzWep034bOJrcMN9K/Bj5ovR0roz85F+keaovjf+4uATsUiSMsIHREW54MY/TpNeY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745917234; c=relaxed/simple;
+	bh=fZQkV+LeKWISYkYSjblN43k3j75EsN/nAxXEFWfOGOc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=D08xViWBoIwwzedNu9x8P1EAS0cISaNK5tkPZqBz2pCwuKd8kQRW7gBGLOYLJUVUDBo612mSN5vSyBX1uHBP8Www/roWl//UeQiXZwXHRN4kCnMPV14ozEgh/1M/2IEH8XyAWAEB63a182XXm3/SLQI0iU8tKrcsz7ttAveBFmA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=SFVzEJFk; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1745917214; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CU1m58RfCOjQD6HAj0LxtIh1J2MxKzzYfGWGVh9AQinEm6q5PYuCNXLPPR7d3s+R140ho1SRXckR9Dp0zOsAHXa2pyEG1G7lvfiGT9R3m1XOzuOhkGh2YCLPLck0/O/lTbGz7VezbKlWwlRKVuirc1524wdFkDUnBEqxZGyrpSk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745917214; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=fZQkV+LeKWISYkYSjblN43k3j75EsN/nAxXEFWfOGOc=; 
+	b=COcBrzNN2fTjUXuVJH7yjzsCwQo28uPfAXfBYxuVA6Xw0TfozcROdUYiUK0TYlaYYJBliaIKSN/MmqmmBh1FdKTUoJXFLqrdqaRyAjISG4fSo+8tTb7fOYwbiYeRkTlkATA5lj1isTQRoTQBa1rbDmN36qut8TjeZvMqZI5ZVgc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745917214;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=fZQkV+LeKWISYkYSjblN43k3j75EsN/nAxXEFWfOGOc=;
+	b=SFVzEJFk1bX/oFi/F4bDcqwJC2MdR0FYySoJ2VXeBaKZL8q9yhRuOAO8J44D39m0
+	TApkYhQppOsqeRV4PvrqJI2CIgiLXcsN+DNfXrh5WAYTapqes726Vy/iAAGyBa42MgM
+	1TOjb++bg8VgbzgWXYr10XeMhkVg7Go6qC5q/cunTvbWNBKTojjgoYJti6tZxMcFw0Q
+	pE5Lh2oysxb5p3Y6ED0dTI2V/uQyoS7Ug1M3dMKw3OXVsESWMkR9FHSlBzSBVD1F/FP
+	zcE951ASj85fpW4Ac3V46T8ARINxGCqkNsOtWrPEk9yBHZ+eBtCQSBNwZQJvunQV0X/
+	MmJU5JgCGA==
+Received: by mx.zohomail.com with SMTPS id 1745917211373281.29103320839295;
+	Tue, 29 Apr 2025 02:00:11 -0700 (PDT)
+Message-ID: <4d0bf5b8e1dd00f4025b7643a746cd99010c08fc.camel@icenowy.me>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
+ PAD_INTERNAL_* virtual pins
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Jianlong Huang
+ <jianlong.huang@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Date: Tue, 29 Apr 2025 17:00:04 +0800
+In-Reply-To: <8e131fce-12b6-4a5f-8601-c15a0e4290fe@kernel.org>
+References: <20250424062017.652969-1-uwu@icenowy.me>
+	 <20250424062017.652969-2-uwu@icenowy.me>
+	 <20250428-smiling-azure-sunfish-7c1c25@kuoka>
+	 <34c92033f4bbf289c6048a85f0f6ba04435e7bf8.camel@icenowy.me>
+	 <8e131fce-12b6-4a5f-8601-c15a0e4290fe@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+X-ZohoMailClient: External
 
-On Tue, Apr 29, 2025 at 10:42:28AM +0300, Abel Vesa wrote:
-> It all started with the support for CRD back when we had different
-> compatibles for eDP and DP. Meanwhile, that has been sorted out and it
-> is now figured out at runtime while using only the DP compatible.
-> 
-> It's almost funny how this got copied over from CRD and spread to all
-> X Elite platforms.
-> 
-> TBH, the best reason to drop it ASAP is to make sure this doesn't spread
-> beyond X Elite to newer platforms.
-> 
-> Functionally nothing changes.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> Abel Vesa (7):
->       arm64: dts: qcom: x1e-crd: Drop useless DP3 compatible override
->       arm64: dts: acom: x1e80100-qcp: Drop useless DP3 compatible override
->       arm64: dts: qcom: x1e80100-t14s: Drop useless DP3 compatible override
->       arm64: dts: qcom: x1e80100-s15: Drop useless DP3 compatible override
->       arm64: dts: qcom: x1e80100-hp-x14: Drop useless DP3 compatible override
->       arm64: dts: qcom: x1e80100: Drop useless DP3 compatible override
->       arm64: dts: qcom: x1e80100-romulus: Drop useless DP3 compatible override
+=E5=9C=A8 2025-04-29=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 09:31 +0200=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 28/04/2025 10:40, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-04-28=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 09:20 +0200=EF=
+=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Thu, Apr 24, 2025 at 02:20:15PM GMT, Icenowy Zheng wrote:
+> > > > The JH7110 SoC could support internal GPI signals to be routed
+> > > > to
+> > > > not
+> > > > external GPIO but internal low/high levels.
+> > > >=20
+> > > > Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two
+> > > > virtual
+> > > > "pads" to represent internal GPI sources with fixed low/high
+> > > > levels.
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > ---
+> > > > =C2=A0include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h | 4 +++=
++
+> > > > =C2=A01 file changed, 4 insertions(+)
+> > > >=20
+> > > > diff --git a/include/dt-bindings/pinctrl/starfive,jh7110-
+> > > > pinctrl.h
+> > > > b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> > > > index 3865f01396395..3cca874b2bef7 100644
+> > > > --- a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> > > > +++ b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> > > > @@ -126,6 +126,10 @@
+> > > > =C2=A0#define=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PAD_GM=
+AC0_TXEN=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A018
+> > > > =C2=A0#define=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PAD_GM=
+AC0_TXC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A019
+> > > > =C2=A0
+> > > > +/* virtual pins for forcing GPI */
+> > > > +#define PAD_INTERNAL_LOW=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+254
+> > > > +#define PAD_INTERNAL_HIGH=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0255
+> > >=20
+> > > Why this cannot be 20 and 21? These are not values for registers,
+> > > but
+> > > abstract numbers.
+> >=20
+> > The number must not collide with SYS GPIO pads too.
+>=20
+> There are no SYS GPIO pads here. Do you understand that this is not
+> value for registers?
 
-Since this is essentially a clean up perhaps you should have squashed
-these into one patch.
+Yes I understand.
 
-Either way:
+The situation is that JH7110 has two similar pin mux controllers, one
+SYSGPIO and one AONGPIO. Despite I listed the values after the AONGPIO
+pad list, these values should apply to SYSGPIO too (unless you want to
+let them have different values for these two pinmux controllers), which
+is the part with comment "sys_iomux pins".
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+>=20
+> Best regards,
+> Krzysztof
+
 
