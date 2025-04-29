@@ -1,408 +1,143 @@
-Return-Path: <devicetree+bounces-171759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB65AA0202
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF65AA0215
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:53:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 291633AB38E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:49:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AE5E5A8365
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CB42741B2;
-	Tue, 29 Apr 2025 05:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C8B26B96E;
+	Tue, 29 Apr 2025 05:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lSXpUzt+"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Zu9L/7HS";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="TBLMHc1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17161922F4;
-	Tue, 29 Apr 2025 05:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3377C14EC5B;
+	Tue, 29 Apr 2025 05:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745905760; cv=none; b=pE6BDySYdKqBtoSuSE+hGPWMlckOAldxUbD7yYXs1mcyjAVInMavv069hhm2vj57HopPQC94qXrBzTiK1GRYfIogwxktgrOl9m98BRNKhiZK6VS4c/wIVxVfWOTKW03HugFEuwGN+f/P+eSO3qXELDQfBTRw4gcy75s4hZ7i7pc=
+	t=1745905977; cv=none; b=hTNZe+L4dW/Ik0LfWMDWvlVJ5i0hvRQ9143bmam3kDbzaRDMowlwFlpJKzO2eMRGeCLLNH1kgiHdOyAu5e/rEsNnhDMR0G4xwcpgpQJe4wefSh/pbmVs3uN9bELoyudOu0XTdNBcjow/WLRm7TASgcJXjD9JWlH+bROpQzCRtDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745905760; c=relaxed/simple;
-	bh=ctOWVregGwEG4Mr056ZykboOVNc8RTcPDJiJth048sw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mq7g7BCkz9Q0WDDDRD38wPh7WiRHRnSesZHDpSwIK541NIqskQjk1AA6EcflzbH4Q+kyHuZeEikHmpMXs7AWJzkGhT5QrKBa4j/7Qwo/J3NYEKdXOZR4YXCvss2c4E2fCvw0aUU0PqZJHYhNvt/sDKX8zdPvpRKdIFQf4Gp5h9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lSXpUzt+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNq2XJ017905;
-	Tue, 29 Apr 2025 05:49:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=fGQo1quZIhA
-	7GfvlHJm12SrM4bocVnva+SPNWRF5I9g=; b=lSXpUzt+6vGUWJnAb2Kxzh15WNd
-	X5C5RlNyxxp48LUas2HeCom1k3MefPr0ZAlAzbsP1qV63LD9m6RQN0UttnSBWZw5
-	GwnZnyG020C0MbKo6PgiJOcHTlOcRx2eCo7yYsENtf/6uFNjKe84xyqqHFP4XhRc
-	J5gwm62DyC4i/1E/GY/j1AZZVr+EXsAMOyIQEntjP9YeJHIcFza5v9AFuu3ha9sy
-	0+8vVr6byxdwDlDOkfpqJ3sWi4DPWFjyzfLANZ0yGpyLJmBaGAnZXXy/x5h5pXZ0
-	RFWyCLBylEqhIetyCnf/vSLmjlVInQfCfMIwtNhKhPq7qVxCqY7URTtipkQ==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq5jhbp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 05:49:15 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53T5nCBK030272;
-	Tue, 29 Apr 2025 05:49:12 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 468rjmfqur-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 05:49:12 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53T5nBDD030235;
-	Tue, 29 Apr 2025 05:49:11 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.246.180])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 53T5nBJR030227
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 05:49:11 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3944840)
-	id AA4CC5B0; Tue, 29 Apr 2025 11:19:10 +0530 (+0530)
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@quicinc.com,
-        kernel@oss.qualcomm.com, Wasim Nazir <quic_wasimn@quicinc.com>
-Subject: [PATCH v6 4/4] arm64: dts: qcom: Add support for qcs9075 IQ-9075-EVK
-Date: Tue, 29 Apr 2025 11:19:04 +0530
-Message-ID: <20250429054906.113317-5-quic_wasimn@quicinc.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250429054906.113317-1-quic_wasimn@quicinc.com>
-References: <20250429054906.113317-1-quic_wasimn@quicinc.com>
+	s=arc-20240116; t=1745905977; c=relaxed/simple;
+	bh=d67rc5Pj7DKyx5hArOAJ+U2tD86Zu4dyIJvH1zZq6R4=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f+uY2Ty/PTc4SkUm29eZWMw65aLPbVbzxz8kFxyz7NwJJ6rnMDqMY9Ifk6cXGlDHHzspVmI2IWqZQ4Bx1bz8BIKV0mB0p+WvaUCZ3RWa60lyjgqGVlWF/HzhnBpWV3Ke74f2VvrdOHLvrxADP7EKFxsd3Qjr3fPYAkRheJ91bxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Zu9L/7HS; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=TBLMHc1q reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1745905973; x=1777441973;
+  h=from:to:subject:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding;
+  bh=H+ePYln7tPjjBoVKR5HPMEIWQT/EraWtuD1GVt6HQFQ=;
+  b=Zu9L/7HS8GKXHM3Lm/A3tVQIeF/wsU8VJugAmDp+yMmo1jTHg2BjLZF8
+   tzU6HXw3qqGjQHqp/Dc234kbQdy2AOBNaaivQgM2tjB43LlHfRPjz+x0i
+   51dhmPX9KhqO5L3gLTtmDskWqQFWU2PhaK8VOHCv1++V8XBT9vaBsmlpS
+   rN+oa6WHBq72XUUeznwwU0foi8SrrGnB6eWyZ0POe56a2RpZSdN1+F+J+
+   /thByEYMip+MOaZg77lOeJDk5hCqGXucyGnwyImn5zaCY3wtwKeGbDyqW
+   3gIj9NMAMOkmnsu/jjZkNa3JS71/k5QgT39yRidYr9KKUF7zU1rLCaxQ5
+   Q==;
+X-CSE-ConnectionGUID: S+IJdN4BTNCSJu0p4aaddQ==
+X-CSE-MsgGUID: PJJbB2nYTaKOVHj4c7k3fQ==
+X-IronPort-AV: E=Sophos;i="6.15,248,1739833200"; 
+   d="scan'208";a="43769108"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 29 Apr 2025 07:52:50 +0200
+X-CheckPoint: {68106932-7-903EAEAC-E04C76C8}
+X-MAIL-CPID: 873A8EB189AFEA30A497699562E47968_5
+X-Control-Analysis: str=0001.0A006398.6810693E.0055,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 945A916AADE;
+	Tue, 29 Apr 2025 07:52:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1745905965;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H+ePYln7tPjjBoVKR5HPMEIWQT/EraWtuD1GVt6HQFQ=;
+	b=TBLMHc1qj6p8JIsxAqlB6IGbirIcg2hrkGe1NspBevfecMRkvRfmAa+zmdyf/55v7iaABs
+	vtYVyApWu3GM0POM3BBmvkNZKwxW6soD462APIiKguDhKuXGIxA64Vdo0tufqD4gxqUW54
+	q59lL/AtXKDtgGcgeabeZ/S3PSUUVJtAk3+N5Wo8HyygS/ml5Yk5DwVyKCIuV4QQmBgsUb
+	K4S/5OLkhdJQjr14Mv/6Ntr2H2OqYrJnr24nFTjiJdTChIdLLTESnEdhNQykzO63tUAx5S
+	PywhHa6o2GpfAiwjkLJHPT3HhTQxG6Hl8WSG1wSe86BosPWqQBJL2VDLwyEOMw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
+ linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dt: imx95: Add TQMa95xxSA
+Date: Tue, 29 Apr 2025 07:52:44 +0200
+Message-ID: <2436245.ElGaqSPkdT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <aA-xLX_O94O_U5Mt@shikoro>
+References:
+ <20250428135915.520432-1-alexander.stein@ew.tq-group.com>
+ <20250428135915.520432-2-alexander.stein@ew.tq-group.com>
+ <aA-xLX_O94O_U5Mt@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: zqReqXxeHOJSD_l2H3-WH0XSiVLmfgjx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA0MiBTYWx0ZWRfX0IYgi2pjTP/F /kqdzn9kPLTGncpCorxO+ZY6GAL84JiiVstUErQLUVkOj26wt/z5b0HE3adg7AtVxMl1+0m4faG Av7uCJ7u8Q/a+xhV1cCOCiEk2piInxDeiR/H+5m69ePklnRRGz/tzM9VAlRHAj1bawILBT3bszd
- 5e3nQ1fGQ6Sa920GvxOLLl6+vDhDAXL0BZIQtGsraKki1c7Vv1ImOMv+oaih5mV+RAVvTDVuXlE F/RBB65bZWciRBY8P94/xLAX3q5/NadjTowJ5ZwNVbrAYgoaaJxnw53an/PpUg2Guucv9Txju5X bRGjRdyYQHj0N03MdGTWNXYj82CQwymvmwl+6Gp1pEKnDabZ4ypPUqpgwgLxKqV2nDEnKAyXIzP
- z0dWQDNZttD29kkWSF9XfrxSYduFXl7N2FF0/RuNxykoSond+S1XAmZypH//gHKSEZNXvNoa
-X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=6810685b cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=ctKxQ8g-j2yoPrACdqAA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: zqReqXxeHOJSD_l2H3-WH0XSiVLmfgjx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-29_01,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- clxscore=1015 mlxlogscore=999 lowpriorityscore=0 adultscore=0 mlxscore=0
- bulkscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504290042
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add initial device tree support for IQ-9075-EVK board,
-based on Qualcomm's QCS9075M SOM. QCS9075M SOM is based on QCS9075 SOC.
+Hi Wolfram,
 
-Basic changes are supported for boot to shell.
+Am Montag, 28. April 2025, 18:47:41 CEST schrieb Wolfram Sang:
+>=20
+> > Add initial support for TQMa95xxSA module compatible to SMARC-2.
+> > There is a common device tree for all variants with e.g. reduced CPU co=
+unt.
+> > It supports LPUART7 for console, CAN, PCIe I2C, SPI, USB3.0, USB2.0, Au=
+dio,
+> > SDHC1/2 and QSPI as storage.
+>=20
+> Dunno why renesas-soc was CCed but since you are here... ;) do these
+> boards support I3C, too? I know that imx95 has I3C cores. Just out of
+> interest, not relevant for this series, of course.
 
-Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 268 ++++++++++++++++++
- 2 files changed, 269 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+get_maintainer.pl lists (among others) for this patch
+> linux-renesas-soc@vger.kernel.org (open list:ARM/RISC-V/RENESAS ARCHITECT=
+URE:Keyword:\brenesas,)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index adb4d026bcc4..6cca965d86e0 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -122,6 +122,7 @@ qcs6490-rb3gen2-vision-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-vis
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-iq-9075-evk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-new file mode 100644
-index 000000000000..eadc59739a4b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-@@ -0,0 +1,268 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "qcs9075-som.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. IQ 9075 EVK";
-+	compatible = "qcom,qcs9075-iq-9075-evk", "qcom,qcs9075-som", "qcom,qcs9075", "qcom,sa8775p";
-+
-+	aliases {
-+		serial0 = &uart10;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_s4a: smps4 {
-+			regulator-name = "vreg_s4a";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1816000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a: smps5 {
-+			regulator-name = "vreg_s5a";
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <1996000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s9a: smps9 {
-+			regulator-name = "vreg_s9a";
-+			regulator-min-microvolt = <535000>;
-+			regulator-max-microvolt = <1120000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4a: ldo4 {
-+			regulator-name = "vreg_l4a";
-+			regulator-min-microvolt = <788000>;
-+			regulator-max-microvolt = <1050000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5a: ldo5 {
-+			regulator-name = "vreg_l5a";
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6a: ldo6 {
-+			regulator-name = "vreg_l6a";
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <970000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a: ldo7 {
-+			regulator-name = "vreg_l7a";
-+			regulator-min-microvolt = <720000>;
-+			regulator-max-microvolt = <950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a: ldo8 {
-+			regulator-name = "vreg_l8a";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a: ldo9 {
-+			regulator-name = "vreg_l9a";
-+			regulator-min-microvolt = <2970000>;
-+			regulator-max-microvolt = <3544000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_l1c: ldo1 {
-+			regulator-name = "vreg_l1c";
-+			regulator-min-microvolt = <1140000>;
-+			regulator-max-microvolt = <1260000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c: ldo2 {
-+			regulator-name = "vreg_l2c";
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <1100000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c: ldo3 {
-+			regulator-name = "vreg_l3c";
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5c: ldo5 {
-+			regulator-name = "vreg_l5c";
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c: ldo6 {
-+			regulator-name = "vreg_l6c";
-+			regulator-min-microvolt = <1620000>;
-+			regulator-max-microvolt = <1980000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c: ldo7 {
-+			regulator-name = "vreg_l7c";
-+			regulator-min-microvolt = <1620000>;
-+			regulator-max-microvolt = <2000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8c: ldo8 {
-+			regulator-name = "vreg_l8c";
-+			regulator-min-microvolt = <2400000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c: ldo9 {
-+			regulator-name = "vreg_l9c";
-+			regulator-min-microvolt = <1650000>;
-+			regulator-max-microvolt = <2700000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		vreg_s4e: smps4 {
-+			regulator-name = "vreg_s4e";
-+			regulator-min-microvolt = <970000>;
-+			regulator-max-microvolt = <1520000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s7e: smps7 {
-+			regulator-name = "vreg_s7e";
-+			regulator-min-microvolt = <1010000>;
-+			regulator-max-microvolt = <1170000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s9e: smps9 {
-+			regulator-name = "vreg_s9e";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <570000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6e: ldo6 {
-+			regulator-name = "vreg_l6e";
-+			regulator-min-microvolt = <1280000>;
-+			regulator-max-microvolt = <1450000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8e: ldo8 {
-+			regulator-name = "vreg_l8e";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&tlmm {
-+	qup_uart10_default: qup-uart10-state {
-+		pins = "gpio46", "gpio47";
-+		function = "qup1_se3";
-+	};
-+};
-+
-+&uart10 {
-+	compatible = "qcom,geni-debug-uart";
-+	pinctrl-0 = <&qup_uart10_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&xo_board_clk {
-+	clock-frequency = <38400000>;
-+};
---
-2.49.0
+because of this node
+> pcieclk: clock-generator@6a {
+>     compatible =3D "renesas,9fgv0441";
+>     reg =3D <0x6a>;
+>     clocks =3D <&clk_xtal25>;
+>     #clock-cells =3D <1>;
+> };
+
+renesas-soc gets triggered ;-) I'll pay attention for further patches.
+
+This is a SMARC-2 module, but there is no i3c interface in this standard.
+
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
