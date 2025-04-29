@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-171790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31A1AA0336
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:24:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14589AA033D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:25:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B69D483A34
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7F1B5A4882
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723CD2BCF68;
-	Tue, 29 Apr 2025 06:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95132BD598;
+	Tue, 29 Apr 2025 06:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RXUPghbq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tpbR4KVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E072750FD
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 06:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD0329E07C
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 06:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745907590; cv=none; b=cvLwC6MC1Qt3qUeU8qScc+4t39E2gUtcgP5knFo8l1ZQB/9FiFuz7PWBs/HdGRCYYXvsyXLAdavveuxxjYPClp67UA1d2uWdjCyNYriUKWQyd7k7rBc8PXQn6GLCymUDLRFUk4HxdEnTcjIXBfBG+TLlcDwpuOi6ntn2wQePBQs=
+	t=1745907591; cv=none; b=ee0DqS9t3jSI2S7hRySUnEH0C1qQQBM5ioz/EjtKJKdMaXiYWSE7oyepvRXRpe1MSyvJgl3GM6POc7pneMdNSgLSbm/EZezomx6cIkv86zLPrthqZwsTPQ0oUb1I5zxS/VIePgnmROTMWiIc+6aXSKspeUJePBzQ/LkCILThglA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745907590; c=relaxed/simple;
-	bh=IaWY7tcMqLqpKkGNb2+Er9XE4UoUasfxemcbzBXbz1c=;
+	s=arc-20240116; t=1745907591; c=relaxed/simple;
+	bh=4lERTfOpiwQeYax1gfqq6qrY9EVnhKNheexOA0mzRzo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oiiAe+ATHIQAinrVXvWSp6qZEu1GG5XRi2OTeKl0wMK+6TErPYKRxQFCekZ/Js/SgOPTLB6KCh19uchOP8FG3Ng/jjhg5VkF2lGo0eTYUKZri5Thmjc5Pml/ukrn5tvIu9iiN4gr5otX+HkXUZlv5HnYZMjggdNx/8IXoPY26bM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RXUPghbq; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:To:Cc; b=WgfNF7BxJ4EsvQLkRoR1VmwWfwb4hP/oke9hB4mUNk13jLxVUVK+ZhOohRswN0tGoD4cTun9aG6+NY3H96+74s5PEeYW4BRCpQP/2e3Bf2vAhdR94666FoUpcoAjgYw3MIfE4aIYf/A+yVJJrtd003DfSTCV22tXG4Uh+Gdf32w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tpbR4KVF; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so3801363f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 23:19:48 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-39c1ef4acf2so4169169f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 23:19:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745907586; x=1746512386; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745907588; x=1746512388; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1J1y0j9xusCEdQGMutlBT7sXepSuuDXERtpBDgORlLg=;
-        b=RXUPghbqrFgOHLqWGAYtVDWqxCkLTy5HlpYyUJ8IvlZYvcGzI3+dXQ7sUpjy6AzeVD
-         RHhzGdPE3OaXjvxAGf1N6G3rFWiKqm5ATLnXRoVXfZibwXexMT3kcMVhYd6XOmuoQzkL
-         NGUj/lScu3VwZ5BTbQq8B5426wnYQrKj8xhdvRpy8iy85O0PVQw7b9K6iRYh/uEldGhC
-         RagKLBlNckgDymkFPcr4P9dyU3EDdSPHERaa8+RDvq7IkW2EU4Cx5DG6uMX1PAoJnUun
-         /hcIlYmFyaHlVDkh+rH398dOUbd+nXWsiNm2ldx6rGdG5wVD5UYHB3kti6Cg5d06Nmhg
-         GgzQ==
+        bh=AvSL5A3NEbhnwLKxo5uX4gVOmn//DTx9o8Z+/6mMK9I=;
+        b=tpbR4KVFtDgRFOreaM7QNiTBh3eGe1ZIX2BzZMQ8ngljwZm4EUYYr/g6HZnbd3/oFG
+         HEBHaP177f/b1Y1bF1HJ+63ELCS/rv+OPgNqygLAqWiIBn8FNlVrzv8BqIWeESieAozq
+         RicW6XkWTrfENw4cbfjaiHWW9tJ5q1ZQA/tnYmkHKZLY9ME8vsP8/rhSCwDDkNStCQ3/
+         46FaAo8lfhbJcFT905ypDrOX/t4FPW1ZFVmripaqH/xc23jbAJwb7VZpzBWSLFWyyekr
+         BHsjxsYtEJCySuBP2b0otib7C495h4pGQhuIDNubNIzyQwC639Qq9U8jgrU3I5lmG2cI
+         2BPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745907586; x=1746512386;
+        d=1e100.net; s=20230601; t=1745907588; x=1746512388;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1J1y0j9xusCEdQGMutlBT7sXepSuuDXERtpBDgORlLg=;
-        b=RsQ3v4ESgz78/f0SwdSElIU16i2woHQ2BmAYir8O0Y3gLgeC/QpDjDzo5On568wfc7
-         Pep/5yLWniXKylGq4QAScD3ukaN9BBG9DnquDz2ev0/l6zFqliuoC7Da70UkUdMmWdv3
-         Lg13gdLiz47z6/Zez1M0CIemXVi8rfGv18yHIfSpfjthzn6cGv+AvIkDfk6qA+hDokrs
-         5EV3+4aPxJKxcNqCiXQvRRPruOuBnY8/9aPuYZMPPAA7r9LRAbwkRXipyYiwlc1FbhnK
-         MjX38AHXiRnpotUlwghlE7iI7+2abiMlqFwcYh6UrVkoZ1g7qzclX45TlLx2/E4X5oUX
-         XaYg==
-X-Gm-Message-State: AOJu0Yy/Y5LkfNroRUB2kNCaU0VAH1KSSV15Ob3QU3GeUrxi9zvx4D2L
-	sAvbU2jqs//lnNaK6qY3nCHvOUM28w0yxQ6Kqvt3RnR2i710lpPKEjKQZiaehPM=
-X-Gm-Gg: ASbGnct+isPEa6hL2LWOGZv/QxsqRRG3QDMpgRV/epyzc6ofguLC+yZkr/lNVwzglN8
-	hzbDmg5rbE+7s2LJnR95vivnJsqXvaU/Dl0hf2Kf8FzhBs9Cy/yRrZ3xx9N/idl8zvdK/yJZAa5
-	heyh0bHTGslK/noj7z30IY07xthBftCniHcYuUD6V8e3cKbJouLscDNglDhA4J3R2ZD8UjS7j5E
-	Xdh52nrymQBMJa0sQttzTRmy7+FeBibFR0CBLPpaty3Xmbcfv1acF28I9zvy0eJR1P7ul54jxYJ
-	SeJUCTQ9oU//vTibgJqk5tOJRVp/CQC2uGDcphfZA9tKfdyFwHfOIcakAxodgt8yIt8Uf1A=
-X-Google-Smtp-Source: AGHT+IGZHANJgUSXXTUCKNgmTaHbkPL5ZSTXXFAUgVGHprMJ5PNq0SItX2F9a/mxdybpRLb3hlTLbg==
-X-Received: by 2002:a05:6000:3113:b0:3a0:7d64:502 with SMTP id ffacd0b85a97d-3a08ad284a8mr867182f8f.11.1745907586693;
-        Mon, 28 Apr 2025 23:19:46 -0700 (PDT)
+        bh=AvSL5A3NEbhnwLKxo5uX4gVOmn//DTx9o8Z+/6mMK9I=;
+        b=s4ZpUGbXTol4KPQNYyWtEBxehiLjcmlE1IgBh2SDxLLxSf79A1cWFfn2hnl/lTuqh5
+         rYdeoeBTvWf80rVJCidUAcLYQEWx3b0+071NGxWJdvGvx8AS9KLqwi+Hq/FNdmTRFJTQ
+         YBS+FGxYpJu31423roaiOow5u4lvipjLOvfhv8JkbGklutJn8wWpeg/rNX1vlQRo3b5O
+         2pl9DRhLDc8FK3zmZ4Syg+tYgqYo+YfDsi7pYxexbDoCEHVpIqY97FBRodFUWHn4iM8j
+         dJg96w/LSQMhvgUzA7wztLrlHQ3hxgsTlo3PLORg+TTDj5soxXsqGTe/WdCywBfSW5sF
+         pdxA==
+X-Gm-Message-State: AOJu0YxYE8suf1L+rqX20DeoxAqTWE5Xy6nEk7Yp5wgTZL+t0VD/5V1W
+	mNRf56p/Jl/S9klZbAzcrVN1pcFSk/YtdUVmVtk1NLD44P5Fd5vHbllGgENGxig=
+X-Gm-Gg: ASbGncvvYoaRtLJKUS9bTLGnGdB0ATkdRC8fbICdBdGe2OVDfUi+uPP9QPEllBhr5QS
+	whIynh15Le7L/hNZoSFIU40e2XaihPvvu/WaHkZyQahDjfh92QHs6BggH6S6teqs5MCddw593ai
+	bHmnJbZYsbLh+MffEGE3bGZlWDaQ09Mq3z5wZvRuCErT5fYww8uUxs1ZV0SpfxaWElK4ubLxzZH
+	sDePKarWJXPVJ5MovzRP8kDib8a6fdKyvn+6aIm0QjMiYA1Gg7panEch1u/hVa6zaYjmqaDLbu+
+	xq4b/HfgamzTBGWagktoZLsp/PGz8rr6lOW2h+oUWXc90qTYOwatnPE21a7bElJKPbXZJax1oaR
+	5zfAp3A==
+X-Google-Smtp-Source: AGHT+IEcKdG2wRSBuyM964cxTaQZshEIOKScbmwqkmDiGlGNlBV7TvAlb1MWRX0R+pVT/zg3VHmYyg==
+X-Received: by 2002:a05:6000:b08:b0:391:253b:405d with SMTP id ffacd0b85a97d-3a08949feeamr1569115f8f.41.1745907587765;
+        Mon, 28 Apr 2025 23:19:47 -0700 (PDT)
 Received: from gpeter-l.roam.corp.google.com ([145.224.90.246])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ca4e50sm13302616f8f.30.2025.04.28.23.19.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ca4e50sm13302616f8f.30.2025.04.28.23.19.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 23:19:46 -0700 (PDT)
+        Mon, 28 Apr 2025 23:19:47 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 29 Apr 2025 07:19:40 +0100
-Subject: [PATCH v3 4/5] arm64: dts: exynos: gs101: add pmu-intr-gen syscon
- node
+Date: Tue, 29 Apr 2025 07:19:41 +0100
+Subject: [PATCH v3 5/5] soc: samsung: exynos-pmu: enable CPU hotplug
+ support for gs101
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-4-1bcc44fb1d55@linaro.org>
+Message-Id: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-5-1bcc44fb1d55@linaro.org>
 References: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-0-1bcc44fb1d55@linaro.org>
 In-Reply-To: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-0-1bcc44fb1d55@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
@@ -93,63 +94,212 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
  kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1422;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6366;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=IaWY7tcMqLqpKkGNb2+Er9XE4UoUasfxemcbzBXbz1c=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoEG98E/mWar0gec4zKdLIOJk0f4CBzVOdq+8N8
- sKDMz+m6PKJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaBBvfAAKCRDO6LjWAjRy
- upepD/9CfAi9gMWNP+Tzfre8i3QEfVw9+FE3nB0W/WZ7KZYj1iNdvEHf1zYDmwuLAZdWrz0erun
- LflTXAUP/aTyszRv1AE+5KS4L/WZBVNvx1ngw4tfcAQmy7vMxpVc/w2C9HERcVJ4F6PT9BdIUgk
- ua4llNq65MYAfMA6xTrOZAGpyFNmHikjkpmcwSPZIhswbdk5qrSDIVdLddND7KX/vg0LKdeEaQV
- S7SlDfkv6c9DnYLfIxV+1mVo9qojm3XK9Hr8tcp5HP+9sew2f0bYqJNvSGB8gvlFcDihxkrzNd3
- bfKUPVug99MeoZEPWN5Kx5P13lis92TLHRRFRyJ/K0uJoWYM/H8ReaaGUfciXjAK3kuLdYE9jvK
- eI74QBlsO6KLLJ2eyoVnc+/OJc9fVrrNt3oH4qJ0Kdzjp4SHroLClpF4O10xFPhYkz7XYfB0xVx
- zYyfXTliI9XJQb36Ax7uDcGMY08WX/nzsP2H7oT/RSiabFTRNtZw4/7zF06F4LazOd12hBOdcHd
- /OG/uyPmOgsS5lcYHaJGCJ87VzPqts8bmsNg8yaOMLJosSNn65rnLN74441fyhJmyfFwE02bXZg
- cB4KS0C69MlZsp97sZ34ep9p87Ox5LMCA8RwHq3OJj1gbXvQOektMyKFNjzeaSFwQdgUsLakLCl
- z8cg1Oj6cSQ/W7g==
+ bh=4lERTfOpiwQeYax1gfqq6qrY9EVnhKNheexOA0mzRzo=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoEG99ncYW10Ircah1ax1HNpv/FjFikU/IRkMln
+ bdyQiFvafyJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaBBvfQAKCRDO6LjWAjRy
+ uos1D/9jmKnhe3CYlNEwh7yXAxDCImGNlTw6cTUunZUPcN2wZ9DIWuCRcKxKGuTnksOPcoFTWmp
+ pyfIEO6irv/DPj8EqRwVINYRAOB+Nbfiei59d5xIQ5JbxszVSBtxLPWB48cLWxz51YX5MQvKggu
+ oq3O5a+MvfdjJq7ziTwEPKNSZWDvWzFIdBqdzFZkZmrZR8hYqIIcKfogCbGr1Z8Z89ZJXZUAtJd
+ felfmEdAieo/8ANqYyfbUNWiyOB9ltmmeE9a6vN+eJlkTMTCb4EAzPgT0RigCUWZcYe3Mx3OLDY
+ IOVUADKvkmy5Lspe+5NloAfOMk6ykXiGkie35xyOMp1B2sg21ofViavTs4X3JCZqdlu7hnKwlcs
+ WIh/MZCYkHPgK5LCowAq6aKlpr7VFfHcEZcuGQAYAMNP+s6VsdN7qVjt127tC9JYzpjg7TYBlEo
+ DRPr4MHdfogDykdyxKDNsxvUxb8/xLhKHgNyZeWdPDeMH+k7y1XeAyZvSREaEzWbw/m5Ysh0C2w
+ 7go/XpGglUAF3wO6z7LJIhH9xsvlsR3B3uOQM8r++XIfTPbelascCioSbygRRIWezYPYa/aIGeS
+ /DEppxx6uaDGQU9oLl1qw+KfEeoBqYC5xMyjaiNp3TLFsBSVPdX2zcA0zpWzOo/TUaNq31eSqXB
+ on5R1JS4J634ycA==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-Add syscon node for the PMU Interrupt Generation registers.
+Some additional register writes are required when hotplugging CPUs
+on gs101, without these the system hangs when hotplugging.
 
-Additionally update the exynos-pmu node to provide a phandle
-to pmu-intr-gen syscon.
+Specifically a CPU_INFORM register needs to be programmed with
+a hint value which is used by the EL3 firmware (el3mon) and the
+pmu-intr-gen registers need to be programmed.
 
-These registers are required for CPU hotplug to be functional.
+With this patch applied, and corresponding DT update CPU hotplug
+now works as expected. e.g.
+
+echo 0 > /sys/devices/system/cpu/cpu6/online
+echo 1 > /sys/devices/system/cpu/cpu6/online
+
+Note: to maintain compatibility with older DTs that didn't specify
+pmu-intr-gen phandle only a warning is issued if the syscon can't
+be obtained.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
-Changes since v1:
-* Model pmu-intr-gen as it's own syscon (Krzysztof)
----
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 91cda7758020563b2c5b5768d8921e87b1f4231c..48c691fd0a3ae430b5d66b402610d23b72b144d7 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -1405,6 +1405,7 @@ sysreg_apm: syscon@174204e0 {
- 		pmu_system_controller: system-controller@17460000 {
- 			compatible = "google,gs101-pmu", "syscon";
- 			reg = <0x17460000 0x10000>;
-+			google,pmu-intr-gen-syscon = <&pmu_intr_gen>;
+Changes since v1:
+* Use BIT macro (Kryzstof)
+* Use gs101_ prefix for cpuhp functions (Kryzstof)
+* Model pmuintrgen SFR region as it's own syscon (Kryzstof)
+* Use regmap_update_bits() API (Kryzstof)
+* Program hint on current processor number (Peter)
+---
+ drivers/soc/samsung/exynos-pmu.c            | 80 ++++++++++++++++++++++++++++-
+ drivers/soc/samsung/exynos-pmu.h            |  1 +
+ include/linux/soc/samsung/exynos-regs-pmu.h | 11 ++++
+ 3 files changed, 91 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
+index c40313886a012304b3f345d5d7369f15713eb857..41955ec2ccdb955b2d0b969651fad1a344628f1b 100644
+--- a/drivers/soc/samsung/exynos-pmu.c
++++ b/drivers/soc/samsung/exynos-pmu.c
+@@ -7,6 +7,7 @@
  
- 			poweroff: syscon-poweroff {
- 				compatible = "syscon-poweroff";
-@@ -1434,6 +1435,11 @@ reboot-mode {
- 			};
- 		};
+ #include <linux/array_size.h>
+ #include <linux/arm-smccc.h>
++#include <linux/cpuhotplug.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/mfd/core.h>
+@@ -33,6 +34,7 @@ struct exynos_pmu_context {
+ 	struct device *dev;
+ 	const struct exynos_pmu_data *pmu_data;
+ 	struct regmap *pmureg;
++	struct regmap *pmuintrgen;
+ };
  
-+		pmu_intr_gen: syscon@17470000 {
-+			compatible = "google,gs101-pmu-intr-gen", "syscon";
-+			reg = <0x17470000 0x10000>;
-+		};
+ void __iomem *pmu_base_addr;
+@@ -222,7 +224,8 @@ static const struct regmap_config regmap_smccfg = {
+ };
+ 
+ static const struct exynos_pmu_data gs101_pmu_data = {
+-	.pmu_secure = true
++	.pmu_secure = true,
++	.pmu_cpuhp = true,
+ };
+ 
+ /*
+@@ -326,6 +329,60 @@ struct regmap *exynos_get_pmu_regmap_by_phandle(struct device_node *np,
+ }
+ EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
+ 
++/*
++ * CPU_INFORM register hint values which are used by
++ * EL3 firmware (el3mon).
++ */
++#define CPU_INFORM_CLEAR	0
++#define CPU_INFORM_C2		1
 +
- 		pinctrl_gpio_alive: pinctrl@174d0000 {
- 			compatible = "google,gs101-pinctrl";
- 			reg = <0x174d0000 0x00001000>;
++static int gs101_cpuhp_pmu_online(unsigned int cpu)
++{
++
++	unsigned int cpuhint = smp_processor_id();
++	u32 reg, mask;
++
++	/* clear cpu inform hint */
++	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
++		     CPU_INFORM_CLEAR);
++
++	mask = BIT(cpu);
++
++	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
++			   mask, (0 << cpu));
++
++	regmap_read(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_UPEND, &reg);
++
++	regmap_write(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_CLEAR,
++		     reg & mask);
++
++	return 0;
++}
++
++static int gs101_cpuhp_pmu_offline(unsigned int cpu)
++{
++	u32 reg, mask;
++	unsigned int cpuhint = smp_processor_id();
++
++	/* set cpu inform hint */
++	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
++		     CPU_INFORM_C2);
++
++	mask = BIT(cpu);
++	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
++			   mask, BIT(cpu));
++
++	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
++	regmap_write(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_CLEAR,
++		     reg & mask);
++
++	mask = (BIT(cpu+8));
++	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
++	regmap_write(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_CLEAR,
++		     reg & mask);
++	return 0;
++}
++
+ static int exynos_pmu_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -378,6 +435,27 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+ 	pmu_context->pmureg = regmap;
+ 	pmu_context->dev = dev;
+ 
++	if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_cpuhp) {
++
++		pmu_context->pmuintrgen = syscon_regmap_lookup_by_phandle(dev->of_node,
++							"google,pmu-intr-gen-syscon");
++		if (IS_ERR(pmu_context->pmuintrgen)) {
++			/*
++			 * To maintain support for older DTs that didn't specify syscon phandle
++			 * just issue a warning rather than fail to probe.
++			 */
++			dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
++		} else {
++			cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
++					"soc/exynos-pmu:prepare",
++					gs101_cpuhp_pmu_online, NULL);
++
++			cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
++					"soc/exynos-pmu:online",
++					NULL, gs101_cpuhp_pmu_offline);
++		}
++	}
++
+ 	if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_init)
+ 		pmu_context->pmu_data->pmu_init();
+ 
+diff --git a/drivers/soc/samsung/exynos-pmu.h b/drivers/soc/samsung/exynos-pmu.h
+index 0a49a2c9a08ef5bc75670551bdbf6d0a2d3e8ae9..0938bb4fe15f439e2d8bddeec51b6077e79a7e84 100644
+--- a/drivers/soc/samsung/exynos-pmu.h
++++ b/drivers/soc/samsung/exynos-pmu.h
+@@ -22,6 +22,7 @@ struct exynos_pmu_data {
+ 	const struct exynos_pmu_conf *pmu_config;
+ 	const struct exynos_pmu_conf *pmu_config_extra;
+ 	bool pmu_secure;
++	bool pmu_cpuhp;
+ 
+ 	void (*pmu_init)(void);
+ 	void (*powerdown_conf)(enum sys_powerdown);
+diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
+index cde299a85384a70d04dae49ee9a4e2daa88fbbf6..c82b40035e9fa8fe6a673b829a75a50a707afb1b 100644
+--- a/include/linux/soc/samsung/exynos-regs-pmu.h
++++ b/include/linux/soc/samsung/exynos-regs-pmu.h
+@@ -660,9 +660,20 @@
+ #define EXYNOS5433_PAD_RETENTION_FSYSGENIO_OPTION		(0x32A8)
+ 
+ /* For Tensor GS101 */
++/* PMU ALIVE */
+ #define GS101_SYSIP_DAT0					(0x810)
++#define GS101_CPU0_INFORM					(0x860)
++#define GS101_CPU_INFORM(cpu)	\
++			(GS101_CPU0_INFORM + (cpu*4))
+ #define GS101_SYSTEM_CONFIGURATION				(0x3A00)
+ #define GS101_PHY_CTRL_USB20					(0x3EB0)
+ #define GS101_PHY_CTRL_USBDP					(0x3EB4)
+ 
++/* PMU INTR GEN */
++#define GS101_GRP1_INTR_BID_UPEND				(0x0108)
++#define GS101_GRP1_INTR_BID_CLEAR				(0x010c)
++#define GS101_GRP2_INTR_BID_ENABLE				(0x0200)
++#define GS101_GRP2_INTR_BID_UPEND				(0x0208)
++#define GS101_GRP2_INTR_BID_CLEAR				(0x020c)
++
+ #endif /* __LINUX_SOC_EXYNOS_REGS_PMU_H */
 
 -- 
 2.49.0.901.g37484f566f-goog
