@@ -1,239 +1,156 @@
-Return-Path: <devicetree+bounces-171964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B36A1AA0BF8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A85AA0C4A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17CBD1B64B14
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:47:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12BD91B657B7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202C32C2585;
-	Tue, 29 Apr 2025 12:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1A62C374B;
+	Tue, 29 Apr 2025 12:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="j4QVCJ9y"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zhHv2OGm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87A62701C4;
-	Tue, 29 Apr 2025 12:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE402C2ABF;
+	Tue, 29 Apr 2025 12:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745930851; cv=none; b=ZazK8zbyprimvED7XqvtIUjOuFqHuomX8krRYztUwOuWzi75XNKJzGAOGmTPmnJPgjBDKcsQSmz1BgQ27oifsrmllOhXENSUXa82F8ogRCAJlfm6gM1vkKvH+Yy54Xrc7PKRykfU8hM6EOqKRyOAS9n6U1PMxG1Tbvel2h6Nusw=
+	t=1745931294; cv=none; b=YlNaA6B6bGS3HKJ2S8Dd37ZuLgK2UKbZOc3RgCprgxIrNvW0WCTO94zNymUC0Kch4j4iJdPW4MPB21qn+zhE+yl3rNX0AwRIADcP0AWNuB0MpzQm+JUtpLPxgd4dmfZ6Ck6h9fcAclRddHwRQL6g0UgxPy9zcNszSFRWmAIHdHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745930851; c=relaxed/simple;
-	bh=ALFfqZTCZO2PHhqc2/0fWGwaOyZ3IOtl8aSKr66hINk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=UqMKAyY6mnyDtiFu4tbX7szlPpulSCZx/UCm4yFoGELaRqD+a+A7XejpfCkcImfFJHH52C2b9V9omXSahHbTcdDoUnFzyPZRPN/pbrXXA88fCdjdP1HI3mvYq56pGJJIlnKwseXo9SPQOu1GC+q70jedvHeRrimBylBtt+fviVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=j4QVCJ9y; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1745930846;
-	bh=ALFfqZTCZO2PHhqc2/0fWGwaOyZ3IOtl8aSKr66hINk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=j4QVCJ9yzrE7ilsBqngIg3T+X/OaF94eCN0h1X09Aw/BEemEc870WphrS7RRiFOcl
-	 +sdGJ7cM75J6r5ybCBa/0bgu8hVs4KNy8SWq5L+HTDamlIFMANL7Fye196tO3J2G6v
-	 3A3XFsE9Ucm5Rebet3h2PZq2iOi+VWkC0Zj06Eadr2+6laLa7yJPNKrruIx3yVj46+
-	 Cv8bzighjtu1XuYQQI79L+dzYnFRgEou3JEVjrJ5gdXtnu0rOeb63kL5lFq4BAN3N9
-	 cXE0rBcSi/a0Py8yZk2wDuMRC6uyALWlu0MH77V0jh3P68uieQdrwlhRuU528FDCt6
-	 zk5uvfKZoaIig==
-Received: from [IPv6:2606:6d00:15:9913::5ac] (unknown [IPv6:2606:6d00:15:9913::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 714DA17E0649;
-	Tue, 29 Apr 2025 14:47:24 +0200 (CEST)
-Message-ID: <dc9b20aecc8740896b2b3e7352b8e0d73d43fed2.camel@collabora.com>
-Subject: Re: [PATCH v2 01/23] media: iris: Skip destroying internal buffer
- if not dequeued
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>, Vikash Garodia	
- <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Mauro Carvalho Chehab	 <mchehab@kernel.org>, Stefan Schmidt
- <stefan.schmidt@linaro.org>, Hans Verkuil	 <hverkuil@xs4all.nl>, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio	 <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Dmitry Baryshkov	
- <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, 	linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, 
-	20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org, 
-	20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com, stable@vger.kernel.org
-Date: Tue, 29 Apr 2025 08:47:22 -0400
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-1-3a6013ecb8a5@quicinc.com>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
-	 <20250428-qcom-iris-hevc-vp9-v2-1-3a6013ecb8a5@quicinc.com>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+	s=arc-20240116; t=1745931294; c=relaxed/simple;
+	bh=9sxFsQ8w8gMj+AilVBnCr0ylt/sgAVMT9xuG3Be9C+I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MSqO3NWsvDH8Utt1E5JEh+Fpw4twmpciBPhKtv+yEKsJSn0Xu3y+wU3ihZfbQS6dOhIurD0r+MibV1SkqqWzQ3Kwz2vl2REhesPBXMptnALIFH6mvxV9PpZAQcNMSblLqRyIVxtLveRIxfRPyI2Y8PQp57wC5NoUr0JLd2QTlqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zhHv2OGm; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TBAfsm010486;
+	Tue, 29 Apr 2025 14:54:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=friZdCP02PIxujmS9U1259
+	XJwM1z2G20WzU8LNOMS1A=; b=zhHv2OGm/EjXwJeBYv0jDW1FyvHNbBVstYgTMx
+	5fSZ5pCIBBRl3Ye7tDX//R+VO/ZfzbhKXDl5QcZ7Zi5fJlPD8AUi36PmJwc3mIXU
+	5t/jjUKJHrFCveI0/na/uoBvrBEX40DcNiNVz6GKIIDWPU8ab1fi/bYbouoO3cWb
+	kQiQlkT1PlKgNBw7C62PGISpIRE+TXxu/4sVy/n5K9D+8caHl8QC215p6wSAPKSp
+	iKPYlAW7+PWd2LfmPJLQyVkUF1EVpY7rtMQ+g5zV3dRxD1kCeQyXg6WbI5cSEEx+
+	4uwr4VaHGVX3KYJ1SpBeCkUrZpSJt7MzWp0CrxZ77MNbAtnA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 468pcgb1tp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 14:54:33 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1500A4005D;
+	Tue, 29 Apr 2025 14:53:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E40B0ABE2D7;
+	Tue, 29 Apr 2025 14:51:45 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 29 Apr
+ 2025 14:51:45 +0200
+Received: from localhost (10.252.5.160) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 29 Apr
+ 2025 14:51:45 +0200
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To: <daniel.lezcano@linaro.org>, <lee@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <tglx@linutronix.de>
+CC: <ukleinek@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <jic23@kernel.org>, <robh@kernel.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <devicetree@vger.kernel.org>, <wbg@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>, <fabrice.gasnier@foss.st.com>
+Subject: [PATCH v6 0/7] Add STM32MP25 LPTIM support: MFD, PWM, IIO, counter, clocksource
+Date: Tue, 29 Apr 2025 14:51:26 +0200
+Message-ID: <20250429125133.1574167-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_04,2025-04-24_02,2025-02-21_01
 
-Not mine to review, but wanted to highlight some best practices,
+This series adds support for STM32MP25 to MFD PWM, IIO, counter and
+clocksource low-power timer (LPTIM) drivers.
+This new variant is managed by using a new DT compatible string, hardware
+configuration and version registers.
+It comes with a slightly updated register set, some new features and new
+interconnect signals inside the SoC.
+Same feature list as on STM32MP1x is supported currently.
+The device tree files add all instances in stm32mp251 dtsi file.
 
-comment below...
+Changes in V6
+---
+- Fixed kernel test robot warning
+  https://lore.kernel.org/oe-kbuild-all/202504261456.aCATBoYN-lkp@intel.com/
 
-Le lundi 28 avril 2025 à 14:58 +0530, Dikshita Agarwal a écrit :
-> Firmware might hold the DPB buffers for reference in case of sequence
-> change, so skip destroying buffers for which QUEUED flag is not removed.
-> Also, make sure that all buffers are released during streamoff.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 73702f45db81 ("media: iris: allocate, initialize and queue internal buffers")
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_buffer.c | 37 +++++++++++++++++++++++++-
->  drivers/media/platform/qcom/iris/iris_buffer.h |  3 ++-
->  drivers/media/platform/qcom/iris/iris_vdec.c   |  4 +--
->  drivers/media/platform/qcom/iris/iris_vidc.c   |  6 +++--
->  4 files changed, 44 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_buffer.c b/drivers/media/platform/qcom/iris/iris_buffer.c
-> index e5c5a564fcb8..606d76b10be2 100644
-> --- a/drivers/media/platform/qcom/iris/iris_buffer.c
-> +++ b/drivers/media/platform/qcom/iris/iris_buffer.c
-> @@ -376,7 +376,7 @@ int iris_destroy_internal_buffer(struct iris_inst *inst, struct iris_buffer *buf
->  	return 0;
->  }
->  
-> -int iris_destroy_internal_buffers(struct iris_inst *inst, u32 plane)
-> +int iris_destroy_internal_buffers(struct iris_inst *inst, u32 plane, bool force)
+Changes in V5
+---
+- Add a necessary delay in clocksource driver, when enabling the timer.
+- Add collected Acks
+- Dropped IIO trigger patch as applied by Jonathan [1] (no dependency)
+  [1] https://lore.kernel.org/all/20250331110435.26157ebe@jic23-huawei/
 
-Its always tempting to just glue a boolean at the end of a parameter
-list. But this has huge downside in code readability, see below...
+Changes in V4
+---
+- Simplify IIO trigger driver as per Jonathan's comments.
+- Rework clocksource driver: encapsulate mp25 changes in separate function
+  after Daniel's suggestion.
+- Add some definitions to MFD header.
 
->  {
->  	const struct iris_platform_data *platform_data = inst->core->iris_platform_data;
->  	struct iris_buffer *buf, *next;
-> @@ -396,6 +396,14 @@ int iris_destroy_internal_buffers(struct iris_inst *inst, u32 plane)
->  	for (i = 0; i < len; i++) {
->  		buffers = &inst->buffers[internal_buf_type[i]];
->  		list_for_each_entry_safe(buf, next, &buffers->list, list) {
-> +			/*
-> +			 * during stream on, skip destroying internal(DPB) buffer
-> +			 * if firmware did not return it.
-> +			 * during close, destroy all buffers irrespectively.
-> +			 */
-> +			if (!force && buf->attr & BUF_ATTR_QUEUED)
-> +				continue;
-> +
->  			ret = iris_destroy_internal_buffer(inst, buf);
->  			if (ret)
->  				return ret;
-> @@ -446,6 +454,33 @@ static int iris_release_input_internal_buffers(struct iris_inst *inst)
->  	return 0;
->  }
->  
-> +void iris_get_num_queued_internal_buffers(struct iris_inst *inst, u32 plane)
-> +{
-> +	const struct iris_platform_data *platform_data = inst->core->iris_platform_data;
-> +	struct iris_buffer *buf, *next;
-> +	struct iris_buffers *buffers;
-> +	const u32 *internal_buf_type;
-> +	u32 internal_buffer_count, i;
-> +	u32 count = 0;
-> +
-> +	if (V4L2_TYPE_IS_OUTPUT(plane)) {
-> +		internal_buf_type = platform_data->dec_ip_int_buf_tbl;
-> +		internal_buffer_count = platform_data->dec_ip_int_buf_tbl_size;
-> +	} else {
-> +		internal_buf_type = platform_data->dec_op_int_buf_tbl;
-> +		internal_buffer_count = platform_data->dec_op_int_buf_tbl_size;
-> +	}
-> +
-> +	for (i = 0; i < internal_buffer_count; i++) {
-> +		buffers = &inst->buffers[internal_buf_type[i]];
-> +		list_for_each_entry_safe(buf, next, &buffers->list, list)
-> +			count++;
-> +		if (count)
-> +			dev_err(inst->core->dev, "%d buffer of type %d not released",
-> +				count, internal_buf_type[i]);
-> +	}
-> +}
-> +
->  int iris_alloc_and_queue_persist_bufs(struct iris_inst *inst)
->  {
->  	struct iris_buffers *buffers = &inst->buffers[BUF_PERSIST];
-> diff --git a/drivers/media/platform/qcom/iris/iris_buffer.h b/drivers/media/platform/qcom/iris/iris_buffer.h
-> index c36b6347b077..03a32b91cf21 100644
-> --- a/drivers/media/platform/qcom/iris/iris_buffer.h
-> +++ b/drivers/media/platform/qcom/iris/iris_buffer.h
-> @@ -106,7 +106,8 @@ void iris_get_internal_buffers(struct iris_inst *inst, u32 plane);
->  int iris_create_internal_buffers(struct iris_inst *inst, u32 plane);
->  int iris_queue_internal_buffers(struct iris_inst *inst, u32 plane);
->  int iris_destroy_internal_buffer(struct iris_inst *inst, struct iris_buffer *buffer);
-> -int iris_destroy_internal_buffers(struct iris_inst *inst, u32 plane);
-> +int iris_destroy_internal_buffers(struct iris_inst *inst, u32 plane, bool force);
-> +void iris_get_num_queued_internal_buffers(struct iris_inst *inst, u32 plane);
->  int iris_alloc_and_queue_persist_bufs(struct iris_inst *inst);
->  int iris_alloc_and_queue_input_int_bufs(struct iris_inst *inst);
->  int iris_queue_buffer(struct iris_inst *inst, struct iris_buffer *buf);
-> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
-> index 4143acedfc57..2c1a7162d2da 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
-> @@ -408,7 +408,7 @@ int iris_vdec_streamon_input(struct iris_inst *inst)
->  
->  	iris_get_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
->  
-> -	ret = iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> +	ret = iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE, false);
->  	if (ret)
->  		return ret;
->  
-> @@ -496,7 +496,7 @@ int iris_vdec_streamon_output(struct iris_inst *inst)
->  
->  	iris_get_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
->  
-> -	ret = iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	ret = iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE, false);
+Changes in V3
+---
+- Yaml indentation issue fixed, reported by Rob's bot
 
-If I was reviewing some changes (or even debugging) this specific C
-file, I would not be able to understanding what this "false" means. I
-would have to spend extra time, opening the declaration, going back and
-forth, and breaking the flow.
+Changes in V2
+---
+- Review comments from Krzysztof
+  - Adopt compatible fallback in dt-bindings and driver
+  - drivers: drop "st,stm32mp25-..." compatibles when unused (e.g. no .data)
+  - counter driver: no update (patch dropped)
+  - defconfig: only enable the necessary config for upstream board
+  - add lptimer DT node in stm32mp257f-ev1 board
+- Add missing management of IER access for stm32mp25
 
-An alternative approach is to keep the boolean parameter in a static
-function (c local), and then add two function wrappers that have
-explicit names.
+Fabrice Gasnier (7):
+  dt-bindings: mfd: stm32-lptimer: add support for stm32mp25
+  mfd: stm32-lptimer: add support for stm32mp25
+  clocksource: stm32-lptimer: add support for stm32mp25
+  pwm: stm32-lp: add support for stm32mp25
+  arm64: defconfig: enable STM32 LP timer clockevent driver
+  arm64: dts: st: add low-power timer nodes on stm32mp251
+  arm64: dts: st: use lptimer3 as tick broadcast source on
+    stm32mp257f-ev1
 
-regards,
-Nicolas
-
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
-> index ca0f4e310f77..56531a7f0dfe 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
-> @@ -233,8 +233,10 @@ int iris_close(struct file *filp)
->  	iris_session_close(inst);
->  	iris_inst_change_state(inst, IRIS_INST_DEINIT);
->  	iris_v4l2_fh_deinit(inst);
-> -	iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> -	iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE, true);
-> +	iris_destroy_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE, true);
-> +	iris_get_num_queued_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> +	iris_get_num_queued_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
->  	iris_remove_session(inst);
->  	mutex_unlock(&inst->lock);
->  	mutex_destroy(&inst->ctx_q_lock);
+ .../bindings/mfd/st,stm32-lptimer.yaml        |  40 +++-
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 177 ++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   8 +
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/clocksource/timer-stm32-lp.c          |  61 ++++-
+ drivers/mfd/stm32-lptimer.c                   |  33 ++-
+ drivers/pwm/pwm-stm32-lp.c                    | 219 +++++++++++++++---
+ include/linux/mfd/stm32-lptimer.h             |  37 ++-
+ 8 files changed, 537 insertions(+), 40 deletions(-)
 
 -- 
-Nicolas Dufresne
-Principal Engineer at Collabora
+2.25.1
+
 
