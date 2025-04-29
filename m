@@ -1,142 +1,182 @@
-Return-Path: <devicetree+bounces-171779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94E4AA02D7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:16:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F156AA02F0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:18:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0EF47B074B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:14:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5149318844B1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DC9274FD6;
-	Tue, 29 Apr 2025 06:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92FA9278E79;
+	Tue, 29 Apr 2025 06:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npj429ht"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZoGxGQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD3427467D;
-	Tue, 29 Apr 2025 06:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EA7275847;
+	Tue, 29 Apr 2025 06:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745907242; cv=none; b=BPzLOHkaompkyqYlsfFpmIwZA1Kl+2fYfumoguFPakc5arCYYaeYmq0gBs/adPFseORdy5AAbiAtNP4c+lVyJlVIPrd58e4Y0rdCUf7ZTRe8vA06z4fORdy5TWVk5l29CN2ohgCez/APaNWqe6w1Bs1k20jFkM+8Soy8i+DPhDQ=
+	t=1745907353; cv=none; b=WAeOHUBetn2TdKYLYTcL3+1vVPSXbX3JydSTu/ncPdmL8wAPeUlQ9b3jfwiUmU/x5fJoYHv7+ZVqHqOnyC7yJ5qsBS5iMGYDfjIgMef/XByTL/suTXVQoq8agQrhUcND496ZbKrVmQHX/6nKtB/RKg77qKeHAjrh381Qt7KUQ/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745907242; c=relaxed/simple;
-	bh=0CDmxNsJb2e4rDxfNdGGs4ZvY062OzfDmY3hOHyL3vE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=myDvQRcN7I0ox3xRS3/54NLASQnd5qXNUdjmp81wraKhP0UUfWSFLbv6cPyrS2DO731V86PPH3eN63vVNVc8fbEFqNOah91FuPGdbti+lhkvN2VFgarp0BmvBaOUrpP76QGF4yw1RoXCKI+udpI9mQc9JTGCtZj54am+YaNa6NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npj429ht; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A74C4CEE9;
-	Tue, 29 Apr 2025 06:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745907241;
-	bh=0CDmxNsJb2e4rDxfNdGGs4ZvY062OzfDmY3hOHyL3vE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=npj429htV3GVoOQ+5nxzUQQ9tYYRu7W6gdH1RsISY0u0l30ngUEuRuJFskbS1laK3
-	 ORuSkh5fZcVUOdobFKCHCJlDPi35RMn+wE9v7FYgs91KFa2KfykFXJ8JaVZU2rpB2m
-	 ISRLNKsP8o5HYR70SEjBlpg8o6IS31f0NmLOWG3AWJh2nmmmr7AGa16BwwMm1APKFo
-	 9CDXMyAznNqYoI4FzKihN88tQcumRb9MgKlRV2s6RPqmwZ+CXd4KDWWYaIc6IgsJtt
-	 EtFzoI1zXeek+mRUrb5N2UfXdK3ECmtavq8cEqBo+kWgZWI8b8BFymNhFisPZd6Rpi
-	 0Byh3ymo654GA==
-Message-ID: <5a5e97f1-6ae1-46d2-a602-613e1b550ba5@kernel.org>
-Date: Tue, 29 Apr 2025 08:13:56 +0200
+	s=arc-20240116; t=1745907353; c=relaxed/simple;
+	bh=V/05QUKokA9PLStiHO9AjC4yP/5vMfqTiNrPgfV3/cQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VmOyUsWYUJlCRdChC8oBYG00ealTSV11ZeIdvMrJDJ0qbOlLFeBz9f1MqN0yRbbEpRyF2zsx91ZftyeXomIa7mxg2LEODdftsqnt4LRUI8NY3q0KAC+phTfLKCVpDQtgMr4XPj/OKaPp8Iw7aGvZCfOmmEzLB3/xCOZYcnOOU0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZoGxGQE; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5498d2a8b89so6178475e87.1;
+        Mon, 28 Apr 2025 23:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745907349; x=1746512149; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vdeBVGMv3EeHNQcfEmg6IWrksh7MnxsHjLGKMctwm1Y=;
+        b=TZoGxGQEXZcoHJeWvSLI0Uu2yViWT6Q+0Z6psFadqFd2hMOirKL+mUKtM/QSNEwe2g
+         sCNsMSiHzvFNY5A9BwOt/Hi2DXAHOSOMdHXNoxGnLPT9s0V4Lr8i1a1OQtxcLzX/XGCz
+         sL8r5xXKQ8DEkIlYUA9troNEAxSxUvbDUp5QEaoQhX43YJ/DK3ioC96WCMArfCB8RbOy
+         33r8leCnQp9aRO6sQkNr179ZeRJKiTraiIIkupdnH5Gg7pQyvx3AMyHa0nl0POetyhsd
+         4ULXBILvIT/av8JeKaqlgZhZinIr4extK6qEH9SoYdj5sDq8vOz/DijjshdNPmMxOjGl
+         zDyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745907349; x=1746512149;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vdeBVGMv3EeHNQcfEmg6IWrksh7MnxsHjLGKMctwm1Y=;
+        b=KkJUo24nna4nUoRlOwdhvrbIcnb95kKWoNGq2NbjXUJZDh27+iHfj5t1B5TFlC7T15
+         hZxWvKkiCz/KKHpiJBOd9MujH2dmC2lydhwPTuyi7WnHkNt6+Nrp2Pq8BLI1pSu32xxl
+         nfFtysbPxZFp21MM+8pr4fzLPnvHCVI+2MoivT+20VplKgbpdtJLaqa94gNv5/pBMJ87
+         wrorEKo5ymusuVoiWsv33DqJV0OMooZetjdFChn+rdgil+6djMcTHESioTOWojmj2kPe
+         Mpk2CXhl/z+eCa32LPsB/sQgUdIbEkG1DzPCpEtfU/wj+C6DPRHWmx9A9EBtDbWtgfsk
+         Krsw==
+X-Forwarded-Encrypted: i=1; AJvYcCU9eCwcmco9xHix0swgpGC28maXlqcF6S3B121jLKck5nxpSh+UscD1QKQO1j3sj3TiSfHuG5/dZ9LJ@vger.kernel.org, AJvYcCX7eV9tZRkArA9a3TllLWu1VE+Q6c6P1KwIdH0tKvwc0PgUwp8MLEiSvV9U/jwfHnH8WC1m3gxDQAprmBZH@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx9dd8UxdXI/9f50GWm6ZcPw5ygaWCNcWP7MZfVashPT7Y/mZp
+	4MFqzqnx06CwsNHGx8cuZqTTSg3jyxw0k1T/t+/nyy6gj0sOn4HZ
+X-Gm-Gg: ASbGncu3iqm+2AHUJg3YgzQuZbx55NgVFgiXQRtaon01M2AfHwrpMH5MZW9pr9bBziE
+	/6Gf/EOgSEK+GXeMeEgbZiDD56e9MQMwfNO4N9JlbUbbEumVwYqsUEoY+70bmK6SsbIJvcAs5li
+	vxwvRwDgkM322XliM6tmeKcN/qazDEPj0v0P2toK8IIHHkfHd7En7+lVqm/hbAq4pMLuYI6XI+P
+	CtymZxj7PA4uJkgRd1KHnqkawa8vXNVJ+cCsFXKZz4rdcYwPKEm1Fh1DAba+l/oNDsZfU9aoUBw
+	H9IxN4LHYNkDfAhaJ6SJpsSZyr7deH7f0gyPqg1DqBM/JzG4d06dQ1wT0pOm9W5K/dCDAX69kez
+	geg==
+X-Google-Smtp-Source: AGHT+IGHq680Q/yIwZxRZ6SNR21MxIbxN6Ov+BKDr4VxC9RTincmJ2pI9pWeYdHHGigYUqe2fr18CQ==
+X-Received: by 2002:a05:6512:1094:b0:54e:819a:8323 with SMTP id 2adb3069b0e04-54e9000c35amr3096126e87.42.1745907349282;
+        Mon, 28 Apr 2025 23:15:49 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e903aa6dcsm1141164e87.236.2025.04.28.23.15.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 23:15:47 -0700 (PDT)
+Date: Tue, 29 Apr 2025 08:15:44 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Zimmermann <tzimmrmann@suse.de>,
+	Javier Martinez Canillas <javierm@redhat.com>
+Subject: Re: [PATCH v6 2/3] drm/st7571-i2c: add support for Sitronix ST7571
+ LCD controller
+Message-ID: <aBBukAqH3SKV9_Gl@gmail.com>
+References: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com>
+ <20250423-st7571-v6-2-e9519e3c4ec4@gmail.com>
+ <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add BOE TD4320
-To: barnabas.czeman@mainlining.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250427-lavender-panel-v1-0-b2611674166c@mainlining.org>
- <20250427-lavender-panel-v1-1-b2611674166c@mainlining.org>
- <20250428-versed-boar-of-charisma-961cbf@kuoka>
- <d838dc2006c52bf6099767a2805ad826@mainlining.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <d838dc2006c52bf6099767a2805ad826@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QDuqjw5mtcb8cj4X"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
 
-On 28/04/2025 20:13, barnabas.czeman@mainlining.org wrote:
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - reset-gpios
->>
->> No supplies? This looks really incomplete.
-> It works without supplies because BL is enabling them and there is no 
-> qpnp-lcdb driver yet.
 
-If something enables the supplies, means they exist. Binding must be
-complete. Otherwise how bootloader using this binding can enable
-supplies, if you do not allow them in the DTS the bootloader is going to
-use?
+--QDuqjw5mtcb8cj4X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> I do not see worth to add them at them moment but I can if you want.
->>
->>
->> Best regards,
->> Krzysztof
+Hello Geert,
 
+On Thu, Apr 24, 2025 at 10:38:33AM +0200, Geert Uytterhoeven wrote:
+
+[...]
+
+> > +                       /*
+> > +                        * As the display supports grayscale, all pixel=
+s must be written as two bits
+> > +                        * even if the format is monochrome.
+> > +                        *
+> > +                        * The bit values maps to the following graysca=
+le:
+> > +                        * 0 0 =3D White
+> > +                        * 0 1 =3D Light gray
+> > +                        * 1 0 =3D Dark gray
+> > +                        * 1 1 =3D Black
+>=20
+> That is not R2, but D2?
+> include/uapi/drm/drm_fourcc.h:
+>=20
+>     /* 2 bpp Red (direct relationship between channel value and brightnes=
+s) */
+>     #define DRM_FORMAT_R2             fourcc_code('R', '2', ' ', ' ')
+> /* [7:0] R0:R1:R2:R3 2:2:2:2 four pixels/byte */
+>=20
+>     /* 2 bpp Darkness (inverse relationship between channel value and
+> brightness) */
+>     #define DRM_FORMAT_D2             fourcc_code('D', '2', ' ', ' ')
+> /* [7:0] D0:D1:D2:D3 2:2:2:2 four pixels/byte */
+>=20
+> So the driver actually supports D1 and D2, and XRGB8888 should be
+> inverted while converting to monochrome (and grayscale, which is not
+> yet implemented).
+
+The display supports "reverse" grayscale, so the mapping becomes
+1 1 =3D White
+1 0 =3D Light gray
+0 1 =3D Dark gray
+0 0 =3D Black
+instead.
+
+So I will probably add support for D1 and D2 formats and invert the
+pixels for the R1, R2 and XRGB8888 formats.
+
+Could that work or are there any side effects that I should be aware of?
 
 Best regards,
-Krzysztof
+Marcus Folkesson
+
+--QDuqjw5mtcb8cj4X
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmgQbosACgkQiIBOb1ld
+UjJ8hBAA0PylSTjAVScRP2Rlx1rrCav8iBWJi/3/qrUdk0pKJiMyibtLJkx8M6VK
+1CgpOTPMOdMvoeoBdqqQfUMdQX2V3uW6NUHSJizQEVuUPIRklwahRg3jI0BlnE1o
+QVcSCbBr527o9jItXC0B0bNlBmKUbqa1v0jKaAtH/+ZU7KsTjr+jI7HVvUdHwcpP
+gSdpWn5f+hw3GnlAP9JzGvDddPmniwjTNxJbaUEqxWsQCidsHLNicSne4kFCifZ6
+5JVZki7KIkIjW2czWyZxmlBUqvVZX5Yxskmgdq4pjZ8MwAL8xtT2zorZmwIJJtGc
+MoRTcPPuMMzIAhwUQow6DWTx+AAwVadn+1wdsnEHHJzBVTRsiWn3K0pMciCDQF4C
+mr641j8DNfMBK8bzOT87T6gu9BNn4abR7asSG1n8L3Cvil0xQRXmZ1tgD6s6cxBy
+2e1LzVekrwwLQy2Zo8jxFxwvBApLDLDeXnfxyhJj9hDUvqIzQzp0YAk29JiIJsoh
+Eer3TWAvq6bpWA014nyidG2I87zejonG1W4zL67Je4toNjSmmraz5msX9vLv9dd5
+gtGddzJKt9MH5GPzHPaByPWuKySv2PpIs7j0VTenDEfoCYGEJ67yXKIdXfkyhf44
+yDWrPIN/JnRcjR6xPQLCXI8w/C8MHGFz1ynR03yJ5ZvILssPTaY=
+=iaUe
+-----END PGP SIGNATURE-----
+
+--QDuqjw5mtcb8cj4X--
 
