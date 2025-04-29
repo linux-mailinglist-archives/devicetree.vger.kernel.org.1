@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-172019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F24AA0FC7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:58:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0398AA0F8F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:51:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BE0C16672A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:58:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D457E1BA07EB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7992521ADDE;
-	Tue, 29 Apr 2025 14:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A9421A44C;
+	Tue, 29 Apr 2025 14:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="YRBmW7Jo"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="gNXWON/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA42B21ABA6
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8421A219A75
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745938718; cv=none; b=JDP5CIRDYR1hUmNV66GITB9sVTQUuh+WwQCR+1Mrt+WioPlq/OuUQYANxLBpoKwsknEkFpRkQT0ZWjvlXpriw/DoojHuLsyOSRqmSPgKoCpOqSD/2V7DL6JNyCbNclcIUg1PlZrWBF85UMJocmX4NOEYOw9YA62y7/vjpHC6UXk=
+	t=1745938226; cv=none; b=WcZIZ3QyOmtGIwlGiuDbMvfUQfKYhKnPt8s/o2y0au1VwxFqBE3yYVI5Wo6xIeQO4hebTzEowq0BL1o7r1nWSOM/OWGwEJ2apRZUEYhA876NNJf+Lm3yUAe31zciwEyHPcCIAJpLdhF6vEATkZPf1H81GGLogT0DqWA2QitowEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745938718; c=relaxed/simple;
-	bh=2PdqbEbagwoDuKzEj0IRmpbhZpPVeui/bIiI8irZQ4o=;
+	s=arc-20240116; t=1745938226; c=relaxed/simple;
+	bh=xqNci0ATiYuFCzjmmZLIos4bZ0/Wt6xx1B04/LG3Q74=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RHM4aRJaCViQZ7a/c8NTAO2lFOmsQVLktDfwXhWEWGLBfEfvVm8QE+Ht3lOE9/WkQxOhzAq7jLyYMS0NqHW+UNYuD2FX/oP9zY/HzoG45fUPrQGvNcDyfKFD7mBCWn3uJwoIUZeYPRqGoYGi7yBinG7KvJmEqfTUMTkdN2mZR7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=YRBmW7Jo; arc=none smtp.client-ip=185.125.188.122
+	 MIME-Version; b=mFgp5x0N4o0+uQU48/GPReNSwF4B4vct3os9GlLa+TrJtm/Zf1GwiptpQiipXJ8e+AsCHoFw0Jy2m4pz8yS81f8MLQxVAYiMRomLrQvgI797n4f3R70O+T60oFMYyWUfMzh3fkxL9VsWZPePMTRkqge8hqSxJXuRzkwPU8oWpvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=gNXWON/H; arc=none smtp.client-ip=185.125.188.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 928B33F5A0
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:50:02 +0000 (UTC)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3BF8C3F6FE
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1745938202;
-	bh=52MijEJOA2wvCQcL6Go5NIekwbrP8EYQEpSc/TVugz0=;
+	s=20210705; t=1745938210;
+	bh=SJsgYFbh52ssmxEFFARHq6BN5vsciQrSfXFEEc8qgYE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version;
-	b=YRBmW7JoKiSIAha/Nr78pmeKdcbBSOQ1Bu7jq+vxh8np5ZS7NENj1RYYlORijaVXl
-	 9JXzD3FT0XJQCoqt1DapTbv7qgusyHWqhEorw+klAwxcBpLu1Oa9adxK7W9+3JXTxe
-	 Hn2oG1WaeyOFB4Lr9J2QQCkKHBzanhotR3DV9Q14AQf4s8sC/TX/a18Wii5R1ErZvJ
-	 h7xYfxJC++WUO2QPoOub6jrj4W03bafnPdG5LYTc11JklFwcwirRePiczL7SRJl0Ns
-	 eunPYf07SP2Gbc2ipGaWXW8KlG2VijSAcnChaBmpy/6NAZtAkCsyiRGsurlbIwcn0r
-	 03hDFI0m6ZIog==
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-39135d31ca4so2340881f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:50:02 -0700 (PDT)
+	b=gNXWON/H0S2u5uWoeyzAlq+Tc6//kOU9SMVNPx6NDpxQgLSZtYmTGn3MfidFcPVtv
+	 5iRMvGqssGiyRpzuIdWg04YuQb300djuK++hLe8cpK3IG8v9z9qvjoAkKAHxK3Yh9B
+	 yw2/SbPTpnxsf1eOQ0GX4g7ZFBG5rY4zPQS4mqMgu0aNgmdh3e1CDvIICX1yK5gx0a
+	 8dki/4e+32zfFMOOKJZnXV9MCRU3+ETzKQpgtx5vFws3gIzXLw1+Ul05h1UV4D/Yf8
+	 vJ1vCynUoObmBz0oz3u5i5HzodK1tRk/zCjyEadEKcOjlB+JjcdJ2kZ/lRsJ8OzPDJ
+	 LlCin3/GWTHIQ==
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-391315098b2so1779121f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:50:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745938201; x=1746543001;
+        d=1e100.net; s=20230601; t=1745938202; x=1746543002;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=52MijEJOA2wvCQcL6Go5NIekwbrP8EYQEpSc/TVugz0=;
-        b=eHZSFhBWHapQmQ+zB9sqOzU5fGy0DfXAXzMQegv3iiD6JW4a9++riOgAU37HVaUrMF
-         DjeD/cCCm9ju2MDzPHfrxESdcUw01M7gLhMcEmbxmjOqjOv5OwDkiaoTQGrPkCrRXEWn
-         RyhJRqbKPQYmXlH15sPfg2enRsGAc1UEU5CrEMd3JSbsWUu8d7GCYfalC4jZ71Tg1BiJ
-         HxJuqNybhC8Ux+KPQKIkPCVI65CAbbfcFHqc48oG+5urXH1OuQWUzUkIkCmXjqaPXKJQ
-         or5UIsGVws5YFBc1mmbe31h9ZYz5PyVjJryTZI0CKRXPa9YaxRaw7fk1jfJbNrFlnu7g
-         SllQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUScD53cxrDMjmQsF5OOyAuisS0e6RCyBh0fJ6jl5Tsc/8v71pY15yF+P2AfqeV1afvp2ha3LSIXGHo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwG+pa8Yp8ieL3ZprorIdsVhcjKEs7XO4iXeF06L5ZnlK1l4DRg
-	bTFaPHnZwQ18wmpaJZTEPbejJvwy3lJAs7UEnN+tOJn7eJokAOtEB1TAAgy7WwH6JLWstzPMhME
-	Kbj7r1i4l4NGjjWEhxZsgHKVVvtrpao9mWmtvkIGjraRwMvZ14LxhGFoCs3wdRBk4nXzkakhzAm
-	I=
-X-Gm-Gg: ASbGncsjZc5jcsrmpNlcar77S5mltZppHtBQ26LKXUTolT2cByAOcV9/hhohLRHRLxA
-	H6Mwd4D5Shor4DLh0YJKU61ZUC+/Io8Qb3NblCd1kaBW5Ar5/OVI9PxazgdMaWtaD+3aP3SFl1k
-	D5LnyXw2GOsOl7RHdFjn+oYJhot/wvNaEjMp55m/GtSz1AD5K/wi0vlCUoWtQagNHVDHsHcr8GU
-	tt9sIaYLdPazbdLsg2Q2JSFZxFxdbx79iuKIpvo3ck8b1z3Bpa+qyRzwJ0euRcgvA05GX9LK2LP
-	gHlWWOgWJMkf1fMiF0BSKbBsWq5bGzIn9qemhprm1HaL7LgkAKMKc72p
-X-Received: by 2002:a05:6000:18a5:b0:3a0:8c01:d463 with SMTP id ffacd0b85a97d-3a08c01d90bmr2630923f8f.9.1745938200825;
-        Tue, 29 Apr 2025 07:50:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHnKBHWKNLptuYZLJZBRUoe7eBhk55Kl8aqDH7g/w/SK5bZ6Awe0yTGofYm3mWix+gf5bziAw==
-X-Received: by 2002:a05:6000:18a5:b0:3a0:8c01:d463 with SMTP id ffacd0b85a97d-3a08c01d90bmr2630899f8f.9.1745938200468;
-        Tue, 29 Apr 2025 07:50:00 -0700 (PDT)
+        bh=SJsgYFbh52ssmxEFFARHq6BN5vsciQrSfXFEEc8qgYE=;
+        b=XQrOuhV2FLC9M63aR4oF7W1faYrOWrGipcQLlt6fOwaMgbdo8fiG6AgJxk2JqtX0+w
+         IsEIcNpujB7qrO6hK2SbetwKuAy/Ur7ce4n0HXXia3IG9gYPdNMZKWmgC7gF5PhZtFFr
+         PJxsIYnKjNRDT0XkST8zhGDHifJ5pugHhF3L/dUmfRORajz0b+kopKW7SbQJhmd4gPw1
+         73soidbyH73GMU9o8LPL6UMbFNZQCLtSrNolBKhrqrby/ruDVSHLBOvrPJa1BZGloE1k
+         pWXRRJLuAAcAIS7UlB8i9gwuzO0clqwwnGJyu7qFfZeKvovEAepY6TRu74j+3MZLRexE
+         bncg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+pSIqGxxGMWF8xO9FirC010Y0B3NJ4CdppcrKNGWkMZ44xXT5q3MNPIb3/9pqaxItdjT+nCDk8viU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5sH88GowkncKB58VRTxQD6ok/9J94ZFPyVoH72S8lT5s0gEnb
+	G3sKJ2g18tRzwBF10FA00j4upVw4OnD2dKkA0KbbpxOUbh52hTuuotZTEYb/GD3o4Bh3c4nzlvw
+	kiatoZcPkUeEXkYgd+pD60zyFOg8VGBDCOLsggg0tzJDu3VI6ixlvAaRDD8YqnOW5DwHtypJUK6
+	0=
+X-Gm-Gg: ASbGncuXmtgrLo5G11A8AgSUuna0LTF7IWCO/gvBm87jJkTXr6LUJhZmLDDz3/WXMWV
+	EfLfXxbbtM5QLeHyLtoYePwsSsrtHdVgFUo9cPpFwVtnzMhpnKq/Wo+SzvuCdPupFdsziXeSIhc
+	BnaFed8gtxGF6fYgk7wft7dXoVKQ1/eout2AVV5c33/6jiAHrMG6ss70v/Z+Mt+UMvTi/H4lVsE
+	JhIiZ80YNfrLp3ASZBVWr+klibLejQ4C/i/b4Y3t7r11RXgo5sE6EM6uxq9bIEzLg83g68koAaV
+	AChUsSfktIGQPBlSdx9SP4o4lkQZ+Mz8MWQqyOu9OUQJdOSUDnde9Xaq
+X-Received: by 2002:a05:6000:18a2:b0:390:fbcf:56be with SMTP id ffacd0b85a97d-3a07a9bc256mr10352689f8f.0.1745938201996;
+        Tue, 29 Apr 2025 07:50:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8bJ+W20QclbOqGXSh+aK6+noOl/oBWTrNXJb/+Wtj28GOcmxhHhpsJ6WYbQMsyfEw67MtkQ==
+X-Received: by 2002:a05:6000:18a2:b0:390:fbcf:56be with SMTP id ffacd0b85a97d-3a07a9bc256mr10352669f8f.0.1745938201687;
+        Tue, 29 Apr 2025 07:50:01 -0700 (PDT)
 Received: from localhost (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073c8d1a5sm14498765f8f.13.2025.04.29.07.49.59
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073cbf04dsm14386612f8f.52.2025.04.29.07.50.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 07:49:59 -0700 (PDT)
+        Tue, 29 Apr 2025 07:50:01 -0700 (PDT)
 From: Juerg Haefliger <juerg.haefliger@canonical.com>
 To: juerg.haefliger@canonical.com
 Cc: andersson@kernel.org,
@@ -91,12 +91,13 @@ Cc: andersson@kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	robh@kernel.org
-Subject: [PATCH v4 0/4] HP EliteBook Ultra G1q support
-Date: Tue, 29 Apr 2025 16:49:53 +0200
-Message-ID: <20250429144957.2088284-1-juerg.haefliger@canonical.com>
+Subject: [PATCH v4 1/4] arm64: dts: qcom: x1e80100-hp-omnibook-x14: add sound label
+Date: Tue, 29 Apr 2025 16:49:54 +0200
+Message-ID: <20250429144957.2088284-2-juerg.haefliger@canonical.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250416094236.312079-1-juerg.haefliger@canonical.com>
+In-Reply-To: <20250429144957.2088284-1-juerg.haefliger@canonical.com>
 References: <20250416094236.312079-1-juerg.haefliger@canonical.com>
+ <20250429144957.2088284-1-juerg.haefliger@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,38 +106,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for the HP EliteBook Ultra G1q 14" AI laptop.
+Add a label to the sound node to make it easier to override from other
+nodes.
 
-Based on HWINFO64 and APCI tables, it seems to be the same HW as the
-HP OmniBook X 14.
+Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-v3->v4:
-  - Bring the sound model back to the node
-  - Split the driver change into a separate commit
-v2->v3:
-  - Drop status properties from nodes in patch 3/3
-  - Add acked-by-krzk to patch 2/3
-v1->v2:
-  - Don't rename the X14 dts to dtsi and directly include the dts
-  - Add a label to the sound node and use that to override the model
-  - Reorder the dt doc patch before the dt usage
-
-
-Juerg Haefliger (4):
-  arm64: dts: qcom: x1e80100-hp-omnibook-x14: add sound label
-  dt-bindings: arm: qcom: Document HP EliteBook Ultra G1q
-  arm64: dts: qcom: x1e80100-hp-elitebook-ultra-g1q: DT for HP EliteBook
-    Ultra G1q
-  firmware: qcom: scm: Allow QSEECOM for HP EliteBook Ultra G1q
-
- .../devicetree/bindings/arm/qcom.yaml         |  1 +
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../qcom/x1e80100-hp-elitebook-ultra-g1q.dts  | 30 +++++++++++++++++++
- .../dts/qcom/x1e80100-hp-omnibook-x14.dts     |  2 +-
- drivers/firmware/qcom/qcom_scm.c              |  1 +
- 5 files changed, 34 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dts
-
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index cd860a246c45..628e28299c3d 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -174,7 +174,7 @@ linux,cma {
+ 		};
+ 	};
+ 
+-	sound {
++	sound: sound {
+ 		compatible = "qcom,x1e80100-sndcard";
+ 		model = "X1E80100-HP-OMNIBOOK-X14";
+ 		audio-routing = "SpkrLeft IN", "WSA WSA_SPK1 OUT",
 -- 
 2.43.0
 
