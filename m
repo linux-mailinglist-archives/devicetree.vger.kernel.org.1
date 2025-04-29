@@ -1,177 +1,153 @@
-Return-Path: <devicetree+bounces-171817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65766AA04D0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F89AA04D8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:44:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47883843491
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:42:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24428842600
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417AA27A104;
-	Tue, 29 Apr 2025 07:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3869E2820DD;
+	Tue, 29 Apr 2025 07:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="YVXqU0NO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pTJPjuMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1AE278162
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:42:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570C32797B3
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745912559; cv=none; b=MbLXlpZ2Kecx/JZ9X6IWyY1UfwbnclBNJG6gs7S4ZsWBEUgpjLomdKjvc6sVn9v5PirkgNAEuM6LOGFx3SSRkzndKkS+XJQs15pT8Yar89jRKpTUa6IDAQp4ofAhQZqyLKyuWvA6Oscs1J4+l3dFBc4LS2pkqxkx4OKmAmcQ3qs=
+	t=1745912589; cv=none; b=uOScIKKnzhiF62NFfAawNpOzYdmK0AkfHxu8u4fUxwcgdHzsfDoXPIjYCvqeg19qVGi+F+00ketLCvloGqAj2j5RGVkgHLwed7XtgIBQ3qL21MtsqrIEt4yXLPRWnTqDwL6k26UrfS0ppfLic7n7xNe7j7slWYx+Jf/RGw7KFms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745912559; c=relaxed/simple;
-	bh=9qoxCTqikDogAGoeFqSOj3PBA/tkwj/zZCdtoJS9BsQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=sNvd1V5QXXKICBoVOW+9m2WSuC9uraAf7N5nv+Typa5exMkhcQnMBmhzSl+80U8CjLf0tA6ElIvQDOflwsEOerqTA1cHqSmuHiQsJx0AEAUrVlsQwuXr7evxnI/iOYvYPdEsSmh4EkRwRy4WmhNJ1FZW+mN49PZrjFE8jvi0N94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=YVXqU0NO; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1745912556;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2WJLuJixmXGVbFFRQCzfbjiksJv5N+boviU3Y/WZ0Eg=;
-	b=YVXqU0NOiDUm979SoZeBdGV7DnPnr7p764AtLRN7jIER9y8RoIue0Pm35xF7eXIvyUI8nD
-	7kEgoJZr5UU/XzdUSTULGN9G6joKc5e9X31wO5cIEBlJ+099/CSE/r8M6R3UhAQjU8JTz1
-	V3XZ0+rVo+BfO+qqhpBpLUcrtCAttfU=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-453-ZaA5n5yYPoKrppXqRaqfEg-1; Tue, 29 Apr 2025 03:42:34 -0400
-X-MC-Unique: ZaA5n5yYPoKrppXqRaqfEg-1
-X-Mimecast-MFC-AGG-ID: ZaA5n5yYPoKrppXqRaqfEg_1745912553
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-43cf327e9a2so37971265e9.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 00:42:34 -0700 (PDT)
+	s=arc-20240116; t=1745912589; c=relaxed/simple;
+	bh=+kFtdh5zNKXGvnVuUeb4hD3s9G0IyLF5h/Rh3o0CXxM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=LNCUmbAMremLMtJAKSbFNMnkGl6EqtmfJUJX5v0HJtKWWCaUKp+oNZto42JYZgWcScKHnt6958++j62Zbl/VVgtNdcky5tn8aLjtxVElLkygmweF6JN08cm4LhSbIcGcsz2jlTtvOi1dpFhMt7QIwoqNdgSEeWqKk63IDneF0RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pTJPjuMC; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5f4d6d6aaabso9129920a12.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 00:43:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745912584; x=1746517384; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HKdri9oqQzlxJX/GoZ6d34Elo8Z6NtUhmYU5bCs5Gvw=;
+        b=pTJPjuMCGlV4Uwx6CfKBHsDpginhX1Q6K5WN/EiPRTHkhOCCRM4Mf1/1iY3fMa14rB
+         ApcaS5BhrnxAKmaCP73LCnn/pUYZP3S7zrj3MQx60tDxNg1qvJAQ2ewpx1cV50YusVBC
+         CSG74iIJA0lFeyO4g2aw0KHr4SqJy5S6gCDXMpxtZkkOt65R5b4O1xM8BgysaGc1sy3j
+         qLdYIWspuejfNCmvnCYRmz6R1BbBXp5O5A7nzey87TbBMJLJwwejJyO7RZsOK/4N5JJf
+         hc+Swh4ggrwJ0t/ijSkg7x+4ByV6bAQHEwEvqWHa2igZJ7dMUPc9+WZmzv0ckuV5/8tQ
+         uIJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745912553; x=1746517353;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2WJLuJixmXGVbFFRQCzfbjiksJv5N+boviU3Y/WZ0Eg=;
-        b=IS160z38T/gumM0fF4PBV/1t+KtBGCfJhAiVoReC3BYUOICRt3YgPBMYKA0gR1smco
-         yYgoyPLrK6HEIWE9RI4Sues+tevR1Ttayw8qRcYrQ8AkcbemTHZKPcYCiHFj+L3d7KR7
-         YLVLwuJQz1DnU9oCSSOVtAHqWnANUF5b/A2HbpSd7NaBHpf7RJ9WIwHJRetatDZfzyUo
-         HYvsvqdpvhrCncf2bKGwsnKTkbfJRkgSLH6NyJOcJ+kg1zBMQHo6pxgMnC1MY66uBnFS
-         US9I+eaHe0ZJsAaBOOS+IUMJ68JFO6YWXJ6r+LOUcgJSIJGOz5QK4SVwSBTTH6KHQGZu
-         asng==
-X-Forwarded-Encrypted: i=1; AJvYcCWQPoVIGXpOxisohTnz1khSpsVRYTK+NUTxoWoCr70k2vYp9c8hWlkzszaVya/bHMzhtD9yimZrKFPo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuzEn94Kz1/CuejhIdU2cqG2Lz0w82WXKlpcuJbMZEnVT+At0s
-	5yC+9Jk1z1MMowFxdjE4GIUMfEyi2gnheOCTSSHDqGzS42kGo5OQKOvJBj8HKa9VMtn+uf7rN28
-	lTd9L4VtGxHfH/+j8WWHHBXBoGf2zaZTCNLi4R7yyfIIcFYIucGberkYPGd8=
-X-Gm-Gg: ASbGncvqPE2O+Yk+k8UWEut2GJcHEmxc/+kUfWx5nNoM6jsR1o42XF7dI9OeZqvKst+
-	G+0Xb0zEymy6J8VkvK4knteWVBfgVFtQC+N3Qt/9rF8TXFwd8O0EweZT8gltqx7N77AGyum/N40
-	GcjKqarUq1+Skg7FcAIJ5mv2BpzIIb6W5DP+gllhXFd3CIorz2wDOh7nRC+032qzADw+47PaK9u
-	ym9ikyi96fT46CuuX+fvradIuMCrTyyHHun0ee6vhSt41JYYjkKyVWH21kLF8kZ09RdbpDIiXM6
-	DHQxVz+K1ncavERnMtOZpZB9AQEKqq83rHl4H/41xi9CJjFWPrBH4/eotvDmZDpI5kapDw==
-X-Received: by 2002:a05:600c:8112:b0:43c:f78d:82eb with SMTP id 5b1f17b1804b1-441ad3c708dmr15682165e9.15.1745912553167;
-        Tue, 29 Apr 2025 00:42:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHrbaa16eT2YfJ2I3RUri8LVtJfxyLH1l9EZ6S6qHzSHeygChD6UMBwtMMJT+K8rzP90d6d3Q==
-X-Received: by 2002:a05:600c:8112:b0:43c:f78d:82eb with SMTP id 5b1f17b1804b1-441ad3c708dmr15681895e9.15.1745912552856;
-        Tue, 29 Apr 2025 00:42:32 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2ad112sm179026395e9.24.2025.04.29.00.42.31
+        d=1e100.net; s=20230601; t=1745912584; x=1746517384;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HKdri9oqQzlxJX/GoZ6d34Elo8Z6NtUhmYU5bCs5Gvw=;
+        b=YwTlevvuC7ScyMFJf2CMu8Cs+Rwu7x6a7Ka/qXd0esysU23TlUzqxEW6QM2xqSpVJs
+         dsprR0cNCzb/Bfj1Ogr+YMbz0XtK3N1//U9HIjPucIp1HQFodgnEruZMSeTgWUkFnEj+
+         Jc5UDY4KsSkSFjyjWy7gxCDl6dIH0F0NtMOerv6U0XKwM22aVu2UloTwgbc2FPKdqITa
+         1zWrklSLHLbUvZg6+/Free3lRheLA6OYuVJXCmFe8KRp+XThPyQDW5fPFjxf+pJMpC2u
+         doJtk8P1twg9DfmaBetA8gzHkwgyot/UAQwCy1lZcd8/vmXfvdBTjTwFfZDSA5L6ywa8
+         757g==
+X-Forwarded-Encrypted: i=1; AJvYcCUcbKBdYbI98ZWr35WWP3N5utZYCBhcb2v4mlsftJLnfRPpRuOPUDzmJpGCj/5e+tQWFfLhnFvDqUNU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1DNE9znZ5EtRZf2VxRiThCxOgSO2uWCDGmN7vQdHpOea2C7Lv
+	3kUKaBKaLA8DxkEzc0J5ChkMpN3zPN7mBkrDnL6igUJ6Vdbzz0ZOwBueLL9agt0=
+X-Gm-Gg: ASbGnctEMIJSV6cT7ezkDWi+IU/6SdyI71fFFXAQ2qJnlrbgHazBAa5wisactkDlaHt
+	cIsNqsqPuOSF35U7+22EKU8tcOD0XGWrZlLlxv7Agn0wfTT7W51kqIaPg+1MzgGZx28Ldpppwgu
+	UQEuuKTn1YAve+tZiOfx0dVteJs01Fm+1MNy2IRmQzVoWjFMiTvMgNJoe58C9mSpPRS8aYp6O/i
+	Ihqu2Z2y2ZYz9uYsZiPLij8ENhp8Afx/+qaX+1PzapuedGY3JmhvnVFkBEOr7drJrFGPPag8ZMi
+	LN+S3mkziZb0P0j95v8DI5dBLxNqO9n72oD3+rP1DW2Vb9FM/w==
+X-Google-Smtp-Source: AGHT+IHxcc8j/WDT3R+Ed9mqVDNNphrQGL2Z4Djg4/1VtTVLnJ2DccZzwdTkAMSr1cBwYyCqZJG32A==
+X-Received: by 2002:a05:6402:350a:b0:5f6:31f3:d744 with SMTP id 4fb4d7f45d1cf-5f83884fa26mr2355871a12.11.1745912584531;
+        Tue, 29 Apr 2025 00:43:04 -0700 (PDT)
+Received: from [127.0.1.1] ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7013ff4e7sm7048114a12.22.2025.04.29.00.43.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 00:42:32 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Marcus Folkesson
- <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v6 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-In-Reply-To: <CAMuHMdWWzE-ADAfXiNxbDOSur5n5zF1NkcB7Pab0_pq2-Q85=A@mail.gmail.com>
-References: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com>
- <20250423-st7571-v6-2-e9519e3c4ec4@gmail.com>
- <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
- <aBBukAqH3SKV9_Gl@gmail.com>
- <CAMuHMdWWzE-ADAfXiNxbDOSur5n5zF1NkcB7Pab0_pq2-Q85=A@mail.gmail.com>
-Date: Tue, 29 Apr 2025 09:42:30 +0200
-Message-ID: <87zffzza55.fsf@minerva.mail-host-address-is-not-set>
+        Tue, 29 Apr 2025 00:43:03 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Tue, 29 Apr 2025 10:42:30 +0300
+Subject: [PATCH 2/7] arm64: dts: acom: x1e80100-qcp: Drop useless DP3
+ compatible override
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-2-058847814d70@linaro.org>
+References: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+In-Reply-To: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Konrad Dybcio <quic_kdybcio@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1230; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=+kFtdh5zNKXGvnVuUeb4hD3s9G0IyLF5h/Rh3o0CXxM=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoEIL17Ga5JLUCneazXrtHjFW+wuU7Ojth75Av2
+ 4WlxEe4vN+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaBCC9QAKCRAbX0TJAJUV
+ Vp7hEACXpCm4EkeMaIE180F8dmj81H0AaiNpPwgRRA2TRLQsSTMTVY6Ts4h2Ucxnr/48JSwKEtx
+ 13gslrFppN11DzYPdKa/mN1ocanIFIGj/hauBuHc4hg2rbRDm2i/ojtewH727tCPjUNaE/NDwh0
+ 6mJCk/ZuReHlAHNwFUshpZkeWKaVrQC4//8MbXhzVjgjlseijJ4yqqXnv6OcSiZd0v8MIC3adIm
+ +cwYB2fQS0kKe8H330KJTnKHhQGhycW8ulqd5g/LE0gzH7WTGK/WtbV7xjXkSHkIMBuaK9y+5dP
+ vdkZlPITKXus00b0s5ZDdcglx8kMYzXzeBAPfFA9+21dlxFLJPQh0aSUpnVBJXzy4RYyt4ljr2e
+ TmgWo7PfqJhjCS2vt1l+JkHqNyq8lgbxbYLXLwDYdMihqhb1VH5EZykQihQdVdGdqr5Uol4d9pU
+ JeEofP4RQrMl/HMGz2NePDlI0kO1Fw+DQFwgFCshnYUp2pBLpiRqk/ShZhxdkKmeJsBKFUOCgp6
+ 85gfbX8nZkkmL+kpgbfasYBIG2UpddLRBoV/QIw0+JOzOMDMnsAaKiXTLxKzx4DC40d4DW754ku
+ P4ypKF0zmMoJe4xGbL906zlCGRvR6E3JhRcBhXOBQHT3sTZ6mm1lRnoFmYYVsIf5qbF7Pb76vb5
+ aq/UGQ71POw4dJw==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Geert Uytterhoeven <geert@linux-m68k.org> writes:
+Back when display support was added initially to CRD, and we used to have
+two separate compatibles for eDP and DP, it was supposed to override the
+DP compatible with the eDP one in the board specific devicetree. Since
+then, the DP driver has been reworked to figure out the eDP/DP at runtime
+while only DP compatible remained in the end.
 
-> Hi Marcus,
->
-> On Tue, 29 Apr 2025 at 08:15, Marcus Folkesson
-> <marcus.folkesson@gmail.com> wrote:
->> On Thu, Apr 24, 2025 at 10:38:33AM +0200, Geert Uytterhoeven wrote:
->>
->> [...]
->>
->> > > +                       /*
->> > > +                        * As the display supports grayscale, all pixels must be written as two bits
->> > > +                        * even if the format is monochrome.
->> > > +                        *
->> > > +                        * The bit values maps to the following grayscale:
->> > > +                        * 0 0 = White
->> > > +                        * 0 1 = Light gray
->> > > +                        * 1 0 = Dark gray
->> > > +                        * 1 1 = Black
->> >
->> > That is not R2, but D2?
->> > include/uapi/drm/drm_fourcc.h:
->> >
->> >     /* 2 bpp Red (direct relationship between channel value and brightness) */
->> >     #define DRM_FORMAT_R2             fourcc_code('R', '2', ' ', ' ')
->> > /* [7:0] R0:R1:R2:R3 2:2:2:2 four pixels/byte */
->> >
->> >     /* 2 bpp Darkness (inverse relationship between channel value and
->> > brightness) */
->> >     #define DRM_FORMAT_D2             fourcc_code('D', '2', ' ', ' ')
->> > /* [7:0] D0:D1:D2:D3 2:2:2:2 four pixels/byte */
->> >
->> > So the driver actually supports D1 and D2, and XRGB8888 should be
->> > inverted while converting to monochrome (and grayscale, which is not
->> > yet implemented).
->>
->> The display supports "reverse" grayscale, so the mapping becomes
->> 1 1 = White
->> 1 0 = Light gray
->> 0 1 = Dark gray
->> 0 0 = Black
->> instead.
->>
->> So I will probably add support for D1 and D2 formats and invert the
->> pixels for the R1, R2 and XRGB8888 formats.
->>
->> Could that work or are there any side effects that I should be aware of?
->
-> That should work fine.
+This override was copied over from CRD which was the first X Elite
+platform upstream to have display support.
 
-Agree.
+Even though the override does nothing basically, drop it to avoid
+further confusion.
 
-> Note that you do not have to support R1 and R2, as they are non-native.
-> AFAIK XRGB8888 is the only format all drivers must support.
->
-> Gr{oetje,eeting}s,
->
+Fixes: f9a9c11471da ("arm64: dts: qcom: x1e80100-qcp: Enable more support")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-That's correct. The driver should only support D1 and D2 as native formats
-and (emulated) XRGB8888 for compatibility with existing user-space. No need
-to support R1 and R2 since the controller does not support these formats.
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index 470c4f826d49866a2af87f5e109672d51c9bc9cd..f5a911f23d8ce89b9c3a6470c14f6a68aebfcaa6 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -871,7 +871,6 @@ &mdss_dp2_out {
+ };
+ 
+ &mdss_dp3 {
+-	compatible = "qcom,x1e80100-dp";
+ 	/delete-property/ #sound-dai-cells;
+ 
+ 	status = "okay";
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.34.1
 
 
