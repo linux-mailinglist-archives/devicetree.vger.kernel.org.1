@@ -1,96 +1,145 @@
-Return-Path: <devicetree+bounces-172006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF875AA0F31
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:39:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56535AA0F53
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:44:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB5FC7B1E71
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:38:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE1A917F045
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E84219A63;
-	Tue, 29 Apr 2025 14:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF19421767D;
+	Tue, 29 Apr 2025 14:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q7OgFLkV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3YUk0Ov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79EDD1DE4F3;
-	Tue, 29 Apr 2025 14:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F781DE4F3;
+	Tue, 29 Apr 2025 14:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745937560; cv=none; b=XnF9YB0euB74IsBxdhIcc3+tuWrAnpXW9Sw2FUXOdcScSkquE9QkSo8xrKVrHF5XNlBk1+V9lznDxEBkO1oLOaTS7UBHemawxtxuB86O8w1IO5zj0Sv4ZD96HGi697ZlrKQm/pE3XTAIq/8SgRLLccr3RJXTLz1vC5b6OSfkPhQ=
+	t=1745937860; cv=none; b=u8ZKBitFHSq5KCNVI+Tb9AE1IvutLc5RGZJ6gWAWR8O9Tz3WTdwMjZ/Ifc4cg9Eg1ftSDZRO5DXrhDB8AjH6f14GW/j4WImubGW8EYN/9Ks6pEjmarEY0s00vJuASJhGb4yCYCT1yAHRWd7ZdlknfpaXTItV0lngP8G5quoYXc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745937560; c=relaxed/simple;
-	bh=i0ZYC8XyqmhRCxLoo09GB7F0S70wSBZYcxQO5AixQb0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QtFw2zI4Qxv4WH7N8TL17yV1ZMxjqaVB2IsHHiSKzpdi3OB3HNIpHradTH/K68qdpQS5ciQJtVT6L7TmM9d/5Dnd5Y/47BMSeciB8FixtNhKk8pLS4BwvjRzgTw6qUdsZfXgzh/+Fgd7gQA9HYilFwwiyU91gXn4jrsqzNvHYY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q7OgFLkV; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEd9373868399
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 29 Apr 2025 09:39:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745937549;
-	bh=i0ZYC8XyqmhRCxLoo09GB7F0S70wSBZYcxQO5AixQb0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Q7OgFLkVaWw7tiit93pwA0uy4R0yZlDzYrio0TX9yGj/bIM5nO0F6UCAJW15L1/ro
-	 kZhFPnDu+VxG1o1+u2oZfcnpdgI4nkxNBNxGOkTYCjSbxx4TbgBeyHR65y7sZA/9PX
-	 /UeAIL3AEkfzlY8OTdZczePWMtlohROHoFn411MA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEd93t008783
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Apr 2025 09:39:09 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Apr 2025 09:39:09 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Apr 2025 09:39:09 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TEd9li088402;
-	Tue, 29 Apr 2025 09:39:09 -0500
-Message-ID: <e956e04a-f2e8-4e13-a1f9-23521e99807d@ti.com>
-Date: Tue, 29 Apr 2025 09:39:09 -0500
+	s=arc-20240116; t=1745937860; c=relaxed/simple;
+	bh=4rr0S3mSjoui4D8DbAX2wTbORXf1cAmtg5M9HmjHuhU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ZlSpD4OnlVJkyVyVggvY6BTqISMWEehiBePo01eIclDgA/fsR2TZIB31TdchAb82EYZO7PpA8aLWC4cQGB/elpYJSb84T05VB9QTBBH6GxtKFopI4WflEOmO+icCn3xc4ffopoqJP8XIyIhwIdwtDp1BQlCKj2zuW9ByIbllDwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3YUk0Ov; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D14C7C4CEE3;
+	Tue, 29 Apr 2025 14:44:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745937860;
+	bh=4rr0S3mSjoui4D8DbAX2wTbORXf1cAmtg5M9HmjHuhU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=d3YUk0Ov4iLTp8IvzNdV/ZNp8XRfU0tpb5oO11Ch7TeqYX980y0eKGMK/tSkiZdHG
+	 vKKfoEdkR1s+NYjN7a+AJ5LIM2s8BnXPc1k9zkOx3UAgsn7GdLXMskG8pcyMg6PZjr
+	 hnW+l0awaOZdLhL+FF6sOcWJBst8YDQPRSyQW//eEcvnLFRkEHcFbRJrI4NtMZ4/5s
+	 9oXWECSmFA4F6IcyherLCLXt/f8gFvTWDlZX+lIkLCg2rPK6y/rBhahA2HfK5II7y2
+	 TITnqai63Vv44JqE0pz38xD3AqDqqBaPCzJM4ILcDM3e08c2AK0fAgXs+F+HIJjvhE
+	 S2Zreml59gaJw==
+Date: Tue, 29 Apr 2025 09:44:18 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65-main: Add missing taps to sdhci0
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>
-References: <20250429143730.4145747-1-jm@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20250429143730.4145747-1-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hi all,
-
-On 4/29/25 9:37 AM, Judith Mendez wrote:
-> For am65x, add missing ITAPDLYSEL values for Default Speed and High
-> Speed SDR modes to sdhci0 node according to the device datasheet [0].
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: Patrice Chotard <patrice.chotard@foss.st.com>
+In-Reply-To: <20250428-upstream_omm_ospi_dts-v9-0-62522b1b0922@foss.st.com>
+References: <20250428-upstream_omm_ospi_dts-v9-0-62522b1b0922@foss.st.com>
+Message-Id: <174593770361.4057747.4332961101566967821.robh@kernel.org>
+Subject: Re: [PATCH v9 0/3] arm64: dts: st: Add SPI NOR support for
+ stm32mp257f-ev1
 
 
-Please ignore this patch, forgot to add stable tag.
+On Mon, 28 Apr 2025 10:40:20 +0200, Patrice Chotard wrote:
+> Add SPI NOR support for stm32mp257f-ev1 board by adding:
+>   _ Octo memory Manager node in stm32mp251.dtsi
+>   _ OSPI port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+>   _ Add SPI NOR support for stm32mp257f-ev1.dts
+> 
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Changes in v9:
+>   - split patchset by susbsystem, current one include only DTS related
+>     patches.
+>   - Link to v8: https://lore.kernel.org/r/20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com
+> 
+> ---
+> Patrice Chotard (3):
+>       arm64: dts: st: Add OMM node on stm32mp251
+>       arm64: dts: st: Add ospi port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+>       arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+> 
+>  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 51 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/st/stm32mp251.dtsi        | 54 +++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 32 ++++++++++++++++
+>  3 files changed, 137 insertions(+)
+> ---
+> base-commit: 65954899a157832f68536b488194cf698248a26e
+> change-id: 20250410-upstream_omm_ospi_dts-04b97cc02e52
+> 
+> Best regards,
+> --
+> Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> 
+> 
 
-~ Judith
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit 65954899a157832f68536b488194cf698248a26e
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/st/' for 20250428-upstream_omm_ospi_dts-v9-0-62522b1b0922@foss.st.com:
+
+arch/arm64/boot/dts/st/stm32mp257f-dk.dtb: /soc@0/ommanager@40500000: failed to match any schema with compatible: ['st,stm32mp25-omm']
+arch/arm64/boot/dts/st/stm32mp257f-ev1.dtb: /soc@0/ommanager@40500000: failed to match any schema with compatible: ['st,stm32mp25-omm']
+arch/arm64/boot/dts/st/stm32mp257f-dk.dtb: /soc@0/ommanager@40500000/spi@0: failed to match any schema with compatible: ['st,stm32mp25-ospi']
+arch/arm64/boot/dts/st/stm32mp257f-ev1.dtb: /soc@0/ommanager@40500000/spi@0: failed to match any schema with compatible: ['st,stm32mp25-ospi']
+arch/arm64/boot/dts/st/stm32mp257f-dk.dtb: /soc@0/ommanager@40500000/spi@1: failed to match any schema with compatible: ['st,stm32mp25-ospi']
+arch/arm64/boot/dts/st/stm32mp257f-ev1.dtb: /soc@0/ommanager@40500000/spi@1: failed to match any schema with compatible: ['st,stm32mp25-ospi']
+
+
+
+
 
 
