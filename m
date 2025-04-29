@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBC5AA029D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:11:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A27AA02A9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C06F5481359
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:11:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57B8B5A4EC2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126E52749ED;
-	Tue, 29 Apr 2025 06:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A9C274FCB;
+	Tue, 29 Apr 2025 06:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="te3t2r4Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9cUakIU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF380270ED6;
-	Tue, 29 Apr 2025 06:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60464274658;
+	Tue, 29 Apr 2025 06:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745907088; cv=none; b=JPFFMOSB90RFQlcK7BSbzrT1HGdqS5GGXLe9YzKVwVc/aFm9fgJJXNUtLXhfUd8/FBczz2ita3RBWlQmkfs+MOoIzGY6lbx/roSVSMmF6VEbhDSDvLyPzxYHm7qGiNG/+pHgFhfxOOwr0XGYRZwXgfKT63KYKC55yl+eqZaCBSo=
+	t=1745907119; cv=none; b=Izy/upOwERStz3Wb1t7ycOUhP5hJ2ZW+JAldaTAGnrBxMRrvUxDJLd96wWSYRydaTpyrzusSVRfEpgxe7XI5fu99cyUQxFgDVUv9YRaZmOfo6xvTatp+TXp9A5Lug4Bu4ZUIf11e1J+IMnLcidPq7risHwS3bEF44f7Zae/u0uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745907088; c=relaxed/simple;
-	bh=7r91QPvHTucYyjUGmWeMmrdNc/3j4iwsraJ6ag2bkv8=;
+	s=arc-20240116; t=1745907119; c=relaxed/simple;
+	bh=QH9BrCzldPjHuztYNYhhzYq5T7NvKyX+PKNkHLsJAso=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n/7eEk9yWws5fFFtJ5sRrWzQCO3xX8ZYxPl7dqLbq3lsxXfCnX+fPhmeKOsUbt6akAaLK3sYtsJ2LZh3XtEwUrcDcgmItewLILJkhy5XnrbH4o8Osqq8JVnDE3+dr6ecypU0v3/bTexm5GrJVOyScU8q89ecarPN8QrwZUXAWys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=te3t2r4Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E421C4CEED;
-	Tue, 29 Apr 2025 06:11:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MBvK3E8dzNUPsbSzM4hsrwy8HQXN/EO3esaaRJSJ1+gHJXyRzDwWqHPExoLYdLDHZLdXoleVxhZmxnpw7FaTWCygiCuzj6VkkkNF+KzkCCLn1N9QhT6/nJ/CJkAeJukKF/3MP7CYurEHgCebTrmOeb4NBJtKonaPB0dnRJRWk6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9cUakIU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7E57C4CEE3;
+	Tue, 29 Apr 2025 06:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745907087;
-	bh=7r91QPvHTucYyjUGmWeMmrdNc/3j4iwsraJ6ag2bkv8=;
+	s=k20201202; t=1745907118;
+	bh=QH9BrCzldPjHuztYNYhhzYq5T7NvKyX+PKNkHLsJAso=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=te3t2r4YvK/EcozCfEPi26UDMVCsBMd+UotHjPCY6c7IQcDea7wzNBaY5pGDsdgut
-	 xkhjI6CNriDWthTq8kqhcAi17d6sbdcVkNC5tXuat1XgbDtGOKEIlDNdBktUQmB6M7
-	 RK8uH5JE/4tEDAHTe48yNfmsvzTm3dB/muW7jrRs0/FZAhFzAiyiTeS9GPebwsSxn/
-	 yXsqRQXaUEW2YSOnFB8ETJiRZIBRBCRR6y1djP7ZucDLiGD7cC9hCj3Wi2inwkmTbj
-	 fC8aearvOkmPQhUczBJSuCY/7E20Q1GrwMSDPNGKD0/kAEzCt6hVyAqVNuyvC1IwvG
-	 PI8oD0Wl2IvMA==
-Message-ID: <552b0c26-af9a-4b6e-bbbc-4abf2d8d422d@kernel.org>
-Date: Tue, 29 Apr 2025 08:11:22 +0200
+	b=J9cUakIUlqO0bF36AFw8YAW/nAvsTHHsgZ5eW/a8GVDzNEtD2GTtscvy+V6dDUjBb
+	 fISYVfqLgElmwoX4VvQFPj2n35lNbTXYqBGDTiNrD2nWva4c++7Xm9oZ63NTwNZGmD
+	 rJ8uyJ7wP4xRDm2Ucl74IF2dmRA7LaxdRBFtzkPjFFIoDQJXVP08lAYKfIovJ39h8j
+	 JGgxOmAUdJiPfJpDtLhWPxZAEcPp8bj+RLM+XYDqvjbzruWCSay8H8o5x9jl3OQ1qx
+	 9T+WcU1X9GPEs+mW15urAQovQuIXG4Nbd1AIgava28XSjxe3HupHmBsZIZVxOkYcCl
+	 mJS8d9mm4EZfA==
+Message-ID: <713fcd68-af57-4cf9-84ad-a3fdff8c3f76@kernel.org>
+Date: Tue, 29 Apr 2025 08:11:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-phy: remove
- eee-broken flags which have never had a user
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Russell King - ARM Linux <linux@armlinux.org.uk>,
- Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
- David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <ee9a647e-562d-4a66-9f9b-434fed05090d@gmail.com>
- <aacd2344-d842-4d10-9ec8-a9d1d11ae8ed@gmail.com>
- <20250428-alluring-duck-of-security-0affaa@kuoka>
- <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: goodix: Add
+ no-reset-pull-up property
+To: Esben Haabendal <esben@geanix.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250422-goodix-no-reset-pull-up-v1-0-3983bb65a1bf@geanix.com>
+ <20250422-goodix-no-reset-pull-up-v1-1-3983bb65a1bf@geanix.com>
+ <20250428-logical-successful-spoonbill-cd1c6b@kuoka>
+ <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,23 +107,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
+In-Reply-To: <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/04/2025 22:29, Heiner Kallweit wrote:
-> On 28.04.2025 09:42, Krzysztof Kozlowski wrote:
->> On Tue, Apr 15, 2025 at 09:55:55PM GMT, Heiner Kallweit wrote:
->>> These flags have never had a user, so remove support for them.
+On 28/04/2025 09:58, Esben Haabendal wrote:
+> On Monday, April 28th, 2025 at 09:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On Tue, Apr 22, 2025 at 05:15:02PM GMT, Esben Haabendal wrote:
 >>
->> They have no in-kernel user, but what about all out of tree users in
->> kernel and other projects using bindings?
+>>> This should be added for boards where there is no pull-up on the reset pin,
+>>> as the driver will otherwise switch the reset signal to high-impedance to
+>>> save power, which obviously not safe without pull-up.
+>>>
+>>> Signed-off-by: Esben Haabendal esben@geanix.com
+>>> ---
+>>> Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 4 ++++
+>>> 1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>>> index eb4992f708b70fef93bd4b59b9565123f7c6ad5d..7e5c4b98f2cb1ef61798252ea5c573068a46d4aa 100644
+>>> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>>> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>>> @@ -45,6 +45,10 @@ properties:
+>>> reset-gpios:
+>>> maxItems: 1
+>>>
+>>> + no-reset-pull-up:
 >>
-> I doubt there's any user outside the kernel. But it's hard to prove
-> that something does not exist. For my understanding:
-> What would be the needed proof to consider removal of these
-> flag bindings safe?
-Open source projects you can check at least.
+>> Is this common property? Where is it defined? Otherwise missing vendor
+>> prefix.
+> 
+> Good question. When is something a common property?
+
+When is defined in common schema and used by more than 2 devices.
+
+> 
+> The idea of marking something as not having a pull-up on the reset pin could be considered a common thing I guess.
+> But for now, I am defining it for the goodix driver only, as I am only aware of these devices needing to handle it in a special way.
+> 
+> Should I rename it to goodix,no-reset-pull-up?
+
+
+Yes
+
 
 Best regards,
 Krzysztof
