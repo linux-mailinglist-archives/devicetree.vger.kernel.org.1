@@ -1,140 +1,163 @@
-Return-Path: <devicetree+bounces-172057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1295AA1151
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4FEAA1198
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAFC75A0F63
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:09:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41F41924ECD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C0B243364;
-	Tue, 29 Apr 2025 16:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B090244675;
+	Tue, 29 Apr 2025 16:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J0ftIZUC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ELlwHHls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FA4217F27;
-	Tue, 29 Apr 2025 16:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207FD22539D
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 16:32:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745943004; cv=none; b=KsbJoQsV1DKnG4eeYU4IIetV9o6s1hXSKpL5MXJbAjk6PSoz+pLhXfuqJ/RK0/accC8sytSdLrtDInY+vzXTFLmPvygk2hEz+DHdY7SoTDlUJie82Uo9Up6nCqXCxNKZCOieVfZJATVbVnS6Lrkl1JhT+yif2f56V0vBEpw1YT0=
+	t=1745944345; cv=none; b=nIQLmepU0Ba3nzQewoUPwJYOzA+lWVSU0rOHkpUNvxZaXZVVNKf1HZEj0HqGyCcblKVcgghDl5Jc8vHzkPr5xPi+cD2RqRqZlSMHf8EVVoHWHpMOAQ1wvcRbkDjg0XJ+qEA5fe7A57ebtTORbqhJu1Gy9JLHBa4CDvG2EpqSO8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745943004; c=relaxed/simple;
-	bh=gQOECnHyi5YsqI/wovKB8htGE1EJ1z9Hy2iScY6OoZ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ThKsvqd7t7B0CJ9aO8uiortxCrVxXJzLoRJwhgndXSrv/eQEqkTcVqdY9FO4Thu4SOBQP4WymkX059CAlrjUQN04pEggWKyp33GJHgZg7fLDjW/FxAycHHJLQKmSIhId7ZjnszoVZnxoviA6jREA110sisPGEgx6fyak5yVhEGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J0ftIZUC; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-739be717eddso5137767b3a.2;
-        Tue, 29 Apr 2025 09:10:02 -0700 (PDT)
+	s=arc-20240116; t=1745944345; c=relaxed/simple;
+	bh=kxJijwJOOpyMIXcfCls3QqWyToNqydz2DXvZT0qcO1I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E6Tv1TlCTgD/iRoWuaYkKgdhAes5pI4EvNQVew5owkq7fI5it5TNs3SRaCvuSQ6gKNxv9lePr/6u8i0yYFY41yeiSc29+d+ca2VEe1nvB635dpYTidbdBVvZQYFUrIfuINdUNoq62T3VfQVcfr+T6MqM5bMsxc4YK8mwbAbTQnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ELlwHHls; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-72bceb93f2fso16656a34.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 09:32:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745943002; x=1746547802; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2B5qENygMidXKJeYIpIMae3o3JEApgWUkkNB4KGW/vo=;
-        b=J0ftIZUC1zPPzmi1vvs+vyZhxgEO8oK0saRrb8YR6JgRu/uCiQGY+YBPqFsg/Fb+Ed
-         FcKgP34llx9qomAEVoj2AZRy/91iM640rUGgnHYe7RARAHfjzCR0e/95hrSJFbr6dtjk
-         vlzFwA/JxMXolf51ENlUxPeQy7M1A+yG+nYUG/KC8jOSyWJL7abCil9dcrHSpAOrq1vb
-         twsNqRJs2a71ZXj3vRnPzThddH3xOm9kOkDNrkwqmc98pphDCk5O1uQzJwzNlYeYvr+X
-         svidb6SEFSWmkrK1oTMayGGhULLUwt8c54baFVd92aIhfxSRPd7D95v657562/UlsIpP
-         phOA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745944342; x=1746549142; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VlzV3aC3Ajcd4WwT0NS/l9ibLgDyq3ihO7Tsirhk0II=;
+        b=ELlwHHlsrW4x6siALslx2SQSxA7l8//pnnn/r1cacg4Kp8Q0AQNXaXrbSf3ZBBtZ/3
+         3L4dHQ5n40xTkPUBXHg1/eBR9k9ZvcPm6rkqk8xY/utc/aUw/JA/7wEQ3k0QgT5MGeTI
+         6V2d9iZNAnfZLOWkumB35RahyHKZHYWfuws+Ml/rsrrtVSduWe4YjUn2kiCo4GnqEIEu
+         QzbtP8TJkDFUa7cU1kCZevOyOFBB++REcnfhAaTVIjn/FoVVuYflKgBCUMY1hDrkH9Ek
+         V+zpPoBAr43pC9qnJa9xkuXyJja30QtwgDo6c27ACc4ToMl5dGZv69nFXgdE5FH7zC1R
+         AAiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745943002; x=1746547802;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2B5qENygMidXKJeYIpIMae3o3JEApgWUkkNB4KGW/vo=;
-        b=vTo/qMIN25AwP3iFvgVbXHVYNWqzHw2EVrjKpmXDzzNQMB845LEiH3gKXaZ9PYx1SE
-         OZ10pOEAhc1gfmu0ScJtJh4TU+u5CyckBB8VIp7NXDjDSH7/Y6w8+Mc5zgmS71m0hvoC
-         b6QVoWEBHh3hAllNztoeECc5Bj+zqPgkaw2F1g/JqGUKczLgO3+HBeUdv4Kvh/4Q/cZl
-         kTdHTjFgFvt3YqIhKh1oYxohTwVMmVOp5w1buOY5xT4pnOX+F1bAt34FxUfQjyBNeIIz
-         ScP5QLurXErFyyc1M/1ubndwPo7BHjXcbyfmitvwnAMhMmzz3ihRpfsnYCX3gcFYQH+x
-         ULwg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7JzxfvCUiifexbV0uAJO8ezwllaDjtyeIzIDhMp5bZ32GbZJzTzz/2aUm6fkBucvJY/f8RCgAw276dfo=@vger.kernel.org, AJvYcCX19OpcjU19w7csTnYVv7hFO38Vd40TTSzXtEXwdIp7RCoqti/p3EhlaZmY6npc5MHioaAdzuLXRNTKD79Z@vger.kernel.org, AJvYcCXWzKKDPUk4MsXY9/W9xW+w4oc0ly2SnRsneOJDJUOwgGxNMnnVb1DowhdNNJdk9n5OOEq51QANIc1b@vger.kernel.org
-X-Gm-Message-State: AOJu0YySH0h843u/XutHCRKCYuM3RJtcFtWt7eJNfWN1fAlnaVi/8/NL
-	qQIEIMq9fgHIPPY30utVawGQqbDC/DwGfyUZfFUswDsc21XPfx2c
-X-Gm-Gg: ASbGncvH1gWDI/3kekZ6I/w6iP4ICktO2aUi2nWtV+Xz22Wp3BbO9QEVHoPqcVZJZf4
-	FNfNIc892RSFyy9m+zex+VpNpd+6JaqApRL4mMNNzbxBFzev70BOsOCxHLCQcjcbssGGiLMwciW
-	OXem0o9I8JVGmuWFSGuUD860HJ0Cnni8+IMkTbEGPJAxkNEoZzeS5LFyjMjzvtmJG6M04Lsh/Kz
-	cNprLS4vNOtPhco71W3Rq6RVW1ctRYwShP2+OG6jFR2l5iyom8YaeDAr77Qn/Fx3k9MOLPFsaR+
-	GvrlqSQkgprW/bZRnLJFxzwkcrI1hgIo7k2lQTxHTg==
-X-Google-Smtp-Source: AGHT+IFJXA+JUl9XZQeMm1jD33AZmNE9lmmbmnwd59z6JU57Fzy/YxxJ4Z562yGuwuW+5My+9fiFzA==
-X-Received: by 2002:a05:6a00:ac5:b0:739:4a93:a5df with SMTP id d2e1a72fcca58-740294703dcmr4534450b3a.12.1745943001926;
-        Tue, 29 Apr 2025 09:10:01 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:adc2:8397:4f51:d5a0])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15fa80fa6asm9150594a12.61.2025.04.29.09.10.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 09:10:01 -0700 (PDT)
-Date: Tue, 29 Apr 2025 09:09:58 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Esben Haabendal <esben@geanix.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: goodix: Add
- no-reset-pull-up property
-Message-ID: <2qwfe6yw3pil5tumibiagikqhgwct27vevi674fklfieabzozc@hzjwatn3vjss>
-References: <20250429-goodix-no-reset-pull-up-v2-0-0687a4ad5a04@geanix.com>
- <20250429-goodix-no-reset-pull-up-v2-1-0687a4ad5a04@geanix.com>
- <qql72NifdMmJKSRJmT2927URaXnbRAbz9Yjzn9lBrOwjka7NxVvy5YKJUSLmBp435aYJiTkPqeuW1hMDcKKC4g==@protonmail.internalid>
- <20250429-effects-subscript-58eb41737816@spud>
- <87selrt1vl.fsf@geanix.com>
+        d=1e100.net; s=20230601; t=1745944342; x=1746549142;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VlzV3aC3Ajcd4WwT0NS/l9ibLgDyq3ihO7Tsirhk0II=;
+        b=ou9AkDR6onmZpyZIsViKLFXxwKSMxTamTxfK2J68fQjq/Vd6/J43wtl47y0XyWJtty
+         QQOsH/xKWLeA0JkbdCjhoUjDoNIvgFSq54Q3KvSGCOvB2uIDxGh1oBJGrTcL2HChMwkR
+         ExvRebtH+dwPKaE1dTbatIAwKlpV1NKFqt/tZaVaTCxCi/QaYio6mk4Oq+fwuwnu0Im2
+         Q9AeNyw34EOYAl+yFunGKNHfGIcjEmZ0fMfxkkNdhWpXBqWAnz9LE+pElEk0MXxrjGEI
+         PADsJ4lvxF57BwPo2ohF7a7Mbv3DxOlPAWsEPINJXwnxsvjs80OQUofLJ/VM/nhTzZXp
+         J3qw==
+X-Forwarded-Encrypted: i=1; AJvYcCW6MIUXEgiw/6/JA9xkwpaQ9ITHTcdR40UdBzTFEMHEH2Ley0RzrER4ucM5WrHb3Gc5MO7VC6aKfI7a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yypv+PIRkca3u9O2kMiNtNRJkk5NrR7m+7e4bAo03sAIRxoMeYe
+	h6kwB8OZzYin54YswERj1yiaL2bqrMhgzGQZPpV6McjcNXzMGq/W9XaKrXJBI1U=
+X-Gm-Gg: ASbGncvtP6gHQdHn7HvYNg16KbpZStNSCK9VoYGCy3M+AM5K6MmYSMscZZCAqEWpDmz
+	LYl8xB++OLwKHRDj7r4gPbduHh/EQGdnDyKcwBEjnMaV0x8sQCqrtYnL9IxLhBwu8gD9tEyX6wJ
+	mmTwEJ8LQ6i4Mzd4K01Wu0+0x3h0t+XdD4zMM+EEdakUfVRI+Ptnf6so7Jj7M/PP87ViBfNrB3c
+	Nr1yXLR+s02jnrnzbgqlIWlESvBPNR+Xe4CnxSgLaGsv8gJHs4LlWKz6F/7cuxq0peBKqOqyhtv
+	3KzwtIHZnX9j29su6JPvMkS+Thhuvt2RgMPFF3IRDJLKrwySIdtjhnd8N+FAwSS7qjMbCshyNJq
+	rXPbhczjYKzvOomY6Sw==
+X-Google-Smtp-Source: AGHT+IECXLQfMw4IHoT8sY1k3B5PGYoLM8POTBaiM9WXU5IhYjgdUCA4tjARzeoztfzPvG3hb3MlHw==
+X-Received: by 2002:a05:6808:22a9:b0:3f4:11b3:206b with SMTP id 5614622812f47-4021103ccb9mr2215175b6e.17.1745944342109;
+        Tue, 29 Apr 2025 09:32:22 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6? ([2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40212c4dbe6sm315201b6e.49.2025.04.29.09.32.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Apr 2025 09:32:20 -0700 (PDT)
+Message-ID: <ad489cc7-8c89-44fa-bcec-5c4b9cbcab74@baylibre.com>
+Date: Tue, 29 Apr 2025 11:32:19 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87selrt1vl.fsf@geanix.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] iio: adc: add support for Nuvoton NCT7201
+To: Eason Yang <j2anfernee@gmail.com>, jic23@kernel.org, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, javier.carrasco.cruz@gmail.com, tgamblin@baylibre.com,
+ olivier.moysan@foss.st.com, alisadariana@gmail.com, gstols@baylibre.com,
+ antoniu.miclaus@analog.com, eblanc@baylibre.com,
+ andriy.shevchenko@linux.intel.com, matteomartelli3@gmail.com,
+ marcelo.schmitt@analog.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250429025505.3278016-1-j2anfernee@gmail.com>
+ <20250429025505.3278016-3-j2anfernee@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <20250429025505.3278016-3-j2anfernee@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 29, 2025 at 05:37:34PM +0200, Esben Haabendal wrote:
-> "Conor Dooley" <conor@kernel.org> writes:
+On 4/28/25 9:55 PM, Eason Yang wrote:
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
 > 
-> > On Tue, Apr 29, 2025 at 11:56:11AM +0200, Esben Haabendal wrote:
-> >> This should be added for boards where there is no pull-up on the reset pin,
-> >> as the driver will otherwise switch the reset signal to high-impedance to
-> >> save power, which obviously not safe without pull-up.
-> >> 
-> >> Signed-off-by: Esben Haabendal <esben@geanix.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 4 ++++
-> >>  1 file changed, 4 insertions(+)
-> >> 
-> >> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> >> index eb4992f708b70fef93bd4b59b9565123f7c6ad5d..21ac13046b6e021eeb403d854aabc945801dd29f 100644
-> >> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> >> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> >> @@ -45,6 +45,10 @@ properties:
-> >>    reset-gpios:
-> >>      maxItems: 1
-> >>  
-> >> +  goodix,no-reset-pull-up:
-> >> +    type: boolean
-> >> +    description: There is no pull-up on reset pin
-> >
-> > I have to wonder, why are these system using the reset property if the
-> > reset is not usable? Shouldn't the property be omitted?
-> 
-> The reset are fully functional. It just have to be controlled in
-> push-pull mode.
-> 
-> Because of the lack of external pull-up, configuring the reset gpio as
-> input (to save power) puts the reset pin in an unknown state.
 
-How much power do we save by doing this? I don't recall other drivers
-trying to switch reset GPIO into input mode after performing reset...
+...
 
-Thanks.
+> +static int nct7201_init_chip(struct nct7201_chip_info *chip)
+> +{
+> +	struct device *dev = regmap_get_device(chip->regmap);
+> +	__le16 data = cpu_to_le16(GENMASK(chip->num_vin_channels - 1, 0));
+> +	unsigned int value;
+> +	int err;
+> +
+> +	err = regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
+> +			   NCT7201_BIT_CONFIGURATION_RESET);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to reset chip\n");
+> +
+> +	/*
+> +	 * After about 25 msecs, the device should be ready and then the power-up
+> +	 * bit will be set to 1. If not, wait for it.
+> +	 */
+> +	fsleep(25 * USEC_PER_MSEC);
+> +
+> +	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to read busy status\n");
+> +	if (!(value & NCT7201_BIT_PWR_UP))
+> +		return dev_err_probe(dev, -EIO, "Failed to power up after reset\n");
+> +
+> +	/* Enable Channel */
+> +	if (chip->num_vin_channels <= 8)
+> +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
+> +				   GENMASK(chip->num_vin_channels - 1, 0));
+> +	else
+> +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
+> +					&data, sizeof(data));
 
--- 
-Dmitry
+Why does this use little-endian format for data but the later bulk_read of the
+same register uses CPU-endian?
+
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to enable channel\n");
+> +
+> +	err = regmap_bulk_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
+> +			       &chip->vin_mask, sizeof(chip->vin_mask));
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "Failed to read channel enable register\n");
+> +
+> +	/* Start monitoring if needed */
+> +	err = regmap_set_bits(chip->regmap, NCT7201_REG_CONFIGURATION,
+> +			      NCT7201_BIT_CONFIGURATION_START);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to start monitoring\n");
+> +
+> +	return 0;
+> +}
+> +
 
