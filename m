@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-172085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A4EAA1B3D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:16:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BB5AAA1B3E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 480D91BC2C03
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:16:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA3321BC2CF9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B731E25E441;
-	Tue, 29 Apr 2025 19:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034A725E472;
+	Tue, 29 Apr 2025 19:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="PumPfVF6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RAqhcm37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D588622F3B0
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 19:15:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C1725E45C
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 19:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745954157; cv=none; b=U6Yr/fUPBrZWsYXXJ7XP+IOS3VGsrunmRQPCH9KEAV3/A8GRKoc7s022wvhVOFD698FqJAdVzWzqklvq2OpdSyelwvLGXOao4YXIYa+LNZtFleHVytEqxVBexwVb1eH90fFo4o+/jo5qNBntgrrKRUTIKTpZh66IKgT3lTFBLwo=
+	t=1745954160; cv=none; b=EgGOGZB1splXzko0TwUduNxVtnmtjLmHM2jMO+IhqPHiZRz1mKqThzIr8d+qtrlu+BmEQ7CHrG9o729Yls8LYkEiuSdxeZJ25vDE91nKS/Ove/uxOA9r0+88gfaUqkcp6HsVIju3NCatrlrPm462QCFFhA1eq5tVX/PRMe5+dxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745954157; c=relaxed/simple;
-	bh=jmHf08QyIJYU0MUTA+iBpDhp/TX6HX9wZhOjV851KBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZAbH4UbBTRdPHlAbxjOdmHtw71SR6vES/KefK3/JTKI8DlO9g/ezO7UkSxuknhwr7T2voxdZ5XNIWcCzaTwMXSgeF7mgi4ZqAzUdXm8qaHdKXc6YfPZYZJYhzA1OWyxyIOgPkT8GsuG8zjktcwILi7adQCx4vCbrXsYSV0BCDrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=PumPfVF6; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22c33ac23edso59817465ad.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:15:55 -0700 (PDT)
+	s=arc-20240116; t=1745954160; c=relaxed/simple;
+	bh=bMZOleK80Yvw/vJXeWTT91vA++6Iw6ZoCDHLPzkZDFo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=mhqTw3mI4bZdWgA2iF2t5H4/XfPQHvHfkOLUxWfwq9jDZkJVNmg5PSDk1J+RQeHk5m6t9XU07WUo5DRrcLNuGrHsa6LlzuV2SOmHoAXVec/djVpJoJoNvxyacgo8H3tmvk2++HNI08LY2GaGMm6cQK/WxVVElZ6aQqHirhmU6m8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RAqhcm37; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7302a769534so4403258a34.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:15:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1745954155; x=1746558955; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ofMsW912uMD+xqncy6qZyGtVr8etQw+llQz1ZifRDyc=;
-        b=PumPfVF6MKlSSYn4BVGlK7LCeizULYVBOb4xjcSakhlg5/qM1S0tPu7x0VHKtJmMDi
-         19yPbDs3Ie/IeqU3829C1rsFaBMZhfbs5EyrVqXjdAOvznbTA8JViWW0NiptQs8QwUif
-         OC0ddl+02YXdEXqZQl3usZio1tpmmGo3vVTcUhpDJ0nX/fWWlPel8rfYeU6LjRP2mvnD
-         w6EXP7wpiz2L60/+kGF7GMTdJEjhpMToLYtwZLM4SngHHjMCyq9JGss8+qCh9SC5sOdc
-         HXA5xaW2P2NHS+cyXe0CYwSriPjfmkum2Bf7ZXTYvC6qSpUyN/U8CkPo7PLvKr++Hm0C
-         Fz7w==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745954157; x=1746558957; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ztvL+716FaAHmBwWQZbrSXde86/hu3vO5ILRMzMnPzo=;
+        b=RAqhcm37b0sTqrTUsmNrm3fynIE7RDwquvGsw+FmGCD8fjlbJeJXqdSzgYIa0JdVmL
+         f+7CglXACRwOPYMoCah4/TqsyTCe1aIFbMCEZ95J8ADWMZnUfNpuMhZVcekd5ZRqWx01
+         0FqWYD8tfTrj2IovuMWAJG+mqKoyRBk7/nRiMyzKfg4mlPELPRIQSJIFFHGqR21bDdqS
+         C3juVcyc9gDnf4VP9dNs7YLiHTmNFUQhl7VRnPGPpMgOeLi8mPImNVNKqX6JysoS/DUK
+         hdXJYmMGwPiyOmNMmOIB/Sch2H8KaFewg9b8nITAm0kv/9E5uMx1XOWxNnDgbUmTv4NF
+         sSsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745954155; x=1746558955;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1745954157; x=1746558957;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ofMsW912uMD+xqncy6qZyGtVr8etQw+llQz1ZifRDyc=;
-        b=T7I9rTKXLCFkdhJh7RO82dBwOzUXp6hsi0hOcTVx+1k0KBP3H9NwXpJpeIww3s+Mut
-         jyuWKneyuZITwF3xrYS7BkWqFCE3BszmL7W0XFYuQZGp/sh73vzyLXFVj+n3AkVR3ENv
-         WMD0CwNZLg9QIpCLflWj4ScXJOpnfx1ABZh/9k4w5o/AXYFwvWqwN1eWB2iJCnCuNvNu
-         fUmVMShYbXnxKmLnOg0TKClikPl9MMUopbimx5MNMyQh2yEmu7jHwNn8RybV9PUbIBql
-         XPow8PiQXNX6tJ51BXs0TInLi/4XuGGyezgyw0vbu9n8KaH2NqVA2dQ1S+ssAlNcLc2Q
-         sVqw==
-X-Forwarded-Encrypted: i=1; AJvYcCX7kxndysex1sgCzG7uHVr7637D1KrA5K6NiaOiFwbjsnlgw7Scj66ST6SD8krgBvMMo+0CwNi8Sm/x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLLe7jQKb2NiR4FSc3UqmjFj7NMm3jzbRftM6fClWUdZJ7cwwO
-	7sHe/JjQ67cxa8LrOXjUeNJM5wBdn/dnWuBWv5gR4yMvNyNPPO9WPM7fbdN7Cw==
-X-Gm-Gg: ASbGncthUH5GA7v3K4+UVLDtxmqxSDukxTkPvcyMhQ4RBRnGZnpJO/IhVeUlHWxIVnc
-	s6vzm7Lax0A2bwaIEqeORbe9c26v5IhMp437pTXsotJ4B+ncWAJEtQmSE/vi3xycn2dqv+oQTW6
-	wQeuD0LRGB8WaWW7wrs7sMLkAEQJuR5BSaSa6zZoO+rrO1bwdxJ9fx6ZY2noAO1Lj2qzGAmBQi+
-	lyxIuGMd65Izutx2y1ghwfMVU9Xqoc4vyAQP63nWMz4s+AG7QiT5wSPAw3EOsWO9Pt9rcEc0KsQ
-	AiPlZHK/jLwo+kJsvOckz6/cCX4aHo5eVqC0PAY6PUi9zihiZV6L65+fkw==
-X-Google-Smtp-Source: AGHT+IFZ1sPNmaZjEnkFBJSC1y6vVqNxTyYxAlWCTyKAq2HxMMXQRix7XE7+1NKWOhgF4kTaKYvZgA==
-X-Received: by 2002:a17:903:910:b0:220:d79f:60f1 with SMTP id d9443c01a7336-22df3570af0mr7401885ad.42.1745954154898;
-        Tue, 29 Apr 2025 12:15:54 -0700 (PDT)
-Received: from [172.16.116.85] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db5219cccsm107171865ad.243.2025.04.29.12.15.47
+        bh=ztvL+716FaAHmBwWQZbrSXde86/hu3vO5ILRMzMnPzo=;
+        b=AN+8t80fiKm/bb9B16Zr1LXZfyfEuPtXu2Cp++mJru3reV8AwFVXDXtIflP6i4ON1Z
+         a1gZqUHzwJNo8BgcV6lACPpiDbHD2L4fZL//4afiJ2IKAuyvWuutKYQe3u8Ywt41KGyq
+         rOldfvbBz42qMFfTLGKV+UbhcdyetUjQsYbv9FlT41FExHcNg3JDxDiTlexDpXq22+BV
+         GqHZzSlAIOMPgTIZ6j327i8W17a4qzjhfuytUynzatxSMVSbC8p+Xwe6oCBMi9Q91zOs
+         3lHUUK9NKXKXV1rUKFJm0O+20bSCMu2CONQ1rGzzgKcYm3iw75DbeDLe3Lxu2qjXCq4q
+         XtqA==
+X-Forwarded-Encrypted: i=1; AJvYcCV4KFuVAAHerd6dn/QcZty0azNEnvSGJghsp6okIaNc1ty7cEYxalHf9yaNf8z6VHLR3/mfO5UwFYZb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCu+sHifc9ico6FX1xB4GnCPKRHivJgFxVhZAPTSTBtqQ2JFue
+	PA/YxC5+eO5BchQEYWKC1TYFxkXz+x9/Y0Hgylau0tnWfU9ZfG8mNXDQHHx8fKw=
+X-Gm-Gg: ASbGncsTifx5zwtHKVB5mFNVW5DPXhPYZdU/ycLuq54Y0Rcka4FA1RGD35lsWRJupNU
+	Gp89qkaC88kd+2B5lSsuiQ2mTQ+Eb8QmN1cYJGz8QTq8hUQODMjLT1uLtJE3sqi52yLS4MMaRFx
+	ZWhaaWh5Qh5ZfX/CXB4/MIljJrmCd4rv3dlcxDOTNGTJr/6zaAvwxfqdtJyQ+c/boTK5M54WyHK
+	PTCuBzxFED26l+UKno51DFddX/SqbXoPiyFO2Seuhay/VBqwnW/WXZG95kVjH0jmYcNeeVt/0sS
+	jSxaTiVHlPsoFl8wsWnHjkuWQLLOK17JQIY3DovwSIPaiSJN1U0fgSfMuU194nnLEG4n8snzoXw
+	srApqkLMcpTJX+R4Daw==
+X-Google-Smtp-Source: AGHT+IGvZemKy7Uu0DSwIzSG0ACYUFe1P1N94h9CcheOZQJFt2fLRO+XJODUBk7ZcGahCzF4hFasJg==
+X-Received: by 2002:a05:6830:670c:b0:72b:9d2d:804 with SMTP id 46e09a7af769-731c0ab48e8mr311490a34.26.1745954156996;
+        Tue, 29 Apr 2025 12:15:56 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6? ([2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7308b2ef3e5sm440104a34.46.2025.04.29.12.15.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 12:15:54 -0700 (PDT)
-Message-ID: <3a23228b-97fc-4ab9-9b0b-f84d74d11327@beagleboard.org>
-Date: Wed, 30 Apr 2025 00:45:35 +0530
+        Tue, 29 Apr 2025 12:15:55 -0700 (PDT)
+Message-ID: <27e40c72-7c3a-4595-8647-5fd1f428ea9f@baylibre.com>
+Date: Tue, 29 Apr 2025 14:15:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,347 +82,557 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] Add new `export-symbols` node
-To: Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>,
- Robert Nelson <robertcnelson@beagleboard.org>, nenad.marinkovic@mikroe.com,
- Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Robert Nelson <robertcnelson@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>,
- David Gibson <david@gibson.dropbear.id.au>,
- Herve Codina <herve.codina@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Grant Likely <grant.likely@secretlab.ca>, Dhruva Gole <d-gole@ti.com>
-Cc: devicetree-spec@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
+Subject: Re: [PATCH v3 11/11] iio: adc: ad4080: add driver support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250425112538.59792-1-antoniu.miclaus@analog.com>
+ <20250425112538.59792-12-antoniu.miclaus@analog.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250425112538.59792-12-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/11/25 13:30, Ayush Singh wrote:
-
-> `export-symbols` is designed to be a local replacement of global
-> `__symbols__` allowing nodes to define aliases to nodes in a tree, which
-> will take precedence over the aliases defined in the global `__symbols__`.
->
-> Having a way to allow node local aliases helps in usecases such as
-> connectors and addon-boards, by allowing decoupling of
-> overlays/devicetree nodes of addon-board from the base connector.
->
-> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+On 4/25/25 6:25 AM, Antoniu Miclaus wrote:
+> Add support for AD4080 high-speed, low noise, low distortion,
+> 20-bit, Easy Drive, successive approximation register (SAR)
+> analog-to-digital converter (ADC).
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
-> This patch series follows the initial RFC [9] sent a few weeks ago. I
-> will be reiterating the RFC here for anyone who might be seeing this the
-> first time, since there was not much feedback in that thread.
->
-> The patch series adds export-symbols to base devicetree specification to
-> allow for support of base board + runtime connector setups using devicetree
-> overlays. The idea was actually proposed in the linux kernel mailing list
-> by Herve Codina [0] with the devicetree schema and linux kernel
-> implementation. Initial implementations for devicetree compiler [1] and
-> fdtoverlay [2] have also been sent to the mailing lists.
->
-> Introduction
-> *************
->
-> There are a lot of setups, especially in embedded systems that consist of
-> a base connector and addon boards that can be connected to this connector.
-> Here are some examples:
-> - MikroBus
-> - GE SUNH
-> - BeagleCapes, etc
->
-> Some of these connectors have runtime detection capabilities (GE SUNH),
-> while some do not (MikroBUS without 1-wire EEPROM). The goal is to decouple
-> the connector on base device tree with the overlay for addon boards. This
-> will allow having 1 overlay for each board that would work with connector
-> devicetree on any board.
->
-> Linux kernel already provides APIs to apply overlays at specific nodes
-> [10], and I have a patch series to have similar functionality in
-> fdtoverlay [11]. This is to allow writing overlays for addon-boards,
-> that will be expected to be applied to the connector nodes, instead of
-> on the global tree.
->
-> One of the issue was referencing resources available on the base board
-> device tree from the addon overlay device tree. Using a nexus node [3]
-> helps decoupling some resources like GPIO and PWM from the overlay.
-> However, that still leaves things like pinmux, i2c adapter, etc.
->
-> The `export-symbols` node solves this issue.
->
-> The idea of export-symbols is to have something similar to the global
-> `__symbols__` node but local to a specific node. Symbols listed in this
-> export-symbols are local and visible only when an overlay is applied on a
-> node having an export-symbols subnode. This allows specifying the
-> phandles to i2c adapter, pinmux, etc, per connector. Since the names
-> used for these phandles for each connector can be standardized, it would
-> allow having the same addon-board overaly work for connectors on
-> different boards (or multiple connectors on the same board).
->
-> Note: `export-symbols` properties differ from __symbols__ since they are
-> phandles, not path references. This is much easier to work with in
-> overlays as described in [7].
->
-> Using export-symbols, our example becomes:
->
->      soc_gpio: gpio-controller {
->        #gpio-cells = <2>;
->      };
->
->      connector1: connector1 {
->      	/*
->           * Nexus node for the GPIO available on the connector.
->           * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
->           * controller
->           */
->          #gpio-cells = <2>;
->          gpio-map = <0 0 &soc_gpio 12 0>;
->          gpio-map-mask = <0xf 0x0>;
->          gpio-map-pass-thru = <0x0 0xf>;
-> 	
->          export-symbols {
-> 	    GPIO_CONNECTOR = <&connector1>;
-> 	    PIN_33_GPIO_PINMUX = <&p1_33_gpio>;
->          };
->      };
->
-> Our overlay can use thi
->
->     leds {
->        pinctrl-names = "default";
->        pinctrl-0 = <&PIN_33_GPIO_PINMUX>;
->
->        led-1 {
->            gpios = <&GPIO_CONNECTOR 33 GPIO_ACTIVE_HIGH>;
->        };
->     };
->
-> It used the P1_33 pin in the connector it is applied on.
->
-> A board with two connectors can be described with:
->
->      connector1: connector1 {
->          ...
->          export-symbols {
-> 	    GPIO_CONNECTOR = <&connector1>;
-> 	    PIN_33_GPIO_PINMUX = <&p1_33_gpio>;
->          };
->      };
->
->      connector2: connector2 {
->          ...
->          export-symbols {
-> 	    GPIO_CONNECTOR = <&connector2>;
-> 	    PIN_33_GPIO_PINMUX = <&p3_33_gpio>;
->          };
->      };
->
-> In that case, the same overlay with unresolved `GPIO_CONNECTOR` and
-> `PIN_33_GPIO_PINMUX` symbol can be applied on both connectors and the
-> correct symbol resolution will be done.
->
-> Alternatives
-> *************
->
-> Some alternative approaches that were considered:
->
-> 1. Using aliases.
->
->     Currently, it is not possible to update aliases in device tree overlays.
->     I sent a patch a few weeks ago to add this support [4]. However, as was
->     outlined by Rob, this can break existing drivers that used the unused
->     indexes for devices not present in the aliases list.
->
-> 2. Add support for phandles in `__symbols__`
->
->     This has been discussed in the following patch series [5]. However,
->     since there is no way to distinguish between strings and phandles in
->     devicetree (everything is bytestring), the type guessing is awkward.
->     Also, the export-symbol solution is much more flexible than extending
->     the old `__symbols__` node.
->
-> 3. Add support for path reference resolution to overlays
->
->     An approach using `__symbols__` was proposed by Andrew Davis [6].
->     However, currently, it is difficult to support path reference resolution
->     support to overlays [7]. This limitation makes it difficult to support
->     connector chaining (MikroBUS -> Grove -> Addon board), which is possible
->     in some connectors.
->
-> Some other benefits to export-symbols
-> **************************************
->
-> 1. No need to enable generation of all symbols in base devicetree
->     Since the nodes used by connector are referenced by properties in
->     `export-symbols`, the symbols table entries for these nodes will be
->     generated, even if symbols generation is not enabled globally. This
->     can help save space, specially in constrained devices.
->
-> 2. Enables scoping symbol resolution
->     Does not pollute the global symbols, and can be useful outside addon
->     board setups.
->
-> Why add to specification?
-> **************************
->
-> I would like the ability to share the addon board overlays with
-> ZephyrRTOS, which also has boards that support MikroBUS (like BeagleConnect
-> Freedom [8]) and U-Boot. So it would make more sense if this node is part
-> of the specification instead of linux specific.
->
-> [0]: https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
-> [1]: https://lore.kernel.org/all/20250110-export-symbols-v1-1-b6213fcd6c82@beagleboard.org/
-> [2]: https://lore.kernel.org/devicetree-compiler/86a7a08c-d81c-43d4-99fb-d0c4e9777601@beagleboard.org/T/#t
-> [3] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
-> [4]: https://lore.kernel.org/all/20241110-of-alias-v2-0-16da9844a93e@beagleboard.org/T/#t
-> [5]: https://lore.kernel.org/devicetree-compiler/44bfc9b3-8282-4cc7-8d9a-7292cac663ef@ti.com/T/#mbbc181b0ef394b85b76b2024d7e209ebe70f7003
-> [6]: https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
-> [7]: https://lore.kernel.org/devicetree-compiler/6b2dba90-3c52-4933-88f3-b47f96dc7710@beagleboard.org/T/#m8259c8754f680b9da7b91f7b7dd89f10da91d8ed
-> [8]: https://www.beagleboard.org/boards/beagleconnect-freedom
-> [9]: https://lore.kernel.org/devicetree-spec/edaa1378-c871-4c55-ab99-21ef6656f35a@beagleboard.org/T/#mc339a0ae0c886ca46da0f7bb679518fa8b0b3007
-> [10]: https://docs.kernel.org/devicetree/kernel-api.html#c.of_overlay_fdt_apply
-> [11]: https://lore.kernel.org/devicetree-compiler/20250313-fdtoverlay-target-v1-0-dd5924e12bd3@beagleboard.org/T/#t
->
-> Best Regards,
-> Ayush Singh
-> ---
-> Changes in v3:
-> - Add trailer
-> - CC linux-devicetree
-> - Link to v2: https://lore.kernel.org/r/20250323-export-symbols-v2-1-f0ae1748b244@beagleboard.org
->
-> Changes in v2:
-> - Improve examples. More focus on export-symbols and less on nexus nodes
-> - Fix typo.
-> - Link to v1: https://lore.kernel.org/r/20250225-export-symbols-v1-1-693049e3e187@beagleboard.org
-> ---
->   source/chapter3-devicenodes.rst | 89 +++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 89 insertions(+)
->
-> diff --git a/source/chapter3-devicenodes.rst b/source/chapter3-devicenodes.rst
-> index 8080321d6e60d6b1e86c81af86c6850246a0223b..2c3bbc2c81bacd71fcf3b389a31237344f995ba7 100644
-> --- a/source/chapter3-devicenodes.rst
-> +++ b/source/chapter3-devicenodes.rst
-> @@ -988,3 +988,92 @@ each with their own on-chip L2 and a shared L3.
->               };
->           };
->       };
-> +
-> +``*/export-symbols`` node
-> +-------------------------
-> +A devicetree node may have an export-symbols child node
-> +(`*/export-symbols`) that defines one or more export-symbol properties.
-> +
-> +Each property of the `export-symbols` node defines an alias local to it's
-> +parent. The property name specifies the alias name. The property value
-> +specifies the phandle to a node in the devicetree. For example, the
-> +property ``serial0 = <&main_uart0>`` defines ``serial0`` as the local alias
-> +to ``main_uart0``.
-> +
-> +Alias names shall be lowercase text strings of 1 to 31 characters from the
-> +following set of characters.
-> +
-> +.. tabularcolumns:: | c p{8cm} |
-> +.. table:: Valid characters for alias names
-> +
-> +   ========= ================
-> +   Character Description
-> +   ========= ================
-> +   0-9       digit
-> +   a-z       lowercase letter
-> +   \-        dash
-> +   ========= ================
-> +
-> +An alias value is a phandle to a node in the devicetree.
-> +
-> +Resolution of nodes using `export-symbols` follows the following rules
-> +depending on the context:
-> +
-> +No target involved
-> +~~~~~~~~~~~~~~~~~~~
-> +Properties of parent node use symbols from ``export-symbols``, but none of
-> +the subnodes will be able to use them. For example, the following code will
-> +resolve properly:
-> +
-> +.. code-block:: dts
-> +
-> +    / {
-> +        parent {
-> +            led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
-> +
-> +            export-symbols {
-> +                local_gpio = <&gpio0>;
-> +            };
-> +        };
-> +    }
-> +
-> +However, the code below is not valid:
-> +
-> +.. code-block:: dts
-> +
-> +    / {
-> +        parent {
-> +            child {
-> +                /* child node cannot access export-symbols */
-> +                led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
-> +            };
-> +
-> +            export-symbols {
-> +                local_gpio = <&gpio0>;
-> +            };
-> +        };
-> +    }
-> +
-> +Target is used in the base devicetree or overlays
-> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> +Any node/subnode property is free to use symbols from ``export-symbols``
-> +defined in the parent. To provide a concrete exampe, the following is
-> +valid:
-> +
-> +.. code-block:: dts
-> +
-> +    / {
-> +        parent {
-> +            export-symbols {
-> +                local_gpio = <&gpio0>;
-> +            };
-> +        };
-> +    }
-> +
-> +    &parent {
-> +        led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
-> +
-> +        child {
-> +            led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
->
-> ---
-> base-commit: 5688e1c0b961d2ca5a32e3b624a9f4a9b433184f
-> change-id: 20250225-export-symbols-3524f124cd93
->
-> Best regards,
 
+...
 
-I have a very basic pocketbeagle2 connector driver with overlay for 
-techlab cape [0]. It only uses export-symbols for pinmuxes for now, but 
-might provide an example of use outside of nexus nodes.
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/units.h>
+> +
+> +#include <linux/iio/backend.h>
+> +#include <linux/iio/iio.h>
+> +
+> +#include <linux/clk.h>
 
+Should be grouped with the others.
 
-[0]: https://github.com/Ayush1325/linux/tree/b4/beagle-cape
+> +
+> +/* Register Definition */
 
+...
 
-Best Regards,
+> +
+> +enum ad4080_filter_type {
+> +	FILTER_DISABLE,
+> +	SINC_1,
+> +	SINC_5,
+> +	SINC_5_COMP
+> +};
+> +
+> +static const unsigned int ad4080_scale_table[][2] = {
+> +	{ 6000, 0},
+> +};
+> +
+> +static const char *const ad4080_filter_type_iio_enum[] = {
 
-Ayush Singh
+So far, only "sinc5" is documented in Documentation/ABI/testing/sysfs-bus-iio
+so we will to add the rest there.
 
+> +	[FILTER_DISABLE]   = "disabled",
+
+IMHO, "disabled" doesn't make sense as a "type". I would call it "none" instead.
+
+> +	[SINC_1]           = "sinc1",
+> +	[SINC_5]           = "sinc5",
+> +	[SINC_5_COMP]      = "sinc5_plus_compensation",
+
+To follow the existing naming patterns it would make sense to call this one:
+
+"sinc5+compensation" - Sinc5 + ???
+
+Or even more generic like the existing sinc3+pfX options:
+
+"sinc5+pf1" - Sinc5 + device specific Post Filter 1.
+
+> +};
+> +
+> +static const int ad4080_dec_rate_iio_enum[] = {
+> +	2, 4, 8, 16, 32, 64, 128, 256, 512, 1024,
+> +};
+
+The datasheet says that 512 and 1024 only apply to sinc1 and that for
+sinc5+compensation, the values are N * 2. And I would assume with the filter
+disabled, the only option would be 1.
+
+So I think we need 4 different arrays for this with the selection depending
+on the filter type.
+
+> +
+> +static const char * const ad4080_power_supplies[] = {
+> +	"vdd33", "vdd11", "vddldo", "iovdd", "vrefin",
+> +};
+
+From the datasheet, it sounds like VDDLDO is tecnically optional. Given the
+way regulators work in Linux though, I guess this is OK for simplicity.
+
+> +
+> +struct ad4080_chip_info {
+> +	const char *name;
+> +	unsigned int product_id;
+> +	int num_scales;
+> +	const unsigned int (*scale_table)[2];
+> +	const struct iio_chan_spec *channels;
+> +	unsigned int num_channels;
+> +};
+
+I guess this is preparing the driver to support more than one chip?
+
+> +
+> +struct ad4080_state {
+> +	struct spi_device		*spi;
+
+It looks like this is only ever used to get &spi->dev. We could drop this and
+get dev from regmap instead.
+
+> +	struct regmap			*regmap;
+> +	struct clk			*clk;
+> +	struct iio_backend		*back;
+> +	const struct ad4080_chip_info	*info;
+> +	/*
+> +	 * Synchronize access to members the of driver state, and ensure
+> +	 * atomicity of consecutive regmap operations.
+> +	 */
+> +	struct mutex			lock;
+> +	unsigned int			num_lanes;
+> +	unsigned int			dec_rate;
+> +	enum ad4080_filter_type		filter_type;
+> +	bool				lvds_cnv_en;
+> +};
+> +
+> +static const struct regmap_config ad4080_regmap_config = {
+> +	.reg_bits = 16,
+> +	.val_bits = 8,
+> +	.read_flag_mask = BIT(7),
+> +	.max_register = 0x29,
+> +};
+> +
+> +static int ad4080_reg_access(struct iio_dev *indio_dev, unsigned int reg,
+> +			     unsigned int writeval, unsigned int *readval)
+> +{
+> +	struct ad4080_state *st = iio_priv(indio_dev);
+> +
+
+Missing guard(mutex)(&st->lock); ?
+
+> +	if (readval)
+> +		return regmap_read(st->regmap, reg, readval);
+> +
+> +	return regmap_write(st->regmap, reg, writeval);
+> +}
+> +
+> +static int ad4080_get_scale(struct ad4080_state *st, int *val, int *val2)
+> +{
+> +	unsigned int tmp;
+> +
+> +	tmp = (st->info->scale_table[0][0] * 1000000ULL) >>
+> +		    st->info->channels[0].scan_type.realbits;
+> +	*val = tmp / 1000000;
+> +	*val2 = tmp % 1000000;
+> +
+> +	return IIO_VAL_INT_PLUS_NANO;
+
+Seems like this could be simplifed by using IIO_VAL_FRACTIONAL_LOG2 instead.
+
+> +}
+> +
+> +static unsigned int ad4080_get_dec_rate(struct iio_dev *dev,
+> +					const struct iio_chan_spec *chan)
+> +{
+> +	struct ad4080_state *st = iio_priv(dev);
+> +	int ret;
+> +	unsigned int data;
+> +
+
+Missing guard(mutex)(&st->lock); ?
+
+> +	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return (1 << (FIELD_GET(AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK, data) + 1));
+
+nit: doen't need outermost ().
+
+> +}
+> +
+> +static int ad4080_set_dec_rate(struct iio_dev *dev,
+> +			       const struct iio_chan_spec *chan,
+> +			       unsigned int mode)
+> +{
+> +	struct ad4080_state *st = iio_priv(dev);
+> +	int ret;
+> +
+
+Don't we need to check for < 2 as well?
+
+> +	if (st->filter_type >= SINC_5 && mode >= 512)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&st->lock);
+> +	ret = regmap_update_bits(st->regmap, AD4080_REG_FILTER_CONFIG,
+> +				 AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
+> +				 FIELD_PREP(AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
+> +					    (ilog2(mode) - 1)));
+
+Otherwise ilog2(mode) - 1 could be < 0.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->dec_rate = mode;
+
+This saves the value the user entered, not what the hardware is actually doing.
+It should be saving the power of 2 value instead.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad4080_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan,
+> +			   int *val, int *val2, long m)
+> +{
+> +	struct ad4080_state *st = iio_priv(indio_dev);
+> +	int dec_rate;
+> +
+> +	switch (m) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return ad4080_get_scale(st, val, val2);
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		if (st->filter_type == SINC_5_COMP)
+> +			dec_rate = st->dec_rate * 2;
+> +		else
+> +			dec_rate = st->dec_rate;
+
+As a concequence of the above, this will return incorrect information if the
+user didn't enter an exact value.
+
+> +		if (st->filter_type)
+> +			*val = DIV_ROUND_CLOSEST(clk_get_rate(st->clk), dec_rate);
+> +		else
+> +			*val = clk_get_rate(st->clk);
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		*val = ad4080_get_dec_rate(indio_dev, chan);
+> +		return IIO_VAL_INT;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int ad4080_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int val, int val2, long mask)
+> +{
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return -EINVAL;
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		return -EINVAL;
+
+Can leave these 2 out and just let them fall through to the default.
+
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		return ad4080_set_dec_rate(indio_dev, chan, val);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int ad4080_lvds_sync_write(struct ad4080_state *st)
+> +{
+> +	unsigned int timeout = 100;
+> +	bool sync_en;
+> +	int ret;
+
+nit: some comments in this function would be helpful to readers not familiar
+with the part. 
+
+> +
+> +	guard(mutex)(&st->lock);
+> +	if (st->num_lanes == 1)
+> +		ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +				   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
+> +				   AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN_MSK);
+> +	else
+> +		ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +				   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
+> +				   AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN_MSK |
+> +				   AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iio_backend_data_alignment_enable(st->back);
+> +	if (ret)
+> +		return ret;
+> +
+> +	do {
+> +		ret = iio_backend_sync_status_get(st->back, &sync_en);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (!sync_en)
+> +			dev_dbg(&st->spi->dev, "Not Locked: Running Bit Slip\n");
+> +
+> +		fsleep(500);
+> +	} while (--timeout && !sync_en);
+> +
+> +	if (timeout) {
+> +		dev_info(&st->spi->dev, "Success: Pattern correct and Locked!\n");
+> +		if (st->num_lanes == 1)
+> +			return regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +					    AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK);
+> +		else
+> +			return regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +					    AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
+> +					    AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
+> +	} else {
+> +		dev_info(&st->spi->dev, "LVDS Sync Timeout.\n");
+> +		if (st->num_lanes == 1) {
+> +			ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +					   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK);
+> +			if (ret)
+> +				return ret;
+> +		} else {
+> +			ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
+> +					   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
+> +					   AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+> +		return -ETIMEDOUT;
+> +	}
+> +}
+> +
+> +static ssize_t ad4080_get_filter_type(struct iio_dev *dev,
+> +				      const struct iio_chan_spec *chan)
+> +{
+> +	struct ad4080_state *st = iio_priv(dev);
+> +	unsigned int data;
+> +	int ret;
+> +
+
+Missing guard(mutex)(&st->lock); ?
+
+> +	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return FIELD_GET(AD4080_FILTER_CONFIG_FILTER_SEL_MSK, data);
+> +}
+> +
+
+...
+
+> +static struct iio_chan_spec_ext_info ad4080_ext_info[] = {
+> +	IIO_ENUM("filter_type", IIO_SHARED_BY_ALL, &ad4080_filter_type_enum),
+> +	IIO_ENUM_AVAILABLE("filter_type", IIO_SHARED_BY_ALL,
+> +			   &ad4080_filter_type_enum),
+> +	{ }
+> +};
+> +
+> +static const struct iio_chan_spec ad4080_channels[] = {
+
+Array with one element doesn't make sense. It can just be a single struct.
+
+> +	{
+> +		.type = IIO_VOLTAGE,
+> +		.indexed = 1,
+> +		.channel = 0,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |
+> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
+> +		.info_mask_shared_by_all_available =
+> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
+> +		.ext_info = ad4080_ext_info,
+> +		.scan_index = 0,
+> +		.scan_type = {
+> +			.sign = 's',
+> +			.realbits = 20,
+> +			.storagebits = 32,
+> +			.shift = 0,
+> +		},
+> +	}
+> +};
+> +
+> +static const struct ad4080_chip_info ad4080_chip_info = {
+> +	.name = "AD4080",
+> +	.product_id = AD4080_CHIP_ID,
+> +	.scale_table = ad4080_scale_table,
+> +	.num_scales = ARRAY_SIZE(ad4080_scale_table),
+> +	.num_channels = 1,
+> +	.channels = ad4080_channels,
+> +};
+> +
+> +static int ad4080_setup(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4080_state *st = iio_priv(indio_dev);
+> +	unsigned int id;
+> +	int ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
+> +			   AD4080_INTERFACE_CONFIG_A_SW_RESET_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
+> +			   AD4080_INTERFACE_CONFIG_A_SDO_ENABLE_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(st->regmap, AD4080_REG_CHIP_TYPE, &id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (id != AD4080_CHIP_ID)
+> +		dev_info(&st->spi->dev, "Unrecognized CHIP_ID 0x%X\n", id);
+> +
+> +	ret = regmap_set_bits(st->regmap, AD4080_REG_GPIO_CONFIG_A,
+> +			      AD4080_GPIO_CONFIG_A_GPO_1_EN_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4080_REG_GPIO_CONFIG_B,
+> +			   FIELD_PREP(AD4080_GPIO_CONFIG_B_GPIO_1_SEL, 3));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iio_backend_num_lanes_set(st->back, st->num_lanes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!st->lvds_cnv_en)
+> +		return 0;
+> +
+> +	if (st->num_lanes) {
+
+Since the defualt is st->num_lanes = 1, it seems like this would always be
+true, so we can leave out the "if".
+
+> +		ret = regmap_update_bits(st->regmap,
+> +					 AD4080_REG_ADC_DATA_INTF_CONFIG_B,
+> +					 AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
+> +					 FIELD_PREP(AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
+> +						    7));
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = regmap_set_bits(st->regmap,
+> +			      AD4080_REG_ADC_DATA_INTF_CONFIG_B,
+> +			      AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_EN_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return ad4080_lvds_sync_write(st);
+> +}
+> +
+> +static void ad4080_properties_parse(struct ad4080_state *st)
+> +{
+> +	st->lvds_cnv_en = device_property_read_bool(&st->spi->dev,
+> +						    "adi,lvds-cnv-enable");
+> +
+> +	st->num_lanes = 1;
+> +	device_property_read_u32(&st->spi->dev, "adi,num_lanes", &st->num_lanes);
+
+nit: odd that other property names use "-" but this one uses "_". Typical would
+be "adi,num-lanes".
+
+> +}
+> +
+> +static int ad4080_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct device *dev = &spi->dev;
+> +	struct ad4080_state *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +
+> +	ret = devm_regulator_bulk_get_enable(dev,
+> +					     ARRAY_SIZE(ad4080_power_supplies),
+> +					     ad4080_power_supplies);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get and enable supplies\n");
+> +
+> +	st->regmap = devm_regmap_init_spi(spi, &ad4080_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return PTR_ERR(st->regmap);
+> +
+> +	st->info = spi_get_device_match_data(spi);
+> +	if (!st->info)
+> +		return -ENODEV;
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->info = spi_get_device_match_data(spi);
+> +	if (!st->info)
+> +		return -ENODEV;
+
+reduandant assignement
+
+> +
+> +	indio_dev->name = st->info->name;
+> +	indio_dev->channels = st->info->channels;
+> +	indio_dev->num_channels = st->info->num_channels;
+> +	indio_dev->info = &ad4080_iio_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+
+There is not IIO_CHAN_INFO_RAW (or _PROCESSED), so INDIO_DIRECT_MODE does not
+apply.
+
+> +
+> +	ad4080_properties_parse(st);
+> +
+> +	st->clk = devm_clk_get_enabled(&spi->dev, "cnv");
+> +	if (IS_ERR(st->clk))
+> +		return PTR_ERR(st->clk);
+> +
+> +	st->back = devm_iio_backend_get(dev, NULL);
+> +	if (IS_ERR(st->back))
+> +		return PTR_ERR(st->back);
+> +
+> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_iio_backend_enable(dev, st->back);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad4080_setup(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
 
