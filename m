@@ -1,81 +1,122 @@
-Return-Path: <devicetree+bounces-171827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D93FAA051F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:01:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 717A1AA052F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:06:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5DDA482517
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:01:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5B58189BBF1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD04279324;
-	Tue, 29 Apr 2025 08:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5481027A104;
+	Tue, 29 Apr 2025 08:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B13+zFI2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DncP7Ez0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2CE274670;
-	Tue, 29 Apr 2025 08:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D26230BDB;
+	Tue, 29 Apr 2025 08:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745913707; cv=none; b=KoQpuf+Dif5pm4A9nokn+HRGMTGXhy7wZ5Gv5DYOTRDaHwNR13knV/lycxQb0sRpEz7S+jFJ++7nX3Y2vvQ+7eHNuTuGpYEsHYShg0eeLpowtXHtvOL9DUdt57TKbZdbPD7FJRjsrizSb1prVL2tzRz5gJSJNAt6XfpNBBQ1KoE=
+	t=1745913967; cv=none; b=IxNe87ikB1h3xFlLgKbg4gzXV9IrPrIIh8vhA6mgLycXnTQIZHJJA682spLbmJl+p23JzPhwW5vblECePNzz4TUDPvrkmy9HfWFyLKsujTmOEi1bVCevpVmBWtW/4YpKUTXwTdLHGTpej5JUp3pRrt3emmX3U5LS7lpAf48LBZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745913707; c=relaxed/simple;
-	bh=x9VoDbvoqvFqnT/X3scRFhes5XAkMzFvSdG4jDOS5BQ=;
+	s=arc-20240116; t=1745913967; c=relaxed/simple;
+	bh=XJbOu8oe6MHnFoBGQc7cHTHtXhGx4hB36GKy8vSOICk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qPWAWyOru13Xr/VvhCgDXC5TL7FvKCGMwe7rez2oox2Ij+XO3AgDafSEMtQTR1P/GBY5piPAb5zVim+nTR+v/EhNr2giyLwYHPJXJpZQB/wCnQlJoZ9+RR5MltYFF7aJV7a2/a9THAW0m8XOSNcMjG9r2wHkcZlRHs5LkIYnbIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B13+zFI2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EE16C4CEEA;
-	Tue, 29 Apr 2025 08:01:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745913706;
-	bh=x9VoDbvoqvFqnT/X3scRFhes5XAkMzFvSdG4jDOS5BQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B13+zFI2FLbAV3uk06BxtWvdLY89xXuV7vQKdNdEkVH7XUeFXyiLxbQpXJlqA/0ly
-	 2Hik6VuJJeY/+vfUU7m8h4esoK3NIHPnFePj8OjfM83HdzHVROhmqUE+ou0kk4orYu
-	 46ApDRG4grEmAZkq+AE33xs37iMb+0s8P8Rq4pk9H99jfl5/Es+tBv2ovlWJ0NCmsM
-	 nlbvYMAFnzwbtJf2TSxbVCR/VlaHC/p2hAkwv1F/7ucTpZDN6GObDmVGO/Sw9ktbO7
-	 A/ZsMc8oEz7ofhqY1pRJrSPZ8W45HuGOAd/9ax0HyOkEzGvj7BykExfN3iQAmlf2OZ
-	 Kk+ok18Q5ormA==
-Date: Tue, 29 Apr 2025 10:01:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, tudor.ambarus@linaro.org, 
-	andre.draszik@linaro.org, willmcvicker@google.com, kernel-team@android.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: soc: samsung: exynos-pmu: gs101: add
- google,pmu-intr-gen phandle
-Message-ID: <20250429-frigatebird-of-unexpected-feminism-aecb7e@kuoka>
-References: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-0-1bcc44fb1d55@linaro.org>
- <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-2-1bcc44fb1d55@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=THi9X+z643gKRdotf0+ZSTX97C7YpCaeylEnE5p6l3ED9EeejbJtU9EPBdThVD4WScoQ/rrrgIHIHIKQ1dg2Pbb3FuJ3avWLhmDnvc6DDqclq5m7otiPgN0AQOYyzXKDxL3HHG8RJ3iMYXYcyUm9xAHkuxzP9lnPV41aZ87ab3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DncP7Ez0; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745913962; x=1777449962;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XJbOu8oe6MHnFoBGQc7cHTHtXhGx4hB36GKy8vSOICk=;
+  b=DncP7Ez0AcRr4WQ9aFrvdFs7nNl8rWvDzbQFZyzIhwr7AUIB3VBVXtHp
+   z3LRuytVcWVW8Nt0rLtEd+/l0awWz5c6X6HFkMNLe4Img8Iw4rrNwMNe0
+   xo21DkKVsT1HwMEnsNzsf7K15XPFzwc86RQRp6ReViXapVn5N6gQwZx/Z
+   QhDof6DVyZXMWytmePAcvdRRRP9gamFBIQ2eHCVVbFFK11374vhFC2pSp
+   /D6ApNNAmh+walnfFGDLwXmCwodEqQsyAUqk5LR2Pa40jxHQTb3a8cDUc
+   s6UgOJzUJyqDZ7VHUghSl5WHJ310s1RaDeKmqa8/AmTWqqBchj/Dkn76a
+   A==;
+X-CSE-ConnectionGUID: 1VUpMUMKRj6wp32414LRlw==
+X-CSE-MsgGUID: iqiyhQWPSFGI7wuOjeaJpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="47537527"
+X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; 
+   d="scan'208";a="47537527"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2025 01:05:48 -0700
+X-CSE-ConnectionGUID: 98GuK9QCRYSrVo/7tNEo5g==
+X-CSE-MsgGUID: WIUxjBp3S2eSXWSWqrFQiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; 
+   d="scan'208";a="164699249"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 29 Apr 2025 01:05:44 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u9fyI-0000ZP-08;
+	Tue, 29 Apr 2025 08:05:42 +0000
+Date: Tue, 29 Apr 2025 16:05:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sai Sree Kartheek Adivi <s-adivi@ti.com>, peter.ujfalusi@gmail.com,
+	vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	praneeth@ti.com, vigneshr@ti.com, u-kumar1@ti.com, a-chavda@ti.com
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 6/8] dmaengine: ti: New driver for K3 BCDMA_V2
+Message-ID: <202504291527.tCMC8UGh-lkp@intel.com>
+References: <20250428072032.946008-7-s-adivi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-2-1bcc44fb1d55@linaro.org>
+In-Reply-To: <20250428072032.946008-7-s-adivi@ti.com>
 
-On Tue, Apr 29, 2025 at 07:19:38AM GMT, Peter Griffin wrote:
-> gs101 requires access to the pmu interrupt generation register region
-> which is exposed as a syscon. Update the exynos-pmu bindings documentation
-> to reflect this.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  .../devicetree/bindings/soc/samsung/exynos-pmu.yaml       | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+Hi Sai,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+kernel test robot noticed the following build warnings:
 
-Best regards,
-Krzysztof
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on linus/master v6.15-rc4]
+[cannot apply to next-20250428]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Sai-Sree-Kartheek-Adivi/dt-bindings-dma-ti-Add-document-for-K3-BCDMA-V2/20250428-152616
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20250428072032.946008-7-s-adivi%40ti.com
+patch subject: [PATCH 6/8] dmaengine: ti: New driver for K3 BCDMA_V2
+config: arm64-kismet-CONFIG_TI_K3_RINGACC-CONFIG_TI_K3_UDMA_V2-0-0 (https://download.01.org/0day-ci/archive/20250429/202504291527.tCMC8UGh-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250429/202504291527.tCMC8UGh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504291527.tCMC8UGh-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for TI_K3_RINGACC when selected by TI_K3_UDMA_V2
+   WARNING: unmet direct dependencies detected for TI_K3_RINGACC
+     Depends on [n]: SOC_TI [=y] && (ARCH_K3 [=y] || COMPILE_TEST [=y]) && TI_SCI_INTA_IRQCHIP [=n]
+     Selected by [y]:
+     - TI_K3_UDMA_V2 [=y] && DMADEVICES [=y] && ARCH_K3 [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
