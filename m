@@ -1,126 +1,123 @@
-Return-Path: <devicetree+bounces-171873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9373AAA06AF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:11:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDFBAA06B6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C82947A41C6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:10:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B15D18924E8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9DB29E06C;
-	Tue, 29 Apr 2025 09:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CE129DB99;
+	Tue, 29 Apr 2025 09:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rs+rGCb3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZssbhFc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F1F29E058;
-	Tue, 29 Apr 2025 09:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7910F288CAD;
+	Tue, 29 Apr 2025 09:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745917870; cv=none; b=FN7XtUUCm3/GTioEM+8d28n7n8MnwCcgatV+R1w0OnC8NbLw/fXLjois3cicxmttQaXgikYZ7BrB5kBrTARePLW4ApzGeGm5HHW2voAQq/PDBTK6Vx776EEIf1erQLelF8V+dTCLjvRVwp1Qm66KA8seghMxgFFJgFu+4uiMOiE=
+	t=1745917983; cv=none; b=KRcm0aq39AwlqXjpGpcpNLBXekuOP/Wm1Hp1YE5DAglFi6G8jZFDgoK6gMYtdYg7GgvGhwpxutXJg8s5KI4RzQG9xAfGRJJKn3bkdNpUhds61uLveyXnBMMxyiFfpYeXuDVLLs1GDvq9QAN63ihEgZ1yhQXoYKxMiEUpDjgi6fs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745917870; c=relaxed/simple;
-	bh=324zTLF8I6LoTTofNYDFWj4oxZ4N6xTZxUMf0wY7Rk0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bb6q3PbEKYSCBB41aZgE27ZwT+R9qmuga12zuVDdnsHdgVbBadm+FifRPL2IFb2pOj3IrQdNB99ffHs1ZP6nZKplwXK+si7cTvO7jOnfklqpb0ClPajuZDQTsbXubxl2D2FywJmTe0JZ9ga8zdwwxxy1xvfnDdoUHt5NULN25mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rs+rGCb3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FE85C4CEEA;
-	Tue, 29 Apr 2025 09:11:06 +0000 (UTC)
+	s=arc-20240116; t=1745917983; c=relaxed/simple;
+	bh=Wbe2M0VWW0l3TpFJbV/zwwleX2QVAjqwy64HzEhZniQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gnTIFUOecjD3UlmwrUebcvEM6T7YgL/lQqJYVEONz+6pUbABpxCDsspeayLZDVAn8pHY6ZZLI557OvwqImithh/PIysVgMjP6qwe1oLXQBCzDb3D00snAGiXdtvVNFw8ApihSCsN37A9q4PXAJ9tjQl90qZmeDbaT+aFimM2mi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZssbhFc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D715DC4CEE3;
+	Tue, 29 Apr 2025 09:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745917869;
-	bh=324zTLF8I6LoTTofNYDFWj4oxZ4N6xTZxUMf0wY7Rk0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Rs+rGCb3tzDfGCH8HDYtg6Z4AmatnKe2Da092h2BbgTLM7nOO379Rz7Eb7qMqHKLr
-	 vcNKKd07fm5xZGPbiY+Ynx98dS0GRJLicz6dsfB73xMJeyqS4L/jcAiVwSdLypPT6O
-	 9MdJsJlH93ymixS/5bEX3nTB/ZTCzqz3il+dfCz8BdSA2fuRoj3hMAYiU6WhbQFJhF
-	 b9QJWgeWu8HF6fukCTDEPEMPMpf+PEVimb1d1hcUXiUqC2ZWPUXhAZXzkCOD2NEI7t
-	 EnUJcMBcka4MTSbxIwwdV+hpbH9pts8Lj4Fzklq07IthIkGESLtU5DHFaNkmF8IsqM
-	 MHb3gTUnEnogQ==
-Message-ID: <15ecb45a-4dac-41ef-b391-4b98b2f2a877@kernel.org>
-Date: Tue, 29 Apr 2025 11:11:04 +0200
+	s=k20201202; t=1745917982;
+	bh=Wbe2M0VWW0l3TpFJbV/zwwleX2QVAjqwy64HzEhZniQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mZssbhFclDQ7ndTaodsXm6/kASD92fVbnD9t8cGcpzKx42f5vBUao/ozjjGPhdqYu
+	 53vipy8Oc9rI2qieXq98MHsr8M83eK+fEtQHnlO3/8wZNWCv1abSg4VFCLpogv3Wsx
+	 /Lvuh/cc1oRNTtDxa9BqFR6ns0ZV34qzupn7fbO6A5WTo8faaVgh8WYg4bmlHroyDF
+	 DdhdTh3kNFvedMszyDRmtNvSVpjr6PyGeMCKaotjpdyUE26/VUObIE+fvn4B9CTNxh
+	 1RkaXQrxohiriRWedHOfxC+GxuahoVvJ7TVo2+qTd6ndhpD5mkLbnD2L0CI1Q6Lf1X
+	 VA1vl2FeX6LKg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u9h1U-000000001GF-2nZH;
+	Tue, 29 Apr 2025 11:13:04 +0200
+Date: Tue, 29 Apr 2025 11:13:04 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Xilin Wu <wuxilin123@gmail.com>,
+	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Konrad Dybcio <quic_kdybcio@quicinc.com>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100-*: Drop useless DP3
+ compatible override
+Message-ID: <aBCYIMdEPrhMzNxi@hovoldconsulting.com>
+References: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+ <aBCUiIrg3oehMVjx@hovoldconsulting.com>
+ <aBCWdpk2HXPaJPlH@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: Add OminiVision 0V02C10
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Bryan O'Donoghue <bod@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250426-b4-sailusfor-6-16-1-5-signed-ov02c10-yaml-v1-1-9a46124fae7b@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250426-b4-sailusfor-6-16-1-5-signed-ov02c10-yaml-v1-1-9a46124fae7b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aBCWdpk2HXPaJPlH@linaro.org>
 
-On 27/04/2025 00:35, Bryan O'Donoghue wrote:
-> Extend the ov02e10 bindings yaml to describe the ov02c10 sensor which has
-> the same bindings with a different compat string and different i2c
-> address only.
+On Tue, Apr 29, 2025 at 12:05:58PM +0300, Abel Vesa wrote:
+> On 25-04-29 10:57:44, Johan Hovold wrote:
+> > On Tue, Apr 29, 2025 at 10:42:28AM +0300, Abel Vesa wrote:
+> > > It all started with the support for CRD back when we had different
+> > > compatibles for eDP and DP. Meanwhile, that has been sorted out and it
+> > > is now figured out at runtime while using only the DP compatible.
+> > > 
+> > > It's almost funny how this got copied over from CRD and spread to all
+> > > X Elite platforms.
+> > > 
+> > > TBH, the best reason to drop it ASAP is to make sure this doesn't spread
+> > > beyond X Elite to newer platforms.
+> > > 
+> > > Functionally nothing changes.
+> > > 
+> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > > ---
+> > > Abel Vesa (7):
+> > >       arm64: dts: qcom: x1e-crd: Drop useless DP3 compatible override
+> > >       arm64: dts: acom: x1e80100-qcp: Drop useless DP3 compatible override
+> > >       arm64: dts: qcom: x1e80100-t14s: Drop useless DP3 compatible override
+> > >       arm64: dts: qcom: x1e80100-s15: Drop useless DP3 compatible override
+> > >       arm64: dts: qcom: x1e80100-hp-x14: Drop useless DP3 compatible override
+> > >       arm64: dts: qcom: x1e80100: Drop useless DP3 compatible override
+> > >       arm64: dts: qcom: x1e80100-romulus: Drop useless DP3 compatible override
+> > 
+> > Since this is essentially a clean up perhaps you should have squashed
+> > these into one patch.
 > 
-> Other differences in sensor capabilities exist but are not expressed in
-> devicetree.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
+> I was actually thinking that before sending, but then I decided to add
+> the Fixes tag to each one. Since it's such a trivial worthless cleanup,
+> I wasn't sure if the Fixes tags were worth it either.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Right, since it's not a bug you should probably have skipped the Fixes
+tags too.
+ 
+> I can squash them if the consensus is that it's not backporting.
 
-Best regards,
-Krzysztof
+We should definitely not backport these as they are not fixing any bugs.
+
+Johan
 
