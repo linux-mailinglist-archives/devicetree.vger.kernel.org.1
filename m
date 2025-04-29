@@ -1,340 +1,180 @@
-Return-Path: <devicetree+bounces-171956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34DE9AA0B3C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:11:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27148AA0B3E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:11:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFDC23A41E3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:10:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B8AE17D9EB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A766520F066;
-	Tue, 29 Apr 2025 12:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A39A2C10AA;
+	Tue, 29 Apr 2025 12:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IewqNolD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZzPs8XHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2048.outbound.protection.outlook.com [40.107.22.48])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2757E27A90A
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745928653; cv=fail; b=LLzMfv4muVLyeVzATTi3SxA/NnATEdBr8tTuDIxWtG/Vvn7Im1CxYOFb+JZpmLdgP46627kuHaqrXJr5dsbSssKGK4YDNELEXTT+3jx2r2FPEeY2UWW0PTX+HVFSm9+5zF4zUITIL8fv9MESC4awSCHdELsnxB78mclWuOKtHOI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745928653; c=relaxed/simple;
-	bh=JslzjvJA3tr0D5cy1/ZOpocmfPw5rr6vLw6x7gTuuKE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=U0KLsU26mIvLO+t3/6ricxw/jxVOMz4iUM1j7ylkrUlax7mmHXBXISp05Gp5nYU7HAtVl34xIi4iiMaAnbJzDW9ROHKQxmWzwcbWtGHlqm83/xqfjsw7VoTTBPoUCVik6cbVWSQXQBY04IVKTDeWxAZ9SNts9NyKydZaQDVORcQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IewqNolD; arc=fail smtp.client-ip=40.107.22.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iJlmkN1PFjPF05D6veHHgBaW6KyqFsOPSkJnWE0SGL2ru5JWSk9z6g+Zg+VWSnnd6GYV2wVwRhp5h0LI1p53pe/E1FCtRu837SJonJbliafw3C46FXsMPpHKEly9uKOv4YLjzo1PoNyqYmsqD/z/cXcrd7DJIzRvfvpOfMPRmn3yNvx14gFgz8zNvYcqLLOBRZ8wvXRguMle2KYJJuUemNrgScFEq5pxM2EGBZvLa0HhJFwjKA9kn3MbKvY4NU0ehQUN2qfbExDXUliw4rc3+9A8RHsOsL7GCiTfVkQ6c1BNRoOgdYmHvP08QAv3FNG4+MOxNfUmRMSLtxQ64YWYAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yPyK7OPmSGzm3Zze+gdNib98ih182Uy40k26euou3/s=;
- b=kM5sJRWn8a5nGSZ181oQo8I5PhCw8EUMD2kwBWDJ3hfDlKcNdCCRUV6gUt/ZjMi4v6DMdq1iCnNRlJP/x93Q4s0TCBEL/e0I9YaVRNOqgujjVmI9W0mPv5qXhAJ/o8xLIbNH5QkUGauZ9zPnfrxo/Fm/lhv+MDTCjKO5Lj+tWi0Vg8nq5IH8JiF9glKfj0O3qwQgGfzKkMGBQ7ErZtcnew2+voPSTVVxbY7yVMk0SOPdS35xnkGrx5DspxmnPE6zoZvEYMdul/AR6ByIVMLyDTYABx9Lt/XgimdUrq6BICXAycYNAtovsOUYCiK06M7UPnOv/qhguN8tJPyzSOYdCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yPyK7OPmSGzm3Zze+gdNib98ih182Uy40k26euou3/s=;
- b=IewqNolD/0TdU3wkAog5pjGKvpElMGmIKv0VhwTADUDxbmAElYXdL8RTXi0AP4/Zbqyn1R5wnboqXioqET3HrBCXY3VkZJJY3edvhOi4UpJfC2JpNCKi9/v3vjk4BkSUsSJc0+147IluLt2sIlMfKkcOb5IEenlbuCbMWit2dU/wb4EyH1cNydGYadZ7V4mX+E7DV3j75U3sXEdFGJBAyAD+1um5QqxCYPV4Lp7yq4ic8S63mBF+o2IDMCx/u4kFP/ZqGb99C4XR17IbHGvFPThA5P5cl1QYZKgfBiAABfKUvr+RwaIuqbvuOy86ceqXDmMBh2GbcCET1RhZwqEwNA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI2PR04MB10690.eurprd04.prod.outlook.com (2603:10a6:800:279::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.31; Tue, 29 Apr
- 2025 12:10:48 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8678.028; Tue, 29 Apr 2025
- 12:10:48 +0000
-Date: Tue, 29 Apr 2025 08:10:39 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	jun.li@nxp.com, alexander.stein@ew.tq-group.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb: improve some tuning
- properties
-Message-ID: <aBDBvzA11/NXPAbD@lizhi-Precision-Tower-5810>
-References: <20250429033009.2388291-1-xu.yang_2@nxp.com>
- <aBBpzljSQEnQwlvU@lizhi-Precision-Tower-5810>
- <20250429062640.cqqtkp3vwkd5a2gp@hippo>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250429062640.cqqtkp3vwkd5a2gp@hippo>
-X-ClientProxiedBy: PH7P220CA0042.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:32b::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77442C10B9
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745928705; cv=none; b=n5N+5Wyy7E6ZDDe6Qvelb3ALlnvb8tXzWkMGOoM6nP/uy7/2pXsJhNp1IYlgLgHBCKK2kir6LR5aiQwsy3pH68rS04zECrgLvbvmRmoPxR3G3m/lGqkZHXgu1HysnChuPIDHnUXsk+xeWgwy0cdokEh1x/5dr/K9HaRX5HkOw44=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745928705; c=relaxed/simple;
+	bh=baK6jno6CnUVkoUHnmEbtLiQyefylSMvn3JT1bVnQnQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LgPi4sp234ay9KPamRGgYfByST7YHDaHXMnWVTBE4qSML7MbnfAL4Eb13SbPRxoOnX8IMgv2eILXYR6ufZDexjhQnp3jKHV41xzzR+3kp3QM4C1NXofUa2+lEjAWPmK3JnnhymfNc1d4L0SXJ7kjZxuGfM2RCN3DBl6TzqMfLJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZzPs8XHl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53T9sgYT015380
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:11:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=rPfDc2j4zIQ8zpqodkBZ1iAk
+	HQ4HDml1Yp0gv+Nadas=; b=ZzPs8XHlsSBUiBDfKYd0oHV2su9LS+ytFBkNoqVG
+	bYxayKJka7L8CEF+zZBzwkBZrVtHs+5HoJlnjR89+8/pXRRb00kgKWlMQblCjceL
+	iF+AMIARq6cARt+S+DtW2UgGAjW+F6xcZJoByZnrztocArqJrDf7PT0FkEd7JmRy
+	4Ww4RbEG35i9C979Q2b9CFZ6S2+w2zX7PdrjNmn6b+dwAoSttiXBY6fuNyFxo7R2
+	WtXpCCJw9J7othlkqxEmZvRyevu5rWkscV6Aec7KQEVCZ0cw2cgXZWEP1ZKu/cN/
+	VZIz8Zx2rUZwHYem/pxYIFJVjyUXQ+He6bu3T4x9wC81dw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qjwvef1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:11:42 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c543ab40d3so932979385a.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 05:11:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745928701; x=1746533501;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rPfDc2j4zIQ8zpqodkBZ1iAkHQ4HDml1Yp0gv+Nadas=;
+        b=FIGf7W+gUAp+iREUMYyvPYtUE39rtSvI9YZzySNLZXyr+2yUdVJu4kQg1yhiFD3oSQ
+         EeGpGFafNoxrFhwk5YdyS7nMel3UiV7GI+NKZfvrqHsRF7+hEO40PPn04PgSKeiEAQkc
+         sNuPQiB7P5xxYhla6aU4QR5iT695FebIMM2Cgls522o/Mlifp6NsImrHGKFwu+nloch5
+         SXkv+9GFhpUG7sz24LmCAmcR2hIfwJn40QbMpgsPnXRa/ACxXvq7IqfEVfvNDP1GXfpR
+         UOM2Ukifidn/1YenLL5mNCzO0LGot6wshZ3ueh9NoGk6w5sMb2NyuX5tG9qqvYiISQmY
+         LrfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4QId4Vq/iYPtCGenDrqaP7KO2hm+XThVbpUK2I4ay3IpKoL89lN3u8vZ0ik3Xx1UgybtSVKlyAt8T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhOEGk51NarkEuchShnPQo3q+zr6ZyPTXyXiPERKCZi/RtFD2w
+	Cj00sJxykeaq8gwjSlEaTbCuZER5SL6qn2u093jXl/wHLsONwhnFGAEAyUVTki826d0VEXac3yC
+	GIzLpG6bJ9dQVMs7HAUxloE3KzzPxABY54p1PsoveJ0VFXDn7SDH+Pns9SwSw
+X-Gm-Gg: ASbGnctcfYCX9QCUstbY0gFwX5F1XP9IISQINANIC+RGx9qxAlz1AnpdpIBYFyLHMl9
+	HbYnWkztNUvwtWxxS/C+7WexUFC5QtXcCCKT1bLKTGZ33x+qa2fpg0QoWsv1vI+jpPsLLjzMO3L
+	zE/cbsJSAnOR5Eb5++jXVA+FlkY8ar4sVLzg7lBUNiImh08rIGhqgPUGZo49Hcu/o7qpI5Fe9O5
+	i7TcCNfCtgnabIkJbVB1ugY2rzuiHdDTYZ7EQiNdNJlP/8tAlwnA6UBoalHp6Pk4Rc1ept4igy5
+	5pzr5vlUDovrH/Sbl81QCW1NlV3cLUGZsVaby/u5VUsevulkjnXE0fIeIqgh03nCdqkExJRDRo0
+	=
+X-Received: by 2002:a05:620a:d8b:b0:7c5:f6be:bdae with SMTP id af79cd13be357-7cabe6a77e8mr347149885a.20.1745928701718;
+        Tue, 29 Apr 2025 05:11:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGkEoObvl5ITpCCRC9WTTdJ8+eec2qadspvMIHzjKAj6kGxUV25FPfPKOPPn0iY6tiCGewDRg==
+X-Received: by 2002:a05:620a:d8b:b0:7c5:f6be:bdae with SMTP id af79cd13be357-7cabe6a77e8mr347145285a.20.1745928701382;
+        Tue, 29 Apr 2025 05:11:41 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cb26dcdsm1855850e87.33.2025.04.29.05.11.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Apr 2025 05:11:40 -0700 (PDT)
+Date: Tue, 29 Apr 2025 15:11:38 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Xilin Wu <wuxilin123@gmail.com>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio <quic_kdybcio@quicinc.com>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100-*: Drop useless DP3
+ compatible override
+Message-ID: <oxckk4kizbml7dy4uvcb2hhkl4f72dp5axmtkwhk4duevhlpbs@4pi3roor6pp4>
+References: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI2PR04MB10690:EE_
-X-MS-Office365-Filtering-Correlation-Id: ffc16d84-f98f-4923-6dc6-08dd8716dfbe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Nd6ca5ONEL7xbQDNNEsfs9iMDL+7NhZLQTBfvEU5f/fHliS0CTskPMwDGcTa?=
- =?us-ascii?Q?7q6YWVOJJEjavWcHSAhTNoy9M30wqxD8g5tRO4wey+mbKbdfL2FAlf/GPb09?=
- =?us-ascii?Q?tXhsyzHmYe29QOlSE/ODKZIoFlH9ALIEDH1bA+emUPV/LCl+4MmEtUon75yP?=
- =?us-ascii?Q?IKOyCE3L4zgOkDtKAG3eavzGB/SoshF8BZ3kkoApk+jQROLSCJLX4s1ikALv?=
- =?us-ascii?Q?htI6H8NC3BwtrZ3k17tD8jI8xSqdwiGNrvbPstAWVUIvEOsDkK+kXemMb5zl?=
- =?us-ascii?Q?jx1lONgrvOA+gjz9x9IxKFAizarOZp+LPprcfso3jXyvdmO8cItkobgYpZ4J?=
- =?us-ascii?Q?evQrzeOXnmX5IPi2GW860dI5tsJeIzLXzeK6ka2Ri2Q14QHwiZN88aKZnorS?=
- =?us-ascii?Q?HRw+nWUS96CmfcMKbYTdQzrkoIJlrw/saB1/pAuVyhptzNZT2gkm4M5WgDrh?=
- =?us-ascii?Q?Ttbp8aZssalB7rHjnFzE3HFpW8gbpNu1h0Q5/4VptZR4iV8FBoDN180AWXKI?=
- =?us-ascii?Q?QnL7FQYaGfqDIxLDcuWu4g3WxT0puvm1dMrM93etffdCp3wwF2JHiEhllZn7?=
- =?us-ascii?Q?1Fp1RzOMHCwbeIcLsB+JLe8t3XyMu4jNfPo8dvpqNiYCvk6UWjy6lcxZ7gHf?=
- =?us-ascii?Q?VlzsU2rO0B5TGmX4rqzbFvCM4yGJaYpN9Dwpj+x9rTXlumrxfAOPgcnR9/J5?=
- =?us-ascii?Q?VkYFFcfK0PIgkN0qr2V/dcNBsEzt1oMRXb5tQ2xWxntcDEcw5Xy9g0Krs9g/?=
- =?us-ascii?Q?6yK+zfO8hMKufwBGT7lNmFHfaExCbvDsxcS+qLc/QSxViQFO6HmuM8LVJVR+?=
- =?us-ascii?Q?SiwqRYozJ/+psbVGystcUYQI0wRawgxWr/sTZitYgg7Sd9WXpEFv+OjI/bDy?=
- =?us-ascii?Q?beRK2jAD3uq7ZKKfAMZpox3nKklzmvziUvqO9/teFdI5QidDmREyel5ZJJ6L?=
- =?us-ascii?Q?M4uo63YTrrpmq1NcUzd3n7zvTzEELp+9/ixe5ndaiyMjWjlkwbVaZxV5UgZU?=
- =?us-ascii?Q?riCnA5DHlnXe84lEOG0jbwmpwvKoWG3nRX8PvtnDGcMm8vvizDVi/C8W7r2e?=
- =?us-ascii?Q?GwrG4uLEI7I2mqhZW/9KJNW78rfqlT5k1t+ynb41jCekK9dGRnMEQ6lb4GOy?=
- =?us-ascii?Q?YmSf9+aOMfluR9tN2+8TOiYEixX4WJWZFrmWvfClXT6hqKrgmWcCrouug1UK?=
- =?us-ascii?Q?ng5GSAQhqZnhGTON3rKnV1VLrdkiq+Hu8wQ0a8xMZ99SQdlYe2u8D8JFD3pn?=
- =?us-ascii?Q?pvaFdgWr8wRBEOrsABNk2T70G/Kx99CLXwW5ZFr4pHbSv9NHwUlXB9b4Tdx9?=
- =?us-ascii?Q?DBjBBEAECulGC/kREG3lfEyNndES9ceu+dvPLHAVlqRwuRikcNinKmNmqMw9?=
- =?us-ascii?Q?k/ZP2swv5lVbiaS0Wk2pewG+/8hGB/QsBTaPBH1yLFRc3iFRjU1J1EGOoJge?=
- =?us-ascii?Q?/lOS3FDWP2Z29nAn9S5sjEe/qyav8B+bSkSJQ+bckZMEUAwnbdxpHw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?r64rL8V5oePMgepRCFyTLufIuX1xQAQDOw9momEG133dZJoA1IHbnXRzYNAx?=
- =?us-ascii?Q?LNpwAAtkoCze1veql2uvs0FSQFEhQVgWvcGI8ykuEMd05vhvaGDuK/DnVfLI?=
- =?us-ascii?Q?Oz6m+mMc0odop8g86/BQKW24wsJNarYuLPxruvv2voUIFNNVfQGE0NTT1R6Z?=
- =?us-ascii?Q?pgRuhEKtqKsqN1R1GCQilTT0HoONJfr+5pZK0v5583y80w7maReu9K7ArmF8?=
- =?us-ascii?Q?XSbiopUCdCi8ZyEyo67n/vORIyWGVpjbUbJsQiNzpkXRslSZNIHFgLNCla91?=
- =?us-ascii?Q?oMe2onsTqvQwHEmR94F00CTxYJT1Kpeo+T/soLQHM2BP5lsXOPZnuNUhsgae?=
- =?us-ascii?Q?29wV/3VaIt9zw+50zdwNjR+UGmtkYr6/VMJcIavgy4ONOsVBQXcHOWpa+2dj?=
- =?us-ascii?Q?DB1n/z9y+8pJiJDe8Zi6XPVoyvoolqxKKLdeDmLtUOKRb5nHKRaHwmH2LT04?=
- =?us-ascii?Q?5W8d4XqklSWCy1Hfku6Ts6JM0yNGJMQNv25/spUpRdh1ytQYT+eyz2xI2xsb?=
- =?us-ascii?Q?uIM7t0Iyhzy2bC1BRUnj3P9sJWp9Pjrp3AEKHgd2UkiToWkf9y+Pd6oRUVbY?=
- =?us-ascii?Q?ZpxrTeWr9kznmm/2gRutXCx2mH2A4klQr1RrZ81Ue6jObFRmcdsz3R7PqXSe?=
- =?us-ascii?Q?0aBAeQLFnPiEB00xFq1wkq6QlpRrUHo4kPuQ8GpMxKsIFquhCmpqYnndqrpY?=
- =?us-ascii?Q?C60nVSj6xvps6EEScf6DrWogGqyKrPzYP5pt8muvl1yEUOW6dQbCbhg2qAd3?=
- =?us-ascii?Q?sFu5hAapC97Ol3J6NPzYrigN8kBgO6Mtr4jEaerB3w54XBWoLoPuMXRerLUc?=
- =?us-ascii?Q?weParw6xEJfvdNQind2HqLlfm2fKCcdnCEFz1wQeEDYe5yeoH8cZS1n0tTus?=
- =?us-ascii?Q?ItHobTmaP5IyLnllDPGJFEtzgsD27m7V3YpnLRnEfV1GAmfHUZc8cXPJhqo3?=
- =?us-ascii?Q?qSJksF/ICXdFDWrmSO8Z7KLeTw94g/Np3zdZ+eBbLwTfQv32jQtZ8+OwUodR?=
- =?us-ascii?Q?2xcDYG2TQZowSUpSLF82IDExgS+ES1tHWEPexuhWjARbeuGosHOT9WdYxJ8c?=
- =?us-ascii?Q?W12AI7bPd8Q9WbY7rYYnnnQEUe2fJvKlT/wjfNwVqeTl9Fl7pV1xttsiulYu?=
- =?us-ascii?Q?qFHUnmzfQF3fdWA+0znc4SA2aU8bdLvRsOkvtTDuo7E1xgEGFg0Anm93jd13?=
- =?us-ascii?Q?6JQRMP9NI0OEM4zlYCLRSIFhcdrET6vKoGKLRKPrsyiVPXXJnNGL6J5mve2K?=
- =?us-ascii?Q?xQds12RHMuNVep6h2bOdbWXpjJX+Ol8If7/lEgdhkg+lzV6p1rwRCl9ArJZa?=
- =?us-ascii?Q?x0sRP9nhiGQG3tITcPnVNSGMz+qvN77zeGdw7z9rIWisS7AaX0ruuDzi/6Dg?=
- =?us-ascii?Q?uJqmkM3yEJpZCNSCgIk9FAM4a3ZH7ftKo7GRIzYqxAG8Sx5EJAiR4RdV/cSy?=
- =?us-ascii?Q?tz8n2f1rLCtwJUDSCgSOR5owFlTCkqK+iGp9/RRtNb9lsw4SAfBwYoyarQVy?=
- =?us-ascii?Q?rlerp7R/8sBMp8V1M0FkdOIAtifb/7i/hgi6qJgJkxBEv6lh6PXahicNYHbs?=
- =?us-ascii?Q?qPfudjFurNhR2Knjp9Y=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ffc16d84-f98f-4923-6dc6-08dd8716dfbe
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 12:10:47.3020
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t6rbLrnlArNI/vC3Tm8KO7xdzwiboA7DK8Y7r52FUiv+orU0P78sT5eSsbN1oz40GHcCiBJSYlx+cPcQcOtvWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10690
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
+X-Proofpoint-ORIG-GUID: pCEPT6SmgxrNTzhkOIhhkjqgoF3fhb1A
+X-Proofpoint-GUID: pCEPT6SmgxrNTzhkOIhhkjqgoF3fhb1A
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA5MSBTYWx0ZWRfXzCYX0Y+14Tdy iD19G5qQJQrwnIrkOpY2kgXb6NAIwRW7MJR/C8YMMoVU6ukBWJOPxrNzo6rA0SHy+XuuRrDL05G TJJjTcm3gxolu14qCXCJSygUDHTSPJYGrm5MBfLopkLo8uJONY8N719QLl0WJFmYv6Kt1zfE8yM
+ gPtoKaMK498OK22DmhbPTfJOIFEe5CNZJY0WFaCZFN465cePcilsiS12KBCNRRtQ7vAYcge41vt 0RXfBh22mURCsvOAnSR1689/pTNpuDw30oVqzqweSdidN5I9GvHPNmJbxdvX+9/u7YNSruk4Z7O Lvk0rYQxZlHo7MeklmbSI1busADUcNYsuBgbRZ2BdP//H7ymXAQG2wymxWHHD5aStQB/LEiSSoz
+ VRpbsKjvvTmpjwTht6F0U5w3kI3ZUHL3qDcNaFxhRZ0+TJtNPzftYXYyAPky81Xedb6Sh3H/
+X-Authority-Analysis: v=2.4 cv=c/urQQ9l c=1 sm=1 tr=0 ts=6810c1fe cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=L7NATBzoXS_OuuUMTpMA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_04,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=742
+ phishscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0 malwarescore=0
+ clxscore=1015 spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504290091
 
-On Tue, Apr 29, 2025 at 02:26:40PM +0800, Xu Yang wrote:
-> Hi Frank,
->
-> On Tue, Apr 29, 2025 at 01:55:26AM -0400, Frank Li wrote:
-> > On Tue, Apr 29, 2025 at 11:30:07AM +0800, Xu Yang wrote:
-> > > Commit b2e75563dc39 ("dt-bindings: phy: imx8mq-usb: add phy tuning
-> > > properties") add many tuning properties, but some parameter value doesn't
-> > > match the register description. It made some changes based on the original
-> > > value: add offset to a negative number so turn it to a non-negative number.
-> > > However, it's not easy to find an exact tuning value from register field
-> > > with such conversion.
-> > >
-> > > Because device-tree supports negative parameter number, this will improve
-> > > some propertie's parameter.
-> > >
-> > > Mainly include below properties:
-> > >  - fsl,phy-tx-vref-tune-percent
-> > >  - fsl,phy-tx-rise-tune-percent
-> > >  - fsl,phy-comp-dis-tune-percent
-> >
-> > It should be standard unit. for example 0% to 100%. DT don't prefer you
-> > direct use register value.
->
-> Yes. The dtschema and driver already use standard unit.
-> This patch is going to correct the unintuitive expression.
->
-> Take tx-rise-tune as example, register field as below:
->
-> 		00b - + 3%
->  [21:20]	01b - 0 (default)
-> TXRISETUNE	10b - - 1%
-> 		11b - - 3%
->
-> The valid value of tx-rise-tune is [-3%, +3%]. However, the current dtschema
-> add an offset which caused the valid value to [97%, 103%].
->
+On Tue, Apr 29, 2025 at 10:42:28AM +0300, Abel Vesa wrote:
+> It all started with the support for CRD back when we had different
+> compatibles for eDP and DP. Meanwhile, that has been sorted out and it
+> is now figured out at runtime while using only the DP compatible.
+> 
+> It's almost funny how this got copied over from CRD and spread to all
+> X Elite platforms.
+> 
+> TBH, the best reason to drop it ASAP is to make sure this doesn't spread
+> beyond X Elite to newer platforms.
+> 
+> Functionally nothing changes.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> Abel Vesa (7):
+>       arm64: dts: qcom: x1e-crd: Drop useless DP3 compatible override
+>       arm64: dts: acom: x1e80100-qcp: Drop useless DP3 compatible override
+>       arm64: dts: qcom: x1e80100-t14s: Drop useless DP3 compatible override
+>       arm64: dts: qcom: x1e80100-s15: Drop useless DP3 compatible override
+>       arm64: dts: qcom: x1e80100-hp-x14: Drop useless DP3 compatible override
+>       arm64: dts: qcom: x1e80100: Drop useless DP3 compatible override
+>       arm64: dts: qcom: x1e80100-romulus: Drop useless DP3 compatible override
 
-I think [97%, 103%] make sense.  (Normal value) * (fsl,phy-tx-vref-tune-percent)
-
-Your formual will be (Normal value) * (100% + fsl,phy-tx-vref-tune-percent)
-
-DT scheme don't care register implement.
-
-Frank
+For the series:
 
 
-> fsl,phy-tx-rise-tune-percent:
->   minimum: 97
->   maximum: 103
->
-> When I first added tuning property to DTS, I thought I was reading the wrong
-> dtschema. Other users may meet such confuse too.
->
-> Thanks,
-> Xu Yang
->
-> >
-> > Frank
-> >
-> > >
-> > > The parameter value of above 3 properties are USB PHY specific. i.MX8MP
-> > > and i.MX95 USB PHY has different meanings. So this add restrictions for
-> > > them.
-> > >
-> > >  - fsl,phy-tx-vboost-level-microvolt
-> > >
-> > > For this property, the parameter value is wrong in register description.
-> > > This will correct it according to true value.
-> > >
-> > > For detailed info, please refer to i.MX8MP and i.MX95 latest reference
-> > > manual.
-> > >
-> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > >
-> > > ---
-> > > Changes in v2:
-> > >  - keep widest constraints
-> > >  - use multipleOf for some properties
-> > > ---
-> > >  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 60 +++++++++++++++----
-> > >  1 file changed, 49 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > index daee0c0fc915..71e5940ef4b8 100644
-> > > --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > @@ -42,16 +42,17 @@ properties:
-> > >
-> > >    fsl,phy-tx-vref-tune-percent:
-> > >      description:
-> > > -      Tunes the HS DC level relative to the nominal level
-> > > -    minimum: 94
-> > > -    maximum: 124
-> > > +      Tunes the HS DC level relative to the nominal level. It varies
-> > > +      between different PHY versions
-> > > +    minimum: -1000
-> > > +    maximum: 875
-> > >
-> > >    fsl,phy-tx-rise-tune-percent:
-> > >      description:
-> > >        Adjusts the rise/fall time duration of the HS waveform relative to
-> > > -      its nominal value
-> > > -    minimum: 97
-> > > -    maximum: 103
-> > > +      its nominal value. It varies between different PHY versions
-> > > +    minimum: -10
-> > > +    maximum: 20
-> > >
-> > >    fsl,phy-tx-preemp-amp-tune-microamp:
-> > >      description:
-> > > @@ -63,15 +64,14 @@ properties:
-> > >    fsl,phy-tx-vboost-level-microvolt:
-> > >      description:
-> > >        Adjust the boosted transmit launch pk-pk differential amplitude
-> > > -    minimum: 880
-> > > -    maximum: 1120
-> > > +    enum: [844, 1008, 1156]
-> > >
-> > >    fsl,phy-comp-dis-tune-percent:
-> > >      description:
-> > >        Adjust the voltage level used to detect a disconnect event at the host
-> > > -      relative to the nominal value
-> > > -    minimum: 91
-> > > -    maximum: 115
-> > > +      relative to the nominal value. It varies between different PHY versions
-> > > +    minimum: -60
-> > > +    maximum: 45
-> > >
-> > >    fsl,phy-pcs-tx-deemph-3p5db-attenuation-db:
-> > >      description:
-> > > @@ -112,6 +112,44 @@ allOf:
-> > >          reg:
-> > >            maxItems: 1
-> > >
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          enum:
-> > > +            - fsl,imx8mq-usb-phy
-> > > +            - fsl,imx8mp-usb-phy
-> > > +    then:
-> > > +      properties:
-> > > +        fsl,phy-tx-vref-tune-percent:
-> > > +          minimum: -6
-> > > +          maximum: 24
-> > > +          multipleOf: 2
-> > > +        fsl,phy-tx-rise-tune-percent:
-> > > +          enum: [-3, -1, 0, 3]
-> > > +        fsl,phy-comp-dis-tune-percent:
-> > > +          enum: [-9, -6, -3, 0, 4, 7, 11, 15]
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx95-usb-phy
-> > > +    then:
-> > > +      properties:
-> > > +        fsl,phy-tx-vref-tune-percent:
-> > > +          description: 100x the original
-> > > +          minimum: -1000
-> > > +          maximum: 875
-> > > +          multipleOf: 125
-> > > +        fsl,phy-tx-rise-tune-percent:
-> > > +          enum: [-10, 0, 15, 20]
-> > > +        fsl,phy-comp-dis-tune-percent:
-> > > +          description: 10x the original
-> > > +          minimum: -60
-> > > +          maximum: 45
-> > > +          multipleOf: 15
-> > > +
-> > >    - if:
-> > >        required:
-> > >          - orientation-switch
-> > > --
-> > > 2.34.1
-> > >
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+
+> 
+>  arch/arm64/boot/dts/qcom/x1-crd.dtsi                        | 1 -
+>  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 1 -
+>  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts     | 1 -
+>  arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts       | 1 -
+>  arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 1 -
+>  arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi    | 1 -
+>  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                   | 1 -
+>  7 files changed, 7 deletions(-)
+> ---
+> base-commit: 7e69ad9a1f7ba8554c4d3d1ccbffcccafcd45c2e
+> change-id: 20250429-x1e80100-dts-drop-useless-dp-compatible-override-db8562c6b7cd
+> 
+> Best regards,
+> -- 
+> Abel Vesa <abel.vesa@linaro.org>
+> 
+
+-- 
+With best wishes
+Dmitry
 
