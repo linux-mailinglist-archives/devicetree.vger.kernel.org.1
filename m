@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF820AA048F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:32:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1038BAA0492
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2665189BBA3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:32:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 343747A1350
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24828278173;
-	Tue, 29 Apr 2025 07:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42987274647;
+	Tue, 29 Apr 2025 07:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rRNfnjM/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgZrKHHh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE54727816E;
-	Tue, 29 Apr 2025 07:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192221B0435;
+	Tue, 29 Apr 2025 07:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745911908; cv=none; b=UJvjJI/Oe5PL0ez/KZJUEo24+GYMHBYoMRmxlnPrFdJd3xQvHF1fZtInnoS5trpapz5qCaNNDq/Jk5PRmhNOXy+XKP8U/Wo/o1Tz6APuy1d2XQX+QCztdmijcqe7Q2W5Qo5/ICMm/8uWrfn7jrgUjlX3Way8tkXZVXvJnkNSBuU=
+	t=1745911989; cv=none; b=UGqt95Io68T0AIP+6vZiVtkIIUB04XxzIGVQMg0JjlZbPLtOer/3yj4wK/Zz9rBerQSQYX1+emLDKbSLDW8dh0mmmUlYxIscpaOh7ZRg/+VLvXeoKxJJgLfhS0aorpfnENKAugq1jxHjoeGWrgfxLFxOOPh+Zgl5geTlJ7UhS1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745911908; c=relaxed/simple;
-	bh=+Ra7eiVnRMvz3bu+XMGnkDoV2DxZqls35juBwjq/aqM=;
+	s=arc-20240116; t=1745911989; c=relaxed/simple;
+	bh=p1WOe7kS+PZWvOjJflDb82c0iQuw9KLgoHqXeFhI1UQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THuXlN4o//gNvf8W7503fX5WuYhriQMJSmNKI7HBRY2byQMaiwMEWNWII3qXxqfiX88LCboORyOfH+dCK6S9gE24cD+5BoaYEKPAJoqI0z92lbBR/OMz2TRubFYw2DMmW9svviBtgxnY9C2qZYWWrdaNnBH6XM4AvCtvXv0H0lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rRNfnjM/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AB11C4CEED;
-	Tue, 29 Apr 2025 07:31:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JUG8D3Xo9bZHcPMJreZqjS5SiQ839GkaO9b1YEiK1MPJq3wov8G74gr611cgRKsnzonseSbQliW8WBGKUNquoEXuWBleAh3LOxxz7EDjMqe9XV++8qeD5V1y58V5U1zNp+bVxji4d2mh8ZGF3AlRO0lRk0jRMk0j6Ord6DvKy8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgZrKHHh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF8B1C4CEE3;
+	Tue, 29 Apr 2025 07:33:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745911907;
-	bh=+Ra7eiVnRMvz3bu+XMGnkDoV2DxZqls35juBwjq/aqM=;
+	s=k20201202; t=1745911988;
+	bh=p1WOe7kS+PZWvOjJflDb82c0iQuw9KLgoHqXeFhI1UQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rRNfnjM/15pgy34+JQ9Iy5PoTHpdSnt1B8gg00nnFI2G6Pt0QmlbQkA6sSEGqZnpS
-	 L/unUBvrGxe2ei5UGlPGM+o73p4QqpNX5FVyn4vXFoDQdsZ4tGwA/7HNqb12FA3xy0
-	 4fbKxx5SoShdjBvZLpyOMnnBKM/LbUqhs9XM3GFPlZudq/FeUYPYP/WdOkPrwjAy5o
-	 HCO6YEgFQkFTOOLdKNxm1bu5hdS708ZPGj1uWuP67T7ZWB6LjT87f/spEpuKTVrHTn
-	 D/kj0rJRE6Y9LKxp0cdczQPFS1bLG4ELao+23UFfo9RudyXpBb/H/wANZwWMReATS/
-	 +PVWFxi5pLPrw==
-Message-ID: <8e131fce-12b6-4a5f-8601-c15a0e4290fe@kernel.org>
-Date: Tue, 29 Apr 2025 09:31:42 +0200
+	b=cgZrKHHhOy+cwqUzXlMijgOS4aLIi5Iej33ZSqtMLmcnd0fsh0aowpi1v2TkelVow
+	 eOyGrioCjadVuI7snvdOKlJgbBVa9tZPzVpOJuTKbcYmQdK8YjZfzZCxQUz8YK63jj
+	 uEGjAY/SM0wGUFCT/up4xieg+05TZ48E8KLeaKzLX0+97+PTRhQUhVEMWCmeG0k9ad
+	 AyKhx2bIuBq2z3GcHEAAfffwtVqQ3RxhJEJ3gdKRg855YZaIZ9GkuZCR5tHa4czG0F
+	 1DBPvCguYsQoHXeSCG0seCPxUQ+m3aUgLEhUkgq735jH0A/xl3VhI53vUZeVUk8m79
+	 spgsQ+rYm74KQ==
+Message-ID: <91d5c505-3fa6-42e3-be24-3b35c366d007@kernel.org>
+Date: Tue, 29 Apr 2025 09:33:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
- PAD_INTERNAL_* virtual pins
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Emil Renner Berthing <kernel@esmil.dk>,
- Jianlong Huang <jianlong.huang@starfivetech.com>,
- Hal Feng <hal.feng@starfivetech.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20250424062017.652969-1-uwu@icenowy.me>
- <20250424062017.652969-2-uwu@icenowy.me>
- <20250428-smiling-azure-sunfish-7c1c25@kuoka>
- <34c92033f4bbf289c6048a85f0f6ba04435e7bf8.camel@icenowy.me>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: improve some tuning
+ properties
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, jun.li@nxp.com,
+ alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20250423094607.1029429-1-xu.yang_2@nxp.com>
+ <20250428-thankful-observant-trogon-a5a003@kuoka>
+ <20250428082002.gd275e2rqollatcj@hippo>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,47 +107,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <34c92033f4bbf289c6048a85f0f6ba04435e7bf8.camel@icenowy.me>
+In-Reply-To: <20250428082002.gd275e2rqollatcj@hippo>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/04/2025 10:40, Icenowy Zheng wrote:
-> 在 2025-04-28星期一的 09:20 +0200，Krzysztof Kozlowski写道：
->> On Thu, Apr 24, 2025 at 02:20:15PM GMT, Icenowy Zheng wrote:
->>> The JH7110 SoC could support internal GPI signals to be routed to
->>> not
->>> external GPIO but internal low/high levels.
->>>
->>> Add two macros, PAD_INTERNAL_LOW and PAD_INTERNAL_HIGH, as two
->>> virtual
->>> "pads" to represent internal GPI sources with fixed low/high
->>> levels.
->>>
->>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>> ---
->>>  include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
->>> b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
->>> index 3865f01396395..3cca874b2bef7 100644
->>> --- a/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
->>> +++ b/include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
->>> @@ -126,6 +126,10 @@
->>>  #define        PAD_GMAC0_TXEN          18
->>>  #define        PAD_GMAC0_TXC           19
->>>  
->>> +/* virtual pins for forcing GPI */
->>> +#define PAD_INTERNAL_LOW       254
->>> +#define PAD_INTERNAL_HIGH      255
+On 28/04/2025 10:20, Xu Yang wrote:
+>>>  
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          enum:
+>>> +            - fsl,imx8mq-usb-phy
+>>> +            - fsl,imx8mp-usb-phy
+>>> +    then:
+>>> +      properties:
+>>> +        fsl,phy-tx-vref-tune-percent:
+>>> +          minimum: -6
+>>> +          maximum: 24
 >>
->> Why this cannot be 20 and 21? These are not values for registers, but
->> abstract numbers.
+>> That's ABI break with vague reason "some pain".
 > 
-> The number must not collide with SYS GPIO pads too.
+> For these four properties, no DTS files use them now. So that's why I'm
+> going to improve them. I think no ABI break here.
 
-There are no SYS GPIO pads here. Do you understand that this is not
-value for registers?
+And which out of tree users did you investigate? Read what is ABI before
+you keep insisting that it is not an ABI break.
+
+You change already approved and released interface, right? Or not?
 
 Best regards,
 Krzysztof
