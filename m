@@ -1,174 +1,210 @@
-Return-Path: <devicetree+bounces-172087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04537AA1B79
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:48:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 547BAAA1B92
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:52:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FFD71BC1F74
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:48:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 183A21B66766
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFF1261577;
-	Tue, 29 Apr 2025 19:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF4425FA02;
+	Tue, 29 Apr 2025 19:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHj8wW34"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1Wver2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E3725F978;
-	Tue, 29 Apr 2025 19:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F90253B71;
+	Tue, 29 Apr 2025 19:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745956082; cv=none; b=P6Yq874zoWjmBjYXK9FM+QwTTlGxktMqyV+FD1uDLeTOQ4pGwZwCIdKOXIV4BsXkedeuqZew+yS09oTOL2aXNimqgK17hA97QPVtJEzC7mQU5OjUjzr5xrA0nJ5kiIRvBrmQ/AzqZJZ1HQTgZPkFLbnkza887H17Nsnl0aU/ozc=
+	t=1745956309; cv=none; b=IxEe6Io97aEAqOdZ1GrDJ6NMsIJ4geZqOV9Jz8JjwLgdmXGx+26jaOalFIvfSgpiiHwfSfGzF5gfCN3mSbByqoL3LrMt9f5SuT2fit0I8VhS0JJ5M6cqaHW4cDfEtlu1wN9y2crhaCuy2gnp0J//juqEX3qwBfj4Z985sdhzj78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745956082; c=relaxed/simple;
-	bh=5sF17zBSWsEu1wpW4T/aKuh7B90BT+uOCbFZt5HIb/g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pf5D5By8FQTpD0+R4wSxF6FBqkMIrQy1AaTNoeDDmjZLBCR7EKGEzKMdw7Z0EUHU0CEIkYeB2RdTa0/dGizarVFzNc7MRtKKXJ/6WZgZ+N754Oa6eXUWnd2MYdBUxSonPRms1dP/Saiu2QIRUUMDPKnDpXRnh+5D7Nsg8MRGKQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHj8wW34; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac7bd86f637so36609366b.1;
-        Tue, 29 Apr 2025 12:48:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745956079; x=1746560879; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=31hHt99eQ7ecxAQBYo10uCFCGHQn8F86JxoMvBp/XTs=;
-        b=WHj8wW340mrXuwj0f3NAIPIvy19wrpRXOU0c+RIQ9zlE/tCq1BmYpCx0AREwpTCG2U
-         hsJpIayXJz5zk3oM2LZT00YmSmKg/Vvfe9C+OoehCQPQ3OWGfseDuEJZJL0zH4qM0oeh
-         Ox/WAnH8rhuQCGOTvf3GzN+d1ydq5V3ftzRFQ5+qVBZLaljykoiHNevHNnaUOaqARhxd
-         AEVV8Ml4p1Q4jkuvZIkHABZbr8wb7mnKPmItsqfWAwgU+jzhCUwZzOTzGgmpdaiRk51g
-         xrmXa4215VQh/00UwmqyYuEJv+HCM0eS3XvmDr7ZKSKvCabO8B1Yb64vuTbW5IZWt2ik
-         ohog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745956079; x=1746560879;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=31hHt99eQ7ecxAQBYo10uCFCGHQn8F86JxoMvBp/XTs=;
-        b=PPukRNKcBf5kdL+40GkNZLimw48LLoS9o+PltCwpzE9ve4OJZT5NIftsaN+0Tsl7IW
-         Q+qXfMxCSHlWUvhh+yvjk56lbMZmaQnl7S7ROpbJ8w7C4Zk1NCQBK7AGry4XAFForBoJ
-         qRk10+TQOugr3r6Y0FYY32cW2XFOTawYlZYzqQWDyzuNvqMSDRifpWMQ5n5qSIrf//vX
-         MzMdh/K4YcW/FFVxAVCyPcPOyAHqlhOYKoYAzIUXz2tC2xLAGLy4+qd4XOSh6gJcYuS6
-         AaI1D7di8Q/wa9x1VEN78dd6SrVNMWiUX6IRcwdNKVOAeDS6bJQFjaoKhqvWO91F9GwP
-         oiNg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8mcuR4QYY8E5n/rmtDUhZgz4s50P+IZUh17PGgzhhrtOueVouiHx/9KLoBila43d8WHhaGS5yqQsO@vger.kernel.org, AJvYcCV3VotOoRca+oFtQJLtjPI2sPd7j4J6bNn4x1N+cUEdbO/67OX09Zx8F7+En4MGn/T4jUBcV9QplhX/Mswf@vger.kernel.org, AJvYcCXhyMsblXjBRWymoOPzhliH6gMkCOdDaOWwueyC53wu3g22PPo15bF2vFtJkm6sDCNDF2fpAMDBvu/O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5V+gOAsEaIIrdYBnafYK2fw5TCGth03pl0Q+MxMyajTpD0vZq
-	1t6v0rrSINiyLxoJdQLluZmlL4z0Ju63wV+wU0wlWVNG5/7WrrVmcAU8tMAUOwVNrZsn0emsLnO
-	IxsWOJhMm3fatgaEcinMer3WPLzs=
-X-Gm-Gg: ASbGncvNduOQXtEfat45RheJik3xAQfe4ty/EjO8entOxlTB1dnz9ECzcPZsrlfwuNs
-	9EyYD+V2UeNC6R4dUj9dUJWTU9ZlKK8zDpfdBErKp1ZYNhn70kNwUKLMoRHdCv8/mT8Ja1EpU+i
-	ogxq8+YUBKM3LsnH3sqXn8sA==
-X-Google-Smtp-Source: AGHT+IG053NtJm0hR+FwHICAyS7gp+M4t3UZk6wbhjh4+xpcE871md/xia3GNq0/H3rfYdZZf6GCNx2EKnYMhYJ4isw=
-X-Received: by 2002:a17:907:7ba8:b0:aca:d276:fa5 with SMTP id
- a640c23a62f3a-acedf349707mr18697166b.0.1745956078998; Tue, 29 Apr 2025
- 12:47:58 -0700 (PDT)
+	s=arc-20240116; t=1745956309; c=relaxed/simple;
+	bh=z1fvvieY1psn6GVNY6iDPpzBM5AWRCz/GzQ7g8pEEVc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uVvhJRh4noxiSgt0W6sSMZLWtc+LwGlEAzkGZzjNqK7rEpfBV0i2YjsY53HVySAudVPaYuGYB4kosBNn2YqoYJd5p9cgallG4xvLztfujPQLTS5fSDv1ZpCP0YvB6KtTrltuk5etmY4tskjKedP+nMAvgif35eh0xJxMY+wl84s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1Wver2v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3EC3C4CEE3;
+	Tue, 29 Apr 2025 19:51:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745956308;
+	bh=z1fvvieY1psn6GVNY6iDPpzBM5AWRCz/GzQ7g8pEEVc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b1Wver2vES19Qwkp6AQZn80UfAWt/dCb+ZdPRTAu9+7Wr9f/3iShWlqG58YB+VX50
+	 dc1NbF3NmgotoSlA+EZnjAwc/hoXuGN97GWgYEr7fq5RofHVRZ0bNd/PPOuZ/BRRfs
+	 tBt8BDpU3F7i/2Jh+QjudJkaHx2uSs34ekHrTgYOq1m8CjFJR178bDapZGhUMRqC20
+	 TtSs3RxPwOOL+xndT8Gs+PFfQx+9Vj26jmrIuqdfM8olXCBmHkHMBF68lDay9OmIRI
+	 zSZnQFtP46/bDUxxmpDl4qRVBLZTuMzN9qA9dYHjZPPwfbveE1OZk+3NmQi4avqU5b
+	 KW5mBSc8SzP0g==
+Date: Tue, 29 Apr 2025 20:51:42 +0100
+From: Srinivas Kandagatla <srini@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v8 6/6] nvmem: max77759: add Maxim MAX77759 NVMEM driver
+Message-ID: <aBEtzh8w5PZKSntr@srini-hackbase>
+References: <20250429-max77759-mfd-v8-0-72d72dc79a1f@linaro.org>
+ <20250429-max77759-mfd-v8-6-72d72dc79a1f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <aA/ineUBAM5IU79J@duo.ucw.cz> <20250429170220.8145-1-trannamatk@gmail.com>
-In-Reply-To: <20250429170220.8145-1-trannamatk@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 29 Apr 2025 22:47:22 +0300
-X-Gm-Features: ATxdqUHg7vLAt0poth2caA_g2wxqIwhzv8QInVAHWSoWODRta2Iw45WeEjT2sDc
-Message-ID: <CAHp75VcVmTwS-zw=o5=m1-x0XC67BKBVWae2mMKZQH=qLCxZwg@mail.gmail.com>
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-To: Nam Tran <trannamatk@gmail.com>
-Cc: pavel@ucw.cz, andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, 
-	corbet@lwn.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com, 
-	bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250429-max77759-mfd-v8-6-72d72dc79a1f@linaro.org>
 
-On Tue, Apr 29, 2025 at 8:02=E2=80=AFPM Nam Tran <trannamatk@gmail.com> wro=
-te:
-> On Mon, 28 Apr 2025 Pavel Machek wrote:
-> > > On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
-> >
-> > > > > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/=
-.
-> > > > > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-> > > > > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
-> > > > > > >   and update the title and $id to match new path.
-> > > > > > > - No functional changes to the binding itself (keep Reviewed-=
-by).
-> > > > > > > - Update commit messages and patch titles to reflect the move=
-.
-> > > > > > > - Link to v7: https://lore.kernel.org/linux-leds/202504221901=
-21.46839-1-trannamatk@gmail.com/
-> > > > > >
-> > > > > > Out of sudden without discussing with auxdisplay maintainers/re=
-viewers?
-> > > > > > Thanks, no.
-> > > > > > Please, put into the cover letter the meaningful summary of wha=
-t's
-> > > > > > going on and why this becomes an auxdisplay issue. Brief review=
- of the
-> > > > > > bindings sounds more likely like LEDS or PWM subsystems.
-> > > > >
-> > > > > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
-> > > > > believe it is suitable for PWM, either -- yes, it is 36 PWM outpu=
-ts,
-> > > > > but...
-> > > >
-> > > > Is it intended to be used as a 4x3 matrix, or is this just an inter=
-nal
-> > > > wiring detail, and should it be exposed as 12 individual LEDs inste=
-ad?
-> > >
-> > > The 4=C3=973 matrix is a real and fundamental aspect of the LP5812=E2=
-=80=99s operation.
-> > > It is not just an internal wiring detail.
-> > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 =
-output
-> > > pins control 12 LED dots individually through scanning. Each pin incl=
-udes
-> > > both high-side and low-side drive circuits, meaning matrix multiplexi=
-ng is
-> > > required for proper operation =E2=80=94 it cannot be treated as 12 co=
-mpletely
-> > > independent LEDs.
-> >
-> > Scanning is really a detail.
-> >
-> > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
-> >
-> > If this is used as a power LED, SD activity LED, capslock and numlock
-> > ... placed randomly all around the device, then it goes LED subsystem.
->
-> The LP5812 is used for LED status indication in devices like smart speake=
-rs,
-> wearables, and routers, not as a structured rectangular display.
->
-> Given that, it seems to match the LED subsystem better than auxdisplay, d=
-oesn't it?
+On Tue, Apr 29, 2025 at 09:21:42AM +0100, André Draszik wrote:
+> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> Port Controller (TCPC), NVMEM, and a GPIO expander.
+> 
+> This driver exposes the non volatile memory using the platform device
+> registered by the core MFD driver.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
+> v8:
+> * replace MODULE_ALIAS() with .id_table (Krzysztof)
+> * drop previous tags
+> 
+> v5:
+> * follow API updates of max77759 core driver
+> 
+> v2:
+> * align sentinel in max77759_nvmem_of_id[] with other max77759 drivers
+>  (Christophe)
+> ---
+>  MAINTAINERS                    |   1 +
+>  drivers/nvmem/Kconfig          |  12 +++
+>  drivers/nvmem/Makefile         |   2 +
+>  drivers/nvmem/max77759-nvmem.c | 162 +++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 177 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0db5e1fe64930e85265913e6a7dd2669c645cf42..b821502afc48f95d48fb8c6ac6941d1dd8e63582 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14670,6 +14670,7 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/*/maxim,max77759*.yaml
+>  F:	drivers/gpio/gpio-max77759.c
+>  F:	drivers/mfd/max77759.c
+> +F:	drivers/nvmem/max77759-nvmem.c
+>  F:	include/linux/mfd/max77759.h
+>  
+>  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
+> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> index 8671b7c974b933e147154bb40b5d41b5730518d2..3de07ef524906ad24a89e58abdfe93529a83c80f 100644
+> --- a/drivers/nvmem/Kconfig
+> +++ b/drivers/nvmem/Kconfig
+> @@ -154,6 +154,18 @@ config NVMEM_LPC18XX_OTP
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called nvmem_lpc18xx_otp.
+>  
+> +config NVMEM_MAX77759
+> +	tristate "Maxim Integrated MAX77759 NVMEM Support"
+> +	depends on MFD_MAX77759
+> +	default MFD_MAX77759
+> +	help
+> +	  Say Y here to include support for the user-accessible storage found
+> +	  in Maxim Integrated MAX77759 PMICs. This IC provides space for 30
+> +	  bytes of storage.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called nvmem-max77759.
+> +
+>  config NVMEM_MESON_EFUSE
+>  	tristate "Amlogic Meson GX eFuse Support"
+>  	depends on (ARCH_MESON || COMPILE_TEST) && MESON_SM
+> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+> index 5b77bbb6488bf89bfb305750a1cbf4a6731a0a58..a9d03cfbbd27e68d40f8c330e72e20378b12a481 100644
+> --- a/drivers/nvmem/Makefile
+> +++ b/drivers/nvmem/Makefile
+> @@ -34,6 +34,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
+>  nvmem_lpc18xx_eeprom-y			:= lpc18xx_eeprom.o
+>  obj-$(CONFIG_NVMEM_LPC18XX_OTP)		+= nvmem_lpc18xx_otp.o
+>  nvmem_lpc18xx_otp-y			:= lpc18xx_otp.o
+> +obj-$(CONFIG_NVMEM_MAX77759)		+= nvmem-max77759.o
+> +nvmem-max77759-y			:= max77759-nvmem.o
+>  obj-$(CONFIG_NVMEM_MESON_EFUSE)		+= nvmem_meson_efuse.o
+>  nvmem_meson_efuse-y			:= meson-efuse.o
+>  obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+= nvmem_meson_mx_efuse.o
+> diff --git a/drivers/nvmem/max77759-nvmem.c b/drivers/nvmem/max77759-nvmem.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..df7d1998fa2f116450d2fd50eba70d9b61a24574
+> --- /dev/null
+> +++ b/drivers/nvmem/max77759-nvmem.c
+> @@ -0,0 +1,162 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright 2020 Google Inc
+> +// Copyright 2025 Linaro Ltd.
+> +//
+> +// NVMEM driver for Maxim MAX77759
+> +
+> +#include <linux/dev_printk.h>
+> +#include <linux/device.h>
+> +#include <linux/device/driver.h>
+> +#include <linux/err.h>
+> +#include <linux/mfd/max77759.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/overflow.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/string.h>
+> +
+> +#define MAX77759_NVMEM_OPCODE_HEADER_LEN 3
+> +/*
+> + * NVMEM commands have a three byte header (which becomes part of the command),
+> + * so we need to subtract that.
+> + */
+> +#define MAX77759_NVMEM_SIZE (MAX77759_MAXQ_OPCODE_MAXLENGTH \
+> +			     - MAX77759_NVMEM_OPCODE_HEADER_LEN)
+> +
+> +struct max77759_nvmem {
+> +	struct device *dev;
+> +	struct max77759 *max77759;
+> +};
+> +
+> +static bool max77759_nvmem_is_valid(unsigned int offset, size_t bytes)
+> +{
+> +	return (offset + bytes - 1 <= MAX77759_NVMEM_SIZE);
+> +}
+Do you really need this check?
+nvmem core should take care of this boundary checks.
 
-I have mixed feelings about all this. As per hardware organisation it
-sounds more like a matrix (for example. keyboard), where all entities
-are accessed on a scanline, but at the same time each of the entities
-may have orthogonal functions to each other. Have you checked with DRM
-for the sake of completeness?
-Personally I lean more to the something special, which doesn't fit
-existing subsystems. Auxdisplay subsystem more or less about special
-alphanumeric displays (with the exception of some FB kinda devices,
-that were even discussed to have drivers be removed). Also maybe FB
-might have something suitable, but in any case it looks quite
-non-standard...
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+> +
+> +static int max77759_nvmem_reg_read(void *priv, unsigned int offset,
+> +				   void *val, size_t bytes)
+> +{
+> +	struct max77759_nvmem *nvmem = priv;
+> +	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
+> +		    MAX77759_NVMEM_OPCODE_HEADER_LEN);
+> +	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
+> +		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
+> +	int ret;
+> +
+> +	if (!max77759_nvmem_is_valid(offset, bytes)) {
+> +		dev_err(nvmem->dev, "outside NVMEM area: %u / %zu\n",
+> +			offset, bytes);
+> +		return -EINVAL;
+> +	}
+> +
 
