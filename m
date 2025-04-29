@@ -1,100 +1,94 @@
-Return-Path: <devicetree+bounces-172018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DBD5AA0FC5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:57:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1465FAA0FDA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76CF3A47A7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:56:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78587164E7E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C592217F53;
-	Tue, 29 Apr 2025 14:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8800321C19D;
+	Tue, 29 Apr 2025 15:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PK41a2TV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWmNAI5O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A0A1DE4F3;
-	Tue, 29 Apr 2025 14:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58021218ABA;
+	Tue, 29 Apr 2025 15:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745938616; cv=none; b=rCQ3gDltrl8c5T9xtuRWG+RwFA9d9Q9pXmV7qh/0Ho1nBt8ocQTNGgu8Wmu3q9mO9OO6tRlR562Z6e5r+W/Mmxswha6mPYpdfuwGZ1EmWNlM/qsD18VJJXHOYsNA1DbuFcid/uE5G7tNkF6dDkis9kN177S4bHPsQpM3RTurDDA=
+	t=1745938877; cv=none; b=lKYhsxMk9sO4j/kj+gifocV1QBPVpNnX5tzaBQ6Kjf0dNqaWVWcSiSJgO1AivQCWQEEQ1n2r9MW5kRZPXoQfDyn/7OLBc5nfjp/cTVcXaDTIoRizYn0fQU3JEr5iOXLbuvfyaIZUFxjxTKdNHotCDqIoddTPMU+KbQlHYMnXqE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745938616; c=relaxed/simple;
-	bh=TrUU+M1F4SQVXD7iadCxRa4FaQ+mnKlBzxagUQ1A3Yo=;
+	s=arc-20240116; t=1745938877; c=relaxed/simple;
+	bh=UQgYl5cvjAaC6YHzBjmSn9qYkSS2URKtp0ZQVUPviMc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TPd+6kETB5wKwksf1UCF6ZfGy19b7RC5aGiDTC2HyBEFqTxUIiod9zlChVYNarx7uGeFW811gv+ZmancHCx1Z56nnILNLX3HHdt6vYbkBV0sdTb+FHQCbdccr6MTK555+XZUBJttxP7BDowAwTKCz1zNjLoAWEAwAR5LbQ7rSaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PK41a2TV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E605CC4CEE3;
-	Tue, 29 Apr 2025 14:56:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=osZMfMn/KoGUKQKBwhY9vrzXLQ7cDXdYEk29ikQ5HF/Uiq3HPMW1vU6HtYVZHlCKdyymfTythWYzBArJ5NlQ9nEC9jGi6GE2NH6feypHq/UduK7cvHWarUJQjl0HgKNYAlXfe8TFACGUZKCtt0hnTsq0z/vJZsi3eylur65gPjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWmNAI5O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97708C4CEE3;
+	Tue, 29 Apr 2025 15:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745938614;
-	bh=TrUU+M1F4SQVXD7iadCxRa4FaQ+mnKlBzxagUQ1A3Yo=;
+	s=k20201202; t=1745938873;
+	bh=UQgYl5cvjAaC6YHzBjmSn9qYkSS2URKtp0ZQVUPviMc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PK41a2TVkkURAhJcJlYrBHdcjcLNua9tmjhOd9oe0wEb7v3lCEWM3PwhQQFcfZTt2
-	 lbpIEIiaDTP9zUTOOXJGhJxjWYxar0k8WJfr2re/cH53Bu8pK9cC0dIOkgu+d14liD
-	 XPIkkjbKRPdYICmyZRjsV8XrHCrmhbzmJpXYH/BlhNYACHMHWP5JB9gEOoJiaI/C+f
-	 58fjYrI6FWSLU+pe8d93wnEsWRuwBov+DPYcNR7Z+TfI8SEABTrdNhGzxd7BIcOrVI
-	 HGhsAsgNdnDu7/98LUEOMmrE7E3H/4J3Fnpxqq/lIkOA/paoSv67P4aUJ7V3xmL/VE
-	 sNgBcYgSSnPRQ==
-Date: Tue, 29 Apr 2025 15:56:49 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: iio: adc: adi,ad7606: add gain
- calibration support
-Message-ID: <20250429-irritably-cacti-b7287dbdc3d8@spud>
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-4-eb4d4821b172@baylibre.com>
+	b=HWmNAI5OB6WUpsYfsKvOROAHHmYuKknITMBLDaWInxVaO1r7PYChRH3VQoVWV0Rh6
+	 niRJkgtLhOB85gnZMPaGZAJ8C95JhyTk7c68DFyYxbde2/xaA8SVXuNNLltec5rUJU
+	 DjfSzjmAOmotxP4H0rj3k4NrypcD7JXTXnWMy8wc2YcQsFLD46tbcCClA48RZI1Ry3
+	 XZA9d2pNtkXBnJBAmcHHaStFNLEcNvaePY9v1UWfQJDwpA2yO8COL2aGHBzLuV+oDd
+	 abgsx0iNsCwDyjU9+zTg8n3KkmChEq1cDMI0YoeOErFGIUwCMpUxxQ+9MltMh0xECc
+	 yfWkdGjdqWfQQ==
+Date: Tue, 29 Apr 2025 10:01:12 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, geert@linux-m68k.org,
+	paul.barker.ct@bp.renesas.com, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, thierry.bultel@linatsea.fr
+Subject: Re: [PATCH v8 03/11] dt-bindings: clock: Add cpg for the Renesas
+ RZ/T2H SoC
+Message-ID: <174593886824.4084075.3272169793165208261.robh@kernel.org>
+References: <20250429081956.3804621-1-thierry.bultel.yh@bp.renesas.com>
+ <20250429081956.3804621-4-thierry.bultel.yh@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="u3SN/e233iO0AJsN"
-Content-Disposition: inline
-In-Reply-To: <20250429-wip-bl-ad7606-calibration-v1-4-eb4d4821b172@baylibre.com>
-
-
---u3SN/e233iO0AJsN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250429081956.3804621-4-thierry.bultel.yh@bp.renesas.com>
 
-On Tue, Apr 29, 2025 at 03:06:48PM +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Add gain calibration support by a per-channel resistor value.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Tue, 29 Apr 2025 10:19:45 +0200, Thierry Bultel wrote:
+> Document RZ/T2H (a.k.a r9a09g077) cpg-mssr (Clock Pulse Generator) binding.
+> 
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> ---
+> Changes v7->v8:
+>   - extra parenthesis
+>   - added loco
+>   - renesas-cpg-mssr.h: removed unused clocks, added a macro for mstp
+> Changes v6->v7:
+>   - Add description for reg property
+> Changes v5->v6:
+>   - Set clock minItem constraint
+>   - Moved additionalProperties after 'allOf' section
+> Changes v4->v5:
+>   - Set reg minItems and maxItems defaults at top level
+> Changes v3->v4:
+>   - Handle maxItems and clocks names properly in schema.
+> ---
+>  .../bindings/clock/renesas,cpg-mssr.yaml      | 58 ++++++++++++++-----
+>  .../clock/renesas,r9a09g077-cpg-mssr.h        | 48 +++++++++++++++
+>  2 files changed, 90 insertions(+), 16 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
+> 
 
---u3SN/e233iO0AJsN
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBDosQAKCRB4tDGHoIJi
-0n7VAP9zBmDK1EdgInc5dNcBH+0CC1vKZpP5v6NG2zoBXcWc/wD/RCJONyK9ylp2
-dH/IUzZo0vEQoP1ZpeYMXVOf8XU16Qs=
-=V640
------END PGP SIGNATURE-----
-
---u3SN/e233iO0AJsN--
 
