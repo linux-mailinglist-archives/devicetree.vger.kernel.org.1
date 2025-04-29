@@ -1,164 +1,228 @@
-Return-Path: <devicetree+bounces-171914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0770EAA0809
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:06:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5044FAA0813
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69E067A4908
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:05:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05A06481AC9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462BD2BE7C3;
-	Tue, 29 Apr 2025 10:06:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6522BF3EE;
+	Tue, 29 Apr 2025 10:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LomVDNOF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XAN3kQXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2C11FE478;
-	Tue, 29 Apr 2025 10:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730C82BE7D6
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 10:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745921185; cv=none; b=N1Qt+HsSRfRLRUbI32vXRBloFGPwL5DzH/aE/u3/jdZ0Vz82/iboHI0HoWWzSpRB68f2SDrvkO5XfOhZKqs2Wt62TkNPMmU4SkKVECOrnFX6fo+TBlw4SG4NnY83kIXv0Ii15lxNUg2v+0NrKbxUFxfOYI0HGmPyNDX9Oz2xooQ=
+	t=1745921225; cv=none; b=kPkHRt8v//E6vf/6AuUsZ4P9WvO3Nk+K0BAvbtVLjtZAWhPq2/sjLAqjj+2bOuLK6tqjYLMfH1AF1/bldo1kPfN8wA70mxpCqHYmeZoZ+EwXXsg1Wda9wblT/Kx1wdgAo33TZT7UT9+vIWcS7Eznmb42ihsrz6ejq6K11wdawpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745921185; c=relaxed/simple;
-	bh=kof4YDrJHqzs3PpRU+42B//MBn1YXsFjurvqP2NS4E0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fOuUWUjL0Af+NLXKrFGsA7c97mCQx1RO6EPxUV8dj6dVGGnVAakpEEhVNx72Ii8qEtsZoMKFzN3/GovBwt8EEkH2B4gUCv0TSiZ6hev/cIBA/jKb+xLSNI7sDUL1qJAVBYKwLpH6q0lwm/NCX/Y+0camndEn180AqUX3XWXhyGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LomVDNOF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNq2me019693;
-	Tue, 29 Apr 2025 10:06:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jQEJ+g7BmU8khLOOCEFMSoGh4C8XiVcJuLiR+yxuuOI=; b=LomVDNOFn+f1cZm6
-	sj3E0qbmVlT8+648qebUSbGUiCxAOyvSTa3N0MbiSgLB6iUFbFzsmasOzJkiruWm
-	byQz54BvdMQraA5rntqQzAIxR/wP+WKh//E4kB6nL+qA+Gp92IOvYv0Fu/GwcEik
-	1mXqEGqnW833R3BLiDVOfTI9oZ1fdfm4yoxvbdU1iQZT5/Gd59f/Gz/Sm8dDIlII
-	vtxv7D6lO7W2TFoT0shXeSX6ZC6+Uig6ZpnRkbNySAyTtUyg19QUlUd6HlqKNNqs
-	SETloQp/mu6Wyl0cwOO6be6yjeVcrOYylY1TDQN7gd7LX5p+yP+AnwsKKonnR+J6
-	Sv2/Dg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468n6jkdtn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 10:06:19 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53TA6Ivb021600
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 10:06:18 GMT
-Received: from [10.50.27.172] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Apr
- 2025 03:06:12 -0700
-Message-ID: <963195e9-44e1-ec84-0892-32c5efb88efa@quicinc.com>
-Date: Tue, 29 Apr 2025 15:36:09 +0530
+	s=arc-20240116; t=1745921225; c=relaxed/simple;
+	bh=ZanEZrl1MQTBJFkH/y5+fms6HZ1lW1UJH8TVe2y0Kws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eEbOp6U6Rae98Vtmyiii8E2lQDntupVG8fzRA7b6awaKPt3DEYi1oTHUZkeHzgwlbPSCns8/Xn5aygEns1tM2KA6FWGZ01zkh757UlmS1dboOoyrPWFtoPA2HQFNfj0FPpTd0UnJVxJrxnJXIWHlycnJsR8YhN+6GF62hIcVfkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XAN3kQXT; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-70576d2faa1so51075707b3.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 03:07:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745921222; x=1746526022; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=g3Ew3/QJhFzeoXSRlNN1VxKNu1WmYD8oNT84srDahOU=;
+        b=XAN3kQXTwxYUwHug2FiI5ytwDGsSYy9irnfuXX/Pu8Cgg6dKbRoJjBZVF8tCA0o4d9
+         3rlYjtN2a2VM/bAQHT7Cy+13yKDIK767bYTFVDlUyis+kmg5tkM/hk0Kq0AJ7kI5rX4N
+         WHfMdH0k5ylS+4V/fN/RyoDy7t7oreeG/BZma5OBHZ+tKnNoz8ywtYRDUYpKECgqMOaV
+         Ju6W3qG68wrrnn6fj8YZYojf7J2JX1EuPnWh5FDAlhxyzmRlE+C0YM5nd+RiAXl4bkij
+         8mgseJhIeQxQM+mxdfEYXD4oOpxK9Q4Ai+IsIXCDUmJn+uINcWDhftJ57aKZ+zvYCjl+
+         BItQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745921222; x=1746526022;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g3Ew3/QJhFzeoXSRlNN1VxKNu1WmYD8oNT84srDahOU=;
+        b=RXWE9HVO69/xG7411xq6Dpadp+NsumPW0Lsz4tW1kI0LY5aNIze7F8ektn5EVDarsL
+         ndogjdbNo1mKaiQxcMt1skPZo3qmv4PJoc/iVXGhkwtMs9GMvT33GyBQsHYktY3D5SEa
+         hRa9bpJM37kmkxPUK1yfwV7PNKBmWohdKuipVLU4KZBylPbojebg43YErK6p+7z6bTwI
+         ojY9bGrb8b1M3sK1yroYA4E8KVY86P2Yc1LGYzFCcH3nOjTocA1RFvwim8HEJUuCFtpH
+         C/bb/srYlP6e2MZj5+B4HbsA15Z/kSSdyKo/3DxJ4hd0A8Aayc1DNSUDYqCTSPaRp4Q3
+         ZzRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVu4DHhsIHH/ODj5ce/zLNXZ3lnfYznPBWWgpZEViTQ8Jv3SaQ1/++jJWfaaMayHGWsscXNVIixhGTY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxivWInBxhMmJoKTEeqE7NbrSxHJOvfIkaofGAYaLJKkdFlCaGA
+	KwAFQ5l/OiW3ZWgSGQLT8av0T2LEaAW0xde7bBwvpPfyyXDLZ5JUIFaonwOy76CEZ65MC/7sZ2v
+	YMtv5zGX+rpR0RLoNxQ9vBU0GuiikezklTdWNkw==
+X-Gm-Gg: ASbGncvggqE8Nd90YQ4YqTF6Ub25sfoT7FzpxtUVTBQ9Ur8cKKb56rvmi1MJRiMUYcV
+	o29VCCMZuc3TxNBs/L8HWuFpBBRJq9il+DJ75Vhvd/DDeUlc3jD9v76S0ElFVNntHuHMqtqAjNY
+	k0xQVirf7YcnRMKWBKQUU4Jx8=
+X-Google-Smtp-Source: AGHT+IG76v7imH4Qmr1mZ2+FW38Kt9fhuFdotLsZyhENyHP+RbqVndMxng4jwgw0v2+7ykOIPXB+oYvsflTcyUn2X+o=
+X-Received: by 2002:a05:690c:81c6:b0:700:a93e:3302 with SMTP id
+ 00721157ae682-7089b43746emr20556137b3.37.1745921222377; Tue, 29 Apr 2025
+ 03:07:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 07/23] media: iris: Add handling for no show frames
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil
-	<hverkuil@xs4all.nl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
-        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
- <20250428-qcom-iris-hevc-vp9-v2-7-3a6013ecb8a5@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-7-3a6013ecb8a5@quicinc.com>
+References: <20250423-vt8500-sdmmc-binding-v2-1-ea4f17fd0638@gmail.com>
+In-Reply-To: <20250423-vt8500-sdmmc-binding-v2-1-ea4f17fd0638@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 29 Apr 2025 12:06:25 +0200
+X-Gm-Features: ATxdqUHP1S1wKEk1JriqHl-INpfSR9z-V8MbSWsNuh6Dtm-S1RKGwycj8hOUG1k
+Message-ID: <CAPDyKFotiXYeG7k4u1YFs9vE9hH+Ut29feZZvTBSFcthJp0+vg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: vt8500-sdmmc: Convert to YAML
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA3NSBTYWx0ZWRfX5IaCucg7Vtvp QtRoradHz70RHP0Gh+9juYy/VZp/f7utrrPO1VBh28mVuxPEhaDh7j3ocU/U/Vn/CvgrTl/yMVT VtUsocDo6mG0RWMhf9M4MVn41WKGBeeb1+qU7maia+p28LCj+9ObkKR1kJFzF3reo84CEVnjC3e
- 30wE676O3BJEI2D4K9+CezPjW7PTHsyqNec/VvZ4twhwFC+sayAH7FkDxzVOLiDsUrnHguaKDaT G+6KUVNqB2XGmrZSbHE7PS8hyQkfpI6lTKlZ5J84Tq8X4DQ/IHzCp7HRXaPBd0pN1f2sCb0tUC0 Lto/cRV2BEdMoS9phyNp6oMguOXMPsMW+Sx9eSI3ZxFTuT5BTvXdp9rkZp6Ah11mIaZ94Z68jT9
- VokjfqRXxcH7SYj5xkj96a/GDKpGpLokfmkrgm76WYS8dFK58WeSVLIzSZNQlhnYkRTitMpE
-X-Proofpoint-GUID: ECGvXNqWQEn8ZoWoqYelCjDkVPKAj-CP
-X-Proofpoint-ORIG-GUID: ECGvXNqWQEn8ZoWoqYelCjDkVPKAj-CP
-X-Authority-Analysis: v=2.4 cv=C8fpyRP+ c=1 sm=1 tr=0 ts=6810a49b cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=I1LTqFYYwnHxq3ZflJIA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-29_03,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- mlxlogscore=999 priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0
- malwarescore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504290075
 
-
-On 4/28/2025 2:58 PM, Dikshita Agarwal wrote:
-> Firmware sends the picture type as NO_SHOW for frames which are not
-> supposed to be displayed, add handling for the same in driver to drop
-> them.
-> 
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h  | 1 +
->  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 4 +++-
->  2 files changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h b/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> index 806f8bb7f505..666061a612c3 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> @@ -113,6 +113,7 @@ enum hfi_picture_type {
->  	HFI_PICTURE_I				= 0x00000008,
->  	HFI_PICTURE_CRA				= 0x00000010,
->  	HFI_PICTURE_BLA				= 0x00000020,
-> +	HFI_PICTURE_NOSHOW			= 0x00000040,
->  };
->  
->  enum hfi_buffer_type {
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index 5bb20ec0d67f..1ed798d31a3f 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -91,7 +91,9 @@ static int iris_hfi_gen2_get_driver_buffer_flags(struct iris_inst *inst, u32 hfi
->  	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
->  	u32 driver_flags = 0;
->  
-> -	if (inst_hfi_gen2->hfi_frame_info.picture_type & keyframe)
-> +	if (inst_hfi_gen2->hfi_frame_info.picture_type & HFI_PICTURE_NOSHOW)
-> +		driver_flags |= V4L2_BUF_FLAG_ERROR;
-> +	else if (inst_hfi_gen2->hfi_frame_info.picture_type & keyframe)
->  		driver_flags |= V4L2_BUF_FLAG_KEYFRAME;
->  	else if (inst_hfi_gen2->hfi_frame_info.picture_type & HFI_PICTURE_P)
->  		driver_flags |= V4L2_BUF_FLAG_PFRAME;
-> 
+On Wed, 23 Apr 2025 at 12:53, Alexey Charkov <alchark@gmail.com> wrote:
 >
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> Rewrite the textual description for the WonderMedia SDMMC controller
+> as YAML schema, and switch the filename to follow the compatible
+> string.
+>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+
+Applied for next, thanks!
+
+Kind regards
+Uffe
+
+
+> ---
+> Split the series from v1 into separate bindings patches so as not to
+> spam all the subsystems with unrelated changes, per Rob's suggestion
+>
+> Changes in v2:
+> - described the sdon-inverted property in greater detail (thanks Rob)
+> - dropped the hunk that updates MAINTAINERS for easier merging - will
+>   be updated later in a single pass to cover all VT8500 related files
+>
+> Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-3-f9af689cdfc2@gmail.com/
+> ---
+>  .../devicetree/bindings/mmc/vt8500-sdmmc.txt       | 23 --------
+>  .../devicetree/bindings/mmc/wm,wm8505-sdhc.yaml    | 66 ++++++++++++++++++++++
+>  2 files changed, 66 insertions(+), 23 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt b/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
+> deleted file mode 100644
+> index d7fb6abb3eb8c87e698ca4f30270c949878f3cbf..0000000000000000000000000000000000000000
+> --- a/Documentation/devicetree/bindings/mmc/vt8500-sdmmc.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -* Wondermedia WM8505/WM8650 SD/MMC Host Controller
+> -
+> -This file documents differences between the core properties described
+> -by mmc.txt and the properties used by the wmt-sdmmc driver.
+> -
+> -Required properties:
+> -- compatible: Should be "wm,wm8505-sdhc".
+> -- interrupts: Two interrupts are required - regular irq and dma irq.
+> -
+> -Optional properties:
+> -- sdon-inverted: SD_ON bit is inverted on the controller
+> -
+> -Examples:
+> -
+> -sdhc@d800a000 {
+> -       compatible = "wm,wm8505-sdhc";
+> -       reg = <0xd800a000 0x1000>;
+> -       interrupts = <20 21>;
+> -       clocks = <&sdhc>;
+> -       bus-width = <4>;
+> -       sdon-inverted;
+> -};
+> -
+> diff --git a/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..5b55174e908836866fbba42336db94cb03f9137b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/wm,wm8505-sdhc.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/wm,wm8505-sdhc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: WonderMedia SoC SDHCI Controller
+> +
+> +maintainers:
+> +  - Alexey Charkov <alchark@gmail.com>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: wm,wm8505-sdhc
+> +      - items:
+> +          - const: wm,wm8650-sdhc
+> +          - const: wm,wm8505-sdhc
+> +      - items:
+> +          - const: wm,wm8750-sdhc
+> +          - const: wm,wm8505-sdhc
+> +      - items:
+> +          - const: wm,wm8850-sdhc
+> +          - const: wm,wm8505-sdhc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: SDMMC controller interrupt
+> +      - description: SDMMC controller DMA interrupt
+> +
+> +  sdon-inverted:
+> +    type: boolean
+> +    description: All chips before (not including) WM8505 rev. A2 treated their
+> +      "clock stop" bit (register offset 0x08 a.k.a. SDMMC_BUSMODE, bit 0x10)
+> +      as "set 1 to disable SD clock", while all the later versions treated it
+> +      as "set 0 to disable SD clock". Set this property for later versions of
+> +      wm,wm8505-sdhc. On wm,wm8650-sdhc and later this property is implied and
+> +      does not need to be set explicitly
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@d800a000 {
+> +        compatible = "wm,wm8505-sdhc";
+> +        reg = <0xd800a000 0x1000>;
+> +        interrupts = <20>, <21>;
+> +        clocks = <&sdhc>;
+> +        bus-width = <4>;
+> +        sdon-inverted;
+> +    };
+>
+> ---
+> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+> change-id: 20250423-vt8500-sdmmc-binding-01c6ce3f6678
+>
+> Best regards,
+> --
+> Alexey Charkov <alchark@gmail.com>
+>
 
