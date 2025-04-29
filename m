@@ -1,101 +1,92 @@
-Return-Path: <devicetree+bounces-171951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA15AA0999
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 13:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07DBDAA0AC4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 13:52:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33A7716E4D8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:32:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A68917FCA7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2DB2C1E1F;
-	Tue, 29 Apr 2025 11:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D012C1E32;
+	Tue, 29 Apr 2025 11:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="eRiVfhHs"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="kZN9ESih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA69E2C17A5;
-	Tue, 29 Apr 2025 11:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71797405A;
+	Tue, 29 Apr 2025 11:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745926300; cv=none; b=OPbI0tmwtA0RjzO5P0ANzfWiDlqQk5wIoYEWo+pYYsIoUYd4d7kQL0+XbffXY9q+OtLlk9WbRzfT6EOpBRtE2TcoY9QE68wNb4tj0Qu0qCTivG4KCJ/DtSVB/5UxEpezUPMkLpO98jpdlgA9urBkMk24nJDS0yisn0JHmexUmjE=
+	t=1745927346; cv=none; b=Ji+Fq0KcngP0zCu0gvy/tFd39mMELegs3mUnbcOG9jb1Q6fjlAqQAz2UqdbDvr4okdJkkTpEWe3WARTV9kDWd6FdEVN1+32lsoIPM9dh0SLDYXFO0dvAMuetdq60Tr3potAWQlhZyu4RHRRFB8ROqWFNEPLne5Tr7HeZhFrPJXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745926300; c=relaxed/simple;
-	bh=FC4RyjuUdRs/wygmUCQvl5aBB2J8vSf6dxzZN78EcNY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=b5XXbk8qgzJ7yqt0FkTeH3+CiJMw2i0o6NLNFhDOT47eSIZaPeAdrnj6pDVO+aovMxBpOLN39OCZnbeUT3p3nymOU3XGPXFQUVXr84cyV8D6Ooh79ROgnJXQMID/cScdwVPnjckYugs5hTeAd36GMmNJB1r0JrzjVjMGx7I8jx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=eRiVfhHs; arc=none smtp.client-ip=217.194.8.81
+	s=arc-20240116; t=1745927346; c=relaxed/simple;
+	bh=LNxe9L/dVH+WsWoZiDeGo991fLnDBQKuOgP13ml2SeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JAMt6VjdhNUFdwY8kNKzhcr1F12klT59g39HMHcGJ6xsVuonj+cljOiS1FOX60lJwWsRkCT2rrF1RGxoC58lk686FHDyArc6bDA2ZLYypbQAD9SowNsD/CVNJt7PPC2oJauJWecUgbApVN/rcKaEad60aHeVAZydeMgo13mmGSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=kZN9ESih; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 9F8ED1F9F1;
-	Tue, 29 Apr 2025 13:31:30 +0200 (CEST)
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 070E81F945;
+	Tue, 29 Apr 2025 13:49:03 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1745926291;
-	bh=XBbGVyieOghmZLlg7Pw4NSfP9F5vBz10sBznCLal1ig=; h=From:To:Subject;
-	b=eRiVfhHs2QSe53VlR58VXQG0In7uHtNC4kvqKmMYJJoFycv/mOzcXiXtJ7PzPPPER
-	 /CCXNlpTWsrs/B4eIUvTJvc0Of43IR99watzPwa9WgocXjueMpDELcVeyA/7EHT9rQ
-	 CmL6aadE0tdQAEynNUIERY5N4GptwZKzjCNkTKouxnzbmLpJ3I0R+Xg1+/bylelg8n
-	 cNacLatDRla5aGSABTPW9VDOClPGEt9ZSSTWaihEpOEPPBb7+g7aYBtaRE/CTcf8rB
-	 ZsGLyf/sI5CTDHsLZD3t+OyG2gTT7nMFUrRpBIR+P8SdX0nHNlnmycR6mK8lIjzpDA
-	 1HafBEpafOMww==
+	s=default; t=1745927343;
+	bh=oDwIkddYcjzqpY0qn+RN60cxRzSZFEEPA0b1jtHao/Y=;
+	h=Received:From:To:Subject;
+	b=kZN9ESihpGKMvPY4cStlEn6RlCOnHRvDpolr94jqob8QWMXuZSmIGMA/LL2RgepaF
+	 enHO+t6u/Ug1npMjfqK4EfrjvnMgezzOJ3Jo8m2UxqJUjiJ9n/1of4majt2inv70wb
+	 bCcNx/65qczywfHfoXMUXd/8fWtBDSqnbZYHUlQ3ct85QGyW8JtoamDHRg0ryC8cX8
+	 7djC+wHLUcFTMTd5gfWaTt5aKa4j7lF5d5zJBs1GhxFm4frAhxQKakwhnMjLEtPoAe
+	 Dl5lhkIU4s/GInKY8O7f2co6OAwK2PAMBnbGeFe8FR06mn3vQKtxo1j9rs/cH5vxLn
+	 H3slz76KCoPOw==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 7A8997F9D9; Tue, 29 Apr 2025 13:49:02 +0200 (CEST)
+Date: Tue, 29 Apr 2025 13:49:02 +0200
 From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Lucas Stach <l.stach@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] arm64: defconfig: Add Toradex Embedded Controller config
-Date: Tue, 29 Apr 2025 13:31:19 +0200
-Message-Id: <20250429113119.124427-5-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250429113119.124427-1-francesco@dolcini.it>
-References: <20250429113119.124427-1-francesco@dolcini.it>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	Francesco Dolcini <francesco@dolcini.it>, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH 0/6] arm64: dts: imx: Move Ethernet aliases out of SoC
+ DTSI
+Message-ID: <aBC8rvt-u8P4Qlzw@gaggiata.pivistrello.it>
+References: <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
+ <e97d3388a5b4272d70d7379b020843a47874a104.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e97d3388a5b4272d70d7379b020843a47874a104.camel@pengutronix.de>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+Hello,
 
-Enable config for Toradex SMARC Embedded Controller, this is required
-for proper reset and power-off functionalities on Toradex SMARC iMX8M
-Plus.
+On Tue, Apr 29, 2025 at 11:39:20AM +0200, Lucas Stach wrote:
+> Am Freitag, dem 25.04.2025 um 21:48 +0200 schrieb Krzysztof Kozlowski:
+> > Ethernet interface, like other exposed interfaces, aliases depend on
+> > actual board configuration, e.g. its labeling, thus aliases should be
+> > defined per each board or each SoM.
+> > 
+> Breaking existing users for the sake of aligning the i.MX platform with more
+> idiomatic DT usage does not seem to be a worthwhile trade-off to me.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+FWIW, I agree with Lucas.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a92c4122a8b9..d4f1230250fa 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -680,6 +680,7 @@ CONFIG_GPIO_SL28CPLD=m
- CONFIG_GPIO_AGGREGATOR=m
- CONFIG_POWER_RESET_MSM=y
- CONFIG_POWER_RESET_QCOM_PON=m
-+CONFIG_POWER_RESET_TORADEX_EC=m
- CONFIG_POWER_RESET_XGENE=y
- CONFIG_POWER_RESET_SYSCON=y
- CONFIG_POWER_RESET_SYSCON_POWEROFF=y
--- 
-2.39.5
+Francesco
 
 
