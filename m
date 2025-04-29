@@ -1,210 +1,438 @@
-Return-Path: <devicetree+bounces-172088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 547BAAA1B92
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:52:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 105B0AA1B94
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 183A21B66766
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:52:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 165839807F1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF4425FA02;
-	Tue, 29 Apr 2025 19:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9B225E83C;
+	Tue, 29 Apr 2025 19:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1Wver2v"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qIsmPYdB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F90253B71;
-	Tue, 29 Apr 2025 19:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECA621CA0E;
+	Tue, 29 Apr 2025 19:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745956309; cv=none; b=IxEe6Io97aEAqOdZ1GrDJ6NMsIJ4geZqOV9Jz8JjwLgdmXGx+26jaOalFIvfSgpiiHwfSfGzF5gfCN3mSbByqoL3LrMt9f5SuT2fit0I8VhS0JJ5M6cqaHW4cDfEtlu1wN9y2crhaCuy2gnp0J//juqEX3qwBfj4Z985sdhzj78=
+	t=1745956349; cv=none; b=mLsfzago+fUFG5ofi4zl5L02cTf30blA9f/znIU+6vvXnDlgeT4BK+hd39sbloIWkfZly480u3PCb9IRCCsSvhp17fyZcLqNjQoMHpity+n5aVLEU2JZrtYUUEXJliTHQSgOqTDd1NCa8dJDTo4IFIx9sxwvxCVtcMj0rfU3H50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745956309; c=relaxed/simple;
-	bh=z1fvvieY1psn6GVNY6iDPpzBM5AWRCz/GzQ7g8pEEVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uVvhJRh4noxiSgt0W6sSMZLWtc+LwGlEAzkGZzjNqK7rEpfBV0i2YjsY53HVySAudVPaYuGYB4kosBNn2YqoYJd5p9cgallG4xvLztfujPQLTS5fSDv1ZpCP0YvB6KtTrltuk5etmY4tskjKedP+nMAvgif35eh0xJxMY+wl84s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1Wver2v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3EC3C4CEE3;
-	Tue, 29 Apr 2025 19:51:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745956308;
-	bh=z1fvvieY1psn6GVNY6iDPpzBM5AWRCz/GzQ7g8pEEVc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b1Wver2vES19Qwkp6AQZn80UfAWt/dCb+ZdPRTAu9+7Wr9f/3iShWlqG58YB+VX50
-	 dc1NbF3NmgotoSlA+EZnjAwc/hoXuGN97GWgYEr7fq5RofHVRZ0bNd/PPOuZ/BRRfs
-	 tBt8BDpU3F7i/2Jh+QjudJkaHx2uSs34ekHrTgYOq1m8CjFJR178bDapZGhUMRqC20
-	 TtSs3RxPwOOL+xndT8Gs+PFfQx+9Vj26jmrIuqdfM8olXCBmHkHMBF68lDay9OmIRI
-	 zSZnQFtP46/bDUxxmpDl4qRVBLZTuMzN9qA9dYHjZPPwfbveE1OZk+3NmQi4avqU5b
-	 KW5mBSc8SzP0g==
-Date: Tue, 29 Apr 2025 20:51:42 +0100
-From: Srinivas Kandagatla <srini@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v8 6/6] nvmem: max77759: add Maxim MAX77759 NVMEM driver
-Message-ID: <aBEtzh8w5PZKSntr@srini-hackbase>
-References: <20250429-max77759-mfd-v8-0-72d72dc79a1f@linaro.org>
- <20250429-max77759-mfd-v8-6-72d72dc79a1f@linaro.org>
+	s=arc-20240116; t=1745956349; c=relaxed/simple;
+	bh=l71YXbQOt1JjeqHH2VAL+svcf896wMCZjtON0ABT/ew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uV9O09XcnHK7m7cFbBgWztfn8fNLPaR/j2lAb1hO3+m9SJ2irUVRf2cXiywTVQmireGEOwaSXWDgLIZjHC5HlRHKo8sq52e1gE5x4zDRoD5VLAZltdZe25EY1hthUHq2RImCzR6dHW/88XRN2IfKY3KRfBCuBU/XNYehfbHTQQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qIsmPYdB; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TJpv5H3169539
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 29 Apr 2025 14:51:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745956317;
+	bh=D0IIv8htFbm+nxEI2dKvVpGScy8ANrT/JfDERAyAsUk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=qIsmPYdBgLrWfVodLp2UK+DPbJGP5/NUpAtJJlmitsk4XwiUFgPv1Tg3ZhuHJLT9s
+	 9HDEgpnkmLVRLc7Hax+RI7ozF8B5QU9zcwQ3ObndOA1C6xg/OkTjjZqkIU1i5gBJ9y
+	 y7Q08ccY598TeuTJl36sR4A/giUV0ekW7lKDmQmI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TJpveq074900
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Apr 2025 14:51:57 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Apr 2025 14:51:57 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Apr 2025 14:51:57 -0500
+Received: from [10.250.35.60] ([10.250.35.60])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TJpuq9058941;
+	Tue, 29 Apr 2025 14:51:56 -0500
+Message-ID: <cff8883b-8644-4e87-aa88-eea8d62c75ab@ti.com>
+Date: Tue, 29 Apr 2025 14:51:56 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] Add new `export-symbols` node
+To: Ayush Singh <ayush@beagleboard.org>,
+        Jason Kridner
+	<jkridner@beagleboard.org>,
+        Deepak Khatri <lorforlinux@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        <nenad.marinkovic@mikroe.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Robert Nelson
+	<robertcnelson@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann
+	<arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana
+ Kannan <saravanak@google.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Grant Likely <grant.likely@secretlab.ca>, Dhruva Gole <d-gole@ti.com>
+CC: <devicetree-spec@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
+ <3a23228b-97fc-4ab9-9b0b-f84d74d11327@beagleboard.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <3a23228b-97fc-4ab9-9b0b-f84d74d11327@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250429-max77759-mfd-v8-6-72d72dc79a1f@linaro.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Apr 29, 2025 at 09:21:42AM +0100, Andr� Draszik wrote:
-> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> Port Controller (TCPC), NVMEM, and a GPIO expander.
+On 4/29/25 2:15 PM, Ayush Singh wrote:
+> On 4/11/25 13:30, Ayush Singh wrote:
 > 
-> This driver exposes the non volatile memory using the platform device
-> registered by the core MFD driver.
+>> `export-symbols` is designed to be a local replacement of global
+>> `__symbols__` allowing nodes to define aliases to nodes in a tree, which
+>> will take precedence over the aliases defined in the global `__symbols__`.
+>>
+>> Having a way to allow node local aliases helps in usecases such as
+>> connectors and addon-boards, by allowing decoupling of
+>> overlays/devicetree nodes of addon-board from the base connector.
+>>
+>> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+>> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>> This patch series follows the initial RFC [9] sent a few weeks ago. I
+>> will be reiterating the RFC here for anyone who might be seeing this the
+>> first time, since there was not much feedback in that thread.
+>>
+>> The patch series adds export-symbols to base devicetree specification to
+>> allow for support of base board + runtime connector setups using devicetree
+>> overlays. The idea was actually proposed in the linux kernel mailing list
+>> by Herve Codina [0] with the devicetree schema and linux kernel
+>> implementation. Initial implementations for devicetree compiler [1] and
+>> fdtoverlay [2] have also been sent to the mailing lists.
+>>
+>> Introduction
+>> *************
+>>
+>> There are a lot of setups, especially in embedded systems that consist of
+>> a base connector and addon boards that can be connected to this connector.
+>> Here are some examples:
+>> - MikroBus
+>> - GE SUNH
+>> - BeagleCapes, etc
+>>
+>> Some of these connectors have runtime detection capabilities (GE SUNH),
+>> while some do not (MikroBUS without 1-wire EEPROM). The goal is to decouple
+>> the connector on base device tree with the overlay for addon boards. This
+>> will allow having 1 overlay for each board that would work with connector
+>> devicetree on any board.
+>>
+>> Linux kernel already provides APIs to apply overlays at specific nodes
+>> [10], and I have a patch series to have similar functionality in
+>> fdtoverlay [11]. This is to allow writing overlays for addon-boards,
+>> that will be expected to be applied to the connector nodes, instead of
+>> on the global tree.
+>>
+>> One of the issue was referencing resources available on the base board
+>> device tree from the addon overlay device tree. Using a nexus node [3]
+>> helps decoupling some resources like GPIO and PWM from the overlay.
+>> However, that still leaves things like pinmux, i2c adapter, etc.
+>>
+>> The `export-symbols` node solves this issue.
+>>
+>> The idea of export-symbols is to have something similar to the global
+>> `__symbols__` node but local to a specific node. Symbols listed in this
+>> export-symbols are local and visible only when an overlay is applied on a
+>> node having an export-symbols subnode. This allows specifying the
+>> phandles to i2c adapter, pinmux, etc, per connector. Since the names
+>> used for these phandles for each connector can be standardized, it would
+>> allow having the same addon-board overaly work for connectors on
+>> different boards (or multiple connectors on the same board).
+>>
+>> Note: `export-symbols` properties differ from __symbols__ since they are
+>> phandles, not path references. This is much easier to work with in
+>> overlays as described in [7].
+>>
+>> Using export-symbols, our example becomes:
+>>
+>>      soc_gpio: gpio-controller {
+>>        #gpio-cells = <2>;
+>>      };
+>>
+>>      connector1: connector1 {
+>>          /*
+>>           * Nexus node for the GPIO available on the connector.
+>>           * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
+>>           * controller
+>>           */
+>>          #gpio-cells = <2>;
+>>          gpio-map = <0 0 &soc_gpio 12 0>;
+>>          gpio-map-mask = <0xf 0x0>;
+>>          gpio-map-pass-thru = <0x0 0xf>;
+>>
+>>          export-symbols {
+>>         GPIO_CONNECTOR = <&connector1>;
+>>         PIN_33_GPIO_PINMUX = <&p1_33_gpio>;
+>>          };
+>>      };
+>>
+>> Our overlay can use thi
+>>
+>>     leds {
+>>        pinctrl-names = "default";
+>>        pinctrl-0 = <&PIN_33_GPIO_PINMUX>;
+>>
+>>        led-1 {
+>>            gpios = <&GPIO_CONNECTOR 33 GPIO_ACTIVE_HIGH>;
+>>        };
+>>     };
+>>
+>> It used the P1_33 pin in the connector it is applied on.
+>>
+>> A board with two connectors can be described with:
+>>
+>>      connector1: connector1 {
+>>          ...
+>>          export-symbols {
+>>         GPIO_CONNECTOR = <&connector1>;
+>>         PIN_33_GPIO_PINMUX = <&p1_33_gpio>;
+>>          };
+>>      };
+>>
+>>      connector2: connector2 {
+>>          ...
+>>          export-symbols {
+>>         GPIO_CONNECTOR = <&connector2>;
+>>         PIN_33_GPIO_PINMUX = <&p3_33_gpio>;
+>>          };
+>>      };
+>>
+>> In that case, the same overlay with unresolved `GPIO_CONNECTOR` and
+>> `PIN_33_GPIO_PINMUX` symbol can be applied on both connectors and the
+>> correct symbol resolution will be done.
+>>
+>> Alternatives
+>> *************
+>>
+>> Some alternative approaches that were considered:
+>>
+>> 1. Using aliases.
+>>
+>>     Currently, it is not possible to update aliases in device tree overlays.
+>>     I sent a patch a few weeks ago to add this support [4]. However, as was
+>>     outlined by Rob, this can break existing drivers that used the unused
+>>     indexes for devices not present in the aliases list.
+>>
+>> 2. Add support for phandles in `__symbols__`
+>>
+>>     This has been discussed in the following patch series [5]. However,
+>>     since there is no way to distinguish between strings and phandles in
+>>     devicetree (everything is bytestring), the type guessing is awkward.
+>>     Also, the export-symbol solution is much more flexible than extending
+>>     the old `__symbols__` node.
+>>
+>> 3. Add support for path reference resolution to overlays
+>>
+>>     An approach using `__symbols__` was proposed by Andrew Davis [6].
+>>     However, currently, it is difficult to support path reference resolution
+>>     support to overlays [7]. This limitation makes it difficult to support
+>>     connector chaining (MikroBUS -> Grove -> Addon board), which is possible
+>>     in some connectors.
+>>
+>> Some other benefits to export-symbols
+>> **************************************
+>>
+>> 1. No need to enable generation of all symbols in base devicetree
+>>     Since the nodes used by connector are referenced by properties in
+>>     `export-symbols`, the symbols table entries for these nodes will be
+>>     generated, even if symbols generation is not enabled globally. This
+>>     can help save space, specially in constrained devices.
+>>
+>> 2. Enables scoping symbol resolution
+>>     Does not pollute the global symbols, and can be useful outside addon
+>>     board setups.
+>>
+>> Why add to specification?
+>> **************************
+>>
+>> I would like the ability to share the addon board overlays with
+>> ZephyrRTOS, which also has boards that support MikroBUS (like BeagleConnect
+>> Freedom [8]) and U-Boot. So it would make more sense if this node is part
+>> of the specification instead of linux specific.
+>>
+>> [0]: https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
+>> [1]: https://lore.kernel.org/all/20250110-export-symbols-v1-1-b6213fcd6c82@beagleboard.org/
+>> [2]: https://lore.kernel.org/devicetree-compiler/86a7a08c-d81c-43d4-99fb-d0c4e9777601@beagleboard.org/T/#t
+>> [3] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+>> [4]: https://lore.kernel.org/all/20241110-of-alias-v2-0-16da9844a93e@beagleboard.org/T/#t
+>> [5]: https://lore.kernel.org/devicetree-compiler/44bfc9b3-8282-4cc7-8d9a-7292cac663ef@ti.com/T/#mbbc181b0ef394b85b76b2024d7e209ebe70f7003
+>> [6]: https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
+>> [7]: https://lore.kernel.org/devicetree-compiler/6b2dba90-3c52-4933-88f3-b47f96dc7710@beagleboard.org/T/#m8259c8754f680b9da7b91f7b7dd89f10da91d8ed
+>> [8]: https://www.beagleboard.org/boards/beagleconnect-freedom
+>> [9]: https://lore.kernel.org/devicetree-spec/edaa1378-c871-4c55-ab99-21ef6656f35a@beagleboard.org/T/#mc339a0ae0c886ca46da0f7bb679518fa8b0b3007
+>> [10]: https://docs.kernel.org/devicetree/kernel-api.html#c.of_overlay_fdt_apply
+>> [11]: https://lore.kernel.org/devicetree-compiler/20250313-fdtoverlay-target-v1-0-dd5924e12bd3@beagleboard.org/T/#t
+>>
+>> Best Regards,
+>> Ayush Singh
+>> ---
+>> Changes in v3:
+>> - Add trailer
+>> - CC linux-devicetree
+>> - Link to v2: https://lore.kernel.org/r/20250323-export-symbols-v2-1-f0ae1748b244@beagleboard.org
+>>
+>> Changes in v2:
+>> - Improve examples. More focus on export-symbols and less on nexus nodes
+>> - Fix typo.
+>> - Link to v1: https://lore.kernel.org/r/20250225-export-symbols-v1-1-693049e3e187@beagleboard.org
+>> ---
+>>   source/chapter3-devicenodes.rst | 89 +++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 89 insertions(+)
+>>
+>> diff --git a/source/chapter3-devicenodes.rst b/source/chapter3-devicenodes.rst
+>> index 8080321d6e60d6b1e86c81af86c6850246a0223b..2c3bbc2c81bacd71fcf3b389a31237344f995ba7 100644
+>> --- a/source/chapter3-devicenodes.rst
+>> +++ b/source/chapter3-devicenodes.rst
+>> @@ -988,3 +988,92 @@ each with their own on-chip L2 and a shared L3.
+>>               };
+>>           };
+>>       };
+>> +
+>> +``*/export-symbols`` node
+>> +-------------------------
+>> +A devicetree node may have an export-symbols child node
+>> +(`*/export-symbols`) that defines one or more export-symbol properties.
+>> +
+>> +Each property of the `export-symbols` node defines an alias local to it's
+>> +parent. The property name specifies the alias name. The property value
+>> +specifies the phandle to a node in the devicetree. For example, the
+>> +property ``serial0 = <&main_uart0>`` defines ``serial0`` as the local alias
+>> +to ``main_uart0``.
+>> +
+>> +Alias names shall be lowercase text strings of 1 to 31 characters from the
+>> +following set of characters.
+>> +
+>> +.. tabularcolumns:: | c p{8cm} |
+>> +.. table:: Valid characters for alias names
+>> +
+>> +   ========= ================
+>> +   Character Description
+>> +   ========= ================
+>> +   0-9       digit
+>> +   a-z       lowercase letter
+>> +   \-        dash
+>> +   ========= ================
+>> +
+>> +An alias value is a phandle to a node in the devicetree.
+>> +
+>> +Resolution of nodes using `export-symbols` follows the following rules
+>> +depending on the context:
+>> +
+>> +No target involved
+>> +~~~~~~~~~~~~~~~~~~~
+>> +Properties of parent node use symbols from ``export-symbols``, but none of
+>> +the subnodes will be able to use them. For example, the following code will
+>> +resolve properly:
+>> +
+>> +.. code-block:: dts
+>> +
+>> +    / {
+>> +        parent {
+>> +            led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
+>> +
+>> +            export-symbols {
+>> +                local_gpio = <&gpio0>;
+>> +            };
+>> +        };
+>> +    }
+>> +
+>> +However, the code below is not valid:
+>> +
+>> +.. code-block:: dts
+>> +
+>> +    / {
+>> +        parent {
+>> +            child {
+>> +                /* child node cannot access export-symbols */
+>> +                led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
+>> +            };
+>> +
+>> +            export-symbols {
+>> +                local_gpio = <&gpio0>;
+>> +            };
+>> +        };
+>> +    }
+>> +
+>> +Target is used in the base devicetree or overlays
+>> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> +Any node/subnode property is free to use symbols from ``export-symbols``
+>> +defined in the parent. To provide a concrete exampe, the following is
+>> +valid:
+>> +
+>> +.. code-block:: dts
+>> +
+>> +    / {
+>> +        parent {
+>> +            export-symbols {
+>> +                local_gpio = <&gpio0>;
+>> +            };
+>> +        };
+>> +    }
+>> +
+>> +    &parent {
+>> +        led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
+>> +
+>> +        child {
+>> +            led = <&local_gpio 0 GPIO_ACTIVE_HIGH>;
+>> +        };
+>> +    };
+>>
+>> ---
+>> base-commit: 5688e1c0b961d2ca5a32e3b624a9f4a9b433184f
+>> change-id: 20250225-export-symbols-3524f124cd93
+>>
+>> Best regards,
 > 
-> Signed-off-by: Andr� Draszik <andre.draszik@linaro.org>
-> ---
-> v8:
-> * replace MODULE_ALIAS() with .id_table (Krzysztof)
-> * drop previous tags
 > 
-> v5:
-> * follow API updates of max77759 core driver
+> I have a very basic pocketbeagle2 connector driver with overlay for techlab cape [0]. It only uses export-symbols for pinmuxes for now, but might provide an example of use outside of nexus nodes.
 > 
-> v2:
-> * align sentinel in max77759_nvmem_of_id[] with other max77759 drivers
->  (Christophe)
-> ---
->  MAINTAINERS                    |   1 +
->  drivers/nvmem/Kconfig          |  12 +++
->  drivers/nvmem/Makefile         |   2 +
->  drivers/nvmem/max77759-nvmem.c | 162 +++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 177 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0db5e1fe64930e85265913e6a7dd2669c645cf42..b821502afc48f95d48fb8c6ac6941d1dd8e63582 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14670,6 +14670,7 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/*/maxim,max77759*.yaml
->  F:	drivers/gpio/gpio-max77759.c
->  F:	drivers/mfd/max77759.c
-> +F:	drivers/nvmem/max77759-nvmem.c
->  F:	include/linux/mfd/max77759.h
->  
->  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 8671b7c974b933e147154bb40b5d41b5730518d2..3de07ef524906ad24a89e58abdfe93529a83c80f 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -154,6 +154,18 @@ config NVMEM_LPC18XX_OTP
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called nvmem_lpc18xx_otp.
->  
-> +config NVMEM_MAX77759
-> +	tristate "Maxim Integrated MAX77759 NVMEM Support"
-> +	depends on MFD_MAX77759
-> +	default MFD_MAX77759
-> +	help
-> +	  Say Y here to include support for the user-accessible storage found
-> +	  in Maxim Integrated MAX77759 PMICs. This IC provides space for 30
-> +	  bytes of storage.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called nvmem-max77759.
-> +
->  config NVMEM_MESON_EFUSE
->  	tristate "Amlogic Meson GX eFuse Support"
->  	depends on (ARCH_MESON || COMPILE_TEST) && MESON_SM
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 5b77bbb6488bf89bfb305750a1cbf4a6731a0a58..a9d03cfbbd27e68d40f8c330e72e20378b12a481 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -34,6 +34,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
->  nvmem_lpc18xx_eeprom-y			:= lpc18xx_eeprom.o
->  obj-$(CONFIG_NVMEM_LPC18XX_OTP)		+= nvmem_lpc18xx_otp.o
->  nvmem_lpc18xx_otp-y			:= lpc18xx_otp.o
-> +obj-$(CONFIG_NVMEM_MAX77759)		+= nvmem-max77759.o
-> +nvmem-max77759-y			:= max77759-nvmem.o
->  obj-$(CONFIG_NVMEM_MESON_EFUSE)		+= nvmem_meson_efuse.o
->  nvmem_meson_efuse-y			:= meson-efuse.o
->  obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+= nvmem_meson_mx_efuse.o
-> diff --git a/drivers/nvmem/max77759-nvmem.c b/drivers/nvmem/max77759-nvmem.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..df7d1998fa2f116450d2fd50eba70d9b61a24574
-> --- /dev/null
-> +++ b/drivers/nvmem/max77759-nvmem.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright 2020 Google Inc
-> +// Copyright 2025 Linaro Ltd.
-> +//
-> +// NVMEM driver for Maxim MAX77759
-> +
-> +#include <linux/dev_printk.h>
-> +#include <linux/device.h>
-> +#include <linux/device/driver.h>
-> +#include <linux/err.h>
-> +#include <linux/mfd/max77759.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/overflow.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/string.h>
-> +
-> +#define MAX77759_NVMEM_OPCODE_HEADER_LEN 3
-> +/*
-> + * NVMEM commands have a three byte header (which becomes part of the command),
-> + * so we need to subtract that.
-> + */
-> +#define MAX77759_NVMEM_SIZE (MAX77759_MAXQ_OPCODE_MAXLENGTH \
-> +			     - MAX77759_NVMEM_OPCODE_HEADER_LEN)
-> +
-> +struct max77759_nvmem {
-> +	struct device *dev;
-> +	struct max77759 *max77759;
-> +};
-> +
-> +static bool max77759_nvmem_is_valid(unsigned int offset, size_t bytes)
-> +{
-> +	return (offset + bytes - 1 <= MAX77759_NVMEM_SIZE);
-> +}
-Do you really need this check?
-nvmem core should take care of this boundary checks.
+> [0]: https://github.com/Ayush1325/linux/tree/b4/beagle-cape
+> 
 
-> +
-> +static int max77759_nvmem_reg_read(void *priv, unsigned int offset,
-> +				   void *val, size_t bytes)
-> +{
-> +	struct max77759_nvmem *nvmem = priv;
-> +	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
-> +		    MAX77759_NVMEM_OPCODE_HEADER_LEN);
-> +	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
-> +		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-> +	int ret;
-> +
-> +	if (!max77759_nvmem_is_valid(offset, bytes)) {
-> +		dev_err(nvmem->dev, "outside NVMEM area: %u / %zu\n",
-> +			offset, bytes);
-> +		return -EINVAL;
-> +	}
-> +
+You have proven my point here. You were only able to model the GPIO
+attached devices: buttons and LEDs. Nothing else of this cape was
+modeled, nor could it be modeled with this solution.
+
+Your example fails to do even the most fundamental task: the overlay
+is still specific to just one host board. Go connect this cape to
+an original PocketBeagle and try to apply the overlay to its DTS..
+
+What you did with "export-symbols" in this example could have been
+done exactly the same with normal overlays. These "examples" keep
+showing "what" the "export-symbols" node does, not "why" it is
+needed or better than just normal __symbols__.
+
+Andrew
+
+> 
+> Best Regards,
+> 
+> Ayush Singh
+> 
 
