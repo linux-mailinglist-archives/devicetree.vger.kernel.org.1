@@ -1,131 +1,155 @@
-Return-Path: <devicetree+bounces-172012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26DCAA0F95
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:51:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F20AFAA0FAA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53FA4A4017
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:50:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1621A3B1CE6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614CE21ABD6;
-	Tue, 29 Apr 2025 14:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F972192E1;
+	Tue, 29 Apr 2025 14:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="rdhHIgrh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gVt8DhaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FBD219A9D
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0EB32C85;
+	Tue, 29 Apr 2025 14:52:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745938215; cv=none; b=N1s/lTc0/f6VjX9dC14zcQKnia85SF4YtG3NT0mV8Q3nqemvaH+GMm+I6UJAnW2JWNXTkxuFX8tQ/gBdaKSfIE6Ni3DzhJlP02bKD4e/NwqWMnhMEArF1mx0FNmTFDSA8ZETZ9WnvgOhXNxVJPorR/UKZED8stQ7EQhMaPRQWuI=
+	t=1745938324; cv=none; b=TxMV/Q3RGl1FUpFxRaPm0OtYiOSCtj7zPMyJpJrDdCHbZMshNs/du5+sXEe57M4flG6n4iiO2o2UosJHTPwXviCy1NWDpLXWvOjEvPy5KGQ7t7iWz4XoZE7MfPIF0QzRgMT8/xlOaGWN+oayz3NOudaEptjwdMzw1vLzU+rsu9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745938215; c=relaxed/simple;
-	bh=L3zpgU519v8FVSiC0s2Bs8xmKn3xEU74xngr5HHW3/I=;
+	s=arc-20240116; t=1745938324; c=relaxed/simple;
+	bh=ujLWWkmaRLLveVflcOWu68G29t6oIIc6pHVq9Ko9pzs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pXDB2BCq93yzoqGG+u0O1ONMcOj9y+9GP0DXlMpDSKu25YHTXuD8gyztWleOWbVBt9BVl5bQ+IvkDJSXwrct5pcFFH5Is1a24KCEfaad0JDAMYOk7g42Fr5C6qIw9A5AW0WJG5Hyw9Cfx9ei3S1gP7hHEAY/cmwpH4tEnLOk7+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=rdhHIgrh; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9BA053FE3F
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:50:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1745938206;
-	bh=RSy77QzrzSmmFSEMn2500QmRFAOtgtgt9hqimIHbc+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version;
-	b=rdhHIgrherdP5R3MgilQKuch6H1VnVijAbafsfpIRvbDU7bQoi6NcmjmPGVPqY4l+
-	 ZzazL0bRW23phfMBEW7QOgNz4pmTI0le+8sCFkGsVjcCjcrzvu24rCyP/Zr8K5z5Qq
-	 zEdvRNXRrQP/saRELO0Dp07ySL6ae/bYTOaXkM5angYEd6I4uvru9LeNks2v+tqOOg
-	 rf3WqUAgMsMv5aMQ3DEsEIwc4Uqk2edJnsbdLhUhvYwaF/p/wCD5IAhhL91p9Vy5Ux
-	 2vKTMpvvHDPtaO1jVIj9wLkKkO2hBApPkAJcm9Thzum97fy4FFtCXL6rSIzQ+pDUDl
-	 bZdwp2x9O5wrA==
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-43d209dc2d3so29878845e9.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:50:06 -0700 (PDT)
+	 MIME-Version:Content-Type; b=a1pVRV7rJ0BaYv+yV2MqIq9TYx3hlRXE7oaSh8jKe08ZSLo6DJ0yDNzYOp2ID+PtOhDbFyp/C3po8FpEDEuUnNQ+O87azggUaZDX03T2U9hQgfbbCR/KJzzVeDK/cPFCZ/27vAmUciQvsmjMAEO5YX5izziABE2zuYpHy/Qhf6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gVt8DhaK; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e8be1bdb7bso9796670a12.0;
+        Tue, 29 Apr 2025 07:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745938321; x=1746543121; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2j3vmWcblMpAFi5MSBk2qMdY2/rE/Q+wya2rcoXjQ98=;
+        b=gVt8DhaKo8cSQSPIe0mihl+A5hVEfoOHEpnZuwJRRfaBG2o2OIyDwvk/USbuul4E6H
+         U6/7pSVLY0jLBMIEnk2HNM5huaGP7H4cf28JnX4aPGI2OosdF2xB/d8KOnO2LUzA2NsN
+         fwt1ItFxBxNKcM533GmpyOSS+tJacffdxoyl5ltfqmC+13GadgxzGkCBda1eAXH4KEm7
+         /NojkfexEZt15D43CYyITgxslxp0TnBIjMnWkJh56wt5HuBSQMr6Hm//Si+my2xoqdt/
+         arYQMXUg3Ycdr9IFmXkhmXyUhjuTSVKqnor9CAsk70ngo90+D3jfyIKlbAd0X0BL9FTW
+         01iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745938205; x=1746543005;
+        d=1e100.net; s=20230601; t=1745938321; x=1746543121;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RSy77QzrzSmmFSEMn2500QmRFAOtgtgt9hqimIHbc+k=;
-        b=q8GnhtXdYa/+DyI2b0GThnTlxNBtYMS24zgtU92H1lCmnYYlktES+EVE1Oj9tdQI1s
-         GP8KojNH3mqx5z4qFu2FibQLGYx+8NL0W903sBJKl028ZId/dfggvLZgqiSP1tX0ELDy
-         UR8iKlarQAX1Qa5KgaLW+5Wkmc1r+dzWZzg2MuKbWMiDWVqhkcdYgz3B60eSQDUJhhtB
-         ESURWjOIOP4SA7Xz8DSGG9hEye5TPGIRxIfeMz52vingfZAY5c1mDAMEKsIBAugUZ6Xl
-         PzN1LLCng/Ess3VrgNbYy8vH34xXmKXvFfhT0KhE4w9GzJV6sli3d1DETYW/yPlgFkFz
-         T9qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4ptUR8NbOsnVT1LWY4zl2jUGZnYb9BkOTJ1r2BuavtgaGu/F9ONA4EK2ZPz5H8FOme3liDqVYjamY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWvIscJPd376wIp3gixkEUzHVYW+cl6INo6gypsjjqqYIJyviq
-	94oL4aQwbxSnd/zIR4rOTcG9v9LvDwquqt+SUJ1xsasdEd0OFYYOOBqcrabaTxzlAl7gOx/AtGg
-	h2PRoJ6BRCn3wSEgdSMnVKWGJLIri2aOMvU5mvUeJ/AMhTDAioIvzqGLD+DePIJZi/xABRbo778
-	Y=
-X-Gm-Gg: ASbGncucg3NxaZZ5lIQf4Pm5WUgwFpMy64JKHFqTFv8LcGUV8j/fqSYKu+oZHaCw2Gi
-	Q7+2J/mqMDDBY9V+eyB7ZcXky5JvXsvbAjq8WYnqZOH2pzbmGs+0KHfxolwoa6Z0ZEfmkYKxjI3
-	5y+GF8EGYuwX8Uqv+fjxzUulsCrUzRsDQV5KOQX/H6ZoahsgvihWr/HkeEzE/g+lvkswytAqrSX
-	p0HSsYZxoPGkbBvIPu809yDSta6gWYKiApeqY7rQ5rACkYwvy4vB1K9OxR0Y31FdmMgEDU7PgrY
-	l0P4PYqTB7BVNwOioN2rNO0aP0MRl+kNZyWH/33gErhypEsd5mSe+wQJ
-X-Received: by 2002:a05:600c:5108:b0:43c:f16a:641e with SMTP id 5b1f17b1804b1-441ad3a0c7amr26386835e9.6.1745938205615;
-        Tue, 29 Apr 2025 07:50:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHBNLMGGQmzZ+4zNN01rof2/5j+W5PiK8ohD3ubXhioaoE87XpvqLSxiAYvqj+ZGGSHoStcVg==
-X-Received: by 2002:a05:600c:5108:b0:43c:f16a:641e with SMTP id 5b1f17b1804b1-441ad3a0c7amr26386605e9.6.1745938205274;
-        Tue, 29 Apr 2025 07:50:05 -0700 (PDT)
-Received: from localhost (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4409d2d8479sm197378085e9.29.2025.04.29.07.50.04
+        bh=2j3vmWcblMpAFi5MSBk2qMdY2/rE/Q+wya2rcoXjQ98=;
+        b=jMcirGL20E2pB7p1DiSmsGzc6VAY+RR7EMu8Z9v3q7KVbQtYziTAvMz3CD9F7JJYmg
+         nnTJOxtuNbS2IRasV8nGMOBrYL35F/19do887kr14JPS+rZujBZkn+CcZFh23Y63PZ+9
+         CneKdliQXNZ0yVUanZabzcquK2kbZbkNhE7CfOQnTdAoG/WTTC7n5kIJiKQLoUTq3c5H
+         kpGOZ8xrN2RmzkVwbvM2ofo3SClZCzwTp1xfrC7sCcj7xK2HecF0Xk6/OPWCM20r9NVG
+         pT/Az6yqYCymOlQ2UNE31HfehcWMu1XzvGIx4qqonDaLN0zls84UWRkJw1TX6LQC6L/G
+         YD6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUt47MKjBYlxxN9DssUvdPiPqtERfWwj+0AvNmpfsn+WnxGPlGYQ2DIAufN6TtowTCGz6+Ig6DCmzlZrsCI@vger.kernel.org, AJvYcCV97TZtIJstxbLyfYHkUWlZCEmAu5m7ca32xYrqu2XwImlTtOyQmgNZSkMF+41KDtudn910Nv50swav@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcIvng1nBqHOJIkUke4l0zTZFQ5sq9Sf3C44/HiLRHfG1/reTA
+	XyyRshVVywwyKf2YjgR29BAGMZF5fecFKT1Pci8ktOxF5URfeSGm
+X-Gm-Gg: ASbGncu77QGDoVzAOiaw7zCVWHgWKrZd3RlefTvsplY6vIJ5LiYmHy7KLnNez9grMKn
+	ugDuCkm2fYON4wofw7yzmN7poCzfkmNsHujasRO1+uMpJ4KyUX/kG7Hl1YHjwDu7PZGsm8HwC9A
+	fAHEAleSMHBhxIkvxb6uveU0+BF53ZIGFudRjIXJ4waGx2psOxxZj/XuxKktHknTfiG/zm+5Flk
+	eTyPUp4aLFaFEvbeyEeyAJMkj9xiqJqiHnOINpTqEU3eZ+gmN7hec7/qAY/NAIkKcC+9h/inZ1s
+	ghFemLBNRZtG8TWJGtBUTiWcNxJe6bdK85IsUuo0Opvh1gsLBp7shhQxQupp2jyQIjJdLHoKC/u
+	kyyXwLpJE5+lGMgm9
+X-Google-Smtp-Source: AGHT+IEz06/+DeCVuRvMFYjbMCHdLWSGqTMxg/VP6erFPSJQ+to0uxlq6imsOijDrrRMdG90WDzVxA==
+X-Received: by 2002:a05:6402:348f:b0:5f8:2436:1df9 with SMTP id 4fb4d7f45d1cf-5f83afc1b49mr2846758a12.10.1745938321060;
+        Tue, 29 Apr 2025 07:52:01 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7038340b7sm7414214a12.79.2025.04.29.07.52.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 07:50:04 -0700 (PDT)
-From: Juerg Haefliger <juerg.haefliger@canonical.com>
-To: juerg.haefliger@canonical.com
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: [PATCH v4 4/4] firmware: qcom: scm: Allow QSEECOM for HP EliteBook Ultra G1q
-Date: Tue, 29 Apr 2025 16:49:57 +0200
-Message-ID: <20250429144957.2088284-5-juerg.haefliger@canonical.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250429144957.2088284-1-juerg.haefliger@canonical.com>
-References: <20250416094236.312079-1-juerg.haefliger@canonical.com>
- <20250429144957.2088284-1-juerg.haefliger@canonical.com>
+        Tue, 29 Apr 2025 07:52:00 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andre Przywara <andre.przywara@arm.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org, samuel@sholland.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
+Date: Tue, 29 Apr 2025 16:51:59 +0200
+Message-ID: <5880182.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <34e30bf2-6f80-4c43-9e52-c1ebe0521c43@lunn.ch>
+References:
+ <20250413134318.66681-1-jernej.skrabec@gmail.com>
+ <2219754.irdbgypaU6@jernej-laptop>
+ <34e30bf2-6f80-4c43-9e52-c1ebe0521c43@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-This is required to get access to efivars and uefi boot loader support.
+Dne ponedeljek, 28. april 2025 ob 14:37:48 Srednjeevropski poletni =C4=8Das=
+ je Andrew Lunn napisal(a):
+> On Sat, Apr 26, 2025 at 08:00:49PM +0200, Jernej =C5=A0krabec wrote:
+> > Dne petek, 25. april 2025 ob 17:34:14 Srednjeevropski poletni =C4=8Das =
+je Andrew Lunn napisal(a):
+> > > > > +&emac {
+> > > > > +	pinctrl-names =3D "default";
+> > > > > +	pinctrl-0 =3D <&ext_rgmii_pins>;
+> > > > > +	phy-mode =3D "rgmii-rxid";
+> > > >=20
+> > > > So relating to what Andrew said earlier today, should this read rgm=
+ii-id
+> > > > instead? Since the strap resistors just set some boot-up value, but=
+ we
+> > > > want the PHY driver to enable both RX and TX delay programmatically?
+> > >=20
+> > > Yes.
+> > >=20
+> > > There is a checkpatch.pl patch working its way through the system
+> > > which will add warning about any rgmii value other than rgmii-id. Such
+> > > values need a comment that the PCB has extra long clock
+> > > lines. Hopefully that will make people actually stop and think about
+> > > this, rather than just copy broken vendor code.
+> >=20
+> > I spent quite some time working on ethernet support for this board. Once
+> > I've found PHY datasheet, I confirmed that there is added delay. So this
+> > particular board needs "rgmii-rxid" mode.
+>=20
+> There have been numerous discussions about what these rgmii modes
+> mean, because DT developers frequently get them wrong.
+>=20
+> Does the PCB have an extra long clock line in the TX direction? That
+> is what rgmii-rxid means, the PCB is providing the TX delay, the
+> MAC/PHY pair needs to add the RX delay.
 
-Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
----
- drivers/firmware/qcom/qcom_scm.c | 1 +
- 1 file changed, 1 insertion(+)
+While schematic is accessible, AFAIK PCB/gerbers are not, so I can't really
+tell how long it is. But without this extra delay, ethernet doesn't work.
 
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index fc4d67e4c4a6..e7262ad11509 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -1987,6 +1987,7 @@ EXPORT_SYMBOL_GPL(qcom_scm_qseecom_app_send);
- static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ .compatible = "asus,vivobook-s15" },
- 	{ .compatible = "dell,xps13-9345" },
-+	{ .compatible = "hp,elitebook-ultra-g1q" },
- 	{ .compatible = "hp,omnibook-x14" },
- 	{ .compatible = "huawei,gaokun3" },
- 	{ .compatible = "lenovo,flex-5g" },
--- 
-2.43.0
+>=20
+> Ignore strapping. That is just a power on default which gets over
+> ridden once the PHY driver is running.
+>=20
+> What PHY is this?
+
+Motorcomm YT8531C.
+
+Best regards,
+Jernej
+
+>=20
+> 	Andrew
+>=20
+
+
+
 
 
