@@ -1,300 +1,222 @@
-Return-Path: <devicetree+bounces-171763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68799AA0221
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:55:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B7CAA022A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68B76841A74
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:55:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED16C841C41
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:59:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B051F6694;
-	Tue, 29 Apr 2025 05:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB18274645;
+	Tue, 29 Apr 2025 06:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DyCzEsZF"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="cWofjm0J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010055.outbound.protection.outlook.com [52.101.69.55])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2051.outbound.protection.outlook.com [40.107.220.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C10426FA54
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 05:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0412741B7;
+	Tue, 29 Apr 2025 06:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745906139; cv=fail; b=gQ5bxuZ9vLKlLzNqXMXkg+3LLRo8kTNNIJAabv5bjO7hsjuzpENpUZ/yuk54UOWfcGOK+eSeVw3JH/n+B3qhJFoYSRuNLfGt+KToEtWHWi9LL9S2KmEeZJqbLcyCjewCaoTA+Zf5j4XhJCXNlu3CrTv6tysf++A5vrTr8aHPJA4=
+	t=1745906406; cv=fail; b=fMnpjm4OUAFJiBBu/KNGvCYg6cdRhjhsVxnYMzh3HqCkPM2AzloKNZepx5HhEn1p7p8ZA8ZPaMlTFUxloajxI6NCCZHdCZHW5oYKvqSDqdjH0IxsTZqNNu8VLNDBkvmH5agEei6O43EpJ1UsCpCPJ3YfYRPGamKacaT7qXRdGUc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745906139; c=relaxed/simple;
-	bh=EoA1cpSRsEX7KtiSEUewF/HVMI51fleZbgi6Nk5bZUY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=dUrs5F3Bbz6wuZIvjUb8B5wW0poDRUnWb7aUE4jWTRBW6et2N/ZXAcsvJwnFd2ryrKsytL35V9MOHCoF6iJl436xt2aL8PdvWDQxJGFWLteVOrLFsqAQWl62uH9LUcxr5J545OiccFvXP00wXUFU7froyfDo+orP3elSiZhxipM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DyCzEsZF; arc=fail smtp.client-ip=52.101.69.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1745906406; c=relaxed/simple;
+	bh=VoaeShd5qnYFMoQI7QdF3Gt+GCTEley5gVvCohftv9I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VWE7rCQIuPNAa1hlp/zCY4pZb698OY4V3Zfn4+8GS8GLn8kzKS/JXhtOw7hfSKXa1/NcFuhenInzqyoYVp+b4V4fitrEgkMhLkEO5usVQqUXXMx3FcYbOpGPh+2QxmTtJWOIPHmOiqH1kghKR4ImOG7iikYPjdW4evJa4OfTiJg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=cWofjm0J; arc=fail smtp.client-ip=40.107.220.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GX0A/Cgl9ElQlM1roJHvg2tnE+hzuhCefjAWJozmHjN5yXUK0qFtM/0sfn0Gqx1bQXTAgIW6DllsAwDTdRWRDlvXjgm0+TVUZy9CD7snTbzeCnJSI6DB4oPtm36S9Vcoh9vfNc2tNi79p/heRGtr0rQd9kQP3ffYnO8QX/M3FS3cKX/rLPN61kjBImL7ENXz+sVhyYovFddZbvea6HBpe2sVcZhZnC+6uDMaR4l/4kr0xyi7AZ7z7lXhUjBf9PP32HYg5kUVJLWzI1p/vuF1CcIu3yjEJ8kb12lxE74OJmToW9uUebdcYrf1Ln4GsTHiZCcJfxhwhC6rWASO22fY7Q==
+ b=KDjCASQZ2d29z1GRghFajc2wMkBaxRjtLZSZtJnqayyBNhS3bRkmwF43NBuxgVGzg6L5VMH+SLWXF3qH+Attc3i/9PupYJrvOoqwffrkcFFD6tfUpiTdR2JHiNnipEItfgwJMJroPwcOtRRYq0RxKkogHXkYfaw/Fc1nDeiL+KWUoA2up+mk5KCHJSAdQ6nTfyQG3Vwc2mqP3/vpaSa4SXEo/0Nktly2Z3d1uNP2YbKvfiPPLSz7EKmvRal0Gtq9p5fkDenk6mJBYFmzuifNWZv+Ncx5j+FsXE4+d13Cjq0Ls5hhu0KhWsBVY+WRRmetxMY8FTNICMXVw7SP2qgYzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zUpC3HqLRLpSxZnE8t0M+qNSgPwmDPeQ0pic9h30wA0=;
- b=P+xQskpYJ6wes/O6aiJLbGI0v5gZiO37OZ0HXf1aQVCrPZFG4EUIUNBZfTW8S8LqisaVQ2gMT5za+9+OAkChPitx4/3d5kZp2X9ZZgpCRMGMpzH6NPAx47VPn23AWU2hvC12SYypbESemyI6yptpij3p7BZGPhWe3wcQ/HBBgjPbB73sOl53XAjW8Y73nBoZ874fCNo+B9bYVvchFPeICUNoh+a8uULYzF0reoSMooasYHsZvPZiuzkSTnRFF0nEyh7Vk3pZN+qKJdHkXREWhfEfCTYUtLG2NFj4rIBOatZnrJj6D2LF7Y4RKfSZgxqvRvGl1xUZeceXnHuDR9c9Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=dS+TnySPBdQA7YIM51xt4HxlpqfBy/hpBb1B9mEx+1Q=;
+ b=TNonf87oZ6TWToLULYAbRuZIalcldVFOHBQO76x0ywe3d2btWJR9clGTkHNC0mikvQj3EAByl2vOWR3FdxtmyrHCM4YTmp+3DR4Q26QC81KCR6OQq5QgNnUkw/kSra4Spjql+TSOmSm7jXX5YKjit9ii+NeNzAlcjpLs3+RP6BMPw/erPANNhooKU6KC+0ZXIZGaugUAR/yUm8jlZ6zkdrrWU/8k5Sx1WdlkBclsYhvgrrRGiOoK74tumpNV1Ujm8FeVOoCsYoUDklu97IRHyIPomjhHK8XPehP8ifPy8CAEQd9tSkIpPu3rDcr67euTHKX58Sqd1OQz/YS0STcrLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zUpC3HqLRLpSxZnE8t0M+qNSgPwmDPeQ0pic9h30wA0=;
- b=DyCzEsZFEjBi30yaeVWfKJnPdcY7wF0nfYtsTWWYj1cbzpsoLEHOg5L2j3WJtFKu8saKulLGb8V2rNe7hSCqzP9CYYJrFOWCAYUwYaMTNRwo0YTj8wotUSx5hVpqpLpmxnHKpHgwOYt2oUnVhulF1GqLKN6VrhLsYjTgAATFgI3q2UrFDDkdSpxDV3vk8Upf9nM9CoZPmO4VyXDwaaDiyoNTY/HuBHK4JFn/sBnb4yp7NcOsyoXB+B0PHOG8dRQmhfxcl2F09aSiuUQ9WzCq+TLhY7gTVurw1iN/Kr/XNnwMet1Lu9PFkUyC/37ER/4ZzWbkVgJmEwIH3PZlMrBgDQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7701.eurprd04.prod.outlook.com (2603:10a6:20b:293::18) with
+ bh=dS+TnySPBdQA7YIM51xt4HxlpqfBy/hpBb1B9mEx+1Q=;
+ b=cWofjm0JmOEVXO76q/rBoQKBLUw5HaVrOnpGakIBATJ2nOb8LziPapslrr5UkAYvwX9uTBrU+aJVuCCCOdr8/JCEiHiB9CZ9IdVLXH+d7SW4dFmFk7Ong7xw9HyR55FLS3u1psy5GG4FvIMwCH/Oy45ghy+Ly/MabBD4liVUr5Xe2z/w6MABnK2RKuqdLINjJ+jsxkimeEE3wee1+e+2kEUFCX1Xukab/KDdE4wpkE1QYBVUf+MGWF8TzXkuEpm/GXWwBiiENbi4EUSmsowIYLlvHORn7afyRgg7EtW0pT24DdhbveCjYjBsApYSpMbptwPjm2V2BjUw3ohVSvCT8Q==
+Received: from CH5PR03CA0007.namprd03.prod.outlook.com (2603:10b6:610:1f1::25)
+ by SJ2PR12MB9008.namprd12.prod.outlook.com (2603:10b6:a03:543::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.33; Tue, 29 Apr
- 2025 05:55:34 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8678.028; Tue, 29 Apr 2025
- 05:55:34 +0000
-Date: Tue, 29 Apr 2025 01:55:26 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	jun.li@nxp.com, alexander.stein@ew.tq-group.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb: improve some tuning
- properties
-Message-ID: <aBBpzljSQEnQwlvU@lizhi-Precision-Tower-5810>
-References: <20250429033009.2388291-1-xu.yang_2@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250429033009.2388291-1-xu.yang_2@nxp.com>
-X-ClientProxiedBy: PH0PR07CA0028.namprd07.prod.outlook.com
- (2603:10b6:510:5::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ 2025 06:00:01 +0000
+Received: from DS3PEPF000099D4.namprd04.prod.outlook.com
+ (2603:10b6:610:1f1:cafe::66) by CH5PR03CA0007.outlook.office365.com
+ (2603:10b6:610:1f1::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.38 via Frontend Transport; Tue,
+ 29 Apr 2025 06:00:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DS3PEPF000099D4.mail.protection.outlook.com (10.167.17.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8678.33 via Frontend Transport; Tue, 29 Apr 2025 06:00:00 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 28 Apr
+ 2025 22:59:43 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 28 Apr
+ 2025 22:59:43 -0700
+Received: from build-sheetal-bionic-20250305.nvidia.com (10.127.8.13) by
+ mail.nvidia.com (10.129.68.10) with Microsoft SMTP Server id 15.2.1544.14 via
+ Frontend Transport; Mon, 28 Apr 2025 22:59:42 -0700
+From: "Sheetal ." <sheetal@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<lgirdwood@gmail.com>, <broonie@kernel.org>
+CC: <perex@perex.cz>, <tiwai@suse.com>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <spujar@nvidia.com>, <mkumard@nvidia.com>, Sheetal
+	<sheetal@nvidia.com>
+Subject: [PATCH v2 00/11] Add Tegra264 support in AHUB drivers
+Date: Tue, 29 Apr 2025 05:59:30 +0000
+Message-ID: <20250429055941.901511-1-sheetal@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7701:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02f5ca0f-a52b-4788-557b-08dd86e274ee
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D4:EE_|SJ2PR12MB9008:EE_
+X-MS-Office365-Filtering-Correlation-Id: c81f4a1e-4cfd-4381-93c3-08dd86e31437
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|7416014|376014|1800799024|38350700014;
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|7416014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XLacwEC9hb2QE3LlaAcPs1AYIHkfTddF8AY5ql9EeOJs4jVYS9AuD+4SZDC1?=
- =?us-ascii?Q?oDX1EDoCNelOBR892cauT7VxuRhE0aTDHudXgay9sEV1OciGjteAYOdnXefI?=
- =?us-ascii?Q?aa486A6SmBKRYwqhXo9hapJZASvy1Lz8pVYiisdxTeRoUeNYBk867+/ajE64?=
- =?us-ascii?Q?dnzfLANT6+cKxoO2laVjriMXhqqyy2zRQo4F8h9wtirxIeFSVWa90PvB2/XS?=
- =?us-ascii?Q?lo6RCd83fTmYVblku0lCz0N6AAsj7oA2q2NJefAgO+hja72jwE9mQl+DCCkv?=
- =?us-ascii?Q?pL7RJmAKca1/40/nYsNvNb0gapX2rhkUeyzbAYY2qOKAkam2Pmh2pZosHQoD?=
- =?us-ascii?Q?8+UorVACJDzMJsQoJA4duI0JOJr9/YLDs/ECLAyI+oiTZG2fbAUYzgaT1o02?=
- =?us-ascii?Q?tan6YSPDB4lzbNwO3evmCQdJ5YDsjtqT9116lxQovUqjm+ysNfwNbNAtmi77?=
- =?us-ascii?Q?4n+fCrPHenHwHb0sRIgDs31r184brYbHaAjFYwlCO9VCSpoPDIf5MrNfdL7H?=
- =?us-ascii?Q?FxE/G8FfLad7YLblAQBVJTID41D8yBJEmWkErCM2uRNCWPNjaj3Irv2yaP2I?=
- =?us-ascii?Q?Dv6OTTy0XEdhFYcB0+pGp46K0w31AGvMoYXpE1DEwCe00S7gzqMvCyk2YF95?=
- =?us-ascii?Q?alqerXho+sVfadOKcmIxHfxmGRuvjZ94NHKrgadkH1dP/0wnfzpnXx1z7491?=
- =?us-ascii?Q?p9ucOF1fwyXGJWCsNrT2Zkfq9+D4gIeNLITyOcRGi3tQgl9qwkh5XIVR+DzJ?=
- =?us-ascii?Q?oc+s642YKG+AG0BE5p4IPe8uj7zr2EibTsPByN78xLfCtmsJoGJwQ831u7yZ?=
- =?us-ascii?Q?/KeWhPfqXSmWVXJEVEwq5sZwhj2jSHt5vJhYqdgIo3tO+TalHQoxdCCwTrWy?=
- =?us-ascii?Q?dIPKqH5Ymm6q6ZYkvR1cg7ffUqzD7OfPbeg77iaEqb0L57bwn6zej+ii4ixc?=
- =?us-ascii?Q?NTVjHsDLDJNFuT9edeREpks9hlVg2TvXsxsgBJg09CM/cmwokbUxPHuTz3eU?=
- =?us-ascii?Q?CPRZoNx7YyU7ly2mL0DORLCI/tBTobwi/UoK82PG+v80p7UtRXs/r7YRxUje?=
- =?us-ascii?Q?5CHpHhegpu7LBnzyjrgdwerUZIQCYwgu4cy8QfzECYJCUaIV+L1M5eUd0Ix3?=
- =?us-ascii?Q?nZ+lTwUQJqO54v9iahz4+B9uam11rB/GyhO69JwiF8I6Cn5lRekIUyZrJ4js?=
- =?us-ascii?Q?9Wgseijo78wA77PmQkXwXaBitN247wkJ9TOajFKojCI5mmXjIN2WlJ06hH7G?=
- =?us-ascii?Q?GMzZQASzBbv01p+jLlBSVMQGsOTjkuzWcfEcvU7epQFoKGHLUEvcLQdAcTRM?=
- =?us-ascii?Q?qBdGrkfh+tdgJvLNpM6ZEg9zRyxO81eWyHGsV8md8TnDEMJhe/HV6zGx0zRI?=
- =?us-ascii?Q?zdhU+Na+Tx8D1UHoDQZHj7K8zcViwIM3ecQ2wh4cDq2uYw91+eDcjidAu3FD?=
- =?us-ascii?Q?5+rUMFE2uano3aKFz1x3Lzf273hhHZE3j9ci+Yw4MsHCUpIBpeAD7g=3D=3D?=
+	=?utf-8?B?dWVlbURHVVZ1RUNBaWZBRjJDc1VnbUtVekRsMzVlMllvejNJQ2JUS05xMzlW?=
+ =?utf-8?B?cUFXZzdKbnFJUS9oenpObXI5SzI4WXVWblpYTTNxL3ZYeE9pYlh2N1pVaFN1?=
+ =?utf-8?B?ZEdkOWxDM2hSZENvS01KNXdaaDRaRzYxZUVIL3BkSDhYTkVKU3o0ck1Gb2Uv?=
+ =?utf-8?B?WnQxR25NYVJ5MTU3NEs2U2Y2SEkwZDZHMUhGWXY4cjFkZUV1OUQ2aG40VHJP?=
+ =?utf-8?B?NFBaN0tvc3dKSjAvVXpGWGtlKzRsN1I1VUhtOUtydlRQSnR5WUdEaklZb3lR?=
+ =?utf-8?B?TDg1aHBSQXRPSGZadldxS0hWbXVId2dZUEU3aitaWmp0TFh0SzAveWlPSkFa?=
+ =?utf-8?B?VDJnUTNwN1R2MnpjL0w0N043d2V3U2I0Mk1heG9yVTVwUlRnd2dGUnJLMmpG?=
+ =?utf-8?B?eFBjbDN3d1cyZ0ZZRi9SamNrYU5ERW0xRGFTdllzSTFsWE9McmY4K1Izd2dh?=
+ =?utf-8?B?bHlQRUVoT2dTL2lpR3VZaGpVcGtUTjJsLzZIUzdMdW8wQS8wb0t4WjMrTzRo?=
+ =?utf-8?B?alVZN0w0cGFXcFZZaHkyK0U1MHAyWTJIdWR0MWFGSmhiY1pjdGV5bE9jZytu?=
+ =?utf-8?B?MnI3dlFocGFZZVdCNjBFQnU1RjFjVDdNU3BIUHI4bWR4Vkd4K1VSaEVBUVlZ?=
+ =?utf-8?B?ODlsUU4yNW93ZXVkVTJqKzJIUG5lZldzdzBOVnhEazhyUVVscGtiYTRkSDFl?=
+ =?utf-8?B?MzJzaHVEK3RuNk1ybElLWTZ6U0h5cVhPbUozeXdjbGU0L0ZPelU4UzhsOTV3?=
+ =?utf-8?B?aldLWC9tbjhYRW1WcE1RMGVKYXI5RGRHbi9ESVBVcWg0cVZhRkF2cVhSdVl2?=
+ =?utf-8?B?UGdZMmR1a25Pall4TGViaVVNS1laczF2Z25EQkN1MGx4UlY5aDZrOTg0U3Jr?=
+ =?utf-8?B?QTdsMGJsK2xMVjJRSHBGN3N6M2VrUEpFcXhxYUZicXgvSnRMUGZkQTZQM3B0?=
+ =?utf-8?B?RHcvNnhFUTgvN0N5emtCOVIvYmZvVkt1UXZvbENOSTh5ajVxUHNQUGt4T3ow?=
+ =?utf-8?B?TGE5aUNCR2JXbVhIV3BtZnVQU2lHSjFrSUVRZGhrNXZEMWhQNEJ2Sm53ZFA1?=
+ =?utf-8?B?QUJ6QzMxa3EyL0tsMXdacGV2cmZaQ3ZIODhrb0pnc3hOOTJOMDhoRW5TbFhE?=
+ =?utf-8?B?Zmp1cWFueUg3ZTVMcnVmVjUvUUJNeFB1LzZtZjVBbHgwOXd6Rm1PTzZ4S1J1?=
+ =?utf-8?B?ODcvS2I0c25uWGx4UGU3b29KTlVxbVcrZVQxOWw3d2V2bEovR3JiQUkvSncv?=
+ =?utf-8?B?d1R5MkdFZ1Nwa2RLRjh4M0RyOU8xZFpjSmNJazdkVGE1QmFUUlBRbkVnbmJJ?=
+ =?utf-8?B?Ylp5WjdQbEwrTkRTbjdTZ3JXcUxEWjUzZGE1c3d0NDVEa2NpR1FYaE01d2hS?=
+ =?utf-8?B?MThKaWZWOU5HYkdoUnpUNnZMd3dLTkhIbVFOZlM2dDd0WTkxZzlZb0t5anRk?=
+ =?utf-8?B?dzBlOER1djFkckI4WE9LbnJwRGxPZW1ha3VjUGxqWnZqbkFFVEFURCt3aWly?=
+ =?utf-8?B?Z1M5akRnU2FjcnNqVVdwL2ZNOFRuSmhuL3ppQlM3ZFNoUE5Rci9FT2RudDJt?=
+ =?utf-8?B?S0dOa28rU0E5REsyUXQvU2dTd252UFB2YWtKYzV1NVIwcjlZY2lsMUVuUS9y?=
+ =?utf-8?B?MVRjN0FmYnliUXlqY1FTdmdobE1tV04rcFJVQ0JtYmljdUxCa3FjNFZGRG1j?=
+ =?utf-8?B?Y1FlNTkwQzV4NTViWlo3T1F0cEFXVmczTmY0dGw3ME5sTkliMGlHRGFRclRr?=
+ =?utf-8?B?Um9icStwTGVMY01VZjVNTm56c3hnWGtuQXVzbXRiTUJiSzFpZENpS2g4RWdX?=
+ =?utf-8?B?VEZLQm5uMGViYnVXQktPRTV0ZGhsSGJTWHVkN1VDVHRrdWExTmpJSGdXb0Zv?=
+ =?utf-8?B?SURNUjVCcnU2TVBuYXVtVllVN3o0c1RuTVViMWFVeFJ1cS9qUlUvYlBJSnph?=
+ =?utf-8?B?U2JCQmwya3JwYzFubEhqcDRuajkrTzNXRHcyQjJQS0l0N3NrUWFtdHFhQlFR?=
+ =?utf-8?B?QnZWMWVIV1FYcjZxQWo5WTh6LytNb3VKNjYvbmpoblVlaC9UbDArOVBNUHpN?=
+ =?utf-8?Q?m75tmJ?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6GVkT8RN1IqN8aILroz5h404odit1bEprOy32Bws86XFiyh3s5aff97OjE5X?=
- =?us-ascii?Q?bLeQ+AE+hBqKGCdu7qskD380/ozcpnSlP9m01Rb4D3tprYzcumaJyt2ZRHRK?=
- =?us-ascii?Q?p3LRXaxkwOVI/U3sbb05vzGvg6ns4Bs+jhYKuWBUYXJEJbByGwKyxYNHuMiB?=
- =?us-ascii?Q?JWqUE0YIrFRzz6Nns2uqrIWU/WoS7c8YcdmMTZZ1s7VFOjeJN8OpNUY56Hd4?=
- =?us-ascii?Q?z5BCjiFo9rXFfz88gv/DkwCmtcOWXJVyC3emE0Dzcp+RyGptHRLp8oGji0y+?=
- =?us-ascii?Q?Vv7Xe8rZqyGO+rjIQaa+ssQIEaszw7kbsiE9b9xWa7Rm4qcQ0rN/DU1UJl3f?=
- =?us-ascii?Q?fYBEq35ya8+TXuUdIt2zWpWJ1CkWEORqCNM3s/mbiykWq1nZPig5uEeVZUC/?=
- =?us-ascii?Q?qir349eTwRe/eQqAJdXZ2SETE46mQVJyFEF19l4hkw+Lw86Pfs72bkPgahxO?=
- =?us-ascii?Q?4g7p8aWu3bs79FsWnhy05sq0jsI6foZWhrqPQj4W8W/wRZis0JVeOCyH8qED?=
- =?us-ascii?Q?W9JJ+6eyOsSfb62psyNt7gS2gHRvKsHsTQ1DJZ8mCXfXxQN0UdVpgJ3eap1d?=
- =?us-ascii?Q?J3QMagirY01LJWsh3QR2XomNNba1Sjs9IH0KO1sVZqU2db6au85dD+7ecinV?=
- =?us-ascii?Q?ginB/+bJXp4/f0I2b2K6k5l4xaF9qbCRnQnui+qB0rlCo8zFhQsHbM6OEP3C?=
- =?us-ascii?Q?92W8tf4GOCtt6fIBf+mFXyeoctL7pCq4ezYlmthBh2rKRN04eou1TmmvwBXR?=
- =?us-ascii?Q?8dypjOfELjcfAkz2XrhRSyHpWOi5dCtFbgg9gGNCz0KyRA9zNp4HsgITT/Di?=
- =?us-ascii?Q?kqoaj9AC99ez+wbGCb7A7r9baXHGa1OkqWNDGmx8aUruRZwY7xJkzYxI+OPT?=
- =?us-ascii?Q?ZQwu5vS3cr1hp13pIbb0T8doW7eXzSzY3lsHx+NnvnaixXr0TTbNAo8b4FYu?=
- =?us-ascii?Q?6d1/cEPQ5FaheIK5xaMueZWPmcSjyKrON2avEvUigHTze5hJp4ItVkBNn/4C?=
- =?us-ascii?Q?ns4fb0FybcWXqfuI9YwnOzzQIvSO47PrKtoPwWHy/E3+ELQxohdmNy/GKvKZ?=
- =?us-ascii?Q?ya8WXSOHzE9pAv2xlzLdFdIvz6oQAjn0JOp8AcusrBkZ8DDIOkjhXAWuls8V?=
- =?us-ascii?Q?dvmN1LP0wzr0TvWecblbHJDAQDed3pSxt4EuHJ77BlzIwYlDof+xln8pNeQr?=
- =?us-ascii?Q?5YZBBbTjuatW8zTd2IMuAEvl7N8b1HrE99fthVq6OxU20Kw8FpNDy642ufRU?=
- =?us-ascii?Q?pPgIFf+NGLxV5go1ri8K9Rsq7mgYYSmcZOyi14S9C5fbqYDEQ22ncgOjeCBs?=
- =?us-ascii?Q?beD8+yJY2+gzmlI8470LbLJp3fudbkjdOTebjCPCIKrKYJgf3htV4DYCoMGj?=
- =?us-ascii?Q?HIzj95I/uoAJ4uemTkSRJb2zkPUYEEEyWXyC8qvr8BnfKfXc5meUk3MSZ9oj?=
- =?us-ascii?Q?0uRcBA/q91AzytbqOwsgyyhBcT7pIzw7FvlkJz2A2BeKYjv8fnFWFjOxZ4MR?=
- =?us-ascii?Q?nCXFPYDaDjpL2MqAFGtfM/04Lm4qET7tfOahVdGD1RM12JwIuRwBErOzk5sa?=
- =?us-ascii?Q?/cYcfTRGwlRXWvyMBn4=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02f5ca0f-a52b-4788-557b-08dd86e274ee
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 05:55:34.1328
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(7416014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 06:00:00.9961
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ccPfsv5k4DJOy7HOF/nvuEGBmzjbERBY3t5kp5JHDUZRI9SAsJc1cmROFsRSN8wDMZMS+66V5+tRlX3EU9ekRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7701
+X-MS-Exchange-CrossTenant-Network-Message-Id: c81f4a1e-4cfd-4381-93c3-08dd86e31437
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS3PEPF000099D4.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9008
 
-On Tue, Apr 29, 2025 at 11:30:07AM +0800, Xu Yang wrote:
-> Commit b2e75563dc39 ("dt-bindings: phy: imx8mq-usb: add phy tuning
-> properties") add many tuning properties, but some parameter value doesn't
-> match the register description. It made some changes based on the original
-> value: add offset to a negative number so turn it to a non-negative number.
-> However, it's not easy to find an exact tuning value from register field
-> with such conversion.
->
-> Because device-tree supports negative parameter number, this will improve
-> some propertie's parameter.
->
-> Mainly include below properties:
->  - fsl,phy-tx-vref-tune-percent
->  - fsl,phy-tx-rise-tune-percent
->  - fsl,phy-comp-dis-tune-percent
+From: Sheetal <sheetal@nvidia.com>
 
-It should be standard unit. for example 0% to 100%. DT don't prefer you
-direct use register value.
+The patch series includes the necessary changes to enable
+support for the Tegra264 platforms in AHUB drivers.
 
-Frank
+Changelog
+=========
 
->
-> The parameter value of above 3 properties are USB PHY specific. i.MX8MP
-> and i.MX95 USB PHY has different meanings. So this add restrictions for
-> them.
->
->  - fsl,phy-tx-vboost-level-microvolt
->
-> For this property, the parameter value is wrong in register description.
-> This will correct it according to true value.
->
-> For detailed info, please refer to i.MX8MP and i.MX95 latest reference
-> manual.
->
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
->
-> ---
-> Changes in v2:
->  - keep widest constraints
->  - use multipleOf for some properties
-> ---
->  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 60 +++++++++++++++----
->  1 file changed, 49 insertions(+), 11 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> index daee0c0fc915..71e5940ef4b8 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> @@ -42,16 +42,17 @@ properties:
->
->    fsl,phy-tx-vref-tune-percent:
->      description:
-> -      Tunes the HS DC level relative to the nominal level
-> -    minimum: 94
-> -    maximum: 124
-> +      Tunes the HS DC level relative to the nominal level. It varies
-> +      between different PHY versions
-> +    minimum: -1000
-> +    maximum: 875
->
->    fsl,phy-tx-rise-tune-percent:
->      description:
->        Adjusts the rise/fall time duration of the HS waveform relative to
-> -      its nominal value
-> -    minimum: 97
-> -    maximum: 103
-> +      its nominal value. It varies between different PHY versions
-> +    minimum: -10
-> +    maximum: 20
->
->    fsl,phy-tx-preemp-amp-tune-microamp:
->      description:
-> @@ -63,15 +64,14 @@ properties:
->    fsl,phy-tx-vboost-level-microvolt:
->      description:
->        Adjust the boosted transmit launch pk-pk differential amplitude
-> -    minimum: 880
-> -    maximum: 1120
-> +    enum: [844, 1008, 1156]
->
->    fsl,phy-comp-dis-tune-percent:
->      description:
->        Adjust the voltage level used to detect a disconnect event at the host
-> -      relative to the nominal value
-> -    minimum: 91
-> -    maximum: 115
-> +      relative to the nominal value. It varies between different PHY versions
-> +    minimum: -60
-> +    maximum: 45
->
->    fsl,phy-pcs-tx-deemph-3p5db-attenuation-db:
->      description:
-> @@ -112,6 +112,44 @@ allOf:
->          reg:
->            maxItems: 1
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - fsl,imx8mq-usb-phy
-> +            - fsl,imx8mp-usb-phy
-> +    then:
-> +      properties:
-> +        fsl,phy-tx-vref-tune-percent:
-> +          minimum: -6
-> +          maximum: 24
-> +          multipleOf: 2
-> +        fsl,phy-tx-rise-tune-percent:
-> +          enum: [-3, -1, 0, 3]
-> +        fsl,phy-comp-dis-tune-percent:
-> +          enum: [-9, -6, -3, 0, 4, 7, 11, 15]
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx95-usb-phy
-> +    then:
-> +      properties:
-> +        fsl,phy-tx-vref-tune-percent:
-> +          description: 100x the original
-> +          minimum: -1000
-> +          maximum: 875
-> +          multipleOf: 125
-> +        fsl,phy-tx-rise-tune-percent:
-> +          enum: [-10, 0, 15, 20]
-> +        fsl,phy-comp-dis-tune-percent:
-> +          description: 10x the original
-> +          minimum: -60
-> +          maximum: 45
-> +          multipleOf: 15
-> +
->    - if:
->        required:
->          - orientation-switch
-> --
-> 2.34.1
->
+v1 -> v2:
+---------
+ - Patch 1/11: New patch to resolve the dtbs_check error on base yaml
+   file which is modified in Patch2 for Tegra264 support.
+ - Patch 2/11: Fix Tegra264 SoC compatible string order.
+
+Sheetal (11):
+  dt-bindings: ASoC: admaif: Add missing properties
+  dt-bindings: ASoC: Document Tegra264 APE support
+  ASoC: tegra: CIF: Add Tegra264 support
+  ASoC: tegra: ADMAIF: Add Tegra264 support
+  ASoC: tegra: ASRC: Update ARAM address
+  ASoC: tegra: Update PLL rate for Tegra264
+  ASoC: tegra: I2S: Add Tegra264 support
+  ASoC: tegra: AMX: Add Tegra264 support
+  ASoC: tegra: ADX: Add Tegra264 support
+  ASoC: tegra: AHUB: Add Tegra264 support
+  ASoC: tegra: Tegra264 support in isomgr_bw
+
+ .../bus/nvidia,tegra210-aconnect.yaml         |   1 +
+ .../sound/nvidia,tegra-audio-graph-card.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra186-asrc.yaml  |   4 +-
+ .../bindings/sound/nvidia,tegra186-dspk.yaml  |   1 +
+ .../sound/nvidia,tegra210-admaif.yaml         |  14 +
+ .../bindings/sound/nvidia,tegra210-adx.yaml   |   4 +-
+ .../bindings/sound/nvidia,tegra210-ahub.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra210-amx.yaml   |   6 +-
+ .../bindings/sound/nvidia,tegra210-dmic.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra210-i2s.yaml   |   4 +-
+ .../bindings/sound/nvidia,tegra210-mbdrc.yaml |   1 +
+ .../bindings/sound/nvidia,tegra210-mixer.yaml |   1 +
+ .../bindings/sound/nvidia,tegra210-mvc.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-ope.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-peq.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-sfc.yaml   |   1 +
+ sound/soc/tegra/tegra186_asrc.c               |  18 +-
+ sound/soc/tegra/tegra186_asrc.h               |  12 +-
+ sound/soc/tegra/tegra210_admaif.c             | 223 ++++-
+ sound/soc/tegra/tegra210_admaif.h             |  78 ++
+ sound/soc/tegra/tegra210_adx.c                | 229 ++++-
+ sound/soc/tegra/tegra210_adx.h                |  36 +-
+ sound/soc/tegra/tegra210_ahub.c               | 848 +++++++++++++++++-
+ sound/soc/tegra/tegra210_ahub.h               |  52 +-
+ sound/soc/tegra/tegra210_amx.c                | 229 ++++-
+ sound/soc/tegra/tegra210_amx.h                |  34 +-
+ sound/soc/tegra/tegra210_i2s.c                | 231 ++++-
+ sound/soc/tegra/tegra210_i2s.h                |  51 +-
+ sound/soc/tegra/tegra_audio_graph_card.c      |  14 +-
+ sound/soc/tegra/tegra_cif.h                   |  30 +-
+ sound/soc/tegra/tegra_isomgr_bw.c             |   7 +-
+ 31 files changed, 1978 insertions(+), 157 deletions(-)
+
+-- 
+2.17.1
+
 
