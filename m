@@ -1,234 +1,168 @@
-Return-Path: <devicetree+bounces-172030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4370BAA102E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:17:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF8AAA1060
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE59A8425FC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:17:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFCD21B65A5D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FDA521ABA6;
-	Tue, 29 Apr 2025 15:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3EB221553;
+	Tue, 29 Apr 2025 15:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JG/GEdSE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikMpymak"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198EE22128A
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 15:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DED42594;
+	Tue, 29 Apr 2025 15:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745939861; cv=none; b=AKWwOGLiKmlxzrnjaT7w7TW6VDlm2arhICBmFiojLRevmL/zhkRmFyiJ2J74/ix/s0IdY/auaa9tz6HIGlVYKD8qiDe3MN8gxm5Myg1bdD0+f/BPkYwYMLfI8++cOXf7W3Wezk1a95JKoAyKI3ClCrMnqWusHY0eB18JJaEKT9E=
+	t=1745940264; cv=none; b=GF+abnB8ThHmvZzbG3FQSU5X8/Mk8wW5rv40kv0XknSN9iEqmqv7WizaomfBGUdOZI1QxN+gZMtjzrB4zR+KaOP29EtwBqQJvEo8+am/zwNngfkXMDEMOj3YNuhCdSiWi7NupC75j1BP0Josbwyskd63kpdwFePUUQNXRBQy49k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745939861; c=relaxed/simple;
-	bh=DiuiAYICLRUl59C/aRhELeH+HvVB1l5QG0k9BnluZU0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CHasq2TFQ+NZmQIOv8Qsu1M0YpASRY13NX+YmwQKSG7tHSytVBcmOSKEzasP9UpSYTK8oir9Gf8T/3GhkKvc+R0iN4iF0OD4y+vZ7Ab1GP1q7ESie52pjENAm3P59cB9bpXKg3+mKOMBEYOHaAtl5Z9YQxalr5mf1gzh42fbOrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JG/GEdSE; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43f106a3591so6737475e9.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 08:17:38 -0700 (PDT)
+	s=arc-20240116; t=1745940264; c=relaxed/simple;
+	bh=xWFmWep8wq/2ahvRVQ4Q4kgybhqxGP9s17w9fhm930Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Mb2wy/C8q6bYIW7nFlZ6ZEaBTPM8yPMLlN8AG8VGvLqWOkVBfPhsyGLr6qaVCpfHh2HGoQ4GuE/zC2mno0HmonZqfOL7BfSV81YaSXndmH+NJRlRUk3vG//Aibyi59gA4vda1ZeazXviShE2ATDdOCaK09Lk55YpKS3bUw7ewFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ikMpymak; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e5e0caa151so436134a12.0;
+        Tue, 29 Apr 2025 08:24:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745939857; x=1746544657; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BokEIJpAcKb2binz16NzuPQ4I7I+6I7p32b1cJZhi5A=;
-        b=JG/GEdSEzowm/utyuQKTVnh2bkuwnA11HZ6huhLCmo+/28A4eRvuH6PK4ltDi6TQmz
-         85KrxQiY6fmptXO6X46jiYxoEJdTFuB2ckfvnqYk/bwPDwCyMh/rVXvyAgBxeAKeBc5A
-         XZZTYwW38l2Ai3ta+atXIssj+XVhKalGv8rHCQ0pnbzUaiAZWPMiBkddHhhroJ+Taf4O
-         QGfp92dzIuKoDqlv1xCaKIkKPC8w5IGb/xlkwGl8+JloAUXtZ1i8IKCO0v7pdJvw453s
-         Hat7xN2cRrjMi8RHurrJlZgVpsoCMQx9TYsDmvuHIGPRjQ+0INmwmVTnscnpq/sZjUFz
-         RaSQ==
+        d=gmail.com; s=20230601; t=1745940261; x=1746545061; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=msGhu6fOF2oyCTN/tI7gZ7eRssIApKs0mAIDv15tSXY=;
+        b=ikMpymakLRpfbdnB045RkDL6pCNmAvXrqRKeV2Fx+Bsr/z4NcQV+QoTmrDVHTrdq8k
+         a2a3qMpTseZeshi9aa5E4tGU9R/T/W9WqQ0xDEjXm+s+Vw+urKvD2zogN+BdJ6C8FhUr
+         yj5nypXsUa1GUHGU7NieextUkj1qul0XptqR5sc/Krv/AhvrrJ1g0Hg4EwadTWewFpMi
+         VgiVPA8CqYlz2ng3/yOQT43M++xWx/prUKM74rB205IVurAzyeB4PLAsKqH1zPE9KIur
+         M7CQ+l2VXAm5Kb8+w+DaaMLK6Ss7pAZPbZlwVG7zGO/55aetAxpKxvT1Dk/Xy7mkT1hv
+         zxtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745939857; x=1746544657;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BokEIJpAcKb2binz16NzuPQ4I7I+6I7p32b1cJZhi5A=;
-        b=AT1Sg5KAZH/pcfIWNLy5CeipHUUpI3kaSpP5uAbP9DGPdSAuHkvlith58N3Ox8P5Ll
-         CMqlf3ZAl0Dvl0KJ/Qjl46SpVnrbEznLhhCajvFIxrJDqVZjEnQzzBOGMn3xbimemH6m
-         Eg8XUABai1roH5/CvqpChUzLca9S2e5GuppA3QeSVqYA4CoMe3aHGyGF6eolgrw7CPID
-         dvyB4G/EXzX9VkCZ6a8m/evg/oVTCcmgFTMWG1LBz/bufAXPU7uMOE5MRt66k6y7z9Qx
-         C+jCuuREgZGzLXMMv1IlxkqIeslzk3G3K79S/F/uxQMs6XGiQpBNyFZvRXSE0swoM3Ae
-         VXRg==
-X-Gm-Message-State: AOJu0YxrXfQcs9Av4g3bVd+KUZug01EVeFtg0zAi+K3vDWL3BazDit/3
-	LZGlHTUQrWp9waGhkS3PFO1646RiuKnvCeb3L4kB1HC6QIA6eqSkd+uPHYjlMHY=
-X-Gm-Gg: ASbGncsZ8eh52kG+d+wpu8JFTovA2U0IjYeEfnECgUrbvjR20cq2YDAM2jzi7DjtYci
-	3Dz7J6GUZgIl9L+hFmRclQDESS9Te4xWqHPX066109+DUDK3p9o0n/qKfNAXuMUjr5GsuRqBBkh
-	D8g82k1+llDWZdFc+Jq9TIGOT8rKBLD9jagZnH6bCfzQnfg3741qjFBRAfwfPDCcLcC9tovfTo6
-	j2Ad1Dfadl8oulwkN8bOe5b50ikaFuznFVyc1osoWQB1a31fwWVOzVvFeEwbpwyUcWyuHTKtCbX
-	mRHDlzuNwjKnyZ9Chfv03lKHM7rAGshC2m0aUZlQNLWrWjjgF1dlURd9WB8=
-X-Google-Smtp-Source: AGHT+IHwONa+JhNx4dio96T0pi5jX7gQn7L+kUedgzrY/88DyPg1TeMpxysV+irX79Ls6/3y0GlTjA==
-X-Received: by 2002:a05:600c:ccc:b0:439:a1ce:5669 with SMTP id 5b1f17b1804b1-441ac890828mr11476225e9.5.1745939857335;
-        Tue, 29 Apr 2025 08:17:37 -0700 (PDT)
-Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a52f8909sm167238875e9.2.2025.04.29.08.17.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 08:17:35 -0700 (PDT)
-Message-ID: <c2d8374b-b623-447d-a695-3f2ead068265@linaro.org>
-Date: Tue, 29 Apr 2025 17:17:33 +0200
+        d=1e100.net; s=20230601; t=1745940261; x=1746545061;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=msGhu6fOF2oyCTN/tI7gZ7eRssIApKs0mAIDv15tSXY=;
+        b=DG3zQZM+LcsNKmimXH+MJrN3W+dV9wZ4w2+xDXxMW0C8h7SgZBIl35Wp9yUIYsbHP0
+         NZ/gSoT1c4WkGcJF9xJxOdZ2OMXiYlDqINufIgWa2OyVu1I3TOCwNWNmue3yPsanKzeN
+         xDEK3QzJvFptm/s5ohKpAmBSzV0/RSNbu+TYPIrhmCJxMhfMNa1iQqFVrLyOp71VTfKH
+         tij3vm9MEwXNXpPxkcLGk4MQMRksVbjAlfRpssPV7ZJVOLM2vdgB6LVRPh6PwCMa3mnx
+         dZDrokqDrAksfm4xOZlxP90VN+rwdy9EVTam29YFNwrOmO/07p+CzgLVWYb6hdb28G7q
+         NJMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUz0LxQ3HORW0xUuCy3BOBV1thErV3IBV96K+P7H5T/Eu9UF7Tjqg0Ivxm1YzukYOxcwOV4fHaA+g6R@vger.kernel.org, AJvYcCXVzq3iPnHOZK57/MsZnIHZIUFtckVcGbPGackWTrlNoPuH9qNT8oahpElzruA3mSPDmiFJnhtrEnwRwzSl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh9tfpRollkYI+Y/insiy2htxvrUyMsxy6jt7WTBCikJ+OpJep
+	Z3nwkjOUPllWzgluDtCSd+PAFb0qh5fWFPqeaQdyksbs5BpQjV8d
+X-Gm-Gg: ASbGncvqUqyg/9fFAOz9gNm6zUSu+muJ96qJW1HH/ZxCuq7Orf8HMfZD2xD4iCuR0QF
+	K+TOom9cvFp8GrVkDRMOPwGA7bNJX19Gf5tzEgSFZOGF58YU/lJTBLp98kMehVDV5xxrTnbIClu
+	sY5ODs4vC8uc1SmULM+FvC+1G122MNr1OZf1/Y7lFBppYXAGEh0z1iB2MbnfDlpQECEKMfEEfZI
+	OKgocuftg99AukO23D+9l5ZYiM4cgGbN0Sj7kJJy0xVw7AZqUVcnDHcVjVX4F71kfr30dknGvhE
+	w3LMZadf2tKcOGL8WNunDXTD332gXKGuTKUL+NaTESgHWmK897E+A+GORXESFROzf2s/vuTmcg/
+	vXtPMl0MYy5oSPNwm
+X-Google-Smtp-Source: AGHT+IGoCpwI1mhzwqjMaKdTGw9O8H9V2Z9zrCizgtb+8WQLicqiFAzaOh+hZID1l+Pa03HZ4jDIZw==
+X-Received: by 2002:a05:6402:3495:b0:5ec:cc90:b126 with SMTP id 4fb4d7f45d1cf-5f838862cd4mr3823949a12.19.1745940260576;
+        Tue, 29 Apr 2025 08:24:20 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7011fc469sm7545748a12.7.2025.04.29.08.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Apr 2025 08:24:20 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andre Przywara <andre.przywara@arm.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org, samuel@sholland.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
+Date: Tue, 29 Apr 2025 17:24:18 +0200
+Message-ID: <4645060.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch>
+References:
+ <20250413134318.66681-1-jernej.skrabec@gmail.com>
+ <5880182.DvuYhMxLoT@jernej-laptop>
+ <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] arm64: dts: imx: Move Ethernet aliases out of SoC
- DTSI
-To: Lucas Stach <l.stach@pengutronix.de>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, Francesco Dolcini <francesco@dolcini.it>,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-References: <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
- <e97d3388a5b4272d70d7379b020843a47874a104.camel@pengutronix.de>
- <c5538590-efe4-4b90-b291-6c429d8fa3fe@kernel.org>
- <06efb082c24176e6401265b4349b677468850f7d.camel@pengutronix.de>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <06efb082c24176e6401265b4349b677468850f7d.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 29/04/2025 17:13, Lucas Stach wrote:
-> Am Dienstag, dem 29.04.2025 um 16:30 +0200 schrieb Krzysztof Kozlowski:
->> On 29/04/2025 11:39, Lucas Stach wrote:
->>> Hi Krzysztof,
->>>
->>> Am Freitag, dem 25.04.2025 um 21:48 +0200 schrieb Krzysztof Kozlowski:
->>>> Not tested on hardware.
->>>>
->>>> Ethernet interface, like other exposed interfaces, aliases depend on
->>>> actual board configuration, e.g. its labeling, thus aliases should be
->>>> defined per each board or each SoM.
->>>>
->>>> Some boards (e.g. Gateworks) follow this convention but many do not.
->>>>
->>>> This is continuation of my comments from:
->>>> https://lore.kernel.org/r/16a98816-f43c-4f4d-940e-9da30cb1f73f@kernel.org
->>>>
->>> The i.MX boards have traditionally listed aliases for many hardware
->>> peripherals with the same numbering that's used in the SoC reference
->>
->> ... which is not correct. Aliases should represent how boards are really
->> labeled, not how reference manual labels them.
->>
-> While that is the commonly agreed interpretation today, I do not see
-> any language in the DT spec itself or kernel Documentation/devicetree
-> that would mandate aliases to be used in this way.
-> 
-> In fact there are examples to the contrary like
-> Documentation/devicetree/bindings/serial/samsung_uart.yaml which says:
-> "Each Samsung UART should have an alias [...] as specified by User's
-> Manual of respective SoC."
+Dne torek, 29. april 2025 ob 17:09:22 Srednjeevropski poletni =C4=8Das je A=
+ndrew Lunn napisal(a):
+> On Tue, Apr 29, 2025 at 04:51:59PM +0200, Jernej =C5=A0krabec wrote:
+> > Dne ponedeljek, 28. april 2025 ob 14:37:48 Srednjeevropski poletni =C4=
+=8Das je Andrew Lunn napisal(a):
+> > > On Sat, Apr 26, 2025 at 08:00:49PM +0200, Jernej =C5=A0krabec wrote:
+> > > > Dne petek, 25. april 2025 ob 17:34:14 Srednjeevropski poletni =C4=
+=8Das je Andrew Lunn napisal(a):
+> > > > > > > +&emac {
+> > > > > > > +	pinctrl-names =3D "default";
+> > > > > > > +	pinctrl-0 =3D <&ext_rgmii_pins>;
+> > > > > > > +	phy-mode =3D "rgmii-rxid";
+> > > > > >=20
+> > > > > > So relating to what Andrew said earlier today, should this read=
+ rgmii-id
+> > > > > > instead? Since the strap resistors just set some boot-up value,=
+ but we
+> > > > > > want the PHY driver to enable both RX and TX delay programmatic=
+ally?
+> > > > >=20
+> > > > > Yes.
+> > > > >=20
+> > > > > There is a checkpatch.pl patch working its way through the system
+> > > > > which will add warning about any rgmii value other than rgmii-id.=
+ Such
+> > > > > values need a comment that the PCB has extra long clock
+> > > > > lines. Hopefully that will make people actually stop and think ab=
+out
+> > > > > this, rather than just copy broken vendor code.
+> > > >=20
+> > > > I spent quite some time working on ethernet support for this board.=
+ Once
+> > > > I've found PHY datasheet, I confirmed that there is added delay. So=
+ this
+> > > > particular board needs "rgmii-rxid" mode.
+> > >=20
+> > > There have been numerous discussions about what these rgmii modes
+> > > mean, because DT developers frequently get them wrong.
+> > >=20
+> > > Does the PCB have an extra long clock line in the TX direction? That
+> > > is what rgmii-rxid means, the PCB is providing the TX delay, the
+> > > MAC/PHY pair needs to add the RX delay.
+> >=20
+> > While schematic is accessible, AFAIK PCB/gerbers are not, so I can't re=
+ally
+> > tell how long it is. But without this extra delay, ethernet doesn't wor=
+k.
+>=20
+> You are not adding an extra delay, you are subtracting a
+> delay. 'rgmii-rxid' says the TX delay is implemented by the PCB, hence
+> the PHY does not need to add the delay.
+>=20
+> What is normal is that the PCB adds no delays, and the PHY adds the
+> delay for both the RX and the TX. And you represent this with
+> 'rgmii-id'.
 
-And that is an ABI. Did I affect ABI here?
+ok, thanks for explanation.
 
-> 
-> So I would argue that there is no hard line between correct/incorrect
-> for the historical usage of the alias nodes on the i.MX platform.
+>=20
+> So what you need to find out is, where does the TX delay come from?
 
-There is. ABI is documented. There are things which turn out ABI, even
-though they are not documented, like node names. Was there a problem
-with refactoring these in NXP?
-
-No.
-
-
-> 
->>> manual. Boards always have the option to override those aliases if they
->>> have a good reason to do so, e.g. labeling on the physical device.
->>>
->>> Other users besides Linux rely on fixed numbering provided by the
->>> aliases. Both barebox and U-Boot number their ethernet interfaces
->>> according to the alias.
->>
->> And?
->>
-> Some usecases depend on the aliases being the same between kernel and
-> bootloader. Historically that has been guaranteed on the i.MX platform
-> by the aliases in the SoC DTSI, when the board didn't have a need to
-
-I know.
-
-> change them. With this series applied some other users may now end up
-> with missing aliases if the only include the DTSI.
-
-Bring actual case, what is broken by this changeset.
-
-> 
->>>
->>> While you seem to add back aliases for in-tree boards, this breaks the
->>> majority of boards that include the kernel DTSI from an out-of-tree
->>> board. I can understand that we can't always accommodate these users,
->>
->> This is not ABI, so every out of tree user is on their own.
-> 
-> I am not too sympathetic about out-of-tree users myself, but I don't
-> think we should make their life harder deliberately.
-
-We are making our life easier by maintaining and improving source code:
-e.g. not creating fake aliases for devices which do not exist on given
-board.
-
+How to do that? Strapping show me this way and testing confirmed it. Not
+sure what more I can do? As a hobbyist, I don't have access to anything more
+than schematic.
 
 Best regards,
-Krzysztof
+Jernej
+
+
 
