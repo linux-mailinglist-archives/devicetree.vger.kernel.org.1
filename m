@@ -1,274 +1,199 @@
-Return-Path: <devicetree+bounces-171724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A54AA0086
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:31:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFAAAA00B3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:43:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C803F1B62E8B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 03:31:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B2837A293A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 03:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A363427054E;
-	Tue, 29 Apr 2025 03:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4617E26FDAC;
+	Tue, 29 Apr 2025 03:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ib/Owhc4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kwa6FOXm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011027.outbound.protection.outlook.com [52.101.70.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFAA79F2
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 03:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745897316; cv=fail; b=gGYJmjNlBD2T62YeDlt+AQVZIPMQuRKbPH6dCORW3EsewOImVuLGwtVHkdRsjwFhQLK3vjRb4mucxsE+e9yLWV6BHpsxCoQ4Z0xGFiS58EeAvXqS+CH2ePASLeYI8ayCv6raB5kQXxWH2KGifzitG46F7ylP6d6aaCgfJNUSUxw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745897316; c=relaxed/simple;
-	bh=a5oqROXCUswLRoYB3cFC3TUoCCcVNepbpgxskIBVEP4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZRczcgdstX6TCkbzxpicvG605IPFLRbN2Gh9nKOVIa2IW4ySmTnhCMshzgTLdWc592zU7iWaVfAv/GDLZotKPBDvXyQ9Qez7SLJ9u7YTsCSVFnnZlD0MoWGjOUwb1wt0wW0gJipUpRJSV8WAmIS//nf2h3cNMBE8i1phsZCW+TA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ib/Owhc4; arc=fail smtp.client-ip=52.101.70.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a72V5Og42kiSWqOk/hFCB1vRr/zBRWDVL7TfY2jRiP2un5Lns8mGxDBkr3dmev5e7OELiAsXzr0rxibvi2UKpdH29LCtewaCVN+iIEn+dwLCXUwgq3EjIb5UuwbZNEeaj/GhjWq3fBNp/wbeRUiKsG3uKPptw6BzslnKSeYsNDH7LXV6D1+Rx+qaWa+itl6bJJgeJhpzMuEUZleTGestg19GKg8wE+whr2fnp+KCbzRKuSLbkWvenfA33wQa5OfHTj9Keso5mgvBeiybSUGIGeoeTldm8APiB03ua/hYGr79dFlOCoeT7ZQruryOzMSv73zpPnWWMF59RVAETTQ7Xw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t6mCcPPQDWGc31QdR67W+5PA58nscpi1Co0IQl/Znjc=;
- b=R8gAu+pkZvg3i6eqAjc/nc4Wd+AdOOiqQ0RR3PEQNco7yGMByOF04cKgRY+rXuL4P08+b2nCXs9yS9exTaemXgKYWC3wvQZowxJyt+52dIkMNQy6W59roLJRd20u6ONdnUZ1HbCOIRMBePRnpuIS+0YacylwqRgZBwNCZLXzI/pffPB5jTRyw19cwjUqxUo5B3/TnNjpWAgTeBsB9VJzZriFSLhJtT0jkxjC1JVlNc2Tf0IIw6pZ/kCzkCjbIcLIkYIjR+7//sJkohK6zqzuBrBKO4lVc/XIZ3Cb8XsKk6yhiueRoVprzcBRmwbhKwObl7yzCQllT6EeQ8RdBsREVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t6mCcPPQDWGc31QdR67W+5PA58nscpi1Co0IQl/Znjc=;
- b=ib/Owhc4b34zh4gmSKjokoSP7cSOEvSMVR64SkV4CvDmzwu1doGWMqDVNH9Ut7GV/KXoXJdnq73ZRqRUNAl6ev1Ofou3b6a9NSg3xETBTx9Eg1l2fY/mAKIeWGpxanTQHulSce5JVKJx4lfyQwGzeAq4JLglehdD0aJJKyCeGFjcy+Xjrqx8I89kbOU7mXeQPf3TnXd5ApboLtkdsoome6Iu1bUa8dobNU8MzQEMoboHEKkMF3VJ/yo6BbsMgVLNPJqu/FkP9tOwVM4elMTKv4IZJXRBPQ3Aa+4SCoovVu7f56kVkMVEWLG7nPJY3yBVtZknQOzb4ZDUBb0mtjUhyw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AS1PR04MB9698.eurprd04.prod.outlook.com (2603:10a6:20b:481::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.31; Tue, 29 Apr
- 2025 03:28:32 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8678.028; Tue, 29 Apr 2025
- 03:28:32 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com
-Cc: jun.li@nxp.com,
-	alexander.stein@ew.tq-group.com,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] phy: fsl-imx8mq-usb: add i.MX95 tuning support
-Date: Tue, 29 Apr 2025 11:30:09 +0800
-Message-Id: <20250429033009.2388291-3-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250429033009.2388291-1-xu.yang_2@nxp.com>
-References: <20250429033009.2388291-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0156.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::36) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA64F219EB;
+	Tue, 29 Apr 2025 03:43:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745898220; cv=none; b=dUsGEeMiptsfFrF/2bIAl/dkg6MQxzCADJcfO51Wsmc8fIyoM8VLqYK8Yc0t9xDvAe3eIdkhbo6QHxcAaPE8fQtUAgshQZFEas6PIR5ByP768ZTo0YA5BBvieq0K9LidM6aJDbipAKm3JDJ9yRSHHZ/m8kGwMbJWu2dJuE/W5EQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745898220; c=relaxed/simple;
+	bh=A/h8OXs8Wekr7gbuWaO+81ojzwQgObVHH0lNAKAIdNU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pbLw9yM05P2UURbfKjNjtmByWztuk6cTFAEfqmOjxTeMiSHUjZ2PfApuwTowsaddqL1HpQzWpKU5vTtvia05RfTen2kKgDUjJ6BTwtuac2mr34RxEY+oNxOMbKGjUpsOJg3drdMjD6TRUmRykP+ftM7rDH71BWb56WApht1Qhxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kwa6FOXm; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b0da25f5216so3489805a12.1;
+        Mon, 28 Apr 2025 20:43:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745898218; x=1746503018; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3EuDa5MdYzDvx9phCQyiyQIJ/EzyBR8j5u1DkbRAKbc=;
+        b=kwa6FOXmn8yNcmqt/YCMrCl4Ng83V8WgqeBECSYRjnbG3203aM1YmUPNHg6NbA2EnQ
+         OHcydG8xivIsKKNcfipSwZlnnKoBzy6HAlQdQrjBf/AB3lpaUBzEfEcjiLtM4oPoWuDa
+         O/7HfBXAU/uO7IhL4+7OBgLOO4vG6PpYsjWhr5ms7FZRKNaSwoyXsYrIZCJg+Fm+5gRV
+         tS6d3lEM11FS/dBevzxARPiOIJMKcsv9OT0rfTRRwfUyYsmcEazdcG23X3tSuulUPHMw
+         FPa/dXB7VMMXauU/E4Qe6piQq29vUHmmMUouLBeu0Xlnf0E6fjIlBEJmBOwWRrH+5hgn
+         RgyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745898218; x=1746503018;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3EuDa5MdYzDvx9phCQyiyQIJ/EzyBR8j5u1DkbRAKbc=;
+        b=ixztVFPXeTgl8NMOqSQIPRhm8KWIUsmYEzZR5z6sMTS2teP7CPNvQkeH+dGWmk397Y
+         RGw8xYG8HPyBw+BYnYWdBkmRAOcReh8z/nlAG/MJWXk1tF8XeEs3pRNuXuuKD32el0Xc
+         XfH8jI0YjPVgQrW+LibI98J1PCobPTAvO42YxGUdIXMKf9ToCWC3kn8955CWqUTlH7fq
+         pIKL8L4YaU6/mNvOzd2HmQc4VW1VDqiqUWYFF3HUFQTYQrVyGferOa6xtSpiWx4hU70x
+         jKs3HCBdGTrkOgTwilxB/QRX6A0zBPcAB9Yt/DV8BaK5/BhqDTfC4CvbHuYScQOkhn/p
+         30PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVyrD/AnUDJ1hIbHWjpTe1MclgcWP/ZhFGJHrtHHwEWYoMyUw2LINyUYwykkODE8LpCY7qy8whlIMPcLcqW@vger.kernel.org, AJvYcCVzFrJYtDMqosdynQiI1OtNka6DlSEJG2z9zTPlCvTM3TsBFpSWKMEr3GALFw3DO7ok8+xHw+Ra5h0ADl8FzaSjAQ==@vger.kernel.org, AJvYcCXIO68QCrYUp/0grG/ip2ikG+AHXJA+wmwaMIfhfsd6SS9xQbZFdoYoJe0x3GMXnzGCggN8wmHQ4aUM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/tRGDwzyUokYOzm1BilTHJzObccMxrjepDxt0G5GWL4/Qwz5x
+	Dp3kcff9528v3vILKwBXoClyNt9kf3lxYQCPjFSlI3QYLVJq1kKq
+X-Gm-Gg: ASbGnctQJtUriWVhPVZi9N1wKZGmMuMtVGIBCsGjTTmwXpRdgmRH880etiyNUiGKl8V
+	h0jmX08BAeAUqpnrMT49gvFl4xEN7RDJHvTSas8cM00YL6Vz7JFmiZXvkTKw6cn1pPamqXIu9Xk
+	w2jCJvX/NQ/KCGcGqySPscXMmR0VNVLo23bYzxcHDKVGAKbfD1fulO73P9SGAvRqzWZy1qOs4m3
+	Eu8QJkAX52Dpm5tlnIUE4gax6jGVxsOUNK6k4wKXmXgA/mAOcSp7i6l7Z8vmJXbcq5+7eIylgY0
+	sihW3lGy5U214OqodU8Bhm+6tP3vKr8Epb5kejJuiYX7h0wJn6s5qbObiw==
+X-Google-Smtp-Source: AGHT+IHDlfH5cI7f1OQklMi9xc6LaYpwXhhqvPBfBvQ0fZ4Ac0OERq6XWV3yO59OjjnYFowNpLs0xw==
+X-Received: by 2002:a17:90b:2f10:b0:2fa:1e3e:9be5 with SMTP id 98e67ed59e1d1-30a0102977fmr18745487a91.0.1745898217839;
+        Mon, 28 Apr 2025 20:43:37 -0700 (PDT)
+Received: from [127.0.1.1] (wf121-134.ust.hk. [175.159.121.134])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-309ef03bb7fsm9953249a91.9.2025.04.28.20.43.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Apr 2025 20:43:37 -0700 (PDT)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH RESEND v6 00/21] drivers/perf: apple_m1: Add Apple A7-A11,
+ T2 SoC support
+Date: Tue, 29 Apr 2025 11:42:24 +0800
+Message-Id: <20250429-apple-cpmu-v6-0-ed21815f0c3f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS1PR04MB9698:EE_
-X-MS-Office365-Filtering-Correlation-Id: f63fc0f7-8a5f-4c0b-dc86-08dd86cdea8f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1jm1dW6cB+YID9odNzRSFSBFcP3RBjgX1paRCL4wqJL+4cmAgGIZhqar/AXE?=
- =?us-ascii?Q?HWPJiS4QeRcsvqtKQEy33aB5QSrDnFd79bPiNAnqbXrku+K/MoJy6HU3lQx6?=
- =?us-ascii?Q?dSset0djCAgEzfHrtsny28sUTlKTnKPUjf6dM0GaulGl9gp2oJE0UdzYMYU7?=
- =?us-ascii?Q?DaluRkPeEyyh1y7lN3xXQl4tSKGkyIgl9ZGJeVyBfaAB7PC7TpT1bOPDeUCq?=
- =?us-ascii?Q?Zzw3zb2W4dyB1ielZ5zLiFlXZn9QMv8lxYJwtfPDJaJWkYy7MnW1bjmVLDbh?=
- =?us-ascii?Q?cYhcHKBX30ATuZzEW4DktRI0lOX5HA+vALqFkBaEwa9o0oovUJlFF4H6g4ve?=
- =?us-ascii?Q?mr1W20EfwdW5sS3ec+NXSjLNPS+UtWk4uYtqtID279ZlWsYO5H6rRQ4MADKE?=
- =?us-ascii?Q?zOz0lUa3EsdmjjvyJmE+RY+xo2jjjuX2mHoCvsm3A2wCq17YF7lQWxFi4HzN?=
- =?us-ascii?Q?EXo7auuu9O6Qv2Znh8kEPeInjVkvF4XBUmHyldpqSZaV36S1UsXArEGHx2PX?=
- =?us-ascii?Q?1Uxno9FDczHGCQHOyXY0bE69jxKhXPXc81LOu8e0jY+4df8ESuPTqhHx5WH4?=
- =?us-ascii?Q?aL8PM70vlbq6IqHb9trUp/kzDAUyqioXRNO/bkwBvLME3tKQWJzL7skBiw83?=
- =?us-ascii?Q?uZyyqg8tIF39ST2MGMbc91DoIY2wVM5wGSUIWvpm57Ms1sLi2PnWmyfwBFqE?=
- =?us-ascii?Q?yuYDcg1jrwHz4Lvkcb17+gxeXTtE8/IEluPnToGJezo09dwgYghQRzsG5DnC?=
- =?us-ascii?Q?oYrRkg9hmVVm93HeGgS8rwydHySoVq5ZweUddDrMQ9bmSc75vPq701pzGxWe?=
- =?us-ascii?Q?X8ruqsom53V0by8GUPZSCODu0VqCPryfOlmxhmxE9sXMYFP3+OB26gpjwkW2?=
- =?us-ascii?Q?0+bon4oFlUGzJhxUrzZ0WZHDeGR4enhmALlEBwinNqb4+abH4/rk6y/Z+sSH?=
- =?us-ascii?Q?WhmJO+clEVvcRxrX3yCvKQFgb/9DsKbm9q3a6MlzQ6wmieSaQV934dL+0XoG?=
- =?us-ascii?Q?9lcGJ+TC4PGuBswR/GvJpxOr0yj8mK079DL37BJ9FRRiZbxmI9KbhCgI7rzF?=
- =?us-ascii?Q?w7uMDfT4KvGjpLEIQUKCSLWzIzySAtCBDDtOaZsr8wKNUUy4m2qRLXGx4KnF?=
- =?us-ascii?Q?cR6BEGpE5Ee4bWNMRcwR/0n78Jk3iu5JII0CNFNs9WRk0LbGPz5cQZhYiXZq?=
- =?us-ascii?Q?xLDUFJS7sPemYdbCzP96mjQBrKHPMqu2pRX7En7M92IXcHQaTE4YSgRwI+B4?=
- =?us-ascii?Q?Fc1bD5FT3QQmqG6HG4vB4v46xW+P5d+9Pqu1RSh+4TIZHPSTbz+Dzx5RxuUU?=
- =?us-ascii?Q?dxXWgxvaQRE3RIctU1QFgcctoRPZPTpdVMK49l1oNW9EwsjMIlEFhHVnMZOt?=
- =?us-ascii?Q?89AMWQI2vVu+LZmfGRiVt9lzS1ndo47briTicNgfyslc2RSdenkh7tEjRZ53?=
- =?us-ascii?Q?4h8gI2nnnhDwjNd3rNj/qANZpPcDM1qiXC1h/dDhPYqoOQ0bSx5YlA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?EOm30LvhtaKOqXvhw5fiPz+C+RdAIz/UbiiqkW3nrIPXQJbn0YAiDYaedIp1?=
- =?us-ascii?Q?Q3Q+J0WO0+ZyMEJXr8xB0zW+ZTLtqNcQ30SrZW/Tx5CuWaBqx1zrPDTMZ8at?=
- =?us-ascii?Q?VeRUSATl5vcaXHHnKMakuTq+l+1s/ShboYYVmLdfMwKU2Xx+1TakDzYM2wdg?=
- =?us-ascii?Q?tRp9MRpCX47R7WO09J/iGQqV/wyoRhazsnkJtpyqVK9iFESLphEWm46QdDhg?=
- =?us-ascii?Q?BGkOBpa2BsS7UpNJInLQwJZbSP9ghCO8XYj5GsJiz4rSj5H4z4aOYYjEcfRf?=
- =?us-ascii?Q?z0cUwSWZLuT4Ylxy0nw6mT3jSkS9zVYiUN+wYLmUee+0BTNvCrwX0bByDWrO?=
- =?us-ascii?Q?oov+5hq3Q8PojL3/GOzoov1iLXai9f4sqHqBUWZPI+r2oOk/ssiPhHfB2yqa?=
- =?us-ascii?Q?bKUbjjy+azEuR+x4FGBpQGaFGnQMnp38nGflhtxk+gOIv37yMvf20d5TqDvV?=
- =?us-ascii?Q?OgJLRlL+4uxUmbuMdv0p5iZWPwlT/07CeGsgu0BwKJDyfT0ppOsuRA/JY+6r?=
- =?us-ascii?Q?l7vjDlKi0go64mm4OxmBpiVC1SixZ7oDpA3kn2YvJhqdJHjOmSQDSL0NebQ+?=
- =?us-ascii?Q?Rzo2DFD92b8A0nYXm561HXMPmx4ld5x0PiQh4aHd94vIQztSt/MkxJgdPO3c?=
- =?us-ascii?Q?UnwadaqxqtUcYUbvzWJAL5VSZHF39DA0VNfy+KingEHsKP5/3x8UQS2gbHBx?=
- =?us-ascii?Q?omwPoN/RKZ0rxYBVB4Mm9jOedG3Hrts5SeedZ2Isn/V/scm1gfua2+cA4FFO?=
- =?us-ascii?Q?a8LxOMCELfiIg/NcvZs5fHf/lgRT84WlNIPzk4a+hRdguPn4y3k8Q4amrmx3?=
- =?us-ascii?Q?oAc+c1c8kJOfGuqEr/ZyYY4D6C1R2CgPogAYuhkmpcEtq6uYaXYUE/oU2bc/?=
- =?us-ascii?Q?nGRxlu3+KSS/bxYdywSZAu3Rrr/iHAw5ZfPp/2DihSNt0/YfLqW2ITVHRt7d?=
- =?us-ascii?Q?aCKZO3GytqZvtbx2J3BfSUoiqinFzz7TeCVxGyvHHW782hkl9eEcLPKWqN5u?=
- =?us-ascii?Q?qLa1CJEsM1aswVMt9d/FrQefYQnfMpWjRYMuCfcBFL36NHqP7Vt5rCKGiccY?=
- =?us-ascii?Q?Mpd4FhiZ8SRkiIYh0wa32VbKXZH4fOXV/kIYkz9nPnINO+JESAFT5nrOmyqB?=
- =?us-ascii?Q?c06VsDaUAye4A3yb1OUPl5bVo1IJs6wbpsS7Gwh+Oefqsjf5T8cuPoNX/H2/?=
- =?us-ascii?Q?xk4SYjP8hXixFrQJu2/RU7CIwg2sXHktibeIwPAQS2w4HggtJytTPB/3gOc7?=
- =?us-ascii?Q?y5YrjGcsmz42Jxkvgx71MkfoCxyb5OoXfbEMlqe3QZPbI3GQ7IZpgKjhC6Gl?=
- =?us-ascii?Q?P6Y22YhIo8grit8oMXitlAMctJv1T4EiukiSfE4jMTtbyJ21pPF3kw2sZb1B?=
- =?us-ascii?Q?IUDcsvJQVDjUug705fOC7ufl21tjOZEa/dM4XoFVZIrS0mnqQvcV3cv2tXYs?=
- =?us-ascii?Q?FTHLBadnpmBxJ70Mo3CK+EGrFizUZlRZWTH395rs4GCJmjpcrVdGHmpNldZ+?=
- =?us-ascii?Q?XxGsf9EpYjPlM/z2aQcucgDn5EktPGDexd9M/qYka4XMZXjNVH4rcwzqxoFT?=
- =?us-ascii?Q?pO+C+KoHsjBvx1ymloyTrJsEXI3bAv8mnFd6LMUQ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f63fc0f7-8a5f-4c0b-dc86-08dd86cdea8f
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 03:28:32.0479
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B/Ra3pTP5J+L0zfb0E6inT5+XTmSlnNXpAJHIXiVmobQd7T/JIXwPvh70ZfFLQwybtFfIf7CR49zQN8uxpvXrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9698
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Sven Peter <sven@svenpeter.dev>, 
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Neal Gompa <neal@gompa.dev>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3865; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=A/h8OXs8Wekr7gbuWaO+81ojzwQgObVHH0lNAKAIdNU=;
+ b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBoEErbsRiI2o9zO9yGgrIDiPGqiBCwQ/exVDgtU
+ yLxoDGk792JAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaBBK2wAKCRABygi3psUI
+ JOc6D/9YZLf+qLgGlcRIAvMjZ0bDXDsXrSD0YBt2SLzeB7VjTMMw+LFsxMbOZPgDmIHDx8i8AtJ
+ MkeCh/kYRZE4OGpvb9wiMGts7rjIRZZKL07IiMHHRlG12dRlSnlxWouS7ycpn8vom0TltxhHbIK
+ P0RByJ5zt9SFyUcU47cf5pCIo3Wx0grcqRB2ls0DtFbkVIvEd93UXUXMOA2Z0t/BI4eWR7IJMw3
+ 1ew95gkM+NuMb7G+thfluv7GLZb0SVt2d3KXtMAOrk5bgFsxzHH5XNYT+3tE7ljk0aVk3HkBkY7
+ do//A5q5xglJKvizGtz8NzRSmYojIVxBCRTHn2hQMZtfoXzZv7pnIqaI7zvtu8PX6f+g8uZK5HX
+ SfEucgyW9U6W6fJs308ifDSvZP62wFw4sfJ0ygw596PONfJhb/tRzGnJvo8DQ0mOYrM+4UBmBdO
+ EExVPj9br0dRY13U4c5Xrqc6SmM3ffQ7Vy4lVRQ3wOWxkUpxcNttI6r4kQO0XWkOKV6UvBW2+TW
+ fHK7BjsHgAr/G/nD7gSH9za6MOHULZFd9Js6idty98w//3uzXwwbnefcA9FdmL/RlsjPUec26iX
+ nkPrPAA3GVbF52t0uaG8++C4ca1w9b/0qWNJUbBgF3492W+/M1ucVj1pRB9JQScNkrPNuzHtcDa
+ FOrYz7yCtmIbOdA==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-The i.MX8MP and i.MX95 USB3 PHY have different tuning parameter for same
-tuning field, this will add i.MX95 tuning support.
+This series adds support for the CPU PMU in the older Apple A7-A11, T2
+SoCs. These PMUs may have a different event layout, less counters, or
+deliver their interrupts via IRQ instead of a FIQ. Since some of those
+older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+be enabled by the driver where applicable.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+Patch 1 adds the DT bindings.
+Patch 2-7 prepares the driver to allow adding support for those
+older SoCs.
+Patch 8-12 adds support for the older SoCs.
+Patch 13-21 are the DT changes.
 
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 ---
+Changes in v6:
+- Rebased on top of v6.15-rc1 (Conflict with FEAT_PMUv3 support for KVM on Apple Hardware)
+- Add patch to skip initialization of PMUv3 remap in EL1 even though not strictly needed
+- Include DT patches
+- Link to v5: https://lore.kernel.org/r/20250228-apple-cpmu-v5-0-9e124cd28ed4@gmail.com
+
+Changes in v5:
+- Slightly change "drivers/perf: apple_m1: Add Apple A11 Support", to keep things in
+chronological order.
+- Link to v4: https://lore.kernel.org/r/20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com
+
+Changes in v4:
+- Support per-implementation event attr group
+- Fix Apple A7 event attr groups
+- Link to v3: https://lore.kernel.org/r/20250213-apple-cpmu-v3-0-be7f8aded81f@gmail.com
+
+Changes in v3:
+- Configure PMC8 and PMC9 for 32-bit EL0
+- Remove redundant _common suffix from shared functions
+- Link to v2: https://lore.kernel.org/r/20250213-apple-cpmu-v2-0-87b361932e88@gmail.com
+
 Changes in v2:
- - new patch
----
- drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 41 ++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+- Remove unused flags parameter from apple_pmu_init_common()
+- Link to v1: https://lore.kernel.org/r/20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-index 6c564b608539..59b9b4704b03 100644
---- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-@@ -293,6 +293,13 @@ static u32 phy_tx_vref_tune_from_property(s32 percent)
- 	return DIV_ROUND_CLOSEST(percent + 6, 2);
- }
- 
-+static u32 imx95_phy_tx_vref_tune_from_property(s32 percent)
-+{
-+	percent = clamp(percent, -1000, 875);
-+
-+	return DIV_ROUND_CLOSEST(percent + 1000, 125);
-+}
-+
- static u32 phy_tx_rise_tune_from_property(s32 percent)
- {
- 	switch (percent) {
-@@ -307,6 +314,20 @@ static u32 phy_tx_rise_tune_from_property(s32 percent)
- 	}
- }
- 
-+static u32 imx95_phy_tx_rise_tune_from_property(s32 percent)
-+{
-+	switch (percent) {
-+	case -10:
-+		return 3;
-+	case 15:
-+		return 1;
-+	case 20:
-+		return 0;
-+	default:
-+		return 2;
-+	}
-+}
-+
- static u32 phy_tx_preemp_amp_tune_from_property(u32 microamp)
- {
- 	microamp = min(microamp, 1800U);
-@@ -353,6 +374,13 @@ static u32 phy_comp_dis_tune_from_property(s32 percent)
- 	}
- }
- 
-+static u32 imx95_phy_comp_dis_tune_from_property(s32 percent)
-+{
-+	percent = clamp(percent, -60, 45);
-+
-+	return DIV_ROUND_CLOSEST(percent + 60, 15);
-+}
-+
- static u32 phy_pcs_tx_swing_full_from_property(u32 percent)
- {
- 	percent = min(percent, 100U);
-@@ -363,10 +391,17 @@ static u32 phy_pcs_tx_swing_full_from_property(u32 percent)
- static void imx8m_get_phy_tuning_data(struct imx8mq_usb_phy *imx_phy)
- {
- 	struct device *dev = imx_phy->phy->dev.parent;
-+	bool is_imx95 = false;
-+
-+	if (device_is_compatible(dev, "fsl,imx95-usb-phy"))
-+		is_imx95 = true;
- 
- 	if (device_property_read_u32(dev, "fsl,phy-tx-vref-tune-percent",
- 				     &imx_phy->tx_vref_tune))
- 		imx_phy->tx_vref_tune = PHY_TUNE_DEFAULT;
-+	else if (is_imx95)
-+		imx_phy->tx_vref_tune =
-+			imx95_phy_tx_vref_tune_from_property(imx_phy->tx_vref_tune);
- 	else
- 		imx_phy->tx_vref_tune =
- 			phy_tx_vref_tune_from_property(imx_phy->tx_vref_tune);
-@@ -374,6 +409,9 @@ static void imx8m_get_phy_tuning_data(struct imx8mq_usb_phy *imx_phy)
- 	if (device_property_read_u32(dev, "fsl,phy-tx-rise-tune-percent",
- 				     &imx_phy->tx_rise_tune))
- 		imx_phy->tx_rise_tune = PHY_TUNE_DEFAULT;
-+	else if (is_imx95)
-+		imx_phy->tx_rise_tune =
-+			imx95_phy_tx_rise_tune_from_property(imx_phy->tx_rise_tune);
- 	else
- 		imx_phy->tx_rise_tune =
- 			phy_tx_rise_tune_from_property(imx_phy->tx_rise_tune);
-@@ -395,6 +433,9 @@ static void imx8m_get_phy_tuning_data(struct imx8mq_usb_phy *imx_phy)
- 	if (device_property_read_u32(dev, "fsl,phy-comp-dis-tune-percent",
- 				     &imx_phy->comp_dis_tune))
- 		imx_phy->comp_dis_tune = PHY_TUNE_DEFAULT;
-+	else if (is_imx95)
-+		imx_phy->comp_dis_tune =
-+			imx95_phy_comp_dis_tune_from_property(imx_phy->comp_dis_tune);
- 	else
- 		imx_phy->comp_dis_tune =
- 			phy_comp_dis_tune_from_property(imx_phy->comp_dis_tune);
+---
+Nick Chan (21):
+      dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
+      drivers/perf: apple_m1: Only init PMUv3 remap when EL2 is available
+      drivers/perf: apple_m1: Support per-implementation event tables
+      drivers/perf: apple_m1: Support a per-implementation number of counters
+      drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
+      drivers/perf: apple_m1: Support per-implementation PMU startup
+      drivers/perf: apple_m1: Support per-implementation event attr group
+      drivers/perf: apple_m1: Add Apple A7 support
+      drivers/perf: apple_m1: Add Apple A8/A8X support
+      drivers/perf: apple_m1: Add A9/A9X support
+      drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
+      drivers/perf: apple_m1: Add Apple A11 Support
+      arm64: dts: apple: s5l8960x: Add CPU PMU nodes
+      arm64: dts: apple: t7000: Add CPU PMU nodes
+      arm64: dts: apple: t7001: Add CPU PMU nodes
+      arm64: dts: apple: s800-0-3: Add CPU PMU nodes
+      arm64: dts: apple: s8001: Add CPU PMU nodes
+      arm64: dts: apple: t8010: Add CPU PMU nodes
+      arm64: dts: apple: t8011: Add CPU PMU nodes
+      arm64: dts: apple: t8012: Add CPU PMU nodes
+      arm64: dts: apple: t8015: Add CPU PMU nodes
+
+ Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s8001.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7000.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7001.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8010.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8012.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8015.dtsi           |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h          |   3 +
+ drivers/perf/apple_m1_cpu_pmu.c                | 807 +++++++++++++++++++++++--
+ 12 files changed, 871 insertions(+), 35 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250211-apple-cpmu-5a5a3da39483
+
+Best regards,
 -- 
-2.34.1
+Nick Chan <towinchenmi@gmail.com>
 
 
