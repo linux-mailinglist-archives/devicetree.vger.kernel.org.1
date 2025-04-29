@@ -1,296 +1,177 @@
-Return-Path: <devicetree+bounces-171756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A39AA01E6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:42:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62910AA0208
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863A146005A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:42:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F26F4654B0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC5325E819;
-	Tue, 29 Apr 2025 05:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0142749EF;
+	Tue, 29 Apr 2025 05:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LREXRJ3h"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UhO3Gqvy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD3B21ABC8;
-	Tue, 29 Apr 2025 05:42:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98BB7224AF9;
+	Tue, 29 Apr 2025 05:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745905327; cv=none; b=qwoRrfpuD76U7uoiE7rVnVdIEv7JxlPk8O4aoMdI0IshK862VZvTEg0NkWU84bqQEUKfXgK5nBIXkYUxn9ViuN8PVJVhCs9tdUblqJTF4JXgWLTUyyKyEu3vjGk9eg+nEhuH2813Uq0PYzJRs4fUTgcEgMN3ieKmJSOt3L1Yahc=
+	t=1745905762; cv=none; b=Oi96cSO6MLKtqyNLLAE1N3yIpPBMLstk+RU7S51WTOmPSK5EoZYJl+irLdIouaODGlqcG/0GGZWlA7z29KbVFZ15W3/gtZpdGlGw62ShbCXwiV/l4im5s/G8AwiWEMg0cZNaL9yoKJMiABGtXysGkyXqtKIR9T6EhueOmqs3Zbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745905327; c=relaxed/simple;
-	bh=0e5uxumMVgB+gJ4af5LiBNwBiNJ/RjGAyjB6I+PjhB0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QB22yxP09X34JqWNGKRtl6yo1Xpgx1o9SQLrwkDRag3n/jDFXbpnUDcRt3UJeO58WdMiWCkWZVz66uiyw4gnMwsX7QV6vKP5A3m58Cps8aqfQ3A/ds6R2Qk7qG64UY3S4nRgLMoYsCw3YuHZmphMzcQoMcAJGE9ci/azyGVfNNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LREXRJ3h; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so3782540f8f.1;
-        Mon, 28 Apr 2025 22:42:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745905324; x=1746510124; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VB5Wtwbx78r+orlHKCiKwe2I8rH2J7zEjSM0oCRsjK0=;
-        b=LREXRJ3hUgTGSCbQSam9d+zA+OJBJZZR9CegKE5Nhdo8gLPJk+pr0uJdibjX3CUF8g
-         m/TlXJrYMgiXdjEYIkYz4zUtW41v4C8Ucv6ZhM5SChHgoMVz5SA1QVXfhnStjvACNN8F
-         bDUfCzMPd+4OoD2z4GRzAGX5WmlogTAk4leaD9aOUkgIagZJ9SbCWPZM4BzxvxatGKBj
-         10QKvICszuHEdRld4IIH/kfgxorzYa/PigD/y5Ws0nGbfsVuZugkqCnvT4FpSFcDoc4t
-         R6F8iUFriaYCNnFwfCV3/WRIRT7ul1otCcPZaN2GfXp9Gp11/1s2hN6WGLBHn1PumqJa
-         Bukw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745905324; x=1746510124;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VB5Wtwbx78r+orlHKCiKwe2I8rH2J7zEjSM0oCRsjK0=;
-        b=wnXT9ho21rQodxOJ0k260kwr5B5Kz7IAXyqBzk0uB1G9x2APGXwrFMyL5MgEdWa0N0
-         DYvEjxOqv3p5NYDU0l4CXo5PzzFAyMDzbYbPPpYZtANlZLynH3bReAOzBVvplMyey9I/
-         Cj/PXhIzwHRV+olhTZkAjbqqlo967L3OcpSJ86m3lnJcU7l+GMss7K0E3AUOOeFUxZiH
-         6m0APmCp423Ou39zhZC0bEqF901Y1zj46Vvz/cMldazpJ8aj7f0ZhT0TQSEofZo3Xk8r
-         jsVVmiaJHXf3wTln0kVWbvDvzn01OWs3hNLQovnu/eZYiMUS+gs/nwyidU4GJH7PG8Hv
-         LeFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQydoO/WQBWEXl6joHXQ1env6t8HC9L8wo/szRoEIljF4WUUxx+jJzMZ7QAzKEN/J6TvzNtpBkp2Uhs09e@vger.kernel.org, AJvYcCVwfDwdeTPcCwdOWIGxw80hoRHFKtIL8kvR5t6P3t+EcJdtigPz+UD9DBK5w1ZyjzoR0TZgdE7NIsa5Kac=@vger.kernel.org, AJvYcCWwHPClbYAFyg2WCdpba3jxVWPitkS1uA3oVBt4Ok6kiwXvmYKjRTFV/sR570EalUrUNFRrwhp0QGo=@vger.kernel.org, AJvYcCXQCmXkB/wX8cAubGy7584I86GHqmmU6qvItOeTN2oI8HsumXrM7nm2S5NNM6/52nI8Debvq8PBnrm3@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH8DOI5kaQpUZoBDGXp2HSh4PxDO84Gxta0Vq2txqwRBkrq3F2
-	rdplA3ayrYVTkBzHhhkBhRafh25+MJ+p6bcS6NTmr8sAeW0R0t+cqInU4LyfEoYW4DPapLbMx/V
-	shUnQ+ciNtOVrSDktomSzCGhXPNM=
-X-Gm-Gg: ASbGncvhl2XxmnjuGtl5J0WopVAFbMvsQSUpZhVqSlJkus8CzLfm6OanyNUpQdrRDaN
-	pJtZqtk0Jab81E7l39TYSQPC1TOuv3JfIgrLDf2fFpl6NN1qFZkH8gMsxYwiq7oFX1zbev3+8an
-	fTR518oFy0Oq3tt2KV1IroIvOKmenDKTEo/w==
-X-Google-Smtp-Source: AGHT+IH4r75txm4cCS97/f9OrI2KG8AGYPc0bAJ+UQrYpFpQsY0S4uUNIdOxBS8MjpbL6UUQkSMtW3X5+RcM0EVnkBQ=
-X-Received: by 2002:a05:6000:402b:b0:3a0:7a5d:96dc with SMTP id
- ffacd0b85a97d-3a08ad32e13mr831956f8f.13.1745905324117; Mon, 28 Apr 2025
- 22:42:04 -0700 (PDT)
+	s=arc-20240116; t=1745905762; c=relaxed/simple;
+	bh=odt4BvtRQCAZwHMR4seRzeiLOow/lp91qKjPibzrn1Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mMkHjcgjZNfHH3J52aTbZbHybWZZiXSZZYiLdrTeKiph1+B3RM6sYKO1DNqdeGDZHiObXI0fIByJlxDyi1XUxP8S1swYfYZqRwOISDQyFS0p6kjBRFhqjFrrFNQ6djXcuHdsOZHeYcnVus7YmqEwe/LFbS+p+ICfrgBAml0TMsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UhO3Gqvy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNqKsm012626;
+	Tue, 29 Apr 2025 05:49:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iW1XVZ8l6CJyFrlX5XcyWr
+	a0zw0oiwZNvz4GD/HpHkc=; b=UhO3GqvytDaYfCLz9Lb+hGV13QJ7eEDPAd8VQv
+	yYPXxZGaltYYuCTt9hNvDboSMoUtmnoNL+c426zpFK9SgU87AABH1haD54ig3Jh+
+	ioTQ4pMQ8MAvumQ1E6vQ8BZkF0BGb+2zoyP0LV9LlxIKYeSG+qGBPoF2Ji4xwmeP
+	WzZsu9bjPhA7V2cn/ishCRQcNd7RyCtvctBrMnHJ6DPk8dODuDSTA4FkwH7HNTar
+	RBZ5IVGr1Dt7BMnBchsm1j2nEopfJsJPXqDVDPSHOTmUSTUPttPbSAbco67hSX0o
+	ks3wQbOgGuqSS6ufxCkiBBBS5MVgGmFO+NF2mhtyqTvOoT+w==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468q323bfh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 05:49:15 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53T5mmS5029225;
+	Tue, 29 Apr 2025 05:49:12 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 468rjmfqus-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 05:49:12 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53T5nBUc030237;
+	Tue, 29 Apr 2025 05:49:11 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.246.180])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 53T5nBju030223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 05:49:11 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3944840)
+	id 9C6C45A7; Tue, 29 Apr 2025 11:19:10 +0530 (+0530)
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@quicinc.com,
+        kernel@oss.qualcomm.com, Wasim Nazir <quic_wasimn@quicinc.com>
+Subject: [PATCH v6 0/4] qcom: Add support for IQ-9075-evk board
+Date: Tue, 29 Apr 2025 11:19:00 +0530
+Message-ID: <20250429054906.113317-1-quic_wasimn@quicinc.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250413111033.11408-1-clamor95@gmail.com> <20250413111033.11408-4-clamor95@gmail.com>
- <22du3s2n3pcyivw7ktpqcvyvady24qggiqouz5hqzoca2tzyqd@vdi5qbtdkrgj>
-In-Reply-To: <22du3s2n3pcyivw7ktpqcvyvady24qggiqouz5hqzoca2tzyqd@vdi5qbtdkrgj>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 29 Apr 2025 08:41:52 +0300
-X-Gm-Features: ATxdqUElrxNQVvYfTDSXnijX_xzVnVpoe4pcjetfMWxSULzsIaUGPBLP-yAkRuE
-Message-ID: <CAPVz0n0Qcu7NAsqiRRrUjZLhRhNp=rmtdM9XLnf2XTiTpDyJgg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] power/supply: Add driver for Pegatron Chagall battery
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Heiko Stuebner <heiko@sntech.de>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=M7xNKzws c=1 sm=1 tr=0 ts=6810685b cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=BkoitdVaJjL6tbVqwpAA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: B8EggLNMhnza9TaW0NLEYT_YrEBzCy6v
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA0MiBTYWx0ZWRfX1BBu3NMDwRAq dZPwPcZmbd9pb54DGLN3RVDwFg9NBaNKLSKjcIPXWH8DU6baJa4lYonOUNEISjTCfuhhWRKIZpC /boz37QyA43zsFNXQUD/vNuFBbcN+l+UtsOkajX6noCQ2uNk55HySql7Y7c6di+zsQRBJYvFhJn
+ y1h7Sk67woC2LSvU3L2RKLioK/3vTw1Pd2Tkd908nQDHepGt8zGizjrZFDbuYyxJJ3kqG9D24UH /Vr6jNhCuMdCT30NttCJ/m9Eu1wViUOhoAi2vfOHYg+MlFs8zoyBDLw9buNr7GWUceDnst+W9I3 zdXjdsnLNTcgNFc+oLx2JULUXLMz8lInO5+eo0p5j6ixiXIphooTMw1l2PUOkc/nZxYBJ663piv
+ IYIzVwLqzLYzK5KL3tsRT+/prXwFpmz4mRz1w9IkAM0sD+cOSGRRxDbw9oqCu3cw2QQdmTdH
+X-Proofpoint-ORIG-GUID: B8EggLNMhnza9TaW0NLEYT_YrEBzCy6v
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_01,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=999 spamscore=0 phishscore=0
+ bulkscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504290042
 
-=D0=B2=D1=82, 29 =D0=BA=D0=B2=D1=96=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 02:0=
-2 Sebastian Reichel
-<sebastian.reichel@collabora.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi,
->
-> On Sun, Apr 13, 2025 at 02:10:32PM +0300, Svyatoslav Ryhel wrote:
-> > The Pegatron Chagall is an Android tablet utilizing a customized Cypres=
-s
-> > CG7153AM microcontroller (MCU) as its battery fuel gauge. It supports a
-> > single-cell battery and features a dual-color charging LED.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
->
-> This looks mostly good to me, but I have some comments.
->
-> >  drivers/power/supply/Kconfig           |  12 +
-> >  drivers/power/supply/Makefile          |   1 +
-> >  drivers/power/supply/chagall-battery.c | 308 +++++++++++++++++++++++++
-> >  3 files changed, 321 insertions(+)
-> >  create mode 100644 drivers/power/supply/chagall-battery.c
->
-> [...]
->
-> > +static void chagall_leds_status_update(struct chagall_battery_data *cg=
-, int state)
-> > +{
-> > +     switch (state) {
-> > +     case POWER_SUPPLY_STATUS_FULL:
-> > +             led_set_brightness(&cg->amber_led, LED_OFF);
-> > +             led_set_brightness(&cg->white_led,  LED_ON);
-> > +             break;
-> > +
-> > +     case POWER_SUPPLY_STATUS_CHARGING:
-> > +             led_set_brightness(&cg->white_led, LED_OFF);
-> > +             led_set_brightness(&cg->amber_led,  LED_ON);
-> > +             break;
-> > +
-> > +     default:
-> > +             led_set_brightness(&cg->amber_led, LED_OFF);
-> > +             led_set_brightness(&cg->white_led, LED_OFF);
-> > +             break;
-> > +     }
-> > +}
->
-> Instead of doing this, you should setup LED triggers when
-> registering the LEDs. The white LED can use power-supply's full_trig
-> and the orange LED can use power-supply's charging_trig, which
-> should have the same effect.
->
-> > +static const enum power_supply_property chagall_battery_properties[] =
-=3D {
-> > +     POWER_SUPPLY_PROP_STATUS,
-> > +     POWER_SUPPLY_PROP_PRESENT,
-> > +     POWER_SUPPLY_PROP_VOLTAGE_NOW,
-> > +     POWER_SUPPLY_PROP_VOLTAGE_MAX,
-> > +     POWER_SUPPLY_PROP_CURRENT_NOW,
-> > +     POWER_SUPPLY_PROP_CURRENT_MAX,
-> > +     POWER_SUPPLY_PROP_CAPACITY,
-> > +     POWER_SUPPLY_PROP_TEMP,
-> > +     POWER_SUPPLY_PROP_CHARGE_FULL,
-> > +     POWER_SUPPLY_PROP_CHARGE_NOW,
-> > +};
-> > +
-> > +static const unsigned int chagall_battery_prop_offs[] =3D {
-> > +     [POWER_SUPPLY_PROP_TEMP] =3D CHAGALL_REG_BATTERY_TEMPERATURE,
-> > +     [POWER_SUPPLY_PROP_VOLTAGE_NOW] =3D CHAGALL_REG_BATTERY_VOLTAGE,
-> > +     [POWER_SUPPLY_PROP_CURRENT_NOW] =3D CHAGALL_REG_BATTERY_CURRENT,
-> > +     [POWER_SUPPLY_PROP_CAPACITY] =3D CHAGALL_REG_BATTERY_CAPACITY,
-> > +     [POWER_SUPPLY_PROP_CURRENT_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
-CURRENT,
-> > +     [POWER_SUPPLY_PROP_VOLTAGE_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
-VOLTAGE,
-> > +     [POWER_SUPPLY_PROP_STATUS] =3D CHAGALL_REG_BATTERY_STATUS,
-> > +     [POWER_SUPPLY_PROP_CHARGE_NOW] =3D CHAGALL_REG_BATTERY_REMAIN_CAP=
-ACITY,
-> > +     [POWER_SUPPLY_PROP_CHARGE_FULL] =3D CHAGALL_REG_BATTERY_FULL_CAPA=
-CITY,
-> > +};
->
-> Please use the same order for chagall_battery_prop_offs and
-> chagall_battery_properties. Makes it a lot easier to see
-> that all options have been covered.
->
-> > +static int chagall_battery_get_value(struct chagall_battery_data *cg,
-> > +                                  enum power_supply_property psp, u32 =
-*val)
-> > +{
-> > +     if (psp >=3D ARRAY_SIZE(chagall_battery_prop_offs))
-> > +             return -EINVAL;
-> > +     if (!chagall_battery_prop_offs[psp])
-> > +             return -EINVAL;
-> > +
-> > +     /* Battery data is stored in 2 consecutive registers with little-=
-endian */
-> > +     return regmap_bulk_read(cg->regmap, chagall_battery_prop_offs[psp=
-], val, 2);
-> > +}
-> > +
-> > +static int chagall_battery_get_property(struct power_supply *psy,
-> > +                                     enum power_supply_property psp,
-> > +                                     union power_supply_propval *val)
-> > +{
-> > +     struct chagall_battery_data *cg =3D power_supply_get_drvdata(psy)=
-;
-> > +     int ret;
-> > +
-> > +     switch (psp) {
-> > +     case POWER_SUPPLY_PROP_PRESENT:
-> > +             val->intval =3D 1;
-> > +             break;
-> > +
-> > +     default:
-> > +             ret =3D chagall_battery_get_value(cg, psp, &val->intval);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             switch (psp) {
-> > +             case POWER_SUPPLY_PROP_TEMP:
-> > +                     val->intval -=3D TEMP_CELSIUS_OFFSET;
-> > +                     break;
-> > +
-> > +             case POWER_SUPPLY_PROP_VOLTAGE_MAX:
-> > +             case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> > +             case POWER_SUPPLY_PROP_CURRENT_MAX:
-> > +             case POWER_SUPPLY_PROP_CURRENT_NOW:
-> > +             case POWER_SUPPLY_PROP_CHARGE_FULL:
-> > +             case POWER_SUPPLY_PROP_CHARGE_NOW:
-> > +                     val->intval *=3D 1000;
-> > +                     break;
-> > +
-> > +             case POWER_SUPPLY_PROP_STATUS:
-> > +                     if (val->intval & BATTERY_FULL_CHARGED)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_FULL;
-> > +                     else if (val->intval & BATTERY_FULL_DISCHARGED)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_NOT_C=
-HARGING;
->
-> Have you tested this path? POWER_SUPPLY_STATUS_NOT_CHARGING is
-> intended to be used when the battery is neither charging nor
-> discharging. Does BATTERY_FULL_DISCHARGED mean, that the battery
-> is fully depleted and not providing any energy at all? Or is this
-> some kind of "battery level is criticial, you should attach a
-> power-supply now or the system will be turn off by itself soon"?
->
+This series:
 
-This one is tricky. I have transferred this logic from downstream
-kernel and couldn't trigger BATTERY_FULL_DISCHARGED ever. It might be
-a brief state you describe as "battery level is criticial, you should
-attach a power-supply now or the system will be turn off by itself
-soon" but there is no such entry in POWER_SUPPLY_STATUS enum, so I
-assumed that  POWER_SUPPLY_STATUS_NOT_CHARGING co-responds to such
-state. If this is not the case I will just remove this entry.
+Add support for Qualcomm's iq9-evk board using QCS9075 SoC.
 
-> > +                     else if (val->intval & BATTERY_DISCHARGING)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_DISCH=
-ARGING;
-> > +                     else
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_CHARG=
-ING;
-> > +                     break;
-> > +
-> > +             default:
-> > +                     break;
-> > +             }
-> > +
-> > +             break;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void chagall_battery_poll_work(struct work_struct *work)
-> > +{
-> > +     struct chagall_battery_data *cg =3D
-> > +             container_of(work, struct chagall_battery_data, poll_work=
-.work);
-> > +     u32 state;
-> > +     int ret;
-> > +
-> > +     ret =3D chagall_battery_get_value(cg, POWER_SUPPLY_PROP_STATUS, &=
-state);
-> > +     if (ret)
-> > +             return;
-> > +
-> > +     if (state & BATTERY_FULL_CHARGED)
-> > +             state =3D POWER_SUPPLY_STATUS_FULL;
-> > +     else if (state & BATTERY_DISCHARGING)
-> > +             state =3D POWER_SUPPLY_STATUS_DISCHARGING;
-> > +     else
-> > +             state =3D POWER_SUPPLY_STATUS_CHARGING;
->
-> This basically duplicates the logic from chagall_battery_get_property(),
-> so put the translation logic into a helper function and use it in
-> both places.
->
-> Greetings,
->
-> -- Sebastian
+QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC.
+Unlike QCS9100, it doesn't have safety monitoring feature of
+Safety-Island(SAIL) subsystem, which affects thermal management.
+
+In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
+does corrective action for each subsystem based on sensor violation
+to comply safety standards. But as QCS9075 is non-safe SoC it requires
+conventional thermal mitigation for thermal management.
+In this series thermal mitigation changes are not included as it needs
+more discussion whether to include the change in DT or in drivers.
+
+Below are detailed informations on IQ-9075-evk HW:
+------------------------------------------------------
+QCS9075M SoM is stacked on top of IQ-9075-evk board.
+On top of IQ-9075-evk board additional mezzanine boards can be stacked
+in future.
+IQ-9075-evk is single board supporting these peripherals:
+  - Storage: 2 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
+    eMMC on mezzanine card
+  - Audio/Video, Camera & Display ports
+  - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD
+  - Sensors: IMU
+  - PCIe ports
+  - USB & UART ports
+
+Currently basic features are enabled to support 'boot to shell'.
+
+---
+Changelog:
+
+v6:
+  - Splitting v5 and bringing only rb8/IQ-9075-evk changes.
+  - IQ-9075-evk is the new marketing/product name for RB8 and files are
+    renamed accordingly.
+  - Introduce SoM for qcs9075 SoC.
+  - Introduce Memory map changes for IQ9 boards, currently enabled
+    for qcs9075 based boards only.
+  - Remove l4c regulator as it needs more validation with UFS for
+    over-current check.
+  - Remove thermal mitigation change, needs more discussion for final
+    change.
+  - v5:
+    https://lore.kernel.org/all/20241229152332.3068172-1-quic_wasimn@quicinc.com/
+
+Pratyush Brahma (1):
+  arm64: dts: qcom: iq9: Introduce new memory map for qcs9100/qcs9075
+
+Wasim Nazir (3):
+  dt-bindings: arm: qcom: Add bindings for QCS9075 SOC based board
+  arm64: dts: qcom: qcs9075: Introduce QCS9075M SOM
+  arm64: dts: qcom: Add support for qcs9075 IQ-9075-EVK
+
+ .../devicetree/bindings/arm/qcom.yaml         |   8 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/iq9-reserved-memory.dtsi    | 108 +++++++
+ .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 268 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs9075-som.dtsi     |  10 +
+ 5 files changed, 395 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-som.dtsi
+
+
+base-commit: 33035b665157558254b3c21c3f049fd728e72368
+--
+2.49.0
+
 
