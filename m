@@ -1,120 +1,122 @@
-Return-Path: <devicetree+bounces-172048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B578AA10D1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EBDAA10EF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F4A61BA1750
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:45:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E581B6696A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D7D238173;
-	Tue, 29 Apr 2025 15:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0BE241671;
+	Tue, 29 Apr 2025 15:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w/q8z4H6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KJhNUmxZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD02238142;
-	Tue, 29 Apr 2025 15:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3331E24113A
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 15:50:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745941534; cv=none; b=CtBcqsSa4mSOPKEzAY2hLkggklBLp607sFYByMOsMY6oMtagT1NalCqVO+YJtx4Epxgm8T0eA++149nzTQE/hFbAvIlsM64/S1D1JXA4lgVALdi++iiMzTJ0ZVYTA8aIcc6ktHLUQ83Jg/QBp9XHuqHo/QoTv9f0mMYwvzbR3lQ=
+	t=1745941855; cv=none; b=uowixNo8Xf74/lDzheq93DaPKP61kzgNdZj5gUKuaK2vGS4CKWKOnHyq1iOeFAvnXikTVfHF7/pQe8c9oJ+L3qrQU3hRs82BjtFoy3xduqpw9ab7vkzQE6nrWpkN/cSYxHmv8doiazgS/LEm+Pf9v4+ZPP/ehBnqpv6shXTElrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745941534; c=relaxed/simple;
-	bh=TFbZHOn4SQSbdZtheFl6YItHjFqVNzRoPLIElmn8Lu0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=imEfRNQDuV8g74+IbWb0Bfujy3aO2nd642Pa9nqSN37Kd9N5j36Pl3pjVUQhEPfnW4dwYbySQ/XWBBmOvSDlezFhspM/rgdnI+ZD8rI40y/u3LPhJycyjEOAaL5zN5Jb/0FP0KQwc4hpeAcRz8dyC2kHT/Zt4zieUAIu1+oEa30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w/q8z4H6; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=hiDUcEAvkqAct7DYr49674W2ZeDjMHFKnQgfifte+sw=; b=w/q8z4H6p3pxP0VMQ72dJ7iUHL
-	8UVYbXmdNTuoRKXbqStlm2tzHb2LciDe/oBZIkn7p4Ob8ZQ+sfjRIoJl/qMoNYZUvAA9YKde0eZSE
-	UdVoZcoI80DDmP3u4+/fOiT6YJNq9N5emUKcO8yB+nRAMD5JqNYUcQeDIhjffjHmzVgQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u9n9A-00AxJU-AE; Tue, 29 Apr 2025 17:45:24 +0200
-Date: Tue, 29 Apr 2025 17:45:24 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Andre Przywara <andre.przywara@arm.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
-	samuel@sholland.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
-Message-ID: <2486dae4-c5a5-4df2-8048-87b4b2d46d54@lunn.ch>
-References: <20250413134318.66681-1-jernej.skrabec@gmail.com>
- <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch>
- <4645060.LvFx2qVVIh@jernej-laptop>
- <4975791.GXAFRqVoOG@jernej-laptop>
+	s=arc-20240116; t=1745941855; c=relaxed/simple;
+	bh=27sUWC+HFFtmMxGijGj3WlvDdGSGLfoqsxoR+r6qkAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l08dwwBX7F2NTJxkWpQdjYZrhl62CD5rmDLqx7HbJUTXZXLsoZ5HGEWasuHeVkwdU4fm1t/iYY+YtoE1rJkSeF9q84D9gxcN18PkAWUv3aqEAHLe/OzYovHwh/28K6M7FlyVBEin2sSwkZeP/04JWfPWvCugt6ya3ZApHtjO4vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KJhNUmxZ; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3f9a7cbc8f1so1953271b6e.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 08:50:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745941852; x=1746546652; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5IWwy2Q6p9XeoTqr1hNsCWFixc22wa18HwPhsdqWpx4=;
+        b=KJhNUmxZUViGc4hxEpxnvJ+bCIMbraYPDqT5ZdyFX8Ivo5xaVBwDhkd3VIikEdwYFC
+         SOyuD2HLr3EFb5SHTf5MNSN6PRC02vVvxrL4jVm8qbXUAXNFYpOif7euAHdXm6RtVcl0
+         B4O6Q+S1ZkyaWB2NSdzmovVgPRI/mmjDGwb4VW2rgZPLnII0mhEm9O8JDPNY5ShZq+UT
+         7b+Z3lkFcmoKLBe5C0IUN9nF9Z7wNA2tyxnyBC5nr1WuQ3h80cW8iNVMEomtAze5n4m7
+         1cCq2UGEIi7nzYMYaKv1Ko/R32qArCPDEPgm6og26jUxR+FT/jXucH9OWbn97T91sM2J
+         m8Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745941852; x=1746546652;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5IWwy2Q6p9XeoTqr1hNsCWFixc22wa18HwPhsdqWpx4=;
+        b=DdOqZ6OqXoPcNOsvAbtrTkfAlnylZQVZcUftRVaG/s90yn2Ka6tcdTZJEfJbki4BkY
+         8hN8bWgIpnZ+acLxhCPznG3qxaI+AdradXATpUyF/G38t0/dALFP+ifnW7tKedt4le7F
+         /Rsf+QutzXYZJHA+lyIr3QYKorldDEqkjaNU/ghCVTxkctS7AJ3ITi6Q9x1coPxtZDnN
+         7z6aCz6ECyo2/biyzNr0Uh/RWQ8KKsoKjRJlDVGWMzeTmx6pVqibNf6XeDPhD6Z4sJzD
+         zmktZc0OND359eKFJaWOTHpe5lBhgsAQa0FJkMmlCFBsqaHgj9VvbZmTPn3NKOMeayJ1
+         c39w==
+X-Forwarded-Encrypted: i=1; AJvYcCVLjqxCBXrfi9QuOWzsOOKoGrk6MtAmJdTTOr/FOcu4NVR0Az7mhfav2d0i1DAiOq2uLqji5B8ox2a5@vger.kernel.org
+X-Gm-Message-State: AOJu0YznCjXgsnGkAs9KWBySpvsyCegwSm5a+5tPmD5tQfmYYsIydC60
+	wSZ8Lilh77bnuFpyk1OhIebHchrKR0F2+egWMrCS+bX4dMpwSteffu9qe6T0k/Q=
+X-Gm-Gg: ASbGnctCf4h7Oy+8Mb9CwNNdfuSW9GrYvrVA3AB5QTa0o0XfmbWk13XAVu18I1q16Y6
+	Pfh1l3PjGpV+ZzfrFqJ3l8CF4Ogoo/HHKVFLYMGLeVZj2sZbMxI1osqWAKjbKgj8d1/4c+2A4LK
+	tGSQSOizzjk1cnlGfvNDA3YgyhIKkI7rf9ESrMegZPOJOFOzQBQvdVCliFUcVp16XYn3L9ISNvG
+	OdDqV5z2WvfqZ0T6vYeIWALlVjjDMyK607S+ShQj499hWAAZHh5050z5g0L99wvovfcVmZgu4jk
+	UVHWysvisvKWK8bEOwfvXb6yyAtOxxK+MqTumKb26VMajQw8MyPNbvsBT7qmYjdA8Kpn563UPM2
+	3A2FSF/RubHHTWKE4/Q==
+X-Google-Smtp-Source: AGHT+IF3YniFZktmx+wzc5Vvip+TGKj/p4EKeDpAQZouq1NsM4HgUhhkCMBt+xncFToPImadwaDMIA==
+X-Received: by 2002:a05:6808:22a1:b0:401:e933:5dd9 with SMTP id 5614622812f47-40211578670mr1858013b6e.20.1745941852264;
+        Tue, 29 Apr 2025 08:50:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6? ([2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4021292d759sm302218b6e.27.2025.04.29.08.50.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Apr 2025 08:50:51 -0700 (PDT)
+Message-ID: <65cabf04-a1ef-482b-9192-d280897f2afb@baylibre.com>
+Date: Tue, 29 Apr 2025 10:50:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4975791.GXAFRqVoOG@jernej-laptop>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] docs: iio: new docs for ad4052 driver
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
+ <20250422-iio-driver-ad4052-v2-4-638af47e9eb3@analog.com>
+ <9f5b0709-f795-44c5-aa64-aaed81a459bf@baylibre.com>
+ <nrffdb34ldh24kjphvebdnc2p466xbmay4pm6pe3nen2wftycv@uyxqjovmm726>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <nrffdb34ldh24kjphvebdnc2p466xbmay4pm6pe3nen2wftycv@uyxqjovmm726>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> I just to be clear, I tested various combinations, including rgmii-id, and it
-> didn't work, except rgmii-rxid, which matches strapping. Of course Motorcomm
-> PHY driver took that into account and set registers accordingly.
+On 4/29/25 8:49 AM, Jorge Marques wrote:
+> On Fri, Apr 25, 2025 at 04:44:20PM -0500, David Lechner wrote:
+>> On 4/22/25 6:34 AM, Jorge Marques wrote:
+>>> This adds a new page to document how to use the ad4052 ADC driver.
+>>>
 
-So we have:
+...
 
-&emac {
-	pinctrl-names = "default";
-	pinctrl-0 = <&ext_rgmii_pins>;
-	phy-mode = "rgmii-rxid";
-	phy-handle = <&ext_rgmii_phy>;
-	phy-supply = <&reg_gmac_3v3>;
-	allwinner,rx-delay-ps = <0>;
-	allwinner,tx-delay-ps = <700>;
-	status = "okay";
-};
+>>
+> 
+> Sorry about this submission, this file was indeed not updated between
+> version.
 
-and
+No worries. We all make mistakes from time to time. :-)
 
-&mdio {
-	ext_rgmii_phy: ethernet-phy@1 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <1>;
-
-		motorcomm,clk-out-frequency-hz = <125000000>;
-
-		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
-		reset-assert-us = <15000>;
-		reset-deassert-us = <100000>;
-	};
-};
-
-The RX path looks O.K. RGMII-RXID means the PHY should be adding the
-2ns delay. The allwinner,rx-delay-ps = <0> should be redundant, that
-should be the driver default. And there are no properties in the PHY
-node about RX. All good.
-
-TX is the problem. The allwinner,tx-delay-ps = <700> causes the MAC to
-add 700ps delay, and 'rgmii-rxid' means the PHY should not add any
-delay. But 700ps is too low. It should be around 2000ps. So something
-else is adding a delay, or the 700ps is not really 700ps.
-
-You say the PHY is a YT8531C. These PHYs also accept
-rx-internal-delay-ps and tx-internal-delay-ps properties in their DT
-node.
-
-Try setting 'rgmii-id', allwinner,tx-delay-ps = <0>, and both
-rx-internal-delay-ps and tx-internal-delay-ps in the PHY node to 1950.
-If that does not work, try other values in the PHY node.
-
-	Andrew
 
