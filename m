@@ -1,430 +1,192 @@
-Return-Path: <devicetree+bounces-172052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F22CAA111F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:02:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C69AA1127
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C34BB1A85589
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:03:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02D7F3BADBE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EFE227BA9;
-	Tue, 29 Apr 2025 16:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EEC24290D;
+	Tue, 29 Apr 2025 16:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UtiqLYMx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ghIkR8HT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6968D21A43B;
-	Tue, 29 Apr 2025 16:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C82423D2A3;
+	Tue, 29 Apr 2025 16:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745942572; cv=none; b=iI/Cf+JrcHuGm/CUUerJKyxxzyhM43aPlrVmL3oIsOrNbdJxSu7/XpDiA4hHPC/XE5Y5mzFSXwCrYwpwrn0S3jz0NJ4TYmRa7knKaC7FTUbLxow17UqMJqqnwz8t0Pnwwn5vcMFsbdOHwLtuP4n78MceqrcM/6nomqbG520w4HM=
+	t=1745942710; cv=none; b=qAq/2nMMWDRVZN1nvKe+VVfckL7FBP7CBTYbwGbrzR8NUVMqS0vYbn/9HNwFlOWgEN/3TjZ6E0asMr0JM3cGSMvDI7upbC9J7UNapgMvp+nJ4ujBdvox64loP2R2jXO0ePOQ4gp/7agHpqLoEqSAuXLT2bzIcGw2uV9RK22y0pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745942572; c=relaxed/simple;
-	bh=zN8T8Z7DU9dSjGLCBZRU0KOgzvW5uVSk7Yqtz8Uj3MY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uBcrZOt50r6vpXYd8nlhK0O2kHOXoVJoSAjHptBQPYN+gs+4OknGsyFVQ5iyrLt+zGu31SjUrpFCMM6vBFklHexSTstuXIKIyvxJV5QOOeOsTlPD1GKQRJPlmERwZY9v721rrt+lg2gpKiY/djH+7aEYpOy9JZZKFgPCkuJgo6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtiqLYMx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3D3FC4CEE3;
-	Tue, 29 Apr 2025 16:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745942571;
-	bh=zN8T8Z7DU9dSjGLCBZRU0KOgzvW5uVSk7Yqtz8Uj3MY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UtiqLYMx8RlhW1e1bXzsQlErHQzSY1mzHeFiJ0/7M585DkQomVHPlSkL7WJLYcuqm
-	 YOMTi059KttTuncO6lcsxlncUJxKSumq7ec1jwXg73Vb2+gkfmtsekKx9eba02jP5s
-	 l1gvgDmoPIScLE+W/T/LHJPMzK6PxXv8CitvYYwhgjVja+p+BCaroWv+UdC+u55sg8
-	 CiGuL/FpyYYlHPPawLMpuWReJV1Or3vhEYKjNip1Xmg7Hpr0MS0SCL86emqFqVxwxm
-	 yazy/75CjUCutaqLLxgLNfWc2/M+YsJ+Clg2lM8h0A9e8mOVat06VID9IzNkYcohmz
-	 Im1c0oj4Gm61Q==
-Date: Tue, 29 Apr 2025 18:02:44 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 19/22] irqchip/gic-v5: Add GICv5 CPU interface/IRS
- support
-Message-ID: <aBD4JCtyDmk9Fx1b@lpieralisi>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
- <20250424-gicv5-host-v2-19-545edcaf012b@kernel.org>
- <868qnkjngi.wl-maz@kernel.org>
- <aBDoD1orGbYqAmda@lpieralisi>
- <86cycvhtb9.wl-maz@kernel.org>
+	s=arc-20240116; t=1745942710; c=relaxed/simple;
+	bh=kc4wP+JTOQYbzdxScoLeIhj26yfCcr1KXX5njmFEzCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JvM2gcQDSxx0MRmxG+Oh4GPfslDV6d/LjEvoPCSF/dn6aLnw4+iXeZCoTeSrHY8FVq//R1VnCG9MT8GWIhlJxC5Pftr0LDUaKIBNVliCw6S30/Cuk2t5cCOblG6yXcGTA4hLNHkbGLSlUQX7HpUUwRV8Df17Uyq5Znt4terXvwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ghIkR8HT; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1745942708; x=1777478708;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=kc4wP+JTOQYbzdxScoLeIhj26yfCcr1KXX5njmFEzCM=;
+  b=ghIkR8HToNp1SoqLY7Z3ShmGxv8QmbFLlH7NKXXZMR6qQaUJdflFO6hL
+   xyWJTt833VV4V7usGvvscbrQE2n6fhrcFETcYFPY7rgvuI6x0wzhca25f
+   7gKSv/Cw7WJTFf1cV7MtHi6ipa3jBn0af0V5JbcFplokQeLnZ+FRSOSnO
+   pKFeKGUExB3AdKdJrcCkAJbr4MkxLrdM3xieRY6f5RI3mqrCagMnGjR62
+   +3BJyRK6ruV0EhxB8SV/B2N4d2GfV/qo2Mxsh3um9A5ta58eS0t6WcAOP
+   EsHMsqPKaZGFbzaLKnRyJ2w+k+7SNOs7w3u4YqPa29ripxuymYQ3N+E1b
+   A==;
+X-CSE-ConnectionGUID: d2YddJCMSMCRNFKrqsHXDg==
+X-CSE-MsgGUID: BL3w4CtXTZ6zNqvvr2ywAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47585024"
+X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; 
+   d="scan'208";a="47585024"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2025 09:05:07 -0700
+X-CSE-ConnectionGUID: 4V1xIgNkRNqS84as7fjsbQ==
+X-CSE-MsgGUID: qtvKug+WQZ2IK/ghsaacoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; 
+   d="scan'208";a="139055434"
+Received: from sramkris-mobl1.amr.corp.intel.com (HELO [10.124.223.107]) ([10.124.223.107])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2025 09:05:05 -0700
+Message-ID: <e90b81a4-a912-4174-b6e9-46a6ddd92ee3@intel.com>
+Date: Tue, 29 Apr 2025 09:05:02 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86cycvhtb9.wl-maz@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 11/14] x86: add KHO support
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+ akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
+ ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
+ catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com,
+ devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
+ graf@amazon.com, hpa@zytor.com, jgowans@amazon.com,
+ kexec@lists.infradead.org, krzk@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
+ pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
+ ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org,
+ saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de,
+ thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+References: <20250411053745.1817356-1-changyuanl@google.com>
+ <20250411053745.1817356-12-changyuanl@google.com>
+ <35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com>
+ <aBD165pVhOIl3_by@kernel.org>
+From: Dave Hansen <dave.hansen@intel.com>
+Content-Language: en-US
+Autocrypt: addr=dave.hansen@intel.com; keydata=
+ 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
+In-Reply-To: <aBD165pVhOIl3_by@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 29, 2025 at 04:38:02PM +0100, Marc Zyngier wrote:
-> On Tue, 29 Apr 2025 15:54:07 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > 
-> > On Mon, Apr 28, 2025 at 04:49:17PM +0100, Marc Zyngier wrote:
-> > > On Thu, 24 Apr 2025 11:25:30 +0100,
-> > > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > > > 
-> > > > Implement GICv5 CPU interface and IRS support, to manage interrupt
-> > > > state, priority and routing for all GICv5 interrupt types.
-> > > > 
-> > > > The GICv5 CPU interface implements support for PE-Private Peripheral
-> > > > Interrupts (PPI), that are handled (enabled/prioritized/delivered)
-> > > > entirely within the CPU interface hardware.
-> > > > 
-> > > > To enable PPI interrupts, implement the baseline GICv5 host kernel
-> > > > driver infrastructure required to handle interrupts on a GICv5 system.
-> > > > 
-> > > > Add the exception handling code path and definitions for GICv5
-> > > > instructions.
-> > > > 
-> > > > Add GICv5 PPI handling code as a specific IRQ domain to:
-> > > > 
-> > > > - Set-up PPI priority
-> > > > - Manage PPI configuration and state
-> > > > - Manage IRQ flow handler
-> > > > - IRQs allocation/free
-> > > > - Hook-up a PPI specific IRQchip to provide the relevant methods
-> > > > 
-> > > > PPI IRQ priority is chosen as the minimum allowed priority by the
-> > > > system design (after probing the number of priority bits implemented
-> > > > by the CPU interface).
-> > > > 
-> > > > The GICv5 Interrupt Routing Service (IRS) component implements
-> > > > interrupt management and routing in the GICv5 architecture.
-> > > > 
-> > > > A GICv5 system comprises one or more IRSes, that together
-> > > > handle the interrupt routing and state for the system.
-> > > > 
-> > > > An IRS supports Shared Peripheral Interrupts (SPIs), that are
-> > > > interrupt sources directly connected to the IRS; they do not
-> > > > rely on memory for storage. The number of supported SPIs is
-> > > > fixed for a given implementation and can be probed through IRS
-> > > > IDR registers.
-> > > > 
-> > > > SPI interrupt state and routing are managed through GICv5
-> > > > instructions.
-> > > > 
-> > > > Each core (PE in GICv5 terms) in a GICv5 system is identified with
-> > > > an Interrupt AFFinity ID (IAFFID).
-> > > > 
-> > > > An IRS manages a set of cores that are connected to it.
-> > > > 
-> > > > Firmware provides a topology description that the driver uses
-> > > > to detect to which IRS a CPU (ie an IAFFID) is associated with.
-> > > > 
-> > > > Use probeable information and firmware description to initialize
-> > > > the IRSes and implement GICv5 IRS SPIs support through an
-> > > > SPI-specific IRQ domain.
-> > > > 
-> > > > The GICv5 IRS driver:
-> > > > 
-> > > > - Probes IRSes in the system to detect SPI ranges
-> > > > - Associates an IRS with a set of cores connected to it
-> > > > - Adds an IRQchip structure for SPI handling
-> > > > 
-> > > > SPIs priority is set to a value corresponding to the lowest
-> > > > permissible priority in the system (taking into account the
-> > > > implemented priority bits of the IRS and CPU interface).
-> > > > 
-> > > > Since all IRQs are set to the same priority value, the value
-> > > > itself does not matter as long as it is a valid one.
-> > > > 
-> > > > An IRS supports Logical Peripheral Interrupts (LPIs) and implement
-> > > > Linux IPIs on top of it.
-> > > > 
-> > > > LPIs are used for interrupt signals that are translated by a
-> > > > GICv5 ITS (Interrupt Translation Service) but also for software
-> > > > generated IRQs - namely interrupts that are not driven by a HW
-> > > > signal, ie IPIs.
-> > > > 
-> > > > LPIs rely on memory storage for interrupt routing and state.
-> > > > 
-> > > > Memory storage is handled by the IRS - that is configured
-> > > > at probe time by the driver with the required memory.
-> > > > 
-> > > > LPIs state and routing information is kept in the Interrupt
-> > > > State Table (IST).
-> > > > 
-> > > > IRSes provide support for 1- or 2-level IST tables configured
-> > > > to support a maximum number of interrupts that depend on the
-> > > > OS configuration and the HW capabilities.
-> > > > 
-> > > > On systems that provide 2-level IST support, always allow
-> > > > the maximum number of LPIs; On systems with only 1-level
-> > > > support, limit the number of LPIs to 2^12 to prevent
-> > > > wasting memory (presumably a system that supports a 1-level
-> > > > only IST is not expecting a large number of interrupts).
-> > > > 
-> > > > On a 2-level IST system, L2 entries are allocated on
-> > > > demand.
-> > > > 
-> > > > The IST table memory is allocated using the kmalloc() interface;
-> > > > the allocation required may be smaller than a page and must be
-> > > > made up of contiguous physical pages if larger than a page.
-> > > > 
-> > > > On systems where the IRS is not cache-coherent with the CPUs,
-> > > > cache mainteinance operations are executed to clean and
-> > > > invalidate the allocated memory to the point of coherency
-> > > > making it visible to the IRS components.
-> > > > 
-> > > > Add an LPI IRQ domain to:
-> > > > 
-> > > > - Manage LPI state and routing
-> > > > - Add LPI IRQchip structure and callbacks
-> > > > - LPI domain allocation/de-allocation
-> > > > 
-> > > > On GICv5 systems, IPIs are implemented using LPIs.
-> > > > 
-> > > > Implement an IPI-specific IRQ domain created as a child/subdomain
-> > > > of the LPI domain to allocate the required number of LPIs needed
-> > > > to implement the IPIs.
-> > > > 
-> > > > Move the arm64 IPI enum declaration to a header file so that the
-> > > > GICv5 driver code can detect how many IPIs are required by arch code.
-> > > > 
-> > > > IPIs are backed by LPIs, add LPIs allocation/de-allocation
-> > > > functions.
-> > > > 
-> > > > The LPI INTID namespace is managed using an IDA to alloc/free LPI
-> > > > INTIDs.
-> > > > 
-> > > > Associate an IPI irqchip with IPI IRQ descriptors to provide
-> > > > core code with the irqchip.ipi_send_single() method required
-> > > > to raise an IPI.
-> > > > 
-> > > > Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > > > Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > > > Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> > > > Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> > > > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > > > Cc: Will Deacon <will@kernel.org>
-> > > > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > > > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > > > Cc: Marc Zyngier <maz@kernel.org>
-> > > > ---
-> > > >  MAINTAINERS                         |    2 +
-> > > >  arch/arm64/include/asm/arch_gicv5.h |   91 +++
-> > > >  arch/arm64/include/asm/smp.h        |   17 +
-> > > >  arch/arm64/kernel/smp.c             |   17 -
-> > > >  drivers/irqchip/Kconfig             |    5 +
-> > > >  drivers/irqchip/Makefile            |    1 +
-> > > >  drivers/irqchip/irq-gic-v5-irs.c    |  841 ++++++++++++++++++++++++++++
-> > > >  drivers/irqchip/irq-gic-v5.c        | 1058 +++++++++++++++++++++++++++++++++++
-> > > >  drivers/irqchip/irq-gic-v5.h        |  184 ++++++
-> > > 
-> > > Nit: the split between include/asm/arch_gicv5.h and
-> > > drivers/irqchip/irq-gic-v5.h is pretty pointless (this is obviously
-> > > inherited from the GICv3 on 32bit setup). Given that GICv5 is strictly
-> > > arm64, this split is no longer necessary.
-> > 
-> > That's true but I thought I would leave sys instructions and barriers
-> > in arm64 arch code headers rather than moving them out. I am up for
-> > whatever you folks think it is best.
+On 4/29/25 08:53, Mike Rapoport wrote:
+> On Mon, Apr 28, 2025 at 03:05:55PM -0700, Dave Hansen wrote:
+>> On 4/10/25 22:37, Changyuan Lyu wrote:
+>>> From: Alexander Graf <graf@amazon.com>
+>>>
+>>> +#ifdef CONFIG_KEXEC_HANDOVER
+>>> +static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
+>>> +{
+>>> +	struct kho_scratch *kho_scratch;
+>>> +	struct setup_data *ptr;
+>>> +	int i, nr_areas = 0;
+>>
+>> Do these really need actual #ifdefs or will a nice IS_ENABLED() check
+>> work instead?
+>>
+>>> +	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
+>>
+>> What's with the double cast?
 > 
-> I can see two options:
+> The double cast is required for this to be compiled on 32 bits (just like
+> in mem_avoid_overlap). The setup_data is all u64 and to cast it to a
+> pointer on 32 bit it has to go via unsigned long.
+
+Let's just make KHO depend on 64BIT, at least on x86.
+
+>>> diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
+>>> index 68530fad05f74..518635cc0876c 100644
+>>> --- a/arch/x86/kernel/kexec-bzimage64.c
+>>> +++ b/arch/x86/kernel/kexec-bzimage64.c
+>>> @@ -233,6 +233,31 @@ setup_ima_state(const struct kimage *image, struct boot_params *params,
+>>>  #endif /* CONFIG_IMA_KEXEC */
+>>>  }
+>>>  
+>>> +static void setup_kho(const struct kimage *image, struct boot_params *params,
+>>> +		      unsigned long params_load_addr,
+>>> +		      unsigned int setup_data_offset)
+>>> +{
+>>> +#ifdef CONFIG_KEXEC_HANDOVER
+>>
+>> Can this #ifdef be replaced with IS_ENABLED()?
 > 
-> - either you unify the two and place the result in
->   include/linux/irqchip/arm-gic-v5.h
+> The KHO structures in kexec image are under #ifdef, so it won't compile
+> with IS_ENABLED().
+
+They shouldn't be. Define them unconditionally, please.
+
+...
+>> Please axe the #ifdef in the .c file if at all possible, just like the
+>> others.
 > 
-> - or you move the system stuff and the barriers to
->   arch/arm64/include/asm/sysreg.h together with the rest of the pile,
->   *and* move the other include file as above
+> This one follows IMA, but it's easy to make it IS_ENABLED(). It's really up
+> to x86 folks preference.
 
-Probably go for the second option.
-
-> > > > +#define GSB_ACK				__emit_inst(0xd5000000 | sys_insn(1, 0, 12, 0, 1) | 31)
-> > > > +#define GSB_SYS				__emit_inst(0xd5000000 | sys_insn(1, 0, 12, 0, 0) | 31)
-> > > 
-> > > Can you please express this in terms of __SYS_BARRIER_INSN(), with a
-> > > slight rework of the SB definition? It would limit the propagation of
-> > > the 0xd5 constant and make it clear what 31 stands for.
-> > 
-> > I tried but the __SYS_BARRIER_INSN() is a different class (GICv5
-> > barriers are sys instructions the SB barrier has a slightly different
-> > encoding), so maybe something like this ?
-> > 
-> > #define GSB_ACK __msr_s(sys_insn(1, 0, 12, 0, 1), "xzr")
-> 
-> Why a different encoding? It looks completely similar to me. What I
-> was expecting to see is something along the lines of (completely
-> untested):
-> 
-> diff --git a/arch/arm64/include/asm/barrier.h b/arch/arm64/include/asm/barrier.h
-> index 1ca947d5c9396..7a00781d1d788 100644
-> --- a/arch/arm64/include/asm/barrier.h
-> +++ b/arch/arm64/include/asm/barrier.h
-> @@ -44,6 +44,8 @@
->  						 SB_BARRIER_INSN"nop\n",	\
->  						 ARM64_HAS_SB))
->  
-> +#define gsb_ack()	asm volatile("GSC_ACK_BARRIER_INSN\n" : : : "memory")
-> +
->  #ifdef CONFIG_ARM64_PSEUDO_NMI
->  #define pmr_sync()						\
->  	do {							\
-> diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
-> index 690b6ebd118f4..a84993c3d117b 100644
-> --- a/arch/arm64/include/asm/sysreg.h
-> +++ b/arch/arm64/include/asm/sysreg.h
-> @@ -112,10 +112,13 @@
->  /* Register-based PAN access, for save/restore purposes */
->  #define SYS_PSTATE_PAN			sys_reg(3, 0, 4, 2, 3)
->  
-> -#define __SYS_BARRIER_INSN(CRm, op2, Rt) \
-> -	__emit_inst(0xd5000000 | sys_insn(0, 3, 3, (CRm), (op2)) | ((Rt) & 0x1f))
-> +#define __SYS_BARRIER_INSN(op0, op1, CRn, CRm, op2, Rt)			\
-> +	__emit_inst(0xd5000000 |					\
-> +		    sys_insn((op0), (op1), (CRn), (CRm), (op2)) |	\
-> +		    ((Rt) & 0x1f))
->  
-> -#define SB_BARRIER_INSN			__SYS_BARRIER_INSN(0, 7, 31)
-> +#define SB_BARRIER_INSN			__SYS_BARRIER_INSN(0, 3, 3, 0, 7, 31)
-> +#define GSB_ACK_BARRIER_INSN		__SYS_BARRIER_INSN(1, 0, 12, 0, 1, 31)
-
-Fine by me if that's fine by you, Catalin and Will.
-
->  
->  /* Data cache zero operations */
->  #define SYS_DC_ISW			sys_insn(1, 0, 7, 6, 2)
-> 
-> and the same thing for GSB SYS.
-> 
-> > > > +#include "irq-gic-v5.h"
-> > > 
-> > > Why the ""? The normal include path (linux/irqchip) should work.
-> > 
-> > irq-gic-v5.h lives in drivers/irqchip, should I move it into
-> > include/linux/irqchip (or I am missing something, likely) ?
-> > 
-> > I did not do it because it is only consumed by files in that directory.
-> 
-> I full intend for KVM to consume all of this pretty much directly, and
-> the KVM code will definitely not live in drivers/irqchip.
-
-Understood but KVM code is not part of this series, we could move it
-out of drivers/irqchip when it is needed.
-
-Anyway, this does not matter, I will move it to include/linux/irqchip.
-
-> > > > +	ret = readl_poll_timeout_atomic(reg, tmp, tmp & mask, 1, 10 * USEC_PER_MSEC);
-> > > > +
-> > > > +	if (val)
-> > > > +		*val = tmp;
-> > > 
-> > > Updating the result value on error is rather odd. Do you rely on this
-> > > anywhere? If not, consider avoiding the write-back on timeout.
-> > 
-> > I do rely on it to avoid reading the register once again on return if
-> > the wait succeeded (but we don't know unless for some registers we
-> > check another bit in the returned value).
-> 
-> That's a bit annoying. But hey...
-> 
-> > > > +	/*
-> > > > +	 * The polling wait (in gicv5_wait_for_op()) on a GIC register
-> > > > +	 * provides the memory barriers (through MMIO accessors)
-> > > > +	 * required to synchronize CPU and GIC access to IST memory.
-> > > > +	 */
-> > > 
-> > > This comment would be better placed with the helper itself, and avoid
-> > > the repeats that I can see in the rest of the code.
-> > 
-> > On this, I thought about that. The problem is, the comment would be
-> > buried in a helper function whereas it is in this function that we
-> > are actually handing over memory to the GIC so in a way I thought
-> > it was more appropriate to add it where the explanation is needed
-> > and possibly clearer.
-> 
-> It's not clearer. If you want it to be clearer, name the helper in a
-> way that makes it actions explicit (gicv5_irs_ist_synchronise() ?),
-> and let the comment explain how the synchronisation is enforced next
-> to the helper.
-> 
-> Using explicit names is far better than duplicating comments, IMHO.
-
-OK.
-
-> > > > +	list_for_each_entry(irs_data, &irs_nodes, entry) {
-> > > > +		if (!irs_data->spi_range)
-> > > > +			continue;
-> > > > +
-> > > > +		min = irs_data->spi_min;
-> > > > +		max = irs_data->spi_min + irs_data->spi_range - 1;
-> > > > +		if (spi_id >= min && spi_id <= max)
-> > > > +			return irs_data;
-> > > > +	}
-> > > 
-> > > Funnily enough, this is exactly the sort of iterative searches the
-> > > maple tree could have avoided, by storing INTID (and range) specific
-> > > data. Never mind.
-> > 
-> > I did it with a range store with an Xarray but then removed it because
-> > I thought it was overkill, one of those things I am not sure what's
-> > best.
-> 
-> Probably not an issue for now. Time will tell as we get larger
-> machines with multiple IRSes.
-
-+1
-
-> > > Just a passing comment: consider splitting this patch in two (IRS on
-> > > one side, CPUif on the other). I'm only half-way through, and it's
-> > > quite tiring... :-/
-> > 
-> > Well, on this I am having a hard time as I replied to Thomas as well.
-> > 
-> > We do need CPUIF + IRS (LPI so IPIs) to make this a functional
-> > patch.
-> 
-> We don't need things to be functional. We need things to not break the
-> build. So as long as things are split in a logical way and, this
-> should be fine.
-
-That's what I did in v1.
-
-> > If I split per component, this might simplify review (and that's what
-> > I did in v1 but Thomas complained that could not find SMP
-> > initialization).
-> 
-> Well, you could have one patch clearly labelled as "SMP init", which
-> would both satisfy tglx's requirements *and* my tired brain.
-
-https://lore.kernel.org/lkml/20250408-gicv5-host-v1-21-1f26db465f8d@kernel.org
-
-> > What I could do to reduce the number of lines is moving SPI support
-> > in a separate patch but I don't think there is a way to split CPUIF
-> > and IRS and have a patch series that is bisectable and works at every
-> > stage (by the way the last patch should be merged with this one because
-> > technically with this patch we have a working GICv5).
-> 
-> The trivial way to make it bisectable is to avoid compiling it until
-> it is sufficiently feature-complete. Any sizeable amount of new code
-> relies on this to a degree or another.
-> 
-> Also, think of the commit messages: what you have here is a massive
-> wall of text that would be more appropriate for a cover letter, and
-> could be much smaller on a per-patch basis without losing any
-> meaningful content.
-
-Sounds like v1, back to the splitting board.
-
-Thanks,
-Lorenzo
+Last I checked, I'm listed under the big M: for "X86 ARCHITECTURE". ;)
 
