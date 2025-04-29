@@ -1,190 +1,134 @@
-Return-Path: <devicetree+bounces-171770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A11FAA023A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:01:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E69FAA0436
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:19:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31CB01A857A1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:01:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71D681A878E9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDCED276029;
-	Tue, 29 Apr 2025 06:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC4927814B;
+	Tue, 29 Apr 2025 07:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="mueLiBM2"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EpGcqWX9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
+Received: from mail-m19731104.qiye.163.com (mail-m19731104.qiye.163.com [220.197.31.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972D727465E;
-	Tue, 29 Apr 2025 06:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.87
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745906416; cv=fail; b=HYIgPCkLcJy7g9uTVmrIySLbXgkzDz3mLkLlZyVdEuMluG8xZyRt+aJA86mP4hMUjzMxGczKszcJkAMa5cQ2FD5yzXlRnJ3l20cTa8K57qRa69S0+EeK32ZRjkN97G+7SDV8/FIAG2VtBA+K6+pSpgWT6DLSaGX0wTVaIG6L128=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745906416; c=relaxed/simple;
-	bh=MKiy7ay/+K7VfiYJa8C/aKY3VL2aKPivL0sZC4+zq2M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iNomfh4XTYrzpAvQXku1sc8KsKDx0hJwTh4ptFDu42zuRD5bHVsj8iO6UESu2ljahBnlxDBObPJFcSPJGoN5tJiVsUFpLJeKodo7wTQcW6ZWfRilrKxQ8JIFsXT4j766iDE4ZyF7pwgZ7y8MwJFkBnse30gcbUKbVIJxCJcpw/w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=mueLiBM2; arc=fail smtp.client-ip=40.107.223.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vKHcKOdqj2QCn2Tz2p/UDakAnU7lKYa+GzdNi3hy7Q4e+AzmkIJ4inHTDMW+VhhqIDrAL4il6zlzaiuV+u8HpH3wJbnkXBBsd7nqwSXMKvlAo5b+TTMBXl4jP+Xv4IL/euoFH6G9EoFr86VwjC1b+5ADqo4meyaIoEGZf4V8GgJVU+5G5OjqZcJlQF+Lwe/Ms1XTGYcVgxTnf70Y76t3jI3/HsvnhdQLo3r/ssXeEubu9VxHDaam7sZJxRZCfAXW+m2VGqJjhP4OBtXrdvPUvmsMfqPejna7DFJ+69DI32O7GVhEcLhZxeYoEbknXwZRbLXijp5OT2+M9S3lmXi1RQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tJmBtqYN1kJQixBip+LnbcKnQ4BKV0oovXrTFIeddvI=;
- b=oZd8LHiP6yP7UzP9Mib1lk2DoY1GCTxAITPS2jdNHLxW19HHiXF1Wi1LHYMDy1KDCAe9FY3w4KuWAk5NRXDzoCk++YZGxVwq5/ux8eM9YP6LhLuOkg7gR+tDKQv89EPycV860PJqJcRf29WCRcG3bSkQO8t2lTqOguAyZsAp3frc85iv5nmmjfjhrgXr2fsxNWMeur+P4kOdGAT79xdAAbmWuwW6V16Jt82aQRU2W6pIYCDNoGAcGZt+uidB5uimS7elt6iS+gI5wDbm/rrXJuj0Uzh9JNI7I2uwrIgXTeVOhn9FRcbjdP9cSHnkvO8xjCHdWDbRcSujLqcY4ty/HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tJmBtqYN1kJQixBip+LnbcKnQ4BKV0oovXrTFIeddvI=;
- b=mueLiBM2IF+PvQuaHb1fJA/yIb+yUuB2s6oC+pescP8q7dfF9p5qChdvXwREjrLkdp80cQdbOvsRCzVxyW39h1HObwFvJlBaBswJJSCGqeaknYXMNm8Z9qneoKXCh0daXCdbXZ2ZZZwzUJI1UiHHlyAuE7GEqxruZpcVSsMa2mrZ/B5vueFUw+du6LjDtC7eeOAU64zFhDVaFQnuXY50UwS9LklJabmd6EdvoVa56dsEP2LPlBxRA+XI94jJbFzcd8j5YJqEE/SffmZWEpzkc+u/F1kc4NjEy98p04hBxKBtMq5zfaT5A8mbdozLwG6PORJLWsIjRKSYyKmST3fYjw==
-Received: from BN9PR03CA0412.namprd03.prod.outlook.com (2603:10b6:408:111::27)
- by DM6PR12MB4404.namprd12.prod.outlook.com (2603:10b6:5:2a7::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.34; Tue, 29 Apr
- 2025 06:00:10 +0000
-Received: from BN1PEPF00004684.namprd03.prod.outlook.com
- (2603:10b6:408:111:cafe::12) by BN9PR03CA0412.outlook.office365.com
- (2603:10b6:408:111::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.37 via Frontend Transport; Tue,
- 29 Apr 2025 06:00:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BN1PEPF00004684.mail.protection.outlook.com (10.167.243.90) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8678.33 via Frontend Transport; Tue, 29 Apr 2025 06:00:10 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 28 Apr
- 2025 22:59:51 -0700
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 28 Apr
- 2025 22:59:50 -0700
-Received: from build-sheetal-bionic-20250305.nvidia.com (10.127.8.13) by
- mail.nvidia.com (10.129.68.10) with Microsoft SMTP Server id 15.2.1544.14 via
- Frontend Transport; Mon, 28 Apr 2025 22:59:50 -0700
-From: "Sheetal ." <sheetal@nvidia.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<lgirdwood@gmail.com>, <broonie@kernel.org>
-CC: <perex@perex.cz>, <tiwai@suse.com>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <spujar@nvidia.com>, <mkumard@nvidia.com>, Sheetal
-	<sheetal@nvidia.com>
-Subject: [PATCH v2 11/11] ASoC: tegra: Tegra264 support in isomgr_bw
-Date: Tue, 29 Apr 2025 05:59:41 +0000
-Message-ID: <20250429055941.901511-12-sheetal@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250429055941.901511-1-sheetal@nvidia.com>
-References: <20250429055941.901511-1-sheetal@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C332750E1;
+	Tue, 29 Apr 2025 07:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.104
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745911151; cv=none; b=MBr3L4hORxc9M+R9aol8/RKmDPC8zkq3mOTLNQawCGYuByI1KfADptLocQPbBqJE055pobFBq4H6vzzxR5lhrgUe9EUXlvGglmQmt8mn2SsWc3Yv0ExzV61ad+EEM6TLAwRjTMJV/lfGsPJiqP63F6bI7Pxrf1dB0LJvhIdvo/Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745911151; c=relaxed/simple;
+	bh=iN5EuTFR6FY4U9PPMMwgN8esEdP0zX1zCcZhV+aHgFc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nh1SGtQol8PTK5R7zKljzO5e0X4h7PwOWg9RUJ6Mgu+0kgrFRTJjXdc42pwaLHanQjz1JyImDM4PZMeRwq+o1TUB50lKDmvrQiMii9SlMbWngDrYBg9ZqdBsuOxt6YaMM6Nm3l/mBmPnuqPmHGIDjpgiH9oLewk9aLuylZVNP/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EpGcqWX9; arc=none smtp.client-ip=220.197.31.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 137882886;
+	Tue, 29 Apr 2025 10:42:59 +0800 (GMT+08:00)
+Message-ID: <027de192-4227-4010-a759-5283b6af1531@rock-chips.com>
+Date: Tue, 29 Apr 2025 10:42:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004684:EE_|DM6PR12MB4404:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8d3ee67-ea1d-410c-5932-08dd86e319e0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zd+SnDPOkSV2Qvit9i8wHdOttkrN4+Ff1mYE02wIJB035Jdp/zZ44XePeyQ0?=
- =?us-ascii?Q?HbCpx64EefzmwIU4oevZ6kAexTHjy+FdAk+fG9C+MNknZJoMn/KBWXgiUDyZ?=
- =?us-ascii?Q?3AI0dBDUzzEDYrTBES/hjUSHRxMbywYQGDLPvt+EW2xX04Aj6vNl9Xk4ytQT?=
- =?us-ascii?Q?DsYeQmpYrKR3SwiD74GOSh2A6xSx2qOEoNcwk84bGEA8HFj5ND0wkSU4QULO?=
- =?us-ascii?Q?L9lm4BNGa87axf3GJn1eC6LHh9ARGmVdSxb47rqNT0tldKV3iOCAEWS1yQaU?=
- =?us-ascii?Q?CC6UMA8eLN6BeXphGdNAcVKrt0iAq8dbonaLxOlGagsIK0icBcJjVtap6UK5?=
- =?us-ascii?Q?2tOah2eaIeuo35c/6MuZc5dfrFhbAX03UEHNfvLnEOke39Nry0zgl6EpAN7+?=
- =?us-ascii?Q?w6c561zeOQAxGsD+JeoUfcYwxxSoT9eXxnzQPimtr7ocqbt3+quL5g7JxA9z?=
- =?us-ascii?Q?PDDrH36/Zh4ckrlClNIDacgvYJEUcVspS8YhPcjNGbnE2TxdAzeR4Meh04gW?=
- =?us-ascii?Q?zBNBBKfE4i0W4wAHJ8sVYI2/uqDVtjVKBI47czq1CjxIwiJRRfdfx1aHR/t9?=
- =?us-ascii?Q?gLImbl8uTsvDe0LN3BbqS1YJOTIVwKK9IWvAod5H7YKJBs+yhJEo1aVmn473?=
- =?us-ascii?Q?lXadJpYC94Y983VqUDc95L+/EgnW2iH6u1bx6CkiAlubc5ScuMBr77aOgoAq?=
- =?us-ascii?Q?kTtvN/yu1IWyJ1k+y6Rg0sfjac3a14U9tihV0RaLS1VDueKPBjULS7QoUoSN?=
- =?us-ascii?Q?LM04IA7d8mUrIlN13l5tgSCkTuYWAV5G3naD3Zzxq5Oeylhf96nTR66u7bta?=
- =?us-ascii?Q?URs2c7+p/5s1jYrocqO2ihswpx6rs3dy6Wc2aqUekE4UEGhGKZ374XgZhbnp?=
- =?us-ascii?Q?RkhAnSQaDmVCx4fgEtd0s2pmeC33DHM2PtLKmRNVtm7G3OV8gcG9jF3dMQY+?=
- =?us-ascii?Q?2pVlplOIag/iEWD8JEw6kqDl489mOVJskEIc/OpVL0kWHBEzgf5GwPsC2bxo?=
- =?us-ascii?Q?jkl5z4XaZW5LHz1wY9F6hR1os8ua4JE4vEKPk2b4tfww4+Ye5LkhANPpRg1W?=
- =?us-ascii?Q?2Q/oHV8UpwYTIarHzTo72QBeD+FrqRJ7VLHnwYCZ9uTCCNjCydK2kjetEvKv?=
- =?us-ascii?Q?mnP7MC/UuRqOd8oFhvGa6XLf/kCY61bp6FQpqiihtzO5wzm8isMB50xGrle2?=
- =?us-ascii?Q?reOlGVx9UHsw6DMuI8dSXpMjSTo3c+8K/f93vyNpSza1gavsKrLK7RGgmD71?=
- =?us-ascii?Q?VP/o78rsw3fpzzC/fnOamdJ/C6vCM4sPxs4UdYP79y4FI8UvXqtH/HVV7fiA?=
- =?us-ascii?Q?aPoUFb8/Ykrnz7ttQThPHn+RmdYBlVckxtokNSoUHSOn5LBXlfxlRu0quibL?=
- =?us-ascii?Q?aRPbUnl2xuFkMjsXxbJ5OnU6hvTtQVy3oi8X6M/c6z91MvfGhm+poalBmYvG?=
- =?us-ascii?Q?tc9IQMzbvePLnV9TsurHsU4LNvMsiqO7cNyj5Hxq+gsdmaNZb4cMFliDXSco?=
- =?us-ascii?Q?SxM4LjHoJuDEK6xK/t8U2SQ+cLndeC8xVnbg?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 06:00:10.4191
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8d3ee67-ea1d-410c-5932-08dd86e319e0
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00004684.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4404
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Quentin Schulz
+ <quentin.schulz@cherry.de>, FUKAUMI Naoki <naoki@radxa.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Alexey Charkov <alchark@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250427094211.246-1-kernel@airkyi.com>
+ <20250427094211.246-3-kernel@airkyi.com>
+ <6291f6b8-75d3-4243-9935-9b64450e2b7f@lunn.ch>
+ <c583c59a-d5b7-4e20-9a1f-96f51bd7b4f3@rock-chips.com>
+ <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkpKT1YaHh0ZH05OSEIYTB1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
+	5VSktLVUpCS0tZBg++
+X-HM-Tid: 0a967f6d1f6303abkunm137882886
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MhA6Hww5QjJCHSkuOjw5LhUD
+	C0lPCg9VSlVKTE9OQ0JPTkNMSEpPVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
+	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElCSzcG
+DKIM-Signature:a=rsa-sha256;
+	b=EpGcqWX9zy7b4aOQJQl3I+h7mRCxOtfrxcfOyZWgCO5Xbg67xbaFmiQOrSj42HnlGh3mT2NSrLAHkxuGFUuURJhC9/XoiI1g47KLJ33keDr/FvfvjP0JhZUJzOwuhpVsunq+3DGBVLesmqCEjhgrA/sFnyq1HT1xtUBZjxkaPhQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=gkmGwA1JNJSi9vWgEDnuu8pe72dV9P14DRuR/dc+N4Y=;
+	h=date:mime-version:subject:message-id:from;
 
-From: Sheetal <sheetal@nvidia.com>
+Hi Andrew,
 
-Tegra264 supports max 32 channels, hence calculating the max
-bandwidth using the channel info from soc_data.
+On 2025/4/28 20:45, Andrew Lunn wrote:
+> On Mon, Apr 28, 2025 at 09:47:34AM +0800, Chaoyi Chen wrote:
+>> Hi Andrew,
+>>
+>> On 2025/4/28 4:42, Andrew Lunn wrote:
+>>>> +&gmac {
+>>>> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
+>>>> +	assigned-clock-parents = <&clkin_gmac>;
+>>>> +	pinctrl-names = "default";
+>>>> +	pinctrl-0 = <&rgmii_pins>;
+>>>> +	clock_in_out = "input";
+>>>> +	phy-supply = <&vcc_phy>;
+>>>> +	phy-mode = "rgmii";
+>>> Does the PCB have extra long clock lines to implement the RGMII 2ns
+>>> delay?
+>> The 2ns delay of RGMII is implemented inside the RK3399 chip instead of PCB
+>> lines, and there are also additional delayline configurations.
+> If the PCB does not implement the delay, rgmii is wrong.
+>
+> If the MAC/PHY pair is implementing the delay, you need to use
+> rgmii-id. You can then use additional properties to fine tune the
+> delay the MAC/PHY is adding. And the Linux preference is that the PHY
+> adds the delay.
 
-Signed-off-by: Sheetal <sheetal@nvidia.com>
----
- sound/soc/tegra/tegra_isomgr_bw.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+The signal path of RK3399 is as follows:
 
-diff --git a/sound/soc/tegra/tegra_isomgr_bw.c b/sound/soc/tegra/tegra_isomgr_bw.c
-index 18e802bca6a6..fa979960bc09 100644
---- a/sound/soc/tegra/tegra_isomgr_bw.c
-+++ b/sound/soc/tegra/tegra_isomgr_bw.c
-@@ -11,8 +11,8 @@
- #include "tegra_isomgr_bw.h"
- #include "tegra210_admaif.h"
- 
--/* Max possible rate is 192KHz x 16channel x 4bytes */
--#define MAX_BW_PER_DEV 12288
-+#define MAX_SAMPLE_RATE		192	/* KHz*/
-+#define MAX_BYTES_PER_SAMPLE	4
- 
- int tegra_isomgr_adma_setbw(struct snd_pcm_substream *substream,
- 			    struct snd_soc_dai *dai, bool is_running)
-@@ -98,7 +98,8 @@ int tegra_isomgr_adma_register(struct device *dev)
- 	}
- 
- 	adma_isomgr->max_pcm_device = admaif->soc_data->num_ch;
--	adma_isomgr->max_bw = STREAM_TYPE * MAX_BW_PER_DEV * adma_isomgr->max_pcm_device;
-+	adma_isomgr->max_bw = STREAM_TYPE * MAX_SAMPLE_RATE * MAX_BYTES_PER_SAMPLE *
-+			      admaif->soc_data->max_stream_ch * adma_isomgr->max_pcm_device;
- 
- 	for (i = 0; i < STREAM_TYPE; i++) {
- 		adma_isomgr->bw_per_dev[i] = devm_kzalloc(dev, adma_isomgr->max_pcm_device *
--- 
-2.17.1
+MAC <---> IO <---> PHY
 
+In fact, the delay is added to the path between the MAC and the IO, 
+rather than being implemented in the MAC itself. These delay value is 
+controlled by the GRF register[0] . These paths are implemented inside 
+the SoC and have not yet reached the board level.
+
+According to the document[1], use "rgmii" when "RX and TX delays are 
+added by the MAC when required". In addition, currently we can see that 
+all RK3399 boards use "rgmii".  Is there anything I missed? Thank you.
+
+
+[0]: 
+https://lore.kernel.org/netdev/1472752204-8924-2-git-send-email-wxt@rock-chips.com/
+
+[1]: 
+https://www.kernel.org/doc/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+
+>
+> 	Andrew
+>
+>
 
