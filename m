@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A27AA02A9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:12:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94E4AA02D7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:16:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57B8B5A4EC2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:12:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0EF47B074B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A9C274FCB;
-	Tue, 29 Apr 2025 06:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DC9274FD6;
+	Tue, 29 Apr 2025 06:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9cUakIU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npj429ht"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60464274658;
-	Tue, 29 Apr 2025 06:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD3427467D;
+	Tue, 29 Apr 2025 06:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745907119; cv=none; b=Izy/upOwERStz3Wb1t7ycOUhP5hJ2ZW+JAldaTAGnrBxMRrvUxDJLd96wWSYRydaTpyrzusSVRfEpgxe7XI5fu99cyUQxFgDVUv9YRaZmOfo6xvTatp+TXp9A5Lug4Bu4ZUIf11e1J+IMnLcidPq7risHwS3bEF44f7Zae/u0uM=
+	t=1745907242; cv=none; b=BPzLOHkaompkyqYlsfFpmIwZA1Kl+2fYfumoguFPakc5arCYYaeYmq0gBs/adPFseORdy5AAbiAtNP4c+lVyJlVIPrd58e4Y0rdCUf7ZTRe8vA06z4fORdy5TWVk5l29CN2ohgCez/APaNWqe6w1Bs1k20jFkM+8Soy8i+DPhDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745907119; c=relaxed/simple;
-	bh=QH9BrCzldPjHuztYNYhhzYq5T7NvKyX+PKNkHLsJAso=;
+	s=arc-20240116; t=1745907242; c=relaxed/simple;
+	bh=0CDmxNsJb2e4rDxfNdGGs4ZvY062OzfDmY3hOHyL3vE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MBvK3E8dzNUPsbSzM4hsrwy8HQXN/EO3esaaRJSJ1+gHJXyRzDwWqHPExoLYdLDHZLdXoleVxhZmxnpw7FaTWCygiCuzj6VkkkNF+KzkCCLn1N9QhT6/nJ/CJkAeJukKF/3MP7CYurEHgCebTrmOeb4NBJtKonaPB0dnRJRWk6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9cUakIU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7E57C4CEE3;
-	Tue, 29 Apr 2025 06:11:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=myDvQRcN7I0ox3xRS3/54NLASQnd5qXNUdjmp81wraKhP0UUfWSFLbv6cPyrS2DO731V86PPH3eN63vVNVc8fbEFqNOah91FuPGdbti+lhkvN2VFgarp0BmvBaOUrpP76QGF4yw1RoXCKI+udpI9mQc9JTGCtZj54am+YaNa6NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npj429ht; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A74C4CEE9;
+	Tue, 29 Apr 2025 06:13:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745907118;
-	bh=QH9BrCzldPjHuztYNYhhzYq5T7NvKyX+PKNkHLsJAso=;
+	s=k20201202; t=1745907241;
+	bh=0CDmxNsJb2e4rDxfNdGGs4ZvY062OzfDmY3hOHyL3vE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J9cUakIUlqO0bF36AFw8YAW/nAvsTHHsgZ5eW/a8GVDzNEtD2GTtscvy+V6dDUjBb
-	 fISYVfqLgElmwoX4VvQFPj2n35lNbTXYqBGDTiNrD2nWva4c++7Xm9oZ63NTwNZGmD
-	 rJ8uyJ7wP4xRDm2Ucl74IF2dmRA7LaxdRBFtzkPjFFIoDQJXVP08lAYKfIovJ39h8j
-	 JGgxOmAUdJiPfJpDtLhWPxZAEcPp8bj+RLM+XYDqvjbzruWCSay8H8o5x9jl3OQ1qx
-	 9T+WcU1X9GPEs+mW15urAQovQuIXG4Nbd1AIgava28XSjxe3HupHmBsZIZVxOkYcCl
-	 mJS8d9mm4EZfA==
-Message-ID: <713fcd68-af57-4cf9-84ad-a3fdff8c3f76@kernel.org>
-Date: Tue, 29 Apr 2025 08:11:54 +0200
+	b=npj429htV3GVoOQ+5nxzUQQ9tYYRu7W6gdH1RsISY0u0l30ngUEuRuJFskbS1laK3
+	 ORuSkh5fZcVUOdobFKCHCJlDPi35RMn+wE9v7FYgs91KFa2KfykFXJ8JaVZU2rpB2m
+	 ISRLNKsP8o5HYR70SEjBlpg8o6IS31f0NmLOWG3AWJh2nmmmr7AGa16BwwMm1APKFo
+	 9CDXMyAznNqYoI4FzKihN88tQcumRb9MgKlRV2s6RPqmwZ+CXd4KDWWYaIc6IgsJtt
+	 EtFzoI1zXeek+mRUrb5N2UfXdK3ECmtavq8cEqBo+kWgZWI8b8BFymNhFisPZd6Rpi
+	 0Byh3ymo654GA==
+Message-ID: <5a5e97f1-6ae1-46d2-a602-613e1b550ba5@kernel.org>
+Date: Tue, 29 Apr 2025 08:13:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: goodix: Add
- no-reset-pull-up property
-To: Esben Haabendal <esben@geanix.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250422-goodix-no-reset-pull-up-v1-0-3983bb65a1bf@geanix.com>
- <20250422-goodix-no-reset-pull-up-v1-1-3983bb65a1bf@geanix.com>
- <20250428-logical-successful-spoonbill-cd1c6b@kuoka>
- <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add BOE TD4320
+To: barnabas.czeman@mainlining.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250427-lavender-panel-v1-0-b2611674166c@mainlining.org>
+ <20250427-lavender-panel-v1-1-b2611674166c@mainlining.org>
+ <20250428-versed-boar-of-charisma-961cbf@kuoka>
+ <d838dc2006c52bf6099767a2805ad826@mainlining.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,48 +109,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <zkDFUv9azjyXaS--ufxgROyruM2mpckWkDNeHtAO160rM2DuaJthpjgN0c_L8QgTk8bNA7Km0UewYmp1rWENwg2x4ngP-8C1rYhHMgAz0OA=@geanix.com>
+In-Reply-To: <d838dc2006c52bf6099767a2805ad826@mainlining.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/04/2025 09:58, Esben Haabendal wrote:
-> On Monday, April 28th, 2025 at 09:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On Tue, Apr 22, 2025 at 05:15:02PM GMT, Esben Haabendal wrote:
+On 28/04/2025 20:13, barnabas.czeman@mainlining.org wrote:
 >>
->>> This should be added for boards where there is no pull-up on the reset pin,
->>> as the driver will otherwise switch the reset signal to high-impedance to
->>> save power, which obviously not safe without pull-up.
->>>
->>> Signed-off-by: Esben Haabendal esben@geanix.com
->>> ---
->>> Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 4 ++++
->>> 1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> index eb4992f708b70fef93bd4b59b9565123f7c6ad5d..7e5c4b98f2cb1ef61798252ea5c573068a46d4aa 100644
->>> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> @@ -45,6 +45,10 @@ properties:
->>> reset-gpios:
->>> maxItems: 1
->>>
->>> + no-reset-pull-up:
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - reset-gpios
 >>
->> Is this common property? Where is it defined? Otherwise missing vendor
->> prefix.
-> 
-> Good question. When is something a common property?
+>> No supplies? This looks really incomplete.
+> It works without supplies because BL is enabling them and there is no 
+> qpnp-lcdb driver yet.
 
-When is defined in common schema and used by more than 2 devices.
+If something enables the supplies, means they exist. Binding must be
+complete. Otherwise how bootloader using this binding can enable
+supplies, if you do not allow them in the DTS the bootloader is going to
+use?
 
-> 
-> The idea of marking something as not having a pull-up on the reset pin could be considered a common thing I guess.
-> But for now, I am defining it for the goodix driver only, as I am only aware of these devices needing to handle it in a special way.
-> 
-> Should I rename it to goodix,no-reset-pull-up?
-
-
-Yes
+> I do not see worth to add them at them moment but I can if you want.
+>>
+>>
+>> Best regards,
+>> Krzysztof
 
 
 Best regards,
