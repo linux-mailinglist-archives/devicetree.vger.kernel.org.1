@@ -1,104 +1,126 @@
-Return-Path: <devicetree+bounces-172025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBD4AA1018
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:14:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 073E5AA1021
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EAE71B622B4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:14:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B028F16A63E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B9E21D3F4;
-	Tue, 29 Apr 2025 15:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B55221F1D;
+	Tue, 29 Apr 2025 15:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aJKU3NkR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UKMn933M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0B178F44;
-	Tue, 29 Apr 2025 15:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62005221568;
+	Tue, 29 Apr 2025 15:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745939645; cv=none; b=UtQAxHzXQYLrNrkESrAJN2xSRbVPiNz9glUkWEwMOnCC2VDaeZJDuoB8oeuBEJXm+/hVubMeon3BJbUkiXMd6Jq29j5UYwEIB5i5ORpGORVhVIjATdccb3mQH5yynUK8WbBAXXU7NrZLvQGLVhcFQlJFDe3QAMttwArz/oUQ1GI=
+	t=1745939708; cv=none; b=W4tKNDT7UEs8hsEv19yE/cYlOyiKehNFmJxO/KjhxvPRtDBxwMsEv61U8yWtkuEM9ZCTq8DVbIJ2kfCom0Lx4T89o0BrQAB5+B+05gFdLKFzzgnBGMhIkw5/DN4KkX/x12yKKE7rDTau2bJTRLymM0z6C1T7Heu7CvkHKwr6dew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745939645; c=relaxed/simple;
-	bh=J+cqf2s2ZsVOlPPPz+/nuFcDjfaayMiIycIXe8NZ3jk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pQwDWcQThZjLrLNGjhUVcBZDkE485/O1FMFLgNEWssfshgXMPVsaQ+FewSZq6vJHuFwwoTksKDSDcRlab+BPRbcHoNq0/KRnJglCcXSIkpvNvkpkTu89CG5Uvh/NTzBqS4XocvuellKAtTwisQ3IMe7siIJAzJk/Cq88tlE9YKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJKU3NkR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF4ECC4CEEE;
-	Tue, 29 Apr 2025 15:14:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745939645;
-	bh=J+cqf2s2ZsVOlPPPz+/nuFcDjfaayMiIycIXe8NZ3jk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=aJKU3NkRD5t/kJNbO77GIacdoaPwfKk7V+9ISs7XWk0csI6WULh7ykNIADn1FIG61
-	 5xlLqD1D6EOwmKyEJ1RjfHU94q2zfkIOcFj7LSn/RpvRxw/PLygAGD1S6yLUp4bntw
-	 4S16JrKrka/Xp7+WE98qTUWAlEJTqid5qwkBOwjj9hfIzappXI7WtHXCur1E/yeD7Z
-	 6KfXyq6ZR6RQtTxBsrQfD0Fizqhn5Tdh1dpjIkN80/sRyn3dNPiBmNhIpg1KcoqQjp
-	 1DUx3u7ChvZuxZOw6jJcYiKiICxIBit5m0QzSzECK3SLX4bhKw9w4sIir+EIhonaWW
-	 SCOcCzt3/6xcg==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5f4ca707e31so10302335a12.2;
-        Tue, 29 Apr 2025 08:14:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWC4YKW7G/NuuuPpbg0u6GQSibj6HC37rWI5JDyqZ//Js5uVxaKCY1swq8BE7UjOVuMeGtXS1ud/TQL@vger.kernel.org, AJvYcCWUt7uL3SmAi74nYz3PBk+ljfSt0AxoPgInzbvURk1ywTuAktoJmkvuCGvFD0rfpdvnYnhrSdmx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4XXJ7gZBnRsTS76WZckFVXgmNU9OXVrmMFv5L1dZAcjcPwAbH
-	v9dGZOdP0Rl3cyd17vmAlx9LagTtFjfzG+K3xtj+kx9LtVmtkTxvcHYFgwUR6uCcs/M2dwKRNfB
-	MIxX6hPTa09VzVYhutZFF2+wFTQ==
-X-Google-Smtp-Source: AGHT+IHGk3svgwgIr+T/+w4Qwka1z9IpXIwGtv6Rj3x2jTq1l4XPrYQMuDCnPoKOAj5jFEj0LbkSsMdcXgIGTQoIfnQ=
-X-Received: by 2002:a05:6402:3783:b0:5f4:d57e:4ab6 with SMTP id
- 4fb4d7f45d1cf-5f73983519amr9972583a12.24.1745939643488; Tue, 29 Apr 2025
- 08:14:03 -0700 (PDT)
+	s=arc-20240116; t=1745939708; c=relaxed/simple;
+	bh=IJXZD13G+pdSX+EY4hqx15yCpjPmA9iatMu/62EMdmY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E6ctiW6ipjmUnHiujfuVpPST0PgubTShDuQBB+ZkksNmeKWB14XLVLnHRDeDKRdOMYiNzrBe9qT7aEdYLouStgx6sBQrgN+QuUI6ObEv5BTskSqtZWkUit5XDVvYA7m+BggZ09xWXFc691gnsfe8cX7CZNdL4vbC7AFw/tcLzxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UKMn933M; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TFEtE43129345
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 29 Apr 2025 10:14:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745939695;
+	bh=eT1vk5XLAjl/TpZqvTHxGOR9jCT9UoSjSIUIYdqBtkE=;
+	h=From:To:CC:Subject:Date;
+	b=UKMn933M0o57lbaJ4fAAZ1jCkSHygKp9fWbNCyGFcDEk2b6xTPkjRQSmV2a0zrtKS
+	 Z5Bde8Gn0XzjbSTkeifW6x1TwWC6F327OHjWjEh4xxwkElPFfh5kVYa1no1tx5KDAu
+	 meC+vuHu3RzlqPlnPmeRfOnBOXvViDvMlMfPwSwQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TFEtoW032103
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Apr 2025 10:14:55 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Apr 2025 10:14:54 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Apr 2025 10:14:54 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TFEslu129369;
+	Tue, 29 Apr 2025 10:14:54 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>,
+        Udit Kumar
+	<u-kumar1@ti.com>
+Subject: [PATCH v3 0/3] Misc MMC updates
+Date: Tue, 29 Apr 2025 10:14:51 -0500
+Message-ID: <20250429151454.4160506-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ee9a647e-562d-4a66-9f9b-434fed05090d@gmail.com>
- <aacd2344-d842-4d10-9ec8-a9d1d11ae8ed@gmail.com> <20250428-alluring-duck-of-security-0affaa@kuoka>
- <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
-In-Reply-To: <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 29 Apr 2025 10:13:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJYmnk+ApfC1mxjMxCWFoedn1-XCKHS7Tq_gsgOTnx2Fg@mail.gmail.com>
-X-Gm-Features: ATxdqUEcJ0-psBajiUHJV-OJQsB-f_InmqZfaR6IrhEWOgyp7c4A99dwRJCsJSc
-Message-ID: <CAL_JsqJYmnk+ApfC1mxjMxCWFoedn1-XCKHS7Tq_gsgOTnx2Fg@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-phy: remove
- eee-broken flags which have never had a user
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Russell King - ARM Linux <linux@armlinux.org.uk>, Paolo Abeni <pabeni@redhat.com>, 
-	Eric Dumazet <edumazet@google.com>, David Miller <davem@davemloft.net>, 
-	Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <f.fainelli@gmail.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Apr 28, 2025 at 3:28=E2=80=AFPM Heiner Kallweit <hkallweit1@gmail.c=
-om> wrote:
->
-> On 28.04.2025 09:42, Krzysztof Kozlowski wrote:
-> > On Tue, Apr 15, 2025 at 09:55:55PM GMT, Heiner Kallweit wrote:
-> >> These flags have never had a user, so remove support for them.
-> >
-> > They have no in-kernel user, but what about all out of tree users in
-> > kernel and other projects using bindings?
-> >
-> I doubt there's any user outside the kernel. But it's hard to prove
-> that something does not exist. For my understanding:
-> What would be the needed proof to consider removal of these
-> flag bindings safe?
+This patch series includes updates for eMMC and SD nodes across
+Sitara K3 SoC boards:
 
-Like you say, you can't prove it. So your justification in the commit
-msg isn't fact. I think if there was some pain to keep them, then
-removing them and seeing if anyone complains would be fine.
+Add boot phase flag to MMC nodes and dependency nodes to support SD and
+eMMC boot. 
+Add non-removable flag to eMMC nodes to void having to redetect
+eMMC after suspend/resume.
+Remove disable-wp for eMMC nodes since property is specific to SD.
 
-It's not clear to me here why "eee-broken-1000t" is still valid/useful
-when the others are not.
+Changes since v2:
+- Split out patches meant for stable
+- add review tags
 
-Rob
+Link to v2:
+https://lore.kernel.org/linux-devicetree/20250417233040.3658761-1-jm@ti.com/
+Link to v1:
+https://lore.kernel.org/linux-devicetree/20241014194722.358444-1-jm@ti.com/
+
+Judith Mendez (3):
+  arm64: dts: ti: k3-am6*: Add boot phase flag to support MMC boot
+  arm64: dts: ti: k3-am62*: Add non-removable flag for eMMC
+  arm64: dts: ti: k3-am6*: Remove disable-wp for eMMC
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts             | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi      |  1 -
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts       |  2 +-
+ arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi     |  1 -
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts              |  3 ++-
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts              |  2 +-
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi       |  2 +-
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts              |  1 -
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts       |  1 -
+ .../dts/ti/k3-am6548-iot2050-advanced-common.dtsi    |  1 -
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts                |  1 -
+ 11 files changed, 17 insertions(+), 10 deletions(-)
+
+
+base-commit: d864bb528a6725e775d564fd4430762acbb9dd0d
+-- 
+2.49.0
+
 
