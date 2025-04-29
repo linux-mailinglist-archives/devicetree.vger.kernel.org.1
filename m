@@ -1,301 +1,133 @@
-Return-Path: <devicetree+bounces-172076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C8DAA18D7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 20:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA82AA1A86
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 20:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 698FA1891E0C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:04:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA411888D98
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2E324E4BF;
-	Tue, 29 Apr 2025 18:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222EC248889;
+	Tue, 29 Apr 2025 18:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="Fxwj7p23"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cMDS6aqD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42FC722AE68
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 18:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E346C21ABC6;
+	Tue, 29 Apr 2025 18:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745949861; cv=none; b=KwswBBXtjJWUe7ChNgc1uvD3Vpo4AcfG5bsOeSWQ4g0z4BRZS7B3xk2N/+IPCD5dikDO/y8nA8oKNhM+lla/ySIhaD7hYdzqD/pZ2podkkKC/NfikSd6Fvo8axuMiS+nLEHK9NbBEgnl18qCV/MioQM9Wty37ymgybxZ/HMJ0dY=
+	t=1745950975; cv=none; b=pb3tWFct3QHvRPsk7LMmk5P1wf15ZKs6faK18sxuPtPfa0VU20lk5tRZ/G5O9qTIzpNoP+wLAV9w/0s2hiY0kuEXWDwDj1Nmdfluk/o5sNIRpzWFyRQEeiK2ml5eEREyTa9hzk/ub9a+9Y0h04R7RWKrGk0EKFIVIGWPOkj+kI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745949861; c=relaxed/simple;
-	bh=rAks88TKI5UJtVnpuF6h5jVqqQnNM42d6RJm/OLQMxI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ex/y8Qk5hCIgWCwDbeSzTnAZ7a6lyHOOxnSmGAAMkLY9JUte1h1NZYEhgs1SrzkLx76jDn/nU/nW566lJtOKEBay7DNRLe5NA1wr1VgkzVZJp4OkCSxZkNRO64ckpBdDNgN+x00NGNk6OsLmmjyJFixxJ07XrCOf2SvJK2l1kVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=Fxwj7p23; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b0da25f5216so4065062a12.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 11:04:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1745949859; x=1746554659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TF5zvq+dwouurJsmOFisci0GfULvxMNmW9FvbbMePLQ=;
-        b=Fxwj7p23ujTAx41E8ObrcpbBLq0sL7mfPhtS7srtaHqgpWTdFUgQKU6vBVFiU2xX4V
-         q0IEPH4CfjGYXgdMYdvSTnqBU2dV8NpfvgYkbiqhSMcZf1Mb9oD5/lVEL5MDS+UUMOMu
-         XeLBtNaiJJ9CZydsV1OPnSBMHoDxuCDOPGpd87s1wLeJx7KP2pHHykhX7hWOUz6KTQNA
-         ude5FjEbhrWmQb5vb5GgfgyOiHMPJp7oW+GLotarH8W6U1f121/xR3LkeGLp2KkekyC9
-         3sbD1KFMlVXAmbbliIE3xarT4tXL9ipAYk03Kg2393V1pGChPPOu6URPuSWJ3zwQ41e8
-         QiLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745949859; x=1746554659;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TF5zvq+dwouurJsmOFisci0GfULvxMNmW9FvbbMePLQ=;
-        b=v7+meDdkVjEkOUT22zxkaFCkCFFzLQWO2Y0UVEs9FLyTnuECxHyukM1QbaR/KJ7+5X
-         LSRXDboE51ClM3VxKOnjfq7FDuzyzK++4ZLWEO35m6TvnCzpQZhdo4n9LIHgIAtUi2Gg
-         PkWV078Hrnam8+4A9og4V13Rgwkb1DljJkFn4n4Y+7BfxzQwlRwi0b5oYASgq7lIPlH5
-         PtuH4AIVRuFOStMsxJdzmLxSBzi2Zi6ym5os//kI6a7EjpRMkaXmMK4aKq/U0Z4SM1rL
-         PThdulplNdlBn3uEAfeLZumazkbh3IpYwctcpQ5uov04REBPn2S98OKMzeJZDAe0uQSS
-         YuSg==
-X-Forwarded-Encrypted: i=1; AJvYcCWb/J8Ry3Ea2fr7s0aJTeOM4T+8r2+Mfeq9aTwZdquoUSCryWA7L3AbR5ZQpGXWnNrikxcmCynlcGcp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNiGzCS5xm8NsIcfKS4B3VvA5IHJpMu3ZrD5Oea42teoQ1NGs6
-	eeUcR3m2KBuRe9Sa6CkjApPfHfoDOWFJiu2HES6imxTkYmeiP5+xjUhUgumPvQ==
-X-Gm-Gg: ASbGncsoLdKPWP9lvvBuDfIQYu69qVAUF4qO/MDCvE2db2yZeRFmoO8iyiLi9nrvLqY
-	sW/7MWHt7yxljyhO8yU95guiEF0v1B/TSG7AMsjSiq6gjGQIWD0sSGo6ALQ5PvVmZMZegCET37L
-	ujnSfHRdxnwKg/a9WqCnuIYaz3L9MZMjiIsIk9ouHI0mHN/WClUgA1/csDy8EDw6CrYJo1pi7nj
-	MCB69IeLZa2UCKGp8mbvqVx5qq607OgMKpUJtqjECk5YdVoIYvB+o9dvaJZEtiVZd4JyhACDOVV
-	82xNf0HS+rRODwox00yXsnfTWPyF3wM1XjfLiZBbJGYYzL7lC2ax5p6A3g==
-X-Google-Smtp-Source: AGHT+IH6MS3bZbEKvU9ZIkPz0etq8wy02LqJGtPPuVrhlRpUYewJVc/Smzwo8DIrS9bHhVaeokgm0A==
-X-Received: by 2002:a05:6a20:9d93:b0:1f5:7eb5:72dc with SMTP id adf61e73a8af0-2046a3abe8amr17646432637.3.1745949859182;
-        Tue, 29 Apr 2025 11:04:19 -0700 (PDT)
-Received: from [172.16.116.85] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15f76f580asm7724722a12.2.2025.04.29.11.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 11:04:18 -0700 (PDT)
-Message-ID: <6afe226c-4bf4-48be-84be-034261914ee5@beagleboard.org>
-Date: Tue, 29 Apr 2025 23:34:01 +0530
+	s=arc-20240116; t=1745950975; c=relaxed/simple;
+	bh=N3Qj2TqfFbgAxadAz4oK7Q3Wyu5VyC12MZnmSfOgenM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HbG8Owf2wSuSPt1m4RpotpUBoRUlCLF/Xsca6bf0aoz3Sx0fpFK5XwiN+rYV8c81Wt33lGOBjkp679+oTu1db615tSqWQgkji3aNJUxr0buCOO7geldrmxAQaAFLqmvswJouNyCiVc38Xiqs5JuPoC0JmVqvS728e1RBN8ymNKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cMDS6aqD; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TIMiCd3915107
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 29 Apr 2025 13:22:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745950964;
+	bh=PcLmyf/yI3lueA2N9Nh2ktmh9qhX02LazNi5j2d4bz8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=cMDS6aqDUJhMt1cRjkuTnmzyoSSfP0KPWP1+tF4U+2iSAodzSyP5wQroUsgh8+MxW
+	 +TRZC1pDtOxQ7kDGVv7wyLgGxWh/dkS0XToHLdAUuMIMpEkmbE9wNq48YeaZM0eZKf
+	 2XcoU4zlSn/0mD65/bT+P5eHJ6JQy9AmmBqBx0Tw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TIMiFb023800
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Apr 2025 13:22:44 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Apr 2025 13:22:44 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Apr 2025 13:22:44 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TIMi6Q093030;
+	Tue, 29 Apr 2025 13:22:44 -0500
+Date: Tue, 29 Apr 2025 13:22:44 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>,
+        Udit Kumar
+	<u-kumar1@ti.com>
+Subject: Re: [PATCH v2 0/3] Set eMMC clock parent to default
+Message-ID: <20250429182244.vm2atpuvmdfhtmlc@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20250429163337.15634-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] schemas: i2c: Introduce I2C bus extensions
-To: Herve Codina <herve.codina@bootlin.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250401081041.114333-1-herve.codina@bootlin.com>
- <20250401081041.114333-3-herve.codina@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250401081041.114333-3-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20250429163337.15634-1-jm@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 4/1/25 13:40, Herve Codina wrote:
+On April 29, 2025 thus sayeth Judith Mendez:
+> This series was split-off from "Misc MMC updates" patch series [0] and the
+> original patch further divided into three to help with backporting as per
+> review comments [1].
+> 
+> This series sets clock parent for eMMC to the default clock parent
+> MAIN_PLL0_HSDIV5_CLKOUT for am62, am62a, & am62p/j722s SoCs. Software (DM)
+> does not switch MMC clock parent correctly as per the Arasan IP requirement
+> to hold the IP in reset while clock source is switched. Since muxes to
+> switch clock parent are not glitch-free and the default parent is tested
+> and working fine, switch to the default as a preventative action.
+> 
+> Changes since v1:
+> - split original patch into three
+> - add cover-letter
+> - reword patch descriptions
+> - add review tags
+> 
 
-> An I2C bus can be wired to the connector and allows an add-on board to
-> connect additional I2C devices to this bus.
->
-> Those additional I2C devices could be described as sub-nodes of the I2C
-> bus controller node however for hotplug connectors described via device
-> tree overlays there is additional level of indirection, which is needed
-> to decouple the overlay and the base tree:
->
->    --- base device tree ---
->
->    i2c1: i2c@abcd0000 {
->        compatible = "xyz,i2c-ctrl";
->        i2c-bus-extension@0 {
->            i2c-bus = <&i2c_ctrl>;
->        };
->        ...
->    };
->
->    i2c5: i2c@cafe0000 {
->        compatible = "xyz,i2c-ctrl";
->        i2c-bus-extension@0 {
->            i2c-bus = <&i2c-sensors>;
->        };
->        ...
->    };
->
->    connector {
->        i2c_ctrl: i2c-ctrl {
->            i2c-parent = <&i2c1>;
->            #address-cells = <1>;
->            #size-cells = <0>;
->        };
->
->        i2c-sensors {
->            i2c-parent = <&i2c5>;
->            #address-cells = <1>;
->            #size-cells = <0>;
->        };
->    };
->
->    --- device tree overlay ---
->
->    ...
->    // This node will overlay on the i2c-ctrl node of the base tree
->    i2c-ctrl {
->        eeprom@50 { compatible = "atmel,24c64"; ... };
->    };
->    ...
->
->    --- resulting device tree ---
->
->    i2c1: i2c@abcd0000 {
->        compatible = "xyz,i2c-ctrl";
->        i2c-bus-extension@0 {
->            i2c-bus = <&i2c_ctrl>;
->        };
->        ...
->    };
->
->    i2c5: i2c@cafe0000 {
->        compatible = "xyz,i2c-ctrl";
->        i2c-bus-extension@0 {
->            i2c-bus = <&i2c-sensors>;
->        };
->        ...
->    };
->
->    connector {
->        i2c-ctrl {
->            i2c-parent = <&i2c1>;
->            #address-cells = <1>;
->            #size-cells = <0>;
->
->            eeprom@50 { compatible = "atmel,24c64"; ... };
->        };
->
->        i2c-sensors {
->            i2c-parent = <&i2c5>;
->            #address-cells = <1>;
->            #size-cells = <0>;
->        };
->    };
->
-> Here i2c-ctrl (same goes for i2c-sensors) represent the part of I2C bus
-> that is on the hot-pluggable add-on. On hot-plugging it will physically
-> connect to the I2C adapter on the base board. Let's call the 'i2c-ctrl'
-> node an "extension node".
->
-> In order to decouple the overlay from the base tree, the I2C adapter
-> (i2c@abcd0000) and the extension node (i2c-ctrl) are separate nodes.
->
-> The extension node is linked to the I2C bus controller in two ways. The
-> first one with the i2c-bus-extension available in I2C controller
-> sub-node and the second one with the i2c-parent property available in
-> the extension node itself.
->
-> The purpose of those two links is to provide the link in both direction
-> from the I2C controller to the I2C extension and from the I2C extension
-> to the I2C controller.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->   dtschema/schemas/i2c/i2c-controller.yaml | 67 ++++++++++++++++++++++++
->   1 file changed, 67 insertions(+)
->
-> diff --git a/dtschema/schemas/i2c/i2c-controller.yaml b/dtschema/schemas/i2c/i2c-controller.yaml
-> index 018d266..509b581 100644
-> --- a/dtschema/schemas/i2c/i2c-controller.yaml
-> +++ b/dtschema/schemas/i2c/i2c-controller.yaml
-> @@ -30,6 +30,13 @@ properties:
->       minimum: 1
->       maximum: 5000000
->   
-> +  i2c-parent:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      In case of an I2C bus extension, reference to the I2C bus controller
-> +      this extension is connected to. In other word, reference the I2C bus
-> +      controller on the fixed side that drives the bus extension.
-> +
->     i2c-scl-falling-time-ns:
->       description:
->         Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
-> @@ -159,6 +166,25 @@ allOf:
->           - i2c-scl-has-clk-low-timeout
->   
->   patternProperties:
-> +  'i2c-bus-extension@[0-9a-f]+$':
-> +    type: object
-> +    description:
-> +      An I2C bus extension connected to an I2C bus. Those extensions allow to
-> +      decouple I2C busses when they are wired to connectors.
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      i2c-bus:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description:
-> +          Reference to the extension bus.
-> +
-> +    required:
-> +      - reg
-> +      - i2c-bus
-> +
->     '@[0-9a-f]+$':
->       type: object
->   
-> @@ -221,3 +247,44 @@ dependentRequired:
->     i2c-digital-filter-width-ns: [ i2c-digital-filter ]
->   
->   additionalProperties: true
-> +
-> +examples:
-> +  # I2C bus extension example involving an I2C bus controller and a connector.
-> +  #
-> +  #  +--------------+     +-------------+     +-------------+
-> +  #  | i2c@abcd0000 |     |  Connector  |     | Addon board |
-> +  #  |    (i2c1)    +-----+ (i2c-addon) +-----+ (device@10) |
-> +  #  |              |     |             |     |             |
-> +  #  +--------------+     +-------------+     +-------------+
-> +  #
-> +  # The i2c1 I2C bus is wired from a I2C controller to a connector. It is
-> +  # identified at connector level as i2c-addon bus.
-> +  # An addon board can be connected to this connector and connects a device
-> +  # (device@10) to this i2c-addon extension bus.
-> +  - |
-> +    i2c1: i2c@abcd0000 {
-> +        compatible = "xyz,i2c-ctrl";
-> +        reg = <0xabcd0000 0x100>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        i2c-bus-extension@0 {
-> +            reg = <0>;
-> +            i2c-bus = <&i2c_addon>;
-> +        };
-> +    };
-> +
-> +    connector {
-> +        i2c_addon: i2c-addon {
-> +            i2c-parent = <&i2c1>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            device@10 {
-> +                compatible = "xyz,foo";
-> +                reg = <0x10>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+Acked-by: Bryan Brattlof <bb@ti.com>
 
+~Bryan
 
-Reviewed-by: Ayush Singh <ayush@beagleboard.org>
-
+> [0] https://lore.kernel.org/linux-devicetree/20250417233040.3658761-1-jm@ti.com/
+> [1] https://lore.kernel.org/linux-devicetree/20250429142825.bvrbpoc5iz32wh35@garment/
+> 
+> Link to v1:
+> https://lore.kernel.org/linux-devicetree/20250429142333.4140010-1-jm@ti.com/
+> 
+> Judith Mendez (3):
+>   arm64: dts: ti: k3-am62-main: Set eMMC clock parents to default
+>   arm64: dts: ti: k3-am62a-main: Set eMMC clock parents to default
+>   arm64: dts: ti: k3-am62p-j722s-common-main: Set eMMC clock parents to
+>     default
+> 
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
+>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
+>  3 files changed, 6 deletions(-)
+> 
+> 
+> base-commit: d864bb528a6725e775d564fd4430762acbb9dd0d
+> -- 
+> 2.49.0
+> 
 
