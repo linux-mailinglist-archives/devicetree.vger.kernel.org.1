@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1038BAA0492
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:33:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 002CFAA0497
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 343747A1350
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:32:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3A7C3B866F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42987274647;
-	Tue, 29 Apr 2025 07:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA10277002;
+	Tue, 29 Apr 2025 07:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgZrKHHh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nNYPd70y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192221B0435;
-	Tue, 29 Apr 2025 07:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A21276033;
+	Tue, 29 Apr 2025 07:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745911989; cv=none; b=UGqt95Io68T0AIP+6vZiVtkIIUB04XxzIGVQMg0JjlZbPLtOer/3yj4wK/Zz9rBerQSQYX1+emLDKbSLDW8dh0mmmUlYxIscpaOh7ZRg/+VLvXeoKxJJgLfhS0aorpfnENKAugq1jxHjoeGWrgfxLFxOOPh+Zgl5geTlJ7UhS1o=
+	t=1745912044; cv=none; b=r9Tq3Djn2WMLMQ2p4TpgU72z+RLtNwRohIMRKe80DsmDfztX6dg3wW8VFN8pVyjGIylM9Wf/P+qwiy04fLdo+vCmHnJrTlXGTV9mExcvdxGHgqvC5J+syhO7YDVWexlZ8nOfvwnhfuIK0mKXte62Uc6sjp3Qm53E12+UexO2eXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745911989; c=relaxed/simple;
-	bh=p1WOe7kS+PZWvOjJflDb82c0iQuw9KLgoHqXeFhI1UQ=;
+	s=arc-20240116; t=1745912044; c=relaxed/simple;
+	bh=AWHwOkxPLCPVcRAn+OvCKLaXrFu45lDYY/h0fhMkB/k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JUG8D3Xo9bZHcPMJreZqjS5SiQ839GkaO9b1YEiK1MPJq3wov8G74gr611cgRKsnzonseSbQliW8WBGKUNquoEXuWBleAh3LOxxz7EDjMqe9XV++8qeD5V1y58V5U1zNp+bVxji4d2mh8ZGF3AlRO0lRk0jRMk0j6Ord6DvKy8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgZrKHHh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF8B1C4CEE3;
-	Tue, 29 Apr 2025 07:33:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=V8OSHoWIlzEZKsd1Susk70c958Vs4fvZ3PRKaR5YAQEIpDN4bwpFV2VmKG4i8iggyG0UUaDOx7kvmdA0NIJjmD+kaO3YHcwMkGd+hfl8gphp59+aXdFsb/pxnswFngqbgNk0DXDvGJusnFPAOQXzYlmFY4kuKcO5BiGwGHQDpi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nNYPd70y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2EEEC4CEE3;
+	Tue, 29 Apr 2025 07:33:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745911988;
-	bh=p1WOe7kS+PZWvOjJflDb82c0iQuw9KLgoHqXeFhI1UQ=;
+	s=k20201202; t=1745912043;
+	bh=AWHwOkxPLCPVcRAn+OvCKLaXrFu45lDYY/h0fhMkB/k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cgZrKHHhOy+cwqUzXlMijgOS4aLIi5Iej33ZSqtMLmcnd0fsh0aowpi1v2TkelVow
-	 eOyGrioCjadVuI7snvdOKlJgbBVa9tZPzVpOJuTKbcYmQdK8YjZfzZCxQUz8YK63jj
-	 uEGjAY/SM0wGUFCT/up4xieg+05TZ48E8KLeaKzLX0+97+PTRhQUhVEMWCmeG0k9ad
-	 AyKhx2bIuBq2z3GcHEAAfffwtVqQ3RxhJEJ3gdKRg855YZaIZ9GkuZCR5tHa4czG0F
-	 1DBPvCguYsQoHXeSCG0seCPxUQ+m3aUgLEhUkgq735jH0A/xl3VhI53vUZeVUk8m79
-	 spgsQ+rYm74KQ==
-Message-ID: <91d5c505-3fa6-42e3-be24-3b35c366d007@kernel.org>
-Date: Tue, 29 Apr 2025 09:33:02 +0200
+	b=nNYPd70yujGIFFK0ZVi+gz/MfJtlpbQCqt2pgzNxvgzQkcStedybJfBBuMa3R18Zb
+	 roLeGn3Jvqt2e6p5v0AIFy+8oXRonJMnoFUwbCnYRB+pn9T9YEgM7qCXazZxfKUsjM
+	 Evwzk3sFaN6nrO2gF5bW9OYc8LiVMCEwkv2VJ7sYxUu3VfeOvCDKhGZ2QO1N7wqsYb
+	 y5svy7oTBQnQVSxuM8tfKhCHjgXrPCOKho6PysWh11q6Tn2jFPpV7s8x10EKoMyQw4
+	 /RacTzllwUc0BNRnqGX9k+/DkQ/qhIzyPWe75tnAGA8JYqaBgnb2KWfSLr1ejIFFrq
+	 LU+a2oHhgrxTg==
+Message-ID: <2044b305-8786-49b9-82e2-aa294434c24e@kernel.org>
+Date: Tue, 29 Apr 2025 09:33:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: improve some tuning
- properties
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, jun.li@nxp.com,
- alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20250423094607.1029429-1-xu.yang_2@nxp.com>
- <20250428-thankful-observant-trogon-a5a003@kuoka>
- <20250428082002.gd275e2rqollatcj@hippo>
+Subject: Re: [PATCH v3 01/12] dt-bindings: media: mediatek,jpeg: Add mediatek,
+ mt8196-jpgdec compatible
+To: =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kyrie.wu@mediatek.corp-partner.google.com"
+ <kyrie.wu@mediatek.corp-partner.google.com>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20250425085328.16929-1-kyrie.wu@mediatek.com>
+ <20250425085328.16929-2-kyrie.wu@mediatek.com>
+ <20250428-ambitious-deer-of-plenty-2a553a@kuoka>
+ <5b6e70181b417f1b25df6fc1838b0ad600e29e9c.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,33 +117,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250428082002.gd275e2rqollatcj@hippo>
+In-Reply-To: <5b6e70181b417f1b25df6fc1838b0ad600e29e9c.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/04/2025 10:20, Xu Yang wrote:
->>>  
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          enum:
->>> +            - fsl,imx8mq-usb-phy
->>> +            - fsl,imx8mp-usb-phy
->>> +    then:
->>> +      properties:
->>> +        fsl,phy-tx-vref-tune-percent:
->>> +          minimum: -6
->>> +          maximum: 24
+On 28/04/2025 10:19, Kyrie Wu (吴晗) wrote:
+> On Mon, 2025-04-28 at 09:04 +0200, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> That's ABI break with vague reason "some pain".
+>>
+>> On Fri, Apr 25, 2025 at 04:53:17PM GMT, Kyrie Wu wrote:
+>>> Compared to the previous generation IC, the MT8196 uses SMMU
+>>> instead of IOMMU and supports features such as dynamic voltage
+>>> and frequency scaling. Therefore, add "mediatek,mt8196-jpgdec"
+>>> compatible to the binding document.
+>>>
+>>> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+>>
+>> I gave you a link to the exact part of documentation about prefixes
+>> to
+>> read. I do not see improvements, so I do not believe you read it. I
+>> could
+>> imagine people skip reading entire doc (who would listen to the
+>> reviewer, right?), but if I give direct link to specific chapter and
+>> still not following it, makes me feel quite dissapointed.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Dear Krzysztof,
 > 
-> For these four properties, no DTS files use them now. So that's why I'm
-> going to improve them. I think no ABI break here.
+> I would like to apologize to you again here. I am very sorry for
+> wasting your precious time. I changed the subject from "dt-bindings:
+> mediatek: XXX" to "dt-bindings: media: mediatek,jpeg: XXX" in V3. This
+> change is based on your previous suggestion. Use this command, git log
+> --oneline --
+> Documentation/devicetree/bindings/media/, obtained. But this
+> modification does not meet your requirements. Should I change the
+> subject to "media: dt-bindings: mediatek,jpeg: XXX"?
+> 
+> Another question I need to ask you:
+> MT8195 and MT8196 both have multi-core hardware architectures. Do we
+> need to change the yaml file name from 'mediatek,mt8195-jpegenc.yaml'
+> to 'mediatek,multi-core-jpegenc.yaml'? In my opinion, this is more
+> appropriate. What is your suggestion?
+I asked above about link to documentation. You ignored that part, so
+let's be specific:
 
-And which out of tree users did you investigate? Read what is ABI before
-you keep insisting that it is not an ABI break.
-
-You change already approved and released interface, right? Or not?
+Did you or did you not read the doc I linked last time?
 
 Best regards,
 Krzysztof
