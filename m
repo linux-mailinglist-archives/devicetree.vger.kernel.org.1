@@ -1,117 +1,230 @@
-Return-Path: <devicetree+bounces-172022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CA8DAA100A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:09:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87ADDAA100F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27C381A877E3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:09:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 120A18408E3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD9621CFFD;
-	Tue, 29 Apr 2025 15:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D3F21CC7B;
+	Tue, 29 Apr 2025 15:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XLfMdKhh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hy6OqaRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28A121CC71;
-	Tue, 29 Apr 2025 15:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FF9219A63;
+	Tue, 29 Apr 2025 15:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745939381; cv=none; b=AWhBg82p+pzYxDdWaxlJrLsZAgkJ3NjzWMbgRtoAke4+HPm0IXDLM9bNOyuaGjTy+elAt4nvDNn2yA8S5w0SPjnI+Lb/99ixTcJBEhqauIv/Pdrf1CdnxUkt6AbNI1SKf7CQhxObyGODC8qH5L+TrxMDsY6ffDFRR0AJgqOTRbE=
+	t=1745939419; cv=none; b=qyfZQkv6un1Q5knfOmKJlGXCm79EEE0T9Y5d5VJUy9ItakEH68X3PMlANI6G6ngf247Iz6nlNfYvfMF5a36nxmtNPYf472YnNOVlybB9dsBFFm+5wJmCtTSCbx8px7cIIsZ+/3SM/FiW9jqQY3jpWNYvIqweTenOyUfOeKe93a8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745939381; c=relaxed/simple;
-	bh=TZueY6r4MtJVN4qtEpTvckm76JVmxT5yG3PqM8Wda0s=;
+	s=arc-20240116; t=1745939419; c=relaxed/simple;
+	bh=tH/b0H08UXNUu6dgbm5YvkwLd90cHvKfu0wgbJrpW2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gmy4CRNjebfX3L+JH9BuPQlImsZVXmA6ktO5pzccqjW4xMk44xIH31l6kZsZVWZsqmsCrAYr3X5xEmQv5iDTN+N+5FOzwlnb0AsdmlClasQKZrpWGCYzW39F65PWcR4P9Z3c8tMGjD+lVHXKyU3R/9bLQ8kn/ttPPrzaKAGLN7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XLfMdKhh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=OduaXqO0vpWQkm2nTVR92WsTV4Q+eJ6nrxylSonj7oQ=; b=XL
-	fMdKhhooPPpr7PglDfv/395KTHmc33skhhEu3pHQ8o3hzgpAyhN4ZI6NnVsCWyMyJWIzM/TZqp+5U
-	njOmiFSDSiQjslO/jdmfKlJV8RRXoFHKrgY26MgyEsLM9F3NkY5QxCr1tRxO0p7xdrsOjhszVymot
-	TIKFQDB196BQykY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u9maI-00Ax53-Aq; Tue, 29 Apr 2025 17:09:22 +0200
-Date: Tue, 29 Apr 2025 17:09:22 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Andre Przywara <andre.przywara@arm.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
-	samuel@sholland.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
-Message-ID: <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch>
-References: <20250413134318.66681-1-jernej.skrabec@gmail.com>
- <2219754.irdbgypaU6@jernej-laptop>
- <34e30bf2-6f80-4c43-9e52-c1ebe0521c43@lunn.ch>
- <5880182.DvuYhMxLoT@jernej-laptop>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jVJElpEB0kugpayb+q5muJYeH6YrM9qxR1mzTfk6AE+YQ50J6zioLpInxvVOZ0icxLazSRtiOS/IDsTWLk1JesH9sebhdbJoEpxH8jZHoFwqAUvF3NZsAsGKLV4hioMT6i7euqQ5tqJx5qf4wM3MtWtbYQzM6cWis1tlhExSG/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hy6OqaRB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60BA3C4CEE3;
+	Tue, 29 Apr 2025 15:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745939418;
+	bh=tH/b0H08UXNUu6dgbm5YvkwLd90cHvKfu0wgbJrpW2g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hy6OqaRBXW2VArQAk0HkFGDWr69g/SzJsfJZ8IPR1Da5ckDhHLpiiUjgvvbO+3d+z
+	 x6OyY3irDdVMdsLz93UdVfUuXLXt9ZAbakYx2C+aZr4c4Ht9M7eKlJE18cZ4+e8PfM
+	 GI/Msv6SpjxgBS/1192R8lJEg7LYJPB9EVTCaBdSJsWFgdI+zpB/1LQK/WjxeVTvQz
+	 SySUAwMTrdZQPKibhIOSLjq/dlrplor/hJGnfSBtKUcau3TUy64Nah2sllXE3kGObb
+	 IWFx+2ZIX4B3VrYYkYCvDyMsMz7FhOd7svLyuOj755afscDhWwYdztPQR0zDf6d9i4
+	 uWJG6YYSthiuA==
+Date: Tue, 29 Apr 2025 16:10:13 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	jun.li@nxp.com, alexander.stein@ew.tq-group.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb: improve some tuning
+ properties
+Message-ID: <20250429-charbroil-easing-04f579c68a2d@spud>
+References: <20250429033009.2388291-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6fwPel+VdaSrAtp/"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5880182.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <20250429033009.2388291-1-xu.yang_2@nxp.com>
 
-On Tue, Apr 29, 2025 at 04:51:59PM +0200, Jernej Škrabec wrote:
-> Dne ponedeljek, 28. april 2025 ob 14:37:48 Srednjeevropski poletni čas je Andrew Lunn napisal(a):
-> > On Sat, Apr 26, 2025 at 08:00:49PM +0200, Jernej Škrabec wrote:
-> > > Dne petek, 25. april 2025 ob 17:34:14 Srednjeevropski poletni čas je Andrew Lunn napisal(a):
-> > > > > > +&emac {
-> > > > > > +	pinctrl-names = "default";
-> > > > > > +	pinctrl-0 = <&ext_rgmii_pins>;
-> > > > > > +	phy-mode = "rgmii-rxid";
-> > > > > 
-> > > > > So relating to what Andrew said earlier today, should this read rgmii-id
-> > > > > instead? Since the strap resistors just set some boot-up value, but we
-> > > > > want the PHY driver to enable both RX and TX delay programmatically?
-> > > > 
-> > > > Yes.
-> > > > 
-> > > > There is a checkpatch.pl patch working its way through the system
-> > > > which will add warning about any rgmii value other than rgmii-id. Such
-> > > > values need a comment that the PCB has extra long clock
-> > > > lines. Hopefully that will make people actually stop and think about
-> > > > this, rather than just copy broken vendor code.
-> > > 
-> > > I spent quite some time working on ethernet support for this board. Once
-> > > I've found PHY datasheet, I confirmed that there is added delay. So this
-> > > particular board needs "rgmii-rxid" mode.
-> > 
-> > There have been numerous discussions about what these rgmii modes
-> > mean, because DT developers frequently get them wrong.
-> > 
-> > Does the PCB have an extra long clock line in the TX direction? That
-> > is what rgmii-rxid means, the PCB is providing the TX delay, the
-> > MAC/PHY pair needs to add the RX delay.
-> 
-> While schematic is accessible, AFAIK PCB/gerbers are not, so I can't really
-> tell how long it is. But without this extra delay, ethernet doesn't work.
 
-You are not adding an extra delay, you are subtracting a
-delay. 'rgmii-rxid' says the TX delay is implemented by the PCB, hence
-the PHY does not need to add the delay.
+--6fwPel+VdaSrAtp/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What is normal is that the PCB adds no delays, and the PHY adds the
-delay for both the RX and the TX. And you represent this with
-'rgmii-id'.
+On Tue, Apr 29, 2025 at 11:30:07AM +0800, Xu Yang wrote:
+> Commit b2e75563dc39 ("dt-bindings: phy: imx8mq-usb: add phy tuning
+> properties") add many tuning properties, but some parameter value doesn't
+> match the register description. It made some changes based on the original
+> value: add offset to a negative number so turn it to a non-negative numbe=
+r.
+> However, it's not easy to find an exact tuning value from register field
+> with such conversion.
+>=20
+> Because device-tree supports negative parameter number, this will improve
+> some propertie's parameter.
+>=20
+> Mainly include below properties:
+>  - fsl,phy-tx-vref-tune-percent
+>  - fsl,phy-tx-rise-tune-percent
+>  - fsl,phy-comp-dis-tune-percent
+>=20
+> The parameter value of above 3 properties are USB PHY specific. i.MX8MP
+> and i.MX95 USB PHY has different meanings. So this add restrictions for
+> them.
 
-So what you need to find out is, where does the TX delay come from?
+It's hard for me to understand from this if you're actually changing the
+meaning of the property. Will the current/old values continue to
+function as they have been?
 
-	Andrew
+>=20
+>  - fsl,phy-tx-vboost-level-microvolt
+>=20
+> For this property, the parameter value is wrong in register description.
+> This will correct it according to true value.
+>=20
+> For detailed info, please refer to i.MX8MP and i.MX95 latest reference
+> manual.
+>=20
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>=20
+> ---
+> Changes in v2:
+>  - keep widest constraints
+>  - use multipleOf for some properties
+> ---
+>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 60 +++++++++++++++----
+>  1 file changed, 49 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yam=
+l b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> index daee0c0fc915..71e5940ef4b8 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> @@ -42,16 +42,17 @@ properties:
+> =20
+>    fsl,phy-tx-vref-tune-percent:
+>      description:
+> -      Tunes the HS DC level relative to the nominal level
+> -    minimum: 94
+> -    maximum: 124
+> +      Tunes the HS DC level relative to the nominal level. It varies
+> +      between different PHY versions
+> +    minimum: -1000
+> +    maximum: 875
+> =20
+>    fsl,phy-tx-rise-tune-percent:
+>      description:
+>        Adjusts the rise/fall time duration of the HS waveform relative to
+> -      its nominal value
+> -    minimum: 97
+> -    maximum: 103
+> +      its nominal value. It varies between different PHY versions
+> +    minimum: -10
+> +    maximum: 20
+> =20
+>    fsl,phy-tx-preemp-amp-tune-microamp:
+>      description:
+> @@ -63,15 +64,14 @@ properties:
+>    fsl,phy-tx-vboost-level-microvolt:
+>      description:
+>        Adjust the boosted transmit launch pk-pk differential amplitude
+> -    minimum: 880
+> -    maximum: 1120
+> +    enum: [844, 1008, 1156]
+> =20
+>    fsl,phy-comp-dis-tune-percent:
+>      description:
+>        Adjust the voltage level used to detect a disconnect event at the =
+host
+> -      relative to the nominal value
+> -    minimum: 91
+> -    maximum: 115
+> +      relative to the nominal value. It varies between different PHY ver=
+sions
+> +    minimum: -60
+> +    maximum: 45
+> =20
+>    fsl,phy-pcs-tx-deemph-3p5db-attenuation-db:
+>      description:
+> @@ -112,6 +112,44 @@ allOf:
+>          reg:
+>            maxItems: 1
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,imx8mq-usb-phy
+> +            - fsl,imx8mp-usb-phy
+> +    then:
+> +      properties:
+> +        fsl,phy-tx-vref-tune-percent:
+> +          minimum: -6
+> +          maximum: 24
+> +          multipleOf: 2
+> +        fsl,phy-tx-rise-tune-percent:
+> +          enum: [-3, -1, 0, 3]
+> +        fsl,phy-comp-dis-tune-percent:
+> +          enum: [-9, -6, -3, 0, 4, 7, 11, 15]
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx95-usb-phy
+> +    then:
+> +      properties:
+> +        fsl,phy-tx-vref-tune-percent:
+> +          description: 100x the original
+> +          minimum: -1000
+> +          maximum: 875
+> +          multipleOf: 125
+> +        fsl,phy-tx-rise-tune-percent:
+> +          enum: [-10, 0, 15, 20]
+> +        fsl,phy-comp-dis-tune-percent:
+> +          description: 10x the original
+> +          minimum: -60
+> +          maximum: 45
+> +          multipleOf: 15
+> +
+>    - if:
+>        required:
+>          - orientation-switch
+> --=20
+> 2.34.1
+>=20
+
+--6fwPel+VdaSrAtp/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBDr1AAKCRB4tDGHoIJi
+0ih9AQDT8xFlp6KhPojdSp42RYiUGcj8PdnHv9paubx+sFlINgEAwKSNVrFiQ6Z0
+NamP3TPzHWAbYTYUyslHKxgpO109Kg0=
+=5BX7
+-----END PGP SIGNATURE-----
+
+--6fwPel+VdaSrAtp/--
 
