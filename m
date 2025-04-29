@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-171776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4B9AA028E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:10:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBC5AA029D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C40179AFD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:10:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C06F5481359
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8070027465E;
-	Tue, 29 Apr 2025 06:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126E52749ED;
+	Tue, 29 Apr 2025 06:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RjiMcRfG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="te3t2r4Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4514227057C;
-	Tue, 29 Apr 2025 06:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF380270ED6;
+	Tue, 29 Apr 2025 06:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745906949; cv=none; b=DMsfg2caeARb2CTjfkSnaB3G3LEOE4Tj2NkjUg9gzPkW5hW0i//zqlVPRdx94SFbOHND8JL10/5mm8CB3ScqA7FnZ/1ZDtORtIG5BhWF7vKYnppWw+pHx1PEMOwUj1YONDdMfLFi3XJBLxSW7a4Az6CeaARMdKvU8y/bSGoqYYo=
+	t=1745907088; cv=none; b=JPFFMOSB90RFQlcK7BSbzrT1HGdqS5GGXLe9YzKVwVc/aFm9fgJJXNUtLXhfUd8/FBczz2ita3RBWlQmkfs+MOoIzGY6lbx/roSVSMmF6VEbhDSDvLyPzxYHm7qGiNG/+pHgFhfxOOwr0XGYRZwXgfKT63KYKC55yl+eqZaCBSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745906949; c=relaxed/simple;
-	bh=Marj5r3kVxF6pHVxPMZl6SBr+BOUstXhJdPVFluqlvQ=;
+	s=arc-20240116; t=1745907088; c=relaxed/simple;
+	bh=7r91QPvHTucYyjUGmWeMmrdNc/3j4iwsraJ6ag2bkv8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D6BcsahOM4BJe55p1EqKf6QfBH07vfTDjLTNGFufpTDr5lQp458px9LuQ3QSBJKFf/C4b1UnUzA+lCVD5G3KXzQJB/ZHt5ldKZHEqM+ovZoqXwzwOysuKQG2chUuaz4lUYKIyqaaxcsvM3UbjjjT99U4sTGE6at6mCuuAzGKFdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RjiMcRfG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54996C4CEE3;
-	Tue, 29 Apr 2025 06:09:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=n/7eEk9yWws5fFFtJ5sRrWzQCO3xX8ZYxPl7dqLbq3lsxXfCnX+fPhmeKOsUbt6akAaLK3sYtsJ2LZh3XtEwUrcDcgmItewLILJkhy5XnrbH4o8Osqq8JVnDE3+dr6ecypU0v3/bTexm5GrJVOyScU8q89ecarPN8QrwZUXAWys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=te3t2r4Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E421C4CEED;
+	Tue, 29 Apr 2025 06:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745906948;
-	bh=Marj5r3kVxF6pHVxPMZl6SBr+BOUstXhJdPVFluqlvQ=;
+	s=k20201202; t=1745907087;
+	bh=7r91QPvHTucYyjUGmWeMmrdNc/3j4iwsraJ6ag2bkv8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RjiMcRfGSTfBwP5V5QrWTwXA5LPhlb1MLs/ow5uf2/nKYhX0gHR1S1G1avyWldTu5
-	 FUw10U/MGYxMfaYon/pbzeMTaLWBtmImQs3ZS1wC/I1lscqrXbhYOhEiaTOMfUMMLM
-	 1ZBFgWaNyhr+m84SpCBiTjA3FIj8DtM4w7q18d9HWLkGvVL+hmC853dB0cdXCgaMd4
-	 YJMl+CWOUuvteojV6ACPLb6XNcf+16mudGUS2kBe8/rwEcr8btAGeL7sGRdPM6pMBv
-	 y1Cl3tfp4MZrC7GRR1v6QM9AASV9w6K4KoxnvvI4n7CrQvPvR0YkdkqByldN53f8E3
-	 nQ3ZfMN7X1JEg==
-Message-ID: <8fdb13dd-6540-471e-9be0-b7248533e522@kernel.org>
-Date: Tue, 29 Apr 2025 08:09:01 +0200
+	b=te3t2r4YvK/EcozCfEPi26UDMVCsBMd+UotHjPCY6c7IQcDea7wzNBaY5pGDsdgut
+	 xkhjI6CNriDWthTq8kqhcAi17d6sbdcVkNC5tXuat1XgbDtGOKEIlDNdBktUQmB6M7
+	 RK8uH5JE/4tEDAHTe48yNfmsvzTm3dB/muW7jrRs0/FZAhFzAiyiTeS9GPebwsSxn/
+	 yXsqRQXaUEW2YSOnFB8ETJiRZIBRBCRR6y1djP7ZucDLiGD7cC9hCj3Wi2inwkmTbj
+	 fC8aearvOkmPQhUczBJSuCY/7E20Q1GrwMSDPNGKD0/kAEzCt6hVyAqVNuyvC1IwvG
+	 PI8oD0Wl2IvMA==
+Message-ID: <552b0c26-af9a-4b6e-bbbc-4abf2d8d422d@kernel.org>
+Date: Tue, 29 Apr 2025 08:11:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Srinivas Kandagatla <srini@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20250428-max77759-mfd-v7-0-edfe40c16fe8@linaro.org>
- <20250428-max77759-mfd-v7-5-edfe40c16fe8@linaro.org>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-phy: remove
+ eee-broken flags which have never had a user
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <ee9a647e-562d-4a66-9f9b-434fed05090d@gmail.com>
+ <aacd2344-d842-4d10-9ec8-a9d1d11ae8ed@gmail.com>
+ <20250428-alluring-duck-of-security-0affaa@kuoka>
+ <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,38 +110,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250428-max77759-mfd-v7-5-edfe40c16fe8@linaro.org>
+In-Reply-To: <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/04/2025 13:36, André Draszik wrote:
-> +static const struct of_device_id max77759_gpio_of_id[] = {
-> +	{ .compatible = "maxim,max77759-gpio", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max77759_gpio_of_id);
-> +
-> +static struct platform_driver max77759_gpio_driver = {
-> +	.driver = {
-> +		.name = "max77759-gpio",
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +		.of_match_table = max77759_gpio_of_id,
-> +	},
-> +	.probe = max77759_gpio_probe,
-> +};
-> +
-> +module_platform_driver(max77759_gpio_driver);
-> +
-> +MODULE_AUTHOR("André Draszik <andre.draszik@linaro.org>");
-> +MODULE_DESCRIPTION("GPIO driver for Maxim MAX77759");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:max77759-gpio");
-
-Drop alias, if you need it means you have incomplete platform ID table
-(because it means you will need to add more aliases on every new OF entry).
-
-> 
-
+On 28/04/2025 22:29, Heiner Kallweit wrote:
+> On 28.04.2025 09:42, Krzysztof Kozlowski wrote:
+>> On Tue, Apr 15, 2025 at 09:55:55PM GMT, Heiner Kallweit wrote:
+>>> These flags have never had a user, so remove support for them.
+>>
+>> They have no in-kernel user, but what about all out of tree users in
+>> kernel and other projects using bindings?
+>>
+> I doubt there's any user outside the kernel. But it's hard to prove
+> that something does not exist. For my understanding:
+> What would be the needed proof to consider removal of these
+> flag bindings safe?
+Open source projects you can check at least.
 
 Best regards,
 Krzysztof
