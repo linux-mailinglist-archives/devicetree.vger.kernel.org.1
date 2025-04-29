@@ -1,218 +1,111 @@
-Return-Path: <devicetree+bounces-172119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866A1AA3B73
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 00:28:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87903AA3B7E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 00:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D2089A3819
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 22:27:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F18A1B66625
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 22:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE7C2749CA;
-	Tue, 29 Apr 2025 22:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52ECE2750E4;
+	Tue, 29 Apr 2025 22:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lJ6KqqbV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gOHSLfvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FD92749ED;
-	Tue, 29 Apr 2025 22:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 226302749E1;
+	Tue, 29 Apr 2025 22:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745965641; cv=none; b=kcwXP2a5LukXJPto3XO6jMiuyh01uM7tcwoDtOoDIoZs7EDfaVk1QfveLZDYXyfIk8zQ9ptLAySA+NqNY4DE+SBzED5M1SGqDOy+QPrynci4qun563tg9PiGH+ME49sBK0xNpQUkHamg9hLDoR6aUxvDkfd55eTsLF1EidgcaN0=
+	t=1745965788; cv=none; b=eWFlFt80mq1nkvuIaTgfgc1/i7wWxPyrG04NUTYa4KPwxoH+sWKspVvsLi09rXEhhnupfO31xF/6q8LdE4sSc9grdaf1vYkqpJPh0Kk1fAXlsgDVI3m2QbKoyW7C83sfnsoIJQuDAdzvQrx74eZKYb50HEO6h/OO8hgfuBKqKeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745965641; c=relaxed/simple;
-	bh=OtGRqdpcH2U0CtLkLJmpDiCYxHQ/nTJLUL4O01UeOIc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MRj5cxxWGbGcy/Iq6y/xlA5D67Ei/IAU/1SLMWLgvO70WU47irwp/S9v7UX8BiH5wpoTz2MnzUtEnBPHJu4YRBlLTmzHPBoW0bKeA7W91CFp1gHI2ds4XjUPzVfzHzDYS9fmelSuFzLfgBEdd7pPMgRY42/70PexSixQX3qdTpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lJ6KqqbV; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac3eb3fdd2eso1165083366b.0;
-        Tue, 29 Apr 2025 15:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745965638; x=1746570438; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zd9gQCsKJpq8vf5tNDACpW4tnOCKgHHE95O2VfBWGgw=;
-        b=lJ6KqqbVnwOBoeuLZFoL3MQeu6BYOV7II8KbYTTDkM97GSbMsO7aNQFFgteV7lv8Fj
-         34kyMk0F7vmVp4o1AmPsaKdIpoTivsHF2Z92R1SEe7su2Dd0wnQbr98COshv5wx8xuJh
-         xRQObbUx3m3cu3hvplVf4SV8LN6r0O4zQL3xF0nr+14bdzvq8I4aTqvuT42AWWYuZV9u
-         fn8HqJHh8fomlbl8R6dVa0Su8RpH3Yn+4or8I7rKv0svE1HCvHcyHC6MZ/wy/wurDlnw
-         n7N89wiqctqA3qQ9og3xQuA/V0m6mMvkcL+XruWcVjOsUcbyg07uF72nMhWqmYYpkyGR
-         UqMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745965638; x=1746570438;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zd9gQCsKJpq8vf5tNDACpW4tnOCKgHHE95O2VfBWGgw=;
-        b=IUe3fZLPpgL4XqxO9Td/YI7q061GQ+F6FKh55Qx4RDj3lmoUNxX17BUqk6+1S4oKCc
-         ehM1BZfAAgACgXjxytJFlCpKlr6CbMUkHNPkD4vnisIr+HFQTF9CJnYxdSG2gVfdZ5hI
-         QsMeBd/OS+qav+zMMD9Sf2nSgytwvWR4YIWdAcBevptngLXpbZukaGp5GNe0CI0nBVYw
-         TPf4qhl9If+OtlXW6c5+Zh2rPjra0Te5A/Jf5m2g7bFu9SauGUa3ewUzq4YuC5ksX/9Z
-         eOPZ84/+wR6uSlz6yoGfIHhkZ0IlKDr+MBKzoqWn61CiaT5cAh3phdx8pbN39xHoQ2d4
-         W1sw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNTkoTEZNA1iXIE+Oo4AUf9cwBHDA6G2qTmmvP8z4JcBTKX4T6vwSPKQnKZO+6+Nn+e8eEv3Trw8mW@vger.kernel.org, AJvYcCVdzymBQ7A/LtsrZ0bxNtOAc59CfnXO7kBe093Ae+uaVHH9ZvvomJFS6hEONxlh0KPDiPpWbC/otx+DwJjn@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywe6gq3OZCO4njNJIEz8lf94cui1wykurt8nxuB991ag4WeYA7c
-	b2rxZkdMd4HyTqVBxevvgt5PBxdf6QI7zwkXTSgd825svV029fRj4XSQU0X1PcxnvAMTKzSB/ii
-	hjFS4e7aL4uRAeQdGLKaGIpQmMls=
-X-Gm-Gg: ASbGnct72OMHKjFEmWbQXfgwx407kk5mrj2cZ1HQNTJ6MLKcBTiQleZzQZS7+HWy6E7
-	dLhO3IVRttNOAVn261b+U/kq6C/mBgoPvCP+4cFkvxhXJcnD3g7l8NQUNSfFMyfslc5eaevirUt
-	5adO8mDpuxZ1JtbMB4lL+98A==
-X-Google-Smtp-Source: AGHT+IGyPe8/uaDOHmjcGbfNVqIL3Y3TgPPVPT9WBKU8oWu6v5eOMjG3nnoHsGqwoKvwkgL/6GUeyG2HdpbTIWpYj0w=
-X-Received: by 2002:a17:907:1c96:b0:ace:c3a9:81bb with SMTP id
- a640c23a62f3a-acedc593309mr104325266b.5.1745965637879; Tue, 29 Apr 2025
- 15:27:17 -0700 (PDT)
+	s=arc-20240116; t=1745965788; c=relaxed/simple;
+	bh=krVN7fbLDEgUpA3CZRaPnPrQx/YtEFqbO33A+c1lnE0=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=UbTpiek5JbhlvOjZkt5Ya4N0Fd24ksVzOPJyHMytNJ98akvKk8V3T2BhC49CBdxLF/OnQxUXOtPtpV5SoPjWlXdnxAC+EUeQAZQiYaxYWCNMCTh2IOD36jevJRtcPzrsQe8hhlvCkuq3O4azaGVVkhMiww+IOP7oQANu5vvt/Sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOHSLfvd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D573C4CEE3;
+	Tue, 29 Apr 2025 22:29:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745965787;
+	bh=krVN7fbLDEgUpA3CZRaPnPrQx/YtEFqbO33A+c1lnE0=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=gOHSLfvdCibmwpEa/qnvyBi3DOHj6LwLBNnR5umgTyIpzr6ishK7lzagEG4u/X0A6
+	 Gu7XUIaaTz0hulUcTeerC9q13qE0vQ8TX6Hd0ERoBgVtZoNPDCkOJTxYm4ILBWcZrU
+	 aLma7kuKv09FpEJ8g67GOph8JOFjgufewWx/u0QH4Db4ZXvVzKBhJhsSkjnWbvKSRl
+	 S1QnVz2rQGLBqz8b3VsepNJj6DwXoLFEr+L6tTH+uXurmZ7q+51ih6cjN9U3pG7/LU
+	 dSaevH9O3KiPPOjUXfbrCJ3bawtVYXN0Q4mEeAmOMphYetKJ1JNR+GQyM6zx5ak3uk
+	 UEl/1ZupSCyag==
+Message-ID: <9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1745841276.git.marcelo.schmitt@analog.com> <3687a9e0a479aef9736ad557b341ed2e7d4f5756.1745841276.git.marcelo.schmitt@analog.com>
-In-Reply-To: <3687a9e0a479aef9736ad557b341ed2e7d4f5756.1745841276.git.marcelo.schmitt@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 30 Apr 2025 01:26:41 +0300
-X-Gm-Features: ATxdqUGegN2_s_sjODFS8rtIi860gHJiqkmftv0vqgAn_mQCpAdd8_T7EXvMtwA
-Message-ID: <CAHp75VerW=GnsomWLqUyK6AWU+dVDPxhAVmafuwy4cDpbyPVUA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] iio: adc: ad4170: Add support for weigh scale and
- RTD sensors
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com, 
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+References: <20250403094425.876981-1-m.wilczynski@samsung.com> <CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com> <20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1> <17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+To: Drew Fustini <drew@pdp7.com>, Michal Wilczynski <m.wilczynski@samsung.com>
+Date: Tue, 29 Apr 2025 15:29:45 -0700
+User-Agent: alot/0.12.dev8+g17a99a841c4b
 
-On Mon, Apr 28, 2025 at 3:30=E2=80=AFPM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
->
-> The AD4170 design has features to aid interfacing with weigh scale and RT=
-D
-> sensors that are expected to be setup with external circuitry for proper
-> sensor operation. A key characteristic of those sensors is that the circu=
-it
-> they are in must be excited with a pair of signals. The external circuit
-> can be excited either by voltage supply or by AD4170 excitation signals.
-> The sensor can then be read through a different pair of lines that are
-> connected to AD4170 ADC.
->
-> Configure AD4170 to handle external circuit sensors.
+Quoting Michal Wilczynski (2025-04-07 08:30:43)
+> On 4/5/25 01:16, Drew Fustini wrote:
+> >> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/d=
+ts/thead/th1520.dtsi
+> >> index 527336417765..d4cba0713cab 100644
+> >> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> @@ -489,6 +489,13 @@ clk: clock-controller@ffef010000 {
+> >>                      #clock-cells =3D <1>;
+> >>              };
+> >> =20
+> >> +            clk_vo: clock-controller@ffef528050 {
+> >> +                    compatible =3D "thead,th1520-clk-vo";
+> >> +                    reg =3D <0xff 0xef528050 0x0 0xfb0>;
+> >=20
+> > Thanks for your patch. It is great to have more of the clocks supported
+> > upstream.
+> >=20
+> > The TH1520 System User Manual shows 0xFF_EF52_8000 for VO_SUBSYS on page
+> > 205. Is there a reason you decided to use 0xFF_EF52_8050 as the base?
+> >=20
+> > I see on page 213 that the first register for VO_SUBSYS starts with
+> > VOSYS_CLK_GATE at offset 0x50. I figure you did this to have the
+> > CCU_GATE macros use offset of 0x0 instead 0x50.
+> >=20
+> > I kind of think the reg property using the actual base address
+> > (0xFF_EF52_8000) makes more sense as that's a closer match to the tables
+> > in the manual. But I don't have a strong preference if you think think
+> > using 0xef528050 makes the CCU_GATE macros easier to read.
+>=20
+> Thank you for your comment.
+>=20
+> This was discussed some time ago. The main issue was that the address
+> space was fragmented between clocks and resets. Initially, I proposed
+> using syscon as a way to abstract this, but the idea wasn't particularly
+> well received.
+>=20
+> So at the start of the 0xFF_EF52_8000 there is a reset register GPU_RST_C=
+FG
+> I need for resetting the GPU.
+>=20
+> For reference, here's the earlier discussion: [1]
+>=20
+> [1] - https://lore.kernel.org/all/1b05b11b2a8287c0ff4b6bdd079988c7.sboyd@=
+kernel.org/
+>=20
 
-...
-
-> +static const unsigned int ad4170_iout_current_ua_tbl[] =3D {
-> +       0, 10, 50, 100, 250, 500, 1000, 1500
-
-Leave trailing comma.
-
-> +};
-
-...
-
-> +       if (st->pins_fn[ain_n] & AD4170_PIN_VBIAS) {
-> +               *ain_voltage =3D (st->vrefs_uv[AD4170_AVDD_SUP]
-> +                               - st->vrefs_uv[AD4170_AVSS_SUP]) / 2;
-
-Don't wrap like this, keep the logical split, and looking at this I
-would just put it either on a single line, or use a temporary variable
-for the expression in parentheses.
-
-> +               return 0;
-> +       }
-
-...
-
-> +static int ad4170_validate_excitation_pins(struct ad4170_state *st,
-> +                                          u32 *exc_pins, int num_exc_pin=
-s)
-> +{
-> +       struct device *dev =3D &st->spi->dev;
-> +       int ret, i;
-
-Should 'i' be signed?
-
-> +       for (i =3D 0; i < num_exc_pins; i++) {
-> +               unsigned int pin =3D exc_pins[i];
-> +
-> +               ret =3D ad4170_find_table_index(ad4170_iout_pin_tbl, pin)=
-;
-> +               if (ret < 0)
-> +                       return dev_err_probe(dev, ret,
-> +                                            "Invalid excitation pin: %u\=
-n",
-> +                                            pin);
-> +
-> +               if (pin <=3D AD4170_MAX_ANALOG_PINS) {
-> +                       if (st->pins_fn[pin] !=3D AD4170_PIN_UNASIGNED)
-> +                               return dev_err_probe(dev, -EINVAL,
-> +                                                    "Pin %u already used=
- with fn %u\n",
-> +                                                    pin, st->pins_fn[pin=
-]);
-> +
-> +                       st->pins_fn[pin] |=3D AD4170_PIN_CURRENT_OUT;
-> +               } else {
-> +                       unsigned int gpio =3D pin - AD4170_CURRENT_SRC_I_=
-OUT_PIN_GPIO0;
-> +
-> +                       if (st->gpio_fn[gpio] !=3D AD4170_GPIO_UNASIGNED)
-> +                               return dev_err_probe(dev, -EINVAL,
-> +                                                    "GPIO %u already use=
-d with fn %u\n",
-> +                                                    gpio, st->gpio_fn[gp=
-io]);
-> +
-> +                       st->gpio_fn[gpio] |=3D AD4170_GPIO_AC_EXCITATION;
-> +               }
-> +       }
-> +       return 0;
-> +}
-
-...
-
-Also consider inverting the conditional in ad4170_setup_bridge() to
-drop indentation level in a lot of LoCs.
-
-...
-
-> +       switch (s_type) {
-> +       case AD4170_ADC_SENSOR:
-> +               ret =3D ad4170_parse_adc_channel_type(dev, child, chan);
-> +               if (ret < 0)
-
-Why ' < 0'?
-
-> +                       return ret;
-> +
-> +               break;
-> +       case AD4170_WEIGH_SCALE_SENSOR:
-> +               fallthrough;
-> +       case AD4170_THERMOCOUPLE_SENSOR:
-> +               fallthrough;
-> +       case AD4170_RTD_SENSOR:
-> +               ret =3D ad4170_parse_external_sensor(st, child, setup, ch=
-an,
-> +                                                  s_type);
-> +               if (ret < 0)
-
-Ditto.
-
-> +                       return ret;
->
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-
---=20
-With Best Regards,
-Andy Shevchenko
+In that email I said you should have one node
+clock-controller@ffef528000. Why did 0x50 get added to the address?
 
