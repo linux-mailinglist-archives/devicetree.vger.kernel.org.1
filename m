@@ -1,41 +1,48 @@
-Return-Path: <devicetree+bounces-171802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E69FAA0436
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:19:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4B9AA028E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71D681A878E9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:19:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C40179AFD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC4927814B;
-	Tue, 29 Apr 2025 07:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8070027465E;
+	Tue, 29 Apr 2025 06:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EpGcqWX9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RjiMcRfG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731104.qiye.163.com (mail-m19731104.qiye.163.com [220.197.31.104])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C332750E1;
-	Tue, 29 Apr 2025 07:19:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.104
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4514227057C;
+	Tue, 29 Apr 2025 06:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745911151; cv=none; b=MBr3L4hORxc9M+R9aol8/RKmDPC8zkq3mOTLNQawCGYuByI1KfADptLocQPbBqJE055pobFBq4H6vzzxR5lhrgUe9EUXlvGglmQmt8mn2SsWc3Yv0ExzV61ad+EEM6TLAwRjTMJV/lfGsPJiqP63F6bI7Pxrf1dB0LJvhIdvo/Q=
+	t=1745906949; cv=none; b=DMsfg2caeARb2CTjfkSnaB3G3LEOE4Tj2NkjUg9gzPkW5hW0i//zqlVPRdx94SFbOHND8JL10/5mm8CB3ScqA7FnZ/1ZDtORtIG5BhWF7vKYnppWw+pHx1PEMOwUj1YONDdMfLFi3XJBLxSW7a4Az6CeaARMdKvU8y/bSGoqYYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745911151; c=relaxed/simple;
-	bh=iN5EuTFR6FY4U9PPMMwgN8esEdP0zX1zCcZhV+aHgFc=;
+	s=arc-20240116; t=1745906949; c=relaxed/simple;
+	bh=Marj5r3kVxF6pHVxPMZl6SBr+BOUstXhJdPVFluqlvQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nh1SGtQol8PTK5R7zKljzO5e0X4h7PwOWg9RUJ6Mgu+0kgrFRTJjXdc42pwaLHanQjz1JyImDM4PZMeRwq+o1TUB50lKDmvrQiMii9SlMbWngDrYBg9ZqdBsuOxt6YaMM6Nm3l/mBmPnuqPmHGIDjpgiH9oLewk9aLuylZVNP/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EpGcqWX9; arc=none smtp.client-ip=220.197.31.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 137882886;
-	Tue, 29 Apr 2025 10:42:59 +0800 (GMT+08:00)
-Message-ID: <027de192-4227-4010-a759-5283b6af1531@rock-chips.com>
-Date: Tue, 29 Apr 2025 10:42:59 +0800
+	 In-Reply-To:Content-Type; b=D6BcsahOM4BJe55p1EqKf6QfBH07vfTDjLTNGFufpTDr5lQp458px9LuQ3QSBJKFf/C4b1UnUzA+lCVD5G3KXzQJB/ZHt5ldKZHEqM+ovZoqXwzwOysuKQG2chUuaz4lUYKIyqaaxcsvM3UbjjjT99U4sTGE6at6mCuuAzGKFdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RjiMcRfG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54996C4CEE3;
+	Tue, 29 Apr 2025 06:09:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745906948;
+	bh=Marj5r3kVxF6pHVxPMZl6SBr+BOUstXhJdPVFluqlvQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RjiMcRfGSTfBwP5V5QrWTwXA5LPhlb1MLs/ow5uf2/nKYhX0gHR1S1G1avyWldTu5
+	 FUw10U/MGYxMfaYon/pbzeMTaLWBtmImQs3ZS1wC/I1lscqrXbhYOhEiaTOMfUMMLM
+	 1ZBFgWaNyhr+m84SpCBiTjA3FIj8DtM4w7q18d9HWLkGvVL+hmC853dB0cdXCgaMd4
+	 YJMl+CWOUuvteojV6ACPLb6XNcf+16mudGUS2kBe8/rwEcr8btAGeL7sGRdPM6pMBv
+	 y1Cl3tfp4MZrC7GRR1v6QM9AASV9w6K4KoxnvvI4n7CrQvPvR0YkdkqByldN53f8E3
+	 nQ3ZfMN7X1JEg==
+Message-ID: <8fdb13dd-6540-471e-9be0-b7248533e522@kernel.org>
+Date: Tue, 29 Apr 2025 08:09:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,92 +50,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jianfeng Liu <liujianfeng1994@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Jimmy Hon <honyuenkwun@gmail.com>, Quentin Schulz
- <quentin.schulz@cherry.de>, FUKAUMI Naoki <naoki@radxa.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Alexey Charkov <alchark@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250427094211.246-1-kernel@airkyi.com>
- <20250427094211.246-3-kernel@airkyi.com>
- <6291f6b8-75d3-4243-9935-9b64450e2b7f@lunn.ch>
- <c583c59a-d5b7-4e20-9a1f-96f51bd7b4f3@rock-chips.com>
- <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v7 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250428-max77759-mfd-v7-0-edfe40c16fe8@linaro.org>
+ <20250428-max77759-mfd-v7-5-edfe40c16fe8@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250428-max77759-mfd-v7-5-edfe40c16fe8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkpKT1YaHh0ZH05OSEIYTB1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-X-HM-Tid: 0a967f6d1f6303abkunm137882886
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MhA6Hww5QjJCHSkuOjw5LhUD
-	C0lPCg9VSlVKTE9OQ0JPTkNMSEpPVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
-	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElCSzcG
-DKIM-Signature:a=rsa-sha256;
-	b=EpGcqWX9zy7b4aOQJQl3I+h7mRCxOtfrxcfOyZWgCO5Xbg67xbaFmiQOrSj42HnlGh3mT2NSrLAHkxuGFUuURJhC9/XoiI1g47KLJ33keDr/FvfvjP0JhZUJzOwuhpVsunq+3DGBVLesmqCEjhgrA/sFnyq1HT1xtUBZjxkaPhQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=gkmGwA1JNJSi9vWgEDnuu8pe72dV9P14DRuR/dc+N4Y=;
-	h=date:mime-version:subject:message-id:from;
 
-Hi Andrew,
+On 28/04/2025 13:36, André Draszik wrote:
+> +static const struct of_device_id max77759_gpio_of_id[] = {
+> +	{ .compatible = "maxim,max77759-gpio", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max77759_gpio_of_id);
+> +
+> +static struct platform_driver max77759_gpio_driver = {
+> +	.driver = {
+> +		.name = "max77759-gpio",
+> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+> +		.of_match_table = max77759_gpio_of_id,
+> +	},
+> +	.probe = max77759_gpio_probe,
+> +};
+> +
+> +module_platform_driver(max77759_gpio_driver);
+> +
+> +MODULE_AUTHOR("André Draszik <andre.draszik@linaro.org>");
+> +MODULE_DESCRIPTION("GPIO driver for Maxim MAX77759");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:max77759-gpio");
 
-On 2025/4/28 20:45, Andrew Lunn wrote:
-> On Mon, Apr 28, 2025 at 09:47:34AM +0800, Chaoyi Chen wrote:
->> Hi Andrew,
->>
->> On 2025/4/28 4:42, Andrew Lunn wrote:
->>>> +&gmac {
->>>> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
->>>> +	assigned-clock-parents = <&clkin_gmac>;
->>>> +	pinctrl-names = "default";
->>>> +	pinctrl-0 = <&rgmii_pins>;
->>>> +	clock_in_out = "input";
->>>> +	phy-supply = <&vcc_phy>;
->>>> +	phy-mode = "rgmii";
->>> Does the PCB have extra long clock lines to implement the RGMII 2ns
->>> delay?
->> The 2ns delay of RGMII is implemented inside the RK3399 chip instead of PCB
->> lines, and there are also additional delayline configurations.
-> If the PCB does not implement the delay, rgmii is wrong.
->
-> If the MAC/PHY pair is implementing the delay, you need to use
-> rgmii-id. You can then use additional properties to fine tune the
-> delay the MAC/PHY is adding. And the Linux preference is that the PHY
-> adds the delay.
+Drop alias, if you need it means you have incomplete platform ID table
+(because it means you will need to add more aliases on every new OF entry).
 
-The signal path of RK3399 is as follows:
-
-MAC <---> IO <---> PHY
-
-In fact, the delay is added to the path between the MAC and the IO, 
-rather than being implemented in the MAC itself. These delay value is 
-controlled by the GRF register[0] . These paths are implemented inside 
-the SoC and have not yet reached the board level.
-
-According to the document[1], use "rgmii" when "RX and TX delays are 
-added by the MAC when required". In addition, currently we can see that 
-all RK3399 boards use "rgmii".  Is there anything I missed? Thank you.
+> 
 
 
-[0]: 
-https://lore.kernel.org/netdev/1472752204-8924-2-git-send-email-wxt@rock-chips.com/
-
-[1]: 
-https://www.kernel.org/doc/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-
->
-> 	Andrew
->
->
+Best regards,
+Krzysztof
 
