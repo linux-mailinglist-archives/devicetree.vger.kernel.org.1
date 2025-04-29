@@ -1,113 +1,128 @@
-Return-Path: <devicetree+bounces-172066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C783AA1272
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58223AA12DA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EC314A7AAE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:53:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13EB316B69C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA98B24C067;
-	Tue, 29 Apr 2025 16:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9B9252284;
+	Tue, 29 Apr 2025 16:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="LrKvbKun"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ho9e5Jmd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B052422A7E6;
-	Tue, 29 Apr 2025 16:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745945557; cv=pass; b=e9sgb01B1HKcdyGIrdv3fLpCtSSmosms3khj+5Jt8f0OJLIZ7qCXJxjEPoJ/vYWiEW7S63hMCxNgygeNBLq3SV/gIeO7OO6wSJC4rAp9Mwnmnt2pj1PKr7LJSoX/VYgD0wJNy8jbzSoYZgAVANJDgs4VqihYuiR4rpPKHBgrM4k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745945557; c=relaxed/simple;
-	bh=xLfUqxkolvhQu6zJjR/MsGuj2lN1Bw7Le7IBOLEzbFs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uH59g5j6PvzaiAT747Fgp1Q+7MhvfsSwrDvWoJd22Nxfa6laDAUZ9Yg7euLpb05QlXlHWyCl+wY6aG1fChPCMkKwHyevrfUle0EMneu3Abcik8XhCwfDguFGGs1WNmFc9Mp7wXwlp3aFWKi0RaoOItiVEGVX9kClWfifY8JgpB4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=LrKvbKun; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1745945533; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=IQBQTzconYJkqWZwYVbRGCr0fE2QNxTFfE3QMFz6gVJvqqjVNRcp2WzYj6h+XjBoGDtnOwgRXtU4MQotaYUT7/jbbr50Xbg6I79CiNY/zyud3E4Q9mX8xFOoKJLaFQUUaZnfQaOFpSxS+znfdhhs0wQeqrvItZnZemNMOS1zkSs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745945533; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=3hn7TI/NIifsiTf4RtEzy2zuXp6Q4rhXJuOfP6jWeJw=; 
-	b=YKACafeXthLiyZt4GzZHB89ADiQiUemvk91QX01rpznlzPVelZ2D700U4mpJudnJD+Z1zzaKxOXvPQae3EwQjLwwZW5WzluKVEApp0yGf30eDKkAfX0R0N90PMas83qOyh2CmGBWY8pHImSW5+uIglGNU7pPcWl1HfXVVf+MGgg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745945532;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
-	bh=3hn7TI/NIifsiTf4RtEzy2zuXp6Q4rhXJuOfP6jWeJw=;
-	b=LrKvbKunSVI/bXi0eGOSIhTtqmEIxNKK8+JHQmS6zxTAqs7D9di/oS1wd8kmygIq
-	+KVSl52vk2D2C+eLPatAmN+tCgO71mESSy3jpjvZwPNZMB6GbnAsdvjQ4pIr7P2ubrr
-	ITZukGJ3wGH7l9tGmZqoP+i2VQkKYTKRsExjpbJM=
-Received: by mx.zohomail.com with SMTPS id 1745945531729697.7459362757056;
-	Tue, 29 Apr 2025 09:52:11 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 29 Apr 2025 18:51:55 +0200
-Subject: [PATCH] arm64: dts: rockchip: fix Sige5 RTC interrupt pin
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991B4248191;
+	Tue, 29 Apr 2025 16:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745945780; cv=none; b=Ri9axr/UJj1DLWj16RgES4517PXHG7SzPyU1H0WrDjKkSas+j2ee0lW0u5ZT6jnd+ztAUeIY+ThfG640QObva3OP+X0l7IpX8AvUVNdStxGriEzicoKMSD/jRMgaF1oRABF0hMJnG0wkomit8bJPte807RpBycVDWpDByclZVfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745945780; c=relaxed/simple;
+	bh=ZBivkq4bsRKPhUyFGxJQG9MmcvXaxlQ9Dd4wSsqIJSM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q8WKjkMnC/pl3HClMh2B11IHLpcz/e52/6ijQK+93KuzZ3lvyZVufjDOpuYK6b8s8w7eaH0HpjblHr+Mfnr9ywXpKH7VA7N2Q+33GEDqPdsPKf7Qb0W1Vvx4uGduVS3XMN1F1b9C1K+3vRj1OJR0tIZu6Qe+IINU51GyRuoa8ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ho9e5Jmd; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=r5rlUDCcvbNorSSfBxhY0Uo2Pju4LLTw7V0kTzWGnw0=; b=Ho9e5JmdTFW+pLmFUi4wNow9wm
+	VXlhmjwcdIcVeswarlOATW52sNWISJ24fB8EbnhqWkVPq5rWXCKE4XW6CCvksmzSNXGu6Rjho0bq/
+	E09xKIHdsgcp/D40bvZt6p8bdcgD1GU2aPoc/q59R6QMlkz38uxPZV9YB6ACDKlDfR3Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u9oFc-00AxlT-0j; Tue, 29 Apr 2025 18:56:08 +0200
+Date: Tue, 29 Apr 2025 18:56:08 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+	Andre Przywara <andre.przywara@arm.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, samuel@sholland.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
+Message-ID: <b98d6bab-d3bb-44d2-9dbf-623dfb673671@lunn.ch>
+References: <20250413134318.66681-1-jernej.skrabec@gmail.com>
+ <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch>
+ <4645060.LvFx2qVVIh@jernej-laptop>
+ <4975791.GXAFRqVoOG@jernej-laptop>
+ <2486dae4-c5a5-4df2-8048-87b4b2d46d54@lunn.ch>
+ <CAGb2v66dF8hMmjjJMnpVxM+092q=ZYZ+kT316roZuty6i+rcXQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250429-sige5-rtc-oopsie-v1-1-8686767d0f1f@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAKoDEWgC/y3MQQ6CMBCF4as0s3YSrDZFrmJY1DLiLGhxphgSw
- t1txOX/kvdtoCRMCp3ZQOjDyjnVOJ8MxFdIIyEPtcE21jVXe0PlkRxKiZjzrEw4XKIL3nvyoYV
- 6m4WevP7Ie3+00HupcjlGeAQljHmauHQm0Vrwr7fQ7/sXWxEMNZMAAAA=
-X-Change-ID: 20250429-sige5-rtc-oopsie-d3c5a777e7a8
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGb2v66dF8hMmjjJMnpVxM+092q=ZYZ+kT316roZuty6i+rcXQ@mail.gmail.com>
 
-Someone made a typo when they added the RTC to the Sige5 DTS, which
-resulted in it using interrupts from GPIO0 B0 instead of GPIO0 A0. The
-pinctrl entry for it wasn't typoed though, curiously enough.
+> > The RX path looks O.K. RGMII-RXID means the PHY should be adding the
+> > 2ns delay. The allwinner,rx-delay-ps = <0> should be redundant, that
+> > should be the driver default. And there are no properties in the PHY
+> > node about RX. All good.
+> 
+> The default action when the property is missing is to leave the hardware
+> settings alone. I admit this doesn't match the bindings.
 
-The Sige5 v1.1 schematic was used to verify that GPIO0 A0 is the correct
-pin for the RTC wakeup interrupt, so let's change it to that.
+Please submit a patch fix the binding.
 
-Fixes: 40f742b07ab2 ("arm64: dts: rockchip: Add rk3576-armsom-sige5 board")
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > TX is the problem. The allwinner,tx-delay-ps = <700> causes the MAC to
+> > add 700ps delay, and 'rgmii-rxid' means the PHY should not add any
+> > delay. But 700ps is too low. It should be around 2000ps. So something
+> > else is adding a delay, or the 700ps is not really 700ps.
+> 
+> Anything is possible. As was raised in a previous reply, it's possible
+> instead of extending the delay range, the decreased the step size and
+> added more steps. The problem is we don't really know.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-index 964ee351d3b63fcb4ede70f4b6c06541715cfe19..570252c4c0bfe56a3c269e47d81fca7676e61787 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-@@ -616,7 +616,7 @@ hym8563: rtc@51 {
- 		reg = <0x51>;
- 		clock-output-names = "hym8563";
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hym8563_int>;
- 		wakeup-source;
+By poking around with other configuration knobs, i hope we can
+determine if this 700ps actually is 700ps.
 
----
-base-commit: 05c58e5408604391298fccf956f8cd0a4662da73
-change-id: 20250429-sige5-rtc-oopsie-d3c5a777e7a8
+> > You say the PHY is a YT8531C. These PHYs also accept
+> > rx-internal-delay-ps and tx-internal-delay-ps properties in their DT
+> > node.
+> >
+> > Try setting 'rgmii-id', allwinner,tx-delay-ps = <0>, and both
+> > rx-internal-delay-ps and tx-internal-delay-ps in the PHY node to 1950.
+> > If that does not work, try other values in the PHY node.
+> 
+> I don't get why we should ignore the strappings instead of using them
+> as reference or even truth.
 
-Best regards,
--- 
-Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+If you don't want the PHY to be reprogrammed pass:
 
+* @PHY_INTERFACE_MODE_NA: Not Applicable - don't touch
+
+rather than one of
+
+ * @PHY_INTERFACE_MODE_RGMII: Reduced gigabit media-independent interface
+ * @PHY_INTERFACE_MODE_RGMII_ID: RGMII with Internal RX+TX delay
+ * @PHY_INTERFACE_MODE_RGMII_RXID: RGMII with Internal RX delay
+ * @PHY_INTERFACE_MODE_RGMII_TXID: RGMII with Internal TX delay
+
+However, if we do pass one of these RGMII modes, i expect the PHY to
+follow them.
+
+> If the strappings worked correctly w/ the
+> generic PHY driver (that doesn't know how to configure the delay mode
+> on the PHY side), isn't it working as intended?
+
+The generic PHY driver is there as a fallback, for when the real PHY
+driver is missing. It is nice if it works, but it often does not in
+current systems.  What we really care about is that the real PHY
+driver works, and the system as a whole follows the DT bindings.
+
+	Andrew
 
