@@ -1,141 +1,161 @@
-Return-Path: <devicetree+bounces-172064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9CF4AA11A6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:35:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E64AA11B4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79EFD1B650F0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:35:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FEF87AC246
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE59244675;
-	Tue, 29 Apr 2025 16:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8091E24633C;
+	Tue, 29 Apr 2025 16:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hv4+V9oE"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="a4FKzEKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213581EB5CE;
-	Tue, 29 Apr 2025 16:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90661245019
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 16:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745944507; cv=none; b=VYbNNP5HLSqrRNCt8KPOvrdA/nlGEoM/9qqqH66YvjNXoFXItjsvQh4J85iKYmsZu7z/VXjN9RNi1uWT4ptIfqo2nKX/Rp86V4lklLoSdNzgrmifg9c5Ceb/+A/1l9rh348Cfn43lOCEBOcAEjkaI/vbcJ9LJDUERg+PkB+YZKo=
+	t=1745944739; cv=none; b=OUaKfVwewU31kfc05DYR3UARxATtkZDqvsoCFmkrXnfpH0XWKIJWo0lh1thNPHfF6AZ0wWwbyVKJfBrNzLNQSs6b9hkXTqJqHpB4w/KDAWyFRWSanBuZL1JoUUaFULpxWyjcjIaYNCtVJgNwUjFQEV9qv6E2B9RyKY1HQu4AiSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745944507; c=relaxed/simple;
-	bh=+UGyRtEyWANVYEtyHHifh4EloDW/BOB+dVBrXx8R5aE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZXfK2uyondqImB4nCu7pjFWPzXgJ7Np6dHk/1It3UtNyF2KGCtyMO3cwwWtKjtEQWGzAZ8OBekrwAut85HoUGE7AOHE93HaoqYbMVqbAj+dUgrGiS4N6xCTwZ8dGYD3OAu7ZswTdCXuRNYzZmKD9Icj4QQmbSZjqoPMtMPIH6S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hv4+V9oE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C094CC4CEE3;
-	Tue, 29 Apr 2025 16:34:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745944506;
-	bh=+UGyRtEyWANVYEtyHHifh4EloDW/BOB+dVBrXx8R5aE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hv4+V9oEHFFoqPKi4JJC4Rggve0BsZAvaDzvh4SEQuECW785vJ5yPZ4AatV4KqWu6
-	 wuF2qFRqPfjjSeYHDw7enNzhmN+iUgUUbapSZvr+Dz1qVv8qFyUfXoil/gPujvw11w
-	 qoFYOIY78wNSefF32YipQjxSwHAcW3XOmHqgg1S2VM0PWb8PBDGDdDJRkMRAooSKa4
-	 dtKpsbh7N+d9YIvzbEGIi3+RyayqE2xFI+WA5HeWOtGFHWzSkmRs90NjfbDCTTecMx
-	 dcRb1imHHNN+d2crW1PnDFXSnrtBlXapjqWlicbZjIMRypxWwu/J1ycGlUtEr3CMqd
-	 0B2+9D5ZaXxeQ==
-Date: Tue, 29 Apr 2025 19:34:52 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Dave Hansen <dave.hansen@intel.com>
-Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
-	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
-	catalin.marinas@arm.com, corbet@lwn.net,
-	dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
-	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com,
-	hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org,
-	krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org,
-	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com,
-	pbonzini@redhat.com, peterz@infradead.org, ptyadav@amazon.de,
-	robh@kernel.org, rostedt@goodmis.org, saravanak@google.com,
-	skinsburskii@linux.microsoft.com, tglx@linutronix.de,
-	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
-Subject: Re: [PATCH v6 11/14] x86: add KHO support
-Message-ID: <aBD_rOvMPk5_iT9J@kernel.org>
-References: <20250411053745.1817356-1-changyuanl@google.com>
- <20250411053745.1817356-12-changyuanl@google.com>
- <35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com>
- <aBD165pVhOIl3_by@kernel.org>
- <e90b81a4-a912-4174-b6e9-46a6ddd92ee3@intel.com>
+	s=arc-20240116; t=1745944739; c=relaxed/simple;
+	bh=hR8Y+nK0cX/CZdCBzLn+W3sfxRoUxjFKeCQdBb+BaYs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bGMmC7bPgFK0OPqd5jmIOyZ15Cn8UmgLH97GMx8Fe76HrbkmlSWIVM+d6qmNBFu21FPm5OhZDvRM+lbcyc0O1gbuf8vxbVvF3U3HoSdZU7ViFenSq+RnPzFWFS7UVK7ibhbXq56x1qFOe8gIaKVKpXxwgM55UCWaQB73h7Oa/WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=a4FKzEKN; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e733cd55f9eso2301107276.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 09:38:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1745944736; x=1746549536; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mKJPPGmtZ4Q4FEXLrbVF+XChkMZLyTXErk0JCwdy/xQ=;
+        b=a4FKzEKN+YLks3QNu8GVGLGXipONF0ukBLVeDOqGDULOPB8dCvDeDGrOrnG2RF+Hbr
+         yj90RDrwwu4hbJr0gZpboNQ6SlQ1zmGb/Tj+8KbTvpeG0HhlV0AzKjtIxG3p9pFcFyTp
+         ifIAYzatPar1wSeTyGSSSr/NGndkUv9h4DG+tSibE0LLbjDpvGtNL3n1FhTPw8PYIYGA
+         ltEM8zccIR10PxRsidosJwORNXUeRMb0vFCFzaXakK+eYN2UMH+Fa/RBVpgbZMqZuyNO
+         T/7ZwWvxkJUCihGYXtlNRY2V2a03DMeuEPDaWouoIeRKqaxY1ily/jHzf8a8vNuyVUUn
+         cypQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745944736; x=1746549536;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mKJPPGmtZ4Q4FEXLrbVF+XChkMZLyTXErk0JCwdy/xQ=;
+        b=XvZuaA8IGe8+lrrTAQRoGQI8EElAMJWtAMenflxeoTC66LdI/lt3D6++qQP5g5EAxD
+         lU9NC2sSErEfNVIAka3r82EZCz9JBVIGZgAvH21E8UKNi4jd7IxC3PzVXdqgtD0651DR
+         3UT1qkLPhQm79oAiKlOwrrXPUYMbkBYb7l0LXFhusMyfuZQu/lrKq7Qyo03HLxxxNSMg
+         g2/s2YwrjfU9xs5Ja+eSgSKpjODdGXCODJ7+cYF0Tmf+2cITziRK6S8HynCQHlsNLDlD
+         s8j0NWEPg1032llDj92Jz20H9zgBroeFtB9Oe0aj2F0mKauVqNeNF1HLGBWylgC+aQ49
+         GZQw==
+X-Forwarded-Encrypted: i=1; AJvYcCXCDHRsbdZKXSjKDwxWKVRt3IX51SyPQeRd8CIS5OR0PKvGdH0pJDVZJegXftq/fjMwNm6UWcivwFYW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcVHgbJah3cbCvE/xu/vS2qXyj+XlnxWD/8ST2EPAgKrUwTyrI
+	LxiCm4K6W/x9OkGVGfJyYEF9N62GQ8H1vQbmpQiJabtQPadEgx6mshaRWqc80FTvlyLao8n1rvn
+	PSbZOPRmuvBX63IjxhlQ/T2L5gIGrs78d4YSHCA==
+X-Gm-Gg: ASbGncuWNd50RmLIvLrHEvoy/ho2Te9V2nB+Fx1O03QhPpR1eXTZrOxR0mXAKiWgYj8
+	gMeSYKSajgM+4LsrZikNy8HpcHJGRlCNkuYwnEJImfB/3gnoMK6Dds7Om7+W5IbH2sKYV6KWH/g
+	X3Y2eQRp7dvVIiEKvxrthlpj23gXlnpwBobUZvRzH9DPYg7YsjkdE=
+X-Google-Smtp-Source: AGHT+IEBBaq5tsglGxhuINvv6IZSxaRI9dE1eDAka1Xuo1qsb8GlnVfNRulVXOsQNgsWdqejnZiq9iGFOJQ10Z6pJ+o=
+X-Received: by 2002:a05:6902:154a:b0:e72:a02e:a797 with SMTP id
+ 3f1490d57ef6-e73511f984dmr5201544276.44.1745944736100; Tue, 29 Apr 2025
+ 09:38:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e90b81a4-a912-4174-b6e9-46a6ddd92ee3@intel.com>
+References: <20241107125209.1736277-1-michael.nemanov@ti.com>
+In-Reply-To: <20241107125209.1736277-1-michael.nemanov@ti.com>
+From: Ezra Buehler <ezra@easyb.ch>
+Date: Tue, 29 Apr 2025 18:38:20 +0200
+X-Gm-Features: ATxdqUHV5CP1dNwzjt8THrj9C95bgv7pJhkhoTGKgrCVvTrrD0jY5bAxDeZ-Gnw
+Message-ID: <CAM1KZSnvDqUHd2ENKyaZc=WyRgL18TrsF766_ZJVeeAiPth+Vw@mail.gmail.com>
+Subject: Re: [PATCH v5 00/17] wifi: cc33xx: Add driver for new TI CC33xx
+ wireless device family
+To: Michael Nemanov <michael.nemanov@ti.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Sabeeh Khan <sabeeh-khan@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 29, 2025 at 09:05:02AM -0700, Dave Hansen wrote:
-> On 4/29/25 08:53, Mike Rapoport wrote:
-> > On Mon, Apr 28, 2025 at 03:05:55PM -0700, Dave Hansen wrote:
-> >> On 4/10/25 22:37, Changyuan Lyu wrote:
-> >>> From: Alexander Graf <graf@amazon.com>
-> >>>
-> >>> +#ifdef CONFIG_KEXEC_HANDOVER
-> >>> +static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
-> >>> +{
-> >>> +	struct kho_scratch *kho_scratch;
-> >>> +	struct setup_data *ptr;
-> >>> +	int i, nr_areas = 0;
-> >>
-> >> Do these really need actual #ifdefs or will a nice IS_ENABLED() check
-> >> work instead?
-> >>
-> >>> +	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
-> >>
-> >> What's with the double cast?
-> > 
-> > The double cast is required for this to be compiled on 32 bits (just like
-> > in mem_avoid_overlap). The setup_data is all u64 and to cast it to a
-> > pointer on 32 bit it has to go via unsigned long.
-> 
-> Let's just make KHO depend on 64BIT, at least on x86.
- 
-Ok, so we are keeping #ifdef and dropping double cast here.
+Hi Michael,
 
-> >>> diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
-> >>> index 68530fad05f74..518635cc0876c 100644
-> >>> --- a/arch/x86/kernel/kexec-bzimage64.c
-> >>> +++ b/arch/x86/kernel/kexec-bzimage64.c
-> >>> @@ -233,6 +233,31 @@ setup_ima_state(const struct kimage *image, struct boot_params *params,
-> >>>  #endif /* CONFIG_IMA_KEXEC */
-> >>>  }
-> >>>  
-> >>> +static void setup_kho(const struct kimage *image, struct boot_params *params,
-> >>> +		      unsigned long params_load_addr,
-> >>> +		      unsigned int setup_data_offset)
-> >>> +{
-> >>> +#ifdef CONFIG_KEXEC_HANDOVER
-> >>
-> >> Can this #ifdef be replaced with IS_ENABLED()?
-> > 
-> > The KHO structures in kexec image are under #ifdef, so it won't compile
-> > with IS_ENABLED().
-> 
-> They shouldn't be. Define them unconditionally, please.
-> 
-> ...
-> >> Please axe the #ifdef in the .c file if at all possible, just like the
-> >> others.
-> > 
-> > This one follows IMA, but it's easy to make it IS_ENABLED(). It's really up
-> > to x86 folks preference.
-> 
-> Last I checked, I'm listed under the big M: for "X86 ARCHITECTURE". ;)
+On Thu, Nov 7, 2024 at 1:51=E2=80=AFPM Michael Nemanov <michael.nemanov@ti.=
+com> wrote:
+> This series adds support for CC33xx which is a new family of WLAN IEEE802=
+.11 a/b/g/n/ax
+> and BLE 5.4 transceivers by Texas Instruments.
 
-I remember :)
+Thanks for going through the effort of upstreaming the driver.
 
--- 
-Sincerely yours,
-Mike.
+We have started looking into the CC33xx chips (in conjunction with the
+AM62L SoC) and noticed the following behavior:
+
+# curl https://speedtest.init7.net/1GB.dd >/dev/null
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Cur=
+rent
+                                 Dload  Upload   Total   Spent    Left  Spe=
+ed
+  4 1024M    4 42.4M    0     0  2358k      0  0:07:24  0:00:18  0:07:06   =
+  0
+
+After downloading some megabytes of data, with reasonable speed,
+something seems to lock up and no further communication is possible
+through the Wi-Fi interface.
+
+AFAICT nothing is logged, however, when I unload the driver, I see errors
+like:
+
+[16590.256433] cc33xx: ERROR failed to initiate cmd role disable
+[16590.256446] cc33xx: CC33xx driver attempting recovery
+[16590.256455] cc33xx: Driver being removed, recovery disabled
+[16590.272950] wlan0: deauthenticating from ab:cd:ef:01:23:45 by local
+choice (Reason: 3=3DDEAUTH_LEAVING)
+[16590.784390] cc33xx: WARNING Unable to flush all TX buffers, timed
+out (timeout 500 ms
+[16591.296388] cc33xx: WARNING Unable to flush all TX buffers, timed
+out (timeout 500 ms
+[16591.808379] cc33xx: WARNING Unable to flush all TX buffers, timed
+out (timeout 500 ms
+[16591.816792] wlan0: failed to remove key (0, ab:cd:ef:01:23:45) from
+hardware (-11)
+[16593.840379] cc33xx: WARNING CONFIGURE command NOK
+[16593.845172] cc33xx: WARNING tx param cfg failed: -5
+[16595.856352] cc33xx: WARNING CONFIGURE command NOK
+[16595.861159] cc33xx: WARNING tx param cfg failed: -5
+[16597.872323] cc33xx: WARNING CONFIGURE command NOK
+[16597.877079] cc33xx: WARNING tx param cfg failed: -5
+[16599.888317] cc33xx: WARNING CONFIGURE command NOK
+[16599.893069] cc33xx: WARNING tx param cfg failed: -5
+[16600.400303] cc33xx: WARNING Unable to flush all TX buffers, timed
+out (timeout 500 ms
+[16600.912270] cc33xx: WARNING Unable to flush all TX buffers, timed
+out (timeout 500 ms
+[16600.920388] wlan0: failed to remove key (1, ff:ff:ff:ff:ff:ff) from
+hardware (-11)
+
+We can easily reproduce this behavior on our ATMDS62LEVM board in
+conjunction with the M2-CC3351 card. We run a Yocto-based distribution
+(Scarthgap) using the latest linux-ti-staging-6.12 kernel recipe (Linux
+6.12.17+).
+
+So far, I haven't tried to dig into this deeper. Any ideas on how to
+debug this further?
+
+Cheers,
+Ezra.
 
