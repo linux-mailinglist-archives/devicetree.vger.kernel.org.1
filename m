@@ -1,182 +1,138 @@
-Return-Path: <devicetree+bounces-171780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F156AA02F0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:18:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF55AA0312
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5149318844B1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:17:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E97E7A2446
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 06:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92FA9278E79;
-	Tue, 29 Apr 2025 06:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BA5278162;
+	Tue, 29 Apr 2025 06:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZoGxGQE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f4n9pxzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EA7275847;
-	Tue, 29 Apr 2025 06:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA0B7405A;
+	Tue, 29 Apr 2025 06:18:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745907353; cv=none; b=WAeOHUBetn2TdKYLYTcL3+1vVPSXbX3JydSTu/ncPdmL8wAPeUlQ9b3jfwiUmU/x5fJoYHv7+ZVqHqOnyC7yJ5qsBS5iMGYDfjIgMef/XByTL/suTXVQoq8agQrhUcND496ZbKrVmQHX/6nKtB/RKg77qKeHAjrh381Qt7KUQ/c=
+	t=1745907512; cv=none; b=eCKJrKP9FysXDbev8Dvqc3TZD824cBmv2lJ5ZheI3p7Pqi1lgCFrVrxWDy5GzLtvkkTjmeUjBnImYcQnpWfOjdzQmdEzZRAugosKcllkEr3d6/XFDPxblBcAwDVj2eMFsyhA1/osHGx/t7bYEJoolRvuNgD0icZukURt8hnG+ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745907353; c=relaxed/simple;
-	bh=V/05QUKokA9PLStiHO9AjC4yP/5vMfqTiNrPgfV3/cQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VmOyUsWYUJlCRdChC8oBYG00ealTSV11ZeIdvMrJDJ0qbOlLFeBz9f1MqN0yRbbEpRyF2zsx91ZftyeXomIa7mxg2LEODdftsqnt4LRUI8NY3q0KAC+phTfLKCVpDQtgMr4XPj/OKaPp8Iw7aGvZCfOmmEzLB3/xCOZYcnOOU0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZoGxGQE; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1745907512; c=relaxed/simple;
+	bh=cu2YGhMwTXRXoDOhKCOJulyp43CXklzRH3EmmxyA1Vg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CUr1USXidCrgUSzVUrJF46A/e89DcefQIq4EfJfssJEYem7x3Ibm8ygG5DbDv3uz9oyOXlRphaIE11z6QTDh4YGRDd3pGIqSkkgmDL5WT73m0NVxwHDfhuFFqLMiMAKTEOiP3UZU/e7G/o3wHQ473QaSGoKldp9mroYzDJ34DhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f4n9pxzN; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5498d2a8b89so6178475e87.1;
-        Mon, 28 Apr 2025 23:15:51 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5f63ac6ef0fso6779008a12.1;
+        Mon, 28 Apr 2025 23:18:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745907349; x=1746512149; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vdeBVGMv3EeHNQcfEmg6IWrksh7MnxsHjLGKMctwm1Y=;
-        b=TZoGxGQEXZcoHJeWvSLI0Uu2yViWT6Q+0Z6psFadqFd2hMOirKL+mUKtM/QSNEwe2g
-         sCNsMSiHzvFNY5A9BwOt/Hi2DXAHOSOMdHXNoxGnLPT9s0V4Lr8i1a1OQtxcLzX/XGCz
-         sL8r5xXKQ8DEkIlYUA9troNEAxSxUvbDUp5QEaoQhX43YJ/DK3ioC96WCMArfCB8RbOy
-         33r8leCnQp9aRO6sQkNr179ZeRJKiTraiIIkupdnH5Gg7pQyvx3AMyHa0nl0POetyhsd
-         4ULXBILvIT/av8JeKaqlgZhZinIr4extK6qEH9SoYdj5sDq8vOz/DijjshdNPmMxOjGl
-         zDyw==
+        d=gmail.com; s=20230601; t=1745907509; x=1746512309; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SxnqY4X0sY6/scdLHV+pN5MKndUjVPCeKrlCIqdGx80=;
+        b=f4n9pxzNOZ1MRYdSi4JnidzqaAUuS/+tvlkVfqb8jHUWIiYvszkmCHf0kYvxryFNVj
+         4KbVKQfAGIj01ZKMC0Sn3TiKK8wpDI4akTc0GplzaxLcX2N0bkbg8aADFHEY9Snd8dXw
+         XTxPZrZ432FlL87/zPmfbSRwFTF8VUtiYpgn23eJ4ZVSQ98WEDky8IdA47lgK6iIQFLr
+         8DA8jAZWUO55uhUSHNPKtNBCpqk2SdWu0SY/nxE2viOTCjQm7bc8XLfb8apNVOH8szFL
+         AoYFJ7UeaIjdNDFZN+TLzywGYBO/GEEqW6l7S/zGEibmvT6e9DwInE+RSpfEa3Q5MDFu
+         aTcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745907349; x=1746512149;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vdeBVGMv3EeHNQcfEmg6IWrksh7MnxsHjLGKMctwm1Y=;
-        b=KkJUo24nna4nUoRlOwdhvrbIcnb95kKWoNGq2NbjXUJZDh27+iHfj5t1B5TFlC7T15
-         hZxWvKkiCz/KKHpiJBOd9MujH2dmC2lydhwPTuyi7WnHkNt6+Nrp2Pq8BLI1pSu32xxl
-         nfFtysbPxZFp21MM+8pr4fzLPnvHCVI+2MoivT+20VplKgbpdtJLaqa94gNv5/pBMJ87
-         wrorEKo5ymusuVoiWsv33DqJV0OMooZetjdFChn+rdgil+6djMcTHESioTOWojmj2kPe
-         Mpk2CXhl/z+eCa32LPsB/sQgUdIbEkG1DzPCpEtfU/wj+C6DPRHWmx9A9EBtDbWtgfsk
-         Krsw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9eCwcmco9xHix0swgpGC28maXlqcF6S3B121jLKck5nxpSh+UscD1QKQO1j3sj3TiSfHuG5/dZ9LJ@vger.kernel.org, AJvYcCX7eV9tZRkArA9a3TllLWu1VE+Q6c6P1KwIdH0tKvwc0PgUwp8MLEiSvV9U/jwfHnH8WC1m3gxDQAprmBZH@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx9dd8UxdXI/9f50GWm6ZcPw5ygaWCNcWP7MZfVashPT7Y/mZp
-	4MFqzqnx06CwsNHGx8cuZqTTSg3jyxw0k1T/t+/nyy6gj0sOn4HZ
-X-Gm-Gg: ASbGncu3iqm+2AHUJg3YgzQuZbx55NgVFgiXQRtaon01M2AfHwrpMH5MZW9pr9bBziE
-	/6Gf/EOgSEK+GXeMeEgbZiDD56e9MQMwfNO4N9JlbUbbEumVwYqsUEoY+70bmK6SsbIJvcAs5li
-	vxwvRwDgkM322XliM6tmeKcN/qazDEPj0v0P2toK8IIHHkfHd7En7+lVqm/hbAq4pMLuYI6XI+P
-	CtymZxj7PA4uJkgRd1KHnqkawa8vXNVJ+cCsFXKZz4rdcYwPKEm1Fh1DAba+l/oNDsZfU9aoUBw
-	H9IxN4LHYNkDfAhaJ6SJpsSZyr7deH7f0gyPqg1DqBM/JzG4d06dQ1wT0pOm9W5K/dCDAX69kez
-	geg==
-X-Google-Smtp-Source: AGHT+IGHq680Q/yIwZxRZ6SNR21MxIbxN6Ov+BKDr4VxC9RTincmJ2pI9pWeYdHHGigYUqe2fr18CQ==
-X-Received: by 2002:a05:6512:1094:b0:54e:819a:8323 with SMTP id 2adb3069b0e04-54e9000c35amr3096126e87.42.1745907349282;
-        Mon, 28 Apr 2025 23:15:49 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e903aa6dcsm1141164e87.236.2025.04.28.23.15.45
+        d=1e100.net; s=20230601; t=1745907509; x=1746512309;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SxnqY4X0sY6/scdLHV+pN5MKndUjVPCeKrlCIqdGx80=;
+        b=CtB3b6raEP0Io/bek6jgdzwRGaJ1/kvI4byweMtMiXLllxkcGQA0eK8Yopncva1G0g
+         KyiM5LujosEDMo41bve2zEsVHuSMSgdmMQwmqbRypEGiZGXbtd2MqXia3r36h9jZ972l
+         Mj4jQbRjfrnALv6rPhmX+m+vjQhrCIvF6dtcUZ0n9hkJyZq7E6wSUn0+rjvb8RLQepdZ
+         YZgoDJgP+vUpM8EB0ReHd1f69D23UE0sdKlDB1EP1kg/vhMHx/YlXGQiynvS1IRXezF3
+         mAOfGzMKYCKdBYV4CtslutE2pKPmgAIyh57YEwmcNSxpQaJBI+2nMh3xX1ey0oSgFcLs
+         62JA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfe0jOMXESLK4rXj2LKN4Lr19fc23GBXz1G/OYOOIl9k9zUbKJliq5p4l+CHwDP8FxCooOOVROoRg6Mk9a@vger.kernel.org, AJvYcCXFIrYQ1ZxpOP7psh499Q7V3s7Y+Kkz+QIlLIBmJAPQUd+vO3S9s4SqGhcabIIYm6ErRV8Ni8y2CXn7@vger.kernel.org, AJvYcCXMkj+l3ivIbxQYvgnVECsIdX901WngWR7dA9cCG2Ork5RbVM/R8bQ+VHSL3/pLg1C0RCipRqz2gvzNfSQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLAur3M7ZwzzcTUEImaTE//+kWHabvKqowPq3ICG42W0XAiUah
+	0MrciMQJLZw7XpTddToGA7OSDQEK7UR+8Ja11+stQ6tEY10Q1TTi
+X-Gm-Gg: ASbGncutitOTIxelmiQvICvqyXKtK/qG3njUExMMolQp6gUruWtR7LeXv1Ec5GHcGmt
+	kgr6f1uJHJxWUZB+wHv0l+0z+Is4lFpG41Rt0IZpu2y1TJMKAp0afmV/o8OVPT2IgjAGhz/6kYe
+	64R/BAt4X8VZm8mFJyyDYVDgfSnqIdLCRBVHznOBNk7S7yfrEorgNXlS8dUORgVJTsoSOZdiED9
+	jPQFHg5eg0jZRWdxw82hwFKP6lLeUcGNf+0xVnie5ysnTzH/Lq9h6B4tccmCCMdJB2XDADsZ5T2
+	Xvwnm/Vv75U04XWWcilKQg71Pc/Te04h
+X-Google-Smtp-Source: AGHT+IHAHcbigwBuqfbbIr+9Y3VE3b0IbwZKs2AahD2N4aud0BCXQmTE505TkfCy8nXomx9tSeudOA==
+X-Received: by 2002:a05:6402:13d5:b0:5ed:19b4:98ea with SMTP id 4fb4d7f45d1cf-5f8390bd1c6mr1709359a12.0.1745907509350;
+        Mon, 28 Apr 2025 23:18:29 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7013ff9c5sm6996570a12.28.2025.04.28.23.18.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 23:15:47 -0700 (PDT)
-Date: Tue, 29 Apr 2025 08:15:44 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+        Mon, 28 Apr 2025 23:18:29 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmrmann@suse.de>,
-	Javier Martinez Canillas <javierm@redhat.com>
-Subject: Re: [PATCH v6 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-Message-ID: <aBBukAqH3SKV9_Gl@gmail.com>
-References: <20250423-st7571-v6-0-e9519e3c4ec4@gmail.com>
- <20250423-st7571-v6-2-e9519e3c4ec4@gmail.com>
- <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH v3 0/4] power: supply: add support for Pegatron Chagall battery
+Date: Tue, 29 Apr 2025 09:17:58 +0300
+Message-ID: <20250429061803.9581-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QDuqjw5mtcb8cj4X"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUsP5gcTyvqJM4OUFL3VutzDrX-V23uYRfnfgzotD8+rg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+The Pegatron Chagall is an Android tablet utilizing a customized Cypress
+CG7153AM microcontroller (MCU) as its battery fuel gauge. It supports a
+single-cell battery and features a dual-color charging LED.
 
---QDuqjw5mtcb8cj4X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+Changes in v3:
+- status update handled via default-trigger
+- chagall_battery_prop_offs sorted by chagall_battery_properties
+- separated status logic into chagall_battery_get_status helper
+- removed controversial POWER_SUPPLY_STATUS_NOT_CHARGING use
+- code formatting improvemets
 
-Hello Geert,
+Changes in v2:
+- removed CG7153AM mentions in code, documentation and commit messages
+- moved schema to power/supply
+- left only pegatron,chagall compatible, other is dropped
+---
 
-On Thu, Apr 24, 2025 at 10:38:33AM +0200, Geert Uytterhoeven wrote:
+Svyatoslav Ryhel (4):
+  dt-bindings: vendor-prefixes: add prefix for Pegatron Corporation
+  dt-bindings: power: supply: Document Pegatron Chagall fuel gauge
+  power: supply: Add driver for Pegatron Chagall battery
+  ARM: tegra: chagall: Add embedded controller node
 
-[...]
+ .../power/supply/pegatron,chagall-ec.yaml     |  49 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../dts/nvidia/tegra30-pegatron-chagall.dts   |  16 +
+ drivers/power/supply/Kconfig                  |  12 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/chagall-battery.c        | 291 ++++++++++++++++++
+ 6 files changed, 371 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/pegatron,chagall-ec.yaml
+ create mode 100644 drivers/power/supply/chagall-battery.c
 
-> > +                       /*
-> > +                        * As the display supports grayscale, all pixel=
-s must be written as two bits
-> > +                        * even if the format is monochrome.
-> > +                        *
-> > +                        * The bit values maps to the following graysca=
-le:
-> > +                        * 0 0 =3D White
-> > +                        * 0 1 =3D Light gray
-> > +                        * 1 0 =3D Dark gray
-> > +                        * 1 1 =3D Black
->=20
-> That is not R2, but D2?
-> include/uapi/drm/drm_fourcc.h:
->=20
->     /* 2 bpp Red (direct relationship between channel value and brightnes=
-s) */
->     #define DRM_FORMAT_R2             fourcc_code('R', '2', ' ', ' ')
-> /* [7:0] R0:R1:R2:R3 2:2:2:2 four pixels/byte */
->=20
->     /* 2 bpp Darkness (inverse relationship between channel value and
-> brightness) */
->     #define DRM_FORMAT_D2             fourcc_code('D', '2', ' ', ' ')
-> /* [7:0] D0:D1:D2:D3 2:2:2:2 four pixels/byte */
->=20
-> So the driver actually supports D1 and D2, and XRGB8888 should be
-> inverted while converting to monochrome (and grayscale, which is not
-> yet implemented).
+-- 
+2.48.1
 
-The display supports "reverse" grayscale, so the mapping becomes
-1 1 =3D White
-1 0 =3D Light gray
-0 1 =3D Dark gray
-0 0 =3D Black
-instead.
-
-So I will probably add support for D1 and D2 formats and invert the
-pixels for the R1, R2 and XRGB8888 formats.
-
-Could that work or are there any side effects that I should be aware of?
-
-Best regards,
-Marcus Folkesson
-
---QDuqjw5mtcb8cj4X
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmgQbosACgkQiIBOb1ld
-UjJ8hBAA0PylSTjAVScRP2Rlx1rrCav8iBWJi/3/qrUdk0pKJiMyibtLJkx8M6VK
-1CgpOTPMOdMvoeoBdqqQfUMdQX2V3uW6NUHSJizQEVuUPIRklwahRg3jI0BlnE1o
-QVcSCbBr527o9jItXC0B0bNlBmKUbqa1v0jKaAtH/+ZU7KsTjr+jI7HVvUdHwcpP
-gSdpWn5f+hw3GnlAP9JzGvDddPmniwjTNxJbaUEqxWsQCidsHLNicSne4kFCifZ6
-5JVZki7KIkIjW2czWyZxmlBUqvVZX5Yxskmgdq4pjZ8MwAL8xtT2zorZmwIJJtGc
-MoRTcPPuMMzIAhwUQow6DWTx+AAwVadn+1wdsnEHHJzBVTRsiWn3K0pMciCDQF4C
-mr641j8DNfMBK8bzOT87T6gu9BNn4abR7asSG1n8L3Cvil0xQRXmZ1tgD6s6cxBy
-2e1LzVekrwwLQy2Zo8jxFxwvBApLDLDeXnfxyhJj9hDUvqIzQzp0YAk29JiIJsoh
-Eer3TWAvq6bpWA014nyidG2I87zejonG1W4zL67Je4toNjSmmraz5msX9vLv9dd5
-gtGddzJKt9MH5GPzHPaByPWuKySv2PpIs7j0VTenDEfoCYGEJ67yXKIdXfkyhf44
-yDWrPIN/JnRcjR6xPQLCXI8w/C8MHGFz1ynR03yJ5ZvILssPTaY=
-=iaUe
------END PGP SIGNATURE-----
-
---QDuqjw5mtcb8cj4X--
 
