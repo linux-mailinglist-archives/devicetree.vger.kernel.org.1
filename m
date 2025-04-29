@@ -1,99 +1,135 @@
-Return-Path: <devicetree+bounces-171878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB087AA0700
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B21DCAA0709
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 11:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34027464395
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:24:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECD8C482651
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5480129DB6E;
-	Tue, 29 Apr 2025 09:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C152BE0FE;
+	Tue, 29 Apr 2025 09:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lwQmXdwa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cc3wCaRM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84DC2AEE1;
-	Tue, 29 Apr 2025 09:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9AF2BCF4E;
+	Tue, 29 Apr 2025 09:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745918663; cv=none; b=DWYZEQIShLsP/+5L8SkMgGyMEVSJjVvbVoCduNfUxc/5tIj+JmjfEh7S+yjR45g0UdO3UP2LwDu19b9EF5FdE4RuI/Q34w4gNk0D1oGA27RHYn1y1Wc+l9xDOKOq+PugQXptPOBDKn/yFFnUs/qijQkc1rp2WGZsadQ+cy/bhwo=
+	t=1745918697; cv=none; b=W4hJgl+LVm8th9RJJnqxWBzcvbi8cqirHruXEfzFkWWiWtFIQSxATXX52Wy+bNF2KHjrVbloveZe2IxF+EJ+RFsVsu80arlgnOqapFMybpX3n0xLxyeysD3xNGn7rhrUWKkpxEd9pa0JfgrqB3Z2pj/Q5WHRHlzm2XWaQNz0x78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745918663; c=relaxed/simple;
-	bh=v/1PWZDE9LhvYVzvh4nbkMKW/Yz9R0EAlITfjRWJ6aQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=emL7FbiM/Hx42rhYR3s4kfsmBYLg0ZQ+oTy5lWtxngUOnF5fa31aIrN8wjLSWV5QK+1HiCjcPcL35g84HNnms9bu3MuINDjxuyUyfRJqyAsxkEquHQsPWCgY0PTFC5Xwx5bDrGguBw6tJBXkZWzrxaDti29cHAfs2jHp+BHK+lQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lwQmXdwa; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8F5481FCE7;
-	Tue, 29 Apr 2025 09:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1745918657;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GEZ0/TGAvSoNsUalpNLb8aLo8LMMcOANkTCZwKQ6Zkk=;
-	b=lwQmXdwaoauJ6hEcJAvn5jgXfWSB3TfZJZ9U+eEaK7Veri0FeQAOuFpHyHe3NbnvI5r80G
-	FCuKeZSaabwYzvgSsKSspZzQZ/Ly1PnLR53+yfA2zYaB8j4tWsGZFJ341nI+XcS96jSHmL
-	Lju6igRcOH72VNzulesEfHI3r0exkCo+Whx0vTEX31FDAsJTbz/buG5uCViioezGPxFaLc
-	xDWiZYGqzPNsWKlbxci8IP6bSUw+rJvr2Xdnv8Md16zoqfJ5OOo+dXQyyYlsMd/W5rC2J+
-	j09uDMcXydNFRORaDYOu1Tw+mfMDxXo32FWlxN+Vd0kdsNLAArZoAH4czRkCuQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Weinberger <richard@nod.at>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20250320-loongson1-nand-v14-0-2fef37c8607f@gmail.com>
-References: <20250320-loongson1-nand-v14-0-2fef37c8607f@gmail.com>
-Subject: Re: [PATCH v14 0/2] Add support for Loongson-1 NAND
-Message-Id: <174591865038.993381.4352536787925323902.b4-ty@bootlin.com>
-Date: Tue, 29 Apr 2025 11:24:10 +0200
+	s=arc-20240116; t=1745918697; c=relaxed/simple;
+	bh=rrQJ0Hka8wYnJPOAUeGyeZ841tHT6lm9xmZ1jfLxhO4=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=QWnpyaN0/nN0v6fCpbiUhC/Xqche/uevU26iUmjXpCHKVgPTq/r2T9F6eT5pL3/cSppeDO3EzKUgpkZo5nYDjR5ynVwAcKcpDuyZzXEG9eLPU1BYQ4srvsr3FOHufRFlf6Ao7C2d1mgxChjqQKI9QYtTe3zr8Sj9+7oz4WgfIO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cc3wCaRM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNq0ro019654;
+	Tue, 29 Apr 2025 09:24:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=3OBmZd+6pPWr
+	vEdWM9HFPVQRQwXfz7bxO/9XfRC7RCg=; b=Cc3wCaRM4Xvm0UepINxFsjs9wUOz
+	AVIB326DyfGKDy58RpX48ZLt7AnapoQs+86UuMXpdwm1r3HdstMXV5n8oGWwR/5k
+	PKBPnKYod1kEO+/Zyp5lNc2tX7EVDULOoAwqy5/tbxCpnES2SoVztTgKrJ8tC0XV
+	FNxOsd6iUw0xkBkVO80MD1XIgXa+1gXlIH8FvOtfGZMx7++qf/6yV13D07QosJP9
+	onuCt53FuIiJ0Q8aVD0yX0dlt0/txm9isTMmz9MMpJdPObSWyArVUFNPTJxpz93M
+	Z2IRa2gL3tpxg+Hjqgc6CJELe8rB2z+qi/tftAjdBmUbeX2ILWORmwTqcw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468n6jk9g9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 09:24:52 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53T9Ol3h031628;
+	Tue, 29 Apr 2025 09:24:48 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 468rjmhb32-1;
+	Tue, 29 Apr 2025 09:24:47 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53T9Ol8k031584;
+	Tue, 29 Apr 2025 09:24:47 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.213.109.81])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 53T9OlOf031558;
+	Tue, 29 Apr 2025 09:24:47 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 3914174)
+	id 90402604541; Tue, 29 Apr 2025 14:54:46 +0530 (+0530)
+From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@oss.qualcomm.com, Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Subject: [PATCH v2 0/7] Enable audio on qcs6490-RB3Gen2 and qcm6490-idp boards
+Date: Tue, 29 Apr 2025 14:54:23 +0530
+Message-Id: <20250429092430.21477-1-quic_pkumpatl@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA2OSBTYWx0ZWRfX5Ex5N65QAnNX ZgeFbFl2Dw40Xed1K+xBcoBB7mHKt9dub1GRuDp+xZWWPtT6C0qwc4nb2o+2GaRYF5M3NIF2FJ2 V1En28QDo6TT0lW8WeaxRRMEzR4qZtOIHy4Q79BEgfxwwjeuKPQYdN+URRY6AYoNTpNHWgoxCH2
+ KvxjGHmq0I5AzF4YoEIcgYEbGzU/d4uyA5KlfgvViVt8iTwoosvSu4ldC/bwz4cwj5gibiEik/T L4d+OuB7tX+q/+l11q6stmfL4Q4igmZbixwAIL/DxIMK1k17eDxVaJiMGtQc6V2CmiEYAi2ycM9 DZ/Ja0CPS3L3pVmSximdS580FzSqx/DayWTqixhsl0sWpb4PegTU/rI292/UgkpdDTnL4fh31z3
+ FmlRTn/9ifIZaWmgRFPytw1FD0EbeHb28PjxROyOHv2aQWOsiTXrSyh7ZEBaXNFlr3bjw+8x
+X-Proofpoint-GUID: lNvFDZlGCH5ebz3fh_4DBlpdJaUr1kQE
+X-Proofpoint-ORIG-GUID: lNvFDZlGCH5ebz3fh_4DBlpdJaUr1kQE
+X-Authority-Analysis: v=2.4 cv=C8fpyRP+ c=1 sm=1 tr=0 ts=68109ae4 cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=qXBIds3u5FJ4LVJbLgwA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ mlxlogscore=651 priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504290069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieefgeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevjghfuffkffggtgfgofesthekredtredtjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekieelgfehtdejteduhffhvdduueetfeettdejfeehkeetiefhgfevhfeuheffleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeelvddrudekgedruddtkedrvdehheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeelvddrudekgedruddtkedrvdehhedphhgvlhhopegludelvddrudeikedruddruddtiegnpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtt
- hhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehkvghguhgrnhhgrdiihhgrnhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Thu, 20 Mar 2025 18:31:36 +0800, Keguang Zhang wrote:
-> Add the driver and dt-binding document for Loongson-1 NAND.
-> 
-> Changes in v14:
-> - Clean up unnecessary print messages in the driver.
-> - Some minor related adjustments.
-> - Link to v13: https://lore.kernel.org/r/20250305-loongson1-nand-v13-0-a5bac21631cd@gmail.com
-> 
-> [...]
+Audio support is now enabled on the qcs6490-RB3Gen2 and qcm6490-idp boards.
+The updates include adding the necessary audio device tree support and the required
+dependencies.
 
-Applied to nand/next, thanks!
+Both the qcs6490-RB3Gen2 and qcm6490-idp boards are derived from the same SoC 
+platform. Therefore, the audio support changes are included in a single patch 
+set for consistency and ease of maintenance.
 
-[1/2] dt-bindings: mtd: Add Loongson-1 NAND Controller
-      commit: eff4e04c892774b1cf7ce43afbb186ff0be870c0
-[2/2] mtd: rawnand: Add Loongson-1 NAND Controller Driver
-      commit: d2d10ede04b1671dc4762479a2d06f183aaafbba
+Changes in [v2]:
+	- Created dtsi file to handle common audio nodes to support Audioreach.
+	- Addressed the review comments.
+	- Link to V1 : https://lore.kernel.org/linux-arm-msm/20250317054151.6095-2-quic_pkumpatl@quicinc.com/
 
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
+Mohammad Rafi Shaik (7):
+  arm64: dts: qcom: qcs6490-audioreach: Add gpr node
+  arm64: dts: qcom: sc7280: Add WSA SoundWire and LPASS support
+  arm64: dts: qcom: qcs6490-audioreach: Modify LPASS macros clock
+    settings for audioreach
+  arm64: dts: qcom: qcs6490-rb3gen2: Add WSA8830 speakers amplifier
+  arm64: dts: qcom: qcs6490-rb3gen2: Add sound card
+  arm64: dts: qcom: qcm6490-idp: Add WSA8830 speakers and WCD9370
+    headset codec
+  arm64: dts: qcom: qcm6490-idp: Add sound card
 
-Kind regards,
-Miquèl
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts      | 250 ++++++++++++++++++
+ .../boot/dts/qcom/qcs6490-audioreach.dtsi     |  99 +++++++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  | 119 +++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  70 ++++-
+ 4 files changed, 537 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+
+
+base-commit: 33035b665157558254b3c21c3f049fd728e72368
+-- 
+2.17.1
 
 
