@@ -1,231 +1,234 @@
-Return-Path: <devicetree+bounces-172028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75C7AA101D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:15:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4370BAA102E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:17:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21EEB16ACE7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:15:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE59A8425FC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:17:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2014321D5A1;
-	Tue, 29 Apr 2025 15:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FDA521ABA6;
+	Tue, 29 Apr 2025 15:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PFHfczJP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JG/GEdSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BFD221548;
-	Tue, 29 Apr 2025 15:15:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198EE22128A
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 15:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745939707; cv=none; b=PmCrsFpyVHjvWbtiewNt+DnEOIC2obIJPSmoI6r9CDRY5tcbtMxjim6Kj7jebA+cs3Xb0dGYgxBE0ApWXh82ypEYdccNDohqSv+TAXPGWxOjxRsCcLm1qSX8Q194SMloKIxTKbZ/cRmQqbi/SkjTJ1SHV0jrEvgCQyXOJ2J/GPw=
+	t=1745939861; cv=none; b=AKWwOGLiKmlxzrnjaT7w7TW6VDlm2arhICBmFiojLRevmL/zhkRmFyiJ2J74/ix/s0IdY/auaa9tz6HIGlVYKD8qiDe3MN8gxm5Myg1bdD0+f/BPkYwYMLfI8++cOXf7W3Wezk1a95JKoAyKI3ClCrMnqWusHY0eB18JJaEKT9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745939707; c=relaxed/simple;
-	bh=ibvBUo1tgIQ4lzj5CAcnf2ssp/dwqEoXlDjUbndHAU0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y0miFQuU+9NPXI+5J+FWC1Sm7fVe79BGbYNLHKEuBV8EDQydu0oQ7w0XzYAlTVyU089BbLzOmajwITkifyilARc6bp54YDA2QUBMI4EQ0VXV3noomJjgvO4ZcpTljRecLaPV0QbBwAFxnL/IwyqK0QtH0jhyulGCv9Q2qVMA6e8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PFHfczJP; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TFEtm03706313
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 29 Apr 2025 10:14:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745939695;
-	bh=iNL6a0GWxA2dkZ05LdtJm5Jez0Oqtf8Q3PSdPHB/Smo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=PFHfczJPj/469KbpDRdHpsMI2zj224SZxVNFCic9ZdaXJd7FRW4qIGrzrJHyShNPW
-	 YcJaovFi+bR0IBHSj9kIgyOpQqGJxYv3rUS7PiDvTE87+t18DVA9S7lQ7Dcb1hN4XA
-	 ECVIvWwn+yll723eEkws47RzMmEsAQGx34G535MQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TFEtDR032994
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Apr 2025 10:14:55 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Apr 2025 10:14:54 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Apr 2025 10:14:55 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TFEslx129369;
-	Tue, 29 Apr 2025 10:14:54 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>,
-        Udit Kumar
-	<u-kumar1@ti.com>
-Subject: [PATCH v3 3/3] arm64: dts: ti: k3-am6*: Remove disable-wp for eMMC
-Date: Tue, 29 Apr 2025 10:14:54 -0500
-Message-ID: <20250429151454.4160506-4-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250429151454.4160506-1-jm@ti.com>
-References: <20250429151454.4160506-1-jm@ti.com>
+	s=arc-20240116; t=1745939861; c=relaxed/simple;
+	bh=DiuiAYICLRUl59C/aRhELeH+HvVB1l5QG0k9BnluZU0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CHasq2TFQ+NZmQIOv8Qsu1M0YpASRY13NX+YmwQKSG7tHSytVBcmOSKEzasP9UpSYTK8oir9Gf8T/3GhkKvc+R0iN4iF0OD4y+vZ7Ab1GP1q7ESie52pjENAm3P59cB9bpXKg3+mKOMBEYOHaAtl5Z9YQxalr5mf1gzh42fbOrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JG/GEdSE; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43f106a3591so6737475e9.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 08:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745939857; x=1746544657; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BokEIJpAcKb2binz16NzuPQ4I7I+6I7p32b1cJZhi5A=;
+        b=JG/GEdSEzowm/utyuQKTVnh2bkuwnA11HZ6huhLCmo+/28A4eRvuH6PK4ltDi6TQmz
+         85KrxQiY6fmptXO6X46jiYxoEJdTFuB2ckfvnqYk/bwPDwCyMh/rVXvyAgBxeAKeBc5A
+         XZZTYwW38l2Ai3ta+atXIssj+XVhKalGv8rHCQ0pnbzUaiAZWPMiBkddHhhroJ+Taf4O
+         QGfp92dzIuKoDqlv1xCaKIkKPC8w5IGb/xlkwGl8+JloAUXtZ1i8IKCO0v7pdJvw453s
+         Hat7xN2cRrjMi8RHurrJlZgVpsoCMQx9TYsDmvuHIGPRjQ+0INmwmVTnscnpq/sZjUFz
+         RaSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745939857; x=1746544657;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BokEIJpAcKb2binz16NzuPQ4I7I+6I7p32b1cJZhi5A=;
+        b=AT1Sg5KAZH/pcfIWNLy5CeipHUUpI3kaSpP5uAbP9DGPdSAuHkvlith58N3Ox8P5Ll
+         CMqlf3ZAl0Dvl0KJ/Qjl46SpVnrbEznLhhCajvFIxrJDqVZjEnQzzBOGMn3xbimemH6m
+         Eg8XUABai1roH5/CvqpChUzLca9S2e5GuppA3QeSVqYA4CoMe3aHGyGF6eolgrw7CPID
+         dvyB4G/EXzX9VkCZ6a8m/evg/oVTCcmgFTMWG1LBz/bufAXPU7uMOE5MRt66k6y7z9Qx
+         C+jCuuREgZGzLXMMv1IlxkqIeslzk3G3K79S/F/uxQMs6XGiQpBNyFZvRXSE0swoM3Ae
+         VXRg==
+X-Gm-Message-State: AOJu0YxrXfQcs9Av4g3bVd+KUZug01EVeFtg0zAi+K3vDWL3BazDit/3
+	LZGlHTUQrWp9waGhkS3PFO1646RiuKnvCeb3L4kB1HC6QIA6eqSkd+uPHYjlMHY=
+X-Gm-Gg: ASbGncsZ8eh52kG+d+wpu8JFTovA2U0IjYeEfnECgUrbvjR20cq2YDAM2jzi7DjtYci
+	3Dz7J6GUZgIl9L+hFmRclQDESS9Te4xWqHPX066109+DUDK3p9o0n/qKfNAXuMUjr5GsuRqBBkh
+	D8g82k1+llDWZdFc+Jq9TIGOT8rKBLD9jagZnH6bCfzQnfg3741qjFBRAfwfPDCcLcC9tovfTo6
+	j2Ad1Dfadl8oulwkN8bOe5b50ikaFuznFVyc1osoWQB1a31fwWVOzVvFeEwbpwyUcWyuHTKtCbX
+	mRHDlzuNwjKnyZ9Chfv03lKHM7rAGshC2m0aUZlQNLWrWjjgF1dlURd9WB8=
+X-Google-Smtp-Source: AGHT+IHwONa+JhNx4dio96T0pi5jX7gQn7L+kUedgzrY/88DyPg1TeMpxysV+irX79Ls6/3y0GlTjA==
+X-Received: by 2002:a05:600c:ccc:b0:439:a1ce:5669 with SMTP id 5b1f17b1804b1-441ac890828mr11476225e9.5.1745939857335;
+        Tue, 29 Apr 2025 08:17:37 -0700 (PDT)
+Received: from [192.168.1.28] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a52f8909sm167238875e9.2.2025.04.29.08.17.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Apr 2025 08:17:35 -0700 (PDT)
+Message-ID: <c2d8374b-b623-447d-a695-3f2ead068265@linaro.org>
+Date: Tue, 29 Apr 2025 17:17:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] arm64: dts: imx: Move Ethernet aliases out of SoC
+ DTSI
+To: Lucas Stach <l.stach@pengutronix.de>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, Francesco Dolcini <francesco@dolcini.it>,
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+References: <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
+ <e97d3388a5b4272d70d7379b020843a47874a104.camel@pengutronix.de>
+ <c5538590-efe4-4b90-b291-6c429d8fa3fe@kernel.org>
+ <06efb082c24176e6401265b4349b677468850f7d.camel@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <06efb082c24176e6401265b4349b677468850f7d.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Remove disable-wp flag for eMMC nodes since this flag is
-only applicable to SD according to the binding doc
-(mmc/mmc-controller-common.yaml).
+On 29/04/2025 17:13, Lucas Stach wrote:
+> Am Dienstag, dem 29.04.2025 um 16:30 +0200 schrieb Krzysztof Kozlowski:
+>> On 29/04/2025 11:39, Lucas Stach wrote:
+>>> Hi Krzysztof,
+>>>
+>>> Am Freitag, dem 25.04.2025 um 21:48 +0200 schrieb Krzysztof Kozlowski:
+>>>> Not tested on hardware.
+>>>>
+>>>> Ethernet interface, like other exposed interfaces, aliases depend on
+>>>> actual board configuration, e.g. its labeling, thus aliases should be
+>>>> defined per each board or each SoM.
+>>>>
+>>>> Some boards (e.g. Gateworks) follow this convention but many do not.
+>>>>
+>>>> This is continuation of my comments from:
+>>>> https://lore.kernel.org/r/16a98816-f43c-4f4d-940e-9da30cb1f73f@kernel.org
+>>>>
+>>> The i.MX boards have traditionally listed aliases for many hardware
+>>> peripherals with the same numbering that's used in the SoC reference
+>>
+>> ... which is not correct. Aliases should represent how boards are really
+>> labeled, not how reference manual labels them.
+>>
+> While that is the commonly agreed interpretation today, I do not see
+> any language in the DT spec itself or kernel Documentation/devicetree
+> that would mandate aliases to be used in this way.
+> 
+> In fact there are examples to the contrary like
+> Documentation/devicetree/bindings/serial/samsung_uart.yaml which says:
+> "Each Samsung UART should have an alias [...] as specified by User's
+> Manual of respective SoC."
 
-For eMMC, this flag should be ignored but lets remove
-anyways to cleanup sdhci nodes.
+And that is an ABI. Did I affect ABI here?
 
-Signed-off-by: Judith Mendez <jm@ti.com>
-Reviewed-by: Moteen Shah <m-shah@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi               | 1 -
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts                | 1 -
- arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi              | 1 -
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts                       | 1 -
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                       | 1 -
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi                | 1 -
- arch/arm64/boot/dts/ti/k3-am642-evm.dts                       | 1 -
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts                | 1 -
- arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi | 1 -
- arch/arm64/boot/dts/ti/k3-am69-sk.dts                         | 1 -
- 10 files changed, 10 deletions(-)
+> 
+> So I would argue that there is no hard line between correct/incorrect
+> for the historical usage of the alias nodes on the i.MX platform.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-index 55ed418c023b..e5be92aa1218 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-@@ -381,7 +381,6 @@ serial_flash: flash@0 {
- &sdhci0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc0_pins_default>;
--	disable-wp;
- 	non-removable;
- 	bootph-all;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index 1c8b4d13fb49..72b09f9c69d8 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -835,7 +835,6 @@ &sdhci0 {
- 	non-removable;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&emmc_pins_default>;
--	disable-wp;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
-index 147d56b87984..0d4115590b9c 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
-@@ -338,7 +338,6 @@ serial_flash: flash@0 {
- &sdhci0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc0_pins_default>;
--	disable-wp;
- 	non-removable;
- 	bootph-all;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 22be41d46eb5..c65ada5a22ab 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -634,7 +634,6 @@ &sdhci0 {
- 	non-removable;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc0_pins_default>;
--	disable-wp;
- 	bootph-all;
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index ab06cc42b4f2..b89b7a779bcc 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -482,7 +482,6 @@ &sdhci0 {
- 	status = "okay";
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
--	disable-wp;
- 	bootph-all;
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 7d249fd04561..c6c8a9d17fb5 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -456,7 +456,6 @@ &sdhci0 {
- 	non-removable;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc0_pins_default>;
--	disable-wp;
- };
- 
- &sdhci1 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index f8ec40523254..5c6197ba842e 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -597,7 +597,6 @@ &sdhci0 {
- 	status = "okay";
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
--	disable-wp;
- 	bootph-all;
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index aa7139cc8a92..c30425960398 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -456,7 +456,6 @@ &sdhci0 {
- 	bus-width = <8>;
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
--	disable-wp;
- };
- 
- /*
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-index ae842b85b70d..12af6cb7f65c 100644
---- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-@@ -50,5 +50,4 @@ &sdhci0 {
- 	bus-width = <8>;
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
--	disable-wp;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index b85227052f97..f28375629739 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -940,7 +940,6 @@ &main_sdhci0 {
- 	status = "okay";
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
--	disable-wp;
- };
- 
- &main_sdhci1 {
--- 
-2.49.0
+There is. ABI is documented. There are things which turn out ABI, even
+though they are not documented, like node names. Was there a problem
+with refactoring these in NXP?
 
+No.
+
+
+> 
+>>> manual. Boards always have the option to override those aliases if they
+>>> have a good reason to do so, e.g. labeling on the physical device.
+>>>
+>>> Other users besides Linux rely on fixed numbering provided by the
+>>> aliases. Both barebox and U-Boot number their ethernet interfaces
+>>> according to the alias.
+>>
+>> And?
+>>
+> Some usecases depend on the aliases being the same between kernel and
+> bootloader. Historically that has been guaranteed on the i.MX platform
+> by the aliases in the SoC DTSI, when the board didn't have a need to
+
+I know.
+
+> change them. With this series applied some other users may now end up
+> with missing aliases if the only include the DTSI.
+
+Bring actual case, what is broken by this changeset.
+
+> 
+>>>
+>>> While you seem to add back aliases for in-tree boards, this breaks the
+>>> majority of boards that include the kernel DTSI from an out-of-tree
+>>> board. I can understand that we can't always accommodate these users,
+>>
+>> This is not ABI, so every out of tree user is on their own.
+> 
+> I am not too sympathetic about out-of-tree users myself, but I don't
+> think we should make their life harder deliberately.
+
+We are making our life easier by maintaining and improving source code:
+e.g. not creating fake aliases for devices which do not exist on given
+board.
+
+
+Best regards,
+Krzysztof
 
