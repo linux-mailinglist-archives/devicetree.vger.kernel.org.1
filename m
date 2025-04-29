@@ -1,73 +1,101 @@
-Return-Path: <devicetree+bounces-172096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98CCAA1CA2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 23:06:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFE0AA1CDB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 23:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355494E09FE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:06:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD785A5B69
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEDB269CE4;
-	Tue, 29 Apr 2025 21:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B67B261362;
+	Tue, 29 Apr 2025 21:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVs2MfUP"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="O8BwmQCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83CE253B71;
-	Tue, 29 Apr 2025 21:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6823F254848;
+	Tue, 29 Apr 2025 21:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745960787; cv=none; b=JcnXwuteb0waMdoM6B8Y+kSt4voFU17/H4WiaBiqhTl8iFoNW4kEJpaNLcmqzSIEt/tEqk5JnkWTiF1eq9wbu165yfrPvCoJ0WwM1CQTugboiPSztk+4TO9NO02+kAJPzyWwdthAsUoKqyKWq9EsY/NOtEH3IzE8pIQuq4hX/kw=
+	t=1745961985; cv=none; b=uoIsxtJMRHfAwpqAVYejhygmChazYP8Z8kgAbfQpKGavg/MZT6umhNIC0zWFxRvdagnU3indk3vKGFRHXEY9VHx/wxIK3w98i9hkeELXvyeE/uZN8fubqbiXfCv5XZRXIPHC1qASEQL6xayz2C+6CN0jzZXaQrnwQMAIcBGkTog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745960787; c=relaxed/simple;
-	bh=Sy3N7rJ5RiZ35a/nbX7TVI03BJyyFekD1LmyBdUtxTg=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=TBBYXRxBAwQrxmsbO29Itj+aj/X67IJPgMUs+fC8L3E8pSM1eR5QpNRlhwb690lARiAIIscfNSX/wDEnEGPnA9Vbj1V9SEDdXE9BK+iZy3ECKvQGFq1frjElgAAXl8omSnn4F+hGDeKqyvy0sDqV5rwyiQdDSMJeMZFaylUAJk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVs2MfUP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F650C4CEE3;
-	Tue, 29 Apr 2025 21:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745960786;
-	bh=Sy3N7rJ5RiZ35a/nbX7TVI03BJyyFekD1LmyBdUtxTg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=nVs2MfUPOk0119jEuPto1ezBodHSocya//MhbXIAvrhLx742ZUTpret+TAWzAklFg
-	 gluYYlXFkOetWe/vQTAwEmaLf5bXos0FxC1XqnGcHq9by0RnJWMQPwXUgl3oQEEYMw
-	 pigTWeYOE/kUCOCA5W0m4sSSJbNvajg6pIEg10R16deiRgdAB4K3OJkSzEeO4QU0lz
-	 rXkagZ2qI9SVfp90L2V05DEORkJhZcDCVDM/C5sFoVnbRfS5hm6A++frX5kECczlv1
-	 oO93WLZpPE5RrJ7hggfQy4Sqv5KFYG+qnoBve3Mtx0Elp9hZK3DjooQDqjMPhFdeq4
-	 vcLygE6kEZddw==
-Message-ID: <a0863522af2f00e91c781cc1d7da6d0b@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1745961985; c=relaxed/simple;
+	bh=JJKYQPbX0oS2edgtN/JiR8K5u2DsChTbCg12PVfbFcA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FX7VudlFkb9CEoN0B3ZP8UDsBejM+af+PT/vZZV9ECVyGfvxH94XL3lnfavwENJHwobuKwegUzuIbGxS5sQD2rDo+vYFnPI0Y/RR8iaCtLUStlkdQSDzXuG9oJVMeQgP4MTDLLZlVXl2G05RrSdgQ9SjvxuIwhyRXdvf+qR1DvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=O8BwmQCo; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=+SGSB4/+nlLFVQyK8SYD92uIgww4SyT7f0UDpG1s4xk=; b=O8BwmQCopy+yAIs0PC3ozSdz11
+	gSfGlzpYnSLJ9S+QMILMlUgY7xpn4dkO36BCISW3XbaY/I9fu3blr6BiMyr1OR4bn8hWkwhob7y0O
+	lGvHX7rr8cX9XjQb85McsZx/ZhGjNyl07wtSIiCwe5syx/fJyvy78P8txx2XqB7m2zkpqBIXYx2rp
+	F8Xe7UOx27ts9Wt20/QJRRCGSAENq1/e4jI3dUfiWw/wScqIIvVuOWkwMZqAF9OMvTTmRzj39L0fJ
+	x+X05eb7aPiYuwYqO8ZbH9konGVSN56TkvNYBkFHQQXV5b1W8WAssroADmFrOmUM6oM08nE8YdeJn
+	a49Nts2A==;
+Received: from i53875aba.versanet.de ([83.135.90.186] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u9sSs-0008Pg-B3; Tue, 29 Apr 2025 23:26:06 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	kernel@collabora.com,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/2] RK3576 SATA Enablement
+Date: Tue, 29 Apr 2025 23:25:48 +0200
+Message-ID: <174596194661.227689.3642609522784038361.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250424-rk3576-sata-v1-0-23ee89c939fe@collabora.com>
+References: <20250424-rk3576-sata-v1-0-23ee89c939fe@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250411212339.3273202-1-Frank.Li@nxp.com>
-References: <20250411212339.3273202-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] dt-bindings: clock: convert vf610-clock.txt to yaml format
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: imx@lists.linux.dev
-To: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Tue, 29 Apr 2025 14:06:23 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Quoting Frank Li (2025-04-11 14:23:38)
-> Convert vf610-clock.txt to yaml format.
->=20
-> Additional changes:
-> - swap audio_ext and enet_ext to match existed dts order
-> - remove clock consumer in example
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
 
-Applied to clk-next
+On Thu, 24 Apr 2025 20:52:21 +0200, Nicolas Frattaroli wrote:
+> This is a tiny series to enable SATA on RK3576. It consists of a patch
+> to add the compatible to the bindings, and a second patch to add the
+> nodes to the SoC .dtsi.
+> 
+> I've only been able to test sata0 on my board (Sige5), but the
+> successful test gave me confidence that downstream's "dma-coherent"
+> property here is appropriate and true.
+> 
+> [...]
+
+Applied, thanks!
+
+[2/2] arm64: dts: rockchip: add SATA nodes to RK3576
+      commit: 24d8127d801560c8fa811d554e8ab5db7e51511c
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
