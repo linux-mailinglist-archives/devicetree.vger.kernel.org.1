@@ -1,92 +1,92 @@
-Return-Path: <devicetree+bounces-172020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1465FAA0FDA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:01:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92689AA0FFC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78587164E7E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:01:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03FA83A66FE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8800321C19D;
-	Tue, 29 Apr 2025 15:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2A921CA1F;
+	Tue, 29 Apr 2025 15:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWmNAI5O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcWcj2ox"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58021218ABA;
-	Tue, 29 Apr 2025 15:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D105421B9E4;
+	Tue, 29 Apr 2025 15:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745938877; cv=none; b=lKYhsxMk9sO4j/kj+gifocV1QBPVpNnX5tzaBQ6Kjf0dNqaWVWcSiSJgO1AivQCWQEEQ1n2r9MW5kRZPXoQfDyn/7OLBc5nfjp/cTVcXaDTIoRizYn0fQU3JEr5iOXLbuvfyaIZUFxjxTKdNHotCDqIoddTPMU+KbQlHYMnXqE8=
+	t=1745939041; cv=none; b=f49vkQnNKQtTQeobbUU86oPvk3MdRvP998ZUF/dJKo6AOE0RAVafgRE6TkcExpkEx/9kj4lj5kumsqCX7h3IOxJWRRDa9x+FLHNg+Nt8usCyCcoyR2HNPsj4XHckNdguxWlQfqOvPfkU+jnh1F2CX99DtHUtK9ApMBMXZsN1yhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745938877; c=relaxed/simple;
-	bh=UQgYl5cvjAaC6YHzBjmSn9qYkSS2URKtp0ZQVUPviMc=;
+	s=arc-20240116; t=1745939041; c=relaxed/simple;
+	bh=NQ6rs0gAx8UaaZKGMW2O3mPB21o1FM4k1lKYkEfoXVU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=osZMfMn/KoGUKQKBwhY9vrzXLQ7cDXdYEk29ikQ5HF/Uiq3HPMW1vU6HtYVZHlCKdyymfTythWYzBArJ5NlQ9nEC9jGi6GE2NH6feypHq/UduK7cvHWarUJQjl0HgKNYAlXfe8TFACGUZKCtt0hnTsq0z/vJZsi3eylur65gPjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWmNAI5O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97708C4CEE3;
-	Tue, 29 Apr 2025 15:01:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aRYsIJQ8Sk7N6WQxnmkDKkDrrnMx35TZGJWYv5gikbCfu18bApGtKWS+5XvRlHBlIElYWyXPsml/NNLHl6yZj0/pc30l2zLUIyQpHUQN47MxrNyhUUmjpgcfmiMYnqZWpsH3FWTq8RtSYZMfrCevzy3qAwEdGCr6U8Pfd17gBH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcWcj2ox; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1229AC4CEED;
+	Tue, 29 Apr 2025 15:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745938873;
-	bh=UQgYl5cvjAaC6YHzBjmSn9qYkSS2URKtp0ZQVUPviMc=;
+	s=k20201202; t=1745939041;
+	bh=NQ6rs0gAx8UaaZKGMW2O3mPB21o1FM4k1lKYkEfoXVU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HWmNAI5OB6WUpsYfsKvOROAHHmYuKknITMBLDaWInxVaO1r7PYChRH3VQoVWV0Rh6
-	 niRJkgtLhOB85gnZMPaGZAJ8C95JhyTk7c68DFyYxbde2/xaA8SVXuNNLltec5rUJU
-	 DjfSzjmAOmotxP4H0rj3k4NrypcD7JXTXnWMy8wc2YcQsFLD46tbcCClA48RZI1Ry3
-	 XZA9d2pNtkXBnJBAmcHHaStFNLEcNvaePY9v1UWfQJDwpA2yO8COL2aGHBzLuV+oDd
-	 abgsx0iNsCwDyjU9+zTg8n3KkmChEq1cDMI0YoeOErFGIUwCMpUxxQ+9MltMh0xECc
-	 yfWkdGjdqWfQQ==
-Date: Tue, 29 Apr 2025 10:01:12 -0500
+	b=kcWcj2oxSKexKkkqMX8hZCj4YEE9wEd9S/JhZdWwGmLgv2jdVtQRf4v3fpIwy950z
+	 fqVM7VrLb0NWWejI+JG9skw+1NXGPRE2vkhHqLsx/4uiTfbW0FsgISn6M0RxlTP5iT
+	 69/kgPexmOGnXSERLBmIbhrMgKAsOYKeTYqiVLZrgTawahlZayC1mWOTOj6hTfjjTL
+	 b1AYc8LseV5boePdNcwCbZYdzs/0e5fD8nTbbiSBkDWXiRperUDgBLX4JDxOsFsqSZ
+	 OizxN/yets15PN1snTDYCHQykS4KFjx4Gz6rSXYAQLPGsGE5ct+FkAKno1HKcTOCAP
+	 6AOUf4UpOQuCw==
+Date: Tue, 29 Apr 2025 10:03:59 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, geert@linux-m68k.org,
-	paul.barker.ct@bp.renesas.com, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, thierry.bultel@linatsea.fr
-Subject: Re: [PATCH v8 03/11] dt-bindings: clock: Add cpg for the Renesas
- RZ/T2H SoC
-Message-ID: <174593886824.4084075.3272169793165208261.robh@kernel.org>
-References: <20250429081956.3804621-1-thierry.bultel.yh@bp.renesas.com>
- <20250429081956.3804621-4-thierry.bultel.yh@bp.renesas.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc: devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liu Ying <victor.liu@nxp.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v2 09/17] dt-bindings: mfd: adp5585: add properties for
+ input events
+Message-ID: <174593903898.4100627.2373563890493878506.robh@kernel.org>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+ <20250415-dev-adp5589-fw-v2-9-3a799c3ed812@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250429081956.3804621-4-thierry.bultel.yh@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250415-dev-adp5589-fw-v2-9-3a799c3ed812@analog.com>
 
 
-On Tue, 29 Apr 2025 10:19:45 +0200, Thierry Bultel wrote:
-> Document RZ/T2H (a.k.a r9a09g077) cpg-mssr (Clock Pulse Generator) binding.
+On Tue, 15 Apr 2025 15:49:25 +0100, Nuno Sá wrote:
+> Add properties related to input events. These devices can act as
+> keyboards and can support events either via a keymap Matrix or through
+> GPIs. Note that the device needs to be an interrupt controller for GPIs
+> based events.
 > 
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> We specifically need a property specifying the pins used by the keymap
+> matrix since these devices have no requirement for rows and columns to be
+> contiguous without holes which is enforced by the standard input
+> properties.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
-> Changes v7->v8:
->   - extra parenthesis
->   - added loco
->   - renesas-cpg-mssr.h: removed unused clocks, added a macro for mstp
-> Changes v6->v7:
->   - Add description for reg property
-> Changes v5->v6:
->   - Set clock minItem constraint
->   - Moved additionalProperties after 'allOf' section
-> Changes v4->v5:
->   - Set reg minItems and maxItems defaults at top level
-> Changes v3->v4:
->   - Handle maxItems and clocks names properly in schema.
-> ---
->  .../bindings/clock/renesas,cpg-mssr.yaml      | 58 ++++++++++++++-----
->  .../clock/renesas,r9a09g077-cpg-mssr.h        | 48 +++++++++++++++
->  2 files changed, 90 insertions(+), 16 deletions(-)
->  create mode 100644 include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
+>  .../devicetree/bindings/mfd/adi,adp5585.yaml       | 188 ++++++++++++++++++++-
+>  1 file changed, 186 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
