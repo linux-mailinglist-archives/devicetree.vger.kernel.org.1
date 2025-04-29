@@ -1,176 +1,83 @@
-Return-Path: <devicetree+bounces-171815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDAFAA04A0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:34:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87522AA04AB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:37:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8FA482FBD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D35141A844C2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3FE0277808;
-	Tue, 29 Apr 2025 07:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A96827A135;
+	Tue, 29 Apr 2025 07:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jaRZw/fw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hwbvq8HQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60EE277002;
-	Tue, 29 Apr 2025 07:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC9E27991F;
+	Tue, 29 Apr 2025 07:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745912073; cv=none; b=WRJnT21FPs3t2Fw91y/RrzRj3m2GKoo3SMORyrM+JZGGRZ8vYBloaaIRZ9eIHFcoDOpPTGOqmKjt9zM2H7V9HrNVAO3ux9u+Zz/tKmRmRlDEbJKdHjY36UQIJ61wsqntQD9m5C4BIdgP6b4fgvzts3LSioOp7cR/mTjtg9yFX+M=
+	t=1745912217; cv=none; b=u4qAQSbnXNrXULIeVFEgm6LY/k4baAjLajMtbEsYKOfO6dL7MPciq5Os3+YkVkmpDCvAYpISlhbhHRXsuTH8yQ6PZGe67xGIkDZmtWt0IurqtfqSy0EpnULjKaaGoKBcIGoDuU+8Y73dFmzhFeK6jRKtod4Rmv0QDNpOJ70WFPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745912073; c=relaxed/simple;
-	bh=1FIwLwyQulKxxFP/ujnEVpEdgFJ8AVSMc5D8iY1ISc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RclPZSzUi1GuIGfI+IbTkixh3jklqSlAU09S3oDkDOIY8CmqVRi7USBINXmjaqjG4Ls9wWoiT5/aDJPu30O5CGgJxaULzIG0zZLyjjFb30lCsPF3DrtOh3bLdGMfgYoSoSVyYQNlw8YIH4yV6FTIWLPAPtskQRVPVXEU7nyH0WA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jaRZw/fw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC7ABC4CEED;
-	Tue, 29 Apr 2025 07:34:29 +0000 (UTC)
+	s=arc-20240116; t=1745912217; c=relaxed/simple;
+	bh=/arAgy+mMya1qUnC9q22rUDb6dDI78ZEwALTr9bZUoA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YWRISIdP/Ivz1BeFX2eH71z1Vo5S/RDyLiIsHlrB4/a3MOr1NK4ZKuYwloPWPFrP33WREWIZbcWBaAVHYHmTfUZbp+t0h6SoVvS4l92PZe74gHh2mlevsN0U9UfUeWqU9E+KLwtibxgpyuoI4Up5q9oWuzx+GG86wvhOI0mX7BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hwbvq8HQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DEBCC4CEED;
+	Tue, 29 Apr 2025 07:36:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745912073;
-	bh=1FIwLwyQulKxxFP/ujnEVpEdgFJ8AVSMc5D8iY1ISc4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jaRZw/fwNa8P6+yoOBvuASueTp81mAvevIGO5h2y3NT2ac5rUzI7PPeMzY0x4wxeP
-	 hsbfxzfMJkWNqo9JVcuP/FLvwIFPlCg7L/QmeLfBN8XfbeTQBSzORgASauE7opb+46
-	 VJNq9eT4v+TM0tE6DKElhVpHQDq7eKqXrlL5LshoR4eLWID9VkFbroFF4gvsXEZ0WU
-	 pKXeWm9LqtGIyfEvWy1FjvCXxUs2q5VFV+M1HjAIXccYZ5jj8PLQBcTc2Qjmn541BP
-	 r1OpbM0jqZoe9cvTTy+fybg46f0Pm2vV7wx/VhuVKihv9SkERJn7TBnd1YO3k0WUwk
-	 WdxIQJKLCpN5g==
-Message-ID: <4557dde5-c0fe-4339-8c4c-291b186ee86f@kernel.org>
-Date: Tue, 29 Apr 2025 09:34:28 +0200
+	s=k20201202; t=1745912217;
+	bh=/arAgy+mMya1qUnC9q22rUDb6dDI78ZEwALTr9bZUoA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hwbvq8HQK0zIFFIztCfOVgYWBn0eMcwEuZ9nmB3EsbdcdZyBWFjWTxOFBkGNFZmKk
+	 381+AyTqawT6XvCasSoB7sW4qnkdIkFwFjehiyeaBkTqeNFGOC6Vy57gLCAyFaR4gM
+	 xAzG932mn4xx93kmL9asWO68SOhYCRWul/L+ldwRoXPEGrTLocl34J3Rrr/UKMAKCL
+	 BMU1wwMIfmMtt7Zph+a9/eyHwpb38SBdNhjXCTfqnam4rTlB5e97DSX0YyxSl1Yrjo
+	 f1AAQvV1oAgT+5jj3ju1lcHKRaHBJo4BbLmzyOjYxJGIeBNFEFdbT9acMB9kZfAGG6
+	 LO8HqVo9UqKaw==
+Date: Tue, 29 Apr 2025 09:36:54 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	javier.carrasco.cruz@gmail.com, tgamblin@baylibre.com, olivier.moysan@foss.st.com, 
+	alisadariana@gmail.com, gstols@baylibre.com, antoniu.miclaus@analog.com, 
+	eblanc@baylibre.com, andriy.shevchenko@linux.intel.com, matteomartelli3@gmail.com, 
+	marcelo.schmitt@analog.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com, 
+	yhyang2@nuvoton.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] dt-bindings: iio: adc: add NCT7201 ADCs
+Message-ID: <20250429-sensible-subtle-cobra-badedb@kuoka>
+References: <20250429025505.3278016-1-j2anfernee@gmail.com>
+ <20250429025505.3278016-2-j2anfernee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/12] Enable jpeg enc & dec multi-hardwares for MT8196
-To: =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kyrie.wu@mediatek.corp-partner.google.com"
- <kyrie.wu@mediatek.corp-partner.google.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20250425085328.16929-1-kyrie.wu@mediatek.com>
- <20250428-inescapable-smiling-oriole-bfbe3e@kuoka>
- <5735ebabb8b049bd7c8700a433bf5b073dde66ad.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <5735ebabb8b049bd7c8700a433bf5b073dde66ad.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250429025505.3278016-2-j2anfernee@gmail.com>
 
-On 28/04/2025 10:10, Kyrie Wu (吴晗) wrote:
-> On Mon, 2025-04-28 at 09:01 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On Fri, Apr 25, 2025 at 04:53:16PM GMT, Kyrie Wu wrote:
->>> This series adds support for mt8196 multi-hardwares jpeg enc & dec,
->>> by first adding mt8196 jpegdec and jpegenc compatible to install
->>> kernel driver. Add smmu setting to support smmu and iommu at the
->>> same time.
->>> Secondly refactor buffer and clock setting to support multi-hw jpeg
->>> working.
->>> Lastly, fix some bugs, including resolution change handleing, stop
->>> streaming sw flow and others.
->>>
->>> This series has been tested with MT8196 tast test.
->>> Encoding and decoding worked for this chip.
->>>
->>> Patches 1-3 Adds jpeg encoder and decoder compatible.
->>> Patches 4 add jpeg smmu sid setting.
->>> Patches 5 fix jpeg hw count setting to support different chips.
->>> Patches 6 refactor jpeg buffer payload setting to handle buffer
->>> size bug while resolution changed.
->>> Patches 7 reconstruct jpeg dst buffer layout.
->>> Patches 8 fix multi-core stop streaming flow
->>> Patches 9 refactor multi-core clk suspend/resume setting
->>> Patches 10 fix decoding buffer number setting timing issue
->>> Patches 11 refactor decoding resolution change operation
->>> Patches 12 fix remove buffer operation
->>>
->>> ---
->>> This series patches dependent on:
->>> [1]
->>>
-> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/patch/20250424090824.5309-1-jianhua.lin@mediatek.com/__;!!CTRNKA9wMg0ARbw!hDjzydf2blyIhdAkYs_NbqpEaaWTuolLbaHLDw8hLg4BJ87r7ePzKkET-uDw24U6YXAqmbSxItem1Q$
->>>
->>> Changes compared with v2:
->>> --refactor smmu sid setting function interface
->>> --Some modifications for patch v2's review comments.
->>
->> This is very vague. What exactly changed.
+On Tue, Apr 29, 2025 at 10:55:04AM GMT, Eason Yang wrote:
+> Add a binding specification for the Nuvoton NCT7201/NCT7202 up to 12-bit
+> ADCs with I2C interface.
 > 
-> Dear Krzysztof,
-> 
-> Sorry for the shortly descriptions. The main changing in V3 is fixed
-> dt-bindings comments by you.
+> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk+dt@kernel.org>
 
+NAK
 
-What changed? What comments? Again way too vague.
-
+This never happened. Don't add fake tags.
 
 Best regards,
 Krzysztof
+
 
