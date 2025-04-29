@@ -1,177 +1,104 @@
-Return-Path: <devicetree+bounces-172024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95ED6AA1014
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:13:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EBD4AA1018
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 861105A8124
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:13:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EAE71B622B4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9BE21D3D0;
-	Tue, 29 Apr 2025 15:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B9E21D3F4;
+	Tue, 29 Apr 2025 15:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aJKU3NkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901C540C03
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 15:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0B178F44;
+	Tue, 29 Apr 2025 15:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745939597; cv=none; b=gE2XqecHmYcfP0XtmBKscw+Zr9tZJJ8FpElc5/j/+WrVWrc0tnsewvKaRT5tozQAtpHYF75wvQ9VbI4erNUbELHhur56gGKXBJvne2XTuT/Y7ah9GcQG3aLloOhKsSLTUigceor6FP4F1sfQqccEqjyR7sXgvIGJKe2p3msiIjI=
+	t=1745939645; cv=none; b=UtQAxHzXQYLrNrkESrAJN2xSRbVPiNz9glUkWEwMOnCC2VDaeZJDuoB8oeuBEJXm+/hVubMeon3BJbUkiXMd6Jq29j5UYwEIB5i5ORpGORVhVIjATdccb3mQH5yynUK8WbBAXXU7NrZLvQGLVhcFQlJFDe3QAMttwArz/oUQ1GI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745939597; c=relaxed/simple;
-	bh=b+WV1YgMrzOlLeB6/e1Q2R7G89OFhxRWSo9PzI4EV5g=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Hi83d8Bp2GY5ucissHGsVcl9f94OquN6FPQdX6cn8ZQVOL38iiYBhenmMPQWVNab7cO+Q+1mSjHdQwqd+Ny/x38PBgfqWSug/mCSo/gAzB5ebiSvBAuYKUgzc/TthOfkAcn88aEoysH26RBioR6DOkWCvNkiD8I7W/8TWQCvYMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1u9mdr-0003aE-21; Tue, 29 Apr 2025 17:13:03 +0200
-Message-ID: <06efb082c24176e6401265b4349b677468850f7d.camel@pengutronix.de>
-Subject: Re: [PATCH 0/6] arm64: dts: imx: Move Ethernet aliases out of SoC
- DTSI
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, Francesco Dolcini <francesco@dolcini.it>, 
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Date: Tue, 29 Apr 2025 17:13:01 +0200
-In-Reply-To: <c5538590-efe4-4b90-b291-6c429d8fa3fe@kernel.org>
-References: <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
-	 <e97d3388a5b4272d70d7379b020843a47874a104.camel@pengutronix.de>
-	 <c5538590-efe4-4b90-b291-6c429d8fa3fe@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1745939645; c=relaxed/simple;
+	bh=J+cqf2s2ZsVOlPPPz+/nuFcDjfaayMiIycIXe8NZ3jk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pQwDWcQThZjLrLNGjhUVcBZDkE485/O1FMFLgNEWssfshgXMPVsaQ+FewSZq6vJHuFwwoTksKDSDcRlab+BPRbcHoNq0/KRnJglCcXSIkpvNvkpkTu89CG5Uvh/NTzBqS4XocvuellKAtTwisQ3IMe7siIJAzJk/Cq88tlE9YKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJKU3NkR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF4ECC4CEEE;
+	Tue, 29 Apr 2025 15:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745939645;
+	bh=J+cqf2s2ZsVOlPPPz+/nuFcDjfaayMiIycIXe8NZ3jk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=aJKU3NkRD5t/kJNbO77GIacdoaPwfKk7V+9ISs7XWk0csI6WULh7ykNIADn1FIG61
+	 5xlLqD1D6EOwmKyEJ1RjfHU94q2zfkIOcFj7LSn/RpvRxw/PLygAGD1S6yLUp4bntw
+	 4S16JrKrka/Xp7+WE98qTUWAlEJTqid5qwkBOwjj9hfIzappXI7WtHXCur1E/yeD7Z
+	 6KfXyq6ZR6RQtTxBsrQfD0Fizqhn5Tdh1dpjIkN80/sRyn3dNPiBmNhIpg1KcoqQjp
+	 1DUx3u7ChvZuxZOw6jJcYiKiICxIBit5m0QzSzECK3SLX4bhKw9w4sIir+EIhonaWW
+	 SCOcCzt3/6xcg==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5f4ca707e31so10302335a12.2;
+        Tue, 29 Apr 2025 08:14:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWC4YKW7G/NuuuPpbg0u6GQSibj6HC37rWI5JDyqZ//Js5uVxaKCY1swq8BE7UjOVuMeGtXS1ud/TQL@vger.kernel.org, AJvYcCWUt7uL3SmAi74nYz3PBk+ljfSt0AxoPgInzbvURk1ywTuAktoJmkvuCGvFD0rfpdvnYnhrSdmx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4XXJ7gZBnRsTS76WZckFVXgmNU9OXVrmMFv5L1dZAcjcPwAbH
+	v9dGZOdP0Rl3cyd17vmAlx9LagTtFjfzG+K3xtj+kx9LtVmtkTxvcHYFgwUR6uCcs/M2dwKRNfB
+	MIxX6hPTa09VzVYhutZFF2+wFTQ==
+X-Google-Smtp-Source: AGHT+IHGk3svgwgIr+T/+w4Qwka1z9IpXIwGtv6Rj3x2jTq1l4XPrYQMuDCnPoKOAj5jFEj0LbkSsMdcXgIGTQoIfnQ=
+X-Received: by 2002:a05:6402:3783:b0:5f4:d57e:4ab6 with SMTP id
+ 4fb4d7f45d1cf-5f73983519amr9972583a12.24.1745939643488; Tue, 29 Apr 2025
+ 08:14:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <ee9a647e-562d-4a66-9f9b-434fed05090d@gmail.com>
+ <aacd2344-d842-4d10-9ec8-a9d1d11ae8ed@gmail.com> <20250428-alluring-duck-of-security-0affaa@kuoka>
+ <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
+In-Reply-To: <656734d5-cf55-4ccb-8704-2f87a06fd042@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 29 Apr 2025 10:13:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJYmnk+ApfC1mxjMxCWFoedn1-XCKHS7Tq_gsgOTnx2Fg@mail.gmail.com>
+X-Gm-Features: ATxdqUEcJ0-psBajiUHJV-OJQsB-f_InmqZfaR6IrhEWOgyp7c4A99dwRJCsJSc
+Message-ID: <CAL_JsqJYmnk+ApfC1mxjMxCWFoedn1-XCKHS7Tq_gsgOTnx2Fg@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-phy: remove
+ eee-broken flags which have never had a user
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Russell King - ARM Linux <linux@armlinux.org.uk>, Paolo Abeni <pabeni@redhat.com>, 
+	Eric Dumazet <edumazet@google.com>, David Miller <davem@davemloft.net>, 
+	Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <f.fainelli@gmail.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Dienstag, dem 29.04.2025 um 16:30 +0200 schrieb Krzysztof Kozlowski:
-> On 29/04/2025 11:39, Lucas Stach wrote:
-> > Hi Krzysztof,
-> >=20
-> > Am Freitag, dem 25.04.2025 um 21:48 +0200 schrieb Krzysztof Kozlowski:
-> > > Not tested on hardware.
-> > >=20
-> > > Ethernet interface, like other exposed interfaces, aliases depend on
-> > > actual board configuration, e.g. its labeling, thus aliases should be
-> > > defined per each board or each SoM.
-> > >=20
-> > > Some boards (e.g. Gateworks) follow this convention but many do not.
-> > >=20
-> > > This is continuation of my comments from:
-> > > https://lore.kernel.org/r/16a98816-f43c-4f4d-940e-9da30cb1f73f@kernel=
-.org
-> > >=20
-> > The i.MX boards have traditionally listed aliases for many hardware
-> > peripherals with the same numbering that's used in the SoC reference
->=20
-> ... which is not correct. Aliases should represent how boards are really
-> labeled, not how reference manual labels them.
->=20
-While that is the commonly agreed interpretation today, I do not see
-any language in the DT spec itself or kernel Documentation/devicetree
-that would mandate aliases to be used in this way.
+On Mon, Apr 28, 2025 at 3:28=E2=80=AFPM Heiner Kallweit <hkallweit1@gmail.c=
+om> wrote:
+>
+> On 28.04.2025 09:42, Krzysztof Kozlowski wrote:
+> > On Tue, Apr 15, 2025 at 09:55:55PM GMT, Heiner Kallweit wrote:
+> >> These flags have never had a user, so remove support for them.
+> >
+> > They have no in-kernel user, but what about all out of tree users in
+> > kernel and other projects using bindings?
+> >
+> I doubt there's any user outside the kernel. But it's hard to prove
+> that something does not exist. For my understanding:
+> What would be the needed proof to consider removal of these
+> flag bindings safe?
 
-In fact there are examples to the contrary like
-Documentation/devicetree/bindings/serial/samsung_uart.yaml which says:
-"Each Samsung UART should have an alias [...] as specified by User's
-Manual of respective SoC."
+Like you say, you can't prove it. So your justification in the commit
+msg isn't fact. I think if there was some pain to keep them, then
+removing them and seeing if anyone complains would be fine.
 
-So I would argue that there is no hard line between correct/incorrect
-for the historical usage of the alias nodes on the i.MX platform.
+It's not clear to me here why "eee-broken-1000t" is still valid/useful
+when the others are not.
 
-> > manual. Boards always have the option to override those aliases if they
-> > have a good reason to do so, e.g. labeling on the physical device.
-> >=20
-> > Other users besides Linux rely on fixed numbering provided by the
-> > aliases. Both barebox and U-Boot number their ethernet interfaces
-> > according to the alias.
->=20
-> And?
->=20
-Some usecases depend on the aliases being the same between kernel and
-bootloader. Historically that has been guaranteed on the i.MX platform
-by the aliases in the SoC DTSI, when the board didn't have a need to
-change them. With this series applied some other users may now end up
-with missing aliases if the only include the DTSI.
-
-> >=20
-> > While you seem to add back aliases for in-tree boards, this breaks the
-> > majority of boards that include the kernel DTSI from an out-of-tree
-> > board. I can understand that we can't always accommodate these users,
->=20
-> This is not ABI, so every out of tree user is on their own.
-
-I am not too sympathetic about out-of-tree users myself, but I don't
-think we should make their life harder deliberately.
->=20
-> > but I simply don't see the strong benefit of this patch to justify
-> > creating churn and possible regressions with those OOT users.
->=20
-> They should mainline their code.
->=20
-> It is not only a "churn", but way to stop people from repeating the same
-> mistake. Every time you bring new soc, people will copy old code thus
-> this will never change.
->=20
-In this specific case I don't see a need to change the existing code.=C2=A0
-
-If new SoCs should change the alias use, this is something that can be
-implemented on the SoC maintainer level. No need to introduce churn on
-the existing platforms to enforce a new rule for newly introduced SoCs.
-
-> >=20
-> > Having those aliases in the DTSI has been common practice on the i.MX
-> > platform since 2012, long before there was any strong consensus on how
->=20
-> Many previous practices were poor practices and decent SoC platforms
-> fixed and changed it.
->=20
-> We made big cleanups - since ~2 years Samsung is warning free. Since
-> similar time all Qcom boards use phandle/label override. All of them
-> were significant effort and quite a shuffling of code. Such effort is
-> necessary if you want to code to be maintainable and in best shape for
-> future development.
->=20
-> Unless you claim NXP SoCs are a legacy platform and we should not do
-> such cleanups.
->=20
-As I don't see the current usage as objectively wrong, I don't see the
-need to do this cleanup/rework to the existing SoC DTSIs.
-
-> > those aliases should be used. Breaking existing users for the sake of
-> > aligning the i.MX platform with more idiomatic DT usage does not seem
-> > to be a worthwhile trade-off to me.
->=20
-> No existing users are broken. Everyone who decided to stay out of tree
-> is on their own, but this was their choice. We are not talking here
-> about ABI.
-
-Yes, there is no formal ABI guarantee with this anywhere, so we can
-break out-of-tree user when needed. However, I don't think the
-improvements in this patchset justify such breakage.
-
-Regards,
-Lucas
+Rob
 
