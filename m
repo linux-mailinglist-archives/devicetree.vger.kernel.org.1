@@ -1,133 +1,165 @@
-Return-Path: <devicetree+bounces-172077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA82AA1A86
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 20:24:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C294AA1A9D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 20:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA411888D98
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:23:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA0F3A3EBC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222EC248889;
-	Tue, 29 Apr 2025 18:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC8E2517BE;
+	Tue, 29 Apr 2025 18:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cMDS6aqD"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TJzHirKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E346C21ABC6;
-	Tue, 29 Apr 2025 18:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55E821CA0E
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 18:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745950975; cv=none; b=pb3tWFct3QHvRPsk7LMmk5P1wf15ZKs6faK18sxuPtPfa0VU20lk5tRZ/G5O9qTIzpNoP+wLAV9w/0s2hiY0kuEXWDwDj1Nmdfluk/o5sNIRpzWFyRQEeiK2ml5eEREyTa9hzk/ub9a+9Y0h04R7RWKrGk0EKFIVIGWPOkj+kI4=
+	t=1745951062; cv=none; b=KSftmzOn9hOB8LDZLmqeLN7bcPCMVBhI/E1tZa0J3EuS3Pfnne4+eKWg+Bl5mTl2kUF+tJmRvhTaFAulhLRQ9XZL6ArIP33rlzUdVs7YOKVkw4nPPwGUQomMosyYZ48xVx88tRWfOmX8Za5HXaMoe83tZ9ATf/SfABDrdYDKUBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745950975; c=relaxed/simple;
-	bh=N3Qj2TqfFbgAxadAz4oK7Q3Wyu5VyC12MZnmSfOgenM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HbG8Owf2wSuSPt1m4RpotpUBoRUlCLF/Xsca6bf0aoz3Sx0fpFK5XwiN+rYV8c81Wt33lGOBjkp679+oTu1db615tSqWQgkji3aNJUxr0buCOO7geldrmxAQaAFLqmvswJouNyCiVc38Xiqs5JuPoC0JmVqvS728e1RBN8ymNKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cMDS6aqD; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TIMiCd3915107
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 29 Apr 2025 13:22:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745950964;
-	bh=PcLmyf/yI3lueA2N9Nh2ktmh9qhX02LazNi5j2d4bz8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cMDS6aqDUJhMt1cRjkuTnmzyoSSfP0KPWP1+tF4U+2iSAodzSyP5wQroUsgh8+MxW
-	 +TRZC1pDtOxQ7kDGVv7wyLgGxWh/dkS0XToHLdAUuMIMpEkmbE9wNq48YeaZM0eZKf
-	 2XcoU4zlSn/0mD65/bT+P5eHJ6JQy9AmmBqBx0Tw=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TIMiFb023800
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Apr 2025 13:22:44 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Apr 2025 13:22:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Apr 2025 13:22:44 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TIMi6Q093030;
-	Tue, 29 Apr 2025 13:22:44 -0500
-Date: Tue, 29 Apr 2025 13:22:44 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Judith Mendez <jm@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>,
-        Udit Kumar
-	<u-kumar1@ti.com>
-Subject: Re: [PATCH v2 0/3] Set eMMC clock parent to default
-Message-ID: <20250429182244.vm2atpuvmdfhtmlc@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250429163337.15634-1-jm@ti.com>
+	s=arc-20240116; t=1745951062; c=relaxed/simple;
+	bh=RJa7WlHjlJgo60D+6Dl0m/sbJ7UiWpejvUH/NN60IfE=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D/TsiuN8SGMJ6yqT2gXTV9t+4f1a+M6JPAnlBkO+RrJ9B61GxkWURFKib8/5RmHjdG189UEZVyLQXbZT1MQU1rGVqNxzrzFXe4aWnjuESHM0Uw0hcRd6yLfAKiz5zFEUHFDsPWDaU5ihIa+MZj2JPr0hQUHyGsF5uQ/VHwNXBQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TJzHirKm; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6e8ec399427so59617136d6.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 11:24:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1745951060; x=1746555860; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F12pg5HzOsF6YliOK/8QQ8SVTK4+Rj0ibiDXWC85YMA=;
+        b=TJzHirKmdd7NU+gD1Ecu272QUNDsa84cZIvp6hfZdJTwwuXHkBn4hsSK33/V5cSXBP
+         SojUrIOIuScvD8t/sFcMybpBEj0MlfZZmx7sF2MK4dyTC9jwdO4UX+tejY14iLVyrlIM
+         dyeDEWQIOJulUJnK+APNRqQuY6Lp5slVrDnyY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745951060; x=1746555860;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=F12pg5HzOsF6YliOK/8QQ8SVTK4+Rj0ibiDXWC85YMA=;
+        b=oG+zBRZLcs3T5HUeDsTbS86xH0L46uXsgDkO992J/E5v/kLV1mV63dORQaiusYoGOb
+         q+ORdIbjKJdnSpgoytZiAD6XJc9mxQhSVy8GiLSIDGRV9r/Cdm60kKIvfqUWNphNeSlS
+         eX0WhMu6ERYoUkPsYowK5Lf7AVHJaQhyluF68LDoP550Z/n+DlYmJFTD3OorESf5EPLo
+         racx7ZQ8NSnObaF8JfEUtKe2qW/dC9SwsrVDj+TZGdJRbOrJFPOt32k+HA73q0vEMDpv
+         Y4O5qS3YcNeMeaRpiKpbXp7d7zylOB+my+yaXBtF20sVV4+uZjlqdNZ4A2lzrmxrR3uL
+         Kvfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXory74+233Atywc5qfrSGv+tunSpnlA4p1H6M7tqIKDBMZeTQyac4JumLFCRPFdsUUhi9xQHXnEd/a@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTGroNs5biF7XbW70QUrO1CLehiMPxTnqAREqHY3FGyCm8a5Lt
+	AvCa000gQGqbeqQ6FMnDENngB2IhlJt8eg+Kh/QoWijA5SKhdy0j+xBZTA3rAReLCOgOrXEtaCN
+	vj6vh3E7VzPCtAG43Fqg6moWbZ4mKPkxI2s27
+X-Gm-Gg: ASbGncuyhSde+z65AmFcfCFhtBXdFF70VENOvdd0e+PTClZ9X36CzIkKFbeLm5w4sQk
+	vbTQXJ7Tq+V5DrFm+QbKINUxFozz+LP0H4WFW5ktxd7K0HbEt0EAe3dlzidFMIM1TnFf9RkmRXB
+	R2sxKcfsFqROq2BE30mZoQdQMUPvGRaBx9qqUInqOkjgpnt4PtpQ==
+X-Google-Smtp-Source: AGHT+IEuYZ2r4eYEmCnRhaGeNZqjE8w9e9f0L6v1FIOcoNWO1AUT1cDFAMaQiUVPFzCMjJv1HcimUcXF1bPyz4z/CM0=
+X-Received: by 2002:ad4:5c86:0:b0:6f2:d367:56bf with SMTP id
+ 6a1803df08f44-6f4fcf3ffc4mr6322226d6.31.1745951059800; Tue, 29 Apr 2025
+ 11:24:19 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 29 Apr 2025 11:24:19 -0700
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 29 Apr 2025 11:24:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20250429163337.15634-1-jm@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <CAEXTbpfb6KOqrU0oAvbzV76Wj_YORsjcukBVZx-d2evYtmwshg@mail.gmail.com>
+References: <20250422082957.2058229-1-treapking@chromium.org>
+ <20250422082957.2058229-4-treapking@chromium.org> <CAE-0n52cwBxJ3gYzSi1+nNcRRSgbMToYBFLJwdVWSMOxBmUN1A@mail.gmail.com>
+ <CAEXTbpfb6KOqrU0oAvbzV76Wj_YORsjcukBVZx-d2evYtmwshg@mail.gmail.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev8+g17a99a841c4b
+Date: Tue, 29 Apr 2025 11:24:19 -0700
+X-Gm-Features: ATxdqUFejwQ77NkwJw7ohUrQlQOeNG0in9NRcHlIVxu9xsrunJsL3ZQnzhOWA54
+Message-ID: <CAE-0n52aw2HXe1eUCkLbbc7tnr+okF54hOfSSRm9nic3rbCFzA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: usb: realtek,rts5411: Adapt usb-hub.yaml
+To: Pin-yen Lin <treapking@chromium.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On April 29, 2025 thus sayeth Judith Mendez:
-> This series was split-off from "Misc MMC updates" patch series [0] and the
-> original patch further divided into three to help with backporting as per
-> review comments [1].
-> 
-> This series sets clock parent for eMMC to the default clock parent
-> MAIN_PLL0_HSDIV5_CLKOUT for am62, am62a, & am62p/j722s SoCs. Software (DM)
-> does not switch MMC clock parent correctly as per the Arasan IP requirement
-> to hold the IP in reset while clock source is switched. Since muxes to
-> switch clock parent are not glitch-free and the default parent is tested
-> and working fine, switch to the default as a preventative action.
-> 
-> Changes since v1:
-> - split original patch into three
-> - add cover-letter
-> - reword patch descriptions
-> - add review tags
-> 
+Quoting Pin-yen Lin (2025-04-28 21:57:16)
+> Hi Stephen,
+>
+> On Tue, Apr 29, 2025 at 7:46=E2=80=AFAM Stephen Boyd <swboyd@chromium.org=
+> wrote:
+> >
+> > Quoting Pin-yen Lin (2025-04-22 01:28:29)
+> > > diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.ya=
+ml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > > index 6577a61cc07531..a020afaf2d6e7a 100644
+> > > --- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > > @@ -10,7 +10,7 @@ maintainers:
+> > >    - Matthias Kaehlcke <mka@chromium.org>
+> > >
+> > >  allOf:
+> > > -  - $ref: usb-device.yaml#
+> > > +  - $ref: usb-hub.yaml#
+> > >
+> > >  properties:
+> > >    compatible:
+> > > @@ -19,61 +19,35 @@ properties:
+> > [...]
+> > >
+> > > -      port@4:
+> > > -        $ref: /schemas/graph.yaml#/properties/port
+> > > -        description:
+> > > -          4th downstream facing USB port
+> > > -
+> > > -patternProperties:
+> > > -  '^.*@[1-4]$':
+> > > -    description: The hard wired USB devices
+> > > -    type: object
+> > > -    $ref: /schemas/usb/usb-device.yaml
+> > > -    additionalProperties: true
+> > > +additionalProperties:
+> > > +  properties:
+> > > +    reg:
+> > > +      minimum: 1
+> > > +      maximum: 4
+> >
+> > Is this limiting the 'reg' property of the hub node and not the child
+> > usb-device nodes?
+>
+> Yes, but the regex pattern of patternProperties restricts the
+> downstream device nodes to '^.*@[1-4]$'. So the 'reg's of the child
+> usb-device nodes are also checked.
 
-Acked-by: Bryan Brattlof <bb@ti.com>
+I'm confused. The path looks like it is removing patternProperties here
+and limiting the reg property of the hub itself so it can only be at
+port 1, 2, 3 or 4. Why is the patternProperties being removed? Don't we
+need to keep the patternProperties around, or somehow get at the
+patternProperties for the hard wired USB devices in the usb-hub schema
+so we can constrain the reg property to be between 1 and 4?
 
-~Bryan
+> >
+> > >
+> > >  required:
+> > >    - peer-hub
+> > >    - compatible
+> > >    - reg
+> >
+> > Can 'reg' be dropped because usb-hub.yaml requires it?
+>
+> I can drop 'reg' and 'compatible' in the next version, but I see other
+> schemas referencing usb-device.yaml still set 'reg' as required. Is
+> this some kind of convention, or people just didn't notice this?
 
-> [0] https://lore.kernel.org/linux-devicetree/20250417233040.3658761-1-jm@ti.com/
-> [1] https://lore.kernel.org/linux-devicetree/20250429142825.bvrbpoc5iz32wh35@garment/
-> 
-> Link to v1:
-> https://lore.kernel.org/linux-devicetree/20250429142333.4140010-1-jm@ti.com/
-> 
-> Judith Mendez (3):
->   arm64: dts: ti: k3-am62-main: Set eMMC clock parents to default
->   arm64: dts: ti: k3-am62a-main: Set eMMC clock parents to default
->   arm64: dts: ti: k3-am62p-j722s-common-main: Set eMMC clock parents to
->     default
-> 
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
->  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
->  3 files changed, 6 deletions(-)
-> 
-> 
-> base-commit: d864bb528a6725e775d564fd4430762acbb9dd0d
-> -- 
-> 2.49.0
-> 
+I assume nobody noticed.
 
