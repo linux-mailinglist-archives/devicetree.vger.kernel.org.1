@@ -1,218 +1,296 @@
-Return-Path: <devicetree+bounces-171755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85413AA01D3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:29:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A39AA01E6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA1511B63637
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:29:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863A146005A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E283B26FD9E;
-	Tue, 29 Apr 2025 05:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC5325E819;
+	Tue, 29 Apr 2025 05:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RUsKp4F7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LREXRJ3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EFBD33991;
-	Tue, 29 Apr 2025 05:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD3B21ABC8;
+	Tue, 29 Apr 2025 05:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745904564; cv=none; b=ihcJIU7s4QqJSjAotJEC0TIBJloLhmMLXh/bx3lA5W+C29147bXUobR6kAf5LJ0t6vvhSp/4lJeJtrio1KzgxP29nBZ0xL9P+Ynxqt9tt4PO4k3/C2S614KhKQhOA77VycOixu76OXaN4VSwzvRTe/spHjhwZiJiucSyT+xuPgs=
+	t=1745905327; cv=none; b=qwoRrfpuD76U7uoiE7rVnVdIEv7JxlPk8O4aoMdI0IshK862VZvTEg0NkWU84bqQEUKfXgK5nBIXkYUxn9ViuN8PVJVhCs9tdUblqJTF4JXgWLTUyyKyEu3vjGk9eg+nEhuH2813Uq0PYzJRs4fUTgcEgMN3ieKmJSOt3L1Yahc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745904564; c=relaxed/simple;
-	bh=DWnooSZisXUGuTBqysXae7ajGZ4rfxElf22/6kndtf8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kMRO6JuspmY+asANx4LyVKQrgoEAoO8jeQG8VOPaQc9eZ2fvAlG5lodK8biYP/i1rRCcR0fUY7pIbgIMVk5MLKdvmqnNexnX892u4paP8tk746PaJ/4K8ol3Pyhio3A4q1z5md1gbCCP5SA2rX7HQ4//PS2+WfiCLvFjvVFO/DY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RUsKp4F7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNq3oU011884;
-	Tue, 29 Apr 2025 05:29:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YD5zksmB7I1X+fW3UQmzEm1ZQxDOj3cvQhmL1m2hSJ8=; b=RUsKp4F76jZAesnG
-	Lmi8AmeWh+5AQ6wrQjeCcEF7uoik6gLjVwojPEkT4V+U7K7TGrKpeJb3ffmWD9EU
-	T2a8LZ4ImQi+p4ILxqe0A3bsRvN2hP5mVGb95/1rtYqKIFHLDWqUlNfMmuXLtga4
-	8PVmrxZcz6+PyGslhFQPOBQPzCLULEF07GrSj2fBEAbSVVKJ2jYja18tsWkmqtWO
-	qPqzTl3d+DH93k/JwGbItUna+4QpueRm74ARFT5gHonadYCCjlPEmQubueDLd9nd
-	M5AyngXQ09/FgacnRbTiWZY2umoDaUDRaXWVV1LfNd15kyUCrRvmV7OEHf647wVB
-	TILH7A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468q323a6x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 05:29:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53T5TH66004716
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 05:29:17 GMT
-Received: from [10.253.10.189] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Apr
- 2025 22:29:13 -0700
-Message-ID: <5eb5631f-8f58-44d8-a09f-4bdb4a804803@quicinc.com>
-Date: Tue, 29 Apr 2025 13:29:10 +0800
+	s=arc-20240116; t=1745905327; c=relaxed/simple;
+	bh=0e5uxumMVgB+gJ4af5LiBNwBiNJ/RjGAyjB6I+PjhB0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QB22yxP09X34JqWNGKRtl6yo1Xpgx1o9SQLrwkDRag3n/jDFXbpnUDcRt3UJeO58WdMiWCkWZVz66uiyw4gnMwsX7QV6vKP5A3m58Cps8aqfQ3A/ds6R2Qk7qG64UY3S4nRgLMoYsCw3YuHZmphMzcQoMcAJGE9ci/azyGVfNNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LREXRJ3h; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so3782540f8f.1;
+        Mon, 28 Apr 2025 22:42:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745905324; x=1746510124; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VB5Wtwbx78r+orlHKCiKwe2I8rH2J7zEjSM0oCRsjK0=;
+        b=LREXRJ3hUgTGSCbQSam9d+zA+OJBJZZR9CegKE5Nhdo8gLPJk+pr0uJdibjX3CUF8g
+         m/TlXJrYMgiXdjEYIkYz4zUtW41v4C8Ucv6ZhM5SChHgoMVz5SA1QVXfhnStjvACNN8F
+         bDUfCzMPd+4OoD2z4GRzAGX5WmlogTAk4leaD9aOUkgIagZJ9SbCWPZM4BzxvxatGKBj
+         10QKvICszuHEdRld4IIH/kfgxorzYa/PigD/y5Ws0nGbfsVuZugkqCnvT4FpSFcDoc4t
+         R6F8iUFriaYCNnFwfCV3/WRIRT7ul1otCcPZaN2GfXp9Gp11/1s2hN6WGLBHn1PumqJa
+         Bukw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745905324; x=1746510124;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VB5Wtwbx78r+orlHKCiKwe2I8rH2J7zEjSM0oCRsjK0=;
+        b=wnXT9ho21rQodxOJ0k260kwr5B5Kz7IAXyqBzk0uB1G9x2APGXwrFMyL5MgEdWa0N0
+         DYvEjxOqv3p5NYDU0l4CXo5PzzFAyMDzbYbPPpYZtANlZLynH3bReAOzBVvplMyey9I/
+         Cj/PXhIzwHRV+olhTZkAjbqqlo967L3OcpSJ86m3lnJcU7l+GMss7K0E3AUOOeFUxZiH
+         6m0APmCp423Ou39zhZC0bEqF901Y1zj46Vvz/cMldazpJ8aj7f0ZhT0TQSEofZo3Xk8r
+         jsVVmiaJHXf3wTln0kVWbvDvzn01OWs3hNLQovnu/eZYiMUS+gs/nwyidU4GJH7PG8Hv
+         LeFw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQydoO/WQBWEXl6joHXQ1env6t8HC9L8wo/szRoEIljF4WUUxx+jJzMZ7QAzKEN/J6TvzNtpBkp2Uhs09e@vger.kernel.org, AJvYcCVwfDwdeTPcCwdOWIGxw80hoRHFKtIL8kvR5t6P3t+EcJdtigPz+UD9DBK5w1ZyjzoR0TZgdE7NIsa5Kac=@vger.kernel.org, AJvYcCWwHPClbYAFyg2WCdpba3jxVWPitkS1uA3oVBt4Ok6kiwXvmYKjRTFV/sR570EalUrUNFRrwhp0QGo=@vger.kernel.org, AJvYcCXQCmXkB/wX8cAubGy7584I86GHqmmU6qvItOeTN2oI8HsumXrM7nm2S5NNM6/52nI8Debvq8PBnrm3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyH8DOI5kaQpUZoBDGXp2HSh4PxDO84Gxta0Vq2txqwRBkrq3F2
+	rdplA3ayrYVTkBzHhhkBhRafh25+MJ+p6bcS6NTmr8sAeW0R0t+cqInU4LyfEoYW4DPapLbMx/V
+	shUnQ+ciNtOVrSDktomSzCGhXPNM=
+X-Gm-Gg: ASbGncvhl2XxmnjuGtl5J0WopVAFbMvsQSUpZhVqSlJkus8CzLfm6OanyNUpQdrRDaN
+	pJtZqtk0Jab81E7l39TYSQPC1TOuv3JfIgrLDf2fFpl6NN1qFZkH8gMsxYwiq7oFX1zbev3+8an
+	fTR518oFy0Oq3tt2KV1IroIvOKmenDKTEo/w==
+X-Google-Smtp-Source: AGHT+IH4r75txm4cCS97/f9OrI2KG8AGYPc0bAJ+UQrYpFpQsY0S4uUNIdOxBS8MjpbL6UUQkSMtW3X5+RcM0EVnkBQ=
+X-Received: by 2002:a05:6000:402b:b0:3a0:7a5d:96dc with SMTP id
+ ffacd0b85a97d-3a08ad32e13mr831956f8f.13.1745905324117; Mon, 28 Apr 2025
+ 22:42:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] clk: qcom: cmnpll: Add IPQ5424 SoC support
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>
-References: <20250411-qcom_ipq5424_cmnpll-v2-0-7252c192e078@quicinc.com>
- <20250411-qcom_ipq5424_cmnpll-v2-2-7252c192e078@quicinc.com>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20250411-qcom_ipq5424_cmnpll-v2-2-7252c192e078@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=M7xNKzws c=1 sm=1 tr=0 ts=681063ae cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EoNoD8iO1MgKQcc7a8EA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Pl3nitARsFZhOdhnopxa6zb_61xV84zF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDAzOCBTYWx0ZWRfX/yc+e93SWxap y9vedPW2lPXjIf2TEsq3FtyfWPF7hnADF/U0kGKgouz796wbW1GN8u6SEhHJKrE6TONzPRFKRGy I0rWGclBZ3aMRHc/G7MZY5bO2TLXO7iotfTIBBj4F9c+EnLsCA3joflz7TKdSlKMHD1K2MnKoWz
- SjjW+aJYiw/x39K/JRUuCYsC9qmZDvHDjB5xufxxd8Qm0A/tSXSl27pi9fjwE7vSeyFFX7GWmOL e/bxFTogk+fN6cltY20N1Q7tRAmIyvjMYRmT1J4u2JO71xfj+K4qaaOrkzoICHn9lyh0kv47WwL OHKZVDRHUmS42Rmy2TJVrYXSjDWq/bWzaICTZVyDgMQRc67Ip6awabwJgxQMh+WZepwb8wv48lH
- o7JFO1+1esh7fp2U527Oii4KfjqDBxBto/9Ula/NecCP7OujcPgkjfM5sGjdvvEIvr8jOJ4l
-X-Proofpoint-ORIG-GUID: Pl3nitARsFZhOdhnopxa6zb_61xV84zF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-29_01,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 clxscore=1015 mlxlogscore=999 spamscore=0 phishscore=0
- bulkscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504290038
+References: <20250413111033.11408-1-clamor95@gmail.com> <20250413111033.11408-4-clamor95@gmail.com>
+ <22du3s2n3pcyivw7ktpqcvyvady24qggiqouz5hqzoca2tzyqd@vdi5qbtdkrgj>
+In-Reply-To: <22du3s2n3pcyivw7ktpqcvyvady24qggiqouz5hqzoca2tzyqd@vdi5qbtdkrgj>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 29 Apr 2025 08:41:52 +0300
+X-Gm-Features: ATxdqUElrxNQVvYfTDSXnijX_xzVnVpoe4pcjetfMWxSULzsIaUGPBLP-yAkRuE
+Message-ID: <CAPVz0n0Qcu7NAsqiRRrUjZLhRhNp=rmtdM9XLnf2XTiTpDyJgg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] power/supply: Add driver for Pegatron Chagall battery
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Heiko Stuebner <heiko@sntech.de>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Aradhya Bhatia <a-bhatia1@ti.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Stephen,
+=D0=B2=D1=82, 29 =D0=BA=D0=B2=D1=96=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 02:0=
+2 Sebastian Reichel
+<sebastian.reichel@collabora.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> Hi,
+>
+> On Sun, Apr 13, 2025 at 02:10:32PM +0300, Svyatoslav Ryhel wrote:
+> > The Pegatron Chagall is an Android tablet utilizing a customized Cypres=
+s
+> > CG7153AM microcontroller (MCU) as its battery fuel gauge. It supports a
+> > single-cell battery and features a dual-color charging LED.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+>
+> This looks mostly good to me, but I have some comments.
+>
+> >  drivers/power/supply/Kconfig           |  12 +
+> >  drivers/power/supply/Makefile          |   1 +
+> >  drivers/power/supply/chagall-battery.c | 308 +++++++++++++++++++++++++
+> >  3 files changed, 321 insertions(+)
+> >  create mode 100644 drivers/power/supply/chagall-battery.c
+>
+> [...]
+>
+> > +static void chagall_leds_status_update(struct chagall_battery_data *cg=
+, int state)
+> > +{
+> > +     switch (state) {
+> > +     case POWER_SUPPLY_STATUS_FULL:
+> > +             led_set_brightness(&cg->amber_led, LED_OFF);
+> > +             led_set_brightness(&cg->white_led,  LED_ON);
+> > +             break;
+> > +
+> > +     case POWER_SUPPLY_STATUS_CHARGING:
+> > +             led_set_brightness(&cg->white_led, LED_OFF);
+> > +             led_set_brightness(&cg->amber_led,  LED_ON);
+> > +             break;
+> > +
+> > +     default:
+> > +             led_set_brightness(&cg->amber_led, LED_OFF);
+> > +             led_set_brightness(&cg->white_led, LED_OFF);
+> > +             break;
+> > +     }
+> > +}
+>
+> Instead of doing this, you should setup LED triggers when
+> registering the LEDs. The white LED can use power-supply's full_trig
+> and the orange LED can use power-supply's charging_trig, which
+> should have the same effect.
+>
+> > +static const enum power_supply_property chagall_battery_properties[] =
+=3D {
+> > +     POWER_SUPPLY_PROP_STATUS,
+> > +     POWER_SUPPLY_PROP_PRESENT,
+> > +     POWER_SUPPLY_PROP_VOLTAGE_NOW,
+> > +     POWER_SUPPLY_PROP_VOLTAGE_MAX,
+> > +     POWER_SUPPLY_PROP_CURRENT_NOW,
+> > +     POWER_SUPPLY_PROP_CURRENT_MAX,
+> > +     POWER_SUPPLY_PROP_CAPACITY,
+> > +     POWER_SUPPLY_PROP_TEMP,
+> > +     POWER_SUPPLY_PROP_CHARGE_FULL,
+> > +     POWER_SUPPLY_PROP_CHARGE_NOW,
+> > +};
+> > +
+> > +static const unsigned int chagall_battery_prop_offs[] =3D {
+> > +     [POWER_SUPPLY_PROP_TEMP] =3D CHAGALL_REG_BATTERY_TEMPERATURE,
+> > +     [POWER_SUPPLY_PROP_VOLTAGE_NOW] =3D CHAGALL_REG_BATTERY_VOLTAGE,
+> > +     [POWER_SUPPLY_PROP_CURRENT_NOW] =3D CHAGALL_REG_BATTERY_CURRENT,
+> > +     [POWER_SUPPLY_PROP_CAPACITY] =3D CHAGALL_REG_BATTERY_CAPACITY,
+> > +     [POWER_SUPPLY_PROP_CURRENT_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
+CURRENT,
+> > +     [POWER_SUPPLY_PROP_VOLTAGE_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
+VOLTAGE,
+> > +     [POWER_SUPPLY_PROP_STATUS] =3D CHAGALL_REG_BATTERY_STATUS,
+> > +     [POWER_SUPPLY_PROP_CHARGE_NOW] =3D CHAGALL_REG_BATTERY_REMAIN_CAP=
+ACITY,
+> > +     [POWER_SUPPLY_PROP_CHARGE_FULL] =3D CHAGALL_REG_BATTERY_FULL_CAPA=
+CITY,
+> > +};
+>
+> Please use the same order for chagall_battery_prop_offs and
+> chagall_battery_properties. Makes it a lot easier to see
+> that all options have been covered.
+>
+> > +static int chagall_battery_get_value(struct chagall_battery_data *cg,
+> > +                                  enum power_supply_property psp, u32 =
+*val)
+> > +{
+> > +     if (psp >=3D ARRAY_SIZE(chagall_battery_prop_offs))
+> > +             return -EINVAL;
+> > +     if (!chagall_battery_prop_offs[psp])
+> > +             return -EINVAL;
+> > +
+> > +     /* Battery data is stored in 2 consecutive registers with little-=
+endian */
+> > +     return regmap_bulk_read(cg->regmap, chagall_battery_prop_offs[psp=
+], val, 2);
+> > +}
+> > +
+> > +static int chagall_battery_get_property(struct power_supply *psy,
+> > +                                     enum power_supply_property psp,
+> > +                                     union power_supply_propval *val)
+> > +{
+> > +     struct chagall_battery_data *cg =3D power_supply_get_drvdata(psy)=
+;
+> > +     int ret;
+> > +
+> > +     switch (psp) {
+> > +     case POWER_SUPPLY_PROP_PRESENT:
+> > +             val->intval =3D 1;
+> > +             break;
+> > +
+> > +     default:
+> > +             ret =3D chagall_battery_get_value(cg, psp, &val->intval);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             switch (psp) {
+> > +             case POWER_SUPPLY_PROP_TEMP:
+> > +                     val->intval -=3D TEMP_CELSIUS_OFFSET;
+> > +                     break;
+> > +
+> > +             case POWER_SUPPLY_PROP_VOLTAGE_MAX:
+> > +             case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+> > +             case POWER_SUPPLY_PROP_CURRENT_MAX:
+> > +             case POWER_SUPPLY_PROP_CURRENT_NOW:
+> > +             case POWER_SUPPLY_PROP_CHARGE_FULL:
+> > +             case POWER_SUPPLY_PROP_CHARGE_NOW:
+> > +                     val->intval *=3D 1000;
+> > +                     break;
+> > +
+> > +             case POWER_SUPPLY_PROP_STATUS:
+> > +                     if (val->intval & BATTERY_FULL_CHARGED)
+> > +                             val->intval =3D POWER_SUPPLY_STATUS_FULL;
+> > +                     else if (val->intval & BATTERY_FULL_DISCHARGED)
+> > +                             val->intval =3D POWER_SUPPLY_STATUS_NOT_C=
+HARGING;
+>
+> Have you tested this path? POWER_SUPPLY_STATUS_NOT_CHARGING is
+> intended to be used when the battery is neither charging nor
+> discharging. Does BATTERY_FULL_DISCHARGED mean, that the battery
+> is fully depleted and not providing any energy at all? Or is this
+> some kind of "battery level is criticial, you should attach a
+> power-supply now or the system will be turn off by itself soon"?
+>
 
-Thanks for your review on the first version of this patch series.
-Gentle reminder, to re-review the updated patch for any further
-comments.
+This one is tricky. I have transferred this logic from downstream
+kernel and couldn't trigger BATTERY_FULL_DISCHARGED ever. It might be
+a brief state you describe as "battery level is criticial, you should
+attach a power-supply now or the system will be turn off by itself
+soon" but there is no such entry in POWER_SUPPLY_STATUS enum, so I
+assumed that  POWER_SUPPLY_STATUS_NOT_CHARGING co-responds to such
+state. If this is not the case I will just remove this entry.
 
-Regards.
-
-On 4/11/2025 8:58 PM, Luo Jie wrote:
-> The CMN PLL in IPQ5424 SoC supplies the fixed clock to NSS at 300 MHZ
-> and to PPE at 375 MHZ. Other output clocks from CMN PLL on this SoC,
-> and their rates are same as IPQ9574.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->   drivers/clk/qcom/ipq-cmn-pll.c | 35 ++++++++++++++++++++++++++++++-----
->   1 file changed, 30 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/ipq-cmn-pll.c b/drivers/clk/qcom/ipq-cmn-pll.c
-> index 432d4c4b7aa6..b34d6faf67b8 100644
-> --- a/drivers/clk/qcom/ipq-cmn-pll.c
-> +++ b/drivers/clk/qcom/ipq-cmn-pll.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0-only
->   /*
-> - * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->    */
->   
->   /*
-> @@ -16,6 +16,10 @@
->    * are supplied to GCC (24 MHZ as XO and 32 KHZ as sleep clock), and to PCS
->    * with 31.25 MHZ.
->    *
-> + * On the IPQ5424 SoC, there is an output clock from CMN PLL to PPE at 375 MHZ,
-> + * and an output clock to NSS (network subsystem) at 300 MHZ. The other output
-> + * clocks from CMN PLL on IPQ5424 are the same as IPQ9574.
-> + *
->    *               +---------+
->    *               |   GCC   |
->    *               +--+---+--+
-> @@ -46,6 +50,7 @@
->   #include <linux/regmap.h>
->   
->   #include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
-> +#include <dt-bindings/clock/qcom,ipq5424-cmn-pll.h>
->   
->   #define CMN_PLL_REFCLK_SRC_SELECTION		0x28
->   #define CMN_PLL_REFCLK_SRC_DIV			GENMASK(9, 8)
-> @@ -115,6 +120,20 @@ static const struct cmn_pll_fixed_output_clk ipq9574_output_clks[] = {
->   	CLK_PLL_OUTPUT(ETH1_50MHZ_CLK, "eth1-50mhz", 50000000UL),
->   	CLK_PLL_OUTPUT(ETH2_50MHZ_CLK, "eth2-50mhz", 50000000UL),
->   	CLK_PLL_OUTPUT(ETH_25MHZ_CLK, "eth-25mhz", 25000000UL),
-> +	{ /* Sentinel */ }
-> +};
-> +
-> +static const struct cmn_pll_fixed_output_clk ipq5424_output_clks[] = {
-> +	CLK_PLL_OUTPUT(IPQ5424_XO_24MHZ_CLK, "xo-24mhz", 24000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_SLEEP_32KHZ_CLK, "sleep-32khz", 32000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_PCS_31P25MHZ_CLK, "pcs-31p25mhz", 31250000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_NSS_300MHZ_CLK, "nss-300mhz", 300000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_PPE_375MHZ_CLK, "ppe-375mhz", 375000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_ETH0_50MHZ_CLK, "eth0-50mhz", 50000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_ETH1_50MHZ_CLK, "eth1-50mhz", 50000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_ETH2_50MHZ_CLK, "eth2-50mhz", 50000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5424_ETH_25MHZ_CLK, "eth-25mhz", 25000000UL),
-> +	{ /* Sentinel */ }
->   };
->   
->   /*
-> @@ -297,7 +316,7 @@ static struct clk_hw *ipq_cmn_pll_clk_hw_register(struct platform_device *pdev)
->   
->   static int ipq_cmn_pll_register_clks(struct platform_device *pdev)
->   {
-> -	const struct cmn_pll_fixed_output_clk *fixed_clk;
-> +	const struct cmn_pll_fixed_output_clk *p, *fixed_clk;
->   	struct clk_hw_onecell_data *hw_data;
->   	struct device *dev = &pdev->dev;
->   	struct clk_hw *cmn_pll_hw;
-> @@ -305,8 +324,13 @@ static int ipq_cmn_pll_register_clks(struct platform_device *pdev)
->   	struct clk_hw *hw;
->   	int ret, i;
->   
-> -	fixed_clk = ipq9574_output_clks;
-> -	num_clks = ARRAY_SIZE(ipq9574_output_clks);
-> +	fixed_clk = device_get_match_data(dev);
-> +	if (!fixed_clk)
-> +		return -EINVAL;
-> +
-> +	num_clks = 0;
-> +	for (p = fixed_clk; p->name; p++)
-> +		num_clks++;
->   
->   	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, num_clks + 1),
->   			       GFP_KERNEL);
-> @@ -415,7 +439,8 @@ static const struct dev_pm_ops ipq_cmn_pll_pm_ops = {
->   };
->   
->   static const struct of_device_id ipq_cmn_pll_clk_ids[] = {
-> -	{ .compatible = "qcom,ipq9574-cmn-pll", },
-> +	{ .compatible = "qcom,ipq9574-cmn-pll", .data = &ipq9574_output_clks },
-> +	{ .compatible = "qcom,ipq5424-cmn-pll", .data = &ipq5424_output_clks },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, ipq_cmn_pll_clk_ids);
-> 
-
+> > +                     else if (val->intval & BATTERY_DISCHARGING)
+> > +                             val->intval =3D POWER_SUPPLY_STATUS_DISCH=
+ARGING;
+> > +                     else
+> > +                             val->intval =3D POWER_SUPPLY_STATUS_CHARG=
+ING;
+> > +                     break;
+> > +
+> > +             default:
+> > +                     break;
+> > +             }
+> > +
+> > +             break;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void chagall_battery_poll_work(struct work_struct *work)
+> > +{
+> > +     struct chagall_battery_data *cg =3D
+> > +             container_of(work, struct chagall_battery_data, poll_work=
+.work);
+> > +     u32 state;
+> > +     int ret;
+> > +
+> > +     ret =3D chagall_battery_get_value(cg, POWER_SUPPLY_PROP_STATUS, &=
+state);
+> > +     if (ret)
+> > +             return;
+> > +
+> > +     if (state & BATTERY_FULL_CHARGED)
+> > +             state =3D POWER_SUPPLY_STATUS_FULL;
+> > +     else if (state & BATTERY_DISCHARGING)
+> > +             state =3D POWER_SUPPLY_STATUS_DISCHARGING;
+> > +     else
+> > +             state =3D POWER_SUPPLY_STATUS_CHARGING;
+>
+> This basically duplicates the logic from chagall_battery_get_property(),
+> so put the translation logic into a helper function and use it in
+> both places.
+>
+> Greetings,
+>
+> -- Sebastian
 
