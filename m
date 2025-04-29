@@ -1,165 +1,139 @@
-Return-Path: <devicetree+bounces-172078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C294AA1A9D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 20:29:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D62AA1B0C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA0F3A3EBC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 18:24:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB43F3A62EF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC8E2517BE;
-	Tue, 29 Apr 2025 18:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B37254B04;
+	Tue, 29 Apr 2025 18:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TJzHirKm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9g5QemO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55E821CA0E
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 18:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 354224C81;
+	Tue, 29 Apr 2025 18:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745951062; cv=none; b=KSftmzOn9hOB8LDZLmqeLN7bcPCMVBhI/E1tZa0J3EuS3Pfnne4+eKWg+Bl5mTl2kUF+tJmRvhTaFAulhLRQ9XZL6ArIP33rlzUdVs7YOKVkw4nPPwGUQomMosyYZ48xVx88tRWfOmX8Za5HXaMoe83tZ9ATf/SfABDrdYDKUBA=
+	t=1745953176; cv=none; b=bPtKcxBIYmmJcDHPurr8HcuSc9zS6qDKBc7VfcFjJzgAcMrtThT/M+tnLtPIbYNQzHzV9jBEpV0yYRakaePtnBHIY0S9MorPRFynvoPgTzpuBIrZE+xCE6zJXMpQHh9LVqQq4icwJrDA3L+LFEJTkpajCkyaS26FTR0XYm/JNuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745951062; c=relaxed/simple;
-	bh=RJa7WlHjlJgo60D+6Dl0m/sbJ7UiWpejvUH/NN60IfE=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D/TsiuN8SGMJ6yqT2gXTV9t+4f1a+M6JPAnlBkO+RrJ9B61GxkWURFKib8/5RmHjdG189UEZVyLQXbZT1MQU1rGVqNxzrzFXe4aWnjuESHM0Uw0hcRd6yLfAKiz5zFEUHFDsPWDaU5ihIa+MZj2JPr0hQUHyGsF5uQ/VHwNXBQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TJzHirKm; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6e8ec399427so59617136d6.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 11:24:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1745951060; x=1746555860; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F12pg5HzOsF6YliOK/8QQ8SVTK4+Rj0ibiDXWC85YMA=;
-        b=TJzHirKmdd7NU+gD1Ecu272QUNDsa84cZIvp6hfZdJTwwuXHkBn4hsSK33/V5cSXBP
-         SojUrIOIuScvD8t/sFcMybpBEj0MlfZZmx7sF2MK4dyTC9jwdO4UX+tejY14iLVyrlIM
-         dyeDEWQIOJulUJnK+APNRqQuY6Lp5slVrDnyY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745951060; x=1746555860;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F12pg5HzOsF6YliOK/8QQ8SVTK4+Rj0ibiDXWC85YMA=;
-        b=oG+zBRZLcs3T5HUeDsTbS86xH0L46uXsgDkO992J/E5v/kLV1mV63dORQaiusYoGOb
-         q+ORdIbjKJdnSpgoytZiAD6XJc9mxQhSVy8GiLSIDGRV9r/Cdm60kKIvfqUWNphNeSlS
-         eX0WhMu6ERYoUkPsYowK5Lf7AVHJaQhyluF68LDoP550Z/n+DlYmJFTD3OorESf5EPLo
-         racx7ZQ8NSnObaF8JfEUtKe2qW/dC9SwsrVDj+TZGdJRbOrJFPOt32k+HA73q0vEMDpv
-         Y4O5qS3YcNeMeaRpiKpbXp7d7zylOB+my+yaXBtF20sVV4+uZjlqdNZ4A2lzrmxrR3uL
-         Kvfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXory74+233Atywc5qfrSGv+tunSpnlA4p1H6M7tqIKDBMZeTQyac4JumLFCRPFdsUUhi9xQHXnEd/a@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTGroNs5biF7XbW70QUrO1CLehiMPxTnqAREqHY3FGyCm8a5Lt
-	AvCa000gQGqbeqQ6FMnDENngB2IhlJt8eg+Kh/QoWijA5SKhdy0j+xBZTA3rAReLCOgOrXEtaCN
-	vj6vh3E7VzPCtAG43Fqg6moWbZ4mKPkxI2s27
-X-Gm-Gg: ASbGncuyhSde+z65AmFcfCFhtBXdFF70VENOvdd0e+PTClZ9X36CzIkKFbeLm5w4sQk
-	vbTQXJ7Tq+V5DrFm+QbKINUxFozz+LP0H4WFW5ktxd7K0HbEt0EAe3dlzidFMIM1TnFf9RkmRXB
-	R2sxKcfsFqROq2BE30mZoQdQMUPvGRaBx9qqUInqOkjgpnt4PtpQ==
-X-Google-Smtp-Source: AGHT+IEuYZ2r4eYEmCnRhaGeNZqjE8w9e9f0L6v1FIOcoNWO1AUT1cDFAMaQiUVPFzCMjJv1HcimUcXF1bPyz4z/CM0=
-X-Received: by 2002:ad4:5c86:0:b0:6f2:d367:56bf with SMTP id
- 6a1803df08f44-6f4fcf3ffc4mr6322226d6.31.1745951059800; Tue, 29 Apr 2025
- 11:24:19 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 29 Apr 2025 11:24:19 -0700
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 29 Apr 2025 11:24:19 -0700
+	s=arc-20240116; t=1745953176; c=relaxed/simple;
+	bh=IwuY276gXMXUoDkxiZng8S0b2nH7rkCxOVSBBBNPPHo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UC133/IDjPV+zUvHRaGS2D9HdkOpw0rRdrKpnKlwqhY0s8GlFaLHgBe5C63WYr3IUDqoFcsU8CKlgOn1jFCl+1BgLHwXWvuWwLGIFbR5ONNZihvyPVBkDrEP4odP2FeVm0SVaKvEmNudPhQEA7PAJn27aTqpBVKzZTdfw2i/BLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9g5QemO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0CE5C4CEE3;
+	Tue, 29 Apr 2025 18:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745953175;
+	bh=IwuY276gXMXUoDkxiZng8S0b2nH7rkCxOVSBBBNPPHo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=I9g5QemOAHdnQP3jwshUtWUdAIhUeA0ZudSeeYQ9aho1qlqq8hw29fKCK3/77J5kf
+	 KE8ZAUpRm6RF0B92g9n/NH2WBesJZFIgM3j314/szT1RNYzGoQ6A0zZ5MKSaJbQ6Tn
+	 eYtJkOVSS4yM5Ddc/RNsUE8SFyWid3Qk/ZpwVAtWToqyy/x3EQBnycXN02XPWlcl+x
+	 kZcYcFy3JLiVipz3uVqL4/GUBrwCSiLLsaczly9Lqt9zWZmqn6TmBSr6PtahTzlbrX
+	 djrSBIbEWo8/sFQegLWXnS7U2eASvpk9MirsSBnCHih0Hnzfe92otAzfAdxU47K9IU
+	 WQeK+ByCTOGcQ==
+Date: Tue, 29 Apr 2025 11:59:33 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko
+ <jiri@resnulli.us>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Prathosh Satish
+ <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, Kees Cook
+ <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Subject: Re: [PATCH net-next v5 4/8] mfd: zl3073x: Add support for devlink
+ device info
+Message-ID: <20250429115933.53a1914c@kernel.org>
+In-Reply-To: <20250425170935.740102-5-ivecera@redhat.com>
+References: <20250425170935.740102-1-ivecera@redhat.com>
+	<20250425170935.740102-5-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAEXTbpfb6KOqrU0oAvbzV76Wj_YORsjcukBVZx-d2evYtmwshg@mail.gmail.com>
-References: <20250422082957.2058229-1-treapking@chromium.org>
- <20250422082957.2058229-4-treapking@chromium.org> <CAE-0n52cwBxJ3gYzSi1+nNcRRSgbMToYBFLJwdVWSMOxBmUN1A@mail.gmail.com>
- <CAEXTbpfb6KOqrU0oAvbzV76Wj_YORsjcukBVZx-d2evYtmwshg@mail.gmail.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.12.dev8+g17a99a841c4b
-Date: Tue, 29 Apr 2025 11:24:19 -0700
-X-Gm-Features: ATxdqUFejwQ77NkwJw7ohUrQlQOeNG0in9NRcHlIVxu9xsrunJsL3ZQnzhOWA54
-Message-ID: <CAE-0n52aw2HXe1eUCkLbbc7tnr+okF54hOfSSRm9nic3rbCFzA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: usb: realtek,rts5411: Adapt usb-hub.yaml
-To: Pin-yen Lin <treapking@chromium.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Quoting Pin-yen Lin (2025-04-28 21:57:16)
-> Hi Stephen,
->
-> On Tue, Apr 29, 2025 at 7:46=E2=80=AFAM Stephen Boyd <swboyd@chromium.org=
-> wrote:
-> >
-> > Quoting Pin-yen Lin (2025-04-22 01:28:29)
-> > > diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.ya=
-ml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > > index 6577a61cc07531..a020afaf2d6e7a 100644
-> > > --- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > > @@ -10,7 +10,7 @@ maintainers:
-> > >    - Matthias Kaehlcke <mka@chromium.org>
-> > >
-> > >  allOf:
-> > > -  - $ref: usb-device.yaml#
-> > > +  - $ref: usb-hub.yaml#
-> > >
-> > >  properties:
-> > >    compatible:
-> > > @@ -19,61 +19,35 @@ properties:
-> > [...]
-> > >
-> > > -      port@4:
-> > > -        $ref: /schemas/graph.yaml#/properties/port
-> > > -        description:
-> > > -          4th downstream facing USB port
-> > > -
-> > > -patternProperties:
-> > > -  '^.*@[1-4]$':
-> > > -    description: The hard wired USB devices
-> > > -    type: object
-> > > -    $ref: /schemas/usb/usb-device.yaml
-> > > -    additionalProperties: true
-> > > +additionalProperties:
-> > > +  properties:
-> > > +    reg:
-> > > +      minimum: 1
-> > > +      maximum: 4
-> >
-> > Is this limiting the 'reg' property of the hub node and not the child
-> > usb-device nodes?
->
-> Yes, but the regex pattern of patternProperties restricts the
-> downstream device nodes to '^.*@[1-4]$'. So the 'reg's of the child
-> usb-device nodes are also checked.
+On Fri, 25 Apr 2025 19:09:31 +0200 Ivan Vecera wrote:
+> +static int zl3073x_devlink_info_get(struct devlink *devlink,
+> +				    struct devlink_info_req *req,
+> +				    struct netlink_ext_ack *extack)
+> +{
+> +	struct zl3073x_dev *zldev = devlink_priv(devlink);
+> +	u16 id, revision, fw_ver;
+> +	char buf[16];
+> +	u32 cfg_ver;
+> +	int rc;
+> +
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_ID, &id);
+> +	if (rc)
+> +		return rc;
+> +
+> +	snprintf(buf, sizeof(buf), "%X", id);
+> +	rc = devlink_info_version_fixed_put(req,
+> +					    DEVLINK_INFO_VERSION_GENERIC_ASIC_ID,
+> +					    buf);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_REVISION, &revision);
+> +	if (rc)
+> +		return rc;
+> +
+> +	snprintf(buf, sizeof(buf), "%X", revision);
+> +	rc = devlink_info_version_fixed_put(req,
+> +					    DEVLINK_INFO_VERSION_GENERIC_ASIC_REV,
+> +					    buf);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_FW_VER, &fw_ver);
+> +	if (rc)
+> +		return rc;
+> +
+> +	snprintf(buf, sizeof(buf), "%u", fw_ver);
+> +	rc = devlink_info_version_fixed_put(req,
+> +					    DEVLINK_INFO_VERSION_GENERIC_FW,
 
-I'm confused. The path looks like it is removing patternProperties here
-and limiting the reg property of the hub itself so it can only be at
-port 1, 2, 3 or 4. Why is the patternProperties being removed? Don't we
-need to keep the patternProperties around, or somehow get at the
-patternProperties for the hard wired USB devices in the usb-hub schema
-so we can constrain the reg property to be between 1 and 4?
+Are you sure FW version is fixed? Fixed is for unchangeable
+properties like ASIC revision or serial numbers.
 
-> >
-> > >
-> > >  required:
-> > >    - peer-hub
-> > >    - compatible
-> > >    - reg
-> >
-> > Can 'reg' be dropped because usb-hub.yaml requires it?
->
-> I can drop 'reg' and 'compatible' in the next version, but I see other
-> schemas referencing usb-device.yaml still set 'reg' as required. Is
-> this some kind of convention, or people just didn't notice this?
+> +					    buf);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u32(zldev, ZL_REG_CUSTOM_CONFIG_VER, &cfg_ver);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* No custom config version */
+> +	if (cfg_ver == U32_MAX)
+> +		return 0;
+> +
+> +	snprintf(buf, sizeof(buf), "%lu.%lu.%lu.%lu",
+> +		 FIELD_GET(GENMASK(31, 24), cfg_ver),
+> +		 FIELD_GET(GENMASK(23, 16), cfg_ver),
+> +		 FIELD_GET(GENMASK(15, 8), cfg_ver),
+> +		 FIELD_GET(GENMASK(7, 0), cfg_ver));
+> +
+> +	return devlink_info_version_running_put(req, "cfg.custom_ver", buf);
 
-I assume nobody noticed.
+You need to document the custom versions and properties in a driver
+specific file under Documentation/networking/device_drivers/
+-- 
+pw-bot: cr
 
