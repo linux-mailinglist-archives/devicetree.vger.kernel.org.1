@@ -1,95 +1,149 @@
-Return-Path: <devicetree+bounces-171995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6302AA0E7A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:16:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFBFAA0EA8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2F68165B24
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:16:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BB437A85FB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3662D29CC;
-	Tue, 29 Apr 2025 14:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2042D321C;
+	Tue, 29 Apr 2025 14:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6lK2eW3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gfOy8uHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CBE2D29BB;
-	Tue, 29 Apr 2025 14:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB452C259D;
+	Tue, 29 Apr 2025 14:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745936157; cv=none; b=K+uagobktVl+xBNeJ/vqFiRopzc2oV9Fo/Rg0FS4L5oEK/lHt2yTGetjy7HDEhXAvub+ssYjniKA5vs8qRg3gXbVyP85H5p/5AuYwwIOkO32rh/8aq1cbLbynLrrPwXuMo1I408Vr/+Feprnu2skjOComzxymxtuInvE4zgTdio=
+	t=1745936629; cv=none; b=gY+oLC4T4BpC5tl/i0KNZZZoCsV+WmR0uhFfQZoQ10ICKnza10KHTpcEAF4ejJYP5KIdMl0UkyKFKJKHcxbdOV+toOs+aom140LuwPl6fpKvzXkcYXZVklwfx6X11+g7flfl4BJD522iytAf12T6rBktrsx/dLCdV+SFFSHNE2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745936157; c=relaxed/simple;
-	bh=Eguz7VoDXnoR8Ggv8PmbdGUYJ1KeoxNUaPMyEWLjYfA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHeBQPG9jOq/pM+9hGVPX1kjjWQZRClFLawP/XE+RZsx5WbkzZl4rPOo4n6u4weQtVB9JlNLyix9jBDKZZvD5rO4QgxCU+98IsDY9w5hHGduxaT2blvSbe4wXk5CD4XmPdKPjfZxNpc9YlRtfRbvaOp2RGj07cu9zhObMbVd9bA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6lK2eW3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E58CC4CEE3;
-	Tue, 29 Apr 2025 14:15:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745936156;
-	bh=Eguz7VoDXnoR8Ggv8PmbdGUYJ1KeoxNUaPMyEWLjYfA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q6lK2eW3Gpx25noiTu2sbDpKMnDbNpi2r7i35mS/8S0ekhxQPA4Z3cVbbtX2Yqtjg
-	 6lju0kR7Wfks3j+ZMmLfPaMo8PDEt6PzEFgkdLSmcLnax1wLBmR1wPjJG+6LX29nWU
-	 A+a/MS1is4JrQB642aUaQz7YDgKTCN9e1PAdGmT+bMx9pm1yS4RvbIJO1elMiuV11D
-	 rFVTVpZyMDYs5nQa+va7mpEdePdDSxeOhz1HY3F00DPAEqHLnYoUlKM8UJZJrfPVp7
-	 0vlAfOgJqv4L9mok283m/XuB7t8VwTY9reyj5QLeIpVywuttr2bfWkDVNPynbcRUWz
-	 KKXmGnKkOrOWg==
-Date: Tue, 29 Apr 2025 16:15:51 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
-	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, Chao Wei <chao.wei@sophgo.com>
-Subject: Re: [PATCH v2 00/10] riscv: sophgo: Introduce SG2044 SRD3-10 board
- support
-Message-ID: <egkwz23tyr3psl3eaqhzdhmvxlufem5vqdlwvl4y6henyeazuz@ch3oflv4ekw7>
-References: <20250413223507.46480-1-inochiama@gmail.com>
- <MA0P287MB22626253965E96829B7371A1FE872@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
- <2feyvebloqdcxxzmywe6azmwnz7zqulh2lixhw53ciw2ldisch@n2q3duucrp2r>
+	s=arc-20240116; t=1745936629; c=relaxed/simple;
+	bh=wnFuWF1qkGD8gtloaR8bZH+fQAddlkDDvUzoHzQnTnw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QOiYF2HFgxHr7kFD0YhkT7j/JoQJZvaQ/NNyWxZlCN2ItCMQONxCWB4yUMIi/MqtQe3atefeMqdhGEp+ReYy7cA+UFW0z5CHYQHOU4Vk0DkCwPXrXfeljK1kQT2sV5ow7miS7/HOcBgAx1ylnQ2p6rF0Nn1e7Rl7tjtklEr7YAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gfOy8uHh; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TENXi53693953
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 29 Apr 2025 09:23:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745936613;
+	bh=s7MUa9Mrt3b4XrsrztK/DyPSINZDhXWUGMI9GzjPTgU=;
+	h=From:To:CC:Subject:Date;
+	b=gfOy8uHh2rwblj0oTOKmEoadArZo3Qvbn4VZvH5mqyIHYsDYyMZS/2Q+0ZhMxnSQc
+	 klzxFXQmm1s3FqHCgIM7cWj+2p9dCLAis9OCJhzjtLFjyRN+XK6bmNtVsMD/X8IBHD
+	 oa2YJcAGA/XK9gdYtv4+FCHHE6oRAXWfR2UVd7Ik=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TENX18063037
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Apr 2025 09:23:33 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Apr 2025 09:23:33 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Apr 2025 09:23:33 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TENX5U067841;
+	Tue, 29 Apr 2025 09:23:33 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am6*: Set eMMC clock parents to default
+Date: Tue, 29 Apr 2025 09:23:32 -0500
+Message-ID: <20250429142333.4140010-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2feyvebloqdcxxzmywe6azmwnz7zqulh2lixhw53ciw2ldisch@n2q3duucrp2r>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+Set eMMC clock parents to the defaults which is MAIN_PLL0_HSDIV5_CLKOUT
+for eMMC. This change is necessary since DM is not implementing the
+correct procedure to switch PLL clock source for eMMC and we have a
+non-glich-free mux. To remove any potential issues, lets switch back to
+the defaults.
 
-On Sat, Apr 26, 2025 at 07:23:58PM +0800, Inochi Amaoto wrote:
-> On Sat, Apr 26, 2025 at 03:36:41PM +0800, Chen Wang wrote:
-> > Hi, Inochi,
-> > 
-> > Will you apply this patchset on sophgo/for-next? I see there are changes
-> > just about dts/bindings.
-> > 
-> > Chen
-> > 
-> 
-> I can only take 2, 3, 4, 9, 10 for now. The left I think they
-> should be take by the subsystem maintainers.
+Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral nodes")
+Fixes: d3ae4e8d8b6a ("arm64: dts: ti: k3-am62a-main: Add sdhci0 instance")
+Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
+Cc: stable@vger.kernel.org
+Signed-off-by: Judith Mendez <jm@ti.com>
+Acked-by: Udit Kumar <u-kumar1@ti.com>
+---
+This patch was split from "Misc MMC udates" patch series [0] to help
+with backporting.
+[0] https://lore.kernel.org/linux-devicetree/20250417233040.3658761-1-jm@ti.com/
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 2 --
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 2 --
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 --
+ 3 files changed, 6 deletions(-)
 
-Please, go ahead. I just merged patch 1 and 8 in i2c/i2c-host.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 7d355aa73ea2..0c286f600296 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -552,8 +552,6 @@ sdhci0: mmc@fa10000 {
+ 		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+ 		clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
+ 		clock-names = "clk_ahb", "clk_xin";
+-		assigned-clocks = <&k3_clks 57 6>;
+-		assigned-clock-parents = <&k3_clks 57 8>;
+ 		bus-width = <8>;
+ 		mmc-ddr-1_8v;
+ 		mmc-hs200-1_8v;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+index a1daba7b1fad..455ccc770f16 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+@@ -575,8 +575,6 @@ sdhci0: mmc@fa10000 {
+ 		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+ 		clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
+ 		clock-names = "clk_ahb", "clk_xin";
+-		assigned-clocks = <&k3_clks 57 6>;
+-		assigned-clock-parents = <&k3_clks 57 8>;
+ 		bus-width = <8>;
+ 		mmc-hs200-1_8v;
+ 		ti,clkbuf-sel = <0x7>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+index 7b65538110e8..fa55c43ca28d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+@@ -573,8 +573,6 @@ sdhci0: mmc@fa10000 {
+ 		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+ 		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+ 		clock-names = "clk_ahb", "clk_xin";
+-		assigned-clocks = <&k3_clks 57 2>;
+-		assigned-clock-parents = <&k3_clks 57 4>;
+ 		bus-width = <8>;
+ 		mmc-ddr-1_8v;
+ 		mmc-hs200-1_8v;
 
-Thanks,
-Andi
+base-commit: d864bb528a6725e775d564fd4430762acbb9dd0d
+-- 
+2.49.0
+
 
