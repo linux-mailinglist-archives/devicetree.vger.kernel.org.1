@@ -1,84 +1,92 @@
-Return-Path: <devicetree+bounces-171986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A230AA0D82
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:29:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3A4AA0D93
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:38:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2075F7A7868
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 13:28:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E6A4480C9B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 13:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C0D2D0270;
-	Tue, 29 Apr 2025 13:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ECF2D190C;
+	Tue, 29 Apr 2025 13:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Puib2IAs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DXnowBPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2601270EB8;
-	Tue, 29 Apr 2025 13:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1342BF3F7;
+	Tue, 29 Apr 2025 13:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745933387; cv=none; b=HXgWnqkhZM967mWXX22bT4yg08DiVtKROsLy1yiFZxFdZJGNaIbiO0U2W56tHApynU6xr6znYJKJF+jtLMIc1wMlk96PmDOFpFna997JvYfJhijd7EeLGDvljm/NtyrMRQvqJZqRZ6Hcssgokz3c1Lp6mjQfJeAM8fVz0ZbLM3k=
+	t=1745933894; cv=none; b=Gbvrhpu+h5iTPPlidYxno8ihcluSmLI0UiUZ2ZfHdaPGcBVfdWS7T0VJ7UATaQX17ADbhL3LxkHR4X3j9aYfb23d0XsOogl1aJIfCw7WHg56K6YCBR4OAllc5/FiAyC3rrY52SLGjohmtI4E8gel8625XMhofwUT0v2soaG+caI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745933387; c=relaxed/simple;
-	bh=Whwr+9l41YP9STYkQ/1ThI+dnOqAHdVf9Mdd37OTqX0=;
+	s=arc-20240116; t=1745933894; c=relaxed/simple;
+	bh=P0u5bKOVeiv3vEYAMFrQC5BmOPXNLg3oQQYCtgr8BSM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=usTeb8zF1eYF3WctuAPgYxu3L6ESWXVjj+eEeoPqhzSieSpaRF+KwO38kiwF41Kp8Yf2ElVFqezALHTPOVOI1aoe2JWtCXUuKrexedLTKqP1AFJIAhCd4Hmr9aIqBiU2WbVs/FvS1kd8C9uW0T9dk3H2259cA5q736567OSZjQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Puib2IAs; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745933386; x=1777469386;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Whwr+9l41YP9STYkQ/1ThI+dnOqAHdVf9Mdd37OTqX0=;
-  b=Puib2IAsekkIOc3pOqXOGPjPtchNqdRSRLdOFJb8UNfepmt3GT6z927u
-   7HzymygwOr2n40b5EyieUF75h9FlXdkrpBkJHlLdxNQxQtwkdlCh9SaGM
-   59rDtbGTdmBNEIAhNg5PcYF9RwBMN2ZSz4dGHjhpGQ1UI+cAPz5wyRcrE
-   b9Ahc8vg0VjRXhgs80qbm6jd6JlFfXO1z46h66rjqx3Z7tszApvht68Qu
-   QH6Kvdg4UnnAgunHjuceaUctXhGLxjBsXTRbq+pKSXFBDZqXesurhYWe6
-   QmJBoogbm4LJ0UrUfWfKKLdudOWu6F1jyaxd/u1pBYY0rL3iLbQPe4i8Y
-   Q==;
-X-CSE-ConnectionGUID: 5D2hWhKdTnCGVAj7Mh8JWQ==
-X-CSE-MsgGUID: 1Grr92+XT9qwpunxRJstCw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="51376310"
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; 
-   d="scan'208";a="51376310"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2025 06:29:45 -0700
-X-CSE-ConnectionGUID: cmBLZoefS7Cieu8WlhaxWg==
-X-CSE-MsgGUID: /eu5IBmfRHSlYrIGiT80og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; 
-   d="scan'208";a="133775633"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 29 Apr 2025 06:29:41 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u9l1n-0000jn-0k;
-	Tue, 29 Apr 2025 13:29:39 +0000
-Date: Tue, 29 Apr 2025 21:28:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pawel Dembicki <paweldembicki@gmail.com>, linux-hwmon@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Pawel Dembicki <paweldembicki@gmail.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Greg KH <greg@kroah.com>,
-	Shen Lichuan <shenlichuan@vivo.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Charles Hsu <ythsu0511@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 5/5] dt-bindings: hwmon: Add bindings for mpq8785 driver
-Message-ID: <202504291853.nDOvzGEJ-lkp@intel.com>
-References: <20250428221420.2077697-6-paweldembicki@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tEyBFmsM7pUBkGY4KHGR+x8tRnBGAW7AGXesyYFN31z3pfE9aYziai6xEHRfnk8O6NGtAdWS05508rayWeTl39W5z/+os+uPACqMduJzEBonGr/V02oOwHfWPcxJ2gXH09bIeUPLk4cWPxLsSIz9JCzQsn1QsCuz3B4d+gb+Xbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DXnowBPb; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ac2963dc379so888542066b.2;
+        Tue, 29 Apr 2025 06:38:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745933891; x=1746538691; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y26J0iAJoKCmJNS38dntVfyxrAVGftlCnn+OgGntO2A=;
+        b=DXnowBPbfjKKyRl1Hcv2Yg2gMaIm9Ue7pWBLElPeE7S6ZHdUwA8T7rI4mmxYHFsMFa
+         NRd2EtsriXOzuSJQcqEzQi848vninQULk/7NkT6Vht1NEjRnw+ethS+Qhua0HWLzkRgh
+         YJMxc9IzHtGbdhy55u+eK5ybwu6DD7YffXpxvh2q+XCfEXnxqmv/1kt/2iTQTZV1Pn0z
+         bMyP6kDZO96J4s+mfonhuBAnRxUVBt/Wvb0RKnkuakWhTUJeYIB7axfWn4ed2q9AE0wT
+         QR9zeLtazFHn0UYxw5TgBUUU9qkvwUKxEW0rOVaxCaniSc+nFlfPdvfNEisr4JJeEnuP
+         w7jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745933891; x=1746538691;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y26J0iAJoKCmJNS38dntVfyxrAVGftlCnn+OgGntO2A=;
+        b=gEDjCtl8DN4Xi39sBQXK3ahX09gBofe+CptD734tPYl4kZHYu6uXyyMKqaKb6KK88K
+         NvtU3Ib+5MlqoxTymmYUZub/RyOQlKs7p7q/Q0BvE/AgdyXL5bvSV5ZfzLSD2WQ6EQiD
+         hMMZHX5b3OGMYkzFD9SAtv9WoNDYsOMQbUZVD8KBJEs3InloxruVw77veSSiOWtSmexe
+         F4XRv2uzq6MDJ78YHWQeMvsuuI5ytbjGPUR+0I9RXeg40tm722ZwuP7BZv+xyXzMb3Yx
+         2XZcTFesgQspOQRSiw0/c3gepy9JxVJ2VU0HQMMd9bu4uO/pXmJAgSdv2gFekEQLBL1B
+         aPBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYle87ZITusNgfDPnrBZLvcoUixHV8KQfCh6JKoB44NszVuksYwHVdFnV516OV1l92jnurExxTqnBGnhwK@vger.kernel.org, AJvYcCWfrVe2Nx48tvCEzDFG/WNnmvGJ3JzQWo/08RyYzqCkX5BEm/pis1U1MyadTSrpSX1rPrVAGstPYa2+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym4h6wNa2exz2IU0+NDqR592If7bh1yXk941TlBAwu0Atgl3q5
+	7y3JJ0XTtXqtFlh7WFhjilr131/0kVlUiVp5zG68kw8sForR4udL
+X-Gm-Gg: ASbGncu1WGxAHysMtGfqrKZEF4TBdNa9i13te+b1/Jx8aKW77RSvNNDPZLMX1amZXMN
+	T1JJP3tPoYEMIHj6oiXPyiZ3+7nkDUHKg0sn2sqFqce4oiFvWXBTAf2x7MMeCtgEq6ZfoD5lEYa
+	wJ1b/KcRU3C22BxxSFIh0Uxnp/yOPuhzu7kYq59ux7kB1PL/XwLr+YBILnkeRXZWmReKwSBr4Bd
+	C0zXYeFjWII1ljAGjjHDhmiVDMSD5wp72X5dKUVnIMo0KUtmnWrI7nBu8/M6oQHGv6+w1IKxc13
+	dvRsn0iX9gVzuPfklL61UzrOvATBU5BqIBoT7Co4Z3hM9fcEFvNG3lo=
+X-Google-Smtp-Source: AGHT+IECDUUSwqdQe+jFeZC4zccITFBfdZlwb9V2S+BXUJyiLooaUiYpAnL5q+y3JtdKb9LMa4l5/A==
+X-Received: by 2002:a17:907:97c9:b0:ace:63b0:6f70 with SMTP id a640c23a62f3a-ace84b71607mr1146290666b.61.1745933891105;
+        Tue, 29 Apr 2025 06:38:11 -0700 (PDT)
+Received: from localhost ([217.151.144.138])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-ace6ed72826sm778242466b.154.2025.04.29.06.38.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Apr 2025 06:38:10 -0700 (PDT)
+Date: Tue, 29 Apr 2025 15:37:27 +0200
+From: Oliver Graute <oliver.graute@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH 6/6] arm64: dts: imx8qm: Add Ethernet aliases
+Message-ID: <aBDWF4-63M60EwX9@graute-macos>
+References: <20250425-dts-imx-aliases-ethernet-v1-0-15b9d5cca611@linaro.org>
+ <20250425-dts-imx-aliases-ethernet-v1-6-15b9d5cca611@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,39 +95,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250428221420.2077697-6-paweldembicki@gmail.com>
+In-Reply-To: <20250425-dts-imx-aliases-ethernet-v1-6-15b9d5cca611@linaro.org>
 
-Hi Pawel,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.15-rc4 next-20250428]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Pawel-Dembicki/hwmon-pmbus-mpq8785-Prepare-driver-for-multiple-device-support/20250429-061658
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20250428221420.2077697-6-paweldembicki%40gmail.com
-patch subject: [PATCH 5/5] dt-bindings: hwmon: Add bindings for mpq8785 driver
-config: csky-randconfig-052-20250429 (https://download.01.org/0day-ci/archive/20250429/202504291853.nDOvzGEJ-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 11.5.0
-dtschema version: 2025.3.dev21+ge6ea659
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250429/202504291853.nDOvzGEJ-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504291853.nDOvzGEJ-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: Duplicate compatible "mps,mpq8785" found in schemas matching "$id":
-   	http://devicetree.org/schemas/trivial-devices.yaml#
-   	http://devicetree.org/schemas/hwmon/pmbus/mps,mpq8785.yaml#
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 25/04/25, Krzysztof Kozlowski wrote:
+> Add Ethernet aliases for predictable names and for firmware or
+> bootloader to fill up MAC address.
+> 
+> Suggested-by: Francesco Dolcini <francesco@dolcini.it>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Oliver Graute <oliver.graute@kococonnector.com>
 
