@@ -1,650 +1,297 @@
-Return-Path: <devicetree+bounces-171721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573B9AA001F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 04:55:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F89AA0087
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 05:31:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAEA21A8780B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 02:55:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E5F57B0AF5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 03:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA60529E04D;
-	Tue, 29 Apr 2025 02:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FC72638B2;
+	Tue, 29 Apr 2025 03:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dASiQFkv"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lw8Ysxti"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010006.outbound.protection.outlook.com [52.101.69.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CBB29CB51;
-	Tue, 29 Apr 2025 02:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745895325; cv=none; b=LsTZ0naIx4kaW9XVB4w6XyParIkfjThjxqZ35uR+b7C9rmTBHpHAU2sM38WEp0F+wWXWGEMwGGNjO/8QitrHe1xVQTrl+bikaWfQaIuTg06yc7N0ZqEP5zsaJgZY2YjvTfL+YELcsvAHdmqpDuP8UwqWhyRQX7WSyTol8F5Bsrw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745895325; c=relaxed/simple;
-	bh=nmXjAvwFdLSBnrz+f3vQu1zFDmC9/wrXEcHFSiSDa0M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DxS/dIFsX74i6EcjeOospAAC6W/iUP12dkSU99lfi1kY/rOGkVX3/aurs++rTbDRJ1IYLnSdSExWLFJoz/HWVgqtbsbZ0cmciMh+E/nONRhYn0rq9sjhDjmcfy6yMqKn70Wa0CQLD60VORkNFJujhGVyoH5bJT3I4P/MHIrCMcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dASiQFkv; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b041afe0ee1so5224034a12.1;
-        Mon, 28 Apr 2025 19:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745895323; x=1746500123; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K5LbuKd3YjBXrdi47A6gDtFDB27AdlG9sBKEVKdtApU=;
-        b=dASiQFkvfJBLzZz+KWv0EyDI+aWQesLXsho6MQCudPakfsq5uqWkhDCIiQth9eZdjV
-         kdRDyeVFl47w2/dYxdsLZ7jCaBssascKto7RhzxU3EHPiwxRkteUNAmnx8OmfXSptfXV
-         cKKN+SMfWcHvm4GRfzhkv99zNUhgm0qNIifSFlbO5rhnqqh+Jh3NUxd607QGRbW72fth
-         XTP2KQ0YzQ0R9BYxyWG43V/W387XIuPGBrGBAyTvQ93DwQ1z6dkdTEkBHFUBr+PRquZq
-         H5K4oNSZ950SgCHjimt/b4ANwxcB+Fh9uU874TSGCszR7arJKvgNqFgKgm5Iv7vTDcWW
-         R++w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745895323; x=1746500123;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K5LbuKd3YjBXrdi47A6gDtFDB27AdlG9sBKEVKdtApU=;
-        b=JoG+cnrzl6pbwPYgaZWm54TC5rgXzpivvosk/bGdhdkZLneAPiKUGkEQKsR5F3OENj
-         bLElBg2Kq7iy0KaqdiIfq8TDLrurA8Mifjass/pD/iXkrjVhM6G1WmZwAYs3u5fMQpc2
-         b0C4iZl80vWNUOyGPtMu+gaNJmEXyqOleNAENwOPlEDHjOvw5UK+lfIgHm494IJ3nD7I
-         N/xrRsvM4Tgn4qAaIr9FBMOHsClM9Nnp6rcDfkcAk22V9hTM26+EIpzutg3Ajq/Z5Uyz
-         c6OPShg/WjWwXccZdzd6ppcQOSVDXAFVg/PaY9leHkWbBtFYhNmrrVBImxY9tKr7K+UT
-         q3/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWqiLKXHn2ZUfkCmVcDMD+4nMvPQOBmp2fJ6bHjNkFvPoNnu2B0OKMA3pqaeasjudtm0HE55Lj0fQGIGwAz@vger.kernel.org, AJvYcCXe0JZ/BX+oOaJ3qkVzlknmvrF9UII6oJ7SXUcpfhcG0fL1y0Q1FUCAtM/ZN7vSy37JraIfQwCyufx9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnpQJm1MpA3KeyvJqTZoH+GmpJCGXOc+7W4CoXBwusdZunLePB
-	H3fnUdyynIPkRpd+jvkv/rqLF9u2vitFoI5fUoV0KOu/8jGDvhyZ
-X-Gm-Gg: ASbGncvaKEMLpMW3H1avmzRRCgBstzGrpUpH/y61IPl/Nleh7bPK+VXz75Sdo9cxmeR
-	4nRdHK6cojy8/UlvPhGPFBi5RG1IHSCk8mOd/VWJ55azy19bLoEuUAiVbI4/hSXL/bXfWdn0Wli
-	DrXKJplpIJUj3IdpHP0Z0QuUqUhlGTLLNygooLCSGxDFGGrmW4ih/5EkzxFP0DzxPZWQBcFfsYR
-	f3gaGJ3vJd+qhmeYBUl/BrF9JxhNzxl282bqHAwqsD+vntlf8e3UcnO3iCVh3RKt81/xqNqwXfk
-	IAUQm75jHa8AyHYcENYdDksq/ZIvvftrRLCbdjVa/9cWVRnBfs6tqT0bOZ17F1WR56DedazR
-X-Google-Smtp-Source: AGHT+IF48hxB7pesYaMcl4NYI+QFm8dWGlDE79AACZRRi6YQiJx3d40dMz+Bdf4jvO69B7HjigJjug==
-X-Received: by 2002:a05:6a20:4394:b0:1f5:730b:e09a with SMTP id adf61e73a8af0-209598c60d6mr1982511637.20.1745895322682;
-        Mon, 28 Apr 2025 19:55:22 -0700 (PDT)
-Received: from openbmc.. (211-23-34-211.hinet-ip.hinet.net. [211.23.34.211])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25a6abcdsm8797905b3a.116.2025.04.28.19.55.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 19:55:22 -0700 (PDT)
-From: Eason Yang <j2anfernee@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CC727735
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 03:28:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745897305; cv=fail; b=n7syS/DqXabs5qNb7l3YQANkS8eP4wiLcpHmTjTPwcgfEjmDOFUfVzFsVF8BVhViLzG9FsT8QC50CqnV/l+fpPlRHcLs1QdIsAx0RpcumTSQvcoYraMtYIElz430rBLzHDuaiGM0fvzgKajFd4CZF7zyI6VLWNpG4hd6lqCQwnA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745897305; c=relaxed/simple;
+	bh=PkhYXUe5lszdxgop8z4hDknfLs21401WR7vOEuf+naY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=eMKQNiuqu9weeBH4Jl/1oIrBPIaxiEPTWvevg3k2DuX7IFIXFgRFBDcfNZrB9m43wyRcuk6m/3A6to/nDgrdflKjSCNGMgFP5opcJXaMMhRMYBRaqMHcGcaDAEy5b+ZKatpFcBFmcK2P4oOenGFIlIAda7tQ1Wwfmzc//T66qU8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lw8Ysxti; arc=fail smtp.client-ip=52.101.69.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kgjVox0FXQnGeRitSE+kp8rmnBb4wipT+yDEMABCzzTQKIH/DkSLjgiqgDYDFigjdO4Uek0WG+tGQSCxsdgpwnhKtn7evlCHNDpSn3UEU6G3DqVCNGv/JTyRJle3pxGrYb8e/K+hSJYhIqIHugwmO7uDmaP3zJnV5KMRWDfupSLD9PrU+yryN2+pJ/sfNXxOAuWFsxkN1HkWbsu3uzVRfGoB6W8pMUbnGGqoPcZznAHR7lX94m4bN//EdWRIDFc2eCFOyNyY0Y4fPUyDzLClX0Z14I2pCBXX5PR5dvx2d2/V1YeLbIJEUA4ER0JacjNRpZCwzbl8jTW2SGbSHoFakA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D7gdpBkKdVe3F8uYFcc77lK9eStMXo2MqRRbG2e3/rM=;
+ b=NduJfxYt17yWywKvACniOtw9Fdlfgj2N89YcAxCqz14xAhEWVtcUoqUT/H98SoeMw1DwzPjtic3H17tKfyzGmfrI7hYBYuY5WQQY0HupLFEM2dD+lscWhsZw/Nk92NMHGrrWANd4Av93CByFJ5vgX4FatJJbh9k6Zo9zIOc6PDk9/ufwEkqzrj9SLRM1cEsxzmJ1tq+aXGt0ZBvnCCzHUat+Ylc5L4/A5lbLcWzIQ8QvGC7VQgwsFK1TAEv47p2xkSaDRgnYFlLp/2iM/05GyJjLG80mroa5pFqME/gAZ8nMXRixp+CQFb0GeJ42AQVjv/fW6Lcne8HMq8Y9J13s1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D7gdpBkKdVe3F8uYFcc77lK9eStMXo2MqRRbG2e3/rM=;
+ b=lw8YsxtiLz52JcV1ijvXXRAMbjGDg38MayjxafkX1i9k+Q9hNi+7WOB5jsRNoOaAEs5p3+V3OKdaOCPPk4mfPOTEp1r2usnzfi70uKbLoEN5iVunYSTUFUJQ97TRTy0IJWtW5Oaov62EtVJBaW57RMJ5Swm35XM4oZ526Vj0jfTOZEzAlhaqQ6wWiPFKX83nQ8mdaPfKxDSZc+M+3d0OV7Xa7jJ0ncOEeKbO2s2+Lgiuy/sZNcY/vn2O7SXNFfDB1tbdvTx0P8UDmmM81RG+bbeoNxy+F8FQVZATnKVd6vM++u/kj8uGb4WYet111xQ7tAxt7Ctda6hdoRst07LLzQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by AS1PR04MB9698.eurprd04.prod.outlook.com (2603:10a6:20b:481::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.31; Tue, 29 Apr
+ 2025 03:28:20 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8678.028; Tue, 29 Apr 2025
+ 03:28:19 +0000
+From: Xu Yang <xu.yang_2@nxp.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	javier.carrasco.cruz@gmail.com,
-	tgamblin@baylibre.com,
-	olivier.moysan@foss.st.com,
-	alisadariana@gmail.com,
-	gstols@baylibre.com,
-	antoniu.miclaus@analog.com,
-	eblanc@baylibre.com,
-	andriy.shevchenko@linux.intel.com,
-	matteomartelli3@gmail.com,
-	marcelo.schmitt@analog.com,
-	chanh@os.amperecomputing.com,
-	KWLIU@nuvoton.com,
-	yhyang2@nuvoton.com
-Cc: linux-iio@vger.kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: jun.li@nxp.com,
+	alexander.stein@ew.tq-group.com,
+	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Eason Yang <j2anfernee@gmail.com>
-Subject: [PATCH v8 2/2] iio: adc: add support for Nuvoton NCT7201
-Date: Tue, 29 Apr 2025 10:55:05 +0800
-Message-Id: <20250429025505.3278016-3-j2anfernee@gmail.com>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb: improve some tuning properties
+Date: Tue, 29 Apr 2025 11:30:07 +0800
+Message-Id: <20250429033009.2388291-1-xu.yang_2@nxp.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250429025505.3278016-1-j2anfernee@gmail.com>
-References: <20250429025505.3278016-1-j2anfernee@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0156.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::36) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS1PR04MB9698:EE_
+X-MS-Office365-Filtering-Correlation-Id: 558f28df-049a-4465-42af-08dd86cde223
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Ts9M1aMvF6FTJoJAo9PD6n8aTpcIlj+S0NaOhlgu+QGnKCYCP+13AdphsYsP?=
+ =?us-ascii?Q?8CN18Lu61iIG42dc3SeL7T9xZ2Na3j3uCIpHh5fC5kjImcJxKM4ckI8LDD+O?=
+ =?us-ascii?Q?S7TH9BmYthpGpdlpZjv2isa0h63rkchHwSdoz9ZvZvStuRhZMGzS6Uu2wpHW?=
+ =?us-ascii?Q?PMpI4bjy11y1TbIss7fHzuKkYAk4EV1+CyrU6cixWEW+fkFlCmmmmcamgzrv?=
+ =?us-ascii?Q?E06eyewoiciRTkctRjcKBzDimUQnBKZzv2dmYsQL2BNEWlSOpgUcpE769+UR?=
+ =?us-ascii?Q?gbbgDVK11dfrIoIh/Zs2U0CFVhWlGHmGDJ1Ab2xQ3EX8RhcBa0wxzuKkpJ6k?=
+ =?us-ascii?Q?u69HHAR8wrOpTuWFxbYXUvpy/rTi5XBcA5Eaz+5gQp2t73TSGgjltYmxHCjs?=
+ =?us-ascii?Q?Af5f/vcJl35ZkjEilkFIu1CozNMuJ+lpJwSI8G/iEu9X+1eTylNntFxTFI07?=
+ =?us-ascii?Q?vXVyz5zy1PZtf1oPki0Ctz5vcODTnCIPUFCOfyxoUVSafoxBgZbW5pfE8Ol/?=
+ =?us-ascii?Q?yBhZe/+uNTlEf7fsRo+42UgIaxM/0GKev34Tw3abZwAlsaO5li7xBNstPEwW?=
+ =?us-ascii?Q?El5JaIeIMJBDPaYeeOkkSX/mp3VjRxEq5oWATGjziu3v8nqNJrAcSjDcTdCo?=
+ =?us-ascii?Q?u7hbPGf6CuPHs8par06NUcCvnatKSIiXO816s1xzwTvW+hPySQF7dNYePacE?=
+ =?us-ascii?Q?MH5eIRqWWR7kjrpaXWNRET251+fYm8w5GyJxwUngdehomo8nOnFyH8nbh4WV?=
+ =?us-ascii?Q?Zt1/K3CIT5hTlyQpm65uKz8eS/z/xC0HPcBXReluWSLGgEatJm8J1sb0SJCZ?=
+ =?us-ascii?Q?Sa446nIxC7hP1Yr37oih6uNXSoqBKVdXz31EcgOMzqeCp+mlsfx9jZxb1oTe?=
+ =?us-ascii?Q?6nBwleLnxy4Arf/Bzy3obmSS1bVxMB1tOUu/QYi1rtRhoSU3QpkKOvnA6BSb?=
+ =?us-ascii?Q?YZRdvVUmICNFo3XRI1rnNnOZj8zTe0U/6cnFPY9eoM1Loqk8x8UdUuYZB/W5?=
+ =?us-ascii?Q?axr9n6oFwj1iD/fZxMnhsXtLhQ2e4eA0JKDxFJT+u0KaqdIUGyOzinfk5IJ+?=
+ =?us-ascii?Q?XKdDXAZ0x9OfG+xuQODp24ucNpcmWM1/Ogj8+XMABmuBAgaq8p7l/UZIIJ5B?=
+ =?us-ascii?Q?EHZdvw6m5zmllWz5dWvHT8wfefoThhe2keyGwQMBkESFRL0eXrlsqW6VYnBU?=
+ =?us-ascii?Q?zyh/WCUIkhFEvX6uTBXuWnRzONk7OQdRvAKQYWXmegoNO9kDXJlXrhiKgrJs?=
+ =?us-ascii?Q?hmgqlQFQ51efvo5MzUtAjkG7wHNtloy8aHzWVHI5kaSJZEUEszJx4EG6I2CP?=
+ =?us-ascii?Q?IagdCpwhsmCJ0hFjTUIYZJQfvA1hs849WCH+3p2WcN8tdKjTOHFM0Tkd/Zom?=
+ =?us-ascii?Q?EBm9jF5C+p8gP6Tw0xi+Zc0J+SDwfPEKfAMMpoA1X8HSShfmePltgItPNXPG?=
+ =?us-ascii?Q?sDdBGl+kwQs9FdDUd2tob/e7aYFf+1DgryMuYZ6rSzdbKOPFHI6uDg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?s8MrwMdtrpJWgNGhHM1BGv8TCb8AfNrAnGfPunqN4DqJkwDklkJs5cjehaEA?=
+ =?us-ascii?Q?DAM3pFXETrzMuKnGM2LHVlJIl+K/TYZ1ty5LodgQiNKPg01SuHyeIFnQ146M?=
+ =?us-ascii?Q?sh58Pesm3iEWU9qkRUO4Q9Ax0e2M8gxVJhGuAkVL5u1J89FCoTzqAc2EpyFh?=
+ =?us-ascii?Q?b/V/P/liZvfXNdV8qytWSwCAEq0zYKgstN7anfmrpryonMAmyKLxq0ZpN6Ge?=
+ =?us-ascii?Q?C04vaB7ACzXzITxnx4PRXTtTHfkQrZo3Nxb2EY14JxOL3veijjvyUR2hoXle?=
+ =?us-ascii?Q?rPn7uuYEXSOI179qlW48cP7U/YL3mKoVJ+O4TqX7FlfzY/0dxKdCjMjv4GvV?=
+ =?us-ascii?Q?0Jwf6n+g7wblTtBcBMyMF25qsuF7ky2TpcbBvuicYylV5y437aIGV4UW4hgq?=
+ =?us-ascii?Q?qFkLCGq2yFwwYGImm8zyW4/L63zc5ooBs69Ixrff8vqyaPJnNCkUE20vnBbG?=
+ =?us-ascii?Q?+VXdIQCHQcfgPsHLERrmmuT6VfT37xtCt81vHJGGB1v8oyQxWhbh8AzpXCpq?=
+ =?us-ascii?Q?AIqzxHdO/WBUem6em/ROKo387K6aRHNXYOLEKrkjKS5/gjMdMi0eweIpSTDW?=
+ =?us-ascii?Q?UhIhuSq3NJKWOufbycJxskUZvB6dxkFbpSBJlOZuWXSbmprVN8ucltnJ60CW?=
+ =?us-ascii?Q?+2DMS8TPDFr9u1RQYdRhaa9OuLhzcjTHnSwV5zRCC2NNj+bSzTuzYgjU/nFU?=
+ =?us-ascii?Q?OG6y/335NF158zLAsN8351MHG/XcKKH0KxZlZdg4F+gyDjd1fqLaAkLdV3Sf?=
+ =?us-ascii?Q?7pboPKVgxbiaFD9PU7RSRMSftQA1Ik/an4Gpwdx7tki/Z45C+oHg/vA0hGw9?=
+ =?us-ascii?Q?JfdtgA+VUIL9Z+QN2+wq8R3SNbr3PzqDcOyIxSYiPOLvO4Wex9Tb1IRXjv7e?=
+ =?us-ascii?Q?q+Vh1iRZVBKfPf7UBY7ApWejumikeXOyWpZ0HcFxp3preT6e+2jJe31EYJG+?=
+ =?us-ascii?Q?Vry8RScTXentFuWg2J9oKVfB8ntfIy7nyKC40eQEJ0NoMa5S1YfL2okAXclu?=
+ =?us-ascii?Q?SXRYdeClnUWIJMgtxHXXlk05tEkskicf2TZlAbtsz6Yom+QOu87g5UeLhF/v?=
+ =?us-ascii?Q?H7L0n+wF0C5/gu7Rch9X9ms2iBWUn5qF+DDJfRmUPRLtGezphnxNdU4dRCOI?=
+ =?us-ascii?Q?aH1Dol4Ea19nXpVCU1zjv7nJyAsRrQYJM6TLv9ZYRoXBcQwa2srtXCSgZA1s?=
+ =?us-ascii?Q?OSAJWMqlMh1f1/4Jo4wTrDT6pdChxEbHeLXeWh6U/NEsLkZjm8SnkNRoqlnn?=
+ =?us-ascii?Q?1pZwbJwiG+L541ghzTRkxjfaQUPxXW2hLYJ26uGg464U3pSooC3l4A0JwIu+?=
+ =?us-ascii?Q?cpEKq7FQ+bKcvu3hUDt1/RaC4FGrwe32BFZ44TrYUEX6nlAiHNX6KyzK9t8g?=
+ =?us-ascii?Q?e+QXN4nVWOjnOgFKmziQrSRKbumH3kkVDzH7t4/JjGkmKPwFWz2qcomIWDzt?=
+ =?us-ascii?Q?F6DbKDaqfosA/B1YtUybUb0hJBhb8hdJ1QLSudk7zZa9vbZPO5hIMV01QVPI?=
+ =?us-ascii?Q?gdtCef6i8wbkAgZi9TQKugmsrKlJgzlg9ZAeAnnVSJslcm+KwI1fNP2E8MZ5?=
+ =?us-ascii?Q?fRNjr0MZIMU8bQAE4+Rt0PF7Hkg6VpVPOrmuauu4?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 558f28df-049a-4465-42af-08dd86cde223
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 03:28:19.7595
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FINOT3nzFvfvO1uwgQ0ca/DIZmzd9UAyUiNm0p3DdMz8m/5JYDwIHM/agZtuAxM2sFW07sDdFGIQfFZhuyghTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9698
 
-Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+Commit b2e75563dc39 ("dt-bindings: phy: imx8mq-usb: add phy tuning
+properties") add many tuning properties, but some parameter value doesn't
+match the register description. It made some changes based on the original
+value: add offset to a negative number so turn it to a non-negative number.
+However, it's not easy to find an exact tuning value from register field
+with such conversion.
 
-NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up
-to 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins
-for independent alarm signals, and all the threshold values could be set
-for system protection without any timing delay. It also supports reset
-input RSTIN# to recover system from a fault condition.
+Because device-tree supports negative parameter number, this will improve
+some propertie's parameter.
 
-Currently, only single-edge mode conversion and threshold events are
-supported.
+Mainly include below properties:
+ - fsl,phy-tx-vref-tune-percent
+ - fsl,phy-tx-rise-tune-percent
+ - fsl,phy-comp-dis-tune-percent
 
-Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+The parameter value of above 3 properties are USB PHY specific. i.MX8MP
+and i.MX95 USB PHY has different meanings. So this add restrictions for
+them.
+
+ - fsl,phy-tx-vboost-level-microvolt
+
+For this property, the parameter value is wrong in register description.
+This will correct it according to true value.
+
+For detailed info, please refer to i.MX8MP and i.MX95 latest reference
+manual.
+
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+
 ---
- MAINTAINERS               |   1 +
- drivers/iio/adc/Kconfig   |  11 +
- drivers/iio/adc/Makefile  |   1 +
- drivers/iio/adc/nct7201.c | 462 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 475 insertions(+)
- create mode 100644 drivers/iio/adc/nct7201.c
+Changes in v2:
+ - keep widest constraints
+ - use multipleOf for some properties
+---
+ .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 60 +++++++++++++++----
+ 1 file changed, 49 insertions(+), 11 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f41f886face9..26296ab66bea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17378,6 +17378,7 @@ M:	Eason Yang <j2anfernee@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
-+F:	drivers/iio/adc/nct7201.c
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+index daee0c0fc915..71e5940ef4b8 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+@@ -42,16 +42,17 @@ properties:
  
- NVIDIA (rivafb and nvidiafb) FRAMEBUFFER DRIVER
- M:	Antonino Daplas <adaplas@gmail.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 6529df1a498c..6d6af1b51b5e 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1092,6 +1092,17 @@ config NAU7802
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called nau7802.
+   fsl,phy-tx-vref-tune-percent:
+     description:
+-      Tunes the HS DC level relative to the nominal level
+-    minimum: 94
+-    maximum: 124
++      Tunes the HS DC level relative to the nominal level. It varies
++      between different PHY versions
++    minimum: -1000
++    maximum: 875
  
-+config NCT7201
-+	tristate "Nuvoton Instruments NCT7201 and NCT7202 Power Monitor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  If you say yes here you get support for the Nuvoton NCT7201 and
-+	  NCT7202 Voltage Monitor.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nct7201.
-+
- config NPCM_ADC
- 	tristate "Nuvoton NPCM ADC driver"
- 	depends on ARCH_NPCM || COMPILE_TEST
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 3e918c3eec69..54e8a7541af6 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -97,6 +97,7 @@ obj-$(CONFIG_MESON_SARADC) += meson_saradc.o
- obj-$(CONFIG_MP2629_ADC) += mp2629_adc.o
- obj-$(CONFIG_MXS_LRADC_ADC) += mxs-lradc-adc.o
- obj-$(CONFIG_NAU7802) += nau7802.o
-+obj-$(CONFIG_NCT7201) += nct7201.o
- obj-$(CONFIG_NPCM_ADC) += npcm_adc.o
- obj-$(CONFIG_PAC1921) += pac1921.o
- obj-$(CONFIG_PAC1934) += pac1934.o
-diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
-new file mode 100644
-index 000000000000..d0a11589d8fc
---- /dev/null
-+++ b/drivers/iio/adc/nct7201.c
-@@ -0,0 +1,462 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Driver for Nuvoton nct7201 and nct7202 power monitor chips.
-+ *
-+ * Copyright (c) 2024-2025 Nuvoton Technology corporation.
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/dev_printk.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
-+
-+#include <linux/iio/events.h>
-+#include <linux/iio/iio.h>
-+
-+#define NCT7201_REG_INTERRUPT_STATUS_1			0x0C
-+#define NCT7201_REG_INTERRUPT_STATUS_2			0x0D
-+#define NCT7201_REG_VOLT_LOW_BYTE			0x0F
-+#define NCT7201_REG_CONFIGURATION			0x10
-+#define  NCT7201_BIT_CONFIGURATION_START		BIT(0)
-+#define  NCT7201_BIT_CONFIGURATION_ALERT_MSK		BIT(1)
-+#define  NCT7201_BIT_CONFIGURATION_CONV_RATE		BIT(2)
-+#define  NCT7201_BIT_CONFIGURATION_RESET		BIT(7)
-+
-+#define NCT7201_REG_ADVANCED_CONFIGURATION		0x11
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_ALERT		BIT(0)
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_STS		BIT(1)
-+#define  NCT7201_BIT_ADVANCED_CONF_FAULT_QUEUE		BIT(2)
-+#define  NCT7201_BIT_ADVANCED_CONF_EN_DEEP_SHUTDOWN	BIT(4)
-+#define  NCT7201_BIT_ADVANCED_CONF_EN_SMB_TIMEOUT	BIT(5)
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_RSTIN		BIT(7)
-+
-+#define NCT7201_REG_CHANNEL_INPUT_MODE			0x12
-+#define NCT7201_REG_CHANNEL_ENABLE			0x13
-+#define NCT7201_REG_INTERRUPT_MASK_1			0x15
-+#define NCT7201_REG_INTERRUPT_MASK_2			0x16
-+#define NCT7201_REG_BUSY_STATUS			0x1E
-+#define  NCT7201_BIT_BUSY				BIT(0)
-+#define  NCT7201_BIT_PWR_UP				BIT(1)
-+#define NCT7201_REG_ONE_SHOT				0x1F
-+#define NCT7201_REG_SMUS_ADDRESS			0xFC
-+#define NCT7201_REG_VIN_MASK				GENMASK(15, 3)
-+
-+#define NCT7201_REG_VIN(i)				(0x00 + i)
-+#define NCT7201_REG_VIN_HIGH_LIMIT(i)			(0x20 + (i) * 2)
-+#define NCT7201_REG_VIN_LOW_LIMIT(i)			(0x21 + (i) * 2)
-+#define NCT7201_MAX_CHANNEL				12
-+
-+static const struct regmap_range nct7201_read_reg_range[] = {
-+	regmap_reg_range(NCT7201_REG_INTERRUPT_STATUS_1, NCT7201_REG_BUSY_STATUS),
-+	regmap_reg_range(NCT7201_REG_SMUS_ADDRESS, NCT7201_REG_SMUS_ADDRESS),
-+};
-+
-+static const struct regmap_access_table nct7201_readable_regs_tbl = {
-+	.yes_ranges = nct7201_read_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(nct7201_read_reg_range),
-+};
-+
-+static const struct regmap_range nct7201_write_reg_range[] = {
-+	regmap_reg_range(NCT7201_REG_CONFIGURATION, NCT7201_REG_INTERRUPT_MASK_2),
-+	regmap_reg_range(NCT7201_REG_ONE_SHOT, NCT7201_REG_ONE_SHOT),
-+};
-+
-+static const struct regmap_access_table nct7201_writeable_regs_tbl = {
-+	.yes_ranges = nct7201_write_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(nct7201_write_reg_range),
-+};
-+
-+static const struct regmap_range nct7201_read_vin_reg_range[] = {
-+	regmap_reg_range(NCT7201_REG_VIN(0), NCT7201_REG_VIN(NCT7201_MAX_CHANNEL - 1)),
-+	regmap_reg_range(NCT7201_REG_VIN_HIGH_LIMIT(0),
-+			 NCT7201_REG_VIN_LOW_LIMIT(NCT7201_MAX_CHANNEL - 1)),
-+};
-+
-+static const struct regmap_access_table nct7201_readable_vin_regs_tbl = {
-+	.yes_ranges = nct7201_read_vin_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(nct7201_read_vin_reg_range),
-+};
-+
-+static const struct regmap_range nct7201_write_vin_reg_range[] = {
-+	regmap_reg_range(NCT7201_REG_VIN_HIGH_LIMIT(0),
-+			 NCT7201_REG_VIN_LOW_LIMIT(NCT7201_MAX_CHANNEL - 1)),
-+};
-+
-+static const struct regmap_access_table nct7201_writeable_vin_regs_tbl = {
-+	.yes_ranges = nct7201_write_vin_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(nct7201_write_vin_reg_range),
-+};
-+
-+static const struct regmap_config nct7201_regmap8_config = {
-+	.name = "vin-data-read-byte",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.use_single_read = true,
-+	.use_single_write = true,
-+	.max_register = 0xff,
-+	.rd_table = &nct7201_readable_regs_tbl,
-+	.wr_table = &nct7201_writeable_regs_tbl,
-+};
-+
-+static const struct regmap_config nct7201_regmap16_config = {
-+	.name = "vin-data-read-word",
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.max_register = 0xff,
-+	.rd_table = &nct7201_readable_vin_regs_tbl,
-+	.wr_table = &nct7201_writeable_vin_regs_tbl,
-+};
-+
-+struct nct7201_chip_info {
-+	struct regmap *regmap;
-+	struct regmap *regmap16;
-+	int num_vin_channels;
-+	u16 vin_mask;
-+};
-+
-+struct nct7201_adc_model_data {
-+	const char *model_name;
-+	const struct iio_chan_spec *channels;
-+	unsigned int num_channels;
-+	int num_vin_channels;
-+};
-+
-+static const struct iio_event_spec nct7201_events[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	}, {
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	},
-+};
-+
-+#define NCT7201_VOLTAGE_CHANNEL(num)					\
-+	{								\
-+		.type = IIO_VOLTAGE,					\
-+		.indexed = 1,						\
-+		.channel = num + 1,					\
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+		.address = num,						\
-+		.event_spec = nct7201_events,				\
-+		.num_event_specs = ARRAY_SIZE(nct7201_events),		\
-+	}
-+
-+static const struct iio_chan_spec nct7201_channels[] = {
-+	NCT7201_VOLTAGE_CHANNEL(0),
-+	NCT7201_VOLTAGE_CHANNEL(1),
-+	NCT7201_VOLTAGE_CHANNEL(2),
-+	NCT7201_VOLTAGE_CHANNEL(3),
-+	NCT7201_VOLTAGE_CHANNEL(4),
-+	NCT7201_VOLTAGE_CHANNEL(5),
-+	NCT7201_VOLTAGE_CHANNEL(6),
-+	NCT7201_VOLTAGE_CHANNEL(7),
-+};
-+
-+static const struct iio_chan_spec nct7202_channels[] = {
-+	NCT7201_VOLTAGE_CHANNEL(0),
-+	NCT7201_VOLTAGE_CHANNEL(1),
-+	NCT7201_VOLTAGE_CHANNEL(2),
-+	NCT7201_VOLTAGE_CHANNEL(3),
-+	NCT7201_VOLTAGE_CHANNEL(4),
-+	NCT7201_VOLTAGE_CHANNEL(5),
-+	NCT7201_VOLTAGE_CHANNEL(6),
-+	NCT7201_VOLTAGE_CHANNEL(7),
-+	NCT7201_VOLTAGE_CHANNEL(8),
-+	NCT7201_VOLTAGE_CHANNEL(9),
-+	NCT7201_VOLTAGE_CHANNEL(10),
-+	NCT7201_VOLTAGE_CHANNEL(11),
-+};
-+
-+static int nct7201_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	unsigned int value;
-+	int err;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN(chan->address), &value);
-+		if (err)
-+			return err;
-+		*val = FIELD_GET(NCT7201_REG_VIN_MASK, value);
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		/* From the datasheet, we have to multiply by 0.0004995 */
-+		*val = 0;
-+		*val2 = 499500;
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int nct7201_read_event_value(struct iio_dev *indio_dev,
-+				    const struct iio_chan_spec *chan,
-+				    enum iio_event_type type,
-+				    enum iio_event_direction dir,
-+				    enum iio_event_info info,
-+				    int *val, int *val2)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	unsigned int value;
-+	int err;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	if (info != IIO_EV_INFO_VALUE)
-+		return -EINVAL;
-+
-+	if (dir == IIO_EV_DIR_FALLING)
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-+				  &value);
-+	else
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-+				  &value);
-+	if (err)
-+		return err;
-+
-+	*val = FIELD_GET(NCT7201_REG_VIN_MASK, value);
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int nct7201_write_event_value(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir,
-+				     enum iio_event_info info,
-+				     int val, int val2)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	int  err;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	if (info != IIO_EV_INFO_VALUE)
-+		return -EOPNOTSUPP;
-+
-+	if (dir == IIO_EV_DIR_FALLING)
-+		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-+				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-+	else
-+		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-+				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-+
-+	return err;
-+}
-+
-+static int nct7201_read_event_config(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	return !!(chip->vin_mask & BIT(chan->address));
-+}
-+
-+static int nct7201_write_event_config(struct iio_dev *indio_dev,
-+				      const struct iio_chan_spec *chan,
-+				      enum iio_event_type type,
-+				      enum iio_event_direction dir,
-+				      bool state)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	unsigned int mask = BIT(chan->address);
-+	int err;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	if (state)
-+		chip->vin_mask |= mask;
-+	else
-+		chip->vin_mask &= ~mask;
-+
-+	if (chip->num_vin_channels <= 8)
-+		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-+				   chip->vin_mask);
-+	else
-+		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-+					&chip->vin_mask, sizeof(chip->vin_mask));
-+
-+	return err;
-+}
-+
-+static const struct iio_info nct7201_info = {
-+	.read_raw = nct7201_read_raw,
-+	.read_event_config = nct7201_read_event_config,
-+	.write_event_config = nct7201_write_event_config,
-+	.read_event_value = nct7201_read_event_value,
-+	.write_event_value = nct7201_write_event_value,
-+};
-+
-+static const struct iio_info nct7201_info_no_irq = {
-+	.read_raw = nct7201_read_raw,
-+};
-+
-+static const struct nct7201_adc_model_data nct7201_model_data = {
-+	.model_name = "nct7201",
-+	.channels = nct7201_channels,
-+	.num_channels = ARRAY_SIZE(nct7201_channels),
-+	.num_vin_channels = 8,
-+};
-+
-+static const struct nct7201_adc_model_data nct7202_model_data = {
-+	.model_name = "nct7202",
-+	.channels = nct7202_channels,
-+	.num_channels = ARRAY_SIZE(nct7202_channels),
-+	.num_vin_channels = 12,
-+};
-+
-+static int nct7201_init_chip(struct nct7201_chip_info *chip)
-+{
-+	struct device *dev = regmap_get_device(chip->regmap);
-+	__le16 data = cpu_to_le16(GENMASK(chip->num_vin_channels - 1, 0));
-+	unsigned int value;
-+	int err;
-+
-+	err = regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
-+			   NCT7201_BIT_CONFIGURATION_RESET);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to reset chip\n");
-+
-+	/*
-+	 * After about 25 msecs, the device should be ready and then the power-up
-+	 * bit will be set to 1. If not, wait for it.
-+	 */
-+	fsleep(25 * USEC_PER_MSEC);
-+
-+	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to read busy status\n");
-+	if (!(value & NCT7201_BIT_PWR_UP))
-+		return dev_err_probe(dev, -EIO, "Failed to power up after reset\n");
-+
-+	/* Enable Channel */
-+	if (chip->num_vin_channels <= 8)
-+		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-+				   GENMASK(chip->num_vin_channels - 1, 0));
-+	else
-+		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-+					&data, sizeof(data));
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to enable channel\n");
-+
-+	err = regmap_bulk_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-+			       &chip->vin_mask, sizeof(chip->vin_mask));
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Failed to read channel enable register\n");
-+
-+	/* Start monitoring if needed */
-+	err = regmap_set_bits(chip->regmap, NCT7201_REG_CONFIGURATION,
-+			      NCT7201_BIT_CONFIGURATION_START);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to start monitoring\n");
-+
-+	return 0;
-+}
-+
-+static int nct7201_probe(struct i2c_client *client)
-+{
-+	const struct nct7201_adc_model_data *model_data;
-+	struct device *dev = &client->dev;
-+	struct nct7201_chip_info *chip;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	model_data = i2c_get_match_data(client);
-+	if (!model_data)
-+		return -ENODEV;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*chip));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+	chip = iio_priv(indio_dev);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &nct7201_regmap8_config);
-+	if (IS_ERR(chip->regmap))
-+		return dev_err_probe(dev, PTR_ERR(chip->regmap),
-+				     "Failed to init regmap\n");
-+
-+	chip->regmap16 = devm_regmap_init_i2c(client, &nct7201_regmap16_config);
-+	if (IS_ERR(chip->regmap16))
-+		return dev_err_probe(dev, PTR_ERR(chip->regmap16),
-+				     "Failed to init regmap16\n");
-+
-+	chip->num_vin_channels = model_data->num_vin_channels;
-+
-+	ret = nct7201_init_chip(chip);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = model_data->model_name;
-+	indio_dev->channels = model_data->channels;
-+	indio_dev->num_channels = model_data->num_channels;
-+	if (client->irq)
-+		indio_dev->info = &nct7201_info;
-+	else
-+		indio_dev->info = &nct7201_info_no_irq;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id nct7201_id[] = {
-+	{ .name = "nct7201", .driver_data = (kernel_ulong_t)&nct7201_model_data },
-+	{ .name = "nct7202", .driver_data = (kernel_ulong_t)&nct7202_model_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, nct7201_id);
-+
-+static const struct of_device_id nct7201_of_match[] = {
-+	{
-+		.compatible = "nuvoton,nct7201",
-+		.data = &nct7201_model_data,
-+	},
-+	{
-+		.compatible = "nuvoton,nct7202",
-+		.data = &nct7202_model_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nct7201_of_match);
-+
-+static struct i2c_driver nct7201_driver = {
-+	.driver = {
-+		.name	= "nct7201",
-+		.of_match_table = nct7201_of_match,
-+	},
-+	.probe = nct7201_probe,
-+	.id_table = nct7201_id,
-+};
-+module_i2c_driver(nct7201_driver);
-+
-+MODULE_AUTHOR("Eason Yang <j2anfernee@gmail.com>");
-+MODULE_DESCRIPTION("Nuvoton NCT7201 voltage monitor driver");
-+MODULE_LICENSE("GPL");
+   fsl,phy-tx-rise-tune-percent:
+     description:
+       Adjusts the rise/fall time duration of the HS waveform relative to
+-      its nominal value
+-    minimum: 97
+-    maximum: 103
++      its nominal value. It varies between different PHY versions
++    minimum: -10
++    maximum: 20
+ 
+   fsl,phy-tx-preemp-amp-tune-microamp:
+     description:
+@@ -63,15 +64,14 @@ properties:
+   fsl,phy-tx-vboost-level-microvolt:
+     description:
+       Adjust the boosted transmit launch pk-pk differential amplitude
+-    minimum: 880
+-    maximum: 1120
++    enum: [844, 1008, 1156]
+ 
+   fsl,phy-comp-dis-tune-percent:
+     description:
+       Adjust the voltage level used to detect a disconnect event at the host
+-      relative to the nominal value
+-    minimum: 91
+-    maximum: 115
++      relative to the nominal value. It varies between different PHY versions
++    minimum: -60
++    maximum: 45
+ 
+   fsl,phy-pcs-tx-deemph-3p5db-attenuation-db:
+     description:
+@@ -112,6 +112,44 @@ allOf:
+         reg:
+           maxItems: 1
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - fsl,imx8mq-usb-phy
++            - fsl,imx8mp-usb-phy
++    then:
++      properties:
++        fsl,phy-tx-vref-tune-percent:
++          minimum: -6
++          maximum: 24
++          multipleOf: 2
++        fsl,phy-tx-rise-tune-percent:
++          enum: [-3, -1, 0, 3]
++        fsl,phy-comp-dis-tune-percent:
++          enum: [-9, -6, -3, 0, 4, 7, 11, 15]
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,imx95-usb-phy
++    then:
++      properties:
++        fsl,phy-tx-vref-tune-percent:
++          description: 100x the original
++          minimum: -1000
++          maximum: 875
++          multipleOf: 125
++        fsl,phy-tx-rise-tune-percent:
++          enum: [-10, 0, 15, 20]
++        fsl,phy-comp-dis-tune-percent:
++          description: 10x the original
++          minimum: -60
++          maximum: 45
++          multipleOf: 15
++
+   - if:
+       required:
+         - orientation-switch
 -- 
 2.34.1
 
