@@ -1,638 +1,174 @@
-Return-Path: <devicetree+bounces-172086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB5AAA1B3E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04537AA1B79
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 21:48:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA3321BC2CF9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:16:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FFD71BC1F74
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 19:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034A725E472;
-	Tue, 29 Apr 2025 19:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFF1261577;
+	Tue, 29 Apr 2025 19:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RAqhcm37"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHj8wW34"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C1725E45C
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 19:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E3725F978;
+	Tue, 29 Apr 2025 19:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745954160; cv=none; b=EgGOGZB1splXzko0TwUduNxVtnmtjLmHM2jMO+IhqPHiZRz1mKqThzIr8d+qtrlu+BmEQ7CHrG9o729Yls8LYkEiuSdxeZJ25vDE91nKS/Ove/uxOA9r0+88gfaUqkcp6HsVIju3NCatrlrPm462QCFFhA1eq5tVX/PRMe5+dxY=
+	t=1745956082; cv=none; b=P6Yq874zoWjmBjYXK9FM+QwTTlGxktMqyV+FD1uDLeTOQ4pGwZwCIdKOXIV4BsXkedeuqZew+yS09oTOL2aXNimqgK17hA97QPVtJEzC7mQU5OjUjzr5xrA0nJ5kiIRvBrmQ/AzqZJZ1HQTgZPkFLbnkza887H17Nsnl0aU/ozc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745954160; c=relaxed/simple;
-	bh=bMZOleK80Yvw/vJXeWTT91vA++6Iw6ZoCDHLPzkZDFo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mhqTw3mI4bZdWgA2iF2t5H4/XfPQHvHfkOLUxWfwq9jDZkJVNmg5PSDk1J+RQeHk5m6t9XU07WUo5DRrcLNuGrHsa6LlzuV2SOmHoAXVec/djVpJoJoNvxyacgo8H3tmvk2++HNI08LY2GaGMm6cQK/WxVVElZ6aQqHirhmU6m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RAqhcm37; arc=none smtp.client-ip=209.85.210.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7302a769534so4403258a34.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 12:15:57 -0700 (PDT)
+	s=arc-20240116; t=1745956082; c=relaxed/simple;
+	bh=5sF17zBSWsEu1wpW4T/aKuh7B90BT+uOCbFZt5HIb/g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pf5D5By8FQTpD0+R4wSxF6FBqkMIrQy1AaTNoeDDmjZLBCR7EKGEzKMdw7Z0EUHU0CEIkYeB2RdTa0/dGizarVFzNc7MRtKKXJ/6WZgZ+N754Oa6eXUWnd2MYdBUxSonPRms1dP/Saiu2QIRUUMDPKnDpXRnh+5D7Nsg8MRGKQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHj8wW34; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac7bd86f637so36609366b.1;
+        Tue, 29 Apr 2025 12:48:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745954157; x=1746558957; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ztvL+716FaAHmBwWQZbrSXde86/hu3vO5ILRMzMnPzo=;
-        b=RAqhcm37b0sTqrTUsmNrm3fynIE7RDwquvGsw+FmGCD8fjlbJeJXqdSzgYIa0JdVmL
-         f+7CglXACRwOPYMoCah4/TqsyTCe1aIFbMCEZ95J8ADWMZnUfNpuMhZVcekd5ZRqWx01
-         0FqWYD8tfTrj2IovuMWAJG+mqKoyRBk7/nRiMyzKfg4mlPELPRIQSJIFFHGqR21bDdqS
-         C3juVcyc9gDnf4VP9dNs7YLiHTmNFUQhl7VRnPGPpMgOeLi8mPImNVNKqX6JysoS/DUK
-         hdXJYmMGwPiyOmNMmOIB/Sch2H8KaFewg9b8nITAm0kv/9E5uMx1XOWxNnDgbUmTv4NF
-         sSsg==
+        d=gmail.com; s=20230601; t=1745956079; x=1746560879; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=31hHt99eQ7ecxAQBYo10uCFCGHQn8F86JxoMvBp/XTs=;
+        b=WHj8wW340mrXuwj0f3NAIPIvy19wrpRXOU0c+RIQ9zlE/tCq1BmYpCx0AREwpTCG2U
+         hsJpIayXJz5zk3oM2LZT00YmSmKg/Vvfe9C+OoehCQPQ3OWGfseDuEJZJL0zH4qM0oeh
+         Ox/WAnH8rhuQCGOTvf3GzN+d1ydq5V3ftzRFQ5+qVBZLaljykoiHNevHNnaUOaqARhxd
+         AEVV8Ml4p1Q4jkuvZIkHABZbr8wb7mnKPmItsqfWAwgU+jzhCUwZzOTzGgmpdaiRk51g
+         xrmXa4215VQh/00UwmqyYuEJv+HCM0eS3XvmDr7ZKSKvCabO8B1Yb64vuTbW5IZWt2ik
+         ohog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745954157; x=1746558957;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ztvL+716FaAHmBwWQZbrSXde86/hu3vO5ILRMzMnPzo=;
-        b=AN+8t80fiKm/bb9B16Zr1LXZfyfEuPtXu2Cp++mJru3reV8AwFVXDXtIflP6i4ON1Z
-         a1gZqUHzwJNo8BgcV6lACPpiDbHD2L4fZL//4afiJ2IKAuyvWuutKYQe3u8Ywt41KGyq
-         rOldfvbBz42qMFfTLGKV+UbhcdyetUjQsYbv9FlT41FExHcNg3JDxDiTlexDpXq22+BV
-         GqHZzSlAIOMPgTIZ6j327i8W17a4qzjhfuytUynzatxSMVSbC8p+Xwe6oCBMi9Q91zOs
-         3lHUUK9NKXKXV1rUKFJm0O+20bSCMu2CONQ1rGzzgKcYm3iw75DbeDLe3Lxu2qjXCq4q
-         XtqA==
-X-Forwarded-Encrypted: i=1; AJvYcCV4KFuVAAHerd6dn/QcZty0azNEnvSGJghsp6okIaNc1ty7cEYxalHf9yaNf8z6VHLR3/mfO5UwFYZb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCu+sHifc9ico6FX1xB4GnCPKRHivJgFxVhZAPTSTBtqQ2JFue
-	PA/YxC5+eO5BchQEYWKC1TYFxkXz+x9/Y0Hgylau0tnWfU9ZfG8mNXDQHHx8fKw=
-X-Gm-Gg: ASbGncsTifx5zwtHKVB5mFNVW5DPXhPYZdU/ycLuq54Y0Rcka4FA1RGD35lsWRJupNU
-	Gp89qkaC88kd+2B5lSsuiQ2mTQ+Eb8QmN1cYJGz8QTq8hUQODMjLT1uLtJE3sqi52yLS4MMaRFx
-	ZWhaaWh5Qh5ZfX/CXB4/MIljJrmCd4rv3dlcxDOTNGTJr/6zaAvwxfqdtJyQ+c/boTK5M54WyHK
-	PTCuBzxFED26l+UKno51DFddX/SqbXoPiyFO2Seuhay/VBqwnW/WXZG95kVjH0jmYcNeeVt/0sS
-	jSxaTiVHlPsoFl8wsWnHjkuWQLLOK17JQIY3DovwSIPaiSJN1U0fgSfMuU194nnLEG4n8snzoXw
-	srApqkLMcpTJX+R4Daw==
-X-Google-Smtp-Source: AGHT+IGvZemKy7Uu0DSwIzSG0ACYUFe1P1N94h9CcheOZQJFt2fLRO+XJODUBk7ZcGahCzF4hFasJg==
-X-Received: by 2002:a05:6830:670c:b0:72b:9d2d:804 with SMTP id 46e09a7af769-731c0ab48e8mr311490a34.26.1745954156996;
-        Tue, 29 Apr 2025 12:15:56 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6? ([2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7308b2ef3e5sm440104a34.46.2025.04.29.12.15.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 12:15:55 -0700 (PDT)
-Message-ID: <27e40c72-7c3a-4595-8647-5fd1f428ea9f@baylibre.com>
-Date: Tue, 29 Apr 2025 14:15:54 -0500
+        d=1e100.net; s=20230601; t=1745956079; x=1746560879;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=31hHt99eQ7ecxAQBYo10uCFCGHQn8F86JxoMvBp/XTs=;
+        b=PPukRNKcBf5kdL+40GkNZLimw48LLoS9o+PltCwpzE9ve4OJZT5NIftsaN+0Tsl7IW
+         Q+qXfMxCSHlWUvhh+yvjk56lbMZmaQnl7S7ROpbJ8w7C4Zk1NCQBK7AGry4XAFForBoJ
+         qRk10+TQOugr3r6Y0FYY32cW2XFOTawYlZYzqQWDyzuNvqMSDRifpWMQ5n5qSIrf//vX
+         MzMdh/K4YcW/FFVxAVCyPcPOyAHqlhOYKoYAzIUXz2tC2xLAGLy4+qd4XOSh6gJcYuS6
+         AaI1D7di8Q/wa9x1VEN78dd6SrVNMWiUX6IRcwdNKVOAeDS6bJQFjaoKhqvWO91F9GwP
+         oiNg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8mcuR4QYY8E5n/rmtDUhZgz4s50P+IZUh17PGgzhhrtOueVouiHx/9KLoBila43d8WHhaGS5yqQsO@vger.kernel.org, AJvYcCV3VotOoRca+oFtQJLtjPI2sPd7j4J6bNn4x1N+cUEdbO/67OX09Zx8F7+En4MGn/T4jUBcV9QplhX/Mswf@vger.kernel.org, AJvYcCXhyMsblXjBRWymoOPzhliH6gMkCOdDaOWwueyC53wu3g22PPo15bF2vFtJkm6sDCNDF2fpAMDBvu/O@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5V+gOAsEaIIrdYBnafYK2fw5TCGth03pl0Q+MxMyajTpD0vZq
+	1t6v0rrSINiyLxoJdQLluZmlL4z0Ju63wV+wU0wlWVNG5/7WrrVmcAU8tMAUOwVNrZsn0emsLnO
+	IxsWOJhMm3fatgaEcinMer3WPLzs=
+X-Gm-Gg: ASbGncvNduOQXtEfat45RheJik3xAQfe4ty/EjO8entOxlTB1dnz9ECzcPZsrlfwuNs
+	9EyYD+V2UeNC6R4dUj9dUJWTU9ZlKK8zDpfdBErKp1ZYNhn70kNwUKLMoRHdCv8/mT8Ja1EpU+i
+	ogxq8+YUBKM3LsnH3sqXn8sA==
+X-Google-Smtp-Source: AGHT+IG053NtJm0hR+FwHICAyS7gp+M4t3UZk6wbhjh4+xpcE871md/xia3GNq0/H3rfYdZZf6GCNx2EKnYMhYJ4isw=
+X-Received: by 2002:a17:907:7ba8:b0:aca:d276:fa5 with SMTP id
+ a640c23a62f3a-acedf349707mr18697166b.0.1745956078998; Tue, 29 Apr 2025
+ 12:47:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/11] iio: adc: ad4080: add driver support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250425112538.59792-1-antoniu.miclaus@analog.com>
- <20250425112538.59792-12-antoniu.miclaus@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250425112538.59792-12-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <aA/ineUBAM5IU79J@duo.ucw.cz> <20250429170220.8145-1-trannamatk@gmail.com>
+In-Reply-To: <20250429170220.8145-1-trannamatk@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 29 Apr 2025 22:47:22 +0300
+X-Gm-Features: ATxdqUHg7vLAt0poth2caA_g2wxqIwhzv8QInVAHWSoWODRta2Iw45WeEjT2sDc
+Message-ID: <CAHp75VcVmTwS-zw=o5=m1-x0XC67BKBVWae2mMKZQH=qLCxZwg@mail.gmail.com>
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
+ LED driver
+To: Nam Tran <trannamatk@gmail.com>
+Cc: pavel@ucw.cz, andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, 
+	corbet@lwn.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com, 
+	bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/25/25 6:25 AM, Antoniu Miclaus wrote:
-> Add support for AD4080 high-speed, low noise, low distortion,
-> 20-bit, Easy Drive, successive approximation register (SAR)
-> analog-to-digital converter (ADC).
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
+On Tue, Apr 29, 2025 at 8:02=E2=80=AFPM Nam Tran <trannamatk@gmail.com> wro=
+te:
+> On Mon, 28 Apr 2025 Pavel Machek wrote:
+> > > On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
+> >
+> > > > > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/=
+.
+> > > > > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+> > > > > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
+> > > > > > >   and update the title and $id to match new path.
+> > > > > > > - No functional changes to the binding itself (keep Reviewed-=
+by).
+> > > > > > > - Update commit messages and patch titles to reflect the move=
+.
+> > > > > > > - Link to v7: https://lore.kernel.org/linux-leds/202504221901=
+21.46839-1-trannamatk@gmail.com/
+> > > > > >
+> > > > > > Out of sudden without discussing with auxdisplay maintainers/re=
+viewers?
+> > > > > > Thanks, no.
+> > > > > > Please, put into the cover letter the meaningful summary of wha=
+t's
+> > > > > > going on and why this becomes an auxdisplay issue. Brief review=
+ of the
+> > > > > > bindings sounds more likely like LEDS or PWM subsystems.
+> > > > >
+> > > > > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
+> > > > > believe it is suitable for PWM, either -- yes, it is 36 PWM outpu=
+ts,
+> > > > > but...
+> > > >
+> > > > Is it intended to be used as a 4x3 matrix, or is this just an inter=
+nal
+> > > > wiring detail, and should it be exposed as 12 individual LEDs inste=
+ad?
+> > >
+> > > The 4=C3=973 matrix is a real and fundamental aspect of the LP5812=E2=
+=80=99s operation.
+> > > It is not just an internal wiring detail.
+> > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 =
+output
+> > > pins control 12 LED dots individually through scanning. Each pin incl=
+udes
+> > > both high-side and low-side drive circuits, meaning matrix multiplexi=
+ng is
+> > > required for proper operation =E2=80=94 it cannot be treated as 12 co=
+mpletely
+> > > independent LEDs.
+> >
+> > Scanning is really a detail.
+> >
+> > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
+> >
+> > If this is used as a power LED, SD activity LED, capslock and numlock
+> > ... placed randomly all around the device, then it goes LED subsystem.
+>
+> The LP5812 is used for LED status indication in devices like smart speake=
+rs,
+> wearables, and routers, not as a structured rectangular display.
+>
+> Given that, it seems to match the LED subsystem better than auxdisplay, d=
+oesn't it?
 
-...
+I have mixed feelings about all this. As per hardware organisation it
+sounds more like a matrix (for example. keyboard), where all entities
+are accessed on a scanline, but at the same time each of the entities
+may have orthogonal functions to each other. Have you checked with DRM
+for the sake of completeness?
+Personally I lean more to the something special, which doesn't fit
+existing subsystems. Auxdisplay subsystem more or less about special
+alphanumeric displays (with the exception of some FB kinda devices,
+that were even discussed to have drivers be removed). Also maybe FB
+might have something suitable, but in any case it looks quite
+non-standard...
 
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-> +#include <linux/units.h>
-> +
-> +#include <linux/iio/backend.h>
-> +#include <linux/iio/iio.h>
-> +
-> +#include <linux/clk.h>
 
-Should be grouped with the others.
-
-> +
-> +/* Register Definition */
-
-...
-
-> +
-> +enum ad4080_filter_type {
-> +	FILTER_DISABLE,
-> +	SINC_1,
-> +	SINC_5,
-> +	SINC_5_COMP
-> +};
-> +
-> +static const unsigned int ad4080_scale_table[][2] = {
-> +	{ 6000, 0},
-> +};
-> +
-> +static const char *const ad4080_filter_type_iio_enum[] = {
-
-So far, only "sinc5" is documented in Documentation/ABI/testing/sysfs-bus-iio
-so we will to add the rest there.
-
-> +	[FILTER_DISABLE]   = "disabled",
-
-IMHO, "disabled" doesn't make sense as a "type". I would call it "none" instead.
-
-> +	[SINC_1]           = "sinc1",
-> +	[SINC_5]           = "sinc5",
-> +	[SINC_5_COMP]      = "sinc5_plus_compensation",
-
-To follow the existing naming patterns it would make sense to call this one:
-
-"sinc5+compensation" - Sinc5 + ???
-
-Or even more generic like the existing sinc3+pfX options:
-
-"sinc5+pf1" - Sinc5 + device specific Post Filter 1.
-
-> +};
-> +
-> +static const int ad4080_dec_rate_iio_enum[] = {
-> +	2, 4, 8, 16, 32, 64, 128, 256, 512, 1024,
-> +};
-
-The datasheet says that 512 and 1024 only apply to sinc1 and that for
-sinc5+compensation, the values are N * 2. And I would assume with the filter
-disabled, the only option would be 1.
-
-So I think we need 4 different arrays for this with the selection depending
-on the filter type.
-
-> +
-> +static const char * const ad4080_power_supplies[] = {
-> +	"vdd33", "vdd11", "vddldo", "iovdd", "vrefin",
-> +};
-
-From the datasheet, it sounds like VDDLDO is tecnically optional. Given the
-way regulators work in Linux though, I guess this is OK for simplicity.
-
-> +
-> +struct ad4080_chip_info {
-> +	const char *name;
-> +	unsigned int product_id;
-> +	int num_scales;
-> +	const unsigned int (*scale_table)[2];
-> +	const struct iio_chan_spec *channels;
-> +	unsigned int num_channels;
-> +};
-
-I guess this is preparing the driver to support more than one chip?
-
-> +
-> +struct ad4080_state {
-> +	struct spi_device		*spi;
-
-It looks like this is only ever used to get &spi->dev. We could drop this and
-get dev from regmap instead.
-
-> +	struct regmap			*regmap;
-> +	struct clk			*clk;
-> +	struct iio_backend		*back;
-> +	const struct ad4080_chip_info	*info;
-> +	/*
-> +	 * Synchronize access to members the of driver state, and ensure
-> +	 * atomicity of consecutive regmap operations.
-> +	 */
-> +	struct mutex			lock;
-> +	unsigned int			num_lanes;
-> +	unsigned int			dec_rate;
-> +	enum ad4080_filter_type		filter_type;
-> +	bool				lvds_cnv_en;
-> +};
-> +
-> +static const struct regmap_config ad4080_regmap_config = {
-> +	.reg_bits = 16,
-> +	.val_bits = 8,
-> +	.read_flag_mask = BIT(7),
-> +	.max_register = 0x29,
-> +};
-> +
-> +static int ad4080_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-> +			     unsigned int writeval, unsigned int *readval)
-> +{
-> +	struct ad4080_state *st = iio_priv(indio_dev);
-> +
-
-Missing guard(mutex)(&st->lock); ?
-
-> +	if (readval)
-> +		return regmap_read(st->regmap, reg, readval);
-> +
-> +	return regmap_write(st->regmap, reg, writeval);
-> +}
-> +
-> +static int ad4080_get_scale(struct ad4080_state *st, int *val, int *val2)
-> +{
-> +	unsigned int tmp;
-> +
-> +	tmp = (st->info->scale_table[0][0] * 1000000ULL) >>
-> +		    st->info->channels[0].scan_type.realbits;
-> +	*val = tmp / 1000000;
-> +	*val2 = tmp % 1000000;
-> +
-> +	return IIO_VAL_INT_PLUS_NANO;
-
-Seems like this could be simplifed by using IIO_VAL_FRACTIONAL_LOG2 instead.
-
-> +}
-> +
-> +static unsigned int ad4080_get_dec_rate(struct iio_dev *dev,
-> +					const struct iio_chan_spec *chan)
-> +{
-> +	struct ad4080_state *st = iio_priv(dev);
-> +	int ret;
-> +	unsigned int data;
-> +
-
-Missing guard(mutex)(&st->lock); ?
-
-> +	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return (1 << (FIELD_GET(AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK, data) + 1));
-
-nit: doen't need outermost ().
-
-> +}
-> +
-> +static int ad4080_set_dec_rate(struct iio_dev *dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       unsigned int mode)
-> +{
-> +	struct ad4080_state *st = iio_priv(dev);
-> +	int ret;
-> +
-
-Don't we need to check for < 2 as well?
-
-> +	if (st->filter_type >= SINC_5 && mode >= 512)
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&st->lock);
-> +	ret = regmap_update_bits(st->regmap, AD4080_REG_FILTER_CONFIG,
-> +				 AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
-> +				 FIELD_PREP(AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
-> +					    (ilog2(mode) - 1)));
-
-Otherwise ilog2(mode) - 1 could be < 0.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dec_rate = mode;
-
-This saves the value the user entered, not what the hardware is actually doing.
-It should be saving the power of 2 value instead.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad4080_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long m)
-> +{
-> +	struct ad4080_state *st = iio_priv(indio_dev);
-> +	int dec_rate;
-> +
-> +	switch (m) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		return ad4080_get_scale(st, val, val2);
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		if (st->filter_type == SINC_5_COMP)
-> +			dec_rate = st->dec_rate * 2;
-> +		else
-> +			dec_rate = st->dec_rate;
-
-As a concequence of the above, this will return incorrect information if the
-user didn't enter an exact value.
-
-> +		if (st->filter_type)
-> +			*val = DIV_ROUND_CLOSEST(clk_get_rate(st->clk), dec_rate);
-> +		else
-> +			*val = clk_get_rate(st->clk);
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*val = ad4080_get_dec_rate(indio_dev, chan);
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad4080_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int val, int val2, long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		return -EINVAL;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		return -EINVAL;
-
-Can leave these 2 out and just let them fall through to the default.
-
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		return ad4080_set_dec_rate(indio_dev, chan, val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad4080_lvds_sync_write(struct ad4080_state *st)
-> +{
-> +	unsigned int timeout = 100;
-> +	bool sync_en;
-> +	int ret;
-
-nit: some comments in this function would be helpful to readers not familiar
-with the part. 
-
-> +
-> +	guard(mutex)(&st->lock);
-> +	if (st->num_lanes == 1)
-> +		ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +				   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
-> +				   AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN_MSK);
-> +	else
-> +		ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +				   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
-> +				   AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN_MSK |
-> +				   AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_backend_data_alignment_enable(st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	do {
-> +		ret = iio_backend_sync_status_get(st->back, &sync_en);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (!sync_en)
-> +			dev_dbg(&st->spi->dev, "Not Locked: Running Bit Slip\n");
-> +
-> +		fsleep(500);
-> +	} while (--timeout && !sync_en);
-> +
-> +	if (timeout) {
-> +		dev_info(&st->spi->dev, "Success: Pattern correct and Locked!\n");
-> +		if (st->num_lanes == 1)
-> +			return regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +					    AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK);
-> +		else
-> +			return regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +					    AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
-> +					    AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
-> +	} else {
-> +		dev_info(&st->spi->dev, "LVDS Sync Timeout.\n");
-> +		if (st->num_lanes == 1) {
-> +			ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +					   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK);
-> +			if (ret)
-> +				return ret;
-> +		} else {
-> +			ret = regmap_write(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-> +					   AD4080_ADC_DATA_INTF_CONFIG_A_RESERVED_CONFIG_A_MSK |
-> +					   AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES_MSK);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +
-> +		return -ETIMEDOUT;
-> +	}
-> +}
-> +
-> +static ssize_t ad4080_get_filter_type(struct iio_dev *dev,
-> +				      const struct iio_chan_spec *chan)
-> +{
-> +	struct ad4080_state *st = iio_priv(dev);
-> +	unsigned int data;
-> +	int ret;
-> +
-
-Missing guard(mutex)(&st->lock); ?
-
-> +	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return FIELD_GET(AD4080_FILTER_CONFIG_FILTER_SEL_MSK, data);
-> +}
-> +
-
-...
-
-> +static struct iio_chan_spec_ext_info ad4080_ext_info[] = {
-> +	IIO_ENUM("filter_type", IIO_SHARED_BY_ALL, &ad4080_filter_type_enum),
-> +	IIO_ENUM_AVAILABLE("filter_type", IIO_SHARED_BY_ALL,
-> +			   &ad4080_filter_type_enum),
-> +	{ }
-> +};
-> +
-> +static const struct iio_chan_spec ad4080_channels[] = {
-
-Array with one element doesn't make sense. It can just be a single struct.
-
-> +	{
-> +		.type = IIO_VOLTAGE,
-> +		.indexed = 1,
-> +		.channel = 0,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |
-> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-> +		.info_mask_shared_by_all_available =
-> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-> +		.ext_info = ad4080_ext_info,
-> +		.scan_index = 0,
-> +		.scan_type = {
-> +			.sign = 's',
-> +			.realbits = 20,
-> +			.storagebits = 32,
-> +			.shift = 0,
-> +		},
-> +	}
-> +};
-> +
-> +static const struct ad4080_chip_info ad4080_chip_info = {
-> +	.name = "AD4080",
-> +	.product_id = AD4080_CHIP_ID,
-> +	.scale_table = ad4080_scale_table,
-> +	.num_scales = ARRAY_SIZE(ad4080_scale_table),
-> +	.num_channels = 1,
-> +	.channels = ad4080_channels,
-> +};
-> +
-> +static int ad4080_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4080_state *st = iio_priv(indio_dev);
-> +	unsigned int id;
-> +	int ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
-> +			   AD4080_INTERFACE_CONFIG_A_SW_RESET_MSK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
-> +			   AD4080_INTERFACE_CONFIG_A_SDO_ENABLE_MSK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(st->regmap, AD4080_REG_CHIP_TYPE, &id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (id != AD4080_CHIP_ID)
-> +		dev_info(&st->spi->dev, "Unrecognized CHIP_ID 0x%X\n", id);
-> +
-> +	ret = regmap_set_bits(st->regmap, AD4080_REG_GPIO_CONFIG_A,
-> +			      AD4080_GPIO_CONFIG_A_GPO_1_EN_MSK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4080_REG_GPIO_CONFIG_B,
-> +			   FIELD_PREP(AD4080_GPIO_CONFIG_B_GPIO_1_SEL, 3));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_backend_num_lanes_set(st->back, st->num_lanes);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!st->lvds_cnv_en)
-> +		return 0;
-> +
-> +	if (st->num_lanes) {
-
-Since the defualt is st->num_lanes = 1, it seems like this would always be
-true, so we can leave out the "if".
-
-> +		ret = regmap_update_bits(st->regmap,
-> +					 AD4080_REG_ADC_DATA_INTF_CONFIG_B,
-> +					 AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
-> +					 FIELD_PREP(AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
-> +						    7));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = regmap_set_bits(st->regmap,
-> +			      AD4080_REG_ADC_DATA_INTF_CONFIG_B,
-> +			      AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_EN_MSK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ad4080_lvds_sync_write(st);
-> +}
-> +
-> +static void ad4080_properties_parse(struct ad4080_state *st)
-> +{
-> +	st->lvds_cnv_en = device_property_read_bool(&st->spi->dev,
-> +						    "adi,lvds-cnv-enable");
-> +
-> +	st->num_lanes = 1;
-> +	device_property_read_u32(&st->spi->dev, "adi,num_lanes", &st->num_lanes);
-
-nit: odd that other property names use "-" but this one uses "_". Typical would
-be "adi,num-lanes".
-
-> +}
-> +
-> +static int ad4080_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &spi->dev;
-> +	struct ad4080_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev,
-> +					     ARRAY_SIZE(ad4080_power_supplies),
-> +					     ad4080_power_supplies);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get and enable supplies\n");
-> +
-> +	st->regmap = devm_regmap_init_spi(spi, &ad4080_regmap_config);
-> +	if (IS_ERR(st->regmap))
-> +		return PTR_ERR(st->regmap);
-> +
-> +	st->info = spi_get_device_match_data(spi);
-> +	if (!st->info)
-> +		return -ENODEV;
-> +
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->info = spi_get_device_match_data(spi);
-> +	if (!st->info)
-> +		return -ENODEV;
-
-reduandant assignement
-
-> +
-> +	indio_dev->name = st->info->name;
-> +	indio_dev->channels = st->info->channels;
-> +	indio_dev->num_channels = st->info->num_channels;
-> +	indio_dev->info = &ad4080_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-
-There is not IIO_CHAN_INFO_RAW (or _PROCESSED), so INDIO_DIRECT_MODE does not
-apply.
-
-> +
-> +	ad4080_properties_parse(st);
-> +
-> +	st->clk = devm_clk_get_enabled(&spi->dev, "cnv");
-> +	if (IS_ERR(st->clk))
-> +		return PTR_ERR(st->clk);
-> +
-> +	st->back = devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return PTR_ERR(st->back);
-> +
-> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4080_setup(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
+--=20
+With Best Regards,
+Andy Shevchenko
 
