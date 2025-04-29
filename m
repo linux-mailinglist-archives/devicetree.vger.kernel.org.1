@@ -1,158 +1,132 @@
-Return-Path: <devicetree+bounces-171911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1A6AA07F8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:05:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DD1AA0800
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:05:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEE451B618F5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:05:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 630CB841554
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11FA2BE7B6;
-	Tue, 29 Apr 2025 10:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16FF2BE7BE;
+	Tue, 29 Apr 2025 10:05:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m7oh/GDk"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="0JOzSXfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C10F1FE478;
-	Tue, 29 Apr 2025 10:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3531D22E40E;
+	Tue, 29 Apr 2025 10:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745921093; cv=none; b=SS/246iZq3ppIKmj0QVYgVsRJjJ6iJNRYiCus1UlLPrql0iZk4CukiQoU+7Zh6vXPXVEVssU739DXLfUFDbY9uGbZDAj4hd/gZLp5QHtpOhSBqFeThtYAGw4YS41Kd9uPbpxroMtGCNeoaKMz8DQ86q+RCNpSMnerruopLA2fCs=
+	t=1745921114; cv=none; b=mwbE4i6VW36ff868XkWXUFNFWjIw2f64c7f0KDOd3D0EaEoBB4lD01UV0YmTaYWDpopHGimM5YBMBkwKqitmuQbnjx/lERuNoazczkM/3Kil8eR10KH1unoLZvjstO95hGBmktpwWOhoqc7fWQLvks4hBW8N2dcSPmQjau43KE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745921093; c=relaxed/simple;
-	bh=/KnQ/ehtHge0HHsf7CjOD6B6HH8yui5u1ZQOEk2B7gs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aq/2rSAuVaoDKVYt49vD+DE88e/PwbfXVwRzuB/Ops0zZBY9NILdLwAY22T2PUFozDuzV20Nai/HVOcyNyGWDlzwmNY424NE/AAz0WOjhs5+bIhtKyZ/RwasMhv/Y+R+vcYFSZyxk0Hl1bBNJMBOcMPpBoovDaPhVS3XJeYzKNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m7oh/GDk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53T9x9HC023835;
-	Tue, 29 Apr 2025 10:04:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lyczv+0W3QWPhe1ugrFU6SlpMrb5cNjiGlBjoSjAgIY=; b=m7oh/GDkjV/Vjlmj
-	nK3lnrCxfuWsSlCai2psenvSfxF55Q/y23i3I8oTLYYdK/lcNxfIlXeAMTJunT4w
-	8543xmodPOLrF9EiJzhi5T264Li/C5ObdOzWZ6q9OZLzjvkw0I9lgRYXgjVC0he0
-	WB+5kEPHZcvYtHmCtecXdlkrhR90zqtAVjzyT0zyP7d9lKNlrcG8IJ7Zu50cCv0a
-	r5trPJXfPFLJuMnoX2GK/vqTvbQ7adTlWt+kL3UjmyHPSztwJiNRO8/7zX3Y2/9R
-	RKLjSgEeibQvlnKNqOeLTL5gjHa04rzjHW74Mou1kPpyB0LtFHoRU+JMhyNDq/Yz
-	E2cTsw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468muqmarj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 10:04:47 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53TA4kId015334
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Apr 2025 10:04:46 GMT
-Received: from [10.50.27.172] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Apr
- 2025 03:04:40 -0700
-Message-ID: <fb8845e4-c95d-33dc-96b4-8430464c4ba9@quicinc.com>
-Date: Tue, 29 Apr 2025 15:34:37 +0530
+	s=arc-20240116; t=1745921114; c=relaxed/simple;
+	bh=oT8jmdKRD53dK1OsOJGBSBEwoTPzjwLFCjZkXjFpL0w=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=YKiwEsEavb/7yNVRdlhOoG6hZfeImuSLL++hPIzI1DiI63xnJhsR3wXwKVFEzfxzp509ykHLaxp0ZVD8SErOWJn0l27XAAFcZilLI/tuDq3pb0Rqx/uYPzLclQCVEkDOrFRzwl0Ej+seJZs42JxdK2JKItuyWTlM1+5YXl6vbPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=0JOzSXfq; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=oT8jmdKRD53dK1OsOJGBSBEwoTPzjwLFCjZkXjFpL0w=; b=0JOzSXfqdcMYGwC0bPRPLnnAcf
+	PCwW6kpNicsWBKSdKcaD29OYqQG3kreVd+vU8ncE8bDZufHD3/huCJRuajpikIbr/zacfgk6YYDv6
+	Yg34PKJjMp2V3I5yNfTcd8VRGbhf13g3JMoHcy6p6vHXNh2b/MPs9ZR7v9ZGS6hZXALr8xT3Boloe
+	vvAi3f3QXTgo3UWC8xw/FAd/Zfi3rWyPp24XIfWiNEtZZdOpPdaHcjhFPKEcmnXDD10H6g45EG9Uo
+	usiMcM79UHCrk8AOuBNWRit2KTMmiFiwu1pLlK/+PwBEuLr3vb2slyshnWvu/GCbqjfooCLz00Xvg
+	Sw+o+dVQ==;
+Received: from [122.175.9.182] (port=32794 helo=zimbra.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1u9hpq-000000008U8-2FW1;
+	Tue, 29 Apr 2025 15:35:06 +0530
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 58E801783FDC;
+	Tue, 29 Apr 2025 15:34:54 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id 48A6D178245B;
+	Tue, 29 Apr 2025 15:34:54 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id qr0AbpeTHHwl; Tue, 29 Apr 2025 15:34:54 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 108DD1782431;
+	Tue, 29 Apr 2025 15:34:54 +0530 (IST)
+Date: Tue, 29 Apr 2025 15:34:53 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: kuba <kuba@kernel.org>
+Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
+	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
+	nm <nm@ti.com>, ssantosh <ssantosh@kernel.org>, 
+	tony <tony@atomide.com>, richardcochran <richardcochran@gmail.com>, 
+	glaroque <glaroque@baylibre.com>, schnelle <schnelle@linux.ibm.com>, 
+	m-karicheri2 <m-karicheri2@ti.com>, s hauer <s.hauer@pengutronix.de>, 
+	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
+	basharath <basharath@couthit.com>, horms <horms@kernel.org>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	m-malladi <m-malladi@ti.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <663252690.1172927.1745921093992.JavaMail.zimbra@couthit.local>
+In-Reply-To: <20250424191600.50d7974c@kernel.org>
+References: <20250423060707.145166-1-parvathi@couthit.com> <20250423072356.146726-7-parvathi@couthit.com> <20250424191600.50d7974c@kernel.org>
+Subject: Re: [PATCH net-next v6 06/11] net: ti: prueth: Adds HW timestamping
+ support for PTP using PRU-ICSS IEP module
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 06/23] media: iris: Drop port check for session
- property response
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil
-	<hverkuil@xs4all.nl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
-        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>,
-        <stable@vger.kernel.org>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
- <20250428-qcom-iris-hevc-vp9-v2-6-3a6013ecb8a5@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-6-3a6013ecb8a5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDA3NCBTYWx0ZWRfX+Let7w3OmpVx Qe9TGYw9SB7DZn1vhr8Pn8Cr4LtdBdG+DSkjR43BQTEQWQQTqwrnzVa1gsqesklajZ26RcKcOWe CS7HBbDilQ0R2uxUo3eJsEj6jCBxAi9m/G9eD6Cq5KjN+i+Ht0bG/a5w/jIFIv/ECOljATwkA7N
- GSBRjvl9pSrCN5lnzXRAeAjcjR1ID2MrS2tGiqDzKh+qmaI1KORqDuwtg7ht8m+IXrFOok4Cefv vKVHGQ/lG11CXaNKvbJxXyIaiR1c2QhRx257Z+FTO1vIy2mZj9WJ2HP3Hu032EuBvvDTxVguEhY rOL+dG9TRm89LGnLMDDSFasX8M2uVuweqIIOe9A4I/bNoh5SMNP/UJ73YZoxETDBlkkG2VPIqdW
- 7LQzuKsuhZ/AO40spzbA406UdO4BgMES7PvUV1rq7UHJrVjXxvWhvHIvlBcz5xXCVlPZ7QfA
-X-Proofpoint-GUID: DNncuDrjIzk8GtVRTPLw2RaBS6jYbfG4
-X-Proofpoint-ORIG-GUID: DNncuDrjIzk8GtVRTPLw2RaBS6jYbfG4
-X-Authority-Analysis: v=2.4 cv=M/5NKzws c=1 sm=1 tr=0 ts=6810a43f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=WZtl5l5J05WpO7ha-Y8A:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-29_03,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 mlxscore=0 spamscore=0 malwarescore=0 mlxlogscore=865
- adultscore=0 bulkscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504290074
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds HW timestamping support for PTP using PRU-ICSS IEP module
+Thread-Index: rMCkv9aSBafPeayIWiLctpQIplkvYA==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
+Hi,
 
-On 4/28/2025 2:58 PM, Dikshita Agarwal wrote:
-> Currently, port check enforces that session property response must
-> arrive only on the BITSTREAM port. However, firmware can send some
-> responses on other port as well.
-> 
-> Remove the strict port validation to correctly handle session property
-> responses from the firmware.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 3a19d7b9e08b ("media: iris: implement set properties to firmware during streamon")
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index 0eb7549da606..5bb20ec0d67f 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -643,9 +643,6 @@ static int iris_hfi_gen2_handle_session_property(struct iris_inst *inst,
->  {
->  	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
->  
-> -	if (pkt->port != HFI_PORT_BITSTREAM)
-> -		return 0;
-> -
->  	if (pkt->flags & HFI_FW_FLAGS_INFORMATION)
->  		return 0;
->  
->
+> On Wed, 23 Apr 2025 12:53:51 +0530 Parvathi Pudi wrote:
+>> +static inline void icssm_prueth_ptp_ts_enable(struct prueth_emac *emac)
+>=20
+> Also do not use "inline" for functions which are not called from
+> the fast path. Basically no "inline" unless you can measure real
+> perf impact.
 
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+We will review and remove =E2=80=9Cinline=E2=80=9D keyword in the next vers=
+ion.
 
+Thanks and Regards,
+Parvathi.
 
