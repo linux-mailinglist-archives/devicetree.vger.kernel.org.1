@@ -1,116 +1,96 @@
-Return-Path: <devicetree+bounces-172004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EADAA0F23
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:38:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF875AA0F31
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 227C4189D674
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:38:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB5FC7B1E71
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C9921772B;
-	Tue, 29 Apr 2025 14:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E84219A63;
+	Tue, 29 Apr 2025 14:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="W3zu+TTU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q7OgFLkV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E2E18A93F;
-	Tue, 29 Apr 2025 14:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79EDD1DE4F3;
+	Tue, 29 Apr 2025 14:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745937465; cv=none; b=uxV9O8oIO+iif1iya5zzL4Jd95a/QPnNFBmsLCrUETxUgLwoigg/D9EQebHfFsKjvZbOs6EP5VkpswZ9813R6TTc4BAhBPHs/KXAkgh0ObvzumIgb4c7l3qhAR2VOsQmrfGrJjnAYzsuCJ8zRQffjQb057k/SfJ4NT3xUewWARU=
+	t=1745937560; cv=none; b=XnF9YB0euB74IsBxdhIcc3+tuWrAnpXW9Sw2FUXOdcScSkquE9QkSo8xrKVrHF5XNlBk1+V9lznDxEBkO1oLOaTS7UBHemawxtxuB86O8w1IO5zj0Sv4ZD96HGi697ZlrKQm/pE3XTAIq/8SgRLLccr3RJXTLz1vC5b6OSfkPhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745937465; c=relaxed/simple;
-	bh=/xQP20BJdZ0usmMJ3kurJkqp960Yp48ag2lCvfEP2zg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FGD37c2mYn0cerlsKcipkY15/AHvEEhAegYDEDY59xT1/Kpn1p7qWL9112iCB8e2D2NecgS0H6rjuswrZboAOE0WIlW2QDfLPoeWJHNQZDB8tsh13+EOBBNL9T5xJRUlmUdAEx0m2+HsC5LdTOCa0OTMXyved/V1E///T4MinZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=W3zu+TTU; arc=none smtp.client-ip=198.47.23.235
+	s=arc-20240116; t=1745937560; c=relaxed/simple;
+	bh=i0ZYC8XyqmhRCxLoo09GB7F0S70wSBZYcxQO5AixQb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QtFw2zI4Qxv4WH7N8TL17yV1ZMxjqaVB2IsHHiSKzpdi3OB3HNIpHradTH/K68qdpQS5ciQJtVT6L7TmM9d/5Dnd5Y/47BMSeciB8FixtNhKk8pLS4BwvjRzgTw6qUdsZfXgzh/+Fgd7gQA9HYilFwwiyU91gXn4jrsqzNvHYY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q7OgFLkV; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEbU4Z3868279
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEd9373868399
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 29 Apr 2025 09:37:31 -0500
+	Tue, 29 Apr 2025 09:39:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745937451;
-	bh=/oAT1IFU3YAYM+Sfb6c7hDr8u++kl5pA5rhqc1pFFIE=;
-	h=From:To:CC:Subject:Date;
-	b=W3zu+TTUccmtuWgLZfr2vm3p3jODNuVjr3aJTC1jHLDLljFR0rNdXYgl1wUyb13Uj
-	 OGY5hIX4Zb2xcEnmgvnEqGY46FG3V58aklsKasrMl1ZwqP1G/m4RsazvMgNVkMXYMw
-	 iZU8fPaZ1md89Bl0zDV06Mbv7+AY8xWPOb9fe9kE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEbUo7010200
+	s=ti-com-17Q1; t=1745937549;
+	bh=i0ZYC8XyqmhRCxLoo09GB7F0S70wSBZYcxQO5AixQb0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Q7OgFLkVaWw7tiit93pwA0uy4R0yZlDzYrio0TX9yGj/bIM5nO0F6UCAJW15L1/ro
+	 kZhFPnDu+VxG1o1+u2oZfcnpdgI4nkxNBNxGOkTYCjSbxx4TbgBeyHR65y7sZA/9PX
+	 /UeAIL3AEkfzlY8OTdZczePWMtlohROHoFn411MA=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEd93t008783
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Apr 2025 09:37:30 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 29 Apr 2025 09:39:09 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Apr 2025 09:37:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 09:39:09 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Apr 2025 09:37:30 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TEbU2T106904;
-	Tue, 29 Apr 2025 09:37:30 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am65-main: Add missing taps to sdhci0
-Date: Tue, 29 Apr 2025 09:37:30 -0500
-Message-ID: <20250429143730.4145747-1-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
+ Frontend Transport; Tue, 29 Apr 2025 09:39:09 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TEd9li088402;
+	Tue, 29 Apr 2025 09:39:09 -0500
+Message-ID: <e956e04a-f2e8-4e13-a1f9-23521e99807d@ti.com>
+Date: Tue, 29 Apr 2025 09:39:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65-main: Add missing taps to sdhci0
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>
+References: <20250429143730.4145747-1-jm@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250429143730.4145747-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-For am65x, add missing ITAPDLYSEL values for Default Speed and High
-Speed SDR modes to sdhci0 node according to the device datasheet [0].
+Hi all,
 
-Fixes: eac99d38f861 ("arm64: dts: ti: k3-am654-main: Update otap-del-sel values")
-[0] https://www.ti.com/lit/gpn/am6548
-Signed-off-by: Judith Mendez <jm@ti.com>
-Reviewed-by: Moteen Shah <m-shah@ti.com>
----
-This patch was split from "Misc MMC udates" patch series [1] to help
-with backporting.
-[1] https://lore.kernel.org/linux-devicetree/20250417233040.3658761-1-jm@ti.com/
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+On 4/29/25 9:37 AM, Judith Mendez wrote:
+> For am65x, add missing ITAPDLYSEL values for Default Speed and High
+> Speed SDR modes to sdhci0 node according to the device datasheet [0].
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 6d3c467d7038..b085e7361116 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -449,6 +449,8 @@ sdhci0: mmc@4f80000 {
- 		ti,otap-del-sel-mmc-hs = <0x0>;
- 		ti,otap-del-sel-ddr52 = <0x5>;
- 		ti,otap-del-sel-hs200 = <0x5>;
-+		ti,itap-del-sel-legacy = <0xa>;
-+		ti,itap-del-sel-mmc-hs = <0x1>;
- 		ti,itap-del-sel-ddr52 = <0x0>;
- 		dma-coherent;
- 		status = "disabled";
 
-base-commit: d864bb528a6725e775d564fd4430762acbb9dd0d
--- 
-2.49.0
+Please ignore this patch, forgot to add stable tag.
+
+~ Judith
 
 
