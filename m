@@ -1,154 +1,146 @@
-Return-Path: <devicetree+bounces-171999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E1DAA0EE0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:33:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F381AA0F1B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 16:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D26C81BA0824
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:33:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEC837A5F7F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:36:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A690215060;
-	Tue, 29 Apr 2025 14:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE292192EE;
+	Tue, 29 Apr 2025 14:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J12JJMR9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bqNzLyf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296E01B0430
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290A721773F;
+	Tue, 29 Apr 2025 14:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745937167; cv=none; b=ddOn8sC4tUVHK4f6OffswccDmYSs8/6RzGHAZOemN0wZs5/9Q4vAvx0/7J2Tt81omMAL+FcJh4MuykzAPpezLeMZUEBvyaMLNYE9em4i5nDshB4uSeHEM7Bf4BtoJgt0bYgbsgMa5iB3m3fTK12Xb9ltoOr5YK82m7sWQk6RrdY=
+	t=1745937446; cv=none; b=foes6EhM2thHJuB6+Sh0I6tTqCNyh316ItW3KUzV0DFyoKn7b5o1a2BYTTs+HjaYBHEYIcmAret9iI/s0D0Cw4WmZrW23wc6+3GU9oYEECIZk5QlzWJbeBjRMcqSh7GwFLnfu2/ejJ5UkngItCdAnKMud+RjLCCYRZr4W13xlAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745937167; c=relaxed/simple;
-	bh=CAjD/KK2jdzq9tsIIkgeEOC7cVQjgSZn3t9Wd39MQXM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EaRAcpMDe9NKs3YKE614PgQXZy2FRc1q7jNA/sCbDrm4Ys7I2z5yvJXfhDVS+UAVJCFHKzQwS6V6hkyNrDAJ2UX8fnyHW8pcuY9ho11LIBFA62gWpGPhzwUDsKW7uEWPJTo9Q/aqHzDYQ0/GN/VyioTh/XK4l0eDsOVih9MGM60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J12JJMR9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TA9sE6011841
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:32:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=bPriHSZx3KQJP/KsDQOWzlOT
-	mChm8sjxQPQzHrr/5WY=; b=J12JJMR9Q7NMWgxDtjREBVcwp4RzpJ5+02SMlUX4
-	qVgDGXteJgupzg7oZ5a0Ewx2671aEd1SzhiO9/H8SGrnSsAstywaK+KnSTQCzMKm
-	OzVftgwcJoCv0VCRLjooCp+6O4EDafmLLWX51ffh7cYkAScLWyaM0ZePtOWz8/ya
-	Wj6QrtpRz0croBpfkTmRT63iScrCDoUAgHAan7vVwxILXq0AbfMLgLYiACH2GKKZ
-	G0eyAoprIyDtOryovl9CY5A80QgjWUwM2hdCS+PhY00qa6C9kcwh1dGR0ulSkhIj
-	lnAzHx9VnmbmM2ECcHfPNQIhrus7mEpk/56biYdFgdo06g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468pg9cvuc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 14:32:43 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5e2872e57so1001500585a.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:32:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745937163; x=1746541963;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bPriHSZx3KQJP/KsDQOWzlOTmChm8sjxQPQzHrr/5WY=;
-        b=sINfy7EnESPDWX/WB8uRJcdF8uaV+x/0YnF7hR6SWNhWWstfcIuihEbmHTLTNCfXA/
-         hA42ildaia2zBsJbES5V4B799UZdTHLtjc5RrRYcQJQZNcZXH7sM6psDbsTgi1B/Kic2
-         QqUh7XUf9eV9VuyKe2t0+3SMnGVRuTKiatgQ9ozv6dlSaAPGVwnx0Gu/vmwRG350sOqP
-         pzFpmOCQvT8OeJBgA8npBqJ/vWzZ2woDA0mxLbFckn531rQ6ROP5GpqGGzP1eCYyDiDc
-         UNhj/CKisoPYzBYXThSYwzQEtFPvKyv1PIL96xDMsgav6fT4Mz7AxyvUZtLccUZHVN+p
-         JpKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVeEUB5Lo1fIZFsFCVIo1sKhNzng8DcAOEkHXLxZb0JnVVr/JoGpvXeJvyx66ZJe4nfxu5bDJG7UDfg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFgTJmNWs7CEdBwNbn3DQDdGetY8vKwdlATl7H07i1kuD6hs3p
-	U6DhKzeXBsOqCc2O+rkDlgZoIKFCoJxRv90gyYj/5cz0Bdz92ed0lyGjCnG6r3bBEGwhUjdigFX
-	jz20s7o3NK+A8P3s1yJfcq+N+OCbhv5XMkWXchcDHbttC4ddG8TOfz1Lp0nSu
-X-Gm-Gg: ASbGncsUZTVHIw6sNUSjxNTDx4sq5BW+TfslO4T9PoRKyTQYoNajGIUUza73BA68FzI
-	hC0dHGalqS//9K/ZSfVuUAxrM3T0s1dZv700Yb+ORNyQdjFLtpiEgUxjPtMKHHp8yxTk4A5vOvm
-	Zg1htPrLDNl8/luUDTIXeg7rgGbynmt15BB6sP0M03pJTE3iCI7ag6GQjwTPisXy7b68sspgdfQ
-	46lEjT5E/PG04n7Juue+6xmEiftX/+BvGX/BQEGYMyr4rzzDyp7kj06CkU7NrlK1ZKclK+5dBIR
-	CYMfxOyXzpohdaWlhm2ZdGrxycsomLKEX0MuHKB9i9mchl2uJYiiF9bgfaLW+eqJCEVh1Qdaz08
-	=
-X-Received: by 2002:a05:620a:3184:b0:7c5:5003:81b0 with SMTP id af79cd13be357-7cabdd823cdmr635638985a.23.1745937163137;
-        Tue, 29 Apr 2025 07:32:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGWF2xshAzyNqq5fdOAsbkOvEB3opt7kXShCLYeUNW9cmZ74LfQEMRBALbW7HQGg1CwIOtf9Q==
-X-Received: by 2002:a05:620a:3184:b0:7c5:5003:81b0 with SMTP id af79cd13be357-7cabdd823cdmr635632385a.23.1745937162672;
-        Tue, 29 Apr 2025 07:32:42 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cc9eb8dsm1880507e87.135.2025.04.29.07.32.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 07:32:41 -0700 (PDT)
-Date: Tue, 29 Apr 2025 17:32:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Clark <robdclark@chromium.org>
-Subject: Re: [PATCH v4 16/19] drm/msm/dpu: Implement 10-bit color alpha for
- v12.0 DPU
-Message-ID: <oibskwq6gk234lu6bymqlrtgt2yd7o4qbpk46snhba66uqbupi@lwwcfmgp7bul>
-References: <20250311-b4-sm8750-display-v4-0-da6b3e959c76@linaro.org>
- <20250311-b4-sm8750-display-v4-16-da6b3e959c76@linaro.org>
+	s=arc-20240116; t=1745937446; c=relaxed/simple;
+	bh=YWFgEE/pYx43RIkZxqYPeNDBpIA1GTsKMfT06yg+9FY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rME7o+Bgic8e/W2l81sFwhqCiHvHkSPeyIoS+2kuaol7MnPX5+zBRCaEsh0T44Mj6YNOfJ9mYeL3nQ6pCmleZ6x4zCjvhw5kKb69QfxAPkt2248XgZLFPy5ZhbBzVk4b3/vfdfOpWCa25Wl4iquvk37tm+YIZD9WJ908SMggazQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bqNzLyf9; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEaw0f3867999
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 29 Apr 2025 09:36:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1745937418;
+	bh=DKk1xaSMzcGFiMWCM2d8Q1zeAjKKaHVkdez7w5iD168=;
+	h=From:To:CC:Subject:Date;
+	b=bqNzLyf9+Max/wk5qTUB3X8O/i8lA6biTrudCotisD35Tz+/Eo+v6Kr2612wSyZKf
+	 FRI8UQFKf+fyCpIVVhSe+jgoXdQ/+Lz5ysiTq1GCQqP9vSK82wa5I4NAMWR8a7VSeZ
+	 nlQtC2dHAEumm7apvuJjSZQ6PMaRBNFxQ4bXU+L0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53TEawBI035775
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Apr 2025 09:36:58 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Apr 2025 09:36:57 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Apr 2025 09:36:57 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53TEav0N086083;
+	Tue, 29 Apr 2025 09:36:57 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>,
+        <dri-devel@lists.freedesktop.org>, <simona@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v5 0/3] Add support for AM62L DSS
+Date: Tue, 29 Apr 2025 20:06:53 +0530
+Message-ID: <20250429143656.3252877-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250311-b4-sm8750-display-v4-16-da6b3e959c76@linaro.org>
-X-Authority-Analysis: v=2.4 cv=ZpvtK87G c=1 sm=1 tr=0 ts=6810e30b cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=0cLWEtKbF7AIdJ2SciEA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: sTRymrK_ssqqbcbdif6XralSGtsvr2Gk
-X-Proofpoint-GUID: sTRymrK_ssqqbcbdif6XralSGtsvr2Gk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDEwOCBTYWx0ZWRfXwF/qjIZPCzxF kxbvRuWjE6yQ9YOqW3kzpi01n5fUiEK+IQzIe+Z7Y+plD3ER7Ly0ceDOF9AP4YGfJ3ugwCKQehX 1XNA10XPzOfHrsIC44yRYAQR5KK9MnTbYwf9Ljfz/s24ZZ8UD32EOUel7FgIKVT32+bypQYASvT
- ES6YZM8m55y0XDakVs66tToSv+XT+wj6A5gIQUPmjLodHctddR+n7cumxZDzgOyllJU6wloO78Q Bqj4EseXEcWZI+mrIOe+WEsPTlEpl8dK3k8sjOj2LASgnv7j/I8tPiG7RyT0dgZERJf3AoUFhzS 3MZpR0P7gvTZikPuStDVBKgK2v3ScFkOarkwa/bX4DUJYURMmK076NBElhG1uU+qEvC4OYxNph9
- O1B+hQ/WNVmFoZ2xwUWs/S0HSNQOFPQhBewoGgSqQUhQbsa/snOM3J//DO70et1huU8HRVX/
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-29_05,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- mlxscore=0 bulkscore=0 mlxlogscore=806 malwarescore=0 adultscore=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504290108
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Mar 11, 2025 at 08:02:06PM +0100, Krzysztof Kozlowski wrote:
-> v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
-> differences and new implementations of setup_alpha_out,
-> setup_border_color and so one for this.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v4:
-> 1. Lowercase hex, use spaces for define indentation
-> 2. _dpu_crtc_setup_blend_cfg(): pass mdss_ver instead of ctl
-> 
+This adds support for DSS subsystem present in TI's AM62L SoC
+which supports single display pipeline with DPI output which
+is also routed to DSI Tx controller within the SoC.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Change Log:
+V5:
+- Use hw_id instead of index for places where it was missed
+  so that we pick correct base address for vid region
+
+V4:
+- Update vid_info struct to keep hw_id and instantiate
+  only for actually existing pipes
+
+V3:
+- Make generic infra to support truncated K3 DSS IP's
+- Remove AM62A updates from AM62L DT binding updates
+
+V2:
+- Fix incorrect format of compatible string (comma instead of
+  hyphen) for AM62L SoC
+- Use separate register space and helper functions for AM62L
+  due to minor differences in register offset/bit position differences
+  for first plane
+
+Rangediff:
+V4->V5:
+- https://gist.github.com/devarsht/a0e6aa7b1c19f47facd0058962e3c3c2
+
+V3->V4:
+- https://gist.github.com/devarsht/1e75c9e1ac0cdfc01703a0776e31e782
+
+V2->V3:
+- https://gist.github.com/devarsht/24fa8dd2986861efa431352d19ebbb41
+
+V1->V2
+- https://gist.github.com/devarsht/11d47f25ca9fea6976e6284330ddf443
+
+Links to previous versions:
+V4: https://lore.kernel.org/all/20250326145736.3659670-1-devarsht@ti.com/
+V3: https://lore.kernel.org/all/20250306132914.1469387-1-devarsht@ti.com/
+V2: https://lore.kernel.org/all/20250204061552.3720261-1-devarsht@ti.com/
+V1: https://lore.kernel.org/all/20241231090432.3649158-1-devarsht@ti.com/
+
+Test logs:
+https://gist.github.com/devarsht/82505ca69f0bd5d9788bfc240d2e83d4
+
+Devarsh Thakkar (3):
+  dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS
+  drm/tidss: Update infrastructure to support K3 DSS cut-down versions
+  drm/tidss: Add support for AM62L display subsystem
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  21 +-
+ drivers/gpu/drm/tidss/tidss_crtc.c            |  11 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 193 ++++++++++++++----
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  13 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |   1 +
+ drivers/gpu/drm/tidss/tidss_kms.c             |   2 +-
+ drivers/gpu/drm/tidss/tidss_plane.c           |   2 +-
+ 7 files changed, 195 insertions(+), 48 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.39.1
+
 
