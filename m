@@ -1,153 +1,83 @@
-Return-Path: <devicetree+bounces-171825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B7EAA04D9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 09:44:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8AFEAA0522
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C1557B01F6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 07:43:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36CDF3AD464
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2933029CB59;
-	Tue, 29 Apr 2025 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1802741BE;
+	Tue, 29 Apr 2025 08:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PvROXccu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MnsuiDp+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E33D29B21D
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 07:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C27219EB;
+	Tue, 29 Apr 2025 08:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745912597; cv=none; b=ElTruGj3avUEkDj3wIGU9U99AXdwM4CSBcLxWqzwxFG0vBfEDsc4IF3k2665LG2+ldJ2Loh0Uhoi0EMsyoYqnempxdh1uj9D+E/KB4ZZmDT82TeUgQkmguo3sZdCTrtt4828fbWB0QqQQ4pnpjDLJwOhUSBXio3Qdbv3PvXec48=
+	t=1745913685; cv=none; b=oJd9xVh6eQSOIMB/+o6zrRZZJEoyxVYaVi1UlBfV8qzlz2H0bopgUjKjQ9cG2xSCvQKdkYokwkP6nQz/aD3M8X+z59kjBol5rqhikN5Mj+06tsDeiV2uKdfBXA1uqBW1lG4r2iQVu3bHyVMDsP4i+PTqcgG5wsQmttHCpkrKdO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745912597; c=relaxed/simple;
-	bh=dqH3cfznnrDYzhdi37Vb/lKGc10xg7GhnO153HEfSlQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=P1U0is+2YV0ErzpnG+dqO2ISqkBs8F69Rpy6pAank+GEFkmaBngFuM1hoz9ejreQSoFcr7dE4SekGXpHUEuplknXjLW2yzrGMhhmQgC3rpbGzRdO9XXSewSMpwFMoFy+XfCMbAfq6yQUpNQKQy9ByOEOBF3hKkZ+rgIZjd1wgew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PvROXccu; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5e5c7d6b96fso10930460a12.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 00:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745912594; x=1746517394; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z+CMw0Af3QILoKnW8t74C2z0JZ0hUqGXypshbYnxLzE=;
-        b=PvROXccuQYSmwiz4tqnw9wRAEOjA1h4FkIOnNgMpOuPG6w/yRaXZTM/nRoCtUsgVZt
-         dj6lQ9lM55LUVFmIKe/sOn46lXFc1N9Rk+tcYxMmqGLYSzrNGTI/q1J/P6XgXaMnWjiC
-         sbrEGISCedGrzjXN3D2gmUkIxNbUUXBn5Yxo0fmxOawlH10yyG52OfZp7d20i/FpwUSF
-         P/8twpKi0904ykahZ2oDUp8vYbSpAPhuqA+tGB1wzTyxB9kVc0nGf3VeHoWV0RSufaL2
-         EIIwhbwHstb9eo7kM5PPCyivDfKs4VbjaWkdObfqT+BQ/RcLL9kLctt4FCb3akYHb7n1
-         d50g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745912594; x=1746517394;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z+CMw0Af3QILoKnW8t74C2z0JZ0hUqGXypshbYnxLzE=;
-        b=IoUCglRX+qsvzJj/p4BK13ISe5hlXcdnkXb0gGyzXTbsJvXTiQWqMTfPRMs8xZfR+0
-         c9vPG4b3uV7W82IlK7/idN8i/9HX/z9E6g5Wigimd5jb9i+ZE9QJeJIhApIfYfQDBADi
-         lZRZLxY7m7rttwV0EG8wiKg/KsqmU+rf8IHl4WLW8ySNYLAGQggtdGGFHQnnbK44EYGy
-         2fv046v7g/bNgp5JwXYn/zduFG5at8p8PQWM2MYETzcZHHvTWYssLSPQU6t3uk02gIWx
-         SweBjGA+VrXs61GM3oi/HfmLU0dk3rz6BYh9XAeLMi/LwivQKsg49rnlnzlDetAcuShL
-         lRTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV2Ang9zH48Qn4/VC9wyMZSCnwXu2IEUVFSeU+StovqBaonssKfYqcYgznOay0ePuEPsoRDltbPp/Ob@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf6hJLdG9krLTNGngntwyusxxAjMNrg+XWzGHOHYYJw+Vdp3Qa
-	EcP3y1/1/uTlUk4IReMKtuhVB6pEmNXugcrbVfC1shNyEsKp+65unzTAzEyretc=
-X-Gm-Gg: ASbGnctWcs6rLNT57l2fSrAv+SyyRI0qQQMHbBVkNR5WhUUjI20JTIBBBnbAfUpyfj2
-	SozIFGShbl6IMY1GM1C2Y5VrlSxJfFeTbsGE5tg4P3ME5JkaOupOXxKxxOB9EmFp3QPVr026xzm
-	CVMfTKPVXZOaUidwSwCLEqcuBxF8oDCc6qJ5gnELRxxiQ/e18BHQvVqBjbQmTHAxKAm1xgnOdEn
-	2OkkVd41GRYyMcZ6V+dJMKfaQRz5ZKr+UNnhA6h63Cex+GfKwuL688qqzgOCiQ/MRdtT+deQLH4
-	4dFhSfCMEjq2cN5p6qMl39oM0c1GYKDoFbZ5pnM=
-X-Google-Smtp-Source: AGHT+IHwWN04fOFlwFa3HO7CYk4tFlSVjja5KcZcGntSeNd6Wvuyju+J/fAEW2cstNM1PRWKHahxNQ==
-X-Received: by 2002:a05:6402:3495:b0:5ec:cc90:b126 with SMTP id 4fb4d7f45d1cf-5f838862cd4mr2316336a12.19.1745912593656;
-        Tue, 29 Apr 2025 00:43:13 -0700 (PDT)
-Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7013ff4e7sm7048114a12.22.2025.04.29.00.43.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 00:43:12 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 29 Apr 2025 10:42:35 +0300
-Subject: [PATCH 7/7] arm64: dts: qcom: x1e80100-romulus: Drop useless DP3
- compatible override
+	s=arc-20240116; t=1745913685; c=relaxed/simple;
+	bh=DZa3T3b4vAqSDABkH+cRjLnDd7YvrAb15Rd26zzgywA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=olRq4Hw7TpPMl8t5ieOxdIsSb1uMmD8sb/bstDoBHxw8CxSzh5R1KmsVKZ6bUFgmlOPlVY1sDKduPBE+s9RIqQuGVOgrNlTGd9NxTNgTdqIeCkUwkRjOQaFayO6//7pSFccHwsLD1EJbDk+ZTX8IM19r4W3jYsJLtRPjwAEeVlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MnsuiDp+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D633AC4CEE3;
+	Tue, 29 Apr 2025 08:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745913684;
+	bh=DZa3T3b4vAqSDABkH+cRjLnDd7YvrAb15Rd26zzgywA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MnsuiDp+lzuDisqX3K/PeFS7IaRrr7kxMPv89NciMhfqgR51dtIs7h/hbgRH9XkbN
+	 mfVXEqlceXIJCdR7bi7EqNjVNoJomSYS0myF8xFTrMRYY3uWBAOql+h4ipIC+KrEEz
+	 2Xruxqob2qPJZIi2detPfIw4graWbTCquJFyE5/bh14/t1ACMSIt51HqV+gwnPFUq5
+	 auYvlV52DSPGVZjjvybTDfqtsFkUG+EX4VqSssMst74qpx1LJUGs1FLsmLUKboBC1Y
+	 RMDkEay4sBz5aPVl7Ui0uYqZ84pWzCZ6Y/QM474cqkqZvO07MX9pCfyH01RXKkMHld
+	 ENvx79CA28eJQ==
+Date: Tue, 29 Apr 2025 10:01:21 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, tudor.ambarus@linaro.org, 
+	andre.draszik@linaro.org, willmcvicker@google.com, kernel-team@android.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: soc: google: Add gs101-pmu-intr-gen
+ binding documentation
+Message-ID: <20250429-scrupulous-aquatic-toucanet-1aa9df@kuoka>
+References: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-0-1bcc44fb1d55@linaro.org>
+ <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-1-1bcc44fb1d55@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-7-058847814d70@linaro.org>
-References: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
-In-Reply-To: <20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- Srinivas Kandagatla <srini@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Konrad Dybcio <quic_kdybcio@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1313; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=dqH3cfznnrDYzhdi37Vb/lKGc10xg7GhnO153HEfSlQ=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoEIMBQ20zy5h3fNHMBg5pUObs4HHjmaFn1Nu2s
- YEgHFq2iHCJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaBCDAQAKCRAbX0TJAJUV
- VlDHD/0VwykRtwZOoYTI3i4MNrsMV+Z2LD7X2EhNIuBIhLJLvQfEK6c1124b6MnoGlXIwusoHZr
- Zs2ApYouZXKomo+Twkxz5j4Ae/9PzkUAvdW6+vvOayOhQAT9IuehVoW5VFXm7yRqoAb9ncOUgdy
- tojyI4ahVyCCZc0xY/fE9ZW57zoVG8JpWdmm8hgkZf1GAhsfrLjQX0XBJ0IiKH6TIeUVRSoBwhy
- Nze213oYBpmqDObl72qQx381iLBwMKwy9rIl0i5TEA6PUu4uTRWMTWjH1lcQmzKyUgWa1r01dwz
- KFSA1+VPvCpAw57yU7d5T7tJn7Ug2Wh4GY1MlRnPHHabKx1V43XSLS2LsgIc+gqwZc/ynKaV8k0
- RlJhljLH/9CjUpXvd+49k3xDOWfljg8zQf4+4fTev7rUfvnhNehF6BUkauTxWHXsAt/vrwUGW3h
- vX9UdoMRGHU+Omw0zz14jM9ByaH+swZ8BZJZygk8Tc2FfGC44uV2EPw1yEoK1w8DT6oGNO7Z1ri
- daAXSZ1a7TxiwMvBL5cuwHpdJm+u1HNeSWy6RvOJQVI2lC68ZQz/l130+4t/hyjaoxiPjd3Gvdk
- +YxJIg2tOvorLiLiN6+iMmDEJ9eGhWqOQUdNyYE5H5iOMcDxCnRGOztCLTGa9080C0a/jVxty8j
- URQGRHZrPRiyEhg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250429-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v3-1-1bcc44fb1d55@linaro.org>
 
-Back when display support was added initially to CRD, and we used to have
-two separate compatibles for eDP and DP, it was supposed to override the
-DP compatible with the eDP one in the board specific devicetree. Since
-then, the DP driver has been reworked to figure out the eDP/DP at runtime
-while only DP compatible remained in the end.
+On Tue, Apr 29, 2025 at 07:19:37AM GMT, Peter Griffin wrote:
+> Add bindings documentation for the Power Management Unit (PMU) interrupt
+> generator.
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> Changes since v2:
+>  - Fix dtschema error "relative path/filename doesn't match actual path or filename" (Robs patch bot)
+> ---
+>  .../soc/google/google,gs101-pmu-intr-gen.yaml      | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 
-This override was copied over from CRD which was the first X Elite
-platform upstream to have display support.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Even though the override does nothing basically, drop it to avoid
-further confusion.
-
-Fixes: 09d77be56093 ("arm64: dts: qcom: Add support for X1-based Surface Laptop 7 devices")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-index da8cef62ae730266b8782ea0a7efedf51c9f547d..26ae19b34b37e0e3c67eb4543de898e94e62c678 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-@@ -945,7 +945,6 @@ &mdss {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
