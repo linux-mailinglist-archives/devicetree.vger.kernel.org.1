@@ -1,208 +1,185 @@
-Return-Path: <devicetree+bounces-171712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B560BA9FF5F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 04:06:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D071A9FF6A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 04:09:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B10EC3BCC02
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 02:06:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C99F1B60F0A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 02:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D80215781;
-	Tue, 29 Apr 2025 02:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E803252290;
+	Tue, 29 Apr 2025 02:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="UeGsPCr9"
+	dkim=pass (1024-bit key) header.d=lessconfused.com header.i=@lessconfused.com header.b="TgGrlrgz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC484502B;
-	Tue, 29 Apr 2025 02:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745892398; cv=pass; b=O/QFIOkbm8oWeHZ5B6ERuvr5gA9VCvKEcC8DhlXvHsLZr7ncnycxMLK96GF2yWvW7dcxVKC+DXciUFjiz6d91RulvUJIuXcFh6hmgUGN3t/hwiDsv2ICuaaNKOt3NYxNOunCZA0zBWOKSlC6e9JLrRO4eyG2QTN5IfkwOTrY6yA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745892398; c=relaxed/simple;
-	bh=oUBOWps8OEEi19ubbbJKklFDEKA5pyvKPJcGzc9KhKQ=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=t7jnSKM5UTwhyMJiNQafkbq2doBnKQJ7I7ml63r8YEYyoTOMNv6AyGS3Ki0A5TpApzEecuW+7Iys5uCUbnMef4vdvbH+lBggy0Up92WWQevMS7h55ksX+UuH1zWdvYtPTNMHdAxU560chwDtzdqaWGdg9BaGHp5W9X3MOgYLqQU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=UeGsPCr9; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1745892359; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Tp+ULCb/NX2CXxKOPjWGqBe0fqwgxr9x9CLyvf6rlNPNi2FiD/rBQGGwdvVcvZtL9EIB750v4XP3RrMfar1DR3mH8BxYN1Ky0qJZDJdHleEVSinQSYHF0jz60k59O1xEbj4mcgypzmq8DnuDG+fIrnNm/jGyVL6UImvmBTsy4EA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745892359; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=G9pnAX/pTfcnbAMpNAi7zvp1vwdrfPjFEIddTEFp+hs=; 
-	b=lFf/P1omGs/txsFeVDKuSI++OXK3BADA4furDSYctP2uJuYuqBrFGb0nczQcjlrK1FXVUUSImAYjifIyfFvvkXWPblY/st3T7wRAmpg5PSo68okLHV2u0YKgDralFA7QTjuTriUyCrPSs5DPyV+c7vqG5LyEVKCQLOn2uCNo0+o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745892359;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=G9pnAX/pTfcnbAMpNAi7zvp1vwdrfPjFEIddTEFp+hs=;
-	b=UeGsPCr9GpNvuSdbeFSbgg1lMlumVw5Y3n2BCTEjDObCVF2ZR/ZJrCAQPqAooJ2U
-	6v/vOUa627bOphWxQR/KNnxKdTB1U9PKeEbDtGzLNKzmD6Y0WXNRTrGesBJEpc7i4c/
-	Tx7tN10wFisKubc2HsWxSqPG7IvvFHKRVF2lZLlw=
-Received: by mx.zohomail.com with SMTPS id 1745892356039231.37800848772383;
-	Mon, 28 Apr 2025 19:05:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702B42522AB
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 02:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745892541; cv=none; b=NvZMnJ1UDEERhLBqgqqJ4NXU4mk4eL/bTm7aOA47i1lIzSuPPvppfXAHT+RipeVhTbnNgLEGfxUSK9YwYv2tYk5wqFXmUFrSAwC9EcUpAfu6nWsNUlqMTP13bknH1fGy0jz5zDjl9wMKYOC/sF2F5URc/tuRcUN9eWJ7cHJLeF8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745892541; c=relaxed/simple;
+	bh=1VflgDCAbYM0nvDCbUBD9RSTMKnjWcdXs3kPY+dpC/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qmJI9v/3pBT40Y8If0xYOK5no95qzdlRZERRIGpHpQuYOdaFWYaYTFXcmiM034D73xmmkNQK21qU1X+vv3Wk0vVBI2qq/odCiNogJqxbgccAaUKrsb+RyHhMBcf2U2hZ0tPvzLC+PrJlK4DE6LFJeUkvGGZdoowbwmJI2oX0t/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lessconfused.com; spf=pass smtp.mailfrom=lessconfused.com; dkim=pass (1024-bit key) header.d=lessconfused.com header.i=@lessconfused.com header.b=TgGrlrgz; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lessconfused.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lessconfused.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-73712952e1cso5840363b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Apr 2025 19:08:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lessconfused.com; s=lessconfused; t=1745892529; x=1746497329; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rOL8cAzDh7/cTXRXsftT/THY4eVY9mbWKCNY3CIWC+E=;
+        b=TgGrlrgzGWIWsI9ZY8VsWX/ChTwwRvKE/7s3Y4NW3VnpWbL3nZ9MJIOcBVPb6hAIpM
+         9p4KT84GH0KpugNaofi2ih98kqC7jlBfwPy9TA2C1fOBU7kiBwSq5jh+hzTh7dHhciDH
+         w0XJ3Vy52eY3cJf+huvyBw6b6XjRX0lmWGEjw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745892529; x=1746497329;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rOL8cAzDh7/cTXRXsftT/THY4eVY9mbWKCNY3CIWC+E=;
+        b=D8mUncqltSpTzbQYJVzajtuaokSkELKUAF3BN1LNwKnoNtTsQ9DVMkQELyY7MM9blS
+         oy5hFK4iHR4+wjpfeKOrXeIRtLwnhHgIuO51Av20Bev9XtWqHsuQZJDvfTE40zN5fx+O
+         E3scLU+Bpu+TQv4BxhS1vtJo/wzVMnpCuYXjb0LCkE6zIALEmTK6Sjgh/UWahlbQ35k9
+         WBwcWHhY6ebLp12M/JCI+Jz3JpZvPepddByzfE/vjDdMA18V4inuZ+FHzitSznckA/Vc
+         JsR0sjq4yAliqYi/c57E3JCXTSdqY/kORQU0i5VVravpq+EIIIsx21ojwh3oJsnLZ8Py
+         CEMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXP6ZmhGkRZoyBtcVfg0i304YT3j/43j9JTWkcJg9dG6sQi0GuJyK4pcVgMUNchfwNNWvTQNZSWxMGZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtCUcofbsAIefDZmi3W35JzaURywmOQESxYGovFGz5DGYCHX7M
+	UjqkdJaOaBYCD1ZxTppAxWr7ZTIhpXq+fADhig1EdgxkjPXD20c33grtkwxsmOGy1mLR3ZRbPvg
+	YMT0MO4nSwVmaDIrPQ68yq/f5ysVpFNSXXmjbbw==
+X-Gm-Gg: ASbGnctnm/2yEY6DTgiwCzSATXcXpbdz1MuYjSaSadcir+wz3IHaZE6hErbQKdSnIOJ
+	NuS98M6fJDnWaIwxQfe1qAyUyfSiyYv50cytc14BHnNHt0g+7/4qDzmcnI2xCH+jiGeveoAgv5P
+	g3esyTsyCNevciDIJarcEsFTwlWtPDsCuO1BH9rUO4/jZJ0dkQN4ynh1s=
+X-Google-Smtp-Source: AGHT+IHCPRZOUIvFcl8lsvnwfO+9RLYKzmV+Oh7P+gkUHVtVP2yGSVFYEv1JALFXz/61Bb1nArjTw0CpObv33VgEMCo=
+X-Received: by 2002:a17:90a:c88c:b0:309:ebe3:1ef9 with SMTP id
+ 98e67ed59e1d1-30a013070damr20213230a91.12.1745892529578; Mon, 28 Apr 2025
+ 19:08:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Conor Dooley" <conor@kernel.org>
-In-Reply-To: <20250428-glade-unripe-4cdb4913ede4@spud>
-Cc: "Jassi Brar" <jassisinghbrar@gmail.com>, 
-	"Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Chen Wang" <unicorn_wang@outlook.com>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, "Yuntao Dai" <d1581209858@live.com>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>, <linux-kernel@vger.kernel.org>, 
-	<devicetree@vger.kernel.org>, <sophgo@lists.linux.dev>, 
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: add Sophgo CV18XX series SoC
-Message-ID: <183aa7d7183c45f8.dee2d6a7f4d6f33a.37931e87d1f102d2@Jude-Air.local>
-Date: Tue, 29 Apr 2025 02:05:47 +0000
-Content-Type: text/plain; charset="utf-8"
+References: <20250425203118.1444481-1-da@libre.computer> <20523c9e-f7de-4355-82ed-380ee03083f0@linaro.org>
+In-Reply-To: <20523c9e-f7de-4355-82ed-380ee03083f0@linaro.org>
+From: Da Xue <da@lessconfused.com>
+Date: Mon, 28 Apr 2025 22:08:38 -0400
+X-Gm-Features: ATxdqUEtIxVd1qwCtsriUSTxo6iPaZohjrD-HjaaVAgl0Wkxs3YcV-UpkMno1rk
+Message-ID: <CACdvmAi9v=DFqSOjWdeAabNC1QECs0U3yHM4LZ=Gtthn-pUMNA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxl: set i2c bias to pull-up
+To: neil.armstrong@linaro.org
+Cc: Da Xue <da@libre.computer>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
 
-Hi Conor,
-Thanks for your review.
+On Mon, Apr 28, 2025 at 3:50=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> On 25/04/2025 22:31, Da Xue wrote:
+> > GXL I2C pins need internal pull-up enabled to operate if there
+> > is no external resistor. The pull-up is 60kohms per the datasheet.
+> >
+> > We should set the bias when i2c pinmux is enabled.
+>
+> So, yes in some cases when the on-board pull-up is missing, the on-pad
+> pull-up is required, but the whole idea was to only add the pull-up prope=
+rty
+> when needed.
+>
+> So I know the real motivation is again about the 40pin headers, where
+> some applications don't add a pull-up and still want to have i2c working.
+>
+> So my question is: why can't the pull-up property be added in overlays ?
 
-On 28/04/2025 17:52, Conor Dooley wrote:
-> On Mon, Apr 28, 2025 at 08:39:44PM +0800, Junhui Liu wrote:
->> From: Yuntao Dai <d1581209858@live.com>
->>=20
->> Introduce the mailbox module for CV18XX series SoC, which is responsible
->> for interchanging messages between asymmetric processors.
->>=20
->> Signed-off-by: Yuntao Dai <d1581209858@live.com>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  .../bindings/mailbox/sophgo,cv1800b-mailbox.yaml   | 57 ++++++++++++++++=
-++++++
->>  1 file changed, 57 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mai=
-lbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox=
-.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..5815dc02189c973d681f5b4ff=
-22a9fb7536802b9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.ya=
-ml
->> @@ -0,0 +1,57 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800b-mailbox.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sophgo CV1800/SG2000 mailbox controller
->> +
->> +maintainers:
->> +  - Yuntao Dai <d1581209858@live.com>
->> +  - Junhui Liu <junhui.liu@pigmoral.tech>
->> +
->> +description: |
->> +  Mailboxes integrated in Sophgo CV1800/SG2000 SoCs have 8 channels, eac=
-h
->> +  shipping an 8-byte FIFO. Any processor can write to an arbitrary chann=
-el
->> +  and raise interrupts to receivers. Sending messages to itself is also
->> +  supported.
->=20
->> +  Sophgo CV1800/SG2000 SoCs include the following processors, numbered a=
-s:
->> +  <0> Cortex-A53 (Only available on CV181X/SG200X)
->> +  <1> C906B
->> +  <2> C906L
->> +  <3> 8051
->=20
-> I think this section should be moved to the mbox-cells property, since it
-> is describing how to use the mboxes property.
+The issue is the property types. I wish the bias was bias =3D <PULL_UP>
+instead of bias-disabled, bias-pull-up, bias-pull-down since we have
+to hack a bunch of /delete-property/ in the overlays. A lot of the
+merging tools ignore /delete-property/. This is a convenience patch
+which may cause push-pull times to change by an insignificant amount.
+We have been carrying this patch out-of-tree for 5+ years without
+issues. I have not seen any design on GXL that had a PU for I2C.
+Externally, I've seen threads of people asking why I2C does not work
+on other boards.
 
-You're right. I will move it to the mbox-cells property.
-
->=20
->> +
->> +properties:
->> +  compatible:
->> +    const: sophgo,cv1800b-mailbox
->=20
-> Remind me, why only a cv1800b compatible when you also mention sg2000?
-> Rebranding of the same SoC, or something like that?
-
-Yes, this is some kind of rebranding behavior, as discussed previously
-in [1].
-
-And since the behavior of mailbox is consistent between CV18XX/SG200X
-when using C906B RISC-V core (Arm-A53 and C906B can't run at the same
-time), I only added sophgo,cv1800b-mailbox as a common compatible.
-
-Things will be slightly different when using Arm-A53 core, the receiver
-id in the driver will be different. I think a compatible like
-sophgo,sg2000-mailbox-a53 can be added to handle it when the A53 core is
-ready [2].
-
-link: https://lore.kernel.org/linux-riscv/20240116-music-luckiness-3220a9efd=
-bbf@spud/ [1]
-link: https://lore.kernel.org/all/20250316185640.3750873-1-alexander.sverdli=
-n@gmail.com/ [2]
-
->=20
-> Cheers,
-> Conor.
->=20
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  "#mbox-cells":
->> +    const: 2
->> +    description:
->> +      The first cell indicates the channel index (0-7), the second cell
->> +      indicates the target processor ID (0-3) to which messages are sent=
-.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - "#mbox-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    mailbox@1900000 {
->> +        compatible =3D "sophgo,cv1800b-mailbox";
->> +        reg =3D <0x01900000 0x1000>;
->> +        interrupts =3D <101 IRQ_TYPE_LEVEL_HIGH>;
->> +        #mbox-cells =3D <2>;
->> +    };
->>=20
->>
-
---=20
-Best regards,
-Junhui Liu
+>
+> Neil
+>
+> >
+> > Signed-off-by: Da Xue <da@libre.computer>
+> > ---
+> >   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 10 +++++-----
+> >   1 file changed, 5 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/bo=
+ot/dts/amlogic/meson-gxl.dtsi
+> > index 2dc2fdaecf9f..aed8dbfbb64d 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> > @@ -214,7 +214,7 @@ mux {
+> >                               groups =3D "i2c_sck_ao",
+> >                                      "i2c_sda_ao";
+> >                               function =3D "i2c_ao";
+> > -                             bias-disable;
+> > +                             bias-pull-up;
+> >                       };
+> >               };
+> >
+> > @@ -576,7 +576,7 @@ mux {
+> >                               groups =3D "i2c_sck_a",
+> >                                    "i2c_sda_a";
+> >                               function =3D "i2c_a";
+> > -                             bias-disable;
+> > +                             bias-pull-up;
+> >                       };
+> >               };
+> >
+> > @@ -585,7 +585,7 @@ mux {
+> >                               groups =3D "i2c_sck_b",
+> >                                     "i2c_sda_b";
+> >                               function =3D "i2c_b";
+> > -                             bias-disable;
+> > +                             bias-pull-up;
+> >                       };
+> >               };
+> >
+> > @@ -594,7 +594,7 @@ mux {
+> >                               groups =3D "i2c_sck_c",
+> >                                     "i2c_sda_c";
+> >                               function =3D "i2c_c";
+> > -                             bias-disable;
+> > +                             bias-pull-up;
+> >                       };
+> >               };
+> >
+> > @@ -603,7 +603,7 @@ mux {
+> >                               groups =3D "i2c_sck_c_dv19",
+> >                                     "i2c_sda_c_dv18";
+> >                               function =3D "i2c_c";
+> > -                             bias-disable;
+> > +                             bias-pull-up;
+> >                       };
+> >               };
+> >
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
