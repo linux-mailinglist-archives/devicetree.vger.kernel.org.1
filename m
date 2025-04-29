@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-172123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A84BAA3BB6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 00:46:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC9CAA3BEC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 01:07:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BACE21B6427A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 22:46:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B47B61B65F24
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 23:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C58C268C73;
-	Tue, 29 Apr 2025 22:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA17E29E04F;
+	Tue, 29 Apr 2025 23:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AuQ9wj33"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SQ7xDq8l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B8724BBE4
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 22:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0645F13A3F7;
+	Tue, 29 Apr 2025 23:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745966803; cv=none; b=a6abo0YnH1A7vkaLIWhRrWVVw1WxClqtTiOCh2VKfW9vKIBaAtrVZG49Ba5I/IE+bclSqiRfT9CQoef5DdTS9RCz3w4n1K9OB4IxHg7hISKApSk2rC/cYViLXa3HY/JTXE6P6icJTzffhz5d/ffTBSBcAe5zaLd8YFMJ5ID6+WA=
+	t=1745968054; cv=none; b=HdMhTa/giI9bOaofnfVKSuNAbB6Zz+cWkaDh3XOtvPWg6yv3J8kc7b2YPQZkr0VvTZuEqmbYMTV0j0vKeuOuQmoo9G+MCVrWdT9AzjEegCzDH1c39JZE8IqStwoo7ST5t+0YeOmvKxGSFO33NrNSTU3iVQIItpt2CeM9NJX0lvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745966803; c=relaxed/simple;
-	bh=EMiJ/dxywsGmUp0dA3BYacymFWhlXTOhMsOz3prXtgg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pL1HhhoSm/x0wtBXGH8yj1ArxfYBzBKX4EkmpDGVB+ofMITxpdm5PklS1OtQZsdOt+THYGXn9DhyMrxAfB3AyjQHMaMHVUqRdz0V6Wwn70SiPipLIFoVsOYRQCZ6v00U+BPks4izem22kx6DEI8wMzZJ5lAojkqXXtxm0HVqu40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AuQ9wj33; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-2c769da02b0so5585711fac.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 15:46:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1745966800; x=1746571600; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jxON1Bozl2aLfPwU6gx/eCpiRYdqSVgYx9l/nuultOg=;
-        b=AuQ9wj33uSjqv4M4NUuMU2lNLo4gB7+jmR45JJ3q9dvQHotvW65bXv0A7dUurIwmVe
-         5DVi/ZE7cyeuvC9sLHRma+6Q1dP3mSekSHFbfJXyEeR5nPbuVZc59yOOXPygqIvAQd2u
-         db597FD1uyN7GwPJKhxSsvB/TIs/Bzw6lv3ybrezl71VDc34YBBUS9V7RtjxW2tA3hmc
-         2j3xUCkvI4g2DtXQtjh0CyZ5n+NxNFyfZWk90jE+aUR3tiTLvGshp2bswhiYAZ57i/+j
-         4+BKlodSLdVgxwCMHduwbLnwFaSzejt0OGx3/7uItJeSRwpZ/ATCorrsI+xXRYv7EC3z
-         EcZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745966800; x=1746571600;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jxON1Bozl2aLfPwU6gx/eCpiRYdqSVgYx9l/nuultOg=;
-        b=Te0nUMScNFq0VUqSAtYEm3BwCZboQ3JZTYnjsuQX9HHDXERAAQTPdU7ZHS1CHTDfOd
-         U74L7xagd6iVOrp38uhacVj6Mxhcd+Ao9pmN8RoE+4DX9/EQinnbX+ZhIq+xfRFQeUUC
-         U7NeaG774rL9MvMB+oYXRzxfnjXJdll3dY55n3a+MRca1c5SOAAJ60V6zjaXO455w1Xo
-         Q/unbhGAsvYlyKDrr/VQIRbsXPxzPw9E5CkC5FbToCcxkE2NCVsl1i9njtjP7/5doURf
-         gWurw5HDzRX71cQF43NUBDsEkYNXkUKUwO8osfU7mS0Wu2wCF8BTozL1LRnxyBhGBav7
-         Htfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUmEoFLu7pC43TdOQTCgJVmQ7x+qPJY5w//QcDfuptATGTa1JthnNpKb87fW3IUN8esEQUTWC92Wuh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPFRbuLPRo3q/hfOAhXEqAN1Lgd3m33LR5ntAKPP1NIIFwJLKS
-	whlqV5gjOMbhmzbUZnUkn91OXp2tCcfe2OScjGxoj1ODAlXLPV1pFd68/ywpU+k=
-X-Gm-Gg: ASbGncvFg0g2g2ukCDcd/EQ68VeW4Qf+Wa835vqgKj0BO37Tx/C0Bd2wIob8MjDCYPc
-	1MQr3OafWFroHcCXngxEXYbGiADD7pZ1yAYotqSU5nWqA++//odvdvgSJETtKH7aQ4xXI3NidxJ
-	tEZ9/nuR25OSXmDxNves7WN1/lONAB0tKiEyfTAOn0ryVpKbF/sd3BISUG3UFEf23ZCKHYBQps6
-	Ey+SaUX5mc5A0FqmGjnL+pG8hL9xOebPqzWni+PZSd8KMT5Gqoq1t8cxQGPWYPykV29QPgMckwZ
-	leNO7HcjtvXwdmSMAc+KBFt+MMIW2I9mpIiRGVSiQyNx5a3oxvgJIKALhrFrhc1HOBcjDAapuDE
-	3hNutnBQ/y+m97Ff+jg==
-X-Google-Smtp-Source: AGHT+IFuVVoGKVmn1rmBPbb+UXnQybHQ7N3kb98326v2W/tSAiNfoTR5IXLxMEWxRISYzAB0Cl37eQ==
-X-Received: by 2002:a05:6870:1c9:b0:29e:4ba5:4ddc with SMTP id 586e51a60fabf-2da6a345f37mr457236fac.24.1745966799750;
-        Tue, 29 Apr 2025 15:46:39 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6? ([2600:8803:e7e4:1d00:dc17:157d:e8b2:3ad6])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2da6e5934dfsm54103fac.45.2025.04.29.15.46.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 15:46:39 -0700 (PDT)
-Message-ID: <0677db3c-9c36-4f34-93c0-5c53d702c4bd@baylibre.com>
-Date: Tue, 29 Apr 2025 17:46:37 -0500
+	s=arc-20240116; t=1745968054; c=relaxed/simple;
+	bh=sQyQcn/NJDF0PMJuRn0HWiah8ew+Af20fUs0fgdqzX4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BlnuFlnE4X6eQXLH/4FeTLLjGcMDgi5p2d7YFwTtGzPa9oS4bfhSYTj9AZB2APBxbop+vHDqio5lZDUevUcAfoUxYQV2Ie/D5cqMBzL6ohLxNCZuUwx9KOR9B2oTVvls25M7/J5DLfb4L/Hx3bCEm7nGKdaHRrEtrtRrXIlvUAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SQ7xDq8l; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLaR2B012228;
+	Tue, 29 Apr 2025 23:07:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jaV5N0qvUnZDuYjp+FnsHmSl9vOLniX82vpDUzJOuwg=; b=SQ7xDq8lBCSmkhnJ
+	yoAbUB8+VWn9ubzIbLGhJSZe12NttIZ6+uD938zydWrVcbHn9BrhzxsxbxG++eh9
+	G27+8p5Hf0idbKSexEoS6x/zmDMlCzl7tQtPr2kLWcnrvIJVZnrruTC5uX1SEgEs
+	Vq2IwboEYg9N3Sy/I7LH7YvjeHVQaN2qHpjMaq62Ey5DrZlL0uoao80ea8XMlpXB
+	RGRhxEp0qhdNdPP7CbSA3VAwDIYepY+O98MXevAF7XC7MtimmEsDRKCHt+4nibM5
+	LvliQV5c8C+B8uiiNQDhnMDhFI1pVsElX2n1x82/pM0/u1DRKvJsEPquW0bTD6Kr
+	DJz/2g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u3r5bc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 23:07:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53TN7QBj031444
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 23:07:26 GMT
+Received: from [10.110.114.218] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Apr
+ 2025 16:07:25 -0700
+Message-ID: <97ae84c6-0807-4b19-a474-ba76cc049da9@quicinc.com>
+Date: Tue, 29 Apr 2025 16:07:24 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,85 +65,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] iio: adc: ad7606: add gain calibration support
-To: Angelo Dureghello <adureghello@baylibre.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-5-eb4d4821b172@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH RFC/WIP 1/4] arm64: dts: qcom: sm8750: Add display (MDSS)
+ with Display CC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Jessica Zhang <jesszhan@quicinc.com>,
+        Abhinav Kumar
+	<abhinavk@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
+ <20250424-sm8750-display-dts-v1-1-6fb22ca95f38@linaro.org>
+ <81205948-ae43-44ee-aa07-e490ea3bba23@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20250429-wip-bl-ad7606-calibration-v1-5-eb4d4821b172@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <81205948-ae43-44ee-aa07-e490ea3bba23@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Bv6dwZX5 c=1 sm=1 tr=0 ts=68115baf cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=aYvukNd2sAEyGAm9ZjkA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: 2VlkCAuuU0yLdCc2gPV0we-DqBowCEBd
+X-Proofpoint-ORIG-GUID: 2VlkCAuuU0yLdCc2gPV0we-DqBowCEBd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDE3MSBTYWx0ZWRfXz25DB8MGcPw6 gadCEwiVhQKt2VrWI+WhSHF69+XkqswHIz3O1Xcn3MKVWn006slBll8NSqEN9LlgIV+g/SPbyGU 3Nr0efmC3pRbuuoQODOk7R6oMIg09/0EJPFXCzrDzYISS7wLvHgLPD/I3F4eIQlmT4ku5jnSbLz
+ LPObPTHakgzmkynJIvPHFa/fTvjlQPM0ZSCF0ZYtDT8ULdUl0RHodKn4SjTU84vRgVkgwWQgKyX KtT73ny/qzTsLlRQaewkPFlQoOOcRRNERCACvFErLyq+xfhIw7IS1inmKSTXxzMb9kTX5q5rW3R HRiulJth3ESdTwJgUDkIneV+sKx2xXS5i+aVeISDImy1Lprk3ZgvL/kYds/jRfVGs13M7lqVV0C
+ +qHhbmeDsQehKNS163Mk+EDvqA8TxCFLTZqpeZqWa7OQZ67zHekrW/pkWe5wGl0p2Hol7dPp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_08,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ mlxlogscore=702 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504290171
 
-On 4/29/25 8:06 AM, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
+
+
+On 4/28/2025 2:31 PM, Konrad Dybcio wrote:
+> On 4/24/25 3:04 PM, Krzysztof Kozlowski wrote:
+>> Add device nodes for entire display: MDSS, DPU, DSI, DSI PHYs,
+>> DisplayPort and Display Clock Controller.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+> 
+> [...]
+> 
+>> +				mdp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+> 
+> The computer tells me there's also a 156 MHz rate @ SVS_D1
+> 
+> Maybe Abhinav could chime in whether we should add it or not
 > 
 
-...
+Yes I also see a 156Mhz for LOW_SVS_D1 but we had a similar entry even 
+for sm8650 and did not publish it in the dt.
 
-> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
-> +					struct iio_chan_spec *chan)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	unsigned int num_channels = st->chip_info->num_adc_channels;
-> +	struct device *dev = st->dev;
-> +	int ret;
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		int reg, r_gain;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* channel number (here) is from 1 to num_channels */
-> +		if (reg < 1 || reg > num_channels) {
-> +			dev_warn(dev, "invalid ch number (ignoring): %d\n", reg);
-> +			continue;
-> +		}
-> +
-> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-> +					       &r_gain);
+It was present till sm8450.dtsi but dropped in sm8550/sm8650 even though 
+LOW_SVS_D1 is present even on those.
 
-Instead of...
+I think the reason could be that the displays being used on the 
+reference boards will need a pixel clock of atleast >= low_svs and the 
+MDP clock usually depends on the value of the DSI pixel clock (which has 
+a fixed relationship to the byte clock) to maintain the data rate. So as 
+a result perhaps even if we add it, for most displays this level will be 
+unused.
 
-> +		if (ret)
-> +			return ret;
+If we end up using displays which are so small that the pixel clock 
+requirement will be even lower than low_svs, we can add those.
 
-... we need:
+OR as an alternative, we can leave this patch as it is and add the 
+low_svs_d1 for all chipsets which support it together in another series 
+that way it will have the full context of why we are adding it otherwise 
+it will look odd again of why sm8550/sm8650 was left out but added in 
+sm8750.
 
-		if (ret == -EINVAL)
-			r_gain = 0;
-		else if (ret)
-			return ret;
+> [...]
+> 
+>> +				mdss_dsi_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+> 
+> Similarly there's a 140.63 MHz rate at SVS_D1, but it seems odd
+> with the decimals
 
-Otherwise driver fails to probe if adi,rfilter-ohms is missing.
+For this one, yes its true that LOW_SVS_D1 is 140.63Mhz for sm8750 but 
+this voltage corner was somehow never used for DSI byte clock again I am 
+thinking this is because for the display resolutions we use, we will 
+always be >= low_svs so the low_svs_d1 will never hit even if we add it.
 
-> +
-> +		if (r_gain < AD7606_CALIB_GAIN_MIN ||
-> +		    r_gain > AD7606_CALIB_GAIN_MAX)
-> +			return -EINVAL;
-> +
 
-Also, return dev_err_probe() on the returns above would have made debugging
-easier.
+> 
+> Konrad
+> 
 
-> +		/* Chan reg is 1-based index. */
-> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
-> +					  r_gain / AD7606_CALIB_GAIN_STEP);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
 
