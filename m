@@ -1,235 +1,101 @@
-Return-Path: <devicetree+bounces-171973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1B8AA0C63
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 14:57:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87500AA0CA6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:04:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E893B5222
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 12:56:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C0931A82DE6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 13:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55CE2C3778;
-	Tue, 29 Apr 2025 12:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A39487BF;
+	Tue, 29 Apr 2025 13:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3yTxivvD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bYK9VV3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A45129DB61;
-	Tue, 29 Apr 2025 12:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7502AE99;
+	Tue, 29 Apr 2025 13:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745931366; cv=none; b=ZIvGrGl6bPnW5osc9ELiVgPjLm5wYwdVPRcOBQw93UkbWbY/7GI+4u38SWQPCRjsIkf92Zr4bog/ZBQI23l6VW7ivq+V1/COi+0vmWn1YZvySyUXQ/D4JDfI2s7AluIr7yLV7xY3z1XdnZsqgmEvdZDIZEZUM9TUQahnLOcChMw=
+	t=1745931756; cv=none; b=PQO50Ou2tRFHb8xlgyBMWjmyb5ivel96mTgvUDkfxlnYTGBH1d/jWKLgi8nIcv/r6N8l8V7VEaxKyvHGIzUBXWgWG59GeLZROUcGOaQZmTxXYH7pmd2mJ64BtrT7PtIk3ECLuJETt7t4kBZ1dueI8vDNhI7GSURhR5IcwAuHGNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745931366; c=relaxed/simple;
-	bh=95nSqHXxfSV43EZ23S1a/ydglRGvVqHZdlEbORmYdRI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=DrmFOCBbIncBEP7HxIS8Fb2pcOH/UGD6B458ISLUrBCgG+647XtMoD7HayOScWCMY6sde+iHZyxwjrbwBWWzr5M7jztddWseU5y/D5gwOBZ2ySWWJSq7JToEAqLf1LM+UzkiyCU1kKjgGWojkJniw0TaeyHB6XAbdKcx/gO8+ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3yTxivvD; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:Date:From:From:Sender:Reply-To:Subject:Date:Message-ID:
-	To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=YKQJHOsTK+gJkvmr2GdsF5P4iTyZjhwewd895DhBYOY=; b=3yTxivvDjrCoXtQppLCetJhH4P
-	kib3CDU4SM3JOaZB9vOWlwxlDD4h9p2t3dHHR6Rzl+hNQI2yCSRUglm/D7/ofOj74KFlC4N0NHZky
-	pGzk+w4JxleLlPO0txlzcb1XXTYpvPBx0/Kl9hJMt+R3HEa4Xge8E0w26TCaWTGkXEUE=;
-Received: from c-68-46-73-62.hsd1.mn.comcast.net ([68.46.73.62] helo=thinkpad.home.lunn.ch)
-	by vps0.lunn.ch with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u9kV9-00AwCN-V1; Tue, 29 Apr 2025 14:55:57 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-Date: Tue, 29 Apr 2025 07:55:14 -0500
-Subject: [PATCH net] dt-bindings: net: ethernet-controller: Add informative
- text about RGMII delays
+	s=arc-20240116; t=1745931756; c=relaxed/simple;
+	bh=cVz4BLzmyccotxv38TkDl5vqVFZjC2oj8EFmw1P14eQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gaSwp6EQ5uhsphXHwnBRVEhZD2NyAGCzEb1t9XAYzpnmpfozoD+dl24hdJtpEVwQIYA1+ICxk/w+E3tZSt/hTn+4oN0pE1q96lVFQ7L3qLU/thd1C1Lnc04p7VYlPTiwvzLFvMJyX2W+XlZkzjwYbhOoPXA0NXf0WoYwhsILklU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bYK9VV3g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E22FC4CEEB;
+	Tue, 29 Apr 2025 13:02:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745931755;
+	bh=cVz4BLzmyccotxv38TkDl5vqVFZjC2oj8EFmw1P14eQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bYK9VV3geFSWspM0z/K/ww0O0r/R/s8JNHhaWwuUf2Q3XG2yZ9kmGrc7WLar0WCI0
+	 YijhSWIni/UDV/Ok7OR+0ZyUjQFyZQ9A0713vTSSeDcIGWIRdmVcCN4Eft5plkoRqX
+	 JBhkc0yjFiJIlvMb5rjuzjH0UVq0nIkZZiGCFluBrvJIVjvLB6329xJob5RiSYbU8H
+	 vhJWUsg2pY2KqrjlOWPgRIcu9zBaBTIHAKcnbJ2aFEwwsJLVuyowKU97AczuwQvcCa
+	 7KionaFXgUPiE/9Pi6aRc+1lB5Xr++qY6/tP60Zy+fbrkSReejg1rhyCXNAWJC01Rm
+	 DS2NPKeGky5lg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u9kbd-000000006Eq-47WT;
+	Tue, 29 Apr 2025 15:02:38 +0200
+Date: Tue, 29 Apr 2025 15:02:37 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>,
+	Xilin Wu <wuxilin123@gmail.com>,
+	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] arm64: dts: qcom: x1*: Fix vreg_l2j_1p2 voltage
+Message-ID: <aBDN7V6eFoIn6r0J@hovoldconsulting.com>
+References: <20250423-x1e-vreg-l2j-voltage-v1-0-24b6a2043025@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250429-v6-15-rc3-net-rgmii-delays-v1-1-f52664945741@lunn.ch>
-X-B4-Tracking: v=1; b=H4sIADHMEGgC/x3M3QpAQBBA4VfRXJta6295FbnY1mCKpVmJ5N1tL
- r86nQcCCVOANnlA6OTAm4/I0gTcbP1EyEM0aKVLVegGzwqzEsXl6OlAmVZmHGixd0BjlXJFbcx
- oa4iDXWjk6593EGvo3/cDo4vLhnEAAAA=
-X-Change-ID: 20250429-v6-15-rc3-net-rgmii-delays-8a00c4788fa7
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- "Russell King (Oracle)" <linux@armlinux.org.uk>, 
- Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6597; i=andrew@lunn.ch;
- h=from:subject:message-id; bh=95nSqHXxfSV43EZ23S1a/ydglRGvVqHZdlEbORmYdRI=;
- b=owEBbQKS/ZANAwAIAea/DcumaUyEAcsmYgBoEMxWXrFVKoBYfZGKzbYCIYu7Q/q6LlCXwBfe9
- muqUx0XQWKJAjMEAAEIAB0WIQRh+xAly1MmORb54bfmvw3LpmlMhAUCaBDMVgAKCRDmvw3LpmlM
- hNT6EADJJ7ViHkKweou86QSf9UIpQnpsZ0cZm5YGFRBZyLzs9X3YJw41F4HLfx1G0Md5ONZnc5h
- lWfYgckEeyPhZdMrRACwCW5ofDtVA11/+LkI0jrLd/CnweNy5MKRft0BN3fVgAczgQgTehteSmi
- PmYRlqZ24TtmqW5k5UyYOkrdPDfNDiH6U3wTL1f1Mn8QrLKWakvRsLlI3m90gopgg6DtYRuChty
- pJ6j5BKXWwN/jdjhvN1HDGE4N283PM14mOXSC16VAD8WRzYeFPIyKw2zW3yxN834b+qnPB+z03u
- vfa6Ca+DAbpd+DH5u8vt2tHv6zj5ZPNt4d4jIl/Th1WLQvK1vwt2yIP8/mAaWWWAIk/OdnJZ3rw
- Vo03/iKoqsK1BOPiM2eFsZuWwX1vGCpnKOIr12pbh3VYor8e1DgJfvmIrqTn025cNrx1wHOkFMM
- IGaJnw8NgbIICJpO7zFdNLj8jHrRMRTnKapZbu/20npuAv/ucs0Dsr2yG2BCA4Wt0IB4VycWPkE
- C08WSCi3feYVHpt/Q51ZhXQ+cdotctbFfP3qKbIDWT1RmfyM1OlCyxzdKxOx6FC0Zln4xByVEoh
- BVqlMKhnqEXqgJ2WXdsoKOqKAuu5cYoXNm1bvosjbeqQZN3UKwp6LnuGpPT0a/t0axbRTK3jwWU
- lWCIGiZL/1YqTIA==
-X-Developer-Key: i=andrew@lunn.ch; a=openpgp;
- fpr=61FB1025CB53263916F9E1B7E6BF0DCBA6694C84
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250423-x1e-vreg-l2j-voltage-v1-0-24b6a2043025@linaro.org>
 
-Device Tree and Ethernet MAC driver writers often misunderstand RGMII
-delays. Add an Informative section to the end of the binding
-describing in detail what the four RGMII delays mean.
+On Wed, Apr 23, 2025 at 09:30:06AM +0200, Stephan Gerhold wrote:
+> Several of the Qualcomm X1* device trees upstream specify the wrong voltage
+> for the L2J regulator. In the ACPI DSDT table, PPP_RESOURCE_ID_LDO2_J is
+> configured with 1256000 uV instead of the 1200000 uV. Change all affected
+> device trees to use the same for consistency and correctness.
+> 
+> In the other device trees upstream, the voltage is already correct:
+>  - x1e78100-lenovo-thinkpad-t14s.dtsi
+>  - x1e80100-dell-xps13-9345.dts
+>  - x1e80100-microsoft-romulus.dtsi
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> ---
+> Stephan Gerhold (6):
+>       arm64: dts: qcom: x1-crd: Fix vreg_l2j_1p2 voltage
+>       arm64: dts: qcom: x1e001de-devkit: Fix vreg_l2j_1p2 voltage
+>       arm64: dts: qcom: x1e80100-asus-vivobook-s15: Fix vreg_l2j_1p2 voltage
+>       arm64: dts: qcom: x1e80100-hp-omnibook-x14: Fix vreg_l2j_1p2 voltage
+>       arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Fix vreg_l2j_1p2 voltage
+>       arm64: dts: qcom: x1e80100-qcp: Fix vreg_l2j_1p2 voltage
 
-Additionally, when the MAC or PHY needs to add a delay, which is
-software configuration, describe how Linux does this, in the hope of
-reducing errors. Make it clear other users of device tree binding may
-implement the software configuration in other ways while still
-conforming to the binding.
+I only checked the CRD (and T14s) DSDT, but this looks correct:
 
-Fixes: 9d3de3c58347 ("dt-bindings: net: Add YAML schemas for the generic Ethernet options")
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
----
- .../bindings/net/ethernet-controller.yaml          | 92 +++++++++++++++++++++-
- 1 file changed, 88 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 45819b2358002bc75e876eddb4b2ca18017c04bd..4abaeeb1b4099525170fdac21d5540aa841b18ff 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -74,19 +74,19 @@ properties:
-       - rev-rmii
-       - moca
- 
--      # RX and TX delays are added by the MAC when required
-+      # RX and TX delays are added by the MAC when required. See below
-       - rgmii
- 
-       # RGMII with internal RX and TX delays provided by the PHY,
--      # the MAC should not add the RX or TX delays in this case
-+      # the MAC should not add the RX or TX delays in this case. See below
-       - rgmii-id
- 
-       # RGMII with internal RX delay provided by the PHY, the MAC
--      # should not add an RX delay in this case
-+      # should not add an RX delay in this case. See below
-       - rgmii-rxid
- 
-       # RGMII with internal TX delay provided by the PHY, the MAC
--      # should not add an TX delay in this case
-+      # should not add an TX delay in this case. See below
-       - rgmii-txid
-       - rtbi
-       - smii
-@@ -286,4 +286,88 @@ allOf:
- 
- additionalProperties: true
- 
-+# Informative
-+# ===========
-+#
-+# 'phy-modes' & 'phy-connection-type' properties 'rgmii', 'rgmii-id',
-+# 'rgmii-rxid', and 'rgmii-txid' are frequently used wrongly by
-+# developers. This informative section clarifies their usage.
-+#
-+# The RGMII specification requires a 2ns delay between the data and
-+# clock signals on the RGMII bus. How this delay is implemented is not
-+# specified.
-+#
-+# One option is to make the clock traces on the PCB longer than the
-+# data traces. A sufficiently difference in length can provide the 2ns
-+# delay. If both the RX and TX delays are implemented in this manor,
-+# 'rgmii' should be used, so indicating the PCB adds the delays.
-+#
-+# If the PCB does not add these delays via extra long traces,
-+# 'rgmii-id' should be used. Here, 'id' refers to 'internal delay',
-+# where either the MAC or PHY adds the delay.
-+#
-+# If only one of the two delays are implemented via extra long clock
-+# lines, either 'rgmii-rxid' or 'rgmii-txid' should be used,
-+# indicating the MAC or PHY should implement one of the delays
-+# internally, while the PCB implements the other delay.
-+#
-+# Device Tree describes hardware, and in this case, it describes the
-+# PCB between the MAC and the PHY, if the PCB implements delays or
-+# not.
-+#
-+# In practice, very few PCBs make use of extra long clock lines. Hence
-+# any RGMII phy mode other than 'rgmii-id' is probably wrong, and is
-+# unlikely to be accepted during review.
-+#
-+# When the PCB does not implement the delays, the MAC or PHY must.  As
-+# such, this is software configuration, and so not described in Device
-+# Tree.
-+#
-+# The following describes how Linux implements the configuration of
-+# the MAC and PHY to add these delays when the PCB does not. As stated
-+# above, developers often get this wrong, and the aim of this section
-+# is reduce the frequency of these errors by Linux developers. Other
-+# users of the Device Tree may implement it differently, and still be
-+# consistent with both the normative and informative description
-+# above.
-+#
-+# By default in Linux, the MAC is expected to read the 'phy-mode' from
-+# Device Tree, not implement any delays, and pass the value to the
-+# PHY. The PHY will then implement delays as specified by the
-+# 'phy-mode'. The PHY should always be reconfigured to implement the
-+# needed delays, replacing any setting performed by strapping or the
-+# bootloader, etc.
-+#
-+# Experience to date is that all PHYs which implement RGMII also
-+# implement the ability to add or not add the needed delays. Hence
-+# this default is expected to work in all cases. Ignoring this default
-+# is likely to be questioned by Reviews, and require a strong argument
-+# to be accepted.
-+#
-+# There are a small number of cases where the MAC has hard coded
-+# delays which cannot be disabled. The 'phy-mode' only describes the
-+# PCB.  The inability to disable the delays in the MAC does not change
-+# the meaning of 'phy-mode'. It does however mean that a 'phy-mode' of
-+# 'rgmii' is now invalid, it cannot be supported, since both the PCB
-+# and the MAC and PHY adding delays cannot result in a functional
-+# link. Thus the MAC should report a fatal error for any modes which
-+# cannot be supported. When the MAC implements the delay, it must
-+# ensure that the PHY does not also implement the same delay. So it
-+# must modify the phy-mode it passes to the PHY, removing the delay it
-+# has added. Failure to remove the delay will result in a
-+# non-functioning link.
-+#
-+# Sometimes there is a need to fine tune the delays. Often the MAC or
-+# PHY can perform this fine tuning. In the MAC node, the Device Tree
-+# properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
-+# be used to indicate fine tuning performed by the MAC. The values
-+# expected here are small. A value of 2000ps, i.e 2ns, and a phy-mode
-+# of 'rgmii' will not be accepted by Reviewers.
-+#
-+# If the PHY is to perform fine tuning, the properties
-+# 'rx-internal-delay-ps' and 'tx-internal-delay-ps' in the PHY node
-+# should be used. When the PHY is implementing delays, these
-+# properties should have a value near to 2000ps. If the PCB is
-+# implementing delays, a small value can be used to fine tune the
-+# delay added by the PCB.
- ...
-
----
-base-commit: d4cb1ecc22908ef46f2885ee2978a4f22e90f365
-change-id: 20250429-v6-15-rc3-net-rgmii-delays-8a00c4788fa7
-
-Best regards,
--- 
-Andrew Lunn <andrew@lunn.ch>
-
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
