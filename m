@@ -1,163 +1,179 @@
-Return-Path: <devicetree+bounces-172050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499D1AA10FF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:53:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81033AA1103
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 17:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FB021899C11
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:53:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC2743A7378
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 15:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FAF24167C;
-	Tue, 29 Apr 2025 15:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94EE23FC7D;
+	Tue, 29 Apr 2025 15:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bodHUhFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E0F2405EB;
-	Tue, 29 Apr 2025 15:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C8223F413;
+	Tue, 29 Apr 2025 15:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745941991; cv=none; b=nkR/vVUEzmey14YiWIvR3DJ+E7Z93bXaN/Dx6JpwM9cakbkrqH7IWILL8D9rnIb6XtU8M2Vq2PzflG7vWPdusPAlMDT2yWVwsVI3OwXioPA4WkGAgMBIT/LndWZY287U/qxOhn8+3oihUiO4HqvjdYgQHyFCiVBLBxNrkOxLuTI=
+	t=1745942012; cv=none; b=Z49u7vcgfP3j4OHoA4XI4n5IuFIFIBDnSKneZhBPgdfNfiZXI7udJkZFJK99rG9+WvC54fJ36LYXDikthBlO2jh9gxFopW2eCbkhtlzR4VnNo7erLOSLJS/AZugndy7yfX0kg4wybUGUyFEouI1wNB+3+jUAMjfz6nGQzvOC/bU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745941991; c=relaxed/simple;
-	bh=qlAjtk3tN6wTgfg/HJjz3xA7Cj3B2pXR8JZVSucbYkk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h43U2HHc/u793iEN4pavKb5DzuDovHfnMTgdcsc3OrGJ0Svcx60PMEVuE3SJCS6x3nxZ8qlgiG7h4/LQ9Yx/hmmpDodPBdOS5unu5/yLnk/7F8e6/WNGawhqmnn44nXNBTudR9YZ4TTfaEmLtw9bIetlfqazN2m8hInTWvQFm78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54e9021d2b5so4577823e87.1;
-        Tue, 29 Apr 2025 08:53:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745941986; x=1746546786;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8+3XDw0zebRF4K8CmESLbvyPpxu1c3QADWt4g05ubeo=;
-        b=wGoZi59sBD3KSsc4vdmmcDccbsy1ppVRlLIlCjIgYvlpzztjx82G/fvoeCh9aO24ZS
-         IlbcCECNdO/guARgfwfnOHl6VKy01hp/U2TK5y0LUHSFNTylw0Ohn+LHzQsfF80Dd8Y1
-         6m0NAHNGF88vtI583jg6QN8xPp3zFFaZ80Ww6mzYNR4/35qPYevLgcgDihyFAmn2A/Ne
-         doGo1EWqTDNYHBENyk2FY1TssJj9+4nMQJdPIEZxmOd8v/n3a/ORn4z8zbSHMI/+WFY7
-         NMuuyHwC5xjYVCCVXq0ZyfKTEyzsnIx0rccEKHXf6L4pPhGcVr+XP1Ooxtyzw9ZNfj00
-         LjVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkGi5uoSgWsNalU9ZhifvzLNQW7yV89jIrhlw/4Dissv5/+Mxgt93apwbuwRYEuUct6jWvllo3vBrSkV6n@vger.kernel.org, AJvYcCVvS8frXnEh3il46r74k/sFTyy1I/7xMsJr31459gFizaNoJdTdTU+/hadOxGsWvAOsqp1r2S0plMDv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxakJzL4NpkuMyOT6XM1qZeRF9PXpa0XtxesfjYHu++CnYsROk+
-	xI552id2MMoHAtrvCGiMR9K4nf9nuFderqts1Ifg17yIDGsTTJPaZu1y4OI9
-X-Gm-Gg: ASbGncsWTYDd7KIkr64FESSyExUCUX7v2Zcpzl+3/dNQ1b3KgnzWKd5yh+mrXJHrNn8
-	u68+A2n7N1G1RwtCEPncAlytaVaDtnrqohpG7I3v2WwEcH/72lZCZXaPafYO41m8c6EJGLsBF/8
-	gm9dEVSP5f2Z7NlodCqoLyZR99mlVm9wcaLQoSorifVflip7XOXenqco2MVw8ZZwJE31QY9EfUx
-	9fnSTgHEuvV0pPeYqi6ZxRvBS39E7YDgMcvgObO6xRCsNI3Ku4LafXMX9Mjy8cpd2DZWZ1pTnPX
-	TxZjSHR/98EBta5Tna+j9VS4exbM7gyHj+xclTr4htQrKX+szPIFU53Y0fsoWj2inrGLZGnaoA=
-	=
-X-Google-Smtp-Source: AGHT+IHQTsGcVxMOfgcvQYWPG+gO84X9afJ37TaTBa1+MapJvM3MwasPRCy6AzjPTe99yZvCers28A==
-X-Received: by 2002:a05:6512:3b0a:b0:54d:6b7b:4ff2 with SMTP id 2adb3069b0e04-54e9e163413mr1051089e87.4.1745941985875;
-        Tue, 29 Apr 2025 08:53:05 -0700 (PDT)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7ccb896esm1909544e87.256.2025.04.29.08.53.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 08:53:04 -0700 (PDT)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30effbfaf61so70349221fa.0;
-        Tue, 29 Apr 2025 08:53:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUDStgZElxCbqTHDNn00eLdn9B6MWYv7MjiASKK0dvOVUrDfAXKwwbMNJuL3IIOsqn/YcuGeGH7K4LxSC6G@vger.kernel.org, AJvYcCVmnpKDYIXblHpNqjqbmhodo+t/IxuRTvYvRBepXHElO81c9jn/N6e6bGlV/WheBN6Rosd0JsqkEfS5@vger.kernel.org
-X-Received: by 2002:a05:651c:1546:b0:30b:aaca:9b2e with SMTP id
- 38308e7fff4ca-31d4321c950mr11651651fa.0.1745941984684; Tue, 29 Apr 2025
- 08:53:04 -0700 (PDT)
+	s=arc-20240116; t=1745942012; c=relaxed/simple;
+	bh=KUMxrCWS4kHpmdAy9k+WvcFlk1e7OoIGE+mnAbwsrzc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Da8OsU1jDLbRnjeLkIVbSSNJ2AsNcBaT1EZVEH8LhwiVxQZP/y4uRW3xyelp4Aa3U5Kht0Al9VI01xvHEE+d4JtMfwk2dUEUhuiUIW4Hu7SyMqiJJBQ2PnoTLm94bkgAlEAo3q8/8KORhU3EXXDvHIsJAofQwG1mToc5E9qKKwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bodHUhFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FF31C4CEE3;
+	Tue, 29 Apr 2025 15:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745942011;
+	bh=KUMxrCWS4kHpmdAy9k+WvcFlk1e7OoIGE+mnAbwsrzc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bodHUhFWmP8Sz+DwztlGIKQ3DTG0NltdGnsHe7ni+bUP6fEyz2VjB5G4/RO632uxl
+	 Ok5eMkAxLDy3ES9iw89J6qsDeCiVWLbFAOl4I7iIfYFK1owb91ueyY3AfuR298JbVI
+	 jqUuik7hggNabBfGbkajNmHQQFzZBlSs8lHBfO7Pva49NvgOzont8BnXeZz/tZJqXY
+	 ajwCCZIduCGd8lSj7mGgCYRo7ELlsZHcloWt+J+CGNmMn65WUlzciIyiX49vYjsa1A
+	 sPAaL+CJ+s/g9wScEi5TRBzemcEql28oquwj8CODrTxymcg1tAYr9dgbCkX0CQU3qz
+	 htosilAwBJ0Dg==
+Date: Tue, 29 Apr 2025 18:53:15 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: Dave Hansen <dave.hansen@intel.com>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+	akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
+	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
+	catalin.marinas@arm.com, corbet@lwn.net,
+	dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
+	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com,
+	hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org,
+	krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org,
+	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com,
+	pbonzini@redhat.com, peterz@infradead.org, ptyadav@amazon.de,
+	robh@kernel.org, rostedt@goodmis.org, saravanak@google.com,
+	skinsburskii@linux.microsoft.com, tglx@linutronix.de,
+	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+Subject: Re: [PATCH v6 11/14] x86: add KHO support
+Message-ID: <aBD165pVhOIl3_by@kernel.org>
+References: <20250411053745.1817356-1-changyuanl@google.com>
+ <20250411053745.1817356-12-changyuanl@google.com>
+ <35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250413134318.66681-1-jernej.skrabec@gmail.com>
- <6a056bf8-9f39-4204-9378-8cc39be60038@lunn.ch> <4645060.LvFx2qVVIh@jernej-laptop>
- <4975791.GXAFRqVoOG@jernej-laptop> <2486dae4-c5a5-4df2-8048-87b4b2d46d54@lunn.ch>
-In-Reply-To: <2486dae4-c5a5-4df2-8048-87b4b2d46d54@lunn.ch>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 29 Apr 2025 23:52:52 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66dF8hMmjjJMnpVxM+092q=ZYZ+kT316roZuty6i+rcXQ@mail.gmail.com>
-X-Gm-Features: ATxdqUFWPc1KkFXbaozIMU3ylesK6FEAqWczY-QB5FUll7_UlkeMPMrayMJK3Jc
-Message-ID: <CAGb2v66dF8hMmjjJMnpVxM+092q=ZYZ+kT316roZuty6i+rcXQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Add OrangePi 3 LTS DTS
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>, 
-	Andre Przywara <andre.przywara@arm.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, samuel@sholland.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com>
 
-On Tue, Apr 29, 2025 at 11:45=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote=
-:
->
-> > I just to be clear, I tested various combinations, including rgmii-id, =
-and it
-> > didn't work, except rgmii-rxid, which matches strapping. Of course Moto=
-rcomm
-> > PHY driver took that into account and set registers accordingly.
->
-> So we have:
->
-> &emac {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&ext_rgmii_pins>;
->         phy-mode =3D "rgmii-rxid";
->         phy-handle =3D <&ext_rgmii_phy>;
->         phy-supply =3D <&reg_gmac_3v3>;
->         allwinner,rx-delay-ps =3D <0>;
->         allwinner,tx-delay-ps =3D <700>;
->         status =3D "okay";
-> };
->
-> and
->
-> &mdio {
->         ext_rgmii_phy: ethernet-phy@1 {
->                 compatible =3D "ethernet-phy-ieee802.3-c22";
->                 reg =3D <1>;
->
->                 motorcomm,clk-out-frequency-hz =3D <125000000>;
->
->                 reset-gpios =3D <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
->                 reset-assert-us =3D <15000>;
->                 reset-deassert-us =3D <100000>;
->         };
-> };
->
-> The RX path looks O.K. RGMII-RXID means the PHY should be adding the
-> 2ns delay. The allwinner,rx-delay-ps =3D <0> should be redundant, that
-> should be the driver default. And there are no properties in the PHY
-> node about RX. All good.
+On Mon, Apr 28, 2025 at 03:05:55PM -0700, Dave Hansen wrote:
+> On 4/10/25 22:37, Changyuan Lyu wrote:
+> > From: Alexander Graf <graf@amazon.com>
+> > 
+> > +#ifdef CONFIG_KEXEC_HANDOVER
+> > +static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
+> > +{
+> > +	struct kho_scratch *kho_scratch;
+> > +	struct setup_data *ptr;
+> > +	int i, nr_areas = 0;
+> 
+> Do these really need actual #ifdefs or will a nice IS_ENABLED() check
+> work instead?
+> 
+> > +	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
+> 
+> What's with the double cast?
 
-The default action when the property is missing is to leave the hardware
-settings alone. I admit this doesn't match the bindings.
+The double cast is required for this to be compiled on 32 bits (just like
+in mem_avoid_overlap). The setup_data is all u64 and to cast it to a
+pointer on 32 bit it has to go via unsigned long.
 
-> TX is the problem. The allwinner,tx-delay-ps =3D <700> causes the MAC to
-> add 700ps delay, and 'rgmii-rxid' means the PHY should not add any
-> delay. But 700ps is too low. It should be around 2000ps. So something
-> else is adding a delay, or the 700ps is not really 700ps.
+If we keep actual #ifdef we can drop the double cast because KHO depends on
+CONFIG_KEXEC_FILE which is only enabled for 64 bits.
+ 
+> > diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
+> > index 68530fad05f74..518635cc0876c 100644
+> > --- a/arch/x86/kernel/kexec-bzimage64.c
+> > +++ b/arch/x86/kernel/kexec-bzimage64.c
+> > @@ -233,6 +233,31 @@ setup_ima_state(const struct kimage *image, struct boot_params *params,
+> >  #endif /* CONFIG_IMA_KEXEC */
+> >  }
+> >  
+> > +static void setup_kho(const struct kimage *image, struct boot_params *params,
+> > +		      unsigned long params_load_addr,
+> > +		      unsigned int setup_data_offset)
+> > +{
+> > +#ifdef CONFIG_KEXEC_HANDOVER
+> 
+> Can this #ifdef be replaced with IS_ENABLED()?
 
-Anything is possible. As was raised in a previous reply, it's possible
-instead of extending the delay range, the decreased the step size and
-added more steps. The problem is we don't really know.
+The KHO structures in kexec image are under #ifdef, so it won't compile
+with IS_ENABLED().
 
-> You say the PHY is a YT8531C. These PHYs also accept
-> rx-internal-delay-ps and tx-internal-delay-ps properties in their DT
-> node.
->
-> Try setting 'rgmii-id', allwinner,tx-delay-ps =3D <0>, and both
-> rx-internal-delay-ps and tx-internal-delay-ps in the PHY node to 1950.
-> If that does not work, try other values in the PHY node.
+> > @@ -312,6 +337,13 @@ setup_boot_parameters(struct kimage *image, struct boot_params *params,
+> >  				     sizeof(struct ima_setup_data);
+> >  	}
+> >  
+> > +	if (IS_ENABLED(CONFIG_KEXEC_HANDOVER)) {
+> > +		/* Setup space to store preservation metadata */
+> > +		setup_kho(image, params, params_load_addr, setup_data_offset);
+> > +		setup_data_offset += sizeof(struct setup_data) +
+> > +				     sizeof(struct kho_data);
+> > +	}
+> 
+> This is a bit weird that it needs this IS_ENABLED() check and the
+> earlier #ifdef. But I guess  it's following the IMA_KEXEC code's pattern
+> at least.
 
-I don't get why we should ignore the strappings instead of using them
-as reference or even truth. If the strappings worked correctly w/ the
-generic PHY driver (that doesn't know how to configure the delay mode
-on the PHY side), isn't it working as intended?
+And with other #ifdefs as well :)
 
+if (IS_ENABLED()) can be dropped here, but having it makes things more
+explicit IMHO.
+ 
+> > diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+> > index 766176c4f5ee8..496dae89cf95d 100644
+> > --- a/arch/x86/kernel/setup.c
+> > +++ b/arch/x86/kernel/setup.c
+> > @@ -451,6 +451,28 @@ int __init ima_get_kexec_buffer(void **addr, size_t *size)
+> >  }
+> >  #endif
+> >  
+> > +static void __init add_kho(u64 phys_addr, u32 data_len)
+> > +{
+> > +#ifdef CONFIG_KEXEC_HANDOVER
+> > +	struct kho_data *kho;
+> > +	u64 addr = phys_addr + sizeof(struct setup_data);
+> > +	u64 size = data_len - sizeof(struct setup_data);
+> > +
+> > +	kho = early_memremap(addr, size);
+> > +	if (!kho) {
+> > +		pr_warn("setup: failed to memremap kho data (0x%llx, 0x%llx)\n",
+> > +			addr, size);
+> > +		return;
+> > +	}
+> > +
+> > +	kho_populate(kho->fdt_addr, kho->fdt_size, kho->scratch_addr, kho->scratch_size);
+> > +
+> > +	early_memunmap(kho, size);
+> > +#else
+> > +	pr_warn("Passed KHO data, but CONFIG_KEXEC_HANDOVER not set. Ignoring.\n");
+> > +#endif
+> > +}
+> 
+> Please axe the #ifdef in the .c file if at all possible, just like the
+> others.
 
-ChenYu
+This one follows IMA, but it's easy to make it IS_ENABLED(). It's really up
+to x86 folks preference.
+
+-- 
+Sincerely yours,
+Mike.
 
