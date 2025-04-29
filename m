@@ -1,323 +1,174 @@
-Return-Path: <devicetree+bounces-171860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AE5AA064A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:53:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F10DAA0656
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 10:55:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E42B1895349
-	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:53:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CEDC3AA08E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Apr 2025 08:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E752951B9;
-	Tue, 29 Apr 2025 08:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A78229DB64;
+	Tue, 29 Apr 2025 08:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yM1SRdoh"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="CLl4B0Pg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396EE279347
-	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 08:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D8C1F0E58
+	for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 08:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745916785; cv=none; b=BXppLtFn/1GXMvkIsTU3YwCG43PdV5D59++iJAgwiGz+08vPqfIklsjRAGzUAOzR5pGHgGU31JIvXNDY7SSLqEsN3P18Homc4ivPQgyE0Ohoaq4hiRgPuw/CmpD0nUajKQFvgkzBAWHRX+8R4YYeqamwY4GbINS9YmwV1yiGWsM=
+	t=1745916935; cv=none; b=fAGQWjasbdWoIogakBpdCawfcY/9zGGEiNF8xeBfIML7kiunr8BINzzmOR5N/4uaehnTUbS7J5fVsejYhc0fhddIs8U1tkpmpH7Qt9pFSTsEQUoWQvsPYh0MjN72Gwn4rJjb5/0E8Ss4lGWXk+9NZmfvmh5CbIDc7CrNmjbN9tM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745916785; c=relaxed/simple;
-	bh=v92vEEeOWiHgBwdUHqiC+8ki+M+nH+RwczaGa4qWQOo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eYwrCNoiEDRQMeE3kPiVYDKZHCsdSkjg/kq/q6a1XOmlpLIMv24fMpVlquVEvajFRxPjciKyvLstET0NEwwZisoNMtbzu/NbpfhScNX4pTsqrdJsbwap47CN6MpPyEqgaLMBSNZGSORX2N953xizWIut0ecCV0WxDQaIJZVUqYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yM1SRdoh; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-39ee651e419so2952211f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 01:53:02 -0700 (PDT)
+	s=arc-20240116; t=1745916935; c=relaxed/simple;
+	bh=aCgaBLZqC54bmMTK2wOteAHxvWs6yy0wgoTiN3ivLVY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=aj2JklAgE66yO6jHgU+PXkzj6LLAbUEV46rX78p7VKqwt00eZB9GqjBuigCuMjAqG7qZOiMvFS8o7TxP6C9wPeoBDZdo2IfNmXehLuTUIAj6xUxnrFuHshI2FHDloTXIWls3VMyMkQV93iFFFL3Y22nd/ehdLWssw9cDHloGYZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=CLl4B0Pg; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ac25520a289so908551966b.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 01:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745916781; x=1746521581; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zKqLvJDLHg3mLsLtv56H1QUNbgD7dc1QV5N9TVSOwWg=;
-        b=yM1SRdohQdVrTjdy5Fuzb8WgobHYj/6N7SnToFIfc7XF4NHQiuZwd1yl6FTeDbMKkO
-         jQxwgHgzeIiY4pD3/OOLw8NDRE/I8qvJAtimDCM0tvKC5NI/6Ia7xKRDXt+pPmYYQENg
-         ccAamDGKrCOrCfMmwDRbwDiXyI6UQYcrc+F/K6rZycUD5OmfsUdTyxa13qF2IlqfYM9q
-         leG8O5D8+Cq7XcPkJ1JZrwzdWnKWeZH6En8dNu410vQV//iXJ/J8NgwgqH8FSAy5HiGh
-         jFBlUQTDMrb/DWnsJHtI4gkhEC6ZdrxeCgFzYhaRbDXBAe/eOlN0yX98ld2tlSBHqQIH
-         B06g==
+        d=fairphone.com; s=fair; t=1745916931; x=1746521731; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=roW0OfGF9cMH9PcSedzCGvmVycjSapmPRO8xTDpFJeU=;
+        b=CLl4B0Pg/GyeBilvaXNy2bBWeEfrz6/xk4bfXtnf8l4scSvxGwstvqvRjO8KGnjheK
+         cQlIyhbTJuKEUqbRIQhNSigN53KbIQP/mwzQ88ufjY7gtz775GoU1DCVnJyRNKmwoLPE
+         TWgC4cyjDHVprWqcDDjKP2jgv0yHMPaYIMiauaAHb5HpeEgAh1iBi8vDcPToAfhrYUu1
+         jhjikm+IQ9jKeRovahz/4avC9fQnPcBbUgT/bAF5h2r0I++6hSqkMudLdOR/MHtsLmf4
+         mHMlpOQEtHd+taOUCsWLVeaVEOns0ODVZmIIayJn5nEsE9NWpNwO6gYWPFuaW3mBcrJ7
+         WD8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745916781; x=1746521581;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zKqLvJDLHg3mLsLtv56H1QUNbgD7dc1QV5N9TVSOwWg=;
-        b=ZlVS0kdq1fKwrcAXB8ynQR6w7oCyocgfDtVodoYLodzPx2+Nn0nCIUUwGjUV9q9Cxw
-         pY00Q9qFb6olL/9UP+1x+6Lcgpi0QhEDUfaoVGtHPG1dz4PtKcvYuVS7d6ZrcX09r/G3
-         gB65lu1ak0YvDye5aOjzF6CNYWAxLB+AnKr+ErdyRF/xTeLnaO54K2tlXrj2LcVbYPTW
-         YaIQqGioM/OFxLgPMTER0smDbgoNrqT2daGyeVbpB8SXv8pK4Wmiqk5TP4yCei0DexA6
-         2EmYva+3NnnC+alaIAri3OeaR9F9DxMoYIiEPGvwpFC9cFxi4nbpfe6qhUzZkUK+bnja
-         CLSA==
-X-Forwarded-Encrypted: i=1; AJvYcCU1kKR5GCbpwv0zBBwU5gl+Mq+2f+noqr5CpgFxqnD31rLPnkejv03fcVltvT9aKomfpElzEo4PLTgX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxijl/90Sfp6+ulrBmCg+xjagmWT4oniJNQMSMMh8lAa52tkmvy
-	bdtDKyKMwoxvjkf8BcN+43iC47Qb0EMOs1bZeLh7v9v8078DCf/ZdSpP24obKZc=
-X-Gm-Gg: ASbGnctgAAbhMw7ZPWSZJYMBQRCvONErMmgBZM2B63ra0Zo4Ds2Ao4iOTR34l5brsvX
-	+cjZYMrIvmxHiD4vp7/8phzL5cW2jtayNDsJrHqX9ti4T2SUowC+0zrktnzLy9yyLyxAgqb0HRs
-	zJJftNTuUcEEiqZ42qehj0E/qQP/0o3ZSKMxVkp0oyPltc4mDG64VrZ+Fn6ndENO6YcbYVOKtio
-	jkxbZti1fSmLKeMoTh+BArNmPZA1xp37vVWq4MLRxuzctMzsl1TXWkmpw6l7jUs5jym/wz2QpMi
-	Fzk7fk1ELndU9joLfYT+Qt2cND4WBi5w2tGeQ84qq6Z/a78RbfZHfsmMcxVZpUUkAZ/GjEYYNrs
-	hwRs=
-X-Google-Smtp-Source: AGHT+IHtz01PyWBregDzZIebb5zrLCzrzgNknGM29Tj9OvHaxvGjPLwmNm7NGF/h6FyYetY57edG7g==
-X-Received: by 2002:a5d:5f4a:0:b0:391:22a9:4408 with SMTP id ffacd0b85a97d-3a08a351737mr1917315f8f.16.1745916781374;
-        Tue, 29 Apr 2025 01:53:01 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e5cb16sm13221430f8f.84.2025.04.29.01.53.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 01:53:00 -0700 (PDT)
-Date: Tue, 29 Apr 2025 10:52:58 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	Djordje Todorovic <djordje.todorovic@htecgroup.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Conor Dooley <conor@kernel.org>,
-	Aleksandar Rikalo <arikalo@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] Allow for riscv-clock to pick up mmio address.
-Message-ID: <aBCTagteN-pnSqKu@mai.linaro.org>
-References: <DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
- <DU0PR09MB619673345C9082CB442A8DEFF6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1745916931; x=1746521731;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=roW0OfGF9cMH9PcSedzCGvmVycjSapmPRO8xTDpFJeU=;
+        b=MheEfSq4eLVMT9pD9FiUfBdMc/WfB2WuXhPNg1tr6B+IhMAiR8/Ku3W/gFnbIEg15h
+         Sl4L+VFh0XWCleKrRy1SMk8qm5wsrqDLiwnLiwXh3FciqiEisM4iFDnJEgYtzIYY3ei8
+         wvbl/NtrhZz3Q4wD0pkYbdtoCmvS7txhYXSd8oTx5YJ6ubb+CD7V0RXDycgmfg/eP6J2
+         B4v0iajqQvW4s6q5tufBvw10AFdirpr/v8ggeP+RGDN81xNn9Ty+Gz0zCVlw9e6gfYMw
+         AuQd7tS0RwodcPMLltDHiwXGYJJBuXFS3C4+vA0d92bjNe5BD/qMtJxNM//MNDKDxPLn
+         jw0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWd0UNOuiOIulHBv6kDvkbNBk3+8q74IwUoKvOAmphy5tbHZGQppcfR3Xi/ExsvtudbFZfM5MJXaV74@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuugQqgEynVE0joZeCQF/dNmnGZJiB0bHWgjgSs8om4yg54joM
+	CxeM5ghdFnvyqU77f5Bqed4jg+w8IDDOMC7LUz1Y0oq/lx2+lWN8r2/GUjcTp3Q=
+X-Gm-Gg: ASbGncvDlaKCawvR5jUrKwoY140aXeTAFdtrUrCQwJuCWegzraW/D5VxJLePNTyHuWI
+	RSxBwBy5PX/5SpvJjoQ9sI2bLG2tWAtntk78ix3WOh7yjotXvbF/P4/mYphNxCL6emKfkGt0RuZ
+	Zoy2hsDFSh9gC2LQ9ua9Shwrxwh4FmdNb4+FgyDdkguFMjoxCMErAKQhCbe7qsuEZopyg+BdqJW
+	f+U0SuDSiqcBquaP0smNRWu16aPH26WUZEm7Gr3grBU1VzeRmewAWcbRlGC1z50QEaOuyA8B3HY
+	Mtwx8qM/TuTBghb3gJXKSzldTTUaeg27IvW+AWevikPpf/SoW6j2gLatLjjuRcp/7est6zdQB5f
+	hh5GZ2CXBrQ==
+X-Google-Smtp-Source: AGHT+IFfgGLN659eGRoPUHFwUEH1+twktHt4n5gIMSMWq/trLdkqbF2+JThwb4hpx+Sna0dh365yzw==
+X-Received: by 2002:a17:907:7206:b0:aca:96a7:d373 with SMTP id a640c23a62f3a-acec4ed9e96mr313624866b.57.1745916931335;
+        Tue, 29 Apr 2025 01:55:31 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6ed70611sm754204066b.143.2025.04.29.01.55.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Apr 2025 01:55:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DU0PR09MB619673345C9082CB442A8DEFF6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 29 Apr 2025 10:55:30 +0200
+Message-Id: <D9IZWD6MS7A4.3FJ3UI3CG92OM@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm7225-fairphone-fp4: Enable USB
+ audio offload support
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Felipe Balbi" <balbi@kernel.org>, "Srinivas Kandagatla"
+ <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Wesley Cheng" <quic_wcheng@quicinc.com>,
+ "Stephan Gerhold" <stephan.gerhold@linaro.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250425-fp4-usb-audio-offload-v1-0-f90f571636e4@fairphone.com>
+ <20250425-fp4-usb-audio-offload-v1-6-f90f571636e4@fairphone.com>
+ <5c4ed073-45fe-4938-b25b-8979d96b456d@oss.qualcomm.com>
+ <D9I3OWQF8T3Y.1Q5U9E2RI5YZX@fairphone.com>
+ <8e152cf1-24a5-4883-8c5a-887d3c4bd888@oss.qualcomm.com>
+In-Reply-To: <8e152cf1-24a5-4883-8c5a-887d3c4bd888@oss.qualcomm.com>
 
-On Wed, Apr 23, 2025 at 12:17:37PM +0000, Aleksa Paunovic wrote:
-> HTEC Public
-> 
-> Allow faster rdtime access via GCR.U mtime shadow register on RISC-V
-> devices. This feature can be enabled by setting GCRU_TIME_MMIO during configuration.
-> 
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> ---
->  arch/riscv/include/asm/timex.h    | 59 ++++++++++++++++++++-----------
->  drivers/clocksource/Kconfig       | 12 +++++++
->  drivers/clocksource/timer-riscv.c | 32 +++++++++++++++++
->  3 files changed, 83 insertions(+), 20 deletions(-)
-> 
-> diff --git a/arch/riscv/include/asm/timex.h b/arch/riscv/include/asm/timex.h
-> index a06697846e69..47ad6285b83a 100644
-> --- a/arch/riscv/include/asm/timex.h
-> +++ b/arch/riscv/include/asm/timex.h
-> @@ -7,31 +7,24 @@
->  #define _ASM_RISCV_TIMEX_H
-> 
->  #include <asm/csr.h>
-> +#include <asm/mmio.h>
-> +
-> +#include <linux/jump_label.h>
-> 
->  typedef unsigned long cycles_t;
-> 
-> +extern u64 __iomem *riscv_time_val;
-> +DECLARE_STATIC_KEY_FALSE(riscv_time_mmio_available);
+On Mon Apr 28, 2025 at 11:43 PM CEST, Konrad Dybcio wrote:
+> On 4/28/25 9:41 AM, Luca Weiss wrote:
+>> On Fri Apr 25, 2025 at 11:06 PM CEST, Konrad Dybcio wrote:
+>>> On 4/25/25 12:44 PM, Luca Weiss wrote:
+>>>> Enable USB audio offloading which allows to play audio via a USB-C
+>>>> headset with lower power consumption and enabling some other features.
+>>>>
+>>>> This can be used like the following:
+>>>>
+>>>>   $ amixer -c0 cset name=3D'USB_RX Audio Mixer MultiMedia1' On
+>>>>   $ aplay --device=3Dplughw:0,0 test.wav
+>>>>
+>>>> Compared to regular playback to the USB sound card no interrupts shoul=
+d
+>>>> appear on the xhci-hcd interrupts during playback, instead the ADSP wi=
+ll
+>>>> be handling the playback.
+>>>
+>>> "should" isn't very optimistic - I assume this works for you? >=20
+>>=20
+>> Yes it does!
+>>=20
+>> With 'should' I meant to describe the expected behavior from using this
+>> since most people are probably not familiar with how this works.
+>>=20
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>
+> [...]
+>
+>>>>  &usb_1_dwc3 {
+>>>>  	maximum-speed =3D "super-speed";
+>>>>  	dr_mode =3D "otg";
+>>>> +	num-hc-interrupters =3D /bits/ 16 <3>;
+>>> Where does this number come from?
+>>=20
+>> I'm honestly not 100% sure. As far as I understand it, with
+>> 'qcom,usb-audio-intr-idx =3D /bits/ 16 <2>;' in the qcom,q6usb node (whi=
+ch
+>> I've checked against downstream) we declare which "XHCI interrupter
+>> number to use". Without the num-hc-interrupters property we get an error
+>> that not enough interrupters are available (I assume only 1 is then), so
+>> this value practically needs to be higher than the <2> from earlier.
+>>=20
+>> Why it's this value and not a higher value e.g. 4 I'm not really sure.
+>> Downstream code looks somewhat different and "max_interrupters" in
+>> drivers/usb/ doesn't come from a dt property. I'd need to check more in
+>> details what this code does - or maybe Wesley can help.
+>
+> I got word that it's simply hw specific - please move it over to the
+> soc dt with the value of 3
 
-Please keep it self-encapsulate in the timer-riscv.c
+Will do, thanks for checking!
 
-> +#define riscv_time_val riscv_time_val
+Would you have a reference how to get the correct value for it based on
+downstream or the running kernel on the hw?
 
-why ?
+Regards
+Luca
 
->  #ifdef CONFIG_RISCV_M_MODE
-> 
->  #include <asm/clint.h>
-> 
-> -#ifdef CONFIG_64BIT
-> -static inline cycles_t get_cycles(void)
-> -{
-> -       return readq_relaxed(clint_time_val);
-> -}
-> -#else /* !CONFIG_64BIT */
-> -static inline u32 get_cycles(void)
-> -{
-> -       return readl_relaxed(((u32 *)clint_time_val));
-> -}
-> -#define get_cycles get_cycles
-> +#undef riscv_time_val
-> 
-> -static inline u32 get_cycles_hi(void)
-> -{
-> -       return readl_relaxed(((u32 *)clint_time_val) + 1);
-> -}
-> -#define get_cycles_hi get_cycles_hi
-> -#endif /* CONFIG_64BIT */
-> +#define riscv_time_val clint_time_val
-> 
->  /*
->   * Much like MIPS, we may not have a viable counter to use at an early point
-> @@ -46,22 +39,48 @@ static inline unsigned long random_get_entropy(void)
->  }
->  #define random_get_entropy()   random_get_entropy()
-> 
-> -#else /* CONFIG_RISCV_M_MODE */
-> +#endif
-> +
-> +static inline long use_riscv_time_mmio(void)
-> +{
-> +       return IS_ENABLED(CONFIG_RISCV_M_MODE) ||
-> +               (IS_ENABLED(CONFIG_GCRU_TIME_MMIO) &&
-> +                static_branch_unlikely(&riscv_time_mmio_available));
-> +}
-> +
+>
+> Konrad
 
-Don't use this function to branch when calling get_cycles(). Provide two
-versions of the *get_cycles* and initialize with the right one at init time.
-
-> +#ifdef CONFIG_64BIT
-> +static inline cycles_t mmio_get_cycles(void)
-> +{
-> +       return readq_relaxed(riscv_time_val);
-> +}
-> +#else /* !CONFIG_64BIT */
-> +static inline cycles_t mmio_get_cycles(void)
-> +{
-> +       return readl_relaxed(((u32 *)riscv_time_val));
-> +}
-> +#endif /* CONFIG_64BIT */
-> +
-> +static inline u32 mmio_get_cycles_hi(void)
-> +{
-> +       return readl_relaxed(((u32 *)riscv_time_val) + 1);
-> +}
-> 
->  static inline cycles_t get_cycles(void)
->  {
-> +       if (use_riscv_time_mmio())
-> +               return mmio_get_cycles();
->         return csr_read(CSR_TIME);
->  }
->  #define get_cycles get_cycles
-> 
->  static inline u32 get_cycles_hi(void)
->  {
-> +       if (use_riscv_time_mmio())
-> +               return mmio_get_cycles_hi();
->         return csr_read(CSR_TIMEH);
->  }
->  #define get_cycles_hi get_cycles_hi
-> 
-> -#endif /* !CONFIG_RISCV_M_MODE */
-> -
->  #ifdef CONFIG_64BIT
->  static inline u64 get_cycles64(void)
->  {
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 487c85259967..0f2bb75564c7 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -661,6 +661,18 @@ config CLINT_TIMER
->           This option enables the CLINT timer for RISC-V systems.  The CLINT
->           driver is usually used for NoMMU RISC-V systems.
-> 
-> +config GCRU_TIME_MMIO
-> +       bool "GCR.U timer support for RISC-V platforms"
-> +       depends on !RISCV_M_MODE && RISCV
-> +       default n
-> +       help
-> +        Access GCR.U shadow copy of the RISC-V mtime register
-> +        on platforms that provide a compatible device, instead of
-> +        reading the time CSR. Since reading the time CSR
-> +        traps to M mode on certain platforms, this may be more efficient.
-> +
-> +        If you don't know what to do here, say n.
-> +
->  config CSKY_MP_TIMER
->         bool "SMP Timer for the C-SKY platform" if COMPILE_TEST
->         depends on CSKY
-> diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-> index 48ce50c5f5e6..4290e4b840f7 100644
-> --- a/drivers/clocksource/timer-riscv.c
-> +++ b/drivers/clocksource/timer-riscv.c
-> @@ -22,6 +22,7 @@
->  #include <linux/io-64-nonatomic-lo-hi.h>
->  #include <linux/interrupt.h>
->  #include <linux/of_irq.h>
-> +#include <linux/of_address.h>
->  #include <linux/limits.h>
->  #include <clocksource/timer-riscv.h>
->  #include <asm/smp.h>
-> @@ -32,6 +33,13 @@
->  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
->  static bool riscv_timer_cannot_wake_cpu;
-> 
-> +#if defined(CONFIG_GCRU_TIME_MMIO)
-> +DEFINE_STATIC_KEY_FALSE_RO(riscv_time_mmio_available);
-
-static DEFINE_STATIC_KEY_FALSE_RO( ... )
-
-> +EXPORT_SYMBOL(riscv_time_mmio_available);
-> +u64 __iomem *riscv_time_val __ro_after_init;
-> +EXPORT_SYMBOL(riscv_time_val);
-> +#endif
-> +
->  static void riscv_clock_event_stop(void)
->  {
->         if (static_branch_likely(&riscv_sstc_available)) {
-> @@ -203,6 +211,11 @@ static int __init riscv_timer_init_dt(struct device_node *n)
->         int cpuid, error;
->         unsigned long hartid;
->         struct device_node *child;
-> +#if defined(CONFIG_GCRU_TIME_MMIO)
-> +       u64 mmio_addr;
-> +       u64 mmio_size;
-> +       struct device_node *gcru;
-> +#endif
-> 
->         error = riscv_of_processor_hartid(n, &hartid);
->         if (error < 0) {
-> @@ -220,6 +233,25 @@ static int __init riscv_timer_init_dt(struct device_node *n)
->         if (cpuid != smp_processor_id())
->                 return 0;
-> 
-> +#if defined(CONFIG_GCRU_TIME_MMIO)
-> +       gcru = of_find_compatible_node(NULL, NULL, "mti,gcru");
-> +       if (gcru) {
-> +               if (!of_property_read_reg(gcru, 0, &mmio_addr, &mmio_size)) {
-> +                       riscv_time_val = ioremap((long)mmio_addr, mmio_size);
-> +                       if (riscv_time_val) {
-> +                               pr_info("Using mmio time register at 0x%llx\n",
-> +                                       mmio_addr);
-> +                               static_branch_enable(
-> +                                       &riscv_time_mmio_available);
-> +                       } else {
-> +                               pr_warn("Unable to use mmio time at 0x%llx\n",
-> +                                       mmio_addr);
-> +                       }
-> +                       of_node_put(gcru);
-> +               }
-> +       }
-> +#endif
-> +
->         child = of_find_compatible_node(NULL, NULL, "riscv,timer");
->         if (child) {
->                 riscv_timer_cannot_wake_cpu = of_property_read_bool(child,
-> --
-> 2.34.1
-
--- 
-
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
