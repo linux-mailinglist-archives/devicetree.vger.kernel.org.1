@@ -1,102 +1,152 @@
-Return-Path: <devicetree+bounces-172237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52346AA43BF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:21:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B3FAA43D7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1B681C01652
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:21:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7814463BEE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:25:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D6B1F5828;
-	Wed, 30 Apr 2025 07:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CF61EF387;
+	Wed, 30 Apr 2025 07:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YkrydZAB"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="RsAXGOcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9A91DFE09;
-	Wed, 30 Apr 2025 07:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BF319C54F;
+	Wed, 30 Apr 2025 07:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745997666; cv=none; b=e3ozFCShaKLA7tqDHtZ7mwH4bOiBrl3AQ0O1Xokx6iwOPUzTD0ZMuBV7wPZnLwPzt5HkgFdgkR93GQ0nMguep83ukBTRKe33Guozs61FfIFSnCT/5mVZI1OcbBQHzqE61Hr+w9TBf4sjuthDmsp7OtXsocrJ4OSA/UWiWKql7uA=
+	t=1745997918; cv=none; b=fSMK0o5mzoLBcKL6pAQg9EP6IzcAX23vWWBHLS6d6z2IoaxaYflGCgCihM8Ch2Lt26W0cDTMkVGkW6xBmtaad9x55CaPIPN+sFVq6e8CSJK4l7dTidnq3xCNPSYT1HMlsLVSZwtIs+HqC+t8fp6BJ8xa+88nkKtjputbkHF3hg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745997666; c=relaxed/simple;
-	bh=unOAuHHlLSDYswEV053BVvtCpbY1HBhf14HMlI/dclI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P6pVqYgClQ3ARNDUtE8JCeklHpd1YkHtNpxR+Zn1+G4IY4zZzu7chYjjyH8A6ksvDZypYgwq4WhYlSf/4U+7bnAcdBrT4wFUOv8G+NByIIk67m/TqERQIAygIsi32J8QOeEMiCxuwJt3rT1vOsT92bGBgh1zAZsz6BbkvT+8arA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YkrydZAB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A350C4CEE9;
-	Wed, 30 Apr 2025 07:21:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745997665;
-	bh=unOAuHHlLSDYswEV053BVvtCpbY1HBhf14HMlI/dclI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YkrydZABVN2h5znRN4UMWCuCuzR39Wj/6N5lYPSOxVD7PLIr07qGDVz8B0ddsauDn
-	 vfcrkOHyrCDAeShx323/3z12fMsEJYRLoD2ptrbyW3ehqtigC5WsVV1nhvntJ8jRLZ
-	 Lh0YYIkTB1kdvTyvsUAoz0eeV5J5IPQKcejy2iqxEPEy5NKYq//DwhSkzhvnsHrDfy
-	 pGPHAcAa1IkB0NKxjhTtXw/C5R/B0w3LU2AMcVAYguYI3IHs+ZzzSsvFqUCTlJMlqd
-	 CaL/3ZH7gVg/ZWS+3AyTHReOJ2CTKlJw1+8FIlD/wpG8CkftZBTQv9KcSrHAkIy2ZS
-	 Lr4N3qNmn2kXA==
-Date: Wed, 30 Apr 2025 09:21:03 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, 
-	Jianlong Huang <jianlong.huang@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
- PAD_INTERNAL_* virtual pins
-Message-ID: <20250430-vagabond-agile-yak-7afe68@kuoka>
-References: <20250424062017.652969-1-uwu@icenowy.me>
- <20250424062017.652969-2-uwu@icenowy.me>
- <20250428-smiling-azure-sunfish-7c1c25@kuoka>
- <34c92033f4bbf289c6048a85f0f6ba04435e7bf8.camel@icenowy.me>
- <8e131fce-12b6-4a5f-8601-c15a0e4290fe@kernel.org>
- <4d0bf5b8e1dd00f4025b7643a746cd99010c08fc.camel@icenowy.me>
+	s=arc-20240116; t=1745997918; c=relaxed/simple;
+	bh=v4oU/GFL+y5QwYuePKkqsRtEJvSwh/W8RdF2iICMAJo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Yb7YUefwU+er0Zd8dUHQRzmoMfzRkUAvXwzADRW3z07kh2QbjUVAMZFLfotbI+sp4p/bEz70dQ22r4G2KsX6V973QsYz/2shBI2G0T/G86SfeORVMTKQ+XtvMutuEQ361G/sHwjO7FWxBPYCl1AgfE+V7XOzmi+ziGERINQC01Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=RsAXGOcv; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLZWv9026619;
+	Wed, 30 Apr 2025 09:24:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	mMNXiGVHT3EYByl9G4cAVqtYt7CJdPa0zfJuctou39g=; b=RsAXGOcvtG5MYhS+
+	rru5trvRuMubkIcK6u0oQXAofMrzyj79QTwYYJzzwbwVD9t6J+00aLFJH/PwdvA7
+	f9NJQmsyy6ucrBEmyMfKS77MfzUczatFemBIiDp+Weyk+MWeITViBTz+nX2rWvvN
+	4AUxvfFaTDS9CYsiqQJvtm68cFMk9tYPUCAmZydDLHhaXIdEzrhPrqyiNP/N/9rJ
+	4obxzM+9HQu+buVk/2MV32waJxAJjTUQunoDNaMlx99kzZ95CwCW5wmp0YV24NPT
+	pzsS/kE4Hnoc4sXbRWsLf17Yico7FZfQHB4GD+IH8q3+dRxmCIINZtj/0Os04F+C
+	1iM8jQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46b6tmsmeu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 09:24:57 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 597974004A;
+	Wed, 30 Apr 2025 09:23:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 080D7A54117;
+	Wed, 30 Apr 2025 09:21:51 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 30 Apr
+ 2025 09:21:50 +0200
+Message-ID: <bf7eddfa-ca7f-49a6-a3f9-574f2c4fe972@foss.st.com>
+Date: Wed, 30 Apr 2025 09:21:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4d0bf5b8e1dd00f4025b7643a746cd99010c08fc.camel@icenowy.me>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/8] Support STM32h747i-disco board
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC: <linux-amarula@amarulasolutions.com>,
+        Amelie Delaunay
+	<amelie.delaunay@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>, David
+ Jander <david@protonic.nl>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        Marc Kleine-Budde
+	<mkl@pengutronix.de>, Marek Vasut <marex@denx.de>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Roan van Dijk <roan@protonic.nl>, Rob Herring <robh@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, Stephen
+ Boyd <sboyd@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250427074404.3278732-1-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250427074404.3278732-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_02,2025-04-24_02,2025-02-21_01
 
-On Tue, Apr 29, 2025 at 05:00:04PM GMT, Icenowy Zheng wrote:
-> > > > > +/* virtual pins for forcing GPI */
-> > > > > +#define PAD_INTERNAL_LOW=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0254
-> > > > > +#define PAD_INTERNAL_HIGH=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0255
-> > > >=20
-> > > > Why this cannot be 20 and 21? These are not values for registers,
-> > > > but
-> > > > abstract numbers.
-> > >=20
-> > > The number must not collide with SYS GPIO pads too.
-> >=20
-> > There are no SYS GPIO pads here. Do you understand that this is not
-> > value for registers?
->=20
-> Yes I understand.
->=20
-> The situation is that JH7110 has two similar pin mux controllers, one
-> SYSGPIO and one AONGPIO. Despite I listed the values after the AONGPIO
-> pad list, these values should apply to SYSGPIO too (unless you want to
-> let them have different values for these two pinmux controllers), which
-> is the part with comment "sys_iomux pins".
+Hi Dario
 
-It is fine for me in such case.
+On 4/27/25 09:43, Dario Binacchi wrote:
+> The series adds support for STM32h747i-disco board
+> 
+> The board includes an STM32H747XI SoC with the following resources:
+>   - 2 Mbytes Flash
+>   - 1 Mbyte SRAM
+>   - LCD-TFT controller
+>   - MIPI-DSI interface
+>   - FD-CAN
+>   - USB 2.0 high-speed/full-speed
+>   - Ethernet MAC
+>   - camera interface
+> 
+> Detailed information can be found at:
+> https://www.st.com/en/evaluation-tools/stm32h747i-disco.html
+> 
+> 
+> Dario Binacchi (8):
+>    ARM: dts: stm32h7-pinctrl: add _a suffix to u[s]art_pins phandles
+>    dt-bindings: arm: stm32: add compatible for stm32h747i-disco board
+>    ARM: stm32: add a new SoC - STM32H747
+>    clk: stm32h7: rename USART{7,8}_CK to UART{7,8}_CK
+>    ARM: dts: stm32: add uart8 node for stm32h743 MCU
+>    ARM: dts: stm32: add pin map for UART8 controller on stm32h743
+>    ARM: dts: stm32: add an extra pin map for USART1 on stm32h743
+>    ARM: dts: stm32: support STM32h747i-disco board
+> 
+>   .../devicetree/bindings/arm/stm32/stm32.yaml  |   4 +
+>   arch/arm/boot/dts/st/Makefile                 |   1 +
+>   arch/arm/boot/dts/st/stm32h7-pinctrl.dtsi     |  34 ++++-
+>   arch/arm/boot/dts/st/stm32h743.dtsi           |   8 ++
+>   arch/arm/boot/dts/st/stm32h743i-disco.dts     |   2 +-
+>   arch/arm/boot/dts/st/stm32h743i-eval.dts      |   2 +-
+>   arch/arm/boot/dts/st/stm32h747i-disco.dts     | 136 ++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32h750i-art-pi.dts    |   6 +-
+>   arch/arm/mach-stm32/board-dt.c                |   1 +
+>   include/dt-bindings/clock/stm32h7-clks.h      |   4 +-
+>   10 files changed, 187 insertions(+), 11 deletions(-)
+>   create mode 100644 arch/arm/boot/dts/st/stm32h747i-disco.dts
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Series applied on stm32-next. I changed patch 4 commit title according 
+to Krzysztof comment.
 
-Best regards,
-Krzysztof
-
+Cheers
+Alex
 
