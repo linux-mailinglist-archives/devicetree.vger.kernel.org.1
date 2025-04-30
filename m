@@ -1,175 +1,174 @@
-Return-Path: <devicetree+bounces-172264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E48AA4474
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:53:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B143AA4475
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:53:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D09CE9C04F2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:52:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF1B04E1B0A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B2320E332;
-	Wed, 30 Apr 2025 07:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863D620E338;
+	Wed, 30 Apr 2025 07:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="huZuIR3/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H1CfhUpa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22D520C489
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41AE20E032
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:53:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745999562; cv=none; b=ggnvy88tkXlH9MSgZO5o2OQvO897QAECiX7rLFnPo19ywtt6Mtuo4pG4DqktuKdyxX587lJveQnw3tM23zC3ZtRDjyPK99PWIrLNkU0W8Br/SjoLiv/gKnfbD0O3HGW8vTQNs7TDEdZQs1Te1Zz9eCF4F5T78P1BrxWB9nVkNxg=
+	t=1745999591; cv=none; b=WVieH/3CnI8tq9aYCWtHYOE8F4zB2r8H62bzKmqw1YcIMbhBZ3swJ3AUSSI4rTPv3n9WbmqeEsRe87CU1S9epGuH/PYoi/3xiXz/LCR0pbTqdf7rWDKNkAGP6aqxK1/z3ufBIVLbcrob2jYgDImu5Edqn3xj403LeIwKhlNeOYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745999562; c=relaxed/simple;
-	bh=roySooOoup4fu4QmJMTkWQ2pUs0IThrB2hKyWF/XehI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=V2EUGLDUEQJY8ALtDmxDnLBLgKuYK3yAes4qVKfcibpoVvJdKK4Ql3AfCDHmjmpok1TK/jSFS5K7xSMW3+LiaTvKDLlm9tHiFeNz6DUfT/CDzzOkeX7w/rqjAzZS8qu8toIU1ZmEhg0PycYzW896qP8qyxkiqEc8QmDDfuX6NAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=huZuIR3/; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250430075231euoutp01e0d704a45d8afde5f758aaaa6c404058~7CVdvjKIt1213112131euoutp01S
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:52:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250430075231euoutp01e0d704a45d8afde5f758aaaa6c404058~7CVdvjKIt1213112131euoutp01S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1745999551;
-	bh=qI3xeJtXvmwbkwfCNGhT9/+KA3tkoCUGRYmZdMz5vr8=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=huZuIR3/NjO36Ip4MwWyXJoc9F87b9Pbh2SgiZH6z7FLmWBYs+2c3s1JkepjYJAy+
-	 Ld3FOqBDuN6Z0X1L8VWUp/UFQxiMNI+/yNLaZcnuYkn8/qsfh8sZGtpKNYZ8o1siQ2
-	 K3URzLHwgecuMMjcpl5Keq/TwaOgaXkV331Z/KOI=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250430075230eucas1p12da87b9a4202316b95a70a82c251185c~7CVc1y5D_1711917119eucas1p13;
-	Wed, 30 Apr 2025 07:52:30 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250430075229eusmtip20196a0472e6c82627cb89c1c3f5965ea~7CVcCfJC02585025850eusmtip2F;
-	Wed, 30 Apr 2025 07:52:29 +0000 (GMT)
-Message-ID: <475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
-Date: Wed, 30 Apr 2025 09:52:29 +0200
+	s=arc-20240116; t=1745999591; c=relaxed/simple;
+	bh=dfeiFNyIRnHm/2Kov6JSS45aI2yIJSqRZZS/TSMbT3g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=agNUTU5MB0jTi3H3RsXx8uQCloca4G2WL+mc7ZWJkW/vPDmoPccXMB5jVkcrklxcgD/ZoB2tQcmRFPqoanTyYZScy8ctVYIbzOjsmtD9yjFZ40HHebAbcrALmRsjRJjxpiiCJjnyPZuiB6q4vvfHth68FfnKqA6beDuheMufOIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H1CfhUpa; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-736bfa487c3so5735936b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 00:53:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745999589; x=1746604389; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=i+MTVq2cBl2VSKlfLrQRi33s6xMW5rWCQfy1PuSzKJk=;
+        b=H1CfhUpaqHCBReObIuqGBgg+Po+jdevCSJ/5pAi2DzlK98eKoXm6ZgmW8Go//TJgdN
+         g0Jg8cYYi5JqyAwpkQyi9wllYwwysVCIys8h6QULuveXZCyF3x77Gt5pYj8R5fHo13Rf
+         rdf9G9Do+FJCd6hbWz4bUtapTARFS955yO41etszva86/LqALfu0FyYOqn87d1G0+LnO
+         42JV52wUE45kqD5jixX1sAdT0uKFVCGsBpgqxu9CEu9J559KIxM4yjV/2FeYcGQGRhlX
+         7rAPjBxQupUadwBuESe+HKm6rZ+xeiDPFodglo8jnlVgNW2j+eKJr8BBz3iG1uVfsdoe
+         aVyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745999589; x=1746604389;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i+MTVq2cBl2VSKlfLrQRi33s6xMW5rWCQfy1PuSzKJk=;
+        b=Ft6s80gh3FI7hrFS3d0jK6jEdHNxSTlIVls8/ZbI52wjQ/MELiKIljTu8diRB4WO4k
+         P2MRpKzDhgN4a1pGTlcD81OJx5ixk/h70VdqN4fSwZGaQba5rXzDfW+b7mnaQu+FXr5E
+         ejYNaEaGvE6EmtO26GFVjqVPUACqT93VZ67jwL9nkpRW8imPvnw55A0voucwDBlrF3Ch
+         SwUcPG4lE95q047JyLkrWr1U+FHVYoF5GSY77PD6t11gxdCOPNj5TjAfdypJRC5kVoNN
+         C+mcTQXFL4fromWvpp6nMNEgcs5et2s/WSYwHc+gAdRbGWavC717ZNSomteSm9c0iboQ
+         yAfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWd46DtXyO986yqmHujndFCkPWXQTgWXTPWj7hBqsIggikqakWcIRQo5S5mqlQFWlGtNlk8JrBVWQxQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnY1BkqowEsGQRmfqWPSEGMPuFuOlyuZDQkntRYJP5FZH8muDu
+	cal7NhuhsEWNe+j6hEgk7mnrJjEA1mPf09Dg3kAVPo2rWrQHQJaDictfpfjUlg==
+X-Gm-Gg: ASbGncuQl14h9h/pZHNIaifvgs0He7k4CRNGrYbYsvTuEf8OIbUp8LZtZs6bv/9IFit
+	3mXoBe9IoWCh2qW2/szReLbLJ407RsLEVTM7q1+aktQBC+ZDPVjQ/p2tV19z6IV2QReoa83X728
+	M2POMkF3T+dfdyZEFhF0GI2/9UxtHX4rOBjU04AdH7eMdkUCiZTX0YqjMGw3FkswaCNMVcCky1N
+	QDCF952W8C668+qb9FHF9HNHWTz+v1UBtQ5ibUvaTUDrwRZbKWzL89Uh9QZnetcpKBNGNN5FVNx
+	vTPgp4UT+hxwoV274gmMu/y01goOsY/jEYluNfog9aqAn3tssFzI
+X-Google-Smtp-Source: AGHT+IE+F2JRpn2ZM2o9jL/72thVrixPZ14egfscs7wCjp/nG5sCmrUA/FtL4Jd33FyKJWKHKnmfiQ==
+X-Received: by 2002:a05:6a21:8cc6:b0:1f5:591b:4f7a with SMTP id adf61e73a8af0-20aa457e4a4mr2377739637.38.1745999589047;
+        Wed, 30 Apr 2025 00:53:09 -0700 (PDT)
+Received: from thinkpad ([120.56.197.193])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74039a62dcasm1023535b3a.138.2025.04.30.00.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 00:53:08 -0700 (PDT)
+Date: Wed, 30 Apr 2025 13:23:03 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>, dlemoal@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
+Message-ID: <dxgs3wuekwjh6f22ftkmi7dcw7xpw3fa7lm74fwm5thvol42z3@wuovkynp3jey>
+References: <20250425092012.95418-2-cassel@kernel.org>
+ <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
+ <aBHOaJFgZiOfTrrT@ryzen>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
- controller
-To: Stephen Boyd <sboyd@kernel.org>, Drew Fustini <drew@pdp7.com>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de,
-	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250430075230eucas1p12da87b9a4202316b95a70a82c251185c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-X-EPHeader: CA
-X-CMS-RootMailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-References: <20250403094425.876981-1-m.wilczynski@samsung.com>
-	<CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
-	<20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1>
-	<17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
-	<9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aBHOaJFgZiOfTrrT@ryzen>
 
-
-
-On 4/30/25 00:29, Stephen Boyd wrote:
-> Quoting Michal Wilczynski (2025-04-07 08:30:43)
->> On 4/5/25 01:16, Drew Fustini wrote:
->>>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
->>>> index 527336417765..d4cba0713cab 100644
->>>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
->>>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
->>>> @@ -489,6 +489,13 @@ clk: clock-controller@ffef010000 {
->>>>                      #clock-cells = <1>;
->>>>              };
->>>>  
->>>> +            clk_vo: clock-controller@ffef528050 {
->>>> +                    compatible = "thead,th1520-clk-vo";
->>>> +                    reg = <0xff 0xef528050 0x0 0xfb0>;
->>>
->>> Thanks for your patch. It is great to have more of the clocks supported
->>> upstream.
->>>
->>> The TH1520 System User Manual shows 0xFF_EF52_8000 for VO_SUBSYS on page
->>> 205. Is there a reason you decided to use 0xFF_EF52_8050 as the base?
->>>
->>> I see on page 213 that the first register for VO_SUBSYS starts with
->>> VOSYS_CLK_GATE at offset 0x50. I figure you did this to have the
->>> CCU_GATE macros use offset of 0x0 instead 0x50.
->>>
->>> I kind of think the reg property using the actual base address
->>> (0xFF_EF52_8000) makes more sense as that's a closer match to the tables
->>> in the manual. But I don't have a strong preference if you think think
->>> using 0xef528050 makes the CCU_GATE macros easier to read.
->>
->> Thank you for your comment.
->>
->> This was discussed some time ago. The main issue was that the address
->> space was fragmented between clocks and resets. Initially, I proposed
->> using syscon as a way to abstract this, but the idea wasn't particularly
->> well received.
->>
->> So at the start of the 0xFF_EF52_8000 there is a reset register GPU_RST_CFG
->> I need for resetting the GPU.
->>
->> For reference, here's the earlier discussion: [1]
->>
->> [1] - https://lore.kernel.org/all/1b05b11b2a8287c0ff4b6bdd079988c7.sboyd@kernel.org/
->>
+On Wed, Apr 30, 2025 at 09:16:56AM +0200, Niklas Cassel wrote:
+> Hello Mani,
 > 
-> In that email I said you should have one node
-> clock-controller@ffef528000. Why did 0x50 get added to the address?
-
-Hi Stephen,
-In the v2 version of the patchset, there was no reset controller yet, so
-I thought your comment was made referring to that earlier version.
-This representation clearly describes the hardware correctly, which is
-the requirement for the Device Tree.
-
-The manual, in section 5.4.1.6 VO_SUBSYS, describes the reset registers
-starting at 0xFF_EF52_8000:
-
-GPU_RST_CFG             0x00
-DPU_RST_CFG             0x04
-MIPI_DSI0_RST_CFG       0x8
-MIPI_DSI1_RST_CFG       0xc
-HDMI_RST_CFG            0x14
-AXI4_VO_DW_AXI          0x18
-X2H_X4_VOSYS_DW_AXI_X2H 0x20
-
-And the clock registers for VO_SUBSYS, manual section 4.4.1.6 start at offset 0x50:
-VOSYS_CLK_GATE          0x50
-VOSYS_CLK_GATE1         0x54
-VOSYS_DPU_CCLK_CFG0     0x64
-TEST_CLK_FREQ_STAT      0xc4
-TEST_CLK_CFG            0xc8
-
-So I considered this back then and thought it was appropriate to divide
-it into two nodes, as the reset node wasn't being considered at that
-time.
-
-When looking for the reference [1], I didn't notice if you corrected
-yourself later, but I do remember considering the single-node approach
-at the time.
-
+> On Wed, Apr 30, 2025 at 12:35:18PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Apr 25, 2025 at 11:20:12AM +0200, Niklas Cassel wrote:
+> > > While some boards designs support multiple reference clocking schemes
+> > > (e.g. Common Clock and SRNS), and can choose the clocking scheme using
+> > > e.g. a DIP switch, most boards designs only support a single clocking
+> > > scheme (even if the SoC might support multiple clocking schemes).
+> > > 
+> > > This property is needed such that the PCI controller driver, in endpoint
+> > > mode, can set the proper bits, e.g. the Common Clock Configuration bit and
+> > > the SRIS Clocking bit, in the PCIe Link Control Register (Offset 10h).
+> > > (Sometimes, there are also specific bits that needs to be set in the PHY.)
+> > > 
+> > 
+> > Thanks for adding the property. I did plan to submit something similar to allow
+> > Qcom PCIe EP controllers to run in SRIS mode.
+> > 
+> > > Some device tree bindings have already implemented vendor specific
+> > > properties to handle this, e.g. "nvidia,enable-ext-refclk" (Common Clock)
+> > > and "nvidia,enable-srns" (SRNS). However, since this property is common
+> > > for all PCI controllers running in endpoint mode, this really ought to be
+> > > a property in the common pcie-ep.yaml device tree binding.
+> > > 
+> > 
+> > We should also mark the nvidia specific properties deprecated and use this one.
+> > But that's for another follow up series.
+> > 
+> > > Add a new ref-clk-mode property that describes the reference clocking
+> > > scheme used by the endpoint. (We do not add a common-clk-ssc option, since
+> > > we cannot know/control if the common clock provided by the host uses SSC.)
+> > > 
+> > > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > > index f75000e3093d..206c1dc2ab82 100644
+> > > --- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > > @@ -42,6 +42,15 @@ properties:
+> > >      default: 1
+> > >      maximum: 16
+> > >  
+> > > +  ref-clk-mode:
+> > 
+> > How about 'refclk-mode' instead of 'ref-clk-mode'? 'refclk' is the most widely
+> > used terminology in the bindings.
+> 
+> I does seem that way.
+> Will use your suggestion in V2.
+> 
+> 
+> > 
+> > > +    description: Reference clocking architechture
+> > > +    enum:
+> > > +      - common-clk        # Common Reference Clock (provided by RC side)
+> > 
+> > Can we use 'common-clk-host' so that it is explicit that the clock is coming
+> > from the host side?
+> 
+> Sure.
+> 
+> I take it that you prefer 'common-clk-host' over 'common-clk-rc' ?
 > 
 
-Best regards,
+That's what I intended previously, but thinking more, I feel that we should
+stick to '-rc'i, as that's what the PCIe spec uses.
+
+- Mani
+
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+மணிவண்ணன் சதாசிவம்
 
