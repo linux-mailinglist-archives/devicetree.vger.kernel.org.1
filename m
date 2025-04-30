@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-172441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5868DAA4CA1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:07:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0E1AA4CAF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:08:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43912502402
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:03:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8386C1C01237
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69654263F36;
-	Wed, 30 Apr 2025 13:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B97226462B;
+	Wed, 30 Apr 2025 13:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YgSGZk1g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HK4/fQ3b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447BC262D14
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA952638A1
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746018085; cv=none; b=WWoNiEB4wK6pQp6i+di2HftKF63djP0SEpjNm9LY4bm2uVtYaMGZnJJ3Rio/cnaLjjD3fUebIA66eTj5P009PmBrpsBL2QuChc7801Wl2HfXqm1bZiCJ/1l/ikS2UwqdIx9YzzSV4xTxXbxxmQX9L37Y45PSgujCOcglwyxpq+8=
+	t=1746018086; cv=none; b=DNEvLjfomd9c4R/+OW2Zq98qxesgCRVCrxVkq7oP94FB9h1Mfi2z9LP+m36ESf7fdjhlYaXQAlh+y13ZtikTIqeCVGFzWosd/qKJDRcvwsOhzJQRmNK5ruVmib+eyQAoPg4uaQjyhYC6t/HFaNP4lYJh2XULYTxVDAd8dZVXWi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746018085; c=relaxed/simple;
-	bh=nfV/7RmHoNigN+etRFO22PUSZ15tfZ13Ey5db/FH8m8=;
+	s=arc-20240116; t=1746018086; c=relaxed/simple;
+	bh=r6fKo5PXibO0QzyWpcwqycmMtKI/yjYBhbjx5uv53zQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SyxpuNh4/n7VtHyqnuT1vgvrihbqIwQdck1MAczZ66V8a8Dgf9gW3ws/n7Cdob+UEUw06LocoNtdbt9W4OXwj0z95qt4JNH+5q56uF5qAjgWS7/itT593hi3r8ghJFwckbLXs922Ay+mGCjwuBNJCOlpEJZtR9RgZCtZSaxgNj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YgSGZk1g; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:To:Cc; b=JAmVENDJk674AmrMKgG2HpkC/PZ0hitF13OJSztc+eCRr43UZAON25nthaPpeFAdndGC3jKyGCbkuIGtCC4m7WHF2pUHQHrU0PzNAe9EgBFQkL5G8cdZ6QHWHi0QbpzNMoY7HpDMCWSj6ovxYayZzYieHGrHX0JQkbctqBIbxac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HK4/fQ3b; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-44069f5f3aaso10296125e9.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:01:22 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cf861f936so12553055e9.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:01:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746018081; x=1746622881; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746018083; x=1746622883; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hIYbRlauLJ+HBkfmmmxeYe7riwQD6vu+qiBT5eLd3s4=;
-        b=YgSGZk1gvlrYvkjEXqUOEwIf4eOICM3AZT+3AZB8T4Wbq4aCfoOcBImDiBeOBerswk
-         hJUJ4sd1LkKTJE8AVZfF1iuEISgDtikb7K3cJJbw5ZZovfc0XGs6fuya1cUHXrFPDOM7
-         2mcdPJ7d+KgUdfxidub1Vy0XSkoj9p2FMo8x1yE4mABFL0sQYLTr7ZfjSd/eq5iOxeL2
-         FvjgQ9FPebaYPuGgsSCbBmGc/5l00MPevNx0fCyBLi3dtAMlq8yQqZySdUB1kj+fLEH1
-         501BQgBviTg4O/CSUgQcPZJPfcpDxs/2l4OVGK39g4OrgTL7BVpYb8v9ls2pbV5jw7UQ
-         0Paw==
+        bh=UiMJSYIfbTscEgfa/S7hm841Cae3JL3KHIhG5qDZ+4c=;
+        b=HK4/fQ3bxFrqW9L2WonIbAQ8G/CQ6BdQ0mdnAHlk1MN6hNuBE2HqP7PrJuQ86BKB5X
+         0Iyw/Z0SlV4rW+vB6u1EDbvQLhj9/dKLZwSlNWrMTkWB+DMtq48PPlu09ztotn0+1lkk
+         oGFCx7p60shN3/yM+bxNOuUu7V5uKg3kh3Y+gpb3aJNfsmXRdMDn8RhyOJWGapf5D1ES
+         1padprqS5pn/gtTl6dkh7seKFEnKR6y2HMTbbPSZeHrVj2pQG5rO7yvEWgj7PDNq7+6l
+         GBtmMlwQdZRsedmoJ6JY2tZz9brFQNyydelfuQhHsAwr29f4R4pKXknhCXw1lPh4fJZU
+         F5Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746018081; x=1746622881;
+        d=1e100.net; s=20230601; t=1746018083; x=1746622883;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hIYbRlauLJ+HBkfmmmxeYe7riwQD6vu+qiBT5eLd3s4=;
-        b=lArIRJvCNCnibcPjX7C7F5XX0Lr9X1bv+4cROFRMELPy8bJQv8VnTn59K7kFs2arLs
-         Wr20yCltXUtQq8JppatRyndq9UFTti9d4Q/Zhoc+rEqh//P0MUPPZWlsXT1db/8CbSAe
-         s5feJRqU1kA2eT9SywVQ/AO37YN0Y7bPdZasiUv1uuexJ+xBWvuy2dR0i/w5ssxQw3y1
-         cFaSpv38YM6rT0tOBzBoT/X1pyFHocs463jqurqEym2dm4ChCKCqF2yR5IkUC3OruElS
-         3VvdwP1cYFcRVgu1BAr25U7aIKWxQQd4+nB3LxyTHhwj4KZnYBkXgfGQhAnzKhW2qDU6
-         Cv8g==
-X-Forwarded-Encrypted: i=1; AJvYcCUc5H7GdgJowYXuR4zOfk3trP3vvgAUJDR86RDfxypMWiVHnukeJKdFrPGvqiFoP2SZb3kUIBlwwnHV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDykbu4OH10a+MKLYHeLyFGr5PwaoLYA3jrJ/1ZhVK/d3Es7Lr
-	+/iI+SneCWvtVRuAWb9gO1pquq8x2mIADuRnjKDJT0mHms+7crRRDvDbXTnNRyA=
-X-Gm-Gg: ASbGncuHquTvs+eNiCMR5CkGpnvG+KnCg6M8MduOzrmZZMgTX8BLutZojl7s9YxPHc3
-	8wPnch4rGZnqH9dEabV+0ERx4JoVXbMqVmCCoS2hK+g2wl3ljWbQRPdqvx8OLxP2V3a/nCZkiC+
-	VpT9u/DFRqcGadwMeJSAsDJhRB4yRr1aMJ+/HKCsQJyUuF7lHhe4CauGDlCgU+e6DSGuhwzgXeF
-	QO+CPkczAt77RZ1naTz9SLCpus68CFQLIZvrWukNDv9pNlFTWReQyTW4uOtZ9lvy4ChZT9Qn2EB
-	wsj6adFjYk6tFRKSscBeYn3p89I9n7CPAjRoi3VHR4kds2lBJ/QD1QN3J0E=
-X-Google-Smtp-Source: AGHT+IGy0iGND4CwDZaIUFykzdWsI+BN8WeV0wSy847evjGpU0JOHr+Ib1tzikoVHW3i7zcwk/UBUw==
-X-Received: by 2002:a5d:64ee:0:b0:39f:6ca:9250 with SMTP id ffacd0b85a97d-3a09007e507mr674529f8f.12.1746018080066;
-        Wed, 30 Apr 2025 06:01:20 -0700 (PDT)
+        bh=UiMJSYIfbTscEgfa/S7hm841Cae3JL3KHIhG5qDZ+4c=;
+        b=YqGLJ8OHM/WBG/TLKCs+cQ38Snz2YMJ3afLRQxI11RmnkNl7GRFSmRYv8xAWWtueiJ
+         JWIIOXlRkRjEFXK6SjBLGrJuiiGzX8pKec2H8DdU4cGl5kvDScTIO5WeWBrIUdbPYFey
+         tTmIuPnE9WgyVFOOuxGwb+YDtKO6CcdcItpFskfmPJXxbVyY/sfSMRcuzRBQpq4GSk75
+         s1K0IoR29f1YW0ivs1GuRuUhRMfWXN5Dp79K/ykc7zPSiTgkSeDQodsA+SmZBZvQSqTS
+         fPhhARaao0bs/GRU5jA0uhi3zmmFTofa8TTWky2Uq0ZUt/36I3kC+Cgox+JMWRBGb4no
+         NvRw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkKbCcOv+1JuInjgGqNa3+YhDa4nnP2xWDiQClxpjAMhvY+9vpEPGtYVXe34orDWy8rS2kg73KsdPA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGEYf78+RG8sNsoiz49+PdqjRoDGi+O0TsgdGABd2heJmH/ASO
+	uVhOkBROWTV7qTnEKOz6CzB5V2qnMorTiT9Pf3JVrU9d63y8X6IMZAq2Syd30ss=
+X-Gm-Gg: ASbGncvKvG5FELOWRLfo+gHCL8KS4nYd2t+4rxaMciLgNGyZXNtEYhC1Hyq78n5+JDG
+	tJycqaidoGoTj70AAtyQsmc3P2sYsM0mJt8k9m1Mt39VeY/04xNaNE+k+Qu8xQqLlQ7Nd+lrEvS
+	ZQzvHbGYUJWNsb09Q6DBubypUw1wCLfWT62UvmWL1NEcpckpHH6TkAzUgH1ECeRhuBjWfVCXme7
+	Yas64m4iLLt7KuE1gYln14tmgho9WBZBSOvkrokRWL7yMMAImAqJKMr8FIGOiWQtzp6Lkm/oWn+
+	LdEXLFDeeqFEWg2wKaiIGvm+wdeiymKG63LuX85VJBQ13e9yLd2nL9246to=
+X-Google-Smtp-Source: AGHT+IFn111tvgyYFaZmfJPbWLNTKODE28cUWFrm8Mcmmd/nHWt2qqg3zfUH6GXahG8qUSQNfig2kQ==
+X-Received: by 2002:a05:6000:2288:b0:3a0:85de:e05c with SMTP id ffacd0b85a97d-3a09009b735mr767112f8f.15.1746018082697;
+        Wed, 30 Apr 2025 06:01:22 -0700 (PDT)
 Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.18
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 06:01:19 -0700 (PDT)
+        Wed, 30 Apr 2025 06:01:21 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 30 Apr 2025 15:00:36 +0200
-Subject: [PATCH v5 06/24] clk: qcom: dispcc-sm8750: Fix setting rate byte
- and pixel clocks
+Date: Wed, 30 Apr 2025 15:00:37 +0200
+Subject: [PATCH v5 07/24] drm/msm/dpu: Add missing "fetch" name to
+ set_active_pipes()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-b4-sm8750-display-v5-6-8cab30c3e4df@linaro.org>
+Message-Id: <20250430-b4-sm8750-display-v5-7-8cab30c3e4df@linaro.org>
 References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
 In-Reply-To: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
@@ -106,72 +106,127 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org, 
- Srinivas Kandagatla <srini@kernel.org>
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1649;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4099;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=nfV/7RmHoNigN+etRFO22PUSZ15tfZ13Ey5db/FH8m8=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh75XYczpa1XRjEYY76w1vQNfkUN4i5qCoYTp
- HwwGkhur1iJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIe+QAKCRDBN2bmhouD
- 17sxD/kBPOjHuljMicN8MnivmvbeOMOG6jLOk89d/9dap4GTebCFuxFDorsrNL91hdES4O7aiby
- rT/Qxv6qCxnvvkM0FVnggnSTY5gNWYcxiVD1e1wn0y+3Z03Ng9saCC1GUhyhAKTAYVZf/fjBrnU
- XHanIHAgdXPXvVbxXFipCdZHtywQr+QEpoqdBTADtnFSlTogSRmq6yOG8o15VVm9LjR2zHiS9OF
- x/lWqKJFtvGyW3ZGP8Sf9dN8RUlMD27cTAk+7dJwIlWPOUGLElzppd05ShKS9MYOzpBOWPc16q4
- t6u1+Il04mXUL2US421holVpBfFTXQU+ESXesex90exg6lMsdULKxaEJ+FuV1bFuz929ELzXykz
- y1Ssqlvl6WFuSVrkZuMisxRlELabMiGxrxs2P7Q7tJZdYqr5wxtMOaXIksAyFlleZ4oRcLGooZx
- lSBTijG+fe8L5DJxiASGKKKoxa9OwyKDSnJbU//ucnKKOauzQ6mDw+B5DoAeIHHVYYYkvqqWTL7
- p0hmMDcQYYA5RzuXWjCLUomf+HiTzN6dpdNJ7h4cYiFlCTV8DGosQ1JXRnxNTN+DiWZVIvZyx0E
- Jh0QkVO+1KaEFiJels4h0qJKL7Lyn5k7zLp/t2JJTTlDsDiVOY7cJr52yZUrPlXKwwMhrargwS5
- tbbp/QQ3V8KjjkQ==
+ bh=r6fKo5PXibO0QzyWpcwqycmMtKI/yjYBhbjx5uv53zQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh76ZVLS3hv6ZdJp/fyARXjXLcVt1FyaktOnX
+ Ipz9UhKKuKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIe+gAKCRDBN2bmhouD
+ 1yO4D/wLdNCJWipHGPvZ4tPbMw4jWM1bNS5dssup3qk5JC1/VFl9mWz74nVsmJcrN1eYfTaf+eZ
+ pAxXozoVqNtTC8T5q+0D6Bc6bEnvNQYiW4dMirKR97t6ryMrgtVntZ+o09MqB3LDaxWKOTFmO57
+ CJc3v8hC1k33K564U/wniOqMl560KTvZ1nEqNJB0Bn6Iq12IP8El6OV5zpkKvudZxzCm+i09vX0
+ Ps/IG5Dgdjy89P4gTMe7Bv6f+XZMTLf1UWxsrKSLXRfAEWInGHEiQJJhHGAu9Ek90eu5jEcRQo/
+ Scvm7DvNtsX6O0nLhOR99DLKJmd0KpAKcT59G8aocExhaoSRcVsKRYd/wUmoQp+pbTjogB51+ie
+ Am4i8mW78qriRw59IUQ9LlPeofH2oeRqVtzDJ7cXKqgrpqY+ToivakOL0uT2NT1sWgVIn5uKkLF
+ FcGrarQP3cct2LjT5ikXgZXBTl7x9AdNCAXN4qs4TS8eBz+dsmi4JAX1gjQLy11zMqw7uDmdJYr
+ sV8XyZISe38pRUgE/JD/o/U+ihQEFmhwVpC1GZnaBC8LgIiTrSzqmitZMFgu7EHxkYpXyFIzE8Q
+ F2OFIP7cJ2Uk8HBphWCGRtEfml+sVWGhvdX/i9vicZ7N9DYP32KKHqJMIg+SRwMiubRTfNIKwcm
+ ey6Q3tOr1Z+M9Ng==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-On SM8750 the setting rate of pixel and byte clocks, while the parent
-DSI PHY PLL, fails with:
+The set_active_pipes() callback configures CTL_FETCH_PIPE_ACTIVE and
+newer DPU v12.0 comes with CTL_PIPE_ACTIVE, thus rename it to
+set_active_fetch_pipes() to better match the purpose.
 
-  disp_cc_mdss_byte0_clk_src: rcg didn't update its configuration.
-
-DSI PHY PLL has to be unprepared and its "PLL Power Down" bits in
-CMN_CTRL_0 asserted.
-
-Mark these clocks with CLK_OPS_PARENT_ENABLE to ensure the parent is
-enabled during rate changes.
-
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
 
-Patch is independent and can go via separate tree. Including here for
-complete picture of clock debugging issues.
-
-Changes in v5:
+Changes in v2:
 1. New patch
 ---
- drivers/clk/qcom/dispcc-sm8750.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c   | 12 ++++++------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c |  6 +++---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h |  2 +-
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/clk/qcom/dispcc-sm8750.c b/drivers/clk/qcom/dispcc-sm8750.c
-index 877b40d50e6ff5501df16edcffb6cf3322c65977..d86f3def6dd06b6f6f7a25018a856dcc86fc48eb 100644
---- a/drivers/clk/qcom/dispcc-sm8750.c
-+++ b/drivers/clk/qcom/dispcc-sm8750.c
-@@ -393,7 +393,7 @@ static struct clk_rcg2 disp_cc_mdss_byte0_clk_src = {
- 		.name = "disp_cc_mdss_byte0_clk_src",
- 		.parent_data = disp_cc_parent_data_1,
- 		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
--		.flags = CLK_SET_RATE_PARENT,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
- 		.ops = &clk_byte2_ops,
- 	},
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+index 0714936d883523e5c53bfb42f932234db76c58db..2d7af6fff2708c12520a78cc6c979b9930dffc95 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+@@ -445,9 +445,9 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+ 
+ 	uint32_t lm_idx;
+ 	bool bg_alpha_enable = false;
+-	DECLARE_BITMAP(fetch_active, SSPP_MAX);
++	DECLARE_BITMAP(active_fetch, SSPP_MAX);
+ 
+-	memset(fetch_active, 0, sizeof(fetch_active));
++	memset(active_fetch, 0, sizeof(active_fetch));
+ 	drm_atomic_crtc_for_each_plane(plane, crtc) {
+ 		state = plane->state;
+ 		if (!state)
+@@ -464,7 +464,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+ 		if (pstate->stage == DPU_STAGE_BASE && format->alpha_enable)
+ 			bg_alpha_enable = true;
+ 
+-		set_bit(pstate->pipe.sspp->idx, fetch_active);
++		set_bit(pstate->pipe.sspp->idx, active_fetch);
+ 		_dpu_crtc_blend_setup_pipe(crtc, plane,
+ 					   mixer, cstate->num_mixers,
+ 					   pstate->stage,
+@@ -472,7 +472,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+ 					   &pstate->pipe, 0, stage_cfg);
+ 
+ 		if (pstate->r_pipe.sspp) {
+-			set_bit(pstate->r_pipe.sspp->idx, fetch_active);
++			set_bit(pstate->r_pipe.sspp->idx, active_fetch);
+ 			_dpu_crtc_blend_setup_pipe(crtc, plane,
+ 						   mixer, cstate->num_mixers,
+ 						   pstate->stage,
+@@ -492,8 +492,8 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+ 		}
+ 	}
+ 
+-	if (ctl->ops.set_active_pipes)
+-		ctl->ops.set_active_pipes(ctl, fetch_active);
++	if (ctl->ops.set_active_fetch_pipes)
++		ctl->ops.set_active_fetch_pipes(ctl, active_fetch);
+ 
+ 	_dpu_crtc_program_lm_output_roi(crtc);
+ }
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+index 216dfcabcb92d410ce185c0d34db69c99930d2b8..951d5dccab6faf34a519d06683514aea1ee6ef60 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+@@ -698,8 +698,8 @@ static void dpu_hw_ctl_reset_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 	}
+ }
+ 
+-static void dpu_hw_ctl_set_fetch_pipe_active(struct dpu_hw_ctl *ctx,
+-	unsigned long *fetch_active)
++static void dpu_hw_ctl_set_active_fetch_pipes(struct dpu_hw_ctl *ctx,
++					      unsigned long *fetch_active)
+ {
+ 	int i;
+ 	u32 val = 0;
+@@ -787,7 +787,7 @@ struct dpu_hw_ctl *dpu_hw_ctl_init(struct drm_device *dev,
+ 		c->ops.update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
+ 
+ 	if (mdss_ver->core_major_ver >= 7)
+-		c->ops.set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
++		c->ops.set_active_fetch_pipes = dpu_hw_ctl_set_active_fetch_pipes;
+ 
+ 	c->idx = cfg->id;
+ 	c->mixer_count = mixer_count;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+index aa560df698ed4e57a25e4a893d7333e19b065fe8..1b40d8cc92865e31e5ac4a8c3ee8fac8c5499bbd 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+@@ -254,7 +254,7 @@ struct dpu_hw_ctl_ops {
+ 	void (*setup_blendstage)(struct dpu_hw_ctl *ctx,
+ 		enum dpu_lm lm, struct dpu_hw_stage_cfg *cfg);
+ 
+-	void (*set_active_pipes)(struct dpu_hw_ctl *ctx,
++	void (*set_active_fetch_pipes)(struct dpu_hw_ctl *ctx,
+ 		unsigned long *fetch_active);
  };
-@@ -712,7 +712,7 @@ static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
- 		.name = "disp_cc_mdss_pclk0_clk_src",
- 		.parent_data = disp_cc_parent_data_1,
- 		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
--		.flags = CLK_SET_RATE_PARENT,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
- 		.ops = &clk_pixel_ops,
- 	},
- };
+ 
 
 -- 
 2.45.2
