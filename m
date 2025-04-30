@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-172449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E355AA4CCC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:10:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B22AA4CCE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FF781C22DA8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:05:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63694188FF00
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C4A275869;
-	Wed, 30 Apr 2025 13:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A531277818;
+	Wed, 30 Apr 2025 13:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZEE+FVc2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g2rRyFtf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AD9274FEB
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:01:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805D827585B
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746018101; cv=none; b=IwiDmiSKSPiLKb8uQw09ItkAmMidiNA0rqX0BBt/Ah3SziqSIpScHw4afEzbMfbxqCkRPfkOmf4oBFvd27DVabO7NTiBzDg5HruVPAYTXNB0bUlHp3TUFHJyQ4OUVcVeqUGSvHrJ3F39sFMe8FwU9btgxJTcFXdKHdJGmciFU4Q=
+	t=1746018103; cv=none; b=JPXf0XyzDbuJ+jAxdoyqO5vmf5vdvDPqFuKx1x+eqUk0a8JpL3XZYnPVviN4OHzwHa9Ma5O4bOQZYxxawPRQpMP117FNz5G0IabnPfkGT/A5zEXrfFwHnIfdTFSqmchogNkKUOuCprDodPzflTKxDuySeG0/cZfBodXW9oFqMsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746018101; c=relaxed/simple;
-	bh=ie++luqCCOkUIqplEYfGoj3PyvDBiGZnnE2vPE0q2fs=;
+	s=arc-20240116; t=1746018103; c=relaxed/simple;
+	bh=L86VjcIlUPTyl97TCOA761t4ZCfvvfnN425URVF10Z8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XxQuZC8euaJoQ1FPFDnVnrpeLizFduMh+Hue6Eb1rIQFO6+l/ekciNcQv+hv4SZHG2ZOf6oAPcKBOuxBVRHGu24SN/dDaXbqjP8JvGCqUREP0HffXDbPfUMXtvk0Io32LEU2rdupbHAM3FYWSRSd0eaxODTjnxY9g46rrSqC27M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZEE+FVc2; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:To:Cc; b=nZwLMm0oyYkDjZ+2BHHoZHuxXyrWyqkb+GsOT6MN4kkaVtmeFxTbp7zDTDTgmlK7a09c+t3pEHEYaQxSQASqQ5QAncmDsamso71JbSPcnbAWe5LGLyfOwK3vEwRJzN6kX5xVPZ3TwTB1LYAgklxSCEvFezxKs4QQcoJzhHIocNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g2rRyFtf; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3912387cf48so244500f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:01:39 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39127effa72so840587f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:01:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746018098; x=1746622898; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746018100; x=1746622900; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UlgW31bMSvJHQr/+7FLD6mAl+2mcjre5T4tLb0NZhIc=;
-        b=ZEE+FVc26Hwn3/do/ggdV6DnpTay1/WsZPGygW+rNHtdo8iTC1egjhz2g/LlSb7rmT
-         kXKkMQS1IDhGnkVAZSX4O1I1ol5ncnfi1TbrKTowLjEWU8wYS9f4iwa5bB6WQOwqtpHB
-         +ZtEXssHGsezXWNNY5DEdBCcJGdXsIdnbAR+BxsIfTNroo+ePQT7WHAnP8lsj8y5UdFI
-         QeI9AIfGB1OKgLj80L9EQ+S5nvNYBP1AcgQvPry+84P8YORSPQD4TDp4tCnBmknOQQSF
-         LoOaPahmDiPdnP3orHpAskPWQbfEbIOH0tx3qB7bL+uoSJpyittiAL2ZwktfinBWtMIQ
-         tLjQ==
+        bh=LM24bDa7iOIUWC8t6uWvtQysa6eAdU5lGmeO6NndF6E=;
+        b=g2rRyFtfRKLJbS7QStU3j2KJgj5ONyaqjU4mFD1Zk33M+zEHnLFUgsFTnpYH3In1ml
+         MniqFLqE79NwU/7Bhw3Fj8CPQdONltFB6Y4e3mqblUwrXaNzzi5DwcEVPCy01twInQyk
+         ScUsoE/o7TsHDjQu5MlJClwuu9fFDSfTYHMEjuq6w7mfr9vRyJHoItCCPPTLECxOjerE
+         XerUnIlNmq1ZwRWyRllogIrX4D9QrZUesTtE/RbvhMflT9S3AtqyAc+KdSPHGL2RhImN
+         6j0Rj4+t2ygRGfJM8nsmcnozlVD0DGrbUS3zhQFN0EJrfi6AyqtatPSnVehZBOB4as8r
+         VWKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746018098; x=1746622898;
+        d=1e100.net; s=20230601; t=1746018100; x=1746622900;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UlgW31bMSvJHQr/+7FLD6mAl+2mcjre5T4tLb0NZhIc=;
-        b=SOHsYNvFmCDx32v2HJw36WGJQ9j55SH5hQRx9qyPodoiXGu5cBvm7x80TQZYvhrslS
-         zqLIWpPMAufm0wQEVVXkb7Boj7l+oa0r5uOyjf+N7rkBivRofCUHkvQSYTlZr7L4Vcb0
-         6jXb7HrGymTiTTx01BulmFbVfUD9yIgoYa1b+4ie7PGnZ6RlIpn2Rq9rBb0iNASno0NO
-         DmxULla3wufQGVR55nhS2O7pFv6gMLr8kvDBQ434aqHhGUbZVfob7fGCqYqM+gpB1fjR
-         SMQBLUA+8fTQqIZf9KvJk328Iu3RPJKUC4kNKazeTOMpHV3aieDKx9QtRvJHDuHilVro
-         TE4w==
-X-Forwarded-Encrypted: i=1; AJvYcCWkGkGmad32SrBpK6RrtMntRsOhsiazCEJUX/QWpr4H7HXievpUmhR5zC2FXEa21yTolklvR8iTs8mb@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm7AQ+/wl1rLRj8hXaW/chg+ymENuaTzWpe9jbf7hI1/352cjs
-	aDazyt5FaMUx4JK1SxFYYaMIVRKNlyndPfAFD6GZAdl73+XOBNSljsO1K/IP1xY=
-X-Gm-Gg: ASbGncvDJNFLrqyMh74THn3UbEdlngCdrrGMPnFLZ//juYugL1yUSLx0G1UZjSBaQ26
-	qCntx64e03aPl4tpa4kX3vp7lebzE5yBOAMBQ+rpigykGN6aRzTkI64lVuz6/WwNjfidbWOtf5r
-	Rb7ekmZj68bBoAcAPyn7buhIeSsmNCJH4tu1Zeb5soGUwCpM+HaloeEM0+gvsxe4NfnC/b1bidA
-	2n2dxBgtelf+cspv9Zkgd8xkoPq9vLbNucDyFfFbBQYgS0+61OABidP9z1fdH1wDufU4bh1+C/a
-	w2Ty27m1WOpprbzj9bDz4Yc9q+8w9+318PTeYrAfdWrpYih8DcLlj37aGGw=
-X-Google-Smtp-Source: AGHT+IHmxoUPURdmmgQHz7Jfj8+u8t0c/VIE/4vq98Yg1gd3UGcNqtyKVvz0Ufit6P2ua3jO7/u+tg==
-X-Received: by 2002:a05:6000:2dc3:b0:3a0:7a00:61e9 with SMTP id ffacd0b85a97d-3a08ff35f51mr816557f8f.0.1746018097648;
-        Wed, 30 Apr 2025 06:01:37 -0700 (PDT)
+        bh=LM24bDa7iOIUWC8t6uWvtQysa6eAdU5lGmeO6NndF6E=;
+        b=Gv/ffAlDcxU4oGsG3T+hBuZmpf3GRfpSlVNndsUdp74P18Ljjq7aQ8ZRn3IPdEkd9S
+         BKNT5moXjDuKGf1GbniS0+MTEUk8WGYNCM3kwS4IWdS0v8UHoPb8eIZyjKhfj9+xvI+1
+         9MFCGKChxW/aCuPbKZP0b186Tz/L9pAwN3et+uMj96FyFNWVeJC1+n3kg00bpflrLyFx
+         txwYPGZiYhXdAtDK60fIdfDNtp/tM86NbDNIO8SIacibnzMC88XJLTM2VnnZa+Lk7AWl
+         EY0mve+3s6/G4nF1Cqau4Dp4epC2DcXdtUlCxljEMHYhF8pV9OuB3L2WUU+E+wqUHi7s
+         7E4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU1+9emBedy7D56a6faWUho6IOGLIqVPB4kwJbWSkPz8YlUyab8vpsQwcGZrbcYbMwN2gG0aGqVmVNm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGqtUzg1OWSalZ/bR8+kG7TxMnOzgpa2qA7P3WtAjlK4T+E987
+	LFKmKkZhVgy6Cxm0ywy/Au34vVWkxP6YY1HD8mvqywQ8f/hYKGAnu4qaWo6ancI=
+X-Gm-Gg: ASbGncs2rm4TMiAaxCjhfQHthEUzSSYucjKOLhYns5X6Uw9LWYQQojZcHq/hwguk9WW
+	eF1PTGTOQ8xJTeB9zB+fcnrqQCHgsCYmEgyNQRigF5LMoTDz/s3a64oHR1D+/ts/0SBOYDyhNFH
+	WxBfcXaZhuRsYgDU2hd8+J/HgThV8n2T9wsEWUVqUI7Uc8WnAiXFRzWxD8QdflGqX/LnaTOoEOK
+	xzx3EovhAREoaEnt0SHwfx6Xq7T//qPlv/eGoPdWF+FAIHgdNU4SjJcHkWwuTmodpCQliAz8Uyx
+	mlQf4bipC+nl+fwG+kaZoytU51rl/cVoc2OFWsATz4kjj4lDa3yNi2UHEdk=
+X-Google-Smtp-Source: AGHT+IH2rx1fg5ZTesnYB4q5L+He7XJ7RQcIFWsPkQJFXNtvB4sLm4M+PRGEinPbyqmKhH7WkFGF+w==
+X-Received: by 2002:a05:6000:1866:b0:3a0:86f3:451f with SMTP id ffacd0b85a97d-3a09007e244mr807662f8f.12.1746018099714;
+        Wed, 30 Apr 2025 06:01:39 -0700 (PDT)
 Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 06:01:37 -0700 (PDT)
+        Wed, 30 Apr 2025 06:01:39 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 30 Apr 2025 15:00:44 +0200
-Subject: [PATCH v5 14/24] drm/msm/dsi/phy: Toggle back buffer resync after
- preparing PLL
+Date: Wed, 30 Apr 2025 15:00:45 +0200
+Subject: [PATCH v5 15/24] drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-b4-sm8750-display-v5-14-8cab30c3e4df@linaro.org>
+Message-Id: <20250430-b4-sm8750-display-v5-15-8cab30c3e4df@linaro.org>
 References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
 In-Reply-To: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
@@ -108,30 +107,26 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org, 
  Srinivas Kandagatla <srini@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1164;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3289;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=ie++luqCCOkUIqplEYfGoj3PyvDBiGZnnE2vPE0q2fs=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh8DPK+FwfYxZwhAaHV3AlW+BD3qudeCMCqz3
- OYe9MuARDeJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIfAwAKCRDBN2bmhouD
- 1+V6D/48DkbGSx3PoiTDnUJsqlJggDdfcZuoUZnjxl4PJSz/rktRaRaay/hiT4JNAAsLHB+dC0S
- KJ7ZpYI4zG52UiNG7o7KJoPFFlH1SLeRgs0PuHfx58n+ZKbogI2WWIiQ++0CfuMm484s0F0E48a
- QU5wjbF0TuVEZ4gG3ud+8p7xPetF1YduSekNRPw2MRkOUV3+0857Z9eFfbVgaHPSEJNEA1rNO3K
- TmRs2D3EoX9qi+ZIvvDJ5BxYa9MjCAb39D/7XuVj3X20DYvTTyv3a46kEI08haCjxbkXFJj3axF
- MP6cXSL1fdt7Bo2TPFV0OBzPMI+AOmnwPdizhelzDbjd9vfwaUCqgeLYAWKKEjpDrrxUcGM3Gnx
- rvQ6lhr3SQjkbr6vdPkJ3VgBO2wdRLfkhvMn6UMY3j9znH0a9CX9AGKocVMq6YjqmG6ILiY/7jR
- QozLeOjqymN7TJzz1UCaCyHiPUHih5BxcO78BDTFScr40NLnLcl9zD4w/gJ6bCUi8ZGpBlB8ipk
- hx9yPNd//qGfUMCjhOrPakJ56GJOInTiey2NcrqoBCdEfROozCncSpMRDL8jADOn7U5ATEDtzmz
- PNfhEvYfXWo6F1cjAcoxwMYfZ7xPm34odoidWGhs6JERWO2+G0IdQQNy6RFaNNKflFC6SHjaROi
- zIojsRSRHDWoh0g==
+ bh=L86VjcIlUPTyl97TCOA761t4ZCfvvfnN425URVF10Z8=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh8Eee70M6ToABe2+KYQGOXv5I4i/QOKutTAF
+ yXMi2zVij6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIfBAAKCRDBN2bmhouD
+ 18ftD/9GVp0+K2BUhEAuJSjzH08czgrFiefIuIU9QfHPr0uuOIXnmo1kDKgRguApHvgda6Y/TzO
+ Jn7PCWEIi85lWH7E9ds8xcPZIPazI7gt/PbL6ABOWGuCIzQT59kVXptV/T3FR9sxEUR1rmk4HUJ
+ mSJZySn+JMaNTYdning2aZOzbXWiRyax2lI/JluLLnIJBHjbQ1CNJcMLJPTQp2YCRSL3QRcJVfI
+ NdMLtKFQa9WrgiKQPp9hG8Kp77G5l9p+0XqzHIb9GD5W6qqRkIcpcK+en3+7i0aQj+8YS7IBWdV
+ gWgnE1QR8aAaYGK/WNwHpoHPxCg919ZFCqnONVefIyZHg8ej/mtPq2MH6XCO9FjY0HWz/QCIRa7
+ v1FFgurhyJr8D6GQOJaPV6cntq9mysnZ9Zb8uOhoCL4HHHArsC9bSHM6rsvASQNDlR6CYzcm73P
+ PHtm6DNs0Zxlco+ZrjlcaNNkkITKMkrX7FSZvgveNbZbnRopyGJ1bKGyWN3w0SaTkyojaEDGrPN
+ PSVhfQxSUQ0KSkBULD5WFoBGqb9aTyQNmrwjhuMpOyh9eKSJTKWoXtW8gPhRLg3XWxytV+uRZRB
+ X3JjoRw5w4wJJaNkxFKRfs4zxDGa6ItIhiLG4eN9/93r68mz9gEdktL86sn5U1C2MBoZyvm2W7r
+ KveHdE0KJGAkwzA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-According to Hardware Programming Guide for DSI PHY, the retime buffer
-resync should be done after PLL clock users (byte_clk and intf_byte_clk)
-are enabled.  Downstream also does it as part of configuring the PLL.
-
-Driver was only turning of the resync FIFO buffer, but never bringing it
-on again.
+Add bitfields for PHY_CMN_CTRL_0 registers to avoid hard-coding bit
+masks and shifts and make the code a bit more readable.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -140,24 +135,68 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Changes in v5:
 1. New patch
 ---
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c             |  9 ++++++---
+ drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml | 11 ++++++++++-
+ 2 files changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-index a92decbee5b5433853ed973747f7705d9079068d..ca1a120f630a3650bf6d9f9d426cccea88c22e7f 100644
+index ca1a120f630a3650bf6d9f9d426cccea88c22e7f..7ef0aa7ff41b7d10d2630405c3d2f541957f19ea 100644
 --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
 +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-@@ -467,6 +467,10 @@ static int dsi_pll_7nm_vco_prepare(struct clk_hw *hw)
- 	if (pll_7nm->slave)
- 		dsi_pll_enable_global_clk(pll_7nm->slave);
+@@ -362,17 +362,19 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
+ static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
+ {
+ 	u32 data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
++	data &= ~DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
  
-+	writel(0x1, pll_7nm->phy->base + REG_DSI_7nm_PHY_CMN_RBUF_CTRL);
-+	if (pll_7nm->slave)
-+		writel(0x1, pll_7nm->slave->phy->base + REG_DSI_7nm_PHY_CMN_RBUF_CTRL);
-+
- error:
- 	return rc;
+ 	writel(0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
+-	writel(data & ~BIT(5), pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
++	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+ 	ndelay(250);
  }
+ 
+ static void dsi_pll_enable_pll_bias(struct dsi_pll_7nm *pll)
+ {
+ 	u32 data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
++	data |= DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
++	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+ 
+-	writel(data | BIT(5), pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+ 	writel(0xc0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
+ 	ndelay(250);
+ }
+@@ -996,7 +998,8 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
+ 	}
+ 
+ 	/* de-assert digital and pll power down */
+-	data = BIT(6) | BIT(5);
++	data = DSI_7nm_PHY_CMN_CTRL_0_DIGTOP_PWRDN_B |
++	       DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
+ 	writel(data, base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+ 
+ 	/* Assert PLL core reset */
+diff --git a/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml b/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
+index d2c8c46bb04159da6e539bfe80a4b5dc9ffdf367..d49122b88d14896ef3e87b783a1691f85b61aa9c 100644
+--- a/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
++++ b/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
+@@ -22,7 +22,16 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+ 	<reg32 offset="0x00018" name="GLBL_CTRL"/>
+ 	<reg32 offset="0x0001c" name="RBUF_CTRL"/>
+ 	<reg32 offset="0x00020" name="VREG_CTRL_0"/>
+-	<reg32 offset="0x00024" name="CTRL_0"/>
++	<reg32 offset="0x00024" name="CTRL_0">
++		<bitfield name="CLKSL_SHUTDOWNB" pos="7" type="boolean"/>
++		<bitfield name="DIGTOP_PWRDN_B" pos="6" type="boolean"/>
++		<bitfield name="PLL_SHUTDOWNB" pos="5" type="boolean"/>
++		<bitfield name="DLN3_SHUTDOWNB" pos="4" type="boolean"/>
++		<bitfield name="DLN2_SHUTDOWNB" pos="3" type="boolean"/>
++		<bitfield name="CLK_SHUTDOWNB" pos="2" type="boolean"/>
++		<bitfield name="DLN1_SHUTDOWNB" pos="1" type="boolean"/>
++		<bitfield name="DLN0_SHUTDOWNB" pos="0" type="boolean"/>
++	</reg32>
+ 	<reg32 offset="0x00028" name="CTRL_1"/>
+ 	<reg32 offset="0x0002c" name="CTRL_2"/>
+ 	<reg32 offset="0x00030" name="CTRL_3"/>
 
 -- 
 2.45.2
