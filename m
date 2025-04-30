@@ -1,218 +1,144 @@
-Return-Path: <devicetree+bounces-172459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F0CAA4CFC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:12:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11919AA4D05
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC4BB9C77BF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:07:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EEA89E0C11
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7A5280319;
-	Wed, 30 Apr 2025 13:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B59NTOEZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CAB25DAF0;
+	Wed, 30 Apr 2025 13:03:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB7427E7F6
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D629F259C9D;
+	Wed, 30 Apr 2025 13:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746018124; cv=none; b=rG5BnsgSwnpWpHE0DrDtwC+toypUH3PlgtihU3pP4K1x+0opIkydx6rYbiEihPIiQ1CV9eSDmU13JddH8TMYcBR73MjLed7vQFf+lJjHD0WqSC6sISZ7TMvHKqFNgrTk8RTbhXW3f9deJ/+Nl9hMlfN8od5ankH3cLbr/CcosGs=
+	t=1746018209; cv=none; b=quLkdaZMRupNPQhzTS0qbMx1hNUCqxMPwtQvJ3mk1YTy8mb2nXAqPmArwAlrIKAsN63YymryfIxwWICxlYXSoT2wevUavHyU7o0prwEjEZBwwYfvuu4fm27qINtMibfaxrugVElIeXDwx+Kv4Ff/Ety0oTbXFhAV8pxqfI/KdH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746018124; c=relaxed/simple;
-	bh=be21JxufejHw2rq84sJ/VfYaP1y6cCq/ZMTy8SJRrHY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fT1jEn+8bgudrSYPM4vttqKX0QFWeBQZU2///TVNTTb+/Hsv5BxOB6IB/T42DxNSOPpdLlKehLUhS1SpvPMoF/bZ5ooxLXtLLx7KwfMsA6zhh0GrUy/QljXZ1I+uLRWwhYH9W/FgMpZh7nsvveHqROOljWdci1/a262+kwBba1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B59NTOEZ; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-391324ef4a0so401901f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746018121; x=1746622921; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tndmMRLasPafzGI8us3kiKmdtf1aIReqkNl96kpfR9I=;
-        b=B59NTOEZSkmDsh6tERtXuQW0MRWmBlA4Fwb9J/vtgmXIQfUL5x8sqzhOZkJXyrJGaU
-         AGQDhbb9c76c6QR+AI63PTCV/+YNHUv5UTwCQASAqaR0oqE5AJM0lVid3NALAOLfI3UD
-         V2suoFyXu3G6g+evYJLhWNwxjDR2fEBcGRGoUL4uUdjgs5WSonbwQMwdVPGBUPiZmszB
-         VKauNZNZWXEv0Gq+RrUIfvZ1yMrK0sN89wAMQirKOmCdVAG9Oa6TNI87fq3XI0Alewm9
-         ss1bJ8QBPAAhMRlw2BUoqICBH80J0cp28XNoz9wQ4oF1x9PIYSncUTlgR7eZihf54OmX
-         icQw==
+	s=arc-20240116; t=1746018209; c=relaxed/simple;
+	bh=iFixx+t4HjD7fQ89CBPw8tcEnpXOvIN8tzy2ETRCd7Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L3xj/BNrE8I4Qyl77Ne2lUZwLevPf2YumQOy9iHr5qkwYIAkJbSPB5I2F3+hX8X/YMJdDdDYXhYGVjwcPg0fw5fxHLtMl61zEAZS8XRKPFw94QOEXDwiOYO7mqjLpSSbMmG0PSPd27LgUFbCDzVEFiNv3IiyslnxRRLDWkf1eHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6f0cfbe2042so12934286d6.1;
+        Wed, 30 Apr 2025 06:03:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746018121; x=1746622921;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1746018204; x=1746623004;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tndmMRLasPafzGI8us3kiKmdtf1aIReqkNl96kpfR9I=;
-        b=bJRPjc6WlB4cEip8rCMOwQIBJfRVxNhFBN/46XPkkwBjG4yTJie+OY7CotJ29tDguC
-         37i34r3I0sbUHUf1HUum+1GmhE9XYK+uaZk6xseTG+Ry+8kLtbpgKFONZ2XJHR5vmaOV
-         ST/cz3rmmbVGIzKBj4Rf8yNmjYct16b+z6m616HYGFebl91J0/klcPsS5nI3IS7vkAGZ
-         M/gkxAkoDVbXj75zwc4JaLYUdQvxPaqXrUDcA926+ME9skQgTLzioMC+nnfCCFogHY5v
-         j6zuHbDxDC173dK2l0Iv7IDsBCf+bE3f20pOoAiHLRJp7lvzf3Zd3HsY5cely9Wpo2WG
-         xwVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQPQtfJgCaRW9CyLufxG/XopFbe3fMn9rPD8aILUhYEAlAVK/ZMk4Es04kZdEeSSVE0t6yCXN9NZIU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBmXhvX3P8VFdSAMemzsFgcB5IA6wC88X0KEVNTjQse9I4dZBW
-	PsujdVP2IlNsA1u/7yi2m91VVsQV6fHatfkfkE1kccvMY41wgVY86gBBbzuQaOs=
-X-Gm-Gg: ASbGncu/AKqZrR2EFov0yaSg01HuVsgOzQtOPi1F9rXCRPY/UWobg6L6NFy9h1nrrS7
-	BD8NmNT/Us9r2V2Wk/CERNVZcUccxbnWVWeUbsl9L65f/MW87mD6ufXzU/3GcMBo8BHRPGDitU/
-	/zLkqwedXz6FgAcV0H3WdCXomxpeL5As3Z4eOwkOtxccsUZ8XTgjLbEFbHDOp2efP6Pj6xJxefX
-	BM6c55QhygB5mUiDXPFDP8Ip1VSM5ihjuQ+2JZ8IcaWlR1iJ1u5G4a4q0+xSHxpKOrfSX8PQ/ut
-	gKtO++wbYCKTNjlQF587qtv625/GQ+hmBO8YG52e2C7k13mDHob4PxEksY7Vc43OYeufRQ==
-X-Google-Smtp-Source: AGHT+IFi7AgExT+UHxJr37nV09KKAM1KH3QuKRe5WJLZQda5LnvxXNiP5Xe86NeUpMJvDYVJnyIoGw==
-X-Received: by 2002:a05:6000:2404:b0:3a0:9188:ef58 with SMTP id ffacd0b85a97d-3a091d667cdmr96227f8f.14.1746018120453;
-        Wed, 30 Apr 2025 06:02:00 -0700 (PDT)
-Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 06:01:59 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 30 Apr 2025 15:00:54 +0200
-Subject: [PATCH v5 24/24] drm/msm/mdss: Add support for SM8750
+        bh=rW1MhyT91saKVAFuqB6OQab7qD4mL9UWcfPujvEtR98=;
+        b=QyjVf7QlNTNnAOV087cp8g9svTh1ZnJD+uClmVimbTPi+AStuDUQGtgF4LuYKklLKK
+         oeVfI7yk67poEoF0vQfnIP6YG2TXI/j+Kw2rVAcYKn6PnwvPVi64efQmHshwo+Q0Whlh
+         USfmwi1KxDAHJGj9BNZxELi9TKG4fw+QOw5v/8MgezUPkhyivS6VHGsN+c+uPKEnkfWe
+         0yrFo0WZyhYxgw9vR8/NOnUu0R8AjzuhONCXfSMs2R2Ck3Aw6pfefwjMECHbpT6UG2kC
+         a17oWQM7tHRiIKJzy8Ppjn1BqcMtpqiYjvt/HZVWqPC3Gwof0tlBDg4Dym7YXP1czrMy
+         PxaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAmKshSfqgrf0PVHb7Fkd6d5k2YWjxN/nixVwy3X+7dA3iz3eOTmvOdKD6jhZYoqPW/jGWItWs8wi3sKU=@vger.kernel.org, AJvYcCV6x6V0UJqm//iI8caBFTH9yDGXjPNBsoHJ0tgH9LSJN3qyRBozpy1CGQbokClC0ZwJqSgt3oUZ9muv@vger.kernel.org, AJvYcCXgWPIfTgaisnjpd61UT94ROT9puj1adpJN1MrViVXOoOZEOW5u7GvvQBc0cr0Jv+QtnJOuNfHlavhAfpKhgOXzq/U=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdeBN899V6pEn1WLChtjbE+6gmHDfMMKtDDBil8j/UuVB6rZgf
+	1M2SdpJhTyeqrgYV6xM4vBy6RHBaujZpNW4sfW7AWE0LzPJzF1emTxPC9elS
+X-Gm-Gg: ASbGnctF+tPm0tlmcb4vZoNRP1JzFyH17/pm/HY5RVUNRfNwDC4ot1XY7bcHTZtObuW
+	UTSmAD9AVw0lcMVVpFF6eNYliHx7Wh7IjUbMYOs3ddwz3FIm5HTLEDK8LHyHhRWYQDxgYSaJJH6
+	Jt0bpwoRlf6B7HBPKYc3iInbSh3bw7rLHNaJuVyKSaKLWmMC+uu4ReamIQgAcs6OUpxRsNlOS+g
+	SQlCph5+PPltOSMltvV+N6z+oWvBAtEWh2VyuqfBXKoYp0XbLFJ9XGmgUN6h/S9CMVRlHCDg1mg
+	vLsTHgvqaTXsqxqF7utBtBbld6aSsSzQQCSPm+vg/NnMTG1hwxOB10qVrFfax0lT8HywRmq3raw
+	zfW6ybqs=
+X-Google-Smtp-Source: AGHT+IEsCRz6fQ8DZvemdv9TJXlflJAxZR4Q++cXXVHa8V9fHyeQ0pIdrC2a4BojyzqD24OeFz+bGA==
+X-Received: by 2002:a05:6214:f08:b0:6ea:d503:6cfd with SMTP id 6a1803df08f44-6f4fdd831b0mr46409886d6.19.1746018203756;
+        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f4fe6ad681sm7941076d6.1.2025.04.30.06.03.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c922734cc2so113479185a.1;
+        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU7NepP1HnOBdICYvBCKuSDAFHSYYWaP+q7LeSxoe/G+V8wRjCjpeFWWq1eudNlj5fxqHptENeciUwL@vger.kernel.org, AJvYcCVtPmey4NGXY60YXaQdC05gfJXDZ4vXIBteiJBPfRn+LQ97a91V9cZADJnR8xgiQDtIbBUQIczbfdIg0+HdRnvnn+Q=@vger.kernel.org, AJvYcCVvIsR/s0OQNin5nIA9tFOCqJ02dm+RxpS0p2br4k1feH3MYq1g2V8mTYMlWbSs0aK8ONHy1XbXhJnTZas=@vger.kernel.org
+X-Received: by 2002:a05:620a:2890:b0:7c9:574d:a344 with SMTP id
+ af79cd13be357-7cac7b5c591mr351112885a.25.1746018203056; Wed, 30 Apr 2025
+ 06:03:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-b4-sm8750-display-v5-24-8cab30c3e4df@linaro.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
-In-Reply-To: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>, 
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org, 
- Srinivas Kandagatla <srini@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3191;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=be21JxufejHw2rq84sJ/VfYaP1y6cCq/ZMTy8SJRrHY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh8PByvnI0Trv3zsZhzQ6VfXKE9citqdjgGC3
- PsTmPZCN/WJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIfDwAKCRDBN2bmhouD
- 1wrrD/4u2PuQ2ouXBCx8tly07ATHb1/Zj1EzEBIaw19Oi3HJew675YV4BPClQF9J7CrOB2m/ywR
- hbw/dqZXqTP4kUCrmDAqP8pwBvmJGIPQcCuznZGjaUFbdLyBqJeVV95jMfLE31jOOkDhWSZEYwV
- 5jc29JXj/nPLvDAjfUv/yylQnfHKEpLeliBjwI9j6hFpDUHUEIWYsFrD7XC5gRowjCIrVWYArhu
- mg57pYWMhuBdbvtzbhsZ5Tu84iPLXB98/DznQXv97jj0t81MD1NB6vz1NN6c3s1uOrA4shA+N6L
- fpAXoNrr2+b/F6pw5r/BomV7TrYL3CX0nN4cxW11IA74vPAIV8Jgu2t0mOui5caqBaPR0rvT36m
- Kw1qNZIVTme4Ql8nZmmon1XlHcDKyjXljdJQyS0zNuyPOR4h9bFO5Fd4ZQi/vMYZIyNgL4xIVVn
- eFobglFBZ/q6CZkQ1vAotPvPkkIfBmigkKk7Q5ZdddttpPEA/Nq6UN77mcgpg+KyOVSMIToABqe
- FFzMztgK+MUi2pBiL4pp5TvizsJL5qolZqdIT6SSwni8B/WhYEl/YOH7cqaAccf7vh7IpLLW1tK
- DlnN4VVi0lbl86fzVBqvpNpfIbVkSE2PxXaOdvdUFFFEYmDm5zo0ifolEz4rzBiPZlD1TBHug82
- ZgJejiSvYezahmg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+References: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 30 Apr 2025 15:03:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
+X-Gm-Features: ATxdqUF5SmUHR6IS83F_BlSTuqKqxW8yJEwc4_Me4L0hReYlvlJOP5xqk2h4aew
+Message-ID: <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: sony,imx290: Update usage example
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the Qualcomm SM8750 platform.
+Hi Niklas,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/gpu/drm/msm/msm_mdss.c | 33 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/msm/msm_mdss.h |  1 +
- 2 files changed, 34 insertions(+)
+On Wed, 30 Apr 2025 at 14:58, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Since commit 98e0500eadb7 ("media: i2c: imx290: Add configurable link
+> frequency and pixel rate") the driver expects two specific
+> link-frequency settings 2-lane (445500000, 297000000) and 4-lane
+> (222750000, 148500000) operation. The driver fails to probe without
+> these exact settings.
+>
+> Update the example in the bindings to match this to make it easier for
+> users to incorporate this sensor in their device tree descriptions
+> without having to read the driver sources when the driver fails to
+> probe.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index dcb49fd30402b80edd2cb5971f95a78eaad6081f..3f00eb6de3a9d2bee7637c6f516efff78b7d872b 100644
---- a/drivers/gpu/drm/msm/msm_mdss.c
-+++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -222,6 +222,24 @@ static void msm_mdss_setup_ubwc_dec_40(struct msm_mdss *msm_mdss)
- 	}
- }
- 
-+static void msm_mdss_setup_ubwc_dec_50(struct msm_mdss *msm_mdss)
-+{
-+	const struct msm_mdss_data *data = msm_mdss->mdss_data;
-+	u32 value = MDSS_UBWC_STATIC_UBWC_SWIZZLE(data->ubwc_swizzle) |
-+		    MDSS_UBWC_STATIC_HIGHEST_BANK_BIT(data->highest_bank_bit);
-+
-+	if (data->ubwc_bank_spread)
-+		value |= MDSS_UBWC_STATIC_UBWC_BANK_SPREAD;
-+
-+	if (data->macrotile_mode)
-+		value |= MDSS_UBWC_STATIC_MACROTILE_MODE;
-+
-+	writel_relaxed(value, msm_mdss->mmio + REG_MDSS_UBWC_STATIC);
-+
-+	writel_relaxed(4, msm_mdss->mmio + REG_MDSS_UBWC_CTRL_2);
-+	writel_relaxed(1, msm_mdss->mmio + REG_MDSS_UBWC_PREDICTION_MODE);
-+}
-+
- #define MDSS_HW_MAJ_MIN		\
- 	(MDSS_HW_VERSION_MAJOR__MASK | MDSS_HW_VERSION_MINOR__MASK)
- 
-@@ -339,6 +357,9 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
- 	case UBWC_4_3:
- 		msm_mdss_setup_ubwc_dec_40(msm_mdss);
- 		break;
-+	case UBWC_5_0:
-+		msm_mdss_setup_ubwc_dec_50(msm_mdss);
-+		break;
- 	default:
- 		dev_err(msm_mdss->dev, "Unsupported UBWC decoder version %x\n",
- 			msm_mdss->mdss_data->ubwc_dec_version);
-@@ -722,6 +743,17 @@ static const struct msm_mdss_data sm8550_data = {
- 	.reg_bus_bw = 57000,
- };
- 
-+static const struct msm_mdss_data sm8750_data = {
-+	.ubwc_enc_version = UBWC_5_0,
-+	.ubwc_dec_version = UBWC_5_0,
-+	.ubwc_swizzle = 6,
-+	.ubwc_bank_spread = true,
-+	/* TODO: highest_bank_bit = 2 for LP_DDR4 */
-+	.highest_bank_bit = 3,
-+	.macrotile_mode = true,
-+	.reg_bus_bw = 57000,
-+};
-+
- static const struct msm_mdss_data x1e80100_data = {
- 	.ubwc_enc_version = UBWC_4_0,
- 	.ubwc_dec_version = UBWC_4_3,
-@@ -756,6 +788,7 @@ static const struct of_device_id mdss_dt_match[] = {
- 	{ .compatible = "qcom,sm8450-mdss", .data = &sm8350_data },
- 	{ .compatible = "qcom,sm8550-mdss", .data = &sm8550_data },
- 	{ .compatible = "qcom,sm8650-mdss", .data = &sm8550_data},
-+	{ .compatible = "qcom,sm8750-mdss", .data = &sm8750_data},
- 	{ .compatible = "qcom,x1e80100-mdss", .data = &x1e80100_data},
- 	{}
- };
-diff --git a/drivers/gpu/drm/msm/msm_mdss.h b/drivers/gpu/drm/msm/msm_mdss.h
-index 14dc53704314558841ee1fe08d93309fd2233812..dd0160c6ba1a297cea5b87cd8b03895b2aa08213 100644
---- a/drivers/gpu/drm/msm/msm_mdss.h
-+++ b/drivers/gpu/drm/msm/msm_mdss.h
-@@ -22,6 +22,7 @@ struct msm_mdss_data {
- #define UBWC_3_0 0x30000000
- #define UBWC_4_0 0x40000000
- #define UBWC_4_3 0x40030000
-+#define UBWC_5_0 0x50000000
- 
- const struct msm_mdss_data *msm_mdss_get_mdss_data(struct device *dev);
- 
+Thanks for your patch!
 
--- 
-2.45.2
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> @@ -136,7 +136,7 @@ examples:
+>              port {
+>                  imx290_ep: endpoint {
+>                      data-lanes =3D <1 2 3 4>;
+> -                    link-frequencies =3D /bits/ 64 <445500000>;
+> +                    link-frequencies =3D /bits/ 64 <222750000 148500000>=
+;
+>                      remote-endpoint =3D <&csiphy0_ep>;
+>                  };
+>              };
 
+I guess the link-frequencies property should gain a rule that it
+needs two values, too?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
