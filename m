@@ -1,179 +1,192 @@
-Return-Path: <devicetree+bounces-172394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16248AA4A30
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:36:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2221AA4A73
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F5AB4E78BB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:36:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C576A5A6325
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD0F25A64A;
-	Wed, 30 Apr 2025 11:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176A0259CA9;
+	Wed, 30 Apr 2025 11:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOC5hoDd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qEIHR8NR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F0F254859;
-	Wed, 30 Apr 2025 11:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF5A51E1E12;
+	Wed, 30 Apr 2025 11:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746012911; cv=none; b=IiNVRL5Sk8pCO4XzRIPvprWAy8cyf/FFJjF1zecLuUyb34mB11RLyb4Uj5vZyC5CjdLhJfa1iqrdjXFUa4oqH+a2Xgbd3j/xsVI5J6X3CVZQU3lCK8GRJZzfOP8MuG5/0ESGGwQBAvaurJnm1kkF7Na0OB2JIbaBbwGh1S6YpU4=
+	t=1746014225; cv=none; b=ZjY1MvUIrDfObTaSNiOaUq7LCMZtSfZAbRxZV1Ab9RrgGRb3X+BuLcahc0B1OabuwMMJSrFsUcv1vRIVwuOMortwul2UoXfF+fDNiB29xkp/Ge0TmHorm2GkexVBgvfA9YF+nJJwwFxnrpD+5AT2JtAw65DTo00M/tRQXcYX15g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746012911; c=relaxed/simple;
-	bh=GwUKXnh+FVJsy+VeClv/2yX5qg5iEhQw/azoU36Eqoo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hIqJVacTb/ikJCB542Dhblg4PYq2z3QgM/jpKmqy5pm3xwNvXX8lKlWYvCxb5G2fgfR5VrygAogxlA5kRmbHxb4gwgc0aXiGTnwbAHSZZKysB1gnbmzHnk31jJCigp5UC0ESA4do3hTfSEVoTOFCtVRN/y3VsYTPjJGPIT1g1OA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOC5hoDd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF30CC4CEEC;
-	Wed, 30 Apr 2025 11:35:06 +0000 (UTC)
+	s=arc-20240116; t=1746014225; c=relaxed/simple;
+	bh=P9vCVdJ7R9/tU4GWA/qWyC0kfWGOp24aFi3CXt4X9qU=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JaOnWSstwC9FNMSB4XHsAq3vq3D2G5A2B3SJfpJEZqELsjkFWLOLU4+mKQuzia3f2zf7QneymWv9kATlaSgRr/p68t5+/tz7vhL0BHfbRADSk3m78xk4qmm8BRNEa9MN462dtqCEX3uYyoIpd2Fv0h6CWSV2YuzIg1KjdBhrGEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qEIHR8NR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B75C4CEE9;
+	Wed, 30 Apr 2025 11:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746012911;
-	bh=GwUKXnh+FVJsy+VeClv/2yX5qg5iEhQw/azoU36Eqoo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=uOC5hoDdv1oVbIrUlBwvXtLsNiQP1ThurUJnZMx16hFnXEtarn3vRcpJ0PcoRqwk8
-	 eh98LgxlcGp++SDJAbfVMrNzuBnivlni8I1EF49ma+Dk2+Pilywj+qv8Ml/ekHzyqy
-	 4/i67Mz4SAO2YclNxltUEYXW7S0/s5HxNlMr/5VP3XokpFmsiSnrYtt4OVY5x+g/f4
-	 C6LXW39rb1Il8U+GUTHIjKTCCfaVRB4VeMC3nVDQXXPSAcnCshRyp7Nq1CkEozzfkU
-	 wOdJJ5XeEb8gmyiX46/FCxXf9oESN5SoLcUj49S2kIXRdqeqqNsQAlElLUY7z3smGJ
-	 YIuLk5HbndeUg==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Wed, 30 Apr 2025 13:34:39 +0200
-Subject: [PATCH RFT v6 5/5] arm64: dts: qcom: sm8550: Wire up GPU speed bin
- & more OPPs
+	s=k20201202; t=1746014224;
+	bh=P9vCVdJ7R9/tU4GWA/qWyC0kfWGOp24aFi3CXt4X9qU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qEIHR8NRDYw4Q1xD58T1jd8uLkCvW0ZH7FN0+OeIi5/br/luL4krHvTqbbZKF8BAY
+	 U7+lNcgsiCQA5QMNa/ZeV4bz0zedu9vkGWeZ3eb4fm0QDiNKIsjlRf5w3K6Sw0IusQ
+	 e+1wtgdsQOd0fyOR8PpGhAeYXIDP5sZkSvUPNG/19qx9mL1r51p5owu6vYvmLAhBY7
+	 lXdL0XE0PizkZ1H8YV6K4Ij1eGu2eCMNnn2iXAipZ/vpCg7qYGe1VOkbJXg/QxS17a
+	 P+XaSZASgElxjnfn/xiq2IbWhu6eMktH9YCasVQBpJhoVCCV7lDB0MRxjIV8n6R+MP
+	 kjeirhZSiVpOw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1uA63i-00AGFs-8s;
+	Wed, 30 Apr 2025 12:57:02 +0100
+Date: Wed, 30 Apr 2025 12:57:01 +0100
+Message-ID: <867c31j20i.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 21/22] irqchip/gic-v5: Add GICv5 IWB support
+In-Reply-To: <20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
+References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
+	<20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-topic-smem_speedbin_respin-v6-5-954ff66061cf@oss.qualcomm.com>
-References: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
-In-Reply-To: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746012880; l=2805;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=V5Mdu0t8s6038X7jL5bKI4EfIFMP3ptl8Yd+DlwLKYE=;
- b=qQPJUvYTMPHisX1M2G+D+OwLnJrCPingfSYcdKAquSYG4Dk0Pxh4UMXz1M4HdBGf040+bv+JQ
- ioqGLG89BISDiC0IpLS48BEOQOLHyImC2YQYk4dNcQhxtkjRB63FJxh
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Thu, 24 Apr 2025 11:25:32 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> 
+> The GICv5 architecture implements the Interrupt Wire Bridge (IWB) in
+> order to support wired interrupts that cannot be connected directly
+> to an IRS and instead uses the ITS to translate a wire event into
+> an IRQ signal.
+> 
+> An IWB is a special ITS device with its own deviceID; upon probe,
+> an IWB calls into the ITS driver to allocate DT/ITT tables for its
+> events (ie wires).
+> 
+> An IWB is always associated with a single ITS in the system.
+> 
+> An IWB is connected to an ITS and it has its own deviceID for all
+> interrupt wires that it manages; the IWB input wire number is
+> exposed to the ITS as an eventID. This eventID is not programmable
+> and therefore requires special handling in the ITS driver.
+> 
+> Add an IWB driver in order to:
+> 
+> - Probe IWBs in the system and allocate ITS tables
+> - Manage IWB IRQ domains
+> - Handle IWB input wires state (enable/disable)
+> - Add the required IWB IRQchip representation
+> - Handle firmware representation to Linux IRQ translation
+> 
+> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/irqchip/Makefile         |   2 +-
+>  drivers/irqchip/irq-gic-v5-its.c |  68 ++++++--
+>  drivers/irqchip/irq-gic-v5-iwb.c | 356 +++++++++++++++++++++++++++++++++++++++
+>  drivers/irqchip/irq-gic-v5.c     |   2 +
+>  drivers/irqchip/irq-gic-v5.h     |  28 +++
+>  5 files changed, 437 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 4280395e3bdff7858102f0b4eaaea1121cace52f..7bfb2369fbe494a64b72308d95ae33de93c6b8c6 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -37,7 +37,7 @@ obj-$(CONFIG_ARM_GIC_V3_ITS)		+= irq-gic-v3-its.o irq-gic-v4.o
+>  obj-$(CONFIG_ARM_GIC_V3_ITS_FSL_MC)	+= irq-gic-v3-its-fsl-mc-msi.o
+>  obj-$(CONFIG_PARTITION_PERCPU)		+= irq-partition-percpu.o
+>  obj-$(CONFIG_ARM_GIC_V5)		+= irq-gic-v5.o irq-gic-v5-irs.o
+> -obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o
+> +obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o irq-gic-v5-iwb.o
+>  obj-$(CONFIG_HISILICON_IRQ_MBIGEN)	+= irq-mbigen.o
+>  obj-$(CONFIG_ARM_NVIC)			+= irq-nvic.o
+>  obj-$(CONFIG_ARM_VIC)			+= irq-vic.o
+> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+> index da349b4709cc5ec8978859237838f039389ca4a1..b5eb4dbfe2296dc6620889eb9291b542cae4aeb6 100644
+> --- a/drivers/irqchip/irq-gic-v5-its.c
+> +++ b/drivers/irqchip/irq-gic-v5-its.c
+> @@ -786,9 +786,8 @@ static struct gicv5_its_dev *gicv5_its_find_device(struct gicv5_its_chip_data *i
+>  	return dev ? dev : ERR_PTR(-ENODEV);
+>  }
+>  
+> -static struct gicv5_its_dev *gicv5_its_alloc_device(
+> -				struct gicv5_its_chip_data *its, int nvec,
+> -				u32 dev_id)
+> +struct gicv5_its_dev *gicv5_its_alloc_device(struct gicv5_its_chip_data *its,
+> +					     int nvec, u32 dev_id, bool is_iwb)
+>  {
+>  	struct gicv5_its_dev *its_dev;
+>  	int ret;
+> @@ -815,6 +814,7 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
+>  	its_dev->device_id = dev_id;
+>  	its_dev->num_events = nvec;
+>  	its_dev->num_mapped_events = 0;
+> +	its_dev->is_iwb = is_iwb;
+>  
+>  	ret = gicv5_its_device_register(its, its_dev);
+>  	if (ret) {
+> @@ -827,9 +827,11 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
+>  
+>  	/*
+>  	 * This is the first time we have seen this device. Hence, it is not
+> -	 * shared.
+> +	 * shared, unless it is an IWB that is a shared ITS device by
+> +	 * definition, its eventids are hardcoded and never change - we allocate
+> +	 * it once for all and never free it.
 
-Add the speedbin masks to ensure only the desired OPPs are available on
-chips of a given bin.
+I'm not convinced the IWB should be treated differently from any other
+device. Its lifetime is not tied to its inputs, so all that's needed
+is to probe it, get a bunch of interrupts, and that's about it.
 
-Using this, add the binned 719 MHz OPP and the non-binned 124.8 MHz.
+The other thing is that the IWB really is a standalone thing. It
+shouldn't have its fingers in the ITS code, and should only rely on
+the core infrastructure to get its interrupts.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+As much as I dislike it, the MBIGEN actually provides a decent example
+of how this could be structured.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 82cabf777cd2c1dc87457aeede913873e7322ec2..1c006879bbfe01d7b20e6fab620affb61e31ecec 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2460,56 +2460,75 @@ zap-shader {
- 				memory-region = <&gpu_micro_code_mem>;
- 			};
- 
--			/* Speedbin needs more work on A740+, keep only lower freqs */
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-+				opp-719000000 {
-+					opp-hz = /bits/ 64 <719000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					opp-supported-hw = <0x1>;
-+				};
-+
- 				opp-680000000 {
- 					opp-hz = /bits/ 64 <680000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					opp-peak-kBps = <16500000>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-615000000 {
- 					opp-hz = /bits/ 64 <615000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
- 					opp-peak-kBps = <12449218>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-550000000 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					opp-peak-kBps = <10687500>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-475000000 {
- 					opp-hz = /bits/ 64 <475000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
- 					opp-peak-kBps = <6074218>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-401000000 {
- 					opp-hz = /bits/ 64 <401000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					opp-peak-kBps = <6074218>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-348000000 {
- 					opp-hz = /bits/ 64 <348000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
- 					opp-peak-kBps = <6074218>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-295000000 {
- 					opp-hz = /bits/ 64 <295000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
- 					opp-peak-kBps = <6074218>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-220000000 {
- 					opp-hz = /bits/ 64 <220000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
- 					opp-peak-kBps = <2136718>;
-+					opp-supported-hw = <0x3>;
-+				};
-+
-+				opp-124800000 {
-+					opp-hz = /bits/ 64 <124800000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					opp-supported-hw = <0x3>;
- 				};
- 			};
- 		};
+Thanks,
+
+	M.
 
 -- 
-2.49.0
-
+Without deviation from the norm, progress is not possible.
 
