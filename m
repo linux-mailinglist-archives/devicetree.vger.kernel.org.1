@@ -1,578 +1,219 @@
-Return-Path: <devicetree+bounces-172356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF6EAA4872
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:34:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E23AA4886
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:36:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D9EB1B6616A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:32:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D6059C6C8A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE15924EA90;
-	Wed, 30 Apr 2025 10:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83737248889;
+	Wed, 30 Apr 2025 10:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YUvKi/O7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GIA4Qqn0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FD620E6E1;
-	Wed, 30 Apr 2025 10:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FF92367A6;
+	Wed, 30 Apr 2025 10:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746009053; cv=none; b=L4n66hvYpb0YVghhYc+1o3q8hL4tz92vNLVjmuPYQ3bZzaNn1uDIsmG38OBYWKqLNkKk1jHD1jucaaQ51oVMY3BBnMM5hfBLn+yZdIpjlVhljH3+TO23cXigybF9pmmtRZaUKKSIS6s99UqKOVswmQBA+jN+QyMAQ4kaZ3h86Hs=
+	t=1746009120; cv=none; b=OUGu3d1DUQTRYk0vWeMtGNA7idkhAVrD21C1ouhmgZQ3533NvSW/EFvF6KGi4OSSPZJiSuym+fyZMdto0P6AYA4/CnVUckdfPWv+mx+97EObAkSwe3gtxS5/p5tIdVzdPya7ek1Lke9RocSah6DotUH+aud13vDrCGIcfgmsYF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746009053; c=relaxed/simple;
-	bh=XgEmllqL6tac9lQQH/6r4EMb19YJCACarPnMRMuQQNs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NkZdM+oPUnv7z+dgMcq6NBnkRvK60EdJrFlSa6cF2y/TaQXuv0TjPXCpu7eTn08Idqzl7zRYFHCBpz9jFemjqL/ZQbCjfBYEH0rP28aH1zNccvp9L7YFScariH8Oymy/YNu6maz9DzrJB5/xEinp/plX1qcY4CYhrzGirvi8Az8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YUvKi/O7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U98flb021035;
-	Wed, 30 Apr 2025 10:30:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UlRGclVbetksU3DLewrxCoKOOLGavbgDHp1sNKOW6qo=; b=YUvKi/O7XH5bDp0F
-	OlrI/zhJ0/SeBtCijiym1krkel93dj0YP+lVZ76+zOJTRZ0Zl5dAofhA259H/d8C
-	jN9wCurQEuQ8mLvilVOIxw5ooA5Ujjl/HD0ColGiCinlafI8Gn/g1r/4tQi2uipr
-	jyJPjx8pi4izoYfnNSj8A46KbX/uFoZbEE0lwTwT08PBNYFob67HXnVxBLBho2mG
-	5NRAvjkz1cYuHku9nGTKQpuu9xVRuuAwd2Gidt5UXVlcCLqw+44BIglt6Ot8w4zO
-	HLMSj8E5Fp/qByf2PLO6Y+enS7Q2sNHAuBaKzlbDKlV48vF4qzDphiLjY/std68w
-	kzUBPg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u1ssgw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:30:45 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53UAUgxH004045
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:30:42 GMT
-Received: from [10.50.41.127] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Apr
- 2025 03:30:33 -0700
-Message-ID: <1a32de28-cdbc-b80a-aed2-1ddda0354266@quicinc.com>
-Date: Wed, 30 Apr 2025 16:00:27 +0530
+	s=arc-20240116; t=1746009120; c=relaxed/simple;
+	bh=qxwCK+TKSFOdpqEKu97fiXM9g32n+PW28mqYHuBGsDs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Vh4omwHU6HnGN4/QOBqUTY74lny0709kF35N4SNfLbGa7xxE7Ur/0BAb2y4JzVo8AgfFgEswBV+5mPWfO4/RkQ5nKmFj2vKRs7xlU+yYXGdXZRvL+9/Sn2D9oXGVXAQcm/3DTJoUn0IN+GWfcjkzjb9Z6CQdtOV5SzH9y5YdJiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GIA4Qqn0; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-736a7e126c7so6513946b3a.3;
+        Wed, 30 Apr 2025 03:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746009117; x=1746613917; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SQrplKuznos3CKU7xsOCXM8cn9nAbF8UQ/A3fpprKKY=;
+        b=GIA4Qqn0cTDIlVYWf2ck+vdbOU9GTEFN/wOkd5c3FpwfhzScUJFR1zqWzFHTMVdoZf
+         tYLqfytw+n3s97bPkRALlZtVGvqpFM4jHysWr4rcdwhQL0OJxDYJ7Tte0+U6n/OGMjTQ
+         dgvoZO6JGXsNuA+pLiFLUc5d4VimWZaE7YQevBWGWCSnds1qWJ21NvtqBuoN6VtKrLBE
+         MM0M/sK17ahEoEt3gC67Av2NwoSWmcVaiS8AzhDeU2RqiqXGAN0H8ZkQqOKUL0K0ej23
+         9068J1g79rqJt69pZi9Pm/caabXEPcLNTTEDvCddo1WhqLDF0asBZAkMqqUVv916KcP2
+         nHUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746009117; x=1746613917;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SQrplKuznos3CKU7xsOCXM8cn9nAbF8UQ/A3fpprKKY=;
+        b=PEkvGRGeJo5yNr4UdaXzrlKXOKMmyk97eMn5qkbkpg9XrrsdP35pNLLilFZEtnmeXe
+         ggr3mlWcDFImTaTioMRkzQ2xTSnIP2G6NDxl5+1PsUlq5aQeZzeHflP0dVhmgas0DO5X
+         2oJ0Fw8SgrnhMp3tUDfxCnMv7fUnqNz8KJm4QUwSt9fg7BVHDElmcm+6RhCzNab0+7+p
+         tyapPtSmLsls90YI68NDFtAqPYPIZyWiSrfKlSZ8nioluu3lj1g8OytnktZKXDl2oI7h
+         5RAmnACUbgWAWwTmK3qwQBoR2vliw8YIEV1LfqBrFqlDPR48MZf/YsBPHGgoqP3iUDnY
+         7TMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVKpmst3FFFXLuct1MxKchciTjwdDCw0KfH86xWmBiuG/sPlrr+pPsJFbL19522LKeTuqSQuXqBVDNP@vger.kernel.org, AJvYcCWBJMY56vhTiNNg5aOP3mduGjllj+p4VGnNencgjRKyaTdHqLA/rrQG0sOosvcODRpjQN9DSfF4Vdb2@vger.kernel.org, AJvYcCWIUj1sc+IRUMDQ5ajzjxNO56QVVyJ/vmcmomuk+eMytEaiDjOHcEZG724mdQi9IFJMgmNmGxTqrGO23Ynu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyvb6akyrZfXXNVDNSGLz2CyB+L4K7ufQLaIHz9f6LVqJbqxiDh
+	EXc9DAOaYz4kE5/CzilMMx0NuqBPb72IpuRx+miBfmsK/wLpsfl9
+X-Gm-Gg: ASbGnct5aBOcdsepHV3KN/05jzU6/vjRTLUtLEpmYPf2ZjMwkkkDU6l09loDNX+h23u
+	zh8v/FyMVy3TtYEzjU5ANci0iqTaXe8+fkPifc6BfMNfgxwPlZtUmcT0ACqnxWIW8MmR7me/T9d
+	+aUTbpCRRfZQQpKs+4Cai1oiDvEtWf5VypUz05LdlhxRMTilFPaV0YQwkvBlycGZN/a8XJ0MB4w
+	fjiAYVxJM6nIZLu+wGr4TfTSiKv6cnjwsHfEywVX9aLey+Twsz/tP+3/Nncn9cDW+1yQokyMxhJ
+	z4ONEGvxSqti6pK4uQ05BTa3IzRiB6dZKsWvGoM/UTf4WtQyX0aB4McKpo34l2E=
+X-Google-Smtp-Source: AGHT+IHZe0TXYslujCTYOtGtFjRpT6Y7Y076cq9NiJJvVsBDGspddr6Y2NW78t4g4qygnKEUxRNGQw==
+X-Received: by 2002:a05:6a21:318b:b0:1f5:7280:1cf2 with SMTP id adf61e73a8af0-20aa2be02c6mr3127615637.12.1746009117455;
+        Wed, 30 Apr 2025 03:31:57 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b15f7fb7e54sm10432071a12.30.2025.04.30.03.31.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 03:31:57 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 30 Apr 2025 14:31:36 +0400
+Subject: [PATCH v2] dt-bindings: i2c: i2c-wmt: Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 20/23] media: iris: Add platform capabilities for HEVC
- and VP9 decoders
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil
-	<hverkuil@xs4all.nl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
- <20250428-qcom-iris-hevc-vp9-v2-20-3a6013ecb8a5@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-20-3a6013ecb8a5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=6811fbd5 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=ILpOkVDBgQ4VIUHgtDYA:9
- a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA3NCBTYWx0ZWRfX1Yd1ra3ObDdj kSO2tg5T9c5NDt/C6AyMBngqA4f+ElF4CHILaAO70YA7LqQll1OXmEKwqXJgEWinj6e66/MGy2r 3/QFMxwl+Jkdf3cwuVMexpiA6ZZwg4AaaZN/tOd4SU1Hp5DaugJhmylm1HY2L4Z2i1SZ05iBvB+
- rndAtYmdNDEOHsliieyJq/4xnYUQ/daXjF6oxcnCC6RXIqfDcOTRe5o9pxP/a3TvBaovWYyOOGB rJ2j8M6oP/LfHUyg2MuqxooQ4Fw0bdAtOwK96Gzz39f1Nn6/l4f9r9NLLXfZS5ig9T5u8qECOi7 3R6HcWK1NoxGnBm8d5gY8JtK/7OXUb1T+aib7xnofPssPwJaps9Cy+5jpZNB6XfL7Qxf64fYRYv
- yRgOWxvC/cZgJ2wkLwTlGuquiL5utZaFnGPa3TS+SJpKJfOEPo7Y7zvnRPMScKTEvEYzqaJy
-X-Proofpoint-GUID: wLZ729TnlqSqhshRY9RwgUKwjg-FYLGx
-X-Proofpoint-ORIG-GUID: wLZ729TnlqSqhshRY9RwgUKwjg-FYLGx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_03,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300074
+Message-Id: <20250430-vt8500-i2c-binding-v2-1-0cf22d0c2d42@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAf8EWgC/x3MQQqAIBBA0avErBsYNNG6SrTImmw2FhoRSHdPW
+ r7F/wUyJ+EMQ1Mg8S1Zjlih2gaWfY6BUdZqUKQMdZrwvpwhQlELeomrxIDG6956Y0k7CzU8E2/
+ y/NNxet8PM1//82QAAAA=
+X-Change-ID: 20250430-vt8500-i2c-binding-5b397b570387
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746009111; l=3387;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=qxwCK+TKSFOdpqEKu97fiXM9g32n+PW28mqYHuBGsDs=;
+ b=pMd9cRXEoGac6qEgsXthAvZ3Q+fu2//TgoRrNM2QN0jMYGlCBojb9PBLN0Fq/sqk95OLemU0U
+ 433B6Ghn4mEDtMrlVS0MABfIWYxWTQgeejr5T3U5ZvZsvcEDrC9NFQD
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
+Rewrite the textual description for the WonderMedia I2C controller
+as YAML schema, and switch the filename to follow the compatible
+string.
 
+The controller only supports two bus speeds (100kHz and 400kHz)
+so restrict clock-frequency values accordingly.
 
-On 4/28/2025 2:59 PM, Dikshita Agarwal wrote:
-> Add platform capabilities for HEVC and VP9 codecs in decoder driver
-> with related hooks.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_ctrls.c      |  28 ++++-
->  .../platform/qcom/iris/iris_hfi_gen2_command.c     |  28 ++++-
->  .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   1 +
->  .../platform/qcom/iris/iris_hfi_gen2_response.c    |  34 +++++-
->  .../platform/qcom/iris/iris_platform_common.h      |   8 +-
->  .../media/platform/qcom/iris/iris_platform_gen2.c  |  80 ++++++++++++-
->  .../platform/qcom/iris/iris_platform_qcs8300.h     | 126 +++++++++++++++++----
->  7 files changed, 266 insertions(+), 39 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_ctrls.c b/drivers/media/platform/qcom/iris/iris_ctrls.c
-> index 13f5cf0d0e8a..9136b723c0f2 100644
-> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
-> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
-> @@ -18,9 +18,19 @@ static enum platform_inst_fw_cap_type iris_get_cap_id(u32 id)
->  {
->  	switch (id) {
->  	case V4L2_CID_MPEG_VIDEO_H264_PROFILE:
-> -		return PROFILE;
-> +		return PROFILE_H264;
-> +	case V4L2_CID_MPEG_VIDEO_HEVC_PROFILE:
-> +		return PROFILE_HEVC;
-> +	case V4L2_CID_MPEG_VIDEO_VP9_PROFILE:
-> +		return PROFILE_VP9;
->  	case V4L2_CID_MPEG_VIDEO_H264_LEVEL:
-> -		return LEVEL;
-> +		return LEVEL_H264;
-> +	case V4L2_CID_MPEG_VIDEO_HEVC_LEVEL:
-> +		return LEVEL_HEVC;
-> +	case V4L2_CID_MPEG_VIDEO_VP9_LEVEL:
-> +		return LEVEL_VP9;
-> +	case V4L2_CID_MPEG_VIDEO_HEVC_TIER:
-> +		return TIER;
->  	default:
->  		return INST_FW_CAP_MAX;
->  	}
-> @@ -32,10 +42,20 @@ static u32 iris_get_v4l2_id(enum platform_inst_fw_cap_type cap_id)
->  		return 0;
->  
->  	switch (cap_id) {
-> -	case PROFILE:
-> +	case PROFILE_H264:
->  		return V4L2_CID_MPEG_VIDEO_H264_PROFILE;
-> -	case LEVEL:
-> +	case PROFILE_HEVC:
-> +		return V4L2_CID_MPEG_VIDEO_HEVC_PROFILE;
-> +	case PROFILE_VP9:
-> +		return V4L2_CID_MPEG_VIDEO_VP9_PROFILE;
-> +	case LEVEL_H264:
->  		return V4L2_CID_MPEG_VIDEO_H264_LEVEL;
-> +	case LEVEL_HEVC:
-> +		return V4L2_CID_MPEG_VIDEO_HEVC_LEVEL;
-> +	case LEVEL_VP9:
-> +		return V4L2_CID_MPEG_VIDEO_VP9_LEVEL;
-> +	case TIER:
-> +		return V4L2_CID_MPEG_VIDEO_HEVC_TIER;
->  	default:
->  		return 0;
->  	}
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> index f23be2340658..8c91d336ff7e 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> @@ -295,7 +295,19 @@ static int iris_hfi_gen2_set_profile(struct iris_inst *inst)
->  {
->  	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
->  	u32 port = iris_hfi_gen2_get_port(V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> -	u32 profile = inst->fw_caps[PROFILE].value;
-> +	u32 profile = 0;
-> +
-> +	switch (inst->codec) {
-> +	case V4L2_PIX_FMT_HEVC:
-> +		profile = inst->fw_caps[PROFILE_HEVC].value;
-> +		break;
-> +	case V4L2_PIX_FMT_VP9:
-> +		profile = inst->fw_caps[PROFILE_VP9].value;
-> +		break;
-> +	case V4L2_PIX_FMT_H264:
-> +		profile = inst->fw_caps[PROFILE_H264].value;
-> +		break;
-> +	}
->  
->  	inst_hfi_gen2->src_subcr_params.profile = profile;
->  
-> @@ -312,7 +324,19 @@ static int iris_hfi_gen2_set_level(struct iris_inst *inst)
->  {
->  	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
->  	u32 port = iris_hfi_gen2_get_port(V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> -	u32 level = inst->fw_caps[LEVEL].value;
-> +	u32 level = 0;
-> +
-> +	switch (inst->codec) {
-> +	case V4L2_PIX_FMT_HEVC:
-> +		level = inst->fw_caps[LEVEL_HEVC].value;
-> +		break;
-> +	case V4L2_PIX_FMT_VP9:
-> +		level = inst->fw_caps[LEVEL_VP9].value;
-> +		break;
-> +	case V4L2_PIX_FMT_H264:
-> +		level = inst->fw_caps[LEVEL_H264].value;
-> +		break;
-> +	}
->  
->  	inst_hfi_gen2->src_subcr_params.level = level;
->  
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h b/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> index 283d2f27e4c8..5f13dc11bea5 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_defines.h
-> @@ -46,6 +46,7 @@
->  #define HFI_PROP_CROP_OFFSETS			0x03000105
->  #define HFI_PROP_PROFILE			0x03000107
->  #define HFI_PROP_LEVEL				0x03000108
-> +#define HFI_PROP_TIER				0x03000109
->  #define HFI_PROP_STAGE				0x0300010a
->  #define HFI_PROP_PIPE				0x0300010b
->  #define HFI_PROP_LUMA_CHROMA_BIT_DEPTH		0x0300010f
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index cba71b5db943..7913b8c93da7 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -573,8 +573,21 @@ static void iris_hfi_gen2_read_input_subcr_params(struct iris_inst *inst)
->  	inst->crop.width = pixmp_ip->width -
->  		((subsc_params.crop_offsets[1] >> 16) & 0xFFFF) - inst->crop.left;
->  
-> -	inst->fw_caps[PROFILE].value = subsc_params.profile;
-> -	inst->fw_caps[LEVEL].value = subsc_params.level;
-> +	switch (inst->codec) {
-> +	case V4L2_PIX_FMT_HEVC:
-> +		inst->fw_caps[PROFILE_HEVC].value = subsc_params.profile;
-> +		inst->fw_caps[LEVEL_HEVC].value = subsc_params.level;
-> +		break;
-> +	case V4L2_PIX_FMT_VP9:
-> +		inst->fw_caps[PROFILE_VP9].value = subsc_params.profile;
-> +		inst->fw_caps[LEVEL_VP9].value = subsc_params.level;
-> +		break;
-> +	case V4L2_PIX_FMT_H264:
-> +		inst->fw_caps[PROFILE_H264].value = subsc_params.profile;
-> +		inst->fw_caps[LEVEL_H264].value = subsc_params.level;
-> +		break;
-> +	}
-> +
->  	inst->fw_caps[POC].value = subsc_params.pic_order_cnt;
->  
->  	if (subsc_params.bit_depth != BIT_DEPTH_8 ||
-> @@ -798,8 +811,21 @@ static void iris_hfi_gen2_init_src_change_param(struct iris_inst *inst)
->  					     full_range, video_format,
->  					     video_signal_type_present_flag);
->  
-> -	subsc_params->profile = inst->fw_caps[PROFILE].value;
-> -	subsc_params->level = inst->fw_caps[LEVEL].value;
-> +	switch (inst->codec) {
-> +	case V4L2_PIX_FMT_HEVC:
-> +		subsc_params->profile = inst->fw_caps[PROFILE_HEVC].value;
-> +		subsc_params->level = inst->fw_caps[LEVEL_HEVC].value;
-> +		break;
-> +	case V4L2_PIX_FMT_VP9:
-> +		subsc_params->profile = inst->fw_caps[PROFILE_VP9].value;
-> +		subsc_params->level = inst->fw_caps[LEVEL_VP9].value;
-> +		break;
-> +	case V4L2_PIX_FMT_H264:
-> +		subsc_params->profile = inst->fw_caps[PROFILE_H264].value;
-> +		subsc_params->level = inst->fw_caps[LEVEL_H264].value;
-> +		break;
-> +	}
-> +
->  	subsc_params->pic_order_cnt = inst->fw_caps[POC].value;
->  	subsc_params->bit_depth = inst->fw_caps[BIT_DEPTH].value;
->  	if (inst->fw_caps[CODED_FRAMES].value ==
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index 3e0ae87526a0..71d23214f224 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -81,8 +81,12 @@ struct platform_inst_caps {
->  };
->  
->  enum platform_inst_fw_cap_type {
-> -	PROFILE = 1,
-> -	LEVEL,
-> +	PROFILE_H264 = 1,
-> +	PROFILE_HEVC,
-> +	PROFILE_VP9,
-> +	LEVEL_H264,
-> +	LEVEL_HEVC,
-> +	LEVEL_VP9,
->  	INPUT_BUF_HOST_MAX_COUNT,
->  	STAGE,
->  	PIPE,
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> index deb7037e8e86..c2cded2876b7 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> @@ -17,7 +17,7 @@
->  
->  static struct platform_inst_fw_cap inst_fw_cap_sm8550[] = {
->  	{
-> -		.cap_id = PROFILE,
-> +		.cap_id = PROFILE_H264,
->  		.min = V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE,
->  		.max = V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH,
->  		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE) |
-> @@ -31,7 +31,29 @@ static struct platform_inst_fw_cap inst_fw_cap_sm8550[] = {
->  		.set = iris_set_u32_enum,
->  	},
->  	{
-> -		.cap_id = LEVEL,
-> +		.cap_id = PROFILE_HEVC,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.hfi_id = HFI_PROP_PROFILE,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = PROFILE_VP9,
-> +		.min = V4L2_MPEG_VIDEO_VP9_PROFILE_0,
-> +		.max = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_VP9_PROFILE_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_PROFILE_2),
-> +		.value = V4L2_MPEG_VIDEO_VP9_PROFILE_0,
-> +		.hfi_id = HFI_PROP_PROFILE,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = LEVEL_H264,
->  		.min = V4L2_MPEG_VIDEO_H264_LEVEL_1_0,
->  		.max = V4L2_MPEG_VIDEO_H264_LEVEL_6_2,
->  		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_0) |
-> @@ -59,6 +81,60 @@ static struct platform_inst_fw_cap inst_fw_cap_sm8550[] = {
->  		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
->  		.set = iris_set_u32_enum,
->  	},
-> +	{
-> +		.cap_id = LEVEL_HEVC,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_2) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_2_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_3) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_3_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_4) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_4_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1,
-> +		.hfi_id = HFI_PROP_LEVEL,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = LEVEL_VP9,
-> +		.min = V4L2_MPEG_VIDEO_VP9_LEVEL_1_0,
-> +		.max = V4L2_MPEG_VIDEO_VP9_LEVEL_6_0,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_1_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_1_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_2_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_2_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_3_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_3_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_4_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_4_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_2) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_6_0),
-> +		.value = V4L2_MPEG_VIDEO_VP9_LEVEL_6_0,
-> +		.hfi_id = HFI_PROP_LEVEL,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = TIER,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_TIER_MAIN,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_TIER_HIGH,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_TIER_MAIN) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_TIER_HIGH),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_TIER_HIGH,
-> +		.hfi_id = HFI_PROP_TIER,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
->  	{
->  		.cap_id = INPUT_BUF_HOST_MAX_COUNT,
->  		.min = DEFAULT_MAX_HOST_BUF_COUNT,
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-> index f82355d72fcf..a8d66ed388a3 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_qcs8300.h
-> @@ -5,48 +5,124 @@
->  
->  static struct platform_inst_fw_cap inst_fw_cap_qcs8300[] = {
->  	{
-> -		.cap_id = PROFILE,
-> +		.cap_id = PROFILE_H264,
->  		.min = V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE,
->  		.max = V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH,
->  		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_BASELINE) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_PROFILE_HIGH),
-> +				BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_BASELINE) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_PROFILE_HIGH) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_PROFILE_CONSTRAINED_HIGH),
->  		.value = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
->  		.hfi_id = HFI_PROP_PROFILE,
->  		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
->  		.set = iris_set_u32_enum,
->  	},
->  	{
-> -		.cap_id = LEVEL,
-> +		.cap_id = PROFILE_HEVC,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.hfi_id = HFI_PROP_PROFILE,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = PROFILE_VP9,
-> +		.min = V4L2_MPEG_VIDEO_VP9_PROFILE_0,
-> +		.max = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_VP9_PROFILE_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_PROFILE_2),
-> +		.value = V4L2_MPEG_VIDEO_VP9_PROFILE_0,
-> +		.hfi_id = HFI_PROP_PROFILE,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = LEVEL_H264,
->  		.min = V4L2_MPEG_VIDEO_H264_LEVEL_1_0,
->  		.max = V4L2_MPEG_VIDEO_H264_LEVEL_6_2,
->  		.step_or_mask = BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1B)  |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_2) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_3) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_2) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_2) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_2) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_2) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_0) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_1) |
-> -			BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_2),
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1B) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_2) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_1_3) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_0) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_2_2) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_0) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_3_2) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_0) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_4_2) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_0) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_5_2) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_0) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_1) |
-> +				BIT(V4L2_MPEG_VIDEO_H264_LEVEL_6_2),
->  		.value = V4L2_MPEG_VIDEO_H264_LEVEL_6_1,
->  		.hfi_id = HFI_PROP_LEVEL,
->  		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
->  		.set = iris_set_u32_enum,
->  	},
-> +	{
-> +		.cap_id = LEVEL_HEVC,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_2) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_2_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_3) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_3_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_4) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_4_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1,
-> +		.hfi_id = HFI_PROP_LEVEL,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = LEVEL_VP9,
-> +		.min = V4L2_MPEG_VIDEO_VP9_LEVEL_1_0,
-> +		.max = V4L2_MPEG_VIDEO_VP9_LEVEL_6_0,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_1_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_1_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_2_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_2_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_3_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_3_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_4_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_4_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_0) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_1) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_5_2) |
-> +				BIT(V4L2_MPEG_VIDEO_VP9_LEVEL_6_0),
-> +		.value = V4L2_MPEG_VIDEO_VP9_LEVEL_6_0,
-> +		.hfi_id = HFI_PROP_LEVEL,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
-> +	{
-> +		.cap_id = TIER,
-> +		.min = V4L2_MPEG_VIDEO_HEVC_TIER_MAIN,
-> +		.max = V4L2_MPEG_VIDEO_HEVC_TIER_HIGH,
-> +		.step_or_mask = BIT(V4L2_MPEG_VIDEO_HEVC_TIER_MAIN) |
-> +				BIT(V4L2_MPEG_VIDEO_HEVC_TIER_HIGH),
-> +		.value = V4L2_MPEG_VIDEO_HEVC_TIER_HIGH,
-> +		.hfi_id = HFI_PROP_TIER,
-> +		.flags = CAP_FLAG_OUTPUT_PORT | CAP_FLAG_MENU,
-> +		.set = iris_set_u32_enum,
-> +	},
->  	{
->  		.cap_id = INPUT_BUF_HOST_MAX_COUNT,
->  		.min = DEFAULT_MAX_HOST_BUF_COUNT,
-> 
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Changes in v2:
+- Added Krzysztof's review tag (thanks Krzysztof)
+- Dropped the update to MAINTAINERS for now to reduce merge conflicts
+  across different trees
+- Split out the i2c binding separately from the big series affecting
+  multiple subsystems unnecessarily (thanks Rob)
+- Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-1-f9af689cdfc2@gmail.com/
+---
+ Documentation/devicetree/bindings/i2c/i2c-wmt.txt  | 24 -----------
+ .../devicetree/bindings/i2c/wm,wm8505-i2c.yaml     | 47 ++++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 24 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-wmt.txt b/Documentation/devicetree/bindings/i2c/i2c-wmt.txt
+deleted file mode 100644
+index 94a425eaa6c78bc9e3136ae7055b51635baf16ca..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-wmt.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-* Wondermedia I2C Controller
+-
+-Required properties :
+-
+- - compatible : should be "wm,wm8505-i2c"
+- - reg : Offset and length of the register set for the device
+- - interrupts : <IRQ> where IRQ is the interrupt number
+- - clocks : phandle to the I2C clock source
+-
+-Optional properties :
+-
+- - clock-frequency : desired I2C bus clock frequency in Hz.
+-	Valid values are 100000 and 400000.
+-	Default to 100000 if not specified, or invalid value.
+-
+-Example :
+-
+-	i2c_0: i2c@d8280000 {
+-		compatible = "wm,wm8505-i2c";
+-		reg = <0xd8280000 0x1000>;
+-		interrupts = <19>;
+-		clocks = <&clki2c0>;
+-		clock-frequency = <400000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml b/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..e498ce47b885203fcfe233b946f987abdac6784a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/wm,wm8505-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: I2C Controller on WonderMedia WM8505 and related SoCs
++
++maintainers:
++  - Alexey Charkov <alchark@gmail.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    const: wm,wm8505-i2c
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-frequency:
++    enum: [100000, 400000]
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c_0: i2c@d8280000 {
++        compatible = "wm,wm8505-i2c";
++        reg = <0xd8280000 0x1000>;
++        interrupts = <19>;
++        clocks = <&clki2c0>;
++        clock-frequency = <400000>;
++    };
+
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250430-vt8500-i2c-binding-5b397b570387
+
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
+
 
