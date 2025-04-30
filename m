@@ -1,139 +1,139 @@
-Return-Path: <devicetree+bounces-172186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DAB1AA4246
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:21:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F553AA4265
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:32:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45CCE173855
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:21:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28A861C01007
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8901FE478;
-	Wed, 30 Apr 2025 05:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LQWQTiLo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F9C1DED5C;
+	Wed, 30 Apr 2025 05:32:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714411F1315;
-	Wed, 30 Apr 2025 05:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8836B1D9663;
+	Wed, 30 Apr 2025 05:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745990323; cv=none; b=iRhf8TdGOXmhCS/ifHMEloJtmS9AX3zRrWxyYTWcUa9o5P5i+hcDfX2E+MpTo3UXnn93BRCftV9+Mj3SvNmrMg/CRV4XG4zimuNJwrVa/MvDKTj145QMPMXo4XHd9KT/psqbnxY6VcANhioBsR8+NCFVlW25okb7kT0UwEybiks=
+	t=1745991166; cv=none; b=KYL7lE2pHXKmaaAjxM2bScu8S1S0BwFPwb4DVCUcDf6DSU+YdXINR/Sm5ttXv6kAhmCfAJp4tgWKC7JU6RD1iafv/TNYVXmaFSnjA/v3Y4OVFci5bO/7pDTe8jWJlnNMDSzpJOVDhiE4IW34L1tVSGDO+uQslFUGM2fyIcGPcqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745990323; c=relaxed/simple;
-	bh=6Xh5WNsKgRr/N97ESjYC0SQORjIKc8FX5alO6g4wfVc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZZ9TkOkzxSJY1dZzhcZuRcKNLfg5AMoDXOj2Mt/haegQhOkCWxboXaHgk6d8RJM6h/CKgo2sTEGp3hYlCqu9Baz1lKYVwuUaHPftntOJ2WRqrqlqA6JYepYoWfEYUVb/OYU5gtasEMus+JMRArXbnDAx9TkSqgkivsyfIVZ8wow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LQWQTiLo; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AA49310269590;
-	Wed, 30 Apr 2025 07:18:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1745990318; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4Pf/nkqA0SULv06cZ0E+jJZ7O5patIvpCkeSbwI2yaY=;
-	b=LQWQTiLouaOojUD+6bj/4JKim7kkNm+q133XFFLc9DEZd6lRYDEzi0cMImb+c9KvL5b5S4
-	hsFsjN6AxGSKzDBSOwKa3oHwRaaxV4+q6KdexNPI7efWHmVrsBW1/0hyVdVgejKrRnxVbL
-	sWXflrOQJO6g2pc8EtNVVrUNjO9YbiObGuJsjL8gQQ+ktQ2FZ4mEDVOU1HAosEIp4QjKqC
-	Xonr7KZSkLdL91qroLIVOc2I/krqNwQ5EfQQuZUqz1WHzeESvmjQsp0IaTGQTz1hazjou5
-	0VbQibsyKX6JtLj7ZN6ySIAnHDoXXSnnElfMuLfCIppULpWNB62rdpUdNcIbnw==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v9 7/7] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Wed, 30 Apr 2025 07:17:56 +0200
-Message-Id: <20250430051756.574067-8-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250430051756.574067-1-lukma@denx.de>
-References: <20250430051756.574067-1-lukma@denx.de>
+	s=arc-20240116; t=1745991166; c=relaxed/simple;
+	bh=3wAx5EeU7nOBuaCjATrMwZ8fnjoWWozoQiVr7g+qGjc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lrAYFk8jF5V8koHHXMHJ1oqk2OU9UPJsT3XFbBoyv1q9xdlg2vRZPish6qfNublR3t1I1z88/gtUVgqToc8r+Dd8EDn3W9fC5FT7DT/LpWm1ibt16zlE0o+qMiZJf/lAVJv+dW+pXR8TSlkc4OLsaZ7zc+6q9RoslC7etUx6I4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.147.253])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 18B17342FEF;
+	Wed, 30 Apr 2025 05:32:36 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v3 0/5] allwinner: Add EMAC0 support to A523 variant SoC
+Date: Wed, 30 Apr 2025 13:32:02 +0800
+Message-Id: <20250430-01-sun55i-emac0-v3-0-6fc000bbccbd@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANK1EWgC/3XNTQrCMBCG4auUrB2Z/JXqynuIi5hO2ixMJKlBK
+ b27aVeKuHw/mGdmlil5yuzYzCxR8dnHUEPuGmZHEwYC39dmAoVGJSQgh/wIWnugm7EImuRBmw5
+ de3WsXt0TOf/cxPOl9ujzFNNre1D4uv63CgcE1RIp22lNaE4DhSnGfUwDW7EiPgH1C4gKdFI6V
+ L2QxPsvYFmWN3W06e3wAAAA
+X-Change-ID: 20250423-01-sun55i-emac0-5e395a80f6bf
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: Andre Przywara <andre.przywara@arm.com>, 
+ Corentin Labbe <clabbe.montjoie@gmail.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Yixun Lan <dlan@gentoo.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1824; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=3wAx5EeU7nOBuaCjATrMwZ8fnjoWWozoQiVr7g+qGjc=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoEbXgMAZe5RsVVOEfV453pwn+DCn61EB/ahujk
+ TAJ0movAeaJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaBG14F8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277bhGD/0eQyU6ElyjXOhRvu
+ 2KUKWEums5dVrS3J1TE61ryswgT0B6wqDnyaBzrIWfkhlkCF/TQcnY0m6GhJ0oT3mi0IQRuX6ib
+ VIB826pQoS4EH6DJMOENAt6PQ1RJTQD4Dzc24+7439PK/mk1OZcoqZByNfga5LLMG1Zny8m0jhn
+ grAMRzbbWIpURKUqZ+bPIUbaH/Jdtg+lw2JkXEGfJN2mPdJJHNMyHK0uOlRLV1O3x5lWT6DJuCS
+ +BwCJMOoOQ+c6kEgDztgbmO1a1PCEZ8VFGVeob28mK6KIgFeb9wJ+Wjah3PP/O0Y3VVSLgARasc
+ qkgHeIQcb0A8oDtIboDJAAAbYYXkQom8yR6PCCL+GgAH5GtXb76ueia3fWu4xsopsmZBaBs3Mvw
+ j6845YhpwA25bAR+PEhU3aGbDpZy+uKpRtw9P7FtJQ0TAoELOqOMcflcjkJrga8XBkQvtu6UE62
+ XH76nvDwDQx+ZkycLp12Wp/e6pcS5zioe4mXDfR4P5kc3Adx8uaK6MqYn6husvJ9E/Jtf8x5vPi
+ prurA0YJme7acHGO84/vyAJ5n0PdEq2w8JcY2fJ9kXFp+MiPtAp4+nmk5NYIxwDQgqzW8jV5qiA
+ HyzlpLdMeJnYjyhgF4ZmmAk9qakVdASTEhQcyfYgpgiCe2ncnDwCCq0nNqEAmwTAkBtg==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-This patch enables support for More Than IP L2 switch available on some
-imx28[7] devices.
+This patch series is trying to add EMAC0 ethernet MAC support
+to the A523 variant SoCs, including A523, A527/T527 chips.
 
-Moreover, it also enables CONFIG_SWITCHDEV and CONFIG_BRIDGE required
-by this driver for correct operation.
+This MAC0 is compatible to previous A64 SoC, so introduce a new DT
+compatible but make it as a fallback to A64's compatible.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+In this version, the PHYRSTB pin which routed to external phy
+has not been populated in DT. It's kind of optional for now,
+but we probably should handle it well later.
+
+I've tested only on Radxa A5E board.
+
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
 ---
-Changes for v4:
-- New patch
+Changes in v3:
+- collect tags
+- update commit prefix
+- add bias-disable to pins
+- Link to v2: https://lore.kernel.org/r/20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org
 
-Changes for v5:
-- Apply this patch on top of patch, which updates mxs_defconfig to
-  v6.15-rc1
-- Add more verbose commit message with explanation why SWITCHDEV and
-  BRIDGE must be enabled as well
+Changes in v2:
+- add ethernet alias node
+- add phy-supply
+- change to rgmii-id
+- drop PH13, rename pin name
+- drop bias-pull-up
+- collect Review tags
+- improve commit log
+- Link to v1: https://lore.kernel.org/r/20250423-01-sun55i-emac0-v1-0-46ee4c855e0a@gentoo.org
 
-Changes for v6:
-- None
-
-Changes for v7:
-- None
-
-Changes for v8:
-- None
-
-Changes for v9:
-- None
 ---
- arch/arm/configs/mxs_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Yixun Lan (5):
+      dt-bindings: sram: sunxi-sram: Add A523 compatible
+      dt-bindings: net: sun8i-emac: Add A523 EMAC0 compatible
+      arm64: dts: allwinner: a523: Add EMAC0 ethernet MAC
+      arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E board
+      arm64: dts: allwinner: t527: add EMAC0 to Avaota-A1 board
 
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index b1a31cb914c8..ef4556222274 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -34,6 +34,8 @@ CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -52,6 +54,7 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
+ .../bindings/net/allwinner,sun8i-a83t-emac.yaml    |  1 +
+ .../sram/allwinner,sun4i-a10-system-control.yaml   |  1 +
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi     | 41 ++++++++++++++++++++++
+ .../boot/dts/allwinner/sun55i-a527-radxa-a5e.dts   | 19 ++++++++++
+ .../boot/dts/allwinner/sun55i-t527-avaota-a1.dts   | 19 ++++++++++
+ 5 files changed, 81 insertions(+)
+---
+base-commit: 69714722df19a7d9e81b7e8f208ca8f325af4502
+change-id: 20250423-01-sun55i-emac0-5e395a80f6bf
+
+Best regards,
 -- 
-2.39.5
+Yixun Lan
 
 
