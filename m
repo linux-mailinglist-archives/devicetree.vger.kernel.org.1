@@ -1,178 +1,182 @@
-Return-Path: <devicetree+bounces-172343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6ABAA4843
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:27:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80709AA47E9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:11:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 993123AE4FD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:26:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5F664E0789
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28B8248F49;
-	Wed, 30 Apr 2025 10:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF84A23A994;
+	Wed, 30 Apr 2025 10:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="KhsoNhpX"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d41inHLZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F5A248F44
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:25:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021932367A6
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746008741; cv=none; b=CBusSukpL/mUfIDYw4eghDra2ePgPSXaKMeHBVY2W0sUUjb73zf1h3MERONRPU91PKTEKrusOPiO3rNt0ywsiwlkRnhdWGU+DeRdI68tfeTqxYXdflwoRj4PyyaYtRfrM6/hU+oH0vZztjXfOHVihTWhKbhPLMaAO3QOLWS2lrs=
+	t=1746007903; cv=none; b=efUSb77b6QokATQAfq93ucT0wgQkIYN8T5ePD/CP21S2TqWl4vOVEPYRKqblCNia16tLyW23idDaSW99h9XcJJSL0qTnZ4NPsdL7XmMpK2pAtXnnwfwdCNzCFTVaY9R0m8wL237qfpsoVBuQRrbugIfBWavYys6U63PT4NH2Eng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746008741; c=relaxed/simple;
-	bh=UyRogJQCKF4dzNdKeUnXZgi87K+PLm5TUetHnPxcySQ=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=TGK4jOwPer3XOAmpqxQXFmrV87HSaaPicctsyFig6mDjaoH6/2sGZGr9rkDEyxiHAv1i9dY5RG9VAq1kuLbsNViCs6D2jgfTJMuQXX3zufMkQJWLOslG9XlTC7XAvNO7Dlt2oosiakDFMtjvdAQe0HHTU/3LMTaoUccB/1glhA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=KhsoNhpX; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250430102531epoutp02ee981ad0854e16739654de495d4edbaf~7EbDjiAE32460324603epoutp02h
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:25:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250430102531epoutp02ee981ad0854e16739654de495d4edbaf~7EbDjiAE32460324603epoutp02h
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1746008732;
-	bh=UyRogJQCKF4dzNdKeUnXZgi87K+PLm5TUetHnPxcySQ=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=KhsoNhpX8FdZd1Zp+syN1TSiScguoqd/YK6aVQZH/yuwxDfhDGvP5NeKYK4IrxnU7
-	 uAr0Gj4vYJxRKlkzqUNn194gvVo4OYj1Ibtu2Ju/xECmR7SSbFFn5nfM3mJvpdy3Rq
-	 6q6uiMHfV5SFkFPUM3UPK0cMhkd1L9tkM3cOWdzw=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250430102531epcas5p159f5edae7b9d6649b91ba016fd8580cf~7EbDDY--c1745817458epcas5p1B;
-	Wed, 30 Apr 2025 10:25:31 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.180]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4ZnYGy28rYz6B9m9; Wed, 30 Apr
-	2025 10:25:30 +0000 (GMT)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250430092538epcas5p1b6aee888ecfa27c04e01ca16a0a93d19~7DmwiV8Qt0647906479epcas5p1S;
-	Wed, 30 Apr 2025 09:25:38 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250430092538epsmtrp1e08dff0c1eac600a72115669d75dc488~7Dmwhcsq62304923049epsmtrp1Z;
-	Wed, 30 Apr 2025 09:25:38 +0000 (GMT)
-X-AuditID: b6c32a2a-d57fe70000002265-56-6811ec9127c4
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	C5.75.08805.19CE1186; Wed, 30 Apr 2025 18:25:37 +0900 (KST)
-Received: from INBRO002053 (unknown [107.122.2.234]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250430092535epsmtip23755164dfc0ad1aef32e04bca5476327~7DmueEaSD2671426714epsmtip25;
-	Wed, 30 Apr 2025 09:25:35 +0000 (GMT)
-From: "Yashwant Varur" <yashwant.v@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Cc: <cs0617.lee@samsung.com>, <g.naidu@samsung.com>,
-	<niyas.ahmed@samsung.com>
-In-Reply-To: <b00514f2-55ca-49f0-aefb-ec1e784545d6@kernel.org>
-Subject: RE: [PATCH] arm64: dts: exynos: Added the ethernet pin
- configuration
-Date: Wed, 30 Apr 2025 14:55:34 +0530
-Message-ID: <0f6e01dbb9b1$d52519d0$7f6f4d70$@samsung.com>
+	s=arc-20240116; t=1746007903; c=relaxed/simple;
+	bh=TOwUtRIAV+jPy+YMV8u3gKvjNhsZV6TyG6DxIOrn/1A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=molPBnVblaCD6MP3k3722Qdc/9T/9XgyhDeIyqMnDDhYFz++Ar8mVpLc5jQWCHxDzl3lQ7tEGKvgwkkFgEE9PDmd+orgjRDTMww+nM7+HrqzOS/0xgHVw4zndh8uAGtSEKPyhbJh9nLVEKCrGmimTDrWjRtDqJHLEAErW+KVaKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=d41inHLZ; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1746007900;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=0IopPiKyCnXQE4fNnJ+UK76ut19IbyEAHXIe/thBuxA=;
+	b=d41inHLZuKfuc1sKXMMmypUyYluGtuZa1XmOae7BpFtDgaW9V0zSWXzb4fUErOIILpGX7U
+	IclU2cLr+5n/bTdiNlsFwoOS37Pnya+f0r7RhjzOvxxuMETO3K9k98cbwab2kuQ7bsEJrG
+	WEMOvQSwSLRF0J3gYM/1R6XzRVxBvwk=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-354-2rtPlAYKNmGGq-3dnaLeKg-1; Wed,
+ 30 Apr 2025 06:11:35 -0400
+X-MC-Unique: 2rtPlAYKNmGGq-3dnaLeKg-1
+X-Mimecast-MFC-AGG-ID: 2rtPlAYKNmGGq-3dnaLeKg_1746007893
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 860331956094;
+	Wed, 30 Apr 2025 10:11:32 +0000 (UTC)
+Received: from p16v.luc.cera.cz (unknown [10.44.33.50])
+	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9FD1E1956094;
+	Wed, 30 Apr 2025 10:11:27 +0000 (UTC)
+From: Ivan Vecera <ivecera@redhat.com>
+To: netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Schmidt <mschmidt@redhat.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH net-next v6 0/8] Add Microchip ZL3073x support (part 1)
+Date: Wed, 30 Apr 2025 12:11:18 +0200
+Message-ID: <20250430101126.83708-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQI+tP5AvR0g22A5T67WLyfPVk3CYgKkYErqAxsAxq0DRO6qzAIlGw2ospyhojA=
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSvO7EN4IZBt1vrCwezNvGZrFm7zkm
-	i1XveC3mHznHarFl5mVmi5ez7rFZnD+/gd1i0+NrrBaXd81hs5hxfh+TxZMpj1gt/u/Zwe7A
-	47FpVSebx+Yl9R59W1YxenzeJBfAEsVlk5Kak1mWWqRvl8CV8bWpm7lgHX/F1EuzGRsYd/J0
-	MXJySAiYSFz9v4eli5GLQ0hgN6PEnkdL2LsYOYASUhINb8IhaoQlVv57zg5R85xRYvOuY6wg
-	CTYBfYnnm68xgSREBBYzSXxpOsgG0swsECTxZXcgRMNcJon9xzewgTRwCthJfOp+CNYsLOAr
-	sbvjDDuIzSKgKjH71HFmEJtXwFJi9+p+KFtQ4uTMJywgNrOAtsTTm0/h7GULXzNDXKcg8fPp
-	MrCZIgJ+Epf+zmeFqBGXeHn0CPsERuFZSEbNQjJqFpJRs5C0LGBkWcUomVpQnJueW2xYYJSX
-	Wq5XnJhbXJqXrpecn7uJERxzWlo7GPes+qB3iJGJg/EQowQHs5II76RbghlCvCmJlVWpRfnx
-	RaU5qcWHGKU5WJTEeb+97k0REkhPLEnNTk0tSC2CyTJxcEo1MHHvsVtVs3H+JFVlKfE9cezl
-	UiffhOy5+PfKqTmeuuyWB/N4yrhT3tzL4i3PPdm6L8v/q+7+a2wfTW2q9kpvYzz+qDjCSiJr
-	elDSXW3mjdyW278/vbVsa627kQXDgifWcr8fxu9YOmP+Y9O3ko/uRzj4HJ8gt0lQPsT80AWT
-	vo9bHHae3uS0pjC3/I+Z5ypOeRNtrX7O4wZP+aX0P9+/x1JRVvCMr1VV9FC09nXdbclfu9NO
-	OEenB2qtidm3XfBJ4LlusxNMjsIrXPo1shWyNcJucUs1Td2ztf7azZczbpz75fPfd9fdv60C
-	hYvY/kdm/5eUFOGVfpIuKCn07UmgQeCz0wudVnw84aQ27x+LvBJLcUaioRZzUXEiAE0w33oo
-	AwAA
-X-CMS-MailID: 20250430092538epcas5p1b6aee888ecfa27c04e01ca16a0a93d19
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250423060042epcas5p2c04be779e21089f33b8a9a7785bb151a
-References: <CGME20250423060042epcas5p2c04be779e21089f33b8a9a7785bb151a@epcas5p2.samsung.com>
-	<20250423060034.973-1-yashwant.v@samsung.com>
-	<73a5d0a6-ceb0-4c47-9992-260828f074d0@kernel.org>
-	<0ed501dbb8e9$45aa96e0$d0ffc4a0$@samsung.com>
-	<b00514f2-55ca-49f0-aefb-ec1e784545d6@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 
-Hi Krzysztof
+Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+provides DPLL and PTP functionality. This series bring first part
+that adds the common MFD driver that provides an access to the bus
+that can be either I2C or SPI.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Tuesday, April 29, 2025 6:37 PM
-> To: Yashwant Varur <yashwant.v=40samsung.com>; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org
-> Cc: cs0617.lee=40samsung.com; g.naidu=40samsung.com;
-> niyas.ahmed=40samsung.com
-> Subject: Re: =5BPATCH=5D arm64: dts: exynos: Added the ethernet pin confi=
-guration
->=20
-> On 29/04/2025 11:29, Yashwant Varur wrote:
-> >
-> > Please follow DTS coding style carefully. This applies to all commits y=
-ou try to
-> send from your downstream/vendor code.
->=20
->=20
-> hm?
->=20
-Got the issue, coding style says
-Node and property names can use only the following characters:
-Lowercase characters: =5Ba-z=5D
-Digits: =5B0-9=5D
-Dash: -
-I was using underscore for node name.
-> >>
-> > Sure, thanks
-> >
-> > What is more important, I don't really understand why you are doing
-> > this
-> > - there is no user of these entries - and commit msg does not help here=
-.
-> >>
-> > Understood, in v2 will add the Ethernet node as well.
->=20
-> I don't understand what is your reply here and what is quote. Use standar=
-d email
-> style, not some mySingle or Outlook output. I suggest reading typical gui=
-delines
-> how to use email based workflows (kernel also has one).
->=20
+The next part of the series is bringing the DPLL driver that will
+covers DPLL functionality. Another series will bring PTP driver and
+flashing capability via devlink in the MFD driver will follow soon.
 
-Looks like mailer was not configured properly, hope this time it is fine.
-I am working on upstreaming Ethernet driver for exynosauto (which has a var=
-iant of STMMAC controller)
-What I wanted to reply previously was, will add pin control, along with Eth=
-ernet node(which will consume the pincontrol) and
-I realize that first dt-binding should go for this IP.
-My plan is to send Ethernet driver along with Ethernet dtsi node as well.
+Testing was done by myself and by Prathosh Satish on Microchip EDS2
+development board with ZL30732 DPLL chip connected over I2C bus.
 
->=20
-> Best regards,
-> Krzysztof
+Patch breakdown
+===============
+Patch 1 - Common DT schema for DPLL device and pin
+Patch 2 - DT bindings for microchip,zl3073* devices
+Patch 3 - Basic support for I2C, SPI and regmap configuration
+Patch 4 - Devlink device registration and info
+Patch 5 - Helpers for reading and writing register mailboxes
+Patch 6 - Fetch invariant register values used by DPLL/PTP sub-drivers
+Patch 7 - Clock ID generation for DPLL driver
+Patch 8 - Register/create DPLL device cells
+
+---
+v5->v6:
+* fixed devlink info firmware version to be running instead of fixed
+* added documentation for devlink info versions
+v4->v5:
+* fixed DT patches description
+* dropped mailbox API
+* added type-safe register access functions
+* added an ability to protect multi-op accesses
+v3->v4:
+* fixed shortcomings in DT patches
+* completely reworked register access
+* removed a need to manage locking during mailbox accesses by callers
+* regcache switched to maple
+* dev_err_probe() in probe path
+* static mfd cells during sub-devices registration
+
+v1->v3:
+* dropped macros for generating register access functions
+* register access functions are provided in <linux/mfd/zl3073x_regs.h>
+* fixed DT descriptions and compatible wildcard usage
+* reworked regmap locking
+  - regmap uses implicit locking
+  - mailbox registers are additionally protected by extra mutex
+* fixed regmap virtual address range
+* added regmap rbtree cache (only for page selector now)
+* dropped patches for exporting strnchrnul and for supporting mfg file
+  this will be maybe added later
+
+Ivan Vecera (8):
+  dt-bindings: dpll: Add DPLL device and pin
+  dt-bindings: dpll: Add support for Microchip Azurite chip family
+  mfd: Add Microchip ZL3073x support
+  mfd: zl3073x: Add support for devlink device info
+  mfd: zl3073x: Protect operations requiring multiple register accesses
+  mfd: zl3073x: Fetch invariants during probe
+  mfd: zl3073x: Add clock_id field
+  mfd: zl3073x: Register DPLL sub-device during init
+
+ .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
+ .../devicetree/bindings/dpll/dpll-pin.yaml    |  45 +
+ .../bindings/dpll/microchip,zl30731.yaml      | 115 +++
+ Documentation/networking/devlink/index.rst    |   1 +
+ Documentation/networking/devlink/zl3073x.rst  |  37 +
+ MAINTAINERS                                   |  11 +
+ drivers/mfd/Kconfig                           |  32 +
+ drivers/mfd/Makefile                          |   5 +
+ drivers/mfd/zl3073x-core.c                    | 864 ++++++++++++++++++
+ drivers/mfd/zl3073x-i2c.c                     |  68 ++
+ drivers/mfd/zl3073x-regs.h                    |  54 ++
+ drivers/mfd/zl3073x-spi.c                     |  68 ++
+ drivers/mfd/zl3073x.h                         |  31 +
+ include/linux/mfd/zl3073x-regs.h              |  88 ++
+ include/linux/mfd/zl3073x.h                   | 191 ++++
+ 15 files changed, 1686 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+ create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
+ create mode 100644 Documentation/networking/devlink/zl3073x.rst
+ create mode 100644 drivers/mfd/zl3073x-core.c
+ create mode 100644 drivers/mfd/zl3073x-i2c.c
+ create mode 100644 drivers/mfd/zl3073x-regs.h
+ create mode 100644 drivers/mfd/zl3073x-spi.c
+ create mode 100644 drivers/mfd/zl3073x.h
+ create mode 100644 include/linux/mfd/zl3073x-regs.h
+ create mode 100644 include/linux/mfd/zl3073x.h
+
+-- 
+2.49.0
 
 
