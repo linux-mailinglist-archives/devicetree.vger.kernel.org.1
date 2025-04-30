@@ -1,241 +1,202 @@
-Return-Path: <devicetree+bounces-172377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7822AA491E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:47:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FDB5AA4901
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D6E3B17F4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:43:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2E497B81E6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0493A1CD15;
-	Wed, 30 Apr 2025 10:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1DC239082;
+	Wed, 30 Apr 2025 10:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XRtVLT6d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxEx+Oe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3783AFC0B;
-	Wed, 30 Apr 2025 10:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE5A2B9A9;
+	Wed, 30 Apr 2025 10:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746009668; cv=none; b=kxq5sM4BnxKtiACn0HjDldckt7SxWrvrLS/LINpqK/YcC+XF8Iv3mlYjqSTtm8qLT8AAJ33GmyqAAKYigeGie1C5v0Brmt9T/5IPL5YBfPK17H2dwWFy4Dh966vSLcTf4gDjKDO3oPfI+tPBlBMIquidoK0Qj1Xvy2XIZV+YR2E=
+	t=1746009817; cv=none; b=EtbwnbXdyxXueVV+qAKRecgx7v+c2Wa5v/Q5ryvMWug2nUzDCA6xAM6BBYZr4af2/T0VyxJltD8v92vHxYqjRGBeo3b1esyVRbFU9hHKU8D4424OdxIWRuVGofcdSKzsXr/wWCHbcb1sIHFfJtWDSvDXqHnwF5ZqaMvgYe064Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746009668; c=relaxed/simple;
-	bh=nlGX2ykn0eKxmQ0bTQgV+/kd8YY3fCyWOOmHd5IlM+o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qVWUkD5DTk+frRyhcz8p6RLsBZGKmz53b4WxcoyLGcPEk1dQeEaDysmKTvm8GWF7b2MH67X6sBEruGxJWVnu250B3Ak0ee3sP1ZSW22jmCZjXkF5PGnpFXMGuSL4Oku6X0GFsghVptzU4voJ+k0lHoOo0A0cULMlzXtVY2OOxKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XRtVLT6d; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U9nhG0013348;
-	Wed, 30 Apr 2025 10:41:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qbaWXYkTIQQ02yEA0qb7R3EZontGifQ3CEMmYbAgnwg=; b=XRtVLT6dLZAR6w1k
-	YmXDMHB6WqG3uATb9dSwpDmegsj7+PJq5UbSAP1yna6i4J9rggKsNNELZP3w/tEO
-	mpbHtDA8px3FdtpIxNAplnVaT2YOOD5pEWVe/F8ergoYdGGJ+M4K6kRWOxooao9J
-	N4yy2nMa0iQmUWbR10LJW50kfI3EMTddGoJ3Ygyd5Hw1+hjLloKR9HmI5hKmUF+j
-	L9EWB4ab6tpf9qLARIJ8iBQbEJSeqadtUmykD2Mo3df0Adpfcu/Q/7J/WUH2NJhU
-	Io6oaCgbl/osBG0druz6mYT51ssQgTJYtEMQ7sl4fQSCTZhxjhU2GKpRAIZrJlf/
-	//hJfA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6uassa2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:41:02 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53UAf18V013285
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:41:01 GMT
-Received: from [10.50.41.127] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Apr
- 2025 03:40:50 -0700
-Message-ID: <578305fc-fe93-2ef4-908a-d728a5ae6485@quicinc.com>
-Date: Wed, 30 Apr 2025 16:10:44 +0530
+	s=arc-20240116; t=1746009817; c=relaxed/simple;
+	bh=NAKlta3XWitRCQ9CR0OeceOIu9uDJz/mQLmJc953vZc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hJfVA96XM/3iLoliU9kVAvgWv1L8CAg2CGKAi8Vp7nHmkGJo42yYPhw1yih++f6mfM2eL8z6vPJjAEIlMDRrn0H3Ov4ku7PbzvJ/jEp1bp0AtxgFJECKG+UbawFmR0e+KgaeGTYfSqW8CvjOwD18375j6PfF4V53466Bb/h6Kn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxEx+Oe8; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-224341bbc1dso77049735ad.3;
+        Wed, 30 Apr 2025 03:43:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746009815; x=1746614615; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uzZQqAJR+WqTIKqQI8DYjkIpauNuciSLhlQufPfaICY=;
+        b=DxEx+Oe8wmQoZUSyzAqUQGUAWQUKcHAMYIHZFU+Dg0kxYdHSbpBrvgUCx5vGPmU495
+         Abhq3lmdjK+L7VkkMpJRiBiJH+gmMbv18c3yBodRI93ouNM4PmooSHNt1HH7lK4GG8dw
+         9ReUlPS1SOzeb3ZCZsIZIlhR1ZFnHDz/DSdl7N/i4P/ryRFdsZcDlbqRgmdaHg2jYdNX
+         zgcyJbcPOnyfrk+Ua3FyhvMsHrXfDX671vdBjqBioycwnXHq1OjvaVMxVXpa4VjHSE9T
+         8V2CgIYTESqY9+Wd4CEAVCkIuU1tI4zFzuHcGbMwUPF9vw5O3VffVGnDlyyN0qYbZPKm
+         D2FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746009815; x=1746614615;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uzZQqAJR+WqTIKqQI8DYjkIpauNuciSLhlQufPfaICY=;
+        b=dtXeNxfrFjNZErBLwS+KCMDOTnIlPxvYDd6pHzwvc1XnPK6+JGq5nd3pf151o/wWj3
+         3h9v7L/i0eHqLVll9TyG1Wxe9edlJ5DrfTxbMCVYLl0WAjfGdt8UoEvyxmoIMA+scmUk
+         CQRZaJr9vN/G8T/+qKAxYvI0NUIy5689JaDoYiuSvIfwIH3VmdNMLhJxfyr1ap9zsS1n
+         JSBdnokDMS+6rlX/t+HMBBHmx2D0n8KZUPor287QyBWq3fdAKDCY9yvzjgNCYbJo35DZ
+         0Kn4tbGnFFmJzyOXMFMW1UwR7NstV6kTguPaCn83JywxGARlAXHUb6kkzsZEuW/kVNti
+         Puig==
+X-Forwarded-Encrypted: i=1; AJvYcCVAX56PNcgWtdzIx9JmMdrzJvzqzBwXIg/Lnbfu/HA8s79utAG6/s2dRYBB195DO5ES1aev//y5gtIi@vger.kernel.org, AJvYcCX1D0DHNAtAhQOvDcT/43E0ZZGHWrDkoDYFt/iAN8idjUe8ws0NqT/SNlaaVgkX1YC4HzFq9oHlE1FKa4Ue@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbAqGS4hc7XntEoCw6EVe4G67linvTxlA9fX7PSHmiqaIqbcvn
+	0BaBi9Vkrv1J3dOY35MDMTX5AwQnWGJy82UZ0M8ScfNl+9/lBdDq
+X-Gm-Gg: ASbGncsC45CcSSULnkwNwWAEVESrsc8G9PRGLsN/snNuwuHthCMQ8J6fAS2gKFRw/Su
+	Dj3dj871KLEGNMm+gu/WccHHauTUeADfcZ5TVpXGMpmZGcjVh4txbXlje7kLBa7XH4AcqW8CIDY
+	jWld9hYWpDQ/x0v8ifQrG45H5VEO+alXdHgvRiP9eeLlTXm5FVP9DIncUVKIk9jZbXb8NClvCfz
+	S36bxkUQAsVSmG2vsD3bku3oRXMhSibwRqZBA0tcRiycPkVIkLiQ8NzggC54i0aaKMRu2bwCY2B
+	8wNAU9+ZiLf5ZgkK8ycLB4DQfQZOF6oKfwaN7efuBAUc1aetwy4c
+X-Google-Smtp-Source: AGHT+IHrvYxDI1wKN1rkMDQ7eeuHkLXsOmiBRAnjf4RJ0ayJhK3kCarMO3qNBqmI7N4UpeLNLKZkEA==
+X-Received: by 2002:a17:903:198d:b0:227:e980:919d with SMTP id d9443c01a7336-22df35bf45amr39338245ad.47.1746009814978;
+        Wed, 30 Apr 2025 03:43:34 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db50e7a8dsm118992715ad.136.2025.04.30.03.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 03:43:34 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 30 Apr 2025 14:42:45 +0400
+Subject: [PATCH v2] dt-bindings: net: via-rhine: Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 17/23] media: iris: Track flush responses to prevent
- premature completion
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil
-	<hverkuil@xs4all.nl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
-        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>,
-        <stable@vger.kernel.org>
-References: <20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com>
- <20250428-qcom-iris-hevc-vp9-v2-17-3a6013ecb8a5@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250428-qcom-iris-hevc-vp9-v2-17-3a6013ecb8a5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: n3Swu7R2cbwe86lIlnI-9_6_6WglRggl
-X-Authority-Analysis: v=2.4 cv=KtlN2XWN c=1 sm=1 tr=0 ts=6811fe3e cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=Gbu0beokyuX9P4B2CwkA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: n3Swu7R2cbwe86lIlnI-9_6_6WglRggl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA3NSBTYWx0ZWRfXyDRSTNQhYFsv kfuTl93sO9flPEownFjk3kIK3i038K7hgBBXAKlGFuK617Jdtb2f0txlFN3ul7VE7JgLo5uhaKH QSAa1JI6pAmAQht5PbllmSgJOYIDW+OmvitQO8ulvoYBYawS4wRKFxmoUliTLstJ+MyGni6IPnt
- SFqag1ODxavTSBYPJjwru10YJFrNP4ps/VVI+v09BqEeDOjf1FnRNqaJ4/n7tlJTCrhLk0jOVvX htdPdTJRywcKgFpXiegKnxknXbMJTLKdg1WhVnkGpXJIEo3+v8ATantmdoWuqdAGB/jhK6pn3nt /lKPso4VV2SzGCjoNHVSd4B9PtQ22U+jPxqfilS5kbxtKCazdYgQGWKKPLanIFISSvZ2LhzqoSd
- WXrd5a9JWI+mEsHLNvR5R6axc2KyD9D2FNWcuRkA0zp0mMYaQtcILJt/DTs2/ll4EPXayRBz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_03,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=999 spamscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300075
+Message-Id: <20250430-rhine-binding-v2-1-4290156c0f57@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKT+EWgC/x3MQQqAIBBA0avIrBNME6yrRAvLSWczhUIE4t2Tl
+ m/xf4WCmbDAIipkfKjQxR16EHAkzxElhW7QSls1GSVzIka5EwfiKBGNd86p2dgRenNnPOn9f+v
+ W2gejrjv0XwAAAA==
+X-Change-ID: 20250430-rhine-binding-ee3a88809351
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746009806; l=3022;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=NAKlta3XWitRCQ9CR0OeceOIu9uDJz/mQLmJc953vZc=;
+ b=VQRHu3ZlD50RosJpgOF+6PVZZ5Cv2oP5/FHjW6pS9bL99am6fO+PKopyogJ245JBslAgUHZu1
+ 8oE61AMGgvOAujPa/xQbcZB8SPRwiahTx1WvHo98EBRm7BWCEIzdXPT
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
+Rewrite the textual description for the VIA Rhine platform Ethernet
+controller as YAML schema, and switch the filename to follow the
+compatible string. These are used in several VIA/WonderMedia SoCs
 
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Changes in v2:
+- Dropped the update to MAINTAINERS for now to reduce merge conflicts
+  across different trees
+- Split out the Rhine binding separately from the big series affecting
+  multiple subsystems unnecessarily (thanks Rob)
+- Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-4-f9af689cdfc2@gmail.com/
+---
+ .../devicetree/bindings/net/via,vt8500-rhine.yaml  | 41 ++++++++++++++++++++++
+ .../devicetree/bindings/net/via-rhine.txt          | 17 ---------
+ 2 files changed, 41 insertions(+), 17 deletions(-)
 
-On 4/28/2025 2:59 PM, Dikshita Agarwal wrote:
-> Currently, two types of flush commands are queued to the firmware,
-> the first flush queued as part of sequence change, does not wait for a
-> response, while the second flush queued as part of stop, expects a
-> completion response before proceeding further.
-> 
-> Due to timing issue, the flush response corresponding to the first
-> command could arrive after the second flush is issued. This casuses the
-> driver to incorrectly assume that the second flush has completed,
-> leading to the premature signaling of flush_completion.
-> 
-> To address this, introduce a counter to track the number of pending
-> flush responses and signal flush completion only when all expected
-> responses are received.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 11712ce70f8e ("media: iris: implement vb2 streaming ops")
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  .../media/platform/qcom/iris/iris_hfi_gen1_command.c    |  4 +++-
->  .../media/platform/qcom/iris/iris_hfi_gen1_response.c   | 17 +++++++++++------
->  drivers/media/platform/qcom/iris/iris_instance.h        |  2 ++
->  3 files changed, 16 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
-> index f9f3e2d2ce29..ef3ca676d2ea 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
-> @@ -208,8 +208,10 @@ static int iris_hfi_gen1_session_stop(struct iris_inst *inst, u32 plane)
->  		flush_pkt.flush_type = flush_type;
->  
->  		ret = iris_hfi_queue_cmd_write(core, &flush_pkt, flush_pkt.shdr.hdr.size);
-> -		if (!ret)
-> +		if (!ret) {
-> +			inst->flush_responses_pending++;
->  			ret = iris_wait_for_session_response(inst, true);
-> +		}
->  	}
->  
->  	return ret;
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
-> index dfca45d85759..01338baf3788 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
-> @@ -207,7 +207,8 @@ static void iris_hfi_gen1_event_seq_changed(struct iris_inst *inst,
->  		flush_pkt.shdr.hdr.pkt_type = HFI_CMD_SESSION_FLUSH;
->  		flush_pkt.shdr.session_id = inst->session_id;
->  		flush_pkt.flush_type = HFI_FLUSH_OUTPUT;
-> -		iris_hfi_queue_cmd_write(inst->core, &flush_pkt, flush_pkt.shdr.hdr.size);
-> +		if (!iris_hfi_queue_cmd_write(inst->core, &flush_pkt, flush_pkt.shdr.hdr.size))
-> +			inst->flush_responses_pending++;
->  	}
->  
->  	iris_vdec_src_change(inst);
-> @@ -408,7 +409,9 @@ static void iris_hfi_gen1_session_ftb_done(struct iris_inst *inst, void *packet)
->  		flush_pkt.shdr.hdr.pkt_type = HFI_CMD_SESSION_FLUSH;
->  		flush_pkt.shdr.session_id = inst->session_id;
->  		flush_pkt.flush_type = HFI_FLUSH_OUTPUT;
-> -		iris_hfi_queue_cmd_write(core, &flush_pkt, flush_pkt.shdr.hdr.size);
-> +		if (!iris_hfi_queue_cmd_write(core, &flush_pkt, flush_pkt.shdr.hdr.size))
-> +			inst->flush_responses_pending++;
-> +
->  		iris_inst_sub_state_change_drain_last(inst);
->  
->  		return;
-> @@ -570,7 +573,6 @@ static void iris_hfi_gen1_handle_response(struct iris_core *core, void *response
->  	const struct iris_hfi_gen1_response_pkt_info *pkt_info;
->  	struct device *dev = core->dev;
->  	struct hfi_session_pkt *pkt;
-> -	struct completion *done;
->  	struct iris_inst *inst;
->  	bool found = false;
->  	u32 i;
-> @@ -631,9 +633,12 @@ static void iris_hfi_gen1_handle_response(struct iris_core *core, void *response
->  			if (shdr->error_type != HFI_ERR_NONE)
->  				iris_inst_change_state(inst, IRIS_INST_ERROR);
->  
-> -			done = pkt_info->pkt == HFI_MSG_SESSION_FLUSH ?
-> -				&inst->flush_completion : &inst->completion;
-> -			complete(done);
-> +			if (pkt_info->pkt == HFI_MSG_SESSION_FLUSH) {
-> +				if (--inst->flush_responses_pending <= 0)
-No need to check for < 0 condition as its an unsigned int. Signal when equals 0.
+diff --git a/Documentation/devicetree/bindings/net/via,vt8500-rhine.yaml b/Documentation/devicetree/bindings/net/via,vt8500-rhine.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..e663d5a2f014788481dfa0c612c261eb6adb6423
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/via,vt8500-rhine.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/via,vt8500-rhine.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: VIA Rhine 10/100 Network Controller
++
++description:
++  VIA's Ethernet controller integrated into VIA VT8500,
++  WonderMedia WM8950 and related SoCs
++
++maintainers:
++  - Alexey Charkov <alchark@gmail.com>
++
++allOf:
++  - $ref: ethernet-controller.yaml#
++
++properties:
++  compatible:
++    const: via,vt8500-rhine
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    ethernet@d8004000 {
++        compatible = "via,vt8500-rhine";
++        reg = <0xd8004000 0x100>;
++        interrupts = <10>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/via-rhine.txt b/Documentation/devicetree/bindings/net/via-rhine.txt
+deleted file mode 100644
+index 334eca2bf937cc4a383be87f952ed7b5acbbeb59..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/net/via-rhine.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* VIA Rhine 10/100 Network Controller
+-
+-Required properties:
+-- compatible : Should be "via,vt8500-rhine" for integrated
+-	Rhine controllers found in VIA VT8500, WonderMedia WM8950
+-	and similar. These are listed as 1106:3106 rev. 0x84 on the
+-	virtual PCI bus under vendor-provided kernels
+-- reg : Address and length of the io space
+-- interrupts : Should contain the controller interrupt line
+-
+-Examples:
+-
+-ethernet@d8004000 {
+-	compatible = "via,vt8500-rhine";
+-	reg = <0xd8004000 0x100>;
+-	interrupts = <10>;
+-};
 
-With above change, mark
-Reviewed-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250430-rhine-binding-ee3a88809351
 
-> +					complete(&inst->flush_completion);
-> +			} else {
-> +				complete(&inst->completion);
-> +			}
->  		}
->  		mutex_unlock(&inst->lock);
->  
-> diff --git a/drivers/media/platform/qcom/iris/iris_instance.h b/drivers/media/platform/qcom/iris/iris_instance.h
-> index 5150237f0020..9ed197799ee7 100644
-> --- a/drivers/media/platform/qcom/iris/iris_instance.h
-> +++ b/drivers/media/platform/qcom/iris/iris_instance.h
-> @@ -27,6 +27,7 @@
->   * @crop: structure of crop info
->   * @completion: structure of signal completions
->   * @flush_completion: structure of signal completions for flush cmd
-> + * @flush_responses_pending: counter to track number of pending flush responses
->   * @fw_caps: array of supported instance firmware capabilities
->   * @buffers: array of different iris buffers
->   * @fw_min_count: minimnum count of buffers needed by fw
-> @@ -59,6 +60,7 @@ struct iris_inst {
->  	struct iris_hfi_rect_desc	crop;
->  	struct completion		completion;
->  	struct completion		flush_completion;
-> +	u32				flush_responses_pending;
->  	struct platform_inst_fw_cap	fw_caps[INST_FW_CAP_MAX];
->  	struct iris_buffers		buffers[BUF_TYPE_MAX];
->  	u32				fw_min_count;
-> 
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
+
 
