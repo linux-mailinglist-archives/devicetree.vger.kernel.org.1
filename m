@@ -1,120 +1,151 @@
-Return-Path: <devicetree+bounces-172506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94DFAA4F1B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6634FAA4F2F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:56:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 897707B7404
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:50:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ED207AF24C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B6E18DF89;
-	Wed, 30 Apr 2025 14:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4481A0714;
+	Wed, 30 Apr 2025 14:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sg4ND/rY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p4v+Q51D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3992DC791;
-	Wed, 30 Apr 2025 14:51:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FBCA921;
+	Wed, 30 Apr 2025 14:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746024716; cv=none; b=DevUgGK2M+J1UV0ND7yrRXPhNlWuMWee8x0N72fh1akoQVkK/4N1q7emRj8rwdDE5H9KWEtzeHryC7Bt/McdE4STccDF6CjAe4BIcyhDsLJSIET/kSNmaXFvnqED40aZapqsNE83T8NfXnq1GmNSJb2rGvN6l7H4gGp8p1Fuwas=
+	t=1746024997; cv=none; b=EklnKBAb89Vbvqxq3kCpRWmzGcJbdrZYPC/44tzdx351W6sXd4Va84q50Lekq05MatYokqQtWQiB3IBl5BD0dLzNSku7yg1FaqWCXdE0uZm2a97OUnRDkg+sBYU/RYFIB/OoItcfLnaoIzbKJ3p4ycvDpR3r+1NRWDXrPS6IJgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746024716; c=relaxed/simple;
-	bh=ANvnHXXLsM2HHt2X59/E8B7LKSskGxwtvY+ASlMHa0M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KUXfcBJmNawdLEpsH0VhT8wN2o06DKGnp/nS2KlU3C+J1Zm3NsI9klpTVUxkZEP7sUfYtlKNtIXC+ZutOvh7JcCzHgrGdpjQVn8Fk2iu2Lanu4uxRLtDDI8ukcCFayC1uB/gbJGpvPqmbt1LQk7r8JwnKkcLvl5o6QKDFA1aJTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sg4ND/rY; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4768f90bf36so83731151cf.0;
-        Wed, 30 Apr 2025 07:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746024713; x=1746629513; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=khLP39BEbjSp5OxOSY1cE6o564PDLjgx1FqwEwzCaKo=;
-        b=Sg4ND/rY8mGW2wU1deaaq2EBswhBugWIRIUeacuILcVFrVFqtzqs7kxJnGnx71FMQR
-         O6XG0/HpBSGrP9f3bfcM30ca1W1EMLsvCjPuWIfgJwPs3ULm05duE1YetadNHugOdVcY
-         ATDX06cCDSH/yHl4k26rrD5cei4AcTbTqnYLb2viTx5yoRQzS9Ox9SoRefds7k7lzoyg
-         a/dNv02dEARo/J2DAkttiP4p3NZjtO3qCKUzoNjdJlxHPeZuJ03csyvzzgHv1lf2/UVR
-         pdfsA1KwWF597L6jNDDJgAxfdGLAndcZq8lIV8BRq5aRRXGZxpAMtuQcj7FLAJS5DS0F
-         gORw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746024713; x=1746629513;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=khLP39BEbjSp5OxOSY1cE6o564PDLjgx1FqwEwzCaKo=;
-        b=nSm49mWX2f6yZOK/EVi/qRUgHMNApk9sq64M0oD3VFTJUVpqBvsyD+Dlj9qT9k1wAV
-         zwD7ojJstpaM/X23y2yIMfim6LM/jn+MkJSUqb3LVvTDbMzMaBxXx/7PXUUsdhujYAN5
-         AaEympWA7I3wRyt2g8wmOv839I0PKHSueQkm3m2lepmLeI+ctkKgs3mPBtz76vhFRJK2
-         0BUHk8Zza+yVBoee++r117+DULYFhhdt+26gVlAayHdDex39NVodDonX2CRefYM6VXGa
-         Ch82zdya1/ACHkUWJHhqDFkTTHjcYMRXkPTNuFrQ6GZ5ytZmL+FwrG3o1uM8tD0t5Bxs
-         IOfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJSIoC7WkWFTC9ZbdDsMfjBHDZyF66xA8wIL4K2C5Nf8i5QbNfTzXYFERisaiwo9ZpXwYZWoQv@vger.kernel.org, AJvYcCW+10B2sQO4nTgxNiJ2IR/JbGShi2cBIr1+FGzXWKlQpkT4al98YLfhd3Ai/a6W+THy6tdlGhbnMeBOGBRL@vger.kernel.org, AJvYcCXaAyi22Li2rrpdcRzG5CDmtu/Qk/957Ckqhi/0ksTuJNAdIDHNVSQDTJ9RmC6SJ+SSd3aMN4853MCE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzpTspXhQEMqxh3nPMiQJD8cRMLed4GoMl0n7Kj3KJjvQGke+Y
-	5rz4TUY8sE9Su0OF/lxaNFmlmVnYk9NNAywZowEMy9Vap5ALYzeE8pEmkyR/oj1jkdfNRQ4HAZn
-	Q5JdPUjxeHC+PR2zVeA8x61FtEsTSVjRVD+hJlKUH
-X-Gm-Gg: ASbGncv3vlEVR6S7m9EtafeVkBIBi4eDBiXUqOH74EdDsQhifL0PDlEy12zRP0y1agL
-	h4NA53lkErP9gwqSwGIyzF91nMYcvN5MhzLGn3ziF4+vWkYzqcV3k6Wkorjx2iXQ24TZRQ1nsXP
-	FByk9Fithrya1NWNT42r4tgHR6yV4GTxTe8i1QGrOF5Y3KXbzBawyRlA==
-X-Google-Smtp-Source: AGHT+IEKc/pO4ycFj+V8i2s/1L594kwA2Gdb2sAylgWPbU3n+ww3m+g7WIpxkisXNDK8wuk/OCrcHDMU8zMho4EQ4MI=
-X-Received: by 2002:a05:622a:4187:b0:477:6f28:3eb7 with SMTP id
- d75a77b69052e-489e44b5a51mr49674381cf.3.1746024713459; Wed, 30 Apr 2025
- 07:51:53 -0700 (PDT)
+	s=arc-20240116; t=1746024997; c=relaxed/simple;
+	bh=ZDhemFI3wk7+oKmCQPnnKPrmu3o0K0L437vtWpHD45Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e5rAIOX4LN/bGzpwk9e1s0Vuc0RFGvTvG2uY0mXkKubHPbxoeLCECzbcH5uBwPGC+Z1r8oY0AACZdNyhTlGL0IkK0HrbQcC4iPJwAEYv0sqxMooJbsUF7j/GriNHTZV2zC/Dp6K5cXH/di34rmVmsnz+a5WWcCAXoCHidKYKe7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p4v+Q51D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4615C4CEE7;
+	Wed, 30 Apr 2025 14:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746024997;
+	bh=ZDhemFI3wk7+oKmCQPnnKPrmu3o0K0L437vtWpHD45Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p4v+Q51DBosLKEYDP1xu8v1LSCpHW5tdNhk2McmtomzvDiGE0HFITW6RZ67nIetwg
+	 nmhpIr8KxlRevmrSr7667phfz509ORcM73+MOb129oRrA3qM1WOvNmgTcFTSWMEkgu
+	 SXLZnm5BAogrX/djef6MbfVMBjwIr4JjdxRNPCefxfqFZ3Lz+eJ6a92t1s3x/2+rt+
+	 tUbyC/ZbXqJjDbqfX5VeeP2E/Sc7C+hWSfpmN3mlFMBnlJetbFLrWQo2Ae6OBOLsE0
+	 00E1RG6nZNE07A8OWeejsGyGj7EW7KWj/jUkKJE8LubYQoOCVmC8exxzgel61ZpGdD
+	 yF7WVZypse4zA==
+Message-ID: <07c540a2-c645-460c-bfad-c9229d5d5ad0@kernel.org>
+Date: Wed, 30 Apr 2025 17:56:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250430-rhine-binding-v2-1-4290156c0f57@gmail.com> <236a2ace-24ca-421f-82e8-a2d3910730c7@kernel.org>
-In-Reply-To: <236a2ace-24ca-421f-82e8-a2d3910730c7@kernel.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 30 Apr 2025 18:51:43 +0400
-X-Gm-Features: ATxdqUHo5BlXS1S6bG3pKo3phkXPn6pPaAqcL5Z1mpGc7fhpdiLuN2IJZZ-TQMg
-Message-ID: <CABjd4YzpkJTh2v-EzZemSgK6iwwsJJ=4sxpQ7-0vxeQby=1KaA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net: via-rhine: Convert to YAML
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 3/4] net: ethernet: ti: am65-cpsw: fixup PHY mode
+ for fixed RGMII TX delay
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Whitcroft <apw@canonical.com>
+Cc: Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>, Joe Perches <joe@perches.com>,
+ Jonathan Corbet <corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>, Tero Kristo <kristo@kernel.org>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <32e0dffa7ea139e7912607a08e391809d7383677.1744710099.git.matthias.schiffer@ew.tq-group.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <32e0dffa7ea139e7912607a08e391809d7383677.1744710099.git.matthias.schiffer@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 30, 2025 at 5:25=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 30/04/2025 12:42, Alexey Charkov wrote:
-> > Rewrite the textual description for the VIA Rhine platform Ethernet
-> > controller as YAML schema, and switch the filename to follow the
-> > compatible string. These are used in several VIA/WonderMedia SoCs
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Dropped the update to MAINTAINERS for now to reduce merge conflicts
-> >   across different trees
-> > - Split out the Rhine binding separately from the big series affecting
-> >   multiple subsystems unnecessarily (thanks Rob)
-> > - Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-4-f9a=
-f689cdfc2@gmail.com/
-> > ---
->
-> You should have net-next prefix (see maintainer-netdev).
+Matthias,
 
-Duly noted, thank you Krzysztof!
+On 15/04/2025 13:18, Matthias Schiffer wrote:
+> All am65-cpsw controllers have a fixed TX delay, so the PHY interface
+> mode must be fixed up to account for this.
+> 
+> Modes that claim to a delay on the PCB can't actually work. Warn people
+Could you please help me understand this statement? Which delay? TX or RX?
 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Isn't this patch forcing the device tree to have TX delay mentioned in it?
 
-Best regards,
-Alexey
+> to update their Device Trees if one of the unsupported modes is specified.
+> 
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> ---
+>  drivers/net/ethernet/ti/am65-cpsw-nuss.c | 27 ++++++++++++++++++++++--
+>  1 file changed, 25 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> index c9fd34787c998..a1d32735c7512 100644
+> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> @@ -2602,6 +2602,7 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+>  		return -ENOENT;
+>  
+>  	for_each_child_of_node(node, port_np) {
+> +		phy_interface_t phy_if;
+>  		struct am65_cpsw_port *port;
+>  		u32 port_id;
+>  
+> @@ -2667,14 +2668,36 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+>  
+>  		/* get phy/link info */
+>  		port->slave.port_np = port_np;
+> -		ret = of_get_phy_mode(port_np, &port->slave.phy_if);
+> +		ret = of_get_phy_mode(port_np, &phy_if);
+>  		if (ret) {
+>  			dev_err(dev, "%pOF read phy-mode err %d\n",
+>  				port_np, ret);
+>  			goto of_node_put;
+>  		}
+>  
+> -		ret = phy_set_mode_ext(port->slave.ifphy, PHY_MODE_ETHERNET, port->slave.phy_if);
+> +		/* CPSW controllers supported by this driver have a fixed
+> +		 * internal TX delay in RGMII mode. Fix up PHY mode to account
+> +		 * for this and warn about Device Trees that claim to have a TX
+> +		 * delay on the PCB.
+> +		 */
+> +		switch (phy_if) {
+> +		case PHY_INTERFACE_MODE_RGMII_ID:
+> +			phy_if = PHY_INTERFACE_MODE_RGMII_RXID;
+> +			break;
+> +		case PHY_INTERFACE_MODE_RGMII_TXID:
+> +			phy_if = PHY_INTERFACE_MODE_RGMII;
+> +			break;
+> +		case PHY_INTERFACE_MODE_RGMII:
+> +		case PHY_INTERFACE_MODE_RGMII_RXID:
+> +			dev_warn(dev,
+> +				 "RGMII mode without internal TX delay unsupported; please fix your Device Tree\n");
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +		port->slave.phy_if = phy_if;
+> +		ret = phy_set_mode_ext(port->slave.ifphy, PHY_MODE_ETHERNET, phy_if);
+>  		if (ret)
+>  			goto of_node_put;
+>  
+
+-- 
+cheers,
+-roger
+
 
