@@ -1,136 +1,184 @@
-Return-Path: <devicetree+bounces-172267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F010AA450C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:19:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42512AA4537
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 101814A0965
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:19:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 535667A5D74
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FECF2147E4;
-	Wed, 30 Apr 2025 08:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1472321421A;
+	Wed, 30 Apr 2025 08:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="aIIKwMKt";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="O8XjPnyO"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="L1UTAJqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEA6214223;
-	Wed, 30 Apr 2025 08:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20AFB2FB2;
+	Wed, 30 Apr 2025 08:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746001148; cv=none; b=acYY4sHtB3HnQZ3zmEjdz5SpP1Qt7JsZe2G9R1TofWZ/S6INKEFYxsSPxnEZs1vymVJHWAzf1AQLCe8ovn/GL92yqFexLqy8g0IuNVZRJrEip+PuVkNBaQdIYofK1TPHB9GNRDhWcYvpzOcvVxcgpHnT2sBOcWGP/LubMX//jew=
+	t=1746001523; cv=none; b=Q7gQE+IZpR+vI4Fk01aHZB6L+pI8rnn7zXmEaMR1cvJYKINJ32JmZULh4Dcs4tKuIMNgF+Xi0OoiOq4YBuM7pi8JWB2WIjZLRBW39g1vBYHUsGj8Rk6B519AfMw7iwlTYaqoVSyj4+h4Ugunf21dVGBSMkp7TiyEDUb09rs0yfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746001148; c=relaxed/simple;
-	bh=sTjbLQMlvsQU8MCU4Zm2+0SCHO2CLBc/KryUeqrfJGA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VEjuAUn94BfCdLBDVK1qW7ixFlktA27peItSVCiz5YkZbDIS1m43VvcVgsHd6Urm3/MAsrInqe0OgLtTRqXe+zw4SQ91xqvmLZY45D1FyNf7jSso6deelZbnfU4hyMN0OZrJTs8TZohnDaM/Ys9MsARGnCTtN1Rp+tl9LvXRX9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=aIIKwMKt; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=O8XjPnyO reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1746001144; x=1777537144;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=mbemR3oRuGkOlc8+6KEUCkxK1UqOaYyGU6dV0XOH8fg=;
-  b=aIIKwMKt4WinFKsIlfedXMUThqd9vCRKsHJHnaDVvDaOarQlPen/BGcX
-   pxWZJtaD19TFWygEQShx8VKIvoCughsJCfgcTl0XjsG61r4QIMlpA9LbK
-   Xv4Vb3XCocyh6nHj4iYSq9btUkdR6YgTsWBRJOUubMIJO55wPzjHXV9d7
-   FyOZYPjcd/6o+7vGFsO8hWzER7j9ScMAjX1fEUsB0lQD4MjhX8/ID1cwO
-   jNEDMTvoNbzFtdkXqMjS2UISR+Q00wlO8fH30gQiMtYoT8JTi/V5goZsa
-   oqGD++erVRg0zfzJRc1L5Vpq3xpBjZlbT3e9u/MIfyUEL7ayI5hkRj0qv
-   g==;
-X-CSE-ConnectionGUID: 6qH8UY+5Sy2M7Jco+pwx5g==
-X-CSE-MsgGUID: a+PXonWyRzK3RnDABjbb0A==
-X-IronPort-AV: E=Sophos;i="6.15,251,1739833200"; 
-   d="scan'208";a="43802161"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 30 Apr 2025 10:19:01 +0200
-X-CheckPoint: {6811DCF5-1B-45F3AE15-E90F7DFA}
-X-MAIL-CPID: 31B617226BF72FB254ACD175EC0ED1A2_5
-X-Control-Analysis: str=0001.0A006397.6811DCF5.008E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ABBED16B2E9;
-	Wed, 30 Apr 2025 10:18:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1746001137;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=mbemR3oRuGkOlc8+6KEUCkxK1UqOaYyGU6dV0XOH8fg=;
-	b=O8XjPnyOZz8llZYysGi4ehzwo8TryFjKtx9AElVXO+m2gx/EDndaMOcEgt5ZCIKFEiim4D
-	9lsPUmhfUL4Yx+lW7yvt0bmsh0KehJpCkuA+1mEJ2+nSfeDlgkARuRKjyiKux3e8RQIULT
-	4XFdxgHOxlljC+uKWBm7lM9gPPmlRb3TliVctEJe+Qa4+N/w9KbM9JcNgSXw4c13ndAN0U
-	8gOMUlLo1mJ9GQa8dXUIPDDoZ9zPOr+TgkF7tg/+sDiCgUP1NkbImNNxVb937dr8uTYmln
-	Ke8Ynht3QJhsVDg6LyFAetj7bQJXLmuWNk3j5VzPmr2nN9v4Ig/gGx3Ta6c92g==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Cc: linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: imx93-tqma9352-mba91xxca: disable Open Drain for MDIO
-Date: Wed, 30 Apr 2025 10:18:48 +0200
-Message-ID: <20250430081849.1827688-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1746001523; c=relaxed/simple;
+	bh=xl2PC/u/acKBiCM9v6IH+o5HldOBBnBmnBHN3O2JYik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C3/gZCHUYjBCTLnyzheeSad/S7TwuSeD1xfnmq6JFpqwR6T4K+Vc4qOI1Ktu3/3OMecYYlkZCjq0D7GjTF1TKtynk6NG+a2U2u7KzHMLttJeEee+J7jtFBAUA5xj/mx1v5PpPClPfHKrCFUtRDsvBBx51T7hBaaDJ38hCQRrEeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=L1UTAJqh; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U7CCF5005514;
+	Wed, 30 Apr 2025 10:25:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	g96VULOJgTP+rXSvs0fblxCYj+Zob3SZLDsy/ja+mSo=; b=L1UTAJqhDQjAXriu
+	QIYM35A9Zsx4nRUU8b8up4/5WDEt/s5wEG+dLtFTOix1mK11mcRWLNFMoOMhFOLp
+	Kb+gYm8+e1gURB6NA79a+wtPKOlq679CMutcPZeqhO1xEq84Elc69C/0a0A8yvMc
+	LgMpPDYwAxM1nMHaDvHNRj2eqZFhIXtx406/0wOhQvWw/5eWtt6Pc2n6RYetK/DJ
+	IDb2E3GhSBSOhxl6atvQbF0I0DxyVR94rni9bkmUlw1FAmrFnOKHuF9/39a3mp1L
+	903vzHPo6dk4n7aUjm6dugoSWptW6hFN3f3/ORPjkfhnMfSbiz6ygqqfRTpuYGJ5
+	SJ3+BQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46b6tphy93-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 10:25:10 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 02D7940048;
+	Wed, 30 Apr 2025 10:23:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5267B922644;
+	Wed, 30 Apr 2025 10:23:24 +0200 (CEST)
+Received: from [10.252.1.18] (10.252.1.18) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 30 Apr
+ 2025 10:23:23 +0200
+Message-ID: <622301ae-0973-4cdb-936c-3152afdbfb46@foss.st.com>
+Date: Wed, 30 Apr 2025 10:23:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+CC: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250407-b4-vd55g1-v6-0-1850f18b1f24@foss.st.com>
+ <20250407-b4-vd55g1-v6-2-1850f18b1f24@foss.st.com>
+ <aBCxpuppB6L-Ft2c@kekkonen.localdomain>
+ <70f7bc9b-4533-4c8e-a792-aad9a0b7a6d4@foss.st.com>
+ <aBC_gx8vFNWLacgB@kekkonen.localdomain>
+Content-Language: en-US
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <aBC_gx8vFNWLacgB@kekkonen.localdomain>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_02,2025-04-24_02,2025-02-21_01
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Hi Sakari,
 
-Using the MDIO pins with Open Drain causes spec violations of the
-signals. Revert the changes.
-This is similar to commit 14e66e4b13221 ("Revert "arm64: dts:
-imx93-tqma9352-mba93xxca: enable Open Drain for MDIO"")
+On 4/29/25 14:01, Sakari Ailus wrote:
+> Hi Benjamin,
+> 
+> On Tue, Apr 29, 2025 at 01:29:39PM +0200, Benjamin Mugnier wrote:
+>>>> +static int vd55g1_check_csi_conf(struct vd55g1 *sensor,
+>>>> +				 struct fwnode_handle *endpoint)
+>>>> +{
+>>>> +	struct i2c_client *client = sensor->i2c_client;
+>>>> +	struct v4l2_fwnode_endpoint ep = { .bus_type = V4L2_MBUS_CSI2_DPHY };
+>>>> +	u8 n_lanes;
+>>>> +	int ret;
+>>>> +
+>>>> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
+>>>> +	if (ret)
+>>>> +		return -EINVAL;
+>>>> +
+>>>> +	/* Check lanes number */
+>>>> +	n_lanes = ep.bus.mipi_csi2.num_data_lanes;
+>>>> +	if (n_lanes != 1) {
+>>>> +		dev_err(&client->dev, "Sensor only supports 1 lane, found %d\n",
+>>>> +			n_lanes);
+>>>> +		ret = -EINVAL;
+>>>> +		goto done;
+>>>> +	}
+>>>> +
+>>>> +	/* Clock lane must be first */
+>>>> +	if (ep.bus.mipi_csi2.clock_lane != 0) {
+>>>> +		dev_err(&client->dev, "Clock lane must be mapped to lane 0\n");
+>>>> +		ret = -EINVAL;
+>>>> +		goto done;
+>>>> +	}
+>>>> +
+>>>> +	/* Handle polarities in sensor configuration */
+>>>> +	sensor->oif_ctrl = (ep.bus.mipi_csi2.lane_polarities[0] << 3) |
+>>>> +			   (ep.bus.mipi_csi2.lane_polarities[1] << 6);
+>>>> +
+>>>> +	/* Check the link frequency set in device tree */
+>>>> +	if (!ep.nr_of_link_frequencies) {
+>>>> +		dev_err(&client->dev, "link-frequency property not found in DT\n");
+>>>> +		ret = -EINVAL;
+>>>> +		goto done;
+>>>> +	}
+>>>> +	if (ep.nr_of_link_frequencies != 1) {
+>>>> +		dev_err(&client->dev, "Multiple link frequencies not supported\n");
+>>>> +		ret = -EINVAL;
+>>>> +		goto done;
+>>>
+>>> Please check the link frequency matches with what the driver supports,
+>>> using e.g. v4l2_link_freq_to_bitmap().
+>>>
+>>
+>> Are you referring to checks performed in in vd55g1_prepare_clock_tree()
+>> ? Keep in mind it will change a bit with Laurent's comments though.
+>> The sensor supports a range of frequencies therefore I chose to check it
+>> manually instead of v4l2_link_freq_to_bitmap().
+> 
+> Ok, that's fine then. But please check this results to the frequency that
+> was requested, currently it may be off AFAIR.
+> 
 
-Fixes: e5bc07026f94 ("arm64: add initial device tree for TQMa93xx/MBa91xxCA")
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+As far as I understand it should be fine in v7, could you have a look
+once sent ?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-index 7b78faa4bfd09..9dbf41cf394bf 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-@@ -571,7 +571,7 @@ pinctrl_eqos: eqosgrp {
- 		fsl,pins = /* PD | FSEL_2 | DSE X4 */
- 			   <MX93_PAD_ENET1_MDC__ENET_QOS_MDC				0x51e>,
- 			   /* SION | HYS | ODE | FSEL_2 | DSE X4 */
--			   <MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO				0x4000191e>,
-+			   <MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO				0x4000111e>,
- 			   /* HYS | FSEL_0 | DSE no drive */
- 			   <MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x1000>,
- 			   <MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x1000>,
-@@ -599,7 +599,7 @@ pinctrl_fec: fecgrp {
- 		fsl,pins = /* PD | FSEL_2 | DSE X4 */
- 			   <MX93_PAD_ENET2_MDC__ENET1_MDC			0x51e>,
- 			   /* SION | HYS | ODE | FSEL_2 | DSE X4 */
--			   <MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x4000191e>,
-+			   <MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x4000111e>,
- 			   /* HYS | FSEL_0 | DSE no drive */
- 			   <MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0			0x1000>,
- 			   <MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1			0x1000>,
+>>>> +	ret = v4l2_async_register_subdev(&sensor->sd);
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "async subdev register failed %d\n", ret);
+>>>> +		goto err_subdev;
+>>>> +	}
+>>>
+>>> Aren't you missing:
+>>>
+>>> 	pm_runtime_put_autosuspend(dev);
+>>>
+>>> here?
+>>>
+>>
+>> Thank you. I'll add it to the pm_runtime block above.
+>> I also noticed I miss the pm_runtime_dont_use_autosuspend() call in
+>> err_power_off. I'll add that too.
+> 
+> Ack, sounds good.
+> 
+
 -- 
-2.43.0
-
+Regards,
+Benjamin
 
