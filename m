@@ -1,274 +1,175 @@
-Return-Path: <devicetree+bounces-172260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92201AA445D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:50:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E48AA4474
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:53:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11DA91C025A7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:50:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D09CE9C04F2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8502C20F082;
-	Wed, 30 Apr 2025 07:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B2320E332;
+	Wed, 30 Apr 2025 07:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e96Q4IKs"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="huZuIR3/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EEC20C463
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22D520C489
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745999420; cv=none; b=jGlEn9BKC8/B/DJtBYDu+XUM3snZd5OhB0AN/SUayzduZVorMjzTz6iYAUDqiv3a/8nV/lvTRK/tr8rVkCSf/OmUjwjTHQnTug7A2a7/85XKpmlpJ7OM8V7AJA2pLKPqVgXgQbcbBDviyxVAjlwVbMl0Q+KUrvSk3CI8av6OvAk=
+	t=1745999562; cv=none; b=ggnvy88tkXlH9MSgZO5o2OQvO897QAECiX7rLFnPo19ywtt6Mtuo4pG4DqktuKdyxX587lJveQnw3tM23zC3ZtRDjyPK99PWIrLNkU0W8Br/SjoLiv/gKnfbD0O3HGW8vTQNs7TDEdZQs1Te1Zz9eCF4F5T78P1BrxWB9nVkNxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745999420; c=relaxed/simple;
-	bh=dpGOxMLIeOmwxW/FB5SchRaiP+uCvl2prhEvt6qK08s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ya9jz5iD5LsDCha+yztcmQq0Yr2a0htss9YQ2IFrY797O3mMPo3SOhywzdjUXM5wbXpk+zbYalGrdWDMxlkDchpB42NHALj70R+xWUmn9+542jddkCkyqBsPEYV7WGGzMAVQHy6ofNps08b5Z64dovsIttrmoeenIPUlRY8IEJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e96Q4IKs; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-af5139ad9a2so4685456a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 00:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745999417; x=1746604217; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9yxKFbS7FJYlVTaW80XPyRVVbRWztaV2reVeiBVpKKQ=;
-        b=e96Q4IKseXOyeDyxnanbHcGoohPRV2q+Ozf/UigxZsd5rM5r6PSiLlwjCQNjEVZqS7
-         AO8Hs2BlmxJb2U5zx9XT8Wtm/PyyCu4BlZHuqzVYLuZvPRBUPTQ5Ju7ijComO+Y9zc/u
-         QIMX1Sega50EC8yzP8BNwfNIO/1o5j9RBuOHjMmfl/gXoJEZZFZmCE7sK0prn0xJzR0Z
-         R9wdNmOa0Nv4WbaOcy/Ic1mALFJT+9Q96gmA/xoz4nMr+AREOjU43CDJPIh3mhdWzJGI
-         IEKGmJToh45+YpdFwoiTKaH1JNhgr9HPBKfOt09hIS2H/Qrjz10fFS2meQdOcJBIR8+N
-         6tAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745999417; x=1746604217;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9yxKFbS7FJYlVTaW80XPyRVVbRWztaV2reVeiBVpKKQ=;
-        b=EeByUt69iUxrNn0Z/i228d9UDUjucXucU5mHluzt7JjxYlHKi7Pr//ukFokLmYUw24
-         f72Cx20ovF8tLgVVXeOa2pQULI0UfBS41fkYAErfTS9ZGWZIvhhcbAXjA2vO5giFWxXo
-         AhApB4qcn9xoojWPK5shvKgo9PVNs4SKxP5bsC1oui885c6vsVRxB7qOyP/EauzQQGU4
-         NqHgjBcT+nlFOEHxhbhJdJ9N1GcRNvlXnsnzoHncNT2rZ3jq78jamyAjohkC14IDVT2x
-         bYMJNHsuBiEDODgjsQd/DCRXQY3FTj1ESwkytipwuPUW9SpOUM6iP8oWLKGf7oH+nl14
-         jZmA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBFQw25lA/X13QniZObFU+obv4N8XjDnvzXUWSUOTBF8Rf3MHk4cSXUySox7VQTny3EpYT2qabRUFf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIpdGVYe3XOUfuGi6GQVq3xXx3t7ySYbJs8DxalygM5h3u22Q2
-	ejf8YRhqnuFkZzhGZIOK9YfLk8iEcDookzHW4c/EVPuHSgdGdf4AR1La2DS+PQ==
-X-Gm-Gg: ASbGncsA1if2dap8mcgqTjHUR5xoEAbfngZCREWQeco5Q93N/d8WVC/UUZkPVptTzAv
-	t0vGAHtFHTzMKIp9d+RQej2NMlA8nG9z5zWGRZXqV04bKa+hzNUZTIf4a7uSQ7+oYCvhlx1wl8w
-	qbELOHLq9ZRB5/17ir5C9hsEfuacxWzsR8CzK9vsGFj5b6j12QmQWkmLMRl/ZDet7NE7vKlVxnW
-	D8W2lHFd5OX2r7HIyoTpkkVuSeEppGTIz5gV4iE1S+mtDF31x8g9VICeRWJKj5QWAYduKqnTI3D
-	2knMgUV6+udU1rcKXnlZRY2M7/vVMmi5r1P1UK0M1IvS55XN+tnG
-X-Google-Smtp-Source: AGHT+IFvx4UAfDgrq2sMjoLi6VEnM3rJ09t7/z8JxBTCQ55y5uUYEKoDCPk40jK6HkYjUv4z1LuM8A==
-X-Received: by 2002:a17:90b:56c3:b0:2ff:502e:62d4 with SMTP id 98e67ed59e1d1-30a3336472dmr2604246a91.32.1745999416760;
-        Wed, 30 Apr 2025 00:50:16 -0700 (PDT)
-Received: from thinkpad ([120.56.197.193])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a349e4586sm909365a91.8.2025.04.30.00.50.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 00:50:16 -0700 (PDT)
-Date: Wed, 30 Apr 2025 13:20:06 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, p.zabel@pengutronix.de, 
-	thippeswamy.havalige@amd.com, shradha.t@samsung.com, quic_schintav@quicinc.com, 
-	cassel@kernel.org, johan+linaro@kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 4/9] PCI: stm32: Add PCIe Endpoint support for
- STM32MP25
-Message-ID: <tdgyva6qyn6qwzvft4f7r3tgp5qswuv4q5swoaeomnnbxtmz5j@zo3gvevx2skp>
-References: <20250423090119.4003700-1-christian.bruel@foss.st.com>
- <20250423090119.4003700-5-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1745999562; c=relaxed/simple;
+	bh=roySooOoup4fu4QmJMTkWQ2pUs0IThrB2hKyWF/XehI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=V2EUGLDUEQJY8ALtDmxDnLBLgKuYK3yAes4qVKfcibpoVvJdKK4Ql3AfCDHmjmpok1TK/jSFS5K7xSMW3+LiaTvKDLlm9tHiFeNz6DUfT/CDzzOkeX7w/rqjAzZS8qu8toIU1ZmEhg0PycYzW896qP8qyxkiqEc8QmDDfuX6NAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=huZuIR3/; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250430075231euoutp01e0d704a45d8afde5f758aaaa6c404058~7CVdvjKIt1213112131euoutp01S
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:52:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250430075231euoutp01e0d704a45d8afde5f758aaaa6c404058~7CVdvjKIt1213112131euoutp01S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1745999551;
+	bh=qI3xeJtXvmwbkwfCNGhT9/+KA3tkoCUGRYmZdMz5vr8=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=huZuIR3/NjO36Ip4MwWyXJoc9F87b9Pbh2SgiZH6z7FLmWBYs+2c3s1JkepjYJAy+
+	 Ld3FOqBDuN6Z0X1L8VWUp/UFQxiMNI+/yNLaZcnuYkn8/qsfh8sZGtpKNYZ8o1siQ2
+	 K3URzLHwgecuMMjcpl5Keq/TwaOgaXkV331Z/KOI=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250430075230eucas1p12da87b9a4202316b95a70a82c251185c~7CVc1y5D_1711917119eucas1p13;
+	Wed, 30 Apr 2025 07:52:30 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250430075229eusmtip20196a0472e6c82627cb89c1c3f5965ea~7CVcCfJC02585025850eusmtip2F;
+	Wed, 30 Apr 2025 07:52:29 +0000 (GMT)
+Message-ID: <475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
+Date: Wed, 30 Apr 2025 09:52:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250423090119.4003700-5-christian.bruel@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
+ controller
+To: Stephen Boyd <sboyd@kernel.org>, Drew Fustini <drew@pdp7.com>
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de,
+	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20250430075230eucas1p12da87b9a4202316b95a70a82c251185c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
+X-EPHeader: CA
+X-CMS-RootMailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
+References: <20250403094425.876981-1-m.wilczynski@samsung.com>
+	<CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
+	<20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1>
+	<17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+	<9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
 
-On Wed, Apr 23, 2025 at 11:01:14AM +0200, Christian Bruel wrote:
-> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
-> controller based on the DesignWare PCIe core in endpoint mode.
+
+
+On 4/30/25 00:29, Stephen Boyd wrote:
+> Quoting Michal Wilczynski (2025-04-07 08:30:43)
+>> On 4/5/25 01:16, Drew Fustini wrote:
+>>>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> index 527336417765..d4cba0713cab 100644
+>>>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> @@ -489,6 +489,13 @@ clk: clock-controller@ffef010000 {
+>>>>                      #clock-cells = <1>;
+>>>>              };
+>>>>  
+>>>> +            clk_vo: clock-controller@ffef528050 {
+>>>> +                    compatible = "thead,th1520-clk-vo";
+>>>> +                    reg = <0xff 0xef528050 0x0 0xfb0>;
+>>>
+>>> Thanks for your patch. It is great to have more of the clocks supported
+>>> upstream.
+>>>
+>>> The TH1520 System User Manual shows 0xFF_EF52_8000 for VO_SUBSYS on page
+>>> 205. Is there a reason you decided to use 0xFF_EF52_8050 as the base?
+>>>
+>>> I see on page 213 that the first register for VO_SUBSYS starts with
+>>> VOSYS_CLK_GATE at offset 0x50. I figure you did this to have the
+>>> CCU_GATE macros use offset of 0x0 instead 0x50.
+>>>
+>>> I kind of think the reg property using the actual base address
+>>> (0xFF_EF52_8000) makes more sense as that's a closer match to the tables
+>>> in the manual. But I don't have a strong preference if you think think
+>>> using 0xef528050 makes the CCU_GATE macros easier to read.
+>>
+>> Thank you for your comment.
+>>
+>> This was discussed some time ago. The main issue was that the address
+>> space was fragmented between clocks and resets. Initially, I proposed
+>> using syscon as a way to abstract this, but the idea wasn't particularly
+>> well received.
+>>
+>> So at the start of the 0xFF_EF52_8000 there is a reset register GPU_RST_CFG
+>> I need for resetting the GPU.
+>>
+>> For reference, here's the earlier discussion: [1]
+>>
+>> [1] - https://lore.kernel.org/all/1b05b11b2a8287c0ff4b6bdd079988c7.sboyd@kernel.org/
+>>
 > 
-> Uses the common reference clock provided by the host.
+> In that email I said you should have one node
+> clock-controller@ffef528000. Why did 0x50 get added to the address?
+
+Hi Stephen,
+In the v2 version of the patchset, there was no reset controller yet, so
+I thought your comment was made referring to that earlier version.
+This representation clearly describes the hardware correctly, which is
+the requirement for the Device Tree.
+
+The manual, in section 5.4.1.6 VO_SUBSYS, describes the reset registers
+starting at 0xFF_EF52_8000:
+
+GPU_RST_CFG             0x00
+DPU_RST_CFG             0x04
+MIPI_DSI0_RST_CFG       0x8
+MIPI_DSI1_RST_CFG       0xc
+HDMI_RST_CFG            0x14
+AXI4_VO_DW_AXI          0x18
+X2H_X4_VOSYS_DW_AXI_X2H 0x20
+
+And the clock registers for VO_SUBSYS, manual section 4.4.1.6 start at offset 0x50:
+VOSYS_CLK_GATE          0x50
+VOSYS_CLK_GATE1         0x54
+VOSYS_DPU_CCLK_CFG0     0x64
+TEST_CLK_FREQ_STAT      0xc4
+TEST_CLK_CFG            0xc8
+
+So I considered this back then and thought it was appropriate to divide
+it into two nodes, as the reset node wasn't being considered at that
+time.
+
+When looking for the reference [1], I didn't notice if you corrected
+yourself later, but I do remember considering the single-node approach
+at the time.
+
 > 
-> The PCIe core_clk receives the pipe0_clk from the ComboPHY as input,
-> and the ComboPHY PLL must be locked for pipe0_clk to be ready.
-> Consequently, PCIe core registers cannot be accessed until the ComboPHY is
-> fully initialised and refclk is enabled and ready.
-> 
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> ---
->  drivers/pci/controller/dwc/Kconfig         |  12 +
->  drivers/pci/controller/dwc/Makefile        |   1 +
->  drivers/pci/controller/dwc/pcie-stm32-ep.c | 414 +++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-stm32.h    |   1 +
->  4 files changed, 428 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index 2aec5d2f9a46..aceff7d1ef33 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -422,6 +422,18 @@ config PCIE_STM32_HOST
->  	  This driver can also be built as a module. If so, the module
->  	  will be called pcie-stm32.
->  
-> +config PCIE_STM32_EP
-> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (endpoint mode)"
-> +	depends on ARCH_STM32 || COMPILE_TEST
-> +	depends on PCI_ENDPOINT
-> +	select PCIE_DW_EP
-> +	help
-> +	  Enables endpoint support for DesignWare core based PCIe controller
-> +	  found in STM32MP25 SoC.
 
-Can you please use similar description for the RC driver also?
-
-"Enables Root Complex (RC) support for the DesignWare core based PCIe host
-controller found in STM32MP25 SoC."
-
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called pcie-stm32-ep.
-> +
->  config PCI_DRA7XX
->  	tristate
->  
-
-[...]
-
-> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
-> +			     struct platform_device *pdev)
-> +{
-> +	struct dw_pcie_ep *ep = &stm32_pcie->pci.ep;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-
-This needs to be called before devm_pm_runtime_enable().
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-> +				 STM32MP25_PCIECR_TYPE_MASK,
-> +				 STM32MP25_PCIECR_EP);
-> +	if (ret) {
-> +		goto err_pm_put_sync;
-> +		return ret;
-> +	}
-> +
-> +	reset_control_assert(stm32_pcie->rst);
-> +	reset_control_deassert(stm32_pcie->rst);
-> +
-> +	ep->ops = &stm32_pcie_ep_ops;
-> +
-> +	ret = dw_pcie_ep_init(ep);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
-> +		goto err_pm_put_sync;
-> +	}
-> +
-> +	ret = stm32_pcie_enable_resources(stm32_pcie);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable resources: %d\n", ret);
-> +		goto err_ep_deinit;
-> +	}
-> +
-> +	ret = dw_pcie_ep_init_registers(ep);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
-> +		goto err_disable_resources;
-> +	}
-> +
-> +	pci_epc_init_notify(ep->epc);
-> +
-
-Hmm, looks like you need to duplicate dw_pcie_ep_init_registers() and
-pci_epc_init_notify() in stm32_pcie_perst_deassert() for hw specific reasons.
-So can you drop these from there?
-
-> +	return 0;
-> +
-> +err_disable_resources:
-> +	stm32_pcie_disable_resources(stm32_pcie);
-> +
-> +err_ep_deinit:
-> +	dw_pcie_ep_deinit(ep);
-> +
-> +err_pm_put_sync:
-> +	pm_runtime_put_sync(dev);
-> +	return ret;
-> +}
-> +
-> +static int stm32_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct stm32_pcie *stm32_pcie;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
-> +	if (!stm32_pcie)
-> +		return -ENOMEM;
-> +
-> +	stm32_pcie->pci.dev = dev;
-> +	stm32_pcie->pci.ops = &dw_pcie_ops;
-> +
-> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
-> +	if (IS_ERR(stm32_pcie->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
-> +				     "No syscfg specified\n");
-> +
-> +	stm32_pcie->phy = devm_phy_get(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->phy))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
-> +				     "failed to get pcie-phy\n");
-> +
-> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->clk))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
-> +				     "Failed to get PCIe clock source\n");
-> +
-> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->rst))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
-> +				     "Failed to get PCIe reset\n");
-> +
-> +	stm32_pcie->perst_gpio = devm_gpiod_get(dev, "reset", GPIOD_IN);
-> +	if (IS_ERR(stm32_pcie->perst_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
-> +				     "Failed to get reset GPIO\n");
-> +
-> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, stm32_pcie);
-> +
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable pm runtime %d\n", ret);
-
-Use dev_err_probe() please for consistency.
-
-- Mani
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Michal Wilczynski <m.wilczynski@samsung.com>
 
