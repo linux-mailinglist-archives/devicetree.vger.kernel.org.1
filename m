@@ -1,127 +1,156 @@
-Return-Path: <devicetree+bounces-172221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CBF2AA4370
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:54:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347B3AA4382
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB46C1BA127B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:54:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85B0B4C4DEA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A179B1E9B14;
-	Wed, 30 Apr 2025 06:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB23E1EF087;
+	Wed, 30 Apr 2025 07:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LpZdiy00"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tamp2bip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F903C6BA;
-	Wed, 30 Apr 2025 06:54:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE4A1EDA0B
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745996083; cv=none; b=cVCw4QN0Iuxv6YPlGddr8vermm6wAVchDL8EE4Kfh8eB4lzLof7O5QnL1Rlyuaq+MasPVnKtvSIfK7RDBmKM2gQjsxLyi8jAxB9XkMt6jdd89mr+o7hH8HXgtKHzBdgy0R9cVfH3fO8g35ckoamZ8VoRakX6owlzQSu8pa0Egfo=
+	t=1745996725; cv=none; b=mmbPPEgIoIbtIhhvWgQzCsEr4Zj5LlpqaTEngAYw/SX6yWTWBDr4Eh02EuOiEKXhEHWl6TS7XdyecEUlKVTX2Ndb+2vCDEXtuk1C+1XqEqnM8iQRTUb6H88BcOZnBk/CpuSaoePTj7tlqlBdmWax0ufzbx2demnK/tFkQbNFj/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745996083; c=relaxed/simple;
-	bh=FWsVKMBpJoSvjzMtNQ11+FVVEGiAvbP5ltH1178r0LQ=;
+	s=arc-20240116; t=1745996725; c=relaxed/simple;
+	bh=+0dHt1yP787DSV8CSOwbZKx0Vsi1fEwM5a4JLD4PqAg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZXSdfjfk1cOBYrnSbIkQq+OVz8c4A/83NJpX8yZDn3td1OYC4QfOmTsEE0uVGloBVyz4ITjuOql3McP6hQ5MvoOhMCV5ATOiRJLNpBzi4mCRze2yBwz+BbOSujCzCATq6hYPeCCoALQkhmv6yGFod4QyifKAW02ch/XBrq85z0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LpZdiy00; arc=none smtp.client-ip=209.85.219.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6e8f254b875so77530486d6.1;
-        Tue, 29 Apr 2025 23:54:41 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LXMpmuh2CepanaNFt4jfBozfSUkZy23JXKXQT9deC9/d36dz2h4bmiCioohEwpnaY8lhFPCJvrYZATQcqrsExcA9KCewEaoR4pZ/9oN9n4cw67GvmOWmv/ntz9rLdYHS2kdDvMW/CFQXCWK7FFEFJkWUcmfvOTk7Qb/wAqQ0aBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tamp2bip; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-74019695377so2638905b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 00:05:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745996080; x=1746600880; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1745996723; x=1746601523; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=IHPC6ouTLZh9rZq6+aZMT/nynJpeCvxeKEaQao7uCfI=;
-        b=LpZdiy009ijRMVcAA1Wob3bGfgLWoZtQo6v5WCI1wKuEMNgHJQkZzcClug8cbVjEvw
-         xKdCs0bmTmTsDVsk73vUmc0Whr0v8PDtuyrrUS+RHa9cxI1PY/T0RujiocGmDiYL+z3I
-         XbrCMh68IxsQG3Gh/iqlbJU649OlDWUhzc3FyzldlUyrPa5wgKjsSQREJ7lUHHZMEFBO
-         4XERpXt+Gj2t6Y6m4r5zF4m/GadFpMiOeGI0xilw7YD+KtJOaciiaapyr8V48hnY9agD
-         c6z0ytY3PEICvfhyQZMCvpNtq/zHDTr+rd7FmcT8gBg/aCcU1QsDcmQ4U0vAPMQLLXoX
-         F7vA==
+        bh=cOvTq6j10S4wZ2ouQEx1wtmHFZMHpjT96cwxcvUAC+E=;
+        b=tamp2bip3bTo+e1tVeesmnvWzEANzUdcKWgh/UnjSXMU1Vij00FWVXAg2G/leyIy5c
+         VfWluxzsnrJcx2bqTP4ekPCz/x7JTFpqz8OJM8TUBRRw1TBKLXYvUHztMKbSreylTXdz
+         G/kV1kdNagrq6ce4cjO7DzlQuCLlCy7wVl+dPIG4u2HWP8G9IJDs9rXq8W0NUYwujom9
+         Gi4t/uw9eNN18mgCsGd/yWdnN7xTs4p3JGI8hC+Qftz2fgTUTRxm2j+0RtOArW0gEA93
+         j/lXF4AbnRTfiZz7s2SKuaDq1rIEbtO8rnU7tAA9NGhTuvpvq3FIjrJfHXQoXNo6XEuu
+         aYUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745996080; x=1746600880;
+        d=1e100.net; s=20230601; t=1745996723; x=1746601523;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IHPC6ouTLZh9rZq6+aZMT/nynJpeCvxeKEaQao7uCfI=;
-        b=nOnrl3lXYGDbRn01OClymSRQXVN/GpRQGkOqqn3NsK9YUhrd/G2nq393/mT/JyoX/w
-         MwXacBJlER/spauaFKNMv6sqSTK1D+doYPiD8bWttvHWgw+cOBrxtlc62L0sfJRG2Ohi
-         kMU7EuOIzdvstgorC1S4mFmbNz+3OW/y+wMN3dSmclmHXvTlWifJU+iBiFhNopOcuBLY
-         U8XSmqJYQQbro9c2g9tkdzdylOAz+Gh+gbOzvrW8ZmmLd9w9hJo4b0KxOxxW0dHc+4ls
-         p3tkrx3JNcIufUw/Mi/jhTDM3JnwJBdgXoEApN0TshXRt7EJAPXqF/ytTefzPFGuIn53
-         vWHg==
-X-Forwarded-Encrypted: i=1; AJvYcCWnByNuayRW8k3X3xghA22MlGWDW6tZUPG3qMcE7Nhnjvx8wPjU2wBxQ/l15oK8IofwngPsqiAS4i7nnyM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuOIQjUbmjIveBer+7vTmWRDqJoexUZBsMDOZx54Fhujgkpubg
-	P/Rx+rOkmnK+lhJHPx2tGYnHt4xgF+jrME7pXW3BCBN1lcsk4and
-X-Gm-Gg: ASbGncsK6/jbYTVikULVK247BRLney5Zl9AbeOfKz/FF5FDbV9+Hmk7VPu6sz9r4GdD
-	oko5CPrgg6IzgizTGqUcqF61LmNhXTwjwnIXKtG4/LQvXrj6U9P+XTyiFgD704ISjgRsUGE3LuA
-	bSZvAa2MA63BYUlmlzxQ6HzID5rkyxa+/108kiwef/MBJirKpJqTyi4V9ZTcp1Aqe/YW7oIyg6+
-	CwXu9R8eFbojEhkP9gioyZ6DsdmcErJSSdUI7w0zzCfB83ifY53X9doNTNK7IlqHPanWzdT28qW
-	g56qDibFjwK3mJw1
-X-Google-Smtp-Source: AGHT+IFizVCYxmFryP83K8Efv63dHaODZi9WbULtELwp3gzA1WDs1vRsKFV4wOSDStjITe1CP6hCgw==
-X-Received: by 2002:a05:6214:1d0b:b0:6e8:fe16:4d45 with SMTP id 6a1803df08f44-6f4fcfcb78fmr31461436d6.41.1745996080261;
-        Tue, 29 Apr 2025 23:54:40 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f4fe8358dcsm5091866d6.86.2025.04.29.23.54.39
+        bh=cOvTq6j10S4wZ2ouQEx1wtmHFZMHpjT96cwxcvUAC+E=;
+        b=oJQChRDIwsE3QSi35KJH9+0oBHgynZdwU0K9pZJX0UcZKtDdkQgFk1dIEbdRori3qW
+         J04tOfOt7e0Z4zm3Z68xZYjHIx7q+oeHaJb+uAOWpWtU7Gn3DlkdgKyQXbu6bRDy3B2z
+         +ZtcD8HqsqU6wS5AkeyUHGfx3dR5xF7smjKIS0nk5SHjvgpXwrLWI8o3CJc6XC1VV0HM
+         gtAzECietSWAVIpyBhJ91r5ezunIm2CkRCyaVx39B2FeQsq4irY5HIG4ORczGl5L5jRN
+         zNGp9r5O+JdsYr/uvSNpRbTyIza49Aa3j7hoKWincS4RKLGECgtL9PdsZZpMlorbqgN3
+         ksGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXB7BFK9Zqb9y4qYt6U/dnjrrrDdfnBlbiJGbXpTWee98Q0+n9otqoXu2nJDY5MwU3AwBT4P5rJv4gj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3eO4etaYk2locXbjcqwSDZY4nYnM8LYJsgEYFBDFZJQG0S+x5
+	UPXpslZvBYJPXxmKAyOyBxIEpjShdOIusyJo2lkNx9puwX2/PM0gMflczhOLI1Ye0JFO77c94wg
+	=
+X-Gm-Gg: ASbGncsR0NKbUqxGDr263if9napRSRd1vZrSlrZGLJMr7++XmOSEPLG/eHEbxRCEghe
+	WaHEL3M0hNaU8JDfmdHmqhDvJrQ7hOOs1EXdgSoYKJK2ZO2oKV16X4S3QDT4okQuuhbzR7KdXjR
+	E5d2ufpwqgatfiddi5dpopv/ShhSAaEv+TT/l84QC9sfTGYyJVEThPonacsRxDXgZ4nTm945BdX
+	gIYOwW6PWcChIWbX6QmabLPQITM1zoL+J4IIOfNF9kwQ45N9TIEFb5qZu/q+msauxovKtrDk3Y4
+	h40uptvaJAeXLRAG9P1g9BGmLkdGt3iTkZjlqWqfFhHfwZyb+gTh
+X-Google-Smtp-Source: AGHT+IGfZHTxKtJCIj/0xAUmnPi7/0zX7+jZWY55uH7h2ZYvLlYY79PgE8omUcoof08RTFx68ZkHeg==
+X-Received: by 2002:a05:6a21:8cc9:b0:1f3:1d13:96b3 with SMTP id adf61e73a8af0-20a87644941mr2521487637.5.1745996723449;
+        Wed, 30 Apr 2025 00:05:23 -0700 (PDT)
+Received: from thinkpad ([120.56.197.193])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b1f100d475fsm2787077a12.47.2025.04.30.00.05.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 23:54:39 -0700 (PDT)
-Date: Wed, 30 Apr 2025 14:54:23 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Ze Huang <huangze@whut.edu.cn>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, Yu Yuan <yu.yuan@sjtu.edu.cn>, 
-	Ze Huang <huange@whut.edu.cn>
-Subject: Re: [PATCH] riscv: dts: sophgo: fix DMA data-width configuration for
- CV18xx
-Message-ID: <uo7nea7hxw7qrzw7yhtoulusejbynw6qlotwozpboxtm6vyotv@rdkuc4d776so>
-References: <20250428-duo-dma-config-v1-1-eb6ad836ca42@whut.edu.cn>
+        Wed, 30 Apr 2025 00:05:22 -0700 (PDT)
+Date: Wed, 30 Apr 2025 12:35:18 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>, dlemoal@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
+Message-ID: <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
+References: <20250425092012.95418-2-cassel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250428-duo-dma-config-v1-1-eb6ad836ca42@whut.edu.cn>
+In-Reply-To: <20250425092012.95418-2-cassel@kernel.org>
 
-On Mon, Apr 28, 2025 at 05:24:36PM +0800, Ze Huang wrote:
-> The "snps,data-width" property[1] defines the AXI data width of the DMA
-> controller as:
+On Fri, Apr 25, 2025 at 11:20:12AM +0200, Niklas Cassel wrote:
+> While some boards designs support multiple reference clocking schemes
+> (e.g. Common Clock and SRNS), and can choose the clocking scheme using
+> e.g. a DIP switch, most boards designs only support a single clocking
+> scheme (even if the SoC might support multiple clocking schemes).
 > 
->     width = 8 � (2^n) bits
+> This property is needed such that the PCI controller driver, in endpoint
+> mode, can set the proper bits, e.g. the Common Clock Configuration bit and
+> the SRIS Clocking bit, in the PCIe Link Control Register (Offset 10h).
+> (Sometimes, there are also specific bits that needs to be set in the PHY.)
 > 
-> (0 = 8 bits, 1 = 16 bits, 2 = 32 bits, ..., 6 = 512 bits)
-> where "n" is the value of "snps,data-width".
+
+Thanks for adding the property. I did plan to submit something similar to allow
+Qcom PCIe EP controllers to run in SRIS mode.
+
+> Some device tree bindings have already implemented vendor specific
+> properties to handle this, e.g. "nvidia,enable-ext-refclk" (Common Clock)
+> and "nvidia,enable-srns" (SRNS). However, since this property is common
+> for all PCI controllers running in endpoint mode, this really ought to be
+> a property in the common pcie-ep.yaml device tree binding.
 > 
-> For the CV18xx DMA controller, the correct AXI data width is 32 bits,
-> corresponding to "snps,data-width = 2".
+
+We should also mark the nvidia specific properties deprecated and use this one.
+But that's for another follow up series.
+
+> Add a new ref-clk-mode property that describes the reference clocking
+> scheme used by the endpoint. (We do not add a common-clk-ssc option, since
+> we cannot know/control if the common clock provided by the host uses SSC.)
 > 
-> Test results on Milkv Duo S can be found here [2].
-> 
-> Link: https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/dma/snps%2Cdw-axi-dmac.yaml#L74 [1]
-> Link: https://gist.github.com/Sutter099/4fa99bb2d89e5af975983124704b3861 [2]
-> 
-> Co-developed-by: Yu Yuan <yu.yuan@sjtu.edu.cn>
-> Signed-off-by: Yu Yuan <yu.yuan@sjtu.edu.cn>
-> Signed-off-by: Ze Huang <huange@whut.edu.cn>
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
 > ---
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+>  Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> index f75000e3093d..206c1dc2ab82 100644
+> --- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> @@ -42,6 +42,15 @@ properties:
+>      default: 1
+>      maximum: 16
+>  
+> +  ref-clk-mode:
 
-I think there is a wrong sob here, also, please add a fixes tag if
-you fix something. I will take care of this when merging.
+How about 'refclk-mode' instead of 'ref-clk-mode'? 'refclk' is the most widely
+used terminology in the bindings.
 
-Fixes: 514951a81a5e ("riscv: dts: sophgo: cv18xx: add DMA controller")
+> +    description: Reference clocking architechture
+> +    enum:
+> +      - common-clk        # Common Reference Clock (provided by RC side)
+
+Can we use 'common-clk-host' so that it is explicit that the clock is coming
+from the host side?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
