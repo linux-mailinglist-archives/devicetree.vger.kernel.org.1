@@ -1,78 +1,87 @@
-Return-Path: <devicetree+bounces-172341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E540DAA4826
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:18:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9805AAA4823
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4289F9C5368
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:18:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C7B01B66C0A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945B6235070;
-	Wed, 30 Apr 2025 10:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E28235062;
+	Wed, 30 Apr 2025 10:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="BD4rzE7+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F9OKSmWv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6611EB1AF
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7886238145
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:18:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746008328; cv=none; b=SXDSvbovBskmrGqSY5lPYFgrgiJLFoalZQNGfhzY+lm0QhaGyWn7JSX/MbSUPsEBnmsumFRMTXKMpjOdHBIVyocM2D/cJyObAMwNIEv8IIaUmEpWvTHcMCCT2Ob1C1asFdNbaffoOhn7Bh7N5zaTogMUoE+gICp8/revKHYkB5U=
+	t=1746008321; cv=none; b=MihgzP+2tYHhAXmP/qfktz6LWPjr/C3VhnA0f8Os9vTqdcy8WIHnlXq4AHuALzu5AfjL4lwndHDn4KLQ5/RImtNGbuzJBuMatfaSyONJnMVxQfpsCQfXE8p9c1ARx5IwvqIwuRqFLS3FEU+7O1ZAgtgdyVRCMBtnlrmazxHA/S0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746008328; c=relaxed/simple;
-	bh=0dmrpf6bion8KCHIdjyXEfohpCdKVPZ1tATgEgT+gBU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AXfRW6bKh3DqqEoKiOxMAjW+jUwWzH1nsNAQWa8JNt802t2Wr5KYX/nssHUSy6b4JPEJk5KMCgnWXJoTnQjb6FSEb4rvOnQGmN08A9shmw/iTUaJlwyX9mCeXM6y1WUxh5u3CUgVRf2GX6+Dx09+QYalXBT3AZns1+n/Y6PEbas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=BD4rzE7+; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-223f4c06e9fso7399425ad.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 03:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1746008326; x=1746613126; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=bKPaS9+UJ71NNQCHxM5vp3ONRCWuRnAFddXjcgmpAh8=;
-        b=BD4rzE7+1Es9F9FISGEayl4m1ltkdYr/d7dQFAQ7nu08Fj+0ICm+aUuY3Y7j3oTSPg
-         dvH+rqW4IqEaBK/1tMp6p1rR6q/aOLSPsl7OnqlS9YjsftI460CpXPkLmHrRVxtgHbgO
-         ss80nEoeVRdsWU1lmIBfVQ+cg8xv7n2VaiaqpneZCd5HJ4X/C6KpxMC2cr+h2khrMVN8
-         oxi9EVAb0bZmwrIPCmksI+igF0B+nGaWKxVdNZPb6nP1FK3H6XJtvMN031ILvot1YGU5
-         Z+HAA8jKVf9sdqPs0HtoTwZtkVk7+0K0CtOUZj8Em8cYB3JCE0F5IWULZraWga0+WI3N
-         QBtA==
+	s=arc-20240116; t=1746008321; c=relaxed/simple;
+	bh=okgaiHoCfNZIj1mJBgATqTIMGHfVHIGnTJ5M+2oeyF8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XzvGKqF8cFXOgEywo2iTuXp5xbc0NK45jRDGr+cY1H1yDpbg/T1eURAnBl34+oDsPzQvgKm6M1tO1O18wdydrXF01CGwpRx5W7znh2USEyivZ66ojUKRp3g8TQC99I3nWz5m8z9dpck3FlN+ReY88KYMlxkqNHHzuije+2bq0EI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F9OKSmWv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U9As6M012228
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:18:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	n8THpF6xzojubR0Ot/txkzNhNyCG9gBGkox8ywEikfM=; b=F9OKSmWvytaVM5P3
+	Zygb5c4WZ+Jh4dct4CHC+ZEue5xJAP0uGwzENos7SMwxfjUKf4r/b5AecaPTFtc8
+	/+jlbOEUzfUtkVxET0pgEJOffRF1gerj7S9vtNvoPrtu7SBBuq/jYejxJ3wjAVcZ
+	EcMAin+PobUM+8UYHG7xkvpZdTNxi8VVPXPobqk/aP4ecVvTVD7B8eenVIOrMyXE
+	J6eqRt52uPDVNC2sO6XDC8DCAjnoC4lbk2III5dG0FSJJhjAQHB1eRw56pFfM+A6
+	DlxgNByguPhrZS/2JOWCfW8sUWjmPuPfU7nIL9nIATmjndqmtupD6DyF6QmpT4YB
+	/pLgew==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u3sqh5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:18:37 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4766654b0c3so14583061cf.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 03:18:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746008326; x=1746613126;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1746008317; x=1746613117;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bKPaS9+UJ71NNQCHxM5vp3ONRCWuRnAFddXjcgmpAh8=;
-        b=YeElhW50t62tY7n9mYiRcPLG79cN/znLmLsG0/aVGSMqXo4SXVotKBd9phm+wrcLIa
-         /59UH8zytVRyG1AIBTMEr78BvMDEbzYdbCfIcwk/uRy66ppetq2o14E51QgcG2bUg/OB
-         xEszhmKb6PSs8dTKu83kjHFCjuRiLiosa/oJRpRpAxF+SfSVIwz3nlxN3x419fo+S2RA
-         b2K/9BIig+s2aesqXltI854GnujfOyjrgqxxrGT8faFMnVjm+q0AmQ+4gTbE4aXL6rGT
-         CRf+uJnh/Jwvwuy6r2WJMN1pTKKXpxPYMs6ZGEEetwd+55mwpJDCd6ZW9/+rVYWxfO9Y
-         V7EQ==
-X-Gm-Message-State: AOJu0Yw/EpKDHFSo3Glu3KEo5noUhLGeFw8mO2gKX++J/Kj3cUft4iYr
-	/YcQGhu/d65xNAlNG0Uei+tDgx3qgYIAkYGSlcEtDXXVzP/vGrBgQZou2SlA8w==
-X-Gm-Gg: ASbGncvEArFCs6wNON/agfw6jXXcyFs/0vtx/ocAE3sVhNwh4hpR5eCR3fCsNHnLT7B
-	GCcSm+k8KHIsaMTT8plnTF6WdC31QUHlEhPFxyrHs0zCbpY+WSeRbR6hEVur2BQvA3WKbdW+lQc
-	4M0pIFM3YqfeYgw30tEZoCqfrb+Wb4YZkQGR+qD9VYXKfMHYNIMOaw5MN9ZRz75IfG/e8p0LucX
-	+5O7rU820i4ynhGI8JfDzVH4NfNw/vuZD759Tf9FcHlHFifCZCges0tdqD+udqmOsA0Re0CfAve
-	asUyMnAwb2KzL0+smqjSABgsy1wyuQV+hPDR3NFt4Ia07Yc=
-X-Google-Smtp-Source: AGHT+IFlFOmLXeXAFyOzdFBJaKywCkt5ZokfPKNqPzoDRUJOkAZx4lkN/IsnJuBt+Z1fbHf6T/Gh0g==
-X-Received: by 2002:a17:903:2ecb:b0:215:9eac:1857 with SMTP id d9443c01a7336-22df4747f3emr31930195ad.5.1746008326028;
-        Wed, 30 Apr 2025 03:18:46 -0700 (PDT)
-Received: from [172.16.116.85] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db4d771a8sm118215345ad.22.2025.04.30.03.18.41
+        bh=n8THpF6xzojubR0Ot/txkzNhNyCG9gBGkox8ywEikfM=;
+        b=EzXpBYCHb24mdKEeqmEZTQp9SWg4aWjFNx8Pv5ILx/UEHxbMLoaevh/a7amPLoLHza
+         5EpI4hCFjczH5REUW2qSDhax/SYYO3xdXcpbiutlfiweyIXkGY0+3mhMuYYpJevzrHLb
+         ofawIWIefEzaTTFmuVLgNOON/J6Mu+Y9DGrg5SysNbeqnkvcsn2tzK0CuofPqjNsdfT1
+         xJrc6p5LxtHqFyScqzSzZXLxiRTwH3Fmiz1H8NyP1mPFGas/NkglvaYdwC9E0zsggaEo
+         3SZxLmvGzt0vfzIcHqTCSUti6c+ZM8trD17wP4fnSdPZsVxL8T6Tu/nh+SvLkTtIWMtb
+         G2xA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxHk5dF1kaDAgpP+HHXmUjH473UqZ+XPAZw1ugdK3cIeJOuRNI5wYqtSL42GEQrCz+KtHoxE6mV5vf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjcIqG03UVaKnoRUfvrAX10GPVDxhS1+sooVnEPgyCz6vfLAY6
+	MjgSw5YEox4t69oVYvOlhkKbosusYOsxGApxmKkONN/Y0fnYGbkMOrYKroY9zSggTTVulb7yNV8
+	I+N6IGoIZ1q0N0NAqXq9i06ly2QzAlrdYPSg4pEdDt14gBIqpT+xxVYvKexrt
+X-Gm-Gg: ASbGncs+UMoCcIyDhpRBFyZY0KRuwNYA2tAxtLhxNs4hGiVv6pipAHb9Zsvb1Dbe8t/
+	NFByWKD/2ESIXuJXZDoLdmjVbItONWhzELfValLYnlpKrD9yiYJsAYNLhGU2GlvVMualETFoOJj
+	6sbmnJbC/8jNb9CLP/tVKRCErRn15vUPfycdnQUQHzy1UdnWtsBZCfpVv6ujpWpdE9tqECdaRcc
+	tlvZP3hOEDuX/z/L1bs8UDXUAiSuF2zzlBW0rCepgd9cwQYBjpjhHDzLxeRkwJ8oDG64PRfyHU8
+	9a60xfs0zfjGzxbyjxEvq4TusL5PDhEmSgiMZCmimdFdwfkeNTZYPzVGjHOxv6L3CXQ=
+X-Received: by 2002:a05:622a:550:b0:476:652f:4dbc with SMTP id d75a77b69052e-489e4d77485mr11338151cf.7.1746008316970;
+        Wed, 30 Apr 2025 03:18:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEO23cvXrGFB/iOngY/UOzNWgY0BSboZs1pXty1cvWHt/+wicp4JoHuzN5FLQhX8ailkyQqHA==
+X-Received: by 2002:a05:622a:550:b0:476:652f:4dbc with SMTP id d75a77b69052e-489e4d77485mr11338021cf.7.1746008316689;
+        Wed, 30 Apr 2025 03:18:36 -0700 (PDT)
+Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e595abfsm901834266b.86.2025.04.30.03.18.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 03:18:45 -0700 (PDT)
-Message-ID: <d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org>
-Date: Wed, 30 Apr 2025 15:48:27 +0530
+        Wed, 30 Apr 2025 03:18:36 -0700 (PDT)
+Message-ID: <d99deabd-878d-4600-93df-7b9c1cf75393@oss.qualcomm.com>
+Date: Wed, 30 Apr 2025 12:18:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,114 +89,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Question] Status of user-space dynamic overlays API
-From: Ayush Singh <ayush@beagleboard.org>
-To: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
- Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs8300: add the pcie smmu node
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250429-qcs8300-pcie-smmu-v2-1-445288af3ea7@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250429-qcs8300-pcie-smmu-v2-1-445288af3ea7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Bv6dwZX5 c=1 sm=1 tr=0 ts=6811f8fd cx=c_pps a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=PbmTXqVU7kiPfYgbbi8A:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+ a=dawVfQjAaf238kedN5IG:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: UJgAnLzRXjw69wfzWQ35hJ0lbWXmDhw6
+X-Proofpoint-ORIG-GUID: UJgAnLzRXjw69wfzWQ35hJ0lbWXmDhw6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA3MiBTYWx0ZWRfX2O1uoxHP1GUQ zmsAbA426rZgQQZEc8+1KTdP4BtgPR0Cv1xrQCiz3Oj2e8nYEFs3M188EU/uAWv4o+kKfZrVirM zeoVwWhbF4VUEr1ukXMkj/XPb9iwo159h2gjifkv+Ergim5n4OkQ/PSWnSLx94YlyQE8gmUNvrB
+ TsCB6gL0L5UtVcqlmrSFFB2CRUsUVXIcH3ykzNt/66zFuIlGvW+nk+xInVnf4a9t7CqcLz44WVo Cb4d+3tJSR9YdZydE0Ya+LqKiUtPNnN4MLZ9BBkvCp4w0wj7Jjn4JJHnTWLzOjz4S7SQYItUNkg JBFxaHlOFGDlDtOdtiomjXuVWKx3SYLaROfgiae2G4PCwGyWaM5I6Asqw4UIpjTPP4wHMC5St1X
+ V2O26uQMJRfRYoVpNbz2FMx3hKdgx9v1bgB+AmblC4GpLGvlEGcbWsi9Sqq2HU5LAuX4lMcu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ mlxlogscore=768 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300072
 
-On 2/23/25 01:43, Ayush Singh wrote:
+On 4/29/25 12:09 PM, Pratyush Brahma wrote:
+> Add the PCIe SMMU node to enable address translations
+> for pcie.
+> 
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> ---
+> Changes in v2:
+> - Updated the global-interrupts and interrupts based on Konrad's suggestions
 
-> Hello everyone.
->
-> I have been looking at ways to do runtime devicetree overlay 
-> application, and was just wondering what the current status of the 
-> different proposals [0], [1] were. They seem to be quite old and I 
-> think they were already rejected, but due to all the broken links, I 
-> am not really sure about the exact reasons. Also, maybe we now have 
-> the solutions to some the blockers at the time.
->
->
-> Let me fist go over some of the use cases where I think dynamic 
-> devicetree overlays can be useful. I am mostly interested in their use 
-> in single board computers like PocketBeagle 2 [2], Raspberry Pi [3], etc.
->
->
-> # Uses
->
-> ## Dynamic Pin muxing
->
-> A lot of SBC's aimed for creating hardware projects expose headers, 
-> where each pin can be used for multiple things like GPIO, I2C, PWM, 
-> etc, depending on the pinmux. I think Raspberry Pi has it's own 
-> solution to do userspace pinmux, but if userspace devicetree 
-> application was a thing, it could probably be used for this. 
-> Additionally, being able to use dynamic devicetree overlays for pin 
-> muxing would allow much easier transition to use proper device trees 
-> during production.
->
->
-> ## Dynamic Sensors/Devices
->
-> Using devices such as sensors, external ADCs, EEPROMs, etc are also a 
-> common usecase in SBC's. A lot of current solutions seem to be 
-> designed around using user-space drivers in such cases. This is a bit 
-> of a shame since Linux kernel already has drivers for a lot of these 
-> drivers, and they are probably going to be of higher quality than most 
-> user space drivers.
->
->
-> # Challenges
->
-> ## Security
->
-> The concerns regarding security seemed to show up in the other 
-> proposals. There was a proposal to have a devicetree property to 
-> allow/deny the application of overlays in some nodes, with default 
-> being deny. Was it insufficient?
->
->
-> ## Memory Leaks
->
-> Currently, updating/removing properties leaks memory. Was it one of 
-> the reasons for the rejection of previous proposals?
->
->
-> Maybe kernel already has some solutions more suited to my usecase that 
-> I am unware of?
->
->
-> [0]: 
-> https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
->
-> [1]: 
-> https://lore.kernel.org/all/20161220190455.25115-1-xypron.glpk@gmx.de/
->
-> [2]: https://www.beagleboard.org/boards/pocketbeagle-2
->
-> [3]: https://www.raspberrypi.com/
->
->
-> Best Regards,
->
-> Ayush Singh
->
+There was another discussion on a similar ambiguous numbering issue
+on the related sa8775p, and now I'm beyond confused. Please ask
+someone internally to confirm these numbers.
 
-Just trying to consolidate the discussion. Feel free to correct anything 
-wrong.
-
-
-- Rather a generic global overlay solution, a driver per connector 
-should be used.
-
-- The board headers (e.g. PocketBeagle 2) should be treated as a single 
-connector and any peripherals on it can be treated as an addon-board.
-
-
-Best Regards,
-
-Ayush Singh
-
+Konrad
 
