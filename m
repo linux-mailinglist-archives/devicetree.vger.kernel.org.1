@@ -1,188 +1,211 @@
-Return-Path: <devicetree+bounces-172461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFCFAA4D0E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:14:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36863AA4D15
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:15:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853854E2594
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:10:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79B901BA144B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0D125A624;
-	Wed, 30 Apr 2025 13:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90A825B1F8;
+	Wed, 30 Apr 2025 13:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DVn29ObA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TdPTRbew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB0425C6E9
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE2125CC60
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746018453; cv=none; b=kb9Ogw/+vNR+cMwgSKMz1QQXcukgGi6h4lBrS9PU6DzZXuI0NfiWvObUnNNLzXViS6Du9t6ZMZxpGXHP5Pe+FnJOgha0jboa7rCCZSyvrfFhjP6U2fRiOLuslAWDm4o8fQU3t1wQu69r4W2SJce6tqRWL9UsEvqm4axMBMt5pHE=
+	t=1746018588; cv=none; b=OCkJnGQca3vd1cB1uNGP7/AdwSkOW0SQKGHUaoRn+I2RiG/Z7OO3m9WlaZUPsA4R/8qVaD7UvNTGMnfg6xYH2gSeEJyJtU5bk5RZlWBDTHMejojJYZ6LLgMJiZLEmtKamerfntaRP5eKfrI8a7BFO5s7w8/gpkYebaI4hXW2EfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746018453; c=relaxed/simple;
-	bh=uLPy8tswTpXAzTW332VVon49mGiiK+lX2PqFCOVHTco=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bp2YINbFMgqWGwKl/evzkBQ3BiQPmk6VoZbtmcl9yGkTYrKgwZCIx5nzPJRMmKCpK2nBHmkFXK53foViuW97kVq4rC76jUlkMFqauXZGQjloIp4ZeL2CJrCcGO3WPvEqsaepA0B8Nr+YgQMNzlZOVo2hVdRAN6wd4Wtp0Qkf4bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DVn29ObA; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E39B143AF2;
-	Wed, 30 Apr 2025 13:07:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746018449;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zob3oBRPmTR+C/7gljlW83+IVWVDkQgvEdHZ9Wwnyg8=;
-	b=DVn29ObAnsz8BxZSfUMq07Kn72PjRl9zt/pJy0vE509OwlG2t2fH6HZqAc7PQnMiE6DLsl
-	yrBbaQatMIMwU0puO0rfmCNKZOuwoP7xutKpK84UMJ0+9ix7oJHSA/pb03Cn7Ft4+7pCjy
-	EO38ONdBhpiovdz/ChTEew4VyFj9bRiLDrhZqAsmMmwuhdp3Vzslhw6VBne3RX/5KJ/kdt
-	2qK3f0etBnIEqi+ec89RKKefTt4CSnr0rCUnN9ka+PoE9aeG5Vb/FPBXg658w8UEoK8/Ff
-	/wuxTQ3abUoKcNCHk5kf5P3otEpQsv/7tnmuVn5HA+XzTkwXORyCy8cdINKUwA==
-Date: Wed, 30 Apr 2025 15:07:25 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, Deepak
- Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com, Robert Nelson
- <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, Geert
- Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>, "open list:OPEN FIRMWARE
- AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [Question] Status of user-space dynamic overlays API
-Message-ID: <20250430150725.2d564abc@booty>
-In-Reply-To: <d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org>
-References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-	<d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1746018588; c=relaxed/simple;
+	bh=nV185XwheoKL1ckDAuc6YrAB/FExadH5PepDm4c2j8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=njTb26WFHvgme4mtqkgKLmXBbSIJ8lsZqjqI/Vr2q/A9RIOWSwEgo4N5Rdqxyf0FNr9G+RUm9xrXDGUiU37/A4QbqjM1Y2WbRZYuOhDQAZMaJVfcnZKk3HiIkVvGjNQmvZrmLRtxHMm8SGpQE1y0wGW2PCcozvffD3uuYTYCv1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TdPTRbew; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U9Ih0T013706
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:09:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vRMOzQ1+a8EQloSooTZ1VPQWAuenrRDcnTPBGwn0XDk=; b=TdPTRbewAN+TNHGe
+	NxnkUu8cl0q+5/I3KAw4TNDDFaIwyp6ja6iYQjo/dcbF7M2ZgapbqAw/H5dyN3iI
+	VQex1vfjt+ogLMbv9q7yyFrTPbRhIOvSiDB5kQP1kE4mWkIIp/geLeT7Ifbc7VG0
+	wLIgT07RMsu9I/+9m/bO76jk3zYPrSC3ONZd9EmtdmiKvogGZpDMvG+UORF+sxQw
+	XnZM+IoXtcz+vduJPvPN5ckLfWNxX1k78wy28emvabbeMxJ7mNxmJrjrGRaaLiwV
+	0l4xRDGklngle0GNSdXfGPJie1Q5hIImVQN7cry34YwqVA8D5SJysTQ3QFH/Ro/V
+	iE0zhA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6ubj938-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:09:45 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5ad42d6bcso104794485a.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:09:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746018585; x=1746623385;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRMOzQ1+a8EQloSooTZ1VPQWAuenrRDcnTPBGwn0XDk=;
+        b=m3ioqB70tYPZIxFuUgo/1Al16RoKrw7NfscopU0UWSp/ngaO0knzfWoN4E5uwftTgV
+         uhhughpDJEmCArlaWx2/+7OKpVr/ds7SLeDgx0Q5pBS7SLPWrVSkdlhHfkMEvIcvh935
+         wYgvgpqpETI1NES6a7yG7jApG4C8dWP8jltcMOo0Smk8shK4pRFioAd5O8esPVYjcdIF
+         H0LvTj4ZzNIoTBaesI9RnKC26QMpcsPWpYsVtBb1Bw9Rp1lF/k/fvtEyFLCgJKhHe8Zp
+         tIFeycApHvDZz5OMtQcLAg0UapgIiWbexfMZgwzu8A7wuL1gko/VA6goRX0+AdEAtKyd
+         M86g==
+X-Forwarded-Encrypted: i=1; AJvYcCWgdGEtpxJACXIMv7m208z7TtzFyc7AdMfdUEte2Quf3pdEJNhCty/RrQx8wKj9w4cBN4wCfjZBzalr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZws/0lnXn+e/ilkhxZDY89omxE+EoZTyHjIZaVoIkN2lLl6yJ
+	9g7e5GuxEPu+hq6MkF0paX1Vk6ePd0Af1B06DQYVrEIWW9RrqgjXIvuaXaAfxuv+m6BoXyf+xQM
+	hVOAEIn2B+mx6bi6eqMQO8ETmnKSvFcbMQDQpSHoyjENORU6WbDlN6xDp6Fue
+X-Gm-Gg: ASbGncu2cVyiKU8ILGY8CdxNjwu88tXUh7rxwoknpkoRVF6vOilmifhNhgZrWDLnhJw
+	uqCdKBer09vwNUMMyCasVnschoroMmWMmGYP3A7V7pPu+NmBr4IiQq1jqtK9yenl7jNpNS0Y2e7
+	nHvgPXVtPShl87DAI241ZiQVLWTtGjIBxg2zhryiSBl6vZyO7oNv8tC/i6AnvJEirA8MWvX1Mmt
+	KA86x/RxjFKfF4caVVE0xRJ6AdQlDNj6T7gwJAePfzEkQr8ziQEUUqUmbpzQqFqPKhUVh7sfQGt
+	N+BCZIjAvbbfx/3j0Y9FIrzJpj1gQ/fW+ZCYRShb+zQ9psFOnv4q5+tXGe/QoBNmhRw=
+X-Received: by 2002:a05:620a:4494:b0:7c0:af16:b4a8 with SMTP id af79cd13be357-7cacc172af5mr26593585a.3.1746018584838;
+        Wed, 30 Apr 2025 06:09:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEO097WTrfuIxU7CNWA83CThbCdCAbQ6J4gL7u3jo8Kby/5gjdIscRtpOeE3Q1bQkyisdevfw==
+X-Received: by 2002:a05:620a:4494:b0:7c0:af16:b4a8 with SMTP id af79cd13be357-7cacc172af5mr26591185a.3.1746018584214;
+        Wed, 30 Apr 2025 06:09:44 -0700 (PDT)
+Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4cd79dsm920573466b.38.2025.04.30.06.09.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 06:09:43 -0700 (PDT)
+Message-ID: <98a4ad20-c141-4280-801e-015dafd1fb39@oss.qualcomm.com>
+Date: Wed, 30 Apr 2025 15:09:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieeijeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepteefteelfedthfffvedtgffgheetkedtvdffffegteevjedukeetfeffkeffuefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsggvrghglhgvsghorghrugdrohhrghdprhgrshhpsggvrhhrhihpihdrtghomhdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepgiihphhro
- hhnrdhglhhpkhesghhmgidruggvpdhrtghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheplhhorhhfohhrlhhinhhugiessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeguqdhgohhlvgesthhirdgtohhmpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrgh
-X-GND-Sasl: luca.ceresoli@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT v6 2/5] drm/msm/adreno: Add speedbin data for SM8550 /
+ A740
+To: neil.armstrong@linaro.org, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, David Airlie <airlied@gmail.com>,
+        Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
+ <20250430-topic-smem_speedbin_respin-v6-2-954ff66061cf@oss.qualcomm.com>
+ <13cd20c6-f758-45ff-82d1-4fd663d1698c@linaro.org>
+ <886d979d-c513-4ab8-829e-4a885953079a@oss.qualcomm.com>
+ <b838f9bd-0537-4f8d-b24b-d96700d566c8@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <b838f9bd-0537-4f8d-b24b-d96700d566c8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: qcci98YUAPE7SUr0fVNBxYWVC9QiYvH2
+X-Authority-Analysis: v=2.4 cv=bsxMBFai c=1 sm=1 tr=0 ts=68122119 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=aak9J4RPMLM6hOP-xocA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA5NCBTYWx0ZWRfX6D38ggrFWu3D NDr6ly8ucHhkLVONivdefX2f6KPh9tvtQxe3pdw2qTKrvucsVmdaS+jz44ZzzqEa2YbXj3UVw+Z SMnUJCtfR6PbfSQP0GOwlX5+3Sd9ipWhjC6Q0xoxYgVn/DI17lZAizQ7LAjIeH0PJstUk4LLQj9
+ pQ5aRKe/IyfJSGAIaRpo5HwRYrYtUvyyuUZA4q+Og8MAqlzT4RNXUXlynMVQXtxhBBE6ZhmnQqf 1Q7lFZZeUV7f8MT2X8NqYfh9YF1H829/pjr3sWM1295JOsRJyr7DXAvGDwDCGTtLVsZk79kZ8vU 6grK79tfcDZ22M2e6zRAIqgYYPoHb5ekd+Bp0uWJBCkAt97zDqZSrV6F8NsVWwd7DCdwwBqkQHP
+ 4FRlSo39BsdXKBrSrP/UVT2hZotJkjzaYejmm+pyHnYMwyHj/auIU4huonOk9x97PeNLXV43
+X-Proofpoint-ORIG-GUID: qcci98YUAPE7SUr0fVNBxYWVC9QiYvH2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_04,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ clxscore=1015 mlxscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
+ adultscore=0 malwarescore=0 bulkscore=0 suspectscore=0 mlxlogscore=999
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300094
 
-Hello Ayush,
-
-On Wed, 30 Apr 2025 15:48:27 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
-
-> On 2/23/25 01:43, Ayush Singh wrote:
+On 4/30/25 2:49 PM, neil.armstrong@linaro.org wrote:
+> On 30/04/2025 14:35, Konrad Dybcio wrote:
+>> On 4/30/25 2:26 PM, neil.armstrong@linaro.org wrote:
+>>> Hi,
+>>>
+>>> On 30/04/2025 13:34, Konrad Dybcio wrote:
+>>>> From: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>
+>>>> Add speebin data for A740, as found on SM8550 and derivative SoCs.
+>>>>
+>>>> For non-development SoCs it seems that "everything except FC_AC, FC_AF
+>>>> should be speedbin 1", but what the values are for said "everything" are
+>>>> not known, so that's an exercise left to the user..
+>>>>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+>>>>    drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 8 ++++++++
+>>>>    1 file changed, 8 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>> index 53e2ff4406d8f0afe474aaafbf0e459ef8f4577d..61daa331567925e529deae5e25d6fb63a8ba8375 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>> @@ -11,6 +11,9 @@
+>>>>    #include "a6xx.xml.h"
+>>>>    #include "a6xx_gmu.xml.h"
+>>>>    +#include <linux/soc/qcom/smem.h>
+>>>> +#include <linux/soc/qcom/socinfo.h>
+>>>> +
+>>>>    static const struct adreno_reglist a612_hwcg[] = {
+>>>>        {REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x22222222},
+>>>>        {REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02222220},
+>>>> @@ -1431,6 +1434,11 @@ static const struct adreno_info a7xx_gpus[] = {
+>>>>            },
+>>>>            .address_space_size = SZ_16G,
+>>>>            .preempt_record_size = 4192 * SZ_1K,
+>>>> +        .speedbins = ADRENO_SPEEDBINS(
+>>>> +            { ADRENO_SKU_ID(SOCINFO_FC_AC), 0 },
+>>>> +            { ADRENO_SKU_ID(SOCINFO_FC_AF), 0 },
+>>>> +            /* Other feature codes (on prod SoCs) should match to speedbin 1 */
+>>>
+>>> I'm trying to understand this sentence. because reading patch 4, when there's no match
+>>> devm_pm_opp_set_supported_hw() is simply never called so how can it match speedbin 1 ?
+>>
+>> What I'm saying is that all other entries that happen to be possibly
+>> added down the line are expected to be speedbin 1 (i.e. BIT(1))
+>>
+>>> Before this change the fallback was speedbin = BIT(0), but this disappeared.
+>>
+>> No, the default was to allow speedbin mask ~(0U)
 > 
-> > Hello everyone.
-> >
-> > I have been looking at ways to do runtime devicetree overlay 
-> > application, and was just wondering what the current status of the 
-> > different proposals [0], [1] were. They seem to be quite old and I 
-> > think they were already rejected, but due to all the broken links, I 
-> > am not really sure about the exact reasons. Also, maybe we now have 
-> > the solutions to some the blockers at the time.
-> >
-> >
-> > Let me fist go over some of the use cases where I think dynamic 
-> > devicetree overlays can be useful. I am mostly interested in their use 
-> > in single board computers like PocketBeagle 2 [2], Raspberry Pi [3], etc.
-> >
-> >
-> > # Uses
-> >
-> > ## Dynamic Pin muxing
-> >
-> > A lot of SBC's aimed for creating hardware projects expose headers, 
-> > where each pin can be used for multiple things like GPIO, I2C, PWM, 
-> > etc, depending on the pinmux. I think Raspberry Pi has it's own 
-> > solution to do userspace pinmux, but if userspace devicetree 
-> > application was a thing, it could probably be used for this. 
-> > Additionally, being able to use dynamic devicetree overlays for pin 
-> > muxing would allow much easier transition to use proper device trees 
-> > during production.
-> >
-> >
-> > ## Dynamic Sensors/Devices
-> >
-> > Using devices such as sensors, external ADCs, EEPROMs, etc are also a 
-> > common usecase in SBC's. A lot of current solutions seem to be 
-> > designed around using user-space drivers in such cases. This is a bit 
-> > of a shame since Linux kernel already has drivers for a lot of these 
-> > drivers, and they are probably going to be of higher quality than most 
-> > user space drivers.
-> >
-> >
-> > # Challenges
-> >
-> > ## Security
-> >
-> > The concerns regarding security seemed to show up in the other 
-> > proposals. There was a proposal to have a devicetree property to 
-> > allow/deny the application of overlays in some nodes, with default 
-> > being deny. Was it insufficient?
-> >
-> >
-> > ## Memory Leaks
-> >
-> > Currently, updating/removing properties leaks memory. Was it one of 
-> > the reasons for the rejection of previous proposals?
-> >
-> >
-> > Maybe kernel already has some solutions more suited to my usecase that 
-> > I am unware of?
-> >
-> >
-> > [0]: 
-> > https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
-> >
-> > [1]: 
-> > https://lore.kernel.org/all/20161220190455.25115-1-xypron.glpk@gmx.de/
-> >
-> > [2]: https://www.beagleboard.org/boards/pocketbeagle-2
-> >
-> > [3]: https://www.raspberrypi.com/
-> >
-> >
-> > Best Regards,
-> >
-> > Ayush Singh
-> >  
+> Hmm no:
 > 
-> Just trying to consolidate the discussion. Feel free to correct anything 
-> wrong.
+>     supp_hw = fuse_to_supp_hw(info, speedbin);
 > 
+>     if (supp_hw == UINT_MAX) {
+>         DRM_DEV_ERROR(dev,
+>             "missing support for speed-bin: %u. Some OPPs may not be supported by hardware\n",
+>             speedbin);
+>         supp_hw = BIT(0); /* Default */
+>     }
 > 
-> - Rather a generic global overlay solution, a driver per connector 
-> should be used.
-> 
-> - The board headers (e.g. PocketBeagle 2) should be treated as a single 
-> connector and any peripherals on it can be treated as an addon-board.
+>     ret = devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+>     if (ret)
+>         return ret;
 
-I agree with both points.
+Right, that's my own code even..
 
-To the best of my knowledge this is also the position that everybody
-agrees on, except Andrew Davis.
+in any case, the kernel can't know about the speed bins that aren't
+defined and here we only define bin0, which doesn't break things
 
-That said, I think this topic desperately needs some official feedback
-from device tree and dt-schema maintainers: about export-symbols in the
-very first place, and about i2c-bus-extension immediately after.
-Otherwise we're keeping on circling around the same ideas after having
-discussed and refined them so many times.
+the kernel isn't aware about hw with bin1 with or without this change
+so it effectively doesn't matter
 
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Konrad
 
