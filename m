@@ -1,671 +1,275 @@
-Return-Path: <devicetree+bounces-172434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE69FAA4C24
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:00:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D88E5AA4C90
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:06:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6023B1BA34A4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:58:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED2C99C5648
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB35425A2C9;
-	Wed, 30 Apr 2025 12:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D7525C80B;
+	Wed, 30 Apr 2025 13:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HSMZK6CB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cfhbL9dz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932F72DC768;
-	Wed, 30 Apr 2025 12:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA102472A4
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746017738; cv=none; b=Nh65tx4bKxrtf8gFyrHd/X66uH1ylTrsrVF002yKkbPonVeHcIq57rzwUsdE0rXC6fdi/hbDM8zp/Iw6ZzG0GaWITuoiFLEaVtI+RRNXMH4PZBJbRtsjz+yRuVRJ94kQt5bjwqTr9I2Wz76zoIGEd544I7ILx7/gZu41iQt6+Nc=
+	t=1746018072; cv=none; b=LhhIJN0MGTMNzwL40qdsRT1gw7I0I9YP/g8/W2doXP0n15FlX+kVm/jnbgLSZA+EN0n75HbY1w8J5zgB7ANGd8MNmxD0RSCHzA1kI6qU8q8GFtxeCj8oKrSBrNF8DOCR5WcQ4YoidomYaTnirypOzk7Olebdfp4JNRfQzrLQncU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746017738; c=relaxed/simple;
-	bh=t1VdwvItzy5Nm8FzkDkCdlRVbzqsBe4mRhesQLdbyYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RotGPbvpdaSJTh/dRjq8BeJ0g+6yEEWhjB/SIWB1CHm0qCfw6pjgmja2VmIsJ6u+z9xqckq6H5cXvlpeaGz9b4JAyzIibn1GeMCylJhvfHCJw4DSiDzmRcBtSeOow9cfHI37AQYOlY7DnecHe88RJh/bhEr4+q38DAYiUXnfT34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HSMZK6CB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F44C4CEE9;
-	Wed, 30 Apr 2025 12:55:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746017737;
-	bh=t1VdwvItzy5Nm8FzkDkCdlRVbzqsBe4mRhesQLdbyYY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HSMZK6CB37yHMwqrz7wnQJ6V/gcxqH5SPmFxX9wFUxgM3g7+XYcufIGEcsA5BC6eI
-	 LVDRYI3ljRHWTyhmWNtEbDsTWiTjNsI+U/oovFz7/PZQIJL95vJOxLwbz1RXWfA1Oi
-	 F9nYjAuEL5BCBjtECsLiP/Xgaa4bTzOxEdYYJGgznkFAin3qzm25/sePE66is2VCOF
-	 kAReLThHjq50XDt8qT/ShUfRR+gIWr1yvoJS/t2uaCzGuo2lBlEqBW79h3nIZex50k
-	 eDkB9O7iGl8MtxET917A7rBUuMUtHD2ZKZx+ptcALY0c/LgsR2jB+JdUdZkHFG5kyg
-	 5ypyMG3x0Dfuw==
-Date: Wed, 30 Apr 2025 14:55:29 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jiri Slaby <jirislaby@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 20/22] irqchip/gic-v5: Add GICv5 ITS support
-Message-ID: <aBIdwaEgvwptpFA8@lpieralisi>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
- <20250424-gicv5-host-v2-20-545edcaf012b@kernel.org>
- <4f9f1dab-118e-4d5e-acf2-33da5e0a4905@kernel.org>
+	s=arc-20240116; t=1746018072; c=relaxed/simple;
+	bh=6UGiGoFvF2aKJYkukKaOiAHHAs4rLWuriEaXmp3EsCA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XoUSdlOCG/JfdePOtNsKzSQfx5wJPxD9EDyUXCixFgY3wZwz/iQWOEftTtz+Eh7cJULdL8TLpis2MhXGsL3O8r2E1u+ad5MlmHcE1zwnQoQCGRJX34YZ6PScWmcfBo10JwHWhktgP+pg+W+zoCDkIC5mFIrS0ua2W6wfXYi3vEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cfhbL9dz; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3912a28e629so248835f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746018069; x=1746622869; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4gbEAkZNMTXlcsAP74FaPsyQlrV/eFxqWvfSJV+6E6A=;
+        b=cfhbL9dz/x9IXZs0Cc5fmeVS39DfvVNRkLJChgF621IdfTtoq0mZw5a+u5AS8J1KmZ
+         Dyx2Yq8bZH7/VaHbIQnT3GT7ktprdsNyTDYxc3uPFWNsmH7LLUTI8zFz+DW8xsHyRgmv
+         zDIjsVLp0s96cfQmzICSEIoUTR9x2OtwDzpMTGMn7hQwegBwHpViABnRfYn9wQgw+Yk/
+         hyX6Uto8166wHt7l4cW0l6l5pVySPmDrC9WT1npHDBPrOAlTkSz0Ns0phAPEW2rnXvh9
+         AC8BrajMDkxrtoFOCOEOzJ/P9+pVGqoTUPIIPm6NVuCc7rcbqyOLRnxGhZfmO2Nm4mRi
+         h5Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746018069; x=1746622869;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4gbEAkZNMTXlcsAP74FaPsyQlrV/eFxqWvfSJV+6E6A=;
+        b=lZSH5qGKGNqMgKRuh+MCG1PonLMs58gIYe+En+jPDevMjUYC6z7T1fJqoUWeBfdLkc
+         EGQhUOi13XCLvt6gM9YqiBSthKs8LD73Y+POYmzIauBv5IyO9EPU2IpT4T++U/1l06q9
+         fqjRnbgMHcJ7gwXKe/Yk6O6+79GZJco+DLq25brIwPEONlmltcjlqL3JY3MlkmZ55Zpr
+         P+0FsjB//ATQy9m0K1GBARkFLCtqS9ay1RBBWDDw+i3Vz7XY3+yIXns8PcqhRvy5dtCy
+         IiPymXIkQviy7I75WT5r08M8af5UMEf+kW4kiVKcD1KjXZRYHGG25sM1fprNYejkTTlj
+         hA+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVJfmD01fD5adL3XebNDwBJq4g5rxrWQzJIz0wYLAkd/EzOKxUu0zNNIrwnd591THBhgWNGu8vMLkgu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzED5iEQ0vUqJ0cJMmNaWvLUjCEaK5uf4a/JZ4LhZh0mMMwO+jy
+	xchVFt9QMd8aXwR8OThUldsH1KkMZWmwM0R2nRkjpnrXNg328mnv/nLUGIlatXI=
+X-Gm-Gg: ASbGncvErTGTeHqujptNrbbH6JgBCCpvziHlZOsMPBYkTxd602ZE3Kb/XbF29SsG4Zc
+	w8wjIA15GFNQsIPi7Z3Oihye5v9O1Qzd1VgCx1Yu9If7n+inyk38iq2Jh9X+TMu5ODlBH+LdXcO
+	M7DALPvvltatUVyLPrlUdPoykvmHRh56OvV1OTuNecjolosQLMKt2mjyxUBiAmXlYQT+N/YsHtj
+	qDJz/yY9MZIU2FuTrUwDqQaJsbC1s8ix+jXp0kJzpINQ4E21bDGc5Lxquw7ROjtcaUMb7+QI0x4
+	QomPsyX3niU+hCK19rMVu5nKKZdI0NPecCk5h5CUBgn9kaovZVyzjYftGjQ=
+X-Google-Smtp-Source: AGHT+IG2VTFNWUrEEXBGyq9UKQdZJTmvSHvUA0Jr6vxl/QuIFwOD6OSw3MFYg94J9D0YPZj1GRv5Ng==
+X-Received: by 2002:a5d:64a6:0:b0:3a0:7a0d:bab1 with SMTP id ffacd0b85a97d-3a0900a1719mr732293f8f.16.1746018067135;
+        Wed, 30 Apr 2025 06:01:07 -0700 (PDT)
+Received: from [192.168.1.28] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46c23sm16884043f8f.75.2025.04.30.06.01.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 06:01:06 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 00/24] drm/msm: Add support for SM8750
+Date: Wed, 30 Apr 2025 15:00:30 +0200
+Message-Id: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4f9f1dab-118e-4d5e-acf2-33da5e0a4905@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO4eEmgC/33OzQrCMAzA8VeRnq00/bSefA/xkK2pFnSTVoYie
+ 3c7LyoOj/9AfsmDFcqJCtssHizTkErquxpmuWDtEbsD8RRqMymkESA8bzQv57UzgodULie8c0t
+ olHNGYwRW9y6ZYrq9zN2+9jGVa5/vrxMDTNN/2gBc8EZFMBGjbr3bnlKHuV/1+cAmbpBvQoKbI
+ 2QlghQQ2hDQov4h1AchYY5QlVCE3jRglSD8IfSbUDBL6OkLtI0ib3zr7BcxjuMTameQpnwBAAA
+ =
+X-Change-ID: 20250109-b4-sm8750-display-6ea537754af1
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org, 
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6319;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=6UGiGoFvF2aKJYkukKaOiAHHAs4rLWuriEaXmp3EsCA=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoEh7yFUeWWAHdoSLpFqk1YqlBuLC8G8D2EspQP
+ Qekz41s5HyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBIe8gAKCRDBN2bmhouD
+ 12CCD/42Cq/qpyv78r3bYG7TRQSjR8W8dyfhsDw3xahe/6kwJE/8tsdJsyU4V5Czi4WSJ0EGiyx
+ soRoYgjSB+NythlqFWG0bhEZQOOaDaC7GlBWt8bn1sbZ7Lhj7D01PIDT9C0ppHxU1Jkg5d5FaBy
+ AZbFxck67k55KcrhXL29H/OMafzCARj53SSBhbuO2NAOY3ILMUe4e+2YyyKs14jx/aoKoLq9Ocl
+ VXx0EEW8uVz+sX7P/JQDSqUSwR36y7/WioWqz4epvqkAjVnudlafckdSSsuHpi5mOXRETqctIvz
+ xiK0q/xoOT2dT2Ivj7fDsQA3qucXsFbR3lMIIbeKuQ0vd+8Ty3a+boi1MhtDXcqQ+kHxDhg/tow
+ lB7Ud4HQxqEkiGlFVDmOWFNyL9C+Tvr8NYu4iEjS6h0ccLF35wa2eR9jonSwgFLbzMpskvCxMzm
+ bgz15GZX/vkIR/V4Uba8TVS6XJllMFdQxVfzqpyoEokxNqiIuIPJWv/bBffB2o6wUbaCo9zfNzH
+ 4q/483L74Yx6SSczfMW9liPaEocmF7+R3yR350WnX6SlNApemvkf8wMUJkOgPT+lse58EVZRfbT
+ pME8C8sAfDFTNz2eQIGrxSYVF+/V4c4M0yP19aKakQL0biZAaLZh/hIGpRZxwSPIjvBc5JG002+
+ EGnF1YMAh7F4mYw==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-On Wed, Apr 30, 2025 at 09:28:08AM +0200, Jiri Slaby wrote:
-> On 24. 04. 25, 12:25, Lorenzo Pieralisi wrote:
-> > --- /dev/null
-> > +++ b/drivers/irqchip/irq-gic-v5-its.c
-> > @@ -0,0 +1,1293 @@
-> ...
-> > +static u32 its_readl_relaxed(struct gicv5_its_chip_data *its_node,
-> > +			     const u64 reg_offset)
-> 
-> I wonder -- can the offset be u64 at all?
+Hi,
 
-You have a point, changed it.
+Dependency / Rabased on top of
+==============================
+https://lore.kernel.org/all/20241214-dpu-drop-features-v1-0-988f0662cb7e@linaro.org/
 
-> > +{
-> > +	return readl_relaxed(its_node->its_base + reg_offset);
-> > +}
-> > +
-> > +static void its_writel_relaxed(struct gicv5_its_chip_data *its_node,
-> > +			       const u32 val, const u64 reg_offset)
-> > +{
-> > +	writel_relaxed(val, its_node->its_base + reg_offset);
-> > +}
-> > +
-> > +static void its_writeq_relaxed(struct gicv5_its_chip_data *its_node,
-> > +			       const u64 val, const u64 reg_offset)
-> > +{
-> > +	writeq_relaxed(val, its_node->its_base + reg_offset);
-> > +}
-> > +
-> > +static void its_write_table_entry(struct gicv5_its_chip_data *its,
-> > +				  __le64 *entry, u64 val)
-> > +{
-> > +	WRITE_ONCE(*entry, val);
-> 
-> This triggers a warning with the le/be checker enabled, right? You likely
-> need cpu_to_le64() or __force.
+Merging
+=======
+DSI works! With the fixes here and debugging help from Jessica and
+Abhinav, the DSI panel works properly.
 
-Fixed, thanks.
+The display clock controller patch can go separately.
 
-> > +	if (its->flags & ITS_FLAGS_NON_COHERENT)
-> > +		dcache_clean_inval_poc((unsigned long)entry,
-> > +				       (unsigned long)entry + sizeof(*entry));
-> > +	else
-> > +		dsb(ishst);
-> > +}
-> > +
-> > +#define gicv5_its_wait_for_op(base, reg, mask)				\
-> 
-> What's the purpose of this not being an inline?
-> 
-> > +	({								\
-> > +		int ret;						\
-> > +									\
-> > +		ret = gicv5_wait_for_op(base, reg, mask, NULL);		\
-> > +		if (unlikely(ret == -ETIMEDOUT))			\
-> > +			pr_err_ratelimited(#reg" timeout...\n");	\
-> 
-> Ah, this. Is it worth it? At least you should not clobber variables like
-> "ret". Also grepping sources for "GICV5_ITS_STATUSR timeout..." would be
-> clueless anyway. Yeah, at least there would be a driver prefix.
+Changes in v5:
+=============
+- Add ack/rb tags
+- New patches:
+  #6: clk: qcom: dispcc-sm8750: Fix setting rate byte and pixel clocks
+  #14: drm/msm/dsi/phy: Toggle back buffer resync after preparing PLL
+  #15: drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
+  #16: drm/msm/dsi/phy: Fix reading zero as PLL rates when unprepared
+  #17: drm/msm/dsi/phy: Fix missing initial VCO rate
 
-Is it worth it ? It depends on whom you ask.
+- Patch drm/msm/dsi: Add support for SM8750:
+  - Only reparent byte and pixel clocks while PLLs is prepared. Setting
+    rate works fine with earlier DISP CC patch for enabling their parents
+    during rate change.
 
-> > +		ret;							\
-> > +	 })
-> ...
-> > +static int gicv5_its_device_get_itte_ref(struct gicv5_its_dev *its_dev,
-> > +					 __le64 **itte, u16 event_id)
-> > +{
-> > +	if (!its_dev->itt_cfg.l2itt) {
-> > +		__le64 *itt = its_dev->itt_cfg.linear.itt;
-> > +		*itte = &itt[event_id];
-> 
-> Can you return 0 here and dedent the whole } else { block?
+- Link to v4: https://lore.kernel.org/r/20250311-b4-sm8750-display-v4-0-da6b3e959c76@linaro.org
 
-Yep, good point.
+Changes in v4
+=============
+- Add ack/rb tags
+- Implement Dmitry's feedback (lower-case hex, indentation, pass
+  mdss_ver instead of ctl), patches:
+  drm/msm/dpu: Implement 10-bit color alpha for v12.0 DPU
+  drm/msm/dpu: Implement CTL_PIPE_ACTIVE for v12.0 DPU
 
-> > +	} else {
-> > +		__le64 *l2_itt, *l1_itt = its_dev->itt_cfg.l2.l1itt;
-> > +		unsigned int l1_idx, l2_idx, l2_size, l2_bits;
-> > +		int ret;
-> > +
-> > +		ret = gicv5_its_l2sz_to_l2_bits(its_dev->itt_cfg.l2.l2sz);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +		l2_bits = ret;
-> > +
-> > +		l1_idx = event_id >> l2_bits;
-> > +
-> > +		if (!FIELD_GET(GICV5_ITTL1E_VALID,
-> > +			       le64_to_cpu(l1_itt[l1_idx]))) {
-> > +			pr_debug("L1 ITT entry is not valid.\n");
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		l2_idx = event_id & GENMASK(l2_bits - 1, 0);
-> > +
-> > +		l2_size = BIT(FIELD_GET(GICV5_ITTL1E_SPAN,
-> > +					le64_to_cpu(l1_itt[l1_idx])));
-> > +
-> > +		// Sanity check our indexing
-> > +		if (l2_idx >= l2_size) {
-> > +			pr_debug("L2 ITT index (%u) exceeds L2 table size (%u)!\n",
-> > +			       l2_idx, l2_size);
-> > +			return -EINVAL;
-> > +		}
-> > +		l2_itt = its_dev->itt_cfg.l2.l2ptrs[l1_idx];
-> > +		*itte = &l2_itt[l2_idx];
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
-> ...
-> > +static struct gicv5_its_dev *gicv5_its_alloc_device(
-> > +				struct gicv5_its_chip_data *its, int nvec,
-> > +				u32 dev_id)
-> > +{
-> > +	struct gicv5_its_dev *its_dev;
-> > +	int ret;
-> > +
-> > +	its_dev = gicv5_its_find_device(its, dev_id);
-> > +	if (!IS_ERR(its_dev)) {
-> > +		pr_debug("A device with this DeviceID (0x%x) has already been registered.\n",
-> > +			 dev_id);
-> > +
-> > +		if (nvec > its_dev->num_events) {
-> > +			pr_debug("Requesting more ITT entries than allocated\n");
-> 
-> Why only _debug()?
+- Rebase on latest next
+- Drop applied two first patches
+- Link to v3: https://lore.kernel.org/r/20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org
 
-This code path will go anyway but thanks for chiming in.
+Changes in v3
+=============
+- Add ack/rb tags
+- #5: dt-bindings: display/msm: dp-controller: Add SM8750:
+  Extend commit msg
 
-> > +			return ERR_PTR(-ENXIO);
-> > +		}
-> > +
-> > +		its_dev->shared = true;
-> > +
-> > +		return its_dev;
-> > +	}
-> > +
-> > +	its_dev = kzalloc(sizeof(*its_dev), GFP_KERNEL);
-> > +	if (!its_dev)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	its_dev->device_id = dev_id;
-> > +	its_dev->num_events = nvec;
-> > +	its_dev->num_mapped_events = 0;
-> > +
-> > +	ret = gicv5_its_device_register(its, its_dev);
-> > +	if (ret) {
-> > +		pr_debug("Failed to register the device\n");
-> 
-> And here.
+- #7: dt-bindings: display/msm: qcom,sm8750-mdss: Add SM8750:
+  - Properly described interconnects
+  - Use only one compatible and contains for the sub-blocks (Rob)
 
-Yep, will check.
+- #12: drm/msm/dsi: Add support for SM8750:
+  Drop 'struct msm_dsi_config sm8750_dsi_cfg' and use sm8650 one.
+- drm/msm/dpu: Implement new v12.0 DPU differences
+  Split into several patches
+- Link to v2: https://lore.kernel.org/r/20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org
 
-> > +		kfree(its_dev);
-> 
-> Can you use __free() and return_ptr() instead?
+Changes in v2
+=============
+- Implement LM crossbar, 10-bit alpha and active layer changes:
+  New patch: drm/msm/dpu: Implement new v12.0 DPU differences
+- New patch: drm/msm/dpu: Add missing "fetch" name to set_active_pipes()
+- Add CDM
+- Split some DPU patch pieces into separate patches:
+  drm/msm/dpu: Drop useless comments
+  drm/msm/dpu: Add LM_7, DSC_[67], PP_[67] and MERGE_3D_5
+  drm/msm/dpu: Add handling of LM_6 and LM_7 bits in pending flush mask
+- Split DSI and DSI PHY patches
+- Mention CLK_OPS_PARENT_ENABLE in DSI commit
+- Mention DSI PHY PLL work:
+  https://patchwork.freedesktop.org/patch/542000/?series=119177&rev=1
+- DPU: Drop SSPP_VIG4 comments
+- DPU: Add CDM
+- Link to v1: https://lore.kernel.org/r/20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org
 
-I tried but I was not sure it helps in this particular case, I will
-check again.
+Best regards,
+Krzysztof
 
-> > +		return ERR_PTR(ret);
-> > +	}
-> > +
-> > +	gicv5_its_device_cache_inv(its, its_dev);
-> > +
-> > +	/*
-> > +	 * This is the first time we have seen this device. Hence, it is not
-> > +	 * shared.
-> > +	 */
-> > +	its_dev->shared = false;
-> > +
-> > +	its_dev->its_node = its;
-> > +
-> > +	its_dev->event_map =
-> > +		(unsigned long *)bitmap_zalloc(its_dev->num_events, GFP_KERNEL);
-> > +	if (!its_dev->event_map) {
-> > +		gicv5_its_device_unregister(its, its_dev);
-> > +		kfree(its_dev);
-> > +		return ERR_PTR(-ENOMEM);
-> > +	}
-> > +
-> > +	xa_store(&its->its_devices, dev_id, its_dev, GFP_KERNEL);
-> 
-> This can fail.
+---
+Krzysztof Kozlowski (24):
+      dt-bindings: display/msm: dsi-phy-7nm: Add SM8750
+      dt-bindings: display/msm: dsi-controller-main: Add SM8750
+      dt-bindings: display/msm: dp-controller: Add SM8750
+      dt-bindings: display/msm: qcom,sm8650-dpu: Add SM8750
+      dt-bindings: display/msm: qcom,sm8750-mdss: Add SM8750
+      clk: qcom: dispcc-sm8750: Fix setting rate byte and pixel clocks
+      drm/msm/dpu: Add missing "fetch" name to set_active_pipes()
+      drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on mixer reset
+      drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on ctl_path reset
+      drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE before blend setup
+      drm/msm/dpu: Drop useless comments
+      drm/msm/dpu: Add LM_7, DSC_[67], PP_[67] and MERGE_3D_5
+      drm/msm/dpu: Add handling of LM_6 and LM_7 bits in pending flush mask
+      drm/msm/dsi/phy: Toggle back buffer resync after preparing PLL
+      drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
+      drm/msm/dsi/phy: Fix reading zero as PLL rates when unprepared
+      drm/msm/dsi/phy: Fix missing initial VCO rate
+      drm/msm/dsi/phy: Add support for SM8750
+      drm/msm/dsi: Add support for SM8750
+      drm/msm/dpu: Add support for SM8750
+      drm/msm/dpu: Implement 10-bit color alpha for v12.0 DPU
+      drm/msm/dpu: Implement CTL_PIPE_ACTIVE for v12.0 DPU
+      drm/msm/dpu: Implement LM crossbar for v12.0 DPU
+      drm/msm/mdss: Add support for SM8750
 
-Noted.
+ .../bindings/display/msm/dp-controller.yaml        |   4 +
+ .../bindings/display/msm/dsi-controller-main.yaml  |  54 ++-
+ .../bindings/display/msm/dsi-phy-7nm.yaml          |   1 +
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |   1 +
+ .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 470 +++++++++++++++++++
+ drivers/clk/qcom/dispcc-sm8750.c                   |   4 +-
+ .../drm/msm/disp/dpu1/catalog/dpu_12_0_sm8750.h    | 496 +++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           |  58 ++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        |  12 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |  35 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c         |  71 ++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h         |  19 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c          | 210 ++++++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.h          |  18 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        |   6 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+ drivers/gpu/drm/msm/dsi/dsi.h                      |   2 +
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c                  |  14 +
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   1 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c                 |  81 ++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 157 ++++++-
+ drivers/gpu/drm/msm/msm_mdss.c                     |  33 ++
+ drivers/gpu/drm/msm/msm_mdss.h                     |   1 +
+ .../gpu/drm/msm/registers/display/dsi_phy_7nm.xml  |  25 +-
+ 27 files changed, 1730 insertions(+), 49 deletions(-)
+---
+base-commit: 4ec6605d1f7e5df173ffa871cce72567f820a9c2
+change-id: 20250109-b4-sm8750-display-6ea537754af1
 
-> > +
-> > +	return its_dev;
-> > +}
-> 
-> ...
-> > +static int gicv5_its_alloc_event(struct gicv5_its_dev *its_dev, u16 event_id,
-> > +				 u32 lpi)
-> > +{
-> > +	struct gicv5_its_chip_data *its = its_dev->its_node;
-> > +	u64 itt_entry;
-> > +	__le64 *itte;
-> > +	int ret;
-> > +
-> > +	if (event_id >= its_dev->num_events) {
-> > +		pr_debug("EventID 0x%x outside of ITT range (0x%x)\n", event_id,
-> > +		       its_dev->num_events);
-> 
-> Again, is this so often to be _debug()?
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I think this is a paranoia check and I will probably remove it.
-
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (WARN(its_dev->num_mapped_events == its_dev->num_events,
-> > +		"Reached maximum number of events\n"))
-> 
-> Weird indent level.
-
-Right.
-
-> 
-> > +		return -EINVAL;
-> > +
-> > +	ret = gicv5_its_device_get_itte_ref(its_dev, &itte, event_id);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (FIELD_GET(GICV5_ITTL2E_VALID, *itte))
-> > +		return -EEXIST;
-> > +
-> > +	itt_entry = FIELD_PREP(GICV5_ITTL2E_LPI_ID, lpi) |
-> > +		    FIELD_PREP(GICV5_ITTL2E_VALID, 0x1);
-> > +
-> > +	its_write_table_entry(its, itte, cpu_to_le64(itt_entry));
-> > +
-> > +	gicv5_its_itt_cache_inv(its, its_dev->device_id, event_id);
-> > +
-> > +	its_dev->num_mapped_events += 1;
-> 
-> This is not python, we have ++ :).
-
-Ok.
-
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void gicv5_its_free_event(struct gicv5_its_dev *its_dev, u16 event_id)
-> > +{
-> > +	struct gicv5_its_chip_data *its = its_dev->its_node;
-> > +	u64 itte_val;
-> > +	__le64 *itte;
-> > +	int ret;
-> > +
-> > +	if (WARN(!its_dev->num_mapped_events, "No mapped events\n"))
-> > +		return;
-> > +
-> > +	ret = gicv5_its_device_get_itte_ref(its_dev, &itte, event_id);
-> > +	if (ret) {
-> > +		pr_debug("Failed to get the ITTE!\n");
-> > +		return;
-> > +	}
-> > +
-> > +	itte_val = le64_to_cpu(*itte);
-> > +	itte_val &= ~GICV5_ITTL2E_VALID;
-> > +
-> > +	its_write_table_entry(its, itte, cpu_to_le64(itte_val));
-> > +
-> > +	gicv5_its_itt_cache_inv(its, its_dev->device_id, event_id);
-> > +
-> > +	its_dev->num_mapped_events -= 1;
-> 
-> And --.
-
-Ok.
-
-> > +}
-> > +
-> > +static int gicv5_its_alloc_eventid(struct gicv5_its_dev *its_dev,
-> > +				   unsigned int nr_irqs, u32 *eventid)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = bitmap_find_free_region(its_dev->event_map,
-> > +				      its_dev->num_events,
-> > +				      get_count_order(nr_irqs));
-> > +
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	*eventid = ret;
-> > +
-> > +	return 0;
-> > +}
-> ...
-> > +static int gicv5_its_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
-> > +				      unsigned int nr_irqs, void *arg)
-> > +{
-> > +	u32 device_id, event_id_base, lpi;
-> > +	struct msi_domain_info *msi_info;
-> > +	struct gicv5_its_chip_data *its;
-> > +	struct gicv5_its_dev *its_dev;
-> > +	msi_alloc_info_t *info = arg;
-> > +	irq_hw_number_t hwirq;
-> > +	struct irq_data *irqd;
-> > +	int ret, i;
-> 
-> Why is i not unsigned too?
-
-It could.
-
-> > +
-> > +	device_id = info->scratchpad[0].ul;
-> > +
-> > +	msi_info = msi_get_domain_info(domain);
-> > +	its = msi_info->data;
-> > +
-> > +	mutex_lock(&its->dev_alloc_lock);
-> > +
-> > +	its_dev = gicv5_its_find_device(its, device_id);
-> > +	if (IS_ERR(its_dev)) {
-> > +		mutex_unlock(&its->dev_alloc_lock);
-> 
-> scope_guard() would make much sense here.
-
-I did not add it because I still use gotos below and mixing them is
-frowned upon, let me see how I can rework it.
-
-> > +		return PTR_ERR(its_dev);
-> > +	}
-> > +
-> > +	ret = gicv5_its_alloc_eventid(its_dev, nr_irqs, &event_id_base);
-> > +	if (ret) {
-> > +		mutex_unlock(&its->dev_alloc_lock);
-> > +		return ret;
-> > +	}
-> > +
-> > +	mutex_unlock(&its->dev_alloc_lock);
-> > +
-> > +	ret = iommu_dma_prepare_msi(info->desc, its->its_trans_phys_base);
-> > +	if (ret)
-> > +		goto out_eventid;
-> > +
-> > +	for (i = 0; i < nr_irqs; i++) {
-> > +		lpi = gicv5_alloc_lpi();
-> > +		if (ret < 0) {
-> > +			pr_debug("Failed to find free LPI!\n");
-> > +			goto out_eventid;
-> > +		}
-> > +
-> > +		ret = irq_domain_alloc_irqs_parent(domain, virq + i, 1, &lpi);
-> > +		if (ret)
-> > +			goto out_free_lpi;
-> > +
-> > +		/*
-> > +		 * Store eventid and deviceid into the hwirq for later use.
-> > +		 *
-> > +		 *	hwirq  = event_id << 32 | device_id
-> > +		 */
-> > +		hwirq = FIELD_PREP(GICV5_ITS_HWIRQ_DEVICE_ID, device_id) |
-> > +			FIELD_PREP(GICV5_ITS_HWIRQ_EVENT_ID, (u64)event_id_base + i);
-> > +		irq_domain_set_info(domain, virq + i, hwirq,
-> > +				    &gicv5_its_irq_chip, its_dev,
-> > +				    handle_fasteoi_irq, NULL, NULL);
-> > +
-> > +		irqd = irq_get_irq_data(virq + i);
-> > +		irqd_set_single_target(irqd);
-> > +		irqd_set_affinity_on_activate(irqd);
-> > +		irqd_set_resend_when_in_progress(irqd);
-> > +	}
-> > +
-> > +	return 0;
-> > +out_free_lpi:
-> > +	gicv5_free_lpi(lpi);
-> > +out_eventid:
-> > +	gicv5_its_free_eventid(its_dev, event_id_base, nr_irqs);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void gicv5_its_irq_domain_free(struct irq_domain *domain, unsigned int virq,
-> > +				      unsigned int nr_irqs)
-> > +{
-> > +	struct msi_domain_info *msi_info;
-> > +	struct gicv5_its_chip_data *its;
-> > +	struct gicv5_its_dev *its_dev;
-> > +	struct irq_data *d;
-> > +	u16 event_id_base;
-> > +	bool free_device;
-> > +	u32 device_id;
-> > +	int i;
-> > +
-> > +	msi_info = msi_get_domain_info(domain);
-> > +	its = msi_info->data;
-> > +
-> > +	d = irq_domain_get_irq_data(domain, virq);
-> > +	device_id = FIELD_GET(GICV5_ITS_HWIRQ_DEVICE_ID, d->hwirq);
-> > +	event_id_base = FIELD_GET(GICV5_ITS_HWIRQ_EVENT_ID, d->hwirq);
-> > +
-> > +	guard(mutex)(&its->dev_alloc_lock);
-> > +
-> > +	its_dev = gicv5_its_find_device(its, device_id);
-> > +	if (IS_ERR(its_dev)) {
-> > +		pr_debug("Couldn't find the ITS device!\n");
-> 
-> This is serious, not debug, IMO. Either we leak memory or even allow out of
-> bounds accesses somewhere.
-
-This again is serious but should really never happen either (well,
-if there are bugs that can't happen).
-
-Let me check this path again.
-
-> > +		return;
-> > +	}
-> > +
-> > +	bitmap_release_region(its_dev->event_map, event_id_base,
-> > +			      get_count_order(nr_irqs));
-> > +
-> > +	free_device = !its_dev->shared && bitmap_empty(its_dev->event_map,
-> > +						       its_dev->num_events);
-> > +
-> > +	/*  Hierarchically free irq data */
-> > +	for (i = 0; i < nr_irqs; i++) {
-> > +		d = irq_domain_get_irq_data(domain, virq + i);
-> > +
-> > +		gicv5_free_lpi(d->parent_data->hwirq);
-> > +		irq_domain_reset_irq_data(d);
-> > +	}
-> > +	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
-> > +
-> > +	gicv5_its_syncr(its, its_dev);
-> > +	gicv5_irs_syncr();
-> > +
-> > +	if (free_device) {
-> > +		gicv5_its_device_unregister(its, its_dev);
-> > +		bitmap_free(its_dev->event_map);
-> > +		xa_erase(&its->its_devices, device_id);
-> > +		kfree(its_dev);
-> > +	}
-> > +}
-> 
-> ...
-> > +static int __init gicv5_its_init_bases(phys_addr_t its_trans_base,
-> > +				       void __iomem *its_base,
-> > +				       struct fwnode_handle *handle,
-> > +				       struct irq_domain *parent_domain)
-> > +{
-> > +	struct device_node *np = to_of_node(handle);
-> > +	struct gicv5_its_chip_data *its_node;
-> > +	struct msi_domain_info *info;
-> > +	struct irq_domain *d;
-> > +	u32 cr0, cr1;
-> > +	bool enabled;
-> > +	int ret;
-> > +
-> > +	info = kzalloc(sizeof(*info), GFP_KERNEL);
-> > +	if (!info)
-> > +		return -ENOMEM;
-> > +
-> > +	its_node = kzalloc(sizeof(*its_node), GFP_KERNEL);
-> > +	if (!its_node) {
-> > +		kfree(info);
-> > +		return -ENOMEM;
-> > +	}
-> > +
-> > +	info->ops = &its_msi_domain_ops;
-> > +	info->data = its_node;
-> > +
-> > +	mutex_init(&its_node->dev_alloc_lock);
-> > +	xa_init(&its_node->its_devices);
-> > +	its_node->fwnode = handle;
-> > +	its_node->its_base = its_base;
-> > +	its_node->its_trans_phys_base = its_trans_base;
-> > +
-> > +	d = irq_domain_create_hierarchy(parent_domain, IRQ_DOMAIN_FLAG_ISOLATED_MSI,
-> > +					0, handle, &gicv5_its_irq_domain_ops, info);
-> > +	its_node->domain = d;
-> > +	irq_domain_update_bus_token(its_node->domain, DOMAIN_BUS_NEXUS);
-> > +
-> > +	its_node->domain->msi_parent_ops = &gic_its_msi_parent_ops;
-> > +	its_node->domain->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
-> > +
-> > +	cr0 = its_readl_relaxed(its_node, GICV5_ITS_CR0);
-> > +	enabled = FIELD_GET(GICV5_ITS_CR0_ITSEN, cr0);
-> > +	if (WARN(enabled, "ITS %s enabled, disabling it before proceeding\n",
-> > +		 np->full_name)) {
-> > +		cr0 = FIELD_PREP(GICV5_ITS_CR0_ITSEN, 0x0);
-> > +		its_writel_relaxed(its_node, cr0, GICV5_ITS_CR0);
-> > +		ret = gicv5_its_wait_for_cr0(its_node);
-> > +		if (ret) {
-> > +			irq_domain_remove(its_node->domain);
-> > +			kfree(info);
-> > +			kfree(its_node);
-> > +			return ret;
-> > +		}
-> > +	}
-> > +
-> > +	if (of_property_read_bool(np, "dma-noncoherent")) {
-> > +		/*
-> > +		 * A non-coherent ITS implies that some cache levels cannot be
-> > +		 * used coherently by the cores and GIC. Our only option is to mark
-> > +		 * memory attributes for the GIC as non-cacheable; by default,
-> > +		 * non-cacheable memory attributes imply outer-shareable
-> > +		 * shareability, the value written into ITS_CR1_SH is ignored.
-> > +		 */
-> > +		cr1 = FIELD_PREP(GICV5_ITS_CR1_ITT_RA, GICV5_NO_READ_ALLOC)	|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_DT_RA, GICV5_NO_READ_ALLOC)	|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_IC, GICV5_NON_CACHE)		|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_OC, GICV5_NON_CACHE);
-> > +		its_node->flags |= ITS_FLAGS_NON_COHERENT;
-> > +	} else {
-> > +		cr1 = FIELD_PREP(GICV5_ITS_CR1_ITT_RA, GICV5_READ_ALLOC)	|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_DT_RA, GICV5_READ_ALLOC)		|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_IC, GICV5_WB_CACHE)		|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_OC, GICV5_WB_CACHE)		|
-> > +		      FIELD_PREP(GICV5_ITS_CR1_SH, GICV5_INNER_SHARE);
-> > +	}
-> > +
-> > +	its_writel_relaxed(its_node, cr1, GICV5_ITS_CR1);
-> > +
-> > +	ret = gicv5_its_init_devtab(its_node);
-> > +	if (ret) {
-> > +		irq_domain_remove(its_node->domain);
-> > +		kfree(info);
-> > +		kfree(its_node);
-> > +		return ret;
-> > +	}
-> > +
-> > +	cr0 = FIELD_PREP(GICV5_ITS_CR0_ITSEN, 0x1);
-> > +	its_writel_relaxed(its_node, cr0, GICV5_ITS_CR0);
-> > +
-> > +	ret = gicv5_its_wait_for_cr0(its_node);
-> > +	if (ret) {
-> > +		irq_domain_remove(its_node->domain);
-> > +		kfree(info);
-> > +		kfree(its_node);
-> 
-> Either convert to cleanup.h or do this in a common error label(s).
-
-Sure.
-
-> > +		return ret;
-> > +	}
-> > +
-> > +	list_add(&its_node->entry, &its_nodes);
-> > +
-> > +	gicv5_its_print_info(its_node);
-> > +
-> > +	return 0;
-> > +}
-> ...
-> 
-> > diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
-> > index c4d4e85382f672fa4ae334db1a4e4c7c4f46b9fe..e483d0774936035b5cf2407da9a65d776bad3138 100644
-> > --- a/drivers/irqchip/irq-gic-v5.c
-> > +++ b/drivers/irqchip/irq-gic-v5.c
-> ...
-> > @@ -168,17 +271,90 @@ struct gicv5_irs_chip_data {
-> >   void __init gicv5_init_lpi_domain(void);
-> >   void __init gicv5_free_lpi_domain(void);
-> > +static inline int gicv5_wait_for_op(void __iomem *addr, u32 offset, u32 mask,
-> > +				    u32 *val)
-> > +{
-> > +	void __iomem *reg = addr + offset;
-> > +	u32 tmp;
-> > +	int ret;
-> > +
-> > +	ret = readl_poll_timeout_atomic(reg, tmp, tmp & mask, 1, 10 * USEC_PER_MSEC);
-> 
-> Does this have to be atomic? The call chain is complex, I haven't managed to
-> check...
-
-I will check again.
-
-> > +
-> > +	if (val)
-> > +		*val = tmp;
-> 
-> Do you really want to write val in case of timeout? Sounds unexpected.
-
-Yep, on timeout I should not write back the return value (well, it
-does not hurt either to be honest).
-
-> > +	return ret;
-> > +}
-> 
-> thanks,
-> -- 
-> js
-> suse labs
-
-Thank you very much for having a look.
-
-Lorenzo
 
