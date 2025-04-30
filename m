@@ -1,382 +1,132 @@
-Return-Path: <devicetree+bounces-172562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E54AA54DE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 21:43:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0204AA559B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 22:35:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A66931C2260F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 19:43:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CAAC1896599
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 20:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FE02750F1;
-	Wed, 30 Apr 2025 19:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EDEC29AB1F;
+	Wed, 30 Apr 2025 20:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="PzQVBNa7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ARmm6lJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9563274671;
-	Wed, 30 Apr 2025 19:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33B22983E0
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 20:35:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746042144; cv=none; b=RDMipg7cQy4axaCYUhzDjgf6+UdcOUDrwqqO15SKjUFj3uq9uACQQ60QrDGzdAnnMIMnlj3P5Y7P4uqLD6ehWIDBtWp4juVuWtHnsc40PjDuQgLTQZ5MhsEljsNoGSjqi/TiRYvAsa5oldomu26U29Pmg3A5dEl40tpw+ZIrzTs=
+	t=1746045345; cv=none; b=iTdTThlgihL+h3wVPBZ0zjWTI5BNJVmrshNB53tmkcG9fHpJg3h1OR44+LaexwxlNYVA32VTzegfRvGpj5guZGO9omt2qTlG8PqlLa6y25mEFDdHaWQzIHLUwbJsQj4/0o5bnEoui01eF3OobdfmW+JyOqeVhbLLkZX5zNCQT1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746042144; c=relaxed/simple;
-	bh=0YrxcUAUaXqkKGuZjlIfwbubu01yUpfA6AuAb1EDHhI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tm1qUpCm/V0vReLd3TftIeZZ+evxur15z+HD5kxZDaYyJuFdzBQ6hJC3nkb+5AvZLvqgIrctSCO9CVRZbsoyHsRK2BDH1bCO57Txc1EHOPQgJgmT438EUhTixgye4Z+Fg2oVWrNegV9mvub0POXpNvCfhcG9kR0upeCQCPwXIL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=PzQVBNa7; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.78.162] (254C22F1.nat.pool.telekom.hu [37.76.34.241])
-	by mail.mainlining.org (Postfix) with ESMTPSA id 68349BBEE7;
-	Wed, 30 Apr 2025 19:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1746042140;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XWBVflhF5/ANXUctLJO1679Fk3zCvB2XbjExgvWA0Ro=;
-	b=PzQVBNa71RgYrCtYZN4K5lHjpdnG2PRszhdqTomsxeOUsVtRbUZBKsJm1wg0Li29C/16+z
-	OIEc+6Op0KxPRcVB+jNn8vURBNdphzKUPAfWQ6l48rVudbYkdXJg9sqt87FU2cl8q+t6GV
-	O86TH5JVuxi4lVLg9roVUtpXc2Py68GzdZ/Rd9HnfX30avkXU9cpgjX165gWEO3sR3QtlQ
-	OzFX4Rgajn8veF9vmsKPbM6RJ0IeYl3zdKMDXdDkLC3xg9Qe09EDBn6qSpyC79GkraMeAy
-	m88FRsXRdhvHTfvLxbYuIQbVu1K9oODyUa1jVFB1NRWdp5+wxv2ppNYcQhj+uw==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Wed, 30 Apr 2025 21:42:13 +0200
-Subject: [PATCH v3 2/2] drivers: gpu: drm: panel: Add BOE TD4320
+	s=arc-20240116; t=1746045345; c=relaxed/simple;
+	bh=3A7zHPu/Pt4o72Oj3BLVHpf6PoafkUAy7nyJWJWscdE=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=cRj5keFwINVtP5+S3vf/IpHp9nPR7a6Bj7O5m7NNBcoasPmwmcHBk6CFeK5alE3YdwTMW6XdcISOK7nIBFHwf/9LJ62kTqHn9aoLlRfkEKbmFn/a+g07J2LtKkrgqq+WOg2kqLWfjtXyBMaSMrDpvdxjOoh2A/X/W+5uw/rGP1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ARmm6lJo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53UGqSGw020950
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 20:35:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=FNlVwVSrdqwEdFQXdmlmCn
+	Zk8ZIb4gnupsa/fnTDzGI=; b=ARmm6lJo8sePXTFjX/wG+3sL6SRhMEPxbSOm/S
+	hqJSZxPEXMPpLvRdlDVxk7fXS9qe0OqTHwwczX6Wx91v6hLPTHJNYbMA/s4vI6l9
+	m6bWqPJgfXH6Ww7IM/cQ3BzfeOENkASW3Nnwq71kqzx2Lql1L6RG3funQRotduZM
+	PwpfPUa2klorxFTZUGPmOyYroiLeSaKQ7CBGi6nl8O1uadC9dM91u5UVp8BJ/iEy
+	+4Ikmal3v7/hgLoIEHr1553EdLrSE/2D7bIIui5TMFKFdEkjXT5g+j84iQH4/7db
+	Fe9V6Q2PO2ncmV5SyQWXN9SqT7lJqc+l/yu8gklCIOcF0wvA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u1ujtr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 20:35:42 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6ece59c3108so847046d6.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:35:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746045341; x=1746650141;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FNlVwVSrdqwEdFQXdmlmCnZk8ZIb4gnupsa/fnTDzGI=;
+        b=fu90CrT7zXTerbZfmUs6OiLB6daT8UieWXRUVTZgozI461swGlSxFT4WFA80nhbXVb
+         52CbEPJM0/xLQXMvELPgXU8U57H2rd2MLcoAAC0Jrg5+HK39V6OkS6Vm3vI5WRal5PYE
+         e2CbXW4AZJC/8JCE+UsnPPpcPOOYX39ekl6tVamgh4i2l8G6s+K06RWIb36hHnZ5j/3S
+         bERD/YQiXf33GkJaGsqF11qf31Jv1Zxv45VWpqyD8YgCtCCXjwi8T4g3AoCTzPVmDOQH
+         7Ir5JBIyleAhniiljloKCppYfc5RU+1WxHpVrymSpui1vzWOEnVzMANj8OdPmfWxQBWr
+         PjBw==
+X-Gm-Message-State: AOJu0YzyTf14GPfp6cdledpD3oJqQnMjjJp2ax37MpMijy9tJvOwyRi4
+	FCPcMcLKqPz2VB8ayvi7cA2fFcYQtDneBqlrrEay1tRdwk/9r2Z5bEt2npU0titrK5hCy6C9tZU
+	CieIPZmccUuH8IW89z6hU0JH0jxZIOGT0yxeY6vKcVGP9MElKnwtYsl8eS3X19tCG87wQ
+X-Gm-Gg: ASbGnct7AOxayN204eueix8A7VNa+jYoByJLsFkQoAyNtYCdQ4Qxffo+8WxeViIo4b2
+	8spK8hVYRf1pq4YXQbpak98dZhmWgRkJ+m61bP0M9juPjeIMHSmBvX0YjpH5swT4DnAOTSa8xDo
+	F08g81tlTJyiTgmFkkduaWtE239l7tM8PZ3BwG6yJrB2LUQSLgVSnDnYyKr96nN0bUddidQSoqO
+	rJvIwAhcG0dKxZC7UHmxoEr7GwbicJMpwc6X3l6oQPYFbFaX91PUjj4YSvWQs2upCGpo4PzeWh2
+	bSSeKvwn3P9TrKz72M0seMmrz3vaC+GfYS2qEvr/sA7SK8WK773Vgm6EZyDx4H5dwiA=
+X-Received: by 2002:a05:620a:2544:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7cac87ed1c4mr193098385a.10.1746045341344;
+        Wed, 30 Apr 2025 13:35:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2VmBrfYPPRTYvOlp61CIEOTF9Ei0V5PaHUnfWAjyB297MB63P88J0+fTByDJXzYAuENttSA==
+X-Received: by 2002:a05:620a:2544:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7cac87ed1c4mr193097785a.10.1746045341049;
+        Wed, 30 Apr 2025 13:35:41 -0700 (PDT)
+Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7013ff812sm9553519a12.25.2025.04.30.13.35.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 13:35:40 -0700 (PDT)
+Message-ID: <9439182e-3338-4d57-aa02-b621bc9498a3@oss.qualcomm.com>
+Date: Wed, 30 Apr 2025 22:35:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250430-lavender-panel-v3-2-7625e62d62b2@mainlining.org>
-References: <20250430-lavender-panel-v3-0-7625e62d62b2@mainlining.org>
-In-Reply-To: <20250430-lavender-panel-v3-0-7625e62d62b2@mainlining.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746042135; l=9681;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=0YrxcUAUaXqkKGuZjlIfwbubu01yUpfA6AuAb1EDHhI=;
- b=pHkE4B6wiiZFGGkGWYRve/zXeb2eAvs1gQiyG4utrZtqxcQJb22FXCQPmGiCJuPtDwPRdq1Ls
- A9aUkqF9Hk4CtxP1+K9bJ3J+jPACJdOt6/4Hah2YBC6tLNJ5+QvE0QQ
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: dt <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Using iommu-addresses beyond reserved-memory
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=6812899e cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=5cZCtqRixsLU-dlHIioA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDE1MSBTYWx0ZWRfX8kOjl0hbAx1H Qh6CGxV4Zb0REWKOwnRefKNJjgc21QcNmMuDDBRdmqzy0cMTck4Nvl9omHRGZ25nQWxdM2xoPuH HEomX5Y0AeyxeZ+AfdFzqJanotRFWtm36a1zquGWen2TaWNLrqfUNasNp17mIy8drE7Ksv1+dty
+ CEqw7vQ0TTeNMsf109oZbEtQlmthXN66+8op1ylBl/X4KDVSviXtmiJsVFgqvL6Sgs6O0Ad1PEC KVDDL4VdFqjyqgTOj8a3Bmn3PKT6seOML+JDVYgYYuEZ+eRsL7RnhioYXkBzVwmhRQMAyHzhaoo 83eRkP4R/tYcD2499xcCsA8v1ZwT+dNu3+UewR+Cg2043rx8nEpeXIyUpl65mwObEE1P3pajJkS
+ /GAwwuB+p3dq911eWVijMMNbbrjx3wSEi5nzFBfQOtxlZqeY+CBvi4xAGbnBjwTr8eYI7MD0
+X-Proofpoint-GUID: SBcqAhtNMhRwzEZfLiWJv3z6nJcgfSL7
+X-Proofpoint-ORIG-GUID: SBcqAhtNMhRwzEZfLiWJv3z6nJcgfSL7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_06,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=714
+ lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300151
 
-Add driver for BOE TD4320 DSI panel, used in Xiaomi Redmi Note 7
-mobile phone.
+Hi,
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- drivers/gpu/drm/panel/Kconfig            |   9 ++
- drivers/gpu/drm/panel/Makefile           |   1 +
- drivers/gpu/drm/panel/panel-boe-td4320.c | 247 +++++++++++++++++++++++++++++++
- 3 files changed, 257 insertions(+)
+We're exploring the use of iommu-addresses due to hw specifics where memory
+regions for some devices must be mapped in a given range.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 7e9c60a626fbbabb954ed2a7e3d1ef5eee0679d6..639f4324db617a0a2a56debd75eeca7a50e60df6 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -67,6 +67,15 @@ config DRM_PANEL_BOE_HIMAX8279D
- 	  24 bit RGB per pixel. It provides a MIPI DSI interface to
- 	  the host and has a built-in LED backlight.
- 
-+config DRM_PANEL_BOE_TD4320
-+	tristate "BOE TD4320 DSI panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for BOE TD4320 1080x2340
-+	  video mode panel found in Xiaomi Redmi Note 7 smartphones.
-+
- config DRM_PANEL_BOE_TH101MB31UIG002_28A
- 	tristate "Boe TH101MB31UIG002-28A panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 883974f0cba128e28f23e31512f8d30d59913b0e..5eec88e4ac3dea6a1cb357e27a32d2d14c64af9b 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_DRM_PANEL_ASUS_Z00T_TM5P5_NT35596) += panel-asus-z00t-tm5p5-n35596.
- obj-$(CONFIG_DRM_PANEL_AUO_A030JTN01) += panel-auo-a030jtn01.o
- obj-$(CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0) += panel-boe-bf060y8m-aj0.o
- obj-$(CONFIG_DRM_PANEL_BOE_HIMAX8279D) += panel-boe-himax8279d.o
-+obj-$(CONFIG_DRM_PANEL_BOE_TD4320) += panel-boe-td4320.o
- obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
- obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) += panel-boe-tv101wum-ll2.o
- obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
-diff --git a/drivers/gpu/drm/panel/panel-boe-td4320.c b/drivers/gpu/drm/panel/panel-boe-td4320.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1956daa2c71bc92c94fc76319d841b520407001c
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-boe-td4320.c
-@@ -0,0 +1,247 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2024 Barnabas Czeman <barnabas.czeman@mainlining.org>
-+// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-+//   Copyright (c) 2013, The Linux Foundation. All rights reserved.
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+struct boe_td4320 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator_bulk_data *supplies;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static const struct regulator_bulk_data boe_td4320_supplies[] = {
-+	{ .supply = "iovcc" },
-+	{ .supply = "vsn" },
-+	{ .supply = "vsp" },
-+};
-+
-+static inline struct boe_td4320 *to_boe_td4320(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct boe_td4320, panel);
-+}
-+
-+static void boe_td4320_reset(struct boe_td4320 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	msleep(30);
-+}
-+
-+static int boe_td4320_on(struct boe_td4320 *ctx)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xd6, 0x00);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb8,
-+					 0x19, 0x55, 0x00, 0xbe, 0x00, 0x00,
-+					 0x00);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb9,
-+					 0x4d, 0x55, 0x05, 0xe6, 0x00, 0x02,
-+					 0x03);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xba,
-+					 0x9b, 0x5b, 0x07, 0xe6, 0x00, 0x13,
-+					 0x00);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xf9,
-+					 0x44, 0x3f, 0x00, 0x8d, 0xbf);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xce,
-+					 0x5d, 0x00, 0x0f, 0x1f, 0x2f, 0x3f,
-+					 0x4f, 0x5f, 0x6f, 0x7f, 0x8f, 0x9f,
-+					 0xaf, 0xbf, 0xcf, 0xdf, 0xef, 0xff,
-+					 0x04, 0x00, 0x02, 0x02, 0x42, 0x01,
-+					 0x69, 0x5a, 0x40, 0x40, 0x00, 0x00,
-+					 0x04, 0xfa, 0x00);
-+	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0x00b8);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
-+				     0x2c);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x11, 0x00);
-+	mipi_dsi_msleep(&dsi_ctx, 96);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x29, 0x00);
-+	mipi_dsi_msleep(&dsi_ctx, 20);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int boe_td4320_off(struct boe_td4320 *ctx)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	ctx->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 20);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 120);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int boe_td4320_prepare(struct drm_panel *panel)
-+{
-+	struct boe_td4320 *ctx = to_boe_td4320(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(boe_td4320_supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	boe_td4320_reset(ctx);
-+
-+	ret = boe_td4320_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		regulator_bulk_disable(ARRAY_SIZE(boe_td4320_supplies), ctx->supplies);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int boe_td4320_unprepare(struct drm_panel *panel)
-+{
-+	struct boe_td4320 *ctx = to_boe_td4320(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	ret = boe_td4320_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(boe_td4320_supplies), ctx->supplies);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode boe_td4320_mode = {
-+	.clock = (1080 + 86 + 2 + 100) * (2340 + 4 + 4 + 60) * 60 / 1000,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 86,
-+	.hsync_end = 1080 + 86 + 2,
-+	.htotal = 1080 + 86 + 2 + 100,
-+	.vdisplay = 2340,
-+	.vsync_start = 2340 + 4,
-+	.vsync_end = 2340 + 4 + 4,
-+	.vtotal = 2340 + 4 + 4 + 60,
-+	.width_mm = 67,
-+	.height_mm = 145,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static int boe_td4320_get_modes(struct drm_panel *panel,
-+				struct drm_connector *connector)
-+{
-+	return drm_connector_helper_get_modes_fixed(connector, &boe_td4320_mode);
-+}
-+
-+static const struct drm_panel_funcs boe_td4320_panel_funcs = {
-+	.prepare = boe_td4320_prepare,
-+	.unprepare = boe_td4320_unprepare,
-+	.get_modes = boe_td4320_get_modes,
-+};
-+
-+static int boe_td4320_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct boe_td4320 *ctx;
-+	int ret;
-+
-+	ctx = devm_drm_panel_alloc(dev, struct boe_td4320, panel,
-+				   &boe_td4320_panel_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ctx))
-+		return PTR_ERR(ctx);
-+
-+	ret = devm_regulator_bulk_get_const(dev,
-+					    ARRAY_SIZE(boe_td4320_supplies),
-+					    boe_td4320_supplies,
-+					    &ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	ctx->panel.prepare_prev_first = true;
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		drm_panel_remove(&ctx->panel);
-+		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void boe_td4320_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct boe_td4320 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id boe_td4320_of_match[] = {
-+	{ .compatible = "boe,td4320" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, boe_td4320_of_match);
-+
-+static struct mipi_dsi_driver boe_td4320_driver = {
-+	.probe = boe_td4320_probe,
-+	.remove = boe_td4320_remove,
-+	.driver = {
-+		.name = "panel-boe-td4320",
-+		.of_match_table = boe_td4320_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(boe_td4320_driver);
-+
-+MODULE_AUTHOR("Barnabas Czeman <barnabas.czeman@mainlining.org>");
-+MODULE_DESCRIPTION("DRM driver for boe td4320 fhdplus video mode dsi panel");
-+MODULE_LICENSE("GPL");
+iommu-addresses currently allows us to achieve that, but it's incredibly janky..
+To achieve what we need, one has to:
 
--- 
-2.49.0
+1. define a negative of the desired region (i.e. reserve all memory except where
+we want the allocations to happen)
+2. pass that to a dt (sub)node as a memory region
+(3. pray that you reserved enough memory after the region and there's no board
+    with a larger amount of RAM down the line)
 
+Now, the obvious idea is to redefine this property to consume the **allowed**
+ranges on ""normal"" devices' nodes (i.e. not under /reserved-memory) - would
+that be an acceptable approach? We're totally open to suggestions
+
+Konrad
 
