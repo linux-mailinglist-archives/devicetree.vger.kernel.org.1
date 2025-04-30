@@ -1,183 +1,139 @@
-Return-Path: <devicetree+bounces-172259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9BA9AA4448
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:46:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B62AA4460
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C294F7B595D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:45:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF6F81C026BB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447381EDA0E;
-	Wed, 30 Apr 2025 07:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B63620E6F3;
+	Wed, 30 Apr 2025 07:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EPnBdTbt"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="H4yNWKKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EBA6204583
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24C920B7F9;
+	Wed, 30 Apr 2025 07:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745999197; cv=none; b=orrJ5p+wjerz0+eA7LoMzGPgy0eOYoJ36RYiW9kpbuk60koM73tqkKQ+xqC9tHmxjyYh2uSZCyM2K3vLSieRiCiLBXuZNOagCjj6SJurAjVosLVXBRXJ+GgzMbQB0OsFI9TiUotgPfgxLXvtASbfdRn7lrmJf4txGdMrBBBbgos=
+	t=1745999437; cv=none; b=E4hTtziK0fBkZUoATwWAGd0JVcjbUMPO+FW2SGLlTf3Ds5m2hLswrmePv3etTTkryWcAkoaHaUwfoP673/0Vs0a00oSM1NsS7I6n30wRAQbE7z5IDlHMjyl/wvLTSvjcYZ4/okcO4r68ushcNrIEkJvZ4BncMsDnDvfku26dVqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745999197; c=relaxed/simple;
-	bh=CTEjPujSZAqf3P+j1NI3hRXUfVHwxDengmLbAq8TEXg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VLvLj+twh/ra1oy0N8hkhB+FfhlrhjeyCFoLrvBJ1ud1S9t6qgTK2qDdKbjEFQWVjwzt9KoccFBAl0qygO23WzNN8/i3uHd25bwbnHt4fIEsNX6EBSy29UZn0L2L3oVDh4E5LTlfptkOVxtx52Dj66nY/NA7U7K0W4gxCwMxFhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EPnBdTbt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLagLL021490
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:46:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XcCLzzMlB7ZxM/ezJ4VGPTAmUkXjhMccCtENn84um/A=; b=EPnBdTbt9S8eSEoU
-	1mt/l+svodQUGTAy7ITtLDuvP7/1rRy/i1nBHU5AhHgtkqN2kLfCKzPj00AQKv40
-	ZM3FjwGOOsb9IrnzETKnLLrOIFjW+y12Uq2liUme9nl1Y8isI7r1Y6m2lJNnlh+I
-	iKSLfShghwg4zSG1ks6oeP/mgH9GyG4tLSRsmTJyvmApfWksQS/urUk6gIqQIwUE
-	IUbABca6OocyBGPh0AEesl5vwm4lfTpcQ5nnId42e+YmrNt6n9WXRf+mB/AQeV5V
-	BcqRTQvcw3Y3njk7Dr6VbbY4V4He0nP7JNQpVIlUOtY65yw2x99pgWivxbZ8LzID
-	26NLjw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u718gm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:46:29 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-47aeab7b918so14541261cf.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 00:46:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745999188; x=1746603988;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XcCLzzMlB7ZxM/ezJ4VGPTAmUkXjhMccCtENn84um/A=;
-        b=nLyvb3hrJxKuQGOoRdWVXH0SDg8NMZdnEPGeDGCKpSUrt99++aMzJGpsnqMaK5VTEl
-         7ZYnit7PDUQsTGmo/z4KP1Y3XuMbSCwjz29fXCU0g/I6FlZd2OmRwwTs3mf73q0M/Miv
-         +PEabTM3fSuBfE3Duza8g2RN8VDtoNFUkycQzbRuYpW+EFCGjLMeCJ7CZvye9fQsSaWf
-         9r0YbZfDQS6qSyn9g4RrKqzg37pC0LoEZXjNyVBRRAXsCccPZmDh5YWzYWLOe9uvrRtf
-         N3SvdD3hPZXGU9IS6Ab/orAopzG9yW+Wn/D2z+jYsh1Df7YBs8x/CUuF/s1W2LGw0O1a
-         MU6g==
-X-Forwarded-Encrypted: i=1; AJvYcCUWzeoCsvPfWpWHlSxs1znH1UJTphhVDI41Itls8roQV3OU5/3UPNUpgZtHSr1U8duBnIkMqy8X5nN4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlAMkF0IdiJ0AYVDkjMaoxnukiUzZim4eN4UG5wSnCYsOvpkD6
-	2tQqyCBfwtDpSkl/1qiJsvEZO4f3w/iF0aO/q4Ugc8ENgO6CMDSz4qmQMsnF6599LdbNT+w5juw
-	gUOy6Jmp0i2pa96KV5V8J2+Kr33/YSQjWQn57sTiev5m/Qf587XJ9zHeLB7KU
-X-Gm-Gg: ASbGncutEY+qiCtdnh4tbiPoBivEGDgN/GJtORTVsThtbuzMeK9sj5kvZ3yZjPZs1IP
-	FISduNYJddGhV2EN6daC+LqKCbp9YP4dekBHNsruO7dPLRi3QNKeL4is1YcUwIGzyT+OLHhQCoo
-	Pa414q87eoG16kZcKrStghKdOpBJPXqW6KfmpOH9SOTQrg+jHXHOOsILKOjP4HjzIXn310PAswQ
-	Vs0GDGzD6thRSo7U85ZMS+qlymGQu/lgmpedyrL9Tgzx0CWtYgjT0U763492pGFiXzfak/wgTKK
-	/a0ewim1oiH1Sf9eB5/SJZAu4rQnLx2iYJeQk+w2MTreMu26NM26Dx5YEQtahsxuSNo=
-X-Received: by 2002:ac8:7e89:0:b0:474:e213:7480 with SMTP id d75a77b69052e-489e64ceed0mr9350721cf.15.1745999188031;
-        Wed, 30 Apr 2025 00:46:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGmeOMwpptckVk+jetsDOiR+1e4jS5dFJwxeM7DhbyeRAzyOqqNSOpz4xjt7gtRJg3L8eOXmQ==
-X-Received: by 2002:ac8:7e89:0:b0:474:e213:7480 with SMTP id d75a77b69052e-489e64ceed0mr9350621cf.15.1745999187615;
-        Wed, 30 Apr 2025 00:46:27 -0700 (PDT)
-Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6ecf8ca6sm881270266b.118.2025.04.30.00.46.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 00:46:27 -0700 (PDT)
-Message-ID: <59e3e34d-83b6-4f83-be4c-eeaaba9a353e@oss.qualcomm.com>
-Date: Wed, 30 Apr 2025 09:46:24 +0200
+	s=arc-20240116; t=1745999437; c=relaxed/simple;
+	bh=zN81kdNFjhshtLPEJtFgbCGCrJxy++EDabuyrefH0MA=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=eDVWx5eOav72L23ariiR0vlFQlsICq2OwFsDEvkMDaXM4ieQaumx4Vc00TYkkSsP54FgbBXVuSYfKMelQw2GESlj54OzcYc34ZMFEvgn0NDw2q+ibKPkSt8FyvqEWMzMNGPtBFNP0hVsTFez9LOHYp/L8c9lqJUQiggWBzaohZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=H4yNWKKk; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1745999348;
+	bh=+d4fR6VsE8K98b06ZfGfVcJfkmPTj4iC/ITe2QUEp3Q=;
+	h=From:To:Subject:Date:Message-Id;
+	b=H4yNWKKkDtGTGnKGR41qxy9uTc7jCermVCX71QTWbyeQvrIFOMZU4fGDvOn06Syhw
+	 pCMbSyCImXYBjlZC6WyK+7uXebxg2HVIbAUWXE/A9BfEBoOKhFH/knZ70nh5tlzSeu
+	 WAE6wZTx50+DO9dT2eb/q+edZbwZZCAWjExwWxa8=
+X-QQ-mid: zesmtpsz5t1745999341tb79c6fed
+X-QQ-Originating-IP: 3hVTGwwMeynXOkLvnusX0Aj+/TdHKKnbUh4MGuOPP5c=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 30 Apr 2025 15:48:59 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4290321111533396376
+EX-QQ-RecipientCnt: 21
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add support for rk3399 industry evaluation board
+Date: Wed, 30 Apr 2025 15:48:46 +0800
+Message-Id: <20250430074848.539-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: NBPcaZsd6bGOBaoPj5rbOz1NA1QE3vISWNkMI1OuQCe4T5kDl4Yv/H1I
+	VpeGKZvftgU4TTqQ/cpvODrOWbaYFGgm7/bKVxKUPfBmFu41PJkY/N65HVbCmLrjNrMmNNg
+	sN5O4d7XQPnQ4Q5SUH49Keqduqt9AiC/a4CmKmDP0nsK/TxM5jsHjdn7nhbgDfqefZpRC90
+	8Kp+VP/F6E92kcWZMstpU1eWYCMf9aKz1G8qTveLISM9s+fOSsJsuzt2iV6Gefhes9KFr4O
+	2LXMTD8cVtyxZ2XhTzxxCxcmFrahvfU/VCSXNItjVZfxrxWoHuuaSfhyggrJMZ+L8LoAtdq
+	Wun7GGomb19X3JC3OIduQPt2vOwo/PGFJ6K42HoBsIJg5k9rFe1v2rXcBJIjGmgAdT4410m
+	K6pmldt4KGCB8uw7XJhWMhY90kKtvWFRzpk/mStolxFBgs4GfkZPcbUA0/YApljqidoMtdl
+	xL7I9Hw71MTJMzKgeJfy4wbVu92oaJ/XE4sq2qnKkJ3dvNHCxjncotMaLQpqS6kNeVe6dkx
+	GahDLWsK5hISoPMYcEed8bDJoEWDPgES0H2sS/AAejfJkLMb3nq0w7GpFIqd6JiZc7D39Vw
+	kcNwbCBh6MquXjGa2mTEHpMf9qzauUQPTGapI6vGEjNtUETNRlFpc+h8S5SAY2JnCRKV0ve
+	QBXHXwwkBE0a7vkDa6nPdStmOoXSmuACXGKVUw5l2oBx7uGjyxHraElUmIfowMbNuvB/WVL
+	r3A3XoHMkNJ3qO4/m0x+PterXUMDUZh/VJ+PTA4JQFKIePgtgPn6a2YAqcMpKOtodJ0PAe9
+	+m+gT+rG4xavOj//Icn7frmGGaUqn5KBYI3j/YK6YCKzmRkXVDvtEsGWaS/5uUqt5FuELuB
+	j/zlooaIcUAJuQoo5HUn0RuDVDvaczrNnlBl+dNzlB2RcDym+ViuaIEii8CfBJ4+K0vegiS
+	Do/2TO/dRhA3j/neLbKUg+6B6YNfc2uCHwEc/TjTLhmphtRhIR56OMYmIsaUyydP+gZElN+
+	R/gE7k6DkCsoBDtBJfx3yHe9V+FM4H/hreI5JI4oEXqhcP8qXkxlS7NIXk6EYq3Ph0OjeLK
+	5p5JtItkej2qZ6bmiViKvY=
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC/WIP 1/4] arm64: dts: qcom: sm8750: Add display (MDSS)
- with Display CC
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Jessica Zhang <jesszhan@quicinc.com>,
-        Abhinav Kumar
- <abhinavk@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
- <20250424-sm8750-display-dts-v1-1-6fb22ca95f38@linaro.org>
- <81205948-ae43-44ee-aa07-e490ea3bba23@oss.qualcomm.com>
- <97ae84c6-0807-4b19-a474-ba76cc049da9@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <97ae84c6-0807-4b19-a474-ba76cc049da9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA1MyBTYWx0ZWRfX4USEb2W7hqjm 1nI3TruTQkMdqbmklcHAmsfbojb7BHtggWNCRtTdeMSC/pgUWjIe3az1FKJS1qtehMA/5f1qZZG MY14+E5Ww4dfS9qBTOhDKz3Z5psExEYBtKC5px8Q4KX7xa/2XxCmJ3+8sspP/nJO6QSdl4c1H5P
- 4ndA709AxHav0oj1zDkdA4VT5tjo1EaYNua/aOgr6dEHikOlyKfOZP40GtY1RJ8C4Yv/W/M1ERC I429SjSNCESFRI+qmssBZtSBeRIuIn74BUyEFWYbGlHqH87CvqbEt5fOK6dZYvw1SXLgr39f0O7 YnEpo7dMS7RdGSnRFZm0KlC4uPf8rQJ2X1ToS2wkLA7XK81Rzmws/0GlmNo5VMgJrGosCOne5Vd
- QdATOnykGqlIGSgTJmsfWuYSOpwyiG140awEXoxmXEf+AuqgoZq+7zSWPzpcZUeUuZJswjg2
-X-Proofpoint-GUID: SwdPzx31Z2P1BFPqffkjHYOndkHPU2C-
-X-Proofpoint-ORIG-GUID: SwdPzx31Z2P1BFPqffkjHYOndkHPU2C-
-X-Authority-Analysis: v=2.4 cv=b6Wy4sGx c=1 sm=1 tr=0 ts=6811d555 cx=c_pps a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=bmsyZSe9DYnGDotP4YEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_02,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 suspectscore=0 mlxscore=0
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300053
 
-On 4/30/25 1:07 AM, Abhinav Kumar wrote:
-> 
-> 
-> On 4/28/2025 2:31 PM, Konrad Dybcio wrote:
->> On 4/24/25 3:04 PM, Krzysztof Kozlowski wrote:
->>> Add device nodes for entire display: MDSS, DPU, DSI, DSI PHYs,
->>> DisplayPort and Display Clock Controller.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> ---
->>
->> [...]
->>
->>> +                mdp_opp_table: opp-table {
->>> +                    compatible = "operating-points-v2";
->>> +
->>
->> The computer tells me there's also a 156 MHz rate @ SVS_D1
->>
->> Maybe Abhinav could chime in whether we should add it or not
->>
-> 
-> Yes I also see a 156Mhz for LOW_SVS_D1 but we had a similar entry even for sm8650 and did not publish it in the dt.
-> 
-> It was present till sm8450.dtsi but dropped in sm8550/sm8650 even though LOW_SVS_D1 is present even on those.
-> 
-> I think the reason could be that the displays being used on the reference boards will need a pixel clock of atleast >= low_svs and the MDP clock usually depends on the value of the DSI pixel clock (which has a fixed relationship to the byte clock) to maintain the data rate. So as a result perhaps even if we add it, for most displays this level will be unused.
-> 
-> If we end up using displays which are so small that the pixel clock requirement will be even lower than low_svs, we can add those.
-> 
-> OR as an alternative, we can leave this patch as it is and add the low_svs_d1 for all chipsets which support it together in another series that way it will have the full context of why we are adding it otherwise it will look odd again of why sm8550/sm8650 was left out but added in sm8750.
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-I would assume that with VRR even fancy panels at low refresh rate (in
-the 1-5 Hz range) may make use of this, so I would be happy to go with
-option 2
+General feature for rk3399 industry evaluation board:
+- Rockchip RK3399
+- 4GB LPDDR4
+- emmc5.1
+- SDIO3.0 compatible TF card
+- 1x HDMI2.0a TX
+- 1x HDMI1.4b RX with TC358749XBG HDMI to MIPI CSI2 bridge chip
+- 1x type-c DisplayPort
+- 3x USB3.0 Host
+- 1x USB2.0 Host
+- 1x Ethernet / USB3.0 to Ethernet
 
-> 
->> [...]
->>
->>> +                mdss_dsi_opp_table: opp-table {
->>> +                    compatible = "operating-points-v2";
->>> +
->>
->> Similarly there's a 140.63 MHz rate at SVS_D1, but it seems odd
->> with the decimals
-> 
-> For this one, yes its true that LOW_SVS_D1 is 140.63Mhz for sm8750 but this voltage corner was somehow never used for DSI byte clock again I am thinking this is because for the display resolutions we use, we will always be >= low_svs so the low_svs_d1 will never hit even if we add it.
+Tested with HDMI/GPU/USB2.0/USB3.0/TF card/emmc.
 
-Alright
+Changes in v2:
+- Link to V1: https://lore.kernel.org/all/20250427094211.246-1-kernel@airkyi.com/
+- Remove gmac
+- Add rk809 PMIC
+- Add CPU supply
+- Fix io-domain for sdmmc
+- Enable vopl
 
-Konrad
+Chaoyi Chen (2):
+  dt-bindings: arm: rockchip: Add rk3399 industry evaluation board
+  arm64: dts: rockchip: Add rk3399-evb-ind board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3399-evb-ind.dts      | 466 ++++++++++++++++++
+ 3 files changed, 472 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
+
+--
+2.49.0
+
 
