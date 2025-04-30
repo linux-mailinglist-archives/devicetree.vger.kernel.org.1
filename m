@@ -1,604 +1,286 @@
-Return-Path: <devicetree+bounces-172397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70026AA4AA8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:09:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26627AA4AB8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FB59463AD5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:08:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE8E84E74BB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50CF25E455;
-	Wed, 30 Apr 2025 12:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF49F258CE6;
+	Wed, 30 Apr 2025 12:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="VqT+q747";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="T0LOk/CI"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="1D2yIcsp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B536E25A331;
-	Wed, 30 Apr 2025 12:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1818D254859
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 12:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746014794; cv=none; b=WtEgH6OWd8xm9R17wGXW9TrAcm2iqNJljlG5WAtF7QtbPbtxeE/TkFo4bpvYGFhym7hUSv8aCotRW+l/fu2QtjPGDDWiOrwohHROckrv3BEeD806Bse0DvnfLL8K6CMSLCrSXKcSTZ9SnoRkSTrgaE4d79IymI++/sGYszkx/Ug=
+	t=1746014872; cv=none; b=KQHMJrmOS45KMmmOhAuwEIQUEqRJNq9NEZnhrKP+YI/9IrYxj1KlEUpUfckLsOuaPy7zY0SWEr9DRKdFHARnTK0DjXEC/oDV42W5mVhhHhfggtsccisTYxvVPjWgzWq9AUlVtN45dWpY/AGh6xoiTmYCvQZUf3+UV9JO/z6eIEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746014794; c=relaxed/simple;
-	bh=8sY32Ocai8UTD6nKl/Ayid+R66WMQ0S7xjPYvjjWZx4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b3yDfv29ZwC8LZNevFhGJZyMHbDOAr294Wx0LmMMgh5hcTWdSDZG5agOLLM8IUJmx+/BnUZMOH4F9ncL8YasHtmTfsQmvGa8r2LZxwL2rDEouJcp3UW++hum0mIqFgsXEdDuSL7H2lv7txYR0XW/PJQCpUp8BVUQhVE+wWQ9u8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=VqT+q747; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=T0LOk/CI reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1746014872; c=relaxed/simple;
+	bh=d6I+bZCKSKv8vKALt43bmwyGtXI93URckbCg0nFuuFs=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=fgHuY7R02bfivVwemC6Aiy2gZYrqzCHQB18Mmf37k8HKkIiZi8ObDKFcFrA/nq9ozzMXQdyPk3kgh9YVl/wTPsxx9pBa1EoUCnrCADXq9pR7Lr5s3+1/80RVjCvMT5QrahHADK+1R0oxKiiq4HI3H5sq/BLEG/ohCjGteb+Eat4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=1D2yIcsp; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-227914acd20so7350305ad.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 05:07:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1746014792; x=1777550792;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Xa3mNEfdhrIDOlxo7TVXevfB9pnUglXcunIlDPViRFQ=;
-  b=VqT+q747xOndpuEg2Nariue+xoO97VUF68A2JvsTN7vScPEywkk+aSGx
-   x1WnX2LQfQKpTcSxr6CRbfuzdigEJD40/LRuLTxTUFGUThbLEXZDf8m34
-   +ey+VYs7RHYPZdCklQi/YJNcdEB/dPyV26lbo8cbl8kNt+mZvpIcNsGCz
-   0fc6gzifPfYn1KjChB8M/ARqj3pskwI6/sh385iEl+KsUl5s6rkYA4uJB
-   crDWmtKzub75vWbtxzFN/vxnElf/ZtuZv8P5bJD8GCftRK9OVwxnUttyO
-   nBb1T13tBoXEo7Pp6QnlPI738Q8PhTHQGAB+UKPcSAP7R0YVa2idE2Mvn
-   A==;
-X-CSE-ConnectionGUID: b8CHd4I3STOBD7Z2EViVTQ==
-X-CSE-MsgGUID: y4pJW1tYR4mIp2PMliHZyA==
-X-IronPort-AV: E=Sophos;i="6.15,251,1739833200"; 
-   d="scan'208";a="43809745"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 30 Apr 2025 14:06:30 +0200
-X-CheckPoint: {68121246-2E-BF62DDF1-CB8BF55F}
-X-MAIL-CPID: 49C9A6B57520DDF90CE7DD2646D8985E_1
-X-Control-Analysis: str=0001.0A006398.68121253.0066,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 34550168F21;
-	Wed, 30 Apr 2025 14:06:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1746014786;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xa3mNEfdhrIDOlxo7TVXevfB9pnUglXcunIlDPViRFQ=;
-	b=T0LOk/CInLTFG0ltpa8iyTWHKIda8dEXfX/MklxH+aH6NJOXu2d1patAplzSHE329bRmoa
-	r6gHrcxIPcLh+hYqEH7VYamb0yavToPWJqCgye5jL2tAv5aiEhdNcLf4XYxL+/6t2gt20t
-	9iXRjmlM3RvDa9RAq7dlb7wiVy/USu4VggVaKuUcUGAv6kynjELBOX1BJO01JAH3cPIzkd
-	q34dVvw9IePBA6zrwKcKnXuP0famOMPkm89v4cCXNYENTNp6xarxBhHsuThZmBlSqV76tG
-	Hvscl7xlgmdKllIWHgg8pIMBQaej6Z3guLjbD26H6MWvsELQCKwRGug7GhRkzA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com,
-	Max Merchel <Max.Merchel@tq-group.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v2 2/2] arm64: dts: ls1012a: add DTS for TQMLS1012al module with MBLS1012AL board
-Date: Wed, 30 Apr 2025 14:06:01 +0200
-Message-ID: <20250430120605.2068102-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250430120605.2068102-1-alexander.stein@ew.tq-group.com>
-References: <20250430120605.2068102-1-alexander.stein@ew.tq-group.com>
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1746014870; x=1746619670; darn=vger.kernel.org;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HkUw/hLNBJeQ1pMrFmWnr5vSnFNE+RWvw+N/vq84oP0=;
+        b=1D2yIcspM9v6Roq06HCCzrfwJtnup52ViakfcDwUt/5iCTrdVF7VuYe15jYFY1TK04
+         jjgYQyK4manVh9SGuGSAXMcELdl8B52i+Ctb8Vg0hMwS70xnx8D6dtV8BctDxnarBCTE
+         mQGC4+FoqibehQF8mkCQZxzg2FoijddqNQEj9rFddvofOF71mkA0OHe156CaI+L6HL0s
+         6aWpll2DHd05zc6nW0wUEN+oOHomQzk313AJVmAc9Qqw0rs69zoVmXn8C8oQ4jdSwZTP
+         wcLk5JDUV/2vZPSE7FrCwiuFyq3+NWQ8WbRaxJ76WiQOSttOPQRqY4BMgXdkvwiXpR9Z
+         M79g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746014870; x=1746619670;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HkUw/hLNBJeQ1pMrFmWnr5vSnFNE+RWvw+N/vq84oP0=;
+        b=IblXEMe/D1Qp4mnsjZyQjuplVW/sDIBo86cYFBWU+E0ZlEGSF0rSCBNSQuUO9LWJuz
+         TgR7YLYrNOQ4yHMG62h+VBhkiL6fe9vKYCLCCdSNpYoj7UviZ4pYx68QgkwOIPwRJE81
+         eJF71jFRDyoXtEhooHlBeOKJJ1Z0WhMm2KXipiomkF8iSVihNfyfyQ9hxOF6Rzj6+xVy
+         n4/sY6pO6R8SXepkM+tr2P9WT7j/cgZ1pUHRJIJQrI3JkZN38wHX5DukcyvvbwSrlsFx
+         NzlvG32FVVbkG1mCUB9K8DV3hwZttw5f5PIQt5o1hv7MC3WfkcBzsnOAjiYgl/AK8aC7
+         vOPw==
+X-Gm-Message-State: AOJu0Yx6Mq/84Rso2i9OBAqaO5gaxLJv/miVpFeQ4pGeH3PGPia6cKD+
+	gRCx/QbPZOs72F6B9y81Edx0qrlphc/r2z5sGFRcfFnMGhoUgSOxTXLeNfcDbg==
+X-Gm-Gg: ASbGncvQzMzPUPhvXymh+zd7KbGNL0a2hBMui6u/7Ps9Ey/5Ui6Xfd4AWUxFPlraitI
+	GqX4EVUfscFb1dRcE1bVFUsuYKUfdjK2keYlOcoaXbeq5ufiiDSNnajsgc9Uxxri09Npsw0cp6z
+	WU59a6TCJLHZNX+GtlFamN8vk1pPotmATx+tOBZd6rqRA5dVZqBqeMpPw4FTROf4aejiPRx/CYm
+	xVF0Q5BH98LsvNlWGLBeQXz6mn033UarJ3/PYVy0s7ZPlUYSJe1HIucIQ2vrBgi+rwAxtuLipLd
+	0y8odx/BbrLs4NwCSfS4vO4BpRsgfJ4Ess6PLH9+CVEbk5c=
+X-Google-Smtp-Source: AGHT+IHhb8NFe8lUAsoDgFv5UN8RsQHrujabcEFLMT4WjBW7XdlPw/0o6X/SBcXZaqyOpBFFqPzTCw==
+X-Received: by 2002:a17:902:ce82:b0:21f:58fd:d215 with SMTP id d9443c01a7336-22df4787428mr35026165ad.11.1746014869771;
+        Wed, 30 Apr 2025 05:07:49 -0700 (PDT)
+Received: from [172.16.116.85] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db4dbe614sm119994375ad.98.2025.04.30.05.07.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 05:07:49 -0700 (PDT)
+Message-ID: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
+Date: Wed, 30 Apr 2025 17:37:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>,
+ Deepak Khatri <lorforlinux@beagleboard.org>, Dhruva Gole <d-gole@ti.com>,
+ Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ David Gibson <david@gibson.dropbear.id.au>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+ Herve Codina <herve.codina@bootlin.com>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+From: Ayush Singh <ayush@beagleboard.org>
+Subject: [Discussion] Global vs Local devicetree overlays for addon board +
+ connector setups
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Matthias Schiffer <matthias.schiffer@tq-group.com>
+Hello everyone,
 
-Add initial support for TQMLS1012AL module mounted on MBLS1012AL.
-It supports UART1 for console, PCIe, I2C, USB, µSD card (default), SATA
-and QSPI.
-There is an alternative ordering option which provides an eMMC instead of
-an SD card. This uses a different DT instead.
-Due missing Packet Forwarding Engine (PFE) driver support, there is no
-support for Ethernet so far.
 
-Signed-off-by: Max Merchel <Max.Merchel@tq-group.com>
-Signed-off-by: Matthias Schiffer <matthias.schiffer@tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Be a bit more specific with lm75 compatible
-* Remove m25p,fast-read from spi-nor flash
+This mailing thread is dedicated to discussing what approach should be 
+taken regarding overlays for addon board + connector setups. It is 
+loosely a continuation of [0], so feel free to go through it.
 
- arch/arm64/boot/dts/freescale/Makefile        |   2 +
- ...sl-ls1012a-tqmls1012al-mbls1012al-emmc.dts |  21 ++
- .../fsl-ls1012a-tqmls1012al-mbls1012al.dts    | 346 ++++++++++++++++++
- .../freescale/fsl-ls1012a-tqmls1012al.dtsi    |  73 ++++
- 4 files changed, 442 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al-emmc.dts
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al.dts
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index bf575395d7d5b..f6b8686ed3cfe 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -5,6 +5,8 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-frwy.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-oxalis.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-rdb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-tqmls1012al-mbls1012al.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-tqmls1012al-mbls1012al-emmc.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-kbox-a-230-ls.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var1.dtb
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al-emmc.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al-emmc.dts
-new file mode 100644
-index 0000000000000..82dc0a7c7d535
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al-emmc.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Matthias Schiffer
-+ * Author: Max Merchel
-+ */
-+
-+#include "fsl-ls1012a-tqmls1012al-mbls1012al.dts"
-+
-+&esdhc0 {
-+	vqmmc-supply = <&reg_1p8v>;
-+	/delete-property/ no-mmc;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	no-sdio;
-+	no-sd;
-+	voltage-ranges = <1800 1800>;
-+	non-removable;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al.dts
-new file mode 100644
-index 0000000000000..147c7ca130c44
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al.dts
-@@ -0,0 +1,346 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Matthias Schiffer
-+ * Author: Max Merchel
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "fsl-ls1012a-tqmls1012al.dtsi"
-+
-+/ {
-+	model = "TQ-Systems TQMLS1012AL on MBLS1012AL";
-+	compatible = "tq,ls1012a-tqmls1012al-mbls1012al", "tq,ls1012a-tqmls1012al", "fsl,ls1012a";
-+	chassis-type = "embedded";
-+
-+	aliases {
-+		serial0 = &duart0;
-+		/* use MAC from U-Boot environment */
-+		/* TODO: PFE */
-+		ethernet2 = &swport0;
-+		ethernet3 = &swport1;
-+		ethernet4 = &swport2;
-+		ethernet5 = &swport3;
-+		spi0 = &qspi;
-+	};
-+
-+	chosen {
-+		stdout-path = &duart0;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+
-+		switch-1 {
-+			label = "S2";
-+			linux,code = <BTN_0>;
-+			gpios = <&gpio_exp_3p3v 13 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		switch-2 {
-+			label = "X15";
-+			linux,code = <BTN_1>;
-+			gpios = <&gpio_exp_1p8v 5 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		switch-3 {
-+			label = "X16";
-+			linux,code = <BTN_2>;
-+			gpios = <&gpio_exp_1p8v 4 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio_exp_3p3v 14 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_exp_3p3v 15 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "default-on";
-+		};
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* global autoconfigured region for contiguous allocations */
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			/* 64 MiB */
-+			size = <0 0x04000000>;
-+			/*  512 - 128 MiB, our minimum RAM config will be 512 MiB */
-+			alloc-ranges = <0 0x80000000 0 0x98000000>;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	reg_1p5v: regulator-1p5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P5V";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&duart0 {
-+	status = "okay";
-+};
-+
-+&esdhc0 {
-+	vmmc-supply = <&reg_3p3v>;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr12;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	lm75_48: temperature-sensor@48 {
-+		compatible = "national,lm75a";
-+		reg = <0x48>;
-+		vs-supply = <&reg_3p3v>;
-+	};
-+
-+	gpio_exp_3p3v: gpio-expander@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&reg_3p3v>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-line-names = "", "", "GPIO_3V3_3", "",
-+				  "", "", "", "",
-+				  "", "GPIO_3V3_1", "GPIO_3V3_2", "",
-+				  "", "", "", "";
-+
-+		wlan-disable-hog {
-+			gpio-hog;
-+			gpios = <0 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "WLAN_DISABLE#";
-+		};
-+
-+		vcc-pcie-en-3v3-hog {
-+			gpio-hog;
-+			gpios = <1 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "VCC_PCIE_EN_3V3";
-+		};
-+
-+		vcc-wlan-en-3v3-hog {
-+			gpio-hog;
-+			gpios = <3 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "VCC_WLAN_EN_3V3";
-+		};
-+
-+		pcie-rst-hog {
-+			gpio-hog;
-+			gpios = <4 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "PCIE_RST#";
-+		};
-+
-+		wlan-rst-hog {
-+			gpio-hog;
-+			gpios = <5 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "WLAN_RST#";
-+		};
-+
-+		pcie-dis-hog {
-+			gpio-hog;
-+			gpios = <11 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "PCIE_DIS#";
-+		};
-+
-+		pcie-wake-hog {
-+			gpio-hog;
-+			gpios = <12 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "PCIE_WAKE#";
-+		};
-+	};
-+
-+	gpio_exp_1p8v: gpio-expander@70 {
-+		compatible = "nxp,pca9538";
-+		reg = <0x70>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&reg_1p8v>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-line-names = "PCIE_CLK_PD#", "PMIC_INT#", "ETH_SW_INT#", "",
-+				  "", "", "", "",
-+				  "", "GPIO_3V3_1", "GPIO_3V3_2", "",
-+				  "", "", "", "";
-+
-+		/* do not change PCIE_CLK_PD */
-+		pcie-clk-pd-hog {
-+			gpio-hog;
-+			gpios = <0 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "PCIE_CLK_PD#";
-+		};
-+
-+		pmic-int-hog {
-+			gpio-hog;
-+			gpios = <1 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "PMIC_INT#";
-+		};
-+
-+		eth-sw-int-hog {
-+			gpio-hog;
-+			gpios = <2 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "ETH_SW_INT#";
-+		};
-+
-+		eth-link-pwrdwn-hog {
-+			gpio-hog;
-+			gpios = <3 GPIO_ACTIVE_HIGH>;
-+			input;
-+			line-name = "ETH_LINK_PWRDWN#";
-+		};
-+
-+		vcc-wlan-en-1v5-hog {
-+			gpio-hog;
-+			gpios = <6 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "VCC_WLAN_EN_1V5";
-+		};
-+
-+		vcc-pcie-en-1v5-hog {
-+			gpio-hog;
-+			gpios = <7 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "VCC_PCIE_EN_1V5";
-+		};
-+	};
-+
-+	switch@5f {
-+		compatible = "microchip,ksz9897";
-+		reg = <0x5f>;
-+		reset-gpios = <&gpio_exp_3p3v 7 GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			swport0: port@0 {
-+				reg = <0>;
-+				label = "swp0";
-+				phy-mode = "internal";
-+			};
-+
-+			swport1: port@1 {
-+				reg = <1>;
-+				label = "swp1";
-+				phy-mode = "internal";
-+			};
-+
-+			swport2: port@2 {
-+				reg = <2>;
-+				label = "swp2";
-+				phy-mode = "internal";
-+			};
-+
-+			swport3: port@3 {
-+				reg = <3>;
-+				label = "swp3";
-+				phy-mode = "internal";
-+			};
-+
-+			port@6 {
-+				reg = <6>;
-+				label = "cpu";
-+				/* TODO: PFE */
-+				phy-mode = "rgmii-id";
-+				rx-internal-delay-ps = <1500>;
-+				tx-internal-delay-ps = <1500>;
-+
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+/* TODO: PFE */
-+
-+&sata {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb451,8142";
-+		reg = <1>;
-+		peer-hub = <&hub_3_0>;
-+		reset-gpios = <&gpio_exp_3p3v 6 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&reg_vcc_3v3>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb451,8140";
-+		reg = <2>;
-+		peer-hub = <&hub_2_0>;
-+		reset-gpios = <&gpio_exp_3p3v 6 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&reg_vcc_3v3>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al.dtsi
-new file mode 100644
-index 0000000000000..5f6ee8fd4094b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al.dtsi
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Matthias Schiffer
-+ * Author: Max Merchel
-+ */
-+
-+#include "fsl-ls1012a.dtsi"
-+
-+/ {
-+	compatible = "tq,ls1012a-tqmls1012al", "fsl,ls1012a";
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/*  our minimum RAM config will be 512 MiB */
-+		reg = <0x00000000 0x80000000 0 0x20000000>;
-+	};
-+
-+	reg_vcc_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	jc42_19: temperature-sensor@19 {
-+		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
-+		reg = <0x19>;
-+	};
-+
-+	m24c64_50: eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+		pagesize = <32>;
-+		vcc-supply = <&reg_vcc_3v3>;
-+	};
-+
-+	m24c02_51: eeprom@51 {
-+		compatible = "nxp,se97b", "atmel,24c02";
-+		reg = <0x51>;
-+		pagesize = <16>;
-+		read-only;
-+		vcc-supply = <&reg_vcc_3v3>;
-+	};
-+
-+	rtc1: rtc@68 {
-+		compatible = "dallas,ds1339";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&qspi {
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <39000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+	};
-+};
--- 
-2.43.0
+Introduction
+*************
+
+To provide a background, the goal is to have a common way to support 
+setups involving addon board + connector. Some examples are as follows:
+
+- MikroBUS [1]
+
+- PocketBeagle 2 [2]: After discussion in [0], it seems that even board 
+headers should be treated as a addon board + connector problem.
+
+
+There are 2 main approaches currently floating around. They serve as 
+examples of Global and Local approaches. However, the main discussion 
+topic is global vs local rather than the specific approaches.
+
+
+1. __symbols__ based approach [3]
+
+
+This was originally proposed by Andre Davis [3]. It defines an overlay 
+with just special names in `__symbols__`, which is used along with an 
+overlay for the addon-board, which makes use of the node names defined 
+in the connector `__symbols__` overlay. Please take a look at the 
+original patch series since it provides a working example of how it can 
+be used [3].
+
+
+It has a few nice benefits such as it works pretty well with existing 
+infrastructure, and does not need much in the way of new functionality. 
+However, for this discussion thread, I want to consolidate the 
+discussion regarding how this approach directly adds the devices to the 
+appropriate nodes, Eg. An SPI device in addon board will be added to the 
+appropriate SPI controller, etc. This means the changes are made to the 
+global tree.
+
+
+2. export-symbols based approach [4]
+
+
+This approach was originally proposed by Herve Codina [5]. It defines a 
+special node (local to the connector) say `export-symbols`. This node 
+takes precedence over global `__symbols__`, and thus is used to define 
+standard names for nodes used in addon board overlay. Please look at [4] 
+to get a more in-depth explanation.
+
+
+The main difference here is that all the addon board overlay changes are 
+isolated to the connector node in the devicetree. Eg: an I2C device in 
+addon board will be added to the connector node (as defined in i2c bus 
+extension patch series [6]). This means the changes are made to the 
+connector node and not the global tree.
+
+
+This approach needs extra plumbing (like i2c bus extension [6], 
+something similar for SPI, etc) to make the whole approach work. Only 
+GPIO and PWM with Nexus node can use this approach right now.
+
+
+Basic Requirements
+
+*********************
+
+
+Here are some basic functionality that the chosen approach can do for it 
+to be viable for the connector + addon board setups:
+
+
+1. Dynamic device addition/removal from userspace
+
+
+A lot of connectors + addon board setups do not have any dynamic 
+discovery addition. This is compounded when talking about treating the 
+whole header in SBCs like PocketBeagle 2 as a connector, since people 
+would want to wire LEDs and stuff to individual pins. So a mechanism 
+using sysfs or configfs is required
+
+
+2. Dynamic device addition/removal by driver using EEPROM or something else
+
+
+Some setups (MikroBUS boards with 1-wire EEPROM, Beagle capes) have 
+EEPROMs that contain board information which can be used to detect which 
+overlay should be applied.
+
+
+Main Discussion
+
+*****************
+
+The main topic I wish to discuss if global devicetree overlays are okay 
+for addon-board setups. Let me outline some reasons for I prefer the 
+local devicetree overlays approach:
+
+
+1. Addon board removal on multiple connector setups
+
+
+Say connector A added an I2C device to the controller, then connector B 
+added an I2C device to the same controller. I am not sure how well 
+removing overlays out-of-order works.
+
+
+2. Who owns the device
+
+
+Say there are 2 connectors A and B. Both connectors share an I2C 
+controller. Let both connectors have the same device attached. In case 
+of `__symbols__` based approach, both connectors would technically be 
+successful in applying the overlays, rather than one of the overlays 
+failing.
+
+
+3. How to register the newly added devices
+
+
+I am a bit unsure about this one since I will have to check if the 
+kernel tries to register new devices automatically after applying the 
+overlay. For local setups, I was using `devm_of_platform_populate` on 
+the connector device.
+
+
+4. Security
+
+
+I think local modification is more secure than global tree modification. 
+A completely local solution should be as secure from devicetree 
+perspective as USB. But I am not an expert.
+
+
+Drawbacks of local setups
+
+***************************
+
+
+1. Needs a lot of surrounding work.
+
+
+I2C bus extension is needed for I2C devices to work, something similar 
+for SPI. At least ADC, PWM and GPIO should be covered with just nexus nodes.
+
+
+Closing Thoughts
+
+******************
+
+
+I would really like to reach consensus regarding weather the addon-board 
+overlays should be global or local. This will help to give a direction 
+regarding what should be improved, and hopefully make future development 
+move faster. Once a bit of consensus has been reached, we can discuss 
+specific implementations.
+
+
+[0]: 
+https://lore.kernel.org/linux-devicetree/d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org/T/#m09b2ebe28b6202b2a926970150caf718eff6d9ac
+
+[1]: https://www.mikroe.com/mikrobus
+
+[2]: https://www.beagleboard.org/boards/pocketbeagle-2
+
+[3]: https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
+
+[4]: 
+https://lore.kernel.org/devicetree-spec/dbe566ea-447f-4f91-a0b2-f464374955f4@beagleboard.org/T/#m591e737b48ebe96aafa39d87652e07eef99dff90
+
+[5]: 
+https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
+
+[6]: 
+https://lore.kernel.org/devicetree-spec/20250401081041.114333-1-herve.codina@bootlin.com/T/#t
+
+
+
+Best Regards,
+
+Ayush Singh
 
 
