@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-172207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F05AA4329
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:34:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3665AA432E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3C339A7F22
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 494461C01D51
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1ED1E8326;
-	Wed, 30 Apr 2025 06:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47E11E5B82;
+	Wed, 30 Apr 2025 06:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffmELrSS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0+8I6l1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBB11E503D;
-	Wed, 30 Apr 2025 06:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849571EEF9;
+	Wed, 30 Apr 2025 06:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745994843; cv=none; b=gKWuOK2Js20ei8wYYkcdU+Le97CnLWAPZYfmiDBKPAGpaW+mCeHcWNzp9aSxvHsISNyQx6eYwMH7PhlkDk4oGtLwez6Wm+Ksg2WjdGjr9EIquDKtnYqpTDHJRHPdbFuirqOqT0QAhO9F0u5BgtjH0EGrqTEmjNYljrdrkMOe1U0=
+	t=1745994924; cv=none; b=DObCrepu5dr5K585BxqpXvAB1wq8e9SgilRaMG0aXHedfCs4+Sv8/aDan/Jh+3JCA8jnXVhStFu/Dcn7PV1XOZDfGaWnAJhMe7sKpB4uPMHwoowJ57EgYrO84S/y3Tk7g23i0vm5tmCiYj90l5re00U0bAL1DkHS+Y88AxKfqL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745994843; c=relaxed/simple;
-	bh=IyHB6uFWCj9O2ik4uLLUV3YzmH1JqtPLDd77B+UQYN4=;
+	s=arc-20240116; t=1745994924; c=relaxed/simple;
+	bh=2GBR4Hi5ao4ZWwIgFEL+gg6kKOZ4jKqEx1gxgiu8CSw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1MWBTRUSLxDIdYiDcLLo+D7YjJl3bWodnS8TxqubJ49zvJ+iiNgRQ96jMG+i+xRwYWA/QyIUc/bup97K5+QtDKo+dMUFI/Qp1XDroILHbFV1wBLog26IIghGdfagGQqOGYGyRHbD5N2P+wu/3fRze3Ub1MO0u5vRqO11s0YYnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffmELrSS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ACF4C4CEE9;
-	Wed, 30 Apr 2025 06:34:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoULwLFp4WTXH8DNwhnah0YMrGlus2xI+IACE4Kf7nyV4rqXuUm33QXI5laa1N5hHHczU8di1FzQ/FkqMBGeoWo+Avv++kv6H7qUyOQPQG+iIv08LJ2ZhRZ9eJGK5Hm3wqmgcPqpZv/L7UsGpWPpAHTjDlOQkbfeo8KJcOh7WYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0+8I6l1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F98C4CEE9;
+	Wed, 30 Apr 2025 06:35:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745994842;
-	bh=IyHB6uFWCj9O2ik4uLLUV3YzmH1JqtPLDd77B+UQYN4=;
+	s=k20201202; t=1745994924;
+	bh=2GBR4Hi5ao4ZWwIgFEL+gg6kKOZ4jKqEx1gxgiu8CSw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ffmELrSSn2yHjyD6oPPn8UMvaOpXb+C4hNIWiHRbZFIdEYaLtdOV3NAYvTrY8/Xik
-	 5iBLd1wJBfblbGzmi187EQorFBmoLRX8egIbK7QJ/rRi/mAmVCuCWWJKvIKEWerzTU
-	 bCGX6hG+E75ePJtp28zypeEgi6QEAdBrFNroQHpth2KJ8S/anDJCYdDl4Yt/8m7Oab
-	 /HxUrwnJsK+V7EQJgCn/ZGp5Wv9MLQ0DfJRsi163W+22F/8ESsxBV7D0D1uvsqyAY/
-	 uqcrEbi+sK9Hcf/q74pUnWEeOvLTQGAoHOSLlk3pF1TBq9q1qvIeYeEvb+bZINew7Z
-	 oLCQHVOFk2Ccg==
-Date: Wed, 30 Apr 2025 08:33:59 +0200
+	b=S0+8I6l1mbFthpT1IzvMzXEMZJBe9cGpkyteul4sP/gD+CZQaFXc/Prp03BYRz3Ac
+	 K2ac5c2s5IgBLnnVzfufMhZR8sqYGMvXrS3qkKzH+4XiggLLbNNxaXiCJYTzNP+3O4
+	 RW8Ga767/nq9NsK8m8E0qD6W8OgR1VnsL4elc4srXSbuKUBUD1ATLJxWVB90P0Abal
+	 gIL6jFKZHNNoij/zg/gDVt9PvQsKxyg4LUJumX0eIXbeUZnuNH97Yo+C2TMTpQ+6D/
+	 8tDtpWmqF6qWj6tC2ArxMcgV9F/1NoJOQG9uX0yucecjDVB+OgPNOS+HZYvRcRUjMo
+	 fzrhEQmSw/4IQ==
+Date: Wed, 30 Apr 2025 08:35:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com, kernel@oss.qualcomm.com
-Subject: Re: [PATCH v6 1/4] dt-bindings: arm: qcom: Add bindings for QCS9075
- SOC based board
-Message-ID: <20250430-enlightened-enchanted-jellyfish-7049d0@kuoka>
-References: <20250429054906.113317-1-quic_wasimn@quicinc.com>
- <20250429054906.113317-2-quic_wasimn@quicinc.com>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Andre Przywara <andre.przywara@arm.com>, Corentin Labbe <clabbe.montjoie@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: sram: sunxi-sram: Add A523 compatible
+Message-ID: <20250430-fanatic-singing-terrier-68acbb@kuoka>
+References: <20250430-01-sun55i-emac0-v3-0-6fc000bbccbd@gentoo.org>
+ <20250430-01-sun55i-emac0-v3-1-6fc000bbccbd@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +65,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250429054906.113317-2-quic_wasimn@quicinc.com>
+In-Reply-To: <20250430-01-sun55i-emac0-v3-1-6fc000bbccbd@gentoo.org>
 
-On Tue, Apr 29, 2025 at 11:19:01AM GMT, Wasim Nazir wrote:
-> QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
-> Unlike QCS9100, it doesn't have safety monitoring feature of
-> Safety-Island(SAIL) subsystem, which affects thermal management.
+On Wed, Apr 30, 2025 at 01:32:03PM GMT, Yixun Lan wrote:
+> The Allwinner A523 family of SoCs have their "system control" registers
+> compatible to the A64 SoC, so add the new SoC specific compatible string.
 > 
-> QCS9075M SOM is based on QCS9075 SOC and also it has PMICs, DDR
-> along with memory-map updates.
-> 
-> qcs9075-iq-9075-evk board is based on QCS9075M SOM.
-> 
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
