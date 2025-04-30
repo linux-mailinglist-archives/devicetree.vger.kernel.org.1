@@ -1,97 +1,133 @@
-Return-Path: <devicetree+bounces-172166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F236AA40C7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 04:04:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66407AA40CC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 04:10:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7616D17F338
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 02:04:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 541237B5CF3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 02:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3FB7F7FC;
-	Wed, 30 Apr 2025 02:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD3A7F7FC;
+	Wed, 30 Apr 2025 02:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Qi9o/yJn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JkWbyyU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m93197.xmail.ntesmail.com (mail-m93197.xmail.ntesmail.com [103.126.93.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20667405A;
-	Wed, 30 Apr 2025 02:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.93.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1E12DC773;
+	Wed, 30 Apr 2025 02:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745978658; cv=none; b=F/38LPhjfBbY1ePH1Q5L7hF2kQDqNnLIrg0nD4m+nNaZJWC2CEIVPtTJgjzWWpcmjn+R4844FWevq3SReGEMzTOZhAVIAVap8SX04qQ76bX611+R5M3LnfPKGBJ7msmbgwg49/p0j5p/IZjwhWORSz52AKiWZ3VLGKPz+eyISWE=
+	t=1745978992; cv=none; b=C2AHMYTuVeSt7IMwZ/MSCdIGQc6YRVWMqamnAuARqu1FNRPeFeD5dNT6iVnO0ndVPXVnnLV1ja8GWg9nv662H9SebnjD5rrdWhke+iFsjVdMWsGRH6DHCgM3Cq2uyvFIkrBmoLdlfinmu5oGQZAatMaloDcQByh+FPmdWpgYLns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745978658; c=relaxed/simple;
-	bh=zY7m/i5fkkk0qT0ubn4v6yh7AcHEEjb6q0ezIKXYFq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CWN8qnGQt1dOY71NTb9iL8+VxiMR0InresWFTOGlAP56ISqeZY5T7Nq3lYyH/fdXa4/gWXt09X7ffYlfE+U3adGxABSw1GSHZtbFdPVY7dKi9cGFXwbfJjNMkASyA6pELAIP6p08/v8d1E6jh5kJNKVofleoJr8fSlzuoZM92bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Qi9o/yJn; arc=none smtp.client-ip=103.126.93.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1398a2eb4;
-	Wed, 30 Apr 2025 10:03:55 +0800 (GMT+08:00)
-Message-ID: <3c66f508-6192-4dd5-8561-d746665952b5@rock-chips.com>
-Date: Wed, 30 Apr 2025 10:03:53 +0800
+	s=arc-20240116; t=1745978992; c=relaxed/simple;
+	bh=dJDRfGSDRxXopbOKTfj5XmSOmmNS7V2PF5CY2+miZBM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g6FhU4C9oH/8EuHjRTgxV/AcDFria2xn8WnlFLG1EYCYKgnsfz8qr/hxhhLimLzMl2vY5LnDI+eWwIPYS3b5zIkiGdNRQEz9bS0LcEh8zlh/Zn1FuNkFnk3Xqx83nchuFFd/Am8ziE5/RNLPZrxmw7i1IsQFQitl8rmOr+rU+Z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JkWbyyU0; arc=none smtp.client-ip=209.85.160.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-4775ce8a4b0so133670951cf.1;
+        Tue, 29 Apr 2025 19:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745978990; x=1746583790; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gMRCqnYomW+wsK1zzIEugxafFdeEE4BP1eOXuKoDm5I=;
+        b=JkWbyyU0Jonk9WWiTWe0gl0gGkp+2ale50mVksnQoAHQRiEdKJfC8rOFkdceTojNjy
+         dmVQmZSraQcMSimYtSciukDfhriWLtGYJDY+2hIoee9Yt/f6PhcygV/yCQxyVNKfxUwJ
+         QTozA74hVY5XS2h004l2yeK9jjgMBysGbU9zgG8DB07TpKvWB1czp/fUu+xrjjVf0mh+
+         /3hd6a91LIFqG0KJYstzywJPXzKUeuSxU3rKpc0M0g9h/eBOSjBa+DTtxuCoahW2V0R7
+         XPkeiH3nOK0WsYfiYGZoqzrdmqxwEnAWhC9cBdKW4RKNeLnBWS3dUnH13JVwKmaryZf+
+         eLZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745978990; x=1746583790;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gMRCqnYomW+wsK1zzIEugxafFdeEE4BP1eOXuKoDm5I=;
+        b=USjaeK67wxTLgeImRFS+HDWoAW1WuhLRNE870EYTDGvjrepwMRG89PNZyytzNZlU3f
+         S5I8Ty3bqkp07HSNJAvWMoq9f6lyB6M3butYrueDJkGRSyJA4tCexPFpElmAVoj6IWP1
+         IzseSWoxp3T7ZOFAGgFdfD+1LOl+b96wwJnRsbORMaMa2uQgPdNKbG+ZaTMMSQ3FVjZy
+         EF78WrUWLuNuy1aAkW3IVM2ImC8rB0yDECN5HE63Epk6ntvxdNeuBwo92qQ50hqT3kSv
+         lem7MZxQH7z6PUUSH66OvGSZqk0+EtZVHwD3QXmhMFU0GJd5Oi7NGvGu0mekhA4aN9hH
+         Isqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfCgaN2Dxe0rbKSeWSqcG2vnAxyRCQxV/WR+xohU7JqrWYchZzTxXIwcEAS1pUnO81LZXx3hOaYsJy@vger.kernel.org, AJvYcCX+LBdBIkAOVpNxqWhnj9wSSw+bA/CTDB8sCKVIM/MXHB3grQBuTVhefH+GiYCxBaDO41xSyewtI8GwMqpK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXvyZ+hZhRpkxYN+nOVBw/riCmPj7mCvugDYwLlc+JlnrbDj43
+	FreMFbS9MLZJj+G7Y9ZjYKugGxVsrJanMNPtIXZ4hisIGxbdwKFq
+X-Gm-Gg: ASbGncsImJCO5FizhD8EAV8TREY26Wn+2dBMZkxDOjGN5onVKYYLVRwxeum6rnKGYwr
+	imQAx4MTNRk66kZhJxqZ/sWsPld+B2lXyNdEbLuLzAuvy72ZfPBGecfp+6vAMw1IvXAg/V/TaJB
+	fMo2/NWGcQJbCFmcc9iwX3TS6FCWzooDS++M4KcYXuWdo9uBN6xvoeYw7U/uTzMeLHOsu/pvjBO
+	7sJW0LtA7tchwQTxE31mIY5WGAxXK7LdwInUSXMlXHUoujqSTNXgR6FNQ22yVeI5V0A6PTmoKip
+	T32M0EAblyumgAhF
+X-Google-Smtp-Source: AGHT+IH3QEcqlp51tOnN2l6ZLTNjrQhnIbAtp++1IB7gybN/d7hCg0IFcRClQaapkL+poJtpoZTgVQ==
+X-Received: by 2002:a05:622a:2617:b0:476:60a1:3115 with SMTP id d75a77b69052e-489e63d86fbmr13994811cf.33.1745978990109;
+        Tue, 29 Apr 2025 19:09:50 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-47ea1ba2868sm86855891cf.74.2025.04.29.19.09.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Apr 2025 19:09:49 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH 0/3] riscv: sophgo: cv18xx: dts rework, part 2
+Date: Wed, 30 Apr 2025 10:09:28 +0800
+Message-ID: <20250430020932.307198-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3399-evb-ind board
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jianfeng Liu <liujianfeng1994@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Jimmy Hon <honyuenkwun@gmail.com>, Quentin Schulz
- <quentin.schulz@cherry.de>, FUKAUMI Naoki <naoki@radxa.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Alexey Charkov <alchark@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250427094211.246-1-kernel@airkyi.com>
- <20250427094211.246-3-kernel@airkyi.com>
- <6291f6b8-75d3-4243-9935-9b64450e2b7f@lunn.ch>
- <c583c59a-d5b7-4e20-9a1f-96f51bd7b4f3@rock-chips.com>
- <15ee1a6b-55ba-41e9-b8a0-6e0bf62cabf0@lunn.ch>
- <027de192-4227-4010-a759-5283b6af1531@rock-chips.com>
- <c9b46d09-f1ed-4549-8267-9a38ceca6461@lunn.ch>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <c9b46d09-f1ed-4549-8267-9a38ceca6461@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ05MTVYZSBlDSk4ZQktISR9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a96846fb72b03abkunm1398a2eb4
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ok06Njo4GDJKNy1MCA1DCgsp
-	TgIaFDZVSlVKTE9OQkxDTU9ISUxDVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
-	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSUtDTzcG
-DKIM-Signature:a=rsa-sha256;
-	b=Qi9o/yJnFnGDgKs0UMtWAB+KmxAU1cggUCmbwwZZvSgaw9HgdNIBQbnVSDAYivJSgWn5fEJyOWxU3NDN0AtKDtfizNo1gcFjpl8ZnNRIhBx/cn/Tf18qUuybJbdYIETC9Sqvm2L0hi5+QChG3fQVg13Prv4pe6D8izTHZUjdeQE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=DKR60j4UMg5PnXkIvOcvtrX6NGX6zXBYsWyUwoAwfA8=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+The part 2 of dts rework replaces precise compatible for existed clock device
+with old wildcard one.
 
-On 2025/4/29 20:22, Andrew Lunn wrote:
-> Please consider how you can fix the MAC driver without breaking all
-> the boards using the wrong rgmii value. There are a few discussion
-> about this on the mailing list if you go searching.
+Inochi Amaoto (3):
+  dt-bindings: clock: sophgo: Use precise compatible for CV1800 series
+    SoC
+  clk: sophgo: Add support for newly added precise compatible
+  riscv: dts: sophgo: switch precise compatible for existed clock device
+    for CV18XX
 
-Thanks for the clarification. I'll fix the problems in the RK3399 gmac 
-driver in a separate patch series. In v2 of this patch, I'll remove the 
-ethernet device tree content for now.
+ .../bindings/clock/sophgo,cv1800-clk.yaml           | 13 +++++++++----
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi             |  2 +-
+ arch/riscv/boot/dts/sophgo/cv1812h.dtsi             |  2 +-
+ arch/riscv/boot/dts/sophgo/sg2002.dtsi              |  2 +-
+ drivers/clk/sophgo/clk-cv1800.c                     |  3 +++
+ 5 files changed, 15 insertions(+), 7 deletions(-)
+
+
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+prerequisite-patch-id: 94fb3d26e017cf839b4dcb4bf85624614a94b9ac
+prerequisite-patch-id: 8f4a8bdead0e4e3d6904adbc0fd150b7dffefc85
+prerequisite-patch-id: b30e850690903c3ddc3d8bb77a99e97934dc9dde
+prerequisite-patch-id: 6e1117694a53a0059b145ad4751ec204cae0db35
+--
+2.49.0
 
 
