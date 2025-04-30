@@ -1,282 +1,217 @@
-Return-Path: <devicetree+bounces-172301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7033AA46FF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:28:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C67AA46BA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 466BC1BA5B11
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:28:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A1FD1C00D8B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E947233156;
-	Wed, 30 Apr 2025 09:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44745218584;
+	Wed, 30 Apr 2025 09:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T0ALInuV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cTQn8R5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34533221F03;
-	Wed, 30 Apr 2025 09:27:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324F178F44
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 09:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746005265; cv=none; b=AZSxFsJ0cTZAat7YDp1iYSmJj5oFcsFkhno9rjjHlUR0R9YDtvZAfvjmrWRlw+WiKP/xonMwdUQpJWWbAT6rJ5K8DA3uWyznxrX7fwJr4AvlaznhEBGLGbM8+GUYEwWh2HcHmCsYvL386hrE+JICn5u78iKPh2qkhz9FgglMOqo=
+	t=1746004556; cv=none; b=Zv4ug6J5xSiaKFZiaIdX8IxjDulW6A7GphUmV6EErobWyE1ujZ7YG6/fRaIAbMlmaBjwyc5SDDjs1/KCrCZz4FtHP5u3jzHE4qmDy5nJ3bloV14c2Y0+WSSlTKX5QA4wrWdql9ewSlaV50Y2gjXoDlG5scC0VUy5tvDzvC+dBJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746005265; c=relaxed/simple;
-	bh=glpH88pfvH7StBOd9nEA4l/NrucuG2u08NFOjlIyols=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TXewrhSxVSktVyv3BMwXWRQ1HP6ofJoX7gGyznLyxpyMbhfDJrngWGu/B3E8KwfQivjKTGZR4do2qkSeNvYyuiDpMc5GyWDvVgjGzMEenv/ZK7ysHcOnqdDyvfUcSUv0fCr9VHwaxgiyqsMui1wurk1EozXbeTMFRIR4LrT+IsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T0ALInuV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A63B9C4CEE9;
-	Wed, 30 Apr 2025 09:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746005264;
-	bh=glpH88pfvH7StBOd9nEA4l/NrucuG2u08NFOjlIyols=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=T0ALInuVXID6BOiXeVU6ecThxdMK9xGfYhIl/pDlKbPl027xA0ZZwyf/T3cCXEbfl
-	 GXaUDcp00SOOsBXBB92II+lbYqpCBRyhzJoR6Gbb26Hajdaaqw8cEjd6vqFJDQeezM
-	 nBlP3tNID9Fd8pPxjeWVDXcSSC6FW8R78ne/1gAfNLuW3Aa3D9eAFjZk3E0tF3dnmK
-	 GP+QrsIKG7NRLHXhNqtrmbLTmAleVCGj9wJwMt+AMpzu5MfzE426jqnmrbo5QCaa2A
-	 as5okmiavTl+3b8q+5ZuSXd4Gbha4WUFt6RJUHfJEbjfsynSJP5qtrinGN7rX8mZcD
-	 WnnLJASiwu7Qg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91DB3C369D9;
-	Wed, 30 Apr 2025 09:27:44 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Subject: [PATCH v6 00/13] media: rockchip: add a driver for the rockchip
- camera interface
-Date: Wed, 30 Apr 2025 11:15:49 +0200
-Message-Id: <20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com>
+	s=arc-20240116; t=1746004556; c=relaxed/simple;
+	bh=WtneIc0QDfp7DDBdSDxXokPJOzOSITmmPNHBQnSD4cs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FbmmHdtKxVhIay9flSfzssYiuY1owA7veuNPs3r3nm/NVf7Ggl++15/U9qH+ylNWX5PvZTdWCERBeJSOxcUugFgbUZptxqAVpG09gysGFxpluPpjMINJz0nZoPaZMgUnlpAsSkgAmJHn7/VxJn1vNHZ/oonIXGRbiEt024FNokg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cTQn8R5Q; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a07a7b4ac7so2306676f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 02:15:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746004552; x=1746609352; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iGp+BEJIsu8tiMnSTnVm5SKGOdus+/7Cz1jcp7uu/9c=;
+        b=cTQn8R5Q7G3HjGw/qU212gP76XQx3D3AQWqevQV9Irzo8jD2roHaxf/misjNRu6KLp
+         s+TdkBoZ3fuePN5p7H4SOFOYTO5xKe5OSSkEJTm2TyVCzILIzK8eb0bM65ApmlnJk9xA
+         kck2KrSehPyZAQGtO9TaC3/d/TXALbjhkRS8fcmLVduFJ6YvJ0xuel9831nmiByoaxY4
+         nPCJfo1eY2xd00p7DFWhXxnVm4ahM692ao991SA6Oov/kAZHh1Ium8xlj2n05X4AXEr5
+         cAa6jGoPhi7Sb8JInj9CWwo9sGm/uMByq08SNPikDdDJ75FeGZmN7yKGH5sfKG+kXL/F
+         UOzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746004552; x=1746609352;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iGp+BEJIsu8tiMnSTnVm5SKGOdus+/7Cz1jcp7uu/9c=;
+        b=DlApHGBFA5uk0hoXML+Yp22bqm9ocD6FwyxCzw4kgantRYUV3nuUjNr4KUZkBTwA5r
+         Der+3B1SSaJWudHqOsChDi2DM2qJ1CEBAMA4aVEzWGWyb65SezzdDiFigl0MZohRQEFQ
+         qs2AI90FZUPHRHgiTlLnG+yUfX/sK1s2dRUIuAaL5OEo33MivZjPlZi6VMzKju7ORoro
+         gEC6dClC1IkJM9eznSjNuoPWr/U8zarDTbl/x9kgMZDJ0LOeToVWot4D/xNXlGRYOCH7
+         op2kqkwe25jUHGWRfc7eoopTpCJ5N5J3Ghsyu+R1kxvTI5P4g5CG+IqZsVAsgMqOCUMP
+         Ea1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWSE2wYXLAh3ExznHh6MDVdwGDW2ZrynqGk+1+XRWnNc0rRoX3j41O9uqSKcbBV0oasxsELzc2ejnos@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeA9hVTCr3Wm25HkqG/1as9agy9BU9FQgAxOaJmabyCZftdFoR
+	WXJ6WXtLjWg7zcTGd6bBLC94F751mgi/nUfJejrK5E3Fa8V5eXlJUVloCNTgB28=
+X-Gm-Gg: ASbGncscP01L4I94yTKFdJAhoj9t47tcsuwjxq3STx/CMcna/K6mS+kGQHoVzMN87ry
+	ApKXi6q1E8Hd0Sr9x/STtEvGG6OuUfPC95fI4ejGh7S6j4OgqOG6G5F6mdt6jhs/2ispGk7S6wW
+	iOft+HMNwYprSeudTSWHb92Z0uSBs/9w8wCPzghqxEF0xqEn4TV/mGkAlruDbeOORWjjiBWo/J5
+	rGeFbdmBIA2Gv1zPPpsUa//dgtYy8Qt3zglUNtOudWmA1SJcvuLmgCJpRy7HUt40CgB5hWT638j
+	jF/Q15+78L3wXmbWtrLzx2Ndfa28i1D3IKjtMe1LiwMebe4g4mgYSE1Ja78Scr5yfLetrCNG/UF
+	qVRk=
+X-Google-Smtp-Source: AGHT+IFkPR//rOgO0Nj6VP0et5o5R5weTdk43Q9O48THz0Bb0Mc82kvtuhKb+SHshn3v5YQdadMBLQ==
+X-Received: by 2002:a05:6000:2284:b0:3a0:8c68:19b7 with SMTP id ffacd0b85a97d-3a08f7985d0mr2116855f8f.3.1746004552519;
+        Wed, 30 Apr 2025 02:15:52 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073cc4025sm16666218f8f.56.2025.04.30.02.15.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 02:15:52 -0700 (PDT)
+Date: Wed, 30 Apr 2025 11:15:50 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengfei Li <pengfei.li_1@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ye.li@nxp.com, joy.zou@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH RESEND v6 2/2] thermal: imx91: Add support for i.MX91
+ thermal monitoring unit
+Message-ID: <aBHqRu7qmDlXyFeR@mai.linaro.org>
+References: <20250407-imx91tmu-v6-0-e48c2aa3ae44@nxp.com>
+ <20250407-imx91tmu-v6-2-e48c2aa3ae44@nxp.com>
+ <aAIkAF_AHta8_vuS@mai.linaro.org>
+ <aAJtwxBtBX4ofy/o@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAEXqEWgC/33OTU7EMAwF4KuMsibIcX5oWHEPNIskdWgEtFVah
- UGj3p10EAyIluWz5e/5zCbKiSZ2fzizTCVNaehrMDcHFjrXPxFPbc0MARUgAs/PUpuGlxTcyL3
- 1MlqLOirF6ol3E3GfXR+69eiVujbxIuS6GzPFdLpUPR5r7tI0D/n90lzEOr2WFMMbPg9jCr/7i
- uDA0TTgRHRGgX94G17i59e3Pc1shQt+YwLF3T6GFfOiVU0TQ4BWbmLyC9OAYPYxWTFjWxGFJR0
- UbGLqBybsPqYqRhaMAXAk/Tamr5j87zNdsVj7NGqpogx/sGVZPgCjDpKBCAIAAA==
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@wolfvision.net>, 
- Michael Riesch <michael.riesch@collabora.com>, 
- Mehdi Djait <mehdi.djait@bootlin.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746004564; l=8722;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=glpH88pfvH7StBOd9nEA4l/NrucuG2u08NFOjlIyols=;
- b=VqraQhLXJuQ7bwjc6OBrqVlq/Sn4+Etf5XcMdVjvIJy4FBVgN6nr3wPBt4W3WqzxbcU2abklV
- 2x3ymr+pNt8Dke9efZkBFkmfsKh8oatCg45t2seUZQz9vvDRalWltnA
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
+In-Reply-To: <aAJtwxBtBX4ofy/o@lizhi-Precision-Tower-5810>
 
-Habidere,
+On Fri, Apr 18, 2025 at 11:20:35AM -0400, Frank Li wrote:
 
-This series introduces support for the Rockchip Camera Interface (CIF),
-which is featured in many Rockchip SoCs in different variations.
-For example, the PX30 Video Input Processor (VIP) is able to receive
-video data via the Digital Video Port (DVP, a parallel data interface)
-and transfer it into system memory using a double-buffering mechanism
-called ping-pong mode.
-The RK3568 Video Capture (VICAP) unit, on the other hand, features a
-DVP and a MIPI CSI-2 receiver that can receive video data independently
-(both using the ping-pong scheme).
-The different variants may have additional features, such as scaling
-and/or cropping.
-Finally, the RK3588 VICAP unit constitutes an essential piece of the
-camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
-units, and a data path multiplexer (to scaler units, to ISP, ...).
+[ ... ]
 
-The v6 of the series adds a media controller centric V4L2 driver for
-the Rockchip CIF with
- - support for the PX30 VIP (not tested, though, due to the lack of HW)
- - support for the RK3568 VICAP DVP
- - support for the RK3568 VICAP MIPI CSI-2 receiver
- - abstraction for the ping-pong scheme to allow for future extensions
- - abstraction for the INTERFACE and CROP parts to allow for future
-   extensions
- - initial support for different virtual channels (not tested, though,
-   due to the lack of HW)
+> > > +static int imx91_tmu_get_temp(struct thermal_zone_device *tz, int *temp)
+> > > +{
+> > > +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
+> > > +	s16 data;
+> > > +	int ret;
+> > > +
+> > > +	ret = pm_runtime_resume_and_get(tmu->dev);
+> > > +	if (ret < 0)
+> > > +		return ret;
+> >
+> > Why using pm_runtime* all over the place ?
+> >
+> > It would make sense to have in the probe/remove functions (or in the set_mode -
+> > enabled / disabled), suspend / resume but the other place it does not make
+> > sense IMO. If the sensor is enabled by the set_mode function and then
+> > pm_runtime_get() is called, then the ref is taken during all the time the
+> > sensor is in use, so others pm_runtime_get / pm_runtime_put will be helpless,
+> > no ?
+> >
+> >
+> > > +	/* DATA0 is 16bit signed number */
+> > > +	data = readw_relaxed(tmu->base + IMX91_TMU_DATA0);
+> > > +	*temp = imx91_tmu_to_mcelsius(data);
+> > > +	if (*temp < IMX91_TMU_TEMP_LOW_LIMIT || *temp > IMX91_TMU_TEMP_HIGH_LIMIT)
+> > > +		ret = -EAGAIN;
+> >
+> > When the measured temperature can be out of limits ?
+> 
+> It is safety check. It may be caused by incorrect calibration data or some
+> glitch at ref voltage.
 
-The patches are functional and have been tested successfully on a
-custom RK3568 board including the ITE Tech. IT6801 HDMI receiver and
-the Sony IMX415 image sensor as subdevices attached to the DVP and the
-MIPI CSI-2 receiver, respectively.
-The IT6801 driver still needs some loving care but shall be submitted
-as well at some point.
+In which circumstances do that can happen ? At boot time or any time at runtime ?
 
-However, several features are not yet addressed, such as
- - support for the RK3588 variant (-> next item on my TODO)
- - support for the scaling unit in the PX30 (-> cannot do due to the
-   lack of HW)
- - support for the interface to the Rockchip ISP in the RK3568
-   (apparently, data receive via VICAP DVP and the VICAP MIPI CSI-2
-   receiver can be processed by the RK3568 ISP)
- - support for the MUX/SCALE/TOISP block in the RK3588 VICAP (which
-   provides the base for image processing on the RK3588)
+> > > +	if (*temp <= tmu->high && tmu->enable) {
+> >
+> > I suggest to provide a change in the thermal core to return -EAGAIN if the
+> > thermal zone is not enabled when calling thermal_zone_get_temp() and get rid of the tmu->enable
+> >
+> > > +		writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
+> > > +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
+> > > +	}
+> >
+> > For my understanding what are for these REG_CLR and REG_SET in this function?
+> 
+> REG_CLR\REG_SET is offset 8\4 for each register, which used clear\set only
+> some bits without touch other value
+> 
+> 	SET register work as
+> 
+> 	val = readl(reg);
+> 	val |= mask;
+>         writel (val, reg);
+> 
+> the benenfit of use CLR/SET register make code simple and it is atomic change
+> one bit.
 
-Looking forward to your comments!
+Actually, I meant what are they for and why are they in the get_temp() function ?
 
-To: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Théo Lebrun <theo.lebrun@bootlin.com>
-To: Gerald Loacker <gerald.loacker@wolfvision.net>
-To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-To: Kever Yang <kever.yang@rock-chips.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Collabora Kernel Team <kernel@collabora.com>
-To: Paul Kocialkowski <paulk@sys-base.io>
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-To: Val Packett <val@packett.cool>
-To: Rob Herring <robh@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rockchip@lists.infradead.org
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> > > +	pm_runtime_put(tmu->dev);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int imx91_tmu_set_trips(struct thermal_zone_device *tz, int low, int high)
+> > > +{
+> > > +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
+> > > +	int val;
+> > > +	int ret;
+> > > +
+> > > +	ret = pm_runtime_resume_and_get(tmu->dev);
+> > > +	if (ret < 0)
+> > > +		return ret;
+> > > +
+> > > +	if (high >= IMX91_TMU_TEMP_HIGH_LIMIT)
+> > > +		return -EINVAL;
+> > > +
+> > > +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
+> > > +
+> > > +	/* Comparator1 for temperature threshold */
+> > > +	writel_relaxed(IMX91_TMU_THR_CTRL01_THR1_MASK, tmu->base + IMX91_TMU_THR_CTRL01 + REG_CLR);
+> > > +	val = FIELD_PREP(IMX91_TMU_THR_CTRL01_THR1_MASK, imx91_tmu_from_mcelsius(high));
+> > > +	writel_relaxed(val, tmu->base + IMX91_TMU_THR_CTRL01 + REG_SET);
+> > > +
+> > > +	writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
+> > > +
+> > > +	tmu->high = high;
+> >
+> > Why is 'high' needed?
+> 
+> Need re-enable irq when tempture below high.
 
-Changes in v6:
-- rebased onto v6.15-rc1
-- renamed "MIPI CSI HOST" -> "MIPI CSI RECEIVER" (Laurent)
-- s/@wolfvision.net/@collabora.com where appropriate
-- renamed DVP delay property and moved it to the endpoint (Sakari)
-- implemented DT review comments (Krzysztof and Sakari)
-- implemented driver review comments (Sakari)
-- fixed issues raised by media-ci (yet again)
-- added documentation including a RK3568 topology (new patch 1)
-  (Sakari)
-- added patch that enables rkcif in the defconfig (new patch 9)
-- Link to v5: https://lore.kernel.org/r/20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net
+You should not need that. There may be something wrong with the
+temperature threshold interrupt routine.
 
-Changes in v5:
-- fixed issues raised by media-ci
-- fixed dt bindings (comments by Rob and Sakari)
-- fixed probe on systems with no DVP in DT (comment by Alexander)
-- fixed error path in register offset calculation
-- split off MIPI CSI host driver into separate module (comment
-  by Mehdi)
-- added MODULE_DEVICE_TABLE() for both drivers (comment by Mehdi)
-- Link to v4: https://lore.kernel.org/r/20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net
+[ ... ]
 
-Changes in v4:
-- added support for the MIPI CSI-2 receiver (new patches 4, 6, 7, 10)
-- fixed asserts on stream stop
-- fixed register address lookup
-- fixed link validiation callback
-- fixed issues raised by Rob's bot, kernel test robot, and media-ci
-- Link to v3: https://lore.kernel.org/r/20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net
-
-Changes in v3:
-- renamed the driver "cif" -> "rkcif"
-- rebased onto v6.14-rc1
-- abstracted the generic INTERFACE+CROP part
-- addressed comments by Rob and Sakari
-- added V4L2 MPLANE formats to DVP
-- added patch that enables the RK3568 VICAP DVP on PF5 IO Expander
-- fixed formatting issues raised by media-ci bot
-- Link to v2: https://lore.kernel.org/r/20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net
-
-Changes in v2:
-- merged with Mehdi's v13
-- refactored the complete driver towards a media controller centric driver
-- abstracted the generic ping-pong stream (can be used for DVP as well as for CSI-2)
-- switched to MPLANE API
-- added support for notifications
-- Link to v1: https://lore.kernel.org/r/20240220-v6-8-topic-rk3568-vicap-v1-0-2680a1fa640b@wolfvision.net
-
----
-Mehdi Djait (2):
-      media: dt-bindings: add rockchip px30 vip
-      arm64: dts: rockchip: add the vip node to px30
-
-Michael Riesch (11):
-      Documentation: admin-guide: media: add rockchip camera interface
-      media: dt-bindings: video-interfaces: add defines for sampling modes
-      media: dt-bindings: add rockchip rk3568 vicap
-      media: dt-bindings: add rockchip rk3568 mipi csi receiver
-      media: rockchip: add a driver for the rockchip camera interface
-      media: rockchip: rkcif: add driver for mipi csi-2 receiver
-      media: rockchip: rkcif: add support for mipi csi-2 capture
-      arm64: defconfig: enable rockchip camera interface
-      arm64: dts: rockchip: add vicap node to rk356x
-      arm64: dts: rockchip: add mipi csi receiver node to rk356x
-      arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
-
- .../admin-guide/media/rkcif-rk3568-vicap.dot       |  21 +
- Documentation/admin-guide/media/rkcif.rst          |  83 ++
- Documentation/admin-guide/media/v4l-drivers.rst    |   1 +
- .../bindings/media/rockchip,px30-vip.yaml          | 122 +++
- .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 113 +++
- .../bindings/media/rockchip,rk3568-vicap.yaml      | 170 ++++
- MAINTAINERS                                        |  11 +
- arch/arm64/boot/dts/rockchip/px30.dtsi             |  12 +
- .../rk3568-wolfvision-pf5-io-expander.dtso         |  20 +
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  75 ++
- arch/arm64/configs/defconfig                       |   1 +
- drivers/media/platform/rockchip/Kconfig            |   1 +
- drivers/media/platform/rockchip/Makefile           |   1 +
- drivers/media/platform/rockchip/rkcif/Kconfig      |  15 +
- drivers/media/platform/rockchip/rkcif/Makefile     |  10 +
- .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 858 +++++++++++++++++++++
- .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  24 +
- .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 722 +++++++++++++++++
- .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  22 +
- .../media/platform/rockchip/rkcif/rkcif-common.h   | 236 ++++++
- drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 300 +++++++
- .../platform/rockchip/rkcif/rkcif-interface.c      | 426 ++++++++++
- .../platform/rockchip/rkcif/rkcif-interface.h      |  30 +
- .../rockchip/rkcif/rkcif-mipi-csi-receiver.c       | 731 ++++++++++++++++++
- drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 154 ++++
- .../media/platform/rockchip/rkcif/rkcif-stream.c   | 622 +++++++++++++++
- .../media/platform/rockchip/rkcif/rkcif-stream.h   |  31 +
- include/dt-bindings/media/video-interfaces.h       |   4 +
- 28 files changed, 4816 insertions(+)
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20240220-rk3568-vicap-b9b3f9925f44
-
-Best regards,
 -- 
-Michael Riesch <michael.riesch@collabora.com>
 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
