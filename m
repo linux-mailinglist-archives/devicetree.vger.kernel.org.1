@@ -1,103 +1,167 @@
-Return-Path: <devicetree+bounces-172275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85D1AA457C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:33:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1CEAA458F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B621188CBFF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:31:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ADB7189076E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3F221D3F3;
-	Wed, 30 Apr 2025 08:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C842192F8;
+	Wed, 30 Apr 2025 08:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="PPVjllzf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mwxz42J3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D43B21CC56;
-	Wed, 30 Apr 2025 08:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5166120C472;
+	Wed, 30 Apr 2025 08:35:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746001767; cv=none; b=C30EKGpgnzEW8qcxdgUlpDgUsO5SPPIM6dnVegu/ILk0Mic/X2RyRB4R8vrLgGFXYDHPnzy53OeAYL2PhxVICrGF6sDH+saJan3XfAVG3vauTDIqGDikZKTd0sFGuN3xsP7TKISwOeg3mN+FIr0RCEndIUCMfSsGPTVY7w6QIlA=
+	t=1746002135; cv=none; b=noCAz2BiL5lule5sVWvDy/FnajOvk0z+pEuAJlT4RohB2OJZQwYFTTmJQ1u99rxbKCl1sMFX51fGeP1G64G4x/dr9VfumoeTicK194XdjuncW52PkpIfN+7oe94OPSPQHD0DLO4d4/07eQJUvwL21q6SE/OiB0dOVC7SswY+eaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746001767; c=relaxed/simple;
-	bh=7UzvkkUxniBTkynNGdvtJvNdvOBO3RzQWPle773eRZ8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=haFHSDMfUjGPDP9ZVE+SVgXN7nP/x5kS2U/QGOPKULpN7xIH/D3nufl6CdcX8mhQWIytv9IOY+xrkU54f9GXUenYhsu/Sw6DYUPDJtqbxSA6EAT/E7+FTT/85aw9RgmOxnpg1c4WPbEKYj99s1Y2sUl4oD7xXz2JMYHDT1Of7CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=PPVjllzf; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=+sziV7MF8+jBwSYemNEdogvFX2m4sp7ZLD0VYElL25s=; b=PPVjllzf4GOZ8Kuc/PW/d8MSh7
-	TrGmSYLm0P0ko9zBkUBXv+9YehlBs+HOk1tn9e7iXgPAP0GWIi0QG7rxAAgsYt2SbLiLQvwvEl6Nk
-	oXYJ5AXHV1F+N5AoEUXeTluJb2HkmRuRGjRgTgqgsKUFT/nK8euPbYsXbpz4Y4wVmV2PmxJdJkqG8
-	y4QxjVfJbcgThgKwR6LE2A7I8OVQIxw8gxiMaE096KRW54aqgzL+Vdoo+TIdBIPXle34BMvcBrTGH
-	dc9MvV3LTFSQaW1wxYLYQDkmhwgp4NYL8/048dJdlrP9QWE2rdztbrnC6pmxFp+Oe5Z4qeJVph/ge
-	DCCK91mA==;
-Received: from i53875ba4.versanet.de ([83.135.91.164] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uA2oX-00032E-1q; Wed, 30 Apr 2025 10:29:09 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: neil.armstrong@linaro.org
-Cc: quic_jesszhan@quicinc.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quentin.schulz@cherry.de,
-	heiko@sntech.de,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH 2/2] dt-bindings: display: ltk500hd1829: add port property
-Date: Wed, 30 Apr 2025 10:28:50 +0200
-Message-ID: <20250430082850.244199-3-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250430082850.244199-1-heiko@sntech.de>
-References: <20250430082850.244199-1-heiko@sntech.de>
+	s=arc-20240116; t=1746002135; c=relaxed/simple;
+	bh=W+FK0k6Y1DqaaIqcm9kwWjYuf7rcTjsiKie9eptYe0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pXlJtKfuCBB3g68+D0OuOpAzyyhHVxtVWiMAa7PxexjSMMqnic3uEH3oFTyr/GbLBUcA4BPD9lNb4E6aX+N0yR9uD4qxAE0HzmY13Ttk0n27pOCCfvXWI/2jhmXFs5x6+PB4VrTeeqfuZ/AHmEtAMiSUNgzhN8+UCZk+0ISTeL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mwxz42J3; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746002133; x=1777538133;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=W+FK0k6Y1DqaaIqcm9kwWjYuf7rcTjsiKie9eptYe0g=;
+  b=Mwxz42J3QWZ8ViFMmQx3awbE1aa0U+jK8H0iuzQdiDxV4z2ZS+xU4TJN
+   b+IlhIaEd31hj445sT3BJxWfp2l6VCo9kJ1PbzaJlIe90PpVnTAVaYh8M
+   qr+LIWAgROWB9FS9UVAxghiSEjT4/5wRRIXOf89DxYHA3pdwaPRbJTAV7
+   SJDjD7J/Y0yzXRAqzMk072TfXKUH0G/yjk3hDvNJTyLBuGUs8NUJFkXVX
+   LtbdMb+gPs1BXGNN+azDEACxOd0VsCG4ezHXWOY5IT0Vvv9K3POOWMW4r
+   Pep1qVNxzj30AHrUK2ytHDEOuCdv/YBTU34W6Fb+UG9ua66EbmCqCi+Z9
+   w==;
+X-CSE-ConnectionGUID: K3r/oUmUT3uiG7Ovjktk/Q==
+X-CSE-MsgGUID: VjHOKi8VTv+AyYfeIX5kPg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="51471156"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
+   d="scan'208";a="51471156"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 01:35:32 -0700
+X-CSE-ConnectionGUID: OGr1YDR/QwSzSeMXOgFSDQ==
+X-CSE-MsgGUID: FowCmlJ4St6RnoWA0URrdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
+   d="scan'208";a="138872218"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 01:35:29 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id AF7BF11F7E7;
+	Wed, 30 Apr 2025 11:35:24 +0300 (EEST)
+Date: Wed, 30 Apr 2025 08:35:24 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+Message-ID: <aBHgzJ64pv0z2QAX@kekkonen.localdomain>
+References: <20250407-b4-vd55g1-v6-0-1850f18b1f24@foss.st.com>
+ <20250407-b4-vd55g1-v6-2-1850f18b1f24@foss.st.com>
+ <aBCxpuppB6L-Ft2c@kekkonen.localdomain>
+ <70f7bc9b-4533-4c8e-a792-aad9a0b7a6d4@foss.st.com>
+ <aBC_gx8vFNWLacgB@kekkonen.localdomain>
+ <622301ae-0973-4cdb-936c-3152afdbfb46@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <622301ae-0973-4cdb-936c-3152afdbfb46@foss.st.com>
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+Hi Benjamin,
 
-The panel can be connected to via graph nodes, so allow the port property.
+On Wed, Apr 30, 2025 at 10:23:22AM +0200, Benjamin Mugnier wrote:
+> Hi Sakari,
+> 
+> On 4/29/25 14:01, Sakari Ailus wrote:
+> > Hi Benjamin,
+> > 
+> > On Tue, Apr 29, 2025 at 01:29:39PM +0200, Benjamin Mugnier wrote:
+> >>>> +static int vd55g1_check_csi_conf(struct vd55g1 *sensor,
+> >>>> +				 struct fwnode_handle *endpoint)
+> >>>> +{
+> >>>> +	struct i2c_client *client = sensor->i2c_client;
+> >>>> +	struct v4l2_fwnode_endpoint ep = { .bus_type = V4L2_MBUS_CSI2_DPHY };
+> >>>> +	u8 n_lanes;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
+> >>>> +	if (ret)
+> >>>> +		return -EINVAL;
+> >>>> +
+> >>>> +	/* Check lanes number */
+> >>>> +	n_lanes = ep.bus.mipi_csi2.num_data_lanes;
+> >>>> +	if (n_lanes != 1) {
+> >>>> +		dev_err(&client->dev, "Sensor only supports 1 lane, found %d\n",
+> >>>> +			n_lanes);
+> >>>> +		ret = -EINVAL;
+> >>>> +		goto done;
+> >>>> +	}
+> >>>> +
+> >>>> +	/* Clock lane must be first */
+> >>>> +	if (ep.bus.mipi_csi2.clock_lane != 0) {
+> >>>> +		dev_err(&client->dev, "Clock lane must be mapped to lane 0\n");
+> >>>> +		ret = -EINVAL;
+> >>>> +		goto done;
+> >>>> +	}
+> >>>> +
+> >>>> +	/* Handle polarities in sensor configuration */
+> >>>> +	sensor->oif_ctrl = (ep.bus.mipi_csi2.lane_polarities[0] << 3) |
+> >>>> +			   (ep.bus.mipi_csi2.lane_polarities[1] << 6);
+> >>>> +
+> >>>> +	/* Check the link frequency set in device tree */
+> >>>> +	if (!ep.nr_of_link_frequencies) {
+> >>>> +		dev_err(&client->dev, "link-frequency property not found in DT\n");
+> >>>> +		ret = -EINVAL;
+> >>>> +		goto done;
+> >>>> +	}
+> >>>> +	if (ep.nr_of_link_frequencies != 1) {
+> >>>> +		dev_err(&client->dev, "Multiple link frequencies not supported\n");
+> >>>> +		ret = -EINVAL;
+> >>>> +		goto done;
+> >>>
+> >>> Please check the link frequency matches with what the driver supports,
+> >>> using e.g. v4l2_link_freq_to_bitmap().
+> >>>
+> >>
+> >> Are you referring to checks performed in in vd55g1_prepare_clock_tree()
+> >> ? Keep in mind it will change a bit with Laurent's comments though.
+> >> The sensor supports a range of frequencies therefore I chose to check it
+> >> manually instead of v4l2_link_freq_to_bitmap().
+> > 
+> > Ok, that's fine then. But please check this results to the frequency that
+> > was requested, currently it may be off AFAIR.
+> > 
+> 
+> As far as I understand it should be fine in v7, could you have a look
+> once sent ?
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
----
- .../devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml  | 1 +
- 1 file changed, 1 insertion(+)
+There's still no check the PLL configuration produces the requested
+frequency, is there? Or maybe I missed it?
 
-diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-index af9e0ea0e72f..b0e2c82232d3 100644
---- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-@@ -22,6 +22,7 @@ properties:
-     maxItems: 1
- 
-   backlight: true
-+  port: true
-   reset-gpios: true
-   iovcc-supply:
-     description: regulator that supplies the iovcc voltage
 -- 
-2.47.2
+Regards,
 
+Sakari Ailus
 
