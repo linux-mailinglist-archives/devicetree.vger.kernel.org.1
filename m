@@ -1,255 +1,274 @@
-Return-Path: <devicetree+bounces-172204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38F4AA4307
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:19:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FE1AA4315
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:27:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88CE43AA2CE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:18:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89AB81BC4643
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143061DE8B4;
-	Wed, 30 Apr 2025 06:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659771E8354;
+	Wed, 30 Apr 2025 06:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y5ReXdpY"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="raXIdruU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2055.outbound.protection.outlook.com [40.107.22.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A3A81DE2A4
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:19:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745993951; cv=none; b=SFE8NtU85IvLwEh4g9wLf9nv6rRadLyaZVC4+ZC9jLt29936JtqHoDSnMChT4nPcUtSHeW9l3KxZIo7HJFriT/oPRKOpTtqJ1Z6ClTvhTj+zIp8DE6AgDrZSyn+ZTMhiZmnN1upREsyzehMrtqvZFEyS3qei+2photgyXXo1c1w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745993951; c=relaxed/simple;
-	bh=jL8xvh7MmkitMTTRNILqXKDjV0N1bxWKo2Q8EiScK1Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=czT5KovyMrOPFZ2mADf0ogiWXVxHTralYLuwkS21HdZH8tx5FSnaTo01Ky509RkalKg+0aTe0yBJ0qx8gr6xtynUTO+iNByu2GHeyxGHp4Y1Q1y2y/ESoLTGHSqKCta4PFmi6YRL/LTWWjqGXeW4vM78prRN29Gk0zJnqlGP7Qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y5ReXdpY; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cee550af2so4670195e9.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 23:19:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745993947; x=1746598747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=F/IL0XFmHPKxoC9j8t7metTTcJtVydc7qbX+iUPXrhg=;
-        b=y5ReXdpYq/EtyCImuzDwATPZXNHJDr6ntVi7ljKUuzEa73l7Ds7nyLyGTw7R2rLRBD
-         hc/ssxdR4GXtgk5xXMLmZxkS4dEV+gSG+q7CP/i4G72TRcqgMMT+Xt7VrWDlr13FLw09
-         q/WalHJ2Cbm5KQnW8XJkeJB9p3BNchlRO9okEAuzCW5xPyfqOfBv+c7Rw3ns/BaVTyp9
-         YkMoySomRrWhTXtheZjP5aCMdXMcLT+hcOD3zZ1gIGtDSX82ji5BzNiGvPuC8CcvUWQx
-         0z1j88F/bHjmlBYrsVEYmSXbkwo/rAtFG0pn2nb/OTyKYezHWfxpj8CLyZmf1iFyp0Np
-         5llw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745993947; x=1746598747;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F/IL0XFmHPKxoC9j8t7metTTcJtVydc7qbX+iUPXrhg=;
-        b=oMPWFPpWajNvuPvZYc5r5wu+LWMZ5LC6sTWeovPyDn3hOi3Drzn+qA1hs2jDvtA/No
-         nlx0rQ+WUScWwZrCJ9VOGSUvP0INaupJtfj3MQVbSHCneaE6K9Y0cCYCu89r9DIgxOwa
-         5OUK8BZP5Vxtb6d/nZ9GtJKOZ0rgGEjm4mfF+qaJyhif6OSEPIyMcPqUi/ElE3axCxa6
-         5P/mHzkN2B6mFC5xK7jw7dMhTyFEEWaCnQv2UyjONAsDZ99Egb8PcL7MkRk24BJbM8HJ
-         u/9kjyEEPvzoZYAtAQvXoyT+MbA/c3oO8iMSVob7GyFfXgRJAJ0woBet9ke7YU/YwysT
-         v6ig==
-X-Forwarded-Encrypted: i=1; AJvYcCX6LaIdgFlf154mFrbsFfhPLLollSLXjv6+1HrqJx5dEXsLnZ1NCAItWyI2NQSq3MxeYzLHvxXOLOzT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTU7xjPMUgisW6+0/MOzQc/mNMIxL2en3le1lX4z8l9LpV/xGc
-	8uzkNtUPFMfo/m/4bhbUzOD8Sqbv3ut2nUcYDO23gcrVBFsRXPrivNgUC3xbj3E=
-X-Gm-Gg: ASbGncs5uPqbG2WZMKR7hn9l2rx3C6BPLduzjfDIhUvFi10qKLVYcU9xnmr0IyKdd37
-	Pmwxf06FxvHLebYjgVc4S7mDNBfTZpYmt5FZXrqdsqoYl+VTNwS4nxqMF39YeTSkL4z+XO4PfV+
-	+vbU9qbiV9uxnE5PQ4GYN7KG9XISzkHK0mAen9nKRTpLK2y4aMjIeKYbyvmNtQPA0TH9EXfJ4at
-	tcEqYoXqyLW1bEN8bf0C5hsHtrkYunyVfqHz6JnXenk8Bthzm9phIsvtFpPOjUsciqHVUeJq65S
-	v3S5XfnSs3e45l/zBqm/tS4M+twCK6tOiUhe3Y63oQJOTR6+IGWKHDwNebg=
-X-Google-Smtp-Source: AGHT+IGwlSSk/V975d/cid6eJ9/Q9UkNNxcjOHYawcjiK6gUy1kVrfYZq/K4ZlmgsJ8PDkUnk3LTDQ==
-X-Received: by 2002:a5d:5f81:0:b0:3a0:6868:8b13 with SMTP id ffacd0b85a97d-3a08ff57663mr348272f8f.1.1745993947391;
-        Tue, 29 Apr 2025 23:19:07 -0700 (PDT)
-Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46976sm16110911f8f.63.2025.04.29.23.19.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Apr 2025 23:19:06 -0700 (PDT)
-Message-ID: <0e007f7f-d9ff-4b2d-914d-ad62b9983bba@linaro.org>
-Date: Wed, 30 Apr 2025 08:19:04 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8631E5B7A;
+	Wed, 30 Apr 2025 06:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745994427; cv=fail; b=Ox2nONOtLp7VC44Pcrg6DmVCYJsW3hNCPnvl6rJKnUGBSIzqQ3+PgPxyEhr8xaBbGA9ZSHdXIhKDi1fiCNTMIhaQH3n5FR8vwZ6JE+hVqsKc0GLwZJcW3dlTYEZX2NTuBkRtz4dokjZdLqkoe+Mr+tg+x+8uXtHnEULKKgyWASg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745994427; c=relaxed/simple;
+	bh=BUlpOPiRooA883LL+4k6Y77XRMSPf9kzrlCMzYSxogw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Z1Z1T6JD3Yqd2G4aQLRcWsxm9yeSH8/WVNzfqRdYF46kJjTtwjmo2G0xuuvP1ZwKDukmoBKa6lKZwhj8fkTlVhFaU5MSMJPiuZZPjjNS09kHqlMQ1KkUAqZb06YCqWqhLneMYt9Sn+9W/Ci7XiUTWP+pdBy9jGHXeja5gMRiqiM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=raXIdruU; arc=fail smtp.client-ip=40.107.22.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rKcIQ2VNJmgkCSpQWDIFDW4wQyOVNLWiYBHsZXdPo5kb9CjYgv9eIdbwb998LARIvtfXpflTlkHRwtaNvEZVp67fl8LlXp6R4ytLmkzzZ1knj+IQtIfc/vitu9mPzSOOJUmk9dc83F8vA0/PnTeODe0D7UdNlxIBguiY9SSRYNEE5cuVEY1RJoKfua3LUxLzkCTkzNVhh3soOZl1LOuQAicYlACjeA+vnyiFk2OIQb/M1ajzGxm753dsmDlTuOaf5DmvChDcwccS/aJmN2h36TlpLijUkU0H4W042lFn/+pkbkYvBjhPPkTSjRqB3T0exDN2gGzTCgFPcrVJ/g8/bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dP5lYqnnUZzT7vFhBSOAXf+EM87XWW6iO7UuZaoPYPA=;
+ b=BnuMXjRLV+DNSzfsCIR9ssm4x3tC4OfGu2opnhEvh1I6hfvtB9EmAp0k4CNQ5rM0vKqSDKhR04PYLMSsCAqicfvXLPJ3ZvQVre7nwFlWSot60A3NmznzP3Lq4/veJq4sIEllAN9hR2vmjP1cWz8TZNSfvAz+oeO/tJohw8XMPXRYlHUTsLxsf2ttUYiQwtthy9/uprFRXsKkFPXMOIuE1p0cYDf5VG3nSkMQfWm35V3Ay1TA/F7Arh/6uIH7ZZcpV9QDAJzG1CC9qLuc7rVTJxtHvhEvI6+UpQXoyrcY+W4GWjEF1fGOz6KlfANJcXo6+Cx2Fpoe9xCI3TynCdceWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 139.15.153.206) smtp.rcpttodomain=buenzli.dev smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dP5lYqnnUZzT7vFhBSOAXf+EM87XWW6iO7UuZaoPYPA=;
+ b=raXIdruUkpz2FjaNO2mWoOcQCzemkmx75t2I7S84MaVi6jK8xElZUy7XU2VXOmm5TmYFtBJoZ1V72A65hYIAIO8BAl2jWKqWRGept8dMuACZgOSBcc/azYsaZmeI0FEDDF5zHV3vcY3wjt1/sCdqiplRihUDudWTCv3fD3bBb6pllAjPB410Om+qlq9vW0tAV2qYzWSb8cKq8ouaLji58lZGqx2LGQ1KgdzvXRnVz7FYS+M6guvW0F784oqDUqyl8e8TEECM+zNvhZkEAy8iTHtHBjRtWulpO+d0XBuUYFbd0fYjHC+Bmfw1zvOeIQYji+mjfgtGRAlyZkDaITMe7Q==
+Received: from AM9P192CA0011.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:21d::16)
+ by GV1PR10MB9159.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:1d6::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Wed, 30 Apr
+ 2025 06:27:01 +0000
+Received: from AM4PEPF00027A60.eurprd04.prod.outlook.com
+ (2603:10a6:20b:21d:cafe::ee) by AM9P192CA0011.outlook.office365.com
+ (2603:10a6:20b:21d::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.38 via Frontend Transport; Wed,
+ 30 Apr 2025 06:27:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.206) by
+ AM4PEPF00027A60.mail.protection.outlook.com (10.167.16.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8699.20 via Frontend Transport; Wed, 30 Apr 2025 06:27:01 +0000
+Received: from SI-EXCAS2000.de.bosch.com (10.139.217.201) by eop.bosch-org.com
+ (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 30 Apr
+ 2025 08:26:51 +0200
+Received: from [10.34.219.93] (10.139.217.196) by SI-EXCAS2000.de.bosch.com
+ (10.139.217.201) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Wed, 30 Apr
+ 2025 08:26:50 +0200
+Message-ID: <e2dbf92f-5024-4dd2-848f-3d9e2f85698c@de.bosch.com>
+Date: Wed, 30 Apr 2025 08:26:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8750-mtp: Add sound (speakers,
- headset codec, dmics)
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org>
- <20250424-sm8750-audio-part-2-v1-2-50133a0ec35f@linaro.org>
- <dd271e8c-e430-4e6d-88ca-95eabe61ce94@oss.qualcomm.com>
- <e61e17ca-fed7-4712-96fc-a9a2339de1fb@linaro.org>
- <9b6c5f67-0bbc-490f-9982-4e28218aa6eb@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9b6c5f67-0bbc-490f-9982-4e28218aa6eb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v3 5/7] rust: property: Add child accessor and iterator
+To: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+	"Alex Gaynor" <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+	<bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
+ Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<rust-for-linux@vger.kernel.org>
+References: <20250425150130.13917-1-remo@buenzli.dev>
+ <20250425150130.13917-6-remo@buenzli.dev>
+Content-Language: en-GB
+From: Dirk Behme <dirk.behme@de.bosch.com>
+In-Reply-To: <20250425150130.13917-6-remo@buenzli.dev>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM4PEPF00027A60:EE_|GV1PR10MB9159:EE_
+X-MS-Office365-Filtering-Correlation-Id: 490569ce-fe2f-4c3d-3512-08dd87b00499
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|7416014|1800799024|36860700013|7053199007|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TStONUY5Uy9IREdtTkkzRzl4eXZoYmZkU0VWdWExNWowUHpsYmJPSlU4K3ZF?=
+ =?utf-8?B?cWU2MkJubVNQa0hXZnEvWmR3ZzdtOVhRdW9nYndsaFIwQ0Z3VUdENjhwVURV?=
+ =?utf-8?B?V29vaml2YnRpZFpiZGRFMFBuSDRoY01IcVFxemtEZ3FocXBKbmpydGIrY1dv?=
+ =?utf-8?B?TEU1blZ1dDlQb1FkWDNiVXorTTBFL1lhWi9qWVpuUEtYSXRkSEhsVWZYR3py?=
+ =?utf-8?B?a2xhWFJ0MnJLL0dJVUlYSUJEU1p2cjFWL1AwSUZobWV0OGpIbUM3bnYyUUlq?=
+ =?utf-8?B?TTR4Z1d4dm9Ed2pOSDBkUUtsQ1l6L2Z4MXNDb3o4dTd4THBzT3RtTE9ERTFm?=
+ =?utf-8?B?L3BzcUdhYWRUOFJ0ZVZvSWppcnA1czB1UlA0Tm05T2Zyc2xMT3hDTW1yZ3Z6?=
+ =?utf-8?B?MjVtZTgwaU0xRHJ4RHhXSkVDSXpZVHN2aDFQQ25vVGVUT1ZsbUYxV2Q3a0U2?=
+ =?utf-8?B?Z1lJOU9wZUhyd01OQW5kczc0bWc2dGkvS2hHZ0hSRXg3RER4ZmwyTEpFa0xp?=
+ =?utf-8?B?RlRBQXRvdHBWT1BtQnhra0NIM2ptNVkxV3A5MjlsbHF6SW9reHlvWitqR2x1?=
+ =?utf-8?B?TU5scko1UzFSZ09KaFJ6Mm5GeVE1eC95c2ovOU1EUzg3YnQ3U3hXMnB5UnJn?=
+ =?utf-8?B?Tjl4dHhDSVgxa3BUa3hQWkI1YmZiOFZvcWZoUmhZSXdFNmxVVEhZTTlFNGha?=
+ =?utf-8?B?OE5LZ0k1Z3dqMWZ6V2NsVm80Z2RzK2hJWDhCVVJ5ZDhic1IzOXBwKytXa0dV?=
+ =?utf-8?B?aHBNL0p3d29oNVZNOFVlZTdzMC9od3RVSEkzS05LNUZIclhuOVFKUU4xS2RE?=
+ =?utf-8?B?SStTZzVYV3NPdHRWWC9SY1B5Wi8yblFNT0JPTFB3WUdzaCtucXRvU0Exb2tV?=
+ =?utf-8?B?bXZOc3d2S01waVpyRTJMQ2ZyZmZ5cTdxd0luNHRBZldaN3NneXNrNFhBMzZ6?=
+ =?utf-8?B?bmZhSkdHUUI5Yld4TXR3VUFZaFI5bmZmS1V2TnBYUlhkeGl6Y2x2ZVJnalFa?=
+ =?utf-8?B?d1BRbEVqc3VlbUhhWFBBWlAyelA3SDY4TktjbzljSkdTa29lZjNjczJmemoz?=
+ =?utf-8?B?U3Z6VXFvWkd0Ri9FVnk4U1FZejJWN003djJQMUsySzVMMTlPMHlqZXBiTUJI?=
+ =?utf-8?B?eXdXNTdHQ0lWVnRSYjJPSG5JNXdlR09MVi8va2JLb0ZaSExvSGdwUFM4Z214?=
+ =?utf-8?B?c3djbXlFMFBpZGNia1RXREczL3c0T2tUK2hEQnhCRU9ZS3cyaiswL3VBSlRO?=
+ =?utf-8?B?MHpLNEc1ZWZxQXdRS2loMGh6eC9naExQeG92SnFhaFNGYVYzNG5HNUt5bmNG?=
+ =?utf-8?B?RnFCM3MwMnVjRmJDbzRvZDdzdVpOUnNQMmlVdk5qTkU3UklGVXVCNE1iY3Nj?=
+ =?utf-8?B?QjlSQm05ODZqbWVEVmhkVHNGNWZHdCticWtxOFJqZUI4elVBbEdQUkRvT3Vt?=
+ =?utf-8?B?WHhaczNRSVMyVlJZQVYxT0RXdjN5ZVhPSlgzT3FlbXd2MlhwN2ZTaHA4am5a?=
+ =?utf-8?B?UW9wWGp5ZnFXNE0xeDdvQ3M4QWdmMHpYamNraEJHRExpUHpMUHpsLzA0TFJq?=
+ =?utf-8?B?QVJ0Z0ZlM0E1Tk0xNTYxdEdxZkhDQjE5bENBcjl3RWRPaUV3SHAzM0dIa1pY?=
+ =?utf-8?B?TWptZ1ZsY3ZGZkZNbVExL0oySUMyR2crOWlXYlVBU3M0eE14N3R2NFF0NE1x?=
+ =?utf-8?B?Z2VnZENPVTI3eVpZQjdCVW0vbDJGdnlnMU9NYmFrVVhVUVB0a0FXY0NMRnhq?=
+ =?utf-8?B?UWUzQXpZMW9QeG1TUU1zNktQQVIxQjd4TWRrNjV3YTc5aFdjcHFQRWpJMXBB?=
+ =?utf-8?B?d0E5MGRySklSakxqMzcrZU14enBoTUp0emlTTS9XZEJIejRjT09DeXQ0T1dm?=
+ =?utf-8?B?L1pUSEl6c3l4Q2EyQUxlUEtxbk95TUtvYTloQ1BvZkRPaEs1MUw3TDJvNEZX?=
+ =?utf-8?B?SHZpVzJNUGU1bHAxQUJlMzc4anNvMTVHeHIvL2xpMjBoN3hERk13Rm9FSnI2?=
+ =?utf-8?B?YVgwQWs1N2gySUdSaVU5R3ljTUJackRNVEFxZlJaMnJHd3hTK0wwdnp4dGx1?=
+ =?utf-8?B?S28zdWZnNVlucHVqUUZYNmxxU2NhNHBwRCtuZz09?=
+X-Forefront-Antispam-Report:
+	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(7416014)(1800799024)(36860700013)(7053199007)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 06:27:01.6901
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 490569ce-fe2f-4c3d-3512-08dd87b00499
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00027A60.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR10MB9159
 
-On 29/04/2025 21:11, Konrad Dybcio wrote:
-> On 4/28/25 4:41 PM, Krzysztof Kozlowski wrote:
->> On 25/04/2025 11:30, Konrad Dybcio wrote:
->>> On 4/24/25 11:40 AM, Krzysztof Kozlowski wrote:
->>>> Add device nodes for most of the sound support - WSA883x smart speakers,
->>>> WCD9395 audio codec (headset) and sound card - which allows sound
->>>> playback via speakers and recording via DMIC microphones.  Changes bring
->>>> necessary foundation for headset playback/recording via USB, but that
->>>> part is not yet ready.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>
->>> [...]
->>>
->>>> +	sound {
->>>> +		compatible = "qcom,sm8750-sndcard", "qcom,sm8450-sndcard";
->>>> +		model = "SM8750-MTP";
->>>> +		audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
->>>> +				"SpkrRight IN", "WSA_SPK2 OUT",
->>>> +				"IN1_HPHL", "HPHL_OUT",
->>>> +				"IN2_HPHR", "HPHR_OUT",
->>>> +				"AMIC2", "MIC BIAS2",
->>>> +				"VA DMIC0", "MIC BIAS3", /* MIC4 on schematics */
->>>> +				"VA DMIC1", "MIC BIAS3", /* MIC1 on schematics */
->>>
->>> Is this a mistake in what the codec driver exposes, or just a fumble
->>> in numbering $somewhere?
->>
->> Which mistake? MIC4? Schematics call name things differently. They
->> always were, so to make it clear for people without schematics I wrote
->> which MIC it actually is.
+On 25/04/2025 17:01, Remo Senekowitsch wrote:
+> Allow Rust drivers to access children of a fwnode either by name or by
+> iterating over all of them.
 > 
-> I'm not sure how to parse your response
+> In C, there is the function `fwnode_get_next_child_node` for iteration
+> and the macro `fwnode_for_each_child_node` that helps with handling the
+> pointers. Instead of a macro, a native iterator is used in Rust such
+> that regular for-loops can be used.
 > 
-> are you saying that there are MIC[0..4] that are/may be connected
-> to different codec ports, and that the MIC4/1 lines are plumbed to
-> VA DMIC0/1 respectively?
-
-Yes, as always. Nothing weird here.
-
+> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> ---
+>  rust/kernel/device/property.rs | 79 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 78 insertions(+), 1 deletion(-)
 > 
-> I think I got confused about the MIC BIAS3 going to both and none
-
-What is both and none?
-
-> matching the index, but perhaps that's just because it comes from
-> the WCD (which is the third piece of hw involved beyond VA and the
-> mic itself)
-
-Again, what is the mistake you are pointing here?
-
-> 
->>
->>>
->>>> +				"VA DMIC2", "MIC BIAS1",
->>>> +				"VA DMIC3", "MIC BIAS1",
->>>> +				"VA DMIC0", "VA MIC BIAS3",
->>>> +				"VA DMIC1", "VA MIC BIAS3",
->>>> +				"VA DMIC2", "VA MIC BIAS1",
->>>> +				"VA DMIC3", "VA MIC BIAS1",
->>>> +				"TX SWR_INPUT1", "ADC2_OUTPUT";
->>>> +
->>>> +		wcd-playback-dai-link {
->>>> +			link-name = "WCD Playback";
->>>> +
->>>> +			cpu {
->>>> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
->>>> +			};
->>>> +
->>>> +			codec {
->>>
->>> 'co'dec < 'cp'u
->>>
->>> [...]
->>
->> That was the convention so far, but we can start a new one, sure. Just
->> ask the same all other patch contributors, because each of them will be
->> copying old code, which means cpu->codec->platform
-> 
-> I've been doing just that for the past couple weeks indeed
-> 
->>>> +		/*
->>>> +		 * WCD9395 RX Port 1 (HPH_L/R)      <=> SWR1 Port 1 (HPH_L/R)
->>>> +		 * WCD9395 RX Port 2 (CLSH)         <=> SWR1 Port 2 (CLSH)
->>>> +		 * WCD9395 RX Port 3 (COMP_L/R)     <=> SWR1 Port 3 (COMP_L/R)
->>>> +		 * WCD9395 RX Port 4 (LO)           <=> SWR1 Port 4 (LO)
->>>> +		 * WCD9395 RX Port 5 (DSD_L/R)      <=> SWR1 Port 5 (DSD_L/R)
->>>> +		 * WCD9395 RX Port 6 (HIFI_PCM_L/R) <=> SWR1 Port 9 (HIFI_PCM_L/R)
->>>> +		 */
->>>> +		qcom,rx-port-mapping = <1 2 3 4 5 9>;
->>>
->>> Does this deserve some dt-bindings constants?
->>
->> No, because these are hardware details/constants. Drivers do not use them.
-> 
-> I'd argue it makes sense here - it makes more sense to pass meaningfully
-> named constants to the driver, rather than blobs with a comment
-
-Sense of what? You want to make it a binding then answer what does it
-bind, what part of ABI for driver is here a binding (answer none:
-because driver does not use it)?
+> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+> index 9505cc35d..0a0cb0c02 100644
+> --- a/rust/kernel/device/property.rs
+> +++ b/rust/kernel/device/property.rs
+> @@ -13,7 +13,7 @@
+>      error::{to_result, Result},
+>      prelude::*,
+>      str::{CStr, CString},
+> -    types::Opaque,
+> +    types::{ARef, Opaque},
+>  };
+>  
+>  impl Device {
+> @@ -52,6 +52,27 @@ pub fn fwnode(&self) -> Option<&FwNode> {
+>  pub struct FwNode(Opaque<bindings::fwnode_handle>);
+>  
+>  impl FwNode {
+> +    /// # Safety
+> +    ///
+> +    /// Callers must ensure that:
+> +    /// - The reference count was incremented at least once.
+> +    /// - They relinquish that increment. That is, if there is only one
+> +    ///   increment, callers must not use the underlying object anymore -- it is
+> +    ///   only safe to do so via the newly created `ARef<FwNode>`.
+> +    unsafe fn from_raw(raw: *mut bindings::fwnode_handle) -> ARef<Self> {
+> +        // SAFETY: As per the safety requirements of this function:
+> +        // - `NonNull::new_unchecked`:
+> +        //   - `raw` is not null
+> +        // - `ARef::from_raw`:
+> +        //   - `raw` has an incremented refcount
+> +        //   - that increment is relinquished, i.e. it won't be decremented
+> +        //     elsewhere.
 
 
+Quite minor: There is some inconsistency on using the '.' above. The two
+`raw` sentences don't have it while the last 'that increment ...' has it.
 
-Best regards,
-Krzysztof
+
+> +        // CAST: It is safe to cast from a `*mut fwnode_handle` to
+> +        // `*mut FwNode`, because `FwNode` is  defined as a
+> +        // `#[repr(transparent)]` wrapper around `fwnode_handle`.
+> +        unsafe { ARef::from_raw(ptr::NonNull::new_unchecked(raw.cast())) }
+> +    }
+> +
+>      /// Obtain the raw `struct fwnode_handle *`.
+>      pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
+>          self.0.get()
+> @@ -238,6 +259,62 @@ pub fn property_read<'fwnode, 'name, T: Property>(
+>              name,
+>          }
+>      }
+> +
+> +    /// Returns first matching named child node handle.
+> +    pub fn get_child_by_name(&self, name: &CStr) -> Option<ARef<Self>> {
+> +        // SAFETY: `self` and `name` are valid by their type invariants.
+> +        let child =
+> +            unsafe { bindings::fwnode_get_named_child_node(self.as_raw(), name.as_char_ptr()) };
+> +        if child.is_null() {
+> +            return None;
+> +        }
+> +        // SAFETY:
+> +        // - `fwnode_get_named_child_node` returns a pointer with its refcount
+> +        //   incremented.
+> +        // - That increment is relinquished, i.e. the underlying object is not
+> +        //   used anymore except via the newly created `ARef`.
+> +        Some(unsafe { Self::from_raw(child) })
+> +    }
+> +
+> +    /// Returns an iterator over a node's children.
+> +    pub fn children<'a>(&'a self) -> impl Iterator<Item = ARef<FwNode>> + 'a {
+> +        let mut prev: Option<ARef<FwNode>> = None;
+> +
+> +        core::iter::from_fn(move || {
+> +            let prev_ptr = match prev.take() {
+> +                None => ptr::null_mut(),
+> +                Some(prev) => {
+> +                    // We will pass `prev` to `fwnode_get_next_child_node`,
+> +                    // which decrements its refcount, so we use
+> +                    // `ARef::into_raw` to avoid decrementing the refcount
+> +                    // twice.
+> +                    let prev = ARef::into_raw(prev);
+> +                    prev.as_ptr().cast()
+> +                }
+> +            };
+> +            // SAFETY:
+> +            // - `self.as_raw()` is valid by its type invariant.
+> +            // - `prev_ptr` may be null, which is allowed and corresponds to
+> +            //   getting the first child. Otherwise, `prev_ptr` is valid, as it
+> +            //   is the stored return value from the previous invocation.
+> +            // - `prev_ptr` has its refount incremented.
+> +            // - The increment of `prev_ptr` is relinquished, i.e. the
+> +            //   underlying object won't be unsed anymore.
+
+Typo: unsed -> used (?)
+
+Dirk
 
