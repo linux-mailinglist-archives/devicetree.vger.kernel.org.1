@@ -1,146 +1,187 @@
-Return-Path: <devicetree+bounces-172408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CF1AA4AF0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:19:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8341AA4B1D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C691B1BC0E61
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:19:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BC984C12B9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6030C25D8F6;
-	Wed, 30 Apr 2025 12:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8EF259CBB;
+	Wed, 30 Apr 2025 12:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oSSlrpeO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B8t56v1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8DE25D551;
-	Wed, 30 Apr 2025 12:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF077253F32
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 12:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746015473; cv=none; b=rVlAzTbBmsa02EhQHPBFl8ULLkEdAdr+qayjnV5NLYAJ0cpmP5RpJ90Pp+9UjQ3vQtXPxi/rK3/s4EMNPof2V3PO5uppIkbwzQMV6cM0GhDDquA2ZF7gIN19QrKdoAKM6SyKtjaHn1wXDwEESK9PBGciwdWs7NRRLssEG78YRds=
+	t=1746016010; cv=none; b=lFkE6jz/mXyz/IUDho04pRUR7S+rVwyRIS2Tp7KpbAEqCaU56Kx/qFASM0cB4EIUo0wPtg1xHZSyTERciK4ru2NkxfwwGiGiuJpqD0Mti0n4ScTVHFZXUXp4z5AL7ypZGBTKVYAZZGHaP32dbeb4Rj8h0QRCJUSnBMNpqZIDfyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746015473; c=relaxed/simple;
-	bh=U0w1x+8Qh4hnZgZPeV+lNb1LUY4ehW5wushCpVQ3K+I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=K2SYu3OE/wCELGAEWA0gJCX/j9Q7iPBrtNeg9iAooS6AmI2ALI7FGNUxfJyMlBXbg1eZOtv2AWQ722dCZuwDnZKJ+e2zN/x1+9ZcD9L9A2ULhQAh4x4iT/KzA8yuGApaVQrUW6xoaQIRXWlBujVNovGrmIQF01FWv22DldIo+xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oSSlrpeO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U9Gud9020937;
-	Wed, 30 Apr 2025 12:17:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rSy+SgCL5lGpQjeRIMvTtjJ3CYYax4gjcpMJGDuJbbw=; b=oSSlrpeO/SCqLUgp
-	NvzM9+CcZoT7YPSx4RkoFpeEFnfllW5BZHBncltIwikFP9MTbUefmSKRsNpg9xTv
-	wfDOtPuYyWnVWA6/h58OK0UlnQ8RNMmz8wCUVC9db6Zvl+fJ+knumdprQpPsEpVS
-	VPKzSm7tCWzkxgT1DZgZbx5/oSiE9a47cIZlBOkeObM85nB8lXRGEGx8woktQed5
-	zbrL91ZqNAbS28OiKu8pylGkI/yram7CC8/Du+/QWYRyVnQ9oexML4slidS0lREI
-	JtE0QfSS50t2fqRZuEMet5lfSImABkpKPAD/D2CA7fXn6DZPcNEhmYdxgpNVdslz
-	n8sgLQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u1t49s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 12:17:47 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53UCHknP025009
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 12:17:46 GMT
-Received: from hu-vgarodia-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 30 Apr 2025 05:17:42 -0700
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-Date: Wed, 30 Apr 2025 17:47:11 +0530
-Subject: [PATCH v6 5/5] arm64: dts: qcom: qcs8300-ride: enable video
+	s=arc-20240116; t=1746016010; c=relaxed/simple;
+	bh=IoIqiiPMBMxvBCe5r5FT4TcBH6BpMSCgbPfMmWJaRcM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gn2HCpnqWf73ATAaHnOxQvBJxcQNwpClbBsF7sHyf1Yo8YuV92L+MoKgC3JIIkv7VzhDsplHkQepptd7GsPqM/eAS88lNob0p+NnzLxhA0F9Xf9qZKcPXwHpjiIGqRwusLHAQFqvfo/VYQq2K2BU7HBf0RqD2l7KNlkhA6P9xag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B8t56v1X; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so66089525e9.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 05:26:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746016007; x=1746620807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DfJnIXMhWtJuApKPo4ttd/C2DFx961fITYNRFoaF7cw=;
+        b=B8t56v1XSZIl93RjTmfmM+s+/3ZFPIWjV6o4fnUvBJO0cHg1SB+OybCXlODLAor7NU
+         AfdLgfP2XGJGLD52cAnsZ5AqAgfv2MBGvLzLk2e0lGSgqsFSY1YHiv95KEEtpXJ4LK0D
+         YXp60QFSVwIwluo6P+DnyW9+wds2tm5AzBjLIQmOIp7AUfzwh0tI9q3wT3E3ZmZFzqTK
+         nNOxMoQmOhPsKIGC9oyWOZTnNn5I5a0pqR1IAUq9kMC3Bpb4Wvc5unhZgkrsKMR6X9+v
+         xPWqczPlBTJRN5ybrygkaCsjrDyQl/nXdu44YHetLEERgISL4+2kriVItfhnSTvbZaOF
+         pAAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746016007; x=1746620807;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=DfJnIXMhWtJuApKPo4ttd/C2DFx961fITYNRFoaF7cw=;
+        b=vdpeET3nPqnAPF0hOS1nFv+mePfQhwtU92wf2naRNbLsIuwVf8Gi7lQcZX+UZ60nWe
+         yv2c8SU0tTqvhwR3nEWYVZZH27qxnakJo9oG7hEvkxCG5rYUS9iRHehpzTVA31NgY/YG
+         JT7o0o2qv4iP4AdCU2iKApTc1U0KgNFqXIMqa0G41TjYMqGYUFr8+acqWAWw11fZzcdv
+         S0403QaM6Yna7V/89//uZVyws3AOy0IzhF1MYYPmOhmzww42gvynSLfk5ZFX9W0nNh/k
+         aElcwwb4kW04n4E/vpHvtfxn7KdET20SMuTTAaOj0o9+rUf7uglai/1Sl9+qHsm/fliH
+         GZOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXnsnPkpPmiSEnBMt65o0aRheAM56vGGiBR9I//d9BAc+DB6DOdDLYhcQ+EolECZP36FL5OqLZ175bE@vger.kernel.org
+X-Gm-Message-State: AOJu0YySL1qZFaIbqlfH/kh3YsrFvWLEgPsPnE6rT3fHmKJJj7ihWE0c
+	D4cUYOe9oF8GumdWKzYGm26r8OkB43Bj7lb3swFW/kCBUQxiWihSB4PMf3cp+LM=
+X-Gm-Gg: ASbGnctH5XKGJupFjuJpgV7a9Sey2ieVfj/yTaX6VZyGlrcH1BT5Unrtn5wnewZXzeR
+	PWWjCVLiSXnSd7lojg6TjtmSPqnhuwqeSTo6IWkTNhNWY79mJtxx2c1UBnao1x3AF6Qlws75Y02
+	V/ccpOrMorLUD9tg4rZXTGmrntiAerbImlhz/KmoWzCGuW5fPB+tzfGp/gJkV8y/1h/l3LsS9/H
+	g2K70vx1cVEOmTEKap7Y8yOrvgTzoQlzuNzEz8FiOXTYZQBldwEBJfdnPbh30C7PX+x43nJXuDs
+	mG4cnGFzlPl+vABGlTFs2gQEpTDg9nnE82q3xBxn2MU7cipE3s+OKSDrRHFMiaJw7gEffDpAXoc
+	SnPEHBLRmnUMhOmirYw==
+X-Google-Smtp-Source: AGHT+IG6MqGYW7/50i6ev+VZL1WzPog5uew6KG1T5nQ/er1qsC85a42modlcTSimxs2lB5RGaw7g/g==
+X-Received: by 2002:a05:600c:3b8f:b0:43b:c0fa:f9cd with SMTP id 5b1f17b1804b1-441b1f2f0c1mr27861525e9.7.1746016007016;
+        Wed, 30 Apr 2025 05:26:47 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:b3d6:213c:5c50:7785? ([2a01:e0a:3d9:2080:b3d6:213c:5c50:7785])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2b20aa6sm23948875e9.27.2025.04.30.05.26.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 05:26:46 -0700 (PDT)
+Message-ID: <13cd20c6-f758-45ff-82d1-4fd663d1698c@linaro.org>
+Date: Wed, 30 Apr 2025 14:26:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFT v6 2/5] drm/msm/adreno: Add speedbin data for SM8550 /
+ A740
+To: Konrad Dybcio <konradybcio@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
+ <20250430-topic-smem_speedbin_respin-v6-2-954ff66061cf@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250430-topic-smem_speedbin_respin-v6-2-954ff66061cf@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250430-qcs8300_iris-v6-5-a2fa43688722@quicinc.com>
-References: <20250430-qcs8300_iris-v6-0-a2fa43688722@quicinc.com>
-In-Reply-To: <20250430-qcs8300_iris-v6-0-a2fa43688722@quicinc.com>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746015441; l=696;
- i=quic_vgarodia@quicinc.com; s=20241104; h=from:subject:message-id;
- bh=U0w1x+8Qh4hnZgZPeV+lNb1LUY4ehW5wushCpVQ3K+I=;
- b=HswQuPcZcVLOkDlLa5CS4MXv8HofsKoc70mV3bLmTGTqDYG+CAPmRhjsNofPWTYJlXMZ28kgX
- ypkTXmaWO9dDwkuTX5VOt4sm5MBQUr3ih0UE8MsQN/iki3Sm4RsE4YP
-X-Developer-Key: i=quic_vgarodia@quicinc.com; a=ed25519;
- pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=681214eb cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=HJafQcN7i5IhSkUYFLQA:9
- a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA4NyBTYWx0ZWRfX6Bb0Ho0RtYCc 8uWKVTJZbLx6H44alY6kZC1nKhWEHpWuwk5yk3fdiujy8B9d+nFHyZQzYDWB/aSD7JHeZ0lPtm3 +zSuN+soFrBx6UBFSNLG9zMXpXwlt+PFexO24F2unD2lO0mimG/rKpsURke9/AWMB+dNwQ4i3sA
- uPUoq2hrLIyISmpoR/jojlszN28OeeGUGEMOy7SAIQdYdglZ+5IDLv8KWAec0l9vUomOfacsH8z HV7zzJ4VnpIB+QJuC+Vj1CbAK2jxU4bS8+a00FioRXrQbKEW24GfhXIIw2lislMVMOOM5GszCJj TsiG0hW0r7HRtzqLHytXoD27ZsQYMJsLvErOrUr6ihuzTor3ZdmXmbHHYQ0bi8WY+/j9Z1j8Y8r
- 1Nag6OtELpFhL7NjNjao5AK4mpesoadjgBIEuWMjYastPjyZBrZM6SUd60/2oSalG987/O53
-X-Proofpoint-GUID: D_kAtyXhAQk7f2ck2nBGe9Bb0Ss7RNK6
-X-Proofpoint-ORIG-GUID: D_kAtyXhAQk7f2ck2nBGe9Bb0Ss7RNK6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_04,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=844
- lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300087
 
-Enable video nodes on the qcs8300-ride board.
+Hi,
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On 30/04/2025 13:34, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Add speebin data for A740, as found on SM8550 and derivative SoCs.
+> 
+> For non-development SoCs it seems that "everything except FC_AC, FC_AF
+> should be speedbin 1", but what the values are for said "everything" are
+> not known, so that's an exercise left to the user..
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> index 53e2ff4406d8f0afe474aaafbf0e459ef8f4577d..61daa331567925e529deae5e25d6fb63a8ba8375 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> @@ -11,6 +11,9 @@
+>   #include "a6xx.xml.h"
+>   #include "a6xx_gmu.xml.h"
+>   
+> +#include <linux/soc/qcom/smem.h>
+> +#include <linux/soc/qcom/socinfo.h>
+> +
+>   static const struct adreno_reglist a612_hwcg[] = {
+>   	{REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x22222222},
+>   	{REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02222220},
+> @@ -1431,6 +1434,11 @@ static const struct adreno_info a7xx_gpus[] = {
+>   		},
+>   		.address_space_size = SZ_16G,
+>   		.preempt_record_size = 4192 * SZ_1K,
+> +		.speedbins = ADRENO_SPEEDBINS(
+> +			{ ADRENO_SKU_ID(SOCINFO_FC_AC), 0 },
+> +			{ ADRENO_SKU_ID(SOCINFO_FC_AF), 0 },
+> +			/* Other feature codes (on prod SoCs) should match to speedbin 1 */
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index b5c9f89b34356bbf8387643e8702a2a5f50b332f..87114a349fedd80296abaf3d2f5f284b5adbbdfe 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -285,6 +285,10 @@ queue3 {
- 	};
- };
- 
-+&iris {
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+I'm trying to understand this sentence. because reading patch 4, when there's no match
+devm_pm_opp_set_supported_hw() is simply never called so how can it match speedbin 1 ?
 
--- 
-2.34.1
+Before this change the fallback was speedbin = BIT(0), but this disappeared.
+
+Neil
+
+> +		),
+>   	}, {
+>   		.chip_ids = ADRENO_CHIP_IDS(0x43050c01), /* "C512v2" */
+>   		.family = ADRENO_7XX_GEN2,
+> 
 
 
