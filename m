@@ -1,213 +1,178 @@
-Return-Path: <devicetree+bounces-172330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03347AA47A8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:53:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6ABAA4843
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:27:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AA634C4EAA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 993123AE4FD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747FE237162;
-	Wed, 30 Apr 2025 09:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28B8248F49;
+	Wed, 30 Apr 2025 10:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SGBFb8N4"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="KhsoNhpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7396C23506E
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 09:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F5A248F44
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746006793; cv=none; b=mVOvNrX8NJcNR79jw4RdJillELFbTP2AxWz4f3QRSrZ4kLLWPD63nAZO20z7t+xjl11qKSQ3sDOneBNnopCobisDjtsEjZ24MBiRTYGWaYKVVmmAbltlK2SEA6lAfT2/tMvC0T0xAr6ttS8kDYKWpMbK62k3bcaov4sqnDd9vaA=
+	t=1746008741; cv=none; b=CBusSukpL/mUfIDYw4eghDra2ePgPSXaKMeHBVY2W0sUUjb73zf1h3MERONRPU91PKTEKrusOPiO3rNt0ywsiwlkRnhdWGU+DeRdI68tfeTqxYXdflwoRj4PyyaYtRfrM6/hU+oH0vZztjXfOHVihTWhKbhPLMaAO3QOLWS2lrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746006793; c=relaxed/simple;
-	bh=fe5blfcHEV6p6DqK9EinGD8sn4r9SggUaqP0hbUf4K8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=N4WbTapRMtxFdVmMuCwGUU8b0Pg2LTd+EnRw/+dty4u/OI/0Obts4LjR2ggshcJmkuJNTKTgDqSTEN+6zLRmcg95wq+z6lKxzjcozY99oXU5llgQ+q8CsCIdDXvVbJvq6gEvtVuIDAoPJ5R26afnCZlWZbEkaw5n6r8Ef9zra1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SGBFb8N4; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39bf44be22fso4818552f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 02:53:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746006790; x=1746611590; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NQ33tAShH1B9qY7Mvbeo2mk5ktxHALQMW++e/cV2rKM=;
-        b=SGBFb8N4DRyBNiJrBuRtDEGlgeUBRJfqdeZ7WogzDe6qdqCNggOONmkF6n1CEuvgwv
-         FNExrUISxCbTeS5hEOPyYxBO+lzy3BsMJsKxBTILbtSIqIUgYeJIr4Sx94LnN1RN7YUT
-         8+Y3gUcqaFgdzAIqiCuZquGkXLAiULCUxFEj/gwOrTmJZwgxbyGzsHuJDqGBs9QbtZ84
-         xLa122gGfEoZR5qRI81zlJp9gquDsRMLzdC6JRkhH7Sfb8nxOhEMdw4PNctExyjLrHcw
-         aAlfsGK97MuEiXDPHC+U7uEakTZu0D7c9VPoF1BET813E070Cs7Vypp0nbnJkaYuTJjL
-         Lz0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746006790; x=1746611590;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NQ33tAShH1B9qY7Mvbeo2mk5ktxHALQMW++e/cV2rKM=;
-        b=FJNupvmKN1FsC06/LvChnDQc6NXugfCIxHzbeFsdiiAZxWLp5bCbHugd7V1OatzGqq
-         jVX7bONfp5Or9VphawOEmXMSKXZG4M+TqbCnxzDszMekOvfbIeGn9bBmixUtuyamRcFq
-         c5gcMKBpv4s9FsQBMyBQi3UM6HEMA8QZ5yvHUE03rvYuv9gK0sEceQgFcR/GkxdKaMu+
-         VxaN8CQ+qFKYnPrsMAOcGDvyhU6k04LT+a681JMUCzy+SZfz6DoOLD9I1SmZlQUHn583
-         R0jY6aNSZcPdIn0/qJwhWYXi86XIQq5xgdW6sVurFNRz4DbZ3HDXV7kxASmVschCzV92
-         mngg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7pVoimpN7bYP2VKT78Fr/EIhoOGkD6Iu3YAEfkAlkni0tNdb92lsugARtBFiirUDxTrAY/DmEcssu@vger.kernel.org
-X-Gm-Message-State: AOJu0YycFckE6X4J6YE59DWsszymi2qN2NPpr2I/d3u3DzWGGDkeHG6N
-	qDFXpzNJuedwiub9kt+5DKf5trpB8KAqrU9Ta3xp2Khj/gQP4I6ooMPMTHZXWdw=
-X-Gm-Gg: ASbGnctlTdAuwnrwj9/8eEmby6pPPAgTPmniWB4Ogf7SqT3nkG2m3i/VKCkjDF/h9kQ
-	DH/E+jFtzWuvQzTNx2uRDTBiAw3qsvaWQKOI/gbMPjumiilR4yLG1bXjR2FJaB5QQpASHcWcuDr
-	UJ9S02FMScglq35hGNgE4X1YYh3d4EhFKt9R4Tmb/kep8wKwhpboYyeFFHGd3zVu3jdCPhHgPA8
-	hFaz1kmFtQqO0+hgtPNEurakKWad/CcKJCQ+KBbM/9zwHKEC+2PjuLiIK2U0XLCJ3a3T0h1QJpx
-	MYO6IzyE54X6ZG21Esi2PRI2b2OqJRiug+xaD2kJUALDM40nsmKy8pLUjxcqbc049xQm3H5NufR
-	pYXOwLuxrpdIWhIh3/w==
-X-Google-Smtp-Source: AGHT+IHmFxBVgaTsAGbGDh4EsUHv+T+0NrbKf322VztbdkbBDNbxxF0eQnDWIUCwiaEeUi/56VbRMA==
-X-Received: by 2002:a5d:59af:0:b0:39f:76:8bc with SMTP id ffacd0b85a97d-3a08f765397mr2097367f8f.17.1746006789750;
-        Wed, 30 Apr 2025 02:53:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b3d6:213c:5c50:7785? ([2a01:e0a:3d9:2080:b3d6:213c:5c50:7785])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ca4742sm16225841f8f.23.2025.04.30.02.53.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 02:53:09 -0700 (PDT)
-Message-ID: <6ec33d95-ed93-40bb-8ff3-d2e039dcdaa4@linaro.org>
-Date: Wed, 30 Apr 2025 11:53:08 +0200
+	s=arc-20240116; t=1746008741; c=relaxed/simple;
+	bh=UyRogJQCKF4dzNdKeUnXZgi87K+PLm5TUetHnPxcySQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=TGK4jOwPer3XOAmpqxQXFmrV87HSaaPicctsyFig6mDjaoH6/2sGZGr9rkDEyxiHAv1i9dY5RG9VAq1kuLbsNViCs6D2jgfTJMuQXX3zufMkQJWLOslG9XlTC7XAvNO7Dlt2oosiakDFMtjvdAQe0HHTU/3LMTaoUccB/1glhA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=KhsoNhpX; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250430102531epoutp02ee981ad0854e16739654de495d4edbaf~7EbDjiAE32460324603epoutp02h
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:25:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250430102531epoutp02ee981ad0854e16739654de495d4edbaf~7EbDjiAE32460324603epoutp02h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1746008732;
+	bh=UyRogJQCKF4dzNdKeUnXZgi87K+PLm5TUetHnPxcySQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=KhsoNhpX8FdZd1Zp+syN1TSiScguoqd/YK6aVQZH/yuwxDfhDGvP5NeKYK4IrxnU7
+	 uAr0Gj4vYJxRKlkzqUNn194gvVo4OYj1Ibtu2Ju/xECmR7SSbFFn5nfM3mJvpdy3Rq
+	 6q6uiMHfV5SFkFPUM3UPK0cMhkd1L9tkM3cOWdzw=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250430102531epcas5p159f5edae7b9d6649b91ba016fd8580cf~7EbDDY--c1745817458epcas5p1B;
+	Wed, 30 Apr 2025 10:25:31 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.180]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4ZnYGy28rYz6B9m9; Wed, 30 Apr
+	2025 10:25:30 +0000 (GMT)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250430092538epcas5p1b6aee888ecfa27c04e01ca16a0a93d19~7DmwiV8Qt0647906479epcas5p1S;
+	Wed, 30 Apr 2025 09:25:38 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250430092538epsmtrp1e08dff0c1eac600a72115669d75dc488~7Dmwhcsq62304923049epsmtrp1Z;
+	Wed, 30 Apr 2025 09:25:38 +0000 (GMT)
+X-AuditID: b6c32a2a-d57fe70000002265-56-6811ec9127c4
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	C5.75.08805.19CE1186; Wed, 30 Apr 2025 18:25:37 +0900 (KST)
+Received: from INBRO002053 (unknown [107.122.2.234]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250430092535epsmtip23755164dfc0ad1aef32e04bca5476327~7DmueEaSD2671426714epsmtip25;
+	Wed, 30 Apr 2025 09:25:35 +0000 (GMT)
+From: "Yashwant Varur" <yashwant.v@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc: <cs0617.lee@samsung.com>, <g.naidu@samsung.com>,
+	<niyas.ahmed@samsung.com>
+In-Reply-To: <b00514f2-55ca-49f0-aefb-ec1e784545d6@kernel.org>
+Subject: RE: [PATCH] arm64: dts: exynos: Added the ethernet pin
+ configuration
+Date: Wed, 30 Apr 2025 14:55:34 +0530
+Message-ID: <0f6e01dbb9b1$d52519d0$7f6f4d70$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/2] drivers: gpu: drm: panel: Add BOE TD4320
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20250429-lavender-panel-v2-0-fb467ff81bac@mainlining.org>
- <20250429-lavender-panel-v2-2-fb467ff81bac@mainlining.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250429-lavender-panel-v2-2-fb467ff81bac@mainlining.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQI+tP5AvR0g22A5T67WLyfPVk3CYgKkYErqAxsAxq0DRO6qzAIlGw2ospyhojA=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSvO7EN4IZBt1vrCwezNvGZrFm7zkm
+	i1XveC3mHznHarFl5mVmi5ez7rFZnD+/gd1i0+NrrBaXd81hs5hxfh+TxZMpj1gt/u/Zwe7A
+	47FpVSebx+Yl9R59W1YxenzeJBfAEsVlk5Kak1mWWqRvl8CV8bWpm7lgHX/F1EuzGRsYd/J0
+	MXJySAiYSFz9v4eli5GLQ0hgN6PEnkdL2LsYOYASUhINb8IhaoQlVv57zg5R85xRYvOuY6wg
+	CTYBfYnnm68xgSREBBYzSXxpOsgG0swsECTxZXcgRMNcJon9xzewgTRwCthJfOp+CNYsLOAr
+	sbvjDDuIzSKgKjH71HFmEJtXwFJi9+p+KFtQ4uTMJywgNrOAtsTTm0/h7GULXzNDXKcg8fPp
+	MrCZIgJ+Epf+zmeFqBGXeHn0CPsERuFZSEbNQjJqFpJRs5C0LGBkWcUomVpQnJueW2xYYJSX
+	Wq5XnJhbXJqXrpecn7uJERxzWlo7GPes+qB3iJGJg/EQowQHs5II76RbghlCvCmJlVWpRfnx
+	RaU5qcWHGKU5WJTEeb+97k0REkhPLEnNTk0tSC2CyTJxcEo1MHHvsVtVs3H+JFVlKfE9cezl
+	UiffhOy5+PfKqTmeuuyWB/N4yrhT3tzL4i3PPdm6L8v/q+7+a2wfTW2q9kpvYzz+qDjCSiJr
+	elDSXW3mjdyW278/vbVsa627kQXDgifWcr8fxu9YOmP+Y9O3ko/uRzj4HJ8gt0lQPsT80AWT
+	vo9bHHae3uS0pjC3/I+Z5ypOeRNtrX7O4wZP+aX0P9+/x1JRVvCMr1VV9FC09nXdbclfu9NO
+	OEenB2qtidm3XfBJ4LlusxNMjsIrXPo1shWyNcJucUs1Td2ztf7azZczbpz75fPfd9fdv60C
+	hYvY/kdm/5eUFOGVfpIuKCn07UmgQeCz0wudVnw84aQ27x+LvBJLcUaioRZzUXEiAE0w33oo
+	AwAA
+X-CMS-MailID: 20250430092538epcas5p1b6aee888ecfa27c04e01ca16a0a93d19
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250423060042epcas5p2c04be779e21089f33b8a9a7785bb151a
+References: <CGME20250423060042epcas5p2c04be779e21089f33b8a9a7785bb151a@epcas5p2.samsung.com>
+	<20250423060034.973-1-yashwant.v@samsung.com>
+	<73a5d0a6-ceb0-4c47-9992-260828f074d0@kernel.org>
+	<0ed501dbb8e9$45aa96e0$d0ffc4a0$@samsung.com>
+	<b00514f2-55ca-49f0-aefb-ec1e784545d6@kernel.org>
 
-On 29/04/2025 23:33, Barnabás Czémán wrote:
-> Add driver for BOE TD4320 DSI panel, used in Xiaomi Redmi Note 7
-> mobile phone.
-> 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->   drivers/gpu/drm/panel/Kconfig            |   9 ++
->   drivers/gpu/drm/panel/Makefile           |   1 +
->   drivers/gpu/drm/panel/panel-boe-td4320.c | 247 +++++++++++++++++++++++++++++++
->   3 files changed, 257 insertions(+)
+Hi Krzysztof
 
-<snip>
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Tuesday, April 29, 2025 6:37 PM
+> To: Yashwant Varur <yashwant.v=40samsung.com>; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
+ux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org
+> Cc: cs0617.lee=40samsung.com; g.naidu=40samsung.com;
+> niyas.ahmed=40samsung.com
+> Subject: Re: =5BPATCH=5D arm64: dts: exynos: Added the ethernet pin confi=
+guration
+>=20
+> On 29/04/2025 11:29, Yashwant Varur wrote:
+> >
+> > Please follow DTS coding style carefully. This applies to all commits y=
+ou try to
+> send from your downstream/vendor code.
+>=20
+>=20
+> hm?
+>=20
+Got the issue, coding style says
+Node and property names can use only the following characters:
+Lowercase characters: =5Ba-z=5D
+Digits: =5B0-9=5D
+Dash: -
+I was using underscore for node name.
+> >>
+> > Sure, thanks
+> >
+> > What is more important, I don't really understand why you are doing
+> > this
+> > - there is no user of these entries - and commit msg does not help here=
+.
+> >>
+> > Understood, in v2 will add the Ethernet node as well.
+>=20
+> I don't understand what is your reply here and what is quote. Use standar=
+d email
+> style, not some mySingle or Outlook output. I suggest reading typical gui=
+delines
+> how to use email based workflows (kernel also has one).
+>=20
 
-> +
-> +	ctx->dsi = dsi;
-> +	mipi_dsi_set_drvdata(dsi, ctx);
-> +
-> +	dsi->lanes = 4;
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-> +
-> +	drm_panel_init(&ctx->panel, dev, &boe_td4320_panel_funcs,
-> +		       DRM_MODE_CONNECTOR_DSI);
+Looks like mailer was not configured properly, hope this time it is fine.
+I am working on upstreaming Ethernet driver for exynosauto (which has a var=
+iant of STMMAC controller)
+What I wanted to reply previously was, will add pin control, along with Eth=
+ernet node(which will consume the pincontrol) and
+I realize that first dt-binding should go for this IP.
+My plan is to send Ethernet driver along with Ethernet dtsi node as well.
 
-Please switch to devm_drm_panel_alloc()
+>=20
+> Best regards,
+> Krzysztof
 
-> +	ctx->panel.prepare_prev_first = true;
-> +
-> +	ret = drm_panel_of_backlight(&ctx->panel);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-> +
-> +	drm_panel_add(&ctx->panel);
-> +
-> +	ret = mipi_dsi_attach(dsi);
-> +	if (ret < 0) {
-> +		drm_panel_remove(&ctx->panel);
-> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void boe_td4320_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct boe_td4320 *ctx = mipi_dsi_get_drvdata(dsi);
-> +	int ret;
-> +
-> +	ret = mipi_dsi_detach(dsi);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-> +
-> +	drm_panel_remove(&ctx->panel);
-> +}
-> +
-> +static const struct of_device_id boe_td4320_of_match[] = {
-> +	{ .compatible = "boe,td4320" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, boe_td4320_of_match);
-> +
-> +static struct mipi_dsi_driver boe_td4320_driver = {
-> +	.probe = boe_td4320_probe,
-> +	.remove = boe_td4320_remove,
-> +	.driver = {
-> +		.name = "panel-boe-td4320",
-> +		.of_match_table = boe_td4320_of_match,
-> +	},
-> +};
-> +module_mipi_dsi_driver(boe_td4320_driver);
-> +
-> +MODULE_AUTHOR("Barnabas Czeman <barnabas.czeman@mainlining.org>");
-> +MODULE_DESCRIPTION("DRM driver for boe td4320 fhdplus video mode dsi panel");
-> +MODULE_LICENSE("GPL");
-> 
-
-Otherwise it looks fine.
-
-Thanks,
-Neil
 
