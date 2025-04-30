@@ -1,252 +1,144 @@
-Return-Path: <devicetree+bounces-172531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F855AA509E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:43:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C030AA511F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 18:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E20F7AEFBA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:42:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAE251BA6CBF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0B92609FB;
-	Wed, 30 Apr 2025 15:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DCF25C711;
+	Wed, 30 Apr 2025 16:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPXSIeo8"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kNiibFZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AF02609F4;
-	Wed, 30 Apr 2025 15:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E6625F7B9;
+	Wed, 30 Apr 2025 16:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746027782; cv=none; b=aBE4BzG3a8vEi+Dv5cuVlLBucI8rABjlj8CcVm9n1Y6skscnPQbHfgJY/XoXhJDJfvpkHfqlcOVGScpfAQg9kVScOSCt+xbSwg1S02M69l6lYf4LVuKZq5iYnii4xoIgO7ZpaNnnFNVh2AqbszonE/Z919XXRPzxOOxkWb7xvVI=
+	t=1746029097; cv=none; b=VwU7qYUN9CLeg8JVUbAy54qW+Vu+tBWVpjTvW3AcRPF0HSZdE78F3O9luVZnqR8FsXsRsc3vNagBdcWDAuV/E+cGxc2vOghwkMTf1jytsWOa9tuBO2J6+9s3RmsiSPTcYxeoufwQ4lmRuJvmG3pheXWOdSeMZK9hFH83/8c3llY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746027782; c=relaxed/simple;
-	bh=cMohmDDOMvrG0cwSob/om89yJTT/ehRLLR48RgsOAo8=;
+	s=arc-20240116; t=1746029097; c=relaxed/simple;
+	bh=2o8KjSOQ0kCQc1hrZro78LxSpcqLmTAbM8i12O3bEpU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g5u4DfipFPGZRMRvjaDcSwdHLHdxEznQwNYBNdwmSvZ6ATXE32GcSYBiFuujFJ+RXiStBfj4SPO35edHy5yVWnA22rvsPHgFeWWGesUpRKNKxLmpy8R3SB0jf4MFVAnGOZuuzR/ep4KjWGz1mQ+1FlQTUrrE169NgWOGhFGA+98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPXSIeo8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8039C4CEEC;
-	Wed, 30 Apr 2025 15:42:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746027781;
-	bh=cMohmDDOMvrG0cwSob/om89yJTT/ehRLLR48RgsOAo8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=ui6uyv5vvk9p5eqm4aS6fL/UpsljyyNsVvEFcOp9/4cWEXgvLjH/4fDCpDz274ciYUuLG8AvgDDXzunhvq8i1C5GL5ePe1U+e8nUN6+MVrinSb61teGOmHqn9FIpHV0OtIlHLev8OTxZ/yG3wjXGTCOTAzYGAMHpwo8NS9n5mZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kNiibFZr; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C4372564;
+	Wed, 30 Apr 2025 18:04:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1746029087;
+	bh=2o8KjSOQ0kCQc1hrZro78LxSpcqLmTAbM8i12O3bEpU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BPXSIeo8HMGd3tm0i8k6eHxDGrAkRqfT6/6UdIcX7j3ac35cEXK4mBLh42b+maAko
-	 UxBX3Y56+gydf0wp6iq5VKMuwgY+gp8piPGz8zZvWpjZs4J6BP/aQMWq2N5KiMQqPf
-	 2KP5LmWESocF5N4nyYaejbAp4nqStVOOJWbbIJPED1KarR51MVWXIKET77EUR4xN8D
-	 zp3BAY2gTyzQbw2cOX2WI5sLJI5UnYV8S3rltVzRUakD6y6f0e59nwj2uXOwnToJbn
-	 kg5ElxnTfJXHA3VePv2FUJ6ys1+qB4Agvv+lNMg2hxBVv1kLQUuK4Gcl7UZujd9T35
-	 NMn/PXQXLbIkQ==
-Date: Wed, 30 Apr 2025 16:42:57 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ~lkcamp/patches@lists.sr.ht,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings:iio:adc:st,spear600-adc: txt to yaml
- format conversion.
-Message-ID: <20250430-folic-skittle-06b0ccbedf35@spud>
-References: <20250430020248.26639-1-rodrigo.gobbi.7@gmail.com>
+	b=kNiibFZrKRe1wSBLrpTTP3Fe6bNB44rXCsWBXHfcWudkFx6OE4F9cVVAsjIcZqwXL
+	 JS1LLfV9gIxTjWH0XMtl32ITUIeHt2olyVtU/XrYHgfwbbilKQ4It2oItrYfr6wMJT
+	 2N5qg8xiYa6fl/XxBSSfEssYsqGocb5DpnCEZaEQ=
+Date: Wed, 30 Apr 2025 19:04:45 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: sony,imx290: Update usage example
+Message-ID: <20250430160445.GB31516@pendragon.ideasonboard.com>
+References: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
+ <20250430131856.GB25516@pendragon.ideasonboard.com>
+ <CAPY8ntBPSC6KZcBVt35QWx_ZPYwkSJSVzhhaXokbjkWJDVJRqA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ibWcqrFQAaMOHemi"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250430020248.26639-1-rodrigo.gobbi.7@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPY8ntBPSC6KZcBVt35QWx_ZPYwkSJSVzhhaXokbjkWJDVJRqA@mail.gmail.com>
 
+On Wed, Apr 30, 2025 at 02:52:01PM +0100, Dave Stevenson wrote:
+> On Wed, 30 Apr 2025 at 14:19, Laurent Pinchart wrote:
+> > On Wed, Apr 30, 2025 at 03:03:10PM +0200, Geert Uytterhoeven wrote:
+> > > On Wed, 30 Apr 2025 at 14:58, Niklas Söderlund wrote:
+> > > > Since commit 98e0500eadb7 ("media: i2c: imx290: Add configurable link
+> > > > frequency and pixel rate") the driver expects two specific
+> > > > link-frequency settings 2-lane (445500000, 297000000) and 4-lane
+> > > > (222750000, 148500000) operation. The driver fails to probe without
+> > > > these exact settings.
+> > > >
+> > > > Update the example in the bindings to match this to make it easier for
+> > > > users to incorporate this sensor in their device tree descriptions
+> > > > without having to read the driver sources when the driver fails to
+> > > > probe.
+> > > >
+> > > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > >
+> > > Thanks for your patch!
+> > >
+> > > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> > > > @@ -136,7 +136,7 @@ examples:
+> > > >              port {
+> > > >                  imx290_ep: endpoint {
+> > > >                      data-lanes = <1 2 3 4>;
+> > > > -                    link-frequencies = /bits/ 64 <445500000>;
+> > > > +                    link-frequencies = /bits/ 64 <222750000 148500000>;
+> > > >                      remote-endpoint = <&csiphy0_ep>;
+> > > >                  };
+> > > >              };
+> > >
+> > > I guess the link-frequencies property should gain a rule that it
+> > > needs two values, too?
+> >
+> > The driver doesn't require two frequencies (unless I'm mistaken), it
+> > could operate with a single one (albeit not in all resolutions), so I
+> > don't think we should require two frequencies in the bindings.
+> 
+> The driver does require both due to 98e0500eadb7 ("media: i2c: imx290:
+> Add configurable link frequency and pixel rate") and
+> imx290_check_link_freqs()
 
---ibWcqrFQAaMOHemi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I realized after sending the previous e-mail that I was indeed mistaken.
+I thought the driver iterated over the DT link frequencies to check if
+they're supported, but it goes the other way around.
 
-Hey,
+> However I'd agree that it'd be better to make the driver accept just
+> the one and make any compensations, rather than amend the binding. I'm
+> happy to try and find a few minutes to make a patch for that.
 
-On Tue, Apr 29, 2025 at 10:50:01PM -0300, Rodrigo Gobbi wrote:
-> Straight forward conversion from spear-adc.txt into yaml format.
->=20
-> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-> ---
-> Some constraints were extracted from the driver (spear_adc.c) and the pub=
-lic datasheet
-> referenced at the yaml.
->=20
-> Changelog:
-> v2: add constraints over properties and remove a ref at MAINTAINERS file.
-> v1: https://lore.kernel.org/linux-devicetree/20250423022956.31218-1-rodri=
-go.gobbi.7@gmail.com/
-> ---
->  .../bindings/iio/adc/st,spear600-adc.yaml     | 69 +++++++++++++++++++
->  .../bindings/staging/iio/adc/spear-adc.txt    | 24 -------
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 70 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/st,spear600=
--adc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/staging/iio/adc/spe=
-ar-adc.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.ya=
-ml b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
-> new file mode 100644
-> index 000000000000..afce10eab1c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/st,spear600-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ST SPEAr ADC device driver
-> +
-> +maintainers:
-> +  - Jonathan Cameron <jic23@kernel.org>
-> +
-> +description: |
-> +  Integrated ADC inside the ST SPEAr SoC, SPEAr600, supporting
-> +  10-bit resolution. Datasheet can be found here:
-> +  https://www.st.com/resource/en/datasheet/spear600.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,spear600-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  sampling-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2500000
-> +    maximum: 20000000
-> +    description:
-> +      Default sampling frequency of the ADC
+That would be nice, thanks.
 
-I think you should note that this is in Hz, while you're at it.
+> My experience of this family of sensors says that we should be able to
+> run any resolution at any link frequency, but it needs changes to
+> HBLANK to ensure there is sufficient time per line.
+> Dropping to the lower link freq for the 720p mode is only because that
+> is what the datasheet describes for the precanned HD720p. The window
+> cropping mode lists no such requirement, and yet could produce exactly
+> that same 720p output.
 
-> +  vref-external:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1000
-> +    maximum: 2800
-> +    description:
-> +      External voltage reference in milli-volts. If omitted
-> +      the internal voltage reference will be used.
-> +
-> +  average-samples:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 128
-> +    default: 0
+And with more information about the INCKSEL registers we could possibly
+even support other frequencies.
 
-Is 0 the default here or 1? "Single data conversion" sounds more like 1
-sample than 0, and the default of 0 is below the minimum of 1. What's
-going on there?
+-- 
+Regards,
 
-
-> +    description:
-> +      Number of samples to generate an average value. If
-> +      omitted, single data conversion will be used.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - sampling-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    adc: adc@d8200000 {
-
-The "adc:" label here can be removed, it's not doing anything!
-
-> +        compatible =3D "st,spear600-adc";
-> +        reg =3D <0xd8200000 0x1000>;
-> +        interrupt-parent =3D <&vic1>;
-> +        interrupts =3D <6>;
-> +        sampling-frequency =3D <5000000>;
-> +        vref-external =3D <2500>;	/* 2.5V VRef */
-> +    };
-> diff --git a/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.=
-txt b/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
-> deleted file mode 100644
-> index 88bc94fe1f6d..000000000000
-> --- a/Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -* ST SPEAr ADC device driver
-> -
-> -Required properties:
-> -- compatible: Should be "st,spear600-adc"
-> -- reg: Address and length of the register set for the device
-> -- interrupts: Should contain the ADC interrupt
-> -- sampling-frequency: Default sampling frequency
-> -
-> -Optional properties:
-> -- vref-external: External voltage reference in milli-volts. If omitted
-> -  the internal voltage reference will be used.
-> -- average-samples: Number of samples to generate an average value. If
-> -  omitted, single data conversion will be used.
-> -
-> -Examples:
-> -
-> -	adc: adc@d8200000 {
-> -		compatible =3D "st,spear600-adc";
-> -		reg =3D <0xd8200000 0x1000>;
-> -		interrupt-parent =3D <&vic1>;
-> -		interrupts =3D <6>;
-> -		sampling-frequency =3D <5000000>;
-> -		vref-external =3D <2500>;	/* 2.5V VRef */
-> -	};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 906881b6c5cb..e923becb0633 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23213,7 +23213,7 @@ STAGING - INDUSTRIAL IO
->  M:	Jonathan Cameron <jic23@kernel.org>
->  L:	linux-iio@vger.kernel.org
->  S:	Odd Fixes
-> -F:	Documentation/devicetree/bindings/staging/iio/
-> +F:	Documentation/devicetree/bindings/iio/
-
-This change seems unneeded? The main iio entry already covers this
-directory. I think you can probably just drop the line from the staging
-entry?
-
-Cheers,
-Conor.
-
->  F:	drivers/staging/iio/
-> =20
->  STAGING - NVIDIA COMPLIANT EMBEDDED CONTROLLER INTERFACE (nvec)
-> --=20
-> 2.47.0
->=20
-
---ibWcqrFQAaMOHemi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBJFAQAKCRB4tDGHoIJi
-0qoZAQDMrzTgfpSpUUMuUtE0d9/Zi/zzTpVR+Xi53kujOqwQjQD8Cgaqm53v5yQ+
-jXxwetXO7DVqdp252PPgH3lDXLq1+AU=
-=VweJ
------END PGP SIGNATURE-----
-
---ibWcqrFQAaMOHemi--
+Laurent Pinchart
 
