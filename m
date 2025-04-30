@@ -1,113 +1,259 @@
-Return-Path: <devicetree+bounces-172537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23D0AA5168
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 18:18:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4EB2AA5171
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 18:19:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 173394E2596
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:18:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AE4D4E7306
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC51262800;
-	Wed, 30 Apr 2025 16:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB52A25E81F;
+	Wed, 30 Apr 2025 16:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Z9TRme2w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o9UJTq2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D2225A2AF;
-	Wed, 30 Apr 2025 16:17:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746029876; cv=pass; b=A289xX1m4Q6S2xdt5u6mEj5oIUnJQ77+CkqNhvXZLc92hLw7fEe6i9Tr6joWklHjDULKF18pngQzW7RyVJSBfb5qlQy4kElBZkMeuw4pHx4H1x2ZRJ4MYHdFKzYonogkZ9dMFR+rBUifMC32WUxQerDEa3CzmHirDDRF9RzjgQQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746029876; c=relaxed/simple;
-	bh=3AgojCgwnHiJ/4UeMtAu1VEULwqiJr6pr7+DLktb6oM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sY/BlzWs3IkcSsH2vTBpFs6yY76gmZLdFJhqdnlDlwEQj8hpUg4Oscx7sebRJxjK6QHZqYA10rDDrXag2weeEGD6PwTI/V5X5YCgH1+V73Z4dZ/iys9l69ITWIJVvsGQ29JPJvgYD6Vfhao7yLsHtfxJqK2n4sYztffHzRd/Xko=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Z9TRme2w; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1746029822; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=f+93AWjXW5VDIYoO0E8YkXtcP4BNlDbolM9nmkTGiVwL68mOHaRgl7DboLKuv8bcPK2Jcd0AhTUZdwV4/AlzQU0nIsNqhKQkkyzVd1mY+jqabGVhjRmAVPJjxdjoUMi6+b5Xl42lVoayoktTy6+RSqtvNevw5YTaBaynbP9Quh0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1746029822; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PqaMC8w6qtB1n0xipg6hxZmuKd9Q6kyn2/VlH0Aqgtg=; 
-	b=f4aEIU8IMcZFVD8SF9NY5xKGsw4lA1Q7usyi756Q5oMolxZS3oLCIEXM9e30A1AK3WlJu5Hm0fGEK+XXy9BIDVG4OuismmG50gxuQXC079FRnYC0IAfrrCaMYlEi6XxSVeFT8u5U95wHFGYy9oWu2xN7PvrGgpkd0R7z11oqU3c=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746029822;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=PqaMC8w6qtB1n0xipg6hxZmuKd9Q6kyn2/VlH0Aqgtg=;
-	b=Z9TRme2wLZNYuuNwMyq+DF6xQHWyn8Ly6bn2n+YAwblU1fFtJasEEs8LqT2GeuOb
-	ST6jMaIKHJj2rzuzlNfMDRZE0xSG1xGpPEXvaXoGeBj27ksCPZ7k2GXLQ7f32UWjQ4Q
-	kZKtbcPHXyURRbSLwCAsr24jyM3Vx5FPpiopDfXs=
-Received: by mx.zohomail.com with SMTPS id 1746029821190216.44843874019614;
-	Wed, 30 Apr 2025 09:17:01 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 30 Apr 2025 18:16:36 +0200
-Subject: [PATCH 3/3] arm64: dts: rockchip: add RK3576 RNG node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96B91ADC93
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 16:19:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746029971; cv=none; b=pHyr7IGT4rx8yZkrgHP/C7C5imZd296aRXRjvpr97LrU4ngst1fWzkB8CsPVxk/YZ/SIm/KamiRmfpJEYfrI+kkl9Bf3cpvMVMlHYLAA9qK8KH16JSMllGbQOkwwyrVwY80dB40sZnmJ4AG9oEFPUqVKY6vtDufs/BDGS/jx1Jw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746029971; c=relaxed/simple;
+	bh=gxoBkfkS52yO8riHnDTwSWFiE8lVSuhhDftXhP+C4jc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=VoY8YGjbZMt9z5/SyLkzCmxPtumMyLoz569eH1nfeIvo5BZ6OaNG4PbKTgOIOO0AmwxrOz37fnyLvPdsWJJuvPPc8YBxVKfCrqLgVPW36T8grl8W+JBanvd0EnpSskaIogkpx0NeBjhXcW0YS33EHJKA7mtZ9fan2+JacFv8thQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o9UJTq2x; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39c0dfba946so5683774f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 09:19:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746029968; x=1746634768; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g7Se6Bcet/jD1trRSgYmZmnWG6hjkxwW1xZsDPD2EnI=;
+        b=o9UJTq2xrePaeSWMBeOJL2/uVN3yys9rWraQ3xN1nVVpQpuhmD+0gqRjc0UONFMc6u
+         VuY4GPfm+viDo2yn5j4T1LdUlBxJJavlFdSkMAAAXs1enVBG2U32vTO6u/X36NNF+sfd
+         iJPqA5l2dtH1tMmIFcuCBgDPlykrVdj7sNxmdb6q5N6vC6FNYcHScGMf4xJmxwYioo9w
+         9NJAQGtSSt0NW2IZZbN/7/4FxPbC1oe1uolcwLRPT6XYVr8FgPHiOnT0A20fBdrFLUAO
+         kjltg9QOBD3ARu8nk6IflSxxlGkiazMZvBadbZMI++iZAIDd3D/cAq2V6aTc/EuX8V1F
+         xDYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746029968; x=1746634768;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=g7Se6Bcet/jD1trRSgYmZmnWG6hjkxwW1xZsDPD2EnI=;
+        b=nl62+cesPxm/fO7SzeAMoo1XVujQO6XMHeYOjTq76KvBVCJtJctueBnSV0GkX2ZfbD
+         C/hdBwi+hQpzNNt5TVDLqo7InmCv9+r2V9gi2gvQ1vQycGj8tR/T7nG1tyFdiohTsL6J
+         wNURr0YhJnm9uwiHdOFXwPsCx7BEfm8PAZJdYNBzsrKh+1SjW+QEd2dFQ0bGTjkN/jOh
+         PfHhnQ4qfoJsmI/vf8DlR0czKNYTRtUa24tAf0yMGPTlpKTDWxPhZH5ELz/LJDdg73qa
+         dPg0ERUSv71+7uvjTamoPFHEN55QpWyuWQYuFqZZKbm2g8v2EcIGtYOY4+VjMBM65G3F
+         adSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgZ+vfOTqhF5DyWfoLGweWoC/LzxJqEAQtZVBwoZTQOkjcMd6UCuJ7fmuPrXhdcBkfn8MI4s+Mq0Qb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzL6ahnfYNrQDhmnfKubart5EtPZuveaODCgqTjOzA6BjR+sUZ3
+	AMOWIL6BZd4IQ60cdWH+HcywzOj/8CNzJoWIbv34bVwS19fpOQWWeYTfxcise7w=
+X-Gm-Gg: ASbGncuQcud7LRehKWJ5k0zcq7yW7dEmdiDQHAhXrCJEWy7YQu0jiVDE+xyvTJbmrs0
+	DnBF3B5BjBs1sM046U9YixmZzsn6X4PTxJv41RJDjjhZ6bxRLkwFVJgWaDlLZs1Xikv0Z4W24JI
+	4wgQyMErqOnIJhDVe74/zHmRtaVmsXyzLxRzc1zTN9sk8PvkusREK8wYLu2PgnDvED+PUFdMuEV
+	ehvD/koBCG8XGdxLv2QM43INiCPyG48hZhbL1+YF4Qa156CAxiWKIIOo2xhl6+jHekSt4CLz+2x
+	exILkwe5dEdMA12XZLKGu8Sz309WrnZs2ONfxfaMkOSwX75yKkG27TJVGZyeiCX3+OuVh2+XJJT
+	gZ9nc/RY2nspt0qDicg==
+X-Google-Smtp-Source: AGHT+IFPiRzjJ1dXuW8JSjggrKqr4T+OSJprmTDKCcWUMBgJRLMdsXrx1svViVBvRkDmlT4kDww2eg==
+X-Received: by 2002:a05:6000:1785:b0:3a0:80dd:16d5 with SMTP id ffacd0b85a97d-3a08ff555bemr3020991f8f.55.1746029967967;
+        Wed, 30 Apr 2025 09:19:27 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:b3d6:213c:5c50:7785? ([2a01:e0a:3d9:2080:b3d6:213c:5c50:7785])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a07dbd6ea1sm13319523f8f.7.2025.04.30.09.19.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 09:19:27 -0700 (PDT)
+Message-ID: <63105bce-6b8e-4b99-bca1-3741f27ea25a@linaro.org>
+Date: Wed, 30 Apr 2025 18:19:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-rk3576-hwrng-v1-3-480c15b5843e@collabora.com>
-References: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
-In-Reply-To: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
-To: Daniel Golle <daniel@makrotopia.org>, 
- Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Jonas Karlman <jonas@kwiboo.se>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- kernel@collabora.com, linux-crypto@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFT v6 2/5] drm/msm/adreno: Add speedbin data for SM8550 /
+ A740
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
+ <20250430-topic-smem_speedbin_respin-v6-2-954ff66061cf@oss.qualcomm.com>
+ <13cd20c6-f758-45ff-82d1-4fd663d1698c@linaro.org>
+ <886d979d-c513-4ab8-829e-4a885953079a@oss.qualcomm.com>
+ <b838f9bd-0537-4f8d-b24b-d96700d566c8@linaro.org>
+ <98a4ad20-c141-4280-801e-015dafd1fb39@oss.qualcomm.com>
+ <a26213ec-808f-4edf-bb0d-ab469ee0a884@linaro.org>
+ <281ab1b6-498e-4b29-9e15-19b5aae25342@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <281ab1b6-498e-4b29-9e15-19b5aae25342@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The RK3576 has a hardware random number generator IP built into the SoC.
+On 30/04/2025 17:36, Konrad Dybcio wrote:
+> On 4/30/25 4:49 PM, neil.armstrong@linaro.org wrote:
+>> On 30/04/2025 15:09, Konrad Dybcio wrote:
+>>> On 4/30/25 2:49 PM, neil.armstrong@linaro.org wrote:
+>>>> On 30/04/2025 14:35, Konrad Dybcio wrote:
+>>>>> On 4/30/25 2:26 PM, neil.armstrong@linaro.org wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 30/04/2025 13:34, Konrad Dybcio wrote:
+>>>>>>> From: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>>>>
+>>>>>>> Add speebin data for A740, as found on SM8550 and derivative SoCs.
+>>>>>>>
+>>>>>>> For non-development SoCs it seems that "everything except FC_AC, FC_AF
+>>>>>>> should be speedbin 1", but what the values are for said "everything" are
+>>>>>>> not known, so that's an exercise left to the user..
+>>>>>>>
+>>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>>>> ---
+>>>>>>>      drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 8 ++++++++
+>>>>>>>      1 file changed, 8 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>>>>> index 53e2ff4406d8f0afe474aaafbf0e459ef8f4577d..61daa331567925e529deae5e25d6fb63a8ba8375 100644
+>>>>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>>>>>>> @@ -11,6 +11,9 @@
+>>>>>>>      #include "a6xx.xml.h"
+>>>>>>>      #include "a6xx_gmu.xml.h"
+>>>>>>>      +#include <linux/soc/qcom/smem.h>
+>>>>>>> +#include <linux/soc/qcom/socinfo.h>
+>>>>>>> +
+>>>>>>>      static const struct adreno_reglist a612_hwcg[] = {
+>>>>>>>          {REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x22222222},
+>>>>>>>          {REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02222220},
+>>>>>>> @@ -1431,6 +1434,11 @@ static const struct adreno_info a7xx_gpus[] = {
+>>>>>>>              },
+>>>>>>>              .address_space_size = SZ_16G,
+>>>>>>>              .preempt_record_size = 4192 * SZ_1K,
+>>>>>>> +        .speedbins = ADRENO_SPEEDBINS(
+>>>>>>> +            { ADRENO_SKU_ID(SOCINFO_FC_AC), 0 },
+>>>>>>> +            { ADRENO_SKU_ID(SOCINFO_FC_AF), 0 },
+>>>>>>> +            /* Other feature codes (on prod SoCs) should match to speedbin 1 */
+>>>>>>
+>>>>>> I'm trying to understand this sentence. because reading patch 4, when there's no match
+>>>>>> devm_pm_opp_set_supported_hw() is simply never called so how can it match speedbin 1 ?
+>>>>>
+>>>>> What I'm saying is that all other entries that happen to be possibly
+>>>>> added down the line are expected to be speedbin 1 (i.e. BIT(1))
+>>>>>
+>>>>>> Before this change the fallback was speedbin = BIT(0), but this disappeared.
+>>>>>
+>>>>> No, the default was to allow speedbin mask ~(0U)
+>>>>
+>>>> Hmm no:
+>>>>
+>>>>       supp_hw = fuse_to_supp_hw(info, speedbin);
+>>>>
+>>>>       if (supp_hw == UINT_MAX) {
+>>>>           DRM_DEV_ERROR(dev,
+>>>>               "missing support for speed-bin: %u. Some OPPs may not be supported by hardware\n",
+>>>>               speedbin);
+>>>>           supp_hw = BIT(0); /* Default */
+>>>>       }
+>>>>
+>>>>       ret = devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
+>>>>       if (ret)
+>>>>           return ret;
+>>>
+>>> Right, that's my own code even..
+>>>
+>>> in any case, the kernel can't know about the speed bins that aren't
+>>> defined and here we only define bin0, which doesn't break things
+>>>
+>>> the kernel isn't aware about hw with bin1 with or without this change
+>>> so it effectively doesn't matter
+>>
+>> But it's regression for the other platforms, where before an unknown SKU
+>> mapped to supp_hw=BIT(0)
+>>
+>> Not calling devm_pm_opp_set_supported_hw() is a major regression,
+>> if the opp-supported-hw is present, the OPP will be rejected:
+> 
+> A comment in patch 4 explains that. We can either be forwards or backwards
+> compatible (i.e. accept a limited amount of
+> speedbin_in_driver x speedbin_in_dt combinations)
 
-Add it to the SoC's .dtsi, now that there's a binding and driver for it.
+I have a hard time understanding the change, please be much more verbose
+in the cover letter and commit messages.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+The fact that you do such a large change in the speedbin policy in patch 4
+makes it hard to understand why it's needed in the first place.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index a6bfef82d50bc9b0203a04324d61e0f232b61a65..ce8bcab215c0e6b7786ab3baae6977072497ed2f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1527,6 +1527,14 @@ sfc0: spi@2a340000 {
- 			status = "disabled";
- 		};
- 
-+		rng: rng@2a410000 {
-+			compatible = "rockchip,rk3576-rng";
-+			reg = <0x0 0x2a410000 0x0 0x200>;
-+			clocks = <&cru HCLK_TRNG_NS>;
-+			interrupts = <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&cru SRST_H_TRNG_NS>;
-+		};
-+
- 		otp: otp@2a580000 {
- 			compatible = "rockchip,rk3576-otp";
- 			reg = <0x0 0x2a580000 0x0 0x400>;
+Finally I'm very concerned that "old" SM8550 DT won't work on new kernels,
+this is frankly unacceptable, and this should be addressed in the first
+place.
 
--- 
-2.49.0
+The nvmem situation was much simple, where we considered we added the nvmem
+property at the same time as opp-supported-hw in OPPs, but it's no more the
+case.
+
+So I think the OPP API should probably be extended to address this situation
+first, since if we do not have the opp-supported-hw in OPPs, all OPPs are safe.
+
+So this code:
+	count = of_property_count_u32_elems(np, "opp-supported-hw");
+	if (count <= 0 || count % levels) {
+		dev_err(dev, "%s: Invalid opp-supported-hw property (%d)\n",
+			__func__, count);
+		return false;
+	}
+should return true in this specific case, like a supported_hw_failsafe mode.
+
+Neil
+
+> 
+> Konrad
 
 
