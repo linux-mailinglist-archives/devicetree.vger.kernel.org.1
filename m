@@ -1,85 +1,160 @@
-Return-Path: <devicetree+bounces-172208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3665AA432E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:35:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC608AA433E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:42:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 494461C01D51
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:35:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55D3D4A1371
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47E11E5B82;
-	Wed, 30 Apr 2025 06:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A331E98E7;
+	Wed, 30 Apr 2025 06:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0+8I6l1"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="nK98Gykp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849571EEF9;
-	Wed, 30 Apr 2025 06:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9115213FEE;
+	Wed, 30 Apr 2025 06:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745994924; cv=none; b=DObCrepu5dr5K585BxqpXvAB1wq8e9SgilRaMG0aXHedfCs4+Sv8/aDan/Jh+3JCA8jnXVhStFu/Dcn7PV1XOZDfGaWnAJhMe7sKpB4uPMHwoowJ57EgYrO84S/y3Tk7g23i0vm5tmCiYj90l5re00U0bAL1DkHS+Y88AxKfqL0=
+	t=1745995358; cv=none; b=AYJpxj3Vlsb39mz1EnLAHlSEomTQtZku/NpA5zBuCEonbVFImbFJKSgUGcUjHP+2bobbkpsx++VSjzfYzDvWxa+hCRrf+9FxQphVT89KhLXcHF+RzmcY9RkwYU6351JF+Mwi0UQfH/GT85LEukcnZSrg4HGSxsKJRdDAKJevxhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745994924; c=relaxed/simple;
-	bh=2GBR4Hi5ao4ZWwIgFEL+gg6kKOZ4jKqEx1gxgiu8CSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VoULwLFp4WTXH8DNwhnah0YMrGlus2xI+IACE4Kf7nyV4rqXuUm33QXI5laa1N5hHHczU8di1FzQ/FkqMBGeoWo+Avv++kv6H7qUyOQPQG+iIv08LJ2ZhRZ9eJGK5Hm3wqmgcPqpZv/L7UsGpWPpAHTjDlOQkbfeo8KJcOh7WYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0+8I6l1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F98C4CEE9;
-	Wed, 30 Apr 2025 06:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745994924;
-	bh=2GBR4Hi5ao4ZWwIgFEL+gg6kKOZ4jKqEx1gxgiu8CSw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S0+8I6l1mbFthpT1IzvMzXEMZJBe9cGpkyteul4sP/gD+CZQaFXc/Prp03BYRz3Ac
-	 K2ac5c2s5IgBLnnVzfufMhZR8sqYGMvXrS3qkKzH+4XiggLLbNNxaXiCJYTzNP+3O4
-	 RW8Ga767/nq9NsK8m8E0qD6W8OgR1VnsL4elc4srXSbuKUBUD1ATLJxWVB90P0Abal
-	 gIL6jFKZHNNoij/zg/gDVt9PvQsKxyg4LUJumX0eIXbeUZnuNH97Yo+C2TMTpQ+6D/
-	 8tDtpWmqF6qWj6tC2ArxMcgV9F/1NoJOQG9uX0yucecjDVB+OgPNOS+HZYvRcRUjMo
-	 fzrhEQmSw/4IQ==
-Date: Wed, 30 Apr 2025 08:35:21 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Andre Przywara <andre.przywara@arm.com>, Corentin Labbe <clabbe.montjoie@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: sram: sunxi-sram: Add A523 compatible
-Message-ID: <20250430-fanatic-singing-terrier-68acbb@kuoka>
-References: <20250430-01-sun55i-emac0-v3-0-6fc000bbccbd@gentoo.org>
- <20250430-01-sun55i-emac0-v3-1-6fc000bbccbd@gentoo.org>
+	s=arc-20240116; t=1745995358; c=relaxed/simple;
+	bh=nHIn3nIQVH8QtNleQJ4nz/RAXFRygzRRCKhocBQ4FJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iDfU0fAagvhnuQI0k3txV1zhUH0cXWXej4wMln+CWwu68NQTIJOQrIOE/n/oisqD0vc+DW549zUr0GrdG9zGYCZHthQDrgMZ8J/nFJe4OE2PjYI/6YAeoRkipQmMeS/4ao2ZcDPUi0gqtG1A2/1OS0u0eDYl37MfD5BGGfSvZIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=nK98Gykp; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLZVDU026607;
+	Wed, 30 Apr 2025 08:42:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	JzZVq/fjsWYxZI6f7ZSLLSgCG96lHBZGmkDw/IbXKNo=; b=nK98GykpHV+rAGjG
+	26I4b5dRGewwj4dKBq7N+81FkrpR4VJ3KlfI5TtWr16oRSUSPiqv/XPO1Ly+5UDO
+	YotXr94Aj5pTgbByru/zv2ciJljauu+DBQ9ZXLR5qmUqhumDr9zwDuUOX5LHSfE6
+	6LU2JNLKLkZ9B4hHiDjOJZnU2uwomTEV6CKn/OrItvHsZ3qgdLc+Lt30vj+GLV8Q
+	f966Irk5NprnPGyS+M7kClmk+kGjgjFd9XgppQVVstm670FDA2tQaWm/6t8f5wYs
+	cgvucTmmIn3lX/6sJDaoWSPerGrMBYPePDuGt7Ub7SsHrEThWrDazNPi/0OWW+3/
+	umNmvw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46b6tmse9c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 08:42:24 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D54DA40050;
+	Wed, 30 Apr 2025 08:41:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5E054A375E3;
+	Wed, 30 Apr 2025 08:39:47 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 30 Apr
+ 2025 08:39:46 +0200
+Message-ID: <011681f1-a327-44de-b5d0-5230303f7540@foss.st.com>
+Date: Wed, 30 Apr 2025 08:39:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250430-01-sun55i-emac0-v3-1-6fc000bbccbd@gentoo.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: add low power timer on STM32F746
+To: Ben Wolsieffer <ben.wolsieffer@hefring.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>
+References: <20250404143514.860126-1-ben.wolsieffer@hefring.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250404143514.860126-1-ben.wolsieffer@hefring.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_02,2025-04-24_02,2025-02-21_01
 
-On Wed, Apr 30, 2025 at 01:32:03PM GMT, Yixun Lan wrote:
-> The Allwinner A523 family of SoCs have their "system control" registers
-> compatible to the A64 SoC, so add the new SoC specific compatible string.
+Hi Ben
+
+On 4/4/25 16:35, Ben Wolsieffer wrote:
+> Add device tree node for the low power timer on the STM32F746.
 > 
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> Signed-off-by: Ben Wolsieffer <ben.wolsieffer@hefring.com>
 > ---
->  .../devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml     | 1 +
->  1 file changed, 1 insertion(+)
+>   arch/arm/boot/dts/st/stm32f746.dtsi | 34 +++++++++++++++++++++++++++++
+>   1 file changed, 34 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32f746.dtsi b/arch/arm/boot/dts/st/stm32f746.dtsi
+> index 2537b3d47e6f..208f8c6dfc9d 100644
+> --- a/arch/arm/boot/dts/st/stm32f746.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32f746.dtsi
+> @@ -43,6 +43,7 @@
+>   #include "../armv7-m.dtsi"
+>   #include <dt-bindings/clock/stm32fx-clock.h>
+>   #include <dt-bindings/mfd/stm32f7-rcc.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+>   
+>   / {
+>   	#address-cells = <1>;
+> @@ -245,6 +246,39 @@ pwm {
+>   			};
+>   		};
+>   
+> +		lptimer1: timer@40002400 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "st,stm32-lptimer";
+> +			reg = <0x40002400 0x400>;
+> +			interrupts-extended = <&exti 23 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&rcc 1 CLK_LPTIMER>;
+> +			clock-names = "mux";
+> +			status = "disabled";
+> +
+> +			pwm {
+> +				compatible = "st,stm32-pwm-lp";
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+> +			trigger@0 {
+> +				compatible = "st,stm32-lptimer-trigger";
+> +				reg = <0>;
+> +				status = "disabled";
+> +			};
+> +
+> +			counter {
+> +				compatible = "st,stm32-lptimer-counter";
+> +				status = "disabled";
+> +			};
+> +
+> +			timer {
+> +				compatible = "st,stm32-lptimer-timer";
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+>   		rtc: rtc@40002800 {
+>   			compatible = "st,stm32-rtc";
+>   			reg = <0x40002800 0x400>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied on stm32-next.
 
-Best regards,
-Krzysztof
-
+Thanks
+Alex
 
