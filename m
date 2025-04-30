@@ -1,254 +1,182 @@
-Return-Path: <devicetree+bounces-172541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00BCBAA5184
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 18:22:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E64CAA5199
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 18:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55F8A4E7B60
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:22:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CC743A3424
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4D02609D5;
-	Wed, 30 Apr 2025 16:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1996264A90;
+	Wed, 30 Apr 2025 16:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EYAqFnbe"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="fESSCScl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EFFC2110;
-	Wed, 30 Apr 2025 16:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF93F264FA7
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 16:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746030130; cv=none; b=PWnMQxsWhqE+pfuTfA6f4wIh29wYp5ewPc0ilcxF4qERgIEgPypDInHiFyJNAuqLPl/fMsdMLEmEbpRoMfTpSmBYUebE4+61ZjDeOahSptAhR9ruPq3Nl209VtZtpWNCJ7rZIEzfFT+FQTbbuMFGzFhZar/FSiZRqCOBCz1tQyQ=
+	t=1746030340; cv=none; b=LbOvn+lArdtnrtY9WF+IwxYZDnY6NUXluAIz7uamdFJSV8GkK9hiZ3IlGF606bjrm4EGJXJ33RxrXv0rF/ajOQZzOaVPYFJ9VMgMIWbuLmlZlJbDHUYvLJXgR36TuockvhbU++HpyO5hzveNpJMfgwbslAef/y6DcC2jGNz41bI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746030130; c=relaxed/simple;
-	bh=UFeOnbIz3T1QSHiDq7P4ewiS30rbMB8EppuUEFRXqDU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=NacLAojjdfOMocNtb2VW9btpbhlPbXF94uCmR6Qwx8k9208AmuWS3yIfJyq6i8wC39CWlNM4zmsJ0CsvhQ06ba5Jij+RaFV+yyLfbSEGKLVLahYhOUyKv3lsSlAFdSaWC7XJMDv61ddH53wityz4l7/3RxuzcGIxa8cj2n4FJZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EYAqFnbe; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:Date:From:From:Sender:Reply-To:Subject:Date:Message-ID:
-	To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0d7WLnl504sekXp0Nz/5l4ROh+QwmTFgFcPUq5zV4qI=; b=EYAqFnbeHkkGbH8FLCZGX7i3DX
-	uzB8Ml2z5AYNI/gq9ruDXmaWq0k4PyDEsGasyE32JxeHq32PTtKWc85aWIbChIZL6KTmBw0Hkt9Ed
-	+0apX4ByU3Y8Hn9NQ4aKPO5O45HCGll0IYepNB3S0UQ2fToI6GPGmZY/Z0g69gbyP6NU=;
-Received: from c-68-46-73-62.hsd1.mn.comcast.net ([68.46.73.62] helo=thinkpad.home.lunn.ch)
-	by vps0.lunn.ch with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uAAC9-00BFer-4j; Wed, 30 Apr 2025 18:22:02 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-Date: Wed, 30 Apr 2025 11:21:35 -0500
-Subject: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
+	s=arc-20240116; t=1746030340; c=relaxed/simple;
+	bh=1PVzdxRp/+kFJAIg/6hMZbJV5KT/kYbP/MLkM4mgXFg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EXk1JIpHg0xpm7TmRe7djdAMdAuJLYrt+8jGeyEAzwzgv0UK2fIiXNfmYiFeGNDfMl8Bry6nw/AxJiY85slIfIexoE+5Nj+f6U0Y2a/Xq9pi6WRlUgUahzRrENBy8db/+UBOpqhm402c3uY1A3wUwwg3xYd6a1TzpOL8mjK8kH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=fESSCScl; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-707d02aca67so477847b3.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 09:25:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1746030337; x=1746635137; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pYuvroTINkfC6xAaXcm4PuIm1ax6xcO4Y50Rb3BmvI0=;
+        b=fESSCSclF5O2b9sup4quDgOBRJ/roLJb19FtfUewz+S9+SUFpeClDRQZ1O3k793Xm0
+         +tqiHTxRusOrnAYEXL+t/sCYknagaJxgMgpEXXJA4nO4U3ypFjB7SKKo4RypcAYRjUrF
+         RqyA4C5A8TdSHdmgvDLNev4LScAFNAcgIcCAvBMOOsVuMF0nxtCtBKLBjXw22wrPTD08
+         kpt8SfNd2rZ8vdqaLM7KfLbPSqe/RpzP69k2kpecbq3F1ZZp6TLaq5XvXcvRhD+IH8CH
+         /jLQ85lnw5+0JGT9Ruw64YHxT9Xk2XeN/nhRMx+iqhilCq7YD6yAVIIRGreG9q3wqrkd
+         ftaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746030337; x=1746635137;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pYuvroTINkfC6xAaXcm4PuIm1ax6xcO4Y50Rb3BmvI0=;
+        b=qQfJWFowAjJNzOiLdyKRnLPIG/DtlRnvVey7bHhSyJyac8LcpD2ensyLkAYXeqfmhg
+         4wSk+m+5shRhjZDP8Gi7UcRg9jX81xHRZcPl571TftyAJRczL7J8sWD9yrNLylZEoWYN
+         96V2Kf3N/Wnx2oZRA5MYIYtlRrXGUpDVaAvC8Cf16+Z+77H0ZYMe+RIN6MJ3TthiV988
+         nCqMwiAL+nnWREdJUdbXCAVmxrtowZD7bMIDUMdcUJXEQvxDlXeNGcfPatI831smeLCk
+         zDPWxVaH8zOMtEUbVynZnxiWpWXW8kfGpArSJ9/FDJ4k7VbMUR4U6IjR89hQtpF1UtMa
+         7HNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkORo5JzwnViF092WIm4AstlDb7KqFcqbrSfe3fGM5b1NPOVRMbn1xUX/HjKNFtTb9wZWPLaBzPLhp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE9kR7IeDj1W/nmECg+PPL0yPWr6uR4Z6yfzLyoYYRvWYp4RFd
+	4qGzoaCVpoOel/xpWZBy2c2VWqebQIkRB6+27ViipmM0AQ5NHo/x9AyFFpv6gbrim4uocAwanML
+	uQTo7gUU1MnkZq70TFZO9EkAiqZpuZ8qO0YJ6Ag==
+X-Gm-Gg: ASbGncvJgp0Sv+iwrUOkpcaPqhEZ8vUX8/jdD/i7dfpBSkUqfXvetcmqmFo2wNwbU9t
+	6m/ZTsgYgEpWyyY90lm3yafDPK3cMjPa6IzY2vrZzDUPUYvajmq/EHzhcath2f20Z7muigUyh8M
+	cIhnOw+ppGx5qKOJC/PbK9KNlm6Cs8n86MCDEkpZVFria0147xY/YtqQ==
+X-Google-Smtp-Source: AGHT+IHd+mzxsbQHzg2KdqaE0D0IMCI4DPD74nxHKEsYaPw4wosN4rVl4mhlvOGDdXpSNiN3p5emIlAjRcnS9XKmP/Y=
+X-Received: by 2002:a05:690c:700b:b0:708:73bc:abdc with SMTP id
+ 00721157ae682-708abdac21fmr56602207b3.22.1746030336612; Wed, 30 Apr 2025
+ 09:25:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
-X-B4-Tracking: v=1; b=H4sIAA5OEmgC/42NvQ7CMBCDX6W6mUNJSPrDBGJhZGBDHaI0bU8qK
- UpKRFX13Ql9AibLlv15gWA92QDHbAFvIwUaXTJil4HptessUpM8CCYUk6LCmCNX6M0BnZ3Qd08
- ibOyg54ClZszIoixbXUACvLxt6bPBH3A73y/XX5pmUCftKUyjn7fnyLfOPyeRI8dWiTyXlVSF5
- Kfh7dze9FCv6/oFKaGEtdAAAAA=
-X-Change-ID: 20250429-v6-15-rc3-net-rgmii-delays-8a00c4788fa7
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- "Russell King (Oracle)" <linux@armlinux.org.uk>, 
- Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7503; i=andrew@lunn.ch;
- h=from:subject:message-id; bh=UFeOnbIz3T1QSHiDq7P4ewiS30rbMB8EppuUEFRXqDU=;
- b=owEBbQKS/ZANAwAIAea/DcumaUyEAcsmYgBoEk4jEH4v8AS3x/0G2P7cfPq+DLiZBaDC9S7zh
- J85vksdGjCJAjMEAAEIAB0WIQRh+xAly1MmORb54bfmvw3LpmlMhAUCaBJOIwAKCRDmvw3LpmlM
- hHs8EACZEZqCep17D4HcXyIzV61vB1KzwbkAaHdUHIzD9D4tt+CfHzRWW3BVLeakOPp2M+c9BIt
- IGIxEJiTH9AaZFlr2LwPQdJW7NrtMAKp5kJwGSQnzLMuamCuw+Pe0KEL4IIFP48FpYmnlSZkraQ
- dakSD0qMi3sycQlGzaVanC3dWOSmng3vU6OnovGEJpP9uD5XRGdFLgYD2yoFM9WYhUenGruntaE
- YhSDWSZHmKxnOzlSc0aKcPc/1zTIgxSfARn1I5u4J5BsVMP1+8VEfLGCmo7C2Z0WOb9m6iTPzEQ
- v0SmmV/rWPFHVZUEIXTIv9LIsKEcNoOEvxCRWivTsC2ogBulVzOarLQ3XFeUiNVXzC7vKSxjSp7
- U4RfSP0R+CP+YqD8asTHcS1zoYPUwGxAQN/4sE/PcRYmH4mun86SbPFnjDBiyymOiWjDpUZxIyP
- eO8jx/1Avz0p4ls2HS/TMQq3gv2aocmPCJOOmwOsP9iayJzcNIWq2pQ5PcCp3nBuuVADZUSpeP9
- 9G0XhD+KQpD0NByWQrckRSdyOTsestY+hsNdaLWw18yMi+KY9a45u3JzGZXtLvDdfL6bO78qgWd
- W+lPf6CRM5csQmjG5ScWgM6rRv5h7L6JBYruGzVsb4kDh3M/TwxC19x4fwjhHoJhhu+TwJ6m1SE
- Wpm81FT6xMwXvVw==
-X-Developer-Key: i=andrew@lunn.ch; a=openpgp;
- fpr=61FB1025CB53263916F9E1B7E6BF0DCBA6694C84
+References: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
+ <20250430131856.GB25516@pendragon.ideasonboard.com> <CAPY8ntBPSC6KZcBVt35QWx_ZPYwkSJSVzhhaXokbjkWJDVJRqA@mail.gmail.com>
+ <20250430160445.GB31516@pendragon.ideasonboard.com>
+In-Reply-To: <20250430160445.GB31516@pendragon.ideasonboard.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 30 Apr 2025 17:25:14 +0100
+X-Gm-Features: ATxdqUFmSnHhLyB4xlaoBz0z3J5u5ayEJkVVl-qFWx18SUxO7BsGgktwlOcreUk
+Message-ID: <CAPY8ntBb5x+F=xj=KVrkfq=JqdshgCS548YjRt4OuhhyVJNkVw@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: sony,imx290: Update usage example
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Device Tree and Ethernet MAC driver writers often misunderstand RGMII
-delays. Rewrite the Normative section in terms of the PCB, is the PCB
-adding the 2ns delay. This meaning was previous implied by the
-definition, but often wrongly interpreted due to the ambiguous wording
-and looking at the definition from the wrong perspective. The new
-definition concentrates clearly on the hardware, and should be less
-ambiguous.
+On Wed, 30 Apr 2025 at 17:04, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> On Wed, Apr 30, 2025 at 02:52:01PM +0100, Dave Stevenson wrote:
+> > On Wed, 30 Apr 2025 at 14:19, Laurent Pinchart wrote:
+> > > On Wed, Apr 30, 2025 at 03:03:10PM +0200, Geert Uytterhoeven wrote:
+> > > > On Wed, 30 Apr 2025 at 14:58, Niklas S=C3=B6derlund wrote:
+> > > > > Since commit 98e0500eadb7 ("media: i2c: imx290: Add configurable =
+link
+> > > > > frequency and pixel rate") the driver expects two specific
+> > > > > link-frequency settings 2-lane (445500000, 297000000) and 4-lane
+> > > > > (222750000, 148500000) operation. The driver fails to probe witho=
+ut
+> > > > > these exact settings.
+> > > > >
+> > > > > Update the example in the bindings to match this to make it easie=
+r for
+> > > > > users to incorporate this sensor in their device tree description=
+s
+> > > > > without having to read the driver sources when the driver fails t=
+o
+> > > > > probe.
+> > > > >
+> > > > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ra=
+gnatech.se>
+> > > >
+> > > > Thanks for your patch!
+> > > >
+> > > > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yam=
+l
+> > > > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yam=
+l
+> > > > > @@ -136,7 +136,7 @@ examples:
+> > > > >              port {
+> > > > >                  imx290_ep: endpoint {
+> > > > >                      data-lanes =3D <1 2 3 4>;
+> > > > > -                    link-frequencies =3D /bits/ 64 <445500000>;
+> > > > > +                    link-frequencies =3D /bits/ 64 <222750000 14=
+8500000>;
+> > > > >                      remote-endpoint =3D <&csiphy0_ep>;
+> > > > >                  };
+> > > > >              };
+> > > >
+> > > > I guess the link-frequencies property should gain a rule that it
+> > > > needs two values, too?
+> > >
+> > > The driver doesn't require two frequencies (unless I'm mistaken), it
+> > > could operate with a single one (albeit not in all resolutions), so I
+> > > don't think we should require two frequencies in the bindings.
+> >
+> > The driver does require both due to 98e0500eadb7 ("media: i2c: imx290:
+> > Add configurable link frequency and pixel rate") and
+> > imx290_check_link_freqs()
+>
+> I realized after sending the previous e-mail that I was indeed mistaken.
+> I thought the driver iterated over the DT link frequencies to check if
+> they're supported, but it goes the other way around.
+>
+> > However I'd agree that it'd be better to make the driver accept just
+> > the one and make any compensations, rather than amend the binding. I'm
+> > happy to try and find a few minutes to make a patch for that.
+>
+> That would be nice, thanks.
+>
+> > My experience of this family of sensors says that we should be able to
+> > run any resolution at any link frequency, but it needs changes to
+> > HBLANK to ensure there is sufficient time per line.
+> > Dropping to the lower link freq for the 720p mode is only because that
+> > is what the datasheet describes for the precanned HD720p. The window
+> > cropping mode lists no such requirement, and yet could produce exactly
+> > that same 720p output.
+>
+> And with more information about the INCKSEL registers we could possibly
+> even support other frequencies.
 
-Add an Informative section to the end of the binding describing in
-detail what the four RGMII delays mean. This expands on just the PCB
-meaning, adding in the implications for the MAC and PHY.
+I have no extra information there.
+The minimal changes that are made to INCKSEL 1 & 2 to switch between
+the two link frequencies makes it look pretty fixed rather than
+flexible PLLs, and I haven't got the time to go randomly poking to
+reverse engineer it.
 
-Additionally, when the MAC or PHY needs to add a delay, which is
-software configuration, describe how Linux does this, in the hope of
-reducing errors. Make it clear other users of device tree binding may
-implement the software configuration in other ways while still
-conforming to the binding.
-
-Fixes: 9d3de3c58347 ("dt-bindings: net: Add YAML schemas for the generic Ethernet options")
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
----
-Changes in v2:
-Reword Normative section
-manor->manner
-add when using phylib/phylink
-request details in the commit message and .dts comments
-clarify PHY -internal-delay-ps values being depending on rgmii-X mode.
-Link to v1: https://lore.kernel.org/r/20250429-v6-15-rc3-net-rgmii-delays-v1-1-f52664945741@lunn.ch
----
- .../bindings/net/ethernet-controller.yaml          | 97 ++++++++++++++++++++--
- 1 file changed, 90 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 45819b2358002bc75e876eddb4b2ca18017c04bd..a2d4c626f659a57fc7dcd39301f322c28afed69d 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -74,19 +74,17 @@ properties:
-       - rev-rmii
-       - moca
- 
--      # RX and TX delays are added by the MAC when required
-+      # RX and TX delays are provided by the PCB. See below
-       - rgmii
- 
--      # RGMII with internal RX and TX delays provided by the PHY,
--      # the MAC should not add the RX or TX delays in this case
-+      # RX and TX delays are not provided by the PCB. This is the most
-+      # frequent case. See below
-       - rgmii-id
- 
--      # RGMII with internal RX delay provided by the PHY, the MAC
--      # should not add an RX delay in this case
-+      # TX delay is provided by the PCB. See below
-       - rgmii-rxid
- 
--      # RGMII with internal TX delay provided by the PHY, the MAC
--      # should not add an TX delay in this case
-+      # RX delay is provided by the PCB. See below
-       - rgmii-txid
-       - rtbi
-       - smii
-@@ -286,4 +284,89 @@ allOf:
- 
- additionalProperties: true
- 
-+# Informative
-+# ===========
-+#
-+# 'phy-modes' & 'phy-connection-type' properties 'rgmii', 'rgmii-id',
-+# 'rgmii-rxid', and 'rgmii-txid' are frequently used wrongly by
-+# developers. This informative section clarifies their usage.
-+#
-+# The RGMII specification requires a 2ns delay between the data and
-+# clock signals on the RGMII bus. How this delay is implemented is not
-+# specified.
-+#
-+# One option is to make the clock traces on the PCB longer than the
-+# data traces. A sufficiently difference in length can provide the 2ns
-+# delay. If both the RX and TX delays are implemented in this manner,
-+# 'rgmii' should be used, so indicating the PCB adds the delays.
-+#
-+# If the PCB does not add these delays via extra long traces,
-+# 'rgmii-id' should be used. Here, 'id' refers to 'internal delay',
-+# where either the MAC or PHY adds the delay.
-+#
-+# If only one of the two delays are implemented via extra long clock
-+# lines, either 'rgmii-rxid' or 'rgmii-txid' should be used,
-+# indicating the MAC or PHY should implement one of the delays
-+# internally, while the PCB implements the other delay.
-+#
-+# Device Tree describes hardware, and in this case, it describes the
-+# PCB between the MAC and the PHY, if the PCB implements delays or
-+# not.
-+#
-+# In practice, very few PCBs make use of extra long clock lines. Hence
-+# any RGMII phy mode other than 'rgmii-id' is probably wrong, and is
-+# unlikely to be accepted during review without details provided in
-+# the commit description and comments in the .dts file.
-+#
-+# When the PCB does not implement the delays, the MAC or PHY must.  As
-+# such, this is software configuration, and so not described in Device
-+# Tree.
-+#
-+# The following describes how Linux implements the configuration of
-+# the MAC and PHY to add these delays when the PCB does not. As stated
-+# above, developers often get this wrong, and the aim of this section
-+# is reduce the frequency of these errors by Linux developers. Other
-+# users of the Device Tree may implement it differently, and still be
-+# consistent with both the normative and informative description
-+# above.
-+#
-+# By default in Linux, when using phylib/phylink, the MAC is expected
-+# to read the 'phy-mode' from Device Tree, not implement any delays,
-+# and pass the value to the PHY. The PHY will then implement delays as
-+# specified by the 'phy-mode'. The PHY should always be reconfigured
-+# to implement the needed delays, replacing any setting performed by
-+# strapping or the bootloader, etc.
-+#
-+# Experience to date is that all PHYs which implement RGMII also
-+# implement the ability to add or not add the needed delays. Hence
-+# this default is expected to work in all cases. Ignoring this default
-+# is likely to be questioned by Reviews, and require a strong argument
-+# to be accepted.
-+#
-+# There are a small number of cases where the MAC has hard coded
-+# delays which cannot be disabled. The 'phy-mode' only describes the
-+# PCB.  The inability to disable the delays in the MAC does not change
-+# the meaning of 'phy-mode'. It does however mean that a 'phy-mode' of
-+# 'rgmii' is now invalid, it cannot be supported, since both the PCB
-+# and the MAC and PHY adding delays cannot result in a functional
-+# link. Thus the MAC should report a fatal error for any modes which
-+# cannot be supported. When the MAC implements the delay, it must
-+# ensure that the PHY does not also implement the same delay. So it
-+# must modify the phy-mode it passes to the PHY, removing the delay it
-+# has added. Failure to remove the delay will result in a
-+# non-functioning link.
-+#
-+# Sometimes there is a need to fine tune the delays. Often the MAC or
-+# PHY can perform this fine tuning. In the MAC node, the Device Tree
-+# properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
-+# be used to indicate fine tuning performed by the MAC. The values
-+# expected here are small. A value of 2000ps, i.e 2ns, and a phy-mode
-+# of 'rgmii' will not be accepted by Reviewers.
-+#
-+# If the PHY is to perform fine tuning, the properties
-+# 'rx-internal-delay-ps' and 'tx-internal-delay-ps' in the PHY node
-+# should be used. When the PHY is implementing delays, e.g. 'rgmii-id'
-+# these properties should have a value near to 2000ps. If the PCB is
-+# implementing delays, e.g. 'rgmii', a small value can be used to fine
-+# tune the delay added by the PCB.
- ...
-
----
-base-commit: d4cb1ecc22908ef46f2885ee2978a4f22e90f365
-change-id: 20250429-v6-15-rc3-net-rgmii-delays-8a00c4788fa7
-
-Best regards,
--- 
-Andrew Lunn <andrew@lunn.ch>
-
+  Dave
 
