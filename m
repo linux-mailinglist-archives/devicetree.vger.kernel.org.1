@@ -1,174 +1,174 @@
-Return-Path: <devicetree+bounces-172178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69BEAA4219
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:02:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74949AA4231
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C831BC2153
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:03:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99A137A7C62
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFAA31C700D;
-	Wed, 30 Apr 2025 05:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491301E2312;
+	Wed, 30 Apr 2025 05:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Pt+b1A7L"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Z0nbmGqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C41DEC2;
-	Wed, 30 Apr 2025 05:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0848EA921;
+	Wed, 30 Apr 2025 05:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745989366; cv=none; b=HwkA1M6urvQBNGMbQZ8lBdvS3Edk7Kgmsx8iSFBLHmJ+9rL6PidziyKxy+7a2yvUy6IOFKmC3JpRM1xQC4BhktGG+VjW9iLEgtlIxdw6T/PK9w4XoVoPD17R/mYsVbPzVoSMIrivDBFC6DKIbeD7Sv+2+Bh0Prg6oxBFAXawABI=
+	t=1745990310; cv=none; b=MTv0wR0CDkqDc2UTzAGgojOQvyDX4MASycQ0EjoToNjd6SzttJcKLMujMIkKRl6k+p0OcHZ3VPV7qWU2rS2fTQAi/OANWfUfOHKBFNZpvLxgMNQiI6lFLoN7GJtRz+cWk7qLDJDewEHFdsCAIdObVnABNbF0MwtXcaAorOkW9jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745989366; c=relaxed/simple;
-	bh=P9dFlAotUFK7qz9Tnye45ZjBexnanHqxKetS/gDk8ik=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gHEAMfoqAajR+7R0IsCxEies4Y/E6svBnV/ZuITQCEev9/H8WQqVcyJnbmFQXXp4jnVs90dNnOkLN+7X7I3VTqieJ7e0hFT5hdjlgjc4IGi2ZRzt76VG9s0/zVFfQ4BDPPioS0V3uGy/H1BH35i8FS1QU9kGiYnQThTBgFXoO9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Pt+b1A7L; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLb6hl001708;
-	Wed, 30 Apr 2025 05:02:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BaJlAFQiOr69yTTQfYEnLNYARPRk6bsmVp9U6eMvrtc=; b=Pt+b1A7LKUlMjPKh
-	k4YztfLf0MYqaMB9KGePPZwFY9vzHRa1IQEXrQi3PZ9zm0K4ial/0DYoqSpzP51m
-	mGAvf0rWLGziLoCiohztxeuR5l8gJQhvZ5hg0I47qJ723sd/baw/xmMUzvOOZCmH
-	JYCVVeY6FJaV15SFBvENqK9k2oLqw3KkRb8KBaqW939hGAMQi7+Bme0tSreOAZni
-	i8jg9onmgorAB4Py0wrmUkka1AC+MwY9GJ7P0Y4j/B5UULTC55FDatY66T60y+PY
-	k7xbdQzbEYhXPlLuCMorzbwWL3YLbEQpD12A7tCJokIl70qbB+qSiJf3mnR3sw4n
-	HXfT9Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u28ufh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 05:02:41 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53U52ePr004141
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 05:02:40 GMT
-Received: from [10.218.23.250] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Apr
- 2025 22:02:35 -0700
-Message-ID: <e6075d01-1bca-48fb-b3f1-4a1b35c63ec5@quicinc.com>
-Date: Wed, 30 Apr 2025 10:32:33 +0530
+	s=arc-20240116; t=1745990310; c=relaxed/simple;
+	bh=lPl54U/qqBrHjOX1YYhAPaRKXabra0RM17t6IxKVe2A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=osNxxO39TN401Mq0dHQ2UX2OElwV4AE5yN5gVEpP9QhsgVdkWq/vprWEfxt0Fya+5fYz+L65EmqS7m2yqjPDIzMxE8V0x2FrfIYRbHBAVJNyFxwnN4m52HyOf9EUgsxwjj00cOh5vh2oFHSSLieudoy5iDT32JxtAV4I/ClNLq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Z0nbmGqB; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1B7891026CE8F;
+	Wed, 30 Apr 2025 07:18:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1745990304; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=TErDts74dOF/38EZE2pPpZ6LyWNto2lM7fBOGJnyoqw=;
+	b=Z0nbmGqBGuQlaK0UMu2UDILnle5P3mLp60rmNGS8qhDWHsnD4O04A5jd9zCa7/Y2FRyrZu
+	FKqEzf4b+i2PvcjOncAgHPSHNV05TQJBRllYjDduBiQbsBC11+uX+OEKHyKG5WFuUBD+ch
+	wNO2JvFLqNfi8NJov1ua437F69uIX/C75euS7DlOWOZz2DAG+ifmFgs6GtFeg4VgDu+pha
+	vNROB6Sv8Odfxij8Rthj3T0mT/ZG8ZMghL6P6dCmJD+L5k93exVEOE7NDiBi7UdhzDWDGC
+	d0SUK/U7m4R7Tnr5RNAArxdJ9AjfKYoqQ5LUvLgtur40xXCCQQ+zGnpwq8P/xQ==
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [net-next v9 0/7] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Wed, 30 Apr 2025 07:17:49 +0200
+Message-Id: <20250430051756.574067-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] clk: qcom: camcc-sc8180x: Add SC8180X camera clock
- controller driver
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh
- Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250422-sc8180x-camcc-support-v1-0-691614d13f06@quicinc.com>
- <20250422-sc8180x-camcc-support-v1-2-691614d13f06@quicinc.com>
- <83cc86cc-2cdf-41c2-8e00-61a607b713d5@linaro.org>
-Content-Language: en-US
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-In-Reply-To: <83cc86cc-2cdf-41c2-8e00-61a607b713d5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: r9tw_ZH-NL0wZDNT2Mr5CvWUu2Wtars_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDAzMiBTYWx0ZWRfX3TQE8mFF3xc5 DSiEOLjSfPTuL9Q7F5pZNXkNNnb7wg0pER2JvSOENl0gVkqpyspM9eUa1QSnZjhc7VnxjI8nHGw 9g0rnljvI9a4hI/15k9irrj5B4IIS1CfIJZqcPwR9nAAKsKj+CFU+Rra6TR71YJK2UQSOcZECe0
- e6ul5MH2QfGy0MuOmx5Xr04GW/euSIna/SzmlEnnyrQx/B6pSBjSufYGkBiifpZLjvkUnnfgZfc cQl4w7MLFGq1qE/WR0ItdJwCZkKco/vraoLFZLOMhbP6DefsMU2RAzEPcP68IAV6byfip24FkTr i+Soneo81rKTQjcsv0DrTP6L6umYBZ3nb8zKfpUT3b+yfVu6fYaz/nV+W1h7dHOz3Otl9MPQ9+M
- LQbtB3EA87vuEEInWBtFtLUAZkzyHRsZa2Ygw8I1mYTbPrdZRwdKBiTiBUypXZgd/bvd5Ldk
-X-Authority-Analysis: v=2.4 cv=b5qy4sGx c=1 sm=1 tr=0 ts=6811aef1 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=bYuTag8ub-6FyNKvZZEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: r9tw_ZH-NL0wZDNT2Mr5CvWUu2Wtars_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_01,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- mlxscore=0 impostorscore=0 malwarescore=0 spamscore=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- clxscore=1011 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300032
+X-Last-TLS-Session-Version: TLSv1.3
 
+This patch series adds support for More Than IP's L2 switch driver embedded
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-On 4/26/2025 6:54 PM, Vladimir Zapolskiy wrote:
-> On 4/22/25 08:42, Satya Priya Kakitapalli wrote:
->> Add support for the camera clock controller for camera clients to
->> be able to request for camcc clocks on SC8180X platform.
->>
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
->>   drivers/clk/qcom/Kconfig         |   10 +
->>   drivers/clk/qcom/Makefile        |    1 +
->>   drivers/clk/qcom/camcc-sc8180x.c | 2896 
->> ++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 2907 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->> index 
->> 7d5dac26b244bfe785370033ad8ba49876d6627d..42b64e34b3fcc4bae7c559f34a34f9452307ae9a 
->> 100644
->> --- a/drivers/clk/qcom/Kconfig
->> +++ b/drivers/clk/qcom/Kconfig
->> @@ -900,6 +900,16 @@ config SDX_GCC_75
->>         Say Y if you want to use peripheral devices such as UART,
->>         SPI, I2C, USB, SD/eMMC, PCIe etc.
->>   +config SC_CAMCC_8180X
->> +    tristate "SC8180X Camera Clock Controller"
->> +    depends on ARM64 || COMPILE_TEST
->> +    select SC_GCC_8180X
->> +    help
->> +      Support for the camera clock controller on Qualcomm 
->> Technologies, Inc
->> +      SC8180X devices.
->> +      Say Y if you want to support camera devices and functionality 
->> such as
->> +      capturing pictures.
->> +
->>   config SM_CAMCC_4450
->>       tristate "SM4450 Camera Clock Controller"
->>       depends on ARM64 || COMPILE_TEST
->
-> Please add a new config section preserving the alphanumerical order.
->
-> The new section should be placed between SC_CAMCC_7280 and 
-> SC_CAMCC_8280XP,
-> like it's correctly done for the Makefile below.
->
+In the past there has been performed some attempts to upstream this driver:
 
-Sure, will fix it. Thanks.
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
 
+All three approaches were not accepted as eligible for upstreaming.
 
-> After fixing it:
->
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->
-> -- 
-> Best wishes,
-> Vladimir
+The driver from this series has floowing features:
+
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+
+Lukasz Majewski (7):
+  dt-bindings: net: Add MTIP L2 switch description
+  ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2 switch description
+  ARM: dts: nxp: mxs: Adjust XEA board's DTS to support L2 switch
+  net: mtip: The L2 switch driver for imx287
+  ARM: mxs_defconfig: Enable CONFIG_NFS_FSCACHE
+  ARM: mxs_defconfig: Update mxs_defconfig to 6.15-rc1
+  ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2
+    switch
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  149 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/nxp/mxs/imx28-xea.dts       |   56 +
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |    9 +-
+ arch/arm/configs/mxs_defconfig                |   13 +-
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 1978 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  771 +++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  120 +
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  436 ++++
+ 13 files changed, 3547 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
+
+-- 
+2.39.5
+
 
