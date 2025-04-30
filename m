@@ -1,211 +1,141 @@
-Return-Path: <devicetree+bounces-172195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F134AA429C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:49:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541BCAA42A1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4969A0E26
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:49:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19A6A7A58B6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3C21E2845;
-	Wed, 30 Apr 2025 05:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2701E2845;
+	Wed, 30 Apr 2025 05:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R4wB0hke"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GDrZBdyK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4124A2F5B;
-	Wed, 30 Apr 2025 05:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 539E02F5B;
+	Wed, 30 Apr 2025 05:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745992164; cv=none; b=Txh3R0T/H3DJP/TwLF+ZykB95jopPupERXlnp9o7totjCdaDXha/l7ncSAodYbpdL89spTNSSuab35JCljVCcHfCtQORf5ucgnriUOCIfl6H9FQgG8xkqh07Q/If0isr9jEGardyLR8/hrjExChN9m1duqsONQ2vIjo31/vk5OM=
+	t=1745992313; cv=none; b=LcZtR+sc4P8cFtwuM/xyxMaGrJKkQwHAyoFyPqpE1xHcomcbS3WSJPi8/CyMeik6IscPzY8eIh7WmjalI8cNWKDC+X48WNO8nZhRBbVkutGb/sQH+kYduCBm21LQ7uJUsaFcsKyLAQLCU/c6v8F9l79ticx/MrY/D0a9RvJeTmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745992164; c=relaxed/simple;
-	bh=SgKFRrj7vUSXt1gze5yicj4cZw1w2QV5fN92BkKMOdU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fWd/igVURoxrjoQO/d241x9V7gOUO9RMQTpXCNbeEFGoW3MRHDymb0LPQUCR9Z8CcnLlLxIaoI5DJzmoWYvrC8j6cmdnI/V/tuwpJRxy72jVCl6JcObHmSA7cHkA8aYiAmJzEp/DeB75zfWLEc3aWpLq6oHSzxtrPVeQIp7/p/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R4wB0hke; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53U5nFpR3282298
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 30 Apr 2025 00:49:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1745992155;
-	bh=SVjrJMnJOpuiRTEnMRkig0no+x/TJr9/Pw/Rfkn0XB0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=R4wB0hke52yhPC1TGBVIRgSk8mKtcYCBoIcTfx02J0kQqByFO/6iHOjABczKflkFJ
-	 YM+uYtF3ZDLB0Bx7gIgaZvHPGJJSBlcCMcqg1F/uQWq5D4TbGt3qR7KbT53xeZhzzu
-	 P3vPOAo7Lj1OsdyYdiVFltirmr8Ndlgl1t0a9QN8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53U5nFHM083316
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 30 Apr 2025 00:49:15 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
- Apr 2025 00:49:14 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 30 Apr 2025 00:49:14 -0500
-Received: from [10.249.135.124] ([10.249.135.124])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53U5n1e0080805;
-	Wed, 30 Apr 2025 00:49:02 -0500
-Message-ID: <511ef271-ed0b-40b6-9abc-9fce0081d25b@ti.com>
-Date: Wed, 30 Apr 2025 11:18:52 +0530
+	s=arc-20240116; t=1745992313; c=relaxed/simple;
+	bh=omSCQTCdptCp23vUhrqVKr55U/gZag07HV3WvLK0r2U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IEqf42M3hfEgwyBrI0ZqmN/CgWApZfcdN+j2HsTzu9laKU4Bg302jhmjzPMmUoieDpUCb8Xsqxiu4o8xEFwyUmReLBhzs4efAoAAF9rhvpUVW/Nf8xFaBf02Mzm8SUn44mM86JmVD8+aNAF+hZNKCibpXoKTAea+Q9AN4bKcbN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GDrZBdyK; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9ebdfso3275364a12.3;
+        Tue, 29 Apr 2025 22:51:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745992309; x=1746597109; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iyRh4E8pwFKv3Oq5GMrsZnoteH07dnpTctT4hrmHUhE=;
+        b=GDrZBdyKGEhBKWlY+NyGODqEHX4ySIF+KcsXpTqt6B3wbpHeXwAimJgG+c3j02Ss5W
+         qfRWQAgYdXRarWE8AQj5kYtU6o3c3QWueYU2fTxbCKAP4NsmdXh+T9aIbBs7EfGO/Qmw
+         iiEEGEjqqRs3osfVxQU9v+/sCpky+hYnjR5GudzWxFMGCBwVy/NQWVWOTwl1Ep6VuqhA
+         PPmhaklDCa15kgJfMxuoEiXGhQF4EwC4adjM6KIfxwDvxQprGwvXEjKoMOfeQvs1JEIo
+         dGTVymU807TyExhujpbs2BbuZ/basFN0TxJwH4V5QxAMBRfvXcG8pYT+9l4IUtE4cdsU
+         SUTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745992309; x=1746597109;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iyRh4E8pwFKv3Oq5GMrsZnoteH07dnpTctT4hrmHUhE=;
+        b=bsU6uLQHMOF9sst4o43E12m3RPUrW9Z0NboK/YxL+P4qonjyfKE8Y9Wc0MlfGxmxVg
+         U5X5TX/1xY8kcXhk3PbMUCmesO155CQ5rPS0ejEiZjLRV6jDafmQXcSV1e9NbvbJHtfs
+         3SKrGgbTN0qNOSNj0pSeAzijm1hEtZGKdSYLFR00TOLYqNdi3lgYMIBoQ6pbgnSN2shC
+         7csnFMkE0zdSwfsHnyIM+m7jJbksuK2WkDTDts/3aICVsG9xSek09H9nxCCIigFjp3sW
+         PYcDutEGUPoh8ANV+X8rujK8w4sqd0i5LQ7K1i2iX3XQxuHuw0JH/GYnfTvZ0Ef8L/9p
+         ViXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVrzjd6GhKkH05qEF9ic8vi4Fwmst4ag7QWr12WZPu08CsCzG0Ww4wSblI4Veq1oO3Fp/j2cCsa9bSSmIS@vger.kernel.org, AJvYcCUZbxH7fZh/lDmEmiWEKUo9Fg7fPpF2ySrFGgxPl7t6ljElp4Qz/JDZoqP5xrrUSAeze85EkU/QulLs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFI2ezfEWSTF6lRPDyCDjUyYj1ckrje9b7hhMZRbbgpegWkc3/
+	uRnFW+pDTQoP5ecMWtTiLDJ3I7f1VGLuwDP2S9RBrQw3wSTwQ/WlzkOvIQ==
+X-Gm-Gg: ASbGnculBHL4DyOntOznxvS8ToAXYqBjb9EqPukmi8+N2gPgn5FaxOJ8GUowg8C3OaF
+	GKhlGIwYirjkJ/zXPeuaj1lIIoh7mC49lHW/XE5AvG6ZMuvb4VA4RzI+TgQHb8L0scPMTZwGCkr
+	WuU75VepolD/LdEY2G5yzQxjfXC7+29NkSQTbfkF8lnXnrlihwuiOvs54oepIBd9L1+XpqnyfW3
+	6Hgd516j6Cz+xy5k9laa/6myvxd/WU1TkZOOgZO+JoCetGDukegt0+S7R8UybPtwQmcNT45m5mP
+	qImn3lu70O3KOmEZIjNXdVhINxGiJtyE
+X-Google-Smtp-Source: AGHT+IE+IGChS8lz4PQe3sirYMpcn8Nw+59hnF8Fm9WrMbDg4BP3Def0MzxodNoeHeoxUTglt4tcsA==
+X-Received: by 2002:a17:906:730b:b0:ace:31bf:30f3 with SMTP id a640c23a62f3a-acee25d7a1cmr116790066b.43.1745992309342;
+        Tue, 29 Apr 2025 22:51:49 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acebe7a4f1csm299929566b.51.2025.04.29.22.51.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Apr 2025 22:51:48 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] power: supply: Add support for Maxim MAX8971 charger
+Date: Wed, 30 Apr 2025 08:51:12 +0300
+Message-ID: <20250430055114.11469-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-am62p*/k3-j722s: Add bootph-all
- property to enable Ethernet boot
-To: Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <srk@ti.com>,
-        <s-vadapalli@ti.com>, <danishanwar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Roger
- Quadros <rogerq@kernel.org>
-References: <20250429072644.2400295-1-c-vankar@ti.com>
- <20250429072644.2400295-3-c-vankar@ti.com>
- <20250429112728.m54x2jwyjykcuus7@unzip>
-Content-Language: en-US
-From: "Vankar, Chintan" <c-vankar@ti.com>
-In-Reply-To: <20250429112728.m54x2jwyjykcuus7@unzip>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-Hello Nishanth,
+The MAX8971 is a compact, high-frequency, high-efficiency
+switch-mode charger for a one-cell lithium-ion (Li+) battery.
 
-On 4/29/2025 4:57 PM, Nishanth Menon wrote:
-> On 12:56-20250429, Chintan Vankar wrote:
->> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
->> stage. Add bootph-all property to required nodes to enable Ethernet boot
->> for AM62P5-SK and J722S-EVM.
->>
->> Reviewed-by: Roger Quadros <rogerq@kernel.org>
->> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
->> ---
->>
->> Link to v3:
->> https://lore.kernel.org/r/20250425051055.2393301-3-c-vankar@ti.com/
->>
->> Changes from v3 to v4:
->> - No changes.
->>
->>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 +++
-> 
-> Please notice that we have the same problem[1] here as well.
-> 
-> [1] https://lore.kernel.org/all/20250425212427.vvyocc4mmne5g3vq@vividly/
+---
+Changes on switching from v5 to v6:
+- upgraded ABI properties description
+- minor formatting improvements
 
-I have added "bootph-all" property in the common file of J722S-EVM and 
-AM62P5-SK since we are enabling Ethernet boot for both the boards. Are
-you referring to move the nodes I have added in
-"k3-am62p-j722s-common-main.dtsi" to respective board files,
-"k3-am62p5-sk.dts" and "k3-j722s-evm.dts".
+Changes on switching from v4 to v5:
+- revert schema to v3
+- removed i2c_client from driver data
+- removed max8971_supplied_to
+- swapped power_supply_config filling .of_node with .fwnode
+- attr group liked to power_supply_config
+- added ABI properties description
 
-Regards,
-Chintan.
+Changes on switching from v3 to v4:
+- swap graph with connector phandle
 
-> 
->>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                | 2 ++
->>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts                | 3 +++
->>   3 files changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> index 7b65538110e8..11f484f88603 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> @@ -50,6 +50,7 @@ phy_gmii_sel: phy@4044 {
->>   			compatible = "ti,am654-phy-gmii-sel";
->>   			reg = <0x4044 0x8>;
->>   			#phy-cells = <1>;
->> +			bootph-all;
->>   		};
->>   
->>   		epwm_tbclk: clock-controller@4130 {
->> @@ -730,6 +731,7 @@ cpsw_port1: port@1 {
->>   				mac-address = [00 00 00 00 00 00];
->>   				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
->>   				status = "disabled";
->> +				bootph-all;
->>   			};
->>   
->>   			cpsw_port2: port@2 {
->> @@ -751,6 +753,7 @@ cpsw3g_mdio: mdio@f00 {
->>   			clock-names = "fck";
->>   			bus_freq = <1000000>;
->>   			status = "disabled";
->> +			bootph-all;
->>   		};
->>   
->>   		cpts@3d000 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> index d29f524600af..5b2f0945a9eb 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> @@ -227,6 +227,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
->>   			AM62PX_IOPAD(0x0160, PIN_OUTPUT, 0) /* (F17) MDIO0_MDC */
->>   			AM62PX_IOPAD(0x015c, PIN_INPUT, 0) /* (F16) MDIO0_MDIO */
->>   		>;
->> +		bootph-all;
->>   	};
->>   
->>   	main_mmc1_pins_default: main-mmc1-default-pins {
->> @@ -496,6 +497,7 @@ &cpsw3g_mdio {
->>   
->>   	cpsw3g_phy0: ethernet-phy@0 {
->>   		reg = <0>;
->> +		bootph-all;
->>   		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->>   		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->>   		ti,min-output-impedance;
->> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> index 34b9d190800e..93d770c5792e 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> @@ -310,6 +310,7 @@ mdio_pins_default: mdio-default-pins {
->>   			J722S_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AC24) MDIO0_MDC */
->>   			J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
->>   		>;
->> +		bootph-all;
->>   	};
->>   
->>   	ospi0_pins_default: ospi0-default-pins {
->> @@ -344,6 +345,7 @@ J722S_IOPAD(0x0140, PIN_OUTPUT, 0) /* (AF24) RGMII1_TD3 */
->>   			J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
->>   			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
->>   		>;
->> +		bootph-all;
->>   	};
->>   
->>   	main_usb1_pins_default: main-usb1-default-pins {
->> @@ -388,6 +390,7 @@ &cpsw3g_mdio {
->>   
->>   	cpsw3g_phy0: ethernet-phy@0 {
->>   		reg = <0>;
->> +		bootph-all;
->>   		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->>   		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->>   		ti,min-output-impedance;
->> -- 
->> 2.34.1
->>
-> 
+Changes on switching from v2 to v3:
+- fast_charge_timer, top_off_threshold_current and top_off_timer converted to
+  device attributes. Other vendor properties removed.
+- removed max8971_config
+- removed unneded functions and definitions along vendor props removal
+- added __maybe_unused for resume function
+
+Changes on switching from v1 to v2:
+- swap phandle with graph for extcon
+- added power-supply ref
+---
+
+Svyatoslav Ryhel (2):
+  dt-bindings: power: supply: Document Maxim MAX8971 charger
+  power: supply: Add support for Maxim MAX8971 charger
+
+ Documentation/ABI/testing/sysfs-class-power   |  43 +
+ .../bindings/power/supply/maxim,max8971.yaml  |  68 ++
+ drivers/power/supply/Kconfig                  |  14 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/max8971_charger.c        | 752 ++++++++++++++++++
+ 5 files changed, 878 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+ create mode 100644 drivers/power/supply/max8971_charger.c
+
+-- 
+2.48.1
+
 
