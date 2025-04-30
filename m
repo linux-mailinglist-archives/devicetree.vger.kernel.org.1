@@ -1,187 +1,144 @@
-Return-Path: <devicetree+bounces-172470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405FBAA4D72
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:27:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9154FAA4D85
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6E1218917B1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:27:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00BB816CDD7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE6F25B1CD;
-	Wed, 30 Apr 2025 13:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2194925D8F8;
+	Wed, 30 Apr 2025 13:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FjM9kVLc"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="eQGVlERx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C99248F75;
-	Wed, 30 Apr 2025 13:27:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003CA186284;
+	Wed, 30 Apr 2025 13:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746019650; cv=none; b=bG+WRoomJzNdDPsMbg35OKDCBlTZLrCuXuG7z4mKIkUx4w+YPSjqr7IZ6r+1/MFR7NniVNswR7ZXQGiF3Hf6FwwhTe2/UWBwbx0fDZyr07UVZaSR7F+lK1OI94IAIJjwQ+cz4q7N9HmDtSxwaYxJI97gBp0o7261wIcPhUlM47Q=
+	t=1746019859; cv=none; b=jXqTMq6JDbm8+hxAHtbdFnX5c/xodiExMxpGZqcV27Mr3dppCS1yoPsiIyeWn4hpRa+MlHAcsORzSBTlUM6ZXk8+aKyoiY8CEywZ/AwXvdV6uxPAliRMwt2vwxjGGrzXem9Sv5gWxRg2alYdsMEsS4WbguGugDbZV7/d8ayYlDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746019650; c=relaxed/simple;
-	bh=Yn79ILWkMhejVZU/NmRTknuHJiU3am0yYKmjKtjhyMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ELDs14Ixmh5re09GneQTbPoJps3fc1jErzKNgwei6z7O/ygO5nWWXu7Z5jesUt6pfem/NGbcvaQr0xaFMk+ffn08vIILsjDjbbopvXi79ZWdi0rVCjzrvh19WeXlWD92e3aeD705rWH5T/eaJVSgcDX4BT5EiRtO1Jknrj0Csrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FjM9kVLc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FDFCC4CEE9;
-	Wed, 30 Apr 2025 13:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746019650;
-	bh=Yn79ILWkMhejVZU/NmRTknuHJiU3am0yYKmjKtjhyMY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FjM9kVLc1KgEXTTKxa4ljsBfos0w3g7vvcQ0tSiDuZuK2s4/oLdusZuYCRieTQ+3N
-	 A+FRHX8M0lf1TFd7TzvX8J1CAkM5tUev2yoWChU3sGPjDICFWAh2/fkJ8yFVigUZxj
-	 NYBoLiXWJZf0zw/me2ZSp+kMgoH3O1Fjb1ozQ4LXU4Eqh4QiUICwiP71rgYjxtdrdY
-	 5cWJsSyuJ9NwHZu2QtI3+PB4EInJth0oP3x4GNlIthd5VOPRBQMNNYRdkjMpS7C8LD
-	 KjeapLDglBb2g81eW8rxdOvN15bqWsjISlgQaUjMZ7bcJd5G6yydNPGctWGQ6rGucD
-	 /fiiBvqav0Eyw==
-Date: Wed, 30 Apr 2025 15:27:22 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746019859; c=relaxed/simple;
+	bh=dfDvF0ggrnC2zBY3NrGojHZ/8GAKlL3vTf94NFcPNFI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gYffVVqCewQFYV+QO8419unIBueJAltBIDbmvbFU3Q5gIuDLBfJdItUTRZJ3nvcSzHd4vxMBRSBLutzL4rRVXMs68zMeuhFhd5rwkMHYy6FG4AQ6nQwyeSV7/fqpPBoP/lfGpzmuCc/0h75xmE6CW3xG4fBYksqx4xBxxUC0WVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=eQGVlERx; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1746019851; x=1746624651; i=wahrenst@gmx.net;
+	bh=UCteHG190M5hZBUMy0gz1Ixc+1objWj7QD6Y7kq7A7s=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=eQGVlERxDCx+PDSMl7ppgCU9cBYuyDhA8m16vj13VksNRem8iAU0SWMvsvTwPtKu
+	 cy5d2nunXZPlCE9XSQ/yVS6ZItwO6uYQUa3Q1ia5c5L4k8fLYSir+DXWKpZJas3nV
+	 ftINgLLq2UL81Mwtp4QreeEg4ZJrvtgcjBO5TWR+nH4w+g9HZ7IKsi8HgQJY4/Mif
+	 cF8N7bsN5PujWGWDiuvTpXYEAJ7nn4r2hto7UbugQMHESUda2GjRt+ipqtvT6El3q
+	 RKhT7vLfm20T+V1cOSWMGfetfXax+PHJI5xHKcxPHEbB/iB+lDK8COU3FT9eoODwJ
+	 JrqKWTdvWtvC7NpLpg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([91.41.216.32]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mf0BG-1ugjJp2ifC-00n4Am; Wed, 30
+ Apr 2025 15:30:51 +0200
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 21/22] irqchip/gic-v5: Add GICv5 IWB support
-Message-ID: <aBIlOrqLtbB5e7B/@lpieralisi>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
- <20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
- <867c31j20i.wl-maz@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH net V2 0/4] net: vertexcom: mse102x: Fix RX handling
+Date: Wed, 30 Apr 2025 15:30:39 +0200
+Message-Id: <20250430133043.7722-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <867c31j20i.wl-maz@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:hb+vPagaqBM5SXEHaAZmQThd+lNIU394V9kDkUkTD8UmrTiG3G8
+ mx1epn/uda2P81K3+0Gmusmz2Ju5w2D6BDAnafU8corlSGCI5WC7HQadl8a8xUfNR4cujbf
+ kWmZx5+UOJOick9Jmwy8Sgn/IocQMu4QXOLrQ4TsxKXRo21yUsBBriMLvjF6hxpmto0ZuoA
+ MykouhUztYG7AAkZo5dqQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:yy4riY7wf8U=;2Yjv4S5h2wtTumBRg0xuylruVGK
+ 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
+ n15wI4W75GTWLwZgkE86xQ=
 
-On Wed, Apr 30, 2025 at 12:57:01PM +0100, Marc Zyngier wrote:
-> On Thu, 24 Apr 2025 11:25:32 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > 
-> > The GICv5 architecture implements the Interrupt Wire Bridge (IWB) in
-> > order to support wired interrupts that cannot be connected directly
-> > to an IRS and instead uses the ITS to translate a wire event into
-> > an IRQ signal.
-> > 
-> > An IWB is a special ITS device with its own deviceID; upon probe,
-> > an IWB calls into the ITS driver to allocate DT/ITT tables for its
-> > events (ie wires).
-> > 
-> > An IWB is always associated with a single ITS in the system.
-> > 
-> > An IWB is connected to an ITS and it has its own deviceID for all
-> > interrupt wires that it manages; the IWB input wire number is
-> > exposed to the ITS as an eventID. This eventID is not programmable
-> > and therefore requires special handling in the ITS driver.
-> > 
-> > Add an IWB driver in order to:
-> > 
-> > - Probe IWBs in the system and allocate ITS tables
-> > - Manage IWB IRQ domains
-> > - Handle IWB input wires state (enable/disable)
-> > - Add the required IWB IRQchip representation
-> > - Handle firmware representation to Linux IRQ translation
-> > 
-> > Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> > Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  drivers/irqchip/Makefile         |   2 +-
-> >  drivers/irqchip/irq-gic-v5-its.c |  68 ++++++--
-> >  drivers/irqchip/irq-gic-v5-iwb.c | 356 +++++++++++++++++++++++++++++++++++++++
-> >  drivers/irqchip/irq-gic-v5.c     |   2 +
-> >  drivers/irqchip/irq-gic-v5.h     |  28 +++
-> >  5 files changed, 437 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> > index 4280395e3bdff7858102f0b4eaaea1121cace52f..7bfb2369fbe494a64b72308d95ae33de93c6b8c6 100644
-> > --- a/drivers/irqchip/Makefile
-> > +++ b/drivers/irqchip/Makefile
-> > @@ -37,7 +37,7 @@ obj-$(CONFIG_ARM_GIC_V3_ITS)		+= irq-gic-v3-its.o irq-gic-v4.o
-> >  obj-$(CONFIG_ARM_GIC_V3_ITS_FSL_MC)	+= irq-gic-v3-its-fsl-mc-msi.o
-> >  obj-$(CONFIG_PARTITION_PERCPU)		+= irq-partition-percpu.o
-> >  obj-$(CONFIG_ARM_GIC_V5)		+= irq-gic-v5.o irq-gic-v5-irs.o
-> > -obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o
-> > +obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o irq-gic-v5-iwb.o
-> >  obj-$(CONFIG_HISILICON_IRQ_MBIGEN)	+= irq-mbigen.o
-> >  obj-$(CONFIG_ARM_NVIC)			+= irq-nvic.o
-> >  obj-$(CONFIG_ARM_VIC)			+= irq-vic.o
-> > diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-> > index da349b4709cc5ec8978859237838f039389ca4a1..b5eb4dbfe2296dc6620889eb9291b542cae4aeb6 100644
-> > --- a/drivers/irqchip/irq-gic-v5-its.c
-> > +++ b/drivers/irqchip/irq-gic-v5-its.c
-> > @@ -786,9 +786,8 @@ static struct gicv5_its_dev *gicv5_its_find_device(struct gicv5_its_chip_data *i
-> >  	return dev ? dev : ERR_PTR(-ENODEV);
-> >  }
-> >  
-> > -static struct gicv5_its_dev *gicv5_its_alloc_device(
-> > -				struct gicv5_its_chip_data *its, int nvec,
-> > -				u32 dev_id)
-> > +struct gicv5_its_dev *gicv5_its_alloc_device(struct gicv5_its_chip_data *its,
-> > +					     int nvec, u32 dev_id, bool is_iwb)
-> >  {
-> >  	struct gicv5_its_dev *its_dev;
-> >  	int ret;
-> > @@ -815,6 +814,7 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
-> >  	its_dev->device_id = dev_id;
-> >  	its_dev->num_events = nvec;
-> >  	its_dev->num_mapped_events = 0;
-> > +	its_dev->is_iwb = is_iwb;
-> >  
-> >  	ret = gicv5_its_device_register(its, its_dev);
-> >  	if (ret) {
-> > @@ -827,9 +827,11 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
-> >  
-> >  	/*
-> >  	 * This is the first time we have seen this device. Hence, it is not
-> > -	 * shared.
-> > +	 * shared, unless it is an IWB that is a shared ITS device by
-> > +	 * definition, its eventids are hardcoded and never change - we allocate
-> > +	 * it once for all and never free it.
-> 
-> I'm not convinced the IWB should be treated differently from any other
-> device. Its lifetime is not tied to its inputs, so all that's needed
-> is to probe it, get a bunch of interrupts, and that's about it.
+This series is the first part of two series for the Vertexcom driver.
+It contains substantial fixes for the RX handling of the Vertexcom MSE102x=
+.
 
-I need to check again how this works for devices requesting wires
-from an IWB if we don't allow ITS device sharing.
+Changes in V2:
+- clarify cover letter
+- add footnote to Patch 1
+- postpone DT binding changes to second series as suggested by Jakub K.
 
-> The other thing is that the IWB really is a standalone thing. It
-> shouldn't have its fingers in the ITS code, and should only rely on
-> the core infrastructure to get its interrupts.
-> 
-> As much as I dislike it, the MBIGEN actually provides a decent example
-> of how this could be structured.
+Stefan Wahren (4):
+  net: vertexcom: mse102x: Fix possible stuck of SPI interrupt
+  net: vertexcom: mse102x: Fix LEN_MASK
+  net: vertexcom: mse102x: Add range check for CMD_RTS
+  net: vertexcom: mse102x: Fix RX error handling
 
-We wrote that code already, I should have posted it. An MBIgen can
-programme the eventids it sents to the ITS, an IWB can't. So yes,
-I can make an IWB MBIgen like but the ITS code has to know it is
-allocating an IRQ for an IWB - one way or another, the eventids
-are not programmable.
+ drivers/net/ethernet/vertexcom/mse102x.c | 36 +++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 7 deletions(-)
 
-I will try to post a v3 with the code in it so that I can get flamed
-and find a solution to this niggle.
+=2D-=20
+2.34.1
 
-Thanks,
-Lorenzo
 
