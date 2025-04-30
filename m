@@ -1,130 +1,102 @@
-Return-Path: <devicetree+bounces-172236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A22AAA43B8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52346AA43BF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86741C01418
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:18:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1B681C01652
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD121F0E56;
-	Wed, 30 Apr 2025 07:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D6B1F5828;
+	Wed, 30 Apr 2025 07:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YeZ18br2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YkrydZAB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFAE1DDC33;
-	Wed, 30 Apr 2025 07:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9A91DFE09;
+	Wed, 30 Apr 2025 07:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745997492; cv=none; b=j5B772hyhT1vGei7CZ5UBI1dLM5/eRHkM6+OYAicbqtRFgZSgzps7QQW640Dyq3Nk0wmpcu8cTCHPo7JrMpFdsxaHk5IQDaDfubr9yfqNW8uA3dM2cyArbp4WrnvJCjtFswi9qV3qrOfyhSABguLiZR4XGLoC+dn+QOWABZ7nws=
+	t=1745997666; cv=none; b=e3ozFCShaKLA7tqDHtZ7mwH4bOiBrl3AQ0O1Xokx6iwOPUzTD0ZMuBV7wPZnLwPzt5HkgFdgkR93GQ0nMguep83ukBTRKe33Guozs61FfIFSnCT/5mVZI1OcbBQHzqE61Hr+w9TBf4sjuthDmsp7OtXsocrJ4OSA/UWiWKql7uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745997492; c=relaxed/simple;
-	bh=EVV40zK/nsS9PF3vYR2wtvbwRZIoNORqE0TZPcw+AQ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TsItOO9XwRW97tAbpJApjOUc7k4yoP0jYXSql1F4+LPQV5Xvg38JJ0JRwiU8dNYJYXpYuDAz1YqkfP5LIb2g0fXqsG+Y/g2crvxlnPy9RLEf+RrHUJ0X+gbNIVGxEffLi1YKMA7bFGdXOLOHMTcsjolb81Va8zFrS8lH/nP8YeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YeZ18br2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FF57C4CEE9;
-	Wed, 30 Apr 2025 07:18:08 +0000 (UTC)
+	s=arc-20240116; t=1745997666; c=relaxed/simple;
+	bh=unOAuHHlLSDYswEV053BVvtCpbY1HBhf14HMlI/dclI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P6pVqYgClQ3ARNDUtE8JCeklHpd1YkHtNpxR+Zn1+G4IY4zZzu7chYjjyH8A6ksvDZypYgwq4WhYlSf/4U+7bnAcdBrT4wFUOv8G+NByIIk67m/TqERQIAygIsi32J8QOeEMiCxuwJt3rT1vOsT92bGBgh1zAZsz6BbkvT+8arA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YkrydZAB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A350C4CEE9;
+	Wed, 30 Apr 2025 07:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745997492;
-	bh=EVV40zK/nsS9PF3vYR2wtvbwRZIoNORqE0TZPcw+AQ4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YeZ18br2LWYHBCnXtcSPKOyRreoCYmOswKZx5vVkPU57VkqAyb+DBBj50iIpe6Gyy
-	 W3iALeCaUWsfnQzBjAvIYulAvfBaoMpHKBe97WiREgazZHgqZtV3+phg+PLSmXV7Ar
-	 LEG4rSjt7xYtzm6ve2iCMdm8O0GRboYcouMnkF/doP9Fat3GnjsYTxhB2dEWY+Zydk
-	 a1fCWqs08uh7chBVb+zQmtcrx/kg9+7AjiESb7bQE3009ow4KxY/MqTQSXHcyL68lx
-	 j3d2UlqRdzaMsmkCXP3uK+Foffh3VX0HHq/eOjr60zSYVgtQiR8D829gbY/OH7YfdE
-	 joFxPZLJ+D+4Q==
-Message-ID: <51fa853a-61d6-4c8f-8636-80cce90d0a94@kernel.org>
-Date: Wed, 30 Apr 2025 09:18:06 +0200
+	s=k20201202; t=1745997665;
+	bh=unOAuHHlLSDYswEV053BVvtCpbY1HBhf14HMlI/dclI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YkrydZABVN2h5znRN4UMWCuCuzR39Wj/6N5lYPSOxVD7PLIr07qGDVz8B0ddsauDn
+	 vfcrkOHyrCDAeShx323/3z12fMsEJYRLoD2ptrbyW3ehqtigC5WsVV1nhvntJ8jRLZ
+	 Lh0YYIkTB1kdvTyvsUAoz0eeV5J5IPQKcejy2iqxEPEy5NKYq//DwhSkzhvnsHrDfy
+	 pGPHAcAa1IkB0NKxjhTtXw/C5R/B0w3LU2AMcVAYguYI3IHs+ZzzSsvFqUCTlJMlqd
+	 CaL/3ZH7gVg/ZWS+3AyTHReOJ2CTKlJw1+8FIlD/wpG8CkftZBTQv9KcSrHAkIy2ZS
+	 Lr4N3qNmn2kXA==
+Date: Wed, 30 Apr 2025 09:21:03 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, 
+	Jianlong Huang <jianlong.huang@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: starfive,jh7110: add
+ PAD_INTERNAL_* virtual pins
+Message-ID: <20250430-vagabond-agile-yak-7afe68@kuoka>
+References: <20250424062017.652969-1-uwu@icenowy.me>
+ <20250424062017.652969-2-uwu@icenowy.me>
+ <20250428-smiling-azure-sunfish-7c1c25@kuoka>
+ <34c92033f4bbf289c6048a85f0f6ba04435e7bf8.camel@icenowy.me>
+ <8e131fce-12b6-4a5f-8601-c15a0e4290fe@kernel.org>
+ <4d0bf5b8e1dd00f4025b7643a746cd99010c08fc.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Niklas Cassel <cassel@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>, dlemoal@kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250425092012.95418-2-cassel@kernel.org>
- <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <4d0bf5b8e1dd00f4025b7643a746cd99010c08fc.camel@icenowy.me>
 
-On 30/04/2025 09:05, Manivannan Sadhasivam wrote:
->> Some device tree bindings have already implemented vendor specific
->> properties to handle this, e.g. "nvidia,enable-ext-refclk" (Common Clock)
->> and "nvidia,enable-srns" (SRNS). However, since this property is common
->> for all PCI controllers running in endpoint mode, this really ought to be
->> a property in the common pcie-ep.yaml device tree binding.
->>
-> 
-> We should also mark the nvidia specific properties deprecated and use this one.
-> But that's for another follow up series.
+On Tue, Apr 29, 2025 at 05:00:04PM GMT, Icenowy Zheng wrote:
+> > > > > +/* virtual pins for forcing GPI */
+> > > > > +#define PAD_INTERNAL_LOW=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0254
+> > > > > +#define PAD_INTERNAL_HIGH=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0255
+> > > >=20
+> > > > Why this cannot be 20 and 21? These are not values for registers,
+> > > > but
+> > > > abstract numbers.
+> > >=20
+> > > The number must not collide with SYS GPIO pads too.
+> >=20
+> > There are no SYS GPIO pads here. Do you understand that this is not
+> > value for registers?
+>=20
+> Yes I understand.
+>=20
+> The situation is that JH7110 has two similar pin mux controllers, one
+> SYSGPIO and one AONGPIO. Despite I listed the values after the AONGPIO
+> pad list, these values should apply to SYSGPIO too (unless you want to
+> let them have different values for these two pinmux controllers), which
+> is the part with comment "sys_iomux pins".
 
-There should be an user of this property in this patchset (or linked
-somehow), otherwise why do we need new binding?
+It is fine for me in such case.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
