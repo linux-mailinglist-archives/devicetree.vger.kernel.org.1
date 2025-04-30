@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-172510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A9AAA4F3F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:58:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D518AA4FBB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:09:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 794F41BA1C29
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:59:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74E621C22C8F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA8F24EAB2;
-	Wed, 30 Apr 2025 14:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADC625E444;
+	Wed, 30 Apr 2025 15:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vp1dXU1F"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VezMumEH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A4620F091
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 14:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62EF25C80B
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 15:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746025116; cv=none; b=p3c9F2j8qE3EVbLY6Su/fFuZKr1sT6aV9Xyxwm6XIJlt60xutC/jNSeVzmfnCT8lQuvMU8cZcxOB2/bioWO0SRNdyP1mvtzEm0bnVaB7CgFqYgzWm7Fym4i+2/HJx7V3k6NM6zZfjwC2f/dKW09tOMoPMeYpDcDM9s9wf7R7IU0=
+	t=1746025494; cv=none; b=p92olFq1ilMcHI9TBPS6Nz/8R/OXYekHJh7JszlTpHb1eBd7lzXqyfvJdwrYQ/HQj2Qvj22XpKqAj+Lmp7fSLhRZLr8hlDKPjgMNsEPHDFQNxc+293g/KP9nvUepJbWSdr6fK7Z6klQvQwoxXYZ6orlKTo0XBHk331T9HpWIY3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746025116; c=relaxed/simple;
-	bh=wB6kpIf21q1Qn6YXVNzBxYXe34/WGz8PYw9bqAw7+C0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ml7Omj1y3tXKBc1piFTO90WvumurvhId1s84WqMhnJgc9K4Nz3IrYa1aWAfQ2zQfMg5gF4IvGCvNLBbu0Gi7Km4NtBIWLmG/PFCSpBF5U/I8EapF/3Wzm3bWKsHm2DW9+T+WsmYH2Bj5MJGjdgdgdMGKnB5zvwVh4iSQKMVbp+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vp1dXU1F; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U99xKP001214
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 14:58:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0395qd5yJqamGnAr3MiSAsjGjuJlP7P6P9uGyNSoi0w=; b=Vp1dXU1F0aba3NFg
-	3uWHJq72RAyi+rek1JEtvAR8Wj0w9BSEP6vvtZ+MQHWWtvKMZfeJ2eNCU5tzVR/t
-	we61iI2nIkqPMZUaQNVjREG3Es/Qdp+x0KVcBi4n/Q6ZHc3esjwQIfQA3wXdNI+s
-	aEmz+MkaET7DFpLEuL88AuQxIqcRX17qwTNMoyLrsx9a7qPnD2jgkSv2yiE6AmWB
-	W5fq4NzyG/Rh2suQto9lVtMxPYg4pn4mDDZ4tNiiEyfEZDMQZHLZOjL0aqrOJvIF
-	fAJG0pQocQybrAxl8Dl+g6qYkKHluIVhUJC4mOLcJ7SEcGEApey+qCshzXHPn38U
-	bCeaJQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u9thg2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 14:58:33 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2242f3fd213so62876655ad.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 07:58:33 -0700 (PDT)
+	s=arc-20240116; t=1746025494; c=relaxed/simple;
+	bh=iAUBF84BT6XPeN8Y/n4Oehp+UL7zE/zH+6aZ+LiCsHc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=EqVPWliWbqifoLgG2iadrNP4l9GLMv1Bb2MoMzuP09zPVjlDS3DjMIyeifFpDhxkYfGmt4zxC1tutqa4yJazujU+zks73zJp6Od8rK09w/RpON00plhE9W8M5pOyl7D26TVpCgEqIE/dsOO+lIhNSpGxXCK0uzbIPqQLP9qrvtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VezMumEH; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3fefbbc7dd4so4666659b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:04:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746025491; x=1746630291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=n3T9+6PFQU7ODBU+5+B8t+gjHfIuLl3Jh/pj8rJ6DXA=;
+        b=VezMumEH4PnXDpfdIiVOA8FcSVMdKGiH03QLdp2m5CaGxxYPtYQrjtwt3t0cAmix5x
+         2q2rDP9CUs+5m/PybmjnrVslLmWPVZetohfDthCZhqh6DJsLgrJM2juuyGqWEyx6b9QK
+         jiVmvYiNp6VqcNayES9DJnYGeRwk4GKzulrPL4l3KYL8DfTfirsMi1lbfmUHVxozphzw
+         8W9uV6SpqVgGkW7pSbRWLIG3bJEYPLkKkY1rmfmFxG99w1UqboVvqBZP+TfmLt5uuDW5
+         KOcSpJddBNA1BwJ7jV8FXkeE2kPrBUM9lXgf7HOrk+3ihxFCqKpKVnKBdlIXRixdZIBj
+         5QXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746025112; x=1746629912;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1746025491; x=1746630291;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0395qd5yJqamGnAr3MiSAsjGjuJlP7P6P9uGyNSoi0w=;
-        b=sH9Ry/L3UvGoR72+6iZ809kMdq3eNABRQXaNktIS5qf3tcPFJhSL7y25RIyvthILRK
-         8HbrwpS9jxog8IVyZHWuMyLeOZh4kodnraDM4RLkvJOqbwl10f51bPomJ4BrOihjkOFc
-         vx9HdrAcL/9qyvgzJa/UQcvbGG1qVjqWbbsS0gkv+9+rl8l4TIhkf2GR1DQ/qXtDh4P6
-         Hs1sKXKMOxFlPI4ewkiy0238y8kWqvWMFkGINqw/mTut5P4u8NhT+BSrM1kQ4m0SaqeY
-         vMrkuDo9OD1TDZXyL3Xfn8k2aznE4ENFHA921ZBJzsXGbVX5+foVFHZoeKvlzpoKnlJQ
-         c3dg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ/XWvJYVp4q0ZqH2c1TDnvmd2vPGYglBmMmpR/So7fCQlKLRn80VwjwrlXFlKVo5YU8sLLsv1bvL2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4Cb+br/vTZfHygj42KtQ6dDaAS8XxAJrSbGXa60ZI3mDDBFsA
-	g+nEQGuSkJVIXdcJxlKQXhao0I0RMlqBPeQCb+FrOMkubg7zkIElfcOzF4KRc6VhhGxArcI/wZ5
-	HoUvpaZ4w/cVfSHWX6i9Ol7eUJQrRKN7ZlZ8eHvW94/kz0GK5XfOAdG/O7sMX
-X-Gm-Gg: ASbGncsuBMciAEYrMr5fGW3e/g/mtexZAqIJUD2vsTOhbgwgLYH43LmBdXzGhVdJ690
-	dID3MlC9ves+e86ZG6D99mvwKO+bySS9Co/S+vX8FPFPMVAioFCdOSdtbREkZepUUvzp6W2t8ey
-	JU+dZLlntArH+c7qz5iAlBVSIc2lHTnEIIR8UEjKoKi3jHffU4y5zE+aXUS4jEk9VN+RCU4vTWk
-	IQ9qqsWXBIJ+D4t1DqTntxMN3AxzkamgS3y68n2Q9qMg+5i/6CqH1bSu5IuDwyhXn9gsR1k+B4o
-	C1tmmwly5KySy1PAdgl3krWS1kTXglgpiu0UdMm0mtlqgJYhhDTi
-X-Received: by 2002:a17:903:238e:b0:216:794f:6d7d with SMTP id d9443c01a7336-22df5838d24mr48531975ad.48.1746025112005;
-        Wed, 30 Apr 2025 07:58:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGqTq6PHUfdr6lYeZjfMfQgeitmCQj1xj6u1g5wc8lHhOeu4N6jAXqIdsqmrbeggeTxMbY6nQ==
-X-Received: by 2002:a17:903:238e:b0:216:794f:6d7d with SMTP id d9443c01a7336-22df5838d24mr48531545ad.48.1746025111693;
-        Wed, 30 Apr 2025 07:58:31 -0700 (PDT)
-Received: from [192.168.1.4] ([122.164.87.156])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db5102ddcsm122866445ad.190.2025.04.30.07.58.26
+        bh=n3T9+6PFQU7ODBU+5+B8t+gjHfIuLl3Jh/pj8rJ6DXA=;
+        b=miDOHW3J4QBhXWDt0FuHenZ5vvE6O/qcs18jjEKwymm5X0EiHTZV2wrCB+auo2vzOv
+         MWRCHLFnMOGeovLBBQuRXaJRQDy49ejoL2snhXO3ty5aDQQtIxFHvPSsOgWNv1YqwkQY
+         bjqlwJc7JND54ZvFVbP/Q97ZFcH+2H3c8+MBfwBFN8beFdwecJmY6FVFJl+S5yApTj8k
+         v/1+KaivqdHW3/0QR9phdAz/klzmOmThDId0WVMPHZ400E615o34HB2S4vSlcgLioIF+
+         sIhIdsSORajBXJ1PgltsnL62KIw6sGHRZs0gSQPwGdYfZNSlVsvkg92Y/nVfBYIvBDkT
+         ezhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUowK9YA90nmfGlM5DTdvbITQJg/qwVK93COYLsljwn1wClDKJUJZ9HeSKhgWkWgezDlIQbZ25urQYd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcx9YinegeckV4LSmbGgVPmeSydb3UghtOHtv/UGt134DY93iG
+	ImsgdX8zw2XU7FWlb33AQLzm6/MgjhZq+HaN7dxEp3BcJ3hDTFgqNV3ONxlaSCw=
+X-Gm-Gg: ASbGnctNsyde6PSDYNfF/sNiuVNXWxmgovOHOohemItNNGjWpSteudS2UpxB7CxCzKO
+	fm15assSQV9gBSU13AnMMTplGMP+BsZgXA4ovywxu4VNBoGWYOhEAXAzZo1jjfyrktj7cNLTf4m
+	oxElOJhEQocjNDVztrp3KBoAdHNQW/xzQBhWl4MtZJEug3Bo1LEssf2S6M/C9jzzPq33i1N+hW+
+	XbpC09i3y+t9J8SPVLd6HXExYw93HttEwLgxRMABO3BddgyDIDHsf4zWdyXGeMK4wqeslbUqM7U
+	ZUQ/6APXHIq0mM/fpDwJlMIyOWgtrduCRFUWtGsiea64c1h8aAzqyEV9VABgrePJFW45eZkXMXI
+	FVNe+DJyvJ5erXfo=
+X-Google-Smtp-Source: AGHT+IGzbbqKeOG5/Z3RMXw05bmJvQ6JAZJPq3w+KmxakZsKev1SHX78l6FcGWqPiLMhX3MPVZr9Uw==
+X-Received: by 2002:a05:6820:3094:b0:606:107a:ebd8 with SMTP id 006d021491bc7-607d5675e89mr1620447eaf.5.1746025491559;
+        Wed, 30 Apr 2025 08:04:51 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:359a:f1e:f988:206a? ([2600:8803:e7e4:1d00:359a:f1e:f988:206a])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-60686ec905dsm811235eaf.15.2025.04.30.08.04.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 07:58:31 -0700 (PDT)
-Message-ID: <a9c8cfe2-2889-4f75-ac5f-10dcd564808e@oss.qualcomm.com>
-Date: Wed, 30 Apr 2025 20:28:24 +0530
+        Wed, 30 Apr 2025 08:04:49 -0700 (PDT)
+Message-ID: <7fe18625-3a25-40c8-bfb7-a7a22a3eccff@baylibre.com>
+Date: Wed, 30 Apr 2025 10:04:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,80 +82,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] watchdog: qcom: add support to read the restart
- reason from IMEM
+Subject: Re: [PATCH 1/5] Documentation: ABI: IIO: add calibphase_delay
+ documentation
+From: David Lechner <dlechner@baylibre.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Angelo Dureghello <adureghello@baylibre.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
+ <20250429-wip-bl-ad7606-calibration-v1-1-eb4d4821b172@baylibre.com>
+ <4645ae3e0c3bb1ada9d4cadce77b64fe5e651596.camel@gmail.com>
+ <070b269c-c536-49c5-a11d-7e23653613f9@baylibre.com>
+ <aBI3eUPirZEXpZgG@smile.fi.intel.com>
+ <896023ae-c279-4201-a7a8-dfd9b33fe0e5@baylibre.com>
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com>
- <20250416-wdt_reset_reason-v2-5-c65bba312914@oss.qualcomm.com>
- <4e9621c2-f347-4cba-9422-b14f96ee4c0b@oss.qualcomm.com>
- <0a774c34-e82d-4ff0-aa3f-4f348f4c2296@oss.qualcomm.com>
- <f6f17489-19ec-4956-ace4-47ec93081359@oss.qualcomm.com>
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <f6f17489-19ec-4956-ace4-47ec93081359@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <896023ae-c279-4201-a7a8-dfd9b33fe0e5@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: AtBUMuKcxLtOZaTk18Y7eVmg4Y5tXibL
-X-Proofpoint-ORIG-GUID: AtBUMuKcxLtOZaTk18Y7eVmg4Y5tXibL
-X-Authority-Analysis: v=2.4 cv=UZZRSLSN c=1 sm=1 tr=0 ts=68123a99 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=wj/iefQKNY9P1RSDfSoyGA==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=ZnTUR88OqGoCr7JtRBMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDEwNiBTYWx0ZWRfXxTlHwmF41Mi/ 33xGNJnrc7q+WrxVnoEND82XYtAIVHBvwf2/xiW9zbtUX8lbUUMlMImEg3MyrJgI17fXI4iCe67 Y3thkqT9YN6qYZ3G4S/hTpMLTi6cmrghYZ8Jdnj8Ke2MYuFMgF6HdqBJb0ZRvEg/Q70bsVG7agt
- LZCMBrLw8S97wT6s5X13+4fB7NYPp2EvT1Ayj7XFo4ZAlU65ZEiKTzpkYhFb/47BxgjvKfDx0pA JUztn6ImESQLUIadyfDs84Wk3l5fvXSJ5gy2+nzLaBpr+TjfJL2AVQZ2rlMzPtrpf9rJ9QZSXnw AIQsAPrRTQso1cSl78g/bNgbkA0ezS2jH80CpuivtUHCEWw22dC9azBTUJxXVgpb/iKxnTrNXtE
- eCjM4peds8T0QQcYHhhdUL0I/m5fmvaTHUUVIVq8zMPiFYeCbMHpm5S9wvmO+/XpzkFwpDuq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-30_04,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- mlxlogscore=999 spamscore=0 priorityscore=1501 impostorscore=0 mlxscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300106
 
-
-On 4/30/2025 7:58 PM, Konrad Dybcio wrote:
-> On 4/17/25 8:19 AM, Kathiravan Thirumoorthy wrote:
->> On 4/16/2025 8:21 PM, Konrad Dybcio wrote:
->>>>        .max_tick_count = 0xFFFFFU,
->>>>    };
->>>>    +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
->>> double space> +                    const struct qcom_wdt_match_data *data)
+On 4/30/25 9:56 AM, David Lechner wrote:
+> On 4/30/25 9:45 AM, Andy Shevchenko wrote:
+>> On Wed, Apr 30, 2025 at 09:21:28AM -0500, David Lechner wrote:
+>>> On 4/30/25 12:40 AM, Nuno Sá wrote:
+>>>> On Tue, 2025-04-29 at 15:06 +0200, Angelo Dureghello wrote:
+>>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>>>>
+>>>>> Add new IIO calibphase_delay documentation.
+>>>>>
+>>>>> The delay suffix is added to specify that the phase, generally in
+>>>>> radiants, is for this case (needed from ad7606) in nanoseconds.
+>>
+>> ...
+>>
+>>>>> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_calibphase_delay
+>>>>
+>>>> Not sure if I'm too convinced on the _delay suffix
+>>>>
+>>> Phase is measured in radians, not seconds, so it seems wrong to use it here.
 >>>
->>> Please align this
+>>> https://en.wikipedia.org/wiki/Phase_(waves)
+>>>
+>>> And the delay here is with respect to individual samples in a simultaneous
+>>> conversion without regard for a sampling frequency, so I don't see how we could
+>>> convert the time to radians in any meaningful way.
 >>
->> Ack.
+>> And how this delay is aplicable to the phase in the hardware? Sounds to me that
+>> HW has some meaningful way of such a conversion?
 >>
->>
->>>> +{
->>>> +    struct regmap *imem;
->>>> +    unsigned int val;
->>>> +    int ret;
->>>> +
->>>> +    imem = syscon_regmap_lookup_by_compatible(data->compatible);
->>> I still think nvmem could be better here, as it allows to plug in
->>> more magic values
->>
->> Sure, I will be on vacation next week. I shall check on how to use nvmem here once I'm back.
-> We talked offline and I learned that IMEM is not in fact non-volatile, so
-> while good looking, the nvram APIs are probably not really fit for it.
->
-> Let's continue with the syscon approach.
+> 
+> It is a calibration to account for a phase difference between two input signals.
+> This is a simultaneous sampling ADC, so all channels normally sample at exactly
+> the same time. This phase delay calibration factor can introduce a small delay
+> on an individual channel so that it starts it's conversion some microseconds
+> after the others.
+> 
+> There is a nice diagram here:
+> 
+> https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf#%5B%7B%22num%22%3A113%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C34%2C594%2C0%5D
+> 
+> To convert the phase delay to a phase angle and back would require also knowing
+> the frequency of the input voltage signals.
 
-
-Thanks Konrad for the discussion.
-
-
->
-> Konrad
+Maybe calling it "conversion delay" would make more sense? Since the phase part
+of it is really referring to the application rather than to what we are actually
+adjusting.
 
