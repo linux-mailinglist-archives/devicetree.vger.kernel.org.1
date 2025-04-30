@@ -1,187 +1,189 @@
-Return-Path: <devicetree+bounces-172284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16B1AA45FA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE8BAA4605
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B5B51BA383B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:52:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06602463861
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D2120C480;
-	Wed, 30 Apr 2025 08:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED09219A93;
+	Wed, 30 Apr 2025 08:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1lJ8wzZ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Gmv6q/yx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5032AEE1;
-	Wed, 30 Apr 2025 08:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E06218EB9
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746003148; cv=none; b=aM5Bu52PLJj8ixrKM4zOzeeiGeAD9hD3Zk4pVzDrwLojlCJP66XqSrZRcyUoBlQiEHEAoQ/O1yIe5LeNiRwN3XIAzdMmQD3E6VxlGX8/ksLpyJYC8ZmfOXDJOGESiEpGyy5GJxury6C7nzN9Swg2Vhm92ZOFm7+eA7lHOAo1+hI=
+	t=1746003347; cv=none; b=Ak7YmlKUd7i559E4qwDz5ozk00zr3DpSPj6BBjZwXZZ25ONNYZsWXsUy/SDQFg3SvhusN5SqBySqkKn9JMDfuwHHvZ7M6opZc9y2eUsXp4tSB5SpRA5Jv39okTZqemXHo0tXqOqRjMZXDCXpXicUf0wK2IrrAqVw8n1RmNrkXc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746003148; c=relaxed/simple;
-	bh=7Cul/zndrL+/IVYzqfi6IU1dEFCIVPUdV6j259m69G4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a4oZTvmYj4muIx0aZdlG6ovra7vXrM5qVXHWnealPI+18Sg07Fj/5XeJv/YR59LkXHH3wS/OwhcJl0Aq2x9Y5D6u6kIL5thYm3k0OSM16c0cHzu7wb7XbT/AUt1cfFvStCEW+Leo/FmY9ASkTcNdj2gUbLvDhi7+onYA/4fr8aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1lJ8wzZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 941A3C4CEE9;
-	Wed, 30 Apr 2025 08:52:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746003148;
-	bh=7Cul/zndrL+/IVYzqfi6IU1dEFCIVPUdV6j259m69G4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m1lJ8wzZTPM8DhfyWr4/2HegX1ltD3jb9oyGwEsxQnggTzFu4BmhN+FDUo2zeu1RN
-	 giDLlf5a2a05M1NTM0TyNM+3EdxGFIjko0NcwuH8tmM4waxKh+taOw9pETLP/OGysx
-	 y6q41rNWMiXvecfuO5utnba6X+/RrlRRRG0Zyp779JD4OXsp8BT5vKLho9xhVLhP01
-	 L3pek8e8yF1Kz3U+jqQ8zO6NCEaQ1htsGbDQh30QnW28U8lUEpb18UeDTpFssre9i9
-	 UMhCihDPn7fYp+FgDTScyGj9IhAcqbLQNWIY9xOmFsozHxD0z0V8xLXR1vNNBZ07+D
-	 pBH9xsh9vL2PA==
-Date: Wed, 30 Apr 2025 09:52:20 +0100
-From: Simon Horman <horms@kernel.org>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?utf-8?Q?Nicol=C3=B2?= Veronese <nicveronese@gmail.com>,
-	mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v5 04/14] net: phy: dp83822: Add support for
- phy_port representation
-Message-ID: <20250430085220.GS3339421@horms.kernel.org>
-References: <20250425141511.182537-1-maxime.chevallier@bootlin.com>
- <20250425141511.182537-5-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1746003347; c=relaxed/simple;
+	bh=AtyNv3rVoIJ3VK5hDadqnXhrj+AxU+u/gGPdnN2XZ7Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GtHCAOEfnQDoVcX8hHtTcvbh3j09jj3QVZ+NVU8EpoHvE1qTs+d04MH09V2Er3IRBC5P3hN2VfrBx2ZygZMj+WkFTUcxVIONW6yspVdc8zsFMrwiDSW+fR0eTpmQTGGvo7YDvoSNPQ3zkON5saV0Va3n0EsM/xTHnbwdxWwnQbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Gmv6q/yx; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9eb12so11007161a12.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 01:55:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1746003344; x=1746608144; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rvoHo2RumHfR7Sy7g41No889SUfb9msp1hz6UDjZvdg=;
+        b=Gmv6q/yx6X8JYQaMh5uvkONZximVG4xLgcgY4/nGmRKY30JOVrPZnkdyHDTlJ4pQzi
+         hmkWG+A0yI3enlNA/7oX5v3WqPu+DTdfBUgPXBt08LFgNHyuyEkJ16iq5SnzGOKSJABb
+         Lo8YbzAV35A7hh+4X9LbdK7CwB90CpN0DFPSo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746003344; x=1746608144;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rvoHo2RumHfR7Sy7g41No889SUfb9msp1hz6UDjZvdg=;
+        b=F4RPzSVfWDlH1IY34cHdw36Dt50hgGNN79f0J8rLSNsEM/7oXGE0koIXz/538e4SDw
+         PaUN1GkwjTKG6KO0z5p1nnDOadiHQ0l8kvG4sstDg3+MqoeKrFLoOo+p/2bTozQL0Dqb
+         HC/nkmhgoq7tcHBwW0WtUccZH6E+/mMy8bzMeOGkrV8jv/Ns7JvOGbvKBfYi0miJULsn
+         GJATPH3MIDj7+4qQ9XRRmqTKC3+SJewjHqrkFHvVQkjxpPl/Ou9Y17zCeG3F2SKkZjfI
+         crXnP7jorcfssYt/pBavMAHHdIRlLTwIOZV3ddUTwdOu8B1UibpXkc3S3FJi2tyYWNjI
+         7+Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCUEmeBnz6d8/eElFqxLrX7h4QSMi3icbF21nGGbmY1uJsFuPzU+KRtnEfha8NyES4xQR2Eh/ClOiCN6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw64OqCNK4RqoE7oLt2oRcTQp7om26ymh9gMMjfuR9bHwQUusIT
+	4qzbrK+zx0Uz0mBEnDQNYszPY4GOcKZX+9Aplrxggu4auTNV+LFJAMHsR7Gt7BVnVG3/p3cCvSH
+	XDEaTwm0LYXAQALA4RZIYrc8XjZzde+boJtS1
+X-Gm-Gg: ASbGnctWovjzWvABWYpJNxsTyYXcmcTYfctT4qwo5uzY9TTXfSOEoSssOIbjzN2Tn6G
+	yglcPgMu9fuQMlJ5LW+jiJvjmRGxCbMFNOjg9u5vWaLR0/IW4psnQmh1EMlrNh7J9Ics4oL4K8L
+	5BfMGM0xk1sj2H55LVzSFZ0qw=
+X-Google-Smtp-Source: AGHT+IFO1HRbvpAqKy6NdbHgKt4bMdw/CT5H272hpSRpNIN30RE077EIxF2NXuzT+qLq/WYT5mCag6OxMYtXk3+eqB4=
+X-Received: by 2002:a17:907:c24:b0:ac7:81b0:62c8 with SMTP id
+ a640c23a62f3a-acee21e43c3mr171078866b.31.1746003343669; Wed, 30 Apr 2025
+ 01:55:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250425141511.182537-5-maxime.chevallier@bootlin.com>
+References: <20250418124718.1009563-1-jaszczyk@chromium.org>
+ <20250418124718.1009563-3-jaszczyk@chromium.org> <20250423140913.GA360030-robh@kernel.org>
+ <CAGptq8GzJh38349ZZpEOw9sV8ihtJMHqV=PH9WUbG-C7b0tJjg@mail.gmail.com> <20250425191808.GA2681888-robh@kernel.org>
+In-Reply-To: <20250425191808.GA2681888-robh@kernel.org>
+From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
+Date: Wed, 30 Apr 2025 10:55:31 +0200
+X-Gm-Features: ATxdqUEADRWppL02YaE3Fm02in5gU_DDHEXJMkFqi51BhUtnffdVYimQjxlS_6A
+Message-ID: <CAGptq8GOX0EDFPd+YdZfX76vsD0w0PyX8Y60CKwp3n7abRT1=g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] x86/of: add support for reserved memory defined by DT
+To: Rob Herring <robh@kernel.org>
+Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, 
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, 
+	saravanak@google.com, dmaluka@chromium.org, bgrzesik@google.com, 
+	jaszczyk@google.com, ilpo.jarvinen@linux.intel.com, usamaarif642@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tnowicki@google.com, 
+	mazurekm@google.com, vineethrp@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 25, 2025 at 04:14:57PM +0200, Maxime Chevallier wrote:
-> With the phy_port representation intrduced, we can use .attach_port to
-> populate the port information based on either the straps or the
-> ti,fiber-mode property. This allows simplifying the probe function and
-> allow users to override the strapping configuration.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
->  drivers/net/phy/dp83822.c | 70 ++++++++++++++++++++++++---------------
->  1 file changed, 44 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-> index 490c9f4e5d4e..bbbe509f3bd9 100644
-> --- a/drivers/net/phy/dp83822.c
-> +++ b/drivers/net/phy/dp83822.c
-> @@ -11,6 +11,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/phy.h>
-> +#include <linux/phy_port.h>
->  #include <linux/netdevice.h>
->  #include <linux/bitfield.h>
->  
-> @@ -814,17 +815,6 @@ static int dp83822_of_init(struct phy_device *phydev)
->  	int i, ret;
->  	u32 val;
->  
-> -	/* Signal detection for the PHY is only enabled if the FX_EN and the
-> -	 * SD_EN pins are strapped. Signal detection can only enabled if FX_EN
-> -	 * is strapped otherwise signal detection is disabled for the PHY.
-> -	 */
-> -	if (dp83822->fx_enabled && dp83822->fx_sd_enable)
-> -		dp83822->fx_signal_det_low = device_property_present(dev,
-> -								     "ti,link-loss-low");
-> -	if (!dp83822->fx_enabled)
-> -		dp83822->fx_enabled = device_property_present(dev,
-> -							      "ti,fiber-mode");
-> -
->  	if (!device_property_read_string(dev, "ti,gpio2-clk-out", &of_val)) {
->  		if (strcmp(of_val, "mac-if") == 0) {
->  			dp83822->gpio2_clk_out = DP83822_CLK_SRC_MAC_IF;
-> @@ -953,6 +943,47 @@ static int dp83822_read_straps(struct phy_device *phydev)
->  	return 0;
->  }
->  
-> +static int dp83822_attach_port(struct phy_device *phydev, struct phy_port *port)
-> +{
-> +	struct dp83822_private *dp83822 = phydev->priv;
-> +	struct device *dev = &phydev->mdio.dev;
+On Fri, Apr 25, 2025 at 9:18=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Thu, Apr 24, 2025 at 08:06:33PM +0200, Grzegorz Jaszczyk wrote:
+> > On Wed, Apr 23, 2025 at 4:09=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Fri, Apr 18, 2025 at 12:47:18PM +0000, Grzegorz Jaszczyk wrote:
+> > > > From: Grzegorz Jaszczyk <jaszczyk@google.com>
+> > > >
+> > > > The DT reserved-memory nodes can be present in DT as described in
+> > > > Documentation/devicetree/bindings/reserved-memory/reserved-memory.y=
+aml.
+> > > > Similar to other architecture, which supports DT, there is a need t=
+o
+> > > > create reserved memory regions for such nodes.
+> > > >
+> > > > Additionally, the x86 architecture builds its memory map based on E=
+820
+> > > > description passed by bootloader and not on DT. Since x86 already h=
+as
+> > > > some DT support and allows booting with both ACPI and DT at the sam=
+e
+> > > > time, let's register an arch specific hook which will validate if a
+> > > > reserved-memory region passed by DT is valid (covered by E820 reser=
+ved
+> > > > region entry).
+> > > >
+> > > > Without this check, the reserved memory from DT could be successful=
+ly
+> > > > registered, even though such a region could conflict with e820
+> > > > description e.g. it could be described as E820_RAM and could be alr=
+eady
+> > > > used at early x86 boot stage for memblock initialization (which hap=
+pens
+> > > > before DT parsing).
+> > >
+> > > Sorry, I don't get how it conflicts. Wouldn't the E820_RAM be registe=
+red
+> > > with memblock and memblock then handles the conflict (or should).
+> > >
+> >
+> > On x86, early memblock setup is performed by e820__memblock_setup()
+> > and regions which are marked as E820_RAM are added to the memblock
+> > "memory" type and such regions can be later on used for memblock
+> > allocation on early x86 setup. If memblock allocation is performed
+> > after e820__memblock_setup and before x86_flattree_get_config,  the
+> > reserved region described in DT (but described as RAM in e820) could
+> > be silently used before we scan DT for reserved memory regions.
+> >
+> > Additionally there are more reasons why we want to make sure that e820
+> > reserved regions are in sync with DT reserved memory: resource tree
+> > building and setup pci gap based on e820.
+> > On the x86 resource tree is built taking into account e820 entries
+> > (e820__reserve_resources()) while on other arch like e.g. arm64, which
+> > relies on DT, the resource tree is built taking into account
+> > information from DT(request_standard_resources). Mixing both on x86
+> > seems problematic and at first glance could be achieved by e.g.
+> > patching e820_table via e820__range_update so other part of the early
+> > x86 kernel setup such as e820__setup_pci_gap() will also not use
+> > region which is described in DT as reserved-memory. But it is not
+> > straight-forward (initially I've tried to go through this path) e.g.
+> > it will require handling DT earlier (x86_flattree_get_config) but at
+> > the same time x86_flattree_get_config relies on the memblock being set
+> > up. Therefore it seems that making a requirement that the e820
+> > reserved region should be in sync with DT reserved-memory on x86 is
+> > reasonable.
+>
+> x86_flattree_get_config() is a bit odd in that the DT is mapped and
+> unflattened in one shot. Usually the flat DT is mapped and scanned
+> early, and then only unflattened once memblock is up. You will be better
+> off moving the early mapping and scanning earlier. Then the next thing
+> you want from the DT early will be there. For example, the console or
+> handling for kexec (which is its own reserved regions).
 
-Hi Maxime,
+But reserved memory scanning relies on memblcok being already setup
+(see: early_init_fdt_scan_reserved_mem->__reserved_mem_reserve_reg->early_i=
+nit_dt_reserve_memory()
+which uses:
+memblock_overlaps_region, memblock_is_region_reserved,
+memblock_mark_nomap and memblock_reserve and therefore we can't move
+scanning earlier than e820__memblock_setup(). We can move early
+mapping and reserved memory scanning part(actually entire
+x86_flattree_get_config) at the end of  e820__memblock_setup but there
+will be still remaining issue with e820 not being with sync which will
+affect mentioned earlier e820 based assumptions for e.g.
+e820__setup_pci_gap and e820__reserve_resources.
 
-A nit from my side:
+I've prepared v3 which moves x86_flattree_get_config earlier in the
+setup process and prepared patch, which updates e820 table
+accordingly: https://lore.kernel.org/all/20250430084138.2287031-1-jaszczyk@=
+chromium.org/.
+Could you please take a look?
 
-dev is unused if CONFIG_OF_MDIO is not defined.
-
-Perhaps it's scope can be reduced somehow.
-Or &phydev->mdio.dev can be used directly?
-Or the code guarded by CONFIG_OF_MDIO could be moved into a separate
-function that makes use if IS_ENABLED to return early if there is nothing
-to do (maybe the best option if possible, as it would increase compile
-coverage).
-Or ...
-
-> +	int ret;
-> +
-> +	if (port->mediums) {
-> +		if (phy_port_is_fiber(port))
-> +			dp83822->fx_enabled = true;
-> +	} else {
-> +		ret = dp83822_read_straps(phydev);
-> +		if (ret)
-> +			return ret;
-> +
-> +#ifdef CONFIG_OF_MDIO
-> +		if (dp83822->fx_enabled && dp83822->fx_sd_enable)
-> +			dp83822->fx_signal_det_low =
-> +				device_property_present(dev, "ti,link-loss-low");
-> +
-> +		/* ti,fiber-mode is still used for backwards compatibility, but
-> +		 * has been replaced with the mdi node definition, see
-> +		 * ethernet-port.yaml
-> +		 */
-> +		if (!dp83822->fx_enabled)
-> +			dp83822->fx_enabled =
-> +				device_property_present(dev, "ti,fiber-mode");
-> +#endif
-> +
-> +		if (dp83822->fx_enabled) {
-> +			port->lanes = 1;
-> +			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASEF);
-> +		} else {
-> +			/* This PHY can only to 100BaseTX max, so on 2 lanes */
-> +			port->lanes = 2;
-> +			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASET);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
+Best regards,
+Grzegorz
 
