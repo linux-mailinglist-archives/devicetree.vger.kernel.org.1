@@ -1,196 +1,227 @@
-Return-Path: <devicetree+bounces-172283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51CBFAA45E4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:47:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A9EAA45D1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:46:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 258F6176654
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:47:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F18B1C05356
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F39721930B;
-	Wed, 30 Apr 2025 08:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC5E219302;
+	Wed, 30 Apr 2025 08:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SutFZh17"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BH1Dqouy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2073.outbound.protection.outlook.com [40.107.22.73])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F202DC78E
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.73
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746002866; cv=fail; b=a+eWvMEEoiwXO8m4lthL/usXnz7NWZjfj0GUUkLxQS+YYU0qin5V6c3tMyotzMpsHQAjsW/EUSXKmzP3RB1QwPth6XuBi0EzJqAsJ1TyXz47uwOayny3lem/ctGqi6rWoP4PQq3ev81pHGrvETTL/sGg5/EL3sHulrLvH/E85mM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746002866; c=relaxed/simple;
-	bh=tRb154qA3miZS7cafuYR3FaC8nLXuZj/ptA/gUvUnlc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=k6q2oXKiSsuEbnQC9frmx10t1JKZUdmX5RazCrBva9I37B85IoJelXlGRMacQx37i2SRFIuP4PdJq0oarRzJ+ege9cPL0+P4XpEKpNfIQn5w5YiBcXidqKa+sa5tvMi+tGnUwVuS/2A5YW/x+nI52GFTAkW6YpjqWbrmqa2+Of8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SutFZh17; arc=fail smtp.client-ip=40.107.22.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w4DRXMJiMMdq85Wc0joM1lVcvEMB8HOTgzFECDCAvNteNkg0hI3CY6GRVRX/Zga8lf255/Cb1JXDgm7YYjR4PBq4ZMHRCaH/c5T2NUugH3NTT9Ys3opu4SL8ISOiiGqlIgmO+kGgI56arrMsw9QYqNh8MWunPLrzqVJ17vEGtOUE61KOoatooAidNMTTP/iSj9ggkWzKsoJujI0x409IuFHEQ6xrgIusscAFU9CvqmZQpxq0axciRygCVnkq5nvcCtST84P9oyuXvGbM2KeaN2ptvyfOr6O1icrGTelTEWgNK6m2dKB8W1V53YTW7vMNV5U8cbT5Cm4QrHOwkbUMqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I9UwbL1DvD9EpRZX3AhxZo/+d5i2i6tgwki0qdunN00=;
- b=iwWbmtp3R6PIRoN8TyY21vugoAmr5BH2WzU2i0Pm9pnyZ0qVmp/I83D5+xCR3HlyHBzOVN6/PsHC6e556lJMD9tmFz/P+a1tJK4YWmzrFxVGE8J1tkcRoOAxyk8dU9lKPu9gmQKFKVkETNBId6p20sCqKL8PNnmC7VGHISo7M/GW661LDckB2nbuyRq9XD026rSozaRBEWXhedWmSQCfEwxnwC58dhzOWLn4EAPXsTtgOtASfb0eiK+HudaIsEnExSX79JgvSPQfOUTO3qCcNRXEEyYb67iMBFdA6nQSp0dtMobYxl5lkqMTpAKu/pEnH3s6aVzfSVsgR8LyFwbX2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I9UwbL1DvD9EpRZX3AhxZo/+d5i2i6tgwki0qdunN00=;
- b=SutFZh17blnM4w4uGsCCBzctDBwDgvaMWLEORYvj1jtet8KgnsomsphMCiGxieCGcEBgNdFKcRy1yUilLvIGJMdikwTLh3rVUxGudk5IK/NygWlVSHHKX8s4nukviuSXIfNfysbKH31HF5pxY2MyosO8/Sf7ElnjQTqUnu36O3mbbkpqwNr6SobinokDL/g9h7tMfjLxeG1JWfnF4zmqcB0eWbhaMdfiCYr5TsjOWIPMGkH4UVxgtOPoC+lytBpbx22XqsRrTp2Zu3XBJnMTguUEpOWsGeeEHgyDelOrUohWXdkFSsH1jIREsszMKM8Qygme37AFYGAENVk8Sv0hTQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AM8PR04MB7458.eurprd04.prod.outlook.com (2603:10a6:20b:1c4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Wed, 30 Apr
- 2025 08:47:41 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8678.028; Wed, 30 Apr 2025
- 08:47:41 +0000
-Date: Wed, 30 Apr 2025 16:43:43 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-	robh@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	swboyd@chromium.org, heikki.krogerus@linux.intel.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH v2 1/4] usb: typec: Stub out typec_switch APIs when
- CONFIG_TYPEC=n
-Message-ID: <20250430084343.v3mu5sm2rpvmyfu5@hippo>
-References: <20250422115055.575753-1-xu.yang_2@nxp.com>
- <CAOMZO5BrENeZ2A1erDupCTfMypX-Pd482o1N1eF+wKEL3X7HZQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOMZO5BrENeZ2A1erDupCTfMypX-Pd482o1N1eF+wKEL3X7HZQ@mail.gmail.com>
-X-ClientProxiedBy: SI2PR02CA0008.apcprd02.prod.outlook.com
- (2603:1096:4:194::12) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD8C20D505;
+	Wed, 30 Apr 2025 08:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746002642; cv=none; b=BTaBQWO8NJvsrQSEUMxY/OkNvrfdJ31s3JhNG/YOm3AgE+RT324oxeki69RykpFQULFQkGXuT6QAZdKOhFnkKvdpiQjbG+djwmZp+RpFYacgbHZjkK/XKxcra6Jk1wGu96VvWeneP2s8KB1uBn+Y5JpeNzjf7R012xDnuE26p44=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746002642; c=relaxed/simple;
+	bh=7Co8V1RtFjmvkaayS3lqMKD0JIT+ElCnjx8TinEXKSM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=G9WvH33vd77yf6/EXRw+DIF4FWt0PdgrSzImMcLYISlGVnnHlQlQF6S5TLOVvUFKiPqaaYpqjA3oa+esi8rVQowFz6I/e8O/HGn+h7vu/QJYXxnJAbLoBC2viF5XuznjOFVtrrk0gBRzFL7EbCX0bsDfQ79KzOchKf1y0qmIHao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BH1Dqouy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53TLauPr001485;
+	Wed, 30 Apr 2025 08:43:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	x7SCYQVXeDsdR1GUukXJP3PLvXOUonXD4QOh6Fbe46s=; b=BH1DqouyC9AbTFnh
+	OzTHYl4xRsMgNDhOptBGX5sKmJhTGRC/0gFLyEhQcGyjlu+1/7KnbO9q+s/ua7X4
+	KWmBmElxo29dBASfMNcx+HE4a+up+WmgTejn2Arb5dZX7c4OnqTrZ3MPpmVUNKI2
+	KayDE4jPPRYopRlcKYA/xjrgU6Dpoua5E5DyIKjcPJQb6dpxvhsvZtpvKrqC7aCH
+	R7QZnq3mc07uoe2/Zq9218Yy1QYlgLinmebRwt/Zj+nn2x0WM4ns2nKM3k3oDZ0Q
+	Ws7GLjFgmzJVRXrWJ0/Pmx1/y1948fhGhwbR3n8x6Lun60+tNVfefhNKZfogBJzF
+	q4wIVw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u9sd2h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 08:43:55 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53U8hs0j030071
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 08:43:54 GMT
+Received: from [10.218.23.250] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Apr
+ 2025 01:43:49 -0700
+Message-ID: <bda4e8ad-0d72-4a07-90ef-9fa4245fd205@quicinc.com>
+Date: Wed, 30 Apr 2025 14:13:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AM8PR04MB7458:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3f1651c-1990-40b8-3b4a-08dd87c3aad7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VEgrUkluemlOamIzV0gvNFJicGFlRnJvVGEzODN4N1lMU1AyUmxySzZRYTFW?=
- =?utf-8?B?RzdISEdpTDFYRHloNWNjaUJycnpDOTU4N2tIbjQxTmI4L2s0QmlvaXVaZjE0?=
- =?utf-8?B?MXRaQkdrK0x5RGxqOU1EZ1RyMXIrMVV1UFFrVWgvWDFUWWdZUTkzL3BLekhw?=
- =?utf-8?B?cUJsS1BDdFhuN0VBMEpxMmR2ZzFQVGcxVVQ4R0NPMEFHNmV5VU4wRmFaK3lS?=
- =?utf-8?B?SEt2Lzg1RmQ2K0xObVBzUHZkZWc5OVNQT0xPL3hSRFlpVHEvTkRMOUFLdm5Y?=
- =?utf-8?B?QkFYSDVlT0JmUE5LVmxFVzZ4NURwTHBiay9BVGkzdDhMYTNjRjJ1L0cxN2N3?=
- =?utf-8?B?aXBMNmxXWjczRTJxdUJxRTNLaEZveGdhR3N0UHUrMUZnM2FCTHkxb2hCQ1M3?=
- =?utf-8?B?THgzZ3VER2pONFdEZzZQM3ozTm1qK1ZMcGJiWjJOQVA1dGo0U2dUb1VrS1hJ?=
- =?utf-8?B?cFVGYXZuQXlKUkJ0V3d4bzJUbXdDb0FxME00Ym9zMmpkWkxod25kTFA2RGlS?=
- =?utf-8?B?SFpZN05VdmJqZjg2VVVwQlVmSmtZdnJQdkFPV0doT2x4c2lGTWVBR01uY2Mr?=
- =?utf-8?B?WlA0QldKRG1yL0U4Q2svRFhHZ1pyYVA0eCtocFRtVHFUc3pWdTBnYTJMN1E1?=
- =?utf-8?B?OWVRM00rYUhmZjFOdDRSQnRBTk1WOFpLeGdSTnI3MVpSTUFHSGdndWJmaHdt?=
- =?utf-8?B?Ym1OTVFVSE0wZ1p2TnllMDN3NzlmRk5UZW1sUFFNN3VyTXFqU3c4Q0tiMEdl?=
- =?utf-8?B?OEdsZDUydzRGMnJwTThmbG5ja0plRlRQbUgva204OE5yM1Qxb0dFeTNSOU03?=
- =?utf-8?B?SjNnWDlkN3FwMy9IeFQzaHBQbEhHWGp4aFJmTVcyMHhzdllmTDRLZW1HR2FZ?=
- =?utf-8?B?VnhSc0hmVE1XSU9lQnhuaytUcDRJSFd5S0VidzhHcy9tQ3dIZzk1RXFqMVJa?=
- =?utf-8?B?Y2ErVmpCTXRacWdiY0JMdWZyUkxtd29aU2UrMmtUYXdLU2h2TmtNdFQzRkJ2?=
- =?utf-8?B?QlJ4QmxTNUhqNEdqNWwxYlVURTMxa3FERVRZVWNvZVVZWm96bXYvM2Z5Wkc1?=
- =?utf-8?B?bTJxelgvclFJNWVMYTBQK2JPTFozYkxhWGRYdDMvZDl1bTdadUsyR0FnRHg0?=
- =?utf-8?B?MnBMSXdYbUVCcGw3T2NCRGRpcGJJY3lLOTZTRm5FVENKazZSMGtwVklONWNr?=
- =?utf-8?B?TmJBcnllVGlnNUxTcDdaSkZqR0psTWQ0MmtnN1lhZUtUVXhpZCtNeldKZVg3?=
- =?utf-8?B?c3pMQVp5YUxVRnUrSHRGRlgrM3VNdW1mSUIrQ1JXRmNQcWpuek5uejkrMlkw?=
- =?utf-8?B?QlJIaWJGKzhyaFR4VXcvR1RLZy9MRW95M1FiUXAzeHlJcFlnVHVORlBPOW1v?=
- =?utf-8?B?ck0xWVlCSEZ2WjVTR095eGxSSDN1ZHc0S3h6Kzh2WDlKdDhST1hkTGF0bjdE?=
- =?utf-8?B?T2xXeCtZbGlFNy9qSHZ6QmpJbmxOcTJleU5ucjU3Y0RraE9rLy9sYVNvSE5O?=
- =?utf-8?B?cjYwdSt5bTE4djVWUGdncDBaNjNIa2RpUFRndTUvN2g4TTFaTjFmM0NmcHRC?=
- =?utf-8?B?UkNrOU1RL1VRNXJ2WW40M1JLYWdTcUl0VnpXRGhudTVHVkJ3dUUyYlNEWmZI?=
- =?utf-8?B?RjEwTUJxM1R0QWFhTGpQdWJoVlNkR1VyYkpDdzBaR0RFZXlwa1RqQVFHMW11?=
- =?utf-8?B?QlhnbXNlWGo2UzE2VVlaTDlic0JmekdiNXJUdkdBRGpDa0xEMWpOTm9zK1RN?=
- =?utf-8?B?MnpBWFIrVHN3ekxuellMY3BoSTJSZmQyKzBJM3VuajFrcmpZU3hEWUc3UU5D?=
- =?utf-8?B?UEErb3R5aEQzeDFDRWxtOVcrY0czb2ZFUGRndGcya3RXYWhOOWxxUXBaN1hE?=
- =?utf-8?B?WlZiV2o3Rk1vZHY3RWFORjA0UjJiNmlpVXVVVnNUWmdmc3dMMUNaMHFZdmRr?=
- =?utf-8?B?Ykl5VnVTb3kzSzNvN2IyUXBiNFVaZzBua3pxZFQvTi9jYm9Kb0tEN3E3M050?=
- =?utf-8?B?VlJSaVQwZmNRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cXkza3d2NDNaWnpSWlYxRUlqSGFCZE9nSDlBNktCNWZRWHp0cjdQZEg3Q0dN?=
- =?utf-8?B?UXVxZDQvODBjNUFWVWVpb2tGTExzSklma2pmYnBCd0xLb3JzbzJ4VWFFS2xp?=
- =?utf-8?B?SFhyL0loZ0NiWFkvZzJ6ZXMwVkMrS1czU1JvQ0FuOU5xbGNyUndvdVNRMW4x?=
- =?utf-8?B?ZUdHQzIydTRDV04yZENIZXk3aUl3Q3QxMmRyYnNSSlliSUdQcXRXR1BhdXhE?=
- =?utf-8?B?eTE2T29IZkRNVVFiT3FQN0V4ZFZWS2hqS3l0SGpuMHR6bE5LSVI5WEJXNjI2?=
- =?utf-8?B?NThYT2NhNE14cXBjNlFqbDV1cVYzQ0RBSDBTOGVDZ3pDQjduSXBwc3o3SlZJ?=
- =?utf-8?B?Q1RaWVVTamdqR3VLaXE2bUxSOXRKaDFKelFvczhUdTZvMFJaUjFYdHNWU3R5?=
- =?utf-8?B?TitNdW5IMlJFMXpMTGJzSFU4YXl4U0RCek1RaDN0REk4Rjl3REJRT1lraVFG?=
- =?utf-8?B?TXQ4b0MrNDA1ZGpoM1ptdDhYb0d3TE5sS3NMV1lmTmtmbUwzcjhOUVUvSDNn?=
- =?utf-8?B?cmhibCtmQjdHL2hGOW1nanBreVZFNUlXU2hFb2NHM0ZEM0JyMi9YQlhYL2J6?=
- =?utf-8?B?WGxPSWo0WG1HdmZqWFJ0Y2dERFMrcHk3Wm5icWcrMnRJQ09SUmtQY0RQU2hY?=
- =?utf-8?B?RWtDWGdaUGVINVd4WEx1bkx2SHloVFNDdmswcVZVQXk3eHZJR1RESnp3bHla?=
- =?utf-8?B?WHdiVUdyVjE3dzlxbkV6TGpnSTAxRTVCL0NaQXJ3TDB5aEN1Z1FOL1FnaFps?=
- =?utf-8?B?bkNCbjkyNFQ3MFU0TjJlaWk2WWdENXRlTmw3NkFxc01sVUs2LzlKb1V6d3FH?=
- =?utf-8?B?OFVzZ0x2Y21zcWpGTzlwa2pobzJNL0t4UGdXSFZTUit0Z0FXSzZwMEo4SW9s?=
- =?utf-8?B?WjAwWi9TOS9aNjhFVWlEcXhpRzl0OW9xMWxEV25tdlp1cEZCbzd4aTVUQzl3?=
- =?utf-8?B?UnQ4ak1uYllJbXdZdWxGSERramN1WXNrZEdvUUo5L0puTjE0clJndklPWDNa?=
- =?utf-8?B?MkJnbDJoeWZ0cFJobUZMWVdJaDQ4SVcrUWtiN0FSSzlqQUw4enJGV2xtbkZX?=
- =?utf-8?B?WnN1SFhiTGFwS0ZTM1FXb3ErMXZUR004Q2dIVHB0ZHJIOS9lOUNnUm5SOGhQ?=
- =?utf-8?B?S0NNa21Xdmk0TDlTSU51UWZMOU50c21ndzNxSERiaUpzQ2M3b0dMZ0g2VlF1?=
- =?utf-8?B?bE04SkttMnQ3akU4VmdmSE81ek5LNk1WZ256WkZlZEg3bW4veVppTEY1bVMw?=
- =?utf-8?B?eXZBaFAxeCtJM3p2NU45b2l0SDhROEtvL3YzTXErSllLRjhSNzVqeWVodEx5?=
- =?utf-8?B?ZG41V3JMeHNMT0dyVlBoOWRNWXV6SHJKbkYwdDNDUmpvcDlEUjZBSGEzSXdx?=
- =?utf-8?B?amZXWmlsaFFkMzlxUVY5Q0NrWjB4azRxa0FpMC84d0Z6VzhBd0NkRmhzeGZ1?=
- =?utf-8?B?d2R1MnVEdUdrMEIyaDdQNGpyQmx2cUQ1cmZMNmhGQUdFSnhYWFc1b0oyMjVV?=
- =?utf-8?B?U3A2Y3Judld1WURaS1JCSFBWRnIraUFmSnJDd3VCOVBQcFhjVWRjVVhGaVEv?=
- =?utf-8?B?Sk1yRWM3dXN3K2lYbmY3RGcxaDQ2bE5GMFloOVI4cW9YeERtOTJiSlVPSmdZ?=
- =?utf-8?B?c0dlbDlJZzgzSFlBQ0plK25GR1RWYzFMTCtvQTZkNno2WU9WSWZackhYS1lV?=
- =?utf-8?B?YzN5VWttcnlGUjhxa2cySVNBSlFIVHRCT1dYRW5oMFgva0RRbzZ5WlFSZldy?=
- =?utf-8?B?OUhUN3ErcWJOendicWFXbHFyN1pNWmxLYVdJMHdnem9PeEdqd0l6dGJqWE9u?=
- =?utf-8?B?Q3BKYmNneHpOMlVIYmtWckxLRHhETlRzeTFBalNMci9XY0NCaUJkT1lYdUFz?=
- =?utf-8?B?RWU5algzOWg4akRMaXZQdUY0MzJkOHRBb25NSHlMR2NubDlvMjF0RkdjcE9V?=
- =?utf-8?B?ZkdkQnVISm8ra2FNYkRUOHhhb1loRC9wM1Z4aUpIaTlPdlI5eTRpdGsvYjBy?=
- =?utf-8?B?L1h3TnZIdWFoVU15Z2pyRXBDOEp4RjgzNHhXL2lpWlF1QzdTMXlIcElsZWtY?=
- =?utf-8?B?L1dSUjdTWlVaU0s2RUZCRm5RbHQyNWVQLzgrRDZNMXRZbGNER2trYXNReTN4?=
- =?utf-8?Q?lorjEKrx11cXFUCByfppn2ReB?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3f1651c-1990-40b8-3b4a-08dd87c3aad7
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 08:47:41.3273
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ompz2aDmR9xOSheplWVDQoN8WxTLrr33wqouAlFlvoEpbk2yw9MGttwneSGUChbVkDetQeu650gQrd5gjv19IQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7458
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: clock: Add Qualcomm SC8180X Camera clock
+ controller
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250422-sc8180x-camcc-support-v1-0-691614d13f06@quicinc.com>
+ <H56Iba_grof22uzTtGCI-APhiDAGSejNod6jsSVIykm9ijaaj7PWqyszShCEGjIpM2wCLOn4a3Vfb8Hjziqklg==@protonmail.internalid>
+ <20250422-sc8180x-camcc-support-v1-1-691614d13f06@quicinc.com>
+ <621d8556-f95b-4cbe-809b-864417f0d48a@linaro.org>
+ <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <b96f8432-132b-4c16-951e-718e91ec52a5@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QCrNemx7V893oaF_4LBMTq-th3DzkxP4
+X-Proofpoint-ORIG-GUID: QCrNemx7V893oaF_4LBMTq-th3DzkxP4
+X-Authority-Analysis: v=2.4 cv=UZZRSLSN c=1 sm=1 tr=0 ts=6811e2cb cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=0wTyN5AiIvhKT9tr5UwA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA2MCBTYWx0ZWRfX2wu2tMQMbbmw xVDT0VgxEm6dERnm9TwdAu9YRQjCE0hgErAATkGOhamUlJTN5N36sJGyjf55+715A15YPzseKKT QjA96vCY+ZvejOhR0ZSDRspWuONYV+vGWuXfZpO/KwPkR+M8Fl1ARwfZWXg9Y8PdXOPe0qHV4Dr
+ wzRCfYmujpo+hHkZ/EBXJNSV6XQytDKT9RuOakmx9p7INGt6zwQmbDLd/jkfmZoRDAzbpho9ew+ t0MH74P45PxY3fJ+XYq/p8asoLh2M8ewNZzspC16xci6En/65xhzm4QiguN5E8RvfYrtRUSF6FG JWkOUwEIrzGpzzIwjiHix76aPOwhUc+ex2iyu2ti7G5STPvO0PVZrXeofOiRN0PCQMKdyEnamoe
+ jbRoe4OfuXJSzgjjq4SxK3BYFmXxjJ2acEjJ6jgpL/4zb7ipTxJegfwR4rhdYQDs3U3AMRKY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxlogscore=999 spamscore=0 priorityscore=1501 impostorscore=0 mlxscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300060
 
-On Fri, Apr 25, 2025 at 11:04:53AM -0300, Fabio Estevam wrote:
-> On Tue, Apr 22, 2025 at 8:49 AM Xu Yang <xu.yang_2@nxp.com> wrote:
-> >
-> > From: Stephen Boyd <swboyd@chromium.org>
-> >
-> > Ease driver development by adding stubs for the typec_switch APIs when
-> > CONFIG_TYPEC=n. Copy the same method used for the typec_mux APIs to be
-> > consistent.
-> >
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> > Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> 
-> You missed adding your Signed-off-by tag.
 
-Okay. I will add it in v2.
+On 4/24/2025 4:08 PM, Satya Priya Kakitapalli wrote:
+>
+> On 4/22/2025 5:11 PM, Bryan O'Donoghue wrote:
+>> On 22/04/2025 06:42, Satya Priya Kakitapalli wrote:
+>>> Add device tree bindings for the camera clock controller on
+>>> Qualcomm SC8180X platform.
+>>>
+>>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>>> ---
+>>>   .../bindings/clock/qcom,sc8180x-camcc.yaml         |  65 ++++++++
+>>>   include/dt-bindings/clock/qcom,sc8180x-camcc.h     | 181 
+>>> +++++++++++++++++++++
+>>>   2 files changed, 246 insertions(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml 
+>>> b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
+>>> new file mode 100644
+>>> index 
+>>> 0000000000000000000000000000000000000000..b17f40ee53a3002b2942869d60773dbecd764134
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
+>>> @@ -0,0 +1,65 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/qcom,sc8180x-camcc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Camera Clock & Reset Controller on SC8180X
+>>> +
+>>> +maintainers:
+>>> +  - Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>>> +
+>>> +description: |
+>>
+>> You can drop the "|"
+>>
+>
+> okay.
+>
+>
 
-Thanks,
-Xu Yang
+I tried removing this, but it is throwing below error, in the line "See 
+also: include/dt-bindings/clock/qcom,sc8180x-camcc.h" because of usage 
+of a colon there.
+
+Error: 
+Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml:16:12: 
+mapping values are not allowed in this context
+
+As we are following the same format in all other Qualcomm bindings, I'll 
+keep the "|" and "See also:" section as is.
+
+
+>>> +  Qualcomm camera clock control module provides the clocks, resets and
+>>> +  power domains on SC8180X.
+>>> +
+>>> +  See also: include/dt-bindings/clock/qcom,sc8180x-camcc.h
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,sc8180x-camcc
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: Board XO source
+>>> +      - description: Sleep clock source
+>>
+>> Missing clock-names
+>>
+>
+> Since we are using DT based indexing method, clock names are not 
+> required.
+>
+>
+>> A suspicious lack of clock depends here. No AHB clock ?> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      A phandle and PM domain specifier for the MMCX power domain.
+>>> +
+>>> +  required-opps:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      A phandle to an OPP node describing required MMCX performance 
+>>> point.
+>>> +
+>>> +allOf:
+>>> +  - $ref: qcom,gcc.yaml#
+>>
+>> A suspicious lack of clock depends here. No AHB clock ? No dependency 
+>> on gcc ?
+>>
+>> You call out the gcc above.
+>>
+>> Could you please recheck your list of clock dependencies.
+>
+> The dependent GCC clocks are marked always on from gcc probe, hence 
+> did not mention the dependency here.
+>
+>
+>>
+>> ---
+>> bod
+>
 
