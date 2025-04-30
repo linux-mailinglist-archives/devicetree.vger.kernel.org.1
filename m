@@ -1,192 +1,194 @@
-Return-Path: <devicetree+bounces-172395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2221AA4A73
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:57:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C193AA4ABB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C576A5A6325
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 11:57:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FA2B165BA8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176A0259CA9;
-	Wed, 30 Apr 2025 11:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B58259489;
+	Wed, 30 Apr 2025 12:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qEIHR8NR"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="JfbO6cRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF5A51E1E12;
-	Wed, 30 Apr 2025 11:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9849C1DC9BB;
+	Wed, 30 Apr 2025 12:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746014225; cv=none; b=ZjY1MvUIrDfObTaSNiOaUq7LCMZtSfZAbRxZV1Ab9RrgGRb3X+BuLcahc0B1OabuwMMJSrFsUcv1vRIVwuOMortwul2UoXfF+fDNiB29xkp/Ge0TmHorm2GkexVBgvfA9YF+nJJwwFxnrpD+5AT2JtAw65DTo00M/tRQXcYX15g=
+	t=1746014935; cv=none; b=nDm7xUCKC5Fu1kRIsEKOCjWXGt8YFLrweLYH5UFMhs2NHeCiMdS3LUCuht3dlXcg8jl7+cjnxTlE7qiDD0GOKnKwZALy0dNl57wSEhfYColTK7gsnZPGrjrZpJ0qPIaTwiVjv/JFy550CiG7N8FbquoMBFeKn0PC9cdC80SzWBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746014225; c=relaxed/simple;
-	bh=P9vCVdJ7R9/tU4GWA/qWyC0kfWGOp24aFi3CXt4X9qU=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JaOnWSstwC9FNMSB4XHsAq3vq3D2G5A2B3SJfpJEZqELsjkFWLOLU4+mKQuzia3f2zf7QneymWv9kATlaSgRr/p68t5+/tz7vhL0BHfbRADSk3m78xk4qmm8BRNEa9MN462dtqCEX3uYyoIpd2Fv0h6CWSV2YuzIg1KjdBhrGEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qEIHR8NR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B75C4CEE9;
-	Wed, 30 Apr 2025 11:57:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746014224;
-	bh=P9vCVdJ7R9/tU4GWA/qWyC0kfWGOp24aFi3CXt4X9qU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qEIHR8NRDYw4Q1xD58T1jd8uLkCvW0ZH7FN0+OeIi5/br/luL4krHvTqbbZKF8BAY
-	 U7+lNcgsiCQA5QMNa/ZeV4bz0zedu9vkGWeZ3eb4fm0QDiNKIsjlRf5w3K6Sw0IusQ
-	 e+1wtgdsQOd0fyOR8PpGhAeYXIDP5sZkSvUPNG/19qx9mL1r51p5owu6vYvmLAhBY7
-	 lXdL0XE0PizkZ1H8YV6K4Ij1eGu2eCMNnn2iXAipZ/vpCg7qYGe1VOkbJXg/QxS17a
-	 P+XaSZASgElxjnfn/xiq2IbWhu6eMktH9YCasVQBpJhoVCCV7lDB0MRxjIV8n6R+MP
-	 kjeirhZSiVpOw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uA63i-00AGFs-8s;
-	Wed, 30 Apr 2025 12:57:02 +0100
-Date: Wed, 30 Apr 2025 12:57:01 +0100
-Message-ID: <867c31j20i.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 21/22] irqchip/gic-v5: Add GICv5 IWB support
-In-Reply-To: <20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
-	<20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1746014935; c=relaxed/simple;
+	bh=SgKvyzH82dDsJ9cckjQ9snw/SaJ/mjS84En29HfGEVE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OYkqyRoGQG17f0tQW3jLE1C7k+/pgEVYzlDE38YzEuFrsHBVbv1YTlX5jnS2QvE1tYk17brHCpO8U0DbD8wZVh57YS7GK8r0I7hgbxPz8wyDTOeWbft9guNcUeK+74He6E2NF12q2RW6SFKPn8L0H/+gaPRYfbBYv8hm1v2wgHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=JfbO6cRz; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U7VUlh004545;
+	Wed, 30 Apr 2025 14:08:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	selector1; bh=lup72bCm83vqE2HmKaYnCv/x0iH/O0m14VmJPv2k+kE=; b=Jf
+	bO6cRzA9IkDKys9/gsTALiQm/yIK6zw7Fa+dVruBDbbNT+RpTwwLBU1OGRN2kIw7
+	Thn1XZjpxPwYmMSvjZWHmoZqdoXfC94AwSBxVLoeaSA0L1GB1V5lI37xOBFR3Vgc
+	QBWsSUyRFM7xDrl8+HXDTPBUpuKIG0jCCnK90IdvnB+Q8Q1ENmPx/tT5sTbG1Xsf
+	gx7zPndxqQEfhSIWOjh5XZo6eVE+HGGSRMD8DzkHiZOVt05bOZLsGKDeChsewbXk
+	ln5SnYNZpB1T4c5K1F8Rg1OUQyjzf7eqLcO+4qwapL/OMIxXFwBYohOdpeHJbWS+
+	/s9nCYSVZDJujftXQQUA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46b6tf2y6y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Apr 2025 14:08:31 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E467340079;
+	Wed, 30 Apr 2025 14:07:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DD4B8A77C63;
+	Wed, 30 Apr 2025 14:05:13 +0200 (CEST)
+Received: from localhost (10.130.72.242) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 30 Apr
+ 2025 14:05:13 +0200
+From: Sylvain Petinot <sylvain.petinot@foss.st.com>
+To: <benjamin.mugnier@foss.st.com>, <sylvain.petinot@foss.st.com>,
+        <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <sakari.ailus@linux.intel.com>, <laurent.pinchart@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <tomm.merciai@gmail.com>
+Subject: [PATCH v7 0/2] media: Add driver for ST VD56G3 camera sensor
+Date: Wed, 30 Apr 2025 14:05:07 +0200
+Message-ID: <20250430120509.17873-1-sylvain.petinot@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_04,2025-04-24_02,2025-02-21_01
 
-On Thu, 24 Apr 2025 11:25:32 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> The GICv5 architecture implements the Interrupt Wire Bridge (IWB) in
-> order to support wired interrupts that cannot be connected directly
-> to an IRS and instead uses the ITS to translate a wire event into
-> an IRQ signal.
-> 
-> An IWB is a special ITS device with its own deviceID; upon probe,
-> an IWB calls into the ITS driver to allocate DT/ITT tables for its
-> events (ie wires).
-> 
-> An IWB is always associated with a single ITS in the system.
-> 
-> An IWB is connected to an ITS and it has its own deviceID for all
-> interrupt wires that it manages; the IWB input wire number is
-> exposed to the ITS as an eventID. This eventID is not programmable
-> and therefore requires special handling in the ITS driver.
-> 
-> Add an IWB driver in order to:
-> 
-> - Probe IWBs in the system and allocate ITS tables
-> - Manage IWB IRQ domains
-> - Handle IWB input wires state (enable/disable)
-> - Add the required IWB IRQchip representation
-> - Handle firmware representation to Linux IRQ translation
-> 
-> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/irqchip/Makefile         |   2 +-
->  drivers/irqchip/irq-gic-v5-its.c |  68 ++++++--
->  drivers/irqchip/irq-gic-v5-iwb.c | 356 +++++++++++++++++++++++++++++++++++++++
->  drivers/irqchip/irq-gic-v5.c     |   2 +
->  drivers/irqchip/irq-gic-v5.h     |  28 +++
->  5 files changed, 437 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> index 4280395e3bdff7858102f0b4eaaea1121cace52f..7bfb2369fbe494a64b72308d95ae33de93c6b8c6 100644
-> --- a/drivers/irqchip/Makefile
-> +++ b/drivers/irqchip/Makefile
-> @@ -37,7 +37,7 @@ obj-$(CONFIG_ARM_GIC_V3_ITS)		+= irq-gic-v3-its.o irq-gic-v4.o
->  obj-$(CONFIG_ARM_GIC_V3_ITS_FSL_MC)	+= irq-gic-v3-its-fsl-mc-msi.o
->  obj-$(CONFIG_PARTITION_PERCPU)		+= irq-partition-percpu.o
->  obj-$(CONFIG_ARM_GIC_V5)		+= irq-gic-v5.o irq-gic-v5-irs.o
-> -obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o
-> +obj-$(CONFIG_ARM_GIC_V5_ITS)		+= irq-gic-v5-its.o irq-gic-v5-iwb.o
->  obj-$(CONFIG_HISILICON_IRQ_MBIGEN)	+= irq-mbigen.o
->  obj-$(CONFIG_ARM_NVIC)			+= irq-nvic.o
->  obj-$(CONFIG_ARM_VIC)			+= irq-vic.o
-> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-> index da349b4709cc5ec8978859237838f039389ca4a1..b5eb4dbfe2296dc6620889eb9291b542cae4aeb6 100644
-> --- a/drivers/irqchip/irq-gic-v5-its.c
-> +++ b/drivers/irqchip/irq-gic-v5-its.c
-> @@ -786,9 +786,8 @@ static struct gicv5_its_dev *gicv5_its_find_device(struct gicv5_its_chip_data *i
->  	return dev ? dev : ERR_PTR(-ENODEV);
->  }
->  
-> -static struct gicv5_its_dev *gicv5_its_alloc_device(
-> -				struct gicv5_its_chip_data *its, int nvec,
-> -				u32 dev_id)
-> +struct gicv5_its_dev *gicv5_its_alloc_device(struct gicv5_its_chip_data *its,
-> +					     int nvec, u32 dev_id, bool is_iwb)
->  {
->  	struct gicv5_its_dev *its_dev;
->  	int ret;
-> @@ -815,6 +814,7 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
->  	its_dev->device_id = dev_id;
->  	its_dev->num_events = nvec;
->  	its_dev->num_mapped_events = 0;
-> +	its_dev->is_iwb = is_iwb;
->  
->  	ret = gicv5_its_device_register(its, its_dev);
->  	if (ret) {
-> @@ -827,9 +827,11 @@ static struct gicv5_its_dev *gicv5_its_alloc_device(
->  
->  	/*
->  	 * This is the first time we have seen this device. Hence, it is not
-> -	 * shared.
-> +	 * shared, unless it is an IWB that is a shared ITS device by
-> +	 * definition, its eventids are hardcoded and never change - we allocate
-> +	 * it once for all and never free it.
+Hello,
 
-I'm not convinced the IWB should be treated differently from any other
-device. Its lifetime is not tied to its inputs, so all that's needed
-is to probe it, get a bunch of interrupts, and that's about it.
+This serie adds support for STMicroelectronics VD56G3 camera sensor.
+This is a 1.5M pixel global shutter camera available in both Mono (VD56G3) and
+colour (VD66GY) variants.
 
-The other thing is that the IWB really is a standalone thing. It
-shouldn't have its fingers in the ITS code, and should only rely on
-the core infrastructure to get its interrupts.
+The following features are supported:
+- Auto exposure with expo bias or
+- Manual exposure with analog / digital gain
+- H/V flip
+- vblank/hblank/link freq
+- Test pattern
+- Supported resolutions in both raw8/raw10 :
+   - 1124x1364
+   - 1120x1360
+   - 1024x1280
+   - 1024x768
+   - 768x1024
+   - 720x1280
+   - 640x480
+   - 480x640
+   - 320x240
 
-As much as I dislike it, the MBIGEN actually provides a decent example
-of how this could be structured.
+This driver supports coldstart parameters for internal AE feature.
+To make it work, the driver save gain/expo values in ctrl's cur.val during
+poweroff phase. This implementation transgress V4L2 rules... Any advice to make
+it proper would be greatly appreciated.
 
-Thanks,
+Driver tested on RB5 and RPI (with and without libcamera) for V1. V2, V3, V4,
+V5 and V6 mainly tested on RPI.
 
-	M.
+---
+
+v6 -> v7
+- driver: Make use of pm_runtime_dont_use_autosuspend() in probe/remove
+- driver: Fix Ctrl handler lock that might not be free in vd56g3_subdev_init
+- driver: Adjust log/error messages (No trailing dot, add '\n')
+- driver: Make 'nb_gpios_leds' an unsigned variable
+
+v5 -> v6
+Changes are mainly related to Laurent's comments on VD55G1 series [2] (which
+could also apply to this driver):
+- driver: Fix vd56g3_disable_stream() could failed at lowest framerate
+- driver: Make vd56g3_power_off the exact opposite of power_on
+- driver: Define macros for Min and Max External Clock Freq
+- driver: Replace ctrl_to_sd by ctrl_to_vd56g3
+- driver: struct vd56g3 keep pointer on struct device
+- driver: Make test pattern naming more explicit
+
+v4 -> v5
+Following Sakari's comment on VD55G1 series [1], use device_property*()
+instead of of_property*() and drop OF dependency.
+
+v3 -> v4:
+- driver: Revert to pm_runtime_put_autosuspend()
+- driver: Drop HAS_EVENTS and event handlers
+- driver: Make native resolution the default one
+- driver: Implements get_frame_desc() operation
+- driver: Use enable_streams and disable_streams ops
+- driver: Move asm/unaligned.h to linux/unaligned.h
+- driver: Variable data read using cci_read() doesn't require initialization
+- driver: Drop enum vd56g3_expo_state definition
+
+v2 -> v3:
+- driver: Unify PM vd56g3_resume/suspend functions with vd56g3_power_on/off
+- driver: Add v4l2_fwnode ctrls parse and addition
+- driver: Exposure is bounded by a minimum number of lines
+- driver: Minor improvements while handling return values
+- driver: Move to __pm_runtime_put_autosuspend()
+- driver: Follow rules and convention for driver naming
+- dt-bindings: Improve st-leds description
+- dt-bindings: Add missing additionnalProperties on 'port'
+- dt-bindings: vd56g3 is a video-interface-device type of device 
+- dt-bindings: Follow rules and convention for bindings naming
+
+v1 -> v2:
+- driver: Drop VD56G3_NUM_SUPPLIES
+- driver: Rename 'ext_clock' to 'xclk_freq'
+- driver: Make use of 'container_of_const' instead of 'container_of'
+- driver: Drop usage of WARN()
+- driver: Move a few variables to unsigned int
+- driver: Add defines for the different Cut revisions
+- driver: Replace dev_warn() by dev_err() in situation we're returning errors
+- driver: Ensure sensor has dedicated 3.5ms to boot after reset
+- driver: Take into account return value of __v4l2_ctrl_modify_range() and
+  __v4l2_ctrl_s_ctrl() functions
+- driver: Merge vd56g3_power_on() and vd56g3_boot()
+- dt-bindings: Lowercase power supply names
+- dt-bindings: Drop clock-lanes property
+- dt-bindings: Drop unecessary 'items' contraint for lane-polarities
+- dt-bindings: Drop unused labels
+
+[1] https://lore.kernel.org/r/20250402-b4-vd55g1-v4-0-84b1f54c670c@foss.st.com
+[2] https://lore.kernel.org/all/20250422150746.GA23173@pendragon.ideasonboard.com/
+
+Sylvain Petinot (2):
+  media: dt-bindings: Add ST VD56G3 camera sensor
+  media: i2c: Add driver for ST VD56G3 camera sensor
+
+ .../bindings/media/i2c/st,vd56g3.yaml         |  139 ++
+ MAINTAINERS                                   |    9 +
+ drivers/media/i2c/Kconfig                     |   11 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/vd56g3.c                    | 1583 +++++++++++++++++
+ 5 files changed, 1743 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/st,vd56g3.yaml
+ create mode 100644 drivers/media/i2c/vd56g3.c
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.17.1
+
 
