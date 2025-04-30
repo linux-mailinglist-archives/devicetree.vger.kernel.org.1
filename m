@@ -1,179 +1,187 @@
-Return-Path: <devicetree+bounces-172282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098BFAA45D7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B16B1AA45FA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0D941B669BE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:45:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B5B51BA383B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964E521ADB5;
-	Wed, 30 Apr 2025 08:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D2120C480;
+	Wed, 30 Apr 2025 08:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="QuzRoyMy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1lJ8wzZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192EF21ABAB
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5032AEE1;
+	Wed, 30 Apr 2025 08:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746002679; cv=none; b=Z6pXHbXI8kFWnq+ix4h6A2chUCT94LmSJZRFjw9PQGnlhZDWN8vO0ZA2vwbJ0B0QuJu2llVj6lMeKp1eOELH8lzzdZ3QVswtiO8YoRzbR0Kc/diw/kb0ucD/xba1am0ZDQ/10MuAwTY8F4XQhXR2PR+5nwAmoaTMFEEUjIfBoTs=
+	t=1746003148; cv=none; b=aM5Bu52PLJj8ixrKM4zOzeeiGeAD9hD3Zk4pVzDrwLojlCJP66XqSrZRcyUoBlQiEHEAoQ/O1yIe5LeNiRwN3XIAzdMmQD3E6VxlGX8/ksLpyJYC8ZmfOXDJOGESiEpGyy5GJxury6C7nzN9Swg2Vhm92ZOFm7+eA7lHOAo1+hI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746002679; c=relaxed/simple;
-	bh=+vmijnahmzqgvBOY0vSFX0jDJzO9B2yPyewutBO/kKI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=nYHrydlUiaqg3fWZ9iShKQjV4DHUKmCg8o3eNZTrn18jIJyVOJZF1sudIYL0oqhvnXln0F7dJmxs4DJsAXb38zPykMbm4D7pb3QbENGPCSRmacmHIh6QZl5aOTCUDZqW6xrwI4dirqElQ2pHwhR9OVFRwCNHUBb7GnE5azNNzro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=QuzRoyMy; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250430084434epoutp013b71b6895bd148bf6190118abb310c5f~7DC6Vw63W1453114531epoutp01K
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:44:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250430084434epoutp013b71b6895bd148bf6190118abb310c5f~7DC6Vw63W1453114531epoutp01K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1746002674;
-	bh=+vmijnahmzqgvBOY0vSFX0jDJzO9B2yPyewutBO/kKI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=QuzRoyMy4s1E0Yxy3E2erMCKXV5XcXhfeA549uW7YETfEikXj9TF4rPygc4uUDN2M
-	 jdKjuTa9/P4TT68iMq46YU9OGF0/9YYqzeYmfaGhxwcXYmWJQp2SZk4i0MTu4hseeq
-	 98yY83AikXZvkAtBi5lhX4h1eIGW8J2e/Ro/ziAI=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250430084433epcas2p27e1db1c7198c4324ab807ce33e41371d~7DC5gvq1W0138101381epcas2p2k;
-	Wed, 30 Apr 2025 08:44:33 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.36.101]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4ZnW2T3bzzz2SSKr; Wed, 30 Apr
-	2025 08:44:33 +0000 (GMT)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250430084432epcas2p49ec3562a8e09555b3c1de9bd84e5fb8f~7DC4fP_el2366723667epcas2p4C;
-	Wed, 30 Apr 2025 08:44:32 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250430084432epsmtrp2f9a6eeaf557de57d66e880627510c49e~7DC4eXuv51265712657epsmtrp2F;
-	Wed, 30 Apr 2025 08:44:32 +0000 (GMT)
-X-AuditID: b6c32a2a-d57fe70000002265-5c-6811e2f04d9d
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	3E.C1.08805.0F2E1186; Wed, 30 Apr 2025 17:44:32 +0900 (KST)
-Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250430084432epsmtip2969e7c98e0532399bb9136e22ac75a64~7DC4R7PHd3272732727epsmtip2V;
-	Wed, 30 Apr 2025 08:44:32 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
-Cc: "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>, "'Chanwoo Choi'"
-	<cw00.choi@samsung.com>, "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-	"'Michael	Turquette'" <mturquette@baylibre.com>, "'Stephen Boyd'"
-	<sboyd@kernel.org>, "'Rob	Herring'" <robh@kernel.org>, "'Conor Dooley'"
-	<conor+dt@kernel.org>, "'Sunyeal Hong'" <sunyeal.hong@samsung.com>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <20250430-wonderful-meticulous-groundhog-cbe6e1@kuoka>
-Subject: RE: [PATCH v2 3/4] clk: samsung: exynosautov920: Fix incorrect
- CLKS_NR_CPUCL0 definition
-Date: Wed, 30 Apr 2025 17:44:31 +0900
-Message-ID: <04c801dbb9ac$17eb1f40$47c15dc0$@samsung.com>
+	s=arc-20240116; t=1746003148; c=relaxed/simple;
+	bh=7Cul/zndrL+/IVYzqfi6IU1dEFCIVPUdV6j259m69G4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a4oZTvmYj4muIx0aZdlG6ovra7vXrM5qVXHWnealPI+18Sg07Fj/5XeJv/YR59LkXHH3wS/OwhcJl0Aq2x9Y5D6u6kIL5thYm3k0OSM16c0cHzu7wb7XbT/AUt1cfFvStCEW+Leo/FmY9ASkTcNdj2gUbLvDhi7+onYA/4fr8aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1lJ8wzZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 941A3C4CEE9;
+	Wed, 30 Apr 2025 08:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746003148;
+	bh=7Cul/zndrL+/IVYzqfi6IU1dEFCIVPUdV6j259m69G4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m1lJ8wzZTPM8DhfyWr4/2HegX1ltD3jb9oyGwEsxQnggTzFu4BmhN+FDUo2zeu1RN
+	 giDLlf5a2a05M1NTM0TyNM+3EdxGFIjko0NcwuH8tmM4waxKh+taOw9pETLP/OGysx
+	 y6q41rNWMiXvecfuO5utnba6X+/RrlRRRG0Zyp779JD4OXsp8BT5vKLho9xhVLhP01
+	 L3pek8e8yF1Kz3U+jqQ8zO6NCEaQ1htsGbDQh30QnW28U8lUEpb18UeDTpFssre9i9
+	 UMhCihDPn7fYp+FgDTScyGj9IhAcqbLQNWIY9xOmFsozHxD0z0V8xLXR1vNNBZ07+D
+	 pBH9xsh9vL2PA==
+Date: Wed, 30 Apr 2025 09:52:20 +0100
+From: Simon Horman <horms@kernel.org>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?utf-8?Q?Nicol=C3=B2?= Veronese <nicveronese@gmail.com>,
+	mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH net-next v5 04/14] net: phy: dp83822: Add support for
+ phy_port representation
+Message-ID: <20250430085220.GS3339421@horms.kernel.org>
+References: <20250425141511.182537-1-maxime.chevallier@bootlin.com>
+ <20250425141511.182537-5-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQKVz8E4gWpx1pKf+PhrDO9dWLB9vQKrOtICAhAmCl4B8oDt7rISRXng
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSvO6HR4IZBitnalo8mLeNzWLN3nNM
-	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
-	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZx2aSk5mSWpRbp2yVwZbTt
-	esBcMF+woqN5IlMD42G+LkZODgkBE4l5j9YxdjFycQgJ7GaUWDZhNhtEQkLi8IwJjBC2sMT9
-	liOsEEXPGSX+LZ/GApJgEzCUWPVjOxOILSKgK7H5xnJ2kCJmgWksEm/390J1fGKUuHlrGztI
-	FaeAs0T/3UZmEFtYIFHi0u7vYOtYBFQlFuxZyQpi8wpYSsz7/wjKFpQ4OfMJ2DZmAW2J3oet
-	jDD2soWvmSHOU5DY/ekoK8QVbhKbWp+yQ9SISMzubGOewCg8C8moWUhGzUIyahaSlgWMLKsY
-	JVMLinPTc4sNC4zyUsv1ihNzi0vz0vWS83M3MYKjUktrB+OeVR/0DjEycTAeYpTgYFYS4Z10
-	SzBDiDclsbIqtSg/vqg0J7X4EKM0B4uSOO+3170pQgLpiSWp2ampBalFMFkmDk6pBqbT59et
-	kfHiZ7ZdpvE7IDlyopzKWyWVppZdYROdDe/lTduxnTk/8KzKs/c6Z+beu/Xw68mI6mdM4jHX
-	Qq6fjQkT9FNeO8Euf+Lh6Rek9to5MT9+eP7qvnUiZ6yaz1hHzrZYsaOPu/UD40fHwz6bWB0+
-	MW1zj+OecETB9re02lyFO3ZLXZ3vTvPSfbX6ovDGFbUr3qw6v9LIfwqL/VLFm2t2zTma8p7z
-	pyibQ/h63iWzjnsGrv7tXMykOXVmWmCVyTzpWWeUfq1LLzgzLW528sSYPk7lsw/jT71rvbJw
-	q6D7xym2M+cwc290EBB2yF193ca95f+qYMFqTddr26VdftbbXjY5MFPbIdWnq37Z3ovqSizF
-	GYmGWsxFxYkAAiBDMjkDAAA=
-X-CMS-MailID: 20250430084432epcas2p49ec3562a8e09555b3c1de9bd84e5fb8f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250428113558epcas2p1f2980cbc58f71dde78a9529e2b85ac20
-References: <20250428113517.426987-1-shin.son@samsung.com>
-	<CGME20250428113558epcas2p1f2980cbc58f71dde78a9529e2b85ac20@epcas2p1.samsung.com>
-	<20250428113517.426987-4-shin.son@samsung.com>
-	<20250430-wonderful-meticulous-groundhog-cbe6e1@kuoka>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250425141511.182537-5-maxime.chevallier@bootlin.com>
 
-Hello Krzysztof Kozlowski,
+On Fri, Apr 25, 2025 at 04:14:57PM +0200, Maxime Chevallier wrote:
+> With the phy_port representation intrduced, we can use .attach_port to
+> populate the port information based on either the straps or the
+> ti,fiber-mode property. This allows simplifying the probe function and
+> allow users to override the strapping configuration.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+>  drivers/net/phy/dp83822.c | 70 ++++++++++++++++++++++++---------------
+>  1 file changed, 44 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
+> index 490c9f4e5d4e..bbbe509f3bd9 100644
+> --- a/drivers/net/phy/dp83822.c
+> +++ b/drivers/net/phy/dp83822.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/phy.h>
+> +#include <linux/phy_port.h>
+>  #include <linux/netdevice.h>
+>  #include <linux/bitfield.h>
+>  
+> @@ -814,17 +815,6 @@ static int dp83822_of_init(struct phy_device *phydev)
+>  	int i, ret;
+>  	u32 val;
+>  
+> -	/* Signal detection for the PHY is only enabled if the FX_EN and the
+> -	 * SD_EN pins are strapped. Signal detection can only enabled if FX_EN
+> -	 * is strapped otherwise signal detection is disabled for the PHY.
+> -	 */
+> -	if (dp83822->fx_enabled && dp83822->fx_sd_enable)
+> -		dp83822->fx_signal_det_low = device_property_present(dev,
+> -								     "ti,link-loss-low");
+> -	if (!dp83822->fx_enabled)
+> -		dp83822->fx_enabled = device_property_present(dev,
+> -							      "ti,fiber-mode");
+> -
+>  	if (!device_property_read_string(dev, "ti,gpio2-clk-out", &of_val)) {
+>  		if (strcmp(of_val, "mac-if") == 0) {
+>  			dp83822->gpio2_clk_out = DP83822_CLK_SRC_MAC_IF;
+> @@ -953,6 +943,47 @@ static int dp83822_read_straps(struct phy_device *phydev)
+>  	return 0;
+>  }
+>  
+> +static int dp83822_attach_port(struct phy_device *phydev, struct phy_port *port)
+> +{
+> +	struct dp83822_private *dp83822 = phydev->priv;
+> +	struct device *dev = &phydev->mdio.dev;
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
-> Sent: Wednesday, April 30, 2025 4:26 PM
-> To: Shin Son <shin.son=40samsung.com>
-> Cc: Sylwester Nawrocki <s.nawrocki=40samsung.com>; Chanwoo Choi
-> <cw00.choi=40samsung.com>; Alim Akhtar <alim.akhtar=40samsung.com>; Micha=
-el
-> Turquette <mturquette=40baylibre.com>; Stephen Boyd <sboyd=40kernel.org>;=
- Rob
-> Herring <robh=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>; Sunyea=
-l
-> Hong <sunyeal.hong=40samsung.com>; linux-samsung-soc=40vger.kernel.org; l=
-inux-
-> clk=40vger.kernel.org; devicetree=40vger.kernel.org; linux-arm-
-> kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH v2 3/4=5D clk: samsung: exynosautov920: Fix incorre=
-ct
-> CLKS_NR_CPUCL0 definition
->=20
-> On Mon, Apr 28, 2025 at 08:35:16PM GMT, Shin Son wrote:
-> > The CLKS_NR_CPUCL0 macro was incorrectly defined based on a wrong clock
-> ID.
-> > It mistakenly referenced CLK_DOUT_CLUSTER0_PERIPHCLK, which
-> > corresponds to a cluster peripheral clock, not the last clock ID for
-> CPUCL0 as intended.
-> >
-> > This patch corrects the definition to use CLK_DOUT_CPUCL0_NOCP + 1,
->=20
-> Please do not use =22This commit/patch/change=22, but imperative mood. Se=
-e
-> longer explanation here:
-> https://protect2.fireeye.com/v1/url?k=3D2e90faf7-4f1befd2-2e9171b8-
-> 74fe485cbff6-28bf0169b8fd9187&q=3D1&e=3Ddfbde4e5-fe38-4140-aa45-
-> b3362eb2dc00&u=3Dhttps%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.17.1%2Fsou=
-rce
-> %2FDocumentation%2Fprocess%2Fsubmitting-patches.rst%23L95
->=20
-> > properly matching the last clock ID for CPUCL0 as intended.
-> >
-> > This error was due to confusion with the hardware diagram, and this
-> > patch ensures that the number of clocks for CPUCL0 is correctly defined=
-.
->=20
-> Fixes: 59636ec89c2c (=22clk: samsung: exynosautov920: add cpucl0 clock
-> support=22)
->=20
->=20
-> And proper order - fixes are *ALWAYS* before new features.
->=20
-> Best regards,
-> Krzysztof
+Hi Maxime,
 
-Thank you for applying my patches.
-I appreciate your feedback, and I=E2=80=99ll=20make=20sure=20to=20improve=
-=20those=20parts=20in=20the=20future.=0D=0A=0D=0AHave=20a=20great=20day.=0D=
-=0A=0D=0ABest=20regards,=0D=0AShin=20Son.=0D=0A=0D=0A
+A nit from my side:
+
+dev is unused if CONFIG_OF_MDIO is not defined.
+
+Perhaps it's scope can be reduced somehow.
+Or &phydev->mdio.dev can be used directly?
+Or the code guarded by CONFIG_OF_MDIO could be moved into a separate
+function that makes use if IS_ENABLED to return early if there is nothing
+to do (maybe the best option if possible, as it would increase compile
+coverage).
+Or ...
+
+> +	int ret;
+> +
+> +	if (port->mediums) {
+> +		if (phy_port_is_fiber(port))
+> +			dp83822->fx_enabled = true;
+> +	} else {
+> +		ret = dp83822_read_straps(phydev);
+> +		if (ret)
+> +			return ret;
+> +
+> +#ifdef CONFIG_OF_MDIO
+> +		if (dp83822->fx_enabled && dp83822->fx_sd_enable)
+> +			dp83822->fx_signal_det_low =
+> +				device_property_present(dev, "ti,link-loss-low");
+> +
+> +		/* ti,fiber-mode is still used for backwards compatibility, but
+> +		 * has been replaced with the mdi node definition, see
+> +		 * ethernet-port.yaml
+> +		 */
+> +		if (!dp83822->fx_enabled)
+> +			dp83822->fx_enabled =
+> +				device_property_present(dev, "ti,fiber-mode");
+> +#endif
+> +
+> +		if (dp83822->fx_enabled) {
+> +			port->lanes = 1;
+> +			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASEF);
+> +		} else {
+> +			/* This PHY can only to 100BaseTX max, so on 2 lanes */
+> +			port->lanes = 2;
+> +			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASET);
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
 
