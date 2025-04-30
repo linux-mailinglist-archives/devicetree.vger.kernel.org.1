@@ -1,131 +1,135 @@
-Return-Path: <devicetree+bounces-172528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AECAA507D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:38:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BBFFAA5085
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28DC37B2A51
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:37:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06AD017D74E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53C22609F0;
-	Wed, 30 Apr 2025 15:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F31253F32;
+	Wed, 30 Apr 2025 15:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ml/JC1N9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sDHIAcok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 940D2257AC6;
-	Wed, 30 Apr 2025 15:37:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D77246796;
+	Wed, 30 Apr 2025 15:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746027428; cv=none; b=OO6T2iIBeZviODQruH6tGS+SxMdih4ZVQOpMzfEFI0m/p/Zs9wHJCpaS5vBhQRo3GY4fj+tR1OhvWAdgf8AUlM+r9+dhdr86cCKlFpiABnxYPwW6conu+fs/5xbiCE54H4lv6+NN+eFnh5Ty58//yYIoHVGzehWxq7rmpCfOqLU=
+	t=1746027582; cv=none; b=QzEb00gRNk6sFKEe3yvGB/EsrpBIUF2bPWl8j/MZ5X9AFwaZhdfCRu9YvhJP8hLDccZR4MGk350p5Og/b5gOtQ52ksf5MhF/Ow7If8tO3RW8DgnnQEy9hu0drXxydr2tqbzfLWisM75oseWJmTH+uR7xBWC6zA2hSqgiaiJP+3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746027428; c=relaxed/simple;
-	bh=szeQj+bnY9ogQvY4OUwIgus6AzzTlktdYaxtxFfhJIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpXOumpEtILBUBcO4lsF7idyDC704pAJWvP3dbOfec0XAe0XlkX3izwKtP0MINUrJ0svpzg5f4RF1eskmMzjcsWskFKob7+EhAjvAkAV/lV7xzJnhOaB1Uwms+wRvS+Vc4MCso9W8eFmO0NA2OQfjLvPRFgIxi/ZCz4MCyK/D1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ml/JC1N9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E293C4CEEC;
-	Wed, 30 Apr 2025 15:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746027428;
-	bh=szeQj+bnY9ogQvY4OUwIgus6AzzTlktdYaxtxFfhJIk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ml/JC1N9U9Q1EOkGUdxqyDMwN5oXs6mnxag8VzQw28/OoNJArBckIP3pLeFBKW9ro
-	 RcXLw49kpTtAm06RDPMIH5NhkjsFyd4Nsq4ctPWZxJU2LrubnQBNDydTpc6DBmM+cb
-	 XrgYWVDRD6Yh5JwUV1EFh3fC9cHTMU0EA6Z8+2RHxIGE+2NJi80TuU9xfHB7oNifh5
-	 29tn5y7HKs8eipTx1V5yp5ZMg9ceCwbygZEkpFi8a9yOuuF0FrM28zhQqaS82ochkk
-	 W7UpDWv/FulscnvtCe2XDBqpgCHqfa26xMaDCQRWpJOJQC5aqI//7WdUTFzdKEv43e
-	 CD0pN63FTVk4w==
-Date: Wed, 30 Apr 2025 16:37:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 2/3] clk: sophgo: Add support for newly added precise
- compatible
-Message-ID: <20250430-snort-raider-dbf10d14993f@spud>
-References: <20250430020932.307198-1-inochiama@gmail.com>
- <20250430020932.307198-3-inochiama@gmail.com>
- <20250430-radiance-rebuilt-2caa906d5e6f@spud>
+	s=arc-20240116; t=1746027582; c=relaxed/simple;
+	bh=N+4ocB7OdCjQKETbRyltPTPrWdxSokgWhCtq8hzYqMQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bW8fe7o+SSwizVx2AbwNV0ua9lLqALVanpVkyiNo23TLrV4ct9+8T9hWlCXvY0/U5DDgF/+og36BactXlmE4Ysmh+lGbE/9GyfkDBXCgvMq36ydEnGqeGLXDMSiTwgcZ1CubxsuJZYJzRLwrePmS9BLxgRRmmTYrj7EaqiJxrWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sDHIAcok; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53UFd28s4163729
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 30 Apr 2025 10:39:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746027542;
+	bh=hhn+vDhm+UWBoNuh8sgVsVRmxE61cfefKqQBYf1mIOw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=sDHIAcok3DfLJ58Nbh2wdZykhwK4drQSyK+dfn7fpFnPTs3ky9H6AdlyBwN2Ixjek
+	 BLRsy5ItxV3HLqHTOPDZaV8wPR4VyVwEAucVeRln6l0o6wTk5HCV8FLNXwXuvNL3PG
+	 kTazrYKvl0GsnEBAewU4CW7xUxYRlye4mQQcXc5U=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53UFd277057151
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 30 Apr 2025 10:39:02 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
+ Apr 2025 10:39:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 30 Apr 2025 10:39:01 -0500
+Received: from [172.24.227.193] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.227.193])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53UFctaL103871;
+	Wed, 30 Apr 2025 10:38:56 -0500
+Message-ID: <096ff788-7a25-47a3-ad13-caff971cf0bc@ti.com>
+Date: Wed, 30 Apr 2025 21:08:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="87W6SvIbW2ImtIsk"
-Content-Disposition: inline
-In-Reply-To: <20250430-radiance-rebuilt-2caa906d5e6f@spud>
+User-Agent: Betterbird (Linux)
+Subject: Re: [PATCH v4 2/3] drm/tidss: Update infrastructure to support K3 DSS
+ cut-down versions
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <jyri.sarha@iki.fi>, <airlied@gmail.com>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
+        <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+References: <20250326145736.3659670-1-devarsht@ti.com>
+ <20250326145736.3659670-3-devarsht@ti.com>
+ <b16761e5-be8a-42f6-8fc9-b84455716382@ideasonboard.com>
+Content-Language: en-US
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <b16761e5-be8a-42f6-8fc9-b84455716382@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Tomi
 
---87W6SvIbW2ImtIsk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the review. I had missed to respond back to below comment
+before sending V5, so kindly find the response for the same as below.
 
-On Wed, Apr 30, 2025 at 04:33:39PM +0100, Conor Dooley wrote:
-> On Wed, Apr 30, 2025 at 10:09:30AM +0800, Inochi Amaoto wrote:
-> > Add of device id definition for newly added precise compatible.
-> >=20
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  drivers/clk/sophgo/clk-cv1800.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/drivers/clk/sophgo/clk-cv1800.c b/drivers/clk/sophgo/clk-c=
-v1800.c
-> > index e0c4dc347579..e10221df6385 100644
-> > --- a/drivers/clk/sophgo/clk-cv1800.c
-> > +++ b/drivers/clk/sophgo/clk-cv1800.c
-> > @@ -1519,8 +1519,11 @@ static int cv1800_clk_probe(struct platform_devi=
-ce *pdev)
-> > =20
-> >  static const struct of_device_id cv1800_clk_ids[] =3D {
-> >  	{ .compatible =3D "sophgo,cv1800-clk", .data =3D &cv1800_desc },
-> > +	{ .compatible =3D "sophgo,cv1800b-clk", .data =3D &cv1800_desc },
->=20
-> Given the same data is used here, should there not be fallbacks in the
-> dt for some of these? For example, 1812 to 1800? Or is that not okay,
-> because 1800 is not a real device id?
->=20
-> >  	{ .compatible =3D "sophgo,cv1810-clk", .data =3D &cv1810_desc },
-> > +	{ .compatible =3D "sophgo,cv1812h-clk", .data =3D &cv1800_desc },
-> >  	{ .compatible =3D "sophgo,sg2000-clk", .data =3D &sg2000_desc },
-> > +	{ .compatible =3D "sophgo,sg2002-clk", .data =3D &sg2000_desc },
+On 27/03/25 16:48, Tomi Valkeinen wrote:
 
-Actually, this one is a better example. sg2000 is not marked deprecated.
-sg2002 uses the same match data. Why is no fallback to sg2000 used for
-the sg2002 case?
+>> *dispc, u32 hw_plane,
+>>                  const struct drm_plane_state *state,
+>>                  u32 hw_videoport)
+>>   {
+>> -    bool lite = dispc->feat->vid_lite[hw_plane];
+>> +    bool lite = dispc->feat->vid_info[hw_plane].is_lite;
+>>       u32 fourcc = state->fb->format->format;
+>>       u16 cpp = state->fb->format->cpp[0];
+>>       u32 fb_width = state->fb->pitches[0] / cpp;
+>> @@ -2210,7 +2275,7 @@ static void dispc_k2g_plane_init(struct
+>> dispc_device *dispc)
+>>       /* MFLAG_START = MFLAGNORMALSTARTMODE */
+>>       REG_FLD_MOD(dispc, DISPC_GLOBAL_MFLAG_ATTRIBUTE, 0, 6, 6);
+>>   -    for (hw_plane = 0; hw_plane < dispc->feat->num_planes;
+>> hw_plane++) {
+>> +    for (hw_plane = 0; hw_plane < dispc->feat->num_vids; hw_plane++) {
+>>           u32 size = dispc_vid_get_fifo_size(dispc, hw_plane);
+> 
+> And here.
+> 
 
---87W6SvIbW2ImtIsk
-Content-Type: application/pgp-signature; name="signature.asc"
+I don't think we need to us hw_id for dispc_vid* functions as they
+directly act on VID register base which is mapped based on device-tree.
+So for e.g. if an SoC does not have VID0 then it won't map that register
+base at all. For e.g. AM62L does not have VID region and has only VIDL
+so to access VIDL base (which is the first vid region mapped hence index
+0) we only need to use hw_plane as index 0
 
------BEGIN PGP SIGNATURE-----
+ void __iomem *base = dispc->base_vid[hw_plane];
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBJDnQAKCRB4tDGHoIJi
-0lfMAP45MQndFPi3Xx3SJU+Ys3AnOJrH+Tuj9GmF7L47GJab3QD8Dhn3UBrka0Uc
-I2WbsNSSF8pSxW1RW9HI8WsMjkO3WA4=
-=WPBL
------END PGP SIGNATURE-----
+The hw_id is only required for dispc_k3_vid* functions which access
+common register space for vid* specific registers and bits. For e.g.
+AM62L does not have VID base so there is a hole there and after 0x4
+offset (i.e. at index 1) VIDL starts, so in this case we need to pass
+hw_id as 1 (from vid_info struct).
 
---87W6SvIbW2ImtIsk--
+Regards
+Devarsh
 
