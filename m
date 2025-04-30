@@ -1,180 +1,255 @@
-Return-Path: <devicetree+bounces-172203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79EA0AA42FA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:15:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38F4AA4307
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 08:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFE471BC3889
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:15:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88CE43AA2CE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 06:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0461DE3A4;
-	Wed, 30 Apr 2025 06:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143061DE8B4;
+	Wed, 30 Apr 2025 06:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="AA1SDbj9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y5ReXdpY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBB2C148;
-	Wed, 30 Apr 2025 06:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745993721; cv=fail; b=TrbOoDCNCCDqaZMaubTj6OelnZnkYyy10dzbj1i3/BrM9/dV34QV0X89ZJ6frmoybpQZ7GGiJ6Bvw93Vsk9kDwfPu3WRAWU0ER7TuVMPf0MsRPkEI3YvH0qIEtEAQ1evYHJLt+o03/vZactS36UyioZ0Y6NBAjSgZFD1I0/etvs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745993721; c=relaxed/simple;
-	bh=ZgQjgA2f1p3Fan/tqCnGvriqoF7R4r6ABNQ2DD/vJqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iRY4FLNvphE1+kMBxyXoVPofPjEn1ApNgti3PrK349wXEECNtrGwT7r7Glhqm4gPMareXQqZB60kfIbd7OcjK8s1WUekI+kirOBiTYGn1RRWMnRop0r590qDCdGYfvrlaYPe8SaWuGsy+twUWQRgQF+ZhJa30K7474qtarchqJo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=AA1SDbj9; arc=fail smtp.client-ip=40.107.20.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QKyb+I6Nq+E3jT3/pPrxwXaA78JqJGbblJHBxrsYRDSCoVx4AtflikZax+qiCwQe/CMWSB5lqeRD8HFknMj/5DxN/1jiWClEWeHFIyljbA3ZZxY3V/aL069IFWALtHI2pvss/rw4mZhYrVryBgdt9+2MmiTZvOgUjSZwzi0RVF4xuVqqkwnGYxSSYFOaqomqbb2iyzwgGAfPSFSblepOPk+dQGorkAzLy93dDrrVebRAxXIDIOGCwxZoQYX05KVPVybNvbzdUg1Uk052joiR3bm3g5Lj3RjdKFR4S6v3+9td/Sbitgq6sxi3KETaN9k7+tCMXGU20MiMk7tnktIOrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qnboFYafT3HPPxQdWw6r7CnVnfyCiJpWW77bQMjY6Xk=;
- b=qACgcV3UUYVmNxA7A2XUO6dOK1U0BIBzDeRBrZyBuGvwRkhaDp9z92me32S1P2xSqMwUw76a7r8k9XsYpqzSDj+mq/YyT0dxN36AIgiyKYzS8TdT+cCKbjE6zCF13YYjB+yKIsCVuhfi3yWUDc1l0NyL8cSPA9pX3m1P5/kVmCnZKgm5a/olMu/tdeEz48doh6BmJzEfIG85bh9SSKJg98jmZG4PxSqZdZn0EWBpPwCi6RZbuEW8ujSAUEoIHwnhjbml3ZFIzQz5JHbnngVZ2BFMwx1sF81QCT4M+ZIJ3M019oF/yoczs4lJo6zNqUqt2DSjIX3RZvVUUSw/glV6Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.206) smtp.rcpttodomain=buenzli.dev smtp.mailfrom=de.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qnboFYafT3HPPxQdWw6r7CnVnfyCiJpWW77bQMjY6Xk=;
- b=AA1SDbj9W5iC+9aDBHgcwjBk1z98FgwK3aY6jbhy/wt24i/H3X3BIt3ytTGT2pYOKMkQ7fn2A1spYAaA23HNKDj27Xfr1eDNNkTP9Zfqy/s8ckUo1RlnUFPoe6Q88gg7BJdaSaFQBB9CBPabgkoMEZwE80f8QlZrTlZu8D0qMcoodxvsPv2HhGlOqFFCVJnCN6Lz6qx7oHrQmyeNrqMlxtFEkDN0V9JrwZQAFCZv1V8MCHvgABs3hOvWrfhokE/o4pZCnq9QpdbZzlNvPv2FTDwn4/4f+JK8qti6JsoImlap17t6XR0XNgdVrdRdivF9Vt0DPcOaayJdTVsy9r2yLA==
-Received: from DU2P251CA0027.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:230::33)
- by PA1PR10MB8329.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:450::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Wed, 30 Apr
- 2025 06:15:14 +0000
-Received: from DB1PEPF000509E7.eurprd03.prod.outlook.com
- (2603:10a6:10:230:cafe::c8) by DU2P251CA0027.outlook.office365.com
- (2603:10a6:10:230::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.41 via Frontend Transport; Wed,
- 30 Apr 2025 06:15:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
- smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=de.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
- 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
- client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
-Received: from eop.bosch-org.com (139.15.153.206) by
- DB1PEPF000509E7.mail.protection.outlook.com (10.167.242.57) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8699.20 via Frontend Transport; Wed, 30 Apr 2025 06:15:13 +0000
-Received: from SI-EXCAS2000.de.bosch.com (10.139.217.201) by eop.bosch-org.com
- (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 30 Apr
- 2025 08:15:02 +0200
-Received: from [10.34.219.93] (10.139.217.196) by SI-EXCAS2000.de.bosch.com
- (10.139.217.201) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Wed, 30 Apr
- 2025 08:15:02 +0200
-Message-ID: <776c8c73-4719-4675-b747-53faec1ac5d5@de.bosch.com>
-Date: Wed, 30 Apr 2025 08:14:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A3A81DE2A4
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745993951; cv=none; b=SFE8NtU85IvLwEh4g9wLf9nv6rRadLyaZVC4+ZC9jLt29936JtqHoDSnMChT4nPcUtSHeW9l3KxZIo7HJFriT/oPRKOpTtqJ1Z6ClTvhTj+zIp8DE6AgDrZSyn+ZTMhiZmnN1upREsyzehMrtqvZFEyS3qei+2photgyXXo1c1w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745993951; c=relaxed/simple;
+	bh=jL8xvh7MmkitMTTRNILqXKDjV0N1bxWKo2Q8EiScK1Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=czT5KovyMrOPFZ2mADf0ogiWXVxHTralYLuwkS21HdZH8tx5FSnaTo01Ky509RkalKg+0aTe0yBJ0qx8gr6xtynUTO+iNByu2GHeyxGHp4Y1Q1y2y/ESoLTGHSqKCta4PFmi6YRL/LTWWjqGXeW4vM78prRN29Gk0zJnqlGP7Qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y5ReXdpY; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cee550af2so4670195e9.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Apr 2025 23:19:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745993947; x=1746598747; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=F/IL0XFmHPKxoC9j8t7metTTcJtVydc7qbX+iUPXrhg=;
+        b=y5ReXdpYq/EtyCImuzDwATPZXNHJDr6ntVi7ljKUuzEa73l7Ds7nyLyGTw7R2rLRBD
+         hc/ssxdR4GXtgk5xXMLmZxkS4dEV+gSG+q7CP/i4G72TRcqgMMT+Xt7VrWDlr13FLw09
+         q/WalHJ2Cbm5KQnW8XJkeJB9p3BNchlRO9okEAuzCW5xPyfqOfBv+c7Rw3ns/BaVTyp9
+         YkMoySomRrWhTXtheZjP5aCMdXMcLT+hcOD3zZ1gIGtDSX82ji5BzNiGvPuC8CcvUWQx
+         0z1j88F/bHjmlBYrsVEYmSXbkwo/rAtFG0pn2nb/OTyKYezHWfxpj8CLyZmf1iFyp0Np
+         5llw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745993947; x=1746598747;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F/IL0XFmHPKxoC9j8t7metTTcJtVydc7qbX+iUPXrhg=;
+        b=oMPWFPpWajNvuPvZYc5r5wu+LWMZ5LC6sTWeovPyDn3hOi3Drzn+qA1hs2jDvtA/No
+         nlx0rQ+WUScWwZrCJ9VOGSUvP0INaupJtfj3MQVbSHCneaE6K9Y0cCYCu89r9DIgxOwa
+         5OUK8BZP5Vxtb6d/nZ9GtJKOZ0rgGEjm4mfF+qaJyhif6OSEPIyMcPqUi/ElE3axCxa6
+         5P/mHzkN2B6mFC5xK7jw7dMhTyFEEWaCnQv2UyjONAsDZ99Egb8PcL7MkRk24BJbM8HJ
+         u/9kjyEEPvzoZYAtAQvXoyT+MbA/c3oO8iMSVob7GyFfXgRJAJ0woBet9ke7YU/YwysT
+         v6ig==
+X-Forwarded-Encrypted: i=1; AJvYcCX6LaIdgFlf154mFrbsFfhPLLollSLXjv6+1HrqJx5dEXsLnZ1NCAItWyI2NQSq3MxeYzLHvxXOLOzT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTU7xjPMUgisW6+0/MOzQc/mNMIxL2en3le1lX4z8l9LpV/xGc
+	8uzkNtUPFMfo/m/4bhbUzOD8Sqbv3ut2nUcYDO23gcrVBFsRXPrivNgUC3xbj3E=
+X-Gm-Gg: ASbGncs5uPqbG2WZMKR7hn9l2rx3C6BPLduzjfDIhUvFi10qKLVYcU9xnmr0IyKdd37
+	Pmwxf06FxvHLebYjgVc4S7mDNBfTZpYmt5FZXrqdsqoYl+VTNwS4nxqMF39YeTSkL4z+XO4PfV+
+	+vbU9qbiV9uxnE5PQ4GYN7KG9XISzkHK0mAen9nKRTpLK2y4aMjIeKYbyvmNtQPA0TH9EXfJ4at
+	tcEqYoXqyLW1bEN8bf0C5hsHtrkYunyVfqHz6JnXenk8Bthzm9phIsvtFpPOjUsciqHVUeJq65S
+	v3S5XfnSs3e45l/zBqm/tS4M+twCK6tOiUhe3Y63oQJOTR6+IGWKHDwNebg=
+X-Google-Smtp-Source: AGHT+IGwlSSk/V975d/cid6eJ9/Q9UkNNxcjOHYawcjiK6gUy1kVrfYZq/K4ZlmgsJ8PDkUnk3LTDQ==
+X-Received: by 2002:a5d:5f81:0:b0:3a0:6868:8b13 with SMTP id ffacd0b85a97d-3a08ff57663mr348272f8f.1.1745993947391;
+        Tue, 29 Apr 2025 23:19:07 -0700 (PDT)
+Received: from [192.168.1.28] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073e46976sm16110911f8f.63.2025.04.29.23.19.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Apr 2025 23:19:06 -0700 (PDT)
+Message-ID: <0e007f7f-d9ff-4b2d-914d-ad62b9983bba@linaro.org>
+Date: Wed, 30 Apr 2025 08:19:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v3 1/7] rust: property: Move property_present to separate
- file
-To: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
-	"Alex Gaynor" <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
-	<bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
- Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
-	<rafael@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<rust-for-linux@vger.kernel.org>
-References: <20250425150130.13917-1-remo@buenzli.dev>
- <20250425150130.13917-2-remo@buenzli.dev>
-Content-Language: en-GB
-From: Dirk Behme <dirk.behme@de.bosch.com>
-In-Reply-To: <20250425150130.13917-2-remo@buenzli.dev>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8750-mtp: Add sound (speakers,
+ headset codec, dmics)
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org>
+ <20250424-sm8750-audio-part-2-v1-2-50133a0ec35f@linaro.org>
+ <dd271e8c-e430-4e6d-88ca-95eabe61ce94@oss.qualcomm.com>
+ <e61e17ca-fed7-4712-96fc-a9a2339de1fb@linaro.org>
+ <9b6c5f67-0bbc-490f-9982-4e28218aa6eb@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <9b6c5f67-0bbc-490f-9982-4e28218aa6eb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509E7:EE_|PA1PR10MB8329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7473fb08-6fcc-46cd-75dc-08dd87ae5ec2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|7416014|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aURCMWdzSGhVbTFMcnJuUVpNWFBra2hzWnNOdVVGYnRpUVdoelNaZ2NsSnZu?=
- =?utf-8?B?VnVMdTk2bG8rUEEwTEFFcW5reHJqbnlxRTRiSHJFRWVDeGdzL2ZRQ1k3K29N?=
- =?utf-8?B?ZGlnUEI3OTZqem9ObHFoUk1aTng0d2c3NVNsQ2wrcmtCNEwvNjQxK21kbzVh?=
- =?utf-8?B?WHJJRVp5WkdabmIyVmxWanYxWWFqa2FQeGRXbUE5RlpiZm8vUHRYNmhKUTB4?=
- =?utf-8?B?eHMxbmc2QXRVRHc1NmNJREF3Vi93emwwVkRTWXhoeXZsMUhuZkZjODJwTDJi?=
- =?utf-8?B?eXNiSFJXVGp3dzA0c0tqY3N3R2FTT0FUWXFaSHU1Z3VDQ3FCSGxOREl6a2M4?=
- =?utf-8?B?L2FkclI5c3ZtalBLSnExVXNvSlhiUklsL3NwcUxJTjFBQ0tBK0YybEI4WklX?=
- =?utf-8?B?Z3hPdUlJSTNRU1g3SFF1dU1EaDE0UHN0N3d3dTMzcEhGcE82TEYzVWJPVXhl?=
- =?utf-8?B?YUp3TkVCOTZKTkRXb0drRUdMcTY4M0laMDJQOVl5cHkvR1duR0NVRGZtL3VS?=
- =?utf-8?B?MjJrTmQwZjNBNXdnejRqWFk4VEpDdDR4cmppbWNRK05pazJGcEk5ak04bS8v?=
- =?utf-8?B?eGdYakhqclJHZ0FxWmc5MEJSRWhhZmJ3NTQ1cE1Cemo5WkIra1lScXJmR055?=
- =?utf-8?B?eEdyWml2TlNOSU9uaFIxYXN0bE5nTzJRMCtvd3hwZ0RweDFIeDFoRTJHZmgz?=
- =?utf-8?B?bUkrOGF6aWVhdlFsaUxZem05cUYrZGV3cGx0QlFGN0ZuaUdBbjhCbUR3VEtz?=
- =?utf-8?B?Z0pOaTlVOXJaQ3ZFVFl4Y1VXbTRFQUZZTmU5dWVjVUhzdU1FTnlWQWc5MTBY?=
- =?utf-8?B?NWV1dTdRdHV3cndMdWtUZGJ1Y2swQkw3ZndOVy9aRm9UZ29OeUhyQ3lGQUZp?=
- =?utf-8?B?amJwbHc3RDRZbEt4TCs0am5MOTlLeWhwU2hqN25rckZYN1VJV0IzbEJjUW1E?=
- =?utf-8?B?SjRCS1UrQkZ5T1VldXBNa09BMVpQcU50cVk5V1Q0K3R4MjAxV0toMkx3Q2h1?=
- =?utf-8?B?Yjd2WWRrSk82a2FOVkVyWVhNMGlHNWJsVVYwQlFnemFwTXZzOXcrL0tseXY2?=
- =?utf-8?B?dnE2SjJhN1NFL1krYmRIR1U1dForT21nTlhKR1NsZGVBaHFYWHBVOW8vbWJ3?=
- =?utf-8?B?eThTSlp3dVRFYSt3bkxvL3pwRzZ3aHJOVitZcWVWOGNBUWtJeFBHSjc3YTM5?=
- =?utf-8?B?NCswMkJiaHpFWFBKT0Q2ZDBpU0Y3NDhQQTFZUyt4Vkt2bVl2ZmlGcENIU2tR?=
- =?utf-8?B?S3luUnBvcGg3VHFCZUxEck9Fc3lMMDFqTXkxdmdDRTRwU29YNkQ2SFk3ZkFI?=
- =?utf-8?B?U3ZLUzY3TnByL2EzNWxRajVSLzh1VFQ4UWZQRHhKMUVLYlIyZDdzZ3A3NEdO?=
- =?utf-8?B?ek5EVm5Zdml4WnZKYkZvMWg4eWNMRU9UZXVmSUxnVmc0UVd2MGY3dWx6UzZF?=
- =?utf-8?B?RFJQTXE1djB0cDBwellwV1l3a0s2bkJkNDVaVHQraWpsYXgzSys3TlBBdExL?=
- =?utf-8?B?NFdkT2RyMUJPUVYxYmVXUjBFYmp3SzR4eFNwbnAxeEFDdVExYnVqb3ZJWEJO?=
- =?utf-8?B?akFBTnQwb3hRN1V3czF6YWNHZXlrQzVaYjBOdnMyd2RzNkJyWGZ5U2FTRlp5?=
- =?utf-8?B?dlFaNzV1b20xelEwRUoxOWR4bFZBRnpFbS9hL3kzNTAwU1BFQ0YyVFpUM011?=
- =?utf-8?B?QUVxSGlmdFlON05maW1CckxTdHdjREMrRTFNSURCVUFHTWQ3MWF0V3Vlb0pQ?=
- =?utf-8?B?MCtHcnUwMUFWSTNFTWNBVVl0VUp3STVhRG9uTlFMQ2RzY21HL2p4cXJUaUZO?=
- =?utf-8?B?anZFZUxGVUFOYkFzMldZcmYxaVhydEZHUGdCNGdvQ1FyR0U1UnFBRDdYUXJ3?=
- =?utf-8?B?WXZVVTZwSVBmdG5hODJaSER6eDdhL2JjYndZTyt5bEhYZXF2d0ltdHRSc1Ar?=
- =?utf-8?B?R3FsN1c1eFVjeVRrWDZwVjYyZXJnTTdVK1hGMDZFVFQ2cWV4aXRnbG1oNDBp?=
- =?utf-8?B?ak5admFVUGlxUmd4T2R0S0tvcklrT2hWTm5YcEtPb00za2daWFVXRWpjeCtI?=
- =?utf-8?B?aGI5eTUwZmlvMnV2amE1emdWcUhJYlliNlNEQT09?=
-X-Forefront-Antispam-Report:
-	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: de.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 06:15:13.9404
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7473fb08-6fcc-46cd-75dc-08dd87ae5ec2
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509E7.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR10MB8329
 
-On 25/04/2025 17:01, Remo Senekowitsch wrote:
-> Not all property-related APIs can be exposed directly on a device.
-> For example, iterating over child nodes of a device will yield
-> fwnode_handle. Thus, in order to access properties on these child nodes,
-> the property access methods must be implemented on the abstraction over
-> fwnode_handle.
+On 29/04/2025 21:11, Konrad Dybcio wrote:
+> On 4/28/25 4:41 PM, Krzysztof Kozlowski wrote:
+>> On 25/04/2025 11:30, Konrad Dybcio wrote:
+>>> On 4/24/25 11:40 AM, Krzysztof Kozlowski wrote:
+>>>> Add device nodes for most of the sound support - WSA883x smart speakers,
+>>>> WCD9395 audio codec (headset) and sound card - which allows sound
+>>>> playback via speakers and recording via DMIC microphones.  Changes bring
+>>>> necessary foundation for headset playback/recording via USB, but that
+>>>> part is not yet ready.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>
+>>> [...]
+>>>
+>>>> +	sound {
+>>>> +		compatible = "qcom,sm8750-sndcard", "qcom,sm8450-sndcard";
+>>>> +		model = "SM8750-MTP";
+>>>> +		audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
+>>>> +				"SpkrRight IN", "WSA_SPK2 OUT",
+>>>> +				"IN1_HPHL", "HPHL_OUT",
+>>>> +				"IN2_HPHR", "HPHR_OUT",
+>>>> +				"AMIC2", "MIC BIAS2",
+>>>> +				"VA DMIC0", "MIC BIAS3", /* MIC4 on schematics */
+>>>> +				"VA DMIC1", "MIC BIAS3", /* MIC1 on schematics */
+>>>
+>>> Is this a mistake in what the codec driver exposes, or just a fumble
+>>> in numbering $somewhere?
+>>
+>> Which mistake? MIC4? Schematics call name things differently. They
+>> always were, so to make it clear for people without schematics I wrote
+>> which MIC it actually is.
 > 
-> While it's possible to expose similar methods on `Device` directly for
-> convenience, those methods would have to get the `FwNode` first, which
-> is a fallible operation, making the API inconsistent. For this reason,
-> such duplicated methods are omitted. Users who need to read properties
-> of a device will have to explictily get the `FwNode` first (handle the
-Typo: explictily -> explicitly
+> I'm not sure how to parse your response
+> 
+> are you saying that there are MIC[0..4] that are/may be connected
+> to different codec ports, and that the MIC4/1 lines are plumbed to
+> VA DMIC0/1 respectively?
 
-Dirk
+Yes, as always. Nothing weird here.
+
+> 
+> I think I got confused about the MIC BIAS3 going to both and none
+
+What is both and none?
+
+> matching the index, but perhaps that's just because it comes from
+> the WCD (which is the third piece of hw involved beyond VA and the
+> mic itself)
+
+Again, what is the mistake you are pointing here?
+
+> 
+>>
+>>>
+>>>> +				"VA DMIC2", "MIC BIAS1",
+>>>> +				"VA DMIC3", "MIC BIAS1",
+>>>> +				"VA DMIC0", "VA MIC BIAS3",
+>>>> +				"VA DMIC1", "VA MIC BIAS3",
+>>>> +				"VA DMIC2", "VA MIC BIAS1",
+>>>> +				"VA DMIC3", "VA MIC BIAS1",
+>>>> +				"TX SWR_INPUT1", "ADC2_OUTPUT";
+>>>> +
+>>>> +		wcd-playback-dai-link {
+>>>> +			link-name = "WCD Playback";
+>>>> +
+>>>> +			cpu {
+>>>> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
+>>>> +			};
+>>>> +
+>>>> +			codec {
+>>>
+>>> 'co'dec < 'cp'u
+>>>
+>>> [...]
+>>
+>> That was the convention so far, but we can start a new one, sure. Just
+>> ask the same all other patch contributors, because each of them will be
+>> copying old code, which means cpu->codec->platform
+> 
+> I've been doing just that for the past couple weeks indeed
+> 
+>>>> +		/*
+>>>> +		 * WCD9395 RX Port 1 (HPH_L/R)      <=> SWR1 Port 1 (HPH_L/R)
+>>>> +		 * WCD9395 RX Port 2 (CLSH)         <=> SWR1 Port 2 (CLSH)
+>>>> +		 * WCD9395 RX Port 3 (COMP_L/R)     <=> SWR1 Port 3 (COMP_L/R)
+>>>> +		 * WCD9395 RX Port 4 (LO)           <=> SWR1 Port 4 (LO)
+>>>> +		 * WCD9395 RX Port 5 (DSD_L/R)      <=> SWR1 Port 5 (DSD_L/R)
+>>>> +		 * WCD9395 RX Port 6 (HIFI_PCM_L/R) <=> SWR1 Port 9 (HIFI_PCM_L/R)
+>>>> +		 */
+>>>> +		qcom,rx-port-mapping = <1 2 3 4 5 9>;
+>>>
+>>> Does this deserve some dt-bindings constants?
+>>
+>> No, because these are hardware details/constants. Drivers do not use them.
+> 
+> I'd argue it makes sense here - it makes more sense to pass meaningfully
+> named constants to the driver, rather than blobs with a comment
+
+Sense of what? You want to make it a binding then answer what does it
+bind, what part of ABI for driver is here a binding (answer none:
+because driver does not use it)?
+
+
+
+Best regards,
+Krzysztof
 
