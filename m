@@ -1,150 +1,200 @@
-Return-Path: <devicetree+bounces-172256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F556AA4434
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:43:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95C6AA443F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:44:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED3E04C5CC4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:43:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8329D9A67C3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:44:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B912A20C005;
-	Wed, 30 Apr 2025 07:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CED20D4F2;
+	Wed, 30 Apr 2025 07:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A8Xyozun"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="Arn3ByAM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2085.outbound.protection.outlook.com [40.107.21.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEFC1EA7C8;
-	Wed, 30 Apr 2025 07:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745998999; cv=none; b=caBf22pocYVOd4kt2h83Mf8/N40Nc77Y33oRD+bCCuCOIhj6MxJct37tyBhJeB8VDLwHudh1rDWUmELU/tLz+IY06ogLXZxam2EBoB3n0CV527zsTop4xDBK2wTHXP4x4V728ccdAn30kc7HaZlh5eh4xPlutsIpNROnlsuHbEs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745998999; c=relaxed/simple;
-	bh=gExrTVlcnDRsT84V3QRuYfykoVMoGAR/wS6ItbhLn+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CtOq0WWu+b86TQsHIeW3RHez9lqsW/R2VrzS1vaXoXfzNu3LJ5X3+RjKikj/wNRVvHatD8XAV+ZB+k2lw9jlMkxYplH5g7r623wlwd6BTeh9EFYG2+0Fjm/F5c/ViIEIHC1Tm0/6+jZEq8q3COwN+mRT2rqv5PtQifW4NRYzck8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A8Xyozun; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDF8EC4CEE9;
-	Wed, 30 Apr 2025 07:43:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745998999;
-	bh=gExrTVlcnDRsT84V3QRuYfykoVMoGAR/wS6ItbhLn+g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A8XyozunY9KfI/jWcSc7MBnMr/Kf4SDZWTl8wYF0aP3bD84wVy3Q981cvOTWZRchw
-	 W44IeVBYWhlqp1UfVzv4CxaitJL8KHxK96xGyX3W3cS0aOfpISEErviIcsHEMxO8jN
-	 ufO7OZF7NVZRMhw2FeuG42pUG5qv6mo/eAwLLXdQpP+xQl+PqRiR8M1fzDJntjJCad
-	 bdMV4fS+ml9aXSQCcuKxd1wzMtR2P4+Qa0jl5ItXVKNTPCFqjEJ7yHhgzjcUcUocPj
-	 JFxTLvBXTPZ1AqwLqQNdOLKzFXlqOyxPIYZ+CF6LA4E/tw0Ghm2N811XNkF1vIiH58
-	 KdWV3hcm6Z4EQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uA26D-000000008WT-1rDN;
-	Wed, 30 Apr 2025 09:43:21 +0200
-Date: Wed, 30 Apr 2025 09:43:21 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
-	will@kernel.org, linux-arm-kernel@lists.infradead.org,
-	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
-	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-	quic_cang@quicinc.com
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: x1e80100-qcp: Add qref supply
- for PCIe PHYs
-Message-ID: <aBHUmXx6N72_sCH9@hovoldconsulting.com>
-References: <20250425092955.4099677-1-quic_wenbyao@quicinc.com>
- <20250425092955.4099677-5-quic_wenbyao@quicinc.com>
- <aAtbFQIQMJO-BYe_@hovoldconsulting.com>
- <e82eda3b-b27f-4584-ad23-562ca4b22847@oss.qualcomm.com>
- <aAt54vikoREWZyGY@hovoldconsulting.com>
- <17a1a4d9-fdc5-477a-bf4e-91cae5a62479@oss.qualcomm.com>
- <c4115bbc-e120-4a20-b6ad-a0d5266319d3@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935E6204F9C;
+	Wed, 30 Apr 2025 07:44:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1745999084; cv=fail; b=DnCzyMz/MQY5W2Lfr41eGvMu3djEecURD7EtVCg+L90XJilOcttdlC2USpukbtz53o3WrHsAb1RSsJZJWISQCwwrnxdAPvgvTlRepZmSY8Nzt/uINTvKwWNy/5h7FKSVR3Si1lRHMpUht3st+pqoyI3eQI4jfnN6vGHN9uJdPYc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1745999084; c=relaxed/simple;
+	bh=h5KY6ffPJoe3aYlLVNpgDHzPdf0KNV3bCbhVydU5sfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CLPwTRuZQPYqRrYvEMx5yoFpHij8k05HQ+PYgsjZ6Y2JUZlU1iPwp3hZbxmMlp3R3ky2wqANq+P9qDsXd+Rf4qyqVZZezM7BnVilvQvqLEsGD94It/lhQQfpIBCiY6tPxUY6sYRT9HklRoDHvwd0QtPI3LZ+srhXKJz5+iNnlvA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=Arn3ByAM; arc=fail smtp.client-ip=40.107.21.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pRbVafceyWE+9pPObHXRPq58iz0u6SNjC9DbhBeknn9tJaBRgXObCJqLiM8DvMK/aHX6rTLaQBqmB1zCUMtg3wz3HjHzIVbFZTAjHQzgkV9apPGpf2DlFtqRkhRR5Xucrhp+OLslcTx5fa36RksAOdqu9uULoHLQ5R332kMw3qD+v7tgSKvdqU18lNV0uXTWpvyiiN2i/3V+y4OTW0AsqjjLgNVpiWjPxRDqYDt8XmxXLRaN8nEpjhI8HSbNlP/ZNYBvdmWLpzJy1Ekzo9vN3PhirUcQlNV+zw3KzBGF1PTmOpCZq8EaFdP7ifcnOAS50RpyDFvxUonOgfhOgGsryg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LqFt9Jd12jxYN6lY4LDJXBPir8JfirRblcVSyC2QY5Y=;
+ b=BwLA7p1AeTI+v2oMHv4r+Aubp9GZ1JbDadmgHQc82/1s2fctbLq9dIR32f/3jQ30es9yh8ne29UqI9W4c/dxZIj1bMuKQ1e0lwD/2oCiOdOjjuNHpRn09RdBgq0I0zsHr+s38Y55SE2NlaXa/i8s0yAHAE1JaTsKe3XuVc+AxzS0Q7Wmx3H6IH146UntHhP5eZmMrr28oRL78y42ikPuj3HZc/WsF5OYOEitYyteBPZ4mikq1D0yZpVBcpLUAPLBZZbo82tbQtLiMcKMERrGs2wYRTREkNjnUtDgXByICw1DWhF07I18hqcjLLDB1QJIgkV6u8w2XCNtgpzxoBZkOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 139.15.153.205) smtp.rcpttodomain=buenzli.dev smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LqFt9Jd12jxYN6lY4LDJXBPir8JfirRblcVSyC2QY5Y=;
+ b=Arn3ByAMMyY+9whZH9FPBeHvKPyRCV5W+fXuixEh6sfOC+ctDKQUl0Zoa7qaWZpp8nFKcpIi5VpG6Oa/7RrUX33nmRXQ6O3abFjZbP74veH0JloDHDbj7T2qivtwvXVqVHZYP6VndyPxchL7P9v/4gws5ijH/5dYcqLC9TWIrsqR86qbEehb5oR74NUXdJqjVtYbjScgowUBfSUaCkvryF79DApGJDetxc5dSSuThtJoqNQBDfOMmREUV024na9Mqtx1Sa0SQMe+38fq3lRn5G1rs8W+w3ij7xPOBhHED2B/ILSGrexkYEYUlsi3um6OeyCOThzMOEBIp64Feb0S9g==
+Received: from AS4P195CA0044.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:65a::7)
+ by GV1PR10MB9092.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:1d4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.33; Wed, 30 Apr
+ 2025 07:44:37 +0000
+Received: from AMS0EPF000001A6.eurprd05.prod.outlook.com
+ (2603:10a6:20b:65a:cafe::c6) by AS4P195CA0044.outlook.office365.com
+ (2603:10a6:20b:65a::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.41 via Frontend Transport; Wed,
+ 30 Apr 2025 07:44:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.205)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.205 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.205; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.205) by
+ AMS0EPF000001A6.mail.protection.outlook.com (10.167.16.233) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8699.20 via Frontend Transport; Wed, 30 Apr 2025 07:44:37 +0000
+Received: from FE-EXCAS2001.de.bosch.com (10.139.217.200) by eop.bosch-org.com
+ (139.15.153.205) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 30 Apr
+ 2025 09:44:33 +0200
+Received: from [10.34.219.93] (10.139.217.196) by FE-EXCAS2001.de.bosch.com
+ (10.139.217.200) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Wed, 30 Apr
+ 2025 09:44:33 +0200
+Message-ID: <6b1393ac-bb45-4911-ad79-59f0bd7d882c@de.bosch.com>
+Date: Wed, 30 Apr 2025 09:44:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4115bbc-e120-4a20-b6ad-a0d5266319d3@quicinc.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v3 2/7] rust: property: Enable printing fwnode name and
+ path
+To: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+	"Alex Gaynor" <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+	<bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
+ Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<rust-for-linux@vger.kernel.org>
+References: <20250425150130.13917-1-remo@buenzli.dev>
+ <20250425150130.13917-3-remo@buenzli.dev>
+Content-Language: en-GB
+From: Dirk Behme <dirk.behme@de.bosch.com>
+In-Reply-To: <20250425150130.13917-3-remo@buenzli.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001A6:EE_|GV1PR10MB9092:EE_
+X-MS-Office365-Filtering-Correlation-Id: b07861f6-b870-45e8-555c-08dd87badbac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|36860700013|1800799024|82310400026|921020|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?d0toOWNXNWlWYkUxTi9YZUJxQmRUbld6ejlsUVYwWkc2dk5IYzhxUEtqdi9o?=
+ =?utf-8?B?R1QrRm1NWEVkcjBVRTEvWEZYMW1hMVRJUFNxZldSNTBzeWlBd2tGeG1ocTU3?=
+ =?utf-8?B?RzNyazk0TENmMFpvaWRDTDZMZ1B2OTg3andJeHh2eDUyTFBVMElvTlJJOG05?=
+ =?utf-8?B?SkJweVcxRXJZMkt0VG9lejd6TEJWWWllZnRvbUdkaWJIcStGbEVCdlVyVmNU?=
+ =?utf-8?B?R1dBZlIvTmtGOEYyM29kTnJPNlExTUd6Ry9IV2ZDYTZtbFdPQVA0SVErQXdv?=
+ =?utf-8?B?VDUyZ0h0Mk01TnJCUGFOT0tabFl6YUxEdHhWMmc3K0tzOVRiTG9KT0l2TTBl?=
+ =?utf-8?B?YzdJQS95Sy9wTFNMSTlXaVlWczI1MU5leDYxWjl0WlV3cmpFOEQ1K3IzWXdN?=
+ =?utf-8?B?cWlDa0Z1RUJGL3hiNUR2TUUzcHFoc1VuTnB1NTZlc1F4ZU1aOTB4N1VIcXRG?=
+ =?utf-8?B?QVl0QXExcW55NGh0WlJHTHZxTFVNMkdhN1ZWdk82eS9XY05UdGd2M1poVVZn?=
+ =?utf-8?B?eUFaMndmR2hDTkp0K2MyaURjOEZpMTYxYzZ6V1JuU1gzY2pmN2RlblpZakdL?=
+ =?utf-8?B?azVVQUVRSXhsdzRWTEVaSjVTVXcwODVoYXNkTHFsY3k1d1FUZkRvNXFETEMy?=
+ =?utf-8?B?QlpwN3JsNFVVektmMzU1OFZQMXQzTFNxdiswSHB6REx2Y1U0S3phdEU5MHdG?=
+ =?utf-8?B?V0F4bDJWb0x3bWhiQ2xRT0N5cUZoRHFrMEFkL3k4VU9mUlJXcnVrNnhtN2Yz?=
+ =?utf-8?B?aGhHU0R5b0JQQ01KQTNUYitwVnF4bW9lUWZxR01CRHdBZ2R1ZGFHb3NMRmxT?=
+ =?utf-8?B?ZWlkTitndy9FNGJ2VVUwWHhrelVIYitvdGJLeFp2eU5PcTRkOTZlaXdvRmlO?=
+ =?utf-8?B?bXNkZnpJcjQxd3pRNVVpVmtXMmZ4d1haWWhuVjIrVFRQVFk1ZHEraDlCRGNa?=
+ =?utf-8?B?RzJ0ck5QZDE2V0EwWmo4K3ZYdzRuZ09kR0ZtaWxaZnVXSklGdWRFTEpoRGZD?=
+ =?utf-8?B?SW9uUmppM21uQWlmZ0NORUdxVnJKUjBGSUxQcG0wWjk4dFdXL1duSTJ3VVly?=
+ =?utf-8?B?OEpEUWhqdWtnK2wxVzNIUkNVM2FsVVMyYUlGcit3RjZjSURSdjdySmtiNWVV?=
+ =?utf-8?B?bnBxMjV5V1dHZzhRS1JjU3h0MGRLVnBJUDNvWnhVV0oySFFlVE1vcytPbThQ?=
+ =?utf-8?B?dnlrM2kwcDhwMDdUOCtPUE11N3hLMk9sS25EazU0c1JHanZJNFZ0anBVeC9X?=
+ =?utf-8?B?dFBtYmQ5c2NZN1MxWmlwUUk2QytGS2ZqQ3hSTlBRMkJ6MkVSV1Q3bzZWbUNW?=
+ =?utf-8?B?WUgxRmlqcys4bisxWWdWSnVqLzVnT1hPNjFYQmcxRDV0Sjc0ejlvdHoveHVH?=
+ =?utf-8?B?SlhzZFc0QVFWeS9YNGZmMHhRNzRkdnBqRENTWkdETnhtdDAyd08vUmNsN0V6?=
+ =?utf-8?B?L2hvZ2ZFcTR4VmpVQkV4cGRhSC9KUlZJMFJibUFLMWozWHBOZ0hTQ2o5Ujcy?=
+ =?utf-8?B?VEM1dUdrME5Fb0IyaWpPSklITnJxbVJtK1J0MGRjYVJ1SnBNUUMyYTNnaWlY?=
+ =?utf-8?B?OVdpclYwNWVULzVnb2Jnb3hJNW11TSt5RDJRY0gybkl3Z2ZQR1MrNU5iNzVO?=
+ =?utf-8?B?VVBXQlU1cjFxYU11akxMcTFxb0pnL0lRbGRIUlNqNnREZFByVlN2RU81cVRL?=
+ =?utf-8?B?MG12Umg3ZGhoT1NWOEpwVmtUd0o5NFNsMkVNUkF2L2xIWlk4aXZZTEhZWmY1?=
+ =?utf-8?B?VnVvc0IyNUIyTE9oMzkyTVA3L085blZ3c3AvZWZJYlVpdFdSb0hnQ0w5SHU5?=
+ =?utf-8?B?T1B6d2lWdlowUkVlY2hJTm43YTJtdEFIVEo3dWhKcGhPWEVFNzB3bzFFV0hW?=
+ =?utf-8?B?Y3FBVXBEWU1PQ1NnQUkvekc3dGhHNG1aSTMwdnZQRkdLKzl0ZlQvNFVYNnhX?=
+ =?utf-8?B?ZEVmS3lWeGlqZlBGMGk1b29QWXZ2c3NCK1B0SmtyYnkycHpmeEFHSDduRUdG?=
+ =?utf-8?B?bHJxbW83UmozOWJhQlg1aXJPalExdjF0NmI2eUlJSjdHb1RyeHAzTTRxcFpZ?=
+ =?utf-8?B?V09uN05vb3JQM0R5V0t0UnFLbHNYOTBuTUZVdz09?=
+X-Forefront-Antispam-Report:
+	CIP:139.15.153.205;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(1800799024)(82310400026)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 07:44:37.4909
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b07861f6-b870-45e8-555c-08dd87badbac
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.205];Helo=[eop.bosch-org.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001A6.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR10MB9092
 
-[ Qiang, it seems you mail client is removing newlines from your quoted
-  replies which makes it hard to read the context. I've tried to add
-  them back below, but please try to fix that up. ]
-
-On Wed, Apr 30, 2025 at 12:15:56PM +0800, Qiang Yu wrote:
-> On 4/26/2025 6:48 PM, Konrad Dybcio wrote:
-> > On 4/25/25 2:02 PM, Johan Hovold wrote:
-> >> On Fri, Apr 25, 2025 at 12:03:06PM +0200, Konrad Dybcio wrote:
-> >>> On 4/25/25 11:51 AM, Johan Hovold wrote:
-
-> >>>> AFAIU the PHYs do not use this qref supply directly so it does not
-> >>>> belong in the PHY node (but possibly in the tcsr node that provides the
-> >>>> refclk).
-> >>>>
-> >>>> Since commit 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100
-> >>>> qref supplies") it also won't have any effect for pcie4 and pcie6.
-
-> >>> QREF is a separate hw block distributing the reference clocks across
-> >>> certain on-SoC peripherals
-> >>>
-> >>> If its power goes out, I don't think much of the platform would be
-> >>> functional anyway, so it's redundant here..
-> >>>
-> >>> It doesn't have its own single register region and it's frankly
-> >>> one-shot-configured way before Linux starts up, so there should be
-> >>> no need of describing it at all.
-
-> >> Then it sounds like the qref supplies should be marked as always-on. Can
-> >> they be disabled at all?
-
-> > The best answer I can say is "maybe". I would (without knowing any better)
-> > assume RPMh wouldn't let you turn them off. QREF predictably takes VDD_CX/MX
-> > and some additional lines
-
-> The vdda-qref power supply feeds the QREF clocks, which are consumed by 
-> PCIe, UFS, USB and display on X1e80100.
-> For PCIe, QREF clks are provided by the TCSR device with the following 
-> bindings on X1E80100:
-> #define TCSR_PCIE_2L_4_CLKREF_EN
-> #define TCSR_PCIE_2L_5_CLKREF_EN
-> #define TCSR_PCIE_8L_CLKREF_EN
-> #define TCSR_PCIE_4L_CLKREF_EN
+On 25/04/2025 17:01, Remo Senekowitsch wrote:
+> Add two new public methods `display_name` and `display_path` to
+> `FwNode`. They can be used by driver authors for logging purposes. In
+> addition, they will be used by core property abstractions for automatic
+> logging, for example when a driver attempts to read a required but
+> missing property.
 > 
-> These QREF clocks are not enabled all the time and are disabled during 
-> PHY deinit. Hence, vdda-qref should not be an always-on power supply. It 
-> should be turned off when the QREF clocks are disabled.
+> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> ---
+>  rust/kernel/device/property.rs | 78 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 78 insertions(+)
 > 
-> Describing vdda-qref in the PHY device tree node is reasonable, as it 
-> allows the vdda-qref power supply to be enabled or disabled along with 
-> the QREF clocks during PHY init/deinit.
+> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+> index d89715f7d..28850aa3b 100644
+> --- a/rust/kernel/device/property.rs
+> +++ b/rust/kernel/device/property.rs
+> @@ -49,6 +49,84 @@ pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
+....
+> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
+> +    /// printing the full path of a node.
+> +    pub fn display_path(&self) -> impl core::fmt::Display + '_ {
+> +        struct FwNodeDisplayPath<'a>(&'a FwNode);
+> +
+> +        impl core::fmt::Display for FwNodeDisplayPath<'_> {
+> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+> +                // The logic here is the same as the one in lib/vsprintf.c
+> +                // (fwnode_full_name_string).
+> +
+> +                let num_parents = unsafe { bindings::fwnode_count_parents(self.0.as_raw()) };
 
-It may work, but it seems more reasonable to have the TCSR clock
-controller manage them even if that isn't necessarily an entirely
-accurate description of the hw either.
+Missing a safety comment.
 
-On the T14s (X1E), we have the following QREF supplies:
+Dirk
 
-	VDD_A_QREFS_1P2_A
-	VDD_A_QREFS_1P2_B
 
-	VDD_A_QREFS_0P875_A
-	VDD_A_QREFS_0P875_B
-	VDD_A_QREFS_0P875_0
-	VDD_A_QREFS_0P875_2
-	VDD_A_QREFS_0P875_3
-
-which does not seem to map directly to the three PCIe PHYs (and other
-consumers).
-
-Johan
 
