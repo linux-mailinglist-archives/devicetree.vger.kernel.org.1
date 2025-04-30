@@ -1,163 +1,128 @@
-Return-Path: <devicetree+bounces-172170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD0B9AA40D5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 04:10:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F60BAA418B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 05:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4441980FBD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 02:10:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C10D8465874
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 03:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D4C19E97A;
-	Wed, 30 Apr 2025 02:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5631C84D0;
+	Wed, 30 Apr 2025 03:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyCpRvzH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JuwZ7434"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BD719CD1D;
-	Wed, 30 Apr 2025 02:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCD41373;
+	Wed, 30 Apr 2025 03:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745979002; cv=none; b=kfUyhkd3ziReFXXnU2IC1w9TOdkT/QBzMKS7iRNjJXkTD3+rliCacn8dJh94ZsoCNizd485Apgb6JF3UIY/3kMuJzDnvseU39TExf6Ktdh9ENud4O89poVzSLaZX7F4zjX9xb+i3BSrRRr42WQjGOlJB6QKsqFECY/MEQxFc+DA=
+	t=1745985440; cv=none; b=UAkZk2sqFYI5rtXPQg8otYrmaQv+eTQCyS0/hB+dy+BnlOGgx6IJogD/paw0TFEIl79ozyWecISnRr+fETf9rSE0CS+K9UryVqArwwJmD4fgfOuEQwTEiwB8K8FCU+bCekzy+cK51MMZYP8Jrcc7XGx4LeSGT3L531A1W/d0elw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745979002; c=relaxed/simple;
-	bh=1tyOG1q+z5x1OL3sDWuo8oLI4971HZGZMdBSgC2mPDc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pqScAihWuxkLZQHGowvNF2FDj/Gnk4tcklJBLsH06jTs9HMIfX1p1VZrt9w9jf1pbuWaecFuDUiVUfJGT28Mj0zVJVssJFuTiYK1tmVBrAbaL3YVp5Ac3lalV5pZnIps90A/gk8ub75JRtr3sAxX/iUcIkOr8N1MoLkHWkEgzWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyCpRvzH; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1745985440; c=relaxed/simple;
+	bh=Nvuefhy7SkxmyXEjkN5uyEWBh1+CMbm33k3AWIeHcLg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NJuqnXecclNv5ylkR7SlhOVnctGSDlG+6XuPGDIORLb97WdNPdPw0ZgaKQQXln/90Z+IZmB9oCAlN0MaQ/xp9PYwVRK2q9EaCQcjJuJGLdQTOt0kgA7cH8PqJSj450mOsVBczwq3r/RZPh9jKbx1gZ8fIm6aDWUIYgngOqDkUzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JuwZ7434; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6ecf99dd567so98333356d6.0;
-        Tue, 29 Apr 2025 19:10:00 -0700 (PDT)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22409077c06so108937425ad.1;
+        Tue, 29 Apr 2025 20:57:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745979000; x=1746583800; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OESwfI0upP7wQb7BEkzIfrVPZL2ZfmY8EtLpKrTgHwQ=;
-        b=OyCpRvzHFnorIqNQLRgqpNhe0BtC4z+xUJ4a5LQ/uDcJtt7MrhWAbMbUzRkovqZvp9
-         YDDHD+dJH+Fny0AHtSkr7ycXTrs6bLFBsG1mvFAR8VptmIfY6i6rQf3qSexkmfaIsAAD
-         D73eKWPfQ47ovG9d96wDvWbSuWelzos+Vld4m09OEllo+W+EyRy8QZFSeNRvdZF01GZY
-         RWv1+ftDmNafU3eL0PjKDkTCax2JTY6bq+pH28dQL9kInXMJCgYvEbxfJRtWlKdQ4guX
-         7iCJJIwYxV1rUVzSRvu7phDajVV7Nj/RSWVAEhK6+nSr7EVKE+wl58+IvhdRj1o3EDpv
-         NQqA==
+        d=gmail.com; s=20230601; t=1745985438; x=1746590238; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VyLc3Zik1vXa0yun6h3Hm25QI+ZOjteMPcqNd+zv4kw=;
+        b=JuwZ7434hwk0XRDnDqIxjk2jwyhIajJZIFVQvDdYfNorEMpX0DMddQXMxrpW36oxry
+         W2Vt5Cz/3Yt5dgmcfap50Zi4NIzb+XgTZ6vS4fjnQrpqv4YGZdLoY1Ra76VfVBz/GxMI
+         974e5vjKiXuDJmsaMpGQxJsFffybD50SBlmeFOdnlvflFXWEIunLCHHnUxDnWRa/twL3
+         jEvEyZ81qQcsQnvP+kfpi7UYOAxytpi5JM6KUft3OrA6Fh2QvnYr71PXJIi0M6grkOSr
+         bmCdJRPAw2oE00/ZPlkJhGGvYkCOFs66TUf61SyoT/w/Bspk68kXF/HDjtV5ZYeJaQs1
+         go+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745979000; x=1746583800;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1745985438; x=1746590238;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OESwfI0upP7wQb7BEkzIfrVPZL2ZfmY8EtLpKrTgHwQ=;
-        b=C7NvV5FMz9CUZrNuHv6vZar18iDknERGMTYX4cuw22dAGUXUFO4NZWPJsWy74oHX4w
-         wFNpI5BNnBv5AOA8hkxUo+dXOAw811cDUu0WvrdS+py5Qguz7h/z/3f5DAWRNPYjx9p6
-         sfITSwS2De/Elk41HUD7yM+VylI4sAcIEaZqICrBnk91V/+ojA4cCjblN/0QeuzyZRDo
-         aWXvI/tCuRoQzOv4/gI/B+pgzW/fPaz87WS2V1iDi4JrOu0mknVSW8xBooqanHRVVumY
-         9tX6fz52Nu7o3D1nTYNMPc61B9bJv4sEdGKNsjfcwdngBEV8xM59hGsLFoKw5GpyVdEs
-         0XiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQbxmpEosQnYQlbTkcAYyhUo7icC+F1Vl7INdXypDFuMqfab9qtlpohRTchjN5krWfyiMuGgppBY5x@vger.kernel.org, AJvYcCWYWha+jEPi/ArOOz51wKd5vnldIoDFED29rZXG2fFeJ2I7AclG08QD24nEOigeKDjonHBs1zmoKlzo3yyC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWBF2wUqqjeSzGeRMD3wSlrCa+uxpByMZ64kHziaB+bsfxGMP8
-	/RLtoE1n8ZwX0ddoG13xU2Yl135fDXx8nj+QVTz3R5iBORWzAwKf
-X-Gm-Gg: ASbGnct+1lr+tXD9/ZK+IpOxULMbb5SaJ2ljfnmRm8LAzlZVUIjmYwuZTfZbpwN/nO7
-	toMfqXSmexakIO5uwi6an9UBk2ib4KFFkRymi1wOLtyIiY0BRIpGoGOg9DVX/SOnlgNla3C8IO8
-	QcLjGX15iMz5b21J/H5F8lkNfS0tHE2A8k5yJ9ugsKw+IAsB4MxVfEUFDPnxQSbpwxm82W6d3UN
-	OwAGI+xM2rF0n+ATbuGcXj/k9U0m0Y+Z78b+Jf6VyiMxC4v3zOuRVpGlCAHOchH8dvgpZ/iLo4l
-	wBdm0VCJ/KlYh2WLmuEjv4GT43E=
-X-Google-Smtp-Source: AGHT+IEw+u1VOIT3kMd+/VKXR6Vg7KtGCCSMCagVWCz8MZpIQ61san10JzgRKCphUO6By5kz9Ks2qQ==
-X-Received: by 2002:a05:6214:2486:b0:6ed:1da2:afb9 with SMTP id 6a1803df08f44-6f4fcebf45bmr28113456d6.19.1745979000035;
-        Tue, 29 Apr 2025 19:10:00 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f4fe70a277sm2901756d6.55.2025.04.29.19.09.58
+        bh=VyLc3Zik1vXa0yun6h3Hm25QI+ZOjteMPcqNd+zv4kw=;
+        b=lmD49t6Lw+JSu1IHPKRg7am7OqXq8f0hhKqwf6G+pY/tC08O/CYRhln0f2UoIQHuRt
+         EsWHi+tS0QqoJyKW/Bdsb1ro12gTXqYZke6O/AVfIRD6t7yxDhJCZhdAnYXjWEss/8Lq
+         a0ma9aphYB9QTRPRAZZdDt+O025yUJmS8vBpHV0e6jeAPQ4eVjS0k38YtG8mD0hmtJ9v
+         ySMZvX2rSbdBIlfeh3fwvFYxbdPPxRJ7iruZfKXqh026t3E5azLIf/GoTQR6xSfdkfyA
+         AItZJoMimac3PN2/kv90Q55eFvS4/onTWjZouuXuu1NsOxnfXugjfgNcrva9YU087+ld
+         n0aA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIQdhTr2OaI8xYYr5CflA9cqyooUoTCxKH1T6g/PYO8PGDTjkYitwcoA7ol3R6EPJ9WyxqmoDSr510@vger.kernel.org, AJvYcCUs93CBNSF7Uez+nmVeb4ZcCQnFBFXr9WqB2XR5Oxkupesh2GhIizes8Lw6NUXACmF7kqmwiCCO/0x4@vger.kernel.org, AJvYcCW4jbxhl8klzOpc+17wKzR4M3iXle2Yzm2IF6foglPq2xdvRHYWJsmF/2dzwjL6R78lKDWogXiq6lheRdJZ@vger.kernel.org, AJvYcCWY6ajZwZG5CEXrRjfdUkjRZlzILlKtdERs9OP6Kctly8Egi5XYsLDyAZtcm7Cn14FIlybxtFPUDv/j3rk=@vger.kernel.org, AJvYcCWj87wqkTgfRFzNQ6M+WL7elSi3H1T4OqtPHoPIJcPf2SK4Qe/4xYdbdlGQo/akBlAcAM3xRNEME+Iq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMLAfDn/aXMY00usU+YD+xfoB3p8wmRYLdT5QRIxvQhNN5rCFW
+	Ny3dYvP/Yq8sudit98AKOAQEtmtwaDXrWDAZ9NKfCnb0Fjoq45or
+X-Gm-Gg: ASbGncvp7lO4O0wimywMRH39b4GzXLJVVWad9SmrnYeinKgaoTSvXGDgAIQuwFpKzqp
+	vsfb2RD0YXDGaRn75LpNuzGYlvslHWYdD4EFEnVOcjzYsCklLOR3lZgU6xRZ725igucoOm+BcIe
+	ulA05/eNOFLWPHwwPXsk4DYugyKjN6PWCtF43NW7vaKhycOhUpmy7RYTc3mKFglDt3ElaRklVz9
+	BRWP1qrDsXOrX0kyUBY1nglp5oEiZ46iVs+DJC8JtJslPV3zmIVwZ1wiD8ZZFprfvGQISqp/3fS
+	NOXp/Bdz/voLczi3AW/BCjJesRLM9URzD4pO5CAaYiBMMgn5nAAEuA==
+X-Google-Smtp-Source: AGHT+IEaMGTDmHzgNvzoHNMd9tZbR/u1Q5bg83MPGafcuW9LIhwRqcxCq0Nvid7OBBWwbxOwjAE/Fw==
+X-Received: by 2002:a17:903:364d:b0:21b:b3c9:38ff with SMTP id d9443c01a7336-22df3576fbbmr27513405ad.37.1745985437588;
+        Tue, 29 Apr 2025 20:57:17 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db5100ab2sm111814375ad.183.2025.04.29.20.57.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 19:09:59 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+        Tue, 29 Apr 2025 20:57:17 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 29 Apr 2025 20:57:15 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
 	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-mmc@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
 	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH 3/3] riscv: dts: sophgo: switch precise compatible for existed clock device for CV18XX
-Date: Wed, 30 Apr 2025 10:09:31 +0800
-Message-ID: <20250430020932.307198-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250430020932.307198-1-inochiama@gmail.com>
-References: <20250430020932.307198-1-inochiama@gmail.com>
+Subject: Re: [PATCH v2 06/10] dt-bindings: hwmon: Add Sophgo SG2044 external
+ hardware monitor support
+Message-ID: <08bbfb1a-57cf-4133-bd03-147ce107aeb9@roeck-us.net>
+References: <20250413223507.46480-1-inochiama@gmail.com>
+ <20250413223507.46480-7-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250413223507.46480-7-inochiama@gmail.com>
 
-replace newly added precise compatible with old one for existed
-clock device of CV18XX series SoCs.
+On Mon, Apr 14, 2025 at 06:35:00AM +0800, Inochi Amaoto wrote:
+> The MCU device on SG2044 exposes the same interface as SG2042, which is
+> already supported by the kernel.
+> 
+> Add compatible string for monitor device of SG2044.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 2 +-
- arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 2 +-
- arch/riscv/boot/dts/sophgo/sg2002.dtsi  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Applied to hwmon-next.
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-index 88707cc13fb4..90de978f69c1 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-@@ -29,7 +29,7 @@ pinctrl: pinctrl@3001000 {
- 		};
- 
- 		clk: clock-controller@3002000 {
--			compatible = "sophgo,cv1800-clk";
-+			compatible = "sophgo,cv1800b-clk";
- 			reg = <0x03002000 0x1000>;
- 			clocks = <&osc>;
- 			#clock-cells = <1>;
-diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-index 0974955e4e05..9a2a314d3347 100644
---- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-@@ -31,7 +31,7 @@ pinctrl: pinctrl@3001000 {
- 		};
- 
- 		clk: clock-controller@3002000 {
--			compatible = "sophgo,cv1810-clk";
-+			compatible = "sophgo,cv1812h-clk";
- 			reg = <0x03002000 0x1000>;
- 			clocks = <&osc>;
- 			#clock-cells = <1>;
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002.dtsi b/arch/riscv/boot/dts/sophgo/sg2002.dtsi
-index 6f09c9199102..b9e4b4687046 100644
---- a/arch/riscv/boot/dts/sophgo/sg2002.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2002.dtsi
-@@ -31,7 +31,7 @@ pinctrl: pinctrl@3001000 {
- 		};
- 
- 		clk: clock-controller@3002000 {
--			compatible = "sophgo,sg2000-clk";
-+			compatible = "sophgo,sg2002-clk";
- 			reg = <0x03002000 0x1000>;
- 			clocks = <&osc>;
- 			#clock-cells = <1>;
--- 
-2.49.0
-
+Thanks,
+Guenter
 
