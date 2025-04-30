@@ -1,134 +1,134 @@
-Return-Path: <devicetree+bounces-172512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4B1AA5002
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:19:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17C8AA501A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:22:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C4FD7AF97F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:18:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1B879E3163
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393B9219E93;
-	Wed, 30 Apr 2025 15:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55EF925E81F;
+	Wed, 30 Apr 2025 15:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ctbGyw+7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Qg4TMXnz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C921C5F18;
-	Wed, 30 Apr 2025 15:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555B42609CA;
+	Wed, 30 Apr 2025 15:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746026359; cv=none; b=TobpOkTgKLYwFFqGeFXt7Oh7FcI6GIiGatSK9zA5HC81tP158y+YcdgYRYXmAQ/qlALXf/VPcuKa337+gY8boPwEPL5vlR+BcYDUq0OTgHLJrlCd+t6UVlwa2fdZau9as7UdC/O7DbzlrtTIY0KTyT1cDrq3HwEceNjzXQ7Zy9E=
+	t=1746026548; cv=none; b=ImYWGRrh0u3Xl5QGWUCm3WmCrh8s/8gTZZb4BEU+Mt9B0lH8gKA7iYeAuHyWhUTtV6koa/AVwf6Wr2RqO1SAZitaukXBcOY5a8+fIckIvjeEDcRi8Es1vNfyh02RLpmQqZRyaeIiEtMCCkte/iXzMhfZUmZcmscOrCqClwx88IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746026359; c=relaxed/simple;
-	bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LAobTu0t4IZZFhPNzr42UQeFrKbQQ+bMxX8s4p6wHLas/ugTRiwV8VQw79BNBavpQB0ma3gc+SQyA92w2FgfGAp53QuWCIveraaGdL10qcgJRsGK984XmkOfY7gPQKadXsKlW3Kq4D+sJWWkSQVqyjcoj3/yXWcJH7iCVX1JlGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ctbGyw+7; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c31e4c3e5so4794722f8f.0;
-        Wed, 30 Apr 2025 08:19:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746026356; x=1746631156; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
-        b=ctbGyw+7nupI3tgzwivmECoAZ+GE0xPKNPCLvC8uY//MdkXajv4YKFluT2ni7aWRbm
-         26vhEk0zTSpcxDnEJZQYCV/0l5b8QI5EaMUg8owqxQ0QA1KwfLHa4RxnAdAUaXENwlmA
-         2GXvP2wUpyLSn0jMUPxapCQ9ijpnE4uW2fuLbtGDZWbJyM9p9tz9nEQeO/zvgZLu3voG
-         0WhyOi3nNGIoReuyNxtIqsLkSW3HDlwwdhfNHyJJj66gwfOBPLKDk1t+aA9OWs5JxE3L
-         wfin4l2xJZO52IF3mek02CrrQbj3l3UqmTrZwwkDNtuKQb5lbY8Hmbvb4R/FdOfRI3tP
-         0qkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746026356; x=1746631156;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
-        b=Kj8gLglSKyjM7NjqrV6UIDwjFPwFYXekv4yvXm2OXJqTH5PGS2mexHIyjRT9ILRRX3
-         3OQJ2iSJlm9fKZf0yM9PaxB8Y4RtRenAfGDx2H0oeEIYeYnTklRWwayOze7wAWVpKNFo
-         HtgmYMrdnYebOLJcWtwFcn6scY6so9Bf0reVAIutH0Ozp0Cn/uuR5Eep/EhO+q5L//tV
-         uIqbq3r9haeTO8uutXgTxVi+ZngdkEsgSs+vwgHwNeEj0ROP4oakepbanvLom5kNtJAq
-         YQxau+Xs+S2pMr0WcUfRQBk/Czon9ryGpM/3rTfIj2dOADnLEvOcPpDazO/AvqFH8lbM
-         0lIw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZmdh8p+NeN93NXcdbS4F3iH/jYb+ep50inzGMJtMkxEfSJAt0UgWHyAEtMocWw3Uc2QFebeqbVrdEgwI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbJbYNNrcgYzCmfE3HRlIuRbOqmMbLs7V4Kc77t5vQg0/Cns2d
-	++EE+LA+ZkqLQ/UODWoegccDy+W8BlMnDdrZrVa5OPllOwXSEvfR
-X-Gm-Gg: ASbGncuClhLO3eLFx8CwByC+lRMiP5XrBkMMnQZko8XxcWlMq3O/Hq9+IZTL6dPd92S
-	sHrmJEj2VVcg6t5aMEJIy9c0KZNjidHZf+YxRmNzCr6bp6RJWZOXKzthLx8YBDjouvoSUJIJD/v
-	Mxf2rztNQIgUgVd7mLo0J04THirXol0niFPj7tAyQiDN+9thNY+88nmhDgZgsZ0lLxnpVqPBByT
-	TEhTQdYd+xgc8/HXvUuewBpgUuTupLydt01X/x2Wo0TTQQukWxw1cBqUb5RWFt9kPzFGUbobPvS
-	vSoPndJRap4O5yKDIVCaYXgMDXDdwq5+B2xTA4weCiRIYU2H5i+x4IPz/CYyP7QcsZ0qJP0=
-X-Google-Smtp-Source: AGHT+IFmefUVJ6/gagwWms/2NhJFqSEeEmwPNox/ehYzux4BtgClLHXr43p5sjL1gtcn7wjV25ZOiw==
-X-Received: by 2002:a5d:588f:0:b0:3a0:8070:8af8 with SMTP id ffacd0b85a97d-3a08ff3755dmr2980301f8f.18.1746026355424;
-        Wed, 30 Apr 2025 08:19:15 -0700 (PDT)
-Received: from giga-mm-3.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ca42cdsm17020431f8f.22.2025.04.30.08.19.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 08:19:15 -0700 (PDT)
-Message-ID: <94f4bbd9dbf4da9c056f90dff3028e45a659c8ac.camel@gmail.com>
-Subject: Re: [PATCH 1/4] riscv: dts: sophgo: Move all soc specific device
- into soc dtsi file
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley	 <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou	 <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Chen Wang	 <unicorn_wang@outlook.com>, Thomas
- Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, Yixun Lan
- <dlan@gentoo.org>,  Longbin Li <looong.bin@gmail.com>
-Date: Wed, 30 Apr 2025 17:19:16 +0200
-In-Reply-To: <20250430012654.235830-2-inochiama@gmail.com>
-References: <20250430012654.235830-1-inochiama@gmail.com>
-	 <20250430012654.235830-2-inochiama@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1746026548; c=relaxed/simple;
+	bh=VKuEaIg3eVwIU3BaXeGQLqDYSPns85A8B7LcaoFnV0Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VPLH1KNuyX2Wba0zXzBJ8h196TAzImOU0cVSdPyrHDlJRtGh0c8VIkBzXi95/G34KfPT5Lp9zQoQhZ7wEKZJPnO8YDA4slXbF4JPWNewizfJjreLzJEHMhAOjx4+XPrcm9ChVexB9sE6GF6dhKWNAfBeKgzhHu+TtcbytdFH9oU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Qg4TMXnz; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 9D8BA439AD;
+	Wed, 30 Apr 2025 15:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746026543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=F33WqpNOkRaqBMt655CiK5gkDQMST10A7zqgnSsmFXA=;
+	b=Qg4TMXnz9yGIYzVAAmNqdaETaQq7Eb9lTtbjEGXQoTuAyeVwOnUQ6maOTG8J2bErkmccru
+	k6DcVlXEA2U/4GQDkkOiJ4T3ypKlQfOKntzGBx9szise4PDZI0F1EEHr0+POU55bsZF9ja
+	nFZPdX69MyuD6HdxIQBcmQWbrWKdEDz2qP15lgrHJt1u5cj0KHYRwDJWxXfdM17valm9Rv
+	p3XTtJ2zAsCDKBBOVhNXSCnoDo4l+D14KMMiHGkNL14dSzJOzFqeHkCxJn0FC+2B1tcDjm
+	BYOpg41DQKtAGxvNX7yPyyWVOPsnPh0qzwDNukfYahw1G9a9+1c1wKQV/pQYBQ==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree-spec@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v2 0/1] i2c: Introduce I2C bus extensions
+Date: Wed, 30 Apr 2025 17:21:59 +0200
+Message-ID: <20250430152201.209797-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieejtdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeelteduffeltddvtdffgedugfejffeggeekheejiefggfeivefhkeffheehheeiueenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprghnughirdhshhihthhisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrt
+ ghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhivdgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Inochi!
+Hi,
 
-On Wed, 2025-04-30 at 09:26 +0800, Inochi Amaoto wrote:
-> Although the cv1800b/cv1812h/sg2000/sg2002 share most peripherals,
-> some basic peripherals, like clock, pinctrl, clint and plint, are
-> not shared. These are caused by not only historical reason (plic,
-> clint), but also the fact the device is not the same (clock, pinctrl).
->=20
-> It is good to override device compatible when the soc number is small,
-> but now it is a burden for maintenance, and it is kind of annoyed to
-> explain why using override. So it is time to move this out of the
-> common peripheral header.
->=20
-> Move all soc related peripherla device from common peripheral header
-> to the soc specific header to get rid of most compatible override.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+This is a resend of the series in order to continue discussion started
+previously. In this resend, patch 2 previously available has been
+removed (already applied).
 
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+An I2C bus can be wired to the connector and allows an add-on board to
+connect additional I2C devices to this bus.
 
-> ---
-> =C2=A0arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 38 +++++++++++++++++-----=
----
-> =C2=A0arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 38 +++++++++++++++++-----=
----
-> =C2=A0arch/riscv/boot/dts/sophgo/cv18xx.dtsi=C2=A0 | 22 --------------
-> =C2=A0arch/riscv/boot/dts/sophgo/sg2002.dtsi=C2=A0 | 38 +++++++++++++++++=
---------
-> =C2=A04 files changed, 78 insertions(+), 58 deletions(-)
+Those additional I2C devices could be described as sub-nodes of the I2C
+bus controller node however for hotplug connectors described via device
+tree overlays there is additional level of indirection, which is needed
+to decouple the overlay and the base tree.
 
---=20
-Alexander Sverdlin.
+This decoupling is performed thanks to the I2C bus extension feature
+which is introduced and detailed in patch 2 of this series.
+
+The implementation related to I2C bus extension has been already
+proposed as an RFC in Linux [0]. The missing part in this RFC was the
+binding.
+
+This binding related to I2C controller is not available in the Linux
+repository but in dt-schema repository and so, this series update the
+I2C controller binding to introduce the feature.
+
+Compare to the previous iteration, patch 1 available in v1 has been
+removed (already applied). No other modification has been done excep
+adding a reviewed-by tag. Indeed conclusions were not reached in the
+previous iteration discussion.
+
+As a reminder, topics started in the v1 series discussion were the
+following:
+ - i2c-bus-extension@0: usage of a subnode with unit address
+ - Presence of phandles in both direction (double linked list)
+
+Best regards,
+Hervé Codina
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/all/20250401081041.114333-1-herve.codina@bootlin.com/
+
+  Patch 1 in v1:
+  Removed (already applied)
+
+  Patch 1 (2 in v1):
+  Add 'Reviewed-by: Ayush Singh <ayush@beagleboard.org>'
+
+Herve Codina (1):
+  schemas: i2c: Introduce I2C bus extensions
+
+ dtschema/schemas/i2c/i2c-controller.yaml | 67 ++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+
+-- 
+2.49.0
+
 
