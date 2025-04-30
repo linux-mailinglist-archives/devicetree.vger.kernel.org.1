@@ -1,159 +1,142 @@
-Return-Path: <devicetree+bounces-172587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50D6AA565A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 23:03:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91D5AA5754
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 23:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4AD9C50E9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 21:02:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C12917E075
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 21:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F992D29D2;
-	Wed, 30 Apr 2025 20:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E97B2C10AA;
+	Wed, 30 Apr 2025 21:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzvUg+LP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QJPJgwlV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D683E2D0ABF;
-	Wed, 30 Apr 2025 20:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980A42C033F
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 21:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746046597; cv=none; b=mlO5HPaUKnKcCEDsJkWOR/SB/+shWkPS6z689lG10WHoIy6Rl4RkLVKq70booB3Gl6JMmf5N8wYRB2N+f8nFgEG9ovlWflYi7N7Z353uIDy4eIqSvQuyt8noIhtnzP46aMagrmITmDBpXJ73VzAli7XkgX8e16sJsbyzDOWHULg=
+	t=1746048316; cv=none; b=FL1H4EaSk/6GCgCdbD/JplUsWjMLhQaagjQB66lr/q9msEunPwvAo8F8jiE1T4z9l1w1mT53IlBn7zlZKtNmoW9DRKy+/magfCpUk8/SziGmRYdp3YINsUINz8Xi9wn6wVpIgt9fURLcuE820MFceBtdUXvs54+0WiaqW37sLKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746046597; c=relaxed/simple;
-	bh=CNFQzBWHud68EqtwfCS0lqVaovyNeZ1bIh+mHiCp5Wk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=UHmVB3PYz3VL0y7bzBE6lus0lftMn/4eI7f2lTvioYbaZhXO4HLRgyx7mxXTSRlHi3NNAsEnOK/vmZM790ys/CK6zOF2cgFalu5+ncIMY3aXmpy0Z6RhN1F+dqfVV7cB1BIb7W+mHO2booGkvKAnnEimHsXyGQShWPvqoLyYU0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzvUg+LP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 192B2C4CEE7;
-	Wed, 30 Apr 2025 20:56:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746046597;
-	bh=CNFQzBWHud68EqtwfCS0lqVaovyNeZ1bIh+mHiCp5Wk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=GzvUg+LP7Yc5dkGuRgqSnc1qQyDhipGHfgFamgs68QhRFQ0d6OUlR4pTvQarTDpWL
-	 cRTT+7d7yAx4qAdtY+Tg334E6WGqE1Qejom1WTQf+n0KES6r6WRABfqet41mMdhqEI
-	 WLDh2h+KmCksDFtap6Ln7XRcxKXrfrSl5l2SIV0ca8rYnGehc4JaTS8HB+5TgHR6Zc
-	 F7LGINCm9rqPy999uHDVkbT0LbIgcLGjkdHqrJRqhRu44/vcwJvclF8ZBsIy5eF4Vm
-	 p0DVbhwFrBzGpfnIpnKF/Rs5MnZmldqhEgbEzaDOi3JZvCS2IkDzQwW6+tmGPcpVoG
-	 CH+Pw+HUusPrg==
-Date: Wed, 30 Apr 2025 15:56:35 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1746048316; c=relaxed/simple;
+	bh=dN1cAvoLWwLBli6XPD0KhvWowefo93B8nN1x80lziSw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tf/ILpaGpMmeOF5F1PM5g1hGSiYqnYFZW51ixKFO++CTpFvGPLRIxWznUsvaZ/Ld4UDkFMF2cBKZkWj8ZSZ4/+K7c5IHJYa/pOglL+ylFtzyacabSgXRINqNjaUySCNFEMKUPZ2kns0p/qIvAHLyPnBW2dqo4EG+5Kpy6qynexc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QJPJgwlV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53UGokI6004150
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 21:25:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mQ2jnVjO+FK8esFBQJwoX/TVGF2G9VDZcRv8QsM8cuI=; b=QJPJgwlV93pGUs9v
+	sAjS5WdfHkEBtc4wZnlFhJ8rI3NZnNeAsP9G0N/ZDnk1L+ta0bCD5YfXVuYsJKFv
+	hyNOpYNVgs7nWObCBcTdGVwUE83KBr0xIT06H8QSAJoCh8giSpY8nDnL5Sq/L4Vl
+	3VwiFeTbTs956Jv/gMA2qHFFt/F6GdeNsPOEr9D1HbH1ZkrfLywBE1btp2BMmyNt
+	uNVbNHLzTp9GbPLEPHd7VEMhtfx6P/cvgmQ0zzJq602M3rv6oD7cF0LsYXd4fqGx
+	7Vd9GtO1wi0TDf2XEzatDbspFo9u0oDscDtRW/FdQEm0+jXdExCshExrPzBgR8y3
+	aPWlAw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u4bqg8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 21:25:13 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5af539464so5619785a.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 14:25:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746048312; x=1746653112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mQ2jnVjO+FK8esFBQJwoX/TVGF2G9VDZcRv8QsM8cuI=;
+        b=Rwz3ZIGYb9IeV4/YQMCrGuICXzbS4jVvrmMb78cw/ni2U4FiQhId7+qHp7O+JZ6WHV
+         RGAkhEUvldtwCG633HUBuTYtwEZ1Di24RhrnBNUx4kJ1P/SWaxA/JqUNqe6qZJsY+vvC
+         5iC1pWPAtU8fTaUrBa/UFOY+48D9B8qVOQOoMCZ4GcB98aW8eXicX1c0XLZgrbRWr+XW
+         9OZD5vyn5LVgqQ4WwpLOBjmu2endu7XjzdIvT+EVLVr6oOPJ3FurJ/bEpl7l9PrnHubC
+         T4UijhU7MO8Eonz0PmUGFwHbwcBOaeS5654rhZcRVxi53XH9JTOrAMYTb8wUmIZ/23bo
+         JcJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX27raMb9ImwNDmt0+webiRthtyLiS0PsJExfYgRGWsiy6c81N3bLkqg3rh/Tq2N3eB5XtTjpmHQEAL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5EdscHzbn/Al1WWRwLnCkVPltzoMH7GffnDlj69vkXFl+sAXV
+	5V45e0h8zz9yEca+s1skh6yqvz+lKMyNllzTAiZtTlk6GY0xoJNog8LPLcy4/xlIlzH5ejT3La/
+	SR7fMnqiZjqLWQZxQLbUBmrRnoN7FZOw9gVuSOdmCCj0NaoQUjp/+wbwgs+Gp
+X-Gm-Gg: ASbGncv4L8pQygaNqTjiy1i+qnu/a1yXahLHpnSQMZcgmAwldoAc52EEzwrWNNDiFY2
+	4jf0kPWjlhXmOlDJG/LxIXlWyyArh5esMpbXYz7Pzxc3LEkT6BAq+4KV/FQDFdKNf12u5GSxxP2
+	wWuYDjL6fL68w22tMmLguWqo6aMyTh5a60HQCq/hK0tmOLjN/KQ94eFsgQm/eNnIxJepW4sgGfl
+	KeDR+rr90ctw2niw0sL0JwLCa5B/rgB6LXbsIIPkn2AbA7qsXsmzY5lQFyjf1LTMNApfBm8FOmM
+	oPxqV+YmKWeLZBlY0MsS+rk3SyLDig6tRUt43NZ9y7l/y0F0kZlkmYC3q1KVqadJpCg=
+X-Received: by 2002:a05:620a:d81:b0:7c3:bcb2:f450 with SMTP id af79cd13be357-7cacc1be6a3mr110658085a.15.1746048312418;
+        Wed, 30 Apr 2025 14:25:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHno9xC01KtHTcmyiEyJau4nN1jUTcCXOPCTlNFj1PnUJfKhzAvD4jmrGjvb47znNHqT2g5uA==
+X-Received: by 2002:a05:620a:d81:b0:7c3:bcb2:f450 with SMTP id af79cd13be357-7cacc1be6a3mr110655985a.15.1746048312015;
+        Wed, 30 Apr 2025 14:25:12 -0700 (PDT)
+Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acebe215210sm396837966b.68.2025.04.30.14.25.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 14:25:11 -0700 (PDT)
+Message-ID: <a5db4897-44d7-4e79-89a8-0db35d49913a@oss.qualcomm.com>
+Date: Wed, 30 Apr 2025 23:25:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
- FUKAUMI Naoki <naoki@radxa.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Alexey Charkov <alchark@gmail.com>, linux-kernel@vger.kernel.org, 
- Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>, 
- linux-rockchip@lists.infradead.org, Jimmy Hon <honyuenkwun@gmail.com>, 
- Quentin Schulz <quentin.schulz@cherry.de>, 
- Jianfeng Liu <liujianfeng1994@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-To: Chaoyi Chen <kernel@airkyi.com>
-In-Reply-To: <20250430074848.539-1-kernel@airkyi.com>
-References: <20250430074848.539-1-kernel@airkyi.com>
-Message-Id: <174604649749.180857.9703877984884077664.robh@kernel.org>
-Subject: Re: [PATCH v2 0/2] Add support for rk3399 industry evaluation
- board
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/5] arm64: dts: qcom: qcs8300: add video node
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250501-qcs8300_iris-v7-0-b229d5347990@quicinc.com>
+ <20250501-qcs8300_iris-v7-4-b229d5347990@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250501-qcs8300_iris-v7-4-b229d5347990@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: royuSPnrpZUfhNdCSt2OKQHBOU70zmqV
+X-Authority-Analysis: v=2.4 cv=Yaq95xRf c=1 sm=1 tr=0 ts=68129539 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=AFtjm6BWk6c1pdSQgKUA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDE1NyBTYWx0ZWRfXw/WraGFseGmU iYS1OSkR6geyq+lsFTgcTeU/Cn22Kai7isuS5uf3mrWpOZEbrzAnwILfOyZdKRGVpSN+Qncr4Pz QSSQ5GECQqE/EayeXm4ShKeJhD4vbLnU0QTIhCnEeCJCrrY4G4dVuT7Yzp0Enpr66Z2Nh3LRPtS
+ RXj/qEyzJtVOx+3xVax21/03nK0gEEgBNecbqEOZh36uyk/Pyz+cFG5Zg7avdd+XmCJkYRHpTbo Vd+hcUtkuqpdtngyfTjFTH6A469tooZZT1O4gwI9QU9KasEW+v88cObK/97kmPsJFdi2eoFm0Zv 26Xq+ZhT4SR4H914btofycUtox6oufrmp0hQZNUPtBwaPwBE1twEWaTUv8Bz9mo6414jKXsKHA6
+ N8g3QBrVhq02nfVkG2Ys91lHBTRZXsJWPbGkbPRN2520laYer9OtM8/DB4PKJ5JY+VinFHEI
+X-Proofpoint-GUID: royuSPnrpZUfhNdCSt2OKQHBOU70zmqV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-30_06,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 bulkscore=0 mlxlogscore=813 malwarescore=0
+ mlxscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300157
 
-
-On Wed, 30 Apr 2025 15:48:46 +0800, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 4/30/25 10:46 PM, Vikash Garodia wrote:
+> Add the IRIS video-codec node on QCS8300 platform to support video
+> functionality.
 > 
-> General feature for rk3399 industry evaluation board:
-> - Rockchip RK3399
-> - 4GB LPDDR4
-> - emmc5.1
-> - SDIO3.0 compatible TF card
-> - 1x HDMI2.0a TX
-> - 1x HDMI1.4b RX with TC358749XBG HDMI to MIPI CSI2 bridge chip
-> - 1x type-c DisplayPort
-> - 3x USB3.0 Host
-> - 1x USB2.0 Host
-> - 1x Ethernet / USB3.0 to Ethernet
-> 
-> Tested with HDMI/GPU/USB2.0/USB3.0/TF card/emmc.
-> 
-> Changes in v2:
-> - Link to V1: https://lore.kernel.org/all/20250427094211.246-1-kernel@airkyi.com/
-> - Remove gmac
-> - Add rk809 PMIC
-> - Add CPU supply
-> - Fix io-domain for sdmmc
-> - Enable vopl
-> 
-> Chaoyi Chen (2):
->   dt-bindings: arm: rockchip: Add rk3399 industry evaluation board
->   arm64: dts: rockchip: Add rk3399-evb-ind board
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3399-evb-ind.dts      | 466 ++++++++++++++++++
->  3 files changed, 472 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-> 
-> --
-> 2.49.0
-> 
-> 
-> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> ---
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/v6.15-rc1-23-g0d0947766d87 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250430074848.539-1-kernel@airkyi.com:
-
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /dp@fec00000: failed to match any schema with compatible: ['rockchip,rk3399-cdn-dp']
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: pmic@20 (rockchip,rk809): 'pmic-reset-func' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk817.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: tcs4525@1c (tcs,tcs4525): Unevaluated properties are not allowed ('regulator-compatible', 'regulator-initial-state' were unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/fcs,fan53555.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: tcs4526@10 (tcs,tcs4525): Unevaluated properties are not allowed ('regulator-compatible', 'regulator-initial-state' were unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/fcs,fan53555.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /syscon@ff770000/pcie-phy: failed to match any schema with compatible: ['rockchip,rk3399-pcie-phy']
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /phy@ff7c0000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /phy@ff800000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: pmic: vsel1-gpio: {'rockchip,pins': [[1, 17, 0, 169]], 'phandle': 117} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: pmic: vsel2-gpio: {'rockchip,pins': [[1, 14, 0, 169]], 'phandle': 118} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-
-
-
-
-
+Konrad
 
