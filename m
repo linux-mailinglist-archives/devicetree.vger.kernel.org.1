@@ -1,164 +1,290 @@
-Return-Path: <devicetree+bounces-172491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EAF3AA4DF4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:53:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A25AA4E19
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 16:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EE989C1165
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:52:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FCFE1C07B27
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21A325E440;
-	Wed, 30 Apr 2025 13:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E0125CC52;
+	Wed, 30 Apr 2025 14:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="ZCBNcDJy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ps+TXnJP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0757920DD52
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D263221C9E7;
+	Wed, 30 Apr 2025 14:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746021148; cv=none; b=Saur7HlCPYUyj+8/uW5At7laL+lOlmo69SpKpuuqF4Nd0gMU1qxWyBzVMNBg2fghhcdjKogJHtz1CZ8xpWASDDM4Pg4LqFucaEIruYyNqxI2M9S8S3ywOg8JEMK1o492TBFn+4yMcibqjLaDaohLOpz5wbKvyVmPa09vVtd+B9M=
+	t=1746022192; cv=none; b=YokbQRj6kkAg4c3b1DjrKqkFaWpu9I4CHxdYdKZ3uKFS2hhYPo3eOLvXTsImysChScrIFPRoWJiwJX1j5VsfKiU1JBRFfcbc3NIJAgnbO4vAq4J/pIhB2uL7YqYv+NpILSe0ifDD8wWuNmzuxtZZy6ge/zeaxGaZILAJOSTSQXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746021148; c=relaxed/simple;
-	bh=Lxvxz/7MXPZmLKIuYhOHmmbd8kWJVwadl9qT+TRj8KE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lFHsg95YeUjyS8Ix1ZURStM1GVoIPKMnEMBNRMGYpqNOLlH2Z8+L4w5vIhDOltSlG/TXR4u7AWj3saw6XsvTEa3d00gFi0uTUnbs2F1D9ErKlLA8klt0EDXVHj2eSPDRj4/SwUeDca2/+QzCyRq8qAyZR+RxMj4jDdtI2rrt4Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=ZCBNcDJy; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54b10594812so8322441e87.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 06:52:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1746021144; x=1746625944; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bptR6X2FP6mphoSdJsDeJ0Nvu/lMa4Cwig/lOeyZQNU=;
-        b=ZCBNcDJy4DR4lsEGo/o3GT4cO/tl5TG3nvD9Z3xleNQe3Q3vUVDlcmy1Ok6i5foPcS
-         On/gmm/Oz2FGrxY7XAOS7x/MldW7zML7MaB37OHNNJ8NIvIUWixmYrBrNj21Tg9MONYr
-         RnO1as66+gs0TwjNz6wc7Jvd2YJhLeoRWmhmkR+lzTBbEj0Pf/nhDSB4QS8slrGvEP03
-         +G+LAOUuJYxHofF4uN44YLEX0uRtFeQdskmihqWpXlbHA/Wooyj3WwJFL1yCn6FOoiEy
-         PJytTA+iyagUN/M9Sw6QzMtJtd3QMj3+TolpkB6xRqA3ibZ9dPNmrvEqq1e9VuY9T9gH
-         qJtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746021144; x=1746625944;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bptR6X2FP6mphoSdJsDeJ0Nvu/lMa4Cwig/lOeyZQNU=;
-        b=wWpA5RYwJpxQebACCvhes/wcF5ORu3GjntaYeAW4Q+51pkWmFdyJD4fwEBQ0UqqkKb
-         ViJKa+Xln/Y7QtuB1F9LEmINOSMjvt/35FCS1uTGC5cs2jzTT5opAtjGtMsW9jEv1DkO
-         gKHJZLA+VrkPpANDVxSaI1rRlRWwWDLXjxgIceij675Di1jk541/ttYg81Mwuv0XSOIJ
-         XIUIzDuWDmuVe+yV6HkOSDkfOIGV+RSlOnlqIyVw6gRvCyyiVTyKb1UXPrKyJ/u2D7X6
-         j2WrRhCEAoGVH3x+n7zAyYwpQNWXfUSIrRwRGBifDcHN9P0Sw4RnMh1gatqm7kJgfIAS
-         Ri/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVq79oZHzCeKWTvL1PP2Ru6jYNvg26k+xlKtlUe6Totfrb15eFN35yzdRE9TBureSaHQyBjycmavmXy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/OQG75qTm5U+9d0ig5yLlrrlNHfl92mrlKZgk2Y7Te/kMQbhu
-	hJnrf+vSFsHjcVWJJKFeBbKeihkehRUQNDyHYKuzp5G+HwRX0qnm/Hbh8ODXezcCkSOBGu4j2NQ
-	oIuagaKhwaQF3W9P1ZeH22GaOLnv1hOvVU3CuLg==
-X-Gm-Gg: ASbGnct2XiGsUED9cjOlnDy5+VbV/okDnmkq9BGypiVkG3mMxz7vFIBX5+y28R5EeOx
-	FK7k9+83BGXQFOUOT68W+FrgZE/Tu++Gi50SaZGvmZpRU9urcqakbEIchNTnauCDK/mqDdCWSke
-	ht1PSK1HRceZd0oz5x7inz6vVPKsaWWkM9kI+cWIdpfv59wm4Dw6fBPv4nUpdU6ran
-X-Google-Smtp-Source: AGHT+IGyQiHIWhF80eEOC+6pgdTTn9cHOWztzyXKd7Hn1hMJ1sGS1ScFK8hKa7Xzn645fZbc6UnZ2HhOztB0rWXCHbU=
-X-Received: by 2002:a05:6512:681:b0:54a:c4af:29 with SMTP id
- 2adb3069b0e04-54ea33bc380mr1250594e87.52.1746021144067; Wed, 30 Apr 2025
- 06:52:24 -0700 (PDT)
+	s=arc-20240116; t=1746022192; c=relaxed/simple;
+	bh=MQNEc5Z/Zwkf9nZQtbp+KnkOdvUloMewnPE90SaDx3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ixf+VzPCXLapkXFyf1AgAi91o+yoSsG36HItqLWF1xWqD5IgQ5+7PP2rKbisxmpkAGC0udo07unqVwF5Zn8TiVaYQg0wOjIhjaRsMRPAqMG+LTdXEWvzppq/zQCOOFJO0kM2rFHe70wGZcbEle14JRE5MuHFLnKEgfeMfqiy3dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ps+TXnJP; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E8A7643A22;
+	Wed, 30 Apr 2025 14:09:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746022188;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=M0Dltd2GCtB6TRzo+5MXYsHNrsRM9h3Xo2QBnFUq6QA=;
+	b=ps+TXnJPPQRwk9kHF4/nPe+XgwPqFp9ruyvbmxCItjA2IC/NDFSwhwLJFMHqV/+n8+wv46
+	J1iyMZp4/S+1RvRyA1phAKuRq/UcNskLFDMQzSUSkusaPfHB4+fzfhXr4Ggz/VfaoR/JbH
+	ruf2imSgaJKpR7DU4YM+Q11x19l4abioFi5Es7swE9mbFo8EwdKn/rDnmbStPsEJKojgQ7
+	m2VHK7hhAWGlbO7qaU9tm5XfIUPrEhqo64NQ9HCVlZAiJWfxQm89YMtzlvnDk6deDlLfJJ
+	6Ejz4gt8K6CEMxh9bD2YMnmQEbcD66LZFln+h6ok1n2hPdWx92/VTWPPUAF9vQ==
+Date: Wed, 30 Apr 2025 16:09:44 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, Deepak
+ Khatri <lorforlinux@beagleboard.org>, Dhruva Gole <d-gole@ti.com>, Robert
+ Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, Geert
+ Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Pantelis Antoniou
+ <pantelis.antoniou@gmail.com>, "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [Discussion] Global vs Local devicetree overlays for addon
+ board + connector setups
+Message-ID: <20250430160944.7740d5e9@bootlin.com>
+In-Reply-To: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
+References: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com> <20250430131856.GB25516@pendragon.ideasonboard.com>
-In-Reply-To: <20250430131856.GB25516@pendragon.ideasonboard.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 30 Apr 2025 14:52:01 +0100
-X-Gm-Features: ATxdqUEUJPqT02hhE_crNuAPw-JTMhsKXzp2oVf3n9xmpn33eFhhZ5g7KLGMb_A
-Message-ID: <CAPY8ntBPSC6KZcBVt35QWx_ZPYwkSJSVzhhaXokbjkWJDVJRqA@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: sony,imx290: Update usage example
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieeiledtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepteehjeegteduheeivdeuvdethefhgeduvedvfedtudfhjeelgeehveettedviefhnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmpdhkvghrnhgvlhdrohhrghenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeighihprhhonhdrghhlphhksehgmhigrdguvgdprhgtphhtthhopehjkhhrihgunhgvrhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhor
+ hhgpdhrtghpthhtohepugdqghholhgvsehtihdrtghomhdprhgtphhtthhopehrohgsvghrthgtnhgvlhhsohhnsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheprghfugesthhirdgtohhmpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhg
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Laurent & Niklas
+Hi Ayush,
 
-On Wed, 30 Apr 2025 at 14:19, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Wed, Apr 30, 2025 at 03:03:10PM +0200, Geert Uytterhoeven wrote:
-> > On Wed, 30 Apr 2025 at 14:58, Niklas S=C3=B6derlund wrote:
-> > > Since commit 98e0500eadb7 ("media: i2c: imx290: Add configurable link
-> > > frequency and pixel rate") the driver expects two specific
-> > > link-frequency settings 2-lane (445500000, 297000000) and 4-lane
-> > > (222750000, 148500000) operation. The driver fails to probe without
-> > > these exact settings.
-> > >
-> > > Update the example in the bindings to match this to make it easier fo=
-r
-> > > users to incorporate this sensor in their device tree descriptions
-> > > without having to read the driver sources when the driver fails to
-> > > probe.
-> > >
-> > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnat=
-ech.se>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> > > @@ -136,7 +136,7 @@ examples:
-> > >              port {
-> > >                  imx290_ep: endpoint {
-> > >                      data-lanes =3D <1 2 3 4>;
-> > > -                    link-frequencies =3D /bits/ 64 <445500000>;
-> > > +                    link-frequencies =3D /bits/ 64 <222750000 148500=
-000>;
-> > >                      remote-endpoint =3D <&csiphy0_ep>;
-> > >                  };
-> > >              };
-> >
-> > I guess the link-frequencies property should gain a rule that it
-> > needs two values, too?
->
-> The driver doesn't require two frequencies (unless I'm mistaken), it
-> could operate with a single one (albeit not in all resolutions), so I
-> don't think we should require two frequencies in the bindings.
+Thanks for this discussion initiative!
 
-The driver does require both due to 98e0500eadb7 ("media: i2c: imx290:
-Add configurable link frequency and pixel rate") and
-imx290_check_link_freqs()
 
-However I'd agree that it'd be better to make the driver accept just
-the one and make any compensations, rather than amend the binding. I'm
-happy to try and find a few minutes to make a patch for that.
+On Wed, 30 Apr 2025 17:37:33 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-My experience of this family of sensors says that we should be able to
-run any resolution at any link frequency, but it needs changes to
-HBLANK to ensure there is sufficient time per line.
-Dropping to the lower link freq for the 720p mode is only because that
-is what the datasheet describes for the precanned HD720p. The window
-cropping mode lists no such requirement, and yet could produce exactly
-that same 720p output.
+...
 
-  Dave
+> 1. __symbols__ based approach [3]
+> 
+> 
+> This was originally proposed by Andre Davis [3]. It defines an overlay 
+> with just special names in `__symbols__`, which is used along with an 
+> overlay for the addon-board, which makes use of the node names defined 
+> in the connector `__symbols__` overlay. Please take a look at the 
+> original patch series since it provides a working example of how it can 
+> be used [3].
+> 
 
-> --
-> Regards,
->
-> Laurent Pinchart
+The __symbols__ based approach needs 2 overlays to handle the case where
+2 connectors (A and B) are present an you want to connect a board described
+by a single overlay.
+
+The first overlay applied "adapts" the __symbols__ node for the connector
+where the board is connected (for instance connector A) in order to have
+the symbols used by the overlay describing the board resolved to the
+correct symbols.
+
+I think this open race conditions when the overlay is applied by the kernel
+itself. Indeed, we need to perform 2 steps in an atomic way:
+  1) Adapt symbols
+  2) Applied board overlay
+
+Also, a 3rd step should be added to restore symbols modified to their
+original value after the overlay is applied. This should be done to avoid
+any symbols collision.
+
+An other negative point is that properties in __symbols__ node are not
+described by device-tree bindings.
+How can we ensure interoperability between different base board.
+
+The export-symbols node is a node fully described in the DT and it is
+a sub-node of a connector node. This connector node has compatible string
+and a binding describing its own property and sub-nodes. Among them, the
+export-symbols node is described and can be checks by dt_binding_check.
+
+This implies that whatever the base board, for a given connector type
+(compatible string) the properties inside the export-symbols node have the
+exact same name. Any addon board overlay designed for this connector type
+will apply whatever the system where this connector is soldered.
+
+> 
+> It has a few nice benefits such as it works pretty well with existing 
+> infrastructure, and does not need much in the way of new functionality. 
+
+With existing infrastructure in the kernel, it leads to memory leaks if you
+add or change a property in an existing node.
+
+In other word, each time you update a symbol in the __symbols__ node, you
+have a memory leak.
+
+> However, for this discussion thread, I want to consolidate the 
+> discussion regarding how this approach directly adds the devices to the 
+> appropriate nodes, Eg. An SPI device in addon board will be added to the 
+> appropriate SPI controller, etc. This means the changes are made to the 
+> global tree.
+> 
+> 
+
+...
+
+> 
+> Basic Requirements
+> 
+> *********************
+> 
+> 
+> Here are some basic functionality that the chosen approach can do for it 
+> to be viable for the connector + addon board setups:
+> 
+> 
+> 1. Dynamic device addition/removal from userspace
+> 
+> 
+> A lot of connectors + addon board setups do not have any dynamic 
+> discovery addition. This is compounded when talking about treating the 
+> whole header in SBCs like PocketBeagle 2 as a connector, since people 
+> would want to wire LEDs and stuff to individual pins. So a mechanism 
+> using sysfs or configfs is required
+
+request_firmware() or the firmware upload feature (CONFIG_FW_UPLOAD) could
+also be used if the connector is seen as a specific device and has a driver.
+  https://elixir.bootlin.com/linux/v6.15-rc3/source/Documentation/driver-api/firmware/fw_upload.rst
+
+> 
+> 
+> 2. Dynamic device addition/removal by driver using EEPROM or something else
+> 
+> 
+> Some setups (MikroBUS boards with 1-wire EEPROM, Beagle capes) have 
+> EEPROMs that contain board information which can be used to detect which 
+> overlay should be applied.
+> 
+> 
+> Main Discussion
+> 
+> *****************
+> 
+> The main topic I wish to discuss if global devicetree overlays are okay 
+> for addon-board setups. Let me outline some reasons for I prefer the 
+> local devicetree overlays approach:
+> 
+> 
+> 1. Addon board removal on multiple connector setups
+> 
+> 
+> Say connector A added an I2C device to the controller, then connector B 
+> added an I2C device to the same controller. I am not sure how well 
+> removing overlays out-of-order works.
+> 
+> 
+> 2. Who owns the device
+> 
+> 
+> Say there are 2 connectors A and B. Both connectors share an I2C 
+> controller. Let both connectors have the same device attached. In case 
+> of `__symbols__` based approach, both connectors would technically be 
+> successful in applying the overlays, rather than one of the overlays 
+> failing.
+> 
+> 
+> 3. How to register the newly added devices
+> 
+> 
+> I am a bit unsure about this one since I will have to check if the 
+> kernel tries to register new devices automatically after applying the 
+> overlay. For local setups, I was using `devm_of_platform_populate` on 
+> the connector device.
+
+It depends on the bus the device is added.
+when an overlay is applied by the kernel, OF_RECONFIG_* events are
+triggered. Some buses handle them:
+
+	$ git grep OF_RECONFIG_CHANGE
+	drivers/bus/imx-weim.c: case OF_RECONFIG_CHANGE_ADD:
+	drivers/bus/imx-weim.c: case OF_RECONFIG_CHANGE_REMOVE:
+	drivers/gpio/gpiolib-of.c:      case OF_RECONFIG_CHANGE_ADD:
+	drivers/gpio/gpiolib-of.c:      case OF_RECONFIG_CHANGE_REMOVE:
+	drivers/i2c/i2c-core-of.c:      case OF_RECONFIG_CHANGE_ADD:
+	drivers/i2c/i2c-core-of.c:      case OF_RECONFIG_CHANGE_REMOVE:
+	drivers/of/dynamic.c: * Return: OF_RECONFIG_CHANGE_REMOVE on device going from enabled to
+	drivers/of/dynamic.c: * disabled, OF_RECONFIG_CHANGE_ADD on device going from disabled to
+	drivers/of/dynamic.c:   return new_state ? OF_RECONFIG_CHANGE_ADD : OF_RECONFIG_CHANGE_REMOVE;
+	drivers/of/platform.c:  case OF_RECONFIG_CHANGE_ADD:
+	drivers/of/platform.c:  case OF_RECONFIG_CHANGE_REMOVE:
+	drivers/spi/spi.c:      case OF_RECONFIG_CHANGE_ADD:
+	drivers/spi/spi.c:      case OF_RECONFIG_CHANGE_REMOVE:
+	include/linux/of.h:     OF_RECONFIG_CHANGE_ADD,
+	include/linux/of.h:     OF_RECONFIG_CHANGE_REMOVE,
+
+> 
+> 
+> 4. Security
+> 
+> 
+> I think local modification is more secure than global tree modification. 
+> A completely local solution should be as secure from devicetree 
+> perspective as USB. But I am not an expert.
+> 
+> 
+> Drawbacks of local setups
+> 
+> ***************************
+> 
+> 
+> 1. Needs a lot of surrounding work.
+> 
+> 
+> I2C bus extension is needed for I2C devices to work, something similar 
+> for SPI. At least ADC, PWM and GPIO should be covered with just nexus nodes.
+
+I wouldn't say 'a lot'.
+I already did the work for I2C bus extension [0] and the implementation was
+not so complex.
+
+[0] https://lore.kernel.org/all/20250401081041.114333-1-herve.codina@bootlin.com/
+
+> 
+> 
+> Closing Thoughts
+> 
+> ******************
+> 
+> 
+> I would really like to reach consensus regarding weather the addon-board 
+> overlays should be global or local. This will help to give a direction 
+> regarding what should be improved, and hopefully make future development 
+> move faster. Once a bit of consensus has been reached, we can discuss 
+> specific implementations.
+> 
+
+
+Again, thanks again for initiating this discussion.
+Hope this will help to move forward on this topic!
+
+Best regards,
+Hervé
 
