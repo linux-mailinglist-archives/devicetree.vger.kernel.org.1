@@ -1,144 +1,188 @@
-Return-Path: <devicetree+bounces-172460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11919AA4D05
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:13:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DFCFAA4D0E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:14:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EEA89E0C11
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:08:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853854E2594
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 13:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CAB25DAF0;
-	Wed, 30 Apr 2025 13:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0D125A624;
+	Wed, 30 Apr 2025 13:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DVn29ObA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D629F259C9D;
-	Wed, 30 Apr 2025 13:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB0425C6E9
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 13:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746018209; cv=none; b=quLkdaZMRupNPQhzTS0qbMx1hNUCqxMPwtQvJ3mk1YTy8mb2nXAqPmArwAlrIKAsN63YymryfIxwWICxlYXSoT2wevUavHyU7o0prwEjEZBwwYfvuu4fm27qINtMibfaxrugVElIeXDwx+Kv4Ff/Ety0oTbXFhAV8pxqfI/KdH0=
+	t=1746018453; cv=none; b=kb9Ogw/+vNR+cMwgSKMz1QQXcukgGi6h4lBrS9PU6DzZXuI0NfiWvObUnNNLzXViS6Du9t6ZMZxpGXHP5Pe+FnJOgha0jboa7rCCZSyvrfFhjP6U2fRiOLuslAWDm4o8fQU3t1wQu69r4W2SJce6tqRWL9UsEvqm4axMBMt5pHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746018209; c=relaxed/simple;
-	bh=iFixx+t4HjD7fQ89CBPw8tcEnpXOvIN8tzy2ETRCd7Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L3xj/BNrE8I4Qyl77Ne2lUZwLevPf2YumQOy9iHr5qkwYIAkJbSPB5I2F3+hX8X/YMJdDdDYXhYGVjwcPg0fw5fxHLtMl61zEAZS8XRKPFw94QOEXDwiOYO7mqjLpSSbMmG0PSPd27LgUFbCDzVEFiNv3IiyslnxRRLDWkf1eHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6f0cfbe2042so12934286d6.1;
-        Wed, 30 Apr 2025 06:03:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746018204; x=1746623004;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rW1MhyT91saKVAFuqB6OQab7qD4mL9UWcfPujvEtR98=;
-        b=QyjVf7QlNTNnAOV087cp8g9svTh1ZnJD+uClmVimbTPi+AStuDUQGtgF4LuYKklLKK
-         oeVfI7yk67poEoF0vQfnIP6YG2TXI/j+Kw2rVAcYKn6PnwvPVi64efQmHshwo+Q0Whlh
-         USfmwi1KxDAHJGj9BNZxELi9TKG4fw+QOw5v/8MgezUPkhyivS6VHGsN+c+uPKEnkfWe
-         0yrFo0WZyhYxgw9vR8/NOnUu0R8AjzuhONCXfSMs2R2Ck3Aw6pfefwjMECHbpT6UG2kC
-         a17oWQM7tHRiIKJzy8Ppjn1BqcMtpqiYjvt/HZVWqPC3Gwof0tlBDg4Dym7YXP1czrMy
-         PxaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAmKshSfqgrf0PVHb7Fkd6d5k2YWjxN/nixVwy3X+7dA3iz3eOTmvOdKD6jhZYoqPW/jGWItWs8wi3sKU=@vger.kernel.org, AJvYcCV6x6V0UJqm//iI8caBFTH9yDGXjPNBsoHJ0tgH9LSJN3qyRBozpy1CGQbokClC0ZwJqSgt3oUZ9muv@vger.kernel.org, AJvYcCXgWPIfTgaisnjpd61UT94ROT9puj1adpJN1MrViVXOoOZEOW5u7GvvQBc0cr0Jv+QtnJOuNfHlavhAfpKhgOXzq/U=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdeBN899V6pEn1WLChtjbE+6gmHDfMMKtDDBil8j/UuVB6rZgf
-	1M2SdpJhTyeqrgYV6xM4vBy6RHBaujZpNW4sfW7AWE0LzPJzF1emTxPC9elS
-X-Gm-Gg: ASbGnctF+tPm0tlmcb4vZoNRP1JzFyH17/pm/HY5RVUNRfNwDC4ot1XY7bcHTZtObuW
-	UTSmAD9AVw0lcMVVpFF6eNYliHx7Wh7IjUbMYOs3ddwz3FIm5HTLEDK8LHyHhRWYQDxgYSaJJH6
-	Jt0bpwoRlf6B7HBPKYc3iInbSh3bw7rLHNaJuVyKSaKLWmMC+uu4ReamIQgAcs6OUpxRsNlOS+g
-	SQlCph5+PPltOSMltvV+N6z+oWvBAtEWh2VyuqfBXKoYp0XbLFJ9XGmgUN6h/S9CMVRlHCDg1mg
-	vLsTHgvqaTXsqxqF7utBtBbld6aSsSzQQCSPm+vg/NnMTG1hwxOB10qVrFfax0lT8HywRmq3raw
-	zfW6ybqs=
-X-Google-Smtp-Source: AGHT+IEsCRz6fQ8DZvemdv9TJXlflJAxZR4Q++cXXVHa8V9fHyeQ0pIdrC2a4BojyzqD24OeFz+bGA==
-X-Received: by 2002:a05:6214:f08:b0:6ea:d503:6cfd with SMTP id 6a1803df08f44-6f4fdd831b0mr46409886d6.19.1746018203756;
-        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f4fe6ad681sm7941076d6.1.2025.04.30.06.03.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c922734cc2so113479185a.1;
-        Wed, 30 Apr 2025 06:03:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU7NepP1HnOBdICYvBCKuSDAFHSYYWaP+q7LeSxoe/G+V8wRjCjpeFWWq1eudNlj5fxqHptENeciUwL@vger.kernel.org, AJvYcCVtPmey4NGXY60YXaQdC05gfJXDZ4vXIBteiJBPfRn+LQ97a91V9cZADJnR8xgiQDtIbBUQIczbfdIg0+HdRnvnn+Q=@vger.kernel.org, AJvYcCVvIsR/s0OQNin5nIA9tFOCqJ02dm+RxpS0p2br4k1feH3MYq1g2V8mTYMlWbSs0aK8ONHy1XbXhJnTZas=@vger.kernel.org
-X-Received: by 2002:a05:620a:2890:b0:7c9:574d:a344 with SMTP id
- af79cd13be357-7cac7b5c591mr351112885a.25.1746018203056; Wed, 30 Apr 2025
- 06:03:23 -0700 (PDT)
+	s=arc-20240116; t=1746018453; c=relaxed/simple;
+	bh=uLPy8tswTpXAzTW332VVon49mGiiK+lX2PqFCOVHTco=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bp2YINbFMgqWGwKl/evzkBQ3BiQPmk6VoZbtmcl9yGkTYrKgwZCIx5nzPJRMmKCpK2nBHmkFXK53foViuW97kVq4rC76jUlkMFqauXZGQjloIp4ZeL2CJrCcGO3WPvEqsaepA0B8Nr+YgQMNzlZOVo2hVdRAN6wd4Wtp0Qkf4bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DVn29ObA; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E39B143AF2;
+	Wed, 30 Apr 2025 13:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746018449;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zob3oBRPmTR+C/7gljlW83+IVWVDkQgvEdHZ9Wwnyg8=;
+	b=DVn29ObAnsz8BxZSfUMq07Kn72PjRl9zt/pJy0vE509OwlG2t2fH6HZqAc7PQnMiE6DLsl
+	yrBbaQatMIMwU0puO0rfmCNKZOuwoP7xutKpK84UMJ0+9ix7oJHSA/pb03Cn7Ft4+7pCjy
+	EO38ONdBhpiovdz/ChTEew4VyFj9bRiLDrhZqAsmMmwuhdp3Vzslhw6VBne3RX/5KJ/kdt
+	2qK3f0etBnIEqi+ec89RKKefTt4CSnr0rCUnN9ka+PoE9aeG5Vb/FPBXg658w8UEoK8/Ff
+	/wuxTQ3abUoKcNCHk5kf5P3otEpQsv/7tnmuVn5HA+XzTkwXORyCy8cdINKUwA==
+Date: Wed, 30 Apr 2025 15:07:25 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, Deepak
+ Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com, Robert Nelson
+ <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, Geert
+ Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [Question] Status of user-space dynamic overlays API
+Message-ID: <20250430150725.2d564abc@booty>
+In-Reply-To: <d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+	<d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20250430125322.2808528-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 30 Apr 2025 15:03:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
-X-Gm-Features: ATxdqUF5SmUHR6IS83F_BlSTuqKqxW8yJEwc4_Me4L0hReYlvlJOP5xqk2h4aew
-Message-ID: <CAMuHMdVXrHVugCMoWkCRVGotOEeTuuJJ6rC7CC7Kf_seo3J5og@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: sony,imx290: Update usage example
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieeijeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepteefteelfedthfffvedtgffgheetkedtvdffffegteevjedukeetfeffkeffuefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsggvrghglhgvsghorghrugdrohhrghdprhgrshhpsggvrhhrhihpihdrtghomhdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepgiihphhro
+ hhnrdhglhhpkhesghhmgidruggvpdhrtghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheplhhorhhfohhrlhhinhhugiessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeguqdhgohhlvgesthhirdgtohhmpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrgh
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hi Niklas,
+Hello Ayush,
 
-On Wed, 30 Apr 2025 at 14:58, Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Since commit 98e0500eadb7 ("media: i2c: imx290: Add configurable link
-> frequency and pixel rate") the driver expects two specific
-> link-frequency settings 2-lane (445500000, 297000000) and 4-lane
-> (222750000, 148500000) operation. The driver fails to probe without
-> these exact settings.
->
-> Update the example in the bindings to match this to make it easier for
-> users to incorporate this sensor in their device tree descriptions
-> without having to read the driver sources when the driver fails to
-> probe.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+On Wed, 30 Apr 2025 15:48:27 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-Thanks for your patch!
+> On 2/23/25 01:43, Ayush Singh wrote:
+> 
+> > Hello everyone.
+> >
+> > I have been looking at ways to do runtime devicetree overlay 
+> > application, and was just wondering what the current status of the 
+> > different proposals [0], [1] were. They seem to be quite old and I 
+> > think they were already rejected, but due to all the broken links, I 
+> > am not really sure about the exact reasons. Also, maybe we now have 
+> > the solutions to some the blockers at the time.
+> >
+> >
+> > Let me fist go over some of the use cases where I think dynamic 
+> > devicetree overlays can be useful. I am mostly interested in their use 
+> > in single board computers like PocketBeagle 2 [2], Raspberry Pi [3], etc.
+> >
+> >
+> > # Uses
+> >
+> > ## Dynamic Pin muxing
+> >
+> > A lot of SBC's aimed for creating hardware projects expose headers, 
+> > where each pin can be used for multiple things like GPIO, I2C, PWM, 
+> > etc, depending on the pinmux. I think Raspberry Pi has it's own 
+> > solution to do userspace pinmux, but if userspace devicetree 
+> > application was a thing, it could probably be used for this. 
+> > Additionally, being able to use dynamic devicetree overlays for pin 
+> > muxing would allow much easier transition to use proper device trees 
+> > during production.
+> >
+> >
+> > ## Dynamic Sensors/Devices
+> >
+> > Using devices such as sensors, external ADCs, EEPROMs, etc are also a 
+> > common usecase in SBC's. A lot of current solutions seem to be 
+> > designed around using user-space drivers in such cases. This is a bit 
+> > of a shame since Linux kernel already has drivers for a lot of these 
+> > drivers, and they are probably going to be of higher quality than most 
+> > user space drivers.
+> >
+> >
+> > # Challenges
+> >
+> > ## Security
+> >
+> > The concerns regarding security seemed to show up in the other 
+> > proposals. There was a proposal to have a devicetree property to 
+> > allow/deny the application of overlays in some nodes, with default 
+> > being deny. Was it insufficient?
+> >
+> >
+> > ## Memory Leaks
+> >
+> > Currently, updating/removing properties leaks memory. Was it one of 
+> > the reasons for the rejection of previous proposals?
+> >
+> >
+> > Maybe kernel already has some solutions more suited to my usecase that 
+> > I am unware of?
+> >
+> >
+> > [0]: 
+> > https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
+> >
+> > [1]: 
+> > https://lore.kernel.org/all/20161220190455.25115-1-xypron.glpk@gmx.de/
+> >
+> > [2]: https://www.beagleboard.org/boards/pocketbeagle-2
+> >
+> > [3]: https://www.raspberrypi.com/
+> >
+> >
+> > Best Regards,
+> >
+> > Ayush Singh
+> >  
+> 
+> Just trying to consolidate the discussion. Feel free to correct anything 
+> wrong.
+> 
+> 
+> - Rather a generic global overlay solution, a driver per connector 
+> should be used.
+> 
+> - The board headers (e.g. PocketBeagle 2) should be treated as a single 
+> connector and any peripherals on it can be treated as an addon-board.
 
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> @@ -136,7 +136,7 @@ examples:
->              port {
->                  imx290_ep: endpoint {
->                      data-lanes =3D <1 2 3 4>;
-> -                    link-frequencies =3D /bits/ 64 <445500000>;
-> +                    link-frequencies =3D /bits/ 64 <222750000 148500000>=
-;
->                      remote-endpoint =3D <&csiphy0_ep>;
->                  };
->              };
+I agree with both points.
 
-I guess the link-frequencies property should gain a rule that it
-needs two values, too?
+To the best of my knowledge this is also the position that everybody
+agrees on, except Andrew Davis.
 
-Gr{oetje,eeting}s,
+That said, I think this topic desperately needs some official feedback
+from device tree and dt-schema maintainers: about export-symbols in the
+very first place, and about i2c-bus-extension immediately after.
+Otherwise we're keeping on circling around the same ideas after having
+discussed and refined them so many times.
 
-                        Geert
+Luca
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
