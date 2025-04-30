@@ -1,154 +1,134 @@
-Return-Path: <devicetree+bounces-172511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D518AA4FBB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:09:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4B1AA5002
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 17:19:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74E621C22C8F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:05:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C4FD7AF97F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 15:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADC625E444;
-	Wed, 30 Apr 2025 15:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393B9219E93;
+	Wed, 30 Apr 2025 15:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VezMumEH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ctbGyw+7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62EF25C80B
-	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 15:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C921C5F18;
+	Wed, 30 Apr 2025 15:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746025494; cv=none; b=p92olFq1ilMcHI9TBPS6Nz/8R/OXYekHJh7JszlTpHb1eBd7lzXqyfvJdwrYQ/HQj2Qvj22XpKqAj+Lmp7fSLhRZLr8hlDKPjgMNsEPHDFQNxc+293g/KP9nvUepJbWSdr6fK7Z6klQvQwoxXYZ6orlKTo0XBHk331T9HpWIY3M=
+	t=1746026359; cv=none; b=TobpOkTgKLYwFFqGeFXt7Oh7FcI6GIiGatSK9zA5HC81tP158y+YcdgYRYXmAQ/qlALXf/VPcuKa337+gY8boPwEPL5vlR+BcYDUq0OTgHLJrlCd+t6UVlwa2fdZau9as7UdC/O7DbzlrtTIY0KTyT1cDrq3HwEceNjzXQ7Zy9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746025494; c=relaxed/simple;
-	bh=iAUBF84BT6XPeN8Y/n4Oehp+UL7zE/zH+6aZ+LiCsHc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EqVPWliWbqifoLgG2iadrNP4l9GLMv1Bb2MoMzuP09zPVjlDS3DjMIyeifFpDhxkYfGmt4zxC1tutqa4yJazujU+zks73zJp6Od8rK09w/RpON00plhE9W8M5pOyl7D26TVpCgEqIE/dsOO+lIhNSpGxXCK0uzbIPqQLP9qrvtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VezMumEH; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3fefbbc7dd4so4666659b6e.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 08:04:52 -0700 (PDT)
+	s=arc-20240116; t=1746026359; c=relaxed/simple;
+	bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LAobTu0t4IZZFhPNzr42UQeFrKbQQ+bMxX8s4p6wHLas/ugTRiwV8VQw79BNBavpQB0ma3gc+SQyA92w2FgfGAp53QuWCIveraaGdL10qcgJRsGK984XmkOfY7gPQKadXsKlW3Kq4D+sJWWkSQVqyjcoj3/yXWcJH7iCVX1JlGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ctbGyw+7; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-39c31e4c3e5so4794722f8f.0;
+        Wed, 30 Apr 2025 08:19:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746025491; x=1746630291; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=n3T9+6PFQU7ODBU+5+B8t+gjHfIuLl3Jh/pj8rJ6DXA=;
-        b=VezMumEH4PnXDpfdIiVOA8FcSVMdKGiH03QLdp2m5CaGxxYPtYQrjtwt3t0cAmix5x
-         2q2rDP9CUs+5m/PybmjnrVslLmWPVZetohfDthCZhqh6DJsLgrJM2juuyGqWEyx6b9QK
-         jiVmvYiNp6VqcNayES9DJnYGeRwk4GKzulrPL4l3KYL8DfTfirsMi1lbfmUHVxozphzw
-         8W9uV6SpqVgGkW7pSbRWLIG3bJEYPLkKkY1rmfmFxG99w1UqboVvqBZP+TfmLt5uuDW5
-         KOcSpJddBNA1BwJ7jV8FXkeE2kPrBUM9lXgf7HOrk+3ihxFCqKpKVnKBdlIXRixdZIBj
-         5QXA==
+        d=gmail.com; s=20230601; t=1746026356; x=1746631156; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
+        b=ctbGyw+7nupI3tgzwivmECoAZ+GE0xPKNPCLvC8uY//MdkXajv4YKFluT2ni7aWRbm
+         26vhEk0zTSpcxDnEJZQYCV/0l5b8QI5EaMUg8owqxQ0QA1KwfLHa4RxnAdAUaXENwlmA
+         2GXvP2wUpyLSn0jMUPxapCQ9ijpnE4uW2fuLbtGDZWbJyM9p9tz9nEQeO/zvgZLu3voG
+         0WhyOi3nNGIoReuyNxtIqsLkSW3HDlwwdhfNHyJJj66gwfOBPLKDk1t+aA9OWs5JxE3L
+         wfin4l2xJZO52IF3mek02CrrQbj3l3UqmTrZwwkDNtuKQb5lbY8Hmbvb4R/FdOfRI3tP
+         0qkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746025491; x=1746630291;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n3T9+6PFQU7ODBU+5+B8t+gjHfIuLl3Jh/pj8rJ6DXA=;
-        b=miDOHW3J4QBhXWDt0FuHenZ5vvE6O/qcs18jjEKwymm5X0EiHTZV2wrCB+auo2vzOv
-         MWRCHLFnMOGeovLBBQuRXaJRQDy49ejoL2snhXO3ty5aDQQtIxFHvPSsOgWNv1YqwkQY
-         bjqlwJc7JND54ZvFVbP/Q97ZFcH+2H3c8+MBfwBFN8beFdwecJmY6FVFJl+S5yApTj8k
-         v/1+KaivqdHW3/0QR9phdAz/klzmOmThDId0WVMPHZ400E615o34HB2S4vSlcgLioIF+
-         sIhIdsSORajBXJ1PgltsnL62KIw6sGHRZs0gSQPwGdYfZNSlVsvkg92Y/nVfBYIvBDkT
-         ezhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUowK9YA90nmfGlM5DTdvbITQJg/qwVK93COYLsljwn1wClDKJUJZ9HeSKhgWkWgezDlIQbZ25urQYd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzcx9YinegeckV4LSmbGgVPmeSydb3UghtOHtv/UGt134DY93iG
-	ImsgdX8zw2XU7FWlb33AQLzm6/MgjhZq+HaN7dxEp3BcJ3hDTFgqNV3ONxlaSCw=
-X-Gm-Gg: ASbGnctNsyde6PSDYNfF/sNiuVNXWxmgovOHOohemItNNGjWpSteudS2UpxB7CxCzKO
-	fm15assSQV9gBSU13AnMMTplGMP+BsZgXA4ovywxu4VNBoGWYOhEAXAzZo1jjfyrktj7cNLTf4m
-	oxElOJhEQocjNDVztrp3KBoAdHNQW/xzQBhWl4MtZJEug3Bo1LEssf2S6M/C9jzzPq33i1N+hW+
-	XbpC09i3y+t9J8SPVLd6HXExYw93HttEwLgxRMABO3BddgyDIDHsf4zWdyXGeMK4wqeslbUqM7U
-	ZUQ/6APXHIq0mM/fpDwJlMIyOWgtrduCRFUWtGsiea64c1h8aAzqyEV9VABgrePJFW45eZkXMXI
-	FVNe+DJyvJ5erXfo=
-X-Google-Smtp-Source: AGHT+IGzbbqKeOG5/Z3RMXw05bmJvQ6JAZJPq3w+KmxakZsKev1SHX78l6FcGWqPiLMhX3MPVZr9Uw==
-X-Received: by 2002:a05:6820:3094:b0:606:107a:ebd8 with SMTP id 006d021491bc7-607d5675e89mr1620447eaf.5.1746025491559;
-        Wed, 30 Apr 2025 08:04:51 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:359a:f1e:f988:206a? ([2600:8803:e7e4:1d00:359a:f1e:f988:206a])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-60686ec905dsm811235eaf.15.2025.04.30.08.04.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 08:04:49 -0700 (PDT)
-Message-ID: <7fe18625-3a25-40c8-bfb7-a7a22a3eccff@baylibre.com>
-Date: Wed, 30 Apr 2025 10:04:47 -0500
+        d=1e100.net; s=20230601; t=1746026356; x=1746631156;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S5c1usZQ21dQ4MFmT+Y0rgDHI5e8haxjXHW3GmOhQVg=;
+        b=Kj8gLglSKyjM7NjqrV6UIDwjFPwFYXekv4yvXm2OXJqTH5PGS2mexHIyjRT9ILRRX3
+         3OQJ2iSJlm9fKZf0yM9PaxB8Y4RtRenAfGDx2H0oeEIYeYnTklRWwayOze7wAWVpKNFo
+         HtgmYMrdnYebOLJcWtwFcn6scY6so9Bf0reVAIutH0Ozp0Cn/uuR5Eep/EhO+q5L//tV
+         uIqbq3r9haeTO8uutXgTxVi+ZngdkEsgSs+vwgHwNeEj0ROP4oakepbanvLom5kNtJAq
+         YQxau+Xs+S2pMr0WcUfRQBk/Czon9ryGpM/3rTfIj2dOADnLEvOcPpDazO/AvqFH8lbM
+         0lIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZmdh8p+NeN93NXcdbS4F3iH/jYb+ep50inzGMJtMkxEfSJAt0UgWHyAEtMocWw3Uc2QFebeqbVrdEgwI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbJbYNNrcgYzCmfE3HRlIuRbOqmMbLs7V4Kc77t5vQg0/Cns2d
+	++EE+LA+ZkqLQ/UODWoegccDy+W8BlMnDdrZrVa5OPllOwXSEvfR
+X-Gm-Gg: ASbGncuClhLO3eLFx8CwByC+lRMiP5XrBkMMnQZko8XxcWlMq3O/Hq9+IZTL6dPd92S
+	sHrmJEj2VVcg6t5aMEJIy9c0KZNjidHZf+YxRmNzCr6bp6RJWZOXKzthLx8YBDjouvoSUJIJD/v
+	Mxf2rztNQIgUgVd7mLo0J04THirXol0niFPj7tAyQiDN+9thNY+88nmhDgZgsZ0lLxnpVqPBByT
+	TEhTQdYd+xgc8/HXvUuewBpgUuTupLydt01X/x2Wo0TTQQukWxw1cBqUb5RWFt9kPzFGUbobPvS
+	vSoPndJRap4O5yKDIVCaYXgMDXDdwq5+B2xTA4weCiRIYU2H5i+x4IPz/CYyP7QcsZ0qJP0=
+X-Google-Smtp-Source: AGHT+IFmefUVJ6/gagwWms/2NhJFqSEeEmwPNox/ehYzux4BtgClLHXr43p5sjL1gtcn7wjV25ZOiw==
+X-Received: by 2002:a5d:588f:0:b0:3a0:8070:8af8 with SMTP id ffacd0b85a97d-3a08ff3755dmr2980301f8f.18.1746026355424;
+        Wed, 30 Apr 2025 08:19:15 -0700 (PDT)
+Received: from giga-mm-3.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073ca42cdsm17020431f8f.22.2025.04.30.08.19.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 08:19:15 -0700 (PDT)
+Message-ID: <94f4bbd9dbf4da9c056f90dff3028e45a659c8ac.camel@gmail.com>
+Subject: Re: [PATCH 1/4] riscv: dts: sophgo: Move all soc specific device
+ into soc dtsi file
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley	 <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou	 <aou@eecs.berkeley.edu>, Alexandre
+ Ghiti <alex@ghiti.fr>, Chen Wang	 <unicorn_wang@outlook.com>, Thomas
+ Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, Yixun Lan
+ <dlan@gentoo.org>,  Longbin Li <looong.bin@gmail.com>
+Date: Wed, 30 Apr 2025 17:19:16 +0200
+In-Reply-To: <20250430012654.235830-2-inochiama@gmail.com>
+References: <20250430012654.235830-1-inochiama@gmail.com>
+	 <20250430012654.235830-2-inochiama@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] Documentation: ABI: IIO: add calibphase_delay
- documentation
-From: David Lechner <dlechner@baylibre.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-1-eb4d4821b172@baylibre.com>
- <4645ae3e0c3bb1ada9d4cadce77b64fe5e651596.camel@gmail.com>
- <070b269c-c536-49c5-a11d-7e23653613f9@baylibre.com>
- <aBI3eUPirZEXpZgG@smile.fi.intel.com>
- <896023ae-c279-4201-a7a8-dfd9b33fe0e5@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <896023ae-c279-4201-a7a8-dfd9b33fe0e5@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 4/30/25 9:56 AM, David Lechner wrote:
-> On 4/30/25 9:45 AM, Andy Shevchenko wrote:
->> On Wed, Apr 30, 2025 at 09:21:28AM -0500, David Lechner wrote:
->>> On 4/30/25 12:40 AM, Nuno Sá wrote:
->>>> On Tue, 2025-04-29 at 15:06 +0200, Angelo Dureghello wrote:
->>>>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>>>
->>>>> Add new IIO calibphase_delay documentation.
->>>>>
->>>>> The delay suffix is added to specify that the phase, generally in
->>>>> radiants, is for this case (needed from ad7606) in nanoseconds.
->>
->> ...
->>
->>>>> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_calibphase_delay
->>>>
->>>> Not sure if I'm too convinced on the _delay suffix
->>>>
->>> Phase is measured in radians, not seconds, so it seems wrong to use it here.
->>>
->>> https://en.wikipedia.org/wiki/Phase_(waves)
->>>
->>> And the delay here is with respect to individual samples in a simultaneous
->>> conversion without regard for a sampling frequency, so I don't see how we could
->>> convert the time to radians in any meaningful way.
->>
->> And how this delay is aplicable to the phase in the hardware? Sounds to me that
->> HW has some meaningful way of such a conversion?
->>
-> 
-> It is a calibration to account for a phase difference between two input signals.
-> This is a simultaneous sampling ADC, so all channels normally sample at exactly
-> the same time. This phase delay calibration factor can introduce a small delay
-> on an individual channel so that it starts it's conversion some microseconds
-> after the others.
-> 
-> There is a nice diagram here:
-> 
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf#%5B%7B%22num%22%3A113%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C34%2C594%2C0%5D
-> 
-> To convert the phase delay to a phase angle and back would require also knowing
-> the frequency of the input voltage signals.
+Hi Inochi!
 
-Maybe calling it "conversion delay" would make more sense? Since the phase part
-of it is really referring to the application rather than to what we are actually
-adjusting.
+On Wed, 2025-04-30 at 09:26 +0800, Inochi Amaoto wrote:
+> Although the cv1800b/cv1812h/sg2000/sg2002 share most peripherals,
+> some basic peripherals, like clock, pinctrl, clint and plint, are
+> not shared. These are caused by not only historical reason (plic,
+> clint), but also the fact the device is not the same (clock, pinctrl).
+>=20
+> It is good to override device compatible when the soc number is small,
+> but now it is a burden for maintenance, and it is kind of annoyed to
+> explain why using override. So it is time to move this out of the
+> common peripheral header.
+>=20
+> Move all soc related peripherla device from common peripheral header
+> to the soc specific header to get rid of most compatible override.
+>=20
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+
+Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+
+> ---
+> =C2=A0arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 38 +++++++++++++++++-----=
+---
+> =C2=A0arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 38 +++++++++++++++++-----=
+---
+> =C2=A0arch/riscv/boot/dts/sophgo/cv18xx.dtsi=C2=A0 | 22 --------------
+> =C2=A0arch/riscv/boot/dts/sophgo/sg2002.dtsi=C2=A0 | 38 +++++++++++++++++=
+--------
+> =C2=A04 files changed, 78 insertions(+), 58 deletions(-)
+
+--=20
+Alexander Sverdlin.
 
