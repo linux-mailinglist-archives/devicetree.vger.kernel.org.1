@@ -1,130 +1,137 @@
-Return-Path: <devicetree+bounces-172234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B48AA43AB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:15:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1600AA43AF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 09:17:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C25C3BA367
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:15:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B50A29A39CB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 07:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA6E1EFF91;
-	Wed, 30 Apr 2025 07:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAEE1DDC33;
+	Wed, 30 Apr 2025 07:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="e28nt/lV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mdelu/gF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57CD1E98EB;
-	Wed, 30 Apr 2025 07:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FDE1DB92A;
+	Wed, 30 Apr 2025 07:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1745997320; cv=none; b=PfabmcDpVOG4am49wq4oU+V2q5+jhMqg4thaq5LZSCzoMVf7ru7QWDTrdW32Cx4GzuGargiApqWhs53yx9gD723VXFdniZgdCTLJdVatg9V7wNj5V0244IvhWUpuMY+GUhnhqlhYp9FGrQGTKvjJrLLoG0qJL8OxQX6thoOxkWA=
+	t=1745997421; cv=none; b=rBgHPLTqTW+gRzi1ZK5IkZfRqvPMmBLJ3hm2nPthoySBjSLHqTPYKfzYDNHki0q3p81hDVdPboEMvYCmlFP/QRjKXTTsi8kO70OP/hjUskuWnx8CGEWYCEpFATr0wdTfalBHzAkF2fgjt94CVpzxMlQM/9TMUypfbH1Rp4UikKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1745997320; c=relaxed/simple;
-	bh=PAsD7NS4YVFutLoWr6jqj6AC3UU/UXuFp0b49PB+QGY=;
+	s=arc-20240116; t=1745997421; c=relaxed/simple;
+	bh=7APuLcwtJfYEKekA+/wgGV9NPKWHxVPgebd65tjT+FI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AFw/Du8NCVt/gLnX9f7F8NFS6sNkvBu4xtmJkglnXwWN+JrojRLkWAy4fB0MHlGE+IHPBGm69lg3R2hAN1ngQdpxhJYv+edPwUGAyiO4J5I8DjkvpqEApHEgBBqS+mTklOgJiM/9VMP5GWcatM9Nr4ScEOfLUPWLgvf8O+Pckew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=e28nt/lV; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 52B511C01AA; Wed, 30 Apr 2025 09:15:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1745997308;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0uWhUtB07fuy+20OaSmbXkXnv/vhP67L+RCQmHanEtY=;
-	b=e28nt/lVW+XJbyWKMQHktS27mBX3qBE/5EeAl30/FlGEVNUc2OaCXyhF7sq4kn5mT435qz
-	mAvgP9BJAL/CACX2+38yWS3M0okLMEpwve42TUFWG3jNK/B6/vwULbF1DxRtlHfz+omiWw
-	eOmxtRcmWl1UOGZ3FqUoePo9R12vblc=
-Date: Wed, 30 Apr 2025 09:15:07 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: andy@kernel.org, geert@linux-m68k.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	christophe.jaillet@wanadoo.fr, corbet@lwn.net,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-Message-ID: <aBHN+395kaIdbBEm@duo.ucw.cz>
-References: <aA/ineUBAM5IU79J@duo.ucw.cz>
- <20250429170220.8145-1-trannamatk@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QRSdzhyuvuZ6A0CGQiCL/I2WfNlm4ov6Yv/l+GBJD3yz1DITKheruIaD7iRQXP0pOcr3c88Yw4s0TkVCQpRBIVJY4JQa/reI80/QzehWkzJ8CvfCJLwTFEJ2KWPTVJg2MVawze8ppr0qDf4jw/swVAeUuMm6Yk03839KMj0UNYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mdelu/gF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE193C4CEE9;
+	Wed, 30 Apr 2025 07:16:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745997421;
+	bh=7APuLcwtJfYEKekA+/wgGV9NPKWHxVPgebd65tjT+FI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mdelu/gFgRdZWf9/TJRbdkRSmIq4eCh4iIe0quy0t0lyMhk8VMMjVng03r2RT1g/G
+	 J+pqfyY5aI11z0wAs9rhE633GDVH1KYzV3kdA71pxLRHEtNVsf3ceZ0mRilhTwi5yw
+	 1dzCSPDyWkoO/ksxzhz7oP7BAhwxF7AgvHekZKFPrLdQHzK2cGzC9DrTqVZ9Ls0+R0
+	 7oyswC/3gr/71j8sB5bafD3y86JGxMx6dl24BUa/BRIRIi6+8yKHuWmb2V87D2eWeF
+	 K6POhUtKzeFIVHCr/6LeWs54CrPe2YOuEtvVg7RMDsper+vfJxtYE+Zd46kWpVNXOP
+	 uHZTLmbsv6laA==
+Date: Wed, 30 Apr 2025 09:16:56 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
+	dlemoal@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
+Message-ID: <aBHOaJFgZiOfTrrT@ryzen>
+References: <20250425092012.95418-2-cassel@kernel.org>
+ <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="Y8wJvSsTAszRr9tX"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250429170220.8145-1-trannamatk@gmail.com>
+In-Reply-To: <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
+
+Hello Mani,
+
+On Wed, Apr 30, 2025 at 12:35:18PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Apr 25, 2025 at 11:20:12AM +0200, Niklas Cassel wrote:
+> > While some boards designs support multiple reference clocking schemes
+> > (e.g. Common Clock and SRNS), and can choose the clocking scheme using
+> > e.g. a DIP switch, most boards designs only support a single clocking
+> > scheme (even if the SoC might support multiple clocking schemes).
+> > 
+> > This property is needed such that the PCI controller driver, in endpoint
+> > mode, can set the proper bits, e.g. the Common Clock Configuration bit and
+> > the SRIS Clocking bit, in the PCIe Link Control Register (Offset 10h).
+> > (Sometimes, there are also specific bits that needs to be set in the PHY.)
+> > 
+> 
+> Thanks for adding the property. I did plan to submit something similar to allow
+> Qcom PCIe EP controllers to run in SRIS mode.
+> 
+> > Some device tree bindings have already implemented vendor specific
+> > properties to handle this, e.g. "nvidia,enable-ext-refclk" (Common Clock)
+> > and "nvidia,enable-srns" (SRNS). However, since this property is common
+> > for all PCI controllers running in endpoint mode, this really ought to be
+> > a property in the common pcie-ep.yaml device tree binding.
+> > 
+> 
+> We should also mark the nvidia specific properties deprecated and use this one.
+> But that's for another follow up series.
+> 
+> > Add a new ref-clk-mode property that describes the reference clocking
+> > scheme used by the endpoint. (We do not add a common-clk-ssc option, since
+> > we cannot know/control if the common clock provided by the host uses SSC.)
+> > 
+> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > index f75000e3093d..206c1dc2ab82 100644
+> > --- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> > @@ -42,6 +42,15 @@ properties:
+> >      default: 1
+> >      maximum: 16
+> >  
+> > +  ref-clk-mode:
+> 
+> How about 'refclk-mode' instead of 'ref-clk-mode'? 'refclk' is the most widely
+> used terminology in the bindings.
+
+I does seem that way.
+Will use your suggestion in V2.
 
 
---Y8wJvSsTAszRr9tX
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> 
+> > +    description: Reference clocking architechture
+> > +    enum:
+> > +      - common-clk        # Common Reference Clock (provided by RC side)
+> 
+> Can we use 'common-clk-host' so that it is explicit that the clock is coming
+> from the host side?
 
-Hi!
+Sure.
 
-> > > > Is it intended to be used as a 4x3 matrix, or is this just an inter=
-nal
-> > > > wiring detail, and should it be exposed as 12 individual LEDs inste=
-ad?
-> > >=20
-> > > The 4=C3=973 matrix is a real and fundamental aspect of the LP5812=E2=
-=80=99s operation.
-> > > It is not just an internal wiring detail.
-> > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 =
-output
-> > > pins control 12 LED dots individually through scanning. Each pin incl=
-udes
-> > > both high-side and low-side drive circuits, meaning matrix multiplexi=
-ng is
-> > > required for proper operation =E2=80=94 it cannot be treated as 12 co=
-mpletely
-> > > independent LEDs.
-> >=20
-> > Scanning is really a detail.
-> >=20
-> > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
-> >=20
-> > If this is used as a power LED, SD activity LED, capslock and numlock
-> > ... placed randomly all around the device, then it goes LED subsystem.
->=20
-> The LP5812 is used for LED status indication in devices like smart speake=
-rs,
-> wearables, and routers, not as a structured rectangular display.
+I take it that you prefer 'common-clk-host' over 'common-clk-rc' ?
 
-Well, IIRC it also supports automated animations, and that does not
-make sense on LED indicators. So... what device do _you_ have and how
-exactly is it used there?
 
-Best regards,
-								Pavel
---=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, and Musk!
-
---Y8wJvSsTAszRr9tX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaBHN+wAKCRAw5/Bqldv6
-8vbsAJ4yWVOLyewaLjKCy5K42zX2pr7vhQCfRwpEm2TX7CnFns8+ygH5cB6Wa/I=
-=tWxB
------END PGP SIGNATURE-----
-
---Y8wJvSsTAszRr9tX--
+Kind regards,
+Niklas
 
