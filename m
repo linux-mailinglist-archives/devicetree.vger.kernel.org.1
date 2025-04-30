@@ -1,100 +1,292 @@
-Return-Path: <devicetree+bounces-172423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351B2AA4BEE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:54:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A022FAA4C02
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 14:56:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 128BF9C3C2D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:54:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20D9B1C20D54
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45DF52609C5;
-	Wed, 30 Apr 2025 12:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9BC25E44F;
+	Wed, 30 Apr 2025 12:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U0V/lgCy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41CC25FA05;
-	Wed, 30 Apr 2025 12:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1C0258CE6;
+	Wed, 30 Apr 2025 12:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746017420; cv=none; b=AJseDSaTPoGKcQLZcKsluYMFrrGiRkYTPtRyw2Vd7YukWXGWx8d4HTr5p2s575IllRy0x1tBwG/HDmrhLYH7p6bMYjvowHNSzGzfBHIeGyhqslmgj4jnpzJD8JPdrzxdiQLWnTd2OMtFyVGP+vc2Byq4osjiuVJTSSNSe1ZIPAE=
+	t=1746017463; cv=none; b=DBgu2rh8fDsO0e17oxsaMMTNazYD3kKBYD0SP98AwGfR6i4hfzP/RZipG5JfZ7Y60O+33KvRw3OAy6dTHHzxTUgHeFG3v1Ra4aOufzDnpY9UXZ7iyRAbXXabqP8pniXAFDjgrrFBRsoQrGK5QYxf7PhHiIU+7GpQZRYctSHE2Dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746017420; c=relaxed/simple;
-	bh=H+F+iZGjlbbIkM3rFYJt2hSRzsOvxDRzjzpcnjl8hbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GpIw5OSap6MyWq9vUJklvIA8XRWWGQPP6ByD145/8yE8KW9km9nbuIsKDmqJVRkJywhhIH7BA5vO4+klI1vcJX/WvuOeg+ptIAfGbQEKO0qH1kkeq/VFGjnTgWKkYl8oUMbcYcccYvzm1GUD1UOvy+9NPFb36mrzUsUKh+atJug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: HnMxuA0aTM2oYf6FPnpYDQ==
-X-CSE-MsgGUID: jHfQWFxjRDGExErvaiCd/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11419"; a="59050290"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
-   d="scan'208";a="59050290"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 05:50:19 -0700
-X-CSE-ConnectionGUID: VzAt0l1ET1yJCUQ0lnI/ug==
-X-CSE-MsgGUID: Vsmx34vWTGOiG6B4Gi4dVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
-   d="scan'208";a="135054432"
-Received: from smile.fi.intel.com ([10.237.72.55])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 05:50:15 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uA6tA-00000001d25-0NSD;
-	Wed, 30 Apr 2025 15:50:12 +0300
-Date: Wed, 30 Apr 2025 15:50:11 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/5] iio: adc: ad7606: add offset and phase calibration
- support
-Message-ID: <aBIcgxcUHXRpd882@smile.fi.intel.com>
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-3-eb4d4821b172@baylibre.com>
+	s=arc-20240116; t=1746017463; c=relaxed/simple;
+	bh=aOpF7LdSFVl4udDgXJTo/4c5XKeqCEy7aotPgpNQmvk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gVb6muI9iZmUBL7DeoJYRz3SjfMwVUZlMSmm6PqqJnSa3NU+r28kduYYpw5a4y8wevrJzKLiuzvb60ADseYVuZS0jncKs6h9WWL6qqf71sKCvHU4fCYF9i8FS68H3ShPi1t6m53Ar0EL7msa8Yf2vFgMJYaZE9PsazP3RRN4HQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U0V/lgCy; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1E3DD43A0B;
+	Wed, 30 Apr 2025 12:50:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746017454;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Hj4Fd+UF7XJ/NHAkeOSU1Q67QFtWACPDre02lM84o9A=;
+	b=U0V/lgCy9/C6/HwiavOP+kRV5n1Oj+/k2ATkwlM/J4urq73RnIEc1rSCVNW7VBtBWS0yfS
+	FomyBDDFP1IdAxQEVSvwKVRIakuClYphKH3hV0L2WBYcOHScR4y5bPEdk0tBo4IP/Z/crQ
+	qjVqcWvFx4nEJM9sMF/mf1cb/iDn2gqR5KimhDX+vIyxg3t4CGYRbp9mWJvJ87/1w+YNLe
+	U7/+doeGTYdpgiyHvs7euog5huW8n09F9FEHbGXfIMLbhkunLv7NNKfmPjuONgnOotDb6o
+	3ASvFy2F3tj0PY/FEh6uC6Uh6OLA74ZZTgjwPEvt67bEqVG7o76n9VGy72RvKw==
+Date: Wed, 30 Apr 2025 14:50:50 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Ayush Singh <ayush@beagleboard.org>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Herve Codina
+ <herve.codina@bootlin.com>, Arnd Bergmann <arnd@arndb.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
+ <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
+ feature
+Message-ID: <20250430145050.69f2e950@bootlin.com>
+In-Reply-To: <20250430124910.195368-1-herve.codina@bootlin.com>
+References: <20250430124910.195368-1-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250429-wip-bl-ad7606-calibration-v1-3-eb4d4821b172@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieeijeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvdetjeeitdeuhedvtdehleeiueevfeduiedthedtfeeiudffheegleehieegveetnecuffhomhgrihhnpehlphgtrdgvvhgvnhhtshdpkhgvrhhnvghlrdhorhhgpdhgihhthhhusgdrtghomhdpsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudeipdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhin
+ hhugidqmheikehkrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Tue, Apr 29, 2025 at 03:06:47PM +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
+Hi all,
+
+Sorry, this should be a v2 series.
+
+I resend as v2.
+
+Please ighnore this one.
+
+Best regards,
+Hervé
+
+
+On Wed, 30 Apr 2025 14:48:59 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
+
+> Hi,
 > 
-> Add support for offset and phase calibration, only for
-> devices that support software mode, that are:
+> At Linux Plumbers Conference 2024, we (me and Luca Ceresolli) talked
+> about issues we have with runtime hotplug on non-discoverable busses
+> with device tree overlays [1].
 > 
-> ad7606b
-> ad7606c-16
-> ad7606c-18
+> On our system, a base board has a connector and addon boards can be
+> connected to this connector. Both boards are described using device
+> tree. The base board is described by a base device tree and addon boards
+> are describe by overlays device tree. More details can be found at [2].
+> 
+> This kind of use case can be found also on:
+>   - Grove Sunlight Sensor [3]
+>   - mikroBUS [4]
+> 
+> One of the issue we were facing on was referencing resources available
+> on the base board device tree from the addon overlay device tree.
+> 
+> Using a nexus node [5] helps decoupling resources and avoid the
+> knowledge of the full base board from the overlay. Indeed, with nexus
+> node, the overlay need to know only about the nexus node itself.
+> 
+> For instance, suppose a connector where a GPIO is connected at PinA. On
+> the base board this GPIO is connected to the GPIO 12 of the SoC GPIO
+> controller.
+> 
+> The base board can describe this GPIO using a nexus node:
+>     soc_gpio: gpio-controller {
+>       #gpio-cells = <2>;
+>     };
+> 
+>     connector1: connector1 {
+>         /*
+>          * Nexus node for the GPIO available on the connector.
+>          * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
+>          * controller
+>          */
+>         #gpio-cells = <2>;
+>         gpio-map = <0 0 &soc_gpio 12 0>;
+>         gpio-map-mask = <0xf 0x0>;
+>         gpio-map-pass-thru = <0x0 0xf>;
+>     };
+> 
+> The connector pin A GPIO can be referenced using:
+>   <&connector1 0 GPIO_ACTIVE_HIGH>
+> 
+> This implies that the overlay needs to know about exact label that
+> references the connector. This label can be different on a different
+> board and so applying the overlay could failed even if it is used to
+> describe the exact same addon board. Further more, a given base board
+> can have several connectors where the exact same addon board can be
+> connected. In that case, the same overlay cannot be used on both
+> connector. Indeed, the connector labels have to be different.
+> 
+> The export-symbols node introduced by this current series solves this
+> issue.
+> 
+> The idea of export-symbols is to have something similar to the global
+> __symbols__ node but local to a specific node. Symbols listed in this
+> export-symbols are local and visible only when an overlay is applied on
+> a node having an export-symbols subnode.
+> 
+> Using export-symbols, our example becomes:
+>     soc_gpio: gpio-controller {
+>       #gpio-cells = <2>;
+>     };
+> 
+>     connector1: connector1 {
+>         /*
+>          * Nexus node for the GPIO available on the connector.
+>          * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
+>          * controller
+>          */
+>         #gpio-cells = <2>;
+>         gpio-map = <0 0 &soc_gpio 12 0>;
+>         gpio-map-mask = <0xf 0x0>;
+>         gpio-map-pass-thru = <0x0 0xf>;
+> 
+>         export-symbols {
+>           connector = <&connector1>;
+>         };
+>     };
+> 
+> With that export-symbols node, an overlay applied on connector1 node can
+> have the symbol named 'connector' resolved to connector1. Indeed, the
+> export-symbols node available at connector1 node is used when the
+> overlay is applied. If the overlay has an unresolved 'connector' symbol,
+> it will be resolved to connector1 thanks to export-symbols.
+> 
+> Our overlay using the nexus node can contains:
+>    node {
+>       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
+>    };
+> It used the GPIO 0 from the connector it is applied on.
+> 
+> A board with two connectors can be described with:
+>     connector1: connector1 {
+>         ...
+>         export-symbols {
+>           connector = <&connector1>;
+>         };
+>     };
+> 
+>     connector2: connector2 {
+>         ...
+>         export-symbols {
+>           connector = <&connector2>;
+>         };
+>     };
+> 
+> In that case, the same overlay with unresolved 'connector' symbol can be
+> applied on both connectors and the correct symbol resolution (connector1
+> or connector2) will be done.
+> 
+> This current series add support for the export-symbols node feature:
+>   - Patch 1 describes the export-symbols binding
+>   - Patches 2 to 6 prepare and add the support for the export-symbols
+>     feature
+>   - Patch 7 adds an unittest for the export-symbols feature
+> 
+> Compare to the previous iteration, the series has been rebased on
+> top of v6.15-rc1 and an compilation issue in unittest has been fixed.
+> 
+> Also it is worth noting the work already done by Ayush Singh related to
+> this topic on other repositories:
+>   - Add export-symbols in device-tree specification
+>       [PATCH v3] Add new `export-symbols` node [6]
+> 
+>   - Support for export-symbols in the device tree compiler
+>       [PATCH 0/3] Allow specifying target node in fdtoverlay [7]
+>       [PATCH] checks: Add support for export-symbols [8]
+> 
+> Best regards,
+> Hervé
+> 
+> [1] https://lpc.events/event/18/contributions/1696/
+> [2] https://lore.kernel.org/lkml/20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com/
+> [3] https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
+> [4] https://lore.kernel.org/lkml/20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org/
+> [5] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+> [6] https://lore.kernel.org/all/20250411-export-symbols-v3-1-f59368d97063@beagleboard.org/
+> [7] https://lore.kernel.org/all/20250313-fdtoverlay-target-v1-0-dd5924e12bd3@beagleboard.org/
+> [8] https://lore.kernel.org/all/20250110-export-symbols-v1-1-b6213fcd6c82@beagleboard.org/
+> 
+> Changes v1 -> v2
+>   v1: https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
+> 
+>   - All patches
+>     Add 'Tested-by: Ayush Singh <ayush@beagleboard.org>'
+> 
+>   - Patch 1
+>     Update the 'patternProperties' regexp
+> 
+>   - Patch 2 and 4
+>     Fix conflicts due to the rebase on top of v6.15-rc1
+> 
+>   - Patch 5
+>     Fix a typo in commit log
+> 
+>   - Patch 7
+>     Fix a compilation issue detected by a kernel test robot
+> 
+> Herve Codina (7):
+>   dt-bindings: Add support for export-symbols node
+>   of: resolver: Introduce get_phandle_from_symbols_node()
+>   of: resolver: Add export_symbols in of_resolve_phandles() parameters
+>   of: resolver: Add support for the export symbols node
+>   of: overlay: Add export_symbols_name in of_overlay_fdt_apply()
+>     parameters
+>   of: overlay: Add support for the export symbols node
+>   of: unittest: Add tests for export symbols
+> 
+>  .../devicetree/bindings/export-symbols.yaml   | 43 +++++++++++
+>  drivers/misc/lan966x_pci.c                    |  3 +-
+>  drivers/of/of_kunit_helpers.c                 |  2 +-
+>  drivers/of/of_private.h                       |  2 +-
+>  drivers/of/overlay.c                          | 30 +++++++-
+>  drivers/of/resolver.c                         | 75 ++++++++++++++----
+>  drivers/of/unittest-data/Makefile             |  5 ++
+>  .../unittest-data/overlay_export_symbols.dtso | 15 ++++
+>  .../of/unittest-data/testcases_common.dtsi    |  1 +
+>  .../unittest-data/tests-export-symbols.dtsi   | 30 ++++++++
+>  drivers/of/unittest.c                         | 77 +++++++++++++++++--
+>  include/linux/of.h                            |  6 +-
+>  12 files changed, 258 insertions(+), 31 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/export-symbols.yaml
+>  create mode 100644 drivers/of/unittest-data/overlay_export_symbols.dtso
+>  create mode 100644 drivers/of/unittest-data/tests-export-symbols.dtsi
+> 
 
-...
 
-> +	if (val2 < start_ns || val2 > stop_ns)
-> +			return -EINVAL;
-
-Wrong indentation.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
