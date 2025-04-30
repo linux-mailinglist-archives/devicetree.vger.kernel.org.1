@@ -1,388 +1,171 @@
-Return-Path: <devicetree+bounces-172374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88860AA4902
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF7BAA48EF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 12:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60075188C1D0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:42:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3277418951E3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Apr 2025 10:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 194C925B669;
-	Wed, 30 Apr 2025 10:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECBC23716B;
+	Wed, 30 Apr 2025 10:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hMSsKivb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j5+fx0Jo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3493A25B662;
-	Wed, 30 Apr 2025 10:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AC813D52F
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:39:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746009572; cv=none; b=ov+woldwQuY+FsuBn1YhP874r1oP8VZMtu6a1hyjrQSblBi6n+31x39m3fLg87CVelMYZI308hOYodkwxDYv4VtcRExHqs2sGZ1urW4niwL2wpWLjgdpQZYWa5RKf92Oi8PXmrKesDCGbcMr9fdx1X1Jq2OpbP63urx864WWA74=
+	t=1746009545; cv=none; b=bfSDSL3gD8vg0ysfORrDKBKG8Mrsf20qGtaoCCSyt240gCwwm0dDigk/8KIqt7w6QIUcYvDa9YK8Sk+hgsUYGf9YWU1wgZh8AUOcHm7xAR+vOGj/tYjR0698fnIc4t5b1t9hHZc8csuq/JrB8g6P43Y+7mdZQ3DsINbfom4mxVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746009572; c=relaxed/simple;
-	bh=Dd4B2wW9qHxqEaql0wCX5ot188dyL6a5+KJ5LweDfNU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=BmuHaJjH+kkjNxc8omvp4QeIwP950mo3LVHmvfJRdmOWDh2rPYwDVCC6WQuxOQnF5tu1mGOaxCjZZDXeZT4fSfufGMopoLObzuPaMZ9OQbgTACv4qX9SFuMaRU4jcet6tOFlJ4bGia3UJRu5RrOEUoRF3Cg9GEgvHbCv4tTH5Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hMSsKivb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U98r5R029556;
-	Wed, 30 Apr 2025 10:39:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	s=arc-20240116; t=1746009545; c=relaxed/simple;
+	bh=QYmTOn6Mr4dhC9mWN8gmhtBbHfTTI51Y1NKpL1+fT5k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cAE84vzhi9oM6Rj8IBe+QOhknQ0gZwWWlqVMLO9ZNk7fAsnw1A1zmgeOSa/GFp6DIlgVp4jPo2Oxie83mqbw5I4PNV0sthQKtZwQaU4TPXhdy/UNmlwgsbKILJ11aRMLmvh+IWjQg/jutQ03U3nRukW+k9h4hqQxGz7u02aUwks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j5+fx0Jo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53U9Vs9M010436
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:39:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sjsQitocE+OEU7BDeevixf2f6ZN9kdXcorFsDlKHiP8=; b=hMSsKivbFxhAmVTf
-	EV6qt5OfSfa9S8o7vlrQDSxcyII87TOZYrF6n5IrS3a7eJGxdzJCD57xcOCXuu54
-	OO1tFaIQ98Bo7de14XF8yr9P4xuSmDPY+9MHjXhqs+2Tj/1lxvWKEx8NzxT2w0uK
-	L2X+Bo+oZq/5IOkfAeVkhrl5v7Bwqql7FUma84viRC7nDjc7Gk9PA04V1Dhm7guc
-	ZdxxnBQ3k3cOB+TLUzGNp8k3iqAoQ0xWnHtoEO5zOuKuqPE86ySgaNWkUYoZVRWC
-	UrdsBZUYRQr/7aLtb4QE2SNyepOCfToQEglMRd/Uf2+S89QUR2jJ/bAAEept69au
-	KH1nFw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u7st0g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:39:26 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53UAdQkj001078
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Apr 2025 10:39:26 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 30 Apr 2025 03:39:21 -0700
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Wed, 30 Apr 2025 16:08:56 +0530
-Subject: [PATCH v2 2/4] dt-bindings: clock: Add Qualcomm SC8180X Camera
- clock controller
+	tTiniXOe50bWwoWCn68Sn+g32IeeFnNdfbw7A7ZGjr4=; b=j5+fx0Jo0PfTfwae
+	r4fJXEQZm7/q/1U8/tiHRK7oFGTDIbCLsIw4diFG3EPx/nPJw6RosXpIEO1kFDvj
+	dNOPul2XKiH2+UXo30R/a0AuwlkV6R/JzWXqT+V3zIBSdyvCd34cMA6QF/EEdBpU
+	BJm7a0KRj5Y+wOPgmSMQNcEY6KnDHQOp6SN+0s18tvDmBYDcZi86Yp0FxldsgvoX
+	iCt6JXcqZr+I4cWX21ySOxWsN6F6EFD0kSNhkBK8V1HevDPxdu2UvSeBD6TCqkzK
+	e/4n7BcReNGPwxYPBUY3oURRuG2++kP0IA7afSu1nW4xwKJtdMazGUGoOnIxh08A
+	wfRiOQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6uass5a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 10:39:02 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f0c76e490cso16408566d6.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 03:39:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746009541; x=1746614341;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tTiniXOe50bWwoWCn68Sn+g32IeeFnNdfbw7A7ZGjr4=;
+        b=OGMIhqkagg8boDm2/pQbLKrBoIbI5M94AHEzfQxsWDyaLEW+G33Yye7iz+fjmJ4Q6o
+         LJKGHcYl6VJvhaVI4sKf8fjNLwVB50Zj3NyJKELeM6T4lQYgXDIIILG5ZcVCSdZaQ5S4
+         JFV5+X45ymBuEsEK0k0fG/ZGZdQK+wojd2EF5yjzWvtmKZKus3RbmH75NPixhCrc8GJQ
+         AtllYxp4vJFe3Nj/KubZXMnFLYYXwvroIygWbLZkBcc8GfM/oIrazBgarMNzfFo7uAHp
+         ml4mPCiXmeF86IeFmIdvrDg60M5IY85btZ2axNyqfZY1NhIgahsVklW2vjt3xAStCz7m
+         rJPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKhhhPNxbsxG2i6jiCTCT77kZHnYYStOn1QBX9zYAiQW/MQBrFIjTD+tTAbJzOOYiSgck6MFiI3EH9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPCSCR/PiR52m6oS8StjMX3LgIvwOJsdDSfrgswIRRH9v6flJq
+	Xg0piiyvUGsJ6+LwQyGuyEgqifJZKWGWlA5YsJFrI9PYYel2FRc7s9llXOVlQ1dp2pS/Xxkhcyu
+	1LCAyq2SCmphCWw1uq/IgkfZd9H0iJzEDiSWRqu2BiA5kan9kBuRuJ7zEtCvl
+X-Gm-Gg: ASbGncus7ZI1K7LaBXG1xljJBOaCNyEbv6GewcG3Z/4OllzhivD0lJyVRDd2J6QuRPM
+	jm7suKnNznE2lssai7IUw5Ls07/hiRogS9WBtavTIGPXhPIaRUQsZbinhbExtmfLSH4rwU2BTUO
+	Tj6Lnpm6n02PDl9nmiT6zs1YhfMtgqLRi8AL3vmJ0MwOtARAcHPCesfcbjVPotoJXtuMlzVqYn7
+	qMv/pQpCPUQXxrMP5aTZWp76QB0Fs+9fg5BtTmqYhHt1vk8xZLEf9O0IUXWtSPYbsvRd4CoiCzf
+	KtxZ/r++bjUvhHa4G/Gz51v5eQ5syFVLxpfoRc6CUDdo/TnKEgH13IptijsJSInSY7Q=
+X-Received: by 2002:a05:6214:3012:b0:6f0:e2d4:226e with SMTP id 6a1803df08f44-6f4fcf8da52mr14601296d6.8.1746009541615;
+        Wed, 30 Apr 2025 03:39:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZlDZ7fgacYzToVTLAIqF1SbHulHpm3F3MMH+wjGvrRzv5uoIFNvo0UB+Ri+k9t28tLdOxCA==
+X-Received: by 2002:a05:6214:3012:b0:6f0:e2d4:226e with SMTP id 6a1803df08f44-6f4fcf8da52mr14601096d6.8.1746009541285;
+        Wed, 30 Apr 2025 03:39:01 -0700 (PDT)
+Received: from [192.168.65.132] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f7035462c2sm8439702a12.58.2025.04.30.03.38.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Apr 2025 03:39:00 -0700 (PDT)
+Message-ID: <f1fcf9fb-3be2-4097-a372-a76bfba6043e@oss.qualcomm.com>
+Date: Wed, 30 Apr 2025 12:38:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250430-sc8180x-camcc-support-v2-2-6bbb514f467c@quicinc.com>
-References: <20250430-sc8180x-camcc-support-v2-0-6bbb514f467c@quicinc.com>
-In-Reply-To: <20250430-sc8180x-camcc-support-v2-0-6bbb514f467c@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh
- Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Ldc86ifi c=1 sm=1 tr=0 ts=6811fdde cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=RHnLDJrYhVebvSCuch4A:9
- a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: JLYxvEDXLo4HiqIsc9A_732soC5PEVZo
-X-Proofpoint-ORIG-GUID: JLYxvEDXLo4HiqIsc9A_732soC5PEVZo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA3NSBTYWx0ZWRfX/BW3z60DVeRi 6fTKJ1R1rhiaD0FlF6z5VEN4m4kAUXy48Xu/npZurGZqYeTgjEEKshyxYgIhAELl+KflYVgMXlr x//H6wtNyBfDbjzaEcMRdCvBhZU8eeQplJD1Gh9mx+rxNWYZ3w1wTC+QgrcewKiqcrr14LRzauH
- /MUt6ZbJq3UT6BWb1JzLxwjK7hLVQQMjWKPlBiDrcdCGzBUyjNpSQqx7CtR2nVYCcFtM2soB0Z+ UQQ8G9O/DS5HX9sBbtndwSeVq2v6rH3CKx8aVscvLDzg3j1lUnRPilEdv8WHGyPa2o3Rflms4qd iq6ZO8Q9GKqfe4AxmvWgdKpM1NqaEWEZqkHeUFzcahyHsPkddAJxkWBjPzj5QEuBEQGvJo4YHYB
- DjQGexLbr2sglrb8Axackuxk0HusbXqdjSP1yxd2bEbgMZPRTHv5Q54K0btFFLeVnBKy9QUx
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jie Zhang <quic_jiezh@quicinc.com>
+References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
+ <20250228-a623-gpu-support-v2-5-aea654ecc1d3@quicinc.com>
+ <e22daaae-57fc-4523-b594-87d202d255f3@oss.qualcomm.com>
+ <aa8ebd50-683b-4043-9494-5675a2d9a01e@quicinc.com>
+ <41df5398-79f6-484a-8ad3-f3488eb1b71c@oss.qualcomm.com>
+ <hpfqpvkex3dtj6ieosce4phukodnoidh55vxpujyekoehhotqn@l434nae5gzdi>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <hpfqpvkex3dtj6ieosce4phukodnoidh55vxpujyekoehhotqn@l434nae5gzdi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Po_uG-AVZAOS0IESXmtkPG1YKZ2KpfJW
+X-Authority-Analysis: v=2.4 cv=KtlN2XWN c=1 sm=1 tr=0 ts=6811fdc6 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=Y1ZdfsrSitFJjnkYTe0A:9 a=QEXdDO2ut3YA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Po_uG-AVZAOS0IESXmtkPG1YKZ2KpfJW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDMwMDA3NCBTYWx0ZWRfX1ytYFkFNP0Tv qfwAu1J96+PL+XksUb08xOShwnrCW8lnK2Ng00HfkcmepHTeFv42oKgE4b9VRpOUGS7mDOdAw8i 1vL5zCB5kiS+MsTQAMnwsn6QmgSYme2BnLkDF50QSZQMdT2pQAs49Heijap4xsVCIntsrwWfDIP
+ 71y3ALSDHsQce7XGhLt42GYmip96Ioz+BdAYmrbx6vwwgDH3yX2ZbFnsvlzaCr5ORIehCCxjih4 xg+irGxLC/C2xpsNLT8oOqCziMsXOEp4t229IJN8CUicOykqT+6Lv2DrBi3WIc5PQfjGO+yCUp9 YWToc8e+d35dnVis8umhox0tUvk+0WnA+nr3n9s9oG/iQmZirmPezNAbgVXeFPkOlqR5IjwEtse
+ mzrY2/3+PJ/p2gryIq2WUZWPyFkzyWryfAA1kkF7HJFXnjAQOASlL1NSLikxVaUkR3+QRJEV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-04-30_03,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015 spamscore=0
- bulkscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 suspectscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504300075
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=736 spamscore=0
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504300074
 
-Add device tree bindings for the camera clock controller on
-Qualcomm SC8180X platform.
+On 4/29/25 2:17 PM, Dmitry Baryshkov wrote:
+> On Mon, Apr 28, 2025 at 11:19:32PM +0200, Konrad Dybcio wrote:
+>> On 4/28/25 12:44 PM, Akhil P Oommen wrote:
+>>> On 4/14/2025 4:31 PM, Konrad Dybcio wrote:
+>>>> On 2/27/25 9:07 PM, Akhil P Oommen wrote:
+>>>>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>
+>>>>> Add gpu and gmu nodes for qcs8300 chipset.
+>>>>>
+>>>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>
+>>>>> +		gmu: gmu@3d6a000 {
+>>>>> +			compatible = "qcom,adreno-gmu-623.0", "qcom,adreno-gmu";
+>>>>> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
+>>>>
+>>>> size = 0x26000 so that it doesn't leak into GPU_CC
+>>>
+>>> We dump GPUCC regs into snapshot!
+>>
+>> Right, that's bad.. the dt heuristics are such that each region
+>> is mapped by a single device that it belongs to, with some rare
+>> exceptions..
+> 
+> It has been like this for most (all?) GMU / GPUCC generations.
 
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
- .../bindings/clock/qcom,sc8180x-camcc.yaml         |  67 ++++++++
- include/dt-bindings/clock/qcom,sc8180x-camcc.h     | 181 +++++++++++++++++++++
- 2 files changed, 248 insertions(+)
+Eeeeh fine, let's keep it here and fix it the next time (tm)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..18b1a4f9d1d845ce7fcae50361096d3d10ef4d2b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sc8180x-camcc.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sc8180x-camcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Camera Clock & Reset Controller on SC8180X
-+
-+maintainers:
-+  - Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-+
-+description: |
-+  Qualcomm camera clock control module provides the clocks, resets and
-+  power domains on SC8180X.
-+
-+  See also: include/dt-bindings/clock/qcom,sc8180x-camcc.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sc8180x-camcc
-+
-+  clocks:
-+    items:
-+      - description: Camera AHB clock from GCC
-+      - description: Board XO source
-+      - description: Sleep clock source
-+
-+  power-domains:
-+    maxItems: 1
-+    description:
-+      A phandle and PM domain specifier for the MMCX power domain.
-+
-+  required-opps:
-+    maxItems: 1
-+    description:
-+      A phandle to an OPP node describing required MMCX performance point.
-+
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
-+required:
-+  - compatible
-+  - clocks
-+  - power-domains
-+  - required-opps
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sc8180x.h>
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+    clock-controller@ad00000 {
-+      compatible = "qcom,sc8180x-camcc";
-+      reg = <0x0ad00000 0x20000>;
-+      clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK>,
-+               <&sleep_clk>;
-+      power-domains = <&rpmhpd SC8180X_MMCX>;
-+      required-opps = <&rpmhpd_opp_low_svs>;
-+
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,sc8180x-camcc.h b/include/dt-bindings/clock/qcom,sc8180x-camcc.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e57b80f65e82518247bac5a7d73d1218df8bd4e
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sc8180x-camcc.h
-@@ -0,0 +1,181 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SC8180X_H
-+#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SC8180X_H
-+
-+/* CAM_CC clocks */
-+#define CAM_CC_BPS_AHB_CLK					0
-+#define CAM_CC_BPS_AREG_CLK					1
-+#define CAM_CC_BPS_AXI_CLK					2
-+#define CAM_CC_BPS_CLK						3
-+#define CAM_CC_BPS_CLK_SRC					4
-+#define CAM_CC_CAMNOC_AXI_CLK					5
-+#define CAM_CC_CAMNOC_AXI_CLK_SRC				6
-+#define CAM_CC_CAMNOC_DCD_XO_CLK				7
-+#define CAM_CC_CCI_0_CLK					8
-+#define CAM_CC_CCI_0_CLK_SRC					9
-+#define CAM_CC_CCI_1_CLK					10
-+#define CAM_CC_CCI_1_CLK_SRC					11
-+#define CAM_CC_CCI_2_CLK					12
-+#define CAM_CC_CCI_2_CLK_SRC					13
-+#define CAM_CC_CCI_3_CLK					14
-+#define CAM_CC_CCI_3_CLK_SRC					15
-+#define CAM_CC_CORE_AHB_CLK					16
-+#define CAM_CC_CPAS_AHB_CLK					17
-+#define CAM_CC_CPHY_RX_CLK_SRC					18
-+#define CAM_CC_CSI0PHYTIMER_CLK					19
-+#define CAM_CC_CSI0PHYTIMER_CLK_SRC				20
-+#define CAM_CC_CSI1PHYTIMER_CLK					21
-+#define CAM_CC_CSI1PHYTIMER_CLK_SRC				22
-+#define CAM_CC_CSI2PHYTIMER_CLK					23
-+#define CAM_CC_CSI2PHYTIMER_CLK_SRC				24
-+#define CAM_CC_CSI3PHYTIMER_CLK					25
-+#define CAM_CC_CSI3PHYTIMER_CLK_SRC				26
-+#define CAM_CC_CSIPHY0_CLK					27
-+#define CAM_CC_CSIPHY1_CLK					28
-+#define CAM_CC_CSIPHY2_CLK					29
-+#define CAM_CC_CSIPHY3_CLK					30
-+#define CAM_CC_FAST_AHB_CLK_SRC					31
-+#define CAM_CC_FD_CORE_CLK					32
-+#define CAM_CC_FD_CORE_CLK_SRC					33
-+#define CAM_CC_FD_CORE_UAR_CLK					34
-+#define CAM_CC_ICP_AHB_CLK					35
-+#define CAM_CC_ICP_CLK						36
-+#define CAM_CC_ICP_CLK_SRC					37
-+#define CAM_CC_IFE_0_AXI_CLK					38
-+#define CAM_CC_IFE_0_CLK					39
-+#define CAM_CC_IFE_0_CLK_SRC					40
-+#define CAM_CC_IFE_0_CPHY_RX_CLK				41
-+#define CAM_CC_IFE_0_CSID_CLK					42
-+#define CAM_CC_IFE_0_CSID_CLK_SRC				43
-+#define CAM_CC_IFE_0_DSP_CLK					44
-+#define CAM_CC_IFE_1_AXI_CLK					45
-+#define CAM_CC_IFE_1_CLK					46
-+#define CAM_CC_IFE_1_CLK_SRC					47
-+#define CAM_CC_IFE_1_CPHY_RX_CLK				48
-+#define CAM_CC_IFE_1_CSID_CLK					49
-+#define CAM_CC_IFE_1_CSID_CLK_SRC				50
-+#define CAM_CC_IFE_1_DSP_CLK					51
-+#define CAM_CC_IFE_2_AXI_CLK					52
-+#define CAM_CC_IFE_2_CLK					53
-+#define CAM_CC_IFE_2_CLK_SRC					54
-+#define CAM_CC_IFE_2_CPHY_RX_CLK				55
-+#define CAM_CC_IFE_2_CSID_CLK					56
-+#define CAM_CC_IFE_2_CSID_CLK_SRC				57
-+#define CAM_CC_IFE_2_DSP_CLK					58
-+#define CAM_CC_IFE_3_AXI_CLK					59
-+#define CAM_CC_IFE_3_CLK					60
-+#define CAM_CC_IFE_3_CLK_SRC					61
-+#define CAM_CC_IFE_3_CPHY_RX_CLK				62
-+#define CAM_CC_IFE_3_CSID_CLK					63
-+#define CAM_CC_IFE_3_CSID_CLK_SRC				64
-+#define CAM_CC_IFE_3_DSP_CLK					65
-+#define CAM_CC_IFE_LITE_0_CLK					66
-+#define CAM_CC_IFE_LITE_0_CLK_SRC				67
-+#define CAM_CC_IFE_LITE_0_CPHY_RX_CLK				68
-+#define CAM_CC_IFE_LITE_0_CSID_CLK				69
-+#define CAM_CC_IFE_LITE_0_CSID_CLK_SRC				70
-+#define CAM_CC_IFE_LITE_1_CLK					71
-+#define CAM_CC_IFE_LITE_1_CLK_SRC				72
-+#define CAM_CC_IFE_LITE_1_CPHY_RX_CLK				73
-+#define CAM_CC_IFE_LITE_1_CSID_CLK				74
-+#define CAM_CC_IFE_LITE_1_CSID_CLK_SRC				75
-+#define CAM_CC_IFE_LITE_2_CLK					76
-+#define CAM_CC_IFE_LITE_2_CLK_SRC				77
-+#define CAM_CC_IFE_LITE_2_CPHY_RX_CLK				78
-+#define CAM_CC_IFE_LITE_2_CSID_CLK				79
-+#define CAM_CC_IFE_LITE_2_CSID_CLK_SRC				80
-+#define CAM_CC_IFE_LITE_3_CLK					81
-+#define CAM_CC_IFE_LITE_3_CLK_SRC				82
-+#define CAM_CC_IFE_LITE_3_CPHY_RX_CLK				83
-+#define CAM_CC_IFE_LITE_3_CSID_CLK				84
-+#define CAM_CC_IFE_LITE_3_CSID_CLK_SRC				85
-+#define CAM_CC_IPE_0_AHB_CLK					86
-+#define CAM_CC_IPE_0_AREG_CLK					87
-+#define CAM_CC_IPE_0_AXI_CLK					88
-+#define CAM_CC_IPE_0_CLK					89
-+#define CAM_CC_IPE_0_CLK_SRC					90
-+#define CAM_CC_IPE_1_AHB_CLK					91
-+#define CAM_CC_IPE_1_AREG_CLK					92
-+#define CAM_CC_IPE_1_AXI_CLK					93
-+#define CAM_CC_IPE_1_CLK					94
-+#define CAM_CC_JPEG_CLK						95
-+#define CAM_CC_JPEG_CLK_SRC					96
-+#define CAM_CC_LRME_CLK						97
-+#define CAM_CC_LRME_CLK_SRC					98
-+#define CAM_CC_MCLK0_CLK					99
-+#define CAM_CC_MCLK0_CLK_SRC					100
-+#define CAM_CC_MCLK1_CLK					101
-+#define CAM_CC_MCLK1_CLK_SRC					102
-+#define CAM_CC_MCLK2_CLK					103
-+#define CAM_CC_MCLK2_CLK_SRC					104
-+#define CAM_CC_MCLK3_CLK					105
-+#define CAM_CC_MCLK3_CLK_SRC					106
-+#define CAM_CC_MCLK4_CLK					107
-+#define CAM_CC_MCLK4_CLK_SRC					108
-+#define CAM_CC_MCLK5_CLK					109
-+#define CAM_CC_MCLK5_CLK_SRC					110
-+#define CAM_CC_MCLK6_CLK					111
-+#define CAM_CC_MCLK6_CLK_SRC					112
-+#define CAM_CC_MCLK7_CLK					113
-+#define CAM_CC_MCLK7_CLK_SRC					114
-+#define CAM_CC_PLL0						115
-+#define CAM_CC_PLL0_OUT_EVEN					116
-+#define CAM_CC_PLL0_OUT_ODD					117
-+#define CAM_CC_PLL1						118
-+#define CAM_CC_PLL2						119
-+#define CAM_CC_PLL2_OUT_MAIN					120
-+#define CAM_CC_PLL3						121
-+#define CAM_CC_PLL4						122
-+#define CAM_CC_PLL5						123
-+#define CAM_CC_PLL6						124
-+#define CAM_CC_SLOW_AHB_CLK_SRC					125
-+#define CAM_CC_XO_CLK_SRC					126
-+
-+
-+/* CAM_CC power domains */
-+#define BPS_GDSC						0
-+#define IFE_0_GDSC						1
-+#define IFE_1_GDSC						2
-+#define IFE_2_GDSC						3
-+#define IFE_3_GDSC						4
-+#define IPE_0_GDSC						5
-+#define IPE_1_GDSC						6
-+#define TITAN_TOP_GDSC						7
-+
-+/* CAM_CC resets */
-+#define CAM_CC_BPS_BCR						0
-+#define CAM_CC_CAMNOC_BCR					1
-+#define CAM_CC_CCI_BCR						2
-+#define CAM_CC_CPAS_BCR						3
-+#define CAM_CC_CSI0PHY_BCR					4
-+#define CAM_CC_CSI1PHY_BCR					5
-+#define CAM_CC_CSI2PHY_BCR					6
-+#define CAM_CC_CSI3PHY_BCR					7
-+#define CAM_CC_FD_BCR						8
-+#define CAM_CC_ICP_BCR						9
-+#define CAM_CC_IFE_0_BCR					10
-+#define CAM_CC_IFE_1_BCR					11
-+#define CAM_CC_IFE_2_BCR					12
-+#define CAM_CC_IFE_3_BCR					13
-+#define CAM_CC_IFE_LITE_0_BCR					14
-+#define CAM_CC_IFE_LITE_1_BCR					15
-+#define CAM_CC_IFE_LITE_2_BCR					16
-+#define CAM_CC_IFE_LITE_3_BCR					17
-+#define CAM_CC_IPE_0_BCR					18
-+#define CAM_CC_IPE_1_BCR					19
-+#define CAM_CC_JPEG_BCR						20
-+#define CAM_CC_LRME_BCR						21
-+#define CAM_CC_MCLK0_BCR					22
-+#define CAM_CC_MCLK1_BCR					23
-+#define CAM_CC_MCLK2_BCR					24
-+#define CAM_CC_MCLK3_BCR					25
-+#define CAM_CC_MCLK4_BCR					26
-+#define CAM_CC_MCLK5_BCR					27
-+#define CAM_CC_MCLK6_BCR					28
-+#define CAM_CC_MCLK7_BCR					29
-+
-+#endif
-
--- 
-2.25.1
-
+Konrad
 
