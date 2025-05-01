@@ -1,92 +1,126 @@
-Return-Path: <devicetree+bounces-172685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB085AA5E08
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:57:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC072AA5E0C
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CC603BCB61
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 11:57:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A95E16A6F7
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32D62248BE;
-	Thu,  1 May 2025 11:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62462221298;
+	Thu,  1 May 2025 12:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfPs0BOF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CKWBCak/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA7A21C9F0;
-	Thu,  1 May 2025 11:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECF12222AB;
+	Thu,  1 May 2025 12:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746100649; cv=none; b=BtlK9HMIv8scSMqD0G7FB4KiNjaESwbRaFVxIqdqTOEADAh7fNisyd2KaTX5JQsQKmBEq+UDYoMBGntcmOhkLjALT4u+KzrlUo+ww6RgSaA8mBhgXhAHzUiW7QmdCQ7NJbFQGz+HacSr2EME++lxag1VBBaZ6aKM8GrnZzV+i4Y=
+	t=1746100807; cv=none; b=d5eOM493hlD1btk3+FqdJyLtIfpOTT/FrvYDmj+MZte5yX+2p6wJgTT9mjQYNm7zR7k2KFgb/L4EwaRfE4b2V7y1/qMNMiISIrDka/4iN+kwfge0ztBymw1/0ABOKZpES2Wp64KH7ymvYp5OWKonm2B5DPlHa7woOizhTRe2YBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746100649; c=relaxed/simple;
-	bh=AaFZYNZaVoJdnT4CJkDiw+CwenfpvYlqV7aZGMXp690=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q+STQufqlXht4arnyNDcvUC/+zqBGM2mveKK6wc06sVmEoX3WuD8qMaHX8JkelcGIlD8yx1jRngbYqWDmCeUi+gofRxvbqOYDDALVrgfk/zmxP5EiJu16s2Ddsb1lzQyHctKPECHGUIT5mODcmNOc0A4BWytBqOr3BFh66sE9W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfPs0BOF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8558AC4CEE3;
-	Thu,  1 May 2025 11:57:28 +0000 (UTC)
+	s=arc-20240116; t=1746100807; c=relaxed/simple;
+	bh=79heGCzPjTOknTOl0OiAyuEcNPG7UCEql42ZUQm/EXI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hICIhyLLQ4J9su4S8pg1Bp3SUvUnVTeoaHUhQSVAc59+0knmP/i7aAuXGqF1viuizi4rH4rI19+/MSeb9/kQhjpWi+DSIRXx+E5EpVsvyy2xGkiQMwc4tUuIdhugFFVGKSEXxw6HnML3IVTnqxBLP6zt7ZvZG9TL05jVku0hAhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CKWBCak/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2440C4CEE3;
+	Thu,  1 May 2025 12:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746100649;
-	bh=AaFZYNZaVoJdnT4CJkDiw+CwenfpvYlqV7aZGMXp690=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HfPs0BOFLsZdNpTmh1FdTynzp23DXKkkIxax057Ff51k1w8vZZ+RKuJA7/JDu7Hph
-	 X4wHVGmBW2/sHPBNUDziYUc5m6jD17F2E/67GCMoqiDJJGF6L1vA6V1j/tTyt8sCi3
-	 gJjVE4wRNIMN35yYpLJF0Q0NehqftjQQ1GK8wBHSJ+RJqEaibETUTsrVE374flGRIe
-	 Ficrw/H4B/TOonZxIpIfTlGiLFpBEGh3ZbLt51fzEtCvA9hrTd73cJgAsPdh8+jZp9
-	 ZrU/YVHxyh7LRJJl0rb11iLes/8EgOHITgVbuvE7vTqzcA0BGCxU38v0S0VhJ91TfP
-	 T4C/pghSNIY/A==
-Date: Thu, 1 May 2025 13:57:26 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, jun.li@nxp.com, 
-	alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: phy: imx8mq-usb: fix
- fsl,phy-tx-vboost-level-microvolt property
-Message-ID: <20250501-jovial-sassy-rottweiler-9e416a@kuoka>
-References: <20250430094502.2723983-1-xu.yang_2@nxp.com>
+	s=k20201202; t=1746100806;
+	bh=79heGCzPjTOknTOl0OiAyuEcNPG7UCEql42ZUQm/EXI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=CKWBCak/SxECyZSRnVxOT8Mb7fgpDrnTvHy+XXo6SS69Vybi2P00MwNf1ODoy/chc
+	 kNzXqR33RWeJLmtiPwyqZtgXRNzY0/WH7FRdUAAMXTVtNI5utsBeoRS7WdGDR5/nrm
+	 PaH2MwvGuVY6P+kf6Q7MkgTeSNfxl1/d/BPvGeBdX5v6PwGaIsX8C5NL3azH71o/MR
+	 b3dL4gOEmzWauEFq/nN8MehkjYBP5zpkXsNpcJC3n7Jcan61yGmlmE5X+bSzegXW9O
+	 alF0SugPW6tASbIpvuJX0N1/mOtntgGH4LkLKv9xYSVDOVJvPuHRW/6oWx0bfmHqll
+	 FtXJkx1k/fYWQ==
+From: Lee Jones <lee@kernel.org>
+To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Liu Ying <victor.liu@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Message-Id: <174610080338.3792828.16902042195346769114.b4-ty@kernel.org>
+Date: Thu, 01 May 2025 13:00:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250430094502.2723983-1-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-39345
 
-On Wed, Apr 30, 2025 at 05:44:59PM GMT, Xu Yang wrote:
-> The ticket TKT0676370 shows the description of TX_VBOOST_LVL is wrong in
-> register PHY_CTRL3 bit[31:29].
+On Tue, 15 Apr 2025 15:49:16 +0100, Nuno Sá wrote:
+> The adp5585 MFD driver was introduced in 6.11 adding support for gpio
+> and PWM. However, the gpio part of it was already supported as part of
+> the keyboard driver:
 > 
->   011: Corresponds to a launch amplitude of 1.12 V.
->   010: Corresponds to a launch amplitude of 1.04 V.
->   000: Corresponds to a launch amplitude of 0.88 V.
+> https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
 > 
-> After updated:
+> On top of that it also overlapped with my refactoring of the above driver [1]
+> to drop usage of platform data and use FW properties instead.
 > 
->   011: Corresponds to a launch amplitude of 0.844 V.
->   100: Corresponds to a launch amplitude of 1.008 V.
->   101: Corresponds to a launch amplitude of 1.156 V.
-> 
-> This will correct it accordingly.
-> 
-> Fixes: b2e75563dc39 ("dt-bindings: phy: imx8mq-usb: add phy tuning properties")
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Jun Li <jun.li@nxp.com>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> [...]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied, thanks!
 
-Best regards,
-Krzysztof
+[01/17] dt-bindings: mfd: adp5585: ease on the required properties
+        commit: 3a2ea3e9f369bdae939bcccff67a77a6281dca74
+[02/17] mfd: adp5585: enable oscilator during probe
+        commit: 7353f196fd73b79e30ff750d93caf096ed660e1b
+[03/17] pwm: adp5585: don't control OSC_EN in the pwm driver
+        commit: 7c7e9f08a1a9bf16b6c1942c2e0cb919da855970
+[04/17] mfd: adp5585: make use of MFD_CELL_NAME()
+        commit: e72e9148d017535b39500d0aad624d0a0fcd2ce7
+[05/17] dt-bindings: mfd: adp5585: document adp5589 I/O expander
+        commit: 6da01b9d833c5efbce7c2e30dde276e0d29105f8
+[06/17] mfd: adp5585: add support for adp5589
+        commit: 382dc0327b8a9ee03c901df9b85134c68917becc
+[07/17] gpio: adp5585: add support for the ad5589 expander
+        commit: cff3cef09595001140bd29aedf33fc84998bf77c
+[08/17] pwm: adp5585: add support for adp5589
+        commit: 333b66fd3edfe18db4dc16041328a89144b73067
+[09/17] dt-bindings: mfd: adp5585: add properties for input events
+        commit: 7bdb41d7a85e1c6244da57d4dcc491df962ff3fb
+[10/17] mfd: adp5585: add support for key events
+        commit: 8814ac45c75fcce55896bc376a97b56f392925c3
+[11/17] gpio: adp5585: support gpi events
+        commit: 8f3d9b44c5c5ada312d0ef71ec0181011854a95b
+[12/17] Input: adp5585: Add Analog Devices ADP5585/89 support
+        commit: a53fc67a1e21a8507821263946b1d65687b0284f
+[13/17] Input: adp5589: remove the driver
+        commit: 216c99cf1002a42f896b54fab09823e8ba46b218
+[14/17] mfd: adp5585: support getting vdd regulator
+        commit: 63a8717f744d51ea0c8228e09db4233d48f2f9ba
+[15/17] dt-bindings: mfd: adp5585: document reset gpio
+        commit: 49c887f0547bc14eb50ba20e1c8acb7255af3b86
+[16/17] mfd: adp5585: add support for a reset pin
+        commit: 01c328823459456fb99469cc37f270f70d41fd2a
+[17/17] pwm: adp5585: make sure to include mod_devicetable.h
+        (no commit info)
+
+--
+Lee Jones [李琼斯]
 
 
