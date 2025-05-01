@@ -1,129 +1,133 @@
-Return-Path: <devicetree+bounces-172696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAFCAA5E91
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:39:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB66AA5E8F
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:38:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F18E9C251C
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:38:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AB659C258A
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B747227599;
-	Thu,  1 May 2025 12:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B07224B12;
+	Thu,  1 May 2025 12:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="O50tyarb"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zt4dSXgr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8B72253E9
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 12:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46AC22257F;
+	Thu,  1 May 2025 12:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746103126; cv=none; b=pVOtXtJHT/9XGDuCNUl73zV1573VwlWUtEGi/5kMZ+R9KF+YrJwKIVzgwdmPijJaJerXt80QdhEJYCPs74oEKIJBsypeQs3zFdYXttQsmhYZImzbDeRFueDfgyg3fjUsdBxsYbWEI15O6G5lX3vAOmTVfIoueLuAKTvE2Filz3w=
+	t=1746103119; cv=none; b=SNeXUMdgj/+Nqbf425JJl5p6fE4j8LX44yds5zMpKQ9FWeXwPdFtOxz/XlH82dnKJrWXHd6vm1AhVizhrKgCkfRK+o9ETxOsnJXK6q7hlT5p/Sc0YUqCTdgvYcz/T4MnqfERVjLzaQh8t3Pu/nTGi3z0geyNj/0CA/wkimB+Icw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746103126; c=relaxed/simple;
-	bh=4sxWwKfM9MM7i7HEgmm3EuU9czAYD4Fqqroj1jSsAKc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P33Swxqd+qE7U7Q2aSx84rm3dyR6ohCuXz3uiwVG8Xk5l5TefIA9I5JrvFOCMaHpFXe4kypbeHTn/C7bZzMaTrSlvmq1B4BAU2u4l7mr/IF4LPKWVDckUxEk8Is6Q+lGur/1R4DBWyFE+5RvBxxzdCRwgw99Csz0mszEmuSim4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=O50tyarb; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43ede096d73so4987225e9.2
-        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 05:38:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746103123; x=1746707923; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sm7fH/v8m0Z+i39l/2fi4Am/T5LmhFAbr6DYK3zAgKE=;
-        b=O50tyarbKm4Fll1hfAb+tLrCDMjkqWTQcVRKgk7+TSsC4HMRyt4ZgGVGhWExYEjYvR
-         EKYVfZuUJ6SQxoqLiy+3tzLaIJ5/fYBL8MbNwzUTd6E/eBGyvZQQ/MzXhB27dmdxZBUx
-         gu7mQm5vQ7ECFFOA4p8VY8XK20IdHMYCLXF6ZtD3kb+rHmhJsaGkBr2Z+49ERKaBWHly
-         zWTDZTrGDFwvpcTxRxEYVUQYsHherSqvj/u8eTg+D7ASJ5/FmYzaJepZPxjDT4Wq7TLn
-         OJJ/14CyoRgLKtVLb0YO5GGer2NNbDM39ylzoe1AK3l49YYvCEbW7DmuM5ii8jCHpTfP
-         AOLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746103123; x=1746707923;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sm7fH/v8m0Z+i39l/2fi4Am/T5LmhFAbr6DYK3zAgKE=;
-        b=XV7LF77VjjZL2Vrrfe+tlTsfRpTzqzpXToPkqP3tW6zXaQzzD6ROjg3LKvyVW0uRaU
-         1PbBH53wOoLsYIQcGXx1bIMn23LemkhoS0I/bYyYMEjQQdP/Djp9q71is68eS637EuHg
-         UcptKHTHyKS66cd7qIi2mNs7wA65RJaJe7ymzPi9iM/qMrvypiNgqfUYelnJC74cFBek
-         exdZWVH3a3wZFCwezBvBYBcW+9m3hmAOI4lWqg4bbAbETDYPHFl2Z1Ad33zOUMyKA1Qn
-         4U9qj7p/HjwPpwy2yYYNDMPh+jKwLuKhl56aFd6NYo6whm6NLy2LA0mC4VR5+I/hghTY
-         THUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkD7YrzDH1Q4NAIxw3nEG8yd1ctfFRQZpYG5r3ITWG+ayEjxwCT7OLo9oqegInUTqcwa2aCrajgFFg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/TV54uHiqRR2YlAf0ObX/RKHWq4hF79X9gaScOu/Qm2Sl5Y32
-	6F4DfVzLL09y0JtxBmVZB7SkwNEV1MKORBJWzuf/gK+aqm+S+cQNh5B6EirkJo4=
-X-Gm-Gg: ASbGncvYiNKwgw3VpGaXfzvLB3izxRwC/kXhvpnbMictH/uorIAkMEyvoulbJS7o3SO
-	CM/EP6QTHtQ8N1kp0KbDbJZHRJ+fCWUq5Uqj8rBMaly65qAsP/irrtufhPDZxGsMPjxWsTBvt3P
-	rB8y379NbhJzYNSuca6lnoMFTw/OfaFbr+d4OcAYIVETyAKzf6JOKOflHTE930aMDKXunxUKm3Q
-	ymp2wFDxSdUM9JvayD/T+SjSWFobQYsyvUw4h9HaW4Ogs1b+q51uX49RGtkfBPiaYTttW1j466Y
-	LDJBvU7Shu35thgehaHCaDLVTdJ2JkB+y9MgjKP/wF+poPD73lT1YryTs09uB8oCBRcrTcAQTwe
-	DXhxBISg=
-X-Google-Smtp-Source: AGHT+IH/kEW2qU0NPr09x71pmesuZI0svNhYFSmpO2QEjZI5N9EoSoHJzC02SedbPOuY7Q2caEVC+g==
-X-Received: by 2002:a05:600c:1c1c:b0:43d:54a:221c with SMTP id 5b1f17b1804b1-441b7009073mr21364735e9.18.1746103123359;
-        Thu, 01 May 2025 05:38:43 -0700 (PDT)
-Received: from archlinux (host-87-8-31-78.retail.telecomitalia.it. [87.8.31.78])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b8a286b9sm10834395e9.28.2025.05.01.05.38.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 May 2025 05:38:41 -0700 (PDT)
-Date: Thu, 1 May 2025 14:37:31 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/5] iio: adc: ad7606: add offset and phase calibration
- support
-Message-ID: <hrpkszwhww7zftp45ipbadwqmx36rrrnvdbfphj7xkbtnfegth@arou2htn22ec>
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-3-eb4d4821b172@baylibre.com>
- <aBIcgxcUHXRpd882@smile.fi.intel.com>
+	s=arc-20240116; t=1746103119; c=relaxed/simple;
+	bh=DEsKW/FV4oEiQf5g3YhqxqT0LRxti9vcUPcTum7hq1k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ik+ncQ//Q2nMeBBtbUweJR5rHKhBCIyzBDluugOty6+JxFpyj3+4/yTchIxC3WeOQ5FZDRbWkE1Xd0XIcO/ar1fAEACcVeBmVt7JT+GdsZAGOcfjrqB0gfps+rZoisw1mxd+74jmu+ZBeDTrDAhncLJEl+jDFf/mfZBy3FAt6t4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zt4dSXgr; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=TMGzIJ6a/SjyP3jq2ylC0v7lVpVlSTcN9VZFPohtskE=; b=zt4dSXgrVISFWJwXdPVT9vChf2
+	lz5BPnDLeDaKPUiNU8qeOeCi0QQVViW7CcQHmefHNLggfwmfIreADmL7bMHG9anLK5GnL6+yKufmr
+	XmSSHCMPeN5uiUjkXyAM48vyBoq4vhIc9VFYyGtcMMBkvz/aZ3BkkF2aCGciEz/wr6lD6YvFlKeuz
+	toQlnSSZ/oMWzmoM9ldc/v38QRd/zsCW0Ln9VAhapQPXI8Cz/v7P4G2k7az+LX1syCwFvEt0A+gfa
+	sR68RMdRcWlp7KTyUqCufKQ1WT0MHz8lEOK2a4kx81hJbkYZtwR8N6fIvFBDBcUU26T3I/A6PGRdF
+	ZT5qrTpA==;
+Received: from i53875bbc.versanet.de ([83.135.91.188] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uATBL-0001C8-5z; Thu, 01 May 2025 14:38:27 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH v2 02/11] clk: rockchip: introduce auxiliary GRFs
+Date: Thu, 01 May 2025 14:38:25 +0200
+Message-ID: <2240109.Mh6RI2rZIc@diego>
+In-Reply-To: <20250410-rk3576-sai-v2-2-c64608346be3@collabora.com>
+References:
+ <20250410-rk3576-sai-v2-0-c64608346be3@collabora.com>
+ <20250410-rk3576-sai-v2-2-c64608346be3@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aBIcgxcUHXRpd882@smile.fi.intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 30.04.2025 15:50, Andy Shevchenko wrote:
-> On Tue, Apr 29, 2025 at 03:06:47PM +0200, Angelo Dureghello wrote:
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Add support for offset and phase calibration, only for
-> > devices that support software mode, that are:
-> > 
-> > ad7606b
-> > ad7606c-16
-> > ad7606c-18
-> 
-> ...
-> 
-> > +	if (val2 < start_ns || val2 > stop_ns)
-> > +			return -EINVAL;
-> 
-> Wrong indentation.
->
+Hi Nicolas,
 
-code is correct, i checked it since also checkpatch claims for bad
-indentation, but i just have 1 tab after the "if".
+Am Donnerstag, 10. April 2025, 21:39:54 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Nicolas Frattaroli:
+> The MUXGRF clock branch type depends on having access to some sort of
+> GRF as a regmap to be registered. So far, we could easily get away with
+> only ever having one GRF stowed away in the context.
+>=20
+> However, newer Rockchip SoCs, such as the RK3576, have several GRFs
+> which are relevant for clock purposes. It already depends on the pmu0
+> GRF for MUXGRF reasons, but could get away with not refactoring this
+> because it didn't need the sysgrf at all, so could overwrite the pointer
+> in the clock provider to the pmu0 grf regmap handle.
+>=20
+> In preparation for needing to finally access more than one GRF per SoC,
+> let's untangle this. Introduce an auxiliary GRF hashmap, and a GRF type
+> enum. The hasmap is keyed by the enum, and clock branches now have a
+> struct member to store the value of that enum, which defaults to the
+> system GRF.
+>=20
+> The SoC-specific _clk_init function can then insert pointers to GRF
+> regmaps into the hashmap based on the grf type.
+>=20
+> During clock branch registration, we then pick the right GRF for each
+> branch from the hashmap if something other than the sys GRF is
+> requested.
+>=20
+> The reason for doing it with this grf type indirection in the clock
+> branches is so that we don't need to define the MUXGRF branches in a
+> separate step, just to have a direct pointer to a regmap available
+> already.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Quite strange, where could be the issue here ?
- 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+like the concept and also implementation :-) .
+
+> ---
+>  drivers/clk/rockchip/clk-rk3328.c |  6 +++---
+>  drivers/clk/rockchip/clk-rk3568.c |  2 +-
+>  drivers/clk/rockchip/clk-rk3576.c | 32 ++++++++++++++++++++++----------
+
+the only "hair in the soup" are some missing socs ;-) .
+
+As you're changing the MUXGRF type, you should adapt all socs using it
+please. Missing rk3288 and rv1126 it seems - ARM32, which may have helped
+these slipping through.
+
+
+Heiko
+
+
 
