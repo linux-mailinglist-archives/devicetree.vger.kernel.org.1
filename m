@@ -1,231 +1,119 @@
-Return-Path: <devicetree+bounces-172804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA9CAA66BF
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 00:59:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 030E3AA676B
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 01:29:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B675D4A3F83
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 22:59:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C31DE16FFA6
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 23:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBF827E7C8;
-	Thu,  1 May 2025 22:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8403F266B52;
+	Thu,  1 May 2025 23:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hr/5nExg"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="KQHA7qqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8740F27E1C5
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 22:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC1C224253;
+	Thu,  1 May 2025 23:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746140147; cv=none; b=QLupbK+dqfsUL1enDVTB9fFWavPWbPPGL55bBD0kDJyvWzxbrD0XvVFPbwNlxEGwPT+F7AHjNP3GyVJQkLb94suPSu9PY+hAzE8MO6tPH/XXLFHZjSjzAwV34r95nt7JAzqnbv35BALwtOx2mJo9riCavWrY9nGzBvLgUjzsUXY=
+	t=1746142137; cv=none; b=EsoxmkUN6vlMtVb7g0FZ8WuF2krL2I6kSs+Ooj2U6RI6/tlaXt7WVPGX7vgh+rJSXA0fHBS69MNZjW0gwx+SAnZX1L45efHbd+ZryEtmxs3ZPocmN67ot3tQ6vZAFpSyH/ZGlE4AVdrewYlS6jdgwaYqlHoD3sqGk7lNVhQJrbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746140147; c=relaxed/simple;
-	bh=m+nwY4X/QYgxlK5z5uhVGT+hoDTY+WviKN2Y+UDLviI=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=BihMkqVRBkPIvIVZ8Z6lMI2Kw5NDwFAsv/0DcpBpXUljUh9o/XZ8BVuwufRXv7mFm+m+DkG6fe45sdI7do692mtZU4bNf8SDDNRMoi/kpw3VEn/G/fKfjBYFmCMeHt3W6ugBC14oTLla6K/JebT58bCIn3+wzFcl5NGYHEsYwyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hr/5nExg; arc=none smtp.client-ip=209.85.214.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
-Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-224191d9228so17852715ad.3
-        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 15:55:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1746140145; x=1746744945; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sv7OPZtLL9NTgdhcB8PcItisGgab/W7eSOheRILRTr4=;
-        b=hr/5nExgUYy9/Gd4W+7wlWbekWMGkLYZG+R9CP+NNw/mQR+wh9re5SrtYYBGnn/qml
-         0eDMYvcSgKy3ZDpndQGxM1RA6ha3FixoCVY2UIVrliPNIel8QskLTyjhrFJ/KoJnTJFE
-         mS4aK3DdKPm/3KhrDuMDVCeiBbEy5BHIdG/r05Kaj0PNJAI/eD8wsTR8KN+cRGZCANqz
-         NG4Kp/B/S9UR9Jn339+Ae8DbsiiobI54thkCWsuRa9xUXBW+m680yGiY2YNpXind+63+
-         +bpyfnwKxelwV9GubWpremKg4D9s22uVhsr5RfygApzYqvQZyBSuvDN9/aVZBVRllywv
-         A19g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746140145; x=1746744945;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sv7OPZtLL9NTgdhcB8PcItisGgab/W7eSOheRILRTr4=;
-        b=esw2KCBUpUR/c8xoyIMspgKQjBu2ELWgI2YxZXMTXfxsrdAXpFauoUck/FP6viqJE+
-         f+e8XtYY9Ek9/tY9J0Xkde7f7RKK5AFSeXc2XBMuhP47fu1NYwFMi4j86zgqrkuFtMlW
-         kGUAMbDHBangDlWOqTZpWsjwQYU7uzfqaIatURSDx3nRc+GnJF5VjG1w6x2AOKYGyuT8
-         ik5jI2aXkZTILO58CMhqV5CHVd6mpMLp29FCccXz4taWkJ6eLDRCN4hg9p4elcTtPZS1
-         +6lVjXFmbED1TTqHNguz6Z40PxEicVGQliYxDhW/tU2caQ6xJ+/H0WYy/3N6z0DuDsM9
-         J2lA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0zb639Bvx2NGtkMxV9Aj6mIXRj++n3cfTYoRlvRrQbRFrG0gUZj/KD0hmuQbtJ06MUWJNZ97WzjDJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFzU5dEcF74ND8Xk8ZOM3U9Xef05mccCQH3e5jibC63Sc6nqt+
-	UDaUPVNZof6bSrcRwU2p7LG9ZtXR5Zoxs49H7v+ELWMTk6MwbEwNt4rN6fS2Uy/COhSuM9qq2UQ
-	vIl12tme9CtvI8iavBA==
-X-Google-Smtp-Source: AGHT+IGvDB0b6tRaZywAygUkvHb3ftmY9cjA/TeIVahFtlLUDS3mCQQhHTIj7eCYcPhn8l6gQq61MczG+HsWtj9H
-X-Received: from pjd15.prod.google.com ([2002:a17:90b:54cf:b0:301:2a0f:b03d])
- (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:c94a:b0:22c:33b2:e430 with SMTP id d9443c01a7336-22e102b68ffmr9458715ad.6.1746140144950;
- Thu, 01 May 2025 15:55:44 -0700 (PDT)
-Date: Thu,  1 May 2025 15:54:25 -0700
-In-Reply-To: <20250501225425.635167-1-changyuanl@google.com>
+	s=arc-20240116; t=1746142137; c=relaxed/simple;
+	bh=p7fQDBwKEOcAhP8WL8RWsj0IlpjWdHFNxvJgQ/mzSkY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AeyZv/X8C5jYkjpN0UvjacDxpk7J/Rv9K0ImBy5O0DOhZMfkP8sXmZ4Tu8tqn19Ve+6q7dedBpQ5Nx46FIVAyqIvLs/fNL4jWbIK2SM+pQaF1PJAT03aYd7ZOvBrCV0dhDZvsp8rpZUiOv/Yz/8DfHVPEm0/3/tAM3mTsBIglEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=KQHA7qqr; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1BFCFA11FA;
+	Fri,  2 May 2025 01:28:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1746142126; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=SSd/d4oY5sG6sC71AfIyUCv5ZFIzJDqINK1IEBxHgyM=;
+	b=KQHA7qqrzWIoGBrgdbwVBkhPFK6dFDJdgj9AlXCRn4K4Ipu1O7Le9kptGyv4IeoPOsCzo7
+	vmfzOwn6zpV+kBRJ/f7JiZUEmAHOW5FRTovCRrFlNKaN+iNlUulFLKWVrEO+EUEbb56a45
+	fSvxcwe49iPADNHPLQtOyULMaxYy/DeTwvAwMQ+Rb/RIxLogV1x6bJUEK0T11MPZWUxZWf
+	7rYKVsxt/cOmvGrQ7EhP1qpSHeWf2Wbq5V8bqt0Q2SCtS9mhlZfynaezAdDvJAxVnRni4C
+	/JSdfTsN+hl8rzDHIRe27bQu0nSXudRgnV6Dluuu5s0qHWbjUev7NhZji9YAYA==
+Message-ID: <47aae905-1a89-44aa-a31f-6cbfc0eb6726@cjdns.fr>
+Date: Fri, 2 May 2025 01:28:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20250501225425.635167-1-changyuanl@google.com>
-X-Mailer: git-send-email 2.49.0.906.g1f30a19c02-goog
-Message-ID: <20250501225425.635167-19-changyuanl@google.com>
-Subject: [PATCH v7 18/18] Documentation: KHO: Add memblock bindings
-From: Changyuan Lyu <changyuanl@google.com>
-To: linux-kernel@vger.kernel.org
-Cc: changyuanl@google.com, akpm@linux-foundation.org, 
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, 
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com, 
-	corbet@lwn.net, dave.hansen@linux.intel.com, devicetree@vger.kernel.org, 
-	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com, 
-	jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
-	linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com, 
-	pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org, 
-	ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org, 
-	saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de, 
-	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v4 1/7] dt-bindings: timer: Add EcoNet EN751221 "HPT" CPU
+ Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
+ daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu,
+ linux-mediatek@lists.infradead.org
+References: <20250430133433.22222-1-cjd@cjdns.fr>
+ <20250430133433.22222-2-cjd@cjdns.fr>
+ <20250501-ludicrous-idealistic-camel-7bf8aa@kuoka>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20250501-ludicrous-idealistic-camel-7bf8aa@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 
-We introduced KHO into Linux: A framework that allows Linux to pass
-metadata and memory across kexec from Linux to Linux. KHO reuses fdt
-as file format and shares a lot of the same properties of firmware-to-
-Linux boot formats: It needs a stable, documented ABI that allows for
-forward and backward compatibility as well as versioning.
+On 01/05/2025 12:58, Krzysztof Kozlowski wrote:
+> On Wed, Apr 30, 2025 at 01:34:27PM GMT, Caleb James DeLisle wrote:
+>> Add device tree bindings for the so-called high-precision timer (HPT)
+>> in the EcoNet EN751221 SoC.
+>>
+>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+>> ---
+>>   .../bindings/timer/econet,en751221-timer.yaml | 80 +++++++++++++++++++
+>>   1 file changed, 80 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/timer/econet,en751221-timer.yaml
+>>
+> What changed? Nothing explains dropping the tag.
 
-As first user of KHO, we introduced memblock which can now preserve
-memory ranges reserved with reserve_mem command line options contents
-across kexec, so you can use the post-kexec kernel to read traces from
-the pre-kexec kernel.
 
-This patch adds memblock schemas similar to "device" device tree ones to
-a new kho bindings directory. This allows us to force contributors to
-document the data that moves across KHO kexecs and catch breaking change
-during review.
+Sorry I lost track of it, I will re-send with it attached again.
 
-Co-developed-by: Alexander Graf <graf@amazon.com>
-Signed-off-by: Alexander Graf <graf@amazon.com>
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Signed-off-by: Changyuan Lyu <changyuanl@google.com>
----
- .../kho/bindings/memblock/memblock.yaml       | 39 ++++++++++++++++++
- .../kho/bindings/memblock/reserve-mem.yaml    | 40 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 80 insertions(+)
- create mode 100644 Documentation/core-api/kho/bindings/memblock/memblock.yaml
- create mode 100644 Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml
+Thanks,
 
-diff --git a/Documentation/core-api/kho/bindings/memblock/memblock.yaml b/Documentation/core-api/kho/bindings/memblock/memblock.yaml
-new file mode 100644
-index 0000000000000..d388c28eb91d1
---- /dev/null
-+++ b/Documentation/core-api/kho/bindings/memblock/memblock.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+title: Memblock reserved memory
-+
-+maintainers:
-+  - Mike Rapoport <rppt@kernel.org>
-+
-+description: |
-+  Memblock can serialize its current memory reservations created with
-+  reserve_mem command line option across kexec through KHO.
-+  The post-KHO kernel can then consume these reservations and they are
-+  guaranteed to have the same physical address.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - reserve-mem-v1
-+
-+patternProperties:
-+  "$[0-9a-f_]+^":
-+    $ref: reserve-mem.yaml#
-+    description: reserved memory regions
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    memblock {
-+      compatible = "memblock-v1";
-+      n1 {
-+        compatible = "reserve-mem-v1";
-+        start = <0xc06b 0x4000000>;
-+        size = <0x04 0x00>;
-+      };
-+    };
-diff --git a/Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml b/Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml
-new file mode 100644
-index 0000000000000..10282d3d1bcdc
---- /dev/null
-+++ b/Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+title: Memblock reserved memory regions
-+
-+maintainers:
-+  - Mike Rapoport <rppt@kernel.org>
-+
-+description: |
-+  Memblock can serialize its current memory reservations created with
-+  reserve_mem command line option across kexec through KHO.
-+  This object describes each such region.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - reserve-mem-v1
-+
-+  start:
-+    description: |
-+      physical address (u64) of the reserved memory region.
-+
-+  size:
-+    description: |
-+      size (u64) of the reserved memory region.
-+
-+required:
-+  - compatible
-+  - start
-+  - size
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    n1 {
-+      compatible = "reserve-mem-v1";
-+      start = <0xc06b 0x4000000>;
-+      size = <0x04 0x00>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 72345ca65edda..d7bd49dae2e0c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15447,6 +15447,7 @@ M:	Mike Rapoport <rppt@kernel.org>
- L:	linux-mm@kvack.org
- S:	Maintained
- F:	Documentation/core-api/boot-time-mm.rst
-+F:	Documentation/core-api/kho/bindings/memblock/*
- F:	include/linux/memblock.h
- F:	mm/memblock.c
- F:	mm/mm_init.c
--- 
-2.49.0.906.g1f30a19c02-goog
+Caleb
 
+
+>
+> <form letter>
+> This is a friendly reminder during the review process.
+>
+> It looks like you received a tag and forgot to add it.
+>
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here. However, there's no
+> need to repost patches *only* to add the tags. The upstream maintainer
+> will do that for tags received on the version they apply.
+>
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+>
+> Best regards,
+> Krzysztof
+>
+>
 
