@@ -1,1525 +1,484 @@
-Return-Path: <devicetree+bounces-172746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4438FAA6310
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 20:48:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770AFAA63A0
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 21:14:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBBC63BDCB1
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 18:48:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 119547AA77F
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 19:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7011E51FA;
-	Thu,  1 May 2025 18:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09ABE2253FE;
+	Thu,  1 May 2025 19:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mGXzEGUH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fJV205XT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE952DC78C;
-	Thu,  1 May 2025 18:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA080224B04;
+	Thu,  1 May 2025 19:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746125298; cv=none; b=lM5g7vobObPRfuB+vbc6THHIjKU3YfeID1E1/TFvKBomFdp0clGeXTQTfO7EXMblaUAwD/KBM/Ct0Lv4YnW8Gr81mAHUqVs6QxRvlW0EJxbbGigDebueioLFR6/vZ5KVL3cVoL5tdvR2Bz3cFXUu+IJdrFPmM7VWcoql7k/RCrU=
+	t=1746126843; cv=none; b=ebZFOJORBkH7KY9q4I3yv5gf1KFbUt5Z6Fp8EP5m4J5GtGXiX1Xd9Bk7DNp44SFOD467rRes30mawtD9iI5Zrio8loL2pb5URxW1wN7gMa0F5Zc+eKyMCw4xRQX0b+8RhNEUsvNa9tp+XwpZ+15aoWv0mCbDJ7iw33ozDHL/4NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746125298; c=relaxed/simple;
-	bh=CqIaFrw7kvRqXoJh8T3TshIyImc0ITiUCifVocqfGc0=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=eERPcmej1+yqMroKrTr8VeP6T/4kbgx8W3bzzSfywZMlXaN0ygM6sWEiRYMxV42ODPjuY3r/R8w4wUQbh6pd//rYS7DDxk4FURU/lJBB+tX221lnflFmiaA/WZdMOYjlJg7mzS3DBLAG2POeN2qrJQq/obCHQPTGg++aVyZEQIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGXzEGUH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 387D8C4CEE3;
-	Thu,  1 May 2025 18:48:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746125297;
-	bh=CqIaFrw7kvRqXoJh8T3TshIyImc0ITiUCifVocqfGc0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=mGXzEGUH1hH9fHfM/jvIZ4jPdQaa/lIBrZiChNktEDqNe4t51i+fnjoYJQ8mgQtkm
-	 EFJhysAQlkKBpuuMnrrpetlYojXWCUouCs7zqngpkufodQ5pP+xPmJjft9qfg4+5UT
-	 4tQA8G6AYvapU3LOYjAkWq76Y65tv+BLg0XtjKphfgLb4p/nRnyNUiGPvRgk1JusRa
-	 jza/ZsCmUCvrDfpdzRPztcLmgU4KtZnem+dh+yAeIn6Yh6zyxfpFE43HKmAohgjzLy
-	 QeWeXY+D/agX9gXgUVSWV/EyOr/OhLkawgnDqTUudn5XmXQvy36LLZ0K8YIDQWgpqd
-	 gsiPFC2LWDUOw==
-Message-ID: <e5858fe5d4276a735c5354e955358f27@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1746126843; c=relaxed/simple;
+	bh=MNKMwhCqBNGu/MQlWW4S6NKI0jtBih32zQf0+LxXarU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SXXC3qOMwcV3JUuSpWV4PruFj1WtK7rRJW8i8YFBW8hvFp4bfXjSABSLhW++7iiaEnKcERaM3iTPpP3j+Bv2oNFrP3rie1xOmnkbxW3Cg8AgsX20qcpTLrfTlJWiQYfeZyftsqvABc3Q0KhufpQp4JAeVKDU/FmKI5WrlnaZAGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fJV205XT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 541D27X3008669;
+	Thu, 1 May 2025 19:13:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=pbAk8CsBXRbYVBuLyzutRC
+	hxGYxZLpztYluPt30oGC0=; b=fJV205XT7izX0ms+7aBhYXXK4IuzPF6pvDp+Yz
+	9Qp9nqNRQodLpivNgLB9kRLHnwEqPWCrV9J1bEO79r386ldd3qk79kIpqQ4/6+Bb
+	VYJprjljyxJ6bXGlaD5gQpCUM6AHlw/gPfdJufJXJGoLFl8GcyyRRnJ+vjHkFTbW
+	gALt5HbKY4cp+FDvPXBRxQsV1In4J2243qVcD+4g5sD3QS3Fhh2okZP7eQx1GpAN
+	4WaXKBzBYT70P0p/Fo5wOyDE3JKUEsZg4hWrbrBgZS9OC5w89lz1dVSWlt4ul9as
+	lkKL5uDKDakDQGQklHfoMPEnvSd/CjZOtT9h5+3vAx+PirBA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6uae3bt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 May 2025 19:13:55 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 541JDsXi021579
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 May 2025 19:13:54 GMT
+Received: from hu-dikshita-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 1 May 2025 12:13:47 -0700
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: [PATCH v3 00/23] Add support for HEVC and VP9 codecs in decoder
+Date: Fri, 2 May 2025 00:43:30 +0530
+Message-ID: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250430-clk-cdce6214-v4-3-9f15e7126ac6@pengutronix.de>
-References: <20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de> <20250430-clk-cdce6214-v4-3-9f15e7126ac6@pengutronix.de>
-Subject: Re: [PATCH v4 3/3] clk: add TI CDCE6214 clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel@pengutronix.de, Alvin =?utf-8?q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>, Sascha Hauer <s.hauer@pengutronix.de>
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 01 May 2025 11:48:15 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANrHE2gC/32Qy2rDMBBFf8VoXYWRZMVSKCX/UUKRJ6NYUD8iu
+ SIl+N8r25suSpd3YM59PFmiGCixU/VkkXJIYRyKUC8Vw84NN+LhWjSTIDXU0vA7jj0PMSTeUUa
+ eJ8upVcIrQKUssPI4RfLhsUHfL7uOdP8q7Hk/sp5Schv7VL3uaNHweZwC8tSbh4bdIgvgueHAP
+ UjAVlyBrDl/hsHF8TDG29tq9wdM1iVnMgrgY+folSGE8Ro0lvO5xMEw4KG02SCtS8SL6MNc2lv
+ jRKuUF3VjnVcanRUaNXm0LcD1KKH2xju2tutCmsf4vS2Y5Vbvv7GyLFGUO4JQhK1x+ncUdlmW5
+ QeIKT/1lAEAAA==
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil
+	<hverkuil@xs4all.nl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Nicolas Dufresne
+	<nicolas.dufresne@collabora.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
+        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>,
+        <stable@vger.kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746126827; l=14815;
+ i=quic_dikshita@quicinc.com; s=20240917; h=from:subject:message-id;
+ bh=MNKMwhCqBNGu/MQlWW4S6NKI0jtBih32zQf0+LxXarU=;
+ b=pNHI1YLQGwJzFxf37tbq7jYfqA0uJrdV8UIwmcyDX7twsOddmEonQXJ32gdgc2jPMfrA29DGL
+ XA7Gdcl/+YKAL+PNwl3B5cQD3VRw4Ozo3MvrvoAaAam1IlHQJfi1M5j
+X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
+ pk=EEvKY6Ar1OI5SWf44FJ1Ebo1KuQEVbbf5UNPO+UHVhM=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=BNizrEQG c=1 sm=1 tr=0 ts=6813c7f3 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
+ a=e5mUnYsNAAAA:8 a=7g143AsIs2-G7qWrj7YA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAxMDE0NiBTYWx0ZWRfX8InNj04N2jOi bv5AYLHD07UlKGMvB/0xtnQoNtf+CB3jOwQyw69cOeGS7AzqCO4DdDLny8Af/H6YKaTLUuxVzoF F7BaiYCIQaVbInRAXQZI2YTylZF8Gm3HuL1H/cmbjCLI5cvilUJI52ymAnmGe28MJDnz4P+zD3A
+ VcObCN1JFkadPu+TdZ+5fFvShud2KI2I5PVzstM8zLyvy1R3olZCOsQexvjFw1dKlY2JrbIvNJr tpyuwdptRO00R2nQ0S1Lyqm9uiRS76HnTL3nzDb/zRrxRLBDQuMEWADr6lSRdPO3OLYvlkVjEzk diZcebKESCeGaArAtwWINMAbYPOkriml+ZVnSoHXPcrWy22KQspsOAcMctmhn3WFbaAOg5pKK/w
+ lz+wXVCFUBwzKSOpBbmBYkvK6GLPSmk16JHKFqyWHws6kmzSGk0GMI8S0rrz2cW+RjCKYcpt
+X-Proofpoint-GUID: tuzywfLNNVyCL3UwMCheHBRVRxDp241M
+X-Proofpoint-ORIG-GUID: tuzywfLNNVyCL3UwMCheHBRVRxDp241M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-01_06,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 bulkscore=0 clxscore=1015 spamscore=0 adultscore=0
+ phishscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505010146
 
-Quoting Sascha Hauer (2025-04-30 02:01:36)
-> diff --git a/drivers/clk/clk-cdce6214.c b/drivers/clk/clk-cdce6214.c
-> new file mode 100644
-> index 0000000000000..62e832dd85ba5
-> --- /dev/null
-> +++ b/drivers/clk/clk-cdce6214.c
-> @@ -0,0 +1,1310 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Driver for the TI CDCE6214 clock generator
+Hi All,
 
-Maybe you can link to the datasheet site
+This patch series adds initial support for the HEVC(H.265) and VP9
+codecs in iris decoder. The objective of this work is to extend the 
+decoder's capabilities to handle HEVC and VP9 codec streams,
+including necessary format handling and buffer management.
+In addition, the series also includes a set of fixes to address issues
+identified during testing of these additional codecs.
 
-> + *
-> + * Copyright (c) 2023 Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
-> + * Copyright (c) 2025 Sascha Hauer <s.hauer@pengutronix.de>
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/of.h>
-> +#include <linux/clk.h>
+These patches also address the comments and feedback received from the 
+RFC patches previously sent. I have made the necessary improvements 
+based on the community's suggestions.
 
-Drop this include assuming it isn't used.
+Changes in v3:
+- Introduced two wrappers with explicit names to handle destroy internal 
+buffers (Nicolas)
+- Used sub state check instead of introducing new boolean (Vikash)
+- Addressed other comments (Vikash)
+- Reorderd patches to have all fixes patches first (Dmitry)
+- Link to v2: https://lore.kernel.org/r/20250428-qcom-iris-hevc-vp9-v2-0-3a6013ecb8a5@quicinc.com
 
-> +#include <linux/clk-provider.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <dt-bindings/clock/ti,cdce6214.h>
-> +
-> +#define RO_I2C_A0                      BIT(15)
-> +#define RO_PDN_INPUT_SEL               BIT(14)
-> +#define RO_GPIO4_DIR_SEL               BIT(13)
-> +#define RO_GPIO1_DIR_SEL               BIT(12)
-> +#define RO_ZDM_CLOCKSEL                        BIT(10)
-> +#define RO_ZDM_EN                      BIT(8)
-> +#define RO_SYNC                                BIT(5)
-> +#define RO_RECAL                       BIT(4)
-> +#define RO_RESETN_SOFT                 BIT(3)
-> +#define RO_SWRST                       BIT(2)
-> +#define RO_POWERDOWN                   BIT(1)
-> +#define RO_MODE                                BIT(0)
-> +
-> +#define R1_GPIO4_INPUT_SEL             GENMASK(15, 12)
-> +#define R1_GPIO3_INPUT_SEL             GENMASK(11, 8)
-> +#define R1_GPIO2_INPUT_SEL             GENMASK(7, 4)
-> +#define R1_GPIO1_INPUT_SEL             GENMASK(3, 0)
-> +
-> +#define R2_GPIO4_OUTPUT_SEL            GENMASK(9, 6)
-> +#define R2_GPIO1_OUTPUT_SEL            GENMASK(5, 2)
-> +#define R2_REFSEL_SW                   GENMASK(1, 0)
-> +
-> +#define R3_DISABLE_CRC                 BIT(13)
-> +#define R3_UPDATE_CRC                  BIT(12)
-> +#define R3_NVMCOMMIT                   BIT(11)
-> +#define R3_REGCOMMIT                   BIT(10)
-> +#define R3_REGCOMMIT_PAGE              BIT(9)
-> +#define R3_FREQ_DEC_REG                        BIT(6)
-> +#define R3_FREQ_INC_REG                        BIT(5)
-> +#define R3_FREQ_INC_DEC_REG_MODE       BIT(4)
-> +#define R3_FREQ_INC_DEC_EN             BIT(3)
-> +
-> +#define R4_CH4_PD                      BIT(7)
-> +#define R4_CH3_PD                      BIT(6)
-> +#define R4_CH2_PD                      BIT(5)
-> +#define R4_CH1_PD                      BIT(4)
-> +#define R4_POST_EE_DLY                 GENMASK(3, 0)
-> +
-> +#define R5_PLL_VCOBUFF_LDO_PD          BIT(8)
-> +#define R5_PLL_VCO_LDO_PD              BIT(7)
-> +#define R5_PLL_VCO_BUFF_PD             BIT(6)
-> +#define R5_PLL_CP_LDO_PD               BIT(5)
-> +#define R5_PLL_LOCKDET_PD              BIT(4)
-> +#define R5_PLL_PSB_PD                  BIT(3)
-> +#define R5_PLL_PSA_PD                  BIT(2)
-> +#define R5_PLL_PFD_PD                  BIT(1)
-> +
-> +#define R7_NVMCRCERR                   BIT(5)
-> +#define R7_LOCK_DET_S                  BIT(1)
-> +#define R7_LOCK_DET                    BIT(0)
-> +
-> +#define R9_NVMLCRC                     GENMASK(15, 0)
-> +
-> +#define R10_NVMSCRC                    GENMASK(15, 0)
-> +
-> +#define R11_NVM_RD_ADDR                        GENMASK(5, 0)
-> +
-> +#define R12_NVM_RD_DATA                        GENMASK(15, 0)
-> +
-> +#define R13_NVM_WR_ADDR                        GENMASK(5, 0)
-> +
-> +#define R14_NVM_WR_DATA                        GENMASK(15, 0)
-> +
-> +#define R15_EE_LOCK                    GENMASK(15, 12)
-> +#define R15_CAL_MUTE                   BIT(5)
-> +
-> +#define R24_IP_PRIREF_BUF_SEL          BIT(15)
-> +#define R24_IP_XO_CLOAD                        GENMASK(12, 8)
-> +#define R24_IP_BIAS_SEL_XO             GENMASK(5, 2)
-> +#define R24_IP_SECREF_BUF_SEL          GENMASK(1, 0)
-> +#define R24_IP_SECREF_BUF_SEL_XTAL     0
-> +#define R24_IP_SECREF_BUF_SEL_LVCMOS   1
-> +#define R24_IP_SECREF_BUF_SEL_DIFF     2
-> +
-> +#define R25_IP_REF_TO_OUT4_EN          BIT(14)
-> +#define R25_IP_REF_TO_OUT3_EN          BIT(13)
-> +#define R25_IP_REF_TO_OUT2_EN          BIT(12)
-> +#define R25_IP_REF_TO_OUT1_EN          BIT(11)
-> +#define R25_IP_BYP_OUT0_EN             BIT(10)
-> +#define R25_REF_CH_MUX                 BIT(9)
-> +#define R25_IP_RDIV                    GENMASK(7, 0)
-> +
-> +#define R27_MASH_ORDER                 GENMASK(1, 0)
-> +
-> +#define R30_PLL_NDIV                   GENMASK(14, 0)
-> +
-> +#define R31_PLL_NUM_15_0               GENMASK(15, 0)
-> +
-> +#define R32_PLL_NUM_23_16              GENMASK(7, 0)
-> +
-> +#define R33_PLL_DEN_15_0               GENMASK(15, 0)
-> +
-> +#define R34_PLL_DEN_23_16              GENMASK(7, 0)
-> +
-> +#define R41_SSC_EN                     BIT(15)
-> +
-> +#define R42_SSC_TYPE                   BIT(5)
-> +#define R42_SSC_SEL                    GENMASK(3, 1)
-> +
-> +#define R43_FREQ_INC_DEC_DELTA         GENMASK(15, 0)
-> +
-> +#define R47_PLL_CP_DN                  GENMASK(12, 7)
-> +#define R47_PLL_PSB                    GENMASK(6, 5)
-> +#define R47_PLL_PSA                    GENMASK(4, 3)
-> +
-> +#define R48_PLL_LF_RES                 GENMASK(14, 11)
-> +#define R48_PLL_CP_UP                  GENMASK(5, 0)
-> +
-> +#define R49_PLL_LF_ZCAP                        GENMASK(4, 0)
-> +
-> +#define R50_PLL_LOCKDET_WINDOW         GENMASK(10, 8)
-> +
-> +#define R51_PLL_PFD_DLY_EN             BIT(10)
-> +#define R51_PLL_PFD_CTRL               BIT(6)
-> +
-> +#define R52_PLL_NCTRL_EN               BIT(6)
-> +#define R52_PLL_CP_EN                  BIT(3)
-> +
-> +#define R55_PLL_LF_3_PCTRIM            GENMASK(9, 8)
-> +#define R55_PLL_LF_3_PRTRIM            GENMASK(7, 6)
-> +
-> +#define R56_CH1_MUX                    GENMASK(15, 14)
-> +#define R56_CH1_DIV                    GENMASK(13, 0)
-> +
-> +#define R57_CH1_LPHCSL_EN              BIT(14)
-> +#define R57_CH1_1P8VDET                        BIT(12)
-> +#define R57_CH1_GLITCHLESS_EN          BIT(9)
-> +#define R57_CH1_SYNC_DELAY             GENMASK(8, 4)
-> +#define R57_CH1_SYNC_EN                        BIT(3)
-> +#define R57_CH1_MUTE_SEL               BIT(1)
-> +#define R57_CH1_MUTE                   BIT(0)
-> +
-> +#define R59_CH1_LVDS_EN                        BIT(15)
-> +#define R59_CH1_CMOSN_EN               BIT(14)
-> +#define R59_CH1_CMOSP_EN               BIT(13)
-> +#define R59_CH1_CMOSN_POL              BIT(12)
-> +#define R59_CH1_CMOSP_POL              BIT(11)
-> +
-> +#define R60_CH1_DIFFBUF_IBIAS_TRIM     GENMASK(15, 12)
-> +#define R60_CH1_LVDS_CMTRIM_INC                GENMASK(11, 10)
-> +#define R60_CH1_LVDS_CMTRIM_DEC                GENMASK(5, 4)
-> +#define R60_CH1_CMOS_SLEW_RATE_CTRL    GENMASK(3, 0)
-> +
-> +#define R62_CH2_MUX                    GENMASK(15, 14)
-> +#define R62_CH2_DIV                    GENMASK(13, 0)
-> +
-> +#define R63_CH2_LPHCSL_EN              BIT(13)
-> +#define R63_CH2_1P8VDET                        BIT(12)
-> +#define R63_CH2_GLITCHLESS_EN          BIT(9)
-> +#define R63_CH2_SYNC_DELAY             GENMASK(8, 4)
-> +#define R63_CH2_SYNC_EN                        BIT(3)
-> +#define R63_CH2_MUTE_SEL               BIT(1)
-> +#define R63_CH2_MUTE                   BIT(0)
-> +
-> +#define R65_CH2_LVDS_CMTRIM_DEC                GENMASK(14, 13)
-> +#define R65_CH2_LVDS_EN                        BIT(11)
-> +
-> +#define R66_CH2_LVDS_CMTRIM_IN         GENMASK(5, 4)
-> +#define R66_CH2_DIFFBUF_IBIAS_TRIM     GENMASK(3, 0)
-> +
-> +#define R67_CH3_MUX                    GENMASK(15, 14)
-> +#define R67_CH3_DIV                    GENMASK(13, 0)
-> +
-> +#define R68_CH3_LPHCSL_EN              BIT(13)
-> +#define R68_CH3_1P8VDET                        BIT(12)
-> +#define R68_CH3_GLITCHLESS_EN          BIT(9)
-> +#define R68_CH3_SYNC_DELAY             GENMASK(8, 4)
-> +#define R68_CH3_SYNC_EN                        BIT(3)
-> +#define R68_CH3_MUTE_SEL               BIT(1)
-> +#define R68_CH3_MUTE                   BIT(0)
-> +
-> +#define R70_CH3_LVDS_EN                        BIT(11)
-> +
-> +#define R71_CH3_LVDS_CMTRIM_DEC                GENMASK(10, 9)
-> +#define R71_CH3_LVDS_CMTRIM_INC                GENMASK(5, 4)
-> +#define R71_CH3_DIFFBUF_IBIAS_TR       GENMASK(3, 0)
-> +
-> +#define R72_CH4_MUX                    GENMASK(15, 14)
-> +#define R72_CH4_DIV                    GENMASK(13, 0)
-> +
-> +#define R73_CH4_LPHCSL_EN              BIT(13)
-> +#define R73_CH4_1P8VDET                        BIT(12)
-> +#define R73_CH4_GLITCHLESS_EN          BIT(9)
-> +#define R73_CH4_SYNC_DELAY             GENMASK(8, 4)
-> +#define R73_CH4_SYNC_EN                        BIT(3)
-> +#define R73_CH4_MUTE_SEL               BIT(1)
-> +#define R73_CH4_MUTE                   BIT(0)
-> +
-> +#define R75_CH4_LVDS_EN                        BIT(15)
-> +#define R75_CH4_CMOSP_EN               BIT(14)
-> +#define R75_CH4_CMOSN_EN               BIT(13)
-> +#define R75_CH4_CMOSP_POL              BIT(12)
-> +#define R75_CH4_CMOSN_POL              BIT(11)
-> +
-> +#define R76_CH4_DIFFBUF_IBIAS_TRIM     GENMASK(9, 6)
-> +#define R76_CH4_LVDS_CMTRIM_IN         GENMASK(5, 4)
-> +#define R76_CH4_CMOS_SLEW_RATE_CTRL    GENMASK(3, 0)
-> +
-> +#define R77_CH4_LVDS_CMTRIM_DEC                GENMASK(1, 0)
-> +
-> +#define R78_CH0_EN                     BIT(12)
-> +
-> +#define R79_SAFETY_1P8V_MODE           BIT(9)
-> +#define R79_CH0_CMOS_SLEW_RATE_CTRL    GENMASK(3, 0)
-> +
-> +#define R81_PLL_LOCK_MASK              BIT(3)
-> +
-> +#define CDCE6214_VCO_MIN 2335000000
-> +#define CDCE6214_VCO_MAX 2625000000
-> +#define CDCE6214_DENOM_DEFAULT 0x1000000
-> +
-> +#define CDCE6214_CLKIN_FMT_CMOS                0
-> +#define CDCE6214_CLKIN_FMT_XTAL                1
-> +#define CDCE6214_CLKIN_FMT_DIFF                2
-> +
-> +#define CDCE6214_CLKOUT_FMT_CMOS       0
-> +#define CDCE6214_CLKOUT_FMT_LVDS       1
-> +#define CDCE6214_CLKOUT_FMT_LPHCSL     2
-> +
-> +#define CDCE6214_CMOS_MODE_DISABLED    0
-> +#define CDCE6214_CMOS_MODE_HIGH                1
-> +#define CDCE6214_CMOS_MODE_LOW         2
-> +
-> +static const char * const clk_names[] =3D {
-> +       [CDCE6214_CLK_PRIREF] =3D "priref",
-> +       [CDCE6214_CLK_SECREF] =3D "secref",
-> +       [CDCE6214_CLK_OUT0] =3D "out0",
-> +       [CDCE6214_CLK_OUT1] =3D "out1",
-> +       [CDCE6214_CLK_OUT2] =3D "out2",
-> +       [CDCE6214_CLK_OUT3] =3D "out3",
-> +       [CDCE6214_CLK_OUT4] =3D "out4",
-> +       [CDCE6214_CLK_PLL] =3D "pll",
-> +       [CDCE6214_CLK_PSA] =3D "psa",
-> +       [CDCE6214_CLK_PSB] =3D "psb",
-> +};
-> +
-> +static const char * const clkkin_fmt_names[] =3D {
-> +       [CDCE6214_CLKIN_FMT_CMOS] =3D "cmos",
-> +       [CDCE6214_CLKIN_FMT_XTAL] =3D "xtal",
-> +       [CDCE6214_CLKIN_FMT_DIFF] =3D "differential",
-> +};
-> +
-> +static const char * const clkkout_fmt_names[] =3D {
-> +       [CDCE6214_CLKOUT_FMT_CMOS] =3D "cmos",
-> +       [CDCE6214_CLKOUT_FMT_LVDS] =3D "lvds",
-> +       [CDCE6214_CLKOUT_FMT_LPHCSL] =3D "lp-hcsl",
-> +};
-> +
-> +static const char * const cmos_mode_names[] =3D {
-> +       [CDCE6214_CMOS_MODE_DISABLED] =3D "disabled",
-> +       [CDCE6214_CMOS_MODE_HIGH] =3D "high",
-> +       [CDCE6214_CMOS_MODE_LOW] =3D "low",
-> +};
-> +
-> +#define CDCE6214_NUM_CLOCKS    ARRAY_SIZE(clk_names)
-> +
-> +struct cdce6214;
-> +
-> +struct cdce6214_clock {
-> +       struct clk_hw hw;
-> +       struct cdce6214 *priv;
-> +       int index;
+Changes in v2:
+- Added Changes to make sure all buffers are released in session close 
+(bryna)
+- Added tracking for flush responses to fix a timing issue.
+- Added a handling to fix timing issue in reconfig
+- Splitted patch 06/20 in two patches (Bryan)
+- Added missing fixes tag (bryan)
+- Updated fluster report (Nicolas)
+- Link to v1: 
+https://lore.kernel.org/r/20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com
 
-Does it need to be signed?
+Changes sinces RFC:
+- Added additional fixes to address issues identified during further 
+testing.
+- Moved typo fix to a seperate patch [Neil]
+- Reordered the patches for better logical flow and clarity [Neil, 
+Dmitry]
+- Added fixes tag wherever applicable [Neil, Dmitry]
+- Removed the default case in the switch statement for codecs [Bryan]
+- Replaced if-else statements with switch-case [Bryan]
+- Added comments for mbpf [Bryan]
+- RFC: 
+https://lore.kernel.org/linux-media/20250305104335.3629945-1-quic_dikshita@quicinc.com/
 
-> +};
-> +
-> +struct cdce6214 {
-> +       struct i2c_client *client;
-> +       struct device *dev;
-> +       struct regmap *regmap;
-> +       struct gpio_desc *reset_gpio;
-> +       struct cdce6214_clock clk[CDCE6214_NUM_CLOCKS];
-> +};
-> +
-> +static inline struct cdce6214_clock *hw_to_cdce6214_clk(struct clk_hw *h=
-w)
-> +{
-> +       return container_of(hw, struct cdce6214_clock, hw);
-> +}
-> +
-> +static struct clk_hw *cdce6214_of_clk_get(struct of_phandle_args *clkspe=
-c,
-> +                                         void *data)
-> +{
-> +       struct cdce6214 *priv =3D data;
-> +       unsigned int idx =3D clkspec->args[0];
-> +
-> +       if (idx >=3D CDCE6214_NUM_CLOCKS)
-> +               return ERR_PTR(-EINVAL);
-> +       if (idx <=3D CDCE6214_CLK_SECREF)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       return &priv->clk[idx].hw;
-> +}
-> +
-> +static const struct regmap_config cdce6214_regmap_config =3D {
-> +       .reg_bits =3D 16,
-> +       .val_bits =3D 16,
-> +       .reg_stride =3D 1,
-> +       .max_register =3D 0x0055,
-> +};
-> +
-> +static int cdce6214_configure(struct cdce6214 *priv)
-> +{
-> +       regmap_update_bits(priv->regmap, 2, R2_REFSEL_SW,
-> +                          FIELD_PREP(R2_REFSEL_SW, 2));
-> +
-> +       return 0;
-> +}
-> +
-> +static unsigned long cdce6214_clk_out0_recalc_rate(struct clk_hw *hw,
-> +                                                  unsigned long parent_r=
-ate)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int val, div;
-> +
-> +       regmap_read(priv->regmap, 25, &val);
-> +
-> +       div =3D FIELD_GET(R25_IP_RDIV, val);
-> +
-> +       if (!div)
-> +               return parent_rate * 2;
-> +
-> +       return DIV_ROUND_UP_ULL((u64)parent_rate, div);
-> +}
-> +
-> +static long cdce6214_clk_out0_round_rate(struct clk_hw *hw, unsigned lon=
-g rate,
-> +                                        unsigned long *best_parent_rate)
-> +{
-> +       unsigned int div;
-> +
-> +       if (rate >=3D *best_parent_rate)
-> +               return *best_parent_rate * 2;
-> +
-> +       div =3D DIV_ROUND_CLOSEST(*best_parent_rate, rate);
-> +
-> +       return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-> +}
-> +
-> +static int cdce6214_clk_out0_set_rate(struct clk_hw *hw, unsigned long r=
-ate,
-> +                                     unsigned long parent_rate)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int div;
-> +
-> +       if (rate >=3D parent_rate) {
-> +               regmap_update_bits(priv->regmap, 25, R25_IP_RDIV, FIELD_P=
-REP(R25_IP_RDIV, 0));
-> +               return 0;
-> +       }
-> +
-> +       div =3D DIV_ROUND_CLOSEST(parent_rate, rate);
-> +       if (div > R25_IP_RDIV)
-> +               div =3D R25_IP_RDIV;
-> +
-> +       regmap_update_bits(priv->regmap, 25, R25_IP_RDIV, FIELD_PREP(R25_=
-IP_RDIV, div));
-> +
-> +       return 0;
-> +}
-> +
-> +static u8 cdce6214_clk_out0_get_parent(struct clk_hw *hw)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int val, idx;
-> +
-> +       regmap_read(priv->regmap, 2, &val);
-> +
-> +       idx =3D FIELD_GET(R2_REFSEL_SW, val);
-> +
-> +       switch (idx) {
-> +       case 0:
-> +       case 1:
+This patch series depends on [1] & [2]
+[1] https://lore.kernel.org/linux-media/20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org/
+[2] https://lore.kernel.org/linux-media/20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com/
 
-Why isn't case 3 here?
+These patches are tested on SM8250 and SM8550 with v4l2-ctl and 
+Gstreamer for HEVC and VP9 decoders, at the same time ensured that 
+the existing H264 decoder functionality remains uneffected.
 
-> +               idx =3D 0;
-> +               break;
-> +       case 2:
-> +               idx =3D 1;
-> +               break;
-> +       case 3:
-> +               idx =3D 0;
-> +               break;
-> +       };
+Note: 1 of the fluster compliance test is fixed with firmware [3]
+[3]: 
+https://lore.kernel.org/linux-firmware/1a511921-446d-cdc4-0203-084c88a5dc1e@quicinc.com/T/#u 
 
-Or even better, idx =3D 0 by default and if the FIELD_GET() returns 2 idx
-is 1.
+The result of fluster test on SM8550:
+ 131/147 testcases passed while testing JCT-VC-HEVC_V1 with 
+ GStreamer-H.265-V4L2-Gst1.0.
+ The failing test case:
+ - 10 testcases failed due to unsupported 10 bit format.
+   - DBLK_A_MAIN10_VIXS_4
+   - INITQP_B_Main10_Sony_1
+   - TSUNEQBD_A_MAIN10_Technicolor_2
+   - WP_A_MAIN10_Toshiba_3
+   - WP_MAIN10_B_Toshiba_3
+   - WPP_A_ericsson_MAIN10_2
+   - WPP_B_ericsson_MAIN10_2
+   - WPP_C_ericsson_MAIN10_2
+   - WPP_E_ericsson_MAIN10_2
+   - WPP_F_ericsson_MAIN10_2
+ - 4 testcase failed due to unsupported resolution
+   - PICSIZE_A_Bossen_1
+   - PICSIZE_B_Bossen_1
+   - WPP_D_ericsson_MAIN10_2
+   - WPP_D_ericsson_MAIN_2 
+ - 2 testcase failed due to CRC mismatch
+   - RAP_A_docomo_6
+   - RAP_B_Bossen_2
+   - BUG reported: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4392
+     Analysis - First few frames in this discarded by firmware and are 
+     sent to driver with 0 filled length. Driver send such buffers to 
+     client with timestamp 0 and payload set to 0 and 
+     make buf state to VB2_BUF_STATE_ERROR. Such buffers should be 
+     dropped by GST. But instead, the first frame displayed as green 
+     frame and when a valid buffer is sent to client later with same 0 
+     timestamp, its dropped, leading to CRC mismatch for first frame.
 
-	if (FIELD_GET(R2_REFSEL_SW, val) =3D=3D 2)
-		return 1;
+ 235/305 testcases passed while testing VP9-TEST-VECTORS with 
+ GStreamer-VP9-V4L2-Gst1.0.
+ The failing test case:
+ - 64 testcases failed due to unsupported resolution
+   - vp90-2-02-size-08x08.webm
+   - vp90-2-02-size-08x10.webm
+   - vp90-2-02-size-08x16.webm
+   - vp90-2-02-size-08x18.webm
+   - vp90-2-02-size-08x32.webm
+   - vp90-2-02-size-08x34.webm
+   - vp90-2-02-size-08x64.webm
+   - vp90-2-02-size-08x66.webm
+   - vp90-2-02-size-10x08.webm
+   - vp90-2-02-size-10x10.webm
+   - vp90-2-02-size-10x16.webm
+   - vp90-2-02-size-10x18.webm
+   - vp90-2-02-size-10x32.webm
+   - vp90-2-02-size-10x34.webm
+   - vp90-2-02-size-10x64.webm
+   - vp90-2-02-size-10x66.webm
+   - vp90-2-02-size-16x08.webm
+   - vp90-2-02-size-16x10.webm
+   - vp90-2-02-size-16x16.webm
+   - vp90-2-02-size-16x18.webm
+   - vp90-2-02-size-16x32.webm
+   - vp90-2-02-size-16x34.webm
+   - vp90-2-02-size-16x64.webm
+   - vp90-2-02-size-16x66.webm
+   - vp90-2-02-size-18x08.webm
+   - vp90-2-02-size-18x10.webm
+   - vp90-2-02-size-18x16.webm
+   - vp90-2-02-size-18x18.webm
+   - vp90-2-02-size-18x32.webm
+   - vp90-2-02-size-18x34.webm
+   - vp90-2-02-size-18x64.webm
+   - vp90-2-02-size-18x66.webm
+   - vp90-2-02-size-32x08.webm
+   - vp90-2-02-size-32x10.webm
+   - vp90-2-02-size-32x16.webm
+   - vp90-2-02-size-32x18.webm
+   - vp90-2-02-size-32x32.webm
+   - vp90-2-02-size-32x34.webm
+   - vp90-2-02-size-32x64.webm
+   - vp90-2-02-size-32x66.webm
+   - vp90-2-02-size-34x08.webm
+   - vp90-2-02-size-34x10.webm
+   - vp90-2-02-size-34x16.webm
+   - vp90-2-02-size-34x18.webm
+   - vp90-2-02-size-34x32.webm
+   - vp90-2-02-size-34x34.webm
+   - vp90-2-02-size-34x64.webm
+   - vp90-2-02-size-34x66.webm
+   - vp90-2-02-size-64x08.webm
+   - vp90-2-02-size-64x10.webm
+   - vp90-2-02-size-64x16.webm
+   - vp90-2-02-size-64x18.webm
+   - vp90-2-02-size-64x32.webm
+   - vp90-2-02-size-64x34.webm
+   - vp90-2-02-size-64x64.webm
+   - vp90-2-02-size-64x66.webm
+   - vp90-2-02-size-66x08.webm
+   - vp90-2-02-size-66x10.webm
+   - vp90-2-02-size-66x16.webm
+   - vp90-2-02-size-66x18.webm
+   - vp90-2-02-size-66x32.webm
+   - vp90-2-02-size-66x34.webm
+   - vp90-2-02-size-66x64.webm
+   - vp90-2-02-size-66x66.webm
+ - 2 testcases failed due to unsupported format
+   - vp91-2-04-yuv422.webm
+   - vp91-2-04-yuv444.webm
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-22-svc_1280x720_3.ivf
+   - Bug reported: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4371
+ - 2 testcase failed due to unsupported resolution after sequence change
+   - vp90-2-21-resize_inter_320x180_5_1-2.webm
+   - vp90-2-21-resize_inter_320x180_7_1-2.webm
+ - 1 testcase failed due to unsupported stream
+   - vp90-2-16-intra-only.webm
 
-	return 0;
+The result of fluster test on SM8250:
+ 133/147 testcases passed while testing JCT-VC-HEVC_V1 with
+ GStreamer-H.265-V4L2-Gst1.0.
+ The failing test case:
+ - 10 testcases failed due to unsupported 10 bit format.
+   - DBLK_A_MAIN10_VIXS_4
+   - INITQP_B_Main10_Sony_1
+   - TSUNEQBD_A_MAIN10_Technicolor_2
+   - WP_A_MAIN10_Toshiba_3
+   - WP_MAIN10_B_Toshiba_3
+   - WPP_A_ericsson_MAIN10_2
+   - WPP_B_ericsson_MAIN10_2
+   - WPP_C_ericsson_MAIN10_2
+   - WPP_E_ericsson_MAIN10_2
+   - WPP_F_ericsson_MAIN10_2
+ - 4 testcase failed due to unsupported resolution
+   - PICSIZE_A_Bossen_1
+   - PICSIZE_B_Bossen_1
+   - WPP_D_ericsson_MAIN10_2
+   - WPP_D_ericsson_MAIN_2
 
-> +
-> +       return idx;
-> +}
-> +
-> +static int cdce6214_clk_out0_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       regmap_update_bits(priv->regmap, 25, R25_REF_CH_MUX, FIELD_PREP(R=
-25_REF_CH_MUX, index));
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct clk_ops cdce6214_clk_out0_ops =3D {
-> +       .recalc_rate =3D cdce6214_clk_out0_recalc_rate,
-> +       .round_rate =3D cdce6214_clk_out0_round_rate,
-> +       .set_rate =3D cdce6214_clk_out0_set_rate,
-> +       .get_parent =3D cdce6214_clk_out0_get_parent,
-> +       .set_parent =3D cdce6214_clk_out0_set_parent,
-> +};
-> +
-> +static int cdce6214_clk_out_ldo(struct clk_hw *hw, int enable)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int mask, val;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_OUT1:
-> +               mask =3D R4_CH1_PD;
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               mask =3D R4_CH2_PD;
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               mask =3D R4_CH3_PD;
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               mask =3D R4_CH4_PD;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       };
-> +
-> +       if (enable > 0) {
-> +               regmap_clear_bits(priv->regmap, 4, mask);
-> +       } else if (!enable) {
-> +               regmap_set_bits(priv->regmap, 4, mask);
-> +       } else {
-> +               regmap_read(priv->regmap, 4, &val);
-> +               return !(val & mask);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int cdce6214_clk_out_prepare(struct clk_hw *hw)
-> +{
-> +       return cdce6214_clk_out_ldo(hw, 1);
-> +}
-> +
-> +static void cdce6214_clk_out_unprepare(struct clk_hw *hw)
-> +{
-> +       cdce6214_clk_out_ldo(hw, 0);
-> +}
-> +
-> +static int cdce6214_clk_out_is_prepared(struct clk_hw *hw)
-> +{
-> +       return cdce6214_clk_out_ldo(hw, -1);
-> +}
-> +
-> +static unsigned long cdce6214_clk_out_recalc_rate(struct clk_hw *hw,
-> +                                                 unsigned long parent_ra=
-te)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int val, div;
-> +       unsigned long r;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_OUT1:
-> +               regmap_read(priv->regmap, 56, &val);
-> +               div =3D FIELD_GET(R56_CH1_DIV, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               regmap_read(priv->regmap, 62, &val);
-> +               div =3D FIELD_GET(R62_CH2_DIV, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               regmap_read(priv->regmap, 67, &val);
-> +               div =3D FIELD_GET(R67_CH3_DIV, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               regmap_read(priv->regmap, 72, &val);
-> +               div =3D FIELD_GET(R72_CH4_DIV, val);
-> +               break;
-> +       };
-> +
-> +       if (!div)
-> +               div =3D 1;
-> +
-> +       r =3D DIV_ROUND_UP_ULL((u64)parent_rate, div);
-> +
-> +       return r;
-> +}
-> +
-> +static int cdce6214_get_out_div(unsigned long rate, unsigned long parent=
-_rate)
-> +{
-> +       unsigned int div =3D DIV_ROUND_CLOSEST(parent_rate, rate);
-> +
-> +       if (div < 1)
-> +               div =3D 1;
-> +
-> +       if (div > R72_CH4_DIV)
-> +               div =3D R72_CH4_DIV;
-> +
-> +       return div;
+ 232/305 testcases passed while testing VP9-TEST-VECTORS with
+ GStreamer-VP9-V4L2-Gst1.0.
+ The failing test case:
+ - 64 testcases failed due to unsupported resolution
+   - vp90-2-02-size-08x08.webm
+   - vp90-2-02-size-08x10.webm
+   - vp90-2-02-size-08x16.webm
+   - vp90-2-02-size-08x18.webm
+   - vp90-2-02-size-08x32.webm
+   - vp90-2-02-size-08x34.webm
+   - vp90-2-02-size-08x64.webm
+   - vp90-2-02-size-08x66.webm
+   - vp90-2-02-size-10x08.webm
+   - vp90-2-02-size-10x10.webm
+   - vp90-2-02-size-10x16.webm
+   - vp90-2-02-size-10x18.webm
+   - vp90-2-02-size-10x32.webm
+   - vp90-2-02-size-10x34.webm
+   - vp90-2-02-size-10x64.webm
+   - vp90-2-02-size-10x66.webm
+   - vp90-2-02-size-16x08.webm
+   - vp90-2-02-size-16x10.webm
+   - vp90-2-02-size-16x16.webm
+   - vp90-2-02-size-16x18.webm
+   - vp90-2-02-size-16x32.webm
+   - vp90-2-02-size-16x34.webm
+   - vp90-2-02-size-16x64.webm
+   - vp90-2-02-size-16x66.webm
+   - vp90-2-02-size-18x08.webm
+   - vp90-2-02-size-18x10.webm
+   - vp90-2-02-size-18x16.webm
+   - vp90-2-02-size-18x18.webm
+   - vp90-2-02-size-18x32.webm
+   - vp90-2-02-size-18x34.webm
+   - vp90-2-02-size-18x64.webm
+   - vp90-2-02-size-18x66.webm
+   - vp90-2-02-size-32x08.webm
+   - vp90-2-02-size-32x10.webm
+   - vp90-2-02-size-32x16.webm
+   - vp90-2-02-size-32x18.webm
+   - vp90-2-02-size-32x32.webm
+   - vp90-2-02-size-32x34.webm
+   - vp90-2-02-size-32x64.webm
+   - vp90-2-02-size-32x66.webm
+   - vp90-2-02-size-34x08.webm
+   - vp90-2-02-size-34x10.webm
+   - vp90-2-02-size-34x16.webm
+   - vp90-2-02-size-34x18.webm
+   - vp90-2-02-size-34x32.webm
+   - vp90-2-02-size-34x34.webm
+   - vp90-2-02-size-34x64.webm
+   - vp90-2-02-size-34x66.webm
+   - vp90-2-02-size-64x08.webm
+   - vp90-2-02-size-64x10.webm
+   - vp90-2-02-size-64x16.webm
+   - vp90-2-02-size-64x18.webm
+   - vp90-2-02-size-64x32.webm
+   - vp90-2-02-size-64x34.webm
+   - vp90-2-02-size-64x64.webm
+   - vp90-2-02-size-64x66.webm
+   - vp90-2-02-size-66x08.webm
+   - vp90-2-02-size-66x10.webm
+   - vp90-2-02-size-66x16.webm
+   - vp90-2-02-size-66x18.webm
+   - vp90-2-02-size-66x32.webm
+   - vp90-2-02-size-66x34.webm
+   - vp90-2-02-size-66x64.webm
+   - vp90-2-02-size-66x66.webm
+ - 2 testcases failed due to unsupported format
+   - vp91-2-04-yuv422.webm
+   - vp91-2-04-yuv444.webm
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-22-svc_1280x720_3.ivf
+   - Bug raised: 
+https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4371
+ - 5 testcase failed due to unsupported resolution after sequence change
+   - vp90-2-21-resize_inter_320x180_5_1-2.webm
+   - vp90-2-21-resize_inter_320x180_7_1-2.webm
+   - vp90-2-21-resize_inter_320x240_5_1-2.webm
+   - vp90-2-21-resize_inter_320x240_7_1-2.webm
+   - vp90-2-18-resize.ivf
+ - 1 testcase failed with CRC mismatch
+   - vp90-2-16-intra-only.webm
+   Analysis: First few frames are marked by firmware as NO_SHOW frame.
+   Driver make buf state to VB2_BUF_STATE_ERROR for such frames.
+   Such buffers should be dropped by GST. But instead, the first frame 
+   is being displayed and when a valid buffer is sent to client later
+   with same timestamp, its dropped, leading to CRC mismatch for first 
+   frame.
 
-Is this divider_get_val(rate, parent_rate, NULL, 13,
-CLK_DIVIDER_ROUND_CLOSEST)?
+Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+---
+Dikshita Agarwal (23):
+      media: iris: Skip destroying internal buffer if not dequeued
+      media: iris: Update CAPTURE format info based on OUTPUT format
+      media: iris: Avoid updating frame size to firmware during reconfig
+      media: iris: Drop port check for session property response
+      media: iris: Prevent HFI queue writes when core is in deinit state
+      media: iris: Remove deprecated property setting to firmware
+      media: iris: Fix missing function pointer initialization
+      media: iris: Fix NULL pointer dereference
+      media: iris: Fix typo in depth variable
+      media: iris: Track flush responses to prevent premature completion
+      media: iris: Fix buffer preparation failure during resolution change
+      media: iris: Add handling for corrupt and drop frames
+      media: iris: Send V4L2_BUF_FLAG_ERROR for buffers with 0 filled length
+      media: iris: Add handling for no show frames
+      media: iris: Improve last flag handling
+      media: iris: Skip flush on first sequence change
+      media: iris: Remove redundant buffer count check in stream off
+      media: iris: Add a comment to explain usage of MBPS
+      media: iris: Add HEVC and VP9 formats for decoder
+      media: iris: Add platform capabilities for HEVC and VP9 decoders
+      media: iris: Set mandatory properties for HEVC and VP9 decoders.
+      media: iris: Add internal buffer calculation for HEVC and VP9 decoders
+      media: iris: Add codec specific check for VP9 decoder drain handling
 
-> +}
-> +
-> +static long cdce6214_clk_out_round_rate(struct clk_hw *hw, unsigned long=
- rate,
-> +                                       unsigned long *best_parent_rate)
-> +{
-> +       unsigned int div =3D cdce6214_get_out_div(rate, *best_parent_rate=
-);
-> +
-> +       return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-> +}
-> +
-> +static int cdce6214_clk_out_set_rate(struct clk_hw *hw, unsigned long ra=
-te,
-> +                                    unsigned long parent_rate)
-> +{
-> +       unsigned int div =3D cdce6214_get_out_div(rate, parent_rate);
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_OUT1:
-> +               regmap_update_bits(priv->regmap, 56, R56_CH1_DIV,
-> +                                  FIELD_PREP(R56_CH1_DIV, div));
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               regmap_update_bits(priv->regmap, 62, R62_CH2_DIV,
-> +                                  FIELD_PREP(R62_CH2_DIV, div));
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               regmap_update_bits(priv->regmap, 67, R67_CH3_DIV,
-> +                                  FIELD_PREP(R67_CH3_DIV, div));
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               regmap_update_bits(priv->regmap, 72, R72_CH4_DIV,
-> +                                  FIELD_PREP(R72_CH4_DIV, div));
-> +               break;
-> +       };
-> +
-> +       return 0;
-> +}
-> +
-> +static u8 cdce6214_clk_out_get_parent(struct clk_hw *hw)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int val, idx;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_OUT1:
-> +               regmap_read(priv->regmap, 56, &val);
-> +               idx =3D FIELD_GET(R56_CH1_MUX, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               regmap_read(priv->regmap, 62, &val);
-> +               idx =3D FIELD_GET(R62_CH2_MUX, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               regmap_read(priv->regmap, 67, &val);
-> +               idx =3D FIELD_GET(R67_CH3_MUX, val);
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               regmap_read(priv->regmap, 72, &val);
-> +               idx =3D FIELD_GET(R72_CH4_MUX, val);
-> +               break;
-> +       };
-> +
-> +       return idx;
-> +}
-> +
-> +static int cdce6214_clk_out_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_OUT1:
-> +               regmap_update_bits(priv->regmap, 56, R56_CH1_MUX, FIELD_P=
-REP(R56_CH1_MUX, index));
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               regmap_update_bits(priv->regmap, 62, R62_CH2_MUX, FIELD_P=
-REP(R62_CH2_MUX, index));
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               regmap_update_bits(priv->regmap, 67, R67_CH3_MUX, FIELD_P=
-REP(R67_CH3_MUX, index));
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               regmap_update_bits(priv->regmap, 72, R72_CH4_MUX, FIELD_P=
-REP(R72_CH4_MUX, index));
-> +               break;
-> +       };
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct clk_ops cdce6214_clk_out_ops =3D {
-> +       .prepare =3D cdce6214_clk_out_prepare,
-> +       .unprepare =3D cdce6214_clk_out_unprepare,
-> +       .is_prepared =3D cdce6214_clk_out_is_prepared,
-> +       .recalc_rate =3D cdce6214_clk_out_recalc_rate,
-> +       .round_rate =3D cdce6214_clk_out_round_rate,
-> +       .set_rate =3D cdce6214_clk_out_set_rate,
-> +       .get_parent =3D cdce6214_clk_out_get_parent,
-> +       .set_parent =3D cdce6214_clk_out_set_parent,
-> +};
-> +
-> +static int pll_calc_values(unsigned long parent_rate, unsigned long out,
-> +                          unsigned long *ndiv, unsigned long *num, unsig=
-ned long *den)
-> +{
-> +       u64 a;
-> +
-> +       if (out < CDCE6214_VCO_MIN || out > CDCE6214_VCO_MAX)
-> +               return -EINVAL;
-> +
-> +       *den =3D 10000000;
-> +       *ndiv =3D out / parent_rate;
-> +       a =3D (out % parent_rate);
+ drivers/media/platform/qcom/iris/iris_buffer.c     |  35 +-
+ drivers/media/platform/qcom/iris/iris_buffer.h     |   3 +-
+ drivers/media/platform/qcom/iris/iris_ctrls.c      |  35 +-
+ drivers/media/platform/qcom/iris/iris_hfi_common.h |   1 +
+ .../platform/qcom/iris/iris_hfi_gen1_command.c     |  48 ++-
+ .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   5 +-
+ .../platform/qcom/iris/iris_hfi_gen1_response.c    |  37 +-
+ .../platform/qcom/iris/iris_hfi_gen2_command.c     | 143 +++++++-
+ .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   5 +
+ .../platform/qcom/iris/iris_hfi_gen2_response.c    |  57 ++-
+ drivers/media/platform/qcom/iris/iris_hfi_queue.c  |   2 +-
+ drivers/media/platform/qcom/iris/iris_instance.h   |   6 +
+ .../platform/qcom/iris/iris_platform_common.h      |  28 +-
+ .../media/platform/qcom/iris/iris_platform_gen2.c  | 198 ++++++++--
+ .../platform/qcom/iris/iris_platform_qcs8300.h     | 126 +++++--
+ .../platform/qcom/iris/iris_platform_sm8250.c      |  15 +-
+ drivers/media/platform/qcom/iris/iris_state.c      |   2 +-
+ drivers/media/platform/qcom/iris/iris_state.h      |   1 +
+ drivers/media/platform/qcom/iris/iris_vb2.c        |  18 +-
+ drivers/media/platform/qcom/iris/iris_vdec.c       | 116 +++---
+ drivers/media/platform/qcom/iris/iris_vdec.h       |  11 +
+ drivers/media/platform/qcom/iris/iris_vidc.c       |  36 +-
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 397 ++++++++++++++++++++-
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  46 ++-
+ 24 files changed, 1160 insertions(+), 211 deletions(-)
+---
+base-commit: 398a1b33f1479af35ca915c5efc9b00d6204f8fa
+change-id: 20250428-qcom-iris-hevc-vp9-eb31f30c3390
+prerequisite-message-id: <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>
+prerequisite-patch-id: 35f8dae1416977e88c2db7c767800c01822e266e
+prerequisite-patch-id: 2bba98151ca103aa62a513a0fbd0df7ae64d9868
+prerequisite-patch-id: 0e43a6d758b5fa5ab921c6aa3c19859e312b47d0
+prerequisite-patch-id: b7b50aa1657be59fd51c3e53d73382a1ee75a08e
+prerequisite-patch-id: 30960743105a36f20b3ec4a9ff19e7bca04d6add
+prerequisite-patch-id: b93c37dc7e09d1631b75387dc1ca90e3066dce17
+prerequisite-patch-id: afffe7096c8e110a8da08c987983bc4441d39578
+prerequisite-message-id: <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
+prerequisite-patch-id: 2e72fe4d11d264db3d42fa450427d30171303c6f
+prerequisite-patch-id: 3398937a7fabb45934bb98a530eef73252231132
+prerequisite-patch-id: feda620f147ca14a958c92afdc85a1dc507701ac
+prerequisite-patch-id: 07ba0745c7d72796567e0a57f5c8e5355a8d2046
+prerequisite-patch-id: e35b05c527217206ae871aef0d7b0261af0319ea
 
-Drop useless parenthesis please.
+Best regards,
+-- 
+Dikshita Agarwal <quic_dikshita@quicinc.com>
 
-> +       a *=3D *den;
-> +       do_div(a, parent_rate);
-> +       *num =3D a;
-> +
-> +       return 0;
-> +}
-> +
-> +static unsigned long cdce6214_clk_pll_recalc_rate(struct clk_hw *hw,
-> +                                                 unsigned long parent_ra=
-te)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned long ndiv, num, den;
-> +       unsigned int val;
-> +
-> +       regmap_read(priv->regmap, 30, &val);
-
-Maybe it would be better to have '#define R30 30' just so we can easily
-jump to the fields like R30_PLL_NDIV. I see that the datasheet doesn't
-give a name to these registers besides prefixing the decimal offset with
-the letter 'R'.
-
-> +       ndiv =3D FIELD_GET(R30_PLL_NDIV, val);
-> +
-> +       regmap_read(priv->regmap, 31, &val);
-> +       num =3D FIELD_GET(R31_PLL_NUM_15_0, val);
-> +
-> +       regmap_read(priv->regmap, 32, &val);
-> +       num |=3D FIELD_GET(R32_PLL_NUM_23_16, val) << 16;
-> +
-> +       regmap_read(priv->regmap, 33, &val);
-> +       den =3D FIELD_GET(R33_PLL_DEN_15_0, val);
-> +
-> +       regmap_read(priv->regmap, 34, &val);
-> +       den |=3D FIELD_GET(R34_PLL_DEN_23_16, val) << 16;
-> +
-> +       if (!den)
-> +               den =3D CDCE6214_DENOM_DEFAULT;
-> +
-> +       return parent_rate * ndiv + DIV_ROUND_CLOSEST(parent_rate * num, =
-den);
-> +}
-> +
-> +static long cdce6214_clk_pll_round_rate(struct clk_hw *hw, unsigned long=
- rate,
-> +                                       unsigned long *best_parent_rate)
-> +{
-> +       if (rate < CDCE6214_VCO_MIN)
-> +               rate =3D CDCE6214_VCO_MIN;
-> +       if (rate > CDCE6214_VCO_MAX)
-> +               rate =3D CDCE6214_VCO_MAX;
-> +       if (rate < *best_parent_rate * 24)
-
-What is 24?
-
-> +               return -EINVAL;
-> +
-> +       return rate;
-> +}
-> +
-> +static bool cdce6214_pll_locked(struct cdce6214 *priv)
-> +{
-> +       unsigned int val;
-> +
-> +       regmap_read(priv->regmap, 7, &val);
-> +
-> +       return val & R7_LOCK_DET;
-> +}
-> +
-> +static int cdce6214_wait_pll_lock(struct cdce6214 *priv)
-> +{
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       ret =3D regmap_read_poll_timeout(priv->regmap, 7, val,
-> +                                      val & R7_LOCK_DET, 0, 1000);
-> +       if (ret)
-> +               dev_err(priv->dev, "Timeout waiting for PLL lock\n");
-> +
-> +       return ret;
-> +}
-> +
-> +#define R5_PLL_POWER_BITS (R5_PLL_VCOBUFF_LDO_PD | \
-> +                          R5_PLL_VCO_LDO_PD | \
-> +                          R5_PLL_VCO_BUFF_PD)
-> +
-> +static int cdce6214_clk_pll_prepare(struct clk_hw *hw)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       regmap_clear_bits(priv->regmap, 5, R5_PLL_POWER_BITS);
-> +
-> +       regmap_set_bits(priv->regmap, 0, RO_RECAL);
-> +
-> +       return cdce6214_wait_pll_lock(priv);
-> +}
-> +
-> +static void cdce6214_clk_pll_unprepare(struct clk_hw *hw)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       regmap_set_bits(priv->regmap, 5, R5_PLL_POWER_BITS);
-> +}
-> +
-> +static bool cdce6214_clk_pll_powered(struct cdce6214 *priv)
-> +{
-> +       unsigned int val;
-> +
-> +       regmap_read(priv->regmap, 5, &val);
-> +
-> +       return (val & R5_PLL_POWER_BITS) =3D=3D 0;
-> +}
-> +
-> +static int cdce6214_clk_pll_is_prepared(struct clk_hw *hw)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       return cdce6214_pll_locked(priv);
-> +}
-> +
-> +static int cdce6214_clk_pll_set_rate(struct clk_hw *hw, unsigned long ra=
-te,
-> +                                    unsigned long parent_rate)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned long ndiv, num, den;
-> +       int ret;
-> +
-> +       ret =3D pll_calc_values(parent_rate, rate, &ndiv, &num, &den);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       if (den =3D=3D CDCE6214_DENOM_DEFAULT)
-> +               den =3D 0;
-> +
-> +       regmap_update_bits(priv->regmap, 34, R34_PLL_DEN_23_16,
-> +                          FIELD_PREP(R34_PLL_DEN_23_16, den >> 16));
-> +       regmap_update_bits(priv->regmap, 33, R33_PLL_DEN_15_0,
-> +                          FIELD_PREP(R33_PLL_DEN_15_0, den & 0xffff));
-> +       regmap_update_bits(priv->regmap, 32, R32_PLL_NUM_23_16,
-> +                          FIELD_PREP(R32_PLL_NUM_23_16, num >> 16));
-> +       regmap_update_bits(priv->regmap, 31, R31_PLL_NUM_15_0,
-> +                          FIELD_PREP(R31_PLL_NUM_15_0, num & 0xffff));
-> +       regmap_update_bits(priv->regmap, 30, R30_PLL_NDIV,
-> +                          FIELD_PREP(R30_PLL_NDIV, ndiv));
-> +
-> +       regmap_update_bits(priv->regmap, 3, R3_FREQ_INC_DEC_REG_MODE | R3=
-_FREQ_INC_DEC_EN,
-> +                          R3_FREQ_INC_DEC_REG_MODE | R3_FREQ_INC_DEC_EN);
-> +
-> +       if (cdce6214_clk_pll_powered(priv)) {
-> +               regmap_set_bits(priv->regmap, 0, RO_RECAL);
-> +               ret =3D cdce6214_wait_pll_lock(priv);
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static const struct clk_ops cdce6214_clk_pll_ops =3D {
-> +       .prepare =3D cdce6214_clk_pll_prepare,
-> +       .unprepare =3D cdce6214_clk_pll_unprepare,
-> +       .is_prepared =3D cdce6214_clk_pll_is_prepared,
-> +       .recalc_rate =3D cdce6214_clk_pll_recalc_rate,
-> +       .round_rate =3D cdce6214_clk_pll_round_rate,
-> +       .set_rate =3D cdce6214_clk_pll_set_rate,
-> +};
-> +
-> +static int cdce6214_clk_psx_ldo(struct clk_hw *hw, int enable)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int mask, val;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_PSA:
-> +               mask =3D R5_PLL_PSA_PD;
-> +               break;
-> +       case CDCE6214_CLK_PSB:
-> +               mask =3D R5_PLL_PSB_PD;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       };
-> +
-> +       if (enable > 0) {
-> +               regmap_clear_bits(priv->regmap, 5, mask);
-> +       } else if (!enable) {
-> +               regmap_set_bits(priv->regmap, 5, mask);
-> +       } else {
-> +               regmap_read(priv->regmap, 5, &val);
-> +
-> +               return !(val & mask);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int cdce6214_clk_psx_prepare(struct clk_hw *hw)
-> +{
-> +       return cdce6214_clk_psx_ldo(hw, 1);
-
-Instead of this multiplexing with 1/0/-1 can we have logic that returns
-the mask?
-
-	unsigned int cdce6214_clk_psx_mask(struct clk_hw *hw)
-
-This prepare function would be easier to read because we can see that it
-clears bits
-
-	static int cdce6214_clk_psx_prepare(struct clk_hw *hw)
-	{
-		struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-		struct regmap *regmap =3D clock->priv->regmap;
-		unsigned int mask =3D cdce6214_clk_psx_mask(hw);
-
-		return regmap_clear_bits(regmap, 5, mask);
-	}
-
-If the two extra lines to get the regmap is too much we can have some
-sort of hw_to_cdce6214_regmap(hw) function that returns it in one line.
-
-> +}
-> +
-> +static void cdce6214_clk_psx_unprepare(struct clk_hw *hw)
-> +{
-> +       cdce6214_clk_psx_ldo(hw, 0);
-> +}
-> +
-> +static int cdce6214_clk_psx_is_prepared(struct clk_hw *hw)
-> +{
-> +       return cdce6214_clk_psx_ldo(hw, -1);
-> +}
-> +
-> +static unsigned long cdce6214_clk_psx_recalc_rate(struct clk_hw *hw,
-> +                                                 unsigned long parent_ra=
-te)
-> +{
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +       unsigned int psx[] =3D { 4, 5, 6, 6 };
-
-const?
-
-> +       unsigned int val, div;
-> +
-> +       regmap_read(priv->regmap, 47, &val);
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_PSA:
-> +               div =3D psx[FIELD_GET(R47_PLL_PSA, val)];
-> +               break;
-> +       case CDCE6214_CLK_PSB:
-> +               div =3D psx[FIELD_GET(R47_PLL_PSB, val)];
-> +               break;
-> +       };
-> +
-> +       return DIV_ROUND_UP_ULL((u64)parent_rate, div);
-> +}
-> +
-> +static int cdce6214_get_psx_div(unsigned long rate, unsigned long parent=
-_rate)
-> +{
-> +       unsigned int div =3D DIV_ROUND_CLOSEST(parent_rate, rate);
-> +
-> +       if (div < 4)
-> +               div =3D 4;
-> +
-> +       if (div > 6)
-> +               div =3D 6;
-
-Use 'return clamp(div, 4, 6)'
-
-> +
-> +       return div;
-> +}
-> +
-> +static long cdce6214_clk_psx_round_rate(struct clk_hw *hw, unsigned long=
- rate,
-> +                                       unsigned long *best_parent_rate)
-> +{
-> +       unsigned int div =3D cdce6214_get_psx_div(rate, *best_parent_rate=
-);
-> +
-> +       return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-> +}
-> +
-> +static int cdce6214_clk_psx_set_rate(struct clk_hw *hw, unsigned long ra=
-te,
-> +                                    unsigned long parent_rate)
-> +{
-> +       unsigned int div =3D cdce6214_get_psx_div(rate, parent_rate);
-> +       struct cdce6214_clock *clock =3D hw_to_cdce6214_clk(hw);
-> +       struct cdce6214 *priv =3D clock->priv;
-> +
-> +       switch (clock->index) {
-> +       case CDCE6214_CLK_PSA:
-> +               regmap_update_bits(priv->regmap, 47, R47_PLL_PSA,
-> +                                  FIELD_PREP(R47_PLL_PSA, div));
-> +               break;
-> +       case CDCE6214_CLK_PSB:
-> +               regmap_update_bits(priv->regmap, 47, R47_PLL_PSB,
-> +                                  FIELD_PREP(R47_PLL_PSB, div));
-> +               break;
-> +       };
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct clk_ops cdce6214_clk_psx_ops =3D {
-> +       .prepare =3D cdce6214_clk_psx_prepare,
-> +       .unprepare =3D cdce6214_clk_psx_unprepare,
-> +       .is_prepared =3D cdce6214_clk_psx_is_prepared,
-> +       .recalc_rate =3D cdce6214_clk_psx_recalc_rate,
-> +       .round_rate =3D cdce6214_clk_psx_round_rate,
-> +       .set_rate =3D cdce6214_clk_psx_set_rate,
-> +};
-> +
-> +static int cdce6214_clk_register(struct cdce6214 *priv)
-> +{
-> +       struct clk_init_data init[CDCE6214_NUM_CLOCKS] =3D { 0 };
-> +       struct clk_parent_data pdata_out0[2] =3D {};
-> +       struct clk_parent_data pdata_out[4] =3D {};
-> +       struct clk_parent_data pdata_pll =3D {};
-> +       struct clk_parent_data pdata_psx =3D {};
-> +       int i, ret;
-> +
-> +       pdata_out0[0].fw_name =3D "priref";
-> +       pdata_out0[1].fw_name =3D "secref";
-> +
-> +       init[CDCE6214_CLK_OUT0].ops =3D &cdce6214_clk_out0_ops;
-> +       init[CDCE6214_CLK_OUT0].num_parents =3D 2;
-> +       init[CDCE6214_CLK_OUT0].parent_data =3D pdata_out0;
-> +       init[CDCE6214_CLK_OUT0].flags =3D CLK_SET_RATE_NO_REPARENT;
-> +
-> +       pdata_out[0].hw =3D &priv->clk[CDCE6214_CLK_PSA].hw;
-> +       pdata_out[1].hw =3D &priv->clk[CDCE6214_CLK_PSB].hw;
-> +       pdata_out[3].hw =3D &priv->clk[CDCE6214_CLK_OUT0].hw;
-> +
-> +       for (i =3D CDCE6214_CLK_OUT1; i <=3D CDCE6214_CLK_OUT4; i++) {
-> +               init[i].ops =3D &cdce6214_clk_out_ops;
-> +               init[i].num_parents =3D 4;
-
-Please use ARRAY_SIZE(pdata_out) so we don't worry that the static
-assignment above gets changed without this changing too.
-
-> +               init[i].parent_data =3D pdata_out;
-> +               init[i].flags =3D CLK_SET_RATE_NO_REPARENT;
-> +       }
-> +
-> +       init[CDCE6214_CLK_PLL].ops =3D &cdce6214_clk_pll_ops;
-> +       init[CDCE6214_CLK_PLL].num_parents =3D 1;
-> +       pdata_pll.hw =3D &priv->clk[CDCE6214_CLK_OUT0].hw;
-> +       init[CDCE6214_CLK_PLL].parent_data =3D &pdata_pll;
-> +
-> +       pdata_psx.hw =3D &priv->clk[CDCE6214_CLK_PLL].hw;
-> +       for (i =3D CDCE6214_CLK_PSA; i <=3D CDCE6214_CLK_PSB; i++) {
-> +               init[i].ops =3D &cdce6214_clk_psx_ops;
-> +               init[i].num_parents =3D 1;
-
-Same sort of comment.
-
-> +               init[i].parent_data =3D &pdata_psx;
-> +       }
-> +
-> +       for (i =3D 0; i < CDCE6214_NUM_CLOCKS; i++) {
-> +               struct cdce6214_clock *clk =3D &priv->clk[i];
-> +               char name[128];
-> +
-> +               if (!init[i].ops)
-> +                       continue;
-> +
-> +               snprintf(name, sizeof(name), "%s_%s", dev_name(priv->dev)=
-, clk_names[i]);
-> +               init[i].name =3D name;
-> +               clk->hw.init =3D &init[i];
-> +               clk->priv =3D priv;
-> +               clk->index =3D i;
-> +               ret =3D devm_clk_hw_register(priv->dev, &clk->hw);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void cdce6214_setup_xtal(struct cdce6214 *priv, struct device_nod=
-e *np)
-> +{
-> +       unsigned short ip_xo_cload[] =3D {
-
-const?
-
-> +               /* index is the register value */
-> +               3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400,
-> +               4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000,
-> +               6200, 6400, 6500, 6700, 6900, 7100, 7300, 7500,
-> +               7700, 7900, 8100, 8300, 8500, 8700, 8900, 9000
-> +       };
-> +
-> +       unsigned short ip_bias_sel_xo[] =3D {
-
-const?
-
-> +               /* index is the register value */
-> +               0, 14, 29, 44,
-> +               59, 148, 295, 443,
-> +               591, 884, 1177, 1468, 1758
-> +       };
-> +
-> +       unsigned int cload =3D 4400; /* reset default */
-> +       unsigned int bias =3D 295; /* reset default */
-> +       int i;
-> +
-> +       of_property_read_u32(np, "ti,xo-cload-femtofarad", &cload);
-> +       of_property_read_u32(np, "ti,xo-bias-current-microampere", &bias);
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(ip_xo_cload); i++)
-> +               if (cload <=3D ip_xo_cload[i])
-> +                       break;
-> +
-> +       if (i >=3D ARRAY_SIZE(ip_xo_cload)) {
-> +               dev_warn(priv->dev, "ti,xo-cload-femtofarad value %u too =
-high\n",
-> +                        cload);
-> +               i =3D ARRAY_SIZE(ip_xo_cload) - 1;
-> +       }
-> +
-> +       regmap_update_bits(priv->regmap, 2, R24_IP_XO_CLOAD,
-> +                          FIELD_PREP(R24_IP_XO_CLOAD, i));
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(ip_bias_sel_xo); i++)
-> +               if (bias <=3D ip_bias_sel_xo[i])
-> +                       break;
-> +
-> +       if (i >=3D ARRAY_SIZE(ip_xo_cload)) {
-> +               dev_warn(priv->dev, "ti,xo-bias-current-microampere value=
- %u too high\n",
-> +                        bias);
-> +               i =3D ARRAY_SIZE(ip_xo_cload) - 1;
-> +       }
-> +
-> +       regmap_update_bits(priv->regmap, 2, R24_IP_BIAS_SEL_XO,
-> +                          FIELD_PREP(R24_IP_BIAS_SEL_XO, i));
-> +}
-> +
-> +static int cdce6214_get_clkout_fmt(struct cdce6214 *priv, struct device_=
-node *np)
-> +{
-> +       const char *fmt;
-> +       int ret;
-> +
-> +       ret =3D of_property_read_string(np, "ti,clkout-fmt", &fmt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return match_string(clkkout_fmt_names, ARRAY_SIZE(clkkout_fmt_nam=
-es), fmt);
-
-We have a helper for this sort of thing.
-device_property_match_property_string()? Likely you can get rid of these
-helpers and inline the call to that function instead.
-
-> +}
-> +
-> +static int cdce6214_get_clkin_fmt(struct cdce6214 *priv, struct device_n=
-ode *np)
-> +{
-> +       const char *fmt;
-> +       int ret;
-> +
-> +       ret =3D of_property_read_string(np, "ti,clkin-fmt", &fmt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return match_string(clkkin_fmt_names, ARRAY_SIZE(clkkin_fmt_names=
-), fmt);
-> +}
-> +
-> +static int cdce6214_get_cmos_mode(struct cdce6214 *priv, struct device_n=
-ode *np,
-> +                                 const char *propname)
-> +{
-> +       const char *fmt;
-> +       int ret;
-> +
-> +       ret =3D of_property_read_string(np, propname, &fmt);
-> +       if (ret)
-> +               return 0;
-> +
-> +       return match_string(cmos_mode_names, ARRAY_SIZE(cmos_mode_names),=
- fmt);
-> +}
-> +
-> +static int cdce6214_set_cmos_mode(struct cdce6214 *priv, struct device_n=
-ode *np,
-> +                                 unsigned int reg)
-> +{
-> +       int cmosp_mode, cmosn_mode;
-> +       u16 cmode =3D 0, cmode_mask;
-> +
-> +       cmosn_mode =3D cdce6214_get_cmos_mode(priv, np, "ti,cmosn-mode");
-> +       if (cmosn_mode < 0)
-> +               return cmosn_mode;
-> +
-> +       cmosp_mode =3D cdce6214_get_cmos_mode(priv, np, "ti,cmosp-mode");
-> +       if (cmosp_mode < 0)
-> +               return cmosp_mode;
-> +
-> +       switch (cmosp_mode) {
-> +       case CDCE6214_CMOS_MODE_DISABLED:
-> +               break;
-> +       case CDCE6214_CMOS_MODE_HIGH:
-> +               cmode |=3D R59_CH1_CMOSP_EN | R59_CH1_CMOSP_POL;
-> +               break;
-> +       case CDCE6214_CMOS_MODE_LOW:
-> +               cmode |=3D R59_CH1_CMOSP_EN;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       switch (cmosn_mode) {
-> +       case CDCE6214_CMOS_MODE_DISABLED:
-> +               break;
-> +       case CDCE6214_CMOS_MODE_HIGH:
-> +               cmode |=3D R59_CH1_CMOSN_EN | R59_CH1_CMOSN_POL;
-> +               break;
-> +       case CDCE6214_CMOS_MODE_LOW:
-> +               cmode |=3D R59_CH1_CMOSN_EN;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       cmode_mask =3D R59_CH1_CMOSP_EN | R59_CH1_CMOSN_EN |
-> +                    R59_CH1_CMOSP_POL | R59_CH1_CMOSN_POL;
-> +
-> +       /* Relevant fields are identical for register 59 and 75 */
-> +       regmap_update_bits(priv->regmap, reg, cmode_mask, cmode);
-> +
-> +       return 0;
-> +}
-> +
-> +static int cdce6214_parse_subnode(struct cdce6214 *priv, struct device_n=
-ode *np)
-> +{
-> +       struct regmap *reg =3D priv->regmap;
-> +       unsigned int idx, val;
-> +       int fmt;
-> +       int ret;
-> +
-> +       ret =3D of_property_read_u32(np, "reg", &idx);
-> +       if (ret) {
-> +               dev_err(priv->dev, "missing reg property in child: %s\n",
-> +                       np->full_name);
-> +               return ret;
-> +       }
-
-I don't like this binding design. It is too much one node per clk style,
-which we don't want. Assuming these clkout formats are configuring
-things, can we have that be an array of strings indexed based on the
-DT specifier for the provider, similar to assigned-clocks? Then we don't
-need a node for each configuration.
-
-> +
-> +       if (idx >=3D CDCE6214_NUM_CLOCKS)
-> +               return -EINVAL;
-> +
-> +       switch (idx) {
-> +       case CDCE6214_CLK_OUT1:
-> +               fmt =3D cdce6214_get_clkout_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKOUT_FMT_CMOS:
-> +                       ret =3D cdce6214_set_cmos_mode(priv, np, 59);
-> +                       if (ret)
-> +                               return ret;
-> +                       regmap_clear_bits(reg, 59, R59_CH1_LVDS_EN);
-> +                       regmap_clear_bits(reg, 57, R57_CH1_LPHCSL_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LVDS:
-> +                       regmap_clear_bits(reg, 57, R57_CH1_LPHCSL_EN);
-> +                       regmap_set_bits(reg, 59, R59_CH1_LVDS_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LPHCSL:
-> +                       regmap_clear_bits(reg, 59, R59_CH1_LVDS_EN);
-> +                       regmap_set_bits(reg, 57, R57_CH1_LPHCSL_EN);
-> +                       break;
-> +               default:
-> +                       goto err_illegal_fmt;
-> +               }
-> +               break;
-> +       case CDCE6214_CLK_OUT2:
-> +               fmt =3D cdce6214_get_clkout_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKOUT_FMT_CMOS:
-> +                       goto err_illegal_fmt;
-> +               case CDCE6214_CLKOUT_FMT_LVDS:
-> +                       regmap_set_bits(reg, 65, R65_CH2_LVDS_EN);
-> +                       regmap_clear_bits(reg, 63, R63_CH2_LPHCSL_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LPHCSL:
-> +                       regmap_set_bits(reg, 63, R63_CH2_LPHCSL_EN);
-> +                       regmap_clear_bits(reg, 65, R65_CH2_LVDS_EN);
-> +                       break;
-> +               default:
-> +                       goto err_illegal_fmt;
-> +               }
-> +               break;
-> +       case CDCE6214_CLK_OUT3:
-> +               fmt =3D cdce6214_get_clkout_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKOUT_FMT_CMOS:
-> +                       goto err_illegal_fmt;
-> +               case CDCE6214_CLKOUT_FMT_LVDS:
-> +                       regmap_set_bits(reg, 70, R70_CH3_LVDS_EN);
-> +                       regmap_clear_bits(reg, 68, R68_CH3_LPHCSL_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LPHCSL:
-> +                       regmap_set_bits(reg, 70, R70_CH3_LVDS_EN);
-> +                       regmap_clear_bits(reg, 68, R65_CH2_LVDS_EN);
-> +                       break;
-> +               }
-> +               break;
-> +       case CDCE6214_CLK_OUT4:
-> +               fmt =3D cdce6214_get_clkout_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKOUT_FMT_CMOS:
-> +                       ret =3D cdce6214_set_cmos_mode(priv, np, 75);
-> +                       if (ret)
-> +                               return ret;
-> +                       regmap_clear_bits(reg, 75, R75_CH4_LVDS_EN);
-> +                       regmap_clear_bits(reg, 73, R73_CH4_LPHCSL_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LVDS:
-> +                       regmap_clear_bits(reg, 73, R73_CH4_LPHCSL_EN);
-> +                       regmap_set_bits(reg, 75, R75_CH4_LVDS_EN);
-> +                       break;
-> +               case CDCE6214_CLKOUT_FMT_LPHCSL:
-> +                       regmap_clear_bits(reg, 75, R75_CH4_LVDS_EN);
-> +                       regmap_set_bits(reg, 72, R73_CH4_LPHCSL_EN);
-> +                       break;
-> +               default:
-> +                       goto err_illegal_fmt;
-> +               }
-> +               break;
-> +       case CDCE6214_CLK_PRIREF:
-> +               fmt =3D cdce6214_get_clkin_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKIN_FMT_CMOS:
-> +                       regmap_clear_bits(reg, 24, R24_IP_PRIREF_BUF_SEL);
-> +                       break;
-> +               case CDCE6214_CLKIN_FMT_DIFF:
-> +                       regmap_set_bits(reg, 24, R24_IP_PRIREF_BUF_SEL);
-> +                       break;
-> +               case CDCE6214_CLKIN_FMT_XTAL: /* XTAL not allowed for PRI=
-REF */
-> +               default:
-> +                       goto err_illegal_fmt;
-> +               }
-> +               break;
-> +       case CDCE6214_CLK_SECREF:
-> +               fmt =3D cdce6214_get_clkin_fmt(priv, np);
-> +               switch (fmt) {
-> +               case CDCE6214_CLKIN_FMT_CMOS:
-> +                       val =3D R24_IP_SECREF_BUF_SEL_LVCMOS;
-> +                       break;
-> +               case CDCE6214_CLKIN_FMT_XTAL:
-> +                       val =3D R24_IP_SECREF_BUF_SEL_XTAL;
-> +                       cdce6214_setup_xtal(priv, np);
-> +                       break;
-> +               case CDCE6214_CLKIN_FMT_DIFF:
-> +                       val =3D R24_IP_SECREF_BUF_SEL_DIFF;
-> +                       break;
-> +               default:
-> +                       goto err_illegal_fmt;
-> +               }
-> +
-> +               regmap_update_bits(reg, 24, R24_IP_SECREF_BUF_SEL, val);
-> +
-> +               break;
-> +       }
-> +
-> +       return 0;
-> +
-> +err_illegal_fmt:
-> +       if (fmt < 0)
-> +               dev_err(priv->dev, "%pOF: missing required property\n", n=
-p);
-> +       else
-> +               dev_err(priv->dev, "%pOF: illegal format %u\n", np, fmt);
-> +
-> +       return -EINVAL;
-> +}
-> +
-> +static int cdce6214_probe(struct i2c_client *client)
-> +{
-> +       struct device *dev =3D &client->dev;
-> +       struct device_node *child;
-> +       struct cdce6214 *priv;
-> +       int ret;
-> +
-> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->client =3D client;
-> +       priv->dev =3D dev;
-> +       i2c_set_clientdata(client, priv);
-> +       dev_set_drvdata(dev, priv);
-> +
-> +       priv->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_=
-OUT_LOW);
-> +       if (IS_ERR(priv->reset_gpio)) {
-> +               return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-> +                                    "failed to get reset gpio\n");
-> +       }
-> +
-> +       priv->regmap =3D devm_regmap_init_i2c(client, &cdce6214_regmap_co=
-nfig);
-> +       if (IS_ERR(priv->regmap))
-> +               return PTR_ERR(priv->regmap);
-
-No dev_err_probe() here?
-
-> +
-> +       ret =3D cdce6214_configure(priv);
-> +       if (ret)
-> +               return ret;
-> +
-> +       for_each_child_of_node(dev->of_node, child) {
-> +               ret =3D cdce6214_parse_subnode(priv, child);
-> +               if (ret)
-> +                       return ret;
-
-Do we need to of_node_put() the child node here on error?
-
-No dev_err_probe() here?
-
-> +       }
-> +
-> +       ret =3D cdce6214_clk_register(priv);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret =3D devm_of_clk_add_hw_provider(dev, cdce6214_of_clk_get, pri=
-v);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return 0;
-
-Can simplify to return devm_of_clk_add_hw_provider()
-
-> +}
-> +
-> +static const struct of_device_id cdce6214_ids[] =3D {
-> +       {
-> +               .compatible =3D "ti,cdce6214",
-> +       }, {
-> +               /* sentinel */
-> +       }
-
-Please shorten this.
-
-       { .compatible =3D "ti,cdce6214" },
-       { /* sentinel */ }
-
-> +};
-> +MODULE_DEVICE_TABLE(of, cdce6214_ids);
-> +
-> +static struct i2c_driver cdce6214_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "cdce6214",
-> +               .of_match_table =3D cdce6214_ids,
-> +               .probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-> +       },
-> +       .probe =3D cdce6214_probe,
-> +};
-> +module_i2c_driver(cdce6214_driver);
 
