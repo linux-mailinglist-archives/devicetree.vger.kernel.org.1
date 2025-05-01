@@ -1,227 +1,102 @@
-Return-Path: <devicetree+bounces-172667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76272AA5D70
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:55:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DCDAA5D76
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0906E1BA7E7E
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 10:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 365F31657B9
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 10:58:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E9C221F2E;
-	Thu,  1 May 2025 10:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD2922222A7;
+	Thu,  1 May 2025 10:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EvaWsD0k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4kbdGbb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972E52DC781;
-	Thu,  1 May 2025 10:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4C72AD32;
+	Thu,  1 May 2025 10:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746096912; cv=none; b=TcyBJj/XcEnVU1BozO3Lb4C0M7exIfAEcRlWKMO+GfDwLiP+KnQWLesoPfTqlDr3MprRMB21xqZ4214wzsd9EmOFe1MC3IWd9OfMKOagKlYLTvNMKtvrIwi1vnofuQWn50V8Pf14tVn3S5ADPg9f2rucG8+Ns9KZJZBpattGVo0=
+	t=1746097131; cv=none; b=M/W+I9ABTc9zj4ma3dcYOySb6OF6TIb9vd/sR3BkKsNx2BJ8XSRbIqvo/WSTL5s2DsYWy4qm/gKA28vBjbsiPJEUq33zXP0i10mo1tjVd/MfWyM8/n1sojxdt+KuvC1t3aXrXTE6TWZnFrCyPN+JnhyYzWwON8bolUhgIg++inM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746096912; c=relaxed/simple;
-	bh=jZ2VATRHVVRfJuKWaUJyoPaTmoyKIYqXUtF5EyZwSAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=SWGLNLHIU9es8K9518NfoOb5n5H1Txb7N62J31pUQkgFkOHRxEFLbe3J6Khni9Zq6zLXyk56eLxcNYkBrphMpsLJqDARTKcXzPlT90i+hf1/WTTT15sweHd7Gn9k5w+XIel+hvY2dyBQ0WdlxXTd0baKZdgsMM/JTAZSuFRrttA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EvaWsD0k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05603C4CEE4;
-	Thu,  1 May 2025 10:55:06 +0000 (UTC)
+	s=arc-20240116; t=1746097131; c=relaxed/simple;
+	bh=fOPI1vRY7umuBn+S/P9hMul1fSPdaHJ81MJBCEDAOto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qlb5vF5JoNEVWXTR43be7Am7UAT8lXUkid5hZN3/qbAqQFJHQ4PI2z53cNuXYKPd2eMdiiXMJ8/NH4hU1WckkJxU7nVTVg+BAiQDrH8rczWyZbxLiEhYf4KATgF1jYoUTdIA0D6v/b6Sbc/qpRzTYJGiD1nSJZEMeJ9y7/d2D3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G4kbdGbb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1EC4C4CEE3;
+	Thu,  1 May 2025 10:58:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746096911;
-	bh=jZ2VATRHVVRfJuKWaUJyoPaTmoyKIYqXUtF5EyZwSAg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=EvaWsD0kFLrE/P0/8X59Cjl8bLcX8cECnp01S+YZ3PQGy+qhApx4qvZRZQaqJjRjO
-	 /u1d8oQXM0K9z52CcpeV/ew+bIh+oiZnfXni/j1aQEF6WywW240cvnL92rrUFPTwuC
-	 GgnnSV/ClSq6KtZ0/UWOdGP0ZbCWoTaMV32LGEsIue4syRZe5tUhb7NhKToK9SE7Ne
-	 IHEvbKw7IbKHJUuLpoHo1eXIIXhCY0qS5gzf4X1eNIhtEAmCjoVyYOOva8LRtgFPG3
-	 EMNjgdY6ddMO0FToqu1rHGh6vI5F1IIWcgC8j7CCaC16F3mK3QjNzwWf1HehU9mx+s
-	 5E2by8zNzhN3g==
-Message-ID: <8c102773-71e2-4c60-b260-07f099ddaae3@kernel.org>
-Date: Thu, 1 May 2025 12:55:04 +0200
+	s=k20201202; t=1746097131;
+	bh=fOPI1vRY7umuBn+S/P9hMul1fSPdaHJ81MJBCEDAOto=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G4kbdGbb5Ttos7413Y9NRKDgW9LAD6g3OLKHMJHzdqOkufj89zfhI1K/vK872+YWD
+	 Ji3r3IcpHV1lO8l3J9Dc2Lf+aTaW2OFrSj1/KLtwkMY4LzriyrZpcF2k6aGfLgoeDo
+	 LVKR5uO8px3oWIpV9WZBwq+SaROVF7vvilxAXMDG7W2Gs+nDl0G1WbDfhqGA2tB2Uw
+	 dCJxhavYP92r0DTN9IAV3tAwyP9ii3arplTRgX02vriYnpVg5bSK2ABmigqie0RvVx
+	 Mzs3AmGVr/3Ko65RKjUtQgV/p/aplBuDvIz5dx2O6O/4dOGN+LwylQ+71GFQV7tWz5
+	 UKdNw5fBPxSNg==
+Date: Thu, 1 May 2025 12:58:48 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de, 
+	daniel.lezcano@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 1/7] dt-bindings: timer: Add EcoNet EN751221 "HPT" CPU
+ Timer
+Message-ID: <20250501-ludicrous-idealistic-camel-7bf8aa@kuoka>
+References: <20250430133433.22222-1-cjd@cjdns.fr>
+ <20250430133433.22222-2-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] LoongArch: dts: Add initial SoC devicetree for
- Loongson 2K0300
-To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>,
- Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Aradhya Bhatia <a-bhatia1@ti.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-References: <20250501044239.9404-2-ziyao@disroot.org>
- <20250501044239.9404-5-ziyao@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250501044239.9404-5-ziyao@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250430133433.22222-2-cjd@cjdns.fr>
 
-On 01/05/2025 06:42, Yao Zi wrote:
-> Add SoC devicetree for 2K0300 SoC, which features one LA264 dual-issue
-> core and targets embedded market. Only CPU core, legacy interrupt
-> controllers and UARTs are defined for now.
+On Wed, Apr 30, 2025 at 01:34:27PM GMT, Caleb James DeLisle wrote:
+> Add device tree bindings for the so-called high-precision timer (HPT)
+> in the EcoNet EN751221 SoC.
 > 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
 > ---
->  arch/loongarch/boot/dts/loongson-2k0300.dtsi | 197 +++++++++++++++++++
->  1 file changed, 197 insertions(+)
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k0300.dtsi
+>  .../bindings/timer/econet,en751221-timer.yaml | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/econet,en751221-timer.yaml
 > 
-> diff --git a/arch/loongarch/boot/dts/loongson-2k0300.dtsi b/arch/loongarch/boot/dts/loongson-2k0300.dtsi
-> new file mode 100644
-> index 000000000000..6991a368ff94
-> --- /dev/null
-> +++ b/arch/loongarch/boot/dts/loongson-2k0300.dtsi
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2025 Loongson Technology Corporation Limited
-> + * Copyright (C) 2025 Yao Zi <ziyao@disroot.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "loongson,ls2k0300";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +		serial5 = &uart5;
-> +		serial6 = &uart6;
-> +		serial7 = &uart7;
-> +		serial8 = &uart8;
-> +		serial9 = &uart9;
 
+What changed? Nothing explains dropping the tag.
 
-UARTs depend on connectors, so these are board-level aliases.
+<form letter>
+This is a friendly reminder during the review process.
 
+It looks like you received a tag and forgot to add it.
 
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "loongson,la264";
-> +			reg = <0>;
-> +			device_type = "cpu";
-> +			clocks = <&cpu_clk>;
-> +		};
-> +
-> +	};
-> +
-> +	cpuintc: interrupt-controller {
-> +		compatible = "loongson,cpu-interrupt-controller";
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +	};
-> +
-> +	cpu_clk: clock-1000m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <1000000000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x00 0x10000000 0x00 0x10000000 0x0 0x10000000>,
-> +			 <0x00 0x02000000 0x00 0x02000000 0x0 0x04000000>,
-> +			 <0x00 0x40000000 0x00 0x40000000 0x0 0x40000000>;
-> +
-> +		liointc0: interrupt-controller@16001400{
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
 
-Missing space, {
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-> +			compatible = "loongson,liointc-2.0";
-> +			reg = <0x0 0x16001400 0x0 0x40>,
-> +			      <0x0 0x16001040 0x0 0x8>;
-> +			reg-names = "main", "isr0";
-> +
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +
-> +			interrupt-parent = <&cpuintc>;
-> +			interrupts = <2>;
-> +			interrupt-names = "int0";
-> +
-> +			loongson,parent_int_map = <0xffffffff>, /* int0 */
-> +						  <0x00000000>, /* int1 */
-> +						  <0x00000000>, /* int2 */
-> +						  <0x00000000>; /* int3 */
-> +		};
-> +
-
-
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
+
 
