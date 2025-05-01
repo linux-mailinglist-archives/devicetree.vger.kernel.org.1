@@ -1,153 +1,99 @@
-Return-Path: <devicetree+bounces-172717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2F3AA600E
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:32:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31854AA6027
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C061BA4156
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:33:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 966A716B3E2
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CB11DDC07;
-	Thu,  1 May 2025 14:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7441F1537;
+	Thu,  1 May 2025 14:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzdD4tdW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lr8gdcXr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FB13AD24;
-	Thu,  1 May 2025 14:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220252E401;
+	Thu,  1 May 2025 14:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746109973; cv=none; b=IDeAECUeCkR2TsFcEYcWkfoZfx6uYihZj0o3JblaqQ+Y1+Lw07252SktoHmayEJy1Pt3T7ZLQNewfsUsKr4qAQ9pKuipZ8fpOSjP4/TEvnst6mUNye5DTUMwpfk4Qtf+V2gfKMX0B4Q61hSMzljE1CPA+mgqmWS8gHZKgajbg+k=
+	t=1746110396; cv=none; b=aYo+TL4yfgV+neuQz0NZEH6TolLeo/M+CLWW4j7eNYYTUbtR5iolTf6BkpT+AzfK/f2pgEq5PO5afJponXZBqXPgit8CShrjT+EOoCEqEaO2QAcSaxZ2gwDUhpX8728G4+BHOcXDVXs166xLdNen+737jNHNBW08bkEBsVeHPs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746109973; c=relaxed/simple;
-	bh=ChU0LnGye3/sKTfBYj0v3uZsJYxV4lwJzxdMPJHVNdw=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ugq9vn3t4VuF6q1VOqL+IHJL0bKa/G1VtbFyNaWDhrKLk49TKiYeWZOz835Wve0MZOcIBs978tmZF2PaSaUNWJW1/kIcJOD1AlPjXnjaBtHZW6Ti78oseqLqOoBKMD2cbwNc+V1AtQ5/PcDk00jfUFZXPkyEX7skn4ylWYKq0Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzdD4tdW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC572C4CEE3;
-	Thu,  1 May 2025 14:32:52 +0000 (UTC)
+	s=arc-20240116; t=1746110396; c=relaxed/simple;
+	bh=ebq6ZQKy0bz52JluprLeqgvaVWccGrWculDohvzKkpc=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=LAJvZphguSwFBjoqyLgFBqHyp94EMpSRrTXiJqd9WbaQLAzDJdvrTmA2UyhjzSMkozfByeUUTIIhmBZ8quJxc0Em+AzPgTXcijbFzpN5AvHDNwiDFA+D4gcO57zOaoCp85O784t41waI8ZA1jDWBpZOhErGniHnoQeORAGZgjrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lr8gdcXr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E77DC4CEE3;
+	Thu,  1 May 2025 14:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746109973;
-	bh=ChU0LnGye3/sKTfBYj0v3uZsJYxV4lwJzxdMPJHVNdw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tzdD4tdWov6bTcHQjRH/3i/YplItQFfWojku1jIYAZEPAeyKWG/GlIwYUo0D3OmEn
-	 omyuAVWcjzTzM8/a3GEeToqhJkb2pUPjnOohvN5NHlrV+CWtW2EsfQzySMbqfH/E2M
-	 Ft0wYaR2a7NxL3Kw9kz6fYk8ArNGAuMMgEYJ6BKelaKjM8jGOYrqyoSH8EN+B/loLb
-	 vzLdYLMhlgPYuWkMAKbraZLtYbWhtiphlnphtBOCTdzas37rkhi2ZqB7/l1mfKh6sI
-	 qBS7FkmuwjN66QAbvL1s74uaz/tuOnKqbZ++h9f2klvBBncgNG7GrGWquGsGxfj5Vu
-	 q+0lsmAfC5/Qw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uAUy3-00AbJY-00;
-	Thu, 01 May 2025 15:32:51 +0100
-Date: Thu, 01 May 2025 15:32:49 +0100
-Message-ID: <86seloh04u.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 15/22] arm64: Disable GICv5 read/write/instruction traps
-In-Reply-To: <20250424-gicv5-host-v2-15-545edcaf012b@kernel.org>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
-	<20250424-gicv5-host-v2-15-545edcaf012b@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1746110395;
+	bh=ebq6ZQKy0bz52JluprLeqgvaVWccGrWculDohvzKkpc=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Lr8gdcXrPoek+R87kCKiwBX5fT+vBi5ug9yygm2pCurK/yef9aNVJq/rKmflqN+G2
+	 5KI5TkENt4SZCau/OnVBQFOSXlkCQzrOGRDEjBFdThIVQLHTYCSPDxS9yqnS1ucvKQ
+	 IKrmwZ9mWRPoPWk1N27FUZlyG08WmyjDhhDgU3EmY+lbeDgiJt3QYY7f4vcYyn0iqV
+	 vhJobYCdRJayT6PlnzvJi81WCEBWuJvjTOwqaKDAyS8QsP9ZAGQVS826GUHvzub/Zy
+	 2DWdv/t5n3oekD6QUTHGQ0dkVlpq/8tkAGKzIZku0c2wpimvBJxXjBkepCtc3QIyve
+	 KeYCeQFsM2Hkw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB6FA3822D59;
+	Thu,  1 May 2025 14:40:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net V2 0/4] net: vertexcom: mse102x: Fix RX handling
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174611043465.2998093.14745156096722266784.git-patchwork-notify@kernel.org>
+Date: Thu, 01 May 2025 14:40:34 +0000
+References: <20250430133043.7722-1-wahrenst@gmx.net>
+In-Reply-To: <20250430133043.7722-1-wahrenst@gmx.net>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org
 
-On Thu, 24 Apr 2025 11:25:26 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+Hello:
+
+This series was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed, 30 Apr 2025 15:30:39 +0200 you wrote:
+> This series is the first part of two series for the Vertexcom driver.
+> It contains substantial fixes for the RX handling of the Vertexcom MSE102x.
 > 
-> GICv5 trap configuration registers value is UNKNOWN at reset.
+> Changes in V2:
+> - clarify cover letter
+> - add footnote to Patch 1
+> - postpone DT binding changes to second series as suggested by Jakub K.
 > 
-> Initialize GICv5 EL2 trap configuration registers to prevent
-> trapping GICv5 instruction/register access upon entering the
-> kernel.
-> 
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  arch/arm64/include/asm/el2_setup.h | 45 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
-> 
-> diff --git a/arch/arm64/include/asm/el2_setup.h b/arch/arm64/include/asm/el2_setup.h
-> index ebceaae3c749b84395c9c5eccf0caf874697ad11..1e362bb3b042d51fff15a7c2abc73842930b275a 100644
-> --- a/arch/arm64/include/asm/el2_setup.h
-> +++ b/arch/arm64/include/asm/el2_setup.h
-> @@ -165,6 +165,50 @@
->  .Lskip_gicv3_\@:
->  .endm
->  
-> +/* GICv5 system register access */
-> +.macro __init_el2_gicv5
-> +	mrs_s	x0, SYS_ID_AA64PFR2_EL1
-> +	ubfx	x0, x0, #ID_AA64PFR2_EL1_GCIE_SHIFT, #4
-> +	cbz	x0, .Lskip_gicv5_\@
-> +
-> +	mov	x0, #(1 << ICH_HFGITR_EL2_GICRCDNMIA_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICRCDIA_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDDI_SHIFT		| \
-> +		      1 << ICH_HFGITR_EL2_GICCDEOI_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDHM_SHIFT		| \
-> +		      1 << ICH_HFGITR_EL2_GICCRDRCFG_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDPEND_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDAFF_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDPRI_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDDIS_SHIFT	| \
-> +		      1 << ICH_HFGITR_EL2_GICCDEN_SHIFT)
+> [...]
 
-Please write this as:
+Here is the summary with links:
+  - [net,V2,1/4] net: vertexcom: mse102x: Fix possible stuck of SPI interrupt
+    https://git.kernel.org/netdev/net/c/55f362885951
+  - [net,V2,2/4] net: vertexcom: mse102x: Fix LEN_MASK
+    https://git.kernel.org/netdev/net/c/74987089ec67
+  - [net,V2,3/4] net: vertexcom: mse102x: Add range check for CMD_RTS
+    https://git.kernel.org/netdev/net/c/d4dda902dac1
+  - [net,V2,4/4] net: vertexcom: mse102x: Fix RX error handling
+    https://git.kernel.org/netdev/net/c/ee512922ddd7
 
-	mov	x0, #(ICH_HFGITR_EL2_GICRCDNMIA	| \
-		      ICH_HFGITR_EL2_GICRCDIA	| \
-		      ICH_HFGITR_EL2_GICCDDI	| \
-		      ICH_HFGITR_EL2_GICCDEOI	| \
-		      ICH_HFGITR_EL2_GICCDHM	| \
-		      ICH_HFGITR_EL2_GICCRDRCFG	| \
-		      ICH_HFGITR_EL2_GICCDPEND	| \
-		      ICH_HFGITR_EL2_GICCDAFF	| \
-		      ICH_HFGITR_EL2_GICCDPRI	| \
-		      ICH_HFGITR_EL2_GICCDDIS	| \
-		      ICH_HFGITR_EL2_GICCDEN)
-
-which has the exact same effect, and is consistent with other uses in
-this file.
-
-Thanks,
-
-	M.
-
+You are awesome, thank you!
 -- 
-Without deviation from the norm, progress is not possible.
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
