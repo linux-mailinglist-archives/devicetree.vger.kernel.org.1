@@ -1,216 +1,140 @@
-Return-Path: <devicetree+bounces-172720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC10AA6038
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:51:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535CAAA6055
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 17:01:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4DD173445
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:51:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041C81896507
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0000A1F76C2;
-	Thu,  1 May 2025 14:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0041BE871;
+	Thu,  1 May 2025 15:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bElToQK7"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DvAUoabe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B0C198E6F;
-	Thu,  1 May 2025 14:51:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6B71EA7C6;
+	Thu,  1 May 2025 15:01:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746111103; cv=none; b=sw/ngOY9SgRByRYsm+CZg8NdquXEx8HDykAF7Ix35Ojvom9sgBjm3euT9rV5CrteExXeR5O37jnmzA/7CZPHJLXtw2mFSc7VzuJYH/cNzIwxMYl57lM3MYwt1lr/7uZ3UeHDbNPyNpK8g4+t59uhi9KrOkFMw6KlawNVHx40TeQ=
+	t=1746111701; cv=none; b=jCRpDBitf6v4UrHRdoO5yxgLNRxrbLFzWz53IvkXJNdstTz0TPZlVhQmh8z3bUlVzyw6S6Ly+iHYX4aJ7h/U0nGeLtE5F1a5MYNtHsaoYZMSzq4LA53bguCG3uR2Z0hvCQkx4WFmfFIu59HwoBCP7o3RBsqqH9u/QmeCjpzg2q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746111103; c=relaxed/simple;
-	bh=wdjmd1246JboK3lbng6YEeoL6Zhji4MPN6fOxhiJpdw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZPjxoajVywGq2nZ+p/VdoSsYixa+HwVuEAptcBZ/jNtat7EI2OEMpsCG3G6brtiRtFZ8ZU2KDd6ZPq3qdxGuM9ao2ztMVAjPCdOQHHLWKdBLd08563WOyH3Xw+YrscwiS/kvrAYMy2kromhzQUPQo9zVyHZwSMr1cobV6GW9jG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bElToQK7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165E7C4CEED;
-	Thu,  1 May 2025 14:51:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746111103;
-	bh=wdjmd1246JboK3lbng6YEeoL6Zhji4MPN6fOxhiJpdw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bElToQK7w+6nx2mjMzHZ1uPtFSEXuTctwMZpLLhMeeOV/VYTwgnbx9bHHJ4faKYGg
-	 AjKJpDYz71VP+m2LLTbUClNzwYzz1iUqD56BJiT9HPE+O5YENSfY2bhTT3VfbLuuHv
-	 ljDSf3MYYjO4RmomsHmcYreMwPD58KlX8R8SU+twUekKefPPM3PnbPwNb/5OyneW5X
-	 M12BOSI2xPPnteqTVBGhwGjaZOWMU1JqdhBzvAcAFUe/BQOqJwZEGuK8k87jc9cQJ2
-	 B3OvsOYi8pjxHNT9Gbp3jE3sEpBsW6muo/bBHZlSTWixxObZBDmw8GvmP66Ss+UKG2
-	 nbwUoN2n+CuUQ==
-Date: Thu, 1 May 2025 15:51:36 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Sayyad Abid <sayyad.abid16@gmail.com>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com,
-	javier.carrasco.cruz@gmail.com, olivier.moysan@foss.st.com,
-	gstols@baylibre.com, tgamblin@baylibre.com, alisadariana@gmail.com,
-	eblanc@baylibre.com, antoniu.miclaus@analog.com,
-	andriy.shevchenko@linux.intel.com, stefan.popa@analog.com,
-	ramona.gradinariu@analog.com, herve.codina@bootlin.com,
-	tobias.sperling@softing.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 5/5] dt-bindings: iio: adc: add bindings for TI
- ADS1262
-Message-ID: <20250501-nervous-agreed-73b4b63c82e0@spud>
-References: <20250501100043.325423-1-sayyad.abid16@gmail.com>
- <20250501100043.325423-6-sayyad.abid16@gmail.com>
+	s=arc-20240116; t=1746111701; c=relaxed/simple;
+	bh=FcT5OJIncV+3YTLlIknloH4b7NqZ8CJNvPmY7U77tYk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oxpIh4PvY4sPtqvH8jPMIlzWvY93RyqyNXt1ybFpfYhyd7Ti4Gme/YJBBLnR44tbDYc60GJB6GKzwZEbhkyxlrcP/IR1oye5eD1wuVszcMfqnErP4K2lzDR8YSRmIdoWVONFtqx8FvmAFgRh2K//TAP0jMbZzAqVuaNzEL2dRCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DvAUoabe; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1746111699; x=1777647699;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=FcT5OJIncV+3YTLlIknloH4b7NqZ8CJNvPmY7U77tYk=;
+  b=DvAUoabeN4yNkLlpapaBMNBqdB2kfSenKuxuTTDaG18v7OD7yH+9XbeG
+   FdhMTXlUZ88BeYdkTT7ZOu69vyWI+SCKisSGi3sHEI4gD124DHJqhmgZ+
+   Y5FLwM9YGljdkmF6kAv7On1l98NnO9mQG16WTltJiMD7CRoOJ6GSjW0Ue
+   tTenGmBXL99xXbiGfjJhtgn/PjpY+d2WvcaglIc0mcdgP+J5EYnD6IltT
+   N/KxeiTQuQ0W6NurFPHldl6yYN2pkiZ8UlkrXKqwf5pZRc7kJk0ihSGya
+   D5JRNB3x2OV2LuEbiZMd0zag/e7IISe3+QLyO+Nt6YDjdkzjKDitjPnQJ
+   g==;
+X-CSE-ConnectionGUID: rf2P6i5OR06cfakkSU8wBw==
+X-CSE-MsgGUID: GycyurudQMeXlU/ye7iK7Q==
+X-IronPort-AV: E=Sophos;i="6.15,254,1739862000"; 
+   d="scan'208";a="208620796"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 May 2025 08:01:33 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 1 May 2025 08:01:28 -0700
+Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Thu, 1 May 2025 08:01:27 -0700
+Message-ID: <e85fe2a4-ea86-4525-9b7a-1d1cabf743f5@microchip.com>
+Date: Thu, 1 May 2025 08:01:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="62IET8pWxsXuL1RR"
-Content-Disposition: inline
-In-Reply-To: <20250501100043.325423-6-sayyad.abid16@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] clk: at91: sama7d65: Add missing clk_hw to
+ parent_data
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <mturquette@baylibre.com>
+CC: <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>
+References: <cover.1742916867.git.Ryan.Wanner@microchip.com>
+ <d634ae4f72bca022e205b03c01415e90fda0bc01.1742916867.git.Ryan.Wanner@microchip.com>
+ <47b54406-42d8-41cd-a561-9073db09666e@tuxon.dev>
+From: Ryan Wanner <ryan.wanner@microchip.com>
+Content-Language: en-US
+In-Reply-To: <47b54406-42d8-41cd-a561-9073db09666e@tuxon.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On 4/26/25 06:35, Claudiu Beznea wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Hi, Ryan,
+> 
+> On 25.03.2025 17:55, Ryan.Wanner@microchip.com wrote:
+>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>
+>> The main_xtal clk_hw struct is not passed into parent_data.hw causing an
+>> issue with main_osc parent.
+> 
+> Can you please describe the issue?
+> 
+>> Passing the main_xtal struct into the
+>> parent_data struct will ensure the correct parent structure.
+>>
+>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+>> ---
+>>  drivers/clk/at91/sama7d65.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/clk/at91/sama7d65.c b/drivers/clk/at91/sama7d65.c
+>> index a5d40df8b2f2..08306261c9c7 100644
+>> --- a/drivers/clk/at91/sama7d65.c
+>> +++ b/drivers/clk/at91/sama7d65.c
+>> @@ -1138,6 +1138,7 @@ static void __init sama7d65_pmc_setup(struct device_node *np)
+>>
+>>       parent_data.name = main_xtal_name;
+>>       parent_data.fw_name = main_xtal_name;
+>> +     parent_data.hw = main_xtal_hw;
+> 
+> I think, from time to time, you can still hit some random failure as the
+> parent_data.index is still not initialized. I think the problem may be
+> solved by doing something like:
+> 
+> -       static struct clk_parent_data parent_data;
+> +       static struct clk_parent_data parent_data = {0};
+> 
+> Can you please check with this?
+Yes I will check on this and test it.
 
---62IET8pWxsXuL1RR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best,
+Ryan
+> 
+> Thank you,
+> Claudiu
+> 
+> 
+>>       main_osc_hw = at91_clk_register_main_osc(regmap, "main_osc", NULL,
+>>                                                &parent_data, bypass);
+>>       if (IS_ERR(main_osc_hw))
+> 
 
-On Thu, May 01, 2025 at 03:30:43PM +0530, Sayyad Abid wrote:
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ads1262
-
-How different is the ads1263? Do we get support for both "for free"?
-
-> +  spi-cpha:
-> +    type: boolean
-> +    description: Required for SPI mode 1 operation
-
-This should just collapse to "spi-cpha: true", cos the definition of it
-comes from spi-peripheral-props.yaml.
-
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier for the reset pin (active low)
-> +
-> +  vref-supply:
-> +    description: |
-> +      The regulator supply for ADC reference voltage. If not specified,
-> +      the internal 2.5V reference will be used.
-
-I looked this device up, I don't see an input pin called "vref" and
-there appear to be multiple reference inputs. All supplies should be
-documented.
-
-> +      ti,gain:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 5
-> +        description: |
-> +          PGA gain setting. Not applicable for temperature sensor (chann=
-el 11).
-> +          0: 1 (default)
-> +          1: 2
-> +          2: 4
-> +          3: 8
-> +          4: 16
-> +          5: 32
-
-Why can't the gain be in it's actual unit, rather than what I am
-guessing is a register value?
-
-> +  ti,data-rate:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 15
-> +    description: |
-> +      Data acquisition rate in samples per second
-> +      0: 2.5
-> +      1: 5
-> +      2: 10
-> +      3: 16.6
-> +      4: 20
-> +      5: 50
-> +      6: 60
-> +      7: 100
-> +      8: 400
-> +      9: 1200
-> +      10: 2400
-> +      11: 4800
-> +      12: 7200
-> +      13: 14400
-> +      14: 19200
-> +      15: 38400
-
-Same applies here really, except that the fractional per second rate
-would only work if the base unit was samples-per-<something sub second>,
-which might or might not be worth it.
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      ads1262: adc@0 {
-
-The label here is unused AFAICT and should be dropped.
-
-Cheers,
-Conor.
-
-> +        compatible =3D "ti,ads1262";
-> +        reg =3D <0>;
-> +        spi-max-frequency =3D <7372800>;
-> +        vref-supply =3D <&adc_vref>;
-> +        spi-cpha;
-> +        reset-gpios =3D <&gpio1 16 GPIO_ACTIVE_LOW>;
-> +        ti,pga-bypass;
-> +        ti,data-rate =3D <15>; /* 38400 SPS */
-> +
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        #io-channel-cells =3D <1>;
-> +
-> +        /* Single-ended channel */
-> +        channel@0 {
-> +          reg =3D <0>;
-> +        };
-> +
-> +        /* Differential channel */
-> +        channel@1 {
-> +          reg =3D <1>;
-> +          diff-channels =3D <1 2>;
-> +          ti,gain =3D <2>; /* Gain of 4 */
-> +        };
-> +
-> +        /* Temperature sensor */
-> +        channel@11 {
-> +          reg =3D <11>;
-> +        };
-> +      };
-> +    };
-> +...
-> --=20
-> 2.39.5
->=20
-
---62IET8pWxsXuL1RR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBOKeAAKCRB4tDGHoIJi
-0iDXAQDMeJzpK7bqks7PXJSILFx1HYJxR0frq2wqV/4eAZzXHwD8DYzj4Zw2QiD9
-uGzl1vxYuhW4ijM+iUCVHnGoSy9wkgg=
-=JpzC
------END PGP SIGNATURE-----
-
---62IET8pWxsXuL1RR--
 
