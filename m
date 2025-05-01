@@ -1,96 +1,118 @@
-Return-Path: <devicetree+bounces-172700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14066AA5F1C
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:17:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A220AA5F27
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:22:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBA89824ED
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:17:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 622537AD6D5
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57F2174EF0;
-	Thu,  1 May 2025 13:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F495190696;
+	Thu,  1 May 2025 13:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wl4GnDnw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DtCE/t5g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94252DC76A;
-	Thu,  1 May 2025 13:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB46118AFC;
+	Thu,  1 May 2025 13:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746105463; cv=none; b=RablW0KMhjyM4RFXM37wCgPRdke1OLmwdRULCDvEt1mcfSYHVnl6L2tx/3OLDvL1I3+57RooqXnXoJRQMbPjLU9XU9tBhnWkta2v/ZNVjWN61TOAmv4prYTAKG6dV1K9au10tWSHj1fzGq+vdCeghDTU4dIAIIcaNQz+PjyL07c=
+	t=1746105728; cv=none; b=PukkGTcPPKHKfR8VeBFq0B0KjXGWTF5R/8NpkesQUv0fj19bOqVSWza5mfmpbfDYYVJ1GCLdgTajIzt0R16ueIg/9GUrnQY8ofeN86GUAdEF9MZHtnCRrKveJjayQn5v7SZFlIOlDa3jsBf4MX81B/zsI7oFKnarupEu9OCKqrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746105463; c=relaxed/simple;
-	bh=QtW8V05Ll5TgPFoRHUE1CblqZBs5rBw/y7zDbeCz2Ew=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=nenzTS3W1uIRkzf3GVlL8oKB44Dz5AacIgWP56Fl/ILJKPWuRlPlNAuIcmr7UuGLi2JUd20H4h2GOkD/ZMlOYh8UbIvTqAxVLaPEtGL/a3L1gEbhuRn/aEKP15xBsxzSg2LNvfhxBfWnIG5uoneCJ9mWi21ATFqt2lakO2DgFIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wl4GnDnw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72118C4CEE3;
-	Thu,  1 May 2025 13:17:39 +0000 (UTC)
+	s=arc-20240116; t=1746105728; c=relaxed/simple;
+	bh=RazpV2UTWQfk3VYP9glaXZEVzsKBiFCCY67xrHhBCWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HAyO6p1sO/PrE5QsZk8xn2cgFusy7GO1/cWT0mdfrDQ1vhibSQLwu5JPl/lMoBBU4XOXSPI55pLYryeVJmlptLQnG9KBhycETdsDqUcn51UIQ7E96/vpklfxwttyoCAVmanh0qmi/yL6Wp5cdwHKxtLflSnJlslulQ0kgX9H4/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DtCE/t5g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F991C4CEE3;
+	Thu,  1 May 2025 13:22:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746105463;
-	bh=QtW8V05Ll5TgPFoRHUE1CblqZBs5rBw/y7zDbeCz2Ew=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Wl4GnDnwJXGlIGZ8fC5LMt1nsQT92up9CfvAsDJqGX0AZ/pSez6UWnMczBPvGuoU+
-	 vJpRBXQawz0eZXmKgXOu2Tq/YZxgDuPeZmow79KAcR1JahN5qDmv/LuLKQbhMMfCS+
-	 LJTiuotSAnjKbzRYkrU25861E6pJu8d28cqTYFUlAC66b1uEeJYG/iN0+0Mq3kCgQZ
-	 2aapo/88irzFShq9xenYlP/GmqiMWYtnbkgsJb7ld6eWxYtIO694EfRe3zw2DtORNr
-	 XIpfeePuaPPGbdQwnrz+ALQLLNDqCaEQ0T3b3ko8/jMdCY1QV9ggBZ6xX1YEDlSQaA
-	 QBx3Syq6+lh4A==
+	s=k20201202; t=1746105727;
+	bh=RazpV2UTWQfk3VYP9glaXZEVzsKBiFCCY67xrHhBCWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DtCE/t5g1ns3W+DH6t8IwoHQuS9mCSPqHUmL2mntT/RKn9d3bLNusXPWFiIHH8f2r
+	 seuwlymI2q4iQkX3PcG2RnmKYD3ggTflV7hSbvuQsRe8/xkvYwfl+XVLq1PS6HAXOq
+	 cHmonrxt2/FAGK4xhi7+ensRNwI+H7+VlLXvOovn8nN81m2Of8QC7qToHcvuu4DmKm
+	 r7Ttlkhk7o12SD1ggTCKf6CnZ88UVHbcMb7w2ylG6WsWsx1PsIGLR6ccZbvEWVRqnC
+	 g3TMp1p8VWv79TJBj1AZfzKWbmFaOn7cz3GNbDQbQI6S9+ktBKIQ4OjDGEPq4Fo+xs
+	 bllW64LnpUflw==
+Date: Thu, 1 May 2025 14:22:01 +0100
 From: Lee Jones <lee@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Georgi Djakov <djakov@kernel.org>, 
- Lee Jones <lee@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
- David Heidelberg <david@ixit.cz>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, coresight@lists.linaro.org, 
- linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250425-fix-nexus-4-v3-0-da4e39e86d41@oss.qualcomm.com>
-References: <20250425-fix-nexus-4-v3-0-da4e39e86d41@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v3 00/11] ARM: qcom: fix APQ8064 schema
- warnings
-Message-Id: <174610545917.3855354.6995417813544260690.b4-ty@kernel.org>
-Date: Thu, 01 May 2025 14:17:39 +0100
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH net-next v6 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+Message-ID: <20250501132201.GP1567507@google.com>
+References: <20250430101126.83708-1-ivecera@redhat.com>
+ <20250430101126.83708-9-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-39345
+In-Reply-To: <20250430101126.83708-9-ivecera@redhat.com>
 
-On Fri, 25 Apr 2025 20:47:00 +0300, Dmitry Baryshkov wrote:
-> Rob's bot has reported [1] several warnings for Nexus 4 submisson,
-> however none of those warnings are specific to that device. Fix all
-> those warnings for all APQ8064 platforms by extending existing schemas,
-> adding missing schemas and making APQ8064 DT follow all the schema
-> files.
+On Wed, 30 Apr 2025, Ivan Vecera wrote:
+
+> Register DPLL sub-devices to expose the functionality provided
+> by ZL3073x chip family. Each sub-device represents one of
+> the available DPLL channels.
 > 
-> [1]: https://lore.kernel.org/linux-arm-msm/174221818190.3957236.3364090534153729086.robh@kernel.org/
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> ---
+> v4->v6:
+> * no change
+> v3->v4:
+> * use static mfd cells
+> ---
+>  drivers/mfd/zl3073x-core.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> [...]
+> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
+> index 050dc57c90c3..3e665cdf228f 100644
+> --- a/drivers/mfd/zl3073x-core.c
+> +++ b/drivers/mfd/zl3073x-core.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+>  #include <linux/math64.h>
+> +#include <linux/mfd/core.h>
+>  #include <linux/mfd/zl3073x.h>
+>  #include <linux/module.h>
+>  #include <linux/netlink.h>
+> @@ -755,6 +756,14 @@ static void zl3073x_devlink_unregister(void *ptr)
+>  	devlink_unregister(ptr);
+>  }
+>  
+> +static const struct mfd_cell zl3073x_dpll_cells[] = {
+> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 0),
+> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 1),
+> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 2),
+> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 3),
+> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 4),
+> +};
 
-Applied, thanks!
+What other devices / subsystems will be involved when this is finished?
 
-[02/11] dt-bindings: mfd: syscon: add qcom,apq8064-mmss-sfpb
-        commit: 137d4ebdf6bd86ca6aa26ec4f9a1c5b579905c6c
-[03/11] dt-bindings: mfd: syscon: add qcom,apq8064-sps-sic
-        commit: 9f8af721495e04b6c3a3a5293fd8afa7e38bee1f
-
---
+-- 
 Lee Jones [李琼斯]
-
 
