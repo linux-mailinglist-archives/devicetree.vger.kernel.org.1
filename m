@@ -1,150 +1,185 @@
-Return-Path: <devicetree+bounces-172783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA53AA662B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 00:24:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8DDAA6646
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 00:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FC191BC6939
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 22:24:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADE543A91B6
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 22:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DBFA265CDE;
-	Thu,  1 May 2025 22:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412D4264A60;
+	Thu,  1 May 2025 22:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BbVxY5yC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M+5O5tGQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63263265CCB;
-	Thu,  1 May 2025 22:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BB5224253;
+	Thu,  1 May 2025 22:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746138237; cv=none; b=R3yRodIr3aHsCN/5sD453spLDxwN9MJPZ4Y2g4nG66cFXf1tAtgchsd8v9Gugyy7c7sB+J9kGdDzD0l2P0JuttnPiojMiYxhMXusHkKGreLP/961zk0QC8d/Lk6+bzQrlKaP04b+SCBMZK+oI1jTkheTgZongJFEZX1Z2EdEAk0=
+	t=1746138704; cv=none; b=kANubVzgT6a6/PL0rSHx95xhparLJOm10F8X/43Ej9vI658kIV8Lsl82bNMG4qlhVkE8arY69o/jtoPe1cNoy6USzqKuZN8ckVHJW/NTikuTVD9jLmWZL4dUO98wna09M4Smubs0bhzgYlVYwN8EeoewEo08g+797+VBSFDkySQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746138237; c=relaxed/simple;
-	bh=AdvIjQi/4aXBUrayVTQs3uaVb4+2LoBxWLRuzajDxIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GQluXFNjNtiqNuvDBnqwrX7w3pUM4H6gpygKv281bPYidHZsRWvGMLMOfGqtWGk+FNrIICsseyrvoOjS+CWrvxJFmn8OwQN1XIhmNC2vz3VxSfaak8+qwUUszKX4jtYbdL75+YNGegsIXYOd8UcBQNgrZfMrVWkxns9Uy4QXBto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BbVxY5yC; arc=none smtp.client-ip=209.85.222.175
+	s=arc-20240116; t=1746138704; c=relaxed/simple;
+	bh=IUmOmh23ffVW5ccEnUJXO1QpsOO3VaSdH4ENaa8xDEM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Hybrc8L4Csc+xSVCSy07N4HGlTVUykdl9gJECsnCjQNvvQ0qu3EP+4FI0KYHdRoB37RfYKBChDIjexU3VSMRo/rf/Lw0BVihJ8FO1ghfUV3BuCv9Uo/IJ/vTHW/5CJuim/DGAF3vNR0Rl3EsJIYe0NNovAU8VmjTHSJQ7uw/ItU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M+5O5tGQ; arc=none smtp.client-ip=209.85.208.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c5aecec8f3so249908985a.1;
-        Thu, 01 May 2025 15:23:55 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30effbfaf4aso13384751fa.3;
+        Thu, 01 May 2025 15:31:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746138234; x=1746743034; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ALJpzUTq/FKpZ6ZIbBrWjDg3p3NoIlcuclCH+vNu1Do=;
-        b=BbVxY5yChRomengW5ik4eK1mTYKt1daNuxmjXtFa5Yiuv4E33l19O4P23X1kQgpcvw
-         qkxSDYBbH0yLriYJieCa70cUKz7vLn0+lQbtPGJldJ/BYu40kKjzMguQA/nnzRc12eEr
-         pGF0/Sq0Au4ZTucLWzgi7yl241k/XiV2MexsBRlpRt7HbaXDY6Dn1B8kahykGzPuZowM
-         195jRofAhNVHimnz0M7DB3b55iUwzotwB3hI5O25laStIkIwWwnlPGC+Ly64SNrmw0J7
-         +m4pe2CDGhj+fWJZ+cHdQZO9Zs1Z0UAfol4tqF8/YGPSHMQ1cuZc54Hq+bGAacRpCqso
-         s37g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746138234; x=1746743034;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1746138699; x=1746743499; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ALJpzUTq/FKpZ6ZIbBrWjDg3p3NoIlcuclCH+vNu1Do=;
-        b=R1rOqNPV530mzNd1dZqAiK+m6XlvNzv3qhb/5wfAs5gpqgIS8ZAFanrlV2Lifz5ogP
-         dOQEGWgkNNKIy3586iTOayXAx62mtx+qgvF7A0hZ8zgiR085wOjK19l+8AZ5Io45Ypwd
-         gaZbJvZb7HDeOp4CD/+YUNCmoKsGmaXLFzQRxNK7Fc1JCNobk+SCN08HmoGXs/4LsGQr
-         kbzd6D4f1UeyTY5qhKBP1PyIE6o32KpCenza4BGP3WiVE9PSXLqkMsuz1FhjQUh+3lzV
-         kSdlza67wCfYtg+KtjJNJA1hxVpyIfOkmGhxjt1F+dPGWWkOkncDi9pFlnbFwZNF1j1R
-         k4bA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyjEHuesNc5EkeMQ3KVLC44XhaUB3aEdYKM3X9Y4cl8TxgabN1RHuCLmpgN65k8+X3SqvZFISqxqqLUA3O@vger.kernel.org, AJvYcCX0HtVFukeFBYYBfmMzPrzyJy36MD8HzB8kkZabMAa32WxeyD2aJC54J0aN6eMNqSixshR1umyj7Omr@vger.kernel.org, AJvYcCXRPLYkOi0IIryM5L5iXuz7b+mXQAHBVFrQSbsWLADnTFO74P03nxlztBWTn4HCpJlGDKsMSDnzqfMo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/0w8d26PqlKmiV+fSLsZivR8py+miiRzOkfadzmea+7C+s55s
-	vEvAdI+kmBVNVOoKAfHOf8lrJ1LyTf2lsDTnBdp+dkj3NHL5Ubxu
-X-Gm-Gg: ASbGncvChqJT54LZgtgOFly9sH0Urr26N3zwBt/BlKlCEaDxHu4ulL36DHi46KYZG8Q
-	aqbH8CcqKtEeu6dYL9mgj2Ql6D4+wRkacrbVfXUWUqWPK4ijYNED4tG2i3ODd1x9cgc7WHjlQFP
-	NzyhGUmBcEUXdNzwU7Jdxx3iCQsUOu+F539oJo/ba6uxNaudokE8ngutVIujHobkVvPKRkA0KDB
-	W6/CrxV7bi8+hnjUy/76/jlDisK53K2hI4d6AokMBBwngPf5UMKr4QYRXuZmsMgIK1kX3bt2eXP
-	JUs/yI9iYmGjYHKG
-X-Google-Smtp-Source: AGHT+IHSSsKyi9FGAPd9UU71QhjqJiaS5ihLbJsB2KEjxOY2dmC2E2E/lDqi0usoLmyGcynJlgTLAw==
-X-Received: by 2002:a05:620a:460d:b0:7c5:4adb:781b with SMTP id af79cd13be357-7cad5b2392bmr136857685a.7.1746138234183;
-        Thu, 01 May 2025 15:23:54 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7cad23c3ed3sm100036785a.44.2025.05.01.15.23.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 May 2025 15:23:53 -0700 (PDT)
-Date: Fri, 2 May 2025 06:23:35 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 2/3] clk: sophgo: Add support for newly added precise
- compatible
-Message-ID: <ocbvvu7hmeh372dfvyokwy5saa3l3atjfxwd7i5prif57r3wan@mizv37xwg3k5>
-References: <20250430020932.307198-1-inochiama@gmail.com>
- <20250430020932.307198-3-inochiama@gmail.com>
- <20250430-radiance-rebuilt-2caa906d5e6f@spud>
- <20250430-snort-raider-dbf10d14993f@spud>
- <otuaro3xh2ut3kurcomrq5j3guyyj7uhhwgngqdqqrrcpvlk6t@4wqbxy3m3tq7>
- <20250501-shrubs-unmixable-a2a8a9bedd01@spud>
+        bh=1WhLnGgrZK9KgJDLutiME2etA44y+MbfNDEIYfSdOas=;
+        b=M+5O5tGQbwkwVHLBpoZJ04ukCBdrA3EtmoSlj39yDV5HM9zknJvr7slZOLcc74Q60I
+         uaTV8gbPjIc4y6nBX1RBLeazKDDO0hTVEDHR8bZa4FNanmV6MhQLolw/2gUVuXcGag9V
+         3QkdCdqOwieLP7yyy9jxEnthwPnYCd/zdtvW4QWgU7t8vST34GKxprYrGFtcU4tng9k8
+         Pt3xw1CAJcLyLhL9fizvVH6LBUobW7OXUOJWJqwaqUOitoYshzp6AsD2Ilga8TqLG50x
+         qR2aBPxfif9eUqSMT95vvRz3KAZUGXxpJUkRKHoxHQikZFAvzXOY5CFAq6pkQR1+DDKJ
+         lwMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746138699; x=1746743499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1WhLnGgrZK9KgJDLutiME2etA44y+MbfNDEIYfSdOas=;
+        b=eqNLPQIEUMHDJP8DDfiItAT6KxUizfxb2oV5ulmTetUVEPKT+bY83a4Zu+rFSpRdXw
+         C59VaCfeKME0wneLHGgs1N7ev1sxn1ZJM0+tCcTxph8GBhVIJtz5AZLAnAG6tkGn/PtL
+         tQ/PZ93RzZE1OmVq9jQSfUwM5FhLs1Fi0rg4tRZVnDFov8f6v00XoF6ySRjOPtX9lFvH
+         Gz2RIZoiDrwpizqo9m8tUV1jqoReJH6CPl5epsxo908hR32pAbsce3jthzFeCRhuhLGH
+         /cLcFA/GML9F9+ynh6Z6/2yaBJ19ubwJYOqs/Ge4fokvIsUO7QcH76vgC09s2GvRairr
+         urhw==
+X-Forwarded-Encrypted: i=1; AJvYcCVapa/ySnCmtO2I1YYQMo8Y2MMX0wd2dD56xva9/dHl0ozG5hcdpdCNuRaeCT/9yeyXqZY4X0eOI8v4@vger.kernel.org, AJvYcCWVWNDqQ+D9F7/z0t4Dp+xvNS53hLgWAuWVp5pp/koPPI0lz988Rds4IY6hozS2C5bszVt/ZozB1fLo7LM=@vger.kernel.org, AJvYcCXyaSIGve95xd8ZQSjfrYcr+JbIwS/axgwqoPgLR1wo/KoBUgqzTtVcXO7xYSUdBoR4aLF726YGohuP0oC6@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywi2cDifH8uZLjX2vpHdX60aT2Csj9aQyd3AIsiskd/SaWoiq20
+	hKj9ryJuA0/fzsWJycrsDWw8Ld4X90D/XVcQjRE/RbJ7UAd0YA+7VmC1pdutmx8S/L1hBF6A7rE
+	rV+wxOWm7TJ4mu6bZaaxtQHy/cvR9nP2MUBk=
+X-Gm-Gg: ASbGncvnnbR8ENDXy4+5qTbuEVktq3yFKUMC2p1qImidawuN0vC4IWBuVllfuu9S4X3
+	1B80FJqshRJX2qqUkuU5P0/gEs71MhGOu25Gf6I5I9d7aZ3yfuv8JU1fEPplLQ6myXP/ANtIkik
+	uGD47kdFbiuT90VCfEjqaf7Q==
+X-Google-Smtp-Source: AGHT+IEYmFe5HB0Ycsl/5Rt5LMxC6ZnTanDjyMrQmJ8f+Ih6DUxHbiydzQUNZDruV7nSLfeDs1Pp/LcyUxabvAcgV60=
+X-Received: by 2002:a05:651c:548:b0:30d:e104:b593 with SMTP id
+ 38308e7fff4ca-320c61bea9dmr1057501fa.39.1746138699095; Thu, 01 May 2025
+ 15:31:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250501-shrubs-unmixable-a2a8a9bedd01@spud>
+References: <20250420-tx1-therm-v1-1-58516c7fc429@gmail.com>
+ <d0da9dbd-7ea7-4047-bab3-22f416c45938@gmail.com> <CALHNRZ-1wY2D4FOauh7tD+2QKBfhtfdJcvpV_B9Y0tEpE1kTVA@mail.gmail.com>
+ <03de9272-dbcc-4473-a267-c3a32e3fd844@gmail.com> <CALHNRZ8i=gOrHfgjhL5X_mqM8=1KeW_cXpp2R32hmT5wUjkw5A@mail.gmail.com>
+ <2eb90841-f10c-4524-bbf8-10a2095ecde4@gmail.com>
+In-Reply-To: <2eb90841-f10c-4524-bbf8-10a2095ecde4@gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 1 May 2025 17:31:27 -0500
+X-Gm-Features: ATxdqUGrMNTj7xaG2iCFPJ4lREoHnf4_qjs03MsfW90lx2iInYnOxaWVxwrT6hU
+Message-ID: <CALHNRZ8GCBwjVOFoeGrP3Rbcy2NVzkahi_i0gR8qAYr2tA0SOA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable PWM fan on the Jetson TX1 Devkit
+To: Tomasz Maciej Nowak <tmn505@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 01, 2025 at 03:22:17PM +0100, Conor Dooley wrote:
-> On Thu, May 01, 2025 at 06:43:07AM +0800, Inochi Amaoto wrote:
-> > On Wed, Apr 30, 2025 at 04:37:01PM +0100, Conor Dooley wrote:
-> > > On Wed, Apr 30, 2025 at 04:33:39PM +0100, Conor Dooley wrote:
-> > > > On Wed, Apr 30, 2025 at 10:09:30AM +0800, Inochi Amaoto wrote:
-> > > > > Add of device id definition for newly added precise compatible.
-> > > > > 
-> > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > > ---
-> > > > >  drivers/clk/sophgo/clk-cv1800.c | 3 +++
-> > > > >  1 file changed, 3 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/clk/sophgo/clk-cv1800.c b/drivers/clk/sophgo/clk-cv1800.c
-> > > > > index e0c4dc347579..e10221df6385 100644
-> > > > > --- a/drivers/clk/sophgo/clk-cv1800.c
-> > > > > +++ b/drivers/clk/sophgo/clk-cv1800.c
-> > > > > @@ -1519,8 +1519,11 @@ static int cv1800_clk_probe(struct platform_device *pdev)
-> > > > >  
-> > > > >  static const struct of_device_id cv1800_clk_ids[] = {
-> > > > >  	{ .compatible = "sophgo,cv1800-clk", .data = &cv1800_desc },
-> > > > > +	{ .compatible = "sophgo,cv1800b-clk", .data = &cv1800_desc },
-> > > > 
-> > > > Given the same data is used here, should there not be fallbacks in the
-> > > > dt for some of these? For example, 1812 to 1800? Or is that not okay,
-> > > > because 1800 is not a real device id?
-> > > > 
-> > > > >  	{ .compatible = "sophgo,cv1810-clk", .data = &cv1810_desc },
-> > > > > +	{ .compatible = "sophgo,cv1812h-clk", .data = &cv1800_desc },
-> > > > >  	{ .compatible = "sophgo,sg2000-clk", .data = &sg2000_desc },
-> > > > > +	{ .compatible = "sophgo,sg2002-clk", .data = &sg2000_desc },
-> > > 
-> > > Actually, this one is a better example. sg2000 is not marked deprecated.
-> > > sg2002 uses the same match data. Why is no fallback to sg2000 used for
-> > > the sg2002 case?
-> > 
-> > Yeah, It is a good idea. I will take it, thanks,
-> 
-> Can you point out the difference in the dt-binding patch when you do,
-> between the sg2000 being a real device and the others not?
+On Wed, Apr 23, 2025 at 8:21=E2=80=AFAM Tomasz Maciej Nowak <tmn505@gmail.c=
+om> wrote:
+>
+> W dniu 23.04.2025 o 06:31, Aaron Kling pisze:
+> > On Tue, Apr 22, 2025 at 11:19=E2=80=AFAM Tomasz Maciej Nowak <tmn505@gm=
+ail.com> wrote:
+> >>
+> >> W dniu 22.04.2025 o 17:58, Aaron Kling pisze:
+> >>> On Tue, Apr 22, 2025 at 9:52=E2=80=AFAM Tomasz Maciej Nowak <tmn505@g=
+mail.com> wrote:
+> >>>>
+> >>>> Hi.
+> >>>>
+> >>>> W dniu 21.04.2025 o 00:42, Aaron Kling via B4 Relay pisze:
+> >>>>> From: Aaron Kling <webgeek1234@gmail.com>
+> >>>>>
+> >>>>> This is based on 6f78a94, which enabled added the fan and thermal z=
+ones
+> >>>>> for the Jetson Nano Devkit. The fan and thermal characteristics of =
+the
+> >>>>> two devkits are similar, so usng the same configuration.
+> >>>>
+> >>>> Does this work on Your DevKit? Doesn't on mine, the fan won't budge.=
+ Maybe the
+> >>>> revision difference? What I'm using ATM is [1] and [2]. Because inve=
+rted polarity
+> >>>> of PWM, not submitted since that'll need the driver changes [3],[4].
+> >>>
+> >>> I would have sworn I verified this before sending it in. I've had the
+> >>> patches for some time. But you are correct, this does not work as-is.
+> >>> Maybe I lost something cleaning up for submission or just plain
+> >>> misremembered the verification. I will send a v2 once I've fixed and
+> >>> verified. Apologies to the list for the bad submission.
+> >>>
+> >>> For inverted polarity, listing them backwards already has precedence
+> >>> in mainline, see the Banana Pi R3 dt. This makes me want to double
+> >>> check the existing Nano pwm-fan entry in mainline, though. Cause I
+> >>> thought all the t210 devices were the same in regards to pwm fan
+> >>> inversion. And it doesn't have reversed entries.
+> >>
+> >> That Banana Pi R3 reverse levels look ugly, but if it's permitted I'm =
+not against.
+> >>
+> >> I would assume they fixed that in Nano, since PWM controller doesn't i=
+mplement
+> >> inverted polarity in hardware. Looking at Switch [5] it seems the TX1 =
+DevKit was
+> >> used for developing, since they replicated the issue.
+> >>
+> >> 5. https://github.com/fail0verflow/switch-linux/commit/b23e8b89081415f=
+2a63bc625db041c8092e2a8a2
+> >>   >
+> >>> Sincerely,
+> >>> Aaron Kling
+> >>>
+> >>>>
+> >>>> 1. https://github.com/tmn505/linux/commit/a78c520ec94aeab2c9dc8e1f46=
+597c4174ff957d
+> >>>> 2. https://github.com/tmn505/linux/commit/99beee4f0cd5d3a6f30e1829d8=
+23c11cb8b54bac
+> >>>> 3. https://libera.irclog.whitequark.org/tegra/2024-07-19#36707118;
+> >>>> 4. https://libera.irclog.whitequark.org/tegra/2024-10-14#37145211;
+> >>>>
+> >>>> Regards
+> >>>>
+>
+> [snip]
+>
+> > Mmm, so this is strange. I am currently unable to get the fan to move
+> > on any t210 device. But it works just fine on t186, such as the tx2 nx
+> > setup supported by mainline. Tomasz, does your change work on 6.12 or
+> > current mainline? Even if I match your changes on the tx1 devkit, I
+> > get nothing. The pwm duty cycle is changing as expected, per the
+> > debugfs pwm listing. Gpio state for pin 4 of the tca9539@74 matches
+> > the 4.9 kernel when the fan is running. Best I can tell, it should be
+> > working. But it's not.
 
-I will, thanks for the reminder.
+For documentation purposes, I figured out why I couldn't get the fan
+to work on any of my test devices. I'm using the Android boot stack,
+which apparently doesn't do the pinmuxing that the L4T boot stack
+does. The downstream Android setup does pinmuxing in the kernel. And
+mainline support has been primarily designed against the L4T boot
+stack, doing pinmuxing in the bootloader and not in kernel. I've
+worked around this locally by setting the pinctrl name on the p2597
+pinmux node to 'default', so the kernel does pinmuxing. Which matches
+things back up between the two bootloaders. I'll be sending a working
+v2 shortly.
 
-Regards,
-Inochi
+Sincerely,
+Aaron
 
