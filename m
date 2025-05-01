@@ -1,58 +1,95 @@
-Return-Path: <devicetree+bounces-172596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4651AA58DF
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 02:01:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F50AA58E6
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 02:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 128C44A4F05
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 00:01:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEB1B1C08554
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 00:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6805B125DF;
-	Thu,  1 May 2025 00:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3FB376;
+	Thu,  1 May 2025 00:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b="O3pPO1pp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXuq7cKE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAE0211C
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 00:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5416D134BD;
+	Thu,  1 May 2025 00:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746057698; cv=none; b=QROpkDstQQiJpQSaBt0g0lf2xTYaJtEnaD+t28+NaniHC8pHiiJTanNxCZ/oBEAawXKsZQ8gLK3QZ5GNyYiP9WSbG90kDgxYR0eAymxF+gMQAzXghB67qJNyL12TC507542loHobe23QqY1bNQe3G/rE7mgVxCQwGZqxGYY3RCM=
+	t=1746057840; cv=none; b=VV+O+c5HxdREbOLpeBAukVw06lsrr4lqvmsgwZkUtjOT/kDU9dzKsbk9XJq1GNUFqhmtvKGimrizBvEBA0Ml4j3+2sFuP30MYG1Ix0fxwUmTb0aCDx/Xa0kh+P63wdbo5GcAOmIB3O8Peyzix0PFM0kxFLjqam68DY6pHEYvR1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746057698; c=relaxed/simple;
-	bh=6DutjieBTw1k9nX95zPq4+lTgdnVF+22GvaEAgrv4nw=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nzbov/36pINczUrKzsbSa+GV07LGwqCdRr1OU14l2cwmNAhRWpEwvwn4oX+KePS7KF2EDi5PYYEHJny5t9eoG5VN9g6KI74hLb0fxw9GYZxX14Pxip4AQTU1ZW11fuI+3TdyYee9n9icoWF/ScYYb9J/bWJW9uTAZq8ik3oTQtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie; spf=pass smtp.mailfrom=nxsw.ie; dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b=O3pPO1pp; arc=none smtp.client-ip=51.77.79.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxsw.ie
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxsw.ie;
-	s=protonmail2; t=1746057685; x=1746316885;
-	bh=R6uit6FwYVHi8jDba0Uckfj3WNxEuuaM6Qop+tdviJM=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=O3pPO1ppr7BeXWj4cs1+XQ5+pWMcduoTpy35QXvKjT234I1w8yXUqYDAWzytRksk0
-	 0feTtvlbtbYxMtj1mkbp4H7rrKqUqoKdl1uA1iBASgJZSGkSQ1EjsBBk/GJs0kwjWd
-	 Y7f5qzOnqcdojik0xMZoEdvfjMiJb94spQiCoYi0NF7/GE+640vuU5tQtb3oLZURuO
-	 MKk8DrpVDxayEffi87TekBfpu/Xye7ozNj3+OKcy0w2NytjEyNGo4UAwsf2XJ0cIvu
-	 lJIUTMX/RqwkwGlf68KkVSkzM+4bnzqZmnjRqvL3kDdSvtQtvqdQlE0//bG3OHxTbj
-	 IXhX+txTiv5LA==
-Date: Thu, 01 May 2025 00:01:21 +0000
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Rajendra Nayak <quic_rjendra@quicinc.com>
-From: Bryan O'Donoghue <bod.linux@nxsw.ie>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] watchdog: qcom: add support to read the restart reason from IMEM
-Message-ID: <ebd4790b-e7aa-45b1-b7d7-9d1b331ee842@nxsw.ie>
-In-Reply-To: <20250416-wdt_reset_reason-v2-5-c65bba312914@oss.qualcomm.com>
-References: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com> <20250416-wdt_reset_reason-v2-5-c65bba312914@oss.qualcomm.com>
-Feedback-ID: 136405006:user:proton
-X-Pm-Message-ID: cbd4046600d18c5333c1cc2f748723c9886f437b
+	s=arc-20240116; t=1746057840; c=relaxed/simple;
+	bh=M10xuiOCECXNReIlFGalx02n10//HYeZ4fFlOkCVJko=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qixks6BhOCLFERA9uM10we9lYd9JqooiihGzv5NLLWFtNi0nHBXbaRm/NjFUvaP2CQSFDTvw1UCDWNx+Z2iTDVi+g3yh9tVI3mdGhEUi2pieO+yQMdutm7kqwbLwTUipsAqEd4qtReIOwbyRJvsQZ39uLZqPKHLb46F+ptfRijY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXuq7cKE; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-476a2b5dffcso792361cf.3;
+        Wed, 30 Apr 2025 17:03:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746057836; x=1746662636; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UeGfTw1gt4xDthSATw6PmxbO4fBAFGEO3J6t3pVQfv4=;
+        b=KXuq7cKE075KktVwQvsDXuRR5uVrZXP8vMxaza+OtvOYNemBedkNAZ+rP6xQ9wo9Mu
+         YU3X/9IuSYPGR08Inc8tGQeunqjboMK2lfzFx2Mp6ObR7+FTq3P5z0iEFWcFFh2nAyQC
+         XRB2u4VPfaLTS7ZbvLCNCqK8gPoeRNj2NpJatVfAWzg3ZYxvcDzQN8e1NU6FweomPzHN
+         TX7SkdmNGLjUJRqLWfk7euEFkPLuZzZXhE5RtpoANnA+uzK/V21QXAN74/DdlM6VJ9PV
+         pV2QBfdpQg1XRCX6aAaHU0Q+FzpvLoFrmkcbEvLdp+3+4vyvizHeC6eOTribn//NllU7
+         U/3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746057836; x=1746662636;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UeGfTw1gt4xDthSATw6PmxbO4fBAFGEO3J6t3pVQfv4=;
+        b=V9jIxEoysWFGNs8cMR/Tz24GLCPkq18Svp88DHDKEs6hD+7oxgd4T4pEpnDPk0Rs9z
+         AdU+51zlj5+ZtLi5JXg4fG+4qL2HHWUQ6ge67pEZjBaXGA3KkTQYigW93JRTvC1YnIVJ
+         DIauKfcOkHQco4UyzWbWEM8tb5zfs1f1yACwo2kH4ke/ZY1ip47l7TaIpzcgNOMfTa+0
+         MsGglAU674EmEAZP4kPlxIC1MkYzHsUolLv1tzmr9wxkgBhJ2gv6hb7iuMaGDqqiWGIs
+         pVi0iTGt+574+nQeLU4qQNUjswSgvxyPLH4cEuUY5AO2BOZu0g8ELyQSQPa5jlbRfcv0
+         zdMw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8uwm/eVFbwTPKwzuIm/Cq+MHr8bkE0atFLqxT1QYrYeq+BaUNhvPxJk5rlFkAY+DTJigA3eOxU3cYag==@vger.kernel.org, AJvYcCVb/1pW1ex04VVSdAasVjU3QuN3/MJFK7W9JPeGq3aioK2W159XD/Bd19WoY+C2pbvVPvuSCfdc2Tao@vger.kernel.org, AJvYcCXYtWvwx8uX7xwypurXryUMUcVPnXuDXhQ1Jlj5jegIujDYitxigfOTWnthndBN2SOXdxwgRVEDVS910jAV@vger.kernel.org, AJvYcCXeTuQKLefNj4A5ZGsCRuWaICJTk0hYPMYW8G2UuNrynYCdR3QnlNsB2fPHCx9DPatOL6yp4OS37E0U@vger.kernel.org
+X-Gm-Message-State: AOJu0YznBDnU+A/xgWo3zngSUF5WFFYy3Dtu+Q4Uox9dHDj8aaE80LPW
+	vuyfocyG115N/tzi5CLzTOHmvgChrE/zbIQbah5gA+vKAaBblhnE
+X-Gm-Gg: ASbGnctpYMkZS6FqVLpNBR88w6j+4Od0hefh4glIl7ap129N0GFa8A7lbEqC2fI4rYJ
+	Y5dMbHcn5h1x4d9uzk5JF6kElAgTDpoLgHmp2ucXZvacbmIrqPgqrWgeMzoeCgsjwBVrGUmr8AD
+	/YlA0aKHSP16hRWyjPybtdxsuA0O36LNoTx+3vPwxTxdZEbHm2lKLIe1GjA8MWBfFcCpfelSbLr
+	VTldR4LnD4fsMSHhRzPtfEEoc6aAAw2ygcRSydqO/6Rylgo+KGZJK4juDQJchBtKhqluslLPx/x
+	+hqeO65ZDk0Cn1siiJbFlxtT+qxeIBwFdhGDXT2vVTiNggl2tpSaPiOWQLnVeA==
+X-Google-Smtp-Source: AGHT+IFe0FzdLQIprF16C52vp9PvPRKmvD0jPHOEB8bQQ72ps0/+8ln3yZP5Af1ifzhS+7suBE0emQ==
+X-Received: by 2002:a05:6214:5183:b0:6e8:9351:77f8 with SMTP id 6a1803df08f44-6f4ff5eac65mr23049506d6.7.1746057835921;
+        Wed, 30 Apr 2025 17:03:55 -0700 (PDT)
+Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f4fe6ad5efsm14469276d6.11.2025.04.30.17.03.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 17:03:55 -0700 (PDT)
+Date: Wed, 30 Apr 2025 21:03:50 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH v6 08/11] iio: adc: ad7768-1: add support for
+ Synchronization over SPI
+Message-ID: <aBK6Zlx71Aeihue/@JSANTO12-L01.ad.analog.com>
+Reply-To: CAHp75VdNymzseF7Dt9kL8GBPLM0MGBQg-YQabKUKxEryM8nxOQ@mail.gmail.com
+References: <cover.1745605382.git.Jonathan.Santos@analog.com>
+ <c5a5376a6ffbb571d7874218494b04fd20015ee9.1745605382.git.Jonathan.Santos@analog.com>
+ <CAHp75VdNymzseF7Dt9kL8GBPLM0MGBQg-YQabKUKxEryM8nxOQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,163 +97,173 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VdNymzseF7Dt9kL8GBPLM0MGBQg-YQabKUKxEryM8nxOQ@mail.gmail.com>
 
-On 16/04/2025 09:29, Kathiravan Thirumoorthy wrote:
-> When the system boots up after a watchdog reset, the EXPIRED_STATUS bit
-> in the WDT_STS register is cleared. To identify if the system was restart=
-ed
-> due to WDT expiry, bootloaders update the information in the IMEM region.
-> Update the driver to read the restart reason from IMEM and populate the
-> bootstatus accordingly.
+On 04/28, Andy Shevchenko wrote:
+> On Mon, Apr 28, 2025 at 3:14 AM Jonathan Santos
+> <Jonathan.Santos@analog.com> wrote:
+> >
+> > The synchronization method using GPIO requires the generated pulse to be
+> > truly synchronous with the base MCLK signal. When it is not possible to
+> > do that in hardware, the datasheet recommends using synchronization over
+> > SPI, where the generated pulse is already synchronous with MCLK. This
+> > requires the SYNC_OUT pin to be connected to SYNC_IN pin.
+> 
+> to the SYNC_IN
+> 
+> > Use trigger-sources property to enable device synchronization over SPI
+> > and multi-device synchronization, as an alternative to adi,sync-in-gpios
+> > property.
+> 
+> ...
+> 
+> > +static int ad7768_send_sync_pulse(struct ad7768_state *st)
+> > +{
+> > +       if (st->en_spi_sync)
+> > +               return regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x00);
+> 
+> > +       if (st->gpio_sync_in) {
+> 
+> Dup check, the following have already it.
+> 
+> > +               gpiod_set_value_cansleep(st->gpio_sync_in, 1);
+> 
+> Yes, I see the original code, but still the Q is why no delay. Perhaps
+> a comment explaining that the GPIO op is slow enough (?) to add.
+> 
 
-Which bootloaders ?
+Datasheet specifies a minimum of 1.5*Tmclk pulse width. For the
+recommended mclk of 16.384 MHz, it usually takes 4 times the minimum
+pulse width. If it can be less than that for other plataforms I can add
+this delay.
 
-Do you mean bootrom or one of the subsequent phase bootloaders ?
+> > +               gpiod_set_value_cansleep(st->gpio_sync_in, 0);
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> 
+> ...
+> 
+> > +static struct gpio_desc *ad7768_trigger_source_get_gpio(struct device *dev,
+> > +                                                       struct fwnode_handle *fwnode)
+> > +{
+> > +       const char *value;
+> > +       int ret;
+> > +
+> > +       ret = fwnode_property_read_string(fwnode, "compatible", &value);
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       if (strcmp("gpio-trigger", value))
+> > +               return ERR_PTR(-EINVAL);
+> 
+> Reinvention of fwnode_device_is_compatible().
+> 
 
-Please be specific about which bootloader populates this data i.e. if I=20
-switch my bootloader to u-boot do I loose the added flag ?
+Thanks!
 
-> For backward compatibility, keep the EXPIRED_STATUS bit check. Add a new
-> function qcom_wdt_get_restart_reason() to read the restart reason from
-> IMEM.
->=20
-> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualc=
-omm.com>
-What I'd really love to see here is an example of reading out the data=20
-from sysfs.
+> > +       return devm_fwnode_gpiod_get_index(dev, fwnode, NULL, 0,
+> > +                                          GPIOD_OUT_LOW, "sync-in");
+> > +}
+> 
+> ...
+> 
+> > +static int ad7768_trigger_sources_get_sync(struct device *dev,
+> > +                                          struct ad7768_state *st)
+> > +{
+> > +       struct fwnode_reference_args args;
+> > +       struct fwnode_handle *fwnode = NULL;
+> 
+> Redundant assignment AFAICS.
+> 
+> > +       int ret;
+> > +
+> > +       /*
+> > +        * The AD7768-1 allows two primary methods for driving the SYNC_IN pin
+> > +        * to synchronize one or more devices:
+> > +        * 1. Using an external GPIO.
+> > +        * 2. Using a SPI command, where the SYNC_OUT pin generates a
+> > +        *    synchronization pulse that drives the SYNC_IN pin.
+> > +        */
+> > +       if (!device_property_present(dev, "trigger-sources")) {
+> > +               /*
+> > +                * In the absence of trigger-sources property, enable self
+> > +                * synchronization over SPI (SYNC_OUT).
+> > +                */
+> > +               st->en_spi_sync = true;
+> > +               return 0;
+> > +       }
+> > +
+> > +       ret = fwnode_property_get_reference_args(dev_fwnode(dev),
+> 
+> In this case the above is better to be also fwnode_property_present().
+> You save a double call to dev_fwnode().
+> 
+> > +                                                "trigger-sources",
+> > +                                                "#trigger-source-cells",
+> > +                                                0,
+> > +                                                AD7768_TRIGGER_SOURCE_SYNC_IDX,
+> > +                                                &args);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       fwnode = args.fwnode;
+> > +       /*
+> > +        * First, try getting the GPIO trigger source and fallback to
+> > +        * synchronization over SPI in case of failure.
+> > +        */
+> > +       st->gpio_sync_in = ad7768_trigger_source_get_gpio(dev, fwnode);
+> > +       if (IS_ERR(st->gpio_sync_in)) {
+> > +               /*
+> > +                * For this case, it requires one argument, which indicates the
+> > +                * output pin referenced.
+> > +                */
+> > +               if (args.nargs < 1)
+> > +                       goto err_not_supp;
+> > +
+> > +               if (args.args[0] != AD7768_TRIGGER_SOURCE_SYNC_OUT)
+> > +                       goto err_not_supp;
+> > +
+> > +               /*
+> > +                * Only self trigger is supported for now, i.e.,
+> > +                * external SYNC_OUT is not allowed.
+> > +                */
+> > +               if (fwnode->dev == dev) {
+> 
+> ?!?! What is this?!
+> 
+> For the reference:
+> https://elixir.bootlin.com/linux/v6.15-rc3/source/include/linux/fwnode.h#L51
+> 
 
-How do I as a user/consumer of this new functionality parse the new data=20
-it provides ?
+I see, my bad. I will follow David's suggestion, so we will avoid this.
 
-Ideally do this in the commit log and recommend doing it in the cover=20
-letter to, as people don't always read both when commenting on patches.
-
-> ---
-> Changes in v2:
-> =09- Use the syscon API to access the IMEM region
-> =09- Handle the error cases returned by qcom_wdt_get_restart_reason
-> =09- Define device specific data to retrieve the IMEM compatible,
-> =09  offset and the value for non secure WDT, which allows to
-> =09  extend the support for other SoCs
-> ---
->   drivers/watchdog/qcom-wdt.c | 47 ++++++++++++++++++++++++++++++++++++++=
-+++++--
->   1 file changed, 45 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/watchdog/qcom-wdt.c b/drivers/watchdog/qcom-wdt.c
-> index 006f9c61aa64fd2b4ee9db493aeb54c8fafac818..94ba9ec9907a19854cd45a94f=
-8da17d6e6eb33bc 100644
-> --- a/drivers/watchdog/qcom-wdt.c
-> +++ b/drivers/watchdog/qcom-wdt.c
-> @@ -7,9 +7,11 @@
->   #include <linux/interrupt.h>
->   #include <linux/io.h>
->   #include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->   #include <linux/watchdog.h>
->=20
->   enum wdt_reg {
-> @@ -39,6 +41,9 @@ static const u32 reg_offset_data_kpss[] =3D {
->   };
->=20
->   struct qcom_wdt_match_data {
-> +=09const char *compatible;
-> +=09unsigned int restart_reason_offset;
-> +=09unsigned int non_secure_wdt_val;
->   =09const u32 *offset;
->   =09bool pretimeout;
->   =09u32 max_tick_count;
-> @@ -175,6 +180,15 @@ static const struct watchdog_info qcom_wdt_pt_info =
-=3D {
->   =09.identity=09=3D KBUILD_MODNAME,
->   };
->=20
-> +static const struct qcom_wdt_match_data match_data_ipq5424 =3D {
-> +=09.compatible =3D "qcom,ipq5424-imem",
-> +=09.restart_reason_offset =3D 0x7b0,
-> +=09.non_secure_wdt_val =3D 0x5,
-> +=09.offset =3D reg_offset_data_kpss,
-> +=09.pretimeout =3D true,
-> +=09.max_tick_count =3D 0xFFFFFU,
-> +};
-> +
-You should separate the addition of your compatibles and their=20
-descriptor tables from generic functional extensions.
-
-i.e. add the compat string and the above table in a subsequent patch.
-
->   static const struct qcom_wdt_match_data match_data_apcs_tmr =3D {
->   =09.offset =3D reg_offset_data_apcs_tmr,
->   =09.pretimeout =3D false,
-> @@ -187,6 +201,29 @@ static const struct qcom_wdt_match_data match_data_k=
-pss =3D {
->   =09.max_tick_count =3D 0xFFFFFU,
->   };
->=20
-> +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
-> +=09=09=09=09=09const struct qcom_wdt_match_data *data)
-> +{
-> +=09struct regmap *imem;
-> +=09unsigned int val;
-> +=09int ret;
-> +
-> +=09imem =3D syscon_regmap_lookup_by_compatible(data->compatible);
-> +=09if (IS_ERR(imem))
-> +=09=09return PTR_ERR(imem);
-> +
-> +=09ret =3D regmap_read(imem, data->restart_reason_offset, &val);
-> +=09if (ret) {
-> +=09=09dev_err(wdt->wdd.parent, "failed to read the restart reason info\n=
-");
-> +=09=09return ret;
-> +=09}
-> +
-> +=09if (val =3D=3D data->non_secure_wdt_val)
-> +=09=09wdt->wdd.bootstatus =3D WDIOF_CARDRESET;
-> +
-> +=09return 0;
-> +}
-> +
->   static int qcom_wdt_probe(struct platform_device *pdev)
->   {
->   =09struct device *dev =3D &pdev->dev;
-> @@ -267,8 +304,13 @@ static int qcom_wdt_probe(struct platform_device *pd=
-ev)
->   =09wdt->wdd.parent =3D dev;
->   =09wdt->layout =3D data->offset;
->=20
-> -=09if (readl(wdt_addr(wdt, WDT_STS)) & 1)
-> -=09=09wdt->wdd.bootstatus =3D WDIOF_CARDRESET;
-> +=09ret =3D qcom_wdt_get_restart_reason(wdt, data);
-> +=09if (ret =3D=3D -ENODEV) {
-> +=09=09if (readl(wdt_addr(wdt, WDT_STS)) & 1)
-> +=09=09=09wdt->wdd.bootstatus =3D WDIOF_CARDRESET;
-> +=09} else if (ret) {
-> +=09=09return ret;
-> +=09}
->=20
->   =09/*
->   =09 * If 'timeout-sec' unspecified in devicetree, assume a 30 second
-> @@ -322,6 +364,7 @@ static const struct dev_pm_ops qcom_wdt_pm_ops =3D {
->   };
->=20
->   static const struct of_device_id qcom_wdt_of_table[] =3D {
-> +=09{ .compatible =3D "qcom,apss-wdt-ipq5424", .data =3D &match_data_ipq5=
-424 },
->   =09{ .compatible =3D "qcom,kpss-timer", .data =3D &match_data_apcs_tmr =
-},
->   =09{ .compatible =3D "qcom,scss-timer", .data =3D &match_data_apcs_tmr =
-},
->   =09{ .compatible =3D "qcom,kpss-wdt", .data =3D &match_data_kpss },
->=20
-> --
-> 2.34.1
->=20
->=20
-
+> > +                       st->en_spi_sync = true;
+> > +                       goto out_put_node;
+> > +               }
+> > +
+> > +               goto err_not_supp;
+> > +       }
+> > +
+> > +       goto out_put_node;
+> > +
+> > +err_not_supp:
+> > +       ret = dev_err_probe(dev, -EOPNOTSUPP,
+> > +                           "Invalid synchronization trigger source");
+> 
+> Missing \n, and can be one line anyway (we don't complain about long
+> strings ending with string literals for ages, way before the 100
+> character limit).
+> 
+> > +out_put_node:
+> > +       fwnode_handle_put(args.fwnode);
+> > +       return ret;
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
 
