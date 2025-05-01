@@ -1,135 +1,147 @@
-Return-Path: <devicetree+bounces-172730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F30AA613C
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 18:13:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99244AA6228
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 19:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE3AC1BA2255
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:13:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 207091BC68FE
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 17:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333F920C476;
-	Thu,  1 May 2025 16:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D225B21B9C2;
+	Thu,  1 May 2025 17:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n5K8m+Qd"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="FAomvwPx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E8018DB16;
-	Thu,  1 May 2025 16:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F68920297D;
+	Thu,  1 May 2025 17:12:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746115977; cv=none; b=XuYw1sJFFo3BChGUwlUOh60AikzInNg9kV1k95gnHga/xqxhyV1d38D1oY8qdTwtM1n2nwT9GzehE0Dgj87UWhGwpi3hFTmHK9hYLQE0OllmOdhv6PWprfxPXhL+ZR4b8Jn3AkjB9i7yTAC4YkDF4oa1AUcwiVlxKCXYeSW7WF8=
+	t=1746119566; cv=none; b=hbryQu5MD3lo+LSFPWQV385O9NiZAmjih4PkS29QJ/ObG3/nH9oPs0/TgFGkBfkrRvvhTBSPAtWNA+E/cPRgWCmccbxlc2m8yd4kfnUIkFvSTGYHh8GTGWn0WTNWwmgu08HkeDtdxs+Vot+lOedCWDDd2y62MCCKWlAJZ4Q4vP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746115977; c=relaxed/simple;
-	bh=A1YogmnGMKTMHm2zxZV4DBdy5txg2qSLdm1FpVZUDM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KDaqFXMWPrsvwBExANFwKOZO7JikGW+GEAfUm4fbi1RLK4dGgPI436LlIgUuiFOfY2A7oggRPf4+v2aXY4wiDzEk1JyCNhtELGMIgTrOda6+6nQA8BNkWh5pYvImKSZo1cf+4WmuUKmYJlWP5IU0efsDSMK3h3VfE8IrZn9nFFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n5K8m+Qd; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746115975; x=1777651975;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=A1YogmnGMKTMHm2zxZV4DBdy5txg2qSLdm1FpVZUDM0=;
-  b=n5K8m+QdsXX2wsDZnZQ5jjsSaQE5EjyaOg74sGrOetbsMBdcxIWSJvqX
-   zkSvVWMH30qQ7jw3HQMRgyeZs/MBdQnzAp7Ubooh9ACIAG/jTtgrK+Nu2
-   A4FB4pM+MShnEQFH4Qujt8DvNXcPeUsy/J+gi5XY+va4DZcoGjOCNFYmp
-   RZuJbmlyOdv0hG3gydRc3upzfuV/u1juKkrBgelGv3k3a0lckpmoVLJMg
-   UWVonngzjz5RyDMe35RFUhJ+iC5tarWGAxRRcs4L+qdpbbTGpIZlkv8IU
-   YiHrH3GS/b4xaogANmXcx7h2NTFJxAsjqBMYWWCWdrBhYQcrGE0/XKnjR
-   A==;
-X-CSE-ConnectionGUID: 997GUIN7R7W1JZrlcCSfHQ==
-X-CSE-MsgGUID: aDbavJAkTDCEFL1y3JX/Hg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="35412786"
-X-IronPort-AV: E=Sophos;i="6.15,254,1739865600"; 
-   d="scan'208";a="35412786"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2025 09:12:54 -0700
-X-CSE-ConnectionGUID: FCjyJbt1S+SNYnF+XFQtRQ==
-X-CSE-MsgGUID: HvgOkt6kReO2rla3g5Jwvw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,254,1739865600"; 
-   d="scan'208";a="171656049"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 01 May 2025 09:12:49 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uAWWk-0004FN-2D;
-	Thu, 01 May 2025 16:12:46 +0000
-Date: Fri, 2 May 2025 00:12:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-	saravanak@google.com, p.zabel@pengutronix.de
-Cc: oe-kbuild-all@lists.linux.dev, claudiu.beznea@tuxon.dev,
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 1/8] soc: renesas: r9a08g045-sysc: Add max reg offset
-Message-ID: <202505012344.lIxS3e4X-lkp@intel.com>
-References: <20250430103236.3511989-2-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1746119566; c=relaxed/simple;
+	bh=ieE5qaTc9keiFt3Q+KpxfpARZITd2pBFeqqbYdAjccE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fxkHP2A07xh0XEH1UkgX2dEV7EPqS2JcwfX/S21COFy6i52/7uokxCcTJ8tpauxbet7mLXloJKvAiUGtw3A7DVfE/qy3D6uouIdXQBlVzAflfF5Y3tkw0r1aRRTJ4Nnq94NIB3NxWNVEFRHftLny6wXd2gk4K9TMJ3qm24mDhtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=FAomvwPx; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1746119045; bh=ieE5qaTc9keiFt3Q+KpxfpARZITd2pBFeqqbYdAjccE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=FAomvwPx6jOcwQfzG2bbSpwVFNmIvMdEZ8Bdyy7eGG6O6p86tqBRkpkU+Zw33jXda
+	 d55Q1tRw6jVXZCNNhc4rK/OZjIMIdp7B51wS/jbqEbEAKUWigSr0w0LQKFErXHV4mt
+	 kBCKKcQeCDbm7zt9Gnbq9FYl3PrjTQWjs12lYOrDIwST/1WCSpPz21JWoFFWMSi3YG
+	 5n9JgBaMZWHUr5zWJTGOsIhjtiAoYP46JNn+faOwHZZVRNV/uzH4sD2MFyjtfTCyIg
+	 /Js0JmiN9P4d701/7PYw6nOJWuk/EnWy0cfsD0Z+oAifjkLYp/qVBLVYADScLJoZ9O
+	 CTav4BC8szlJA==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id BB9681E36;
+	Thu,  1 May 2025 22:04:04 +0500 (+05)
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/5] arm64: dts: qcom: Add EL2 overlays for WoA devices
+Date: Thu, 01 May 2025 22:03:40 +0500
+Message-Id: <20250501-sc-el2-overlays-v1-0-9202e59e3348@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250430103236.3511989-2-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGypE2gC/x3MSwqAMAwA0auUrA20kVL0KuLCT6oBUWlAlOLdL
+ S7fYiaDchJWaE2GxJeoHHuBqwxM67AvjDIXA1ny1luHOiFvhMfFaRsexZGaUJOPdaAGSnUmjnL
+ /x65/3w9rfLc5YQAAAA==
+X-Change-ID: 20250501-sc-el2-overlays-b297325f3729
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: Marc Zyngier <maz@kernel.org>, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2755; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=ieE5qaTc9keiFt3Q+KpxfpARZITd2pBFeqqbYdAjccE=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBoE6mARyVw0wPR3BN5m4JSHf+gtq08Cgj3V++6m
+ WCKSQ9/svSJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCaBOpgAAKCRBDHOzuKBm/
+ dc8bD/9dX1nbcPwKqnvsZymGfVU+zaIQKZcKNRF+l1v9UVGVS98YMSlWnIKgCvPGpFhnBAwCd1A
+ gTucteL2UClV8HHLgRl5BSO1LuURaZMd9i2cEf7JqAeXBCiWedyGOhgRoPvAqf+DSVFOMchTYDB
+ q5TZdiJBL9jjg7tj4QHe2tQmRlISdRydugvq+0+V4ldRYRW6l6gN4SoOLmloRsS5nZ9aAkHEZgl
+ t1TjnvbiVhp3fmhYT5w0KE/gn92JpsE5UNk7hmKqOV+oKb162as3Mzv+KTEt6TUCfq8gGrc6Owg
+ KWRnLkwf0s+54mDvWgeIN2rs6sfY1fHd1GT9aTvgQG+LwDKHELeBuZqgSRuDNFFkcQN9ZjuAzfU
+ TvWFNkJU9Qej0tLIZDFM7ux5bt+0Iu3v7xzHlHDA4B+0amWd2xlwRf/X9CLxg4+EtKPV1UEj+tS
+ tBUIkgy5O1970SYk4Z4eQ/s0Y4fsiR8BiEN43iQuNfdgcPXuuyn+LTQzD1HAVQiQYucCSJqC18Q
+ fCQ2bLcIMBD4KhQ7KowOSHLqHW6qdkeZRo33XcRbmfQAWJpgrkPiKDz8Nz/9LaFOqDQ+K7ui1LS
+ +gH0KzFbtyexxP8hRMark6Fbfea3Op0cCv9fcqHp8bhPd/aXv7zVzhkLHyhmqt0SxebIteJMlSP
+ 0UW/mJBTW70SYrQ==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hi Claudiu,
+WoA devices use firmware very similar to android, which means that Linux
+has to run in EL1 due to the presence of Qualcomm's hypervisor (QHEE or
+Gunyah). However Windows can replace that hypervisor using Secure-Launch
+flow.
 
-kernel test robot noticed the following build errors:
+More recently the same approach became possible to be used to boot Linux
+in EL2 on those devices, thanks to a tool called slbounce[1].
 
-[auto build test ERROR on pci/next]
-[also build test ERROR on pci/for-linus geert-renesas-devel/next geert-renesas-drivers/renesas-clk robh/for-next arm64/for-next/core linus/master v6.15-rc4 next-20250501]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+As of now, booting in EL2 comes with some downsides, most notably that
+DSP remoteprocs (importantly, ADSP) can't be booted as Linux relied on
+hyp's service to authenticate and launch the firmware. The lack of ADSP
+results in missing battery/charging and type-c services (alongside with
+missing sound of course). On the other hand it becomes more clear that
+running under QHEE/Gunyah /also/ has downsides apart from lacking
+virtualization support. For example, x1e devices can't use more than
+32GiB of ram when running under Gunyah.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Claudiu/soc-renesas-r9a08g045-sysc-Add-max-reg-offset/20250430-183951
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20250430103236.3511989-2-claudiu.beznea.uj%40bp.renesas.com
-patch subject: [PATCH 1/8] soc: renesas: r9a08g045-sysc: Add max reg offset
-config: arm64-randconfig-001-20250501 (https://download.01.org/0day-ci/archive/20250501/202505012344.lIxS3e4X-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 9.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250501/202505012344.lIxS3e4X-lkp@intel.com/reproduce)
+As booting in EL2 depreves us of QHEE/Gunyah services, some changes to
+the DT are needed to boot in EL2 correctly:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505012344.lIxS3e4X-lkp@intel.com/
+- GPU ZAP shader must be disabled. Linux will zap the gpu itself;
+- If PCIe is present, SMMUv3 must be enabled and controlled properly;
+- On x1 devices, hyp-emulated watchdog must be disabled.
 
-All errors (new ones prefixed by >>):
+To make it easier to run WoA devices in EL2, this series introduces
+per-SoC EL2 overlays and -el2.dtb variants of WoA device DTBs. Ready
+presence of -el2.dtb-s will allow people to more easily use those
+devices in EL2, especially as some recent work on fixing ADSP-related
+limitations (at least on x1e) is already being done and can benefit EL2
+case as well. [2]
 
->> drivers/soc/renesas/r9a08g045-sysc.c:23:3: error: 'const struct rz_sysc_init_data' has no member named 'max_register_offset'
-      23 |  .max_register_offset = 0xe28,
-         |   ^~~~~~~~~~~~~~~~~~~
-   drivers/soc/renesas/r9a08g045-sysc.c:23:25: warning: excess elements in struct initializer
-      23 |  .max_register_offset = 0xe28,
-         |                         ^~~~~
-   drivers/soc/renesas/r9a08g045-sysc.c:23:25: note: (near initialization for 'rzg3s_sysc_init_data')
+[1] https://github.com/TravMurav/slbounce
+[2] https://git.codelinaro.org/stephan.gerhold/linux/-/commit/7c2a82017d32a4a0007443680fd0847e7c92d5bb
 
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Nikita Travkin (5):
+      arm64: dts: qcom: sc7180: Add EL2 overlay for WoA devices
+      arm64: dts: qcom: sc8280xp: Add PCIe IOMMU
+      arm64: dts: qcom: sc8280xp: Add EL2 overlay for WoA devices
+      arm64: dts: qcom: x1e80100: Add PCIe IOMMU
+      arm64: dts: qcom: x1e/x1p: Add EL2 overlay for WoA devices
 
-vim +23 drivers/soc/renesas/r9a08g045-sysc.c
+ arch/arm64/boot/dts/qcom/Makefile          | 54 ++++++++++++++++++++----------
+ arch/arm64/boot/dts/qcom/sc7180-el2.dtso   | 22 ++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp-el2.dtso | 44 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi     | 14 ++++++++
+ arch/arm64/boot/dts/qcom/x1-el2.dtso       | 46 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi     | 16 ++++++++-
+ 6 files changed, 177 insertions(+), 19 deletions(-)
+---
+base-commit: 8a2d53ce3c5f82683ad3df9a9a55822816fe64e7
+change-id: 20250501-sc-el2-overlays-b297325f3729
 
-    20	
-    21	const struct rz_sysc_init_data rzg3s_sysc_init_data __initconst = {
-    22		.soc_id_init_data = &rzg3s_sysc_soc_id_init_data,
-  > 23		.max_register_offset = 0xe28,
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Nikita Travkin <nikita@trvn.ru>
+
 
