@@ -1,118 +1,164 @@
-Return-Path: <devicetree+bounces-172744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08A2AA62A5
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 20:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 695D2AA62BB
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 20:21:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65C7B4A7C6D
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 18:11:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C79C116CABE
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 18:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3EC221287;
-	Thu,  1 May 2025 18:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EE1221F29;
+	Thu,  1 May 2025 18:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Z254Mk3u"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="C8tLBCjX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7F021CA1E
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 18:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898DE1C5F37
+	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 18:20:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746123088; cv=none; b=f0db4HcCmAkzWP/iXhA+4KwHpI+kaPyaFNFcIZ1FXdNS2kMvVdaaV1ZIyPt5+Ql5/ueggpMnVCigfEKhz8Rqx6nb+WUY0ZR4sCgB3CKCLHPEMmAxVn66UwO35bQaKgmTItsawHQzQ/t2tonBFPfnaRqCZMKgZOAi7SK4lkFUUs4=
+	t=1746123656; cv=none; b=CrWDsZv7XzIyH7HaxbevGIBENE5kWIxHeNWljLxGlMTkondFWKqUG2478+aYZJiQhcqMTsUnApyTMCvdwpRdaEZtyZhdqCJPC8e0U283xd+kMXG5Cx3ZZGS4BIfY98zBmNVFWbRdqaM+vihQtyjhuBhWtN8lgU80q33uwkTRrNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746123088; c=relaxed/simple;
-	bh=n2hdrzkozFdUt75+CFb0KwrxNnR9IhTGVsPXZ6VJ5AQ=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=u2FzJ3pBad8nvQ+VOR+yAeN8NV0yUoX7ryNxPCPkRqlf+XK5yxCUvLGQJVWBQxDHERvjM70mWRF9xfSqooOpkuY5tKnGOLwp4/6EAUT6lVYi1h7BAV9F98k3C8NV1M6E1K126Rispf5MTFCgYYsmK3Vi8pkhhX+kTIJZ/QPHhVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Z254Mk3u; arc=none smtp.client-ip=209.85.214.169
+	s=arc-20240116; t=1746123656; c=relaxed/simple;
+	bh=ee/zaevnqUwSkoSunNrHFLnAVIAFt7231LYdnizFQ7Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lmq+mwlh4e2yrUpZcMEx2n7stSzdCMOxhYCGENzFd5GtPFe3eQ9uITvwGgmVffm4xnFg9EUIkmPSpsj2NYu5R1ooj2wJY6S7/ClTPOXQCcbUf0dSpHxLRCNR0/b+wNZhtOOehfRExSqhe7lmqb2Q0N019l4OBjnIUe4HcFOZ+hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=C8tLBCjX; arc=none smtp.client-ip=209.85.167.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-22c3407a87aso19008475ad.3
-        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 11:11:26 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3feaedb39e9so402831b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 11:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746123086; x=1746727886; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9t400dGVqKpa0aJ5NF/wqCMTUOEugJbXa0Ak07h82mM=;
-        b=Z254Mk3u/zSGMbaP17a1gwGX7Qdl9VC6nX+mkYtasNPHNMV3pMncjHl7X7Y+f0q13t
-         O9BsWhcyp1DP2DIjpZfxfU+rgVDW7vIWkhsS4moraAyu/L9AqFXOp1KrGqjYrEAHLH6I
-         +O9SB+sO9AIDtpLJQmBXXRbz2SXjvNaB2tWMQD7KwTbLZgDHr4ROxtTGIuwknXnPsB29
-         kK88O1MiOop6HUPYHT5Y68UvHTg4UCy5vO9W/rR9l+pofSY37zocqYsXv+LDcpgjEboL
-         1GsZNr00hOjL3jLJHohjNuB0sdQGsASGd/LBFZa26ehY2Luy1vsurXdcqnHzqVZC0xGN
-         wRjQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746123652; x=1746728452; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VYGJo3Dn7n60bY4TCOgRqk3w0LgzaCpNfAMFO24z3ig=;
+        b=C8tLBCjXDJZvIXp1KMIA0mVT/oDU+czsQmMyfGRJxGrfnriQPAcWuJtegeZqAE8EP3
+         LrlRjv08z7sYQwGPiELY4hJV9UqvIud21WxKsgegu2rIEw+hUAMEzUcTcKB9/FFuiyj/
+         DA8OCWDV6CSd78uaPIwrywVfBBUDMNpUg96sjZOZg7cm2aApoMzDYsiyUfI4IauJ7B4b
+         NrjpQirekXtlaB+vgjzHxO6kM+p2Woo2Orpu/AQhsjULHthMubZFzR/vz//yOZ3oXVnt
+         v+upuHjoALAAxCfmX4Edk1C0dU3YapunEu31raEv+76oSogpvxa0f76FE5xDe2GBgwip
+         1o5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746123086; x=1746727886;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9t400dGVqKpa0aJ5NF/wqCMTUOEugJbXa0Ak07h82mM=;
-        b=DzlOoo2i0fs8tVzjBfKH06W1S/Y11ZsDQrj0OzXBUld3acVrSiHMPXHS+15civA0Qx
-         MhjeM672Ul4Dtz6e2yWo1C6UkR1k5cRW2gKAgnTZhYbENUC3sns/8ZHUrUFBcoQM8gKU
-         CbvOOw8eC07OarT1OqlVTz27xE7QCSgf6UiwWyz9qSnc2Q1N6MGMF7mET2MMVumHtpN2
-         QiFBsXtoIbuDbWdjNCt7BwxLZNEDSN+M5FkcKo3iukG2tzrocstwoQgRlQ0iO5cUA1V+
-         5B9CedSbVC1VUswqECQDnPhLGu0wzyvz8t7Cy/jFWD1Go8TYO8LSmlMO/pDbq3NGmVTs
-         R71A==
-X-Forwarded-Encrypted: i=1; AJvYcCWXAYPFnvYE7uFLZsfMlkKtUbYmDJcoGuLsz1H46m3Ev+0ttQ7WZdVd9kppx3q7rHwl3EevYjmK/a3R@vger.kernel.org
-X-Gm-Message-State: AOJu0YweZybYjzTcPGP26v+mlL5ULGLeV1lv14MTpVKfVxSK8tqcjVcB
-	PdHIkDcDZdIe8OsX6OHmR94AEUmUb/Pa1FbdbsRTovh6mBokWDANnGIsNtS517g=
-X-Gm-Gg: ASbGncsFSiUu/GEwwAl9V39Vhgqz9eCyLz5coSOtOT8NYPF12IA1tlHgdpt2LL2UQOe
-	+MC9tNyxq25yKav9cs/s1etL3VvWG+YxmXCiUjYKr8yCAPbx0KsjMcDVQefzu5yWanuA5fdXDPi
-	g81ZmCQvkn7XcUT5J1AxZIM/wIewRReROJihupjNkBHYlmnJ4V/fh+W1MrZR60quB72gu3N6c+d
-	Ycf+COoXQo//GdpXbxNukFaemHnwCaEfYYgfd3YM+6l7awjxVcR/NhfflalTopIG4qVsmehcTwa
-	fmxFflqPkNPfNfmpq/6Pd7WKmYgOerAmPUUgTnU=
-X-Google-Smtp-Source: AGHT+IHS7iGdpbnvZSPtibrutAPiNsrIFRXMmGkTFO74ZmAaMQXJuegvR8E/cjr6fvB47F0IN/BmvQ==
-X-Received: by 2002:a17:903:1b2d:b0:223:f408:c3f7 with SMTP id d9443c01a7336-22e102cd9bbmr970795ad.16.1746123085925;
-        Thu, 01 May 2025 11:11:25 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e0bc6d528sm9783865ad.137.2025.05.01.11.11.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 May 2025 11:11:25 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-omap@vger.kernel.org, Tony Lindgren <tony@atomide.com>, 
- Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>, 
- linux-kernel@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>
-In-Reply-To: <20250427052735.88133-1-andreas@kemnade.info>
-References: <20250427052735.88133-1-andreas@kemnade.info>
-Subject: Re: [PATCH v3 0/2] ARM: dts: omap4: panda: TiWilink improvements
-Message-Id: <174612308508.158405.11020603792617275281.b4-ty@baylibre.com>
-Date: Thu, 01 May 2025 11:11:25 -0700
+        d=1e100.net; s=20230601; t=1746123652; x=1746728452;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VYGJo3Dn7n60bY4TCOgRqk3w0LgzaCpNfAMFO24z3ig=;
+        b=iJyw6/hqqEIF4jemTWPStdN9Tr8JR9kgElmV7EaeNvYZq8NvDwkyJx368VuE9ZOXGR
+         9QbPLBA8LuLjz/u7SCR4zXr9n2CcOimfESLcRv5+qa3XYUPwPSZ+jURH6I+h+dbZt/t0
+         vBUQTJuuEta1jbLb+NcMJ3/8DLP1H1lkzBcBI4/42XcRwpr8RP4i4XbtqGujD9JawZNa
+         TBp2lrYMycho7JK9z4Mr05T7jCupI8UF0tDxI/SH4ZC8Up2X90scJw8LGMgizcB6b2US
+         wBRyzcBt8QlX6zV1QoKbbT0iiAspfIDQJSKluRAjybuQVREJjRjFUcql2y1GC1Aa/BDu
+         44xA==
+X-Forwarded-Encrypted: i=1; AJvYcCXwU8ZInn7eKdUKR6SbdP4oIA2yu/bwW1s3w6EBOcYUvu8m/1LsmzsfJRhJqaxUssNlVPlm/6iPUIn+@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywiko25ife9GXPI98SO0cRJyrFdFnb6gubYqmokg1oeJPEOEA/u
+	2Q4j0O2JyegbWoQlbPpX2G4pzM/7g0lPi91mV91po902B9vnhuRhuDtZqg4ueNg=
+X-Gm-Gg: ASbGncs7wOw7NwmfkJBWkwyB/Z/hruDM3pO6UGVBu/iGxd1GG6bqH9oa1XjNolD6xY8
+	vMfDYWmVVYEh6b9nln6uHVq5jFbnNUHN4FDQofbc0WVundhjWk+8O+ytRx3ewdhyn8PXcr6u7yf
+	b+PPqqBcgIRE8MK8y+9VZD3bmx7JFzHagoLF+qzQ2rWuOr425ak7uWwQWXUJmnKDDsUTwVCGNsr
+	IHQgKaxXBU33AhcF/V4MaHpgZFerUgdtQQ4dAjizk5qLI1wmQLkIBj7Ag7HyHBlL4qbYfNZZBYt
+	JSu7wDdHhsFqGD9u0QxGwp7sEkZKXHc0JNl+R6qU9YgWnyJArHk5P54KaexT8cjVF4K79TmUrrp
+	UykcaDBmAv/9bobJrRw==
+X-Google-Smtp-Source: AGHT+IH95yusdxRir/cXJT3ckHlcNRsZkDgwRAlLqFb4K6kB/7aHv+SLzJSxmOI7WMpz+iOmfZknvg==
+X-Received: by 2002:a05:6808:1b8a:b0:403:323d:3038 with SMTP id 5614622812f47-4034147925bmr147308b6e.28.1746123652592;
+        Thu, 01 May 2025 11:20:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:b1ed:e5d7:8ea6:40e0? ([2600:8803:e7e4:1d00:b1ed:e5d7:8ea6:40e0])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4033dc83d9csm207984b6e.48.2025.05.01.11.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 May 2025 11:20:52 -0700 (PDT)
+Message-ID: <46659705-0384-4497-9f5d-cae4a8290093@baylibre.com>
+Date: Thu, 1 May 2025 13:20:51 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/5] iio: adc: Add initial support for TI ADS1262
+To: Sayyad Abid <sayyad.abid16@gmail.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nuno.sa@analog.com, javier.carrasco.cruz@gmail.com,
+ olivier.moysan@foss.st.com, gstols@baylibre.com, tgamblin@baylibre.com,
+ alisadariana@gmail.com, eblanc@baylibre.com, antoniu.miclaus@analog.com,
+ andriy.shevchenko@linux.intel.com, stefan.popa@analog.com,
+ ramona.gradinariu@analog.com, herve.codina@bootlin.com,
+ tobias.sperling@softing.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250501100043.325423-1-sayyad.abid16@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <20250501100043.325423-1-sayyad.abid16@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3-dev-94c79
 
-
-On Sun, 27 Apr 2025 07:27:33 +0200, Andreas Kemnade wrote:
-> Add proper definitions for 32k clock and enable bluetooth
-> everywhere.
+On 5/1/25 5:00 AM, Sayyad Abid wrote:
+> The ADS1262 is a 32-bit, high-resolution delta-sigma ADC communicating
+> over SPI. It's designed for precision measurements.
 > 
-> Changes:
-> v3:
->   - better commit message to describe what the clocks are for
+> This initial driver provides the basic functionality needed to:
+>  - Probe and register the device via SPI.
+>  - Expose standard IIO channels for reading raw voltage samples.
 > 
-> [...]
+> Basic testing was performed on a Raspberry Pi Zero 2W using the hardware
+> SPI0 interface. The connections used were:
+> 
+> +-----------------+            +-----------------+
+> | RPi Zero 2W     |            | TI ADS1262      |
+> | (SPI0 Pins)     |            |                 |
+> |-----------------|            |-----------------|
+> | MOSI            |----------->| DIN             |
+> | MISO            |<-----------| DOUT/DRDY       |
+> | SCLK            |----------->| SCLK            |
+> | CE0             |----------->| /CS             |
+> | 5V              |----------->| DVDD, AVDD      |
+> | GND             |----------->| DGND, AGND      |
+> +-----------------+            +-----------------+
+> 
+> I would greatly appreciate any feedback on the driver structure,
+> IIO integration, SPI communication handling, or any potential issues
+> or areas for improvement you might spot.
+> 
+> This series is broken down as follows:
+>  Patch 1: Adds the core driver code (ti-ads1262.c).
+>  Patch 2: Adds the Kconfig option.
+>  Patch 3: Adds the Makefile entry for compilation.
+>  Patch 4: Adds the MAINTAINERS entry.
+> 
+> Thanks for your time and consideration.
+> 
+> Sayyad Abid (5):
+>   iio: adc: ti-ads1262.c: add initial driver for TI ADS1262 ADC
+>   iio: adc: Kconfig: add Kconfig entry for TI ADS1262 driver
+>   iio: adc: Makefile: add compile support for TI ADS1262 driver
+>   MAINTAINERS: add entry for TI ADS1262 ADC driver
+>   dt-bindings: iio: adc: add bindings for TI ADS1262
+> 
+>  .../bindings/iio/adc/ti,ads1262.yaml          | 189 ++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/iio/adc/Kconfig                       |  12 +
+>  drivers/iio/adc/Makefile                      |   1 +
+>  drivers/iio/adc/ti-ads1262.c                  | 438 ++++++++++++++++++
+>  5 files changed, 647 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1262.yaml
+>  create mode 100644 drivers/iio/adc/ti-ads1262.c
+> 
+> --
+> 2.39.5
+> 
 
-Applied, thanks!
+It looks like you managed to CC everyone who ever touched the IIO ADC makefile.
+On v2, you don't need to include quite so many. :-) Just the people listed in
+MAINTAINERS.
 
-[1/2] ARM: dts: omap4: panda: fix resources needed for Wifi
-      commit: 1132bb4df2375ae4a2303068c6f5fc62bc63b870
-[2/2] ARM: dts: omap4: panda: cleanup bluetooth
-      commit: a2db9bbcf64a43c8347625dca9ca0927bb444d43
-
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
-
+And you can drop the RFC on v2, there doesn't seem to be anything unusual that
+needs more than regular review. v1 didn't really need the RFC either and is
+quite good for a first IIO driver. ;-)
 
