@@ -1,200 +1,456 @@
-Return-Path: <devicetree+bounces-172785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCF3AA6648
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 00:32:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EAFAA6690
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 00:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35EE71B614F7
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 22:32:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEE3D9A0119
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 22:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971262288C6;
-	Thu,  1 May 2025 22:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8B6265CC9;
+	Thu,  1 May 2025 22:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uRt/ttdF"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="M9J2hdIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A043D6A;
-	Thu,  1 May 2025 22:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23212226527
+	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 22:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746138747; cv=none; b=tT+LaFI2g0PqDtcSlFLKiQbgEOxfAbJMaUW9ntWCGxPLInJVOLrfvAiLttu9DINcvSiiSyrIM3P17uklpWxomZSX4g4An2GhiUfD6l/lzSjXm6CXZzp4xBh9BVeJ17z3ttFnJyU2UFMZvURO7x8GLYha8oJQoshtyrieUiUWPa0=
+	t=1746140111; cv=none; b=Q99rlgMiSNLULegetnAcdSzRr2PXCpB0THJ9k4E5F+D1Cye9KbwliFK2sbdTN5vyKgQRkl62yb6iQRcNq1fmqvyPZrxT1A2VX3MjWR8Wdas6lGnD86WAMwbyHbMPykXxiPgIqkfnRF0AeiXbpapOdMy0BI4QJYhpaagpborwao0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746138747; c=relaxed/simple;
-	bh=onQRN4XoWG/Smh1nPdvH5ErByOgifJ8Cg0vVX/S+viY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JFLNDUMJBjzLVvZ5udIFa6wTuzaR75ZPUjMwke/M211qc5lZTjTRDC0LiDldpnGuikipMoS+RSP8pOWQAVX1oAg0RgZn0OUqPVqpcMOBVnBrDeWO1xKaGFE6d+m83fAX/g97DQvRFX+5UaNt+3NT6AaD4/HJUYo6lXpSrKACdsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uRt/ttdF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C3950C4CEE3;
-	Thu,  1 May 2025 22:32:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746138746;
-	bh=onQRN4XoWG/Smh1nPdvH5ErByOgifJ8Cg0vVX/S+viY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=uRt/ttdFGIdLeZ0sUIRWKHIEN8jAiwS1xbXtjwcIn8Ap0qt5lEt7OaLEGo1r1ic98
-	 VuAkfsXojY3DbW4Tjp8UYmfbNWlIMexm/ag+Qxz45O3idfgAOJlQbtzLuSugXQKsK3
-	 OnAiU6vFNujsJPqXZ1Pv0oh/uDwf64hBKsKqZyNMoNiqahJKAoQuuXZCFr4LJftGBu
-	 L1/B0IYzmGUF8sJikAaxMm1rJho1gnBajUNA0EIvqveJDlXbJ2MVQ9HqTaNTkYbqOV
-	 2ZNEmnvS/ux6Uwh2Ph+XZ474nnYaJ9ZgoudQTh9F1JTe4vQEesTfhvV3rKhLZBgims
-	 yQSYpWc+xILGA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF20AC369DC;
-	Thu,  1 May 2025 22:32:26 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Thu, 01 May 2025 17:32:23 -0500
-Subject: [PATCH v2] arm64: tegra: Enable PWM fan on the Jetson TX1 Devkit
+	s=arc-20240116; t=1746140111; c=relaxed/simple;
+	bh=IcgTfbTfybJ3PZL795SXryUEui9SncnEt4xQFYbwfrw=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=urzfAX8mzNqUUdIPLtQ/O3OtmE2yu659mRPDjVRJNf/ClP6cisYDApqbovSX3lOnxK4hY4ddx4dGkmMt1SfHyg/ZsE3t/eBye1xJcfTjXdZaep4AnU+1hu5XSVoaJmK8PhUAJOHuWjx8Ns8MsxYWpjo7cbMhrJ1TweUUxdm0xe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=M9J2hdIa; arc=none smtp.client-ip=209.85.214.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
+Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-224192ff68bso12885065ad.1
+        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 15:55:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1746140108; x=1746744908; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VNCJTv4QrQ4B3OaOPUv7KzHf9QRM+3nfyGYGMjnG7a4=;
+        b=M9J2hdIawLkpYNokBI0x/xj9eOS/vrT50fBRyL+tcVX+fdpQwF3r5v0ZVdkV4Pl/tv
+         v0ucEEDEoFO5vlgXUMbx/y9KInt9g0QOM0pA9dc1J8fqijPSOiJ9EVaFgDVAfT8u+n2j
+         RcKBfYGHSJqiX+wR4XuLZWort9WepWpUd7lZMC8JfgnVKvHsyUSkKHZ7YawWG/oWYCUy
+         Azn3kbfs/TJP0MkpR6YnxHrJfHpAVCky2wlMjTg+no5hD1qcyyXNkyBwIDBQV0ihpPfK
+         zygyq4RlMcfRf366yryO9gwpwwYOLL4g+f342oldtEe0vP+VvYZe9tA7cQvk5LNEQIJC
+         gE0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746140108; x=1746744908;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VNCJTv4QrQ4B3OaOPUv7KzHf9QRM+3nfyGYGMjnG7a4=;
+        b=Tpitn3gkpHOq+37yplSvH/5SUbZi8lTS+y+MsGAsm6Lw+6sBiZ3LjHOhkKY4VRfRB4
+         lcFRvjf6IDzv3FYKTe1ImBeo/t3Ru8dlE7XBqQcFSugVKBhO8UW2kMPmn0fUSxJ6IPM/
+         gaPGv+qLRYX/5vCt0+z6cDvFBppIjwiy5bRMZpWjyB3DQkEtSdMteTEx873njoT6niw2
+         c7O9nnzx2m9XN76Op/z9AEwseDT3tHIQh+m9T3pHnk6TaCxUd9JTvWfsmsxy+01Asq93
+         j8MpLdMMbBtlwqzey6g/+RyBewjC9Rb444tuYFkIodbMJsNn4qzvFM+ZIGPlvIbbz2qW
+         CnuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUR+J8y2D0HhEUGTnX+wTdWIdUJa1KaiEwowpIusB8i7W3oq2BfpwuiwRfwH6ozOBsNwSxAODiliRoI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsXLhykBu1J9CfS1GZYA+N8G7OpdWyUT58WxTugs/eiEfG0Tgz
+	h+tvfqST5fpBmlV9jz+sBxMv6RgMSSd6DkrGHDw+nJcvmtNp/2MlKDprXUGsjV308trwqAQjJPx
+	xwV4NE5VTVwOdwqd4TQ==
+X-Google-Smtp-Source: AGHT+IFePvYLQ7V/eNV1P0Df7Ad2UiG5bDddcjGCSvEDCx2UtHLEg2L60VhGmHjpnGQSrNOz/HnaGeMSNQbxH4SP
+X-Received: from pllw8.prod.google.com ([2002:a17:902:7b88:b0:22d:a5a9:8117])
+ (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:902:eccb:b0:224:c76:5e56 with SMTP id d9443c01a7336-22e10305acemr11904165ad.27.1746140108428;
+ Thu, 01 May 2025 15:55:08 -0700 (PDT)
+Date: Thu,  1 May 2025 15:54:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250501-tx1-therm-v2-1-abdb1922c001@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAHb2E2gC/23MSw7CIBSF4a00dyyGp1pH7sN0gAjlJlIMEFLTs
- HexY4f/ycm3QbYJbYbrsEGyFTPGpQc/DGC8XmZL8NkbOOWKSk5JWRkp3qZARvcQRlCnpXDQ/+9
- kHa67dZ96e8wlps9OV/Zb/ymVEUbURbGTOTsj+Xibg8bX0cQAU2vtC4GbZxyiAAAA
-X-Change-ID: 20250420-tx1-therm-9fb3c30fa43f
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746138746; l=3058;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=5WwXIILW7h6PVNyGMb5HuC90et+tCHw6bRcXa5HcJ8g=;
- b=cdAMKSijdEpZU1K5DfekxqFfLwNz+5PfWhWRkyosUCSkP4J0nShnN5pYqwPAIkGJrkI9IzSow
- eaTFIF278T1DXzlUlLLu5TobhfV55hLm6MHCLIVBWI5fQG7ESqdFqEl
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.49.0.906.g1f30a19c02-goog
+Message-ID: <20250501225425.635167-1-changyuanl@google.com>
+Subject: [PATCH v7 00/18] kexec: introduce Kexec HandOver (KHO)
+From: Changyuan Lyu <changyuanl@google.com>
+To: linux-kernel@vger.kernel.org
+Cc: changyuanl@google.com, akpm@linux-foundation.org, 
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, 
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com, 
+	corbet@lwn.net, dave.hansen@linux.intel.com, devicetree@vger.kernel.org, 
+	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com, 
+	jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com, 
+	pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org, 
+	ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org, 
+	saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Aaron Kling <webgeek1234@gmail.com>
+Hi,
 
-This is based on 6f78a94, which enabled added the fan and thermal zones
-for the Jetson Nano Devkit. The fan and thermal characteristics of the
-two devkits are similar, so using the same configuration.
+This is the version 7 of "kexec: introduce Kexec HandOver (KHO)" series
+(https://lore.kernel.org/lkml/20250411053745.1817356-1-changyuanl@google.com/)
+form Alexander Graf, Mike Rapoport, and Changyuan Lyu.
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
-Changes in v2:
-- Add fan regulator
-- Add interrupt for tachometer
-- Reverse cooling map to account for inverse polarity
-- Rename cooling map nodes to map# as tht is all the schema allows
-- Link to v1: https://lore.kernel.org/r/20250420-tx1-therm-v1-1-58516c7fc429@gmail.com
----
- arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 75 ++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+The patches are also available in git:
+https://github.com/googleprodkernel/linux-liveupdate/tree/kho/v7.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-index 83ed6ac2a8d8f403fb588edce83dc401065c162f..584461f3a6196c4327e958b424dfd2139cd43965 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-@@ -1623,6 +1623,18 @@ key-volume-up {
- 		};
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		pwms = <&pwm 3 45334>;
-+		fan-supply = <&vdd_fan>;
-+		interrupt-parent = <&gpio>;
-+		interrupts = <TEGRA_GPIO(K, 7) IRQ_TYPE_EDGE_RISING>;
-+
-+		/* cooling level (0, 1, 2, 3) - pwm inverted */
-+		cooling-levels = <255 128 64 0>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	vdd_sys_mux: regulator-vdd-sys-mux {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VDD_SYS_MUX";
-@@ -1778,4 +1790,67 @@ vdd_usb_vbus_otg: regulator-vdd-usb-vbus-otg {
- 		enable-active-high;
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
-+
-+	vdd_fan: regulator-vdd-fan {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_FAN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&exp1 4 GPIO_ACTIVE_LOW>;
-+		vin-supply = <&vdd_5v0_sys>;
-+
-+		regulator-enable-ramp-delay = <284>;
-+	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			trips {
-+				cpu_trip_critical: critical {
-+					temperature = <96500>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+
-+				cpu_trip_hot: hot {
-+					temperature = <70000>;
-+					hysteresis = <2000>;
-+					type = "hot";
-+				};
-+
-+				cpu_trip_active: active {
-+					temperature = <50000>;
-+					hysteresis = <2000>;
-+					type = "active";
-+				};
-+
-+				cpu_trip_passive: passive {
-+					temperature = <30000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					cooling-device = <&fan 3 3>;
-+					trip = <&cpu_trip_critical>;
-+				};
-+
-+				map1 {
-+					cooling-device = <&fan 2 2>;
-+					trip = <&cpu_trip_hot>;
-+				};
-+
-+				map2 {
-+					cooling-device = <&fan 1 1>;
-+					trip = <&cpu_trip_active>;
-+				};
-+
-+				map3 {
-+					cooling-device = <&fan 0 0>;
-+					trip = <&cpu_trip_passive>;
-+				};
-+			};
-+		};
-+	};
- };
+Section "How to Use" below includes steps for you to try KHO.
 
----
-base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
-change-id: 20250420-tx1-therm-9fb3c30fa43f
+v6 -> v7:
+  - Remove `struct kho_serialization *` from kho_preserve_phys() and
+    kho_preserve_folio() parameter list, which allows KHO users to
+    preserve memory anytime before KHO finalization, not only just in
+    notifier callbacks (v6).
+  - Include the change [1] suggested by [2]
+  - Split "x86: add KHO support" into small patches suggested by [3]
+  - Include asm/early_ioremap.h [4]
+  - Make KHO depend on 64BIT on x86 [5]
+  - KHO fields (16 bytes) are defined in struct kimage unconditionally [5],
+    replace a few #ifdef with IS_ENABLED().
+  - Rebase the patchset to v6.15-rc4 such that tests in
+    tools/testing/memblock can pass.
 
-Best regards,
--- 
-Aaron Kling <webgeek1234@gmail.com>
+[1] https://lore.kernel.org/lkml/20250424083258.2228122-1-changyuanl@google.com/
+[2] https://lore.kernel.org/lkml/aAeaJ2iqkrv_ffhT@kernel.org/
+[3] https://lore.kernel.org/lkml/35c58191-f774-40cf-8d66-d1e2aaf11a62@intel.com/
+[4] https://lore.kernel.org/lkml/20250424093302.3894961-1-arnd@kernel.org/
+[5] https://lore.kernel.org/lkml/e90b81a4-a912-4174-b6e9-46a6ddd92ee3@intel.com/
+
+Best,
+Changyuan
+
+= Original cover letter =
+
+Kexec today considers itself purely a boot loader: When we enter the new
+kernel, any state the previous kernel left behind is irrelevant and the
+new kernel reinitializes the system.
+
+However, there are use cases where this mode of operation is not what we
+actually want. In virtualization hosts for example, we want to use kexec
+to update the host kernel while virtual machine memory stays untouched.
+When we add device assignment to the mix, we also need to ensure that
+IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
+need to do the same for the PCI subsystem. If we want to kexec while an
+SEV-SNP enabled virtual machine is running, we need to preserve the VM
+context pages and physical memory. See "pkernfs: Persisting guest memory
+and kernel/device state safely across kexec" Linux Plumbers
+Conference 2023 presentation for details:
+
+  https://lpc.events/event/17/contributions/1485/
+
+To start us on the journey to support all the use cases above, this patch
+implements basic infrastructure to allow hand over of kernel state across
+kexec (Kexec HandOver, aka KHO). As a really simple example target, we use
+memblock's reserve_mem.
+With this patch set applied, memory that was reserved using "reserve_mem"
+command line options remains intact after kexec and it is guaranteed to
+reside at the same physical address.
+
+== Alternatives ==
+
+There are alternative approaches to (parts of) the problems above:
+
+  * Memory Pools [1] - preallocated persistent memory region + allocator
+  * PRMEM [2] - resizable persistent memory regions with fixed metadata
+                pointer on the kernel command line + allocator
+  * Pkernfs [3] - preallocated file system for in-kernel data with fixed
+                  address location on the kernel command line
+  * PKRAM [4] - handover of user space pages using a fixed metadata page
+                specified via command line
+
+All of the approaches above fundamentally have the same problem: They
+require the administrator to explicitly carve out a physical memory
+location because they have no mechanism outside of the kernel command
+line to pass data (including memory reservations) between kexec'ing
+kernels.
+
+KHO provides that base foundation. We will determine later whether we
+still need any of the approaches above for fast bulk memory handover of for
+example IOMMU page tables. But IMHO they would all be users of KHO, with
+KHO providing the foundational primitive to pass metadata and bulk memory
+reservations as well as provide easy versioning for data.
+
+== Overview ==
+
+We introduce a metadata file that the kernels pass between each other. How
+they pass it is architecture specific. The file's format is a Flattened
+Device Tree (fdt) which has a generator and parser already included in
+Linux. KHO is enabled in the kernel command line by `kho=on`. When the root
+user enables KHO through /sys/kernel/debug/kho/out/finalize, the kernel
+invokes callbacks to every KHO users to register preserved memory regions,
+which contain drivers' states.
+
+When the actual kexec happens, the fdt is part of the image
+set that we boot into. In addition, we keep "scratch regions" available
+for kexec: physically contiguous memory regions that are guaranteed to
+not have any memory that KHO would preserve.  The new kernel bootstraps
+itself using the scratch regions and sets all handed over memory as in use.
+When drivers initialize that support KHO, they introspect the fdt, restore
+preserved memory regions, and retrieve their states stored in the preserved
+memory.
+
+== Limitations ==
+
+Currently KHO is only implemented for file based kexec. The kernel
+interfaces in the patch set are already in place to support user space
+kexec as well, but it is still not implemented it yet inside kexec tools.
+
+== How to Use ==
+
+To use the code, please boot the kernel with the "kho=on" command line
+parameter. KHO will automatically create scratch regions. If you want to set
+the scratch size explicitly you can use "kho_scratch=" command line parameter.
+For instance, "kho_scratch=16M,512M,256M" will reserve a 16 MiB low
+memory scratch area, a 512 MiB global scratch region, and 256 MiB
+per NUMA node scratch regions on boot.
+
+Make sure to have a reserved memory range requested with reserv_mem
+command line option, for example, "reserve_mem=64m:4k:n1".
+
+Then before you invoke file based "kexec -l", finalize
+KHO FDT:
+
+  # echo 1 > /sys/kernel/debug/kho/out/finalize
+
+You can preview the generated FDT using `dtc`,
+
+  # dtc /sys/kernel/debug/kho/out/fdt
+  # dtc /sys/kernel/debug/kho/out/sub_fdts/memblock
+
+`dtc` is available on ubuntu by `sudo apt-get install device-tree-compiler`.
+
+Now kexec into the new kernel,
+
+  # kexec -l Image --initrd=initrd -s
+  # kexec -e
+
+(The order of KHO finalization and "kexec -l" does not matter.)
+
+The new kernel will boot up and contain the previous kernel's reserve_mem
+contents at the same physical address as the first kernel.
+
+You can also review the FDT passed from the old kernel,
+
+  # dtc /sys/kernel/debug/kho/in/fdt
+  # dtc /sys/kernel/debug/kho/in/sub_fdts/memblock
+
+== Changelog ==
+
+v5 -> v6:
+  - Rebase the patchset on v6.15-rc1.
+  - Revert hashtable-based API introduced in V5.
+  - In kho_parse_scratch_size(), replace simple_strtoul() with kstrtouint().
+  - Make KHO focus on memory preservation. Subsystem's metadata is not
+    saved into KHO root tree, instead Subsystems allocate and create their
+    own FDT and use KHO to preserve the FDT's underlying folios, suggested
+    by [6].
+  - Subsystem's own FDT is presented at debugfs kho/(in|out)/sub_fdts/$name.
+  - Remove `fdt_max`, limit KHO root FDT to 1 page [6].
+  - Move linked pages of bitmaps of preserved memory from
+    /preserved-memory.metadata to preserved-memory-map of KHO root FDT
+    as suggested in [1].
+  - Add struct kho_serialization to hold the root FDT and struct
+    kho_mem_track, and pass it through notifiers, as suggested in [2].
+  - Update the KHO example of memblock. memblock now prepares its own FDT
+    early. In the notifier callback, it only preserves the memory and saves
+    its own FDT blob address to KHO root tree.
+  - Add the doc of KHO property in node 'chosen' to
+    github.com/devicetree-org/dt-schema [3] as requested in [4].
+  - Add back YAML files to describe KHO and memblock FDT bindings as requested
+    in [2]
+  - Remove kho_restore_phys().
+  - Move documentations to Documentation/admin-guide/kho.rst and
+    Documentation/core-api/kho as requested in [5].
+  - Split KHO from kexec in MAINTAINERS.
+  - kho_restore_folio() refuses to create folios larger than
+    MAX_PAGE_ORDER [7].
+  - Fix the bug on arm64 reported in [8].
+  - Fix the bug in kho_preserve_phys() reported in [9].
+  - Check KHO root node "compatible" in kho_populate().
+
+Since the discussion of the data format for serializing preserved memory [10] is
+still going on, this version goes with the original xarray+bitmap approach
+and save the optimization for future versions/patches.
+
+[1] https://lore.kernel.org/all/20250212152336.GA3848889@nvidia.com/
+[2] https://lore.kernel.org/all/20250321134629.GA252045@nvidia.com/
+[3] https://github.com/devicetree-org/dt-schema/pull/158
+[4] https://lore.kernel.org/all/55a5e3f3-1b3f-469b-bde0-69abfff826e4@kernel.org/
+[5] https://lore.kernel.org/all/87wmcj69sg.fsf@trenco.lwn.net/
+[6] https://lore.kernel.org/all/Z+GIRecXeYXiPrYv@nvidia.com/
+[7] https://lore.kernel.org/all/mafs05xjmqsqc.fsf@amazon.de/
+[8] https://lore.kernel.org/all/20250411034748.1781232-1-changyuanl@google.com/
+[9] https://lore.kernel.org/all/20250411040207.1785245-1-changyuanl@google.com/
+[10] https://lore.kernel.org/all/20250320015551.2157511-10-changyuanl@google.com/
+
+v4 -> v5:
+  - New: Preserve folios and address ranges in bitmaps [1]. Removed the
+    `mem` property.
+  - New: Hash table based API for manipulating the KHO state tree.
+  - Change the concept of "active phase" to "finalization phase". KHO
+    users can add/remove data into/from KHO DT anytime before the
+    finalization phase.
+  - Decouple kexec_file_load and KHO FDT creation. kexec_file_load can be
+    done before KHO FDT is created.
+  - Update the example usecase (reserve_mem) using the new KHO API,
+    replace underscores with dashes in reserve-mem fdt generation.
+  - Drop the YAMLs for now and add a brief description of KHO FDT before
+    KHO schema is stable.
+  - Move all sysfs interfaces to debugfs.
+  - Fixed the memblock test reported in [2].
+  - Incorporate fix for kho_locate_mem_hole() with !CONFIG_KEXEC_HANDOVER
+    [3] into "kexec: Add KHO support to kexec file loads".
+
+[1] https://lore.kernel.org/all/20250212152336.GA3848889@nvidia.com/
+[2] https://lore.kernel.org/all/20250217040448.56xejbvsr2a73h4c@master/
+[3] https://lore.kernel.org/all/20250214125402.90709-1-sourabhjain@linux.ibm.com/
+
+v3 -> v4:
+  - Major rework of scrach management. Rather than force scratch memory
+    allocations only very early in boot now we rely on scratch for all
+    memblock allocations.
+  - Use simple example usecase (reserv_mem instead of ftrace)
+  - merge all KHO functionality into a single kernel/kexec_handover.c file
+  - rename CONFIG_KEXEC_KHO to CONFIG_KEXEC_HANDOVER
+
+v2 -> v3:
+  - Fix make dt_binding_check
+  - Add descriptions for each object
+  - s/trace_flags/trace-flags/
+  - s/global_trace/global-trace/
+  - Make all additionalProperties false
+  - Change subject to reflect subsysten (dt-bindings)
+  - Fix indentation
+  - Remove superfluous examples
+  - Convert to 64bit syntax
+  - Move to kho directory
+  - s/"global_trace"/"global-trace"/
+  - s/"global_trace"/"global-trace"/
+  - s/"trace_flags"/"trace-flags"/
+  - Fix wording
+  - Add Documentation to MAINTAINERS file
+  - Remove kho reference on read error
+  - Move handover_dt unmap up
+  - s/reserve_scratch_mem/mark_phys_as_cma/
+  - Remove ifdeffery
+  - Remove superfluous comment
+
+v1 -> v2:
+  - Removed: tracing: Introduce names for ring buffers
+  - Removed: tracing: Introduce names for events
+  - New: kexec: Add config option for KHO
+  - New: kexec: Add documentation for KHO
+  - New: tracing: Initialize fields before registering
+  - New: devicetree: Add bindings for ftrace KHO
+  - test bot warning fixes
+  - Change kconfig option to ARCH_SUPPORTS_KEXEC_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Remove / reduce ifdefs
+  - Select crc32
+  - Leave anything that requires a name in trace.c to keep buffers
+    unnamed entities
+  - Put events as array into a property, use fingerprint instead of
+    names to identify them
+  - Reduce footprint without CONFIG_FTRACE_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - make kho_get_fdt() const
+  - Add stubs for return_mem and claim_mem
+  - make kho_get_fdt() const
+  - Get events as array from a property, use fingerprint instead of
+    names to identify events
+  - Change kconfig option to ARCH_SUPPORTS_KEXEC_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Leave the node generation code that needs to know the name in
+    trace.c so that ring buffers can stay anonymous
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Move kho enums out of ifdef
+  - Move from names to fdt offsets. That way, trace.c can find the trace
+    array offset and then the ring buffer code only needs to read out
+    its per-CPU data. That way it can stay oblivient to its name.
+  - Make kho_get_fdt() const
+
+Alexander Graf (12):
+  memblock: Add support for scratch memory
+  kexec: add Kexec HandOver (KHO) generation helpers
+  kexec: add KHO parsing support
+  kexec: add KHO support to kexec file loads
+  kexec: add config option for KHO
+  arm64: add KHO support
+  x86/kexec: add support for passing kexec handover (KHO) data
+  x86/e820: temporarily enable KHO scratch for memory below 1M
+  x86/boot: make sure KASLR does not step over KHO preserved memory
+  x86/Kconfig: enable kexec handover for 64 bits
+  memblock: add KHO support for reserve_mem
+  Documentation: add documentation for KHO
+
+Arnd Bergmann (1):
+  kexec: include asm/early_ioremap.h
+
+Mike Rapoport (Microsoft) (5):
+  memblock: add MEMBLOCK_RSRV_KERN flag
+  memblock: introduce memmap_init_kho_scratch()
+  kexec: enable KHO support for memory preservation
+  x86/setup: use memblock_reserve_kern for memory used by kernel
+  Documentation: KHO: Add memblock bindings
+
+ .../admin-guide/kernel-parameters.txt         |   25 +
+ Documentation/admin-guide/mm/index.rst        |    1 +
+ Documentation/admin-guide/mm/kho.rst          |  120 ++
+ Documentation/core-api/index.rst              |    1 +
+ Documentation/core-api/kho/bindings/kho.yaml  |   43 +
+ .../kho/bindings/memblock/memblock.yaml       |   39 +
+ .../kho/bindings/memblock/reserve-mem.yaml    |   40 +
+ .../core-api/kho/bindings/sub-fdt.yaml        |   27 +
+ Documentation/core-api/kho/concepts.rst       |   74 +
+ Documentation/core-api/kho/fdt.rst            |   80 ++
+ Documentation/core-api/kho/index.rst          |   13 +
+ MAINTAINERS                                   |   12 +
+ arch/arm64/Kconfig                            |    3 +
+ arch/x86/Kconfig                              |    3 +
+ arch/x86/boot/compressed/kaslr.c              |   52 +-
+ arch/x86/include/asm/setup.h                  |    2 +
+ arch/x86/include/uapi/asm/setup_data.h        |   13 +-
+ arch/x86/kernel/e820.c                        |   18 +
+ arch/x86/kernel/kexec-bzimage64.c             |   37 +
+ arch/x86/kernel/setup.c                       |   42 +-
+ arch/x86/realmode/init.c                      |    2 +
+ drivers/of/fdt.c                              |   34 +
+ drivers/of/kexec.c                            |   42 +
+ include/linux/kexec.h                         |    5 +
+ include/linux/kexec_handover.h                |  109 ++
+ include/linux/memblock.h                      |   41 +-
+ kernel/Kconfig.kexec                          |   14 +
+ kernel/Makefile                               |    1 +
+ kernel/kexec_file.c                           |   13 +
+ kernel/kexec_handover.c                       | 1261 +++++++++++++++++
+ kernel/kexec_internal.h                       |   16 +
+ mm/Kconfig                                    |    4 +
+ mm/internal.h                                 |    2 +
+ mm/memblock.c                                 |  324 ++++-
+ mm/mm_init.c                                  |   19 +-
+ tools/testing/memblock/tests/alloc_api.c      |   22 +-
+ .../memblock/tests/alloc_helpers_api.c        |    4 +-
+ tools/testing/memblock/tests/alloc_nid_api.c  |   20 +-
+ 38 files changed, 2533 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/admin-guide/mm/kho.rst
+ create mode 100644 Documentation/core-api/kho/bindings/kho.yaml
+ create mode 100644 Documentation/core-api/kho/bindings/memblock/memblock.yaml
+ create mode 100644 Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml
+ create mode 100644 Documentation/core-api/kho/bindings/sub-fdt.yaml
+ create mode 100644 Documentation/core-api/kho/concepts.rst
+ create mode 100644 Documentation/core-api/kho/fdt.rst
+ create mode 100644 Documentation/core-api/kho/index.rst
+ create mode 100644 include/linux/kexec_handover.h
+ create mode 100644 kernel/kexec_handover.c
 
 
+base-commit: b4432656b36e5cc1d50a1f2dc15357543add530e
+--
+2.49.0.906.g1f30a19c02-goog
 
