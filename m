@@ -1,250 +1,185 @@
-Return-Path: <devicetree+bounces-172636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A430AA5C6E
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 11:01:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D529AA5C89
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 11:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FD0B4C2D70
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 09:01:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6344B4A81E4
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 09:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF791D86D6;
-	Thu,  1 May 2025 09:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5966A20E03C;
+	Thu,  1 May 2025 09:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNQg6Cu+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HYVYiDSS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CD3288DA;
-	Thu,  1 May 2025 09:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97516150997;
+	Thu,  1 May 2025 09:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746090077; cv=none; b=YsWnm78CekiZ6WU1dZWEbRHMZfqOSdXELzPcbR3dHE/bWQ/jZXFeclmDeY4iT/95gOePPYZin7UiEiWdNZAAPtazsxzBMOfQoGA3DV9Wpze808TixF/5ZgOGMdPBlxy7IVPxRzh1Lx1C1s6xnnVK773w4G8O4yYdeUGwdOFIr5Y=
+	t=1746091062; cv=none; b=GaDecvN18BkfPbQ2P6U8si+bFr2RgCp59HQH2jQIbeVR8Rjxp4E5xwrQE6FWKc6lelzVALvgNDmBCDSOLp+8xuDBM0+CMrUa8msB0FYA6nmxIyaaEu4HqdKKN73YEGApqssjw3KZX6fnKleHR1ZsZEYfuRLCxd+2Ybypl4v0I1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746090077; c=relaxed/simple;
-	bh=0ipCz+7spt358RxGlpu6/Gs/l2WCej4idcL1gnVdSJQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ItaD3RpXpy+0Sxd0k0oA8TCwC0mH3axRpWRH2AvCP0NBOTJ58/wIgk/ulaoIdfc0gAVvb+deYdGfsRN7MjMMO4t8/iN0+EGTVNC/q8gmUYba9opvxJ/3R4m/GIqHKefE4vzMhleOFbTRxsMfwwMAYEV86I6QYm45YK7xhHU9hMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNQg6Cu+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1F59C4CEE3;
-	Thu,  1 May 2025 09:01:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746090077;
-	bh=0ipCz+7spt358RxGlpu6/Gs/l2WCej4idcL1gnVdSJQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cNQg6Cu+kQg5EPbQth2cRgzIBbVR1eku6Lz+MlysAKVS9AI+1KotmybKncV2WG2Xu
-	 ViX/+dmEmvRW7YqG7H2j609iGPMGEX52nxqFen23vLlu7FkQwXVxMbSoCnQP4D4PN3
-	 AxZ9o1IO9T8FXnJA9FLBbyuE6ofTjL35QPT8YZVHFsa9qJAv62F/apH/Bi8g7xMwuP
-	 zJ5YiWqBuXTKFBO1SRcyMNewVo+6SMSwDSIkdWtmg/CZ1NcGq9b1ngS/PYjdQ1vz+8
-	 P+VtYLG8329ixEwUOpwFKuJXFAADXYxEDdCJdcNVk8drtle2mFtnSu3/RDXi8Y0ljI
-	 Tvu0+MYnIJJsA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uAPn7-00AWwq-GZ;
-	Thu, 01 May 2025 10:01:14 +0100
-Date: Thu, 01 May 2025 10:01:13 +0100
-Message-ID: <8634doiu1y.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 20/22] irqchip/gic-v5: Add GICv5 ITS support
-In-Reply-To: <aBIjvPVe/SWzOyd9@lpieralisi>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
-	<20250424-gicv5-host-v2-20-545edcaf012b@kernel.org>
-	<86a57yhv1h.wl-maz@kernel.org>
-	<aBIjvPVe/SWzOyd9@lpieralisi>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1746091062; c=relaxed/simple;
+	bh=ccj29LzH5XvqYMAXSz5jWd+q3KcsdJgsxezJfR7HIXk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eWTBZJ462HBXQ+xZ2+MwhypG1gJCBt5YWrKRekDnwrS+CrioMMiN2TGgWezmVnJ6XO/UB/yXHcQ+tu2DEqKjrLDzXeuY/XugcnJQph1uFNp+xOl+cQm1vKdyJHrNEKFMUCufm4kDaI9GOAYS9VhlyksB8NpZSSlj/YYIkpIxNLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HYVYiDSS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5413oFrh031394;
+	Thu, 1 May 2025 09:17:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hNb1dl3k0K+rbG/BUE8UZ57J0ajZ81B0ROyGlfaeqBI=; b=HYVYiDSS9NHc2xot
+	8V1WxCFNYeJrhVrQ/xICepbLqOoqOVpcVRK8NZ7F1KU2tyYFe55+GnRSIlRB1HQm
+	mQzQ7rugMw4nS25nFMRWLitP2qk97pgMejEhxca6mbtbq50x59Y6FiyyklzTEvcW
+	rvvBGq0RA2KwJqub54fGqMfD+WWGw0XgfKnmo7RqWna6Gfmjmxaf94LhsP+mc6k1
+	hNrM7abUliFiaNlsklInhY/DTOYyQ9I3jvmjNOs1PcaH+SqCQcF+iXmYZXPvojfw
+	6ndhg96sRG/Eg8FvjFPV2l5grdGKNaNm7vgWedTcycf4gdcBIIwFqlWKRhLdK+d9
+	NZos0A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u1vvue-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 May 2025 09:17:31 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5419HUc5015257
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 May 2025 09:17:30 GMT
+Received: from [10.216.32.231] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 May 2025
+ 02:17:25 -0700
+Message-ID: <3de5d4f0-606e-48b5-b3f5-d7acf726d0ee@quicinc.com>
+Date: Thu, 1 May 2025 14:47:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] drm/msm/adreno: Implement SMEM-based speed bin
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Abhinav
+ Kumar" <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        David Airlie <airlied@gmail.com>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
+ <20240709-topic-smem_speedbin-v5-1-e2146be0c96f@linaro.org>
+ <20240715200419.l47ng6efa25in6sg@hu-akhilpo-hyd.qualcomm.com>
+ <c6cff2a7-4497-44b3-a019-60e3c6034d4f@oss.qualcomm.com>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <c6cff2a7-4497-44b3-a019-60e3c6034d4f@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=68133c2b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=egTsXL45pzzUbfgsQh0A:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAxMDA3MCBTYWx0ZWRfX5jLRlGnSk/Mx M+VM9128DOCfSEWouU13szJGqFe9OLsvyu60hnds8BTruCnCdo8G9XugGnAbtVeLsHWblNBD+XU DWd2Alk2yZqEE3n8VH5Ll2swuHULak/jaHx+w8HnBBQUT3y4JBdTN6WH7apTwiCsKfs/VjGYkmi
+ VNIiZmPeQ5qJ9cKcegTmxspQMk86SBFEo7YBQH1Jns9x+vJdJSoEzxtD9l5T6l5NI2oB1bpbDDn iLLioZZxLHsl6azkkDwQEoAgyp9f/PyBtohEtUE9Aq1a/BHOXQzLbzVynbtIcOsugxqK6Epu8o5 IsmojkuXV6d9Fap9tO0j/fXr96bATtaUmmdqFXVeeaM7nk8dvALarMwXWe/viQPvqPhCvBrZrLA
+ s7vgohspwzOju+eZwVUiY+DbraudljuDZfz6mPSxPfr5z6fi1LopRsppQ0ritjb8Ff4k6+9l
+X-Proofpoint-GUID: hIRcUUZtDzD6m2PKlExzGT_a9w5TezNA
+X-Proofpoint-ORIG-GUID: hIRcUUZtDzD6m2PKlExzGT_a9w5TezNA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-01_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
+ lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ clxscore=1011 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505010070
 
-On Wed, 30 Apr 2025 14:21:00 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On 4/25/2025 2:35 PM, Konrad Dybcio wrote:
+> On 7/15/24 10:04 PM, Akhil P Oommen wrote:
+>> On Tue, Jul 09, 2024 at 12:45:29PM +0200, Konrad Dybcio wrote:
+>>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
+>>> abstracted through SMEM, instead of being directly available in a fuse.
+>>>
+>>> Add support for SMEM-based speed binning, which includes getting
+>>> "feature code" and "product code" from said source and parsing them
+>>> to form something that lets us match OPPs against.
+>>>
+>>> Due to the product code being ignored in the context of Adreno on
+>>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
 > 
-> On Wed, Apr 30, 2025 at 10:12:58AM +0100, Marc Zyngier wrote:
-> > On Thu, 24 Apr 2025 11:25:31 +0100,
-> > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-
-[...]
-
-> > > 
-> > > +void gicv5_irs_syncr(void)
-> > > +{
-> > > +	struct gicv5_irs_chip_data *irs_data;
-> > > +	u32 syncr;
-> > > +
-> > > +	irs_data = list_first_entry_or_null(&irs_nodes,
-> > > +					    struct gicv5_irs_chip_data, entry);
-> > > +	if (WARN_ON(!irs_data))
-> > > +		return;
-> > > +
-> > > +	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
-> > > +	irs_writel_relaxed(irs_data, syncr, GICV5_IRS_SYNCR);
-> > > +
-> > > +	gicv5_irs_wait_for_op(irs_data->irs_base, GICV5_IRS_SYNC_STATUSR,
-> > > +			      GICV5_IRS_SYNC_STATUSR_IDLE);
-> > > +}
-> > > +
-> > 
-> > Only the ITS code is using this function. Why isn't it in the ITS code
-> > as a static helper?
+> [...]
 > 
-> I'd need to make irs_nodes global.
-
-You could simply have a helper returning the first IRS node. Not a big
-deal anyway.
-
-[...]
-
-> > > +	/*
-> > > +	 * Need to determine how many entries there are per L2 - this is based
-> > > +	 * on the number of bits in the table.
-> > > +	 */
-> > > +	events_per_l2_table = BIT(l2_bits);
-> > > +	complete_tables = num_events / events_per_l2_table;
-> > > +	final_span = order_base_2(num_events % events_per_l2_table);
-> > > +
-> > > +	for (i = 0; i < num_ents; i++) {
-> > > +		size_t l2sz;
-> > > +
-> > > +		span = i == complete_tables ? final_span : l2_bits;
-> > > +
-> > > +		itt_l2 = kcalloc(BIT(span), sizeof(*itt_l2), GFP_KERNEL);
-> > > +		if (!itt_l2) {
-> > > +			ret = -ENOMEM;
-> > > +			goto out_free;
-> > > +		}
-> > 
-> > You are allocating a bunch of 64bit pointers. So the alignment is
-> > BIT(span + 3) or ARCH_KMALLOC_MINALIGN, whichever is the largest.
+>>>  
+>>>  int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>> @@ -1102,9 +1136,9 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>>  			devm_pm_opp_set_clkname(dev, "core");
+>>>  	}
+>>>  
+>>> -	if (adreno_read_speedbin(dev, &speedbin) || !speedbin)
+>>> +	if (adreno_read_speedbin(adreno_gpu, dev, &speedbin) || !speedbin)
+>>>  		speedbin = 0xffff;
+>>> -	adreno_gpu->speedbin = (uint16_t) (0xffff & speedbin);
+>>> +	adreno_gpu->speedbin = speedbin;
+>>
+>> There are some chipsets which uses both Speedbin and Socinfo data for
+>> SKU detection [1]. We don't need to worry about that logic for now. But
+>> I am worried about mixing Speedbin and SKU_ID in the UABI with this patch.
+>> It will be difficult when we have to expose both to userspace.
+>>
+>> I think we can use a separate bitfield to expose FCODE/PCODE. Currently,
+>> the lower 32 bit is reserved for chipid and 33-48 is reserved for speedbin,
+>> so I think we can use the rest of the 16 bits for SKU_ID. And within that
+>> 16bits, 12 bits should be sufficient for FCODE and the rest 8 bits
+>> reserved for future PCODE.
 > 
-> Right, at least 8 bytes.
+> So I revisited this patchset and had another thought - maybe we could just
+> extend the speedbin bitfield to cover [63:32] and worry about filling these
+> higher bits in the future, when adding the platforms you mentioned?
+
+Sorry for the late response, I needed sometime to think this through.
+
+My concern is about mixing speedbin and socinfo in the same UABI. It
+will be complicated to handle this correctly later. We have to track the
+set of chipsets which exposes socinfo data via speedbin fields and those
+do not. I think it is be simpler to handle this correctly from the start.
+
+If you are worried about breaking backward compatibility with Mesa, we
+can probably use a separate property for socinfo data which can be
+implemented later? Just don't expose socinfo via speedbin UABI.
+
 > 
-> > > +
-> > > +		its_dev->itt_cfg.l2.l2ptrs[i] = itt_l2;
-> > > +
-> > > +		l2sz = BIT(span) * sizeof(*itt_l2);
-> > > +
-> > > +		if (its->flags & ITS_FLAGS_NON_COHERENT)
-> > > +			dcache_clean_inval_poc((unsigned long)itt_l2,
-> > > +					       (unsigned long)itt_l2 + l2sz);
-> > > +
-> > > +		val = (virt_to_phys(itt_l2) & GICV5_ITTL1E_L2_ADDR_MASK) |
-> > > +		       FIELD_PREP(GICV5_ITTL1E_SPAN, span)		 |
-> > > +		       FIELD_PREP(GICV5_ITTL1E_VALID, 0x1);
-> > 
-> > GICV5_ITTL1E_L2_ADDR_MASK starts at bit 12.
+> Do we still have plans to use *both* SMEM and fuse encoding on them?
+
+It is better to keep that option open since there are chipsets using
+both production. And there will be for foreseeable future because
+automotive team stick with fuse register and mobile team stick with
+socinfo data.
+
+-Akhil
+
 > 
-> No, it starts at bit 3.
+> Konrad
 
-Ah, you're absolutely right. I looked at the IST version...
-
-[...]
-
-> > > +{
-> > > +	struct gicv5_its_dev *its_dev;
-> > > +	int ret;
-> > > +
-> > > +	its_dev = gicv5_its_find_device(its, dev_id);
-> > > +	if (!IS_ERR(its_dev)) {
-> > > +		pr_debug("A device with this DeviceID (0x%x) has already been registered.\n",
-> > > +			 dev_id);
-> > > +
-> > > +		if (nvec > its_dev->num_events) {
-> > > +			pr_debug("Requesting more ITT entries than allocated\n");
-> > > +			return ERR_PTR(-ENXIO);
-> > > +		}
-> > > +
-> > > +		its_dev->shared = true;
-> > > +
-> > > +		return its_dev;
-> > 
-> > I really think we shouldn't even consider the silliness of
-> > non-transparent bridges this time around. That's a terrible system
-> > design, and it leads to all sorts of lifetime madness -- the GICv3
-> > driver is a testament to it. Modern systems with GICv5 should not have
-> > to deal with this nonsense.
-> 
-> I am not sure we can remove this path for the IWB - even if we model it
-> as an MBIgen.
-
-Why? The IWB is (or rather should be) seen as a device. The fact that
-it is itself an interrupt controller is am independent issue.
-
-> With Sascha and Tim we tested this code path, I am not sure it would
-> work if a driver with a wired IRQ connected to an IWB free an IRQ and
-> the ITS device representing the IWB is not shared.
-
-I don't think freeing the IRQ from the end-point perspective should
-have any effect on the IWB. At probe time, the IWB should grab all the
-LPIs it needs, publish them as part of the wired domain attached to
-its fwnode, and be done with it
-
-[...]
-
-> > > +static int gicv5_its_irq_domain_activate(struct irq_domain *domain,
-> > > +					 struct irq_data *d, bool reserve)
-> > > +{
-> > > +	struct gicv5_its_dev *its_dev = irq_data_get_irq_chip_data(d);
-> > > +	u16 event_id;
-> > > +	u32 lpi;
-> > > +
-> > > +	event_id = FIELD_GET(GICV5_ITS_HWIRQ_EVENT_ID, d->hwirq);
-> > > +	lpi = d->parent_data->hwirq;
-> > > +
-> > > +	return gicv5_its_alloc_event(its_dev, event_id, lpi);
-> > 
-> > Huh. This looks wrong. Allocating the event really should happen at
-> > alloc time, not at activate time, because the endpoint driver doesn't
-> > really expect this to fail for any reason other than a gross bug.
-> > 
-> > activate should allow the translation to take place, but not rely on
-> > allocating events. Compare with GICv3, which only issues the MAPTI
-> > command at activate time.
-> 
-> I am not "allocating an event" (well, then you would say "learn how to
-> name your functions" and you are right), I am writing the ITT table for
-> an eventid that was preallocated before, so basically, apart from
-> paranoia checks, this is the MAPTI equivalent.
-
-Feels like *a lot* of paranoia checks, most of which should not be
-possible by construction. You can also get rid of num_mapped_events,
-which is clearly some debug stuff.
-
-And yes, this function can do with a bit of renaming.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
 
