@@ -1,143 +1,133 @@
-Return-Path: <devicetree+bounces-172709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE07CAA5F86
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:52:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00716AA5FAE
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:11:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4485D1BA15EF
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:52:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BE077B3435
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3727E1C9DE5;
-	Thu,  1 May 2025 13:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C401DC985;
+	Thu,  1 May 2025 14:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="WMRdBJsz"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RLBb0XN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D4919F101
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 13:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6250F19F11B;
+	Thu,  1 May 2025 14:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746107530; cv=none; b=h+kjlPxDO9wxPPTtvhkao+hrYyIps6BrzFIEGvHuVHKDDEm/TAJL1+9O14tDlaQBfHjHPsI+eJftZTuMpobkE69VomMZf7MYVCxIpnKJkQBcFdqnxrsMhEFuTbNRHYzmaMcuKRl6Wa4AWv3YjblcRKzgjpFjuc4SNTl0NnUGRiE=
+	t=1746108611; cv=none; b=FrrXVNu2tydtR18vNsy99gTqgqHDg45qykG80b4ZkdIX7TtEnP1UE34qFkpynE7l9/QUDQGOG/tW6Rekg9wDajkMWF47F24X0yl0L1Bm9wIIzJCX3s1viS7VPi1KfA0WC2s9ZxuM5H5x+jGbPBUac5CTNxZhYZyIyOpPzFCPUF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746107530; c=relaxed/simple;
-	bh=TBF9cHqvsBBjMo+hOAdT/xXFYkhNbU6400lnc2ENgSA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lnxLgcewNwp6ixgt5qg/Llv2eOAtNsPWpAayiv2kqY16Q9OynU8VBPCk9ArlUHwieeJmkaNyy0nYscLZWtIZTBWqBguoqeAaPRPdEvmo5ZsOhrzrQMfLRfNo3Tzska69fEB/BVIA9qni+ubq2ouZBfTSM2ADA7r4ZNvv7NQNN2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=WMRdBJsz; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1746107527;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D7Og0tNFd6K52qkvPJcrj4sxsIAm+zhBLcJjT2wd0Ho=;
-	b=WMRdBJszvjYxn3XG0iMjtn025v21Tye9+grZrisATFnkujRpJNro//qb1icsI9gs2gKpEU
-	2G3DUfjxuuGfmMb9BJPxEs8/N9rfApwquFJPyLdbh4T0krJbOVCiaPV5le8vlBluXxSYiG
-	a4QaYHqTGguq0pbXG2m2qAhYwd/Srtk=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-687-nJJNEWtTOJa3lZu8ag0sgA-1; Thu,
- 01 May 2025 09:52:04 -0400
-X-MC-Unique: nJJNEWtTOJa3lZu8ag0sgA-1
-X-Mimecast-MFC-AGG-ID: nJJNEWtTOJa3lZu8ag0sgA_1746107522
-Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4CC541800990;
-	Thu,  1 May 2025 13:52:02 +0000 (UTC)
-Received: from [10.44.32.102] (unknown [10.44.32.102])
-	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 7DF311956094;
-	Thu,  1 May 2025 13:51:55 +0000 (UTC)
-Message-ID: <5eefb009-f920-4954-9ef9-4a00791e3129@redhat.com>
-Date: Thu, 1 May 2025 15:51:06 +0200
+	s=arc-20240116; t=1746108611; c=relaxed/simple;
+	bh=qjeLQ3PncRVChJGVRM0PPaIgh0f30aEzHnjTAO0O9b4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TAIXbF9MDINg/3AZpOfkixZ1knxWvNNaLW+Np3tc4d+Yib+RIN/t/04n9XUsecEQLgYOz2RabnoIOnVBdU38cF9LDbDPe78MoO0Nb2OIC/mZX7le2v9AA64uQ+/bK1ph1hLqlIjbsMxH9c+Hph/+WJRYQJuHDIoTGhwSHfw4xbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RLBb0XN/; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D7CF763D;
+	Thu,  1 May 2025 16:09:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1746108599;
+	bh=qjeLQ3PncRVChJGVRM0PPaIgh0f30aEzHnjTAO0O9b4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RLBb0XN/WZGE6skVJTQC5TFZPez0DX17c+cHnQFMfo6BLIuu534MY0HMq7DvYzQrl
+	 KXUcKn8Vhh22SCCLuaIeNsQ6TUVJu5Vr+ke/cY7gtbATEE3Di5IqFYRQpEjc7mtB4o
+	 BxSFFhtNTgcx8o9oJrsjyTU639SG0AU52NaMTnXY=
+Date: Thu, 1 May 2025 17:09:58 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Lee Jones <lee@kernel.org>
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Message-ID: <20250501140958.GB6838@pendragon.ideasonboard.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+ <174610080338.3792828.16902042195346769114.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-To: Lee Jones <lee@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Michal Schmidt <mschmidt@redhat.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20250430101126.83708-1-ivecera@redhat.com>
- <20250430101126.83708-9-ivecera@redhat.com>
- <20250501132201.GP1567507@google.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250501132201.GP1567507@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <174610080338.3792828.16902042195346769114.b4-ty@kernel.org>
 
+Hi Lee,
 
-On 01. 05. 25 3:22 odp., Lee Jones wrote:
-> On Wed, 30 Apr 2025, Ivan Vecera wrote:
+On Thu, May 01, 2025 at 01:00:03PM +0100, Lee Jones wrote:
+> On Tue, 15 Apr 2025 15:49:16 +0100, Nuno Sá wrote:
+> > The adp5585 MFD driver was introduced in 6.11 adding support for gpio
+> > and PWM. However, the gpio part of it was already supported as part of
+> > the keyboard driver:
+> > 
+> > https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
+> > 
+> > On top of that it also overlapped with my refactoring of the above driver [1]
+> > to drop usage of platform data and use FW properties instead.
+> > 
+> > [...]
 > 
->> Register DPLL sub-devices to expose the functionality provided
->> by ZL3073x chip family. Each sub-device represents one of
->> the available DPLL channels.
->>
->> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->> ---
->> v4->v6:
->> * no change
->> v3->v4:
->> * use static mfd cells
->> ---
->>   drivers/mfd/zl3073x-core.c | 19 +++++++++++++++++++
->>   1 file changed, 19 insertions(+)
->>
->> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
->> index 050dc57c90c3..3e665cdf228f 100644
->> --- a/drivers/mfd/zl3073x-core.c
->> +++ b/drivers/mfd/zl3073x-core.c
->> @@ -7,6 +7,7 @@
->>   #include <linux/device.h>
->>   #include <linux/export.h>
->>   #include <linux/math64.h>
->> +#include <linux/mfd/core.h>
->>   #include <linux/mfd/zl3073x.h>
->>   #include <linux/module.h>
->>   #include <linux/netlink.h>
->> @@ -755,6 +756,14 @@ static void zl3073x_devlink_unregister(void *ptr)
->>   	devlink_unregister(ptr);
->>   }
->>   
->> +static const struct mfd_cell zl3073x_dpll_cells[] = {
->> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 0),
->> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 1),
->> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 2),
->> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 3),
->> +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 4),
->> +};
+> Applied, thanks!
 > 
-> What other devices / subsystems will be involved when this is finished?
-> 
-PHC/PTP driver and in future GPIO controller.
+> [01/17] dt-bindings: mfd: adp5585: ease on the required properties
+>         commit: 3a2ea3e9f369bdae939bcccff67a77a6281dca74
+> [02/17] mfd: adp5585: enable oscilator during probe
+>         commit: 7353f196fd73b79e30ff750d93caf096ed660e1b
+> [03/17] pwm: adp5585: don't control OSC_EN in the pwm driver
+>         commit: 7c7e9f08a1a9bf16b6c1942c2e0cb919da855970
+> [04/17] mfd: adp5585: make use of MFD_CELL_NAME()
+>         commit: e72e9148d017535b39500d0aad624d0a0fcd2ce7
+> [05/17] dt-bindings: mfd: adp5585: document adp5589 I/O expander
+>         commit: 6da01b9d833c5efbce7c2e30dde276e0d29105f8
+> [06/17] mfd: adp5585: add support for adp5589
+>         commit: 382dc0327b8a9ee03c901df9b85134c68917becc
+> [07/17] gpio: adp5585: add support for the ad5589 expander
+>         commit: cff3cef09595001140bd29aedf33fc84998bf77c
+> [08/17] pwm: adp5585: add support for adp5589
+>         commit: 333b66fd3edfe18db4dc16041328a89144b73067
+> [09/17] dt-bindings: mfd: adp5585: add properties for input events
+>         commit: 7bdb41d7a85e1c6244da57d4dcc491df962ff3fb
+> [10/17] mfd: adp5585: add support for key events
+>         commit: 8814ac45c75fcce55896bc376a97b56f392925c3
+> [11/17] gpio: adp5585: support gpi events
+>         commit: 8f3d9b44c5c5ada312d0ef71ec0181011854a95b
+> [12/17] Input: adp5585: Add Analog Devices ADP5585/89 support
+>         commit: a53fc67a1e21a8507821263946b1d65687b0284f
+> [13/17] Input: adp5589: remove the driver
+>         commit: 216c99cf1002a42f896b54fab09823e8ba46b218
+> [14/17] mfd: adp5585: support getting vdd regulator
+>         commit: 63a8717f744d51ea0c8228e09db4233d48f2f9ba
+> [15/17] dt-bindings: mfd: adp5585: document reset gpio
+>         commit: 49c887f0547bc14eb50ba20e1c8acb7255af3b86
+> [16/17] mfd: adp5585: add support for a reset pin
+>         commit: 01c328823459456fb99469cc37f270f70d41fd2a
+> [17/17] pwm: adp5585: make sure to include mod_devicetable.h
+>         (no commit info)
 
-I'm adding here only DPLL for now as it is finished and ready
-(part2)... PTP driver is now in progress and GPIO is in planning phase.
+I'm a bit surprised, didn't you ask for changes, calling for a v3 ?
 
-Ivan
+-- 
+Regards,
 
+Laurent Pinchart
 
