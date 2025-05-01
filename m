@@ -1,322 +1,164 @@
-Return-Path: <devicetree+bounces-172614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2256AA5ABB
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 08:05:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5C2AA5B31
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 08:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D4559C7AD0
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 06:05:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CE4C9C60A4
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 06:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD3D2309B2;
-	Thu,  1 May 2025 06:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9194526C3BC;
+	Thu,  1 May 2025 06:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="kKUXQJ0P"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HFDcAJtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059D521ABC6
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 06:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB2B262FEA
+	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 06:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746079548; cv=none; b=QSEnsxhDuDKoovlWfbaqmcptOV81mbv7s3IWycNfisNoVDfKbDB9PaJLgwug5xo4mcorNQZA3O9yQft14nGEz45zv0suKO4A62USFWBbaBlNaOMLBayLbzeXTlJ2jXn5Do7t+8ITSudbLZKEwQP61inEv/Tu/geuTEek/EOQBp8=
+	t=1746082158; cv=none; b=l0Q4c5waR+hg2l3qUaCz8piV3B3cJJqowqYeG8hzqaXzFzhHZ6xthwN17ScONk3cziUJkFbN0dj6M54Cra515oQZtv65wTUPINJA8lj/CWV+h8dQ+pNPWWQw4nkM0IALu4kSeYDiJfwza00Tb+a+/To0WcmCL2JjwEuGvK7hhyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746079548; c=relaxed/simple;
-	bh=ebX4kjjeAk/T6UkG9bfRI2zXpD3t4dEBsWz88dQIu5s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WGzMys05WIsw9Y0OdNkBjcqLLa6OdveDW/xceQsnyuC7nc988Ywyki5Z/yibds9u9spM8pdF7HZT4yglJi8UOc73gMaAPjC0fz0+VfU5b9iHQmq+QM64GSeRsEpLat7Wxb+fsSGjfEQVBOUsuwl4t1lYNDNV27e1p/jBKl3znis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=kKUXQJ0P; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-224341bbc1dso7480615ad.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 23:05:46 -0700 (PDT)
+	s=arc-20240116; t=1746082158; c=relaxed/simple;
+	bh=116cbfgSezwsafks+V57dwlIk5wKMliQXk8+AlFgvVQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ns+ZfcFMhMNS0wW6s+p+djWZYDO48vc5w0z84khOu8FsQYWWTGGJu3Q5bCrjRKNO9dxbbFWb5qB/178+amUXaxHvjwpY7YW0ztR6FRIzRAIE829UpjWcw94IeWhHFzGLcyrNxWNOIB3u63HILRl4VkRfISEySzVBGJQwn4eWRdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=HFDcAJtV; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac25520a289so105963566b.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Apr 2025 23:49:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1746079546; x=1746684346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uRZmfpO1P74PhJzXliC53uO9aC2D1vNTqm4YKRxWEcA=;
-        b=kKUXQJ0P/d9zuDavysszT3D/kh6XpR9itzewaLifwCTrlZLQxWxHAhDL8p/HPBQRqp
-         NKCoRH2BKe8P2AlnvGihDtJzuN6pQHhktn+EnaYgCQGgNKSTzZXjTL7Wt29ulOuSDJn3
-         ZSl/vjsFxvGhxAjtstmk8yHmge9TFXDtLvBUf6pWRLB3KIgbhWSpzyGwlVEX2h756MqQ
-         3voD5+Hea8tLODVL4N1fdZTnnuSK7WVc4abNSc/v9/Wap09yQWWZiNLmWASe9TgJGTcg
-         12S314syGaVhaMoNO/wkIw/AlDY7jo31+crFfrX1HftC+klLARjLD47oeK5snLt+cSy7
-         rXmA==
+        d=fairphone.com; s=fair; t=1746082154; x=1746686954; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ICmVPwMjmOyli7RFKP/N7pH8Fgah0F5XlIiAvT0GKe8=;
+        b=HFDcAJtVf82bLkYnIFrvVYU1G3hK7DVDMD91FZOijkiHBSMYr/idJFBOCU18Rgpaqx
+         uBnMJnFSM1XOa7/jcBoi3ukZXvfYOPssGVWgqjutnBIn/UvNcx4SZaGx1d/JREzGDB0j
+         egtT//RENKPa+MHqq8LAa2nGl8ETbel45D/t3UNIqYr2Ty1I3eiSEYIJZY+XYNySgCdl
+         hYnP5cBbCeELCX7jdEWcaMplq2Dli84AIeXrFCrlVznIQ8SJV8Ter9Kb8mNGhR7jzYuy
+         q3bkoVwJEobCL795ouZFPVi0FejRfLUWPweyFIbOrq4+vMc85RvUd9jYcn+d592SS96G
+         ZtAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746079546; x=1746684346;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uRZmfpO1P74PhJzXliC53uO9aC2D1vNTqm4YKRxWEcA=;
-        b=ihVzYpDzoeRFlmZuKDezmIcoN/l7dXVxmpD/gB1iBsgLj+07fLC2mv7qUTyRywZGJm
-         D1D5ShZpvaVHnn++hNnUoU5TjHAHf9czx+IQM1HL2dSCz0kbucoUzGwv6HyxWoncAZ5P
-         iuZehDWxCR073MR75G559g03fhQJ3ZAD3dDLASywLVn/LP43J3Ma7OmPfxI8qKKODYzX
-         yyF00CExlhrtCYibQOioBVKL/XQhcsUuFbeUfwRpLhKV8ueNPhxNk/uSq2jmJzrksChH
-         aq5oFfDePpb9BD1GTG3SNA5CJajtX689x4hV08OA4/Qik4f8Tfh62r/YV2Y3qiG9lakx
-         ikvg==
-X-Forwarded-Encrypted: i=1; AJvYcCWE0oICs5tFUJE0xfVeupUJ27NYuNVUgPSeJxAx61HBK9s+ULELn1XBY2NVSBqbMCm0xCLwTs6U4LKX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx89ujRtjgS8qmqIl+nS0lLR+o9ajAQ4mN2T/d+tWvykW7qQ+4
-	iqg2uztWLCPpR2U4c2URDN7HdMgB1lbNGOGSBLgDbhJAKjRcbHXm+5xA+VwfOw==
-X-Gm-Gg: ASbGncutLKxd5LwX+w3RsKlD++SQ7lZIXXQQAPv71eDloUzpsmzJXBhsri17r7uh/C4
-	OoKOACG2GTcaYD5zIS8urEMoSUUd86K8PNI443+Q2X6n6spqoRlv16KIfZtJEztbl/N81LLHjBj
-	+xWkS7imlTq3WokrSvbnlK4lfHKJKOudTzKNhq6BBNhClJ/CIBpl9FHCCZjhi0shXJF7/numN+F
-	GAQLuoWrJoc/lZjY5daBJDvFp4hNlFh5mk5QVEQnVv9y/ukf2YlLs8xcSKmfJNqbDhd2IoRPsmR
-	n8P3h4VmztZVaBt2IFpjYjsdHdTAxTRsxEnplARjQbkYGs0=
-X-Google-Smtp-Source: AGHT+IFSb9SeALJsoI4So+DVFSsvUV5E2zu19q9VYJ8RSpXoNHTulJ37Swykbf9Xy0NoS4rJwP90iw==
-X-Received: by 2002:a17:902:c403:b0:224:2524:3047 with SMTP id d9443c01a7336-22df35067f0mr85525845ad.26.1746079546038;
-        Wed, 30 Apr 2025 23:05:46 -0700 (PDT)
-Received: from [172.16.116.85] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db5101636sm132561135ad.180.2025.04.30.23.05.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Apr 2025 23:05:45 -0700 (PDT)
-Message-ID: <f22811ea-c44c-4900-a6c7-11bec12a7e8a@beagleboard.org>
-Date: Thu, 1 May 2025 11:35:29 +0530
+        d=1e100.net; s=20230601; t=1746082154; x=1746686954;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ICmVPwMjmOyli7RFKP/N7pH8Fgah0F5XlIiAvT0GKe8=;
+        b=oUwOro1xP3KrzuPADWpY04YnAF7WfEpbzJS9ogLrEuqceT3v3PuhVbz/mU7IV5O3Ta
+         P6NabHlvFLJX4S6htL3EzWhfINAFvHPxhK7VuxQQJDThnoY8lqg0bml2GdWPO54GlvL3
+         4NN24cDia/RBLGXISo88KYXVxOIQDMgutT3gJLdg11bFS/aPrs1R7b4TrWt67svXVUcF
+         FLxT5lQ1v+pODhCHbj6txzJy7Mr+yanNyeIxlEigOn5FZi/ggHKQ+sQR02LB5aiI0Jl+
+         m4DQQXtSbsMKz48OvHCrwYl2O96TJ9xZTRm5w/I+48g20rzl4F89d99FCfdg+p1NMtZp
+         qTKw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL9C//rMBe9rviyqkDnq5/kiWmigb9WzlTNc3lCtoJA3aeswuOJvLi7uxIk8AnpG28bkO/ywVSgjLU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLS/e/KoERhRiNORoWJscNHmv7hfhJq9j0Zixcqy2PUO4MlXy7
+	iiyrQuf4LQKcrOedH4sfuuI78YBTfq0tqMPtY+uev8CTi6JwtCgEgbAr6dh+zAw=
+X-Gm-Gg: ASbGncsskWubVLlyvkD1eeLhkjxGj3Mra7KZL8GIYODut14xkLxUyHKE9CQUi4I+ILV
+	KIGFksYiaY94Pv4m31ZkwHAHh6el63AT+Ig4zezxT8Xq9Zc2andsDJfyG7EPU/ZNL3pG0fgIbDQ
+	hAyvmuTzvh6uutXo+1IZzG5Zuy0PSjJJQvke8+8LgKLZU4/JIHSfwyrXqa4vXp97C/vOPs9lA2Z
+	s5Fvci5oppitHBBah0KRLoY6mIrmAdVdfp/D4OLVLYhzGpHXM7KGHi6N0Iiw1UPHX9EJb8miCU4
+	nl674aRLR74Rb/3B2ODt9NvmZBWfk9UFvqzoCXXX+Wy4vLEjU07bCeY8Thjc1pgkSrk5X8zsE8z
+	C7kg=
+X-Google-Smtp-Source: AGHT+IFecEcz1pbl0bNby1akbXk/OS9BB4XW+tEKuivEZ9a3ze3eHfwybQTHoaKz7WPzovMAVqwFdA==
+X-Received: by 2002:a17:907:7daa:b0:aca:cda4:9aae with SMTP id a640c23a62f3a-acefbfe36a4mr110480866b.37.1746082153725;
+        Wed, 30 Apr 2025 23:49:13 -0700 (PDT)
+Received: from [100.64.0.4] (31-151-138-250.dynamic.upc.nl. [31.151.138.250])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6ecf8cc1sm1005486066b.89.2025.04.30.23.49.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Apr 2025 23:49:13 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/5] Enable USB audio offloading on Fairphone 4
+ smartphone
+Date: Thu, 01 May 2025 08:48:46 +0200
+Message-Id: <20250501-fp4-usb-audio-offload-v2-0-30f4596281cd@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Discussion] Global vs Local devicetree overlays for addon board
- + connector setups
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, Dhruva Gole <d-gole@ti.com>,
- Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
- <20250430160944.7740d5e9@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250430160944.7740d5e9@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE4ZE2gC/4WQvW7EIBCEX8WizkbAgv+qvEd0BYYlRoqND2wr0
+ cnvHuwrki7ljDQzn+bBMqVAmfXVgyXaQw5xLkK+VMyOZv4gCK5oJrnUXEkNflGw5QHM5kKE6P1
+ nNA5Iu8YPWjvZIivZJZEPX1fv++2pE923Ur8+zd/2MnZ2oxSQpxo1B7MkENojNaRIW9Pvgv3lu
+ RKKt7wrNBrcAjlus4MBm7r1yEU3uH6/OAaTCWycprD2FXbouNXKGkKBonFkTMcVoiyud53Sqli
+ DZSfxGPIa0/d1TNk/kf/5YBfAwXfc60bUWJN68yakZYwzvRYEdjuO4wfPcLnJcAEAAA==
+X-Change-ID: 20250425-fp4-usb-audio-offload-e5d7fb55d283
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
-On 4/30/25 19:39, Herve Codina wrote:
+Since the series for the USB sound offloading driver was finally merged,
+we can add the sm6350 dts and enable it on Fairphone 4.
 
-> Hi Ayush,
->
-> Thanks for this discussion initiative!
->
->
-> On Wed, 30 Apr 2025 17:37:33 +0530
-> Ayush Singh <ayush@beagleboard.org> wrote:
->
-> ...
->
->> 1. __symbols__ based approach [3]
->>
->>
->> This was originally proposed by Andre Davis [3]. It defines an overlay
->> with just special names in `__symbols__`, which is used along with an
->> overlay for the addon-board, which makes use of the node names defined
->> in the connector `__symbols__` overlay. Please take a look at the
->> original patch series since it provides a working example of how it can
->> be used [3].
->>
-> The __symbols__ based approach needs 2 overlays to handle the case where
-> 2 connectors (A and B) are present an you want to connect a board described
-> by a single overlay.
->
-> The first overlay applied "adapts" the __symbols__ node for the connector
-> where the board is connected (for instance connector A) in order to have
-> the symbols used by the overlay describing the board resolved to the
-> correct symbols.
->
-> I think this open race conditions when the overlay is applied by the kernel
-> itself. Indeed, we need to perform 2 steps in an atomic way:
->    1) Adapt symbols
->    2) Applied board overlay
->
-> Also, a 3rd step should be added to restore symbols modified to their
-> original value after the overlay is applied. This should be done to avoid
-> any symbols collision.
->
-> An other negative point is that properties in __symbols__ node are not
-> described by device-tree bindings.
-> How can we ensure interoperability between different base board.
->
-> The export-symbols node is a node fully described in the DT and it is
-> a sub-node of a connector node. This connector node has compatible string
-> and a binding describing its own property and sub-nodes. Among them, the
-> export-symbols node is described and can be checks by dt_binding_check.
->
-> This implies that whatever the base board, for a given connector type
-> (compatible string) the properties inside the export-symbols node have the
-> exact same name. Any addon board overlay designed for this connector type
-> will apply whatever the system where this connector is soldered.
->
->> It has a few nice benefits such as it works pretty well with existing
->> infrastructure, and does not need much in the way of new functionality.
-> With existing infrastructure in the kernel, it leads to memory leaks if you
-> add or change a property in an existing node.
->
-> In other word, each time you update a symbol in the __symbols__ node, you
-> have a memory leak.
->
->> However, for this discussion thread, I want to consolidate the
->> discussion regarding how this approach directly adds the devices to the
->> appropriate nodes, Eg. An SPI device in addon board will be added to the
->> appropriate SPI controller, etc. This means the changes are made to the
->> global tree.
->>
->>
-> ...
->
->> Basic Requirements
->>
->> *********************
->>
->>
->> Here are some basic functionality that the chosen approach can do for it
->> to be viable for the connector + addon board setups:
->>
->>
->> 1. Dynamic device addition/removal from userspace
->>
->>
->> A lot of connectors + addon board setups do not have any dynamic
->> discovery addition. This is compounded when talking about treating the
->> whole header in SBCs like PocketBeagle 2 as a connector, since people
->> would want to wire LEDs and stuff to individual pins. So a mechanism
->> using sysfs or configfs is required
-> request_firmware() or the firmware upload feature (CONFIG_FW_UPLOAD) could
-> also be used if the connector is seen as a specific device and has a driver.
->    https://elixir.bootlin.com/linux/v6.15-rc3/source/Documentation/driver-api/firmware/fw_upload.rst
+A few devicetree binding bits have also been missing in that series, so
+there's some extra patches for the basics in this series.
 
-Yup, my current plan is to use request_firmware. If it is good enough 
-security wise for remoteproc, it should be fine here as well.
+Depends on:
+- For qcom,sm8250.yaml & sm8250.c:
+  https://lore.kernel.org/linux-arm-msm/20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com/T/
+- For dts:
+  https://lore.kernel.org/linux-arm-msm/20250321-sm6350-apr-v1-1-7805ce7b4dcf@fairphone.com/
 
+Devicetree patches go through qcom
 
->
->>
->> 2. Dynamic device addition/removal by driver using EEPROM or something else
->>
->>
->> Some setups (MikroBUS boards with 1-wire EEPROM, Beagle capes) have
->> EEPROMs that contain board information which can be used to detect which
->> overlay should be applied.
->>
->>
->> Main Discussion
->>
->> *****************
->>
->> The main topic I wish to discuss if global devicetree overlays are okay
->> for addon-board setups. Let me outline some reasons for I prefer the
->> local devicetree overlays approach:
->>
->>
->> 1. Addon board removal on multiple connector setups
->>
->>
->> Say connector A added an I2C device to the controller, then connector B
->> added an I2C device to the same controller. I am not sure how well
->> removing overlays out-of-order works.
->>
->>
->> 2. Who owns the device
->>
->>
->> Say there are 2 connectors A and B. Both connectors share an I2C
->> controller. Let both connectors have the same device attached. In case
->> of `__symbols__` based approach, both connectors would technically be
->> successful in applying the overlays, rather than one of the overlays
->> failing.
->>
->>
->> 3. How to register the newly added devices
->>
->>
->> I am a bit unsure about this one since I will have to check if the
->> kernel tries to register new devices automatically after applying the
->> overlay. For local setups, I was using `devm_of_platform_populate` on
->> the connector device.
-> It depends on the bus the device is added.
-> when an overlay is applied by the kernel, OF_RECONFIG_* events are
-> triggered. Some buses handle them:
->
-> 	$ git grep OF_RECONFIG_CHANGE
-> 	drivers/bus/imx-weim.c: case OF_RECONFIG_CHANGE_ADD:
-> 	drivers/bus/imx-weim.c: case OF_RECONFIG_CHANGE_REMOVE:
-> 	drivers/gpio/gpiolib-of.c:      case OF_RECONFIG_CHANGE_ADD:
-> 	drivers/gpio/gpiolib-of.c:      case OF_RECONFIG_CHANGE_REMOVE:
-> 	drivers/i2c/i2c-core-of.c:      case OF_RECONFIG_CHANGE_ADD:
-> 	drivers/i2c/i2c-core-of.c:      case OF_RECONFIG_CHANGE_REMOVE:
-> 	drivers/of/dynamic.c: * Return: OF_RECONFIG_CHANGE_REMOVE on device going from enabled to
-> 	drivers/of/dynamic.c: * disabled, OF_RECONFIG_CHANGE_ADD on device going from disabled to
-> 	drivers/of/dynamic.c:   return new_state ? OF_RECONFIG_CHANGE_ADD : OF_RECONFIG_CHANGE_REMOVE;
-> 	drivers/of/platform.c:  case OF_RECONFIG_CHANGE_ADD:
-> 	drivers/of/platform.c:  case OF_RECONFIG_CHANGE_REMOVE:
-> 	drivers/spi/spi.c:      case OF_RECONFIG_CHANGE_ADD:
-> 	drivers/spi/spi.c:      case OF_RECONFIG_CHANGE_REMOVE:
-> 	include/linux/of.h:     OF_RECONFIG_CHANGE_ADD,
-> 	include/linux/of.h:     OF_RECONFIG_CHANGE_REMOVE,
->
->>
->> 4. Security
->>
->>
->> I think local modification is more secure than global tree modification.
->> A completely local solution should be as secure from devicetree
->> perspective as USB. But I am not an expert.
->>
->>
->> Drawbacks of local setups
->>
->> ***************************
->>
->>
->> 1. Needs a lot of surrounding work.
->>
->>
->> I2C bus extension is needed for I2C devices to work, something similar
->> for SPI. At least ADC, PWM and GPIO should be covered with just nexus nodes.
-> I wouldn't say 'a lot'.
-> I already did the work for I2C bus extension [0] and the implementation was
-> not so complex.
->
-> [0] https://lore.kernel.org/all/20250401081041.114333-1-herve.codina@bootlin.com/
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Move num-hc-interrupters prop to sm6350.dtsi (Konrad)
+- Sort cpu & codec nodes correctly (Konrad)
+- Remove usb-soc-be prop as it's no longer needed (Wesley)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250425-fp4-usb-audio-offload-v1-0-f90f571636e4@fairphone.com
 
-Well, when I say a lot of work, I don't mean codewise. That will be 
-pretty simple actually. The problem I foresee is convincing everything 
-in different subsystems. Basically, a lot of discussions.
+---
+Luca Weiss (5):
+      ASoC: dt-bindings: qcom,q6afe: Document q6usb subnode
+      ASoC: dt-bindings: qcom,sm8250: Add Fairphone 4 sound card
+      ASoC: qcom: sm8250: Add Fairphone 4 soundcard compatible
+      arm64: dts: qcom: sm6350: Add q6usbdai node
+      arm64: dts: qcom: sm7225-fairphone-fp4: Enable USB audio offload support
 
-Still, I do think figuring these things out now would be best in the 
-long run. After all, while I cannot say for everyone else, I want to use 
-this setup for at least MikroBUS, Grove, PocketBeagle 2 connector, 
-BeagleBone Black connector, and RPI (for BeagleY-AI) connector.
+ .../devicetree/bindings/sound/qcom,q6afe.yaml      | 13 ++++++++
+ .../devicetree/bindings/sound/qcom,sm8250.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 11 +++++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 36 ++++++++++++++++++++++
+ sound/soc/qcom/sm8250.c                            |  1 +
+ 5 files changed, 62 insertions(+)
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250425-fp4-usb-audio-offload-e5d7fb55d283
+prerequisite-change-id: 20250321-sm6350-apr-15f3e7e4e5ca:v1
+prerequisite-patch-id: 69859554c94de52068406dab0d2869ca26072c78
+prerequisite-change-id: 20240809-fp5-dp-sound-b3768f3019bd:v3
+prerequisite-patch-id: 2d8997a2be02cfddf3a054c79e7eb308a6d06710
+prerequisite-patch-id: 1b7c8f00ab50ae71c0221868578b9c1dfe939e4d
+prerequisite-patch-id: 4fd0673c4d35c1fefce63ec5785ff5ea67cc3d3a
+prerequisite-patch-id: f5ec3a893de19900f62dc691d83986f1104914b0
+prerequisite-patch-id: fce7573c39e768f7a09c002064b6159b8e91161a
 
->>
->> Closing Thoughts
->>
->> ******************
->>
->>
->> I would really like to reach consensus regarding weather the addon-board
->> overlays should be global or local. This will help to give a direction
->> regarding what should be improved, and hopefully make future development
->> move faster. Once a bit of consensus has been reached, we can discuss
->> specific implementations.
->>
->
-> Again, thanks again for initiating this discussion.
-> Hope this will help to move forward on this topic!
->
-> Best regards,
-> Hervé
-
-
-Ayush Singh
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
