@@ -1,464 +1,267 @@
-Return-Path: <devicetree+bounces-172697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7307EAA5EE9
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:03:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32C4AA5F0A
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 15:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27E6C171748
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:02:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 611B7982F57
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 13:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884F2278175;
-	Thu,  1 May 2025 12:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590FA17A31B;
+	Thu,  1 May 2025 13:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5kZtoeQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CDgEOT2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C99827814C;
-	Thu,  1 May 2025 12:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65BB174EF0;
+	Thu,  1 May 2025 13:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746104391; cv=none; b=DTDRMPuGz6+AygMQUKlp8uOkjb33GFFiDeyTLCbsM1tb+uNmg3J8Y8gXNhOu4vW9uNjEHl/iKgla5B6rBiLYeHymZKvQD/x+gUImLUmn/6K43St68Tp+8UUnUou1y5zgU/i21zLDBsk2C01QoK4NZzL25nsMWVX/WWECcw5HjFM=
+	t=1746105219; cv=none; b=DY6kb/DucmVsZchEOvBn1CEunYnJ68DQTyqdKFKKXv9BT3QU+bH2z4uw+yjvsoeiWXHlsl954Jb+n7YwvfGX4MszDxWnor7e+VprODkcCSkYwqJh0ZOmcI4y6Zb0APK5iMGihH196UcDFt+OHT5L8ZZV3klk2CAle8HMagq8ttY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746104391; c=relaxed/simple;
-	bh=LkvWrEo5B39cVkpRV7s6Z1Rq1/YJBkmZGbMIUQAxJ4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GFXkn0a2UkFb1hJCgAHzqxSNEZSa3mw33OS0YbtakpknnF02hP1Kk0vIOvPokOjaJYJvXPah34aDeYB/Ww3WTYNGp0tw5UZJrJMcJDzciQioyuPssXVSEgKoXvZR1ytKo7fQ7IM0Zk+Nl4xJoNfuC5Zx2Ssk1IER5Xc78dZX7cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5kZtoeQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A2E8C4CEF0;
-	Thu,  1 May 2025 12:59:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746104390;
-	bh=LkvWrEo5B39cVkpRV7s6Z1Rq1/YJBkmZGbMIUQAxJ4A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j5kZtoeQ2bSFg4yaD6Y+JOXzeVK6UvpZAwxGH2nS9brn9+2EEOhFQF7f6qMEF4Jw0
-	 LZ1XTja2hskseyTqKSN/xaFRj58O/mg4EqtUnzFY9BHYPH4D4H7TWxL0EYmLfk1Nkd
-	 i9x3PkxuYWHd2qOYzSaCk6XAefnsmUk5RKdWx82HPrd8Tdh+MxLn6Kd6mKoyK05Sxj
-	 djGY3yzl+qlj662W4WzApxEJPat1nUI20ElrcHyypSKO+TmQKI9CUi25R/DxDeX/nv
-	 MTL7MQ9jGarXqrbWF20oWUu7gu/nKwJC4HXmmSsKI4hNN3Dso3XFOfM6GE75S0zSFl
-	 2uHLyFokAFGvQ==
-Date: Thu, 1 May 2025 13:59:43 +0100
-From: Lee Jones <lee@kernel.org>
-To: mathieu.dubois-briand@bootlin.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	andriy.shevchenko@intel.com,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 02/11] mfd: Add max7360 support
-Message-ID: <20250501125943.GN1567507@google.com>
-References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
- <20250428-mdb-max7360-support-v7-2-4e0608d0a7ff@bootlin.com>
+	s=arc-20240116; t=1746105219; c=relaxed/simple;
+	bh=RDaGjhb6CLrz8nAp0mDGS3MCpW/LRQ28yHAfL5/xlP8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=siBNbSitUOoQauVin2DGDyZxURSZjFc4CgTExQbYzkZwisJ7d9I8pYSHD0opwdmpSeEEYbHJd692BXDjf9NvTfBC3dg/Xg1MBpcXokDFQhTOG1uImQ9rCyVXxuTyu5TqkwFrkart+PpDipKX+KzIblLJ/xjWqqkEJRuZB1E5UQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CDgEOT2M; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-30384072398so734072a91.0;
+        Thu, 01 May 2025 06:13:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746105217; x=1746710017; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9/lHepDmfNzk/dMT78MMtoVF7nNV1GEq10f/wXak/5U=;
+        b=CDgEOT2MRCM7Uh8ckqVuiwWp3e42WnwFvanIRNpffTjRfCCXf4fapakj4inWmB7j8I
+         y2hLgi3eK/cQD2QzzkeJfwOthXgjmJar3/oxYjmFx4rc1Vmi0g/bDD7nfNDthYKuF89G
+         +PWUvguTgI5MTcKvHSKjKalQ8t3U5ny+CaxbseQtncr5rFLQuo87eN4UFijyUiydd+zD
+         dJf279gvphkaF0Mu0GO60XYLdu8I7MlCg/+VV8Z2zANEpWxb7/HE2fhEg63AkQ/s1UvG
+         0RZm93AeeQJE4HiJPuh+DzYVrIliJuB1U2iTdDdv+KU44+LGF+rKKi66ErbKawT6k1Yd
+         fInQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746105217; x=1746710017;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9/lHepDmfNzk/dMT78MMtoVF7nNV1GEq10f/wXak/5U=;
+        b=qwq8A26yMCUDq3d3GXZBSbJWIVZGhnMonT+Ak+EJ7QmANmh03HQLMWm+yrVMsAkLh8
+         yTGWtf4sLuAHyZ+1uvYzabckUTIdbbC7BTel64zTOQRXCHIWJ8ge1moL7cuRL7zAETpy
+         g4ac5WsTtK0PWuJ+s7UilyCWOwVPp+7teF+3NR51M3Bk3KWNE8WG5WeLmdl5v7qkVBFu
+         j5AvW+472R96WBvZdhhb3H1LWv6qiycI10HyRvnwz+g2RtJXvrTNiaSifaw8aDfmA7DK
+         Jgdn0fp641aaXU8esMFrhi2Nc5T5Ki6+5YlcwOb1zoMxUP3gprsYEPJ+ta6EXpoMAmxr
+         sfjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1oR9mGAqGSvs1dvOIaucFokLHeK5//I8RChDLC6EnItLIj3wq3kan7uDvjMwdTX0qecbHVo+cVXh4@vger.kernel.org, AJvYcCWIS91P0rT/kjsqG86UY1jQSWFGmDbvLCRz/Y+3LeJ/jNNaQ5dolA+uyC/VGtclswb3jN3OALmXMoTsaI7V@vger.kernel.org, AJvYcCXNKHXGo1SKqFZr/KiabuRN/vwqoHSFf9VeS58Z+HKdWODETECtL9Yb9sn9o/Gj3LEubTzl+UM3OjmFQLg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtmXgFOM7zzF6IzMxVG1AzEMirINuL4qfxzTNz05+cdFHmYpj8
+	M5kZ2CFrDlwqOqcuza6Vo/rTySC4gmi9bCQ96ZfbYwEAcft9/8wb
+X-Gm-Gg: ASbGnctZZp6kpePjaKNpQdNzf9JoSHPFBNfcCqrEz3J2oIYFwJXNYWIdGloqCPx4eqC
+	asquhwTTXiLS6BsdwMtfbGGen4IFl+O1t8Am3tyX6gVFzWGtFIwjj+VJgbyyUz1V+cRhd4rXtuf
+	AN9gm3pMbjtAcdp5vgyb9OSfw50AzOnWAdbptqj7jRQrzfSrbDehraS81aZ7E74w4qSaI+UGx9p
+	VvonnWK74nARnjcnbqsgRwAy0Ur2iZNIpefPB/xjuqspgW/9bIp6bGamt6UACs8I66+fZOrb9K/
+	cDBjIsftw7jJFtJ1hP5Ebl2p982/f83j8NP1hph2En4WW2zQ+Q==
+X-Google-Smtp-Source: AGHT+IE+nV3BX0N2nAoX9cmzKwU9eZ6V/oqEsyX4ll06AYTgvgTYCZB09JmCJBgntZsJ8nSgyaFGEQ==
+X-Received: by 2002:a17:90b:5827:b0:303:75a7:26a4 with SMTP id 98e67ed59e1d1-30a332df593mr10706164a91.7.1746105216776;
+        Thu, 01 May 2025 06:13:36 -0700 (PDT)
+Received: from Black-Pearl. ([122.169.148.15])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-30a4764226csm853277a91.43.2025.05.01.06.13.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 May 2025 06:13:36 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Thu, 01 May 2025 13:12:36 +0000
+Subject: [PATCH] dt-bindings: dma: convert text based binding to json
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250428-mdb-max7360-support-v7-2-4e0608d0a7ff@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250501-nvidea-dma-v1-1-a29187f574ba@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAENzE2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDE2MD3byyzJTURN2UXCBOtjA3STRKMzNNM1cCaigoSk3LrAAbFh1bWws
+ ADJ3eKVwAAAA=
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.13.0
 
-On Mon, 28 Apr 2025, mathieu.dubois-briand@bootlin.com wrote:
+Update text binding to YAML.
+Changes during conversion:
+- Add a fallback for "nvidia,tegra30-apbdma" as it is
+  compatible with the IP core on "nvidia,tegra20-apbdma".
+- Update examples and include appropriate file directives to resolve
+  errors identified by `dt_binding_check` and `dtbs_check`.
 
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> 
-> Add core driver to support MAX7360 i2c chip, multi function device
-> with keypad, GPIO, PWM, GPO and rotary encoder submodules.
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> Co-developed-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> ---
->  drivers/mfd/Kconfig         |  14 ++++
->  drivers/mfd/Makefile        |   1 +
->  drivers/mfd/max7360.c       | 184 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max7360.h | 109 ++++++++++++++++++++++++++
->  4 files changed, 308 insertions(+)
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+ .../bindings/dma/nvidia,tegra20-apbdma.txt         | 44 -----------
+ .../bindings/dma/nvidia,tegra20-apbdma.yaml        | 90 ++++++++++++++++++++++
+ 2 files changed, 90 insertions(+), 44 deletions(-)
 
-Getting there.  Couple of nits.  Last push!
+diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt
+deleted file mode 100644
+index 447fb44e7abe..000000000000
+--- a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-* NVIDIA Tegra APB DMA controller
+-
+-Required properties:
+-- compatible: Should be "nvidia,<chip>-apbdma"
+-- reg: Should contain DMA registers location and length. This should include
+-  all of the per-channel registers.
+-- interrupts: Should contain all of the per-channel DMA interrupts.
+-- clocks: Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+-- resets : Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names : Must include the following entries:
+-  - dma
+-- #dma-cells : Must be <1>. This dictates the length of DMA specifiers in
+-  client nodes' dmas properties. The specifier represents the DMA request
+-  select value for the peripheral. For more details, consult the Tegra TRM's
+-  documentation of the APB DMA channel control register REQ_SEL field.
+-
+-Examples:
+-
+-apbdma: dma@6000a000 {
+-	compatible = "nvidia,tegra20-apbdma";
+-	reg = <0x6000a000 0x1200>;
+-	interrupts = < 0 136 0x04
+-		       0 137 0x04
+-		       0 138 0x04
+-		       0 139 0x04
+-		       0 140 0x04
+-		       0 141 0x04
+-		       0 142 0x04
+-		       0 143 0x04
+-		       0 144 0x04
+-		       0 145 0x04
+-		       0 146 0x04
+-		       0 147 0x04
+-		       0 148 0x04
+-		       0 149 0x04
+-		       0 150 0x04
+-		       0 151 0x04 >;
+-	clocks = <&tegra_car 34>;
+-	resets = <&tegra_car 34>;
+-	reset-names = "dma";
+-	#dma-cells = <1>;
+-};
+diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
+new file mode 100644
+index 000000000000..fc800231b39b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/nvidia,tegra20-apbdma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra APB DMA Controller
++
++description: |
++  The NVIDIA Tegra APB DMA controller is a hardware component that
++  enables direct memory access (DMA) on Tegra systems. It facilitates
++  data transfer between I/O devices and main memory without constant
++  CPU intervention.
++
++maintainers:
++  - Jonathan Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: nvidia,tegra20-apbdma
++      - items:
++          - const: nvidia,tegra30-apbdma
++          - const: nvidia,tegra20-apbdma
++
++  "#dma-cells":
++    description:
++      Must be <1>. This dictates the length of DMA specifiers
++      in client node's dmas properties.
++    const: 1
++
++  clocks:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      Should contain all of the per-channel DMA interrupts in
++      ascending order with respect to the DMA channel index.
++    minItems: 1
++    maxItems: 32
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: dma
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - reset-names
++  - "#dma-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/tegra186-reset.h>
++    dma@6000a000 {
++        compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
++        reg = <0x6000a000 0x1200>;
++        interrupts = <0 136 0x04>,
++                     <0 137 0x04>,
++                     <0 138 0x04>,
++                     <0 139 0x04>,
++                     <0 140 0x04>,
++                     <0 141 0x04>,
++                     <0 142 0x04>,
++                     <0 143 0x04>,
++                     <0 144 0x04>,
++                     <0 145 0x04>,
++                     <0 146 0x04>,
++                     <0 147 0x04>,
++                     <0 148 0x04>,
++                     <0 149 0x04>,
++                     <0 150 0x04>,
++                     <0 151 0x04>;
++        clocks = <&tegra_car 34>;
++        resets = <&tegra_car 34>;
++        reset-names = "dma";
++        #dma-cells = <1>;
++    };
++...
 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 22b936310039..c2998c6ce54c 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -2422,5 +2422,19 @@ config MFD_UPBOARD_FPGA
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called upboard-fpga.
->  
-> +config MFD_MAX7360
-> +	tristate "Maxim MAX7360 I2C IO Expander"
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	select REGMAP_IRQ
-> +	help
-> +	  Say yes here to add support for Maxim MAX7360 device, embedding
-> +	  keypad, rotary encoder, PWM and GPIO features.
-> +
-> +	  This driver provides common support for accessing the device;
-> +	  additional drivers must be enabled in order to use the functionality
-> +	  of the device.
-> +
->  endmenu
->  endif
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 948cbdf42a18..add9ff58eb25 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -162,6 +162,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
->  obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
->  
->  obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
-> +obj-$(CONFIG_MFD_MAX7360)	+= max7360.o
->  obj-$(CONFIG_MFD_MAX77541)	+= max77541.o
->  obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
->  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
-> diff --git a/drivers/mfd/max7360.c b/drivers/mfd/max7360.c
-> new file mode 100644
-> index 000000000000..9a223a9b409d
-> --- /dev/null
-> +++ b/drivers/mfd/max7360.c
-> @@ -0,0 +1,184 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Maxim MAX7360 Core Driver
-> + *
-> + * Copyright 2025 Bootlin
-> + *
-> + * Author: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> + * Author: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> + */
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/device/devres.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +
-> +static const struct mfd_cell max7360_cells[] = {
-> +	{
-> +		.name           = "max7360-pinctrl",
-> +	},
+---
+base-commit: 9d9096722447b77662d4237a09909bde7774f22e
+change-id: 20250430-nvidea-dma-dc874a2f65f7
 
-All of these single line entries should be placed on a single line.
-
-	{ .name = "max7360-pinctrl" },
-	{ .name = "max7360-pwm" },
-
-If ordering is not important.  Please group them.
-
-> +	{
-> +		.name           = "max7360-pwm",
-> +	},
-> +	{
-> +		.name           = "max7360-gpo",
-> +		.of_compatible	= "maxim,max7360-gpo",
-> +	},
-> +	{
-> +		.name           = "max7360-gpio",
-> +		.of_compatible	= "maxim,max7360-gpio",
-> +	},
-> +	{
-> +		.name           = "max7360-keypad",
-> +	},
-> +	{
-> +		.name           = "max7360-rotary",
-> +	},
-> +};
-> +
-> +static const struct regmap_range max7360_volatile_ranges[] = {
-> +	{
-> +		.range_min = MAX7360_REG_KEYFIFO,
-> +		.range_max = MAX7360_REG_KEYFIFO,
-> +	}, {
-> +		.range_min = MAX7360_REG_I2C_TIMEOUT,
-> +		.range_max = MAX7360_REG_RTR_CNT,
-> +	},
-> +};
-
-Use regmap_reg_range()
-
-> +static const struct regmap_access_table max7360_volatile_table = {
-> +	.yes_ranges = max7360_volatile_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(max7360_volatile_ranges),
-> +};
-> +
-> +static const struct regmap_config max7360_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MAX7360_REG_PWMCFG(MAX7360_PORT_PWM_COUNT - 1),
-> +	.volatile_table = &max7360_volatile_table,
-> +	.cache_type = REGCACHE_MAPLE,
-> +};
-> +
-> +static int max7360_mask_irqs(struct regmap *regmap)
-> +{
-> +	struct device *dev = regmap_get_device(regmap);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	/*
-> +	 * GPIO/PWM interrupts are not masked on reset: as the MAX7360 "INTI"
-> +	 * interrupt line is shared between GPIOs and rotary encoder, this could
-> +	 * result in repeated spurious interrupts on the rotary encoder driver
-> +	 * if the GPIO driver is not loaded. Mask them now to avoid this
-> +	 * situation.
-> +	 */
-> +	for (unsigned int i = 0; i < MAX7360_PORT_PWM_COUNT; i++) {
-> +		ret = regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
-> +					MAX7360_PORT_CFG_INTERRUPT_MASK,
-> +					MAX7360_PORT_CFG_INTERRUPT_MASK);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to write max7360 port configuration");
-
-MAX7360
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* Read GPIO in register, to ACK any pending IRQ. */
-> +	ret = regmap_read(regmap, MAX7360_REG_GPIOIN, &val);
-> +	if (ret)
-> +		dev_err(dev, "Failed to read gpio values: %d\n", ret);
-
-GPIO
-
-> +
-> +	return ret;
-> +}
-> +
-> +static int max7360_reset(struct regmap *regmap)
-> +{
-> +	struct device *dev = regmap_get_device(regmap);
-> +	int ret;
-> +
-> +	ret = regmap_write(regmap, MAX7360_REG_GPIOCFG, MAX7360_GPIO_CFG_GPIO_RST);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to reset GPIO configuration: %x\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regcache_drop_region(regmap, MAX7360_REG_GPIOCFG, MAX7360_REG_GPIO_LAST);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to drop regmap cache: %x\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_write(regmap, MAX7360_REG_SLEEP, 0);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to reset autosleep configuration: %x\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_write(regmap, MAX7360_REG_DEBOUNCE, 0);
-> +	if (ret)
-> +		dev_err(dev, "Failed to reset GPO port count: %x\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int max7360_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	regmap = devm_regmap_init_i2c(client, &max7360_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to initialise regmap\n");
-
-dev_err_ptr_probe()
-
-> +
-> +	ret = max7360_reset(regmap);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to reset device\n");
-> +
-> +	/* Get the device out of shutdown mode. */
-> +	ret = regmap_write_bits(regmap, MAX7360_REG_GPIOCFG,
-> +				MAX7360_GPIO_CFG_GPIO_EN,
-> +				MAX7360_GPIO_CFG_GPIO_EN);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable GPIO and PWM module\n");
-> +
-> +	ret = max7360_mask_irqs(regmap);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Could not mask interrupts\n");
-> +
-> +	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
-> +				   max7360_cells, ARRAY_SIZE(max7360_cells),
-> +				   NULL, 0, NULL);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register child devices\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id max7360_dt_match[] = {
-> +	{ .compatible = "maxim,max7360" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, max7360_dt_match);
-> +
-> +static struct i2c_driver max7360_driver = {
-> +	.driver = {
-> +		.name = "max7360",
-> +		.of_match_table = max7360_dt_match,
-> +	},
-> +	.probe = max7360_probe,
-> +};
-> +module_i2c_driver(max7360_driver);
-> +
-> +MODULE_DESCRIPTION("Maxim MAX7360 I2C IO Expander core driver");
-> +MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/max7360.h b/include/linux/mfd/max7360.h
-> new file mode 100644
-> index 000000000000..b1d4cbee2385
-> --- /dev/null
-> +++ b/include/linux/mfd/max7360.h
-> @@ -0,0 +1,109 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef __LINUX_MFD_MAX7360_H
-> +#define __LINUX_MFD_MAX7360_H
-> +
-> +#include <linux/bits.h>
-> +
-> +#define MAX7360_MAX_KEY_ROWS		8
-> +#define MAX7360_MAX_KEY_COLS		8
-> +#define MAX7360_MAX_KEY_NUM		(MAX7360_MAX_KEY_ROWS * MAX7360_MAX_KEY_COLS)
-> +#define MAX7360_ROW_SHIFT		3
-> +
-> +#define MAX7360_MAX_GPIO		8
-> +#define MAX7360_MAX_GPO			6
-> +#define MAX7360_PORT_PWM_COUNT		8
-> +#define MAX7360_PORT_RTR_PIN		(MAX7360_PORT_PWM_COUNT - 1)
-> +
-> +/*
-> + * MAX7360 registers
-> + */
-> +#define MAX7360_REG_KEYFIFO		0x00
-> +#define MAX7360_REG_CONFIG		0x01
-> +#define MAX7360_REG_DEBOUNCE		0x02
-> +#define MAX7360_REG_INTERRUPT		0x03
-> +#define MAX7360_REG_PORTS		0x04
-> +#define MAX7360_REG_KEYREP		0x05
-> +#define MAX7360_REG_SLEEP		0x06
-> +
-> +/*
-> + * MAX7360 GPIO registers
-> + *
-> + * All these registers are reset together when writing bit 3 of
-> + * MAX7360_REG_GPIOCFG.
-> + */
-> +#define MAX7360_REG_GPIOCFG		0x40
-> +#define MAX7360_REG_GPIOCTRL		0x41
-> +#define MAX7360_REG_GPIODEB		0x42
-> +#define MAX7360_REG_GPIOCURR		0x43
-> +#define MAX7360_REG_GPIOOUTM		0x44
-> +#define MAX7360_REG_PWMCOM		0x45
-> +#define MAX7360_REG_RTRCFG		0x46
-> +#define MAX7360_REG_I2C_TIMEOUT		0x48
-> +#define MAX7360_REG_GPIOIN		0x49
-> +#define MAX7360_REG_RTR_CNT		0x4A
-> +#define MAX7360_REG_PWMBASE		0x50
-> +#define MAX7360_REG_PWMCFGBASE		0x58
-> +
-> +#define MAX7360_REG_GPIO_LAST		0x5F
-> +
-> +#define MAX7360_REG_PWM(x)		(MAX7360_REG_PWMBASE + (x))
-> +#define MAX7360_REG_PWMCFG(x)		(MAX7360_REG_PWMCFGBASE + (x))
-> +
-> +/*
-> + * Configuration register bits
-> + */
-> +#define MAX7360_FIFO_EMPTY		0x3f
-> +#define MAX7360_FIFO_OVERFLOW		0x7f
-> +#define MAX7360_FIFO_RELEASE		BIT(6)
-> +#define MAX7360_FIFO_COL		GENMASK(5, 3)
-> +#define MAX7360_FIFO_ROW		GENMASK(2, 0)
-> +
-> +#define MAX7360_CFG_SLEEP		BIT(7)
-> +#define MAX7360_CFG_INTERRUPT		BIT(5)
-> +#define MAX7360_CFG_KEY_RELEASE		BIT(3)
-> +#define MAX7360_CFG_WAKEUP		BIT(1)
-> +#define MAX7360_CFG_TIMEOUT		BIT(0)
-> +
-> +#define MAX7360_DEBOUNCE		GENMASK(4, 0)
-> +#define MAX7360_DEBOUNCE_MIN		9
-> +#define MAX7360_DEBOUNCE_MAX		40
-> +#define MAX7360_PORTS			GENMASK(8, 5)
-> +
-> +#define MAX7360_INTERRUPT_TIME_MASK	GENMASK(4, 0)
-> +#define MAX7360_INTERRUPT_FIFO_MASK	GENMASK(7, 5)
-> +
-> +#define MAX7360_PORT_CFG_INTERRUPT_MASK		BIT(7)
-> +#define MAX7360_PORT_CFG_INTERRUPT_EDGES	BIT(6)
-> +#define MAX7360_PORT_CFG_COMMON_PWM		BIT(5)
-> +
-> +/*
-> + * Autosleep register values
-> + */
-> +#define MAX7360_AUTOSLEEP_8192MS	0x01
-> +#define MAX7360_AUTOSLEEP_4096MS	0x02
-> +#define MAX7360_AUTOSLEEP_2048MS	0x03
-> +#define MAX7360_AUTOSLEEP_1024MS	0x04
-> +#define MAX7360_AUTOSLEEP_512MS		0x05
-> +#define MAX7360_AUTOSLEEP_256MS		0x06
-> +
-> +#define MAX7360_GPIO_CFG_RTR_EN		BIT(7)
-> +#define MAX7360_GPIO_CFG_GPIO_EN	BIT(4)
-> +#define MAX7360_GPIO_CFG_GPIO_RST	BIT(3)
-> +
-> +#define MAX7360_ROT_DEBOUNCE		GENMASK(3, 0)
-> +#define MAX7360_ROT_DEBOUNCE_MIN	0
-> +#define MAX7360_ROT_DEBOUNCE_MAX	15
-> +#define MAX7360_ROT_INTCNT		GENMASK(6, 4)
-> +#define MAX7360_ROT_INTCNT_DLY		BIT(7)
-> +
-> +#define MAX7360_INT_INTI		0
-> +#define MAX7360_INT_INTK		1
-> +
-> +#define MAX7360_INT_GPIO		0
-> +#define MAX7360_INT_KEYPAD		1
-> +#define MAX7360_INT_ROTARY		2
-> +
-> +#define MAX7360_NR_INTERNAL_IRQS	3
-> +
-> +#endif
-> 
-> -- 
-> 2.39.5
-> 
-
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Charan Pedumuru <charan.pedumuru@gmail.com>
+
 
