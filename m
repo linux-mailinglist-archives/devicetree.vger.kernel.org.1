@@ -1,142 +1,135 @@
-Return-Path: <devicetree+bounces-172654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6E1AA5D08
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:10:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92819AA5D11
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B464C4C28B8
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 10:10:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE271BC594D
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 10:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C8D22CBE3;
-	Thu,  1 May 2025 10:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD4322CBFC;
+	Thu,  1 May 2025 10:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="e0Fd4erX";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="k8qGmVkM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oZLkQIMj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4435622C35B;
-	Thu,  1 May 2025 10:10:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFC5944F;
+	Thu,  1 May 2025 10:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746094207; cv=none; b=dz//fwjwoOnNY8Pht40asLwJWOCO3L2Ow4Nk34Rbj2i8aKyjqO82PCDV95EYZB9kql9CL1CAdEHbUwQl2fJdKwV+/XMRBaeZpo1iEekmGeb1xanqO020vEtgvZG1PxrCzE84eyqveLu1yYUJGwD4Y5B/1EYAv1BvQaFJWa/F3I0=
+	t=1746094407; cv=none; b=KuE7Xuvrrhc8/bYZcHZ6JmeDBsClkphAFGSNPzuRfurE/zQ2of0ptk0Q6tRPCV1v4GlK7nQnQ1vRaGuy/+X8dSLoI4vUjgQK7Dbr162mNAtFzSf2ajBd2FSq7GcM0hfG6vaofFb6ccA5Dd9xO5yodED6N2poKRXGYUzwSsHtBC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746094207; c=relaxed/simple;
-	bh=HfWOv1pN0LOy9whxAaYfLv8RdayFgWJ7bVNEvRPuAeg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n7UrvCCp2+zmQAJ+Ui/nCuJ+1k7RV9Yr9luz9MEI4L66vNkCjlFdZRfAJRlncvy6G68s/YaEbJQbyYOj8quZPH5rkWu8aqbdQWqZC5as457V7OSeunpQsWniQiJrNrZKdOL1ECwEp/1/ze7Ceo5bE8PI09sQBMJFF6nMo1SVB64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=e0Fd4erX; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=k8qGmVkM; arc=none smtp.client-ip=202.12.124.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id B01D525402A7;
-	Thu,  1 May 2025 06:10:03 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-05.internal (MEProxy); Thu, 01 May 2025 06:10:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1746094203; x=1746180603; bh=rSgcD6ZLjHSu9Hjz5ZIpaSW1p7NU8SDi
-	fL7N+PTVyEo=; b=e0Fd4erXhDz1mlWy5wYwG56lLX+hpnmRVdHvjZBR4OQfLGKD
-	NsvQ7p2gSfF/wZtR5y8RBw+6F3nDb9g3Vcp6OxkSUNW0embKpO4PVnAM802LEh/O
-	DzwCwbDrMRYUyqs5/+kGg17fc2JRzRNaSp608Wpv5qSr516zaXtid0MNFbR+Pks9
-	UrnEGZTX9JSZSvMU2LU6796XgDUNqGQcaCXvR7RbudnCLDpX8O2lyE+bUhd3Ccew
-	kdY81nAOanWcYgC8WUIyk8+DCXNBAQZhCt8p0rKXoVJvmzXCs2ysTvh2Rg4h7uOg
-	NCIg4feUtD45cHLla8Zmi6jV8djpbeBABAOAjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1746094203; x=
-	1746180603; bh=rSgcD6ZLjHSu9Hjz5ZIpaSW1p7NU8SDifL7N+PTVyEo=; b=k
-	8qGmVkMd/OQEwdZUYMe1W0l1Cnyk00WNmrNVZfIGmy5UV65FTJiHCu67K4qXwUZ/
-	G9ZtpE/c5d3airW/8wraUJXW1IKYyXCaHKl4H3oICSsHU8mZYLG0yQOrg7OLdeeX
-	dojrNxprPz2/e3Xss5ZjrJxWhPv3zDCUYYtaxwR+YHSwI9IcwHreCEZVHitUZaTm
-	LmeRQUyDjmX/ToKjPPBZnfhlYZa14F9kMQylOnlBdzR1FNKxGUjHfFN8n5uwRLLa
-	c7L/DerJuE0WbY5w5F4xne98bftT94YDrd3EQ8kKuzSdEJwlV8M4a6FZ9o+U/yzR
-	o0C7sNwtzgCDEMyVB+new==
-X-ME-Sender: <xms:ekgTaKLGmPkCCZpF1zzJs5raJpd2THhHpaHxUhKxnUEyEJbI-H1hVA>
-    <xme:ekgTaCI70GlI4oyix02sXix7GHvc37ktuhy5MeT36ip-dv8wh_CE2HQxPxw1-fUNi
-    IwNhZgZc2jEiaIUI20>
-X-ME-Received: <xmr:ekgTaKsRghlelS6ylnXqHkzqKjH3Oqem96mRKqPuZ0NYPtprA_0KPqAVuGIfyOL3UmFxJPoAR-WMXq6269eW_tM_UTPkisWLLodDquOE78eCpXrfdg64zdcNcSC4bwA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieelfedtucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhggtgfgsehtkeertder
-    tdejnecuhfhrohhmpefuvhgvnhcurfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrh
-    druggvvheqnecuggftrfgrthhtvghrnhepleetudehlefgteduffeijeehfeduudekhffg
-    fedvueekvedvveeuhefgieetgfegnecuffhomhgrihhnpehgihhthhhusgdrtghomhenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhes
-    shhvvghnphgvthgvrhdruggvvhdpnhgspghrtghpthhtohepudehpdhmohguvgepshhmth
-    hpohhuthdprhgtphhtthhopehjsehjrghnnhgruhdrnhgvthdprhgtphhtthhopegrlhih
-    shhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgtphhtthhopehnvggrlhesghhomhhprg
-    druggvvhdprhgtphhtthhopehsrhhinhhivhgrshdrkhgrnhgurghgrghtlhgrsehlihhn
-    rghrohdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdo
-    ughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehfnhhklhdrkhgvrhhnvghlsehgmh
-    grihhlrdgtohhmpdhrtghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:ekgTaPaTyJC-BVZaiND3BRyFFwTMhdJLd9wD5F0amvQtv5gfjKVvwQ>
-    <xmx:ekgTaBbIYdG3hNe7dMD3Q4MRfJ1dbE5y2ONIJwfS1VSdzFLAS_ktZQ>
-    <xmx:ekgTaLCRlAnWh3H6eKexKkm-exDJ29PAP8WHjeH93UypQlU8_Jv5Cw>
-    <xmx:ekgTaHa5A_BrWF1-QS4ZQ68JPkm8AsG7G_NIholT9cS5FTk2Tc6mhg>
-    <xmx:e0gTaISTGBFTZDu6y690LuX9--NKQkLocgt9l64useMdlN0GHfAHQwqx>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 1 May 2025 06:10:00 -0400 (EDT)
-From: Sven Peter <sven@svenpeter.dev>
-To: Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Sven Peter <sven@svenpeter.dev>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>,
-	Nick Chan <towinchenmi@gmail.com>
-Subject: Re: (subset) [PATCH v3 0/3] Apple PMIC NVMEM cell driver (Formerly: Generic SPMI NVMEM cell driver)
-Date: Thu,  1 May 2025 12:09:53 +0200
-Message-Id: <174609415563.2892.911410190691203446.b4-ty@svenpeter.dev>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
-References: <20250423-spmi-nvmem-v3-0-2985aa722ddc@gmail.com>
+	s=arc-20240116; t=1746094407; c=relaxed/simple;
+	bh=+03unKSXrabdrK38GiVxSWI+T4JxOmLJpma/0eKTe7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h+syU6z4diM1c68/+n/k9TwDxUBniwL9btrUgc3lKEmM0Svy032NJ9jJFZh9gdXjHKJI17XSWFAuo2gJ7BOkJhP/xv4I6JeDCdJJFSnIkT6kMD1bm8eVo/lNRbvmYm/k+kM/PMkgkylJ3UANZyE5+xZ3Ht7CGnKJfJPL1+g+c74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oZLkQIMj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78920C4CEE3;
+	Thu,  1 May 2025 10:13:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746094406;
+	bh=+03unKSXrabdrK38GiVxSWI+T4JxOmLJpma/0eKTe7I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oZLkQIMjD+F2JjgAogz8LY0705uhigeNbL25Qgl/z3+4cIThQNKGzx6r6LxLTx7gm
+	 MXFHRnPIqRytscJjAlYo4jih9QL2ETl/OxBqDRy/UCY/QJOFRzublPnZ5fckzIRzXx
+	 4wAHV3/aIBPzVRkKRubpM9ufDyOoqBXybqdrN+mr9lutx2p4qzTYgepm9r1SG3UEMJ
+	 GzfcDVrCS3fABnC4tKGh5v8j7PvfaMNgqveAR+7KAwJEslbSlW/RIOvS668oflbFCe
+	 l0GxkfhoQAvcU3bA2ebBAXHbBXDdEG2v1qnzno8shL6I9u0MXDk8xb/jWGfh/nJeRi
+	 QJ5SteW3ZnkIA==
+Message-ID: <298d8c1f-40ca-4377-a7a5-69f81989d7ea@kernel.org>
+Date: Thu, 1 May 2025 12:13:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/5] arm64: dts: exynos: add initial support for
+ Samsung Galaxy J7 Prime
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250414-exynos7870-v6-0-039bd5385411@disroot.org>
+ <20250414-exynos7870-v6-3-039bd5385411@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250414-exynos7870-v6-3-039bd5385411@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 23 Apr 2025 19:55:12 +0200, Sasha Finkelstein wrote:
-> This patch series adds a driver for exposing a set of registers
-> as NVMEM cells on a SPMI-attached PMIC on Apple ARM platforms.
-> Those are used to store the RTC offset and to communicate platform
-> power state between the OS and boot firmware.
-> 
-> The NVMEM cell consumer drivers will be sent in a further series.
-> 
-> [...]
+On 13/04/2025 20:58, Kaustabh Chakraborty wrote:
+> +		key-volup {
+> +			label = "Volume Up Key";
+> +			gpios = <&gpa2 0 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +		};
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000 0x3e400000>;
+> +	};
+> +
+> +	memory@80000000 {
 
-Applied to git@github.com:AsahiLinux/linux.git (asahi-soc/dt), thanks!
+Why are these two separate device nodes, instead of one for two ranges?
+Does device has somehow two independent memory controllers?
 
-[3/3] arm64: dts: apple: Add PMIC NVMEM
-      https://github.com/AsahiLinux/linux/commit/d8bf82081c9e
 
 Best regards,
--- 
-Sven Peter <sven@svenpeter.dev>
-
+Krzysztof
 
