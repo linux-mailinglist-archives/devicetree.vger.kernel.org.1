@@ -1,94 +1,91 @@
-Return-Path: <devicetree+bounces-172687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC40AA5E0F
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:00:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC504AA5E12
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 324F116AA18
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:00:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 950627AB0E8
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 12:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD84221FC0;
-	Thu,  1 May 2025 12:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD73205519;
+	Thu,  1 May 2025 12:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FYsGrvFL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r91DJqwz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475F6211710;
-	Thu,  1 May 2025 12:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36D034545;
+	Thu,  1 May 2025 12:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746100811; cv=none; b=oVgTsX0GErypdan+pDUAbvFrCylyop5IH0Z5aP2p2YZuz11jWQmmgr7ZD6GpQsbwWepKmGmGzOdSBNbWeTANDoixNezgRnXm2A+x/kBONDuf3iFAfbLINj8Hu1wZgR7ULzxTZlQsKcyoMbGbmkL8GU4q2UwWEIqSsfc6RkqSzhI=
+	t=1746100888; cv=none; b=H5XVjdeeSzJozXZeqLoo38ITudlK2gEeKLQvVuEipCASEKLrpx/VhjaWgyTB/zV0341cv7NEvupl37mhABFTMFQPKtudPVPFXkzQPtlPcEF3N0llJ57ph+jdgJSwSI3gl0MeHZgk/bogAoWlsRbO/3HnEQlVxgxd4Aw5LC5tkrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746100811; c=relaxed/simple;
-	bh=z2F6Iq0+hrQEpIkV1fcg1WaUZezRhDU2gz0ArU4vrno=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SpEgVhxo5JLyicjABoSrfeQcfk03A3eg0AHd9wpOVz1LG3fgB8+4qt3f5ofEwYmFFcqQwHcaFHrIuTMnJzeCsrwkEs4yvpOEKbTmPXEsHBg9DZKcnqnpQ1Aj6T2CBxG31qlToP6uLPNlBmq1tBrNboZrgDS78Dyc2THRQ/XZowA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FYsGrvFL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA6CC4CEE4;
-	Thu,  1 May 2025 12:00:07 +0000 (UTC)
+	s=arc-20240116; t=1746100888; c=relaxed/simple;
+	bh=wO38hj0kH5wwFVV788X9fXlS0WBLehhmfHhlpKQsYvg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NWTE+riubIBy8XNBwuWAI1NyJxfrlkHW/HLOCBetQiXKxXLU4PYHZ381dR3ysSF1etuuiRRJucsCqSHg7XlYbHqef5fCaFtTB90zaDEMKmRnkwaGiaCPGotKYjF3bdgpjzRgLDW/IXl0U5VX31iNV6SWHgyUZ0XP1RBprxx55Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r91DJqwz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94CC3C4CEE3;
+	Thu,  1 May 2025 12:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746100810;
-	bh=z2F6Iq0+hrQEpIkV1fcg1WaUZezRhDU2gz0ArU4vrno=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FYsGrvFLffhiha4aqHkEGShXosDNpziWGUHgvmVDigxpuGtwUNOvtBoSTZDyYxdep
-	 SZSx8/9SSh3vE39cBtXXqVDlyjm3+eLy+BoqTf+h5cIVkcJkwYfx+odlikVY+hgyfd
-	 wXoOc71APf3R7yHeCOFcur+WgJq4lOF3LZIBavk2ngkmdxUc/SKG5eqgG6h+nzYTlo
-	 VqREdJ/WFQXkkV52JcMGsj5+dtEAGoQIlh0H0KiDq0T3jqgCco3uXMTwXpQHb86Pth
-	 l5ggML4+v6nvlahSCh2YLw99hh04tQdqnqOHwAQt+adta+U2bLYP38Bj0IsBvj7s4t
-	 +bTbCajpFU7aQ==
-From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Frank Wunderlich <linux@fw-web.de>
-Cc: Frank Wunderlich <frank-w@public-files.de>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Daniel Golle <daniel@makrotopia.org>, Sean Wang <sean.wang@mediatek.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org
-In-Reply-To: <20250422132438.15735-6-linux@fw-web.de>
-References: <20250422132438.15735-1-linux@fw-web.de>
- <20250422132438.15735-6-linux@fw-web.de>
-Subject: Re: (subset) [PATCH v4 5/8] dt-bindings: mfd: syscon: Add
- mt7988-topmisc
-Message-Id: <174610080698.3792828.16129247055603832189.b4-ty@kernel.org>
-Date: Thu, 01 May 2025 13:00:06 +0100
+	s=k20201202; t=1746100888;
+	bh=wO38hj0kH5wwFVV788X9fXlS0WBLehhmfHhlpKQsYvg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r91DJqwzqLwYugfxG2pb0c35WvYMJaYiQSAzcjSB9ovMk/EnuGFWt2MzM/ytGRGdC
+	 wAZKGYA+vz/s77fg7aQPZpAlRKcIT/igILGZ14jGoQZRtnvMqHOqkLkJwPy7JSpIpu
+	 XDcukosA/Y5OgnMQVJEm1UnxIJQM61jiR71p9iyLgVv43hbMZ2gAbN2M6b5oOH8MEX
+	 eADFKDx06fKC+QJCJEL2g+i88z65RYvJRGtPFmWl9dLMhjXRqk6a3+1YKebnYI0UTa
+	 HUNw7+7h0Z7T1NnKcVsO1ulcz0ucQy6ZlItp/CCK3/P4KLZaEHM+QCaMeinOSEse5R
+	 h5ur5t/0ba74w==
+Date: Thu, 1 May 2025 14:01:25 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, jun.li@nxp.com, 
+	alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: phy: imx8mq-usb: add imx95 tuning
+ support
+Message-ID: <20250501-incredible-skylark-of-awe-e0c2cc@kuoka>
+References: <20250430094502.2723983-1-xu.yang_2@nxp.com>
+ <20250430094502.2723983-2-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-39345
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250430094502.2723983-2-xu.yang_2@nxp.com>
 
-On Tue, 22 Apr 2025 15:24:28 +0200, Frank Wunderlich wrote:
-> Add compatible for Mediatek mt7988 topmisc syscon.
-> This hardware block contains 2 functional blocks
+On Wed, Apr 30, 2025 at 05:45:00PM GMT, Xu Yang wrote:
+> The parameter value of below 3 properties are USB PHY specific. i.MX8MP
+> and i.MX95 USB PHY has different meanings. This will enlarge parameters
+> value and add constraints for them.
 > 
-> - a powercontroller which is not needed (switched by atf)
-> - a multiplexer for high-speed Combo-Phy
+>  - fsl,phy-tx-vref-tune-percent
+>  - fsl,phy-tx-rise-tune-percent
+>  - fsl,phy-comp-dis-tune-percent
 > 
-> This compatible is only for the multiplexer part.
+> Reviewed-by: Jun Li <jun.li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> [...]
+> ---
+> Changes in v3:
+>  - keep original unchanged
+>  - enlarge value for some properties of i.MX95
+> Changes in v2:
+>  - keep widest constraints
 
-Applied, thanks!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[5/8] dt-bindings: mfd: syscon: Add mt7988-topmisc
-      commit: 4d54ce40400c215127ce24aa3a684a20e7d8493a
-
---
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
 
 
