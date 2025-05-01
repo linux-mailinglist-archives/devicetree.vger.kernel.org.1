@@ -1,212 +1,145 @@
-Return-Path: <devicetree+bounces-172603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C82AA5946
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 03:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55EA4AA5A35
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 06:15:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 594213BD48A
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 01:15:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18F0B9C1B3F
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 04:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A617A2AE9A;
-	Thu,  1 May 2025 01:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C5D1DF98D;
+	Thu,  1 May 2025 04:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kSpWVJG+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBZCO0Ep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7CDC2ED;
-	Thu,  1 May 2025 01:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE607D515;
+	Thu,  1 May 2025 04:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746062148; cv=none; b=o4fhCOOrQfB2N39rxf0ldNgvY7xCzRQ4HsRZsFC3DZqjdarSQXi6BvrM2LTqohXjnFB6s8lhLUrewqP8Jg8FtK8eArhj0DXqUsZ+t1GrLXa9pZ7dEgKflLrODsjwAOFm+IRDGlEHDvdzcJcz+PWk7bT6jtwGZ30RgIVy9zz2OSM=
+	t=1746072930; cv=none; b=E2/1r+in7+ayXs4tTYpPwy/JHhiIPKfIcI6OHcEbwU9OA6Z/HUcOEzFqLTQeGn/BCtr6YQWt5fey0PFDaqgy+r3S6zqOH/TONyx8iUZnvnQC91sCDHAnbS7XJSSEl31bRDQOqItbdqFhl9/wWeHhuKwuFpkSoltklZf5YQR/oDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746062148; c=relaxed/simple;
-	bh=Ok4vU94d1XxDWWHt42q8ybBt9TQVvQaQ+RROQvVHq8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sv72iwzldC7T+3zi+vnKPf1izBcoPTL/sprC9IPDNEOeTOHDU/iyjkhvwNWQn6DDoafiU+avRV4xr7+1Vj+EXtAjdTreiyi0J5jBhbw049fw06FI86ki14vPvK0wbwuNoW8CeRBSMaSldIaFzbeJ6hJJ+mbDURDZ/jxaIUTsn0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kSpWVJG+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53UGpQkR021321;
-	Thu, 1 May 2025 01:15:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GhVDqE0B9Bpr5apMvnfQKRAQ/2j088Db9RmH6AOhqbs=; b=kSpWVJG+m3Ny/tw4
-	fTll299ucraaVmD3nq85b3tH88V0frziR+EB8rgJ1wnQtuJRLJIxJZx5Q2bfwp/5
-	Xbn6WmltriWD3sRBFvCW4aHTf7hHqH73dLMMSb+TZ0xQDCb506fgt9KhitUXpUpC
-	anQ3gTPRfL5jhLB5/Vvjf+SWOgDYVwqJ2BsrcVKuHNkjwE48aUQMgmfCHOZTZCfe
-	5wmsBIuoQ+RG+07dYTBBKo7MOWusembHHaiLtmzkfBlPysrzq2JmSQdoZ4PyZD7l
-	8Hr08fJUjwwvTnr0eLkR1wN/RURvgrEBztEJcK88JZpW2URME/JKFh4qSBrbAAMv
-	55AXng==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u743r6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 May 2025 01:15:19 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5411FIWJ030790
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 May 2025 01:15:18 GMT
-Received: from [10.110.26.79] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Apr
- 2025 18:15:16 -0700
-Message-ID: <94da79ca-5c32-4744-bc57-3a03a3c8379d@quicinc.com>
-Date: Wed, 30 Apr 2025 18:15:14 -0700
+	s=arc-20240116; t=1746072930; c=relaxed/simple;
+	bh=buPxZBousmKo9OStYdQccta50qsdElaO21GDRbmAvRM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=j8f3NlNzGpfi9THWM5lG2jtumWN4DaHdyeVd2D7oWjsjym0g9hMQT3a1dqpDvTg1EzsEiCrvojzrvCq2gnv1sZVXICXUrWrFA4hoJuAfLHk8ec0ERFqXeeiVnP7OJ34UveNUEXzProcrU83VtLaFVmwo8KsnT1XSNFymUMAfW30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBZCO0Ep; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B70EC4CEE3;
+	Thu,  1 May 2025 04:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746072930;
+	bh=buPxZBousmKo9OStYdQccta50qsdElaO21GDRbmAvRM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=JBZCO0Epyf9CUJvXNT6QWXd3n4pi9p3rcEMdewXPrnqGzzklEUGcnDXzZRV7L1HeL
+	 8FIDuSgNsvI6QpztWAGvRmuBXo2TWuHKRSlbkmQ3ku4rvvH+Sl8Ufx2kK7enAyt5CR
+	 7RzyuMg0UnjjggKqkFVr6oXALWcz6OKu199mtGEf5GimXR6WWvpkkG7sOaL1TwHHWx
+	 J8K4RIWfE7siz/n3gZv8zlV4qPLjFKKKvl8X3p5WzaauD73TOaULb6vMGJNMqjBt2Q
+	 qGms6AITyQmABxeHM4tH/KEEm+praYVNqavldOYi0EOSdqDwwZMiPrQPiOpzVFskvc
+	 LnPVTKF0Df0iQ==
+Date: Wed, 30 Apr 2025 23:15:28 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/10] drm/msm/dsi/phy: add configuration for SAR2130P
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Rob Clark
-	<robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Krishna Manikandan
-	<quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy
-	<robin.murphy@arm.com>,
-        "Joerg Roedel" <joro@8bytes.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-References: <20250418-sar2130p-display-v5-0-442c905cb3a4@oss.qualcomm.com>
- <20250418-sar2130p-display-v5-7-442c905cb3a4@oss.qualcomm.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20250418-sar2130p-display-v5-7-442c905cb3a4@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAxMDAwOCBTYWx0ZWRfX2DJr6WLc0edV I4UAvc3yot50l6XraxRL/48fmG1pohIk6ZF0BNE0PsZkOLa57/myXFJhvutcIjA96mFLUrToUUl 3r5gG4oanNcY2kX9+m/IruaZ3m+5BFTtNyNYz+bqO/qgH1DuHkEs/9okS+xanaAyDcyPpamubTZ
- 3C71obBj5nsrxGDN/DT0J6bLoge6dB5WmhPFHEzq0pE28Tk/kYy3iPoZ7bmZJgnOvtiC2esFM1M uzrn4JV/+5A5NAWiAhzG8LcCTnemf7JTGAnPCelcCep5nfJ3Cki9VmnTw59SYUHooIqw56c+BFT Jzc4i1wyIROkoHHygQbneBPs05q0/da6sk+YI4HjIyqqligfYsL1XyoYze5hbkS1KmGHPIOVEkL
- VLzjkZJ7o879cxpuF13/jJM2Yh/PLEb+nOLnIE8Wbs0y5XzDWObJy49RwodzhmksSD4GLdXu
-X-Proofpoint-GUID: i4KL4M6P_4CsjhTj2vgnrh6O15uMeXR1
-X-Proofpoint-ORIG-GUID: i4KL4M6P_4CsjhTj2vgnrh6O15uMeXR1
-X-Authority-Analysis: v=2.4 cv=b6Wy4sGx c=1 sm=1 tr=0 ts=6812cb27 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=WWvJJprN3eueWNfT7O0A:9
- a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-01_01,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 suspectscore=0 mlxscore=0
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505010008
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+In-Reply-To: <20250430153634.2971736-1-ioana.ciornei@nxp.com>
+References: <20250430153634.2971736-1-ioana.ciornei@nxp.com>
+Message-Id: <174607289976.949416.5265834490992116431.robh@kernel.org>
+Subject: Re: [PATCH 0/6] mfd: simple-mfd-i2c: add QIXIS CPLD support
 
 
-
-On 4/18/2025 12:50 AM, Dmitry Baryshkov wrote:
-> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Wed, 30 Apr 2025 18:36:28 +0300, Ioana Ciornei wrote:
+> The MDIO mux on the LX2160AQDS, LX2162AQDS and LS1028AQDS boards never
+> worked in mainline. The DT files were submitted initially as-is, and
+> there is a downstream driver for the QIXIS CPLD device:
+> https://github.com/nxp-qoriq/linux/blob/lf-6.12.y/drivers/soc/fsl/qixis_ctrl.c
 > 
-> Qualcomm SAR2130P requires slightly different setup for the DSI PHY. It
-> is a 5nm PHY (like SM8450), so supplies are the same, but the rest of
-> the configuration is the same as SM8550 DSI PHY.
+> Since the HW works with the already existing
+> driver/mfd/similar-mfd-i2c.c driver, extend the list of compatible
+> strings to also cover these 3 new boards, instead of trying to upstream
+> a duplicate driver.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> This patch set also adapts the DT nodes for each of the affected boards
+> so that we match on the new compatible strings.
+> 
+> The last patch describes the two on-board RGMII PHYs found on the
+> LX2160AQDS boards which make use of the MDIO bus found behind the CPLD
+> driven MDIO mux.
+> 
+> Ioana Ciornei (5):
+>   dt-bindings: mfd: add bindings for QIXIS CPLD
+>   mfd: simple-mfd-i2c: add compatible string for Layerscape QIXIS CPLD
+>   arm64: dts: lx2160a-qds: make the QIXIS CPLD use the simple-mfd-i2c.c
+>     driver
+>   arm64: dts: lx2162a-qds: make the QIXIS CPLD use the simple-mfd-i2c.c
+>     driver
+>   arm64: dts: lx2160a-qds: add the two on-board RGMII PHYs
+> 
+> Vladimir Oltean (1):
+>   arm64: dts: ls1028a-qds: make the QIXIS CPLD use the simple-mfd-i2c.c
+>     driver
+> 
+>  .../bindings/mfd/fsl,qixis-i2c.yaml           | 65 +++++++++++++++++++
+>  .../boot/dts/freescale/fsl-ls1028a-qds.dts    |  9 +--
+>  .../boot/dts/freescale/fsl-lx2160a-qds.dts    | 28 +++++++-
+>  .../boot/dts/freescale/fsl-lx2162a-qds.dts    |  8 ++-
+>  drivers/mfd/simple-mfd-i2c.c                  |  3 +
+>  5 files changed, 103 insertions(+), 10 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,qixis-i2c.yaml
+> 
+> --
+> 2.25.1
+> 
+> 
+> 
 
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 
-> ---
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c     |  2 ++
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h     |  1 +
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 23 +++++++++++++++++++++++
->   3 files changed, 26 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> index c0bcc68289633fd7506ce4f1f963655d862e8f08..a58bafe9fe8635730cb82e8c82ec1ded394988cd 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> @@ -581,6 +581,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
->   	  .data = &dsi_phy_7nm_cfgs },
->   	{ .compatible = "qcom,dsi-phy-7nm-8150",
->   	  .data = &dsi_phy_7nm_8150_cfgs },
-> +	{ .compatible = "qcom,sar2130p-dsi-phy-5nm",
-> +	  .data = &dsi_phy_5nm_sar2130p_cfgs },
->   	{ .compatible = "qcom,sc7280-dsi-phy-7nm",
->   	  .data = &dsi_phy_7nm_7280_cfgs },
->   	{ .compatible = "qcom,sm6375-dsi-phy-7nm",
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> index 1925418d9999a24263d6621299cae78f1fb9455c..1ed08b56e056094bc0096d07d4470b89d9824060 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> @@ -59,6 +59,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_7nm_8150_cfgs;
->   extern const struct msm_dsi_phy_cfg dsi_phy_7nm_7280_cfgs;
->   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8350_cfgs;
->   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs;
-> +extern const struct msm_dsi_phy_cfg dsi_phy_5nm_sar2130p_cfgs;
->   extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs;
->   extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs;
->   
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> index a92decbee5b5433853ed973747f7705d9079068d..cad55702746b8d35949d22090796cca60f03b9e1 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> @@ -1289,6 +1289,29 @@ const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs = {
->   	.quirks = DSI_PHY_7NM_QUIRK_V4_3,
->   };
->   
-> +const struct msm_dsi_phy_cfg dsi_phy_5nm_sar2130p_cfgs = {
-> +	.has_phy_lane = true,
-> +	.regulator_data = dsi_phy_7nm_97800uA_regulators,
-> +	.num_regulators = ARRAY_SIZE(dsi_phy_7nm_97800uA_regulators),
-> +	.ops = {
-> +		.enable = dsi_7nm_phy_enable,
-> +		.disable = dsi_7nm_phy_disable,
-> +		.pll_init = dsi_pll_7nm_init,
-> +		.save_pll_state = dsi_7nm_pll_save_state,
-> +		.restore_pll_state = dsi_7nm_pll_restore_state,
-> +		.set_continuous_clock = dsi_7nm_set_continuous_clock,
-> +	},
-> +	.min_pll_rate = 600000000UL,
-> +#ifdef CONFIG_64BIT
-> +	.max_pll_rate = 5000000000UL,
-> +#else
-> +	.max_pll_rate = ULONG_MAX,
-> +#endif
-> +	.io_start = { 0xae95000, 0xae97000 },
-> +	.num_dsi_phy = 2,
-> +	.quirks = DSI_PHY_7NM_QUIRK_V5_2,
-> +};
-> +
->   const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs = {
->   	.has_phy_lane = true,
->   	.regulator_data = dsi_phy_7nm_98400uA_regulators,
-> 
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250429 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250430153634.2971736-1-ioana.ciornei@nxp.com:
+
+arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dtb: fpga@66 (fsl,lx2160a-qds-qixis-i2c): 'mux-controller@54' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/fsl,qixis-i2c.yaml#
+arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: fpga@66 (fsl,ls1028a-qds-qixis-i2c): 'mux-controller@54' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/fsl,qixis-i2c.yaml#
+arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dtb: fpga@66 (fsl,lx2162a-qds-qixis-i2c): 'mux-controller@54' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/fsl,qixis-i2c.yaml#
+
+
+
+
 
 
