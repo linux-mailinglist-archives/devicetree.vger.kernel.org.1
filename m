@@ -1,194 +1,147 @@
-Return-Path: <devicetree+bounces-172714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70075AA5FF1
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:26:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E491AA5FF7
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4B2F177276
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:26:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DE881BC579F
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDEC1F2382;
-	Thu,  1 May 2025 14:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CB11F151E;
+	Thu,  1 May 2025 14:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nHy1WXgv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUwXcTvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3151D1F12FC
-	for <devicetree@vger.kernel.org>; Thu,  1 May 2025 14:26:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36AAF19CC1C;
+	Thu,  1 May 2025 14:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746109576; cv=none; b=SnPB/GyOQTh61xAi3ua4bXva2aSPw5bhPVcnP6gc7GWXv34FX09CN+9eBFyQoqiZtNGTP/au0avEaZWRW32o2azMRpi2uf92M13yseODquM+sf1AbjkJybk9bIBhovUSzd2uJO1mLm3HrD+rIuAGa0NGtdJ9NyBUnvyauuN1Pfo=
+	t=1746109704; cv=none; b=SYTdo7Kvno+cBieCyYCWaWqztyzLELzP4AOUbvd27eCXZwh4fdLHrgOu5NQSEBM++THM4Y8qZHGJo0vHre5Y5qc04Pk//vbWknv3BRUbYlR3Uif6aR5UlFYFkG+TMQK/u2dMA7oJBNEYxyQ/lyze2IckdTaDPebhRJ1AQCvk85c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746109576; c=relaxed/simple;
-	bh=cMiSL+srh90WM/27nWsSVcw0BuDExmla9t7TYq0svc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y5VmrqxH+3THkNxqdfFxhlMUijUUb8VvjZEpee8G0lwUYGJM6CRtBo+Uvy9FbfsmMEht03Y5RwD1CryERJunHE3F+ORjp7r0bmgi7sMLVg9tC1+FfJcpyeA6867veFidsjjb3ETeASQLR6A8djn4o0yEls+DDXTzLTo5BUsyuyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nHy1WXgv; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-72c27166ab3so694077a34.1
-        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 07:26:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746109573; x=1746714373; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B7i2ULSj+LVkwecy8lD/K2BewHP33IPiW3Jt5i3dqKI=;
-        b=nHy1WXgvFNPHuVpfF9MEWBnP7k9atD5aPE7/Oh8vjX7ziNiEsbci/BaW3P9NWzzu1y
-         ANtvU6g4Rrj8wnlR7X/zfDaVPCA8KIhW7DNkwTBF1ZqLR2KQr8RYyBr789OI7nvc+UXX
-         I9VzfaR3IQXxAT5gHVEE0t//gEKVLOGuDP0gUZpOjArWhbxkv7vdo0DX30o50EYdM3oE
-         dT1BTLGsG72fVEyMp4LszztRpOx7bOKt9NUI//Hi3A8mB19nHRnuY2HHMVXu9ZH31FXe
-         xCVZz8fvZd9dlucpL/94y99M6IlJ9lX3Vsk3qlJwimej/LjHE2auiC08QeKI9a2dShNH
-         MqZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746109573; x=1746714373;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B7i2ULSj+LVkwecy8lD/K2BewHP33IPiW3Jt5i3dqKI=;
-        b=B9mUx/O6FTTPp/T8ax71APpAOBge5r8C42Im2PxY2fitD6M3fZQNCKtHKZD95htMrM
-         t4v+/OG1TaDV7fmzIKl8yJIP6Q/moVweixl+1wrHvm8npA4EH+w0y+MwJUsCipzSGY5T
-         L9BdD/TqEPuPrB3WyHszVxaxpFEG1ACh/hH16nzUDCj0nkL/L0uC8O+ppdahjkaOlkGH
-         hjDM1Fkm4uir0seKrkX1lLEsdXrBFroen1fea/EbaNBvjM8Wx1O7+lOlL/3GNjJyjovB
-         fZaz/uFHeVTAK82/vlJxqzQHeIRmedbWtRjW+BuXvFDEfmJp50YqpFy3lX0eARyBfdT6
-         BqyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqfKyliPU9/FSvDIlyvIwV/A1VxmzWVpFrlHnMrk5mBjJg9kwieKLTQW86X8rh0JBgtrw/gPBrUIfS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxtap/GBtpnCUXrBve53IOTWePzPkNxMeXaP8XpiJiqfVjZlc3z
-	CSrgIwM6aR7LOcsP21MU/HPx3nhiCysvykwAc4SzqDSZFpV8b/Jv0Irp2jsHTdM=
-X-Gm-Gg: ASbGncsKFgwCV6HWBHxHe3ndvLIiwcuDsc4W75zQ+sL5pwX+B6iDR4vGigzSQFs0ZI5
-	koTE1iMxO/miLJQvhKBH/8AvRtTDY0vaxvLfUVk3MjyQw1yoWua5TQp5mD48Vd9KicISVR45/qA
-	CHvLWDSEatWq11hoUpNTOsWHUAWuZv6Pv9dtEiM/xFMdYeNyrw8beZKLtrum5PoQ8nUh5++PgqM
-	hkBvTCedJ9MmI44eR2WShSiXV3XUvDZUTktAaV4ITo6qs/a2R0VvuGjTzfTWbrHsTjMOOSnheJk
-	HUc89x6j5Qhn5A45NTstCCAVqEvcL9IeuDjJkTL1wuwoTGSX16fi5I/InQYjyHLHmnShjtDD6Ko
-	gxvA2TolVGkg/DCLc/w==
-X-Google-Smtp-Source: AGHT+IFd//jznhdxbWQ/ASqwqpXHLpIa55fPVl9ukRjj9Frcfs8XBwPmLkE5fNhS4f+jgFRHBFtmuQ==
-X-Received: by 2002:a05:6830:4990:b0:72b:7e3c:7284 with SMTP id 46e09a7af769-731c257c6b7mr3717143a34.18.1746109573152;
-        Thu, 01 May 2025 07:26:13 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:b1ed:e5d7:8ea6:40e0? ([2600:8803:e7e4:1d00:b1ed:e5d7:8ea6:40e0])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-731d350a41fsm116684a34.65.2025.05.01.07.26.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 May 2025 07:26:12 -0700 (PDT)
-Message-ID: <60986dd1-e03c-47f7-980c-879a5ecf7c44@baylibre.com>
-Date: Thu, 1 May 2025 09:26:11 -0500
+	s=arc-20240116; t=1746109704; c=relaxed/simple;
+	bh=dG/vmRyKkftV3UXTBolH+6yd6BgJNwN/cvqHh6HRxRA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PjDeTU4OS+sjZ+1RpQhMkn5/uxxWlJ6oICa7Zw2YRDbAuUg//42CtRTv0DdBRnolvUYA/GxoRd1ytLByMy3WaD5X/t4Xq0a24E6MVqs5CDsjPh/ih5popuEmPgYaehm0/tNY1fjbme5YF6bOX/C/24HKIkl8mirAYaSLFsfeNJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUwXcTvk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DB17C4CEE3;
+	Thu,  1 May 2025 14:28:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746109703;
+	bh=dG/vmRyKkftV3UXTBolH+6yd6BgJNwN/cvqHh6HRxRA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kUwXcTvkkneJCvpsXOtBl99R3OlqklWXCU0ADMe603mh9WyN626b6zE18VejnTqyn
+	 3AFdV0WJ/gyMGYjtJrvfXX3oRa7QfhUjUamPOqzbINRo1EDuxX3Qj0T709Xp2cVv78
+	 DrVNx6bekqF4AUvubwfgc/r6x7SKb1/rtA77OzhJQzXCPRZLyzDkS0dC+F+G0mfowM
+	 cox+Vl4WGQlCyZ+6IA/htz5dq1hMKJPugim/3AZLyQ8eiGFHdEItPgDPSRK/+r7ZWu
+	 Yi54GnwJ5POgKb2iZqoQiAkUvNQzCI0VfpnH9WeGXSLSMsR1EOI4DfiRc+MKD02QBx
+	 GLAKIFsjzh1lw==
+Date: Thu, 1 May 2025 15:28:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+Message-ID: <20250501-extrude-jot-aa8512a299ec@spud>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] iio: adc: ad7606: add gain calibration support
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
- <20250429-wip-bl-ad7606-calibration-v1-5-eb4d4821b172@baylibre.com>
- <0677db3c-9c36-4f34-93c0-5c53d702c4bd@baylibre.com>
- <y6hss7bo25hiwzzplbbhmdodpmqbgpkarqvemn3tn3fig26tb2@753sxtygndaz>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <y6hss7bo25hiwzzplbbhmdodpmqbgpkarqvemn3tn3fig26tb2@753sxtygndaz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 5/1/25 8:35 AM, Angelo Dureghello wrote:
-> On 29.04.2025 17:46, David Lechner wrote:
->> On 4/29/25 8:06 AM, Angelo Dureghello wrote:
->>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>
->>
->> ...
->>
->>> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
->>> +					struct iio_chan_spec *chan)
->>> +{
->>> +	struct ad7606_state *st = iio_priv(indio_dev);
->>> +	unsigned int num_channels = st->chip_info->num_adc_channels;
->>> +	struct device *dev = st->dev;
->>> +	int ret;
->>> +
->>> +	device_for_each_child_node_scoped(dev, child) {
->>> +		int reg, r_gain;
->>> +
->>> +		ret = fwnode_property_read_u32(child, "reg", &reg);
->>> +		if (ret)
->>> +			return ret;
->>> +
->>> +		/* channel number (here) is from 1 to num_channels */
->>> +		if (reg < 1 || reg > num_channels) {
->>> +			dev_warn(dev, "invalid ch number (ignoring): %d\n", reg);
->>> +			continue;
->>> +		}
->>> +
->>> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
->>> +					       &r_gain);
->>
->> Instead of...
->>
->>> +		if (ret)
->>> +			return ret;
->>
->> ... we need:
->>
->> 		if (ret == -EINVAL)
->> 			r_gain = 0;
->> 		else if (ret)
->> 			return ret;
->>
->> Otherwise driver fails to probe if adi,rfilter-ohms is missing.
->>
-> 
-> Correct, i changed this before sending and could not catch it.
-> But not totally sure of applying a 0.
-> We are here after chip reset. So conceptually, would not apply any default,
-> ince it is already set after reset. What about:
-> 
-> 		if (ret == -EINVAL)
-> 			contnue;
-> 		else if (ret)
-> 			return ret;
-
-Sure. A comment could help here and the continue makes else not needed.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="I870tTDMsq2gvFPl"
+Content-Disposition: inline
+In-Reply-To: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
 
 
+--I870tTDMsq2gvFPl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- 		if (ret == -EINVAL)
-			/* Keep the default register value. */
- 			contnue;
- 		if (ret)
- 			return ret;
+On Wed, Apr 30, 2025 at 11:21:35AM -0500, Andrew Lunn wrote:
+> Device Tree and Ethernet MAC driver writers often misunderstand RGMII
+> delays. Rewrite the Normative section in terms of the PCB, is the PCB
+> adding the 2ns delay. This meaning was previous implied by the
+> definition, but often wrongly interpreted due to the ambiguous wording
+> and looking at the definition from the wrong perspective. The new
+> definition concentrates clearly on the hardware, and should be less
+> ambiguous.
+>=20
+> Add an Informative section to the end of the binding describing in
+> detail what the four RGMII delays mean. This expands on just the PCB
+> meaning, adding in the implications for the MAC and PHY.
+>=20
+> Additionally, when the MAC or PHY needs to add a delay, which is
+> software configuration, describe how Linux does this, in the hope of
+> reducing errors. Make it clear other users of device tree binding may
+> implement the software configuration in other ways while still
+> conforming to the binding.
+>=20
+> Fixes: 9d3de3c58347 ("dt-bindings: net: Add YAML schemas for the generic =
+Ethernet options")
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> ---
+> Changes in v2:
+> Reword Normative section
+> manor->manner
+> add when using phylib/phylink
+> request details in the commit message and .dts comments
+> clarify PHY -internal-delay-ps values being depending on rgmii-X mode.
+> Link to v1: https://lore.kernel.org/r/20250429-v6-15-rc3-net-rgmii-delays=
+-v1-1-f52664945741@lunn.ch
+> ---
+>  .../bindings/net/ethernet-controller.yaml          | 97 ++++++++++++++++=
+++++--
+>  1 file changed, 90 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.ya=
+ml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 45819b2358002bc75e876eddb4b2ca18017c04bd..a2d4c626f659a57fc7dcd3930=
+1f322c28afed69d 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -74,19 +74,17 @@ properties:
+>        - rev-rmii
+>        - moca
+> =20
+> -      # RX and TX delays are added by the MAC when required
+> +      # RX and TX delays are provided by the PCB. See below
 
->  
->>> +
->>> +		if (r_gain < AD7606_CALIB_GAIN_MIN ||
->>> +		    r_gain > AD7606_CALIB_GAIN_MAX)
->>> +			return -EINVAL;
->>> +
->>
->> Also, return dev_err_probe() on the returns above would have made debugging
->> easier.
->>
-> ack
-> 
->>> +		/* Chan reg is 1-based index. */
->>> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
->>> +					  r_gain / AD7606_CALIB_GAIN_STEP);
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
+I'm not sure that "provided" is the correct word to describe what's
+meant here (implemented might be better), but it's perfectly
+understandable as-is and I don't think worth respinning or splitting
+hairs over...
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--I870tTDMsq2gvFPl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBOFAgAKCRB4tDGHoIJi
+0jplAP9zRFU8cq0CrAIupeDxoyotkJxhG0NaXz1GE2mesULpvgD7BF2kqIywMMqL
+jF2DMurlLRkxpRkBUqu61t3g8/rkCwY=
+=FiiL
+-----END PGP SIGNATURE-----
+
+--I870tTDMsq2gvFPl--
 
