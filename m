@@ -1,133 +1,144 @@
-Return-Path: <devicetree+bounces-172710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00716AA5FAE
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:11:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEEAAA5FCE
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 16:21:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BE077B3435
-	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53C2F1BC5CB4
+	for <lists+devicetree@lfdr.de>; Thu,  1 May 2025 14:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C401DC985;
-	Thu,  1 May 2025 14:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DDC29CE6;
+	Thu,  1 May 2025 14:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RLBb0XN/"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="qh/QxvR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6250F19F11B;
-	Thu,  1 May 2025 14:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DA3198E6F;
+	Thu,  1 May 2025 14:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746108611; cv=none; b=FrrXVNu2tydtR18vNsy99gTqgqHDg45qykG80b4ZkdIX7TtEnP1UE34qFkpynE7l9/QUDQGOG/tW6Rekg9wDajkMWF47F24X0yl0L1Bm9wIIzJCX3s1viS7VPi1KfA0WC2s9ZxuM5H5x+jGbPBUac5CTNxZhYZyIyOpPzFCPUF0=
+	t=1746109248; cv=none; b=pBHHDBKHKgfDtZGjGC+UkVRRaD4h1Jm/EazXX+I1QMW5tzU+liPlGnWqxZVGoHDCdWJ6kBVKtgVXGkwqJEI4w4caxcFjGXpO+kmRdbASUl9gNRdcu93+gb4p2AUpL/vfc5cIgwHJedtkqnXiPIa2+rcjGletGOk31NSDDLl2Y/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746108611; c=relaxed/simple;
-	bh=qjeLQ3PncRVChJGVRM0PPaIgh0f30aEzHnjTAO0O9b4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TAIXbF9MDINg/3AZpOfkixZ1knxWvNNaLW+Np3tc4d+Yib+RIN/t/04n9XUsecEQLgYOz2RabnoIOnVBdU38cF9LDbDPe78MoO0Nb2OIC/mZX7le2v9AA64uQ+/bK1ph1hLqlIjbsMxH9c+Hph/+WJRYQJuHDIoTGhwSHfw4xbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RLBb0XN/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D7CF763D;
-	Thu,  1 May 2025 16:09:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746108599;
-	bh=qjeLQ3PncRVChJGVRM0PPaIgh0f30aEzHnjTAO0O9b4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RLBb0XN/WZGE6skVJTQC5TFZPez0DX17c+cHnQFMfo6BLIuu534MY0HMq7DvYzQrl
-	 KXUcKn8Vhh22SCCLuaIeNsQ6TUVJu5Vr+ke/cY7gtbATEE3Di5IqFYRQpEjc7mtB4o
-	 BxSFFhtNTgcx8o9oJrsjyTU639SG0AU52NaMTnXY=
-Date: Thu, 1 May 2025 17:09:58 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250501140958.GB6838@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
- <174610080338.3792828.16902042195346769114.b4-ty@kernel.org>
+	s=arc-20240116; t=1746109248; c=relaxed/simple;
+	bh=1UwSOIDlD3ic60nJ1mkNJNnPI8CaGS+D6mHUgFP9Qv8=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=oB7tly0UcMqx06+JmA4KrZt2/j0l0UyVEUNur6BGdemLd4JuUumWlfnAmaUB+YzHXKa+EiC4xplf49TXiObtUvzOPfcmK/G5+ZWOcz89O6W0i8AsL+3AVU4A5WObRW+zRTNMRqfSSjrDTnUcpQuQZUrXuLzzglF4i0VuVn4zyHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=qh/QxvR/; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1746108822; bh=1UwSOIDlD3ic60nJ1mkNJNnPI8CaGS+D6mHUgFP9Qv8=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References;
+	b=qh/QxvR/kNaj8aKiL4KL/ex5wocOuIwxzTh6HinxhAs7xsP4QRghKdlxZ42jy/bwL
+	 CvbOpsuFKspfmy3D/UJFLo9wG867z8CoY2lL8RwkwZHnG8XeDEz7aB95BW0X6eHVvx
+	 F0bHsjE7uX4qKhU6hKcdXQ0upwKUE7ig5cUb2bhQ=
+Date: Thu, 01 May 2025 16:13:40 +0200
+From: Luca Weiss <luca@lucaweiss.eu>
+To: ~postmarketos/upstreaming@lists.sr.ht, Srinivas Kandagatla <srini@kernel.org>,
+ Luca Weiss <luca.weiss@fairphone.com>
+CC: Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, phone-devel@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_2/5=5D_ASoC=3A_qcom=3A_sm8250?=
+ =?US-ASCII?Q?=3A_set_card_driver_name_from_match_data?=
+In-Reply-To: <aBNdCRk_fP2q1vxQ@srini-hackbase>
+References: <20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com> <20250425-fp5-dp-sound-v3-2-7cb45180091b@fairphone.com> <aBNdCRk_fP2q1vxQ@srini-hackbase>
+Message-ID: <91110CA9-6E83-4811-AA04-C0312B99B95E@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <174610080338.3792828.16902042195346769114.b4-ty@kernel.org>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Lee,
+Hi Srini,
 
-On Thu, May 01, 2025 at 01:00:03PM +0100, Lee Jones wrote:
-> On Tue, 15 Apr 2025 15:49:16 +0100, Nuno Sá wrote:
-> > The adp5585 MFD driver was introduced in 6.11 adding support for gpio
-> > and PWM. However, the gpio part of it was already supported as part of
-> > the keyboard driver:
-> > 
-> > https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
-> > 
-> > On top of that it also overlapped with my refactoring of the above driver [1]
-> > to drop usage of platform data and use FW properties instead.
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [01/17] dt-bindings: mfd: adp5585: ease on the required properties
->         commit: 3a2ea3e9f369bdae939bcccff67a77a6281dca74
-> [02/17] mfd: adp5585: enable oscilator during probe
->         commit: 7353f196fd73b79e30ff750d93caf096ed660e1b
-> [03/17] pwm: adp5585: don't control OSC_EN in the pwm driver
->         commit: 7c7e9f08a1a9bf16b6c1942c2e0cb919da855970
-> [04/17] mfd: adp5585: make use of MFD_CELL_NAME()
->         commit: e72e9148d017535b39500d0aad624d0a0fcd2ce7
-> [05/17] dt-bindings: mfd: adp5585: document adp5589 I/O expander
->         commit: 6da01b9d833c5efbce7c2e30dde276e0d29105f8
-> [06/17] mfd: adp5585: add support for adp5589
->         commit: 382dc0327b8a9ee03c901df9b85134c68917becc
-> [07/17] gpio: adp5585: add support for the ad5589 expander
->         commit: cff3cef09595001140bd29aedf33fc84998bf77c
-> [08/17] pwm: adp5585: add support for adp5589
->         commit: 333b66fd3edfe18db4dc16041328a89144b73067
-> [09/17] dt-bindings: mfd: adp5585: add properties for input events
->         commit: 7bdb41d7a85e1c6244da57d4dcc491df962ff3fb
-> [10/17] mfd: adp5585: add support for key events
->         commit: 8814ac45c75fcce55896bc376a97b56f392925c3
-> [11/17] gpio: adp5585: support gpi events
->         commit: 8f3d9b44c5c5ada312d0ef71ec0181011854a95b
-> [12/17] Input: adp5585: Add Analog Devices ADP5585/89 support
->         commit: a53fc67a1e21a8507821263946b1d65687b0284f
-> [13/17] Input: adp5589: remove the driver
->         commit: 216c99cf1002a42f896b54fab09823e8ba46b218
-> [14/17] mfd: adp5585: support getting vdd regulator
->         commit: 63a8717f744d51ea0c8228e09db4233d48f2f9ba
-> [15/17] dt-bindings: mfd: adp5585: document reset gpio
->         commit: 49c887f0547bc14eb50ba20e1c8acb7255af3b86
-> [16/17] mfd: adp5585: add support for a reset pin
->         commit: 01c328823459456fb99469cc37f270f70d41fd2a
-> [17/17] pwm: adp5585: make sure to include mod_devicetable.h
->         (no commit info)
+Srinivas Kandagatla <srini@kernel=2Eorg> schreef op 1 mei 2025 13:37:45 CE=
+ST:
+>On Fri, Apr 25, 2025 at 10:07:26AM +0200, Luca Weiss wrote:
+>> Sound machine drivers for Qualcomm SoCs can be reused across multiple
+>> SoCs=2E But user space ALSA UCM files depend on the card driver name wh=
+ich
+>> should be set per board/SoC=2E
+>>=20
+>> Allow such customization by using driver match data as sound card drive=
+r
+>> name=2E
+>>=20
+>> Also while we're already touching these lines, sort the compatibles
+>> alphabetically=2E
+>>=20
+>> Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@oss=2Equalcomm=2Ecom>
+>> Reviewed-by: Neil Armstrong <neil=2Earmstrong@linaro=2Eorg>
+>> Signed-off-by: Luca Weiss <luca=2Eweiss@fairphone=2Ecom>
+>> ---
+>>  sound/soc/qcom/sm8250=2Ec | 9 ++++-----
+>>  1 file changed, 4 insertions(+), 5 deletions(-)
+>>=20
+>> diff --git a/sound/soc/qcom/sm8250=2Ec b/sound/soc/qcom/sm8250=2Ec
+>> index b70b2a5031dfbf69024666f8a1049c263efcde0a=2E=2Ee920b413b762c803cfc=
+c4049f35deba828275478 100644
+>> --- a/sound/soc/qcom/sm8250=2Ec
+>> +++ b/sound/soc/qcom/sm8250=2Ec
+>> @@ -16,7 +16,6 @@
+>>  #include "usb_offload_utils=2Eh"
+>>  #include "sdw=2Eh"
+>> =20
+>> -#define DRIVER_NAME		"sm8250"
+>>  #define MI2S_BCLK_RATE		1536000
+>> =20
+>>  struct sm8250_snd_data {
+>> @@ -200,15 +199,15 @@ static int sm8250_platform_probe(struct platform_=
+device *pdev)
+>>  	if (ret)
+>>  		return ret;
+>> =20
+>> -	card->driver_name =3D DRIVER_NAME;
+>> +	card->driver_name =3D of_device_get_match_data(dev);
+>>  	sm8250_add_be_ops(card);
+>>  	return devm_snd_soc_register_card(dev, card);
+>>  }
+>> =20
+>>  static const struct of_device_id snd_sm8250_dt_match[] =3D {
+>> -	{=2Ecompatible =3D "qcom,sm8250-sndcard"},
+>> -	{=2Ecompatible =3D "qcom,qrb4210-rb2-sndcard"},
+>> -	{=2Ecompatible =3D "qcom,qrb5165-rb5-sndcard"},
+>> +	{ =2Ecompatible =3D "qcom,qrb4210-rb2-sndcard", =2Edata =3D "sm8250" =
+},
+>
+>sm4250 for rb2?
 
-I'm a bit surprised, didn't you ask for changes, calling for a v3 ?
+Since this name is visible to user space and used for picking the UCM conf=
+ig, I don't think it's a good idea to change it=2E
 
--- 
-Regards,
+Regards
+Luca
 
-Laurent Pinchart
+>
+>> +	{ =2Ecompatible =3D "qcom,qrb5165-rb5-sndcard", =2Edata =3D "sm8250" =
+},
+>> +	{ =2Ecompatible =3D "qcom,sm8250-sndcard", =2Edata =3D "sm8250" },
+>>  	{}
+>>  };
+>> =20
+>>=20
+>> --=20
+>> 2=2E49=2E0
+>>=20
 
