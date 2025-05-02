@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-172903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4A0AA6E4B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:38:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE704AA6E59
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 940304A798C
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:38:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4163D16C8E3
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD912309AF;
-	Fri,  2 May 2025 09:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7A6230BC0;
+	Fri,  2 May 2025 09:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Uc7bBJNO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UTUTESF8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CEF22E00E
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 09:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DC0226D07
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 09:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746178713; cv=none; b=DG+oKmh/Z5M1Rdw8I0P0BNxvZuITezkdPThS1f9e+WxY2RvIaSYZsGd2AxcWPLleI4keRdC1rlzwzkIF6kTKML1ydlyQpn28G6Ti3/2qo0xLMnw8/U/GcPUD9+wVCQJjmartUC84KVC5RtneWUc9juZVZ73VUuT8FIohxJWdemk=
+	t=1746178975; cv=none; b=acYIXULlnwNimVSZ3TWLSYY2da/tN2bGC4/5X69+0cbaLQZC8zSBouK9mROyJXEcRYksy8lytNi0XtGKHeFRd5xE01APk+ZDXvuuMTervqzuCESy7Di8PWwifz0WM5JwSNf8fMgLtPxp8hPbh2KVAf2wxljhjL3tAGe0uHIWNc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746178713; c=relaxed/simple;
-	bh=NLLvyIIHNwAtuEV0aozIKj+fc9Qr8j0sIrTyMsGIABQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pAvp9ITcsCHsOGVO500BAGV9Wa7536toG0vGjBiNkp+Cd5dS9sYJnfrbUS/logztpEGlRseu80dadMnheQoCPfoNqeIfaWQJFOFPIViaQbka4uUAdp+YPfie77ddXJnYJomF0KGsVfb+DnTeYeRp8cTfA3cgixjJOIB5BIlOI64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Uc7bBJNO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421N2Q9015140
-	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 09:38:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	b4WiodssTyTUeYCWBBLu8Exg0/NivSkSrrcMmrg5JIs=; b=Uc7bBJNOUyIWqKJZ
-	rIgngeVBkRqeHblOE9MEJXJlTP9CrLg9Bqkzd1O7aO8O9C+RZLYRzHN11w8zs72c
-	69p9e3EqSgRmRjbcoda8L+pgpJX5xHUr6DaaYW0kdlXq0+Mn8fhk9I8c4Tt0q1N0
-	Xbn9jCBaOgz+XEq5qvnaPggK39c6AjJS3SxByxGyHx8kdXPXBpv/sLJxVP+rXvcn
-	GpMJHRrEks7wjB6VRXUgPidUE+LXbFYRrDexTcZAr3WKICR9QwcYLw8f1ntYDryL
-	DUHdUGfc0ggnu4fBRBKgLVMWkjNgem2qH1O7Po7whg8G/+xZFgn1TEXYzcnPVbAd
-	i6bbVg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6uayr84-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 09:38:25 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-476695e930bso4623851cf.2
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 02:38:25 -0700 (PDT)
+	s=arc-20240116; t=1746178975; c=relaxed/simple;
+	bh=XE7hRm0qUP0PF61AUPQ84APUG//4sM4kzYT+GWRzLUQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=rzw5784hc3V0A+eT0hIjy37p3gc3ImWlMHYAuZC8qQBbrm1E1XUDOP3DWUZXDIMJi7oYT+gPkoKwX3CObXdjn40z7isnUx8rBVGTNFzNUjI8qRLJyLlAnR+8dU3edLY8c+ZFxh6BcxPpTOQziq450T96xe+zqCkGztk9uJl9k+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UTUTESF8; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39d83782ef6so1935970f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 02:42:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746178972; x=1746783772; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:cc:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WX/evLS+DuAe/0hAk5mHgxdHnsJicsKUxinsRE+gIwI=;
+        b=UTUTESF8oIlgwT1NlAMe84PQyu+i2zvuu36LEu2IRmlO4C5699pofAS24BZRT+Nd8c
+         iPUzLgTYXIqfDrkaxKy+JPlWPSzupqok+ycdPWiJBIL8oIi2Fs9knsc89krO9dLNGfHL
+         30gBVBj5VR0c4b8p0xr+QehSMByt3cursARIoWDyCB1kZHTX1NtVQPp1dkPew0kMqpDY
+         MlRhcpT8hmIi6pJw2zXwuY9KhYsUI56QYTMjS+Ge+gIQAI9d29MTLYbtIgBsLPuVnnAJ
+         xbSDodvCMDzKrHkdQIbQvCeHrJZzsMaMX/cGz8mMiuH1FE8CQSae9DTl4Glky2M31H0k
+         cD6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746178704; x=1746783504;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1746178972; x=1746783772;
+        h=content-transfer-encoding:in-reply-to:from:cc:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b4WiodssTyTUeYCWBBLu8Exg0/NivSkSrrcMmrg5JIs=;
-        b=jtKHqv3pK4ChVyFqzdCsCGDv1Yfi3T/NGm3kprtwPM9AHaWNGJSClfFDG2H2TTJOf5
-         LPDt7A+eNZW19gx4fQ3uvPJQYe1nfZJedMSuKJuLNJnHt2hwUamq/JqrRJ3L/FaIGndd
-         pQimJl4cBaLhMD+usb5rTp3GLvEW9I5cEHQolzinPB1bkRiUN909qTYZJXwxvteHHfni
-         G6fEZRvfYJonIT+U3SD+QnfuarPxC4jevmEtBI6z+XfAP6FJnpZ1pzvgeIHNxX2yoAiG
-         +xaztxJTYGWR1e2qkvko5fSTb9do3uwz65o/nWkgDEWfMiS/92OzCj8xLPc9dA/qP9ug
-         Zhzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLElPcO8mjv7HmSM11GgGYpUSFcaM9ak+xkRASGQgPM23+k9dvOE9fJA/2qRXaMThDjDgtIqNh/YkK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw381oLbJn9ixcYB4M9+6pRQHZjZtRupf1BKqGrMEH+4cSPEPvI
-	rVS1B7JXoqw90i6+K80xOXwNdkLRFz1rlC1MvSYs+DKXKTIodWgjcdpaPZlaMOodEm2QJ8wilin
-	9cVrfh0sEGwidME23qY1+fs3pp6PVJGGseVUV8Rujj6feqgz3hBpLinqm1S6E
-X-Gm-Gg: ASbGnct1NDUieG0LkizoYDJeUKfi4vAzhxZOPaygvUV/H/H4uGX4HrHsC+yC2uR/W+o
-	ubIEbVTKo652OLBvMigWLGJDEvZdu62r00uwkShVKRDUfCbQbmLqHDfWD6tYxBGFUdWg8ERaz+K
-	XW0FhHW2Wcq6ysGO+MFU8bGS5oP73Qvg4UvzjR7s2wHGLT/6txnxlREkSSDiW8p3K/H1Y2hrIjz
-	iUJrU4FMCzZeFq0deEa1hpwDqpRbyxDFi50jS7X4+lG1HS6r5tUwxRQuJ6LNr/kgZtBfIUs9IuS
-	d7D7qs2jdGv549RiYIaW5zp7POE26DHs11U2DXciUvC0NYmjaZoWcF3VbV4qITttyVE=
-X-Received: by 2002:a05:622a:107:b0:475:1c59:1748 with SMTP id d75a77b69052e-48c32ac7ee4mr9762011cf.11.1746178704308;
-        Fri, 02 May 2025 02:38:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGplNT6UL2AH5Q6cD4nnSucsQ4tbT2oyVU6ywNClcUBdOxGbjYILgTlk7z1kZTgo/jqQ6unpg==
-X-Received: by 2002:a05:622a:107:b0:475:1c59:1748 with SMTP id d75a77b69052e-48c32ac7ee4mr9761891cf.11.1746178703973;
-        Fri, 02 May 2025 02:38:23 -0700 (PDT)
-Received: from [192.168.65.113] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1894c01b2sm22103166b.109.2025.05.02.02.38.22
+        bh=WX/evLS+DuAe/0hAk5mHgxdHnsJicsKUxinsRE+gIwI=;
+        b=PRF1mo4lsv72ZJ5nKIqBgLHO39mFoH/X64xYBd5tGN7DUqaWOCX+H+LJPfpQhofwPf
+         veAtq+aBhDR+g7N6Wl+o5zm/GOz5FFfgiNwJ9Ws2ejqu8tIqVTd/k7fk4zusyvqOGh9C
+         bF00UrwodHJwsQ1LVOaNvojKhsWyaElsF+NGNN6fXvKa+wzAtm1L9S71fFkN4kqRWGTo
+         1AaT9+jfFLKywOudXL5fmSkzkeOsMHTTdTF/1wtOKPpN2RrJa/A1Yrlj+Ey14iJxO4FX
+         wSDc+obmeRf7FEAcfjy3+yB2MdarvLULHuvzQoM6OOkv4SCOivSCmWBFBggNziZYFuGd
+         fA3w==
+X-Forwarded-Encrypted: i=1; AJvYcCU0cjmf4XDVJ8wxygsh1ARSLKrgiskIPBe1i6mxArSS5m/4qr8PlbnlE0zp63Nurx5VsIHBd2xfRQTx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVcklmH1LBgoLhlDu8xyItsDwR3tV37j6wFvgQhs/AYox1bsMX
+	l5cjcuOcUdrmy1XJdDBzceKka6MFwFqpaiplKUQApDXLZQSfeWlnVg/cj3UHsYI=
+X-Gm-Gg: ASbGncsaXNAFLpwny8UZFpvmhiaXcb4gdYJnvH1aNWLzv1sZb32tiUBSXq37+VKzxrX
+	9gAnzOvtg3713JFld/4dkZTDJGTPGs/yF1cOsCj2iBQCaC5cAzNIQnTaMnKpp/aH+IJTTJUEidJ
+	qlSAq4R0UXq+PY9F8I+W75b8PJM1Z0GbdRs/JHLcLrVvWGJexVzdtu57B31CfNUyHEvFZ6495Di
+	jUjb/+ayZ9MCAoi72Y7W905v0wMv8IHbHj7+saTJblDYkdI8+JVccUVHMIpQPmjGsUzY7A/WArw
+	+wziC4wwbCTEUWkyB65LCrIvxHGdzLa5hyU0Uut/DfBIkMkShONwCefBfUoVv5QOgv9PKsngW6u
+	V269K
+X-Google-Smtp-Source: AGHT+IFiBHhJcjpY8AHYvmDW+6tcszRqTtvHysmH6lFStDCvbCOZgJoVZxZSTCZEdI78/1mXl/L2Pw==
+X-Received: by 2002:a05:6000:2585:b0:390:ec6e:43ea with SMTP id ffacd0b85a97d-3a094038f02mr4157873f8f.15.1746178972094;
+        Fri, 02 May 2025 02:42:52 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a099ae3c1fsm1660874f8f.37.2025.05.02.02.42.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 02:38:23 -0700 (PDT)
-Message-ID: <10f69da3-6f94-4249-a8f3-459dc48fa5e1@oss.qualcomm.com>
-Date: Fri, 2 May 2025 11:38:21 +0200
+        Fri, 02 May 2025 02:42:51 -0700 (PDT)
+Message-ID: <356bc97a-bd75-4894-98fe-d7fb0e02e1c1@linaro.org>
+Date: Fri, 2 May 2025 11:42:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,88 +82,122 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add adsp fastrpc support
-To: Alexey Klimov <alexey.klimov@linaro.org>, andersson@kernel.org,
-        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        srini@kernel.org, quic_ekangupt@quicinc.com,
-        krzysztof.kozlowski@linaro.org
-References: <20250502011539.739937-1-alexey.klimov@linaro.org>
+Subject: Re: [PATCH v5 2/2] thermal: Add support for Airoha EN7581 thermal
+ sensor
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20250226003608.8973-1-ansuelsmth@gmail.com>
+ <20250226003608.8973-2-ansuelsmth@gmail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250502011539.739937-1-alexey.klimov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: mlOsGRgELJhle0ploXocUIXpdIDUf8xD
-X-Authority-Analysis: v=2.4 cv=KtlN2XWN c=1 sm=1 tr=0 ts=68149291 cx=c_pps a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=i5LmXQDNGShexaeZTkYA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: mlOsGRgELJhle0ploXocUIXpdIDUf8xD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDA3NSBTYWx0ZWRfX7CkiBL6U09kC L6JR2nmpjwz5GvrU+xDvfvTIq44wGP86jFx7R+4ucjdemp25bzJAAh1lIIbltYk7Oe9eG9YVIKw zOxtvqwzoHAj7amrZ08QyZTI21yP3LPvPFZ/A2v25hv9jHV9EyTsAgd4ZiRz+gMSIfBW9WwOJ/W
- Xkp1uYcEU3DqLO75nOu1My2YvSHdPLO2rvkD2LEdbMSk83UIeG/0txt+1IEH4CRMGmrdQzzflDW uXYFDMcmdEdcUKUuT3hPDCMcA/kzG7wY2xJeGh7cga6jBZ9CvO7BI0Y/oujpRPKddry86LjSws4 XGqQ5zwPbhcDmZacKrmDzlvhS0HLkxezL784u2vBHFimSRp0fFkc5cNWePi+TbebitaJPUm4BdW
- LQMFh8c5NPeABFoL4COfpV1I+NKO2xiebmTh2ns/TwFHAOmox11PutxVW7KK+h8Te5hui+m1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-01_06,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=999 spamscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020075
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Lukasz Luba
+ <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Christian Marangi
+ <ansuelsmth@gmail.com>, Zhang Rui <rui.zhang@intel.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250226003608.8973-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 5/2/25 3:15 AM, Alexey Klimov wrote:
-> While at this, also add required memory region for fastrpc.
+
+Hi Angelo,
+
+AFAIR, the LVTS driver had issues with the interrupts.
+
+This driver proposed by Ansuel Smith looks very similar to the LVTS and 
+there are some comments regarding errors with the documentation below 
+which may appy to the LVTS driver too.
+
+Would you mind to check ?
+
+See below.
+
+On 26/02/2025 01:35, Christian Marangi wrote:
+> Add support for Airoha EN7581 thermal sensor. This provide support for
+> reading the CPU or SoC Package sensor and to setup trip points for hot
+> and critical condition. An interrupt is fired to react on this and
+> doesn't require passive poll to read the temperature.
 > 
-> Tested on sm8750-mtp device with adsprpdcd.
+> The thermal regs provide a way to read the ADC value from an external
+> register placed in the Chip SCU regs. Monitor will read this value and
+> fire an interrupt if the trip condition configured is reached.
 > 
-> Cc: Ekansh Gupta <quic_ekangupt@quicinc.com>
-> Cc: Srinivas Kandagatla <srini@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> The Thermal Trip and Interrupt logic is conceptually similar to Mediatek
+> LVTS Thermal but differ in register mapping and actual function/bug
+> workaround. The implementation only share some register names but from
+> functionality observation it's very different and used only for the
+> basic function of periodically poll the temp and trip the interrupt.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8750.dtsi | 70 ++++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> index 149d2ed17641..48ee66125a89 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/clock/qcom,sm8750-gcc.h>
->  #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->  #include <dt-bindings/interconnect/qcom,icc.h>
->  #include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -523,6 +524,14 @@ llcc_lpi_mem: llcc-lpi@ff800000 {
->  			reg = <0x0 0xff800000 0x0 0x800000>;
->  			no-map;
->  		};
-> +
-> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
-> +			compatible = "shared-dma-pool";
-> +			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-> +			alignment = <0x0 0x400000>;
-> +			size = <0x0 0xc00000>;
-> +			reusable;
-> +		};
->  	};
->  
->  	smp2p-adsp {
-> @@ -2237,6 +2246,67 @@ q6prmcc: clock-controller {
->  						};
->  					};
->  				};
-> +
-> +				fastrpc {
-> +					compatible = "qcom,fastrpc";
-> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
-> +					label = "adsp";
-> +					memory-region = <&adsp_rpc_remote_heap_mem>;
 
-IIUC the driver only considers this on the sensor DSP
+[ ... ]
 
-Konrad
+> +#define   EN7581_HINTEN1			BIT(6)
+> +#define   EN7581_CINTEN1			BIT(5)
+> +#define   EN7581_NOHOTINTEN0			BIT(4)
+> +/* Similar to COLD and HOT also these seems to be swapped in documentation */
+> +#define   EN7581_LOFSINTEN0			BIT(3) /* In documentation: BIT(2) */
+> +#define   EN7581_HOFSINTEN0			BIT(2) /* In documentation: BIT(3) */
+> +/* It seems documentation have these swapped as the HW
+> + * - Fire BIT(1) when lower than EN7581_COLD_THRE
+> + * - Fire BIT(0) and BIT(5) when higher than EN7581_HOT2NORMAL_THRE or
+> + *     EN7581_HOT_THRE
+> + */
+> +#define   EN7581_CINTEN0			BIT(1) /* In documentation: BIT(0) */
+> +#define   EN7581_HINTEN0			BIT(0) /* In documentation: BIT(1) */
+> +#define EN7581_TEMPMONINTSTS			0x810
+> +#define   EN7581_STAGE3_INT_STAT		BIT(31)
+> +#define   EN7581_STAGE2_INT_STAT		BIT(30)
+> +#define   EN7581_STAGE1_INT_STAT		BIT(29)
+> +#define   EN7581_FILTER_INT_STAT_3		BIT(28)
+
+[ ... ]
+
+> +#define   EN7581_NOHOTINTSTS0			BIT(4)
+> +/* Similar to COLD and HOT also these seems to be swapped in documentation */
+> +#define   EN7581_LOFSINTSTS0			BIT(3) /* In documentation: BIT(2) */
+> +#define   EN7581_HOFSINTSTS0			BIT(2) /* In documentation: BIT(3) */
+> +/* It seems documentation have these swapped as the HW
+> + * - Fire BIT(1) when lower than EN7581_COLD_THRE
+> + * - Fire BIT(0) and BIT(5) when higher than EN7581_HOT2NORMAL_THRE or
+> + *     EN7581_HOT_THRE
+> + *
+> + * To clear things, we swap the define but we keep them documented here.
+> + */
+> +#define   EN7581_CINTSTS0			BIT(1) /* In documentation: BIT(0) */
+> +#define   EN7581_HINTSTS0			BIT(0) /* In documentation: BIT(1)*/
+> +/* Monitor will take the bigger threshold between HOT2NORMAL and HOT
+> + * and will fire both HOT2NORMAL and HOT interrupt when higher than the 2
+> + *
+> + * It has also been observed that not setting HOT2NORMAL makes the monitor
+> + * treat COLD threshold as HOT2NORMAL.
+> + */
+> +#define EN7581_TEMPH2NTHRE			0x824
+> +/* It seems HOT2NORMAL is actually NORMAL2HOT */
+> +#define   EN7581_HOT2NORMAL_THRE		GENMASK(11, 0)
+> +#define EN7581_TEMPHTHRE			0x828
+> +#define   EN7581_HOT_THRE			GENMASK(11, 0)
+> +/* Monitor will use this as HOT2NORMAL (fire interrupt when lower than...)*/
+> +#define EN7581_TEMPCTHRE			0x82c
+> +#define   EN7581_COLD_THRE			GENMASK(11, 0)
+> +/* Also LOW and HIGH offset register are swapped */
+> +#define EN7581_TEMPOFFSETL			0x830 /* In documentation: 0x834 */
+> +#define   EN7581_LOW_OFFSET			GENMASK(11, 0)
+> +#define EN7581_TEMPOFFSETH			0x834 /* In documentation: 0x830 */
+> +#define   EN7581_HIGH_OFFSET			GENMASK(11, 0)
+> +#define EN7581_TEMPMSRCTL0			0x838
+
+[ ... ]
+
+
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
