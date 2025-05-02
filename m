@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-173067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A5BAA75A8
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98450AA75A7
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:09:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E149C1156
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AE829A72D2
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9440A257433;
-	Fri,  2 May 2025 15:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6887A25743B;
+	Fri,  2 May 2025 15:07:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C937257440
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6DE257433
 	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746198441; cv=none; b=OIuyWYy87nI2S69vzmNYQQKfkukVPr+/OP87+6SKX21mAnOpvH/IuktHqkpUuNT4rVBuiqvFoi5A7mQByDk+qXD0eobWi43yDr7+Xz4e7nLuE9+opcARd8kYSxE0p9pBdaybigjmkZtoCfgna8Inqw0OAkASM43MZfxzJn7kI0s=
+	t=1746198439; cv=none; b=WeCQ+CiTYO4rylCE0kpzUoEBWNS+UGXlYv3nMhpGuNfFbA+Pt0Rq50Et4UbQXzOgSVvB0iVdcNAzwLVxxf/zKUpJViN8zkuR3elTPxwxsXH8p5IJFZiv/+SMglxIBj/S00Y45MyWdKDAy7erioNoTpoUgVwzlg1vWSKSNLV2RoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746198441; c=relaxed/simple;
-	bh=C/bY5yF/nN6J79ZtAT+oJKuULGGt3tVAogRCy21zHtw=;
+	s=arc-20240116; t=1746198439; c=relaxed/simple;
+	bh=ovx3GVZBG348SQWXrvTALn0ZGZEI4xJVWp/EdS7tQQ4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Heea7T9gzxMMullylnw7vr0UTGT3iZWfAS8p+QX1GLxcJmdWOenSRFrVbuVTQPBr7a5/jqX9BSpVwMXIC7UDNbu/EZcY2+aH6yOuMTJK/p/htgGWLdr4Jhl5pJrumlBtfYi+LXudp4OQTcYjm6lUpzZ0oBhSvfwgMyLl95C7Ubk=
+	 MIME-Version; b=YjmaKwjAKarXeZ3pxczNtQzwnpxwfhRPUWf4BIAFbw9HvWtHv6pzs/lsr7VDqIoA4RIqR2jL7lVv6bUC1GtepYG5E67QL6RMPX1U8YWBbPi2urFBl1zE4FBryp10dLNeE3rSqrEbq5lMtAxt7fdzptxdtaaGvR3Mbs7pDPIzmbQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1uAryb-0004HG-HC; Fri, 02 May 2025 17:06:57 +0200
+	id 1uAryc-0004HG-GP; Fri, 02 May 2025 17:06:58 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: nicolas.dufresne@collabora.com,
 	benjamin.gaignard@collabora.com,
@@ -56,9 +56,9 @@ Cc: linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [RFC PATCH 09/11] media: verisilicon: add H264 encoder support
-Date: Fri,  2 May 2025 17:05:12 +0200
-Message-Id: <20250502150513.4169098-10-m.felsch@pengutronix.de>
+Subject: [RFC PATCH 10/11] media: verisilicon: split read/write debug
+Date: Fri,  2 May 2025 17:05:13 +0200
+Message-Id: <20250502150513.4169098-11-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250502150513.4169098-1-m.felsch@pengutronix.de>
 References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
@@ -74,34 +74,80 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the required HANTRO_MODE_H264_ENC enum to handle Hantro H264
-stateless encoders.
+Allow a more fine grain read/write debug control. This is very useful in
+case of hantro_reg_write() is used to not interfere the write debug
+prints with read debug prints.
+
+While on it, make the reg/swreg value clear for new developers.
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- drivers/media/platform/verisilicon/hantro.h | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/media/platform/verisilicon/hantro.h | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index edc217eed293..e464bec47b11 100644
+index e464bec47b11..7b031df5b0a1 100644
 --- a/drivers/media/platform/verisilicon/hantro.h
 +++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -107,6 +107,7 @@ struct hantro_variant {
-  * enum hantro_codec_mode - codec operating mode.
-  * @HANTRO_MODE_NONE:  No operating mode. Used for RAW video formats.
-  * @HANTRO_MODE_JPEG_ENC: JPEG encoder.
-+ * @HANTRO_MODE_H264_ENC: H264 encoder.
-  * @HANTRO_MODE_H264_DEC: H264 decoder.
-  * @HANTRO_MODE_MPEG2_DEC: MPEG-2 decoder.
-  * @HANTRO_MODE_VP8_DEC: VP8 decoder.
-@@ -117,6 +118,7 @@ struct hantro_variant {
- enum hantro_codec_mode {
- 	HANTRO_MODE_NONE = -1,
- 	HANTRO_MODE_JPEG_ENC,
-+	HANTRO_MODE_H264_ENC,
- 	HANTRO_MODE_H264_DEC,
- 	HANTRO_MODE_MPEG2_DEC,
- 	HANTRO_MODE_VP8_DEC,
+@@ -367,7 +367,8 @@ struct hantro_decoded_buffer {
+  * bit 3 - contents of big controls from userspace
+  * bit 4 - detail fmt, ctrl, buffer q/dq information
+  * bit 5 - detail function enter/leave trace information
+- * bit 6 - register write/read information
++ * bit 6 - register write information
++ * bit 7 - register read information
+  */
+ extern int hantro_debug;
+ 
+@@ -391,13 +392,13 @@ static __always_inline struct hantro_ctx *fh_to_ctx(struct v4l2_fh *fh)
+ static __always_inline void vepu_write_relaxed(struct hantro_dev *vpu,
+ 					       u32 val, u32 reg)
+ {
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(6, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	writel_relaxed(val, vpu->enc_base + reg);
+ }
+ 
+ static __always_inline void vepu_write(struct hantro_dev *vpu, u32 val, u32 reg)
+ {
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(6, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	writel(val, vpu->enc_base + reg);
+ }
+ 
+@@ -405,20 +406,20 @@ static __always_inline u32 vepu_read(struct hantro_dev *vpu, u32 reg)
+ {
+ 	u32 val = readl(vpu->enc_base + reg);
+ 
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(7, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	return val;
+ }
+ 
+ static __always_inline void vdpu_write_relaxed(struct hantro_dev *vpu,
+ 					       u32 val, u32 reg)
+ {
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(6, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	writel_relaxed(val, vpu->dec_base + reg);
+ }
+ 
+ static __always_inline void vdpu_write(struct hantro_dev *vpu, u32 val, u32 reg)
+ {
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(6, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	writel(val, vpu->dec_base + reg);
+ }
+ 
+@@ -433,7 +434,7 @@ static __always_inline u32 vdpu_read(struct hantro_dev *vpu, u32 reg)
+ {
+ 	u32 val = readl(vpu->dec_base + reg);
+ 
+-	vpu_debug(6, "0x%04x = 0x%08x\n", reg / 4, val);
++	vpu_debug(7, "0x%04x (swreg%u) = 0x%08x\n", reg, reg / 4, val);
+ 	return val;
+ }
+ 
 -- 
 2.39.5
 
