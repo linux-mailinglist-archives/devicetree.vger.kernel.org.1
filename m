@@ -1,293 +1,237 @@
-Return-Path: <devicetree+bounces-172835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D7CAA69E2
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 06:42:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62382AA6A4A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D07131BA5C41
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 04:42:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C8BF465B99
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 05:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA901A5B87;
-	Fri,  2 May 2025 04:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBF21D54D8;
+	Fri,  2 May 2025 05:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lD93qQm0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kH6QIXCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE8F1A3154
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 04:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A48A1C863B
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 05:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746160933; cv=none; b=hU8xNmG4RCQ9qtaj7Ff2qqnqxF8HEyye5G++8sOAGUksDBw76TOfM4qK7Zkb1iBw79fu4X5bN69aNe/i3LwQCKccP2FGKf8kRuFGxwjrH219En/kb5QIdLO2PkBQeQJBxoTyTbF8GnDuFlkoMzz1ZmiCC6/iAgRbbNR3mXeDkQs=
+	t=1746164283; cv=none; b=AeJ6a1tkYTutiErSwxJ0by0kS9E6BU4mHapaCPNiJVzXwjKFVzYeyps0gG93J17/kDjpPkzuhWJtqzRDluIUYRYIKNdYCe851GgMHXPOk3ISXOr5osEnmI/1U5zmOpfXl3uRrFPM2/IHYvz04c8E5mXHkPMOoYI3tNT+CsS+cIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746160933; c=relaxed/simple;
-	bh=AS5GCwcO4Mg8AL75Z9J2FHBKkN5+JSl/LX+VBO7oJqQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Krb6jFlUmBlMGdijcO9rCSjYTjp5levExNvqvgv9aVApKVhjwr8ejFponGIo/CMSV3jG0SRXGUin4K1qrbkKjPjx4/sWM4ZimwXY4oIzjpyf12PeiOE0RJUKs+I6W4laccyWiBxtCGEYa2nw3SLHC0r4UW4rBr88vlAJVtIXeU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lD93qQm0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421NLYq017267
-	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 04:42:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7j5UxYN6C9Dd6qHXGE97a7YLEYkg4By51iUOqA+ylAQ=; b=lD93qQm0lfGtQu2b
-	Qol+d3LR4qo4+nRMOn5UzV0/SgDWNud83Pb+Tb1RKqYAJjqowwungs3q4s2MUfb6
-	7PXzNa05DwwAk2Rj1KaQsViGT+LbFMTslw56wXt5S4ADZssd0iVNijqc72MCH2l6
-	30Ndlv6aAvcHhBga9oSw6ybxw3mAwHQpEIpS1CiwVdJO29HkpbWoihIBbqjIwyKC
-	UBZ30zVcfnRHVBUtSNVVIBEI6fDQvOe3F6REV3Q6NwDIuRC03LCduxDPZfxwG8Cu
-	n1Int1HTfaIThrO4uv7x/l7f9t2By+WhIdTJpAy3ufJ9pyI+4lyiGiJNNFzybgLG
-	wm+Kow==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u3y5xq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 04:42:10 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7375e2642b4so1211415b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 21:42:09 -0700 (PDT)
+	s=arc-20240116; t=1746164283; c=relaxed/simple;
+	bh=N/Fwk495kD9mepOgV0IPLwaThwSJRDLJnhumIXeiRno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jy5HLU/9QSss/fCvMz4uxKBwCpuf5lyvhAmyTn+q0PLV7mSkY9Z+mC1XkC4h2594ltM0Jb+6Z1JAWshqUAKxmNaSP/zzvKc8JDu76xj0l1pwbo/buIaTdcLaMGHGm8qCW8cSyEQJmYjOOa8O38ocOs5h78st7O8fr9mnCgxZLXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kH6QIXCx; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-af52a624283so1548548a12.0
+        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 22:38:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746164281; x=1746769081; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YaX+qGxsFULZ7aFPA9lXuC3vgye3yN1BRqF93u06YOM=;
+        b=kH6QIXCxDGDbgypMyPjky0LYSk1QUTu0nprBfhSuqcgoy4ZHqMOIe66zMNqVGBSrpO
+         D0w6k5Jflw40imWBOas27XH0LKJI8dXWN5fVShJ5unpfVGMqAPYCLmF1d2p/YhXQyx+N
+         iL+C7jSY/KbI60dOwiXWP8QGTj43Sx5zZqJCMcfP4dMP+sggypKexSVMQ3v+Jkd4E8qW
+         72JdoBxWY7h74zqS6Ihu2hnHeWoKwfEH4BGlZ55rtFEF5ncGqpTI6H2Q4mGjxFeAQ2/N
+         aqpeP6J7XZm9y1Cy0StSJUZZZ5vLY2go6ZiVipRzBBf3bLC9Enw6QlbTSpv/GT/Zr8Wi
+         4oRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746160929; x=1746765729;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7j5UxYN6C9Dd6qHXGE97a7YLEYkg4By51iUOqA+ylAQ=;
-        b=Xjy2NhQPdEwPwg0MyCt3uSZaGVhqON5W2jSatdGN6pNpPK+mLZm+mhN5tUffAfLN+P
-         g6rnWjVi2zhBkRHmKw3URJY/syeSvu1sBlHy08tnD0NkqZzqFmj2wbjWpUonyfJSFEkq
-         k2YgnIf/y958ej0V0qF+JbmF1z7fkxbQckRe2T5mQbMz2ym3LfHy/AzhmUFHtIMvPUc6
-         zu0NNvL+GuHfZuPKC+ZE0HYuifCdovccnD8MwPqgyLf+FZi/mmt3ExKqa0f3sbxp6lNz
-         h/ja5LoPfCMCbGZHBTrViGfuhPsjmy+7yxAeNIgki/ZaTSqZ5I+B8kASvSeweLzaoIFv
-         gRqw==
-X-Forwarded-Encrypted: i=1; AJvYcCVyHh0qoYy1WsgbendPtszrScd30CEp0oA4f9DEYj8ldETe/7mfT1kWXdt/Zn8gs7rDA8lHoeZI0S5b@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywty/U6yFLkvfqelCgqhX54OLXDkkffKoL1koh5/s8kBnsUySkl
-	+74/GF+Uf36j2M68vJ/QXWdj+7uUZSI8cM6KExC+j3U7o9bPuLF0QPB4lzWNcDppJnf3I4CpboT
-	FZELUAXnDcHS10Wwp7EK9+GtM8bi/exGOyjVtm6ekVqRCh9ZvR1tS4/CHiwwl
-X-Gm-Gg: ASbGncvFVJQ6HpXeydmi1xH0BEvrkXE6Mwf2fjgCuYxgOyz34zlZF/DoPc6bRst+G7g
-	iVeGa68SJX7pvdsOdRBKjT8UDvhNgXLqKfSglP+whLavhVgj+rXy0KU06gpQuEs+EtTcWJLNqu6
-	MFxcJpl9UrNHi6ey1DXuehlPkDvLmF2O4QlkZDJcxZF4PxssqnJaoye5RIUmzOA+sHTdfcNst3d
-	pxkDDYF9d29F0cxvaaqtDVLH6Z52sHn8VvoSHspBza7iGqaT6NRRhZKBnpXYt00SwaTo7aD4cdK
-	I+GE65UN+B+pLZu/kEvnyk5HljrF30o528db3LdYsWuPeb030I73
-X-Received: by 2002:a05:6a00:4294:b0:736:6ecd:8e32 with SMTP id d2e1a72fcca58-74058b23ef3mr1866199b3a.21.1746160928681;
-        Thu, 01 May 2025 21:42:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGBQrj67WLhBG3Hq96DBg+5Opa1dABnH/Q1s+TspcF/KflEqOJ5Mrv0bnI/pESCH+hoqmXB/g==
-X-Received: by 2002:a05:6a00:4294:b0:736:6ecd:8e32 with SMTP id d2e1a72fcca58-74058b23ef3mr1866183b3a.21.1746160928305;
-        Thu, 01 May 2025 21:42:08 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74059021483sm590790b3a.93.2025.05.01.21.42.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 May 2025 21:42:07 -0700 (PDT)
-Message-ID: <09579b2c-f312-4c8a-b57a-b240204cd733@oss.qualcomm.com>
-Date: Fri, 2 May 2025 10:12:02 +0530
+        d=1e100.net; s=20230601; t=1746164281; x=1746769081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YaX+qGxsFULZ7aFPA9lXuC3vgye3yN1BRqF93u06YOM=;
+        b=T5G4YFDpU6b6rktNUNeQV+/0flFU+mnpPzjW7RtIMKmIHeBiDaNirvaZOeLJa4K8a6
+         vMHXJfzmN/XN13BPPHGKRQDJR9pLH0McqNYLQWyHMYEO56ZM/BgBJ6uYmx7hpULQ+6Vo
+         U5OcAU9RwA6PBjDTlXtKLap0OPGbgefkhWjN1DM9M51nMRvTNrz4VgYz8cNwdOO4Gz7z
+         cdEWmTI8guZhEaQC15wB5DQu8u+0bZK6HBDdUEO5l8meu+YHtFzIffywhwmR8stlTYWc
+         rYsSrvOGLslDmryvk2B5DcowfFy1ZHVHPHhQv+GH07yBZsXEnMBhzRVmGqbZp7hVfzsX
+         Y74w==
+X-Forwarded-Encrypted: i=1; AJvYcCVtqUVRq2e67/dVbWRVsHSDfln4/cvsYfIKbsM+dshK04ylnhFNTsG6+YmSAOHfN1bmmdQFVbJQCZRs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhXZkq14847l+YHt+SYm/EpHc446dtwyweEJJSX/byQnbr1nnB
+	+zk+uOik7mRymDzrTAsjGdkIkAZi32t0AxJO63Kh6FXJ1no2F4VuxhuP5RETw7c=
+X-Gm-Gg: ASbGncv/ZFXyxGQl9UANCJ86+5jCVT8+Qr5LK3xUuwc1OezNkuiViS00RbQ1P8KxiUw
+	6xv4eigKhrbFG0tv5MJCwc+k9kwDdW6NfVO4Y8H2kQySGGU6oFhn6hwjLI/9GtGm9Wy7hbXj+u7
+	qlkpui8SHnLe82MElLYaEkhHi4XBYhw1EdBO1w+8eQ2/kJg9rmmlbo3Rr5xi7RUeUP1jovSPixQ
+	W3dMwkiIKNLGDRKYkA65Nt6bMYoUiLQedOg6LZb1eNpdElnBTJ8wJppvgfExurlEh0/JDeqdhtp
+	JgnaLMEGOMGsT6znxs/Kb7/x4xWECbEWREXIknS0WQ==
+X-Google-Smtp-Source: AGHT+IHL3pc4Gg50CajefQDLcK4ACzy8Pdk2nQi1FceIxJmjgGkFLMkDvveyaUAdVzjKAu9GfP26qw==
+X-Received: by 2002:a17:90b:544c:b0:2fa:3174:e344 with SMTP id 98e67ed59e1d1-30a42fd0638mr7349801a91.14.1746164281091;
+        Thu, 01 May 2025 22:38:01 -0700 (PDT)
+Received: from localhost ([122.172.83.32])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a34778329sm4692345a91.28.2025.05.01.22.38.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 May 2025 22:38:00 -0700 (PDT)
+Date: Fri, 2 May 2025 11:07:58 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
+	quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()
+Message-ID: <20250502053758.utawzhq6famwenc2@vireshk-i7>
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-2-quic_ptalari@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] watchdog: qcom: add support to read the restart
- reason from IMEM
-Content-Language: en-US
-To: Bryan O'Donoghue <bod.linux@nxsw.ie>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com>
- <20250416-wdt_reset_reason-v2-5-c65bba312914@oss.qualcomm.com>
- <ebd4790b-e7aa-45b1-b7d7-9d1b331ee842@nxsw.ie>
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <ebd4790b-e7aa-45b1-b7d7-9d1b331ee842@nxsw.ie>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Bv6dwZX5 c=1 sm=1 tr=0 ts=68144d22 cx=c_pps a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=Amq28VNnWxlBxfWyqssA:9 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: 8SyrzpS_dgz78RG-q22cuMoCio3VJnbd
-X-Proofpoint-ORIG-GUID: 8SyrzpS_dgz78RG-q22cuMoCio3VJnbd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDAzNCBTYWx0ZWRfX8hCOW4e5cK5A 7n2kCkXLRq+9WpkRxodqzRG2P8XCLKks+RwVD4D31XQ2L6oWs8jk3dXxuyewwm6XzieoP33+rfM LZgkIu8httIl/0LrK5aQ64N9eSzokLAkOIrYmnNkLqG4rupXYxPHo63AnTwPJky2hM64EL7LbXa
- AQO0ytCNIOHBLu8ox4cjXRFb66OjGUfEFMDlRJGbNxut8IpeRvyYxcOkW49sIKiOxeai7vZCPk7 QKgu0FqunNiZeK0iKA6lNwUNQ/5qO1MKi69sek8VPNXlROy+ANiOd5f8zWW0IPLnVrlFRknU+Nb g1mWm0WNVXmLOvdFXyyNuM5EuH1TBJkx4nsO4gaBJc/SgXmw//7in3kCKjBa5H+52NliM9UWsB5
- svNLQDclwUmvh3F7qR49VZlPuEjD9Gj/i7ycta46fcL5IXY42KSKSHntz4hkfFm/W8ewwPyX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-01_06,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- mlxlogscore=999 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020034
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250502031018.1292-2-quic_ptalari@quicinc.com>
 
+On 02-05-25, 08:40, Praveen Talari wrote:
+> To configure a device to a specific performance level, consumer drivers
+> currently need to determine the OPP based on the exact level and then
+> set it, resulting in code duplication across drivers.
+> 
+> The new helper API, dev_pm_opp_set_level(), addresses this issue by
+> providing a streamlined method for consumer drivers to find and set the
+> OPP based on the desired performance level, thereby eliminating
+> redundancy.
+> 
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> 
+> v2 -> v3
+> - moved function defination to pm_opp.h from core.c with inline
+> - updated return value with IS_ERR(opp)
+> 
+> v1 -> v2
+> - reorder sequence of tags in commit text
 
-On 5/1/2025 5:31 AM, Bryan O'Donoghue wrote:
-> On 16/04/2025 09:29, Kathiravan Thirumoorthy wrote:
->> When the system boots up after a watchdog reset, the EXPIRED_STATUS bit
->> in the WDT_STS register is cleared. To identify if the system was restarted
->> due to WDT expiry, bootloaders update the information in the IMEM region.
->> Update the driver to read the restart reason from IMEM and populate the
->> bootstatus accordingly.
-> Which bootloaders ?
->
-> Do you mean bootrom or one of the subsequent phase bootloaders ?
+As Trilok mentioned, this is not the right place for this.
 
+> ---
+>  include/linux/pm_opp.h | 27 +++++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+> 
+> diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+> index e7b5c602c92f..31ed8a7b554e 100644
+> --- a/include/linux/pm_opp.h
+> +++ b/include/linux/pm_opp.h
+> @@ -197,6 +197,28 @@ int dev_pm_opp_get_sharing_cpus(struct device *cpu_dev, struct cpumask *cpumask)
+>  void dev_pm_opp_remove_table(struct device *dev);
+>  void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask);
+>  int dev_pm_opp_sync_regulators(struct device *dev);
+> +
+> +/*
+> + * dev_pm_opp_set_level() - Configure device for a level
+> + * @dev: device for which we do this operation
+> + * @level: level to set to
+> + *
+> + * Return: 0 on success, a non-zero value if there is an error otherwise.
+> + */
 
-It is updated by the XBL. I shall mention it explicitly.
+No need of these for simple wrappers.
 
+> +static inline int dev_pm_opp_set_level(struct device *dev, unsigned int level)
+> +{
+> +	struct dev_pm_opp *opp = dev_pm_opp_find_level_exact(dev, level);
+> +	int ret;
+> +
+> +	if (IS_ERR(opp))
+> +		return IS_ERR(opp);
 
->
-> Please be specific about which bootloader populates this data i.e. if I
-> switch my bootloader to u-boot do I loose the added flag ?
->
->> For backward compatibility, keep the EXPIRED_STATUS bit check. Add a new
->> function qcom_wdt_get_restart_reason() to read the restart reason from
->> IMEM.
->>
->> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-> What I'd really love to see here is an example of reading out the data
-> from sysfs.
->
-> How do I as a user/consumer of this new functionality parse the new data
-> it provides ?
->
-> Ideally do this in the commit log and recommend doing it in the cover
-> letter to, as people don't always read both when commenting on patches.
+IS_ERR is wrong here, should be PTR_ERR.
 
+> +
+> +	ret = dev_pm_opp_set_opp(dev, opp);
+> +	dev_pm_opp_put(opp);
+> +
+> +	return ret;
+> +}
+> +
+>  #else
+>  static inline struct opp_table *dev_pm_opp_get_opp_table(struct device *dev)
+>  {
+> @@ -461,6 +483,11 @@ static inline int dev_pm_opp_sync_regulators(struct device *dev)
+>  	return -EOPNOTSUPP;
+>  }
+>  
+> +static inline int dev_pm_opp_set_level(struct device *dev, unsigned int level)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
 
-Sure, will mention the sysfs path and its output in the commit log and 
-cover letter.
+No need of these too for such wrappers. And then this isn't rebased
+over latest changes in the OPP core.
 
+I modified it and applied the below version to my tree now.
 
->
->> ---
->> Changes in v2:
->> 	- Use the syscon API to access the IMEM region
->> 	- Handle the error cases returned by qcom_wdt_get_restart_reason
->> 	- Define device specific data to retrieve the IMEM compatible,
->> 	  offset and the value for non secure WDT, which allows to
->> 	  extend the support for other SoCs
->> ---
->>    drivers/watchdog/qcom-wdt.c | 47 +++++++++++++++++++++++++++++++++++++++++++--
->>    1 file changed, 45 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/watchdog/qcom-wdt.c b/drivers/watchdog/qcom-wdt.c
->> index 006f9c61aa64fd2b4ee9db493aeb54c8fafac818..94ba9ec9907a19854cd45a94f8da17d6e6eb33bc 100644
->> --- a/drivers/watchdog/qcom-wdt.c
->> +++ b/drivers/watchdog/qcom-wdt.c
->> @@ -7,9 +7,11 @@
->>    #include <linux/interrupt.h>
->>    #include <linux/io.h>
->>    #include <linux/kernel.h>
->> +#include <linux/mfd/syscon.h>
->>    #include <linux/module.h>
->>    #include <linux/of.h>
->>    #include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->>    #include <linux/watchdog.h>
->>
->>    enum wdt_reg {
->> @@ -39,6 +41,9 @@ static const u32 reg_offset_data_kpss[] = {
->>    };
->>
->>    struct qcom_wdt_match_data {
->> +	const char *compatible;
->> +	unsigned int restart_reason_offset;
->> +	unsigned int non_secure_wdt_val;
->>    	const u32 *offset;
->>    	bool pretimeout;
->>    	u32 max_tick_count;
->> @@ -175,6 +180,15 @@ static const struct watchdog_info qcom_wdt_pt_info = {
->>    	.identity	= KBUILD_MODNAME,
->>    };
->>
->> +static const struct qcom_wdt_match_data match_data_ipq5424 = {
->> +	.compatible = "qcom,ipq5424-imem",
->> +	.restart_reason_offset = 0x7b0,
->> +	.non_secure_wdt_val = 0x5,
->> +	.offset = reg_offset_data_kpss,
->> +	.pretimeout = true,
->> +	.max_tick_count = 0xFFFFFU,
->> +};
->> +
-> You should separate the addition of your compatibles and their
-> descriptor tables from generic functional extensions.
->
-> i.e. add the compat string and the above table in a subsequent patch.
+-- 
+viresh
 
+Author: Praveen Talari <quic_ptalari@quicinc.com>
+Date:   Fri May 2 10:58:22 2025 +0530
 
-Got it. Will split the patch into 2.
+    OPP: Add dev_pm_opp_set_level()
 
+    To configure a device to a specific performance level, consumer drivers
+    currently need to determine the OPP based on the exact level and then
+    set it, resulting in code duplication across drivers.
 
->
->>    static const struct qcom_wdt_match_data match_data_apcs_tmr = {
->>    	.offset = reg_offset_data_apcs_tmr,
->>    	.pretimeout = false,
->> @@ -187,6 +201,29 @@ static const struct qcom_wdt_match_data match_data_kpss = {
->>    	.max_tick_count = 0xFFFFFU,
->>    };
->>
->> +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
->> +					const struct qcom_wdt_match_data *data)
->> +{
->> +	struct regmap *imem;
->> +	unsigned int val;
->> +	int ret;
->> +
->> +	imem = syscon_regmap_lookup_by_compatible(data->compatible);
->> +	if (IS_ERR(imem))
->> +		return PTR_ERR(imem);
->> +
->> +	ret = regmap_read(imem, data->restart_reason_offset, &val);
->> +	if (ret) {
->> +		dev_err(wdt->wdd.parent, "failed to read the restart reason info\n");
->> +		return ret;
->> +	}
->> +
->> +	if (val == data->non_secure_wdt_val)
->> +		wdt->wdd.bootstatus = WDIOF_CARDRESET;
->> +
->> +	return 0;
->> +}
->> +
->>    static int qcom_wdt_probe(struct platform_device *pdev)
->>    {
->>    	struct device *dev = &pdev->dev;
->> @@ -267,8 +304,13 @@ static int qcom_wdt_probe(struct platform_device *pdev)
->>    	wdt->wdd.parent = dev;
->>    	wdt->layout = data->offset;
->>
->> -	if (readl(wdt_addr(wdt, WDT_STS)) & 1)
->> -		wdt->wdd.bootstatus = WDIOF_CARDRESET;
->> +	ret = qcom_wdt_get_restart_reason(wdt, data);
->> +	if (ret == -ENODEV) {
->> +		if (readl(wdt_addr(wdt, WDT_STS)) & 1)
->> +			wdt->wdd.bootstatus = WDIOF_CARDRESET;
->> +	} else if (ret) {
->> +		return ret;
->> +	}
->>
->>    	/*
->>    	 * If 'timeout-sec' unspecified in devicetree, assume a 30 second
->> @@ -322,6 +364,7 @@ static const struct dev_pm_ops qcom_wdt_pm_ops = {
->>    };
->>
->>    static const struct of_device_id qcom_wdt_of_table[] = {
->> +	{ .compatible = "qcom,apss-wdt-ipq5424", .data = &match_data_ipq5424 },
->>    	{ .compatible = "qcom,kpss-timer", .data = &match_data_apcs_tmr },
->>    	{ .compatible = "qcom,scss-timer", .data = &match_data_apcs_tmr },
->>    	{ .compatible = "qcom,kpss-wdt", .data = &match_data_kpss },
->>
->> --
->> 2.34.1
->>
->>
+    The new helper API, dev_pm_opp_set_level(), addresses this issue by
+    providing a streamlined method for consumer drivers to find and set the
+    OPP based on the desired performance level, thereby eliminating
+    redundancy.
+
+    Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+    [ Viresh: Lot of fixes in the code, and rebased over latest changes.
+               Fixed commit log too. ]
+    Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ include/linux/pm_opp.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+index 8313ed981535..cf477beae4bb 100644
+--- a/include/linux/pm_opp.h
++++ b/include/linux/pm_opp.h
+@@ -197,6 +197,7 @@ int dev_pm_opp_get_sharing_cpus(struct device *cpu_dev, struct cpumask *cpumask)
+ void dev_pm_opp_remove_table(struct device *dev);
+ void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask);
+ int dev_pm_opp_sync_regulators(struct device *dev);
++
+ #else
+ static inline struct opp_table *dev_pm_opp_get_opp_table(struct device *dev)
+ {
+@@ -717,4 +718,14 @@ static inline unsigned long dev_pm_opp_get_freq(struct dev_pm_opp *opp)
+        return dev_pm_opp_get_freq_indexed(opp, 0);
+ }
+
++static inline int dev_pm_opp_set_level(struct device *dev, unsigned int level)
++{
++       struct dev_pm_opp *opp __free(put_opp) = dev_pm_opp_find_level_exact(dev, level);
++
++       if (IS_ERR(opp))
++               return PTR_ERR(opp);
++
++       return dev_pm_opp_set_opp(dev, opp);
++}
++
+ #endif         /* __LINUX_OPP_H__ */
 
