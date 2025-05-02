@@ -1,124 +1,106 @@
-Return-Path: <devicetree+bounces-173122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D83AA7797
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:44:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36829AA77AB
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:47:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 464CE166FAA
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:44:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F042A1BA51B3
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0ABE267B61;
-	Fri,  2 May 2025 16:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE931946BC;
+	Fri,  2 May 2025 16:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="q1B+zzkp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FP+Y9lSp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8648267716;
-	Fri,  2 May 2025 16:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F41418AFC;
+	Fri,  2 May 2025 16:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746204213; cv=none; b=TTzvgpYCcNHnchGVWJK9Gb66I/ZpNLnE7RqwteHBPmUBi3srXOWFuMS16aXA/x3DpjUQN0sHySKF5IqF9/ZPd0UznClemRMngLZjeCbMV6Q//ycRvyrJNpgqbhW7Hlf1XiIgegmEx1KrrCggk8S3CFqnk39EsO9dXcwu9/J802g=
+	t=1746204472; cv=none; b=LcuV4zL+0W/Hm7DPXR29tzJ3zgEs+JWvkgOecjKGzPhb5mA2r4P5g44qq+XpOmNvnNxLA0sVx/Q37tYgZOg0dHwIZJ/HZe01RCMpYb+Mnji3hyMKKCSUSpR8EMBve1lEAYz4mJIoinRvdiSmeuA3Gph/ZRXKUMq++Qao5kRCcWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746204213; c=relaxed/simple;
-	bh=ygx2bzlBgpHjz1t7Ya2NDxpOQ/Eveinyd42eds817pg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fjY6/3wqTUWkILLOwSGeAWnKtoDrSNbEjo4BvCWbQwwRSB4+dmmAOIQffXAY95m8odgra+u89XsR8ZeFu9mjHzR3oEMg+4vcLkkngqDe3frRzzYUaGmuNJ/SHTpIhY+6A9UMQQntZ20/76C+qidyenr8iSNoHDvNKR5qiZyVggE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=q1B+zzkp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746204210;
-	bh=ygx2bzlBgpHjz1t7Ya2NDxpOQ/Eveinyd42eds817pg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=q1B+zzkpLiAT/IBpIvW7htAZx20VHLTySJOBTzYHqwk+TH6dQ0Pe6AiPO20GtF+FO
-	 sgvYCFkgNFm1sCbT/KBekn5a2/oxtB6g/LDSOhGlFQ+fsG5IskGTEAs7MTE8hGDySt
-	 uCakBdm8dsU0mOu5xjcN16OIPtgGEMtpn5kP9S6WrlGhe34bzrLPXuNk3TKbfGFxR6
-	 yWcF+Q5HkbEVQ9c3doQW6RR62S2INKAa/O0SXSU3zD0JYST73UJf615bBRCR0XVbue
-	 ph8cvwttJlHntLirMQ9iEyNBO2eIj2vk7U2eifOxk+lFWDOdRGKAgTs5vWjJkitR7D
-	 EWqy+WTxvnQ5g==
-Received: from [192.168.1.63] (unknown [70.107.117.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EDDB817E125D;
-	Fri,  2 May 2025 18:43:27 +0200 (CEST)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Fri, 02 May 2025 12:43:22 -0400
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8365: Describe infracfg-nao as
- a pure syscon
+	s=arc-20240116; t=1746204472; c=relaxed/simple;
+	bh=tUQ4h7QZxsvJ5HB6FNwGgOGWyw/11iybNMFrdWHguKY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QOgdLyifohsYbv5UgUeGLqCu7GRct3XfN281ua6mwBwXm+zjdjP9VgeDyZMNfumVizYuwcRP5a8z01jxVP/+0un88IenMxHo2U/RjQQ72b/4G+fXvknkk4z6gAbVQeg30dcUa2fT+3tsUf2JY7db12I2b6qKKi5hj3cixRx89Iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FP+Y9lSp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81660C4CEE4;
+	Fri,  2 May 2025 16:47:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746204472;
+	bh=tUQ4h7QZxsvJ5HB6FNwGgOGWyw/11iybNMFrdWHguKY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FP+Y9lSpgzpsoNdZNxNsvBRLEAnzB1mIfyi3ZQDvqSzkQTkUzQZJe1SIC2+GCE+PK
+	 rL6LpH+t6e6BE4onYn78VtpMbDwZuAFSb3aN3u5H8QcQdtxVC59hH3YoqEwNOnZCoq
+	 PeoTCK2BaKIBqZkKaN0WNjJBw225Fokr5IuPuqDBmkCYCsrBofJ8dll7Tfi6h6GX2S
+	 ZEalc+83CcJEAG5reAqm7FVEfa06sEM+HRVfoGGW8HMFJXGyuCq/RmRdmn7vunxK8Q
+	 BrqVGMVK0XTgeFgLsGHdU6AGEsX3SrMktPHE+ddOsjfsfeq+4fY53eG0D4ZBuLc8Lt
+	 XkwiZKya7hytA==
+Date: Fri, 2 May 2025 18:47:49 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: dimitri.fedrau@liebherr.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 0/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <cz5tzcmkpkoi7f6g64opcoq5mclahyom4aqafpjxmhisjidize@uw4uq3pmxou4>
+References: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250502-mt8365-infracfg-nao-compatible-v1-2-e40394573f98@collabora.com>
-References: <20250502-mt8365-infracfg-nao-compatible-v1-0-e40394573f98@collabora.com>
-In-Reply-To: <20250502-mt8365-infracfg-nao-compatible-v1-0-e40394573f98@collabora.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Alexandre Mergnat <amergnat@baylibre.com>, 
- Amjad Ouled-Ameur <aouledameur@baylibre.com>, 
- =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
- Fabien Parent <fparent@baylibre.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fb4lyrpuybx6it7v"
+Content-Disposition: inline
+In-Reply-To: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
 
-The infracfg-nao register space at 0x1020e000 has different registers
-than the infracfg space at 0x10001000, and most importantly, doesn't
-contain any clock controls. Therefore it shouldn't use the same
-compatible used for the mt8365 infracfg clocks driver:
-mediatek,mt8365-infracfg. Since it currently does, probe errors are
-reported in the kernel logs:
 
-  [    0.245959] Failed to register clk ifr_pmic_tmr: -EEXIST
-  [    0.245998] clk-mt8365 1020e000.infracfg: probe with driver clk-mt8365 failed with error -17
+--fb4lyrpuybx6it7v
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v9 0/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+MIME-Version: 1.0
 
-This register space is used only as a syscon for bus control by the
-power domain controller, so in order to properly describe it and fix the
-errors, set its compatible to a distinct compatible used exclusively as
-a syscon, drop the clock-cells, and while at it rename the node to
-'syscon' following the naming convention.
+Hallo Dimitri,
 
-Fixes: 6ff945376556 ("arm64: dts: mediatek: Initial mt8365-evk support")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+On Mon, Apr 07, 2025 at 01:21:50PM +0200, Dimitri Fedrau via B4 Relay wrote:
+> The MC33XS2410 is a four channel high-side switch. Featuring advanced
+> monitoring and control function, the device is operational from 3.0 V to
+> 60 V. The device is controlled by SPI port for configuration.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index e6d2b3221a3b7a855129258b379ae4bc2fd05449..49ad4dee9c4cf563743dc55d5e0b055cfb69986a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -495,10 +495,9 @@ iommu: iommu@10205000 {
- 			#iommu-cells = <1>;
- 		};
- 
--		infracfg_nao: infracfg@1020e000 {
--			compatible = "mediatek,mt8365-infracfg", "syscon";
-+		infracfg_nao: syscon@1020e000 {
-+			compatible = "mediatek,mt8365-infracfg-nao", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
--			#clock-cells = <1>;
- 		};
- 
- 		rng: rng@1020f000 {
+Applied to
 
--- 
-2.49.0
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
 
+as v6.16-rc1 material. Thanks for your contribution!
+
+Best regards
+Uwe
+
+--fb4lyrpuybx6it7v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgU9zEACgkQj4D7WH0S
+/k7Hnwf/dTP1MMQv9/ToNPc2H4nO5NJTsH2IUJtUlyKlbVaPrTmAilrWZJ6VquA9
+b2UJJ/udGeBwyaDC6pJQmZgw/gTBEbzCM19KdoI2U67j5XjNEApMfth0E4JcTNUI
+qgwQHWKlIsf/r+N8BioHl+7bBOY3oxJ8f8n78ZTI0mnfTHUc5H/TGbXY4/n+sn/l
+cJF/sR1OIlQ8m9orvJA8+XozHaev7jqsCTDnyJXHK5wZXRsyDVO1GXOYzm1GTd/g
+xDpgkXNrm7SLmP/9SIo8McnjFmb1CAcH66LxnQZUBDz1ly1qdeuPSFteK3TYjW5G
+oquesExyfQhOHS7OJ89DAp9yggNJqQ==
+=YH15
+-----END PGP SIGNATURE-----
+
+--fb4lyrpuybx6it7v--
 
