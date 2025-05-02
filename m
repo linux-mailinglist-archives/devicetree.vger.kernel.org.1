@@ -1,142 +1,124 @@
-Return-Path: <devicetree+bounces-172859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E23AAA6BE8
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:46:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BE4AA6BF0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:47:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04E627A5A56
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:45:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A46894A7300
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD9C26AA83;
-	Fri,  2 May 2025 07:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C7126D4CD;
+	Fri,  2 May 2025 07:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZKxOONMl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QuARuY7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AD92690D9;
-	Fri,  2 May 2025 07:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E48E26B95A
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 07:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746171928; cv=none; b=ctN1J+pj2QwymS6weMojp9Jds9BPb2ynB1Q/+FPMFY4a3Hl8KbsCvgbyginRvHiXiZT6m5EKFCbLDNn2MC+9yZI9l4I0/z2S5LN4G32PQCWQYuHk1V039kj+2GkHnJYOuImkUQvVg9QeVS8PkD1Byh9eQIXGyUyJuiL5UYxc//k=
+	t=1746171934; cv=none; b=RvwoS5EDrLQPcKo8NC403tz9q5w7DhEVDSX3ldS+R+bhLQO/YU2k2vXm85qaBD35eFivjJpummM8JIptb7uU8eYlZeM/VmP0xA6pKG0S4Nh+g4or8GKXhYMIzyq9Ti6FV7iqSu89HHNcG5sFtPCaOJHosbxZ1QLnavkq+I3S/M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746171928; c=relaxed/simple;
-	bh=pEBb/P94CTc+kUMUWVOXbdynZw//A2HMy7F+XjB5wwQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lBtxXpxBgZsA+jBNk+DlEQPpp/J/fbL+us7Pv9ggMlmssmQs0fOmmhfcDSePIm8cxDSSTYjE2+PqREdmO0G3LV/ZQkia96ON9ERSDaQes273AWK6w9SbUShCXje1obX1UfS7FNzyC5uX7jQo9eon28vbUZO1+/h49S8eRktmLU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZKxOONMl; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B8FD810252E21;
-	Fri,  2 May 2025 09:45:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1746171924; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NCHZzqkbrKhZujwUWBoIgsXpnOP4BdiLcJ0DuXttCFs=;
-	b=ZKxOONMl07m6dnZm/RMqm0Trb64HeoFcRsMkzbQTRjb4j0SgtsWSnVJ4oFBFa+bN4nhPXl
-	MFpsj3dVlJTTvPPqhnQWY6hCiYzqVaGbNqaqLgk0RTY/94YEYyo3WANRg8xE2wZLb2lCD0
-	MwtJ7XPJs7EgGCsDI89kMz0w/DkipYgYyX/8F+ag6c9lLjVSfgUzY97ExODC7QfP1EuxzO
-	xAUe4bqtaHHx4bAUHKGZojDMlQoRRgSZwF2khax8LU+SEoxeKfdk+mqoTaP2RPSdsd21A3
-	sV1p1clxSGjyaskN4lvqR/Nb5BnqxaqykPnx2fWLxJjbjnmZ9UZwsFuwe2ZwFQ==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746171934; c=relaxed/simple;
+	bh=9m/cTKzQOx6GhsUmIqqJjYJwWyeHCRKXqXqMupFRk6Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BWY/aDb71KgWCDSfUpE0JhnhhhBedDD9i/r+ADo5gItpZIgNn9JLWNqzRbbbRxJ2usQvwf15cFoaCykEmDXQmfUuG/3DDYFgQy5uQPAgsAFuIZHfMHDWQulMM+ENf75EAiEOt9FnPg8gZzCCE7BL+faf2eZ8KLzQhjaXEvZ6N3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QuARuY7Q; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-227b828de00so17705235ad.1
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 00:45:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746171932; x=1746776732; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=foBGkx3MDCARyYK8aHOja5EZFd7xCOQNBSYVh7guhVU=;
+        b=QuARuY7QYb9JQ73nyuLdhYJpDI9l/QQF8NYwpWL97ipkrDK34ewqf8aJ/wNbjxNVi0
+         MEbczXfIEGSb0F8/gcI4Fd7lg3iWXvQaGgD8TaNcVkDNJbqhpoMe7/JT+MHWv0S2qDL3
+         AbI13O+CT3k+3HSUEribm0nXVTAOB//iJjOxZx9l5FYaVSCpLy32pZ7M8bsy1mj1hao/
+         f6xGZtC3MfHXtiLqpOp9BWn3Z9Tfw5xKsQFzyVA1krVPOiNsQ6fYWWViAXAi+hl0sFho
+         xZAZgsEnfuIe2YTNhxploR6+n2YrVO8y/0BUAzHhCdNMUBTDS6n67M3SEFORMSiwUfhC
+         xvLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746171932; x=1746776732;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=foBGkx3MDCARyYK8aHOja5EZFd7xCOQNBSYVh7guhVU=;
+        b=bXFncxh38nY1PeBb+mRoJKS+8CnoCt1hug/SmF5es6Nz4Ld6NnpNTtBz8ZwWgrAK3c
+         0aOPrK/Do3tYnaDazqeYyNWOEdcfPo4009i7V+DR1LEEiMjNMmJZawu8jFIp8v+o5T3u
+         r9HLF4+VMfdMX5ibdeG1J64sRrYosCBKiHZqMCWNoClqVpKIYOo3/Ke0pXk4uZf5url/
+         72WCjuKvZnPg57cyDx3odxvnGyHMQ6CgKzRiGcNoRnAFCDwZaXPIIOwDv3ZXYhu1l4gv
+         vhtIjTY96SyRpb36kkmRcHYC3H8Wzer0jhgjWN2MWLnYvKbka8y+mg+HgoLmy9LvxzaZ
+         S9xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPVhyXpb0GxPs75TP6nj2jo4l34GjMsYvbXcJssHpDAutKnN3Oa7dCMJWBVu9dWPUtFOkvJaYHobiM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB3rAKzdq9p25L544nJ+wYHZOBK8IeElBhuUjyEZT2Ixb5SKmr
+	NkzC6berXJ9unYoVGtDJhGYwdwtlRq1i4UH3VhDZ192T4dCwFixdBPAfKrmq6Z4=
+X-Gm-Gg: ASbGncuWLjDIlpnyzb5AvU20cmroiXXSEtRMa/2vpdLBXs6kMO9AQJzb9jJaHLm4KTD
+	zJ+xiDZyhdi2weM7vFu7v9570GBX6H65ZwJynPkwo7UbL0Sk+DwWpbGqV0a+niHn5WKLCMNfrab
+	2np2QfcFHpNQmYmTvKj/zbYql8Sgar7A5XUobarqvBt+EMR/hY310i20ppLuse8BkdDsveFppXt
+	FXpNhnSX5DW9PjmJ+bR9UvWhy1ikz87D4mkhGB4TmBj+d0GicjwnCB5VpUVWNfRJnmxDNXnBTLZ
+	bNCyqtsh4ukwRK286PqQEyaNQUcfK/SfOxwhdpeHPg==
+X-Google-Smtp-Source: AGHT+IHiu8yTtPFT2bhfKp4aemqoUhED3Q4p8zfzNdCBrWjmcCkccsiiaVDUk2133S11VdBC/UNYjA==
+X-Received: by 2002:a17:902:f645:b0:22d:e57a:279b with SMTP id d9443c01a7336-22e102ea0cbmr38882945ad.24.1746171931711;
+        Fri, 02 May 2025 00:45:31 -0700 (PDT)
+Received: from localhost ([122.172.83.32])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e1521fb08sm1236375ad.128.2025.05.02.00.45.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 00:45:31 -0700 (PDT)
+Date: Fri, 2 May 2025 13:15:29 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v10 7/7] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Fri,  2 May 2025 09:44:47 +0200
-Message-Id: <20250502074447.2153837-8-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250502074447.2153837-1-lukma@denx.de>
-References: <20250502074447.2153837-1-lukma@denx.de>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
+	quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()
+Message-ID: <20250502074529.ri73hs6xyztn4k4y@vireshk-i7>
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-2-quic_ptalari@quicinc.com>
+ <20250502053758.utawzhq6famwenc2@vireshk-i7>
+ <e72aeda8-035d-4144-a9ce-ae276bca87bf@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <e72aeda8-035d-4144-a9ce-ae276bca87bf@quicinc.com>
 
-This patch enables support for More Than IP L2 switch available on some
-imx28[7] devices.
+On 02-05-25, 13:07, Praveen Talari wrote:
+> How come? i have synced  linux-next today itself and pushed from it, even i
+> didn't face any issue.
 
-Moreover, it also enables CONFIG_SWITCHDEV and CONFIG_BRIDGE required
-by this driver for correct operation.
+Yeah, you won't face any issues, but scope-based cleanup helpers were
+added recently and should have been used here, though it wasn't
+obvious, so its fine.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
----
-Changes for v4:
-- New patch
+> Let me know how/where rebased i.e linux-next or linux?
 
-Changes for v5:
-- Apply this patch on top of patch, which updates mxs_defconfig to
-  v6.15-rc1
-- Add more verbose commit message with explanation why SWITCHDEV and
-  BRIDGE must be enabled as well
+linux-next should be fine normally.
 
-Changes for v6:
-- None
-
-Changes for v7:
-- None
-
-Changes for v8:
-- None
-
-Changes for v9:
-- None
-
-Changes for v10:
-- None
----
- arch/arm/configs/mxs_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index b1a31cb914c8..ef4556222274 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -34,6 +34,8 @@ CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -52,6 +54,7 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
 -- 
-2.39.5
-
+viresh
 
