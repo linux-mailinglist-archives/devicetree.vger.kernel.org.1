@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-172948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E76AA705B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:07:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D120AA706A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43FFD9A7016
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFEDB18958C4
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B372A241CB0;
-	Fri,  2 May 2025 11:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF914241671;
+	Fri,  2 May 2025 11:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lk/jsNsU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NirENkiQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E48238C09
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 11:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6D12AD3E;
+	Fri,  2 May 2025 11:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746184012; cv=none; b=YX9QycLxRXO9XFfZfiSd8GFT4i4f6VkeZH+VCB8+xtNse7QesZ0fLPGut3zdqty4YcErE3SCcJzGKohSsMr8NTmg689xNbYuv7tGNhG28xZx3+kUUrL9IJ9hbO6+BjVROjzYCTJYNq+9hvIO1OsoEJ4s9HXxwsur6Fqz/93ueJo=
+	t=1746184185; cv=none; b=hptrQFbLqGVpdX5WfpJ0rZEXHP9e/1ETzEJoQkSoifm9ys9tqbyOaYUtlH4mSuLGGHlYLVeVy+AAgH+ZDMbtrWbn5CnINF6etv8+d5on4yCRkunIDXQLwfqN8qOLU0gcCyBZxwISBBF7ONE81D7kgPqwS0y/auUHOOekNCKc3uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746184012; c=relaxed/simple;
-	bh=/47+sMA0JkyFBnR95B9nb3p/4mhJHYfJBzwuNp3cdaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dKcyQx6aYWcUKmRSIQZtmeVOTojp5rHJyQL7FIT+gmGD/IVtbp7nxbxQrPe7J2uV5QuUe60Fq6tmWnMf2toTNY8NdBg6X4LVqSvzLSfWeBISLpQ3PzJkRaUgYN7JbQywpAhh/T5WAls7hw5H827w1LF6Qh1UfBps/benPX1z1J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lk/jsNsU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421N8rT015611
-	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 11:06:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n1zoogZ0mW4AaQa7oJlvbkJUvuNkb6MBNOT54+2ShgI=; b=lk/jsNsUuvJn+oUC
-	GUrJtP8ak2oQDXtsr3fqw3ytUMcaQATxpYZZQuaLM7TtfKTa4GQjwjIkkO4UXJWK
-	XW8qMwUyc8y/PnUCV/YYfmXxe/k/EEsjJeayFdapxHnYk+sG5pqh5VPrAiMxckrd
-	Z4tHWhFXS5vE4pl08Y0+1z/Pgg3Eq48idLLLP0jtfTcfbO7fVIpF+s697usd5eA0
-	QNlhh4Ys+9pzC1eMIgenRcRnX50RQ40r97JqnI5rJvyV5pAkOXB6i25al8MbnsSE
-	XeZ/H/P9wsdJqLh0dXGiu2fssuq8LexUWUiy0BQaRW7JUl12H/EhWUeH0/DPT7UL
-	ug8a6Q==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u203ua-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 11:06:49 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c95556f824so188894085a.2
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 04:06:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746184009; x=1746788809;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n1zoogZ0mW4AaQa7oJlvbkJUvuNkb6MBNOT54+2ShgI=;
-        b=ahPMAkmq26LryIGGHVClVsiNTye6gyB6Rw/hjFy6p3K4ZVnyYde0kvUcrBa/WW2kAG
-         rEh52Wiu6TBqWhQ2uRDW0B+s3oJ/7baYskZrT3tCTZ4fg2I2JyRRpjlklgVUqDF7Bs1M
-         ZyOvuQqbOCvlgXnYhmODBY6e/+GgnUrggzndG21hJTjgiPQdNfy1G8yjjMFVEFoSj4ph
-         oblSFLyr+dkhHRK7nxvIKFiGWt30caU0rAtN6TLlqjXlNo+DBVBCZRNrMqmv0o645aDd
-         zDGPhGh5pEMbyh0tHpDNEda7cULRYubs95vrz0SGVwP5INWCGRMvf6xyqCp6bechEgeH
-         VV6g==
-X-Forwarded-Encrypted: i=1; AJvYcCUICYO7fkNT1JAZdg6XQ3cn/Ll1UO3LVf/gNvtb6B/irev+Qhej5regIVTGpPihZyasxuDH5wawsTOB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsq7BzWk1NTIneiXGAd8Ve3EFzau8XdKBuG31fTxxc9ccGAxRE
-	6VXddRxe8W76k2ufQHSLgEZK8Rd68lkeD5JhvV4hkwpvR6LX1pgX2/+Xw4/+k9sdyUJ034ogyU5
-	8HsSvI92QSmzwar3uGNk+N1F0soIh2wUS6iIcxgqdcjRyR8eDZM/OUaJiprLR
-X-Gm-Gg: ASbGncvh4PZ4iHjMAit8zEZXBGYcZTLTu67i6WR45CR8XTX9Bio0Uf6qFeMnizMoa64
-	JWgNxbcc7W2ZvMFokl81jfr15XwRT9rIDWXdloH+YkY2OcPhtwkGspeA3H6jKVZlU9R1/2LTjQS
-	+HMShP0sopZBDCJynOSlqjnkZc39/DFpFpfKP21aFDIIVvyvyc9Od9I0teyMbY8H4BJ1gkiFPwv
-	ErZrTrMxirrr1Hr6A3BVt5b/Jbvdw+vmMWgazWSMp4xqHIPxpgB29IRe25OgRWFIzqx7xYe1xcI
-	0sMMwZ6DZf1kOJwuErWyqaXLMqJv1EtTfuAkuQ==
-X-Received: by 2002:a05:620a:440c:b0:7ca:ca21:23d9 with SMTP id af79cd13be357-7cad5b1e908mr390997785a.7.1746184008915;
-        Fri, 02 May 2025 04:06:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFxEfw/oGZXNbT+wq9xh4TIiYE0dP+RWQJIzPOf851X459NKI0wxZw1jeI309e25HlZlax9AQ==
-X-Received: by 2002:a05:620a:440c:b0:7ca:ca21:23d9 with SMTP id af79cd13be357-7cad5b1e908mr390992385a.7.1746184008501;
-        Fri, 02 May 2025 04:06:48 -0700 (PDT)
-Received: from [192.168.68.119] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a099ae7afesm1820418f8f.47.2025.05.02.04.06.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 04:06:48 -0700 (PDT)
-Message-ID: <0d094cec-0a2e-4e21-845f-977f3a77993d@oss.qualcomm.com>
-Date: Fri, 2 May 2025 12:06:47 +0100
+	s=arc-20240116; t=1746184185; c=relaxed/simple;
+	bh=1KupARu2ixwnWnF/VeD8fbwWOgpRBQAhNeatCM2WB28=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CZPgUPb2EKEk77j27UiqCg8TPc7ZGu46wh4Bj5XrVR62W3ZNa60Ty3rIE3qOMJ8TVKGIzdmN3sP1DGz4WznLH9MQ2Tr/ruvPwHUSY6r0PFNxnFAYkXmqUcWQpCqcgWBb++jgqRTezVP4UneaI4TFdw1H2k1y7OWQF9ih7SjyBnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NirENkiQ; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542B9UKj389669
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 06:09:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746184170;
+	bh=Tz0Qyi+rYLdiyL94yfUmQf0GAPdsB4sjN3Vr+h5NUMw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=NirENkiQRPkeD/oD+xACE05qKJzX4WNXrM2HgkHdb6nSm78hCRUW+iwVZ3IP4u9mS
+	 rFdkMyrUnQlr8YUUlGapbbtEiTjKo1I91LjamguOPa1GBXTl3X4OI/srLjl2o50AaN
+	 G4wutEZjEYRTzR+oO/kuiPNbUhAXtDzvSqwxOkc8=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542B9UTB017423
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 06:09:30 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 06:09:30 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 06:09:30 -0500
+Received: from [10.249.134.35] ([10.249.134.35])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542B9OFu058493;
+	Fri, 2 May 2025 06:09:25 -0500
+Message-ID: <19dd4cc6-c110-4c2d-b725-5e7bd1a4226c@ti.com>
+Date: Fri, 2 May 2025 16:39:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,122 +66,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] ASoC: qcom: sm8250: set card driver name from
- match data
-To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc: Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, phone-devel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com>
- <20250425-fp5-dp-sound-v3-2-7cb45180091b@fairphone.com>
- <aBNdCRk_fP2q1vxQ@srini-hackbase>
- <91110CA9-6E83-4811-AA04-C0312B99B95E@lucaweiss.eu>
+Subject: Re: [PATCH v1 2/4] arm64: dts: ti: k3-am62x: Add required voltage
+ supplies for IMX219
+To: Devarsh Thakkar <devarsht@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <y-abhilashchandra@ti.com>,
+        <s-jain1@ti.com>, <jai.luthra@linux.dev>,
+        <jai.luthra@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <imx@lists.linux.dev>
+References: <20250429154133.3377962-1-r-donadkar@ti.com>
+ <20250429154133.3377962-3-r-donadkar@ti.com>
+ <f223d5ec-5549-414a-842d-b9aeb80915e5@ti.com>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <91110CA9-6E83-4811-AA04-C0312B99B95E@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
+From: "Donadkar, Rishikesh" <r-donadkar@ti.com>
+In-Reply-To: <f223d5ec-5549-414a-842d-b9aeb80915e5@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=6814a749 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=6H0WHjuAAAAA:8
- a=-0JhTq91CruwOFu3ng0A:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDA4NyBTYWx0ZWRfX43JldB5OWfvW qjwJn1X4L0hVxwD6dkI9nACsdewm587injb/klZjuXmT2nDBvXuy+IZ87FxvmGy3VlVHChbKIkf FuVMc6AbYt4RlRmFAlrzi4MRXkaoCy46uk0w7tuxYX8Jf7XReznYm9Ism3rzwAhfHCO0lrWvGhR
- cGlejC9o86x9bsMnkf///9+aVIEBEaaILzvIC8xzb4INQf9nj0tiAxRlsRTOJePSPE3Aua4xF9V /UM3iUnleqfSW+KGUOl80VyJlPofLwkKuivOMy4g0MianTFnIzpgVG7KGliWWlTUt1yFV0cEV0m AhDOs/jiPf+Y/CwfSR5gZADRFQx8ZOO/zteQtTt+ZD1X9dFY7yUeHLl+i0GxBr7JDvINuIGJkg0
- WaNMKSNCmY/HqPYGMz9ZyUzxW9+jzIvABApSAYDV6zbMEP7w3sbhYWzW6Nba8LVmkWVoEew3
-X-Proofpoint-GUID: IT3NmCRhw-Noxz39MVYjr2HL2ATzQpoc
-X-Proofpoint-ORIG-GUID: IT3NmCRhw-Noxz39MVYjr2HL2ATzQpoc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-02_01,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020087
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 5/1/25 15:13, Luca Weiss wrote:
-> Hi Srini,
-> 
-> Srinivas Kandagatla <srini@kernel.org> schreef op 1 mei 2025 13:37:45 CEST:
->> On Fri, Apr 25, 2025 at 10:07:26AM +0200, Luca Weiss wrote:
->>> Sound machine drivers for Qualcomm SoCs can be reused across multiple
->>> SoCs. But user space ALSA UCM files depend on the card driver name which
->>> should be set per board/SoC.
->>>
->>> Allow such customization by using driver match data as sound card driver
->>> name.
->>>
->>> Also while we're already touching these lines, sort the compatibles
->>> alphabetically.
->>>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>  sound/soc/qcom/sm8250.c | 9 ++++-----
->>>  1 file changed, 4 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
->>> index b70b2a5031dfbf69024666f8a1049c263efcde0a..e920b413b762c803cfcc4049f35deba828275478 100644
->>> --- a/sound/soc/qcom/sm8250.c
->>> +++ b/sound/soc/qcom/sm8250.c
->>> @@ -16,7 +16,6 @@
->>>  #include "usb_offload_utils.h"
->>>  #include "sdw.h"
->>>  
->>> -#define DRIVER_NAME		"sm8250"
->>>  #define MI2S_BCLK_RATE		1536000
->>>  
->>>  struct sm8250_snd_data {
->>> @@ -200,15 +199,15 @@ static int sm8250_platform_probe(struct platform_device *pdev)
->>>  	if (ret)
->>>  		return ret;
->>>  
->>> -	card->driver_name = DRIVER_NAME;
->>> +	card->driver_name = of_device_get_match_data(dev);
->>>  	sm8250_add_be_ops(card);
->>>  	return devm_snd_soc_register_card(dev, card);
->>>  }
->>>  
->>>  static const struct of_device_id snd_sm8250_dt_match[] = {
->>> -	{.compatible = "qcom,sm8250-sndcard"},
->>> -	{.compatible = "qcom,qrb4210-rb2-sndcard"},
->>> -	{.compatible = "qcom,qrb5165-rb5-sndcard"},
->>> +	{ .compatible = "qcom,qrb4210-rb2-sndcard", .data = "sm8250" },
+
+On 02-05-2025 13:45, Devarsh Thakkar wrote:
+> On 29/04/25 21:11, Rishikesh Donadkar wrote:
+>> The device tree overlay for the IMX219 sensor requires three voltage
+>> supplies to be defined: VANA (analog), VDIG (digital core), and VDDL
+>> (digital I/O).
 >>
->> sm4250 for rb2?
-> 
-> Since this name is visible to user space and used for picking the UCM config, I don't think it's a good idea to change it.
-> 
-It is not correct to pretend that rb2 is sm8250 for ucm cases, I agree previous code was
-already doing this, Good thing is that we do not have a ucm written yet for RB2.
-
-Lets fix this as you are already doing this for other compatibles.
-
---srini
-
+>> Add the corresponding voltage supply definitions to avoid dtbs_check
+>> warnings.
+>>
+> On a side-note device-tree overlay requiring these voltages is an
+> implied reason, it's mainly because the schematics mention that and
+> bindings want to capture same topography in device-tree too.
+>
+> So maybe good to mention that and share schematic link too in commit
+> message :
+>
+> https://datasheets.raspberrypi.com/camera/camera-module-2-schematics.pdf
+>
+> With these changes, feel free to add,
+>
+> Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+Hi Devarsh, Thanks for the review. I will do this in the next revision.
+>
 > Regards
-> Luca
-> 
+> Devarsh
+>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   .../boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso  | 31 +++++++++++++++++++
+>>   1 file changed, 31 insertions(+)
 >>
->>> +	{ .compatible = "qcom,qrb5165-rb5-sndcard", .data = "sm8250" },
->>> +	{ .compatible = "qcom,sm8250-sndcard", .data = "sm8250" },
->>>  	{}
->>>  };
->>>  
->>>
->>> -- 
->>> 2.49.0
->>>
-
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+>> index dd090813a32d6..149c59c071823 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+>> @@ -15,6 +15,33 @@ clk_imx219_fixed: imx219-xclk {
+>>   		#clock-cells = <0>;
+>>   		clock-frequency = <24000000>;
+>>   	};
+>> +
+>> +	reg_2p8v: regulator-2p8v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "2P8V";
+>> +		regulator-min-microvolt = <2800000>;
+>> +		regulator-max-microvolt = <2800000>;
+>> +		vin-supply = <&vcc_3v3_sys>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	reg_1p8v: regulator-1p8v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "1P8V";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		vin-supply = <&vcc_3v3_sys>;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	reg_1p2v: regulator-1p2v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "1P2V";
+>> +		regulator-min-microvolt = <1200000>;
+>> +		regulator-max-microvolt = <1200000>;
+>> +		vin-supply = <&vcc_3v3_sys>;
+>> +		regulator-always-on;
+>> +	};
+>>   };
+>>   
+>>   &main_i2c2 {
+>> @@ -40,6 +67,10 @@ ov5640: camera@10 {
+>>   
+>>   				clocks = <&clk_imx219_fixed>;
+>>   
+>> +				VANA-supply = <&reg_2p8v>;
+>> +				VDIG-supply = <&reg_1p8v>;
+>> +				VDDL-supply = <&reg_1p2v>;
+>> +
+>>   				reset-gpios = <&exp1 13 GPIO_ACTIVE_HIGH>;
+>>   
+>>   				port {
 
